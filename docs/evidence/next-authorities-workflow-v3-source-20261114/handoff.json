@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_HANDOFF_NOT_EXECUTED",
+  "created_utc": "2026-11-14T17:34:00.365Z",
+  "source": {
+    "path": ".github/workflows/lumo-next-table-authorities.yml",
+    "bytes": 64401,
+    "sha256": "9dbda2369930ed77275cb3adc401fedc58538ebe21736f7e29b68dad23ab6f9e",
+    "git_blob": "6a08dfb852cbec128db96aaa84add2bc69a7194b",
+    "mode": "100644"
+  },
+  "source_freeze": {
+    "bytes": 3629,
+    "sha256": "9c1e7f5005d094e31f452c352e88a116ba02b859eac8dbea838e9fe7ba26d5af",
+    "git_blob": "9a7644957b87a7b1f9b25a34281086e3abee9a1e"
+  },
+  "patch": {
+    "path": "integration.patch",
+    "bytes": 8869,
+    "sha256": "d419f7d7299d975e56f65e0b984f36b642466d5f46ca4b672518aee08dfe01fc",
+    "git_blob": "d6b50cf6746f19b172e1cd5be86e8e00bab9dd86"
+  },
+  "contract": {
+    "path": "contract-delta.json",
+    "bytes": 7437,
+    "sha256": "c737eae737c53165af9bd4bc32c0b7b92311c6965775f04cc98e6dc3b945050d",
+    "git_blob": "212571cd1b30e9357cbf8b6144f86db54f32a88a"
+  },
+  "destination": "Root-owned successor on integration/lumo-next-table-authorities-20261114",
+  "source_dependency": "Root must include the exact final 13-source Speech package. Workflow uses actual github.sha; no static past Host result.",
+  "peer_review_requested": [
+    "/root/flutter_integration",
+    "/root/pipeline_repair"
+  ],
+  "remote_ref_tree_commit_or_ci_mutation_performed": false,
+  "execution": "NOT_RUN"
+}

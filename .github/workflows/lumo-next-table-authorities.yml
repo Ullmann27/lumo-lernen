@@ -616,11 +616,114 @@ jobs:
         working-directory: host-source
         run: |
           set -euo pipefail
-          printf '%s  %s\n' fb7c338e9c551fdbb5711ed30bb19c7b799ecf75f87176757eede9cac7e7bb03 \
+          printf '%s  %s\n' eaa36179179a172f1dff6bc49cf1917813e0143f6beed8a04b2c1a49071618f8 \
             scripts/compile_android_host.sh | sha256sum -c -
-          test "$(git rev-parse HEAD:scripts/compile_android_host.sh)" = 73d0c0d8726e6352f0bf89c25cf17bdf1270ad2f
+          test "$(git rev-parse HEAD:scripts/compile_android_host.sh)" = 48893609d274834c58f7b6eceb63b0b5ec86951f
           cp scripts/compile_android_host.sh "$LUMO_QUAL_EVIDENCE/tools/compile_android_host.sh"
           bash scripts/compile_android_host.sh 2>&1 | tee "$LUMO_QUAL_EVIDENCE/android-host-compile.log"
+      - name: "Run all nineteen original speech orchestration methods once"
+        if: matrix.group == 'android-host-compile'
+        working-directory: host-source
+        run: |
+          set -euo pipefail
+          set +e
+          "$LUMO_QUAL_PYTHON" -B - <<'PY' > "$LUMO_QUAL_EVIDENCE/speech-orchestrator.stdout" 2> "$LUMO_QUAL_EVIDENCE/speech-orchestrator.stderr"
+          import hashlib, importlib, json, os, subprocess, sys, time, unittest
+          from pathlib import Path
+          sys.dont_write_bytecode = True
+          host = Path.cwd().resolve()
+          proof = Path(os.environ['LUMO_QUAL_EVIDENCE']) / 'speech-orchestrator'
+          proof.mkdir(exist_ok=False)
+          sources = {
+              'scripts/compile_android_host.sh': ('eaa36179179a172f1dff6bc49cf1917813e0143f6beed8a04b2c1a49071618f8', '48893609d274834c58f7b6eceb63b0b5ec86951f'),
+              'scripts/run_speech_jvm_contracts.py': ('c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23', '9d17f343b16d80bddb861cf26cfeae9e38994f24'),
+              'scripts/tests/test_speech_jvm_runner.py': ('5b4161a58a3280fe0b70ae0cddca57e58411a04c1a475ad5c9c55ecbb63f2276', '4358a2540c65c19701b39d582465089672f884e5'),
+          }
+          source_records = []
+          if subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip() != os.environ['EXPECTED_HOST']:
+              raise ValueError('Speech orchestration tests require the actual pushed Host')
+          for relative, (sha256, blob) in sources.items():
+              path = host / relative
+              raw = path.read_bytes()
+              actual_blob = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+              if path.is_symlink() or hashlib.sha256(raw).hexdigest() != sha256 or actual_blob != blob:
+                  raise ValueError('Unapproved speech source: ' + relative)
+              if subprocess.check_output(['git', 'rev-parse', 'HEAD:' + relative], text=True).strip() != blob:
+                  raise ValueError('Speech source is not the actual committed Host blob: ' + relative)
+              original = proof / 'originals' / relative
+              original.parent.mkdir(parents=True, exist_ok=True)
+              original.write_bytes(raw)
+              if original.read_bytes() != raw:
+                  raise ValueError('Speech original copy differs')
+              source_records.append({'path': relative, 'bytes': len(raw), 'sha256': sha256, 'git_blob': blob})
+          module_name = 'scripts.tests.test_speech_jvm_runner'
+          module = importlib.import_module(module_name)
+          if Path(module.__file__).resolve() != host / 'scripts/tests/test_speech_jvm_runner.py' or Path(module.RUNNER.__file__).resolve() != host / 'scripts/run_speech_jvm_contracts.py':
+              raise ValueError('Speech test or runner import resolves outside the current Host')
+          suite = unittest.defaultTestLoader.loadTestsFromModule(module)
+          def identities(node):
+              if isinstance(node, unittest.TestSuite):
+                  return [test_id for child in node for test_id in identities(child)]
+              return [node.id()]
+          loaded_ids = identities(suite)
+          class ObservedResult(unittest.TextTestResult):
+              def __init__(self, *args, **kwargs):
+                  super().__init__(*args, **kwargs)
+                  self.actual_starts = []
+                  self.actual_successes = []
+              def startTest(self, test):
+                  self.actual_starts.append(test.id())
+                  super().startTest(test)
+              def addSuccess(self, test):
+                  self.actual_successes.append(test.id())
+                  super().addSuccess(test)
+          started = time.monotonic()
+          result = unittest.TextTestRunner(verbosity=2, resultclass=ObservedResult).run(suite)
+          zero_counts = {
+              'failures': len(result.failures), 'errors': len(result.errors), 'skips': len(result.skipped),
+              'expected_failures': len(result.expectedFailures), 'unexpected_successes': len(result.unexpectedSuccesses),
+          }
+          passed = (len(loaded_ids) == 19 and len(set(loaded_ids)) == 19 and result.testsRun == 19
+                    and all(test_id.startswith(module_name + '.SpeechJvmRunnerTest.') for test_id in loaded_ids)
+                    and result.actual_starts == loaded_ids and result.actual_successes == loaded_ids
+                    and result.wasSuccessful() and not any(zero_counts.values()) and not unittest.defaultTestLoader.errors)
+          report = {'schema': 1, 'status': 'PASS' if passed else 'FAIL', 'host': os.environ['EXPECTED_HOST'],
+                    'module': module_name, 'source_records': source_records, 'loaded_ids': loaded_ids,
+                    'started_ids': result.actual_starts, 'successful_ids': result.actual_successes,
+                    'tests_run': result.testsRun, **zero_counts, 'loader_errors': unittest.defaultTestLoader.errors,
+                    'failure_details': [{'id': test.id(), 'trace': trace} for test, trace in result.failures],
+                    'error_details': [{'id': test.id(), 'trace': trace} for test, trace in result.errors],
+                    'skipped_details': [{'id': test.id(), 'reason': reason} for test, reason in result.skipped],
+                    'expected_failure_details': [{'id': test.id(), 'trace': trace} for test, trace in result.expectedFailures],
+                    'unexpected_success_ids': [test.id() for test in result.unexpectedSuccesses],
+                    'elapsed_wall_seconds': time.monotonic() - started,
+                    'scope': 'Actual 19 orchestration methods with their declared synthetic boundaries; not the later Java/Kotlin or device proof'}
+          (proof / 'result.json').write_text(json.dumps(report, indent=2) + '\n')
+          print(json.dumps(report))
+          if not passed:
+              raise SystemExit(1)
+          print('SPEECH_ORCHESTRATOR_PASS methods=19 failures=0 errors=0 skips=0 expected_failures=0 unexpected_successes=0')
+          PY
+          result=$?
+          set -e
+          printf '%s\n' "$result" > "$LUMO_QUAL_EVIDENCE/speech-orchestrator.exit-code.txt"
+          cat "$LUMO_QUAL_EVIDENCE/speech-orchestrator.stdout"
+          cat "$LUMO_QUAL_EVIDENCE/speech-orchestrator.stderr" >&2
+          test "$result" = 0
+      - name: "Run the unchanged eleven Java and eight Kotlin speech contracts after the real Host compile"
+        if: matrix.group == 'android-host-compile'
+        working-directory: host-source
+        run: |
+          set -euo pipefail
+          test ! -e host-compile-evidence/speech
+          printf '%s  %s\n' c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23 \
+            scripts/run_speech_jvm_contracts.py | sha256sum -c -
+          test "$(git rev-parse HEAD:scripts/run_speech_jvm_contracts.py)" = 9d17f343b16d80bddb861cf26cfeae9e38994f24
+          cp scripts/run_speech_jvm_contracts.py "$LUMO_QUAL_EVIDENCE/tools/run_speech_jvm_contracts.py"
+          "$LUMO_QUAL_PYTHON" -B scripts/run_speech_jvm_contracts.py \
+            --repo-root "$PWD" --output host-compile-evidence/speech \
+            2>&1 | tee "$LUMO_QUAL_EVIDENCE/speech-jvm-contracts.log"
+          test "$(grep -Fxc '[SpeechJvmContracts] PASS: 11 Java and 8 Kotlin cases, original 23/17 assertions; synthetic boundaries only' "$LUMO_QUAL_EVIDENCE/speech-jvm-contracts.log")" = 1
       - name: "Preserve original Android compilation outputs even on failure"
         if: always() && matrix.group == 'android-host-compile' && steps.prepare.outcome == 'success'
         run: |

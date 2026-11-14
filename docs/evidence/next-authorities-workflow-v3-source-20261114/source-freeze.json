@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_IN_FUNCTION_STORE_NOT_EXECUTED",
+  "created_utc": "2026-11-14T17:34:00.365Z",
+  "scope": "One workflow file; final Speech compile roster and additive 19-method plus 11-Java/8-Kotlin qualification in the existing Compile group",
+  "basis": {
+    "host_commit": "e664ba4732222a64af58d44a6bab768846f47ccb",
+    "workflow": {
+      "path": ".github/workflows/lumo-next-table-authorities.yml",
+      "bytes": 56951,
+      "sha256": "536bc3224df90bd9fd7838912e0847d55ea96d5edbce06b70ef371e2872495e5",
+      "git_blob": "f798a0a5090a326fb9718bc427b9887ff15e9be1"
+    },
+    "v2_source_freeze": {
+      "bytes": 1642,
+      "sha256": "703d612e4b0a4e33da962046e0d671d57608353217d0b3af911a0da787f94f74",
+      "git_blob": "c89452efcba1e9985e6e19eceb7fc234491c77cc"
+    }
+  },
+  "final_sources": [
+    {
+      "path": ".github/workflows/lumo-next-table-authorities.yml",
+      "bytes": 64401,
+      "sha256": "9dbda2369930ed77275cb3adc401fedc58538ebe21736f7e29b68dad23ab6f9e",
+      "git_blob": "6a08dfb852cbec128db96aaa84add2bc69a7194b",
+      "mode": "100644"
+    }
+  ],
+  "required_speech_sources": [
+    {
+      "path": "scripts/compile_android_host.sh",
+      "bytes": 3386,
+      "sha256": "eaa36179179a172f1dff6bc49cf1917813e0143f6beed8a04b2c1a49071618f8",
+      "git_blob": "48893609d274834c58f7b6eceb63b0b5ec86951f",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/run_speech_jvm_contracts.py",
+      "bytes": 19493,
+      "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+      "git_blob": "9d17f343b16d80bddb861cf26cfeae9e38994f24",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_speech_jvm_runner.py",
+      "bytes": 14569,
+      "sha256": "5b4161a58a3280fe0b70ae0cddca57e58411a04c1a475ad5c9c55ecbb63f2276",
+      "git_blob": "4358a2540c65c19701b39d582465089672f884e5",
+      "mode": "100644"
+    }
+  ],
+  "speech_source_freeze": {
+    "bytes": 9728,
+    "sha256": "f76320fd641973128624523375c899a9910b86b9b14c692decf79bb4355da99d",
+    "git_blob": "b789addc1af8f5cc43439780513ebb9e9a889534",
+    "repository": "Ullmann27/lumo-lernen"
+  },
+  "actual_test_roster_original": {
+    "bytes": 3944,
+    "sha256": "5fc92e99093f9e7affb0d3f976b3a6c0610c44d666508f581c4b8e381fb3bd30",
+    "git_blob": "29ad22a2cf518e1bc84cf77a60a37f9882896eb8",
+    "repository": "Ullmann27/lumo-lernen"
+  },
+  "native": {
+    "head": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+    "tree": "e2a374b2154f7ecb080f693c4bc90def53a20a00",
+    "changed": false
+  },
+  "host_execution_identity": "The future actual github.sha, not a fixed 3fac/362/e664 result",
+  "integration_patch": {
+    "path": "integration.patch",
+    "bytes": 8869,
+    "sha256": "d419f7d7299d975e56f65e0b984f36b642466d5f46ca4b672518aee08dfe01fc",
+    "git_blob": "d6b50cf6746f19b172e1cd5be86e8e00bab9dd86",
+    "hunks": [
+      {
+        "old_start": 616,
+        "old_count": 11,
+        "new_start": 616,
+        "new_count": 114
+      }
+    ],
+    "insertions": 105,
+    "deletions": 2
+  },
+  "preservation": {
+    "reverse_exact_edits_restores_v2": true,
+    "groups": 5,
+    "minutes_per_job": 35,
+    "old_gates_changed": false,
+    "active_c4_workflow_or_delivery_changed": false
+  },
+  "execution": {
+    "lint": false,
+    "syntax_execution": false,
+    "tests": false,
+    "engine": false,
+    "compile": false,
+    "ci": false
+  },
+  "remote_mutations": [],
+  "local_materialization": false,
+  "limitation": "Executor unavailable. Complete UTF-8 strings and identities preserved in the function store; this freeze is source preparation, not execution or acceptance."
+}
