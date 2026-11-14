@@ -1,0 +1,3 @@
+Flutter failed to create a directory at "build/unit_test_assets/assets/lumo_design/logo". The target device is full.
+FileSystemException: Creation failed, path = 'build/unit_test_assets/assets/lumo_design/logo' (OS Error: No space left on device, errno = 28)
+Free up space and try again.

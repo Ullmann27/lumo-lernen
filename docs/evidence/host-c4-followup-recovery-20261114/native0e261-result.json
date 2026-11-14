@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "source": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "tree": "5b5992487e60ae805d708965f1500954c6b0556d",
+  "exit_code": 0,
+  "actual_test_count": 42,
+  "strict_all42_success_zero_skips": true,
+  "wall_seconds": 106.586425,
+  "finished_at": "2026-11-14T08:10:52.868945+00:00",
+  "timeout_error": null,
+  "sources_before_after_identical": true,
+  "all_materialized_sources_git_blob_exact": true,
+  "bound_materialized_files": 1435,
+  "git_status_clean_before_after": true,
+  "log": {
+    "path": "logs/contracts-42.log",
+    "bytes": 8095,
+    "sha256": "3c9c29b2e95a166d622b81cc75c79a9dfae070d7a16638b088d35d560e1faa9b"
+  },
+  "scope": "42 existing orchestration/raster contracts with original JSON and synthetic process/pixel/movie fixtures. No real Godot, renderer, Android or52-mode execution."
+}

@@ -109,6 +109,19 @@ class CreativeEvidencePartsTests(unittest.TestCase):
             self.assertEqual(outputs[f"part_{number:02d}"],
                              "true" if number <= summary["part_count"] else "false")
 
+    def test_diagnostic_index_names_the_probe_source_without_claiming_an_apk_source(self):
+        self.write_files({"qa-metadata/run.json": b'{"synthetic":true}\n',
+                          "tour/failed-before-input.txt": b"No Android acceptance.\n"})
+        result = self.export(workflow_path=EXPORT.DIAGNOSTIC_WORKFLOW)
+        index_path = self.output / "part-01/export-index.json"
+        index = json.loads(index_path.read_bytes())
+        self.assertEqual(index["schema"], 2)
+        self.assertEqual(index["binding"]["probe_source_sha"], BINDING["source_sha"])
+        self.assertNotIn("host_source_sha", index["binding"])
+        self.assertEqual(index["binding"]["workflow_path"], EXPORT.DIAGNOSTIC_WORKFLOW)
+        self.assertEqual(index["binding"]["run_id"], BINDING["run_id"])
+        self.assertEqual(result["index_sha256"], hashlib.sha256(index_path.read_bytes()).hexdigest())
+
     def test_identical_inputs_produce_identical_parts_and_are_independent_copies(self):
         self.write_files({"a.txt": b"1234", "nested/b.txt": b"5678"})
         first = self.export(max_part_bytes=5)

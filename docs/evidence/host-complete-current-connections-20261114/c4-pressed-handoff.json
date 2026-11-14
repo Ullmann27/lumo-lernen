@@ -1,0 +1,135 @@
+{
+  "status": "SOURCE_FROZEN_NOT_TESTED_ON_COMBINED_BASE",
+  "base": "2b586530db4f2cb20c28f426e2549342316151bf",
+  "source_freeze_sha256": "77c41399f63d9f2753c78a787297eea8f7cd38c9b2b530084d93602ac774b46f",
+  "paths": [
+    "lib/features/games/connect_four/lumo_connect_four_game.dart",
+    "test/design/connect_four_visual_test.dart",
+    "test/games/connect_four_fold_controls_test.dart",
+    "test/games/games_screen_flow_test.dart"
+  ],
+  "actual_producer_ci": {
+    "run_id": 43577553187,
+    "job_id": 132395986318,
+    "attempt": 1,
+    "source_head": "18c12e00d3279ff81db3d7e8a0a3ce3e69009b34",
+    "actual_checkout": "18c12e00d3279ff81db3d7e8a0a3ce3e69009b34",
+    "tree": "b2db4ba6e06e8345370c6b970c7895315ca8df24",
+    "flutter_summary": {
+      "status": "PASS",
+      "passed": 2562,
+      "failed": [],
+      "skipped": [],
+      "capture_error_files": [],
+      "flutter_exit_code": 0,
+      "runner_completed_successfully": true,
+      "runner_errors": [],
+      "scope": [
+        "complete Flutter suite; capture outputs recorded below"
+      ],
+      "capture_png_counts": {
+        "LUMO_TUTORING_CAPTURE_DIR": {
+          "directory": "tutoring",
+          "pngs": 6
+        },
+        "LUMO_RIG_STRESS": {
+          "directory": "rig-stress",
+          "pngs": 27
+        },
+        "LUMO_CARDS_OPPONENT_CAPTURE": {
+          "directory": "cards-opponents",
+          "pngs": 4
+        },
+        "LUMO_STREAM_E_CAPTURE": {
+          "directory": "cards-memory",
+          "pngs": 8
+        },
+        "LUMO_NAVIGATION_CAPTURES": {
+          "directory": "navigation",
+          "pngs": 26
+        },
+        "LUMO_GUIDED_CAPTURE_DIR": {
+          "directory": "guided-learning",
+          "pngs": 170
+        },
+        "LUMO_VISUAL_CAPTURE_DIR": {
+          "directory": "reasoning",
+          "pngs": 15
+        },
+        "LUMO_TOUR_DIR": {
+          "directory": "tour",
+          "pngs": 62
+        },
+        "LUMO_FLUTTER_GAMES_CAPTURE": {
+          "directory": "games",
+          "pngs": 16
+        },
+        "LUMO_LEARNING_CAPTURE_DIR": {
+          "directory": "learning-adventure",
+          "pngs": 80
+        },
+        "LUMO_COMPANION_CAPTURE_DIR": {
+          "directory": "companion",
+          "pngs": 6
+        },
+        "LUMO_SPATIAL_CAPTURES": {
+          "directory": "reading",
+          "pngs": 12
+        },
+        "LUMO_CAPTURE_DIR": {
+          "directory": "modernization",
+          "pngs": 42
+        },
+        "LUMO_CARD_FACE_EXPORT_DIR": {
+          "directory": "card-face-exports",
+          "pngs": 56
+        },
+        "LUMO_NEXTGEN_READING_CAPTURES": {
+          "directory": "nextgen-reading",
+          "pngs": 6
+        },
+        "LUMO_READING_CAPTURES": {
+          "directory": "reading-passages",
+          "pngs": 3
+        },
+        "LUMO_ASSISTED_LEARNING_CAPTURES": {
+          "directory": "assisted-learning",
+          "pngs": 2
+        },
+        "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+          "directory": "native-profiles",
+          "pngs": 4
+        }
+      },
+      "capture_file_outputs": {
+        "LUMO_CARDS_CUP_CAPTURE": {
+          "path": "cards-cup/trophy.png",
+          "created": true
+        }
+      },
+      "rendered_png_count": 546
+    },
+    "overall_job": "failure",
+    "later_failure": "832 Python cases; one ERROR in historical unchanged-APK full preflight: Source checkout native pin differs",
+    "local_combination_claim": false,
+    "full_flutter_artifact_not_downloaded": {
+      "id": 14106874712,
+      "bytes": 332510759,
+      "sha256": "23c1dae4ed933c1d079a7b5c237bc344d52a96d342bfe084e5cec7b28bb086b9",
+      "reason": "not needed to read original complete job/step result; images not reviewed"
+    }
+  },
+  "next_required_validation": "Root publishes combined source; actual existing Flutter/C4 CI must execute on that exact source. No local execution attempted.",
+  "targeted_test_command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter=expanded",
+    "test/design/connect_four_visual_test.dart",
+    "test/games/connect_four_fold_controls_test.dart",
+    "test/games/games_screen_flow_test.dart",
+    "test/games/connect_four_scroll_alignment_test.dart"
+  ],
+  "tests_not_run": true,
+  "mutations": "Only this external pack was written; no worktree/Git/CI mutations."
+}

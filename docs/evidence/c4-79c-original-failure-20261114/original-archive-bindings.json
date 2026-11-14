@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "result.json",
+      "bytes": 3614,
+      "sha256": "1a9ec521b47bfcfde6928732aaf8605178b9795f1d5e52046148103bfd90c5f5",
+      "source": "/tmp/lumo-root-recovery-0900/host79-terminal-evidence/pack/result.json"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 1597,
+      "sha256": "904377fd772ea06508aed7b2501ef19ace031ba210717632b72c28a4e2702c46",
+      "source": "/tmp/lumo-root-recovery-0900/host79-terminal-evidence/pack/manifest.json"
+    },
+    {
+      "path": "complete-original-failure.tar.gz",
+      "bytes": 128699,
+      "sha256": "ce541357ae79306e5731ccffc02c6bd19520ae5934e11bd93ae07d71f662a169",
+      "source": "/tmp/lumo-root-recovery-0900/host79-terminal-evidence/pack",
+      "members": 11,
+      "original_manifest_sha256": "904377fd772ea06508aed7b2501ef19ace031ba210717632b72c28a4e2702c46",
+      "all_members_read_back_equal": true
+    }
+  ]
+}

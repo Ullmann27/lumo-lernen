@@ -141,6 +141,10 @@ APPROVED = {
     # This approves source identity only. Fresh native renderer review, APK,
     # Android integration and preserved 2017 upgrade remain mandatory.
     2019: "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+    # 2020: reviewed C4, facial, Treasure and Dream source with the installed
+    # PCM envelope. Fresh 52-mode, Dream, Android and preserved-update gates
+    # remain mandatory; this entry binds source identity only.
+    2020: "bd0712259bb64908a5649ee1999638826c9eb597",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

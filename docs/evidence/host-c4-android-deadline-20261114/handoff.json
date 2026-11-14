@@ -1,0 +1,59 @@
+{
+  "ast": {
+    "all_other_module_ast_identical": true,
+    "changed_methods": [
+      "observation",
+      "return_to_flutter",
+      "wait_observation"
+    ],
+    "final": {
+      "bytes": 25726,
+      "path": "/tmp/host-c4-android-deadline-20261114/proposed/.github/probes/lumo_connect_four_android_probe.py",
+      "sha256": "6df9b6a7b3cc2253a2be78a7cec93b6f9ac30f14bcab4f127db6b9df065ed9ba"
+    },
+    "original": {
+      "bytes": 25274,
+      "path": "/tmp/host-c4-android-deadline-20261114/before/.github/probes/lumo_connect_four_android_probe.py",
+      "sha256": "4249de4352a32694f28bb45786b73437eb2d32f360fb754a4ab48c9d5212f77c"
+    },
+    "unchanged_budgets_seconds": {
+      "complete": 900,
+      "native_return": 45,
+      "wait_default": 90
+    },
+    "unchanged_function_count": 15
+  },
+  "device_execution": false,
+  "git_actions": false,
+  "green": {
+    "errors": 0,
+    "failures": 0,
+    "log": {
+      "bytes": 2242,
+      "sha256": "6bcec03c9ef5ec94cf069841999c0fc729b1ef16c7d0bb478ffa39e7f7c0b539"
+    },
+    "methods": 11,
+    "skips": 0
+  },
+  "pack": "/tmp/host-c4-android-deadline-20261114",
+  "patch": {
+    "bytes": 13003,
+    "sha256": "67dd884f5092aa6c3f52b7c40cb1efd61474765bfec00d3c8cdcf7532c40278f"
+  },
+  "red": {
+    "assertion_failures": 10,
+    "errors": 0,
+    "log": {
+      "bytes": 11589,
+      "sha256": "d9d7ea956a0e9d07877c861538dd0f5f386ee31f93e3b9807c98a35d39b28701"
+    },
+    "methods": 11
+  },
+  "schema": 1,
+  "source_freeze": {
+    "bytes": 921,
+    "sha256": "484e5a69551edd00ac4d353b3ab8fb6c5840aec4d192724962717fd152ccc309"
+  },
+  "source_worktree_modified": false,
+  "status": "FOCUSED_DEADLINE_FIX_FROZEN"
+}

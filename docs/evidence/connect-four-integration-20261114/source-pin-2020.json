@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-11-14T05:27:50.226524+00:00",
+  "status": "REVIEWED_SOURCE_PIN_ONLY",
+  "version": "0.13.8+2020",
+  "native_source": "27ae427029a5199699c95a79a84b0027d7571752",
+  "native_tree": "c389c0de01d9a6ca9fd6e9332fafdf2dedbc8153",
+  "native_parent": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "host_source_checkpoint": "5624b3a93653fe4eec882b879e3b62dbc9a6f960",
+  "host_source_tree": "f8a94425392dfdbbbe96aededb11ae6a54bf426e",
+  "source_freeze_sha256": "1d80004900ff3f18bf51c5e19ec4f3e50b05c9c4883662d41e84ccc8fb928267",
+  "independent_hunk_review_sha256": "bb4bc249d79a8aa7df7539140a85db437b59a81414483a1b442209570a3fa5b2",
+  "all_previous_version_pins_unchanged": true,
+  "pin_verifier_functions_unchanged": true,
+  "existing_2020_release_tag_observed": false,
+  "apk_built": false,
+  "android_connect_four_pass": false,
+  "renderer_gate_pass": false,
+  "fps_accepted": false,
+  "release_approved": false
+}

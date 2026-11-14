@@ -1,0 +1,36 @@
+{
+  "environment": {
+    "LUMO_C4_REFERENCE_HOST": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/tools/android_qa:/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/tools/android_qa:/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/scripts"
+  },
+  "host_head_after": "43db2662e890b6468cf77f7044da16364a259482",
+  "host_head_before": "43db2662e890b6468cf77f7044da16364a259482",
+  "passed": true,
+  "runs": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-p",
+        "test_connect_four_pipeline.py",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed",
+      "duration_seconds": 0.1763045990082901,
+      "exit_code": 0,
+      "log": "suite-1.log",
+      "log_bytes": 1680,
+      "log_sha256": "48175a9c097d05aae41e5d0aed07c78b88cb69b61155f31f3a7963fad1e329c1",
+      "skips": 0,
+      "tests": 9
+    }
+  ],
+  "runtime": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "scope": "Local synthetic C4 evidence and workflow contracts only; no engine, APK or device",
+  "source_scope_unchanged": true
+}

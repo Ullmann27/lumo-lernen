@@ -1,0 +1,28 @@
+{
+  "created_at": "2026-11-14T05:38:23.451217+00:00",
+  "cause": "Original Flutter AssetBundle builder replaced its output subdirectory symlink; generated assets landed in workspace and hit ENOSPC before any test.",
+  "removed_path": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/build",
+  "scope": "Only this validation attempt generated ignored build outputs. Original committed assets and original logs retained.",
+  "entries_before": [
+    {
+      "name": "native_assets",
+      "is_symlink": true,
+      "target": "/tmp/lumo-connect-four-06b3a113-build/native_assets"
+    },
+    {
+      "name": "unit_test_assets",
+      "is_symlink": false,
+      "target": null
+    },
+    {
+      "name": "test_cache",
+      "is_symlink": true,
+      "target": "/tmp/lumo-connect-four-06b3a113-build/test_cache"
+    }
+  ],
+  "generated_regular_files": 41,
+  "generated_logical_bytes": 44347759,
+  "workspace_free_before": 0,
+  "workspace_free_after": 44150784,
+  "no_retry": true
+}

@@ -1,0 +1,16 @@
+{
+  "status": "FROZEN",
+  "source_freeze_sha256": "f77eee9b24c5b385babc436eca0846f698956f50ee5f51df30bce9ec75ee54f6",
+  "apply_only": "tools/android_qa/tests/test_kart_garage_evidence.py",
+  "source_file": "/tmp/host-32e7-garage-caption-fixture-repair-20261114/final-source/tools/android_qa/tests/test_kart_garage_evidence.py",
+  "final": {
+    "bytes": 30218,
+    "sha256": "3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae",
+    "git_blob": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d"
+  },
+  "host_result": "One actual unchanged32e original case FAIL -> same proposed case PASS, each0.002s in unittest output.",
+  "qa_result": "No QA test execution; same starting test blob and actual Continue AST prove the identical patch maps to1cc5.",
+  "source_state": "Both original HEAD/tree/index/status and all nine scoped source paths unchanged.",
+  "preservation": "Exact kwargs equality now demands standalone_caption=True; touch-before-physical-drive, scoped output, current race identity, original first-drive bytes, later save, and all other assertions remain.",
+  "ci_failure_log": "Preserved separately by Root; this pack holds the complete independent local Red/Green logs."
+}

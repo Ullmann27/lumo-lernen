@@ -1,0 +1,76 @@
+{
+  "created_at": "2026-11-14T06:54:12.206649+00:00",
+  "existing_v1_freeze": {
+    "bytes": 3070,
+    "path": "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/source-freeze.json",
+    "sha256": "dfeddf79d75361ae351f32eb3e46448353ae38c4ac0c040110e6b75b3b18167d"
+  },
+  "inactive_publication_files": [
+    {
+      "bytes": 5388,
+      "path": "publication/README.md",
+      "sha256": "edb128ac9935c566e66091c8839ff7f56170d1f753aff4f81f0eb68d1918e4a8"
+    },
+    {
+      "bytes": 5632,
+      "path": "publication/publish_verified_bundle.sh",
+      "sha256": "e388a6a1759bd12dcd6add3ba27e3f9e92f3830f747c04c432dad1e78304cea1"
+    }
+  ],
+  "native_contract": {
+    "bytes": 8567,
+    "path": "/tmp/native-studio-52-gate-integration-20261114/gate-contract.json",
+    "sha256": "bacf00a979217d3d4394e74e221886d9839cd400c42c55bf32b8fb0ec7ce0018"
+  },
+  "native_pin_policy": "Read exact configured pin from candidate source; no literal 27ae/7e03 acceptance",
+  "patch": {
+    "bytes": 89666,
+    "sha256": "53132114d0a1ba2febe43b23fbd35127b92eb7a5eb4e331e8985bf1ba58245fb"
+  },
+  "reference_host": {
+    "commit": "8dd2ad1fc2f04a8a116c15147436da3c15102b87",
+    "tree": "37ac9221832bc4ec8d0b2faf98bcd1360f2d103c"
+  },
+  "repository_files": [
+    {
+      "after": {
+        "bytes": 41022,
+        "sha256": "d1d2ee70ef53d83755f7175c07bb5c0d5c6419356948afe80ce3402011de8ad3"
+      },
+      "before": {
+        "bytes": 34203,
+        "sha256": "6b6f3bccbfd69fd41911b177a3492a613f9f03cda9d096e33bf295166408ac93"
+      },
+      "path": ".github/workflows/lumo-connect-four-2020.yml"
+    },
+    {
+      "after": {
+        "bytes": 37374,
+        "sha256": "cc82d7e481e0a02e5f919d29947428c52025bc2f08279e6dd253c93a4c18a30f"
+      },
+      "before": null,
+      "path": "scripts/tests/test_connect_four_delivery.py"
+    },
+    {
+      "after": {
+        "bytes": 14309,
+        "sha256": "113ba57248fe3a12dffb9249e9d62c60db023b7861935819a08e9b2d325fb6b0"
+      },
+      "before": {
+        "bytes": 13267,
+        "sha256": "d072f3fc1d0c7d460deb71b2251b2ad90d11e8843d05370be6013fd07d186bb4"
+      },
+      "path": "scripts/tests/test_connect_four_pipeline.py"
+    },
+    {
+      "after": {
+        "bytes": 39637,
+        "sha256": "80164a710b8dadedbe05aa7468018c32ae9a60e1e44ef96b2ac6a68309976cc8"
+      },
+      "before": null,
+      "path": "scripts/verify_connect_four_delivery.py"
+    }
+  ],
+  "schema": 1,
+  "scope": "Read-only C4 delivery preparation; inactive separately credentialed publication procedure outside proposed repository patch"
+}

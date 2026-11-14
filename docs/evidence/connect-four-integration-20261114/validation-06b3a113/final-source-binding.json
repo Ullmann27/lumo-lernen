@@ -1,0 +1,183 @@
+{
+  "sources": {
+    "host": {
+      "head": "06b3a1136cfe2a8a8b13e46ac9819e65b7130ea5",
+      "tree": "2e6ffb0a673251d4d09dfaa4c5fc916cbf898797",
+      "git_status_porcelain": "",
+      "source_file_count": 1272
+    },
+    "native": {
+      "head": "27ae427029a5199699c95a79a84b0027d7571752",
+      "tree": "c389c0de01d9a6ca9fd6e9332fafdf2dedbc8153",
+      "git_status_porcelain": "",
+      "source_file_count": 1233
+    }
+  },
+  "all_before_after_identical": true,
+  "all27_early_frozen_source_files_identical": [
+    {
+      "scope": "host",
+      "path": "scripts/prepare_embedded_games.py",
+      "sha256": "694c115184bd6464ff8e7a3e0bd078e58f5f37d47739ac1d7675827c2f21e129",
+      "git_blob": "a1615455b5ea6251926d5037900e025d46971c18"
+    },
+    {
+      "scope": "host",
+      "path": "scripts/tests/test_game_return_contract.py",
+      "sha256": "1e61af9b6e1b69a0271b13c07f77ceb75f8a879f4a589da29dceb9d0ff56f5b7",
+      "git_blob": "186cecdca050b1e16e24996480ccb005b580ec57"
+    },
+    {
+      "scope": "host",
+      "path": "scripts/tests/test_embedded_android.py",
+      "sha256": "81aedfe4a6316ffdabe409f90c1272a7ff78c6584271348c5207d353cedea5f4",
+      "git_blob": "7639755789f4e5abbfa0743173532cd2b2b29f49"
+    },
+    {
+      "scope": "host",
+      "path": "scripts/tests/test_connect_four_native_contract.py",
+      "sha256": "2ce7e21eb9be9a4e98211538e9cef5e219f3b9fc4d08aabd22d72e0489665b73",
+      "git_blob": "e167e11d44f5525c07ef65bf8fc0d1be3e7711bf"
+    },
+    {
+      "scope": "host",
+      "path": "tools/auto_install/ConnectFourBridge.kt",
+      "sha256": "02ce58b8863197c9d4395b192f238d52a4e2b049ce59d01e451a0189088433cd",
+      "git_blob": "f6e41ada005cc01f3b75d05370e5098048188d37"
+    },
+    {
+      "scope": "host",
+      "path": "tools/auto_install/ConnectFourGameActivity.kt",
+      "sha256": "02ea7fb0f3909da8013e6a97b52901dd8e2981ae13e5c1a74ac1e03979364fe5",
+      "git_blob": "d49a93cf8588b3fdad7ce1bb693843febc7e7984"
+    },
+    {
+      "scope": "host",
+      "path": "tools/auto_install/MainActivity.kt",
+      "sha256": "831fa3580a3330583d3f4a92e0cf9882a703224e3d0f3a65f666e67f52c4c946",
+      "git_blob": "9027d1106287c1c295a94ebcf3828e5dcac35b7b"
+    },
+    {
+      "scope": "host",
+      "path": "tools/auto_install/ConnectFourAuthorityService.kt",
+      "sha256": "7fb5ecdfd6e0b8c64f678258d3722483220d3e1574cc300916da6da50ccd2289",
+      "git_blob": "0b687707c7a1a0627eab8fa8bf47b06ba72aead3"
+    },
+    {
+      "scope": "host",
+      "path": "test/games/connect_four_native_route_test.dart",
+      "sha256": "0d6636896a01653e006862cdbcce5f673182f66996b71c44710ca8351b31b9ed",
+      "git_blob": "d5178ab675bbc83b8fcb6dd0f6a3b7d675b1f3d0"
+    },
+    {
+      "scope": "host",
+      "path": "test/games/connect_four_lumo_level_test.dart",
+      "sha256": "792d6bd0552f890ac50f74d0c4d02e480400cf85ad933a2138b0a403ad6d7098",
+      "git_blob": "229a531e9fe61337e05f92cb50409eef409bd57f"
+    },
+    {
+      "scope": "host",
+      "path": "test/games/connect_four_native_session_test.dart",
+      "sha256": "0ea59f0986842361b1422cf8e2d2b4cc47efb6d6eb9982ab234cfa676d289576",
+      "git_blob": "a540779dc16fe894493e1b13b4de720a33765c7d"
+    },
+    {
+      "scope": "host",
+      "path": "test/games/connect_four_runtime_bridge.dart",
+      "sha256": "f74b56bc14994b9f9a987ec0719fa85f9d2427012c83ae18b8740a98c18fed65",
+      "git_blob": "6ae4695d06f955d5c9501bdce22ed9a83a0a26d0"
+    },
+    {
+      "scope": "host",
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "sha256": "1d2196fd362c11f03df9cec6fbc36a557df542ac90277cd7d13f65010938fcdd",
+      "git_blob": "92956444dee338921853aea037ca32033bcd3b2e"
+    },
+    {
+      "scope": "host",
+      "path": "test/games/connect_four_interaction_test.dart",
+      "sha256": "9fe8e5ed4b94e024c6b1d35c968c8ee4434ec921e07334ff8a5c360eaf363305",
+      "git_blob": "379c1dee8358507493ba60dbd683ca7f4a3821a6"
+    },
+    {
+      "scope": "host",
+      "path": "lib/app/app_state.dart",
+      "sha256": "50b9d9e4c7ecaf2a5e9cc24d99f1b2ee49e0bf50318a0c6c28cabacda2028efd",
+      "git_blob": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045"
+    },
+    {
+      "scope": "host",
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "sha256": "900e533784109cecc11e0da27cb7ae1e6909de74e58a9119c030b91e8956085f",
+      "git_blob": "dd95361b132c7a73b372a3225c75e645be07e1b7"
+    },
+    {
+      "scope": "host",
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "sha256": "dcc411d6687df70934d83253990248c4a0654b13a36ec54338ec43a257329754",
+      "git_blob": "853d9e4a59475725a44db8f6c252e691f0bcdad8"
+    },
+    {
+      "scope": "host",
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "sha256": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075",
+      "git_blob": "1275d6616c6cb850ad55633e51a9450d5887dd34"
+    },
+    {
+      "scope": "host",
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "sha256": "3a4c99538f50f057c2951ef16bbc55f6275865d90cafce36517c16f0545e615e",
+      "git_blob": "fd8efe8e114de656b6802e097b96910535d83c39"
+    },
+    {
+      "scope": "native",
+      "path": "scripts/systems/host_bridge.gd",
+      "sha256": "56ecb470319ea047aa5d8c3aad92d55c99355ee07c533a6543fcf167f098abb7",
+      "git_blob": "dab96a1b918dc754568c0eda14cdda05175c89fb"
+    },
+    {
+      "scope": "native",
+      "path": "scripts/app/scene_router.gd",
+      "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06",
+      "git_blob": "0e28e5c797af076d2a2410143e42605982e8d1d5"
+    },
+    {
+      "scope": "native",
+      "path": "scripts/app/app_boot.gd",
+      "sha256": "4ed973120d62f1942842c43f3fe1f1b6b7390997d39e8cef7c1cefdd6ffebaf0",
+      "git_blob": "2fc3b5ea4fac7440733ae5a77a8289bcd57557f6"
+    },
+    {
+      "scope": "native",
+      "path": "scripts/tests/connect_four_runtime_regression.gd",
+      "sha256": "83852fdd2e19cd32b20ec6de62179ee3f9e7712e574f723773bcc40cc35dd0a7",
+      "git_blob": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99"
+    },
+    {
+      "scope": "native",
+      "path": "scripts/games/connect_four/connect_four_table.gd",
+      "sha256": "76ab128b835bffd41b87274566408b8baab4073fe6733b2f5e3e990e0e027a72",
+      "git_blob": "cdeb31fc6cfe30c18fc6c96afb2b1d749532c37f"
+    },
+    {
+      "scope": "native",
+      "path": "scenes/games/connect_four_table.tscn",
+      "sha256": "49d116bd0436200d01b1e03eac3601854b33bf75142969b69d2c588418dd3af2",
+      "git_blob": "e1c14734e2bde85fd9852db3d8ef20f4cd0ca24d"
+    },
+    {
+      "scope": "host",
+      "path": "scripts/run_connect_four_runtime.py",
+      "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b",
+      "git_blob": "36d93ed0908705e339346bf5ef451cf047b641b5"
+    },
+    {
+      "scope": "host",
+      "path": "scripts/tests/test_connect_four_runtime_gate.py",
+      "sha256": "53be3d0d582f72709b00437a8f91386a7bfa245a3c35be85a5f320686b3a2d55",
+      "git_blob": "5a0d3123167ab26c882a049e7e90dbdd8f0a73de"
+    }
+  ],
+  "temporary_build_link_absent": true,
+  "native_import_performed": false
+}

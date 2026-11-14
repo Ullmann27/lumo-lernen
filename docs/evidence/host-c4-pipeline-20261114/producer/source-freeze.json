@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "status": "DRAFT_SOURCE_FROZEN_FOR_REVIEW",
+  "scope": "Proposed host C4 pipeline/observer only; no worktree mutation, no run/receipt/publication",
+  "files": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 25274,
+      "sha256": "4249de4352a32694f28bb45786b73437eb2d32f360fb754a4ab48c9d5212f77c",
+      "git_blob": "afd1d52116b124c646ac387464f515c9c85da9de",
+      "mode": "100644",
+      "operation": "add"
+    },
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 34203,
+      "sha256": "6b6f3bccbfd69fd41911b177a3492a613f9f03cda9d096e33bf295166408ac93",
+      "git_blob": "e6043b2c9930267a2c4892ff27f12957e5b5170b",
+      "mode": "100644",
+      "operation": "add"
+    },
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "bytes": 82301,
+      "sha256": "2dc3e1506b1abb0784fb246a32135a76fedf43284bee7df346232e0eba68b096",
+      "git_blob": "28979e437797b723a3f5a514734f1a118ef8f4d3",
+      "mode": "100644",
+      "operation": "modify",
+      "before_sha256": "d3e214c74579f251fd65bce70348dfbcba919818032049d954d713c3dd4bb1f2"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_pipeline.py",
+      "bytes": 13267,
+      "sha256": "d072f3fc1d0c7d460deb71b2251b2ad90d11e8843d05370be6013fd07d186bb4",
+      "git_blob": "210ca4ee6b75192b8219351399064228ad459558",
+      "mode": "100644",
+      "operation": "add"
+    },
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "bytes": 10811,
+      "sha256": "c8a6b714a330c564bde68c619b07a342eb3eedf7e6191f9f3a3deacc98e594e1",
+      "git_blob": "67ae17290e898a995003f065ce3a7c97202509ab",
+      "mode": "100644",
+      "operation": "add"
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "bytes": 36130,
+      "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7",
+      "git_blob": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa",
+      "mode": "100644",
+      "operation": "add"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "bytes": 23974,
+      "sha256": "091d4640f277486998dc47fded5820d1986d9036244bc92d2f8c4ccf6afa794f",
+      "git_blob": "701d1dab0a7224803fe2780c6a0674400b081795",
+      "mode": "100644",
+      "operation": "add"
+    }
+  ],
+  "patch_sha256": "348398c3022c2233fb5c6b4c1c01eb48c9ab0f1c8da471f815446de16848ab8b",
+  "reference_heads": {
+    "host": [
+      "43db2662e890b6468cf77f7044da16364a259482",
+      "4a70b60c254d3ee35832cb2a4b5eb9aa819e02fd"
+    ],
+    "native": [
+      "27ae427029a5199699c95a79a84b0027d7571752",
+      "c389c0de01d9a6ca9fd6e9332fafdf2dedbc8153"
+    ]
+  },
+  "local_result": "evidence/focused-final/result.json",
+  "local_tests": 26,
+  "local_skips": 0,
+  "local_errors": 0,
+  "actionlint": "evidence/actionlint-first/result.json",
+  "limits": [
+    "No real Android C4 run",
+    "No new APK build",
+    "No local Flutter/Godot/Xvfb run",
+    "No API37 or physical ARM64 claim",
+    "No release/publication receipt"
+  ]
+}

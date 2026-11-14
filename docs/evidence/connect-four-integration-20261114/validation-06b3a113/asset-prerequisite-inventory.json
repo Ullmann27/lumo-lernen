@@ -1,0 +1,3648 @@
+{
+  "scope": "Tracked asset paths plus the explicit cards key-art declared by unchanged pubspec",
+  "files": [
+    {
+      "path": "assets/audio/music/CREDITS.txt",
+      "bytes": 610,
+      "git_blob": "ac3105966c358dd03fcd165b3a1f5983b948385d",
+      "present": false
+    },
+    {
+      "path": "assets/audio/music/chill_loop.m4a",
+      "bytes": 516889,
+      "git_blob": "4427a67c13e2397502fadf67189c4e60d7bbe4e7",
+      "present": false
+    },
+    {
+      "path": "assets/audio/music/energetic_loop.m4a",
+      "bytes": 475726,
+      "git_blob": "8d4a2c56ea1c86dcd0898e9236454dd7042a7438",
+      "present": false
+    },
+    {
+      "path": "assets/audio/music/victory_jingle.m4a",
+      "bytes": 40590,
+      "git_blob": "f7f4c53d60ec09e86216d8d64c108fb48460ef81",
+      "present": false
+    },
+    {
+      "path": "assets/audio/sfx/CREDITS.txt",
+      "bytes": 809,
+      "git_blob": "bd1dd286ab51bf19024777e78cb2f6b8d6999342",
+      "present": false
+    },
+    {
+      "path": "assets/audio/sfx/README.md",
+      "bytes": 1443,
+      "git_blob": "3bb8601252e5f854e29a7f41f77f492413c4ce7e",
+      "present": false
+    },
+    {
+      "path": "assets/audio/sfx/card_draw.m4a",
+      "bytes": 7427,
+      "git_blob": "3a7f43303a950e5987c81dc1c4d8dc4a1de7b8c6",
+      "present": false
+    },
+    {
+      "path": "assets/audio/sfx/card_whoosh.m4a",
+      "bytes": 7448,
+      "git_blob": "4bfb5365b83cedfa8b152c97efb3d1538151103a",
+      "present": false
+    },
+    {
+      "path": "assets/audio/sfx/click.m4a",
+      "bytes": 3460,
+      "git_blob": "7b859dd1123e8e4606ba9b93c02b943321158c77",
+      "present": false
+    },
+    {
+      "path": "assets/audio/sfx/error.m4a",
+      "bytes": 6288,
+      "git_blob": "1a503c8ecd9b3ec953560f94332dd417ffceedd4",
+      "present": false
+    },
+    {
+      "path": "assets/audio/sfx/lose_buzz.m4a",
+      "bytes": 10246,
+      "git_blob": "050261b7552528fcffa2df19f07b4a3e668e6807",
+      "present": false
+    },
+    {
+      "path": "assets/audio/sfx/plus2_storm.m4a",
+      "bytes": 11545,
+      "git_blob": "7b49e58e14c3da72441550e0f0790d630f7b3699",
+      "present": false
+    },
+    {
+      "path": "assets/audio/sfx/plus4_thunder.m4a",
+      "bytes": 22637,
+      "git_blob": "6d5025c111575ff359a562836c38cafa2267e888",
+      "present": false
+    },
+    {
+      "path": "assets/audio/sfx/win_fanfare.m4a",
+      "bytes": 26695,
+      "git_blob": "82e8b5b5ccc0ab2604d7764be0d9f4200e846af4",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo/06e26a73d0b4.m4a",
+      "bytes": 49405,
+      "git_blob": "857a7acf985911f100aadcced53aee5c66a062e7",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo/19495758a130.m4a",
+      "bytes": 41578,
+      "git_blob": "40c442fdd394f5583581b1bc80c49f24f9433a80",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo/341f8117fda1.m4a",
+      "bytes": 30382,
+      "git_blob": "428758db705f5cc6b735a6bdd39f54f0426a50cf",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo/a3e9510a5f01.m4a",
+      "bytes": 22885,
+      "git_blob": "e5a062ab9f6809fcc4af2a6a17d8ae371407146d",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo/b79005f3d3d8.m4a",
+      "bytes": 44264,
+      "git_blob": "54bd75b4dd6faab61aa0a5c88996e5b9bcd66338",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo/c3034465f7dd.m4a",
+      "bytes": 67427,
+      "git_blob": "2ebba4e4af0ba2038416cf82dc145e57c343553f",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo/catalog.json",
+      "bytes": 5072,
+      "git_blob": "17d3787418a6db2bff453d8606d31a9c1aee89f1",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/LICENSE-CODE.txt",
+      "bytes": 1070,
+      "git_blob": "943171bd72aa0cb70e4e43c4d62ebeb336a2353c",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/LICENSE-MODEL.txt",
+      "bytes": 15007,
+      "git_blob": "1e2cbe6cef94c8cdf3ed1fcebc0f5317ca7ad5a1",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/catalog.json",
+      "bytes": 64441,
+      "git_blob": "a0fe8fe81d3b661ae70ff9d4828502b7f8c3a315",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_000f30d9ed650ea8.m4a",
+      "bytes": 8438,
+      "git_blob": "6eff0f130ad61e33095bf90cdb7a996413ed94fe",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_011aa70e60a9dd28.m4a",
+      "bytes": 16982,
+      "git_blob": "d7011f2b7593a3fe99b3f70c0d8ab36ed1f967eb",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0184d3784cc92404.m4a",
+      "bytes": 19646,
+      "git_blob": "f157756da8f74e395bc904bb39d00cb38da0888e",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_01eff8929a7e87e6.m4a",
+      "bytes": 16391,
+      "git_blob": "e0aa4073e4b2d681212619d52ce5e2a885648500",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_02cec2719eeaf75d.m4a",
+      "bytes": 18274,
+      "git_blob": "2f471eebec7fe1e50cffc48830b54c9ddbe2451e",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_038754d8bcd5aa0a.m4a",
+      "bytes": 15755,
+      "git_blob": "92a2e71b1d0a73a57ffe6007fa023906b082e11a",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_09e37d4de061ae65.m4a",
+      "bytes": 18038,
+      "git_blob": "24e21835c9d128ec764d78b021fa04a0934b9764",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0b535e4c44178aca.m4a",
+      "bytes": 17458,
+      "git_blob": "38cee5e3f6a397d8761fa4316bca3220a62b3fe8",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0bb290380f2ea3c6.m4a",
+      "bytes": 18294,
+      "git_blob": "4081d977379f190211e3fef9fddc96adfe724fca",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0c5d8e0429b252ab.m4a",
+      "bytes": 16899,
+      "git_blob": "c7e3a195f4111a299269bc8c993649fe5de45049",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0d7bc2d930580163.m4a",
+      "bytes": 13666,
+      "git_blob": "26df50957a0f1c094faa6fe0328647749c1ad9ad",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0dab21404b86dcbc.m4a",
+      "bytes": 9115,
+      "git_blob": "22f5e3613678890d8b89597d0778126b0c7d2004",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0dbdeb7e680923aa.m4a",
+      "bytes": 16678,
+      "git_blob": "d488ef7ada9a2bbd09e4628e6b111f76442d3318",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0eb34225e9098f0b.m4a",
+      "bytes": 15261,
+      "git_blob": "05462db147a75318608dd6eafd9b268310fb57ab",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0f0fa15b5f7ac1d5.m4a",
+      "bytes": 10676,
+      "git_blob": "76962513edf2cd0ad31928a8f9cf0c93ec76a08f",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_109381da8affa339.m4a",
+      "bytes": 15829,
+      "git_blob": "ceb11ea01c187e85d464dbf63ac3aa2cc866bef0",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_118d451c4c8164a4.m4a",
+      "bytes": 18224,
+      "git_blob": "2bcc6622bbd1491f71c153fb3cd24f7a28c2e140",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_144cd3d10e10d0df.m4a",
+      "bytes": 11717,
+      "git_blob": "e19f8058aab9317f57dff9dc8e461639d9e6ea61",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_1a5f55dd8e1f5fa9.m4a",
+      "bytes": 17024,
+      "git_blob": "d8a5a0965b809d916be002d461caa3f2d26975e5",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_1c7271a93afab2a2.m4a",
+      "bytes": 19093,
+      "git_blob": "a88ee1e3c0c894a493e8a6099e60398962850358",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_1c7638e4beb30337.m4a",
+      "bytes": 12662,
+      "git_blob": "e41bdea8f04aa96aea623f312d32c26dae30e815",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_1d91440958381892.m4a",
+      "bytes": 10472,
+      "git_blob": "f8a9ffc8ad1833de4337b9da5da49c8ec160525f",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_28df43db04bf81e4.m4a",
+      "bytes": 17108,
+      "git_blob": "833f4e63d4e4d02222c96993e8bc0d5cc47d5a3b",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_2d47d02eee0eb087.m4a",
+      "bytes": 11776,
+      "git_blob": "b248219addf7a767eb6f86b5efd0b8d306ea5f50",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_2e63dfbdbb17d34c.m4a",
+      "bytes": 10059,
+      "git_blob": "690891793dfc560b443a5dcad6966e0094940dcb",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_300fc160617a9efc.m4a",
+      "bytes": 17792,
+      "git_blob": "467c71300c1cc59b405e3dfb569ceef33056255f",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_30b44da6b080bb4a.m4a",
+      "bytes": 17031,
+      "git_blob": "f37edd34c3bc49c6f30bfb68aca10b91fbd1445b",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_3197e372bcd20d7c.m4a",
+      "bytes": 13709,
+      "git_blob": "da773b53eebd1c35bac52d36f49430fcdb9dc186",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_31afa8f5059e9c4d.m4a",
+      "bytes": 10322,
+      "git_blob": "6332a82b0a2cf83b3b576b6e17914e46affae4c2",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_329b44c013a6195a.m4a",
+      "bytes": 25012,
+      "git_blob": "f9148482b5e2c20e3a0a08cb776e54a146f6bc48",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_32f9340af218eb41.m4a",
+      "bytes": 16730,
+      "git_blob": "9bed5f4762af3172b7392acfbf902372e2623c96",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_3445da7697653b4c.m4a",
+      "bytes": 16857,
+      "git_blob": "9e0c64472225c5a690fee58a0bbc1f95edac0e3d",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_34f0597cc2fc2739.m4a",
+      "bytes": 13770,
+      "git_blob": "d2f22da0a7fcaf5bce2e2ccd0ef4a4f72457b1ac",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_35ef73b1f35d39a7.m4a",
+      "bytes": 12538,
+      "git_blob": "657c1c3222581e4775672ca3a80900ffb3ceadc3",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_360937ec7ffc96fc.m4a",
+      "bytes": 15102,
+      "git_blob": "52a72f85c861e94b9709932c6f834f152b89e458",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_36578651f9cf4849.m4a",
+      "bytes": 19927,
+      "git_blob": "62c6c85f986bd90d3d55cdb83ab85cfdb7ad73a7",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_38d510ee010c4cf2.m4a",
+      "bytes": 17117,
+      "git_blob": "0150907573d00e2d2d6842abdc7f42c5477d4b20",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_3a8b1afc446c546c.m4a",
+      "bytes": 17129,
+      "git_blob": "26a3e0c57a6d9529f5b79f4d3878c68f7b12e55f",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_42377ef91359847d.m4a",
+      "bytes": 12895,
+      "git_blob": "3e0e81dd1cf49a9e1b3a373081a8dcb9c12d2a6f",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_453776457937f72a.m4a",
+      "bytes": 16899,
+      "git_blob": "b98b9e719f5ac3d13bc48a599a70efb1ee6b21f0",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_45b9ef61ad449625.m4a",
+      "bytes": 15512,
+      "git_blob": "02ee77f18130abefa45a16d47a9a3dd9ee82d583",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_45cbf1dd630fe4de.m4a",
+      "bytes": 18162,
+      "git_blob": "d650c534b4a7c0216e9313a182a4c79dac648192",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_482f4e5070089870.m4a",
+      "bytes": 14491,
+      "git_blob": "ac5b1aeec13f1c8aaaded01c2f5a59d7fc4a658b",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_4850b67063d3d5ef.m4a",
+      "bytes": 16780,
+      "git_blob": "724ddf646338e7962b3fa7bb7e6cade084b9712b",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_4d2c9f04753c808c.m4a",
+      "bytes": 14676,
+      "git_blob": "ff0870e605cfd48f8decc20cacbf2b3e07387cac",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_4dc5758c1f01622b.m4a",
+      "bytes": 12157,
+      "git_blob": "f3e6e6e09d68ae1de523a3712ca4701716399343",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_4e9ff3a12eafa98b.m4a",
+      "bytes": 15661,
+      "git_blob": "5d2899ede36dc8e3fad5ae2ec974811a67a94e5e",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_50d561a9aa8d6136.m4a",
+      "bytes": 17662,
+      "git_blob": "d147d12878222668c9da8b4ac48e8a5dde999d15",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_52dd2fde052e6043.m4a",
+      "bytes": 16818,
+      "git_blob": "ed98a7bbab1e298b9efba9a03c08a5f379676057",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_56ef527f3c80ecec.m4a",
+      "bytes": 15319,
+      "git_blob": "5aa201470e19391c68df9cec1f40da945b8f850b",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_57f304b36d1f9f67.m4a",
+      "bytes": 17865,
+      "git_blob": "eb0b0c4203104d4a241dad5bcad6caaab75b5093",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_588bd0d6edc8664c.m4a",
+      "bytes": 15706,
+      "git_blob": "515448c2c51a391c1be8b603afcb5c8ebcd7faf2",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_5c11ef5ff09b0de1.m4a",
+      "bytes": 17227,
+      "git_blob": "62c32931b9d451e4c6b343d8357068d1c7e88d2d",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_5c820ccd3b78b8a8.m4a",
+      "bytes": 15294,
+      "git_blob": "5c34f91726c4f5fb5419c4bae694f73f03f22f70",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_5f4ab7919ce43d06.m4a",
+      "bytes": 18172,
+      "git_blob": "57ae2eec04e68f4a9238442498afd64d93020492",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_62edd7d6d822f73b.m4a",
+      "bytes": 16795,
+      "git_blob": "3b42966e39b840b5de133c049589a60f0b11edf9",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_650d5b527a9d134f.m4a",
+      "bytes": 37128,
+      "git_blob": "9f8e5074909797dae17eb1155c14cda05ab6b93a",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_6586c91113e9ec4a.m4a",
+      "bytes": 17518,
+      "git_blob": "c3a7237d4ada2d666ffe1cc9fc904547325d9af5",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_67a0647fd1bbfd59.m4a",
+      "bytes": 9799,
+      "git_blob": "2da2fff39d7192267fca107d048a1ba9874e0f58",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_6c21e3b3d76498b7.m4a",
+      "bytes": 16262,
+      "git_blob": "783be4a3a8a364d2c83303546fef66205de7ed96",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_6cb096a155c1761d.m4a",
+      "bytes": 15915,
+      "git_blob": "a69d023c1f7c379dee5cd01dfb551858ce16ae02",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_6d30043d0e792bc7.m4a",
+      "bytes": 16030,
+      "git_blob": "6862847309ef9be4f7ae11a2dd3b708ec30509f2",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_721405afba0877c0.m4a",
+      "bytes": 14485,
+      "git_blob": "5bf68f2ef6ac33725003cdd5a45cd5b9b7982a81",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_7675088cbc7e3772.m4a",
+      "bytes": 17892,
+      "git_blob": "11bde475383dfc0a601ed7e133c3940c33f70f5f",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_77ef20a42e1af4ac.m4a",
+      "bytes": 17462,
+      "git_blob": "c24c87236635b1ec1b3019dda8f34f5b9efbb453",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_7879dac67b6891c9.m4a",
+      "bytes": 11466,
+      "git_blob": "71d20dedc0f5ccae4b8ba62e69505dcdb4335153",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_78f673086b73a98c.m4a",
+      "bytes": 14758,
+      "git_blob": "9480aae22d1713ed116a25cb9a92714ebfe3a6b6",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_7b91d0103b44677e.m4a",
+      "bytes": 10468,
+      "git_blob": "ae8454b9fade0bdcf50ce27cc058068685360ccd",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_7bacc87de1cc9c96.m4a",
+      "bytes": 17278,
+      "git_blob": "82d020091a445f71d5ea442741039ffae22e12aa",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_817247d46e7be3eb.m4a",
+      "bytes": 17274,
+      "git_blob": "d71f82da5d0d4644a75edbca1f9066c490beb9a1",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_81e1229b227be798.m4a",
+      "bytes": 42350,
+      "git_blob": "df75a022c7919885dbfa245f4cd84edb3cfd92cc",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_82334448bbcfa1f1.m4a",
+      "bytes": 18038,
+      "git_blob": "ca9d485f2eff6a08cc26b1e7a263e61832eac45c",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_871ba286b4ab9635.m4a",
+      "bytes": 14475,
+      "git_blob": "f14445ddfc4be269993c391bc56da3419976b291",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_8bc44d2199e8c210.m4a",
+      "bytes": 19512,
+      "git_blob": "caccb5b224609f381354010aa31954b1535e7080",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_8e14d99f20abd6be.m4a",
+      "bytes": 18807,
+      "git_blob": "c33b13df58d4cf9e5441abf274024ce3b241a9c5",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9009c48ade5784f0.m4a",
+      "bytes": 17449,
+      "git_blob": "999ab99b6051bb66a4cad65f14e511bd06de1ad8",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9081071f1ce419b2.m4a",
+      "bytes": 10813,
+      "git_blob": "51d939e46c52ab4f0194f1ef479e7f2addfc53cb",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_91e19753444acacd.m4a",
+      "bytes": 14573,
+      "git_blob": "8b4963480d1b7ca3393d108cb1bda7266ded8cdb",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_92135c558386b319.m4a",
+      "bytes": 16951,
+      "git_blob": "33e24a3b77ab1ef407b5e488c539bc4feab66120",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_93be75059975918a.m4a",
+      "bytes": 18112,
+      "git_blob": "0b5193c1ab4000fe0795b926fbe70dd2bbdaf964",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_94bd70dfd8caeaf0.m4a",
+      "bytes": 18530,
+      "git_blob": "190e0841cbb862b6b9b2f4860b10b4f669a4f943",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_94d4f3f1a5bdf11b.m4a",
+      "bytes": 17486,
+      "git_blob": "ceae87bd2ca93d7453ba1131885964e3dac55c02",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_971397e97e4aa4df.m4a",
+      "bytes": 10619,
+      "git_blob": "670419b190f1927e3b08bd0de06804b58e2e0ef8",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9865f53d4de62d17.m4a",
+      "bytes": 16043,
+      "git_blob": "ff27514a87a567f4a8ad3a867fb8f68458e9b495",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_98ff6596fdc00e93.m4a",
+      "bytes": 16796,
+      "git_blob": "b5941efd9843e1748c9f1b47af6462a7a69d18b7",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9bdcd6a96218662a.m4a",
+      "bytes": 13100,
+      "git_blob": "34e4c7557d5cecfeab2fca17fb77dd1c5b0a9fde",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9d09f7fc87f21327.m4a",
+      "bytes": 11894,
+      "git_blob": "904cfbc2edb81f00570497dbf096428d14ef68df",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9df1fe228456d141.m4a",
+      "bytes": 15233,
+      "git_blob": "a709cd5c41892792e269f6c2710e2e96bddb576e",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9ec983776f98a532.m4a",
+      "bytes": 15025,
+      "git_blob": "745fbe6f7f9157ce2981ac08341aca1ebf754b4f",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_a2cbcf4e9f2eae96.m4a",
+      "bytes": 16247,
+      "git_blob": "85f1ba97d7975c70d9f4710ae1c63f3bee7f9879",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_a485491ff4e4ef31.m4a",
+      "bytes": 14523,
+      "git_blob": "c6681fec42918e2a1cb657d68c62d6bb016f1361",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_a4a5934451622e1c.m4a",
+      "bytes": 15791,
+      "git_blob": "7c6d5b2dd6a765d9f25de5dc93b898c421d1c555",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_a522cda4615c003d.m4a",
+      "bytes": 18147,
+      "git_blob": "a360c392e6c1e1b2203a669584901b6c3c0438f7",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_a7990c589420b0a3.m4a",
+      "bytes": 32661,
+      "git_blob": "252360ad97c9fd71fa29723210ece1ac9846831e",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_abd6ae2a993b0b0e.m4a",
+      "bytes": 16695,
+      "git_blob": "bf18994287e3f4a7e55e2ecc13a1ff826c2e789a",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_ae298cdb8e1588e2.m4a",
+      "bytes": 17183,
+      "git_blob": "f59fbb263b5c99e4fae3a7f98d7ca16e4118340c",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b0745bc7873dd541.m4a",
+      "bytes": 16770,
+      "git_blob": "ee5a8fa6c95af61c19f7bc6e647cfc3543185287",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b094ab5e50b34ac0.m4a",
+      "bytes": 8936,
+      "git_blob": "29ab8b98eb2ba12015a9bdaaa7fc4c07cb1be32a",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b0b3718a58ad44d2.m4a",
+      "bytes": 19095,
+      "git_blob": "05170a1a7faeb114dcc10276c2ef21b9212b04ba",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b185fc60100b7eb0.m4a",
+      "bytes": 14370,
+      "git_blob": "87acd9f1108da2e08d6ae2381135eebe781a6a10",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b5e456b1bd716ab4.m4a",
+      "bytes": 45670,
+      "git_blob": "88dec051a0a7683e2ae4aae96fcc781b2530d820",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b66b7aaf4dc744c5.m4a",
+      "bytes": 19164,
+      "git_blob": "de774c8714caf5255d1bca226274aa59dde02441",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b6b32cdfad1eb57e.m4a",
+      "bytes": 16480,
+      "git_blob": "c7848c134f5b9fb026a3310a1cc655e1754b63f5",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b6ff44fb3b1050fa.m4a",
+      "bytes": 15814,
+      "git_blob": "6ce177dd703a7a82e1c27a902fd95f7cf6586049",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_bdac4addc4eb4737.m4a",
+      "bytes": 17717,
+      "git_blob": "69f9f53e6609c88508f96b0c81808f09ad19145d",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_be61952d82b3bea7.m4a",
+      "bytes": 18628,
+      "git_blob": "908e27b6126fc43f2d8b056732e19ea6f0ab15c0",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_c25aa9d381a6a306.m4a",
+      "bytes": 16978,
+      "git_blob": "97779657e6f7c1f71b31c76a8480f4abb0e0ca1b",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_c38b3fad32064dea.m4a",
+      "bytes": 18126,
+      "git_blob": "5d8df05340af3cdbd3cb245fd88fd485329e3cd8",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_c3ecca9e0c8ff15a.m4a",
+      "bytes": 16535,
+      "git_blob": "880a5edc677ec50d0f7fbf6b9b18001a1e585156",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_c64cb59dc975494e.m4a",
+      "bytes": 12722,
+      "git_blob": "80a0eab729a8ad7fd2d212a9dc51285623c38f3b",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_c7178b131da63792.m4a",
+      "bytes": 16178,
+      "git_blob": "13b64190f92e2b2b3d8292cbe1373181038dea73",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_ca35ecd4616bd789.m4a",
+      "bytes": 14174,
+      "git_blob": "4f837abdb9940cae0624e8ab339ad7414d4d3ffe",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_ca65d3946d8e1f83.m4a",
+      "bytes": 12162,
+      "git_blob": "46cad8ca999c4f59d85aa803ed4cf12d0e286034",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_cb071cce13fbb7d5.m4a",
+      "bytes": 9869,
+      "git_blob": "4faa2ca22f1ef23dd6107a0cfe81908c7bd55ba5",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_cc82de5df2cac63f.m4a",
+      "bytes": 18632,
+      "git_blob": "f00dbc15e478be748be2d667527c477681ceaa3c",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_cc840a6da6f07595.m4a",
+      "bytes": 13086,
+      "git_blob": "181bfd0d67834717d9ea225e32a20180eb0970f8",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_cca773b099d40466.m4a",
+      "bytes": 16343,
+      "git_blob": "141d4d72e6d225539a76b50ee1dee1d1b1934ca8",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_cd78a8b7633d70a9.m4a",
+      "bytes": 16731,
+      "git_blob": "6e324268de938dc37a51cb49560ab570856546bf",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_cea6e09e4b0edcf4.m4a",
+      "bytes": 7750,
+      "git_blob": "ecd57155131668ef981f4717bb1079b45c2e58ea",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_d3f7b5463059450c.m4a",
+      "bytes": 12123,
+      "git_blob": "634ffaf958dfa9ffba5b555d39638c8d4d3860a0",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_d91a4b601dac6b6d.m4a",
+      "bytes": 17623,
+      "git_blob": "761da495d2387441e3bc6b3e85cc360dd4608689",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_d93aa375419b6882.m4a",
+      "bytes": 17717,
+      "git_blob": "06e497c50cd38c8a8e4c2fa85f1e41086f180e31",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_d9afd4dc436f7753.m4a",
+      "bytes": 12112,
+      "git_blob": "ec3e2bc0b5ccbe7d190e0670bbefae944c0c01f5",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_dbaad4c64c5c5f52.m4a",
+      "bytes": 15018,
+      "git_blob": "bd79df5e51d787a07ef436e2ffaa4a343eb8a70f",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_dce0507a56c89df6.m4a",
+      "bytes": 16212,
+      "git_blob": "e813d88136a430da3aff94cb41b7f8ffe46362e7",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_dd5e12c2f3f3966b.m4a",
+      "bytes": 13008,
+      "git_blob": "b590a7362a62e8f314ed9ac17d0958c26f65bd58",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_dd79baee771402f5.m4a",
+      "bytes": 16438,
+      "git_blob": "14da6236c5de6a5e991300695f42680daa1736a9",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e00c7f4b81690f4b.m4a",
+      "bytes": 19048,
+      "git_blob": "35c45dd44bf13c14140523c239721f62fafa6131",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e1e2885929765827.m4a",
+      "bytes": 31826,
+      "git_blob": "9098fa27bcfcd1bb69632fe509222f91347b8ed2",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e267718edd6360bd.m4a",
+      "bytes": 20383,
+      "git_blob": "4ab0630d8738f66d84644ed811f956bca81f01ec",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e51e3f6cf592cc1c.m4a",
+      "bytes": 10997,
+      "git_blob": "6b2208b5ea17f0f1bc96f5ae5167c117021c5e80",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e550a1b7344c41c3.m4a",
+      "bytes": 17255,
+      "git_blob": "43f86b5288b61c8632a66b2ec191f62d1459a848",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e5fc12624e7cf887.m4a",
+      "bytes": 42531,
+      "git_blob": "9a693867a18825389de72d2a250579248f9dfd61",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e96563f724f2c9cd.m4a",
+      "bytes": 16907,
+      "git_blob": "7be1f0eac20c7a551153fe105ce900a71ad07eeb",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e9dec1a5e95262ea.m4a",
+      "bytes": 28270,
+      "git_blob": "ca1cbd4add3acb4ada672031e21c89a8a8311497",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_ed45b630ba8032f3.m4a",
+      "bytes": 10475,
+      "git_blob": "1a07a6267d2954c146fcc7281d725b8db8f15ed8",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_ed9399a6bfe91b62.m4a",
+      "bytes": 17875,
+      "git_blob": "72f1779e484e013fa1f9dc860b6374c3c4a0a65d",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_eee7c177036108ef.m4a",
+      "bytes": 15946,
+      "git_blob": "fc264998c73851fe03a83c2098be90a4c1fb4841",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f065db17634a6448.m4a",
+      "bytes": 17550,
+      "git_blob": "f0f9ae6cc74ec84abc5eebc008a4f1f900e78099",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f07005ffe67020be.m4a",
+      "bytes": 14027,
+      "git_blob": "a80eccf2456b9852a21eccab8283ca2599716843",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f21c5a300f0faa57.m4a",
+      "bytes": 17545,
+      "git_blob": "a8c101d849bc1393e482946a377df6dde840de87",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f3297ed9f41804eb.m4a",
+      "bytes": 8802,
+      "git_blob": "100f1e09fdb596f23226a9818b7029eec4540064",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f3485444561a8937.m4a",
+      "bytes": 18146,
+      "git_blob": "a4e22ab276f78da86d4d477b816e83f1ceb1b923",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f35b2e780f6178ca.m4a",
+      "bytes": 16606,
+      "git_blob": "66ee8c0b3ed4b219782d354c19411abf3c2f90b4",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f3f108ce72424622.m4a",
+      "bytes": 14073,
+      "git_blob": "00f20f1dca3a7c9fc8ddea38c84a3955ea49f013",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f4940501b94d37b1.m4a",
+      "bytes": 17083,
+      "git_blob": "ddb28454e0ee44061512a7f6967327a9cbbb2ac6",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f6a8ece65f5a95c5.m4a",
+      "bytes": 16557,
+      "git_blob": "1c1b58bf4e79c4d448885acc11189e604fc05bc9",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f8d67c4cef1f5de8.m4a",
+      "bytes": 21455,
+      "git_blob": "2dfc637ca8b24a85f676971d3f60a8ec95354369",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f90ef0b2f8466354.m4a",
+      "bytes": 19537,
+      "git_blob": "14ffa5858fa0fc88b0876ecfbdae6f53027e9354",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_fada50abaf507531.m4a",
+      "bytes": 13368,
+      "git_blob": "e7a27f18a628383e76b97a33d577ae3d768aa6fa",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_fba3424123df234b.m4a",
+      "bytes": 18680,
+      "git_blob": "2bace0e210569dc2efa7826cba6739540b3806c0",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_fc60775d7bfb3508.m4a",
+      "bytes": 18575,
+      "git_blob": "f741ffbbe070a6d316de1c406ab9fb6f92d526eb",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_fc981905951cdf15.m4a",
+      "bytes": 10482,
+      "git_blob": "0f96e96aa21090e8e41895efd5bd962c9536e052",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_ffa331c35d1ee73c.m4a",
+      "bytes": 13618,
+      "git_blob": "8f84f1e8b0a21a68e3d658a68f096ad56c9ef1be",
+      "present": false
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_fff0c8f7e9456d9a.m4a",
+      "bytes": 17482,
+      "git_blob": "e877fc3a4089368aff96f8987526b4af1fe2f67a",
+      "present": false
+    },
+    {
+      "path": "assets/companion/lumo_cheer.png",
+      "bytes": 165264,
+      "git_blob": "d03d279ea22cc8d2976db11644e9547bca8777c9",
+      "present": false
+    },
+    {
+      "path": "assets/companion/lumo_idle.png",
+      "bytes": 88234,
+      "git_blob": "642334400fa05f8a82a25c944eabcf4e90a20561",
+      "present": false
+    },
+    {
+      "path": "assets/companion/lumo_sad.png",
+      "bytes": 89435,
+      "git_blob": "610a0ce765bde6e4aede18b20affbed6490ea10c",
+      "present": false
+    },
+    {
+      "path": "assets/companion/lumo_surprised.png",
+      "bytes": 89013,
+      "git_blob": "aac5a2d639f0819f51575874f9198ca309522947",
+      "present": false
+    },
+    {
+      "path": "assets/companion/lumo_think.png",
+      "bytes": 89414,
+      "git_blob": "5fcfdc954efc445212419f249560dca013c8dd75",
+      "present": false
+    },
+    {
+      "path": "assets/fonts/Nunito-Black.ttf",
+      "bytes": 39260,
+      "git_blob": "9e7743ebb7efc2bda51e99eda079cb9b2061f566",
+      "present": false
+    },
+    {
+      "path": "assets/fonts/Nunito-Bold.ttf",
+      "bytes": 39284,
+      "git_blob": "e289ba049b167e4fd0e5ba5f537fa3f4b94a92fb",
+      "present": false
+    },
+    {
+      "path": "assets/fonts/Nunito-ExtraBold.ttf",
+      "bytes": 39300,
+      "git_blob": "d3168c268b0f8c20edc534be678ab53300ba0828",
+      "present": false
+    },
+    {
+      "path": "assets/fonts/Nunito-Regular.ttf",
+      "bytes": 39332,
+      "git_blob": "4ed809463fcba2afd71553075412a6d7e74dcedf",
+      "present": false
+    },
+    {
+      "path": "assets/fonts/OFL.txt",
+      "bytes": 4385,
+      "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+      "present": false
+    },
+    {
+      "path": "assets/fonts/README.md",
+      "bytes": 460,
+      "git_blob": "f030c163d4071cdfd57e835380a2797b99b3d71c",
+      "present": false
+    },
+    {
+      "path": "assets/images/.gitkeep",
+      "bytes": 77,
+      "git_blob": "f704457fdb5e75e1409ce10ac6cf7bfe3497ef89",
+      "present": false
+    },
+    {
+      "path": "assets/images/lumo_classroom_header.png",
+      "bytes": 2054075,
+      "git_blob": "3382af3c0c8bb985aac0809d2088d13899addf52",
+      "present": false
+    },
+    {
+      "path": "assets/images/lumo_fox.jpg",
+      "bytes": 769731,
+      "git_blob": "437a1e86c6588bb71b88a2cea2144dd4dfe80e73",
+      "present": false
+    },
+    {
+      "path": "assets/images/lumo_fox.png",
+      "bytes": 1024538,
+      "git_blob": "5d7588b4372cff172916a5b630cf3ca3a3dd301b",
+      "present": false
+    },
+    {
+      "path": "assets/images/lumo_kart_cover.png",
+      "bytes": 583386,
+      "git_blob": "49fdc02026c8daf336e82e6b094792e7cbfa44f6",
+      "present": false
+    },
+    {
+      "path": "assets/learning_questions/grade1_german.json",
+      "bytes": 8936,
+      "git_blob": "19717615091ec47d87b9a9f11fb418c3286b838e",
+      "present": false
+    },
+    {
+      "path": "assets/learning_questions/grade1_math.json",
+      "bytes": 9005,
+      "git_blob": "98e4099ce827ac93de31ccdbeaebee2b45cec744",
+      "present": false
+    },
+    {
+      "path": "assets/learning_questions/grade2_german.json",
+      "bytes": 9810,
+      "git_blob": "76520519804b0efc551612ade86cd2be78ec9814",
+      "present": false
+    },
+    {
+      "path": "assets/learning_questions/grade2_math.json",
+      "bytes": 8943,
+      "git_blob": "9304a25ae037924e16c6596a7eb51a59043af0f5",
+      "present": false
+    },
+    {
+      "path": "assets/lottie/loading_spinner.json",
+      "bytes": 10114,
+      "git_blob": "8364edbed7ef6c6f33a540230539c9755fa654e3",
+      "present": false
+    },
+    {
+      "path": "assets/lottie/lumo_cheer.json",
+      "bytes": 42010,
+      "git_blob": "0f737dc683efa6e6c4ec0eb0f0cded7c79fe6d71",
+      "present": false
+    },
+    {
+      "path": "assets/lottie/lumo_idle.json",
+      "bytes": 27838,
+      "git_blob": "ca7cb98c82004ee3872a12b49c7ced0f4a684981",
+      "present": false
+    },
+    {
+      "path": "assets/lottie/lumo_sad.json",
+      "bytes": 30030,
+      "git_blob": "440eb2434f6ad746cb534eee01e57124c8411557",
+      "present": false
+    },
+    {
+      "path": "assets/lottie/lumo_think.json",
+      "bytes": 32193,
+      "git_blob": "5893fcb76c23886e31d38db78666975e6829720d",
+      "present": false
+    },
+    {
+      "path": "assets/lottie/star_burst.json",
+      "bytes": 30309,
+      "git_blob": "73ebe6b3f708fbfc0cd803c0facbdeee035d99c9",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/.gitkeep",
+      "bytes": 0,
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/avatars/.gitkeep",
+      "bytes": 0,
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/avatars/avatar_player_blue_boy.png",
+      "bytes": 324091,
+      "git_blob": "0b965f85760637d737c72b21c6fae0b47e4e588b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/avatars/avatar_player_green_boy_glasses.png",
+      "bytes": 347482,
+      "git_blob": "de4c1b0cdc58b1a43037d8848510ebf27944c4fa",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/avatars/avatar_player_red_girl.png",
+      "bytes": 367810,
+      "git_blob": "77770cb731a4cbfdcbd002c85cd3964c8fa672a1",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/avatars/avatar_player_yellow_girl_headphones.png",
+      "bytes": 357994,
+      "git_blob": "62d3a844db105a4b3b49ff8fd47bf73c3552a465",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/avatars/bot_luna_owl.png",
+      "bytes": 15442,
+      "git_blob": "c517bb7e4097272b88707743ea9f05bbea6c0187",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/back/.gitkeep",
+      "bytes": 0,
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/back/card_back_default.png",
+      "bytes": 275301,
+      "git_blob": "ae86e9d0981d6f2fcc0972d8ff89ba70eca9e5ec",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/.gitkeep",
+      "bytes": 0,
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_0.png",
+      "bytes": 38892,
+      "git_blob": "5e9de61255e7049b2b702d8ee7c729980ba155ac",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_1.png",
+      "bytes": 37529,
+      "git_blob": "a9d12999610923e94c94505b164ec9c7bfccc1fb",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_2.png",
+      "bytes": 38817,
+      "git_blob": "f17bf6aeb7983e8350d2299872713618ef98e5b5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_3.png",
+      "bytes": 39400,
+      "git_blob": "007d19373782b8a78d17cb24a814001ad446e9c4",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_4.png",
+      "bytes": 38307,
+      "git_blob": "ff8eb60bc95c50d0beb6d1973085b5a6ab8af550",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_5.png",
+      "bytes": 39117,
+      "git_blob": "ea926f94477d1146d9be8ae0bf1c248d4f6d6999",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_6.png",
+      "bytes": 39534,
+      "git_blob": "62279f345ec0700662870bf0036ca60ecaca7936",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_7.png",
+      "bytes": 38327,
+      "git_blob": "d5b6edd422bae39598597f819cbf7921d40b12cb",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_8.png",
+      "bytes": 39519,
+      "git_blob": "8ffc36e40f2baa972befc8af6471344821323977",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_9.png",
+      "bytes": 39539,
+      "git_blob": "faee94a11ab72c75591d7ad618a34a63acd52ea3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_draw_two.png",
+      "bytes": 39114,
+      "git_blob": "6593f22edb02a7360e5b377efa7fd8638007b4af",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_reverse.png",
+      "bytes": 43624,
+      "git_blob": "344807b4c5a19df3cb7cfb843f99c2fc5a0d7eda",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_skip.png",
+      "bytes": 40076,
+      "git_blob": "bc7b60a943030526456e24122cc765f3e6b1035d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_think_pause.png",
+      "bytes": 40543,
+      "git_blob": "035b72b42b8a0404551c30567c419323f43a2ea9",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/.gitkeep",
+      "bytes": 0,
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_0.png",
+      "bytes": 35970,
+      "git_blob": "965abfac825b0d7dc89eeffe71131b9f80b2e15c",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_1.png",
+      "bytes": 34715,
+      "git_blob": "4831f8a59b94bb6a9edc35c0c8f499553a8d03ae",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_2.png",
+      "bytes": 35818,
+      "git_blob": "e130ba1c0215c9e3ca44728b15780b734bb65512",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_3.png",
+      "bytes": 36306,
+      "git_blob": "6dd054f27949837d0b0655d99da0c12dd52dc1f8",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_4.png",
+      "bytes": 35244,
+      "git_blob": "60d8eb0e68076ecf65259a0156afd3bb1cbfecf0",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_5.png",
+      "bytes": 36083,
+      "git_blob": "07e1452d4427f03092bad7430b6c29528fc911bc",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_6.png",
+      "bytes": 36526,
+      "git_blob": "58426be4d97c1c3246bcb90958842d684ad54a9b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_7.png",
+      "bytes": 35332,
+      "git_blob": "f24c3ee42d1a741f015eebde8f371b45b66f2806",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_8.png",
+      "bytes": 36503,
+      "git_blob": "cf2a1a3ef8ecbdeb685ac0211e52b3fb253cf92f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_9.png",
+      "bytes": 36475,
+      "git_blob": "2ff4d730362fb77706c37726a666a1826580d758",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_draw_two.png",
+      "bytes": 36647,
+      "git_blob": "cad170a8ad6ab16560a7387ef93eca3cedc9b311",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_reverse.png",
+      "bytes": 40949,
+      "git_blob": "bd21b1fc2a59a793ac7a12615aeccdc75a2a6509",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_skip.png",
+      "bytes": 37459,
+      "git_blob": "7898971c186b0693ecbfe44b69eabc075c000dab",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_think_pause.png",
+      "bytes": 37686,
+      "git_blob": "1a6855120b60a20a1a40f75148e83faf050f5a22",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/.gitkeep",
+      "bytes": 0,
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_0.png",
+      "bytes": 34036,
+      "git_blob": "30b56437f6f2dcee4d6c97f4ae6935a6402d89c8",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_1.png",
+      "bytes": 32487,
+      "git_blob": "c56d6e03db8b9a342d678f3d866744af795d4ad8",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_2.png",
+      "bytes": 33782,
+      "git_blob": "3fef24aca844dfa99ab22889aa4f95d986d0e1c7",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_3.png",
+      "bytes": 34445,
+      "git_blob": "ab3c4400181b4246a8e587e93d477b4afb0523ae",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_4.png",
+      "bytes": 33285,
+      "git_blob": "e473e173c090c11aa03d9f308a6b2891c08b86f4",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_5.png",
+      "bytes": 34022,
+      "git_blob": "c53f5d493296a19862ffc87cd9edad5290948a9c",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_6.png",
+      "bytes": 34579,
+      "git_blob": "5d5bb3cb37869934ddd94b7192bec05508f6923b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_7.png",
+      "bytes": 33216,
+      "git_blob": "e5c1ea4f1aa477c1c0d81df92f2c28419f394d7a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_8.png",
+      "bytes": 34624,
+      "git_blob": "120a61681fab2ec3076aa6bf79832b9e0a8cedd8",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_9.png",
+      "bytes": 34627,
+      "git_blob": "f4f1d8f34e0f50e2282813da2464213fb6895492",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_draw_two.png",
+      "bytes": 33899,
+      "git_blob": "a66359b30f6b4ddbfc0467a6eb9043d101e0f3fa",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_reverse.png",
+      "bytes": 38717,
+      "git_blob": "f4928626014eada2f15316e159954f8de6891a55",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_skip.png",
+      "bytes": 35357,
+      "git_blob": "403a658724f4b20b62575e8d1c9c1fb03c506f36",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_think_pause.png",
+      "bytes": 35207,
+      "git_blob": "1e95e12687f6b78bbbd65c0e35b4d3a46770a4f0",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/special/.gitkeep",
+      "bytes": 0,
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/special/color_magic.png",
+      "bytes": 263849,
+      "git_blob": "be0a2db41447479950fb10511c540361bfabe1d3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/special/wild_draw_four.png",
+      "bytes": 265281,
+      "git_blob": "3eb21cf7a4dc005e3c58831239383d3f00981816",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/.gitkeep",
+      "bytes": 0,
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_0.png",
+      "bytes": 37677,
+      "git_blob": "e2f1866142ca0fe0ef09b71e7dfc41927829fe73",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_1.png",
+      "bytes": 36146,
+      "git_blob": "e21f2494b36728ad0916b045619f9d9b04be967e",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_2.png",
+      "bytes": 37438,
+      "git_blob": "40405bf8d3fa616cde3fd5902f67b63c7d69faf2",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_3.png",
+      "bytes": 38071,
+      "git_blob": "e72293fa6f70e29ca397366e5895deb8e0ca180e",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_4.png",
+      "bytes": 36809,
+      "git_blob": "26a4c193ef9cb976404d6955ce9fe24439d8ae52",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_5.png",
+      "bytes": 37779,
+      "git_blob": "a3802a4508b5a38c35b59736d091e931c6bb4933",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_6.png",
+      "bytes": 38220,
+      "git_blob": "4f2c4263e26acbdbdd7d64b7de19f2ca3ba086c9",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_7.png",
+      "bytes": 36888,
+      "git_blob": "c21fbce7bdbe5f8dc8d66e45dc4f4cea5b42fa9d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_8.png",
+      "bytes": 38238,
+      "git_blob": "dec8c3ab2fe0c08aedefa6e1f30d80a4edadfea7",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_9.png",
+      "bytes": 38205,
+      "git_blob": "a1b15046c9da4f27381789b522cde6ca26ad9311",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_draw_two.png",
+      "bytes": 38290,
+      "git_blob": "08f5883a10d5b1d12b8e0998c7a290d4e7838ef0",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_reverse.png",
+      "bytes": 42791,
+      "git_blob": "ac6fc28206bf85f645a1c3f50301a55cc856faa9",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_skip.png",
+      "bytes": 39288,
+      "git_blob": "5472e39c9dd2224ac2c12d45199a83b8ce33af9a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_think_pause.png",
+      "bytes": 39963,
+      "git_blob": "90900ed7d5f553af000e24ccf36f8fb9637932d7",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/badges/badge_schild.png",
+      "bytes": 290048,
+      "git_blob": "828df2e2bc57452faba8e057991878e4484df43b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/badges/badge_sterne.png",
+      "bytes": 248088,
+      "git_blob": "a18aceb38efa5e5003926be2a6674101eba6f0cb",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_games.png",
+      "bytes": 2384177,
+      "git_blob": "1902fe5f6ae2be711357a4a3edc4ab5dcd3c31ad",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_glass_islands.png",
+      "bytes": 2013439,
+      "git_blob": "dfe9b11731614cf4ba5070ca0ece43bab622fa25",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_home.png",
+      "bytes": 2336469,
+      "git_blob": "cc58ebc68882e23d489f47ddf4a8258c199871a6",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_kart.png",
+      "bytes": 2394989,
+      "git_blob": "98c3f4244bec08142cd60b058082b1fc368a5982",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_learn.png",
+      "bytes": 2406360,
+      "git_blob": "d232dbbcf70dbe3a4d101991cba9ff4bd3717220",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_library.png",
+      "bytes": 2348917,
+      "git_blob": "56cb916f20e7d70e89848100cfd2c17710671d42",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_profile.png",
+      "bytes": 2779163,
+      "git_blob": "221132376a80399fb7f87d37f54eb2e6d41776b4",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_tests.png",
+      "bytes": 2203819,
+      "git_blob": "2fdefb72ea5cee2a81da38e8465403141c87fb3d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_wide.png",
+      "bytes": 2753045,
+      "git_blob": "91db58b1d225c216ba042df2cc2f9348285564d5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/board_games/die_1.png",
+      "bytes": 144678,
+      "git_blob": "ac5311afc369255a3a6100f51a355de59a27437e",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/board_games/die_2.png",
+      "bytes": 144539,
+      "git_blob": "9265986edd5d3d6cc802359452bb04c53733adc2",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/board_games/die_3.png",
+      "bytes": 146075,
+      "git_blob": "4f60dd06b24bd4b18441695255987ad6eb7b8d7d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/board_games/die_4.png",
+      "bytes": 145854,
+      "git_blob": "3f8ed194367cd4becad025e99995720f09e01ba6",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/board_games/die_5.png",
+      "bytes": 147778,
+      "git_blob": "f127523fd2f9e1f8a40c4efd2d133b6c31438903",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/board_games/die_6.png",
+      "bytes": 148771,
+      "git_blob": "0b4981b929001d23e2452953c9742dc106ed9e31",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/board_games/pawn_child.png",
+      "bytes": 141965,
+      "git_blob": "bad73318aa19c2b821c736159c07b2aa347d64a9",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/board_games/pawn_lumo.png",
+      "bytes": 149001,
+      "git_blob": "9c9b848ca58322fa7eb92266fcdd5f7904b8bf9a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/board_games/tile.png",
+      "bytes": 175225,
+      "git_blob": "5167c88db79aea1113b490732115f87471032a7a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/book_arch.webp",
+      "bytes": 50316,
+      "git_blob": "9dc6c2df2434edb4a6f199bb1671635fb3aace64",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/clock_tower.webp",
+      "bytes": 34064,
+      "git_blob": "a5b45ea845073375ecef5920badd3a5b6e4fe2c5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/corner_house.webp",
+      "bytes": 49656,
+      "git_blob": "3470933b5cc42e9d5543262e5cf5b448f1f58b8d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/crystal_cave.webp",
+      "bytes": 53734,
+      "git_blob": "e177943295d949f7c9b0e32111fb1f6cbca264f9",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/crystal_city.webp",
+      "bytes": 66342,
+      "git_blob": "94088d35bc7bedd4a4fe92f8d0d66faa21738d25",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/glass_tunnel.webp",
+      "bytes": 35340,
+      "git_blob": "0a2d7d498043154d9cbf75b2f28ff36d6c09a979",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/library_gate.webp",
+      "bytes": 54530,
+      "git_blob": "450cc51ebc4846de29ba861de6097472cd2b64ef",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/library_gate_alt.webp",
+      "bytes": 40944,
+      "git_blob": "f65f2b59172bca6b89a11e63fd94efec932d2adc",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/library_tunnel.webp",
+      "bytes": 54906,
+      "git_blob": "bb5bd0c2e567e700e8f51f8d6fbe22d4228f2b9d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/observatory.webp",
+      "bytes": 50852,
+      "git_blob": "826b4881d70d159377e7e733c42d51357480a882",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/star_bridge.webp",
+      "bytes": 24958,
+      "git_blob": "d5a956820171313642ed8ebea0f0be303aba56db",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/star_portal.webp",
+      "bytes": 50504,
+      "git_blob": "a701c4c2375058c3ff9cf2aad3bb246dd156b4ef",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/temple_ruins.webp",
+      "bytes": 55072,
+      "git_blob": "69263a0bf15050e13550ba37c37e960d78a45165",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/terrace.webp",
+      "bytes": 48916,
+      "git_blob": "1e425fcc91b777d4a03d5bc8b7ac7c0feec9eec8",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/town_hall.webp",
+      "bytes": 43808,
+      "git_blob": "df7c0437de829f14f97aac5a331981e1900148f0",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/buildings/town_house.webp",
+      "bytes": 57082,
+      "git_blob": "e5d11b7a7b90fbcce094952e9915a5cf8bb76f1b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/cards/deutsch_hund.png",
+      "bytes": 453730,
+      "git_blob": "5a43705144d22db698389f98680900fa79761a0f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/cards/game_kart.png",
+      "bytes": 790792,
+      "git_blob": "2cbd8848373c975937ee90fafd84c8c2ab2791eb",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/cards/game_memory.png",
+      "bytes": 745269,
+      "git_blob": "4fb2171f9bd7a4d3d6b44afafb514b1366b9d317",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/cards/kart_freunde.png",
+      "bytes": 727279,
+      "git_blob": "d3ecb63198e1f197898f28d158ae0fbe9ae11781",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/cards/kart_track.png",
+      "bytes": 707490,
+      "git_blob": "a66386fb385ad9f36e6d7288f0140a4bc8a24abd",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/cards/test_rechnen.png",
+      "bytes": 296031,
+      "git_blob": "2b554ec3c00fe8e425304783e21bc5b3f97e9943",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/cards_game/friend_giraffe.png",
+      "bytes": 203696,
+      "git_blob": "c03991583a442e9f030cb4d377ded73e81f35d6a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/cards_game/friend_panda.png",
+      "bytes": 179305,
+      "git_blob": "06ac570e9053f8a2a052d50fd5350c0cbf8194bd",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/cards_game/logo_cards.png",
+      "bytes": 189880,
+      "git_blob": "05f9ee10234911b218dab990e93385e42d63b7bf",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/characters/bunny_kart.webp",
+      "bytes": 57856,
+      "git_blob": "44774687dca10b1be1ce342282913f7ab22a8ea9",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/characters/cat_kart.webp",
+      "bytes": 53264,
+      "git_blob": "45406e29ed67facd9d219fd51eea034cd9b78974",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/characters/fox_garage_wrench.webp",
+      "bytes": 59882,
+      "git_blob": "61c199ce96c9028f2bccbee3d74cb68857de1c69",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/characters/fox_kart_front.webp",
+      "bytes": 59644,
+      "git_blob": "5daa09f8baa49ea22527e5e3b4357afb08cd64a6",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/characters/fox_point.webp",
+      "bytes": 44122,
+      "git_blob": "a4de1278a87a1041f57af996d0e467e4b7e6a3a6",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/characters/fox_trophy_jump.webp",
+      "bytes": 69480,
+      "git_blob": "51d7a30efe03faf4a164b911a86f628d0cf45fdf",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/characters/fox_wave.webp",
+      "bytes": 65558,
+      "git_blob": "fbb61a43176faf10c54341be712d3eea74ada817",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/characters/fox_wrench.webp",
+      "bytes": 53076,
+      "git_blob": "fa3f3b6f5a6adebd588ed04e640d8a64ad8aeddd",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/characters/kart_rear.webp",
+      "bytes": 43922,
+      "git_blob": "5c2e6f96a0777a17a819f056329f869c1c5de4a3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/characters/kart_side.webp",
+      "bytes": 45614,
+      "git_blob": "a2a269c10cf578569fd93dfd007c70282f4d9909",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/characters/turtle_kart.webp",
+      "bytes": 51208,
+      "git_blob": "fd3b79ff5cfe79ea4cfbaeee583f6e841008a2b3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/arrow_sign.webp",
+      "bytes": 38984,
+      "git_blob": "bcaa9e41a72d5e1dd7e0e7d17d28de8344f706da",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/balloon.webp",
+      "bytes": 29750,
+      "git_blob": "d913aaaac9e2931797d8281ff4ecad064a59fd6e",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/banner.webp",
+      "bytes": 10026,
+      "git_blob": "50c49910513261ebd006017d380637a89494d3ed",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/checkpoint_arch.webp",
+      "bytes": 40002,
+      "git_blob": "039bdc2a0634ea9ab9e7384dbe2bccccea3f3a93",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/fence.webp",
+      "bytes": 24308,
+      "git_blob": "3c03b8bbb17edc467667a8643c1be8dc7ae06e62",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/finish_gate.webp",
+      "bytes": 36202,
+      "git_blob": "e21ecd23572a253507aaa505467700d9b8ff989c",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/grandstand.webp",
+      "bytes": 40358,
+      "git_blob": "02f58cf1953f66d8436be616bfba4fc6df29b6e3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/guardrail.webp",
+      "bytes": 22132,
+      "git_blob": "07450daac60e1cd026a6fa346522068f11f32f8d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/lamp_banner.webp",
+      "bytes": 29730,
+      "git_blob": "91bffd1f7271c9f26da579194aafffe1288998e0",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/signpost.webp",
+      "bytes": 20376,
+      "git_blob": "1b299fccc1b451abd677d27505d84ab088fa7cc1",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/start_arch.webp",
+      "bytes": 36466,
+      "git_blob": "79ba85c2526d56c11a7a78d52d20abec57bbfb3c",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/start_light.webp",
+      "bytes": 47978,
+      "git_blob": "493d906289609a001c25a3158f7fbcaec98abf4d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/tunnel_rock.webp",
+      "bytes": 34438,
+      "git_blob": "858a9fd75c0dfbf3366a00573c1767d185e01184",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/deco/wood_sign.webp",
+      "bytes": 31310,
+      "git_blob": "fea7804ec9aa5eac2fd61508c6d681175db14498",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_arms_open.png",
+      "bytes": 1026549,
+      "git_blob": "58595acce97c84fa31d906f07977a84cafd468c3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_avatar.png",
+      "bytes": 381950,
+      "git_blob": "2528db26b4288d89e905c03ec1015ac7b8798538",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_book_point.png",
+      "bytes": 1125367,
+      "git_blob": "0ee53bec6758833d2d3f64e0ca12a2a208878c0b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_book_welcome.png",
+      "bytes": 1864997,
+      "git_blob": "f1baeb1b47d64e169a1ae1e253a0c8a7024b37e9",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_cards_welcome.png",
+      "bytes": 1882648,
+      "git_blob": "6d1d702b9ba3b92188f181f425cf05a781e9f30d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_cheer.png",
+      "bytes": 924913,
+      "git_blob": "3b3c6db5ec27b9d92d218b72146083959b2da928",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_kart_rear.png",
+      "bytes": 1070197,
+      "git_blob": "8c152a1302d82a82d830d61117f8bc88aee26933",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_kart_wave.png",
+      "bytes": 1272108,
+      "git_blob": "cf798c620eb0127b6063a428350ebe9ab2e9cae3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_point_side.png",
+      "bytes": 971542,
+      "git_blob": "233ba2e28ad008769b2051560d0ea04e201f425a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_quiz_host_1982.webp",
+      "bytes": 24732,
+      "git_blob": "c1a8452ab3eaf863e5cb765098a203c34fdad36c",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_spielwelt_cards.png",
+      "bytes": 505475,
+      "git_blob": "ca8be55bb507e524d2a52f1b41d7200436bc2e04",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_spielwelt_dance.png",
+      "bytes": 741906,
+      "git_blob": "590787ab75439054961bd18b403f30f3c4b65b1b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_spielwelt_jump.png",
+      "bytes": 508550,
+      "git_blob": "e0efe78dece4d6c3972e4d757812bcf26313a086",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_spielwelt_wave.png",
+      "bytes": 494902,
+      "git_blob": "115bdb2772c3918b16e1704825b74211d829f784",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_tablet_thumb.png",
+      "bytes": 961215,
+      "git_blob": "015d32214ff8fba0d45a823a84107117dbc7972f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_teacher_stick.png",
+      "bytes": 936573,
+      "git_blob": "5648d3ba4fa08f5b6ade93e4b7426b993b11448a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_thumb_wink.png",
+      "bytes": 968559,
+      "git_blob": "fd2b3198e0f89110730221cc497dbed67b541f85",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_trophy_wink.png",
+      "bytes": 1041166,
+      "git_blob": "172ce25bb742570dbc9be1890811ec4514df709c",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/gameplay/build.png",
+      "bytes": 883681,
+      "git_blob": "488aa61b37f6d4a2e40947e1b3a159b207c80fd5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/gameplay/kart_candy_preview.webp",
+      "bytes": 116792,
+      "git_blob": "35ffa359380170358db2bd09cf47621d20fdd9e2",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp",
+      "bytes": 98156,
+      "git_blob": "8c7cdda13fc8a3866c79528bc910f497112baa08",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/gameplay/puzzle.png",
+      "bytes": 479580,
+      "git_blob": "eb1107ef777dc75795078080f08095aa6747a78f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/gameplay/rhythm.png",
+      "bytes": 314444,
+      "git_blob": "71c24da56701d8c6612fd4bce4accdb355e30cc2",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/gameplay/treasure.png",
+      "bytes": 1112555,
+      "git_blob": "d3cdd1f03aa330d6275652b44268a3b69df3ac65",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/exhaust_boost.webp",
+      "bytes": 27572,
+      "git_blob": "14c624add44e732f3832f9179ee546e63ec3fab6",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/front_bumper.webp",
+      "bytes": 25996,
+      "git_blob": "a3c37e02488374c36bce676f1e20672bfbc70a18",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/helmet.webp",
+      "bytes": 36876,
+      "git_blob": "f084441df76cec49c49f91f214793c0c15363f43",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/nitro_bottle.webp",
+      "bytes": 32144,
+      "git_blob": "9c4076f1d415c970b0c88e572827717984a93cf3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/rim.webp",
+      "bytes": 41556,
+      "git_blob": "9320d837acf63f84be288f7d9993dfc7237b78b7",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/seat.webp",
+      "bytes": 36638,
+      "git_blob": "a86f9777122598f9a85319f31183755a68b415ec",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/side_skirt.webp",
+      "bytes": 19814,
+      "git_blob": "eba5130443f0af9486758b7d96659f337a1feea1",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/spoiler.webp",
+      "bytes": 27842,
+      "git_blob": "23c9aab1113f8371bf9cbf4d7a764f3a9a3ce2b3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/spray_can.webp",
+      "bytes": 23446,
+      "git_blob": "9f90c4b089e0b2150a7e2a959641be5310e5bdf6",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/steering_wheel.webp",
+      "bytes": 44092,
+      "git_blob": "ff26c35253fa658a24490b06ebeaaf43bf4d90f8",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/tire_slick.webp",
+      "bytes": 26762,
+      "git_blob": "9b337383816c560ba144ff70bcd3b216d8850cfa",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/tire_stack.webp",
+      "bytes": 34444,
+      "git_blob": "abef4cfdc18f1e70c16740080fee9c5543ee49d5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/tire_tread.webp",
+      "bytes": 29778,
+      "git_blob": "4f3c1d4e21f28e86db4f05abc023de8bec9c3694",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/toolbox.webp",
+      "bytes": 36508,
+      "git_blob": "b5b6e1a00ed51b90173d05b5884184cf9fb8ad35",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/underglow.webp",
+      "bytes": 22144,
+      "git_blob": "c9edb9aa4a7be1556612cd8e28c1cc942fce923b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/garage/wrench.webp",
+      "bytes": 26616,
+      "git_blob": "ae1ed22ed01fed58c5d13673fcd248abb1434fda",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/apple_red.png",
+      "bytes": 249337,
+      "git_blob": "ee5c23da7a5096e77664e25d6165a01ca587ceeb",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/book_open.png",
+      "bytes": 270566,
+      "git_blob": "15875cbcacdf14b96cc572c407d0390f88ce4bf2",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/candy_blue.png",
+      "bytes": 140862,
+      "git_blob": "bd1a8e7b9f303fae1a124cb545646e1822dddf70",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/crown.png",
+      "bytes": 263897,
+      "git_blob": "77b094573953d615e798ba496894830fcf305d9e",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/crystal.png",
+      "bytes": 175923,
+      "git_blob": "c9de31edd5b34c4579cbd80573f6fb004b748315",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/flag_checkered.webp",
+      "bytes": 19026,
+      "git_blob": "22c3505d9ed91c41d2a03013a0df6c72799f8e95",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/gamepad.png",
+      "bytes": 241315,
+      "git_blob": "e5732eb95545eb6af6b52c8d4e07e360efa708d6",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/gift_box.webp",
+      "bytes": 37256,
+      "git_blob": "bb3ac9d49a065807973c6e696425c4d022ede839",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/lightning.webp",
+      "bytes": 19450,
+      "git_blob": "824fb9ac8818fd8a674d9f244bc73baf092d534a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/season_autumn.png",
+      "bytes": 256288,
+      "git_blob": "c3e803f877a1748d0a429707b8c1b1c9e8e33fa5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/season_spring.png",
+      "bytes": 246149,
+      "git_blob": "0bccbde0fd9c3acd6e6d82a87d88746e0e15d317",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/season_summer.png",
+      "bytes": 265068,
+      "git_blob": "266b0ac56df0f44052ca103e4e5d2bb753d87c42",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/season_winter.png",
+      "bytes": 189992,
+      "git_blob": "91430fa5e88b99b3fb5374e1996b15ac64cc6901",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/star_gold.png",
+      "bytes": 289229,
+      "git_blob": "f4071bb88f187894031b82e36c04c66ad6075fc5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/ticket_star.webp",
+      "bytes": 35316,
+      "git_blob": "e8ab4a9b0bbb3f2f2564d25d6c0fde9a1d766fb8",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/treasure_chest.png",
+      "bytes": 327976,
+      "git_blob": "a56c113564cc825aaff452c072f8a4099f26bb01",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/trophy_gold.png",
+      "bytes": 263843,
+      "git_blob": "5462a553284ebd9e07757953e643d40d5d8a2e3d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/icons/wrench.webp",
+      "bytes": 33322,
+      "git_blob": "da7fbf5a01774c06379302fd043006540e925015",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/book_token.webp",
+      "bytes": 44534,
+      "git_blob": "c085e10b466bfe29dec9c635bf875cd88e35e0ec",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/book_token_alt.webp",
+      "bytes": 30042,
+      "git_blob": "6653361f53780568e35f8f422136cd49de10c790",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/checkpoint_flag.webp",
+      "bytes": 50428,
+      "git_blob": "7cb3ad7fb25e272d42036e43e5ee5cf526ac17d8",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/crystal_pedestal.webp",
+      "bytes": 49576,
+      "git_blob": "c05c04c92d3dbfc86b2e4ca918bc912a023d978b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/crystal_purple.webp",
+      "bytes": 33138,
+      "git_blob": "03c44e0d51441a41d782aa1935719a7bf8710f45",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/item_box.webp",
+      "bytes": 44050,
+      "git_blob": "c7f96e9b2166ec84eb153d6630078005a5e3027c",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/item_box_alt.webp",
+      "bytes": 24752,
+      "git_blob": "8a25f1295ccd251498331dd91786f601c42b2584",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/repair_pad.webp",
+      "bytes": 36696,
+      "git_blob": "1a6ccc301c4d410cf107b54353ca017398f71d6d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/shield_powerup.webp",
+      "bytes": 44436,
+      "git_blob": "803cabec9b41600fc32d5873080b30e5a40fa710",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/speed_ring.webp",
+      "bytes": 61998,
+      "git_blob": "f2cddf96f6f31d206736990d956fcc62ced91a11",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/speed_ring_alt.webp",
+      "bytes": 39896,
+      "git_blob": "4ca252c51433b0e31d57ce963fbf55c6db547d86",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/star_orb.webp",
+      "bytes": 43200,
+      "git_blob": "3146a8f81922bfa584390eb7b72c9238b2ddd690",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/star_portal.webp",
+      "bytes": 46508,
+      "git_blob": "a6a2535d45706e86be203d050a49ac1511d8b9d2",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/star_token.webp",
+      "bytes": 31196,
+      "git_blob": "14447015554e970b83dcd9489e7235c318b2c88b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/turbo_battery.webp",
+      "bytes": 42492,
+      "git_blob": "ab983bff23960fc946a64434a5102a2a1b887e6e",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/turbo_pad.webp",
+      "bytes": 29592,
+      "git_blob": "d78130854821cadecc91d44080296d12790ab46a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/kart_items/turbo_pad_alt.webp",
+      "bytes": 26022,
+      "git_blob": "350eb92adc7b0e41999e9070be1d8a82bae3c8a0",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/learning_world/learning_tree_stage_0.png",
+      "bytes": 258748,
+      "git_blob": "0dcc810de01c4ce565a05547bed6c7d7a8ec090e",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/learning_world/learning_tree_stage_1.png",
+      "bytes": 302764,
+      "git_blob": "3728ad8889df713ad6a1d63d62f4f7701169d32a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/learning_world/learning_tree_stage_2.png",
+      "bytes": 367979,
+      "git_blob": "7722041ea6182307e049b2803ce23391528e0aff",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/learning_world/learning_tree_stage_3.png",
+      "bytes": 353950,
+      "git_blob": "d358e122753a669e9af926ce29ffcf10caebf2aa",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/learning_world/learning_world_night.jpg",
+      "bytes": 139985,
+      "git_blob": "7f7e6c8ae6dae305efd8c189cd3fbd7ba3ff696d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/logo/logo_lumo.png",
+      "bytes": 109411,
+      "git_blob": "6155e09504705c99fea5a954d62f43b62d332869",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/logo/logo_lumo_kart.png",
+      "bytes": 169593,
+      "git_blob": "dd9410860cd9d058cf46791d65a2ffb547af248b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/memory/face_bunny.png",
+      "bytes": 110224,
+      "git_blob": "2140631f2cc9d10491f0a4616719f25c36049998",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/memory/face_fox.png",
+      "bytes": 118398,
+      "git_blob": "7b7a0b72846bb503055fc0823d31c0d161c425ee",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/memory/face_giraffe.png",
+      "bytes": 122790,
+      "git_blob": "7432d7a2c53feb86d431b8edcae90df4bc071947",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/memory/face_panda.png",
+      "bytes": 114814,
+      "git_blob": "e9177d1e5ffb5e232f486ba115a798575c10636e",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/memory/face_penguin.png",
+      "bytes": 106501,
+      "git_blob": "318ffc63727522827ad171b93df68442354140da",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/memory/logo_memory.png",
+      "bytes": 182232,
+      "git_blob": "38a3672792aa20e590f81e8161b2dc631e13b05b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_chest.png",
+      "bytes": 150444,
+      "git_blob": "507a33d7b443d6523331f74a144649999f16d38b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_flag.png",
+      "bytes": 67963,
+      "git_blob": "c37bb7269c79e04104f2fe6af3898d169fe60027",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_lantern.png",
+      "bytes": 52064,
+      "git_blob": "3894c3e8a8025e4fc53902b8c0ddf54934c05ccc",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_mushroom.png",
+      "bytes": 39765,
+      "git_blob": "368b2495abb9832164669e925a3d0bba9f1fc3c0",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_note.png",
+      "bytes": 99755,
+      "git_blob": "465ab7c46a206b6dd3b5f6dc0f7bdd09ec649c8b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_rock.png",
+      "bytes": 100782,
+      "git_blob": "0e9f6c3fd4bbc008d5ed37b1d9df5ad783dadf82",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_star.png",
+      "bytes": 111263,
+      "git_blob": "01f9e8984090e85420db84cf69da3d0d0fe27aeb",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/bush_flowers.webp",
+      "bytes": 30962,
+      "git_blob": "2b41ed34062fe345f3a89434b778b0448dca7eb5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/cloud.webp",
+      "bytes": 23952,
+      "git_blob": "61d65d305f4a37d221c1a2abd90fccde2c38caa5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/crystal_rock.webp",
+      "bytes": 25360,
+      "git_blob": "274d8b2bf5fa13dc3db8ee7940e7495597839239",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/crystals.webp",
+      "bytes": 34430,
+      "git_blob": "24083c023f38b9b2fb2e50146c341eaf1af3bba6",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/hill_path.webp",
+      "bytes": 43844,
+      "git_blob": "3820a2b32b61a6a553b4259a141a9e72ee295c37",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/island_castle.webp",
+      "bytes": 62512,
+      "git_blob": "adb302f73989a7c0eee77a65dbb5ae78c34c752d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/island_grass.webp",
+      "bytes": 39712,
+      "git_blob": "79f122cfc2e0d38ca75cd49db88e1b8659302787",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/islands_small.webp",
+      "bytes": 26924,
+      "git_blob": "35b1e1b566a351bd8172f05e617ea9e235723f4b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/planter.webp",
+      "bytes": 30206,
+      "git_blob": "480db39a9c0f6b96edea820a2d92a7393084e128",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/platform.webp",
+      "bytes": 35164,
+      "git_blob": "96ebfb07669d32c70d4a8a29efa23f571abd2563",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/rainbow_waterfall.webp",
+      "bytes": 46248,
+      "git_blob": "138d906cc4909c8179ffed1c87ef5ca67f7f4604",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/rocks.webp",
+      "bytes": 39512,
+      "git_blob": "a3b3485757e4c6f03c0d5bd8aab856a776412bf9",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/rope_bridge.webp",
+      "bytes": 40122,
+      "git_blob": "6c3bbe056ae47275cd3b67a3dc5936fc40b56fab",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/ruins.webp",
+      "bytes": 33280,
+      "git_blob": "1bc28ead19fbf1b2cbc28e00f9388a8b63750ef9",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/tree.webp",
+      "bytes": 48908,
+      "git_blob": "f32dbd976857443d417cb863197a3c6b0c8e3648",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/waterfall.webp",
+      "bytes": 64188,
+      "git_blob": "40985161d79925956414aea332777d38a29124ea",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/nature/waterfall_cliff_alt.webp",
+      "bytes": 49006,
+      "git_blob": "a10b17fad3e28578820088797a08ffd1398db7fe",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/onboarding/onboarding_constellation_grid.svg",
+      "bytes": 2556,
+      "git_blob": "afbbb0127d77e4ab872fb667b5d68319a7f17ca4",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/onboarding/onboarding_holo_islands.svg",
+      "bytes": 2544,
+      "git_blob": "5fe67a2ab1316c8b3677f7b4719f0eee09741f31",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/onboarding/onboarding_learning_orbits.svg",
+      "bytes": 1364,
+      "git_blob": "c7630ffe3622354d71c6eccbed2412d046276130",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/coin_star.webp",
+      "bytes": 26950,
+      "git_blob": "06e6b016261d8dfeb411596c102475f00105ecf8",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/crown.webp",
+      "bytes": 42388,
+      "git_blob": "f8d4391f1a8523b20f1c131fb05d56639f8c5b7a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/crystal_blue.webp",
+      "bytes": 34388,
+      "git_blob": "5a6347ead12492037b25be65288e680d14d9a1e2",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/laurel_star.webp",
+      "bytes": 46778,
+      "git_blob": "428d1138d11f5c323ee074ae3df8ee7e851c21db",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/medal_star.webp",
+      "bytes": 34350,
+      "git_blob": "0b34805db81eb8c7093a1f6f69b440eeffad2107",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/reward_island.webp",
+      "bytes": 52528,
+      "git_blob": "de6c43af840596ba9a1393ee85f0ffffa7764703",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/reward_kart.webp",
+      "bytes": 31294,
+      "git_blob": "a3fcff30074cd9a138bced1711900e59ddad30a4",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/reward_trophy.webp",
+      "bytes": 53162,
+      "git_blob": "4b9dee4a184d0523104aff0ac7ccb74a4ff75442",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/rosette_star.webp",
+      "bytes": 38190,
+      "git_blob": "8cf5ec9a1631395f5d40054e652d7e7a77da6cb3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/shield_star.webp",
+      "bytes": 27028,
+      "git_blob": "25f1f106f2df06b7357023c950e8a24ea44b28b1",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/star_alt.webp",
+      "bytes": 21826,
+      "git_blob": "472ad4a9e609aed141ef9d6ebe8c8f3aa30697f5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/star_burst.webp",
+      "bytes": 41308,
+      "git_blob": "0e014698e52f7cea4ff1139f00bfa59930e53206",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/star_glow.webp",
+      "bytes": 35270,
+      "git_blob": "bc76a6bd04c21884ff165641126475f9526be9d4",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/stars_swirl.webp",
+      "bytes": 39122,
+      "git_blob": "be238f7b792c4d8ed2c50f22264235612166850f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/treasure_chest.webp",
+      "bytes": 43884,
+      "git_blob": "dfec1448873e59e80452e9b67758d187ae2409ee",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/rewards/trophy_alt.webp",
+      "bytes": 44666,
+      "git_blob": "f5c6a8e5b5ab2b3c4cfd3e6163b23b4f89708e80",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_build.jpg",
+      "bytes": 46658,
+      "git_blob": "51bfb1c3c73bf0ddf396c8c19d6d60b0c4afdec6",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_cards.jpg",
+      "bytes": 51026,
+      "git_blob": "2910ac7cef79e7e0d13e468da72bb3a78864df9e",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_connect.jpg",
+      "bytes": 68049,
+      "git_blob": "47952fd2173a20bae4593dc7286b0c683fa31438",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_jump.jpg",
+      "bytes": 41042,
+      "git_blob": "e02815ab3984f7e84e22f86b03ef39cb8b586a1b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_memory.jpg",
+      "bytes": 62159,
+      "git_blob": "cef22fdc6f5dfadf0dbe3a94262c6195e08844ff",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_puzzle.jpg",
+      "bytes": 52091,
+      "git_blob": "e750ad56b1d22d9674c135d343eaf89efa72e970",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_quiz.jpg",
+      "bytes": 67157,
+      "git_blob": "82b2379b84e87779eb8ae1860d43aec0a341af6f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_rhythm.jpg",
+      "bytes": 34689,
+      "git_blob": "2dda88bc69c8319bb20e40bf2ad6a1d3b964679e",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_treasure.jpg",
+      "bytes": 34517,
+      "git_blob": "e8798f4964cf35d22070597af775bd6207359f98",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/logo_spielwelt.png",
+      "bytes": 138062,
+      "git_blob": "589476dda4e6def67ab569d4ff6e55cff922bc89",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_bauwelt.png",
+      "bytes": 74725,
+      "git_blob": "501ca1a5988cc60d89b816e9f7cfd06388b1f295",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_cards.png",
+      "bytes": 75583,
+      "git_blob": "6756cc74c03bd6659d5f0dadadcbda94dbedbd60",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_jump_run.png",
+      "bytes": 83043,
+      "git_blob": "8874cc39c0b2a514b45a866fca923e4c9035fbb1",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_memory.png",
+      "bytes": 72450,
+      "git_blob": "ffb27d6f8b465bcee570507c83cb71b41e97024f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_puzzle.png",
+      "bytes": 80601,
+      "git_blob": "3960b677165f18b4666ca566575fc01c957bfd12",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_rhythm.png",
+      "bytes": 90775,
+      "git_blob": "97117fa4c8afff2a659d485c243873927d49473e",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_schatzsuche.png",
+      "bytes": 91782,
+      "git_blob": "c2d230a3015aac2456094779689e7ebfcd45611f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/affe.webp",
+      "bytes": 19774,
+      "git_blob": "a84a15f3973776f323d0ee598b965aa52e64abfc",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/auto.webp",
+      "bytes": 13282,
+      "git_blob": "83b12d9c10f83e5ac3c4c024750a303a999c2682",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/ball.webp",
+      "bytes": 9672,
+      "git_blob": "dc97ce026c7a7dc39efdc0ce33fe73a9a44b08a3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/banane.webp",
+      "bytes": 9064,
+      "git_blob": "6744a12ba98f9a20ff37f02c0c943473db8c035c",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/baum.webp",
+      "bytes": 11542,
+      "git_blob": "8b2a4733b82e1d958a228279cd7cf235db0899fd",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/biene.webp",
+      "bytes": 14048,
+      "git_blob": "696c55f913d5ad0bb08b964e0512777a03bb2e98",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/birne.webp",
+      "bytes": 9242,
+      "git_blob": "a5ed203947fb80cb19eb92b13557b083bb1eadf3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/bus.webp",
+      "bytes": 17620,
+      "git_blob": "4721a20071b93d5ae5ea944a94a7056a956a30c5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/elefant.webp",
+      "bytes": 15598,
+      "git_blob": "b422e6a4cf820d35e80dc2c688243bca47b909ec",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/ente.webp",
+      "bytes": 12256,
+      "git_blob": "be13f735de2302d8c9553c136b2e17a9580cfaaa",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/frosch.webp",
+      "bytes": 18624,
+      "git_blob": "d6faff6af09fb842320ccf1b3a87a904bcd59416",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/fuchs.webp",
+      "bytes": 16440,
+      "git_blob": "c09ed50f4991080e9cde95d1cc24e14c96191161",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/hase.webp",
+      "bytes": 14414,
+      "git_blob": "fbaad35a4ecf049a1b9ef97a75f9dc2f710459c1",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/haus.webp",
+      "bytes": 13130,
+      "git_blob": "64a0b417464ee573f911552f7f9adc81ca84a768",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/huhn.webp",
+      "bytes": 21422,
+      "git_blob": "5dcb34b8fbf91aa74676a16eae60a610c69b4ada",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/hund.webp",
+      "bytes": 19858,
+      "git_blob": "d6db4459c37a30d97bd34d8f10228f60945f1e2f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/karotte.webp",
+      "bytes": 10030,
+      "git_blob": "a4d551b5d412ed19939bfcfeb01db70e5790a979",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/katze.webp",
+      "bytes": 17332,
+      "git_blob": "98bee158f413cb53f30801935c6f2eb4e82543f1",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/kuh.webp",
+      "bytes": 19590,
+      "git_blob": "d8425087cb7fc46d7ff8f328aed20b18a6896af4",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/loewe.webp",
+      "bytes": 20668,
+      "git_blob": "d88e29d8007c8e5fba1f3973f6f48bce2f842e90",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/maus.webp",
+      "bytes": 13130,
+      "git_blob": "5f7ee9ac014d933c738bc5fb135daafc5fb0b1f7",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/mond.webp",
+      "bytes": 11460,
+      "git_blob": "12da840a1514e3460a7f0abe193c6938c1317b0e",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/pferd.webp",
+      "bytes": 15502,
+      "git_blob": "c29b29aaaf131712d277e3719eede4cbf3819756",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/pinguin.webp",
+      "bytes": 12556,
+      "git_blob": "494b12fa473dcebac10c5659cfaba23c20ac2509",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/schaf.webp",
+      "bytes": 18322,
+      "git_blob": "800f82782c148aea4f530107638c6d9e05b8bd3f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/schwein.webp",
+      "bytes": 13342,
+      "git_blob": "fd0ea383b1a2adc34f05a9b2d72f5473a240b47d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/task_objects/sonne.webp",
+      "bytes": 16556,
+      "git_blob": "f83171a58f138e41e6cb86d3a80b4b74a0550d05",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/bridge.webp",
+      "bytes": 37340,
+      "git_blob": "d410b5e9e8e42e67b51a912eefc7bdcd895750fa",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/crossing.webp",
+      "bytes": 32654,
+      "git_blob": "fda0cf3717ad1c5508787741641c61e2e1d41b2e",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/curve_alt.webp",
+      "bytes": 42092,
+      "git_blob": "b126b3e253efc4b88be8f213e481dc224c020fb6",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/curve_left.webp",
+      "bytes": 33224,
+      "git_blob": "44aff5e8721b5912c518055d44258979905f9af9",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/curve_right.webp",
+      "bytes": 32708,
+      "git_blob": "c6d335a147116a31306fcd1bd775d85e084768e7",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/curve_wide.webp",
+      "bytes": 34882,
+      "git_blob": "ab1bac3c90dcd0391055265fcb776b4518272c79",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/dirt_path.webp",
+      "bytes": 41112,
+      "git_blob": "bdba9c48499bc79af05ea2fb4e96d2ccc54d4ab2",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/elevated.webp",
+      "bytes": 27686,
+      "git_blob": "d67fab6e86a5bbece22d87a4a4739b276415c7c6",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/finish_line.webp",
+      "bytes": 33066,
+      "git_blob": "05ec949c88455f65699a0b51ac9b755877412a4c",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/ramp.webp",
+      "bytes": 38738,
+      "git_blob": "71d9217f4eab0a73bd5271931bc578a7d49130a2",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/roundabout.webp",
+      "bytes": 33826,
+      "git_blob": "32c60cc86f5124701eb2cdfcfb08681c1fb20816",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/s_curve.webp",
+      "bytes": 43180,
+      "git_blob": "d647c9d307e76726c52d35957ae9c53b8b8609b6",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/straight.webp",
+      "bytes": 29086,
+      "git_blob": "e2ffc949209a927529fb72e2756eda6ba1a13748",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/straight_alt.webp",
+      "bytes": 24546,
+      "git_blob": "2cc8354911d879f38ed4b4d7686dd774032e2bd6",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/t_junction.webp",
+      "bytes": 34686,
+      "git_blob": "00352501829f18c88c0b51c19d2bbde1145e294a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/track/tunnel.webp",
+      "bytes": 42674,
+      "git_blob": "46f3cb4be8af749b5178dcd26e0109bdce62ce0a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/avatar_fox.webp",
+      "bytes": 27370,
+      "git_blob": "b61e6598d1616d6b0488f1e15d15c0d05029465a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/back.webp",
+      "bytes": 18228,
+      "git_blob": "be0b59800fe96a8ff790b3294db5a617f1379f2c",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/book.webp",
+      "bytes": 24322,
+      "git_blob": "107021f4e686a6201d92e22e6f6efd3ce440cd0a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/check.webp",
+      "bytes": 21290,
+      "git_blob": "ab305a8fd6a8df7af2fce869741042dd30c36fcf",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/diamond.webp",
+      "bytes": 24730,
+      "git_blob": "b2344aeba12fb2521e7dab555f374285f39be650",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/gamepad.webp",
+      "bytes": 22734,
+      "git_blob": "c35e165ef498f01380ff9ced20d351ce6bc37ff3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/heart.webp",
+      "bytes": 19906,
+      "git_blob": "efbde81da035a86bea3a2e2154ebda8a6cb14a76",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/home.webp",
+      "bytes": 27416,
+      "git_blob": "142002053cafb062975b607c80d7ba9ee0302835",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/lock.webp",
+      "bytes": 25266,
+      "git_blob": "9fa97acbd83a4d7ddd6bc8afdd5a9c40cc52ee3c",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/play.webp",
+      "bytes": 23884,
+      "git_blob": "66e6730ef413f80d63cadd6fd984ea5d31e5bc01",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/settings.webp",
+      "bytes": 25722,
+      "git_blob": "375d8e9b6664a48c118eafc9248e22201e55e870",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/shield.webp",
+      "bytes": 22754,
+      "git_blob": "55933e1ccd41fe0fc549fd81080f0a6fbdca6deb",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/star.webp",
+      "bytes": 22882,
+      "git_blob": "883bc2d2fa392834d85c6a00e54c3fc995d1a322",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_design/ui/trophy.webp",
+      "bytes": 31656,
+      "git_blob": "1080d7e2d22d61d7dc8638d4a373053ee74221d8",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/duck/fox_duck_01.png",
+      "bytes": 127658,
+      "git_blob": "7159d8edc587f6c31e4eb5511c3b48944b516ce9",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/duck/fox_duck_02.png",
+      "bytes": 118580,
+      "git_blob": "eafbb8c3bcb33f82de2ba37c7b34a38f00ff2140",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/duck/fox_duck_03.png",
+      "bytes": 128050,
+      "git_blob": "ead7fe10e9b513838b10aef84f58027ccd4216fb",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/fall/fox_fall_01.png",
+      "bytes": 149293,
+      "git_blob": "1048a0d5676afa5f86ed817000afb5a982b6871d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/fall/fox_fall_02.png",
+      "bytes": 137840,
+      "git_blob": "7a31ecc948dbe265d8419d870c11a2f4a30d93f1",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/fall/fox_fall_03.png",
+      "bytes": 122651,
+      "git_blob": "696d7df490814d11acdac853945c57935ab08f3b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/fall/fox_fall_04.png",
+      "bytes": 126714,
+      "git_blob": "542471d27b8f579198b9236b6beeeb5e95cfb022",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_01.png",
+      "bytes": 142206,
+      "git_blob": "36edcbfb6302fb03e9b74683db13263103113793",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_02.png",
+      "bytes": 145890,
+      "git_blob": "59621602138032c8a4495b1789bd871123cf9d01",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_03.png",
+      "bytes": 143537,
+      "git_blob": "995cf2fd5ab6ecb928076761794fd8f36ec6bd2c",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_04.png",
+      "bytes": 146471,
+      "git_blob": "de279c0eff73610257abd6f1aaf367f363064b10",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_05.png",
+      "bytes": 145465,
+      "git_blob": "d05e7fe7622208e995594c1c1c1815ec7326b58f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_06.png",
+      "bytes": 142470,
+      "git_blob": "cd6d222ee736e28f4d7f3e85abd4ed28eca293b1",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_07.png",
+      "bytes": 145687,
+      "git_blob": "93f48317c0d0962e06a4be1fd8c810c0ea83276a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_08.png",
+      "bytes": 141814,
+      "git_blob": "4c2f0c174b1b8ba2b7eff414be984cba62083835",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/jump/fox_jump_01.png",
+      "bytes": 134112,
+      "git_blob": "055e4ab3b52a8e9e0049bc92cc592cbceb845097",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/jump/fox_jump_02.png",
+      "bytes": 146312,
+      "git_blob": "79a998f6181c75291e5b7f39498f820bd0ae9267",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/jump/fox_jump_03.png",
+      "bytes": 154552,
+      "git_blob": "0463abd4f07e20629cc1a5771c73f62d6f4e11a1",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/jump/fox_jump_04.png",
+      "bytes": 163012,
+      "git_blob": "e92e9ef449afb3265fe5a99e96da6a3597de5d9f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/manifest.json",
+      "bytes": 2551,
+      "git_blob": "05118145d81dd83096c7c7a11660319765e665b5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/master/lumo_fox_master_512.png",
+      "bytes": 200355,
+      "git_blob": "16c91e0700dd48b27dacf0f9a3066541be5a7c5d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_01.png",
+      "bytes": 109660,
+      "git_blob": "3d2b2419e047c64f7bb96977854722d15522cc00",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_02.png",
+      "bytes": 104346,
+      "git_blob": "33626e27c3c7313d3726b6dec3b990e9d1bf5ccf",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_03.png",
+      "bytes": 110155,
+      "git_blob": "ac196cfd312c43cbeedcae7bdc089dc2841abfdd",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_04.png",
+      "bytes": 102570,
+      "git_blob": "e1bfd3434e818c77280cd3780bad2e6dd6304115",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_05.png",
+      "bytes": 81978,
+      "git_blob": "0ab542d911396069fdb2c76c59c5012275ee737f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_06.png",
+      "bytes": 103709,
+      "git_blob": "a4afc11c65565a597fb7854788e5484cfd3c8b3f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_07.png",
+      "bytes": 106022,
+      "git_blob": "2a24732d27af21541a97fa7d9ac093d8d7a89021",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_08.png",
+      "bytes": 125152,
+      "git_blob": "45a07773569c0d4bfb836fd8b1ee12ce4cfd1f9c",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_01.png",
+      "bytes": 131771,
+      "git_blob": "14624aa7b6acc25a9cb0437c9d599e7cfc7fbaf9",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_02.png",
+      "bytes": 126341,
+      "git_blob": "e5bb6e273cc032e73211eda251e5723cbd54009d",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_03.png",
+      "bytes": 128673,
+      "git_blob": "1f7bfbbd109b543ec88248a0f8ada9f90ae0455a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_04.png",
+      "bytes": 126589,
+      "git_blob": "bb0e201ad6c428c084bbb15dcc2d8b7cc7b5725b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_05.png",
+      "bytes": 128842,
+      "git_blob": "37c16ee82bb23345e36ea07f4098755256cf586f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_06.png",
+      "bytes": 121366,
+      "git_blob": "52289d328c1c8e458b832cece6671a1683d5c074",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_07.png",
+      "bytes": 131327,
+      "git_blob": "54d2998925247c07288717960f3fce2bd3ef5c11",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_08.png",
+      "bytes": 130815,
+      "git_blob": "7afc6be900c9a1a9ea768b155cf5372e4ff391e3",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_09.png",
+      "bytes": 129703,
+      "git_blob": "ac7b92ec30ec40e67f2269e0a097bd6948be07f5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_10.png",
+      "bytes": 125452,
+      "git_blob": "3676bad73ab4b5151dae39bb3ed21440cff4ccab",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_11.png",
+      "bytes": 125526,
+      "git_blob": "4e8b638fbb9214090b2689c8bbaa50552a5795f5",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_12.png",
+      "bytes": 124526,
+      "git_blob": "a28f7886f0f5423cfb0cf8932ab401639c5ed80a",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/sprite_sheets/fox_idle_sheet_transparent.png",
+      "bytes": 1156582,
+      "git_blob": "acdb8c3aae784137598cdc0ad4abc7ccbc94d9a4",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_jump/fox/sprite_sheets/fox_run_sheet_transparent.png",
+      "bytes": 536011,
+      "git_blob": "4274cabdccbb80abd0d71b086415f0b9db32b59b",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_01.png",
+      "bytes": 166067,
+      "git_blob": "39892f5003c54e84aa53d868a6339da7097c2980",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_02.png",
+      "bytes": 167295,
+      "git_blob": "b349210c464c690e4da8819b5aa5ae33e46a59af",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_03.png",
+      "bytes": 113334,
+      "git_blob": "5f363d5d12f8a8e7e42bf9cecf3c0cab23d96724",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_04.png",
+      "bytes": 113183,
+      "git_blob": "7a70cd1eba0bc0cf3c97a9a3bb25d748e2b440db",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_05.png",
+      "bytes": 129239,
+      "git_blob": "415a43628880e1172276cf37abb5c4ad4f298862",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_06.png",
+      "bytes": 129482,
+      "git_blob": "b6ee2632060c82e8dbf8908fc2f95cdb3eb766e8",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_07.png",
+      "bytes": 125572,
+      "git_blob": "90ef964177e7421c7c52832fbd4d8427d6cacdd7",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_08.png",
+      "bytes": 125530,
+      "git_blob": "d043cbedf01af8ecccedc286404fc3f22411710f",
+      "present": false
+    },
+    {
+      "path": "assets/lumo_sprite_pack/lumo_main.png",
+      "bytes": 112147,
+      "git_blob": "e174456b66b7683335c5fa7026d14fff5ce5269d",
+      "present": false
+    },
+    {
+      "path": "assets/rivals/roster.json",
+      "bytes": 2445,
+      "git_blob": "051bfb33c4aa13f3cce375c91f81c241b4b7a340",
+      "present": false
+    },
+    {
+      "path": "assets/videos/.gitkeep",
+      "bytes": 37,
+      "git_blob": "97040e98de1ad3ca485342c3866b9388ef272f3b",
+      "present": false
+    },
+    {
+      "path": "docs/lumo_game_specs/2026-10-05/03_cards/lumo_cards_key_art.webp",
+      "bytes": 356822,
+      "git_blob": "8495b34a2e7fef546d9dbe67690d106beb0375de",
+      "present": false
+    }
+  ],
+  "total_bytes": 82803958
+}

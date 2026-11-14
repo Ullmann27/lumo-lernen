@@ -69,6 +69,85 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
   });
 
+  testWidgets('landscape moves while text and tap targets remain fixed',
+      (tester) async {
+    var taps = 0;
+    await tester.pumpWidget(MaterialApp(
+      home: Center(
+        child: SizedBox(
+          width: 320,
+          height: 240,
+          child: LumoSceneAtmosphere(
+            scenery: const ColoredBox(color: Colors.blue),
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: TextButton(
+                key: const ValueKey('stationary-action'),
+                onPressed: () => taps++,
+                child: const Text('Loslernen'),
+              ),
+            ),
+          ),
+        ),
+      ),
+    ));
+    await tester.pump();
+    final action = find.byKey(const ValueKey('stationary-action'));
+    final position = tester.getTopLeft(action);
+    final targetSize = tester.getSize(action);
+    final scenery = find.byKey(const ValueKey('lumo-scenery-drift'));
+    final before = tester.widget<Transform>(scenery).transform.clone();
+    await tester.pump(const Duration(seconds: 3));
+    final after = tester.widget<Transform>(scenery).transform;
+    expect(after.storage, isNot(orderedEquals(before.storage)));
+    expect(tester.getTopLeft(action), position);
+    expect(tester.getSize(action), targetSize);
+    await tester.tap(action);
+    expect(taps, 1);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('quiet scenery preserves functional child ticker mode',
+      (tester) async {
+    bool? childTicking;
+    await tester.pumpWidget(MaterialApp(
+      home: LumoSceneAtmosphere(
+        reduceMotion: true,
+        scenery: const ColoredBox(color: Colors.blue),
+        child: Builder(builder: (context) {
+          childTicking = TickerMode.of(context);
+          return const SizedBox(height: 200);
+        }),
+      ),
+    ));
+    await tester.pump(const Duration(seconds: 1));
+    expect(childTicking, isTrue,
+        reason: 'A decorative budget must not freeze functional content');
+    expect(tester.binding.transientCallbackCount, 0);
+    final transform = tester.widget<Transform>(
+        find.byKey(const ValueKey('lumo-scenery-drift'))).transform;
+    expect(transform.getTranslation().x, 0);
+    expect(transform.getTranslation().y, 0);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('background and resume stop and restart decorative frames',
+      (tester) async {
+    await tester.pumpWidget(const MaterialApp(
+      home: LumoSceneAtmosphere(child: SizedBox(height: 200)),
+    ));
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(tester.binding.transientCallbackCount, greaterThan(0));
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    await tester.pump(const Duration(seconds: 1));
+    expect(tester.binding.transientCallbackCount, 0);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pump();
+    expect(tester.binding.transientCallbackCount, greaterThan(0));
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
   testWidgets('scene pauses when scrolled out and resumes when visible',
       (tester) async {
     final scroll = ScrollController();

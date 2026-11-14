@@ -1,0 +1,32 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_android_framework_ready",
+    "scripts.tests.test_android_framework_ready_android17",
+    "scripts.tests.test_android37_cli22",
+    "scripts.tests.test_verify_android_runtime_anr",
+    "scripts.tests.test_verify_unchanged_apk_diagnostic",
+    "tools.android_qa.tests.test_kart_garage_evidence",
+    "tools.android_qa.tests.test_kart_driver_word_evidence"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16",
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "REQUIRE_ALL_TESTS": "true",
+    "PYTHONPATH": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/tests"
+  },
+  "started_at": "2026-11-14T03:16:45.727398+00:00",
+  "elapsed_seconds": 3.994358245996409,
+  "exit_code": 0,
+  "source_count": 9,
+  "source_stable": true,
+  "tests": 112,
+  "zero_skips": true,
+  "log_bytes": 23405,
+  "log_sha256": "5148d001731099daf96ce8c8ed746c9e9e833a3e66bfbba4f1d64a82e6872522",
+  "scope": "Seven focused unittest modules, same as CI. Explicit test-only Python import path matches existing discovery behavior. Original observations and synthetic counterexamples, no Android/APK execution."
+}

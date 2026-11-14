@@ -1,0 +1,51 @@
+{
+  "actionlint_exit_code": 0,
+  "actionlint_original_log": {
+    "bytes": 0,
+    "path": "actionlint-3.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "actionlint_workflows": 3,
+  "branch": "validation/lumo-c4-final-pin-20261114",
+  "errors": 0,
+  "execution": {
+    "bytes": 2297,
+    "path": "execution.json",
+    "sha256": "32c7fbd425004c4cba78be1c344d496376b5167431d0d87660e15c111023142a"
+  },
+  "failures": 0,
+  "git_index_ref_commit_writes": false,
+  "host_commit": "bdced7beb49dd37bc8bf86ea2115c6ad242a672c",
+  "host_tree": "7487932ca39fb46996289da45fed993955f8ce18",
+  "materialized_tracked_files_hashed": 1784,
+  "methods_by_module": {
+    "scripts.tests.test_candidate_2011_pin": 24,
+    "scripts.tests.test_connect_four_delivery": 30,
+    "scripts.tests.test_connect_four_pipeline": 9,
+    "scripts.tests.test_legacy_release_pin": 40,
+    "tools.android_qa.tests.test_connect_four_probe_deadlines": 11
+  },
+  "repetitions": 0,
+  "schema": 1,
+  "scope": "One authorized local execution of existing Delivery30/Pipeline9/Deadline11/LegacyPin40/CandidatePin24 and actionlint3. No PCM, Godot, renderer, APK, Android device, network or publication execution.",
+  "skips": 0,
+  "source_after": {
+    "bytes": 1029585,
+    "path": "source-after.json",
+    "sha256": "bac3dd0f51bd746cc6f6b760dcd4c478e917e381d39fcb077bf4a3969168154f"
+  },
+  "source_before": {
+    "bytes": 1029585,
+    "path": "source-before.json",
+    "sha256": "bac3dd0f51bd746cc6f6b760dcd4c478e917e381d39fcb077bf4a3969168154f"
+  },
+  "source_before_after_identical": true,
+  "status": "PASS",
+  "tests": 114,
+  "unittest_original_log": {
+    "bytes": 22923,
+    "path": "unittest-114.log",
+    "sha256": "aa692909fd270f46f2f413a07880d1a17777a2bf3a10b182bde2982016542ab4"
+  },
+  "worktree_writes": false
+}

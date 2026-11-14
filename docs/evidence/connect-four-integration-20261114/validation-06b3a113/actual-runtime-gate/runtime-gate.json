@@ -1,0 +1,11 @@
+{
+  "started_utc": "2026-11-14T05:32:01.796938+00:00",
+  "passed": false,
+  "scope": "local two-process source-bound runtime gate; not Android/FPS acceptance",
+  "error": "ValueError: Missing required executable: xvfb-run",
+  "exit_codes": {
+    "dart": null,
+    "godot": null
+  },
+  "completed_utc": "2026-11-14T05:32:01.950067+00:00"
+}

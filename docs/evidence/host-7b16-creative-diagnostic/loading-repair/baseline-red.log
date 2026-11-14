@@ -1,0 +1,15 @@
+test_actual_loading_has_priority_even_over_an_observed_positive_title (__main__.OriginalLoadingRasterReplay.test_actual_loading_has_priority_even_over_an_observed_positive_title) ... FAIL
+
+======================================================================
+FAIL: test_actual_loading_has_priority_even_over_an_observed_positive_title (__main__.OriginalLoadingRasterReplay.test_actual_loading_has_priority_even_over_an_observed_positive_title)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/replay_flutter_loading_frame_ocr.py", line 68, in test_actual_loading_has_priority_even_over_an_observed_positive_title
+    with self.assertRaisesRegex(RuntimeError, 'Rejected.*caption'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 1.079s
+
+FAILED (failures=1)

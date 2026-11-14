@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T09:01:34.525422+00:00",
+  "status": "SOURCE_CHECKPOINT_UNTESTED_COMBINATION",
+  "host_base": "729585db3f49ecff7f0632439f90edb882f09454",
+  "host_base_tree": "93301ed1c1e0b18f15163ae6198be0bc6b962762",
+  "product_files": 17,
+  "common_diagnostic_files": 11,
+  "diagnostic_source": "0d7ea79cd02b921ed685abc79b27df8a5f6b4ccb",
+  "product_source_freeze_sha256": "037fb4e27d8d16e9adbe88c25735762d354d63ace2b26c520b733cff87dc41a5",
+  "immutable_producers": [
+    "95f12c7173e6ee718b03dce67ca2d7c6543fe716",
+    "b3f75f6fe3506321b7991f975cdc3854b341c596",
+    "f3a79f01fc5fb11d9cd9faa033dfdab3aeb8c3c4"
+  ],
+  "source_construction": "Exact selected existing Git blobs; all product source bytes and before blobs verified. Root creates the tree and commit using leased GitData and verifies complete expected tree identity.",
+  "host729_prior_validation": {
+    "python_pass": 142,
+    "flutter_pass": 7,
+    "actionlint_pass": 2,
+    "audit_families": 236,
+    "audit_samples": 7552,
+    "structural_issues": 0,
+    "first_missing_sparse_asset_failure_preserved": true
+  },
+  "native_return_prior_validation": {
+    "source": "f0c19f9eb69ea330ac5d2b8f9948cb029ca218aa",
+    "actual_godot_checks_pass": 21,
+    "host_boundary": "explicit Android fixture",
+    "engine": "4.6.3.stable.official.7d41c59c4",
+    "not_full_native_or_device_acceptance": true
+  },
+  "qa0d_prior_validation": {
+    "targeted_tests": 104,
+    "passes": 99,
+    "errors": 5,
+    "socket_eperm_errors": 3,
+    "missing_sparse_wrapper_errors": 2,
+    "wrapper_later_materialized": true,
+    "two_case_rerun_pending": true,
+    "separate_swangle_tests_pass": 10,
+    "actionlint_pass": 1
+  },
+  "archives": {
+    "native-f0c19-return21": {
+      "files": 16,
+      "bytes": 393070,
+      "sha256": "8ee772230cc96e46744a01ffe9a2a897ad7223a20a8cfae276d6761834de95cf",
+      "readback": true
+    },
+    "qa0d-swangle10": {
+      "files": 19,
+      "bytes": 480886,
+      "sha256": "9b78a4eccf4aa294c75b53cd2d3dd7af726f9899ea098c1a2561e8e9a7cc2b51",
+      "readback": true
+    },
+    "qa0d-targeted104": {
+      "files": 17,
+      "bytes": 154528,
+      "sha256": "7adce1b0474e860e18f81da25c5437d119328cb842b0247c132a36b5285492b0",
+      "readback": true
+    }
+  },
+  "pending": [
+    "Run49 Flutter cases and236-family/7552-sample audit on this new combined source.",
+    "Attach exact final Native source pin and mandatory C4 return workflow/Delivery gate.",
+    "Complete genuine API37 diagnostic repairs separately; original ANRs, shader and tour failures remain FAIL.",
+    "Run real C4 APK, emulator, update and delivery pipeline; no current new APK or release is claimed."
+  ],
+  "protected": [
+    "main and integration base",
+    "writing trainer and journal",
+    "existing52 native mode calls and17 raster count",
+    "original diagnostics and actual failure records",
+    "unchanged C4 allowed branch; PR493 branch expansion intentionally excluded"
+  ],
+  "environment_recovery": {
+    "workspace_retained": true,
+    "temporary_checkouts_erased_again": true,
+    "prior_native_uid_archive_and_clean_restoration_confirmed": true,
+    "tests_not_repeated_for_lost_tmp": true
+  },
+  "local_worktree_checkout_for_this_checkpoint": false
+}

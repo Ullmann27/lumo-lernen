@@ -2,6 +2,7 @@ package dev.ullmann.lumo
 
 import android.content.Context
 import android.media.AudioAttributes
+import android.media.AudioManager
 import android.media.MediaPlayer
 import android.media.MediaDataSource
 import android.os.Handler
@@ -9,12 +10,21 @@ import android.os.Looper
 import android.util.Log
 import io.flutter.plugin.common.MethodChannel
 import org.json.JSONObject
+import java.util.concurrent.CancellationException
+import java.util.concurrent.Executors
+import java.util.concurrent.Future
 
 /** Original F2 synthesis and real playback for the native lesson and village.
  * No microphone, system TTS, online service or learning score is involved. */
 class LumoLearningSpeech(context: Context, options: JSONObject) {
     private val main = Handler(Looper.getMainLooper())
     private val bridge = LumoOfflineSpeechBridge(context.applicationContext)
+    private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
+    private val envelopeWorker = Executors.newSingleThreadExecutor { job ->
+        Thread(job, "LumoSpeechEnvelope").apply { isDaemon = true }
+    }
+    private var envelopeTask: Future<*>? = null
+    private var envelope = LumoSpeechEnvelope.EMPTY
     private val allowed = options.optString("game") in setOf("learning", "build") &&
         options.optBoolean("learningVoiceEnabled", false) &&
         options.optBoolean("localVoiceLicenseAccepted", false)
@@ -27,7 +37,7 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
     private var state = "idle"
     private var active = false
     private var destroyed = false
-    @Volatile private var snapshot = "{\"state\":\"idle\",\"id\":0,\"positionMs\":0,\"durationMs\":0}"
+    @Volatile private var snapshot = "{\"state\":\"idle\",\"id\":0,\"positionMs\":0,\"durationMs\":0,\"envelope\":0,\"audible\":false}"
 
     // Avoid blocking the UI/render thread on a temporary WAV write. Android
     // reads the completed local synthesis buffer directly; release drops it.
@@ -47,7 +57,7 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
     private val pulse = object : Runnable {
         override fun run() {
             publish()
-            if (!destroyed && state == "playing") main.postDelayed(this, 150)
+            if (!destroyed && state == "playing") main.postDelayed(this, 50)
         }
     }
 
@@ -87,35 +97,23 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
                         failed(token)
                         return
                     }
-                    try {
-                        val source = WavSource(bytes)
-                        audioSource = source
-                        val playback = MediaPlayer()
-                        player = playback
-                        playback.setAudioAttributes(AudioAttributes.Builder()
-                            .setUsage(AudioAttributes.USAGE_MEDIA)
-                            .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
-                        playback.setDataSource(source)
-                        playback.setOnPreparedListener {
-                            if (token != generation || !active || destroyed) return@setOnPreparedListener
-                            try {
-                                playback.playbackParams = playback.playbackParams.setSpeed(speed)
-                                playback.start()
-                                state = "playing"
-                                Log.i("LumoLearningSpeech", "started id=$id profile=${LumoOfflineSpeechEngine.PROFILE}")
-                                main.post(pulse)
-                            } catch (_: Exception) { failed(token) }
+                    // Synthesis is complete, but there is no audible playback
+                    // yet. Derive its real envelope away from the UI thread.
+                    envelopeTask = envelopeWorker.submit {
+                        try {
+                            val measured = LumoSpeechEnvelope.fromWave(bytes)
+                            main.post {
+                                if (token != generation || !active || destroyed) return@post
+                                envelopeTask = null
+                                envelope = measured
+                                preparePlayback(bytes, token, id)
+                            }
+                        } catch (_: CancellationException) {
+                            // Stop/pause owns the published idle state.
+                        } catch (_: Exception) {
+                            main.post { failed(token) }
                         }
-                        playback.setOnCompletionListener {
-                            if (token != generation) return@setOnCompletionListener
-                            releasePlayer()
-                            state = "completed"
-                            publish()
-                            Log.i("LumoLearningSpeech", "completed id=$id")
-                        }
-                        playback.setOnErrorListener { _, _, _ -> failed(token); true }
-                        playback.prepareAsync()
-                    } catch (_: Exception) { failed(token) }
+                    }
                 }
 
                 override fun error(code: String, message: String?, details: Any?) { failed(token) }
@@ -123,6 +121,38 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
             })
         }
         return true
+    }
+
+    private fun preparePlayback(bytes: ByteArray, token: Long, id: Int) {
+        try {
+            val source = WavSource(bytes)
+            audioSource = source
+            val playback = MediaPlayer()
+            player = playback
+            playback.setAudioAttributes(AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
+            playback.setDataSource(source)
+            playback.setOnPreparedListener {
+                if (token != generation || !active || destroyed) return@setOnPreparedListener
+                try {
+                    playback.playbackParams = playback.playbackParams.setSpeed(speed)
+                    playback.start()
+                    state = "playing"
+                    Log.i("LumoLearningSpeech", "started id=$id profile=${LumoOfflineSpeechEngine.PROFILE}")
+                    main.post(pulse)
+                } catch (_: Exception) { failed(token) }
+            }
+            playback.setOnCompletionListener {
+                if (token != generation) return@setOnCompletionListener
+                releasePlayer()
+                state = "completed"
+                publish()
+                Log.i("LumoLearningSpeech", "completed id=$id")
+            }
+            playback.setOnErrorListener { _, _, _ -> failed(token); true }
+            playback.prepareAsync()
+        } catch (_: Exception) { failed(token) }
     }
 
     fun stop() { main.post { if (!destroyed) stopOnMain() } }
@@ -144,6 +174,9 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
 
     private fun releasePlayer() {
         main.removeCallbacks(pulse)
+        envelopeTask?.cancel(true)
+        envelopeTask = null
+        envelope = LumoSpeechEnvelope.EMPTY
         player?.let { try { it.release() } catch (_: Exception) {} }
         player = null
         audioSource?.close()
@@ -152,11 +185,18 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
 
     private fun publish() {
         val playback = player
-        val playing = state == "playing" && playback != null
+        val playing = state == "playing" && playback != null &&
+            try { playback.isPlaying } catch (_: Exception) { false }
         val position = if (playing) try { playback!!.currentPosition } catch (_: Exception) { 0 } else 0
         val duration = if (playing) try { playback!!.duration } catch (_: Exception) { 0 } else 0
+        val audible = playing && allowed && active && !destroyed && try {
+            audioManager != null && !audioManager.isStreamMute(AudioManager.STREAM_MUSIC) &&
+                audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) > 0
+        } catch (_: Exception) { false }
         snapshot = JSONObject().put("state", state).put("id", utterance)
-            .put("positionMs", position).put("durationMs", duration).toString()
+            .put("positionMs", position).put("durationMs", duration)
+            .put("audible", audible).put("envelopeAvailable", envelope.available)
+            .put("envelope", if (audible) envelope.amplitudeAt(position) else 0.0).toString()
     }
 
     fun destroy() {
@@ -166,6 +206,7 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
             destroyed = true
             active = false
             bridge.destroy()
+            envelopeWorker.shutdownNow()
         }
     }
 }

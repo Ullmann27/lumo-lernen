@@ -263,15 +263,23 @@ class LumoImageGenerator {
     // Hauptmotiv extrahieren + uebersetzen. Wichtig: das Farb-Wort selbst
     // NICHT als Topic werten (sonst kollidiert 'orange' mit der Frucht
     // 'orange' im _translate-Map).
-    String mainEnglish = childPrompt.trim();
+    String? mainEnglish;
     for (final topic in _allowedTopics) {
       if (matchedColorKey != null && topic == matchedColorKey) continue;
       final regex = RegExp(r'\b' + RegExp.escape(topic) + r'\b');
       if (regex.hasMatch(lower)) {
-        mainEnglish = _translate[topic] ?? topic;
+        mainEnglish = _translate[topic];
         break;
       }
     }
+
+    // Ohne anderes Motiv darf "orange" die Frucht bezeichnen. Auch dabei
+    // stammt das Motiv ausschließlich aus der festen Übersetzungsliste.
+    if (mainEnglish == null && matchedColorKey != null) {
+      mainEnglish = _translate[matchedColorKey];
+      color = null;
+    }
+    if (mainEnglish == null) return null;
 
     final colored = color != null ? '$color $mainEnglish' : mainEnglish;
     final fullPrompt = _buildPrompt(colored);

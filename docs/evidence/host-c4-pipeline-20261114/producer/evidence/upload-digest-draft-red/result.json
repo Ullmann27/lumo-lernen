@@ -1,0 +1,38 @@
+{
+  "environment": {
+    "LUMO_C4_REFERENCE_HOST": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/tools/android_qa:/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/tools/android_qa:/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/scripts"
+  },
+  "host_head_after": "43db2662e890b6468cf77f7044da16364a259482",
+  "host_head_before": "43db2662e890b6468cf77f7044da16364a259482",
+  "passed": false,
+  "runs": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_connect_four_android_evidence.py",
+        "-v",
+        "-k",
+        "test_actual_upload_digest_is_canonicalized_against_rest_metadata"
+      ],
+      "cwd": "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed",
+      "duration_seconds": 0.0839760110102361,
+      "exit_code": 1,
+      "log": "suite-1.log",
+      "log_bytes": 1506,
+      "log_sha256": "077383265d8abf0616bf2461795d04de76aca8759cebd23621d0c360c0da9796",
+      "skips": 0,
+      "tests": 1
+    }
+  ],
+  "runtime": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "scope": "Local synthetic C4 evidence and workflow contracts only; no engine, APK or device",
+  "source_scope_unchanged": true
+}

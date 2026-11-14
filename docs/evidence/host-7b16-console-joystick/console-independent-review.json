@@ -1,0 +1,517 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T05:42:08.035842+00:00",
+  "reviewer": "flutter_integration",
+  "scope": "Independent static source/original-byte review only. No additional tests, emulators, downloads, Git actions or source edits.",
+  "result": "NO_CONCRETE_SOURCE_BLOCKER_FOUND_WITH_EXPLICIT_RUNNER_REQUIREMENTS",
+  "source_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr482-console-continuity-repair/source-freeze.json",
+    "bytes": 10322,
+    "sha256": "83f30cad027a125733b53ab072530ceb5ff685dd22763105cdfd5b2236b6f3e9"
+  },
+  "repair_patch": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr482-console-continuity-repair/repair.patch",
+    "bytes": 95513,
+    "sha256": "c9cfb976fb61d60efa19d377b4c34a29794a6f455f5674530078925bdef90262"
+  },
+  "source_base": {
+    "local_commit": "cf0ed7fe743cd8ba067ae7a9adf26745fa7bc628",
+    "tree": "09776392ac3133c992a73809dc0f31e9def555a7",
+    "published_qa": "e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+  },
+  "verified_frozen_files": [
+    {
+      "path": "scripts/android_console_transport.py",
+      "bytes": 20839,
+      "sha256": "d0344469bdb68cc2927ffac7f715dd52c73c6730fd7e56fd946f486f2d931cca",
+      "git_blob": "6b72da4c3c49891d70d1f6bc51339dc3efb9559f",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/android_framework_ready.py",
+      "bytes": 51307,
+      "sha256": "9267e62a7a05f05905c36d8446673ec13cacb7edeeca9d58fc9b201b4256b11f",
+      "git_blob": "54438587d4f18ed3496205fd0c043ce8c3cf332f",
+      "before_sha256": "9d26d8141dd9aeacf6a57be29959b4dc442ed9c5db09e452dc4cf92b7653396a",
+      "new_file": false
+    },
+    {
+      "path": "scripts/verify_android_runtime_anr.py",
+      "bytes": 39331,
+      "sha256": "3e3cde21409f1ee8e64a4124a1842df75b6a72eab0ac65576442fb5072308bf2",
+      "git_blob": "d2ed8be4315a3ff1872ad40698276eafb21ddc58",
+      "before_sha256": "96e17dad46b487ec3215d917e525d09a0be3515b4c9f7a025971cf7a4e137a57",
+      "new_file": false
+    },
+    {
+      "path": "scripts/prepare_android37_emulator_action.py",
+      "bytes": 9486,
+      "sha256": "211cad7c3712255a14907b062e77c5accc36e0c4e5a91ff87cdc25f392f980b4",
+      "git_blob": "f017808bc88c0262f27bdfe7a73ebbb686479eeb",
+      "before_sha256": "ebb75b2dc289303962bc224ec739567f773ea7912bd07088f02b8ae4117a61ec",
+      "new_file": false
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 71883,
+      "sha256": "2fcc421ed63eff79a1c089f10d6054caec46c9b9a3b96b226dca082b3a2daa33",
+      "git_blob": "60c6341da4b249fe142a1289599ad02475326c33",
+      "before_sha256": "dcf7ba4c315efe600ac5001de0935a5597e1ac25f63711e9f8732fd92de9257f",
+      "new_file": false
+    },
+    {
+      "path": "scripts/tests/test_android_console_transport.py",
+      "bytes": 13367,
+      "sha256": "60c6802eece6d63c2c839c02c319dc716e0effda911776cf6f09c17036332da9",
+      "git_blob": "98807b114084b780af11b9f9e28de41cf8b2f225",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/test_android_runtime_device_logger.py",
+      "bytes": 24426,
+      "sha256": "a3bf999fe033b1573637a8004b91dfd76989b08c70cda70484f5312d61df4ec1",
+      "git_blob": "0e260d08aad16379913258230471172f6f52bb58",
+      "before_sha256": "bf6b1e4f547f844287f9e0e1afa860427a3838d0384b5527488875cd48df6ae2",
+      "new_file": false
+    },
+    {
+      "path": "scripts/tests/test_runtime_logcat_sections.py",
+      "bytes": 12514,
+      "sha256": "382ddbf5549b55077f3a07c8362cd34666220a0296f27e37e6529bc4ec0ead30",
+      "git_blob": "264ba935edf7227333e9ca44117d6dfde9a7c1c4",
+      "before_sha256": "745703233623614da345102745322a49b9aa75bcfba1849ee6ac71201023de58",
+      "new_file": false
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0006-before-root.stdout",
+      "bytes": 1421,
+      "sha256": "c375d980e392ade3173dd2f1e7e56485f486ed148841f439def53800e7fc3829",
+      "git_blob": "107d3d7f5a6f3db2cda3cb5013d6728d31fb9b6b",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0008-root-request.json",
+      "bytes": 372,
+      "sha256": "998bf4f324317fa20dec5802c57e4b6b80832da48f428b5c8ea55c3f4f5b42bf",
+      "git_blob": "768a3e5c4ede6be6f7c8e9b535c850b018ef1862",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0010-root-after-uid.stdout",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "git_blob": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0011-root-boot.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "git_blob": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0012-after-root.json",
+      "bytes": 1901,
+      "sha256": "dd5f311a64726c804a536a1a9aa2e80c81ffa3d0f1afbfb5e19182bf0b79f63b",
+      "git_blob": "a22760fe01df14898289bcc8ef198d92c1a71805",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0012-after-root.stderr",
+      "bytes": 48,
+      "sha256": "3f38ab20e70604000892987cdd42fe47498abeb9eaf80a33f20e5a08c21f3415",
+      "git_blob": "d4d3de631c619a59909bf656862f56898976d515",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0012-after-root.stdout",
+      "bytes": 17,
+      "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4",
+      "git_blob": "796fedf20f9f6952bbde2030db39da3a1e0f6409",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/manifest.json",
+      "bytes": 11025,
+      "sha256": "714403efd666f3dd89669e05f7c52aa43c0d18f4bcc5f59f41cb185b7aac566f",
+      "git_blob": "fbb691a0c4cce138676471b1de3f8f8a5a9de55c",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0006-before-root.stdout",
+      "bytes": 1416,
+      "sha256": "a99129d256708928f990411d1cd606a772089a6a0d14f221c762ee3c34e6ee14",
+      "git_blob": "be36742b5f03867ccd5fff48c9e6dcee0ac2dcd0",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0008-root-request.json",
+      "bytes": 372,
+      "sha256": "c2a4c29a602034ecece4db7bb1f5f410a168ae099898476e84c354b532fbf95e",
+      "git_blob": "827c2b713e6f428aee5bb095ad746341631dfb1d",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0010-root-after-uid.stdout",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "git_blob": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0011-root-boot.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "git_blob": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0012-after-root.json",
+      "bytes": 1901,
+      "sha256": "daef88511900cb4fc709371957a305779a260be46847f89f211403afc6d76db3",
+      "git_blob": "38d89eca8d448db3e9ebe4580e39cc867899735c",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0012-after-root.stderr",
+      "bytes": 48,
+      "sha256": "42f216cb88b8a9ff51d0372c47767a59fb6990ce29a128744b929ab5d620b2dc",
+      "git_blob": "320b1a12a3d7d15c0103493d6f7932ea5fc78e56",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0012-after-root.stdout",
+      "bytes": 17,
+      "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4",
+      "git_blob": "796fedf20f9f6952bbde2030db39da3a1e0f6409",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0006-before-root.stdout",
+      "bytes": 1416,
+      "sha256": "eec37ca6aed7a2319efd144f4a8477e512bfe6b5fca11c6fb4110f3ea79c64c2",
+      "git_blob": "34073fb120b7213dfcca5c8ee4f27474952199b3",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0008-root-request.json",
+      "bytes": 372,
+      "sha256": "d5192a2ef99a9e4620412df9ed233474d814a02cc35d74d10e3dce29e0615ba6",
+      "git_blob": "9a4e3a2ce650aea34c0b90ab0d784a998f6f8406",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0010-root-after-uid.stdout",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "git_blob": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0011-root-boot.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "git_blob": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0012-after-root.json",
+      "bytes": 1901,
+      "sha256": "06a524d5a2fdd442aeaaef6be5c351119874e82303d466349aac7874bd0ca0ad",
+      "git_blob": "0bee442471642e7d034f06da1e21ff14a3cfabe5",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0012-after-root.stderr",
+      "bytes": 48,
+      "sha256": "c95c24165c0f7bee0ac6b01634e6e5ca911bc614b6cafaa6c59d435dc324730c",
+      "git_blob": "1028340f251d636ce18c32df6560c8c30a085ac4",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0012-after-root.stdout",
+      "bytes": 17,
+      "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4",
+      "git_blob": "796fedf20f9f6952bbde2030db39da3a1e0f6409",
+      "before_sha256": null,
+      "new_file": true
+    }
+  ],
+  "original_fixtures_byte_equal": [
+    {
+      "fixture": "host-0006-before-root.stdout",
+      "artifact_id": 14099605898,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0006-before-root.stdout",
+      "sha256": "c375d980e392ade3173dd2f1e7e56485f486ed148841f439def53800e7fc3829",
+      "bytes": 1421
+    },
+    {
+      "fixture": "host-0008-root-request.json",
+      "artifact_id": 14099605898,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0008-root-request.json",
+      "sha256": "998bf4f324317fa20dec5802c57e4b6b80832da48f428b5c8ea55c3f4f5b42bf",
+      "bytes": 372
+    },
+    {
+      "fixture": "host-0010-root-after-uid.stdout",
+      "artifact_id": 14099605898,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0010-root-after-uid.stdout",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "fixture": "host-0011-root-boot.stdout",
+      "artifact_id": 14099605898,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0011-root-boot.stdout",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytes": 2
+    },
+    {
+      "fixture": "host-0012-after-root.json",
+      "artifact_id": 14099605898,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.json",
+      "sha256": "dd5f311a64726c804a536a1a9aa2e80c81ffa3d0f1afbfb5e19182bf0b79f63b",
+      "bytes": 1901
+    },
+    {
+      "fixture": "host-0012-after-root.stdout",
+      "artifact_id": 14099605898,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stdout",
+      "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4",
+      "bytes": 17
+    },
+    {
+      "fixture": "host-0012-after-root.stderr",
+      "artifact_id": 14099605898,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stderr",
+      "sha256": "3f38ab20e70604000892987cdd42fe47498abeb9eaf80a33f20e5a08c21f3415",
+      "bytes": 48
+    },
+    {
+      "fixture": "swiftshader-0006-before-root.stdout",
+      "artifact_id": 14099222913,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0006-before-root.stdout",
+      "sha256": "eec37ca6aed7a2319efd144f4a8477e512bfe6b5fca11c6fb4110f3ea79c64c2",
+      "bytes": 1416
+    },
+    {
+      "fixture": "swiftshader-0008-root-request.json",
+      "artifact_id": 14099222913,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0008-root-request.json",
+      "sha256": "d5192a2ef99a9e4620412df9ed233474d814a02cc35d74d10e3dce29e0615ba6",
+      "bytes": 372
+    },
+    {
+      "fixture": "swiftshader-0010-root-after-uid.stdout",
+      "artifact_id": 14099222913,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0010-root-after-uid.stdout",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "fixture": "swiftshader-0011-root-boot.stdout",
+      "artifact_id": 14099222913,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0011-root-boot.stdout",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytes": 2
+    },
+    {
+      "fixture": "swiftshader-0012-after-root.json",
+      "artifact_id": 14099222913,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.json",
+      "sha256": "06a524d5a2fdd442aeaaef6be5c351119874e82303d466349aac7874bd0ca0ad",
+      "bytes": 1901
+    },
+    {
+      "fixture": "swiftshader-0012-after-root.stdout",
+      "artifact_id": 14099222913,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stdout",
+      "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4",
+      "bytes": 17
+    },
+    {
+      "fixture": "swiftshader-0012-after-root.stderr",
+      "artifact_id": 14099222913,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stderr",
+      "sha256": "c95c24165c0f7bee0ac6b01634e6e5ca911bc614b6cafaa6c59d435dc324730c",
+      "bytes": 48
+    },
+    {
+      "fixture": "swangle-0006-before-root.stdout",
+      "artifact_id": 14099915399,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0006-before-root.stdout",
+      "sha256": "a99129d256708928f990411d1cd606a772089a6a0d14f221c762ee3c34e6ee14",
+      "bytes": 1416
+    },
+    {
+      "fixture": "swangle-0008-root-request.json",
+      "artifact_id": 14099915399,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0008-root-request.json",
+      "sha256": "c2a4c29a602034ecece4db7bb1f5f410a168ae099898476e84c354b532fbf95e",
+      "bytes": 372
+    },
+    {
+      "fixture": "swangle-0010-root-after-uid.stdout",
+      "artifact_id": 14099915399,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0010-root-after-uid.stdout",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "fixture": "swangle-0011-root-boot.stdout",
+      "artifact_id": 14099915399,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0011-root-boot.stdout",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytes": 2
+    },
+    {
+      "fixture": "swangle-0012-after-root.json",
+      "artifact_id": 14099915399,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.json",
+      "sha256": "daef88511900cb4fc709371957a305779a260be46847f89f211403afc6d76db3",
+      "bytes": 1901
+    },
+    {
+      "fixture": "swangle-0012-after-root.stdout",
+      "artifact_id": 14099915399,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stdout",
+      "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4",
+      "bytes": 17
+    },
+    {
+      "fixture": "swangle-0012-after-root.stderr",
+      "artifact_id": 14099915399,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stderr",
+      "sha256": "42f216cb88b8a9ff51d0372c47767a59fb6990ce29a128744b929ab5d620b2dc",
+      "bytes": 48
+    }
+  ],
+  "independent_ast_preservation": {
+    "scripts/android_framework_ready.py": {
+      "device_logger_script": true,
+      "collect_monitor": true,
+      "start_monitor": true,
+      "stop_monitor": true,
+      "input_dispatch_state": true,
+      "interactive_surface": true,
+      "poll_framework": true,
+      "DeviceLogSession": true
+    },
+    "scripts/verify_android_runtime_anr.py": {
+      "scan_anrs": true
+    },
+    ".github/probes/modernization_android_tour.py": {
+      "only_protocol_literal_changed": true
+    }
+  },
+  "unchanged_wrapper": {
+    "path": "/workspace/scratch/b3485b7bb989/lumo-host-runtime-root-continuity-repair-7b16/scripts/run_unchanged_apk_diagnostic.sh",
+    "bytes": 7218,
+    "sha256": "e8d724d5a6da0d12d193cfb1de851d520eac68ead0f8777b2965c0469da3ae50"
+  },
+  "shared_surface_context_caller": {
+    "path": "/workspace/scratch/b3485b7bb989/lumo-host-runtime-root-continuity-repair-7b16/.github/probes/lumo_studio_surfaces_android_probe.py",
+    "bytes": 50962,
+    "sha256": "6b572feb22830651f99f5b01678bcb0532b433c861d040f04916ae8a1b0466ec"
+  },
+  "findings": [
+    {
+      "area": "Console framing",
+      "source": "scripts/android_console_transport.py:115-164,174-246",
+      "finding": "Input is a single canonical bounded line with a nonce-delimited real output frame. Echoed input is not a frame; incomplete frames return no acknowledgement, duplicate/reversed/nonzero frames fail. Interleaved serial/kernel output is retained, hashed and not mistaken for the separately retrieved launch.stdout/stderr. Both actual launch files must be empty in the device verifier."
+    },
+    {
+      "area": "Partial input, EOF, deadline, storage bounds",
+      "source": "scripts/android_console_transport.py:174-246,249-273",
+      "finding": "sendall is used with a timeout; partial-write exception has no success path. EOF or budget exhaustion records FAIL with no reconnect. Missing final receipt/early holder exit fails start/finish. Oversized transcript is retained up to the received failing chunk and returns failure rather than a trimmed successful recording."
+    },
+    {
+      "area": "Actual host endpoint and process identity",
+      "source": "scripts/android_console_transport.py:60-106,157-171,276-373",
+      "finding": "Prepared socket is run/attempt/source-bound in a private exact absolute directory. SO_PEERCRED, actual PID/startticks/argv/executable and socket identity are checked; only one connection is accepted. Every lifecycle observation must match preserved transcript prefixes and monotonic chronology. Final receipts require the same peer, socket and explicit stop after logger exit143."
+    },
+    {
+      "area": "Guest process/cgroup ownership",
+      "source": "scripts/android_framework_ready.py:203-348,414-531",
+      "finding": "The all-buffer logcat body is AST-identical. Launch uses the supplied actual init-console PID, an independent setsid shell and its actual child. Live snapshots require complete proc argv/stat/UID/cgroup observations for console/session/logger/adbd; console and logger must be outside actual adbd unified cgroup. Missing or changed process/file/script observations fail. UID0 is measured after one root request, not assumed from console documentation."
+    },
+    {
+      "area": "Uninterrupted full log and ANR veto",
+      "source": "scripts/verify_android_runtime_anr.py:180-374,377-399",
+      "finding": "Console lifecycle and every fixed ADB receipt are bound to original bytes. Actual before-root prefix and unique written/read-back start marker must overlap the old boot stream; final marker, actual stop exit143, complete file sizes/inodes/modes and unchanged full reads are required. Logcat/session/launch stderr remain empty; only the exact separately retained POSIX wait notice is allowed. Existing scan_anrs is AST-identical, with no GMS exception."
+    },
+    {
+      "area": "Functional speech/readers",
+      "source": ".github/probes/modernization_android_tour.py:70-108 and .github/probes/lumo_studio_surfaces_android_probe.py:259-307",
+      "finding": "Only the shared runtime protocol literal changes in the main tour. Studio calls that shared context function. Existing unique observed speech section boundary, all original reads, PID/utterance checks and ordinary non-diagnostic paths are preserved. No log clear is reintroduced."
+    },
+    {
+      "area": "Action insertion and exit propagation",
+      "source": "scripts/prepare_android37_emulator_action.py:21-56,65-143 and scripts/run_unchanged_apk_diagnostic.sh:23-49",
+      "finding": "Exact reviewed upstream Action bytes are required before mirrored TS/JS modification; check of the prepared socket precedes existing strict framework wait. Existing wrapper is byte-identical and maintains begin before app commands plus EXIT-trap final verification; failed final verification cannot turn a failing tour into success."
+    }
+  ],
+  "mandatory_runner_integration": [
+    "Root must add exact LUMO_ANDROID_CONSOLE_SOCKET, run prepare before emulator launch, and pass -shell-serial unix:<same path>,server,nowait in the new isolated workflow. The historical PR482 workflow is not changed and lacks these inputs.",
+    "The normal unfiltered five-module CI discovery must execute all86 methods, including the3 real AF_UNIX tests. The local explicit83 selection is not a substitute.",
+    "Actual shipped emulator37.2.13/build16740729 must expose a supported Unix shell channel and retain the exact socket option in the observed QEMU-peer argv. The code rejects unexpected forms; no runtime proof of this argv assumption exists yet.",
+    "Actual init-console PID/UID/unified-cgroup observations and survival through adb root remain an on-device requirement; public source excerpts and synthetic fixtures do not establish that device outcome."
+  ],
+  "existing_validation_read_only": {
+    "handoff": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr482-console-continuity-repair/handoff.json",
+      "bytes": 879,
+      "sha256": "3408e10e7eda861a681581f3cfb9bc7207a317ceecedb6ccc868295f2518935a"
+    },
+    "final_local_result": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr482-console-continuity-repair/focused-final-local/result.json",
+      "bytes": 517,
+      "sha256": "38158d9a4eb6011961ff6b77d0a626858527129bab569f9a09caa5a1b8d97cac"
+    },
+    "final_local_log": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr482-console-continuity-repair/focused-final-local/unittest.log",
+      "bytes": 17090,
+      "sha256": "1d98e62d99b63e47c73f8217797e98330f8cdde3c9d1c73abeb459de11ae69a3"
+    },
+    "observed_local83_pass": true,
+    "default_discovery86": true,
+    "local_real_unix_blocked": 3,
+    "blocked_reason": "EPERM at AF_UNIX socket creation, before channel behavior could execute",
+    "reviewer_reran_tests": false
+  },
+  "limits": [
+    "No current Android/Console continuity PASS is granted.",
+    "PR482 actual three after-root failures remain unchanged; missing session stat does not prove the subsequent child logger was observed dead.",
+    "No new overall product/release/FPS/audio/GPU acceptance.",
+    "A newer workflow/endpoint source revision requires its own final pairing review and actual CI."
+  ],
+  "original_api35_update_handoff": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/terminal-handoff.json",
+    "bytes": 43237,
+    "sha256": "a86011c11bbdb9453d2eb6d9e9ad357d4d328af29c9ee0bff1932a8fd5366e37"
+  }
+}

@@ -35,6 +35,7 @@ class MainActivity : FlutterActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         CardsTableBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
+        ConnectFourBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
         offlineSpeech = LumoOfflineSpeechBridge(applicationContext).also {
             it.attach(flutterEngine)
         }
@@ -178,7 +179,7 @@ class MainActivity : FlutterActivity() {
                     try {
                         assets.open("lumo_game.pck").close()
                         val requested = call.argument<String>("scene")
-                        val game = if (requested in setOf("kart", "jump", "puzzle", "build", "rhythm", "treasure", "learning", "cards")) requested!! else "kart"
+                        val game = if (requested in setOf("kart", "jump", "puzzle", "build", "rhythm", "treasure", "learning", "cards", "connect_four")) requested!! else "kart"
                         val options = JSONObject()
                             .put("game", game)
                             .put("grade", (call.argument<Int>("grade") ?: 1).coerceIn(1, 4))
@@ -213,10 +214,18 @@ class MainActivity : FlutterActivity() {
                             }
                             options.put("cardsToken", token)
                         }
+                        if (game == "connect_four") {
+                            val token = call.argument<String>("connectFourToken")
+                            if (token == null || !ConnectFourBridge.hasAuthority(token)) {
+                                result.error("invalid_connect_four", "Deine Vier-Gewinnt-Runde ist nicht verfügbar.", null)
+                                return@setMethodCallHandler
+                            }
+                            options.put("connectFourToken", token)
+                        }
                         options.put("reduceAnimations", call.argument<Boolean>("reduceAnimations") ?: false)
                         val callerSession = options.getString("sessionId")
-                            .takeIf { game in setOf("learning", "cards") }
-                        val intent = Intent(this, LumoGameActivity::class.java)
+                            .takeIf { game in setOf("learning", "cards", "connect_four") }
+                        val intent = Intent(this, if (game == "connect_four") ConnectFourGameActivity::class.java else LumoGameActivity::class.java)
                             .putExtra("lumoLaunchOptions", options.toString())
                             .putExtra(GameEventStore.CALLER_RETURN_SESSION, callerSession)
                         if (callerSession != null) GameEventStore.beginCallerReturn(this)
@@ -289,6 +298,7 @@ class MainActivity : FlutterActivity() {
         pendingGame = null
         pendingCallerReturnSession = null
         CardsTableBridge.detach()
+        ConnectFourBridge.detach()
         offlineSpeech?.destroy()
         offlineSpeech = null
         super.onDestroy()
