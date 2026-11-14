@@ -23,15 +23,15 @@ jobs:
       actions: read
       contents: write
     env:
-      SOURCE_SHA: 17f836d945e6f0b610da13fad8bf15798d0cad49
-      ACCEPTANCE_RUN: '43603011089'
+      SOURCE_SHA: 51ec0ac43f3e2aaac065e285e13cf5db5b5875d2
+      ACCEPTANCE_RUN: '43605863655'
       ACCEPTANCE_PR: '493'
       VERSION_TAG: coachpreview-build-2020
     steps:
       - name: Check out the exact accepted source and its original verifier
         uses: actions/checkout@v4
         with:
-          ref: 17f836d945e6f0b610da13fad8bf15798d0cad49
+          ref: 51ec0ac43f3e2aaac065e285e13cf5db5b5875d2
           persist-credentials: false
 
       - name: Read the complete current acceptance and download its original bundle
