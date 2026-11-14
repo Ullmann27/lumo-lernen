@@ -1,6 +1,9 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
+  exclude:
+    # Archived source excerpts are evidence, not a complete Dart package.
+    - docs/evidence/**
   errors:
     deprecated_member_use: ignore
     deprecated_member_use_from_same_package: ignore
