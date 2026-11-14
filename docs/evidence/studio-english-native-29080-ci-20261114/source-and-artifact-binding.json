@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "native_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "native_tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+  "host_commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "host_tree": "59c469de6252d368470bb41b0bcef21151cec826",
+  "actual_producer": {
+    "artifact_entry": "english-activity.json",
+    "sha256": "481152ce8ed6a196731b54ec911dc119fc6a534d84bf3aef3c0768b6ef7459e5",
+    "exact_report_fixture_binding": true
+  },
+  "sources": [
+    {
+      "path": "scripts/learning/english_object_gallery.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/learning/english_object_gallery.gd",
+      "bytes": 13988,
+      "sha256": "9e18d9139748a5aa40e938e9800dd491b3909d69aa057080a1c2a4022445a093",
+      "git_blob_sha": "1bc459bc88d10f48aa918014eedbb91071cd98a7",
+      "mode": "100644",
+      "repository": "Ullmann27/lumo-godot",
+      "source": "29080ef8cd1a5b385eeeec97976fbefd31280427"
+    },
+    {
+      "path": "scripts/learning/english_vocabulary.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/learning/english_vocabulary.gd",
+      "bytes": 2849,
+      "sha256": "86c2bbab28b130ba4ae9f74f265cbb9f95c81e2a4d78fa7dd4716a1d51ef7f20",
+      "git_blob_sha": "fa8debed147eceea108acc98ac318ac1362cf8eb",
+      "mode": "100644",
+      "repository": "Ullmann27/lumo-godot",
+      "source": "29080ef8cd1a5b385eeeec97976fbefd31280427"
+    },
+    {
+      "path": "scripts/learning/learning_activity.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/learning/learning_activity.gd",
+      "bytes": 10967,
+      "sha256": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+      "git_blob_sha": "245a966e00259c2d0189c932c40374d855a4b0bc",
+      "mode": "100644",
+      "repository": "Ullmann27/lumo-godot",
+      "source": "29080ef8cd1a5b385eeeec97976fbefd31280427"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/learning/learning_world.gd",
+      "bytes": 62477,
+      "sha256": "a6e03b3040c498a92c6475ab4bd5a85da07344ac901b0c368fd2f616224b2218",
+      "git_blob_sha": "f5a296f1e0394ef3ac1dd518bdf1b60912793ee9",
+      "mode": "100644",
+      "repository": "Ullmann27/lumo-godot",
+      "source": "29080ef8cd1a5b385eeeec97976fbefd31280427"
+    },
+    {
+      "path": "scripts/tests/learning_english_regression.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/tests/learning_english_regression.gd",
+      "bytes": 33455,
+      "sha256": "c6ce712d4b8539c6cb08e0accbd94853cc7c53aa87f43c16342055073f5578e9",
+      "git_blob_sha": "0a86b01f2f1de7058f50f185e60746fb7d7564e1",
+      "mode": "100644",
+      "repository": "Ullmann27/lumo-godot",
+      "source": "29080ef8cd1a5b385eeeec97976fbefd31280427"
+    },
+    {
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/host/lib/domain/tutoring/native_english_vocabulary.dart",
+      "bytes": 3323,
+      "sha256": "375ecb52b84b59f34be006e2f9768e98cb8c6839e1a794e08a87760d68b7486f",
+      "git_blob_sha": "4469849b204f91fab3e645604e11922e29cb594c",
+      "mode": "100644",
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "50503fef8e93700d9a889e33c3d2c37fccb46e42"
+    },
+    {
+      "path": "tool/check_native_english_activity.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/host/tool/check_native_english_activity.dart",
+      "bytes": 12610,
+      "sha256": "59c89f50faf62be0f06c3d7c35f4c7d517ec67c73f059779a57767951569997a",
+      "git_blob_sha": "2d304dfbf89e7be2cd123808b8a3352d7622e87b",
+      "mode": "100644",
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "50503fef8e93700d9a889e33c3d2c37fccb46e42"
+    },
+    {
+      "path": "test/tutoring/native_english_activity_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/host/test/tutoring/native_english_activity_test.dart",
+      "bytes": 7686,
+      "sha256": "3f0f0c9c331c23fd1f8372349a941976657c10d450c629092d86ec59dacc396c",
+      "git_blob_sha": "e12cadfa4bdc33be932fc1e570f5ce51d17f0c39",
+      "mode": "100644",
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "50503fef8e93700d9a889e33c3d2c37fccb46e42"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/.github/workflows/lumo-nextgen-authority-check.yml",
+      "bytes": 9280,
+      "sha256": "1c2402dd44a8f9abe13a5d1bdb72c655ef1bcada58e96bfb7f31cbbffc90fd6f",
+      "git_blob_sha": "b8698b092e7f46bcd319f31479f75e0d5e2536e0",
+      "path": ".github/workflows/lumo-nextgen-authority-check.yml",
+      "repository": "Ullmann27/lumo-godot",
+      "source": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "mode": "100644"
+    }
+  ],
+  "ci_clean_tracked_source_step": {
+    "name": "Verify both tracked source trees remain unchanged",
+    "status": "completed",
+    "conclusion": "success",
+    "number": 14,
+    "started_at": "2026-11-14T15:54:18Z",
+    "completed_at": "2026-11-14T15:54:20Z"
+  },
+  "all17_png_hashes_match_current_report": true,
+  "all17_layouts_match_current_actual_producer_descriptor": true,
+  "source_preflight_sha256": "3281e31ff592ce0b92b5a7fd6845c6ceff89de050072aee672db10523c9e6092"
+}

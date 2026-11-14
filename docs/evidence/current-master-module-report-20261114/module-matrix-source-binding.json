@@ -1,0 +1,530 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T15:57:39.049974+00:00",
+  "scope": "Read-only current module inventory; no tests, renders, new image reviews, source mutation or release approval.",
+  "host_revision": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "host_tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+  "native_product_revision": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "native_product_tree": "d370790b6949b1cd16cc5fbd2d2c655330110274",
+  "new_test_only_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "new_run_result_at_document_freeze": "THREE_AUTHORITY_JOBS_SUCCESS_FULL_NATIVE_STILL_IN_PROGRESS",
+  "host_selected_sources": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "bytes": 6340,
+      "sha256": "086df3ad460485fe309c53ada07743b83880f6e79bd140159ed9dd92e67ca64c",
+      "git_blob_sha": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+      "compared_authority_host_commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "authority_host_git_blob": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+      "byte_identical_to_authority_host": true,
+      "reading_scope": "Full current UTF-8 blob fetched; actual entry/navigation/catalog sections read for this inventory."
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "path": "lib/features/games/games_content.dart",
+      "bytes": 59951,
+      "sha256": "4e155fe8681944ffe29be3c5e348845332b988bee580a667a5db6a98a7bdf577",
+      "git_blob_sha": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+      "compared_authority_host_commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "authority_host_git_blob": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+      "byte_identical_to_authority_host": true,
+      "reading_scope": "Full current UTF-8 blob fetched; actual entry/navigation/catalog sections read for this inventory."
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "bytes": 3323,
+      "sha256": "375ecb52b84b59f34be006e2f9768e98cb8c6839e1a794e08a87760d68b7486f",
+      "git_blob_sha": "4469849b204f91fab3e645604e11922e29cb594c",
+      "compared_authority_host_commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "authority_host_git_blob": "4469849b204f91fab3e645604e11922e29cb594c",
+      "byte_identical_to_authority_host": true,
+      "reading_scope": "Full current UTF-8 blob fetched; actual entry/navigation/catalog sections read for this inventory."
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "bytes": 7587,
+      "sha256": "1c067ad052a5cabaeeadb6730d15a7618cbeafe1b5c8b83eed9af770c94035d2",
+      "git_blob_sha": "f8bfc0af97806255ec8b72d89963c2831e250089",
+      "compared_authority_host_commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "authority_host_git_blob": "f8bfc0af97806255ec8b72d89963c2831e250089",
+      "byte_identical_to_authority_host": true,
+      "reading_scope": "Full current UTF-8 blob fetched; actual entry/navigation/catalog sections read for this inventory."
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "bytes": 10634,
+      "sha256": "79af6bc42ee5d08004b93b543fc6b7013c646a7c18605ab6184b70ee658d1ddc",
+      "git_blob_sha": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca",
+      "compared_authority_host_commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "authority_host_git_blob": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca",
+      "byte_identical_to_authority_host": true,
+      "reading_scope": "Full current UTF-8 blob fetched; actual entry/navigation/catalog sections read for this inventory."
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "path": "lib/features/games/memory/lumo_memory_game.dart",
+      "bytes": 52654,
+      "sha256": "b90ab76e89a1f8d2258e1085e96ab8b032651b75b650dd7c497807a74882c380",
+      "git_blob_sha": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43",
+      "compared_authority_host_commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "authority_host_git_blob": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43",
+      "byte_identical_to_authority_host": true,
+      "reading_scope": "Full current UTF-8 blob fetched; actual entry/navigation/catalog sections read for this inventory."
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "path": "lib/features/quiz/quiz_show_content.dart",
+      "bytes": 62121,
+      "sha256": "9ae4b83ee78bd13c85b033921826d7813da6a54277faa62787c785f3a24eac45",
+      "git_blob_sha": "98d7d59c6053785eddb3db48b2673a41e2b8c407",
+      "compared_authority_host_commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "authority_host_git_blob": "98d7d59c6053785eddb3db48b2673a41e2b8c407",
+      "byte_identical_to_authority_host": true,
+      "reading_scope": "Full current UTF-8 blob fetched; actual entry/navigation/catalog sections read for this inventory."
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "path": "docs/STUDIO_NEXTGEN_SCOPE.md",
+      "bytes": 46893,
+      "sha256": "e259366a1ee0a75b8625ef830374439d534a8dfa44dcb794bafeab8c28030c1c",
+      "git_blob_sha": "0e2ddd6f920f073367cbb49cb6b90900523e59da",
+      "reading_scope": "Existing historical inventory and feature narrative; historical status statements are not current approval."
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "path": "docs/NEXTGEN_FEATURE_20261114.md",
+      "bytes": 13820,
+      "sha256": "3ac048370b86876fd216d1cc108db8b7b91a0a4cf632c63b6886d192aefc2dd3",
+      "git_blob_sha": "5a4a111a19a7877a57eb9535fd47ea7f2fdd2888",
+      "reading_scope": "Existing historical inventory and feature narrative; historical status statements are not current approval."
+    }
+  ],
+  "other_existing_host_paths": [
+    {
+      "path": "lib/domain/games/game_level_catalog.dart",
+      "git_blob_sha": "fff54683c5c1d16bf581b16f446852166de255bb",
+      "bytes": 12497,
+      "mode": "100644",
+      "scope": "Existence/path binding only; no new complete module audit."
+    },
+    {
+      "path": "lib/domain/learning/lumo_learning_domain.dart",
+      "git_blob_sha": "fb08dc6572828d21d94ca96844994797aaa68bd6",
+      "bytes": 9458,
+      "mode": "100644",
+      "scope": "Existence/path binding only; no new complete module audit."
+    },
+    {
+      "path": "lib/features/learning/lab/learning_lab_catalog.dart",
+      "git_blob_sha": "d09ecd651ec33c223ace42929f0c88af99bb7851",
+      "bytes": 12930,
+      "mode": "100644",
+      "scope": "Existence/path binding only; no new complete module audit."
+    },
+    {
+      "path": "lib/features/learning/learning_content.dart",
+      "git_blob_sha": "652bb8de1ad15ed348fbece1ffce1faf5b82b6f6",
+      "bytes": 134562,
+      "mode": "100644",
+      "scope": "Existence/path binding only; no new complete module audit."
+    }
+  ],
+  "document": {
+    "source_path": "/workspace/scratch/5987865ae883/qa/current-master-module-report-20261114/MODULMATRIX_2e20_29080.md",
+    "bytes": 23706,
+    "sha256": "84806e7250b95abfca0c610d1cb1a75bce80f9a5f0f0f919946c62bf8683620f",
+    "git_blob_sha": "47b3582e139681b7c6df4734b4d83a7fa5ae7308"
+  },
+  "current_quiz_job_result": "SUCCESS_AND_SIX_ORIGINAL_IMAGES_PERSONALLY_VIEWED",
+  "full_native29080_result": "PENDING_NOT_APPROVED",
+  "reading_scope": "Existing inventories and current selected entry paths; no complete new per-module audit, tests or renders.",
+  "native_selected_sources": [
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+      "bytes": 5156596,
+      "sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+      "git_blob_sha": "53cb01bfbd23a2962da5428a08b8aee313d5e152",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/assets/characters/lumo_facial/ATTRIBUTION.md",
+      "bytes": 2626,
+      "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+      "git_blob_sha": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "bytes": 8408740,
+      "sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+      "git_blob_sha": "4d18f240a34a5aa6320ecd61c0ab0fa719c0b0ad",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "scripts/app/scene_router.gd",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/app/scene_router.gd",
+      "bytes": 4556,
+      "sha256": "30c0f26b0dfb1d7d1b95a9ba2517b691d8eabaf457d1e84d7d5a454f7f5a5487",
+      "git_blob_sha": "09b5b8119729e0a5556a18acf9497f31962cb343",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "scripts/characters/lumo/lumo_facial_pose.gd",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/characters/lumo/lumo_facial_pose.gd",
+      "bytes": 6120,
+      "sha256": "2d89319ccb622cad1b54c36113bda8594706c024d77f2a0605ec057d51a0f6ef",
+      "git_blob_sha": "91b8a8cd25f21dab84b77f178aa82d06673b54f9",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "scripts/characters/lumo/lumo_platform_pose.gd",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/characters/lumo/lumo_platform_pose.gd",
+      "bytes": 5002,
+      "sha256": "2f89ad0660ed3f74ff0cfe50837e18265bcf54fdccd24712de6a8b0d680c0a59",
+      "git_blob_sha": "f2085dc82b9840077e631f586a4f4fb5159d7c08",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/characters/lumo/lumo_rigged_actor.gd",
+      "bytes": 11313,
+      "sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+      "git_blob_sha": "e4b6a6081a922a137f68491de66f51e096528510",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "scripts/games/kart_catalog.gd",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/games/kart_catalog.gd",
+      "bytes": 3638,
+      "sha256": "dd76d5c6b70d9c8d7e6d4625a20285e2538b945c093a0161eee52eb515f2113d",
+      "git_blob_sha": "e0da716a0a6ed91cf01bf4f65c8b4e6376219a7f",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "scripts/games/kart_expansion_tracks.gd",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/games/kart_expansion_tracks.gd",
+      "bytes": 5845,
+      "sha256": "e67e5e2428b80c2982290d9b532c0ff3eb6ceacb53bc4e0b1380e371a16b54b4",
+      "git_blob_sha": "ce5e5bf1da9ba47f444e7156cb539abf9d41802d",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "scripts/games/kart_tracks.gd",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/games/kart_tracks.gd",
+      "bytes": 3395,
+      "sha256": "92a9a981b4302c11d9854017ac7f4971ce60ee5eb8e9a0a8d70c8b7ff7833607",
+      "git_blob_sha": "92e91f78c9afcf958b98e8b3ddcdb245ea031441",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "scripts/games/memory/memory_table.gd",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/games/memory/memory_table.gd",
+      "bytes": 31443,
+      "sha256": "929d4a32e9dd0528e4941208dfaf949ef286e584685924af28bbe8e403be8c33",
+      "git_blob_sha": "9c998e33aee127453a67d25a6e020638472b8387",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "scripts/games/quiz/quiz_studio.gd",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/games/quiz/quiz_studio.gd",
+      "bytes": 32524,
+      "sha256": "943b85847225529f5b9b52566c748682c2b8225a7051a3443fa49f54b776b32d",
+      "git_blob_sha": "aa3e4d91f0e64cd466fb087356fbf29264d697a3",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "scripts/learning/learning_activity.gd",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/learning/learning_activity.gd",
+      "bytes": 10967,
+      "sha256": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+      "git_blob_sha": "245a966e00259c2d0189c932c40374d855a4b0bc",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "repo_path": "scripts/learning/learning_world.gd",
+      "source_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/scripts/learning/learning_world.gd",
+      "bytes": 62477,
+      "sha256": "a6e03b3040c498a92c6475ab4bd5a85da07344ac901b0c368fd2f616224b2218",
+      "git_blob_sha": "f5a296f1e0394ef3ac1dd518bdf1b60912793ee9",
+      "reading_scope": "Selected current product source/asset bound to actual47ca Git blob. No new renderer or model edit."
+    }
+  ],
+  "existing_evidence_bindings": [
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/current-master-module-report-20261114/previous-inventory-reference.md",
+      "bytes": 23169,
+      "sha256": "ab9bcc0ad6fd5b18818002d9f06a0feae68a3ad99926c1ffd924a472c9123656",
+      "git_blob_sha": "2a4025597c34194b9cc248ca970e1ff5f5cf884d"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-memory-next-v2-20261114/evidence/cb85-ci/acceptance-summary-from-original-job.json",
+      "bytes": 2118,
+      "sha256": "1db3e59aedddef20ade739c31b63a6e19cd1554482c52d7a19538b9e9c5fb60e",
+      "git_blob_sha": "8262bdf9d9e6f3fb6b4efa1737f77828f22a5196"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-memory-next-v2-20261114/evidence/cb85-ci/review.json",
+      "bytes": 4698,
+      "sha256": "18d102e6ce2244aee3789d1718f3220eeb041041b84db024e287880274588260",
+      "git_blob_sha": "7714b8cf833bb84741cbfc6721916c4567bafc47"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-memory-next-v2-20261114/evidence/2e20-ci/acceptance-summary-from-original-job.json",
+      "bytes": 2118,
+      "sha256": "1db3e59aedddef20ade739c31b63a6e19cd1554482c52d7a19538b9e9c5fb60e",
+      "git_blob_sha": "8262bdf9d9e6f3fb6b4efa1737f77828f22a5196"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/root-current-integration-proof-20261114/host-2e20-run.json",
+      "bytes": 15143,
+      "sha256": "7c002b68d78fe2630723112f0d4c6f6d74bcd7ade37d8efdc08141d5cbf3dea9",
+      "git_blob_sha": "3917bf474c77f67d3c48c8bbda562121fac65914"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/root-current-integration-proof-20261114/host-2e20-jobs.json",
+      "bytes": 13482,
+      "sha256": "20bcaaf720baa59e13fe41255a8a0a59184a55e06d8ba1eca121c63755bab9ac",
+      "git_blob_sha": "e4e4ef7abd31f4a093ae6f93bc6cee7c148e32d3"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-47ca-ci-20261114/original-closure.json",
+      "bytes": 1753,
+      "sha256": "7e22e9ebe9095bf18e60432dfac70b9a45da69b62fc675172a479853b5223d1f",
+      "git_blob_sha": "bb7c81c06330eb5d3f62ad38ebf0055beecd4634"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-47ca-ci-20261114/visual-review.json",
+      "bytes": 6489,
+      "sha256": "50b80b3d99dc2c5865c844bfd9fc6478c28ec9a5d4950c53d5b80160acaedf72",
+      "git_blob_sha": "e99d242bb3a9b1d370f9e52610a3e350df80e759"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-47ca-ci-20261114/completion-review.json",
+      "bytes": 612,
+      "sha256": "613242ebbf3807ae23004c43c8537e25208280184e7ccdb99f676f3c1b842183",
+      "git_blob_sha": "15e1fe81d4dec87e22eb6dbbdd6bb5ccd6bfc155"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/review.json",
+      "bytes": 15239,
+      "sha256": "e1e68dc7c77779281c30294bede576f82113ba68d1e5678d2cdcfc18f0a3e592",
+      "git_blob_sha": "6cede4b503529776c9ef9101c7070b47d55dcc86"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/original-results-verification.json",
+      "bytes": 12426,
+      "sha256": "2e67634ec6e1a20c25bc7fc5c52a461c3035ad79965e97591622b274d0b8940d",
+      "git_blob_sha": "842c1c0adc87889ce668076bbaf82a1e2124145a"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/review.json",
+      "bytes": 4257,
+      "sha256": "9ddc63dba41208a519f33379b5f1d0bbeeccad307e0fe64d1c6da76897556ee7",
+      "git_blob_sha": "806ec65540eccf74b18b730b0b839280ce82c777"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/image-review.json",
+      "bytes": 29492,
+      "sha256": "87f42173eea7d512359dc3cae97cca329627992abc931f18672d3e884b0ca6de",
+      "git_blob_sha": "ad409529a4d0283f694cf857b0bf02acfa509d9a"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/source-and-artifact-binding.json",
+      "bytes": 4521,
+      "sha256": "68717c4aa2d7c0d02cc574af065039aa888e6df3071b6ac069aa3bfdd4c8d5f2",
+      "git_blob_sha": "8c6511f594e1d8b1a0dd24846a3666b8d2c043f3"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/root-current-integration-proof-20261114/native-47ca-full-run.json",
+      "bytes": 14933,
+      "sha256": "0be0dede39d6e6093b102fcea967b2b252a1b895db0fb4071c74adc1761c9bea",
+      "git_blob_sha": "d1710e78556c3ce079e3fbca80685b47faa7b71b"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/root-current-integration-proof-20261114/native-47ca-full-jobs.json",
+      "bytes": 25609,
+      "sha256": "d639f4ef070c933787416ff6820be1d08219425baeb5db1c1691c02f3530b958",
+      "git_blob_sha": "d81d18448685118259464b685e35d810d7d8e9d7"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/root-current-integration-proof-20261114/native-47ca-failure-extract.json",
+      "bytes": 975,
+      "sha256": "b4792be51f3b0e033e6e603b1a42c2c15507f15fbcefea8180ba6933c7df7acb",
+      "git_blob_sha": "b59cccc458bcbdb52fef1b23032e090a51ce18e8"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/evidence/runner-contracts-original.log",
+      "bytes": 3252,
+      "sha256": "709c0fc50a465c9e074d8d8e73b4322f75f4a332ee661698144cd302931788bd",
+      "git_blob_sha": "c871dbafea84419951389600d6710873e15294c7"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/evidence/runner-contracts-execution.json",
+      "bytes": 848,
+      "sha256": "c4faecfe06d057316a6b20383a746d629ffaf98a106314192b3b9755cd346924",
+      "git_blob_sha": "a99ae8b7a4c12f2adde77e44c22f0282b73c0dea"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-independent-review-20261114/review.json",
+      "bytes": 3904,
+      "sha256": "9b0812c455ecfff1abe5d482668d3f0cd2745ce6fa29ae5333ce7c33127fa13d",
+      "git_blob_sha": "7722d9b46685d0c0d9be7c736885e58a3b2e7e98"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-29080-ci-20261114/original-closure.json",
+      "bytes": 3636,
+      "sha256": "fc548226c9dd364745008b2e699a9f00c5de2b794caa44e0f6537e7d99781e7d",
+      "git_blob_sha": "e6e85e5d1d6374992b00175c8083e3f4bbdbc69a"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-29080-ci-20261114/visual-review.json",
+      "bytes": 9582,
+      "sha256": "6aad4621122a44b60c1e6a03aeab5610826ac13fb507a9b64267d05dce335e06",
+      "git_blob_sha": "1f04d6f9a05237fd1e129585385b6af1b8cb42b3"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-29080-ci-20261114/verified-original-extraction.json",
+      "bytes": 15804,
+      "sha256": "fd9731618e9cc69aac796df0b853535c2965bdd42870440ff1783770e0d8d62c",
+      "git_blob_sha": "4f64be711de6becbf7ee42f86bbd04c83ef9d844"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/review.json",
+      "bytes": 8207,
+      "sha256": "060db6a88e5cc493b4a4adffc02cb07bd8a222c3705361a761a5b8207fcad751",
+      "git_blob_sha": "b4f3e3854c770182764c012202466675229be06b"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/image-review.json",
+      "bytes": 23493,
+      "sha256": "63de53f7ce9e7a4d66463076fc9d65ce1c04b213b6577370a84121971414e4c6",
+      "git_blob_sha": "76dc927c281a18e9c04a33b9e5a24d32f3e8b131"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/source-and-artifact-binding.json",
+      "bytes": 5776,
+      "sha256": "68e66944ef2f9fd6059cb103d3532b08306edec449d47adb6221662dc7cbfe16",
+      "git_blob_sha": "c7006a84688f5a39dd6cde1f9e3cec54b707ba9c"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/run-final-original.json",
+      "bytes": 13139,
+      "sha256": "8430d01367c81ef3ffb50069f2d355a06a290417f0668c4e9bd3ae9388465272",
+      "git_blob_sha": "d6a55602a8eae127f225b009c43aa238a43e5799"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/jobs-final-original.json",
+      "bytes": 13303,
+      "sha256": "59edebc4dd5a3f718b0da8a44c4275e407dd66e41dfe519d5c1fb17ad867cfa6",
+      "git_blob_sha": "2cfb1693b4e24cf4ec5466f3f6c7eb040d7e51ba"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-29080-ci-20261114/review.json",
+      "bytes": 14739,
+      "sha256": "5721e499810dce2dc7c0a768a6b79cf2f21a632602cee55551fd1c00dfc2d7c2",
+      "git_blob_sha": "f477ab1903baa3d4a62c15fa82cbacccb59a4c53"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-29080-ci-20261114/original-results-verification.json",
+      "bytes": 11096,
+      "sha256": "7f99a16c7f0a31cde4d64c9d1e13603e9eaa3ea3b61c0d5f36f5683573ed4575",
+      "git_blob_sha": "a130c5c3caa24d96d3d3cba75ef892e7e089eb98"
+    }
+  ],
+  "observation_utc": "2026-11-14T16:03:38Z",
+  "current_authority_run_status": "completed/success",
+  "current_run_metadata": [
+    {
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43611803404",
+      "bytes": 13139,
+      "sha256": "8430d01367c81ef3ffb50069f2d355a06a290417f0668c4e9bd3ae9388465272",
+      "git_blob_sha": "d6a55602a8eae127f225b009c43aa238a43e5799",
+      "id": 43611803404,
+      "head_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": ".github/workflows/lumo-nextgen-authority-check.yml",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "updated_at": "2026-11-14T15:54:23Z",
+      "metadata_reviewed_utc": "2026-11-14T16:03:38.809Z"
+    },
+    {
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43611803408",
+      "bytes": 13110,
+      "sha256": "fdd2579406e77d5fb87c5bd8323ba7047f0d15ef6456ad92c6e01764ab7b0346",
+      "git_blob_sha": "94eaede5522b8bd1fb781939445ce294829a0865",
+      "id": 43611803408,
+      "head_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_attempt": 1,
+      "updated_at": "2026-11-14T15:44:40Z",
+      "metadata_reviewed_utc": "2026-11-14T16:03:38.830Z"
+    }
+  ],
+  "superseded_unpublished_local_fassungen": [
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/current-master-module-report-20261114/MODULMATRIX_2e20_29080.md",
+      "bytes": 22929,
+      "sha256": "0748ec4988d8a450bc2cae8175d6ed1c444d5c19c9e8e7f2a3398b9915a69fa3",
+      "git_blob_sha": "bdd6372e5f4a7aed7bea9567eeeb724a09aae75f"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/current-master-module-report-20261114/module-matrix-source-binding.json",
+      "bytes": 24133,
+      "sha256": "7f832af89110511b9fdc9bb5b449d33b304a8cce7bd7c65637f0dd44c82a0212",
+      "git_blob_sha": "59102b8012b1f51eae9ee4de371d86cbc97b4cdf"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/current-master-module-report-20261114/module-matrix-upload-manifest.json",
+      "bytes": 1271,
+      "sha256": "381def258b5d8f6ef6ddd6d392e9c44c5a2f15502c8e81503d861bdd26861448",
+      "git_blob_sha": "46762ce1454f1d72cd8196d6132d022be2c00f68"
+    }
+  ]
+}

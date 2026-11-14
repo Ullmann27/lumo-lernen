@@ -1,0 +1,32 @@
+[
+  {
+    "module": "quiz",
+    "artifact_entry": "quiz-pair/native/quiz-dart-complete.png",
+    "findings": "1200×896: Frage20/Logik-Finale, C Lea grün, Richtig!, 5000 Sterne gutgeschrieben und Alle20Fragen geschafft! sind sichtbar. Neue Runde und alle vier Fachknöpfe sind vollständig zu sehen. Lumo jubelt vor dem beleuchteten Bogen."
+  },
+  {
+    "module": "quiz",
+    "artifact_entry": "quiz-pair/native/quiz-dart-jokers.png",
+    "findings": "960×540: A zeigt Publikum5%, B77%; C und D sind ausdrücklich ausgeblendet. Alle drei Joker sind dunkel/inaktiv dargestellt, der Tipp steht unter ihnen. Lumo bleibt sichtbar; rechts ist der Scrollbalken erkennbar."
+  },
+  {
+    "module": "quiz",
+    "artifact_entry": "quiz-pair/native/quiz-dart-paused.png",
+    "findings": "640×360: Die pausierte Ansicht ist zu den Fachwahlknöpfen gescrollt. Alle Fächer, Deutsch, Mathe und Sachunterricht sind sichtbar; die obere Pausetaste ist dunkel. Lumo bleibt links erkennbar; der vorausgehende Überschriftteil liegt angeschnitten am oberen Scrollrand."
+  },
+  {
+    "module": "quiz",
+    "artifact_entry": "quiz-pair/native/quiz-dart-question.png",
+    "findings": "960×540: Frage1, vier vollständige Antwortfelder, Aufdecken und alle drei Joker sind sichtbar. Original-Lumo mit Brille, Anzug und Schwanz steht frei auf dem Podest im cyanfarbenen Lichtbogen. Die Bühne bleibt ein schlichtes Podest-/Bogenbild."
+  },
+  {
+    "module": "quiz",
+    "artifact_entry": "quiz-pair/native/quiz-dart-revealed-small.png",
+    "findings": "640×360: Aktuell gescrollter rechter Inhalt zeigt Nächste Frage vollständig und Richtig!; D und ein Teil des davor liegenden Antwortbereichs sind sichtbar. Kopfzeile und jubelnder Lumo bleiben frei. Der Tipp setzt sich unterhalb des sichtbaren Ausschnitts fort."
+  },
+  {
+    "module": "quiz",
+    "artifact_entry": "quiz-pair/native/quiz-dart-selected-phone.png",
+    "findings": "412×915: Kopfzeile mit Zurück/Pause, Lumo und Frage passen in das Hochformat. Antwort B ist deutlich goldfarben gewählt; alle vier Zeilen, Aufdecken, Joker, Tipp und gesicherte Sterne sind sichtbar. Keine Überdeckung der Antwortauswahl durch Lumo."
+  }
+]

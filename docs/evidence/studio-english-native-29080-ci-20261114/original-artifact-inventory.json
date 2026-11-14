@@ -1,0 +1,511 @@
+{
+  "schema": 1,
+  "artifact_id": 14120777154,
+  "run_id": 43611803404,
+  "attempt": 1,
+  "job_id": 132498257372,
+  "native_source": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "host_source": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "archive_bytes": 4557751,
+  "archive_sha256": "e21f46588a7d711cb76314951255d8ea016b473f1029ddf7300a587e7dd146e7",
+  "all_entries_stream_read_crc_verified": true,
+  "entry_count": 63,
+  "file_count": 63,
+  "png_count": 17,
+  "all_pngs_fully_decoded": true,
+  "verified_utc": "2026-11-14T15:57:34.520026+00:00",
+  "entries": [
+    {
+      "artifact_entry": "HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "49031b96beda83b0bec23c48d3f807dc063a143e12b3509ddf3ca0265587fa4c",
+      "crc32": "343aebe3",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/HOST-SOURCE.txt"
+    },
+    {
+      "artifact_entry": "NATIVE-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "cc7d7df4f9a8560292f59c1c310864e279a589a464a57d216c4425caddb3703d",
+      "crc32": "ef9bd6f1",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/NATIVE-SOURCE.txt"
+    },
+    {
+      "artifact_entry": "HOST-TREE.txt",
+      "bytes": 41,
+      "sha256": "719000255e57b9b48526e32fe4a0552d89ebae2094f638d8f2686912edb12d56",
+      "crc32": "7530f7f7",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/HOST-TREE.txt"
+    },
+    {
+      "artifact_entry": "NATIVE-TREE.txt",
+      "bytes": 41,
+      "sha256": "2026c5958af62e253bd00d24d4c3f3b285bfeb69f5ac4fe3355b2b6a3219d13b",
+      "crc32": "d5f0cbc7",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/NATIVE-TREE.txt"
+    },
+    {
+      "artifact_entry": "dart-version.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "crc32": "a9679d22",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/dart-version.txt"
+    },
+    {
+      "artifact_entry": "english-activity.json",
+      "bytes": 16736,
+      "sha256": "481152ce8ed6a196731b54ec911dc119fc6a534d84bf3aef3c0768b6ef7459e5",
+      "crc32": "37cf4a06",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-activity.json"
+    },
+    {
+      "artifact_entry": "english-authority.log",
+      "bytes": 755,
+      "sha256": "8ab8432130b9df6535b0b2f8261dd50abca61b4dfaf1ac9ca0884362a0955573",
+      "crc32": "ffcadeea",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-authority.log"
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.json",
+      "bytes": 2850,
+      "sha256": "9da7c8ed549546bd6048ef88247a00cb2676b8562b53e31b5b9c937e3bc76eec",
+      "crc32": "32d15f23",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-apple-960x540-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.layout.json",
+      "bytes": 29363,
+      "sha256": "5b4de20b8f0b94807df18d2db6e52d64e6c6fdbb5ca0e1275aac6c02a5515dc0",
+      "crc32": "781b9bcb",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-apple-960x540-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.png",
+      "bytes": 167664,
+      "sha256": "62dfd4e2361d09264b63b510b67900959b62323bef0291f12c649c5d728ddec3",
+      "crc32": "3a7fdfaa",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-apple-960x540-start.png",
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-bag-960x540-start.json",
+      "bytes": 2829,
+      "sha256": "8bc2ae96825aff8d71c44a62ea10a330d61934e5ed3cf7678cdbcdb54ec6078a",
+      "crc32": "b2218c8c",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-bag-960x540-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-bag-960x540-start.layout.json",
+      "bytes": 28967,
+      "sha256": "3649e7400a4458d26a7b979082c09574b992fb5f3d91827a92bcee385074957c",
+      "crc32": "3665581e",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-bag-960x540-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-bag-960x540-start.png",
+      "bytes": 163335,
+      "sha256": "bf4db2327300a1c534f99bb4429a34aec7f0995a0f97c4fd60d608ed0dcb966d",
+      "crc32": "f1cbdb6f",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-bag-960x540-start.png",
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.json",
+      "bytes": 2836,
+      "sha256": "15cfd34ab354ba895ac1a5be34c998b2aa0707d45f1fa16f875169371f34d742",
+      "crc32": "98cfff25",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ball-960x540-complete.json"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.png",
+      "bytes": 172403,
+      "sha256": "1761edba3eec3b4008348acf3edea34312815206c52f7637ecf4d4cbd62d3549",
+      "crc32": "46a327a8",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ball-960x540-complete.png",
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.layout.json",
+      "bytes": 30800,
+      "sha256": "3bb86b2d450d0b2d2f060f4cd1b79c4a61afcc011f51357b394c656bf169c133",
+      "crc32": "17d73062",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ball-960x540-complete.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.json",
+      "bytes": 2833,
+      "sha256": "35e81161173b763ee9821158fc69cda9cdb057c7b4fc16474113bb683d971730",
+      "crc32": "7a9298a8",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ball-960x540-hint.json"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.layout.json",
+      "bytes": 30801,
+      "sha256": "ad5421c7e4d37330b0be54adb6587375d4bbc218379f07927fceffdbf1dfc713",
+      "crc32": "42bb5b91",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ball-960x540-hint.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.png",
+      "bytes": 172781,
+      "sha256": "8765749c3aaaf4d660987d84fb808bb29fb419878d02d22129aa671a3c999c84",
+      "crc32": "2d920d74",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ball-960x540-hint.png",
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.json",
+      "bytes": 2830,
+      "sha256": "db0a9d0d096974d0132b0f97dfed48394b92424a7d5d80f6b9cd83162c38bc08",
+      "crc32": "8ddb2201",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ball-960x540-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.layout.json",
+      "bytes": 29992,
+      "sha256": "69b7e548f2cccf9be5bd22216379d0cfb33ff8618b4f7c4b5b6b035386b5c976",
+      "crc32": "2c50f87f",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ball-960x540-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.png",
+      "bytes": 172058,
+      "sha256": "4ebfa8b41828f3e93f9dd2e84e99159ea3432c7e1e52efb1b69a55c1de648bc1",
+      "crc32": "051a705c",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ball-960x540-start.png",
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.json",
+      "bytes": 2853,
+      "sha256": "e707271911284d4139479d31379e8797c7c16e66a570dff713e09db9e52f8916",
+      "crc32": "a1adbc4c",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-book-412x915-complete.json"
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.layout.json",
+      "bytes": 48395,
+      "sha256": "8a0c38ad0334ac22ff87358d954147ccff974d283b6f9331618fa38f6cbf4e4c",
+      "crc32": "0327201d",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-book-412x915-complete.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.png",
+      "bytes": 119497,
+      "sha256": "e796a8440ae7a5577aa1c5b29b4e1767df591761cfa08dd0c4d85a6534f2861c",
+      "crc32": "6f54cdfd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-book-412x915-complete.png",
+      "width": 412,
+      "height": 915,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.layout.json",
+      "bytes": 47660,
+      "sha256": "9f4cf1d4ca404100c74c5601bd7145d3722f8448759c3fef3b75a809078ac5a2",
+      "crc32": "efc71976",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-book-412x915-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.json",
+      "bytes": 2847,
+      "sha256": "e181b883a51c47e22f80fbf97a776ed9fe94ef1f919bc6aaaa1c8ba667cfb407",
+      "crc32": "23560f6e",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-book-412x915-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.png",
+      "bytes": 119902,
+      "sha256": "882c7d39a47d93c27f84a7acb7df4294450c352805f7bf30fe549c30cf05bd1a",
+      "crc32": "93ee0cf1",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-book-412x915-start.png",
+      "width": 412,
+      "height": 915,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.json",
+      "bytes": 3069,
+      "sha256": "3f9d8cebf6c581d64bd500b0788c00b225ab2ee6becde44c77ca7757d63d41c1",
+      "crc32": "366eba08",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-car-2400x1080-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.layout.json",
+      "bytes": 35555,
+      "sha256": "6f0384903ee4709e2cc8804c56e18b06a5e99ac5ec99df44faa5e163af197ed4",
+      "crc32": "4df06e10",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-car-2400x1080-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.png",
+      "bytes": 692917,
+      "sha256": "3a45e0a3d05aa527b0ce334418a42705e2a191fb5896c7310580942963587796",
+      "crc32": "b37f3461",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-car-2400x1080-start.png",
+      "width": 2400,
+      "height": 1080,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-chair-640x360-start.json",
+      "bytes": 2841,
+      "sha256": "0a267becd8bf11c3f374dd2d119e39109e99d3ca8db802f6fa5c3379ea6696a7",
+      "crc32": "89327cb7",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-chair-640x360-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-chair-640x360-start.layout.json",
+      "bytes": 42545,
+      "sha256": "e52b99786792a80510e0a8f129bb2b6b800e6aef85958882cf52bafc5d6914c9",
+      "crc32": "f7c50323",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-chair-640x360-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-chair-640x360-start.png",
+      "bytes": 95439,
+      "sha256": "5eeed0b3adb653ac39794561ed5b34b0a1d3915748aa290befe9cab9a521eb6e",
+      "crc32": "5595bca9",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-chair-640x360-start.png",
+      "width": 640,
+      "height": 360,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-desk-960x540-start.json",
+      "bytes": 2832,
+      "sha256": "81e3e4edd9ed6f1d7c1626a260699a43250bbd1ae7ad1c38b09ec398d30ca354",
+      "crc32": "eff4887a",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-desk-960x540-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-desk-960x540-start.layout.json",
+      "bytes": 41571,
+      "sha256": "754321e5e171e1592b189fd32ad1ebe69422499176569948bb04b63e7224b6f8",
+      "crc32": "19fc0e22",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-desk-960x540-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-desk-960x540-start.png",
+      "bytes": 162734,
+      "sha256": "4baa2446b3a8e4da7090d603638ad48a7e83b88a8baa9dc90fd0ed932ff4992f",
+      "crc32": "768d39ab",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-desk-960x540-start.png",
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-paper-2400x1080-start.json",
+      "bytes": 3099,
+      "sha256": "7598ab7257e7f878e04c9a4ef493518fd8e54aa17345ff143591873168890f90",
+      "crc32": "3ebac87a",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-paper-2400x1080-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-paper-2400x1080-start.layout.json",
+      "bytes": 44137,
+      "sha256": "f640269c7a4078abc1db5c200123674e1a333e2945e915704be60465bb58ac95",
+      "crc32": "26cfecda",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-paper-2400x1080-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-paper-2400x1080-start.png",
+      "bytes": 694192,
+      "sha256": "7ecad1f334955110981c63e5c147b56b343823062bf92143d24c67b479ec681a",
+      "crc32": "ff0028cf",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-paper-2400x1080-start.png",
+      "width": 2400,
+      "height": 1080,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.json",
+      "bytes": 2947,
+      "sha256": "7fa286809478358a191f674ea23047cefcf82080580cd6f7b74ce81778ba2e20",
+      "crc32": "b7598e3c",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-pen-1080x2400-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.layout.json",
+      "bytes": 36764,
+      "sha256": "9add86c480de45306359017e92f94c4b5079408a3619cfa236fa2d0872153bdc",
+      "crc32": "3b102a95",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-pen-1080x2400-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.png",
+      "bytes": 598869,
+      "sha256": "73adaba0cc8142a023f85c671fb916139ec14fd066c4b0af9812ecf32026286d",
+      "crc32": "48a1dee5",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-pen-1080x2400-start.png",
+      "width": 1080,
+      "height": 2400,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.json",
+      "bytes": 3142,
+      "sha256": "4d213c3b9613d5cff66e7b7f390ce364f776b80ace1f0c27198d6eaee5c18038",
+      "crc32": "60ea572b",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-pencil-case-1080x2400-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.layout.json",
+      "bytes": 52395,
+      "sha256": "e11abb34fd9c4236774ebf03f3a5140977d56dfacef201aaa32758c44f9a1758",
+      "crc32": "935f2cd6",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-pencil-case-1080x2400-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.png",
+      "bytes": 601523,
+      "sha256": "af84619c66d98298ca33f4f2c8061669135a9cdd3acc92c845a0b4bbdf5bd26e",
+      "crc32": "c04d0175",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-pencil-case-1080x2400-start.png",
+      "width": 1080,
+      "height": 2400,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-rubber-640x360-start.json",
+      "bytes": 2844,
+      "sha256": "0884162a70c7299910a465a960bb3519791ca99b2f3c49cab1e94a61c794df7c",
+      "crc32": "bbbc665b",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-rubber-640x360-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-rubber-640x360-start.layout.json",
+      "bytes": 36026,
+      "sha256": "26e5ae703bf55d7f8216c6b4c52a49fae8891b5c469811af34cf5a4f46e0ac01",
+      "crc32": "24cf022d",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-rubber-640x360-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-rubber-640x360-start.png",
+      "bytes": 95377,
+      "sha256": "201b292ff3681448e9c7470e56f92d925d8d5ae56ef87e184d1906f8e347369c",
+      "crc32": "d38e5986",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-rubber-640x360-start.png",
+      "width": 640,
+      "height": 360,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.json",
+      "bytes": 2840,
+      "sha256": "a01b5dcd6f8acd443210b7da12a53df3a0892d5bd994e4f033cfdd355dda5662",
+      "crc32": "decd3ad8",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ruler-640x360-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.layout.json",
+      "bytes": 50751,
+      "sha256": "3f349f5c8e8198b0e07638925dab3aa048a192c90c637ec7e3bd770d19a2069d",
+      "crc32": "78923a42",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ruler-640x360-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.png",
+      "bytes": 95369,
+      "sha256": "03aca0ec7fa0ca423675d66e58abec1818467f3d681853a3aec9fa321f8a7522",
+      "crc32": "de8caca1",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ruler-640x360-start.png",
+      "width": 640,
+      "height": 360,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-school-bag-412x915-start.json",
+      "bytes": 2862,
+      "sha256": "8a5cfdd877abc6146116442ffc6e7826966edcb088562ac52545ad4527bd5e7f",
+      "crc32": "134bd269",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-school-bag-412x915-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-school-bag-412x915-start.layout.json",
+      "bytes": 33418,
+      "sha256": "ad57e0da1976872bee82496b7dcb11116ca937c11c86523475397632250130f1",
+      "crc32": "5b7be925",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-school-bag-412x915-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-school-bag-412x915-start.png",
+      "bytes": 114243,
+      "sha256": "ed5e3346147719bd82f8c6585b12eabef3477cc4c8fb015ec28db22568dee7fc",
+      "crc32": "a2d42af2",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-school-bag-412x915-start.png",
+      "width": 412,
+      "height": 915,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.json",
+      "bytes": 2825,
+      "sha256": "635e8c3f7db38c35f37b59005df00ef398b2c54ef67f88afbcd63143d411bfdf",
+      "crc32": "b3e3f2ec",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-sun-960x540-start.json"
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.layout.json",
+      "bytes": 33077,
+      "sha256": "b1342748366b7aa3df6a7d1aed31091feea5db68f4da9acd7447cbc0c0b27bd9",
+      "crc32": "9524a0e1",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-sun-960x540-start.layout.json"
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.png",
+      "bytes": 168374,
+      "sha256": "7a5dfe69f8d30fb5d482d721f76917a09b070ea63a409dea3af06044473e6dcf",
+      "crc32": "b85b0a1d",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-sun-960x540-start.png",
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/learning-english-report.json",
+      "bytes": 138951,
+      "sha256": "d70a83dc6e5b181334a3a9f948d064c2bf52437b1a95a268d9081d10395845e1",
+      "crc32": "0cfe8c69",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/learning-english-report.json"
+    },
+    {
+      "artifact_entry": "english-render.log",
+      "bytes": 6829,
+      "sha256": "6a1a693dd2c5df0c86d23d873ecb612d30b81d863ab5bff58ce97402035b4002",
+      "crc32": "0f6fca7a",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-render.log"
+    },
+    {
+      "artifact_entry": "godot-version.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "crc32": "12281f13",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/godot-version.txt"
+    },
+    {
+      "artifact_entry": "import.log",
+      "bytes": 165491,
+      "sha256": "cff81bc64e99888a3eca0e1ef611ce7e275ed363467f391617fa4ee22c1380cf",
+      "crc32": "be47ea4b",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/import.log"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "bytes": 6138,
+      "sha256": "568ea0a47cb029675d191242bc84b97020e92d2fe3a8104639fdf080c5d04fe7",
+      "crc32": "38dc876c",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/project-validation.log"
+    }
+  ]
+}

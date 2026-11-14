@@ -1,0 +1,91 @@
+{
+  "reviewed_current_images": [
+    "english-ball-960x540-start.png",
+    "english-ball-960x540-hint.png",
+    "english-ball-960x540-complete.png",
+    "english-book-412x915-start.png",
+    "english-book-412x915-complete.png",
+    "english-ruler-640x360-start.png",
+    "english-car-2400x1080-start.png",
+    "english-pen-1080x2400-start.png",
+    "english-sun-960x540-start.png",
+    "english-apple-960x540-start.png",
+    "english-bag-960x540-start.png",
+    "english-school-bag-412x915-start.png",
+    "english-rubber-640x360-start.png",
+    "english-desk-960x540-start.png",
+    "english-chair-640x360-start.png",
+    "english-pencil-case-1080x2400-start.png",
+    "english-paper-2400x1080-start.png"
+  ],
+  "notes": {
+    "english-ball-960x540-start.png": [
+      "Titel und vollständige deutsche Anweisung sind lesbar. Ball, Sonne und Apfel sind als getrennte 3D-Objekte auf den nummerierten Podesten 1–3 sichtbar; Lumo bleibt frei sichtbar. Untere Zahlen-, Hinweis-, Neu-, Anhören- und Rückkehrtasten sind vollständig im Bild.",
+      "Stilisierte Geometrie und deutliche Schatten; das Einzelbild belegt keine Bildrate oder Sprachwiedergabe."
+    ],
+    "english-ball-960x540-hint.png": [
+      "Die Anweisung fordert ausdrücklich die eigene Auswahl. Der Ball auf Podest 1 ist sichtbar hell umrandet, während Sonne und Apfel weiterhin sichtbar bleiben. Hinweis ist ausgegraut; Auswahl und Zur Aufgabe sind weiterhin vorhanden.",
+      "Kein automatisches Abschließen ist aus dem Bild abgeleitet; die Zustandsbindung wird separat aus dem aktuellen Sidecar geprüft."
+    ],
+    "english-ball-960x540-complete.png": [
+      "Lesbar sind Richtig: „Ball“ sowie ball = Ball · Passend zugeordnet. Zahlen und Hinweis sind ausgegraut; Neu, Schritt anhören und Zur Aufgabe bleiben sichtbar. Lumo, drei Objekte und der Rahmen um den Ball bleiben im freien Bühnenbereich.",
+      "Das Bild zeigt den nativen Abschlusszustand, keinen tatsächlich ausgeführten Android-/Flutter-Rücksprung."
+    ],
+    "english-book-412x915-start.png": [
+      "Im schmalen Portraitformat ist die Anweisung vollständig umgebrochen und lesbar. Lineal, Federpennal und Buch stehen vertikal auf den Podesten 1–3. Lumo ist links vollständig sichtbar; die Fußleiste verteilt die Aktionen auf zwei Reihen ohne abgeschnittene Beschriftung.",
+      "Die sichtbaren Ränder stammen aus dem aktuellen Desktop-Plattformfixture; echte Android-Systemleisten sind hier nicht aufgenommen."
+    ],
+    "english-book-412x915-complete.png": [
+      "Richtig: „Buch“ und book = Buch · Passend zugeordnet sind lesbar. Das untere Buch ist hell umrandet. Die Auswahl ist deaktiviert, während Neu, Schritt anhören und Zur Aufgabe vollständig sichtbar bleiben.",
+      "Der sichtbare Abschluss und die zweizeilige Fußleiste sind kein Android-Rückkehrbeleg."
+    ],
+    "english-ruler-640x360-start.png": [
+      "Die kurze Queransicht zeigt die vollständige Aufgabe, Lumo sowie Papier, Federpennal und Lineal auf drei getrennten Podesten. Die kompakte Fußleiste hat alle sieben Aktionen einschließlich Anhören und Zur Aufgabe sichtbar.",
+      "Objekte sind in dieser kurzen Ansicht klein und stilisiert; die 48-dp-Eingabegeometrie wird aus dem aktuellen Layoutbericht und den Inputprüfungen gebunden, nicht aus vermuteten Meshabmessungen."
+    ],
+    "english-car-2400x1080-start.png": [
+      "Die große Queransicht zeigt Ball, Schreibtisch und rotes Spielzeugauto klar getrennt auf den Podesten 1–3. Titel car, vollständige Anweisung und kompakte Fußleiste sind lesbar; Lumo ist vollständig frei. Der linke sichere Abstand ist sichtbar eingehalten.",
+      "Die Bildschirmränder sind eine skalierte Plattformfixture, kein echter Android-Cutout-Nachweis."
+    ],
+    "english-pen-1080x2400-start.png": [
+      "Der blaue Kugelschreiber mit Clip und Spitze ist als Gegenstand 1 sichtbar; Tasche und Lineal folgen darunter. Titel pen und die vollständig umgebrochene Anweisung sind lesbar, Lumo ist frei, die großen unteren Aktionen passen in zwei Reihen.",
+      "Das Bild belegt Form und Anordnung; die deutsche Bedeutungsbindung Kugelschreiber wird zusätzlich im echten Producer geprüft."
+    ],
+    "english-sun-960x540-start.png": [
+      "Tasche, strahlenförmige Sonne und roter Apfel sind sichtbar und den Zahlen 1–3 zugeordnet. Lumo, Titel sun und sämtliche Fußaktionen sind frei und lesbar.",
+      "Die Sonne ist bewusst ein stilisiertes anschauliches 3D-Modell; keine reale Lichtsimulation oder Aussprache wird daraus abgeleitet."
+    ],
+    "english-apple-960x540-start.png": [
+      "Radiergummi, blaue Schultasche und roter Apfel sind getrennt sichtbar; der Apfel mit Blatt ist klar erkennbar. Titel apple, deutsche Anweisung und sämtliche Fußaktionen sind lesbar; Lumo bleibt unverdeckt.",
+      "Die Gegenstände sind einfach modelliert; kein zusätzlicher Geräte-/Audioleistungsbeleg."
+    ],
+    "english-bag-960x540-start.png": [
+      "Der Titel bag ist lesbar. Radiergummi, Schreibtisch und offene braune Tasche mit zwei Griffen sind auf den drei Podesten erkennbar; die Tasche ist visuell von der blauen Schultasche anderer Aufgaben unterschieden. Alle Fußaktionen und Lumo bleiben frei.",
+      "Die Tasche ist ein einfaches geometrisches Modell; aus diesem Startbild folgt noch keine abgeschlossene Aufgabe."
+    ],
+    "english-school-bag-412x915-start.png": [
+      "Der vollständige mehrteilige Titel school bag passt in die Portrait-Kopfzeile. Radiergummi, Schreibtisch und blaue Schultasche sind vertikal sichtbar; die Schultasche hat Griff und Fronttasche. Lumo sowie beide Reihen der Fußaktionen sind unverdeckt.",
+      "Die Wort-/Antwortbindung wird im echten Producer geprüft, nicht durch die sichtbare Überschrift allein."
+    ],
+    "english-rubber-640x360-start.png": [
+      "Im kurzen Querformat bleiben Titel rubber, die gesamte Anweisung und alle Aktionen lesbar. Federpennal, Buch und heller Radiergummi mit blauer Hülle sind auf getrennten Podesten sichtbar; Lumo wird nicht vom HUD verdeckt.",
+      "Das Radiergummimodell ist klein und schlicht; Eingabegrößen werden separat aus dem Layoutbericht gebunden."
+    ],
+    "english-desk-960x540-start.png": [
+      "Buch, Lineal und Schreibtisch mit Tischplatte und Beinen stehen getrennt und vollständig im Bühnenbereich. Titel desk und komplette Anweisung sind lesbar; alle Aktionen und Lumo bleiben frei.",
+      "Die Darstellung belegt die geometrische Zuordnung im Renderer, keinen echten Android-Gerätelauf."
+    ],
+    "english-chair-640x360-start.png": [
+      "Die kompakte Queransicht zeigt Federpennal, grünen Sessel mit Lehne und Beinen sowie Papier. Der Titel chair und die vollständige Anweisung sind lesbar; Lumo und die sieben unteren Aktionen werden nicht überdeckt.",
+      "Der geringe Bühnenraum wird sichtbar genutzt; kein Anspruch auf physische Gerätebedienung oder 60 FPS."
+    ],
+    "english-pencil-case-1080x2400-start.png": [
+      "Der vollständige Titel pencil case und die zweizeilige Anweisung passen in den Kopfbereich. Blaue Schultasche, rotes Federpennal mit deutlich sichtbarem Reißverschluss und Lineal stehen auf getrennten Podesten; Lumo bleibt frei. Die Fußaktionen sind in zwei vollständig sichtbaren Reihen angeordnet.",
+      "Die Bedeutungsbindung Federpennal stammt zusätzlich aus dem aktuellen echten Producer; Audio wurde nicht gehört."
+    ],
+    "english-paper-2400x1080-start.png": [
+      "Federpennal, Schreibtisch und ein liniertes Blatt mit umgelegter Ecke sind klar voneinander getrennt. Titel paper, vollständige Anweisung und kompakte Fußaktionen sind lesbar. Lumo und die Objekte bleiben zwischen Kopf- und Fußbereich frei.",
+      "Das große Querformat ist ein echter Desktop-Rendereroutput mit Plattformfixture, kein Android-Screenshot."
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "scope": "Only new finite documentation; previous inventory, product sources and original evidence unchanged.",
+  "host_revision": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "native_product_revision": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "new_test_only_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "entries": [
+    {
+      "path": "docs/evidence/current-master-module-report-20261114/MODULMATRIX_2e20_29080.md",
+      "mode": "100644",
+      "type": "blob",
+      "source_path": "/workspace/scratch/5987865ae883/qa/current-master-module-report-20261114/MODULMATRIX_2e20_29080.md",
+      "bytes": 23706,
+      "sha256": "84806e7250b95abfca0c610d1cb1a75bce80f9a5f0f0f919946c62bf8683620f",
+      "git_blob_sha": "47b3582e139681b7c6df4734b4d83a7fa5ae7308"
+    },
+    {
+      "path": "docs/evidence/current-master-module-report-20261114/module-matrix-source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "source_path": "/workspace/scratch/5987865ae883/qa/current-master-module-report-20261114/module-matrix-source-binding.json",
+      "bytes": 28659,
+      "sha256": "c86bd72578089279bf4804b6dd8644ea59b52a29be546135da456d3eda1df5dc",
+      "git_blob_sha": "1fdeb99329f28096eaada7e8081f7be4656676d9"
+    }
+  ],
+  "observation_utc": "2026-11-14T16:03:38Z"
+}

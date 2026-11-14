@@ -1,0 +1,9 @@
+{
+  "attempted_endpoint": "actions/jobs/132498257372",
+  "observed_error": {
+    "error": "HTTPError: 400: GitHub Fetch URL is not an allowed public GitHub repository or search endpoint. (Response: None)",
+    "error_code": "INVALID_ARGUMENT"
+  },
+  "successful_supported_endpoint": "actions/runs/43611803404/attempts/1/jobs?per_page=100",
+  "scope": "Tool allowlist rejected the direct job endpoint; actual job metadata was obtained through the supported attempt job list. No product or CI error is inferred."
+}

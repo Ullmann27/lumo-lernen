@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "status": "FLUTTER_PASS_FROM_CURRENT_ORIGINAL_JOB_LOG",
+  "head_sha": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "run_id": 43610022344,
+  "job_id": 132492830056,
+  "original_job_log": {
+    "bytes": 120054,
+    "sha256": "9c5db4b7a25782c3704032ab8406aefcf446ecaf3bf3b15e65ed9f8ffe4bcfc8",
+    "fetched_once_after_terminal_confirmation": true
+  },
+  "summary": {
+    "status": "PASS",
+    "passed": 2608,
+    "failed": [],
+    "skipped": [],
+    "capture_error_files": [],
+    "flutter_exit_code": 0,
+    "runner_completed_successfully": true,
+    "runner_errors": [],
+    "scope": [
+      "complete Flutter suite; capture outputs recorded below"
+    ],
+    "capture_png_counts": {
+      "LUMO_TUTORING_CAPTURE_DIR": {
+        "directory": "tutoring",
+        "pngs": 6
+      },
+      "LUMO_RIG_STRESS": {
+        "directory": "rig-stress",
+        "pngs": 27
+      },
+      "LUMO_CARDS_OPPONENT_CAPTURE": {
+        "directory": "cards-opponents",
+        "pngs": 4
+      },
+      "LUMO_STREAM_E_CAPTURE": {
+        "directory": "cards-memory",
+        "pngs": 8
+      },
+      "LUMO_NAVIGATION_CAPTURES": {
+        "directory": "navigation",
+        "pngs": 26
+      },
+      "LUMO_GUIDED_CAPTURE_DIR": {
+        "directory": "guided-learning",
+        "pngs": 170
+      },
+      "LUMO_VISUAL_CAPTURE_DIR": {
+        "directory": "reasoning",
+        "pngs": 15
+      },
+      "LUMO_TOUR_DIR": {
+        "directory": "tour",
+        "pngs": 62
+      },
+      "LUMO_FLUTTER_GAMES_CAPTURE": {
+        "directory": "games",
+        "pngs": 16
+      },
+      "LUMO_LEARNING_CAPTURE_DIR": {
+        "directory": "learning-adventure",
+        "pngs": 80
+      },
+      "LUMO_COMPANION_CAPTURE_DIR": {
+        "directory": "companion",
+        "pngs": 6
+      },
+      "LUMO_SPATIAL_CAPTURES": {
+        "directory": "reading",
+        "pngs": 12
+      },
+      "LUMO_CAPTURE_DIR": {
+        "directory": "modernization",
+        "pngs": 42
+      },
+      "LUMO_CARD_FACE_EXPORT_DIR": {
+        "directory": "card-face-exports",
+        "pngs": 56
+      },
+      "LUMO_NEXTGEN_READING_CAPTURES": {
+        "directory": "nextgen-reading",
+        "pngs": 6
+      },
+      "LUMO_READING_CAPTURES": {
+        "directory": "reading-passages",
+        "pngs": 3
+      },
+      "LUMO_ASSISTED_LEARNING_CAPTURES": {
+        "directory": "assisted-learning",
+        "pngs": 2
+      },
+      "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+        "directory": "native-profiles",
+        "pngs": 4
+      }
+    },
+    "capture_file_outputs": {
+      "LUMO_CARDS_CUP_CAPTURE": {
+        "path": "cards-cup/trophy.png",
+        "created": true
+      }
+    },
+    "rendered_png_count": 546
+  },
+  "workflow_completion_metadata": "Root independently read terminal run SUCCESS and all three jobs SUCCESS; this reviewer did not repeat that status request. Earlier direct metadata had already shown hostcompile and Memory source jobs SUCCESS.",
+  "separate_scope": [
+    "2608 complete Flutter tests are from this actual job summary and not copied from cb85.",
+    "No large artifact was downloaded by this reviewer.",
+    "546 generated PNGs are not a personal image-review claim.",
+    "The Native29080/Host50503 paired authority result remains separate.",
+    "The integration of the new Android probe does not constitute execution of its Android tour."
+  ],
+  "actual_warning_lines": [
+    "2026-11-14T15:33:38.1476012Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+  ],
+  "local_new_test_execution": false
+}
