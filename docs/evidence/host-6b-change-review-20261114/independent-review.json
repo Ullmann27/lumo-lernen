@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "reviewer": "root",
+  "run": 43616314410,
+  "attempt": 1,
+  "source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "actual_checkout": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+  "status": "All three jobs completed successfully",
+  "original_logs": [
+    {
+      "path": "docs/evidence/host-6b-change-review-20261114/132512110720.original.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6630bea69496049995238dd06c897bcb6c539b88"
+    },
+    {
+      "path": "docs/evidence/host-6b-change-review-20261114/132512152838.original.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3b3f4195d4f2bc47d0750cfa90ae6cd639bac5c"
+    },
+    {
+      "path": "docs/evidence/host-6b-change-review-20261114/132514737707.original.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "27da448bfa9f0605a6c811373af6e88896b24593"
+    }
+  ],
+  "analysis": {
+    "errors": 0,
+    "warnings": 4,
+    "infos": 149,
+    "total_issues": 153,
+    "actual_terminal_line": "2026-11-14T16:35:33.9098880Z 153 issues found. (ran in 14.6s)",
+    "warning_lines": [
+      "2026-11-14T16:35:33.9005983Z warning • Unused import: '../../widgets/premium/lumo_magic_background.dart'. Try removing the import directive • lib/features/magic_hub/lumo_magic_hub_screen.dart:16:8 • unused_import",
+      "2026-11-14T16:35:33.9021139Z warning • The value of the field '_ink' isn't used. Try removing the field, or using it • lib/features/story/widgets/lumo_story_scene.dart:150:16 • unused_field",
+      "2026-11-14T16:35:33.9038982Z warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/design/denkprofil_knobel_before_after_capture_test.dart:11:8 • unused_import",
+      "2026-11-14T16:35:33.9080764Z warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/iq/iq_extended_adventure_test.dart:5:8 • unused_import"
+    ],
+    "source_comparison": {
+      "producer_commit": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+      "files": [
+        {
+          "path": "lib/features/magic_hub/lumo_magic_hub_screen.dart",
+          "source_blob": "8821648399a519f736bc1a28aa0357dc4a90bd04",
+          "producer_blob": "8821648399a519f736bc1a28aa0357dc4a90bd04",
+          "byte_identical": true
+        },
+        {
+          "path": "lib/features/story/widgets/lumo_story_scene.dart",
+          "source_blob": "32c0b08c2aa472b3cb154754dd24c08c6f9218b8",
+          "producer_blob": "32c0b08c2aa472b3cb154754dd24c08c6f9218b8",
+          "byte_identical": true
+        },
+        {
+          "path": "test/design/denkprofil_knobel_before_after_capture_test.dart",
+          "source_blob": "b84e7fbc4cdd62148e3ffe611c72fae8524a5d9b",
+          "producer_blob": "b84e7fbc4cdd62148e3ffe611c72fae8524a5d9b",
+          "byte_identical": true
+        },
+        {
+          "path": "test/iq/iq_extended_adventure_test.dart",
+          "source_blob": "eec399eeeeacb3ea1a676d5de6d9c53f4f0789a3",
+          "producer_blob": "eec399eeeeacb3ea1a676d5de6d9c53f4f0789a3",
+          "byte_identical": true
+        }
+      ],
+      "method": "git rev-parse exact commit:path for each of the four warning-bearing files; exact Git blob equality."
+    }
+  },
+  "flutter_auxiliary_result": {
+    "passed": 2449,
+    "skipped": 202,
+    "failed": 0,
+    "terminal_line": "2026-11-14T16:43:48.7757792Z 08:04 +2449 ~202: All tests passed!",
+    "scope": "Ordinary auxiliary Flutter invocation. Not the authoritative full capture-enabled suite, whose independently read original summary reports 2651/0/0 and 566 PNG."
+  },
+  "limits": [
+    "No warning-free claim; informational lints remain visible in the unchanged original log.",
+    "No original full artifact was downloaded for this auxiliary run; all three original decoded job logs were downloaded once and preserved.",
+    "This review does not replace the seven-job actual APK and Android/update/delivery acceptance.",
+    "Earlier superseded change-review jobs cancelled by PR metadata updates are not counted as completed suites."
+  ]
+}

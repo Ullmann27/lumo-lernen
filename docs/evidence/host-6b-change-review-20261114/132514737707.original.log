@@ -1,0 +1,77 @@
+﻿2026-11-14T16:43:57.2244470Z Current runner version: '2.338.2'
+2026-11-14T16:43:57.2273961Z ##[group]Runner Image Provisioner
+2026-11-14T16:43:57.2275025Z Hosted Compute Agent
+2026-11-14T16:43:57.2275750Z Version: 20261103.629
+2026-11-14T16:43:57.2276619Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T16:43:57.2277610Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T16:43:57.2278485Z Worker ID: {9b054859-040c-45f4-9d2f-f6a01b10e145}
+2026-11-14T16:43:57.2279454Z Region: eastus2
+2026-11-14T16:43:57.2280278Z Cloud: Azure
+2026-11-14T16:43:57.2281050Z ##[endgroup]
+2026-11-14T16:43:57.2283187Z ##[group]Operating System
+2026-11-14T16:43:57.2284070Z Ubuntu
+2026-11-14T16:43:57.2284738Z 24.04.5
+2026-11-14T16:43:57.2285367Z LTS
+2026-11-14T16:43:57.2286088Z ##[endgroup]
+2026-11-14T16:43:57.2286774Z ##[group]Runner Image
+2026-11-14T16:43:57.2287655Z Image: ubuntu-24.04
+2026-11-14T16:43:57.2288395Z Version: 20261111.370.1
+2026-11-14T16:43:57.2290269Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T16:43:57.2292282Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-14T16:43:57.2293642Z ##[endgroup]
+2026-11-14T16:43:57.2295183Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T16:43:57.2297647Z Contents: read
+2026-11-14T16:43:57.2298340Z Metadata: read
+2026-11-14T16:43:57.2299231Z PullRequests: write
+2026-11-14T16:43:57.2300112Z ##[endgroup]
+2026-11-14T16:43:57.2302714Z Secret source: Actions
+2026-11-14T16:43:57.2303809Z Cache mode: write
+2026-11-14T16:43:57.2305091Z Prepare workflow directory
+2026-11-14T16:43:57.2677426Z Prepare all required actions
+2026-11-14T16:43:57.2735577Z Getting action download info
+2026-11-14T16:43:57.4487237Z Download action repository 'actions/github-script@v7' (SHA:f28e40c7f34bde8b3046d885e986cb6290c5673b)
+2026-11-14T16:43:57.7921594Z Complete job name: Update one PR status comment (no agent trigger loop)
+2026-11-14T16:43:57.8572609Z ##[group]Run actions/github-script@v7
+2026-11-14T16:43:57.8573331Z with:
+2026-11-14T16:43:57.8580984Z   script: const pr = context.payload.pull_request;
+const {data: latest} = await github.rest.pulls.get({...context.repo, pull_number: pr.number});
+if (latest.state !== 'open' || latest.head.sha !== pr.head.sha) {
+  core.info('Not publishing a stale verdict.');
+  return;
+}
+const marker = '<!-- lumo-change-review-v1 -->';
+const result = process.env.VERIFY_RESULT;
+const label = result === 'success' ? 'TECHNISCHE PRUEFUNG BESTANDEN'
+  : result === 'failure' ? 'FEHLER: PRUEFUNG NICHT BESTANDEN'
+  : 'NICHT VOLLSTAENDIG GEPRUEFT';
+const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+const body = `${marker}\n## Lumo: ${label}\n\n`
+  + `Quellstand: \`${pr.head.sha}\` · Flutter 3.44.9 · Jobstatus: \`${result}\`\n\n`
+  + `[Prueflauf, Dateiueberschneidungen und Originalprotokolle](${runUrl})\n\n`
+  + 'Analysefehler und fehlschlagende Tests blockieren den technischen Check. '
+  + 'Vorhandene Warnungen und einzelne uebersprungene Tests bleiben im Protokoll sichtbar. '
+  + 'Das ist KEINE APK-/Grafikfreigabe und ersetzt nicht die getrennten Pruefberichte '
+  + 'von Luna, Claude und ChatGPT. Keine automatische Reparatur und kein Auto-Merge. '
+  + 'Vor Aenderungen aktuellen Head, offene PRs und CLAIMs lesen; bei Fehlern '
+  + 'die vereinbarten drei echten Austausch-/Pruefrunden dokumentieren.';
+const comments = await github.paginate(github.rest.issues.listComments, {
+  ...context.repo, issue_number: pr.number, per_page: 100
+});
+const existing = comments.find(c => c.user?.login === 'github-actions[bot]' && c.body?.includes(marker));
+if (existing) {
+  await github.rest.issues.updateComment({...context.repo, comment_id: existing.id, body});
+} else {
+  await github.rest.issues.createComment({...context.repo, issue_number: pr.number, body});
+}
+
+2026-11-14T16:43:57.8591808Z   github-token: ***
+2026-11-14T16:43:57.8592200Z   debug: false
+2026-11-14T16:43:57.8592591Z   user-agent: actions/github-script
+2026-11-14T16:43:57.8593035Z   result-encoding: json
+2026-11-14T16:43:57.8593631Z   retries: 0
+2026-11-14T16:43:57.8594028Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-11-14T16:43:57.8594707Z env:
+2026-11-14T16:43:57.8595055Z   VERIFY_RESULT: success
+2026-11-14T16:43:57.8595447Z ##[endgroup]
+2026-11-14T16:43:59.7262428Z Cleaning up orphan processes
+2026-11-14T16:43:59.7734768Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/github-script@v7. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
