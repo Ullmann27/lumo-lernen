@@ -1,0 +1,22 @@
+[
+  {
+    "name": "all-build-preservation-contracts",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts/tests",
+      "-v"
+    ],
+    "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+    "exit_code": 1,
+    "elapsed_seconds": 55.50840337500267,
+    "skips_detected": true,
+    "log": "all-build-preservation-contracts.log",
+    "log_sha256": "594cf001c58078a63436d5023e7bf166c95b60a4daaf5630144e6f724c1c83d6",
+    "pythonpath": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa"
+  }
+]

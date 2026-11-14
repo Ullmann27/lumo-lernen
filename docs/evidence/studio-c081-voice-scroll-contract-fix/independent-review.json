@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "reviewer": "/root/games_worlds",
+  "reviewed_at_utc": "2026-11-14T02:41:41.358804+00:00",
+  "status": "NO_ADDITIONAL_BLOCKER_IN_TWO_EXPECTATION_CONTRACT_FIX",
+  "base_host": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+  "original_failed_run": 43545886722,
+  "original_failed_job": 132296974547,
+  "source_manifest": {
+    "path": "source-upload-manifest.json",
+    "sha256": "84869ef116dfa6987547939e8350b4d27f5f5aa34e58c21ce5950ad1772aaf1c"
+  },
+  "only_changed_file": {
+    "path": "scripts/tests/test_android_voice_scroll.py",
+    "original_git_blob": "c207e73d0c865a60067acb21e124762a4235ae32",
+    "patched_sha256": "b41399c3dea694591c4aafa9fdbad0aed62452063b570638e0e1692eddb996e8",
+    "patched_git_blob": "71287cd09024988f7d3cf212c2ed6d79b7bacc15",
+    "bytes": 7852
+  },
+  "independent_checks": {
+    "three_original_source_hashes_and_gitblobs_matched": true,
+    "both_helper_copies_byte_identical_to_baseline": true,
+    "exactly_two_new_assert_called_once_with_keywords": 2,
+    "added_keyword_value": "orientation=landscape",
+    "all_other_ast_nodes_equal_after_removing_exactly_these_keywords": true,
+    "existing_test_count": 7
+  },
+  "findings": [
+    "Der tatsächliche bestehende leave-Helper besitzt weiterhin den Standard orientation=landscape und gibt ihn explizit an beide native_text-Aufrufe weiter. Die zwei neuen Erwartungsargumente entsprechen genau diesem vorhandenen Verhalten.",
+    "assert_called_once_with bleibt jeweils erhalten. Zum Lernen/tap=True/exact=True und Zur Spielewelt/tap=True bleiben unverändert; keine flexiblere ANY-/Partial-Mock-Prüfung ersetzt den ursprünglichen Vertrag.",
+    "Alle vier Scrollgrenzen-/Fehleingabeprüfungen und der Kart-Launchvertrag bleiben identisch. Die Fehler werden nicht durch weniger Assertions, größere Suchbudgets oder geänderte Produkthelper verborgen."
+  ],
+  "original_logs_read": [
+    {
+      "path": "red-original-c081.log",
+      "sha256": "3eeb05b85602307472bdbc57c882f6155287cea6a63a07bf97d9e6e9cad346de",
+      "result": "7 Tests, genau2 Fehlaufruferwartungen; tatsächliche Aufrufe unterscheiden sich ausschließlich durch orientation=landscape"
+    },
+    {
+      "path": "green-seven-contracts.log",
+      "sha256": "085d48391f1732c0bf8a50ead6249531618670d11a8e77bb1cdd903fe83d0677",
+      "result": "7/7 PASS,0Skip,0.063s"
+    }
+  ],
+  "tests_rerun_by_reviewer": false,
+  "source_changes_by_reviewer": false,
+  "git_or_ci_mutation": false,
+  "limits": [
+    "Originaler c081-Studio-Run bleibt FAILURE.",
+    "Die sieben lokalen Mock-/AST-Verträge sind weder Emulator- noch vollständiger Python-Gesamtnachweis.",
+    "Root führt die beiden vollständigen aktuellen Python-Gruppen nach Integration gesondert aus."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "command": [
+    "python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "exit_code": 0,
+  "elapsed_seconds": 41.3479965810111,
+  "skip_detected": false,
+  "log": "all-android-probe-contracts.log",
+  "log_sha256": "02144370f74f098580d9c5a911069c0c82f338ca2bed83ec8249c32f79ffae92",
+  "explicit_environment": {
+    "PYTHONPATH": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa",
+    "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata",
+    "OMP_THREAD_LIMIT": "1",
+    "REQUIRE_ALL_TESTS": "true"
+  }
+}

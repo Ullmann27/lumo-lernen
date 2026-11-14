@@ -1,0 +1,86 @@
+{
+  "status": "ORIGINAL_C081_STUDIO_RUN_FAILED",
+  "run_id": 43545886722,
+  "job_id": 132296974547,
+  "source_commit": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+  "attempt": 1,
+  "finished_at_utc": "2026-11-14T02:35:21Z",
+  "actual_checkout_lines": [
+    "2026-11-14T02:22:22.3899054Z HEAD is now at c081cfa fix: synchronize Studio Android probes with actual scene state",
+    "2026-11-14T02:22:22.4060327Z c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+    "2026-11-14T02:22:22.5141495Z c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111"
+  ],
+  "job_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/original-job.log",
+    "bytes": 218809,
+    "sha256": "1dbd60250899aabe46c8d58b8350e59631b4678809b2b97747ba2569cecffacd"
+  },
+  "failed_step": "Verify all build and preservation contracts",
+  "actual_suite": {
+    "tests_run": 445,
+    "failures": 2,
+    "elapsed_seconds": 102.529,
+    "error_excerpt": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/original-two-failures.txt",
+      "bytes": 3357,
+      "sha256": "cc84496ede88e98e81f8f3d46b839df9bf8bf8d4e203a4b1f015b1f381d5cef2"
+    }
+  },
+  "exact_failures": [
+    "test_other_games_keep_the_existing_return_caption",
+    "test_voice_probe_returns_with_the_observed_exact_menu_caption"
+  ],
+  "cause_de": "Zwei bestehende Mock-Aufruferwartungen berücksichtigen den nun ausdrücklich weitergereichten unveränderten Standardwert orientation=landscape noch nicht. Die tatsächlichen Aufrufe haben die richtigen Beschriftungen, Touch- und Exact-Flags; die Testdatei verlangt einen veralteten Keywordumfang.",
+  "full_flutter": {
+    "passed": 2514,
+    "failed": 0,
+    "skipped": 0,
+    "rendered_pngs_reported": 546,
+    "summary": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/full-flutter-original-summary.json",
+      "bytes": 4562,
+      "sha256": "1545ef741d4c09c235aafba54819c27423b8d0a6eba2e7aa904ad7e834c9f4b5"
+    },
+    "images_downloaded_or_visually_reviewed": false
+  },
+  "skipped_actual_jobs": [
+    "Android API matrix tour",
+    "Android API35 creative gameplay",
+    "update-2019-from-2017",
+    "publish-reviewed-2019"
+  ],
+  "historical_unified": {
+    "run_id": 43545886858,
+    "verify_and_build": "failure",
+    "seven_publish_jobs": "skipped",
+    "source": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/unified-completed-jobs.json",
+      "bytes": 9644,
+      "sha256": "7a8d6eea7b781db6f6f265cb6207feae4227156cc3fb0c74c038eb52dd32b8e5"
+    },
+    "no_original_unified_error_log_downloaded": true
+  },
+  "isolated_repair": {
+    "only_changed_path": "scripts/tests/test_android_voice_scroll.py",
+    "source_manifest": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/source-upload-manifest.json",
+      "bytes": 1531,
+      "sha256": "84869ef116dfa6987547939e8350b4d27f5f5aa34e58c21ce5950ad1772aaf1c"
+    },
+    "local_red_cases": 7,
+    "local_red_failures": 2,
+    "local_green_cases": 7,
+    "local_green_failures": 0,
+    "independent_review": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/independent-review.json",
+      "bytes": 2740,
+      "sha256": "33d32fbdcab28b833a5f05521235458a44aba91795c50ceaf568932162d42e51"
+    }
+  },
+  "limits": [
+    "No new candidate APK was built in this run.",
+    "No Android or Creative game execution occurred after this failed build.",
+    "The original run remains FAILURE after the isolated local test repair.",
+    "Root executes both complete current Python groups separately; no such PASS is claimed here."
+  ]
+}

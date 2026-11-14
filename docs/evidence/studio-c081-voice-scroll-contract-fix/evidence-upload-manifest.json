@@ -1,0 +1,200 @@
+{
+  "status": "FROZEN",
+  "base_commit": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+  "original_run_id": 43545886722,
+  "original_run_status": "FAILURE",
+  "source_manifest": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/source-upload-manifest.json",
+  "file_count": 21,
+  "total_bytes": 368622,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/README.md",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/README.md",
+      "bytes": 1861,
+      "sha256": "ec54ddc705c0de240178894c014935790ece8351a85d38ef22d23d0ebbc8b4b1",
+      "git_blob": "6c8a51a27110243014651d11af4775f9806d9343",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/creative_android_probe.py",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/creative_android_probe.py",
+      "bytes": 59166,
+      "sha256": "11405ef5997cf26d3d5f81299a09b2e67eff8b14a7c5fad90ee267471bcf5bff",
+      "git_blob": "d377cee88da237025fd5bb57b6555451bf3f36a8",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/lumo_free_voice_android_probe.py",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/lumo_free_voice_android_probe.py",
+      "bytes": 18897,
+      "sha256": "c1450522e9f0144ee37824400bac551602e183d55c518dbd74559028ad115664",
+      "git_blob": "351c96cec03cdbf79fbfcfe78e52a9a9c0870a1f",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/baseline/scripts/tests/test_android_voice_scroll.py",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/baseline/scripts/tests/test_android_voice_scroll.py",
+      "bytes": 7778,
+      "sha256": "abb6822c5bc721c97b210222433d273618f5e5b9ef0ebfea8a35025c0e9e794a",
+      "git_blob": "c207e73d0c865a60067acb21e124762a4235ae32",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/green-seven-contracts-execution.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/green-seven-contracts-execution.json",
+      "bytes": 469,
+      "sha256": "545229d1ff774bda484a539e294057d438b3f9252bb7b60d577a186208926cca",
+      "git_blob": "bcd965a4f1ab5036fd511c8bedbb86ead8f0e43d",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/green-seven-contracts.log",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/green-seven-contracts.log",
+      "bytes": 1443,
+      "sha256": "085d48391f1732c0bf8a50ead6249531618670d11a8e77bb1cdd903fe83d0677",
+      "git_blob": "6c84d54123aff466f30d044b2175041bd37242f9",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/independent-review.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/independent-review.json",
+      "bytes": 2740,
+      "sha256": "33d32fbdcab28b833a5f05521235458a44aba91795c50ceaf568932162d42e51",
+      "git_blob": "1a08e7a400aecb4ed65ba56e7e9d84aea46fe0fb",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/patch-against-exact-c081.diff",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/patch-against-exact-c081.diff",
+      "bytes": 1017,
+      "sha256": "a0de0ee4f4ab821e38fddf6284c902558acf4279da6dea1d9700b16bf9737742",
+      "git_blob": "962f4c39f3973e551de85ab26f9213bcba4321a5",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/red-original-c081-execution.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/red-original-c081-execution.json",
+      "bytes": 510,
+      "sha256": "4a1c132e25612b05a7f7effa8d6003dac9e0502ea80633cd9665f75a82d679f2",
+      "git_blob": "191eab35839b6aca1c105bd4af3cc77ff3818328",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/red-original-c081.log",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/red-original-c081.log",
+      "bytes": 4096,
+      "sha256": "3eeb05b85602307472bdbc57c882f6155287cea6a63a07bf97d9e6e9cad346de",
+      "git_blob": "3d3013ff6d2c0c40f6f06caeb9894268b98fe552",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/root-local-integration.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/root-local-integration.json",
+      "bytes": 372,
+      "sha256": "eb52c935b8634464814cd62ed91b5e507a6092a1fae1bc5bc7bebe7a62142aa8",
+      "git_blob": "8539448c97e25e909adb981f81bbe1adfc9c06f9",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/source-binding.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/source-binding.json",
+      "bytes": 3070,
+      "sha256": "4455013e84bc401ac7048ff96fbe0f8fc2196215e4ea3627a2f42fcd7c3322d1",
+      "git_blob": "1f9e54351762dab2007d552c7050ac8e7a7b5e50",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/source-upload-manifest.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/source-upload-manifest.json",
+      "bytes": 1531,
+      "sha256": "84869ef116dfa6987547939e8350b4d27f5f5aa34e58c21ce5950ad1772aaf1c",
+      "git_blob": "9b684c86d75bff581d6b52926cf97629be1fa5a7",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/original-job.log",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/original-job.log",
+      "bytes": 218809,
+      "sha256": "1dbd60250899aabe46c8d58b8350e59631b4678809b2b97747ba2569cecffacd",
+      "git_blob": "a7ce01e9b516845313d2801fd890caa5a5635e2f",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/source-transfer-binding.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/source-transfer-binding.json",
+      "bytes": 505,
+      "sha256": "f6f3d3296a65cb95ca886ba1917ab94e225d5bca034b662cca2ee0bc0266c778",
+      "git_blob": "35ea4a4b308601ff2edbb1abb8748ce8917721eb",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/completed-jobs-metadata.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/completed-jobs-metadata.json",
+      "bytes": 10299,
+      "sha256": "9de33c8d3814a4f0b7612325878897cdd942f2eff1f5f666be0463b0b0e4444e",
+      "git_blob": "29b657a7a2837a495984acf67544e5fd2fdb3d11",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/run-completed-metadata.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/run-completed-metadata.json",
+      "bytes": 14777,
+      "sha256": "d4edee71c34d7a6e3bd244b3c8d8ba4b46b6d1987a4369115ed8ad6f5e7c2e57",
+      "git_blob": "1aebb0f40a238e7890cb749ad89b9f3f25dacd2d",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/unified-completed-jobs.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/unified-completed-jobs.json",
+      "bytes": 9644,
+      "sha256": "7a8d6eea7b781db6f6f265cb6207feae4227156cc3fb0c74c038eb52dd32b8e5",
+      "git_blob": "daef37f48c78b1a5b90cbd76db3610f1fd3fedb2",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/full-flutter-original-summary.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/full-flutter-original-summary.json",
+      "bytes": 4562,
+      "sha256": "1545ef741d4c09c235aafba54819c27423b8d0a6eba2e7aa904ad7e834c9f4b5",
+      "git_blob": "dcc9e6584f3ba0514eba6ac403a784f05c1763dc",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/original-two-failures.txt",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/original-two-failures.txt",
+      "bytes": 3357,
+      "sha256": "cc84496ede88e98e81f8f3d46b839df9bf8bf8d4e203a4b1f015b1f381d5cef2",
+      "git_blob": "ee442de8ad81610cb257db2848f7b9515c7c3311",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/review.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/review.json",
+      "bytes": 3719,
+      "sha256": "f12026631357684ac8cf4df091c8369b234af225fcd31050b4434ffcb946449e",
+      "git_blob": "8f2b34ee9fd7f86847efa52850fed482fad4f207",
+      "mode": "100644",
+      "change": "new"
+    }
+  ]
+}

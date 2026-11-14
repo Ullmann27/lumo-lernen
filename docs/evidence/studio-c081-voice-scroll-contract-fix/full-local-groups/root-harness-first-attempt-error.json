@@ -1,0 +1,7 @@
+{
+  "stage": "SOURCE_HASH_PREFLIGHT_BEFORE_TEST_PROCESS",
+  "error": "KeyError: repository_path",
+  "test_process_started": false,
+  "source_changes": false,
+  "resolution": "Read the actual complete manifest schema and use its real path field before rerunning."
+}

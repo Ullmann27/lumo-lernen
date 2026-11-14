@@ -1,0 +1,509 @@
+{
+  "status": "RETAINED_SELECTED_ORIGINALS_AND_EVIDENCE_UNCHANGED",
+  "selected_image_count": 32,
+  "all_selected_images_byte_equal_to_current_original_zip": true,
+  "selected_images": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "bytes": 249525,
+      "sha256": "cb24691851bed6f1f80d725a969f30bca87097510dcf7c4a5d06a0696116051a"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "bytes": 111652,
+      "sha256": "83b1274cc86d3e3b61d541e8ecdfcfff8de1d51561a87558dd516008ee9b68c8"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "bytes": 723952,
+      "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "bytes": 135397,
+      "sha256": "38d569ebbf45570cdb5747e23293c87fe03d15e2621e2a3c597ba06a0eba00f0"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "bytes": 605286,
+      "sha256": "eba10e3d7c56465094a8a544c1cbc5050f7ca9137f9f9334dff00c41401f49a1"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "bytes": 473524,
+      "sha256": "8dad3d2796bb0003b1681f128870eca0e9d76b5df696c828274cbf17638bb5c0"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "bytes": 1409243,
+      "sha256": "712c218b7d7ebab55028b239b27a42cee7dd236a4f3f12ff1299b5871e6ce21a"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "bytes": 129588,
+      "sha256": "cbea53eb68d7d3a9e0c911c033fee24174833a3deb51fd7f05c24800334cce39"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "bytes": 1284146,
+      "sha256": "1d71cff9276cdde7219a24818ff1f2403ed56c141a0b25754d69e0a818873352"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "bytes": 57478,
+      "sha256": "8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "bytes": 436821,
+      "sha256": "e5c7126f114931c0f7776743120887d206e92874e5ff7206ff170aabdb2e169a"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "bytes": 864319,
+      "sha256": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "bytes": 568103,
+      "sha256": "157a99edd926d34371453144851b1a0522fd2dd60f959429d8ea0a0990351890"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "bytes": 289390,
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "bytes": 655541,
+      "sha256": "2c7f33890b366729cbd3495c17234cb813d29cdce1070790bbf42ae78c9f5ea5"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "bytes": 113792,
+      "sha256": "64cfd6c4bb10862a8cfb6499fe096282e273574a469dcdf2c80893b3aa43081a"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "bytes": 509560,
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "bytes": 1365772,
+      "sha256": "9cf63708774f49aef5abc66ea216c8dafe2bf6e6daee047bcc562ff45c55b44d"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "bytes": 4414005,
+      "sha256": "e14559539b807df855d18061d8e312ab69739d2e815f2f7948130cd2b8619fd7"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "bytes": 151982,
+      "sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "bytes": 300994,
+      "sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "bytes": 302160,
+      "sha256": "dc44ab4fc43f6aea55e4b3f23aea177c43c1a75bd68509465afc7e44bf14b3c6"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "bytes": 72841,
+      "sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "bytes": 109931,
+      "sha256": "4c04fa21563efcb22242a9e3298439f746d7d466e8077aad16f38e7607ad6645"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "bytes": 109557,
+      "sha256": "ae29d12159ed846e3e7072123dea9d66791db20d396790a4c50165fd899ea634"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "bytes": 1272873,
+      "sha256": "9754ab497a1b17a04f1170e7cec881f4e4d3c3ef692c45119b145c96510e7fe2"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "bytes": 1141738,
+      "sha256": "cdc1a62ed087f35d3eb751dcb8fa29dec2862b3d82ebe75c5bd21deb71d49491"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "bytes": 1002640,
+      "sha256": "53cc8d0e9a5fed74902802d1194fbaa2970c7b7f298dca26d886115f336acb86"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "bytes": 1858128,
+      "sha256": "bf713689f7c17c42e9c0ab8fdfaf2faf68dc801e1b5c5110ab7a74c14ff1e79b"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "bytes": 2497923,
+      "sha256": "a2e11ff77cb5126a89a8ca46fc3c216ed7e719b8987e247def257649c5047489"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "bytes": 479283,
+      "sha256": "6622d8c3ab667f13e83b827f560168b254e768beb0b280f076a3d31c5323d719"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "bytes": 2815565,
+      "sha256": "bdda79f17b7500edf24dba2dc9453759fe87d3920e8c8eb3c23f4cb93318e9ee"
+    }
+  ],
+  "evidence_file_count": 61,
+  "all_61_evidence_hashes_equal_frozen_manifest": true,
+  "evidence_files": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/README.md",
+      "bytes": 3039,
+      "sha256": "e394ad5957ac0b2e26a4e07b49646f434858f8ce179f4ad2d592a73534fc1153"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/REVIEW.json",
+      "bytes": 8895,
+      "sha256": "1f7de860d361a62b3cf46a674b73bd69a430505643101b68e3700225cd6af48f"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/record-input-paths.json",
+      "bytes": 588,
+      "sha256": "630753133454795992442631e4894524aa1c27350a7cb315220c944f9b638bc8"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/commit-original.json",
+      "bytes": 1759,
+      "sha256": "2e358de121c94fba4ec05db3e28e29cde819511443f3c30a4135f69ce58d971c"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/branch-final-original.json",
+      "bytes": 421,
+      "sha256": "805f1d5bbce195a2cb08b12d6676b426e47526a2896229f6ae1e33e39e944434"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/run-completed-original.json",
+      "bytes": 13411,
+      "sha256": "9eac18745735afbd5e6f3918198ec748f2936b59fc5db7aa563075082b2e11fa"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/jobs-completed-original.json",
+      "bytes": 19812,
+      "sha256": "1b07aceb20205b0c975f6b1fc4f0e470a71a48466cf77430b0eef86099dc6cf5"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/artifacts-completed-original.json",
+      "bytes": 5840,
+      "sha256": "80603a3aea66a791f94eba651bc35d05d7638e5b04c99e4ca5a966425972d4dc"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/native-original-artifact.json",
+      "bytes": 727,
+      "sha256": "49b1382e83d6d8c59842afcb41d077a4d3153cdcc2248e0c32095496884806b1"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/studio-original-artifact.json",
+      "bytes": 806,
+      "sha256": "0e21ac0d5b1adbc9ed52c48975b4c30eb5f404c4c8a6e1d9590eea0b397c5f12"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/archive-release-original.json",
+      "bytes": 7887,
+      "sha256": "8f7d47306b23c7b2e349a06de8455d1538d226d0de28ebe6e0311eacd436891b"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/archive-original-job.log",
+      "bytes": 9532,
+      "sha256": "ce6c4321ec8d77baf869970e1ac3100c1d79fd88fe48a1384c36f8288749f8c6"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/new-worlds-original-job.log",
+      "bytes": 574087,
+      "sha256": "e76688a85cbf0cad8adcf6ea2e7fdc6800fa1f4052de444120d0fee0b0c4127b"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/all-head-workflows-original.json",
+      "bytes": 188341,
+      "sha256": "de38056cb08d62e41bf7dc54291902cc010349b1b80749fc4b6e0e7e35a503e4"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/other-workflows-summary.json",
+      "bytes": 4774,
+      "sha256": "038dcb87a1de45ea450b0285785ced37e48c6cadac92fd9f06bfe24bb0a2812d"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/host-verifier-read-only-check.json",
+      "bytes": 2625,
+      "sha256": "4949fa93022f66060c1e50823859c7b382970eacc3601faf2b0ff297372cca95"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/original-archive-inventory.json",
+      "bytes": 37569,
+      "sha256": "f1dc9f2af7a07b1bf38fe77d1eb7e913eff8be73e330733371e61162eba157c4"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/planned-selection-original.json",
+      "bytes": 6004,
+      "sha256": "7cdc0715d8767c6d7ea3fa0648f9ca140efb724c98da9f423deaa1b2b9fbcfe6"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/review-plan-extraction.json",
+      "bytes": 18534,
+      "sha256": "e192a122d8ed3ff1284a81ea5009634d148950350287021ea186d1e4b9295ce5"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/studio-partial-inventory.json",
+      "bytes": 17969,
+      "sha256": "ac93e5c621b2921b465fc5fdb1b585c98a4395d8b0ac76909c904ec700ae99a8"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/early-selected-binding.json",
+      "bytes": 12347,
+      "sha256": "dba392b5e002df1ddd9bc06978fca42e809e46e7ea196285df392afb60231721"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/studio-original-log-inspection.json",
+      "bytes": 7889,
+      "sha256": "d90c50317570138c2a2ca948a73c2b9221da0328fe8c9adaa5dce38d4ae3652d"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/native-original-inspection.log",
+      "bytes": 373,
+      "sha256": "b9a2b9211bf45ded03b2907be62817f554865fff6197d6c43d580918b45edfe7"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/studio-original-inspection.log",
+      "bytes": 370,
+      "sha256": "a98b6dca1e648a972a3edf47d4f3cf6e9c7a84a92252cea498c67543ba03e520"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/inspect_original_archive.py",
+      "bytes": 10652,
+      "sha256": "ff07a929c266d7079f491efb2f2d0c9bf852ca3c9366320792ce96722fbb282d"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/source/.github/workflows/lumo-studio-2019.yml",
+      "bytes": 19740,
+      "sha256": "ef24a0668a05e92e8865ae0aaed618397d1de096939140df85d6040313825d3b"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/source/tools/tests/test_nextgen_runner.py",
+      "bytes": 18235,
+      "sha256": "58bc8cf4ddec61355bdd349612d99360b6142a3c3969ce12366e14c91c7e7560"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/source/tools/validate_studio.sh",
+      "bytes": 7230,
+      "sha256": "78d1cd6df60968c9d4d767b0c27c9b240df9968a817e703cec8d77294057b587"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/source/tools/validate_studio_touch.sh",
+      "bytes": 3840,
+      "sha256": "4a517be7f757c16bd724c4fa9aa3b34b4e89cc873d32b4acc60f0c1f3408dc53"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/results.tsv",
+      "bytes": 1095,
+      "sha256": "c61f7b94de60e2388e654f559e170cdc170bf97cac0e84f90850ceae7b1ac991"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/source-sha.txt",
+      "bytes": 41,
+      "sha256": "cf7b2ee3e631a5d4f65d887b4f8cc6a7e6c055a1803ef9708ccf21da8e7e3043"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/results.tsv",
+      "bytes": 706,
+      "sha256": "b091a75178d616ecc211ce1a6c6eb222df98ef9e0b837725f1ec77daf4427809"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/source-sha.txt",
+      "bytes": 41,
+      "sha256": "cf7b2ee3e631a5d4f65d887b4f8cc6a7e6c055a1803ef9708ccf21da8e7e3043"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/source-tree.txt",
+      "bytes": 41,
+      "sha256": "5207bf96d7ae8dbb5c1aaf90e800246f2d094a3b79d74cbb685c57a85a66a2d0"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/workshop/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/workshop/results.tsv",
+      "bytes": 112,
+      "sha256": "c9d8181d388096d44183d9cd5580dd5048efa46db21e83275024c2d41fe062e7"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/workshop/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/workshop/source-sha.txt",
+      "bytes": 41,
+      "sha256": "cf7b2ee3e631a5d4f65d887b4f8cc6a7e6c055a1803ef9708ccf21da8e7e3043"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/workshop/source-tree.txt",
+      "bytes": 41,
+      "sha256": "5207bf96d7ae8dbb5c1aaf90e800246f2d094a3b79d74cbb685c57a85a66a2d0"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/treasure/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/treasure/results.tsv",
+      "bytes": 102,
+      "sha256": "2899998b1e874e13568468e16ba6a7aa5593bb4342abf28f2746a915a2d373c0"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/treasure/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/treasure/source-sha.txt",
+      "bytes": 41,
+      "sha256": "cf7b2ee3e631a5d4f65d887b4f8cc6a7e6c055a1803ef9708ccf21da8e7e3043"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/treasure/source-tree.txt",
+      "bytes": 41,
+      "sha256": "5207bf96d7ae8dbb5c1aaf90e800246f2d094a3b79d74cbb685c57a85a66a2d0"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/build/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/build/results.tsv",
+      "bytes": 110,
+      "sha256": "5b5205d32babc9c7ca3ddb0c8616064dec845bbf32cebb2de2d71fdf34d73f26"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/build/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/build/source-sha.txt",
+      "bytes": 41,
+      "sha256": "cf7b2ee3e631a5d4f65d887b4f8cc6a7e6c055a1803ef9708ccf21da8e7e3043"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/build/source-tree.txt",
+      "bytes": 41,
+      "sha256": "5207bf96d7ae8dbb5c1aaf90e800246f2d094a3b79d74cbb685c57a85a66a2d0"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/renderer-images.json",
+      "bytes": 9641,
+      "sha256": "72141d7a0b652325f633b617ae39b7c860b2174a0bff26418bba25b3cb0d4e02"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.layout.json",
+      "bytes": 1277,
+      "sha256": "99a5f5fc7cd92d582f133d097adcebdb5313da7a9a726567cb43461e104181f8"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.layout.json",
+      "bytes": 1278,
+      "sha256": "bb818fcd6853ef33ee0deb8bff108ab91135969b89acdab8255f699921d7cd4e"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.layout.json",
+      "bytes": 1956,
+      "sha256": "e5f238c4f10698a9942e47b2eb872ed32613d179697768d1e301550d3aa6cfc9"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/mobile_safe_area_regression/mobile-safe-area.json",
+      "bytes": 12524,
+      "sha256": "124208838fe2c6b1cefaffc32ab7d18718fc6f6eb33922a28305708ebd786031"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/cards_safe_area_android_contract-headless.log",
+      "bytes": 553,
+      "sha256": "37c5c2a79205c1c00a28388a7ddf4a03b1df30827ce7f6fd258e1d681a408e04"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/cards_safe_area_regression-rendered.log",
+      "bytes": 1179,
+      "sha256": "d9a5ce0dffcefe9fe789581d6dbbfdc8b8d2aed5b315f6473fe389a37c4846e7"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/mobile_safe_area_regression-rendered.log",
+      "bytes": 9354,
+      "sha256": "f67e5c59344ed4ed7039a8dcfb85848c85187409d2cb27bcc8194b07f9f84587"
+    }
+  ],
+  "deletion_performed": false
+}

@@ -1,0 +1,45 @@
+test_existing_default_search_is_not_silently_unbounded (test_android_voice_scroll.LongParentScrollTest.test_existing_default_search_is_not_silently_unbounded) ... ok
+test_long_parent_diagnosis_is_reached_with_explicit_bounded_forward_search (test_android_voice_scroll.LongParentScrollTest.test_long_parent_diagnosis_is_reached_with_explicit_bounded_forward_search) ... ok
+test_unbounded_search_budget_is_rejected_before_reading_or_touching (test_android_voice_scroll.LongParentScrollTest.test_unbounded_search_budget_is_rejected_before_reading_or_touching) ... ok
+test_unknown_scroll_direction_is_rejected (test_android_voice_scroll.LongParentScrollTest.test_unknown_scroll_direction_is_rejected) ... ok
+test_other_games_keep_the_existing_return_caption (test_android_voice_scroll.PreservedKartEntryTest.test_other_games_keep_the_existing_return_caption) ... FAIL
+test_voice_probe_returns_with_the_observed_exact_menu_caption (test_android_voice_scroll.PreservedKartEntryTest.test_voice_probe_returns_with_the_observed_exact_menu_caption)
+The real 38136812518 menu exports Zum Lernen, not Zur Spielewelt. ... FAIL
+test_voice_probe_uses_the_observed_kart_launch_control (test_android_voice_scroll.PreservedKartEntryTest.test_voice_probe_uses_the_observed_kart_launch_control)
+The real 38135805251 hierarchy exports Losfahren, not the default. ... ok
+
+======================================================================
+FAIL: test_other_games_keep_the_existing_return_caption (test_android_voice_scroll.PreservedKartEntryTest.test_other_games_keep_the_existing_return_caption)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/baseline/scripts/tests/test_android_voice_scroll.py", line 161, in test_other_games_keep_the_existing_return_caption
+    touch.assert_called_once_with(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 961, in assert_called_once_with
+    return self.assert_called_with(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 949, in assert_called_with
+    raise AssertionError(_error_message()) from cause
+AssertionError: expected call not found.
+Expected: mock(PosixPath('/unit-fixture'), 'Zur Spielewelt', 'another-game-pause', tap=True)
+  Actual: mock(PosixPath('/unit-fixture'), 'Zur Spielewelt', 'another-game-pause', tap=True, orientation='landscape')
+
+======================================================================
+FAIL: test_voice_probe_returns_with_the_observed_exact_menu_caption (test_android_voice_scroll.PreservedKartEntryTest.test_voice_probe_returns_with_the_observed_exact_menu_caption)
+The real 38136812518 menu exports Zum Lernen, not Zur Spielewelt.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/baseline/scripts/tests/test_android_voice_scroll.py", line 143, in test_voice_probe_returns_with_the_observed_exact_menu_caption
+    touch.assert_called_once_with(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 961, in assert_called_once_with
+    return self.assert_called_with(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 949, in assert_called_with
+    raise AssertionError(_error_message()) from cause
+AssertionError: expected call not found.
+Expected: mock(PosixPath('/unit-fixture'), 'Zum Lernen', 'preserved-kart-pause', tap=True, exact=True)
+  Actual: mock(PosixPath('/unit-fixture'), 'Zum Lernen', 'preserved-kart-pause', tap=True, exact=True, orientation='landscape')
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.048s
+
+FAILED (failures=2)
