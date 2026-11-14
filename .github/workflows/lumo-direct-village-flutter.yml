@@ -91,7 +91,7 @@ jobs:
           python3 scripts/prepare_android.py --side-by-side
           python3 scripts/prepare_embedded_games.py
           python3 scripts/prepare_offline_voice.py
-          rg -n 'villageRequested|livingVillage|settlementMode' android/app/src/main/kotlin/
+          grep -R -n -E 'villageRequested|livingVillage|settlementMode' android/app/src/main/kotlin/
       - name: Compile real Kotlin app plus native game bridge against Gradle and SDK
         run: |
           set -euo pipefail
