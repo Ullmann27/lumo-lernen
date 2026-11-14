@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-14T17:15:27Z",
+  "repository": "Ullmann27/lumo-lernen",
+  "target_prefix": "docs/evidence/studio-host-b721-quiz-ci-20261114/",
+  "evidence_base_commit": "99c9fc48013163ba356644b456fc00d2273c2965",
+  "evidence_base_tree": "d124005853438fc4f77125970d42204a76c47e63",
+  "scope": "New current Studio Quiz visual review and exact cached original UTF8 metadata/logs only; immutable blobs, no ref/tree/commit operation.",
+  "source_identity": {
+    "host_revision": "b7210db3f53361987fd33592de438fd7984d991a",
+    "host_tree": "c65558a13e4dd2950eda7a685583e5484d9b9959",
+    "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "native_tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+    "run_id": 43619285124,
+    "job_id": 132521067495,
+    "artifact_id": 14124000432
+  },
+  "artifact": {
+    "name": "lumo-studio-2020-nextgen-authority-quiz",
+    "bytes": 501399,
+    "sha256": "ac00a40ffb8215e6e50b6f17a5aaedf346f1ed3c40f7a05224549f195c332a8d",
+    "zip_members": 35,
+    "all_member_crcs_valid": true,
+    "uncompressed_member_bytes": 775581,
+    "downloads": 1,
+    "local_verification_before_environment_loss": true
+  },
+  "files_count": 6,
+  "total_file_bytes": 354688,
+  "files": [
+    {
+      "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/review.json",
+      "name": "review.json",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8",
+      "bytes": 7625,
+      "sha256": "b7ea7a09d332a14de44311c589e65ce06b0fd30568c7918d2392ff17cb6ec9bb",
+      "git_blob_sha": "999fe9018542528ba8b0d0f9efa9537635629eae"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/image-review.json",
+      "name": "image-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8",
+      "bytes": 10383,
+      "sha256": "3d17e338ad0a8fc6029f2c83f179566a807e0af66e164143ce1e79127de035b5",
+      "git_blob_sha": "347168135b10f535c43a63c3d7b2ca5151125bcc"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/README.md",
+      "name": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8",
+      "bytes": 8548,
+      "sha256": "70360da4f3cecc7c0360482276936e7fc64047ba06f4e7df6a637a85272d3891",
+      "git_blob_sha": "71addc9ac8a194b6d8d3ef73754ae34a4df924b2"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/quiz-original-job.log",
+      "name": "quiz-original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8",
+      "bytes": 302585,
+      "sha256": "16258f88f6f7bd9f56f1cfeaa163755ff9ba3891d98f7927b9c36e04faf55c41",
+      "git_blob_sha": "f687a1c19276b82236a0ea7179947951051680f3"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/jobs-quiz-terminal-original.json",
+      "name": "jobs-quiz-terminal-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8",
+      "bytes": 23304,
+      "sha256": "e49584e38418ce4aa92c78381b46d88e5787b750acb298468c24368767dcd7ac",
+      "git_blob_sha": "1502faec00f44a847e62e352ff48dae1289a6f6b"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/artifacts-at-quiz-terminal-original.json",
+      "name": "artifacts-at-quiz-terminal-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8",
+      "bytes": 2243,
+      "sha256": "130d170ed2b222e670e5bbbac5424189e1db3715cff98816268a0a1c62cc6920",
+      "git_blob_sha": "643cf893d2a23d5e459b11d8b7ce82dcc0bf9600"
+    }
+  ],
+  "exclusions": [
+    "All35 extracted files are not part of this remote text handoff.",
+    "Six PNGs and original ZIP are not uploaded by this manifest.",
+    "No source files, rerun tests, APK/device acceptance or overall Studio approval."
+  ],
+  "verification": "Exact complete cached UTF8 strings measured before upload. Each create_blob must return the expected GitSHA and each complete UTF8 readback must be exactly identical. Local source hashes were measured before environment became unavailable; no post-outage filesystem read or rehash is claimed."
+}

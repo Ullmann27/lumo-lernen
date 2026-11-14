@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "observation_completed_utc": "2026-11-14T17:15:27Z",
+  "identity": {
+    "host_revision": "b7210db3f53361987fd33592de438fd7984d991a",
+    "host_tree": "c65558a13e4dd2950eda7a685583e5484d9b9959",
+    "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "native_tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+    "run_id": 43619285124,
+    "job_id": 132521067495,
+    "artifact_id": 14124000432
+  },
+  "archive": {
+    "name": "lumo-studio-2020-nextgen-authority-quiz",
+    "bytes": 501399,
+    "sha256": "ac00a40ffb8215e6e50b6f17a5aaedf346f1ed3c40f7a05224549f195c332a8d",
+    "zip_members": 35,
+    "all_member_crcs_valid": true,
+    "uncompressed_member_bytes": 775581,
+    "downloads": 1,
+    "local_verification_before_environment_loss": true
+  },
+  "reviewed_images": 6,
+  "blocking_images": 0,
+  "scope": "Sechs aktuelle Original-Standbilder des Studio-Quiz-Autoritätsjobs; Grenzen je Bild und getrennte Laufzeitbelege.",
+  "images": [
+    {
+      "file": "quiz-dart-question.png",
+      "bytes": 87196,
+      "sha256": "ef7e8f050dfba789bafe21fec062a33c301fe158403b76c85c062e3741c2ced4",
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout_sha256": "d8ef7a1107a5230aa6be5a0b51850067a4e5eafdb3e75202ec7580fd025ceb2b",
+      "findings": [
+        "Frage 1 von 20, Sachunterricht/Stufe 1 und „Womit riechen wir?“ sind vollständig lesbar. Vier beschriftete Antworten bilden ein geordnetes Zweispaltenraster.",
+        "Original-Lumo steht vollständig sichtbar links auf dem Podest vor dem Leuchtbogen. Kopf, Hände und Füße werden nicht vom Fragefeld verdeckt.",
+        "Zurück, Pause, Antwort aufdecken und alle drei Joker sind sichtbar. „Gesichert: 0 Sterne“ ist lesbar."
+      ],
+      "limits": [
+        "Statische Ansicht ohne eigenen Nachweis der Eingabefunktion.",
+        "Die Kulisse ist ein schlichtes Podest mit Leuchtbogen; daraus folgt keine umfassende visuelle Qualitätsfreigabe."
+      ],
+      "module": "quiz",
+      "artifact_entry": "quiz-pair/native/quiz-dart-question.png",
+      "reviewed": true,
+      "blocking_issue": false,
+      "accepted_within_static_scope": true,
+      "method": "Original PNG individually opened with view_image; no image editing or generation."
+    },
+    {
+      "file": "quiz-dart-selected-phone.png",
+      "bytes": 81245,
+      "sha256": "e8a225db8d33ef2b18b225d66d9875ba7030b223bb530ebd617e3aa3c9316004",
+      "dimensions": [
+        412,
+        915
+      ],
+      "layout_sha256": "2443e135ef97728c554a3979845b33f3d5e1f1b9c850e9023c330dcad68ebb81",
+      "findings": [
+        "Im schmalen Hochformat steht der sichtbare Lumo oberhalb der Frage. Header, Figurenbereich und Antwortkarte überlagern sich nicht.",
+        "B „Mit der Nase · Publikum: 77 %“ ist deutlich goldfarben als Auswahl markiert; A zeigt 5 %, C und D heißen sichtbar „Ausgeblendet“.",
+        "Antwort aufdecken, die drei Joker, der zweizeilige Lumo-Tipp und „Gesichert: 0 Sterne“ sind in diesem aktuellen Bild vollständig lesbar."
+      ],
+      "limits": [
+        "Die Figur ist im Hochformat kleiner als in der Landschaftsansicht.",
+        "Das Bild belegt weder eine Android-Dichte noch eine Geräteleistung."
+      ],
+      "module": "quiz",
+      "artifact_entry": "quiz-pair/native/quiz-dart-selected-phone.png",
+      "reviewed": true,
+      "blocking_issue": false,
+      "accepted_within_static_scope": true,
+      "method": "Original PNG individually opened with view_image; no image editing or generation."
+    },
+    {
+      "file": "quiz-dart-jokers.png",
+      "bytes": 98110,
+      "sha256": "32c2598cdb0eb153db52620383d2c22722f78a76060f7d14385f84d1a4531200",
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout_sha256": "22a424f29e8211dcb69b550acdc4d7a7ef849d85b57a48e042533e3b7a127099",
+      "findings": [
+        "Publikumswerte sind an A/B lesbar, C/D werden als „Ausgeblendet“ dargestellt. Die mehrzeiligen Antwortbeschriftungen bleiben in ihren Feldern.",
+        "Die drei genutzten Joker erscheinen gedimmt; der Lumo-Tipp ist als zweizeiliger Text sichtbar.",
+        "Lumo und Bogen bleiben links frei; der vertikale Scrollbalken rechts zeigt zusätzlichen Inhalt."
+      ],
+      "limits": [
+        "Die Zeile mit gesicherten Sternen ist in diesem Scrollausschnitt nicht sichtbar.",
+        "Aus diesem Einzelbild wird keine gleichzeitige Sichtbarkeit sämtlicher Inhalte behauptet."
+      ],
+      "module": "quiz",
+      "artifact_entry": "quiz-pair/native/quiz-dart-jokers.png",
+      "reviewed": true,
+      "blocking_issue": false,
+      "accepted_within_static_scope": true,
+      "method": "Original PNG individually opened with view_image; no image editing or generation."
+    },
+    {
+      "file": "quiz-dart-revealed-small.png",
+      "bytes": 45060,
+      "sha256": "2b90723637bd8b2ed9c82d19e213b1474740a6679d9ed4d95ada5d1515342f7f",
+      "dimensions": [
+        640,
+        360
+      ],
+      "layout_sha256": "d7cb3c207877f5ec5c33cef0c041a5f2aefa6fbf15bd77400581fb26e441705a",
+      "findings": [
+        "Der kleine Querformat-Ausschnitt zeigt die ausgeblendeten C/D-Zeilen, eine vollständig beschriftete „Nächste Frage“-Taste und die Rückmeldung „Richtig!“.",
+        "Lumo ist links vollständig sichtbar und hat beide Arme angehoben. Header mit Zurück und Pause bleibt frei.",
+        "Es erscheint weder ein fehlerhafter Null-Text noch eine erfundene Erklärung; der gelesene aktuelle Zustand enthält explanation=null."
+      ],
+      "limits": [
+        "Frage und obere Antworten liegen oberhalb des sichtbaren Scrollausschnitts.",
+        "Das Standbild belegt keine Animationssequenz oder zeitliche Reaktion."
+      ],
+      "module": "quiz",
+      "artifact_entry": "quiz-pair/native/quiz-dart-revealed-small.png",
+      "reviewed": true,
+      "blocking_issue": false,
+      "accepted_within_static_scope": true,
+      "method": "Original PNG individually opened with view_image; no image editing or generation."
+    },
+    {
+      "file": "quiz-dart-paused.png",
+      "bytes": 44078,
+      "sha256": "7e9f04df8342b90f05314dddd4d507523615a6add2940521dd075144920e5559",
+      "dimensions": [
+        640,
+        360
+      ],
+      "layout_sha256": "4660ae5012965ec206f3f5474d043f5443afe55632e5ed2d0d2ba7dc5aa24337",
+      "findings": [
+        "Die Pause-Taste im Header ist gedimmt; Lumo steht links vollständig sichtbar.",
+        "Der aktuelle Scrollausschnitt zeigt „Fach für eine neue Runde“, „Alle Fächer“, „Deutsch“ und „Mathe“. „Sachunterricht“ ist am unteren Cliprand nur teilweise sichtbar.",
+        "Der Original-Sidecar bestätigt paused=true bei Frage 5. Die Fortsetzen-Taste ist in genau diesem Bild außerhalb des Ausschnitts; ihre hit_rect ist hier leer. Das wird ausdrücklich nicht als sichtbarer Fortsetzen-Nachweis ausgegeben."
+      ],
+      "limits": [
+        "Die spätere tatsächlich protokollierte Wiederaufnahme wird durch den Eingabe-/Zustandsbericht belegt, nicht durch diesen Screenshot.",
+        "Nicht alle bedienbaren Inhalte sind gleichzeitig sichtbar; der bestehende Scrollmechanismus ist erforderlich."
+      ],
+      "module": "quiz",
+      "artifact_entry": "quiz-pair/native/quiz-dart-paused.png",
+      "reviewed": true,
+      "blocking_issue": false,
+      "accepted_within_static_scope": true,
+      "method": "Original PNG individually opened with view_image; no image editing or generation."
+    },
+    {
+      "file": "quiz-dart-complete.png",
+      "bytes": 113825,
+      "sha256": "34568cebbd693a02dc7b48acec5ffd932abe3689b10019ed1f81e88d09c53189",
+      "dimensions": [
+        1200,
+        896
+      ],
+      "layout_sha256": "77a4d545918dcbdc357470fa22bb357b203ff6d1aba4b5736ebac86aa3b623ce",
+      "findings": [
+        "Die zwanzigste Frage des Logik-Finales und alle vier Antworten sind vollständig lesbar; C „Lea“ ist grün markiert.",
+        "„Richtig!“, „5000 Sterne gutgeschrieben“ und „Alle 20 Fragen geschafft!“ sind deutlich sichtbar. „Neue Runde“ und alle vier Fachwahlen sind sichtbar.",
+        "Lumo steht vollständig sichtbar auf dem Podest mit erhobenen Armen; die zwanzig Lichter des Bogens erscheinen gelb."
+      ],
+      "limits": [
+        "Die sichtbare Gutschrift stammt hier aus dem ausdrücklich deklarierten QA-Ledger. Sie belegt keine Android-AppState-/SharedPreferences-Auszahlung.",
+        "Das Bild belegt keinen Klang, keine neue Sprachsynthese und keine Geräte-FPS."
+      ],
+      "module": "quiz",
+      "artifact_entry": "quiz-pair/native/quiz-dart-complete.png",
+      "reviewed": true,
+      "blocking_issue": false,
+      "accepted_within_static_scope": true,
+      "method": "Original PNG individually opened with view_image; no image editing or generation."
+    }
+  ],
+  "limitations": [
+    "Nur dieser aktuelle, erfolgreiche Desktop-Dart/Godot-Quizlauf wird beurteilt; kein Gesamterfolg des noch getrennt laufenden Studio-Workflows.",
+    "Produktive Dart-Regeln, Fragebank, Controller/Session und Godot-Szene laufen durch einen ausdrücklich deklarierten QA-Dateitransport und ein QA-Belohnungsledger.",
+    "Kein Android-Binder-, APK-, Geräte-, physischer FPS-, AppState-/SharedPreferences- oder Profilwechselnachweis aus diesem Paket.",
+    "Keine eigene Tonwiedergabe gehört, keine tatsächliche EN/DE-Modellinferenz oder Lippensynchronität geprüft.",
+    "Sechs PNGs wurden neu tatsächlich einzeln geöffnet. Keine ältere Bildsichtung wurde übernommen.",
+    "Keine Quelländerung, keine Testwiederholung, kein zusätzlicher Renderer und keine Git-Ref-/Tree-/Commitänderung durch diesen Review."
+  ],
+  "sources": {
+    "host_commit_url": "https://github.com/Ullmann27/lumo-lernen/commit/b7210db3f53361987fd33592de438fd7984d991a",
+    "native_commit_url": "https://github.com/Ullmann27/lumo-godot/commit/29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "run_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43619285124",
+    "original_job_log_api_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132521067495/logs",
+    "artifact_api_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14124000432",
+    "artifact_archive_api_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14124000432/zip"
+  }
+}

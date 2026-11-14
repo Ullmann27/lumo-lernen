@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "status": "ENVIRONMENT_UNAVAILABLE",
+  "operation": "Final read-only detailed Memory recomputation from current extracted originals",
+  "error": "exec_command failed: CreateProcess: exec-server transport disconnected; failed to resume exec-server session: recovery timed out after45s",
+  "exit_status": "UNCONFIRMED",
+  "original_results_verification_json_written": "UNCONFIRMED",
+  "no_retry": true,
+  "filesystem_calls_after_unavailable": 0,
+  "earlier_download_setup": {
+    "missing_module": "requests",
+    "before_any_network": true,
+    "resolved_by": "stdlib urllib.request, no installation",
+    "actual_successful_download_count": 1
+  },
+  "remaining_work": [
+    "Attach six unavailable per-file SHA strings from original inventory.",
+    "Complete independent all19 raw request/touch correlation and current-original rehash when environment is available.",
+    "New Creative image review remains blocked while filesystem is unavailable."
+  ]
+}

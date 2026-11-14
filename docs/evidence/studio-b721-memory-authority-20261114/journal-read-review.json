@@ -1,0 +1,313 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14 17:19:18 UTC",
+  "status": "READ_CURRENT_ORIGINALS_WITH_EXPLICIT_RECOMPUTATION_LIMIT",
+  "source": {
+    "host": {
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "tree": "c65558a13e4dd2950eda7a685583e5484d9b9959"
+    },
+    "native": {
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada"
+    }
+  },
+  "run_id": 43619285124,
+  "job_id": 132521067548,
+  "artifact_id": 14123817299,
+  "artifact_sha256": "ea977121218cc945f3ddb1fe09bff81109d0ecbfaa45b7c955ed849194ffcc8a",
+  "original_members": {
+    "pair": "memory-pair/pair-result.json",
+    "authority": "memory-pair/authority/authority-result.json",
+    "native": "memory-pair/native/memory-runtime-report.json",
+    "wallet": "memory-pair/authority/wallet.json"
+  },
+  "member_reported_hashes": {
+    "authority": {
+      "bytes": 43958,
+      "sha256": "0f8951f1650c76c80f2f441de4b148bbb0e9d5c2d1eb11d40d8004a862a69420"
+    },
+    "native": {
+      "bytes": 19438,
+      "sha256": "7b697e96766783075888ce3a90ada6cbfedb343d4fe1e9c54b1ee6e1d02a77b0"
+    },
+    "wallet": {
+      "bytes": 134,
+      "sha256": "63a8a17dab36a81e9073447e04f209349bf5b346945b1828c40bcb42ae4a3c34"
+    }
+  },
+  "original_member_texts_uploaded": false,
+  "derivation": "Values manually reviewed from the actual current local JSON read before the environment failed; this JSON is a new review, not a byte reconstruction of original members.",
+  "source_before_after_equal_by_read": true,
+  "process_exit_codes_read": {
+    "DartAuthority": 0,
+    "GodotMemory": 0
+  },
+  "pair_success_read": true,
+  "pair_wall_seconds": 87.536,
+  "pair_report_checks": 243,
+  "native_terminal_marker": "[MemoryTableRuntime] PASS checks=244 inputs=57",
+  "view_marker": "MEMORY_VIEW_PASS checks=7020 captures=8",
+  "contracts_read_from_exact_log": [
+    {
+      "status": "PASS",
+      "cases": 30,
+      "passed": 30,
+      "failed": [],
+      "checks": 1694,
+      "skipped": 0,
+      "scope": "Production Dart authorities; original dealer and original opponent fixture; synthetic storage and lifecycle transport; no Android claim."
+    },
+    {
+      "status": "PASS",
+      "cases": 7,
+      "passed": 7,
+      "failed": [],
+      "checks": 13,
+      "skipped": 0,
+      "scope": "Actual production scheduler; one real Dart event-loop Timer plus deterministic delayed-callback and clock boundaries; no Android claim."
+    }
+  ],
+  "authority_request_rows": [
+    {
+      "input_id": 2,
+      "action": "flip",
+      "sequence": 1,
+      "revision": 2,
+      "ack": 1,
+      "rejected": 0,
+      "token": "b32be765ee90e3b87981e830813190a8",
+      "recordRevision": 2
+    },
+    {
+      "input_id": 3,
+      "action": "flip",
+      "sequence": 2,
+      "revision": 3,
+      "ack": 2,
+      "rejected": 0,
+      "token": "b32be765ee90e3b87981e830813190a8",
+      "recordRevision": 3
+    },
+    {
+      "input_id": 4,
+      "action": "pause",
+      "sequence": 3,
+      "revision": 4,
+      "ack": 3,
+      "rejected": 0,
+      "token": "b32be765ee90e3b87981e830813190a8",
+      "recordRevision": 4
+    },
+    {
+      "input_id": 6,
+      "action": "resume",
+      "sequence": 4,
+      "revision": 5,
+      "ack": 4,
+      "rejected": 0,
+      "token": "b32be765ee90e3b87981e830813190a8",
+      "recordRevision": 5
+    },
+    {
+      "input_id": 7,
+      "action": "pause",
+      "sequence": 5,
+      "revision": 6,
+      "ack": 5,
+      "rejected": 0,
+      "token": "b32be765ee90e3b87981e830813190a8",
+      "recordRevision": 6
+    },
+    {
+      "input_id": 8,
+      "action": "exit",
+      "sequence": 6,
+      "revision": 7,
+      "ack": 6,
+      "rejected": 0,
+      "token": "b32be765ee90e3b87981e830813190a8",
+      "recordRevision": 6
+    },
+    {
+      "input_id": 10,
+      "action": "resume",
+      "sequence": 1,
+      "revision": 1,
+      "ack": 1,
+      "rejected": 0,
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "recordRevision": 7
+    },
+    {
+      "input_id": 15,
+      "action": "pause",
+      "sequence": 2,
+      "revision": 6,
+      "ack": 2,
+      "rejected": 0,
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "recordRevision": 12
+    },
+    {
+      "input_id": 16,
+      "action": "restart",
+      "sequence": 3,
+      "revision": 7,
+      "ack": 3,
+      "rejected": 0,
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "recordRevision": 13
+    },
+    {
+      "input_id": 17,
+      "action": "flip",
+      "sequence": 4,
+      "revision": 8,
+      "ack": 4,
+      "rejected": 0,
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "recordRevision": 14
+    },
+    {
+      "input_id": 18,
+      "action": "flip",
+      "sequence": 5,
+      "revision": 9,
+      "ack": 5,
+      "rejected": 0,
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "recordRevision": 15
+    },
+    {
+      "input_id": 20,
+      "action": "flip",
+      "sequence": 6,
+      "revision": 11,
+      "ack": 6,
+      "rejected": 0,
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "recordRevision": 17
+    },
+    {
+      "input_id": 21,
+      "action": "flip",
+      "sequence": 7,
+      "revision": 12,
+      "ack": 7,
+      "rejected": 0,
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "recordRevision": 18
+    },
+    {
+      "input_id": 23,
+      "action": "flip",
+      "sequence": 8,
+      "revision": 14,
+      "ack": 8,
+      "rejected": 0,
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "recordRevision": 20
+    },
+    {
+      "input_id": 24,
+      "action": "flip",
+      "sequence": 9,
+      "revision": 15,
+      "ack": 9,
+      "rejected": 0,
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "recordRevision": 21
+    },
+    {
+      "input_id": 26,
+      "action": "flip",
+      "sequence": 10,
+      "revision": 17,
+      "ack": 10,
+      "rejected": 0,
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "recordRevision": 23
+    },
+    {
+      "input_id": 27,
+      "action": "flip",
+      "sequence": 11,
+      "revision": 18,
+      "ack": 11,
+      "rejected": 0,
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "recordRevision": 24
+    },
+    {
+      "input_id": 29,
+      "action": "exit",
+      "sequence": 12,
+      "revision": 20,
+      "ack": 12,
+      "rejected": 0,
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "recordRevision": 27
+    },
+    {
+      "input_id": 31,
+      "action": "exit",
+      "sequence": 1,
+      "revision": 2,
+      "ack": 1,
+      "rejected": 0,
+      "token": "8953eb1d0ed0a2c1ffb242069acfb7f2",
+      "recordRevision": 29
+    }
+  ],
+  "all_19_ack_equal_sequence_by_read": true,
+  "all_19_rejected_zero_by_read": true,
+  "token_count": 3,
+  "state_count_read": 32,
+  "native_input_entries_reported": 57,
+  "touch_structure_read": "Observed raw journal starts with ScreenTouch down/up at identical point followed by its exact request. Full independent tally/match of all 19 triples did not complete.",
+  "independent_all_19_raw_request_byte_comparison": "UNCONFIRMED: exec transport failure before a successful result",
+  "unfinished_reopen": {
+    "roundId": "79c878f2f21a462905135b22346f739a",
+    "restoredRoundId": "79c878f2f21a462905135b22346f739a",
+    "oldToken": "b32be765ee90e3b87981e830813190a8",
+    "newToken": "64921bcee435fa8930f809ba370f382f",
+    "paused": true,
+    "remainingMs": 550
+  },
+  "bot_phases_read": [
+    "botFirst",
+    "botSecond",
+    "resolve"
+  ],
+  "completed_round": {
+    "id": "787b92cabe0a150e9cb9c190d56beb0b",
+    "revision": 27,
+    "paused": true,
+    "rewarded": true,
+    "kindPairs": 4,
+    "lumoPairs": 0
+  },
+  "paid_reopen": {
+    "completedRoundId": "787b92cabe0a150e9cb9c190d56beb0b",
+    "newRoundId": "b89ffa76546ea965348ac4ba4ea4b75c",
+    "oldToken": "64921bcee435fa8930f809ba370f382f",
+    "newToken": "8953eb1d0ed0a2c1ffb242069acfb7f2",
+    "best": {
+      "schwer": 17,
+      "leicht": 4
+    },
+    "difficulty": "leicht",
+    "pack": "alle"
+  },
+  "qa_reward_ledger": {
+    "award_calls": 1,
+    "stars": 2,
+    "xp": 16,
+    "ids": [
+      "memory:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:787b92cabe0a150e9cb9c190d56beb0b"
+    ]
+  },
+  "durable_returns_reported": 3,
+  "scope": "Production Dart rules/controller/session and real Godot ScreenTouch events. Owner/deck plan/file transport/monotonic clock/reward ledger are explicit QA adapters. No Android Binder, real child SharedPreferences, global wallet disk, physical-device timing or FPS claim."
+}

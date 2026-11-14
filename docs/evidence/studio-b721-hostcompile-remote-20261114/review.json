@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43619285124,
+  "job_id": 132521067290,
+  "host_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+  "host_tree": "c65558a13e4dd2950eda7a685583e5484d9b9959",
+  "status": "PASS",
+  "actual_android_class_groups": 18,
+  "source_files_bound_to_exact_git_tree": 15,
+  "source_before_after_equal": true,
+  "groups": [
+    {
+      "name": "test_english_lesson_speech",
+      "cases": 11,
+      "failed": 0,
+      "errors": 0,
+      "skips": 0,
+      "duration_seconds": 1.4951932859999602,
+      "log_sha256": "5b5f2abb8671142afbe47104c6389a2fb0a8936ef2123fd7d20e7c915975c827"
+    },
+    {
+      "name": "test_learning_english_speech_lifecycle",
+      "cases": 8,
+      "failed": 0,
+      "errors": 0,
+      "skips": 0,
+      "duration_seconds": 15.821543426000005,
+      "log_sha256": "9226654b6c5e2166a49c81bcdaa8000af4b0f28e3c77322b56f2b854f25e1df1"
+    }
+  ],
+  "artifact_id": 14123896298,
+  "artifact_bytes": 28897,
+  "artifact_sha256": "d663f3ec1d3065aa6e1a1d4435003fd4cd7ee8d2553214b73425930201e93e24",
+  "artifact_crc_members": 12,
+  "original_log_bytes": 241532,
+  "original_log_sha256": "d0e6ae8c9129cb6eb3fa96f4a70632ac5762f8fd399e9083cded30e18499d027",
+  "scope": "Production Java/Kotlin contracts with explicit synthetic ONNX/Android boundaries; no inference, heard audio, APK or device claim",
+  "limitations": [
+    "Original compiler and third-party deprecation warnings are retained.",
+    "No physical Android execution, APK acceptance, model synthesis or heard English pronunciation is inferred.",
+    "The table transport28 cases belong to the separate earlier Feature job and are not claimed for this Studio hostcompile job."
+  ]
+}
