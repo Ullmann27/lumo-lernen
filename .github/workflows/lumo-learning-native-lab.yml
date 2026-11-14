@@ -1,0 +1,51 @@
+name: LUMO native learning laboratory
+on:
+  push:
+    branches: [work/lumo-learning-audit-20261114]
+    paths: [.github/workflows/lumo-learning-native-lab.yml]
+permissions:
+  contents: read
+jobs:
+  native-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: 7b16f2f5ab16f3d913ee170aefd9807c87216260
+          path: host
+      - name: Resolve exact native SHA from real host source
+        id: native
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          p=json.load(open('host/config/godot-source.json'))
+          assert p['repository']=='https://github.com/Ullmann27/lumo-godot.git'
+          assert re.fullmatch('[0-9a-f]{40}',p['revision'])
+          assert p['revision']=='17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845'
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f: f.write('sha='+p['revision']+'\n')
+          PY
+      - uses: actions/checkout@v4
+        with:
+          repository: Ullmann27/lumo-godot
+          ref: ${{ steps.native.outputs.sha }}
+          persist-credentials: false
+          path: native
+      - name: Archive real runtime inputs and hash-verified Godot
+        run: |
+          set -euo pipefail
+          mkdir -p native-export
+          test "$(git -C native rev-parse HEAD)" = '${{ steps.native.outputs.sha }}'
+          git -C native rev-parse HEAD > native-export/NATIVE-SOURCE.txt
+          git -C native archive --format=tar.gz --output="$PWD/native-export/native-runtime.tar.gz" HEAD scripts scenes assets project.godot export_presets.cfg
+          git -C native ls-files -s > native-export/NATIVE-INVENTORY.txt
+          bash host/scripts/install_godot_for_build.sh
+          cp "$RUNNER_TEMP/lumo-godot-engine-4.6.3/engine.zip" native-export/
+          sha256sum native-export/*.gz native-export/*.zip > native-export/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-learning-native-runtime-engine
+          path: native-export/
+          compression-level: 0
+          retention-days: 3
