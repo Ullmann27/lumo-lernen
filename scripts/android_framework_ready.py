@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -30,6 +31,12 @@ SERVICES = ("input", "settings", "activity", "package", "window")
 STOP_REQUESTED = False
 DEFAULT_MONITOR_SECONDS = 450
 MAX_MONITOR_SECONDS = 7200
+
+_CONSOLE_SPEC = importlib.util.spec_from_file_location(
+    "lumo_init_console_transport", Path(__file__).with_name("android_console_transport.py")
+)
+CONSOLE = importlib.util.module_from_spec(_CONSOLE_SPEC)
+_CONSOLE_SPEC.loader.exec_module(CONSOLE)
 
 
 def utc() -> str:
@@ -183,7 +190,7 @@ class Recorder:
 
 DEVICE_LOG_TAG = "LumoRuntimeRecorder"
 DEVICE_LOG_PATH = re.compile(r"/data/local/tmp/lumo-runtime-[0-9a-f]{32}")
-DEVICE_LOG_FILES = ("logcat.stdout", "logcat.stderr", "session.stdout", "session.stderr", "wait.stderr", "run.sh")
+DEVICE_LOG_FILES = ("logcat.stdout", "logcat.stderr", "session.stdout", "session.stderr", "wait.stderr", "run.sh", "console.pid", "launch.stdout", "launch.stderr")
 ROOT_RESTART_CLOSED = "adb: unable to connect for root: closed"
 
 
@@ -212,8 +219,12 @@ def device_logger_script(remote: str) -> str:
 def device_logger_launch(remote: str) -> str:
     script = device_logger_script(remote)
     return ("set -eu\numask 077\n"
+            "test \"$#\" -eq 1\ncase \"$1\" in ''|*[!0-9]*) exit 92;; esac\n"
+            "test \"$(getprop init.svc.console)\" = running\n"
             "test -x /system/bin/toybox && test -x /system/bin/logcat\n"
-            "mkdir " + remote + "\ncat > " + remote + "/run.sh <<'LUMO_LOGGER_SOURCE'\n" + script +
+            "mkdir " + remote + "\nexec > " + remote + "/launch.stdout 2> " + remote + "/launch.stderr\n"
+            "printf '%s\\n' \"$1\" > " + remote + "/console.pid\n"
+            "cat > " + remote + "/run.sh <<'LUMO_LOGGER_SOURCE'\n" + script +
             "LUMO_LOGGER_SOURCE\n"
             "/system/bin/toybox nohup /system/bin/toybox setsid /system/bin/sh " + remote +
             "/run.sh > " + remote + "/session.stdout 2> " + remote + "/session.stderr < /dev/null &\n"
@@ -225,10 +236,16 @@ def device_snapshot_script(remote: str, *, live: bool = True) -> str:
     device_logger_script(remote)  # Validate before any shell interpolation.
     script = "set -eu\ntest ! -L " + remote + "\ncd " + remote + "\n"
     if live:
-        for role in ("session", "logger"):
-            script += ("pid=$(cat " + role + ".pid)\ncase \"$pid\" in ''|*[!0-9]*) exit 92;; esac\n"
+        script += "printf '__console_service__\\n'\ngetprop init.svc.console\n"
+        for role in ("console", "session", "logger", "adbd"):
+            source = "pidof adbd" if role == "adbd" else "cat " + role + ".pid"
+            if role != "adbd":
+                script += "test -f " + role + ".pid && test ! -L " + role + ".pid\n"
+            script += ("pid=$(" + source + ")\ncase \"$pid\" in ''|*[!0-9]*) exit 92;; esac\n"
                        "printf '__" + role + "_stat__\\n'\ncat /proc/$pid/stat\n"
-                       "printf '__" + role + "_argv__\\n'\nod -An -v -tx1 /proc/$pid/cmdline\n")
+                       "printf '__" + role + "_argv__\\n'\nod -An -v -tx1 /proc/$pid/cmdline\n"
+                       "printf '__" + role + "_uid__\\n'\nawk '/^Uid:/{print $2, $3, $4, $5}' /proc/$pid/status\n"
+                       "printf '__" + role + "_cgroup__\\n'\ncat /proc/$pid/cgroup\n")
     for name in DEVICE_LOG_FILES:
         script += ("test -f " + name + " && test ! -L " + name + "\n"
                    "printf '__file_" + name + "__\\n'\nstat -c '%d:%i:%s:%f' " + name + "\n")
@@ -239,7 +256,9 @@ def device_snapshot_script(remote: str, *, live: bool = True) -> str:
 def parse_device_snapshot(raw: str, remote: str, *, live: bool = True) -> dict:
     expected = {"file_" + name for name in DEVICE_LOG_FILES} | {"script_hash"}
     if live:
-        expected |= {role + suffix for role in ("session", "logger") for suffix in ("_stat", "_argv")}
+        expected |= {"console_service"}
+        expected |= {role + suffix for role in ("console", "session", "logger", "adbd")
+                     for suffix in ("_stat", "_argv", "_uid", "_cgroup")}
     sections, current = {}, None
     for line in raw.splitlines():
         match = re.fullmatch(r"__([a-z_.]+)__", line)
@@ -266,19 +285,44 @@ def parse_device_snapshot(raw: str, remote: str, *, live: bool = True) -> dict:
         raise ValueError("Device logger script differs from the literal source")
     result["script_sha256"] = expected_hash
     if live:
-        for role in ("session", "logger"):
+        if sections["console_service"] != ["running"]:
+            raise ValueError("The actual init console service is not running")
+        for role in ("console", "session", "logger", "adbd"):
             stat = " ".join(sections[role + "_stat"])
             match = re.fullmatch(r"([0-9]+) \(.*\) (.*)", stat)
             fields = match[2].split() if match else []
             if len(fields) < 20 or fields[0] in ("Z", "X", "x"):
                 raise ValueError("Device logger process is absent or dead")
             argv = bytes.fromhex("".join(sections[role + "_argv"]).replace(" ", "")).decode().rstrip("\0").split("\0")
-            wanted = (["/system/bin/sh", remote + "/run.sh"] if role == "session" else
-                      ["/system/bin/logcat", "-b", "all", "-v", "threadtime"])
-            if argv != wanted:
+            wanted = {"console": ["/system/bin/sh"], "session": ["/system/bin/sh", remote + "/run.sh"],
+                      "logger": ["/system/bin/logcat", "-b", "all", "-v", "threadtime"]}
+            if (role != "adbd" and argv != wanted[role]) or (role == "adbd" and
+                    (not argv or argv[0] not in ("/system/bin/adbd", "/apex/com.android.adbd/bin/adbd"))):
                 raise ValueError("Device logger process command changed")
+            uid = " ".join(sections[role + "_uid"])
+            if not re.fullmatch(r"(?:0 0 0 0|2000 2000 2000 2000)", uid):
+                raise ValueError("Unexpected actual console/logger/adbd UID")
+            cgroups = {}
+            for line in sections[role + "_cgroup"]:
+                group = re.fullmatch(r"([0-9]+):([a-z0-9_,=]*):(/[^\s]*)", line)
+                if (not group or group[1] in cgroups or any(part in (".", "..") for part in group[3].split("/"))):
+                    raise ValueError("Invalid or duplicate actual process cgroup")
+                cgroups[group[1]] = {"controllers": group[2], "path": group[3]}
+            if "0" not in cgroups or cgroups["0"]["controllers"]:
+                raise ValueError("Actual unified process cgroup observation is required")
             result[role] = {"pid": int(match[1]), "ppid": int(fields[1]), "pgrp": int(fields[2]),
-                            "session": int(fields[3]), "start_ticks": fields[19], "argv": argv}
+                            "session": int(fields[3]), "start_ticks": fields[19], "argv": argv,
+                            "uid": int(uid.split()[0]), "cgroups": cgroups}
+        console, adbd = result["console"], result["adbd"]
+        adbd_group = adbd["cgroups"]["0"]["path"]
+        if (console["ppid"] != 1 or console["pid"] <= 1 or
+                not re.fullmatch(r".*/uid_[0-9]+/pid_" + str(adbd["pid"]), adbd_group)):
+            raise ValueError("Actual init-console and adbd service groups are not established")
+        for role in ("console", "session", "logger"):
+            group = result[role]["cgroups"]["0"]["path"]
+            if (group == adbd_group or group.startswith(adbd_group + "/")
+                    or result[role]["cgroups"] != console["cgroups"] or result[role]["uid"] != console["uid"]):
+                raise ValueError("Logger is not in the distinct actual init-console cgroup")
         session, logger = result["session"], result["logger"]
         if (session["pid"] != session["session"] or session["pgrp"] != session["session"]
                 or logger["session"] != session["session"] or logger["pgrp"] != session["session"]
@@ -290,8 +334,8 @@ def parse_device_snapshot(raw: str, remote: str, *, live: bool = True) -> dict:
 def same_device_session(before: dict, after: dict) -> None:
     # The detached shell may be reparented to init after the launch shell exits;
     # its PID, birth time, session and literal command must remain identical.
-    for role in ("session", "logger"):
-        for key in ("pid", "pgrp", "session", "start_ticks", "argv"):
+    for role in ("console", "session", "logger"):
+        for key in ("pid", "pgrp", "session", "start_ticks", "argv", "uid", "cgroups"):
             if before[role][key] != after[role][key]:
                 raise ValueError("Device logger process identity changed: " + role + ":" + key)
     for name in DEVICE_LOG_FILES:
@@ -376,7 +420,11 @@ def start_device_log(out: Path, framework_out: Path, serial: str) -> dict:
     value = {"schema": 1, "started_at": utc(), "remote": remote, "serial": serial,
              "adb": adb_path(), "token": token, "status": "FAIL", "errors": []}
     try:
-        session.shell("launch", device_logger_launch(remote))
+        value["console_launch"] = CONSOLE.start(out / "console", device_logger_launch(remote).encode(), token, serial)
+        launch_outputs = [session.run("launch-" + name, ["cat", remote + "/launch." + name])
+                          for name in ("stdout", "stderr")]
+        if any(record["stdout"] for record in launch_outputs):
+            raise ValueError("Actual console launch program emitted output or errors")
         first, _ = session.snapshot("initial")
         value["initial"] = first
         value["marker"] = session.marker("start-marker", "lumo-" + token + "-start",
@@ -386,6 +434,7 @@ def start_device_log(out: Path, framework_out: Path, serial: str) -> dict:
         second, _ = session.snapshot("before-root")
         same_device_session(first, second)
         value["before_root"] = second
+        value["console_before_root"] = CONSOLE.observe(out / "console", "before-root")
         root = {"started_at": utc(), "requested": False}
         value["root"] = root
         uid = session.run("root-before-uid", ["id", "-u"])["stdout"].strip()
@@ -406,6 +455,7 @@ def start_device_log(out: Path, framework_out: Path, serial: str) -> dict:
         after, _ = session.snapshot("after-root")
         same_device_session(first, after)
         value["after_root"] = after
+        value["console_after_root"] = CONSOLE.observe(out / "console", "after-root")
         root["finished_at"] = utc()
         value["status"] = "PASS"
     except (OSError, ValueError, RuntimeError, TimeoutError) as error:
@@ -424,7 +474,8 @@ def observe_device_log(out: Path, label: str) -> dict:
     try:
         snapshot, _ = session.snapshot("identity")
         same_device_session(start["initial"], snapshot)
-        value.update(status="PASS", snapshot=snapshot)
+        connection = CONSOLE.observe(out / "console", label)
+        value.update(status="PASS", snapshot=snapshot, console_connection=connection)
         return value
     finally:
         value.update(finished_at=utc(), records=session.records, files=session.originals())
@@ -470,6 +521,7 @@ def finish_device_log(out: Path) -> dict:
         final, _ = session.snapshot("files-after-read", live=False)
         if final != stopped:
             raise ValueError("Device originals changed during complete retrieval")
+        value["console_finish"] = CONSOLE.finish(out / "console", start["token"], value["exit_code"])
         value["status"] = "PASS"
     except (OSError, ValueError, RuntimeError, TimeoutError) as error:
         value["errors"].append(type(error).__name__ + ": " + str(error))

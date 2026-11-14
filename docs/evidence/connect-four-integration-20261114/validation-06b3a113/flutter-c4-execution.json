@@ -1,0 +1,27 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter=expanded",
+    "--concurrency=1",
+    "test/games/connect_four_native_session_test.dart",
+    "test/games/connect_four_native_route_test.dart",
+    "test/games/connect_four_engine_test.dart",
+    "test/games/connect_four_tactics_test.dart",
+    "test/games/connect_four_interaction_test.dart",
+    "test/games/connect_four_lumo_level_test.dart",
+    "test/games/connect_four_fold_controls_test.dart"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration",
+  "started_at": "2026-11-14T05:37:25.364269+00:00",
+  "completed_at": "2026-11-14T05:37:26.955519+00:00",
+  "seconds": 1.5912544870079728,
+  "returncode": 1,
+  "log": {
+    "path": "flutter-c4.log",
+    "bytes": 288,
+    "sha256": "7699f9e5667dec1e2a4e78ed3d2f7774da2430611645a33d1379d2b63dd0287e"
+  },
+  "scope": "Actual selected Flutter tests, existing local package cache and original assets. Not Android, not Native renderer."
+}

@@ -87,7 +87,7 @@ def diagnostic_logcat_context(out: Path) -> dict | None:
     device_raw = device_path.read_bytes()
     device = json.loads(device_raw)
     identity = {'bytes': len(device_raw), 'sha256': hashlib.sha256(device_raw).hexdigest()}
-    if (start.get('recording_protocol') != 'independent-device-session-v1'
+    if (start.get('recording_protocol') != 'init-console-device-session-v2'
             or start.get('root_prepared_before_installation') is not True
             or start.get('device_start') != identity or start.get('serial') != device.get('serial')
             or device.get('status') != 'PASS' or device.get('errors')

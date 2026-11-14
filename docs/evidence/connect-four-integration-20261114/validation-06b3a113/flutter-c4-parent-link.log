@@ -1,0 +1,56 @@
+00:00 +0: loading /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart
+00:00 +0: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Two stable child IDs have distinct durable rounds, even with the same presentation
+00:00 +1: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Class/name changes do not change stable ID save keys
+00:00 +2: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Completed round reopens without a second reward; repeated result is idempotent
+00:00 +3: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Process interruption after wallet commit before round ACK retries the same result ID
+00:00 +4: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Failed move save never installs a visible piece or advances its turn
+00:00 +5: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Profile switch during a held bot write cannot replace either child round
+00:00 +6: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Profile switch during reward allows no stale round ACK or foreign ownership
+00:00 +7: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Native bot uses unchanged leicht policy and legal replay
+00:00 +8: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Native bot uses unchanged mittel policy and legal replay
+00:00 +9: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Native bot uses unchanged schlau policy and legal replay
+00:00 +10: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Corrupt, post-win and foreign-owner saves fail without modifying bytes
+00:00 +11: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Existing unrelated preferences remain byte-identical
+00:00 +12: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: AppState rejects foreign result ID, stale lease and changed reward amounts
+00:00 +13: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: A stale child result is never enqueued behind an existing held wallet write
+00:00 +14: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Loaded round determines the announcement for restored bot, local Gold and finished game
+00:00 +15: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: An invalid new-round seed cannot create an undecodable saved record
+00:00 +16: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Actual session drop is durable before ACK; duplicate sequence cannot add a piece
+00:00 +17: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Pause, stale heartbeat and explicit resume preserve bot/round history
+00:00 +18: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Render stall with fresh lifecycle keeps authoritative session live
+00:00 +19: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Pause epoch while no render poll requires explicit resume
+00:00 +20: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Foreign token, round, revision, opcode, column cannot change existing board
+00:00 +21: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Save failure gives negative result, no ACK, and explicit retry is safe
+00:00 +22: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Accepted drop invalidated by Activity pause releases slot for Resume
+00:00 +23: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Old profile lease closes transport before processing pending human/bot input
+00:00 +24: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart: Exit stores same round; reopen has new session token and explicit active lease
+00:00 +25: loading /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_route_test.dart
+00:01 +25: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:02 +26: loading /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_engine_test.dart
+00:03 +26: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_engine_test.dart: all 69 winning lines, both players; empty board is not a win
+00:03 +27: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_engine_test.dart: gravity, full column and invalid input do not consume a turn
+00:03 +28: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_engine_test.dart: completed game blocks further moves and retains winner
+00:03 +29: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_engine_test.dart: bot blocks immediate wins without changing real state
+00:03 +30: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_engine_test.dart: reachable 42-move draw has no earlier win
+00:03 +31: loading /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_tactics_test.dart
+00:03 +31: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_tactics_test.dart: schlau forces fork 0, mirrored=false
+00:03 +32: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_tactics_test.dart: schlau forces fork 0, mirrored=true
+00:03 +33: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_tactics_test.dart: schlau forces fork 1, mirrored=false
+00:03 +34: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_tactics_test.dart: schlau forces fork 1, mirrored=true
+00:03 +35: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_tactics_test.dart: schlau forces fork 2, mirrored=false
+00:03 +36: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_tactics_test.dart: schlau forces fork 2, mirrored=true
+00:03 +37: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_tactics_test.dart: search terminates legally and preserves 40 reachable public boards
+00:04 +38: loading /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_interaction_test.dart
+00:04 +38: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_interaction_test.dart: tapping the board selects its column and locks repeated taps
+00:05 +39: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_interaction_test.dart: double taps are locked and paused bot never advances
+00:05 +40: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_interaction_test.dart: local two-player win rewards once and replay preserves wallet
+00:06 +41: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_interaction_test.dart: restart mid-fall invalidates old animation and bot callbacks
+00:06 +42: loading /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_lumo_level_test.dart
+00:06 +42: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_lumo_level_test.dart: default Lumo level stays mittel and still blocks at column 3
+00:06 +43: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_lumo_level_test.dart: every level takes an immediate win instead of only blocking
+00:06 +44: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_lumo_level_test.dart: schlau avoids setting up an immediate child win
+00:06 +45: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_lumo_level_test.dart: choices are deterministic for a seed and leicht can skip a block
+00:06 +46: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_lumo_level_test.dart: difficulty chips show against Lumo and hide in two-player
+00:07 +47: loading /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_fold_controls_test.dart
+00:08 +47: /workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_fold_controls_test.dart: Fold outer-screen at 320dp: all seven real 48dp column buttons remain reachable
+00:08 +48: All tests passed!

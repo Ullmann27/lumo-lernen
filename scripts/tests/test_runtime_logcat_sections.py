@@ -172,7 +172,7 @@ class RuntimeLogcatSectionTests(unittest.TestCase):
                   'root': {'uid_after': '0', 'boot_completed': '1'}}
         device_path.write_text(json.dumps(device))
         raw = device_path.read_bytes()
-        start = {'recording_protocol': 'independent-device-session-v1',
+        start = {'recording_protocol': 'init-console-device-session-v2',
                  'root_prepared_before_installation': True, 'serial': 'emulator-5554',
                  'device_start': {'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()}}
         path.write_text(json.dumps(start))

@@ -406,6 +406,7 @@ def components(image: Image.Image, predicate, roi) -> tuple[list[dict], float]:
 
 def stick_target(image: Image.Image) -> dict:
     # The source-pinned joystick texture has one cyan circular outer ring.
+    # Use the short viewport side so portrait height cannot exclude a real stick.
     groups, scale = components(image,
         lambda r, g, b: r < 60 and b > 150 and g > 65 and b - g > 15 and b > r * 2,
         (0, .40, .43, 1))
@@ -413,7 +414,7 @@ def stick_target(image: Image.Image) -> dict:
     for group in groups:
         x0, y0, x1, y1 = group['bounds']
         w, h = x1 - x0, y1 - y0
-        if not (.80 < w / h < 1.22 and w / scale >= max(65, image.height * .13)
+        if not (.80 < w / h < 1.22 and w / scale >= max(65, min(image.size) * .13)
                 and .12 < group['area'] / (w * h) < .70):
             continue
         cx, cy = (x0 + x1) / 2, (y0 + y1) / 2

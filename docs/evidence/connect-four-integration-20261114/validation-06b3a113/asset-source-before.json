@@ -1,0 +1,4254 @@
+{
+  "head": "06b3a1136cfe2a8a8b13e46ac9819e65b7130ea5",
+  "files": [
+    {
+      "path": "assets/audio/music/CREDITS.txt",
+      "mode": "100644",
+      "git_blob": "ac3105966c358dd03fcd165b3a1f5983b948385d",
+      "bytes": 610,
+      "sha256": "a98617747b5785a7801358feb334ee45acef032a10d8f53f7ae3c45ba33ce861"
+    },
+    {
+      "path": "assets/audio/music/chill_loop.m4a",
+      "mode": "100644",
+      "git_blob": "4427a67c13e2397502fadf67189c4e60d7bbe4e7",
+      "bytes": 516889,
+      "sha256": "8db99eef03622f4ac28509b2f306072515a9cb916dcaec05183daf3638448c9d"
+    },
+    {
+      "path": "assets/audio/music/energetic_loop.m4a",
+      "mode": "100644",
+      "git_blob": "8d4a2c56ea1c86dcd0898e9236454dd7042a7438",
+      "bytes": 475726,
+      "sha256": "66b8f09c9ac8628eae0dc9e3f6a8f8a5f7259028a66294a12dd3e2babd6f1cc1"
+    },
+    {
+      "path": "assets/audio/music/victory_jingle.m4a",
+      "mode": "100644",
+      "git_blob": "f7f4c53d60ec09e86216d8d64c108fb48460ef81",
+      "bytes": 40590,
+      "sha256": "50d8ff1bf6de09f30842da74e2995921440854d035ed414fa9b09613beb0fbad"
+    },
+    {
+      "path": "assets/audio/sfx/CREDITS.txt",
+      "mode": "100644",
+      "git_blob": "bd1dd286ab51bf19024777e78cb2f6b8d6999342",
+      "bytes": 809,
+      "sha256": "86a6c2e6234bd8881fcb082730d128aa22feee52da2faf73fd244e9a86c93551"
+    },
+    {
+      "path": "assets/audio/sfx/README.md",
+      "mode": "100644",
+      "git_blob": "3bb8601252e5f854e29a7f41f77f492413c4ce7e",
+      "bytes": 1443,
+      "sha256": "9d8ffc528373b5faea96156b0d2c17a82fbdf44b1050b94d2d643dbae5d09add"
+    },
+    {
+      "path": "assets/audio/sfx/card_draw.m4a",
+      "mode": "100644",
+      "git_blob": "3a7f43303a950e5987c81dc1c4d8dc4a1de7b8c6",
+      "bytes": 7427,
+      "sha256": "6c3ccb365741b7d239b537c5c5cdba96472d13399a1c638aece6ddb32a061d79"
+    },
+    {
+      "path": "assets/audio/sfx/card_whoosh.m4a",
+      "mode": "100644",
+      "git_blob": "4bfb5365b83cedfa8b152c97efb3d1538151103a",
+      "bytes": 7448,
+      "sha256": "4bed01f0012eebfbed08934e86ef1cb0c9c2c2f8a4f2d36ce3f96312677bd036"
+    },
+    {
+      "path": "assets/audio/sfx/click.m4a",
+      "mode": "100644",
+      "git_blob": "7b859dd1123e8e4606ba9b93c02b943321158c77",
+      "bytes": 3460,
+      "sha256": "90143722cc0e8c852df99912c8ef134444cc93820bc56eec5b5696b3f19a10fd"
+    },
+    {
+      "path": "assets/audio/sfx/error.m4a",
+      "mode": "100644",
+      "git_blob": "1a503c8ecd9b3ec953560f94332dd417ffceedd4",
+      "bytes": 6288,
+      "sha256": "e535c08f96b8ff136977a4993418e79e4b2fcc69aaa7d3b58f8e30a10b87c475"
+    },
+    {
+      "path": "assets/audio/sfx/lose_buzz.m4a",
+      "mode": "100644",
+      "git_blob": "050261b7552528fcffa2df19f07b4a3e668e6807",
+      "bytes": 10246,
+      "sha256": "c29d611e97b80ae221a4f14f8f345351b5da82624d95bb8ca03416e949dce912"
+    },
+    {
+      "path": "assets/audio/sfx/plus2_storm.m4a",
+      "mode": "100644",
+      "git_blob": "7b49e58e14c3da72441550e0f0790d630f7b3699",
+      "bytes": 11545,
+      "sha256": "cffcf89b5017f0ffe4b01135d99c851f4e5b893d6a4fae4f780103d3d5d718b6"
+    },
+    {
+      "path": "assets/audio/sfx/plus4_thunder.m4a",
+      "mode": "100644",
+      "git_blob": "6d5025c111575ff359a562836c38cafa2267e888",
+      "bytes": 22637,
+      "sha256": "634b4d5875f977cfd71236c9454bda01deb917859c0e78d2d92c2d2b342aed18"
+    },
+    {
+      "path": "assets/audio/sfx/win_fanfare.m4a",
+      "mode": "100644",
+      "git_blob": "82e8b5b5ccc0ab2604d7764be0d9f4200e846af4",
+      "bytes": 26695,
+      "sha256": "873b824ede67c0ed7b7f290eb1facb7a03f1de0ec5affbd908b049af8fda79b7"
+    },
+    {
+      "path": "assets/audio/voice/lumo/06e26a73d0b4.m4a",
+      "mode": "100644",
+      "git_blob": "857a7acf985911f100aadcced53aee5c66a062e7",
+      "bytes": 49405,
+      "sha256": "db3fdf84925f80319e946e978f860ce97020e8bafd944ef02046e5fc9f48e8f8"
+    },
+    {
+      "path": "assets/audio/voice/lumo/19495758a130.m4a",
+      "mode": "100644",
+      "git_blob": "40c442fdd394f5583581b1bc80c49f24f9433a80",
+      "bytes": 41578,
+      "sha256": "17812be55870e7594f377f83772b2dfdbd49759d439b594548a7e55369fc85c2"
+    },
+    {
+      "path": "assets/audio/voice/lumo/341f8117fda1.m4a",
+      "mode": "100644",
+      "git_blob": "428758db705f5cc6b735a6bdd39f54f0426a50cf",
+      "bytes": 30382,
+      "sha256": "ad54dd28afc9e15321040fbeed99c36542c3894dd2cb0fe7b81b78ad75588090"
+    },
+    {
+      "path": "assets/audio/voice/lumo/a3e9510a5f01.m4a",
+      "mode": "100644",
+      "git_blob": "e5a062ab9f6809fcc4af2a6a17d8ae371407146d",
+      "bytes": 22885,
+      "sha256": "9a38d73f589b661cb0694e23d3acd58c378c95a991d4c50358254e1ec4f30bd9"
+    },
+    {
+      "path": "assets/audio/voice/lumo/b79005f3d3d8.m4a",
+      "mode": "100644",
+      "git_blob": "54bd75b4dd6faab61aa0a5c88996e5b9bcd66338",
+      "bytes": 44264,
+      "sha256": "465d0c1544803137f48f64af1949495246ab22215824b05dbf62631a9a582e49"
+    },
+    {
+      "path": "assets/audio/voice/lumo/c3034465f7dd.m4a",
+      "mode": "100644",
+      "git_blob": "2ebba4e4af0ba2038416cf82dc145e57c343553f",
+      "bytes": 67427,
+      "sha256": "ac64224d3db9cfb34130606ec737a17dd0107debd80182c33c1bc641809929ef"
+    },
+    {
+      "path": "assets/audio/voice/lumo/catalog.json",
+      "mode": "100644",
+      "git_blob": "17d3787418a6db2bff453d8606d31a9c1aee89f1",
+      "bytes": 5072,
+      "sha256": "f3a6f773683cf2bd5e77932b5c183075368b73ee31c34dc877954aeb62e4007a"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/LICENSE-CODE.txt",
+      "mode": "100644",
+      "git_blob": "943171bd72aa0cb70e4e43c4d62ebeb336a2353c",
+      "bytes": 1070,
+      "sha256": "0dfe0d0ba84416fe3879d9a34f4909d8d0137c78d1e95834177b0414ac096fa2"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/LICENSE-MODEL.txt",
+      "mode": "100644",
+      "git_blob": "1e2cbe6cef94c8cdf3ed1fcebc0f5317ca7ad5a1",
+      "bytes": 15007,
+      "sha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/catalog.json",
+      "mode": "100644",
+      "git_blob": "a0fe8fe81d3b661ae70ff9d4828502b7f8c3a315",
+      "bytes": 64441,
+      "sha256": "4d2eee9fe4aaada720d029f2c9161c2fb29773bb1bc2bf768d8a66f6b81f428c"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_000f30d9ed650ea8.m4a",
+      "mode": "100644",
+      "git_blob": "6eff0f130ad61e33095bf90cdb7a996413ed94fe",
+      "bytes": 8438,
+      "sha256": "ecba261b3656573f4084e115c21c1dc19e052902fc875c8771663de8a83b9d3b"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_011aa70e60a9dd28.m4a",
+      "mode": "100644",
+      "git_blob": "d7011f2b7593a3fe99b3f70c0d8ab36ed1f967eb",
+      "bytes": 16982,
+      "sha256": "ee74cfdb588ca4f4a2894ab803186519def21885d3fb8288da80614747af57b8"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0184d3784cc92404.m4a",
+      "mode": "100644",
+      "git_blob": "f157756da8f74e395bc904bb39d00cb38da0888e",
+      "bytes": 19646,
+      "sha256": "60216bb88267d22d26227b2718b9bfe00fad7497c73fbaae53297626c70fdee9"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_01eff8929a7e87e6.m4a",
+      "mode": "100644",
+      "git_blob": "e0aa4073e4b2d681212619d52ce5e2a885648500",
+      "bytes": 16391,
+      "sha256": "f06e4b73b667a11bdea2c8c62de0a129dea2e6cdc2d287ed4cd9978114a8181b"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_02cec2719eeaf75d.m4a",
+      "mode": "100644",
+      "git_blob": "2f471eebec7fe1e50cffc48830b54c9ddbe2451e",
+      "bytes": 18274,
+      "sha256": "c6a12ab7231e493bac4c5678cac3d0cddc81964a0d9d4b6547a2ea926ae37c27"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_038754d8bcd5aa0a.m4a",
+      "mode": "100644",
+      "git_blob": "92a2e71b1d0a73a57ffe6007fa023906b082e11a",
+      "bytes": 15755,
+      "sha256": "571547b2a974da6a649788d9e4891a74c2853974828cf7a1f135cdf5806d9626"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_09e37d4de061ae65.m4a",
+      "mode": "100644",
+      "git_blob": "24e21835c9d128ec764d78b021fa04a0934b9764",
+      "bytes": 18038,
+      "sha256": "96119965a26dbaa7c333d49c303504c25ea83db4a8381749ce9d91c0d1e7d0d8"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0b535e4c44178aca.m4a",
+      "mode": "100644",
+      "git_blob": "38cee5e3f6a397d8761fa4316bca3220a62b3fe8",
+      "bytes": 17458,
+      "sha256": "e806bff37beb5cb0dae262e3f7fb0b6c0ced78ff28fee9ce9185815dab4cff92"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0bb290380f2ea3c6.m4a",
+      "mode": "100644",
+      "git_blob": "4081d977379f190211e3fef9fddc96adfe724fca",
+      "bytes": 18294,
+      "sha256": "4196537fdf1c617f330aa39e63d1428ee9d6e6118b728c03c4fbcf0face43b36"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0c5d8e0429b252ab.m4a",
+      "mode": "100644",
+      "git_blob": "c7e3a195f4111a299269bc8c993649fe5de45049",
+      "bytes": 16899,
+      "sha256": "1d2fa995c9c810e88f94bb79ecac87723ca63feeb6825a9a35a990e69d3be98c"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0d7bc2d930580163.m4a",
+      "mode": "100644",
+      "git_blob": "26df50957a0f1c094faa6fe0328647749c1ad9ad",
+      "bytes": 13666,
+      "sha256": "4a48bd0d358645e9bd128ea8a5198b23b76609f49dd2114fabc1950684e33678"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0dab21404b86dcbc.m4a",
+      "mode": "100644",
+      "git_blob": "22f5e3613678890d8b89597d0778126b0c7d2004",
+      "bytes": 9115,
+      "sha256": "499a4565397e9f1a1213d0c685a8081b10a9cd756e8f483ae61ca06e7d6aa065"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0dbdeb7e680923aa.m4a",
+      "mode": "100644",
+      "git_blob": "d488ef7ada9a2bbd09e4628e6b111f76442d3318",
+      "bytes": 16678,
+      "sha256": "407a6cd9671495f5a90cc934f0bd9da1800a5c09cc2bf2dc571776b117ffadad"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0eb34225e9098f0b.m4a",
+      "mode": "100644",
+      "git_blob": "05462db147a75318608dd6eafd9b268310fb57ab",
+      "bytes": 15261,
+      "sha256": "a206b94f602590f24488ff7f90db4337ed45438d2d6c3cac1b60b43a7df2c9bb"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_0f0fa15b5f7ac1d5.m4a",
+      "mode": "100644",
+      "git_blob": "76962513edf2cd0ad31928a8f9cf0c93ec76a08f",
+      "bytes": 10676,
+      "sha256": "215d4820d217d6c6db334414d44b05817c56ccc1746a42d3f31e8ccfed4dc0df"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_109381da8affa339.m4a",
+      "mode": "100644",
+      "git_blob": "ceb11ea01c187e85d464dbf63ac3aa2cc866bef0",
+      "bytes": 15829,
+      "sha256": "d4f8fc07fdd0f865a21722393fa9e2f06af7f66b3fb76109fbebfb22b9021ffe"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_118d451c4c8164a4.m4a",
+      "mode": "100644",
+      "git_blob": "2bcc6622bbd1491f71c153fb3cd24f7a28c2e140",
+      "bytes": 18224,
+      "sha256": "ebaf05cdf393960876a24db209368f1101252b4d55c59f1efc50e02d07d9762e"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_144cd3d10e10d0df.m4a",
+      "mode": "100644",
+      "git_blob": "e19f8058aab9317f57dff9dc8e461639d9e6ea61",
+      "bytes": 11717,
+      "sha256": "ff33a404b60000f112fec9f43fcf4120397eb58663a8db3beedf7f5fdbf1e7f5"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_1a5f55dd8e1f5fa9.m4a",
+      "mode": "100644",
+      "git_blob": "d8a5a0965b809d916be002d461caa3f2d26975e5",
+      "bytes": 17024,
+      "sha256": "0467e1d16f04bf0062badf1e7e1e6a256873223bce96fb2fda89d07a6a7e7ce6"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_1c7271a93afab2a2.m4a",
+      "mode": "100644",
+      "git_blob": "a88ee1e3c0c894a493e8a6099e60398962850358",
+      "bytes": 19093,
+      "sha256": "9087cdb16bb67afdf61a7d016cd67d5a699fd11ba7aab7cdbfc6f54a83c16100"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_1c7638e4beb30337.m4a",
+      "mode": "100644",
+      "git_blob": "e41bdea8f04aa96aea623f312d32c26dae30e815",
+      "bytes": 12662,
+      "sha256": "966f191a4f877057e3e66a0bf17398e564a164ae9713b7d0de571566411323fc"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_1d91440958381892.m4a",
+      "mode": "100644",
+      "git_blob": "f8a9ffc8ad1833de4337b9da5da49c8ec160525f",
+      "bytes": 10472,
+      "sha256": "faa7f0cc628e86e23299efba8b23586b80365eebc4d4d957035b92d2f22fd1ff"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_28df43db04bf81e4.m4a",
+      "mode": "100644",
+      "git_blob": "833f4e63d4e4d02222c96993e8bc0d5cc47d5a3b",
+      "bytes": 17108,
+      "sha256": "dffe4eae3493fc99a0dc048eea5a9b9c13b10b92f642439b252e358694c87aef"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_2d47d02eee0eb087.m4a",
+      "mode": "100644",
+      "git_blob": "b248219addf7a767eb6f86b5efd0b8d306ea5f50",
+      "bytes": 11776,
+      "sha256": "90465745f0c67df28211e3538c434c069a52988f67e060b41dfe540e9b8913d8"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_2e63dfbdbb17d34c.m4a",
+      "mode": "100644",
+      "git_blob": "690891793dfc560b443a5dcad6966e0094940dcb",
+      "bytes": 10059,
+      "sha256": "01bdf18cb6639b131c5d05758de3ce9930f5b8dce7ffe9bdff476f926c766991"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_300fc160617a9efc.m4a",
+      "mode": "100644",
+      "git_blob": "467c71300c1cc59b405e3dfb569ceef33056255f",
+      "bytes": 17792,
+      "sha256": "02970956553f82a762abea4169662b847bfee7d65f03df96964d431a01844452"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_30b44da6b080bb4a.m4a",
+      "mode": "100644",
+      "git_blob": "f37edd34c3bc49c6f30bfb68aca10b91fbd1445b",
+      "bytes": 17031,
+      "sha256": "4c87d749c23ec7a82e3401004ae4c200f55a3876b547b8039cd43584678118fe"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_3197e372bcd20d7c.m4a",
+      "mode": "100644",
+      "git_blob": "da773b53eebd1c35bac52d36f49430fcdb9dc186",
+      "bytes": 13709,
+      "sha256": "50f938cd54fb40cfa66c06a4a532d98d56a0874cfdeaf860cd5a43ab1a208bf2"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_31afa8f5059e9c4d.m4a",
+      "mode": "100644",
+      "git_blob": "6332a82b0a2cf83b3b576b6e17914e46affae4c2",
+      "bytes": 10322,
+      "sha256": "94814ebcafc1ca132c15ef5fd50346c67cd6757cc20ea853b813f5275494a652"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_329b44c013a6195a.m4a",
+      "mode": "100644",
+      "git_blob": "f9148482b5e2c20e3a0a08cb776e54a146f6bc48",
+      "bytes": 25012,
+      "sha256": "3620754beb97c7ee2fc40f9a2c08f4cd1d3baf3595a37a33a461f022056b12b2"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_32f9340af218eb41.m4a",
+      "mode": "100644",
+      "git_blob": "9bed5f4762af3172b7392acfbf902372e2623c96",
+      "bytes": 16730,
+      "sha256": "78c932e6c9a36a683d3abef66b326380d6df473fdfb3a80f8d259eb01956a802"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_3445da7697653b4c.m4a",
+      "mode": "100644",
+      "git_blob": "9e0c64472225c5a690fee58a0bbc1f95edac0e3d",
+      "bytes": 16857,
+      "sha256": "aa634db3550a1346e1b53f75b79718cd3c4c3ab1702e3846223362857cee0234"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_34f0597cc2fc2739.m4a",
+      "mode": "100644",
+      "git_blob": "d2f22da0a7fcaf5bce2e2ccd0ef4a4f72457b1ac",
+      "bytes": 13770,
+      "sha256": "4a4da22de5c901ea52329cae41668e3563dc63d4807287de839506e8906cc55a"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_35ef73b1f35d39a7.m4a",
+      "mode": "100644",
+      "git_blob": "657c1c3222581e4775672ca3a80900ffb3ceadc3",
+      "bytes": 12538,
+      "sha256": "f4c70ece270fc9a20cdba0dfafcfe5ae9e652ae1905b394211f05506ae3a7c9e"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_360937ec7ffc96fc.m4a",
+      "mode": "100644",
+      "git_blob": "52a72f85c861e94b9709932c6f834f152b89e458",
+      "bytes": 15102,
+      "sha256": "bcbce8f0675c5d9ae4621426c3c568a12a40953308c15b51015fe55371d467ac"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_36578651f9cf4849.m4a",
+      "mode": "100644",
+      "git_blob": "62c6c85f986bd90d3d55cdb83ab85cfdb7ad73a7",
+      "bytes": 19927,
+      "sha256": "073b52f1dfa0d558bc4cbea212b6b6978b937d7f1f346b6f255388149423e3f4"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_38d510ee010c4cf2.m4a",
+      "mode": "100644",
+      "git_blob": "0150907573d00e2d2d6842abdc7f42c5477d4b20",
+      "bytes": 17117,
+      "sha256": "4ee9cd63f54475c93c0cb435a57d5dd62bde138e610c7d3f45b0204ad7d5be3c"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_3a8b1afc446c546c.m4a",
+      "mode": "100644",
+      "git_blob": "26a3e0c57a6d9529f5b79f4d3878c68f7b12e55f",
+      "bytes": 17129,
+      "sha256": "bd0a5b211286e0c429df2e62735dced7dc0d71a0ed7c5f9080b2fc945bd7539c"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_42377ef91359847d.m4a",
+      "mode": "100644",
+      "git_blob": "3e0e81dd1cf49a9e1b3a373081a8dcb9c12d2a6f",
+      "bytes": 12895,
+      "sha256": "99e8646266516607708110dca23c7d413d671a470351e02452402a3314a0f4e9"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_453776457937f72a.m4a",
+      "mode": "100644",
+      "git_blob": "b98b9e719f5ac3d13bc48a599a70efb1ee6b21f0",
+      "bytes": 16899,
+      "sha256": "24e0049a5469a7a9c35487161594beaf0e92087ef1ca61f0610f666bb4beb36e"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_45b9ef61ad449625.m4a",
+      "mode": "100644",
+      "git_blob": "02ee77f18130abefa45a16d47a9a3dd9ee82d583",
+      "bytes": 15512,
+      "sha256": "7d74b0bcb4f302a82af0a6e1eaf25739a742334d8a18eabe8ddde939e013de85"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_45cbf1dd630fe4de.m4a",
+      "mode": "100644",
+      "git_blob": "d650c534b4a7c0216e9313a182a4c79dac648192",
+      "bytes": 18162,
+      "sha256": "5853aad3239cfd6d742a174976ee698dfd8c9718a4bdb7576a3fc93e547e0efc"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_482f4e5070089870.m4a",
+      "mode": "100644",
+      "git_blob": "ac5b1aeec13f1c8aaaded01c2f5a59d7fc4a658b",
+      "bytes": 14491,
+      "sha256": "d2741180fd787a358eb400e8dcb5cce2b3e0a92a886007946e5956a052951f09"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_4850b67063d3d5ef.m4a",
+      "mode": "100644",
+      "git_blob": "724ddf646338e7962b3fa7bb7e6cade084b9712b",
+      "bytes": 16780,
+      "sha256": "ef8f615521a4820d770ba3ddce20f3f6cb0c8f608cfc5892e35195a6af474b49"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_4d2c9f04753c808c.m4a",
+      "mode": "100644",
+      "git_blob": "ff0870e605cfd48f8decc20cacbf2b3e07387cac",
+      "bytes": 14676,
+      "sha256": "a1ee3b03eb961e4c0a8c7c347c162b57c6fb875c64104b7c3eacee3f4ee2e272"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_4dc5758c1f01622b.m4a",
+      "mode": "100644",
+      "git_blob": "f3e6e6e09d68ae1de523a3712ca4701716399343",
+      "bytes": 12157,
+      "sha256": "aa25aa03ef19722712b6f3421bc86a2a63ac7a02d2cb4a988d1307080b66aa22"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_4e9ff3a12eafa98b.m4a",
+      "mode": "100644",
+      "git_blob": "5d2899ede36dc8e3fad5ae2ec974811a67a94e5e",
+      "bytes": 15661,
+      "sha256": "7c031e20c8acd9aaa4c5d837197bc9a59f9280d7079054b1be7a962b2653748e"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_50d561a9aa8d6136.m4a",
+      "mode": "100644",
+      "git_blob": "d147d12878222668c9da8b4ac48e8a5dde999d15",
+      "bytes": 17662,
+      "sha256": "fb26dba81038a3bade1f7940490a0d2c2d90835efb64605c3d105a7ad919f7b7"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_52dd2fde052e6043.m4a",
+      "mode": "100644",
+      "git_blob": "ed98a7bbab1e298b9efba9a03c08a5f379676057",
+      "bytes": 16818,
+      "sha256": "2e4845d6c51a10f492ed00ebeac6e7dd062700e59d5559aa773efedde349d478"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_56ef527f3c80ecec.m4a",
+      "mode": "100644",
+      "git_blob": "5aa201470e19391c68df9cec1f40da945b8f850b",
+      "bytes": 15319,
+      "sha256": "270b5a883ef137c0b13616706d532b491e0076e28a450511897e6ca8774e9708"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_57f304b36d1f9f67.m4a",
+      "mode": "100644",
+      "git_blob": "eb0b0c4203104d4a241dad5bcad6caaab75b5093",
+      "bytes": 17865,
+      "sha256": "bca7854e000739fb4e76594bd109d411fb5347469b81abfb267dff9a25a80084"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_588bd0d6edc8664c.m4a",
+      "mode": "100644",
+      "git_blob": "515448c2c51a391c1be8b603afcb5c8ebcd7faf2",
+      "bytes": 15706,
+      "sha256": "125cf6a121970f117e4e64514bd9f666071d8bfe6b537936b8579bff58eb27b6"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_5c11ef5ff09b0de1.m4a",
+      "mode": "100644",
+      "git_blob": "62c32931b9d451e4c6b343d8357068d1c7e88d2d",
+      "bytes": 17227,
+      "sha256": "270c1eea74146da3d1d6ae350028e536e95affa5e97a0c76c528965921cc4e84"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_5c820ccd3b78b8a8.m4a",
+      "mode": "100644",
+      "git_blob": "5c34f91726c4f5fb5419c4bae694f73f03f22f70",
+      "bytes": 15294,
+      "sha256": "6554ef7cebc833541fef81c9e2ed1579d9e21bce521526355810940d5d7ec0c7"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_5f4ab7919ce43d06.m4a",
+      "mode": "100644",
+      "git_blob": "57ae2eec04e68f4a9238442498afd64d93020492",
+      "bytes": 18172,
+      "sha256": "bfe69382e07e9245060dd4681d5fe304d3043ca7ffd255ac324fdddacef124cf"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_62edd7d6d822f73b.m4a",
+      "mode": "100644",
+      "git_blob": "3b42966e39b840b5de133c049589a60f0b11edf9",
+      "bytes": 16795,
+      "sha256": "eb56e08eb3f61b75c68bf678d69325aefc3116809afe0c00a19279dbfbf609a0"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_650d5b527a9d134f.m4a",
+      "mode": "100644",
+      "git_blob": "9f8e5074909797dae17eb1155c14cda05ab6b93a",
+      "bytes": 37128,
+      "sha256": "2a39d129c6fada1e7986ab61136129e5cbb135ee9e146518e8e3edd9bc9b4cb4"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_6586c91113e9ec4a.m4a",
+      "mode": "100644",
+      "git_blob": "c3a7237d4ada2d666ffe1cc9fc904547325d9af5",
+      "bytes": 17518,
+      "sha256": "9d9e4f1fabde0f146ceb6ab53ead4a52b9caedbb208e53c7654f0e1a9795b1b4"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_67a0647fd1bbfd59.m4a",
+      "mode": "100644",
+      "git_blob": "2da2fff39d7192267fca107d048a1ba9874e0f58",
+      "bytes": 9799,
+      "sha256": "e5fbc10e74b21bd561eb6adb194782c09a5be5da680f5fd5e2b53e89af801760"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_6c21e3b3d76498b7.m4a",
+      "mode": "100644",
+      "git_blob": "783be4a3a8a364d2c83303546fef66205de7ed96",
+      "bytes": 16262,
+      "sha256": "78a8a2ac9c6da14bbab7c887dd973669b7f51d2fd400de1891b242d298a2bf81"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_6cb096a155c1761d.m4a",
+      "mode": "100644",
+      "git_blob": "a69d023c1f7c379dee5cd01dfb551858ce16ae02",
+      "bytes": 15915,
+      "sha256": "4ee54db12879cc87ced28fcade8da03486f91df0dea02c68b3edaf0cd4ddc899"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_6d30043d0e792bc7.m4a",
+      "mode": "100644",
+      "git_blob": "6862847309ef9be4f7ae11a2dd3b708ec30509f2",
+      "bytes": 16030,
+      "sha256": "b73e4242b799921849f6325bbfbdbe4feccff28616d1718c9ff0cc7b158c36f8"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_721405afba0877c0.m4a",
+      "mode": "100644",
+      "git_blob": "5bf68f2ef6ac33725003cdd5a45cd5b9b7982a81",
+      "bytes": 14485,
+      "sha256": "3415902921e03819b771822f56faafca85193ba0569d0430732ca644724d138f"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_7675088cbc7e3772.m4a",
+      "mode": "100644",
+      "git_blob": "11bde475383dfc0a601ed7e133c3940c33f70f5f",
+      "bytes": 17892,
+      "sha256": "c9559c25ced395a2302e3bc8a7aad6bfba15a5c1fdf17309637918f632b9daff"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_77ef20a42e1af4ac.m4a",
+      "mode": "100644",
+      "git_blob": "c24c87236635b1ec1b3019dda8f34f5b9efbb453",
+      "bytes": 17462,
+      "sha256": "a139cc8a98859e18221203557c99c7a2f1162b9a0f526cf97f96d79a0d4cb34d"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_7879dac67b6891c9.m4a",
+      "mode": "100644",
+      "git_blob": "71d20dedc0f5ccae4b8ba62e69505dcdb4335153",
+      "bytes": 11466,
+      "sha256": "05566b7c655bc4eacf1beba5747ddf53dd84884c1c144f7d3f8aa5f5f329eb26"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_78f673086b73a98c.m4a",
+      "mode": "100644",
+      "git_blob": "9480aae22d1713ed116a25cb9a92714ebfe3a6b6",
+      "bytes": 14758,
+      "sha256": "af662051eafad8963f36b66f749f293d48884f0087679f321b01b6c1b6dd9915"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_7b91d0103b44677e.m4a",
+      "mode": "100644",
+      "git_blob": "ae8454b9fade0bdcf50ce27cc058068685360ccd",
+      "bytes": 10468,
+      "sha256": "461b2a33452381ffeb9d6294fc4b50bc07eb6800cd494a9d2ad6868f3b8442a4"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_7bacc87de1cc9c96.m4a",
+      "mode": "100644",
+      "git_blob": "82d020091a445f71d5ea442741039ffae22e12aa",
+      "bytes": 17278,
+      "sha256": "11594191f8aca97ebd82922326779390fa65e2ec5b4717a81d01bbb6b3a26d79"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_817247d46e7be3eb.m4a",
+      "mode": "100644",
+      "git_blob": "d71f82da5d0d4644a75edbca1f9066c490beb9a1",
+      "bytes": 17274,
+      "sha256": "6dcc83a4059711baec1f1423a9aaa3471d58a2b28a50a586bc2128da43175888"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_81e1229b227be798.m4a",
+      "mode": "100644",
+      "git_blob": "df75a022c7919885dbfa245f4cd84edb3cfd92cc",
+      "bytes": 42350,
+      "sha256": "2663647b6762558f6f07694b9a84bd915fd5eb62704e55d9bfa254d65f1a3e22"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_82334448bbcfa1f1.m4a",
+      "mode": "100644",
+      "git_blob": "ca9d485f2eff6a08cc26b1e7a263e61832eac45c",
+      "bytes": 18038,
+      "sha256": "fa081dedf52f7770c9b16a9490c20ccaeef1f261df8be00a81f4eb2391d66913"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_871ba286b4ab9635.m4a",
+      "mode": "100644",
+      "git_blob": "f14445ddfc4be269993c391bc56da3419976b291",
+      "bytes": 14475,
+      "sha256": "28d3848f0e9468ae32e09cd07bbe94cf5828a80d501712b7505ba41853c9cb2b"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_8bc44d2199e8c210.m4a",
+      "mode": "100644",
+      "git_blob": "caccb5b224609f381354010aa31954b1535e7080",
+      "bytes": 19512,
+      "sha256": "5a2cbc1ff385564bf336fe1433b802b326926e41a2fa961c56c3c0c058df8451"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_8e14d99f20abd6be.m4a",
+      "mode": "100644",
+      "git_blob": "c33b13df58d4cf9e5441abf274024ce3b241a9c5",
+      "bytes": 18807,
+      "sha256": "58f23c666df9c79cdc440459098239d485bd89ea88b9b19ba524a06478f20023"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9009c48ade5784f0.m4a",
+      "mode": "100644",
+      "git_blob": "999ab99b6051bb66a4cad65f14e511bd06de1ad8",
+      "bytes": 17449,
+      "sha256": "4791d3726ec8c6582ca557f035afea871d66cdf0496b7c17cd0c38208ad4b987"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9081071f1ce419b2.m4a",
+      "mode": "100644",
+      "git_blob": "51d939e46c52ab4f0194f1ef479e7f2addfc53cb",
+      "bytes": 10813,
+      "sha256": "025fc6cf1b75b2014dd5ff7dcbffb2fe5c0170edbf12e006eef8d0295be12545"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_91e19753444acacd.m4a",
+      "mode": "100644",
+      "git_blob": "8b4963480d1b7ca3393d108cb1bda7266ded8cdb",
+      "bytes": 14573,
+      "sha256": "93118498bbda88dcd5ba4240d6dce127907a1620a6d785fab96a52ba754b0607"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_92135c558386b319.m4a",
+      "mode": "100644",
+      "git_blob": "33e24a3b77ab1ef407b5e488c539bc4feab66120",
+      "bytes": 16951,
+      "sha256": "45a7fc9266d424ea3de98d059afacdf1a6c2e4e20b442b7e7a5436e016c057d5"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_93be75059975918a.m4a",
+      "mode": "100644",
+      "git_blob": "0b5193c1ab4000fe0795b926fbe70dd2bbdaf964",
+      "bytes": 18112,
+      "sha256": "ae11593098ce58966d4ac9b2bda40c7fb6a48e85fddfdc363af455d4ef87d793"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_94bd70dfd8caeaf0.m4a",
+      "mode": "100644",
+      "git_blob": "190e0841cbb862b6b9b2f4860b10b4f669a4f943",
+      "bytes": 18530,
+      "sha256": "3cc022d87319bd7b5b01463f38d47334a5727919500b771d73575b297a1a5244"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_94d4f3f1a5bdf11b.m4a",
+      "mode": "100644",
+      "git_blob": "ceae87bd2ca93d7453ba1131885964e3dac55c02",
+      "bytes": 17486,
+      "sha256": "3f029837addca3b6e5057f761ff903e1de9ed3269100f8ec6008de19ab61c5b9"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_971397e97e4aa4df.m4a",
+      "mode": "100644",
+      "git_blob": "670419b190f1927e3b08bd0de06804b58e2e0ef8",
+      "bytes": 10619,
+      "sha256": "365d1b5a893f2aecf68c62240233d2301e759e600fff67495e8d1cc6b91b5099"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9865f53d4de62d17.m4a",
+      "mode": "100644",
+      "git_blob": "ff27514a87a567f4a8ad3a867fb8f68458e9b495",
+      "bytes": 16043,
+      "sha256": "3b753322491b6924b6436c0c08aed0fd66afe44a84b797891d33dfd2fd0d1729"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_98ff6596fdc00e93.m4a",
+      "mode": "100644",
+      "git_blob": "b5941efd9843e1748c9f1b47af6462a7a69d18b7",
+      "bytes": 16796,
+      "sha256": "b9c681658946d7bba212c1daf4109fc1fcb0e4385a1b4e93df04f16db6ab2313"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9bdcd6a96218662a.m4a",
+      "mode": "100644",
+      "git_blob": "34e4c7557d5cecfeab2fca17fb77dd1c5b0a9fde",
+      "bytes": 13100,
+      "sha256": "a1f177099441d0e1990dd30d346dc9ae067ac37b57fa718e0e7ff076c44b4e3b"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9d09f7fc87f21327.m4a",
+      "mode": "100644",
+      "git_blob": "904cfbc2edb81f00570497dbf096428d14ef68df",
+      "bytes": 11894,
+      "sha256": "8adaa02f86f90f07aedef9a72d71a2a6e3d4364ebecc1d5f42c8c170f0ab9571"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9df1fe228456d141.m4a",
+      "mode": "100644",
+      "git_blob": "a709cd5c41892792e269f6c2710e2e96bddb576e",
+      "bytes": 15233,
+      "sha256": "16d6117be084a6fdf693aced0104c5315bc970223d1586b2f4b923b631b2dbc5"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_9ec983776f98a532.m4a",
+      "mode": "100644",
+      "git_blob": "745fbe6f7f9157ce2981ac08341aca1ebf754b4f",
+      "bytes": 15025,
+      "sha256": "0d13af3ce66be44550800861ae58a4b68c3f73fc21189963234972bc181aa7f5"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_a2cbcf4e9f2eae96.m4a",
+      "mode": "100644",
+      "git_blob": "85f1ba97d7975c70d9f4710ae1c63f3bee7f9879",
+      "bytes": 16247,
+      "sha256": "a93af552df915be3b6b2f58fb33f95ff1e4d5838ab59dbb217a0592d2b20ceec"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_a485491ff4e4ef31.m4a",
+      "mode": "100644",
+      "git_blob": "c6681fec42918e2a1cb657d68c62d6bb016f1361",
+      "bytes": 14523,
+      "sha256": "dd76973f5969fe30e40e1655b8a37b3035b7b2c1d7a4a88f40d387d493946c25"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_a4a5934451622e1c.m4a",
+      "mode": "100644",
+      "git_blob": "7c6d5b2dd6a765d9f25de5dc93b898c421d1c555",
+      "bytes": 15791,
+      "sha256": "38f2288c8740285fddd18c70d42247e22a359e2068ff1cd9f136aeecaa82682e"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_a522cda4615c003d.m4a",
+      "mode": "100644",
+      "git_blob": "a360c392e6c1e1b2203a669584901b6c3c0438f7",
+      "bytes": 18147,
+      "sha256": "7d73a7efdb7cf3978397a0b4dca51ddae2356151631834b44258b1a4abdaec07"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_a7990c589420b0a3.m4a",
+      "mode": "100644",
+      "git_blob": "252360ad97c9fd71fa29723210ece1ac9846831e",
+      "bytes": 32661,
+      "sha256": "ae9b3cea192a44049775fb6d7799256456d3a29a571f8b9aca6377511674966e"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_abd6ae2a993b0b0e.m4a",
+      "mode": "100644",
+      "git_blob": "bf18994287e3f4a7e55e2ecc13a1ff826c2e789a",
+      "bytes": 16695,
+      "sha256": "d8237fd78e78bd2dc9b51906df23faf318805c66d54da72ef1e4fb111dbc513f"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_ae298cdb8e1588e2.m4a",
+      "mode": "100644",
+      "git_blob": "f59fbb263b5c99e4fae3a7f98d7ca16e4118340c",
+      "bytes": 17183,
+      "sha256": "0f2b21412434b9edb9f610f92b9bb5ec683fb5baaff75245061bed7d91bc6c4e"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b0745bc7873dd541.m4a",
+      "mode": "100644",
+      "git_blob": "ee5a8fa6c95af61c19f7bc6e647cfc3543185287",
+      "bytes": 16770,
+      "sha256": "3aacf0b13d95c7c1629fe71bd4c1905e711243e3a6d2ea71dad348e8e5fa2bc7"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b094ab5e50b34ac0.m4a",
+      "mode": "100644",
+      "git_blob": "29ab8b98eb2ba12015a9bdaaa7fc4c07cb1be32a",
+      "bytes": 8936,
+      "sha256": "de6fdade2d882b50662ff975b1e35d6093adf6e15e4188d6a4e4fa692b4092a9"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b0b3718a58ad44d2.m4a",
+      "mode": "100644",
+      "git_blob": "05170a1a7faeb114dcc10276c2ef21b9212b04ba",
+      "bytes": 19095,
+      "sha256": "f678374e6ed0dda4d386b412b21f122006bcc00f7f23f87644daef92d22c723f"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b185fc60100b7eb0.m4a",
+      "mode": "100644",
+      "git_blob": "87acd9f1108da2e08d6ae2381135eebe781a6a10",
+      "bytes": 14370,
+      "sha256": "ef383ef4b05cf220ce543ee346ebd8ec2735dcef55aa9c1917e87ebc83bcaf06"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b5e456b1bd716ab4.m4a",
+      "mode": "100644",
+      "git_blob": "88dec051a0a7683e2ae4aae96fcc781b2530d820",
+      "bytes": 45670,
+      "sha256": "35820e387b1d1cb377ff0192dfb29aa9ad9fb46cbde88eb560ba557676797c32"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b66b7aaf4dc744c5.m4a",
+      "mode": "100644",
+      "git_blob": "de774c8714caf5255d1bca226274aa59dde02441",
+      "bytes": 19164,
+      "sha256": "06e74ba5ebb372506a07af30b8153cf344391cb69262f5c851cc78ca4769ff9b"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b6b32cdfad1eb57e.m4a",
+      "mode": "100644",
+      "git_blob": "c7848c134f5b9fb026a3310a1cc655e1754b63f5",
+      "bytes": 16480,
+      "sha256": "c097dd0279039ea87fea2e49eee27c6f899a401e273e01225ea8c5ec7a84363e"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_b6ff44fb3b1050fa.m4a",
+      "mode": "100644",
+      "git_blob": "6ce177dd703a7a82e1c27a902fd95f7cf6586049",
+      "bytes": 15814,
+      "sha256": "41351e72b7dcd00ce924c14735e2a747ab10824761552556e16f9ab9a328419d"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_bdac4addc4eb4737.m4a",
+      "mode": "100644",
+      "git_blob": "69f9f53e6609c88508f96b0c81808f09ad19145d",
+      "bytes": 17717,
+      "sha256": "0e4d88d88f28da3865e919877110c80a3e35f8d216f07feefb13c522d5fd2f6a"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_be61952d82b3bea7.m4a",
+      "mode": "100644",
+      "git_blob": "908e27b6126fc43f2d8b056732e19ea6f0ab15c0",
+      "bytes": 18628,
+      "sha256": "8eec492855c76fe2f3ed2bc0d881f45cdda47e8bfa82213a942f87488ea154de"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_c25aa9d381a6a306.m4a",
+      "mode": "100644",
+      "git_blob": "97779657e6f7c1f71b31c76a8480f4abb0e0ca1b",
+      "bytes": 16978,
+      "sha256": "6d89cba154d300cda3dd4e17b70c7bfcf297d0979726b6ae2d7b6d4615d408b2"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_c38b3fad32064dea.m4a",
+      "mode": "100644",
+      "git_blob": "5d8df05340af3cdbd3cb245fd88fd485329e3cd8",
+      "bytes": 18126,
+      "sha256": "a52018d0285e0100a1271340136133fe3b7a4b5d8139f085a750858afc3da144"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_c3ecca9e0c8ff15a.m4a",
+      "mode": "100644",
+      "git_blob": "880a5edc677ec50d0f7fbf6b9b18001a1e585156",
+      "bytes": 16535,
+      "sha256": "6b9f326bf2e2c5ba0f6add3fd5086c3cf62e56b488bff903fd3caef9962a4db4"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_c64cb59dc975494e.m4a",
+      "mode": "100644",
+      "git_blob": "80a0eab729a8ad7fd2d212a9dc51285623c38f3b",
+      "bytes": 12722,
+      "sha256": "285ead732ee8942d211cc7f1655bfd57bf89b6b6e99b3c4715f3fa1fe61d5e7e"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_c7178b131da63792.m4a",
+      "mode": "100644",
+      "git_blob": "13b64190f92e2b2b3d8292cbe1373181038dea73",
+      "bytes": 16178,
+      "sha256": "6e76905c2933cf3efd20e0622f1da0e583c5bcfa12b57f3fe3575cbeff68353e"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_ca35ecd4616bd789.m4a",
+      "mode": "100644",
+      "git_blob": "4f837abdb9940cae0624e8ab339ad7414d4d3ffe",
+      "bytes": 14174,
+      "sha256": "fa28277f385798a39f7d43e554e73c3446944603fab05d37c2356765cb8d9cfb"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_ca65d3946d8e1f83.m4a",
+      "mode": "100644",
+      "git_blob": "46cad8ca999c4f59d85aa803ed4cf12d0e286034",
+      "bytes": 12162,
+      "sha256": "e613415d43910fa1090fc893ed08e9eb83d625ff472b17891d912da4321f22bd"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_cb071cce13fbb7d5.m4a",
+      "mode": "100644",
+      "git_blob": "4faa2ca22f1ef23dd6107a0cfe81908c7bd55ba5",
+      "bytes": 9869,
+      "sha256": "ab1936bff1b7c46ce449dd2282655d8b0d52f6cecd80d6fd0a305d5f1bed5a42"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_cc82de5df2cac63f.m4a",
+      "mode": "100644",
+      "git_blob": "f00dbc15e478be748be2d667527c477681ceaa3c",
+      "bytes": 18632,
+      "sha256": "04656f9cd9c6ec27e50ab341752a9290d009e3116fd45fcbef79b1eb14cae35c"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_cc840a6da6f07595.m4a",
+      "mode": "100644",
+      "git_blob": "181bfd0d67834717d9ea225e32a20180eb0970f8",
+      "bytes": 13086,
+      "sha256": "58b8076d25c5579ade62ce345ebe845d835127ee2575b3931a94bdae60f7fa18"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_cca773b099d40466.m4a",
+      "mode": "100644",
+      "git_blob": "141d4d72e6d225539a76b50ee1dee1d1b1934ca8",
+      "bytes": 16343,
+      "sha256": "ef41d3d2c02c58640c8fbb04fa85c41ec194e623272904b9e5676c28a8e3b8ee"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_cd78a8b7633d70a9.m4a",
+      "mode": "100644",
+      "git_blob": "6e324268de938dc37a51cb49560ab570856546bf",
+      "bytes": 16731,
+      "sha256": "3b71ac7e804a4ed7f1860ee7f6eadb5b0652e1c9d62449a0b78fa8a71b8ebde0"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_cea6e09e4b0edcf4.m4a",
+      "mode": "100644",
+      "git_blob": "ecd57155131668ef981f4717bb1079b45c2e58ea",
+      "bytes": 7750,
+      "sha256": "d4d3bdd07f4ec5d2c97a7d6c62313f1b767ce2f60ee94011c51dbf87851ee02b"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_d3f7b5463059450c.m4a",
+      "mode": "100644",
+      "git_blob": "634ffaf958dfa9ffba5b555d39638c8d4d3860a0",
+      "bytes": 12123,
+      "sha256": "ad08729195f3b914e80b1be74ff381ce46ec67efaf79a9c78b9dfcb9c930ef83"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_d91a4b601dac6b6d.m4a",
+      "mode": "100644",
+      "git_blob": "761da495d2387441e3bc6b3e85cc360dd4608689",
+      "bytes": 17623,
+      "sha256": "bbceb3a758aaea03c3443618003dc2c966e426e8da2bb8e06055e476e769639c"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_d93aa375419b6882.m4a",
+      "mode": "100644",
+      "git_blob": "06e497c50cd38c8a8e4c2fa85f1e41086f180e31",
+      "bytes": 17717,
+      "sha256": "44d56a8e7716d137771dfad75712766c7f2c1bccd518acf5ec3fa4e8e34129b8"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_d9afd4dc436f7753.m4a",
+      "mode": "100644",
+      "git_blob": "ec3e2bc0b5ccbe7d190e0670bbefae944c0c01f5",
+      "bytes": 12112,
+      "sha256": "2adaf716d84ea9cad9642fe5da3aafe212cf055c76a69ad818d767163668b7b6"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_dbaad4c64c5c5f52.m4a",
+      "mode": "100644",
+      "git_blob": "bd79df5e51d787a07ef436e2ffaa4a343eb8a70f",
+      "bytes": 15018,
+      "sha256": "08450daf11a2edb8c24a94e7d0dbb32cbffd4d70a96d156239876fea5cf2f04c"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_dce0507a56c89df6.m4a",
+      "mode": "100644",
+      "git_blob": "e813d88136a430da3aff94cb41b7f8ffe46362e7",
+      "bytes": 16212,
+      "sha256": "da2181a6907b2e95b3081c3dc29cfa079d131bf6c52ea74135e6d77b435a4594"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_dd5e12c2f3f3966b.m4a",
+      "mode": "100644",
+      "git_blob": "b590a7362a62e8f314ed9ac17d0958c26f65bd58",
+      "bytes": 13008,
+      "sha256": "c5411f41b50d9d7997a0b2a390e6b026aee3b4534b8c17ae706df4e444e8565b"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_dd79baee771402f5.m4a",
+      "mode": "100644",
+      "git_blob": "14da6236c5de6a5e991300695f42680daa1736a9",
+      "bytes": 16438,
+      "sha256": "d5b9a08347290a441073ff4c2cf96c03dd61b1cf3f718d8459b431a90d963874"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e00c7f4b81690f4b.m4a",
+      "mode": "100644",
+      "git_blob": "35c45dd44bf13c14140523c239721f62fafa6131",
+      "bytes": 19048,
+      "sha256": "536cad6d1bc10c6d6c2e0952fb700b6242d991b11297761e62d5c1a6356b3102"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e1e2885929765827.m4a",
+      "mode": "100644",
+      "git_blob": "9098fa27bcfcd1bb69632fe509222f91347b8ed2",
+      "bytes": 31826,
+      "sha256": "74cfc734c458d2d3bd794f6b64563d2d456f4c9e7c9ed73822aba46b7c1947e8"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e267718edd6360bd.m4a",
+      "mode": "100644",
+      "git_blob": "4ab0630d8738f66d84644ed811f956bca81f01ec",
+      "bytes": 20383,
+      "sha256": "e6ef33caf57e95d683c28cd09a7de5ca5cf479dc13bc639958aa62cb65d59c9c"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e51e3f6cf592cc1c.m4a",
+      "mode": "100644",
+      "git_blob": "6b2208b5ea17f0f1bc96f5ae5167c117021c5e80",
+      "bytes": 10997,
+      "sha256": "c5c513784789d07e884433cffd025465a4ae7217a3b4dbf196ac07d0158dfa95"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e550a1b7344c41c3.m4a",
+      "mode": "100644",
+      "git_blob": "43f86b5288b61c8632a66b2ec191f62d1459a848",
+      "bytes": 17255,
+      "sha256": "72fc5b3bec09e1c0cd3e3b7e8051e6251fa085db1dd7575b841de66b013fbe35"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e5fc12624e7cf887.m4a",
+      "mode": "100644",
+      "git_blob": "9a693867a18825389de72d2a250579248f9dfd61",
+      "bytes": 42531,
+      "sha256": "e2c69b81ebf24ed8c0d647cc61080c40070032424cc394cc2938e0a9b16083d1"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e96563f724f2c9cd.m4a",
+      "mode": "100644",
+      "git_blob": "7be1f0eac20c7a551153fe105ce900a71ad07eeb",
+      "bytes": 16907,
+      "sha256": "8418c0916f2c0ad299f3067dbce05812181c46cae95abd8fb3c1e2c24034ec14"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_e9dec1a5e95262ea.m4a",
+      "mode": "100644",
+      "git_blob": "ca1cbd4add3acb4ada672031e21c89a8a8311497",
+      "bytes": 28270,
+      "sha256": "1aade9dbf0705ac54f58aad0eae55cbf86f706ca5cfe34ac9608d9d8136cd037"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_ed45b630ba8032f3.m4a",
+      "mode": "100644",
+      "git_blob": "1a07a6267d2954c146fcc7281d725b8db8f15ed8",
+      "bytes": 10475,
+      "sha256": "70af0b99c961600c7ec2835c44c67e76af602d4b7382ea061f280f8fbbb7efa8"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_ed9399a6bfe91b62.m4a",
+      "mode": "100644",
+      "git_blob": "72f1779e484e013fa1f9dc860b6374c3c4a0a65d",
+      "bytes": 17875,
+      "sha256": "a669c42344ca57908855c3fb9d92d77239555337ac0de2e52113020f8f85ea01"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_eee7c177036108ef.m4a",
+      "mode": "100644",
+      "git_blob": "fc264998c73851fe03a83c2098be90a4c1fb4841",
+      "bytes": 15946,
+      "sha256": "6832e70d1f9bace0f3eaaaed0cbe011b07c447a95b6fc7d48bf9a682721eacee"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f065db17634a6448.m4a",
+      "mode": "100644",
+      "git_blob": "f0f9ae6cc74ec84abc5eebc008a4f1f900e78099",
+      "bytes": 17550,
+      "sha256": "d5f5929260c092edc5dcf7961547d72613ee62321928b103a19388f564207c07"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f07005ffe67020be.m4a",
+      "mode": "100644",
+      "git_blob": "a80eccf2456b9852a21eccab8283ca2599716843",
+      "bytes": 14027,
+      "sha256": "87dc3b0479845e27366f0f9accd6758bbb75e49cbae9a3d95094ab09940306e5"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f21c5a300f0faa57.m4a",
+      "mode": "100644",
+      "git_blob": "a8c101d849bc1393e482946a377df6dde840de87",
+      "bytes": 17545,
+      "sha256": "6f64ab5913c11f27bd063db5e4c5f6067451027f77e64de86f0402d6db353457"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f3297ed9f41804eb.m4a",
+      "mode": "100644",
+      "git_blob": "100f1e09fdb596f23226a9818b7029eec4540064",
+      "bytes": 8802,
+      "sha256": "521ad9cbd482958d485adbda99c550eb8e4235e378a108f1984d1115a6854071"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f3485444561a8937.m4a",
+      "mode": "100644",
+      "git_blob": "a4e22ab276f78da86d4d477b816e83f1ceb1b923",
+      "bytes": 18146,
+      "sha256": "bbc4df7a9af63daf7ca2618acb6f84b38a576b07e499edf76f71c9fbac5c6486"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f35b2e780f6178ca.m4a",
+      "mode": "100644",
+      "git_blob": "66ee8c0b3ed4b219782d354c19411abf3c2f90b4",
+      "bytes": 16606,
+      "sha256": "3d8277094f9c33c5bb2fe2f5ca7e3a260c880d511dd0732a2c97d74ddbe29b57"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f3f108ce72424622.m4a",
+      "mode": "100644",
+      "git_blob": "00f20f1dca3a7c9fc8ddea38c84a3955ea49f013",
+      "bytes": 14073,
+      "sha256": "1c4f242e003ff4845b524bfd289a064a8ec6c509b2330e71979401994c1c09c4"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f4940501b94d37b1.m4a",
+      "mode": "100644",
+      "git_blob": "ddb28454e0ee44061512a7f6967327a9cbbb2ac6",
+      "bytes": 17083,
+      "sha256": "c82de454a87d01a2066044997fb4fbbd692f4b4ab789905cb24e779e5391387b"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f6a8ece65f5a95c5.m4a",
+      "mode": "100644",
+      "git_blob": "1c1b58bf4e79c4d448885acc11189e604fc05bc9",
+      "bytes": 16557,
+      "sha256": "8b7a8b8ab9c7cecf9793dedc4ece7b890a9a85c345c6e7bf2193688036e3b755"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f8d67c4cef1f5de8.m4a",
+      "mode": "100644",
+      "git_blob": "2dfc637ca8b24a85f676971d3f60a8ec95354369",
+      "bytes": 21455,
+      "sha256": "2ecc72ad023205a59da105a58c0b2d93150f1598dcb3b99adf55746420068557"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_f90ef0b2f8466354.m4a",
+      "mode": "100644",
+      "git_blob": "14ffa5858fa0fc88b0876ecfbdae6f53027e9354",
+      "bytes": 19537,
+      "sha256": "ad7cdd5e8e9d6c23de505c0bc977222a9d089948c64f05fe70dd80ceef205423"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_fada50abaf507531.m4a",
+      "mode": "100644",
+      "git_blob": "e7a27f18a628383e76b97a33d577ae3d768aa6fa",
+      "bytes": 13368,
+      "sha256": "d2d0559cc691338f206bd63056ff2a398c1ea3b117d174ed828b8196aa1d46e3"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_fba3424123df234b.m4a",
+      "mode": "100644",
+      "git_blob": "2bace0e210569dc2efa7826cba6739540b3806c0",
+      "bytes": 18680,
+      "sha256": "d5961b1c21e589fade9aef9b72928fa6280d707795785b58c35d8af139f2a243"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_fc60775d7bfb3508.m4a",
+      "mode": "100644",
+      "git_blob": "f741ffbbe070a6d316de1c406ab9fb6f92d526eb",
+      "bytes": 18575,
+      "sha256": "3d73c8cc7f7e94645f4acb7c4867ec77a16ba72543c3b6fc93818e3fb6fde55e"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_fc981905951cdf15.m4a",
+      "mode": "100644",
+      "git_blob": "0f96e96aa21090e8e41895efd5bd962c9536e052",
+      "bytes": 10482,
+      "sha256": "fe84e74a5e5409687ed57bd69a348ee27205d84b7d039995f99a34c2815199e3"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_ffa331c35d1ee73c.m4a",
+      "mode": "100644",
+      "git_blob": "8f84f1e8b0a21a68e3d658a68f096ad56c9ef1be",
+      "bytes": 13618,
+      "sha256": "088e1a00f19597e05df37930c40f072b15884a06ed3629a2679a915b386ccffe"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/free_fff0c8f7e9456d9a.m4a",
+      "mode": "100644",
+      "git_blob": "e877fc3a4089368aff96f8987526b4af1fe2f67a",
+      "bytes": 17482,
+      "sha256": "3a76501c339f5769d5f1554b45024541bdaedd8591eceecfcb695a9e0c08fc42"
+    },
+    {
+      "path": "assets/companion/lumo_cheer.png",
+      "mode": "100644",
+      "git_blob": "d03d279ea22cc8d2976db11644e9547bca8777c9",
+      "bytes": 165264,
+      "sha256": "97a39d167d6638ddb7227e5baef456a2049439614e6e47df492e64eb7ab30ece"
+    },
+    {
+      "path": "assets/companion/lumo_idle.png",
+      "mode": "100644",
+      "git_blob": "642334400fa05f8a82a25c944eabcf4e90a20561",
+      "bytes": 88234,
+      "sha256": "b4088d1f7924ae118b725efcd716307bfe931fb302ba69c0e9ff7eb71e77000a"
+    },
+    {
+      "path": "assets/companion/lumo_sad.png",
+      "mode": "100644",
+      "git_blob": "610a0ce765bde6e4aede18b20affbed6490ea10c",
+      "bytes": 89435,
+      "sha256": "9c1919e1212f9aae4d0c870295a08e80534b2221258805a4cdfc92ceefb2c961"
+    },
+    {
+      "path": "assets/companion/lumo_surprised.png",
+      "mode": "100644",
+      "git_blob": "aac5a2d639f0819f51575874f9198ca309522947",
+      "bytes": 89013,
+      "sha256": "e7499f14e447d0c4be0b6e2e124dcef346a555d8402b1d3b17e6b6eae5534d4e"
+    },
+    {
+      "path": "assets/companion/lumo_think.png",
+      "mode": "100644",
+      "git_blob": "5fcfdc954efc445212419f249560dca013c8dd75",
+      "bytes": 89414,
+      "sha256": "9a2cdd49dec9edd8aae3326aab6b22324c9391e17de45757b78627551991d2b4"
+    },
+    {
+      "path": "assets/fonts/Nunito-Black.ttf",
+      "mode": "100644",
+      "git_blob": "9e7743ebb7efc2bda51e99eda079cb9b2061f566",
+      "bytes": 39260,
+      "sha256": "3a373c4d17cffecdc9f3c351e2ce9ec83edb0622925a59d802be24fd442346f8"
+    },
+    {
+      "path": "assets/fonts/Nunito-Bold.ttf",
+      "mode": "100644",
+      "git_blob": "e289ba049b167e4fd0e5ba5f537fa3f4b94a92fb",
+      "bytes": 39284,
+      "sha256": "5d6ac65faf73856810797d4e6843a57c7444ee6089b764399c3ebfa85d61e448"
+    },
+    {
+      "path": "assets/fonts/Nunito-ExtraBold.ttf",
+      "mode": "100644",
+      "git_blob": "d3168c268b0f8c20edc534be678ab53300ba0828",
+      "bytes": 39300,
+      "sha256": "1804f686f4a8fe643b997ca5fee109c2e9e27dc6b53b871f1ddc35a58e99005e"
+    },
+    {
+      "path": "assets/fonts/Nunito-Regular.ttf",
+      "mode": "100644",
+      "git_blob": "4ed809463fcba2afd71553075412a6d7e74dcedf",
+      "bytes": 39332,
+      "sha256": "0f050be91a610576ef9d06abb68f7c21d22df2d20ece6edb8818630af9b59793"
+    },
+    {
+      "path": "assets/fonts/OFL.txt",
+      "mode": "100644",
+      "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+      "bytes": 4385,
+      "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65"
+    },
+    {
+      "path": "assets/fonts/README.md",
+      "mode": "100644",
+      "git_blob": "f030c163d4071cdfd57e835380a2797b99b3d71c",
+      "bytes": 460,
+      "sha256": "9737c81c48635847bfdf62d599d08d648f1bf94432e993ebf30af7e9e4faa9e0"
+    },
+    {
+      "path": "assets/images/.gitkeep",
+      "mode": "100644",
+      "git_blob": "f704457fdb5e75e1409ce10ac6cf7bfe3497ef89",
+      "bytes": 77,
+      "sha256": "4ae04de1f2c86ca5ebb8725e4d11577cc5fea02ef49d20aac9deb861ea27930b"
+    },
+    {
+      "path": "assets/images/lumo_classroom_header.png",
+      "mode": "100644",
+      "git_blob": "3382af3c0c8bb985aac0809d2088d13899addf52",
+      "bytes": 2054075,
+      "sha256": "205e3a9c6f7f1b00be9793513ec525d8eac275d0037d87192c700f7b7dad2dbd"
+    },
+    {
+      "path": "assets/images/lumo_fox.jpg",
+      "mode": "100644",
+      "git_blob": "437a1e86c6588bb71b88a2cea2144dd4dfe80e73",
+      "bytes": 769731,
+      "sha256": "253794e0513470fce9e13ae54e75a886c631ca8f823fe1ec1b1e978a4313b189"
+    },
+    {
+      "path": "assets/images/lumo_fox.png",
+      "mode": "100644",
+      "git_blob": "5d7588b4372cff172916a5b630cf3ca3a3dd301b",
+      "bytes": 1024538,
+      "sha256": "04b984b720a9c5b76392f02eabdf9ea21a12cd8c29d13b538df626132d33a9b8"
+    },
+    {
+      "path": "assets/images/lumo_kart_cover.png",
+      "mode": "100644",
+      "git_blob": "49fdc02026c8daf336e82e6b094792e7cbfa44f6",
+      "bytes": 583386,
+      "sha256": "96808abe68e4a9b38abbc552358f484d666bc4b425b101d8537da3bc0036c929"
+    },
+    {
+      "path": "assets/learning_questions/grade1_german.json",
+      "mode": "100644",
+      "git_blob": "19717615091ec47d87b9a9f11fb418c3286b838e",
+      "bytes": 8936,
+      "sha256": "81591e136de007daaef7623467d8a1a481cba1d5b5d10e9161f4e1388650cefa"
+    },
+    {
+      "path": "assets/learning_questions/grade1_math.json",
+      "mode": "100644",
+      "git_blob": "98e4099ce827ac93de31ccdbeaebee2b45cec744",
+      "bytes": 9005,
+      "sha256": "3f257be28325e09d4836b58845c53a2c74cce227b71727e1354b5a0bdbce9004"
+    },
+    {
+      "path": "assets/learning_questions/grade2_german.json",
+      "mode": "100644",
+      "git_blob": "76520519804b0efc551612ade86cd2be78ec9814",
+      "bytes": 9810,
+      "sha256": "0f0efccb9cafb9e293fb62d486ae62f7877f254f550398b6e4493bfc28113e51"
+    },
+    {
+      "path": "assets/learning_questions/grade2_math.json",
+      "mode": "100644",
+      "git_blob": "9304a25ae037924e16c6596a7eb51a59043af0f5",
+      "bytes": 8943,
+      "sha256": "565a689fb2c6745ce21c9cf89e74ab597543bd85f98b9a7ee8d98519aa4f9bc5"
+    },
+    {
+      "path": "assets/lottie/loading_spinner.json",
+      "mode": "100644",
+      "git_blob": "8364edbed7ef6c6f33a540230539c9755fa654e3",
+      "bytes": 10114,
+      "sha256": "ed0a35f79ddfad32ad05db29b6b80f931b922397e5c1b79ed2ea6c37058c5174"
+    },
+    {
+      "path": "assets/lottie/lumo_cheer.json",
+      "mode": "100644",
+      "git_blob": "0f737dc683efa6e6c4ec0eb0f0cded7c79fe6d71",
+      "bytes": 42010,
+      "sha256": "0020826e4b24658e141ad4e7514af916c3309e2da33c5b09ab63648926d058f2"
+    },
+    {
+      "path": "assets/lottie/lumo_idle.json",
+      "mode": "100644",
+      "git_blob": "ca7cb98c82004ee3872a12b49c7ced0f4a684981",
+      "bytes": 27838,
+      "sha256": "e446f13ec23fc97cbe997ac0e1c83eef87198173710c3f88311f57746f372d62"
+    },
+    {
+      "path": "assets/lottie/lumo_sad.json",
+      "mode": "100644",
+      "git_blob": "440eb2434f6ad746cb534eee01e57124c8411557",
+      "bytes": 30030,
+      "sha256": "0090213bb7ee8c4f04ddca62d32bf7a99f89bd02b69bb96c857f4dfe12c71136"
+    },
+    {
+      "path": "assets/lottie/lumo_think.json",
+      "mode": "100644",
+      "git_blob": "5893fcb76c23886e31d38db78666975e6829720d",
+      "bytes": 32193,
+      "sha256": "4ba153e06f10d382f5fbfc72f509a35ffe1cc932791bb0596014deff3c056325"
+    },
+    {
+      "path": "assets/lottie/star_burst.json",
+      "mode": "100644",
+      "git_blob": "73ebe6b3f708fbfc0cd803c0facbdeee035d99c9",
+      "bytes": 30309,
+      "sha256": "c8a83df83dd6fee0a0ce5b9f340be377173efef3a1bf74b07a0aabea8e8692a7"
+    },
+    {
+      "path": "assets/lumo_cards/.gitkeep",
+      "mode": "100644",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/lumo_cards/avatars/.gitkeep",
+      "mode": "100644",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/lumo_cards/avatars/avatar_player_blue_boy.png",
+      "mode": "100644",
+      "git_blob": "0b965f85760637d737c72b21c6fae0b47e4e588b",
+      "bytes": 324091,
+      "sha256": "7934dd052e75f0ee50232dd1d3713c26698eb9ad342adb50b024599f1e3a7cb4"
+    },
+    {
+      "path": "assets/lumo_cards/avatars/avatar_player_green_boy_glasses.png",
+      "mode": "100644",
+      "git_blob": "de4c1b0cdc58b1a43037d8848510ebf27944c4fa",
+      "bytes": 347482,
+      "sha256": "0b172ee05e8ebc233671c687e3211edb8fbce3f21b9501423e4d61cd25ceca95"
+    },
+    {
+      "path": "assets/lumo_cards/avatars/avatar_player_red_girl.png",
+      "mode": "100644",
+      "git_blob": "77770cb731a4cbfdcbd002c85cd3964c8fa672a1",
+      "bytes": 367810,
+      "sha256": "ff56dbd555bce2ce74e554c2a8bf7319bae73473e7744ad75a4cbf637584ea0d"
+    },
+    {
+      "path": "assets/lumo_cards/avatars/avatar_player_yellow_girl_headphones.png",
+      "mode": "100644",
+      "git_blob": "62d3a844db105a4b3b49ff8fd47bf73c3552a465",
+      "bytes": 357994,
+      "sha256": "a7e163df17cfcb9b023078849651b9053c3586ae98cd910e3405329ae2bebf8c"
+    },
+    {
+      "path": "assets/lumo_cards/avatars/bot_luna_owl.png",
+      "mode": "100644",
+      "git_blob": "c517bb7e4097272b88707743ea9f05bbea6c0187",
+      "bytes": 15442,
+      "sha256": "b6730a0d4f3a4fd0e4cf9dcb1030d67241cb6bbc5ce68a6d7e51e2f13b00fb84"
+    },
+    {
+      "path": "assets/lumo_cards/cards/back/.gitkeep",
+      "mode": "100644",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/lumo_cards/cards/back/card_back_default.png",
+      "mode": "100644",
+      "git_blob": "ae86e9d0981d6f2fcc0972d8ff89ba70eca9e5ec",
+      "bytes": 275301,
+      "sha256": "e4e18c88de49e647b32b418b7bdd2854e894a17096175647b09f260e25750818"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/.gitkeep",
+      "mode": "100644",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_0.png",
+      "mode": "100644",
+      "git_blob": "5e9de61255e7049b2b702d8ee7c729980ba155ac",
+      "bytes": 38892,
+      "sha256": "afe8a88ac5b0d1fa5eebf95900799c550fbc72b6bef7cf9679b37e499c3ce194"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_1.png",
+      "mode": "100644",
+      "git_blob": "a9d12999610923e94c94505b164ec9c7bfccc1fb",
+      "bytes": 37529,
+      "sha256": "e9cc39989f0cd8bd6fa13c3987ab0264978ef9c6384814fe1c45c9ad80782225"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_2.png",
+      "mode": "100644",
+      "git_blob": "f17bf6aeb7983e8350d2299872713618ef98e5b5",
+      "bytes": 38817,
+      "sha256": "2b15f4a324deb6557d02c19ae376a8cab4e3f685acb5bffe76734bcf25d8ab98"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_3.png",
+      "mode": "100644",
+      "git_blob": "007d19373782b8a78d17cb24a814001ad446e9c4",
+      "bytes": 39400,
+      "sha256": "588b1b2005f2b359a4cca864082d8d0d69eca2164d3e424aaef0cc2e8d91ffd7"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_4.png",
+      "mode": "100644",
+      "git_blob": "ff8eb60bc95c50d0beb6d1973085b5a6ab8af550",
+      "bytes": 38307,
+      "sha256": "9d6046a3aa9fa3a57ccb7ce68c4bc2c5996d4d9375317f402f45f914313e4fd4"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_5.png",
+      "mode": "100644",
+      "git_blob": "ea926f94477d1146d9be8ae0bf1c248d4f6d6999",
+      "bytes": 39117,
+      "sha256": "30463f0349145d994be81bff8a99b0829abf34a8dadd6dc262b4741634e4b63d"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_6.png",
+      "mode": "100644",
+      "git_blob": "62279f345ec0700662870bf0036ca60ecaca7936",
+      "bytes": 39534,
+      "sha256": "7903a3dd60286cba00b7002aba531c8acc3d1ab834297ae39f23318646725e5b"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_7.png",
+      "mode": "100644",
+      "git_blob": "d5b6edd422bae39598597f819cbf7921d40b12cb",
+      "bytes": 38327,
+      "sha256": "e1fa88a1efb9614ff5dd362e0f3a843906783b5bb5a95a820390b9787e0d1d4b"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_8.png",
+      "mode": "100644",
+      "git_blob": "8ffc36e40f2baa972befc8af6471344821323977",
+      "bytes": 39519,
+      "sha256": "ca3b8b6c66c9f7eead858a7d12709d57b86e4769a7516fad325212c9de4757f7"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_9.png",
+      "mode": "100644",
+      "git_blob": "faee94a11ab72c75591d7ad618a34a63acd52ea3",
+      "bytes": 39539,
+      "sha256": "41aa65b4304939d80529ceebebafee3d61db73edc648513f52ebeb7e8ea8835b"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_draw_two.png",
+      "mode": "100644",
+      "git_blob": "6593f22edb02a7360e5b377efa7fd8638007b4af",
+      "bytes": 39114,
+      "sha256": "dcb98ac9e22a9b5540501bbe5e9d4394b1c05030181d5e8fe7ba2b501f98f930"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_reverse.png",
+      "mode": "100644",
+      "git_blob": "344807b4c5a19df3cb7cfb843f99c2fc5a0d7eda",
+      "bytes": 43624,
+      "sha256": "81085fba3d8f374614063ada858146fd262fb0ec6ba10bcaa95d6bb92debb8ca"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_skip.png",
+      "mode": "100644",
+      "git_blob": "bc7b60a943030526456e24122cc765f3e6b1035d",
+      "bytes": 40076,
+      "sha256": "63ba64b6bb14faebedac636e6ba9ec2bdaf96d29437e6e94f96b8f62f1d5f76a"
+    },
+    {
+      "path": "assets/lumo_cards/cards/blue/blue_think_pause.png",
+      "mode": "100644",
+      "git_blob": "035b72b42b8a0404551c30567c419323f43a2ea9",
+      "bytes": 40543,
+      "sha256": "2210f6c24393e2ae726d8015aab8b5cb9a0ccdf3be1f956c99fef43f7aa6a8e3"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/.gitkeep",
+      "mode": "100644",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_0.png",
+      "mode": "100644",
+      "git_blob": "965abfac825b0d7dc89eeffe71131b9f80b2e15c",
+      "bytes": 35970,
+      "sha256": "59ce645b64d9c41946f84f20b92b73791b46899f67a7bbb856098a894ca1ef01"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_1.png",
+      "mode": "100644",
+      "git_blob": "4831f8a59b94bb6a9edc35c0c8f499553a8d03ae",
+      "bytes": 34715,
+      "sha256": "70688a98b70a99ef3a84bebda4bc0d8bfb0b4b2709c8fcf7f8175ba88686e893"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_2.png",
+      "mode": "100644",
+      "git_blob": "e130ba1c0215c9e3ca44728b15780b734bb65512",
+      "bytes": 35818,
+      "sha256": "60a57bdbdc9b3caca4ed6d2cdcc322b4b03261eac1a254b52eab28e6f27ce379"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_3.png",
+      "mode": "100644",
+      "git_blob": "6dd054f27949837d0b0655d99da0c12dd52dc1f8",
+      "bytes": 36306,
+      "sha256": "af2695c57b43f1f24af720c34131d41493318b5195a9ec26894639b0ea4a37af"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_4.png",
+      "mode": "100644",
+      "git_blob": "60d8eb0e68076ecf65259a0156afd3bb1cbfecf0",
+      "bytes": 35244,
+      "sha256": "ca78fe99e2339eca495839dbdc48810ff6fd7fb5a53ac6dd34a1939ded64489d"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_5.png",
+      "mode": "100644",
+      "git_blob": "07e1452d4427f03092bad7430b6c29528fc911bc",
+      "bytes": 36083,
+      "sha256": "676b25c7481696c97f20aaceefeb491191ded524c0d9feefd9a67225f9d9dec0"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_6.png",
+      "mode": "100644",
+      "git_blob": "58426be4d97c1c3246bcb90958842d684ad54a9b",
+      "bytes": 36526,
+      "sha256": "4489a5afb62a9cab7df575ef20b6e7a809314b6b4cbfc0841f8a2023f07cc22a"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_7.png",
+      "mode": "100644",
+      "git_blob": "f24c3ee42d1a741f015eebde8f371b45b66f2806",
+      "bytes": 35332,
+      "sha256": "4a0892e9096adfe7e3f5ab6575583093b45649d876a2abd1a80de36df8b8738f"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_8.png",
+      "mode": "100644",
+      "git_blob": "cf2a1a3ef8ecbdeb685ac0211e52b3fb253cf92f",
+      "bytes": 36503,
+      "sha256": "8afb6fe616a47a4ba74bd2eff2a0799393cc3dd4f0f28326f23200c85d566bba"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_9.png",
+      "mode": "100644",
+      "git_blob": "2ff4d730362fb77706c37726a666a1826580d758",
+      "bytes": 36475,
+      "sha256": "2df7820e20c26fccb709a37b065832fd68074db3e19fcd8da5ef12eebf499bac"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_draw_two.png",
+      "mode": "100644",
+      "git_blob": "cad170a8ad6ab16560a7387ef93eca3cedc9b311",
+      "bytes": 36647,
+      "sha256": "14cb029fe8c3e5d05a34e77cf9e52982da1533c83bdc81894ff63f3bfb8c6560"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_reverse.png",
+      "mode": "100644",
+      "git_blob": "bd21b1fc2a59a793ac7a12615aeccdc75a2a6509",
+      "bytes": 40949,
+      "sha256": "f49d37121e971b45e1e608926cbff1fca34167232121e9cf011de669426f1b38"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_skip.png",
+      "mode": "100644",
+      "git_blob": "7898971c186b0693ecbfe44b69eabc075c000dab",
+      "bytes": 37459,
+      "sha256": "d6765df3cf56e1e8167b82ab5d37a443f58fb8f64c569fc7d91f14cf8c27a007"
+    },
+    {
+      "path": "assets/lumo_cards/cards/green/green_think_pause.png",
+      "mode": "100644",
+      "git_blob": "1a6855120b60a20a1a40f75148e83faf050f5a22",
+      "bytes": 37686,
+      "sha256": "ebd9859fb52059a74041e525ec24dd63707589beb395b62867b4a4b5343f7eed"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/.gitkeep",
+      "mode": "100644",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_0.png",
+      "mode": "100644",
+      "git_blob": "30b56437f6f2dcee4d6c97f4ae6935a6402d89c8",
+      "bytes": 34036,
+      "sha256": "a5985e3598c2af32c8da2e4beda57c7b293b5026c21bddd03a8ccf76a0c9bb5b"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_1.png",
+      "mode": "100644",
+      "git_blob": "c56d6e03db8b9a342d678f3d866744af795d4ad8",
+      "bytes": 32487,
+      "sha256": "849b5eef67c048357cc90fe8419d40437d9bc300bf8c539dd0ee6ea3ddffeda3"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_2.png",
+      "mode": "100644",
+      "git_blob": "3fef24aca844dfa99ab22889aa4f95d986d0e1c7",
+      "bytes": 33782,
+      "sha256": "b37d727d30b6cb303daceb08522d6a28c5cd1bc0e289be2f7adbf0f9a68b44a1"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_3.png",
+      "mode": "100644",
+      "git_blob": "ab3c4400181b4246a8e587e93d477b4afb0523ae",
+      "bytes": 34445,
+      "sha256": "b94d59b70dd5eec3d0c3ed2432c509217d2a2c6ca1bd6b404b50b273f646ea57"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_4.png",
+      "mode": "100644",
+      "git_blob": "e473e173c090c11aa03d9f308a6b2891c08b86f4",
+      "bytes": 33285,
+      "sha256": "717697f6746ee9164dce96639019d2d81cf4267933462ba519413e7e31a190e0"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_5.png",
+      "mode": "100644",
+      "git_blob": "c53f5d493296a19862ffc87cd9edad5290948a9c",
+      "bytes": 34022,
+      "sha256": "afd13a0999c5f38bb60653f16bb678249ac707206a584614c627fbbe986440f5"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_6.png",
+      "mode": "100644",
+      "git_blob": "5d5bb3cb37869934ddd94b7192bec05508f6923b",
+      "bytes": 34579,
+      "sha256": "61b0da7685ba6c1ff6e75c6c5078f201d50dbaf21815cf2e4bef388ab759607e"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_7.png",
+      "mode": "100644",
+      "git_blob": "e5c1ea4f1aa477c1c0d81df92f2c28419f394d7a",
+      "bytes": 33216,
+      "sha256": "9304d72531ef2b25d5b0338db73ceefcd3b55fda00a82a6e53c033c3e7df2e7f"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_8.png",
+      "mode": "100644",
+      "git_blob": "120a61681fab2ec3076aa6bf79832b9e0a8cedd8",
+      "bytes": 34624,
+      "sha256": "5c90b4a735a2bfce19f5b7b228f3691f18f4e6a8815da4720ac393dafb6ef7af"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_9.png",
+      "mode": "100644",
+      "git_blob": "f4f1d8f34e0f50e2282813da2464213fb6895492",
+      "bytes": 34627,
+      "sha256": "9dfccc9b7ad984325afaa3f4f26e7bba2b196fd4d2d72faa9f6ca6d43595c2d6"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_draw_two.png",
+      "mode": "100644",
+      "git_blob": "a66359b30f6b4ddbfc0467a6eb9043d101e0f3fa",
+      "bytes": 33899,
+      "sha256": "0c3bfa18c30a087e9edcd78a1f6b21dc769670cbcfd84b6541c93d1c95ab3a5f"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_reverse.png",
+      "mode": "100644",
+      "git_blob": "f4928626014eada2f15316e159954f8de6891a55",
+      "bytes": 38717,
+      "sha256": "bcdbf592927ee7381762ddd80fab31eec6bcca7d8768a657af85b9ab6177cc5b"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_skip.png",
+      "mode": "100644",
+      "git_blob": "403a658724f4b20b62575e8d1c9c1fb03c506f36",
+      "bytes": 35357,
+      "sha256": "83ba97cba9e390aec70c4271f27234bcf1827bddf2638c5bca530961d3e5a40e"
+    },
+    {
+      "path": "assets/lumo_cards/cards/red/red_think_pause.png",
+      "mode": "100644",
+      "git_blob": "1e95e12687f6b78bbbd65c0e35b4d3a46770a4f0",
+      "bytes": 35207,
+      "sha256": "c2a0c288007eb1b3e6afd3e4be2a35b257d7445b244051bfe9e4c5b2980dd58e"
+    },
+    {
+      "path": "assets/lumo_cards/cards/special/.gitkeep",
+      "mode": "100644",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/lumo_cards/cards/special/color_magic.png",
+      "mode": "100644",
+      "git_blob": "be0a2db41447479950fb10511c540361bfabe1d3",
+      "bytes": 263849,
+      "sha256": "3c8d8c42b72c54bbf8acc8e9e2b2460ee1dd284261591b1da7a7fb924648bdf5"
+    },
+    {
+      "path": "assets/lumo_cards/cards/special/wild_draw_four.png",
+      "mode": "100644",
+      "git_blob": "3eb21cf7a4dc005e3c58831239383d3f00981816",
+      "bytes": 265281,
+      "sha256": "6f6c30a57f77e32be4e31495b380a821c14e6a3c82e988543585972ff18a4ac1"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/.gitkeep",
+      "mode": "100644",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_0.png",
+      "mode": "100644",
+      "git_blob": "e2f1866142ca0fe0ef09b71e7dfc41927829fe73",
+      "bytes": 37677,
+      "sha256": "4d5b52e25d13cb7b14ea21f01bf403c39de5d1fdecec9acbb9051555e0e279e2"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_1.png",
+      "mode": "100644",
+      "git_blob": "e21f2494b36728ad0916b045619f9d9b04be967e",
+      "bytes": 36146,
+      "sha256": "80afb014b4f6e50f00f54d5e4df4eb1bc3a0ade06b4343f984841e7d4d4df79e"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_2.png",
+      "mode": "100644",
+      "git_blob": "40405bf8d3fa616cde3fd5902f67b63c7d69faf2",
+      "bytes": 37438,
+      "sha256": "4c7e2cf8e509e56c15de9b271804365fc5b024f6c5cdad90d6ef4c02168e8096"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_3.png",
+      "mode": "100644",
+      "git_blob": "e72293fa6f70e29ca397366e5895deb8e0ca180e",
+      "bytes": 38071,
+      "sha256": "b498e6e85d6418fe96c2f7ab7356b773a7f01facff7a994397d4a28b48fd2b8f"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_4.png",
+      "mode": "100644",
+      "git_blob": "26a4c193ef9cb976404d6955ce9fe24439d8ae52",
+      "bytes": 36809,
+      "sha256": "38a3c2862d6410eb82080138552b7d154f31c742ee476592bc4726220962a120"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_5.png",
+      "mode": "100644",
+      "git_blob": "a3802a4508b5a38c35b59736d091e931c6bb4933",
+      "bytes": 37779,
+      "sha256": "f1e101a0ab4243cb49022b53c80824013d6decf9b772e843a3978c05bd8dbdf1"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_6.png",
+      "mode": "100644",
+      "git_blob": "4f2c4263e26acbdbdd7d64b7de19f2ca3ba086c9",
+      "bytes": 38220,
+      "sha256": "88430ef2467dc1f22024b2fb7eaabc9decc6b04cc6d7fc02cb9754370f2053ee"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_7.png",
+      "mode": "100644",
+      "git_blob": "c21fbce7bdbe5f8dc8d66e45dc4f4cea5b42fa9d",
+      "bytes": 36888,
+      "sha256": "33f0de47c76e9f7db6e25064c2f97a25c60b6de5cfd262f1fed02af87f66c83f"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_8.png",
+      "mode": "100644",
+      "git_blob": "dec8c3ab2fe0c08aedefa6e1f30d80a4edadfea7",
+      "bytes": 38238,
+      "sha256": "d7cb28bf4bd570437c933eef97a7ced7cdd51cf5b1eee9de34d22b71f92fa3f6"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_9.png",
+      "mode": "100644",
+      "git_blob": "a1b15046c9da4f27381789b522cde6ca26ad9311",
+      "bytes": 38205,
+      "sha256": "086125d14dca82b508632fdeac41fc8437c88b5a46080034c79a18cc89abbdb2"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_draw_two.png",
+      "mode": "100644",
+      "git_blob": "08f5883a10d5b1d12b8e0998c7a290d4e7838ef0",
+      "bytes": 38290,
+      "sha256": "587e6ce000c2a0442b611c06e9f0493a8467d9f92388717bfc0c6e5f89bf0bab"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_reverse.png",
+      "mode": "100644",
+      "git_blob": "ac6fc28206bf85f645a1c3f50301a55cc856faa9",
+      "bytes": 42791,
+      "sha256": "32ed7ba2019ffe43c04dd10a9c802fbe7444ac18c06c4b46c78602c3e59efeeb"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_skip.png",
+      "mode": "100644",
+      "git_blob": "5472e39c9dd2224ac2c12d45199a83b8ce33af9a",
+      "bytes": 39288,
+      "sha256": "e833e8962fe19258c8a5dd0d38f7e9596ee9d164b15e29621252528c5647a9e0"
+    },
+    {
+      "path": "assets/lumo_cards/cards/yellow/yellow_think_pause.png",
+      "mode": "100644",
+      "git_blob": "90900ed7d5f553af000e24ccf36f8fb9637932d7",
+      "bytes": 39963,
+      "sha256": "532a54bd3dc3bbf1730954bfc7efcb29ecde118eb3972850adf2e741d4cdd405"
+    },
+    {
+      "path": "assets/lumo_design/badges/badge_schild.png",
+      "mode": "100644",
+      "git_blob": "828df2e2bc57452faba8e057991878e4484df43b",
+      "bytes": 290048,
+      "sha256": "3513a6b0c3905046de0827c3aaf5012bf72cc8a5cc74257618ac84f2cf97c7de"
+    },
+    {
+      "path": "assets/lumo_design/badges/badge_sterne.png",
+      "mode": "100644",
+      "git_blob": "a18aceb38efa5e5003926be2a6674101eba6f0cb",
+      "bytes": 248088,
+      "sha256": "904e33e2bdb2710a09b8cb5d7a720a0d42f0ac5b2954f2c2384929b5155f32eb"
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_games.png",
+      "mode": "100644",
+      "git_blob": "1902fe5f6ae2be711357a4a3edc4ab5dcd3c31ad",
+      "bytes": 2384177,
+      "sha256": "dcb30eb005e23e6f708b01e33aeb899dac05d1f6c87bd8988de068a41ca39f6e"
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_glass_islands.png",
+      "mode": "100644",
+      "git_blob": "dfe9b11731614cf4ba5070ca0ece43bab622fa25",
+      "bytes": 2013439,
+      "sha256": "8d8126541c815d5b28c021fa9bc426890a18df7767632f9a4dddec68c861e74f"
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_home.png",
+      "mode": "100644",
+      "git_blob": "cc58ebc68882e23d489f47ddf4a8258c199871a6",
+      "bytes": 2336469,
+      "sha256": "b4755994e0b0b7be91f449f4c7e8225c21b15cd349c87b0a679dca305d3fda13"
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_kart.png",
+      "mode": "100644",
+      "git_blob": "98c3f4244bec08142cd60b058082b1fc368a5982",
+      "bytes": 2394989,
+      "sha256": "1128f500dc333e0eecc77ea44d952da3c2c18430a2a975a29a46d10ec39bc59d"
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_learn.png",
+      "mode": "100644",
+      "git_blob": "d232dbbcf70dbe3a4d101991cba9ff4bd3717220",
+      "bytes": 2406360,
+      "sha256": "86984aa3dceb4d52a1fac9d0027e86dc65e8f8c6f0b88ec02b249743ba5f5508"
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_library.png",
+      "mode": "100644",
+      "git_blob": "56cb916f20e7d70e89848100cfd2c17710671d42",
+      "bytes": 2348917,
+      "sha256": "46a92d08666920ce24c4e8a5cd278081e862e3779c2a07b9b750a1912320dd56"
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_profile.png",
+      "mode": "100644",
+      "git_blob": "221132376a80399fb7f87d37f54eb2e6d41776b4",
+      "bytes": 2779163,
+      "sha256": "110e236d4b6d2c201cddd0880ff7535d193adf38f5621bf1fa1292a03ec1db32"
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_tests.png",
+      "mode": "100644",
+      "git_blob": "2fdefb72ea5cee2a81da38e8465403141c87fb3d",
+      "bytes": 2203819,
+      "sha256": "6477a52e6ebd13107b36d40b564ecad8e702cdc419bd594967c34fbdbd6b61dd"
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_wide.png",
+      "mode": "100644",
+      "git_blob": "91db58b1d225c216ba042df2cc2f9348285564d5",
+      "bytes": 2753045,
+      "sha256": "5d983a399ee7bc27d46446776353c5cd8d2805bc7dd0f05600325d75654f6b2b"
+    },
+    {
+      "path": "assets/lumo_design/board_games/die_1.png",
+      "mode": "100644",
+      "git_blob": "ac5311afc369255a3a6100f51a355de59a27437e",
+      "bytes": 144678,
+      "sha256": "57a0483d57e75168b9c125676a84a429a5e3bbcfd80e6ec97b5d474cc53b0da3"
+    },
+    {
+      "path": "assets/lumo_design/board_games/die_2.png",
+      "mode": "100644",
+      "git_blob": "9265986edd5d3d6cc802359452bb04c53733adc2",
+      "bytes": 144539,
+      "sha256": "7369f7b50958e788fdee46c133f4791fe9ec46122367fc17d1ed40d45b358b7a"
+    },
+    {
+      "path": "assets/lumo_design/board_games/die_3.png",
+      "mode": "100644",
+      "git_blob": "4f60dd06b24bd4b18441695255987ad6eb7b8d7d",
+      "bytes": 146075,
+      "sha256": "4adfdb8c906baa17d41a237e622fefbca08a2e5fe6f8fed1fa098515e098c00e"
+    },
+    {
+      "path": "assets/lumo_design/board_games/die_4.png",
+      "mode": "100644",
+      "git_blob": "3f8ed194367cd4becad025e99995720f09e01ba6",
+      "bytes": 145854,
+      "sha256": "cecb97242cdcace61f5b965d5fd10eda9afc9659235511f01e29187a4a5aa30f"
+    },
+    {
+      "path": "assets/lumo_design/board_games/die_5.png",
+      "mode": "100644",
+      "git_blob": "f127523fd2f9e1f8a40c4efd2d133b6c31438903",
+      "bytes": 147778,
+      "sha256": "0e5c7591d8715940f8766f5b7ff3cc116e3bfbc4f4fbd592efe253534a5f42b9"
+    },
+    {
+      "path": "assets/lumo_design/board_games/die_6.png",
+      "mode": "100644",
+      "git_blob": "0b4981b929001d23e2452953c9742dc106ed9e31",
+      "bytes": 148771,
+      "sha256": "c8813efd83268bcc418eb251d8c883cad54871307ff7535151619fdbf29ab6c0"
+    },
+    {
+      "path": "assets/lumo_design/board_games/pawn_child.png",
+      "mode": "100644",
+      "git_blob": "bad73318aa19c2b821c736159c07b2aa347d64a9",
+      "bytes": 141965,
+      "sha256": "0250c6b9fe3ba356390e3aa5ea1658164db83e02fdd61159a20446729daa704d"
+    },
+    {
+      "path": "assets/lumo_design/board_games/pawn_lumo.png",
+      "mode": "100644",
+      "git_blob": "9c9b848ca58322fa7eb92266fcdd5f7904b8bf9a",
+      "bytes": 149001,
+      "sha256": "c78736e7ddcf1264ac0d8bac3d7a969e1f1ea80b521ec03ef76c2531cf93bf27"
+    },
+    {
+      "path": "assets/lumo_design/board_games/tile.png",
+      "mode": "100644",
+      "git_blob": "5167c88db79aea1113b490732115f87471032a7a",
+      "bytes": 175225,
+      "sha256": "435a43ed09ef0dda7c3b80382fed57d890d501cbed9ce9e4e6584da24b8a72d8"
+    },
+    {
+      "path": "assets/lumo_design/buildings/book_arch.webp",
+      "mode": "100644",
+      "git_blob": "9dc6c2df2434edb4a6f199bb1671635fb3aace64",
+      "bytes": 50316,
+      "sha256": "40f22e6e6921b580525ab3b3511020d62eeb9ae525cda93835deae61868ee054"
+    },
+    {
+      "path": "assets/lumo_design/buildings/clock_tower.webp",
+      "mode": "100644",
+      "git_blob": "a5b45ea845073375ecef5920badd3a5b6e4fe2c5",
+      "bytes": 34064,
+      "sha256": "4385a65dc9676582f10ffe9c2a3ca401ec5fa62a60fc3c96c4689f5ed79ebaea"
+    },
+    {
+      "path": "assets/lumo_design/buildings/corner_house.webp",
+      "mode": "100644",
+      "git_blob": "3470933b5cc42e9d5543262e5cf5b448f1f58b8d",
+      "bytes": 49656,
+      "sha256": "9f0ed9a28b2d389412ca444df4a2308da31a68488e066cb65cbfc44a22c96d24"
+    },
+    {
+      "path": "assets/lumo_design/buildings/crystal_cave.webp",
+      "mode": "100644",
+      "git_blob": "e177943295d949f7c9b0e32111fb1f6cbca264f9",
+      "bytes": 53734,
+      "sha256": "be916850d9edc0d805cf8b7cc33f29f929712f0b18eb6d8291be8b46d2368c36"
+    },
+    {
+      "path": "assets/lumo_design/buildings/crystal_city.webp",
+      "mode": "100644",
+      "git_blob": "94088d35bc7bedd4a4fe92f8d0d66faa21738d25",
+      "bytes": 66342,
+      "sha256": "7e9372a9cbddc45858537c7ccdf22bdd8427e2183dd240da2156d8ee7bf709f2"
+    },
+    {
+      "path": "assets/lumo_design/buildings/glass_tunnel.webp",
+      "mode": "100644",
+      "git_blob": "0a2d7d498043154d9cbf75b2f28ff36d6c09a979",
+      "bytes": 35340,
+      "sha256": "4bab027cbac4d3cab336b726f48752e936b5d0bd1683ed1c6c36f41c71dfc6bd"
+    },
+    {
+      "path": "assets/lumo_design/buildings/library_gate.webp",
+      "mode": "100644",
+      "git_blob": "450cc51ebc4846de29ba861de6097472cd2b64ef",
+      "bytes": 54530,
+      "sha256": "a443eeaf0c810b858a1dacc0ec9b101ebb005b86e7124cc24b9b352320ad3e45"
+    },
+    {
+      "path": "assets/lumo_design/buildings/library_gate_alt.webp",
+      "mode": "100644",
+      "git_blob": "f65f2b59172bca6b89a11e63fd94efec932d2adc",
+      "bytes": 40944,
+      "sha256": "82971c57fd5407488f41292594bb9116f7e8480779960b45488282c1c3add49e"
+    },
+    {
+      "path": "assets/lumo_design/buildings/library_tunnel.webp",
+      "mode": "100644",
+      "git_blob": "bb5bd0c2e567e700e8f51f8d6fbe22d4228f2b9d",
+      "bytes": 54906,
+      "sha256": "a97320d40c9816abb78ed8fa83985181ba605e565ef0d24a3c00b11254f8cb28"
+    },
+    {
+      "path": "assets/lumo_design/buildings/observatory.webp",
+      "mode": "100644",
+      "git_blob": "826b4881d70d159377e7e733c42d51357480a882",
+      "bytes": 50852,
+      "sha256": "658ce58b6e7412d1fdfaa11ffaa933e83ec64f56959b35570a32f585bfeb6e16"
+    },
+    {
+      "path": "assets/lumo_design/buildings/star_bridge.webp",
+      "mode": "100644",
+      "git_blob": "d5a956820171313642ed8ebea0f0be303aba56db",
+      "bytes": 24958,
+      "sha256": "44e353ab471d8ab63f01f5bf8745d8a229bf70ea118a695aa2ee8ab529e2b2db"
+    },
+    {
+      "path": "assets/lumo_design/buildings/star_portal.webp",
+      "mode": "100644",
+      "git_blob": "a701c4c2375058c3ff9cf2aad3bb246dd156b4ef",
+      "bytes": 50504,
+      "sha256": "8c7173f7bf087abd536fb55b200d0713b7156d278db053b71376b0cf7a8106dd"
+    },
+    {
+      "path": "assets/lumo_design/buildings/temple_ruins.webp",
+      "mode": "100644",
+      "git_blob": "69263a0bf15050e13550ba37c37e960d78a45165",
+      "bytes": 55072,
+      "sha256": "7ad1ae56123796c3fcfec89a5c438947fc30d0c6d9d42459899260e316a008ec"
+    },
+    {
+      "path": "assets/lumo_design/buildings/terrace.webp",
+      "mode": "100644",
+      "git_blob": "1e425fcc91b777d4a03d5bc8b7ac7c0feec9eec8",
+      "bytes": 48916,
+      "sha256": "4d37d71b1326ae5651a6e6e5383c3ae8c49c3e89073b2bbec5c119b00cd6ba37"
+    },
+    {
+      "path": "assets/lumo_design/buildings/town_hall.webp",
+      "mode": "100644",
+      "git_blob": "df7c0437de829f14f97aac5a331981e1900148f0",
+      "bytes": 43808,
+      "sha256": "69041208463ee9f75ba5dd4af198c22425d0664f651b427baad68e8ed4d73b1c"
+    },
+    {
+      "path": "assets/lumo_design/buildings/town_house.webp",
+      "mode": "100644",
+      "git_blob": "e5d11b7a7b90fbcce094952e9915a5cf8bb76f1b",
+      "bytes": 57082,
+      "sha256": "35f5fa3de1c958a6c7182a0d1a7241b9ddfe3cb72d207215621976ef07cc382d"
+    },
+    {
+      "path": "assets/lumo_design/cards/deutsch_hund.png",
+      "mode": "100644",
+      "git_blob": "5a43705144d22db698389f98680900fa79761a0f",
+      "bytes": 453730,
+      "sha256": "2556042923a89737945a06e82b2c22ed1f4533d9648902ce9e8be9879e83b3d0"
+    },
+    {
+      "path": "assets/lumo_design/cards/game_kart.png",
+      "mode": "100644",
+      "git_blob": "2cbd8848373c975937ee90fafd84c8c2ab2791eb",
+      "bytes": 790792,
+      "sha256": "5fad4c5e3155bf93bd00c58493d3915a7fd1523968502028d040538f596c3029"
+    },
+    {
+      "path": "assets/lumo_design/cards/game_memory.png",
+      "mode": "100644",
+      "git_blob": "4fb2171f9bd7a4d3d6b44afafb514b1366b9d317",
+      "bytes": 745269,
+      "sha256": "3f5fb3b1a8cb8adf1460c33dd92f57aabb542db4e21e817bd0174ef97381a9a4"
+    },
+    {
+      "path": "assets/lumo_design/cards/kart_freunde.png",
+      "mode": "100644",
+      "git_blob": "d3ecb63198e1f197898f28d158ae0fbe9ae11781",
+      "bytes": 727279,
+      "sha256": "4f7cbd044731f70ebf369adf95162b02d444d6e23d9bffa041ee01f22958cd21"
+    },
+    {
+      "path": "assets/lumo_design/cards/kart_track.png",
+      "mode": "100644",
+      "git_blob": "a66386fb385ad9f36e6d7288f0140a4bc8a24abd",
+      "bytes": 707490,
+      "sha256": "c5ffc368ef9e4d695c9354988a937db5f6d06c8d2c8d6ec6cd22f12fbf5ced73"
+    },
+    {
+      "path": "assets/lumo_design/cards/test_rechnen.png",
+      "mode": "100644",
+      "git_blob": "2b554ec3c00fe8e425304783e21bc5b3f97e9943",
+      "bytes": 296031,
+      "sha256": "b6c7c6b55ed3426039724e4bbc427d01530a8bbd79f7364bb14ff01924e82a3a"
+    },
+    {
+      "path": "assets/lumo_design/cards_game/friend_giraffe.png",
+      "mode": "100644",
+      "git_blob": "c03991583a442e9f030cb4d377ded73e81f35d6a",
+      "bytes": 203696,
+      "sha256": "27a428134ed8af2637a95ac7e5173ab60d2d0fadcb35c56ef88efe6277e36958"
+    },
+    {
+      "path": "assets/lumo_design/cards_game/friend_panda.png",
+      "mode": "100644",
+      "git_blob": "06ac570e9053f8a2a052d50fd5350c0cbf8194bd",
+      "bytes": 179305,
+      "sha256": "28d93d4702ed45961e897fb3cef557e173e5b082ff8ee2790f6140d7bd0d5656"
+    },
+    {
+      "path": "assets/lumo_design/cards_game/logo_cards.png",
+      "mode": "100644",
+      "git_blob": "05f9ee10234911b218dab990e93385e42d63b7bf",
+      "bytes": 189880,
+      "sha256": "431d43cdd5f454843fdf5e6a7bd79e51fb67048caff036868878c8d373bcd61c"
+    },
+    {
+      "path": "assets/lumo_design/characters/bunny_kart.webp",
+      "mode": "100644",
+      "git_blob": "44774687dca10b1be1ce342282913f7ab22a8ea9",
+      "bytes": 57856,
+      "sha256": "aff9b02ad0d88313fae5d4729a35c035294bbe3e1269b13a7e6ba621fb93424d"
+    },
+    {
+      "path": "assets/lumo_design/characters/cat_kart.webp",
+      "mode": "100644",
+      "git_blob": "45406e29ed67facd9d219fd51eea034cd9b78974",
+      "bytes": 53264,
+      "sha256": "f0f16ea39489bfec0a136a830d2da68a49680ba0a9723c3290ac9c4898352358"
+    },
+    {
+      "path": "assets/lumo_design/characters/fox_garage_wrench.webp",
+      "mode": "100644",
+      "git_blob": "61c199ce96c9028f2bccbee3d74cb68857de1c69",
+      "bytes": 59882,
+      "sha256": "d700149890d8d0cdeac21efc6d3bc943192b4c87f862eb632f4989ee5718353f"
+    },
+    {
+      "path": "assets/lumo_design/characters/fox_kart_front.webp",
+      "mode": "100644",
+      "git_blob": "5daa09f8baa49ea22527e5e3b4357afb08cd64a6",
+      "bytes": 59644,
+      "sha256": "44a89bbcc687468d550a652ec6f7c5b2670ff596b7cda223870b9b344e535149"
+    },
+    {
+      "path": "assets/lumo_design/characters/fox_point.webp",
+      "mode": "100644",
+      "git_blob": "a4de1278a87a1041f57af996d0e467e4b7e6a3a6",
+      "bytes": 44122,
+      "sha256": "3bf519dfa962c2de1baf4e01f9abb88942d7384ca5a180e031a50e90edabf707"
+    },
+    {
+      "path": "assets/lumo_design/characters/fox_trophy_jump.webp",
+      "mode": "100644",
+      "git_blob": "51d7a30efe03faf4a164b911a86f628d0cf45fdf",
+      "bytes": 69480,
+      "sha256": "c13ee1885f06ed9eec62769243fb3e270c673b0691b043b6c8dc05b4d6c41ddd"
+    },
+    {
+      "path": "assets/lumo_design/characters/fox_wave.webp",
+      "mode": "100644",
+      "git_blob": "fbb61a43176faf10c54341be712d3eea74ada817",
+      "bytes": 65558,
+      "sha256": "e133b415c2af9766050211fac236f50276ac5dfbb7143041dea43a0904fb5997"
+    },
+    {
+      "path": "assets/lumo_design/characters/fox_wrench.webp",
+      "mode": "100644",
+      "git_blob": "fa3f3b6f5a6adebd588ed04e640d8a64ad8aeddd",
+      "bytes": 53076,
+      "sha256": "775e3d55f841520bb6167b801170e77e0798d49ecea46d7870a354bf52013272"
+    },
+    {
+      "path": "assets/lumo_design/characters/kart_rear.webp",
+      "mode": "100644",
+      "git_blob": "5c2e6f96a0777a17a819f056329f869c1c5de4a3",
+      "bytes": 43922,
+      "sha256": "d2faae7b6cd079f139b522a8a2428024f6ec66367e89aa98a273b8cb54f64b6d"
+    },
+    {
+      "path": "assets/lumo_design/characters/kart_side.webp",
+      "mode": "100644",
+      "git_blob": "a2a269c10cf578569fd93dfd007c70282f4d9909",
+      "bytes": 45614,
+      "sha256": "14ec1022cff193c553b2c6ba2a43266512b0a4188677982905076e1406c0b9c8"
+    },
+    {
+      "path": "assets/lumo_design/characters/turtle_kart.webp",
+      "mode": "100644",
+      "git_blob": "fd3b79ff5cfe79ea4cfbaeee583f6e841008a2b3",
+      "bytes": 51208,
+      "sha256": "f1631915dbca10df687be2a439876ae5f71569a9d84854c54588fa562d547cb4"
+    },
+    {
+      "path": "assets/lumo_design/deco/arrow_sign.webp",
+      "mode": "100644",
+      "git_blob": "bcaa9e41a72d5e1dd7e0e7d17d28de8344f706da",
+      "bytes": 38984,
+      "sha256": "477e070392088a2f218b56a6f1fe65415698937461c79eccfb63232d39326089"
+    },
+    {
+      "path": "assets/lumo_design/deco/balloon.webp",
+      "mode": "100644",
+      "git_blob": "d913aaaac9e2931797d8281ff4ecad064a59fd6e",
+      "bytes": 29750,
+      "sha256": "556f4f0fcb7c99e3bf72f852859f7a135762d9925182a3195ca0cbf02fedff2e"
+    },
+    {
+      "path": "assets/lumo_design/deco/banner.webp",
+      "mode": "100644",
+      "git_blob": "50c49910513261ebd006017d380637a89494d3ed",
+      "bytes": 10026,
+      "sha256": "04a895e2b084c4ba61735be4023f995f678d56026a5b6816b8e46b1ab99d6d5e"
+    },
+    {
+      "path": "assets/lumo_design/deco/checkpoint_arch.webp",
+      "mode": "100644",
+      "git_blob": "039bdc2a0634ea9ab9e7384dbe2bccccea3f3a93",
+      "bytes": 40002,
+      "sha256": "39fdac867cff18ff36784ba12ef6233e5e176a6c7b1c215e99ef360ce0295de5"
+    },
+    {
+      "path": "assets/lumo_design/deco/fence.webp",
+      "mode": "100644",
+      "git_blob": "3c03b8bbb17edc467667a8643c1be8dc7ae06e62",
+      "bytes": 24308,
+      "sha256": "1c1a29905bcfc776430af403060be87d04fb9391042b0f9b2b6428cfff43ea71"
+    },
+    {
+      "path": "assets/lumo_design/deco/finish_gate.webp",
+      "mode": "100644",
+      "git_blob": "e21ecd23572a253507aaa505467700d9b8ff989c",
+      "bytes": 36202,
+      "sha256": "2d6a2c2ab80f8c0291314173462f600666f9ba0d10a87da97e268fea8b4bb431"
+    },
+    {
+      "path": "assets/lumo_design/deco/grandstand.webp",
+      "mode": "100644",
+      "git_blob": "02f58cf1953f66d8436be616bfba4fc6df29b6e3",
+      "bytes": 40358,
+      "sha256": "6d98c3cda23171579f28e673a8114c6f874b811187e0ac52291633f917f81492"
+    },
+    {
+      "path": "assets/lumo_design/deco/guardrail.webp",
+      "mode": "100644",
+      "git_blob": "07450daac60e1cd026a6fa346522068f11f32f8d",
+      "bytes": 22132,
+      "sha256": "d05d7fea6dd59dc401de2391da455aaedb10f65b3c2bcc1c7f273e9ceedc6371"
+    },
+    {
+      "path": "assets/lumo_design/deco/lamp_banner.webp",
+      "mode": "100644",
+      "git_blob": "91bffd1f7271c9f26da579194aafffe1288998e0",
+      "bytes": 29730,
+      "sha256": "f0877ffafaa914a2aadbb53db2797478c70d32285e2d62e7b3f921647c095fc1"
+    },
+    {
+      "path": "assets/lumo_design/deco/signpost.webp",
+      "mode": "100644",
+      "git_blob": "1b299fccc1b451abd677d27505d84ab088fa7cc1",
+      "bytes": 20376,
+      "sha256": "8a7346ca102307266d4c97e5bc8b080ace397d36c29800af1b83380eaeb80ac0"
+    },
+    {
+      "path": "assets/lumo_design/deco/start_arch.webp",
+      "mode": "100644",
+      "git_blob": "79ba85c2526d56c11a7a78d52d20abec57bbfb3c",
+      "bytes": 36466,
+      "sha256": "1faea5b46eec977082d4bb3f71afc8c758906cc3d7e3759b2e00edb4ae2a170b"
+    },
+    {
+      "path": "assets/lumo_design/deco/start_light.webp",
+      "mode": "100644",
+      "git_blob": "493d906289609a001c25a3158f7fbcaec98abf4d",
+      "bytes": 47978,
+      "sha256": "3129557d5d376ebbf1c2cf3ee2aa9aac666052ec32eed42dfa9596c34cb3a865"
+    },
+    {
+      "path": "assets/lumo_design/deco/tunnel_rock.webp",
+      "mode": "100644",
+      "git_blob": "858a9fd75c0dfbf3366a00573c1767d185e01184",
+      "bytes": 34438,
+      "sha256": "887f876e62bb83af606c734156d790e2998fc2ec8f07ca5839c8c88c782ced8e"
+    },
+    {
+      "path": "assets/lumo_design/deco/wood_sign.webp",
+      "mode": "100644",
+      "git_blob": "fea7804ec9aa5eac2fd61508c6d681175db14498",
+      "bytes": 31310,
+      "sha256": "9003a9c0bc900e7b0d7a45e1dba42f8bee7ed3963f549a465bb4d1f2094bd78c"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_arms_open.png",
+      "mode": "100644",
+      "git_blob": "58595acce97c84fa31d906f07977a84cafd468c3",
+      "bytes": 1026549,
+      "sha256": "205ecc46a21fb681ad023fb04f72897cb5a5f2ec14eed84187384958ba025b0c"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_avatar.png",
+      "mode": "100644",
+      "git_blob": "2528db26b4288d89e905c03ec1015ac7b8798538",
+      "bytes": 381950,
+      "sha256": "8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_book_point.png",
+      "mode": "100644",
+      "git_blob": "0ee53bec6758833d2d3f64e0ca12a2a208878c0b",
+      "bytes": 1125367,
+      "sha256": "32af75c5c329e2337cbaebbd55bf14309dbb6a043623526cb0f522ce7d553abb"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_book_welcome.png",
+      "mode": "100644",
+      "git_blob": "f1baeb1b47d64e169a1ae1e253a0c8a7024b37e9",
+      "bytes": 1864997,
+      "sha256": "593d105381e0f63627f2296b05456c508d5315f4bd06a1e5a5aa5c67761bb548"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_cards_welcome.png",
+      "mode": "100644",
+      "git_blob": "6d1d702b9ba3b92188f181f425cf05a781e9f30d",
+      "bytes": 1882648,
+      "sha256": "dcc48fa38de41851ed05fc350402e3be079cec34e46d0ae8b97dec38b0ff0987"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_cheer.png",
+      "mode": "100644",
+      "git_blob": "3b3c6db5ec27b9d92d218b72146083959b2da928",
+      "bytes": 924913,
+      "sha256": "3f25231a54a84ebb6d4c3fcd79fadbdeec458bac41130219f32b902da08440f9"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_kart_rear.png",
+      "mode": "100644",
+      "git_blob": "8c152a1302d82a82d830d61117f8bc88aee26933",
+      "bytes": 1070197,
+      "sha256": "ebe4333513ad18cb682ca8605e600a782d12393429cdcdecc8e2241a16e532c0"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_kart_wave.png",
+      "mode": "100644",
+      "git_blob": "cf798c620eb0127b6063a428350ebe9ab2e9cae3",
+      "bytes": 1272108,
+      "sha256": "4e382a041fb7ac5fba98c896d2afd57332be4b79d4a903b39572f81668fd270c"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_point_side.png",
+      "mode": "100644",
+      "git_blob": "233ba2e28ad008769b2051560d0ea04e201f425a",
+      "bytes": 971542,
+      "sha256": "42b85b4c445f592261497bd3453accb14d80bb6c5d3bfb4da514150bda1d8167"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_quiz_host_1982.webp",
+      "mode": "100644",
+      "git_blob": "c1a8452ab3eaf863e5cb765098a203c34fdad36c",
+      "bytes": 24732,
+      "sha256": "2ba578ecedc8422f4f67118d722716736915ed4cd3e6302294942b019e8e1a74"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_spielwelt_cards.png",
+      "mode": "100644",
+      "git_blob": "ca8be55bb507e524d2a52f1b41d7200436bc2e04",
+      "bytes": 505475,
+      "sha256": "4a39a5ac33d2af9a882f73d5015635cd0fbd57e91158749128933751716cdd44"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_spielwelt_dance.png",
+      "mode": "100644",
+      "git_blob": "590787ab75439054961bd18b403f30f3c4b65b1b",
+      "bytes": 741906,
+      "sha256": "d47b9f64fae11f4407ef3760a3214227372d89857aa8be136f063b820074a7d8"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_spielwelt_jump.png",
+      "mode": "100644",
+      "git_blob": "e0efe78dece4d6c3972e4d757812bcf26313a086",
+      "bytes": 508550,
+      "sha256": "5b1db2a731217c1b26684e19eaf4fa5538bbb093d0fb61e4f20cebc13eef5da3"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_spielwelt_wave.png",
+      "mode": "100644",
+      "git_blob": "115bdb2772c3918b16e1704825b74211d829f784",
+      "bytes": 494902,
+      "sha256": "802adffe8eedbb9e47cc4c73b20c9f3fe0d618fb66d3e44d299e000b345ce7ea"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_tablet_thumb.png",
+      "mode": "100644",
+      "git_blob": "015d32214ff8fba0d45a823a84107117dbc7972f",
+      "bytes": 961215,
+      "sha256": "24bf2befaf40bacbbccaa429e6af8a0b280dbff1a9a0a11c190b4dce090bee5a"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_teacher_stick.png",
+      "mode": "100644",
+      "git_blob": "5648d3ba4fa08f5b6ade93e4b7426b993b11448a",
+      "bytes": 936573,
+      "sha256": "cf5862f39ccfdd6ebba53973429d02fd50590397ebd324cf1145544ff1a92647"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_thumb_wink.png",
+      "mode": "100644",
+      "git_blob": "fd2b3198e0f89110730221cc497dbed67b541f85",
+      "bytes": 968559,
+      "sha256": "5060005ee8c64ab82fa09ed3a4687b29cd1391925e409e1696b8045b4472a191"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_trophy_wink.png",
+      "mode": "100644",
+      "git_blob": "172ce25bb742570dbc9be1890811ec4514df709c",
+      "bytes": 1041166,
+      "sha256": "68896173adc0abcafb8a432308f8dd6c2f5dc96b05c03a6f33fa9de37bb8c5f3"
+    },
+    {
+      "path": "assets/lumo_design/gameplay/build.png",
+      "mode": "100644",
+      "git_blob": "488aa61b37f6d4a2e40947e1b3a159b207c80fd5",
+      "bytes": 883681,
+      "sha256": "d2581801582d334b2ce794b734687d7d55417d6ccd64f38b91feb0cd5a2c2dfe"
+    },
+    {
+      "path": "assets/lumo_design/gameplay/kart_candy_preview.webp",
+      "mode": "100644",
+      "git_blob": "35ffa359380170358db2bd09cf47621d20fdd9e2",
+      "bytes": 116792,
+      "sha256": "77e3d4d3251c677ca3afd6e482df6bc57958be471517b4f874dcdd83bf8e5b2c"
+    },
+    {
+      "path": "assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp",
+      "mode": "100644",
+      "git_blob": "8c7cdda13fc8a3866c79528bc910f497112baa08",
+      "bytes": 98156,
+      "sha256": "f5b07b22f5c8ed7f183bdface1dc507dfbe6e7b8aa1234164a24e26240f45e8d"
+    },
+    {
+      "path": "assets/lumo_design/gameplay/puzzle.png",
+      "mode": "100644",
+      "git_blob": "eb1107ef777dc75795078080f08095aa6747a78f",
+      "bytes": 479580,
+      "sha256": "4c4721ebdcf50562af26a61b527cc4ae46940eec226cd70b0bbfd72de4e31f79"
+    },
+    {
+      "path": "assets/lumo_design/gameplay/rhythm.png",
+      "mode": "100644",
+      "git_blob": "71c24da56701d8c6612fd4bce4accdb355e30cc2",
+      "bytes": 314444,
+      "sha256": "7cfd9d59ff0d14778140a0c882b0894d0f7e31b786e550821842a8e921f4c9a9"
+    },
+    {
+      "path": "assets/lumo_design/gameplay/treasure.png",
+      "mode": "100644",
+      "git_blob": "d3cdd1f03aa330d6275652b44268a3b69df3ac65",
+      "bytes": 1112555,
+      "sha256": "783582b8dc1e7a56b1188a5f01d2b12daf17a65fcf6ecf7eb78800b7685ac049"
+    },
+    {
+      "path": "assets/lumo_design/garage/exhaust_boost.webp",
+      "mode": "100644",
+      "git_blob": "14c624add44e732f3832f9179ee546e63ec3fab6",
+      "bytes": 27572,
+      "sha256": "d1361a921104902950a231256c4f9880b5ce4b348773aab2d9a9328acb170370"
+    },
+    {
+      "path": "assets/lumo_design/garage/front_bumper.webp",
+      "mode": "100644",
+      "git_blob": "a3c37e02488374c36bce676f1e20672bfbc70a18",
+      "bytes": 25996,
+      "sha256": "413234147a61fe1e61135d021c8f05a91706c26e0ce2b9cb69c001649d3f8c72"
+    },
+    {
+      "path": "assets/lumo_design/garage/helmet.webp",
+      "mode": "100644",
+      "git_blob": "f084441df76cec49c49f91f214793c0c15363f43",
+      "bytes": 36876,
+      "sha256": "3b3ccc3e106b0f1ed200c3c6bf4c16b7773ade64cb9b8260a43dae8fe0dded70"
+    },
+    {
+      "path": "assets/lumo_design/garage/nitro_bottle.webp",
+      "mode": "100644",
+      "git_blob": "9c4076f1d415c970b0c88e572827717984a93cf3",
+      "bytes": 32144,
+      "sha256": "c519c89070b73b1581b2ab488c4119fc1895757e0f5e49ced9385280778a1181"
+    },
+    {
+      "path": "assets/lumo_design/garage/rim.webp",
+      "mode": "100644",
+      "git_blob": "9320d837acf63f84be288f7d9993dfc7237b78b7",
+      "bytes": 41556,
+      "sha256": "1b266bf6599ee319302d4f26cd24f5a3b32e0f57c44b6a2f5804b27be8ac798d"
+    },
+    {
+      "path": "assets/lumo_design/garage/seat.webp",
+      "mode": "100644",
+      "git_blob": "a86f9777122598f9a85319f31183755a68b415ec",
+      "bytes": 36638,
+      "sha256": "ef14e7560223821e709dc91c8f74ba678a33157c87d0d87dcb006ad24ac0579b"
+    },
+    {
+      "path": "assets/lumo_design/garage/side_skirt.webp",
+      "mode": "100644",
+      "git_blob": "eba5130443f0af9486758b7d96659f337a1feea1",
+      "bytes": 19814,
+      "sha256": "b8b929e424eaa6b396bb4d55a56bd84e7cd8acbcd00f65b93cc2b659bf718b91"
+    },
+    {
+      "path": "assets/lumo_design/garage/spoiler.webp",
+      "mode": "100644",
+      "git_blob": "23c9aab1113f8371bf9cbf4d7a764f3a9a3ce2b3",
+      "bytes": 27842,
+      "sha256": "62f3cef59e3ca613727a59bc2f6b1cc39bafdc1f81cdb89ce12559d14fa3d893"
+    },
+    {
+      "path": "assets/lumo_design/garage/spray_can.webp",
+      "mode": "100644",
+      "git_blob": "9f90c4b089e0b2150a7e2a959641be5310e5bdf6",
+      "bytes": 23446,
+      "sha256": "dafd16ffb4b6f8e56fb850cf5c82883bae9d0f2d93ba853ae0267d86e1a5ed55"
+    },
+    {
+      "path": "assets/lumo_design/garage/steering_wheel.webp",
+      "mode": "100644",
+      "git_blob": "ff26c35253fa658a24490b06ebeaaf43bf4d90f8",
+      "bytes": 44092,
+      "sha256": "9e22203e0f62f3da47ae0360ef68288fd770bda8e9f4f1cc8b9db5d7cea1a0ac"
+    },
+    {
+      "path": "assets/lumo_design/garage/tire_slick.webp",
+      "mode": "100644",
+      "git_blob": "9b337383816c560ba144ff70bcd3b216d8850cfa",
+      "bytes": 26762,
+      "sha256": "8d1c209891b3c9abefd5d3d298d5c09848e36bfeb3ce20824a34bfc79025a5e1"
+    },
+    {
+      "path": "assets/lumo_design/garage/tire_stack.webp",
+      "mode": "100644",
+      "git_blob": "abef4cfdc18f1e70c16740080fee9c5543ee49d5",
+      "bytes": 34444,
+      "sha256": "87cf8675b955b98eac6dcf14a494b1198b1150e35a5ed97c3b7bc8a5bbdb9417"
+    },
+    {
+      "path": "assets/lumo_design/garage/tire_tread.webp",
+      "mode": "100644",
+      "git_blob": "4f3c1d4e21f28e86db4f05abc023de8bec9c3694",
+      "bytes": 29778,
+      "sha256": "c9bbeb6e75eec5340f526b2fdbd2ee0059aedd80890110728be1a459de8574ff"
+    },
+    {
+      "path": "assets/lumo_design/garage/toolbox.webp",
+      "mode": "100644",
+      "git_blob": "b5b6e1a00ed51b90173d05b5884184cf9fb8ad35",
+      "bytes": 36508,
+      "sha256": "c90965bb8cb4276fe0114a49903c90a40b74d65889be2bef7bb7110af2a05f9e"
+    },
+    {
+      "path": "assets/lumo_design/garage/underglow.webp",
+      "mode": "100644",
+      "git_blob": "c9edb9aa4a7be1556612cd8e28c1cc942fce923b",
+      "bytes": 22144,
+      "sha256": "f07773c815c251f1bd665c23d7332d79343d1d0015d97310df08e0511bd88104"
+    },
+    {
+      "path": "assets/lumo_design/garage/wrench.webp",
+      "mode": "100644",
+      "git_blob": "ae1ed22ed01fed58c5d13673fcd248abb1434fda",
+      "bytes": 26616,
+      "sha256": "d22b7a8cec0f6ba5a0eb634ee1269a8310121615b8c57109b9ad8b9c1393c54a"
+    },
+    {
+      "path": "assets/lumo_design/icons/apple_red.png",
+      "mode": "100644",
+      "git_blob": "ee5c23da7a5096e77664e25d6165a01ca587ceeb",
+      "bytes": 249337,
+      "sha256": "2914f33a473eff25232d9644a1122f7ebcffeb3812f9903d81337057bab4c754"
+    },
+    {
+      "path": "assets/lumo_design/icons/book_open.png",
+      "mode": "100644",
+      "git_blob": "15875cbcacdf14b96cc572c407d0390f88ce4bf2",
+      "bytes": 270566,
+      "sha256": "af8af3e342369ec265acfdebb2b0aec11adddfbcbac873a8e6276c7a9512a322"
+    },
+    {
+      "path": "assets/lumo_design/icons/candy_blue.png",
+      "mode": "100644",
+      "git_blob": "bd1a8e7b9f303fae1a124cb545646e1822dddf70",
+      "bytes": 140862,
+      "sha256": "5b9ed8aa87ba1fe1e6ecb27f114f8374d5b5bfc89e86983b159826ec63f1065e"
+    },
+    {
+      "path": "assets/lumo_design/icons/crown.png",
+      "mode": "100644",
+      "git_blob": "77b094573953d615e798ba496894830fcf305d9e",
+      "bytes": 263897,
+      "sha256": "e44d19a5709fe5f9b5d3dd4988f0cc29417cd5b325e17c769ec1fb911b0ed25b"
+    },
+    {
+      "path": "assets/lumo_design/icons/crystal.png",
+      "mode": "100644",
+      "git_blob": "c9de31edd5b34c4579cbd80573f6fb004b748315",
+      "bytes": 175923,
+      "sha256": "6c9308e77dc33e46bcdde9fb838ad08601aa3f1d32ea5091736dfbc3468fb60f"
+    },
+    {
+      "path": "assets/lumo_design/icons/flag_checkered.webp",
+      "mode": "100644",
+      "git_blob": "22c3505d9ed91c41d2a03013a0df6c72799f8e95",
+      "bytes": 19026,
+      "sha256": "cddaecddbe3cbeb0a2e7e7e5055497beb66b300a1f645667cf3279f076f22ae0"
+    },
+    {
+      "path": "assets/lumo_design/icons/gamepad.png",
+      "mode": "100644",
+      "git_blob": "e5732eb95545eb6af6b52c8d4e07e360efa708d6",
+      "bytes": 241315,
+      "sha256": "efdd6f5f05140af78c9ab64291dc3d27809a16dd3032e766003cb197308738cb"
+    },
+    {
+      "path": "assets/lumo_design/icons/gift_box.webp",
+      "mode": "100644",
+      "git_blob": "bb3ac9d49a065807973c6e696425c4d022ede839",
+      "bytes": 37256,
+      "sha256": "460d46097093adbdf568c78391fcdba49dcd5119aecd1c8e442959ac794c7398"
+    },
+    {
+      "path": "assets/lumo_design/icons/lightning.webp",
+      "mode": "100644",
+      "git_blob": "824fb9ac8818fd8a674d9f244bc73baf092d534a",
+      "bytes": 19450,
+      "sha256": "354564f1a2ff3ed843e517be682deab771a7e2fa8bb71a7b801ec2550fa69d64"
+    },
+    {
+      "path": "assets/lumo_design/icons/season_autumn.png",
+      "mode": "100644",
+      "git_blob": "c3e803f877a1748d0a429707b8c1b1c9e8e33fa5",
+      "bytes": 256288,
+      "sha256": "a0a66c45733d1b5380bb8de394971fc303c866d0b4d5d161d12a09937e8ae3cb"
+    },
+    {
+      "path": "assets/lumo_design/icons/season_spring.png",
+      "mode": "100644",
+      "git_blob": "0bccbde0fd9c3acd6e6d82a87d88746e0e15d317",
+      "bytes": 246149,
+      "sha256": "22c4200c2d543033059082830b0d86c4218135812fde9763dafbfdd99b712907"
+    },
+    {
+      "path": "assets/lumo_design/icons/season_summer.png",
+      "mode": "100644",
+      "git_blob": "266b0ac56df0f44052ca103e4e5d2bb753d87c42",
+      "bytes": 265068,
+      "sha256": "7aca554b8f6befa000ac6c3e53880fdd365e3a1bf3044a9cd49f67a701f98f03"
+    },
+    {
+      "path": "assets/lumo_design/icons/season_winter.png",
+      "mode": "100644",
+      "git_blob": "91430fa5e88b99b3fb5374e1996b15ac64cc6901",
+      "bytes": 189992,
+      "sha256": "74eff8e124cbabbc127486e911edfa33f4cd43000077a9a39a45d5fc6842d8ff"
+    },
+    {
+      "path": "assets/lumo_design/icons/star_gold.png",
+      "mode": "100644",
+      "git_blob": "f4071bb88f187894031b82e36c04c66ad6075fc5",
+      "bytes": 289229,
+      "sha256": "17418d96515e9ee563da338a739120cea690c4d42fb2eebfe2e51eb94f116f8c"
+    },
+    {
+      "path": "assets/lumo_design/icons/ticket_star.webp",
+      "mode": "100644",
+      "git_blob": "e8ab4a9b0bbb3f2f2564d25d6c0fde9a1d766fb8",
+      "bytes": 35316,
+      "sha256": "3b39b718419c7bc618ed7e807baac4e2bd10b770ced45e6d94b0c18599b83a12"
+    },
+    {
+      "path": "assets/lumo_design/icons/treasure_chest.png",
+      "mode": "100644",
+      "git_blob": "a56c113564cc825aaff452c072f8a4099f26bb01",
+      "bytes": 327976,
+      "sha256": "a4a74be79882db65396c7e180185933379c9eb34bcf3941ff4a82d4f982ba5c2"
+    },
+    {
+      "path": "assets/lumo_design/icons/trophy_gold.png",
+      "mode": "100644",
+      "git_blob": "5462a553284ebd9e07757953e643d40d5d8a2e3d",
+      "bytes": 263843,
+      "sha256": "6b3e24dd04ed216cd50fee08fdc66b01cfdd255e6a065d07f782446c412ae5c2"
+    },
+    {
+      "path": "assets/lumo_design/icons/wrench.webp",
+      "mode": "100644",
+      "git_blob": "da7fbf5a01774c06379302fd043006540e925015",
+      "bytes": 33322,
+      "sha256": "e37a061bcc790ed04d2dcd5dbed81870f50f8641f394b3ebf46a8ac424238b1b"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/book_token.webp",
+      "mode": "100644",
+      "git_blob": "c085e10b466bfe29dec9c635bf875cd88e35e0ec",
+      "bytes": 44534,
+      "sha256": "a193368a7294c88bc6ee1d0af18ccef743401c0fdce31a4a5d99e2303c1fca87"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/book_token_alt.webp",
+      "mode": "100644",
+      "git_blob": "6653361f53780568e35f8f422136cd49de10c790",
+      "bytes": 30042,
+      "sha256": "0cfbcd8344b518602dd54953b16eebb972e4490640faf411008857d37e2ba244"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/checkpoint_flag.webp",
+      "mode": "100644",
+      "git_blob": "7cb3ad7fb25e272d42036e43e5ee5cf526ac17d8",
+      "bytes": 50428,
+      "sha256": "ebf84add63f606ffe1c629c7aeae758f81ad462485ef8c0578a9cdf669ab31c1"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/crystal_pedestal.webp",
+      "mode": "100644",
+      "git_blob": "c05c04c92d3dbfc86b2e4ca918bc912a023d978b",
+      "bytes": 49576,
+      "sha256": "84c594160fedaf257f38b2f03e4deba22fd208a5380e8e7daa31f5f5072501b3"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/crystal_purple.webp",
+      "mode": "100644",
+      "git_blob": "03c44e0d51441a41d782aa1935719a7bf8710f45",
+      "bytes": 33138,
+      "sha256": "23ff55ce22c4d5c97bee2e8e1de0ad40094db64c1e2bdfe8ae7593c14ae1bec0"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/item_box.webp",
+      "mode": "100644",
+      "git_blob": "c7f96e9b2166ec84eb153d6630078005a5e3027c",
+      "bytes": 44050,
+      "sha256": "1853366ef6e62ade81e902998ffb34e798a0a8cd5c5f870e758ff3412e8f391a"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/item_box_alt.webp",
+      "mode": "100644",
+      "git_blob": "8a25f1295ccd251498331dd91786f601c42b2584",
+      "bytes": 24752,
+      "sha256": "2e29886469e9ec41ebeb6fd720ce36b7895278bc85c0a24f67d476dad0e7cca5"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/repair_pad.webp",
+      "mode": "100644",
+      "git_blob": "1a6ccc301c4d410cf107b54353ca017398f71d6d",
+      "bytes": 36696,
+      "sha256": "e03b2705d48945e2ac7b3bfe9d1380803da86f2b81875522b426586c69a93208"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/shield_powerup.webp",
+      "mode": "100644",
+      "git_blob": "803cabec9b41600fc32d5873080b30e5a40fa710",
+      "bytes": 44436,
+      "sha256": "b9082d104c04a180fc46bcc3f97c59f8d236b43f8b53a49d23daef81d6515899"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/speed_ring.webp",
+      "mode": "100644",
+      "git_blob": "f2cddf96f6f31d206736990d956fcc62ced91a11",
+      "bytes": 61998,
+      "sha256": "3454bd0d1cc054977d0835ef3e832f348f3306646b6ab0f7c6e6cba13e32e86c"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/speed_ring_alt.webp",
+      "mode": "100644",
+      "git_blob": "4ca252c51433b0e31d57ce963fbf55c6db547d86",
+      "bytes": 39896,
+      "sha256": "9cf2c62db1a1ac9f5ad3bf8911c2b9df0f87c61634000964cac579bfbf8e0c9a"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/star_orb.webp",
+      "mode": "100644",
+      "git_blob": "3146a8f81922bfa584390eb7b72c9238b2ddd690",
+      "bytes": 43200,
+      "sha256": "408366ebb8ba77fbbc2f9e8f9c6b9f6680a26882ae250cfe56c2aa3ccaa475e2"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/star_portal.webp",
+      "mode": "100644",
+      "git_blob": "a6a2535d45706e86be203d050a49ac1511d8b9d2",
+      "bytes": 46508,
+      "sha256": "94da6a1f20d9180c55688a2e21f4db82a4358256701284be6964e55ce591ee4e"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/star_token.webp",
+      "mode": "100644",
+      "git_blob": "14447015554e970b83dcd9489e7235c318b2c88b",
+      "bytes": 31196,
+      "sha256": "d03800354cd15c1eb5a8310dca5753ced3d3452506f7819e6dd2dac35f1dfec6"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/turbo_battery.webp",
+      "mode": "100644",
+      "git_blob": "ab983bff23960fc946a64434a5102a2a1b887e6e",
+      "bytes": 42492,
+      "sha256": "6493d2a6f8e487ac55c886cbe70ef6967fed21ea48ea0cf6590776cddfb836b5"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/turbo_pad.webp",
+      "mode": "100644",
+      "git_blob": "d78130854821cadecc91d44080296d12790ab46a",
+      "bytes": 29592,
+      "sha256": "dd45afabfeaed13efbaad48c7d1b3afe89fbcdbf52a9c186cb26b0cab2e3fc4d"
+    },
+    {
+      "path": "assets/lumo_design/kart_items/turbo_pad_alt.webp",
+      "mode": "100644",
+      "git_blob": "350eb92adc7b0e41999e9070be1d8a82bae3c8a0",
+      "bytes": 26022,
+      "sha256": "8fbb7becf54f18d273eb0a6d83dd2b6e33c2228499391843c65881bb2ea35438"
+    },
+    {
+      "path": "assets/lumo_design/learning_world/learning_tree_stage_0.png",
+      "mode": "100644",
+      "git_blob": "0dcc810de01c4ce565a05547bed6c7d7a8ec090e",
+      "bytes": 258748,
+      "sha256": "23bdafb0e171067d8e0f186b52ae11928ea71b6af0ebdacd6b7ad68a756b2b1d"
+    },
+    {
+      "path": "assets/lumo_design/learning_world/learning_tree_stage_1.png",
+      "mode": "100644",
+      "git_blob": "3728ad8889df713ad6a1d63d62f4f7701169d32a",
+      "bytes": 302764,
+      "sha256": "4ed8d541bf90e79c572c7ebd2b195331d3d16d21282baf87af9c742dbdf3f101"
+    },
+    {
+      "path": "assets/lumo_design/learning_world/learning_tree_stage_2.png",
+      "mode": "100644",
+      "git_blob": "7722041ea6182307e049b2803ce23391528e0aff",
+      "bytes": 367979,
+      "sha256": "04cb6c281138c52256c0d9f4066baafd1bbf4cd11bbe80ab65e1c0b896db2f79"
+    },
+    {
+      "path": "assets/lumo_design/learning_world/learning_tree_stage_3.png",
+      "mode": "100644",
+      "git_blob": "d358e122753a669e9af926ce29ffcf10caebf2aa",
+      "bytes": 353950,
+      "sha256": "850011c8f6413779388cf21cfe6b529666aaad66381e1f32c7a560c183d23b1f"
+    },
+    {
+      "path": "assets/lumo_design/learning_world/learning_world_night.jpg",
+      "mode": "100644",
+      "git_blob": "7f7e6c8ae6dae305efd8c189cd3fbd7ba3ff696d",
+      "bytes": 139985,
+      "sha256": "bc34361e3a8bb212c2cca2305219bf3fe4f1eb5116a714fab326f823c9988f27"
+    },
+    {
+      "path": "assets/lumo_design/logo/logo_lumo.png",
+      "mode": "100644",
+      "git_blob": "6155e09504705c99fea5a954d62f43b62d332869",
+      "bytes": 109411,
+      "sha256": "98f332f78a84c798030907947fc61c08516ea214194b27c5b62ff3b23a62ef2a"
+    },
+    {
+      "path": "assets/lumo_design/logo/logo_lumo_kart.png",
+      "mode": "100644",
+      "git_blob": "dd9410860cd9d058cf46791d65a2ffb547af248b",
+      "bytes": 169593,
+      "sha256": "6c978b8497ae2c6237af390ed7b09f2ce667479605461e96ba0f5cdd5e3d665a"
+    },
+    {
+      "path": "assets/lumo_design/memory/face_bunny.png",
+      "mode": "100644",
+      "git_blob": "2140631f2cc9d10491f0a4616719f25c36049998",
+      "bytes": 110224,
+      "sha256": "fcb7787d3301834b4f5504ff3061cb6d26d65153d9832a29480bad527b0489f1"
+    },
+    {
+      "path": "assets/lumo_design/memory/face_fox.png",
+      "mode": "100644",
+      "git_blob": "7b7a0b72846bb503055fc0823d31c0d161c425ee",
+      "bytes": 118398,
+      "sha256": "f119e599570585e5819638a4353ea4f3207847b2eede655de61a9e30b11556d9"
+    },
+    {
+      "path": "assets/lumo_design/memory/face_giraffe.png",
+      "mode": "100644",
+      "git_blob": "7432d7a2c53feb86d431b8edcae90df4bc071947",
+      "bytes": 122790,
+      "sha256": "3d7943c0354f6352af950fc4b9cfaa92d739f0df0b3e7098db9e96d00a96fa2b"
+    },
+    {
+      "path": "assets/lumo_design/memory/face_panda.png",
+      "mode": "100644",
+      "git_blob": "e9177d1e5ffb5e232f486ba115a798575c10636e",
+      "bytes": 114814,
+      "sha256": "a0c8950433050bc515f829eb5412f34a859d284f0a4fe5dfdd5e3ef019286e77"
+    },
+    {
+      "path": "assets/lumo_design/memory/face_penguin.png",
+      "mode": "100644",
+      "git_blob": "318ffc63727522827ad171b93df68442354140da",
+      "bytes": 106501,
+      "sha256": "2ed594287eb0e997418de002921afb964d8190aa57e2bdbf145e76a45057982b"
+    },
+    {
+      "path": "assets/lumo_design/memory/logo_memory.png",
+      "mode": "100644",
+      "git_blob": "38a3672792aa20e590f81e8161b2dc631e13b05b",
+      "bytes": 182232,
+      "sha256": "2bcd629e86e4093042dafed4b3d3cd1695ebfbf533abb8de725856e1361c6790"
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_chest.png",
+      "mode": "100644",
+      "git_blob": "507a33d7b443d6523331f74a144649999f16d38b",
+      "bytes": 150444,
+      "sha256": "4d309c1a4ab490bf28d82e5ab581e9706e7805e21a736465f808f18ce3899a47"
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_flag.png",
+      "mode": "100644",
+      "git_blob": "c37bb7269c79e04104f2fe6af3898d169fe60027",
+      "bytes": 67963,
+      "sha256": "6c075fd772f96914d34006dc480833d15ca44a81fa5e197ab9a3a08e8530a2aa"
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_lantern.png",
+      "mode": "100644",
+      "git_blob": "3894c3e8a8025e4fc53902b8c0ddf54934c05ccc",
+      "bytes": 52064,
+      "sha256": "73735338a4691c60b0d73b271f1d85e108376f152aba6233cff5be27161a9922"
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_mushroom.png",
+      "mode": "100644",
+      "git_blob": "368b2495abb9832164669e925a3d0bba9f1fc3c0",
+      "bytes": 39765,
+      "sha256": "0f308efba99a4440f5ef6a26ead7ccf12c54cfd21cda583046f2ccfbb0a3c228"
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_note.png",
+      "mode": "100644",
+      "git_blob": "465ab7c46a206b6dd3b5f6dc0f7bdd09ec649c8b",
+      "bytes": 99755,
+      "sha256": "fe24c66b5b05c71f2407c3188f872713e2b7bb32018419e6d4932294dd4bcd43"
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_rock.png",
+      "mode": "100644",
+      "git_blob": "0e9f6c3fd4bbc008d5ed37b1d9df5ad783dadf82",
+      "bytes": 100782,
+      "sha256": "06cf00bb6e36bd5e796a6648700d6d37b424e34d7021b3d4d38f5368ac2c98bb"
+    },
+    {
+      "path": "assets/lumo_design/memory/sticker_star.png",
+      "mode": "100644",
+      "git_blob": "01f9e8984090e85420db84cf69da3d0d0fe27aeb",
+      "bytes": 111263,
+      "sha256": "269d335eba11fb1626d7da215c7a050d6c1e8bfd7bf8004585d44582d52ea74b"
+    },
+    {
+      "path": "assets/lumo_design/nature/bush_flowers.webp",
+      "mode": "100644",
+      "git_blob": "2b41ed34062fe345f3a89434b778b0448dca7eb5",
+      "bytes": 30962,
+      "sha256": "0a992f6beb3526fb7fffe09faa27860ca52bca011d09cd7bf9c4cd0bfca6f0e7"
+    },
+    {
+      "path": "assets/lumo_design/nature/cloud.webp",
+      "mode": "100644",
+      "git_blob": "61d65d305f4a37d221c1a2abd90fccde2c38caa5",
+      "bytes": 23952,
+      "sha256": "469c4f950635d6fc9fcb40f882de61392c6c5cd21b706e27a5123abf1e014675"
+    },
+    {
+      "path": "assets/lumo_design/nature/crystal_rock.webp",
+      "mode": "100644",
+      "git_blob": "274d8b2bf5fa13dc3db8ee7940e7495597839239",
+      "bytes": 25360,
+      "sha256": "524a36cdc4ca7e677ec01632139167e39a2d1ab2ae51bd30e8b3652d0603d15e"
+    },
+    {
+      "path": "assets/lumo_design/nature/crystals.webp",
+      "mode": "100644",
+      "git_blob": "24083c023f38b9b2fb2e50146c341eaf1af3bba6",
+      "bytes": 34430,
+      "sha256": "24cbc3f06f3528a75c0db2c8655c417bcb720a566df2e98efb38392677f10959"
+    },
+    {
+      "path": "assets/lumo_design/nature/hill_path.webp",
+      "mode": "100644",
+      "git_blob": "3820a2b32b61a6a553b4259a141a9e72ee295c37",
+      "bytes": 43844,
+      "sha256": "2b7c6affc52499f47d81caca4607640ea96559393d97f519d76c552cf0909917"
+    },
+    {
+      "path": "assets/lumo_design/nature/island_castle.webp",
+      "mode": "100644",
+      "git_blob": "adb302f73989a7c0eee77a65dbb5ae78c34c752d",
+      "bytes": 62512,
+      "sha256": "59d3f90279a46b74c6f1acb28313a31f3f4bf5d0c7357f540c9e7fafeab4117e"
+    },
+    {
+      "path": "assets/lumo_design/nature/island_grass.webp",
+      "mode": "100644",
+      "git_blob": "79f122cfc2e0d38ca75cd49db88e1b8659302787",
+      "bytes": 39712,
+      "sha256": "f679c8efc875c23f2b148efdb24fc33e11979bb4b9eeee074de590969349b19c"
+    },
+    {
+      "path": "assets/lumo_design/nature/islands_small.webp",
+      "mode": "100644",
+      "git_blob": "35b1e1b566a351bd8172f05e617ea9e235723f4b",
+      "bytes": 26924,
+      "sha256": "4c8a4945628f81c5fb3151ad8f1566701c639bbffecaedc5c248d8b22e3351df"
+    },
+    {
+      "path": "assets/lumo_design/nature/planter.webp",
+      "mode": "100644",
+      "git_blob": "480db39a9c0f6b96edea820a2d92a7393084e128",
+      "bytes": 30206,
+      "sha256": "cf8c1e613440d384c3d4249befc532ea2a34c3be9cbb60b1e45cf7e1437147d2"
+    },
+    {
+      "path": "assets/lumo_design/nature/platform.webp",
+      "mode": "100644",
+      "git_blob": "96ebfb07669d32c70d4a8a29efa23f571abd2563",
+      "bytes": 35164,
+      "sha256": "7328030d1c5eab2f7b33a0d46aa2d581b43d853638a29f3d6747e0284ab6b6b6"
+    },
+    {
+      "path": "assets/lumo_design/nature/rainbow_waterfall.webp",
+      "mode": "100644",
+      "git_blob": "138d906cc4909c8179ffed1c87ef5ca67f7f4604",
+      "bytes": 46248,
+      "sha256": "1614cfcbbe12367331351d3d7aafb21cc9707658714db55551f36543bbb62737"
+    },
+    {
+      "path": "assets/lumo_design/nature/rocks.webp",
+      "mode": "100644",
+      "git_blob": "a3b3485757e4c6f03c0d5bd8aab856a776412bf9",
+      "bytes": 39512,
+      "sha256": "cf254a7bb94ae1302b4335a0c0830991f6e3e7d0dd177f7ffb61ceb553819f43"
+    },
+    {
+      "path": "assets/lumo_design/nature/rope_bridge.webp",
+      "mode": "100644",
+      "git_blob": "6c3bbe056ae47275cd3b67a3dc5936fc40b56fab",
+      "bytes": 40122,
+      "sha256": "a477a450a2e60e5dfa2672d8bf05288655f446d2c23b80072958d908a9e6580b"
+    },
+    {
+      "path": "assets/lumo_design/nature/ruins.webp",
+      "mode": "100644",
+      "git_blob": "1bc28ead19fbf1b2cbc28e00f9388a8b63750ef9",
+      "bytes": 33280,
+      "sha256": "951e4f2b0a104649d709362fc2ab298d9671361694ac8e5fddf2ad476f27fdac"
+    },
+    {
+      "path": "assets/lumo_design/nature/tree.webp",
+      "mode": "100644",
+      "git_blob": "f32dbd976857443d417cb863197a3c6b0c8e3648",
+      "bytes": 48908,
+      "sha256": "bb0e82976ba1669a5a5a6d6c257c863d4040e9bb544a8c56006f6dab5a16eaa8"
+    },
+    {
+      "path": "assets/lumo_design/nature/waterfall.webp",
+      "mode": "100644",
+      "git_blob": "40985161d79925956414aea332777d38a29124ea",
+      "bytes": 64188,
+      "sha256": "a4d1c5c98f19b4e0ac71d08ca9d4ab31dd013c19b5eedd8d19dd418d99890733"
+    },
+    {
+      "path": "assets/lumo_design/nature/waterfall_cliff_alt.webp",
+      "mode": "100644",
+      "git_blob": "a10b17fad3e28578820088797a08ffd1398db7fe",
+      "bytes": 49006,
+      "sha256": "8c572720455ad743675ef2d2b17521fb7dee3db11b9ed2518d87c43d5d64d09c"
+    },
+    {
+      "path": "assets/lumo_design/onboarding/onboarding_constellation_grid.svg",
+      "mode": "100644",
+      "git_blob": "afbbb0127d77e4ab872fb667b5d68319a7f17ca4",
+      "bytes": 2556,
+      "sha256": "7028c2bf2d891d3c1fd3eadd99703bf79d0db385f75524922e0f621ac3a90c38"
+    },
+    {
+      "path": "assets/lumo_design/onboarding/onboarding_holo_islands.svg",
+      "mode": "100644",
+      "git_blob": "5fe67a2ab1316c8b3677f7b4719f0eee09741f31",
+      "bytes": 2544,
+      "sha256": "b504281617922b718c2ea743e370612c4a19abd4ad50af60dc0af849b8efd309"
+    },
+    {
+      "path": "assets/lumo_design/onboarding/onboarding_learning_orbits.svg",
+      "mode": "100644",
+      "git_blob": "c7630ffe3622354d71c6eccbed2412d046276130",
+      "bytes": 1364,
+      "sha256": "81716ff79c5fcb9c1878c40f3d0c661ddd39757cecacfdd0db637c73857ab8da"
+    },
+    {
+      "path": "assets/lumo_design/rewards/coin_star.webp",
+      "mode": "100644",
+      "git_blob": "06e6b016261d8dfeb411596c102475f00105ecf8",
+      "bytes": 26950,
+      "sha256": "be78873cc71ae30950cfacd9263f53576f8b16000d44c8d2adf4a386c56d6373"
+    },
+    {
+      "path": "assets/lumo_design/rewards/crown.webp",
+      "mode": "100644",
+      "git_blob": "f8d4391f1a8523b20f1c131fb05d56639f8c5b7a",
+      "bytes": 42388,
+      "sha256": "95ba0ea9433ab751744e47b2d6c68fb187b20844da8099b3d6e42f453b07e94c"
+    },
+    {
+      "path": "assets/lumo_design/rewards/crystal_blue.webp",
+      "mode": "100644",
+      "git_blob": "5a6347ead12492037b25be65288e680d14d9a1e2",
+      "bytes": 34388,
+      "sha256": "942df1e4e33c9c3c3d05ce83c6a804ddde69f500937f56b09c77c972c82e1c22"
+    },
+    {
+      "path": "assets/lumo_design/rewards/laurel_star.webp",
+      "mode": "100644",
+      "git_blob": "428d1138d11f5c323ee074ae3df8ee7e851c21db",
+      "bytes": 46778,
+      "sha256": "cd641c07dd51a29aef125251bef33d81f35230a31d32ae1119d81074b3795958"
+    },
+    {
+      "path": "assets/lumo_design/rewards/medal_star.webp",
+      "mode": "100644",
+      "git_blob": "0b34805db81eb8c7093a1f6f69b440eeffad2107",
+      "bytes": 34350,
+      "sha256": "5d309afad49e16a152e9dfeef00ccdc1c635145e9f9d597c7d74926bd0890c80"
+    },
+    {
+      "path": "assets/lumo_design/rewards/reward_island.webp",
+      "mode": "100644",
+      "git_blob": "de6c43af840596ba9a1393ee85f0ffffa7764703",
+      "bytes": 52528,
+      "sha256": "b5ab1c891559610bb6844644293c165ba9a944cea28361b599267bc99ae220ed"
+    },
+    {
+      "path": "assets/lumo_design/rewards/reward_kart.webp",
+      "mode": "100644",
+      "git_blob": "a3fcff30074cd9a138bced1711900e59ddad30a4",
+      "bytes": 31294,
+      "sha256": "4f8cb2e57eaa15f2f26f5e422473d984133ab37be348822f987b870f9cec1388"
+    },
+    {
+      "path": "assets/lumo_design/rewards/reward_trophy.webp",
+      "mode": "100644",
+      "git_blob": "4b9dee4a184d0523104aff0ac7ccb74a4ff75442",
+      "bytes": 53162,
+      "sha256": "a1511f0c3e6213d7c65410f88d577bc24d74932dd905d2ff6932e635e36994ff"
+    },
+    {
+      "path": "assets/lumo_design/rewards/rosette_star.webp",
+      "mode": "100644",
+      "git_blob": "8cf5ec9a1631395f5d40054e652d7e7a77da6cb3",
+      "bytes": 38190,
+      "sha256": "abe13baf12f5a8ca9f09ceb10d1c2eb39828a9eef091df301b54f3f4ed89cb8c"
+    },
+    {
+      "path": "assets/lumo_design/rewards/shield_star.webp",
+      "mode": "100644",
+      "git_blob": "25f1f106f2df06b7357023c950e8a24ea44b28b1",
+      "bytes": 27028,
+      "sha256": "51af154600947d294d02e17a483060c28d622629c1843a92304cbc8fc536b989"
+    },
+    {
+      "path": "assets/lumo_design/rewards/star_alt.webp",
+      "mode": "100644",
+      "git_blob": "472ad4a9e609aed141ef9d6ebe8c8f3aa30697f5",
+      "bytes": 21826,
+      "sha256": "6875943c6df12450e87b4d9c1b0b461ddca8fa35e9926588933406c9272a6e08"
+    },
+    {
+      "path": "assets/lumo_design/rewards/star_burst.webp",
+      "mode": "100644",
+      "git_blob": "0e014698e52f7cea4ff1139f00bfa59930e53206",
+      "bytes": 41308,
+      "sha256": "4e1b4c784c7b9a8f79d304665cad84dd1234d9ee16df48e7cd20fa81148fd870"
+    },
+    {
+      "path": "assets/lumo_design/rewards/star_glow.webp",
+      "mode": "100644",
+      "git_blob": "bc76a6bd04c21884ff165641126475f9526be9d4",
+      "bytes": 35270,
+      "sha256": "90b0b94402baa33333658c6b403eb45bb5aaf8d37dc1ad9d47e36b1f0d640ab1"
+    },
+    {
+      "path": "assets/lumo_design/rewards/stars_swirl.webp",
+      "mode": "100644",
+      "git_blob": "be238f7b792c4d8ed2c50f22264235612166850f",
+      "bytes": 39122,
+      "sha256": "bb643e5cc5ccf0868b39cbd7017b9c410bc241b91f6c520dce2b193022694811"
+    },
+    {
+      "path": "assets/lumo_design/rewards/treasure_chest.webp",
+      "mode": "100644",
+      "git_blob": "dfec1448873e59e80452e9b67758d187ae2409ee",
+      "bytes": 43884,
+      "sha256": "69273688ad38b031181ec1bf5fc2329a25881a699b875b07f5ba2fd2ca769371"
+    },
+    {
+      "path": "assets/lumo_design/rewards/trophy_alt.webp",
+      "mode": "100644",
+      "git_blob": "f5c6a8e5b5ab2b3c4cfd3e6163b23b4f89708e80",
+      "bytes": 44666,
+      "sha256": "975010535db18ab4fd4812efc584fe0f62d5cdfde1519e8552b6111ffe7f8981"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_build.jpg",
+      "mode": "100644",
+      "git_blob": "51bfb1c3c73bf0ddf396c8c19d6d60b0c4afdec6",
+      "bytes": 46658,
+      "sha256": "d1c86979ec84e3c0fa58fc2a0772c974b2e63e84e9c2b5fbc2530940e57c12e5"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_cards.jpg",
+      "mode": "100644",
+      "git_blob": "2910ac7cef79e7e0d13e468da72bb3a78864df9e",
+      "bytes": 51026,
+      "sha256": "1b29b5df5dc83e7e77d3f7f203e71529b51e79b6b951fc432709aa87950441bc"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_connect.jpg",
+      "mode": "100644",
+      "git_blob": "47952fd2173a20bae4593dc7286b0c683fa31438",
+      "bytes": 68049,
+      "sha256": "24f02c3e0c3655b2ec26ea0025365d03f27f7a450352b16d1cba3e436f15320e"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_jump.jpg",
+      "mode": "100644",
+      "git_blob": "e02815ab3984f7e84e22f86b03ef39cb8b586a1b",
+      "bytes": 41042,
+      "sha256": "98a1a83756afc0305332eb0861e3fc9c66f9ec87370a8753a1ac677d3f874ddb"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_memory.jpg",
+      "mode": "100644",
+      "git_blob": "cef22fdc6f5dfadf0dbe3a94262c6195e08844ff",
+      "bytes": 62159,
+      "sha256": "6130705595c6273a10eec643d486860aae51d060d4dc0a6a5c012d8bf859e038"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_puzzle.jpg",
+      "mode": "100644",
+      "git_blob": "e750ad56b1d22d9674c135d343eaf89efa72e970",
+      "bytes": 52091,
+      "sha256": "c6d41fb8bc98b5f23e6d4019ba8ec20183ed5f88ac15fc8c1349f2eee2f5bdad"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_quiz.jpg",
+      "mode": "100644",
+      "git_blob": "82b2379b84e87779eb8ae1860d43aec0a341af6f",
+      "bytes": 67157,
+      "sha256": "9becf97e1126f0f288e0018dad0b0a0f86238ed416cda108bfa16e73c8cc25d4"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_rhythm.jpg",
+      "mode": "100644",
+      "git_blob": "2dda88bc69c8319bb20e40bf2ad6a1d3b964679e",
+      "bytes": 34689,
+      "sha256": "a027d16f5ae575460eb7ef615157c6e985d8c231c27826bf3f1fa6e41e3fff04"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/cover_treasure.jpg",
+      "mode": "100644",
+      "git_blob": "e8798f4964cf35d22070597af775bd6207359f98",
+      "bytes": 34517,
+      "sha256": "ff1ff26a39a8b9b722a0b2f5874eb4ff7993effdf73bbca6895bae85a98036ec"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/logo_spielwelt.png",
+      "mode": "100644",
+      "git_blob": "589476dda4e6def67ab569d4ff6e55cff922bc89",
+      "bytes": 138062,
+      "sha256": "475eaba7162fd7e6ee19582eb665b1745f727697fb95f710e7bb49608c2cfb7f"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_bauwelt.png",
+      "mode": "100644",
+      "git_blob": "501ca1a5988cc60d89b816e9f7cfd06388b1f295",
+      "bytes": 74725,
+      "sha256": "1da5796dbd2c69dd39c4e65ac116093109bce732b108c726e5db6f9c84ad313b"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_cards.png",
+      "mode": "100644",
+      "git_blob": "6756cc74c03bd6659d5f0dadadcbda94dbedbd60",
+      "bytes": 75583,
+      "sha256": "bc789c18701b01c25d99deba3ee078b6f15e7873dc005a35703efbb81e3b3005"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_jump_run.png",
+      "mode": "100644",
+      "git_blob": "8874cc39c0b2a514b45a866fca923e4c9035fbb1",
+      "bytes": 83043,
+      "sha256": "3ed765f254da38f004b958397519dbb721e297f5e4b87ddbaa22c6616ba9c539"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_memory.png",
+      "mode": "100644",
+      "git_blob": "ffb27d6f8b465bcee570507c83cb71b41e97024f",
+      "bytes": 72450,
+      "sha256": "b8997c224d036c9cce5c6d485783bd06b07afd67b61c41bae9c46d37c8b85e64"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_puzzle.png",
+      "mode": "100644",
+      "git_blob": "3960b677165f18b4666ca566575fc01c957bfd12",
+      "bytes": 80601,
+      "sha256": "2cfc6034ececdb699353c9e6a901ff353bf74ae1b922b06686a75446382faddf"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_rhythm.png",
+      "mode": "100644",
+      "git_blob": "97117fa4c8afff2a659d485c243873927d49473e",
+      "bytes": 90775,
+      "sha256": "aac90c196437b1e5f1912560542d42ddca1402ce67152541bca8c5c25ed892cb"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_schatzsuche.png",
+      "mode": "100644",
+      "git_blob": "c2d230a3015aac2456094779689e7ebfcd45611f",
+      "bytes": 91782,
+      "sha256": "acff09adde58340523b55659ed4c1de41c0d57a2dc7de02a148bd99fb6fa914a"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/affe.webp",
+      "mode": "100644",
+      "git_blob": "a84a15f3973776f323d0ee598b965aa52e64abfc",
+      "bytes": 19774,
+      "sha256": "191148ba9294ea5c7c83a21813ae914fc1969e56a7c6387e7a2c1f81379bfd5e"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/auto.webp",
+      "mode": "100644",
+      "git_blob": "83b12d9c10f83e5ac3c4c024750a303a999c2682",
+      "bytes": 13282,
+      "sha256": "64e8751451e22a5689b19d8ce8a1ffa649098dd1ce9c9298c51916b23a517710"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/ball.webp",
+      "mode": "100644",
+      "git_blob": "dc97ce026c7a7dc39efdc0ce33fe73a9a44b08a3",
+      "bytes": 9672,
+      "sha256": "b26d4dfe8f439e9b30a5e6746c8e7a4f007cc24071b07edfaabe3123fd1f8542"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/banane.webp",
+      "mode": "100644",
+      "git_blob": "6744a12ba98f9a20ff37f02c0c943473db8c035c",
+      "bytes": 9064,
+      "sha256": "acdc1d737ba1376eef18e70f23896852f6665bf4cba8e9eabb439a71a74877d0"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/baum.webp",
+      "mode": "100644",
+      "git_blob": "8b2a4733b82e1d958a228279cd7cf235db0899fd",
+      "bytes": 11542,
+      "sha256": "0156714816af043d646593301a923c9b70ca217369cb40b16bf912d21dbc88bf"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/biene.webp",
+      "mode": "100644",
+      "git_blob": "696c55f913d5ad0bb08b964e0512777a03bb2e98",
+      "bytes": 14048,
+      "sha256": "7b578aeb48bb9db0bc9144bfd7b5a044ebff6a9102e2f34bfeae111e5e0d08c0"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/birne.webp",
+      "mode": "100644",
+      "git_blob": "a5ed203947fb80cb19eb92b13557b083bb1eadf3",
+      "bytes": 9242,
+      "sha256": "140b8c09193cc7afa17724e74055ef3e1ebdd5095a6f984495f62418aff83e73"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/bus.webp",
+      "mode": "100644",
+      "git_blob": "4721a20071b93d5ae5ea944a94a7056a956a30c5",
+      "bytes": 17620,
+      "sha256": "af45f1006bc2bbbc3af0199404295bfee78662c3b5a1b557e09ced606915f51b"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/elefant.webp",
+      "mode": "100644",
+      "git_blob": "b422e6a4cf820d35e80dc2c688243bca47b909ec",
+      "bytes": 15598,
+      "sha256": "b4359f0b472425e079a0f60ac534adcffb841fb3fe6c6f3bca853d95b12143f2"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/ente.webp",
+      "mode": "100644",
+      "git_blob": "be13f735de2302d8c9553c136b2e17a9580cfaaa",
+      "bytes": 12256,
+      "sha256": "d7f59a360961dec30844bdef23ee5fba596f1c878ff7a98b35ee7b77a1417beb"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/frosch.webp",
+      "mode": "100644",
+      "git_blob": "d6faff6af09fb842320ccf1b3a87a904bcd59416",
+      "bytes": 18624,
+      "sha256": "35b8c9661f49d7a8656dc6e36abe67b208a2d7ba89fa929fe3c0d8b27f450624"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/fuchs.webp",
+      "mode": "100644",
+      "git_blob": "c09ed50f4991080e9cde95d1cc24e14c96191161",
+      "bytes": 16440,
+      "sha256": "97ee76efb1260b54d95ca0155ae271a9c4747126ae7af5fc7754b8d61efb5368"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/hase.webp",
+      "mode": "100644",
+      "git_blob": "fbaad35a4ecf049a1b9ef97a75f9dc2f710459c1",
+      "bytes": 14414,
+      "sha256": "eee287f34bcda666a96570414a3a22448834a53ba376d8d8b341b5970d761c23"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/haus.webp",
+      "mode": "100644",
+      "git_blob": "64a0b417464ee573f911552f7f9adc81ca84a768",
+      "bytes": 13130,
+      "sha256": "b57e331d88becbb39e9390e0f849e69dbd4d86c7f23633d00c9808e8cfa83b68"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/huhn.webp",
+      "mode": "100644",
+      "git_blob": "5dcb34b8fbf91aa74676a16eae60a610c69b4ada",
+      "bytes": 21422,
+      "sha256": "b67b225acc701eeeb6c012e1576143f71e234aa01739726563c424cebe162ab3"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/hund.webp",
+      "mode": "100644",
+      "git_blob": "d6db4459c37a30d97bd34d8f10228f60945f1e2f",
+      "bytes": 19858,
+      "sha256": "c1dc1f159f47cde41e041bd86deff672482acd087f57ce269a8b26d64a2401ef"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/karotte.webp",
+      "mode": "100644",
+      "git_blob": "a4d551b5d412ed19939bfcfeb01db70e5790a979",
+      "bytes": 10030,
+      "sha256": "9b1d38f6aad473a1a0ce867d66a08be9e140971b3f23cffc64c0297a246c5f4e"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/katze.webp",
+      "mode": "100644",
+      "git_blob": "98bee158f413cb53f30801935c6f2eb4e82543f1",
+      "bytes": 17332,
+      "sha256": "ce49b176f972f1ad836e51a98bcdaed87e97a12a4966addfdced51f036b7c3ea"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/kuh.webp",
+      "mode": "100644",
+      "git_blob": "d8425087cb7fc46d7ff8f328aed20b18a6896af4",
+      "bytes": 19590,
+      "sha256": "8bd9f00b0754bb68e85b2b3a7200793e3eddfe18e5a1c36d096a93733f5831cb"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/loewe.webp",
+      "mode": "100644",
+      "git_blob": "d88e29d8007c8e5fba1f3973f6f48bce2f842e90",
+      "bytes": 20668,
+      "sha256": "d1cbb52b65505a92788de93ce910a453e99163efb32f7238b7aabf5b2814a0bf"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/maus.webp",
+      "mode": "100644",
+      "git_blob": "5f7ee9ac014d933c738bc5fb135daafc5fb0b1f7",
+      "bytes": 13130,
+      "sha256": "8c53c556a36d18bb3af596f37593f87e409b97162d4b87356221be7f0be998dd"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/mond.webp",
+      "mode": "100644",
+      "git_blob": "12da840a1514e3460a7f0abe193c6938c1317b0e",
+      "bytes": 11460,
+      "sha256": "0621d26d08061a4d8eec5dee9105fd5628cd7c851b56bf4eba953ffcf7266c6e"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/pferd.webp",
+      "mode": "100644",
+      "git_blob": "c29b29aaaf131712d277e3719eede4cbf3819756",
+      "bytes": 15502,
+      "sha256": "2b85c2756133b8e47ceec1e819d63522f137fae43242fb5744aa8f5b47c6ea8a"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/pinguin.webp",
+      "mode": "100644",
+      "git_blob": "494b12fa473dcebac10c5659cfaba23c20ac2509",
+      "bytes": 12556,
+      "sha256": "805f589e71ff83d6c7788d652de240209b1b50870c96d8b48954fbed989b488c"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/schaf.webp",
+      "mode": "100644",
+      "git_blob": "800f82782c148aea4f530107638c6d9e05b8bd3f",
+      "bytes": 18322,
+      "sha256": "e903ec0d25ca372c6cdd4d63be124e998df10038d6d7b19b71831aeed3cef000"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/schwein.webp",
+      "mode": "100644",
+      "git_blob": "fd0ea383b1a2adc34f05a9b2d72f5473a240b47d",
+      "bytes": 13342,
+      "sha256": "0ab8e454ad43421bbe796d447d11a33c4a1d941a7c2937888ddfce4eabe2cd59"
+    },
+    {
+      "path": "assets/lumo_design/task_objects/sonne.webp",
+      "mode": "100644",
+      "git_blob": "f83171a58f138e41e6cb86d3a80b4b74a0550d05",
+      "bytes": 16556,
+      "sha256": "f53a81b7bbf3e91e6b6d978e2e4b63ec22be3714875e80f0b058f28bfa668ac9"
+    },
+    {
+      "path": "assets/lumo_design/track/bridge.webp",
+      "mode": "100644",
+      "git_blob": "d410b5e9e8e42e67b51a912eefc7bdcd895750fa",
+      "bytes": 37340,
+      "sha256": "68bd92bf97737d1f44ae1f8b908b2cdc0d53aae5dfa4ca4cd6b14acc58b09d3c"
+    },
+    {
+      "path": "assets/lumo_design/track/crossing.webp",
+      "mode": "100644",
+      "git_blob": "fda0cf3717ad1c5508787741641c61e2e1d41b2e",
+      "bytes": 32654,
+      "sha256": "d438a4ea9ededa5712fbfb0ef8f0c263184a4aba6ab39852be00ee0e3c189722"
+    },
+    {
+      "path": "assets/lumo_design/track/curve_alt.webp",
+      "mode": "100644",
+      "git_blob": "b126b3e253efc4b88be8f213e481dc224c020fb6",
+      "bytes": 42092,
+      "sha256": "d7f96cc632384891a020fc89de8e625e02bf0ee58e43b7ea051b3bf5f0a84d2d"
+    },
+    {
+      "path": "assets/lumo_design/track/curve_left.webp",
+      "mode": "100644",
+      "git_blob": "44aff5e8721b5912c518055d44258979905f9af9",
+      "bytes": 33224,
+      "sha256": "13ba27f369ce8963041d1ae5b87b85b3a4453672c26e3469003d23a0c60bb984"
+    },
+    {
+      "path": "assets/lumo_design/track/curve_right.webp",
+      "mode": "100644",
+      "git_blob": "c6d335a147116a31306fcd1bd775d85e084768e7",
+      "bytes": 32708,
+      "sha256": "538b698fb705e382af5f60d0f93f85de78f8e0b1367462a01274015606a2b0ba"
+    },
+    {
+      "path": "assets/lumo_design/track/curve_wide.webp",
+      "mode": "100644",
+      "git_blob": "ab1bac3c90dcd0391055265fcb776b4518272c79",
+      "bytes": 34882,
+      "sha256": "4d2799e63b9e3cfc69a6b6e37566d2f047812247f5a0abe2dc2942fc662f8478"
+    },
+    {
+      "path": "assets/lumo_design/track/dirt_path.webp",
+      "mode": "100644",
+      "git_blob": "bdba9c48499bc79af05ea2fb4e96d2ccc54d4ab2",
+      "bytes": 41112,
+      "sha256": "12496d32166c4c6754186d4d607af3d6b20d430405d24386d698de2371e78cc0"
+    },
+    {
+      "path": "assets/lumo_design/track/elevated.webp",
+      "mode": "100644",
+      "git_blob": "d67fab6e86a5bbece22d87a4a4739b276415c7c6",
+      "bytes": 27686,
+      "sha256": "21451ae2b66dde3d3ef8b9020b23eb574b74c9fa7c2b354f8a7db4968fe9a0f4"
+    },
+    {
+      "path": "assets/lumo_design/track/finish_line.webp",
+      "mode": "100644",
+      "git_blob": "05ec949c88455f65699a0b51ac9b755877412a4c",
+      "bytes": 33066,
+      "sha256": "5972dcd1a8a7e87472dffc340502e5dff23c152d3e01f4fabd1e9ed558041d99"
+    },
+    {
+      "path": "assets/lumo_design/track/ramp.webp",
+      "mode": "100644",
+      "git_blob": "71d9217f4eab0a73bd5271931bc578a7d49130a2",
+      "bytes": 38738,
+      "sha256": "6c5e75a696535180f583c49799f61c39ef987194859a2c20716374f3b64db0d2"
+    },
+    {
+      "path": "assets/lumo_design/track/roundabout.webp",
+      "mode": "100644",
+      "git_blob": "32c60cc86f5124701eb2cdfcfb08681c1fb20816",
+      "bytes": 33826,
+      "sha256": "f528c52cc0e7ae7f7362239afa514b2a349394dfee42b2f6e5656710b463af04"
+    },
+    {
+      "path": "assets/lumo_design/track/s_curve.webp",
+      "mode": "100644",
+      "git_blob": "d647c9d307e76726c52d35957ae9c53b8b8609b6",
+      "bytes": 43180,
+      "sha256": "3db30933f38ec96a54ce9de0e0733b2b90fd85b991097f3e9aa2f994445ae292"
+    },
+    {
+      "path": "assets/lumo_design/track/straight.webp",
+      "mode": "100644",
+      "git_blob": "e2ffc949209a927529fb72e2756eda6ba1a13748",
+      "bytes": 29086,
+      "sha256": "12c398dcb6b02086452fe6781dc8009de6dc9bb049bdfac7c0af2d35ae665ba3"
+    },
+    {
+      "path": "assets/lumo_design/track/straight_alt.webp",
+      "mode": "100644",
+      "git_blob": "2cc8354911d879f38ed4b4d7686dd774032e2bd6",
+      "bytes": 24546,
+      "sha256": "e1d2b0a37d63aea5e50a0966debd36af4f8cb72fffdbc8d53cb0644472fdc00a"
+    },
+    {
+      "path": "assets/lumo_design/track/t_junction.webp",
+      "mode": "100644",
+      "git_blob": "00352501829f18c88c0b51c19d2bbde1145e294a",
+      "bytes": 34686,
+      "sha256": "17cd6446a71005bb2dbf5f46bb4d44a7f8933911b6cca5686be4c257bf155cd5"
+    },
+    {
+      "path": "assets/lumo_design/track/tunnel.webp",
+      "mode": "100644",
+      "git_blob": "46f3cb4be8af749b5178dcd26e0109bdce62ce0a",
+      "bytes": 42674,
+      "sha256": "61aa6b8133e854ccaaa7789a7d8ed3211799ce8dc97a1a4e613961227d3d637c"
+    },
+    {
+      "path": "assets/lumo_design/ui/avatar_fox.webp",
+      "mode": "100644",
+      "git_blob": "b61e6598d1616d6b0488f1e15d15c0d05029465a",
+      "bytes": 27370,
+      "sha256": "d88f75b892b0e9dd3848e28ee1c46517c3feba6adf62c1f63e63f6ac58a725d2"
+    },
+    {
+      "path": "assets/lumo_design/ui/back.webp",
+      "mode": "100644",
+      "git_blob": "be0b59800fe96a8ff790b3294db5a617f1379f2c",
+      "bytes": 18228,
+      "sha256": "ad6ec9b3408dce146dedc82a3d4db123b92e257aa6f59cf3d33bd7e966cecbe1"
+    },
+    {
+      "path": "assets/lumo_design/ui/book.webp",
+      "mode": "100644",
+      "git_blob": "107021f4e686a6201d92e22e6f6efd3ce440cd0a",
+      "bytes": 24322,
+      "sha256": "21ff6f85538cf74e533238b051de35e318d9eccdca5a2ccea36670b5f15cc41d"
+    },
+    {
+      "path": "assets/lumo_design/ui/check.webp",
+      "mode": "100644",
+      "git_blob": "ab305a8fd6a8df7af2fce869741042dd30c36fcf",
+      "bytes": 21290,
+      "sha256": "2b50250606473f5389cf8e6c8ffa6eae240656e2d745dceef699b6c9fa5e46af"
+    },
+    {
+      "path": "assets/lumo_design/ui/diamond.webp",
+      "mode": "100644",
+      "git_blob": "b2344aeba12fb2521e7dab555f374285f39be650",
+      "bytes": 24730,
+      "sha256": "98e0c694ba9e4540714ca34f4dc22359b257ebba3a8023470288818329edf6bd"
+    },
+    {
+      "path": "assets/lumo_design/ui/gamepad.webp",
+      "mode": "100644",
+      "git_blob": "c35e165ef498f01380ff9ced20d351ce6bc37ff3",
+      "bytes": 22734,
+      "sha256": "713bd1238b6505375878ac503a504adbd6fb2c53db9e12aa74ca7db5357d129b"
+    },
+    {
+      "path": "assets/lumo_design/ui/heart.webp",
+      "mode": "100644",
+      "git_blob": "efbde81da035a86bea3a2e2154ebda8a6cb14a76",
+      "bytes": 19906,
+      "sha256": "d56555dbb0acd6433ecc63c642b201a4f7fb25af06ab7323a4246e837e595b0f"
+    },
+    {
+      "path": "assets/lumo_design/ui/home.webp",
+      "mode": "100644",
+      "git_blob": "142002053cafb062975b607c80d7ba9ee0302835",
+      "bytes": 27416,
+      "sha256": "ade0ed7a613e2ed8bdbb99b0820611d6de09a3a09cbba7d6670c6092967bd33c"
+    },
+    {
+      "path": "assets/lumo_design/ui/lock.webp",
+      "mode": "100644",
+      "git_blob": "9fa97acbd83a4d7ddd6bc8afdd5a9c40cc52ee3c",
+      "bytes": 25266,
+      "sha256": "5c4fa7354c943d3aff8db980da8a35ada562248e0ccf809ff760990f879fb515"
+    },
+    {
+      "path": "assets/lumo_design/ui/play.webp",
+      "mode": "100644",
+      "git_blob": "66e6730ef413f80d63cadd6fd984ea5d31e5bc01",
+      "bytes": 23884,
+      "sha256": "96de6a271ab0b4f2190e897d0d11b76940fdeb6bac28b3ae09d3e1baad2c4d3c"
+    },
+    {
+      "path": "assets/lumo_design/ui/settings.webp",
+      "mode": "100644",
+      "git_blob": "375d8e9b6664a48c118eafc9248e22201e55e870",
+      "bytes": 25722,
+      "sha256": "1af93d8b6fc4e9aa7e8f8b37534715fd59ff0bd6d2c34079cdfbd2458999b3a4"
+    },
+    {
+      "path": "assets/lumo_design/ui/shield.webp",
+      "mode": "100644",
+      "git_blob": "55933e1ccd41fe0fc549fd81080f0a6fbdca6deb",
+      "bytes": 22754,
+      "sha256": "4c9474a47f04f579d99459db029d5dbf8a215a7d9c1c1d44d220f81b03fb5f52"
+    },
+    {
+      "path": "assets/lumo_design/ui/star.webp",
+      "mode": "100644",
+      "git_blob": "883bc2d2fa392834d85c6a00e54c3fc995d1a322",
+      "bytes": 22882,
+      "sha256": "4bd601e547d924313a505f46d09b3eb497db17e045adcdbad5b9944597967bd4"
+    },
+    {
+      "path": "assets/lumo_design/ui/trophy.webp",
+      "mode": "100644",
+      "git_blob": "1080d7e2d22d61d7dc8638d4a373053ee74221d8",
+      "bytes": 31656,
+      "sha256": "5ea77a8d5b03041607c9ecba4f9b24490a592aac69e11f2728f4f44d4eb0f710"
+    },
+    {
+      "path": "assets/lumo_jump/fox/duck/fox_duck_01.png",
+      "mode": "100644",
+      "git_blob": "7159d8edc587f6c31e4eb5511c3b48944b516ce9",
+      "bytes": 127658,
+      "sha256": "3b952737ccde5f175a27fa35f6cc266ed2e31939ef4c66e60d4925157c74140c"
+    },
+    {
+      "path": "assets/lumo_jump/fox/duck/fox_duck_02.png",
+      "mode": "100644",
+      "git_blob": "eafbb8c3bcb33f82de2ba37c7b34a38f00ff2140",
+      "bytes": 118580,
+      "sha256": "aa7fe5d9e9fa464c43a2db0a316ce976f1795b7055ad2b868b77ada232b5e9f4"
+    },
+    {
+      "path": "assets/lumo_jump/fox/duck/fox_duck_03.png",
+      "mode": "100644",
+      "git_blob": "ead7fe10e9b513838b10aef84f58027ccd4216fb",
+      "bytes": 128050,
+      "sha256": "96e8e616ba2c6db264851cbafbe5217afbf62a54936528d730ef3410237f3cbe"
+    },
+    {
+      "path": "assets/lumo_jump/fox/fall/fox_fall_01.png",
+      "mode": "100644",
+      "git_blob": "1048a0d5676afa5f86ed817000afb5a982b6871d",
+      "bytes": 149293,
+      "sha256": "ef43bb8d785b07bcf20cfefc1705f2c160ada0293758e8a38228e0bb6aa0a7cf"
+    },
+    {
+      "path": "assets/lumo_jump/fox/fall/fox_fall_02.png",
+      "mode": "100644",
+      "git_blob": "7a31ecc948dbe265d8419d870c11a2f4a30d93f1",
+      "bytes": 137840,
+      "sha256": "25c3308e91fdc71a0e4e9caa75456564bf3aec78eb923fd4d856eaad275b61a5"
+    },
+    {
+      "path": "assets/lumo_jump/fox/fall/fox_fall_03.png",
+      "mode": "100644",
+      "git_blob": "696d7df490814d11acdac853945c57935ab08f3b",
+      "bytes": 122651,
+      "sha256": "6d8b5b845517c2646d459822dba9f21f60c8f3e114d07a9a1a11a40e9dcbbe16"
+    },
+    {
+      "path": "assets/lumo_jump/fox/fall/fox_fall_04.png",
+      "mode": "100644",
+      "git_blob": "542471d27b8f579198b9236b6beeeb5e95cfb022",
+      "bytes": 126714,
+      "sha256": "357d0bf7fcd98ec4cc9256b3fa1bd591ea80efa58a0788abb30d8dc61e4e4d31"
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_01.png",
+      "mode": "100644",
+      "git_blob": "36edcbfb6302fb03e9b74683db13263103113793",
+      "bytes": 142206,
+      "sha256": "a4d819ac9bf6669d3ded044d8c2a36c2d962ccee6f1ef46c03a4ce179c86c5b6"
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_02.png",
+      "mode": "100644",
+      "git_blob": "59621602138032c8a4495b1789bd871123cf9d01",
+      "bytes": 145890,
+      "sha256": "bc007db29629a021afd59d687a27b35fa5f69ad56f1cc9756062a8c984165a8e"
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_03.png",
+      "mode": "100644",
+      "git_blob": "995cf2fd5ab6ecb928076761794fd8f36ec6bd2c",
+      "bytes": 143537,
+      "sha256": "66aa417777b23b62308a0d4c917131e66c15d83c1c216306639e73eed05b6583"
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_04.png",
+      "mode": "100644",
+      "git_blob": "de279c0eff73610257abd6f1aaf367f363064b10",
+      "bytes": 146471,
+      "sha256": "eb7ffefd543df6826dd01d8a602d28941a5e92ec58e5b3bb560bba1aba38f07e"
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_05.png",
+      "mode": "100644",
+      "git_blob": "d05e7fe7622208e995594c1c1c1815ec7326b58f",
+      "bytes": 145465,
+      "sha256": "f05109ae37eacf39e25838469f90a9457011ab9cf03e806010d9a46a20a78325"
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_06.png",
+      "mode": "100644",
+      "git_blob": "cd6d222ee736e28f4d7f3e85abd4ed28eca293b1",
+      "bytes": 142470,
+      "sha256": "24ba0ed791f55cd7ed9bdbd45114b4e4573bf0ac630f07c63a86ea128d4b0325"
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_07.png",
+      "mode": "100644",
+      "git_blob": "93f48317c0d0962e06a4be1fd8c810c0ea83276a",
+      "bytes": 145687,
+      "sha256": "b0f02618055eb18aacb567eec50929acf9d80e92e5f198079390fa17f94dfcec"
+    },
+    {
+      "path": "assets/lumo_jump/fox/idle/fox_idle_08.png",
+      "mode": "100644",
+      "git_blob": "4c2f0c174b1b8ba2b7eff414be984cba62083835",
+      "bytes": 141814,
+      "sha256": "17a5d1cb8f5941f3f91ebb2803e184b6238f703322d0d59db14cc6704f79aedf"
+    },
+    {
+      "path": "assets/lumo_jump/fox/jump/fox_jump_01.png",
+      "mode": "100644",
+      "git_blob": "055e4ab3b52a8e9e0049bc92cc592cbceb845097",
+      "bytes": 134112,
+      "sha256": "5bf4b71adeed88534cf70e690024cdbd7c8c19bbf63a8cec52549d5ca1ea9e24"
+    },
+    {
+      "path": "assets/lumo_jump/fox/jump/fox_jump_02.png",
+      "mode": "100644",
+      "git_blob": "79a998f6181c75291e5b7f39498f820bd0ae9267",
+      "bytes": 146312,
+      "sha256": "266d7d9421bf9e8d58e421822f584aa7274e271ff3beb034841bdd218e2c5efd"
+    },
+    {
+      "path": "assets/lumo_jump/fox/jump/fox_jump_03.png",
+      "mode": "100644",
+      "git_blob": "0463abd4f07e20629cc1a5771c73f62d6f4e11a1",
+      "bytes": 154552,
+      "sha256": "0c9b5290070257338372e11ebab5d850efcc41b87df7b23b258ee6bfdf3f483b"
+    },
+    {
+      "path": "assets/lumo_jump/fox/jump/fox_jump_04.png",
+      "mode": "100644",
+      "git_blob": "e92e9ef449afb3265fe5a99e96da6a3597de5d9f",
+      "bytes": 163012,
+      "sha256": "1c2d422b610b92b057c9ff7e83e8c1a3db7b40c3a26e077ae4b45ad9db272af1"
+    },
+    {
+      "path": "assets/lumo_jump/fox/manifest.json",
+      "mode": "100644",
+      "git_blob": "05118145d81dd83096c7c7a11660319765e665b5",
+      "bytes": 2551,
+      "sha256": "b5fe2df0e91272f3ef0591d75290d2fac26010fbc5bdfe6f24a4f8f0f1b1eaeb"
+    },
+    {
+      "path": "assets/lumo_jump/fox/master/lumo_fox_master_512.png",
+      "mode": "100644",
+      "git_blob": "16c91e0700dd48b27dacf0f9a3066541be5a7c5d",
+      "bytes": 200355,
+      "sha256": "9139e696f5469435dee2f754e4fec3e03d91c0235a125a6ef2a460b393212584"
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_01.png",
+      "mode": "100644",
+      "git_blob": "3d2b2419e047c64f7bb96977854722d15522cc00",
+      "bytes": 109660,
+      "sha256": "7c969dbd4e0bbe121bc7b295b23dc3a7b6201225c15cb514651de5907e132777"
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_02.png",
+      "mode": "100644",
+      "git_blob": "33626e27c3c7313d3726b6dec3b990e9d1bf5ccf",
+      "bytes": 104346,
+      "sha256": "e98251a052f350eaed5da55b4734ecc4709ea59c8cbe7b9bf56950bc4d74479f"
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_03.png",
+      "mode": "100644",
+      "git_blob": "ac196cfd312c43cbeedcae7bdc089dc2841abfdd",
+      "bytes": 110155,
+      "sha256": "393e9f40ff8258072ed6d6ff6dc8ef146816d6a87e21ca9d15c830ba8a83ef78"
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_04.png",
+      "mode": "100644",
+      "git_blob": "e1bfd3434e818c77280cd3780bad2e6dd6304115",
+      "bytes": 102570,
+      "sha256": "e6681595ec504e87c94c1d92e591a5b1b4f4113f65fb5d869148bc30442d02da"
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_05.png",
+      "mode": "100644",
+      "git_blob": "0ab542d911396069fdb2c76c59c5012275ee737f",
+      "bytes": 81978,
+      "sha256": "0f87efb63a2e5df31b1ee48a074a633775ea3c487c68334a384fdf1e866deb5c"
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_06.png",
+      "mode": "100644",
+      "git_blob": "a4afc11c65565a597fb7854788e5484cfd3c8b3f",
+      "bytes": 103709,
+      "sha256": "4b287add45fd8e0e689c8c79b7c57c2fd3c037bbb5f45d496ec6963d6a3205b5"
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_07.png",
+      "mode": "100644",
+      "git_blob": "2a24732d27af21541a97fa7d9ac093d8d7a89021",
+      "bytes": 106022,
+      "sha256": "e2572e091d0c503cbeb83ba5a8048e1ab0daa34321b9dc54f528333844c76239"
+    },
+    {
+      "path": "assets/lumo_jump/fox/roll/fox_roll_08.png",
+      "mode": "100644",
+      "git_blob": "45a07773569c0d4bfb836fd8b1ee12ce4cfd1f9c",
+      "bytes": 125152,
+      "sha256": "aefff983b0222f6e9c158cfc7497ec390c559459da04bd7a99141f89ecf52ede"
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_01.png",
+      "mode": "100644",
+      "git_blob": "14624aa7b6acc25a9cb0437c9d599e7cfc7fbaf9",
+      "bytes": 131771,
+      "sha256": "6847fcb08a4ef9b6d6872921ceed34394d6120c1fe13ee5168f02405fac2cdac"
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_02.png",
+      "mode": "100644",
+      "git_blob": "e5bb6e273cc032e73211eda251e5723cbd54009d",
+      "bytes": 126341,
+      "sha256": "cc94069d4b10cff662d2bf14df2cdf47612de1b497e3242c63067fd794866e31"
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_03.png",
+      "mode": "100644",
+      "git_blob": "1f7bfbbd109b543ec88248a0f8ada9f90ae0455a",
+      "bytes": 128673,
+      "sha256": "8faefa81f4796a1a68c625998403fc19d7a7f765babd556b0f52f011aa55a715"
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_04.png",
+      "mode": "100644",
+      "git_blob": "bb0e201ad6c428c084bbb15dcc2d8b7cc7b5725b",
+      "bytes": 126589,
+      "sha256": "12b85cf5da70b80b9e7b440957ca60c8752d9a05288a617927814fff1b1cbec8"
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_05.png",
+      "mode": "100644",
+      "git_blob": "37c16ee82bb23345e36ea07f4098755256cf586f",
+      "bytes": 128842,
+      "sha256": "2c199ac32a07a144cc97d24abd9310b102d92cd369098052b021e75fbca15306"
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_06.png",
+      "mode": "100644",
+      "git_blob": "52289d328c1c8e458b832cece6671a1683d5c074",
+      "bytes": 121366,
+      "sha256": "48bfda8d2d8454a1f416f1bf4a526ba4dd8a326b53803f1972eb64bff174038a"
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_07.png",
+      "mode": "100644",
+      "git_blob": "54d2998925247c07288717960f3fce2bd3ef5c11",
+      "bytes": 131327,
+      "sha256": "b94a217659468d3ab5fdf92ea055a29d60e57921d14683c8ae713c423c85e8dd"
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_08.png",
+      "mode": "100644",
+      "git_blob": "7afc6be900c9a1a9ea768b155cf5372e4ff391e3",
+      "bytes": 130815,
+      "sha256": "58469b412a9628ec49de354e8d4369e208bd778d4b0aa2b875deaf9c5b8ada9a"
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_09.png",
+      "mode": "100644",
+      "git_blob": "ac7b92ec30ec40e67f2269e0a097bd6948be07f5",
+      "bytes": 129703,
+      "sha256": "d9c2c15df0b140ad57117db06eb4bd14ce731073140701d54a3fce921945c2f5"
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_10.png",
+      "mode": "100644",
+      "git_blob": "3676bad73ab4b5151dae39bb3ed21440cff4ccab",
+      "bytes": 125452,
+      "sha256": "eac72b5d3fd02ce7c5df7d0842c2d436510d0456f62336c32d0ba6c0e276ee1e"
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_11.png",
+      "mode": "100644",
+      "git_blob": "4e8b638fbb9214090b2689c8bbaa50552a5795f5",
+      "bytes": 125526,
+      "sha256": "765f22e7a7d5e89433797b61ea89d5632940937cae2e794a764aa93171b5573d"
+    },
+    {
+      "path": "assets/lumo_jump/fox/run/fox_run_12.png",
+      "mode": "100644",
+      "git_blob": "a28f7886f0f5423cfb0cf8932ab401639c5ed80a",
+      "bytes": 124526,
+      "sha256": "97290a95f9d3e1cb8379a9ceb892d5e27a7ff9224a2b970a369b342b9617c252"
+    },
+    {
+      "path": "assets/lumo_jump/fox/sprite_sheets/fox_idle_sheet_transparent.png",
+      "mode": "100644",
+      "git_blob": "acdb8c3aae784137598cdc0ad4abc7ccbc94d9a4",
+      "bytes": 1156582,
+      "sha256": "f37115662afbafc62ac2fc3b08fd2defbe89dfae83efdbf25f8f5e2b783adba3"
+    },
+    {
+      "path": "assets/lumo_jump/fox/sprite_sheets/fox_run_sheet_transparent.png",
+      "mode": "100644",
+      "git_blob": "4274cabdccbb80abd0d71b086415f0b9db32b59b",
+      "bytes": 536011,
+      "sha256": "f7b7934db724a53d4276316516d035dd969c94af25b21ea075c232cf40dd43d6"
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_01.png",
+      "mode": "100644",
+      "git_blob": "39892f5003c54e84aa53d868a6339da7097c2980",
+      "bytes": 166067,
+      "sha256": "f152ba410f00f420d91438876acaef26948ece449d936b40d6c1d98ebe5fa11f"
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_02.png",
+      "mode": "100644",
+      "git_blob": "b349210c464c690e4da8819b5aa5ae33e46a59af",
+      "bytes": 167295,
+      "sha256": "cc6e737e5f4b8a3440817b8ea7d7394535fa3ecf4e10fecfd9b8b3be60054025"
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_03.png",
+      "mode": "100644",
+      "git_blob": "5f363d5d12f8a8e7e42bf9cecf3c0cab23d96724",
+      "bytes": 113334,
+      "sha256": "79b865903db1b6070c24ec22cc1657a27e6024e0cd44724d0d59b374dcd64a4b"
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_04.png",
+      "mode": "100644",
+      "git_blob": "7a70cd1eba0bc0cf3c97a9a3bb25d748e2b440db",
+      "bytes": 113183,
+      "sha256": "77f106b97a815bdd1864fc4a780efc3c6117786110ae0ab536c5adf492940d4d"
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_05.png",
+      "mode": "100644",
+      "git_blob": "415a43628880e1172276cf37abb5c4ad4f298862",
+      "bytes": 129239,
+      "sha256": "313a1c6970b86b67ce2407b13d1e2096142f91d93674fcd8f69ca3eecaac933b"
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_06.png",
+      "mode": "100644",
+      "git_blob": "b6ee2632060c82e8dbf8908fc2f95cdb3eb766e8",
+      "bytes": 129482,
+      "sha256": "95d4229483ebde2d4a64efef2cece6ebd79572f2781ca3212cfa85773a421198"
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_07.png",
+      "mode": "100644",
+      "git_blob": "90ef964177e7421c7c52832fbd4d8427d6cacdd7",
+      "bytes": 125572,
+      "sha256": "a371402b9083f0a6d351a6914a4a53ec536a6276499f864d5367e4ff109cf3f9"
+    },
+    {
+      "path": "assets/lumo_sprite_pack/cheer/cheer_08.png",
+      "mode": "100644",
+      "git_blob": "d043cbedf01af8ecccedc286404fc3f22411710f",
+      "bytes": 125530,
+      "sha256": "da718b99d02b9c9414acc5d886615018765c3b76f99596edc16273d1bb0b66e5"
+    },
+    {
+      "path": "assets/lumo_sprite_pack/lumo_main.png",
+      "mode": "100644",
+      "git_blob": "e174456b66b7683335c5fa7026d14fff5ce5269d",
+      "bytes": 112147,
+      "sha256": "b756e036b51042ce9e9ba6bb7b0631929204ccfa5e3147847cb137a416d0eab5"
+    },
+    {
+      "path": "assets/rivals/roster.json",
+      "mode": "100644",
+      "git_blob": "051bfb33c4aa13f3cce375c91f81c241b4b7a340",
+      "bytes": 2445,
+      "sha256": "32035e97a483133aed6a35d181291568a5b93c44bbf27405d48c8872e81c9670"
+    },
+    {
+      "path": "assets/videos/.gitkeep",
+      "mode": "100644",
+      "git_blob": "97040e98de1ad3ca485342c3866b9388ef272f3b",
+      "bytes": 37,
+      "sha256": "beef7f9248e374291656bb294971b9d2404ba4ccd25c63c6fdcf93d0dcc3b5bd"
+    },
+    {
+      "path": "docs/lumo_game_specs/2026-10-05/03_cards/lumo_cards_key_art.webp",
+      "mode": "100644",
+      "git_blob": "8495b34a2e7fef546d9dbe67690d106beb0375de",
+      "bytes": 356822,
+      "sha256": "b5a4916015e152e28d2fe7aa27f13ba31b54bd6537e3cdc5c1903ccd0d7147da"
+    }
+  ]
+}

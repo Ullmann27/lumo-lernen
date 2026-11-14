@@ -71,10 +71,16 @@ class SyntheticAdb:
         self.returncode = 0
         self.session = 3000
         self.child = 3001
+        self.console = 200
+        self.console_cgroup = "/uid_2000/pid_200"
+        self.shared_adbd_cgroup = False
+        self.console_launch = False
+        self.launch_stderr = b""
 
     def files(self):
         return {"logcat.stdout": self.log, "logcat.stderr": b"", "session.stdout": b"",
-                "session.stderr": b"", "wait.stderr": self.wait_stderr, "run.sh": self.script}
+                "session.stderr": b"", "wait.stderr": self.wait_stderr, "run.sh": self.script,
+                "console.pid": (str(self.console) + "\n").encode(), "launch.stdout": b"", "launch.stderr": self.launch_stderr}
 
     def stat(self, pid, ppid, ticks, argv):
         fields = ["S", str(ppid), "3000", "3000"] + ["0"] * 15 + [str(ticks)]
@@ -85,13 +91,21 @@ class SyntheticAdb:
         if live:
             if not self.alive:
                 raise RuntimeError("Synthetic logger is dead")
+            output += "__console_service__\nrunning\n"
+            adbd = 501 if self.rooted else 500
             for role, pid, ppid, ticks, argv in (
+                ("console", self.console, 1, 90, ["/system/bin/sh"]),
                 ("session", self.session, 1, 101, ["/system/bin/sh", self.remote + "/run.sh"]),
                 ("logger", self.child, self.session, 999 if self.rooted and self.corrupt_identity else 102,
                  ["/system/bin/logcat", "-b", "main" if self.filtered else "all", "-v", "threadtime"]),
+                ("adbd", adbd, 1, 120 if self.rooted else 80, ["/apex/com.android.adbd/bin/adbd"]),
             ):
                 stat, raw = self.stat(pid, ppid, ticks, argv)
                 output += "__" + role + "_stat__\n" + stat + "__" + role + "_argv__\n" + raw.hex() + "\n"
+                uid = "0" if role == "adbd" and self.rooted else "2000"
+                group = f"/uid_0/pid_{adbd}" if role == "adbd" or self.shared_adbd_cgroup else self.console_cgroup
+                output += "__" + role + "_uid__\n" + " ".join([uid] * 4) + "\n"
+                output += "__" + role + "_cgroup__\n0::" + group + "\n"
         for index, (name, data) in enumerate(self.files().items(), 10):
             inode = index + (100 if self.rooted and self.corrupt_inode else 0)
             output += f"__file_{name}__\n1:{inode}:{len(data)}:8180\n"
@@ -107,6 +121,8 @@ class SyntheticAdb:
             self.root_calls += 1
             self.rooted = True
             self.case.transport_ends(self.clock.utc())
+            if not self.console_launch:
+                self.alive = False
             if self.root_stderr is not None:
                 self.returncode, self.stderr = 1, self.root_stderr
             else:
@@ -162,6 +178,52 @@ class SyntheticAdb:
         return self.stdout, self.stderr
 
 
+class SyntheticConsole:
+    """Only the external console/process transport is synthetic, not verification."""
+    def __init__(self, case):
+        self.case = case
+
+    def start(self, out, program, token, serial):
+        console = FRAMEWORK.CONSOLE
+        self.out, self.token = out, token
+        out.mkdir()
+        raw_socket = "/tmp/lumo-serial-43500000000-1/console.sock"
+        self.peer = {"pid": 50, "start_ticks": "77", "argv": ["/sdk/qemu-system-x86_64", "unix:" + raw_socket + ",server,nowait"], "executable": "/sdk/qemu-system-x86_64", "uid": 1000, "gid": 1000}
+        self.process = {"pid": 60, "start_ticks": "88", "argv": ["python", "android_console_transport.py", "_hold", "--out", str(out)], "executable": "/python", "command": ["python", "android_console_transport.py", "_hold", "--out", str(out)], "started_at": self.case.clock.utc()}
+        self.started = self.case.clock.utc()
+        self.socket = {"path": raw_socket, "device": 1, "inode": 2, "mode": 0o140600, "uid": 1000, "parent_device": 1, "parent_inode": 1, "parent_mode": 0o40700}
+        prepare = {"schema": 1, "run_id": "43500000000", "run_attempt": "1", "socket": raw_socket, "emulator_option": "unix:" + raw_socket + ",server,nowait", "uid": 1000, "source": console.identity(Path(console.__file__).read_bytes())}
+        OLD.put(out / "prepare.json", prepare)
+        OLD.put(out / "process.json", self.process)
+        OLD.put(out / "config.json", {"schema": 1, "socket": raw_socket, "serial": serial, "token": token, "program": console.identity(program), "preparation": console.identity((out / "prepare.json").read_bytes())})
+        (out / "program.sh").write_bytes(program)
+        (out / "command.stdin").write_bytes(console.command_bytes(program, token))
+        self.transcript = (f"LUMO_CONSOLE_BEGIN_{token}\n\nLUMO_CONSOLE_END_{token}:0\n").encode()
+        (out / "transcript.stdout").write_bytes(self.transcript)
+        (out / "holder.stdout").write_bytes(b"")
+        (out / "holder.stderr").write_bytes(b"")
+        self.launch = {"schema": 1, "status": "PASS", "sent_at": self.case.clock.utc(), "observed_at": self.case.clock.utc(), "socket": self.socket, "peer": self.peer, "frame": console.launch_frame(self.transcript, token)}
+        OLD.put(out / "launch.json", self.launch)
+        fake = self.case.fake
+        fake.remote = re.search(rb"/data/local/tmp/lumo-runtime-[0-9a-f]{32}", program)[0].decode()
+        fake.script = FRAMEWORK.device_logger_script(fake.remote).encode()
+        fake.console_launch = True
+        return self.observe(out, "launched")
+
+    def observe(self, out, label):
+        value = {"observed_at": self.case.clock.utc(), "label": label, "holder": {key: self.process[key] for key in ("pid", "start_ticks", "argv", "executable")}, "peer": {key: self.peer[key] for key in ("pid", "start_ticks", "argv", "executable")}, "socket": self.socket, "transcript_prefix": FRAMEWORK.CONSOLE.identity(self.transcript)}
+        OLD.put(out / "observations" / (label + ".json"), value)
+        return value
+
+    def finish(self, out, token, logger_exit):
+        self.observe(out, "before-close")
+        stop = {"requested_at": self.case.clock.utc(), "token": token, "logger_exit": logger_exit}
+        OLD.put(out / "stop-request.json", stop)
+        result = {"schema": 1, "status": "PASS", "started_at": self.started, "finished_at": self.case.clock.utc(), "sent_at": self.launch["sent_at"], "connections": 1, "stop_requested": True, "stop_request": stop, "peer": self.peer, "socket": self.socket, "token": token, "errors": [], "source": FRAMEWORK.CONSOLE.identity(Path(FRAMEWORK.CONSOLE.__file__).read_bytes())}
+        OLD.put(out / "finished.json", result)
+        return result
+
+
 class DeviceLogContracts(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -187,7 +249,11 @@ class DeviceLogContracts(unittest.TestCase):
         self.out.mkdir()
         self.clock = Clock()
         self.fake = SyntheticAdb(self, self.clock)
+        self.console_transport = SyntheticConsole(self)
         for patcher in (mock.patch.object(FRAMEWORK, "utc", side_effect=self.clock.utc),
+                        mock.patch.object(FRAMEWORK.CONSOLE, "start", side_effect=self.console_transport.start),
+                        mock.patch.object(FRAMEWORK.CONSOLE, "observe", side_effect=self.console_transport.observe),
+                        mock.patch.object(FRAMEWORK.CONSOLE, "finish", side_effect=self.console_transport.finish),
                         mock.patch.object(FRAMEWORK, "adb_path", return_value=self.adb),
                         mock.patch.object(FRAMEWORK, "monitor_alive", side_effect=lambda _p: not self.fake.rooted),
                         mock.patch.object(FRAMEWORK, "process_identity", return_value=None),
@@ -303,7 +369,9 @@ class DeviceLogContracts(unittest.TestCase):
     def test_protocol_cannot_be_enabled_by_changing_a_report_only(self):
         result = self.complete()
         self.assertEqual(result["status"], "PASS", result["errors"])
-        (self.out / "device-logger/start/commands/0001-launch.stdout").write_bytes(b"changed")
+        paths = list((self.out / "device-logger/start/commands").glob('*-initial.stdout'))
+        self.assertEqual(len(paths), 1)
+        paths[0].write_bytes(b"changed")
         result = ANR.verify(self.framework, self.out, self.serial)
         self.assertEqual(result["status"], "FAIL")
         self.assertTrue(any("Original device command bytes changed" in error for error in result["errors"]))
@@ -338,6 +406,53 @@ class DeviceLogContracts(unittest.TestCase):
         self.assertEqual(script.count("--preserve-through-adb-root"), 1)
         self.assertIn('if [[ "$diagnostic_case" == api37-* ]]; then', script)
         self.assertIn("trap finish_android17 EXIT", script)
+
+    def test_actual_adbd_group_cannot_be_accepted_as_console_independence(self):
+        self.fake.shared_adbd_cgroup = True
+        with self.assertRaisesRegex(ValueError, "distinct actual init-console cgroup"):
+            self.start()
+        self.assertEqual(self.fake.root_calls, 0)
+
+    def test_console_cgroup_change_after_root_is_terminal(self):
+        dispatch = self.fake.dispatch
+        def root_changes_group(command):
+            result = dispatch(command)
+            if command[3:] == ["root"]:
+                self.fake.console_cgroup = "/uid_2000/pid_201"
+            return result
+        with mock.patch.object(self.fake, "dispatch", side_effect=root_changes_group):
+            with self.assertRaisesRegex(ValueError, "identity changed: console:cgroups"):
+                self.start()
+
+    def test_lost_console_channel_cannot_be_hidden_by_live_device_log(self):
+        self.start()
+        with mock.patch.object(FRAMEWORK.CONSOLE, "observe", side_effect=ValueError("Original console channel ended")):
+            endpoint = ANR.capture_end(self.framework, self.out, self.serial, 0)
+        self.assertTrue(endpoint["errors"])
+        self.assertIn("Original console channel ended", endpoint["errors"][0])
+
+    def test_console_original_input_change_is_rejected_offline(self):
+        self.complete()
+        (self.out / "device-logger/console/command.stdin").write_bytes(b"echo fake\n")
+        result = ANR.verify(self.framework, self.out, self.serial)
+        self.assertEqual(result["status"], "FAIL")
+        self.assertTrue(any("exact input" in error for error in result["errors"]), result["errors"])
+
+    def test_old_recording_protocol_is_not_relabelled_as_console_evidence(self):
+        self.complete()
+        path = self.out / "runtime-start.json"
+        value = ANR.read_json(path)
+        value["recording_protocol"] = "independent-device-session-v1"
+        OLD.put(path, value)
+        result = ANR.verify(self.framework, self.out, self.serial)
+        self.assertEqual(result["status"], "FAIL")
+        self.assertIn("unknown_recording_protocol", result["errors"])
+
+    def test_console_launch_program_stderr_is_not_hidden_by_terminal_noise(self):
+        self.fake.launch_stderr = b"actual launch error\n"
+        with self.assertRaisesRegex(ValueError, "launch program emitted"):
+            self.start()
+        self.assertEqual(self.fake.root_calls, 0)
 
 
 if __name__ == "__main__":
