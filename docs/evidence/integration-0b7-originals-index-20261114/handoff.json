@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "state": "FROZEN_LOCAL_PLAN_ONLY",
+  "parent_commit": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "parent_tree": "f3a7df4c3112ac63577db00a9637facfea5c0175",
+  "publication_files": {
+    "path": "/workspace/scratch/b3485b7bb989/native-host-evidence-publication-plan-0b7bac-20261114/publication-files.json",
+    "bytes": 19644,
+    "sha256": "12293116d51f135a006306c257c805bcba2d5cdd31d5ff40098e3fcc5a42f53a",
+    "git_blob": "3143dce8720c8dce1ebfac9132e96bdf066891ff",
+    "mode": "100644",
+    "posix_mode": "0o644",
+    "mtime_ns": 1794666782630826790
+  },
+  "verification": {
+    "path": "/workspace/scratch/b3485b7bb989/native-host-evidence-publication-plan-0b7bac-20261114/archive-source-verification.json",
+    "bytes": 632353,
+    "sha256": "28b2b9f87ca7a9a8758c70b000f755a82156b62b5bbcd1ff74c092f8c5e60e86",
+    "git_blob": "bca18eb4f06a382cfc18271f331b30061ad01456",
+    "mode": "100644",
+    "posix_mode": "0o644",
+    "mtime_ns": 1794666782627566942
+  },
+  "groups": [
+    {
+      "source_root": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114",
+      "target_prefix": "docs/evidence/native-baf148-originals-20261114",
+      "file_count": 12,
+      "total_bytes": 32200164
+    },
+    {
+      "source_root": "/tmp/host37-terminal-complete-evidence-20261114",
+      "target_prefix": "docs/evidence/host37-terminal-complete-evidence-20261114",
+      "file_count": 6,
+      "total_bytes": 2552509
+    },
+    {
+      "source_root": "/tmp/host79c7-terminal-complete-evidence-20261114",
+      "target_prefix": "docs/evidence/host79c7-terminal-complete-evidence-20261114",
+      "file_count": 6,
+      "total_bytes": 2309266
+    },
+    {
+      "source_root": "/tmp/host79c7-auxiliary-flutter-failures-20261114",
+      "target_prefix": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114",
+      "file_count": 18,
+      "total_bytes": 1538334
+    }
+  ],
+  "entry_count": 42,
+  "verified_archive_members": 421,
+  "indexed_original_files_verified": 409,
+  "raw_auxiliary_bindings_verified": 9,
+  "source_bytes_modes_mtimes_unchanged": true,
+  "new_archives": 0,
+  "remote_actions": 0,
+  "tests": 0
+}

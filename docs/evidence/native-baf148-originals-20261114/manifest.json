@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "state": "FROZEN",
+  "repository": "Ullmann27/lumo-godot",
+  "native_source": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+  "run_id": 43600806315,
+  "attempt": 1,
+  "job_id": 132464933411,
+  "artifact_id": 14116698243,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4368,
+      "sha256": "34ced5974d4ccc8983fd19b82dfddc3fce33f6bfb19d7512ef1ea19a0e0dae53"
+    },
+    {
+      "path": "create_checkpoint.py",
+      "bytes": 23417,
+      "sha256": "57de9f821db46e727bb67c7bcb43186e595bc011543231156635e642833933ea"
+    },
+    {
+      "path": "documentary-exclusion.json",
+      "bytes": 1225236,
+      "sha256": "a358e0168adc1ab08ae41f94d94f9d94da5fa938b365b135757d6ae898f46c5d"
+    },
+    {
+      "path": "documentary-inclusion.json",
+      "bytes": 111665,
+      "sha256": "874dc1aa0257adc9282a562d4f73b06fe82d8b07e5a4f1b6d43c8e5a4ca97775"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 2511,
+      "sha256": "4f6813fb1fa7c9ff5dd252918aef7cbce12ed4fe2bfbe374fba0a817dd5e9d81"
+    },
+    {
+      "path": "native-baf148b-documentary-originals.tar.gz",
+      "bytes": 5258971,
+      "sha256": "88d5ca87abd30a8a4807bb2bc84351afff093682c892081c62e703d53f5a3aa7"
+    },
+    {
+      "path": "native-baf148b-root-reviewed-15.tar.gz",
+      "bytes": 25465892,
+      "sha256": "c527f35148189bdca92aa42288a66f165c6a2ebcbddee16c5b7a87c518129d2c"
+    },
+    {
+      "path": "roundtrip-verification.json",
+      "bytes": 65358,
+      "sha256": "1dd0bce797e6cd877aa84c0443577c33040fa9ff689b85d6e003c47492a0276c"
+    },
+    {
+      "path": "source-retention-verification.json",
+      "bytes": 2701,
+      "sha256": "6ad582a7e12eb6c0b7e4a3a03ad7f93395eb647460601fb450e098d4b0142b5a"
+    },
+    {
+      "path": "visual-inclusion.json",
+      "bytes": 36975,
+      "sha256": "631567c008ca259e15fd0e444d1ab3caffa7892fc0f06c3d5be8a0262138578b"
+    }
+  ],
+  "self_hash_location": "SHA256SUMS",
+  "scope": "Two compact transport archives and their complete byte-roundtrip records."
+}
