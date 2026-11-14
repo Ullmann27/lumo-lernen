@@ -1,0 +1,14 @@
+{
+  "command": [
+    "adb",
+    "exec-out",
+    "cat",
+    "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/shared_prefs/FlutterSharedPreferences.xml"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 0.03587528000002749,
+  "stdout_bytes": 2012,
+  "stderr_bytes": 0,
+  "stdout_sha256": "12898753efd3b525ea64a9ddd8a9a7c8546fc6e38088dc6f1c43746ad008215e",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

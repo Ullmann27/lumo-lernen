@@ -1,0 +1,53 @@
+{
+  "files": [
+    {
+      "bytes": 1438731,
+      "format": "PNG",
+      "git_blob": "4a1ae358b941a8e2f2880592b4cdd3c6815446d3",
+      "path": "village/returned-flutter-observations/attempt-1/returned-flutter-frame.png",
+      "personal_visual_review": "Tatsächlich geöffnet: noch natives Landschaftsbild mit LUMO DORFWELT, Ressourcen/HUD und Spiele-Rückweg; kein sichtbarer Flutter-Spielen-Tab. Der Originalbeobachter verwarf es.",
+      "pixels": [
+        2400,
+        1080
+      ],
+      "sha256": "129cf8adb3414b35490f40578d48013afe93742a883ca1a86cb7eafde8a00c03"
+    },
+    {
+      "bytes": 1926800,
+      "format": "PNG",
+      "git_blob": "4cf5ba9f8015988c3d4cb55b9ecf136f8af24942",
+      "path": "village/returned-flutter-frame.png",
+      "personal_visual_review": "Tatsächlich geöffnet: Flutter-Spielewelt im Hochformat, Lumo-Kart-/Dorfwirtschaft-/Cards-/Bauwelt-Kacheln und klar sichtbarer aktiver Spielen-Tab. Der Originalbeobachter akzeptierte erst diese zweite Aufnahme.",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "097d59942a9b4a4f8bca4f9c7f99f1258a2d14108be28a20bf441830888c23d7"
+    },
+    {
+      "bytes": 229280,
+      "format": "PNG",
+      "git_blob": "1f88d4c5d0e5f28b77aedbb27e4f58b366d0d637",
+      "path": "c4/child-second-confirmed-003.png",
+      "personal_visual_review": "Tatsächlich geöffnet: vollständiges sieben mal sechs Brett, zwei cyanfarbene Steine unten in Spalten3 und4 und zwei gelbe darüber in Spalte4; Zurück/Pause und alle sieben Spaltentasten sichtbar. Kein Sieg in dieser Aufnahme.",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "5aa3695f42e15fd68592bf838010119535b114085cf52fcf820856512d3c8941"
+    },
+    {
+      "bytes": 1791928,
+      "format": "PNG",
+      "git_blob": "b982c3bb5de4cd8b9df4c2029413f5e7eb479f54",
+      "path": "main/21_race_driving_late_2.png",
+      "personal_visual_review": "Tatsächlich geöffnet: echte Fahrtaufnahme mit Fuchsfahrer/Kart, bebauter Strecke, Minimap und sichtbaren Menü/Pause/Lenkung/Gas/Bremse/Drift/Speed-Flächen. Einzelaufnahme; keine FPS- oder vollständige Rennabschlussaussage.",
+      "pixels": [
+        2400,
+        1080
+      ],
+      "sha256": "29eece71e01425c443d54ab47557d7a8a7eb6d46b9a0966837bef82267ada9c1"
+    }
+  ],
+  "scope": "Four unchanged original API35 screenshots actually opened; no created/edited/re-rendered images."
+}

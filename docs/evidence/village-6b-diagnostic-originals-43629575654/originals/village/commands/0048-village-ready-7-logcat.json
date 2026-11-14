@@ -1,0 +1,19 @@
+{
+  "command": [
+    "adb",
+    "logcat",
+    "-b",
+    "all",
+    "--pid",
+    "6449",
+    "-d",
+    "-v",
+    "threadtime"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 0.8199041319999196,
+  "stdout_bytes": 13093,
+  "stderr_bytes": 0,
+  "stdout_sha256": "99b0b7ee12f80c48bd93ea4ebf9486c1c9b11189b518483815a0e407d3f093ef",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,24 @@
+{
+  "first": "return-first-first-000",
+  "second": "return-first-second-000",
+  "target": {
+    "id": "back",
+    "text": "Zurück",
+    "bounds": [
+      52.554744720459,
+      172.761489868164,
+      275.912410736084,
+      309.304168701172
+    ],
+    "point": [
+      164,
+      241
+    ],
+    "size_dp": [
+      85.08863467261905,
+      52.01625860305067
+    ]
+  },
+  "command_original": "commands/0317-return-first-touch.stdout",
+  "gesture": "120ms stationary actual Android touch"
+}

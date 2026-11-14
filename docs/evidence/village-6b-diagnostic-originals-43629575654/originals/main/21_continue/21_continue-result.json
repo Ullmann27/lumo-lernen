@@ -1,0 +1,98 @@
+{
+  "touch": [
+    1194,
+    408
+  ],
+  "touch_evidence": "21_continue_touch-surface-readiness.json",
+  "hud": {
+    "capture": "21_race_hud_1",
+    "race_state": {
+      "round": [
+        1,
+        2
+      ],
+      "place": [
+        6,
+        6
+      ]
+    },
+    "rendered_frame": {
+      "size": [
+        2400,
+        1080
+      ],
+      "visible_fractions": [
+        1.0,
+        0.993,
+        1.0
+      ],
+      "detail": [
+        {
+          "colour_bins": 1043,
+          "bright_fraction": 0.842
+        },
+        {
+          "colour_bins": 1190,
+          "bright_fraction": 0.849
+        },
+        {
+          "colour_bins": 1199,
+          "bright_fraction": 0.743
+        }
+      ]
+    },
+    "hud_lines": [
+      "RUNDE 1/2 PLATZ6/6 Okm/h \u00ab0"
+    ],
+    "focused_hud": null
+  },
+  "drive": {
+    "gas_touch": [
+      2242,
+      936
+    ],
+    "hold_ms": 9000,
+    "gas_pulses": 3,
+    "world_moved": {
+      "changed_fraction": 0.675,
+      "mean_channel_delta": 66.83
+    },
+    "rendered_frame": {
+      "size": [
+        2400,
+        1080
+      ],
+      "visible_fractions": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "detail": [
+        {
+          "colour_bins": 969,
+          "bright_fraction": 0.894
+        },
+        {
+          "colour_bins": 805,
+          "bright_fraction": 0.932
+        },
+        {
+          "colour_bins": 778,
+          "bright_fraction": 0.803
+        }
+      ]
+    },
+    "native_progress": {
+      "result_id": "5a2e920e-c2e1-429e-96a0-54331a0facde-1794683508387-378006857",
+      "distance_gain": 126.29,
+      "elapsed_gain": 4.87,
+      "checkpoint_index": 1
+    }
+  },
+  "progress": {
+    "result_id": "5a2e920e-c2e1-429e-96a0-54331a0facde-1794683508387-378006857",
+    "kart": "gecko_velo",
+    "distance_gain_after_continue": 126.29181573539972,
+    "elapsed_gain_after_continue": 4.866666666666811
+  }
+}

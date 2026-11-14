@@ -1,0 +1,62 @@
+{
+  ".github/probes/lumo_6b_roundtrip_diagnostic.py": {
+    "bytes": 16984,
+    "mode": 292,
+    "sha256": "2601b1b6169e0e73db498733613333de691d1bbd57e219c5859f3e24027a80c8"
+  },
+  ".github/probes/lumo_connect_four_android_probe.py": {
+    "bytes": 28798,
+    "mode": 292,
+    "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19"
+  },
+  ".github/probes/lumo_village_android_probe.py": {
+    "bytes": 17484,
+    "mode": 292,
+    "sha256": "351d9ee6560b5dc5694f61b07c8d75b1a71d3cb4201fdbc953731891d04c1351"
+  },
+  ".github/probes/modernization_android_tour.py": {
+    "bytes": 73307,
+    "mode": 292,
+    "sha256": "965b45ee66d0f88ac73411719ba47858bb34bb49d5ceb2b129dc370bccddf1ae"
+  },
+  ".github/workflows/lumo-village-return-6b-diagnostic.yml": {
+    "bytes": 9561,
+    "mode": 292,
+    "sha256": "33756983ead8071b1eb6348b867f298e8becc5a82b6311b405aced4739b257cc"
+  },
+  "original_reader_driver.py": {
+    "bytes": 19877,
+    "mode": 292,
+    "sha256": "ac1cdb7cb10e1bb6ebfb8cf5e17333ede4c6c6bf702548cba6b361d94397011e"
+  },
+  "scripts/run_unchanged_6b_village_diagnostic.sh": {
+    "bytes": 6361,
+    "mode": 292,
+    "sha256": "833003f898f1966f424d890a25ab4e01a5f780f4b4df5f08b0d8d1a66aa00bf4"
+  },
+  "scripts/verify_unchanged_6b_village_diagnostic.py": {
+    "bytes": 26923,
+    "mode": 292,
+    "sha256": "927bf4ca2aac319a7d70c752d74c69c83ca3f2458ebd477a85f72bf5abfdfa26"
+  },
+  "tools/android_qa/connect_four_android_evidence.py": {
+    "bytes": 36432,
+    "mode": 292,
+    "sha256": "0f09d08607e51f19c2e0be9f35bf876d8606fd73644b96a2eb39c2ffff15a88f"
+  },
+  "tools/android_qa/native_ocr_tiles.py": {
+    "bytes": 8243,
+    "mode": 292,
+    "sha256": "0365c7f57551c3f2b5efb2c4d5f7d16886cd93638f7e4be7a75c6d0fc6838704"
+  },
+  "tools/android_qa/native_surface_readiness.py": {
+    "bytes": 4401,
+    "mode": 292,
+    "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60"
+  },
+  "tools/android_qa/village_android_evidence.py": {
+    "bytes": 20967,
+    "mode": 292,
+    "sha256": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32"
+  }
+}

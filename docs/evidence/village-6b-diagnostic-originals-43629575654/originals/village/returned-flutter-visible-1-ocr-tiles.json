@@ -1,0 +1,199 @@
+{
+  "status": "READ",
+  "scope": "Independent OCR; no gameplay or visibility PASS",
+  "source": "returned-flutter-frame.png",
+  "source_sha256": "129cf8adb3414b35490f40578d48013afe93742a883ca1a86cb7eafde8a00c03",
+  "surface": [
+    2400,
+    1080
+  ],
+  "wanted": "spielen",
+  "tile_scale": 3,
+  "confidence_minimum": 15,
+  "timeout_seconds": 45,
+  "tiles": [
+    {
+      "index": 0,
+      "bounds": [
+        0,
+        0,
+        880,
+        620
+      ],
+      "image": "returned-flutter-visible-1-ocr-white-latin-tile-0.png",
+      "tsv": "returned-flutter-visible-1-ocr-white-latin-tile-0.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1093",
+      "elapsed_seconds": 0.59119,
+      "matches": []
+    },
+    {
+      "index": 1,
+      "bounds": [
+        0,
+        460,
+        880,
+        1080
+      ],
+      "image": "returned-flutter-visible-1-ocr-white-latin-tile-1.png",
+      "tsv": "returned-flutter-visible-1-ocr-white-latin-tile-1.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1089",
+      "elapsed_seconds": 0.481844,
+      "matches": []
+    },
+    {
+      "index": 2,
+      "bounds": [
+        720,
+        0,
+        1680,
+        620
+      ],
+      "image": "returned-flutter-visible-1-ocr-white-latin-tile-2.png",
+      "tsv": "returned-flutter-visible-1-ocr-white-latin-tile-2.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1091",
+      "elapsed_seconds": 0.412559,
+      "matches": []
+    },
+    {
+      "index": 3,
+      "bounds": [
+        720,
+        460,
+        1680,
+        1080
+      ],
+      "image": "returned-flutter-visible-1-ocr-white-latin-tile-3.png",
+      "tsv": "returned-flutter-visible-1-ocr-white-latin-tile-3.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1088\nDetected 5 diacritics",
+      "elapsed_seconds": 0.429804,
+      "matches": []
+    },
+    {
+      "index": 4,
+      "bounds": [
+        1520,
+        0,
+        2400,
+        620
+      ],
+      "image": "returned-flutter-visible-1-ocr-white-latin-tile-4.png",
+      "tsv": "returned-flutter-visible-1-ocr-white-latin-tile-4.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 986",
+      "elapsed_seconds": 0.297901,
+      "matches": []
+    },
+    {
+      "index": 5,
+      "bounds": [
+        1520,
+        460,
+        2400,
+        1080
+      ],
+      "image": "returned-flutter-visible-1-ocr-white-latin-tile-5.png",
+      "tsv": "returned-flutter-visible-1-ocr-white-latin-tile-5.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1095",
+      "elapsed_seconds": 0.334066,
+      "matches": []
+    },
+    {
+      "index": 0,
+      "bounds": [
+        0,
+        0,
+        880,
+        620
+      ],
+      "image": "returned-flutter-visible-1-ocr-white-latin-dim-tile-0.png",
+      "tsv": "returned-flutter-visible-1-ocr-white-latin-dim-tile-0.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1091\nDetected 6 diacritics",
+      "elapsed_seconds": 0.648535,
+      "matches": []
+    },
+    {
+      "index": 1,
+      "bounds": [
+        0,
+        460,
+        880,
+        1080
+      ],
+      "image": "returned-flutter-visible-1-ocr-white-latin-dim-tile-1.png",
+      "tsv": "returned-flutter-visible-1-ocr-white-latin-dim-tile-1.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1061",
+      "elapsed_seconds": 0.437997,
+      "matches": []
+    },
+    {
+      "index": 2,
+      "bounds": [
+        720,
+        0,
+        1680,
+        620
+      ],
+      "image": "returned-flutter-visible-1-ocr-white-latin-dim-tile-2.png",
+      "tsv": "returned-flutter-visible-1-ocr-white-latin-dim-tile-2.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1090",
+      "elapsed_seconds": 0.408251,
+      "matches": []
+    },
+    {
+      "index": 3,
+      "bounds": [
+        720,
+        460,
+        1680,
+        1080
+      ],
+      "image": "returned-flutter-visible-1-ocr-white-latin-dim-tile-3.png",
+      "tsv": "returned-flutter-visible-1-ocr-white-latin-dim-tile-3.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1060\nDetected 5 diacritics",
+      "elapsed_seconds": 0.435334,
+      "matches": []
+    },
+    {
+      "index": 4,
+      "bounds": [
+        1520,
+        0,
+        2400,
+        620
+      ],
+      "image": "returned-flutter-visible-1-ocr-white-latin-dim-tile-4.png",
+      "tsv": "returned-flutter-visible-1-ocr-white-latin-dim-tile-4.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 988",
+      "elapsed_seconds": 0.334604,
+      "matches": []
+    },
+    {
+      "index": 5,
+      "bounds": [
+        1520,
+        460,
+        2400,
+        1080
+      ],
+      "image": "returned-flutter-visible-1-ocr-white-latin-dim-tile-5.png",
+      "tsv": "returned-flutter-visible-1-ocr-white-latin-dim-tile-5.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1094",
+      "elapsed_seconds": 0.325078,
+      "matches": []
+    }
+  ],
+  "matches": [],
+  "matched": false,
+  "elapsed_seconds": 5.95413
+}

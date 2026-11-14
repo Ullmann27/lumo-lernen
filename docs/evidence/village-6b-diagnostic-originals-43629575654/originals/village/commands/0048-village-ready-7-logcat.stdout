@@ -1,0 +1,100 @@
+--------- beginning of main
+11-14 19:18:57.773  6449  6449 I eview:lumo_game: Using CollectorTypeCMC GC.
+11-14 19:18:57.775  6449  6449 W eview:lumo_game: Unexpected CPU variant for x86: x86_64.
+11-14 19:18:57.775  6449  6449 W eview:lumo_game: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+11-14 19:18:57.779  6449  6449 E eview:lumo_game: Not starting debugger since process cannot load the jdwp agent.
+11-14 19:18:57.782  6449  6449 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+11-14 19:18:58.115  6449  6449 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+11-14 19:18:58.115  6449  6449 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+11-14 19:18:58.139  6449  6449 D nativeloader: Configuring clns-7 for other apk /data/app/~~8qWy8HrgiEIrKOjkGBHcVw==/dev.ullmann.lumo.lumo_lernen.coachpreview-pAZjjtl3KY2DPt_-Yx5cwQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~8qWy8HrgiEIrKOjkGBHcVw==/dev.ullmann.lumo.lumo_lernen.coachpreview-pAZjjtl3KY2DPt_-Yx5cwQ==/lib/x86_64:/data/app/~~8qWy8HrgiEIrKOjkGBHcVw==/dev.ullmann.lumo.lumo_lernen.coachpreview-pAZjjtl3KY2DPt_-Yx5cwQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview
+11-14 19:18:58.144  6449  6449 V GraphicsEnvironment: Currently set values for:
+11-14 19:18:58.144  6449  6449 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+11-14 19:18:58.144  6449  6449 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+11-14 19:18:58.144  6449  6449 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0
+11-14 19:18:58.144  6449  6449 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+11-14 19:18:58.167  6449  6449 D GodotActivity: Project command line parameters: []
+11-14 19:18:58.167  6449  6449 D GodotActivity: Launch intent Intent { cmp=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity (has extras) } with parameters []
+11-14 19:18:58.203  6449  6449 V GodotActivity: Creating new Godot fragment instance.
+11-14 19:18:58.292  6449  6449 V Godot   : InitEngine with params: [--main-pack, res://lumo_game.pck, --rendering-method, gl_compatibility]
+11-14 19:18:58.292  6449  6449 V Godot   : Initializing Godot plugin registry
+11-14 19:18:58.293  6449  6449 I GodotPluginRegistry: Registering runtime plugin AndroidRuntime
+11-14 19:18:58.293  6449  6449 I GodotPluginRegistry: Registering runtime plugin LumoHost
+11-14 19:18:58.464  6449  6449 D nativeloader: Load /data/app/~~8qWy8HrgiEIrKOjkGBHcVw==/dev.ullmann.lumo.lumo_lernen.coachpreview-pAZjjtl3KY2DPt_-Yx5cwQ==/lib/x86_64/libgodot_android.so using ns clns-7 from class loader (caller=/data/app/~~8qWy8HrgiEIrKOjkGBHcVw==/dev.ullmann.lumo.lumo_lernen.coachpreview-pAZjjtl3KY2DPt_-Yx5cwQ==/base.apk): ok
+11-14 19:18:58.469  6449  6449 V Godot   : Godot native layer initialization completed: true
+11-14 19:18:58.647  6449  6449 V Godot   : Godot native layer setup completed
+11-14 19:18:58.647  6449  6449 V Godot   : OnInitRenderView: GodotFragment{70979be} (edec4f0f-bf9d-49ae-ac54-66aa88da4c61 id=0x7f080075)
+11-14 19:18:58.662  6449  6449 D Godot   : Render view should be transparent: false
+11-14 19:18:58.663  6449  6449 D Godot   : usesVulkan(): false
+11-14 19:18:58.663  6449  6449 D Godot   : 			renderingDevice: opengl3 (ProjectSettings)
+11-14 19:18:58.663  6449  6449 D Godot   : 			renderer: gl_compatibility (CommandLine)
+--------- beginning of events
+11-14 19:18:58.669  6449  6449 I wm_on_create_called: [34195301,dev.ullmann.lumo.lumo_lernen.LumoGameActivity,performCreate,503]
+11-14 19:18:58.669  6449  6449 W WindowOnBackDispatcher: OnBackInvokedCallback is not enabled for the application.
+11-14 19:18:58.669  6449  6449 W WindowOnBackDispatcher: Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+11-14 19:18:58.679  6449  6449 V Godot   : OnStart: GodotFragment{70979be} (edec4f0f-bf9d-49ae-ac54-66aa88da4c61 id=0x7f080075)
+11-14 19:18:58.682  6449  6449 I wm_on_start_called: [34195301,dev.ullmann.lumo.lumo_lernen.LumoGameActivity,handleStartActivity,7]
+11-14 19:18:58.688  6449  6449 I wm_on_resume_called: [34195301,dev.ullmann.lumo.lumo_lernen.LumoGameActivity,RESUME_ACTIVITY,0]
+11-14 19:18:58.688  6449  6449 V Godot   : OnResume: GodotFragment{70979be} (edec4f0f-bf9d-49ae-ac54-66aa88da4c61 id=0x7f080075)
+11-14 19:18:58.693  6449  6449 W HWUI    : Unknown dataspace 0
+11-14 19:18:58.739  6449  6449 I wm_on_top_resumed_gained_called: [34195301,dev.ullmann.lumo.lumo_lernen.LumoGameActivity,topStateChangedWhenResumed]
+11-14 19:18:58.771  6449  6462 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+11-14 19:18:58.772  6449  6462 I EGL_emulation: Opening libGLESv2_emulation.so
+11-14 19:18:58.828  6449  6462 W HWUI    : Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+11-14 19:18:58.828  6449  6462 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-14 19:18:58.856  6449  6482 W RegularContextFactory: creating OpenGL ES 3.0 context :
+11-14 19:18:59.002  6449  6482 I Gralloc4: mapper 4.x is not supported
+11-14 19:18:59.100  6449  6482 I godot   : Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+11-14 19:18:59.405  6449  6449 I Choreographer: Skipped 39 frames!  The application may be doing too much work on its main thread.
+11-14 19:18:59.787  6449  6482 E godot   : WARNING: Failed to load cached shader, recompiling.
+11-14 19:18:59.787  6449  6482 E godot   :    at: _load_from_cache (drivers/gles3/shader_gles3.cpp:612)
+11-14 19:18:59.825  6449  6491 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(wmsSync-VRI[LumoGameActivity]#1) as ready
+11-14 19:18:59.834  6449  6491 I viewroot_draw_event: [VRI[LumoGameActivity],reportDrawFinished seqId=0]
+11-14 19:18:59.834  6449  6491 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(VRI[LumoGameActivity]#2) as ready
+11-14 19:18:59.842  6449  6491 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(SurfaceView[dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity]#0) as ready
+11-14 19:19:00.715  6449  6491 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(wmsSync-VRI[LumoGameActivity]#4) as ready
+11-14 19:19:00.715  6449  6491 I viewroot_draw_event: [VRI[LumoGameActivity],reportDrawFinished seqId=0]
+11-14 19:19:00.717  6449  6491 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(VRI[LumoGameActivity]#5) as ready
+11-14 19:19:00.718  6449  6491 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(SurfaceView[dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity]#3) as ready
+11-14 19:19:00.904  6449  6482 I godot   : OpenGL API OpenGL ES 3.1 (4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4) - Compatibility - Using Device: Google (Mesa) - Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))
+11-14 19:19:00.908  6449  6482 D eview:lumo_game: PlayerBase::PlayerBase()
+11-14 19:19:00.909  6449  6482 D eview:lumo_game: TrackPlayerBase::TrackPlayerBase()
+11-14 19:19:00.909  6449  6482 I libOpenSLES: Emulating old channel mask behavior (ignoring positional mask 0x3, using default mask 0x3 based on channel count of 2)
+11-14 19:19:00.914  6449  6482 I godot   : 
+11-14 19:19:01.004  6449  6482 E BLASTBufferQueue: [SurfaceView[dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity]#1](f:0,a:0) rejecting buffer:active_size=1080x2400, requested_size=1080x2400 buffer{size=2400x1080 transform=0}
+11-14 19:19:01.046  6449  6462 D EGL_emulation: app_time_stats: avg=646.45ms min=46.16ms max=1246.74ms count=2
+11-14 19:19:01.363  6449  6482 V Godot   : OnGodotSetupCompleted
+11-14 19:19:01.376  6449  6482 I godot   : [EventBus] online - signals registered
+11-14 19:19:01.376  6449  6482 I godot   : [Settings] no settings.cfg yet, defaults used
+11-14 19:19:01.376  6449  6482 I godot   : [Perf] platform_detected:Android
+11-14 19:19:01.377  6449  6482 I godot   : [Mobile] runtime ready screen:(1080, 2400) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+11-14 19:19:01.389  6449  6482 I godot   : [AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+11-14 19:19:01.389  6449  6482 I godot   : [Audio] manager ready (muted:false)
+11-14 19:19:01.390  6449  6482 I godot   : [Progress] loaded stars:0 streak:0 letters:0
+11-14 19:19:01.390  6449  6482 I godot   : [Progress] host wallet synchronized: 0 (lifetime 0)
+11-14 19:19:01.434  6449  6482 V Godot   : OnGodotMainLoopStarted
+11-14 19:19:01.436  6449  6482 I godot   : [Mobile] actual Android View insets { "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+11-14 19:19:01.455  6449  6482 I godot   : [Perf] quality_profile:medium
+11-14 19:19:03.511  6449  6482 I godot   : [SettlementWorld] ready mode=settlement save=user://lumo_settlement_54a8825c48cdf02c819f5c60552bcc6333a23fa7bf8fc763481f1fbda1141a41_1_village.json
+11-14 19:19:03.512  6449  6482 I godot   : [VillageHostReady] {"host_entry":true,"initialized_plot_nodes":9,"living_village":true,"mode":"settlement","plots":9,"population":2,"return_scene":"games","save_blocked":false,"save_path":"user://lumo_settlement_54a8825c48cdf02c819f5c60552bcc6333a23fa7bf8fc763481f1fbda1141a41_1_village.json","scene":"res://scenes/creative/build_settlement_world.tscn","slot":1,"visible_residents":2}
+11-14 19:19:03.512  6449  6482 I godot   : [Router] loaded:settlement (res://scenes/creative/build_settlement_world.tscn)
+11-14 19:19:03.874  6449  6491 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(wmsSync-VRI[LumoGameActivity]#7) as ready
+11-14 19:19:03.874  6449  6491 I viewroot_draw_event: [VRI[LumoGameActivity],reportDrawFinished seqId=0]
+11-14 19:19:03.875  6449  6491 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(VRI[LumoGameActivity]#8) as ready
+11-14 19:19:03.877  6449  6491 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(SurfaceView[dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity]#6) as ready
+11-14 19:19:08.911  6449  6482 D EGL_emulation: app_time_stats: avg=708.02ms min=70.91ms max=6165.45ms count=11
+11-14 19:19:08.972  6449  6482 I godot   : [Mobile] actual Android View insets { "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+11-14 19:19:10.057  6449  6462 D EGL_emulation: app_time_stats: avg=3544.47ms min=8.53ms max=7080.41ms count=2
+11-14 19:19:12.512  6449  6482 D EGL_emulation: app_time_stats: avg=1204.48ms min=1110.79ms max=1298.18ms count=2
+11-14 19:19:13.681  6449  6482 D EGL_emulation: app_time_stats: avg=1168.60ms min=1168.60ms max=1168.60ms count=1
+11-14 19:19:14.765  6449  6482 D EGL_emulation: app_time_stats: avg=1084.34ms min=1084.34ms max=1084.34ms count=1
+11-14 19:19:15.888  6449  6482 D EGL_emulation: app_time_stats: avg=1122.63ms min=1122.63ms max=1122.63ms count=1
+11-14 19:19:17.852  6449  6482 D EGL_emulation: app_time_stats: avg=981.77ms min=927.05ms max=1036.49ms count=2
+11-14 19:19:18.897  6449  6482 D EGL_emulation: app_time_stats: avg=1044.35ms min=1044.35ms max=1044.35ms count=1
+11-14 19:19:20.067  6449  6482 D EGL_emulation: app_time_stats: avg=1170.02ms min=1170.02ms max=1170.02ms count=1
+11-14 19:19:21.117  6449  6482 D EGL_emulation: app_time_stats: avg=1049.84ms min=1049.84ms max=1049.84ms count=1
+11-14 19:19:22.160  6449  6482 D EGL_emulation: app_time_stats: avg=1042.55ms min=1042.55ms max=1042.55ms count=1
+11-14 19:19:23.972  6449  6482 D EGL_emulation: app_time_stats: avg=906.16ms min=896.14ms max=916.18ms count=2
+11-14 19:19:24.994  6449  6482 D EGL_emulation: app_time_stats: avg=1021.37ms min=1021.37ms max=1021.37ms count=1
+11-14 19:19:26.048  6449  6482 D EGL_emulation: app_time_stats: avg=1053.94ms min=1053.94ms max=1053.94ms count=1
+11-14 19:19:27.125  6449  6482 D EGL_emulation: app_time_stats: avg=1076.52ms min=1076.52ms max=1076.52ms count=1
+11-14 19:19:28.913  6449  6482 D EGL_emulation: app_time_stats: avg=893.90ms min=886.22ms max=901.58ms count=2

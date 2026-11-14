@@ -1,0 +1,7 @@
+{
+  "action": "drop",
+  "before": "child-first-second-000",
+  "after": "child-first-confirmed-002",
+  "request": "commands/0089-child-first-request.stdout",
+  "touch": "child-first-touch.json"
+}

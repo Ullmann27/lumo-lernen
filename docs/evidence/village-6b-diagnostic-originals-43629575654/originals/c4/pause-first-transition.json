@@ -1,0 +1,7 @@
+{
+  "action": "pause",
+  "before": "pause-first-second-000",
+  "after": "pause-first-confirmed-002",
+  "request": "commands/0131-pause-first-request.stdout",
+  "touch": "pause-first-touch.json"
+}

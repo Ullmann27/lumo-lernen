@@ -1,0 +1,64 @@
+{
+  "find_original": {
+    "bytes": 134,
+    "contents": "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1/d96363b690dac4869acde2c8d4e832b7/state.json\n",
+    "git_blob": "263ac8fcd8000f44dec7423d5d518c4101537077",
+    "path": "c4/commands/0322-return-first-closed-mailbox.stdout",
+    "sha256": "4a155147a6ee97fcc74841304b106ed465dfc87ab4762f2dfc4a7dc0e9503c02"
+  },
+  "limits": [
+    "Command journal stores elapsed duration, not absolute command start. ZIP timestamps have two-second resolution.",
+    "Only one post-return find exists. No later deletion observation and no post-touch state.json content was captured.",
+    "The result names exactly the current C4 token; a foreign-token explanation is not supported.",
+    "Actual native PID ended and MainActivity resumed; neither proves the later Dart/Host cleanup completed."
+  ],
+  "scope": "Exact numbered original lines; not a new complete log and not an exact wall-clock timestamp for find.",
+  "selected_original_lines": [
+    {
+      "line": 92124,
+      "text": "11-14 19:22:35.314   556  1519 I wm_finish_activity: [0,40798532,9,dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity,app-request]"
+    },
+    {
+      "line": 92143,
+      "text": "11-14 19:22:35.629  6072  6072 I wm_on_start_called: [65926620,dev.ullmann.lumo.lumo_lernen.MainActivity,handleStartActivity,0]"
+    },
+    {
+      "line": 92144,
+      "text": "11-14 19:22:35.629  6072  6072 I wm_on_activity_result_called: [65926620,dev.ullmann.lumo.lumo_lernen.MainActivity,ACTIVITY_RESULT]"
+    },
+    {
+      "line": 92145,
+      "text": "11-14 19:22:35.630  6072  6072 I wm_on_resume_called: [65926620,dev.ullmann.lumo.lumo_lernen.MainActivity,RESUME_ACTIVITY,0]"
+    },
+    {
+      "line": 92146,
+      "text": "11-14 19:22:35.630  6072  6072 I wm_on_top_resumed_gained_called: [65926620,dev.ullmann.lumo.lumo_lernen.MainActivity,topWhenResuming]"
+    },
+    {
+      "line": 92157,
+      "text": "11-14 19:22:35.818  6826  6826 I Process : Sending signal. PID: 6826 SIG: 9"
+    },
+    {
+      "line": 92178,
+      "text": "11-14 19:22:36.166   556   575 I ActivityManager: Process dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game (pid 6826) has died: prcp CEM "
+    },
+    {
+      "line": 92179,
+      "text": "11-14 19:22:36.166   556   575 I am_proc_died: [0,6826,dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game,200,19]"
+    },
+    {
+      "line": 92196,
+      "text": "11-14 19:22:36.508  6072  6072 I viewroot_draw_event: [VRI[MainActivity],reportDrawFinished seqId=0]"
+    },
+    {
+      "line": 92270,
+      "text": "11-14 19:22:36.797   556   580 V WindowManager: Finish Transition (#52): created at 11-14 19:22:35.316 collect-started=0.04ms request-sent=0.091ms started=1.284ms ready=28.714ms sent=1205.131ms finished=1377.089ms"
+    }
+  ],
+  "source": "c4/commands/0323-final-all-buffer-logcat.stdout",
+  "source_record": {
+    "bytes": 13390463,
+    "git_blob": "604a2e46fa3be0362bc3673034aa920a6c633f6e",
+    "sha256": "89fa90d04efa97289093462fed7c292cbbf0f9d63d7267d38823a8c2526fc148"
+  }
+}

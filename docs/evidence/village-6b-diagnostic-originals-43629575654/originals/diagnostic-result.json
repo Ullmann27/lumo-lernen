@@ -1,0 +1,27 @@
+{
+  "case": "main",
+  "original_result": {
+    "bytes": 15727,
+    "path": "main/tour-result.json",
+    "sha256": "b38242a012ab7ffabc81fd56cf2d483e9f9e2914a252faaca9fb7fbb6094ff0f",
+    "status": "PASS"
+  },
+  "postflight_binding_exit_code": 0,
+  "probe_exit_code": 1,
+  "roundtrip_results": {
+    "c4/c4-result.json": {
+      "bytes": 196271,
+      "sha256": "bf71830d6687b29322a72162be51d41180696558b609b5cccffd13809e6cc7b4",
+      "status": "FAIL"
+    },
+    "village/village-result.json": {
+      "bytes": 64903,
+      "sha256": "7e904cfb3fe3795ffa13acc5beaf46f388ee240d65f002a2928be48a51b1fe59",
+      "status": "PASS"
+    }
+  },
+  "schema": 1,
+  "scope": "Isolated unchanged-APK diagnostic only; original run remains unchanged and no release is approved.",
+  "seven_job_acceptance": false,
+  "status": "FAIL"
+}

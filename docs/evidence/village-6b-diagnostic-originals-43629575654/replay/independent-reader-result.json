@@ -1,0 +1,194 @@
+{
+  "android_job": 132553315080,
+  "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "apk_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+  "artifact_id": 14128089386,
+  "binding_review": {
+    "apk_identity": {
+      "apk_sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+      "checks": {
+        "flutter_source_is_this_commit": true,
+        "godot_revision_is_pinned": true,
+        "sha256_matches_build_sums": true,
+        "sha256_matches_provenance": true,
+        "signing_certificate": true,
+        "tracked_source_clean": true,
+        "version_matches_pubspec": true,
+        "x86_64_native_code": true
+      },
+      "flutter_source_commit": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "godot_pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+      "godot_revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "versionCode": 2020,
+      "versionName": "0.13.8"
+    },
+    "candidate": {
+      "archive_validation": "Original API digest/size bound; complete artifact ZIP is not read by this preflight",
+      "artifact_bytes": 665918783,
+      "artifact_digest": "sha256:1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6",
+      "artifact_id": 14125990109,
+      "artifact_name": "lumo-connect-four-2020-candidate",
+      "build_conclusion": "success",
+      "build_job_id": 132512734271,
+      "existing_c4_binding": {
+        "candidate_artifact_digest": "sha256:1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6",
+        "candidate_artifact_id": 14125990109,
+        "host_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+        "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "run_attempt": 1,
+        "run_id": 43616038272,
+        "versionCode": 2020,
+        "versionName": "0.13.8",
+        "workflow": ".github/workflows/lumo-connect-four-2020.yml"
+      },
+      "host_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+      "run_attempt": 1,
+      "run_conclusion": "failure",
+      "run_id": 43616038272,
+      "run_status": "completed",
+      "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+      "workflow_path": ".github/workflows/lumo-connect-four-2020.yml"
+    },
+    "candidate_source_files_remote_rechecked": 2,
+    "local_exact_reader_files": 11,
+    "main_required_steps_passed": 18,
+    "main_total_steps_passed": 21,
+    "pre_post_receipts_identical": true,
+    "qa": {
+      "branch": "qa/lumo-village-return-6b-20261114",
+      "job_conclusion": null,
+      "job_id": 132553315080,
+      "job_name": "unchanged-6b-main-api35",
+      "job_status": "in_progress",
+      "run_attempt": 1,
+      "run_conclusion": null,
+      "run_id": 43629575654,
+      "run_status": "in_progress",
+      "source": "91b5aece4060cd625b27e4cfa967122b5d4b5b92",
+      "tree": "b3fecc83c5e58471fb2be25dc1d1015937505961",
+      "workflow_path": ".github/workflows/lumo-village-return-6b-diagnostic.yml"
+    },
+    "recorded_qa_source_files": 79,
+    "status": "PASS"
+  },
+  "c4_full_original_reader": {
+    "accepted": false,
+    "error": "ValueError: C4 report is missing, failed or bound to a different candidate",
+    "expected_fail_closed": true
+  },
+  "c4_reached_prefix_only": {
+    "actual_back_touch_replayed": true,
+    "complete_c4_acceptance": false,
+    "find_stdout": {
+      "bytes": 134,
+      "git_blob": "263ac8fcd8000f44dec7423d5d518c4101537077",
+      "sha256": "4a155147a6ee97fcc74841304b106ed465dfc87ab4762f2dfc4a7dc0e9503c02"
+    },
+    "full_returns_recorded": 0,
+    "host_pid": 6072,
+    "native_pid": 6826,
+    "observations_replayed": 19,
+    "original_error": "ValueError: Closed C4 mailbox still exists",
+    "pause_hold_seconds": 2.871517701999892,
+    "same_session_found": "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1/d96363b690dac4869acde2c8d4e832b7/state.json\n",
+    "session_token": "d96363b690dac4869acde2c8d4e832b7",
+    "status": "PASS_FOR_REACHED_PREFIX_ONLY",
+    "transitions_replayed": [
+      {
+        "ack": 1,
+        "action": "drop",
+        "columns": [
+          3,
+          3
+        ],
+        "revision": 4
+      },
+      {
+        "ack": 2,
+        "action": "pause",
+        "columns": [
+          3,
+          3
+        ],
+        "revision": 5
+      },
+      {
+        "ack": 3,
+        "action": "resume",
+        "columns": [
+          3,
+          3
+        ],
+        "revision": 6
+      },
+      {
+        "ack": 4,
+        "action": "drop",
+        "columns": [
+          3,
+          3,
+          2,
+          3
+        ],
+        "revision": 8
+      },
+      {
+        "ack": 5,
+        "action": "pause",
+        "columns": [
+          3,
+          3,
+          2,
+          3
+        ],
+        "revision": 9
+      }
+    ]
+  },
+  "elapsed_seconds": 21.47637621499962,
+  "limits": [
+    "No new APK binary download or apksigner invocation; prior exact APK/PCK receipts are cross-bound.",
+    "QA source is QA91; the read-only local materialization has actual HEAD325, not QA91.",
+    "The unchanged full C4 reader must reject the original FAIL report.",
+    "No later original mailbox observation exists; persistent leak and later cleanup remain unproved.",
+    "No C4 reopen, second return, completed win, physical-device performance or release acceptance."
+  ],
+  "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "new_engine_emulator_adb_or_capture_runs": 0,
+  "preservation": {
+    "actual_parent_head": "3251373a871d83efa2e8fd33c794486d57312858",
+    "original_bytes_and_modes_unchanged": true,
+    "original_files": 2262,
+    "parent_source_subset_head_tree_status_and_raw_index_unchanged": true,
+    "reader_bytes_and_modes_unchanged": true
+  },
+  "qa_attempt": 1,
+  "qa_run": 43629575654,
+  "qa_source": "91b5aece4060cd625b27e4cfa967122b5d4b5b92",
+  "qa_tree": "b3fecc83c5e58471fb2be25dc1d1015937505961",
+  "review_status": "COMPLETE_WITH_ORIGINAL_C4_FAILURE_PRESERVED",
+  "runtime": {
+    "ci_pillow": "12.3.0",
+    "pillow": "13.0.0",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "python": "3.12.14"
+  },
+  "schema": 1,
+  "scope": "Independent offline reading of actual unchanged-6b API35 diagnostic originals",
+  "seven_job_acceptance": false,
+  "village_original_reader": {
+    "android_api": 35,
+    "frame_sha256": "11e6145de4e81499e858fcef9a93f86f357b2345eea4a77a3f10842a0b205465",
+    "host_pid": 6072,
+    "native_pid": 6449,
+    "native_process_ended": true,
+    "profile_and_learning_unchanged": true,
+    "raw_report_sha256": "7e904cfb3fe3795ffa13acc5beaf46f388ee240d65f002a2928be48a51b1fe59",
+    "return_scene": "games",
+    "save_path": "user://lumo_settlement_54a8825c48cdf02c819f5c60552bcc6333a23fa7bf8fc763481f1fbda1141a41_1_village.json",
+    "scene": "res://scenes/creative/build_settlement_world.tscn",
+    "status": "PASS"
+  }
+}

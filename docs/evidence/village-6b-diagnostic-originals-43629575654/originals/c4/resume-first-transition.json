@@ -1,0 +1,7 @@
+{
+  "action": "resume",
+  "before": "resume-first-second-000",
+  "after": "resume-first-confirmed-001",
+  "request": "commands/0192-resume-first-request.stdout",
+  "touch": "resume-first-touch.json"
+}

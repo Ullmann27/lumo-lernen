@@ -1,0 +1,15 @@
+{
+  "command": [
+    "adb",
+    "shell",
+    "dumpsys",
+    "activity",
+    "activities"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 0.02420474599989575,
+  "stdout_bytes": 41694,
+  "stderr_bytes": 0,
+  "stdout_sha256": "6f3418b1bc714e71928fbec8c60b98cfb6bc1c4832f7e2ac209b3df82b8735ce",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
