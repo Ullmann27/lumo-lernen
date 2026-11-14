@@ -41,3 +41,17 @@ passing result is claimed. The next quality-branch CI must verify the repair.
 The separate full Flutter run also found three Connect Four failures:
 https://github.com/Ullmann27/lumo-lernen/actions/runs/43572640431
 Those are tracked independently and are not concealed by this test repair.
+
+## Fresh verification after executor recovery
+
+The exact checkpoint test blob `4d707757b07622b7caa74a9094309fb2052a82a6` at
+`50d538e5fa10ca2f81da109ed4ab00a8a595892b` was executed locally after the runtime returned.
+The original test bytes from `4564ad40` fail with the same native-pin error
+(exit 1). The repaired complete diagnostic module passes all 19 tests (exit 0),
+including the four wrong-pin cases. Original raw outputs are in
+`historical-pin-before.log` and `historical-pin-after.log`.
+
+An independent source review found no weakening of the production verifier.
+The expanded Flutter/capture run on the earlier candidate separately reports
+2,558 passed, exactly the same three Connect Four failures, no skipped tests,
+and 546 rendered PNGs. This is failure evidence, not candidate acceptance.
