@@ -1,0 +1,6 @@
+{
+  "scope": "Read-only inspection helper, not an application or CI test",
+  "initial_output": "Traceback (most recent call last):\n  File \"<stdin>\", line 5, in <module>\nTypeError: 'int' object is not subscriptable\n",
+  "initial_exit_code": 1,
+  "reason": "The first inspection treated publications as a list; original schema stores it as an integer count. Corrected inspection read publications=29. Original source and artifacts were unchanged."
+}

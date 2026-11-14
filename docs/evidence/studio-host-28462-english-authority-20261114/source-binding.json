@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "host_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "host_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+  "native_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "native_tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+  "method": "Five complete UTF-8 files freshly fetched at the exact immutable Native29080 commit; Git blob hashes independently recomputed from returned full content; compared separately with current original renderer report.",
+  "files": [
+    {
+      "path": "scripts/learning/english_object_gallery.gd",
+      "bytes": 13988,
+      "git_blob_sha": "1bc459bc88d10f48aa918014eedbb91071cd98a7",
+      "sha256": "9e18d9139748a5aa40e938e9800dd491b3909d69aa057080a1c2a4022445a093",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/learning/english_object_gallery.gd"
+    },
+    {
+      "path": "scripts/learning/english_vocabulary.gd",
+      "bytes": 2849,
+      "git_blob_sha": "fa8debed147eceea108acc98ac318ac1362cf8eb",
+      "sha256": "86c2bbab28b130ba4ae9f74f265cbb9f95c81e2a4d78fa7dd4716a1d51ef7f20",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/learning/english_vocabulary.gd"
+    },
+    {
+      "path": "scripts/learning/learning_activity.gd",
+      "bytes": 10967,
+      "git_blob_sha": "245a966e00259c2d0189c932c40374d855a4b0bc",
+      "sha256": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/learning/learning_activity.gd"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "bytes": 62477,
+      "git_blob_sha": "f5a296f1e0394ef3ac1dd518bdf1b60912793ee9",
+      "sha256": "a6e03b3040c498a92c6475ab4bd5a85da07344ac901b0c368fd2f616224b2218",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/learning/learning_world.gd"
+    },
+    {
+      "path": "scripts/tests/learning_english_regression.gd",
+      "bytes": 33455,
+      "git_blob_sha": "0a86b01f2f1de7058f50f185e60746fb7d7564e1",
+      "sha256": "c6ce712d4b8539c6cb08e0accbd94853cc7c53aa87f43c16342055073f5578e9",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/tests/learning_english_regression.gd"
+    }
+  ],
+  "local_product_edits": false,
+  "local_tests_or_render_runs": false
+}

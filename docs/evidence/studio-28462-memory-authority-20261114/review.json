@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T18:41:51.442512+00:00",
+  "scope": "Current Studio Memory authority job only; not overall Studio or Android acceptance.",
+  "run_id": 43626348519,
+  "attempt": 1,
+  "job_id": 132543177183,
+  "job_name": "Nextgen memory actual authority",
+  "job_status": "completed",
+  "job_conclusion": "success",
+  "job_completed_at": "2026-11-14T18:28:46Z",
+  "sources": {
+    "host": {
+      "commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e"
+    },
+    "native": {
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada"
+    }
+  },
+  "artifact": {
+    "id": 14126945691,
+    "name": "lumo-studio-2020-nextgen-authority-memory",
+    "bytes": 3943937,
+    "digest": "sha256:50ab9d04aa2067e149097811f366043f73aaa0e26594c10a8622013ed3895908",
+    "expired": false,
+    "expires_at": "2026-12-14T18:28:43Z",
+    "archive_members_crc_checked": 73,
+    "all_pngs_decoded": 28,
+    "original_download_count": 1
+  },
+  "actual_ci_results": {
+    "authority_cases": 30,
+    "authority_checks": 1694,
+    "authority_skipped": 0,
+    "scheduler_cases": 7,
+    "scheduler_checks": 13,
+    "scheduler_skipped": 0,
+    "view_fixture_checks": 7020,
+    "view_fixture_captures": 8,
+    "pair_report_checks": 243,
+    "pair_terminal_checks_including_report_write_check": 244,
+    "pair_process_exit_codes": {
+      "DartAuthority": 0,
+      "GodotMemory": 0
+    }
+  },
+  "request_journal": {
+    "requests": 19,
+    "touch_down_up_pairs": 19,
+    "native_rows_including_emitted_requests": 57,
+    "states": 32,
+    "session_tokens": 3,
+    "all_raw_requests_equal": true,
+    "all_positive_ack_sequences_verified": true,
+    "rejected_requests": 0,
+    "hidden_public_motifs_remain_null": true
+  },
+  "saved_state_readback": {
+    "uncompleted_round": {
+      "id": "b97e0fc31e50213a1ef49e08d6e2eefe",
+      "revision": 6,
+      "paused": true,
+      "phase": "resolve",
+      "remaining_ms": 550
+    },
+    "completed_round": {
+      "id": "ddf1750c5d5fce4de96900ce63b8d7bc",
+      "revision": 27,
+      "rewarded": true,
+      "kind_pairs": 4,
+      "lumo_pairs": 0
+    },
+    "new_round": {
+      "id": "01858e12db8dde2073c29ac2323b2ede",
+      "revision": 29,
+      "paused_on_final_return": true,
+      "moves": 0,
+      "rewarded": false
+    },
+    "stats": {
+      "difficulty": "leicht",
+      "best": {
+        "schwer": 17,
+        "leicht": 4
+      },
+      "retained": "original-field"
+    },
+    "qa_wallet": {
+      "stars": 2,
+      "xp": 16,
+      "ids": [
+        "memory:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:ddf1750c5d5fce4de96900ce63b8d7bc"
+      ]
+    },
+    "qa_award_calls": 1,
+    "other_child_fixture_byte_equality": true,
+    "actual_capture_layout_state_bindings": 8,
+    "durable_returns": 3
+  },
+  "visual_review": {
+    "personally_opened_entries": 19,
+    "unique_original_png_hashes": 18,
+    "blocking_findings": [],
+    "original_finding_file": "verification/reviewed-original-images.json",
+    "all_selected_images_opened_currently": true,
+    "unselected_motion_images_personally_reviewed": false
+  },
+  "engine_messages": [
+    {
+      "file": "memory-view.log",
+      "line": 2,
+      "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+    },
+    {
+      "file": "memory-view.log",
+      "line": 6,
+      "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+    },
+    {
+      "file": "memory-view.log",
+      "line": 8,
+      "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    },
+    {
+      "file": "memory-pair/godot-runtime.log",
+      "line": 2,
+      "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+    },
+    {
+      "file": "memory-pair/godot-runtime.log",
+      "line": 6,
+      "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+    },
+    {
+      "file": "memory-pair/godot-runtime.log",
+      "line": 8,
+      "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    }
+  ],
+  "engine_error_lines": 0,
+  "limits": [
+    "Actual production Dart authority and Godot ScreenTouch events use local QA file transport, deterministic clock and QA reward ledger.",
+    "View fixture covers supplied public states and layout profiles; it does not add independent played rounds.",
+    "No Android Binder, SharedPreferences backend, physical two-child migration or real wallet execution is demonstrated here.",
+    "The separate 28462 Flutter durability tests are not replaced by this QA file-store run.",
+    "The --fixed-fps 60 setting is a simulation fixture, not a measured physical-device frame rate. Audio driver is Dummy; no listening test.",
+    "Compatibility renderer emitted six preserved warning lines across the two original logs (V-Sync, screen-space AA, volumetric fog).",
+    "Overall Studio run was still in progress at Memory completion. No APK or Creative acceptance is inferred."
+  ],
+  "local_review_operations": {
+    "new_application_tests": 0,
+    "new_renderer_runs": 0,
+    "new_flutter_dart_calls": 0,
+    "original_metadata_terminal_log_reads": 1,
+    "new_archive_downloads": 1,
+    "readonly_archive_journal_verification_exit": 0,
+    "readonly_saved_state_layout_verification_exit": 0
+  },
+  "local_setup_notes": [
+    "Initial local transfer wrapper failed before any request because requests was not installed; stdlib urllib performed the one successful local artifact transfer.",
+    "An exploratory read treated publications as a list; the original field is integer 29. Corrected reading and final verifiers are preserved separately. Neither event is an application failure."
+  ]
+}

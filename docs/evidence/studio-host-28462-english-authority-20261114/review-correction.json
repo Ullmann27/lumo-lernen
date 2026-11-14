@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-14T18:52:55.647506+00:00",
+  "status": "initial_image_assignment_claim_withdrawn",
+  "artifact_entry": "english-native/english-ball-960x540-start.png",
+  "sha256": "ac444a03534367bae4e1fecc85eed8010292f745345b7e01e94f5968df6789a1",
+  "bytes": 167287,
+  "initial_issue": "During an initial multi-image review the reviewer incorrectly attributed a different object order to the ball-start file and reported a suspected image/sidecar conflict.",
+  "correction": "The same unchanged original opened separately shows chair on 1, ball on 2 and desk on 3, exactly matching the actual Dart descriptor and both original sidecars. The initial assignment claim was incorrect.",
+  "cause_boundary": "Reviewer image-assignment error; no demonstrated product, capture-code or tool-image corruption.",
+  "independent_confirmation": "Root reported independently opening and hashing this exact 167287-byte PNG and confirming chair/ball/desk; Root also reported informing the user of the correction.",
+  "followup": "At Root request all 17 current originals were reopened in individually named views. No further association conflict was observed.",
+  "no_product_mutation": true,
+  "no_rerender": true,
+  "no_redownload": true,
+  "not_counted_as_new_functional_tests": true
+}

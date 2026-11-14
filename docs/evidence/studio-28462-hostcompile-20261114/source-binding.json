@@ -1,0 +1,96 @@
+{
+  "head": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "ci_source": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "files": [
+    {
+      "path": "scripts/run_speech_jvm_contracts.py",
+      "bytes": 19493,
+      "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+      "git_blob_sha": "9d17f343b16d80bddb861cf26cfeae9e38994f24"
+    },
+    {
+      "path": "scripts/compile_android_host.sh",
+      "bytes": 3499,
+      "sha256": "42ad647a647183845ae2ec48dfd778166d6c36f7828b2e1f06b51b4756bf1419",
+      "git_blob_sha": "c5138523453d4e185f6af46f96e15478888075de"
+    },
+    {
+      "path": "scripts/gradle/lumo-maven-central-mirror.init.gradle",
+      "bytes": 3574,
+      "sha256": "c2e916a873e72ec168419f50bda024184c692d16c5c1d0406af50e5813685ac6",
+      "git_blob_sha": "2bc1e7655536e92a8d7ff2cccbc8026f932ea208"
+    },
+    {
+      "path": "scripts/speech_contracts/test_english_lesson_speech.py",
+      "bytes": 18072,
+      "sha256": "96326b009847dfe0b4979dd80d247d6d343c97ed3778e0e1e5394df2590e9a81",
+      "git_blob_sha": "93b4d63069533f160207e098ff6093c963ce3bfd"
+    },
+    {
+      "path": "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+      "bytes": 6350,
+      "sha256": "f2f49ce0928b18058beefa9539c776da4379c6470073976831388d7e993b3e89",
+      "git_blob_sha": "b0fe0ebe291be6ba1f84ab6bda50ab34c987823a"
+    },
+    {
+      "path": "scripts/voice/LumoOfflineSpeechEngineProbe.java",
+      "bytes": 5482,
+      "sha256": "34e29837463ee55953c6f518c1ee02137bc2fbacf3d37dbce72517ec0c42e516",
+      "git_blob_sha": "e16b0a53e240bf4fffb536f0b698ea42560c8437"
+    },
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "bytes": 11318,
+      "sha256": "2102205e2976e074c9d0d0fca71448671edd82a5d74a8e2974a6ba9408ca525f",
+      "git_blob_sha": "755077c4f1385f9b09464113aeaab3a20ec8a376"
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "bytes": 9663,
+      "sha256": "3e2ab56fe6c75cdfd04ef032dc20d07f38b1e8fc8f925a7753893482c623270c",
+      "git_blob_sha": "9e034ca2a46e53adf8a3014c0e8868d33ba54a9c"
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "bytes": 19214,
+      "sha256": "6a8383795979c7bea9f89c44b5419a417edce249c92a93db63e896ce8a303ddc",
+      "git_blob_sha": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd"
+    },
+    {
+      "path": "tools/auto_install/LumoSpeechEnvelope.kt",
+      "bytes": 4697,
+      "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8",
+      "git_blob_sha": "5721274734e111e96d55762d86b3d3e830fc26e8"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt",
+      "bytes": 4342,
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+      "git_blob_sha": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt",
+      "bytes": 4381,
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+      "git_blob_sha": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt",
+      "bytes": 9459,
+      "sha256": "78375595ea5456a6106933bc1f5463242b836e72f4a0c989ca275a9f1c9a1bd5",
+      "git_blob_sha": "9e22b98ad3938b6d0dafd4c1971d20faf09e337a"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/platform_fixture.py",
+      "bytes": 5481,
+      "sha256": "99203bbf7a00f908af1f0df57b97156894668f3b615f58ff56264a4dcbf1fa4d",
+      "git_blob_sha": "40897dc0e2a48cb0c054f19820557ffa7fc43579"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/apfel-original.wav",
+      "bytes": 40970,
+      "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+      "git_blob_sha": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905"
+    }
+  ]
+}

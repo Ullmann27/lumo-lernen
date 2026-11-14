@@ -1,0 +1,15 @@
+{
+  "status": "PASS_ORIGINAL_EVIDENCE_CORRELATION",
+  "archive_members": 73,
+  "request_correlations": 19,
+  "touch_pairs": 19,
+  "states": 32,
+  "tokens": 3,
+  "current_personally_opened_entries_now_hash_bound": 19,
+  "source_before_after_equal": true,
+  "process_exit_codes": {
+    "DartAuthority": 0,
+    "GodotMemory": 0
+  },
+  "new_execution_scope": "Read-only original-byte/journal verification only"
+}

@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "reviewer": "root",
+  "kind": "single_original_image_and_sidecar_crosscheck",
+  "run_id": 43626348519,
+  "job_id": 132543177130,
+  "host_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "native_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "image": "english-native/english-ball-960x540-start.png",
+  "bytes": 167287,
+  "sha256": "ac444a03534367bae4e1fecc85eed8010292f745345b7e01e94f5968df6789a1",
+  "dimensions": [
+    960,
+    540
+  ],
+  "visible_objects_by_position": [
+    "chair",
+    "ball",
+    "desk"
+  ],
+  "sidecar_objects_order": [
+    "chair",
+    "ball",
+    "desk"
+  ],
+  "finding": "The same original PNG was opened individually by Root and matches its current sidecar. The earlier multi-image attribution concern was withdrawn transparently. No product or capture-code fault was established.",
+  "new_render": false,
+  "new_download": false,
+  "source_modified": false
+}

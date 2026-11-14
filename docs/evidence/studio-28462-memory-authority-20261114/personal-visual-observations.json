@@ -1,0 +1,204 @@
+{
+  "schema": 1,
+  "host_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "native_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "run_id": 43626348519,
+  "job_id": 132543177183,
+  "artifact_id": 14126945691,
+  "archive_sha256": "50ab9d04aa2067e149097811f366043f73aaa0e26594c10a8622013ed3895908",
+  "personally_opened_entries": [
+    "memory-pair/native/01-memory-real-hidden.png",
+    "memory-pair/native/02-memory-real-face.png",
+    "memory-pair/native/03-memory-real-paused.png",
+    "memory-pair/native/04-memory-real-reopened.png",
+    "memory-pair/native/05-memory-real-bot-first.png",
+    "memory-pair/native/06-memory-real-bot-second.png",
+    "memory-pair/native/07-memory-real-win.png",
+    "memory-pair/native/08-memory-real-paid-reopen.png",
+    "memory-view/memory-landscape-hidden.png",
+    "memory-view/memory-landscape-one-flipped.png",
+    "memory-view/memory-landscape-paused.png",
+    "memory-view/memory-landscape-matched.png",
+    "memory-view/memory-phone-profi.png",
+    "memory-view/memory-fold-profi.png",
+    "memory-view/memory-compact-profi.png",
+    "memory-view/memory-cutout-profi.png",
+    "memory-pair/native/motion-00.png",
+    "memory-pair/native/motion-05.png",
+    "memory-pair/native/motion-11.png"
+  ],
+  "findings": [
+    {
+      "artifact_entry": "memory-pair/native/01-memory-real-hidden.png",
+      "observed_state": "Eight face-down cards in two rows; score Du 0 / Lumo 0 and 0 Züge. Lumo is fully visible to the right.",
+      "readability": "Header, Zurück/Pause and footer are legible; all eight card faces fit inside the visible area.",
+      "limitation": "Desktop renderer frame alone does not establish touch delivery, persistence or Android density.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-pair/native/02-memory-real-face.png",
+      "observed_state": "First upper-left card shows a treasure chest; the other seven remain hidden. Score and turn count remain zero.",
+      "readability": "Revealed motif is large and bounded by its card; no overlay obscures the board.",
+      "limitation": "State/ACK journal, not this single image, proves the preceding input.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-pair/native/03-memory-real-paused.png",
+      "observed_state": "Memory pause panel replaces board interaction; Fortsetzen, Neue Runde and four difficulty rows are visible, with Leicht selected.",
+      "readability": "Visible buttons and text are legible. Right scrollbar and cut next row show that further settings require scrolling.",
+      "limitation": "Lower settings are not fully visible in this initial scroll position; successful scrolling is not inferred from the still image.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-pair/native/04-memory-real-reopened.png",
+      "observed_state": "Reopened scene displays the paused-round panel with Leicht selected and the same visible resume/settings controls.",
+      "readability": "Pause heading and visible button captions are clear; content is scrollable beyond the bottom edge.",
+      "limitation": "Same-round identity and new session token require the independent original journal check.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-pair/native/05-memory-real-bot-first.png",
+      "observed_state": "At 1 Zug, Lumo's first bottom-left card is revealed; the footer says Mein Zug! Ich denke nach...",
+      "readability": "Score, bot-turn caption and revealed character motif are clear; seven backs remain visible.",
+      "limitation": "The current Dart bot decision is established by the journal, not inferred merely from the caption.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-pair/native/06-memory-real-bot-second.png",
+      "observed_state": "At the same visible bot-turn phase, bottom-left creature and bottom-right giraffe are revealed as different motifs.",
+      "readability": "Both fronts are distinct and within their cards; remaining six backs and control captions are visible.",
+      "limitation": "This still does not establish animation duration or device frame rate.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-pair/native/07-memory-real-win.png",
+      "observed_state": "Win panel states Wow, du hast gewonnen! 2 Sterne für dich! and 2 Sterne · Dein Ergebnis bleibt gespeichert.; Brett ansehen and Neue Runde are visible.",
+      "readability": "Outcome and primary controls are legible. Further difficulty/pack content is below the current scroll viewport.",
+      "limitation": "Repeated textual mention of two stars is not counted as two rewards; payout count is checked in the original authority ledger.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-pair/native/08-memory-real-paid-reopen.png",
+      "observed_state": "After paid reopen, a fresh eight-card hidden board is visible with Du 0 / Lumo 0 / 0 Züge and the starting caption.",
+      "readability": "Whole board, Lumo and header/footer controls fit clearly.",
+      "limitation": "New round ID and absence of a second reward are verified separately from actual saved/journal data.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-view/memory-landscape-hidden.png",
+      "observed_state": "View-fixture board shows eight hidden cards, score zero and fully visible Lumo to the right.",
+      "readability": "All cards and primary controls are unobstructed; footer counter is 1–8 von 8 Karten.",
+      "limitation": "This is a controlled view-state fixture, not an additional real Dart game. Its PNG bytes also equal the pair's paid-reopen frame; they are not counted as a second unique image.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-view/memory-landscape-one-flipped.png",
+      "observed_state": "View fixture shows a panda on the first card and seven backs.",
+      "readability": "Panda is distinct and contained within the card; board and score remain legible.",
+      "limitation": "Visual fixture validates presentation only; no extra authority move claimed.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-view/memory-landscape-paused.png",
+      "observed_state": "View fixture displays paused settings with Fortsetzen and Neue Runde, selected Leicht and visible difficulty rows.",
+      "readability": "Visible controls are readable; bottom content is intentionally in the scroll container.",
+      "limitation": "Only the displayed scroll position is visually reviewed; no new interaction inferred.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-view/memory-landscape-matched.png",
+      "observed_state": "Two matching panda fronts carry clear yellow checkmarks; score Du 1 / Lumo 0 / 1 Zug and caption Paar gefunden! Du bist nochmal dran.",
+      "readability": "Matched state is distinguished by motif, border and checkmark, with six remaining backs.",
+      "limitation": "Synthetic view-state fixture; real rule correctness belongs to the separate actual authority evidence.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-view/memory-phone-profi.png",
+      "observed_state": "Portrait view fixture displays all 24 hidden cards in four columns and six rows; counter 1–24 von 24 Karten.",
+      "readability": "Header, score, full board and footer remain within the image with visible margins; captions are large and readable.",
+      "limitation": "Lumo is omitted in this compact-width presentation. Device insets and density are fixture values, not an Android observation.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-view/memory-fold-profi.png",
+      "observed_state": "Fold view fixture shows all 24 backs in six columns and four rows, plus a fully visible Lumo at the right.",
+      "readability": "Score and controls are readable; no cards or footer are clipped.",
+      "limitation": "One rendered fold configuration; no physical folding or Android transition occurred in this evidence.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-view/memory-compact-profi.png",
+      "observed_state": "Compact 640×320 fixture shows eight of 24 backs on the first page in one row, with an enabled next-page arrow.",
+      "readability": "Zurück, Pause, score, starting caption and 1–8 von 24 Karten are readable; all eight visible cards fit.",
+      "limitation": "Lumo is omitted; the remaining 16 cards are on other pages and are not shown in this still.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-view/memory-cutout-profi.png",
+      "observed_state": "Wide cutout fixture presents 12 of 24 cards in two rows, offset safely from the left edge, with the next-page control visible.",
+      "readability": "All shown cards and primary controls are clear; title and footer do not overlap the board.",
+      "limitation": "The cutout is an injected renderer layout condition, not a physical Android cutout capture; Lumo is omitted.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-pair/native/motion-00.png",
+      "observed_state": "Opening flip sample still shows the first card's back, slightly turned relative to the settled hidden board.",
+      "readability": "The active card remains within its slot and the rest of the board stays readable.",
+      "limitation": "One sampled animation frame, not a frame-rate measurement.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-pair/native/motion-05.png",
+      "observed_state": "Mid-flip sample shows the treasure-chest face narrowed by the visible rotation; neighboring cards are unchanged.",
+      "readability": "The turning card remains separated from its neighbor and contained within the visible board.",
+      "limitation": "Three personally viewed samples support visible flip progression; they do not establish continuous playback smoothness or Android performance.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    },
+    {
+      "artifact_entry": "memory-pair/native/motion-11.png",
+      "observed_state": "Final sampled flip frame shows the full treasure-chest front in the first card slot.",
+      "readability": "The front has returned to full width; primary captions and other seven cards remain visible.",
+      "limitation": "This is a desktop-renderer animation sample associated with the actual local Dart/Godot pair.",
+      "accepted": true,
+      "blocking_issue": false,
+      "reviewed": true
+    }
+  ],
+  "scope": "All listed current original PNG paths were personally opened in this review. No b721 findings copied. View fixtures remain separate from the actual pair. No Android, audio, physical-FPS or SharedPreferences execution claim."
+}

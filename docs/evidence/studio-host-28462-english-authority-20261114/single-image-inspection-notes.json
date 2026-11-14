@@ -1,0 +1,235 @@
+{
+  "schema": 1,
+  "scope": "Repeated one-file-at-a-time review of unchanged current original images; not a new functional test",
+  "reviewed_image_count": 17,
+  "images": [
+    {
+      "file": "english-apple-960x540-start.png",
+      "visible_objects_order": [
+        "bag",
+        "rubber",
+        "apple"
+      ],
+      "findings": [
+        "Titel Englisch · apple und vollständige deutsche Anweisung lesbar.",
+        "Zwei Henkel an Tasche1, Radiergummi2 und roter Apfel mit Blatt3 sichtbar.",
+        "Lumo vollständig links; nummerierte Auswahl, Hinweis, Neu, Schritt anhören und Zur Aufgabe sichtbar."
+      ]
+    },
+    {
+      "file": "english-bag-960x540-start.png",
+      "visible_objects_order": [
+        "bag",
+        "rubber",
+        "desk"
+      ],
+      "findings": [
+        "Wort bag vollständig sichtbar; Tasche mit zwei Henkeln aufSockel1.",
+        "Radiergummi2 und Tisch mit Beinen3 sind sichtbar unterscheidbar.",
+        "Alle unteren Aktionen und vollständige Lumofigur passen ohne erkennbaren HUD-Schnitt."
+      ]
+    },
+    {
+      "file": "english-ball-960x540-start.png",
+      "visible_objects_order": [
+        "chair",
+        "ball",
+        "desk"
+      ],
+      "findings": [
+        "Eindeutige Einzelansicht zeigt Stuhl1, blauen Ball2 und Tisch3; diese Folge entspricht dem echten Dartdescriptor und beiden Sidecars.",
+        "Titel ball, normale Startanweisung und sämtliche unteren Aktionen sichtbar.",
+        "Die zuvor gemeldete abweichende Objektfolge war eine zurückgenommene Review-Fehlzuordnung; kein belegter Bildkonflikt."
+      ]
+    },
+    {
+      "file": "english-ball-960x540-hint.png",
+      "visible_objects_order": [
+        "chair",
+        "ball",
+        "desk"
+      ],
+      "findings": [
+        "Einzelansicht zeigt Stuhl auf 1, blauen Ball auf 2 und Tisch auf 3; die helle Markierung um den mittleren Ball passt zum Hinweiszustand.",
+        "Die Anweisung „Tippe selbst auf den hell umrandeten Gegenstand.“ ist vollständig lesbar; Hinweis ist nach Benutzung ausgegraut.",
+        "Lumo und alle drei Objekte sind sichtbar; Zahlen, Neu, Schritt anhören und Zur Aufgabe liegen vollständig im Bild."
+      ]
+    },
+    {
+      "file": "english-ball-960x540-complete.png",
+      "visible_objects_order": [
+        "chair",
+        "ball",
+        "desk"
+      ],
+      "findings": [
+        "Objektfolge bleibt Stuhl 1, Ball 2, Tisch 3; Titel ball und Rückmeldung „Richtig: „Ball“. Wähle jetzt „Zur Aufgabe“.“ sind lesbar.",
+        "Die untere Bestätigung „ball = Ball · Passend zugeordnet“ ist sichtbar; nummerierte Auswahl und Hinweis sind ausgegraut.",
+        "Neu, Schritt anhören und Zur Aufgabe bleiben vollständig sichtbar; kein sichtbarer HUD-Schnitt an Lumo oder den Gegenständen."
+      ]
+    },
+    {
+      "file": "english-book-412x915-start.png",
+      "visible_objects_order": [
+        "book",
+        "ruler",
+        "pencil case"
+      ],
+      "findings": [
+        "Im schmalen Hochformat stehen Buch 1, Lineal 2 und Federmäppchen 3 untereinander; die Beschriftungen und Ziffern sind sichtbar.",
+        "Titel book und zweizeilige deutsche Anweisung bleiben vollständig lesbar; Lumo ist links vollständig dargestellt.",
+        "Die unteren Aktionen sind auf zwei Reihen umgebrochen und vollständig im 412×915-Bild enthalten."
+      ]
+    },
+    {
+      "file": "english-book-412x915-complete.png",
+      "visible_objects_order": [
+        "book",
+        "ruler",
+        "pencil case"
+      ],
+      "findings": [
+        "Buch 1 ist hell umrandet; Lineal 2 und Federmäppchen 3 bleiben sichtbar in derselben vertikalen Reihenfolge.",
+        "„Richtig: „Buch“. Wähle jetzt „Zur Aufgabe“.“ und „book = Buch · Passend zugeordnet“ sind vollständig lesbar.",
+        "Auswahl und Hinweis sind ausgegraut; Neu, Schritt anhören und Zur Aufgabe passen weiterhin vollständig in den zweireihigen Fußbereich."
+      ]
+    },
+    {
+      "file": "english-car-2400x1080-start.png",
+      "visible_objects_order": [
+        "ball",
+        "pen",
+        "car"
+      ],
+      "findings": [
+        "Breite Einzelansicht zeigt Ball 1, blauen Kugelschreiber 2 und rotes Auto mit sichtbaren Rädern 3.",
+        "Titel car, deutsche Startanweisung und sämtliche unteren Aktionen sind lesbar; die kompakte Aktion heißt „Anhören“.",
+        "Lumo und Objektgeometrie bleiben zwischen Kopf- und Fußleiste vollständig sichtbar; seitlicher Sicherheitsabstand ist sichtbar."
+      ]
+    },
+    {
+      "file": "english-chair-640x360-start.png",
+      "visible_objects_order": [
+        "chair",
+        "paper",
+        "pencil case"
+      ],
+      "findings": [
+        "Auch im 640×360-Format sind Stuhl 1, liniertes Papier 2 und Federmäppchen 3 sichtbar getrennt und nummeriert.",
+        "Titel chair und vollständige deutsche Startanweisung sind lesbar; Lumo wird ohne sichtbaren Anschnitt dargestellt.",
+        "Alle sieben Aktionen passen in die kompakte untere Reihe; diese Bildsicht allein misst keine Android-Touchfläche."
+      ]
+    },
+    {
+      "file": "english-desk-960x540-start.png",
+      "visible_objects_order": [
+        "ruler",
+        "desk",
+        "book"
+      ],
+      "findings": [
+        "Einzelansicht zeigt gelbes Lineal 1, Tisch mit sichtbaren Beinen 2 und rotes Buch 3; Titel desk passt zum mittleren Gegenstand.",
+        "Deutsche Startanweisung, unterer Hinweistext und alle Aktionen sind vollständig lesbar.",
+        "Lumo und die drei Gegenstände werden nicht von Kopf- oder Fußleiste verdeckt."
+      ]
+    },
+    {
+      "file": "english-paper-2400x1080-start.png",
+      "visible_objects_order": [
+        "desk",
+        "paper",
+        "pencil case"
+      ],
+      "findings": [
+        "Tisch 1, liniertes Papier 2 und Federmäppchen mit Reißverschluss 3 entsprechen der sichtbaren Nummerierung; Titel paper ist eindeutig.",
+        "Startanweisung und alle unteren Aktionen sind vollständig lesbar; die kompakte Wiedergabeaktion heißt „Anhören“.",
+        "Lumo und alle drei Gegenstände bleiben ohne sichtbare HUD-Verdeckung im mittleren Bereich."
+      ]
+    },
+    {
+      "file": "english-pen-1080x2400-start.png",
+      "visible_objects_order": [
+        "bag",
+        "ruler",
+        "pen"
+      ],
+      "findings": [
+        "Hochformat zeigt Tasche 1, Lineal 2 und blauen Kugelschreiber 3 untereinander; der Gegenstand zu pen ist sichtbar.",
+        "Titel, zweizeilige Startanweisung, Ziffern und vollständiger Fußbereich mit zwei Aktionsreihen sind lesbar.",
+        "Lumo ist links vollständig sichtbar; Kopf- und Fußbereich haben im Bild Abstand zum Fensterrand."
+      ]
+    },
+    {
+      "file": "english-pencil-case-1080x2400-start.png",
+      "visible_objects_order": [
+        "ruler",
+        "school bag",
+        "pencil case"
+      ],
+      "findings": [
+        "Einzelansicht zeigt Lineal 1, blaue Schultasche mit Fronttasche und Gurten 2 sowie rotes Federmäppchen mit Reißverschluss 3.",
+        "Titel pencil case, deutsche Startanweisung und Lumo links sind sichtbar; das Federmäppchen liegt auf dem dritten Sockel.",
+        "Der Fußbereich wurde zusätzlich als Leseausschnitt aus denselben unveränderten Originalbytes angesehen: Hinweistext und beide Aktionsreihen sind vollständig enthalten."
+      ],
+      "additional_inspection_crop": [
+        0,
+        1800,
+        1080,
+        2400
+      ],
+      "original_image_unchanged": true
+    },
+    {
+      "file": "english-rubber-640x360-start.png",
+      "visible_objects_order": [
+        "pencil case",
+        "book",
+        "rubber"
+      ],
+      "findings": [
+        "Federmäppchen 1, rotes Buch 2 und weiß-blauer Radiergummi 3 sind im kleinen Querformat sichtbar getrennt.",
+        "Titel rubber und die ganze deutsche Anweisung sind lesbar; alle sieben Aktionen passen in die untere Reihe.",
+        "Lumo bleibt vollständig dargestellt; kein sichtbarer Objekt- oder Figurenanschnitt durch die beiden HUD-Leisten."
+      ]
+    },
+    {
+      "file": "english-ruler-640x360-start.png",
+      "visible_objects_order": [
+        "ruler",
+        "paper",
+        "pencil case"
+      ],
+      "findings": [
+        "Lineal 1, liniertes Papier 2 und Federmäppchen 3 sind sichtbar; die Striche des Lineals und die Papierlinien unterscheiden die Objekte.",
+        "Titel ruler, Startanweisung und die gesamte kompakte Aktionsreihe sind lesbar.",
+        "Lumo und die drei nummerierten Sockel liegen sichtbar zwischen den HUD-Leisten."
+      ]
+    },
+    {
+      "file": "english-school-bag-412x915-start.png",
+      "visible_objects_order": [
+        "desk",
+        "school bag",
+        "rubber"
+      ],
+      "findings": [
+        "Das schmale Hochformat zeigt Tisch 1, blaue Schultasche 2 und Radiergummi 3 untereinander.",
+        "Titel school bag bleibt vollständig in einer Zeile; Anweisung und Ziffern sind lesbar.",
+        "Lumo ist vollständig links sichtbar; unterer Hinweistext und beide Aktionsreihen passen in das Bild."
+      ]
+    },
+    {
+      "file": "english-sun-960x540-start.png",
+      "visible_objects_order": [
+        "apple",
+        "bag",
+        "sun"
+      ],
+      "findings": [
+        "Apfel 1, Tasche 2 und gelbe Sonnenform mit Strahlen 3 entsprechen der sichtbaren Nummerierung.",
+        "Titel sun, deutsche Startanweisung, unterer Hinweistext und alle Aktionen sind lesbar.",
+        "Lumo und die drei Gegenstände bleiben vollständig zwischen Kopf- und Fußbereich sichtbar."
+      ]
+    }
+  ]
+}

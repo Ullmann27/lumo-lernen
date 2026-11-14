@@ -1,0 +1,840 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "target_prefix": "docs/evidence/studio-host-28462-english-authority-20261114/",
+  "source_host": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "source_native": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "run_id": 43626348519,
+  "job_id": 132543177130,
+  "artifact_id": 14126931759,
+  "entries": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/artifact-metadata.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/artifact-metadata.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fcdf50ab28a2b08cbf4cb113f3da619673cc3adf",
+      "sha256": "a2394ca56ceb2766f9b915cc34c3770fdcda38bfaf5670f5ef879adbb164f400",
+      "bytes": 776,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/artifacts-terminal-connector.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/artifacts-terminal-connector.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "327ba8fe43cfe781b142841c140208e23941f267",
+      "sha256": "b65f2fecf66a4a4477122b02fa89a9d5a72f75ecb8a03bd04d40ecadd4bbad5e",
+      "bytes": 5117,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/image-selection.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/image-selection.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b19ee518c80fb6bf54ae0931c58a06a47e792250",
+      "sha256": "181f31eb0c5b52abec96445f71418d5ff64ec03a0bb70881126442e27ae4f7a9",
+      "bytes": 8751,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/jobs-initial-original.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/jobs-initial-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce1584835a041b041f223015a846fe0851f4307d",
+      "sha256": "770b6d59277c09cd06213fdaaad43673360ef4ae03c853ba83eab1e656f60fe3",
+      "bytes": 23304,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/jobs-second-original.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/jobs-second-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d76f52d22ada4bf86cb6e6bf4ec9c76cec862523",
+      "sha256": "9514c8b24516e84c5d98b8e59abe207feabf9d58db267e14951a227d44829329",
+      "bytes": 24126,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/jobs-terminal-English-original.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/jobs-terminal-English-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "747e9636523b6d53ae12f13da24634ec3f93f29f",
+      "sha256": "55a1c5928021c6e31357b7c88bdeb5bccac10dbb3cf75a304922faa2dec7a869",
+      "bytes": 24709,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/run-initial-original.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/run-initial-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b9e4c02ad5791e30766d5911f17507d7cf24709",
+      "sha256": "ab39060405350aaa1d844217ae7c1602e087bbd8e7e38b6218585c3bab60a671",
+      "bytes": 13540,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/run-terminal-English-original.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/run-terminal-English-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b9e4c02ad5791e30766d5911f17507d7cf24709",
+      "sha256": "ab39060405350aaa1d844217ae7c1602e087bbd8e7e38b6218585c3bab60a671",
+      "bytes": 13540,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/original-english-job.log",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/original-english-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49aba012d3ce1904469b6d6d3619fcd9d8b9e768",
+      "sha256": "019ea59ea2236c2c9fa30c456205fa575f94a09ee77a765a34073bffde2624cb",
+      "bytes": 310142,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/source-binding.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29416943b638135dc2387501063df6506714cd74",
+      "sha256": "9f0b2a7af23db3135b5c90ba2bb8d898e21606a9710858962b3b1999458bc7b9",
+      "bytes": 2486,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/verified-original-extraction.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/verified-original-extraction.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "935eb92598fa325e265dd99ae0077844b886780a",
+      "sha256": "323beb291d194507ef7992b798beb544911e98912edee6386958a45234786080",
+      "bytes": 31130,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/workflow-at-28462.yml",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/workflow-at-28462.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2684ac3cf034fdcd5c71570182396f0664979735",
+      "sha256": "6261e26cd489fe0497bc035f1575ab76e95e33a1e092977ef1c13970658a2b28",
+      "bytes": 74256,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/single-image-inspection-notes.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/single-image-inspection-notes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1892d2f49db09a266ac9987fe1b9819dcaf5f43",
+      "sha256": "83cf29ef8841224b43b4e8d620d2e881116c91af91a4ae1f66c439a14f4a2414",
+      "bytes": 9567,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/post-review-original-binding.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/post-review-original-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68163c8ff4b197a70bcd0c5568ae1990c48085e4",
+      "sha256": "74ad347024914a11cf0943d715bbdf02405517798467f3212990cad77d7852af",
+      "bytes": 27417,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/image-review.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/image-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45b0b4eaf31424cfeff191b7508812f7a4afdb8e",
+      "sha256": "e815cd650d3a1d362396285b51ad2520274fcff2565a55bbadd486eb6cd6495c",
+      "bytes": 27402,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/review-correction.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/review-correction.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ade9ec667916d6e86547850bede678fbed5ce4e",
+      "sha256": "0486471f1df48edb064c57a7820ed6d0ece650f5edecd94fa1ef77dad5c20a7b",
+      "bytes": 1305,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/review.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad6b3df613abb71e185a788109561247134deba4",
+      "sha256": "1630aa933031e03dc2988ff54bd0a7bccca4867e6893ba89015e9e4a79766d4f",
+      "bytes": 8790,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/README.md",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0ae555beca3bbcb2b35ab4e8d4d83bd0aa49171",
+      "sha256": "25e084882766c24c171b96456ad5cca3a8e8af330e8db5e8347cfdecd05ae5c3",
+      "bytes": 7080,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/freeze.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/freeze.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "561af383415f9b249fbe6867ceb1bfeb03ebd596",
+      "sha256": "1cc1237c2e5edc42b90f8910c7febf84895a32b0f95b23b4a9ecffd71fcc46c4",
+      "bytes": 20619,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/HOST-SOURCE.txt",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/HOST-SOURCE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53b01f5ab9eb3b8d53026fe764cc76631df9268d",
+      "sha256": "7ad2070869ceb5ecdf19db99bf370de5d70d617ea24c79a9c23b0ea87988c084",
+      "bytes": 41,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/NATIVE-SOURCE.txt",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/NATIVE-SOURCE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51bde130837ae501b8aff7afefeffc1fe9b862cc",
+      "sha256": "cc7d7df4f9a8560292f59c1c310864e279a589a464a57d216c4425caddb3703d",
+      "bytes": 41,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/HOST-TREE.txt",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/HOST-TREE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab207b39c155b4dcb164db37f2bed59b2843dc8a",
+      "sha256": "bed94a27fdd7f6d19823df3276f905a806e68e4500889e9146e8a1d847446fe9",
+      "bytes": 41,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/NATIVE-TREE.txt",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/NATIVE-TREE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89867577a6119431a41ddebd6b51dde0b70054c9",
+      "sha256": "2026c5958af62e253bd00d24d4c3f3b285bfeb69f5ac4fe3355b2b6a3219d13b",
+      "bytes": 41,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/dart-version.txt",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/dart-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b",
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "bytes": 81,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-activity.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-activity.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "124bd66f09a19d3a7baefb4304b3ffdf39fc3cf7",
+      "sha256": "b764a959c0151cfb83cbd477ec0e318c76f19821bfaeba2cf930cdc926e3cd50",
+      "bytes": 16729,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-authority.log",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-authority.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af4b4460735d0885ce513cbd066dd64dc476f8bc",
+      "sha256": "8ab8432130b9df6535b0b2f8261dd50abca61b4dfaf1ac9ca0884362a0955573",
+      "bytes": 755,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-apple-960x540-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-apple-960x540-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f410c8be7d958f681746c8245ca8fc947017b89d",
+      "sha256": "77344938e4f09e68400ed39aa7ec1bb5bb15639c990a197cbf73e70428cb54f2",
+      "bytes": 2837,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-apple-960x540-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-apple-960x540-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12329f28f669a4b508e7ea63ec2b966015c21cda",
+      "sha256": "05ff138d410580dac299ff881868a36509e40cecfa804cd7e8bb65f07453ae05",
+      "bytes": 24244,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-apple-960x540-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-apple-960x540-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ccc2a764c6da1ed3f57686b9b147b434d0aed3b",
+      "sha256": "2b7cd3b18204e4892367531f98251a27c05c951c3a5d6ae1c030e8ffa932bc91",
+      "bytes": 168716,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-bag-960x540-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-bag-960x540-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ccd07b1e8d6355d570615639c3b17c84bae25f8",
+      "sha256": "f4b33591bba60f283840bd7649aea603a1af103c26040400e40e86cba27b6f74",
+      "bytes": 2830,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-bag-960x540-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-bag-960x540-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "777ccd9885afe92dcfa0abc04a37f9e56951686c",
+      "sha256": "d6a36ce7488ecdd47f0057813debea23cc471f3d0eae5df252d31c8b3074117b",
+      "bytes": 28997,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-bag-960x540-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-bag-960x540-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ca1e44e4d5a5433542234a47cc43ff08beca8ce",
+      "sha256": "9eae62ac29680c10ef7aebdbbe6286f6532be04776871f19b58b998406576e6f",
+      "bytes": 163086,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-complete.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-complete.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "521c18249f54c49b32c146a977edd78b8dfa6f02",
+      "sha256": "7304999483a287b8aa99c1345418d34fbf18dda2e3af34d506a6e0fcb82ab9d0",
+      "bytes": 2839,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-complete.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-complete.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93b6cc6a30376a76be123500d65a580ab4938727",
+      "sha256": "3f68e81eecd524386273134b0e1ad7861c64c359cf2e690154c51dad0df58722",
+      "bytes": 30840,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-complete.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-complete.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb1496876e9390a85d0b888072f3d9c9c2e2a87e",
+      "sha256": "1f61e5ccd3e847e6d81856e184216486039627ae4d322a5000881cfddcc07643",
+      "bytes": 167812,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-hint.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-hint.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59d9da1898060850cfad4e540db91e8fcf760586",
+      "sha256": "ac68ffc0cc39bbf6c1b5480c46b29115b260866fbeaff01718059da3232e8a27",
+      "bytes": 2836,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-hint.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-hint.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa16aa83828d2afaf1936dd894aabe2fc294dc24",
+      "sha256": "bf104fc81f6265d5230bd4785bb880fffa9827ef0b8201e8bbcdc1f697f3a97e",
+      "bytes": 30841,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-hint.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-hint.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0148f37ed84d84518772249e58ad15ee070bf88",
+      "sha256": "cc19981b98c58f648b4a5c114d79582736fe16df7990287792cc3d369896cf28",
+      "bytes": 168170,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df3e3d95eeca7987381cf35bd621fdc45df8848b",
+      "sha256": "06870266cbe42709a39482fbf317812e72d4d9c0bf7863cf72916514d651cbdb",
+      "bytes": 30047,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a298feaaea8a1a21adb5a149a94e0bbf7bafc43",
+      "sha256": "1d2d5917654cf23ad68fc223e16c287a4609af19853a3bf2476e0039d99eed47",
+      "bytes": 2832,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-ball-960x540-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c02938988dc82006918a8d8b062ab28cdd07f027",
+      "sha256": "ac444a03534367bae4e1fecc85eed8010292f745345b7e01e94f5968df6789a1",
+      "bytes": 167287,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-book-412x915-complete.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-book-412x915-complete.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d44453f10b5c2a052e05abc09918e4a62798fb1",
+      "sha256": "62c4fc53e701af376c5e54e7d8fbec2ca37774ef149d9dfafb7a627b983502a4",
+      "bytes": 2852,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-book-412x915-complete.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-book-412x915-complete.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0976b493ce5f0f0874b377ebd872455ca4eae37",
+      "sha256": "68251eab926fd8f4c88b8ad67e644886886c9a93020efa047a093e3c1d84eeee",
+      "bytes": 48283,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-book-412x915-complete.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-book-412x915-complete.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13bb289e34f77a679d6f000e7d8bcdfadc608eee",
+      "sha256": "bffc19761e6032e605b3781d9bb2174dc635dce7d2a626fe895ebbef6dac6ebd",
+      "bytes": 119313,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-book-412x915-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-book-412x915-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3a8a8d8dd9cf6c68210ca3d825895dfcf8d20f5",
+      "sha256": "34e873ec718ae35da9391e86047d6e91132fd25d73994eac9a86a6afab50680f",
+      "bytes": 2845,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-book-412x915-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-book-412x915-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c2130b1d5c461242f1e5446f74ef29faa1e315a",
+      "sha256": "79e632ffca0b30d82c23a76cf2e985c1f44b364b96128365a66255e50d48ca26",
+      "bytes": 47485,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-book-412x915-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-book-412x915-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3f251c601e7ab8993e2a420ed6d0ab217040eef",
+      "sha256": "dfce357fb14f5c8dffdf16ffa040e0ba7755c70573a20200b193dbc128285d25",
+      "bytes": 119541,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-car-2400x1080-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-car-2400x1080-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66262dd7ca6714f84fd6e7b57ef426255344402d",
+      "sha256": "cfd60575d10fca1313bb1511d0c4f2fa9b5cd2346dd5a768272d01ae14405ef2",
+      "bytes": 3067,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-car-2400x1080-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-car-2400x1080-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fbcf9950546bad411624bb12994d033ac23c5a0f",
+      "sha256": "18e39c7001f37c318ef969c5bea6f83ea031e6fc233202d512e43bc8df8679a4",
+      "bytes": 31624,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-car-2400x1080-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-car-2400x1080-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0dd2451f91a08161ba520cb21a2c84abdb020e13",
+      "sha256": "f558e8eb0f25191d421d2e721374e3c86acf466f995234ca4a2283c8c7702dd4",
+      "bytes": 698674,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-chair-640x360-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-chair-640x360-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "089e619bdd5e590b4a8a172f85530dcd426f5ad8",
+      "sha256": "8c507cc727020c22b94e34b893e760039bbefe78f9fb5218f498d6847b45f12b",
+      "bytes": 2840,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-chair-640x360-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-chair-640x360-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2ef60279be2c260fd896cfdb0bf6fb30dd480f9",
+      "sha256": "ad126a675ed5ff5ac3bee5cafc373b801f2577190a42076c60916af8591e6a1f",
+      "bytes": 42458,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-chair-640x360-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-chair-640x360-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1fb75ca62ad823f88b8fd057c7f066f85415acec",
+      "sha256": "43f47164008700620b7d33ee6c7fc37e7eb89802b767f91a819f9581b775398d",
+      "bytes": 95737,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-desk-960x540-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-desk-960x540-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb174bab079290dd3f900861d886168f428ad822",
+      "sha256": "d005646c7d69b34d526572c8a7e64619f9c506b6312be3b07e906542f7646ef4",
+      "bytes": 2832,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-desk-960x540-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-desk-960x540-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ca162d9b954e446e37ee0f9a7a42d98643ae730",
+      "sha256": "46d0ccb9d48fce7202bd2ea16be5eb5134e732897210f3f9917781326fc839f5",
+      "bytes": 41631,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-desk-960x540-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-desk-960x540-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13eed6454a8ddbc61f1f384f8596d99440aca84a",
+      "sha256": "160edd234a0a65315d15c8b3fe87b6315833c079f925826317e9d64402dc2491",
+      "bytes": 163322,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-paper-2400x1080-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-paper-2400x1080-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9636b04f474229d72425fbf1dbff6569780dd5bb",
+      "sha256": "c72b6c834278a748c03bdf0055c51e2519351c6b15b53daefd5650194891b57d",
+      "bytes": 3098,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-paper-2400x1080-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-paper-2400x1080-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b76d3e3f3ec6e849cbca12cc11cc5805fd79130f",
+      "sha256": "953487bc01e561564b5cbee8e3e3b1ac8646a6bfdf3069f68d32401bdb3eb926",
+      "bytes": 44121,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-paper-2400x1080-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-paper-2400x1080-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bab6a9abda0832629da231664fafc20feeb90fb2",
+      "sha256": "6b5ca63fc26e4f599f1035f661352286826dbe4fa90d2a1f3b070a6f4705e3a7",
+      "bytes": 695126,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-pen-1080x2400-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-pen-1080x2400-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94c885d2caaa2d73763d392a726fe7dda9da1911",
+      "sha256": "4b2e7a123af03f903d67f20c01774f7a7ff9a0a18ae62ddf172f47f230ff880f",
+      "bytes": 2941,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-pen-1080x2400-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-pen-1080x2400-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7dc4b4535e52a21f54e5de0349fecb04bc93077f",
+      "sha256": "2632649fd35dc12a24ad88f8e6655709fb0c90c82690dc5f3a3c4502e51aa68f",
+      "bytes": 37001,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-pen-1080x2400-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-pen-1080x2400-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0ce6c3ae0d878c6f68bd650139e78a59a4f9894",
+      "sha256": "270783d868cde686851731ee97854f7ebc870c0896cba83c58eb7382612f909d",
+      "bytes": 596944,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-pencil-case-1080x2400-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-pencil-case-1080x2400-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "79b018c269e4f6248c5048579b6cc10f71777482",
+      "sha256": "6e797e6f62c7e3d6b5c2f022711984313664bc054db89147d71780af1677fee8",
+      "bytes": 3134,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-pencil-case-1080x2400-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-pencil-case-1080x2400-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5c97fd292fec6b72257fc08814bfe700cdd64a6",
+      "sha256": "6df364c0ede48c7dd9889ab589608cd8e36e119d4217c0a63f0b3542829927e7",
+      "bytes": 52492,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-pencil-case-1080x2400-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-pencil-case-1080x2400-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eea7c9345e310ac2760d95be06dbe34c74c7f2d5",
+      "sha256": "0fb40334f333a3f143aea481bfb791e17c8405ca6b9965a7b82d3d8f69ec7565",
+      "bytes": 611583,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-rubber-640x360-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-rubber-640x360-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c75533a88fc25373a3b4d0e8ec018bdca6a18430",
+      "sha256": "0884162a70c7299910a465a960bb3519791ca99b2f3c49cab1e94a61c794df7c",
+      "bytes": 2844,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-rubber-640x360-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-rubber-640x360-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d82ba5166f0697acebe84480624ee5af20b9eb2",
+      "sha256": "6171207ed0a55b154d88bfcfaddadd478dc2391d1c9e2223134159fb2f9d2007",
+      "bytes": 36026,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-rubber-640x360-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-rubber-640x360-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e1bf8dae81bc64c38c824181526e9476ec14634",
+      "sha256": "201b292ff3681448e9c7470e56f92d925d8d5ae56ef87e184d1906f8e347369c",
+      "bytes": 95377,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-ruler-640x360-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-ruler-640x360-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de6285b9b883b1827e5e33e0b055ced2a05d3b51",
+      "sha256": "9c5c1ac3d883c5b5f6f772f4e6d6f301f5c3e437bda6fe9e80e51645c9218f24",
+      "bytes": 2840,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-ruler-640x360-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-ruler-640x360-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3d9a613cf3b95d1210d0039b4126b247fca6ec0",
+      "sha256": "c6ebec159db76a79b77d9f4ffa397da538620b3a1e00d056ca96738e7b5a816b",
+      "bytes": 50818,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-ruler-640x360-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-ruler-640x360-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ab1d9fa54bb2d532b473d47a6dba975c615b669",
+      "sha256": "e9f12bd9bdab5b6fc97aeca51f7cd5031a731c0ae2f838ac841c4ad8564ea2fd",
+      "bytes": 95359,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-school-bag-412x915-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-school-bag-412x915-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a38c29940a879374545cd32aedc055252c7632df",
+      "sha256": "f43c8a9be54fc53ea3bd559cef7510ea115165081bbb645313c61b772a1534ee",
+      "bytes": 2862,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-school-bag-412x915-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-school-bag-412x915-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b64f4ebb2b872b44ad0b5445cf6c02919f7f55b",
+      "sha256": "ff89fb8277e8f94610db714489821bb932548f0dadd523b561e23673418ef4f9",
+      "bytes": 33602,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-school-bag-412x915-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-school-bag-412x915-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "647e5827564065f21eb7d1e4781d6e2b08f6020e",
+      "sha256": "e13ff76c40f58299489f6731cfb0207726280fb26cacf1c125873c0a1d1af0d5",
+      "bytes": 116487,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-sun-960x540-start.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-sun-960x540-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e05283183bca4f6c6aa34212fcfb641fb6e14187",
+      "sha256": "80b826cecdd567aa25a2c9b83501bf5a7ab2931211c37d34237f04773c8b8ce9",
+      "bytes": 2825,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-sun-960x540-start.layout.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-sun-960x540-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4aafc0a8cf3e3525ddaf694d81c5c7bd67eee58c",
+      "sha256": "ac7db06727b9020013e698ed64a83ddbdb4a6a356d1d6d32a0edae03936f93cd",
+      "bytes": 32993,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/english-sun-960x540-start.png",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/english-sun-960x540-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "640ee518a9494f1682c98de4617ad869b5f2d0d4",
+      "sha256": "095d213ef7dcb67d3604b058ed012f7c209f568b47e9e421dcc97812ac2defa5",
+      "bytes": 168215,
+      "content_kind": "binary_png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-native/learning-english-report.json",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-native/learning-english-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3245e8d94f37a025b1e20cabcc3920afa4a8f6b",
+      "sha256": "40e2f15137f4192b0beefba37bc9dff7b2852cec884b29e51f61420c8273789e",
+      "bytes": 138916,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/english-render.log",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/english-render.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36024b1b9713d1f98a3858a24a69fed1c91e5cbf",
+      "sha256": "626b9690076d88623358554962e34b120d3088f018532d0d129f9c3256289367",
+      "bytes": 6829,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/godot-version.txt",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/godot-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24277fd09e8cc7154517b66aab4e8bef52babb7e",
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "bytes": 32,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/import.log",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/import.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4008a0ebbce83501a005b2b9d183a7c9b2b9f25e",
+      "sha256": "cff81bc64e99888a3eca0e1ef611ce7e275ed363467f391617fa4ee22c1380cf",
+      "bytes": 165491,
+      "content_kind": "utf8_text"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-english-authority-20261114/originals/project-validation.log",
+      "path": "docs/evidence/studio-host-28462-english-authority-20261114/originals/project-validation.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9340046407c29eb35faacccb11d03f91ca7885fb",
+      "sha256": "188d0950424b0d1f9b965ecadfd28e80ac6d176122df6912851af65f9df016d9",
+      "bytes": 6140,
+      "content_kind": "utf8_text"
+    }
+  ],
+  "entry_count": 82,
+  "total_bytes": 6072600,
+  "manifest_self_target": "docs/evidence/studio-host-28462-english-authority-20261114/upload-manifest.json",
+  "excluded": [
+    "original-artifact.zip",
+    "No product source files, repository refs or test execution changes"
+  ],
+  "readback_policy": "All UTF-8 contents fully fetched and compared after create; PNGs use exact local hashes and confirmed create Git SHA, no binary readback claim."
+}

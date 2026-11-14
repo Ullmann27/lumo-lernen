@@ -1,0 +1,31 @@
+PASS fixture is the exact current original dealer with only a Color DTO
+PASS all five difficulties and four packs retain the original seeded dealer
+PASS opponent choices match the exact two old methods across 128 seeds
+PASS public state reveals only the actually exposed cards
+PASS 850ms resolution and original repeated-pair turn are exact
+PASS original reward amounts are preserved on all difficulties
+PASS private corruption never manufactures a legal saved board
+PASS same ongoing round is restored paused without altering legacy bytes
+PASS explicit entry setup configures only a never touched unpaused board
+PASS explicit entry setup cannot replace a begun or deliberately paused board
+PASS an idle owner queue releases the completed originating microtask zone
+PASS random continuity survives save and restart
+PASS failed pre-write has no visible accepted flip
+PASS lost post-write reply is read back before acceptance
+PASS corrupt statistics remain unchanged while legal play continues
+PASS foreign or corrupt round is not replaced with a new board
+PASS confirmed completed round reopens as a fresh same-settings round without another reward
+PASS crash gap after reward and before round receipt retries the same ID
+PASS profile change during a queued write cannot publish or award another child
+PASS new controller reads only after an old accepted write has settled
+PASS external newer round cannot be overwritten by stale controller
+PASS partial thinking time survives pause and same-round resume
+PASS native lifecycle owns play; accepted stale slot is terminal then Resume works
+PASS native stale revision and unknown fields are rejected without mutation
+PASS 2500ms heartbeat expiry pauses without background bot progress
+PASS open reply lost closes only the newly owned token
+PASS native Exit is acknowledged only after durable pause and save
+PASS close during reward/read await prevents any late native Open
+PASS close before delayed native Open reply cleans exact token again and refuses later polls
+PASS a second Open cannot race a pending first preparation
+MEMORY_ROUND_CONTRACT {"status":"PASS","cases":30,"passed":30,"failed":[],"checks":1694,"skipped":0,"scope":"Production Dart authorities; original dealer and original opponent fixture; synthetic storage and lifecycle transport; no Android claim."}

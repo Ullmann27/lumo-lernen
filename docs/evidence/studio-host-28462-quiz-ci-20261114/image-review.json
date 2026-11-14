@@ -1,0 +1,204 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "observed_at_utc": "2026-11-14T18:38:12.948236+00:00",
+  "run_id": 43626348519,
+  "job_id": 132543177144,
+  "artifact_id": 14126685407,
+  "source_identity": {
+    "native": {
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada"
+    },
+    "host": {
+      "commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e"
+    }
+  },
+  "images": [
+    {
+      "artifact_entry": "quiz-pair/native/quiz-dart-question.png",
+      "bytes": 87171,
+      "sha256": "44e09d42cafc03e53b344b34bf0e8380cb8a6a906d397fdac8ea712748c236b2",
+      "git_blob_sha": "071653c7f1732497707ad9d7a19562ea11623961",
+      "size_px": [
+        960,
+        540
+      ],
+      "layout_artifact_entry": "quiz-pair/native/quiz-dart-question.layout.json",
+      "layout_sha256": "a2c33044e5e0cdf272b8789f2e65ba1206605fc4392039895300b26ce0ac46d6",
+      "revision": 2,
+      "ack": 0,
+      "state_number": 1.0,
+      "state_paused": false,
+      "density": 1.0,
+      "reviewed": true,
+      "review_method": "Original PNG individually opened through view_image in this session on 2026-11-14; no old image review transferred.",
+      "blocking_issue": false,
+      "accepted_in_scope": true,
+      "findings": [
+        "Die aktuelle Frage 1/20 „Womit riechen wir?“ und alle vier Antworttexte sind vollständig lesbar. Zurück und Pause sind vom Antwortpanel getrennt.",
+        "Lumo ist als vollständige Figur auf dem linken Podest innerhalb des beleuchteten Rings zu sehen; kein sichtbarer Geometrieausfall oder Überdecken der Antworten.",
+        "Die drei Joker sowie „Gesichert: 0 Sterne“ sind im Bild; „Antwort aufdecken“ ist vor der Auswahl grau dargestellt."
+      ],
+      "limits": [
+        "Ein statisches Startbild belegt weder flüssige Animation noch wirksame Sprache. Die Bühne ist ein einfacher Ring-/Podestaufbau."
+      ]
+    },
+    {
+      "artifact_entry": "quiz-pair/native/quiz-dart-jokers.png",
+      "bytes": 98259,
+      "sha256": "f99229488ae820694be7904a31f5eca65113f6765de00eb1da757cebf4452a87",
+      "git_blob_sha": "c916c46314d92897d605e4dbf1c0a247d0486fa8",
+      "size_px": [
+        960,
+        540
+      ],
+      "layout_artifact_entry": "quiz-pair/native/quiz-dart-jokers.layout.json",
+      "layout_sha256": "23cd609e133d1ad32079f46e29b6e0dbabcc2eb815c8ac9945c5c9f6acfecf4c",
+      "revision": 5,
+      "ack": 3,
+      "state_number": 1.0,
+      "state_paused": false,
+      "density": 1.0,
+      "reviewed": true,
+      "review_method": "Original PNG individually opened through view_image in this session on 2026-11-14; no old image review transferred.",
+      "blocking_issue": false,
+      "accepted_in_scope": true,
+      "findings": [
+        "Publikumswerte stehen lesbar bei den beiden verbleibenden Antworten, darunter 77 % für „Mit der Nase“. C und D zeigen ausdrücklich „Ausgeblendet“.",
+        "Die Joker erscheinen nach Nutzung abgedunkelt; der Lumo-Tipp ist über zwei Zeilen lesbar. Lumo und Ring bleiben links sichtbar.",
+        "Die rechte Scrollleiste ist sichtbar; der untere Sternestand liegt in diesem Ausschnitt außerhalb des dargestellten Bereichs."
+      ],
+      "limits": [
+        "Nicht alle Panelinhalte sind gleichzeitig sichtbar. Die erfolgreiche Bedienung wird getrennt durch die aktuellen Eingabe-/ACK-Journale belegt."
+      ]
+    },
+    {
+      "artifact_entry": "quiz-pair/native/quiz-dart-selected-phone.png",
+      "bytes": 81267,
+      "sha256": "8d7231a8f9f4c114f87d46fb21c8ba3b307b97474aec5d2d6c85954181c6d600",
+      "git_blob_sha": "3c6bcaa060ac971fc7ef7ee9e39a5c9f7981cef6",
+      "size_px": [
+        412,
+        915
+      ],
+      "layout_artifact_entry": "quiz-pair/native/quiz-dart-selected-phone.layout.json",
+      "layout_sha256": "63a527b8c515e95569cea709772f8363b9ecbd16afaa6ea2f3596cf58ea353f4",
+      "revision": 6,
+      "ack": 4,
+      "state_number": 1.0,
+      "state_paused": false,
+      "density": 1.0,
+      "reviewed": true,
+      "review_method": "Original PNG individually opened through view_image in this session on 2026-11-14; no old image review transferred.",
+      "blocking_issue": false,
+      "accepted_in_scope": true,
+      "findings": [
+        "Im Format 412×915 stehen Lumo und Bühne über dem Fragenpanel. Header, Frage, Antwortspalten, Joker, Tipp und Sternestand sind erkennbar.",
+        "„B Mit der Nase“ ist goldfarben ausgewählt; die 77-%-Publikumsangabe bleibt lesbar. C/D sind als ausgeblendet gekennzeichnet.",
+        "„Antwort aufdecken“ ist deutlich zu sehen. Kein sichtbarer Textüberlauf am Header oder horizontal abgeschnittener Antworttext."
+      ],
+      "limits": [
+        "Hochformatfenster eines Linux-Renderers, keine Aufnahme eines physischen Telefons."
+      ]
+    },
+    {
+      "artifact_entry": "quiz-pair/native/quiz-dart-revealed-small.png",
+      "bytes": 46861,
+      "sha256": "6e5398394db59a18c0c000520880b55cb9540eb24a68581286ef06978b278784",
+      "git_blob_sha": "05186956c25a327be4cad31e5e2a4618ab3f47c0",
+      "size_px": [
+        640,
+        360
+      ],
+      "layout_artifact_entry": "quiz-pair/native/quiz-dart-revealed-small.layout.json",
+      "layout_sha256": "6fd80a4194d68bb87748f227136cdbd3cbb6ba47392d54b2caa910c9e8ab2567",
+      "revision": 7,
+      "ack": 5,
+      "state_number": 1.0,
+      "state_paused": false,
+      "density": 1.0,
+      "reviewed": true,
+      "review_method": "Original PNG individually opened through view_image in this session on 2026-11-14; no old image review transferred.",
+      "blocking_issue": false,
+      "accepted_in_scope": true,
+      "findings": [
+        "Im gescrollten 640×360-Ausschnitt sind „Nächste Frage“ und „Richtig!“ klar lesbar. Lumo zeigt eine andere Pose mit erhobenen Armen.",
+        "Der obere Fragen-/Antwortbereich liegt teilweise oberhalb des Scrollclips; eine ausgeblendete Antwort ist nur angeschnitten. Der Tipp läuft unten über den Bildausschnitt hinaus.",
+        "Die sichtbare nächste Aktion ist vollständig im Panel; Zurück und Pause bleiben erreichbar dargestellt."
+      ],
+      "limits": [
+        "Der vollständige Fragetext und die gesamte Erklärung sind hier nicht gleichzeitig sichtbar. Aus den zwei Posen wird keine kontinuierliche Animationsqualität abgeleitet."
+      ]
+    },
+    {
+      "artifact_entry": "quiz-pair/native/quiz-dart-paused.png",
+      "bytes": 42997,
+      "sha256": "ef9469457c6f8625aa7a6e4de02491c119f20aa9d90160336405e2d2da4d9315",
+      "git_blob_sha": "2cf9aa3d42d2457af3da30ad15a7fe4981b8a06c",
+      "size_px": [
+        640,
+        360
+      ],
+      "layout_artifact_entry": "quiz-pair/native/quiz-dart-paused.layout.json",
+      "layout_sha256": "abed509458e20e4c3db13924e4134ee656e23939c400a12cd5a9935077cf1fcb",
+      "revision": 20,
+      "ack": 18,
+      "state_number": 5.0,
+      "state_paused": true,
+      "density": 1.0,
+      "reviewed": true,
+      "review_method": "Original PNG individually opened through view_image in this session on 2026-11-14; no old image review transferred.",
+      "blocking_issue": false,
+      "accepted_in_scope": true,
+      "findings": [
+        "Das 640×360-Pausebild zeigt einen nach unten gescrollten Menübereich mit „Alle Fächer“, „Deutsch“, „Mathe“ und „Sachunterricht“. Lumo bleibt sichtbar.",
+        "Der obere Pauseknopf erscheint abgedunkelt. Am oberen Panelrand ist Text angeschnitten; „Fortsetzen“ und „Neue Runde“ liegen in diesem Bild über dem Clip.",
+        "Das aktuelle Layout bestätigt die gezeigte Scrollposition. Erst nach nachgewiesenen neuen Dragereignissen trifft das Journal den dann vollständigen Fortsetzen-Knopf bei [236,208,376,52]."
+      ],
+      "limits": [
+        "Dieses Bild allein zeigt keinen Fortsetzen-Knopf und beweist keine Wiederaufnahme. Der separate originale Request-/Inputnachweis trägt diese Aussage."
+      ]
+    },
+    {
+      "artifact_entry": "quiz-pair/native/quiz-dart-complete.png",
+      "bytes": 113759,
+      "sha256": "c1a2c06ac19746fdee0dd1c460ccbf6e5f2143f5e91f8a5e44dec38547e09c51",
+      "git_blob_sha": "20a2bf51756a917d7686900e0dca079e5ab59961",
+      "size_px": [
+        1200,
+        896
+      ],
+      "layout_artifact_entry": "quiz-pair/native/quiz-dart-complete.layout.json",
+      "layout_sha256": "db4ad49030bc45131fc4dc34b58da02826fa71938b5928c4894b3250de194ec8",
+      "revision": 66,
+      "ack": 64,
+      "state_number": 20.0,
+      "state_paused": false,
+      "density": 1.0,
+      "reviewed": true,
+      "review_method": "Original PNG individually opened through view_image in this session on 2026-11-14; no old image review transferred.",
+      "blocking_issue": false,
+      "accepted_in_scope": true,
+      "findings": [
+        "Frage 20/20 (Logik-Finale) ist vollständig lesbar; „C Lea“ ist grün markiert, darunter „Richtig!“, „5000 Sterne gutgeschrieben“ und „Alle 20 Fragen geschafft!“.",
+        "Neue Runde und die vier Fachauswahlen sind vollständig dargestellt. Lumo ist links groß mit erhobenen Armen zu sehen; der Ring zeigt gelbe Fortschrittslichter.",
+        "Kein sichtbarer Dialog oder Overlay verdeckt den Abschlussinhalt."
+      ],
+      "limits": [
+        "Der dargestellte Betrag stammt in diesem Prozesspaar aus dem ausdrücklich deklarierten QA-Ledger, nicht aus einer getesteten Android-App-Wallet."
+      ]
+    }
+  ],
+  "reviewed_count": 6,
+  "blocking_issue_count": 0,
+  "video_reviewed": false,
+  "audio_heard": false,
+  "limits": [
+    "QA disk transport and award ledger, not Android Binder or AppState/SharedPreferences.",
+    "Linux X11 llvmpipe software renderer; Dummy audio. No heard audio, device FPS, thermal, GPU or Android acceptance.",
+    "Six static original screenshots; no film in this artifact and no continuous animation/speech synchronization assessment.",
+    "No new tests or rendering were executed for this review. Original current-job counts only."
+  ]
+}

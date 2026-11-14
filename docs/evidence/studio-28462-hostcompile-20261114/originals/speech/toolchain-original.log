@@ -1,0 +1,2 @@
+[LumoMavenMirror] build=gradle plugins=[LumoMavenCentralMirror, Gradle Central Plugin Repository] settings=[LumoMavenCentralMirror, Google, MavenRepo] root=[]
+[LumoMavenMirror] build=android plugins=[LumoMavenCentralMirror, Google, MavenRepo, Gradle Central Plugin Repository] settings=[LumoMavenCentralMirror] root=[LumoMavenCentralMirror, Google, MavenRepo, maven, Google2, MavenRepo2, Google3, MavenRepo3, Google4, MavenRepo4, Google5, MavenRepo5, Google6, MavenRepo6, Google7, MavenRepo7]
