@@ -1,0 +1,25 @@
+{
+  "phase": "before",
+  "import_order": "tour-first",
+  "python": "3.12.14",
+  "pillow": "13.0.0",
+  "test_source_sha256": "b136e69e2ad822f3d53c02c9f0aa97c4f507aeaa43f8592a50f540c1ea9228c7",
+  "helper_instances_identical": false,
+  "helper_functions_identical": false,
+  "scope": "one real unittest; synthetic clock and mocked ADB; original PNG pixel analysis"
+}
+test_deadline_expiring_during_real_pixel_analysis_prevents_input (test_kart_garage_scroll_recovery.ObservedGarageScrollBoundaryTests.test_deadline_expiring_during_real_pixel_analysis_prevents_input) ... FAIL
+
+======================================================================
+FAIL: test_deadline_expiring_during_real_pixel_analysis_prevents_input (test_kart_garage_scroll_recovery.ObservedGarageScrollBoundaryTests.test_deadline_expiring_during_real_pixel_analysis_prevents_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/ced1df3de65a/lumo-kart-scroll-repair/tools/android_qa/tests/test_kart_garage_scroll_recovery.py", line 254, in test_deadline_expiring_during_real_pixel_analysis_prevents_input
+    self.assertRaises((RuntimeError, TimeoutError)):
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'RuntimeError'>, <class 'TimeoutError'>) not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 1.225s
+
+FAILED (failures=1)

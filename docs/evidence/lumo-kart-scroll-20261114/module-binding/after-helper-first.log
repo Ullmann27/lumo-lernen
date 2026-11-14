@@ -1,0 +1,16 @@
+{
+  "phase": "after",
+  "import_order": "helper-first",
+  "python": "3.12.14",
+  "pillow": "13.0.0",
+  "test_source_sha256": "0f75cfbc5c6cab0eebb376f9af0f07aa57dbed0cf1efd40f1150b6ac0e825862",
+  "helper_instances_identical": true,
+  "helper_functions_identical": true,
+  "scope": "one real unittest; synthetic clock and mocked ADB; original PNG pixel analysis"
+}
+test_deadline_expiring_during_real_pixel_analysis_prevents_input (test_kart_garage_scroll_recovery.ObservedGarageScrollBoundaryTests.test_deadline_expiring_during_real_pixel_analysis_prevents_input) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.206s
+
+OK

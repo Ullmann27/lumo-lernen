@@ -1,0 +1,20 @@
+--- a/tools/android_qa/tests/test_kart_garage_scroll_recovery.py
++++ b/tools/android_qa/tests/test_kart_garage_scroll_recovery.py
+@@ -240,7 +240,7 @@
+         current, current_lines, current_source = self.observation('main', 2, 'second')
+         callback = tour._stage_kart_scroll_recovery()
+         clock = [0.0]
+-        original = evidence.stage_garage_scroll_observation
++        original = tour.garage_evidence.stage_garage_scroll_observation
+ 
+         def analyze_then_expire(*args, **kwargs):
+             result = original(*args, **kwargs)
+@@ -250,7 +250,7 @@
+         with patch.object(tour.base, 'adb') as adb, \
+                 patch.object(tour.time, 'monotonic', side_effect=lambda: clock[0]):
+             callback(frame, lines, source, deadline=10, previous_missing_frame=None)
+-            with patch.object(evidence, 'stage_garage_scroll_observation', side_effect=analyze_then_expire), \
++            with patch.object(tour.garage_evidence, 'stage_garage_scroll_observation', side_effect=analyze_then_expire), \
+                     self.assertRaises((RuntimeError, TimeoutError)):
+                 callback(current, current_lines, current_source, deadline=10, previous_missing_frame=frame)
+         adb.assert_not_called()

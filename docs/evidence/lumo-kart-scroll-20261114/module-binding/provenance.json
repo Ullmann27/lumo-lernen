@@ -1,0 +1,19 @@
+{
+  "candidate": "51ec0ac43f3e2aaac065e285e13cf5db5b5875d2",
+  "candidate_tree": "e922f8d01fe31b07ac3c5cb196451dcbedb269d0",
+  "parent": "17f836d945e6f0b610da13fad8bf15798d0cad49",
+  "failed_previous_full_run": 43603011089,
+  "current_full_run": 43605863655,
+  "changed_paths": [
+    "tools/android_qa/tests/test_kart_garage_scroll_recovery.py"
+  ],
+  "additions": 2,
+  "deletions": 2,
+  "proofs_verified_against_receipt_hashes": true,
+  "reviewers": [
+    "lumo_learning",
+    "lumo_integration",
+    "root"
+  ],
+  "scope": "Original local regression and import-order evidence only. No product, helper, caller, assertion or deadline change. No Android or current seven-gate acceptance claim. These evidence files are checkpoint-only, outside the immutable candidate tree."
+}
