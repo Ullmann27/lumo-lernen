@@ -136,9 +136,11 @@ def launch_frame(raw: bytes, token: str) -> dict | None:
     begin = ("LUMO_CONSOLE_BEGIN_" + token).encode()
     end = re.compile(("LUMO_CONSOLE_END_" + token + r":([0-9]+)").encode())
     starts, ends, offset = [], [], 0
-    for line in raw.splitlines(keepends=True):
-        if not line.endswith(b"\n"):
-            break
+    # Interactive mksh redraws echoed input with bare CR/backspace bytes.
+    # Only LF terminates an acknowledgement line; keep the original bytes and
+    # offsets intact, and leave an incomplete final line unacknowledged.
+    for part in raw.split(b"\n")[:-1]:
+        line = part + b"\n"
         text = line.rstrip(b"\r\n")
         if text == begin:
             starts.append((offset, offset + len(line)))

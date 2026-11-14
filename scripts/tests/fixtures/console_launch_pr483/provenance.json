@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43566692796,
+  "attempt": 1,
+  "qa_head": "7e2ab20f6f323c66a1e02de3550d73ef31b2037e",
+  "qa_tree": "b9d21ad6c3fd3588ea1906549afaa516a95874b4",
+  "scope": "Unmodified actual failed init-console startup; all three original END acknowledgements are nonzero. Altered frames in tests are explicitly synthetic parser cases, never Android acceptance.",
+  "files": [
+    {
+      "path": "host/transcript.stdout",
+      "bytes": 14983,
+      "sha256": "354ce0ec3c01f75905249958660bf2c148d043c111d01cfc78a3c9fec69b86aa",
+      "git_blob": "0bbd8c7964f7c66373efa5e906f469d20f4d38f9",
+      "artifact_id": 14102492272,
+      "job_id": 132362172872,
+      "artifact_member": "runtime-anr/device-logger/console/transcript.stdout",
+      "archive_sha256": "ac3967a35eafa4179f6ddeb5bc5da25857945604ebe2940f945c0f9d95c98550"
+    },
+    {
+      "path": "host/config.json",
+      "bytes": 415,
+      "sha256": "3f82a946ee0ddf5ddb7dddc766f01aa630aa96f0828e47fd10c6bbb2aa0a8d04",
+      "git_blob": "24e242240250572006132f527745e0c3a3333359",
+      "artifact_id": 14102492272,
+      "job_id": 132362172872,
+      "artifact_member": "runtime-anr/device-logger/console/config.json",
+      "archive_sha256": "ac3967a35eafa4179f6ddeb5bc5da25857945604ebe2940f945c0f9d95c98550"
+    },
+    {
+      "path": "host/command.stdin",
+      "bytes": 2566,
+      "sha256": "33fb61fdacce36fcaf3fccbb7ac00bf5ea7a2664dd6fb730cbaeb5bb4d003713",
+      "git_blob": "90b5408eab1ae6c3ec47b96b28e3107cd35bc697",
+      "artifact_id": 14102492272,
+      "job_id": 132362172872,
+      "artifact_member": "runtime-anr/device-logger/console/command.stdin",
+      "archive_sha256": "ac3967a35eafa4179f6ddeb5bc5da25857945604ebe2940f945c0f9d95c98550"
+    },
+    {
+      "path": "host/finished.json",
+      "bytes": 1448,
+      "sha256": "dce97cb77517e16e5709f5e810737d3bf68805f1b7c5b7ba54962d2508e30648",
+      "git_blob": "f689e020732cf1a230378b648c79783b35acada2",
+      "artifact_id": 14102492272,
+      "job_id": 132362172872,
+      "artifact_member": "runtime-anr/device-logger/console/finished.json",
+      "archive_sha256": "ac3967a35eafa4179f6ddeb5bc5da25857945604ebe2940f945c0f9d95c98550"
+    },
+    {
+      "path": "host/program.sh",
+      "bytes": 1738,
+      "sha256": "fcb9eb0a0b0e0953c817ad5b4396ee657faf4ec6501d4d403e0c3a485e34fdca",
+      "git_blob": "44a5cfa514b9c071c15acfcddce7afa5594ddb13",
+      "artifact_id": 14102492272,
+      "job_id": 132362172872,
+      "artifact_member": "runtime-anr/device-logger/console/program.sh",
+      "archive_sha256": "ac3967a35eafa4179f6ddeb5bc5da25857945604ebe2940f945c0f9d95c98550"
+    },
+    {
+      "path": "swiftshader/transcript.stdout",
+      "bytes": 15687,
+      "sha256": "953001d225faec933c0cc88ea0377551de93fef527f1c6de5210d5bc333d1eff",
+      "git_blob": "a39fc52290d1efe5a67a2e38f764ed33c5b7e888",
+      "artifact_id": 14103166488,
+      "job_id": 132362172876,
+      "artifact_member": "runtime-anr/device-logger/console/transcript.stdout",
+      "archive_sha256": "5cbd23b79c901142d317c71fc46c2c0f19e563d9587a5ad16249758498fa5aa3"
+    },
+    {
+      "path": "swiftshader/config.json",
+      "bytes": 415,
+      "sha256": "f333cc91c90fdee72178ed6d3bf7e053d2d871146117e448d7859db0facad7c4",
+      "git_blob": "6ee320dcabbd2dc59180a65b584d59af6436e3c7",
+      "artifact_id": 14103166488,
+      "job_id": 132362172876,
+      "artifact_member": "runtime-anr/device-logger/console/config.json",
+      "archive_sha256": "5cbd23b79c901142d317c71fc46c2c0f19e563d9587a5ad16249758498fa5aa3"
+    },
+    {
+      "path": "swiftshader/command.stdin",
+      "bytes": 2566,
+      "sha256": "c982b216e0b51803646c76db440159924dbf36de4e5610f24cfc14ff17de043b",
+      "git_blob": "167179b23d8f99d53ff592756fcff9a5a605f157",
+      "artifact_id": 14103166488,
+      "job_id": 132362172876,
+      "artifact_member": "runtime-anr/device-logger/console/command.stdin",
+      "archive_sha256": "5cbd23b79c901142d317c71fc46c2c0f19e563d9587a5ad16249758498fa5aa3"
+    },
+    {
+      "path": "swiftshader/finished.json",
+      "bytes": 1455,
+      "sha256": "7619b7520e0eb88ea95c49cdd78c1dc6e54a344410ddc23cd57e5f9d118cdce0",
+      "git_blob": "682e57e6c7f4e0075e437ef50a46ec2add3f79dc",
+      "artifact_id": 14103166488,
+      "job_id": 132362172876,
+      "artifact_member": "runtime-anr/device-logger/console/finished.json",
+      "archive_sha256": "5cbd23b79c901142d317c71fc46c2c0f19e563d9587a5ad16249758498fa5aa3"
+    },
+    {
+      "path": "swiftshader/program.sh",
+      "bytes": 1738,
+      "sha256": "f76116a59d75474da2752f065c9da4f22e85e3bff2ba98b0a3e0e5c6240efdd4",
+      "git_blob": "988e81e58063baeb8442bac369f244b31b4827ac",
+      "artifact_id": 14103166488,
+      "job_id": 132362172876,
+      "artifact_member": "runtime-anr/device-logger/console/program.sh",
+      "archive_sha256": "5cbd23b79c901142d317c71fc46c2c0f19e563d9587a5ad16249758498fa5aa3"
+    },
+    {
+      "path": "swangle/transcript.stdout",
+      "bytes": 18067,
+      "sha256": "130c776d499e5e9ae9ef7ecef8bc05acf8a81a73d1a5687b062b727c6d3f4ef3",
+      "git_blob": "0a02d2ffce90f7bf21206a5270f0f6a9c082219d",
+      "artifact_id": 14102721700,
+      "job_id": 132362172841,
+      "artifact_member": "runtime-anr/device-logger/console/transcript.stdout",
+      "archive_sha256": "26bc4b1af2a9799065b04fde166fa3667331d856ba888f94430a0f3313a4bc5e"
+    },
+    {
+      "path": "swangle/config.json",
+      "bytes": 415,
+      "sha256": "f0fd2f73d65baefe0a033c091ea9a12ec433fecae652e74fe7dfcc8df3c748fa",
+      "git_blob": "b38630eac777fac81a80c3dae3bac7571934f593",
+      "artifact_id": 14102721700,
+      "job_id": 132362172841,
+      "artifact_member": "runtime-anr/device-logger/console/config.json",
+      "archive_sha256": "26bc4b1af2a9799065b04fde166fa3667331d856ba888f94430a0f3313a4bc5e"
+    },
+    {
+      "path": "swangle/command.stdin",
+      "bytes": 2566,
+      "sha256": "b83c4a4e6aa7bc2e05f5c2206396f07016adfce5ebf236eeeb8fc01c90ca4159",
+      "git_blob": "cbd905f252f6bfa6fd53fe46def753e01a6c1465",
+      "artifact_id": 14102721700,
+      "job_id": 132362172841,
+      "artifact_member": "runtime-anr/device-logger/console/command.stdin",
+      "archive_sha256": "26bc4b1af2a9799065b04fde166fa3667331d856ba888f94430a0f3313a4bc5e"
+    },
+    {
+      "path": "swangle/finished.json",
+      "bytes": 1453,
+      "sha256": "677b0b4452e0f80eb5c341b174ddc90bedcb736f59d1a7e93a0c3d3045aeecb7",
+      "git_blob": "f271a8406125455077e3f08db85dd0a55aaca585",
+      "artifact_id": 14102721700,
+      "job_id": 132362172841,
+      "artifact_member": "runtime-anr/device-logger/console/finished.json",
+      "archive_sha256": "26bc4b1af2a9799065b04fde166fa3667331d856ba888f94430a0f3313a4bc5e"
+    },
+    {
+      "path": "swangle/program.sh",
+      "bytes": 1738,
+      "sha256": "9fca5ca8f79b7c2fa470cd931f5a18e51487f4b740df8c239b1c8906c7ceafca",
+      "git_blob": "4196171eb90698d269a441d40911e62638e3aa8f",
+      "artifact_id": 14102721700,
+      "job_id": 132362172841,
+      "artifact_member": "runtime-anr/device-logger/console/program.sh",
+      "archive_sha256": "26bc4b1af2a9799065b04fde166fa3667331d856ba888f94430a0f3313a4bc5e"
+    }
+  ]
+}

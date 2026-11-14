@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T08:06:54.552009+00:00",
+  "status": "COMPLETE_SOURCE_FREEZE_READY_FOR_ROOT_CHECKPOINT_NO_TESTS_RUN",
+  "pack": "/workspace/scratch/b3485b7bb989/host-c4-combined-followup-b394-20261114",
+  "base_head": "b394cd4f73cc4ab3d2e818aa94c0a10b26a55b9e",
+  "base_tree": "0fd0d967b76d152ebb8d72a1b534703b22ce7d7f",
+  "source_file_count": 47,
+  "source_freeze": {
+    "bytes": 22694,
+    "sha256": "da9b218fa0323f802105d9bf1f3d9caf3e89de3f185f8bc9c54ecb3464f324e4",
+    "git_blob": "b47cddf6386e961fad48c0ee4c750a5748ed8edd"
+  },
+  "patch": {
+    "bytes": 142359,
+    "sha256": "9ea03a02f30eeca5dd4d4f83f1feebc9fa9898686b67a256c30141e60f0c8c48",
+    "git_blob": "d65accd4864f8a9e64fec8b4abce124db88bc170"
+  },
+  "fixture_dependencies": {
+    "bytes": 2202,
+    "sha256": "12502c11e8feebe0915b352a84095c5419af1081f5fe6541eb4043fa39a058ca",
+    "git_blob": "1f2db2c9cbbc01af34e35c6506522f1764a69f88"
+  },
+  "groups": {
+    "exact_curriculum_producer_sources": 4,
+    "jump": 5,
+    "console_unique_sources": 34,
+    "C4_workflow_delivery_and_existing_tests": 4
+  },
+  "new_audit_artifact": "lumo-connect-four-2020-learning-curriculum-audit",
+  "new_audit_cli": "python3 scripts/verify_connect_four_delivery.py bind-learning-audit --directory <original-audit-dir> --source <actual-head> --build-run <actual-run> --run-attempt <actual-attempt>",
+  "delivery_cli_extension": "--learning-audit proofs/learning",
+  "original_audit_outputs": [
+    "summary.json",
+    "task-families.json",
+    "task-samples.jsonl",
+    "issues.json",
+    "audit.stdout.log",
+    "audit.stderr.log",
+    "source-binding.json"
+  ],
+  "native_contract": {
+    "source_freeze_sha256": "b816b4cc0d6938115278910acc4370e88a0d2d4dc652e536693d1512ed2cefb5",
+    "helper_sha256": "8e8f597f8cd41fe203b9a491f14b5927c85601178e6589afe326a94d7c6f80f3",
+    "core_modes": 52,
+    "studio_2020_images": 17,
+    "sidecars": 3,
+    "facial_movies": 1,
+    "new_cutout": "captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+    "new_cutout_dimensions": [
+      2400,
+      1080
+    ],
+    "prior_rasters": [
+      24,
+      4,
+      6,
+      7
+    ]
+  },
+  "validation_status": "NONE_ON_THIS_COMBINED_SOURCE; ROOT_CHECKPOINT_REQUIRED_FIRST",
+  "root_only_next_steps": [
+    "Publish/checkpoint these47 exact source paths",
+    "Switch the native pin/policy/test constant only after the real17-image native source is published",
+    "Run the focused source-linked tests and actionlint; preserve real failures",
+    "Run actual C4 CI for current combined native/APK/device evidence"
+  ],
+  "new_approval": false,
+  "limitations": [
+    "No new combined execution success",
+    "No Android or PCM audio success",
+    "Historical failing CI is unchanged",
+    "Old lost temporary logs/reviews are not reconstructed",
+    "Separate human visual review remains separate"
+  ]
+}
