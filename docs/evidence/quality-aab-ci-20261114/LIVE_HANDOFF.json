@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14 13:38:09 UTC",
+  "recorded_at_utc": "2026-11-14 13:48:11 UTC",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -32,15 +32,15 @@
     "created_at": "2026-11-14T13:22:40Z",
     "trigger": "pull_request from reviewed quality-branch fast-forward",
     "job_budget_minutes": 150,
-    "last_read_utc": "2026-11-14 13:38:09 UTC",
+    "last_read_utc": "2026-11-14 13:48:11 UTC",
     "main_job_id": 132461940239,
     "main_job_started_at": "2026-11-14T13:26:58Z",
     "main_job_deadline_utc": "2026-11-14T15:56:58Z",
     "active_steps": [
       {
-        "number": 13,
-        "name": "Full Flutter regression suite including every capture",
-        "started_at": "2026-11-14T13:28:28Z"
+        "number": 22,
+        "name": "Code-level Android probe regression with verified image dependencies",
+        "started_at": "2026-11-14T13:47:25Z"
       }
     ]
   },
@@ -79,6 +79,25 @@
       "samples": 7552,
       "structural_issues": 0,
       "semantic_approval": false
+    },
+    "full_flutter": {
+      "artifact": 14116675111,
+      "archive_bytes": 332341284,
+      "archive_sha256": "5f5796a883a80423668fe6c9b13a09f08cf70a39d79430213f8c71090eca3bbd",
+      "completed_at": "2026-11-14T13:39:59Z",
+      "passed": 2586,
+      "failed": 0,
+      "skipped": 0,
+      "actual_root_parser_exit_code": 0,
+      "parser_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+      "original_files": 548,
+      "original_pngs": 546,
+      "root_opened_images": 3,
+      "original_machine_done_time_ms": 689181,
+      "exact_topic_test_id": 603,
+      "exact_topic_test_passed": true,
+      "preserved_reports_zip_blob": "ff27767a8e8e857e5e2a24e7730e2945bf4d65c4",
+      "preservation_scope": "Complete original machine/summary reports, full 548-file member index and three actual Root-viewed PNGs are checkpointed; entire 332 MB Actions ZIP is locally retained and remains at its original Actions artifact, not in Git."
     }
   },
   "remaining": [
@@ -1063,5 +1082,32 @@
     "new_run_artifact_results_must_be_verified_separately": true,
     "additional_c4_r3_run": 43596764202,
     "no_previous_apk_can_be_substituted": true
-  }
+  },
+  "source_notices_inventory": {
+    "blob": "450ee85f4323cd1b41c9abdcc211d2715c06db99",
+    "source_entries": 37,
+    "root_read_complete_report": true,
+    "actual_apk_pck_inspected": false,
+    "external_rights_review": false
+  },
+  "pending_quality_findings": [
+    {
+      "id": "white_prompt_card_label_contrast",
+      "source": "lib/widgets/lumo/lumo_prompt_card.dart",
+      "source_blob": "033fb56a1033b7659d6ca7e7386e7ae9cd1074fd",
+      "actual_capture": "modernization/schreibcoach_phone.png",
+      "capture_blob": "0d4cbe429c4c96fa928fa815bffaef54f294fb42",
+      "observed": "Small hint is visibly pale on white; source color #C8DDF0 on #FFFFFF gives calculated sRGB luminance ratio 1.3947273062300911.",
+      "status": "Narrow shared-card correction being prepared separately; no current candidate change or after-render claim."
+    },
+    {
+      "id": "writing_capture_emoji_glyph",
+      "observed": "Outline replacement glyph visible in current Linux capture; capture does not call separate emoji font loader.",
+      "status": "Actual Android appearance not verified; no Android defect inferred."
+    },
+    {
+      "id": "packaged_third_party_notices",
+      "status": "Check actual new APK/PCK membership or consolidated notice content after package exists; source files alone do not prove package delivery."
+    }
+  ]
 }

@@ -1,0 +1,233 @@
+{
+  "schema": 1,
+  "kind": "actual_readonly_original_flutter_parser_replay",
+  "recorded_at_utc": "2026-11-14T13:42:45.028737+00:00",
+  "performed": true,
+  "passed": true,
+  "host": "1375da193af0152af64f91d86577aa9768cd50db",
+  "tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+  "run_id": 43599456596,
+  "run_attempt": 1,
+  "artifact_id": 14116675111,
+  "archive": {
+    "bytes": 332341284,
+    "sha256": "5f5796a883a80423668fe6c9b13a09f08cf70a39d79430213f8c71090eca3bbd",
+    "git_blob": "3dd533b5da84abf1c0422f2a533e54178bdccd73"
+  },
+  "original_file_count": 548,
+  "all_original_files_unchanged": true,
+  "reader": {
+    "path": "scripts/run_full_flutter_acceptance.py",
+    "bytes": 6483,
+    "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+    "git_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72"
+  },
+  "actual_reader_call": "summarize(original_events, original_exit_code, actual_error_files)",
+  "fresh_summary_fields_equal_original": true,
+  "fresh_summary": {
+    "status": "PASS",
+    "passed": 2586,
+    "failed": [],
+    "skipped": [],
+    "capture_error_files": [],
+    "flutter_exit_code": 0,
+    "runner_completed_successfully": true
+  },
+  "event_counts": {
+    "start": 1,
+    "suite": 387,
+    "testStart": 3153,
+    "allSuites": 1,
+    "testDone": 3153,
+    "group": 471,
+    "print": 322,
+    "done": 1
+  },
+  "non_json_lines": 387,
+  "rendered_png_count": 546,
+  "capture_directory_counts_match": true,
+  "focused_exact_topic_original_results": [
+    {
+      "id": 596,
+      "name": "loading /home/runner/work/lumo-lernen/lumo-lernen/test/math_exact_topic_selection_test.dart",
+      "done": {
+        "testID": 596,
+        "result": "success",
+        "skipped": false,
+        "hidden": true,
+        "type": "testDone",
+        "time": 95067
+      }
+    },
+    {
+      "id": 603,
+      "name": "all allowed cumulative math topics preserve exact selection",
+      "done": {
+        "testID": 603,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 95491
+      }
+    },
+    {
+      "id": 896,
+      "name": "loading /home/runner/work/lumo-lernen/lumo-lernen/test/academy_exact_topic_units_test.dart",
+      "done": {
+        "testID": 896,
+        "result": "success",
+        "skipped": false,
+        "hidden": true,
+        "type": "testDone",
+        "time": 133828
+      }
+    },
+    {
+      "id": 3185,
+      "name": "d2_artikel real registry answer persists its exact subject and topic",
+      "done": {
+        "testID": 3185,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 563234
+      }
+    },
+    {
+      "id": 3189,
+      "name": "d2_mehrzahl real registry answer persists its exact subject and topic",
+      "done": {
+        "testID": 3189,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 564551
+      }
+    },
+    {
+      "id": 3192,
+      "name": "d3_wortarten real registry answer persists its exact subject and topic",
+      "done": {
+        "testID": 3192,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 565600
+      }
+    },
+    {
+      "id": 3196,
+      "name": "d3_zeitformen real registry answer persists its exact subject and topic",
+      "done": {
+        "testID": 3196,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 566523
+      }
+    },
+    {
+      "id": 3199,
+      "name": "d1_woerter real registry answer persists its exact subject and topic",
+      "done": {
+        "testID": 3199,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 567770
+      }
+    },
+    {
+      "id": 3200,
+      "name": "s1_tiere real registry answer persists its exact subject and topic",
+      "done": {
+        "testID": 3200,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 568776
+      }
+    },
+    {
+      "id": 3203,
+      "name": "s1_farben real registry answer persists its exact subject and topic",
+      "done": {
+        "testID": 3203,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 569635
+      }
+    },
+    {
+      "id": 3220,
+      "name": "s2_jahreszeiten real registry answer persists its exact subject and topic",
+      "done": {
+        "testID": 3220,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 570443
+      }
+    },
+    {
+      "id": 3231,
+      "name": "s2_wetter real registry answer persists its exact subject and topic",
+      "done": {
+        "testID": 3231,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 571165
+      }
+    },
+    {
+      "id": 3234,
+      "name": "s2_verkehr real registry answer persists its exact subject and topic",
+      "done": {
+        "testID": 3234,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 571926
+      }
+    },
+    {
+      "id": 3343,
+      "name": "Exact curriculum selection is never silently rerouted unknown topic does not become random question",
+      "done": {
+        "testID": 3343,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 597557
+      }
+    }
+  ],
+  "final_done_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 689181
+    }
+  ],
+  "reader_elapsed_seconds": 0.003055672999835224,
+  "source_and_reader_unchanged": true,
+  "limitations": [
+    "Replayed the unchanged committed parser on the original current CI machine log; no new Flutter or application tests were executed.",
+    "Archive integrity and PNG counts do not constitute visual approval of all images.",
+    "No Android, device-FPS, signed APK or Play approval is inferred."
+  ]
+}
