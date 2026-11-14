@@ -1,3 +1,60 @@
+# LUMO 2020 – vollständige Abnahme des gemeinsamen Stands
+
+Stand: 14. November 2026, 16:18 UTC. Dieser Aktivierungsschritt ergänzt ausschließlich
+Status und originale Vorlaufbelege. Produkt und Prüfprogramme entsprechen dem
+vorbereiteten Host `b2f7493bda3bc22c1296f2284888ff7302f18883`,
+Tree `2bffbaf37f5e5d9a9c4d4a018faa81b7d621ca98`.
+Seine vollständigen 4.967 Dateien stimmen mit der geplanten Vereinigung überein.
+Der aktuelle Producer `057a4e8d067872c4f3514b126aa04c3706d2e5b5`, Garage d7b5289
+und Safari fe5df7f4 sind integriert. Die geschützten Schreibtrainer-, Journal-
+und Speicherdateien bleiben unverändert.
+
+Der exakte Native-Pin ist `84789d0c2c6fb4b6ecd2897ce1951b89f958b604`.
+Alle elf Native-PR-Läufe sind erfolgreich abgeschlossen; der zusätzliche
+[Discovery-/Scaling-/Minimap-Lauf](https://github.com/Ullmann27/lumo-godot/actions/runs/43613299144)
+wird noch abschließend geprüft. Die dortige strikte Quell-/Indexgrenze bleibt
+Pflicht. Lokale Rendererbilder allein ersetzen sie nicht.
+
+## Tatsächlich geprüfte Garagenkorrektur
+
+Die getrennt an QA 4017a94d und die unveränderte frühere 1e22/e9-APK gebundene
+[API35-Diagnose 43612493152](https://github.com/Ullmann27/lumo-lernen/actions/runs/43612493152)
+hat drei von drei Jobs erfolgreich beendet: 101 Vorlaufverträge, vollständige
+Main-Tour mit 21/21 Schritten sowie das 2017→2020-Update. Die originalen Resultate
+belegen echte Fahrzeugwahl, gespeichertes Gecko-Velo-Rennen, Fahrt, Pause,
+Fortsetzen und Hostrückkehr. Im Update wurde auch der neue beobachtete Pixelanker
+tatsächlich benötigt. UID, erste Installationszeit und sieben vorhandene Lernkeys
+blieben über Update, Kart, Neustart und drei Foldmaße erhalten. Es waren keine
+befüllten Schreib-/Journalinhalte angelegt. Die separaten direkten Village- und
+C4-Proben sind nicht Teil dieser Diagnose; sie bleiben im neuen Gesamtlauf Pflicht.
+Die vollständige Archiv-/Bildprüfung der Diagnose wird getrennt dokumentiert.
+
+## Lokale Gesamtprüfung und verbindlicher neuer Lauf
+
+Die unveränderte vollständige Script-Suite auf b2 wurde tatsächlich ausgeführt:
+924 gemeldete Tests, Exit 1, sechs Fehler und drei Skips. Drei echte Unix-Sockettests
+scheitern in dieser Arbeitsumgebung bereits an `socket(AF_UNIX)` mit
+`PermissionError: Operation not permitted`; drei Klassen sowie die Skips benötigen
+die hier fehlenden verifizierten Gradle-/Kotlin-Bibliotheken. Java ist vorhanden.
+Es gibt keine lokale vollständige Freigabe. Der Original-Log mit SHA256
+`b5073f23af710b72e95f747c2c1983c042c0eac0c8bdfa69c298693051deeaaa`,
+Aufruf, Resultat und Quellenvergleich liegen in
+`docs/evidence/combined-b2-preflight-20261114/`. Getrackte Quellen blieben gleich.
+
+Der vorhandene vollständige CI-Workflow richtet seine festgelegte Java-/Gradle-
+Toolchain ein und muss die unveränderte komplette Suite ohne Fehler oder Skips
+ausführen. Alle sieben Pflichtjobs, der zusätzliche Feature30-Lauf einschließlich
+acht Safari-Fällen, vollständiges Flutter, neue signierte APKs, echte
+API35-Main-/Village-/C4-Touren, vollständiges Update und Original-Delivery-Replay
+bleiben für diesen neuen Quellstand erforderlich.
+
+Version bleibt der unveröffentlichte Testkandidat **0.13.8+2020**. Der alte Publisher
+9448c47 bleibt inaktiv. Erst nach sämtlichen neuen Originalnachweisen darf ein
+neu gebundener Publisher das neue öffentliche ARM64-Asset bereitstellen und dessen
+tatsächlich geladene Bytes prüfen. Main und frühere Releases werden nicht verändert.
+
+## Archiv: vorheriger Vorlaufstand
+
 # LUMO 2020 – laufende gemeinsame Integration, 14. November 2026
 
 Der aktuelle Arbeitsstand führt Host `1e22d2455937e2640d1e44e153d290746f3afe49`
