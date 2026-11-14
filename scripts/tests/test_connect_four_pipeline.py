@@ -189,6 +189,41 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn('scripts/verify_connect_four_candidate.py',verify)
         self.assertNotIn('    if: always()',verify.split('    steps:',1)[0])
 
+    def test_exact_learning_audit_runs_in_build_and_its_originals_reach_delivery(self):
+        build=job(self.workflow,'verify-and-build')
+        label='Audit every exact current-grade learning family on this candidate'
+        audit=step(build,label)
+        self.assertIn('set -euo pipefail',audit)
+        self.assertIn('SOURCE_SHA: ${{ github.event.pull_request.head.sha }}',audit)
+        self.assertIn('dart run tools/audit_learning_tasks_all_grades.dart "$audit_dir"',audit)
+        self.assertIn('2> "$audit_dir/audit.stderr.log" | tee "$audit_dir/audit.stdout.log"',audit)
+        self.assertIn('verify_connect_four_delivery.py bind-learning-audit',audit)
+        for flag in ('--source "$SOURCE_SHA"','--build-run "$GITHUB_RUN_ID"',
+                     '--run-attempt "$GITHUB_RUN_ATTEMPT"','--directory "$audit_dir"'):
+            self.assertIn(flag,audit)
+        self.assertNotIn('if:',audit)
+        self.assertLess(build.index('Resolve immutable Flutter dependencies'),build.index(label))
+        self.assertLess(build.index(label),build.index('Build unified real Android APK'))
+        saved=step(build,'Preserve the original current-source learning family audit')
+        for value in ('if: always()','name: lumo-connect-four-2020-learning-curriculum-audit',
+                      'path: .ci-results/learning-curriculum-audit/','if-no-files-found: error'):
+            self.assertIn(value,saved)
+        delivery=job(self.workflow,'prepare-c4-delivery')
+        self.assertIn('name: lumo-connect-four-2020-learning-curriculum-audit',delivery)
+        self.assertIn('path: proofs/learning/',delivery)
+        self.assertIn('--learning-audit proofs/learning',delivery)
+
+    def test_actual_original_jump_decode_dependencies_precede_unskipped_script_discovery(self):
+        build=job(self.workflow,'verify-and-build')
+        prerequisites=step(build,'Install actual app-script verification dependencies')
+        for command in ('install -y ripgrep ffmpeg','command -v ffmpeg','command -v ffprobe'):
+            self.assertIn(command,prerequisites)
+        self.assertLess(build.index('Install actual app-script verification dependencies'),
+                        build.index('Verify all build and preservation contracts'))
+        contracts=step(build,'Verify all build and preservation contracts')
+        self.assertIn('unittest discover -s scripts/tests -v',contracts)
+        self.assertIn('Build acceptance rejects skipped contract tests.',contracts)
+
     def test_dedicated_2020_delivery_keeps_every_gate_and_no_2019_receipt_path(self):
         names=re.findall(r'^  ([a-z][\w-]*):\s*$',self.workflow.split('jobs:\n',1)[1],re.M)
         self.assertEqual(names,['connect-four-runtime','android-host-compile','verify-and-build',
@@ -203,6 +238,43 @@ class WorkflowTests(unittest.TestCase):
                           'lumo_studio_surfaces_android_probe.py'):
             self.assertNotIn(forbidden,self.workflow)
         self.assertNotIn('27ae4270',self.workflow)
+
+    def test_curriculum_audit_runs_exact_candidate_heads_and_retains_all_learning_regressions(self):
+        workflow=(ROOT/'.github/workflows/lumo-learning-curriculum-audit.yml').read_text()
+        trigger=workflow.split('jobs:\n',1)[0]
+        self.assertRegex(trigger,r'(?m)^  pull_request:\s*$')
+        self.assertRegex(trigger,r'(?m)^  workflow_dispatch:\s*$')
+        push=re.search(r'^  push:\n(.*?)(?=^  [a-z_]+:)',trigger,re.M|re.S)
+        self.assertIsNotNone(push)
+        branches={
+            'integration/lumo-c4-connections-20261114',
+            'work/lumo-play-quality-20261114',
+            'integration/lumo-agent-execution-20261114',
+            'integration/lumo-live-connections-20261114',
+        }
+        self.assertEqual(set(re.findall(r'^      - (\S+)$',push[1],re.M)),
+                         branches | {'chatgpt/lumo-learning-curriculum-audit-20261114'})
+        core=job(workflow,'core-learning')
+        values={'github.repository':'Ullmann27/lumo-lernen','github.event_name':'pull_request',
+                'github.event.pull_request.head.repo.full_name':'Ullmann27/lumo-lernen'}
+        for branch in branches:
+            with self.subTest(branch=branch):
+                candidate={**values,'github.head_ref':branch}
+                self.assertTrue(condition(core,candidate))
+                self.assertFalse(condition(core,{**candidate,'github.head_ref':branch+'-copy'}))
+                self.assertFalse(condition(core,{**candidate,
+                    'github.event.pull_request.head.repo.full_name':'outside/fork'}))
+                self.assertFalse(condition(core,{**candidate,'github.repository':'outside/fork'}))
+        checkout=core.split('      - uses: actions/checkout@v4\n',1)[1].split('\n      - ',1)[0]
+        self.assertIn('persist-credentials: false',checkout)
+        self.assertIn('ref: ${{ github.event.pull_request.head.sha || github.sha }}',checkout)
+        for path in ('test/shape_trace_input_test.dart','test/shape_trace_retry_test.dart',
+                     'test/lumo_ink_surface_regression_test.dart',
+                     'test/learning_selection_integration_test.dart',
+                     'test/learning/learning_exact_selection_test.dart',
+                     'tools/audit_learning_tasks_all_grades.dart'):
+            with self.subTest(path=path): self.assertIn(path,core)
+        self.assertNotIn('continue-on-error',workflow)
 
     def test_only_c4_branch_is_added_to_existing_unified_exclusions(self):
         unified=(ROOT/'.github/workflows/lumo-unified-integration-2026.yml').read_text()

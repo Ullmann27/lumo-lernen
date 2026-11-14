@@ -1,0 +1,62 @@
+name: LUMO grades 1-4 learning source audit
+on:
+  push:
+    branches:
+      - chatgpt/lumo-learning-curriculum-audit-20261114
+      - integration/lumo-c4-connections-20261114
+      - work/lumo-play-quality-20261114
+      - integration/lumo-agent-execution-20261114
+      - integration/lumo-live-connections-20261114
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-learning-audit-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  core-learning:
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
+      github.head_ref == 'work/lumo-play-quality-20261114' ||
+      github.head_ref == 'integration/lumo-agent-execution-20261114' ||
+      github.head_ref == 'integration/lumo-live-connections-20261114')))
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve existing locked Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Test shape tracing, retry and single-pointer ink handling
+        run: |
+          set -euo pipefail
+          mkdir -p audit/learning-all-grades
+          flutter test --no-pub --no-test-assets test/shape_trace_input_test.dart test/shape_trace_retry_test.dart test/lumo_ink_surface_regression_test.dart --reporter=expanded 2>&1 | tee audit/learning-all-grades/shape-input-tests.log
+      - name: Test production topic selection, repeated reading and level changes
+        run: |
+          set -euo pipefail
+          flutter test --no-pub test/learning_selection_integration_test.dart --reporter=expanded 2>&1 | tee audit/learning-all-grades/production-selection-tests.log
+      - name: Test exact selection without changing legacy callers
+        run: flutter test --no-pub test/learning/learning_exact_selection_test.dart --reporter=expanded
+      - name: Sample every registered current-grade core lesson family
+        run: dart run tools/audit_learning_tasks_all_grades.dart audit/learning-all-grades
+      - name: Preserve task-family rows and all observed failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-learning-grades1-4-sampled-contracts
+          path: audit/learning-all-grades/
+          if-no-files-found: warn
+          retention-days: 30

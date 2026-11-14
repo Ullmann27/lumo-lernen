@@ -33,6 +33,18 @@ LIVE_BRANCH = 'integration/lumo-live-connections-20261114'
 ACCEPTED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH, AGENT_BRANCH, LIVE_BRANCH))
 DELIVERY_JOB = 'prepare-c4-delivery'
 BUNDLE_ARTIFACT = 'lumo-connect-four-2020-delivery-bundle'
+LEARNING_AUDIT_ARTIFACT = 'lumo-connect-four-2020-learning-curriculum-audit'
+LEARNING_AUDIT_STEP = 'Audit every exact current-grade learning family on this candidate'
+LEARNING_AUDIT_FILES = (
+    'summary.json', 'task-families.json', 'task-samples.jsonl', 'issues.json',
+    'audit.stdout.log', 'audit.stderr.log',
+)
+LEARNING_AUDIT_SOURCES = (
+    'lib/core/school_exercise_generator.dart',
+    'tools/audit_learning_tasks_all_grades.dart',
+    'test/learning/learning_exact_selection_test.dart',
+    'pubspec.yaml', 'pubspec.lock', '.github/workflows/lumo-connect-four-2020.yml',
+)
 DELIVERY_ASSETS = {
     'Lumo-Lernen-Neu.apk', 'Lumo-Lernen-Neu.apk.sha256',
     'BUILD-PROVENANCE.json', 'GODOT-SOURCE.json', 'C4-CANDIDATE-FACTS.json',
@@ -50,6 +62,7 @@ REQUIRED_STEPS = {
         'Bind actual compiled C4 Activity bridge and Binder bytecode',
     ),
     'verify-and-build': (
+        LEARNING_AUDIT_STEP,
         'Full Flutter regression suite including every capture',
         'Verify all build and preservation contracts',
         'Code-level Android probe regression with verified image dependencies',
@@ -76,6 +89,7 @@ ARTIFACT_NAMES = (
     'lumo-connect-four-2020-candidate-verification',
     'lumo-connect-four-2020-build-contracts',
     'lumo-candidate-pinned-native-gameplay',
+    LEARNING_AUDIT_ARTIFACT,
 )
 PCM_CONTRACTS = {
     'test_original_pcm_envelope_contract':
@@ -233,6 +247,112 @@ def checked_pcm_log(path: Path) -> dict:
             'original_log': record(path), 'required_markers': list(PCM_CONTRACTS.values())}
 
 
+def learning_source_identity(source: str) -> dict:
+    require(re.fullmatch(r'[a-f0-9]{40}', source), 'Invalid learning audit source')
+    head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
+    tree = subprocess.check_output(['git', 'rev-parse', 'HEAD^{tree}'], cwd=ROOT, text=True).strip()
+    require(head == source, 'Learning audit checkout differs from the current candidate')
+    # All tracked imports/data banks must stay at the same committed source.
+    # Untracked audit output is expected and is not an alternative source tree.
+    subprocess.run(['git', 'diff', '--exit-code', 'HEAD', '--'], cwd=ROOT, check=True)
+    sources = {}
+    for relative in LEARNING_AUDIT_SOURCES:
+        path = regular(ROOT/relative)
+        require(path.read_bytes() == subprocess.check_output(['git', 'show', source+':'+relative], cwd=ROOT),
+                'Learning audit executable source changed: '+relative)
+        sources[relative] = record(path)
+    return {'commit': head, 'tree': tree, 'files': sources}
+
+
+def checked_learning_outputs(root: Path) -> dict:
+    summary, families, issues = (read(root/name) for name in
+                                  ('summary.json', 'task-families.json', 'issues.json'))
+    require(isinstance(summary, dict) and summary.get('status') == 'SAMPLED_CONTRACT_PASS'
+            and summary.get('grades') == [1, 2, 3, 4]
+            and all(type(grade) is int for grade in summary['grades'])
+            and type(summary.get('familyCount')) is int and summary['familyCount'] == 236
+            and type(summary.get('generatedSamples')) is int and summary['generatedSamples'] == 7552
+            and type(summary.get('issues')) is int and summary['issues'] == 0 and issues == []
+            and all(summary.get(flag) is False for flag in
+                    ('allExistingTasksReviewed', 'officialCurriculumApproval', 'allVariantsEnumerated')),
+            'Current learning audit requires all 236 families/7552 structural samples without curriculum approval')
+    require(read(root/'audit.stdout.log') == summary,
+            'Original Dart audit stdout differs from its original summary')
+    require(isinstance(families, list) and len(families) == 236,
+            'Current learning family roster is incomplete')
+    roster = set()
+    for row in families:
+        require(isinstance(row, dict) and type(row.get('grade')) is int and row['grade'] in (1, 2, 3, 4)
+                and all(isinstance(row.get(key), str) and row[key].strip() for key in ('subject', 'unit'))
+                and type(row.get('generatedSamples')) is int and row['generatedSamples'] == 32
+                and row.get('allVariantsEnumerated') is False, 'Invalid original learning family')
+        key = (row['grade'], row['subject'], row['unit'])
+        require(key not in roster, 'Duplicate original learning family')
+        roster.add(key)
+    require({key[0] for key in roster} == {1, 2, 3, 4}, 'Learning audit omits a school grade')
+    expected = {(*key, seed, attempt) for key in roster for seed in (0, 1, 17, 1937) for attempt in range(8)}
+    seen = set()
+    def unique(pairs):
+        result = {}
+        for key, value in pairs:
+            require(key not in result, 'Duplicate original learning sample JSON key')
+            result[key] = value
+        return result
+    with regular(root/'task-samples.jsonl').open(encoding='utf-8') as handle:
+        for line in handle:
+            require(line.strip(), 'Blank line cannot substitute an original learning sample')
+            row = json.loads(line, object_pairs_hook=unique,
+                             parse_constant=lambda value: (_ for _ in ()).throw(ValueError(value)))
+            require(isinstance(row, dict)
+                    and all(type(row.get(key)) is int for key in ('grade', 'seed', 'attempt'))
+                    and all(isinstance(row.get(key), str) and row[key].strip()
+                            for key in ('subject', 'unit', 'prompt', 'answer', 'explanation'))
+                    and isinstance(row.get('choices'), list)
+                    and all(isinstance(choice, str) for choice in row['choices'])
+                    and len(set(row['choices'])) == len(row['choices'])
+                    and (not row['choices'] or row['answer'] in row['choices'])
+                    and row.get('issues') == [] and row.get('semanticCurriculumReview') == 'pending'
+                    and row.get('threeDSceneApproval') is False,
+                    'Original learning sample has a structural defect or overstates review')
+            key = tuple(row[name] for name in ('grade', 'subject', 'unit', 'seed', 'attempt'))
+            require(key in expected and key not in seen, 'Missing-family or duplicate original learning sample')
+            seen.add(key)
+    require(seen == expected, 'Original learning samples omit a required family/seed/attempt')
+    return {'family_count': len(roster), 'generated_samples': len(seen), 'structural_issues': 0,
+            'official_curriculum_approval': False, 'all_variants_enumerated': False,
+            'scope': 'Current core ExerciseFactory samples only; no semantic, Android or 3D approval',
+            'originals': {name: record(root/name) for name in LEARNING_AUDIT_FILES}}
+
+
+def bind_learning_audit(root: Path, source: str, run_id: int, attempt: int) -> dict:
+    require(type(run_id) is int and run_id > 0 and type(attempt) is int and attempt > 0,
+            'Learning audit requires the actual positive run and attempt')
+    require(not (root/'source-binding.json').exists(), 'Refusing to overwrite an existing learning audit binding')
+    source_identity = learning_source_identity(source)
+    checked = checked_learning_outputs(root)
+    binding = {'schema': 1, 'kind': 'c4_current_learning_audit', 'repository': REPOSITORY,
+               'workflow': WORKFLOW, 'job': 'verify-and-build', 'run_id': run_id, 'run_attempt': attempt,
+               'host_source': source, 'source': source_identity, 'originals': checked['originals']}
+    write_new(root/'source-binding.json', binding)
+    return checked
+
+
+def checked_learning_audit(root: Path, binding: dict) -> dict:
+    original = read(root/'source-binding.json')
+    require(isinstance(original, dict) and original.get('schema') == 1
+            and original.get('kind') == 'c4_current_learning_audit'
+            and original.get('repository') == REPOSITORY and original.get('workflow') == WORKFLOW
+            and original.get('job') == 'verify-and-build'
+            and original.get('host_source') == binding['host_source']
+            and type(original.get('run_id')) is int and original['run_id'] == binding['run_id']
+            and type(original.get('run_attempt')) is int and original['run_attempt'] == binding['run_attempt']
+            and original.get('source') == learning_source_identity(binding['host_source']),
+            'Learning audit source/tree/run/attempt differs from the current C4 candidate')
+    checked = checked_learning_outputs(root)
+    require(original.get('originals') == checked['originals'], 'Original learning audit output bytes changed')
+    return {**checked, 'source': original['source'], 'binding': record(root/'source-binding.json')}
+
+
 def checked_release_catalog(pages, refs, facts: dict) -> dict:
     from release_pipeline_gates import (evaluate_source, newest_published_family_build)
     require(isinstance(pages, list) and pages and all(isinstance(page, list) for page in pages),
@@ -331,6 +451,18 @@ def checked_native_results(root: Path, runner: str) -> list[dict]:
     return proofs
 
 
+def checked_native_runner_log(path: Path) -> dict:
+    runner_log = regular(path).read_text()
+    for marker in (
+        '[Studio2020RasterRoster] PASS 17 actual PNG files, 3 original sidecars and 1 verified facial movie',
+        '[LumoNextgen52] PASS: all 48 previous modes plus four Studio2020 modes and 17 bound rasters/movie/sidecars',
+        '[LumoNextgen] PASS',
+    ):
+        require(marker in runner_log, 'Original complete 52-mode runner lacks its required ending: '+marker)
+    require(not ERROR_LINE.search(runner_log), 'Original complete native runner contains a real failure')
+    return record(path)
+
+
 def checked_native(logs: Path, source: Path, revision: str) -> dict:
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=source, text=True).strip()
     tree = subprocess.check_output(['git', 'rev-parse', 'HEAD^{tree}'], cwd=source, text=True).strip()
@@ -345,14 +477,7 @@ def checked_native(logs: Path, source: Path, revision: str) -> dict:
             'Original native source/tree/clean/engine stamps differ')
     runner = regular(source/'tools/validate_nextgen.sh').read_text()
     proofs = checked_native_results(root, runner)
-    runner_log = regular(logs/'nextgen-runner.log').read_text()
-    for marker in (
-        '[Studio2020RasterRoster] PASS 17 actual PNG files, 3 original sidecars and 1 verified facial movie',
-        '[LumoNextgen52] PASS: all 48 previous modes plus four Studio2020 modes and 17 bound rasters/movie/sidecars',
-        '[LumoNextgen] PASS',
-    ):
-        require(marker in runner_log, 'Original complete 52-mode runner lacks its required ending: '+marker)
-    require(not ERROR_LINE.search(runner_log), 'Original complete native runner contains a real failure')
+    runner_record = checked_native_runner_log(logs/'nextgen-runner.log')
     # Existing roster helpers write their indices. Replay in a disposable mirror:
     # only immutable PNG/movie payloads are hardlinked; JSON originals are copied.
     # The downloaded original metadata remains untouched.
@@ -395,6 +520,15 @@ def checked_native(logs: Path, source: Path, revision: str) -> dict:
                     require(image.format == 'PNG' and image.size == (row['width'], row['height']),
                             'Original raster did not decode to its reported physical dimensions')
             rosters[manifest] = record(root/manifest)
+    before = checked_native_extension(root, source, revision, tree)
+    rosters['studio-2020-images.json'] = before
+    return {'source': revision, 'tree': tree, 'core_modes': 52, 'mode_logs': proofs,
+            'complete_runner_log': runner_record,
+            'original_rosters': rosters,
+            'scope': 'Actual pinned-source desktop engine and raster/movie proofs; no device FPS/audio claim'}
+
+
+def checked_native_extension(root: Path, source: Path, revision: str, tree: str) -> dict:
     # This is the actual additive helper from the configured Native commit.
     # Its write=False contract rechecks all 17 new PNGs, original sidecars,
     # movie hashes and bound original decoding proofs without rewriting them.
@@ -408,11 +542,7 @@ def checked_native(logs: Path, source: Path, revision: str) -> dict:
             and len(fresh.get('images', [])) == 17 and len(fresh.get('reports', [])) == 3
             and len(fresh.get('movies', [])) == 1,
             'The original new 2020 face/C4/treasure raster/movie evidence differs')
-    rosters['studio-2020-images.json'] = before
-    return {'source': revision, 'tree': tree, 'core_modes': 52, 'mode_logs': proofs,
-            'complete_runner_log': record(logs/'nextgen-runner.log'),
-            'original_rosters': rosters,
-            'scope': 'Actual pinned-source desktop engine and raster/movie proofs; no device FPS/audio claim'}
+    return before
 
 
 def committed_pcm_sources() -> dict:
@@ -449,6 +579,7 @@ def prepare(args) -> dict:
     pcm = checked_pcm_log(args.build_contracts/'build-contracts.log')
     pcm['sources'] = committed_pcm_sources()
     native = checked_native(args.native_evidence, args.native_source, binding['native_source'])
+    learning = checked_learning_audit(args.learning_audit, binding)
     selected = checked_release_catalog(read(args.metadata/'releases.json'),
                                        read(args.metadata/'tags.json'), fresh)
     arm64 = fresh['apks']['arm64-v8a']
@@ -461,7 +592,7 @@ def prepare(args) -> dict:
         'host_source': binding['host_source'], 'host_tree': host_tree,
         'native_source': binding['native_source'], 'versionName': fresh['versionName'],
         'versionCode': fresh['versionCode'], 'binding': binding, 'jobs': jobs,
-        'original_artifacts': artifacts, 'pcm': pcm, 'native': native,
+        'original_artifacts': artifacts, 'pcm': pcm, 'native': native, 'learning_audit': learning,
         'original_candidate_facts': record(args.facts), 'apks': fresh['apks'],
         'api37_approved': False, 'physical_arm64_tested': False,
         'published': False, 'release_approved': False,
@@ -500,6 +631,12 @@ def prepare(args) -> dict:
     write_new(args.out/'publication-plan.json', plan)
     for name in ('run', 'jobs', 'artifacts', 'pull', 'releases', 'tags'):
         shutil.copyfile(args.metadata/(name+'.json'), audit/('original-'+name+'.json'))
+    learning_originals = audit/'learning-curriculum'
+    learning_originals.mkdir()
+    for name in (*LEARNING_AUDIT_FILES, 'source-binding.json'):
+        shutil.copyfile(regular(args.learning_audit/name), learning_originals/name)
+        require(record(learning_originals/name) == record(args.learning_audit/name),
+                'Learning audit staging changed original bytes: '+name)
     write_new(audit/'create-tag.json', {'ref': 'refs/tags/'+plan['tag'], 'sha': args.source})
     body = (
         'Lumo Lernen C4 '+fresh['versionName']+'+'+str(fresh['versionCode'])+' — signed ARM64 TEST APK.\n\n'
@@ -507,9 +644,11 @@ def prepare(args) -> dict:
         'APK SHA-256: '+arm64['sha256']+'\nPCK SHA-256: '+arm64['godot']['pck_sha256']+'\n'
         'Signing certificate SHA-256: '+arm64['signingCertificateSha256']+'\n'
         'Original acceptance run: https://github.com/'+REPOSITORY+'/actions/runs/'+str(args.build_run)+'\n\n'
-        'All current Flutter/build contracts, 52 native modes with face/C4/treasure rasters and movie, '
+        'All current Flutter/build contracts, the current 236-family/7552-sample structural learning audit, '
+        '52 native modes with 17 additional face/C4/treasure rasters and movie, '
         'the real Dart/Godot C4 pair, actual API35 C4 touches/IPC/return and 2017→2020 preservation '
         'passed and their originals were rechecked before this new version was published.\n'
+        'The learning audit is not semantic or official curriculum approval. '
         'PCM contracts use a synthetic JVM boundary. No API37, physical ARM64, audible device PCM, '
         'human visual receipt or device FPS claim is made.\n'
         'Update the existing family app without uninstalling. This uses the unchanged Lumo TEST '
@@ -630,12 +769,17 @@ def main() -> int:
     commands = parser.add_subparsers(dest='command', required=True)
     prepare_parser = commands.add_parser('prepare')
     for name in ('candidate', 'runtime', 'host-compile', 'android', 'update', 'metadata', 'out',
-                 'facts', 'build-contracts', 'native-evidence', 'native-source'):
+                 'facts', 'build-contracts', 'native-evidence', 'native-source', 'learning-audit'):
         prepare_parser.add_argument('--'+name, type=Path, required=True)
     for name in ('source', 'artifact-digest'):
         prepare_parser.add_argument('--'+name, required=True)
     for name in ('build-run', 'run-attempt', 'artifact-id', 'pull-request'):
         prepare_parser.add_argument('--'+name, type=int, required=True)
+    audit_parser = commands.add_parser('bind-learning-audit')
+    audit_parser.add_argument('--directory', type=Path, required=True)
+    audit_parser.add_argument('--source', required=True)
+    audit_parser.add_argument('--build-run', type=int, required=True)
+    audit_parser.add_argument('--run-attempt', type=int, required=True)
     current = commands.add_parser('check-current')
     current.add_argument('--delivery', type=Path, required=True)
     current.add_argument('--metadata', type=Path, required=True)
@@ -658,6 +802,10 @@ def main() -> int:
             command.add_argument('--apk', type=Path, required=True)
             command.add_argument('--receipt', type=Path, required=True)
     args = parser.parse_args()
+    if args.command == 'bind-learning-audit':
+        checked = bind_learning_audit(args.directory, args.source, args.build_run, args.run_attempt)
+        print(json.dumps(checked, sort_keys=True))
+        return 0
     if args.command == 'prepare':
         prepare(args)
         return 0
