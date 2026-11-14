@@ -1,0 +1,172 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14 19:53:10 UTC",
+  "decision": "Activate a separate new diagnostic of the unchanged original 6b APK using the verified C4 observer; no new-source release acceptance.",
+  "qa_base": "91b5aece4060cd625b27e4cfa967122b5d4b5b92",
+  "prepared_commit": "a7de740901d436d35aedd6507a0738b7fcb5d5e9",
+  "prepared_tree": "88e35cbf36747b6bb315cdbecc4df9d2d262212a",
+  "current_integrated_host": {
+    "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+    "tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "native_tree": "91cc8fc1c6f8a36336b7ac9a12585284a983a6f6",
+    "native_run": 43613299144,
+    "main_run": 43633922088,
+    "feature_run": 43633918165,
+    "attempt": 1
+  },
+  "tree_proof": {
+    "base_files": 5001,
+    "prepared_files": 5009,
+    "changed": [
+      {
+        "path": ".github/probes/lumo_connect_four_android_probe.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "836cf90f170545ce6d6393d5034dc149f5f6cf8c",
+        "size": 29336,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/836cf90f170545ce6d6393d5034dc149f5f6cf8c"
+      },
+      {
+        "path": ".github/workflows/lumo-village-return-6b-diagnostic.yml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2d40651abd44b2b13f58e202ff4b747cd7e084ee",
+        "size": 9632,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/2d40651abd44b2b13f58e202ff4b747cd7e084ee"
+      },
+      {
+        "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "da877b93d3ae61c54b1743f8aba006bac614cdea",
+        "size": 19927,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/da877b93d3ae61c54b1743f8aba006bac614cdea"
+      }
+    ],
+    "added": [
+      {
+        "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/actionlint.original.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "size": 0,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/contracts.execution.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "06ea2ffc31b12bed1683d0a7d9f0cc1be61c341d",
+        "size": 79846,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/06ea2ffc31b12bed1683d0a7d9f0cc1be61c341d"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/contracts.original.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2c9170a3e1ad000ed5c219954fce21dbe1f25834",
+        "size": 33597,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/2c9170a3e1ad000ed5c219954fce21dbe1f25834"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/manifest.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ea3275eb71aab40c0e16ed51e526afe7a51e1d8a",
+        "size": 3406,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/ea3275eb71aab40c0e16ed51e526afe7a51e1d8a"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/preflight.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "80282226b7952788631e0ef5c0b10f871d278c1c",
+        "size": 6993,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/80282226b7952788631e0ef5c0b10f871d278c1c"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/qa91-source-context.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2e5335821456ed89cb384a654b0e57d23a6c82bb",
+        "size": 74434,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/2e5335821456ed89cb384a654b0e57d23a6c82bb"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/syntax-and-preservation.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2ab4874cf9992da4c61abb61360852bddc138452",
+        "size": 3681,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/2ab4874cf9992da4c61abb61360852bddc138452"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/workflow.diff",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "80b716de5276190d9e2419e932730fb78f997685",
+        "size": 611,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/80b716de5276190d9e2419e932730fb78f997685"
+      }
+    ],
+    "removed": []
+  },
+  "all_other_entries_unchanged": true,
+  "workflow": "Only one additional module line; removing that exact line restores all original workflow bytes.",
+  "workflow_blob": "2d40651abd44b2b13f58e202ff4b747cd7e084ee",
+  "unchanged_apk": {
+    "source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "build_run": 43616038272,
+    "attempt": 1,
+    "build_job": 132512734271,
+    "artifact": 14125990109,
+    "artifact_bytes": 665918783,
+    "artifact_sha256": "1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6",
+    "apk_bytes": 334516947,
+    "apk_sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+    "pck_bytes": 75401304,
+    "pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4"
+  },
+  "tests": {
+    "tests": 155,
+    "inline_ok": 155,
+    "standalone_ok": 0,
+    "seconds": 162.582,
+    "failed": 0,
+    "skips": 0,
+    "modules": [
+      "scripts.tests.test_verify_unchanged_6b_village_diagnostic",
+      "tools.android_qa.tests.test_kart_garage_evidence",
+      "tools.android_qa.tests.test_kart_garage_observed_scroll",
+      "tools.android_qa.tests.test_kart_scroll_word_evidence",
+      "tools.android_qa.tests.test_kart_driver_word_evidence",
+      "tools.android_qa.tests.test_village_android_evidence",
+      "scripts.tests.test_6b_roundtrip_diagnostic",
+      "tools.android_qa.tests.test_connect_four_probe_deadlines"
+    ],
+    "original_log_blob": "2c9170a3e1ad000ed5c219954fce21dbe1f25834",
+    "all_220_materialized_files_match_prepared_tree": true,
+    "before_after_identical": true,
+    "actual_adapter_and_binding_tests_included": true,
+    "original_logs_read_by_root": true,
+    "tests_repeated_by_root": false
+  },
+  "same_observer_as_integrated_host": true,
+  "observer_green_checkpoint": "d04ac2596fdd383dc49b1a111d9f6d699bd7cb76",
+  "retained": "Distinct QA versus APK identities; unchanged main, Village and C4 inputs, strict actual artifact/source/signature/PCK binding; no timeout increase, force-stop/delete action, update-matrix extension or publication permissions.",
+  "preceding_actual_diagnostic": {
+    "run": 43629575654,
+    "qa": "91b5aece4060cd625b27e4cfa967122b5d4b5b92",
+    "main": "PASS",
+    "village": "PASS",
+    "c4": "FAIL: one original post-return find still had current session state",
+    "archive_commit": "8a45f0028cb46be3d050c7d9cad5d4513423ce25",
+    "limits": "Later cleanup, reopen and full return remain unproved in the earlier original."
+  },
+  "publication_eligible": false,
+  "seven_job_acceptance": false,
+  "release_created": false
+}
