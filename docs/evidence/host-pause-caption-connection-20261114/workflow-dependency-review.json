@@ -1,0 +1,57 @@
+{
+  "scope": "Read original source import statements and existing workflow installation; no package installed or test imported.",
+  "existing_workflow_command": ".probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0",
+  "new_test_imports": "Python standard library only; actual original PNG inspection uses PIL through creative_android_probe/native_surface_readiness.",
+  "required_image_dependency": "Pillow==12.3.0 is already installed in the same contract venv.",
+  "existing_ui_dependency": "uiautomator2==3.7.0 is retained without any new installation step.",
+  "external_tools_in_replay": "No real ADB or Tesseract is invoked by the new replay: their delivery boundaries are mocked explicitly.",
+  "new_dependency_changes": [],
+  "unchanged_direct_dependency_sources": [
+    {
+      "path": ".github/probes/kart_complete_android_probe.py",
+      "bytes": 59785,
+      "sha256": "74f85c19dcd85e79a4c994172c4e6e971bb9755549594e29b6c277a5c789c57b",
+      "git_blob": "98163d522970675f977260df84bb445e864ad9d1",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/0d7ea79cd02b921ed685abc79b27df8a5f6b4ccb/.github/probes/kart_complete_android_probe.py",
+      "top_level_imports": [
+        "from __future__ import annotations",
+        "import argparse",
+        "import hashlib",
+        "import importlib.util",
+        "import json",
+        "import math",
+        "import os",
+        "from pathlib import Path",
+        "import re",
+        "import signal",
+        "import subprocess",
+        "import sys",
+        "import threading",
+        "import time",
+        "import traceback"
+      ]
+    },
+    {
+      "path": "scripts/probes/pr207_android_smoke.py",
+      "bytes": 14884,
+      "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e",
+      "git_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/0d7ea79cd02b921ed685abc79b27df8a5f6b4ccb/scripts/probes/pr207_android_smoke.py",
+      "top_level_imports": [
+        "from __future__ import annotations",
+        "import argparse",
+        "import hashlib",
+        "import json",
+        "import re",
+        "import struct",
+        "import subprocess",
+        "import time",
+        "import traceback",
+        "import xml.etree.ElementTree as ET",
+        "from pathlib import Path",
+        "from typing import Any"
+      ]
+    }
+  ],
+  "limits": "A future actual checkpoint test still has to validate import/materialization. No local environment readiness or executed PASS is inferred here."
+}

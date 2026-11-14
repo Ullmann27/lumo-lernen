@@ -74,6 +74,10 @@ jobs:
             2>&1 | tee wait-notification-contracts.log
           grep -Eq '^Ran 9 tests in ' wait-notification-contracts.log
           grep -Fx 'OK' wait-notification-contracts.log
+          .probe-venv/bin/python -B -m unittest -v tools.android_qa.tests.test_kart_continue_caption \
+            2>&1 | tee pause-caption-contracts.log
+          grep -Eq '^Ran 9 tests in ' pause-caption-contracts.log
+          grep -Fx 'OK' pause-caption-contracts.log
           .probe-venv/bin/python -B -m unittest -v \
             scripts.tests.test_android_framework_ready_android17 \
             scripts.tests.test_android37_cli22 \
@@ -104,6 +108,7 @@ jobs:
             launch-diagnostic-contracts.log
             printf-contracts.log
             wait-notification-contracts.log
+            pause-caption-contracts.log
           if-no-files-found: error
           retention-days: 30
 

@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "kind": "separate_pause_caption_console_workflow_attachment",
+  "base_head": "0d7ea79cd02b921ed685abc79b27df8a5f6b4ccb",
+  "base_tree": "863c4b45bcd6a564070ca128565688bde7e1ed11",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-console-start-7b16.yml",
+      "bytes": 15016,
+      "sha256": "da9a6a3ab349693c62cdbfe9feb67f7f51e357255eb84ae0036f36289c4fbb18",
+      "git_blob": "879917d67dc5f88ea71ae59f89f3b5ba8160b763"
+    },
+    {
+      "path": "scripts/tests/test_console_start_workflow.py",
+      "bytes": 11969,
+      "sha256": "d08d4db30b32af6f979b28621418f17cf863a803376173a7ff17d9d38c5901ce",
+      "git_blob": "12bff76b783adbb2ff441f1a614c2510c5ee941e"
+    }
+  ],
+  "tests_executed": 0,
+  "actionlint_executed": false,
+  "pause_source_freeze_sha256": "3387f3240023ee63c4eb23c62f7d694e27e5041096c3b52a537e84d14123bc7b"
+}

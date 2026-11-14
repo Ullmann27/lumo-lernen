@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_AWAITING_ROOT_CHECKPOINT",
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "bytes": 857,
+    "sha256": "46e38d52162ee222741fd393f24deca2e79c9f2fb94e4ec65c8db391c019edcd",
+    "git_blob": "f659f905e1f8b2f0d9230d66c573747ff0ad5caf"
+  },
+  "proposed_files": [
+    {
+      "path": ".github/workflows/lumo-console-start-7b16.yml",
+      "bytes": 15016,
+      "sha256": "da9a6a3ab349693c62cdbfe9feb67f7f51e357255eb84ae0036f36289c4fbb18",
+      "git_blob": "879917d67dc5f88ea71ae59f89f3b5ba8160b763"
+    },
+    {
+      "path": "scripts/tests/test_console_start_workflow.py",
+      "bytes": 11969,
+      "sha256": "d08d4db30b32af6f979b28621418f17cf863a803376173a7ff17d9d38c5901ce",
+      "git_blob": "12bff76b783adbb2ff441f1a614c2510c5ee941e"
+    }
+  ],
+  "required_existing_methods": 238,
+  "additional_pause_methods": 9,
+  "required_total_if_executed": 247,
+  "retained_original_log": "pause-caption-contracts.log",
+  "failure_propagation": "Existing set -euo pipefail plus tee, exact Ran 9, and a standalone exact OK line are mandatory; skipped-test summaries cannot satisfy OK.",
+  "artifact": "Existing always() contracts artifact gains only the new original log path.",
+  "android_job": "Complete byte-equal body, same APK, source binding, renderer matrix, observers and time limits.",
+  "validation": {
+    "tests_executed": 0,
+    "actionlint_executed": false,
+    "new_packages_installed": 0
+  },
+  "mutations": "Only this separate external source pack. No worktree, Git index, ref, CI or device changed."
+}

@@ -131,11 +131,16 @@ class ConsoleStartWorkflowTests(unittest.TestCase):
         self.assertEqual(re.findall(r'scripts\.tests\.(\w+)', block), [
             'test_android_console_transport', 'test_android_runtime_device_logger',
             'test_runtime_logcat_sections', 'test_android_framework_ready', 'test_verify_android_runtime_anr'])
-        for label, count in (('console', 86), ('parser', 7), ('launch-diagnostic', 9), ('printf', 6), ('wait-notification', 9), ('diagnostic', 121)):
+        for label, count in (('console', 86), ('parser', 7), ('launch-diagnostic', 9), ('printf', 6), ('wait-notification', 9), ('pause-caption', 9), ('diagnostic', 121)):
             self.assertIn(f"grep -Eq '^Ran {count} tests in ' {label}-contracts.log", text)
             self.assertIn(f"grep -Fx 'OK' {label}-contracts.log", text)
         for module in ('test_console_launch_originals', 'test_console_launch_failure_diagnostics', 'test_console_logger_printf', 'test_android_runtime_wait_notification', 'test_console_start_workflow'):
             self.assertIn('scripts.tests.' + module, text)
+        self.assertIn('.probe-venv/bin/python -B -m unittest -v '
+                      'tools.android_qa.tests.test_kart_continue_caption \\\n'
+                      '            2>&1 | tee pause-caption-contracts.log', text)
+        self.assertIn('pip install --disable-pip-version-check '
+                      'uiautomator2==3.7.0 Pillow==12.3.0', text)
         self.assertIn('set -euo pipefail', text)
         self.assertIn("'^OK \\(skipped=|^FAILED.*skipped='", text)
         self.assertNotIn('test_synthetic_pipe', text)
@@ -176,7 +181,7 @@ class ConsoleStartWorkflowTests(unittest.TestCase):
         self.assertIn('          path: tour/', device)
         contracts = job(self.text, 'probe-contracts')
         self.assertIn('        if: always()', contracts)
-        for name in ('diagnostic-contracts.log', 'console-contracts.log', 'parser-contracts.log', 'launch-diagnostic-contracts.log', 'printf-contracts.log', 'wait-notification-contracts.log'):
+        for name in ('diagnostic-contracts.log', 'console-contracts.log', 'parser-contracts.log', 'launch-diagnostic-contracts.log', 'printf-contracts.log', 'wait-notification-contracts.log', 'pause-caption-contracts.log'):
             self.assertIn('            ' + name, contracts)
         self.assertIn('if-no-files-found: error', device)
         self.assertIn('cancel-in-progress: false', self.text)
