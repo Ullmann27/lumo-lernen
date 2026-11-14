@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "scope": "docs_only_read_only_capability_audit_no_synthesis",
+  "host": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "native_unchanged": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/README.md",
+      "path": "docs/evidence/studio-english-local-voice-capability-2e20-20261114/README.md",
+      "bytes": 8292,
+      "sha256": "f42e74bcbf6d2fc3984c65a496390c4cffbd91620c6f30d4860c48a77c08b2ca",
+      "git_blob": "294c41d167f61d2851f453deba41ce562775f90d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/review.json",
+      "path": "docs/evidence/studio-english-local-voice-capability-2e20-20261114/review.json",
+      "bytes": 7514,
+      "sha256": "07faf5e86a78b1ba71d7abcb7e622b06dbe3b62f6be8079daadfaf21b89341ac",
+      "git_blob": "4cccd5b1392dc167d688eef04c6596c96c85a8d5",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/host-source-integrity.json",
+      "path": "docs/evidence/studio-english-local-voice-capability-2e20-20261114/host-source-integrity.json",
+      "bytes": 16010,
+      "sha256": "25f6f59c681875a11fee2afd657cba612d1a56176318bee5f77e9ffe25c2b8cc",
+      "git_blob": "4934893d15631da74097adcc6d9a76cdf4b91963",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/reference-source-bindings.json",
+      "path": "docs/evidence/studio-english-local-voice-capability-2e20-20261114/reference-source-bindings.json",
+      "bytes": 5606,
+      "sha256": "7de32379af07d9d8aa95bbe6b4ecb9069a201fefcda72b8724a5f6b7f2acff14",
+      "git_blob": "1c96ed7fbd7604cfdf7d10f495758fd186ba58f7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/small-model-bytes-verification.json",
+      "path": "docs/evidence/studio-english-local-voice-capability-2e20-20261114/small-model-bytes-verification.json",
+      "bytes": 2628,
+      "sha256": "ad6e709b79bb3278215198bd4e7846f2f38d9413a5a67c39167b5e79cac28f10",
+      "git_blob": "dd7382b7850b4b492eccc88a875aa5c5d3897f62",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/pinned-token-and-preset-verification.json",
+      "path": "docs/evidence/studio-english-local-voice-capability-2e20-20261114/pinned-token-and-preset-verification.json",
+      "bytes": 10688,
+      "sha256": "6726da820244668492dbdd659deb126104c3b02749b53c681698a3a33928b054",
+      "git_blob": "6d70c3fc5948673e90fbb8aa1a44e987b76f97ab",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/upstream-small-originals/tts.json",
+      "path": "docs/evidence/studio-english-local-voice-capability-2e20-20261114/upstream-small-originals/tts.json",
+      "bytes": 8253,
+      "sha256": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+      "git_blob": "28575b0793c92607a0f0a292550df9bd17709a79",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "file_count": 7,
+  "total_bytes": 58991,
+  "self_target": "docs/evidence/studio-english-local-voice-capability-2e20-20261114/evidence-upload-manifest.json"
+}

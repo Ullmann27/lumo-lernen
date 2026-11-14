@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "scope": "Independent read-only capability audit; no production mutation or speech synthesis",
+  "host_source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "host_tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+  "native_source_unchanged": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "verdict": "ENGLISH_SUPPORTED_BY_PINNED_MODEL_AND_REFERENCE_PROTOCOL_CURRENT_APP_DE_ONLY",
+  "findings": [
+    {
+      "key": "model_capability",
+      "observed": "Official Supertonic3 model card declares English en and local ONNX inference. Sherpa's English example explicitly uses the exact Lumo-pinned int8-2026-05-11 bundle and seven component filenames.",
+      "source_urls": [
+        "https://huggingface.co/Supertone/supertonic-3",
+        "https://k2-fsa.github.io/sherpa/onnx/tts/all/English/supertonic-3-en.html"
+      ],
+      "verification_level": "PRIMARY_DOCUMENTATION_FOR_EXACT_BUNDLE"
+    },
+    {
+      "key": "language_protocol",
+      "observed": "Official Java Languages.AVAILABLE accepts en and de; UnicodeProcessor.preprocessText wraps the normalized text with <en>...</en> or <de>...</de>. Language is a separate String argument, not a style or speaker ID. No en-US/en-GB entry in the inspected supported-language list.",
+      "source": "references/upstream-java-Helper.java",
+      "source_commit": "1e9799e964ea4c0dad7cde993b65c3c813a7b373",
+      "git_blob": "e09cbad351ca3d458b8f9a385218cf7241bf682f",
+      "locations": [
+        "Languages25",
+        "preprocessText141-223",
+        "TextToSpeech.call451-460"
+      ],
+      "verification_level": "EXACT_REFERENCE_SOURCE"
+    },
+    {
+      "key": "exact_small_model_bytes",
+      "observed": "tts.json, unicode_indexer.bin, voice.bin and official F2.json retrieved from fixed HF commits all equal the Host2e20 configured SHA256 pins.",
+      "report": "small-model-bytes-verification.json",
+      "verification_level": "ACTUAL_BYTE_HASHES"
+    },
+    {
+      "key": "speaker_identity",
+      "observed": "Both official F2 style tensors, 12800+128 float32 values, match exactly and uniquely speaker index1 of the pinned ten-speaker voice.bin. Language does not select a different voice vector.",
+      "report": "pinned-token-and-preset-verification.json",
+      "verification_level": "ACTUAL_FLOAT32_BYTE_COMPARISON"
+    },
+    {
+      "key": "english_tokens",
+      "observed": "The pinned 65536-entry indexer accepts the reference language markup and all14 current NativeEnglishVocabulary words/phrases after simple period punctuation. This is encoding evidence, not a speech-quality claim.",
+      "report": "pinned-token-and-preset-verification.json",
+      "verification_level": "ACTUAL_PINNED_INDEXER_READ"
+    },
+    {
+      "key": "sample_rate_discrepancy",
+      "observed": "The converter English HTML has a24000Hz summary, but the exact pinned tts.json reports44100 and agrees with config, Engine, Dart validation and historical audio-production manifest. Preserve44100; do not adopt the contradictory documentation summary.",
+      "report": "upstream-small-originals/tts.json",
+      "verification_level": "PINNED_CONFIG_OVERRIDES_GENERIC_DOC_SUMMARY"
+    },
+    {
+      "key": "current_app_api",
+      "observed": "LumoOfflineSpeechEngine.synthesize(text,style,cancelled) invokes prepareGerman only. Bridge accepts no language and returns de. Dart client accepts only de/profile/F2/44100/local replies; LumoVoice.selectedLocale is de-DE. Native LumoLearningSpeech request uses id/text/style and calls the same German path.",
+      "locations": [
+        "tools/auto_install/LumoOfflineSpeechEngine.java:102-129,163-166",
+        "tools/auto_install/LumoOfflineSpeechBridge.kt:32-53,61-94",
+        "lib/core/lumo_offline_voice_client.dart:12-21,27-62",
+        "lib/core/lumo_voice.dart:75,309-350",
+        "tools/auto_install/LumoLearningSpeech.kt:77-121"
+      ],
+      "verification_level": "EXACT_HOST_SOURCE"
+    },
+    {
+      "key": "existing_gates",
+      "observed": "Native learning voice requires learning game, enabled voice, accepted local model license and selected freeOffline identity; inactive/destroyed Activity and changed generation reject stale playback. Automatic reading additionally respects autoRead and calmMode. Local license assent is separate from OS microphone or cloud permission.",
+      "locations": [
+        "lib/features/lumo3d/lumo3d_launcher.dart:157-170",
+        "tools/auto_install/LumoLearningSpeech.kt:28-32,66-73,77-121,158-173",
+        "lib/features/settings/local_voice_license_dialog.dart:4-5,45-67"
+      ],
+      "verification_level": "EXACT_HOST_SOURCE"
+    },
+    {
+      "key": "offline_boundary",
+      "observed": "Build preparation downloads pinned public weights and embeds model/license assets plus ONNXRuntime1.23.1. Runtime copies/hash-verifies bundled assets to noBackupFilesDir and performs CPU ONNX inference. This speech path has no network/microphone/systemTTS call, despite the wider app manifest declaring INTERNET and RECORD_AUDIO for other features.",
+      "locations": [
+        "scripts/prepare_offline_voice.py:28-71",
+        "tools/auto_install/LumoOfflineSpeechBridge.kt:137-173",
+        "tools/auto_install/LumoOfflineSpeechEngine.java:10-27,51-72",
+        "scripts/prepare_android.py:46-49"
+      ],
+      "verification_level": "EXACT_HOST_SOURCE"
+    }
+  ],
+  "minimal_change_constraints": [
+    "Keep existing German public signature, profile, preset, byte pins, sample rate, license assent and selected-voice semantics.",
+    "A narrowly typed internal en/de overload can use the same F2 model; infer the English cue from the validated current lesson, not a free caller-supplied locale or arbitrary tag.",
+    "Apply Verb→Werb only in the German branch, never to English text.",
+    "Preserve bounded text/output, cancellation, Activity generation, audio/envelope identity and single-player lifecycle when combining sequential English cue and German explanation.",
+    "Do not claim en-US/en-GB dialect, an English accent quality, pronunciation acceptance or Android offline synthesis until actual bounded synthesis and listening are separately observed."
+  ],
+  "boundaries": {
+    "onnx_weights_downloaded_for_this_audit": false,
+    "onnx_inference_run": false,
+    "speech_generated": false,
+    "speech_listened_to": false,
+    "android_execution": false,
+    "paid_cloud_service_used": false,
+    "flutter_or_pub_get_run": false,
+    "product_sources_modified": false,
+    "native_source_modified": false,
+    "model_binary_metadata_download_bytes": 1079988,
+    "source_snapshots_verified": 19,
+    "existing_legacy_voice_profile": "lumo-free-supertonic-de-v1",
+    "existing_legacy_voice_preset": "F2",
+    "sdk_language_argument": "en",
+    "reference_markup": "<en>text.</en>",
+    "locale_variants_verified": [],
+    "current_english_word_count": 14
+  },
+  "evidence_files": [
+    "host-source-integrity.json",
+    "reference-source-bindings.json",
+    "small-model-bytes-verification.json",
+    "pinned-token-and-preset-verification.json",
+    "upstream-small-originals/tts.json"
+  ],
+  "notes": [
+    "Raw metadata/style copies remain local with exact immutable public URLs and hashes; no large model bundle or ONNX weights were downloaded.",
+    "The original audio-production manifest is historical German-production evidence, read only to cross-check F2/pins/44100; none of its synthesis results is relabeled as current English synthesis."
+  ],
+  "observed_at_utc": "2026-11-14T16:21:40.946112+00:00"
+}

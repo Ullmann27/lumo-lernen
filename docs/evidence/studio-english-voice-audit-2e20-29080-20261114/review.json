@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T16:15:39.046769+00:00",
+  "review_type": "read_only_source_audit",
+  "status": "confirmed_native_english_word_audio_gap",
+  "host_source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "host_tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+  "native_source": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "native_tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+  "source_binding": {
+    "host_files": 19,
+    "native_files": 3,
+    "all_expected_git_blobs_sizes_modes_verified": true,
+    "manifest": {
+      "path": "source-binding.json",
+      "bytes": 12775,
+      "sha256": "6baa6b4a275dfcc885fd19c3c267307c051d0d0bc06be8a83dc2e23c19eb5860",
+      "git_blob": "d7e1daa85db7bcdaf8ef1d52b1712fa09eb2f8ef"
+    }
+  },
+  "conclusion": "The native English object exercise sends German explanation text to the existing German F2 local speech adapter. It does not send the target English word, select an English locale, or request a target-word recording.",
+  "findings": [
+    {
+      "id": "F1",
+      "classification": "confirmed_source_behavior",
+      "text": "Both explicit Anhören/Schritt anhören and automatic narration use explanation.text. The JSON passed to speakLearning contains id, text and style only. The actual English target word is used for the visible title/object task, not this speech request.",
+      "evidence": [
+        "native-call",
+        "english-phrases",
+        "speech-label"
+      ]
+    },
+    {
+      "id": "F2",
+      "classification": "confirmed_source_behavior",
+      "text": "English initial, incorrect, hint and completion explanations are German. The completion names the German meaning. The closed object catalog explicitly documents the lack of an English pronunciation channel.",
+      "evidence": [
+        "english-phrases",
+        "native-catalog"
+      ]
+    },
+    {
+      "id": "F3",
+      "classification": "confirmed_source_behavior",
+      "text": "LumoLearningSpeech invokes the local bridge without a language parameter. Bridge availability/results report de, and the engine always calls prepareGerman, wrapping text in <de>...</de>. Flutter LumoVoice.selectedLocale is de-DE and its local client accepts only de/F2/the pinned profile/local/44100 Hz.",
+      "evidence": [
+        "android-request",
+        "bridge-contract",
+        "engine-language",
+        "engine-entry",
+        "flutter-identity",
+        "flutter-local-identity"
+      ]
+    },
+    {
+      "id": "F4",
+      "classification": "catalog_source_inspection_only",
+      "text": "The two current catalogs contain 155 local F2 clips and 6 Sulafat clips. None of the 14 supported target words is an exact clip key, exact clip text or alias. This checks catalog metadata only, not audio bytes, acoustic pronunciation or all possible unrelated phrases. Native LumoLearningSpeech does not consult these catalogs.",
+      "evidence": [
+        "clip-lookup",
+        "flutter-clip-choice"
+      ],
+      "data_file": {
+        "path": "catalog-exact-word-audit.json",
+        "bytes": 4138,
+        "sha256": "360b63377814d54f353a067d1823e9af3dde197f1e08d03759ec609bad5beb1c",
+        "git_blob": "368b87694a41b905e6169636430e2f0153e6e61d"
+      }
+    },
+    {
+      "id": "F5",
+      "classification": "confirmed_source_guard",
+      "text": "Native voice is enabled only when parent voiceEnabled and localVoiceLicenseAccepted are true and the selected central identity is freeOffline. Automatic narration additionally requires autoReadEnabled and not calmMode. MainActivity forwards these settings; LumoLearningSpeech independently requires game=learning and both voice/license booleans. No automatic substitution of the selected voice is present in this native path.",
+      "evidence": [
+        "parent-settings",
+        "activity-options",
+        "android-allow"
+      ]
+    },
+    {
+      "id": "F6",
+      "classification": "confirmed_source_guard_not_device_execution",
+      "text": "Activity pause disables speech; native focus/pause/return calls stop. Main-thread generation/active/destroyed checks retire late synthesis/playback callbacks. Player preparation and playback use actual WAV bytes, the published position/duration come from MediaPlayer, and mute/zero music volume suppress audible and envelope values. The source guards were read, not re-executed here.",
+      "evidence": [
+        "android-owner",
+        "android-request",
+        "actual-player",
+        "cancel-and-status"
+      ]
+    },
+    {
+      "id": "F7",
+      "classification": "confirmed_source_boundary",
+      "text": "The native adapter copies hash-checked model assets into its own cache and calls the local CPU engine. It does not call Android system TTS or the Flutter Sulafat client. The wider Flutter voice service does have a separate parent-authorized cloud path for the other explicit voice identity, so this audit does not claim that the whole app lacks every cloud code path.",
+      "evidence": [
+        "offline-assets",
+        "flutter-local",
+        "flutter-cloud-separate",
+        "parent-settings"
+      ]
+    },
+    {
+      "id": "F8",
+      "classification": "confirmed_current_task_binding",
+      "text": "The host builds the English descriptor from the actual current task and validates the closed word/meaning/options contract. Before native launch it checks profile/task continuity, stops current narration and records the request as help. The descriptor has kind, word, meaning and objects, with no locale or audio cue. No progress/profile/save changes were made for this audit.",
+      "evidence": [
+        "task",
+        "descriptor"
+      ]
+    }
+  ],
+  "concrete_remaining_gap": {
+    "scope": "Supported native English word-to-object exercises",
+    "effect": "The listener can hear German task guidance but has no implemented way through this native speech button to hear the visible target word pronounced in English.",
+    "not_proven": "This is not evidence of a mispronounced English word; the word is not sent by this path. No model-language inability or actual audible behavior is inferred."
+  },
+  "implementation_proposal_not_executed": {
+    "native_source_can_remain_frozen": true,
+    "word_authority": "Derive the closed target word from the validated host launch descriptor, not from native request text.",
+    "sequence": "If the independently checked pinned model genuinely supports English, synthesize the target word with en and the existing explanation with de using the same F2 identity; preserve one request generation/stop ownership and real playback envelope.",
+    "potential_files": [
+      "tools/auto_install/LumoLearningSpeech.kt",
+      "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "tools/auto_install/LumoOfflineSpeechEngine.java"
+    ],
+    "prerequisite": "Independent proof of the exact pinned model and tokenizer English-language support; no blind language-tag replacement.",
+    "implemented": false
+  },
+  "limits": [
+    "No synthesis, audio decoding or listening was performed.",
+    "No device/emulator execution, new test, screenshot review or frame-rate measurement was performed for this audit.",
+    "Model weight/tokenizer English capability is not established by the adapter source or de-only configuration and remains under a separate independent investigation.",
+    "The current 29080 authority job and 17 image reviews demonstrate their recorded producer/render scope, not English pronunciation, actual Android playback or phoneme synchronization.",
+    "This report does not grant release approval or change any branch, pin, workflow, product file or saved user data."
+  ],
+  "related_current_evidence": {
+    "path": "../studio-english-native-29080-ci-20261114/review.json",
+    "sha256": "060db6a88e5cc493b4a4adffc02cb07bd8a222c3705361a761a5b8207fcad751",
+    "native_run": 43611803404,
+    "english_job": 132498257372,
+    "artifact": 14120777154,
+    "images_actually_reviewed": 17,
+    "audio_verification": false
+  }
+}

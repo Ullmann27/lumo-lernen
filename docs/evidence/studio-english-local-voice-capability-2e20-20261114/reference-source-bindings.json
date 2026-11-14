@@ -1,0 +1,98 @@
+[
+  {
+    "key": "english-tts-upstream-helper",
+    "rel": "references/upstream-java-Helper.java",
+    "url": "https://github.com/supertone-oss-archive/supertonic/blob/1e9799e964ea4c0dad7cde993b65c3c813a7b373/java/Helper.java",
+    "repo": "supertone-oss-archive/supertonic",
+    "head": "1e9799e964ea4c0dad7cde993b65c3c813a7b373",
+    "path": "java/Helper.java",
+    "bytes": 35343,
+    "sha256": "c30edb530b4e317c87047cd0369a1ccf2fca90b82407f6666ed641c89c767627",
+    "git_blob": "e09cbad351ca3d458b8f9a385218cf7241bf682f",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/references/upstream-java-Helper.java"
+  },
+  {
+    "key": "english-tts-prepare-offline",
+    "rel": "references/host-prepare_offline_voice.py",
+    "url": "https://github.com/Ullmann27/lumo-lernen/blob/2e20f5f24cee7a696296e6bea5618cc130a40ce2/scripts/prepare_offline_voice.py",
+    "repo": "Ullmann27/lumo-lernen",
+    "head": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+    "path": "scripts/prepare_offline_voice.py",
+    "bytes": 5050,
+    "sha256": "d10f2de36f68b60b1d981a024979006833fdad99cf490fa7be988674cd995d16",
+    "git_blob": "e9d91a8d41ea520cade4f73a2dd078e4e54865f0",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/references/host-prepare_offline_voice.py"
+  },
+  {
+    "key": "english-tts-license-dialog",
+    "rel": "references/host-local_voice_license_dialog.dart",
+    "url": "https://github.com/Ullmann27/lumo-lernen/blob/2e20f5f24cee7a696296e6bea5618cc130a40ce2/lib/features/settings/local_voice_license_dialog.dart",
+    "repo": "Ullmann27/lumo-lernen",
+    "head": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+    "path": "lib/features/settings/local_voice_license_dialog.dart",
+    "bytes": 3686,
+    "sha256": "bd8e8135f0f774cfd6db28eed8486db357bdafdd037a94cb7fce38160ce95ea5",
+    "git_blob": "65796bbb370733a3f3c12bee977c30a800a57edf",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/references/host-local_voice_license_dialog.dart"
+  },
+  {
+    "key": "english-tts-produce-source",
+    "rel": "references/host-produce_lumo_supertonic_voice.py",
+    "url": "https://github.com/Ullmann27/lumo-lernen/blob/2e20f5f24cee7a696296e6bea5618cc130a40ce2/scripts/voice/produce_lumo_supertonic_voice.py",
+    "repo": "Ullmann27/lumo-lernen",
+    "head": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+    "path": "scripts/voice/produce_lumo_supertonic_voice.py",
+    "bytes": 10688,
+    "sha256": "1e31071e1cc4805e6990b3b76522384fa6559230928d639db96796074e2ee10b",
+    "git_blob": "78568ba728ea1f6ee27bf0de14ef2b146233efcc",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/references/host-produce_lumo_supertonic_voice.py"
+  },
+  {
+    "key": "english-tts-refraw-0",
+    "rel": "references/sherpa-generate_voices_bin.py",
+    "url": "https://github.com/k2-fsa/sherpa-onnx/blob/78022953788ff05f62f4a733c6268a5689efeb86/scripts/supertonic/generate_voices_bin.py",
+    "repo": "k2-fsa/sherpa-onnx",
+    "head": "78022953788ff05f62f4a733c6268a5689efeb86",
+    "path": "scripts/supertonic/generate_voices_bin.py",
+    "bytes": 4267,
+    "sha256": "9479238b1866d37288159efcc2f929f3c6bc09d87f511bbd70b474b5739e93df",
+    "git_blob": "7405b78df73b404923be89583a23ce231d063fa5",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/references/sherpa-generate_voices_bin.py"
+  },
+  {
+    "key": "english-tts-refraw-1",
+    "rel": "references/sherpa-offline-tts-supertonic-unicode-processor.cc",
+    "url": "https://github.com/k2-fsa/sherpa-onnx/blob/78022953788ff05f62f4a733c6268a5689efeb86/sherpa-onnx/csrc/offline-tts-supertonic-unicode-processor.cc",
+    "repo": "k2-fsa/sherpa-onnx",
+    "head": "78022953788ff05f62f4a733c6268a5689efeb86",
+    "path": "sherpa-onnx/csrc/offline-tts-supertonic-unicode-processor.cc",
+    "bytes": 13705,
+    "sha256": "e34b93b1c2e39ba3a57ddd636927d630e2769305a99c66caf34b386e6352e3c5",
+    "git_blob": "41e120d2232cfcae423f04ed2ce53c98d25fdf63",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/references/sherpa-offline-tts-supertonic-unicode-processor.cc"
+  },
+  {
+    "key": "english-tts-refraw-2",
+    "rel": "references/sherpa-run.sh",
+    "url": "https://github.com/k2-fsa/sherpa-onnx/blob/78022953788ff05f62f4a733c6268a5689efeb86/scripts/supertonic/run.sh",
+    "repo": "k2-fsa/sherpa-onnx",
+    "head": "78022953788ff05f62f4a733c6268a5689efeb86",
+    "path": "scripts/supertonic/run.sh",
+    "bytes": 3921,
+    "sha256": "e18165884bca7c30ae63b07b2768f581960b80d7fb8c6b0ceb752a1326897748",
+    "git_blob": "02f22c71300aeaf098cc7b58ab27c358ed38d144",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/references/sherpa-run.sh"
+  },
+  {
+    "key": "english-tts-refraw-3",
+    "rel": "references/host-prepare_android.py",
+    "url": "https://github.com/Ullmann27/lumo-lernen/blob/2e20f5f24cee7a696296e6bea5618cc130a40ce2/scripts/prepare_android.py",
+    "repo": "Ullmann27/lumo-lernen",
+    "head": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+    "path": "scripts/prepare_android.py",
+    "bytes": 8826,
+    "sha256": "e80c31269ba8d15fc5db171dd46e1c45cb418f1ff799b03292e89e45b7e4dc6f",
+    "git_blob": "83d6421d0fe26848962c8a2433b0b78182596261",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-local-voice-capability-2e20-20261114/references/host-prepare_android.py"
+  }
+]

@@ -1,0 +1,175 @@
+{
+  "scope": "Catalog source inspection only; no audio decoded, synthesized or heard. Native LumoLearningSpeech does not perform catalog lookup.",
+  "words": [
+    "book",
+    "pen",
+    "ruler",
+    "ball",
+    "car",
+    "sun",
+    "apple",
+    "bag",
+    "rubber",
+    "school bag",
+    "desk",
+    "chair",
+    "pencil case",
+    "paper"
+  ],
+  "catalogs": [
+    {
+      "path": "assets/audio/voice/lumo/catalog.json",
+      "clip_count": 6,
+      "alias_count": 36,
+      "word_checks": {
+        "book": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "pen": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "ruler": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "ball": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "car": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "sun": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "apple": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "bag": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "rubber": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "school bag": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "desk": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "chair": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "pencil case": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "paper": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        }
+      }
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/catalog.json",
+      "clip_count": 155,
+      "alias_count": 0,
+      "word_checks": {
+        "book": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "pen": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "ruler": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "ball": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "car": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "sun": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "apple": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "bag": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "rubber": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "school bag": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "desk": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "chair": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "pencil case": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        },
+        "paper": {
+          "direct_clip": false,
+          "alias": false,
+          "exact_text_clip_ids": []
+        }
+      }
+    }
+  ]
+}
