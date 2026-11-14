@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "kind": "original-feature30-evidence",
+  "repository": "Ullmann27/lumo-lernen",
+  "source_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "source_tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+  "run_id": 43633918165,
+  "attempt": 1,
+  "job_id": 132566422728,
+  "artifact_id": 14129211522,
+  "result": {
+    "passed": 30,
+    "failed": 0,
+    "skipped": 0,
+    "all_eight_delayed_safari_cases": "success"
+  },
+  "complete_original_archive": {
+    "name": "original-artifact-14129211522.zip",
+    "bytes": 1173118,
+    "sha256": "b37096982a441331ff6ee43810e9a5b8fdb5a04d71e06a58884f007be8be0f50",
+    "git_blob": "308e3c7b4945bd945e0441bc52ba61e797ccadb0"
+  },
+  "direct_text_files": [
+    {
+      "name": "originals/feature-test-summary.json",
+      "bytes": 590,
+      "sha256": "262b2b46a98d563194ed762b00b37300d2454c20c565c63da62177ab8d228363",
+      "git_blob": "7f817e45ed1a7b9c07263a4cf55455e0be4ce588"
+    },
+    {
+      "name": "originals/flutter.stdout.jsonl",
+      "bytes": 19065,
+      "sha256": "4c3dec560aeb5690c8dbfe9ad8afe66f420f017bd79a6ffece2c636d4f6e5485",
+      "git_blob": "b0380c1c09b86bb6eddc34952c35bec505408a43"
+    },
+    {
+      "name": "originals/flutter-result.json",
+      "bytes": 16,
+      "sha256": "d24219f6de94b955cf36d25bd2aca88e2d35eef45b9317b7083f55ec8fe9653c",
+      "git_blob": "e5925525ef899d5e06e770f2441311ccc51aa655"
+    },
+    {
+      "name": "originals/source_snapshot.py",
+      "bytes": 3052,
+      "sha256": "f4e35b32b3c5dffc93176a1332cdc9ed2613117e49b4724a397a992ca0bd0e13",
+      "git_blob": "0cf0a0c9a2cff2b0cbfb4174c80d510155a62830"
+    },
+    {
+      "name": "metadata/run-original.json",
+      "bytes": 14518,
+      "sha256": "d1db6e0d6db8be0269551a35f202b1d17f82251592e8d96107362d06e4b663f7",
+      "git_blob": "223acb396fe16b43b33f9298cf81882181d2de2d"
+    },
+    {
+      "name": "metadata/jobs-original.json",
+      "bytes": 4757,
+      "sha256": "2028870d1c6678900a0f444a5ed5c65779702bfcf0df49f62cb507ac139367bb",
+      "git_blob": "5b01ee5c22ab598d0b398e5d26719d56a2000662"
+    },
+    {
+      "name": "metadata/artifacts-original.json",
+      "bytes": 992,
+      "sha256": "f5a04efa3913b86712936213627401a80b388aef9a68863da55d39ceaae466c5",
+      "git_blob": "69009093f9315232ea9d90cd0526596d5ce56615"
+    },
+    {
+      "name": "metadata/source-commit-original.json",
+      "bytes": 1379,
+      "sha256": "52503dca74b34ecdbe9b70d4cb7e946fe8d8f8eef65e956c11392cec6b76d9df",
+      "git_blob": "78e44172fd793d132583e71ffc2454d5d9c3a23b"
+    },
+    {
+      "name": "metadata/job-132566422728-original.log",
+      "bytes": 77769,
+      "sha256": "fd54f1434c1c737114aba9961d0248906ce86fd69034a427aae241ae92410692",
+      "git_blob": "80601fa24761193e5ba8fb340cc1563f6c25092a"
+    },
+    {
+      "name": "archive-manifest.json",
+      "bytes": 5251,
+      "sha256": "58fbd16c9bd832a3ab9368c54266224e0308320fcc0bbcf9301fdfa9bd32198b",
+      "git_blob": "3b55cb54c333c804fef6fcc9f699aa90071e9246"
+    },
+    {
+      "name": "independent-recount.json",
+      "bytes": 22260,
+      "sha256": "308b8f3003d8bd460b35c98a70c3fd510fb52b2361942edd16b95e6b7bda4596",
+      "git_blob": "34740138c3b581bbfadadac00d5a4e68b9ed2012"
+    },
+    {
+      "name": "recount_feature.py",
+      "bytes": 8393,
+      "sha256": "1cb923dca75cf1f25476a3905d0d5ef5b52961ca39b5b92cccd3f31928f1b231",
+      "git_blob": "599e9d041caccd5b88d85481d6bbc50eea620842"
+    },
+    {
+      "name": "collect_feature_artifact.py",
+      "bytes": 5134,
+      "sha256": "a0dce4a7fba8a854d1ead6068db83dec4946de4ef94d641368c43b56fb190f14",
+      "git_blob": "5c0624f51a513d48545eb557ea7b95596da0f7a6"
+    },
+    {
+      "name": "collection-execution.json",
+      "bytes": 804,
+      "sha256": "41f2feee3745c9767d9d8cbc5b62f0889c6c012d4a9504f6aa683801a0df612c",
+      "git_blob": "d77e19ccb3ab0167404e705bdeca55e28846e901"
+    },
+    {
+      "name": "recount-execution.json",
+      "bytes": 328,
+      "sha256": "9eda18a32304080a88f46920cad718a49ce6d6a81bef9802bd94cf4ca71fce91",
+      "git_blob": "c2800ba140e456d161c6f6f8b783612e2bc8541a"
+    },
+    {
+      "name": "original-artifact-metadata.json",
+      "bytes": 867,
+      "sha256": "95629da56557ced74bb93ec18ba702f0f6afd9d531f73420058dab29b2090443",
+      "git_blob": "a4e2298df014fd8e1e8a74b4532496816f1b7a2d"
+    }
+  ],
+  "limits": [
+    "Source snapshots and both original binary Git indexes are retained in the byte-identical complete Actions ZIP.",
+    "This is the current focused Feature30 result, not complete Flutter, Android, Update or Delivery acceptance.",
+    "The archive is checked locally by API SHA256, byte size and every member CRC/SHA256; the returned Gitblob identity must match its independently calculated content hash."
+  ]
+}

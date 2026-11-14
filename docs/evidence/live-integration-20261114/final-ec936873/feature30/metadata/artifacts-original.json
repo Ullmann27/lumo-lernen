@@ -1,0 +1,25 @@
+{
+  "total_count": 1,
+  "artifacts": [
+    {
+      "id": 14129211522,
+      "node_id": "MDg6QXJ0aWZhY3QxNDEyOTIxMTUyMg==",
+      "name": "lumo-feature-connections-ec936873a45ffeb9ab347cc6bdb10951e38fac5e-attempt-1",
+      "size_in_bytes": 1173118,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14129211522",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14129211522/zip",
+      "expired": false,
+      "digest": "sha256:b37096982a441331ff6ee43810e9a5b8fdb5a04d71e06a58884f007be8be0f50",
+      "created_at": "2026-11-14T19:47:42Z",
+      "updated_at": "2026-11-14T19:47:42Z",
+      "expires_at": "2026-12-14T19:47:42Z",
+      "workflow_run": {
+        "id": 43633918165,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-live-connections-20261114",
+        "head_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e"
+      }
+    }
+  ]
+}

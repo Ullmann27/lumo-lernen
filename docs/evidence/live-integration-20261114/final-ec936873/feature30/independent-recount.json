@@ -1,0 +1,715 @@
+{
+  "schema": 1,
+  "kind": "independent-original-jsonl-recount",
+  "repository": "Ullmann27/lumo-lernen",
+  "source_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "source_tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+  "run_id": 43633918165,
+  "attempt": 1,
+  "job_id": 132566422728,
+  "artifact_id": 14129211522,
+  "status": "PASS",
+  "passed": 30,
+  "failed": 0,
+  "skipped": 0,
+  "safari_delayed_continuation": [
+    {
+      "test_id": 29,
+      "name": "Live safari correct answer keeps its delayed continuation bound during word magic",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 61,
+      "done_jsonl_line": 64,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 30,
+      "name": "Live safari correct answer keeps its delayed continuation bound during safari round trip",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 65,
+      "done_jsonl_line": 66,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 31,
+      "name": "Live safari correct answer keeps its delayed continuation bound during unchanged safari",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 67,
+      "done_jsonl_line": 71,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 34,
+      "name": "Live safari correct answer keeps its delayed continuation bound during profile change",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 72,
+      "done_jsonl_line": 73,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 35,
+      "name": "Live safari wrong answer keeps its delayed continuation bound during word magic",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 74,
+      "done_jsonl_line": 75,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 36,
+      "name": "Live safari wrong answer keeps its delayed continuation bound during safari round trip",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 76,
+      "done_jsonl_line": 77,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 37,
+      "name": "Live safari wrong answer keeps its delayed continuation bound during unchanged safari",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 78,
+      "done_jsonl_line": 79,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 38,
+      "name": "Live safari wrong answer keeps its delayed continuation bound during profile change",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 80,
+      "done_jsonl_line": 83,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    }
+  ],
+  "visible_cases": [
+    {
+      "test_id": 8,
+      "name": "Live word magic offers explanations without a picture promise",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 18,
+      "done_jsonl_line": 20,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 6,
+      "name": "actual WortDiktat vertical stroke stays stationary at Size(430.0, 600.0)",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 15,
+      "done_jsonl_line": 22,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 9,
+      "name": "Live safari displays its existing animal and advances the round",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 21,
+      "done_jsonl_line": 24,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 11,
+      "name": "Live photo quiz checks camera consent before capture",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 25,
+      "done_jsonl_line": 26,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 10,
+      "name": "actual WortDiktat vertical stroke stays stationary at Size(640.0, 360.0)",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 23,
+      "done_jsonl_line": 29,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 12,
+      "name": "Live photo quiz cancellation keeps capture ready without rewards",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 28,
+      "done_jsonl_line": 31,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 14,
+      "name": "Live photo quiz recovers from a native camera rejection",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 32,
+      "done_jsonl_line": 33,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 13,
+      "name": "WortDiktat keeps its first contact across rows; foreign ends first=true",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 30,
+      "done_jsonl_line": 35,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 15,
+      "name": "Live photo quiz offers a spoken answer only after a real photo",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 34,
+      "done_jsonl_line": 37,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 17,
+      "name": "Live photo quiz discards a pending capture after a mode round trip",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 38,
+      "done_jsonl_line": 39,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 16,
+      "name": "WortDiktat keeps its first contact across rows; foreign ends first=false",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 36,
+      "done_jsonl_line": 41,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 19,
+      "name": "a WortDiktat tap alone is not a completed writing attempt",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 42,
+      "done_jsonl_line": 43,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 18,
+      "name": "Live photo quiz rejects a delayed camera error after profile change",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 40,
+      "done_jsonl_line": 45,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 20,
+      "name": "a cancelled WortDiktat stroke is not a completed attempt",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 44,
+      "done_jsonl_line": 47,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 21,
+      "name": "Live photo quiz rejects a delayed camera error after lease reset",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 46,
+      "done_jsonl_line": 49,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 22,
+      "name": "WortDiktat cancel preserves completed strokes in other rows",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 48,
+      "done_jsonl_line": 51,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 23,
+      "name": "Live photo quiz rejects a delayed camera error after mode round trip",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 50,
+      "done_jsonl_line": 56,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 27,
+      "name": "Live Pro opens without initializing microphone; denied tap stays local",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 57,
+      "done_jsonl_line": 58,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 28,
+      "name": "Photo lesson checks saved camera consent before opening the scanner",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 59,
+      "done_jsonl_line": 60,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 29,
+      "name": "Live safari correct answer keeps its delayed continuation bound during word magic",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 61,
+      "done_jsonl_line": 64,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 30,
+      "name": "Live safari correct answer keeps its delayed continuation bound during safari round trip",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 65,
+      "done_jsonl_line": 66,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 31,
+      "name": "Live safari correct answer keeps its delayed continuation bound during unchanged safari",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 67,
+      "done_jsonl_line": 71,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 34,
+      "name": "Live safari correct answer keeps its delayed continuation bound during profile change",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 72,
+      "done_jsonl_line": 73,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 35,
+      "name": "Live safari wrong answer keeps its delayed continuation bound during word magic",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 74,
+      "done_jsonl_line": 75,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 36,
+      "name": "Live safari wrong answer keeps its delayed continuation bound during safari round trip",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 76,
+      "done_jsonl_line": 77,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 37,
+      "name": "Live safari wrong answer keeps its delayed continuation bound during unchanged safari",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 78,
+      "done_jsonl_line": 79,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 33,
+      "name": "Profil zeigt echte Werte und führt in Einstellungen und Laden",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 70,
+      "done_jsonl_line": 81,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 38,
+      "name": "Live safari wrong answer keeps its delayed continuation bound during profile change",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 80,
+      "done_jsonl_line": 83,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 39,
+      "name": "Profil-Extras öffnet die vorhandenen Einstellungen als echte Schaltfläche",
+      "source_url": "package:flutter_test/src/widget_tester.dart",
+      "source_line": 174,
+      "start_jsonl_line": 82,
+      "done_jsonl_line": 84,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "test_id": 40,
+      "name": "Level-Titel steigen mit dem Level",
+      "source_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/profile_screen_test.dart",
+      "source_line": 125,
+      "start_jsonl_line": 85,
+      "done_jsonl_line": 86,
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    }
+  ],
+  "hidden_loading_events": [
+    {
+      "test_id": 1,
+      "name": "loading /home/runner/work/lumo-lernen/lumo-lernen/test/wort_diktat_gesture_regression_test.dart",
+      "source_url": null,
+      "source_line": null,
+      "start_jsonl_line": 3,
+      "done_jsonl_line": 11,
+      "result": "success",
+      "skipped": false,
+      "hidden": true
+    },
+    {
+      "test_id": 5,
+      "name": "(setUpAll)",
+      "source_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/wort_diktat_gesture_regression_test.dart",
+      "source_line": 119,
+      "start_jsonl_line": 13,
+      "done_jsonl_line": 14,
+      "result": "success",
+      "skipped": false,
+      "hidden": true
+    },
+    {
+      "test_id": 3,
+      "name": "loading /home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart",
+      "source_url": null,
+      "source_line": null,
+      "start_jsonl_line": 5,
+      "done_jsonl_line": 16,
+      "result": "success",
+      "skipped": false,
+      "hidden": true
+    },
+    {
+      "test_id": 24,
+      "name": "(tearDownAll)",
+      "source_url": null,
+      "source_line": null,
+      "start_jsonl_line": 52,
+      "done_jsonl_line": 53,
+      "result": "success",
+      "skipped": false,
+      "hidden": true
+    },
+    {
+      "test_id": 26,
+      "name": "loading /home/runner/work/lumo-lernen/lumo-lernen/test/profile_screen_test.dart",
+      "source_url": null,
+      "source_line": null,
+      "start_jsonl_line": 55,
+      "done_jsonl_line": 68,
+      "result": "success",
+      "skipped": false,
+      "hidden": true
+    }
+  ],
+  "event_type_counts": {
+    "start": 1,
+    "suite": 3,
+    "testStart": 35,
+    "allSuites": 1,
+    "testDone": 35,
+    "group": 3,
+    "print": 2,
+    "done": 1
+  },
+  "non_event_stdout_lines": [
+    {
+      "line": 7,
+      "kind": "blank",
+      "text": ""
+    },
+    {
+      "line": 8,
+      "kind": "flutter-process-protocol",
+      "value": [
+        {
+          "event": "test.startedProcess",
+          "params": {
+            "vmServiceUri": null
+          }
+        }
+      ]
+    },
+    {
+      "line": 9,
+      "kind": "blank",
+      "text": ""
+    },
+    {
+      "line": 10,
+      "kind": "flutter-process-protocol",
+      "value": [
+        {
+          "event": "test.startedProcess",
+          "params": {
+            "vmServiceUri": null
+          }
+        }
+      ]
+    },
+    {
+      "line": 62,
+      "kind": "blank",
+      "text": ""
+    },
+    {
+      "line": 63,
+      "kind": "flutter-process-protocol",
+      "value": [
+        {
+          "event": "test.startedProcess",
+          "params": {
+            "vmServiceUri": null
+          }
+        }
+      ]
+    }
+  ],
+  "terminal_event": {
+    "jsonl_line": 87,
+    "success": true,
+    "type": "done",
+    "time": 15383
+  },
+  "source_preservation": {
+    "tracked_files": 4999,
+    "before_after_differences": [
+      "phase"
+    ],
+    "all_recorded_blob_ids_match_actual_bytes": true,
+    "before_after_file_records_identical": true,
+    "index_bytes_identical": true,
+    "index_sha256": "a34366f62f56a570d8dfff5ed7f534ed22b1c07dffa568ee3323638a55e4b3ab",
+    "before_after_git_status_empty": true
+  },
+  "archive": {
+    "path": "original-artifact-14129211522.zip",
+    "bytes": 1173118,
+    "sha256": "b37096982a441331ff6ee43810e9a5b8fdb5a04d71e06a58884f007be8be0f50",
+    "git_blob": "308e3c7b4945bd945e0441bc52ba61e797ccadb0"
+  },
+  "original_files": [
+    {
+      "path": "originals/assets.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "originals/assets.stdout.log",
+      "bytes": 1420,
+      "sha256": "0b5c91c45e356f656a641bbf039ca36b5d02aabc53965c0e9f2df5bc44f7d936",
+      "git_blob": "f18cf02562e4b98e2e9563a7c54c3e7ba508fbab"
+    },
+    {
+      "path": "originals/feature-test-summary.json",
+      "bytes": 590,
+      "sha256": "262b2b46a98d563194ed762b00b37300d2454c20c565c63da62177ab8d228363",
+      "git_blob": "7f817e45ed1a7b9c07263a4cf55455e0be4ce588"
+    },
+    {
+      "path": "originals/flutter-result.json",
+      "bytes": 16,
+      "sha256": "d24219f6de94b955cf36d25bd2aca88e2d35eef45b9317b7083f55ec8fe9653c",
+      "git_blob": "e5925525ef899d5e06e770f2441311ccc51aa655"
+    },
+    {
+      "path": "originals/flutter.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "originals/flutter.stdout.jsonl",
+      "bytes": 19065,
+      "sha256": "4c3dec560aeb5690c8dbfe9ad8afe66f420f017bd79a6ffece2c636d4f6e5485",
+      "git_blob": "b0380c1c09b86bb6eddc34952c35bec505408a43"
+    },
+    {
+      "path": "originals/git-index-after.original",
+      "bytes": 569439,
+      "sha256": "a34366f62f56a570d8dfff5ed7f534ed22b1c07dffa568ee3323638a55e4b3ab",
+      "git_blob": "c956a7043b84a5a5cedd0ca368d4223643b62101"
+    },
+    {
+      "path": "originals/git-index-before.original",
+      "bytes": 569439,
+      "sha256": "a34366f62f56a570d8dfff5ed7f534ed22b1c07dffa568ee3323638a55e4b3ab",
+      "git_blob": "c956a7043b84a5a5cedd0ca368d4223643b62101"
+    },
+    {
+      "path": "originals/git-status-after.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "originals/git-status-before.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "originals/setup-result.json",
+      "bytes": 16,
+      "sha256": "d24219f6de94b955cf36d25bd2aca88e2d35eef45b9317b7083f55ec8fe9653c",
+      "git_blob": "e5925525ef899d5e06e770f2441311ccc51aa655"
+    },
+    {
+      "path": "originals/setup.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "originals/setup.stdout.log",
+      "bytes": 2789,
+      "sha256": "bb2218babe9547370a428a57be86664f124ad77204d8497819cd6085325cb959",
+      "git_blob": "9b6534a33d5c83c494c5fe5692c0fbb017097a36"
+    },
+    {
+      "path": "originals/source-after.json",
+      "bytes": 1726960,
+      "sha256": "52092bb907b187da56732a92de62a1f39ea803de895326f0f44f68cdf5a74d52",
+      "git_blob": "69c8518353a4b1b792975198301c9e61cecab518"
+    },
+    {
+      "path": "originals/source-before.json",
+      "bytes": 1726961,
+      "sha256": "18bb604ac9f3c1011aa16929f4581a7de77f36e98c4f02b2cd8b55732b20e2dd",
+      "git_blob": "96e2ea8294a0435f3bb60262ba7a75837892aad5"
+    },
+    {
+      "path": "originals/source_snapshot.py",
+      "bytes": 3052,
+      "sha256": "f4e35b32b3c5dffc93176a1332cdc9ed2613117e49b4724a397a992ca0bd0e13",
+      "git_blob": "0cf0a0c9a2cff2b0cbfb4174c80d510155a62830"
+    }
+  ],
+  "metadata_files": [
+    {
+      "path": "metadata/artifacts-original.json",
+      "bytes": 992,
+      "sha256": "f5a04efa3913b86712936213627401a80b388aef9a68863da55d39ceaae466c5",
+      "git_blob": "69009093f9315232ea9d90cd0526596d5ce56615"
+    },
+    {
+      "path": "metadata/job-132566422728-original.log",
+      "bytes": 77769,
+      "sha256": "fd54f1434c1c737114aba9961d0248906ce86fd69034a427aae241ae92410692",
+      "git_blob": "80601fa24761193e5ba8fb340cc1563f6c25092a"
+    },
+    {
+      "path": "metadata/jobs-original.json",
+      "bytes": 4757,
+      "sha256": "2028870d1c6678900a0f444a5ed5c65779702bfcf0df49f62cb507ac139367bb",
+      "git_blob": "5b01ee5c22ab598d0b398e5d26719d56a2000662"
+    },
+    {
+      "path": "metadata/run-original.json",
+      "bytes": 14518,
+      "sha256": "d1db6e0d6db8be0269551a35f202b1d17f82251592e8d96107362d06e4b663f7",
+      "git_blob": "223acb396fe16b43b33f9298cf81882181d2de2d"
+    },
+    {
+      "path": "metadata/source-commit-original.json",
+      "bytes": 1379,
+      "sha256": "52503dca74b34ecdbe9b70d4cb7e946fe8d8f8eef65e956c11392cec6b76d9df",
+      "git_blob": "78e44172fd793d132583e71ffc2454d5d9c3a23b"
+    }
+  ],
+  "limitations": [
+    "This recount reads the completed Feature30 Actions originals; it starts no Flutter process.",
+    "This focused result is not the complete Flutter suite or Android acceptance.",
+    "The archive preserves all original source snapshots and both original Git indexes."
+  ]
+}
