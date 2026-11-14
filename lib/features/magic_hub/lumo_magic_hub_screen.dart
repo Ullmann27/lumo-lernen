@@ -13,7 +13,6 @@ import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/lumo_mirror.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/premium/lumo_hero_card.dart';
-import '../../widgets/premium/lumo_magic_background.dart';
 import '../../widgets/premium/lumo_premium_card.dart';
 import '../cosmos/lumo_cosmos_screen.dart';
 import '../live/lumo_live_pro_screen.dart';

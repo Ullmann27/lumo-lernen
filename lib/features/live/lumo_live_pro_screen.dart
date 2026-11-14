@@ -86,6 +86,8 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   LiveMode _mode = LiveMode.wordMagic;
   bool _sttReady = false;
   bool _listening = false;
+  bool _capturingPhoto = false;
+  int _modeRevision = 0;
   String _recognized = '';
   String? _generatedImageUrl;
   String? _capturedImagePath;
@@ -185,9 +187,17 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     if (mounted) setState(() => _listening = _stt.listening);
   }
 
+  bool _isCurrentInteraction(int revision, LearningProfileLease owner) =>
+      mounted &&
+      revision == _modeRevision &&
+      widget.appState.isCurrentLearningLease(owner);
+
   void _switchMode(LiveMode m) {
+    _modeRevision++;
+    _stt.cancel();
     setState(() {
       _mode = m;
+      _listening = false;
       _recognized = '';
       _generatedImageUrl = null;
       _capturedImagePath = null;
@@ -211,11 +221,14 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
 
   Future<void> _speak(String text) async {
     if (!mounted) return;
+    final revision = _modeRevision;
     setState(() {
       _lumoMessage = text;
     });
     await widget.appState.ensureSettingsLoaded();
-    if (!mounted || !widget.appState.state.settings.voiceEnabled) return;
+    if (!mounted ||
+        revision != _modeRevision ||
+        !widget.appState.state.settings.voiceEnabled) return;
     try {
       LumoVoice.instance.speak(text);
     } catch (_) {}
@@ -249,7 +262,10 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   }
 
   Future<void> _startListening() async {
-    if (_listening) return;
+    if (_listening ||
+        _capturingPhoto ||
+        (_mode == LiveMode.photoQuiz && _capturedImagePath == null)) return;
+    final revision = _modeRevision;
     final source = widget.appState.captureLearningProfile();
     LearningProfileLease owner;
     try {
@@ -258,13 +274,13 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     } catch (_) {
       return;
     }
-    if (!mounted || !widget.appState.isCurrentLearningLease(owner)) return;
+    if (!_isCurrentInteraction(revision, owner)) return;
     if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
-        !mounted) {
+        !_isCurrentInteraction(revision, owner)) {
       return;
     }
     if (!_sttReady) await _initStt();
-    if (!mounted || !widget.appState.isCurrentLearningLease(owner)) return;
+    if (!_isCurrentInteraction(revision, owner)) return;
     if (!_sttReady) {
       _speak('Ich brauch dein Mikrofon - bitte erlauben!');
       return;
@@ -279,14 +295,18 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     try {
       await _stt.startListening(
         onResult: (words) {
-          if (mounted && widget.appState.isCurrentLearningLease(owner)) {
+          if (_isCurrentInteraction(revision, owner)) {
             setState(() => _recognized = words);
           }
         },
-        onFinalResult: (_) => _onSpeechDone(owner),
+        onFinalResult: (_) {
+          if (_isCurrentInteraction(revision, owner)) _onSpeechDone(owner);
+        },
       );
     } catch (e) {
-      if (mounted) setState(() => _listening = false);
+      if (_isCurrentInteraction(revision, owner)) {
+        setState(() => _listening = false);
+      }
     }
   }
 
@@ -341,17 +361,21 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   // MODE 2: FOTO-QUIZ
   // ────────────────────────────────────────────────────────────────
   Future<void> _capturePhoto() async {
-    if (!await LumoFeaturePermissions.camera(context, widget.appState) ||
-        !mounted) {
-      return;
-    }
+    if (_capturingPhoto || _mode != LiveMode.photoQuiz) return;
+    final revision = _modeRevision;
+    setState(() => _capturingPhoto = true);
     try {
+      final owner = await widget.appState.captureLearningProfile();
+      await widget.appState.prepareLearningLease(owner);
+      if (!_isCurrentInteraction(revision, owner)) return;
+      if (!await LumoFeaturePermissions.camera(context, widget.appState) ||
+          !_isCurrentInteraction(revision, owner)) return;
       final photo = await _picker.pickImage(
         source: ImageSource.camera,
         imageQuality: 60,
         maxWidth: 800,
       );
-      if (photo == null || !mounted) return;
+      if (photo == null || !_isCurrentInteraction(revision, owner)) return;
       setState(() {
         _capturedImagePath = photo.path;
         _photoQuizQuestionIdx = 0;
@@ -359,11 +383,17 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
       });
       _speak(_extendedPhotoQuestions[0]);
     } catch (e) {
-      _speak('Das Foto hat nicht geklappt. Probier nochmal!');
+      if (mounted && revision == _modeRevision) {
+        _speak('Das Foto hat nicht geklappt. Probier nochmal!');
+      }
+    } finally {
+      if (mounted) setState(() => _capturingPhoto = false);
     }
   }
 
   Future<void> _handlePhotoQuiz(LearningProfileLease owner) async {
+    if (_mode != LiveMode.photoQuiz || _capturedImagePath == null) return;
+    final revision = _modeRevision;
     // Nach jeder Antwort: naechste Frage oder Ende
     setState(() {});
     widget.appState.addStars(1);
@@ -378,7 +408,8 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
       _photoQuizQuestionIdx++;
       setState(() => _mood = LumoMirrorMood.happy);
       await Future.delayed(const Duration(milliseconds: 1500));
-      if (!mounted || !widget.appState.isCurrentLearningLease(owner)) return;
+      if (!_isCurrentInteraction(revision, owner) ||
+          _capturedImagePath == null) return;
       _speak(_extendedPhotoQuestions[_photoQuizQuestionIdx]);
     } else {
       setState(() => _mood = LumoMirrorMood.cheer);
@@ -756,6 +787,8 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   }
 
   Widget _buildActionBar() {
+    final needsPhoto =
+        _mode == LiveMode.photoQuiz && _capturedImagePath == null;
     return Container(
       padding: const EdgeInsets.all(LumoTokens.space16),
       decoration: BoxDecoration(
@@ -770,15 +803,23 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
               child: SizedBox(
                 height: 64,
                 child: ElevatedButton.icon(
-                  onPressed: _listening || _lumoCurrentlySpeaking
+                  onPressed: _capturingPhoto || _listening || _lumoCurrentlySpeaking
                       ? null
-                      : _startListening,
+                      : (needsPhoto ? _capturePhoto : _startListening),
                   icon: Icon(
-                      _mode == LiveMode.photoQuiz ? Icons.camera_alt_rounded
-                           : (_listening ? Icons.hearing_rounded : Icons.mic_rounded),
+                      needsPhoto
+                          ? Icons.camera_alt_rounded
+                          : (_listening
+                              ? Icons.hearing_rounded
+                              : Icons.mic_rounded),
                       size: 28),
-                  label: Text(_mode == LiveMode.photoQuiz
-                       ? 'Foto machen' : (_listening ? 'Hoere...' : 'Sprechen')),
+                  label: Text(needsPhoto
+                      ? 'Foto machen'
+                      : (_listening
+                          ? 'Hoere...'
+                          : (_mode == LiveMode.photoQuiz
+                              ? 'Antwort sprechen'
+                              : 'Sprechen'))),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: LumoTokens.colors.lumoOrange,
                     foregroundColor: Colors.white,

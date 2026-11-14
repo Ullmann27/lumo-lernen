@@ -8,7 +8,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/core/iq/iq_test_session.dart';
 import 'package:lumo_lernen/features/tests/cognitive_profile_screen.dart';
-import 'package:lumo_lernen/features/tests/iq_test_screen.dart';
 
 import '../helpers/lumo_capture.dart';
 import '../iq/iq_test_support.dart';
