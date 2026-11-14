@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "host_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+  "source_tree": "17b4d10565001b61fe1fa5012004cce4ec7642d9",
+  "observed_at_utc": "2026-11-14T10:56:47Z",
+  "full_flutter": {
+    "run_id": 43586101225,
+    "run_attempt": 1,
+    "job_id": 132421769277,
+    "step_number": 13,
+    "step_name": "Full Flutter regression suite including every capture",
+    "step_conclusion": "success",
+    "artifact_id": 14109914601,
+    "artifact_api_size_bytes": 363844187,
+    "artifact_api_zip_sha256": "fc254d6be40cb573559bc1a378c8f6baf469a9e09241a86c56ecd86fb2798476",
+    "individual_test_counts_verified": false,
+    "original_machine_protocol_read": false,
+    "original_png_count_verified": false,
+    "local_archive_transfer_completed_and_verified": false,
+    "limitation": "The managed local environment became unavailable during the single local download. The complete ZIP has a reusable original file reference, but no successful local completion or extraction result was returned. The active verify-and-build job log was not yet published (404)."
+  },
+  "home": {
+    "run_id": 43586101113,
+    "run_attempt": 1,
+    "job_id": 132420784454,
+    "conclusion": "success",
+    "actual_checkout": "f0ff3121347c99c5752438c883977d79a9823fda",
+    "checkout_tree": "17b4d10565001b61fe1fa5012004cce4ec7642d9",
+    "tree_equals_host_source": true,
+    "original_log_test_counts": [
+      13,
+      8
+    ],
+    "subject_inkwell_hits": [
+      {
+        "variant": "phone",
+        "hits": 1
+      },
+      {
+        "variant": "fold-cover",
+        "hits": 1
+      },
+      {
+        "variant": "fold-open",
+        "hits": 1
+      },
+      {
+        "variant": "large-text",
+        "hits": 1
+      }
+    ],
+    "new_run_pngs_locally_viewed": false
+  },
+  "workshop": {
+    "run_id": 43586101300,
+    "run_attempt": 1,
+    "job_id": 132420785172,
+    "conclusion": "success",
+    "actual_checkout": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+    "original_log_test_counts": [
+      27
+    ],
+    "new_run_pngs_locally_viewed": false
+  },
+  "tested_files": {
+    "test/design/home_1989_premium_cards_capture_test.dart": "4259e169976f458135618d2a831d86f917fdb688",
+    "test/design/dorfwirtschaft_spielewelt_capture_test.dart": "935ca225a6fa67df73f520494d61480943435595"
+  },
+  "earlier_original_png_checkpoint": {
+    "commit": "34ea2eec68aa6b4e2f951d4ab4d4478961485ac7",
+    "home_source": "b5b7f6d9c2c33fd43234fc28fefd1f84f933dcea",
+    "village_source": "c54d9aa3a4dccab6c1cf677c9857abf77df66174",
+    "new_07_pixels_not_yet_compared": true
+  }
+}
