@@ -5,12 +5,15 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import time
 import traceback
+import xml.etree.ElementTree as ET
 
 from lumo_connect_four_android_probe import Probe, ROOT, write
+from flutter_surface_readiness import inspect_flutter_frame
 import connect_four_android_evidence as c4
 import village_android_evidence as village
 
@@ -20,6 +23,11 @@ class VillageProbe(Probe):
         left = self.deadline-time.monotonic()
         if left <= 0:
             raise TimeoutError('The actual Village Android roundtrip exceeded 900 seconds')
+        observed_until = getattr(self, '_flutter_observation_deadline', None)
+        if observed_until is not None:
+            left = min(left, observed_until-time.monotonic())
+            if left <= 0:
+                raise TimeoutError('The actual visible Flutter return exceeded its 90-second observation budget')
         return min(left, maximum)
 
     def processes(self, tag, *, native):
@@ -105,15 +113,99 @@ class VillageProbe(Probe):
         row.update(touch_journal='village-return-surface-readiness.json',
                    command_original=commands[0], native_before_return=current)
         _, row['preferences'] = self.read_preferences('returned-flutter')
-        row['frame'] = self.ui.capture_flutter_ready(self.out, 'returned-flutter-frame', timeout=self.remaining(30))
-        image = village.capture(self.out, row['frame'])
-        row['visible_ocr'] = 'returned-flutter-visible'
-        self.ui.image_lines(self.out, row['visible_ocr'], 'spielen', source_path=image,
-                            timeout=self.remaining(60), exact=True)
-        village.caption(self.out, image, row['visible_ocr'], 'Spielen')
-        self.ui.read_live_nodes(self.out, 'returned-flutter-ui')
-        row['ui'] = 'returned-flutter-ui.xml'
-        return row
+        return self.observe_flutter_return(row)
+
+    def observe_flutter_return(self, returned):
+        """Observe the real host surface after ACK; never act on the app again.
+
+        Activity/PID return can precede Android's closing/rotation surface. The
+        previous 30s capture + 60s OCR allowance is one shared 90s budget. Every
+        rejected PNG, TSV and live hierarchy keeps its own original filename.
+        """
+        accepted = self.out/'returned-flutter-frame.png'
+        if accepted.exists() or accepted.is_symlink():
+            raise FileExistsError('Refusing to overwrite the original returned Flutter frame')
+        started = time.monotonic()
+        deadline = started+self.remaining(90)
+        host, _ = village.process(self.out, returned, native=False)
+        journal = {'schema': 'lumo-village-flutter-return-observation', 'version': 1,
+                   'status': 'FAIL', 'timeout_seconds': 90, 'attempts': [],
+                   'scope': 'Fresh PNG/TSV and live Flutter semantics after the single visible return touch'}
+        self._flutter_observation_deadline = deadline
+        try:
+            while time.monotonic() < deadline:
+                index = len(journal['attempts'])+1
+                tag = 'returned-flutter-visible-'+str(index)
+                directory = self.out/'returned-flutter-observations'/('attempt-'+str(index))
+                directory.mkdir(parents=True, exist_ok=False)
+                attempt = {'status': 'REJECTED', 'started_after_seconds': time.monotonic()-started}
+                journal['attempts'].append(attempt)
+                try:
+                    self.remaining()
+                    current = self.processes(tag+'-before', native=False)
+                    attempt['process_before'] = current
+                    c4.demand(village.process(self.out, current, native=False)[0] == host,
+                              'Flutter process changed during visible return observation')
+                    self.remaining()
+                    frame = self.ui.capture(directory, 'returned-flutter-frame', timeout=self.remaining(30))
+                    c4.demand(frame['file'] == accepted.name, 'Unexpected original return screenshot filename')
+                    image = village.capture(directory, frame)
+                    frame = {**frame, 'file': image.relative_to(self.out).as_posix()}
+                    attempt['frame'] = frame
+                    self.remaining()
+                    attempt['render_readiness'] = inspect_flutter_frame(image)
+                    c4.demand(attempt['render_readiness']['visually_ready'],
+                              'Current returned Flutter frame is not rendered')
+                    self.remaining()
+                    attempt['visible_ocr'] = tag
+                    self.ui.image_lines(self.out, tag, 'spielen', source_path=image,
+                                        timeout=self.remaining(60), exact=True)
+                    self.remaining()
+                    village.caption(self.out, image, tag, 'Spielen')
+                    self.remaining()
+                    ui_tag = 'returned-flutter-ui-'+str(index)
+                    self.ui.read_live_nodes(self.out, ui_tag)
+                    attempt['ui'] = ui_tag+'.xml'
+                    self.remaining()
+                    tree = ET.fromstring(c4.safe_member(self.out, attempt['ui']).read_text())
+                    c4.demand(tree.tag == 'hierarchy' and any(node.get('package') == c4.PACKAGE
+                              and node.get('enabled') == 'true'
+                              and any(value == 'Spielen' or village.PORTAL in value for value in
+                                      (node.get('text', ''), node.get('content-desc', '')))
+                              for node in tree.iter('node')), 'Actual Flutter Spielewelt did not return')
+                    self.remaining()
+                    current = self.processes(tag+'-after', native=False)
+                    attempt['process_after'] = current
+                    c4.demand(village.process(self.out, current, native=False)[0] == host,
+                              'Flutter process changed after visible return observation')
+                    self.remaining()
+                    _, current['preferences'] = self.read_preferences(tag)
+                    self.remaining()
+                    village.capture(self.out, frame)
+                    self.remaining()
+                    # Keep the accepted attempt as well as the established
+                    # exporter filename. Same basename also preserves strict
+                    # component/tile OCR source-name and pixel-hash replay.
+                    with image.open('rb') as original, accepted.open('xb') as target:
+                        shutil.copyfileobj(original, target)
+                    c4.demand(c4.sha256(accepted) == frame['sha256'], 'Accepted original return copy differs')
+                    self.remaining()
+                    attempt.update(status='PASS', completed_after_seconds=time.monotonic()-started)
+                    journal['status'] = 'PASS'
+                    return {**returned, **current, 'frame': {**frame, 'file': accepted.name},
+                            'visible_ocr': tag, 'ui': attempt['ui'],
+                            'observation_journal': 'returned-flutter-observation.json'}
+                except (ValueError, RuntimeError, TimeoutError, subprocess.TimeoutExpired, ET.ParseError) as error:
+                    attempt.update(error=f'{type(error).__name__}: {error}',
+                                   completed_after_seconds=time.monotonic()-started)
+                    if time.monotonic() >= deadline:
+                        break
+                    time.sleep(min(.5, max(0, deadline-time.monotonic())))
+            raise TimeoutError('No actual Flutter Spielen pixels and live Spielewelt returned within 90 seconds')
+        finally:
+            del self._flutter_observation_deadline
+            journal['elapsed_seconds'] = time.monotonic()-started
+            write(self.out/'returned-flutter-observation.json', journal)
 
     def run(self):
         result = {'schema': 1, 'status': 'FAIL',

@@ -59,8 +59,9 @@ def require_bound_diagnostic(args) -> dict:
     for entry in binding["source_files"]["qa"]:
         diagnostic.require(diagnostic.committed_file(ROOT, entry["path"]) == entry,
                            "Diagnostic observer changed since its original preflight")
-    diagnostic.require(args.apk.stat().st_size == diagnostic.APK_BYTES
-                       and diagnostic.file_digest(args.apk) == diagnostic.APK_SHA256,
+    apk = diagnostic.regular(args.apk)
+    diagnostic.require(apk.stat().st_size == diagnostic.APK_BYTES
+                       and diagnostic.file_digest(apk) == diagnostic.APK_SHA256,
                        "Original APK changed before diagnostic journey")
     return {
         "qa_source": args.expected_qa_source,
