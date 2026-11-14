@@ -1,0 +1,84 @@
+name: LUMO learning audit source inventory
+on:
+  push:
+    branches: [work/lumo-learning-audit-20261114]
+    paths: [.github/workflows/lumo-learning-source-audit.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-learning-audit-source
+  cancel-in-progress: true
+jobs:
+  host-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: 7b16f2f5ab16f3d913ee170aefd9807c87216260
+      - name: Archive only versioned application sources
+        run: |
+          set -euo pipefail
+          mkdir -p audit-export
+          git rev-parse HEAD > audit-export/HOST-SOURCE.txt
+          git archive --format=tar.gz --output=audit-export/host-sources.tar.gz HEAD lib test scripts tools config assets/learning_questions pubspec.yaml pubspec.lock
+          git ls-files -s > audit-export/HOST-INVENTORY.txt
+          sha256sum audit-export/host-sources.tar.gz > audit-export/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-learning-host-source
+          path: audit-export/
+          retention-days: 14
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Package the matching Dart SDK for local deterministic generator checks
+        run: |
+          set -euo pipefail
+          mkdir -p tool-export
+          dart --version 2>&1 | tee tool-export/DART-VERSION.txt
+          sdk="$(dirname "$(dirname "$(readlink -f "$(command -v flutter)")")")/bin/cache/dart-sdk"
+          test -x "$sdk/bin/dart"
+          tar -C "$(dirname "$sdk")" -czf tool-export/dart-sdk.tar.gz dart-sdk
+          sha256sum tool-export/dart-sdk.tar.gz > tool-export/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-learning-dart-toolchain
+          path: tool-export/
+          compression-level: 0
+          retention-days: 3
+  native-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: 7b16f2f5ab16f3d913ee170aefd9807c87216260
+          path: host
+      - uses: actions/checkout@v4
+        with:
+          repository: Ullmann27/lumo-godot
+          ref: 17fdfa40853735b138b93087ccdb4be8f0d0eaaff
+          persist-credentials: false
+          path: native
+      - name: Archive immutable runtime scenes and actual engine
+        run: |
+          set -euo pipefail
+          mkdir -p native-export
+          git -C native rev-parse HEAD > native-export/NATIVE-SOURCE.txt
+          git -C native archive --format=tar.gz --output="$PWD/native-export/native-runtime.tar.gz" HEAD scripts scenes assets project.godot export_presets.cfg
+          git -C native ls-files -s > native-export/NATIVE-INVENTORY.txt
+          bash host/scripts/install_godot_for_build.sh
+          cp "$RUNNER_TEMP/lumo-godot-engine-4.6.3/engine.zip" native-export/
+          sha256sum native-export/*.gz native-export/*.zip > native-export/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-learning-native-source-engine
+          path: native-export/
+          compression-level: 0
+          retention-days: 3
