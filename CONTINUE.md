@@ -1,3 +1,122 @@
+# Continue the combined 2020 acceptance
+
+Updated: 2026-11-14. Documentation activation base:
+Host 68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697 /
+tree ecd5df0797c2b4102f2c7bbc30146f3061d713ce.
+Its exact configured Native source is
+baf148b03a7a32c6ad9f737d731f900eb9113ea1 /
+tree 0c18a0ca5200ade267cfedb4c12d5c4b0a761a00.
+Version remains 0.13.8+2020. Bind the subsequent actual workflow to its
+own final Host SHA; this documentation-only commit adds no feature,
+workflow or pin change.
+
+Native run 43600806315, attempt 1, job 132464933411 is still in progress
+in the recorded activation handoff. Its final renderer acceptance is open.
+The original Actionlint/Mobile380 results belong to parent
+4d2cbb6ea235c7bf519aa5f3873a16f6b177be2b and unchanged product/workflow
+blobs, not a completed new Native or Android run.
+
+## Final pin check before activation
+
+On published Host 68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697 with Native
+baf148b03a7a32c6ad9f737d731f900eb9113ea1, one actual local invocation
+passed all 64 existing pin contracts (24 Candidate and 40 Legacy), with
+exit 0 and zero errors, failures or skips. All 4,440 index paths and all
+seven required materialized original sources remained unchanged; the other
+4,433 index paths were explicitly sparse-absent. Complete original streams,
+invocation, preparation and before/after source inventories are preserved in
+[the activation evidence](docs/evidence/host-final-activation-20261114/).
+This is local pin acceptance only; the complete new Android workflow remains required.
+
+## Resume the fixed candidate
+
+Keep the activation's exact Host source and configured Native pin fixed while
+its complete C4 workflow runs. Main, historical releases and producer branches
+remain unchanged. This candidate introduces no further feature work after
+activation; new producer deltas belong in separate review packs.
+
+1. Bind the actual workflow run to its Host SHA/tree, configured Native SHA,
+   attempt and original job/artifact metadata. A successful predecessor or
+   local test run cannot supply a missing current-source gate.
+2. Require genuine runtime/compile and full build acceptance, including the
+   exact-topic Math contract, every enabled Flutter capture without skips,
+   the current-grade curriculum audit, complete script/Android QA contracts,
+   52 native modes / 17 rasters, Dream and Discovery 10/38/2.
+3. Use the same verified candidate APK for the actual API35 main tour, C4 and
+   Village. Preserve package/version/signature/ABI/APK/PCK/source identities,
+   original screenshots/OCR/TSV/logs and the learning/profile comparisons.
+   Village must actually enter the settlement and return to Flutter with the
+   existing ownership/save/acknowledgement checks. C4 must observe Flutter
+   games after the single leave action and retain its two fresh portal reads.
+4. Require the real in-place 2017-to-2020 preservation job and the final
+   candidate verifier. Keep individual probe deadlines, original error gates
+   and no-skip policy. The 120-minute build and 80-minute Android outer
+   budgets do not extend a local input, arrival or observation deadline.
+5. Require the read-only delivery verifier and its complete original evidence
+   bundle. The existing C4 delivery step prepares a bundle without publishing
+   a release. Do not present an APK link as accepted before the exact
+   current-source build, Android, update and delivery gates are complete.
+
+## Evidence already completed
+
+The following results are complete on their named sources and do not need
+optional broad local repetition merely for this activation:
+
+- 0411b62f59425bc4f36226ca59e9ed5ef901709a: 88 Pipeline/Delivery methods,
+  zero skips, and C4 Actionlint. Original result:
+  docs/evidence/math-pr491-source-20261114/host0411-validation-result.json.
+- bb97ab6b2e563f3662f1ce5e6141e95cf62d79a7: actual old-0411 Math RED
+  (three known failures), current Dart GREEN (29,845 checks, 3,955 template
+  calls, 4,640 factory calls), and strict official Flutter 3.44.9 / Dart 3.12.2
+  pub resolution with unchanged pubspec/lock.
+- The same bb97: exactly nine focused Flutter methods, zero failures/skips,
+  actual exit 0 in 22.867 seconds; Math 1 plus Village routing 2 and captures 6.
+  All 2,327 materialized source files, 4,383 logical index paths, HEAD/tree,
+  index bytes and empty status remained unchanged. The optional Feature22
+  suite was not rerun.
+- a8a9b84cffd9819d4c8c2dddb55e870f448a9f13: 70 Kart/Garage/Driver/Readiness
+  methods, zero skips, and a separate actual old-source Boru callback RED.
+  Original result:
+  docs/evidence/c4-return-navigation-source-20261114/kart-a8a9-validation-result.json.
+- adb88bef880861e23b451166c04ee7d28c96a95d: 36 C4 Evidence/Deadline/
+  Navigation methods, zero skips. The single leave action, 30-second Flutter
+  return observation, global 900-second limit and late-arrival rejection remain.
+
+The newer compact proofs are under
+docs/evidence/host-focused-acceptance-20261114/:
+math-dart-pub-originals.tar.gz, math-village-widget-originals.tar.gz,
+c4-navigation-originals.tar.gz, their summaries/handoffs, capture inventory
+and separate visual/source reviews. Their original bytes and source bindings
+are preserved. The widget archive keeps the first adapter failure with its
+unknown child exit separately from the successful authorized follow-up.
+
+All six Village PNGs were actually inspected. Dorfwirtschaft remains fully
+visible and separate from Bauwelt; wide layouts retain the fox/action area,
+and large text changes the grid without clipping the Village title. Some
+lower content continues outside the viewport. Static images and mocked-bridge
+widget tests do not prove Android input, native return, audible speech,
+screenreader behavior or physical-device performance.
+
+## Historical failure remains authoritative
+
+Run 43589206933 is an Android-failed, unpublished predecessor. Its original
+Boru/garage evidence is the basis for the bounded word-recovery repair; the
+new local 70-method result does not turn that historical run green. Keep its
+logs, artifacts, first failures and unexecuted downstream stages unchanged.
+
+Do not reuse old APKs, old receipts or historical runtime successes as the
+acceptance of the newly activated combination. Keep later device observations
+and any remaining repair work explicitly tied to their actual APK and probe
+sources.
+
+## Preserved historical CONTINUE
+
+The complete original CONTINUE.md begins below, byte-for-byte unchanged.
+Its previous tools, branches, pins and pending work are historical context;
+the activation and source-bound requirements above govern this candidate.
+
+---
+
 # Integration follow-up: repair the real Android Cup selector
 
 Updated: 2026-11-13. This follows published Host51e92fb5/treea13ab981.

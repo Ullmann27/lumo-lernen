@@ -1,3 +1,118 @@
+# Combined 2020 candidate: fixed-source acceptance activation
+
+Updated: 2026-11-14. This documentation-only activation follows the published
+Host pin checkpoint
+[68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697](https://github.com/Ullmann27/lumo-lernen/commit/68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697),
+tree ecd5df0797c2b4102f2c7bbc30146f3061d713ce, whose parent is evidence
+checkpoint a9e03188083db5517d0614b2acfa289342f2de8b. Version remains
+0.13.8+2020. The actual acceptance run must bind its own final Host commit,
+including this documentation change.
+
+All three current 2020 pin locations now identify Native
+[baf148b03a7a32c6ad9f737d731f900eb9113ea1](https://github.com/Ullmann27/lumo-godot/commit/baf148b03a7a32c6ad9f737d731f900eb9113ea1),
+tree 0c18a0ca5200ade267cfedb4c12d5c4b0a761a00. Historical approved pins
+are unchanged.
+
+At activation preparation, Native run
+[43600806315](https://github.com/Ullmann27/lumo-godot/actions/runs/43600806315),
+attempt 1, job 132464933411, is in progress and has no final renderer
+acceptance. Actionlint and Mobile 380 checks passed on parent
+4d2cbb6ea235c7bf519aa5f3873a16f6b177be2b with the same product/workflow
+blobs; their original proofs are preserved in the Native activation commit.
+Those parent-source results are not a completed new renderer run or a new
+combined Android acceptance.
+
+## Final pin check before activation
+
+On published Host 68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697 with Native
+baf148b03a7a32c6ad9f737d731f900eb9113ea1, one actual local invocation
+passed all 64 existing pin contracts (24 Candidate and 40 Legacy), with
+exit 0 and zero errors, failures or skips. All 4,440 index paths and all
+seven required materialized original sources remained unchanged; the other
+4,433 index paths were explicitly sparse-absent. Complete original streams,
+invocation, preparation and before/after source inventories are preserved in
+[the activation evidence](docs/evidence/host-final-activation-20261114/).
+This is local pin acceptance only; the complete new Android workflow remains required.
+
+## Integrated scope of this candidate
+
+The Host combines the exact-topic Math correction, the separate Dorfwirtschaft
+route, the current native Discovery/Dream connection, the original-frame Kart
+word recovery and the bounded C4 return-to-Flutter observation. These are
+selective connections on the existing product source. The handwriting trainer,
+journal, original Lumo assets, child profiles, learning saves and existing
+consent/ownership boundaries remain protected.
+
+Math now selects an available exact unit before grade/alias fallback. The Dorf
+portal identifies the settlement scene explicitly, keeps profile/session
+ownership and acknowledged return, and is included in the actual API35 tour
+using the same candidate APK. The Kart fallback only recovers exact known card
+word sequences from the current original TSV inside the observed list region;
+ambiguity, image hashes, two stable observations, gesture limits and deadlines
+remain enforced. C4 observes the returned Flutter games control after one leave
+touch, within its local and global deadlines, before the existing two fresh
+portal observations.
+
+The complete C4 workflow retains 52 native modes and 17 bound rasters, the
+separate Dream gates, Discovery's 10 probes / 38 PNGs / 2 reports, signed
+ARM64/x86 APK identity, current-source Android evidence, actual Village
+entry/return and learning/profile preservation, and the in-place 2017-to-2020
+update. Its outer build/Android budgets are 120/80 minutes; the individual
+probe deadlines remain unchanged. Its delivery job prepares a verified bundle
+and does not publish a release.
+
+## Actual completed evidence, separated by source
+
+| Source | Actual result | Evidence scope |
+| --- | --- | --- |
+| 0411b62f59425bc4f36226ca59e9ed5ef901709a | 88 Pipeline/Delivery methods passed, no skips; C4 Actionlint passed | Local Python/source contracts |
+| bb97ab6b2e563f3662f1ce5e6141e95cf62d79a7 | Three old-source Math failures reproduced; current shared Dart contract passed 29,845 checks; strict pub resolution succeeded without changing pubspec/lock | Actual isolated Dart RED and current production-generator GREEN |
+| bb97ab6b2e563f3662f1ce5e6141e95cf62d79a7 | 9 focused Flutter methods passed, no skips: Math 1, Village routing 2, Village captures 6 | Actual Flutter widgets; native bridge mocked |
+| a8a9b84cffd9819d4c8c2dddb55e870f448a9f13 | 70 focused Kart/Garage/Driver/Readiness methods passed, no skips; original Boru failure reproduced separately | Original-fixture and callback contracts, no new Android/OCR run |
+| adb88bef880861e23b451166c04ee7d28c96a95d | 36 C4 Evidence/Deadline/Navigation methods passed, no skips | Local source contracts, no new device run |
+
+All six bb97 Village widget PNGs were decoded, hashed and then directly viewed
+independently and by Root. The Village title/image are complete and distinct
+from Bauwelt in every frame, without visible Village-card overlap or overflow.
+Lower scroll-content boundaries are not reclassified as Village-card failures.
+This is static widget evidence, not Android/native entry, audio, FPS or
+screenreader acceptance.
+
+The first Math-only Flutter attempt retains an incomplete execution receipt:
+its test stream succeeded, but the external evidence adapter failed before
+persisting the child exit. That exit remains unknown. The separately authorized
+nine-case follow-up recorded the actual exit before parsing and passed with
+exit 0; no test or production expectation was changed.
+
+The source-bound compact originals and reviews are preserved in
+[focused acceptance evidence](docs/evidence/host-focused-acceptance-20261114/),
+with the earlier 88-method record in
+[Math source evidence](docs/evidence/math-pr491-source-20261114/) and the
+70-method record in
+[C4 return source evidence](docs/evidence/c4-return-navigation-source-20261114/).
+Each result retains its original source; none is relabelled as a new combined
+Android acceptance.
+
+## Required current-source acceptance
+
+Historical C4 run
+[43589206933](https://github.com/Ullmann27/lumo-lernen/actions/runs/43589206933)
+remains Android-failed and unpublished. Its real failure and original
+APK/probe evidence remain intact. Source fixes and local green contracts do
+not alter that run or approve its APK.
+
+The exact newly activated Host/Native combination must complete its own full
+C4 workflow and downstream verification before any delivery claim. No new
+feature or producer branch is to be added during that candidate's acceptance.
+
+## Preserved historical STATUS
+
+The complete original STATUS.md begins below, byte-for-byte unchanged. Its
+older candidates, pins, pending items and release instructions describe their
+original historical sources, not this activation.
+
+---
+
 # Integration follow-up: repair the real Android Cup selector
 
 Updated: 2026-11-13. This follows published Host51e92fb5/treea13ab981.

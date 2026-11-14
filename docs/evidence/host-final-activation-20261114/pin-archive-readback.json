@@ -1,0 +1,180 @@
+{
+  "members": [
+    {
+      "path": "README.md",
+      "bytes": 1733,
+      "sha256": "16c9ff9f2a3c91dfaa20b835ce03c6df5fad1a023561db5033d48d7b36ed2aa1"
+    },
+    {
+      "path": "SHA256SUMS",
+      "bytes": 3105,
+      "sha256": "b31792fe1f51f95a9a5354093ff9094eb7f3402bb8ce70f23bec973de2712c6c"
+    },
+    {
+      "path": "after-source.json",
+      "bytes": 1183791,
+      "sha256": "0fa9c6a717823ba466200c94c5a74ca5b9bac17de3d868d3244aaedb8ce1b531"
+    },
+    {
+      "path": "after.commit.txt",
+      "bytes": 346,
+      "sha256": "9f40f34a6de98ecdd554f76bef85f185c273bf3277e7af765ff2b2878c6afa3d"
+    },
+    {
+      "path": "after.index-flags.nul",
+      "bytes": 286297,
+      "sha256": "852012bb26729a420d2e7e9a7da7ef2f5e5b528dbfdfdb5037fe25ee6f82c4df"
+    },
+    {
+      "path": "after.index-stage.nul",
+      "bytes": 499417,
+      "sha256": "70813166c8515751a007f5aa3c921c3defb3ce89d19b42197e1cb6d300bb27e2"
+    },
+    {
+      "path": "after.index.bin",
+      "bytes": 577115,
+      "sha256": "bac1910eac440acf484e889d26fc3c13d8d8e13eba26b76846431beb7b3af616"
+    },
+    {
+      "path": "after.status.nul",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after.tree.nul",
+      "bytes": 512737,
+      "sha256": "c92f28cee0a874712715c40a1bf9f040c4d1a75d0dc37ea30973514c710767f0"
+    },
+    {
+      "path": "before-source.json",
+      "bytes": 1183791,
+      "sha256": "0fa9c6a717823ba466200c94c5a74ca5b9bac17de3d868d3244aaedb8ce1b531"
+    },
+    {
+      "path": "before.commit.txt",
+      "bytes": 346,
+      "sha256": "9f40f34a6de98ecdd554f76bef85f185c273bf3277e7af765ff2b2878c6afa3d"
+    },
+    {
+      "path": "before.index-flags.nul",
+      "bytes": 286297,
+      "sha256": "852012bb26729a420d2e7e9a7da7ef2f5e5b528dbfdfdb5037fe25ee6f82c4df"
+    },
+    {
+      "path": "before.index-stage.nul",
+      "bytes": 499417,
+      "sha256": "70813166c8515751a007f5aa3c921c3defb3ce89d19b42197e1cb6d300bb27e2"
+    },
+    {
+      "path": "before.index.bin",
+      "bytes": 577115,
+      "sha256": "bac1910eac440acf484e889d26fc3c13d8d8e13eba26b76846431beb7b3af616"
+    },
+    {
+      "path": "before.status.nul",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before.tree.nul",
+      "bytes": 512737,
+      "sha256": "c92f28cee0a874712715c40a1bf9f040c4d1a75d0dc37ea30973514c710767f0"
+    },
+    {
+      "path": "checkout-preparation.json",
+      "bytes": 5139,
+      "sha256": "9cefa79a6f11e2bacbbd88a71c748b0f82615e10ea104e70d066a0e9bf5b66f8"
+    },
+    {
+      "path": "environment.json",
+      "bytes": 730,
+      "sha256": "578c5e574ef598e243e297868abfe4193f14883a7c541fd47893adac3ae43051"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 2317,
+      "sha256": "553fc6fa1d124f31e7fde1d1f1b01e45ca8c98a4efb474ed6446dbec3d57702a"
+    },
+    {
+      "path": "input-sources/.github/probes/lumo_2015_update_android_probe.py",
+      "bytes": 1786,
+      "sha256": "41b38c9a3c4497e1b5a4203abb9e8784a34805a4dbd444c98f1b1e4349e9108e"
+    },
+    {
+      "path": "input-sources/.github/probes/lumo_2016_update_android_probe.py",
+      "bytes": 1786,
+      "sha256": "182e99b68769ffebea725097c7e23ba161897c201f2ed53d8da6d8be79cfb946"
+    },
+    {
+      "path": "input-sources/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50"
+    },
+    {
+      "path": "input-sources/pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1"
+    },
+    {
+      "path": "input-sources/scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 17393,
+      "sha256": "0e5c26ad2722735bb9b891827fb52f638363df3fc649162a8c95f99446be1c3e"
+    },
+    {
+      "path": "input-sources/scripts/tests/test_legacy_release_pin.py",
+      "bytes": 28597,
+      "sha256": "4b81239264d913e1ce97c90bd5de6c82e44d672e4324d1462baddece52855939"
+    },
+    {
+      "path": "input-sources/scripts/verify_legacy_release_pin.py",
+      "bytes": 10687,
+      "sha256": "722028c30150beccc14f2169f2cea89c97c0f0c3305399029c4b5d9a3c8ea515"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 7495,
+      "sha256": "3c5d5a11054a5478dc182f2e04b6053bf8bab2030caf3fe52b2aa40c38a7c4f1"
+    },
+    {
+      "path": "process-result.json",
+      "bytes": 756,
+      "sha256": "2c3ed4a89733beafbd58a1938868e87d1fd4ab8ad6a947aa502d79b8d4d40c21"
+    },
+    {
+      "path": "published-originals/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50"
+    },
+    {
+      "path": "published-originals/scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 17393,
+      "sha256": "0e5c26ad2722735bb9b891827fb52f638363df3fc649162a8c95f99446be1c3e"
+    },
+    {
+      "path": "published-originals/scripts/verify_legacy_release_pin.py",
+      "bytes": 10687,
+      "sha256": "722028c30150beccc14f2169f2cea89c97c0f0c3305399029c4b5d9a3c8ea515"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1589,
+      "sha256": "4ac970229846f698a1a66a4eaccf1197be0a7cafeabc65b97f8b610b8c85e421"
+    },
+    {
+      "path": "run_gate.py",
+      "bytes": 6206,
+      "sha256": "df2bd75298fbb3b5bc6dc355e0d4e51541fc4b305d94b1f5b0b92a420ab5b030"
+    },
+    {
+      "path": "unittest.stderr.log",
+      "bytes": 12267,
+      "sha256": "856bf81fa60db7c7c087f6b4f2fd388553a6bc8ea4fd0ee76d4d8c031f953e44"
+    },
+    {
+      "path": "unittest.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "all_originals_byte_equal": true
+}
