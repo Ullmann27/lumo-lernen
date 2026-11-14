@@ -104,3 +104,41 @@ jobs:
           path: host-compile-evidence/
           if-no-files-found: error
           retention-days: 30
+
+  memory-source-contracts:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref_name == 'chatgpt/lumo-nextgen-feature-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Run independent pure Dart Memory persistence and timing contracts
+        run: |
+          set -euo pipefail
+          mkdir -p memory-feature-evidence
+          git rev-parse HEAD > memory-feature-evidence/HOST-SOURCE.txt
+          dart --version > memory-feature-evidence/dart-version.txt 2>&1
+          memory_exit=0
+          if ! dart tools/android_qa/memory_round_contract.dart 2>&1 | tee memory-feature-evidence/memory-round.log; then
+            memory_exit=1
+          fi
+          if ! dart tools/android_qa/memory_turn_scheduler_contract.dart 2>&1 | tee memory-feature-evidence/memory-scheduler.log; then
+            memory_exit=1
+          fi
+          exit "$memory_exit"
+      - name: Verify original dealer and all tracked sources remain exact
+        if: always()
+        run: git diff --exit-code HEAD --
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-memory-source-evidence
+          path: memory-feature-evidence/
+          if-no-files-found: error
+          retention-days: 30

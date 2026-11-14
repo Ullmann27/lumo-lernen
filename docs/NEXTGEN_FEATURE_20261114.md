@@ -1,3 +1,15 @@
+## New Memory authority checkpoint — 14 November 2026
+
+The source-only feature now includes nine explicit Memory core/adapter/contract files. The existing visible Memory screen remains unchanged until its dedicated widget and native integration work is verified. Existing published dealer, motif set, opponent choices, difficulty/reward formulas and per-child statistics keys are preserved. A separate durable round journal, profile-bound compare-and-swap, idempotent rewards, foreground timing and public-only table state prepare the real 3D presenter. Confirmed completed rounds start a new same-setting round on reopening; unfinished or unsettled completed rounds are retained. The original profile-storage widget tests are unchanged.
+
+These new Memory sources have not executed before this commit. A new independent CI job runs both pure Dart persistence/gameplay and scheduler contracts so failures are retained even while the full Flutter suite runs. No old lost local Memory result is reused.
+
+The preceding exact Host `bdd86f289a165ea5140a01607d78fcf4c31c98c6` passed source acceptance run43597316639: 2,595 full Flutter tests, zero failures/skips, 546 generated PNGs; focused46-test regression and actual Android compilation also passed. Its original343,010,045-byte ZIP is SHA256 `22eebaca28f20260013060cf9d31503370b1f157c4bb075f2f94076bcae6adae`; all591 ZIP members passed local CRC verification. These previous-head results do not certify the newly added Memory code.
+
+Native English/Quiz source is separately committed as `e4e5ce03e644a2f23b01a96f1d340a882a1798c4` in [draft PR182](https://github.com/Ullmann27/lumo-godot/pull/182). New joint authority and renderer runs are pending. Neither feature branch exports an approved combined APK; Main and the Studio candidate remain unchanged.
+
+---
+
 # English, Memory and Quiz feature integration
 
 This development branch starts at `ae1ba5e68438e0acc89b4df92650d28c9328bed4`.
