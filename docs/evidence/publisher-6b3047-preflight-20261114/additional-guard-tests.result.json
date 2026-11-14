@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "/workspace/scratch/909ddb52fe7b/publisher-preparation-6b3047",
+    "-p",
+    "test_additional_acceptance.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "seconds": 0.24611330032348633,
+  "log_bytes": 6733,
+  "log_sha256": "81d258e96928d4758bbf6d8242ee040f6e8910e7196a26e7c56c0b754d380879",
+  "scope": "Only additive publication metadata gates. Two actual original metadata positives and synthetic rejection cases; not full app acceptance."
+}

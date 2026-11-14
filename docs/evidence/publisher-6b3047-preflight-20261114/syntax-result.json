@@ -1,0 +1,113 @@
+{
+  "status": "PASS_STATIC_PREPARATION_ONLY",
+  "accepted_host_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "acceptance_run": 43616038272,
+  "workflow_git_blob": "c4a901a649f49b80cd16e22ece3c40b1a3cbd12d",
+  "workflow_sha256": "1227146ea19a3665ec44789824d716677cc96301de7048bd17b487265a5072d9",
+  "workflow_bytes": 30052,
+  "run_blocks": [
+    {
+      "step": 2,
+      "name": "Revalidate the exact additional Native and Feature acceptance",
+      "exit_code": 0,
+      "sha256": "48d3ef3928554e42899c56d9300c886ae3575481005b9fc3d6887eabf4005b88",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 3,
+      "name": "Read the complete current acceptance and download its original bundle",
+      "exit_code": 0,
+      "sha256": "c70db1c26023d429f3c44e8e813e15e50cd375906a7b05d477f308ea1e67af1c",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 4,
+      "name": "Verify and safely unpack every original delivery byte",
+      "exit_code": 0,
+      "sha256": "8a74c5261391ff514a46912d5bfce12710455995ada33fdd2de78f1d47ab56b7",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 7,
+      "name": "Reverify original ARM64 APK signature package and source before creating a release",
+      "exit_code": 0,
+      "sha256": "53248de7cb8b8eabbfd5f626f5a3c2f345f24ba5937367caaa654871eb75f601",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 8,
+      "name": "Require a genuinely new version before creating its tag and draft",
+      "exit_code": 0,
+      "sha256": "12bc067a447e0ec41e2df199842f61c90054a378c00409a5470cf3bdf226a659",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 9,
+      "name": "Upload the exact verified original assets without replacing files",
+      "exit_code": 0,
+      "sha256": "15735dec6e701da052b3a7e4b084ef3f1c127c7e60dfff345da54e55e41476ca",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 10,
+      "name": "Recheck current acceptance and publish only the checked new draft",
+      "exit_code": 0,
+      "sha256": "d5336ca68ad2fae277dbb81e365a76b28746b478f7935857cfba2f987794c840",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 11,
+      "name": "Download the public APK without authentication and verify its exact bytes",
+      "exit_code": 0,
+      "sha256": "847959ecab4e7861816bf7b44410bd7c77b24fb2f10c975921d7e72c8add9389",
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "python_heredocs": [
+    {
+      "step": 2,
+      "sha256": "f19154c9af67062b5dfd65d661685109b8e11822ad52deacdd9ba66cdb4dc537",
+      "parse": true,
+      "compile": true,
+      "executed": false
+    },
+    {
+      "step": 3,
+      "sha256": "310fbbac937d7b76130d1c21c1551a631129b62e53a8d22311b3f9a3d8170674",
+      "parse": true,
+      "compile": true,
+      "executed": false
+    },
+    {
+      "step": 4,
+      "sha256": "22422b25329d8370204a1b964522c9e60536d9bb724f73fb5d3398f0aae8c587",
+      "parse": true,
+      "compile": true,
+      "executed": false
+    },
+    {
+      "step": 7,
+      "sha256": "36f79d837dbb42c03a81f5ff031ed014482c20d950daeb6f3fa89da124b6ac72",
+      "parse": true,
+      "compile": true,
+      "executed": false
+    }
+  ],
+  "actionlint": {
+    "exit_code": 0,
+    "binary_sha256": "c872d6db8c6bf83a8eaa704fc93999f027d55dffbc63b8a6abdccb47df5f4cd4"
+  },
+  "yaml_duplicate_keys": false,
+  "embedded_metadata_verifier_matches_tested_file": true,
+  "workflow_commands_executed": false,
+  "release_operations_executed": false,
+  "new_full_host_acceptance": "PENDING"
+}

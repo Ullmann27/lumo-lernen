@@ -1,0 +1,56 @@
+test_added_job_even_with_consistent_count_is_rejected (test_additional_acceptance.AdditionalAcceptanceTests.test_added_job_even_with_consistent_count_is_rejected) ... ok
+test_duplicate_metadata_key_is_rejected (test_additional_acceptance.AdditionalAcceptanceTests.test_duplicate_metadata_key_is_rejected) ... ok
+test_duplicate_step_cannot_replace_mandatory_original (test_additional_acceptance.AdditionalAcceptanceTests.test_duplicate_step_cannot_replace_mandatory_original) ... ok
+test_extra_artifact_even_with_consistent_count_is_rejected (test_additional_acceptance.AdditionalAcceptanceTests.test_extra_artifact_even_with_consistent_count_is_rejected) ... ok
+test_missing_artifact_even_with_consistent_empty_count_is_rejected (test_additional_acceptance.AdditionalAcceptanceTests.test_missing_artifact_even_with_consistent_empty_count_is_rejected) ... ok
+test_missing_job_even_with_consistent_empty_count_is_rejected (test_additional_acceptance.AdditionalAcceptanceTests.test_missing_job_even_with_consistent_empty_count_is_rejected) ... ok
+test_omitted_mandatory_step_is_rejected (test_additional_acceptance.AdditionalAcceptanceTests.test_omitted_mandatory_step_is_rejected) ... ok
+test_original_feature_cannot_replace_native (test_additional_acceptance.AdditionalAcceptanceTests.test_original_feature_cannot_replace_native) ... ok
+test_original_feature_metadata (test_additional_acceptance.AdditionalAcceptanceTests.test_original_feature_metadata) ... ok
+test_original_native_cannot_replace_feature (test_additional_acceptance.AdditionalAcceptanceTests.test_original_native_cannot_replace_feature) ... ok
+test_original_native_metadata (test_additional_acceptance.AdditionalAcceptanceTests.test_original_native_metadata) ... ok
+test_reject_boolean_attempt (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_boolean_attempt) ... ok
+test_reject_changed_artifact_digest (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_changed_artifact_digest) ... ok
+test_reject_changed_artifact_size (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_changed_artifact_size) ... ok
+test_reject_different_artifact_id (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_different_artifact_id) ... ok
+test_reject_different_workflow (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_different_workflow) ... ok
+test_reject_expired_artifact (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_expired_artifact) ... ok
+test_reject_failed_job (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_failed_job) ... ok
+test_reject_failed_run (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_failed_run) ... ok
+test_reject_failed_step (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_failed_step) ... ok
+test_reject_foreign_artifact_branch (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_artifact_branch) ... ok
+test_reject_foreign_artifact_head_repository (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_artifact_head_repository) ... ok
+test_reject_foreign_artifact_repository (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_artifact_repository) ... ok
+test_reject_foreign_artifact_run (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_artifact_run) ... ok
+test_reject_foreign_branch (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_branch) ... ok
+test_reject_foreign_event (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_event) ... ok
+test_reject_foreign_head_repository (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_head_repository) ... ok
+test_reject_foreign_head_repository_id (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_head_repository_id) ... ok
+test_reject_foreign_job_id (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_job_id) ... ok
+test_reject_foreign_job_name (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_job_name) ... ok
+test_reject_foreign_job_run (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_job_run) ... ok
+test_reject_foreign_job_source (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_job_source) ... ok
+test_reject_foreign_repository_id (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_repository_id) ... ok
+test_reject_foreign_repository_name (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_repository_name) ... ok
+test_reject_foreign_run (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_foreign_run) ... ok
+test_reject_job_rerun (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_job_rerun) ... ok
+test_reject_nonterminal_job (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_nonterminal_job) ... ok
+test_reject_nonterminal_run (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_nonterminal_run) ... ok
+test_reject_nonterminal_step (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_nonterminal_step) ... ok
+test_reject_numeric_expiration_is_not_boolean (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_numeric_expiration_is_not_boolean) ... ok
+test_reject_renamed_artifact (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_renamed_artifact) ... ok
+test_reject_renamed_step (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_renamed_step) ... ok
+test_reject_renumbered_step (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_renumbered_step) ... ok
+test_reject_rerun_attempt (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_rerun_attempt) ... ok
+test_reject_skipped_job (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_skipped_job) ... ok
+test_reject_skipped_run (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_skipped_run) ... ok
+test_reject_skipped_step (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_skipped_step) ... ok
+test_reject_stale_artifact_source (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_stale_artifact_source) ... ok
+test_reject_stale_host (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_stale_host) ... ok
+test_reject_truncated_artifact_page (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_truncated_artifact_page) ... ok
+test_reject_truncated_job_page (test_additional_acceptance.AdditionalAcceptanceTests.test_reject_truncated_job_page) ... ok
+
+----------------------------------------------------------------------
+Ran 51 tests in 0.013s
+
+OK
