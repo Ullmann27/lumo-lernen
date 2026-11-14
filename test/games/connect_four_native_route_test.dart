@@ -78,6 +78,12 @@ void main() {
       expect(condition(), isTrue);
     }
 
+    // The table must remain playable until a child explicitly selects 3D.
+    await until(() =>
+        find.byKey(const ValueKey('connect-open-native')).evaluate().isNotEmpty);
+    expect(launches, isEmpty);
+    expect(find.byKey(const ValueKey('connect-column-0')), findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('connect-open-native')));
     await until(() => launches.length == 1 && state['canDrop'] == true);
     expect(launches.single['scene'], 'connect_four');
     expect(launches.single['connectFourToken'], tokens.single);
