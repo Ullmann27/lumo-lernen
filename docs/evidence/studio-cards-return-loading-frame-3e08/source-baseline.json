@@ -1,0 +1,26 @@
+{
+  "source_commit": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "files": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "source_commit": "86445f53af5d573549fc8cf03405261611f3cb7e",
+      "url": "https://raw.githubusercontent.com/Ullmann27/lumo-lernen/86445f53af5d573549fc8cf03405261611f3cb7e/.github/probes/creative_android_probe.py",
+      "bytes": 59166,
+      "sha256": "11405ef5997cf26d3d5f81299a09b2e67eff8b14a7c5fad90ee267471bcf5bff",
+      "git_blob": "d377cee88da237025fd5bb57b6555451bf3f36a8",
+      "local_baseline": "baseline/.github/probes/creative_android_probe.py",
+      "remote_bytes_match_local_current": true
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "source_commit": "86445f53af5d573549fc8cf03405261611f3cb7e",
+      "url": "https://raw.githubusercontent.com/Ullmann27/lumo-lernen/86445f53af5d573549fc8cf03405261611f3cb7e/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 48183,
+      "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed",
+      "git_blob": "77f96e02602277c8c1f82c72bfe3b49672fe8aad",
+      "local_baseline": "baseline/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "remote_bytes_match_local_current": true
+    }
+  ],
+  "source_scope": "Two fresh exact-commit GitHub raw files; no reuse of the full older 3e08 helper."
+}

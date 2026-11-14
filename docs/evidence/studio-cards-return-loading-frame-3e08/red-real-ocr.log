@@ -1,0 +1,29 @@
+test_actual_api35_final_pause_still_matches (__main__.OriginalLoadingRasterReplay.test_actual_api35_final_pause_still_matches) ... ok
+test_actual_api35_first_pause_still_matches (__main__.OriginalLoadingRasterReplay.test_actual_api35_first_pause_still_matches) ... ok
+test_actual_api37_eventual_pause_still_matches (__main__.OriginalLoadingRasterReplay.test_actual_api37_eventual_pause_still_matches) ... ok
+test_actual_loading_caption_rejects_after_first_pass (__main__.OriginalLoadingRasterReplay.test_actual_loading_caption_rejects_after_first_pass) ... FAIL
+test_actual_loading_has_priority_even_over_an_observed_positive_title (__main__.OriginalLoadingRasterReplay.test_actual_loading_has_priority_even_over_an_observed_positive_title) ... FAIL
+test_default_reader_does_not_apply_loading_rejection (__main__.OriginalLoadingRasterReplay.test_default_reader_does_not_apply_loading_rejection) ... ok
+
+======================================================================
+FAIL: test_actual_loading_caption_rejects_after_first_pass (__main__.OriginalLoadingRasterReplay.test_actual_loading_caption_rejects_after_first_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched/tools/android_qa/tests/replay_flutter_loading_frame_ocr.py", line 54, in test_actual_loading_caption_rejects_after_first_pass
+    with self.assertRaisesRegex(RuntimeError, 'Rejected.*caption'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_actual_loading_has_priority_even_over_an_observed_positive_title (__main__.OriginalLoadingRasterReplay.test_actual_loading_has_priority_even_over_an_observed_positive_title)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched/tools/android_qa/tests/replay_flutter_loading_frame_ocr.py", line 68, in test_actual_loading_has_priority_even_over_an_observed_positive_title
+    with self.assertRaisesRegex(RuntimeError, 'Rejected.*caption'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 11.427s
+
+FAILED (failures=2)

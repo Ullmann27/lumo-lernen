@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "actionlint": {
+    "command": [
+      "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+      "-shellcheck=",
+      "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/.github/workflows/lumo-studio-4ab-ocr-recheck.yml"
+    ],
+    "returncode": 0
+  },
+  "bash_blocks": [
+    {
+      "step": "Install the actual OCR language readers",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Replay exact original image bytes, Cards readiness and identity counterexamples",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Verify framework guard before the Android 17 emulator",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Live UI reader",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Enable accelerated disposable emulator",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Software display",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Verify the Android 17 CLI22 source and AVD counterexamples",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Preserve original Android 17 CLI AVD and install fixed official CLI22 bytes",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Bind the Android 17 guard to separate QA and unchanged APK sources",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Preserve actual Android 17 generated hardware and disk configuration",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Preserve Android 17 startup diagnostics even after action failure",
+      "returncode": 0,
+      "stderr": ""
+    }
+  ],
+  "original_android_job_structurally_unchanged": true,
+  "permission_and_branch_filters_unchanged": true,
+  "exact_path_filter_count": 26,
+  "changed_binder_definitions": [
+    "Expected",
+    "verify_sources"
+  ],
+  "unchanged_binder_definitions": 16,
+  "new_image_lines_ast_equals_reviewed_86445_patch": true,
+  "original_3e08_leave_ast_unchanged": true,
+  "surfaces_bytes_equal_reviewed_86445_patch": true,
+  "no_apk_run_or_source_ref_mutation": true
+}

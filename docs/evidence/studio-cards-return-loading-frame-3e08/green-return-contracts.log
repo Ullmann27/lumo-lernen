@@ -1,0 +1,11 @@
+test_low_confidence_negative_words_cannot_reject (test_flutter_loading_frame_rejection.LoadingCaptionBoundaries.test_low_confidence_negative_words_cannot_reject) ... ok
+test_out_of_image_negative_bounds_cannot_reject (test_flutter_loading_frame_rejection.LoadingCaptionBoundaries.test_out_of_image_negative_bounds_cannot_reject) ... ok
+test_partial_observed_phrase_cannot_reject (test_flutter_loading_frame_rejection.LoadingCaptionBoundaries.test_partial_observed_phrase_cannot_reject) ... ok
+test_loading_frame_then_two_fresh_positive_frames (test_flutter_loading_frame_rejection.ReturnedFrameSequence.test_loading_frame_then_two_fresh_positive_frames) ... ok
+test_loading_observation_resets_prior_confirmation (test_flutter_loading_frame_rejection.ReturnedFrameSequence.test_loading_observation_resets_prior_confirmation) ... ok
+test_only_loading_rasters_never_pass_or_extend_observation_cap (test_flutter_loading_frame_rejection.ReturnedFrameSequence.test_only_loading_rasters_never_pass_or_extend_observation_cap) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 10.564s
+
+OK

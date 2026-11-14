@@ -1,0 +1,32 @@
+{
+  "parent": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+  "new_tree": "9254883a0723c7ad1544b01949e9db5c1175fd97",
+  "parent_blobs": 4127,
+  "new_blobs": 4137,
+  "modified_parent_files": [
+    ".github/probes/creative_android_probe.py",
+    ".github/probes/lumo_studio_surfaces_android_probe.py",
+    ".github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+    "scripts/recheck_studio_4ab.py",
+    "scripts/tests/test_studio_4ab_recheck.py"
+  ],
+  "new_parent_files": [
+    "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause-contrast.tsv",
+    "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause.png",
+    "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause-contrast.tsv",
+    "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause.png",
+    "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-eventual-pause.png",
+    "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading-contrast.tsv",
+    "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading.png",
+    "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/manifest.json",
+    "tools/android_qa/tests/replay_flutter_loading_frame_ocr.py",
+    "tools/android_qa/tests/test_flutter_loading_frame_rejection.py"
+  ],
+  "unchanged_parent_blobs": 4122,
+  "exact_delta_from_product": 26,
+  "existing_product_modified": 2,
+  "product_new_files": 24,
+  "unchanged_product_blobs": 4111,
+  "all_source_sha_and_modes_match": true,
+  "app_binary_rebuilt": false
+}

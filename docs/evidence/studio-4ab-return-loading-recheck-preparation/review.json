@@ -1,0 +1,208 @@
+{
+  "schema": 1,
+  "status": "FROZEN_LOCAL_VALIDATION_AND_INDEPENDENT_REVIEW_READY_FOR_ROOT_PUBLICATION",
+  "recorded_at": "2026-11-14T03:33:54.900652+00:00",
+  "qa_basis": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "source_manifest": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/source-upload-manifest.json",
+    "bytes": 18361,
+    "sha256": "f72a04bbcd5a30bec3344c9f5dc813db8a0a2fa84204647338ce22eeac1f62d5",
+    "git_blob": "1cc3c282e292787f166753c9990b3c65b1cbe993",
+    "mode": "100644"
+  },
+  "scope": [
+    "Only the reviewed image_lines implementation was ported onto the exact 3e08 helper; the 3e08 leave implementation is unchanged.",
+    "Studio capture_returned_flutter alone opts in to rejecting the actually observed exact loading caption with valid current image bounds.",
+    "Ten identical reviewed tests and original PNG/TSV fixtures were added; no product code, versions, native sources or saved data were changed.",
+    "The exact full source-delta roster is 26 regular 100644 files, with every other product Git blob/mode unchanged. Existing eleven OCR/Cards files are also fixed to the 3e08 basis; helper, surfaces and ten new files have explicit SHA256 requirements.",
+    "Modernization remains byte-identical to the product. The Studio surface reader is explicitly corrected and hash-bound; it is not described as unchanged.",
+    "The Android matrix, metadata readers, two-checkout execution, original APK/PCK/certificate binding, pre/post hashes and API35/API37 runtime guards remain unchanged."
+  ],
+  "unchanged_limits": {
+    "flutter_return_seconds": 30,
+    "maximum_observations": 12,
+    "required_positive_pixel_frames": 2,
+    "positive_caption_bounds_process_save_checks": "unchanged"
+  },
+  "executed_now": {
+    "binder_tests": 18,
+    "passed": 18,
+    "failed": 0,
+    "skipped": 0,
+    "unittest_seconds": 1.09,
+    "process_seconds": 1.2288768860016717,
+    "returncode": 0,
+    "synthetic_negative_scope": "Committed wrong surface, helper, new test and original PNG bytes are separately rejected, plus preserved original identity/APK/PCK/run/certificate/CWD counterexamples.",
+    "actionlint_returncode": 0,
+    "bash_run_blocks": 11,
+    "bash_failures": 0
+  },
+  "structural_source_comparison": {
+    "status": "PASS",
+    "actionlint": {
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        "-shellcheck=",
+        "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/.github/workflows/lumo-studio-4ab-ocr-recheck.yml"
+      ],
+      "returncode": 0
+    },
+    "bash_blocks": [
+      {
+        "step": "Install the actual OCR language readers",
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "step": "Replay exact original image bytes, Cards readiness and identity counterexamples",
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "step": "Verify framework guard before the Android 17 emulator",
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "step": "Live UI reader",
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "step": "Enable accelerated disposable emulator",
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "step": "Software display",
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "step": "Verify the Android 17 CLI22 source and AVD counterexamples",
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "step": "Preserve original Android 17 CLI AVD and install fixed official CLI22 bytes",
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "step": "Bind the Android 17 guard to separate QA and unchanged APK sources",
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "step": "Preserve actual Android 17 generated hardware and disk configuration",
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "step": "Preserve Android 17 startup diagnostics even after action failure",
+        "returncode": 0,
+        "stderr": ""
+      }
+    ],
+    "original_android_job_structurally_unchanged": true,
+    "permission_and_branch_filters_unchanged": true,
+    "exact_path_filter_count": 26,
+    "changed_binder_definitions": [
+      "Expected",
+      "verify_sources"
+    ],
+    "unchanged_binder_definitions": 16,
+    "new_image_lines_ast_equals_reviewed_86445_patch": true,
+    "original_3e08_leave_ast_unchanged": true,
+    "surfaces_bytes_equal_reviewed_86445_patch": true,
+    "no_apk_run_or_source_ref_mutation": true
+  },
+  "mandatory_next_ci_groups": [
+    {
+      "group": "original caption OCR",
+      "tests": 12,
+      "state": "preserved existing command; not rerun locally"
+    },
+    {
+      "group": "Cards layout readiness",
+      "tests": 6,
+      "state": "preserved existing command; not rerun locally"
+    },
+    {
+      "group": "adapted binder",
+      "tests": 18,
+      "state": "locally executed; CI still required"
+    },
+    {
+      "group": "actual loading-frame OCR replay",
+      "tests": 6,
+      "state": "new mandatory CI command; exact previously locally executed replay bytes, not repeated here"
+    },
+    {
+      "group": "loading-frame boundary contracts",
+      "tests": 6,
+      "state": "new mandatory CI command; exact previously locally executed test bytes, not repeated here"
+    }
+  ],
+  "ci_ocr_requirements": "Actual Tesseract 5.3.4 and both deu+eng models are checked before any test group; missing executable/models cause failure, not skips.",
+  "prior_patch_review": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/independent-review.json",
+    "bytes": 7580,
+    "sha256": "a2649a70ced80299f8d9442bb668aa2e3e292f1b9081e0c9a1f3a2de5b468e5b",
+    "git_blob": "d9222ef34838ba0f203fd17b8fe0e27c5a4329f9",
+    "mode": "100644"
+  },
+  "prior_patch_results": {
+    "source": "qa/cards-return-loading-frame-3e08",
+    "local_tesseract": "5.5.0",
+    "real_replay_red": "4 passed / 2 failed",
+    "real_replay_green": "6 passed / 0 skip",
+    "boundary_contracts": "6 passed / 0 skip",
+    "unchanged_return_contracts": "6 passed / 0 skip",
+    "rerun_for_this_package": false
+  },
+  "historical_android_outcomes_preserved": {
+    "run": 43546627017,
+    "qa": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+    "api35": "SUCCESS",
+    "api37": "FAILURE at first Cards Flutter-return pixel gate; no new result replaces this"
+  },
+  "limits": [
+    "No new Android run, APK build, binary download, project/source branch ref change or publication was performed. The 18 tests create isolated temporary synthetic Git repositories for identity counterexamples.",
+    "This diagnosis remains on the existing 4ab APK/803 native pack; it does not verify 86445 or another new product candidate.",
+    "New Android behavior and CI Tesseract 5.3.4 replay results remain pending actual execution.",
+    "No physical Fold7 performance, thermal, touch latency or 60 FPS measurement is claimed."
+  ],
+  "raw_logs": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/binder-contracts.log",
+      "bytes": 5333,
+      "sha256": "077881a44a3eca2a7a9701e52739c760ade4dcaed96aeaf1beab7408681abb84",
+      "git_blob": "b64885e08ea5455a9e421feffa9e7ee4c140dc11",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/binder-contracts-execution.json",
+      "bytes": 441,
+      "sha256": "a183d9437464a1d62d88aadf3a69d2bb3e37b7f9fc33d1981b097fc1f603f5b0",
+      "git_blob": "ff88adef9bfdaaf1006aaa085023cbc4b42d3a15",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644"
+    }
+  ],
+  "independent_read_only_review": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/independent-review.json",
+    "bytes": 4238,
+    "sha256": "61dc56002ffd7f254c99853d7da91110950850e9172366b7271921aad5af0f42",
+    "git_blob": "45bf26df5acace8e5e52ef80b383f36c03536dfc",
+    "mode": "100644"
+  }
+}
