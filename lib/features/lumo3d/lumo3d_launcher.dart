@@ -19,6 +19,7 @@ bool _launchInProgress = false;
 Future<bool> launchLumo3D(
   BuildContext context, {
   String scene = 'kart',
+  bool livingVillage = false,
   int? grade,
   String? subject,
   LumoAppState? appState,
@@ -30,6 +31,8 @@ Future<bool> launchLumo3D(
   if (!context.mounted || appState?.resetting == true) return false;
   // Only reviewed, bounded lesson descriptors open the educational route.
   if ((scene == 'learning') != (learning != null)) return false;
+  // The economy is opt-in. Never silently open Kart or classic settlements.
+  if ((scene == 'settlement') != livingVillage) return false;
   if (legacyGameKey != null &&
       (appState == null ||
           !const ['kart', 'jump', 'puzzle', 'build', 'rhythm', 'treasure']
@@ -139,6 +142,10 @@ Future<bool> launchLumo3D(
     entry?.setPhase(LumoGameEntryPhase.opening);
     final response = await bridge.invokeMapMethod<String, dynamic>('launch3D', {
       'scene': scene,
+      if (livingVillage) ...{
+        'livingVillage': true,
+        'settlementMode': 'settlement',
+      },
       'grade': grade ?? appState?.state.grade ?? 1,
       'subject': subject ?? appState?.state.subject ?? 'Mathematik',
       'stars': appState?.state.stars ?? 0,
@@ -148,7 +155,7 @@ Future<bool> launchLumo3D(
           (appState?.state.settings.reduceAnimations ?? false) ||
               (appState?.state.settings.calmMode ?? false),
       if (learning != null) 'learning': learning.toLaunchOptions(),
-      if (learning != null || scene == 'build') ...{
+      if (learning != null || scene == 'build' || scene == 'settlement') ...{
         // Preserve the selected voice. Only the existing, licensed local
         // identity is available in the isolated engine; no silent fallback.
         'learningVoiceEnabled': appState?.state.settings.voiceEnabled == true &&
