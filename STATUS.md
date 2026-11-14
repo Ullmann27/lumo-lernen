@@ -1,3 +1,47 @@
+# Diktat progress fixture repaired and checked — 2026-11-14
+
+This documentation/evidence-only activation follows Host
+`cfa4725263f15e9cc3f75d8f6dfae0949fbb86ab`, tree
+`d0fedc2ceeb02e7eefea61b2667195a43f14bdf6`. The sole executable delta from
+Host79c7 is the existing Diktat progress test helper: it now selects the actual
+four `LumoInkSurface` rows inside the actual `WortDiktatScreen`, makes the first
+row visible and performs the unchanged real drag/Fertig/self-rating flow.
+All original test bodies and progress, persistence and bonus assertions remain
+byte-identical. No product, Writer, InkSurface, Journal or child-data code changed.
+
+The complete existing test file ran exactly once on cfa4725: **17 PASS,
+0 failures, 0 skips, exit 0**, in 59.552 seconds with the existing locked packages
+and `--no-pub`. The original machine stream ends with success=true. All 4,475
+index entries, 2,342 materialized files, HEAD/tree, raw index and package inputs
+are unchanged. Full original evidence and the independent source review are in
+[the Diktat acceptance pack](docs/evidence/host-diktat-acceptance-20261114/).
+
+Both earlier complete C4 Flutter results remain failures: Host37ec recorded
+2,605 passes and the three obsolete-finder errors before its later cancellation;
+Host79c7 run43603036260 ended FAILURE at 14:23:35 UTC with the same 2,605
+passes, three errors and zero skips. These are not runtime-product successes
+and are not relabelled by this focused repair. The full pipeline must now
+run on this exact successor, with its own attempt and original artifacts.
+
+The fixed Native source remains
+`baf148b03a7a32c6ad9f737d731f900eb9113ea1`. Its separate original Native run
+43600806315/attempt1/job132464933411 succeeded: 47 Python methods, four
+headless groups, Dream5/7/2, Discovery10/38/2, Village339/42/46 and rendered
+Mobile428 with 4 safe-area plus 9 minimap PNGs. All 60 PNGs were technically
+decoded; Root directly inspected exactly the 15 new Village/Mobile/Minimap
+images. This does not claim Android, device FPS or a full Host acceptance.
+[Native result and Root observations](docs/evidence/host-diktat-acceptance-20261114/native-handoff.json).
+
+Outer Host/Android budgets remain **150/80 minutes**; every inner deadline,
+release verifier and historical pin is unchanged. PR485 is still the integration
+candidate. The separate publisher is preserved on
+`integration/lumo-c4-publisher-20261114` at 72143d3586109967773d6442072d486c11dc1449;
+its actual source9799d1d passed 32 isolated contracts once, without any live
+release operation. Publication requires a complete successful new seven-job
+C4 run, the authenticated prepared bundle and verified public APK bytes.
+
+## Preserved preceding activation and evidence records
+
 # Activate the verified complete-build budget
 
 This documentation/evidence-only activation follows published Host
