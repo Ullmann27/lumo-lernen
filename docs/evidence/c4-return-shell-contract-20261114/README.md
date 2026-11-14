@@ -1,3 +1,5 @@
+> **Later verified result:** The identical test passed on committed Host `faaf9d906bd72c2ffe9ab677c76355fe538cddfe`: 11/11 methods, 24 actual shell calls, exit 0. See [GREEN.md](GREEN.md) and the original `green-faaf/` records. The 968e red evidence below is historical and remains unchanged.
+
 # Actual C4 return gate counterexamples on Host 968e
 
 This is an execution record for the new Host shell-step regression. It does not claim Native, game, APK, or Android acceptance.
