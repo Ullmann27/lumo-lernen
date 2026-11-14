@@ -62,6 +62,8 @@ jobs:
           command -v xvfb-run
       - name: Verify historical APK source isolation before native integration
         run: .c4-python/bin/python -m unittest discover -s scripts/tests -p 'test_verify_unchanged_apk_diagnostic.py' -v
+      - name: Verify the historical 2019 update wrapper in its own source fixture
+        run: .c4-python/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_update_2019_preservation.py' -v
       - name: Install the actual pinned Godot engine
         run: bash scripts/install_godot_for_build.sh
       - name: Import the exact configured native source in its own directory
