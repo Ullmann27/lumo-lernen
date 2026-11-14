@@ -2,7 +2,8 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   exclude:
-    # Archived source excerpts are evidence, not a complete Dart package.
+    # Immutable before/after sources belong to the evidence archive.
+    # Active application, test and tool sources remain analyzed.
     - docs/evidence/**
   errors:
     deprecated_member_use: ignore
