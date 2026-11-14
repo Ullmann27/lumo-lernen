@@ -1,0 +1,142 @@
+{
+  "reviewer": "root integrator",
+  "native_source": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "native_tree": "ffd943c83079c5957514934ad7077f32e743fe68",
+  "native_run": 43479909943,
+  "learning_preview_job": {
+    "id": 132073399152,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+    "completed_at": "2026-11-13T18:19:43Z"
+  },
+  "archives": [
+    {
+      "id": 14064024974,
+      "bytes": 23602687,
+      "sha256": "ffdd3aec274ac8ca97955ef5212b35bf603881dcbc6d5732620e38741106e2e7",
+      "source_dirty_stamp": "present and empty"
+    },
+    {
+      "id": 14064034627,
+      "bytes": 13123749,
+      "sha256": "69567c39c83ea294672a107d707058e70922297596acca5245d69283fd5a06a7",
+      "source_dirty_stamp": "not present; no clean-tree assertion inferred"
+    }
+  ],
+  "images": [
+    {
+      "module": "learning",
+      "standalone_artifact_id": 14064024974,
+      "standalone_artifact_entry": "captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "expected_full_bundle_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 249525,
+      "sha256": "cb24691851bed6f1f80d725a969f30bca87097510dcf7c4a5d06a0696116051a",
+      "actually_opened_individually": true,
+      "findings": "Completed 12:3 state visibly shows four real cubes in each group, no remaining supply, correct explanatory text, disabled distribution action and active reset/return controls. No answer or mastery award is claimed."
+    },
+    {
+      "module": "learning",
+      "standalone_artifact_id": 14064024974,
+      "standalone_artifact_entry": "captures/learning_sharing_capture/sharing-complete-412x915.png",
+      "expected_full_bundle_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 110576,
+      "sha256": "02f5f6cb203d87f15b8d5de46557d1e47b16b965072b9d6b1fc365731f6abe71",
+      "actually_opened_individually": true,
+      "findings": "Completed 12:3 state visibly shows four real cubes in each group, no remaining supply, correct explanatory text, disabled distribution action and active reset/return controls. No answer or mastery award is claimed."
+    },
+    {
+      "module": "learning",
+      "standalone_artifact_id": 14064024974,
+      "standalone_artifact_entry": "captures/learning_sharing_capture/sharing-first-round-1280x720.png",
+      "expected_full_bundle_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 247071,
+      "sha256": "364b2e326ca79abda3f0894f7d91fbb9e19e1428f2ce5bc69ac176839f45a9b2",
+      "actually_opened_individually": true,
+      "findings": "First complete round visibly shows three groups with one cube each and nine remaining cubes. Status reads 3/12; task and action controls are readable in this actual viewport."
+    },
+    {
+      "module": "learning",
+      "standalone_artifact_id": 14064024974,
+      "standalone_artifact_entry": "captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "expected_full_bundle_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 111652,
+      "sha256": "83b1274cc86d3e3b61d541e8ecdfcfff8de1d51561a87558dd516008ee9b68c8",
+      "actually_opened_individually": true,
+      "findings": "First complete round visibly shows three groups with one cube each and nine remaining cubes. Status reads 3/12; task and action controls are readable in this actual viewport."
+    },
+    {
+      "module": "learning",
+      "standalone_artifact_id": 14064024974,
+      "standalone_artifact_entry": "captures/learning_sharing_capture/sharing-start-1280x720.png",
+      "expected_full_bundle_entry": "studio-evidence/captures/learning_sharing_capture/sharing-start-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 244185,
+      "sha256": "8153286850252d1bf7b365b079673b1da0ecb354ffb22fe8a0f9b4dbe768c605",
+      "actually_opened_individually": true,
+      "findings": "Initial 12:3 state visibly shows three empty groups and twelve supply cubes. The original fox and actual atelier geometry are visible; current group is highlighted and instructions/actions fit the actual viewport."
+    },
+    {
+      "module": "learning",
+      "standalone_artifact_id": 14064024974,
+      "standalone_artifact_entry": "captures/learning_sharing_capture/sharing-start-412x915.png",
+      "expected_full_bundle_entry": "studio-evidence/captures/learning_sharing_capture/sharing-start-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 110235,
+      "sha256": "59edf83f79a88341b04dd9d3a74bb8bc03aad42385e601d24a739cefc06fe94b",
+      "actually_opened_individually": true,
+      "findings": "Initial 12:3 state visibly shows three empty groups and twelve supply cubes. The original fox and actual atelier geometry are visible; current group is highlighted and instructions/actions fit the actual viewport."
+    },
+    {
+      "module": "learning",
+      "standalone_artifact_id": 14064034627,
+      "standalone_artifact_entry": "images/bridge_hundred-complete-2400x1080.png",
+      "expected_full_bundle_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "bytes": 723952,
+      "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8",
+      "actually_opened_individually": true,
+      "findings": "Actual completed 180+50 scene: both horizontal strokes of the upper equals sign are visible; lower 230=2 hundreds+3 tens caption is fully backed and readable. The hundred tile, ten bundled tens and three remaining tens are distinct. Task/feedback fit the sampled viewport. Density is a renderer fixture, not a physical Fold7 measurement."
+    },
+    {
+      "module": "learning",
+      "standalone_artifact_id": 14064034627,
+      "standalone_artifact_entry": "images/bridge_hundred-complete-412x915.png",
+      "expected_full_bundle_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 135397,
+      "sha256": "38d569ebbf45570cdb5747e23293c87fe03d15e2621e2a3c597ba06a0eba00f0",
+      "actually_opened_individually": true,
+      "findings": "Actual completed 180+50 scene: both horizontal strokes of the upper equals sign are visible; lower 230=2 hundreds+3 tens caption is fully backed and readable. The hundred tile, ten bundled tens and three remaining tens are distinct. Task/feedback fit the sampled viewport. Density is a renderer fixture, not a physical Fold7 measurement."
+    }
+  ],
+  "scope": "All six current sharing captures and exactly two current receipt-selected hundred captures were individually opened. Complete bundle byte equality and remaining job outcomes still require separate verification. No full 25-image preview or physical Android performance claim."
+}

@@ -1,0 +1,86 @@
+{
+  "baseline": {
+    "path": "scripts/characters/lumo/lumo_platform_pose.gd",
+    "purpose": "Exact baseline pose source for renderer comparison on unchanged original mesh",
+    "revision": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+    "sha256": "cd0a5cd4054fef04103a072df2385040271eeca2560f457c20c04d868839e65b"
+  },
+  "capture_kind": "native Godot pose studio, separate from gameplay capture",
+  "captures": [
+    {
+      "display": "X11",
+      "draw_calls": 4,
+      "file": "before_walk.png",
+      "sample": "walk",
+      "state": "walk_loop",
+      "stride_phase": 5.36369468307842,
+      "variant": "before"
+    },
+    {
+      "display": "X11",
+      "draw_calls": 4,
+      "file": "before_sprint.png",
+      "sample": "sprint",
+      "state": "run_loop",
+      "stride_phase": 4.18879020478639,
+      "variant": "before"
+    },
+    {
+      "display": "X11",
+      "draw_calls": 4,
+      "file": "before_jump_rise.png",
+      "sample": "jump_rise",
+      "state": "jump_rise",
+      "stride_phase": 5.36369468307842,
+      "variant": "before"
+    },
+    {
+      "display": "X11",
+      "draw_calls": 4,
+      "file": "before_land.png",
+      "sample": "land",
+      "state": "land",
+      "stride_phase": 5.36369468307842,
+      "variant": "before"
+    },
+    {
+      "display": "X11",
+      "draw_calls": 4,
+      "file": "after_walk.png",
+      "sample": "walk",
+      "state": "walk_loop",
+      "stride_phase": 5.63875594887731,
+      "variant": "after"
+    },
+    {
+      "display": "X11",
+      "draw_calls": 4,
+      "file": "after_sprint.png",
+      "sample": "sprint",
+      "state": "run_loop",
+      "stride_phase": 5.88495525249918,
+      "variant": "after"
+    },
+    {
+      "display": "X11",
+      "draw_calls": 4,
+      "file": "after_jump_rise.png",
+      "sample": "jump_rise",
+      "state": "jump_rise",
+      "stride_phase": 5.63875594887731,
+      "variant": "after"
+    },
+    {
+      "display": "X11",
+      "draw_calls": 4,
+      "file": "after_land.png",
+      "sample": "land",
+      "state": "land",
+      "stride_phase": 5.63875594887731,
+      "variant": "after"
+    }
+  ],
+  "failures": [],
+  "physical_device_fps_measured": false,
+  "source_fox_unchanged": true
+}

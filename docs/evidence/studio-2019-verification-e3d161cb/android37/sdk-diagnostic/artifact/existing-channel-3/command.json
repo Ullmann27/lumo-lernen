@@ -1,0 +1,33 @@
+{
+  "name": "existing-channel-3",
+  "argv": [
+    "/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager",
+    "--sdk_root=/usr/local/lib/android/sdk",
+    "--list",
+    "--verbose",
+    "--channel=3"
+  ],
+  "environment_overrides": {
+    "ANDROID_HOME": "/usr/local/lib/android/sdk",
+    "ANDROID_SDK_ROOT": "/usr/local/lib/android/sdk",
+    "ANDROID_USER_HOME": "/home/runner/work/_temp/lumo-android17-sdk-tools/existing-user"
+  },
+  "started_utc": "2026-11-13T17:47:53.192812+00:00",
+  "timeout_seconds": 180,
+  "exit_code": 0,
+  "timed_out": false,
+  "start_error": null,
+  "finished_utc": "2026-11-13T17:47:54.210911+00:00",
+  "elapsed_seconds": 1.0181099520000032,
+  "success": true,
+  "stdout": {
+    "path": "existing-channel-3/stdout.txt",
+    "bytes": 109811,
+    "sha256": "d1f502f9b14d19e71d27cd80aeae3117e89d2d12c83986d8e67c73aa4deda83c"
+  },
+  "stderr": {
+    "path": "existing-channel-3/stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "status": "FAIL",
+  "stage": "11_cards_real_table_before_draw",
+  "frames": [
+    {
+      "source": "11_cards_real_table_before_draw-face-check-00.png",
+      "source_sha256": "d5d2f8026142c245d527d42b672eff27328bf21b20c700ad1fa909aa8144643c",
+      "revision": 5,
+      "public_before": {
+        "protocol": 1,
+        "token": "867e84faa545a2627fd185c8ce0d585a",
+        "revision": 5,
+        "ack": 1,
+        "roundId": "cards-2bfdb660002c03f978ccce80c0745645",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 7,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 7,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "wind-21",
+            "color": "orange",
+            "type": "whirlwind",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "num-3",
+            "color": "orange",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "rain-46",
+            "color": "purple",
+            "type": "starRain",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-96",
+            "color": "green",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "num-89",
+            "color": "green",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-33",
+            "color": "purple",
+            "type": "number",
+            "number": 4,
+            "playable": true
+          },
+          {
+            "id": "jump-97",
+            "color": "green",
+            "type": "lumoJump",
+            "number": null,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "num-27",
+          "color": "purple",
+          "type": "number",
+          "number": 1
+        },
+        "selectedColor": "purple",
+        "drawCount": 97,
+        "canDraw": true,
+        "message": "Du fängt an. Lege eine passende Karte!",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "REJECTED",
+      "error": "Current Cards frame still has a paused/modal transition"
+    }
+  ],
+  "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+  "error": "Cards front faces did not pass current unpaused pixel/UI evidence before deadline",
+  "elapsed_seconds": 60.173214
+}

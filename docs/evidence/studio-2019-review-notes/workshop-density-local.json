@@ -1,0 +1,316 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T14:29:02.920614+00:00",
+  "reviewer": "Agent A / learning_worlds; unabhängiger Scrollbefund von Agent B / character_animation",
+  "status": "Lokale Eingabeprüfung bestanden; frische Rendererprüfung und Android-Abnahme ausstehend",
+  "scope": "Produktiver Kart-Garage-Einstieg und Werkstatt bei expliziten Desktop-Dichtefixtures. Keine visuelle Freigabe.",
+  "native_revision": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "native_branch": "chatgpt/lumo-studio-20261113",
+  "source_files": {
+    "scripts/games/kart_workshop.gd": {
+      "sha256": "c6c2b6a3b3acda5cfc4bf7e074e4d19c1617536f46165166994eb8cd329a6090",
+      "bytes": 27773,
+      "remote_url": "https://github.com/Ullmann27/lumo-godot/blob/24fb85800dfb58ec11dd409449e276299aa72b06/scripts/games/kart_workshop.gd",
+      "remote_revision": "24fb85800dfb58ec11dd409449e276299aa72b06",
+      "remote_bytes_equal_tested_workspace": true
+    },
+    "scripts/tests/kart_workshop_density_regression.gd": {
+      "sha256": "06ec58fa89036a66eb1d15f8e90c8a03b0f947119a2b327a479521adc034c61d",
+      "bytes": 15190,
+      "remote_url": "https://github.com/Ullmann27/lumo-godot/blob/24fb85800dfb58ec11dd409449e276299aa72b06/scripts/tests/kart_workshop_density_regression.gd",
+      "remote_revision": "24fb85800dfb58ec11dd409449e276299aa72b06",
+      "remote_bytes_equal_tested_workspace": true
+    }
+  },
+  "source_binding": {
+    "method": "Beide Dateien über den GitHub-Connector am vollständigen Commit-SHA gelesen und UTF-8-Bytes exakt gegen den getesteten lokalen Stand verglichen.",
+    "local_checkout_base": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+    "local_run_was_clean_checkout_at_native_revision": false,
+    "note": "Der lokale Test lief auf dem bearbeiteten Ausgangscheckout. Bytegleichheit der beiden Test-/Produktdateien zum gesicherten Commit wurde nachträglich unabhängig geprüft. Dies ist keine Aussage, dass der ganze lokale Checkout unverändert auf dem neuen Commit stand."
+  },
+  "confirmed_before": {
+    "density": 2.625,
+    "physical_surface": [
+      2400,
+      1080
+    ],
+    "logical_viewport": [
+      1600,
+      720
+    ],
+    "method": "Tatsächliches Control-Rechteck einschließlich Eltern-Canvas, multipliziert mit physischer Fenster-/Viewport-Skalierung und durch displayDensity geteilt.",
+    "examples": [
+      {
+        "density": 2.625,
+        "dp": [
+          49.523811340332,
+          24.0
+        ],
+        "fully_in_view": true,
+        "meets_48dp": false,
+        "name": "WorkshopBack",
+        "pixels": [
+          130.0,
+          63.0
+        ],
+        "scope": "kart_workshop",
+        "surface": [
+          2400,
+          1080
+        ],
+        "text": "← Zurück",
+        "viewport": [
+          1600.0,
+          720.0
+        ],
+        "visible": true
+      },
+      {
+        "density": 2.625,
+        "dp": [
+          419.428558349609,
+          28.5714282989502
+        ],
+        "fully_in_view": true,
+        "meets_48dp": false,
+        "name": "WorkshopDynoStart",
+        "pixels": [
+          1101.0,
+          75.0
+        ],
+        "scope": "kart_workshop",
+        "surface": [
+          2400,
+          1080
+        ],
+        "text": "Prüflauf starten",
+        "viewport": [
+          1600.0,
+          720.0
+        ],
+        "visible": true
+      },
+      {
+        "density": 2.625,
+        "dp": [
+          57.1428565979004,
+          32.5714302062988
+        ],
+        "fully_in_view": true,
+        "meets_48dp": false,
+        "name": "Upgrade",
+        "pixels": [
+          150.0,
+          85.5
+        ],
+        "scope": "kart_workshop_part",
+        "surface": [
+          2400,
+          1080
+        ],
+        "text": "Noch 4 ★",
+        "viewport": [
+          1600.0,
+          720.0
+        ],
+        "visible": true
+      },
+      {
+        "density": 2.625,
+        "dp": [
+          24.380952835083,
+          22.8571434020996
+        ],
+        "fully_in_view": false,
+        "meets_48dp": false,
+        "name": "Swatch_werk",
+        "pixels": [
+          64.0,
+          60.0
+        ],
+        "scope": "kart_workshop_swatch",
+        "surface": [
+          2400,
+          1080
+        ],
+        "text": "",
+        "viewport": [
+          1600.0,
+          720.0
+        ],
+        "visible": true
+      }
+    ],
+    "log": {
+      "path": "docs/evidence/studio-2019-review-notes/workshop-density-before.log",
+      "sha256": "b8bf8383edfdb7c4ee88bc9f81b517c1fb0e5a5fb1e3420c3aa98e56d440c7ec",
+      "bytes": 17197,
+      "original_bytes_unchanged": true
+    },
+    "limitation": "Die ursprünglichen Swatches lagen zunächst außerhalb des Scrollfensters; ihre damaligen Größen sind Geometriemessungen. Der finale Test macht jedes Ziel sichtbar und prüft echte Treffer."
+  },
+  "implementation": [
+    "Fensterpixel werden über MobileRuntime.get_ui_density in dp und danach in Canvas-Einheiten umgerechnet; physische Safe-Area-Inset-Werte behalten ihre gesonderte Umrechnung.",
+    "Kompakte Schaltflächen und Kaufaktionen haben mindestens 48 dp; Beschriftungen skalieren ohne wiederholte Multiplikation bei Layoutwechseln.",
+    "Nur Schaltflächen und die sie enthaltenden Dyno-/Teil-/Swatch-Panels innerhalb right_scroll erhalten MOUSE_FILTER_PASS. Äußere Dialoggrenzen und Kauf-/Speicherregeln wurden nicht geändert."
+  ],
+  "limited_scroll_counterprobe": {
+    "scope": "Ausschließlich 2400×1080 bei displayDensity 2.625, Godot Desktop headless; kein physischer Android-Test.",
+    "gesture": "Echter ScreenTouch auf Dyno-Button, fünf ScreenDrag-Schritte je 20 dp nach oben, ScreenTouch-Release.",
+    "intermediate_before": "Nur Buttons waren schon PASS; der umgebende Dyno-PanelContainer stand auf STOP. scroll_vertical blieb 0→0.",
+    "after": "Button und umgebendes Scroll-Panel PASS: scroll_vertical 0→313 Canvas-Einheiten; dyno_time blieb 0.0.",
+    "before_log": {
+      "path": "docs/evidence/studio-2019-review-notes/workshop-scroll-counterprobe-before.log",
+      "sha256": "c54f5227451b0840d4c4adca1c9a49425cce5faead34fcf77bee67abf8bd841a",
+      "bytes": 1314,
+      "original_bytes_unchanged": true
+    },
+    "after_log": {
+      "path": "docs/evidence/studio-2019-review-notes/workshop-scroll-counterprobe-after.log",
+      "sha256": "2cf1982055a1f4a29d9fb27cc5327507b07baffb5f28e1cc8714be4591971bbe",
+      "bytes": 817,
+      "original_bytes_unchanged": true
+    },
+    "inherited_marker_limitation": "Der temporäre Ein-Profil-Repro übernahm den allgemeinen PASS-Text \"eight layouts\" aus dem größeren Harness. Dieser Text ist hier ausdrücklich KEIN Nachweis von acht Formaten. Nur der finale produktive 4.129-Prüfungen-Lauf belegt die vollständige Matrix.",
+    "not_a_source_bound_ci_run": true
+  },
+  "final_local_run": {
+    "engine": "Godot 4.6.3.stable.official.7d41c59c4",
+    "backend": "headless",
+    "runner": "tools/run_godot_probe.py",
+    "exit_code": 0,
+    "checks": 4129,
+    "failures": 0,
+    "profiles": [
+      {
+        "surface": [
+          1280,
+          720
+        ],
+        "density": 1.0
+      },
+      {
+        "surface": [
+          640,
+          360
+        ],
+        "density": 1.0
+      },
+      {
+        "surface": [
+          640,
+          320
+        ],
+        "density": 1.0
+      },
+      {
+        "surface": [
+          412,
+          915
+        ],
+        "density": 1.0
+      },
+      {
+        "surface": [
+          690,
+          829
+        ],
+        "density": 1.0
+      },
+      {
+        "surface": [
+          2400,
+          1080
+        ],
+        "density": 2.625
+      },
+      {
+        "surface": [
+          1080,
+          2400
+        ],
+        "density": 2.625
+      },
+      {
+        "surface": [
+          2176,
+          1812
+        ],
+        "density": 2.25
+      }
+    ],
+    "real_button_swipes": 40,
+    "unintended_button_activations": 0,
+    "swipe_targets_per_profile": [
+      "Prüflauf starten",
+      "Motor verbessern",
+      "Lack-Farbfeld",
+      "kostenpflichtiger Lackkauf",
+      "Teile zurückerstatten"
+    ],
+    "input_method": "Input.parse_input_event mit ScreenTouch und ScreenDrag; Wischbewegungen beginnen auf echten Buttonflächen. Desktop-Touchemulation wird im Test vorübergehend aktiviert und anschließend restauriert.",
+    "geometry_method": "Control.get_global_rect inklusive Eltern-Canvas; physische Fenstergröße / Viewportgröße; Ergebnis / displayDensity. Prüfung >=47.99 dp mit 0.01-dp-Gleitkommatoleranz; vollständige Scroll-/Safe-Area-/Fenstersichtbarkeit mit 0.51-physischem-Pixel-Toleranz.",
+    "scroll_reveal_boundary": "ensure_control_visible dient weiterhin nur dazu, jedes Ziel für die getrennten Größen-/Tap-Prüfungen offenzulegen. Es zählt nicht als Wischbeleg. Die 40 separat protokollierten Wischer müssen selbst den Scrollwert verändern und dürfen keine Aktion auslösen.",
+    "coverage": [
+      "Alle ursprünglichen 3.472 Prüfungen erhalten",
+      "Alle Swatches und Käufe über echten Touch",
+      "Alle vier Verbesserungsarten",
+      "Sterneabrechnung und Eigentum",
+      "Zweistufige Rückerstattung und Erhalt der Optik",
+      "Randtipps 22 dp unter dem Mittelpunkt",
+      "Rückkehr in dieselbe Garage",
+      "Wischer lösen weder Dyno noch Käufe oder Rückerstattungsbestätigung aus"
+    ],
+    "log": {
+      "path": "docs/evidence/studio-2019-review-notes/workshop-density-local.log",
+      "sha256": "a3bfb9bab60e0265e9e5aa02357d8f15b3e9ff9e5e6293eb0ddba452d88580a9",
+      "bytes": 3861,
+      "original_bytes_unchanged": true
+    },
+    "command": [
+      "python3",
+      "tools/run_godot_probe.py",
+      "--log",
+      "/tmp/lumo-workshop-density-swipes-final.log",
+      "--timeout",
+      "600",
+      "--required",
+      "[WorkshopDensity] PASS",
+      "--",
+      "/usr/local/bin/godot",
+      "--headless",
+      "--path",
+      "/workspace/scratch/5987865ae883/lumo-godot",
+      "--script",
+      "res://scripts/tests/kart_workshop_density_regression.gd"
+    ],
+    "isolated_environment": {
+      "XDG_DATA_HOME": "/tmp/lumo-workshop-density-test-data",
+      "XDG_CONFIG_HOME": "/tmp/lumo-workshop-density-test-config",
+      "XDG_CACHE_HOME": "/tmp/lumo-workshop-density-test-cache"
+    }
+  },
+  "pending_renderer_review": {
+    "status": "Keine frischen Werkstattbilder dieses Commits vorab freigegeben.",
+    "expected_png_count": 6,
+    "filenames": [
+      "workshop-2400x1080-performance.png",
+      "workshop-2400x1080-paint-purchase.png",
+      "workshop-2400x1080-refund.png",
+      "workshop-1080x2400-performance.png",
+      "workshop-1080x2400-paint-purchase.png",
+      "workshop-1080x2400-refund.png"
+    ],
+    "capture_environment": "LUMO_CAPTURE_DIR",
+    "capture_cli": "godot --rendering-method gl_compatibility --path . --script res://scripts/tests/kart_workshop_density_regression.gd -- --capture",
+    "required_marker": "[WorkshopDensity] PASS",
+    "minimum_png_dimension": 360,
+    "reviewed_images": []
+  },
+  "limitations": [
+    "Keine tatsächlichen Android-17-/Fold7-Eingaben aus diesem Headless-Lauf abgeleitet.",
+    "Keine FPS-, GPU-, Wärme- oder Eingabelatenzmessung auf dem Gerät.",
+    "Kein Gesamt-Releasebeleg und keine finale Visual-Review-Receipt.",
+    "Quellcode und native Tests bei der Sicherung dieser Notiz unverändert gelassen."
+  ]
+}

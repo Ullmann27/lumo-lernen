@@ -1,0 +1,52 @@
+{
+  "review_utc": "2026-11-13T15:16:45.523171+00:00",
+  "status": "SCOPED_RUNTIME_VIDEO_REVIEW_PASS",
+  "video": {
+    "path": "docs/evidence/studio-runtime-jump-20261113/Lumo-Original-Jump-Runtime.mp4",
+    "sha256": "d119c24cec8a7a1bcb37452be6f5f027cb085242e7cc9b1e977a536120de4a4b",
+    "width": 960,
+    "height": 540,
+    "frames": 240,
+    "duration_seconds": 10,
+    "recording_fps": 24
+  },
+  "actually_opened_by_root": [
+    {
+      "path": "docs/evidence/studio-runtime-jump-20261113/runtime-run.png",
+      "sha256": "5b603504f1f9570e58ecc0cb0dcc7610646e32a0ed3ad5f5030f4425ad936b00",
+      "opened_by": "root"
+    },
+    {
+      "path": "docs/evidence/studio-runtime-jump-20261113/runtime-jump-rise.png",
+      "sha256": "105dc0ce0ed9edd897d82b037daf8553f969267c3a44b020ddba427e6da60967",
+      "opened_by": "root"
+    },
+    {
+      "path": "docs/evidence/studio-runtime-jump-20261113/runtime-land.png",
+      "sha256": "dbe91fecfb1956afc06840b694d12c2bb11e194cdbd603709b94596d8d3a8db5",
+      "opened_by": "root"
+    }
+  ],
+  "source_comparison": {
+    "native_sha": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "file": "runtime-source-76980-tree-comparison.json",
+    "sha256": "329db49fc6f5c0cd5bfccfb4d20c362136677da4b8efe60d4dac02a377a763ea",
+    "compared_tracked_files": 859,
+    "mismatches": 0,
+    "excluded_path_prefixes": [
+      "docs/",
+      "tools/",
+      "scripts/tests/",
+      "exports/",
+      ".github/"
+    ],
+    "time_scope": "Compared after capture; the recorder separately bound its relevant sources before and after capture."
+  },
+  "source_limit": "This byte comparison does not call the old-HEAD working tree a clean checkout and does not attest arbitrary untracked files or cached imported binaries. Final release verification uses the independent clean native CI artifact.",
+  "findings": [
+    "All three actual decoded samples show Original Lumo, the production environment and separated touch controls.",
+    "Landing sample shows Island2/12 and actual grounded land pose; the viewport camera remains the production camera, so Lumo is relatively small.",
+    "The MP4 is constructed from real consecutive viewport captures without generated or interpolated frames; the separate decode log covers the complete encoded stream."
+  ],
+  "device_performance_claim": false
+}

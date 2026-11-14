@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "scripts/verify_legacy_release_pin.py"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "exit_code": 1,
+  "wall_seconds": 0.021640844002831727,
+  "stdout_bytes": 0,
+  "stderr_bytes": 596,
+  "expected_failure": "2019 policy still requires 796b; the current explicitly reviewed config is 803e",
+  "source_baseline": "39ddc673577e31e76fb992a1b49ef67d1deee908"
+}

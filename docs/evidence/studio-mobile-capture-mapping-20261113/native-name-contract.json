@@ -1,0 +1,23 @@
+{
+  "files": [
+    {
+      "path": "tools/validate_studio.sh",
+      "bytes": 7230,
+      "sha256": "78d1cd6df60968c9d4d767b0c27c9b240df9968a817e703cec8d77294057b587",
+      "read_only_name_contract": true
+    },
+    {
+      "path": "scripts/tests/mobile_safe_area_regression.gd",
+      "bytes": 17619,
+      "sha256": "bca22822a2df33a69bcac5071b16827cecef179b077a08d1b2b0372a68e6fa4f",
+      "read_only_name_contract": true
+    }
+  ],
+  "confirmed_names": [
+    "jump-landscape-cutout.png",
+    "build-landscape-cutout.png",
+    "puzzle-landscape-cutout.png",
+    "treasure-landscape-cutout.png"
+  ],
+  "native_sources_modified": false
+}

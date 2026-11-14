@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python3",
+    "scripts/verify_legacy_release_pin.py"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "exit_code": 0,
+  "wall_seconds": 0.01938718000019435,
+  "created_at_utc": "2026-11-13T23:50:15.862489+00:00",
+  "log_sha256": "e5d2ffc383c7e82b60239220cbf26454a9d54e22ba3ad9f4498e08b408331048"
+}

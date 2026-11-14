@@ -1,0 +1,598 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T15:31:30.486432+00:00",
+  "reviewer": "Agent A / learning_worlds",
+  "status": "Scoped learning visual and current preview artifact log review PASS; no overall candidate approval",
+  "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "artifact_id": 14049634680,
+  "workflow_run_id": 43449903088,
+  "github_artifact_metadata": {
+    "id": 14049634680,
+    "node_id": "MDg6QXJ0aWZhY3QxNDA0OTYzNDY4MA==",
+    "name": "lumo-studio-2019-learning-preview",
+    "size_in_bytes": 13138722,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14049634680",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14049634680/zip",
+    "expired": false,
+    "digest": "sha256:203e9840256e076a75fa296497e78be2339f3526e8735269728783170b4cea3b",
+    "created_at": "2026-11-13T15:22:24Z",
+    "updated_at": "2026-11-13T15:22:24Z",
+    "expires_at": "2026-12-13T15:22:22Z",
+    "workflow_run": {
+      "id": 43449903088,
+      "repository_id": 1251414584,
+      "head_repository_id": 1251414584,
+      "head_branch": "chatgpt/lumo-studio-20261113",
+      "head_sha": "76980a941fa05d047574d8cc386d3249d93ffca3"
+    }
+  },
+  "original_zip": {
+    "name": "studio-learning-76980a94.zip",
+    "sha256": "203e9840256e076a75fa296497e78be2339f3526e8735269728783170b4cea3b",
+    "bytes": 13138722,
+    "github_digest_and_size_independently_matched": true
+  },
+  "source_stamp": {
+    "entry": "source-sha.txt",
+    "value": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+    "original_zip_bytes_equal": true
+  },
+  "tree_stamp": {
+    "entry": "source-tree.txt",
+    "value": "8df22766bd0dbae31aacaa26c0228811c027686e",
+    "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+    "original_zip_bytes_equal": true
+  },
+  "engine_stamp": {
+    "entry": "engine.txt",
+    "value": "4.6.3.stable.official.7d41c59c4",
+    "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+    "original_zip_bytes_equal": true
+  },
+  "dirty_stamp": {
+    "present": false,
+    "clean_tree_verified": false,
+    "scope": "Dieses Preview-Archiv enthält keinen Dirty-Stamp. Der vorhandene Quell- und Baumstempel wird geprüft; daraus wird keine Sauberkeit des Capture-Arbeitsbaums behauptet."
+  },
+  "review_method": "Alle 25 unveränderten aktuellen PNGs einzeln mit view_image geöffnet, einschließlich aller sechs Hunderterbilder. Anschließend PNG-Dekodierung, eigene Bild-Hashes und exakte Bytegleichheit zu allen Original-ZIP-Mitgliedern geprüft. GitHub-Artefaktmetadata am aktuellen Run unabhängig gelesen. Aktuelle Original-Logs auf vollständigen Capture-Roster, PASS-Marker und Fehler/Timeouts geprüft.",
+  "images": [
+    {
+      "filename": "bridge_hundred-complete-2400x1080.png",
+      "artifact_entry": "images/bridge_hundred-complete-2400x1080.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "bytes": 723952,
+      "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Im oberen 3D-Text 10 Zehner = 100 sind die beiden Balken des Gleichheitszeichens sichtbar getrennt. Das zuvor als Rechteck erscheinende Zeichen ist in diesem aktuellen Bild behoben.",
+        "Zehn Zehner im ersten Feld und drei weitere Zehner verdeutlichen den Übergang. Die untere Zerlegung 230 = 2 Hunderter + 3 Zehner bleibt vor ihrem dunklen Schild gut lesbar.",
+        "Oberes Textfeld, untere Beschriftung und benötigte Lernobjekte werden vom Header und Footer nicht verdeckt.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": false
+    },
+    {
+      "filename": "bridge_hundred-complete-412x915.png",
+      "artifact_entry": "images/bridge_hundred-complete-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 135397,
+      "sha256": "38d569ebbf45570cdb5747e23293c87fe03d15e2621e2a3c597ba06a0eba00f0",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Im oberen 3D-Text 10 Zehner = 100 sind die beiden Balken des Gleichheitszeichens sichtbar getrennt. Das zuvor als Rechteck erscheinende Zeichen ist in diesem aktuellen Bild behoben.",
+        "Zehn Zehner im ersten Feld und drei weitere Zehner verdeutlichen den Übergang. Die untere Zerlegung 230 = 2 Hunderter + 3 Zehner bleibt vor ihrem dunklen Schild gut lesbar.",
+        "Oberes Textfeld, untere Beschriftung und benötigte Lernobjekte werden vom Header und Footer nicht verdeckt.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt.",
+        "Im Hochformat liegt Lumos Fuß nahe am Beginn der oberen Beschriftung; der Text bleibt in der tatsächlich geöffneten Aufnahme lesbar. Kein zusätzlicher blockierender Überdeckungsbefund."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": false
+    },
+    {
+      "filename": "bridge_hundred-complete.png",
+      "artifact_entry": "images/bridge_hundred-complete.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 294085,
+      "sha256": "c269ecf31faf3162eb82b33283745c6abe6421b9631fca8c10bb00b5164b950f",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Im oberen 3D-Text 10 Zehner = 100 sind die beiden Balken des Gleichheitszeichens sichtbar getrennt. Das zuvor als Rechteck erscheinende Zeichen ist in diesem aktuellen Bild behoben.",
+        "Zehn Zehner im ersten Feld und drei weitere Zehner verdeutlichen den Übergang. Die untere Zerlegung 230 = 2 Hunderter + 3 Zehner bleibt vor ihrem dunklen Schild gut lesbar.",
+        "Oberes Textfeld, untere Beschriftung und benötigte Lernobjekte werden vom Header und Footer nicht verdeckt.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": false
+    },
+    {
+      "filename": "bridge_hundred-start-2400x1080.png",
+      "artifact_entry": "images/bridge_hundred-start-2400x1080.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "bytes": 717882,
+      "sha256": "371abc23b20bf4ff7e01396bc800b4fd3fec78584948a3cdbb858cd7fbc60303",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die Aufgabe 180 + 50 zeigt den vorhandenen Hunderter, acht eingesetzte Zehner und fünf zusätzliche Zehner als räumliche Objekte.",
+        "Die untere Stellenwertzerlegung 180 = 1 Hunderter + 8 Zehner ist vor dem dunklen physischen Schild lesbar; die erforderlichen Zehnerplätze liegen außerhalb des HUD.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": false
+    },
+    {
+      "filename": "bridge_hundred-start-412x915.png",
+      "artifact_entry": "images/bridge_hundred-start-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 140079,
+      "sha256": "2b3a3032edf94a32d504ebeadae50417371a4e5b4bb3a97227495bba5a49c8d3",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die Aufgabe 180 + 50 zeigt den vorhandenen Hunderter, acht eingesetzte Zehner und fünf zusätzliche Zehner als räumliche Objekte.",
+        "Die untere Stellenwertzerlegung 180 = 1 Hunderter + 8 Zehner ist vor dem dunklen physischen Schild lesbar; die erforderlichen Zehnerplätze liegen außerhalb des HUD.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt.",
+        "Im Hochformat liegt Lumos Fuß nahe am Beginn der oberen Beschriftung; der Text bleibt in der tatsächlich geöffneten Aufnahme lesbar. Kein zusätzlicher blockierender Überdeckungsbefund."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": false
+    },
+    {
+      "filename": "bridge_hundred-start.png",
+      "artifact_entry": "images/bridge_hundred-start.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 296121,
+      "sha256": "43473ce298b60179323b80845737ff6e58ab6ffe3a0559b2f6b4b10e3d3bfcfe",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die Aufgabe 180 + 50 zeigt den vorhandenen Hunderter, acht eingesetzte Zehner und fünf zusätzliche Zehner als räumliche Objekte.",
+        "Die untere Stellenwertzerlegung 180 = 1 Hunderter + 8 Zehner ist vor dem dunklen physischen Schild lesbar; die erforderlichen Zehnerplätze liegen außerhalb des HUD.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": false
+    },
+    {
+      "filename": "equal_groups-complete.png",
+      "artifact_entry": "images/equal_groups-complete.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 248558,
+      "sha256": "693e6d6443b55091ea64ce4a0a5431ef0f71015404890ed4d12653eafc9d67c5",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Alle drei Gruppen enthalten sichtbar jeweils vier Würfel und zeigen den Zähler 4. Der Vorrat ist leer.",
+        "Die Erklärung des Ergebnisses zwölf stimmt mit der sichtbaren Menge überein; Wiederholen und Rückkehr bleiben verfügbar.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "equal_groups-start.png",
+      "artifact_entry": "images/equal_groups-start.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 244128,
+      "sha256": "f87b424fa3b5773f144d533a24344d99817c145da218cd0ba7341f3e8d8bbea1",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Für 3 × 4 sind drei leere Gruppen mit dem Zähler 0 und zwölf Würfel im Vorrat sichtbar.",
+        "Gruppen, Vorrat und Schrittanweisung lassen sich unterscheiden; die erforderlichen Zielbereiche bleiben frei.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "fraction_parts-complete.png",
+      "artifact_entry": "images/fraction_parts-complete.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 259738,
+      "sha256": "bec647a0a84f5fc9f10f08fe2a04038e72f39d1dda13aa91102fec986b2da692",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Drei der vier gleich großen Teile sind markiert, ein Teil bleibt unmarkiert. Die räumliche Beschriftung zeigt 3/4.",
+        "Ergebnis und sichtbare Teilflächen stimmen überein; benötigte Bedienelemente bleiben außerhalb der Geometrie.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "fraction_parts-start.png",
+      "artifact_entry": "images/fraction_parts-start.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 260944,
+      "sha256": "dae35db7fadfdbe3415146cc4a99f61b771b9d68f6d7a338deb413889e95b29e",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Das Modell zeigt vier gleich große Teile. Ein Teil ist bereits markiert, zwei weitere Markierungen liegen für das Ziel 3/4 bereit.",
+        "Die räumliche Beschriftung 1/4 und die Aufgabenanweisung sind lesbar; die gleich großen Teilflächen sind erkennbar.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "math-complete-1280x720.png",
+      "artifact_entry": "images/math-complete-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 289242,
+      "sha256": "1d461553c8fc3dfead784a18fcd5fa348f7c7bc089e56b80a4a47d01dee90d8e",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Das erste Zehnerfeld enthält zehn Würfel, das zweite drei. Der Vorrat ist leer; die Erklärung 8 + 5 = 10 + 3 = 13 ist lesbar.",
+        "Der abgeschlossene Hilfeschritt ist erkennbar. Noch einmal und Zur Aufgabe bleiben sichtbar; die primäre Schritttaste ist deaktiviert.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "math-complete-2400x1080.png",
+      "artifact_entry": "images/math-complete-2400x1080.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "bytes": 716783,
+      "sha256": "e969d77a7a1286732ff7d65465b1ff122e9caa615b8b019f6d17f52429a30b0b",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Das erste Zehnerfeld enthält zehn Würfel, das zweite drei. Der Vorrat ist leer; die Erklärung 8 + 5 = 10 + 3 = 13 ist lesbar.",
+        "Der abgeschlossene Hilfeschritt ist erkennbar. Noch einmal und Zur Aufgabe bleiben sichtbar; die primäre Schritttaste ist deaktiviert.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "math-complete-412x915.png",
+      "artifact_entry": "images/math-complete-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 126214,
+      "sha256": "c3f8e0527ff768531c9ff2b32e82c190f812d8ac2eccff31dac76b909a848ac1",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Das erste Zehnerfeld enthält zehn Würfel, das zweite drei. Der Vorrat ist leer; die Erklärung 8 + 5 = 10 + 3 = 13 ist lesbar.",
+        "Der abgeschlossene Hilfeschritt ist erkennbar. Noch einmal und Zur Aufgabe bleiben sichtbar; die primäre Schritttaste ist deaktiviert.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "math-start-1280x720.png",
+      "artifact_entry": "images/math-start-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 287808,
+      "sha256": "6bdbeb76a691f0bcef8e8ab39511da5b5e16c94deddf950a87ab67d9c352286e",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die Aufgabe 8 + 5 zeigt acht blaue Würfel im ersten Zehnerfeld, zwei freie Plätze bis zehn und fünf gelbe Würfel im Vorrat.",
+        "Die Anweisung zum Auffüllen bis zehn sowie Fortschritt und Bedienelemente sind lesbar.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "math-start-2400x1080.png",
+      "artifact_entry": "images/math-start-2400x1080.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "bytes": 691167,
+      "sha256": "1ac999494b8a1ccb1ef9f8fcf7f46e7aa77d78de88cd4047cc2ffa6c63337bf7",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die Aufgabe 8 + 5 zeigt acht blaue Würfel im ersten Zehnerfeld, zwei freie Plätze bis zehn und fünf gelbe Würfel im Vorrat.",
+        "Die Anweisung zum Auffüllen bis zehn sowie Fortschritt und Bedienelemente sind lesbar.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "math-start-412x915.png",
+      "artifact_entry": "images/math-start-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 129174,
+      "sha256": "5f4f430fc7ba90b9223562087d92e73eccd98d5459c414f97cee77f89aad19e0",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die Aufgabe 8 + 5 zeigt acht blaue Würfel im ersten Zehnerfeld, zwei freie Plätze bis zehn und fünf gelbe Würfel im Vorrat.",
+        "Die Anweisung zum Auffüllen bis zehn sowie Fortschritt und Bedienelemente sind lesbar.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "math-ten-1280x720.png",
+      "artifact_entry": "images/math-ten-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 288423,
+      "sha256": "4bc327656b40ce16795e08a5427f8c6bf541115ae8b2126763237dda0b533ae0",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Zwei gelbe Würfel ergänzen die acht blauen zur vollen Zehn. Drei gelbe Würfel liegen noch im Vorrat.",
+        "Der sichtbare Zwischenstand 2/5 und die Erklärung des nächsten Schritts stimmen mit dieser Mengenverteilung überein.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "math-ten-2400x1080.png",
+      "artifact_entry": "images/math-ten-2400x1080.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "bytes": 705796,
+      "sha256": "4795caf4663c9b51167cb21243608d8c7ed354d4bf07fd6cb9293e95dde30db9",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Zwei gelbe Würfel ergänzen die acht blauen zur vollen Zehn. Drei gelbe Würfel liegen noch im Vorrat.",
+        "Der sichtbare Zwischenstand 2/5 und die Erklärung des nächsten Schritts stimmen mit dieser Mengenverteilung überein.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "math-ten-412x915.png",
+      "artifact_entry": "images/math-ten-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 129708,
+      "sha256": "5b55c28fffbe66904672af973af520312066def2ff43f8ea8471c989f22ec341",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Zwei gelbe Würfel ergänzen die acht blauen zur vollen Zehn. Drei gelbe Würfel liegen noch im Vorrat.",
+        "Der sichtbare Zwischenstand 2/5 und die Erklärung des nächsten Schritts stimmen mit dieser Mengenverteilung überein.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "plant_parts-complete.png",
+      "artifact_entry": "images/plant_parts-complete.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 301229,
+      "sha256": "ae81e7c0cd33a0d13a912d7340e5976641ac70fd7c673a0232119c01ea34fca2",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Das gewachsene Modell zeigt Wurzeln, Stängel, Blätter und Blüte klar unterscheidbar; die Erklärung zur Blüte ist vollständig lesbar.",
+        "Der Abschluss ist angezeigt. Wasser und Sonne sind deaktiviert, während die vier Pflanzenteil-Tasten, Wiederholen und Rückkehr sichtbar bleiben.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "plant_parts-start.png",
+      "artifact_entry": "images/plant_parts-start.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 284840,
+      "sha256": "0013fd54ec89d2cca1829bf1d13bf331c75c1defcc800f12b8540bc292913779",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Wurzel, Stängel, Blätter und Blüte sind am räumlichen Pflanzenmodell unterscheidbar. Die freigelegte Wurzelstruktur ist sichtbar.",
+        "Wasser geben, Sonne öffnen sowie die vier benannten Pflanzenteile sind im Footer vollständig bezeichnet und sichtbar; der Status zeigt 0 von 4.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "subtract_ten-complete.png",
+      "artifact_entry": "images/subtract_ten-complete.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 287414,
+      "sha256": "412b0990f744720991fe483e4c87d2cf442fabca9be0b4df273dc326eb4086d5",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Acht Würfel bleiben im ersten Feld. Die fünf entfernten Würfel sind in der räumlichen Ablage weg sichtbar; das zweite Feld ist leer.",
+        "Die Erklärung 13 minus 5 ist 8 stimmt mit den Mengen überein. Der abgeschlossene Schritt und die Tasten Noch einmal und Zur Aufgabe sind lesbar.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "subtract_ten-start.png",
+      "artifact_entry": "images/subtract_ten-start.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 288792,
+      "sha256": "268e8c2d671205894611bc6435aeeceb2ab0ce0d9d28ead0bd065b853135a7c1",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die Aufgabe 13 − 5 zeigt zehn Würfel im ersten Feld und drei im zweiten; die Ablage weg ist zunächst leer.",
+        "Die Erklärung, zunächst drei bis zur Zehn wegzunehmen, passt zum Startbild und zum Status 0/5.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "syllables-complete.png",
+      "artifact_entry": "images/syllables-complete.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 243605,
+      "sha256": "11cebd9159f7b0098f6a861257dec87aac3ae0298e9646d11c38bb8d6db72917",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die räumlichen Bausteine stehen in der korrekten Reihenfolge Ba – na – ne.",
+        "Die Erklärung nennt drei Silben. Der abgeschlossene Schritt, Wiederholen und Rückkehr sind sichtbar und lesbar.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "syllables-start.png",
+      "artifact_entry": "images/syllables-start.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 246466,
+      "sha256": "cd90ac66dd49f90c2ac876a6828f25cee5c90dddd32c4e4aac1ee859204b508b",
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Das Zielwort Banane ist als räumlicher Text sichtbar; drei freie Zielplätze und die getrennten Silben ne, na und Ba sind klar erkennbar.",
+        "Die Anweisung nennt Ba als nächsten Baustein und der Status zeigt 0/3. Kein benötigter Baustein ist vom HUD verdeckt.",
+        "Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    }
+  ],
+  "current_artifact_logs": [
+    {
+      "entry": "import.log",
+      "sha256": "ff310a512466aa1a2b417ff0040980fd6a5ce09ee78916162d91f7cd7238f861",
+      "bytes": 161102,
+      "original_zip_bytes_equal": true,
+      "error_or_timeout_markers": [],
+      "tests_rerun_by_reviewer": false,
+      "warnings": []
+    },
+    {
+      "entry": "render.log",
+      "sha256": "40303789bd5aa748900d0224ff1486a3c4a06b0f54fbe690a532f8ea54681ddd",
+      "bytes": 8466,
+      "original_zip_bytes_equal": true,
+      "error_or_timeout_markers": [],
+      "tests_rerun_by_reviewer": false,
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ],
+      "required_marker_found": "[LearningCapture] PASS captures=25",
+      "capture_roster_matches_all_png_entries": true,
+      "captures": 25,
+      "logged_object_moves_by_kind": {
+        "bridge_ten": 15,
+        "syllables": 3,
+        "subtract_ten": 5,
+        "equal_groups": 12,
+        "bridge_hundred": 15,
+        "fraction_parts": 2
+      },
+      "renderer": "Godot 4.6.3 / X11 / OpenGL Compatibility / Mesa 25.2.8 llvmpipe LLVM 20.1.2"
+    }
+  ],
+  "related_geometry_evidence": {
+    "originating_artifact_id": 14048854681,
+    "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "original_zip_sha256": "ca2f4f6c3ae63546bb4b205d47ef1a66b478e227f7399d8932b45f1312485674",
+    "review_note": "docs/evidence/studio-2019-review-notes/sharing-76980-review.json",
+    "review_note_sha256": "a8f2c3d1c0c3cd79d2733656c35e64c2aeeb2e93e6162ec16a56766c17c3904e",
+    "log_entry": "learning_studio_regression-headless.log",
+    "log_sha256": "4c3f76fbf9eae0869b4055830f947781d98f5809e22bf7c62066dfb3d0f97766",
+    "checks": 183,
+    "actual_mesh_equality_projections": 12,
+    "minimum_projected_gap_px": 2.24810791015625,
+    "scope": "Die 183 Checks und zwölf tatsächlichen Mesh-Projektionen stammen aus dem getrennten aktuellen Studio-Artefakt. Sie sind nicht Inhalt dieses Preview-ZIPs und wurden bei dieser Bildprüfung nicht erneut ausgeführt."
+  },
+  "scope_limits": [
+    "Alle sechs Hunderterbilder unterscheiden sich byteweise vom verworfenen 24fb-Preview. In allen drei aktuellen Abschlussformaten sind die Gleichheitsbalken getrennt und die untere Stellenwertbeschriftung lesbar.",
+    "Die anderen 19 Bildbytes stimmen mit den bisherigen 24fb-Lernbildern überein. Sie wurden dennoch erneut einzeln geöffnet und am aktuellen Quell-SHA geprüft; für diese Bilder wird keine neue Grafikänderung behauptet.",
+    "Die statischen Ansichten zeigen keine weiteren blockierenden Darstellungsfehler. Sie belegen allein weder sämtliche Interaktionen und gesprochenen Erklärungen noch physische Touch-Zielgrößen.",
+    "Die Gesamtfreigabe bleibt wegen des vom Integrator gemeldeten fehlgeschlagenen Gameplay-Jobs mit Audio-Playbacks nach Lasso-Szenenaustritt blockiert. Diese Teilprüfung erzeugt keinen finalen Receipt.",
+    "Keine lokale Testwiederholung, Produktänderung oder Änderung am vom Integrator besessenen Gesamtbericht.",
+    "Keine physische Android-/Fold7-, FPS-, Temperatur- oder vollständige Gameplay-Abnahme."
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "fresh-version",
+  "argv": [
+    "/home/runner/work/_temp/lumo-android17-sdk-tools/fresh-sdk/cmdline-tools/latest/bin/sdkmanager",
+    "--version"
+  ],
+  "environment_overrides": {
+    "ANDROID_HOME": "/home/runner/work/_temp/lumo-android17-sdk-tools/fresh-sdk",
+    "ANDROID_SDK_ROOT": "/home/runner/work/_temp/lumo-android17-sdk-tools/fresh-sdk",
+    "ANDROID_USER_HOME": "/home/runner/work/_temp/lumo-android17-sdk-tools/fresh-user"
+  },
+  "started_utc": "2026-11-13T17:47:56.669047+00:00",
+  "timeout_seconds": 60,
+  "exit_code": 0,
+  "timed_out": false,
+  "start_error": null,
+  "finished_utc": "2026-11-13T17:47:56.935470+00:00",
+  "elapsed_seconds": 0.2664259019999946,
+  "success": true,
+  "stdout": {
+    "path": "fresh-version/stdout.txt",
+    "bytes": 6,
+    "sha256": "39f79f7a6ad9a4128eeda6c3caeafd5ebda63edb99d50e35cd870cbe1196c821"
+  },
+  "stderr": {
+    "path": "fresh-version/stderr.txt",
+    "bytes": 340,
+    "sha256": "33414add6da35520d5a84e032882487bbb8835eae8767d88e1853859f196bf15"
+  }
+}

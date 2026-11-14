@@ -1,0 +1,716 @@
+[
+  {
+    "path": "action-stage/action-captures/lasso-catch.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 626095,
+    "sha256": "72390faacacbc5d82cd7aefb5a58563448faa40edea8c354199c64b8656943d9"
+  },
+  {
+    "path": "action-stage/action-captures/ramp-1544-speed-20.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 633698,
+    "sha256": "77ecec69f10ef3e69497359a7e86f9decda7194e94c4d59c8e11cc3f12131506"
+  },
+  {
+    "path": "action-stage/action-captures/ramp-1544-speed-48.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 628490,
+    "sha256": "c422c9681bae8d0baba90008f43885e2458c864947fd69f85d618602bd97babc"
+  },
+  {
+    "path": "action-stage/action-captures/ramp-1544-speed-70.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 628070,
+    "sha256": "b231c156f35ad181c84a20c47eeb3be47f84aeb4f983c2b9798488abc07d55e0"
+  },
+  {
+    "path": "action-stage/action-captures/ramp-407-speed-20.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 644843,
+    "sha256": "938c599197f4e2d7f8730f0b1b2e1e50ad0df84c7f27f85352118fd2523306ea"
+  },
+  {
+    "path": "action-stage/action-captures/ramp-407-speed-48.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 622064,
+    "sha256": "4959b3dee4e5ded62e090304bef917bd7254a85dc596039ca38a223ab2dc1a8e"
+  },
+  {
+    "path": "action-stage/action-captures/ramp-407-speed-70.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 615225,
+    "sha256": "f1eb71ef20e08f34eec39b60cd9fe5d77b3eed5cceda99cd68287a432a868a36"
+  },
+  {
+    "path": "nextgen/captures/build_nextgen_play_regression/01_build_selection.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 1411943,
+    "sha256": "3fb9935b313aac1513d12d52a40ccd7ad2e69fa4d3a0793407c5fb7838c68c1b"
+  },
+  {
+    "path": "nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 1409964,
+    "sha256": "4bea5b7bf96ae0d62f2cdd31f46de4611083a7c76db051f00b9ba3be09cb33d8"
+  },
+  {
+    "path": "nextgen/captures/build_nextgen_play_regression/03_build_walking.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 1298034,
+    "sha256": "a348c6cb2cb747ac7c7ad51004cf931071571cda3c6c8a9fa11b2acf75f84687"
+  },
+  {
+    "path": "nextgen/captures/build_nextgen_play_regression/04_build_jump.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 1327952,
+    "sha256": "c988ae5c3a1107da1a68d347591f335e2d439f149fddfcd9c54f2478795af447"
+  },
+  {
+    "path": "nextgen/captures/build_settlement_play_regression/01_settlement_start.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 741616,
+    "sha256": "86b2800a9479b611535609ec123ca0cad09d5e1fd749e4247bb1949aaf5f127d"
+  },
+  {
+    "path": "nextgen/captures/build_settlement_play_regression/02_settlement_purchases.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 760471,
+    "sha256": "c083d443e9c781b1e350c4611cc54ecbd53f814dd3fb7c3114a02e5366815dd6"
+  },
+  {
+    "path": "nextgen/captures/build_settlement_play_regression/03_settlement_rival_day.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 631924,
+    "sha256": "779552714c7dcb0b27c819cb78d26d6ede2c837822f1f7071b5a6637b6d25922"
+  },
+  {
+    "path": "nextgen/captures/build_settlement_play_regression/04_settlement_lumo.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 1097873,
+    "sha256": "bcd345f2121cad3a4a7242db8c12a6e08fc298d16ce7dfc7db17ee2ab895c1b1"
+  },
+  {
+    "path": "nextgen/captures/build_settlement_play_regression/05_settlement_result.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 787576,
+    "sha256": "f52db11b2222000f19bd0dbb1cbb48187eec31479365cb1968bbf3dc24d969ea"
+  },
+  {
+    "path": "nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+    "width": 388,
+    "height": 390,
+    "bytes": 57478,
+    "sha256": "8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2"
+  },
+  {
+    "path": "nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 568103,
+    "sha256": "157a99edd926d34371453144851b1a0522fd2dd60f959429d8ea0a0990351890"
+  },
+  {
+    "path": "nextgen/captures/cards_table_capture/cards-table-2400x1080.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 1028887,
+    "sha256": "f83e7e0dd30064841cd10689e73c8cf2b4a8c7258e6377a5fbc9528e54cb464a"
+  },
+  {
+    "path": "nextgen/captures/cards_table_capture/cards-table-412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 289390,
+    "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31"
+  },
+  {
+    "path": "nextgen/captures/cards_table_capture/cards-table-690x829.png",
+    "width": 690,
+    "height": 829,
+    "bytes": 429629,
+    "sha256": "62bd3ce901232399b1f3fb2181d010923a84b904c4f42beec4cfec48feb76042"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_1280x720_landed.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 855575,
+    "sha256": "b5380035764611a599cd3f44544154d0bc1f5412d1d367908f545ffc30fbe435"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_1280x720_airborne.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 895936,
+    "sha256": "89ada827f6963f33b2adb883b5e88906bdf3731f484368ff64caa4596014d32f"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_1280x720_ready.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 752781,
+    "sha256": "7be4a49af03566fb1525e5364f0e22a70f15cc86ebbf2585c5be629c32eb7f1b"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_1280x720_touch_ascent.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 839449,
+    "sha256": "a7355985d5e761b0a6a1db82910922603199b43513626a35231b03476b958c42"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_2400x1080_airborne.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 2133429,
+    "sha256": "08be500ca3d45b179700ed720fc3756b229054199f562c85867cde05cb2a6ba2"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_2400x1080_landed.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 2054659,
+    "sha256": "2546ed360b91823f2d784457dba07c288b89056c88a4284af2ccc5ec60d3d5fd"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_2400x1080_ready.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 1847710,
+    "sha256": "54d85c40b25fa381177bcf91b64a41f54d90f13791b19405334190ccb1ba6020"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_2400x1080_touch_ascent.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 2021172,
+    "sha256": "7c3c2ef4141bc525d9c30a873a8720b65d22f4c24c7f466e0045b37b6773abeb"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_412x915_airborne.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 491874,
+    "sha256": "00dd1ffb949a537121439be0a3fd5e2aba7da6a80a4d3dabce6640869abaa7df"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 473486,
+    "sha256": "e69b19df2fdf4bd672a8842f9fea944cccd5fc5214cc33328831d9fa0720da59"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_412x915_ready.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 414264,
+    "sha256": "4c572904c3942aa13d6e7af535031aa9e6c84ad691609e62aa6c9a86c0c2697d"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_412x915_touch_ascent.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 458667,
+    "sha256": "e203cb2b186e328da9c7b12d07d4aef2b625ad872fb1c0ddc0f115a28314150f"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_690x829_airborne.png",
+    "width": 690,
+    "height": 829,
+    "bytes": 659659,
+    "sha256": "a8584bd963ec0a051035ba17f7c1f04a649e0ac3d3cb3dd564e3281d2daa836c"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_690x829_ready.png",
+    "width": 690,
+    "height": 829,
+    "bytes": 540303,
+    "sha256": "22ffed151753038e1f45d5a1a1927859ac50dd2357a81ac1d58d44364abdad0c"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_690x829_landed.png",
+    "width": 690,
+    "height": 829,
+    "bytes": 626223,
+    "sha256": "650f401003af643e96a2b8921b6caa3d050bd9e330b339343f3768b6b8ecfa56"
+  },
+  {
+    "path": "nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+    "width": 690,
+    "height": 829,
+    "bytes": 605498,
+    "sha256": "32527d9e5b91ffb3008edffe917ac860bbaf0364ffbbbd66fd3564251eeaf978"
+  },
+  {
+    "path": "nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 436821,
+    "sha256": "e5c7126f114931c0f7776743120887d206e92874e5ff7206ff170aabdb2e169a"
+  },
+  {
+    "path": "nextgen/captures/kart_nextgen_garage_regression/garage-2400x1080.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 875335,
+    "sha256": "633f8330997b0b748e897a43385aaad1bec4961561e01b5c81b3e5befec97a48"
+  },
+  {
+    "path": "nextgen/captures/kart_nextgen_garage_regression/selection-1280x720.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 439057,
+    "sha256": "01f56f1f34f922d4b3d11dd9949efa7912f874ed0d3cb22b2a43b22cf39ec06f"
+  },
+  {
+    "path": "nextgen/captures/kart_nextgen_garage_regression/garage-412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 208179,
+    "sha256": "ffd22294458bf106ef1051cae601a4ad5fb658dc302a75868b705ffaf182331b"
+  },
+  {
+    "path": "nextgen/captures/kart_nextgen_garage_regression/selection-2400x1080.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 874426,
+    "sha256": "cbeb1578dc2166d2b518c99bff80383f2ebabd45e997d9fa6716bbeeb251be3d"
+  },
+  {
+    "path": "nextgen/captures/kart_nextgen_garage_regression/selection-412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 209458,
+    "sha256": "7332be0f869a8ce07d42c871853f76aaf2d705f3bb36bfb8716eae43d184eb65"
+  },
+  {
+    "path": "nextgen/captures/kart_nextgen_garage_regression/track-goals-1280x720.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 579130,
+    "sha256": "6442cefc5feb3b38f69a5a9025772f178b9ae96a4267e12595992afc54e83ae8"
+  },
+  {
+    "path": "nextgen/captures/kart_nextgen_garage_regression/track-goals-2400x1080.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 943839,
+    "sha256": "cf887c1a0be8a3798bf8861aa84b361c65629baf6731a6e73b4391c86953555b"
+  },
+  {
+    "path": "nextgen/captures/kart_nextgen_garage_regression/track-goals-412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 255838,
+    "sha256": "68b927c4ac9b7705a401db98006fa124e29b9991e522750ace9bbc2d5532d1f9"
+  },
+  {
+    "path": "nextgen/captures/kart_nextgen_garage_regression/zoom-1280x720.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 449383,
+    "sha256": "0903fbc28591dccfe53703e6663f45ccdd9ca60dfa58a42209c819dafd862033"
+  },
+  {
+    "path": "nextgen/captures/kart_nextgen_garage_regression/zoom-2400x1080.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 884601,
+    "sha256": "7cd2fd08d7aa0127b39897529a5ff186f7068fddcefb0928ddb8eeef577e0647"
+  },
+  {
+    "path": "nextgen/captures/kart_nextgen_garage_regression/zoom-412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 215497,
+    "sha256": "f890ee169501a69ea3f9c3cf7dac6e49d746aa08dd12b96e73037ddb7593c58e"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 135397,
+    "sha256": "38d569ebbf45570cdb5747e23293c87fe03d15e2621e2a3c597ba06a0eba00f0"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 723952,
+    "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/bridge_hundred-complete.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 294085,
+    "sha256": "c269ecf31faf3162eb82b33283745c6abe6421b9631fca8c10bb00b5164b950f"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/bridge_hundred-start-2400x1080.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 717882,
+    "sha256": "371abc23b20bf4ff7e01396bc800b4fd3fec78584948a3cdbb858cd7fbc60303"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/bridge_hundred-start-412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 140079,
+    "sha256": "2b3a3032edf94a32d504ebeadae50417371a4e5b4bb3a97227495bba5a49c8d3"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/bridge_hundred-start.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 296121,
+    "sha256": "43473ce298b60179323b80845737ff6e58ab6ffe3a0559b2f6b4b10e3d3bfcfe"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/equal_groups-start.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 244128,
+    "sha256": "f87b424fa3b5773f144d533a24344d99817c145da218cd0ba7341f3e8d8bbea1"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/equal_groups-complete.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 248558,
+    "sha256": "693e6d6443b55091ea64ce4a0a5431ef0f71015404890ed4d12653eafc9d67c5"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/fraction_parts-complete.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 259738,
+    "sha256": "bec647a0a84f5fc9f10f08fe2a04038e72f39d1dda13aa91102fec986b2da692"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/math-complete-1280x720.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 289242,
+    "sha256": "1d461553c8fc3dfead784a18fcd5fa348f7c7bc089e56b80a4a47d01dee90d8e"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/fraction_parts-start.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 260944,
+    "sha256": "dae35db7fadfdbe3415146cc4a99f61b771b9d68f6d7a338deb413889e95b29e"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/math-complete-2400x1080.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 716783,
+    "sha256": "e969d77a7a1286732ff7d65465b1ff122e9caa615b8b019f6d17f52429a30b0b"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/math-complete-412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 126214,
+    "sha256": "c3f8e0527ff768531c9ff2b32e82c190f812d8ac2eccff31dac76b909a848ac1"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/math-start-1280x720.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 287808,
+    "sha256": "6bdbeb76a691f0bcef8e8ab39511da5b5e16c94deddf950a87ab67d9c352286e"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/math-start-412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 129174,
+    "sha256": "5f4f430fc7ba90b9223562087d92e73eccd98d5459c414f97cee77f89aad19e0"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/math-start-2400x1080.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 691167,
+    "sha256": "1ac999494b8a1ccb1ef9f8fcf7f46e7aa77d78de88cd4047cc2ffa6c63337bf7"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/math-ten-1280x720.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 288423,
+    "sha256": "4bc327656b40ce16795e08a5427f8c6bf541115ae8b2126763237dda0b533ae0"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/math-ten-2400x1080.png",
+    "width": 2400,
+    "height": 1080,
+    "bytes": 705796,
+    "sha256": "4795caf4663c9b51167cb21243608d8c7ed354d4bf07fd6cb9293e95dde30db9"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/math-ten-412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 129708,
+    "sha256": "5b55c28fffbe66904672af973af520312066def2ff43f8ea8471c989f22ec341"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/plant_parts-start.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 284840,
+    "sha256": "0013fd54ec89d2cca1829bf1d13bf331c75c1defcc800f12b8540bc292913779"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/plant_parts-complete.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 301229,
+    "sha256": "ae81e7c0cd33a0d13a912d7340e5976641ac70fd7c673a0232119c01ea34fca2"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/subtract_ten-complete.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 287414,
+    "sha256": "412b0990f744720991fe483e4c87d2cf442fabca9be0b4df273dc326eb4086d5"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/syllables-complete.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 243605,
+    "sha256": "11cebd9159f7b0098f6a861257dec87aac3ae0298e9646d11c38bb8d6db72917"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/syllables-start.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 246466,
+    "sha256": "cd90ac66dd49f90c2ac876a6828f25cee5c90dddd32c4e4aac1ee859204b508b"
+  },
+  {
+    "path": "nextgen/captures/learning_world_capture/subtract_ten-start.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 288792,
+    "sha256": "268e8c2d671205894611bc6435aeeceb2ab0ce0d9d28ead0bd065b853135a7c1"
+  },
+  {
+    "path": "nextgen/captures/rhythm_tour_play_regression/01_rhythm_tour_map.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 390770,
+    "sha256": "1eabad2cb1e4d914fb2ef931153ed39e92c79d1b8f67106882c3c3291b5b4d48"
+  },
+  {
+    "path": "nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 655566,
+    "sha256": "3c8bea1586db391c7d8cfafed09f105157a33cdfaea13f4ecbdafb55eae29ae9"
+  },
+  {
+    "path": "nextgen/captures/rhythm_tour_play_regression/03_rhythm_tour_result.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 422032,
+    "sha256": "724a782bce3410d453d3299eb93028a6f95df435ddfa76a7fb5d88b2ff9ec0db"
+  },
+  {
+    "path": "studio/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 249525,
+    "sha256": "cb24691851bed6f1f80d725a969f30bca87097510dcf7c4a5d06a0696116051a"
+  },
+  {
+    "path": "studio/captures/learning_sharing_capture/sharing-complete-412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 110576,
+    "sha256": "02f5f6cb203d87f15b8d5de46557d1e47b16b965072b9d6b1fc365731f6abe71"
+  },
+  {
+    "path": "studio/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 111652,
+    "sha256": "83b1274cc86d3e3b61d541e8ecdfcfff8de1d51561a87558dd516008ee9b68c8"
+  },
+  {
+    "path": "studio/captures/learning_sharing_capture/sharing-first-round-1280x720.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 247071,
+    "sha256": "364b2e326ca79abda3f0894f7d91fbb9e19e1428f2ce5bc69ac176839f45a9b2"
+  },
+  {
+    "path": "studio/captures/learning_sharing_capture/sharing-start-1280x720.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 244185,
+    "sha256": "8153286850252d1bf7b365b079673b1da0ecb354ffb22fe8a0f9b4dbe768c605"
+  },
+  {
+    "path": "studio/captures/learning_sharing_capture/sharing-start-412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 110235,
+    "sha256": "59edf83f79a88341b04dd9d3a74bb8bc03aad42385e601d24a739cefc06fe94b"
+  },
+  {
+    "path": "studio/captures/lumo_studio_motion_capture/after_jump_rise.png",
+    "width": 720,
+    "height": 840,
+    "bytes": 229670,
+    "sha256": "80a2f272b3e0b4e7b33186263ccd3d935af219349eb4be5b81e5ef2cf141b8c6"
+  },
+  {
+    "path": "studio/captures/lumo_studio_motion_capture/after_land.png",
+    "width": 720,
+    "height": 840,
+    "bytes": 232932,
+    "sha256": "d9442204e757b11d6a325f35df510cea0f02e3ba4cf0b68a0ca08103eabe4b51"
+  },
+  {
+    "path": "studio/captures/lumo_studio_motion_capture/after_sprint.png",
+    "width": 720,
+    "height": 840,
+    "bytes": 226051,
+    "sha256": "1a0c94b4a770315a9b071bdffa38cbad22df40fc21b9380443daeeb35e1e9999"
+  },
+  {
+    "path": "studio/captures/lumo_studio_motion_capture/after_walk.png",
+    "width": 720,
+    "height": 840,
+    "bytes": 229788,
+    "sha256": "ee838afa26760e013fa9446b1b2732019b9c61b5227ae55b9c6c5ded4fec3b4d"
+  },
+  {
+    "path": "studio/captures/lumo_studio_motion_capture/before_jump_rise.png",
+    "width": 720,
+    "height": 840,
+    "bytes": 233683,
+    "sha256": "dc2a537f56f807ecdc2d93c516aaf31508d8402db34961e18c9b08d13d950533"
+  },
+  {
+    "path": "studio/captures/lumo_studio_motion_capture/before_land.png",
+    "width": 720,
+    "height": 840,
+    "bytes": 226559,
+    "sha256": "f4146c517e89bc057be2759415684533efe747267e84ee65b5d3b7810721909c"
+  },
+  {
+    "path": "studio/captures/lumo_studio_motion_capture/before_sprint.png",
+    "width": 720,
+    "height": 840,
+    "bytes": 236286,
+    "sha256": "a490cdfad662653025e849ae3f66f1ac1479b1054252da23a68841f69dd0ff2b"
+  },
+  {
+    "path": "studio/captures/lumo_studio_motion_capture/before_walk.png",
+    "width": 720,
+    "height": 840,
+    "bytes": 234905,
+    "sha256": "e963e44f8bcb604c6476a47690ebf33b6f7d38a16a5f3554e5edbe48246af276"
+  },
+  {
+    "path": "studio/captures/puzzle_rotation_regression/puzzle_rotation_412x915.png",
+    "width": 412,
+    "height": 915,
+    "bytes": 227969,
+    "sha256": "3285a42892747553152741ad257a85cd9ce1a28f4cc7afdf31f20d5ae02ac7fc"
+  },
+  {
+    "path": "studio/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+    "width": 640,
+    "height": 360,
+    "bytes": 113801,
+    "sha256": "f781e5cdf9aa32bcf83aec408ab52a5800249480ae1ed6c4a97550755292b460"
+  },
+  {
+    "path": "studio/captures/puzzle_rotation_regression/puzzle_rotation_840x760.png",
+    "width": 840,
+    "height": 760,
+    "bytes": 326232,
+    "sha256": "cc2f1c9db1f436cf97c779351365abe6ceb08f3bf7823b57a3a33182ad761da7"
+  },
+  {
+    "path": "studio/captures/puzzle_rotation_regression/puzzle_rotation_compact_menu.png",
+    "width": 640,
+    "height": 360,
+    "bytes": 58964,
+    "sha256": "b93ed269f7a5e102b0e2f4a4ae1282f6b28b3c71536c1c29026b0f9a187917ef"
+  },
+  {
+    "path": "studio/captures/puzzle_rotation_regression/puzzle_rotation_hint.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 519079,
+    "sha256": "56a240ab05e93506deb170047b1ef80d677ad4b7cd84853ecb9f275d308396b6"
+  },
+  {
+    "path": "studio/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 509560,
+    "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9"
+  },
+  {
+    "path": "studio/captures/puzzle_rotation_regression/puzzle_rotation_table.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 507207,
+    "sha256": "98549ca0d1293b62311bc9ebad93eef60d1fb4f35bee5e16ed6e614a16232f20"
+  },
+  {
+    "path": "studio/captures/treasure_exploration_regression/treasure_choose_route.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 1365759,
+    "sha256": "32a72896dfb7329db09a8cfac6d72e3625092e7816ef9dbf87d8b78041e66304"
+  },
+  {
+    "path": "studio/captures/treasure_exploration_regression/treasure_route_complete.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 1354277,
+    "sha256": "f25f7dcd102814090d2845463f250e62b7ec14714b98e46c75c6ea96bd6a757b"
+  },
+  {
+    "path": "studio/captures/treasure_exploration_regression/treasure_garden_first.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 1325014,
+    "sha256": "73623fa22d4c0c3185c0f7788d20dd3ec42ad12d1fcf563c79932d33ce991452"
+  },
+  {
+    "path": "user-data/godot/app_userdata/Lumo 3D/godot-kart-pause-800x480.png",
+    "width": 800,
+    "height": 480,
+    "bytes": 177989,
+    "sha256": "8bb11e62fa057196b5abe0e6ca289aeec74943ca822e96099530cb3da4ed82b1"
+  }
+]

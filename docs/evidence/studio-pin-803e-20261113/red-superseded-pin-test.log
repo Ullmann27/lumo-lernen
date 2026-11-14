@@ -1,0 +1,15 @@
+test_2019_rejects_superseded_796b_native_identity (scripts.tests.test_candidate_2011_pin.Candidate2011PinTests.test_2019_rejects_superseded_796b_native_identity) ... FAIL
+
+======================================================================
+FAIL: test_2019_rejects_superseded_796b_native_identity (scripts.tests.test_candidate_2011_pin.Candidate2011PinTests.test_2019_rejects_superseded_796b_native_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_candidate_2011_pin.py", line 294, in test_2019_rejects_superseded_796b_native_identity
+    with self.assertRaisesRegex(ValueError, "revision mismatch for build 2019"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)

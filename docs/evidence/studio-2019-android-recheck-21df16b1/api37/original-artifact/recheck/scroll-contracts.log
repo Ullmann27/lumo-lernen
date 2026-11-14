@@ -1,0 +1,11 @@
+test_already_visible_target_does_not_add_scroll_or_observation (test_flutter_tap_scroll_budget.FlutterTapScrollBudgetTests.test_already_visible_target_does_not_add_scroll_or_observation) ... ok
+test_clipped_final_target_keeps_existing_touch_height_guard (test_flutter_tap_scroll_budget.FlutterTapScrollBudgetTests.test_clipped_final_target_keeps_existing_touch_height_guard) ... ok
+test_disabled_final_target_is_not_pressed (test_flutter_tap_scroll_budget.FlutterTapScrollBudgetTests.test_disabled_final_target_is_not_pressed) ... ok
+test_missing_target_still_fails_after_final_observation_without_extra_swipe (test_flutter_tap_scroll_budget.FlutterTapScrollBudgetTests.test_missing_target_still_fails_after_final_observation_without_extra_swipe) ... ok
+test_target_after_last_allowed_scroll_is_observed_and_pressed (test_flutter_tap_scroll_budget.FlutterTapScrollBudgetTests.test_target_after_last_allowed_scroll_is_observed_and_pressed) ... ok
+test_unsettled_final_target_is_not_mistaken_for_a_successful_press (test_flutter_tap_scroll_budget.FlutterTapScrollBudgetTests.test_unsettled_final_target_is_not_mistaken_for_a_successful_press) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.086s
+
+OK

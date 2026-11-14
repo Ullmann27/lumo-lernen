@@ -1,0 +1,68 @@
+{
+  "artifact_id": 14063879036,
+  "workflow_run": {
+    "id": 43480051009,
+    "repository_id": 1222433959,
+    "head_repository_id": 1222433959,
+    "head_branch": "chatgpt/lumo-android-recheck-2019-20261113",
+    "head_sha": "21df16b1278e5294a225f796e599d8bb0155e9f5"
+  },
+  "original_zip": "/workspace/scratch/5987865ae883/qa/studio-recheck-21df16b1-api37.zip",
+  "zip_bytes": 8109,
+  "zip_sha256": "edace3ce229d45b04119d5f9f57dca3692103b9cdb7b2e01de499b47e2d9b4db",
+  "crc_checked": true,
+  "all_extracted_members_byte_identical": true,
+  "files_count": 10,
+  "files": [
+    {
+      "path": "mesa-renderer.txt",
+      "bytes": 1724,
+      "sha256": "b1b802dd22e61d838c398bffc3e91b2391cd37b14a44140b4ff9520566d13abf"
+    },
+    {
+      "path": "recheck/identity-contracts.log",
+      "bytes": 1222,
+      "sha256": "bbc343ae52306903f782de04d54794170c2451ef546f2cccc6ece09c4d962f0b"
+    },
+    {
+      "path": "recheck/before.json",
+      "bytes": 2346,
+      "sha256": "266720f28a1204ae75856068ee1fde93926dd5e8dc71aafde8edf24282ba315d"
+    },
+    {
+      "path": "recheck/original-artifact.json",
+      "bytes": 723,
+      "sha256": "e29f7bc6fdb5c0f9c1796b6286587975ab4a0877b542ea104b1325481de9a775"
+    },
+    {
+      "path": "recheck/original-build-job.json",
+      "bytes": 7893,
+      "sha256": "65160b4b99d367b4c188308b6d304027677e186a816c031641e87f34c5de5927"
+    },
+    {
+      "path": "recheck/scroll-contracts.log",
+      "bytes": 1246,
+      "sha256": "5aa3342abb9b11a799c22b156ff152a886cfeb7179c0f8727f621a5649a351ce"
+    },
+    {
+      "path": "recheck/original-run.json",
+      "bytes": 12958,
+      "sha256": "90f335c8b5dd52785c01c9ee8bf55aab606690b44499d8ddad218680eb947c50"
+    },
+    {
+      "path": "tesseract-installed-languages.txt",
+      "bytes": 87,
+      "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850"
+    },
+    {
+      "path": "tested-apk-sha256.txt",
+      "bytes": 108,
+      "sha256": "3bc93abf3d66d2a0bf52f63b0d16fc399f9a8d70b757c5f49dd5365da9a6dcfa"
+    },
+    {
+      "path": "xvfb.log",
+      "bytes": 4696,
+      "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+    }
+  ]
+}

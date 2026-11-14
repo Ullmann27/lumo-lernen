@@ -1,0 +1,107 @@
+{
+  "schema": "lumo-explicit-evidence-file-manifest-v1",
+  "probe_revision": "fbb9a28e76a08455fc796ed1915a7c5a2ef8226f",
+  "run_id": 43494312623,
+  "artifact_id": 14071940754,
+  "scope": "Evidence only; no GitHub mutation by this review",
+  "files": [
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/archive-inventory.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/archive-inventory.json",
+      "mode": "100644",
+      "bytes": 6444,
+      "sha256": "e71d68e5d3ede389dec2b72d89cd3fb7c092032b73778090a69133e317a9f706",
+      "git_blob": "be93459c765020487f498f9e2b4722c7dd5c88ac"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/failure-review.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/failure-review.json",
+      "mode": "100644",
+      "bytes": 8433,
+      "sha256": "01bf85b3bd1ab432e9383584f3263991a1bc9fd22c942f3b41cce27ad47a2a31",
+      "git_blob": "e003c07dd78d0f42b74ebff0930e03541d7dd922"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/metadata/artifacts.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/metadata/artifacts.json",
+      "mode": "100644",
+      "bytes": 892,
+      "sha256": "56a16a5a26a52d3ccdbcee096926cb58219974cf6320baf79b0bb5eedec35503",
+      "git_blob": "a60de62a117b4881b18edbd475b42592270c602a"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/metadata/jobs-final.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/metadata/jobs-final.json",
+      "mode": "100644",
+      "bytes": 7801,
+      "sha256": "f4667c80fc8eda5f701fa234d6e0dbb9c0a690401197674098b4453266cda2b1",
+      "git_blob": "e59b640d2a5d81d9bff676adc5421f1ab4ed2291"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/metadata/run-final.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/metadata/run-final.json",
+      "mode": "100644",
+      "bytes": 15045,
+      "sha256": "c01085dd679a10abda214c753333e7e9e13f06f72d71c49543d934abc93ec5fc",
+      "git_blob": "1a9419a2b56d5175a341394e38d57639dd2b9a10"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/metadata/source-observation.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/metadata/source-observation.json",
+      "mode": "100644",
+      "bytes": 458,
+      "sha256": "63490d360ebac2cef318305083f4d432812d6cea77dbde2adb6c85d1130a8ecc",
+      "git_blob": "7439c76cc86fa76df53cb8e763cae4b0b3bde834"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/original-artifact.zip",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/original-artifact.zip",
+      "mode": "100644",
+      "bytes": 47501,
+      "sha256": "e603d7af1e6265a7a04834a828d5d973b4a3e39777e33ff136eb7e2043118570",
+      "git_blob": "a487fdb06636f9c56a6b64a25d5182402b29b0f5"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/original-job.log",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/original-job.log",
+      "mode": "100644",
+      "bytes": 95061,
+      "sha256": "f4d932a4d09c9db382bc5b5be83cf640e7707fa0ecafb6eedd7a1d72aa51d29b",
+      "git_blob": "649e1a688513b2892ca1e578841cf49f989c0865"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/raw-metadata/emulator-source.properties",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/raw-metadata/emulator-source.properties",
+      "mode": "100644",
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7",
+      "git_blob": "690f978972d0b965716631dd78b1392174049886"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/raw-metadata/image-package.xml",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/raw-metadata/image-package.xml",
+      "mode": "100644",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062",
+      "git_blob": "c4178b5a3ef0ba6a49d990d4225f82813553402c"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/raw-metadata/image-source.properties",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/raw-metadata/image-source.properties",
+      "mode": "100644",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e",
+      "git_blob": "8e0a9ce9cb7af106a9e8f55c06e83bfccbb67085"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/raw-metadata/original-cli-source.properties",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/cli22-recheck-fbb9a28e/raw-metadata/original-cli-source.properties",
+      "mode": "100644",
+      "bytes": 86,
+      "sha256": "d4eb560d17731d9919dbb91bfecb2d90418cb60c21e07b6c02302a682fbb760e",
+      "git_blob": "5ad3e98273b008cfb7aa980ade80e96f8b3fd579"
+    }
+  ],
+  "file_count": 12,
+  "total_bytes": 200936
+}

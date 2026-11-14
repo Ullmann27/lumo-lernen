@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-13T23:03:19.459091+00:00",
+  "status": "FROZEN_FOR_REVIEWED_INTEGRATION",
+  "scope": "Three new diagnostic/test/usage files only; no product, workflow, pin, receipt or save changes",
+  "working_tree": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "local_git_head": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "source_attribution": "These three new files have no GitHub source commit yet. Root integrates after review. Local HEAD is not asserted to describe other working-tree changes.",
+  "files": [
+    {
+      "path": "tools/android_qa/fold_device_capture.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/fold_device_capture.py",
+      "new_untracked_file": true,
+      "bytes": 23101,
+      "sha256": "72ebc6fcb029b6bbae1a8d13162e61ccfb68f67d0216175268e1d5722dfbfd4c",
+      "git_blob_sha": "500c8728602593e3ff34be62cbc81d32f7cdfbe5",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/test_fold_device_capture.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_fold_device_capture.py",
+      "new_untracked_file": true,
+      "bytes": 19766,
+      "sha256": "5218e628d752d44424eaee3e03308b343019bcfbe1895aa0114122e5306c8acd",
+      "git_blob_sha": "ff92292a0d960fa9a82818863e714f4547ee7ecb",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/FOLD_DEVICE_CAPTURE.md",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/FOLD_DEVICE_CAPTURE.md",
+      "new_untracked_file": true,
+      "bytes": 8577,
+      "sha256": "5e834bd63bf86c048ca570f6d687642a7d6ab327803e5716241f4e21636826f6",
+      "git_blob_sha": "a5a356c078925e818ad571c2e22e35a556a47b5c",
+      "mode": "100644"
+    }
+  ],
+  "unchanged_imported_helper": {
+    "path": "tools/android_qa/runtime_resource_evidence.py",
+    "bytes": 5371,
+    "sha256": "c2cc08ca11c0d1539c7322255de34b5b12754e24f43fcf5498e213f6ca9f84f0",
+    "git_blob_sha": "caf093f18059272d7c3a5c9ceada574747519212",
+    "mode": "100644"
+  },
+  "tests": {
+    "command": "python3 -B -m unittest discover -s tools/android_qa/tests -p test_fold_device_capture.py -v",
+    "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+    "final": {
+      "run": 19,
+      "pass": 19,
+      "fail": 0,
+      "skip": 0,
+      "exit_code": 0,
+      "seconds": 0.066,
+      "log": "synthetic-tests-final-19.log"
+    },
+    "history": [
+      {
+        "log": "initial-fixture-tests.log",
+        "run": 18,
+        "fail": 5,
+        "exit_code": 1,
+        "cause": "Synthetic Native SHA fixture accidentally contained 42 rather than 40 characters; no claim of a device or product regression"
+      },
+      {
+        "log": "synthetic-tests-18.log",
+        "run": 18,
+        "pass": 18,
+        "exit_code": 0,
+        "cause": "Corrected synthetic commit length"
+      },
+      {
+        "log": "synthetic-tests-final-19.log",
+        "run": 19,
+        "pass": 19,
+        "exit_code": 0,
+        "cause": "Added explicit interruption/raw-output case before source freeze"
+      }
+    ],
+    "execution_boundary": "Only synthetic APK ZIPs and fake subprocess responses; no adb/device/installation was executed."
+  },
+  "independent_review": {
+    "path": "independent-review.json",
+    "bytes": 4885,
+    "sha256": "f4c32eeea8dfcc92e91d6cfd8c8ecc55f78986b13ed54fab31aadb9033525d51",
+    "git_blob_sha": "4d4882c6c003701de7d4d1907cbf0f1725d180af",
+    "mode": "100644"
+  },
+  "measurement_claims": {
+    "device_run": "NOT_EXECUTED",
+    "physical_fold7": "NOT_MEASURED",
+    "native_fps": "NOT_MEASURED",
+    "gpu_frame_time": "NOT_MEASURED",
+    "touch_latency": "NOT_MEASURED",
+    "signature": "Original metadata checked; no new apksigner verification"
+  },
+  "source_binding": "Explicit caller-supplied Host/Native commits and APK SHA256; original provenance plus embedded PCK and exact installed APK SHA/size before and after capture. No fixed current Native SHA."
+}

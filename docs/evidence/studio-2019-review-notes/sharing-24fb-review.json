@@ -1,0 +1,259 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T14:34:46.972107+00:00",
+  "reviewer": "Agent A / learning_worlds",
+  "status": "PASS for these six visual captures only; no final release receipt",
+  "native_revision": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "artifact_id": 14047461111,
+  "artifact_identity_scope": "Artifact-ID von Root übergeben; ZIP-Hash, Quellstempel, Gate-Datei und alle sechs Original-PNG-Bytes hier unabhängig aus der lokalen Original-ZIP geprüft.",
+  "original_zip": {
+    "name": "studio-new-native-24fb8580.zip",
+    "path": "/workspace/scratch/5987865ae883/qa/studio-new-native-24fb8580.zip",
+    "sha256": "17b681aa99d62d5b6679e6b6d1157b051f1695a2ecb57ed99f5527e3111fc11c",
+    "bytes": 19716462
+  },
+  "source_stamp": {
+    "entry": "source-sha.txt",
+    "value": "24fb85800dfb58ec11dd409449e276299aa72b06",
+    "sha256": "21e4a4dd83795a6d0707fbf4e7324957d0761aeb645c2df6001b91903264bc75"
+  },
+  "dirty_stamp": {
+    "entry": "source-dirty.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "clean": true
+  },
+  "studio_gates": {
+    "entry": "results.tsv",
+    "sha256": "e9000f75f90eb97fb9325b2a672b5573bf0b066ff818d220e3457897289ecf11",
+    "passed": 9,
+    "total": 9,
+    "rows": [
+      {
+        "probe": "learning_sharing_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "learning_studio_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "lumo_studio_motion_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "puzzle_rotation_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "treasure_exploration_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "learning_sharing_capture",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "lumo_studio_motion_capture",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "puzzle_rotation_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "treasure_exploration_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      }
+    ],
+    "scope": "Im Originalartefakt enthaltene Gate-Ergebnisse, hier nicht erneut ausgeführt."
+  },
+  "review_method": "Alle sechs unveränderten PNGs einzeln mit view_image geöffnet; Bildinhalte direkt geprüft und anschließend Dateihashes sowie Bytegleichheit zum jeweiligen ZIP-Mitglied verifiziert.",
+  "images": [
+    {
+      "filename": "sharing-complete-1280x720.png",
+      "artifact_entry": "captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "cb24691851bed6f1f80d725a969f30bca87097510dcf7c4a5d06a0696116051a",
+      "bytes": 249525,
+      "viewed_individually_with": "view_image",
+      "original_zip_bytes_equal": true,
+      "verdict": "PASS within visual scope",
+      "blocking_visual_issue": false,
+      "observed_state": {
+        "group_counts": [
+          4,
+          4,
+          4
+        ],
+        "unassigned_cubes": 0,
+        "distributed_cubes": 12
+      },
+      "findings": [
+        "Alle drei Gruppen enthalten sichtbar vier Würfel und die Zahl 4. Am bisherigen Vorratsplatz bleiben keine Würfel.",
+        "Die Erklärung 12 geteilt durch 3 ist 4 stimmt mit den drei gleich großen Gruppen überein.",
+        "Verteilen ist erkennbar deaktiviert; Noch einmal und Zur Aufgabe bleiben sichtbar. Der Abschlusstext verweist zurück zur eigentlichen Aufgabe."
+      ]
+    },
+    {
+      "filename": "sharing-complete-412x915.png",
+      "artifact_entry": "captures/learning_sharing_capture/sharing-complete-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "sha256": "02f5f6cb203d87f15b8d5de46557d1e47b16b965072b9d6b1fc365731f6abe71",
+      "bytes": 110576,
+      "viewed_individually_with": "view_image",
+      "original_zip_bytes_equal": true,
+      "verdict": "PASS within visual scope",
+      "blocking_visual_issue": false,
+      "observed_state": {
+        "group_counts": [
+          4,
+          4,
+          4
+        ],
+        "unassigned_cubes": 0,
+        "distributed_cubes": 12
+      },
+      "findings": [
+        "Im Hochformat bleiben alle drei Vierergruppen samt Ziffern 4 vollständig sichtbar; die Ausgangsmenge ist aufgebraucht.",
+        "Ergebnis und Abschlussanweisung sind vollständig lesbar. Die Rückkehraktion bleibt in der zweiten Buttonzeile zugänglich sichtbar.",
+        "Die deaktivierte Verteilaktion ist ein plausibler Abschlusszustand; Original-Lumo und Lernobjekte zeigen keine sichtbaren Materialausfälle."
+      ]
+    },
+    {
+      "filename": "sharing-first-round-1280x720.png",
+      "artifact_entry": "captures/learning_sharing_capture/sharing-first-round-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "364b2e326ca79abda3f0894f7d91fbb9e19e1428f2ce5bc69ac176839f45a9b2",
+      "bytes": 247071,
+      "viewed_individually_with": "view_image",
+      "original_zip_bytes_equal": true,
+      "verdict": "PASS within visual scope",
+      "blocking_visual_issue": false,
+      "observed_state": {
+        "group_counts": [
+          1,
+          1,
+          1
+        ],
+        "unassigned_cubes": 9,
+        "distributed_cubes": 3
+      },
+      "findings": [
+        "Jede der drei Gruppen enthält sichtbar einen Würfel und die Zahl 1. Neun Würfel bleiben im Vorrat.",
+        "Erklärung und Fortschritt 3 / 12 stimmen mit den sichtbaren Mengen überein. Die nächste Verteilrunde ist nachvollziehbar.",
+        "Gruppen, Vorrat, Original-Lumo und die drei Footeraktionen bleiben vollständig erkennbar; keine blockierende HUD-Überdeckung."
+      ]
+    },
+    {
+      "filename": "sharing-first-round-412x915.png",
+      "artifact_entry": "captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "sha256": "83b1274cc86d3e3b61d541e8ecdfcfff8de1d51561a87558dd516008ee9b68c8",
+      "bytes": 111652,
+      "viewed_individually_with": "view_image",
+      "original_zip_bytes_equal": true,
+      "verdict": "PASS within visual scope",
+      "blocking_visual_issue": false,
+      "observed_state": {
+        "group_counts": [
+          1,
+          1,
+          1
+        ],
+        "unassigned_cubes": 9,
+        "distributed_cubes": 3
+      },
+      "findings": [
+        "Alle drei Gruppen zeigen je einen Würfel und die Zahl 1; neun verbliebene Würfel sind unterhalb der Gruppen sichtbar.",
+        "Der Text nennt neun verbleibende Würfel, der Footer 3 / 12 bewegt. Beide Angaben passen zu den sichtbaren Objekten.",
+        "Erforderliche Ziele und Aktionsbeschriftungen sind trotz Hochformat sichtbar. Die dekorative Tablettkante ist kein benötigtes Eingabeziel."
+      ]
+    },
+    {
+      "filename": "sharing-start-1280x720.png",
+      "artifact_entry": "captures/learning_sharing_capture/sharing-start-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "8153286850252d1bf7b365b079673b1da0ecb354ffb22fe8a0f9b4dbe768c605",
+      "bytes": 244185,
+      "viewed_individually_with": "view_image",
+      "original_zip_bytes_equal": true,
+      "verdict": "PASS within visual scope",
+      "blocking_visual_issue": false,
+      "observed_state": {
+        "group_counts": [
+          0,
+          0,
+          0
+        ],
+        "unassigned_cubes": 12,
+        "distributed_cubes": 0
+      },
+      "findings": [
+        "Drei räumliche Gruppen sind leer und jeweils mit 0 beschriftet; zwölf goldene Ausgangswürfel stehen rechts daneben.",
+        "Aufgabe 12 : 3, Schrittanweisung und Fortschritt 0 / 12 sind vollständig lesbar. Alle drei Footeraktionen sind sichtbar.",
+        "Original-Lumo ist vollständig sichtbar; an Fuchs, Würfeln und Studio sind keine fehlenden oder offensichtlich fehlerhaften Materialien erkennbar."
+      ]
+    },
+    {
+      "filename": "sharing-start-412x915.png",
+      "artifact_entry": "captures/learning_sharing_capture/sharing-start-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "sha256": "59edf83f79a88341b04dd9d3a74bb8bc03aad42385e601d24a739cefc06fe94b",
+      "bytes": 110235,
+      "viewed_individually_with": "view_image",
+      "original_zip_bytes_equal": true,
+      "verdict": "PASS within visual scope",
+      "blocking_visual_issue": false,
+      "observed_state": {
+        "group_counts": [
+          0,
+          0,
+          0
+        ],
+        "unassigned_cubes": 12,
+        "distributed_cubes": 0
+      },
+      "findings": [
+        "Drei leere Gruppen mit 0 bleiben trotz schmalem Hochformat nebeneinander sichtbar; die zwölf Ausgangswürfel liegen darunter.",
+        "Der umgebrochene Erklärungstext passt vollständig in den Kopfbereich. Zwei Buttonzeilen und Fortschritt 0 / 12 bleiben vollständig im Bild.",
+        "Lumo steht sichtbar oberhalb der Lernobjekte; weder Header noch Footer verdecken einen erforderlichen Gruppenmittelpunkt."
+      ]
+    }
+  ],
+  "blocking_findings": [],
+  "scope_conclusion": "Mengenfolge 12 → drei Einsergruppen plus 9 → drei Vierergruppen ist in beiden Formaten visuell konsistent. Erforderliche Lernobjekte, Texte und Footeraktionen sind sichtbar. Kein blockierender Bildinhaltbefund.",
+  "limits": [
+    "Diese Einzelbilder beweisen keine vollständige Animation, reale Fingerbedienung, Sprachausgabe oder Profilpersistenz.",
+    "Keine Android-Geräte-, FPS-, Wärme- oder Eingabelatenzfreigabe aus Desktop-Rendererbildern.",
+    "Keine Freigabe anderer Produktmodule, der noch ausstehenden Werkstattbilder oder des endgültigen Gesamtartefakts.",
+    "Es wurde keine finale config/studio-2019-visual-review.json erzeugt und kein Produktcode verändert."
+  ]
+}

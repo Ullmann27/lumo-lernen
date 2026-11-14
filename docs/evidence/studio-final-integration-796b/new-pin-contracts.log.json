@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_candidate_2011_pin.py",
+    "-v"
+  ],
+  "exit": 0,
+  "elapsed_seconds": 0.06904810899868608,
+  "log_sha256": "012d87712be36a1241e56bf1a260f8652ca3de27f0a9bfe4773e5ce637c513ad",
+  "log": "new-pin-contracts.log"
+}

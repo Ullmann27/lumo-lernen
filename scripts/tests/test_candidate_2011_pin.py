@@ -22,6 +22,7 @@ TECHNICAL_ART_2015_REVISION = "b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1"
 GAMEPLAY_2016_REVISION = "b4ccf593d7833e8c259ff0f963494b00d245d03d"
 ACTION_STAGE_2017_REVISION = "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57"
 NEXTGEN_2018_REVISION = "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
+STUDIO_2019_REVISION = "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
 SUPERSEDED_2017_CANDIDATES = {
     "460c94b10df6adae11def608068d72e99c0950db",
     "a16a4fc6791c3c7a594273f4544458382cc2c884",
@@ -47,9 +48,9 @@ class Candidate2011PinTests(unittest.TestCase):
         source = (ROOT / "config" / "godot-source.json").read_text(encoding="utf-8")
         # This is the actual failing build contract, not an invented mock.
         build, revision = POLICY.verify(pubspec, source)
-        self.assertEqual((build, revision), (2018, NEXTGEN_2018_REVISION))
-        self.assertGreater(build, 2017)
-        self.assertIn("version: 0.13.6+2018\n", pubspec)
+        self.assertEqual((build, revision), (2019, STUDIO_2019_REVISION))
+        self.assertGreater(build, 2018)
+        self.assertIn("version: 0.13.7+2019\n", pubspec)
 
     def test_new_candidate_has_exact_reviewed_native_identity(self):
         self.assertEqual(
@@ -102,7 +103,7 @@ class Candidate2011PinTests(unittest.TestCase):
                     POLICY.verify(version(2014), json.dumps(data))
 
     def test_all_existing_native_identities_are_unchanged(self):
-        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018)}
+        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)}
         digest = hashlib.sha256(
             json.dumps(old, sort_keys=True, separators=(",", ":")).encode()
         ).hexdigest()
@@ -256,6 +257,46 @@ class Candidate2011PinTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, message):
                     POLICY.verify(version(2018), json.dumps(data))
 
+    def test_2019_only_accepts_its_exact_source_and_preserves_every_prior_pin(self):
+        self.assertEqual(
+            POLICY.verify(version(2019), config(STUDIO_2019_REVISION)),
+            (2019, STUDIO_2019_REVISION),
+        )
+        previous = {build: sha for build, sha in POLICY.APPROVED.items() if build < 2019}
+        invalid = set(previous.values()) | {
+            "0" * 40, "", STUDIO_2019_REVISION[:8],
+            "9eb25fcb158342639badb0e953a8fe7945fda6ce",
+            "64f75eb7725ebef898d0f259049bddef7021532f",
+            "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928",
+            "24fb85800dfb58ec11dd409449e276299aa72b06",
+        }
+        for revision in sorted(invalid):
+            with self.subTest(revision=revision):
+                with self.assertRaisesRegex(ValueError, "revision mismatch"):
+                    POLICY.verify(version(2019), config(revision))
+        for build, revision in previous.items():
+            with self.subTest(historical_build=build):
+                self.assertEqual(POLICY.verify(version(build), config(revision)), (build, revision))
+                with self.assertRaisesRegex(ValueError, "revision mismatch"):
+                    POLICY.verify(version(build), config(STUDIO_2019_REVISION))
+        for field, value, message in (
+            ("repository", "https://example.invalid/game.git", "origin"),
+            ("engine", "4.7", "engine"),
+            ("skip_verification", True, "config keys"),
+        ):
+            with self.subTest(field=field):
+                data = json.loads(config(STUDIO_2019_REVISION))
+                data[field] = value
+                with self.assertRaisesRegex(ValueError, message):
+                    POLICY.verify(version(2019), json.dumps(data))
+
+    def test_2019_rejects_superseded_796b_native_identity(self):
+        with self.assertRaisesRegex(ValueError, "revision mismatch for build 2019"):
+            POLICY.verify(
+                version(2019),
+                config("796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"),
+            )
+
     def test_2005_keeps_its_original_revision(self):
         self.assertEqual(POLICY.verify(version(2005), config(PREVIOUS_REVISION)),
                          (2005, PREVIOUS_REVISION))
@@ -283,10 +324,11 @@ class Candidate2011PinTests(unittest.TestCase):
             POLICY.verify(version(2011), json.dumps(data))
 
     def test_unreserved_and_private_checkpoint_versions_stay_closed(self):
-        for build in (2006, 2007, 2008, 2009, 2010, 2019, 9999):
-            with self.subTest(build=build):
-                with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-                    POLICY.verify(version(build), config())
+        for build in (2006, 2007, 2008, 2009, 2010, 2020, 9999):
+            for revision in (CANDIDATE_REVISION, STUDIO_2019_REVISION):
+                with self.subTest(build=build, revision=revision):
+                    with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
+                        POLICY.verify(version(build), config(revision))
 
     def test_missing_or_duplicate_version_remains_rejected(self):
         for spec in ("name: lumo_lernen\n", version(2011) + version(2011)):

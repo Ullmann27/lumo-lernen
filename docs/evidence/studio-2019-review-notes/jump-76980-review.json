@@ -1,0 +1,716 @@
+{
+  "kind": "fresh_production_jump_renderer_review",
+  "reviewed_at_utc": "2026-11-13T15:47:50.635240+00:00",
+  "status": "all_sixteen_images_reviewed_no_additional_visible_blocker",
+  "scope": "Die sechzehn aktuellen Produktions-Jump-Bilder und zugehörigen Jump-Logs aus dem kombinierten Original-Bundle. Keine Gesamtfreigabe, kein finales Native-/Android-Receipt.",
+  "source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "source_tree": "8df22766bd0dbae31aacaa26c0228811c027686e",
+  "artifact": {
+    "github_artifact_id": 14052637839,
+    "github_run_id": 43449903088,
+    "zip_file": "studio-native-76980a94.zip",
+    "zip_sha256": "d7ebc000680f3c613e005b8c9eb91e82b488d6f326c36a038a3492459222178c",
+    "zip_bytes": 170742944,
+    "provenance_metadata_supplied_by_coordinator": true,
+    "local_zip_hash_and_entry_bytes_independently_verified": true
+  },
+  "current_source_stamp_groups": [
+    {
+      "scope": "nextgen-evidence/nextgen",
+      "source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "source_dirty_stamp_empty": true,
+      "checked_files": [
+        {
+          "file": "nextgen-evidence/nextgen/source-sha.txt",
+          "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+          "bytes": 41,
+          "extracted_bytes_equal_original_zip_entry": true
+        },
+        {
+          "file": "nextgen-evidence/nextgen/source-dirty.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "extracted_bytes_equal_original_zip_entry": true
+        }
+      ]
+    },
+    {
+      "scope": "studio-evidence",
+      "source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "source_dirty_stamp_empty": true,
+      "checked_files": [
+        {
+          "file": "studio-evidence/source-sha.txt",
+          "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+          "bytes": 41,
+          "extracted_bytes_equal_original_zip_entry": true
+        },
+        {
+          "file": "studio-evidence/source-tree.txt",
+          "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+          "bytes": 41,
+          "extracted_bytes_equal_original_zip_entry": true
+        },
+        {
+          "file": "studio-evidence/source-dirty.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "extracted_bytes_equal_original_zip_entry": true
+        }
+      ]
+    },
+    {
+      "scope": "touch-evidence/build",
+      "source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "source_dirty_stamp_empty": true,
+      "checked_files": [
+        {
+          "file": "touch-evidence/build/source-sha.txt",
+          "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+          "bytes": 41,
+          "extracted_bytes_equal_original_zip_entry": true
+        },
+        {
+          "file": "touch-evidence/build/source-tree.txt",
+          "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+          "bytes": 41,
+          "extracted_bytes_equal_original_zip_entry": true
+        },
+        {
+          "file": "touch-evidence/build/source-dirty.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "extracted_bytes_equal_original_zip_entry": true
+        },
+        {
+          "file": "touch-evidence/build/source-dirty-after.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "extracted_bytes_equal_original_zip_entry": true
+        }
+      ]
+    },
+    {
+      "scope": "touch-evidence/treasure",
+      "source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "source_dirty_stamp_empty": true,
+      "checked_files": [
+        {
+          "file": "touch-evidence/treasure/source-sha.txt",
+          "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+          "bytes": 41,
+          "extracted_bytes_equal_original_zip_entry": true
+        },
+        {
+          "file": "touch-evidence/treasure/source-tree.txt",
+          "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+          "bytes": 41,
+          "extracted_bytes_equal_original_zip_entry": true
+        },
+        {
+          "file": "touch-evidence/treasure/source-dirty.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "extracted_bytes_equal_original_zip_entry": true
+        },
+        {
+          "file": "touch-evidence/treasure/source-dirty-after.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "extracted_bytes_equal_original_zip_entry": true
+        }
+      ]
+    },
+    {
+      "scope": "touch-evidence/workshop",
+      "source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "source_dirty_stamp_empty": true,
+      "checked_files": [
+        {
+          "file": "touch-evidence/workshop/source-sha.txt",
+          "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+          "bytes": 41,
+          "extracted_bytes_equal_original_zip_entry": true
+        },
+        {
+          "file": "touch-evidence/workshop/source-tree.txt",
+          "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+          "bytes": 41,
+          "extracted_bytes_equal_original_zip_entry": true
+        },
+        {
+          "file": "touch-evidence/workshop/source-dirty.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "extracted_bytes_equal_original_zip_entry": true
+        },
+        {
+          "file": "touch-evidence/workshop/source-dirty-after.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "extracted_bytes_equal_original_zip_entry": true
+        }
+      ]
+    }
+  ],
+  "current_source_stamp_group_count": 5,
+  "baseline_subfolder_excluded_from_current_source_claim": true,
+  "checked_files": [
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump-nextgen-evidence.json",
+      "sha256": "555422886d267bfd9ed24dd85e4e8e6afb002e9537ab5aefd77c707eaf91d76a",
+      "bytes": 4932,
+      "extracted_bytes_equal_original_zip_entry": true
+    }
+  ],
+  "runtime_logs": [
+    {
+      "file": "nextgen-evidence/nextgen/jump_nextgen_regression-headless.log",
+      "sha256": "52a320159bea3754b29275564ce4915525364e192f7ea53430e7ddfe950bcfc9",
+      "bytes": 1995,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "pass_marker_observed": "[JumpNextgen] PASS 84 checks",
+      "assertions_reported": 84,
+      "errors_observed": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/jump_nextgen_capture-rendered.log",
+      "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3",
+      "bytes": 1727,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "pass_marker_observed": "[JumpNextgenCapture] PASS 80 checks, 16 actual renderer frames and native two-finger jumps",
+      "assertions_reported": 80,
+      "errors_observed": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/jump_expeditions_regression-headless.log",
+      "sha256": "92b58ab6f6002b1c9989a185e3b26acc44c117d2cfc921652edf4beffaf96753",
+      "bytes": 2758,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "pass_marker_observed": "[JumpExpeditions] PASS 29 checks",
+      "assertions_reported": 29,
+      "errors_observed": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/lumo_original_jump_visual_regression-headless.log",
+      "sha256": "6c2847641ce8702483e9a6d81b36d20fac209567079970bd641e11f0c3489305",
+      "bytes": 689,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "pass_marker_observed": "[JumpOriginalLumo] PASS:",
+      "assertions_reported": null,
+      "errors_observed": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/lumo_65bone_walk_gait_regression-headless.log",
+      "sha256": "d709a54ac013e3e6e24a6c31a790d8d84b0abe00f4fbccb7fee6229947ff6cda",
+      "bytes": 570,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "pass_marker_observed": "[LumoGait] PASS:",
+      "assertions_reported": null,
+      "errors_observed": false
+    }
+  ],
+  "runtime_evidence": {
+    "headless_jump_assertions": 84,
+    "rendered_jump_assertions": 80,
+    "expedition_assertions": 29,
+    "rendered_png_count": 16,
+    "capture_manifest_display": "X11",
+    "capture_manifest_failures": [],
+    "engine": "Godot 4.6.3.stable.official.7d41c59c4",
+    "renderer": "OpenGL 4.5 Compatibility, Mesa 25.2.8-0ubuntu0.24.04.4 llvmpipe (LLVM 20.1.2, 256 bits)",
+    "known_renderer_warnings": [
+      "Changing V-Sync unsupported by graphics driver",
+      "Screen-space AA unavailable in Compatibility",
+      "Volumetric fog unavailable in Compatibility"
+    ],
+    "measured_headless_jump_values": {
+      "held": {
+        "height": 2.07875111699104,
+        "knee_angle": 1.63079345226288
+      },
+      "tap": {
+        "height": 1.09041860699654,
+        "knee_angle": 1.62433660030365
+      }
+    },
+    "headless_scope": "Reale CharacterBody-Physik bei 60 Physikticks/s, über interne Eingabe-APIs gesteuert: variable Sprunghöhe, Coyote-Grenze, Sprungpuffer, Rückkehr in Idle, Kniebewegung, Bremsen, Pause/Resume und voneinander getrennte Kinder-/Klassen-/Fachspielstände.",
+    "rendered_input_scope": "Input.parse_input_event mit anschließendem flush_buffered_events: Finger 3 hält und bewegt den linken Stick; Finger 4 hält die Sprungfläche unabhängig. Finger 9 darf nichts lösen. Stickfreigabe erhält den Sprung; Freigabe von Finger 4 außerhalb der Fläche beendet den gehaltenen Zustand. Je Format folgen sichere Landung ohne Sturz und Prüfung der Eingabe-/Rig-Pause.",
+    "rendered_position_injection_used": false,
+    "capture_course_limit": "Die sechzehn Bilder zeigen den kontrollierten Sprung mit Rückkehr auf die erste Insel, keinen im Bild abgeschlossenen Inselwechsel.",
+    "expeditions_scope": "Drei Kurse werden mit echter Physik ohne nachträgliche Positionsinjektion bis Checkpoint 11 durchlaufen. Der Test setzt Bewegungsrichtung, Sprungpuffer und Antworten direkt; Kursmenü teilweise per pressed.emit. Er ist kein durchgehender Touch-UI-Nachweis.",
+    "expedition_route_results": [
+      {
+        "route": 0,
+        "frames": 1012,
+        "falls": 0,
+        "crystals": 10,
+        "optional_goals": 1
+      },
+      {
+        "route": 1,
+        "frames": 1036,
+        "falls": 0,
+        "crystals": 10,
+        "optional_goals": 1
+      },
+      {
+        "route": 2,
+        "frames": 1008,
+        "falls": 0,
+        "crystals": 10,
+        "optional_goals": 0
+      }
+    ],
+    "headless_layout_gate": "Der 84-Check-Lauf prüft >=48 dp und vollständig erreichbare Stick-/Sprung-/Header-Rechtecke für 412×915@1, 690×829@1, 2400×1080@2,625 und 1236×2745@3. Der Renderlauf prüft getrennte, vollständig sichtbare Daumenrechtecke für seine vier Formate.",
+    "performance_claim": false,
+    "physical_android_device_test_claim": false,
+    "device_fps_measured": false,
+    "overall_workflow_success_asserted": false
+  },
+  "images": [
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_ready.png",
+      "sha256": "1229ea0053bf5a66f1cdc2eb199fa54a4d6775af04389dc407cc71299e32d171",
+      "bytes": 414295,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(0.0, 0.199961, 1.5)",
+        "animation": "idle",
+        "draw_calls": 223,
+        "file": "jump_412x915_ready.png",
+        "grounded": true,
+        "height": 915,
+        "primitives": 255094,
+        "velocity": "(0.0, 0.0, 0.0)",
+        "width": 412
+      },
+      "phase": "ready",
+      "visual_findings": [
+        "Original-Lumo mit blauem Anzug, Fuchsohren und hellem Schwanz ist vollständig im Bild. Die Stiefel stehen plausibel auf dem Pflaster; Schatten und Inselkante geben erkennbare räumliche Tiefe.",
+        "Telefonhochformat: Status bricht auf zwei Zeilen um. Spiele/Pause bleiben getrennt; Bewegungsstick und Sprungfläche sind vollständig sichtbar und überdecken Lumo nicht. Der vordere Inselrand liegt teils unter den unteren Bedienelementen, deren Beschriftung bleibt lesbar."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_touch_ascent.png",
+      "sha256": "1b0a39f2c78106ff618278b69295fca446261b84e0d4b5e5155d92f704b0932b",
+      "bytes": 458646,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(-0.000001, 1.652589, -0.017352)",
+        "animation": "jump_rise",
+        "draw_calls": 227,
+        "file": "jump_412x915_touch_ascent.png",
+        "grounded": false,
+        "height": 915,
+        "primitives": 255570,
+        "velocity": "(-0.000001, 4.899998, -3.193565)",
+        "width": 412
+      },
+      "phase": "touch_ascent",
+      "visual_findings": [
+        "Lumo hebt sichtbar vom ersten Inselboden ab; beide Stiefel und der Schwanz bleiben als zusammenhängende Originalfigur erkennbar. Die freie Höhe unter dem Körper passt zum positiven vertikalen Geschwindigkeitswert und jump_rise.",
+        "Telefonhochformat: Status bricht auf zwei Zeilen um. Spiele/Pause bleiben getrennt; Bewegungsstick und Sprungfläche sind vollständig sichtbar und überdecken Lumo nicht. Der vordere Inselrand liegt teils unter den unteren Bedienelementen, deren Beschriftung bleibt lesbar."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_airborne.png",
+      "sha256": "2c4d701ac4d889efd7eb9eb341502e33c45918044bb243a0634ccc34f1ce6f1f",
+      "bytes": 491923,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(-0.000001, 0.819254, -0.735314)",
+        "animation": "jump_fall",
+        "draw_calls": 226,
+        "file": "jump_412x915_airborne.png",
+        "grounded": false,
+        "height": 915,
+        "primitives": 255474,
+        "velocity": "(0.0, -7.100004, 0.0)",
+        "width": 412
+      },
+      "phase": "airborne",
+      "visual_findings": [
+        "Der Körper befindet sich wieder näher über dem Pflaster; Beine und Schwanz sind weiterhin geschlossen und ohne sichtbare Streckartefakte. Der gespeicherte negative vertikale Geschwindigkeitswert ordnet dieses Bild dem Sinkflug zu, nicht dem Scheitelpunkt.",
+        "Telefonhochformat: Status bricht auf zwei Zeilen um. Spiele/Pause bleiben getrennt; Bewegungsstick und Sprungfläche sind vollständig sichtbar und überdecken Lumo nicht. Der vordere Inselrand liegt teils unter den unteren Bedienelementen, deren Beschriftung bleibt lesbar."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "sha256": "b5ca42bacee7fc6e7b9ad1e16cd9a590a6d1dd51df502496642ee210f0e8ea90",
+      "bytes": 473635,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(-0.000001, 0.200178, -0.735314)",
+        "animation": "idle",
+        "draw_calls": 228,
+        "file": "jump_412x915_landed.png",
+        "grounded": true,
+        "height": 915,
+        "primitives": 257138,
+        "velocity": "(0.0, 0.0, 0.0)",
+        "width": 412
+      },
+      "phase": "landed",
+      "visual_findings": [
+        "Lumo steht wieder auf dem Pflaster derselben ersten Insel, mit intakter Silhouette und erkennbarem Bodenschatten. Dies ist idle nach 60 weiteren Physikframes und damit kein Standbild des kurzen land-Aufprallclips.",
+        "Telefonhochformat: Status bricht auf zwei Zeilen um. Spiele/Pause bleiben getrennt; Bewegungsstick und Sprungfläche sind vollständig sichtbar und überdecken Lumo nicht. Der vordere Inselrand liegt teils unter den unteren Bedienelementen, deren Beschriftung bleibt lesbar."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_ready.png",
+      "sha256": "ec8d8ad8ef3e7b8187de7cac6b1c7d3672b8d2af4c3da6eb6c642558cce32d73",
+      "bytes": 540561,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(0.0, 0.199961, 1.5)",
+        "animation": "idle",
+        "draw_calls": 251,
+        "file": "jump_690x829_ready.png",
+        "grounded": true,
+        "height": 829,
+        "primitives": 265924,
+        "velocity": "(0.0, 0.0, 0.0)",
+        "width": 690
+      },
+      "phase": "ready",
+      "visual_findings": [
+        "Original-Lumo mit blauem Anzug, Fuchsohren und hellem Schwanz ist vollständig im Bild. Die Stiefel stehen plausibel auf dem Pflaster; Schatten und Inselkante geben erkennbare räumliche Tiefe.",
+        "Fold-ähnliches Fensterformat bei simulierter Dichte 1,0: breite freie Spielmitte, klare getrennte Daumenflächen und vollständige Kopfzeile. Die untere Inselgeometrie kann hinter der Bedienung liegen, die Originalfigur bleibt unverdeckt."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "sha256": "18f41149a74e8b1790881d12ea0927ab438acec7c96b81c9f4eadbfa31ccf920",
+      "bytes": 605698,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(-0.0, 1.652587, -0.01735)",
+        "animation": "jump_rise",
+        "draw_calls": 252,
+        "file": "jump_690x829_touch_ascent.png",
+        "grounded": false,
+        "height": 829,
+        "primitives": 265964,
+        "velocity": "(-0.000001, 4.899998, -3.193553)",
+        "width": 690
+      },
+      "phase": "touch_ascent",
+      "visual_findings": [
+        "Lumo hebt sichtbar vom ersten Inselboden ab; beide Stiefel und der Schwanz bleiben als zusammenhängende Originalfigur erkennbar. Die freie Höhe unter dem Körper passt zum positiven vertikalen Geschwindigkeitswert und jump_rise.",
+        "Fold-ähnliches Fensterformat bei simulierter Dichte 1,0: breite freie Spielmitte, klare getrennte Daumenflächen und vollständige Kopfzeile. Die untere Inselgeometrie kann hinter der Bedienung liegen, die Originalfigur bleibt unverdeckt."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_airborne.png",
+      "sha256": "4d1697dadc7ab5bead2f40945ad91db5eea7eb73b66e80f1d87616ee4b0d007b",
+      "bytes": 660443,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(-0.0, 0.819252, -0.735308)",
+        "animation": "jump_fall",
+        "draw_calls": 253,
+        "file": "jump_690x829_airborne.png",
+        "grounded": false,
+        "height": 829,
+        "primitives": 266524,
+        "velocity": "(0.0, -7.100004, 0.0)",
+        "width": 690
+      },
+      "phase": "airborne",
+      "visual_findings": [
+        "Der Körper befindet sich wieder näher über dem Pflaster; Beine und Schwanz sind weiterhin geschlossen und ohne sichtbare Streckartefakte. Der gespeicherte negative vertikale Geschwindigkeitswert ordnet dieses Bild dem Sinkflug zu, nicht dem Scheitelpunkt.",
+        "Fold-ähnliches Fensterformat bei simulierter Dichte 1,0: breite freie Spielmitte, klare getrennte Daumenflächen und vollständige Kopfzeile. Die untere Inselgeometrie kann hinter der Bedienung liegen, die Originalfigur bleibt unverdeckt."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_landed.png",
+      "sha256": "24e5cc3138b8ab4d4d7d024ca1f8d057057172d02e7389a1d19a1a380b9b5914",
+      "bytes": 626361,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(-0.0, 0.200176, -0.735308)",
+        "animation": "idle",
+        "draw_calls": 256,
+        "file": "jump_690x829_landed.png",
+        "grounded": true,
+        "height": 829,
+        "primitives": 268652,
+        "velocity": "(0.0, 0.0, 0.0)",
+        "width": 690
+      },
+      "phase": "landed",
+      "visual_findings": [
+        "Lumo steht wieder auf dem Pflaster derselben ersten Insel, mit intakter Silhouette und erkennbarem Bodenschatten. Dies ist idle nach 60 weiteren Physikframes und damit kein Standbild des kurzen land-Aufprallclips.",
+        "Fold-ähnliches Fensterformat bei simulierter Dichte 1,0: breite freie Spielmitte, klare getrennte Daumenflächen und vollständige Kopfzeile. Die untere Inselgeometrie kann hinter der Bedienung liegen, die Originalfigur bleibt unverdeckt."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_ready.png",
+      "sha256": "2f59d1577ad853415337cb057af3d3d17537564fd851bdb785d045316b889f57",
+      "bytes": 752767,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(0.0, 0.199961, 1.5)",
+        "animation": "idle",
+        "draw_calls": 287,
+        "file": "jump_1280x720_ready.png",
+        "grounded": true,
+        "height": 720,
+        "primitives": 283114,
+        "velocity": "(0.0, 0.0, 0.0)",
+        "width": 1280
+      },
+      "phase": "ready",
+      "visual_findings": [
+        "Original-Lumo mit blauem Anzug, Fuchsohren und hellem Schwanz ist vollständig im Bild. Die Stiefel stehen plausibel auf dem Pflaster; Schatten und Inselkante geben erkennbare räumliche Tiefe.",
+        "Breites Querformat: großer sichtbarer Umgebungsbereich; die Figur ist relativ klein, ihre Silhouette und Bodentrennung sind dennoch erkennbar. Kopfzeile sowie linke und rechte Bedienung sind vollständig sichtbar."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_touch_ascent.png",
+      "sha256": "e6cea2cdccda1fa439baf6dc5d9988254b2b29c995f27831afeeb064b1cb3f69",
+      "bytes": 838614,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(-0.0, 1.652588, -0.017345)",
+        "animation": "jump_rise",
+        "draw_calls": 287,
+        "file": "jump_1280x720_touch_ascent.png",
+        "grounded": false,
+        "height": 720,
+        "primitives": 283114,
+        "velocity": "(-0.000001, 4.899998, -3.193547)",
+        "width": 1280
+      },
+      "phase": "touch_ascent",
+      "visual_findings": [
+        "Lumo hebt sichtbar vom ersten Inselboden ab; beide Stiefel und der Schwanz bleiben als zusammenhängende Originalfigur erkennbar. Die freie Höhe unter dem Körper passt zum positiven vertikalen Geschwindigkeitswert und jump_rise.",
+        "Breites Querformat: großer sichtbarer Umgebungsbereich; die Figur ist relativ klein, ihre Silhouette und Bodentrennung sind dennoch erkennbar. Kopfzeile sowie linke und rechte Bedienung sind vollständig sichtbar."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_airborne.png",
+      "sha256": "48ffca5cfbbb1d439b3739a4f9f4e44d7b5775816ae8142c6c3f0f3d33bda89a",
+      "bytes": 894182,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(-0.000001, 0.819253, -0.735302)",
+        "animation": "jump_fall",
+        "draw_calls": 287,
+        "file": "jump_1280x720_airborne.png",
+        "grounded": false,
+        "height": 720,
+        "primitives": 283114,
+        "velocity": "(0.0, -7.100004, 0.0)",
+        "width": 1280
+      },
+      "phase": "airborne",
+      "visual_findings": [
+        "Der Körper befindet sich wieder näher über dem Pflaster; Beine und Schwanz sind weiterhin geschlossen und ohne sichtbare Streckartefakte. Der gespeicherte negative vertikale Geschwindigkeitswert ordnet dieses Bild dem Sinkflug zu, nicht dem Scheitelpunkt.",
+        "Breites Querformat: großer sichtbarer Umgebungsbereich; die Figur ist relativ klein, ihre Silhouette und Bodentrennung sind dennoch erkennbar. Kopfzeile sowie linke und rechte Bedienung sind vollständig sichtbar."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_landed.png",
+      "sha256": "760d35fade279de6be9d1b11d041e4e3661c487398de9f720cb715d07cdb61fb",
+      "bytes": 855492,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(-0.000001, 0.200177, -0.735302)",
+        "animation": "idle",
+        "draw_calls": 288,
+        "file": "jump_1280x720_landed.png",
+        "grounded": true,
+        "height": 720,
+        "primitives": 283154,
+        "velocity": "(0.0, 0.0, 0.0)",
+        "width": 1280
+      },
+      "phase": "landed",
+      "visual_findings": [
+        "Lumo steht wieder auf dem Pflaster derselben ersten Insel, mit intakter Silhouette und erkennbarem Bodenschatten. Dies ist idle nach 60 weiteren Physikframes und damit kein Standbild des kurzen land-Aufprallclips.",
+        "Breites Querformat: großer sichtbarer Umgebungsbereich; die Figur ist relativ klein, ihre Silhouette und Bodentrennung sind dennoch erkennbar. Kopfzeile sowie linke und rechte Bedienung sind vollständig sichtbar."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_ready.png",
+      "sha256": "f53dff7d18187c5f4d4eaff91dffcc63351d8624487b3c9215d744de8f9a9943",
+      "bytes": 1845485,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(0.0, 0.199961, 1.5)",
+        "animation": "idle",
+        "draw_calls": 294,
+        "file": "jump_2400x1080_ready.png",
+        "grounded": true,
+        "height": 1080,
+        "primitives": 344936,
+        "velocity": "(0.0, 0.0, 0.0)",
+        "width": 2400
+      },
+      "phase": "ready",
+      "visual_findings": [
+        "Original-Lumo mit blauem Anzug, Fuchsohren und hellem Schwanz ist vollständig im Bild. Die Stiefel stehen plausibel auf dem Pflaster; Schatten und Inselkante geben erkennbare räumliche Tiefe.",
+        "Querformat mit simulierter Dichte 2,625: sichtbar vergrößerte Touchflächen und Schrift, ohne gegenseitige Überlagerung oder Abschneiden. Die große HUD-Schrift liegt stellenweise über wechselnder Insel-/Wolkengeometrie; der Kontrast schwankt lokal, die hier geprüften Inhalte bleiben lesbar."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_touch_ascent.png",
+      "sha256": "66cb6fc1ecb3fa5c116b76d31dc1d4dcc2b2e11beb0bf8ca976db4ece85a1f94",
+      "bytes": 2020030,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(0.0, 1.652588, -0.017344)",
+        "animation": "jump_rise",
+        "draw_calls": 296,
+        "file": "jump_2400x1080_touch_ascent.png",
+        "grounded": false,
+        "height": 1080,
+        "primitives": 374984,
+        "velocity": "(0.000001, 4.899998, -3.193545)",
+        "width": 2400
+      },
+      "phase": "touch_ascent",
+      "visual_findings": [
+        "Lumo hebt sichtbar vom ersten Inselboden ab; beide Stiefel und der Schwanz bleiben als zusammenhängende Originalfigur erkennbar. Die freie Höhe unter dem Körper passt zum positiven vertikalen Geschwindigkeitswert und jump_rise.",
+        "Querformat mit simulierter Dichte 2,625: sichtbar vergrößerte Touchflächen und Schrift, ohne gegenseitige Überlagerung oder Abschneiden. Die große HUD-Schrift liegt stellenweise über wechselnder Insel-/Wolkengeometrie; der Kontrast schwankt lokal, die hier geprüften Inhalte bleiben lesbar."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_airborne.png",
+      "sha256": "798c574802d9b768efa8c170992e1a00e297e991a0d9453635a4040aed1269f2",
+      "bytes": 2130789,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(0.0, 0.819253, -0.735301)",
+        "animation": "jump_fall",
+        "draw_calls": 295,
+        "file": "jump_2400x1080_airborne.png",
+        "grounded": false,
+        "height": 1080,
+        "primitives": 344984,
+        "velocity": "(0.0, -7.100004, 0.0)",
+        "width": 2400
+      },
+      "phase": "airborne",
+      "visual_findings": [
+        "Der Körper befindet sich wieder näher über dem Pflaster; Beine und Schwanz sind weiterhin geschlossen und ohne sichtbare Streckartefakte. Der gespeicherte negative vertikale Geschwindigkeitswert ordnet dieses Bild dem Sinkflug zu, nicht dem Scheitelpunkt.",
+        "Querformat mit simulierter Dichte 2,625: sichtbar vergrößerte Touchflächen und Schrift, ohne gegenseitige Überlagerung oder Abschneiden. Die große HUD-Schrift liegt stellenweise über wechselnder Insel-/Wolkengeometrie; der Kontrast schwankt lokal, die hier geprüften Inhalte bleiben lesbar."
+      ],
+      "additional_visible_blocker": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_landed.png",
+      "sha256": "76f4afdb060eaedebe0173dc4f46762cff1c4395c74bf41aab6991a28e2bab80",
+      "bytes": 2053455,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "actor_position": "(0.0, 0.200177, -0.735301)",
+        "animation": "idle",
+        "draw_calls": 297,
+        "file": "jump_2400x1080_landed.png",
+        "grounded": true,
+        "height": 1080,
+        "primitives": 345060,
+        "velocity": "(0.0, 0.0, 0.0)",
+        "width": 2400
+      },
+      "phase": "landed",
+      "visual_findings": [
+        "Lumo steht wieder auf dem Pflaster derselben ersten Insel, mit intakter Silhouette und erkennbarem Bodenschatten. Dies ist idle nach 60 weiteren Physikframes und damit kein Standbild des kurzen land-Aufprallclips.",
+        "Querformat mit simulierter Dichte 2,625: sichtbar vergrößerte Touchflächen und Schrift, ohne gegenseitige Überlagerung oder Abschneiden. Die große HUD-Schrift liegt stellenweise über wechselnder Insel-/Wolkengeometrie; der Kontrast schwankt lokal, die hier geprüften Inhalte bleiben lesbar."
+      ],
+      "additional_visible_blocker": false
+    }
+  ],
+  "read_only_source_references": [
+    {
+      "file": "scenes/games/jump_islands.tscn",
+      "local_read_only_sha256": "29d8efd1c1e33d5e9352842fa9343aa06217f0b804bb4b118d2d9a683865ff9a"
+    },
+    {
+      "file": "scripts/games/jump_islands.gd",
+      "local_read_only_sha256": "4953e584f125d1269a6e3fce2b5281ed3ec4dc6602936c7d873f9c28bfc2f5d1"
+    },
+    {
+      "file": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "local_read_only_sha256": "f262df70dd22937058b698e570eafabc8e05bba539036f89eda059166b68f3d0"
+    },
+    {
+      "file": "scripts/characters/lumo/lumo_platform_pose.gd",
+      "local_read_only_sha256": "2f89ad0660ed3f74ff0cfe50837e18265bcf54fdccd24712de6a8b0d680c0a59"
+    },
+    {
+      "file": "scripts/characters/lumo/lumo_walk_locomotion.gd",
+      "local_read_only_sha256": "95366a2716a557b27383757771923ec73971a385651749c78da8f2cc14a24ec2"
+    },
+    {
+      "file": "scripts/characters/lumo/lumo_body_space_pose.gd",
+      "local_read_only_sha256": "043d9eb3cbd1d56f2be4ad62aff71b99753540b524f3d4b69c030fc9217dcd9e"
+    },
+    {
+      "file": "assets/characters/lumo_animated/lumo_studio_clips.gd",
+      "local_read_only_sha256": "c0b4be7f094b4f69942d92ad25d54c8c45f01b6cb8471c00e7d5a0513ee8df18"
+    },
+    {
+      "file": "scripts/tests/jump_nextgen_capture.gd",
+      "local_read_only_sha256": "675f85891e83cecb453f822fd71469f40723760e0bc59caf8868521507472f89"
+    },
+    {
+      "file": "scripts/tests/jump_nextgen_regression.gd",
+      "local_read_only_sha256": "e3269ad43683ba893b7bf5179ec31aa889af4ea7c833c1747d51fc803c70732f"
+    },
+    {
+      "file": "scripts/tests/jump_expeditions_regression.gd",
+      "local_read_only_sha256": "ae4ebf4469ee97714afc3cbba52ac530dd5b48ca4fbef8695f8c0fdae5f204cc"
+    }
+  ],
+  "source_reference_limit": "Lokale Referenzdateien wurden nur gelesen und gehasht. Die Native-Quellenbindung der Bilder beruht auf den bytegeprüften CI-Stempeln; dies behauptet keinen sauberen lokalen Git-HEAD.",
+  "conclusion": {
+    "images_actually_opened": 16,
+    "image_bytes_equal_original_zip_entries": 16,
+    "visible_original_character_preserved": true,
+    "new_visible_blockers": [],
+    "qualifications": [
+      "Keine Vorher/Nachher- oder identische Bewegungsphasen-Behauptung für diese vier Runtime-Stadien.",
+      "Die vier landed-Bilder zeigen bereits Idle, nicht den kurzzeitigen Landestoß.",
+      "Die Landschaftsaufnahme bei 1280×720 zeigt einen relativ kleinen Avatar; Körperdetails werden zusätzlich durch die gesonderten aktuellen Motion-Studiobilder geprüft.",
+      "Die HUD-Schrift liegt stellenweise direkt über Weltgeometrie. Bei 2400×1080 schwankt dadurch der lokale Kontrast; kein neu verdecktes Bedienelement oder unlesbarer kompletter HUD-Inhalt in diesen sechzehn Bildern gefunden.",
+      "Statische Bilder und die gespeicherten Draw-Call-/Primitive-Zahlen beweisen weder kontinuierliche Animationsqualität noch GPU-Zeiten oder 60 FPS auf einem Fold7."
+    ],
+    "no_product_files_changed": true,
+    "no_additional_tests_run_for_this_review": true,
+    "final_release_receipt": false
+  }
+}

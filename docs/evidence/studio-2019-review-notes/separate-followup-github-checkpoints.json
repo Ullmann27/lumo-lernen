@@ -1,0 +1,25 @@
+{
+  "puzzle": {
+    "repository": "Ullmann27/lumo-godot",
+    "base": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "commit": "ab9237025e5e5a30a168c4d1fbbd0a24a82690b6",
+    "tree": "703e37266f30764956411ed297b6c798f88fa2a6",
+    "branch": "chatgpt/lumo-puzzle-menu-20261113",
+    "pr": 165,
+    "paths_verified": 25
+  },
+  "historical": {
+    "repository": "Ullmann27/lumo-lernen",
+    "base": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "commit": "a5e03117158c157ba3154083db25947724e67727",
+    "tree": "395a60012dc0bc6e7294f9837f230ccbc5201f14",
+    "branch": "chatgpt/lumo-historical-1999-verifier-20261113",
+    "pr": 469,
+    "paths_verified": 27
+  },
+  "studio_sources_unchanged": {
+    "host": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "native": "76980a941fa05d047574d8cc386d3249d93ffca3"
+  },
+  "scope": "Separate local-tested followups; not integrated into the current Android candidate, no main merge and no additional Android PASS implied."
+}

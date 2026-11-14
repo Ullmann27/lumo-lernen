@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "scope": "Independent read-only source/visual review of the frozen native Cards safe-area patch. No new Android or full master approval.",
+  "native_baseline": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "freeze_manifest_sha256": "44d62e368260f0f45f9d1a937d91d1e5e06527ffc62c3ed19d422cf37babecb5",
+  "source_files": [
+    {
+      "path": "scripts/games/cards/cards_table.gd",
+      "sha256": "dd48d13f74957912c8bfde18a84cde6d6cc86c78e5a8aec00ce8b2217eddf3e4"
+    },
+    {
+      "path": "scripts/games/cards/cards_safe_area.gd",
+      "sha256": "8de14d732153062e315a988d7b9146f1a379650c87a3eb9c04eef06435ff49a5"
+    },
+    {
+      "path": "scripts/tests/cards_safe_area_regression.gd",
+      "sha256": "503bf9890870ee74eefa8607bca786928d879e0eb50ee1c93205a5c1c4bd3141"
+    },
+    {
+      "path": "scripts/tests/cards_safe_area_android_contract.gd",
+      "sha256": "b9edfa9b425b8e0f9e2c26b9cc555433f7bb0f591547bbcd221df5bb8b6782be"
+    },
+    {
+      "path": "scripts/tests/fixtures/cards_safe_area_table.gd",
+      "sha256": "97174af3186cba68bebb24325d3978c15253523147c60679f6a54cde62beb0f9"
+    },
+    {
+      "path": "tools/validate_studio.sh",
+      "sha256": "81e21528dabdd16be0d420d48d61416d4ba9471965bc79678669187658c1b4c3"
+    }
+  ],
+  "result": "NO_ADDITIONAL_CONCRETE_BLOCKER_IN_REVIEWED_LOCAL_SCOPE",
+  "review": [
+    "Godot4.6.3 exact-source API comparison: public AndroidRuntime.getActivity and createRunnableFromGodotCallable, JavaObject superclass traversal, Rect.Rect constructor, public Field.getInt and JavaClassWrapper.get_exception are used correctly. Non-JavaObject plugin calls do not consume stale exception status.",
+    "Only Android View/Insets reads execute on the Android UI thread. The result dictionary is delivered through Callable.call_deferred before scene or Control state changes; no window flag, immersive policy or system-bar setter is used.",
+    "Actual decor size, SurfaceView size and descendant bounds accompany systemBars|displayCutout. Already-applied view padding is subtracted before safe UI offsets, avoiding a second inset.",
+    "Null/unattached Java observations and exceptions remain unavailable observations and are retried. Controls remain hidden until the current Godot window has an accepted measurement.",
+    "Diagnostic file is invalidated on layout/hand/selection/accepted pending action and deleted on exit or lost authority. Publication waits two frames, no pending action, completed hand tweens and zero camera focus; discard animation lasts0.4s while changed-top focus returns over more than1s.",
+    "Atomic write/rename and monotonic per-scene sequence preserve the raw settled snapshot. Diagnostic file is separate from all gameplay saves; scene token and public state fields are included.",
+    "Portrait playing/paused and landscape screenshots were independently opened. Pause/Back/header are inside the measured safe region; modal text/resume action and footer remain visible. These are local real X11 frames with explicit platform-inset fixtures, not Android captures.",
+    "Host projector independently calculates card polygons and compares Godot readbacks. Actual supplied quads are never used as sampling coordinates."
+  ],
+  "images": [
+    {
+      "path": "qa/cards-safe-area-318/final-render-v2-captures/android35_portrait-playing.png",
+      "sha256": "9754ab497a1b17a04f1170e7cec881f4e4d3c3ef692c45119b145c96510e7fe2",
+      "bytes": 1272873,
+      "opened_with_view_image_by_independent_agent": true,
+      "sidecar_sha256": "c487377a24237e5bcf2f5952fe31d6d53d407aa87c84337d65cfef3531a45ce3"
+    },
+    {
+      "path": "qa/cards-safe-area-318/final-render-v2-captures/android35_portrait-paused.png",
+      "sha256": "cdc1a62ed087f35d3eb751dcb8fa29dec2862b3d82ebe75c5bd21deb71d49491",
+      "bytes": 1141738,
+      "opened_with_view_image_by_independent_agent": true,
+      "sidecar_sha256": "6297169717936951a5e625d4375253614baed77727aa952c4f37540a4cfe5204"
+    },
+    {
+      "path": "qa/cards-safe-area-318/final-render-v2-captures/landscape_cutout_fixture-playing.png",
+      "sha256": "90b49f1abdfd70a5b835cc6a4432dc291a2ed748ecd2d8f53b47ab75b157bfa8",
+      "bytes": 1002645,
+      "opened_with_view_image_by_independent_agent": true,
+      "sidecar_sha256": "d8eb6951924c5caf03fb03d6516e591e040be67c983b7043ff8a1403276fa129"
+    }
+  ],
+  "existing_test_results_read_not_rerun": {
+    "headless_layout_checks": 662,
+    "renderer_layout_checks": 671,
+    "profiles": 5,
+    "minimum_measured_control_dp": 52.0,
+    "measured_targets": 81,
+    "real_touch_actions": 36,
+    "java_api_boundary_checks": 20,
+    "existing_cards_checks": 208,
+    "renderer_pngs": 3,
+    "native_layout_sidecars": 3,
+    "renderer_elapsed_seconds": 149.80279916700965
+  },
+  "limitations": [
+    "Adapter JNI stubs and software-renderer fixtures are not evidence of an actual installed Android35/37 APK using these new files.",
+    "Physical Fold7 performance, temperature, touch latency and sixty FPS remain unmeasured.",
+    "Exact Android View/Insets observations must be captured and checked with the current screenshot, token, revision and state during the next strict runtime probe."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "scripts.tests.test_studio_delivery.StudioDeliveryTests.test_android_gate_body_is_preserved_without_rewriting_evidence",
+    "-v"
+  ],
+  "returncode": 0,
+  "seconds": 0.10804903699317947,
+  "log_sha256": "26596092e28cf7d531b4869fc3452ce4aa08b6101bc4720f64e88a73f0f32d5c",
+  "scope": "Exactly one added mandatory current-layout option; all existing Android proof AST remains equal"
+}

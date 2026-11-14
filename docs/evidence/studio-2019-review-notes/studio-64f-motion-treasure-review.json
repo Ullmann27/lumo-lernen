@@ -1,0 +1,308 @@
+{
+  "schema": 1,
+  "kind": "independent_current_studio_scene_review",
+  "status": "reviewed_no_additional_visible_blocker",
+  "final_visual_receipt": false,
+  "final_publication_approved": false,
+  "reviewed_by": "Agent B /root/character_animation",
+  "reviewed_at": "2026-11-13T13:24:32.359233+00:00",
+  "source_commit": "64f75eb7725ebef898d0f259049bddef7021532f",
+  "artifact_id": 14039579366,
+  "artifact_id_provenance": "GitHub artifact identity supplied by coordinating agent; this reviewer independently verified the expected original ZIP SHA-256, source stamps, manifest and image bytes.",
+  "original_archive": {
+    "file": "studio-new-native-64f75eb7.zip",
+    "sha256": "c20c2f575bf9690b6a7f70487a22509d2e9a737058d00a40599a3e37b7cb8c56",
+    "bytes": 19743426,
+    "reviewed_images_match_original_members": true
+  },
+  "scope": "Acht frisch erzeugte Motion-Studiobilder und drei Schatzsuche-Produktbilder aus Studio-Artefakt 14039579366 des aktuellen 64f-Commits. Kein Ersatz für noch ausstehende Gesamt-Native-, Android- und finale visuelle Freigaben.",
+  "source_stamps": {
+    "source_sha_entry": "source-sha.txt",
+    "source_dirty_entry": "source-dirty.txt",
+    "tracked_source_clean": true
+  },
+  "renderer": {
+    "engine": "Godot 4.6.3.stable.official.7d41c59c4",
+    "display": "X11",
+    "renderer": "OpenGL Compatibility / Mesa 25.2.8 llvmpipe (LLVM 20.1.2, 256 bits)",
+    "physical_device_performance_measured": false
+  },
+  "studio_results": [
+    {
+      "probe": "learning_sharing_regression",
+      "mode": "headless",
+      "result": "PASS"
+    },
+    {
+      "probe": "learning_studio_regression",
+      "mode": "headless",
+      "result": "PASS"
+    },
+    {
+      "probe": "lumo_studio_motion_regression",
+      "mode": "headless",
+      "result": "PASS"
+    },
+    {
+      "probe": "puzzle_rotation_regression",
+      "mode": "headless",
+      "result": "PASS"
+    },
+    {
+      "probe": "treasure_exploration_regression",
+      "mode": "headless",
+      "result": "PASS"
+    },
+    {
+      "probe": "learning_sharing_capture",
+      "mode": "rendered",
+      "result": "PASS"
+    },
+    {
+      "probe": "lumo_studio_motion_capture",
+      "mode": "rendered",
+      "result": "PASS"
+    },
+    {
+      "probe": "puzzle_rotation_regression",
+      "mode": "rendered",
+      "result": "PASS"
+    },
+    {
+      "probe": "treasure_exploration_regression",
+      "mode": "rendered",
+      "result": "PASS"
+    }
+  ],
+  "reviewed_logs": [
+    {
+      "artifact_entry": "lumo_studio_motion_regression-headless.log",
+      "sha256": "0b95982e77eaab37152a0a1f780a96d5ea6242b173a07687cb7f4ee7599896c5",
+      "pass_marker": "[LumoStudioMotion] PASS checks=1046",
+      "rerun_by_reviewer": false
+    },
+    {
+      "artifact_entry": "lumo_studio_motion_capture-rendered.log",
+      "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669",
+      "pass_marker": "[LumoStudioCapture] PASS 8 real renderer frames",
+      "rerun_by_reviewer": false
+    },
+    {
+      "artifact_entry": "treasure_exploration_regression-headless.log",
+      "sha256": "5f461cb949ebc96db8146c1e90787a233e280637a2ee36c9aa0b5fbf0b4fb277",
+      "pass_marker": "[TreasureExploration] PASS 87 checks",
+      "rerun_by_reviewer": false
+    },
+    {
+      "artifact_entry": "treasure_exploration_regression-rendered.log",
+      "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a",
+      "pass_marker": "[TreasureExploration] PASS 90 checks",
+      "rerun_by_reviewer": false
+    }
+  ],
+  "visual_conclusions": [
+    "Alle elf PNGs wurden tatsächlich neu mit view_image geöffnet; keine visuelle Freigabe aus dem älteren 9eb-Bericht übernommen.",
+    "Die Motion-Nachherbilder bewahren Originalgesicht, Brille, Fell, Kleidung und Schwanz. Besonders Sprung und Landung zeigen vollständige Schuhe sowie nachvollziehbar gebeugte Knie. Kein zusätzlicher sichtbarer Rig-Blocker.",
+    "Die Studio-Beleuchtung erzeugt starke helle Glanzstellen auch in den Vorherbildern. Daraus ist keine neue Materialregression gegenüber der Basis erkennbar.",
+    "Die Schatzsuche zeigt lesbare Wegwahl, den Garten als tatsächlich zuerst gelöste Verzweigung und einen klaren Abschluss mit unveränderter angezeigter Belohnung. Bedienung und Abschlussentscheidungen bleiben sichtbar."
+  ],
+  "limits_and_scope": [
+    "Die acht Motionbilder sind technische Pose-Studiobilder und keine Produktmodul-Captures für die finale Neun-Modul-Receipt.",
+    "Vorher und Nachher für Walk/Sprint haben laut Capture-Metadaten unterschiedliche Stridephasen. Einzelbilder belegen keinen identischen Phasenvergleich oder kontinuierlichen Bewegungsfluss.",
+    "Die Schatzsuche verwendet weiterhin ihre vorhandene vereinfachte Companion-Fuchsfigur aus kart_vehicle.gd. Diese Bilder belegen keine Integration des Original-GLB-Motion-Studio-Actors oder seiner sechs Clips in die Schatzsuche.",
+    "Die Schatzsuche-Captures decken 1280x720 ab. Sie belegen keine gesonderte Phone-/Fold-Anordnung; diese wurde hier nicht zusätzlich gerendert.",
+    "Die aufgezeichnete Schatzsuche-Probe prüft tatsächliche Fragen/Antwortbuttons und Bewegung, setzt für weitere Frageorte die Spielerposition direkt. Sie ist kein vollständig manuell durchwanderter Parcours.",
+    "Die neun Studio-Gates wurden aus ihrem Originalbericht und die relevanten PASS-Marker aus ihren Original-Logs geprüft; der Reviewer hat diese Gates nicht erneut gestartet.",
+    "Gesamt-Native und Android sind laut laufendem Auftrag noch nicht vollständig abgeschlossen. Keine Behauptung physischer Fold7-FPS, GPU-Zeiten, Temperatur, Touchlatenz oder Android-17-Abnahme."
+  ],
+  "additional_blockers": [],
+  "product_code_changed": false,
+  "images": [
+    {
+      "artifact_entry": "captures/lumo_studio_motion_capture/before_walk.png",
+      "file": "before_walk.png",
+      "module": "motion_pose_studio",
+      "sha256": "e963e44f8bcb604c6476a47690ebf33b6f7d38a16a5f3554e5edbe48246af276",
+      "bytes": 234905,
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "new_visible_blocker": false,
+      "findings": "Originalfuchs vollständig sichtbar; Ausgangspose mit breiterer Beinstellung und schrägerem rechten Schuh. Dies ist der im frischen Lauf erneut gerenderte eingefrorene ada5ed81-Vorher-Code.",
+      "sample": "walk",
+      "variant": "before",
+      "recorded_state": "walk_loop",
+      "recorded_stride_phase": 5.36369468307842
+    },
+    {
+      "artifact_entry": "captures/lumo_studio_motion_capture/before_sprint.png",
+      "file": "before_sprint.png",
+      "module": "motion_pose_studio",
+      "sha256": "a490cdfad662653025e849ae3f66f1ac1479b1054252da23a68841f69dd0ff2b",
+      "bytes": 236286,
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "new_visible_blocker": false,
+      "findings": "Vollständige Originalfigur mit breiter Ausgangsstellung. Dieser einzelne Frame belegt weder Sprinttempo noch Bewegungsfluss.",
+      "sample": "sprint",
+      "variant": "before",
+      "recorded_state": "run_loop",
+      "recorded_stride_phase": 4.18879020478639
+    },
+    {
+      "artifact_entry": "captures/lumo_studio_motion_capture/before_jump_rise.png",
+      "file": "before_jump_rise.png",
+      "module": "motion_pose_studio",
+      "sha256": "dc2a537f56f807ecdc2d93c516aaf31508d8402db34961e18c9b08d13d950533",
+      "bytes": 233683,
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "new_visible_blocker": false,
+      "findings": "Beim eingefrorenen Vorher-Code stehen die Schuhe stark nach unten; die unteren Schuhkonturen erscheinen an der Studio-Bodenfläche angeschnitten.",
+      "sample": "jump_rise",
+      "variant": "before",
+      "recorded_state": "jump_rise",
+      "recorded_stride_phase": 5.36369468307842
+    },
+    {
+      "artifact_entry": "captures/lumo_studio_motion_capture/before_land.png",
+      "file": "before_land.png",
+      "module": "motion_pose_studio",
+      "sha256": "f4146c517e89bc057be2759415684533efe747267e84ee65b5d3b7810721909c",
+      "bytes": 226559,
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "new_visible_blocker": false,
+      "findings": "Beim eingefrorenen Vorher-Code sind die unteren Schuhkonturen durch die Studio-Bodenfläche verdeckt; die Knieflexion ist weniger deutlich.",
+      "sample": "land",
+      "variant": "before",
+      "recorded_state": "land",
+      "recorded_stride_phase": 5.36369468307842
+    },
+    {
+      "artifact_entry": "captures/lumo_studio_motion_capture/after_walk.png",
+      "file": "after_walk.png",
+      "module": "motion_pose_studio",
+      "sha256": "ee838afa26760e013fa9446b1b2732019b9c61b5227ae55b9c6c5ded4fec3b4d",
+      "bytes": 229788,
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "new_visible_blocker": false,
+      "findings": "Originalgesicht, Brille, Kleidung, Hände und Schwanz bleiben intakt. Sichtbare Kniebeugung und vollständige Schuhe; kein neuer Gliedmaßen- oder Bodenblocker. Die Stridephase unterscheidet sich vom Vorherbild.",
+      "sample": "walk",
+      "variant": "after",
+      "recorded_state": "walk_loop",
+      "recorded_stride_phase": 5.63875594887731
+    },
+    {
+      "artifact_entry": "captures/lumo_studio_motion_capture/after_sprint.png",
+      "file": "after_sprint.png",
+      "module": "motion_pose_studio",
+      "sha256": "1a0c94b4a770315a9b071bdffa38cbad22df40fc21b9380443daeeb35e1e9999",
+      "bytes": 226051,
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "new_visible_blocker": false,
+      "findings": "Zusammenhängende Beine, Kniebeugung und vollständige Sohlen; keine sichtbare Verdoppelung, Ablösung oder starke Streckung. Der Frame gehört zu einer anderen Stridephase als das Vorherbild.",
+      "sample": "sprint",
+      "variant": "after",
+      "recorded_state": "run_loop",
+      "recorded_stride_phase": 5.88495525249918
+    },
+    {
+      "artifact_entry": "captures/lumo_studio_motion_capture/after_jump_rise.png",
+      "file": "after_jump_rise.png",
+      "module": "motion_pose_studio",
+      "sha256": "80a2f272b3e0b4e7b33186263ccd3d935af219349eb4be5b81e5ef2cf141b8c6",
+      "bytes": 229670,
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "new_visible_blocker": false,
+      "findings": "Beide Schuhe und Sohlen vollständig sichtbar und vom Studioboden angehoben; Knie werden nachvollziehbar angezogen. Originalfigur und Gliedmaßen bleiben zusammenhängend.",
+      "sample": "jump_rise",
+      "variant": "after",
+      "recorded_state": "jump_rise",
+      "recorded_stride_phase": 5.63875594887731
+    },
+    {
+      "artifact_entry": "captures/lumo_studio_motion_capture/after_land.png",
+      "file": "after_land.png",
+      "module": "motion_pose_studio",
+      "sha256": "d9442204e757b11d6a325f35df510cea0f02e3ba4cf0b68a0ca08103eabe4b51",
+      "bytes": 232932,
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "new_visible_blocker": false,
+      "findings": "Aktuelle Pose zeigt beide vollständigen Schuhe, gebeugte Knie und vollständige Beinsegmente. Kein sichtbarer neuer Boden-/Gliedmaßenblocker in diesem Landungsstandbild.",
+      "sample": "land",
+      "variant": "after",
+      "recorded_state": "land",
+      "recorded_stride_phase": 5.63875594887731
+    },
+    {
+      "artifact_entry": "captures/treasure_exploration_regression/treasure_choose_route.png",
+      "file": "treasure_choose_route.png",
+      "module": "treasure",
+      "sha256": "243ec5294be2c185486a99df1112dbdfde364ee3f9ee5adccf766640327623e1",
+      "bytes": 1365434,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "actually_opened_with_view_image": true,
+      "new_visible_blocker": false,
+      "findings": "Lesbare echte Wegwahl bei 3/7 Hinweisen: Kristallwächter oder Mondgarten, beide Funde für das Schloss erforderlich. Bewegungsstick, Springen, Ansehen, Rucksack und Pause sind sichtbar; bestehende Fuchsfigur und begehbare Umgebung vollständig. Der Entdeckungszähler bricht die 3 in eine weitere Zeile um, bleibt lesbar und verdeckt keine Eingabe."
+    },
+    {
+      "artifact_entry": "captures/treasure_exploration_regression/treasure_garden_first.png",
+      "file": "treasure_garden_first.png",
+      "module": "treasure",
+      "sha256": "41bed0b064f36811c447ab9d2335e2857941685f41737154abc62be49c23dc6c",
+      "bytes": 1325414,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "actually_opened_with_view_image": true,
+      "new_visible_blocker": false,
+      "findings": "Fortschritt 4/7 und Meldung zur gefundenen Mondblüte belegen im Bild den zuerst abgeschlossenen Garten; der neue Hinweis führt zu den verbleibenden Kristallen. Keine sichtbare abgeschnittene Bedienung oder verdeckte Spielfigur."
+    },
+    {
+      "artifact_entry": "captures/treasure_exploration_regression/treasure_route_complete.png",
+      "file": "treasure_route_complete.png",
+      "module": "treasure",
+      "sha256": "e4445c7c465fac34f938a1d99baf20a6856174638d761683f7905a53501aa940",
+      "bytes": 1338109,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "actually_opened_with_view_image": true,
+      "new_visible_blocker": false,
+      "findings": "Abschluss bei 7/7 Hinweisen; zentrales Ergebnis nennt 3 Sterne und 48 Erfahrungspunkte. Alle drei Abschlussbuttons sind vollständig lesbar und innerhalb des Bildes. Keine verdeckte Fortsetzungsentscheidung."
+    }
+  ]
+}

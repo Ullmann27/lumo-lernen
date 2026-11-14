@@ -1,0 +1,607 @@
+[
+  {
+    "path": "2014/build_sandbox_ui_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "2014/build_sandbox_ui_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "2014/build_sandbox_ui_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "2014/creative_touch_layout_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "2014/creative_touch_layout_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "2014/creative_touch_layout_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "2014/kart_garage_3d_touch_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "2014/kart_garage_3d_touch_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "2014/kart_garage_3d_touch_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "2014/kart_harbor_attraction_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "2014/kart_harbor_attraction_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "2014/kart_harbor_attraction_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "2014/kart_harbor_race_hook_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "2014/kart_harbor_race_hook_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "2014/kart_harbor_race_hook_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "2014/kart_menu_depth_2013_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "2014/kart_menu_depth_2013_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "2014/kart_menu_depth_2013_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "2014/kart_player_full_route_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "2014/kart_player_full_route_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "2014/kart_player_full_route_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "2014/kart_racecraft_regression.log",
+    "line": 15,
+    "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+  },
+  {
+    "path": "2014/kart_racecraft_regression.log",
+    "line": 17,
+    "text": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+  },
+  {
+    "path": "2014/kart_rival_flight_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "2014/kart_rival_flight_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "2014/kart_rival_flight_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "2014/kart_stunt_continuity_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "2014/kart_stunt_continuity_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "2014/kart_stunt_continuity_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "2014/kart_zauberwald_library_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "2014/kart_zauberwald_library_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "2014/kart_zauberwald_library_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "2014/puzzle_expansion_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "2014/puzzle_expansion_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "2014/puzzle_expansion_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "action-stage/kart_menu_flow_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "action-stage/kart_menu_flow_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "action-stage/kart_menu_flow_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "action-stage/kart_spatial_menu_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "action-stage/kart_spatial_menu_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "action-stage/kart_spatial_menu_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "action-stage/kart_roadside_action_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "action-stage/kart_roadside_action_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "action-stage/kart_roadside_action_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2448,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2454,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2462,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2468,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2476,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2482,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2490,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2496,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2504,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2510,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2518,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2524,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2532,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2538,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2549,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: retry-test"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2560,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: host-test-1794587798059-1721059"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2567,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: host-test-1794587798059-1721059"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2573,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: host-test-1794587798059-1721059"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2579,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: host-test-1794587798059-1721059"
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2899,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2903,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2905,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2939,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2965,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 2968,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 3195,
+    "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 3197,
+    "text": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 3226,
+    "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "line": 3228,
+    "text": "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+  },
+  {
+    "path": "nextgen/build_nextgen_play_regression-rendered.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "nextgen/build_nextgen_play_regression-rendered.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "nextgen/build_nextgen_play_regression-rendered.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "nextgen/build_settlement_play_regression-rendered.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "nextgen/build_settlement_play_regression-rendered.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "nextgen/build_settlement_play_regression-rendered.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "nextgen/cards_table_capture-rendered.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "nextgen/cards_table_capture-rendered.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "nextgen/cards_table_capture-rendered.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "nextgen/creative_nextgen_environment_regression-rendered.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "nextgen/creative_nextgen_environment_regression-rendered.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "nextgen/creative_nextgen_environment_regression-rendered.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "nextgen/jump_nextgen_capture-rendered.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "nextgen/jump_nextgen_capture-rendered.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "nextgen/jump_nextgen_capture-rendered.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "nextgen/kart_nextgen_garage_regression-rendered.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "nextgen/kart_nextgen_garage_regression-rendered.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "nextgen/kart_nextgen_garage_regression-rendered.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "nextgen/kart_player_full_route_regression-rendered.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "nextgen/kart_player_full_route_regression-rendered.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "nextgen/kart_player_full_route_regression-rendered.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "nextgen/learning_world_capture-rendered.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "nextgen/learning_world_capture-rendered.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "nextgen/learning_world_capture-rendered.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "nextgen/rhythm_tour_play_regression-rendered.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "nextgen/rhythm_tour_play_regression-rendered.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "nextgen/rhythm_tour_play_regression-rendered.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "studio/learning_sharing_capture-rendered.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "studio/learning_sharing_capture-rendered.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "studio/learning_sharing_capture-rendered.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "studio/lumo_studio_motion_capture-rendered.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "studio/lumo_studio_motion_capture-rendered.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "studio/lumo_studio_motion_capture-rendered.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "studio/puzzle_rotation_regression-rendered.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "studio/puzzle_rotation_regression-rendered.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "studio/puzzle_rotation_regression-rendered.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "studio/treasure_exploration_regression-rendered.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "studio/treasure_exploration_regression-rendered.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "studio/treasure_exploration_regression-rendered.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "technical-art/kart_garage_presentation_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "technical-art/kart_garage_presentation_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "technical-art/kart_garage_presentation_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "technical-art/kart_harbor_race_hook_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "technical-art/kart_harbor_race_hook_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "technical-art/kart_harbor_race_hook_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "path": "technical-art/kart_sonnenhafen_streetfronts_regression.log",
+    "line": 2,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "path": "technical-art/kart_sonnenhafen_streetfronts_regression.log",
+    "line": 6,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "path": "technical-art/kart_sonnenhafen_streetfronts_regression.log",
+    "line": 8,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  }
+]

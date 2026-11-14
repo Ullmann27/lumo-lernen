@@ -1,0 +1,632 @@
+﻿2026-11-13T17:27:20.6772746Z Current runner version: '2.338.2'
+2026-11-13T17:27:20.6789746Z ##[group]Runner Image Provisioner
+2026-11-13T17:27:20.6790376Z Hosted Compute Agent
+2026-11-13T17:27:20.6790820Z Version: 20261103.629
+2026-11-13T17:27:20.6791298Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-13T17:27:20.6791831Z Build Date: 2026-11-03T17:26:59Z
+2026-11-13T17:27:20.6792335Z Worker ID: {572f1a47-f367-460d-b312-465be102a267}
+2026-11-13T17:27:20.6792825Z Region: us-west-2
+2026-11-13T17:27:20.6793219Z Cloud: AWS
+2026-11-13T17:27:20.6793615Z ##[endgroup]
+2026-11-13T17:27:20.6794488Z ##[group]Operating System
+2026-11-13T17:27:20.6795172Z Ubuntu
+2026-11-13T17:27:20.6795597Z 24.04.5
+2026-11-13T17:27:20.6795932Z LTS
+2026-11-13T17:27:20.6796331Z ##[endgroup]
+2026-11-13T17:27:20.6796737Z ##[group]Runner Image
+2026-11-13T17:27:20.6797162Z Image: ubuntu-24.04
+2026-11-13T17:27:20.6797553Z Version: 20261111.127.1
+2026-11-13T17:27:20.6798462Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.127/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-13T17:27:20.6799547Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.127
+2026-11-13T17:27:20.6800366Z ##[endgroup]
+2026-11-13T17:27:20.6801128Z ##[group]GITHUB_TOKEN Permissions
+2026-11-13T17:27:20.6802731Z Contents: read
+2026-11-13T17:27:20.6803130Z Metadata: read
+2026-11-13T17:27:20.6803499Z ##[endgroup]
+2026-11-13T17:27:20.6805200Z Secret source: Actions
+2026-11-13T17:27:20.6805928Z Cache mode: write
+2026-11-13T17:27:20.6806441Z Prepare workflow directory
+2026-11-13T17:27:20.7037877Z Prepare all required actions
+2026-11-13T17:27:20.7073537Z Getting action download info
+2026-11-13T17:27:21.0988464Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-13T17:27:23.0903551Z Download action repository 'actions/download-artifact@v4' (SHA:d3f86a106a0bac45b974a628896c90dbdf5c8093)
+2026-11-13T17:27:23.3713164Z Download action repository 'reactivecircus/android-emulator-runner@v2' (SHA:a421e43855164a8197daf9d8d40fe71c6996bb0d)
+2026-11-13T17:27:23.5968909Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-13T17:27:23.9362323Z Complete job name: Android API 37 live application tour
+2026-11-13T17:27:23.9955865Z ##[group]Run actions/checkout@v4
+2026-11-13T17:27:23.9956373Z with:
+2026-11-13T17:27:23.9956655Z   persist-credentials: false
+2026-11-13T17:27:23.9957012Z   ref: e3d161cb2f79b732ac2dbafc2764b151247f018b
+2026-11-13T17:27:23.9957347Z   repository: Ullmann27/lumo-lernen
+2026-11-13T17:27:23.9959483Z   token: ***
+2026-11-13T17:27:23.9959771Z   ssh-strict: true
+2026-11-13T17:27:23.9960036Z   ssh-user: git
+2026-11-13T17:27:23.9960309Z   clean: true
+2026-11-13T17:27:23.9960586Z   sparse-checkout-cone-mode: true
+2026-11-13T17:27:23.9960891Z   fetch-depth: 1
+2026-11-13T17:27:23.9961152Z   fetch-tags: false
+2026-11-13T17:27:23.9961395Z   show-progress: true
+2026-11-13T17:27:23.9961687Z   lfs: false
+2026-11-13T17:27:23.9961932Z   submodules: false
+2026-11-13T17:27:23.9962253Z   set-safe-directory: true
+2026-11-13T17:27:23.9962547Z   allow-unsafe-pr-checkout: false
+2026-11-13T17:27:23.9962988Z ##[endgroup]
+2026-11-13T17:27:28.0785191Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-13T17:27:28.0786347Z ##[group]Getting Git version info
+2026-11-13T17:27:28.0786650Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-13T17:27:28.0787066Z [command]/usr/bin/git version
+2026-11-13T17:27:28.4251316Z git version 2.56.1
+2026-11-13T17:27:28.4268265Z ##[endgroup]
+2026-11-13T17:27:28.4278605Z Temporarily overriding HOME='/home/runner/work/_temp/192fba4f-846f-46a6-9cf9-54683da5de2e' before making global git config changes
+2026-11-13T17:27:28.4279429Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T17:27:28.4282589Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-13T17:27:28.4705712Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-13T17:27:28.4708474Z ##[group]Initializing the repository
+2026-11-13T17:27:28.4711866Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-13T17:27:28.5477889Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-13T17:27:28.5478330Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-13T17:27:28.5478697Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-13T17:27:28.5479152Z hint: call:
+2026-11-13T17:27:28.5479303Z hint:
+2026-11-13T17:27:28.5479527Z hint: 	git config --global init.defaultBranch <name>
+2026-11-13T17:27:28.5479748Z hint:
+2026-11-13T17:27:28.5479972Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-13T17:27:28.5480317Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-13T17:27:28.5480581Z hint:
+2026-11-13T17:27:28.5480735Z hint: 	git branch -m <name>
+2026-11-13T17:27:28.5480915Z hint:
+2026-11-13T17:27:28.5481145Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-13T17:27:28.5493838Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-13T17:27:28.5500917Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-13T17:27:28.5546630Z ##[endgroup]
+2026-11-13T17:27:28.5547082Z ##[group]Disabling automatic garbage collection
+2026-11-13T17:27:28.5550051Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-13T17:27:28.5571084Z ##[endgroup]
+2026-11-13T17:27:28.5571371Z ##[group]Setting up auth
+2026-11-13T17:27:28.5576132Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T17:27:28.5603068Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T17:27:29.0336221Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T17:27:29.0369316Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T17:27:29.0516118Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T17:27:29.0537462Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T17:27:29.0682953Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-13T17:27:29.0708213Z ##[endgroup]
+2026-11-13T17:27:29.0708647Z ##[group]Fetching the repository
+2026-11-13T17:27:29.0721300Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin e3d161cb2f79b732ac2dbafc2764b151247f018b
+2026-11-13T17:27:58.9606884Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-13T17:27:58.9607441Z  * branch            e3d161cb2f79b732ac2dbafc2764b151247f018b -> FETCH_HEAD
+2026-11-13T17:27:58.9611934Z ##[endgroup]
+2026-11-13T17:27:58.9612772Z ##[group]Determining the checkout info
+2026-11-13T17:27:58.9613395Z ##[endgroup]
+2026-11-13T17:27:58.9627862Z [command]/usr/bin/git sparse-checkout disable
+2026-11-13T17:27:58.9695876Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-13T17:27:58.9714541Z ##[group]Checking out the ref
+2026-11-13T17:27:58.9718040Z [command]/usr/bin/git checkout --progress --force e3d161cb2f79b732ac2dbafc2764b151247f018b
+2026-11-13T17:27:59.9770059Z Updating files:  93% (2897/3092)
+2026-11-13T17:27:59.9784114Z Updating files:  94% (2907/3092)
+2026-11-13T17:27:59.9936645Z Updating files:  95% (2938/3092)
+2026-11-13T17:28:00.0022060Z Updating files:  96% (2969/3092)
+2026-11-13T17:28:00.0035391Z Updating files:  97% (3000/3092)
+2026-11-13T17:28:00.0050525Z Updating files:  98% (3031/3092)
+2026-11-13T17:28:00.0066228Z Updating files:  99% (3062/3092)
+2026-11-13T17:28:00.0066662Z Updating files: 100% (3092/3092)
+2026-11-13T17:28:00.0066918Z Updating files: 100% (3092/3092), done.
+2026-11-13T17:28:00.0120894Z Note: switching to 'e3d161cb2f79b732ac2dbafc2764b151247f018b'.
+2026-11-13T17:28:00.0121277Z 
+2026-11-13T17:28:00.0121558Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-13T17:28:00.0122201Z changes and commit them, and you can discard any commits you make in this
+2026-11-13T17:28:00.0122730Z state without impacting any branches by switching back to a branch.
+2026-11-13T17:28:00.0123106Z 
+2026-11-13T17:28:00.0123338Z If you want to create a new branch to retain commits you create, you may
+2026-11-13T17:28:00.0123809Z do so (now or later) by using -c with the switch command. Example:
+2026-11-13T17:28:00.0124083Z 
+2026-11-13T17:28:00.0124202Z   git switch -c <new-branch-name>
+2026-11-13T17:28:00.0124397Z 
+2026-11-13T17:28:00.0124507Z Or undo this operation with:
+2026-11-13T17:28:00.0124727Z 
+2026-11-13T17:28:00.0124823Z   git switch -
+2026-11-13T17:28:00.0125194Z 
+2026-11-13T17:28:00.0125484Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-13T17:28:00.0125839Z 
+2026-11-13T17:28:00.0126176Z HEAD is now at e3d161c fix: verify the exact 2017 to 2019 update with unchanged strict data invariants
+2026-11-13T17:28:00.0180452Z ##[endgroup]
+2026-11-13T17:28:00.0224951Z [command]/usr/bin/git log -1 --format=%H
+2026-11-13T17:28:00.0243590Z e3d161cb2f79b732ac2dbafc2764b151247f018b
+2026-11-13T17:28:00.0251244Z ##[group]Removing auth
+2026-11-13T17:28:00.0254774Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T17:28:00.0277073Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T17:28:00.0429090Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T17:28:00.0450192Z http.https://github.com/.extraheader
+2026-11-13T17:28:00.0455181Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-13T17:28:00.0475628Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T17:28:00.0621465Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T17:28:00.0640548Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T17:28:00.0782263Z ##[endgroup]
+2026-11-13T17:28:00.0988955Z ##[group]Run actions/download-artifact@v4
+2026-11-13T17:28:00.0989176Z with:
+2026-11-13T17:28:00.0989355Z   name: lumo-studio-2019-candidate
+2026-11-13T17:28:00.0989554Z   path: candidate/dist/
+2026-11-13T17:28:00.0989746Z   merge-multiple: false
+2026-11-13T17:28:00.0989930Z   repository: Ullmann27/lumo-lernen
+2026-11-13T17:28:00.0990124Z   run-id: 43461547945
+2026-11-13T17:28:00.0990285Z ##[endgroup]
+2026-11-13T17:28:00.2103878Z Downloading single artifact
+2026-11-13T17:28:00.2773328Z (node:2242) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T17:28:00.2774117Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T17:28:00.5910511Z Preparing to download the following artifacts:
+2026-11-13T17:28:00.5911217Z - lumo-studio-2019-candidate (ID: 14061222588, Size: 647427173, Expected Digest: sha256:1f7290285cc20c2739005de2221b9bdd3573989c73aa6520f79a89551e1256e5)
+2026-11-13T17:28:00.9815520Z Redirecting to blob download url: https://productionresultssa3.blob.core.windows.net/actions-results/02afa20a-6324-847c-9ece-6bfb566fd3dd/workflow-job-run-665b6bcc-fa01-5024-bc63-cc2ca028c858/artifacts/cecd628d3b802e59e9d907fd79d55daf75c6720d0ace8f5e4356c7eeecde5b46.zip
+2026-11-13T17:28:00.9816608Z Starting download of artifact to: /home/runner/work/lumo-lernen/lumo-lernen/candidate/dist
+2026-11-13T17:28:01.4099859Z (node:2242) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-11-13T17:28:32.8128041Z SHA256 digest of downloaded artifact is 1f7290285cc20c2739005de2221b9bdd3573989c73aa6520f79a89551e1256e5
+2026-11-13T17:28:32.8128561Z Artifact download completed successfully.
+2026-11-13T17:28:32.8128840Z Total of 1 artifact(s) downloaded
+2026-11-13T17:28:32.8132519Z Download artifact has finished successfully
+2026-11-13T17:28:32.8257734Z ##[group]Run set -euo pipefail
+2026-11-13T17:28:32.8258064Z [36;1mset -euo pipefail[0m
+2026-11-13T17:28:32.8258251Z [36;1mmkdir -p tour[0m
+2026-11-13T17:28:32.8258474Z [36;1msudo apt-get -o Acquire::Retries=2 update -qq[0m
+2026-11-13T17:28:32.8259009Z [36;1msudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng[0m
+2026-11-13T17:28:32.8259505Z [36;1mcommand -v tesseract[0m
+2026-11-13T17:28:32.8259787Z [36;1mtesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt[0m
+2026-11-13T17:28:32.8260142Z [36;1mgrep -Fxq 'deu' tour/tesseract-installed-languages.txt[0m
+2026-11-13T17:28:32.8260446Z [36;1mgrep -Fxq 'eng' tour/tesseract-installed-languages.txt[0m
+2026-11-13T17:28:32.8260700Z [36;1mpython3 -m venv .probe-venv[0m
+2026-11-13T17:28:32.8261103Z [36;1m.probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0[0m
+2026-11-13T17:28:32.8261669Z [36;1mpython3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_studio_surfaces_android_probe.py[0m
+2026-11-13T17:28:32.8262191Z [36;1m.probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen*.py' -v[0m
+2026-11-13T17:28:32.8262646Z [36;1m.probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_studio*.py' -v[0m
+2026-11-13T17:28:32.8263085Z [36;1msha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt[0m
+2026-11-13T17:28:32.9844511Z shell: /usr/bin/bash -e {0}
+2026-11-13T17:28:32.9844779Z ##[endgroup]
+2026-11-13T17:28:46.5739088Z Reading package lists...
+2026-11-13T17:28:46.7551778Z Building dependency tree...
+2026-11-13T17:28:46.7557730Z Reading state information...
+2026-11-13T17:28:46.8966198Z xvfb is already the newest version (2:21.1.12-1ubuntu1.9).
+2026-11-13T17:28:46.8970268Z libgl1-mesa-dri is already the newest version (25.2.8-0ubuntu0.24.04.4).
+2026-11-13T17:28:46.8970794Z libgl1-mesa-dri set to manually installed.
+2026-11-13T17:28:46.8971204Z libglx-mesa0 is already the newest version (25.2.8-0ubuntu0.24.04.4).
+2026-11-13T17:28:46.8971637Z libglx-mesa0 set to manually installed.
+2026-11-13T17:28:46.8972000Z The following additional packages will be installed:
+2026-11-13T17:28:46.8972518Z   libasyncns0 libdecor-0-0 libdecor-0-plugin-1-gtk libegl-mesa0 libflac12t64
+2026-11-13T17:28:46.8973077Z   libgif7 libgles2 liblept5 libmp3lame0 libmpg123-0t64 libopus0 libsndfile1
+2026-11-13T17:28:46.8973663Z   libtesseract5 libvorbisenc2 libxcb-xkb1 libxkbcommon-x11-0 mesa-utils-bin
+2026-11-13T17:28:46.8974109Z   tesseract-ocr-osd
+2026-11-13T17:28:46.8979194Z Suggested packages:
+2026-11-13T17:28:46.8979436Z   opus-tools pulseaudio
+2026-11-13T17:28:47.0477327Z The following NEW packages will be installed:
+2026-11-13T17:28:47.0477785Z   libasyncns0 libdecor-0-0 libdecor-0-plugin-1-gtk libegl-mesa0 libegl1
+2026-11-13T17:28:47.0478192Z   libflac12t64 libgif7 libgles2 liblept5 libmp3lame0 libmpg123-0t64 libopus0
+2026-11-13T17:28:47.0481271Z   libpulse0 libsndfile1 libtesseract5 libvorbisenc2 libxcb-xkb1
+2026-11-13T17:28:47.0483895Z   libxkbcommon-x11-0 mesa-utils mesa-utils-bin tesseract-ocr tesseract-ocr-deu
+2026-11-13T17:28:47.0484248Z   tesseract-ocr-eng tesseract-ocr-osd
+2026-11-13T17:28:47.0652709Z 0 upgraded, 24 newly installed, 0 to remove and 23 not upgraded.
+2026-11-13T17:28:47.0653105Z Need to get 12.0 MB of archives.
+2026-11-13T17:28:47.0653484Z After this operation, 31.3 MB of additional disk space will be used.
+2026-11-13T17:28:47.0653928Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [152 B]
+2026-11-13T17:28:47.1924054Z Get:2 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/main amd64 libasyncns0 amd64 0.8-6build4 [11.3 kB]
+2026-11-13T17:28:47.2622584Z Get:3 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/main amd64 libdecor-0-0 amd64 0.2.2-1build2 [16.5 kB]
+2026-11-13T17:28:47.3342450Z Get:4 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/main amd64 libdecor-0-plugin-1-gtk amd64 0.2.2-1build2 [22.2 kB]
+2026-11-13T17:28:47.4087412Z Get:5 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble-updates/main amd64 libegl-mesa0 amd64 25.2.8-0ubuntu0.24.04.4 [117 kB]
+2026-11-13T17:28:47.5290565Z Get:6 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/main amd64 libflac12t64 amd64 1.4.3+ds-2.1ubuntu2 [197 kB]
+2026-11-13T17:28:47.6452291Z Get:7 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble-updates/main amd64 libgif7 amd64 5.2.2-1ubuntu1.2 [35.6 kB]
+2026-11-13T17:28:47.7212465Z Get:8 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 liblept5 amd64 1.82.0-3build4 [1099 kB]
+2026-11-13T17:28:47.8864450Z Get:9 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/main amd64 libmp3lame0 amd64 3.100-6build1 [142 kB]
+2026-11-13T17:28:47.9619130Z Get:10 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble-updates/main amd64 libmpg123-0t64 amd64 1.32.5-1ubuntu1.1 [169 kB]
+2026-11-13T17:28:48.0366066Z Get:11 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/main amd64 libopus0 amd64 1.4-1build1 [208 kB]
+2026-11-13T17:28:48.1102619Z Get:12 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/main amd64 libvorbisenc2 amd64 1.3.7-1build3 [80.8 kB]
+2026-11-13T17:28:48.1830429Z Get:13 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble-updates/main amd64 libsndfile1 amd64 1.2.2-1ubuntu5.24.04.1 [209 kB]
+2026-11-13T17:28:48.2579461Z Get:14 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble-updates/main amd64 libpulse0 amd64 1:16.1+dfsg1-2ubuntu10.1 [292 kB]
+2026-11-13T17:28:48.3366662Z Get:15 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 libtesseract5 amd64 5.3.4-1build5 [1291 kB]
+2026-11-13T17:28:48.4257604Z Get:16 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/main amd64 libxcb-xkb1 amd64 1.15-1ubuntu2 [32.3 kB]
+2026-11-13T17:28:48.4977685Z Get:17 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/main amd64 libxkbcommon-x11-0 amd64 1.6.0-1build1 [14.5 kB]
+2026-11-13T17:28:48.5730258Z Get:18 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/main amd64 libegl1 amd64 1.7.0-1build1 [28.7 kB]
+2026-11-13T17:28:48.6446965Z Get:19 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/main amd64 libgles2 amd64 1.7.0-1build1 [17.1 kB]
+2026-11-13T17:28:48.7619378Z Get:20 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 mesa-utils-bin amd64 9.0.0-2 [164 kB]
+2026-11-13T17:28:48.8353355Z Get:21 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr-eng all 1:4.1.0-2 [1818 kB]
+2026-11-13T17:28:48.9382912Z Get:22 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr-osd all 1:4.1.0-2 [3841 kB]
+2026-11-13T17:28:49.1058961Z Get:23 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr amd64 5.3.4-1build5 [328 kB]
+2026-11-13T17:28:49.1841995Z Get:24 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr-deu all 1:4.1.0-2 [818 kB]
+2026-11-13T17:28:49.2671504Z Get:25 http://us-east-2.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 mesa-utils amd64 9.0.0-2 [1051 kB]
+2026-11-13T17:28:50.1267498Z Fetched 12.0 MB in 2s (5397 kB/s)
+2026-11-13T17:28:50.1480950Z Selecting previously unselected package libasyncns0:amd64.
+2026-11-13T17:28:50.4693450Z (Reading database ... 
+2026-11-13T17:28:50.4693756Z (Reading database ... 5%
+2026-11-13T17:28:50.4694376Z (Reading database ... 10%
+2026-11-13T17:28:50.4694571Z (Reading database ... 15%
+2026-11-13T17:28:50.4694746Z (Reading database ... 20%
+2026-11-13T17:28:50.4695130Z (Reading database ... 25%
+2026-11-13T17:28:50.4695328Z (Reading database ... 30%
+2026-11-13T17:28:50.4695536Z (Reading database ... 35%
+2026-11-13T17:28:50.4695758Z (Reading database ... 40%
+2026-11-13T17:28:50.4695954Z (Reading database ... 45%
+2026-11-13T17:28:50.4696165Z (Reading database ... 50%
+2026-11-13T17:28:50.5819552Z (Reading database ... 55%
+2026-11-13T17:28:50.8072468Z (Reading database ... 60%
+2026-11-13T17:28:50.9555472Z (Reading database ... 65%
+2026-11-13T17:28:51.0624366Z (Reading database ... 70%
+2026-11-13T17:28:51.1664254Z (Reading database ... 75%
+2026-11-13T17:28:51.3507187Z (Reading database ... 80%
+2026-11-13T17:28:52.3576107Z (Reading database ... 85%
+2026-11-13T17:28:53.1399740Z (Reading database ... 90%
+2026-11-13T17:28:54.1949173Z (Reading database ... 95%
+2026-11-13T17:28:54.1949548Z (Reading database ... 100%
+2026-11-13T17:28:54.1949859Z (Reading database ... 216380 files and directories currently installed.)
+2026-11-13T17:28:54.1993631Z Preparing to unpack .../00-libasyncns0_0.8-6build4_amd64.deb ...
+2026-11-13T17:28:54.2022765Z Unpacking libasyncns0:amd64 (0.8-6build4) ...
+2026-11-13T17:28:54.2193222Z Selecting previously unselected package libdecor-0-0:amd64.
+2026-11-13T17:28:54.2291258Z Preparing to unpack .../01-libdecor-0-0_0.2.2-1build2_amd64.deb ...
+2026-11-13T17:28:54.2295729Z Unpacking libdecor-0-0:amd64 (0.2.2-1build2) ...
+2026-11-13T17:28:54.2433799Z Selecting previously unselected package libdecor-0-plugin-1-gtk:amd64.
+2026-11-13T17:28:54.2530542Z Preparing to unpack .../02-libdecor-0-plugin-1-gtk_0.2.2-1build2_amd64.deb ...
+2026-11-13T17:28:54.2534646Z Unpacking libdecor-0-plugin-1-gtk:amd64 (0.2.2-1build2) ...
+2026-11-13T17:28:54.2687994Z Selecting previously unselected package libegl-mesa0:amd64.
+2026-11-13T17:28:54.2781768Z Preparing to unpack .../03-libegl-mesa0_25.2.8-0ubuntu0.24.04.4_amd64.deb ...
+2026-11-13T17:28:54.2786642Z Unpacking libegl-mesa0:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+2026-11-13T17:28:54.2951351Z Selecting previously unselected package libflac12t64:amd64.
+2026-11-13T17:28:54.3045167Z Preparing to unpack .../04-libflac12t64_1.4.3+ds-2.1ubuntu2_amd64.deb ...
+2026-11-13T17:28:54.3049262Z Unpacking libflac12t64:amd64 (1.4.3+ds-2.1ubuntu2) ...
+2026-11-13T17:28:54.3230614Z Selecting previously unselected package libgif7:amd64.
+2026-11-13T17:28:54.3323685Z Preparing to unpack .../05-libgif7_5.2.2-1ubuntu1.2_amd64.deb ...
+2026-11-13T17:28:54.3328275Z Unpacking libgif7:amd64 (5.2.2-1ubuntu1.2) ...
+2026-11-13T17:28:54.3465614Z Selecting previously unselected package liblept5:amd64.
+2026-11-13T17:28:54.3559831Z Preparing to unpack .../06-liblept5_1.82.0-3build4_amd64.deb ...
+2026-11-13T17:28:54.3563969Z Unpacking liblept5:amd64 (1.82.0-3build4) ...
+2026-11-13T17:28:54.3801621Z Selecting previously unselected package libmp3lame0:amd64.
+2026-11-13T17:28:54.3896639Z Preparing to unpack .../07-libmp3lame0_3.100-6build1_amd64.deb ...
+2026-11-13T17:28:54.3900350Z Unpacking libmp3lame0:amd64 (3.100-6build1) ...
+2026-11-13T17:28:54.4052015Z Selecting previously unselected package libmpg123-0t64:amd64.
+2026-11-13T17:28:54.4146421Z Preparing to unpack .../08-libmpg123-0t64_1.32.5-1ubuntu1.1_amd64.deb ...
+2026-11-13T17:28:54.4151105Z Unpacking libmpg123-0t64:amd64 (1.32.5-1ubuntu1.1) ...
+2026-11-13T17:28:54.4311082Z Selecting previously unselected package libopus0:amd64.
+2026-11-13T17:28:54.4404352Z Preparing to unpack .../09-libopus0_1.4-1build1_amd64.deb ...
+2026-11-13T17:28:54.4408851Z Unpacking libopus0:amd64 (1.4-1build1) ...
+2026-11-13T17:28:54.4560744Z Selecting previously unselected package libvorbisenc2:amd64.
+2026-11-13T17:28:54.4652644Z Preparing to unpack .../10-libvorbisenc2_1.3.7-1build3_amd64.deb ...
+2026-11-13T17:28:54.4657911Z Unpacking libvorbisenc2:amd64 (1.3.7-1build3) ...
+2026-11-13T17:28:54.4818007Z Selecting previously unselected package libsndfile1:amd64.
+2026-11-13T17:28:54.4910318Z Preparing to unpack .../11-libsndfile1_1.2.2-1ubuntu5.24.04.1_amd64.deb ...
+2026-11-13T17:28:54.4914741Z Unpacking libsndfile1:amd64 (1.2.2-1ubuntu5.24.04.1) ...
+2026-11-13T17:28:54.5087198Z Selecting previously unselected package libpulse0:amd64.
+2026-11-13T17:28:54.5180239Z Preparing to unpack .../12-libpulse0_1%3a16.1+dfsg1-2ubuntu10.1_amd64.deb ...
+2026-11-13T17:28:54.5237516Z Unpacking libpulse0:amd64 (1:16.1+dfsg1-2ubuntu10.1) ...
+2026-11-13T17:28:54.5407431Z Selecting previously unselected package libtesseract5:amd64.
+2026-11-13T17:28:54.5500699Z Preparing to unpack .../13-libtesseract5_5.3.4-1build5_amd64.deb ...
+2026-11-13T17:28:54.5505506Z Unpacking libtesseract5:amd64 (5.3.4-1build5) ...
+2026-11-13T17:28:54.5775364Z Selecting previously unselected package libxcb-xkb1:amd64.
+2026-11-13T17:28:54.5869049Z Preparing to unpack .../14-libxcb-xkb1_1.15-1ubuntu2_amd64.deb ...
+2026-11-13T17:28:54.5874060Z Unpacking libxcb-xkb1:amd64 (1.15-1ubuntu2) ...
+2026-11-13T17:28:54.6014578Z Selecting previously unselected package libxkbcommon-x11-0:amd64.
+2026-11-13T17:28:54.6108493Z Preparing to unpack .../15-libxkbcommon-x11-0_1.6.0-1build1_amd64.deb ...
+2026-11-13T17:28:54.6112527Z Unpacking libxkbcommon-x11-0:amd64 (1.6.0-1build1) ...
+2026-11-13T17:28:54.6250230Z Selecting previously unselected package libegl1:amd64.
+2026-11-13T17:28:54.6341847Z Preparing to unpack .../16-libegl1_1.7.0-1build1_amd64.deb ...
+2026-11-13T17:28:54.6346575Z Unpacking libegl1:amd64 (1.7.0-1build1) ...
+2026-11-13T17:28:54.6485926Z Selecting previously unselected package libgles2:amd64.
+2026-11-13T17:28:54.6577402Z Preparing to unpack .../17-libgles2_1.7.0-1build1_amd64.deb ...
+2026-11-13T17:28:54.6581592Z Unpacking libgles2:amd64 (1.7.0-1build1) ...
+2026-11-13T17:28:54.6723611Z Selecting previously unselected package mesa-utils-bin:amd64.
+2026-11-13T17:28:54.6814785Z Preparing to unpack .../18-mesa-utils-bin_9.0.0-2_amd64.deb ...
+2026-11-13T17:28:54.6818905Z Unpacking mesa-utils-bin:amd64 (9.0.0-2) ...
+2026-11-13T17:28:54.6987617Z Selecting previously unselected package tesseract-ocr-eng.
+2026-11-13T17:28:54.7079386Z Preparing to unpack .../19-tesseract-ocr-eng_1%3a4.1.0-2_all.deb ...
+2026-11-13T17:28:54.7083517Z Unpacking tesseract-ocr-eng (1:4.1.0-2) ...
+2026-11-13T17:28:54.7367723Z Selecting previously unselected package tesseract-ocr-osd.
+2026-11-13T17:28:54.7461579Z Preparing to unpack .../20-tesseract-ocr-osd_1%3a4.1.0-2_all.deb ...
+2026-11-13T17:28:54.7465236Z Unpacking tesseract-ocr-osd (1:4.1.0-2) ...
+2026-11-13T17:28:54.7958768Z Selecting previously unselected package tesseract-ocr.
+2026-11-13T17:28:54.8055967Z Preparing to unpack .../21-tesseract-ocr_5.3.4-1build5_amd64.deb ...
+2026-11-13T17:28:54.8059893Z Unpacking tesseract-ocr (5.3.4-1build5) ...
+2026-11-13T17:28:54.8405440Z Selecting previously unselected package tesseract-ocr-deu.
+2026-11-13T17:28:54.8503590Z Preparing to unpack .../22-tesseract-ocr-deu_1%3a4.1.0-2_all.deb ...
+2026-11-13T17:28:54.8508283Z Unpacking tesseract-ocr-deu (1:4.1.0-2) ...
+2026-11-13T17:28:54.8701228Z Selecting previously unselected package mesa-utils.
+2026-11-13T17:28:54.8798970Z Preparing to unpack .../23-mesa-utils_9.0.0-2_amd64.deb ...
+2026-11-13T17:28:54.8802827Z Unpacking mesa-utils (9.0.0-2) ...
+2026-11-13T17:28:54.9147010Z Setting up tesseract-ocr-eng (1:4.1.0-2) ...
+2026-11-13T17:28:54.9159839Z Setting up libmpg123-0t64:amd64 (1.32.5-1ubuntu1.1) ...
+2026-11-13T17:28:54.9169675Z Setting up libxcb-xkb1:amd64 (1.15-1ubuntu2) ...
+2026-11-13T17:28:54.9178972Z Setting up libegl-mesa0:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+2026-11-13T17:28:54.9189064Z Setting up libgles2:amd64 (1.7.0-1build1) ...
+2026-11-13T17:28:54.9198679Z Setting up libopus0:amd64 (1.4-1build1) ...
+2026-11-13T17:28:54.9208432Z Setting up libxkbcommon-x11-0:amd64 (1.6.0-1build1) ...
+2026-11-13T17:28:54.9217768Z Setting up tesseract-ocr-deu (1:4.1.0-2) ...
+2026-11-13T17:28:54.9229226Z Setting up libgif7:amd64 (5.2.2-1ubuntu1.2) ...
+2026-11-13T17:28:54.9241072Z Setting up libasyncns0:amd64 (0.8-6build4) ...
+2026-11-13T17:28:54.9251732Z Setting up libegl1:amd64 (1.7.0-1build1) ...
+2026-11-13T17:28:54.9262464Z Setting up libdecor-0-0:amd64 (0.2.2-1build2) ...
+2026-11-13T17:28:54.9273166Z Setting up libflac12t64:amd64 (1.4.3+ds-2.1ubuntu2) ...
+2026-11-13T17:28:54.9285381Z Setting up tesseract-ocr-osd (1:4.1.0-2) ...
+2026-11-13T17:28:54.9297383Z Setting up libdecor-0-plugin-1-gtk:amd64 (0.2.2-1build2) ...
+2026-11-13T17:28:54.9308602Z Setting up libmp3lame0:amd64 (3.100-6build1) ...
+2026-11-13T17:28:54.9321358Z Setting up libvorbisenc2:amd64 (1.3.7-1build3) ...
+2026-11-13T17:28:54.9331079Z Setting up liblept5:amd64 (1.82.0-3build4) ...
+2026-11-13T17:28:54.9340685Z Setting up mesa-utils-bin:amd64 (9.0.0-2) ...
+2026-11-13T17:28:54.9352162Z Setting up libtesseract5:amd64 (5.3.4-1build5) ...
+2026-11-13T17:28:54.9362560Z Setting up libsndfile1:amd64 (1.2.2-1ubuntu5.24.04.1) ...
+2026-11-13T17:28:54.9372558Z Setting up libpulse0:amd64 (1:16.1+dfsg1-2ubuntu10.1) ...
+2026-11-13T17:28:54.9420769Z Setting up tesseract-ocr (5.3.4-1build5) ...
+2026-11-13T17:28:54.9432802Z Setting up mesa-utils (9.0.0-2) ...
+2026-11-13T17:28:54.9446206Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-11-13T17:28:54.9467602Z Not building database; man-db/auto-update is not 'true'.
+2026-11-13T17:28:54.9475868Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+2026-11-13T17:28:59.0766995Z 
+2026-11-13T17:28:59.0768038Z Running kernel seems to be up-to-date.
+2026-11-13T17:28:59.0768321Z 
+2026-11-13T17:28:59.0768431Z No services need to be restarted.
+2026-11-13T17:28:59.0768613Z 
+2026-11-13T17:28:59.0768719Z No containers need to be restarted.
+2026-11-13T17:28:59.0768895Z 
+2026-11-13T17:28:59.0769030Z No user sessions are running outdated binaries.
+2026-11-13T17:28:59.0769280Z 
+2026-11-13T17:28:59.0769478Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-11-13T17:28:59.8407146Z /usr/bin/tesseract
+2026-11-13T17:28:59.8519782Z List of available languages in "/usr/share/tesseract-ocr/5/tessdata/" (3):
+2026-11-13T17:28:59.8520280Z deu
+2026-11-13T17:28:59.8520452Z eng
+2026-11-13T17:28:59.8520607Z osd
+2026-11-13T17:29:03.3673199Z Collecting uiautomator2==3.7.0
+2026-11-13T17:29:03.4124471Z   Downloading uiautomator2-3.7.0-py3-none-any.whl.metadata (44 kB)
+2026-11-13T17:29:03.4229479Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.5/44.5 kB 3.9 MB/s eta 0:00:00
+2026-11-13T17:29:03.5707011Z Collecting Pillow==12.3.0
+2026-11-13T17:29:03.5804079Z   Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-11-13T17:29:03.6253903Z Collecting adbutils<3,>=2.11.0 (from uiautomator2==3.7.0)
+2026-11-13T17:29:03.6355624Z   Downloading adbutils-2.12.0-py3-none-manylinux1_x86_64.whl.metadata (1.1 kB)
+2026-11-13T17:29:03.6589454Z Collecting click (from uiautomator2==3.7.0)
+2026-11-13T17:29:03.6680926Z   Downloading click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-13T17:29:03.8456903Z Collecting lxml (from uiautomator2==3.7.0)
+2026-11-13T17:29:03.8557458Z   Downloading lxml-6.1.3-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+2026-11-13T17:29:03.8850205Z Collecting requests (from uiautomator2==3.7.0)
+2026-11-13T17:29:03.8956847Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+2026-11-13T17:29:03.9115289Z Collecting retry2<0.10.0,>=0.9.5 (from uiautomator2==3.7.0)
+2026-11-13T17:29:03.9211490Z   Downloading retry2-0.9.5-py2.py3-none-any.whl.metadata (6.4 kB)
+2026-11-13T17:29:03.9688272Z Collecting deprecation<3.0,>=2.0.6 (from adbutils<3,>=2.11.0->uiautomator2==3.7.0)
+2026-11-13T17:29:03.9785927Z   Downloading deprecation-2.1.0-py2.py3-none-any.whl.metadata (4.6 kB)
+2026-11-13T17:29:03.9991594Z Collecting decorator>=3.4.2 (from retry2<0.10.0,>=0.9.5->uiautomator2==3.7.0)
+2026-11-13T17:29:04.0085344Z   Downloading decorator-5.3.1-py3-none-any.whl.metadata (3.9 kB)
+2026-11-13T17:29:04.1126406Z Collecting charset_normalizer<4,>=2 (from requests->uiautomator2==3.7.0)
+2026-11-13T17:29:04.1223106Z   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+2026-11-13T17:29:04.1252200Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.4/46.4 kB 25.0 MB/s eta 0:00:00
+2026-11-13T17:29:04.1476083Z Collecting idna<4,>=2.5 (from requests->uiautomator2==3.7.0)
+2026-11-13T17:29:04.1567242Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-11-13T17:29:04.1912756Z Collecting urllib3<3,>=1.26 (from requests->uiautomator2==3.7.0)
+2026-11-13T17:29:04.2006130Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+2026-11-13T17:29:04.2246918Z Collecting certifi>=2023.5.7 (from requests->uiautomator2==3.7.0)
+2026-11-13T17:29:04.2340988Z   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+2026-11-13T17:29:04.2612847Z Collecting packaging (from deprecation<3.0,>=2.0.6->adbutils<3,>=2.11.0->uiautomator2==3.7.0)
+2026-11-13T17:29:04.2706732Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-13T17:29:04.2926037Z Downloading uiautomator2-3.7.0-py3-none-any.whl (5.2 MB)
+2026-11-13T17:29:04.3497366Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 92.9 MB/s eta 0:00:00
+2026-11-13T17:29:04.3587176Z Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+2026-11-13T17:29:04.3796493Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 354.4 MB/s eta 0:00:00
+2026-11-13T17:29:04.3927404Z Downloading adbutils-2.12.0-py3-none-manylinux1_x86_64.whl (3.6 MB)
+2026-11-13T17:29:04.4145890Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.6/3.6 MB 173.4 MB/s eta 0:00:00
+2026-11-13T17:29:04.4241002Z Downloading retry2-0.9.5-py2.py3-none-any.whl (6.0 kB)
+2026-11-13T17:29:04.4343217Z Downloading click-8.5.1-py3-none-any.whl (126 kB)
+2026-11-13T17:29:04.4367770Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 126.2/126.2 kB 83.1 MB/s eta 0:00:00
+2026-11-13T17:29:04.4459419Z Downloading lxml-6.1.3-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+2026-11-13T17:29:04.4623245Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 345.1 MB/s eta 0:00:00
+2026-11-13T17:29:04.4717901Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+2026-11-13T17:29:04.4740979Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.1/73.1 kB 52.0 MB/s eta 0:00:00
+2026-11-13T17:29:04.4831047Z Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+2026-11-13T17:29:04.4857626Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 135.1/135.1 kB 85.2 MB/s eta 0:00:00
+2026-11-13T17:29:04.4960535Z Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+2026-11-13T17:29:04.4991905Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 257.6/257.6 kB 133.6 MB/s eta 0:00:00
+2026-11-13T17:29:04.5087100Z Downloading decorator-5.3.1-py3-none-any.whl (10 kB)
+2026-11-13T17:29:04.5196241Z Downloading deprecation-2.1.0-py2.py3-none-any.whl (11 kB)
+2026-11-13T17:29:04.5305813Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-11-13T17:29:04.5332091Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.6/69.6 kB 47.5 MB/s eta 0:00:00
+2026-11-13T17:29:04.5424732Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+2026-11-13T17:29:04.5450485Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 135.7/135.7 kB 91.7 MB/s eta 0:00:00
+2026-11-13T17:29:04.5540566Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-13T17:29:04.5567936Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 130.0/130.0 kB 88.1 MB/s eta 0:00:00
+2026-11-13T17:29:04.6134332Z Installing collected packages: urllib3, Pillow, packaging, lxml, idna, decorator, click, charset_normalizer, certifi, retry2, requests, deprecation, adbutils, uiautomator2
+2026-11-13T17:29:05.3186395Z Successfully installed Pillow-12.3.0 adbutils-2.12.0 certifi-2026.10.23 charset_normalizer-3.5.2 click-8.5.1 decorator-5.3.1 deprecation-2.1.0 idna-3.20 lxml-6.1.3 packaging-26.3 requests-2.34.2 retry2-0.9.5 uiautomator2-3.7.0 urllib3-2.8.0
+2026-11-13T17:29:05.6006150Z /home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py:100: SyntaxWarning: invalid escape sequence '\('
+2026-11-13T17:29:05.6007143Z   with self.assertRaisesRegex(RuntimeError, 'Command failed \(1\)'):
+2026-11-13T17:29:05.8032223Z test_actual_android_blank_fronts_are_rejected_from_original_pixels (test_nextgen_cards_faces.NextgenCardsFaceTests.test_actual_android_blank_fronts_are_rejected_from_original_pixels) ... ok
+2026-11-13T17:29:06.1481398Z test_all_four_new_native_json_renderer_images_have_actual_front_artwork (test_nextgen_cards_faces.NextgenCardsFaceTests.test_all_four_new_native_json_renderer_images_have_actual_front_artwork) ... ok
+2026-11-13T17:29:06.3132860Z test_capture_persistent_actual_blank_frames_fail_within_the_deadline (test_nextgen_cards_faces.NextgenCardsFaceTests.test_capture_persistent_actual_blank_frames_fail_within_the_deadline) ... ok
+2026-11-13T17:29:06.3935437Z test_capture_waits_for_unpaused_state_and_two_actual_frames_of_same_revision (test_nextgen_cards_faces.NextgenCardsFaceTests.test_capture_waits_for_unpaused_state_and_two_actual_frames_of_same_revision) ... ok
+2026-11-13T17:29:06.6639767Z test_every_single_blank_hand_or_discard_face_is_rejected (test_nextgen_cards_faces.NextgenCardsFaceTests.test_every_single_blank_hand_or_discard_face_is_rejected) ... ok
+2026-11-13T17:29:06.6644491Z test_independent_projection_matches_actual_godot_mesh_readbacks (test_nextgen_cards_faces.NextgenCardsFaceTests.test_independent_projection_matches_actual_godot_mesh_readbacks) ... ok
+2026-11-13T17:29:06.7211947Z test_stale_ui_wrong_page_or_paused_public_state_cannot_pass_pixels (test_nextgen_cards_faces.NextgenCardsFaceTests.test_stale_ui_wrong_page_or_paused_public_state_cannot_pass_pixels) ... ok
+2026-11-13T17:29:06.7213863Z test_unknown_layout_or_incomplete_first_page_is_not_guessed (test_nextgen_cards_faces.NextgenCardsFaceTests.test_unknown_layout_or_incomplete_first_page_is_not_guessed) ... ok
+2026-11-13T17:29:06.7277022Z test_already_active_child_turn_never_searches_for_or_touches_resume (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_already_active_child_turn_never_searches_for_or_touches_resume) ... ok
+2026-11-13T17:29:06.7331446Z test_completed_round_is_reported_instead_of_an_ipc_timeout (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_completed_round_is_reported_instead_of_an_ipc_timeout) ... ok
+2026-11-13T17:29:06.7393757Z test_heartbeat_resume_during_ocr_discards_even_a_found_old_button (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_heartbeat_resume_during_ocr_discards_even_a_found_old_button) ... ok
+2026-11-13T17:29:06.7455658Z test_heartbeat_resume_without_caption_does_not_wait_for_vanished_modal (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_heartbeat_resume_without_caption_does_not_wait_for_vanished_modal) ... ok
+2026-11-13T17:29:06.7625648Z test_missing_caption_or_partial_surface_never_authorizes_a_touch (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_missing_caption_or_partial_surface_never_authorizes_a_touch) ... ok
+2026-11-13T17:29:06.7698031Z test_portrait_cards_keeps_the_two_frame_touch_and_resume_ack_contract (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_portrait_cards_keeps_the_two_frame_touch_and_resume_ack_contract) ... ok
+2026-11-13T17:29:06.7785832Z test_portrait_cards_partial_viewport_still_prevents_ocr_and_touch (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_portrait_cards_partial_viewport_still_prevents_ocr_and_touch) ... ok
+2026-11-13T17:29:06.7861574Z test_resume_between_second_observation_and_touch_discards_coordinates (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_resume_between_second_observation_and_touch_discards_coordinates) ... ok
+2026-11-13T17:29:06.7945724Z test_revision_change_during_ocr_requires_two_new_targets (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_revision_change_during_ocr_requires_two_new_targets) ... ok
+2026-11-13T17:29:06.8007455Z test_session_replacement_during_ocr_is_a_failure_not_resume (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_session_replacement_during_ocr_is_a_failure_not_resume) ... ok
+2026-11-13T17:29:06.8085284Z test_still_paused_requires_two_current_targets_one_touch_and_real_ack (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_still_paused_requires_two_current_targets_one_touch_and_real_ack) ... ok
+2026-11-13T17:29:06.8454348Z test_touch_without_fresh_exact_resume_request_fails (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_touch_without_fresh_exact_resume_request_fails) ... ok
+2026-11-13T17:29:06.8686209Z test_unacknowledged_touch_or_unchanged_revision_cannot_pass (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_unacknowledged_touch_or_unchanged_revision_cannot_pass) ... ok
+2026-11-13T17:29:06.8740594Z test_unpaused_bot_turn_is_not_mistaken_for_a_drawable_child_turn (test_nextgen_cards_readiness.NextgenCardsReadinessTests.test_unpaused_bot_turn_is_not_mistaken_for_a_drawable_child_turn) ... ok
+2026-11-13T17:29:06.8741886Z test_ack_with_unchanged_hand_or_private_answer_is_not_evidence (test_nextgen_evidence.NextgenEvidenceTests.test_ack_with_unchanged_hand_or_private_answer_is_not_evidence) ... ok
+2026-11-13T17:29:06.8759295Z test_actual_record_missing_binding_or_wrong_process_still_fails (test_nextgen_evidence.NextgenEvidenceTests.test_actual_record_missing_binding_or_wrong_process_still_fails) ... ok
+2026-11-13T17:29:06.8761734Z test_actual_service_header_retains_real_process_and_binding_evidence (test_nextgen_evidence.NextgenEvidenceTests.test_actual_service_header_retains_real_process_and_binding_evidence) ... ok
+2026-11-13T17:29:06.8767036Z test_actual_service_unknown_suffix_foreign_component_or_duplicate_fails (test_nextgen_evidence.NextgenEvidenceTests.test_actual_service_unknown_suffix_foreign_component_or_duplicate_fails) ... ok
+2026-11-13T17:29:06.8771215Z test_android_binding_requires_the_distinct_real_main_and_native_processes (test_nextgen_evidence.NextgenEvidenceTests.test_android_binding_requires_the_distinct_real_main_and_native_processes) ... ok
+2026-11-13T17:29:06.8779007Z test_another_service_block_cannot_supply_missing_cards_binding_facts (test_nextgen_evidence.NextgenEvidenceTests.test_another_service_block_cannot_supply_missing_cards_binding_facts) ... ok
+2026-11-13T17:29:06.8782049Z test_eight_plus_five_requires_five_unique_successful_actual_moves (test_nextgen_evidence.NextgenEvidenceTests.test_eight_plus_five_requires_five_unique_successful_actual_moves) ... ok
+2026-11-13T17:29:06.8784680Z test_missing_duplicate_and_cross_child_cards_fail (test_nextgen_evidence.NextgenEvidenceTests.test_missing_duplicate_and_cross_child_cards_fail) ... ok
+2026-11-13T17:29:06.8788237Z test_native_speech_requires_local_profile_and_same_process_completion (test_nextgen_evidence.NextgenEvidenceTests.test_native_speech_requires_local_profile_and_same_process_completion) ... ok
+2026-11-13T17:29:06.8789707Z test_real_ack_requires_same_round_and_actual_persisted_hand_growth (test_nextgen_evidence.NextgenEvidenceTests.test_real_ack_requires_same_round_and_actual_persisted_hand_growth) ... ok
+2026-11-13T17:29:06.8794088Z test_replaced_round_replayed_action_and_unacknowledged_draw_fail (test_nextgen_evidence.NextgenEvidenceTests.test_replaced_round_replayed_action_and_unacknowledged_draw_fail) ... ok
+2026-11-13T17:29:06.8796273Z test_spoken_result_must_start_and_finish_after_the_actual_last_move (test_nextgen_evidence.NextgenEvidenceTests.test_spoken_result_must_start_and_finish_after_the_actual_last_move) ... ok
+2026-11-13T17:29:06.8960390Z test_lesson_return_scrolls_to_exact_preserved_title_before_capturing (test_nextgen_learning_route.NextgenLearningRouteTests.test_lesson_return_scrolls_to_exact_preserved_title_before_capturing) ... ok
+2026-11-13T17:29:06.9022381Z test_named_course_never_taps_the_static_heading_or_other_course (test_nextgen_learning_route.NextgenLearningRouteTests.test_named_course_never_taps_the_static_heading_or_other_course) ... ok
+2026-11-13T17:29:06.9130988Z test_real_route_opens_tools_then_the_named_course_action (test_nextgen_learning_route.NextgenLearningRouteTests.test_real_route_opens_tools_then_the_named_course_action) ... ok
+2026-11-13T17:29:06.9188543Z test_recorded_closed_academy_requires_the_visible_tools_toggle (test_nextgen_learning_route.NextgenLearningRouteTests.test_recorded_closed_academy_requires_the_visible_tools_toggle) ... ok
+2026-11-13T17:29:06.9292144Z test_scrolling_cannot_replace_actual_native_exit_and_flutter_resume (test_nextgen_learning_route.NextgenLearningRouteTests.test_scrolling_cannot_replace_actual_native_exit_and_flutter_resume) ... ok
+2026-11-13T17:29:07.0792101Z test_actual_complete_portrait_frames_require_explicit_responsive_policy (test_nextgen_responsive_surface.NextgenResponsiveSurfaceTests.test_actual_complete_portrait_frames_require_explicit_responsive_policy) ... ok
+2026-11-13T17:29:07.1758831Z test_default_native_touch_rejects_the_original_portrait_without_ocr (test_nextgen_responsive_surface.NextgenResponsiveSurfaceTests.test_default_native_touch_rejects_the_original_portrait_without_ocr) ... ok
+2026-11-13T17:29:07.2155365Z test_responsive_resize_and_invalid_bounds_still_require_new_valid_pair (test_nextgen_responsive_surface.NextgenResponsiveSurfaceTests.test_responsive_resize_and_invalid_bounds_still_require_new_valid_pair) ... ok
+2026-11-13T17:29:07.2180412Z test_responsive_still_rejects_blank_and_partial_portrait_viewports (test_nextgen_responsive_surface.NextgenResponsiveSurfaceTests.test_responsive_still_rejects_blank_and_partial_portrait_viewports) ... ok
+2026-11-13T17:29:15.1928696Z test_two_original_portrait_frames_use_real_ocr_before_intercepted_touch (test_nextgen_responsive_surface.NextgenResponsiveSurfaceTests.test_two_original_portrait_frames_use_real_ocr_before_intercepted_touch) ... ok
+2026-11-13T17:29:15.1930174Z test_unknown_orientation_never_relaxes_the_default (test_nextgen_responsive_surface.NextgenResponsiveSurfaceTests.test_unknown_orientation_never_relaxes_the_default) ... ok
+2026-11-13T17:29:15.1989944Z test_final_speech_requires_move_then_new_started_and_completed_id (test_nextgen_speech_logcat_recovery.SpeechLogcatRecoveryTests.test_final_speech_requires_move_then_new_started_and_completed_id) ... ok
+2026-11-13T17:29:15.2038487Z test_native_movement_log_uses_same_bounded_transport_evidence (test_nextgen_speech_logcat_recovery.SpeechLogcatRecoveryTests.test_native_movement_log_uses_same_bounded_transport_evidence) ... ok
+2026-11-13T17:29:15.2204323Z test_no_start_completion_or_repeated_transport_failure_is_not_a_pass (test_nextgen_speech_logcat_recovery.SpeechLogcatRecoveryTests.test_no_start_completion_or_repeated_transport_failure_is_not_a_pass) ... ok
+2026-11-13T17:29:15.2251190Z test_nontransport_failure_is_not_silently_retried (test_nextgen_speech_logcat_recovery.SpeechLogcatRecoveryTests.test_nontransport_failure_is_not_silently_retried) ... ok
+2026-11-13T17:29:15.2298859Z test_only_relevant_speech_and_godot_tags_are_requested (test_nextgen_speech_logcat_recovery.SpeechLogcatRecoveryTests.test_only_relevant_speech_and_godot_tags_are_requested) ... ok
+2026-11-13T17:29:15.2348034Z test_transient_adb_255_is_retried_without_approving_empty_speech (test_nextgen_speech_logcat_recovery.SpeechLogcatRecoveryTests.test_transient_adb_255_is_retried_without_approving_empty_speech) ... ok
+2026-11-13T17:29:15.2348895Z 
+2026-11-13T17:29:15.2349054Z ----------------------------------------------------------------------
+2026-11-13T17:29:15.2349433Z Ran 51 tests in 9.634s
+2026-11-13T17:29:15.2349573Z 
+2026-11-13T17:29:15.2349651Z OK
+2026-11-13T17:29:15.3086430Z test_final_speech_requires_move_then_new_started_and_completed_id (test_studio_speech_logcat_recovery.StudioSpeechLogcatRecoveryTests.test_final_speech_requires_move_then_new_started_and_completed_id) ... ok
+2026-11-13T17:29:15.3135287Z test_native_movement_log_uses_same_bounded_transport_evidence (test_studio_speech_logcat_recovery.StudioSpeechLogcatRecoveryTests.test_native_movement_log_uses_same_bounded_transport_evidence) ... ok
+2026-11-13T17:29:15.3288061Z test_no_start_completion_or_repeated_transport_failure_is_not_a_pass (test_studio_speech_logcat_recovery.StudioSpeechLogcatRecoveryTests.test_no_start_completion_or_repeated_transport_failure_is_not_a_pass) ... ok
+2026-11-13T17:29:15.3339124Z test_nontransport_failure_is_not_silently_retried (test_studio_speech_logcat_recovery.StudioSpeechLogcatRecoveryTests.test_nontransport_failure_is_not_silently_retried) ... ok
+2026-11-13T17:29:15.3389163Z test_only_relevant_speech_and_godot_tags_are_requested (test_studio_speech_logcat_recovery.StudioSpeechLogcatRecoveryTests.test_only_relevant_speech_and_godot_tags_are_requested) ... ok
+2026-11-13T17:29:15.3439721Z test_transient_adb_255_is_retried_without_approving_empty_speech (test_studio_speech_logcat_recovery.StudioSpeechLogcatRecoveryTests.test_transient_adb_255_is_retried_without_approving_empty_speech) ... ok
+2026-11-13T17:29:15.3441324Z 
+2026-11-13T17:29:15.3441709Z ----------------------------------------------------------------------
+2026-11-13T17:29:15.3442294Z Ran 6 tests in 0.042s
+2026-11-13T17:29:15.3442532Z 
+2026-11-13T17:29:15.3442670Z OK
+2026-11-13T17:29:15.5641421Z d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93  candidate/dist/x86_64/Lumo-Lernen-Neu.apk
+2026-11-13T17:29:15.5677018Z ##[group]Run echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+2026-11-13T17:29:15.5677638Z [36;1mecho 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules[0m
+2026-11-13T17:29:15.5678030Z [36;1msudo udevadm control --reload-rules[0m
+2026-11-13T17:29:15.5678270Z [36;1msudo udevadm trigger --name-match=kvm[0m
+2026-11-13T17:29:15.5678488Z [36;1msudo udevadm settle[0m
+2026-11-13T17:29:15.5678688Z [36;1msudo chmod a+rw /dev/kvm[0m
+2026-11-13T17:29:15.5704959Z shell: /usr/bin/bash -e {0}
+2026-11-13T17:29:15.5705183Z ##[endgroup]
+2026-11-13T17:29:15.5805452Z KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"
+2026-11-13T17:29:15.6179348Z ##[group]Run Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+2026-11-13T17:29:15.6179844Z [36;1mXvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &[0m
+2026-11-13T17:29:15.6180198Z [36;1mfor attempt in $(seq 1 20); do[0m
+2026-11-13T17:29:15.6180465Z [36;1m  if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi[0m
+2026-11-13T17:29:15.6180721Z [36;1m  sleep 0.25[0m
+2026-11-13T17:29:15.6180888Z [36;1mdone[0m
+2026-11-13T17:29:15.6181096Z [36;1mgrep -i 'OpenGL renderer string' tour/mesa-renderer.txt[0m
+2026-11-13T17:29:15.6203404Z shell: /usr/bin/bash -e {0}
+2026-11-13T17:29:15.6203612Z env:
+2026-11-13T17:29:15.6203764Z   DISPLAY: :99
+2026-11-13T17:29:15.6203936Z   LIBGL_ALWAYS_SOFTWARE: true
+2026-11-13T17:29:15.6204118Z   GALLIUM_DRIVER: llvmpipe
+2026-11-13T17:29:15.6204289Z   LP_NUM_THREADS: 2
+2026-11-13T17:29:15.6204446Z ##[endgroup]
+2026-11-13T17:29:18.5427498Z OpenGL renderer string: llvmpipe (LLVM 20.1.2, 256 bits)
+2026-11-13T17:29:18.5556524Z ##[group]Run reactivecircus/android-emulator-runner@v2
+2026-11-13T17:29:18.5556911Z with:
+2026-11-13T17:29:18.5557064Z   api-level: 37
+2026-11-13T17:29:18.5557222Z   target: google_apis
+2026-11-13T17:29:18.5557388Z   arch: x86_64
+2026-11-13T17:29:18.5557538Z   profile: pixel_5
+2026-11-13T17:29:18.5557693Z   ram-size: 4096M
+2026-11-13T17:29:18.5557844Z   heap-size: 512M
+2026-11-13T17:29:18.5558001Z   disable-animations: true
+2026-11-13T17:29:18.5558195Z   emulator-boot-timeout: 300
+2026-11-13T17:29:18.5558584Z   emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+2026-11-13T17:29:18.5560838Z   script: adb shell getprop ro.build.version.sdk > tour/android-sdk.txt
+adb shell getprop ro.build.version.release > tour/android-release.txt
+"$ANDROID_HOME/emulator/emulator" -version > tour/android-emulator-version.txt 2>&1
+.probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour
+.probe-venv/bin/python .github/probes/lumo_studio_surfaces_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/tour-result.json --expected-api 37 --out tour/nextgen
+
+2026-11-13T17:29:18.5562703Z   cores: 2
+2026-11-13T17:29:18.5562860Z   avd-name: test
+2026-11-13T17:29:18.5563025Z   force-avd-creation: true
+2026-11-13T17:29:18.5563212Z   emulator-port: 5554
+2026-11-13T17:29:18.5563386Z   disable-spellchecker: false
+2026-11-13T17:29:18.5563597Z   disable-linux-hw-accel: auto
+2026-11-13T17:29:18.5563787Z   enable-hw-keyboard: false
+2026-11-13T17:29:18.5563965Z   channel: stable
+2026-11-13T17:29:18.5564120Z env:
+2026-11-13T17:29:18.5564277Z   LUMO_NATIVE_STAGE_MENU: 1
+2026-11-13T17:29:18.5564448Z   DISPLAY: :99
+2026-11-13T17:29:18.5564612Z   LIBGL_ALWAYS_SOFTWARE: true
+2026-11-13T17:29:18.5564796Z   GALLIUM_DRIVER: llvmpipe
+2026-11-13T17:29:18.5565117Z   LP_NUM_THREADS: 2
+2026-11-13T17:29:18.5565291Z ##[endgroup]
+2026-11-13T17:29:18.5993138Z ##[group]Configure emulator
+2026-11-13T17:29:18.5994313Z API level: 37
+2026-11-13T17:29:18.5994684Z System image API level: 37
+2026-11-13T17:29:18.5995145Z target: google_apis
+2026-11-13T17:29:18.5995466Z CPU architecture: x86_64
+2026-11-13T17:29:18.5995851Z Hardware profile: pixel_5
+2026-11-13T17:29:18.5997515Z Cores: 2
+2026-11-13T17:29:18.5997839Z RAM size: 4096M
+2026-11-13T17:29:18.5998278Z Heap size: 512M
+2026-11-13T17:29:18.5998666Z SD card path or size: 
+2026-11-13T17:29:18.5999016Z Disk size: 
+2026-11-13T17:29:18.5999299Z AVD name: test
+2026-11-13T17:29:18.5999720Z force avd creation: true
+2026-11-13T17:29:18.6000290Z Emulator boot timeout: 300
+2026-11-13T17:29:18.6000735Z emulator port: 5554
+2026-11-13T17:29:18.6001466Z emulator options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+2026-11-13T17:29:18.6002295Z disable animations: true
+2026-11-13T17:29:18.6002711Z disable spellchecker: false
+2026-11-13T17:29:18.6003153Z disable Linux hardware acceleration: false
+2026-11-13T17:29:18.6003682Z enable hardware keyboard: false
+2026-11-13T17:29:18.6004057Z Channel: 0 (stable)
+2026-11-13T17:29:18.6004312Z Script:
+2026-11-13T17:29:18.6004583Z adb shell getprop ro.build.version.sdk > tour/android-sdk.txt
+2026-11-13T17:29:18.6005304Z adb shell getprop ro.build.version.release > tour/android-release.txt
+2026-11-13T17:29:18.6005871Z "$ANDROID_HOME/emulator/emulator" -version > tour/android-emulator-version.txt 2>&1
+2026-11-13T17:29:18.6006750Z .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour
+2026-11-13T17:29:18.6008321Z .probe-venv/bin/python .github/probes/lumo_studio_surfaces_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/tour-result.json --expected-api 37 --out tour/nextgen
+2026-11-13T17:29:18.6009294Z Pre emulator launch script:
+2026-11-13T17:29:18.6009947Z ##[endgroup]
+2026-11-13T17:29:18.6010351Z ##[group]Install Android SDK
+2026-11-13T17:29:18.8308624Z [command]/usr/bin/sh -c \yes | sdkmanager --licenses > /dev/null
+2026-11-13T17:29:26.7862187Z Installing latest build tools, platform tools, and platform.
+2026-11-13T17:29:26.7869900Z [command]/usr/bin/sh -c \sdkmanager --install 'build-tools;37.0.0' platform-tools 'platforms;android-37'> /dev/null
+2026-11-13T17:29:27.7123725Z Warning: Failed to find package 'platforms;android-37'
+2026-11-13T17:29:27.7356881Z ##[endgroup]
+2026-11-13T17:29:27.7357369Z ##[group]Terminate Emulator
+2026-11-13T17:29:27.7370347Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+2026-11-13T17:29:27.9830059Z error: could not connect to TCP port 5554: Connection refused
+2026-11-13T17:29:27.9833650Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+2026-11-13T17:29:27.9834646Z ##[endgroup]
+2026-11-13T17:29:27.9852999Z ##[error]The process '/usr/bin/sh' failed with exit code 1
+2026-11-13T17:29:27.9945038Z ##[group]Run actions/upload-artifact@v4
+2026-11-13T17:29:27.9945492Z with:
+2026-11-13T17:29:27.9945768Z   name: lumo-studio-2019-android-17-tour
+2026-11-13T17:29:27.9946058Z   path: tour/
+2026-11-13T17:29:27.9946263Z   retention-days: 30
+2026-11-13T17:29:27.9946516Z   if-no-files-found: warn
+2026-11-13T17:29:27.9946785Z   compression-level: 6
+2026-11-13T17:29:27.9947022Z   overwrite: false
+2026-11-13T17:29:27.9947268Z   include-hidden-files: false
+2026-11-13T17:29:27.9947499Z env:
+2026-11-13T17:29:27.9947774Z   ANDROID_AVD_HOME: /home/runner/.android/avd
+2026-11-13T17:29:27.9948044Z ##[endgroup]
+2026-11-13T17:29:28.1151525Z (node:3169) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T17:29:28.1152369Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T17:29:28.1190940Z With the provided path, there will be 4 files uploaded
+2026-11-13T17:29:28.1194337Z Artifact name is valid!
+2026-11-13T17:29:28.1195168Z Root directory input is valid!
+2026-11-13T17:29:28.6739784Z Beginning upload of artifact content to blob storage
+2026-11-13T17:29:28.6902221Z (node:3169) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T17:29:29.0267853Z Uploaded bytes 1563
+2026-11-13T17:29:29.1206839Z Finished uploading artifact content to blob storage!
+2026-11-13T17:29:29.1207562Z SHA256 digest of uploaded artifact zip is 2f90c43467888e76fe184974e8e7983518942634c847421873854941bd77c507
+2026-11-13T17:29:29.1208198Z Finalizing artifact upload
+2026-11-13T17:29:29.7135553Z Artifact lumo-studio-2019-android-17-tour.zip successfully finalized. Artifact ID 14062255301
+2026-11-13T17:29:29.7136622Z Artifact lumo-studio-2019-android-17-tour has been successfully uploaded! Final size is 1563 bytes. Artifact ID is 14062255301
+2026-11-13T17:29:29.7141740Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43461547945/artifacts/14062255301
+2026-11-13T17:29:29.7290848Z Post job cleanup.
+2026-11-13T17:29:29.7913540Z [command]/usr/bin/git version
+2026-11-13T17:29:29.7942928Z git version 2.56.1
+2026-11-13T17:29:29.7966989Z Temporarily overriding HOME='/home/runner/work/_temp/28e7edd3-5ecd-43c0-b998-771cc602c5e7' before making global git config changes
+2026-11-13T17:29:29.7968036Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T17:29:29.7970947Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-13T17:29:29.7998068Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T17:29:29.8019658Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T17:29:29.8173167Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T17:29:29.8194628Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T17:29:29.8343503Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T17:29:29.8365917Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T17:29:29.8614815Z Cleaning up orphan processes
+2026-11-13T17:29:29.8836831Z Terminate orphan process: pid (3010) (Xvfb)
+2026-11-13T17:29:29.8875698Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

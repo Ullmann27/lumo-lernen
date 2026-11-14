@@ -1,0 +1,76 @@
+2026-11-13T16:35:07.3153871Z ##[group]Run python3 -m unittest discover -s scripts/tests -p 'test_export_embedded_game.py' -v
+2026-11-13T16:35:07.3155183Z [36;1mpython3 -m unittest discover -s scripts/tests -p 'test_export_embedded_game.py' -v[0m
+2026-11-13T16:35:07.3185739Z shell: /usr/bin/bash -e {0}
+2026-11-13T16:35:07.3186240Z env:
+2026-11-13T16:35:07.3186627Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-13T16:35:07.3187303Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-13T16:35:07.3188281Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-13T16:35:07.3189532Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-13T16:35:07.3190283Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-13T16:35:07.3190804Z ##[endgroup]
+2026-11-13T16:35:07.4074810Z test_1977_original_gate_images_are_safe_to_clean (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1977_original_gate_images_are_safe_to_clean) ... ok
+2026-11-13T16:35:07.4165018Z test_1979_cinema_source_only_cleans_hash_checked_gate_images (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1979_cinema_source_only_cleans_hash_checked_gate_images) ... ok
+2026-11-13T16:35:07.4266416Z test_1985_pinned_kart_preserves_gate_and_cleans_only_verified_images (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1985_pinned_kart_preserves_gate_and_cleans_only_verified_images) ... ok
+2026-11-13T16:35:07.4363787Z test_1991_scene_quality_regression_pin_only_cleans_verified_gate_jpegs (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1991_scene_quality_regression_pin_only_cleans_verified_gate_jpegs) ... ok
+2026-11-13T16:35:07.4464206Z test_1993_cinematic_kart_only_cleans_original_digest_verified_gate_images (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1993_cinematic_kart_only_cleans_original_digest_verified_gate_images) ... ok
+2026-11-13T16:35:07.4563735Z test_1994_premium_kart_preserves_meshy_gate_hash_guard (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1994_premium_kart_preserves_meshy_gate_hash_guard) ... ok
+2026-11-13T16:35:07.4662797Z test_1995_sol_kart_keeps_immutable_gate_and_fails_closed (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1995_sol_kart_keeps_immutable_gate_and_fails_closed) ... ok
+2026-11-13T16:35:07.4747965Z test_1997_landing_fit_kart_keeps_immutable_gate (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1997_landing_fit_kart_keeps_immutable_gate) ... ok
+2026-11-13T16:35:07.4833343Z test_1999_visible_hub_fix_cleans_only_original_verified_images (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1999_visible_hub_fix_cleans_only_original_verified_images) ... ok
+2026-11-13T16:35:07.4932747Z test_exact_1975_imported_jpegs_are_cleaned (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_exact_1975_imported_jpegs_are_cleaned) ... ok
+2026-11-13T16:35:07.5019467Z test_exact_1976_same_trusted_glb_jpegs_are_cleaned (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_exact_1976_same_trusted_glb_jpegs_are_cleaned) ... ok
+2026-11-13T16:35:07.5104978Z test_existing_before_import_is_preserved (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_existing_before_import_is_preserved) ... ok
+2026-11-13T16:35:07.5170576Z test_future_unknown_pin_must_not_remove_images (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_future_unknown_pin_must_not_remove_images) ... ok
+2026-11-13T16:35:07.5252874Z test_modified_glb_is_not_trusted (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_modified_glb_is_not_trusted) ... ok
+2026-11-13T16:35:07.5337881Z test_non_jpeg_generated_output_fails_closed (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_non_jpeg_generated_output_fails_closed) ... ok
+2026-11-13T16:35:07.5406558Z test_old_release_does_not_cleanup (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_old_release_does_not_cleanup) ... ok
+2026-11-13T16:35:07.5498123Z test_symlink_is_not_deleted (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_symlink_is_not_deleted) ... ok
+2026-11-13T16:35:07.5601700Z test_unknown_untracked_file_is_not_deleted (test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_unknown_untracked_file_is_not_deleted) ... ok
+2026-11-13T16:35:07.5730551Z test_new_generated_sidecars_are_removed (test_export_embedded_game.GeneratedSidecarTests.test_new_generated_sidecars_are_removed) ... ok
+2026-11-13T16:35:07.5826486Z test_preexisting_sidecar_is_preserved (test_export_embedded_game.GeneratedSidecarTests.test_preexisting_sidecar_is_preserved) ... ok
+2026-11-13T16:35:07.5921160Z test_symlink_is_preserved (test_export_embedded_game.GeneratedSidecarTests.test_symlink_is_preserved) ... ok
+2026-11-13T16:35:07.6016231Z test_tracked_sidecar_is_preserved (test_export_embedded_game.GeneratedSidecarTests.test_tracked_sidecar_is_preserved) ... ok
+2026-11-13T16:35:07.6116407Z test_untracked_source_and_non_metadata_are_preserved (test_export_embedded_game.GeneratedSidecarTests.test_untracked_source_and_non_metadata_are_preserved) ... ok
+2026-11-13T16:35:07.6117477Z 
+2026-11-13T16:35:07.6117664Z ----------------------------------------------------------------------
+2026-11-13T16:35:07.6118064Z Ran 23 tests in 0.214s
+2026-11-13T16:35:07.6118229Z 
+2026-11-13T16:35:07.6118325Z OK
+2026-11-13T16:35:07.6118868Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+2026-11-13T16:35:07.6119778Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+2026-11-13T16:35:07.6120671Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+2026-11-13T16:35:07.6121897Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+2026-11-13T16:35:07.6122795Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+2026-11-13T16:35:07.6123670Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+2026-11-13T16:35:07.6124507Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+2026-11-13T16:35:07.6125380Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+2026-11-13T16:35:07.6126246Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+2026-11-13T16:35:07.6127080Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+2026-11-13T16:35:07.6127940Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+2026-11-13T16:35:07.6128850Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+2026-11-13T16:35:07.6140355Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+2026-11-13T16:35:07.6141996Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+2026-11-13T16:35:07.6142886Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+2026-11-13T16:35:07.6143727Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+2026-11-13T16:35:07.6144611Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+2026-11-13T16:35:07.6145465Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+2026-11-13T16:35:07.6146648Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+2026-11-13T16:35:07.6147543Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+2026-11-13T16:35:07.6148399Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+2026-11-13T16:35:07.6149216Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+2026-11-13T16:35:07.6150222Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+2026-11-13T16:35:07.6151065Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+2026-11-13T16:35:07.6152407Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+2026-11-13T16:35:07.6153262Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+2026-11-13T16:35:07.6154099Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+2026-11-13T16:35:07.6154905Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+2026-11-13T16:35:07.6155750Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+2026-11-13T16:35:07.6156581Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+2026-11-13T16:35:07.6157390Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+2026-11-13T16:35:07.6158234Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+2026-11-13T16:35:07.6159076Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+2026-11-13T16:35:07.6159910Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+2026-11-13T16:35:07.6160735Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+2026-11-13T16:35:07.6161820Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+2026-11-13T16:35:07.6162684Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+2026-11-13T16:35:07.6163512Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg

@@ -1,0 +1,7284 @@
+{
+  "desktop_pointer_precondition": "root.warp_mouse to viewport center before first menu touch",
+  "display": "X11",
+  "events": [
+    {
+      "finger": 21,
+      "frame": -1,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        480.0,
+        352.0
+      ],
+      "pressed": true,
+      "purpose": "setup: Neues Puzzle beginnen"
+    },
+    {
+      "finger": 21,
+      "frame": -1,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        480.0,
+        352.0
+      ],
+      "pressed": false,
+      "purpose": "setup release: Neues Puzzle beginnen"
+    },
+    {
+      "finger": 21,
+      "frame": 24,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        195.373596191406,
+        390.547760009766
+      ],
+      "pressed": true,
+      "purpose": "select initial half-turned piece"
+    },
+    {
+      "finger": 21,
+      "frame": 28,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        195.373596191406,
+        390.547760009766
+      ],
+      "pressed": false,
+      "purpose": "retain piece selection for rotate button"
+    },
+    {
+      "finger": 21,
+      "frame": 40,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        72.0,
+        486.0
+      ],
+      "pressed": true,
+      "purpose": "press production rotate button"
+    },
+    {
+      "finger": 21,
+      "frame": 43,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        72.0,
+        486.0
+      ],
+      "pressed": false,
+      "purpose": "release production rotate button"
+    },
+    {
+      "finger": 21,
+      "frame": 72,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        72.0,
+        486.0
+      ],
+      "pressed": true,
+      "purpose": "press production rotate button"
+    },
+    {
+      "finger": 21,
+      "frame": 75,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        72.0,
+        486.0
+      ],
+      "pressed": false,
+      "purpose": "release production rotate button"
+    },
+    {
+      "finger": 21,
+      "frame": 104,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        195.373596191406,
+        390.547760009766
+      ],
+      "pressed": true,
+      "purpose": "pick correctly rotated piece for dragging"
+    },
+    {
+      "finger": 21,
+      "frame": 110,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        195.373596191406,
+        390.547760009766
+      ],
+      "relative": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 111,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        195.69841003418,
+        390.458221435547
+      ],
+      "relative": [
+        0.324813842773438,
+        -0.08953857421875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 112,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        196.658264160156,
+        390.193634033203
+      ],
+      "relative": [
+        0.959854125976562,
+        -0.26458740234375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 113,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        198.231262207031,
+        389.760040283203
+      ],
+      "relative": [
+        1.572998046875,
+        -0.43359375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 114,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        200.3955078125,
+        389.163482666016
+      ],
+      "relative": [
+        2.16424560546875,
+        -0.5965576171875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 115,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        203.129089355469,
+        388.409973144531
+      ],
+      "relative": [
+        2.73358154296875,
+        -0.753509521484375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 116,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        206.410125732422,
+        387.505554199219
+      ],
+      "relative": [
+        3.28103637695312,
+        -0.9044189453125
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 117,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        210.216705322266,
+        386.456298828125
+      ],
+      "relative": [
+        3.80657958984375,
+        -1.04925537109375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 118,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        214.526931762695,
+        385.268188476562
+      ],
+      "relative": [
+        4.31022644042969,
+        -1.1881103515625
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 119,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        219.318908691406,
+        383.947265625
+      ],
+      "relative": [
+        4.79197692871094,
+        -1.3209228515625
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 120,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        224.570755004883,
+        382.499633789062
+      ],
+      "relative": [
+        5.25184631347656,
+        -1.4476318359375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 121,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        230.260543823242,
+        380.931243896484
+      ],
+      "relative": [
+        5.68978881835938,
+        -1.56838989257812
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 122,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        236.366394042969,
+        379.248168945312
+      ],
+      "relative": [
+        6.10585021972656,
+        -1.68307495117188
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 123,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        242.866409301758,
+        377.456451416016
+      ],
+      "relative": [
+        6.50001525878906,
+        -1.79171752929688
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 124,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        249.738693237305,
+        375.562133789062
+      ],
+      "relative": [
+        6.87228393554688,
+        -1.89431762695312
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 125,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        256.961334228516,
+        373.571228027344
+      ],
+      "relative": [
+        7.22264099121094,
+        -1.99090576171875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 126,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        264.512451171875,
+        371.48974609375
+      ],
+      "relative": [
+        7.55111694335938,
+        -2.08148193359375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 127,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        272.3701171875,
+        369.323791503906
+      ],
+      "relative": [
+        7.857666015625,
+        -2.16595458984375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 128,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        280.512512207031,
+        367.079376220703
+      ],
+      "relative": [
+        8.14239501953125,
+        -2.24441528320312
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 129,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        288.917633056641,
+        364.762512207031
+      ],
+      "relative": [
+        8.40512084960938,
+        -2.31686401367188
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 130,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        297.563629150391,
+        362.379272460938
+      ],
+      "relative": [
+        8.64599609375,
+        -2.38323974609375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 131,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        306.428619384766,
+        359.935638427734
+      ],
+      "relative": [
+        8.864990234375,
+        -2.44363403320312
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 132,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        315.490661621094,
+        357.437713623047
+      ],
+      "relative": [
+        9.06204223632812,
+        -2.4979248046875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 133,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        324.727935791016,
+        354.891479492188
+      ],
+      "relative": [
+        9.23727416992188,
+        -2.54623413085938
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 134,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        334.118469238281,
+        352.302978515625
+      ],
+      "relative": [
+        9.39053344726562,
+        -2.5885009765625
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 135,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        343.640350341797,
+        349.678283691406
+      ],
+      "relative": [
+        9.52188110351562,
+        -2.62469482421875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 136,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        353.271789550781,
+        347.023406982422
+      ],
+      "relative": [
+        9.63143920898438,
+        -2.65487670898438
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 137,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        362.990783691406,
+        344.344390869141
+      ],
+      "relative": [
+        9.718994140625,
+        -2.67901611328125
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 138,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        372.775512695312,
+        341.647247314453
+      ],
+      "relative": [
+        9.78472900390625,
+        -2.6971435546875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 139,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        382.60400390625,
+        338.938049316406
+      ],
+      "relative": [
+        9.8284912109375,
+        -2.70919799804688
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 140,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        392.454376220703,
+        336.222808837891
+      ],
+      "relative": [
+        9.85037231445312,
+        -2.71524047851562
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 141,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        402.304748535156,
+        333.507568359375
+      ],
+      "relative": [
+        9.85037231445312,
+        -2.71524047851562
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 142,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        412.133239746094,
+        330.798370361328
+      ],
+      "relative": [
+        9.8284912109375,
+        -2.70919799804688
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 143,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        421.91796875,
+        328.101226806641
+      ],
+      "relative": [
+        9.78472900390625,
+        -2.6971435546875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 144,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        431.636993408203,
+        325.422210693359
+      ],
+      "relative": [
+        9.71902465820312,
+        -2.67901611328125
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 145,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        441.268371582031,
+        322.767333984375
+      ],
+      "relative": [
+        9.63137817382812,
+        -2.65487670898438
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 146,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        450.790313720703,
+        320.142639160156
+      ],
+      "relative": [
+        9.52194213867188,
+        -2.62469482421875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 147,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        460.180816650391,
+        317.554138183594
+      ],
+      "relative": [
+        9.3905029296875,
+        -2.5885009765625
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 148,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        469.418090820312,
+        315.007904052734
+      ],
+      "relative": [
+        9.23727416992188,
+        -2.54623413085938
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 149,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        478.480133056641,
+        312.509979248047
+      ],
+      "relative": [
+        9.06204223632812,
+        -2.4979248046875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 150,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        487.345123291016,
+        310.066345214844
+      ],
+      "relative": [
+        8.864990234375,
+        -2.44363403320312
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 151,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        495.991149902344,
+        307.68310546875
+      ],
+      "relative": [
+        8.64602661132812,
+        -2.38323974609375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 152,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        504.396209716797,
+        305.366241455078
+      ],
+      "relative": [
+        8.40505981445312,
+        -2.31686401367188
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 153,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        512.53857421875,
+        303.121826171875
+      ],
+      "relative": [
+        8.14236450195312,
+        -2.24441528320312
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 154,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        520.396301269531,
+        300.955871582031
+      ],
+      "relative": [
+        7.85772705078125,
+        -2.16595458984375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 155,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        527.947387695312,
+        298.874389648438
+      ],
+      "relative": [
+        7.55108642578125,
+        -2.08148193359375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 156,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        535.170043945312,
+        296.883483886719
+      ],
+      "relative": [
+        7.22265625,
+        -1.99090576171875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 157,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        542.042358398438,
+        294.989166259766
+      ],
+      "relative": [
+        6.872314453125,
+        -1.89431762695312
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 158,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        548.542358398438,
+        293.197448730469
+      ],
+      "relative": [
+        6.5,
+        -1.79171752929688
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 159,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        554.648193359375,
+        291.514373779297
+      ],
+      "relative": [
+        6.1058349609375,
+        -1.68307495117188
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 160,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        560.338012695312,
+        289.945983886719
+      ],
+      "relative": [
+        5.6898193359375,
+        -1.56838989257812
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 161,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        565.58984375,
+        288.498352050781
+      ],
+      "relative": [
+        5.2518310546875,
+        -1.4476318359375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 162,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        570.3818359375,
+        287.177429199219
+      ],
+      "relative": [
+        4.7919921875,
+        -1.3209228515625
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 163,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        574.692077636719,
+        285.989318847656
+      ],
+      "relative": [
+        4.31024169921875,
+        -1.1881103515625
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 164,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        578.498657226562,
+        284.940063476562
+      ],
+      "relative": [
+        3.80657958984375,
+        -1.04925537109375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 165,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        581.779663085938,
+        284.03564453125
+      ],
+      "relative": [
+        3.281005859375,
+        -0.9044189453125
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 166,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        584.513244628906,
+        283.282135009766
+      ],
+      "relative": [
+        2.73358154296875,
+        -0.753509521484375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 167,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        586.677490234375,
+        282.685577392578
+      ],
+      "relative": [
+        2.16424560546875,
+        -0.5965576171875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 168,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        588.250549316406,
+        282.251983642578
+      ],
+      "relative": [
+        1.57305908203125,
+        -0.43359375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 169,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        589.210327148438,
+        281.987396240234
+      ],
+      "relative": [
+        0.95977783203125,
+        -0.26458740234375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 170,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        589.53515625,
+        281.897857666016
+      ],
+      "relative": [
+        0.3248291015625,
+        -0.08953857421875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 178,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        589.53515625,
+        281.897857666016
+      ],
+      "pressed": false,
+      "purpose": "release above the real matching slot"
+    }
+  ],
+  "failures": [],
+  "final_state": {
+    "count": 6,
+    "elapsed": 10.7916666666666,
+    "hints": 0,
+    "motif": 3,
+    "moves": 4,
+    "pieces": [
+      {
+        "id": 0,
+        "locked": false,
+        "tray": true,
+        "turn": 0,
+        "x": -7.0,
+        "z": -2.2
+      },
+      {
+        "id": 1,
+        "locked": false,
+        "tray": true,
+        "turn": 3,
+        "x": -7.0,
+        "z": 0.0
+      },
+      {
+        "id": 2,
+        "locked": true,
+        "tray": false,
+        "turn": 0,
+        "x": 3.19999980926514,
+        "z": -1.35000002384186
+      },
+      {
+        "id": 3,
+        "locked": false,
+        "tray": true,
+        "turn": 1,
+        "x": 7.0,
+        "z": -2.2
+      },
+      {
+        "id": 4,
+        "locked": false,
+        "tray": true,
+        "turn": 0,
+        "x": 7.0,
+        "z": 0.0
+      },
+      {
+        "id": 5,
+        "locked": false,
+        "tray": true,
+        "turn": 3,
+        "x": 7.0,
+        "z": 2.2
+      }
+    ],
+    "result_id": "standalone-1794589244856-7928895",
+    "rotation_enabled": true,
+    "version": 1
+  },
+  "fixed_capture_timestep": true,
+  "format_fps": 24,
+  "frames": [
+    {
+      "capture_time_seconds": 0.0,
+      "dragging": -1,
+      "engine_frame_drawn": 38,
+      "frame": 0,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.0416666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 39,
+      "frame": 1,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.0833333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 40,
+      "frame": 2,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.125,
+      "dragging": -1,
+      "engine_frame_drawn": 41,
+      "frame": 3,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.166666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 42,
+      "frame": 4,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.208333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 43,
+      "frame": 5,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.25,
+      "dragging": -1,
+      "engine_frame_drawn": 44,
+      "frame": 6,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.291666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 45,
+      "frame": 7,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.333333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 46,
+      "frame": 8,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.375,
+      "dragging": -1,
+      "engine_frame_drawn": 47,
+      "frame": 9,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.416666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 48,
+      "frame": 10,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.458333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 49,
+      "frame": 11,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.5,
+      "dragging": -1,
+      "engine_frame_drawn": 50,
+      "frame": 12,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.541666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 51,
+      "frame": 13,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.583333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 52,
+      "frame": 14,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.625,
+      "dragging": -1,
+      "engine_frame_drawn": 53,
+      "frame": 15,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.666666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 54,
+      "frame": 16,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.708333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 55,
+      "frame": 17,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.75,
+      "dragging": -1,
+      "engine_frame_drawn": 56,
+      "frame": 18,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.791666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 57,
+      "frame": 19,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.833333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 58,
+      "frame": 20,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.875,
+      "dragging": -1,
+      "engine_frame_drawn": 59,
+      "frame": 21,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.916666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 60,
+      "frame": 22,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 0.958333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 61,
+      "frame": 23,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": -1,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 1.0,
+      "dragging": 2,
+      "engine_frame_drawn": 62,
+      "frame": 24,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.800000011920929,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 1.04166666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 63,
+      "frame": 25,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.800000011920929,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 1.08333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 64,
+      "frame": 26,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.800000011920929,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 1.125,
+      "dragging": 2,
+      "engine_frame_drawn": 65,
+      "frame": 27,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 0,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.800000011920929,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Tippe ein Teil an, drehe es mit ↻ und ziehe es auf seinen Platz."
+    },
+    {
+      "capture_time_seconds": 1.16666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 66,
+      "frame": 28,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.20833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 67,
+      "frame": 29,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.25,
+      "dragging": -1,
+      "engine_frame_drawn": 68,
+      "frame": 30,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.29166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 69,
+      "frame": 31,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.33333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 70,
+      "frame": 32,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.375,
+      "dragging": -1,
+      "engine_frame_drawn": 71,
+      "frame": 33,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.41666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 72,
+      "frame": 34,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.45833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 73,
+      "frame": 35,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.5,
+      "dragging": -1,
+      "engine_frame_drawn": 74,
+      "frame": 36,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.54166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 75,
+      "frame": 37,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.58333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 76,
+      "frame": 38,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.625,
+      "dragging": -1,
+      "engine_frame_drawn": 77,
+      "frame": 39,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.66666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 78,
+      "frame": 40,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.70833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 79,
+      "frame": 41,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.75,
+      "dragging": -1,
+      "engine_frame_drawn": 80,
+      "frame": 42,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 2,
+      "moves": 1,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        1.0,
+        0.0,
+        -0.0000000754979012640433
+      ],
+      "selected_piece": 2,
+      "status_text": "Probiere einen anderen Platz. Schau auf Form und Bild."
+    },
+    {
+      "capture_time_seconds": 1.79166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 81,
+      "frame": 43,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.948754370212555,
+        0.0,
+        -0.316014528274536
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 1.83333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 82,
+      "frame": 44,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.847848236560822,
+        0.0,
+        0.53023898601532
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 1.875,
+      "dragging": -1,
+      "engine_frame_drawn": 83,
+      "frame": 45,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.757010996341705,
+        0.0,
+        0.653402209281921
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 1.91666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 84,
+      "frame": 46,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.710147500038147,
+        0.0,
+        0.704052984714508
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 1.95833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 85,
+      "frame": 47,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.0,
+      "dragging": -1,
+      "engine_frame_drawn": 86,
+      "frame": 48,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.04166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 87,
+      "frame": 49,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.08333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 88,
+      "frame": 50,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.125,
+      "dragging": -1,
+      "engine_frame_drawn": 89,
+      "frame": 51,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.16666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 90,
+      "frame": 52,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.20833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 91,
+      "frame": 53,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.25,
+      "dragging": -1,
+      "engine_frame_drawn": 92,
+      "frame": 54,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.29166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 93,
+      "frame": 55,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.33333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 94,
+      "frame": 56,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.375,
+      "dragging": -1,
+      "engine_frame_drawn": 95,
+      "frame": 57,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.41666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 96,
+      "frame": 58,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.45833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 97,
+      "frame": 59,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.5,
+      "dragging": -1,
+      "engine_frame_drawn": 98,
+      "frame": 60,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.54166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 99,
+      "frame": 61,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.58333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 100,
+      "frame": 62,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.625,
+      "dragging": -1,
+      "engine_frame_drawn": 101,
+      "frame": 63,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.66666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 102,
+      "frame": 64,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.70833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 103,
+      "frame": 65,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.75,
+      "dragging": -1,
+      "engine_frame_drawn": 104,
+      "frame": 66,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.79166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 105,
+      "frame": 67,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.83333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 106,
+      "frame": 68,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.875,
+      "dragging": -1,
+      "engine_frame_drawn": 107,
+      "frame": 69,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.91666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 108,
+      "frame": 70,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 2.95833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 109,
+      "frame": 71,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.0,
+      "dragging": -1,
+      "engine_frame_drawn": 110,
+      "frame": 72,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.04166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 111,
+      "frame": 73,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.08333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 112,
+      "frame": 74,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 3,
+      "moves": 2,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.70710676908493,
+        0.0,
+        0.70710676908493
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.125,
+      "dragging": -1,
+      "engine_frame_drawn": 113,
+      "frame": 75,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.447414666414261,
+        0.0,
+        0.894326627254486
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.16666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 114,
+      "frame": 76,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.224583685398102,
+        0.0,
+        0.974454820156097
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.20833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 115,
+      "frame": 77,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.0732624232769012,
+        0.0,
+        0.997312664985657
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.25,
+      "dragging": -1,
+      "engine_frame_drawn": 116,
+      "frame": 78,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        -0.00430948566645384,
+        0.0,
+        0.999990701675415
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.29166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 117,
+      "frame": 79,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.33333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 118,
+      "frame": 80,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.375,
+      "dragging": -1,
+      "engine_frame_drawn": 119,
+      "frame": 81,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.41666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 120,
+      "frame": 82,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.45833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 121,
+      "frame": 83,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.5,
+      "dragging": -1,
+      "engine_frame_drawn": 122,
+      "frame": 84,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.54166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 123,
+      "frame": 85,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.58333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 124,
+      "frame": 86,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.625,
+      "dragging": -1,
+      "engine_frame_drawn": 125,
+      "frame": 87,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.66666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 126,
+      "frame": 88,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.70833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 127,
+      "frame": 89,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.75,
+      "dragging": -1,
+      "engine_frame_drawn": 128,
+      "frame": 90,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.79166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 129,
+      "frame": 91,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.83333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 130,
+      "frame": 92,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.875,
+      "dragging": -1,
+      "engine_frame_drawn": 131,
+      "frame": 93,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.91666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 132,
+      "frame": 94,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 3.95833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 133,
+      "frame": 95,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.0,
+      "dragging": -1,
+      "engine_frame_drawn": 134,
+      "frame": 96,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.04166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 135,
+      "frame": 97,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.08333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 136,
+      "frame": 98,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.125,
+      "dragging": -1,
+      "engine_frame_drawn": 137,
+      "frame": 99,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.16666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 138,
+      "frame": 100,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.20833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 139,
+      "frame": 101,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.25,
+      "dragging": -1,
+      "engine_frame_drawn": 140,
+      "frame": 102,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.29166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 141,
+      "frame": 103,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.150000005960464,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.33333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 142,
+      "frame": 104,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.800000011920929,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.375,
+      "dragging": 2,
+      "engine_frame_drawn": 143,
+      "frame": 105,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.800000011920929,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.41666666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 144,
+      "frame": 106,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.800000011920929,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.45833333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 145,
+      "frame": 107,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.800000011920929,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.5,
+      "dragging": 2,
+      "engine_frame_drawn": 146,
+      "frame": 108,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.800000011920929,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.54166666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 147,
+      "frame": 109,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.800000011920929,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.58333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 148,
+      "frame": 110,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -7.0,
+        0.800000011920929,
+        2.20000004768372
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.625,
+      "dragging": 2,
+      "engine_frame_drawn": 149,
+      "frame": 111,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -6.99253082275391,
+        0.800000011920929,
+        2.19740128517151
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.66666666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 150,
+      "frame": 112,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -6.97045230865479,
+        0.800000011920929,
+        2.18971657752991
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.70833333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 151,
+      "frame": 113,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -6.93424510955811,
+        0.800000011920929,
+        2.1771137714386
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.75,
+      "dragging": 2,
+      "engine_frame_drawn": 152,
+      "frame": 114,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -6.88437509536743,
+        0.800000011920929,
+        2.15975785255432
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.79166666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 153,
+      "frame": 115,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -6.82129812240601,
+        0.800000011920929,
+        2.13780426979065
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.83333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 154,
+      "frame": 116,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -6.74546051025391,
+        0.800000011920929,
+        2.11140942573547
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.875,
+      "dragging": 2,
+      "engine_frame_drawn": 155,
+      "frame": 117,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -6.65729713439941,
+        0.800000011920929,
+        2.08072590827942
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.91666666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 156,
+      "frame": 118,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -6.55723905563354,
+        0.800000011920929,
+        2.04590153694153
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 4.95833333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 157,
+      "frame": 119,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -6.44570875167847,
+        0.800000011920929,
+        2.00708317756653
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.0,
+      "dragging": 2,
+      "engine_frame_drawn": 158,
+      "frame": 120,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -6.32312440872192,
+        0.800000011920929,
+        1.96442055702209
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.04166666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 159,
+      "frame": 121,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -6.18990421295166,
+        0.800000011920929,
+        1.91805577278137
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.08333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 160,
+      "frame": 122,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -6.04645824432373,
+        0.800000011920929,
+        1.86812901496887
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.125,
+      "dragging": 2,
+      "engine_frame_drawn": 161,
+      "frame": 123,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -5.89320087432861,
+        0.800000011920929,
+        1.81479096412659
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.16666666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 162,
+      "frame": 124,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -5.73054265975952,
+        0.800000011920929,
+        1.75817894935608
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.20833333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 163,
+      "frame": 125,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -5.55889844894409,
+        0.800000011920929,
+        1.69844079017639
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.25,
+      "dragging": 2,
+      "engine_frame_drawn": 164,
+      "frame": 126,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -5.37868404388428,
+        0.800000011920929,
+        1.63571667671204
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.29166666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 165,
+      "frame": 127,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -5.19031524658203,
+        0.800000011920929,
+        1.570157289505
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.33333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 166,
+      "frame": 128,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -4.99421644210815,
+        0.800000011920929,
+        1.50190854072571
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.375,
+      "dragging": 2,
+      "engine_frame_drawn": 167,
+      "frame": 129,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -4.79081678390503,
+        0.800000011920929,
+        1.43111634254456
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.41666666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 168,
+      "frame": 130,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -4.58054780960083,
+        0.800000011920929,
+        1.35793423652649
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.45833333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 169,
+      "frame": 131,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -4.36385011672974,
+        0.800000011920929,
+        1.28251576423645
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.5,
+      "dragging": 2,
+      "engine_frame_drawn": 170,
+      "frame": 132,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -4.14117288589478,
+        0.800000011920929,
+        1.2050154209137
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.54166666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 171,
+      "frame": 133,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -3.9129695892334,
+        0.800000011920929,
+        1.12559151649475
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.58333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 172,
+      "frame": 134,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -3.67970681190491,
+        0.800000011920929,
+        1.04440712928772
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.625,
+      "dragging": 2,
+      "engine_frame_drawn": 173,
+      "frame": 135,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -3.44186043739319,
+        0.800000011920929,
+        0.961626291275024
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.66666666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 174,
+      "frame": 136,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -3.19991278648376,
+        0.800000011920929,
+        0.877419710159302
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.70833333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 175,
+      "frame": 137,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -2.9543616771698,
+        0.800000011920929,
+        0.791959047317505
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.75,
+      "dragging": 2,
+      "engine_frame_drawn": 176,
+      "frame": 138,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -2.70571303367615,
+        0.800000011920929,
+        0.705419778823853
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.79166666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 177,
+      "frame": 139,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -2.45448923110962,
+        0.800000011920929,
+        0.617984056472778
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.83333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 178,
+      "frame": 140,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -2.20122075080872,
+        0.800000011920929,
+        0.529834985733032
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.875,
+      "dragging": 2,
+      "engine_frame_drawn": 179,
+      "frame": 141,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -1.94645309448242,
+        0.800000011920929,
+        0.441166162490845
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.91666666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 180,
+      "frame": 142,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -1.69074261188507,
+        0.800000011920929,
+        0.352172136306763
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 5.95833333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 181,
+      "frame": 143,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -1.43466150760651,
+        0.800000011920929,
+        0.263043642044067
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.0,
+      "dragging": 2,
+      "engine_frame_drawn": 182,
+      "frame": 144,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -1.17879617214203,
+        0.800000011920929,
+        0.173993349075317
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.04166666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 183,
+      "frame": 145,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -0.923745274543762,
+        0.800000011920929,
+        0.0852243900299072
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.08333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 184,
+      "frame": 146,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -0.670119106769562,
+        0.800000011920929,
+        -0.00304579734802246
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.125,
+      "dragging": 2,
+      "engine_frame_drawn": 185,
+      "frame": 147,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -0.418547034263611,
+        0.800000011920929,
+        -0.0906035900115967
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.16666666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 186,
+      "frame": 148,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        -0.169666051864624,
+        0.800000011920929,
+        -0.17722487449646
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.20833333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 187,
+      "frame": 149,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        0.0758687555789948,
+        0.800000011920929,
+        -0.262679815292358
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.25,
+      "dragging": 2,
+      "engine_frame_drawn": 188,
+      "frame": 150,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        0.317391514778137,
+        0.800000011920929,
+        -0.346739530563354
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.29166666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 189,
+      "frame": 151,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        0.554226279258728,
+        0.800000011920929,
+        -0.429167509078979
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.33333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 190,
+      "frame": 152,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        0.7856764793396,
+        0.800000011920929,
+        -0.50972056388855
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.375,
+      "dragging": 2,
+      "engine_frame_drawn": 191,
+      "frame": 153,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        1.01104605197906,
+        0.800000011920929,
+        -0.588158369064331
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.41666666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 192,
+      "frame": 154,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        1.22962248325348,
+        0.800000011920929,
+        -0.664232015609741
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.45833333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 193,
+      "frame": 155,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        1.44067859649658,
+        0.800000011920929,
+        -0.737688779830933
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.5,
+      "dragging": 2,
+      "engine_frame_drawn": 194,
+      "frame": 156,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        1.64348971843719,
+        0.800000011920929,
+        -0.808274030685425
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.54166666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 195,
+      "frame": 157,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        1.83731758594513,
+        0.800000011920929,
+        -0.875732183456421
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.58333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 196,
+      "frame": 158,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        2.02141499519348,
+        0.800000011920929,
+        -0.939806699752808
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.625,
+      "dragging": 2,
+      "engine_frame_drawn": 197,
+      "frame": 159,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        2.19503474235535,
+        0.800000011920929,
+        -1.00023341178894
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.66666666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 198,
+      "frame": 160,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        2.35742783546448,
+        0.800000011920929,
+        -1.05675292015076
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.70833333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 199,
+      "frame": 161,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        2.50783753395081,
+        0.800000011920929,
+        -1.10909914970398
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.75,
+      "dragging": 2,
+      "engine_frame_drawn": 200,
+      "frame": 162,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        2.64551472663879,
+        0.800000011920929,
+        -1.15702033042908
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.79166666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 201,
+      "frame": 163,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        2.76970839500427,
+        0.800000011920929,
+        -1.20024180412292
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.83333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 202,
+      "frame": 164,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        2.87967228889465,
+        0.800000011920929,
+        -1.23851275444031
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.875,
+      "dragging": 2,
+      "engine_frame_drawn": 203,
+      "frame": 165,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        2.97466731071472,
+        0.800000011920929,
+        -1.27157473564148
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.91666666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 204,
+      "frame": 166,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        3.05396246910095,
+        0.800000011920929,
+        -1.29917311668396
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 6.95833333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 205,
+      "frame": 167,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        3.11684155464172,
+        0.800000011920929,
+        -1.32105803489685
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 7.0,
+      "dragging": 2,
+      "engine_frame_drawn": 206,
+      "frame": 168,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        3.16259860992432,
+        0.800000011920929,
+        -1.33698439598083
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 7.04166666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 207,
+      "frame": 169,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        3.19053983688354,
+        0.800000011920929,
+        -1.34670901298523
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 7.08333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 208,
+      "frame": 170,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        3.20000052452087,
+        0.800000011920929,
+        -1.35000014305115
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 7.125,
+      "dragging": 2,
+      "engine_frame_drawn": 209,
+      "frame": 171,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        3.20000052452087,
+        0.800000011920929,
+        -1.35000014305115
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 7.16666666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 210,
+      "frame": 172,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        3.20000052452087,
+        0.800000011920929,
+        -1.35000014305115
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 7.20833333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 211,
+      "frame": 173,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        3.20000052452087,
+        0.800000011920929,
+        -1.35000014305115
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 7.25,
+      "dragging": 2,
+      "engine_frame_drawn": 212,
+      "frame": 174,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        3.20000052452087,
+        0.800000011920929,
+        -1.35000014305115
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 7.29166666666667,
+      "dragging": 2,
+      "engine_frame_drawn": 213,
+      "frame": 175,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        3.20000052452087,
+        0.800000011920929,
+        -1.35000014305115
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 7.33333333333333,
+      "dragging": 2,
+      "engine_frame_drawn": 214,
+      "frame": 176,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        3.20000052452087,
+        0.800000011920929,
+        -1.35000014305115
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 7.375,
+      "dragging": 2,
+      "engine_frame_drawn": 215,
+      "frame": 177,
+      "hints": 0,
+      "locked": false,
+      "matching_hover": true,
+      "model_turn": 0,
+      "moves": 3,
+      "piece_id": 2,
+      "placed": 0,
+      "position": [
+        3.20000052452087,
+        0.800000011920929,
+        -1.35000014305115
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": 2,
+      "status_text": "Eine Vierteldrehung. Vergleiche Bild und Form."
+    },
+    {
+      "capture_time_seconds": 7.41666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 216,
+      "frame": 178,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.20000028610229,
+        0.647222220897675,
+        -1.35000014305115
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 7.45833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 217,
+      "frame": 179,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.20000028610229,
+        0.494444459676743,
+        -1.35000014305115
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 7.5,
+      "dragging": -1,
+      "engine_frame_drawn": 218,
+      "frame": 180,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.20000004768372,
+        0.341666668653488,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 7.54166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 219,
+      "frame": 181,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.188888907432556,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 7.58333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 220,
+      "frame": 182,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 7.625,
+      "dragging": -1,
+      "engine_frame_drawn": 221,
+      "frame": 183,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 7.66666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 222,
+      "frame": 184,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 7.70833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 223,
+      "frame": 185,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 7.75,
+      "dragging": -1,
+      "engine_frame_drawn": 224,
+      "frame": 186,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 7.79166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 225,
+      "frame": 187,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 7.83333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 226,
+      "frame": 188,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 7.875,
+      "dragging": -1,
+      "engine_frame_drawn": 227,
+      "frame": 189,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 7.91666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 228,
+      "frame": 190,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 7.95833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 229,
+      "frame": 191,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.0,
+      "dragging": -1,
+      "engine_frame_drawn": 230,
+      "frame": 192,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.04166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 231,
+      "frame": 193,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.08333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 232,
+      "frame": 194,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.125,
+      "dragging": -1,
+      "engine_frame_drawn": 233,
+      "frame": 195,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.16666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 234,
+      "frame": 196,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.20833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 235,
+      "frame": 197,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.25,
+      "dragging": -1,
+      "engine_frame_drawn": 236,
+      "frame": 198,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.29166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 237,
+      "frame": 199,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.33333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 238,
+      "frame": 200,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.375,
+      "dragging": -1,
+      "engine_frame_drawn": 239,
+      "frame": 201,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.41666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 240,
+      "frame": 202,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.45833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 241,
+      "frame": 203,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.5,
+      "dragging": -1,
+      "engine_frame_drawn": 242,
+      "frame": 204,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.54166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 243,
+      "frame": 205,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.58333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 244,
+      "frame": 206,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.625,
+      "dragging": -1,
+      "engine_frame_drawn": 245,
+      "frame": 207,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.66666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 246,
+      "frame": 208,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.70833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 247,
+      "frame": 209,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.75,
+      "dragging": -1,
+      "engine_frame_drawn": 248,
+      "frame": 210,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.79166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 249,
+      "frame": 211,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.83333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 250,
+      "frame": 212,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.875,
+      "dragging": -1,
+      "engine_frame_drawn": 251,
+      "frame": 213,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.91666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 252,
+      "frame": 214,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 8.95833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 253,
+      "frame": 215,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.0,
+      "dragging": -1,
+      "engine_frame_drawn": 254,
+      "frame": 216,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.04166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 255,
+      "frame": 217,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.08333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 256,
+      "frame": 218,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.125,
+      "dragging": -1,
+      "engine_frame_drawn": 257,
+      "frame": 219,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.16666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 258,
+      "frame": 220,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.20833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 259,
+      "frame": 221,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.25,
+      "dragging": -1,
+      "engine_frame_drawn": 260,
+      "frame": 222,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.29166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 261,
+      "frame": 223,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.33333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 262,
+      "frame": 224,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.375,
+      "dragging": -1,
+      "engine_frame_drawn": 263,
+      "frame": 225,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.41666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 264,
+      "frame": 226,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.45833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 265,
+      "frame": 227,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.5,
+      "dragging": -1,
+      "engine_frame_drawn": 266,
+      "frame": 228,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.54166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 267,
+      "frame": 229,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.58333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 268,
+      "frame": 230,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.625,
+      "dragging": -1,
+      "engine_frame_drawn": 269,
+      "frame": 231,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.66666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 270,
+      "frame": 232,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.70833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 271,
+      "frame": 233,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.75,
+      "dragging": -1,
+      "engine_frame_drawn": 272,
+      "frame": 234,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.79166666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 273,
+      "frame": 235,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.83333333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 274,
+      "frame": 236,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.875,
+      "dragging": -1,
+      "engine_frame_drawn": 275,
+      "frame": 237,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.91666666666667,
+      "dragging": -1,
+      "engine_frame_drawn": 276,
+      "frame": 238,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    },
+    {
+      "capture_time_seconds": 9.95833333333333,
+      "dragging": -1,
+      "engine_frame_drawn": 277,
+      "frame": 239,
+      "hints": 0,
+      "locked": true,
+      "matching_hover": false,
+      "model_turn": 0,
+      "moves": 4,
+      "piece_id": 2,
+      "placed": 1,
+      "position": [
+        3.19999980926514,
+        0.140000000596046,
+        -1.35000002384186
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "selected_piece": -1,
+      "status_text": "Das passt! Dein Bild wächst."
+    }
+  ],
+  "initial_state": {
+    "count": 6,
+    "elapsed": 0.75,
+    "hints": 0,
+    "motif": 3,
+    "moves": 0,
+    "pieces": [
+      {
+        "id": 0,
+        "locked": false,
+        "tray": true,
+        "turn": 0,
+        "x": -7.0,
+        "z": -2.2
+      },
+      {
+        "id": 1,
+        "locked": false,
+        "tray": true,
+        "turn": 3,
+        "x": -7.0,
+        "z": 0.0
+      },
+      {
+        "id": 2,
+        "locked": false,
+        "tray": true,
+        "turn": 2,
+        "x": -7.0,
+        "z": 2.2
+      },
+      {
+        "id": 3,
+        "locked": false,
+        "tray": true,
+        "turn": 1,
+        "x": 7.0,
+        "z": -2.2
+      },
+      {
+        "id": 4,
+        "locked": false,
+        "tray": true,
+        "turn": 0,
+        "x": 7.0,
+        "z": 0.0
+      },
+      {
+        "id": 5,
+        "locked": false,
+        "tray": true,
+        "turn": 3,
+        "x": 7.0,
+        "z": 2.2
+      }
+    ],
+    "result_id": "standalone-1794589244856-7928895",
+    "rotation_enabled": true,
+    "version": 1
+  },
+  "kind": "production_puzzle_runtime_movie",
+  "physical_device_fps_measured": false,
+  "preparation_menu_limitation": "Separate preserved first run reproduced five nonfatal can_process errors during real count/mode menu releases. This recording preset bypasses only those setup callbacks; product code is unchanged.",
+  "puzzle_initial_turn_formula": "posmod(id * 3 + motif + 1, 4)",
+  "recording_method": "consecutive_actual_viewport_pngs",
+  "requested_frames": 240,
+  "rng_seed": 20191113,
+  "scene": "res://scenes/creative/puzzle_world.tscn",
+  "setup": "Recorder sets initial configuration selected_count=6 and selected_rotation=true before adding scene to tree; motif remains default 3. Actual new-game button creates all fresh piece data. No existing save or progress is used.",
+  "source_or_camera_or_progress_modified": false
+}

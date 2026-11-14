@@ -1,0 +1,40 @@
+{
+  "android_device_measurement": false,
+  "json_mailbox_roundtrip": true,
+  "public_fixture": true,
+  "renderer": "X11",
+  "static_room_batches": 13,
+  "static_room_box_instances": 146,
+  "uploaded_floor_transforms_checked": 20,
+  "views": [
+    {
+      "density": 1.0,
+      "draw_calls": 361.0,
+      "height": 720,
+      "primitives": 176450.0,
+      "width": 1280
+    },
+    {
+      "density": 1.0,
+      "draw_calls": 241.0,
+      "height": 915,
+      "primitives": 132500.0,
+      "width": 412
+    },
+    {
+      "density": 1.0,
+      "draw_calls": 332.0,
+      "height": 829,
+      "primitives": 174950.0,
+      "width": 690
+    },
+    {
+      "density": 2.625,
+      "draw_calls": 368.0,
+      "height": 1080,
+      "primitives": 179510.0,
+      "width": 2400
+    }
+  ],
+  "visible_face_materials_checked": true
+}

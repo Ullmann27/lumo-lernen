@@ -1,0 +1,18 @@
+test_any_other_build_identity_is_refused (test_modernization_tour_identity.TourApkIdentityTests.test_any_other_build_identity_is_refused) ... ok
+test_build_job_checksum_must_match_the_tested_file (test_modernization_tour_identity.TourApkIdentityTests.test_build_job_checksum_must_match_the_tested_file) ... ok
+test_the_exact_verified_build_is_accepted (test_modernization_tour_identity.TourApkIdentityTests.test_the_exact_verified_build_is_accepted) ... ok
+test_real_android_garage_keeps_weiter_and_has_no_start (test_modernization_tour_identity.TourKartLandingStartTests.test_real_android_garage_keeps_weiter_and_has_no_start) ... ok
+test_real_landing_start_is_found_bottom_left (test_modernization_tour_identity.TourKartLandingStartTests.test_real_landing_start_is_found_bottom_left) ... ok
+test_only_this_apps_visible_captions_are_compared (test_modernization_tour_identity.TourLabelTests.test_only_this_apps_visible_captions_are_compared) ... ok
+test_premium_start_binds_the_tour_to_the_real_grand_prix_mode (test_modernization_tour_identity.TourRaceModeTests.test_premium_start_binds_the_tour_to_the_real_grand_prix_mode) ... ok
+test_running_clock_uses_the_launch_expectation (test_modernization_tour_identity.TourRaceModeTests.test_running_clock_uses_the_launch_expectation) ... ok
+test_clipped_one_pixel_kart_button_scrolls_before_press (test_modernization_tour_identity.TourRealKartTouchTests.test_clipped_one_pixel_kart_button_scrolls_before_press) ... ok
+test_too_small_or_invalid_touch_threshold_is_rejected (test_modernization_tour_identity.TourRealKartTouchTests.test_too_small_or_invalid_touch_threshold_is_rejected) ... ok
+test_2017_start_keeps_the_real_race_gates_and_records_native_navigation (test_modernization_tour_identity.TourSpatialMenuTests.test_2017_start_keeps_the_real_race_gates_and_records_native_navigation) ... ok
+test_missing_section_or_return_does_not_fall_back_to_unverified_touches (test_modernization_tour_identity.TourSpatialMenuTests.test_missing_section_or_return_does_not_fall_back_to_unverified_touches) ... ok
+test_mode_garage_and_driver_use_observed_labels_and_return_coordinates (test_modernization_tour_identity.TourSpatialMenuTests.test_mode_garage_and_driver_use_observed_labels_and_return_coordinates) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 9.041s
+
+OK

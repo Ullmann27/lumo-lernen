@@ -1,0 +1,97 @@
+[
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+    "findings": "Jede Gruppe besitzt sichtbar vier Würfel und den Zähler 4; kein Restvorrat bleibt. Die vollständige Erklärung 12 geteilt durch 3 ist 4 ist lesbar. Der Verteilknopf ist deaktiviert; Noch einmal und Zur Aufgabe bleiben frei. Original-Lumo, räumliche Gruppen und die erforderlichen Bedienelemente sind sichtbar; kein zusätzlicher blockierender Material-, Text- oder HUD-Befund in diesem Bild. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: sharing-76980-review.json."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+    "findings": "Jede der drei Gruppen besitzt sichtbar einen Würfel und den Zähler 1. Neun verbleibende Würfel, Status 3/12 und die passende Erklärung der nächsten Verteilrunde sind sichtbar. Original-Lumo, räumliche Gruppen und die erforderlichen Bedienelemente sind sichtbar; kein zusätzlicher blockierender Material-, Text- oder HUD-Befund in diesem Bild. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: sharing-76980-review.json."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+    "findings": "Im oberen 3D-Text 10 Zehner = 100 sind die beiden Balken des Gleichheitszeichens sichtbar getrennt. Das zuvor als Rechteck erscheinende Zeichen ist in diesem aktuellen Bild behoben. Zehn Zehner im ersten Feld und drei weitere Zehner verdeutlichen den Übergang. Die untere Zerlegung 230 = 2 Hunderter + 3 Zehner bleibt vor ihrem dunklen Schild gut lesbar. Oberes Textfeld, untere Beschriftung und benötigte Lernobjekte werden vom Header und Footer nicht verdeckt. Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: learning-76980-review.json."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+    "findings": "Im oberen 3D-Text 10 Zehner = 100 sind die beiden Balken des Gleichheitszeichens sichtbar getrennt. Das zuvor als Rechteck erscheinende Zeichen ist in diesem aktuellen Bild behoben. Zehn Zehner im ersten Feld und drei weitere Zehner verdeutlichen den Übergang. Die untere Zerlegung 230 = 2 Hunderter + 3 Zehner bleibt vor ihrem dunklen Schild gut lesbar. Oberes Textfeld, untere Beschriftung und benötigte Lernobjekte werden vom Header und Footer nicht verdeckt. Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt. Im Hochformat liegt Lumos Fuß nahe am Beginn der oberen Beschriftung; der Text bleibt in der tatsächlich geöffneten Aufnahme lesbar. Kein zusätzlicher blockierender Überdeckungsbefund. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: learning-76980-review.json."
+  },
+  {
+    "module": "jump",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+    "findings": "Lumo hebt sichtbar vom ersten Inselboden ab; beide Stiefel und der Schwanz bleiben als zusammenhängende Originalfigur erkennbar. Die freie Höhe unter dem Körper passt zum positiven vertikalen Geschwindigkeitswert und jump_rise. Fold-ähnliches Fensterformat bei simulierter Dichte 1,0: breite freie Spielmitte, klare getrennte Daumenflächen und vollständige Kopfzeile. Die untere Inselgeometrie kann hinter der Bedienung liegen, die Originalfigur bleibt unverdeckt. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: jump-76980-review.json."
+  },
+  {
+    "module": "jump",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+    "findings": "Lumo steht wieder auf dem Pflaster derselben ersten Insel, mit intakter Silhouette und erkennbarem Bodenschatten. Dies ist idle nach 60 weiteren Physikframes und damit kein Standbild des kurzen land-Aufprallclips. Telefonhochformat: Status bricht auf zwei Zeilen um. Spiele/Pause bleiben getrennt; Bewegungsstick und Sprungfläche sind vollständig sichtbar und überdecken Lumo nicht. Der vordere Inselrand liegt teils unter den unteren Bedienelementen, deren Beschriftung bleibt lesbar. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: jump-76980-review.json."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+    "findings": "Brücke an neuer Position um 90 Grad gedreht; Status zeigt 90 Grad und bestätigt Versetzung. In diesem Zustand kein Auswahlraster mehr sichtbar. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: worlds-build-settlement-76980-review.json."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+    "findings": "Kleine Queransicht: Dialog innerhalb des Bildes mit vollständigem Titel, zweizeiliger Aufgabe, Testaktion und Abbrechen. Hintergrund ist weitgehend durch das Modal abgedeckt; alle für den geöffneten Dialog nötigen Beschriftungen sind lesbar. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: build-touch-76980-review.json."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+    "findings": "Brücke bis Leere Insel vollständig im unteren Scrollausschnitt sichtbar; Starter-Haus am oberen Rand teilweise abgeschnitten. Letzter Vorlageneintrag und Abbrechen haben getrennte sichtbare Flächen; kein abgeschnittener abschließender Dialogbutton. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: build-touch-76980-review.json."
+  },
+  {
+    "module": "settlement",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+    "findings": "Tatsächliches Dialog-Viewportbild 388×390: vollständige Erklärung zu einem ausziehenden Bewohner, zwei verbleibenden Bewohnern, Ressourcenrückgabe und Rückgängig. Haus behalten und Ja, umbauen vollständig sichtbar. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: worlds-build-settlement-76980-review.json."
+  },
+  {
+    "module": "garage",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+    "findings": "Comet ist in der Fahrzeugliste ausgewählt und als blaues räumliches Kart auf der Werkstattplattform sichtbar. Lumo steht erkennbar daneben. Lack, Teile & Effekte, Rückkehr und Rennstart sind lesbar und voneinander getrennt. Listenfortsetzung wird am Scrollrand regulär begrenzt. Im Querformat liegen Auswahl und räumliche Vorschau nebeneinander; kein zusätzlicher blockierender HUD-Überdeckungsbefund. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: worlds-rooms-learning-76980-review.json."
+  },
+  {
+    "module": "garage",
+    "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+    "findings": "Die vollständige Hochformat-Aufnahme zeigt den unteren Listenbereich einschließlich Goldglanz-Auswahl, Felgen, Neonfarben und Weiß-Beschriftung. Der komplette Rücksetztext mit Erstattung von 16 Sternen bleibt innerhalb der sichtbaren Fläche. Zurück, Guthaben, Leistungswerte und Original-Kartfuchs sind weiterhin sichtbar. Kein zusätzlicher blockierender Text-, Material- oder HUD-Befund in diesem tatsächlich geöffneten Bild. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: workshop-touch-76980-review.json."
+  },
+  {
+    "module": "cards",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+    "findings": "Der räumliche Tisch, Nachziehstapel, rote Ablagekarte 5 und Lumo als Gegenüber sind sichtbar. Die eigene Hand zeigt 7 Karten auf der angezeigten Seite 1/1. Zahlen und Farbsymbole der Karten sind unterscheidbar; goldene Rahmen heben passende Karten hervor. Zurück, Pause, Seitensteuerung und Ziehen bleiben sichtbar. Karte legen ist im aufgenommenen Zustand deaktiviert, da noch keine Handkarte gewählt ist. Kein zusätzlicher blockierender Material-, Pflichttext- oder HUD-Befund. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: worlds-rooms-learning-76980-review.json."
+  },
+  {
+    "module": "cards",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+    "findings": "Der räumliche Tisch, Nachziehstapel, rote Ablagekarte 5 und Lumo als Gegenüber sind sichtbar. Die eigene Hand zeigt 3 Karten auf der angezeigten Seite 1/3. Zahlen und Farbsymbole der Karten sind unterscheidbar; goldene Rahmen heben passende Karten hervor. Zurück, Pause, Seitensteuerung und Ziehen bleiben sichtbar. Karte legen ist im aufgenommenen Zustand deaktiviert, da noch keine Handkarte gewählt ist. Kein zusätzlicher blockierender Material-, Pflichttext- oder HUD-Befund. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: worlds-rooms-learning-76980-review.json."
+  },
+  {
+    "module": "rhythm",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+    "findings": "Vier farblich getrennte Spuren, Zielmarken und vier Eingabefelder sind sichtbar. Die zusammenhängende Slide-Geometrie führt zur benachbarten Spur. Die Aufforderung Zur nächsten Spur, Punkte/Combo und Bühnenfortschritt sind lesbar; Pause und Rückkehr bleiben frei. Das Lumo-Motiv auf der Bühne ist sichtbar. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: worlds-rooms-learning-76980-review.json."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+    "findings": "Kleine Queransicht: Kopfzeile bis ungefähr y=164, Werkzeugleiste ab ungefähr y=282. Der verkleinerte Tisch und die sichtbaren Teile liegen dazwischen; die frühere Überdeckung durch den HUD-Bereich ist im Bild nicht erkennbar. Aufgabenhinweis und 1/6-Status lesbar. Werkzeugleiste zeigt sechs Aktionen und horizontalen Scrollbalken. Der Tisch ist in diesem Format deutlich kleiner als bei 1280×720. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: puzzle-treasure-76980-review.json."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+    "findings": "Teil sitzt anders gedreht im oberen Zielbereich, Status 1/6 und Rückmeldung Das passt! Dein Bild wächst. stimmen zusammen. Fortschrittsbalken und Werkzeuge bleiben sichtbar; andere Teile liegen weiter in den seitlichen Ablagen. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: puzzle-treasure-76980-review.json."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+    "findings": "Fuchsfigur, Schloss, Bäume, Blumen und Schatten bilden eine begehbare räumliche Umgebung; Figur und seitliche Touchflächen bleiben getrennt sichtbar. HUD nennt 3/7 gelöste Hinweise und die Wahl Kristallwächter oder Mondgarten; beide Funde werden für das Schloss verlangt. Der Umbruch von Entdeckungen 0/3 ist lesbar. Gefunden-Brückenwappen-Rückmeldung sichtbar; weiße Welt-Rückmeldung liegt direkt auf unterschiedlich hellem Gras, während die zentrale Aufgabenbeschreibung auf dunkler Platte steht. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: puzzle-treasure-76980-review.json."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+    "findings": "Fold-Abschluss tatsächlich neu geöffnet: 7/7 Hinweise und 3/3 Entdeckungen im HUD. Abschluss nennt drei Sterne und 54 Erfahrungspunkte. Alle drei Abschlussaktionen Insel weiter erkunden, Neues Abenteuer und Zur Spielewelt sind vollständig sichtbar, getrennt und lesbar; kein abgeschnittener Abschlussbutton. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: treasure-touch-76980-review.json."
+  }
+]

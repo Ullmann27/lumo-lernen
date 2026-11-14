@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T22:17:03.948544+00:00",
+  "status": "HOST_PREPARATION_ONLY_AWAITING_NEW_NATIVE_COMMIT_AND_RECEIPT",
+  "parent_product_source": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "parent_evidence_commit": "908493ec29551bb6f7d7fa0e8ed23f8468a88bd8",
+  "native_pin_still": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "reviewer": "root",
+  "reviewed_changes": [
+    "Actual SemanticsAction.tap on all ten playable hub portals; disabled/coming-soon actions remain absent and physical InkWell remains",
+    "Additional creative-android job binds current build artifact ID/digest, exact source, native pin and APK/PCK; all old workflow gates remain required",
+    "Publisher additionally requires all four native creative input/save reports and original Jump media hashes, with human video review explicitly pending",
+    "Studio Cards captures and publisher independently bind actual measured view/window insets, public state and original layout files",
+    "Flutter return captures require actual Flutter captions after process/activity/semantics checks instead of trusting filename",
+    "Exactly one mandatory require_layout=True addition retained by explicit AST comparison against the legacy proof function; existing proof checks unchanged"
+  ],
+  "executed_and_reviewed_groups": {
+    "hub_regression": {
+      "before_failed": 4,
+      "after_passed": 7,
+      "actor": "character_animation"
+    },
+    "creative_workflow_and_delivery": {
+      "passed": 16,
+      "shell_snippets": 50,
+      "actionlint": "PASS",
+      "actor": "character_animation"
+    },
+    "cards_capture_and_return": {
+      "passed": 44,
+      "actor": "games_worlds"
+    },
+    "current_and_legacy_publisher": {
+      "passed": 14,
+      "legacy_tests_included": 8,
+      "actor": "games_worlds"
+    },
+    "integrated_studio_verifier": {
+      "passed": 38,
+      "skipped": 0,
+      "actor": "games_worlds",
+      "before_after_source_hashes_equal": 46
+    }
+  },
+  "root_checks": {
+    "all_manifest_bytes_rechecked": true,
+    "workflow_steps_and_current_artifact_env_and_paths_read": true,
+    "new_verifier_source_read": true,
+    "hub_action_code_and_test_read": true,
+    "strict_clickable_not_relaxed": true
+  },
+  "limits": [
+    "No new Android run or APK success yet",
+    "The old Native pin has no new Cards layout observation; this preparation branch is deliberately not an installable accepted release",
+    "New shared Native insets cache and consumers are still being finalized separately",
+    "Full local Python integration groups are running separately and are not inferred from narrow test totals",
+    "No main merge or public APK upload in this checkpoint",
+    "No physical Fold7 FPS/thermal/latency measurements"
+  ]
+}

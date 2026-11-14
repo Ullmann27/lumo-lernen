@@ -1,0 +1,42 @@
+2026-11-13T16:21:16.6587653Z ##[group]Run set -euo pipefail
+2026-11-13T16:21:16.6588000Z [36;1mset -euo pipefail[0m
+2026-11-13T16:21:16.6588292Z [36;1mif [ "$REQUIRE_ALL_TESTS" = true ]; then[0m
+2026-11-13T16:21:16.6588802Z [36;1m  python3 scripts/run_full_flutter_acceptance.py --output .ci-results/full-acceptance[0m
+2026-11-13T16:21:16.6589273Z [36;1melse[0m
+2026-11-13T16:21:16.6589628Z [36;1m  flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2[0m
+2026-11-13T16:21:16.6590052Z [36;1mfi[0m
+2026-11-13T16:21:16.6609727Z shell: /usr/bin/bash -e {0}
+2026-11-13T16:21:16.6609998Z env:
+2026-11-13T16:21:16.6610212Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-13T16:21:16.6610575Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-13T16:21:16.6611088Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-13T16:21:16.6611911Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-13T16:21:16.6612348Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-13T16:21:16.6612634Z   REQUIRE_ALL_TESTS: true
+2026-11-13T16:21:16.6612885Z ##[endgroup]
+2026-11-13T16:21:53.4364824Z Flutter acceptance: 100 tests completed
+2026-11-13T16:22:31.1402693Z Flutter acceptance: 200 tests completed
+2026-11-13T16:22:46.0262501Z Flutter acceptance: 300 tests completed
+2026-11-13T16:23:05.6946725Z Flutter acceptance: 400 tests completed
+2026-11-13T16:23:26.8860477Z Flutter acceptance: 500 tests completed
+2026-11-13T16:23:55.6948364Z Flutter acceptance: 600 tests completed
+2026-11-13T16:25:22.5364222Z Flutter acceptance: 700 tests completed
+2026-11-13T16:25:46.7370764Z Flutter acceptance: 800 tests completed
+2026-11-13T16:26:09.8282549Z Flutter acceptance: 900 tests completed
+2026-11-13T16:26:35.6012542Z Flutter acceptance: 1000 tests completed
+2026-11-13T16:26:45.5879810Z Flutter acceptance: 1100 tests completed
+2026-11-13T16:27:00.1474079Z Flutter acceptance: 1200 tests completed
+2026-11-13T16:27:19.3405960Z Flutter acceptance: 1300 tests completed
+2026-11-13T16:27:50.7539303Z Flutter acceptance: 1400 tests completed
+2026-11-13T16:28:05.7924430Z Flutter acceptance: 1500 tests completed
+2026-11-13T16:28:31.3892879Z Flutter acceptance: 1600 tests completed
+2026-11-13T16:28:46.1792155Z Flutter acceptance: 1700 tests completed
+2026-11-13T16:29:03.4818543Z Flutter acceptance: 1800 tests completed
+2026-11-13T16:29:27.3014685Z Flutter acceptance: 1900 tests completed
+2026-11-13T16:30:13.7492296Z Flutter acceptance: 2000 tests completed
+2026-11-13T16:30:41.7725727Z Flutter acceptance: 2100 tests completed
+2026-11-13T16:30:55.4618804Z Flutter acceptance: 2200 tests completed
+2026-11-13T16:31:10.8077869Z Flutter acceptance: 2300 tests completed
+2026-11-13T16:31:39.0830450Z Flutter acceptance: 2400 tests completed
+2026-11-13T16:31:53.8554649Z Flutter acceptance: 2500 tests completed
+2026-11-13T16:31:59.9526805Z {"status": "PASS", "passed": 2510, "failed": [], "skipped": [], "capture_error_files": [], "flutter_exit_code": 0, "runner_completed_successfully": true, "runner_errors": [], "scope": ["complete Flutter suite; capture outputs recorded below"], "capture_png_counts": {"LUMO_TUTORING_CAPTURE_DIR": {"directory": "tutoring", "pngs": 6}, "LUMO_RIG_STRESS": {"directory": "rig-stress", "pngs": 27}, "LUMO_CARDS_OPPONENT_CAPTURE": {"directory": "cards-opponents", "pngs": 4}, "LUMO_STREAM_E_CAPTURE": {"directory": "cards-memory", "pngs": 8}, "LUMO_NAVIGATION_CAPTURES": {"directory": "navigation", "pngs": 26}, "LUMO_GUIDED_CAPTURE_DIR": {"directory": "guided-learning", "pngs": 170}, "LUMO_VISUAL_CAPTURE_DIR": {"directory": "reasoning", "pngs": 15}, "LUMO_TOUR_DIR": {"directory": "tour", "pngs": 62}, "LUMO_FLUTTER_GAMES_CAPTURE": {"directory": "games", "pngs": 16}, "LUMO_LEARNING_CAPTURE_DIR": {"directory": "learning-adventure", "pngs": 80}, "LUMO_COMPANION_CAPTURE_DIR": {"directory": "companion", "pngs": 6}, "LUMO_SPATIAL_CAPTURES": {"directory": "reading", "pngs": 12}, "LUMO_CAPTURE_DIR": {"directory": "modernization", "pngs": 42}, "LUMO_CARD_FACE_EXPORT_DIR": {"directory": "card-face-exports", "pngs": 56}, "LUMO_NEXTGEN_READING_CAPTURES": {"directory": "nextgen-reading", "pngs": 6}, "LUMO_READING_CAPTURES": {"directory": "reading-passages", "pngs": 3}, "LUMO_ASSISTED_LEARNING_CAPTURES": {"directory": "assisted-learning", "pngs": 2}, "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {"directory": "native-profiles", "pngs": 4}}, "capture_file_outputs": {"LUMO_CARDS_CUP_CAPTURE": {"path": "cards-cup/trophy.png", "created": true}}, "rendered_png_count": 546}

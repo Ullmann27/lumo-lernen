@@ -1,0 +1,23 @@
+{
+  "scope": "Original Android frames; stale API37 negative and actually returned API35 positive; no new Android run",
+  "files": [
+    {
+      "file": "android37_stale_native.png",
+      "original": "qa/studio-final-31883868/api37/selected-originals/nextgen/05_learning_same_flutter_lesson.png",
+      "artifact": 14077079013,
+      "run": 43496928833,
+      "source": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+      "bytes": 582222,
+      "sha256": "0778858862aa6f56eab57f03b4574ffb7a9f65178d30133ad64498659bf1dd1e"
+    },
+    {
+      "file": "android35_current_flutter.png",
+      "original": "qa/studio-final-31883868/api35/selected-originals/nextgen/05_learning_same_flutter_lesson.png",
+      "artifact": 14076728771,
+      "run": 43496928833,
+      "source": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+      "bytes": 1509079,
+      "sha256": "d59786fbcbd8f4219f46c4fc0d52ed5c93c147d0c0eaa78a1e3b82cc7f9e8438"
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "status": "PENDING_FRESH_ARTIFACT_REVIEW",
+  "observed_utc": "2026-11-13T18:13:05.507238+00:00",
+  "native_source": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "expected_tree": "ffd943c83079c5957514934ad7077f32e743fe68",
+  "workflow_run": 43479909943,
+  "source_files": [
+    {
+      "path": "tools/validate_studio.sh",
+      "sha256": "236a4ccb73e19e5a2d8ec6fdfb9f56c223aef283dc0d2cb7a37a5570a19ffb31",
+      "git_blob_sha1": "c7a37ed8986ac349b39b63f786fe85b3813b74ba",
+      "remote_796b_bytes_equal_validated_local_package": true
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "sha256": "fe0426c3e895d10ecfb4b931d8883625baeac6d387f211f2d2eb700d6c33872e",
+      "git_blob_sha1": "49164a4b7cde1605ee80cd5ac0140a6ac55aa98d",
+      "remote_796b_bytes_equal_validated_local_package": true
+    }
+  ],
+  "selection_reference": {
+    "path": "config/studio-2019-visual-review.json",
+    "sha256": "ab2418b64c8f0b23aa512236fad9d57c8ba24f90799382915879457eeb6dd30b",
+    "old_native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "note": "Used only to identify exact selection paths. No old image or acceptance result is carried forward."
+  },
+  "planned_images": [
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "previous_dimensions": [
+        690,
+        829
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "previous_dimensions": [
+        412,
+        915
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "previous_dimensions": [
+        1280,
+        720
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "previous_dimensions": [
+        640,
+        360
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "previous_dimensions": [
+        1080,
+        2400
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "previous_dimensions": [
+        388,
+        390
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "previous_dimensions": [
+        1280,
+        720
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "previous_dimensions": [
+        1080,
+        2400
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "previous_dimensions": [
+        1280,
+        720
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "expected_dimensions": [
+        960,
+        540
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "expected_dimensions": [
+        960,
+        540
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "expected_dimensions": [
+        960,
+        540
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "expected_dimensions": [
+        640,
+        360
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "expected_dimensions": [
+        640,
+        360
+      ],
+      "reviewed_from_new_artifact": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "expected_dimensions": [
+        640,
+        360
+      ],
+      "reviewed_from_new_artifact": false
+    }
+  ],
+  "images_reviewed_from_new_source": 0,
+  "observed_job_states": [
+    {
+      "id": 132073398621,
+      "name": "studio",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 132073399076,
+      "name": "touch-treasure",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 132073399090,
+      "name": "gameplay",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 132073399152,
+      "name": "learning-preview",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 132073399192,
+      "name": "touch-build",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 132073399244,
+      "name": "touch-workshop",
+      "status": "in_progress",
+      "conclusion": null
+    }
+  ],
+  "artifact_status": "Not downloaded or approved by this reviewer yet. Waiting for current source-bound original artifacts.",
+  "scope": "Six new Puzzle menu captures plus the nine existing selection images for Jump, Build, Settlement, Garage and Rhythm. No global release receipt."
+}

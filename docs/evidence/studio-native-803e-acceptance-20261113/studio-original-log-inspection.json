@@ -1,0 +1,227 @@
+{
+  "source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run_id": 43524051371,
+  "artifact_id": 14084682972,
+  "status": "READ_ONLY_ORIGINAL_LOG_INSPECTION",
+  "files": [
+    {
+      "path": "selected-originals/studio-evidence/cards_safe_area_android_contract-headless.log",
+      "bytes": 553,
+      "sha256": "37c5c2a79205c1c00a28388a7ddf4a03b1df30827ce7f6fd258e1d681a408e04",
+      "markers": [
+        {
+          "line": 10,
+          "text": "CARDS_ANDROID_INSETS_PASS checks=20 failures=0 scope=public_api_boundary_not_device"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 0
+    },
+    {
+      "path": "selected-originals/studio-evidence/cards_safe_area_regression-headless.log",
+      "bytes": 532,
+      "sha256": "d51605133e85b5aec07b9e40b396bc7a85d6e23a8b6aa24eccfc3141442e06f0",
+      "markers": [
+        {
+          "line": 11,
+          "text": "CARDS_SAFE_AREA_PASS checks=662 failures=0 profiles=5 images=0"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 0
+    },
+    {
+      "path": "selected-originals/studio-evidence/cards_safe_area_regression-rendered.log",
+      "bytes": 1179,
+      "sha256": "d9a5ce0dffcefe9fe789581d6dbbfdc8b8d2aed5b315f6473fe389a37c4846e7",
+      "markers": [
+        {
+          "line": 18,
+          "text": "CARDS_SAFE_AREA_PASS checks=671 failures=0 profiles=5 images=3"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 3
+    },
+    {
+      "path": "selected-originals/studio-evidence/import.log",
+      "bytes": 161450,
+      "sha256": "a50733026b2d6f2120a76f4393d422f35d620a14fe7aea408753b1860ea230b3",
+      "markers": [],
+      "error_lines": [],
+      "warning_count": 0
+    },
+    {
+      "path": "selected-originals/studio-evidence/learning_sharing_capture-rendered.log",
+      "bytes": 3506,
+      "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e",
+      "markers": [
+        {
+          "line": 48,
+          "text": "[LearningSharingCapture] PASS captures=6"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 3
+    },
+    {
+      "path": "selected-originals/studio-evidence/learning_sharing_regression-headless.log",
+      "bytes": 1482,
+      "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+      "markers": [
+        {
+          "line": 23,
+          "text": "[LearningSharing] PASS checks=1811"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 0
+    },
+    {
+      "path": "selected-originals/studio-evidence/learning_studio_regression-headless.log",
+      "bytes": 1801,
+      "sha256": "b7423794d3eb97f8034cadb641a9d3437e6908817585c029bcbf713ca7290f3b",
+      "markers": [
+        {
+          "line": 28,
+          "text": "[LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 0
+    },
+    {
+      "path": "selected-originals/studio-evidence/lumo_studio_motion_capture-rendered.log",
+      "bytes": 1202,
+      "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669",
+      "markers": [
+        {
+          "line": 18,
+          "text": "[LumoStudioCapture] PASS 8 real renderer frames; frozen baseline and current IK clips"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 3
+    },
+    {
+      "path": "selected-originals/studio-evidence/lumo_studio_motion_regression-headless.log",
+      "bytes": 603,
+      "sha256": "4c99d9f8e4b55249ab04b441b347ca41a38c351c2ecbadc14ba9a2c97cd4ebd9",
+      "markers": [
+        {
+          "line": 11,
+          "text": "[LumoStudioMotion] PASS checks=1046 Blender/Godot endpoint_error_m=0.000000733 segment_error_m=0.000000179; no physical Android claim"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 0
+    },
+    {
+      "path": "selected-originals/studio-evidence/mobile_safe_area_regression-headless.log",
+      "bytes": 8426,
+      "sha256": "926aede3fffce5909dc5476c0a1bca672752fc2ba4e11acab3ea6b0599900a62",
+      "markers": [
+        {
+          "line": 44,
+          "text": "MOBILE_SAFE_AREA_PASS checks=112 failures=0 controls=15 images=0 scope=platform_boundary_fixture"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 0
+    },
+    {
+      "path": "selected-originals/studio-evidence/mobile_safe_area_regression-rendered.log",
+      "bytes": 9354,
+      "sha256": "f67e5c59344ed4ed7039a8dcfb85848c85187409d2cb27bcc8194b07f9f84587",
+      "markers": [
+        {
+          "line": 52,
+          "text": "MOBILE_SAFE_AREA_PASS checks=124 failures=0 controls=15 images=4 scope=platform_boundary_fixture"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 3
+    },
+    {
+      "path": "selected-originals/studio-evidence/puzzle_menu_lifecycle_regression-headless.log",
+      "bytes": 3084,
+      "sha256": "661f94c08a44790f949ab961e19f751b58d12bd0673b7b8925da0bac91232a98",
+      "markers": [
+        {
+          "line": 69,
+          "text": "[PuzzleMenuLifecycle] PASS 720 behavioral checks; strict native log gate still required"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 0
+    },
+    {
+      "path": "selected-originals/studio-evidence/puzzle_menu_lifecycle_regression-rendered.log",
+      "bytes": 3733,
+      "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c",
+      "markers": [
+        {
+          "line": 76,
+          "text": "[PuzzleMenuLifecycle] PASS 732 behavioral checks; strict native log gate still required"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 3
+    },
+    {
+      "path": "selected-originals/studio-evidence/puzzle_rotation_regression-headless.log",
+      "bytes": 571,
+      "sha256": "eb6e0efe8ad9f642c5d6cb53e35b175a2679ff50441ddd45859e531d80fd81d9",
+      "markers": [
+        {
+          "line": 11,
+          "text": "[PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 0
+    },
+    {
+      "path": "selected-originals/studio-evidence/puzzle_rotation_regression-rendered.log",
+      "bytes": 1218,
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+      "markers": [
+        {
+          "line": 18,
+          "text": "[PuzzleRotation] PASS 4565 checks: orientation, legacy saves, real picking, touch rotation and resume"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 3
+    },
+    {
+      "path": "selected-originals/studio-evidence/treasure_exploration_regression-headless.log",
+      "bytes": 589,
+      "sha256": "02d20b766c253672fea75aa6cc8744460cb1134dd54beeb4d73fa6b743825b76",
+      "markers": [
+        {
+          "line": 11,
+          "text": "[TreasureExploration] PASS 87 checks: branching, actual location questions, movement, legacy saves and original rewards"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 0
+    },
+    {
+      "path": "selected-originals/studio-evidence/treasure_exploration_regression-rendered.log",
+      "bytes": 1236,
+      "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a",
+      "markers": [
+        {
+          "line": 18,
+          "text": "[TreasureExploration] PASS 90 checks: branching, actual location questions, movement, legacy saves and original rewards"
+        }
+      ],
+      "error_lines": [],
+      "warning_count": 3
+    }
+  ],
+  "files_with_error_lines": 0,
+  "scope": "Existing complete Studio artifact logs only; no new execution or Android performance claim.",
+  "fixture_scope_note": "The generic Mobile log wording actual Android View insets is emitted by the production observer while the probe supplies an explicit platform-boundary fixture. These are Linux renderer/Java-boundary tests, not actual Android-device observations."
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "path": "mesa-renderer.txt",
+    "bytes": 1724,
+    "sha256": "d19c255303d9015189a1b9f40d827fce973eee7e59265a450924b67e147eba73",
+    "extracted_copy_byte_identical": true
+  },
+  {
+    "path": "tesseract-installed-languages.txt",
+    "bytes": 87,
+    "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850",
+    "extracted_copy_byte_identical": true
+  },
+  {
+    "path": "tested-apk-sha256.txt",
+    "bytes": 108,
+    "sha256": "3bc93abf3d66d2a0bf52f63b0d16fc399f9a8d70b757c5f49dd5365da9a6dcfa",
+    "extracted_copy_byte_identical": true
+  },
+  {
+    "path": "xvfb.log",
+    "bytes": 2348,
+    "sha256": "b987a262609a3720f450ab6815ed90b2069dd47b7b012959ca19c325aebf5d55",
+    "extracted_copy_byte_identical": true
+  }
+]

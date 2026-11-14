@@ -1,0 +1,503 @@
+{
+  "kind": "fresh_treasure_touch_renderer_review",
+  "reviewed_at_utc": "2026-11-13T15:36:32.027123+00:00",
+  "status": "all_fourteen_images_reviewed_no_additional_proven_blocker",
+  "scope": "Aktuelle Schatzsuche-Dichtebilder und zugehörige Touch-/Scroll-/Speicherprüfungen; keine Gesamtfreigabe oder Android-Receipt.",
+  "source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "source_tree": "8df22766bd0dbae31aacaa26c0228811c027686e",
+  "source_dirty_before_empty": true,
+  "source_dirty_after_empty": true,
+  "artifact": {
+    "github_artifact_id": 14053085963,
+    "github_run_id": 43449903088,
+    "zip_file": "studio-touch-treasure-76980a94.zip",
+    "zip_bytes": 33140359,
+    "zip_sha256": "922ca89312027ee4d640e9a00f246dc45fe4416fe2838ab750e6f3ff29cab2af",
+    "png_count": 14,
+    "metadata_ids_supplied_by_coordinator": true,
+    "zip_and_entry_bytes_independently_verified": true
+  },
+  "verified_files": [
+    {
+      "file": "treasure/source-sha.txt",
+      "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+      "bytes": 41,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "treasure/source-tree.txt",
+      "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+      "bytes": 41,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "treasure/source-dirty.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "treasure/source-dirty-after.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "treasure/engine.txt",
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "bytes": 32,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "treasure/results.tsv",
+      "sha256": "2899998b1e874e13568468e16ba6a7aa5593bb4342abf28f2746a915a2d373c0",
+      "bytes": 102,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "treasure/renderer-images.json",
+      "sha256": "7900ac13b508c6fb171174db6a5ddf3012c320b9c5e4612c52bf3abdcb4b8f3e",
+      "bytes": 3474,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "treasure/treasure_density_regression-headless.log",
+      "sha256": "060640c2d2ca42313f65019bd3fb26b39c83e63de72aec445d16b7a22d704f7c",
+      "bytes": 893,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "treasure/treasure_density_regression-rendered.log",
+      "sha256": "f80f934417f5e54e5400426cc4b3f8be71226927a7697a3ff0f4c056156b05d0",
+      "bytes": 1543,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-density-report.json",
+      "sha256": "91ea3af2b942f8a780841fdd7dd2b6a50608fc9832bfad01991cc958af808a25",
+      "bytes": 39978,
+      "zip_entry_bytes_equal": true
+    }
+  ],
+  "images": [
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-2176x1812-play.png",
+      "sha256": "dd8cba17d7e4f63b8a8c321153059cdd6ff983c5e239e1e6a97dcb0d6feda3bc",
+      "bytes": 4358240,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.25,
+        "filename": "treasure-2176x1812-play.png",
+        "height": 1812,
+        "renderer": "gl_compatibility",
+        "width": 2176
+      },
+      "observations": [
+        "Fold-Format: Spielwelt und Fuchsfigur sichtbar. Status 0/7 Hinweise, 0/3 Entdeckungen und die Baum-Aufgabe sind auf dunkler Platte lesbar.",
+        "Zurück, Rucksack, Pause, Joystick, Sprung und Ansehen sind getrennt sichtbar. Weiße Welt-Rückmeldung liegt direkt auf der Umgebung und hat wechselnden Hintergrundkontrast."
+      ]
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "sha256": "e14559539b807df855d18061d8e312ab69739d2e815f2f7948130cd2b8619fd7",
+      "bytes": 4414005,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.25,
+        "filename": "treasure-2176x1812-complete.png",
+        "height": 1812,
+        "renderer": "gl_compatibility",
+        "width": 2176
+      },
+      "observations": [
+        "Fold-Abschluss tatsächlich neu geöffnet: 7/7 Hinweise und 3/3 Entdeckungen im HUD. Abschluss nennt drei Sterne und 54 Erfahrungspunkte.",
+        "Alle drei Abschlussaktionen Insel weiter erkunden, Neues Abenteuer und Zur Spielewelt sind vollständig sichtbar, getrennt und lesbar; kein abgeschnittener Abschlussbutton."
+      ]
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-2400x1080-play.png",
+      "sha256": "6087115f8d0682bc47d41c745bd2260d5fe6bfd13c8a83a82643a01ffcd949fa",
+      "bytes": 2919487,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "treasure-2400x1080-play.png",
+        "height": 1080,
+        "renderer": "gl_compatibility",
+        "width": 2400
+      },
+      "observations": [
+        "Große Queransicht: Aufgabe vollständig auf dunkler Platte, Fuchsfigur zentral sichtbar. Joystick, Sprung und Ansehen liegen getrennt.",
+        "Weiße Welt-Rückmeldung steht vor heller Architektur und ist dort schwächer kontrastiert als die eigentliche Aufgabenplatte; kein neuer Überdeckungsblocker für die Bedienflächen erkannt."
+      ]
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-2400x1080-question.png",
+      "sha256": "6680585fa68f6526c13f0a5d89e4cadcb1072fdcd55d9f58347579e71495541e",
+      "bytes": 1878672,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "treasure-2400x1080-question.png",
+        "height": 1080,
+        "renderer": "gl_compatibility",
+        "width": 2400
+      },
+      "observations": [
+        "Fragetitel Der alte Sternenbaum, Wachstumsfrage, drei Antworten und Weiter erkunden vollständig lesbar im Modal.",
+        "Dialog überdeckt erwartungsgemäß Spielwelt/HUD im Hintergrund; keine Überdeckung der Antwortbeschriftungen durch andere Bedienflächen."
+      ]
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-2400x1080-complete.png",
+      "sha256": "9308d10a611c8c39ac495a35d5cd892cc7d93b7ca073a4dcff182a62e3b30c8f",
+      "bytes": 2060808,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "treasure-2400x1080-complete.png",
+        "height": 1080,
+        "renderer": "gl_compatibility",
+        "width": 2400
+      },
+      "observations": [
+        "Abschlusstext und Belohnung drei Sterne/54 Erfahrungspunkte sichtbar. Drei Abschlussaktionen vollständig im Dialog.",
+        "Hintergrundtoast und HUD scheinen schwach durch die dunkle Platte; Haupttext bleibt lesbar."
+      ]
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-2400x1080-inventory.png",
+      "sha256": "1412b2985f121b7a3348770de18306a782f114d4be9d59c41133430b8b92f6d2",
+      "bytes": 2201211,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "treasure-2400x1080-inventory.png",
+        "height": 1080,
+        "renderer": "gl_compatibility",
+        "width": 2400
+      },
+      "observations": [
+        "Sieben gesammelte Gegenstände und drei Entdeckungen stehen lesbar in der Rucksackliste.",
+        "Weiter erkunden ist am unteren Rand dieses Anfangsausschnitts nur teilweise sichtbar. Der sichtbare Scrollbalken und der tatsächliche Scroll-/Rückkehrtest sind daher für die Erreichbarkeit wesentlich; keine gleichzeitige volle Sichtbarkeit behauptet."
+      ]
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-1080x2400-play.png",
+      "sha256": "181bde6524ee18f5aa2588a28191a744b061936324840de634e49269dc271233",
+      "bytes": 2745340,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "treasure-1080x2400-play.png",
+        "height": 2400,
+        "renderer": "gl_compatibility",
+        "width": 1080
+      },
+      "observations": [
+        "Porträt: Spieltitel wird mit Ellipse verkürzt; Navigation und Rucksack bleiben lesbar. Aufgabe, Figur und Weg bleiben sichtbar.",
+        "Joystick links sowie Sprung/Ansehen rechts sind getrennt, vollständig im Bild."
+      ]
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-1080x2400-question.png",
+      "sha256": "317660e464819bbcef7683836a01824afab3a70f129757e5f34237fc192be61c",
+      "bytes": 1831875,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "treasure-1080x2400-question.png",
+        "height": 2400,
+        "renderer": "gl_compatibility",
+        "width": 1080
+      },
+      "observations": [
+        "Porträtfrage einschließlich drei Antworten und Weiter erkunden vollständig sichtbar; keine abgeschnittene Antwortzeile.",
+        "Die dahinterliegende Figuren-/Weltansicht wird vom Modal überdeckt; der Aufgaben- und Antworttext bleibt gut erkennbar."
+      ]
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-1080x2400-complete.png",
+      "sha256": "36b5c831f38f8c45066d0cc5e1f02b6bfb72c3675299d815e533c27029426af2",
+      "bytes": 2271114,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "treasure-1080x2400-complete.png",
+        "height": 2400,
+        "renderer": "gl_compatibility",
+        "width": 1080
+      },
+      "observations": [
+        "Abschlussüberschrift und erläuternder Text brechen innerhalb des Dialogs um. Drei Sterne/54 Erfahrungspunkte und alle drei Abschlussaktionen vollständig sichtbar.",
+        "Kein Überlauf der langen Überschrift außerhalb des Modals erkannt."
+      ]
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-1080x2400-inventory.png",
+      "sha256": "02ac50e2eee7c8eb0d1f677ac332f37838d90204ca4238232fe1f7afb973a29f",
+      "bytes": 2145226,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "treasure-1080x2400-inventory.png",
+        "height": 2400,
+        "renderer": "gl_compatibility",
+        "width": 1080
+      },
+      "observations": [
+        "Rucksacktitel, alle sieben Gegenstände, drei Entdeckungen und Weiter erkunden vollständig lesbar.",
+        "Hintergrundtoast steht teilweise hinter dem unteren Modalrand; die eigentliche Rucksackaktion bleibt frei."
+      ]
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-640x320-play.png",
+      "sha256": "fb7ecd03e208c9c2be156ce497d125df14ed2d08dc932c110e57575a3c6b534c",
+      "bytes": 301853,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 1.0,
+        "filename": "treasure-640x320-play.png",
+        "height": 320,
+        "renderer": "gl_compatibility",
+        "width": 640
+      },
+      "observations": [
+        "Kleine Ansicht: Status und Baum-Aufgabe sind lesbar; der große Hinweisbereich reduziert den freien Weltblick deutlich.",
+        "Die obere Zierkante des Joysticks berührt/überlappt den unteren Hinweisplattenrand. Stickzentrum sowie Sprung- und Ansehen-Fläche bleiben sichtbar; die aktuellen echten Touchprüfungen bestehen.",
+        "Weiße Welt-Rückmeldung hat auf heller Architektur wechselnden Kontrast. Kein zusätzlicher belegter Eingabeblocker aus diesem Bild abgeleitet."
+      ]
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-640x320-question.png",
+      "sha256": "324c542d3c4e4136e87111ea47c83382efc8a6602b9562847df9258f0181961f",
+      "bytes": 142264,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 1.0,
+        "filename": "treasure-640x320-question.png",
+        "height": 320,
+        "renderer": "gl_compatibility",
+        "width": 640
+      },
+      "observations": [
+        "Fragetitel, Frage und drei Antworttexte sichtbar. Die Aktion Weiter erkunden liegt unterhalb des aktuellen Scrollausschnitts.",
+        "Vertikaler Scrollbalken vorhanden. Der Test führt zusätzlich einen wirklichen Wischer beginnend auf einer Antwort aus und prüft, dass dadurch keine Antwort ausgelöst wird."
+      ]
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-640x320-complete.png",
+      "sha256": "eec37d8c0310cdacb5200de544ce7d3226ee030ab7f87f18ac18c81c52ed7914",
+      "bytes": 155968,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 1.0,
+        "filename": "treasure-640x320-complete.png",
+        "height": 320,
+        "renderer": "gl_compatibility",
+        "width": 640
+      },
+      "observations": [
+        "Abschlusstext und drei Sterne/54 Erfahrungspunkte lesbar. Erste zwei Aktionen vollständig sichtbar; die dritte Aktion ist am unteren Scrollrand angeschnitten.",
+        "Keine vollständige Sichtbarkeit sämtlicher Aktionen zugleich behauptet. Ihre vollständige Exposition und Größe werden nach dem Scrollen im aktuellen Test geprüft."
+      ]
+    },
+    {
+      "file": "treasure/captures/treasure_density_regression/treasure-640x320-inventory.png",
+      "sha256": "4056559b0f779e4edb8377b13a972a8fea25806d87513dd67ab0ed5634fe1133",
+      "bytes": 208027,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 1.0,
+        "filename": "treasure-640x320-inventory.png",
+        "height": 320,
+        "renderer": "gl_compatibility",
+        "width": 640
+      },
+      "observations": [
+        "Rucksacktitel und alle sieben Gegenstandsnamen sichtbar. Entdeckungsdetails und Weiter erkunden liegen weiter unten im Scrollinhalt.",
+        "Die Erreichbarkeit der Rückkehraktion folgt hier aus der aktuellen Scroll-/Touchprüfung, nicht aus diesem Anfangsausschnitt allein."
+      ]
+    }
+  ],
+  "current_logs": {
+    "treasure/treasure_density_regression-headless.log": {
+      "checks": 1085,
+      "captures": 0,
+      "passed": true,
+      "errors_observed": false,
+      "sha256": "060640c2d2ca42313f65019bd3fb26b39c83e63de72aec445d16b7a22d704f7c"
+    },
+    "treasure/treasure_density_regression-rendered.log": {
+      "checks": 1114,
+      "captures": 14,
+      "passed": true,
+      "errors_observed": false,
+      "sha256": "f80f934417f5e54e5400426cc4b3f8be71226927a7697a3ff0f4c056156b05d0"
+    }
+  },
+  "measurements": {
+    "file": "treasure/captures/treasure_density_regression/treasure-density-report.json",
+    "sha256": "91ea3af2b942f8a780841fdd7dd2b6a50608fc9832bfad01991cc958af808a25",
+    "target_records": 139,
+    "not_a_unique_control_count": true,
+    "minimum_width_dp": 52.0,
+    "minimum_height_dp": 48.0,
+    "records_below_48dp": 0,
+    "by_surface": [
+      {
+        "surface_pixels": [
+          412,
+          915
+        ],
+        "fixture_density": 1.0,
+        "target_records": 22,
+        "min_width_dp": 52.0,
+        "min_height_dp": 48.0,
+        "has_reviewed_pngs": false
+      },
+      {
+        "surface_pixels": [
+          915,
+          412
+        ],
+        "fixture_density": 1.0,
+        "target_records": 1,
+        "min_width_dp": 528.0,
+        "min_height_dp": 48.0,
+        "has_reviewed_pngs": false
+      },
+      {
+        "surface_pixels": [
+          690,
+          829
+        ],
+        "fixture_density": 1.0,
+        "target_records": 22,
+        "min_width_dp": 52.0,
+        "min_height_dp": 48.0,
+        "has_reviewed_pngs": false
+      },
+      {
+        "surface_pixels": [
+          829,
+          690
+        ],
+        "fixture_density": 1.0,
+        "target_records": 1,
+        "min_width_dp": 536.0,
+        "min_height_dp": 48.0,
+        "has_reviewed_pngs": false
+      },
+      {
+        "surface_pixels": [
+          2176,
+          1812
+        ],
+        "fixture_density": 2.25,
+        "target_records": 22,
+        "min_width_dp": 52.005973815918,
+        "min_height_dp": 48.0198783874512,
+        "has_reviewed_pngs": true
+      },
+      {
+        "surface_pixels": [
+          1812,
+          2176
+        ],
+        "fixture_density": 2.25,
+        "target_records": 1,
+        "min_width_dp": 536.221923828125,
+        "min_height_dp": 48.0055122375488,
+        "has_reviewed_pngs": false
+      },
+      {
+        "surface_pixels": [
+          2400,
+          1080
+        ],
+        "fixture_density": 2.625,
+        "target_records": 23,
+        "min_width_dp": 52.0162582397461,
+        "min_height_dp": 48.0500564575195,
+        "has_reviewed_pngs": true
+      },
+      {
+        "surface_pixels": [
+          1080,
+          2400
+        ],
+        "fixture_density": 2.625,
+        "target_records": 23,
+        "min_width_dp": 52.0542221069336,
+        "min_height_dp": 48.015007019043,
+        "has_reviewed_pngs": true
+      },
+      {
+        "surface_pixels": [
+          640,
+          320
+        ],
+        "fixture_density": 1.0,
+        "target_records": 23,
+        "min_width_dp": 52.0,
+        "min_height_dp": 48.0,
+        "has_reviewed_pngs": true
+      },
+      {
+        "surface_pixels": [
+          320,
+          640
+        ],
+        "fixture_density": 1.0,
+        "target_records": 1,
+        "min_width_dp": 268.0,
+        "min_height_dp": 48.0,
+        "has_reviewed_pngs": false
+      }
+    ],
+    "method": "Actual get_global_transform_with_canvas rectangle, root physical/visible viewport scale, then divide by explicit density; controls must be inside safe UI and, when measured in a dialog, entirely inside the scroll viewport."
+  },
+  "interaction_scope": [
+    "Root-dispatched InputEventScreenTouch/InputEventScreenDrag for jump, stick/outside-release, pause/resume, first-question opening, wrong-answer retry, correct answer, final answer, completion continuation and inventory return.",
+    "Edge taps occur 22dp from button center. Repeated layout must not compound density; stick, interaction and jump rectangles are compared for overlap.",
+    "Visibility helper uses ensure_control_visible and integral offset correction to measure each fully exposed action. Separately, a genuine drag on an actual answer button must move overflowing content without changing model progress; inventory also receives a real drag when overflowing.",
+    "Portrait/landscape rotation with open inventory preserves collected progress; original version-1 save/restore is checked.",
+    "Intermediate clues and three discoveries are populated through existing model rules for the long-inventory fixture; the recording does not claim every route was navigated manually. First and last questions use real production touch dispatch.",
+    "Exactly one reward event with original result identity, three stars and model XP is checked."
+  ],
+  "completion_reward": {
+    "visible_stars": 3,
+    "visible_xp": 54,
+    "solved_clues": 7,
+    "discoveries": 3,
+    "formula_from_existing_state": "40 + streak_xp(7 => 8) + discoveries(3 × 2) = 54",
+    "different_from_exploration_only_artifact_xp": 48
+  },
+  "read_source_hashes": {
+    "scripts/tests/treasure_density_regression.gd": "b3be76fa9caa6da23490fb2de684397f21afac7c21b02e65a3a137c16d655f70",
+    "scripts/creative/treasure_state.gd": "8a11898f66d1db922158d3169dd9ddcd7985bb7e3639c64fbfc60e3980064288"
+  },
+  "limits": [
+    "Desktop Godot/X11/Mesa-llvmpipe mit expliziten Dichte-Fixtures. Kein physisches Android/Fold7-Gerät und keine FPS-/Temperatur-/Latenzmessung.",
+    "139 Targeteinträge sind Messaufzeichnungen einschließlich Wiederholungen und gedrehter Oberflächen; keine 139 unterschiedlichen Buttons.",
+    "Kleine und niedrige Dialogansichten zeigen nicht sämtliche Aktionen gleichzeitig. Weiter erkunden beziehungsweise die letzte Abschlussaktion können im Anfangsausschnitt abgeschnitten sein; die aktuellen Scrollprüfungen sind separat zugeordnet.",
+    "Die sichtbare Überlappung des dekorativen oberen Joystickrings mit der Hinweisplatte bei 640×320 und der wechselnde Kontrast weißer Welt-Toasts werden ausdrücklich dokumentiert. Die ausführbaren Eingabegates sind bestanden.",
+    "Der getrennte Gameplay-Audio-Teardown-Blocker wird durch diese Modulprüfung nicht aufgehoben."
+  ],
+  "product_files_changed": false
+}

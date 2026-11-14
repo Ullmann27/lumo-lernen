@@ -1,0 +1,38 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_isolated-modal-exit-11-true_1.json
+[Perf] quality_profile:medium
+[ModalExit] {"embed":true,"focused":true,"label":"before queue_free","mouse":"(1200.0, 1220.0)","position":"(80, 60)","screen_transform":"[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]","subwindows":1,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (640.0, 320.0)]"}
+[ModalExit] {"embed":true,"focused":true,"label":"modal tree_exiting","mouse":"(1200.0, 1220.0)","position":"(80, 60)","screen_transform":"[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]","subwindows":1,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (640.0, 320.0)]"}
+[ModalExit] {"embed":true,"focused":true,"label":"game tree_exiting","mouse":"(4800.0, 4880.0)","position":"(80, 60)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]"}
+[ModalExit] {"embed":true,"focused":true,"label":"modal tree_exited","mouse":"(4800.0, 4880.0)","position":"(80, 60)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]"}
+[ModalExit] {"embed":true,"focused":true,"label":"game tree_exited","mouse":"(4800.0, 4880.0)","position":"(80, 60)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]"}
+[ModalExit] {"embed":true,"focused":true,"label":"after scene free original=true","mouse":"(4800.0, 4880.0)","position":"(80, 60)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]"}
+[ModalExit] before desktop pointer precondition pressed=true
+[ModalExit] {"embed":true,"focused":true,"label":"desktop pointer center before actual touch","mouse":"(1280.0, 640.0)","position":"(80, 60)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]"}
+[ModalExit] after desktop pointer precondition pressed=true
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_isolated-modal-exit-11-false_1.json
+[ModalExit] {"embed":true,"focused":true,"label":"before queue_free","mouse":"(320.0, 160.0)","position":"(80, 60)","screen_transform":"[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]","subwindows":1,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (640.0, 320.0)]"}
+[ModalExit] {"embed":true,"focused":true,"label":"modal tree_exiting","mouse":"(320.0, 160.0)","position":"(80, 60)","screen_transform":"[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]","subwindows":1,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (640.0, 320.0)]"}
+[ModalExit] {"embed":false,"focused":true,"label":"game tree_exiting","mouse":"(1280.0, 640.0)","position":"(80, 60)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]"}
+[ModalExit] {"embed":false,"focused":true,"label":"modal tree_exited","mouse":"(1280.0, 640.0)","position":"(80, 60)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]"}
+[ModalExit] {"embed":false,"focused":true,"label":"game tree_exited","mouse":"(1280.0, 640.0)","position":"(80, 60)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]"}
+[ModalExit] {"embed":false,"focused":true,"label":"after scene free original=false","mouse":"(1280.0, 640.0)","position":"(80, 60)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]"}
+[ModalExit] before desktop pointer precondition pressed=true
+[ModalExit] {"embed":false,"focused":true,"label":"desktop pointer center before actual touch","mouse":"(1280.0, 640.0)","position":"(80, 60)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"surface":"(640, 320)","view":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]"}
+[ModalExit] after desktop pointer precondition pressed=true
+[ModalExit] PASS []

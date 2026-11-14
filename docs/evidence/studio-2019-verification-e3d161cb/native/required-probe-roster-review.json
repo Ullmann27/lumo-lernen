@@ -1,0 +1,766 @@
+[
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[KartTests\\] PASS",
+    "present": true,
+    "fresh_marker": "[KartTests] PASS: 8000 shared Jump questions; no Kart learning state; free steering; real full race; brake/drift; pause; save/resume; one award"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[HostBridgeTests\\] PASS",
+    "present": true,
+    "fresh_marker": "[HostBridgeTests] PASS: actual JNI integer ACK, strict rejection, reward dedup/backup, return"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[JumpTests\\] PASS",
+    "present": true,
+    "fresh_marker": "[JumpTests] PASS: full twelve-island adventure, collisions, jump, three learning stops, save/resume"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[LumoGait\\] PASS",
+    "present": true,
+    "fresh_marker": "[LumoGait] PASS walk/run foot planting, idle settle, teleport, airborne"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[LumoRenderKit\\] PASS",
+    "present": true,
+    "fresh_marker": "[LumoRenderKit] PASS one tier, Kart far unchanged, creative preset identical, Wolkeninseln tiers"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[LumoEnvironmentApply\\] PASS",
+    "present": true,
+    "fresh_marker": "[LumoEnvironmentApply] PASS creative_night/wolkeninseln/bauwelt_day/puzzle_atelier/rhythm_party/treasure_day"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[CreativePresets\\] PASS",
+    "present": true,
+    "fresh_marker": "[CreativePresets] PASS describe/configure/apply, bauwelt_day/puzzle_atelier/rhythm_party/treasure_day, MultiMesh batches"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[KartRaceBridge\\] PASS",
+    "present": true,
+    "fresh_marker": "[KartRaceBridge] PASS: no learning data, stable pause/return/resume ID, one reward, solved int, failed ACK keeps save, star cup without tasks, legacy learning-cup save finishes"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[KartPhysics\\] PASS",
+    "present": true,
+    "fresh_marker": "[KartPhysics] PASS: rail walls on every course at full turbo, sliding contact, blue/orange drift tiers, wrong-way warning, reverse line and jump-ahead give no lap, GAS/BREMSE pedals with reverse, on-screen pad, forward-facing boost chevrons, and a physical Wolkenweg split route"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[KartJump\\] PASS",
+    "present": true,
+    "fresh_marker": "[KartJump] PASS: take-off, flight, landing turbo, cloud rescue past the gap, ordered checkpoints across the jump, rival arc, no ramp elsewhere"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[KartTouchTests\\] PASS",
+    "present": true,
+    "fresh_marker": "[KartTouchTests] PASS: real two-finger GUI, window Back countdown/race pause, touch resume, simultaneous steering+BREMSE, release outside, no learning panel, scaled safe areas"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[KartLandingFit\\] PASS",
+    "present": true,
+    "fresh_marker": "[KartLandingFit] PASS: all five choices readable above START on 4 Android sizes"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[LumoCharacterTests\\] PASS",
+    "present": true,
+    "fresh_marker": "[LumoCharacterTests] PASS: attached torso, proportionate visemes, expressions, live idle"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[KartWorldTests\\] PASS",
+    "present": true,
+    "fresh_marker": "[KartWorldTests] PASS: colours, spatial culling batches, transforms, background shadows"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[KartPauseLayoutTests\\] PASS",
+    "present": true,
+    "fresh_marker": "[KartPauseLayoutTests] PASS: actual compact/Fold matrix, safe-area controls, pause/results layout and touch navigation"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[KartVehicle\\] Geometry/colours",
+    "present": true,
+    "fresh_marker": "[KartVehicle] Geometry/colours, shadows, animations, effects, LOD and hysteresis passed"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[KartAI\\] PASS",
+    "present": true,
+    "fresh_marker": "[KartAI] PASS: no teleport, no rubber-band, difficulty order holds"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[GarageTargets\\] PASS",
+    "present": true,
+    "fresh_marker": "[GarageTargets] PASS: 255 visible controls checked at >= 48x48 dp"
+  },
+  {
+    "suite": "legacy",
+    "log": "legacy-gameplay.log",
+    "required_marker_pattern": "\\[CompactKartSelection\\] PASS",
+    "present": true,
+    "fresh_marker": "[CompactKartSelection] PASS 355 checks; 6/6 cases; renderer=headless"
+  },
+  {
+    "suite": "2014",
+    "probe": "kart_loop_contact_regression",
+    "mode": "headless",
+    "log": "2014/kart_loop_contact_regression.log",
+    "required_marker": "[LoopContact] PASS",
+    "present": true,
+    "fresh_marker": "[LoopContact] PASS: uniform physical travel, inversion and continuous road joins"
+  },
+  {
+    "suite": "2014",
+    "probe": "kart_racecraft_regression",
+    "mode": "headless",
+    "log": "2014/kart_racecraft_regression.log",
+    "required_marker": "[KartRacecraft] PASS",
+    "present": true,
+    "fresh_marker": "[KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake"
+  },
+  {
+    "suite": "2014",
+    "probe": "kart_rival_drift_items_regression",
+    "mode": "headless",
+    "log": "2014/kart_rival_drift_items_regression.log",
+    "required_marker": "[KartRivalDrift] PASS",
+    "present": true,
+    "fresh_marker": "[KartRivalDrift] PASS: earned drift, gold pickup, fair pulse, shield and mini-turbo"
+  },
+  {
+    "suite": "2014",
+    "probe": "kart_full_field_regression",
+    "mode": "headless",
+    "log": "2014/kart_full_field_regression.log",
+    "required_marker": "[KartFullField] PASS",
+    "present": true,
+    "fresh_marker": "[KartFullField] PASS: continuous field two-lap drive with bounded movement"
+  },
+  {
+    "suite": "2014",
+    "probe": "kart_sonnenhafen_generation_regression",
+    "mode": "headless",
+    "log": "2014/kart_sonnenhafen_generation_regression.log",
+    "required_marker": "[SonnenhafenGeneration] PASS",
+    "present": true,
+    "fresh_marker": "[SonnenhafenGeneration] PASS: LOW/HIGH scenery, clear road, other tracks untouched"
+  },
+  {
+    "suite": "2014",
+    "probe": "kart_stunt_continuity_regression",
+    "mode": "rendered",
+    "log": "2014/kart_stunt_continuity_regression.log",
+    "required_marker": "[StuntContinuity] PASS",
+    "present": true,
+    "fresh_marker": "[StuntContinuity] PASS: continuous player contact and real AI loop traversal"
+  },
+  {
+    "suite": "2014",
+    "probe": "kart_player_full_route_regression",
+    "mode": "rendered",
+    "log": "2014/kart_player_full_route_regression.log",
+    "required_marker": "[PlayerFullRoute] PASS",
+    "present": true,
+    "fresh_marker": "[PlayerFullRoute] PASS {\"airborne\":false,\"brake\":0.0,\"checkpoints\":16,\"distance\":3703.71405977428,\"jumps\":8,\"landings\":8,\"lane\":-0.765062272548676,\"lasso_catches\":1,\"lasso_clock_seconds\":98.5166666666624,\"lasso_dodges\":3,\"lasso_factor\":1.0,\"loop_active\":false,\"loops\":2,\"precision_results\":{\"ziel\":2},\"resets\":0,\"road_distance\":0.346461836695653,\"seconds\":98.5166666666624,\"speed\":41.0,\"steering\":0.0} max_step=0.71434593200684"
+  },
+  {
+    "suite": "2014",
+    "probe": "kart_rival_flight_regression",
+    "mode": "rendered",
+    "log": "2014/kart_rival_flight_regression.log",
+    "required_marker": "[RivalFlight] PASS",
+    "present": true,
+    "fresh_marker": "[RivalFlight] PASS: launch-speed physics, real misses, safe snapshots and automatic ramps"
+  },
+  {
+    "suite": "2014",
+    "probe": "kart_harbor_attraction_regression",
+    "mode": "rendered",
+    "log": "2014/kart_harbor_attraction_regression.log",
+    "required_marker": "[HarborAttraction] PASS",
+    "present": true,
+    "fresh_marker": "[HarborAttraction] PASS: LOW/HIGH placement, upright travel, pass-by, rearm, pause, reduced motion, distance culling"
+  },
+  {
+    "suite": "2014",
+    "probe": "kart_harbor_race_hook_regression",
+    "mode": "rendered",
+    "log": "2014/kart_harbor_race_hook_regression.log",
+    "required_marker": "[HarborRaceHook] PASS",
+    "present": true,
+    "fresh_marker": "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+  },
+  {
+    "suite": "2014",
+    "probe": "kart_zauberwald_library_regression",
+    "mode": "rendered",
+    "log": "2014/kart_zauberwald_library_regression.log",
+    "required_marker": "[ZauberwaldLibrary] PASS",
+    "present": true,
+    "fresh_marker": "[ZauberwaldLibrary] PASS checks=601",
+    "reported_checks_or_assertions": 601
+  },
+  {
+    "suite": "2014",
+    "probe": "jump_extras_regression",
+    "mode": "headless",
+    "log": "2014/jump_extras_regression.log",
+    "required_marker": "[JumpExtras] PASS",
+    "present": true,
+    "fresh_marker": "[JumpExtras] PASS 12 checks: live platforms, pause, bounce and star resume",
+    "reported_checks_or_assertions": 12
+  },
+  {
+    "suite": "2014",
+    "probe": "build_sandbox_tools_regression",
+    "mode": "headless",
+    "log": "2014/build_sandbox_tools_regression.log",
+    "required_marker": "[BauweltSandboxTools] PASS",
+    "present": true,
+    "fresh_marker": "[BauweltSandboxTools] PASS larger world, atomic fill/copy/mirror, undo and save"
+  },
+  {
+    "suite": "2014",
+    "probe": "build_sandbox_ui_regression",
+    "mode": "rendered",
+    "log": "2014/build_sandbox_ui_regression.log",
+    "required_marker": "[BauweltSandboxUI] PASS",
+    "present": true,
+    "fresh_marker": "[BauweltSandboxUI] PASS 48dp tools, point workflow and atomic undo"
+  },
+  {
+    "suite": "2014",
+    "probe": "creative_touch_layout_regression",
+    "mode": "rendered",
+    "log": "2014/creative_touch_layout_regression.log",
+    "required_marker": "[CreativeTouchLayout] PASS",
+    "present": true,
+    "fresh_marker": "[CreativeTouchLayout] PASS 300 checks: transformed dp, portrait, Fold and density",
+    "reported_checks_or_assertions": 300
+  },
+  {
+    "suite": "2014",
+    "probe": "puzzle_expansion_regression",
+    "mode": "rendered",
+    "log": "2014/puzzle_expansion_regression.log",
+    "required_marker": "[PuzzleExpansion] PASS",
+    "present": true,
+    "fresh_marker": "[PuzzleExpansion] PASS 1103 checks: all motifs/counts, saves and two played rounds",
+    "reported_checks_or_assertions": 1103
+  },
+  {
+    "suite": "2014",
+    "probe": "kart_garage_3d_touch_regression",
+    "mode": "rendered",
+    "log": "2014/kart_garage_3d_touch_regression.log",
+    "required_marker": "[Garage3DTouch] PASS",
+    "present": true,
+    "fresh_marker": "[Garage3DTouch] PASS 27 checks: native input, legacy ray, pointer ownership",
+    "reported_checks_or_assertions": 27
+  },
+  {
+    "suite": "2014",
+    "probe": "kart_menu_depth_2013_regression",
+    "mode": "rendered",
+    "log": "2014/kart_menu_depth_2013_regression.log",
+    "required_marker": "[MenuDepth] PASS",
+    "present": true,
+    "fresh_marker": "[MenuDepth] PASS: 41 checks",
+    "reported_checks_or_assertions": 41
+  },
+  {
+    "suite": "technical-art",
+    "probe": "kart_sonnenhafen_streetfronts_world_regression",
+    "mode": "headless",
+    "log": "technical-art/kart_sonnenhafen_streetfronts_world_regression.log",
+    "required_marker": "[StreetfrontsWorld] PASS",
+    "present": true,
+    "fresh_marker": "[StreetfrontsWorld] PASS: integrated opaque kit, hard geometry budget, complete road clearance"
+  },
+  {
+    "suite": "technical-art",
+    "probe": "kart_sonnenhafen_streetfronts_regression",
+    "mode": "rendered",
+    "log": "technical-art/kart_sonnenhafen_streetfronts_regression.log",
+    "required_marker": "[Streetfronts] PASS",
+    "present": true,
+    "fresh_marker": "[Streetfronts] PASS: opaque materials, actual geometry budgets, spatial cells, optional GL motion"
+  },
+  {
+    "suite": "technical-art",
+    "probe": "kart_harbor_race_hook_regression",
+    "mode": "rendered",
+    "log": "technical-art/kart_harbor_race_hook_regression.log",
+    "required_marker": "[HarborRaceHook] PASS",
+    "present": true,
+    "fresh_marker": "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+  },
+  {
+    "suite": "technical-art",
+    "probe": "lumo_attention_landing_regression",
+    "mode": "headless",
+    "log": "technical-art/lumo_attention_landing_regression.log",
+    "required_marker": "\"failures\":0",
+    "present": true,
+    "fresh_marker": "[LumoAttentionLanding] {\"android_test\":false,\"checks\":1843,\"display\":\"headless\",\"failures\":0,\"fps_measured\":false,\"godot\":\"4.6.3-stable (official)\",\"landing_peak\":0.573351026912431,\"model_load_kind\":\"imported_packed_scene\",\"model_sha256\":\"3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5\",\"model_unchanged\":true,\"worst_hand_contact_mm\":1.14512140862644}",
+    "reported_checks_or_assertions": 1843
+  },
+  {
+    "suite": "technical-art",
+    "probe": "lumo_kart_tick_cadence_regression",
+    "mode": "headless",
+    "log": "technical-art/lumo_kart_tick_cadence_regression.log",
+    "required_marker": "[LumoKartTickCadence] PASS",
+    "present": true,
+    "fresh_marker": "[LumoKartTickCadence] PASS real rig cadence, contact, pause, hitch and variable frame duration"
+  },
+  {
+    "suite": "technical-art",
+    "probe": "lumo_gesture_contact_regression",
+    "mode": "headless",
+    "log": "technical-art/lumo_gesture_contact_regression.log",
+    "required_marker": "[LumoGestureContact] PASS",
+    "present": true,
+    "fresh_marker": "[LumoGestureContact] PASS checks=200 failures=0",
+    "reported_checks_or_assertions": 200
+  },
+  {
+    "suite": "technical-art",
+    "probe": "kart_garage_presentation_regression",
+    "mode": "rendered",
+    "log": "technical-art/kart_garage_presentation_regression.log",
+    "required_marker": "[GaragePresentation] PASS",
+    "present": true,
+    "fresh_marker": "[GaragePresentation] PASS 66 checks",
+    "reported_checks_or_assertions": 66
+  },
+  {
+    "suite": "technical-art",
+    "probe": "kart_air_trick_regression",
+    "mode": "headless",
+    "log": "technical-art/kart_air_trick_regression.log",
+    "required_marker": "[AirTrick] PASS",
+    "present": true,
+    "fresh_marker": "[AirTrick] PASS: 20 checks",
+    "reported_checks_or_assertions": 20
+  },
+  {
+    "suite": "action-stage",
+    "probe": "kart_lasso_regression",
+    "mode": "headless",
+    "log": "action-stage/kart_lasso_regression.log",
+    "required_marker": "[KartLasso] PASS",
+    "present": true,
+    "fresh_marker": "[KartLasso] PASS: 34 assertions; 70 m/s sweeps, counterplay, bounded hold, equal rival rules",
+    "reported_checks_or_assertions": 34
+  },
+  {
+    "suite": "action-stage",
+    "probe": "kart_lasso_production_regression",
+    "mode": "headless",
+    "log": "action-stage/kart_lasso_production_regression.log",
+    "required_marker": "[KartLassoProduction] PASS",
+    "present": true,
+    "fresh_marker": "[KartLassoProduction] PASS: 26 assertions; real warning/catch/rival motion, pause, rescue and saved-race rebuild",
+    "reported_checks_or_assertions": 26
+  },
+  {
+    "suite": "action-stage",
+    "probe": "kart_spatial_menu_regression",
+    "mode": "rendered",
+    "log": "action-stage/kart_spatial_menu_regression.log",
+    "required_marker": "[SpatialMenu] PASS",
+    "present": true,
+    "fresh_marker": "[SpatialMenu] PASS 594 checks; 5/5 cases; renderer=X11",
+    "reported_checks_or_assertions": 594
+  },
+  {
+    "suite": "action-stage",
+    "probe": "kart_roadside_action_regression",
+    "mode": "rendered",
+    "log": "action-stage/kart_roadside_action_regression.log",
+    "required_marker": "[RoadsideAction] PASS",
+    "present": true,
+    "fresh_marker": "[RoadsideAction] PASS: 183 assertions; two new drivable ramps at 20.5/48/70 m/s, visible fair encounter plans",
+    "reported_checks_or_assertions": 183
+  },
+  {
+    "suite": "action-stage",
+    "probe": "kart_menu_flow_regression",
+    "mode": "rendered",
+    "log": "action-stage/kart_menu_flow_regression.log",
+    "required_marker": "[KartMenuFlow] PASS",
+    "present": true,
+    "fresh_marker": "[KartMenuFlow] PASS: five direct sections; 1280x720,800x480,640x320; safe controls >=44px"
+  },
+  {
+    "suite": "nextgen",
+    "probe": "learning_world_regression",
+    "mode": "headless",
+    "log": "nextgen/learning_world_regression-headless.log",
+    "required_marker": "[LearningWorld] PASS",
+    "present": true,
+    "fresh_marker": "[LearningWorld] PASS checks=5340",
+    "reported_checks_or_assertions": 5340
+  },
+  {
+    "suite": "nextgen",
+    "probe": "jump_nextgen_regression",
+    "mode": "headless",
+    "log": "nextgen/jump_nextgen_regression-headless.log",
+    "required_marker": "[JumpNextgen] PASS",
+    "present": true,
+    "fresh_marker": "[JumpNextgen] PASS 84 checks: actual variable jumps, coyote, buffer, original rig, pause, dp layouts and isolated saves",
+    "reported_checks_or_assertions": 84
+  },
+  {
+    "suite": "nextgen",
+    "probe": "jump_expeditions_regression",
+    "mode": "headless",
+    "log": "nextgen/jump_expeditions_regression-headless.log",
+    "required_marker": "[JumpExpeditions] PASS",
+    "present": true,
+    "fresh_marker": "[JumpExpeditions] PASS 29 checks: three physical courses, four stages, real menu selection and preserved progress",
+    "reported_checks_or_assertions": 29
+  },
+  {
+    "suite": "nextgen",
+    "probe": "lumo_teacher_pose_regression",
+    "mode": "headless",
+    "log": "nextgen/lumo_teacher_pose_regression-headless.log",
+    "required_marker": "[LumoTeacherPose] PASS",
+    "present": true,
+    "fresh_marker": "[LumoTeacherPose] PASS 34 checks: original gestures, bounded split gaze, owner exclusivity, pause and honest voice seam",
+    "reported_checks_or_assertions": 34
+  },
+  {
+    "suite": "nextgen",
+    "probe": "lumo_65bone_walk_gait_regression",
+    "mode": "headless",
+    "log": "nextgen/lumo_65bone_walk_gait_regression-headless.log",
+    "required_marker": "[LumoGait] PASS",
+    "present": true,
+    "fresh_marker": "[LumoGait] PASS: real 65-bone alternating thigh/foot/toe/arm movement, pause, calm mode, neutral reset"
+  },
+  {
+    "suite": "nextgen",
+    "probe": "lumo_original_jump_visual_regression",
+    "mode": "headless",
+    "log": "nextgen/lumo_original_jump_visual_regression-headless.log",
+    "required_marker": "[JumpOriginalLumo] PASS",
+    "present": true,
+    "fresh_marker": "[JumpOriginalLumo] PASS: original 65-bone GLB visible, grounded, moving, paused and resumed"
+  },
+  {
+    "suite": "nextgen",
+    "probe": "build_transform_regression",
+    "mode": "headless",
+    "log": "nextgen/build_transform_regression-headless.log",
+    "required_marker": "[BuildTransform] PASS",
+    "present": true,
+    "fresh_marker": "[BuildTransform] PASS checks=38: identity, rotation, support graph, atomic history and v1 saves",
+    "reported_checks_or_assertions": 38
+  },
+  {
+    "suite": "nextgen",
+    "probe": "build_nextgen_play_regression",
+    "mode": "headless",
+    "log": "nextgen/build_nextgen_play_regression-headless.log",
+    "required_marker": "[BuildNextgen] PASS",
+    "present": true,
+    "fresh_marker": "[BuildNextgen] PASS checks=62: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout",
+    "reported_checks_or_assertions": 62
+  },
+  {
+    "suite": "nextgen",
+    "probe": "build_settlement_regression",
+    "mode": "headless",
+    "log": "nextgen/build_settlement_regression-headless.log",
+    "required_marker": "[Settlement] PASS",
+    "present": true,
+    "fresh_marker": "[Settlement] PASS 194 checks; mirrored complete AI campaign 22 days",
+    "reported_checks_or_assertions": 194
+  },
+  {
+    "suite": "nextgen",
+    "probe": "build_settlement_play_regression",
+    "mode": "headless",
+    "log": "nextgen/build_settlement_play_regression-headless.log",
+    "required_marker": "[SettlementPlay] PASS",
+    "present": true,
+    "fresh_marker": "[SettlementPlay] PASS checks=127: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts",
+    "reported_checks_or_assertions": 127
+  },
+  {
+    "suite": "nextgen",
+    "probe": "creative_nextgen_environment_regression",
+    "mode": "headless",
+    "log": "nextgen/creative_nextgen_environment_regression-headless.log",
+    "required_marker": "[CreativeNextgenEnvironment] PASS",
+    "present": true,
+    "fresh_marker": "[CreativeNextgenEnvironment] PASS checks=35: original textures, bounded cloud batch, preserved quality and no added lights",
+    "reported_checks_or_assertions": 35
+  },
+  {
+    "suite": "nextgen",
+    "probe": "kart_nextgen_garage_regression",
+    "mode": "headless",
+    "log": "nextgen/kart_nextgen_garage_regression-headless.log",
+    "required_marker": "[NextGenGarage] PASS",
+    "present": true,
+    "fresh_marker": "[NextGenGarage] PASS 93 checks; captures=0",
+    "reported_checks_or_assertions": 93,
+    "reported_capture_count": 0
+  },
+  {
+    "suite": "nextgen",
+    "probe": "kart_track_pass_regression",
+    "mode": "headless",
+    "log": "nextgen/kart_track_pass_regression-headless.log",
+    "required_marker": "[KartTrackPass] PASS",
+    "present": true,
+    "fresh_marker": "[KartTrackPass] PASS 104 checks",
+    "reported_checks_or_assertions": 104
+  },
+  {
+    "suite": "nextgen",
+    "probe": "cards_table_regression",
+    "mode": "headless",
+    "log": "nextgen/cards_table_regression-headless.log",
+    "required_marker": "CARDS_TABLE_RUNTIME_PASS",
+    "present": true,
+    "fresh_marker": "CARDS_TABLE_RUNTIME_PASS checks=208 failures=0",
+    "reported_checks_or_assertions": 208
+  },
+  {
+    "suite": "nextgen",
+    "probe": "rhythm_tour_regression",
+    "mode": "headless",
+    "log": "nextgen/rhythm_tour_regression-headless.log",
+    "required_marker": "[RhythmTour] PASS",
+    "present": true,
+    "fresh_marker": "[RhythmTour] PASS checks=2118: distinct fair charts, three difficulties, non-perfect campaign and additive saves",
+    "reported_checks_or_assertions": 2118
+  },
+  {
+    "suite": "nextgen",
+    "probe": "rhythm_tour_play_regression",
+    "mode": "headless",
+    "log": "nextgen/rhythm_tour_play_regression-headless.log",
+    "required_marker": "[RhythmTourPlay] PASS",
+    "present": true,
+    "fresh_marker": "[RhythmTourPlay] PASS checks=87: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout",
+    "reported_checks_or_assertions": 87
+  },
+  {
+    "suite": "nextgen",
+    "probe": "learning_world_capture",
+    "mode": "rendered",
+    "log": "nextgen/learning_world_capture-rendered.log",
+    "required_marker": "[LearningCapture] PASS",
+    "present": true,
+    "fresh_marker": "[LearningCapture] PASS captures=25",
+    "reported_capture_count": 25
+  },
+  {
+    "suite": "nextgen",
+    "probe": "jump_nextgen_capture",
+    "mode": "rendered",
+    "log": "nextgen/jump_nextgen_capture-rendered.log",
+    "required_marker": "[JumpNextgenCapture] PASS",
+    "present": true,
+    "fresh_marker": "[JumpNextgenCapture] PASS 80 checks, 16 actual renderer frames and native two-finger jumps",
+    "reported_checks_or_assertions": 80
+  },
+  {
+    "suite": "nextgen",
+    "probe": "build_nextgen_play_regression",
+    "mode": "rendered",
+    "log": "nextgen/build_nextgen_play_regression-rendered.log",
+    "required_marker": "[BuildNextgen] PASS",
+    "present": true,
+    "fresh_marker": "[BuildNextgen] PASS checks=70: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout",
+    "reported_checks_or_assertions": 70
+  },
+  {
+    "suite": "nextgen",
+    "probe": "build_settlement_play_regression",
+    "mode": "rendered",
+    "log": "nextgen/build_settlement_play_regression-rendered.log",
+    "required_marker": "[SettlementPlay] PASS",
+    "present": true,
+    "fresh_marker": "[SettlementPlay] PASS checks=139: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts",
+    "reported_checks_or_assertions": 139
+  },
+  {
+    "suite": "nextgen",
+    "probe": "creative_nextgen_environment_regression",
+    "mode": "rendered",
+    "log": "nextgen/creative_nextgen_environment_regression-rendered.log",
+    "required_marker": "[CreativeNextgenEnvironment] PASS",
+    "present": true,
+    "fresh_marker": "[CreativeNextgenEnvironment] PASS checks=53: original textures, bounded cloud batch, preserved quality and no added lights",
+    "reported_checks_or_assertions": 53
+  },
+  {
+    "suite": "nextgen",
+    "probe": "kart_nextgen_garage_regression",
+    "mode": "rendered",
+    "log": "nextgen/kart_nextgen_garage_regression-rendered.log",
+    "required_marker": "[NextGenGarage] PASS",
+    "present": true,
+    "fresh_marker": "[NextGenGarage] PASS 118 checks; captures=12",
+    "reported_checks_or_assertions": 118,
+    "reported_capture_count": 12
+  },
+  {
+    "suite": "nextgen",
+    "probe": "cards_table_capture",
+    "mode": "rendered",
+    "log": "nextgen/cards_table_capture-rendered.log",
+    "required_marker": "CARDS_TABLE_RENDER_PASS",
+    "present": true,
+    "fresh_marker": "CARDS_TABLE_RENDER_PASS renderer=X11 images=4",
+    "reported_capture_count": 4
+  },
+  {
+    "suite": "nextgen",
+    "probe": "rhythm_tour_play_regression",
+    "mode": "rendered",
+    "log": "nextgen/rhythm_tour_play_regression-rendered.log",
+    "required_marker": "[RhythmTourPlay] PASS",
+    "present": true,
+    "fresh_marker": "[RhythmTourPlay] PASS checks=93: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout",
+    "reported_checks_or_assertions": 93
+  },
+  {
+    "suite": "nextgen",
+    "probe": "kart_player_full_route_regression",
+    "mode": "rendered",
+    "log": "nextgen/kart_player_full_route_regression-rendered.log",
+    "required_marker": "[PlayerFullRoute] PASS",
+    "present": true,
+    "fresh_marker": "[PlayerFullRoute] PASS {\"airborne\":false,\"brake\":0.0,\"checkpoints\":16,\"distance\":3703.71405977428,\"jumps\":8,\"landings\":8,\"lane\":-0.765062272548676,\"lasso_catches\":1,\"lasso_clock_seconds\":98.5166666666624,\"lasso_dodges\":3,\"lasso_factor\":1.0,\"loop_active\":false,\"loops\":2,\"precision_results\":{\"ziel\":2},\"resets\":0,\"road_distance\":0.346461836695653,\"seconds\":98.5166666666624,\"speed\":41.0,\"steering\":0.0} max_step=0.71434593200684"
+  },
+  {
+    "suite": "studio",
+    "probe": "learning_sharing_regression",
+    "mode": "headless",
+    "log": "studio/learning_sharing_regression-headless.log",
+    "required_marker": "[LearningSharing] PASS",
+    "present": true,
+    "fresh_marker": "[LearningSharing] PASS checks=1811",
+    "reported_checks_or_assertions": 1811
+  },
+  {
+    "suite": "studio",
+    "probe": "learning_studio_regression",
+    "mode": "headless",
+    "log": "studio/learning_studio_regression-headless.log",
+    "required_marker": "[LearningStudio] PASS",
+    "present": true,
+    "fresh_marker": "[LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning",
+    "reported_checks_or_assertions": 183
+  },
+  {
+    "suite": "studio",
+    "probe": "lumo_studio_motion_regression",
+    "mode": "headless",
+    "log": "studio/lumo_studio_motion_regression-headless.log",
+    "required_marker": "[LumoStudioMotion] PASS",
+    "present": true,
+    "fresh_marker": "[LumoStudioMotion] PASS checks=1046 Blender/Godot endpoint_error_m=0.000000733 segment_error_m=0.000000179; no physical Android claim",
+    "reported_checks_or_assertions": 1046
+  },
+  {
+    "suite": "studio",
+    "probe": "puzzle_rotation_regression",
+    "mode": "headless",
+    "log": "studio/puzzle_rotation_regression-headless.log",
+    "required_marker": "[PuzzleRotation] PASS",
+    "present": true,
+    "fresh_marker": "[PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume",
+    "reported_checks_or_assertions": 4558
+  },
+  {
+    "suite": "studio",
+    "probe": "treasure_exploration_regression",
+    "mode": "headless",
+    "log": "studio/treasure_exploration_regression-headless.log",
+    "required_marker": "[TreasureExploration] PASS",
+    "present": true,
+    "fresh_marker": "[TreasureExploration] PASS 87 checks: branching, actual location questions, movement, legacy saves and original rewards",
+    "reported_checks_or_assertions": 87
+  },
+  {
+    "suite": "studio",
+    "probe": "learning_sharing_capture",
+    "mode": "rendered",
+    "log": "studio/learning_sharing_capture-rendered.log",
+    "required_marker": "[LearningSharingCapture] PASS",
+    "present": true,
+    "fresh_marker": "[LearningSharingCapture] PASS captures=6",
+    "reported_capture_count": 6
+  },
+  {
+    "suite": "studio",
+    "probe": "lumo_studio_motion_capture",
+    "mode": "rendered",
+    "log": "studio/lumo_studio_motion_capture-rendered.log",
+    "required_marker": "[LumoStudioCapture] PASS",
+    "present": true,
+    "fresh_marker": "[LumoStudioCapture] PASS 8 real renderer frames; frozen baseline and current IK clips"
+  },
+  {
+    "suite": "studio",
+    "probe": "puzzle_rotation_regression",
+    "mode": "rendered",
+    "log": "studio/puzzle_rotation_regression-rendered.log",
+    "required_marker": "[PuzzleRotation] PASS",
+    "present": true,
+    "fresh_marker": "[PuzzleRotation] PASS 4565 checks: orientation, legacy saves, real picking, touch rotation and resume",
+    "reported_checks_or_assertions": 4565
+  },
+  {
+    "suite": "studio",
+    "probe": "treasure_exploration_regression",
+    "mode": "rendered",
+    "log": "studio/treasure_exploration_regression-rendered.log",
+    "required_marker": "[TreasureExploration] PASS",
+    "present": true,
+    "fresh_marker": "[TreasureExploration] PASS 90 checks: branching, actual location questions, movement, legacy saves and original rewards",
+    "reported_checks_or_assertions": 90
+  }
+]

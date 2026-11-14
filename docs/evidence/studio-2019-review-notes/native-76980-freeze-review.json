@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "reviewer": "Agent A / learning_worlds",
+  "retrieved_at_utc": "2026-11-13T15:11:39.084Z",
+  "source_sha": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "source_tree": "8df22766bd0dbae31aacaa26c0228811c027686e",
+  "parents": [
+    "24fb85800dfb58ec11dd409449e276299aa72b06"
+  ],
+  "source_url": "https://github.com/Ullmann27/lumo-godot/commit/76980a941fa05d047574d8cc386d3249d93ffca3",
+  "studio_run": {
+    "id": 43449903088,
+    "path": ".github/workflows/lumo-studio-2019.yml",
+    "status": "in_progress",
+    "conclusion": null,
+    "head_sha": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43449903088",
+    "event": "push"
+  },
+  "observed_jobs": [
+    {
+      "id": 131969016389,
+      "name": "touch-workshop",
+      "head_sha": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 131969016839,
+      "name": "gameplay",
+      "head_sha": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 131969016879,
+      "name": "touch-treasure",
+      "head_sha": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 131969016972,
+      "name": "learning-preview",
+      "head_sha": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 131969017014,
+      "name": "touch-build",
+      "head_sha": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 131969017248,
+      "name": "studio",
+      "head_sha": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "status": "in_progress",
+      "conclusion": null
+    }
+  ],
+  "source_comparison": "PASS: exact four frozen product/regression files byte-equal to locally tested sources.",
+  "scope": "Commit and current run identity only. Running jobs are not recorded as passed; local renderer evidence is separate from full CI and physical Android performance.",
+  "files": [
+    {
+      "path": "scripts/creative/build_world.gd",
+      "sha256": "e562577eb2e21cceaa31152c62d30a329204d069ea2f049f927a39550a16ef6c",
+      "remote_76980_bytes_equal_tested_local": true
+    },
+    {
+      "path": "scripts/tests/build_dialog_density_regression.gd",
+      "sha256": "eb918398c01f3c0fe7a2a344017ea159dc3ef667bb186fc091bd6350327edea3",
+      "remote_76980_bytes_equal_tested_local": true
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "sha256": "327d222133c076a3cf5c7242e933bad2b9376c6c24a4179b03156a3fc71f411d",
+      "remote_76980_bytes_equal_tested_local": true
+    },
+    {
+      "path": "scripts/tests/learning_studio_regression.gd",
+      "sha256": "db69f9b6f2b629b655534f5d11610709a15eee5d76317cc55e8a88e0c1b74c1c",
+      "remote_76980_bytes_equal_tested_local": true
+    }
+  ],
+  "host_native_pin_observed": "76980a941fa05d047574d8cc386d3249d93ffca3"
+}

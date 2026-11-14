@@ -1,0 +1,178 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T20:25:05.034689+00:00",
+  "status": "PASS_ACTUAL_ANDROID_HOST_COMPILATION_ONLY",
+  "source_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "run_id": 43496928833,
+  "run_attempt": 1,
+  "job_id": 132132346621,
+  "job_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43496928833/job/132132346621",
+  "artifact": {
+    "id": 14072441845,
+    "bytes": 5389,
+    "sha256": "c85edaa2c04b8ba47692b187e09d4aae24b1e73a349c7fe0617a3ea6ed3ece66",
+    "original_zip": "/workspace/scratch/5987865ae883/qa/studio-final-31883868/android-host-compile-original.zip",
+    "crc": "PASS",
+    "all_five_files_original_zip_equal": true
+  },
+  "actual_results": {
+    "python_contracts": {
+      "run": 6,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 1.336
+    },
+    "gradle": {
+      "result": "BUILD SUCCESSFUL",
+      "seconds": 202,
+      "actionable_tasks": 107,
+      "executed_tasks": 102,
+      "up_to_date_tasks": 5,
+      "app_tasks": [
+        ":app:compileDebugKotlin",
+        ":app:compileDebugJavaWithJavac"
+      ]
+    },
+    "compiled_classes": {
+      "MainActivity": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/MainActivity.class",
+          "bytes": 25349,
+          "sha256": "b36d00d5b44541113fc87d6daa59243386246c7e8ead488f0f042c9c30926eb0"
+        }
+      ],
+      "LumoGameActivity": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoGameActivity.class",
+          "bytes": 15416,
+          "sha256": "337b5b66b83a3531bb22af6c0cadc167c454e0d6e645195543037d2cfb92072e"
+        }
+      ],
+      "LumoHostPlugin": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoHostPlugin.class",
+          "bytes": 4594,
+          "sha256": "4c189b04c5a68b667a016df1197854fae2a7d16b447c54065b217994cdb5d9b4"
+        }
+      ],
+      "CardsTableBridge": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/CardsTableBridge.class",
+          "bytes": 20859,
+          "sha256": "434667a7937f5ce3957f6aa3ce5bd9db3ece3c69a10262746fa628e19d3792fa"
+        }
+      ],
+      "CardsAuthorityService": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/CardsAuthorityService.class",
+          "bytes": 2674,
+          "sha256": "f9fbd8919270c109d3e52fbe61d2f6fae00f95392a637ebb7eb1799007c74b1d"
+        }
+      ],
+      "CardsAuthorityRegistry": [
+        {
+          "path": "build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/dev/ullmann/lumo/lumo_lernen/CardsAuthorityRegistry.class",
+          "bytes": 1797,
+          "sha256": "4f6a6545b1fd26f90b563be7c75628f8223b63edb3be646208a43eff39991b35"
+        }
+      ],
+      "LumoLearningSpeech": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.class",
+          "bytes": 11487,
+          "sha256": "6292cefa55e33b540a0c05a24bf085f94c4d6607d7e73390e1ab892d7438b534"
+        }
+      ],
+      "LumoOfflineSpeechBridge": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoOfflineSpeechBridge.class",
+          "bytes": 19017,
+          "sha256": "205454042f42b167261e16b9dffd63f8095d752aad0bf7b49feccd8ae840408b"
+        }
+      ],
+      "LumoOfflineSpeechEngine": [
+        {
+          "path": "build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/dev/ullmann/lumo/lumo_lernen/LumoOfflineSpeechEngine.class",
+          "bytes": 17178,
+          "sha256": "c9944e14323d807932a1fb3b1cbfa6ac05a2df46f8b88b7ea493755e0a6be5af"
+        }
+      ]
+    },
+    "flutter": "3.44.9",
+    "dart": "3.12.2",
+    "godot_aar": "org.godotengine:godot:4.6.3.stable",
+    "onnxruntime_android": "1.23.1"
+  },
+  "warnings": [
+    {
+      "category": "Kotlin plugin version mismatch warning",
+      "observed": "embedded-kotlin/kotlin-dsl expect Kotlin2.2.0 while requested2.2.20; compilation nevertheless completed."
+    },
+    {
+      "category": "Android Gradle and plugin deprecations",
+      "observed": "android.builtInKotlin=false, android.newDsl=false, legacy Android DSL and org.jetbrains.kotlin.android; Gradle10 incompatibility warning."
+    },
+    {
+      "category": "Source and dependency compiler warnings",
+      "observed": "Deprecated API usage in dependencies; unnecessary non-null assertions in LumoLearningSpeech.kt156/157 and MainActivity.kt259 plus shared_preferences plugin."
+    },
+    {
+      "category": "GitHub action runtime deprecations",
+      "observed": "setup-java v4/Node20 runtime migration and Node punycode/url.parse warnings."
+    }
+  ],
+  "evidence": [
+    {
+      "path": "archive-inventory.json",
+      "bytes": 898,
+      "sha256": "4d8d9787da1756c7522cd8701f90eea12146eeb91948d4dda01a660a539d3024"
+    },
+    {
+      "path": "cards-authority-registry.log",
+      "bytes": 1325,
+      "sha256": "9e3f26740a97e87db13b77cd8497755fb8b1d06614ed92f120d711b9526bd979"
+    },
+    {
+      "path": "compile.log",
+      "bytes": 33778,
+      "sha256": "4fb9798c30f969c4afb82b606a2e691ef05ccd6ab5f8eab4824195de2a5a9107"
+    },
+    {
+      "path": "flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800"
+    },
+    {
+      "path": "github-artifact.json",
+      "bytes": 763,
+      "sha256": "9e0ebc693aded82c2a907ed4364e27dd1ebd17bf900a32484518c26a34c56eee"
+    },
+    {
+      "path": "job-completion.json",
+      "bytes": 1743,
+      "sha256": "9f88d09f8506d7ee670da66147ebeb1ed66445a5791dcab52c9198005bb180d4"
+    },
+    {
+      "path": "original-job.log",
+      "bytes": 237182,
+      "sha256": "c24214626d7129c31b01bbc0f3183e60cfe5fd4489f314f807deabd7c745c988"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2769,
+      "sha256": "88e8ca26b9c1eff1bbc6e98f66dae21604be7e46c09d488a322e4cae348dc4c4"
+    },
+    {
+      "path": "source-sha.txt",
+      "bytes": 41,
+      "sha256": "ae7adb86ea3c929b0202b9938023652dfffa1f07b21b8ddbf81a290c93aec61c"
+    }
+  ],
+  "limits": [
+    "The original CI script checks generated JVM class magic and SHA256; the artifact contains the class report, not the compiled class files themselves.",
+    "Gradle SKIPPED/NO-SOURCE/UP-TO-DATE task markers are preserved and are not reported as skipped Python tests.",
+    "No release APK, R8, API35/API37 emulator, Cards runtime, physical device or FPS result is inferred from this compilation.",
+    "The full verify-and-build job was still in its native gameplay step when this report was written."
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "status": "AWAITING_COMPLETED_JOB_AND_ORIGINAL_ARTIFACT",
+  "host_source": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "native_source": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "run_id": 43461547945,
+  "job_id": 132049288587,
+  "name": "Android API 35 live application tour",
+  "checked_local_sources_match_exact_github_commit": [
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "git_blob_sha": "691b66740fc1a9f1f2e74fef41fa4f95dd8222c5",
+      "sha256": "ae13c51986aeaac5318442669480d890de9beed73655d0595a65ba5ec94f9f98",
+      "bytes": 36187
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "git_blob_sha": "c04397ae8e99e0d02cefa341dcf4523deb464d99",
+      "sha256": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b",
+      "bytes": 46556
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "git_blob_sha": "b77fdb2e12c5ffd24a24ae305c835c295d7c43f4",
+      "sha256": "8bd1d84aeef0803852227b1e20776b0a0dc99cde86d95ebc3d6843a13efb832c",
+      "bytes": 37089
+    },
+    {
+      "path": ".github/probes/lumo_2019_update_android_probe.py",
+      "git_blob_sha": "0ab5b619ef63645195fb9c2174b46788bc17de30",
+      "sha256": "dbfe68735789ec47ef3e0095fcc8ffaf9435ab1f4a58f3035b64ec62bc72c416",
+      "bytes": 1899
+    },
+    {
+      "path": ".github/probes/lumo_2003_update_android_probe.py",
+      "git_blob_sha": "0712dd5e583f6da5cef5b2dc06876a6455107e68",
+      "sha256": "38573146ea7623a4b62759be88a982a1b8990d0beabf2c6c0df94927d16b68eb",
+      "bytes": 10533
+    },
+    {
+      "path": "tools/android_qa/update_preservation.py",
+      "git_blob_sha": "60e74d96e2766657138f52d28301c39e78b85015",
+      "sha256": "723828c1583f254617205d7094fb12b4a4b4d15596f2a58c62fd58e4909212c6",
+      "bytes": 9134
+    },
+    {
+      "path": "tools/android_qa/update_artifact_identity.py",
+      "git_blob_sha": "2f039f067f809e830aa9ff1bef7f57a586f04366",
+      "sha256": "4a6bb7d2809f5551abcc07e0cae997d4b56180f962a19b0d9866a218c0d63dd4",
+      "bytes": 1105
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "git_blob_sha": "671333b935f17d471929f59ff1c5dca4b8c85974",
+      "sha256": "e803471446e962d3c6be5efc95cc08d608ad7c58363a963493d4b4bc377fa16b",
+      "bytes": 10418
+    },
+    {
+      "path": "config/godot-source.json",
+      "git_blob_sha": "b921f3e68828b4c1f22631628f7c654bc2ef560a",
+      "sha256": "ff76449f25572273d0602fff4bb826e14850030c063bb41d9471e262ffcc8896",
+      "bytes": 145
+    },
+    {
+      "path": "pubspec.yaml",
+      "git_blob_sha": "40a3226d7b575cc414abc1494dfff5924a5de775",
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+      "bytes": 2675
+    }
+  ],
+  "candidate_archive_download_owner": "root; no duplicate candidate download by this reviewer",
+  "job_log_requested_before_completion": false,
+  "android_acceptance_issued": false
+}

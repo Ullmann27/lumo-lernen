@@ -1,0 +1,18 @@
+{
+  "status": "separate historical workflow failed",
+  "reviewed_at_utc": "2026-11-13T16:43:48.539964+00:00",
+  "host_revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "workflow": ".github/workflows/lumo-1999-update-gate.yml",
+  "run_id": 43461548520,
+  "job_id": 132009474907,
+  "failed_step": "Independently verify both candidate ABIs and baseline signature",
+  "actual_error": "Wrong Android version: 0.12.87+1999, expected 0.13.7+2019",
+  "historical_candidate_workflow_run_id": 40096024152,
+  "historical_candidate_revision": "c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf",
+  "historical_baseline_workflow_run_id": 39755153883,
+  "historical_baseline_revision": "136f486ac3bdc4aabbd3b990e6629d2d6640c7d4",
+  "finding": "The path-triggered historical workflow downloads fixed 1997/1999 artifacts but invokes the current checkout verifier, whose expected version is 2019. It rejected the historical candidate. This workflow is not a dependency of the Studio 2019 publisher. No current 2019 APK or Android update ran in this failed step. This remains a separate historical workflow maintenance issue; no claim that every repository workflow is green.",
+  "original_log": "legacy-1999-workflow-e3d-failure.log",
+  "original_log_sha256": "eb2500f4cf73f61b9aa798594f4bb9821bfb581d89443ea9a24f9202be5929e8",
+  "code_or_workflow_changed_for_this_finding": false
+}

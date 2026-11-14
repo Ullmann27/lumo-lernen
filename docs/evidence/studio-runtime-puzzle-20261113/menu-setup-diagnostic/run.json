@@ -1,0 +1,19 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 51.953157677999116,
+  "display": 95,
+  "project": "/workspace/scratch/5987865ae883/lumo-godot",
+  "godot_arguments": [
+    "--resolution",
+    "960x540",
+    "--disable-vsync",
+    "--fixed-fps",
+    "24",
+    "--quit-after",
+    "420",
+    "--script",
+    "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-runtime-puzzle-20261113/record_puzzle_runtime.gd"
+  ],
+  "timed_out": false,
+  "scope": "Local software renderer; not physical Android performance"
+}

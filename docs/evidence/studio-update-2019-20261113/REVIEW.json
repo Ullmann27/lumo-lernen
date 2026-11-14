@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-13T16:15:14.003200+00:00",
+  "scope": "Enge Reparatur des ausdrücklich aktivierten Android-Update-Prüfpfads; kein App-Datenmigrationspatch und kein Android-Erfolgsnachweis",
+  "base_host_source": "399e75b8b5d5187579e5d75b9b71f882239e9991",
+  "native_source_unchanged": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "failure_before": {
+    "wrapper": ".github/probes/lumo_2019_update_android_probe.py",
+    "wrapper_git_blob_at_base": "0ab5b619ef63645195fb9c2174b46788bc17de30",
+    "actual_arguments": {
+      "baseline_version": 2017,
+      "candidate_version": 2019,
+      "allow_2018_independent_evidence_migration": true
+    },
+    "main_error": "The reviewed migration requires the actual 2017 to 2018 pair",
+    "preservation_error": "Independent evidence migration is approved only for 2017 to 2018",
+    "effect": "Beide Versionsprüfungen lehnten den beauftragten 2019-Pfad ab. main brach vor Validierung/Installation der APKs ab.",
+    "reproduction": "Nicht nur die Guardbedingung: Der unveränderte echte 2019-Wrapper, echte main-Funktion und echte Pin-/APK-Metadatenprüfungen wurden mit runpy ausgeführt. Nur externe Android-Grenzen wurden ersetzt; alle Dateien lagen in einem isolierten TemporaryDirectory."
+  },
+  "fix": {
+    "allowed_version_pairs": [
+      [
+        2017,
+        2018
+      ],
+      [
+        2017,
+        2019
+      ]
+    ],
+    "explicit_opt_in_still_required": true,
+    "strict_integer_types_still_required": true,
+    "reported_target_is_actual_validated_version": true,
+    "unchanged": "Sämtliche alten Feldwerte und Typen, genau erlaubtes independentEvidence-Schema, bestehende lokale Owner-ID, Fremdkind-Namensräume, Belohnungen und alle nachfolgenden exakten Speicherzustandsvergleiche. APK-Hash, Quellstand, Native-Pin, Signatur, Paket, ABI und saubere Quellen bleiben vorgeschaltet.",
+    "excluded": "Keine >=Versionsfreigabe, kein Abschalten des Opt-in, keine Änderung der Flutter-Datenmigration, kein Schreiben echter Kinderdaten, kein Workflow-/Native-/Receipt-Edit."
+  },
+  "executed_commands": [
+    {
+      "stage": "before fix and after fix",
+      "cwd": "/workspace/scratch/5987865ae883/lumo-lernen",
+      "command": "python3 -B -m unittest discover -s tools/android_qa/tests -p test_update_preservation.py -v",
+      "captured": "stdout/stderr bytegleich mit tee aufgezeichnet; zuerst roter Lauf, dann dieselben Tests grün"
+    },
+    {
+      "stage": "after fix",
+      "cwd": "/workspace/scratch/5987865ae883/lumo-lernen",
+      "command": "python3 -B -m unittest discover -s scripts/tests -p test_studio_delivery.py -v",
+      "captured": "Originalausgabe des wiederholten 35-Test-Laufs; Wiederholung ausschließlich zur angeforderten Rohlogsicherung. Vorheriger beobachteter Lauf bestand ebenfalls mit 35 Tests in 10.583s."
+    },
+    {
+      "stage": "after fix",
+      "cwd": "/workspace/scratch/5987865ae883/lumo-lernen",
+      "command": "git diff --check -- .github/probes/lumo_2003_update_android_probe.py tools/android_qa/update_preservation.py tools/android_qa/tests/test_update_preservation.py",
+      "exit_code": 0
+    }
+  ],
+  "original_logs": [
+    {
+      "path": "update-preservation-before.log",
+      "sha256": "52157e46d2f360fcc4a67772b96c6c0dea42286dc653b2b3347128088de81afb",
+      "bytes": 27422,
+      "exit_code": 1,
+      "tests_run": 35,
+      "seconds": 0.056,
+      "result": "EXPECTED RED: failures=11, errors=5"
+    },
+    {
+      "path": "update-preservation-after.log",
+      "sha256": "303e3e2c1b151b503b14a92d493e9177ddba0e0235cbec9af2ec1bd3012b549b",
+      "bytes": 7389,
+      "exit_code": 0,
+      "tests_run": 35,
+      "seconds": 0.073,
+      "result": "PASS; no failures/errors/skips"
+    },
+    {
+      "path": "studio-delivery-after.log",
+      "sha256": "170c375ef324bfb380ac8f1adaffcd8fef88f9d89938dfbd7f0edebf78820c52",
+      "bytes": 6521,
+      "exit_code": 0,
+      "tests_run": 35,
+      "seconds": 9.827,
+      "result": "PASS; no failures/errors/skips"
+    }
+  ],
+  "changed_file_hashes": [
+    {
+      "path": ".github/probes/lumo_2003_update_android_probe.py",
+      "sha256": "38573146ea7623a4b62759be88a982a1b8990d0beabf2c6c0df94927d16b68eb",
+      "git_blob_sha": "0712dd5e583f6da5cef5b2dc06876a6455107e68",
+      "bytes": 10533
+    },
+    {
+      "path": "tools/android_qa/update_preservation.py",
+      "sha256": "723828c1583f254617205d7094fb12b4a4b4d15596f2a58c62fd58e4909212c6",
+      "git_blob_sha": "60e74d96e2766657138f52d28301c39e78b85015",
+      "bytes": 9134
+    },
+    {
+      "path": "tools/android_qa/tests/test_update_preservation.py",
+      "sha256": "d292dd0ec9968bb6b5cd8836c3d0c170ef9d8fac7532d578d8bec26929db389a",
+      "git_blob_sha": "b0f825dc3e077851f7a773cc295ea60170d045a4",
+      "bytes": 23444
+    }
+  ],
+  "historical_fixture": {
+    "path": "tools/android_qa/tests/fixtures/update_2017_2018_independent_evidence.json",
+    "sha256": "8815f517552ebdde7908ff98b1bb389147a4857ccb4a75cabd65e2142eb3338a",
+    "unchanged": true,
+    "provenance": "Bereits vorhandene hashgebundene echte 2017/2018-Android-Rohdaten aus Artefakt14022392802. Deren unverändertes Datenschema wird zusätzlich für die explizite2019-Paarung geprüft; kein neuer2019-Emulatorlauf wird daraus abgeleitet."
+  },
+  "unit_execution_boundary": {
+    "apk_bytes": "METADATA VALIDATOR FIXTURE <version>; NOT AN APK",
+    "candidate_source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "android_io": "ensure_rooted_emulator stoppt absichtlich mit TEST BOUNDARY: no Android device was contacted; adb ist ersetzt und darf nur den abschließenden logcat-Leseaufruf erhalten.",
+    "wrapper_result": "Der Wrapper muss Exit1 und status FAIL mit der absichtlichen Testgrenze liefern; ein künstlicher Android-PASS wird ausdrücklich nicht ausgegeben.",
+    "positive_evidence": "Beide tatsächlichen APK-Identitätsprüfungen werden nach dem Fix erreicht, danach erst die geblockte Gerätegrenze.",
+    "negative_evidence": "Zehn falsche Baseline-/Kandidatenmetadatenvarianten bleiben vor der Gerätegrenze abgewiesen. Alle14 vorhandenen Migrations-Dateninvarianten werden zusätzlich auf genau2019 angewendet.",
+    "is_android_or_update_acceptance": false
+  },
+  "review": {
+    "agent": "games_worlds / Agent C",
+    "result": "35 Update-Tests und 35 unveränderte Delivery-Tests PASS; ursprünglicher Fehler reproduziert, Datenprüfungen erhalten. Echter Android2017→2019-Updatebeleg weiterhin zwingend. Root integriert erst nach unabhängigem Review."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "recorded_utc": "2026-11-13T17:47:46.370965+00:00",
+  "base_host_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "environment": {
+    "ImageOS": "ubuntu24",
+    "ImageVersion": "20261111.370.1",
+    "RUNNER_OS": "Linux",
+    "RUNNER_ARCH": "X64",
+    "GITHUB_SHA": "31b6c1d69e5ac0b588df91bd8b34149e142e05d4",
+    "GITHUB_REF": "refs/heads/chatgpt/lumo-android17-sdk-diagnostic-20261113",
+    "GITHUB_RUN_ID": "43476259207",
+    "GITHUB_RUN_ATTEMPT": "1",
+    "JAVA_HOME": "/usr/lib/jvm/temurin-17-jdk-amd64",
+    "ANDROID_HOME": "/usr/local/lib/android/sdk",
+    "ANDROID_SDK_ROOT": "/usr/local/lib/android/sdk"
+  },
+  "on_path_sdkmanager": null,
+  "scope": "Package inventory only. No Android runtime, APK, privacy or performance acceptance."
+}

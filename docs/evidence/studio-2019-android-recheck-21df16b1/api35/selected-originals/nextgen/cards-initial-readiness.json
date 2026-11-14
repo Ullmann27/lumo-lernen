@@ -1,0 +1,180 @@
+{
+  "status": "READY",
+  "states": [
+    {
+      "token": "867e84faa545a2627fd185c8ce0d585a",
+      "roundId": "cards-2bfdb660002c03f978ccce80c0745645",
+      "viewer": 0,
+      "current": 0,
+      "phase": "playing",
+      "paused": true,
+      "canDraw": false,
+      "revision": 4,
+      "ack": 0
+    },
+    {
+      "token": "867e84faa545a2627fd185c8ce0d585a",
+      "roundId": "cards-2bfdb660002c03f978ccce80c0745645",
+      "viewer": 0,
+      "current": 0,
+      "phase": "playing",
+      "paused": true,
+      "canDraw": false,
+      "revision": 4,
+      "ack": 0
+    },
+    {
+      "token": "867e84faa545a2627fd185c8ce0d585a",
+      "roundId": "cards-2bfdb660002c03f978ccce80c0745645",
+      "viewer": 0,
+      "current": 0,
+      "phase": "playing",
+      "paused": true,
+      "canDraw": false,
+      "revision": 4,
+      "ack": 0
+    },
+    {
+      "token": "867e84faa545a2627fd185c8ce0d585a",
+      "roundId": "cards-2bfdb660002c03f978ccce80c0745645",
+      "viewer": 0,
+      "current": 0,
+      "phase": "playing",
+      "paused": true,
+      "canDraw": false,
+      "revision": 4,
+      "ack": 0
+    },
+    {
+      "token": "867e84faa545a2627fd185c8ce0d585a",
+      "roundId": "cards-2bfdb660002c03f978ccce80c0745645",
+      "viewer": 0,
+      "current": 0,
+      "phase": "playing",
+      "paused": true,
+      "canDraw": false,
+      "revision": 4,
+      "ack": 0
+    },
+    {
+      "token": "867e84faa545a2627fd185c8ce0d585a",
+      "roundId": "cards-2bfdb660002c03f978ccce80c0745645",
+      "viewer": 0,
+      "current": 0,
+      "phase": "playing",
+      "paused": false,
+      "canDraw": true,
+      "revision": 5,
+      "ack": 1
+    }
+  ],
+  "frames": [
+    {
+      "source": "cards-native-resume-00.png",
+      "source_sha256": "f1d4990014f12010a2182e039ad69dc9f04c0528179a830dca5b1ab854009d2e",
+      "source_bytes": 817940,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        288,
+        528,
+        768,
+        1008,
+        1248,
+        1488,
+        1728,
+        1968
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "target": {
+        "surface_sha256": "f1d4990014f12010a2182e039ad69dc9f04c0528179a830dca5b1ab854009d2e",
+        "pixels": [
+          1080,
+          2400
+        ],
+        "bounds": [
+          384.0,
+          1186.0,
+          692.0,
+          1233.0
+        ],
+        "anchor": "",
+        "reasons": [
+          "waiting for second stable observed target bounds"
+        ],
+        "target_geometry_valid": true,
+        "stable_observed_target": false
+      }
+    },
+    {
+      "source": "cards-native-resume-01.png",
+      "source_sha256": "f1d4990014f12010a2182e039ad69dc9f04c0528179a830dca5b1ab854009d2e",
+      "source_bytes": 817940,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        288,
+        528,
+        768,
+        1008,
+        1248,
+        1488,
+        1728,
+        1968
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "target": {
+        "surface_sha256": "f1d4990014f12010a2182e039ad69dc9f04c0528179a830dca5b1ab854009d2e",
+        "pixels": [
+          1080,
+          2400
+        ],
+        "bounds": [
+          384.0,
+          1186.0,
+          692.0,
+          1233.0
+        ],
+        "anchor": "",
+        "reasons": [],
+        "target_geometry_valid": true,
+        "stable_observed_target": true
+      }
+    }
+  ],
+  "touch": [
+    538,
+    1210
+  ],
+  "scope": "Actual initial Cards state and, only if needed, native resume",
+  "resume_request": {
+    "action": "resume",
+    "revision": 4,
+    "sequence": 1,
+    "token": "867e84faa545a2627fd185c8ce0d585a"
+  },
+  "mode": "native_resume_acknowledged",
+  "elapsed_seconds": 9.328914
+}

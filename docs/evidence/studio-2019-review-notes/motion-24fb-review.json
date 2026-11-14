@@ -1,0 +1,117 @@
+{
+  "kind": "fresh_renderer_visual_review",
+  "status": "no_additional_visible_blocker_in_eight_reviewed_pose_studio_images",
+  "source_commit": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "github_artifact_id": 14047461111,
+  "original_zip": "/workspace/scratch/5987865ae883/qa/studio-new-native-24fb8580.zip",
+  "original_zip_sha256": "17b681aa99d62d5b6679e6b6d1157b051f1695a2ecb57ed99f5527e3111fc11c",
+  "original_zip_sha256_verified": true,
+  "source_stamp_verified_in_extraction_and_original_zip": true,
+  "source_dirty_empty": true,
+  "capture_manifest_sha256": "126a697b87ba699266a101c1fb33bf0bd2b0aee1d16d913643883700dce2f061",
+  "capture_kind": "native Godot pose studio, separate from gameplay capture",
+  "baseline_comparison": {
+    "path": "scripts/characters/lumo/lumo_platform_pose.gd",
+    "purpose": "Exact baseline pose source for renderer comparison on unchanged original mesh",
+    "revision": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+    "sha256": "cd0a5cd4054fef04103a072df2385040271eeca2560f457c20c04d868839e65b"
+  },
+  "images_actually_opened": 8,
+  "images": [
+    {
+      "file": "captures/lumo_studio_motion_capture/before_walk.png",
+      "sha256": "e963e44f8bcb604c6476a47690ebf33b6f7d38a16a5f3554e5edbe48246af276",
+      "bytes": 234905,
+      "width": 720,
+      "height": 840,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "finding": "Originalfigur mit gut erkennbaren Ohren, Brille, Gesicht, Handschuhen und Schwanz. Weitgehend gerade Beine und breite Standhaltung; keine sichtbare Trennung oder Streckung von Gliedmaßen. Baseline-Vergleichsbild, keine neue Implementierung.",
+      "new_candidate_visible_blocker": false
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/after_walk.png",
+      "sha256": "ee838afa26760e013fa9446b1b2732019b9c61b5227ae55b9c6c5ded4fec3b4d",
+      "bytes": 229788,
+      "width": 720,
+      "height": 840,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "finding": "Originalfigur und Materialzeichnung bleiben erkennbar. Gegenüber dem Vorherbild veränderte Schrittstellung mit angewinkeltem Knie, engerer Fußstellung und Körperabsenkung. Beide Schuhe und Sohlen sind vollständig sichtbar; keine offensichtliche Deformation oder abgetrennte Gliedmaße.",
+      "new_candidate_visible_blocker": false
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/before_sprint.png",
+      "sha256": "a490cdfad662653025e849ae3f66f1ac1479b1054252da23a68841f69dd0ff2b",
+      "bytes": 236286,
+      "width": 720,
+      "height": 840,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "finding": "Originalfigur in nahezu aufrechter, breitbeiniger Haltung. Schuhe, Hände, Gesicht und Schwanz bleiben sichtbar. Einzelbild des ursprünglichen Posepfads; aus diesem Bild lässt sich keine Bewegungsgeschwindigkeit ableiten.",
+      "new_candidate_visible_blocker": false
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/after_sprint.png",
+      "sha256": "1a0c94b4a770315a9b071bdffa38cbad22df40fc21b9380443daeeb35e1e9999",
+      "bytes": 226051,
+      "width": 720,
+      "height": 840,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "finding": "Deutlich tiefere Körper-/Kopfposition und gebeugte Knie gegenüber dem Vorherbild; Fußstellung unterscheidet sich auch von der Walk-Stichprobe. Schuhe vollständig sichtbar, Gliedmaßenkonturen zusammenhängend; keine neue sichtbare Deformation.",
+      "new_candidate_visible_blocker": false
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/before_jump_rise.png",
+      "sha256": "dc2a537f56f807ecdc2d93c516aaf31508d8402db34961e18c9b08d13d950533",
+      "bytes": 233683,
+      "width": 720,
+      "height": 840,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "finding": "Originalfigur bleibt erkennbar, aber die nach unten weisenden Schuhe werden an der Studiobodenfläche sichtbar abgeschnitten. Dieser Befund betrifft den ausdrücklich als Vorher bezeichneten ursprünglichen Posepfad.",
+      "new_candidate_visible_blocker": false
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/after_jump_rise.png",
+      "sha256": "80a2f272b3e0b4e7b33186263ccd3d935af219349eb4be5b81e5ef2cf141b8c6",
+      "bytes": 229670,
+      "width": 720,
+      "height": 840,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "finding": "Beine sind sichtbar angezogen und gebeugt; beide vollständigen Schuhe befinden sich oberhalb der Bodenfläche mit klar sichtbarem Abstand. Arme sind gegenüber der Vorherpose geöffnet; Ohren, Gesicht und Schwanz bleiben zusammenhängend.",
+      "new_candidate_visible_blocker": false
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/before_land.png",
+      "sha256": "f4146c517e89bc057be2759415684533efe747267e84ee65b5d3b7810721909c",
+      "bytes": 226559,
+      "width": 720,
+      "height": 840,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "finding": "Weitgehend gestreckte Beine; beide Schuhe ragen sichtbar in die Studiobodenfläche und sind unten abgeschnitten. Dieser Befund betrifft die Baseline-Pose.",
+      "new_candidate_visible_blocker": false
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/after_land.png",
+      "sha256": "d9442204e757b11d6a325f35df510cea0f02e3ba4cf0b68a0ca08103eabe4b51",
+      "bytes": 232932,
+      "width": 720,
+      "height": 840,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "finding": "Leichte Kniebeugung und abgesenkter Körper. Beide Schuhe einschließlich weißer Sohlen vollständig sichtbar nahe der Bodenfläche. Kein sichtbares Durchschneiden der Schuhe wie im Vorherbild und keine offensichtliche Streckung der Gliedmaßen.",
+      "new_candidate_visible_blocker": false
+    }
+  ],
+  "overall_observation": "Die After-Stichproben bewahren die sichtbare Original-Lumo-Identität und zeigen unterscheidbare Lauf-, Sprint-, Sprungaufstiegs- und Landehaltungen. Das sichtbare Abschneiden der Schuhe an der Studiobodenfläche in den Before-Jump-/Land-Bildern ist in den entsprechenden After-Bildern nicht vorhanden. Kein zusätzlicher sichtbarer Blocker in diesen acht Bildern.",
+  "limits": [
+    "Statische Stichproben aus dem Godot-Pose-Studio; keine vollständige Sichtung eines Bewegungszyklus oder Animationstransitions.",
+    "Diese Notiz beurteilt Bildinhalt und Provenienz. Sie belegt weder Kollisionsphysik noch Touch-Steuerung, Android-Integration oder reale Geräteleistung.",
+    "Die gemeldeten neun bestandenen Studio-Gates wurden in diesem Auftrag nicht erneut ausgeführt. Keine finale Gesamtfreigabe oder APK-Abnahme.",
+    "Keine Produkt- oder Testdatei geändert."
+  ]
+}

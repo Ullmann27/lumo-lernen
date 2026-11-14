@@ -1,0 +1,82 @@
+[
+  {
+    "file": "raw/source-pin.log",
+    "source_start_line": 180,
+    "source_end_line": 223,
+    "bytes": 3623,
+    "sha256": "63d923ee1c74a445d29f0dc0cc4f7e0fa62bcd210228059c123e40a3f2b934f6",
+    "scope": "Exact contiguous excerpt from the complete original decoded job log"
+  },
+  {
+    "file": "raw/flutter-analysis.log",
+    "source_start_line": 431,
+    "source_end_line": 586,
+    "bytes": 28777,
+    "sha256": "f36e6c858deb312edb7acc9c1441d50bd3e58cd6963e04a646de451eff0c8d48",
+    "scope": "Exact contiguous excerpt from the complete original decoded job log"
+  },
+  {
+    "file": "raw/focused-quiz-learning-widgets.log",
+    "source_start_line": 587,
+    "source_end_line": 637,
+    "bytes": 7258,
+    "sha256": "0e380db8ad8004c12ed382c95573b6ce82cfa9eb9fbb2390933444bef4cc1e08",
+    "scope": "Exact contiguous excerpt from the complete original decoded job log"
+  },
+  {
+    "file": "raw/full-flutter-summary.log",
+    "source_start_line": 669,
+    "source_end_line": 710,
+    "bytes": 4573,
+    "sha256": "7536e369cd917549cf8f9a0e471fc2db54175bb3a49a6297aa36f5f73cc2cb13",
+    "scope": "Exact contiguous excerpt from the complete original decoded job log"
+  },
+  {
+    "file": "raw/python-build-contracts.log",
+    "source_start_line": 943,
+    "source_end_line": 1420,
+    "bytes": 85190,
+    "sha256": "3e175037b5614f5858721c1da7fce5658baec6cc28ae95d5ad3ce7ee250b27f9",
+    "scope": "Exact contiguous excerpt from the complete original decoded job log"
+  },
+  {
+    "file": "raw/android-probe-contracts.log",
+    "source_start_line": 1421,
+    "source_end_line": 2485,
+    "bytes": 183692,
+    "sha256": "f60c19da697d047649648d01c48cc6a9ce383c0c2632588d87585650db5f55a5",
+    "scope": "Exact contiguous excerpt from the complete original decoded job log"
+  },
+  {
+    "file": "raw/font-capture-guard.log",
+    "source_start_line": 2486,
+    "source_end_line": 2512,
+    "bytes": 3089,
+    "sha256": "a06723ac45ddd048d8277b5e049c6a4c5d79a73e6ad741acb0b7501a13d60dda",
+    "scope": "Exact contiguous excerpt from the complete original decoded job log"
+  },
+  {
+    "file": "raw/export-source-guard.log",
+    "source_start_line": 2513,
+    "source_end_line": 2588,
+    "bytes": 11182,
+    "sha256": "5db94f842485ff379c2efc20647df1cfa563c89973a6dcc3b95cfc77d5cbe4a2",
+    "scope": "Exact contiguous excerpt from the complete original decoded job log"
+  },
+  {
+    "file": "raw/actual-apk-build.log",
+    "source_start_line": 8178,
+    "source_end_line": 12359,
+    "bytes": 485360,
+    "sha256": "04c59479124c43acaf0053bc4e82ac50f7aec04e9614e3071a178d2fc75de8c5",
+    "scope": "Exact contiguous excerpt from the complete original decoded job log"
+  },
+  {
+    "file": "raw/actual-final-apk-verification.log",
+    "source_start_line": 12360,
+    "source_end_line": 12461,
+    "bytes": 7564,
+    "sha256": "dd09a222b2934799380c3e85608d0ffd6194b807ebe51c0dbeb2c1cfc97e53e7",
+    "scope": "Exact contiguous excerpt from the complete original decoded job log"
+  }
+]

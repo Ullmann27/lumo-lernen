@@ -1,0 +1,9 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart
+00:00 +0: /workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart: all ten game portals dispatch each accessibility and touch tap once
+00:01 +1: /workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart: unavailable playable has no accessible launch action
+00:01 +2: /workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart: unavailable comingSoon has no accessible launch action
+00:01 +3: /workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart: rebuilding a tile removes and restores the accessible action
+00:02 +4: /workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_routing_test.dart: routing table lists ten unique portals and unique covers
+00:02 +5: /workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_routing_test.dart: every viewport uses the image-tile hub with extra columns when wide
+00:02 +6: /workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_routing_test.dart: every visible portal opens its own target scene
+00:10 +7: All tests passed!

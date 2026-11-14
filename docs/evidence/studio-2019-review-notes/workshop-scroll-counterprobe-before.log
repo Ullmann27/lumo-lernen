@@ -1,0 +1,25 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Perf] quality_profile:medium
+DRAG_BEFORE 0 max=1784.0 page=556.0 mouse_filter=1
+DRAG_AFTER 0 dyno_time=0.0
+ERROR: [WorkshopDensity] Finger drag beginning on visible Dyno button scrolls production workshop
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (/tmp/workshop_drag_review.gd:31)
+       [1] _exercise_workshop (/tmp/workshop_drag_review.gd:172)
+       [2] _settle (/tmp/workshop_drag_review.gd:36)
+[WorkshopDensity] CASE [(2400, 1080), 2.625] checks=20 failures=1
+ERROR: [WorkshopDensity] FAIL 1 of 20 checks
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _run (/tmp/workshop_drag_review.gd:255)
+       [1] _settle (/tmp/workshop_drag_review.gd:36)

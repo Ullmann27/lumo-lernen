@@ -1,0 +1,52 @@
+{
+  "native_source": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "run": 43479909943,
+  "run_attempt": 1,
+  "status": "SUCCESS",
+  "required_jobs": [
+    "gameplay",
+    "new-worlds",
+    "studio",
+    "learning-preview",
+    "touch-workshop",
+    "touch-treasure",
+    "touch-build",
+    "bundle-evidence"
+  ],
+  "archive_job": "SUCCESS",
+  "artifact": 14067226187,
+  "zip_bytes": 174869869,
+  "zip_sha256": "3aed744b481e02c485ae0ea039750728ad59842b6b4f6ed9a2c3109ca63a2067",
+  "zip_crc_verified": true,
+  "matching_clean_capture_sources": [
+    {
+      "prefix": "nextgen-evidence/nextgen",
+      "revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+      "dirty_empty": true
+    },
+    {
+      "prefix": "studio-evidence",
+      "revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+      "dirty_empty": true
+    },
+    {
+      "prefix": "touch-evidence/workshop",
+      "revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+      "dirty_empty": true
+    },
+    {
+      "prefix": "touch-evidence/treasure",
+      "revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+      "dirty_empty": true
+    },
+    {
+      "prefix": "touch-evidence/build",
+      "revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+      "dirty_empty": true
+    }
+  ],
+  "public_archive_release": 444601765,
+  "public_zip_digest": "sha256:3aed744b481e02c485ae0ea039750728ad59842b6b4f6ed9a2c3109ca63a2067",
+  "publication_scope": "Original native evidence archive only, not an Android APK",
+  "visual_review_scope": "29 actual current images individually opened (root 14, agent B 15); 25 selected in new receipt 4091bc1c79a0efa75c368b35ea77472a5bb2cf2ea8fd2f0e1b096ebdb43eebae. All 29 byte-equal to full original bundle. Desktop evidence only."
+}

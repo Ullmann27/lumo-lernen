@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "started_utc": "2026-11-13T19:14:48.460535+00:00",
+  "elapsed_seconds": 38.39126834200579,
+  "exit_code": 0,
+  "log_bytes": 151577,
+  "log_sha256": "2a14d5b1cc132a019b613d149534f9b78a7e87ccca6651ea4831b41c2e7cca76",
+  "scope": "Actual local code-level Android probe suite; no emulator execution or device proof."
+}

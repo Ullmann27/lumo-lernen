@@ -1,0 +1,786 @@
+{
+  "scope": "Each primary log is listed once; nested duplicate engine logs are excluded from these counts. No sum across assertion/test/image units.",
+  "groups": {
+    "2014": 18,
+    "action-stage": 5,
+    ".": 2,
+    "nextgen": 25,
+    "studio": 11,
+    "technical-art": 8
+  },
+  "logs": [
+    {
+      "path": "2014/build_sandbox_tools_regression.log",
+      "bytes": 539,
+      "sha256": "62b94cf9adcc2b65a0b81c0e5780af8152e2f33d92a9beee28b1658f4caa055e",
+      "pass_markers": [
+        "[BauweltSandboxTools] PASS larger world, atomic fill/copy/mirror, undo and save"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/build_sandbox_ui_regression.log",
+      "bytes": 1269,
+      "sha256": "df12e6cd24264f30e4b81b215caff309e233d3e0c2cf4c42e70bfe9f65070c82",
+      "pass_markers": [
+        "[BauweltSandboxUI] PASS 48dp tools, point workflow and atomic undo"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/creative_touch_layout_regression.log",
+      "bytes": 1574,
+      "sha256": "453eb1bb426577852ed112022cd9949220728cc89643a3fa1cafb280993e18e9",
+      "pass_markers": [
+        "[CreativeTouchLayout] PASS 300 checks: transformed dp, portrait, Fold and density"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/jump_extras_regression.log",
+      "bytes": 724,
+      "sha256": "c24e8b88950e144ef708de303cdef87c1097715c8a7e9e38f2838780840055e4",
+      "pass_markers": [
+        "[JumpExtras] PASS 12 checks: live platforms, pause, bounce and star resume"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/kart_full_field_regression.log",
+      "bytes": 83651,
+      "sha256": "c36216292a763b3330c722569018f292383cc087a15bf33f4643db19e6e3167e",
+      "pass_markers": [
+        "[KartFullField] PASS: continuous field two-lap drive with bounded movement"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/kart_garage_3d_touch_regression.log",
+      "bytes": 1258,
+      "sha256": "adeb83e795ccb602c9f4b1d2b4147d5c490c9f4b1bc4c3ede4763ff9c16fbd9e",
+      "pass_markers": [
+        "[Garage3DTouch] PASS 27 checks: native input, legacy ray, pointer ownership"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/kart_harbor_attraction_regression.log",
+      "bytes": 1656,
+      "sha256": "00a5c14f0534e154c87619cb3ad1c4427dad6ceb531e290f2ef00e70d5dd9bd3",
+      "pass_markers": [
+        "[HarborAttraction] PASS: LOW/HIGH placement, upright travel, pass-by, rearm, pause, reduced motion, distance culling"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/kart_harbor_race_hook_regression.log",
+      "bytes": 1557,
+      "sha256": "8f6628ca97fc52c0af0e8ad2facb34cf8028cab83fa612630ebdad8dcf5e3df1",
+      "pass_markers": [
+        "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/kart_loop_contact_regression.log",
+      "bytes": 672,
+      "sha256": "408a8cf775584f33c18813904806183e6565b54d5d931b2f72ff2cd4f46677fd",
+      "pass_markers": [
+        "[LoopContact] PASS: uniform physical travel, inversion and continuous road joins"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/kart_menu_depth_2013_regression.log",
+      "bytes": 1242,
+      "sha256": "2baaeaf7ea0626ab2aea84ddae6b1ab727f4001b14803619c9fe449b67d57611",
+      "pass_markers": [
+        "[MenuDepth] PASS: 41 checks"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/kart_player_full_route_regression.log",
+      "bytes": 21641,
+      "sha256": "e81a96beaa46ba89d795c2a12eaf3bd463d8adf4301c3bfa5c14eb3767a6c989",
+      "pass_markers": [
+        "[PlayerFullRoute] PASS {\"airborne\":false,\"brake\":0.0,\"checkpoints\":16,\"distance\":3703.71405977428,\"jumps\":8,\"landings\":8,\"lane\":-0.765062272548676,\"lasso_catches\":1,\"lasso_clock_seconds\":98.5166666666624,\"lasso_dodges\":3,\"lasso_factor\":1.0,\"loop_active\":false,\"loops\":2,\"precision_results\":{\"ziel\":2},\"resets\":0,\"road_distance\":0.346461836695653,\"seconds\":98.5166666666624,\"speed\":41.0,\"steering\":0.0} max_step=0.71434593200684"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/kart_racecraft_regression.log",
+      "bytes": 980,
+      "sha256": "a8052177816b24e88e9bd4c21049da8bdec15c5e5a350e451cdb526ee39ae008",
+      "pass_markers": [
+        "[KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/kart_rival_drift_items_regression.log",
+      "bytes": 743,
+      "sha256": "fc27dd163212a5dc2d079660d242cf25ed92bd1789a27bf28673abe40de09708",
+      "pass_markers": [
+        "[KartRivalDrift] PASS: earned drift, gold pickup, fair pulse, shield and mini-turbo"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/kart_rival_flight_regression.log",
+      "bytes": 1779,
+      "sha256": "812ac50b1731f00047e2d0c1498782e2d45d2acf9f604200b015663ff95aec27",
+      "pass_markers": [
+        "[RivalFlight] sonnenhafen: automatic AI approach, take-off and landing PASS",
+        "[RivalFlight] bergwelt: automatic AI approach, take-off and landing PASS",
+        "[RivalFlight] ramp reprojection cannot skip the take-off lip PASS",
+        "[RivalFlight] PASS: launch-speed physics, real misses, safe snapshots and automatic ramps"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/kart_sonnenhafen_generation_regression.log",
+      "bytes": 550,
+      "sha256": "9c807752c572e15d411562104cea5ae42470c5381fa122672d7af7015a384aad",
+      "pass_markers": [
+        "[SonnenhafenGeneration] PASS: LOW/HIGH scenery, clear road, other tracks untouched"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/kart_stunt_continuity_regression.log",
+      "bytes": 1645,
+      "sha256": "47810688cee982ffc2339e3fa7bb650e9eac48cf948618220f9ef587ff122ca6",
+      "pass_markers": [
+        "[StuntContinuity] PASS: continuous player contact and real AI loop traversal"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/kart_zauberwald_library_regression.log",
+      "bytes": 1320,
+      "sha256": "83bb911a70a054f7cd068868a401a911b2a16308b0cf6915c23e8e2c2e4ad50d",
+      "pass_markers": [
+        "[ZauberwaldLibrary] PASS checks=601"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "2014/puzzle_expansion_regression.log",
+      "bytes": 1191,
+      "sha256": "15e66dba4f57135ff127300eff8f6457f9a837ebe383a2528b3d3a32ce5075f4",
+      "pass_markers": [
+        "[PuzzleExpansion] PASS 1103 checks: all motifs/counts, saves and two played rounds"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "action-stage/kart_lasso_production_regression.log",
+      "bytes": 1031,
+      "sha256": "83aea1051cb10e8fbb46cc3834df42134196e8842a9500919a33c375ef02ef49",
+      "pass_markers": [
+        "[KartLassoProduction] PASS: 26 assertions; real warning/catch/rival motion, pause, rescue and saved-race rebuild"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "action-stage/kart_lasso_regression.log",
+      "bytes": 560,
+      "sha256": "95d9505e9aa9db3f20d26bc7b9535589aabc2a7309a048ef1bfb12255103560a",
+      "pass_markers": [
+        "[KartLasso] PASS: 34 assertions; 70 m/s sweeps, counterplay, bounded hold, equal rival rules"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "action-stage/kart_menu_flow_regression.log",
+      "bytes": 3675,
+      "sha256": "b2c789a4f2d251a056ece8698005830de32934d0cd4ac9869ed693154dc1c58b",
+      "pass_markers": [
+        "[KartMenuFlow] PASS: direct selected Cup start inside compact Android safe insets",
+        "[KartMenuFlow] PASS: five direct sections; 1280x720,800x480,640x320; safe controls >=44px"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "action-stage/kart_roadside_action_regression.log",
+      "bytes": 1798,
+      "sha256": "e582b58303683f6228689e133b1306e2d56bd35138051cce6c81e9ff91a9d57f",
+      "pass_markers": [
+        "[RoadsideAction] PASS: 183 assertions; two new drivable ramps at 20.5/48/70 m/s, visible fair encounter plans"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "action-stage/kart_spatial_menu_regression.log",
+      "bytes": 5531,
+      "sha256": "76045010a8a78d516310b8dcf5c98e637c21e6ee5ca770870b5cea5409d3042b",
+      "pass_markers": [
+        "[SpatialMenu] PASS 594 checks; 5/5 cases; renderer=X11"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "legacy-gameplay.log",
+      "bytes": 214490,
+      "sha256": "1afd9276f2bc47f957d621f776b1c05cf7e59c2da72b812e38737dc740daa710",
+      "pass_markers": [
+        "[KartTests] PASS: 8000 shared Jump questions; no Kart learning state; free steering; real full race; brake/drift; pause; save/resume; one award",
+        "[HostBridgeTests] PASS: actual JNI integer ACK, strict rejection, reward dedup/backup, return",
+        "[HostBridgeTests] PASS: native options, lifecycle save/pause, Back, resume identity, reward retry/once, games/learn return, fresh restart",
+        "[HostBridgeTests] PASS: jump native reward, question pause, save/resume identity, Back to games",
+        "[JumpTests] PASS: full twelve-island adventure, collisions, jump, three learning stops, save/resume",
+        "[LumoGait] PASS walk/run foot planting, idle settle, teleport, airborne",
+        "[LumoRenderKit] PASS one tier, Kart far unchanged, creative preset identical, Wolkeninseln tiers",
+        "[LumoEnvironmentApply] PASS creative_night/wolkeninseln/bauwelt_day/puzzle_atelier/rhythm_party/treasure_day",
+        "[CreativePresets] PASS describe/configure/apply, bauwelt_day/puzzle_atelier/rhythm_party/treasure_day, MultiMesh batches",
+        "[KartRaceBridge] PASS: no learning data, stable pause/return/resume ID, one reward, solved int, failed ACK keeps save, star cup without tasks, legacy learning-cup save finishes",
+        "[KartSplit] PASS: Wolkenweg raised 2.20 m while main lane stayed at 0.00 m",
+        "[KartPhysics] PASS: rail walls on every course at full turbo, sliding contact, blue/orange drift tiers, wrong-way warning, reverse line and jump-ahead give no lap, GAS/BREMSE pedals with reverse, on-screen pad, forward-facing boost chevrons, and a physical Wolkenweg split route",
+        "[KartJump] PASS: take-off, flight, landing turbo, cloud rescue past the gap, ordered checkpoints across the jump, rival arc, no ramp elsewhere",
+        "[KartTouchTests] PASS: real two-finger GUI, window Back countdown/race pause, touch resume, simultaneous steering+BREMSE, release outside, no learning panel, scaled safe areas",
+        "[KartLandingFit] PASS: all five choices readable above START on 4 Android sizes",
+        "[LumoCharacterTests] PASS: attached torso, proportionate visemes, expressions, live idle",
+        "[KartWorldTests] PASS: colours, spatial culling batches, transforms, background shadows",
+        "[KartPauseLayoutTests] PASS: actual compact/Fold matrix, safe-area controls, pause/results layout and touch navigation",
+        "[KartAI] PASS: no teleport, no rubber-band, difficulty order holds",
+        "[GarageTargets] PASS: 255 visible controls checked at >= 48x48 dp",
+        "[CompactKartSelection] PASS 355 checks; 6/6 cases; renderer=headless"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/build_nextgen_play_regression-headless.log",
+      "bytes": 685,
+      "sha256": "4f02d44a99debb7a5b7a8580c5c7ef215201906963f133e6d10c79d65d27c01c",
+      "pass_markers": [
+        "[BuildNextgen] PASS checks=62: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/build_nextgen_play_regression-rendered.log",
+      "bytes": 1334,
+      "sha256": "4439cc99723397dd2a4ead00eea92141438eb24a56c360d22aa9308b4ba78552",
+      "pass_markers": [
+        "[BuildNextgen] PASS checks=70: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/build_settlement_play_regression-headless.log",
+      "bytes": 2067,
+      "sha256": "430e55f53620b8c2df1d8871f1b9763936f7d14e91ed66e383700f1dce26a8b4",
+      "pass_markers": [
+        "[SettlementPlay] PASS checks=127: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/build_settlement_play_regression-rendered.log",
+      "bytes": 2716,
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127",
+      "pass_markers": [
+        "[SettlementPlay] PASS checks=139: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/build_settlement_regression-headless.log",
+      "bytes": 535,
+      "sha256": "33275feb62e4b45e22b1e5baf628116c26e14ded822012c4d71ba5b72a3cdb5c",
+      "pass_markers": [
+        "[Settlement] PASS 194 checks; mirrored complete AI campaign 22 days"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/build_transform_regression-headless.log",
+      "bytes": 563,
+      "sha256": "908189e909d8d514b48819b7fbf29727b962e2f17d4f0f28dbd43f5d690ccc5a",
+      "pass_markers": [
+        "[BuildTransform] PASS checks=38: identity, rotation, support graph, atomic history and v1 saves"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/cards_table_capture-rendered.log",
+      "bytes": 1162,
+      "sha256": "eecb702cd200bcbb695665dc4b060aa33463fdb0023ba4bb6a5321c4fe352ef4",
+      "pass_markers": [
+        "CARDS_TABLE_RENDER_PASS renderer=X11 images=4"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/cards_table_regression-headless.log",
+      "bytes": 556,
+      "sha256": "2f8bfa4354789504aa3ee902f3a83ca7bf7a55cdcb4645159caa9db04c63ab9e",
+      "pass_markers": [
+        "CARDS_TABLE_RUNTIME_PASS checks=208 failures=0"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/creative_nextgen_environment_regression-headless.log",
+      "bytes": 590,
+      "sha256": "443e27628d12acd4c02473fc8e5246282c0701eab6aff75a0e39927c275f76de",
+      "pass_markers": [
+        "[CreativeNextgenEnvironment] PASS checks=35: original textures, bounded cloud batch, preserved quality and no added lights"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/creative_nextgen_environment_regression-rendered.log",
+      "bytes": 1239,
+      "sha256": "27a24847d258f729ae3b900606e681e18cf6db1c824df169d455a22d2cd72b4e",
+      "pass_markers": [
+        "[CreativeNextgenEnvironment] PASS checks=53: original textures, bounded cloud batch, preserved quality and no added lights"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/jump_expeditions_regression-headless.log",
+      "bytes": 2758,
+      "sha256": "92b58ab6f6002b1c9989a185e3b26acc44c117d2cfc921652edf4beffaf96753",
+      "pass_markers": [
+        "[JumpExpeditions] PASS 29 checks: three physical courses, four stages, real menu selection and preserved progress"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/jump_nextgen_capture-rendered.log",
+      "bytes": 1727,
+      "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3",
+      "pass_markers": [
+        "[JumpNextgenCapture] PASS 80 checks, 16 actual renderer frames and native two-finger jumps"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/jump_nextgen_regression-headless.log",
+      "bytes": 1995,
+      "sha256": "52a320159bea3754b29275564ce4915525364e192f7ea53430e7ddfe950bcfc9",
+      "pass_markers": [
+        "[JumpNextgen] PASS 84 checks: actual variable jumps, coyote, buffer, original rig, pause, dp layouts and isolated saves"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/kart_nextgen_garage_regression-headless.log",
+      "bytes": 732,
+      "sha256": "46a285630f61100232ed1b4a2c8835255a2927cd97e4d5e5fb4209e97fb6f044",
+      "pass_markers": [
+        "[NextGenGarage] PASS 93 checks; captures=0"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/kart_nextgen_garage_regression-rendered.log",
+      "bytes": 1383,
+      "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5",
+      "pass_markers": [
+        "[NextGenGarage] PASS 118 checks; captures=12"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/kart_player_full_route_regression-rendered.log",
+      "bytes": 21641,
+      "sha256": "e81a96beaa46ba89d795c2a12eaf3bd463d8adf4301c3bfa5c14eb3767a6c989",
+      "pass_markers": [
+        "[PlayerFullRoute] PASS {\"airborne\":false,\"brake\":0.0,\"checkpoints\":16,\"distance\":3703.71405977428,\"jumps\":8,\"landings\":8,\"lane\":-0.765062272548676,\"lasso_catches\":1,\"lasso_clock_seconds\":98.5166666666624,\"lasso_dodges\":3,\"lasso_factor\":1.0,\"loop_active\":false,\"loops\":2,\"precision_results\":{\"ziel\":2},\"resets\":0,\"road_distance\":0.346461836695653,\"seconds\":98.5166666666624,\"speed\":41.0,\"steering\":0.0} max_step=0.71434593200684"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/kart_track_pass_regression-headless.log",
+      "bytes": 1074,
+      "sha256": "e1802172ad25ca6f8f686bd95e732e3e5b5a040e8b441e0792755a2919139690",
+      "pass_markers": [
+        "[KartTrackPass] PASS 104 checks"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/learning_world_capture-rendered.log",
+      "bytes": 8466,
+      "sha256": "40303789bd5aa748900d0224ff1486a3c4a06b0f54fbe690a532f8ea54681ddd",
+      "pass_markers": [
+        "[LearningCapture] PASS captures=25"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/learning_world_regression-headless.log",
+      "bytes": 10597,
+      "sha256": "31cfdd02030c31b3d783750ce0f984d4988ee22bd87e5918be5a02ffbbebca9a",
+      "pass_markers": [
+        "[LearningWorld] PASS checks=5340"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/lumo_65bone_walk_gait_regression-headless.log",
+      "bytes": 570,
+      "sha256": "d709a54ac013e3e6e24a6c31a790d8d84b0abe00f4fbccb7fee6229947ff6cda",
+      "pass_markers": [
+        "[LumoGait] PASS: real 65-bone alternating thigh/foot/toe/arm movement, pause, calm mode, neutral reset"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/lumo_original_jump_visual_regression-headless.log",
+      "bytes": 689,
+      "sha256": "6c2847641ce8702483e9a6d81b36d20fac209567079970bd641e11f0c3489305",
+      "pass_markers": [
+        "[JumpOriginalLumo] PASS: original 65-bone GLB visible, grounded, moving, paused and resumed"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/lumo_teacher_pose_regression-headless.log",
+      "bytes": 587,
+      "sha256": "9f2874ec9da7d8b8e5621890cbb37e77246965e0a6cd8dc883ade2be129321d7",
+      "pass_markers": [
+        "[LumoTeacherPose] PASS 34 checks: original gestures, bounded split gaze, owner exclusivity, pause and honest voice seam"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/rhythm_tour_play_regression-headless.log",
+      "bytes": 598,
+      "sha256": "12c16889bcb427a5b8cc09878a7652e23091e07b6c3f9bb9765f6bd2e00def7b",
+      "pass_markers": [
+        "[RhythmTourPlay] PASS checks=87: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/rhythm_tour_play_regression-rendered.log",
+      "bytes": 1247,
+      "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9",
+      "pass_markers": [
+        "[RhythmTourPlay] PASS checks=93: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "nextgen/rhythm_tour_regression-headless.log",
+      "bytes": 580,
+      "sha256": "2d7b3c234aed5745baeff022044bd6717611de1bfefa8c787f6fc79acc4998e2",
+      "pass_markers": [
+        "[RhythmTour] PASS checks=2118: distinct fair charts, three difficulties, non-perfect campaign and additive saves"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "project.log",
+      "bytes": 6131,
+      "sha256": "2d6b03148c37199f78d2a55916dfa91b1f73a2362123270cc9e54b23622afe75",
+      "pass_markers": [
+        "[PASS] project: project.godot",
+        "[PASS] dir: scenes/app/",
+        "[PASS] dir: scenes/hub/",
+        "[PASS] dir: scenes/characters/",
+        "[PASS] dir: scenes/games/",
+        "[PASS] dir: scripts/app/",
+        "[PASS] dir: scripts/camera/",
+        "[PASS] dir: scripts/characters/",
+        "[PASS] dir: scripts/hub/",
+        "[PASS] dir: scripts/systems/",
+        "[PASS] dir: scripts/ui/",
+        "[PASS] dir: assets/manifests/",
+        "[PASS] dir: assets/models/",
+        "[PASS] dir: assets/materials/",
+        "[PASS] dir: assets/textures/",
+        "[PASS] dir: assets/shaders/",
+        "[PASS] dir: tools/",
+        "[PASS] scene: scenes/app/boot.tscn",
+        "[PASS] scene: scenes/app/intro_3d.tscn",
+        "[PASS] scene: scenes/app/home_3d.tscn",
+        "[PASS] scene: scenes/app/loading_screen.tscn",
+        "[PASS] scene: scenes/hub/hub_portal.tscn",
+        "[PASS] scene: scenes/hub/star_field.tscn",
+        "[PASS] scene: scenes/characters/lumo_companion.tscn",
+        "[PASS] scene: scenes/default_env.tres",
+        "[PASS] script: scripts/app/app_boot.gd",
+        "[PASS] script: scripts/app/scene_router.gd",
+        "[PASS] script: scripts/app/mobile_runtime.gd",
+        "[PASS] script: scripts/app/intro_controller.gd",
+        "[PASS] script: scripts/app/home_controller.gd",
+        "[PASS] script: scripts/camera/mobile_touch_camera.gd",
+        "[PASS] script: scripts/characters/lumo_companion.gd",
+        "[PASS] script: scripts/hub/portal_interaction.gd",
+        "[PASS] script: scripts/hub/star_field.gd",
+        "[PASS] script: scripts/systems/performance_manager.gd",
+        "[PASS] script: scripts/systems/asset_loader.gd",
+        "[PASS] script: scripts/systems/event_bus.gd",
+        "[PASS] script: scripts/systems/settings_store.gd",
+        "[PASS] script: scripts/systems/audio_manager.gd",
+        "[PASS] script: scripts/ui/mobile_safe_area.gd",
+        "[PASS] autoload: EventBus",
+        "[PASS] autoload: PerformanceManager",
+        "[PASS] autoload: SceneRouter",
+        "[PASS] autoload: MobileRuntime",
+        "[PASS] autoload: AssetLoader",
+        "[PASS] autoload: SettingsStore",
+        "[PASS] autoload: AudioManager",
+        "[PASS] manifest: valid JSON, 6 model entries",
+        "[PASS] asset-pack: present: assets/generated/lumo3d_assets",
+        "[PASS] asset-pack-manifest: valid JSON, 175 assets in counts",
+        "[PASS] asset-pack-png-count: 176 PNG files",
+        "[PASS] asset-pack-category: textures/albedo: 12 PNGs",
+        "[PASS] asset-pack-category: textures/normal: 12 PNGs",
+        "[PASS] asset-pack-category: textures/emission: 23 PNGs",
+        "[PASS] asset-pack-category: particles: 32 PNGs",
+        "[PASS] asset-pack-category: billboards: 28 PNGs",
+        "[PASS] asset-pack-category: portals: 20 PNGs",
+        "[PASS] asset-pack-category: sky_gradients: 12 PNGs",
+        "[PASS] asset-pack-category: ui_panels: 16 PNGs",
+        "[PASS] asset-pack-category: masks: 20 PNGs",
+        "[PASS] generated-material: mat_grass_magic.tres",
+        "[PASS] generated-material: mat_stone_warm.tres",
+        "[PASS] generated-material: mat_wood_warm.tres",
+        "[PASS] generated-material: mat_hologrid_cyan.tres",
+        "[PASS] generated-material: mat_crystal_floor.tres",
+        "[PASS] generated-material: mat_portal_learn.tres",
+        "[PASS] generated-material: mat_portal_games.tres",
+        "[PASS] generated-material: mat_portal_parent.tres",
+        "[PASS] generated-material: mat_sky_backdrop.tres",
+        "[PASS] generated-material: mat_billboard_crystal.tres",
+        "[PASS] generated-material: mat_billboard_book.tres",
+        "[PASS] generated-material: mat_particle_gold.tres",
+        "[PASS] central-manifest: textures: 12 IDs",
+        "[PASS] central-manifest: normal_maps: 12 IDs",
+        "[PASS] central-manifest: emission_maps: 23 IDs",
+        "[PASS] central-manifest: particles: 32 IDs",
+        "[PASS] central-manifest: billboards: 28 IDs",
+        "[PASS] central-manifest: portals: 20 IDs",
+        "[PASS] central-manifest: sky: 12 IDs",
+        "[PASS] central-manifest: ui: 16 IDs",
+        "[PASS] central-manifest: masks: 20 IDs",
+        "[PASS] central-manifest: materials: 13 IDs",
+        "[PASS] home-island-material: home_controller references generated island material",
+        "[PASS] home-sky: home_controller references mat_sky_backdrop",
+        "[PASS] home-billboards: home_controller references billboard materials",
+        "[PASS] home-portal-materials: all 3 portal materials wired",
+        "[PASS] portal-content: scenes/games/star_collect.tscn",
+        "[PASS] portal-content: scenes/games/learn_card.tscn",
+        "[PASS] portal-content: scenes/games/parent_settings.tscn",
+        "[PASS] portal-content: scripts/games/star_collect_game.gd",
+        "[PASS] portal-content: scripts/games/learn_card.gd",
+        "[PASS] portal-content: scripts/games/parent_settings.gd",
+        "[PASS] lumo-reference: 10 PNG sheets in reference/",
+        "[PASS] lumo-reference-manifest: lumo_reference_manifest.json valide",
+        "[PASS] lumo-system: scenes/characters/lumo/lumo_character.tscn",
+        "[PASS] lumo-system: scenes/characters/lumo/lumo_showcase.tscn",
+        "[PASS] lumo-system: scripts/characters/lumo/lumo_character_controller.gd",
+        "[PASS] lumo-system: scripts/characters/lumo/lumo_behavior_controller.gd",
+        "[PASS] lumo-system: scripts/characters/lumo/lumo_animation_state.gd",
+        "[PASS] lumo-system: scripts/characters/lumo/lumo_eye_system.gd",
+        "[PASS] lumo-system: scripts/characters/lumo/lumo_mouth_system.gd",
+        "[PASS] lumo-system: scripts/characters/lumo/lumo_reference_board.gd",
+        "[PASS] lumo-system: scripts/app/showcase_controller.gd",
+        "[PASS] no-flutter: absent: pubspec.yaml",
+        "[PASS] no-flutter: absent: lib/main.dart",
+        "[PASS] tool: tools/build_web.sh",
+        "[PASS] tool: tools/build_android.sh",
+        "[PASS] tool: tools/setup_android_keystore.sh",
+        "[PASS] tool: tools/install_android.sh",
+        "[PASS] tool: tools/logcat_lumo.sh",
+        "[PASS] tool: tools/serve_web.py",
+        "[PASS] tool: tools/fetch_assets.py",
+        "[PASS] tool: tools/validate_project.py",
+        "[PASS] docs: CLAUDE.md enthaelt 'mobile'",
+        "[PASS] docs: CLAUDE.md enthaelt 'boot'",
+        "[PASS] docs: CLAUDE.md enthaelt 'home'",
+        "[PASS] docs: CLAUDE.md enthaelt 'performance'",
+        "SUMMARY: 117 PASS / 7 WARN / 0 FAIL",
+        "RESULT: PASS (7 warnings)"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "studio/learning_sharing_capture-rendered.log",
+      "bytes": 3506,
+      "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e",
+      "pass_markers": [
+        "[LearningSharingCapture] PASS captures=6"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "studio/learning_sharing_regression-headless.log",
+      "bytes": 1480,
+      "sha256": "729d8e38b8e21b8152e2835d2e82fd6bd24937a943b2d755c8c57ad5e3565a9f",
+      "pass_markers": [
+        "[LearningSharing] PASS checks=1811"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "studio/learning_studio_regression-headless.log",
+      "bytes": 1799,
+      "sha256": "4c3f76fbf9eae0869b4055830f947781d98f5809e22bf7c62066dfb3d0f97766",
+      "pass_markers": [
+        "[LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "studio/lumo_studio_motion_capture-rendered.log",
+      "bytes": 1202,
+      "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669",
+      "pass_markers": [
+        "[LumoStudioCapture] PASS 8 real renderer frames; frozen baseline and current IK clips"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "studio/lumo_studio_motion_regression-headless.log",
+      "bytes": 601,
+      "sha256": "0b95982e77eaab37152a0a1f780a96d5ea6242b173a07687cb7f4ee7599896c5",
+      "pass_markers": [
+        "[LumoStudioMotion] PASS checks=1046 Blender/Godot endpoint_error_m=0.000000733 segment_error_m=0.000000179; no physical Android claim"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "studio/puzzle_menu_lifecycle_regression-headless.log",
+      "bytes": 3082,
+      "sha256": "e4abf43a73ce8a31a60e23f78730c873cd8b4a8a98c799f25d136594100d7363",
+      "pass_markers": [
+        "[PuzzleMenuLifecycle] PASS 720 behavioral checks; strict native log gate still required"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "studio/puzzle_menu_lifecycle_regression-rendered.log",
+      "bytes": 3733,
+      "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c",
+      "pass_markers": [
+        "[PuzzleMenuLifecycle] PASS 732 behavioral checks; strict native log gate still required"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "studio/puzzle_rotation_regression-headless.log",
+      "bytes": 569,
+      "sha256": "eb86541e102b1706bd36e900c63d46fd5db5fd8989021c9ebd8782435164252b",
+      "pass_markers": [
+        "[PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "studio/puzzle_rotation_regression-rendered.log",
+      "bytes": 1218,
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+      "pass_markers": [
+        "[PuzzleRotation] PASS 4565 checks: orientation, legacy saves, real picking, touch rotation and resume"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "studio/treasure_exploration_regression-headless.log",
+      "bytes": 587,
+      "sha256": "5f461cb949ebc96db8146c1e90787a233e280637a2ee36c9aa0b5fbf0b4fb277",
+      "pass_markers": [
+        "[TreasureExploration] PASS 87 checks: branching, actual location questions, movement, legacy saves and original rewards"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "studio/treasure_exploration_regression-rendered.log",
+      "bytes": 1236,
+      "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a",
+      "pass_markers": [
+        "[TreasureExploration] PASS 90 checks: branching, actual location questions, movement, legacy saves and original rewards"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "technical-art/kart_air_trick_regression.log",
+      "bytes": 494,
+      "sha256": "65af3dd144ebf0e2404429f8c8ab85c17894b293d8eb34abc596c636fc76ebc4",
+      "pass_markers": [
+        "[AirTrick] PASS: 20 checks"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "technical-art/kart_garage_presentation_regression.log",
+      "bytes": 1502,
+      "sha256": "ba5e0cdba9674ea37191b8f44d513df91fc5c53f7cf85fd5af6716e68ae36f7a",
+      "pass_markers": [
+        "[GaragePresentation] PASS 66 checks"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "technical-art/kart_harbor_race_hook_regression.log",
+      "bytes": 1329,
+      "sha256": "b80d9ee2cea36de13d2645acbeb64efbaddb63e26a0d2d83874d4a61228eb656",
+      "pass_markers": [
+        "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "technical-art/kart_sonnenhafen_streetfronts_regression.log",
+      "bytes": 1661,
+      "sha256": "d36e9e933970ad56bb374bfd132e0d0571a0e23e1f302e4c483fbc2abadae749",
+      "pass_markers": [
+        "[Streetfronts] PASS: opaque materials, actual geometry budgets, spatial cells, optional GL motion"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "technical-art/kart_sonnenhafen_streetfronts_world_regression.log",
+      "bytes": 1147,
+      "sha256": "50cbfbb16c1e6b786eaf620b0a7121caacf4e66b71fb4c2f2216877008392cc4",
+      "pass_markers": [
+        "[StreetfrontsWorld] PASS: integrated opaque kit, hard geometry budget, complete road clearance"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "technical-art/lumo_attention_landing_regression.log",
+      "bytes": 837,
+      "sha256": "237ed83a00e02270f0176c02a4e0d7df638fc691754a50c0bdceadb84fdf4bc9",
+      "pass_markers": [],
+      "structured_result": {
+        "android_test": false,
+        "checks": 1843,
+        "display": "headless",
+        "failures": 0,
+        "fps_measured": false,
+        "godot": "4.6.3-stable (official)",
+        "landing_peak": 0.573351026912431,
+        "model_load_kind": "imported_packed_scene",
+        "model_sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+        "model_unchanged": true,
+        "worst_hand_contact_mm": 1.14512140862644
+      }
+    },
+    {
+      "path": "technical-art/lumo_gesture_contact_regression.log",
+      "bytes": 1212,
+      "sha256": "05d3601c425098ce8a93753cc17c2875eb7bfd7808bcc102a3c46a4ba6acc867",
+      "pass_markers": [
+        "[LumoGestureContact] PASS checks=200 failures=0"
+      ],
+      "structured_result": null
+    },
+    {
+      "path": "technical-art/lumo_kart_tick_cadence_regression.log",
+      "bytes": 2097,
+      "sha256": "a6e31559d2e5dbb33f509ec7751f1979272660e4425994c5aaad6dbd9b541e77",
+      "pass_markers": [
+        "[LumoKartTickCadence] PASS real rig cadence, contact, pause, hitch and variable frame duration"
+      ],
+      "structured_result": null
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "zip_bytes": 47501,
+  "zip_sha256": "e603d7af1e6265a7a04834a828d5d973b4a3e39777e33ff136eb7e2043118570",
+  "crc": "PASS",
+  "members": [
+    {
+      "path": "framework-start/cli22/commands/01-original-cli-version/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/commands/01-original-cli-version/stdout",
+      "bytes": 6,
+      "sha256": "73d0675fb2da2b7916637864fccdfd1e19a3d28c2cf31f1e4901a92f887c19e1",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/commands/01-original-cli-version/result.json",
+      "bytes": 296,
+      "sha256": "3367b65bc2297d4db5ed2b309c0fa92bc4b4b33f8ddd8066cec8c5dc4e94ab74",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/commands/02-install-same-sdk-packages/result.json",
+      "bytes": 481,
+      "sha256": "d26c49910b39378d118ebd24a4579d57ce8190b448b1b4a616d1d4be8fe9a0e7",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/commands/02-install-same-sdk-packages/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/commands/02-install-same-sdk-packages/stdout",
+      "bytes": 15716,
+      "sha256": "fb3b6121d4b6ae00da1a8447947f343653cb24948d9f8d8635b83b52267d5807",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/original-source.properties",
+      "bytes": 86,
+      "sha256": "d4eb560d17731d9919dbb91bfecb2d90418cb60c21e07b6c02302a682fbb760e",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/original-tools.json",
+      "bytes": 18323,
+      "sha256": "95dc66b01c290c69ae0e5e51135d11f4b5e8e636facae5cb68455316636f870a",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/packages-original/emulator/package.xml",
+      "bytes": 18320,
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/packages-original/emulator/source.properties",
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/packages-original/image/package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/packages-original/image/source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/packages-original/packages.json",
+      "bytes": 3591,
+      "sha256": "9b808cd7779dae8cecf329c18fdf85a901e63a72e06a812d7bb669b694f55574",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/packages-original/platform/package.xml",
+      "bytes": 18468,
+      "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/packages-original/platform-tools/package.xml",
+      "bytes": 18335,
+      "sha256": "26465ee68290f3af08a0fa759d5711573b8787c5ed2a0cd5ecb727ba65a91bb3",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/packages-original/platform/source.properties",
+      "bytes": 343,
+      "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/packages-original/platform-tools/source.properties",
+      "bytes": 38,
+      "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22-contracts.log",
+      "bytes": 1631,
+      "sha256": "90395d73d32906b807878c3893907fcbb5617ec711b2cfa17dd55c5291e67da6",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "framework-start/local-contracts.log",
+      "bytes": 1612,
+      "sha256": "707b11ed472137586f453d5bd417072aa8965bedaeee7f41058392e667883013",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "mesa-renderer.txt",
+      "bytes": 1724,
+      "sha256": "e9d8a32e9ff889b0489d5052202c6d51afb448a297ba726cb7b1f7946a54ec79",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "recheck/before.json",
+      "bytes": 2346,
+      "sha256": "dd8d8d9837165d99242e190b979e99cc197f44e5adabe1f46b0ace3aa9f60c4f",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "recheck/identity-contracts.log",
+      "bytes": 1222,
+      "sha256": "03bf8e1b8b54539e5bcd30908c8f7619278bef00197fdcc915ff546acc789280",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "recheck/original-artifact.json",
+      "bytes": 723,
+      "sha256": "e29f7bc6fdb5c0f9c1796b6286587975ab4a0877b542ea104b1325481de9a775",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "recheck/original-build-job.json",
+      "bytes": 7893,
+      "sha256": "65160b4b99d367b4c188308b6d304027677e186a816c031641e87f34c5de5927",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "recheck/original-run.json",
+      "bytes": 12958,
+      "sha256": "90f335c8b5dd52785c01c9ee8bf55aab606690b44499d8ddad218680eb947c50",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "recheck/scroll-contracts.log",
+      "bytes": 1246,
+      "sha256": "e8ddb0e2efa1ccffcdc9f0789b8619e437ff459158d9fb10da400557bda3966e",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "tesseract-installed-languages.txt",
+      "bytes": 87,
+      "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "tested-apk-sha256.txt",
+      "bytes": 108,
+      "sha256": "3bc93abf3d66d2a0bf52f63b0d16fc399f9a8d70b757c5f49dd5365da9a6dcfa",
+      "extracted_byte_equal": true
+    },
+    {
+      "path": "xvfb.log",
+      "bytes": 2348,
+      "sha256": "b987a262609a3720f450ab6815ed90b2069dd47b7b012959ca19c325aebf5d55",
+      "extracted_byte_equal": true
+    }
+  ]
+}

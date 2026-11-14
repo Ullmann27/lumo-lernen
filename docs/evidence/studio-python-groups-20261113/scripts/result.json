@@ -1,0 +1,32 @@
+{
+  "group": "scripts",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "started_utc": "2026-11-13T22:19:30.533753+00:00",
+  "process_exit_code": 0,
+  "elapsed_seconds": 83.69692854300956,
+  "tests": 426,
+  "unittest_seconds": 83.419,
+  "unittest_summary": "OK",
+  "skipped": 0,
+  "source_files": 1249,
+  "C_frozen_files": 40,
+  "source_unchanged": true,
+  "environment": {
+    "REQUIRE_ALL_TESTS": "true",
+    "GRADLE_HOME": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0",
+    "LUMO_KOTLIN_LIB_DIR": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib"
+  },
+  "toolchain_downloaded": false,
+  "log_bytes": 86344,
+  "log_sha256": "4d602b143cbc3d72f19e1482c2aa75e41399b9139e812249cd5f2f5e32dc7e12",
+  "status": "PASS"
+}

@@ -1,0 +1,164 @@
+{
+  "review_version": 1,
+  "reviewer": "Agent A / learning_worlds",
+  "status": "READ_ONLY_INPUT_EVIDENCE_SCOPE_CLARIFIED",
+  "source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "run_id": 43461547945,
+  "job_id": 132009667976,
+  "artifact_id": 14056724587,
+  "original_zip_sha256": "5f072ab9ab1d46a38106acfa81d5153ca41d77934e025cecf66e82bd4dd04fd8",
+  "original_warning_file": {
+    "path": "docs/evidence/studio-2019-verification-e3d161cb/flutter/warning-events.json",
+    "sha256": "b2b88e8c6941d8d475cb1abc30a56f4d7eb92c51b2219dbb59815614f1dbf2dd",
+    "modified_by_this_followup": false
+  },
+  "original_machine_log_sha256": "3d6b8fff3663cb6d068d4f9636fe8f7284ad35be13e70d9122b5bf8e19b81cf4",
+  "reviewed_source_files": [
+    {
+      "path": "test/lumo_shell_layout_test.dart",
+      "source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "github_blob_sha1": "fa32f7fb0a928edab32bda9dc69621adf09b5f48",
+      "computed_blob_sha1": "fa32f7fb0a928edab32bda9dc69621adf09b5f48",
+      "sha256": "2165a3aacba4148e5eb0cf99316d0be34aac56b6b70dad9390955da5cdd9f575",
+      "bytes": 8846,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/test/lumo_shell_layout_test.dart",
+      "local_reviewed_file_equals_pinned_source": true
+    },
+    {
+      "path": "lib/app/app_shell.dart",
+      "source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "github_blob_sha1": "db141faa7f922d136a822cfd6c49b4153d904a9a",
+      "computed_blob_sha1": "db141faa7f922d136a822cfd6c49b4153d904a9a",
+      "sha256": "02087dfed14848d84c52877c7bf8d7756bd265a31f06544230cda41b74bb3cbb",
+      "bytes": 37822,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/lib/app/app_shell.dart",
+      "local_reviewed_file_equals_pinned_source": true
+    },
+    {
+      "path": "lib/features/home/home_content.dart",
+      "source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "github_blob_sha1": "9d980f6c2663ebe965195af3c15d8533867503ba",
+      "computed_blob_sha1": "9d980f6c2663ebe965195af3c15d8533867503ba",
+      "sha256": "37c66dc5ddd7ab70210f275bc624e32100c25b6214dfe979fd0e5026e203affa",
+      "bytes": 47310,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/lib/features/home/home_content.dart",
+      "local_reviewed_file_equals_pinned_source": true
+    },
+    {
+      "path": "lib/widgets/design/lumo_design_system.dart",
+      "source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "github_blob_sha1": "79175b2dac6f52c73bd2f8737e9a94f7bddfa16b",
+      "computed_blob_sha1": "79175b2dac6f52c73bd2f8737e9a94f7bddfa16b",
+      "sha256": "2ecd5be524b6f833197e12af0c3ccb453d5b8af4377e7b02eff9dcd2c190ad7a",
+      "bytes": 58867,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/lib/widgets/design/lumo_design_system.dart",
+      "local_reviewed_file_equals_pinned_source": true
+    },
+    {
+      "path": "lib/widgets/design/lumo_adventure_card.dart",
+      "source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "github_blob_sha1": "8b5094784ede6969422e1db58de0fad9cb47828d",
+      "computed_blob_sha1": "8b5094784ede6969422e1db58de0fad9cb47828d",
+      "sha256": "e70c6ee7f00f973e79fc9627aacdc6dc0cde40e6d7871961f7d8acd93ca8b16d",
+      "bytes": 5180,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/lib/widgets/design/lumo_adventure_card.dart",
+      "local_reviewed_file_equals_pinned_source": true
+    },
+    {
+      "path": "lib/widgets/shell/left_navigation.dart",
+      "source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "github_blob_sha1": "9aca522a5c6901c62fb1e6eb371cc6e5e0925419",
+      "computed_blob_sha1": "9aca522a5c6901c62fb1e6eb371cc6e5e0925419",
+      "sha256": "d2857c7bdcc063a3e75a1b77a5ce2a7ce626b32022f2731ee84f5a48f0f00678",
+      "bytes": 15227,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/lib/widgets/shell/left_navigation.dart",
+      "local_reviewed_file_equals_pinned_source": true
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_section_transition.dart",
+      "source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "github_blob_sha1": "e29d362b5134ae9efdcd3c63a0079b3ee24735a3",
+      "computed_blob_sha1": "e29d362b5134ae9efdcd3c63a0079b3ee24735a3",
+      "sha256": "791ad92d9744214d1d399ab42e33408211377a53e643abc27ad2578d5b7d7dc6",
+      "bytes": 2568,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/lib/features/shared/widgets/lumo_section_transition.dart",
+      "local_reviewed_file_equals_pinned_source": true
+    },
+    {
+      "path": "lib/app/app_theme.dart",
+      "source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "github_blob_sha1": "fbca41aca3bf0f5e199175fe7285aec5a2e84db9",
+      "computed_blob_sha1": "fbca41aca3bf0f5e199175fe7285aec5a2e84db9",
+      "sha256": "c0f00bdcf125967b7188a3af350938d58597626b39c7938fe2a0def199688833",
+      "bytes": 11506,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/lib/app/app_theme.dart",
+      "local_reviewed_file_equals_pinned_source": true
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "github_blob_sha1": "b8de55e3037e1b224e5c9ab4e563a19f4260006a",
+      "computed_blob_sha1": "b8de55e3037e1b224e5c9ab4e563a19f4260006a",
+      "sha256": "2afbe473e96ba798181be8b8e89722738f3ee65be9f020f51da1633f9e98940f",
+      "bytes": 53380,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/lib/app/app_state.dart",
+      "local_reviewed_file_equals_pinned_source": true
+    }
+  ],
+  "observed_warning": {
+    "test": "actual shell stays usable while resizing from phone to Fold and narrow phone",
+    "suite": "test/lumo_shell_layout_test.dart",
+    "tap_line": 198,
+    "finder": "find.text('Lernen').last",
+    "global_offset": [
+      234.8,
+      551.4
+    ],
+    "first_card_input_local_offset": [
+      42.8,
+      120.0
+    ],
+    "rendered_text_style": {
+      "font": "Nunito",
+      "size": 18.0,
+      "weight": 900,
+      "height": 1.1
+    },
+    "exact_viewport_size_explicitly_logged": false
+  },
+  "source_and_hit_path_findings": [
+    {
+      "finding": "The selected label is the Home learning card, not the permanent navigation label.",
+      "basis": "The warning reports the 18px/w900/1.1 white title and a SliverGrid/card hit stack. HomeContent creates LumoColorTile(title=Lernen,key=home-learn); with scene/icon assets LumoColorTile delegates to LumoAdventureCard, whose title has exactly that style. Sidebar labels use compact14 or nav15, its decorative header24; bottom navigation uses11."
+    },
+    {
+      "finding": "The generic finder can select a duplicate content label in a wide layout.",
+      "basis": "AppShell builds LeftNavigation before the content column. If the Home card is built in its scroll viewport, its title occurs after the navigation/header matches. The .last selector does not restrict the finder to LeftNavigation or the keyed navigation controls."
+    },
+    {
+      "finding": "The actual warning does not establish an offscreen label or a fox covering navigation.",
+      "basis": "LumoAdventureCard places a full-size transparent Material/InkWell as the last child of Stack(fit=StackFit.expand), above its Text/title and artwork. The actual hit path reaches a RenderPointerListener/MouseRegion/InkFeatures/PhysicalModel card at local(42.8,120.0), then its SliverGrid. The selected RenderParagraph is absent because that intended top interaction layer receives the hit. This source/hit-stack correspondence supports the card overlay explanation; no instrumented receiver-key or per-format tap trace was added."
+    },
+    {
+      "finding": "The intended overlay callback opens the learning section.",
+      "basis": "LumoAdventureCard InkWell.onTap calls the same onTap supplied by HomeContent home-learn: onSection(LumoSection.learn). AppShell passes _navigateTo as onSection."
+    }
+  ],
+  "assertion_scope": {
+    "checked_after_tap": "The test pumps five 200ms frames, then expects one LumoAkademieScreen. AppShell._buildContent creates this widget only for section==LumoSection.learn; this is a real destination-widget assertion, not merely finding the word Lernen.",
+    "missing_specific_input_proof": "The finder was not bound to the permanent sidebar. The destination assertion cannot identify whether the Home card or sidebar caused navigation.",
+    "missing_explicit_before_after_causality": "The test does not assert the destination absent immediately before the tap, and after tapping Start at line205 it checks only for exceptions rather than explicitly proving HomeContent restored. Thus the assertion alone is not a full per-iteration causality proof for all four layouts.",
+    "relevant_sequence": "The case covers 360x740,840x560,941x1672,280x640; it keeps the same AppShell through resizing, tests the fox explanation dialog, optionally scrolls Home at360wide, taps Lernen.last, asserts the destination, then taps Start.last.",
+    "scope_for_final_report": "Home-Karten-Zielansichtstest; kein vollständiger permanenter Sidebar-Inputbeweis.",
+    "production_blocker_confirmed": false,
+    "not_a_blanket_harmlessness_claim": true,
+    "actual_android_learning_path_still_required": true
+  },
+  "no_new_execution": {
+    "tests_run": false,
+    "instrumented_probe_run": false,
+    "screenshots_opened_for_this_followup": false,
+    "source_or_test_modified": false,
+    "original_review_or_warning_modified": false
+  }
+}

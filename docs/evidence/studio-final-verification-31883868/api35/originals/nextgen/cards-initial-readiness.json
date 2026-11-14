@@ -1,0 +1,21 @@
+{
+  "status": "READY",
+  "states": [
+    {
+      "token": "fc361075c71e2667a2308e70975544a8",
+      "roundId": "cards-bc3b2c9d4e78110c5570f7b9e259e38c",
+      "viewer": 0,
+      "current": 0,
+      "phase": "playing",
+      "paused": false,
+      "canDraw": true,
+      "revision": 3,
+      "ack": 0
+    }
+  ],
+  "frames": [],
+  "touch": null,
+  "scope": "Actual initial Cards state and, only if needed, native resume",
+  "mode": "active_without_resume_touch",
+  "elapsed_seconds": 0.084218
+}

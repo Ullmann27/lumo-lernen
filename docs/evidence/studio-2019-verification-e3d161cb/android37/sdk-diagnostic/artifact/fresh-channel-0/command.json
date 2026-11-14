@@ -1,0 +1,33 @@
+{
+  "name": "fresh-channel-0",
+  "argv": [
+    "/home/runner/work/_temp/lumo-android17-sdk-tools/fresh-sdk/cmdline-tools/latest/bin/sdkmanager",
+    "--sdk_root=/home/runner/work/_temp/lumo-android17-sdk-tools/fresh-sdk",
+    "--list",
+    "--verbose",
+    "--channel=0"
+  ],
+  "environment_overrides": {
+    "ANDROID_HOME": "/home/runner/work/_temp/lumo-android17-sdk-tools/fresh-sdk",
+    "ANDROID_SDK_ROOT": "/home/runner/work/_temp/lumo-android17-sdk-tools/fresh-sdk",
+    "ANDROID_USER_HOME": "/home/runner/work/_temp/lumo-android17-sdk-tools/fresh-user"
+  },
+  "started_utc": "2026-11-13T17:47:56.936020+00:00",
+  "timeout_seconds": 180,
+  "exit_code": 0,
+  "timed_out": false,
+  "start_error": null,
+  "finished_utc": "2026-11-13T17:47:58.456458+00:00",
+  "elapsed_seconds": 1.5204540009999974,
+  "success": true,
+  "stdout": {
+    "path": "fresh-channel-0/stdout.txt",
+    "bytes": 92656,
+    "sha256": "98c191cb60dae2f5d4c4e56aa2f08df8fdcae84ec933abafe98e8f5ad4498ace"
+  },
+  "stderr": {
+    "path": "fresh-channel-0/stderr.txt",
+    "bytes": 340,
+    "sha256": "33414add6da35520d5a84e032882487bbb8835eae8767d88e1853859f196bf15"
+  }
+}

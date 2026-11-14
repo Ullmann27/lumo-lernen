@@ -1,0 +1,31 @@
+{
+  "executed_utc": "2026-11-13T15:13:08.377751+00:00",
+  "native_pin": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "status": "PASS",
+  "scope": "Local Python source-pin, build and delivery contract suites. These are not emulator or physical-device results. Flutter/Dart production sources are unchanged from the separately preserved 2510-test run.",
+  "commands": [
+    "PATH=/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/bin:$PATH python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v",
+    "python3 -m unittest discover -s scripts/tests -p 'test_candidate_2011_pin.py' -v"
+  ],
+  "runs": [
+    {
+      "log": "76980-build-contracts.log",
+      "tests": 353,
+      "seconds": 66.197,
+      "exit_code": 0,
+      "failures": 0,
+      "skipped": 0,
+      "sha256": "4ca585a46b5512558caef5e917d69f3d7786358babd3efc8eebfb62962ba2eb9"
+    },
+    {
+      "log": "76980-pin-tests.log",
+      "tests": 23,
+      "seconds": 0.008,
+      "exit_code": 0,
+      "failures": 0,
+      "skipped": 0,
+      "sha256": "012d87712be36a1241e56bf1a260f8652ca3de27f0a9bfe4773e5ce637c513ad"
+    }
+  ],
+  "old_candidate_rejection": "24fb85800dfb58ec11dd409449e276299aa72b06 is explicitly in the rejected studio-source set; prior build pins preserved."
+}

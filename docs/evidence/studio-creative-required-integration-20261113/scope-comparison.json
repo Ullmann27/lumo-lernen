@@ -1,0 +1,61 @@
+{
+  "workflow_unchanged_after_removing_only_documented_additions": true,
+  "unchanged_existing_jobs": [
+    "android-host-compile",
+    "android-tour",
+    "update-2019-from-2017"
+  ],
+  "build_all_prior_steps_and_gates_unchanged": true,
+  "publisher_all_prior_dependencies_conditions_steps_and_gates_retained": true,
+  "existing_probe_functions_changed": [
+    "verify_candidate_metadata",
+    "Tour.run",
+    "main"
+  ],
+  "existing_probe_functions_byte_identical": [
+    "sha",
+    "write",
+    "read_image",
+    "require",
+    "bounds",
+    "hub_choice",
+    "pieces",
+    "one_added_piece",
+    "one_quarter_turn",
+    "resume_equal",
+    "config_variant_values",
+    "parse_jump_save",
+    "components",
+    "stick_target",
+    "solve",
+    "puzzle_piece_target",
+    "build_targets",
+    "Tour.__init__",
+    "Tour.tag",
+    "Tour.shot",
+    "Tour.audit_adb",
+    "Tour.touch",
+    "Tour.native",
+    "Tour.observe",
+    "Tour.current_stick",
+    "Tour.move_stick",
+    "Tour.portal",
+    "Tour.enter",
+    "Tour.leave",
+    "Tour.saved",
+    "Tour.pause_save",
+    "Tour.toolbar",
+    "Tour.viewport",
+    "Tour.build",
+    "Tour.puzzle",
+    "Tour.treasure",
+    "Tour.jump_save",
+    "Tour.jump"
+  ],
+  "original_game_methods_byte_identical": {
+    "jump": true,
+    "build": true,
+    "puzzle": true,
+    "treasure": true
+  }
+}

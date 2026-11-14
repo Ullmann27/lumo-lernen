@@ -1,0 +1,337 @@
+test_actual_cli_passes_commit_bound_inputs_to_the_current_verifier (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_actual_cli_passes_commit_bound_inputs_to_the_current_verifier) ... usage: verify_unified_apk.py [-h] [--abi {arm64-v8a,x86_64}] apk
+verify_unified_apk.py: error: unrecognized arguments: --expectations-repository /tmp/tmpvgx9ug2p/source --expectations-revision bc65da9ca88c290966e20c7dc05073cc462d6bb2
+ERROR
+test_changed_working_copy_cannot_replace_committed_expectations (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_changed_working_copy_cannot_replace_committed_expectations) ... ERROR
+test_environment_cannot_replace_source_bound_version (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_environment_cannot_replace_source_bound_version) ... 
+  test_environment_cannot_replace_source_bound_version (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_environment_cannot_replace_source_bound_version) (name='LUMO_BUILD_NUMBER') ... ERROR
+  test_environment_cannot_replace_source_bound_version (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_environment_cannot_replace_source_bound_version) (name='LUMO_VERSION_NAME') ... ERROR
+test_exact_abi_and_embedded_godot_library_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_exact_abi_and_embedded_godot_library_are_still_required) ... ERROR
+test_exact_commit_inputs_allow_both_historical_abis (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_exact_commit_inputs_allow_both_historical_abis) ... 
+  test_exact_commit_inputs_allow_both_historical_abis (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_exact_commit_inputs_allow_both_historical_abis) (abi='arm64-v8a') ... ERROR
+  test_exact_commit_inputs_allow_both_historical_abis (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_exact_commit_inputs_allow_both_historical_abis) (abi='x86_64') ... ERROR
+test_fixed_family_certificate_is_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_fixed_family_certificate_is_still_required) ... ERROR
+test_native_page_alignment_and_resource_packaging_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_native_page_alignment_and_resource_packaging_are_still_required) ... ERROR
+test_original_default_reproduces_current_version_mismatch (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_original_default_reproduces_current_version_mismatch) ... ok
+test_pck_digest_and_historical_native_revision_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_pck_digest_and_historical_native_revision_are_still_required) ... 
+  test_pck_digest_and_historical_native_revision_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_pck_digest_and_historical_native_revision_are_still_required) (field='revision') ... ERROR
+  test_pck_digest_and_historical_native_revision_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_pck_digest_and_historical_native_revision_are_still_required) (field='pck_sha256') ... ERROR
+test_private_activity_and_release_manifest_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_private_activity_and_release_manifest_are_still_required) ... 
+  test_private_activity_and_release_manifest_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_private_activity_and_release_manifest_are_still_required) (xml='unrelated activity') ... ERROR
+  test_private_activity_and_release_manifest_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_private_activity_and_release_manifest_are_still_required) (xml='LumoGameActivity :lumo_game android:debuggable 0xffffffff') ... ERROR
+test_repository_and_revision_must_be_supplied_together (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_repository_and_revision_must_be_supplied_together) ... 
+  test_repository_and_revision_must_be_supplied_together (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_repository_and_revision_must_be_supplied_together) (missing='expectations_repository') ... ERROR
+  test_repository_and_revision_must_be_supplied_together (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_repository_and_revision_must_be_supplied_together) (missing='expectations_revision') ... ERROR
+test_revision_must_be_a_full_immutable_commit (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_revision_must_be_a_full_immutable_commit) ... 
+  test_revision_must_be_a_full_immutable_commit (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_revision_must_be_a_full_immutable_commit) (revision='HEAD') ... ERROR
+  test_revision_must_be_a_full_immutable_commit (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_revision_must_be_a_full_immutable_commit) (revision='main') ... ERROR
+  test_revision_must_be_a_full_immutable_commit (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_revision_must_be_a_full_immutable_commit) (revision='53359e19') ... ERROR
+  test_revision_must_be_a_full_immutable_commit (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_revision_must_be_a_full_immutable_commit) (revision='0000000000000000000000000000000000000000') ... ERROR
+test_voice_weights_clips_and_original_license_are_still_pinned (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_voice_weights_clips_and_original_license_are_still_pinned) ... 
+  test_voice_weights_clips_and_original_license_are_still_pinned (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_voice_weights_clips_and_original_license_are_still_pinned) (file='assets/lumo_offline_voice/model.onnx') ... ERROR
+  test_voice_weights_clips_and_original_license_are_still_pinned (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_voice_weights_clips_and_original_license_are_still_pinned) (file='assets/flutter_assets/assets/audio/voice/lumo_free/free_0000000000000000.m4a') ... ERROR
+  test_voice_weights_clips_and_original_license_are_still_pinned (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_voice_weights_clips_and_original_license_are_still_pinned) (file='assets/lumo_offline_voice/LICENSE-MODEL.txt') ... ERROR
+test_wrong_package_or_version_is_still_rejected (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_wrong_package_or_version_is_still_rejected) ... 
+  test_wrong_package_or_version_is_still_rejected (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_wrong_package_or_version_is_still_rejected) (attribute='package') ... ERROR
+  test_wrong_package_or_version_is_still_rejected (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_wrong_package_or_version_is_still_rejected) (attribute='version_code') ... ERROR
+  test_wrong_package_or_version_is_still_rejected (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_wrong_package_or_version_is_still_rejected) (attribute='version_name') ... ERROR
+test_only_expectations_are_pinned_while_current_probes_and_guards_remain (test_historical_apk_expectations.HistoricalWorkflowContractTest.test_only_expectations_are_pinned_while_current_probes_and_guards_remain) ... FAIL
+
+======================================================================
+ERROR: test_actual_cli_passes_commit_bound_inputs_to_the_current_verifier (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_actual_cli_passes_commit_bound_inputs_to_the_current_verifier)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 224, in test_actual_cli_passes_commit_bound_inputs_to_the_current_verifier
+    runpy.run_path(str(ROOT / 'scripts/verify_unified_apk.py'), run_name='__main__')
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/verify_unified_apk.py", line 176, in <module>
+    args = parser.parse_args()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/argparse.py", line 1908, in parse_args
+    self.error(msg)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/argparse.py", line 2650, in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/argparse.py", line 2637, in exit
+    _sys.exit(status)
+SystemExit: 2
+
+======================================================================
+ERROR: test_changed_working_copy_cannot_replace_committed_expectations (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_changed_working_copy_cannot_replace_committed_expectations)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 141, in test_changed_working_copy_cannot_replace_committed_expectations
+    result = self.verify()
+             ^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_environment_cannot_replace_source_bound_version (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_environment_cannot_replace_source_bound_version) (name='LUMO_BUILD_NUMBER')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 159, in test_environment_cannot_replace_source_bound_version
+    self.verify()
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_environment_cannot_replace_source_bound_version (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_environment_cannot_replace_source_bound_version) (name='LUMO_VERSION_NAME')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 159, in test_environment_cannot_replace_source_bound_version
+    self.verify()
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_exact_abi_and_embedded_godot_library_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_exact_abi_and_embedded_godot_library_are_still_required)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 178, in test_exact_abi_and_embedded_godot_library_are_still_required
+    self.verify(apk=self.apk('x86_64'))
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_exact_commit_inputs_allow_both_historical_abis (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_exact_commit_inputs_allow_both_historical_abis) (abi='arm64-v8a')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 128, in test_exact_commit_inputs_allow_both_historical_abis
+    result = self.verify(abi)
+             ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_exact_commit_inputs_allow_both_historical_abis (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_exact_commit_inputs_allow_both_historical_abis) (abi='x86_64')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 128, in test_exact_commit_inputs_allow_both_historical_abis
+    result = self.verify(abi)
+             ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_fixed_family_certificate_is_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_fixed_family_certificate_is_still_required)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 174, in test_fixed_family_certificate_is_still_required
+    self.verify()
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_native_page_alignment_and_resource_packaging_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_native_page_alignment_and_resource_packaging_are_still_required)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 204, in test_native_page_alignment_and_resource_packaging_are_still_required
+    self.verify(apk=self.apk(alignment=4096))
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_pck_digest_and_historical_native_revision_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_pck_digest_and_historical_native_revision_are_still_required) (field='revision')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 200, in test_pck_digest_and_historical_native_revision_are_still_required
+    self.verify()
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_pck_digest_and_historical_native_revision_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_pck_digest_and_historical_native_revision_are_still_required) (field='pck_sha256')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 200, in test_pck_digest_and_historical_native_revision_are_still_required
+    self.verify()
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_private_activity_and_release_manifest_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_private_activity_and_release_manifest_are_still_required) (xml='unrelated activity')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 214, in test_private_activity_and_release_manifest_are_still_required
+    self.verify()
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_private_activity_and_release_manifest_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_private_activity_and_release_manifest_are_still_required) (xml='LumoGameActivity :lumo_game android:debuggable 0xffffffff')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 214, in test_private_activity_and_release_manifest_are_still_required
+    self.verify()
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_repository_and_revision_must_be_supplied_together (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_repository_and_revision_must_be_supplied_together) (missing='expectations_repository')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 153, in test_repository_and_revision_must_be_supplied_together
+    self.verify(**{missing: None})
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_repository_and_revision_must_be_supplied_together (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_repository_and_revision_must_be_supplied_together) (missing='expectations_revision')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 153, in test_repository_and_revision_must_be_supplied_together
+    self.verify(**{missing: None})
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_revision_must_be_a_full_immutable_commit (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_revision_must_be_a_full_immutable_commit) (revision='HEAD')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 148, in test_revision_must_be_a_full_immutable_commit
+    self.verify(expectations_revision=revision)
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_revision_must_be_a_full_immutable_commit (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_revision_must_be_a_full_immutable_commit) (revision='main')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 148, in test_revision_must_be_a_full_immutable_commit
+    self.verify(expectations_revision=revision)
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_revision_must_be_a_full_immutable_commit (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_revision_must_be_a_full_immutable_commit) (revision='53359e19')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 148, in test_revision_must_be_a_full_immutable_commit
+    self.verify(expectations_revision=revision)
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_revision_must_be_a_full_immutable_commit (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_revision_must_be_a_full_immutable_commit) (revision='0000000000000000000000000000000000000000')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 148, in test_revision_must_be_a_full_immutable_commit
+    self.verify(expectations_revision=revision)
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_voice_weights_clips_and_original_license_are_still_pinned (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_voice_weights_clips_and_original_license_are_still_pinned) (file='assets/lumo_offline_voice/model.onnx')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 188, in test_voice_weights_clips_and_original_license_are_still_pinned
+    self.verify()
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_voice_weights_clips_and_original_license_are_still_pinned (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_voice_weights_clips_and_original_license_are_still_pinned) (file='assets/flutter_assets/assets/audio/voice/lumo_free/free_0000000000000000.m4a')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 188, in test_voice_weights_clips_and_original_license_are_still_pinned
+    self.verify()
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_voice_weights_clips_and_original_license_are_still_pinned (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_voice_weights_clips_and_original_license_are_still_pinned) (file='assets/lumo_offline_voice/LICENSE-MODEL.txt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 188, in test_voice_weights_clips_and_original_license_are_still_pinned
+    self.verify()
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_wrong_package_or_version_is_still_rejected (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_wrong_package_or_version_is_still_rejected) (attribute='package')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 169, in test_wrong_package_or_version_is_still_rejected
+    self.verify()
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_wrong_package_or_version_is_still_rejected (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_wrong_package_or_version_is_still_rejected) (attribute='version_code')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 169, in test_wrong_package_or_version_is_still_rejected
+    self.verify()
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+ERROR: test_wrong_package_or_version_is_still_rejected (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_wrong_package_or_version_is_still_rejected) (attribute='version_name')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 169, in test_wrong_package_or_version_is_still_rejected
+    self.verify()
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 119, in verify
+    return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: verify() got an unexpected keyword argument 'expectations_repository'
+
+======================================================================
+FAIL: test_only_expectations_are_pinned_while_current_probes_and_guards_remain (test_historical_apk_expectations.HistoricalWorkflowContractTest.test_only_expectations_are_pinned_while_current_probes_and_guards_remain)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d/scripts/tests/test_historical_apk_expectations.py", line 233, in test_only_expectations_are_pinned_while_current_probes_and_guards_remain
+    self.assertIn(f'ref: {HISTORICAL_COMMIT}', source)
+AssertionError: 'ref: c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf' not found in 'name: Lumo 1999 actual 1997 update and offline native tour\non:\n  pull_request:\n    paths:\n      - \'.github/workflows/lumo-1999-update-gate.yml\'\n      - \'.github/probes/candidate_update_android_probe.py\'\n      - \'.github/probes/lumo_learning_journey_probe.py\'\n      - \'tools/android_qa/update_preservation.py\'\n      - \'tools/android_qa/tests/test_update_preservation.py\'\n  workflow_dispatch:\npermissions:\n  contents: read\n  actions: read\nconcurrency:\n  group: lumo-1999-update-${{ github.ref }}\n  cancel-in-progress: false\njobs:\n  update-and-tour:\n    runs-on: ubuntu-latest\n    timeout-minutes: 50\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          persist-credentials: false\n          ref: ${{ github.event.pull_request.head.sha || github.sha }}\n      - uses: actions/setup-java@v4\n        with:\n          distribution: temurin\n          java-version: \'17\'\n      - name: Verify the immutable candidate and baseline workflow identities\n        env:\n          GH_TOKEN: ${{ github.token }}\n        run: |\n          set -euo pipefail\n          mkdir -p update-proof\n          gh api repos/Ullmann27/lumo-lernen/actions/runs/40096024152 > update-proof/candidate-run.json\n          gh api repos/Ullmann27/lumo-lernen/actions/runs/39755153883 > update-proof/baseline-run.json\n          python3 - <<\'PY\'\n          import json\n          from pathlib import Path\n          for name, sha in [(\'candidate\', \'c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf\'),\n                            (\'baseline\', \'136f486ac3bdc4aabbd3b990e6629d2d6640c7d4\')]:\n              data = json.loads(Path(f\'update-proof/{name}-run.json\').read_text())\n              assert data[\'head_sha\'] == sha\n              assert data[\'status\'] == \'completed\' and data[\'conclusion\'] == \'success\'\n              assert data[\'repository\'][\'full_name\'] == \'Ullmann27/lumo-lernen\'\n          PY\n      - uses: actions/download-artifact@v4\n        with:\n          name: lumo-lernen-kart-unified-2026-candidate\n          path: candidate/dist/\n          run-id: 40096024152\n          github-token: ${{ github.token }}\n      - uses: actions/download-artifact@v4\n        with:\n          name: lumo-lernen-kart-unified-2026-candidate\n          path: baseline/dist/\n          run-id: 39755153883\n          github-token: ${{ github.token }}\n      - name: Install independent live UI and image readers\n        run: |\n          set -euo pipefail\n          sudo apt-get -o Acquire::Retries=2 update -qq\n          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng\n          python3 -m venv .update-python\n          .update-python/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0\n          .update-python/bin/python -m unittest discover -s tools/android_qa/tests -p test_update_preservation.py -v\n          .update-python/bin/python -m unittest discover -s tools/android_qa/tests -p test_kart_tour_evidence.py -v\n          .update-python/bin/python -m unittest discover -s tools/android_qa/tests -p test_modernization_tour_identity.py -v\n      - name: Independently verify both candidate ABIs and baseline signature\n        run: |\n          set -euo pipefail\n          python3 scripts/verify_unified_apk.py candidate/dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > update-proof/arm64-verification.json\n          python3 scripts/verify_unified_apk.py candidate/dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 > update-proof/x86-verification.json\n          python3 scripts/verify_android_apk.py baseline/dist/x86_64/Lumo-Lernen-Neu.apk > update-proof/baseline-signature.txt\n          sha256sum candidate/dist/Lumo-Lernen-Neu.apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk baseline/dist/x86_64/Lumo-Lernen-Neu.apk > update-proof/apk-sha256.txt\n      - name: Enable accelerated disposable emulator\n        run: |\n          echo \'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"\' | sudo tee /etc/udev/rules.d/99-kvm4all.rules\n          sudo udevadm control --reload-rules\n          sudo udevadm trigger --name-match=kvm\n          sudo udevadm settle\n          sudo chmod a+rw /dev/kvm\n      - name: Software display\n        env:\n          DISPLAY: \':99\'\n          LIBGL_ALWAYS_SOFTWARE: \'true\'\n          GALLIUM_DRIVER: llvmpipe\n          LP_NUM_THREADS: \'2\'\n        run: |\n          set -euo pipefail\n          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > update-proof/xvfb.log 2>&1 &\n          for attempt in $(seq 1 20); do\n            if glxinfo -B > update-proof/mesa-renderer.txt 2>&1; then break; fi\n            sleep 1\n          done\n          grep -i \'OpenGL renderer string\' update-proof/mesa-renderer.txt\n      - name: Actual 1997 learning, in-place update, offline Kart and preserved progress\n        uses: reactivecircus/android-emulator-runner@v2\n        env:\n          DISPLAY: \':99\'\n          LIBGL_ALWAYS_SOFTWARE: \'true\'\n          GALLIUM_DRIVER: llvmpipe\n          LP_NUM_THREADS: \'2\'\n        with:\n          api-level: 35\n          target: google_apis\n          arch: x86_64\n          profile: pixel_5\n          emulator-build: \'14472402\'\n          ram-size: 3072M\n          heap-size: 512M\n          disable-animations: true\n          emulator-boot-timeout: 300\n          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none\n          script: .update-python/bin/python .github/probes/candidate_update_android_probe.py --baseline baseline/dist/x86_64/Lumo-Lernen-Neu.apk --candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out update-proof\n      - uses: actions/upload-artifact@v4\n        if: always()\n        with:\n          name: lumo-1999-actual-update-proof\n          path: update-proof/\n          if-no-files-found: error\n          retention-days: 90\n'
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.246s
+
+FAILED (failures=1, errors=25)

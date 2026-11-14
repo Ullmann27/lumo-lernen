@@ -1,0 +1,9 @@
+{
+  "source_url": "https://github.com/actions/download-artifact/blob/v4/src/download-artifact.ts",
+  "retrieved_bytes": 6425,
+  "sha256": "1c67eb1bb4f77a462522341189f433422c4d35a6999d0dea2a1846e6edfedd80",
+  "git_blob": "5cc6b1704fb5ef0d4487ed63d910d4f8a9f2fbd2",
+  "finding": "Only a name input selects the direct single-artifact path. An artifact-ids input requires merge-multiple:true to extract directly into the requested directory, even when it contains just one ID.",
+  "applied": "The current candidate ID is the sole requested ID; merge-multiple:true preserves candidate/dist/x86_64 without an extra artifact-name directory.",
+  "scope": "Read-only official implementation review, not a live download test."
+}

@@ -1,0 +1,179 @@
+{
+  "reviewed_at": "2026-11-13T21:14:10.950031+00:00",
+  "reviewer": "Agent A / learning_worlds",
+  "status": "PASS_WITH_EXPLICIT_SINGLE_PROFILE_SCOPE_AND_RECORDED_WARNINGS",
+  "github": {
+    "repository": "Ullmann27/lumo-lernen",
+    "host_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+    "native_commit": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+    "run": 43496928833,
+    "job": 132161617636,
+    "job_conclusion": "success",
+    "artifact_id": 14076237433,
+    "artifact_bytes": 100077748,
+    "artifact_sha256": "e057bb050ba8ae6874acfeb9c172b7d3467f6f511308405abba28f3275643293",
+    "original_zip_local": "qa/studio-final-31883868/update/studio318-update-original.zip",
+    "all_members_crc_verified": true,
+    "all_members_hashed": 442
+  },
+  "method": "Actual CI original reports and immutable ZIP bytes reviewed without new app execution, test rerun or APK copy. Selected original extracted bytes match the archive. Eleven inspected source files match their Git blobs in the published 318 tree manifest.",
+  "installed_pair": {
+    "baseline": {
+      "versionCode": 2017,
+      "versionName": "0.13.5",
+      "bytes": 321904250,
+      "sha256": "03063cdc0956b3c1df00f604de504841e1a5fed4cabf31c9418a9167a11140e8",
+      "flutter_source_commit": "47889f74a651b073965def70743417cf320b1eb9",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57",
+        "engine": "4.6.3",
+        "pck_sha256": "30b11b2f691294672038eafd53ddfc1c861db26def632fdb670893d5b508d65a",
+        "bytes": 62921032
+      }
+    },
+    "candidate": {
+      "versionCode": 2019,
+      "versionName": "0.13.7",
+      "bytes": 325278174,
+      "sha256": "a9813af17f45eb3ce0db16c6bef13f5e776831e8e76a3f2e6466c8a8a5b8ee5f",
+      "flutter_source_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+        "engine": "4.6.3",
+        "pck_sha256": "13f87bd1b72526d187584a35f50c67961dc88ca67af6d703472b439bc07a523b",
+        "bytes": 66217496
+      }
+    }
+  },
+  "installation": {
+    "baseline": {
+      "versionCode": "2017 minSdk=24 targetSdk=36",
+      "versionName": "0.13.5",
+      "firstInstallTime": "2026-11-13 20:55:14",
+      "lastUpdateTime": "2026-11-13 20:55:14",
+      "appId": "10209",
+      "uid": "10209"
+    },
+    "updated": {
+      "versionCode": "2019 minSdk=24 targetSdk=36",
+      "versionName": "0.13.7",
+      "firstInstallTime": "2026-11-13 20:55:14",
+      "lastUpdateTime": "2026-11-13 20:58:24",
+      "appId": "10209",
+      "uid": "10209"
+    }
+  },
+  "preservation": {
+    "actual_profile": {
+      "id": "1794603360400773",
+      "name": "LumoTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-13T20:56:00.400773"
+    },
+    "protected_keys_compared": 7,
+    "correct_answers": 1,
+    "earned_stars": 1,
+    "earned_xp": 5,
+    "old_skill_fields_preserved": 10,
+    "only_added_field": {
+      "independentEvidence": {
+        "version": 1,
+        "correct": 1,
+        "wrong": 0,
+        "correctStreak": 1,
+        "wrongStreak": 0
+      }
+    },
+    "all_six_followup_states_keep_profile_owner_and_wallet": true,
+    "after_update_to_kart_restart_and_three_layouts_protected_values_exact": true,
+    "no_protected_key_added_or_removed": true,
+    "other_actual_changes": "Daily mission lastSeenAt advances outside the protected-prefix set. First current Kart entry adds lumo_3d_profile_keys_v1 and lumo_3d_save_salt_v1; no old native save was seeded. Whole preferences are not byte-identical."
+  },
+  "baseline_learning": {
+    "task": {
+      "prompt": "3 + 5 = ?",
+      "answer": 8
+    },
+    "status": "PASS_FOR_CORE_MATH_REWARD_RESTART",
+    "optional_navigation_failures": {
+      "t1-deutsch": "FAIL: Kein Bedienelement beginnt mit: Deutsch. ",
+      "t2-englisch": "FAIL: Kein Bedienelement beginnt mit: Englisch. "
+    },
+    "limit": "The two recorded 2017 Deutsch/Englisch prefix-navigation failures are not hidden, waived into a general subject PASS, or attributed to the new318 code."
+  },
+  "post_update_kart": {
+    "mode": "cup",
+    "track": "sonnenhafen",
+    "driver": "fox",
+    "kart": "comet",
+    "observed_distance_gain": 80.37,
+    "game_elapsed_gain": 5.02,
+    "same_result_id_preserved": true,
+    "two_pause_cfg_bytes_identical": true,
+    "actual_flutter_return_screenshot_reviewed": true,
+    "telemetry_limit": "Three immediate pulse snapshots still held initial distance; the following persisted-state poll recorded progress. This is not a latency or sustained speed benchmark; no full two-lap finish/reward was tested."
+  },
+  "runtime_scope": {
+    "configured_api": 35,
+    "configured_arch": "x86_64",
+    "emulator": "Disposable KVM emulator; host GPU backed by Mesa llvmpipe LLVM20.1.2",
+    "actual_offline": true,
+    "original_helper_reports_sdk_and_release_fields": false,
+    "display_simulations": [
+      [
+        904,
+        2316,
+        420
+      ],
+      [
+        1812,
+        2176,
+        420
+      ],
+      [
+        2400,
+        1080,
+        420
+      ]
+    ],
+    "not_physical_fold": true
+  },
+  "fresh_local_contracts_in_original_job": {
+    "passed": 35,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 0.068
+  },
+  "warnings": {
+    "job_error_warning_lines": 17,
+    "optional_old_learning_navigation_failures": 2,
+    "logcat_fatal_patterns": {
+      "FATAL EXCEPTION": 0,
+      "SCRIPT ERROR": 0,
+      "\\b(?:Godot|godot)\\b.*\\bERROR": 0,
+      "Fatal signal": 0
+    },
+    "not_log_warning_free": true
+  },
+  "visual_review": {
+    "actually_opened": 13,
+    "total_original_png_entries": 121,
+    "detail_file": "selected-visual-review.json",
+    "intro_filename_not_treated_as_race_driving": true
+  },
+  "not_proven": [
+    "Two-child migration/isolation by actual Android update",
+    "Existing journal, handwriting, reading-session or story-library data migration",
+    "Migration of prior native Kart/Cards/Build/Puzzle saves",
+    "Wrong/hinted legacy skill conversion by this particular actual fixture",
+    "All subjects and grades",
+    "Physical ARM64/Fold7/Android17 update performance, thermal or touch latency",
+    "60FPS or audible offline voice",
+    "Whole Studio release acceptance; other actual API35/API37 and publisher gates remain separate"
+  ]
+}

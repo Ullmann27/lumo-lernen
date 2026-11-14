@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "status": "PASS_COMPLETE_PYTHON_GROUPS_PREPARATORY_HOST_STATE",
+  "created_utc": "2026-11-13T22:23:11.275809+00:00",
+  "checkout": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "base_source_context": "31883868bac56699dbf3b3d60a7cdb7afc496a8b plus explicitly frozen B/C/Root host changes; exact file manifests are authoritative",
+  "execution_count_per_group": 1,
+  "execution_parallel": true,
+  "groups": [
+    {
+      "group": "scripts",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+      "started_utc": "2026-11-13T22:19:30.533753+00:00",
+      "process_exit_code": 0,
+      "elapsed_seconds": 83.69692854300956,
+      "tests": 426,
+      "unittest_seconds": 83.419,
+      "unittest_summary": "OK",
+      "skipped": 0,
+      "source_files": 1249,
+      "C_frozen_files": 40,
+      "source_unchanged": true,
+      "environment": {
+        "REQUIRE_ALL_TESTS": "true",
+        "GRADLE_HOME": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0",
+        "LUMO_KOTLIN_LIB_DIR": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib"
+      },
+      "toolchain_downloaded": false,
+      "log_bytes": 86344,
+      "log_sha256": "4d602b143cbc3d72f19e1482c2aa75e41399b9139e812249cd5f2f5e32dc7e12",
+      "status": "PASS"
+    },
+    {
+      "group": "android-qa",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+      "started_utc": "2026-11-13T22:19:30.533869+00:00",
+      "process_exit_code": 0,
+      "elapsed_seconds": 41.43043145000411,
+      "tests": 788,
+      "unittest_seconds": 41.122,
+      "unittest_summary": "OK",
+      "skipped": 0,
+      "source_files": 1249,
+      "C_frozen_files": 40,
+      "source_unchanged": true,
+      "environment": {
+        "REQUIRE_ALL_TESTS": "true",
+        "GRADLE_HOME": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0",
+        "LUMO_KOTLIN_LIB_DIR": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib"
+      },
+      "toolchain_downloaded": false,
+      "log_bytes": 156139,
+      "log_sha256": "b73a5b62ea86008f729d9439193bf008eab3fd76fe55eac6d2c753ac986d767e",
+      "status": "PASS"
+    }
+  ],
+  "same_exact_source_snapshot_for_both_groups": true,
+  "source_file_count": 1249,
+  "C_manifest_files_unchanged": 40,
+  "required_environment": "REQUIRE_ALL_TESTS=true; any reported unittest skip fails the wrapper",
+  "existing_toolchain": {
+    "gradle": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0",
+    "kotlin_library": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib",
+    "downloads_by_this_task": false,
+    "system_environment_modified": false
+  },
+  "gradle_live_test_executed": true,
+  "heartbeat_jvm_scenarios": [
+    "authority-lost",
+    "closed-mailbox",
+    "destroy",
+    "return",
+    "missing-authority",
+    "other-game",
+    "pause-and-stale-callback",
+    "render-stall",
+    "render-read-is-read-only",
+    "repeated-resume",
+    "stop-and-late-binding"
+  ],
+  "compiled_activity_sha256": [
+    "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674"
+  ],
+  "configured_godot_source_at_execution": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+    "engine": "4.6.3"
+  },
+  "visual_receipt_native_revision_at_execution": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "no_source_changes_or_repairs_by_review_agent": true,
+  "limitations": [
+    "Complete Python unit/contract execution, not a new Android35/37 device test.",
+    "No Flutter or native renderer suite was rerun by this task.",
+    "Native pin and visual receipt deliberately remain on the prior accepted796b source until the new native acceptance finishes.",
+    "These results do not approve physical Fold7 FPS, thermal behavior, latency or the complete master task.",
+    "Any later source/pin/receipt change must be integrated and checked at its exact final revision."
+  ]
+}

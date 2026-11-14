@@ -1,0 +1,13 @@
+test_actual_stale_mailbox_does_not_revive_session (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_actual_stale_mailbox_does_not_revive_session) ... ok
+test_close_revokes_before_file_cleanup (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_close_revokes_before_file_cleanup) ... ok
+test_detach_and_replacement_engine_revoke_old_tokens (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_detach_and_replacement_engine_revoke_old_tokens) ... ok
+test_invalid_and_foreign_tokens_never_gain_authority (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_invalid_and_foreign_tokens_never_gain_authority) ... ok
+test_restarted_process_requires_new_live_session (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_restarted_process_requires_new_live_session) ... ok
+test_same_package_private_engine_repeatable_preparation (scripts.tests.test_embedded_android.EmbeddedAndroidTest.test_same_package_private_engine_repeatable_preparation) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.932s
+
+OK
+Embedded Godot host prepared; same APK, private activity, durable reward events.
+Embedded Godot host prepared; same APK, private activity, durable reward events.

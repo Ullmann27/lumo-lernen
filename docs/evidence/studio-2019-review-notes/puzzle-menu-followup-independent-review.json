@@ -1,0 +1,120 @@
+{
+  "kind": "independent_read_only_review_of_isolated_puzzle_menu_lifecycle_fix",
+  "reviewer": "Agent C / games_worlds",
+  "review_date": "2026-11-13",
+  "decision": "Kein zusätzlicher Blocker im eng begrenzten Patch gefunden. Als lokal geprüfter Folgepatch geeignet; nicht in Native76980 oder den laufenden Studio-Kandidaten integriert.",
+  "base_native_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "isolated_worktree": "/workspace/scratch/5987865ae883/lumo-godot-puzzle-menu-followup-76980",
+  "source_binding": {
+    "baseline_product_sha256": "016b93b1a934f2ccf5d13972f431d2d098274009d33ef72f270385c6e20ea2af",
+    "candidate_product_sha256": "1726e625cf0135e133fcdb3e0abb2202fd648c16ee72af19f9bfdb2d0c2ee10a",
+    "probe_sha256": "0890454d8134b54b3e59dd75c3481b76ce18568b3e7f7e93a4eafb71f83bcf9c",
+    "strict_verifier_sha256": "38c122e4d4e8bde6e4888bb5d7f3de9e3f9d996d5673a0806cdb7d2df99e00b8",
+    "exact_single_product_replacement_verified": true,
+    "active_native_file_still_byte_equal_to_76980": true,
+    "evidence_manifest_files_checked": 22,
+    "evidence_manifest_mismatches": []
+  },
+  "semantic_review": [
+    {
+      "risk": "Alte sichtbare oder berührbare Controls bis queue_free",
+      "finding": "Alle aktuellen Menüeinträge werden als Label/Button erzeugt. hide() macht die alten Controls sofort unsichtbar; sie bleiben nur für den noch laufenden Release-Dispatch im Baum. Der geprüfte Godot-4.6.3-Hit-Test verwirft unsichtbare CanvasItems. Die Controls besitzen keine eigenen globalen Input-/Process-Skripte. Kein zusätzlicher Retainer oder stale-action-Pfad im gelesenen Produktcode gefunden."
+    },
+    {
+      "risk": "Schnelle Wechsel, doppelte Aktionen oder alte Layoutbeiträge",
+      "finding": "Die unveränderte Probe betätigt Stückzahl, Motiv und Modus über echte Root-Viewport-Touches, auch ohne künstliche Haltedauer. Nach den jeweils drei normalen Layoutframes prüft sie einmaligen Wertwechsel, fehlende doppelte sichtbare Beschriftungen und vollständig gelöschte alte Controls. queue_free bleibt bestehen; die Engine erlaubt mehrfaches Vormerken. Der Patch verändert keine Auswahl-Callbacks. Ein neuer Same-frame-Mehrfinger-Stresstest wurde nicht ausgeführt oder behauptet."
+    },
+    {
+      "risk": "Start, Pause, Wiederaufnahme und gespeicherter Zustand",
+      "finding": "Echte Start-/Drehen-/Pause-/Anderes-Puzzle-/Weiterpuzzeln-Touches bleiben Bestandteil derselben Probe. Sie prüft unveränderte model.to_data() beim Öffnen der Auswahl, echten Klassik-Drag/Drop, Pause-Save und Wiederaufnahme des eingerasteten Teils. Der Einzeilenersatz berührt weder Modell, Save-Schema, Speicherpfad noch Rewardlogik. Bestehende Expansion-/Rotation-Rohlogs wurden zusätzlich gelesen; keine erneute Ausführung durch diesen Reviewer."
+    },
+    {
+      "risk": "Verdeckte Abschwächung des Fehler-Gates",
+      "finding": "Der unabhängige Vergleich bestätigt 46 ERROR-/can_process-Vorkommen im roten Original und 0 im grünen Original. Beide nativen Prozesse enden mit 0 und melden 732 Verhaltenschecks; deshalb ist der zusätzliche strikte Log-Verifier erforderlich. Er verlangt X11, vollständigen Verhaltensreport, Prozessende ohne Timeout, PASS-Marker, sechs echte Capturedateien und keine ERROR-/SCRIPT-ERROR-Zeile. Der rote gesicherte Strict-Report ist FAIL, der grüne PASS; keine Typ-/Fehlerausnahme vorhanden."
+    }
+  ],
+  "reviewed_execution_evidence": {
+    "new_test_runs_by_this_reviewer": 0,
+    "both_runs_behavioral_checks": 732,
+    "red_native_errors": 46,
+    "green_native_errors": 0,
+    "red_strict_status": "FAIL",
+    "green_strict_status": "PASS",
+    "red_green_input_and_menu_state_reports_byte_identical": true,
+    "input_menu_report_sha256": "f0fd4f759aca7be0a5d3f1dbf2d5118fd0dbe9e70d0a813c7b507568020a6c11",
+    "existing_logs": {
+      "puzzle_expansion_regression": {
+        "pass_checks": 1103,
+        "sha256": "924ad72d475a497fe8f5fc88e849b02c8450ef3cde3ece16d6e949c17cef1d6f"
+      },
+      "puzzle_rotation_regression": {
+        "pass_checks": 4558,
+        "sha256": "eb86541e102b1706bd36e900c63d46fd5db5fd8989021c9ebd8782435164252b"
+      }
+    },
+    "before_log_sha256": "3dcfbf4351e9ffc3f747733ccaa3d260257f2828b61a8e9008006c15f690e875",
+    "after_log_sha256": "e3b609e4e30e6a1d5d00eda4083cbb569fa06560e3e71d716aab2429f13d2155",
+    "original_agent_c_five_error_reproducer_preserved": "../studio-runtime-puzzle-20261113/menu-setup-diagnostic/"
+  },
+  "images": [
+    {
+      "file": "960x540-rotation-menu.png",
+      "sha256": "019829e52fb69907e3929b4a0430b95bf850a34af77258230512aca220199db0",
+      "independently_opened": true,
+      "observation": "Keine doppelten Menüaktionen; korrekter Drehmodus und sechs Teile. In 640×360 ist der unterste Eintrag im vorhandenen Scrollbereich teilweise abgeschnitten."
+    },
+    {
+      "file": "960x540-rotation-play.png",
+      "sha256": "f9f2eb9d5f640962bc0491efb21abe81ec655017cb5eeace1fbb42cc382d2100",
+      "independently_opened": true,
+      "observation": "Menü entfernt, korrekte Modus-/Platzierungsanzeige und echte Puzzlefläche sichtbar. In 640×360 bleiben weitere Werkzeuge außerhalb des anfänglichen horizontalen Scrollausschnitts."
+    },
+    {
+      "file": "960x540-classic-play.png",
+      "sha256": "cd5d4a764149de95acf06657966f9f633069a614e09a4bbe8b809bf68485dc8f",
+      "independently_opened": true,
+      "observation": "Menü entfernt, korrekte Modus-/Platzierungsanzeige und echte Puzzlefläche sichtbar. In 640×360 bleiben weitere Werkzeuge außerhalb des anfänglichen horizontalen Scrollausschnitts."
+    },
+    {
+      "file": "640x360-rotation-menu.png",
+      "sha256": "28603301581a5c0827d7c99aaecc355fba3d4cfa0194da86c84f6c5f488be1a9",
+      "independently_opened": true,
+      "observation": "Keine doppelten Menüaktionen; korrekter Drehmodus und sechs Teile. In 640×360 ist der unterste Eintrag im vorhandenen Scrollbereich teilweise abgeschnitten."
+    },
+    {
+      "file": "640x360-rotation-play.png",
+      "sha256": "fa1a6a0c48f9fb86ef5dd12ac10f499479e0a5e3383e696ba499da59d9587230",
+      "independently_opened": true,
+      "observation": "Menü entfernt, korrekte Modus-/Platzierungsanzeige und echte Puzzlefläche sichtbar. In 640×360 bleiben weitere Werkzeuge außerhalb des anfänglichen horizontalen Scrollausschnitts."
+    },
+    {
+      "file": "640x360-classic-play.png",
+      "sha256": "ec67936b6e18f7470f2e7d2efb2eaf90ebb5978ac52d8bfefcd1193b7c0bedd2",
+      "independently_opened": true,
+      "observation": "Menü entfernt, korrekte Modus-/Platzierungsanzeige und echte Puzzlefläche sichtbar. In 640×360 bleiben weitere Werkzeuge außerhalb des anfänglichen horizontalen Scrollausschnitts."
+    }
+  ],
+  "primary_engine_references": [
+    {
+      "url": "https://raw.githubusercontent.com/godotengine/godot/4.6.3-stable/scene/main/viewport.cpp",
+      "retrieved_sha256": "8499322e9bba800abbd4e930a5dd578c549a950c7f993ce5c2dd207f58b93cf2",
+      "examined_function": "Viewport::_gui_find_control_at_pos",
+      "finding": "Unsichtbare CanvasItems werden vor rekursiver Trefferermittlung verworfen."
+    },
+    {
+      "url": "https://docs.godotengine.org/en/stable/classes/class_control.html",
+      "finding": "Die offizielle Control-Dokumentation beschreibt den Fokusverlust beim Verbergen eines fokussierten Controls."
+    },
+    {
+      "url": "https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-queue-free",
+      "finding": "Die offizielle Node-Dokumentation beschreibt verzögertes Löschen und die Zulässigkeit mehrfacher queue_free-Aufrufe."
+    }
+  ],
+  "limits": [
+    "Keine GitHub-/CI-/Releasefreigabe, keine Mutation der Dateien von B oder des aktiven Native-Produkts.",
+    "Die Probe verwendet X11 mit Dichte 1 in 960×540 und 640×360. Keine neue Android-, Fold7-, Tastatur-/Gamepad- oder höhere-Dichte-Abnahme.",
+    "ScrollContainer.ensure_control_visible wird in der Probe zum Freilegen eines Zielknopfs verwendet; dadurch wird keine natürliche Menü-Wischgeste neu nachgewiesen.",
+    "Sechs PNGs tatsächlich unabhängig geöffnet; keine neue Filmaufnahme oder Performanceprüfung."
+  ],
+  "written_file": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-review-notes/puzzle-menu-followup-independent-review.json"
+}

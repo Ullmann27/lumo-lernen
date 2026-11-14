@@ -1,0 +1,33 @@
+{
+  "name": "workshop-final",
+  "started_utc": "2026-11-13T22:29:47.477589+00:00",
+  "duration_seconds": 181.07295227999566,
+  "process_exit": 0,
+  "required_marker": "[WorkshopDensity] PASS",
+  "required_found": true,
+  "engine_errors": [],
+  "command": [
+    "python3",
+    "tools/run_godot_probe.py",
+    "--log",
+    "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/workshop-final.log",
+    "--timeout",
+    "600",
+    "--required",
+    "[WorkshopDensity] PASS",
+    "--",
+    "godot",
+    "--headless",
+    "--path",
+    ".",
+    "--audio-driver",
+    "Dummy",
+    "--script",
+    "scripts/tests/kart_workshop_density_regression.gd"
+  ],
+  "log": "workshop-final.log",
+  "log_sha256": "2bf2418d495133cbaa5d4c4a84e66c1be0f9b3bcf0c0a9dfe778897e30c74e62",
+  "source_freeze_sha256": "f19731f1814dab3a6e4dabc5f9cfca0dbfee233db607d6e26ebe707e06417a21",
+  "pass": true,
+  "source_unchanged_after": true
+}

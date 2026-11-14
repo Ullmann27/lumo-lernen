@@ -1,0 +1,50 @@
+{
+  "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+  "versionCode": 1999,
+  "versionName": "0.12.87",
+  "minSdk": 24,
+  "targetSdk": 36,
+  "abis": [
+    "arm64-v8a"
+  ],
+  "elf16KiBAligned": true,
+  "resourcesArscAligned": true,
+  "bytes": 317113542,
+  "sha256": "6d821c210afa4a26b905325551fb527ac3559eac877dc5ec322993d9350334e2",
+  "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+  "godot": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "4d0fd40fdf188be6ca86057596c7b51f41701fa3",
+    "engine": "4.6.3",
+    "pck_sha256": "0203d602a776156fcc02a100621e01b6aba3c8a9499a1c447fd439516cab317a",
+    "bytes": 54744008
+  },
+  "offlineVoice": {
+    "profile": "lumo-free-supertonic-de-v1",
+    "preset": "F2",
+    "speakerId": 1,
+    "sampleRate": 44100,
+    "onnxruntimeVersion": "1.23.1",
+    "clipCount": 155,
+    "modelSha256": {
+      "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+      "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+      "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+      "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+      "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+      "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+      "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+    },
+    "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+    "scope": "Actual APK package validation, not audible playback acceptance"
+  },
+  "expectationsSource": {
+    "revision": "c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf",
+    "files": {
+      "pubspec.yaml": "8d2ee4ad44ef4fbc18ad33a18bd28f49b41080ad6ee0bf37ce524007c40cf333",
+      "config/godot-source.json": "42f707ab60020b545e642a70fa8c392156ef27bb589713c273a4b228e5f540a4",
+      "config/lumo-offline-voice.json": "9d0593c11a9dfa3db5683feedbc692cb5b79db6799b05a49b044c4226849fd12",
+      "assets/audio/voice/lumo_free/catalog.json": "4d2eee9fe4aaada720d029f2c9161c2fb29773bb1bc2bf768d8a66f6b81f428c"
+    }
+  }
+}

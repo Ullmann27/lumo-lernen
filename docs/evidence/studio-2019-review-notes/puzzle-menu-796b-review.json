@@ -1,0 +1,414 @@
+{
+  "schema": "lumo-studio-scoped-renderer-review-v1",
+  "reviewed_at_utc": "2026-11-13T18:26:37.830285+00:00",
+  "reviewer": "character_animation agent B",
+  "result": "PASS_SCOPED_PUZZLE_MENU_REVIEW_WITH_DOCUMENTED_SCROLL_LIMITS",
+  "global_release_receipt": false,
+  "scope": "Six fresh Puzzle menu lifecycle renderer images; original Studio artifact integrity, eleven probe results and thirty-image roster. The other twenty-four Studio images were not visually re-reviewed by this note.",
+  "github": {
+    "repository": "Ullmann27/lumo-godot",
+    "source_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+    "source_tree": "ffd943c83079c5957514934ad7077f32e743fe68",
+    "branch": "chatgpt/lumo-studio-20261113",
+    "run_id": 43479909943,
+    "run_attempt": 1,
+    "job_id": 132073398621,
+    "job_name": "studio",
+    "job_status": "completed",
+    "job_conclusion": "success",
+    "job_started_at_utc": "2026-11-13T18:09:52Z",
+    "job_completed_at_utc": "2026-11-13T18:15:45Z",
+    "artifact_id": 14064024974,
+    "artifact_name": "lumo-studio-2019-new-evidence",
+    "artifact_created_at_utc": "2026-11-13T18:15:43Z",
+    "artifact_digest": "sha256:ffdd3aec274ac8ca97955ef5212b35bf603881dcbc6d5732620e38741106e2e7",
+    "metadata_independently_read_from_github_tools": true
+  },
+  "original_zip": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-796b-original.zip",
+    "bytes": 23602687,
+    "sha256": "ffdd3aec274ac8ca97955ef5212b35bf603881dcbc6d5732620e38741106e2e7",
+    "digest_matches_github_artifact_metadata": true,
+    "crc_check": "PASS",
+    "checked_extracted_members_byte_equal_to_original_zip": true,
+    "checked_member_count": 50,
+    "checked_member_paths": [
+      "source-sha.txt",
+      "source-tree.txt",
+      "source-dirty.txt",
+      "engine.txt",
+      "results.tsv",
+      "renderer-images.json",
+      "import.log",
+      "captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "captures/learning_sharing_capture/sharing-complete-412x915.png",
+      "captures/learning_sharing_capture/sharing-first-round-1280x720.png",
+      "captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "captures/learning_sharing_capture/sharing-start-1280x720.png",
+      "captures/learning_sharing_capture/sharing-start-412x915.png",
+      "captures/lumo_studio_motion_capture/after_jump_rise.png",
+      "captures/lumo_studio_motion_capture/after_land.png",
+      "captures/lumo_studio_motion_capture/after_sprint.png",
+      "captures/lumo_studio_motion_capture/after_walk.png",
+      "captures/lumo_studio_motion_capture/before_jump_rise.png",
+      "captures/lumo_studio_motion_capture/before_land.png",
+      "captures/lumo_studio_motion_capture/before_sprint.png",
+      "captures/lumo_studio_motion_capture/before_walk.png",
+      "captures/puzzle_rotation_regression/puzzle_rotation_412x915.png",
+      "captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "captures/puzzle_rotation_regression/puzzle_rotation_840x760.png",
+      "captures/puzzle_rotation_regression/puzzle_rotation_compact_menu.png",
+      "captures/puzzle_rotation_regression/puzzle_rotation_hint.png",
+      "captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "captures/puzzle_rotation_regression/puzzle_rotation_table.png",
+      "captures/treasure_exploration_regression/treasure_choose_route.png",
+      "captures/treasure_exploration_regression/treasure_garden_first.png",
+      "captures/treasure_exploration_regression/treasure_route_complete.png",
+      "captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "learning_sharing_regression-headless.log",
+      "learning_studio_regression-headless.log",
+      "lumo_studio_motion_regression-headless.log",
+      "puzzle_rotation_regression-headless.log",
+      "puzzle_menu_lifecycle_regression-headless.log",
+      "treasure_exploration_regression-headless.log",
+      "learning_sharing_capture-rendered.log",
+      "lumo_studio_motion_capture-rendered.log",
+      "puzzle_rotation_regression-rendered.log",
+      "puzzle_menu_lifecycle_regression-rendered.log",
+      "treasure_exploration_regression-rendered.log",
+      "evidence/puzzle_menu_lifecycle_regression-headless/puzzle-menu-lifecycle.json",
+      "captures/puzzle_menu_lifecycle_regression/puzzle-menu-lifecycle.json"
+    ]
+  },
+  "source_stamps": {
+    "source-sha.txt": {
+      "path": "source-sha.txt",
+      "bytes": 41,
+      "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe",
+      "text": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e\n"
+    },
+    "source-tree.txt": {
+      "path": "source-tree.txt",
+      "bytes": 41,
+      "sha256": "f1b1b40c466d1f14909c8b67f309b2537a93d57f5e006771199084b8f57a8c90",
+      "text": "ffd943c83079c5957514934ad7077f32e743fe68\n"
+    },
+    "source-dirty.txt": {
+      "path": "source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": ""
+    },
+    "engine.txt": {
+      "path": "engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "text": "4.6.3.stable.official.7d41c59c4\n"
+    }
+  },
+  "studio_results": {
+    "probe_count": 11,
+    "pass_count": 11,
+    "results_file": {
+      "path": "results.tsv",
+      "bytes": 493,
+      "sha256": "8bb2f18f91531a5562dab2966c50cfd6d956f348f9ed18c6baf4157008ffd09f"
+    },
+    "probe_logs": [
+      {
+        "path": "learning_sharing_regression-headless.log",
+        "bytes": 1480,
+        "sha256": "729d8e38b8e21b8152e2835d2e82fd6bd24937a943b2d755c8c57ad5e3565a9f",
+        "probe": "learning_sharing_regression",
+        "mode": "headless",
+        "result": "PASS",
+        "success_markers": [
+          "[LearningSharing] PASS checks=1811"
+        ],
+        "strict_engine_error_lines": []
+      },
+      {
+        "path": "learning_studio_regression-headless.log",
+        "bytes": 1799,
+        "sha256": "4c3f76fbf9eae0869b4055830f947781d98f5809e22bf7c62066dfb3d0f97766",
+        "probe": "learning_studio_regression",
+        "mode": "headless",
+        "result": "PASS",
+        "success_markers": [
+          "[LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning"
+        ],
+        "strict_engine_error_lines": []
+      },
+      {
+        "path": "lumo_studio_motion_regression-headless.log",
+        "bytes": 601,
+        "sha256": "0b95982e77eaab37152a0a1f780a96d5ea6242b173a07687cb7f4ee7599896c5",
+        "probe": "lumo_studio_motion_regression",
+        "mode": "headless",
+        "result": "PASS",
+        "success_markers": [
+          "[LumoStudioMotion] PASS checks=1046 Blender/Godot endpoint_error_m=0.000000733 segment_error_m=0.000000179; no physical Android claim"
+        ],
+        "strict_engine_error_lines": []
+      },
+      {
+        "path": "puzzle_rotation_regression-headless.log",
+        "bytes": 569,
+        "sha256": "eb86541e102b1706bd36e900c63d46fd5db5fd8989021c9ebd8782435164252b",
+        "probe": "puzzle_rotation_regression",
+        "mode": "headless",
+        "result": "PASS",
+        "success_markers": [
+          "[PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume"
+        ],
+        "strict_engine_error_lines": []
+      },
+      {
+        "path": "puzzle_menu_lifecycle_regression-headless.log",
+        "bytes": 3082,
+        "sha256": "e4abf43a73ce8a31a60e23f78730c873cd8b4a8a98c799f25d136594100d7363",
+        "probe": "puzzle_menu_lifecycle_regression",
+        "mode": "headless",
+        "result": "PASS",
+        "success_markers": [
+          "[PuzzleMenuLifecycle] PASS 720 behavioral checks; strict native log gate still required"
+        ],
+        "strict_engine_error_lines": []
+      },
+      {
+        "path": "treasure_exploration_regression-headless.log",
+        "bytes": 587,
+        "sha256": "5f461cb949ebc96db8146c1e90787a233e280637a2ee36c9aa0b5fbf0b4fb277",
+        "probe": "treasure_exploration_regression",
+        "mode": "headless",
+        "result": "PASS",
+        "success_markers": [
+          "[TreasureExploration] PASS 87 checks: branching, actual location questions, movement, legacy saves and original rewards"
+        ],
+        "strict_engine_error_lines": []
+      },
+      {
+        "path": "learning_sharing_capture-rendered.log",
+        "bytes": 3506,
+        "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e",
+        "probe": "learning_sharing_capture",
+        "mode": "rendered",
+        "result": "PASS",
+        "success_markers": [
+          "[LearningSharingCapture] PASS captures=6"
+        ],
+        "strict_engine_error_lines": []
+      },
+      {
+        "path": "lumo_studio_motion_capture-rendered.log",
+        "bytes": 1202,
+        "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669",
+        "probe": "lumo_studio_motion_capture",
+        "mode": "rendered",
+        "result": "PASS",
+        "success_markers": [
+          "[LumoStudioCapture] PASS 8 real renderer frames; frozen baseline and current IK clips"
+        ],
+        "strict_engine_error_lines": []
+      },
+      {
+        "path": "puzzle_rotation_regression-rendered.log",
+        "bytes": 1218,
+        "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+        "probe": "puzzle_rotation_regression",
+        "mode": "rendered",
+        "result": "PASS",
+        "success_markers": [
+          "[PuzzleRotation] PASS 4565 checks: orientation, legacy saves, real picking, touch rotation and resume"
+        ],
+        "strict_engine_error_lines": []
+      },
+      {
+        "path": "puzzle_menu_lifecycle_regression-rendered.log",
+        "bytes": 3733,
+        "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c",
+        "probe": "puzzle_menu_lifecycle_regression",
+        "mode": "rendered",
+        "result": "PASS",
+        "success_markers": [
+          "[PuzzleMenuLifecycle] PASS 732 behavioral checks; strict native log gate still required"
+        ],
+        "strict_engine_error_lines": []
+      },
+      {
+        "path": "treasure_exploration_regression-rendered.log",
+        "bytes": 1236,
+        "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a",
+        "probe": "treasure_exploration_regression",
+        "mode": "rendered",
+        "result": "PASS",
+        "success_markers": [
+          "[TreasureExploration] PASS 90 checks: branching, actual location questions, movement, legacy saves and original rewards"
+        ],
+        "strict_engine_error_lines": []
+      }
+    ]
+  },
+  "renderer_roster": {
+    "manifest": {
+      "path": "renderer-images.json",
+      "bytes": 7204,
+      "sha256": "42380e84c54015ca0a525940ffc87d26f5b7d88137ea513402210a4599a6b7c5"
+    },
+    "image_count": 30,
+    "groups": {
+      "learning_sharing_capture": 6,
+      "lumo_studio_motion_capture": 8,
+      "puzzle_rotation_regression": 7,
+      "puzzle_menu_lifecycle_regression": 6,
+      "treasure_exploration_regression": 3
+    },
+    "all_manifest_image_bytes_sha256_and_dimensions_match_original_zip": true,
+    "images_visually_reviewed_here": 6
+  },
+  "puzzle_input_reports": [
+    {
+      "path": "evidence/puzzle_menu_lifecycle_regression-headless/puzzle-menu-lifecycle.json",
+      "bytes": 37507,
+      "sha256": "8a7d93b5a04d7c9df1fc6fafc2f9469b95b81072389a46649cb4f579041179ba",
+      "mode": "headless",
+      "checks": 720,
+      "failures": [],
+      "display": "headless",
+      "production_scene": "res://scenes/creative/puzzle_world.tscn",
+      "event_counts": {
+        "touch": 124,
+        "drag": 16
+      },
+      "menu_sample_count": 42,
+      "capture_filenames": [],
+      "state_or_piece_position_injection_used": false,
+      "device_fps_measured": false
+    },
+    {
+      "path": "captures/puzzle_menu_lifecycle_regression/puzzle-menu-lifecycle.json",
+      "bytes": 37700,
+      "sha256": "f0fd4f759aca7be0a5d3f1dbf2d5118fd0dbe9e70d0a813c7b507568020a6c11",
+      "mode": "rendered",
+      "checks": 732,
+      "failures": [],
+      "display": "X11",
+      "production_scene": "res://scenes/creative/puzzle_world.tscn",
+      "event_counts": {
+        "touch": 124,
+        "drag": 16
+      },
+      "menu_sample_count": 42,
+      "capture_filenames": [
+        "960x540-rotation-menu.png",
+        "960x540-rotation-play.png",
+        "960x540-classic-play.png",
+        "640x360-rotation-menu.png",
+        "640x360-rotation-play.png",
+        "640x360-classic-play.png"
+      ],
+      "state_or_piece_position_injection_used": false,
+      "device_fps_measured": false
+    }
+  ],
+  "input_interpretation": [
+    "Each current run records 124 individual touch down/up events, sixteen drag events and forty-two settled-menu samples; these are event counts, not 124 distinct taps.",
+    "The actual probe exercises rapid count/mode/motif changes, starts the production rotation and classic modes, picks and rotates a real piece, drags a classic piece into its target, pauses, saves and resumes.",
+    "The six capture assertions account for twelve additional renderer checks (720 headless versus 732 rendered).",
+    "The probe intentionally reveals a clipped menu target with ScrollContainer.ensure_control_visible before dispatching its real touch. It is not a natural finger-scroll regression. The two small-format screenshots show the existing scroll-dependent layout honestly.",
+    "The original failing lifecycle condition was an engine error after button release. Current raw logs contain zero matches for the unchanged strict pattern SCRIPT ERROR|Parse Error|ERROR:|Assertion failed; a behavioral PASS marker alone was not treated as sufficient."
+  ],
+  "images": [
+    {
+      "path": "captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "bytes": 151982,
+      "sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb",
+      "width": 960,
+      "height": 540,
+      "opened_individually_with_view_image": true,
+      "findings": [
+        "Das einzige sichtbare Auswahlmenü zeigt Leuchtturm-Bucht, Mini · 6 Teile und Modus: Drehpuzzle. Titel und alle fünf Menüaktionen einschließlich Zur Spielewelt sind lesbar.",
+        "Keine doppelte oder stehengebliebene Auswahlzeile sichtbar. Der reale Spielraum bleibt hinter dem Menü erkennbar."
+      ],
+      "new_visible_blocker_found": false
+    },
+    {
+      "path": "captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "bytes": 300994,
+      "sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f",
+      "width": 960,
+      "height": 540,
+      "opened_individually_with_view_image": true,
+      "findings": [
+        "Das Auswahlmenü ist geschlossen. Der HUD zeigt Mini · Drehpuzzle · 0 / 6 Teile · 0 Tipps und den Hinweis Eine Vierteldrehung. Vergleiche Bild und Form.",
+        "Drehen, Teilewahl und weitere Werkzeugaktionen sind sichtbar. Die räumlichen Puzzleteile liegen auf den seitlichen Ablagen, das mittlere Zielfeld ist frei."
+      ],
+      "new_visible_blocker_found": false
+    },
+    {
+      "path": "captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "bytes": 302109,
+      "sha256": "8e2611f52d3d15c70b7938c46254d0df5c11ef89aa465dbaebe5818a3209f55c",
+      "width": 960,
+      "height": 540,
+      "opened_individually_with_view_image": true,
+      "findings": [
+        "Der klassische Modus zeigt 1 / 6 Teile und Das passt! Dein Bild wächst. Ein Teil sitzt im mittleren Zielfeld; weitere Teile liegen auf den Ablagen.",
+        "Keine Drehen-Aktion sichtbar; normale Werkzeugaktionen sind lesbar. Kein zurückgebliebenes Auswahlmenü sichtbar."
+      ],
+      "new_visible_blocker_found": false
+    },
+    {
+      "path": "captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "bytes": 72841,
+      "sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec",
+      "width": 640,
+      "height": 360,
+      "opened_individually_with_view_image": true,
+      "findings": [
+        "Auch im kleinen Format zeigt ein einziges Menü das gewählte Motiv, sechs Teile und Drehpuzzle. Die vier oberen Auswahl-/Startaktionen sind lesbar.",
+        "Der letzte Eintrag Zur Spielewelt liegt am unteren Rand nur teilweise im sichtbaren Ausschnitt. Die vertikale Scrollleiste ist sichtbar. Dieses Bild belegt keine gleichzeitige vollständige Sichtbarkeit aller Aktionen.",
+        "Der horizontale Werkzeug-Scrollbereich hinter dem Menü ist ebenfalls sichtbar. Kein doppelt aufgebautes Menü erkennbar."
+      ],
+      "new_visible_blocker_found": false
+    },
+    {
+      "path": "captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "bytes": 109589,
+      "sha256": "d1eb675bc182b34fa7b1b385119ba0e35faa267d6dc0fd87922f12c4d092b07d",
+      "width": 640,
+      "height": 360,
+      "opened_individually_with_view_image": true,
+      "findings": [
+        "Das Menü ist geschlossen. 0 / 6, Modus und Drehhinweis sind lesbar; mittleres Zielfeld und beide Teileablagen sind im Spielraum erkennbar.",
+        "Drehen sowie die linken Werkzeugaktionen sind sichtbar. Weitere rechte Aktionen benötigen den vorhandenen horizontalen Scrollbereich; dieses Bild behauptet keine gleichzeitige Sichtbarkeit der gesamten Werkzeugleiste."
+      ],
+      "new_visible_blocker_found": false
+    },
+    {
+      "path": "captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "bytes": 109568,
+      "sha256": "510f9fd1c4039e0a8200ff5abc35140627a17ad8bd6cf15d04336701a131f673",
+      "width": 640,
+      "height": 360,
+      "opened_individually_with_view_image": true,
+      "findings": [
+        "Der HUD zeigt 1 / 6 und Das passt! Dein Bild wächst. Ein Teil liegt im mittleren Zielfeld. Der Drehknopf ist im klassischen Modus ausgeblendet.",
+        "Werkzeugtexte bis Speichern sind lesbar; die nächste rechte Aktion liegt außerhalb beziehungsweise teilweise am Rand des horizontalen Scrollausschnitts. Keine neue Menüduplikation oder verdeckte Platzierungsrückmeldung sichtbar."
+      ],
+      "new_visible_blocker_found": false
+    }
+  ],
+  "limitations": [
+    "Only the six named fresh 796b Puzzle images were individually opened in this review; integrity verification of the other twenty-four is not a visual approval.",
+    "The small 640x360 layout requires vertical menu scrolling and horizontal toolbar scrolling. This note does not claim every action is simultaneously visible.",
+    "No additional tests or product changes were performed for this review.",
+    "No Android installation, SDK37 runtime, physical Fold7 performance, thermal or touch-latency result is inferred.",
+    "The remaining nine assigned fresh Jump/Build/Settlement/Garage/Rhythm images and global release receipt remain separate work."
+  ]
+}

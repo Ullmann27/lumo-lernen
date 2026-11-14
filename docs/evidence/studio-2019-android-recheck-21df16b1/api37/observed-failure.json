@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "status": "FAIL_BEFORE_APP_INSTALLATION_OR_TOUR_SCRIPT",
+  "run_id": 43480051009,
+  "job_id": 132073879662,
+  "requested_api": 37,
+  "checker_commit": "21df16b1278e5294a225f796e599d8bb0155e9f5",
+  "apk_source": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "native_source": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "artifact_id": 14063879036,
+  "original_zip_bytes": 8109,
+  "original_zip_sha256": "edace3ce229d45b04119d5f9f57dca3692103b9cdb7b2e01de499b47e2d9b4db",
+  "original_member_count": 10,
+  "original_png_count": 0,
+  "original_xml_count": 0,
+  "successful_preflight": {
+    "phase": "before",
+    "status": "PASS",
+    "probe_source": {
+      "revision": "21df16b1278e5294a225f796e599d8bb0155e9f5",
+      "tree": "ed2014fd38f237a64ba18be80783447d582b883a",
+      "tracked_source_clean": true
+    },
+    "apk_source": {
+      "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "tree": "2e05089253dcfa51f2541b94f88565e4c33b4609",
+      "tracked_source_clean": true
+    },
+    "original_apk": {
+      "apk_source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "native_source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "apk_bytes": 325277610,
+      "apk_sha256": "d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93",
+      "pck_bytes": 66217416,
+      "pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+      "versionCode": 2019,
+      "versionName": "0.13.7",
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "signature_from_original_verified_provenance": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "scope": "Exact original APK/PCK byte identity; no new APK build or new signing claim."
+    },
+    "requested_package_suffix": "37.0"
+  },
+  "failure": {
+    "step": "Complete original tour followed by Studio learning and Cards",
+    "boundary": "Gepinnte Emulatoraction launchEmulator, nach deren Bootproperty-Prüfung und vor dem benutzerdefinierten Bash-/Touraufruf.",
+    "actual_command": "adb -s emulator-5554 shell input keyevent 82",
+    "actual_message": "cmd: Can't find service: input",
+    "actual_exit_code": 20,
+    "boot_property_response": "1",
+    "boot_property_response_at": "2026-11-13T18:14:08.2627443Z",
+    "failed_keyevent_at": "2026-11-13T18:14:08.2687297Z",
+    "observed_engine_boot_message": "Boot completed in 67230 ms",
+    "adjacent_observation": "Der Emulator selbst meldet gleichzeitig für screen_off_timeout: cmd: Can't find service: settings.",
+    "source_lines": {
+      "boot_property": 2261,
+      "boot_value": 2263,
+      "booted_message": 2264,
+      "keyevent": 2265,
+      "missing_input": 2274,
+      "missing_settings": 2277,
+      "action_error_exit20": 2285
+    },
+    "excerpts": [
+      {
+        "line": 2257,
+        "text": "2026-11-13T18:14:08.1732920Z INFO         | Boot completed in 67230 ms"
+      },
+      {
+        "line": 2261,
+        "text": "2026-11-13T18:14:08.2059728Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed"
+      },
+      {
+        "line": 2263,
+        "text": "2026-11-13T18:14:08.2627443Z 1"
+      },
+      {
+        "line": 2264,
+        "text": "2026-11-13T18:14:08.2657182Z Emulator booted."
+      },
+      {
+        "line": 2265,
+        "text": "2026-11-13T18:14:08.2687297Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell input keyevent 82"
+      },
+      {
+        "line": 2274,
+        "text": "2026-11-13T18:14:08.3358212Z cmd: Can't find service: input"
+      },
+      {
+        "line": 2277,
+        "text": "2026-11-13T18:14:08.3418951Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put system screen_off_timeout 2147483647 ' failed: 'cmd: Can't find service: settings'"
+      },
+      {
+        "line": 2285,
+        "text": "2026-11-13T18:14:08.3484810Z ##[error]The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 20"
+      }
+    ]
+  },
+  "scope": [
+    "Der bisherige SDK-Paketnamensfehler ist in diesem Lauf überwunden; das neue konkrete Scheitern liegt vor der LUMO-Appinstallation.",
+    "sys.boot_completed=1 ist beobachtet. Dies ist keine erfolgreiche SDK37-/Release17-Abnahme der App; deren unveränderte Runtimeguards wurden noch nicht ausgeführt.",
+    "Keine Tour-, Learning-, Cards-, Elternfreigabe- oder Nachheridentitätsberichte entstanden. Es existieren keine echten Fehlerbilder oder UI-XMLs aus dieser Phase.",
+    "Die fehlende Verfügbarkeit des Input-Dienstes zum Aufrufzeitpunkt ist belegt. Ob Dienstneustart, vorübergehender Startzustand oder eine andere Emulatorursache vorlag, ist mit diesem Originalartefakt noch nicht geklärt.",
+    "Keine Wiederholung, Produktänderung oder Testabschaltung. Agent A untersucht die Startgrenze gesondert; API35 läuft unabhängig weiter."
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api37/original-job.log",
+      "bytes": 221394,
+      "sha256": "385aedab2befb39d6d5e6e759894390d697f25355ca3261a7ed90a4cd2ec92df"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api37/job-completion.json",
+      "bytes": 2527,
+      "sha256": "8343353ae9bbef4dfd0cf7cf51351cbbdaf8dc13150005e110803ddc5e1bc0e2"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api37/github-artifact.json",
+      "bytes": 785,
+      "sha256": "7b3c886fbb6b1d3cddc4dd325094910ce8d34eebf4d7b9a83bd9d3b3c3dd8abd"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api37/artifact-byte-verification.json",
+      "bytes": 2169,
+      "sha256": "723295140cc7b39e76e59cc095449ebbfa19c5dfe8d243226c2da3c91d28df38"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api37/original-artifact/recheck/before.json",
+      "bytes": 2346,
+      "sha256": "266720f28a1204ae75856068ee1fde93926dd5e8dc71aafde8edf24282ba315d"
+    }
+  ],
+  "original_files_modified": false,
+  "images_opened": []
+}

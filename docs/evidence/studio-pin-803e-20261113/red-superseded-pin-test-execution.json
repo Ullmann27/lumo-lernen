@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_candidate_2011_pin.Candidate2011PinTests.test_2019_rejects_superseded_796b_native_identity",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "exit_code": 1,
+  "wall_seconds": 0.0797698990063509,
+  "created_at_utc": "2026-11-13T23:50:02.939571+00:00",
+  "production_policy": "Unchanged 39dd policy still accepts 796b for 2019",
+  "test": "New explicit rejection case fails against unchanged old policy",
+  "log_sha256": "14931406070c5c091afaf54a7ebfbcb9e4fcd9d6f6e376bdd51157ae8ef3b20c"
+}

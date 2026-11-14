@@ -1,0 +1,404 @@
+{
+  "event_counts": {
+    "start": 1,
+    "suite": 374,
+    "testStart": 3064,
+    "allSuites": 1,
+    "testDone": 3064,
+    "group": 457,
+    "print": 300,
+    "done": 1
+  },
+  "non_event_output_counts": {
+    "blank": 374,
+    "json_list": 374
+  },
+  "done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 526524
+    }
+  ],
+  "passed_visible": 2510,
+  "failed": [],
+  "skipped": [],
+  "errors": [],
+  "diagnostic_messages": [
+    {
+      "message": "\nWarning: A call to tap() with finder \"Found 1 widget with text \"Lernen\" (ignoring all but last): [\n  Text(\"Lernen\", inherit: true, color: Color(alpha: 1.0000, red: 0.9686, green: 0.9843, blue: 1.0000, colorSpace: ColorSpace.sRGB), family: Nunito, size: 18.0, weight: 900, height: 1.1x, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),\n]\" derived an Offset (Offset(234.8, 551.4)) that would not hit test on the specified widget.\nMaybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.\nThe finder corresponds to this RenderBox: RenderParagraph#ab649 relayoutBoundary=up3\nThe hit test result at that offset is: HitTestResult(RenderPointerListener#17b48@Offset(42.8, 120.0), RenderSemanticsAnnotations#87414@Offset(42.8, 120.0), RenderMouseRegion#47394@Offset(42.8, 120.0), RenderSemanticsAnnotations#81029@Offset(42.8, 120.0), _RenderInkFeatures#8c3a2@Offset(42.8, 120.0), RenderPhysicalModel#7875d@Offset(42.8, 120.0), RenderStack#3ffee@Offset(42.8, 120.0), _RenderInkFeatures#de9ab@Offset(42.8, 120.0), RenderCustomPaint#0ffad@Offset(42.8, 120.0), RenderPhysicalShape#b51af@Offset(42.8, 120.0), RenderDecoratedBox#6d642@Offset(42.8, 120.0), RenderPointerListener#da23e@Offset(42.8, 120.0), RenderMouseRegion#7ee88@Offset(42.8, 120.0), RenderSemanticsAnnotations#82e0f@Offset(42.8, 120.0), _RenderLayoutBuilder#310ed@Offset(42.8, 120.0), _RenderLayoutBuilder#56249@Offset(42.8, 120.0), RenderAnimatedOpacity#34894@Offset(42.8, 120.0), RenderRepaintBoundary#0fa55@Offset(42.8, 120.0), RenderIndexedSemantics#252e4@Offset(42.8, 120.0), RenderSliverGrid@(mainAxis: 120.00000000000006, crossAxis: 42.77381896972656), RenderSliverPadding@(mainAxis: 120.00000000000006, crossAxis: 42.77381896972656), RenderShrinkWrappingViewport#746f8@Offset(42.8, 120.0), RenderIgnorePointer#6c648@Offset(42.8, 120.0), RenderSemanticsAnnotations#4d9ed@Offset(42.8, 120.0), RenderPointerListener#4f4d9@Offset(42.8, 120.0), RenderSemanticsGestureHandler#0ef39@Offset(42.8, 120.0), RenderPointerListener#cde28@Offset(42.8, 120.0), _RenderScrollSemantics#de8bf@Offset(42.8, 120.0), RenderClipRect#15e25@Offset(42.8, 120.0), RenderRepaintBoundary#4f5e0@Offset(42.8, 120.0), RenderIndexedSemantics#c89d1@Offset(42.8, 120.0), RenderSliverList@(mainAxis: 449.43460000000005, crossAxis: 42.77381896972656), RenderSliverPadding@(mainAxis: 461.43460000000005, crossAxis: 58.77381896972656), RenderViewport#c5a1b@Offset(58.8, 461.4), RenderIgnorePointer#46dca@Offset(58.8, 461.4), RenderSemanticsAnnotations#ada5a@Offset(58.8, 461.4), RenderPointerListener#9bbce@Offset(58.8, 461.4), RenderSemanticsGestureHandler#19d81@Offset(58.8, 461.4), RenderPointerListener#e4231@Offset(58.8, 461.4), _RenderScrollSemantics#4c2d9@Offset(58.8, 461.4), RenderClipRect#1011c@Offset(58.8, 461.4), RenderStack#6092f@Offset(58.8, 461.4), _RenderLayoutBuilder#ded04@Offset(58.8, 461.4), RenderAnimatedOpacity#0ec0d@Offset(58.8, 461.4), RenderStack#cf8da@Offset(58.8, 461.4), RenderAnimatedOpacity#99ece@Offset(58.8, 461.4), RenderFlex#d13ba@Offset(58.8, 541.4), RenderPadding#c3093@Offset(58.8, 541.4), RenderDecoratedBox#4965f@Offset(58.8, 541.4), RenderClipRRect#1511d@Offset(58.8, 541.4), RenderFlex#b74b7@Offset(224.8, 541.4), RenderPadding#ff250@Offset(234.8, 551.4), _RenderLayoutBuilder#c1a0a@Offset(234.8, 551.4), RenderPadding#18fd9@Offset(234.8, 551.4), RenderStack#192db@Offset(234.8, 551.4), _RenderLayoutBuilder#08d74@Offset(234.8, 551.4), RenderPointerListener#12620@Offset(234.8, 551.4), RenderCustomMultiChildLayoutBox#af74c@Offset(234.8, 551.4), _RenderInkFeatures#a7624@Offset(234.8, 551.4), RenderPhysicalModel#5e595@Offset(234.8, 551.4), RenderRepaintBoundary#ad328@Offset(234.8, 551.4), RenderSemanticsAnnotations#29536@Offset(234.8, 551.4), RenderRepaintBoundary#5992c@Offset(234.8, 551.4), RenderIgnorePointer#026b3@Offset(234.8, 551.4), RenderRepaintBoundary#13721@Offset(234.8, 551.4), RenderSemanticsAnnotations#9a800@Offset(234.8, 551.4), RenderOffstage#56931@Offset(234.8, 551.4), RenderSemanticsAnnotations#5cfac@Offset(234.8, 551.4), _RenderTheater#07389@Offset(234.8, 551.4), RenderAbsorbPointer#12993@Offset(234.8, 551.4), RenderPointerListener#9afa4@Offset(234.8, 551.4), RenderSemanticsAnnotations#8d71c@Offset(234.8, 551.4), RenderCustomPaint#978d2@Offset(234.8, 551.4), RenderSemanticsAnnotations#92750@Offset(234.8, 551.4), RenderSemanticsAnnotations#ea31a@Offset(234.8, 551.4), RenderSemanticsAnnotations#2ad12@Offset(234.8, 551.4), RenderTapRegionSurface#8c295@Offset(234.8, 551.4), RenderSemanticsAnnotations#f47bc@Offset(234.8, 551.4), RenderSemanticsAnnotations#2f781@Offset(234.8, 551.4), HitTestEntry<HitTestTarget>#16f7a(_ReusableRenderView#cca3f), HitTestEntry<HitTestTarget>#5c0a2(<AutomatedTestWidgetsFlutterBinding>))\n#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)\n#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)\n#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)\n#3      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/lumo_shell_layout_test.dart:198:20)\n<asynchronous suspension>\n#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)\n<asynchronous suspension>\nTo silence this warning, pass \"warnIfMissed: false\" to \"tap()\".\nTo make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.\n",
+      "count": 1,
+      "lines": [
+        659
+      ],
+      "tests": {
+        "333": {
+          "test": {
+            "id": 333,
+            "name": "actual shell stays usable while resizing from phone to Fold and narrow phone",
+            "suiteID": 310,
+            "groupIDs": [
+              323
+            ],
+            "metadata": {
+              "skip": false,
+              "skipReason": null
+            },
+            "line": 174,
+            "column": 5,
+            "url": "package:flutter_test/src/widget_tester.dart",
+            "root_line": 101,
+            "root_column": 3,
+            "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/lumo_shell_layout_test.dart"
+          },
+          "done": {
+            "testID": 333,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 69995
+          }
+        }
+      }
+    },
+    {
+      "message": "Lumo-Spielst\u00e4nde werden beim n\u00e4chsten Start erneut synchronisiert: PlatformException(storage, null, null, null)",
+      "count": 5,
+      "lines": [
+        677,
+        689,
+        2018,
+        2023,
+        2028
+      ],
+      "tests": {
+        "338": {
+          "test": {
+            "id": 338,
+            "name": "warm learning return drains and replays rewards once; result before resume=true",
+            "suiteID": 329,
+            "groupIDs": [
+              331
+            ],
+            "metadata": {
+              "skip": false,
+              "skipReason": null
+            },
+            "line": 174,
+            "column": 5,
+            "url": "package:flutter_test/src/widget_tester.dart",
+            "root_line": 435,
+            "root_column": 5,
+            "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/lumo_native_origin_return_test.dart"
+          },
+          "done": {
+            "testID": 338,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 71190
+          }
+        },
+        "344": {
+          "test": {
+            "id": 344,
+            "name": "warm learning return drains and replays rewards once; result before resume=false",
+            "suiteID": 329,
+            "groupIDs": [
+              331
+            ],
+            "metadata": {
+              "skip": false,
+              "skipReason": null
+            },
+            "line": 174,
+            "column": 5,
+            "url": "package:flutter_test/src/widget_tester.dart",
+            "root_line": 435,
+            "root_column": 5,
+            "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/lumo_native_origin_return_test.dart"
+          },
+          "done": {
+            "testID": 344,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 73280
+          }
+        },
+        "884": {
+          "test": {
+            "id": 884,
+            "name": "lost acknowledgement and process restart replay the reward exactly once",
+            "suiteID": 877,
+            "groupIDs": [
+              882
+            ],
+            "metadata": {
+              "skip": false,
+              "skipReason": null
+            },
+            "line": 84,
+            "column": 3,
+            "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/embedded_game_service_test.dart"
+          },
+          "done": {
+            "testID": 884,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 142215
+          }
+        },
+        "886": {
+          "test": {
+            "id": 886,
+            "name": "parent reset removes pending engine rewards before resetting the wallet",
+            "suiteID": 877,
+            "groupIDs": [
+              882
+            ],
+            "metadata": {
+              "skip": false,
+              "skipReason": null
+            },
+            "line": 124,
+            "column": 3,
+            "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/embedded_game_service_test.dart"
+          },
+          "done": {
+            "testID": 886,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 142225
+          }
+        },
+        "888": {
+          "test": {
+            "id": 888,
+            "name": "new native games award explicit XP once and reject malformed rewards",
+            "suiteID": 877,
+            "groupIDs": [
+              882
+            ],
+            "metadata": {
+              "skip": false,
+              "skipReason": null
+            },
+            "line": 173,
+            "column": 3,
+            "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/embedded_game_service_test.dart"
+          },
+          "done": {
+            "testID": 888,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 142234
+          }
+        }
+      }
+    },
+    {
+      "message": "[NativeOriginReward] resultBeforeResume=true failedAck=1 replayedOnce=true originCurrent=true",
+      "count": 1,
+      "lines": [
+        678
+      ],
+      "tests": {
+        "338": {
+          "test": {
+            "id": 338,
+            "name": "warm learning return drains and replays rewards once; result before resume=true",
+            "suiteID": 329,
+            "groupIDs": [
+              331
+            ],
+            "metadata": {
+              "skip": false,
+              "skipReason": null
+            },
+            "line": 174,
+            "column": 5,
+            "url": "package:flutter_test/src/widget_tester.dart",
+            "root_line": 435,
+            "root_column": 5,
+            "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/lumo_native_origin_return_test.dart"
+          },
+          "done": {
+            "testID": 338,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 71190
+          }
+        }
+      }
+    },
+    {
+      "message": "[NativeOriginReward] resultBeforeResume=false failedAck=1 replayedOnce=true originCurrent=true",
+      "count": 1,
+      "lines": [
+        692
+      ],
+      "tests": {
+        "344": {
+          "test": {
+            "id": 344,
+            "name": "warm learning return drains and replays rewards once; result before resume=false",
+            "suiteID": 329,
+            "groupIDs": [
+              331
+            ],
+            "metadata": {
+              "skip": false,
+              "skipReason": null
+            },
+            "line": 174,
+            "column": 5,
+            "url": "package:flutter_test/src/widget_tester.dart",
+            "root_line": 435,
+            "root_column": 5,
+            "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/lumo_native_origin_return_test.dart"
+          },
+          "done": {
+            "testID": 344,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 73280
+          }
+        }
+      }
+    },
+    {
+      "message": "LumoSound: SoundEffect.click skipped (MissingPluginException(No implementation found for method create on channel xyz.luan/audioplayers))",
+      "count": 19,
+      "lines": [
+        4728,
+        4729,
+        4730,
+        4731,
+        4732,
+        4733,
+        4734,
+        4735,
+        4736,
+        4737,
+        4738,
+        4739,
+        4740,
+        4741,
+        4742,
+        4743,
+        4744,
+        4745,
+        5493
+      ],
+      "tests": {
+        "2237": {
+          "test": {
+            "id": 2237,
+            "name": "failed first scene, actual alternative and fresh independent transfer survive restart",
+            "suiteID": 2227,
+            "groupIDs": [
+              2235
+            ],
+            "metadata": {
+              "skip": false,
+              "skipReason": null
+            },
+            "line": 174,
+            "column": 5,
+            "url": "package:flutter_test/src/widget_tester.dart",
+            "root_line": 49,
+            "root_column": 3,
+            "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/intelligence/live_alternative_scene_test.dart"
+          },
+          "done": {
+            "testID": 2237,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 249489
+          }
+        },
+        "2628": {
+          "test": {
+            "id": 2628,
+            "name": "Tour phone profile",
+            "suiteID": 2607,
+            "groupIDs": [
+              2609
+            ],
+            "metadata": {
+              "skip": false,
+              "skipReason": null
+            },
+            "line": 174,
+            "column": 5,
+            "url": "package:flutter_test/src/widget_tester.dart",
+            "root_line": 150,
+            "root_column": 7,
+            "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/design/app_tour_capture_test.dart"
+          },
+          "done": {
+            "testID": 2628,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 308513
+          }
+        }
+      }
+    },
+    {
+      "message": "LumoSound: SoundEffect.win skipped (MissingPluginException(No implementation found for method create on channel xyz.luan/audioplayers))",
+      "count": 1,
+      "lines": [
+        4746
+      ],
+      "tests": {
+        "2237": {
+          "test": {
+            "id": 2237,
+            "name": "failed first scene, actual alternative and fresh independent transfer survive restart",
+            "suiteID": 2227,
+            "groupIDs": [
+              2235
+            ],
+            "metadata": {
+              "skip": false,
+              "skipReason": null
+            },
+            "line": 174,
+            "column": 5,
+            "url": "package:flutter_test/src/widget_tester.dart",
+            "root_line": 49,
+            "root_column": 3,
+            "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/intelligence/live_alternative_scene_test.dart"
+          },
+          "done": {
+            "testID": 2237,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 249489
+          }
+        }
+      }
+    }
+  ]
+}

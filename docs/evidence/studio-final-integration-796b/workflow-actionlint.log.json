@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+    ".github/workflows/lumo-studio-2019.yml",
+    ".github/workflows/lumo-1999-update-gate.yml"
+  ],
+  "exit": 0,
+  "elapsed_seconds": 0.008969761998741888,
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "log": "workflow-actionlint.log"
+}

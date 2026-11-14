@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "status": "OBSERVED_RUNNING_NOT_ACCEPTED",
+  "observed_at": "2026-11-13T18:11:56.051Z",
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43480051009,
+  "run_attempt": 1,
+  "run_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43480051009",
+  "checker_commit": "21df16b1278e5294a225f796e599d8bb0155e9f5",
+  "checker_tree": "ed2014fd38f237a64ba18be80783447d582b883a",
+  "checker_branch": "chatgpt/lumo-android-recheck-2019-20261113",
+  "apk_source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "native_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "original_apk_artifact": 14061222588,
+  "original_apk_run": 43461547945,
+  "x86_apk_sha256": "d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93",
+  "pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+  "api35_job": 132073880264,
+  "api37_job": 132073879662,
+  "scope": "Tatsächlicher getrennt gestarteter Android-Gegenlauf auf unveränderten e3d-APK-Bytes. Kein neuer APK-Build, keine Veröffentlichung. Startmetadaten sind historisch; Abschluss wird separat gesichert."
+}

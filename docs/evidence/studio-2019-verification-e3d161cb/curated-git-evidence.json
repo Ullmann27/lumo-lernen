@@ -1,0 +1,394 @@
+{
+  "schema_version": 1,
+  "purpose": "Explizite kuratierte Dateiliste für Roots spätere Git-Sicherung; kein automatisches Hinzufügen aller 890 extrahierten Dateien.",
+  "host_source": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "native_source": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "run_id": 43461547945,
+  "scope": "Originaler API35-Teilfehler, minimaler lokal geprüfter Helper-Nachtrag und erfolgreiches einzelnes 2017→2019-Upgrade.",
+  "files_count": 60,
+  "files_bytes": 11488531,
+  "selected_files": [
+    {
+      "path": "docs/evidence/studio-2019-review-notes/update-2017-2019-e3d-independent-review.json",
+      "bytes": 29506,
+      "sha256": "c046a91e33d4be42989746ad6a522f834ea53a17e9e4b022a24e60c875d43c5f",
+      "purpose": "Unabhängige Installations-/Daten-/Scopeprüfung von Agent A mit Original-XML und exakter Quellbindung."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/artifact-byte-verification.json",
+      "bytes": 75139,
+      "sha256": "590c82f6a42ee5278562539d9231af6125b29d20d202a9ada93e3f0ce757ad19",
+      "purpose": "Originale Quellen-/Artefakt-/Jobbindung; Startstatus bleibt historisch, Abschlussstatus separat. Vollständiger ursprünglicher Joblog beziehungsweise vollständiges Byte-Manifest."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/failure-review.json",
+      "bytes": 11601,
+      "sha256": "41eeaf003dc473331bfb32cd8d3f259db99b5709c5bd78d6935bcec59a151b1c",
+      "purpose": "Konkreter roter API35-Befund: letzte erlaubte Geste ohne nachfolgende Live-Beobachtung; 21 bestandene Tour-Schritte getrennt von nicht erreichtem Learning/Cards-Gate."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/github-artifact-metadata.json",
+      "bytes": 759,
+      "sha256": "e02907f37491e2fe650cc5230e87652972d63fc83d5d7f3dd8a5c574a0d018d6",
+      "purpose": "Originale Quellen-/Artefakt-/Jobbindung; Startstatus bleibt historisch, Abschlussstatus separat. Vollständiger ursprünglicher Joblog beziehungsweise vollständiges Byte-Manifest."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/job-completion-observation.json",
+      "bytes": 1514,
+      "sha256": "34e95b0318955622f026c4f5626f72e28e3736ba8e72fd4cff922fd0ccc96be8",
+      "purpose": "Originale Quellen-/Artefakt-/Jobbindung; Startstatus bleibt historisch, Abschlussstatus separat. Vollständiger ursprünglicher Joblog beziehungsweise vollständiges Byte-Manifest."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/job-start-observation.json",
+      "bytes": 2957,
+      "sha256": "0c9a20982d7c988eff79fff252ef0368fccd8a71c5e2f9fd5f8d52be3e219677",
+      "purpose": "Originale Quellen-/Artefakt-/Jobbindung; Startstatus bleibt historisch, Abschlussstatus separat. Vollständiger ursprünglicher Joblog beziehungsweise vollständiges Byte-Manifest."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/original-artifact/21_race_drive_telemetry.json",
+      "bytes": 818,
+      "sha256": "e2bdbb4f3b9476dd76c474d8a75aee28fabf6c77fbb1d360dee3a5b609f54d24",
+      "purpose": "Unveränderte kritische Original-API35-Evidenz; Ergebnis-/Gerätebindung, letzte gespeicherte UI-Beobachtungen und tatsächlich geprüftes Fehlerbild."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/original-artifact/fatal-logcat.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Unveränderte kritische Original-API35-Evidenz; Ergebnis-/Gerätebindung, letzte gespeicherte UI-Beobachtungen und tatsächlich geprüftes Fehlerbild."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/original-artifact/nextgen/99_nextgen_failure.png",
+      "bytes": 1298123,
+      "sha256": "4f49884af94ace8c9b4ce8220e06e18c205873d020eb93b7e90d9a4c01dc99df",
+      "purpose": "Unveränderte kritische Original-API35-Evidenz; Ergebnis-/Gerätebindung, letzte gespeicherte UI-Beobachtungen und tatsächlich geprüftes Fehlerbild."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/original-artifact/nextgen/native-surfaces-result.json",
+      "bytes": 3736,
+      "sha256": "50ba5159fd3c4612a7f6e54ead82c81376eb8444a8d9222c427be30ea7b6df70",
+      "purpose": "Unveränderte kritische Original-API35-Evidenz; Ergebnis-/Gerätebindung, letzte gespeicherte UI-Beobachtungen und tatsächlich geprüftes Fehlerbild."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/original-artifact/nextgen/rooted-emulator.json",
+      "bytes": 1553,
+      "sha256": "6ff1b962b6bfb31431328e9bfaa0a12e665758b2d8941876488f0750dbe17b14",
+      "purpose": "Unveränderte kritische Original-API35-Evidenz; Ergebnis-/Gerätebindung, letzte gespeicherte UI-Beobachtungen und tatsächlich geprüftes Fehlerbild."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/original-artifact/nextgen/voice-license-open-27-1-14.xml",
+      "bytes": 25198,
+      "sha256": "470bbb02fa3efec7265ea6e93682bb78329271d86e148c330dbe4fe847d5040b",
+      "purpose": "Unveränderte kritische Original-API35-Evidenz; Ergebnis-/Gerätebindung, letzte gespeicherte UI-Beobachtungen und tatsächlich geprüftes Fehlerbild."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/original-artifact/nextgen/voice-license-open-27-1-15.xml",
+      "bytes": 26699,
+      "sha256": "e5d0bb44744a47c2f2086c4233ad40d2e119729871f4ba93600b657d9396c5e9",
+      "purpose": "Unveränderte kritische Original-API35-Evidenz; Ergebnis-/Gerätebindung, letzte gespeicherte UI-Beobachtungen und tatsächlich geprüftes Fehlerbild."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/original-artifact/rooted-emulator.json",
+      "bytes": 1522,
+      "sha256": "070f5d150ded96f1da12755ed1e0baf9f1ac168c085d84f7ec666e08f8e571e3",
+      "purpose": "Unveränderte kritische Original-API35-Evidenz; Ergebnis-/Gerätebindung, letzte gespeicherte UI-Beobachtungen und tatsächlich geprüftes Fehlerbild."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/original-artifact/tour-result.json",
+      "bytes": 9751,
+      "sha256": "089a683df3b076d5c987112ff8fe67df29dd33aa798b15e647fdd8984d486bd9",
+      "purpose": "Unveränderte kritische Original-API35-Evidenz; Ergebnis-/Gerätebindung, letzte gespeicherte UI-Beobachtungen und tatsächlich geprüftes Fehlerbild."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/original-job.log",
+      "bytes": 1496429,
+      "sha256": "95a08f5fa569c90488f47d4b4036baf5d26c6ead5eb261d806204e424cfff6ed",
+      "purpose": "Originale Quellen-/Artefakt-/Jobbindung; Startstatus bleibt historisch, Abschlussstatus separat. Vollständiger ursprünglicher Joblog beziehungsweise vollständiges Byte-Manifest."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/scroll-followup/REVIEW.json",
+      "bytes": 4844,
+      "sha256": "e50d0a50e1c8d3ed6070e4b7c633dda4b8bb3059fc546553e768cd242bd0a9b0",
+      "purpose": "Isolierter minimaler Suchschleifen-Nachtrag: unveränderte Rot-/Grün-Probe, bestehende Verträge und genaue Diff-/Hashbindung; kein Android-PASS."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/scroll-followup/affected-probe-contracts.log",
+      "bytes": 21542,
+      "sha256": "7522ae471d6a26f347e1eb4c1882005be4000c7e2c2431095e99b74c3c7a9645",
+      "purpose": "Isolierter minimaler Suchschleifen-Nachtrag: unveränderte Rot-/Grün-Probe, bestehende Verträge und genaue Diff-/Hashbindung; kein Android-PASS."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/scroll-followup/after-unit.log",
+      "bytes": 1246,
+      "sha256": "73433ac7a852eed38cdc5b3ad91b92f6345c65500c28e4bc640ef47663b47d51",
+      "purpose": "Isolierter minimaler Suchschleifen-Nachtrag: unveränderte Rot-/Grün-Probe, bestehende Verträge und genaue Diff-/Hashbindung; kein Android-PASS."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/scroll-followup/before-unit.log",
+      "bytes": 6736,
+      "sha256": "f5819efea418212c86ce4a5207d62bfd7a89ecaf6fad5cdcb116c7dca56aec05",
+      "purpose": "Isolierter minimaler Suchschleifen-Nachtrag: unveränderte Rot-/Grün-Probe, bestehende Verträge und genaue Diff-/Hashbindung; kein Android-PASS."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/scroll-followup/candidate.patch",
+      "bytes": 6887,
+      "sha256": "b98e5b9468e11229ff08f88670c626f9871294254278f6a9ba5421c449eca6b3",
+      "purpose": "Isolierter minimaler Suchschleifen-Nachtrag: unveränderte Rot-/Grün-Probe, bestehende Verträge und genaue Diff-/Hashbindung; kein Android-PASS."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/scroll-followup/existing-tour-contracts.log",
+      "bytes": 2356,
+      "sha256": "3d25d2191aa12d062c9c98dba154664ad7256506b4c7d9d9cbc63b3d4d8cc50c",
+      "purpose": "Isolierter minimaler Suchschleifen-Nachtrag: unveränderte Rot-/Grün-Probe, bestehende Verträge und genaue Diff-/Hashbindung; kein Android-PASS."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/android35/source-binding.json",
+      "bytes": 2928,
+      "sha256": "4be5b906e9bcb683eef3855084170561fc71f241bec9a6d8611047890f6457a5",
+      "purpose": "Originale Quellen-/Artefakt-/Jobbindung; Startstatus bleibt historisch, Abschlussstatus separat. Vollständiger ursprünglicher Joblog beziehungsweise vollständiges Byte-Manifest."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/artifact-byte-verification.json",
+      "bytes": 81957,
+      "sha256": "ab9952d1e0678032eb63564ac64c5f3b9dca3801db6fd9a6bb45e0c95a20d3e8",
+      "purpose": "Originale Quellen-/Artefakt-/Jobbindung; Startstatus bleibt historisch, Abschlussstatus separat. Vollständiger ursprünglicher Joblog beziehungsweise vollständiges Byte-Manifest."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/github-artifact-metadata.json",
+      "bytes": 762,
+      "sha256": "f75fcbdc80b783dff4be08fb7ab1b0b05a7dc36aa21ca4331fc1a4892b3018df",
+      "purpose": "Originale Quellen-/Artefakt-/Jobbindung; Startstatus bleibt historisch, Abschlussstatus separat. Vollständiger ursprünglicher Joblog beziehungsweise vollständiges Byte-Manifest."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/job-completion-observation.json",
+      "bytes": 1672,
+      "sha256": "2de181617854a40acf117d090bf202429ed1061d88bf9471a3e859de219e3d77",
+      "purpose": "Originale Quellen-/Artefakt-/Jobbindung; Startstatus bleibt historisch, Abschlussstatus separat. Vollständiger ursprünglicher Joblog beziehungsweise vollständiges Byte-Manifest."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/job-start-observation.json",
+      "bytes": 3205,
+      "sha256": "fdc1c712fb183ac7358985d0150d68aa8219c80a91130e70d0493a23b163b185",
+      "purpose": "Originale Quellen-/Artefakt-/Jobbindung; Startstatus bleibt historisch, Abschlussstatus separat. Vollständiger ursprünglicher Joblog beziehungsweise vollständiges Byte-Manifest."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/21_pause_first-session.cfg",
+      "bytes": 2034,
+      "sha256": "203dab7e599e89d9e621af4e0f4202df81a5f1e958748ea8d7d56df27da5e293",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/21_pause_second-session.cfg",
+      "bytes": 2034,
+      "sha256": "203dab7e599e89d9e621af4e0f4202df81a5f1e958748ea8d7d56df27da5e293",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/21_race_drive_telemetry.json",
+      "bytes": 819,
+      "sha256": "6f6f238db857103d9de9bba9c3395469f2442559a31f6b0d944dbfce3bf2db3a",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/23_zurueck_in_flutter-flutter-return.json",
+      "bytes": 468,
+      "sha256": "7f3a12418f42ba4f708ec67765c211ff9c4e38324d8889deb4dde62edf5fb587",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/after-kart-preferences.xml",
+      "bytes": 4887,
+      "sha256": "1f0100e9be5d81389bb7f063e74cfaf9d18f7f9bd33e926dcf61d8985fbca475",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/after-restart-preferences.xml",
+      "bytes": 4887,
+      "sha256": "35233023e05d35b7ea95d86865e4e8a14315941d42409ffbe3f5f61bf0cb123f",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/after-update-preferences.xml",
+      "bytes": 4522,
+      "sha256": "6f6f5649997483861552b9cec7f4f24bf0800cb7f92cfa331b4b50970bbf9621",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/baseline-install.txt",
+      "bytes": 138,
+      "sha256": "505256658178819a4cce19658fa048633854a7d1e7e8dd6d73c597ca7e5b01d0",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/baseline-learning/09-after-lesson.png",
+      "bytes": 1618713,
+      "sha256": "c15f689e86b9c5fabb41d1963198d6e9d2e3e2605c80f8fd2978206187fc4223",
+      "purpose": "Tatsächlich geöffnetes repräsentatives Original-Upgradebild; historischer Vorher-Stand ausdrücklich als 2017 markiert."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/baseline-learning/learning-journey-result.json",
+      "bytes": 4215,
+      "sha256": "15a4b565e8556cbb95d6d0a66b2c7566a57888909c99901bb7b836f2b05a7d4d",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/baseline-package-uid.txt",
+      "bytes": 59,
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/baseline-package.txt",
+      "bytes": 9965,
+      "sha256": "04e632998a6072685e286ba9153b44bf3d7aebdd008cfe5d37c7dc310ecab6de",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/before-update-preferences.xml",
+      "bytes": 4370,
+      "sha256": "72b7be066dec0b49ff8c444a7cdcbcfcd2a8ace0b12ef065860c8a9db26e7f01",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/fatal-logcat.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/fold-cover-0.xml",
+      "bytes": 28876,
+      "sha256": "372ea8320a33517b66ab25b84a882e64e5842678a872e36050a19f41d4d8840f",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/fold-cover-preferences.xml",
+      "bytes": 4887,
+      "sha256": "35233023e05d35b7ea95d86865e4e8a14315941d42409ffbe3f5f61bf0cb123f",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/fold-landscape-0.xml",
+      "bytes": 30880,
+      "sha256": "31430d3135faa86131b0a2b557cd4c1581643555992dc6f2876bb68595777f4c",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/fold-landscape-preferences.xml",
+      "bytes": 4887,
+      "sha256": "35233023e05d35b7ea95d86865e4e8a14315941d42409ffbe3f5f61bf0cb123f",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/fold-open-0.xml",
+      "bytes": 28008,
+      "sha256": "f3c445c7c7e96f58d4dd2e88698054face7b60f8dc0820a2f5109b7992cf5234",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/fold-open-preferences.xml",
+      "bytes": 4887,
+      "sha256": "35233023e05d35b7ea95d86865e4e8a14315941d42409ffbe3f5f61bf0cb123f",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/restart-profile-offline-0.xml",
+      "bytes": 28900,
+      "sha256": "cc530cc446365927b92159daa20dd359ae478a4f6143a79e251c5d9d0f4e1eee",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/restart-profile-offline.png",
+      "bytes": 3099720,
+      "sha256": "d9f58be68fc5d892510f85172c572bae19e1acbdbb74bdb0c95942dd21484064",
+      "purpose": "Tatsächlich geöffnetes repräsentatives Original-Upgradebild; historischer Vorher-Stand ausdrücklich als 2017 markiert."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/rooted-emulator.json",
+      "bytes": 1545,
+      "sha256": "e8e3bb38d32879354a58db26f8dbbe12dc1d13aa78930d187f04e51582e42399",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/tested-apk-sha256.txt",
+      "bytes": 108,
+      "sha256": "3bc93abf3d66d2a0bf52f63b0d16fc399f9a8d70b757c5f49dd5365da9a6dcfa",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/update-install.txt",
+      "bytes": 139,
+      "sha256": "4adbb0c813fb5b4dc901fb25e123aa6540ecfa4cb29c9adfcc804b9ebbedb287",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/update-result.json",
+      "bytes": 39984,
+      "sha256": "d7df58601f0e523d5e97b1bff101d46ed2f628fc8b61e531b3ae5f960b832fa5",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/updated-package-uid.txt",
+      "bytes": 59,
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/updated-package.txt",
+      "bytes": 9341,
+      "sha256": "a84541686b9978f1648f762626ee7e28dce62fe6e827ebc93c88582c87abe21b",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/updated-profile-offline-0.xml",
+      "bytes": 28900,
+      "sha256": "35e46a64e80172882012990709726d2ec74fddd417838ce79b3c701a77e51bce",
+      "purpose": "Von Agent A geprüfte notwendige Original-Installations-/Daten-/Interaktions-/Geräteevidenz für das echte 2017→2019-Upgrade."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/updated-profile-offline.png",
+      "bytes": 3099748,
+      "sha256": "435a0c641caa62e0d278906bea2fcd533174cce59ff2f4dd200c2a4e00eca1b2",
+      "purpose": "Tatsächlich geöffnetes repräsentatives Original-Upgradebild; historischer Vorher-Stand ausdrücklich als 2017 markiert."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-job.log",
+      "bytes": 294707,
+      "sha256": "8407585d5dd748049ac08b838c7006c8b990f5c09918c40bd156c199d34b4f2b",
+      "purpose": "Originale Quellen-/Artefakt-/Jobbindung; Startstatus bleibt historisch, Abschlussstatus separat. Vollständiger ursprünglicher Joblog beziehungsweise vollständiges Byte-Manifest."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/selected-visual-review.json",
+      "bytes": 3491,
+      "sha256": "d698461cec87f3b5c4bd1d1b384567ef74e7b10df8deefdb95f1a96c31780836",
+      "purpose": "Tatsächliche Sichtprüfung der drei ausgewählten Original-Upgradebilder, mit eng begrenzter Aussage."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/source-binding.json",
+      "bytes": 2913,
+      "sha256": "af856e679ff9b196318240cd47c97da0762582ca4cb4148123fb2358a9a3b9b3",
+      "purpose": "Originale Quellen-/Artefakt-/Jobbindung; Startstatus bleibt historisch, Abschlussstatus separat. Vollständiger ursprünglicher Joblog beziehungsweise vollständiges Byte-Manifest."
+    }
+  ],
+  "full_original_archives_retained_outside_git_selection": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-e3d-api35-original.zip",
+      "bytes": 77771253,
+      "sha256": "5831d58a021769a925bb943f84d82be89895870791433f4fd9cbd1421c441d3f",
+      "regular_files": 432
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-e3d-update-original.zip",
+      "bytes": 104420096,
+      "sha256": "6fd1aaf1b829b94c80ca3b173620a3dd7aee989e68b54434cc501b3067d7536c",
+      "regular_files": 458
+    }
+  ],
+  "omissions": [
+    "OCR-Zwischenbilder und redundante UI-Beobachtungen bleiben vollständig in den Original-ZIPs/Extraktionen und sind durch deren Byte-Manifeste gebunden.",
+    "Die zweite identische API35-Fehleraufnahme wird nicht doppelt in Git vorgeschlagen.",
+    "Große vollständige Android-logcat-Dateien bleiben in den geprüften Originalarchiven; beide vollständigen GitHub-Joblogs sind ausgewählt."
+  ],
+  "no_original_files_changed_or_deleted": true,
+  "no_source_ci_git_or_release_mutation_by_this_curation": true,
+  "manifest_self_hash_not_recursive": true
+}

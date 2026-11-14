@@ -1,0 +1,41 @@
+{
+  "url": "https://github.com/ReactiveCircus/android-emulator-runner/blob/a421e43855164a8197daf9d8d40fe71c6996bb0d/src/sdk-installer.ts",
+  "action_commit_from_original_job": "a421e43855164a8197daf9d8d40fe71c6996bb0d",
+  "retrieved_source_sha256": "b96a07a6a63a950dfc91b4c314ae1f89f19cb2d0954e259681ec0543487af62f",
+  "source_behavior": {
+    "fallback_command_line_tools_declared_version": "20.0",
+    "fallback_command_line_tools_build": "14742923",
+    "fallback_runs_only_if_cmdline_tools_directory_absent": true,
+    "existing_cmdline_tools_not_upgraded": true,
+    "platform_and_build_tools_install_receives_channel_flag": false,
+    "emulator_and_system_image_install_receive_channel_flag": true,
+    "build_tools_version_constant": "37.0.0"
+  },
+  "observed_job": {
+    "runner_image": "ubuntu-24.04",
+    "runner_image_version": "20261111.127.1",
+    "runner_image_inventory_url": "https://github.com/actions/runner-images/blob/ubuntu24/20261111.127/images/ubuntu/Ubuntu2404-Readme.md",
+    "actual_sdkmanager_version": null,
+    "actual_command_line_tools_version": null,
+    "version_not_recorded_in_original_job": true,
+    "installing_new_cmdline_tools_log_present": false,
+    "available_package_list_recorded": false,
+    "channel_name": "stable",
+    "channel_id": 0,
+    "emulator_build_pin": null,
+    "platform_install_command": "sdkmanager --install 'build-tools;37.0.0' platform-tools 'platforms;android-37' > /dev/null",
+    "platform_install_error": "Warning: Failed to find package 'platforms;android-37'",
+    "later_emulator_install_and_system_image_install_reached": false
+  },
+  "runner_image_inventory_retrieval": {
+    "error": "GitHub API error 404: {\"message\":\"No commit found for the ref ubuntu24/20261111.127\",\"documentation_url\":\"https://docs.github.com/v3/repos/contents/\",\"status\":\"404\"}",
+    "error_code": "NOT_FOUND",
+    "error_data": {
+      "message": "No commit found for the ref ubuntu24/20261111.127",
+      "documentation_url": "https://docs.github.com/v3/repos/contents/",
+      "status": "404"
+    }
+  },
+  "inference": "The existing SDK tools were used: the action conditionally installs its declared fallback only when the cmdline-tools directory is absent, and the corresponding installation message is absent. This does not establish the existing tool version.",
+  "actionable_constraint": "Changing only the action channel input cannot alter the observed platform-install command, which omits the channel argument. No claim is made here that another channel contains API 37."
+}

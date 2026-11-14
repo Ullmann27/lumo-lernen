@@ -1,0 +1,41 @@
+{
+  "observed_utc": "2026-11-13T20:24:43.566059+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "run": 43496928833,
+  "scope": "Exact public GitHub file contents fetched at immutable commit; Git blob and SHA256 independently computed; source binding only, not Android execution.",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "git_blob": "6f753f12e56108220a0e7f9e0028ee38e43965fd",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/31883868bac56699dbf3b3d60a7cdb7afc496a8b/.github/workflows/lumo-studio-2019.yml",
+      "bytes": 41327,
+      "sha256": "64deb34a245f9ae55a5f4b7bc140717725ad1cd583e9a2041a78bb35c7c0a722",
+      "matches_reviewed_local_source": true
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "git_blob": "581c8ce765958a8aea1f9a436b10c494ab2e1f40",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/31883868bac56699dbf3b3d60a7cdb7afc496a8b/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 40745,
+      "sha256": "d1b2bb2072e6ae5bbbfafc2c03d3ad580a096b1b5729a19079587a5490045801",
+      "matches_reviewed_local_source": true
+    },
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "git_blob": "b9f48afed517b6123b13e7c77b81e00a1b908e13",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/31883868bac56699dbf3b3d60a7cdb7afc496a8b/tools/auto_install/LumoGameActivity.kt",
+      "bytes": 11695,
+      "sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674",
+      "matches_reviewed_local_source": true
+    },
+    {
+      "path": "config/godot-source.json",
+      "git_blob": "a3b714cbcd67a1bda3df8f1afbcb5e2c84123434",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/31883868bac56699dbf3b3d60a7cdb7afc496a8b/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "a6e4ff3630754999ab0281f80f1e1512141af65e9ff10e6ab72bafd6096f4214",
+      "matches_reviewed_local_source": true
+    }
+  ]
+}

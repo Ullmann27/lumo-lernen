@@ -1,0 +1,297 @@
+{
+  "status": "TECHNICAL_ORIGINAL_BINDING_ONLY_NOT_VISUALLY_REVIEWED",
+  "source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run_id": 43524051371,
+  "artifact_id": 14084682972,
+  "zip_sha256": "a29ea9d83fcd5cb4f5561dd8cd82c9d56347e5faeb2c953f28bf8e628a3f3328",
+  "entries": [
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "sha256": "cb24691851bed6f1f80d725a969f30bca87097510dcf7c4a5d06a0696116051a",
+      "bytes": 249525,
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "sha256": "83b1274cc86d3e3b61d541e8ecdfcfff8de1d51561a87558dd516008ee9b68c8",
+      "bytes": 111652,
+      "dimensions": [
+        412,
+        915
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "reviewer": "character_animation",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "sha256": "64cfd6c4bb10862a8cfb6499fe096282e273574a469dcdf2c80893b3aa43081a",
+      "bytes": 113792,
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "reviewer": "character_animation",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "bytes": 509560,
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "reviewer": "character_animation",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "sha256": "9cf63708774f49aef5abc66ea216c8dafe2bf6e6daee047bcc562ff45c55b44d",
+      "bytes": 1365772,
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb",
+      "bytes": 151982,
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f",
+      "bytes": 300994,
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "sha256": "dc44ab4fc43f6aea55e4b3f23aea177c43c1a75bd68509465afc7e44bf14b3c6",
+      "bytes": 302160,
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec",
+      "bytes": 72841,
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "sha256": "4c04fa21563efcb22242a9e3298439f746d7d466e8077aad16f38e7607ad6645",
+      "bytes": 109931,
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "sha256": "ae29d12159ed846e3e7072123dea9d66791db20d396790a4c50165fd899ea634",
+      "bytes": 109557,
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "sha256": "9754ab497a1b17a04f1170e7cec881f4e4d3c3ef692c45119b145c96510e7fe2",
+      "bytes": 1272873,
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "sha256": "cdc1a62ed087f35d3eb751dcb8fa29dec2862b3d82ebe75c5bd21deb71d49491",
+      "bytes": 1141738,
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "sha256": "53cc8d0e9a5fed74902802d1194fbaa2970c7b7f298dca26d886115f336acb86",
+      "bytes": 1002640,
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "sha256": "bf713689f7c17c42e9c0ab8fdfaf2faf68dc801e1b5c5110ab7a74c14ff1e79b",
+      "bytes": 1858128,
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "module": "build",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "sha256": "a2e11ff77cb5126a89a8ca46fc3c216ed7e719b8987e247def257649c5047489",
+      "bytes": 2497923,
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "sha256": "6622d8c3ab667f13e83b827f560168b254e768beb0b280f076a3d31c5323d719",
+      "bytes": 479283,
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "reviewer": "root",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "sha256": "bdda79f17b7500edf24dba2dc9453759fe87d3920e8c8eb3c23f4cb93318e9ee",
+      "bytes": 2815565,
+      "dimensions": [
+        2400,
+        1080
+      ]
+    }
+  ],
+  "missing_from_partial": [
+    {
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "reviewer": "root"
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "reviewer": "root"
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "reviewer": "root"
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "reviewer": "root"
+    },
+    {
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "reviewer": "character_animation"
+    }
+  ]
+}

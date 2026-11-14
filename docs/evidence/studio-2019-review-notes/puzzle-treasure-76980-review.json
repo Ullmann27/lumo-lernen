@@ -1,0 +1,253 @@
+{
+  "kind": "fresh_native_puzzle_treasure_renderer_review",
+  "reviewed_at_utc": "2026-11-13T15:26:10.162426+00:00",
+  "status": "all_ten_images_reviewed_no_additional_visible_blocker",
+  "source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "source_tree": "8df22766bd0dbae31aacaa26c0228811c027686e",
+  "source_dirty_stamp_empty": true,
+  "artifact": {
+    "github_artifact_id": 14048854681,
+    "github_run_id": 43449903088,
+    "zip_file": "studio-new-native-76980a94.zip",
+    "zip_bytes": 19716818,
+    "zip_sha256": "ca2f4f6c3ae63546bb4b205d47ef1a66b478e227f7399d8932b45f1312485674",
+    "metadata_ids_supplied_by_coordinator": true,
+    "zip_hash_and_extracted_entry_bytes_independently_verified": true
+  },
+  "scope": "Sieben Puzzle- und drei Schatzsuche-Exploration-Bilder dieses ZIPs; keine Gesamtfreigabe oder endgültige Android-Receipt.",
+  "verified_files": [
+    {
+      "file": "source-sha.txt",
+      "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+      "bytes": 41,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "source-tree.txt",
+      "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+      "bytes": 41,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "source-dirty.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "renderer-images.json",
+      "sha256": "62904e87586534c0b03ec4cbcaafd334ca169d9469b0ea5789310278073a3fa1",
+      "bytes": 5737,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "puzzle_rotation_regression-headless.log",
+      "sha256": "eb86541e102b1706bd36e900c63d46fd5db5fd8989021c9ebd8782435164252b",
+      "bytes": 569,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "puzzle_rotation_regression-rendered.log",
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+      "bytes": 1218,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "treasure_exploration_regression-headless.log",
+      "sha256": "5f461cb949ebc96db8146c1e90787a233e280637a2ee36c9aa0b5fbf0b4fb277",
+      "bytes": 587,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "treasure_exploration_regression-rendered.log",
+      "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a",
+      "bytes": 1236,
+      "zip_entry_bytes_equal": true
+    }
+  ],
+  "images": [
+    {
+      "file": "captures/puzzle_rotation_regression/puzzle_rotation_table.png",
+      "sha256": "98549ca0d1293b62311bc9ebad93eef60d1fb4f35bee5e16ed6e614a16232f20",
+      "bytes": 507207,
+      "width": 1280,
+      "height": 720,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "observations": [
+        "Räumlicher Tisch mit vertieften dunkelblauen Ablagen, sichtbaren Teilkanten und Schatten. Sechs unplatzierte Teile liegen seitlich; der zentrale Zielbereich ist frei.",
+        "Status 0/6 Teile, Drehpuzzle-Anweisung und gesamte Werkzeugleiste lesbar; Drehknopf ohne Auswahl sichtbar deaktiviert."
+      ]
+    },
+    {
+      "file": "captures/puzzle_rotation_regression/puzzle_rotation_hint.png",
+      "sha256": "56a240ab05e93506deb170047b1ef80d677ad4b7cd84853ecb9f275d308396b6",
+      "bytes": 519079,
+      "width": 1280,
+      "height": 720,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "observations": [
+        "Ein unpassend gedrehtes Teil liegt im Zielbereich; Status bleibt 0/6. Rückmeldung lautet: Der Platz stimmt. Drehe das Teil noch mit ↻.",
+        "Drehaktion ist nun aktiv. Rückmeldung erklärt den Orientierungsfehler, ohne das Teil fälschlich als gelöst zu zählen."
+      ]
+    },
+    {
+      "file": "captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "bytes": 509560,
+      "width": 1280,
+      "height": 720,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "observations": [
+        "Teil sitzt anders gedreht im oberen Zielbereich, Status 1/6 und Rückmeldung Das passt! Dein Bild wächst. stimmen zusammen.",
+        "Fortschrittsbalken und Werkzeuge bleiben sichtbar; andere Teile liegen weiter in den seitlichen Ablagen."
+      ]
+    },
+    {
+      "file": "captures/puzzle_rotation_regression/puzzle_rotation_412x915.png",
+      "sha256": "3bcc03d6653b7e6eeced0244df8e3dbb7586b8263a57f3492325844fe0478a79",
+      "bytes": 227998,
+      "width": 412,
+      "height": 915,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "observations": [
+        "Porträt: Haupttitel wird sichtbar mit Ellipse gekürzt; Zurück und Pause bleiben vollständig sichtbar. Aufgabenhinweis bricht in zwei lesbare Zeilen um.",
+        "Zielbereich liegt unter der Kopfzeile und über der Werkzeugleiste. Das helle Zielfeld, das platzierte Teil und drei vordere Teile sind sichtbar.",
+        "Unten stehen zunächst Drehen/Teile/Randteile; weitere Werkzeuge liegen außerhalb des aktuellen horizontalen Scrollausschnitts. Nicht sämtliche Aktionen werden gleichzeitig dargestellt."
+      ]
+    },
+    {
+      "file": "captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "sha256": "3ffc1c05538541410596c74b0305e406b3d7bab69c9be926d4e33c538b9108bd",
+      "bytes": 113801,
+      "width": 640,
+      "height": 360,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "observations": [
+        "Kleine Queransicht: Kopfzeile bis ungefähr y=164, Werkzeugleiste ab ungefähr y=282. Der verkleinerte Tisch und die sichtbaren Teile liegen dazwischen; die frühere Überdeckung durch den HUD-Bereich ist im Bild nicht erkennbar.",
+        "Aufgabenhinweis und 1/6-Status lesbar. Werkzeugleiste zeigt sechs Aktionen und horizontalen Scrollbalken. Der Tisch ist in diesem Format deutlich kleiner als bei 1280×720."
+      ]
+    },
+    {
+      "file": "captures/puzzle_rotation_regression/puzzle_rotation_840x760.png",
+      "sha256": "cc2f1c9db1f436cf97c779351365abe6ceb08f3bf7823b57a3a33182ad761da7",
+      "bytes": 326232,
+      "width": 840,
+      "height": 760,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "observations": [
+        "Zentraler Tisch und vordere Teile vollständig außerhalb des Text-HUDs. Status und Hinweis lesbar.",
+        "Letzte Werkzeugaktion rechts nur teilweise sichtbar, passend zum horizontalen Scrollausschnitt; Scrollbalken vorhanden. Kein Anspruch, dass alle Werkzeuge gleichzeitig vollständig sichtbar sind."
+      ]
+    },
+    {
+      "file": "captures/puzzle_rotation_regression/puzzle_rotation_compact_menu.png",
+      "sha256": "7e70d160896fe898525f8e3a9506ff5857aae05f78da2d81e2f2a4436a3c92c9",
+      "bytes": 58970,
+      "width": 640,
+      "height": 360,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "observations": [
+        "640×360-Menü ist zum unteren Ende gescrollt. Mini·6 Teile, Drehpuzzle-Modus, Neues Puzzle beginnen, gespeichertes Puzzle fortsetzen und Zur Spielewelt lesbar und innerhalb des Modals.",
+        "Am oberen Rand bleibt eine abgeschnittene Zeile des darüberliegenden Scrollinhalts; der sichtbare vertikale Scrollbalken erklärt dies. Kein vollständiges Menü auf einem einzigen Standbild behauptet."
+      ]
+    },
+    {
+      "file": "captures/treasure_exploration_regression/treasure_choose_route.png",
+      "sha256": "32a72896dfb7329db09a8cfac6d72e3625092e7816ef9dbf87d8b78041e66304",
+      "bytes": 1365759,
+      "width": 1280,
+      "height": 720,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "observations": [
+        "Fuchsfigur, Schloss, Bäume, Blumen und Schatten bilden eine begehbare räumliche Umgebung; Figur und seitliche Touchflächen bleiben getrennt sichtbar.",
+        "HUD nennt 3/7 gelöste Hinweise und die Wahl Kristallwächter oder Mondgarten; beide Funde werden für das Schloss verlangt. Der Umbruch von Entdeckungen 0/3 ist lesbar.",
+        "Gefunden-Brückenwappen-Rückmeldung sichtbar; weiße Welt-Rückmeldung liegt direkt auf unterschiedlich hellem Gras, während die zentrale Aufgabenbeschreibung auf dunkler Platte steht."
+      ]
+    },
+    {
+      "file": "captures/treasure_exploration_regression/treasure_garden_first.png",
+      "sha256": "781f6a2bf8a9e71d38a5116b252e8bffdac501393dab79f2a158bb261017c08b",
+      "bytes": 1324925,
+      "width": 1280,
+      "height": 720,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "observations": [
+        "HUD wechselt auf 4/7 und führt zu den vier Kristallen. Rückmeldung nennt die Mondblüte; dies entspricht dem Garten als zuerst gelöstem Zweig.",
+        "Fuchs steht bei Blumen, Schloss und Weg bleiben sichtbar; Joystick, Sprung- und Ansehen-Flächen überlagern sich nicht."
+      ]
+    },
+    {
+      "file": "captures/treasure_exploration_regression/treasure_route_complete.png",
+      "sha256": "f25f7dcd102814090d2845463f250e62b7ec14714b98e46c75c6ea96bd6a757b",
+      "bytes": 1354277,
+      "width": 1280,
+      "height": 720,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "observations": [
+        "HUD zeigt 7/7. Abschlussmodal nennt sieben Hinweise, alle Schlüssel sowie 3 Sterne und 48 Erfahrungspunkte.",
+        "Die drei Aktionen Insel weiter erkunden, Neues Abenteuer und Zur Spielewelt sind vollständig sichtbar und lesbar. Der Modalinhalt verdeckt erwartungsgemäß einen Teil der Spielwelt; kein abgeschnittener Abschlussbutton erkannt."
+      ]
+    }
+  ],
+  "current_logs": {
+    "puzzle_rotation_regression-headless.log": {
+      "checks": 4558,
+      "passed": true,
+      "errors_observed": false,
+      "sha256": "eb86541e102b1706bd36e900c63d46fd5db5fd8989021c9ebd8782435164252b"
+    },
+    "puzzle_rotation_regression-rendered.log": {
+      "checks": 4565,
+      "passed": true,
+      "errors_observed": false,
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871"
+    },
+    "treasure_exploration_regression-headless.log": {
+      "checks": 87,
+      "passed": true,
+      "errors_observed": false,
+      "sha256": "5f461cb949ebc96db8146c1e90787a233e280637a2ee36c9aa0b5fbf0b4fb277"
+    },
+    "treasure_exploration_regression-rendered.log": {
+      "checks": 90,
+      "passed": true,
+      "errors_observed": false,
+      "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a"
+    }
+  },
+  "test_scope": {
+    "puzzle": [
+      "Speicherkompatibilität und Orientierungsmodell; tatsächliche Szenenaufnahme mit ray-pick/drag/drop, Drehbutton-Signal und Resume.",
+      "Zusätzliche kompakte Regression dispatcht InputEventScreenTouch/InputEventScreenDrag über Input.parse_input_event: alle sechs Anfangsteile auswählbar und oberer Zielplatz erreichbar.",
+      "Fensterwechsel während gehaltenem Teil wird im Test geprüft; diese sieben PNGs sind keine Filmfolge des Resize-Gestus.",
+      "Zielfeld- und Teilmittelpunkte werden gegen echte HUD-Rechtecke geprüft. Dies allein ist keine physische Android-Dichtemessung sämtlicher Puzzle-Treffflächen.",
+      "Kompaktes Menü wird im Test durch Setzen von scroll_vertical ans Ende gebracht; dieser Testteil allein belegt keinen natürlichen Fingerwischer."
+    ],
+    "treasure": [
+      "Beide erlaubten Reihenfolgen des mittleren Garten-/Kristallzweigs, Abhängigkeiten, unveränderte perfekte Belohnung, Wiederholschutz und Legacy-/JSON-Spielstände werden geprüft.",
+      "Die Szene erhält zur Frageprüfung bewusst gesetzte Spielerpositionen; die echte Frage wird aufgerufen und der vorhandene Antwortbutton per pressed.emit ausgelöst.",
+      "Joystick-Bewegung wird über direkte Übergabe eines Touchereignisses an joystick._gui_input und laufende Physik geprüft.",
+      "Die 87/90-Exploration-Prüfungen dürfen deshalb nicht als vollständige Root-GUI-Touchabnahme ausgegeben werden. Die eigenständige Treasure-Dichteregression ist eine andere Evidenz."
+    ]
+  },
+  "locally_read_test_source_hashes": {
+    "scripts/tests/puzzle_rotation_regression.gd": "4b02e343cc1bf0faad44b99f03c99c5d4dedfc5b76c8454fd37a17c2754a4e30",
+    "scripts/tests/treasure_exploration_regression.gd": "2fff6b5359237626dbb402e46482aac0e15697491f8790ef0e6fb89d0ac00384"
+  },
+  "limitations": [
+    "Die UI-Ausschnitte sind echte Godot-X11/Mesa-llvmpipe-Rendererbilder; kein physisches Android-Gerät und kein FPS-/Temperaturnachweis.",
+    "Kleine Puzzleformate verwenden horizontale Werkzeugleisten und vertikal scrollende Menüs; außerhalb des aktuellen Scrollausschnitts liegende Aktionen sind nicht als gleichzeitig sichtbar bewertet.",
+    "Der laut Koordinator offene Gameplay-Audio-Teardown-Blocker bleibt unberührt; kein Receipt und keine Gesamtfreigabe."
+  ],
+  "product_files_changed": false
+}

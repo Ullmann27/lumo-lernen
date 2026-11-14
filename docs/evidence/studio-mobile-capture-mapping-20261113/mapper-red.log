@@ -1,0 +1,85 @@
+test_current_safe_area_capture_is_actual_cards_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_current_safe_area_capture_is_actual_cards_production_scene) ... ok
+test_each_shared_mobile_capture_maps_to_its_actual_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_each_shared_mobile_capture_maps_to_its_actual_production_scene) ... 
+  test_each_shared_mobile_capture_maps_to_its_actual_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_each_shared_mobile_capture_maps_to_its_actual_production_scene) (module='jump') ... ERROR
+  test_each_shared_mobile_capture_maps_to_its_actual_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_each_shared_mobile_capture_maps_to_its_actual_production_scene) (module='build') ... ERROR
+  test_each_shared_mobile_capture_maps_to_its_actual_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_each_shared_mobile_capture_maps_to_its_actual_production_scene) (module='puzzle') ... ERROR
+  test_each_shared_mobile_capture_maps_to_its_actual_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_each_shared_mobile_capture_maps_to_its_actual_production_scene) (module='treasure') ... ERROR
+test_existing_cards_images_cannot_replace_current_safe_area_review (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_existing_cards_images_cannot_replace_current_safe_area_review) ... ok
+test_original_shared_mobile_images_roundtrip_through_archive_and_receipt (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_original_shared_mobile_images_roundtrip_through_archive_and_receipt) ... ERROR
+test_shared_mobile_probe_does_not_guess_unknown_names_or_wrong_modules (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_shared_mobile_probe_does_not_guess_unknown_names_or_wrong_modules) ... ok
+
+======================================================================
+ERROR: test_each_shared_mobile_capture_maps_to_its_actual_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_each_shared_mobile_capture_maps_to_its_actual_production_scene) (module='jump')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_capture_binding.py", line 52, in test_each_shared_mobile_capture_maps_to_its_actual_production_scene
+    self.assertEqual(delivery.capture_module(entry), module)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_delivery.py", line 128, in capture_module
+    require(module in REVIEW_MODULES, 'Unknown production capture; a pose studio is not a product module')
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_nextgen_delivery.py", line 36, in require
+    raise ValueError(reason)
+ValueError: Unknown production capture; a pose studio is not a product module
+
+======================================================================
+ERROR: test_each_shared_mobile_capture_maps_to_its_actual_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_each_shared_mobile_capture_maps_to_its_actual_production_scene) (module='build')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_capture_binding.py", line 52, in test_each_shared_mobile_capture_maps_to_its_actual_production_scene
+    self.assertEqual(delivery.capture_module(entry), module)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_delivery.py", line 128, in capture_module
+    require(module in REVIEW_MODULES, 'Unknown production capture; a pose studio is not a product module')
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_nextgen_delivery.py", line 36, in require
+    raise ValueError(reason)
+ValueError: Unknown production capture; a pose studio is not a product module
+
+======================================================================
+ERROR: test_each_shared_mobile_capture_maps_to_its_actual_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_each_shared_mobile_capture_maps_to_its_actual_production_scene) (module='puzzle')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_capture_binding.py", line 52, in test_each_shared_mobile_capture_maps_to_its_actual_production_scene
+    self.assertEqual(delivery.capture_module(entry), module)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_delivery.py", line 128, in capture_module
+    require(module in REVIEW_MODULES, 'Unknown production capture; a pose studio is not a product module')
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_nextgen_delivery.py", line 36, in require
+    raise ValueError(reason)
+ValueError: Unknown production capture; a pose studio is not a product module
+
+======================================================================
+ERROR: test_each_shared_mobile_capture_maps_to_its_actual_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_each_shared_mobile_capture_maps_to_its_actual_production_scene) (module='treasure')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_capture_binding.py", line 52, in test_each_shared_mobile_capture_maps_to_its_actual_production_scene
+    self.assertEqual(delivery.capture_module(entry), module)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_delivery.py", line 128, in capture_module
+    require(module in REVIEW_MODULES, 'Unknown production capture; a pose studio is not a product module')
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_nextgen_delivery.py", line 36, in require
+    raise ValueError(reason)
+ValueError: Unknown production capture; a pose studio is not a product module
+
+======================================================================
+ERROR: test_original_shared_mobile_images_roundtrip_through_archive_and_receipt (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_original_shared_mobile_images_roundtrip_through_archive_and_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_capture_binding.py", line 88, in test_original_shared_mobile_images_roundtrip_through_archive_and_receipt
+    facts = delivery.verify_visual_review(*args)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_delivery.py", line 200, in verify_visual_review
+    relative = reviewed_relative_path(image_digest, module, original)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_delivery.py", line 153, in reviewed_relative_path
+    require(capture_module(entry) == module, 'Reviewed module differs from its actual production capture')
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_delivery.py", line 128, in capture_module
+    require(module in REVIEW_MODULES, 'Unknown production capture; a pose studio is not a product module')
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_nextgen_delivery.py", line 36, in require
+    raise ValueError(reason)
+ValueError: Unknown production capture; a pose studio is not a product module
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.175s
+
+FAILED (errors=5)

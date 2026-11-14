@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "scope": "Gezielte Audio-Lebensdauerdiagnose; keine Produkt-, Testgate- oder Zeitlimitänderung und keine Gesamtfreigabe.",
+  "product_source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "product_source_tree": "8df22766bd0dbae31aacaa26c0228811c027686e",
+  "original_failure": {
+    "run_id": 43449903088,
+    "job_id": 131969016839,
+    "assertion": "All production audio playbacks released",
+    "retained_classes": [
+      "AudioStreamPlaybackOggVorbis",
+      "AudioStreamGeneratorPlayback",
+      "AudioStreamPlaybackOggVorbis",
+      "AudioStreamPlaybackOggVorbis",
+      "AudioStreamPlaybackOggVorbis",
+      "AudioStreamPlaybackOggVorbis",
+      "AudioStreamPlaybackOggVorbis"
+    ],
+    "deadline_ms": 3000,
+    "raw_job_log": "docs/evidence/studio-2019-review-notes/native-76980-gameplay-failure.log",
+    "raw_job_log_sha256": "9103b55ff61b8ebe9af6cd737f9eebf1c9d2989ce2c6238f982f9cd2eb684039",
+    "cause": "Nicht bewiesen. Der ursprüngliche Lauf enthält keine Mixer- oder WeakRef-Detailmessung."
+  },
+  "diagnostic": {
+    "branch": "chatgpt/lumo-audio-diagnostic-76980a94",
+    "commit": "b127f30de922749f5b2089f44c0c118727d620c6",
+    "parent": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "tree": "6d41c901a426cc4a091989e81d9f9f5fc536c293",
+    "changed_paths": [
+      ".github/workflows/lumo-audio-lifetime-diagnostic.yml",
+      "scripts/tests/diagnostics/kart_lasso_audio_lifetime_diagnostic.gd"
+    ],
+    "run_id": 43453409001,
+    "job_id": 131981209533,
+    "job_conclusion": "success",
+    "stages": [
+      {
+        "stage": "rules",
+        "assertions": 34,
+        "result": "PASS"
+      },
+      {
+        "stage": "original",
+        "assertions": 26,
+        "result": "PASS"
+      },
+      {
+        "stage": "diagnostic",
+        "assertions": 26,
+        "result": "PASS"
+      },
+      {
+        "stage": "original-after",
+        "assertions": 26,
+        "result": "PASS"
+      }
+    ],
+    "shared_fresh_xdg": true,
+    "per_process_timeout_seconds": 120,
+    "workflow_timeout_minutes": 12,
+    "product_tracked_dirty_before": "",
+    "product_tracked_dirty_after": "",
+    "raw_job_log": "docs/evidence/studio-2019-review-notes/native-audio-diagnostic-b127f30.log",
+    "raw_job_log_sha256": "4b0b867755217941f3c8df020d6a539bae3595dc22c688a3fd82e14d8aefc92e"
+  },
+  "original_artifact": {
+    "id": 14052656679,
+    "run_id": 43453409001,
+    "zip_bytes": 17663,
+    "expected_sha256": "2fe11ef39ae95cee93d9222bd565b59add43e05fc9afaba9caad75e5c0831f9b",
+    "actual_sha256": "2fe11ef39ae95cee93d9222bd565b59add43e05fc9afaba9caad75e5c0831f9b",
+    "byte_verified": true,
+    "contained_files": 14,
+    "saved_original_zip": "docs/evidence/studio-audio-lifetime-20261113/github-original-artifact.zip"
+  },
+  "observations": {
+    "driver": "Dummy",
+    "mix_rate": 44100.0,
+    "engine_hash": "7d41c59c457bd5a245092b4e7eb2d833e3b3f8c3",
+    "actual_playbacks_observed": 8,
+    "all_prior_scene_playbacks_already_gone_at_next_ready": true,
+    "remaining_playbacks_before_final_free": 2,
+    "remaining_game_owners_at_release_begin": 0,
+    "remaining_audio_nodes_at_release_begin": 0,
+    "remaining_playbacks_at_release_begin": 0,
+    "tree_node_count_at_release_begin": 11,
+    "mix_starts_observed_at_frame_samples": 10,
+    "release_end_elapsed_ms": 1,
+    "seconds_since_last_mix_at_release_begin": 0.001992,
+    "interpretation": "Im frischen GitHub-Diagnoselauf laufen Mixerzyklen weiter. Alle beobachteten Game-Owner, Player und Playbacks werden freigegeben. Der Fehler der ursprünglichen Runnerinstanz wird nicht reproduziert.",
+    "raw_phase_data": "docs/evidence/studio-audio-lifetime-20261113/github-diagnostic.log"
+  },
+  "environment_comparison": {
+    "runner_version": "2.338.2",
+    "os": "Ubuntu 24.04.5",
+    "image": "ubuntu-24.04 / 20261111.370.1",
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "failure_region": "westus3",
+    "diagnostic_region": "westus2",
+    "same_runner_instance": false,
+    "caveat": "Gleiches Runnerimage und gleicher Enginequellstand, andere frische Runnerinstanz. Daraus folgt kein Beweis eines Infrastrukturfehlers."
+  },
+  "local_controls": {
+    "shared_xdg_original_sequence": [
+      {
+        "profile": "normal",
+        "probe": "rules",
+        "exit": 0,
+        "seconds": 0.467
+      },
+      {
+        "profile": "normal",
+        "probe": "production",
+        "exit": 0,
+        "seconds": 9.852
+      },
+      {
+        "profile": "normal",
+        "probe": "diagnostic",
+        "exit": 0,
+        "seconds": 9.384
+      },
+      {
+        "profile": "single-core",
+        "probe": "rules",
+        "exit": 0,
+        "seconds": 0.375
+      },
+      {
+        "profile": "single-core",
+        "probe": "production",
+        "exit": 0,
+        "seconds": 8.797
+      },
+      {
+        "profile": "single-core",
+        "probe": "diagnostic",
+        "exit": 0,
+        "seconds": 9.222
+      }
+    ],
+    "mixer_control": {
+      "cycles": 40,
+      "playbacks_observed": 160,
+      "remaining_owners": 0,
+      "last_playback_release_ms": 84,
+      "exit_code": 0
+    },
+    "full_diagnostic": {
+      "assertions": 26,
+      "last_playback_release_ms": 100,
+      "exit_code": 0
+    },
+    "existing_audio_lifecycle_regression": {
+      "result": "PASS",
+      "exit_code": 0,
+      "scope": "Echte Musik/Effekte, aktiver Crossfade, Szenenaustritt und Wiedereintritt, Lautstärkepersistenz"
+    }
+  },
+  "engine_source_review": {
+    "commit": "7d41c59c457bd5a245092b4e7eb2d833e3b3f8c3",
+    "files": [
+      "https://github.com/godotengine/godot/blob/7d41c59c4/servers/audio/audio_driver_dummy.cpp",
+      "https://github.com/godotengine/godot/blob/7d41c59c4/servers/audio/audio_driver_dummy.h",
+      "https://github.com/godotengine/godot/blob/7d41c59c4/servers/audio/audio_server.cpp",
+      "https://github.com/godotengine/godot/blob/7d41c59c4/servers/audio/audio_server.h",
+      "https://github.com/godotengine/godot/blob/7d41c59c4/core/templates/safe_list.h",
+      "https://github.com/godotengine/godot/blob/7d41c59c4/scene/audio/audio_stream_player_internal.cpp"
+    ],
+    "verified_mechanism": "Stop markiert den Playback-Knoten zur Freigabe nach Ausblendung. Der Audiothread mischt/entfernt den Knoten; dessen tatsächlicher Ref-Abbau folgt bei SafeList-Cleanup auf dem Hauptthread. Dummy verwendet 4096 Frames pro Zyklus.",
+    "measurement_caveat": "Mixerzeit-Getter nehmen intern kurz den Audio-Mutex. Messkopie kann Timing beeinflussen; beide unveränderten Originaltests bestanden ebenfalls."
+  },
+  "decision": {
+    "product_patch": false,
+    "gate_weakened": false,
+    "deadline_increased": false,
+    "original_failure_preserved": true,
+    "cause_resolved": false,
+    "master_acceptance": false,
+    "statement": "Keine belegte dauerhafte Produktreferenz und kein reproduzierter Fehler in den gezielten Kontrollen. Die erste CI-Ursache bleibt ungeklärt. Die Diagnose ersetzt keine normative Studio- oder Gameplay-Abnahme.",
+    "normative_studio_gates_replaced_by_diagnosis": false
+  },
+  "evidence_files": [
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/diagnostic-copy.gd",
+      "bytes": 15107,
+      "sha256": "cf093fd38673934255ad9ade0295bec6e7b94805dd86f26de874d69bc36c953c"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-changed-paths.txt",
+      "bytes": 119,
+      "sha256": "bb9391275b7c8e4f4b1e9389e1cd524c855e9a2a83bbcc27581549b7fe9e1185"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-diagnostic-source-sha.txt",
+      "bytes": 41,
+      "sha256": "b67286a86e46f33c76b6c1bef5423b589cfb8c77855c6f1c6647a11ceacc53db"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-diagnostic.log",
+      "bytes": 7320,
+      "sha256": "d740b23f6937aea2e603e477b7c8eb798482d77e5c1cb0dcbca4cffe4aa5e550"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-dirty-after.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-dirty-before.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-import.log",
+      "bytes": 161160,
+      "sha256": "2933002127e0f2cd9ebcb162fbeb096066e242668cbecedba06121fb62d0af63"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-original-after.log",
+      "bytes": 1031,
+      "sha256": "83aea1051cb10e8fbb46cc3834df42134196e8842a9500919a33c375ef02ef49"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-original-artifact.zip",
+      "bytes": 17663,
+      "sha256": "2fe11ef39ae95cee93d9222bd565b59add43e05fc9afaba9caad75e5c0831f9b"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-original.log",
+      "bytes": 1031,
+      "sha256": "83aea1051cb10e8fbb46cc3834df42134196e8842a9500919a33c375ef02ef49"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-product-source-sha.txt",
+      "bytes": 41,
+      "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-product-source-tree.txt",
+      "bytes": 41,
+      "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-results.tsv",
+      "bytes": 217,
+      "sha256": "6d835ca772de360a02b488fa5f631e105608825897808f770fdf768604c7805d"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-rules.log",
+      "bytes": 560,
+      "sha256": "95d9505e9aa9db3f20d26bc7b9535589aabc2a7309a048ef1bfb12255103560a"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/github-system.txt",
+      "bytes": 3319,
+      "sha256": "5090796e9f1713d4c2a61b6ab0d6ab0cf6f2fb3e0626a39bc5617472f941b80c"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/local-ci-sequence-summary.json",
+      "bytes": 997,
+      "sha256": "2ecac45d3c922b939e40d9312c1d69a8ce3e70f386d28178dbb496f4ebc22129"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/local-early-diagnostic.log",
+      "bytes": 2465,
+      "sha256": "b25e6672dc4f1767b1589bee3c8b9360c1741d014b7b14718f9ac44e88ba3f3e"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/local-existing-audio-regression.log",
+      "bytes": 855,
+      "sha256": "93e21865aa96022d7729c1bf05ad1ad6c0aa7aa27651df6a62203f98fe12c294"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/local-full-diagnostic.log",
+      "bytes": 8375,
+      "sha256": "72ec3492e28e151bd62897e0ef44eb3f1f8424396d3c5e996f11182dac96f076"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/local-mixer-control.gd",
+      "bytes": 2010,
+      "sha256": "6569ad147917945bb73c8b83cf32ed6b26981f9ada712e6e06767497e6dac63f"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/local-mixer-control.log",
+      "bytes": 1170,
+      "sha256": "9156fb201482610f63faa1069fc352b4662457e685c1b529355b27a782722cec"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/local-normal-diagnostic.log",
+      "bytes": 2291,
+      "sha256": "738f95a0f43958cbee2f9759cf8aeb29d7f536d91f1429d58c37cda19a1911ca"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/local-normal-production.log",
+      "bytes": 1031,
+      "sha256": "83aea1051cb10e8fbb46cc3834df42134196e8842a9500919a33c375ef02ef49"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/local-normal-rules.log",
+      "bytes": 560,
+      "sha256": "95d9505e9aa9db3f20d26bc7b9535589aabc2a7309a048ef1bfb12255103560a"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/local-original.log",
+      "bytes": 1031,
+      "sha256": "83aea1051cb10e8fbb46cc3834df42134196e8842a9500919a33c375ef02ef49"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/local-single-core-diagnostic.log",
+      "bytes": 2808,
+      "sha256": "de80ce5fc0623ed0c68a2595b6a385ccd57fd7ce3d85c363a205e837cbf7e504"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/local-single-core-production.log",
+      "bytes": 1031,
+      "sha256": "83aea1051cb10e8fbb46cc3834df42134196e8842a9500919a33c375ef02ef49"
+    },
+    {
+      "path": "docs/evidence/studio-audio-lifetime-20261113/local-single-core-rules.log",
+      "bytes": 560,
+      "sha256": "95d9505e9aa9db3f20d26bc7b9535589aabc2a7309a048ef1bfb12255103560a"
+    }
+  ]
+}

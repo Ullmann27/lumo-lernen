@@ -1,0 +1,53 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_build-dialog-density-12-0_1.json
+[Perf] quality_profile:medium
+[LifecycleDiag] {"content_scale":"(640, 320)","embedded":true,"has_focus":true,"label":"before exit profile 0","mouse":"(360.0, 640.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]","subwindows":1,"visible_rect":"[P: (0.0, 0.0), S: (640.0, 320.0)]","window_id":0}
+[LifecycleDiag] {"content_scale":"(640, 320)","embedded":true,"has_focus":true,"label":"modal tree_exiting profile 0","mouse":"(360.0, 640.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]","subwindows":1,"visible_rect":"[P: (0.0, 0.0), S: (640.0, 320.0)]","window_id":0}
+[LifecycleDiag] {"content_scale":"(720, 1280)","embedded":true,"has_focus":true,"label":"game tree_exiting profile 0","mouse":"(1440.0, 2560.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"visible_rect":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]","window_id":0}
+[LifecycleDiag] {"content_scale":"(720, 1280)","embedded":true,"has_focus":true,"label":"modal tree_exited profile 0","mouse":"(1440.0, 2560.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"visible_rect":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]","window_id":0}
+[LifecycleDiag] {"content_scale":"(720, 1280)","embedded":true,"has_focus":true,"label":"game tree_exited profile 0","mouse":"(1440.0, 2560.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"visible_rect":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]","window_id":0}
+[LifecycleDiag] {"content_scale":"(720, 1280)","embedded":true,"has_focus":true,"label":"after exit profile 0","mouse":"(1440.0, 2560.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"visible_rect":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]","window_id":0}
+[LifecycleDiag] {"content_scale":"(720, 1280)","embedded":true,"has_focus":true,"label":"sentinel before tap profile 0","mouse":"(1440.0, 2560.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"target_global":"[P: (20.0, 20.0), S: (200.0, 60.0)]","target_pixels":"[P: (5.0, 5.0), S: (50.0, 15.0)]","target_pressed":false,"visible_rect":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]","window_id":0}
+[LifecycleDiag] GUI InputEventMouseButton: button_index=1, mods=none, pressed=true, canceled=false, position=((100.0, 30.0)), button_mask=1, double_click=false
+[LifecycleDiag] GUI InputEventScreenTouch: index=4, pressed=true, canceled=false, position=((100.0, 30.0)), double_tap=false
+[LifecycleDiag] GUI InputEventMouseButton: button_index=1, mods=none, pressed=false, canceled=false, position=((100.0, 30.0)), button_mask=0, double_click=false
+[LifecycleDiag] GUI InputEventScreenTouch: index=4, pressed=false, canceled=false, position=((100.0, 30.0)), double_tap=false
+[LifecycleDiag] {"content_scale":"(720, 1280)","embedded":true,"has_focus":true,"label":"sentinel after tap profile 0 received=true","mouse":"(1440.0, 2560.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"target_global":"[P: (20.0, 20.0), S: (200.0, 60.0)]","target_pixels":"[P: (5.0, 5.0), S: (50.0, 15.0)]","target_pressed":false,"visible_rect":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]","window_id":0}
+[BuildDialogDensity] CASE [(2400, 1080), 2.625] checks=331 failures=0
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_build-dialog-density-12-1_1.json
+[LifecycleDiag] {"content_scale":"(640, 320)","embedded":true,"has_focus":true,"label":"before exit profile 1","mouse":"(360.0, 640.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]","subwindows":1,"visible_rect":"[P: (0.0, 0.0), S: (640.0, 320.0)]","window_id":0}
+[LifecycleDiag] {"content_scale":"(640, 320)","embedded":true,"has_focus":true,"label":"modal tree_exiting profile 1","mouse":"(360.0, 640.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]","subwindows":1,"visible_rect":"[P: (0.0, 0.0), S: (640.0, 320.0)]","window_id":0}
+[LifecycleDiag] {"content_scale":"(720, 1280)","embedded":false,"has_focus":true,"label":"game tree_exiting profile 1","mouse":"(1440.0, 2560.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"visible_rect":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]","window_id":0}
+[LifecycleDiag] {"content_scale":"(720, 1280)","embedded":false,"has_focus":true,"label":"modal tree_exited profile 1","mouse":"(1440.0, 2560.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"visible_rect":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]","window_id":0}
+[LifecycleDiag] {"content_scale":"(720, 1280)","embedded":false,"has_focus":true,"label":"game tree_exited profile 1","mouse":"(1440.0, 2560.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"visible_rect":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]","window_id":0}
+[LifecycleDiag] {"content_scale":"(720, 1280)","embedded":false,"has_focus":true,"label":"after exit profile 1","mouse":"(1440.0, 2560.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"visible_rect":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]","window_id":0}
+[LifecycleDiag] {"content_scale":"(720, 1280)","embedded":false,"has_focus":true,"label":"sentinel before tap profile 1","mouse":"(1440.0, 2560.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"target_global":"[P: (20.0, 20.0), S: (200.0, 60.0)]","target_pixels":"[P: (5.0, 5.0), S: (50.0, 15.0)]","target_pressed":false,"visible_rect":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]","window_id":0}
+[LifecycleDiag] GUI InputEventMouseButton: button_index=1, mods=none, pressed=true, canceled=false, position=((100.0, 30.0)), button_mask=1, double_click=false
+[LifecycleDiag] GUI InputEventScreenTouch: index=4, pressed=true, canceled=false, position=((100.0, 30.0)), double_tap=false
+[LifecycleDiag] GUI InputEventMouseButton: button_index=1, mods=none, pressed=false, canceled=false, position=((100.0, 30.0)), button_mask=0, double_click=false
+[LifecycleDiag] GUI InputEventScreenTouch: index=4, pressed=false, canceled=false, position=((100.0, 30.0)), double_tap=false
+[LifecycleDiag] {"content_scale":"(720, 1280)","embedded":false,"has_focus":true,"label":"sentinel after tap profile 1 received=false","mouse":"(1440.0, 2560.0)","root_position":"(920, 640)","root_size":"(640, 320)","screen_transform":"[X: (0.25, 0.0), Y: (0.0, 0.25), O: (0.0, 0.0)]","subwindows":0,"target_global":"[P: (20.0, 20.0), S: (200.0, 60.0)]","target_pixels":"[P: (5.0, 5.0), S: (50.0, 15.0)]","target_pressed":false,"visible_rect":"[P: (0.0, 0.0), S: (2560.0, 1280.0)]","window_id":0}
+ERROR: [BuildDialogDensity] A subsequent scene receives routed touch after modal scene exit
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (/tmp/lumo-build-lifecycle-full-diagnostic.gd:41)
+       [1] _run (/tmp/lumo-build-lifecycle-full-diagnostic.gd:394)
+       [2] _tap (/tmp/lumo-build-lifecycle-full-diagnostic.gd:134)
+       [3] _settle (/tmp/lumo-build-lifecycle-full-diagnostic.gd:46)
+[BuildDialogDensity] CASE [(1080, 2400), 2.625] checks=645 failures=1
+[BuildDialogDensity] FAIL ["A subsequent scene receives routed touch after modal scene exit"]

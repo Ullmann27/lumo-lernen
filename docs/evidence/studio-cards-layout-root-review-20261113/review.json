@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "status": "PASS_INDEPENDENT_LOCAL_INTEGRATION_REVIEW",
+  "scope": "Root Studio publisher/capture integration against frozen C host layout implementation. No source edits, no new Android or visual acceptance.",
+  "reviewed_files": [
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_delivery.py",
+      "sha256": "e7cba79b96eb2483886229bc85ded4dab52ffc6e095ad93eb5e2a404d02e14f4",
+      "scope": "Root integration and direct helpers"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_delivery.py",
+      "sha256": "87e01822d11e33d3fe2cbc0effeb39ff82e0059ea716c9cf9827787ab20a5907",
+      "scope": "Root integration and direct helpers"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_capture_binding.py",
+      "sha256": "c180a46751657ba7ef274fd3b2bab48a05501719615972a5df7a9b970cf7c233",
+      "scope": "Root integration and direct helpers"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/record_studio_visual_review.py",
+      "sha256": "ddf9355213d65cd4055265c5319baeedf51df257f3553ca1ab2d23da87d8b1c1",
+      "scope": "Root integration and direct helpers"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_legacy_release_pin.py",
+      "sha256": "6d7a692ae6ad0b1ff4860f7d681e34c0a0022c77084b84a98cf674eb5f4f723c",
+      "scope": "Root integration and direct helpers"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/release_pipeline_gates.py",
+      "sha256": "400e54f2952f0d8aae07fc964e4688c48f16c9213ea022fa8754731004551946",
+      "scope": "Root integration and direct helpers"
+    }
+  ],
+  "C_upload_manifest": "qa/host-cards-safe-area-318/upload-manifest.json",
+  "C_freeze_sha256": "2d1a501694a8fd87765031f50eb25db7fff7744673722e0db9e1d01c3c2bf4d8",
+  "read_only_findings": [
+    "Verify_proofs calls the shared verify_cards_front_faces exactly once with literal require_layout=True. Both API35 and API37 reach verify_proofs through the unchanged mandatory verify_android_platforms path.",
+    "The AST preservation test permits only the exact additional require_layout=True keyword; after stripping that addition and the existing Studio version mapping, every original identity/state/pixel/lifecycle assertion remains equal to the historical gate body.",
+    "attach_synthetic_layouts is imported only into the test fixture construction. Production verification does not construct, rewrite or normalize actual APK/session evidence.",
+    "The existing original Cards production scene remains mapped; cards_safe_area_regression is an additive cards-module mapping. verify_visual_review additionally requires the current safe-area probe, while retaining all nine scene modules, touch probes, puzzle menu, eight native jobs and five clean source stamps.",
+    "The new capture-binding test checks all three actual stable capture filenames and rejects receipt creation/verification when the new safe-area capture is removed despite existing Cards images and full module coverage.",
+    "No additional concrete blocker found in this integrated scope. Existing shared publisher default remainsFalse and was independently reviewed separately."
+  ],
+  "actual_execution": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-m",
+      "unittest",
+      "scripts.tests.test_studio_delivery",
+      "scripts.tests.test_studio_cards_capture_binding",
+      "-v"
+    ],
+    "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+    "started_utc": "2026-11-13T22:13:08.033025+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 14.616914400990936,
+    "all_source_and_C_manifest_bytes_unchanged": true,
+    "hashed_files": 46,
+    "log_sha256": "19f98222d06cbf2a37826e1ac46f4903787272314d87f5d5f5105deaeaacbad9",
+    "log_bytes": 7650,
+    "scope": "One integrated local unit/contract execution; no Android or visual receipt approval",
+    "unit_tests": 38,
+    "unit_test_seconds": 14.451,
+    "skipped": 0
+  },
+  "source_before_after_equal": true,
+  "C_original_40_files_unchanged": true,
+  "limitations": [
+    "Unit/archive/parser fixtures and pixel replays do not establish a new installed APK result.",
+    "This review does not approve A/B ongoing shared native inset-cache changes or their not-yet-completed renderer/Android jobs.",
+    "No additional retry, source mutation, release or GitHub action was performed."
+  ]
+}

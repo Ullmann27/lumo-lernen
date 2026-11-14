@@ -1,0 +1,167 @@
+{
+  "status": "FAIL",
+  "physical_fold7_performance_measured": false,
+  "apk_identity": {
+    "apk_sha256": "d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93",
+    "flutter_source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "godot_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "godot_pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+    "versionName": "0.13.7",
+    "versionCode": 2019,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "android_runtime": {
+    "sdk": 35,
+    "release": "15",
+    "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "model": "sdk_gphone64_x86_64"
+  },
+  "emulator_root_readiness": {
+    "status": "PASS",
+    "attempts": [
+      {
+        "arguments": [
+          "get-serialno"
+        ],
+        "elapsed_seconds": 0.0,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "emulator-5554"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "root"
+        ],
+        "elapsed_seconds": 0.002,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "adbd is already running as root"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "wait-for-device"
+        ],
+        "elapsed_seconds": 0.005,
+        "status": "PASS",
+        "return_code": 0,
+        "output": ""
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "id",
+          "-u"
+        ],
+        "elapsed_seconds": 0.007,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "0"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "getprop",
+          "sys.boot_completed"
+        ],
+        "elapsed_seconds": 0.019,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "1"
+      }
+    ],
+    "root_transport_recovered": false,
+    "initial_offline_recovered": false,
+    "initial_missing_recovered": false,
+    "verification": "actual shell id -u == 0 and sys.boot_completed == 1",
+    "scope": "disposable emulator setup; this does not pass installation or gameplay",
+    "serial": "emulator-5554",
+    "last_shell_uid": "0",
+    "last_boot_completed": "1",
+    "shell_uid": 0,
+    "boot_completed": true,
+    "elapsed_seconds": 0.03
+  },
+  "offline": true,
+  "local_voice_permission": {
+    "local_model_assent": true,
+    "voice_enabled": true,
+    "auto_read": true,
+    "unrelated_permissions_unchanged": true,
+    "no_audio_emulator": true,
+    "audible_quality_verified": false,
+    "lip_sync_verified": false
+  },
+  "learning": {
+    "moves": {
+      "moved_objects": 5,
+      "ten_filled_after": 2,
+      "remainder": 3,
+      "target_indices": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "complete": true
+    },
+    "preservation": {
+      "profile": {
+        "id": "1794593684220090",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-13T18:14:44.220090"
+      },
+      "learning_keys_compared": 2,
+      "learning_keys_added": []
+    },
+    "same_lesson_after_return": true,
+    "speech": {
+      "initial": {
+        "native_process_pid": 6854,
+        "completed_utterance_ids": [
+          3
+        ],
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "audible_quality_verified": false,
+        "lip_sync_verified": false
+      },
+      "result": {
+        "native_process_pid": 6854,
+        "completed_utterance_ids": [
+          18
+        ],
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "audible_quality_verified": false,
+        "lip_sync_verified": false
+      },
+      "native_process_gone_on_return": true,
+      "audible_quality_verified": false,
+      "lip_sync_verified": false
+    },
+    "illustration_did_not_award_mastery": true
+  },
+  "error": "RuntimeError: Cards front faces did not pass current unpaused pixel/UI evidence before deadline",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py\", line 646, in main\n    result['cards'] = cards_roundtrip(out)\n                      ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py\", line 502, in cards_roundtrip\n    before, faces_before = capture_cards_faces(out, box, '11_cards_real_table_before_draw', before, density)\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py\", line 479, in capture_cards_faces\n    raise RuntimeError('Cards front faces did not pass current unpaused pixel/UI evidence before deadline')\nRuntimeError: Cards front faces did not pass current unpaused pixel/UI evidence before deadline\n"
+}

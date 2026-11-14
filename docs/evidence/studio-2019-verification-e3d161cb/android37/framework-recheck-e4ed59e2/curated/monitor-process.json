@@ -1,0 +1,17 @@
+{
+  "pid": 4070,
+  "start_ticks": "19140",
+  "command": [
+    "/usr/bin/python3",
+    "/home/runner/work/lumo-lernen/lumo-lernen/scripts/android_framework_ready.py",
+    "_monitor",
+    "--out",
+    "/home/runner/work/lumo-lernen/lumo-lernen/tour/framework-start",
+    "--serial",
+    "emulator-5554"
+  ],
+  "started_at": "2026-11-13T19:09:15.663290+00:00",
+  "serial": "emulator-5554",
+  "adb": "/usr/local/lib/android/sdk/platform-tools/adb",
+  "budget_seconds": 450
+}

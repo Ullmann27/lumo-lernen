@@ -109,8 +109,8 @@ def main(*, baseline_source: str = BASE_SOURCE, baseline_version: int = 2002,
         migration_versions = None
         if allow_2018_independent_evidence_migration:
             if (type(baseline_version) is not int or type(candidate_version) is not int or
-                    (baseline_version, candidate_version) != (2017, 2018)):
-                raise RuntimeError('The reviewed migration requires the actual 2017 to 2018 pair')
+                    (baseline_version, candidate_version) not in ((2017, 2018), (2017, 2019))):
+                raise RuntimeError('The reviewed migration requires actual 2017 to 2018 or 2019')
             migration_versions = (baseline_version, candidate_version)
         result['baseline'] = artifact(args.baseline, baseline_source, baseline_version, baseline_native)
         result['candidate'] = artifact(args.candidate, SOURCE, candidate_version, candidate_native)

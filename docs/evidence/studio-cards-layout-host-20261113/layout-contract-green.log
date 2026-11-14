@@ -1,0 +1,14 @@
+test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) ... ok
+test_fixture_never_masquerades_as_actual_android_observation (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_fixture_never_masquerades_as_actual_android_observation) ... ok
+test_missing_and_malformed_measurements_are_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_missing_and_malformed_measurements_are_rejected) ... ok
+test_new_projection_matches_actual_godot_unproject_readback (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_new_projection_matches_actual_godot_unproject_readback) ... ok
+test_original_projection_misses_the_actual_safe_area_hand_by_more_than_63_pixels (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_original_projection_misses_the_actual_safe_area_hand_by_more_than_63_pixels) ... ok
+test_rotated_or_mismatched_screen_cannot_reuse_portrait_measurements (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_rotated_or_mismatched_screen_cannot_reuse_portrait_measurements) ... ok
+test_swapped_ids_and_fabricated_or_nonfinite_polygons_are_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_swapped_ids_and_fabricated_or_nonfinite_polygons_are_rejected) ... ok
+test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) ... ok
+test_wrong_insets_and_wrong_ui_rect_are_not_trusted (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_wrong_insets_and_wrong_ui_rect_are_not_trusted) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.016s
+
+OK

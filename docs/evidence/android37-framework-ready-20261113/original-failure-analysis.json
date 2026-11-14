@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "status": "ORIGINAL_START_FAILURE_EXPLAINED_READINESS_FIX_REQUIRES_ACTUAL_API37_RUN",
+  "reviewed_at": "2026-11-13T18:56:20.030577+00:00",
+  "original_probe_source": "21df16b1278e5294a225f796e599d8bb0155e9f5",
+  "unchanged_apk_source": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "native_source": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "original_job": {
+    "run_id": 43480051009,
+    "job_id": 132073879662,
+    "conclusion": "failure",
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43480051009/job/132073879662",
+    "raw_log_bytes": 221394,
+    "raw_log_sha256": "385aedab2befb39d6d5e6e759894390d697f25355ca3261a7ed90a4cd2ec92df",
+    "raw_log_workspace_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-android-recheck-21df16b1/api37/original-job.log"
+  },
+  "original_artifact": {
+    "id": 14063879036,
+    "bytes": 8109,
+    "sha256": "edace3ce229d45b04119d5f9f57dca3692103b9cdb7b2e01de499b47e2d9b4db",
+    "entries": 10,
+    "app_installed": false,
+    "tour_started": false,
+    "contains_android_logcat": false
+  },
+  "observed_timeline": [
+    {
+      "utc": "18:13:00.9158446",
+      "event": "Actual emulator 37.2.13.0 build16740729; real android-37.0/google_apis/x86_64 image path."
+    },
+    {
+      "utc": "18:14:08.1732920",
+      "event": "Emulator reports boot completed in67230ms."
+    },
+    {
+      "utc": "18:14:08.2627443",
+      "event": "adb getprop sys.boot_completed returns1."
+    },
+    {
+      "utc": "18:14:08.2687297",
+      "event": "Unchanged upstream action sends input keyevent82."
+    },
+    {
+      "utc": "18:14:08.3358212",
+      "event": "cmd reports missing input service."
+    },
+    {
+      "utc": "18:14:08.3418951",
+      "event": "Emulator-internal settings command also reports missing settings service."
+    },
+    {
+      "utc": "18:14:08.3420422",
+      "event": "Original action cleanup sends emu kill."
+    },
+    {
+      "utc": "18:14:08.3484810",
+      "event": "Action fails with actual adb exit20 before custom script or app installation."
+    }
+  ],
+  "confirmed_action_gap": "At a421e438 waitForDevice checks only sys.boot_completed. No hook exists between it and the original input keyevent. The pre-emulator hook runs before launch; script runs only after launchEmulator returns.",
+  "cause_limit": "The raw job contains no system_server PID series, Android logcat or tombstones. Missing service registration is confirmed. A race, runtime restart or system_server crash is not conclusively distinguished by this failed run.",
+  "upstream_revision": "a421e43855164a8197daf9d8d40fe71c6996bb0d",
+  "upstream_files": [
+    {
+      "path": "LICENSE",
+      "bytes": 11343,
+      "sha256": "0b64a565cedfa1ac8d2cd7cf40965e6098f97f260fe51a4df9f697a063d0a8db",
+      "git_blob": "925b59625c0d4f8ed5ae95ab3f0fcbc55cce5ffd"
+    },
+    {
+      "path": "README.md",
+      "bytes": 17692,
+      "sha256": "3464e2ba42c8fa4454047b0fe82ae470d5db70fe520bdec7e0be4dd3a2d4d289",
+      "git_blob": "16718a7a4190ae3da9326513b406db62c91414d1"
+    },
+    {
+      "path": "action.yml",
+      "bytes": 3980,
+      "sha256": "a7c4de9a466ae7d70a599ffdc5a27b2bccadd7b2d602e24b44f8b490cb7bbdfe",
+      "git_blob": "4f9767ce6c4ecbe37e35cf0c1246ec1c79dfd51a"
+    },
+    {
+      "path": "lib/emulator-manager.js",
+      "bytes": 7155,
+      "sha256": "a63db8fe9ffb4fb3651e9a2c97f8bac5ca4ce0078a7bbe61ef2e02019082c577",
+      "git_blob": "e878461a849d9f71420dea8cbd7e30e98a1e8710"
+    },
+    {
+      "path": "lib/main.js",
+      "bytes": 11865,
+      "sha256": "8121ea56f1c89d470071e89f80e15f932b2d8d5f711c28fc99476f34a442bc35",
+      "git_blob": "98f6404696c17f8923ebf7ff7b81f249576fcaf4"
+    },
+    {
+      "path": "package.json",
+      "bytes": 1250,
+      "sha256": "ae3568a7724c310cf41b7b632061b52b424c642cb0cb57639e84005fafe51608",
+      "git_blob": "ba0b0aca61d733823744e8eb01897a8bd764231c"
+    },
+    {
+      "path": "src/emulator-manager.ts",
+      "bytes": 5396,
+      "sha256": "1e9ca00c20d35d925440afc1ce82303c42cddc4c1ac196da65e39209ef87696f",
+      "git_blob": "d10943d432f21e03baf300dfc73e3b0e973dd29a"
+    },
+    {
+      "path": "src/main.ts",
+      "bytes": 9407,
+      "sha256": "a52d9ff8ea3b544677bbfaeb995b1db4d0cf8f9b520f34e25b0532250123358d",
+      "git_blob": "a6c787e7489260719e28e56710fe899c404ba92c"
+    }
+  ],
+  "primary_sources": [
+    "https://github.com/ReactiveCircus/android-emulator-runner/blob/a421e43855164a8197daf9d8d40fe71c6996bb0d/src/emulator-manager.ts",
+    "https://github.com/ReactiveCircus/android-emulator-runner/blob/a421e43855164a8197daf9d8d40fe71c6996bb0d/lib/main.js",
+    "https://github.com/ReactiveCircus/android-emulator-runner/blob/a421e43855164a8197daf9d8d40fe71c6996bb0d/action.yml",
+    "https://android.googlesource.com/platform/frameworks/native/+/refs/heads/main/cmds/cmd/cmd.cpp",
+    "https://android.googlesource.com/platform/frameworks/base/+/d0cd7a5f739f/services/java/com/android/server/SystemServer.java"
+  ],
+  "upstream_pr495_scope": "Read-only comparison only. Open proposal polls input, but that proposal was not adopted or pinned. Its explanation is not proof of the cause of this run.",
+  "new_changes": "One additive awaited readiness call mirrored in exact upstream TS and compiled JS; actual same emulator port; original calls and cleanup preserved. Monitor starts through original pre-launch hook and is stopped through the action script or always cleanup. Probe files, original APK identity, SDK37/release17, tour, learning and Cards gates are unchanged.",
+  "readiness_budget_seconds": 120,
+  "original_boot_budget_seconds": 300,
+  "required_stable_observation_seconds": 10,
+  "minimum_observations": 3,
+  "raw_monitor_budget_seconds": 450,
+  "local_checks_scope": "Synthetic service/PID counterexamples, actual subprocess timeout and raw-byte preservation, and the exact upstream main.js/manager control flow with SDK/adb execution replaced by a test-only call recorder. No local real Android success claim.",
+  "no_product_or_apk_or_active_studio_mutation": true
+}

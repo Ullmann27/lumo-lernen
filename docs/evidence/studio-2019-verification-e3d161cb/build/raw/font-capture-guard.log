@@ -1,0 +1,27 @@
+2026-11-13T16:35:06.8249765Z ##[group]Run set -euo pipefail
+2026-11-13T16:35:06.8250127Z [36;1mset -euo pipefail[0m
+2026-11-13T16:35:06.8250640Z [36;1m.ci-python/bin/python -m unittest discover -s tools/qa/tests -p 'test_verify_capture_fonts.py' -v[0m
+2026-11-13T16:35:06.8251661Z [36;1m.ci-python/bin/python tools/qa/verify_capture_fonts.py visual-evidence[0m
+2026-11-13T16:35:06.8271679Z shell: /usr/bin/bash -e {0}
+2026-11-13T16:35:06.8271958Z env:
+2026-11-13T16:35:06.8272192Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-13T16:35:06.8272573Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-13T16:35:06.8273123Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-13T16:35:06.8273647Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-13T16:35:06.8274057Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-13T16:35:06.8274345Z ##[endgroup]
+2026-11-13T16:35:06.9397464Z test_actual_hollow_glyph_like_strokes_are_accepted (test_verify_capture_fonts.ScreenshotTypographyQualityTests.test_actual_hollow_glyph_like_strokes_are_accepted) ... ok
+2026-11-13T16:35:06.9823222Z test_ahem_like_solid_text_bars_are_rejected (test_verify_capture_fonts.ScreenshotTypographyQualityTests.test_ahem_like_solid_text_bars_are_rejected) ... ok
+2026-11-13T16:35:06.9830034Z test_invalid_image_size_fails_closed (test_verify_capture_fonts.ScreenshotTypographyQualityTests.test_invalid_image_size_fails_closed) ... ok
+2026-11-13T16:35:06.9830777Z 
+2026-11-13T16:35:06.9830979Z ----------------------------------------------------------------------
+2026-11-13T16:35:06.9831756Z Ran 3 tests in 0.091s
+2026-11-13T16:35:06.9831944Z 
+2026-11-13T16:35:06.9832053Z OK
+2026-11-13T16:35:07.2996864Z FONT_VISUAL_QA {'file': 'visual-evidence/abc_premium_fold_cover_320x780.png', 'width': 480, 'height': 1170, 'max_near_white_run': 21, 'continuous_solid_bar_rows': 0, 'status': 'PASS'}
+2026-11-13T16:35:07.2998617Z FONT_VISUAL_QA {'file': 'visual-evidence/abc_premium_fold_open_840x760.png', 'width': 1260, 'height': 1140, 'max_near_white_run': 28, 'continuous_solid_bar_rows': 0, 'status': 'PASS'}
+2026-11-13T16:35:07.3000207Z FONT_VISUAL_QA {'file': 'visual-evidence/abc_premium_phone_390x844.png', 'width': 585, 'height': 1266, 'max_near_white_run': 21, 'continuous_solid_bar_rows': 0, 'status': 'PASS'}
+2026-11-13T16:35:07.3002010Z FONT_VISUAL_QA {'file': 'visual-evidence/cross_grade_fold_cover_320x780.png', 'width': 480, 'height': 1170, 'max_near_white_run': 17, 'continuous_solid_bar_rows': 0, 'status': 'PASS'}
+2026-11-13T16:35:07.3003324Z FONT_VISUAL_QA {'file': 'visual-evidence/cross_grade_fold_open_840x760.png', 'width': 1260, 'height': 1140, 'max_near_white_run': 17, 'continuous_solid_bar_rows': 0, 'status': 'PASS'}
+2026-11-13T16:35:07.3004618Z FONT_VISUAL_QA {'file': 'visual-evidence/cross_grade_phone_390x844.png', 'width': 585, 'height': 1266, 'max_near_white_run': 17, 'continuous_solid_bar_rows': 0, 'status': 'PASS'}
+2026-11-13T16:35:07.3005510Z FONT_VISUAL_QA_PASS: six complete screenshots without Ahem bars

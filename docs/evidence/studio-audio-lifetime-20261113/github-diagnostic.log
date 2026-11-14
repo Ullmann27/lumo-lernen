@@ -1,0 +1,36 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[AudioLifetimeConfig] {"deadline_ms":3000,"driver":"Dummy","engine":{"build":"official","hash":"7d41c59c457bd5a245092b4e7eb2d833e3b3f8c3","hex":263683,"major":4,"minor":6,"patch":3,"status":"stable","string":"4.6.3-stable (official)","timestamp":0},"latency":0.0,"low_processor":false,"max_fps":60,"mix_rate":44100.0,"source_test_sha256":"9f3c81acfa9c5f864e3032d1d7ec66d3e45b25e11df8c21b519785cf7e05fe3c","user_data_dir":"/home/runner/work/_temp/lumo-audio/user-data/godot/app_userdata/Lumo 3D"}
+[AudioLifetimeDiag] {"estimated_last_mix_usec":0,"frames_observed":0,"live_game_owners":[],"live_observed_audio_nodes":[],"maximum_frame_gap_ms":0.0,"mix_starts_observed_at_frame_samples":0,"observed_playbacks":0,"phase":"fresh_begin_training","process_frames":0,"remaining":[],"seconds_since_mix":0.002536,"seconds_to_next_mix":0.0903438185941043,"ticks_ms":412,"tree_node_count":11}
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Perf] quality_profile:medium
+[Kart] race_world_ready: sonnenhafen mode=training
+[AudioLifetimeDiag] {"estimated_last_mix_usec":3485146,"frames_observed":2,"live_game_owners":[95361697251],"live_observed_audio_nodes":[],"maximum_frame_gap_ms":1791.828,"mix_starts_observed_at_frame_samples":2,"observed_playbacks":0,"phase":"fresh_ready_training","process_frames":1,"remaining":[],"seconds_since_mix":0.091548,"seconds_to_next_mix":0.00133181859410431,"ticks_ms":3576,"tree_node_count":983}
+[AudioLifetimeDiag] {"estimated_last_mix_usec":5356015,"frames_observed":7,"live_game_owners":[95361697251],"live_observed_audio_nodes":[],"maximum_frame_gap_ms":1791.828,"mix_starts_observed_at_frame_samples":4,"observed_playbacks":0,"phase":"fresh_begin_training","process_frames":6,"remaining":[],"seconds_since_mix":0.019659,"seconds_to_next_mix":0.0732208185941043,"ticks_ms":5375,"tree_node_count":1000}
+[AudioLifetimeObserve] {"node_id":98482259873,"node_path":"/root/LumoIslandCup/@Node@37/Music0","playback_id":-9223371784290560800,"player_playing":true,"stream":"res://assets/audio/kart/sonnenhafen.ogg","stream_paused":false}
+[AudioLifetimeObserve] {"node_id":98515814307,"node_path":"/root/LumoIslandCup/@Node@37/Music1","playback_id":-9223371937885976656,"player_playing":true,"stream":"res://assets/audio/kart/garage.ogg","stream_paused":false}
+[AudioLifetimeObserve] {"node_id":98683586477,"node_path":"/root/LumoIslandCup/@AudioStreamPlayer@38","playback_id":-9223371691898435514,"player_playing":true,"stream":"","stream_paused":false}
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Kart] race_world_ready: sonnenhafen mode=training
+[AudioLifetimeDiag] {"estimated_last_mix_usec":7408175,"frames_observed":10,"live_game_owners":[345275106787],"live_observed_audio_nodes":[],"maximum_frame_gap_ms":1791.828,"mix_starts_observed_at_frame_samples":6,"observed_playbacks":3,"phase":"fresh_ready_training","process_frames":9,"remaining":[],"seconds_since_mix":0.045601,"seconds_to_next_mix":0.0472788185941043,"ticks_ms":7453,"tree_node_count":983}
+[AudioLifetimeDiag] {"estimated_last_mix_usec":7408175,"frames_observed":10,"live_game_owners":[345275106787],"live_observed_audio_nodes":[],"maximum_frame_gap_ms":1791.828,"mix_starts_observed_at_frame_samples":6,"observed_playbacks":3,"phase":"fresh_begin_race","process_frames":9,"remaining":[],"seconds_since_mix":0.079669,"seconds_to_next_mix":0.0132098185941043,"ticks_ms":7487,"tree_node_count":983}
+[AudioLifetimeObserve] {"node_id":347774917245,"node_path":"/root/LumoIslandCup/@Node@2407/Music0","playback_id":-9223371538168803384,"player_playing":true,"stream":"res://assets/audio/kart/sonnenhafen.ogg","stream_paused":false}
+[AudioLifetimeObserve] {"node_id":347808471674,"node_path":"/root/LumoIslandCup/@Node@2407/Music1","playback_id":-9223371688794645941,"player_playing":true,"stream":"res://assets/audio/kart/garage.ogg","stream_paused":false}
+[AudioLifetimeObserve] {"node_id":347842026111,"node_path":"/root/LumoIslandCup/@Node@2407/Effect0","playback_id":-9223371537598375345,"player_playing":true,"stream":"res://assets/audio/kart/collision.ogg","stream_paused":false}
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Kart] race_world_ready: sonnenhafen mode=race
+[AudioLifetimeDiag] {"estimated_last_mix_usec":10019665,"frames_observed":13,"live_game_owners":[499575162339],"live_observed_audio_nodes":[],"maximum_frame_gap_ms":2204.999,"mix_starts_observed_at_frame_samples":8,"observed_playbacks":6,"phase":"fresh_ready_race","process_frames":12,"remaining":[],"seconds_since_mix":0.000624,"seconds_to_next_mix":0.0922548185941043,"ticks_ms":10020,"tree_node_count":1282}
+[KartLassoProductionMotion] before=24.532 immediate=16.682 next_physical=16.591
+[AudioLifetimeObserve] {"node_id":502074972841,"node_path":"/root/LumoIslandCup/@Node@3903/Music0","playback_id":-9223371234132092165,"player_playing":true,"stream":"res://assets/audio/kart/sonnenhafen.ogg","stream_paused":false}
+[AudioLifetimeObserve] {"node_id":502108522335,"node_path":"/root/LumoIslandCup/@Node@3903/Music1","playback_id":-9223371534494591734,"player_playing":true,"stream":"res://assets/audio/kart/garage.ogg","stream_paused":false}
+[AudioLifetimeDiag] {"estimated_last_mix_usec":10113704,"frames_observed":18,"live_game_owners":[499575162339],"live_observed_audio_nodes":[502074972841,502108522335],"maximum_frame_gap_ms":2204.999,"mix_starts_observed_at_frame_samples":9,"observed_playbacks":8,"phase":"before_final_scene_queue_free","process_frames":17,"remaining":[{"class":"AudioStreamPlaybackOggVorbis","id":-9223371234132092165,"position":0.188662131519274,"reference_count_including_this_temporary_read":3,"stream_playing":true},{"class":"AudioStreamPlaybackOggVorbis","id":-9223371534494591734,"position":2.60353741496599,"reference_count_including_this_temporary_read":3,"stream_playing":true}],"seconds_since_mix":0.084288,"seconds_to_next_mix":0.00859181859410431,"ticks_ms":10197,"tree_node_count":1282}
+[AudioLifetimeDiag] {"estimated_last_mix_usec":10207240,"frames_observed":19,"live_game_owners":[],"live_observed_audio_nodes":[],"maximum_frame_gap_ms":2204.999,"mix_starts_observed_at_frame_samples":10,"observed_playbacks":8,"phase":"release_begin","process_frames":18,"remaining":[],"seconds_since_mix":0.001992,"seconds_to_next_mix":0.0908868185941043,"ticks_ms":10209,"tree_node_count":11}
+[AudioLifetimeDiag] {"estimated_last_mix_usec":10207240,"frames_observed":19,"live_game_owners":[],"live_observed_audio_nodes":[],"maximum_frame_gap_ms":2204.999,"mix_starts_observed_at_frame_samples":10,"observed_playbacks":8,"phase":"release_end_1_ms","process_frames":18,"remaining":[],"seconds_since_mix":0.003066,"seconds_to_next_mix":0.0898128185941043,"ticks_ms":10210,"tree_node_count":11}
+[KartLassoProduction] PASS: 26 assertions; real warning/catch/rival motion, pause, rescue and saved-race rebuild

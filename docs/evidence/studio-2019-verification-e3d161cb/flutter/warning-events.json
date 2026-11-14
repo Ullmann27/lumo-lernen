@@ -1,0 +1,92 @@
+[
+  {
+    "category": "injected_storage_failure",
+    "test": "lost acknowledgement and process restart replay the reward exactly once",
+    "suite": "test/embedded_game_service_test.dart",
+    "message": "Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)"
+  },
+  {
+    "category": "injected_storage_failure",
+    "test": "parent reset removes pending engine rewards before resetting the wallet",
+    "suite": "test/embedded_game_service_test.dart",
+    "message": "Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)"
+  },
+  {
+    "category": "injected_storage_failure",
+    "test": "new native games award explicit XP once and reject malformed rewards",
+    "suite": "test/embedded_game_service_test.dart",
+    "message": "Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)"
+  },
+  {
+    "category": "widget_audio_plugin_unavailable",
+    "test": "Tour phone profile",
+    "suite": "test/design/app_tour_capture_test.dart",
+    "message": "LumoSound: SoundEffect.click skipped (MissingPluginException(No implementation found for method create on channel xyz.luan/audioplayers))"
+  },
+  {
+    "category": "injected_storage_failure",
+    "test": "warm learning return drains and replays rewards once; result before resume=true",
+    "suite": "test/lumo_native_origin_return_test.dart",
+    "message": "Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)"
+  },
+  {
+    "category": "injected_storage_failure",
+    "test": "warm learning return drains and replays rewards once; result before resume=false",
+    "suite": "test/lumo_native_origin_return_test.dart",
+    "message": "Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)"
+  },
+  {
+    "category": "tap_hit_test_warning",
+    "test": "actual shell stays usable while resizing from phone to Fold and narrow phone",
+    "suite": "test/lumo_shell_layout_test.dart",
+    "message": "\nWarning: A call to tap() with finder \"Found 1 widget with text \"Lernen\" (ignoring all but last): [\n  Text(\"Lernen\", inherit: true, color: Color(alpha: 1.0000, red: 0.9686, green: 0.9843, blue: 1.0000, colorSpace: ColorSpace.sRGB), family: Nunito, size: 18.0, weight: 900, height: 1.1x, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),\n]\" derived an Offset (Offset(234.8, 551.4)) that would not hit test on the specified widget.\nMaybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.\nThe finder corresponds to this RenderBox: RenderParagraph#38db2 relayoutBoundary=up3\nThe hit test result at that offset is: HitTestResult(RenderPointerListener#b9223@Offset(42.8, 120.0), RenderSemanticsAnnotations#08db8@Offset(42.8, 120.0), RenderMouseRegion#dfc69@Offset(42.8, 120.0), RenderSemanticsAnnotations#327bd@Offset(42.8, 120.0), _RenderInkFeatures#577e0@Offset(42.8, 120.0), RenderPhysicalModel#7eece@Offset(42.8, 120.0), RenderStack#97bb7@Offset(42.8, 120.0), _RenderInkFeatures#0643c@Offset(42.8, 120.0), RenderCustomPaint#6bc37@Offset(42.8, 120.0), RenderPhysicalShape#3a9e4@Offset(42.8, 120.0), RenderDecoratedBox#be85e@Offset(42.8, 120.0), RenderPointerListener#d5643@Offset(42.8, 120.0), RenderMouseRegion#ea0d5@Offset(42.8, 120.0), RenderSemanticsAnnotations#7c00d@Offset(42.8, 120.0), _RenderLayoutBuilder#28f06@Offset(42.8, 120.0), _RenderLayoutBuilder#340dc@Offset(42.8, 120.0), RenderAnimatedOpacity#b1ba4@Offset(42.8, 120.0), RenderRepaintBoundary#10ce3@Offset(42.8, 120.0), RenderIndexedSemantics#2d242@Offset(42.8, 120.0), RenderSliverGrid@(mainAxis: 120.00000000000006, crossAxis: 42.77381896972656), RenderSliverPadding@(mainAxis: 120.00000000000006, crossAxis: 42.77381896972656), RenderShrinkWrappingViewport#6aef7@Offset(42.8, 120.0), RenderIgnorePointer#59200@Offset(42.8, 120.0), RenderSemanticsAnnotations#67890@Offset(42.8, 120.0), RenderPointerListener#dd7bb@Offset(42.8, 120.0), RenderSemanticsGestureHandler#e6d22@Offset(42.8, 120.0), RenderPointerListener#9a67c@Offset(42.8, 120.0), _RenderScrollSemantics#69cbf@Offset(42.8, 120.0), RenderClipRect#5bd1b@Offset(42.8, 120.0), RenderRepaintBoundary#d0fca@Offset(42.8, 120.0), RenderIndexedSemantics#33257@Offset(42.8, 120.0), RenderSliverList@(mainAxis: 449.43460000000005, crossAxis: 42.77381896972656), RenderSliverPadding@(mainAxis: 461.43460000000005, crossAxis: 58.77381896972656), RenderViewport#a1109@Offset(58.8, 461.4), RenderIgnorePointer#03581@Offset(58.8, 461.4), RenderSemanticsAnnotations#6f312@Offset(58.8, 461.4), RenderPointerListener#4b88d@Offset(58.8, 461.4), RenderSemanticsGestureHandler#e0562@Offset(58.8, 461.4), RenderPointerListener#14231@Offset(58.8, 461.4), _RenderScrollSemantics#be792@Offset(58.8, 461.4), RenderClipRect#4d83c@Offset(58.8, 461.4), RenderStack#7a00d@Offset(58.8, 461.4), _RenderLayoutBuilder#61f88@Offset(58.8, 461.4), RenderAnimatedOpacity#29909@Offset(58.8, 461.4), RenderStack#6df20@Offset(58.8, 461.4), RenderAnimatedOpacity#9dc12@Offset(58.8, 461.4), RenderFlex#0e065@Offset(58.8, 541.4), RenderPadding#410a3@Offset(58.8, 541.4), RenderDecoratedBox#ecd1f@Offset(58.8, 541.4), RenderClipRRect#af92e@Offset(58.8, 541.4), RenderFlex#c95ad@Offset(224.8, 541.4), RenderPadding#ad870@Offset(234.8, 551.4), _RenderLayoutBuilder#1fe69@Offset(234.8, 551.4), RenderPadding#1dfb9@Offset(234.8, 551.4), RenderStack#38a91@Offset(234.8, 551.4), _RenderLayoutBuilder#dfd37@Offset(234.8, 551.4), RenderPointerListener#ea573@Offset(234.8, 551.4), RenderCustomMultiChildLayoutBox#4e214@Offset(234.8, 551.4), _RenderInkFeatures#a6694@Offset(234.8, 551.4), RenderPhysicalModel#3dcb0@Offset(234.8, 551.4), RenderRepaintBoundary#cf86c@Offset(234.8, 551.4), RenderSemanticsAnnotations#da659@Offset(234.8, 551.4), RenderRepaintBoundary#5c3cb@Offset(234.8, 551.4), RenderIgnorePointer#eae0a@Offset(234.8, 551.4), RenderRepaintBoundary#36d98@Offset(234.8, 551.4), RenderSemanticsAnnotations#19c84@Offset(234.8, 551.4), RenderOffstage#a8701@Offset(234.8, 551.4), RenderSemanticsAnnotations#3060a@Offset(234.8, 551.4), _RenderTheater#1c1cb@Offset(234.8, 551.4), RenderAbsorbPointer#e6a1f@Offset(234.8, 551.4), RenderPointerListener#9565b@Offset(234.8, 551.4), RenderSemanticsAnnotations#b7010@Offset(234.8, 551.4), RenderCustomPaint#46d53@Offset(234.8, 551.4), RenderSemanticsAnnotations#677a7@Offset(234.8, 551.4), RenderSemanticsAnnotations#2ce57@Offset(234.8, 551.4), RenderSemanticsAnnotations#4fdc6@Offset(234.8, 551.4), RenderTapRegionSurface#64d6e@Offset(234.8, 551.4), RenderSemanticsAnnotations#af9ed@Offset(234.8, 551.4), RenderSemanticsAnnotations#f2daf@Offset(234.8, 551.4), HitTestEntry<HitTestTarget>#99635(_ReusableRenderView#616e5), HitTestEntry<HitTestTarget>#a1b84(<AutomatedTestWidgetsFlutterBinding>))\n#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)\n#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)\n#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)\n#3      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/lumo_shell_layout_test.dart:198:20)\n<asynchronous suspension>\n#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)\n<asynchronous suspension>\nTo silence this warning, pass \"warnIfMissed: false\" to \"tap()\".\nTo make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.\n"
+  },
+  {
+    "category": "widget_audio_plugin_unavailable",
+    "test": "failed first scene, actual alternative and fresh independent transfer survive restart",
+    "suite": "test/intelligence/live_alternative_scene_test.dart",
+    "message": "LumoSound: SoundEffect.click skipped (MissingPluginException(No implementation found for method create on channel xyz.luan/audioplayers))"
+  },
+  {
+    "category": "widget_audio_plugin_unavailable",
+    "test": "failed first scene, actual alternative and fresh independent transfer survive restart",
+    "suite": "test/intelligence/live_alternative_scene_test.dart",
+    "message": "LumoSound: SoundEffect.click skipped (MissingPluginException(No implementation found for method create on channel xyz.luan/audioplayers))"
+  },
+  {
+    "category": "widget_audio_plugin_unavailable",
+    "test": "failed first scene, actual alternative and fresh independent transfer survive restart",
+    "suite": "test/intelligence/live_alternative_scene_test.dart",
+    "message": "LumoSound: SoundEffect.click skipped (MissingPluginException(No implementation found for method create on channel xyz.luan/audioplayers))"
+  },
+  {
+    "category": "widget_audio_plugin_unavailable",
+    "test": "failed first scene, actual alternative and fresh independent transfer survive restart",
+    "suite": "test/intelligence/live_alternative_scene_test.dart",
+    "message": "LumoSound: SoundEffect.click skipped (MissingPluginException(No implementation found for method create on channel xyz.luan/audioplayers))"
+  },
+  {
+    "category": "widget_audio_plugin_unavailable",
+    "test": "failed first scene, actual alternative and fresh independent transfer survive restart",
+    "suite": "test/intelligence/live_alternative_scene_test.dart",
+    "message": "LumoSound: SoundEffect.click skipped (MissingPluginException(No implementation found for method create on channel xyz.luan/audioplayers))"
+  },
+  {
+    "category": "widget_audio_plugin_unavailable",
+    "test": "failed first scene, actual alternative and fresh independent transfer survive restart",
+    "suite": "test/intelligence/live_alternative_scene_test.dart",
+    "message": "LumoSound: SoundEffect.click skipped (MissingPluginException(No implementation found for method create on channel xyz.luan/audioplayers))"
+  },
+  {
+    "category": "widget_audio_plugin_unavailable",
+    "test": "failed first scene, actual alternative and fresh independent transfer survive restart",
+    "suite": "test/intelligence/live_alternative_scene_test.dart",
+    "message": "LumoSound: SoundEffect.click skipped (MissingPluginException(No implementation found for method create on channel xyz.luan/audioplayers))"
+  },
+  {
+    "category": "widget_audio_plugin_unavailable",
+    "test": "failed first scene, actual alternative and fresh independent transfer survive restart",
+    "suite": "test/intelligence/live_alternative_scene_test.dart",
+    "message": "LumoSound: SoundEffect.win skipped (MissingPluginException(No implementation found for method create on channel xyz.luan/audioplayers))"
+  }
+]

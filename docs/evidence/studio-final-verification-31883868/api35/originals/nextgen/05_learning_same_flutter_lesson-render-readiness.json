@@ -1,0 +1,19 @@
+{
+  "schema": "lumo-flutter-render-readiness",
+  "version": 1,
+  "name": "05_learning_same_flutter_lesson",
+  "status": "PASS",
+  "attempts": [
+    {
+      "capture": "05_learning_same_flutter_lesson-render-candidate-1.png",
+      "sha256": "d59786fbcbd8f4219f46c4fc0d52ed5c93c147d0c0eaa78a1e3b82cc7f9e8438",
+      "width": 1080,
+      "height": 2400,
+      "content_entropy_bits": 6.128,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  ],
+  "elapsed_seconds": 0.968
+}

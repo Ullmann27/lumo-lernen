@@ -1,0 +1,60 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Perf] quality_profile:medium
+[WorkshopDensity] SWIPE performance simulation 0 -> 100 activations=0
+[WorkshopDensity] SWIPE upgrade motor 100 -> 200 activations=0
+[WorkshopDensity] SWIPE paint swatch 265 -> 365 activations=0
+[WorkshopDensity] SWIPE paid paint purchase 365 -> 465 activations=0
+[WorkshopDensity] SWIPE refund all parts 757 -> 690 activations=0
+[WorkshopDensity] CASE [(1280, 720), 1.0] checks=516 failures=0
+[WorkshopDensity] SWIPE performance simulation 0 -> 200 activations=0
+[WorkshopDensity] SWIPE upgrade motor 297 -> 497 activations=0
+[WorkshopDensity] SWIPE paint swatch 1187 -> 1084 activations=0
+[WorkshopDensity] SWIPE paid paint purchase 1187 -> 1020 activations=0
+[WorkshopDensity] SWIPE refund all parts 2060 -> 1949 activations=0
+[WorkshopDensity] CASE [(640, 360), 1.0] checks=1032 failures=0
+[WorkshopDensity] SWIPE performance simulation 50 -> 275 activations=0
+[WorkshopDensity] SWIPE upgrade motor 399 -> 624 activations=0
+[WorkshopDensity] SWIPE paint swatch 1329 -> 1216 activations=0
+[WorkshopDensity] SWIPE paid paint purchase 1329 -> 1147 activations=0
+[WorkshopDensity] SWIPE refund all parts 2290 -> 2170 activations=0
+[WorkshopDensity] CASE [(640, 320), 1.0] checks=1548 failures=0
+[WorkshopDensity] SWIPE performance simulation 0 -> 310 activations=0
+[WorkshopDensity] SWIPE upgrade motor 310 -> 620 activations=0
+[WorkshopDensity] SWIPE paint swatch 939 -> 1249 activations=0
+[WorkshopDensity] SWIPE paid paint purchase 1249 -> 938 activations=0
+[WorkshopDensity] SWIPE refund all parts 2046 -> 1872 activations=0
+[WorkshopDensity] CASE [(412, 915), 1.0] checks=2064 failures=0
+[WorkshopDensity] SWIPE performance simulation 0 -> 185 activations=0
+[WorkshopDensity] SWIPE upgrade motor 185 -> 370 activations=0
+[WorkshopDensity] SWIPE paint swatch 781 -> 656 activations=0
+[WorkshopDensity] SWIPE paid paint purchase 781 -> 595 activations=0
+[WorkshopDensity] SWIPE refund all parts 1450 -> 1331 activations=0
+[WorkshopDensity] CASE [(690, 829), 1.0] checks=2580 failures=0
+[WorkshopDensity] SWIPE performance simulation 0 -> 175 activations=0
+[WorkshopDensity] SWIPE upgrade motor 175 -> 350 activations=0
+[WorkshopDensity] SWIPE paint swatch 551 -> 726 activations=0
+[WorkshopDensity] SWIPE paid paint purchase 726 -> 551 activations=0
+[WorkshopDensity] SWIPE refund all parts 1228 -> 1157 activations=0
+[WorkshopDensity] CASE [(2400, 1080), 2.625] checks=3096 failures=0
+[WorkshopDensity] SWIPE performance simulation 0 -> 311 activations=0
+[WorkshopDensity] SWIPE upgrade motor 311 -> 622 activations=0
+[WorkshopDensity] SWIPE paint swatch 907 -> 1218 activations=0
+[WorkshopDensity] SWIPE paid paint purchase 1218 -> 906 activations=0
+[WorkshopDensity] SWIPE refund all parts 2018 -> 1881 activations=0
+[WorkshopDensity] CASE [(1080, 2400), 2.625] checks=3612 failures=0
+[WorkshopDensity] SWIPE performance simulation 0 -> 132 activations=0
+[WorkshopDensity] SWIPE upgrade motor 132 -> 264 activations=0
+[WorkshopDensity] SWIPE paint swatch 309 -> 441 activations=0
+[WorkshopDensity] SWIPE paid paint purchase 441 -> 573 activations=0
+[WorkshopDensity] SWIPE refund all parts 912 -> 835 activations=0
+[WorkshopDensity] CASE [(2176, 1812), 2.25] checks=4128 failures=0
+[WorkshopDensity] PASS 4129 checks: eight layouts, actual >=48dp canvas targets, all palette/upgrade/purchase/refund/return touches

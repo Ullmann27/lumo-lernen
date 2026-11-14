@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T22:09:52.748484+00:00",
+  "reviewer": "character_animation independent read-only source review",
+  "status": "NO_ADDITIONAL_CONCRETE_BLOCKER_IN_REVIEWED_DIFF",
+  "reviewed_sources": [
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_nextgen_delivery.py",
+      "bytes": 26986,
+      "sha256": "5b9f6658007ffc93f106e24a7fc001e68418dea450f46a4e4b3405b0afb3e44c",
+      "git_blob": "a732fa011ce387364e97e6e6cf8a8e0b7eda665a"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py",
+      "bytes": 10124,
+      "sha256": "5c92f154787f6d9666d11d443df2c2d66371285371e5562a6970fd94701d26a1",
+      "git_blob": "c45a037b641964b8e8732b80c0196c9071331db5"
+    }
+  ],
+  "baseline": {
+    "source_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+    "git_blob": "99309c8624477d3877014279d5b04500b7ae48c3",
+    "sha256": "2178865523671bbc0892c537c3d4d34c2e64544d55b00d4859d7212b1c7c5288",
+    "method": "Independently read local git HEAD bytes and compared with the author's original GitHub-source binding; no new remote retrieval by this reviewer.",
+    "only_changed_existing_top_level_definition": [
+      "verify_cards_front_faces"
+    ],
+    "added_definitions": [],
+    "removed_definitions": [],
+    "author_binding": {
+      "path": "/workspace/scratch/5987865ae883/qa/host-cards-safe-area-318/publisher-baseline-verified.json",
+      "bytes": 413,
+      "sha256": "61005809b57115b21ab708e22f6e42344b04cdf0ec37e1ec145ede7d883ee6cd",
+      "git_blob": "4251db7ad32c6f8c0d953e78427b62bdc6f5ac31"
+    }
+  },
+  "findings": [
+    {
+      "topic": "legacy-default",
+      "finding": "require_layout defaults to False. Existing four-stage/current-round/draw-revision/public-state/source-PNG/hash/pixel-recomputation checks remain in place. The default call does not require new sidecars or rewrite historical evidence."
+    },
+    {
+      "topic": "mandatory-studio-call",
+      "finding": "The separately owned current Studio verifier explicitly calls verify_cards_front_faces(cards, surface_evidence, require_layout=True). Its AST contract allows only that additional keyword while retaining the existing Android identity/state/lifecycle assertion body. This is a source inspection, not a full Studio integration test."
+    },
+    {
+      "topic": "original-layout-files",
+      "finding": "For each of the final two actual frame entries the before/after layout must use the exact capture-derived filename, be a regular non-symlink file of at most 128 KiB, match its raw SHA256, and parse identically to the embedded observation. The before/after JSON and their raw SHA256 must agree."
+    },
+    {
+      "topic": "independent-recomputation",
+      "finding": "The actual PNG is passed again to require_cards_face_pixels with the checked layout. The helper validates actual Android observation origin, current public identity/state, render-view/system-inset intersection and independently projected mesh corners. The publisher does not enable fixture acceptance."
+    },
+    {
+      "topic": "two-frame-binding",
+      "finding": "The recomputed canonical layout hash and integer layout sequence must equal the stage report and each other in both final consecutive frames. Existing actual draw/card-conservation and acknowledgment bindings remain required."
+    },
+    {
+      "topic": "test-scope",
+      "finding": "New tests clearly label synthetic parser/state bindings; both historical and renderer geometry fixtures are used. Their success is not evidence that a new Android APK has passed Cards or that a physical Fold7 was measured."
+    }
+  ],
+  "supporting_sources_read": [
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/nextgen_evidence.py",
+      "bytes": 28512,
+      "sha256": "0fdba9381b25cdc69e6a97bdc613f1b04aa8d792edae376a2883b4bb232f21e8",
+      "git_blob": "c1105e64bce4c13300f0fbf41e103e4f53194419"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_delivery.py",
+      "bytes": 28756,
+      "sha256": "e7cba79b96eb2483886229bc85ded4dab52ffc6e095ad93eb5e2a404d02e14f4",
+      "git_blob": "551f302d9acae65c2361aac63aaaa261469787db"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_delivery.py",
+      "bytes": 41577,
+      "sha256": "87e01822d11e33d3fe2cbc0effeb39ff82e0059ea716c9cf9827787ab20a5907",
+      "git_blob": "334f0af3204c22bd6a902d965ad1bde51ebf8959"
+    }
+  ],
+  "existing_logs_read": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/host-cards-safe-area-318/publisher-layout-red.log",
+      "bytes": 16269,
+      "sha256": "8483fc2904e0a59c1fef8415a78b5f1fb53968408e265f3ad5699159b934f98c",
+      "git_blob": "625c538462f04514e9c7b4713a3554228c519e34",
+      "observed_result": {
+        "test_methods": 6,
+        "failures": 11,
+        "errors": 1
+      },
+      "interpretation": "Original verifier lacks the required Studio layout contract; several repeated failures are expected-message mismatches against the old PNG-report equality rejection, not eleven separately established production faults."
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/host-cards-safe-area-318/publisher-layout-legacy-green.log",
+      "bytes": 3000,
+      "sha256": "c178101c8a9c8eee46742e3a4c7880d1cad76faa76c7c239606066ce65ac7840",
+      "git_blob": "3be3303d8f6f45c6f698a05bafc88a6ce109bd1b",
+      "observed_result": {
+        "test_methods": 14,
+        "failures": 0,
+        "errors": 0,
+        "elapsed_seconds": 23.148,
+        "summary": "OK"
+      },
+      "interpretation": "Six new methods and all eight existing legacy methods, as recorded by the author. Not rerun by this reviewer."
+    }
+  ],
+  "actions": {
+    "source_mutations": false,
+    "test_runs": 0,
+    "github_mutations": false
+  },
+  "limits": [
+    "Review covers the exact two frozen source hashes plus the identified call/helper sources.",
+    "No current emulator, device, visual, audio, FPS or release approval is inferred.",
+    "Common MobileRuntime safe-area changes are still under separate review and are not approved by this note."
+  ]
+}

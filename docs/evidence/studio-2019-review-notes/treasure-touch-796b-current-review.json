@@ -1,0 +1,41 @@
+{
+  "reviewer": "root integrator",
+  "native_source": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "native_run": 43479909943,
+  "artifact": {
+    "id": 14066775561,
+    "name": "lumo-studio-2019-touch-treasure",
+    "size_in_bytes": 33140677,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14066775561",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14066775561/zip",
+    "expired": false,
+    "created_at": "2026-11-13T18:27:32Z",
+    "expires_at": "2026-12-13T18:27:30Z",
+    "updated_at": "2026-11-13T18:27:32Z",
+    "digest": "sha256:643fbbb46958861a4fbb198e7c01735bbda8776ac26e522acfa5618dc3c0bc51",
+    "workflow_run": {
+      "id": 43479909943,
+      "repository_id": 1251414584,
+      "head_repository_id": 1251414584,
+      "head_branch": "chatgpt/lumo-studio-20261113",
+      "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+    }
+  },
+  "source_dirty_empty": true,
+  "images": [
+    {
+      "module": "treasure",
+      "standalone_artifact_entry": "treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "expected_full_bundle_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "sha256": "e14559539b807df855d18061d8e312ab69739d2e815f2f7948130cd2b8619fd7",
+      "dimensions": [
+        2176,
+        1812
+      ],
+      "bytes": 4414005,
+      "actually_opened_individually": true,
+      "findings": "Actually opened current 2176x1812 density-fixture completion scene: 7/7 solved clues and 3/3 discoveries are readable; the modal visibly lists 3 stars and 54 XP and all three actions (continue exploring, new adventure, return to play world). Buttons and modal text remain inside the viewport; joystick/action controls remain visible behind it. A screenshot alone does not verify reward persistence or modal input interception. The title has the existing light text over scenery, and background architecture is unchanged. This is a specific renderer state, not a physical fold transition or complete art-quality approval."
+    }
+  ],
+  "scope": "One current receipt-selected touch capture individually inspected and byte-matched to its original ZIP. Other thirteen images in this touch archive were not newly visually reviewed by root."
+}

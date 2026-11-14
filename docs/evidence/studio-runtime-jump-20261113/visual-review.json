@@ -1,0 +1,218 @@
+{
+  "kind": "local_runtime_movie_visual_review",
+  "reviewed_at_utc": "2026-11-13T15:14:21.528710+00:00",
+  "status": "reviewed_no_additional_visible_blocker_in_three_representative_frames",
+  "scope": "Lokale echte Godot-Laufzeitaufnahme; keine Freigabe des gesamten Native- oder Android-Kandidaten.",
+  "video": {
+    "file": "Lumo-Original-Jump-Runtime.mp4",
+    "sha256": "d119c24cec8a7a1bcb37452be6f5f027cb085242e7cc9b1e977a536120de4a4b",
+    "bytes": 2661424,
+    "width": 960,
+    "height": 540,
+    "frames": 240,
+    "duration_seconds": 10.0,
+    "capture_format_fps": 24,
+    "fixed_capture_timestep": true,
+    "audio": false
+  },
+  "source_manifest_sha256_before_review_metadata": "c570ebf18592aec3533cc38452aa3015e164545bcdc30f5a2bc9821a5dddfcd0",
+  "source_kind": "current local working-tree bytes, not a final native commit receipt",
+  "source_clean_claim": false,
+  "final_native_commit_asserted": null,
+  "sources_sha256": {
+    "project.godot": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280",
+    "scenes/games/jump_islands.tscn": "29d8efd1c1e33d5e9352842fa9343aa06217f0b804bb4b118d2d9a683865ff9a",
+    "scripts/games/jump_islands.gd": "4953e584f125d1269a6e3fce2b5281ed3ec4dc6602936c7d873f9c28bfc2f5d1",
+    "scripts/games/jump_expeditions.gd": "bf47cd2f2910cde2d4cc2517a6c8482219bd1d7ad6272c905326315f8f94c952",
+    "scripts/games/kart_joystick.gd": "040d901a499e97c18086579047d1f1332e4c46244fe0b5b10f1512effc49671e",
+    "scripts/games/jump_touch_button.gd": "2fa86b5789957d08c5be0a6957fb68cedf548476c567476ee143070cf4d1e0e3",
+    "scripts/characters/lumo/lumo_rigged_actor.gd": "f262df70dd22937058b698e570eafabc8e05bba539036f89eda059166b68f3d0",
+    "scripts/characters/lumo/lumo_platform_pose.gd": "2f89ad0660ed3f74ff0cfe50837e18265bcf54fdccd24712de6a8b0d680c0a59",
+    "scripts/characters/lumo/lumo_walk_locomotion.gd": "95366a2716a557b27383757771923ec73971a385651749c78da8f2cc14a24ec2",
+    "scripts/characters/lumo/lumo_body_space_pose.gd": "043d9eb3cbd1d56f2be4ad62aff71b99753540b524f3d4b69c030fc9217dcd9e",
+    "assets/characters/lumo_animated/lumo_studio_clips.gd": "c0b4be7f094b4f69942d92ad25d54c8c45f01b6cb8471c00e7d5a0513ee8df18",
+    "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+    "tools/run_local_renderer.py": "d7169f0353071159e64a74d76e6e35718117402a597dfcc05c8f99ed7f275247"
+  },
+  "source_unchanged_during_capture": true,
+  "runtime_evidence": {
+    "file": "runtime-frames.json",
+    "sha256": "92a68fef25c8d3233114c8c4552dfb5e48729505294606a5d71b0c297a729dae",
+    "samples": 240,
+    "input_event_records": 13,
+    "animation_state_counts": {
+      "idle": 92,
+      "jump_fall": 26,
+      "jump_rise": 22,
+      "land": 14,
+      "run_loop": 20,
+      "walk_loop": 66
+    },
+    "braking_samples": 11,
+    "max_checkpoint": 1,
+    "max_falls": 0,
+    "last_sample": {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 239,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.95833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "failed_checks": [],
+    "method": "InputEventScreenTouch/InputEventScreenDrag via Input.parse_input_event and flush_buffered_events; no actor transform/velocity/animation assignment."
+  },
+  "decode": {
+    "all_240_frames_decoded": true,
+    "errors_log": "decode-all.log",
+    "errors_log_bytes": 0,
+    "errors_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ffprobe_file": "ffprobe.json",
+    "ffprobe_sha256": "03a497c043fd7bdded8ad9bc7a8d902e71a29db6b02544e86926026bb6c8b952"
+  },
+  "renderer": {
+    "engine": "Godot 4.6.3.stable.official.7d41c59c4",
+    "api": "OpenGL 4.5 Compatibility",
+    "device": "Mesa llvmpipe LLVM 19.1.7 (software)",
+    "display": "isolated X11 :98",
+    "capture_wall_seconds": 90.56504099300219,
+    "godot_log_sha256": "7737664bb2bdb522029a79536ffca3c64aa793a18c5bde18b2ad1e73fe6fd8e2",
+    "runtime_errors_observed": false,
+    "logged_compatibility_limitations": [
+      "V-Sync mode switch unsupported by this driver",
+      "screen-space AA unavailable in Compatibility",
+      "volumetric fog unavailable in Compatibility"
+    ]
+  },
+  "representative_frames": [
+    {
+      "file": "runtime-run.png",
+      "sha256": "5b603504f1f9570e58ecc0cb0dcc7610646e32a0ed3ad5f5030f4425ad936b00",
+      "encoded_video_frame_index_zero_based": 51,
+      "time_seconds": 2.125,
+      "extraction": "ffmpeg select=eq(n,index), one decoded frame, no scale/interpolation/image generation",
+      "actually_opened_with_view_image": true,
+      "paired_runtime_sample": {
+        "animation": "run_loop",
+        "checkpoint": 0,
+        "falls": 0,
+        "frame": 51,
+        "grounded": true,
+        "jump_held": false,
+        "position": [
+          0.110529817640781,
+          0.200834348797798,
+          -0.865950286388397
+        ],
+        "stick_finger": 3,
+        "time_seconds": 2.125,
+        "velocity": [
+          1.20578980445862,
+          0.0,
+          -5.35393571853638
+        ]
+      },
+      "observations": [
+        "Original-Lumo ist von hinten als orangefarbener Fuchs mit blauem Anzug und hellem Schwanzende erkennbar; kein Ersatzmodell sichtbar.",
+        "Laufpose und Bodenschatten stehen auf dem Pflaster der ersten Insel. Keine sichtbare extreme Gliedmaßenstreckung in diesem Bild.",
+        "Linker Bewegungsstick, rechter Sprungknopf und obere Navigation sind getrennt, vollständig sichtbar und lesbar. Himmel, Gras, Pflaster und gelber Sprungknopf bleiben farblich unterscheidbar."
+      ]
+    },
+    {
+      "file": "runtime-jump-rise.png",
+      "sha256": "105dc0ce0ed9edd897d82b037daf8553f969267c3a44b020ddba427e6da60967",
+      "encoded_video_frame_index_zero_based": 60,
+      "time_seconds": 2.5,
+      "extraction": "ffmpeg select=eq(n,index), one decoded frame, no scale/interpolation/image generation",
+      "actually_opened_with_view_image": true,
+      "paired_runtime_sample": {
+        "animation": "jump_rise",
+        "checkpoint": 0,
+        "falls": 0,
+        "frame": 60,
+        "grounded": false,
+        "jump_held": true,
+        "position": [
+          0.553990125656128,
+          1.92923617362976,
+          -2.83330321311951
+        ],
+        "stick_finger": 3,
+        "time_seconds": 2.5,
+        "velocity": [
+          1.20940864086151,
+          3.69999742507935,
+          -5.36538219451904
+        ]
+      },
+      "observations": [
+        "Lumo ist über der Kante der ersten Insel sichtbar, der Schatten liegt getrennt tiefer auf der nächsten Plattform; das Bild zeigt räumliche Höhe.",
+        "Gepaarter Laufzeitsample: jump_rise, nicht am Boden, vertikale Geschwindigkeit +3,699997 m/s. Der folgende Plattformwechsel wird durch das Laufzeitprotokoll belegt, nicht allein durch dieses Einzelbild.",
+        "Die Kamera folgt dem echten Sprung; keine Überdeckung von Figur oder Landebereich durch die großen Bedienflächen. Die ursprüngliche Figur bleibt im unveränderten Gameplay-Bildausschnitt relativ klein."
+      ]
+    },
+    {
+      "file": "runtime-land.png",
+      "sha256": "dbe91fecfb1956afc06840b694d12c2bb11e194cdbd603709b94596d8d3a8db5",
+      "encoded_video_frame_index_zero_based": 75,
+      "time_seconds": 3.125,
+      "extraction": "ffmpeg select=eq(n,index), one decoded frame, no scale/interpolation/image generation",
+      "actually_opened_with_view_image": true,
+      "paired_runtime_sample": {
+        "animation": "land",
+        "checkpoint": 1,
+        "falls": 0,
+        "frame": 75,
+        "grounded": true,
+        "jump_held": true,
+        "position": [
+          1.31994950771332,
+          0.671244502067566,
+          -6.23138093948364
+        ],
+        "stick_finger": 3,
+        "time_seconds": 3.125,
+        "velocity": [
+          1.20940864086151,
+          0.0,
+          -5.36538219451904
+        ]
+      },
+      "observations": [
+        "Lumo steht auf dem Pflaster der zweiten Insel. Kopf, Körper, Schwanz und Beine sind sichtbar; keine offensichtliche Durchdringung der Inseloberfläche in diesem Bild.",
+        "Oben steht Insel 2/12. Gepaarter Laufzeitsample meldet checkpoint=1, grounded=true, velocity.y=0 und Zustand land; dieses Bild gehört tatsächlich zur Landephase.",
+        "Bedienflächen und Überschriften bleiben getrennt und lesbar. Keine zusätzliche Farb- oder Layoutkollision gegenüber den zuvor geprüften Gameplaybildern erkannt."
+      ]
+    }
+  ],
+  "limits": [
+    "24 fps ist das fest vorgegebene Simulations- und Aufnahmeformat, keine gemessene Geräteleistung und kein Nachweis von 60 fps.",
+    "Kein physisches Android-Gerät, keine Android-Latenz-, Temperatur-, GPU- oder Lebenszyklusmessung.",
+    "Alle Videobilder wurden vollständig technisch decodiert; visuell einzeln geprüft wurden die drei aufgeführten repräsentativen Frames.",
+    "Die Laufzeitprobe belegt eine Passage von Insel 1 zu Insel 2 sowie einen zweiten Sprung, keine vollständige Levelabnahme.",
+    "Die Aufnahme nutzt die lokale Arbeitskopie mit altem HEAD und tatsächlichen Dateihashes. Sie ist keine eigenständige Clean-Source-Receipt für einen GitHub-Commit.",
+    "H.264/yuv420p komprimiert die realen Viewportbilder; es wurden keine Zwischenbilder interpoliert oder Inhalte generiert."
+  ],
+  "raw_frames": {
+    "count": 240,
+    "temporary_only": true,
+    "temporary_capture_directory_removed": true,
+    "raw_sequence_retained_in_git": false
+  },
+  "discarded_attempt": {
+    "file": "discarded-moviemaker-proof.json",
+    "reason": "Godot MovieMaker übernahm die Projekt-Auflösung 720×1280 statt des geforderten 960×540-Fensters. Dieser erste Film wurde verworfen und gelöscht. Der gelieferte Film stammt vollständig aus dem anschließenden Viewportlauf."
+  }
+}

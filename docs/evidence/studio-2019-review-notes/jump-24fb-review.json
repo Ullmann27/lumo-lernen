@@ -1,0 +1,386 @@
+{
+  "kind": "fresh_production_jump_renderer_visual_review",
+  "status": "no_additional_visible_blocker_in_16_reviewed_jump_images",
+  "source_commit": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "github_artifact_id": 14048776045,
+  "github_workflow_run_id": 43442579190,
+  "workflow_result_supplied_with_artifact": "overall FAIL; worlds job success",
+  "original_zip": "/workspace/scratch/5987865ae883/qa/studio-worlds-24fb8580.zip",
+  "original_zip_bytes": 104472768,
+  "original_zip_sha256": "671dce5f465d3c4ddf6555565cf49e2d20207a422db7278d4647da9c1bbf3115",
+  "original_zip_sha256_verified": true,
+  "source_stamp_verified_against_extraction_and_zip": true,
+  "relevant_nextgen_source_dirty_empty": true,
+  "capture_manifest_file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump-nextgen-evidence.json",
+  "capture_manifest_sha256": "4fe8d04f0ebe884c7ab8cd1650df1ff06b230dcdc2c11865d24b347c285ec993",
+  "capture_manifest_checks": 80,
+  "capture_manifest_failures": [],
+  "display": "X11",
+  "images_actually_opened": 16,
+  "images": [
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_ready.png",
+      "sha256": "e3961efb5acf3c42afd992fe6b91f50cd69e7678fffb0c9e99ae93b1168d32ac",
+      "bytes": 414245,
+      "width": 412,
+      "height": 915,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Original-Lumo von hinten auf dem Weg der Startinsel sichtbar: Ohren, blauer Anzug und heller Schwanz erkennbar. Füße nahe der Bodenfläche. Protokolliert sind idle, Bodenkontakt und Nullgeschwindigkeit.",
+      "layout_finding": "Schmales Hochformat: Status bricht innerhalb der freien Kopfmitte um; Spiele und Pause bleiben getrennt. Stick links und gelber Sprungknopf rechts mit vollständigen Beschriftungen innerhalb des Bildes. Die Figur bleibt im mittleren Spielbereich sichtbar.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(0.0, 0.199961, 1.5)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle",
+        "draw_calls": 222,
+        "primitives": 255046
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_touch_ascent.png",
+      "sha256": "80366c3cb3db5cba2990768db8d16d5c66aebfef3cb191dad654900fc670ecc3",
+      "bytes": 458527,
+      "width": 412,
+      "height": 915,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Figur sichtbar über dem Weg angehoben; Kopf, Rumpf, Arme und Schwanz bleiben zusammenhängend. Zugeordnetes Frameprotokoll meldet jump_rise, keinen Bodenkontakt und positive vertikale Geschwindigkeit. Der Bewegungsstick ist ausgelenkt, der Sprungknopf erscheint gehalten.",
+      "layout_finding": "Schmales Hochformat: Status bricht innerhalb der freien Kopfmitte um; Spiele und Pause bleiben getrennt. Stick links und gelber Sprungknopf rechts mit vollständigen Beschriftungen innerhalb des Bildes. Die Figur bleibt im mittleren Spielbereich sichtbar.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(-0.000001, 1.652589, -0.017352)",
+        "velocity": "(-0.000001, 4.899998, -3.193565)",
+        "grounded": false,
+        "animation": "jump_rise",
+        "draw_calls": 226,
+        "primitives": 255522
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_airborne.png",
+      "sha256": "76bfdf6342838e8d59e9e4c50c8da97aab1e58315e7a97e592d95bde4017feda",
+      "bytes": 491902,
+      "width": 412,
+      "height": 915,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Figur wieder näher an der Startinsel, weiterhin ohne im Protokoll gemeldeten Bodenkontakt. Framezustand jump_fall und negative vertikale Geschwindigkeit ordnen die Aufnahme dem Abstieg zu. Keine offensichtliche Trennung oder Streckung von Gliedmaßen in dieser Ansicht.",
+      "layout_finding": "Schmales Hochformat: Status bricht innerhalb der freien Kopfmitte um; Spiele und Pause bleiben getrennt. Stick links und gelber Sprungknopf rechts mit vollständigen Beschriftungen innerhalb des Bildes. Die Figur bleibt im mittleren Spielbereich sichtbar.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(-0.000001, 0.819254, -0.735314)",
+        "velocity": "(0.0, -7.100004, 0.0)",
+        "grounded": false,
+        "animation": "jump_fall",
+        "draw_calls": 225,
+        "primitives": 255426
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "sha256": "12e0892c7bd6ce25ef6db120232c80451f23cf47ea1e271d1c389470c92737c9",
+      "bytes": 473596,
+      "width": 412,
+      "height": 915,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Figur steht wieder auf dem Weg der Startinsel. Protokolliert sind Bodenkontakt, Nullgeschwindigkeit und idle. Diese Aufnahme entsteht nach 60 Physikframes Wartezeit und zeigt deshalb den Ruhe-/Bodenzustand, nicht den kurzen Landestoß-Animationsclip.",
+      "layout_finding": "Schmales Hochformat: Status bricht innerhalb der freien Kopfmitte um; Spiele und Pause bleiben getrennt. Stick links und gelber Sprungknopf rechts mit vollständigen Beschriftungen innerhalb des Bildes. Die Figur bleibt im mittleren Spielbereich sichtbar.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(-0.000001, 0.200178, -0.735314)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle",
+        "draw_calls": 229,
+        "primitives": 257186
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_ready.png",
+      "sha256": "304c6b2974bbe08cdcc3492061c2d6772d3f462eeeddff954ee889f1da039f06",
+      "bytes": 540417,
+      "width": 690,
+      "height": 829,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Original-Lumo von hinten auf dem Weg der Startinsel sichtbar: Ohren, blauer Anzug und heller Schwanz erkennbar. Füße nahe der Bodenfläche. Protokolliert sind idle, Bodenkontakt und Nullgeschwindigkeit.",
+      "layout_finding": "Breiteres Hochformat: Statuszeilen, Spiele und Pause passen ohne seitliches Abschneiden. Bewegungsstick und Sprungknopf stehen weit auseinander. Startinsel und weitere Plattformen bleiben im Bild.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(0.0, 0.199961, 1.5)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle",
+        "draw_calls": 250,
+        "primitives": 265876
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "sha256": "a8a3843df56e41e2d6ea7d63b2586b1b373c3e8726b69bdafcf02c1afecdc19d",
+      "bytes": 605768,
+      "width": 690,
+      "height": 829,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Figur sichtbar über dem Weg angehoben; Kopf, Rumpf, Arme und Schwanz bleiben zusammenhängend. Zugeordnetes Frameprotokoll meldet jump_rise, keinen Bodenkontakt und positive vertikale Geschwindigkeit. Der Bewegungsstick ist ausgelenkt, der Sprungknopf erscheint gehalten.",
+      "layout_finding": "Breiteres Hochformat: Statuszeilen, Spiele und Pause passen ohne seitliches Abschneiden. Bewegungsstick und Sprungknopf stehen weit auseinander. Startinsel und weitere Plattformen bleiben im Bild.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(-0.0, 1.652587, -0.01735)",
+        "velocity": "(-0.000001, 4.899998, -3.193553)",
+        "grounded": false,
+        "animation": "jump_rise",
+        "draw_calls": 251,
+        "primitives": 265916
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_airborne.png",
+      "sha256": "ab384153f6f8f6dff305aabae38ccc2df7a49b2e5aaccd44c3ec024e3b58b546",
+      "bytes": 660146,
+      "width": 690,
+      "height": 829,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Figur wieder näher an der Startinsel, weiterhin ohne im Protokoll gemeldeten Bodenkontakt. Framezustand jump_fall und negative vertikale Geschwindigkeit ordnen die Aufnahme dem Abstieg zu. Keine offensichtliche Trennung oder Streckung von Gliedmaßen in dieser Ansicht.",
+      "layout_finding": "Breiteres Hochformat: Statuszeilen, Spiele und Pause passen ohne seitliches Abschneiden. Bewegungsstick und Sprungknopf stehen weit auseinander. Startinsel und weitere Plattformen bleiben im Bild.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(-0.0, 0.819252, -0.735308)",
+        "velocity": "(0.0, -7.100004, 0.0)",
+        "grounded": false,
+        "animation": "jump_fall",
+        "draw_calls": 252,
+        "primitives": 266476
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_landed.png",
+      "sha256": "374f2fca418c3c4e23fed5ccb4b645fbf824fd3060ca7102a7acce43c5a0f62a",
+      "bytes": 626630,
+      "width": 690,
+      "height": 829,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Figur steht wieder auf dem Weg der Startinsel. Protokolliert sind Bodenkontakt, Nullgeschwindigkeit und idle. Diese Aufnahme entsteht nach 60 Physikframes Wartezeit und zeigt deshalb den Ruhe-/Bodenzustand, nicht den kurzen Landestoß-Animationsclip.",
+      "layout_finding": "Breiteres Hochformat: Statuszeilen, Spiele und Pause passen ohne seitliches Abschneiden. Bewegungsstick und Sprungknopf stehen weit auseinander. Startinsel und weitere Plattformen bleiben im Bild.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(-0.0, 0.200176, -0.735308)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle",
+        "draw_calls": 256,
+        "primitives": 268652
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_ready.png",
+      "sha256": "2d590b850076e7ec4555e7286e67aea7d54998bf3ae649e529906ff928123d85",
+      "bytes": 751932,
+      "width": 1280,
+      "height": 720,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Original-Lumo von hinten auf dem Weg der Startinsel sichtbar: Ohren, blauer Anzug und heller Schwanz erkennbar. Füße nahe der Bodenfläche. Protokolliert sind idle, Bodenkontakt und Nullgeschwindigkeit.",
+      "layout_finding": "Querformat: breite Übersicht mit Seiteninseln und Wasserfällen. Steuerflächen liegen getrennt an den unteren Ecken; Figuren- und Landeweg werden nicht von ihnen verdeckt. Die Figur ist klein dargestellt, daher nur begrenzte anatomische Detailprüfung.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(0.0, 0.199961, 1.5)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle",
+        "draw_calls": 287,
+        "primitives": 283114
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_touch_ascent.png",
+      "sha256": "042d9e868e5901a94ccf67bae9dbca79b3907ef791e915cefaa0a91765d8fdad",
+      "bytes": 838522,
+      "width": 1280,
+      "height": 720,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Figur sichtbar über dem Weg angehoben; Kopf, Rumpf, Arme und Schwanz bleiben zusammenhängend. Zugeordnetes Frameprotokoll meldet jump_rise, keinen Bodenkontakt und positive vertikale Geschwindigkeit. Der Bewegungsstick ist ausgelenkt, der Sprungknopf erscheint gehalten.",
+      "layout_finding": "Querformat: breite Übersicht mit Seiteninseln und Wasserfällen. Steuerflächen liegen getrennt an den unteren Ecken; Figuren- und Landeweg werden nicht von ihnen verdeckt. Die Figur ist klein dargestellt, daher nur begrenzte anatomische Detailprüfung.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(-0.0, 1.652588, -0.017345)",
+        "velocity": "(-0.000001, 4.899998, -3.193547)",
+        "grounded": false,
+        "animation": "jump_rise",
+        "draw_calls": 287,
+        "primitives": 283114
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_airborne.png",
+      "sha256": "7056add9edc605eb0997d514c6bef34ff4041e3a3e8803fa22f6aba7c5693cb0",
+      "bytes": 894373,
+      "width": 1280,
+      "height": 720,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Figur wieder näher an der Startinsel, weiterhin ohne im Protokoll gemeldeten Bodenkontakt. Framezustand jump_fall und negative vertikale Geschwindigkeit ordnen die Aufnahme dem Abstieg zu. Keine offensichtliche Trennung oder Streckung von Gliedmaßen in dieser Ansicht.",
+      "layout_finding": "Querformat: breite Übersicht mit Seiteninseln und Wasserfällen. Steuerflächen liegen getrennt an den unteren Ecken; Figuren- und Landeweg werden nicht von ihnen verdeckt. Die Figur ist klein dargestellt, daher nur begrenzte anatomische Detailprüfung.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(-0.000001, 0.819253, -0.735302)",
+        "velocity": "(0.0, -7.100004, 0.0)",
+        "grounded": false,
+        "animation": "jump_fall",
+        "draw_calls": 287,
+        "primitives": 283114
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_landed.png",
+      "sha256": "1eb885d4eeff3b3d496a446df39ed5e08c9b702394c7b85ad1fa8e7dae4ea03a",
+      "bytes": 855320,
+      "width": 1280,
+      "height": 720,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Figur steht wieder auf dem Weg der Startinsel. Protokolliert sind Bodenkontakt, Nullgeschwindigkeit und idle. Diese Aufnahme entsteht nach 60 Physikframes Wartezeit und zeigt deshalb den Ruhe-/Bodenzustand, nicht den kurzen Landestoß-Animationsclip.",
+      "layout_finding": "Querformat: breite Übersicht mit Seiteninseln und Wasserfällen. Steuerflächen liegen getrennt an den unteren Ecken; Figuren- und Landeweg werden nicht von ihnen verdeckt. Die Figur ist klein dargestellt, daher nur begrenzte anatomische Detailprüfung.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(-0.000001, 0.200177, -0.735302)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle",
+        "draw_calls": 288,
+        "primitives": 283154
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_ready.png",
+      "sha256": "efb27d1917e125c925577623b94cf0b641e3a0fbd77c7832a7e0a0c1ef6a3c47",
+      "bytes": 1842817,
+      "width": 2400,
+      "height": 1080,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Original-Lumo von hinten auf dem Weg der Startinsel sichtbar: Ohren, blauer Anzug und heller Schwanz erkennbar. Füße nahe der Bodenfläche. Protokolliert sind idle, Bodenkontakt und Nullgeschwindigkeit.",
+      "layout_finding": "Querformat mit Dichtefixture2.625: große getrennte Steuerflächen und beschriftete Kopfknöpfe. Status nimmt einen größeren oberen Bildbereich ein, ohne die gesteuerte Figur zu verdecken. Keine sichtbare Überlagerung zwischen Stick und Sprungknopf.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(0.0, 0.199961, 1.5)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle",
+        "draw_calls": 294,
+        "primitives": 344936
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_touch_ascent.png",
+      "sha256": "a79b9c3712ed3a24dd4cc5f4885f74332abaf243dfdb445e4c88ca2089f3df56",
+      "bytes": 2021686,
+      "width": 2400,
+      "height": 1080,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Figur sichtbar über dem Weg angehoben; Kopf, Rumpf, Arme und Schwanz bleiben zusammenhängend. Zugeordnetes Frameprotokoll meldet jump_rise, keinen Bodenkontakt und positive vertikale Geschwindigkeit. Der Bewegungsstick ist ausgelenkt, der Sprungknopf erscheint gehalten.",
+      "layout_finding": "Querformat mit Dichtefixture2.625: große getrennte Steuerflächen und beschriftete Kopfknöpfe. Status nimmt einen größeren oberen Bildbereich ein, ohne die gesteuerte Figur zu verdecken. Keine sichtbare Überlagerung zwischen Stick und Sprungknopf.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(0.0, 1.652588, -0.017344)",
+        "velocity": "(0.000001, 4.899998, -3.193545)",
+        "grounded": false,
+        "animation": "jump_rise",
+        "draw_calls": 295,
+        "primitives": 374936
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_airborne.png",
+      "sha256": "0813295eb64a4be6c151372359ef1c2eb98a1aca4b9d22790ee54db8c597908e",
+      "bytes": 2132254,
+      "width": 2400,
+      "height": 1080,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Figur wieder näher an der Startinsel, weiterhin ohne im Protokoll gemeldeten Bodenkontakt. Framezustand jump_fall und negative vertikale Geschwindigkeit ordnen die Aufnahme dem Abstieg zu. Keine offensichtliche Trennung oder Streckung von Gliedmaßen in dieser Ansicht.",
+      "layout_finding": "Querformat mit Dichtefixture2.625: große getrennte Steuerflächen und beschriftete Kopfknöpfe. Status nimmt einen größeren oberen Bildbereich ein, ohne die gesteuerte Figur zu verdecken. Keine sichtbare Überlagerung zwischen Stick und Sprungknopf.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(0.0, 0.819253, -0.735301)",
+        "velocity": "(0.0, -7.100004, 0.0)",
+        "grounded": false,
+        "animation": "jump_fall",
+        "draw_calls": 294,
+        "primitives": 344936
+      }
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_landed.png",
+      "sha256": "a26b3492edf670fe61b6c611afd325fcd3ccc64b103cd534e795fe1bc665a27d",
+      "bytes": 2052965,
+      "width": 2400,
+      "height": 1080,
+      "opened_with_view_image": true,
+      "byte_identical_to_original_zip_member": true,
+      "visual_finding": "Figur steht wieder auf dem Weg der Startinsel. Protokolliert sind Bodenkontakt, Nullgeschwindigkeit und idle. Diese Aufnahme entsteht nach 60 Physikframes Wartezeit und zeigt deshalb den Ruhe-/Bodenzustand, nicht den kurzen Landestoß-Animationsclip.",
+      "layout_finding": "Querformat mit Dichtefixture2.625: große getrennte Steuerflächen und beschriftete Kopfknöpfe. Status nimmt einen größeren oberen Bildbereich ein, ohne die gesteuerte Figur zu verdecken. Keine sichtbare Überlagerung zwischen Stick und Sprungknopf.",
+      "new_visible_blocker": false,
+      "same_frame_runtime_state": {
+        "actor_position": "(0.0, 0.200177, -0.735301)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle",
+        "draw_calls": 297,
+        "primitives": 345060
+      }
+    }
+  ],
+  "same_artifact_gameplay_evidence": [
+    {
+      "file": "nextgen-evidence/nextgen/jump_nextgen_regression-headless.log",
+      "sha256": "52a320159bea3754b29275564ce4915525364e192f7ea53430e7ddfe950bcfc9",
+      "pass_marker": "[JumpNextgen] PASS 84 checks",
+      "checks_if_reported": 84,
+      "interpretation": "Headless-Physik und Zustandsprüfung: variable Sprunghöhen, Absprungtoleranz, Sprungpuffer, Originalrig, Pause, Dichte-Layouts und isolierte Spielstände. Dieser Test verwendet für Teile direkte Controller-Eingaben; er ersetzt nicht den separaten realen Touch-Capturepfad.",
+      "tests_rerun_by_visual_reviewer": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/jump_nextgen_capture-rendered.log",
+      "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3",
+      "pass_marker": "[JumpNextgenCapture] PASS 80 checks",
+      "checks_if_reported": 80,
+      "interpretation": "Gerenderte Produktionsszene: Input.parse_input_event/flush_buffered_events mit unabhängigen Finger-IDs für Bewegungsstick und gehaltenen Sprung, tatsächliche Bewegung des CharacterBody, Aufstieg, Release außerhalb, sichere Landung, Pause-Rigabschaltung und 16 Originalaufnahmen.",
+      "tests_rerun_by_visual_reviewer": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/jump_expeditions_regression-headless.log",
+      "sha256": "92b58ab6f6002b1c9989a185e3b26acc44c117d2cfc921652edf4beffaf96753",
+      "pass_marker": "[JumpExpeditions] PASS 29 checks",
+      "checks_if_reported": 29,
+      "interpretation": "Getrennte Headless-Prüfung dreier physischer Kurse, vier Etappen, Menüauswahl und erhaltenen Fortschritts; die 16 hier gesichteten Bilder zeigen nicht alle Kurse.",
+      "tests_rerun_by_visual_reviewer": false
+    },
+    {
+      "file": "nextgen-evidence/nextgen/lumo_original_jump_visual_regression-headless.log",
+      "sha256": "6c2847641ce8702483e9a6d81b36d20fac209567079970bd641e11f0c3489305",
+      "pass_marker": "[JumpOriginalLumo] PASS",
+      "checks_if_reported": null,
+      "interpretation": "Headless-Integration des originalen 65-Knochen-GLB einschließlich Sichtbarkeit, Boden, Bewegung, Pause und Wiederaufnahme; kein zusätzlicher Screenshot- oder FPS-Nachweis.",
+      "tests_rerun_by_visual_reviewer": false
+    }
+  ],
+  "summary": "Alle vier Formate zeigen die tatsächliche Jump-Spielszene mit Original-Lumo, getrennten Steuerflächen und nachvollziehbar zugeordneten Aufstiegs-, Abstiegs- und anschließenden Bodenzuständen. Kein zusätzlicher sichtbarer Blocker. Die als landed benannten Bilder sind idle-Aufnahmen nach der Landung und werden nicht als sichtbarer Landestoß ausgegeben.",
+  "limits": [
+    "Statische Frames belegen keine vollständige Animationskontinuität oder subjektiv gemessene Eingabelatenz.",
+    "Die sichtbare Sequenz endet wieder auf der ersten Insel; sie wird nicht als bildlicher Nachweis eines Sprungs auf eine andere Insel oder eines vollständigen Durchspielens ausgegeben.",
+    "Android-Dichte ist eine vorgegebene Testfixture, kein physischer Galaxy-Z-Fold7-Test.",
+    "Die protokollierten Draw-Calls und Primitive sind Frame-Zähler, keine CPU-/GPU-Zeiten und kein 60-FPS-Nachweis.",
+    "Gesamtstand 24fb bleibt verworfen; diese Prüfung erteilt keine finale Freigabe oder APK-Abnahme.",
+    "Keine Produkt- oder Testdatei geändert."
+  ],
+  "physical_device_fps_measured": false
+}

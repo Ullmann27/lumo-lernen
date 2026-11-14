@@ -1,0 +1,357 @@
+{
+  "workflow_sha256": "1df347d88bf1da49bb22d50dc84c4a989752e84fbb9a04056d57037b6101c772",
+  "snippets": 50,
+  "failed": 0,
+  "rows": [
+    {
+      "job": "android-host-compile",
+      "step": "Compile actual current Android host before native release pin approval",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Save source identity and validate exact Godot integration pin",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Install real system emoji for ABC screenshots and Flutter test suite",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Resolve immutable Flutter dependencies",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Flutter static analysis",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Real widget tests for premium quiz and 3D learning islands",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Full Flutter regression suite including every capture",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Capture and verify actual 2001 tutor, transfer and daily-plan routes",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Capture spatial reading, answer retry and subject cards on phone and Fold",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Install actual app-script verification dependencies",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Install verified Gradle for the real build-contract probe",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Verify all build and preservation contracts",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Code-level Android probe regression with verified image dependencies",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Reject unreadable Ahem-font captures before issuing visual proof",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Render actual premium lessons on phone and Fold",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Render actual app sections on phone and Fold",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Render playable Connect Four on five real layout sizes",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Render genuine offline atelier on phone and Fold",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Install Godot 4.6.3 for the exact pinned Kart source",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Require actual gameplay gates on the exact pinned native source",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Build unified real Android APK",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": "Verify APK archive and collect reproducible source hashes",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-tour",
+      "step": "Verify framework guard before the Android 17 emulator",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-tour",
+      "step": "Live UI reader",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-tour",
+      "step": "Enable accelerated disposable emulator",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-tour",
+      "step": "Software display",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-tour",
+      "step": "Verify the Android 17 CLI22 source and AVD counterexamples",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-tour",
+      "step": "Preserve original Android 17 CLI AVD and install fixed official CLI22 bytes",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-tour",
+      "step": "Bind the Android 17 guard to this actual new Studio APK source",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-tour",
+      "step": "Install and tour the exact APK",
+      "kind": "emulator-script",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-tour",
+      "step": "Install and tour the exact APK after Android 17 framework readiness",
+      "kind": "emulator-script",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-tour",
+      "step": "Preserve actual Android 17 generated hardware and disk configuration",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-tour",
+      "step": "Preserve Android 17 startup diagnostics even after action failure",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "update-2019-from-2017",
+      "step": "Live UI reader",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "update-2019-from-2017",
+      "step": "Enable accelerated disposable emulator",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "update-2019-from-2017",
+      "step": "Software display",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "update-2019-from-2017",
+      "step": "Preserve actual 2017 learning through an in-place 2019 upgrade",
+      "kind": "emulator-script",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "creative-android",
+      "step": "Read the current immutable native source",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "creative-android",
+      "step": "Bind the fresh candidate to this run and its actual upload outputs",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "creative-android",
+      "step": "Install original live UI helpers and verify the nine creative contracts",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "creative-android",
+      "step": "Enable disposable emulator KVM",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "creative-android",
+      "step": "Start software display for the independent creative tour",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "creative-android",
+      "step": "Genuine Jump Build Puzzle Treasure inputs and read-only saves",
+      "kind": "emulator-script",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "publish-reviewed-2019",
+      "step": "Install APK signature and manifest verification tools",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "publish-reviewed-2019",
+      "step": "Fetch the exact reviewed native artifact and acceptance identity",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "publish-reviewed-2019",
+      "step": "Reverify actual ARM64 bytes and bind all live proofs to the reviewed 2019 source",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "publish-reviewed-2019",
+      "step": "Preserve existing releases and select create-or-verify",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "publish-reviewed-2019",
+      "step": "Publish the tested file once under the installed family update channel",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "publish-reviewed-2019",
+      "step": "Verify the published release, immutable tag and unauthenticated Chrome APK bytes",
+      "kind": "run",
+      "exit_code": 0,
+      "output": ""
+    }
+  ]
+}

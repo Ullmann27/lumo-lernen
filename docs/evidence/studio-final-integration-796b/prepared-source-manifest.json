@@ -1,0 +1,105 @@
+{
+  "status": "PREPARED_NOT_YET_SUBMITTED",
+  "base_source": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "documentation_checkpoint": "3022777fba84618a1915f98fdcf6a6ccda9f4db1",
+  "native_candidate": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "native_run": 43479909943,
+  "known_pending": [
+    "full native workflow completion",
+    "fresh original artifact and visual receipt",
+    "actual API35/API37 diagnostic completion",
+    "new exact-source candidate build and all mandatory gates"
+  ],
+  "files": [
+    {
+      "path": "scripts/verify_studio_delivery.py",
+      "bytes": 28318,
+      "sha256": "62e2e434677e036b0dc76809cc01c17aead83262c1ea3b9fb7556a23e8a9a101",
+      "git_blob_sha1": "fb25c967401fa2bd72ddd825981d9ddd0d03e428"
+    },
+    {
+      "path": "scripts/record_studio_visual_review.py",
+      "bytes": 6036,
+      "sha256": "ddf9355213d65cd4055265c5319baeedf51df257f3553ca1ab2d23da87d8b1c1",
+      "git_blob_sha1": "f688087f77d6f9b52a83aa4e7e89aaf886d6ce7b"
+    },
+    {
+      "path": "scripts/tests/test_studio_delivery.py",
+      "bytes": 40476,
+      "sha256": "4715fc13dcd5534f380ac90e2ca59a7c1dc20413a9d1e9123a0e71cd5ff47aad",
+      "git_blob_sha1": "45828bc2f5324b529f182287186ce23049204f91"
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "bytes": 52523,
+      "sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+      "git_blob_sha1": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1"
+    },
+    {
+      "path": "tools/android_qa/tests/test_flutter_tap_scroll_budget.py",
+      "bytes": 5556,
+      "sha256": "886247df7bcf68e811b401db6f804b502d4e8e9b06aabba072606b1035600781",
+      "git_blob_sha1": "827b26e03949c60fa421f3f8c0972e50f9ff1579"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "bytes": 36293,
+      "sha256": "2c10c45856a51a96d77dc39e359d221f76d60e286d7b3fde6729b8c9eba71a9c",
+      "git_blob_sha1": "8841093b036de530ec1cd38e65db9274f36a6af2"
+    },
+    {
+      "path": "config/godot-source.json",
+      "bytes": 145,
+      "sha256": "a6e4ff3630754999ab0281f80f1e1512141af65e9ff10e6ab72bafd6096f4214",
+      "git_blob_sha1": "a3b714cbcd67a1bda3df8f1afbcb5e2c84123434"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "bytes": 10421,
+      "sha256": "6d7a692ae6ad0b1ff4860f7d681e34c0a0022c77084b84a98cf674eb5f4f723c",
+      "git_blob_sha1": "35720aef514a52ac835130b0beda43ac8adaa5bf"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 16790,
+      "sha256": "b67dfb412de165322794b493c22f83933e2785a1a02049247f9d4c79ad1b8bb0",
+      "git_blob_sha1": "15131d461511c2101207e45fc27f8e85948eb092"
+    },
+    {
+      "path": ".github/workflows/lumo-1999-update-gate.yml",
+      "bytes": 6865,
+      "sha256": "bd5cc6b336c8d6a986cb057abf15aa5711c9b0270ffbed9e4911edbed468c6e1",
+      "git_blob_sha1": "744f805b60382529b329aa6070d3863a8ac0dea5"
+    },
+    {
+      "path": "scripts/verify_unified_apk.py",
+      "bytes": 12075,
+      "sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382",
+      "git_blob_sha1": "455a69423b887843efc4477568d5f2cd094d6088"
+    },
+    {
+      "path": "scripts/tests/test_historical_apk_expectations.py",
+      "bytes": 13552,
+      "sha256": "6d9f146935c5f80ff305f7171843c34ce17f514161894014348b79810260af0f",
+      "git_blob_sha1": "5658f3326cf3b2fa5cab678a23cf62e8f262b83d"
+    }
+  ],
+  "scoped_local_tests": {
+    "receipt": "36/36 PASS, 10.363 s; first red proof and intermediate fixture-cardinality failure retained",
+    "pin": "23/23 PASS, 0.008 s; old fixture failed when source pin was first updated",
+    "historical": "15/15 PASS, 0.405 s using proper unittest discovery; initial package-name invocation could not import peer fixture",
+    "workflow_actionlint": "PASS, original API35/API37 guards remain, two action references locked to observed a421e43855164a8197daf9d8d40fe71c6996bb0d"
+  },
+  "changes": [
+    "Require actual current puzzle menu renderer capture, retaining all old source/runtime/signature requirements",
+    "Copy exact independently reviewed bounded-scroll fix and six negative/positive contracts",
+    "Use measured 37.0 SDK package selector while keeping expected API37/release17 checks",
+    "Carry the independently tested historical-1999 expectation-binding fix",
+    "Point future candidate and explicit source-pin tests at new native source; final receipt not yet replaced"
+  ],
+  "not_claimed": [
+    "new APK PASS",
+    "physical device performance",
+    "complete master request"
+  ]
+}

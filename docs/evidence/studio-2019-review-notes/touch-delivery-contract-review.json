@@ -1,0 +1,29 @@
+{
+  "kind": "studio_touch_delivery_contract_review",
+  "result": "PASS",
+  "tests": 35,
+  "seconds": 11.208,
+  "scope": "Executed Python contract tests using synthetic acceptance archives; not a renderer or Android device run.",
+  "required_native_jobs": 8,
+  "independent_clean_capture_sources": 5,
+  "production_modules": 9,
+  "required_new_touch_surfaces": [
+    "workshop",
+    "treasure",
+    "build"
+  ],
+  "checks": [
+    "Every required job must succeed at exact source and workflow run.",
+    "Every capture source must match and be clean.",
+    "Old module photos cannot replace any new touch-surface photo.",
+    "Relabelled old PNGs do not match original archive bytes.",
+    "Rejected selections do not write a receipt or copied image directory.",
+    "Original APK, Android API35/API37, Cards pixel and 2017 update gates remain mandatory."
+  ],
+  "source_sha256": {
+    "scripts/verify_studio_delivery.py": "25376c29c729506ef591e936fac21f82f106f249df2fe67b3e1254151192fccb",
+    "scripts/record_studio_visual_review.py": "989f7db579c336a2bcd203933ff3970709b78f7025a3b0efa11bfb7362aa4210",
+    "scripts/tests/test_studio_delivery.py": "a3a512e437bdc70b14e30b045a5798e677ec020ba6651322e71630cbc29d79ed"
+  },
+  "log_sha256": "29804f02e0574894d89dc774024c9d89f671103f6a6decab43e2f9740e017d4d"
+}

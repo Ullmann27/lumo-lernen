@@ -1,0 +1,1521 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T15:47:55.651196+00:00",
+  "reviewer": "Agent A / learning_worlds",
+  "status": "Scoped rooms visual, current module logs and exact learning-image identity review PASS; no overall candidate approval",
+  "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "artifact_id": 14052637839,
+  "workflow_run_id": 43449903088,
+  "github_artifact_metadata": {
+    "id": 14052637839,
+    "node_id": "MDg6QXJ0aWZhY3QxNDA1MjYzNzgzOQ==",
+    "name": "lumo-studio-2019-native-evidence",
+    "size_in_bytes": 170742944,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14052637839",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14052637839/zip",
+    "expired": false,
+    "digest": "sha256:d7ebc000680f3c613e005b8c9eb91e82b488d6f326c36a038a3492459222178c",
+    "created_at": "2026-11-13T15:38:37Z",
+    "updated_at": "2026-11-13T15:38:37Z",
+    "expires_at": "2026-12-13T15:38:27Z",
+    "workflow_run": {
+      "id": 43449903088,
+      "repository_id": 1251414584,
+      "head_repository_id": 1251414584,
+      "head_branch": "chatgpt/lumo-studio-20261113",
+      "head_sha": "76980a941fa05d047574d8cc386d3249d93ffca3"
+    }
+  },
+  "original_bundle": {
+    "name": "studio-native-76980a94.zip",
+    "sha256": "d7ebc000680f3c613e005b8c9eb91e82b488d6f326c36a038a3492459222178c",
+    "bytes": 170742944,
+    "github_digest_and_size_independently_matched": true
+  },
+  "source_scope_review": [
+    {
+      "scope": "nextgen-evidence/nextgen",
+      "stamps": [
+        {
+          "entry": "nextgen-evidence/nextgen/source-sha.txt",
+          "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+          "bytes": 41,
+          "value": "76980a941fa05d047574d8cc386d3249d93ffca3",
+          "original_zip_bytes_equal": true
+        },
+        {
+          "entry": "nextgen-evidence/nextgen/source-dirty.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "value": "",
+          "original_zip_bytes_equal": true
+        }
+      ],
+      "source_sha_matches": true,
+      "all_available_dirty_stamps_empty": true,
+      "gate_roster": {
+        "entry": "nextgen-evidence/nextgen/results.tsv",
+        "sha256": "c61f7b94de60e2388e654f559e170cdc170bf97cac0e84f90850ceae7b1ac991",
+        "bytes": 1095,
+        "original_zip_bytes_equal": true,
+        "passed": 25,
+        "total": 25,
+        "rows": [
+          {
+            "probe": "learning_world_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "jump_nextgen_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "jump_expeditions_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "lumo_teacher_pose_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "lumo_65bone_walk_gait_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "lumo_original_jump_visual_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "build_transform_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "build_nextgen_play_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "build_settlement_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "build_settlement_play_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "creative_nextgen_environment_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "kart_nextgen_garage_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "kart_track_pass_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "cards_table_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "rhythm_tour_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "rhythm_tour_play_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "learning_world_capture",
+            "mode": "rendered",
+            "result": "PASS"
+          },
+          {
+            "probe": "jump_nextgen_capture",
+            "mode": "rendered",
+            "result": "PASS"
+          },
+          {
+            "probe": "build_nextgen_play_regression",
+            "mode": "rendered",
+            "result": "PASS"
+          },
+          {
+            "probe": "build_settlement_play_regression",
+            "mode": "rendered",
+            "result": "PASS"
+          },
+          {
+            "probe": "creative_nextgen_environment_regression",
+            "mode": "rendered",
+            "result": "PASS"
+          },
+          {
+            "probe": "kart_nextgen_garage_regression",
+            "mode": "rendered",
+            "result": "PASS"
+          },
+          {
+            "probe": "cards_table_capture",
+            "mode": "rendered",
+            "result": "PASS"
+          },
+          {
+            "probe": "rhythm_tour_play_regression",
+            "mode": "rendered",
+            "result": "PASS"
+          },
+          {
+            "probe": "kart_player_full_route_regression",
+            "mode": "rendered",
+            "result": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "scope": "studio-evidence",
+      "stamps": [
+        {
+          "entry": "studio-evidence/source-sha.txt",
+          "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+          "bytes": 41,
+          "value": "76980a941fa05d047574d8cc386d3249d93ffca3",
+          "original_zip_bytes_equal": true
+        },
+        {
+          "entry": "studio-evidence/source-dirty.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "value": "",
+          "original_zip_bytes_equal": true
+        },
+        {
+          "entry": "studio-evidence/source-tree.txt",
+          "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+          "bytes": 41,
+          "value": "8df22766bd0dbae31aacaa26c0228811c027686e",
+          "original_zip_bytes_equal": true
+        }
+      ],
+      "source_sha_matches": true,
+      "all_available_dirty_stamps_empty": true,
+      "gate_roster": {
+        "entry": "studio-evidence/results.tsv",
+        "sha256": "e9000f75f90eb97fb9325b2a672b5573bf0b066ff818d220e3457897289ecf11",
+        "bytes": 399,
+        "original_zip_bytes_equal": true,
+        "passed": 9,
+        "total": 9,
+        "rows": [
+          {
+            "probe": "learning_sharing_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "learning_studio_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "lumo_studio_motion_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "puzzle_rotation_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "treasure_exploration_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "learning_sharing_capture",
+            "mode": "rendered",
+            "result": "PASS"
+          },
+          {
+            "probe": "lumo_studio_motion_capture",
+            "mode": "rendered",
+            "result": "PASS"
+          },
+          {
+            "probe": "puzzle_rotation_regression",
+            "mode": "rendered",
+            "result": "PASS"
+          },
+          {
+            "probe": "treasure_exploration_regression",
+            "mode": "rendered",
+            "result": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "scope": "touch-evidence/workshop",
+      "stamps": [
+        {
+          "entry": "touch-evidence/workshop/source-sha.txt",
+          "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+          "bytes": 41,
+          "value": "76980a941fa05d047574d8cc386d3249d93ffca3",
+          "original_zip_bytes_equal": true
+        },
+        {
+          "entry": "touch-evidence/workshop/source-dirty.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "value": "",
+          "original_zip_bytes_equal": true
+        },
+        {
+          "entry": "touch-evidence/workshop/source-dirty-after.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "value": "",
+          "original_zip_bytes_equal": true
+        },
+        {
+          "entry": "touch-evidence/workshop/source-tree.txt",
+          "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+          "bytes": 41,
+          "value": "8df22766bd0dbae31aacaa26c0228811c027686e",
+          "original_zip_bytes_equal": true
+        }
+      ],
+      "source_sha_matches": true,
+      "all_available_dirty_stamps_empty": true,
+      "gate_roster": {
+        "entry": "touch-evidence/workshop/results.tsv",
+        "sha256": "c9d8181d388096d44183d9cd5580dd5048efa46db21e83275024c2d41fe062e7",
+        "bytes": 112,
+        "original_zip_bytes_equal": true,
+        "passed": 2,
+        "total": 2,
+        "rows": [
+          {
+            "probe": "kart_workshop_density_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "kart_workshop_density_regression",
+            "mode": "rendered",
+            "result": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "scope": "touch-evidence/treasure",
+      "stamps": [
+        {
+          "entry": "touch-evidence/treasure/source-sha.txt",
+          "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+          "bytes": 41,
+          "value": "76980a941fa05d047574d8cc386d3249d93ffca3",
+          "original_zip_bytes_equal": true
+        },
+        {
+          "entry": "touch-evidence/treasure/source-dirty.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "value": "",
+          "original_zip_bytes_equal": true
+        },
+        {
+          "entry": "touch-evidence/treasure/source-dirty-after.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "value": "",
+          "original_zip_bytes_equal": true
+        },
+        {
+          "entry": "touch-evidence/treasure/source-tree.txt",
+          "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+          "bytes": 41,
+          "value": "8df22766bd0dbae31aacaa26c0228811c027686e",
+          "original_zip_bytes_equal": true
+        }
+      ],
+      "source_sha_matches": true,
+      "all_available_dirty_stamps_empty": true,
+      "gate_roster": {
+        "entry": "touch-evidence/treasure/results.tsv",
+        "sha256": "2899998b1e874e13568468e16ba6a7aa5593bb4342abf28f2746a915a2d373c0",
+        "bytes": 102,
+        "original_zip_bytes_equal": true,
+        "passed": 2,
+        "total": 2,
+        "rows": [
+          {
+            "probe": "treasure_density_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "treasure_density_regression",
+            "mode": "rendered",
+            "result": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "scope": "touch-evidence/build",
+      "stamps": [
+        {
+          "entry": "touch-evidence/build/source-sha.txt",
+          "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+          "bytes": 41,
+          "value": "76980a941fa05d047574d8cc386d3249d93ffca3",
+          "original_zip_bytes_equal": true
+        },
+        {
+          "entry": "touch-evidence/build/source-dirty.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "value": "",
+          "original_zip_bytes_equal": true
+        },
+        {
+          "entry": "touch-evidence/build/source-dirty-after.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "value": "",
+          "original_zip_bytes_equal": true
+        },
+        {
+          "entry": "touch-evidence/build/source-tree.txt",
+          "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+          "bytes": 41,
+          "value": "8df22766bd0dbae31aacaa26c0228811c027686e",
+          "original_zip_bytes_equal": true
+        }
+      ],
+      "source_sha_matches": true,
+      "all_available_dirty_stamps_empty": true,
+      "gate_roster": {
+        "entry": "touch-evidence/build/results.tsv",
+        "sha256": "5b5205d32babc9c7ca3ddb0c8616064dec845bbf32cebb2de2d71fdf34d73f26",
+        "bytes": 110,
+        "original_zip_bytes_equal": true,
+        "passed": 2,
+        "total": 2,
+        "rows": [
+          {
+            "probe": "build_dialog_density_regression",
+            "mode": "headless",
+            "result": "PASS"
+          },
+          {
+            "probe": "build_dialog_density_regression",
+            "mode": "rendered",
+            "result": "PASS"
+          }
+        ]
+      }
+    }
+  ],
+  "review_method": "Alle 19 Raumbilder aus diesem vollständigen Bundle tatsächlich einzeln mit view_image geöffnet. Je Bild PNG-Dekodierung, eigener SHA256 und Bytegleichheit zwischen Extraktion und Originalbundle geprüft. Alle 25 Nextgen-Lernbilder zusätzlich bytegenau gegen das bereits vollständig einzeln geprüfte Original-Preview-ZIP und dessen gespeicherte Bildhashes verglichen. Kein Unterschied; daher keine erneute Sichtprüfung dieser identischen Lernbilder behauptet. Neun aktuelle einschlägige Logs und die fünf Quell-/Gatebereiche geprüft.",
+  "room_images": [
+    {
+      "module": "garage",
+      "filename": "garage-1280x720.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 436821,
+      "sha256": "e5c7126f114931c0f7776743120887d206e92874e5ff7206ff170aabdb2e169a",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Comet ist in der Fahrzeugliste ausgewählt und als blaues räumliches Kart auf der Werkstattplattform sichtbar. Lumo steht erkennbar daneben.",
+        "Lack, Teile & Effekte, Rückkehr und Rennstart sind lesbar und voneinander getrennt. Listenfortsetzung wird am Scrollrand regulär begrenzt.",
+        "Im Querformat liegen Auswahl und räumliche Vorschau nebeneinander; kein zusätzlicher blockierender HUD-Überdeckungsbefund."
+      ]
+    },
+    {
+      "module": "garage",
+      "filename": "garage-2400x1080.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-2400x1080.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "bytes": 875335,
+      "sha256": "633f8330997b0b748e897a43385aaad1bec4961561e01b5c81b3e5befec97a48",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Comet ist in der Fahrzeugliste ausgewählt und als blaues räumliches Kart auf der Werkstattplattform sichtbar. Lumo steht erkennbar daneben.",
+        "Lack, Teile & Effekte, Rückkehr und Rennstart sind lesbar und voneinander getrennt. Listenfortsetzung wird am Scrollrand regulär begrenzt.",
+        "Im Querformat liegen Auswahl und räumliche Vorschau nebeneinander; kein zusätzlicher blockierender HUD-Überdeckungsbefund."
+      ]
+    },
+    {
+      "module": "garage",
+      "filename": "garage-412x915.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 208179,
+      "sha256": "ffd22294458bf106ef1051cae601a4ad5fb658dc302a75868b705ffaf182331b",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Comet ist in der Fahrzeugliste ausgewählt und als blaues räumliches Kart auf der Werkstattplattform sichtbar. Lumo steht erkennbar daneben.",
+        "Lack, Teile & Effekte, Rückkehr und Rennstart sind lesbar und voneinander getrennt. Listenfortsetzung wird am Scrollrand regulär begrenzt.",
+        "Das Hochformat ordnet die Auswahl unterhalb der räumlichen Vorschau an. Die benötigten aktiven Schaltflächen sind vollständig sichtbar."
+      ]
+    },
+    {
+      "module": "garage",
+      "filename": "selection-1280x720.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/selection-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 439057,
+      "sha256": "01f56f1f34f922d4b3d11dd9949efa7912f874ed0d3cb22b2a43b22cf39ec06f",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Gecko Velo ist sichtbar hervorgehoben; die räumliche Vorschau zeigt das passende grüne Kart. Lumos Kopf und Körper bleiben erkennbar.",
+        "Ausgewählte Fahrzeugzeile, Werkstatteinstieg, Rückkehr und Start liegen frei. Teilweise angeschnittene andere Zeilen gehören zum tatsächlichen Scrollzustand.",
+        "Im Querformat liegen Auswahl und räumliche Vorschau nebeneinander; kein zusätzlicher blockierender HUD-Überdeckungsbefund."
+      ]
+    },
+    {
+      "module": "garage",
+      "filename": "selection-2400x1080.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/selection-2400x1080.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "bytes": 874426,
+      "sha256": "cbeb1578dc2166d2b518c99bff80383f2ebabd45e997d9fa6716bbeeb251be3d",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Gecko Velo ist sichtbar hervorgehoben; die räumliche Vorschau zeigt das passende grüne Kart. Lumos Kopf und Körper bleiben erkennbar.",
+        "Ausgewählte Fahrzeugzeile, Werkstatteinstieg, Rückkehr und Start liegen frei. Teilweise angeschnittene andere Zeilen gehören zum tatsächlichen Scrollzustand.",
+        "Im Querformat liegen Auswahl und räumliche Vorschau nebeneinander; kein zusätzlicher blockierender HUD-Überdeckungsbefund."
+      ]
+    },
+    {
+      "module": "garage",
+      "filename": "selection-412x915.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/selection-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 209458,
+      "sha256": "7332be0f869a8ce07d42c871853f76aaf2d705f3bb36bfb8716eae43d184eb65",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Gecko Velo ist sichtbar hervorgehoben; die räumliche Vorschau zeigt das passende grüne Kart. Lumos Kopf und Körper bleiben erkennbar.",
+        "Ausgewählte Fahrzeugzeile, Werkstatteinstieg, Rückkehr und Start liegen frei. Teilweise angeschnittene andere Zeilen gehören zum tatsächlichen Scrollzustand.",
+        "Das Hochformat ordnet die Auswahl unterhalb der räumlichen Vorschau an. Die benötigten aktiven Schaltflächen sind vollständig sichtbar."
+      ]
+    },
+    {
+      "module": "garage",
+      "filename": "track-goals-1280x720.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/track-goals-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 579130,
+      "sha256": "6442cefc5feb3b38f69a5a9025772f178b9ae96a4267e12595992afc54e83ae8",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Sonnenhafen ist in der Streckenliste ausgewählt. Das Ziel 0/3 · 2 Runden ins Ziel ist lesbar, und die räumliche Streckenübersicht ist sichtbar.",
+        "Rückkehr und Rennstart bleiben frei; weitere Strecken liegen in der scrollbaren Liste. Diese Aufnahme ist eine Übersicht und kein Nachweis einer vollständig gefahrenen Runde.",
+        "Im Querformat liegen Auswahl und räumliche Vorschau nebeneinander; kein zusätzlicher blockierender HUD-Überdeckungsbefund."
+      ]
+    },
+    {
+      "module": "garage",
+      "filename": "track-goals-2400x1080.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/track-goals-2400x1080.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "bytes": 943839,
+      "sha256": "cf887c1a0be8a3798bf8861aa84b361c65629baf6731a6e73b4391c86953555b",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Sonnenhafen ist in der Streckenliste ausgewählt. Das Ziel 0/3 · 2 Runden ins Ziel ist lesbar, und die räumliche Streckenübersicht ist sichtbar.",
+        "Rückkehr und Rennstart bleiben frei; weitere Strecken liegen in der scrollbaren Liste. Diese Aufnahme ist eine Übersicht und kein Nachweis einer vollständig gefahrenen Runde.",
+        "Im Querformat liegen Auswahl und räumliche Vorschau nebeneinander; kein zusätzlicher blockierender HUD-Überdeckungsbefund."
+      ]
+    },
+    {
+      "module": "garage",
+      "filename": "track-goals-412x915.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/track-goals-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 255756,
+      "sha256": "55bca1bddb5b8a5e0c17bf3d4dd6a530e8ca93cea47108613e73297b8b9905c3",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Sonnenhafen ist in der Streckenliste ausgewählt. Das Ziel 0/3 · 2 Runden ins Ziel ist lesbar, und die räumliche Streckenübersicht ist sichtbar.",
+        "Rückkehr und Rennstart bleiben frei; weitere Strecken liegen in der scrollbaren Liste. Diese Aufnahme ist eine Übersicht und kein Nachweis einer vollständig gefahrenen Runde.",
+        "Das Hochformat ordnet die Auswahl unterhalb der räumlichen Vorschau an. Die benötigten aktiven Schaltflächen sind vollständig sichtbar."
+      ]
+    },
+    {
+      "module": "garage",
+      "filename": "zoom-1280x720.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/zoom-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 449383,
+      "sha256": "0903fbc28591dccfe53703e6663f45ccdd9ca60dfa58a42209c819dafd862033",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die nähere Kamera zeigt das ausgewählte grüne Kart und Lumo größer; Gesicht, Körper und Fahrzeug sind weiterhin sichtbar.",
+        "Kamerabedienung, aktive Fahrzeugauswahl, Werkstatteinstieg und untere Navigation bleiben lesbar. Ein Rand der dekorativen Plattform darf hinter der unteren Navigation liegen, ohne benötigte Ziele zu verdecken.",
+        "Im Querformat liegen Auswahl und räumliche Vorschau nebeneinander; kein zusätzlicher blockierender HUD-Überdeckungsbefund."
+      ]
+    },
+    {
+      "module": "garage",
+      "filename": "zoom-2400x1080.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/zoom-2400x1080.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "bytes": 884601,
+      "sha256": "7cd2fd08d7aa0127b39897529a5ff186f7068fddcefb0928ddb8eeef577e0647",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die nähere Kamera zeigt das ausgewählte grüne Kart und Lumo größer; Gesicht, Körper und Fahrzeug sind weiterhin sichtbar.",
+        "Kamerabedienung, aktive Fahrzeugauswahl, Werkstatteinstieg und untere Navigation bleiben lesbar. Ein Rand der dekorativen Plattform darf hinter der unteren Navigation liegen, ohne benötigte Ziele zu verdecken.",
+        "Im Querformat liegen Auswahl und räumliche Vorschau nebeneinander; kein zusätzlicher blockierender HUD-Überdeckungsbefund."
+      ]
+    },
+    {
+      "module": "garage",
+      "filename": "zoom-412x915.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/zoom-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 215497,
+      "sha256": "f890ee169501a69ea3f9c3cf7dac6e49d746aa08dd12b96e73037ddb7593c58e",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die nähere Kamera zeigt das ausgewählte grüne Kart und Lumo größer; Gesicht, Körper und Fahrzeug sind weiterhin sichtbar.",
+        "Kamerabedienung, aktive Fahrzeugauswahl, Werkstatteinstieg und untere Navigation bleiben lesbar. Ein Rand der dekorativen Plattform darf hinter der unteren Navigation liegen, ohne benötigte Ziele zu verdecken.",
+        "Das Hochformat ordnet die Auswahl unterhalb der räumlichen Vorschau an. Die benötigten aktiven Schaltflächen sind vollständig sichtbar."
+      ]
+    },
+    {
+      "module": "cards",
+      "filename": "cards-table-1280x720.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 568103,
+      "sha256": "157a99edd926d34371453144851b1a0522fd2dd60f959429d8ea0a0990351890",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Der räumliche Tisch, Nachziehstapel, rote Ablagekarte 5 und Lumo als Gegenüber sind sichtbar. Die eigene Hand zeigt 7 Karten auf der angezeigten Seite 1/1.",
+        "Zahlen und Farbsymbole der Karten sind unterscheidbar; goldene Rahmen heben passende Karten hervor. Zurück, Pause, Seitensteuerung und Ziehen bleiben sichtbar.",
+        "Karte legen ist im aufgenommenen Zustand deaktiviert, da noch keine Handkarte gewählt ist. Kein zusätzlicher blockierender Material-, Pflichttext- oder HUD-Befund."
+      ]
+    },
+    {
+      "module": "cards",
+      "filename": "cards-table-2400x1080.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-2400x1080.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "bytes": 1028887,
+      "sha256": "f83e7e0dd30064841cd10689e73c8cf2b4a8c7258e6377a5fbc9528e54cb464a",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Der räumliche Tisch, Nachziehstapel, rote Ablagekarte 5 und Lumo als Gegenüber sind sichtbar. Die eigene Hand zeigt 7 Karten auf der angezeigten Seite 1/1.",
+        "Zahlen und Farbsymbole der Karten sind unterscheidbar; goldene Rahmen heben passende Karten hervor. Zurück, Pause, Seitensteuerung und Ziehen bleiben sichtbar.",
+        "Karte legen ist im aufgenommenen Zustand deaktiviert, da noch keine Handkarte gewählt ist. Kein zusätzlicher blockierender Material-, Pflichttext- oder HUD-Befund."
+      ]
+    },
+    {
+      "module": "cards",
+      "filename": "cards-table-412x915.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 289390,
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Der räumliche Tisch, Nachziehstapel, rote Ablagekarte 5 und Lumo als Gegenüber sind sichtbar. Die eigene Hand zeigt 3 Karten auf der angezeigten Seite 1/3.",
+        "Zahlen und Farbsymbole der Karten sind unterscheidbar; goldene Rahmen heben passende Karten hervor. Zurück, Pause, Seitensteuerung und Ziehen bleiben sichtbar.",
+        "Karte legen ist im aufgenommenen Zustand deaktiviert, da noch keine Handkarte gewählt ist. Kein zusätzlicher blockierender Material-, Pflichttext- oder HUD-Befund."
+      ]
+    },
+    {
+      "module": "cards",
+      "filename": "cards-table-690x829.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-690x829.png",
+      "dimensions": [
+        690,
+        829
+      ],
+      "bytes": 429629,
+      "sha256": "62bd3ce901232399b1f3fb2181d010923a84b904c4f42beec4cfec48feb76042",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Der räumliche Tisch, Nachziehstapel, rote Ablagekarte 5 und Lumo als Gegenüber sind sichtbar. Die eigene Hand zeigt 5 Karten auf der angezeigten Seite 1/2.",
+        "Zahlen und Farbsymbole der Karten sind unterscheidbar; goldene Rahmen heben passende Karten hervor. Zurück, Pause, Seitensteuerung und Ziehen bleiben sichtbar.",
+        "Karte legen ist im aufgenommenen Zustand deaktiviert, da noch keine Handkarte gewählt ist. Kein zusätzlicher blockierender Material-, Pflichttext- oder HUD-Befund."
+      ]
+    },
+    {
+      "module": "rhythm",
+      "filename": "01_rhythm_tour_map.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/01_rhythm_tour_map.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 390767,
+      "sha256": "fa3da132de4e96f962a849baaa71e037533bbd35b88b8a2560361c5256dd55df",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die Sternentour zeigt 0/4 Bühnen, Wiesenbühne und das Ziel 16 von 40 Tönen. Die Erläuterung, dass Fehler erlaubt sind, ist vollständig lesbar.",
+        "Modus, Bühne, Entdecken, Los geht’s und Rückkehr sind im Modal getrennt sichtbar. Das dahinterliegende Bühnenbild darf vom aktiven Modal überdeckt sein."
+      ]
+    },
+    {
+      "module": "rhythm",
+      "filename": "02_rhythm_slide.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 655547,
+      "sha256": "d004d9dab0542123d025bc1923aa3845ddf547fb0d73fc752d934722d401a420",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Vier farblich getrennte Spuren, Zielmarken und vier Eingabefelder sind sichtbar. Die zusammenhängende Slide-Geometrie führt zur benachbarten Spur.",
+        "Die Aufforderung Zur nächsten Spur, Punkte/Combo und Bühnenfortschritt sind lesbar; Pause und Rückkehr bleiben frei. Das Lumo-Motiv auf der Bühne ist sichtbar."
+      ]
+    },
+    {
+      "module": "rhythm",
+      "filename": "03_rhythm_tour_result.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/03_rhythm_tour_result.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 422013,
+      "sha256": "d283fb8d52417ff0623fa0ca376a2e507745dce0c8540f52e2ab6036497d290f",
+      "original_bundle_bytes_equal": true,
+      "actually_opened_individually_in_this_review": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Das Ergebnis zeigt zwei Sterne, 2445 Punkte, 54 Prozent Treffer und die Freischaltung der nächsten Bühne. Combo- und Bonusinformationen sind lesbar.",
+        "Noch einmal spielen, Zur Tourkarte und Zur Spielewelt sind vollständig sichtbar; kein blockierender Überdeckungsbefund im Ergebnisdialog."
+      ]
+    }
+  ],
+  "current_module_logs": [
+    {
+      "entry": "nextgen-evidence/nextgen/cards_table_capture-rendered.log",
+      "sha256": "eecb702cd200bcbb695665dc4b060aa33463fdb0023ba4bb6a5321c4fe352ef4",
+      "bytes": 1162,
+      "original_bundle_bytes_equal": true,
+      "required_marker_found": "CARDS_TABLE_RENDER_PASS renderer=X11 images=4",
+      "error_or_timeout_markers": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ],
+      "tests_rerun_by_reviewer": false,
+      "captures": 4
+    },
+    {
+      "entry": "nextgen-evidence/nextgen/cards_table_regression-headless.log",
+      "sha256": "2f8bfa4354789504aa3ee902f3a83ca7bf7a55cdcb4645159caa9db04c63ab9e",
+      "bytes": 556,
+      "original_bundle_bytes_equal": true,
+      "required_marker_found": "CARDS_TABLE_RUNTIME_PASS checks=208 failures=0",
+      "error_or_timeout_markers": [],
+      "warnings": [],
+      "tests_rerun_by_reviewer": false,
+      "checks": 208
+    },
+    {
+      "entry": "nextgen-evidence/nextgen/kart_nextgen_garage_regression-headless.log",
+      "sha256": "46a285630f61100232ed1b4a2c8835255a2927cd97e4d5e5fb4209e97fb6f044",
+      "bytes": 732,
+      "original_bundle_bytes_equal": true,
+      "required_marker_found": "[NextGenGarage] PASS 93 checks; captures=0",
+      "error_or_timeout_markers": [],
+      "warnings": [],
+      "tests_rerun_by_reviewer": false,
+      "checks": 93
+    },
+    {
+      "entry": "nextgen-evidence/nextgen/kart_nextgen_garage_regression-rendered.log",
+      "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5",
+      "bytes": 1383,
+      "original_bundle_bytes_equal": true,
+      "required_marker_found": "[NextGenGarage] PASS 118 checks; captures=12",
+      "error_or_timeout_markers": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ],
+      "tests_rerun_by_reviewer": false,
+      "checks": 118,
+      "captures": 12
+    },
+    {
+      "entry": "nextgen-evidence/nextgen/learning_world_capture-rendered.log",
+      "sha256": "40303789bd5aa748900d0224ff1486a3c4a06b0f54fbe690a532f8ea54681ddd",
+      "bytes": 8466,
+      "original_bundle_bytes_equal": true,
+      "required_marker_found": "[LearningCapture] PASS captures=25",
+      "error_or_timeout_markers": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ],
+      "tests_rerun_by_reviewer": false,
+      "captures": 25,
+      "same_bytes_as_original_preview_render_log": true
+    },
+    {
+      "entry": "nextgen-evidence/nextgen/learning_world_regression-headless.log",
+      "sha256": "31cfdd02030c31b3d783750ce0f984d4988ee22bd87e5918be5a02ffbbebca9a",
+      "bytes": 10597,
+      "original_bundle_bytes_equal": true,
+      "required_marker_found": "[LearningWorld] PASS checks=5340",
+      "error_or_timeout_markers": [],
+      "warnings": [],
+      "tests_rerun_by_reviewer": false,
+      "checks": 5340
+    },
+    {
+      "entry": "nextgen-evidence/nextgen/rhythm_tour_play_regression-headless.log",
+      "sha256": "12c16889bcb427a5b8cc09878a7652e23091e07b6c3f9bb9765f6bd2e00def7b",
+      "bytes": 598,
+      "original_bundle_bytes_equal": true,
+      "required_marker_found": "[RhythmTourPlay] PASS checks=87: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout",
+      "error_or_timeout_markers": [],
+      "warnings": [],
+      "tests_rerun_by_reviewer": false,
+      "checks": 87
+    },
+    {
+      "entry": "nextgen-evidence/nextgen/rhythm_tour_play_regression-rendered.log",
+      "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9",
+      "bytes": 1247,
+      "original_bundle_bytes_equal": true,
+      "required_marker_found": "[RhythmTourPlay] PASS checks=93: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout",
+      "error_or_timeout_markers": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ],
+      "tests_rerun_by_reviewer": false,
+      "checks": 93
+    },
+    {
+      "entry": "nextgen-evidence/nextgen/rhythm_tour_regression-headless.log",
+      "sha256": "2d7b3c234aed5745baeff022044bd6717611de1bfefa8c787f6fc79acc4998e2",
+      "bytes": 580,
+      "original_bundle_bytes_equal": true,
+      "required_marker_found": "[RhythmTour] PASS checks=2118: distinct fair charts, three difficulties, non-perfect campaign and additive saves",
+      "error_or_timeout_markers": [],
+      "warnings": [],
+      "tests_rerun_by_reviewer": false,
+      "checks": 2118
+    }
+  ],
+  "renderer_manifests": [
+    {
+      "entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/capture.json",
+      "sha256": "4b1148672f44bd85775c0c26c88993306cfcd9670b85715bef35e6bcce60fad4",
+      "bytes": 2521,
+      "original_bundle_bytes_equal": true,
+      "original_data": [
+        {
+          "draw_calls": 224,
+          "height": 720,
+          "host_behavior": "greeting_wave",
+          "name": "garage-1280x720",
+          "renderer": "gl_compatibility",
+          "selected_kart": "comet",
+          "width": 1280,
+          "zoom": 1.0
+        },
+        {
+          "draw_calls": 221,
+          "height": 720,
+          "host_behavior": "point_portal",
+          "name": "selection-1280x720",
+          "renderer": "gl_compatibility",
+          "selected_kart": "gecko_velo",
+          "width": 1280,
+          "zoom": 1.0
+        },
+        {
+          "draw_calls": 194,
+          "height": 720,
+          "host_behavior": "point_portal",
+          "name": "zoom-1280x720",
+          "renderer": "gl_compatibility",
+          "selected_kart": "gecko_velo",
+          "width": 1280,
+          "zoom": 0.8
+        },
+        {
+          "draw_calls": 677,
+          "height": 720,
+          "host_behavior": "greeting_wave",
+          "name": "track-goals-1280x720",
+          "renderer": "gl_compatibility",
+          "selected_kart": "gecko_velo",
+          "width": 1280,
+          "zoom": 1.0
+        },
+        {
+          "draw_calls": 176,
+          "height": 915,
+          "host_behavior": "greeting_wave",
+          "name": "garage-412x915",
+          "renderer": "gl_compatibility",
+          "selected_kart": "comet",
+          "width": 412,
+          "zoom": 1.0
+        },
+        {
+          "draw_calls": 173,
+          "height": 915,
+          "host_behavior": "point_portal",
+          "name": "selection-412x915",
+          "renderer": "gl_compatibility",
+          "selected_kart": "gecko_velo",
+          "width": 412,
+          "zoom": 1.0
+        },
+        {
+          "draw_calls": 175,
+          "height": 915,
+          "host_behavior": "point_portal",
+          "name": "zoom-412x915",
+          "renderer": "gl_compatibility",
+          "selected_kart": "gecko_velo",
+          "width": 412,
+          "zoom": 0.799999782017299
+        },
+        {
+          "draw_calls": 640,
+          "height": 915,
+          "host_behavior": "greeting_wave",
+          "name": "track-goals-412x915",
+          "renderer": "gl_compatibility",
+          "selected_kart": "gecko_velo",
+          "width": 412,
+          "zoom": 1.0
+        },
+        {
+          "draw_calls": 226,
+          "height": 1080,
+          "host_behavior": "greeting_wave",
+          "name": "garage-2400x1080",
+          "renderer": "gl_compatibility",
+          "selected_kart": "comet",
+          "width": 2400,
+          "zoom": 1.0
+        },
+        {
+          "draw_calls": 223,
+          "height": 1080,
+          "host_behavior": "point_portal",
+          "name": "selection-2400x1080",
+          "renderer": "gl_compatibility",
+          "selected_kart": "gecko_velo",
+          "width": 2400,
+          "zoom": 1.0
+        },
+        {
+          "draw_calls": 194,
+          "height": 1080,
+          "host_behavior": "point_portal",
+          "name": "zoom-2400x1080",
+          "renderer": "gl_compatibility",
+          "selected_kart": "gecko_velo",
+          "width": 2400,
+          "zoom": 0.7999999031188
+        },
+        {
+          "draw_calls": 647,
+          "height": 1080,
+          "host_behavior": "greeting_wave",
+          "name": "track-goals-2400x1080",
+          "renderer": "gl_compatibility",
+          "selected_kart": "gecko_velo",
+          "width": 2400,
+          "zoom": 1.0
+        }
+      ],
+      "scope": "Desktop-Renderer-Zähler und Zustandsdaten; keine Geräte-FPS-Messung."
+    },
+    {
+      "entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-render.json",
+      "sha256": "2e589cfb223c58235c7f2fa094d21b32fb1c432e81dec02f117398dafe916fac",
+      "bytes": 822,
+      "original_bundle_bytes_equal": true,
+      "original_data": {
+        "android_device_measurement": false,
+        "json_mailbox_roundtrip": true,
+        "public_fixture": true,
+        "renderer": "X11",
+        "static_room_batches": 13,
+        "static_room_box_instances": 146,
+        "uploaded_floor_transforms_checked": 20,
+        "views": [
+          {
+            "density": 1.0,
+            "draw_calls": 361.0,
+            "height": 720,
+            "primitives": 176450.0,
+            "width": 1280
+          },
+          {
+            "density": 1.0,
+            "draw_calls": 241.0,
+            "height": 915,
+            "primitives": 132500.0,
+            "width": 412
+          },
+          {
+            "density": 1.0,
+            "draw_calls": 332.0,
+            "height": 829,
+            "primitives": 174950.0,
+            "width": 690
+          },
+          {
+            "density": 2.625,
+            "draw_calls": 368.0,
+            "height": 1080,
+            "primitives": 179510.0,
+            "width": 2400
+          }
+        ],
+        "visible_face_materials_checked": true
+      },
+      "scope": "Desktop-Renderer-Zähler und Zustandsdaten; keine Geräte-FPS-Messung."
+    }
+  ],
+  "learning_preview_identity": {
+    "prior_review": "docs/evidence/studio-2019-review-notes/learning-76980-review.json",
+    "prior_review_sha256": "974a3af05f2822bbec3825c7bf27815c04ab5e8c763bdefd568ad3baffe0ee36",
+    "original_preview_artifact_id": 14049634680,
+    "original_preview_zip_sha256": "203e9840256e076a75fa296497e78be2339f3526e8735269728783170b4cea3b",
+    "images_compared": 25,
+    "exact_matches": 25,
+    "differences": 0,
+    "current_bundle_render_log_exactly_matches_original_preview_render_log": true,
+    "images": [
+      {
+        "filename": "bridge_hundred-complete-2400x1080.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+        "preview_entry": "images/bridge_hundred-complete-2400x1080.png",
+        "dimensions": [
+          2400,
+          1080
+        ],
+        "bytes": 723952,
+        "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "bridge_hundred-complete-412x915.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+        "preview_entry": "images/bridge_hundred-complete-412x915.png",
+        "dimensions": [
+          412,
+          915
+        ],
+        "bytes": 135397,
+        "sha256": "38d569ebbf45570cdb5747e23293c87fe03d15e2621e2a3c597ba06a0eba00f0",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "bridge_hundred-complete.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete.png",
+        "preview_entry": "images/bridge_hundred-complete.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 294085,
+        "sha256": "c269ecf31faf3162eb82b33283745c6abe6421b9631fca8c10bb00b5164b950f",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "bridge_hundred-start-2400x1080.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-start-2400x1080.png",
+        "preview_entry": "images/bridge_hundred-start-2400x1080.png",
+        "dimensions": [
+          2400,
+          1080
+        ],
+        "bytes": 717882,
+        "sha256": "371abc23b20bf4ff7e01396bc800b4fd3fec78584948a3cdbb858cd7fbc60303",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "bridge_hundred-start-412x915.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-start-412x915.png",
+        "preview_entry": "images/bridge_hundred-start-412x915.png",
+        "dimensions": [
+          412,
+          915
+        ],
+        "bytes": 140079,
+        "sha256": "2b3a3032edf94a32d504ebeadae50417371a4e5b4bb3a97227495bba5a49c8d3",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "bridge_hundred-start.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-start.png",
+        "preview_entry": "images/bridge_hundred-start.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 296121,
+        "sha256": "43473ce298b60179323b80845737ff6e58ab6ffe3a0559b2f6b4b10e3d3bfcfe",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "equal_groups-complete.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/equal_groups-complete.png",
+        "preview_entry": "images/equal_groups-complete.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 248558,
+        "sha256": "693e6d6443b55091ea64ce4a0a5431ef0f71015404890ed4d12653eafc9d67c5",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "equal_groups-start.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/equal_groups-start.png",
+        "preview_entry": "images/equal_groups-start.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 244128,
+        "sha256": "f87b424fa3b5773f144d533a24344d99817c145da218cd0ba7341f3e8d8bbea1",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "fraction_parts-complete.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/fraction_parts-complete.png",
+        "preview_entry": "images/fraction_parts-complete.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 259738,
+        "sha256": "bec647a0a84f5fc9f10f08fe2a04038e72f39d1dda13aa91102fec986b2da692",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "fraction_parts-start.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/fraction_parts-start.png",
+        "preview_entry": "images/fraction_parts-start.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 260944,
+        "sha256": "dae35db7fadfdbe3415146cc4a99f61b771b9d68f6d7a338deb413889e95b29e",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "math-complete-1280x720.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/math-complete-1280x720.png",
+        "preview_entry": "images/math-complete-1280x720.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 289242,
+        "sha256": "1d461553c8fc3dfead784a18fcd5fa348f7c7bc089e56b80a4a47d01dee90d8e",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "math-complete-2400x1080.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/math-complete-2400x1080.png",
+        "preview_entry": "images/math-complete-2400x1080.png",
+        "dimensions": [
+          2400,
+          1080
+        ],
+        "bytes": 716783,
+        "sha256": "e969d77a7a1286732ff7d65465b1ff122e9caa615b8b019f6d17f52429a30b0b",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "math-complete-412x915.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/math-complete-412x915.png",
+        "preview_entry": "images/math-complete-412x915.png",
+        "dimensions": [
+          412,
+          915
+        ],
+        "bytes": 126214,
+        "sha256": "c3f8e0527ff768531c9ff2b32e82c190f812d8ac2eccff31dac76b909a848ac1",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "math-start-1280x720.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/math-start-1280x720.png",
+        "preview_entry": "images/math-start-1280x720.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 287808,
+        "sha256": "6bdbeb76a691f0bcef8e8ab39511da5b5e16c94deddf950a87ab67d9c352286e",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "math-start-2400x1080.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/math-start-2400x1080.png",
+        "preview_entry": "images/math-start-2400x1080.png",
+        "dimensions": [
+          2400,
+          1080
+        ],
+        "bytes": 691167,
+        "sha256": "1ac999494b8a1ccb1ef9f8fcf7f46e7aa77d78de88cd4047cc2ffa6c63337bf7",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "math-start-412x915.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/math-start-412x915.png",
+        "preview_entry": "images/math-start-412x915.png",
+        "dimensions": [
+          412,
+          915
+        ],
+        "bytes": 129174,
+        "sha256": "5f4f430fc7ba90b9223562087d92e73eccd98d5459c414f97cee77f89aad19e0",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "math-ten-1280x720.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/math-ten-1280x720.png",
+        "preview_entry": "images/math-ten-1280x720.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 288423,
+        "sha256": "4bc327656b40ce16795e08a5427f8c6bf541115ae8b2126763237dda0b533ae0",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "math-ten-2400x1080.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/math-ten-2400x1080.png",
+        "preview_entry": "images/math-ten-2400x1080.png",
+        "dimensions": [
+          2400,
+          1080
+        ],
+        "bytes": 705796,
+        "sha256": "4795caf4663c9b51167cb21243608d8c7ed354d4bf07fd6cb9293e95dde30db9",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "math-ten-412x915.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/math-ten-412x915.png",
+        "preview_entry": "images/math-ten-412x915.png",
+        "dimensions": [
+          412,
+          915
+        ],
+        "bytes": 129708,
+        "sha256": "5b55c28fffbe66904672af973af520312066def2ff43f8ea8471c989f22ec341",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "plant_parts-complete.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/plant_parts-complete.png",
+        "preview_entry": "images/plant_parts-complete.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 301229,
+        "sha256": "ae81e7c0cd33a0d13a912d7340e5976641ac70fd7c673a0232119c01ea34fca2",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "plant_parts-start.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/plant_parts-start.png",
+        "preview_entry": "images/plant_parts-start.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 284840,
+        "sha256": "0013fd54ec89d2cca1829bf1d13bf331c75c1defcc800f12b8540bc292913779",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "subtract_ten-complete.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/subtract_ten-complete.png",
+        "preview_entry": "images/subtract_ten-complete.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 287414,
+        "sha256": "412b0990f744720991fe483e4c87d2cf442fabca9be0b4df273dc326eb4086d5",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "subtract_ten-start.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/subtract_ten-start.png",
+        "preview_entry": "images/subtract_ten-start.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 288792,
+        "sha256": "268e8c2d671205894611bc6435aeeceb2ab0ce0d9d28ead0bd065b853135a7c1",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "syllables-complete.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/syllables-complete.png",
+        "preview_entry": "images/syllables-complete.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 243605,
+        "sha256": "11cebd9159f7b0098f6a861257dec87aac3ae0298e9646d11c38bb8d6db72917",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      },
+      {
+        "filename": "syllables-start.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/syllables-start.png",
+        "preview_entry": "images/syllables-start.png",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "bytes": 246466,
+        "sha256": "cd90ac66dd49f90c2ac876a6828f25cee5c90dddd32c4e4aac1ee859204b508b",
+        "original_bundle_bytes_equal": true,
+        "original_preview_zip_bytes_equal": true,
+        "prior_individual_review_hash_matches": true,
+        "reopened_in_this_bundle_review": false,
+        "basis": "Exakte Byteidentität mit dem bereits einzeln geöffneten aktuellen Previewbild; Einzelbefund in learning-76980-review.json."
+      }
+    ],
+    "source_scope": "Das Preview enthielt keinen Dirty-Stamp und wird nicht nachträglich als sauberer Checkout bezeichnet. Die byteidentischen Bilder sind jetzt zusätzlich an den Nextgen-Bereich dieses Originalbundles mit eigenem Quellstempel 76980 und leerem Dirty-Stamp gebunden.",
+    "visual_result_reference": "Die bereits einzeln geprüften sechs Hunderterbilder enthalten die getrennten Gleichheitsbalken und die lesbare dunkle Stellenwerttafel; ihre exakten PNG-Bytes sind unverändert in diesem Bundle vorhanden."
+  },
+  "scope_limits": [
+    "Die 25 Nextgen-, neun Studio- und sechs Touch-PASS-Einträge sind hier als Original-Artefaktroster geprüft. Die detaillierte aktuelle Logprüfung dieses Auftrags umfasst die neun aufgeführten Lern-/Garage-/Cards-/Rhythm-Logs; andere Modulprüfungen werden dadurch nicht als erneut ausgeführt behauptet.",
+    "Die zwölf Garagenansichten ersetzen nicht die separat geprüften sechs Werkstatt-Touchbilder. Diese Bilder zeigen keine vollständigen Rennen und keinen Leistungsnachweis auf Android.",
+    "Statische Cards- und Rhythm-Ansichten belegen Lesbarkeit, Spielzustand und sichtbare Raumgestaltung; sie belegen allein keine vollständigen Charakteranimationen, sämtliche Kartenregeln oder gemessene Musik-/Touchlatenz.",
+    "Die vom Integrator autorisierte kontrollierte Wiederholung des normativen Runs als Attempt 2 verwendet erfolgreiche Jobs erneut und wiederholt Gameplay. Ihr endgültiges Ergebnis wird hier nicht vorweggenommen; kein finaler Receipt und keine Gesamtfreigabe.",
+    "Keine Produkt-, Test- oder Gesamtberichtsänderung. Keine lokale Testwiederholung.",
+    "Desktop-Software-Rendering ist kein physischer Android-/Fold7-, FPS- oder Temperaturnachweis."
+  ]
+}

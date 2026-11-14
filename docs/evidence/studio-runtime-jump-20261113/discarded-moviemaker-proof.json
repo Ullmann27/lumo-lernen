@@ -1,0 +1,17 @@
+{
+  "status": "discarded_recording_due_to_moviemaker_resolution_mismatch",
+  "expected_resolution": [
+    960,
+    540
+  ],
+  "observed_resolution": [
+    720,
+    1280
+  ],
+  "encoded_frames": 240,
+  "duration_seconds": 10.0,
+  "video_sha256": "b8b5ef8e63f6d58b95c25f62b1c8954c987bf9c3f384d713727f5a0cebad3118",
+  "runtime_result": "PASS: all requested motion states, checkpoint1, no falls",
+  "delivered_as_final_video": false,
+  "reason": "MovieMaker read the project viewport dimensions before runtime resize; the final recording uses unchanged actual viewport images."
+}

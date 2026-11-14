@@ -1,0 +1,269 @@
+{
+  "kind": "actual_api35_failure_diagnosis_before_isolated_harness_fix",
+  "host_source": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "native_source": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "run_id": 43461547945,
+  "job_id": 132049288587,
+  "job_result": "failure",
+  "artifact_id": 14062416986,
+  "archive_sha256": "5831d58a021769a925bb943f84d82be89895870791433f4fd9cbd1421c441d3f",
+  "archive_bytes": 77771253,
+  "all_432_extracted_files_byte_verified": true,
+  "original_job_log_sha256": "95a08f5fa569c90488f47d4b4036baf5d26c6ead5eb261d806204e424cfff6ed",
+  "runtime": {
+    "sdk": 35,
+    "release": "15",
+    "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "model": "sdk_gphone64_x86_64"
+  },
+  "candidate_apk_identity": {
+    "apk_sha256": "d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93",
+    "flutter_source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "godot_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "godot_pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+    "versionName": "0.13.7",
+    "versionCode": 2019,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "local_x86_binary_download_or_verification": false,
+  "normal_tour": {
+    "status": "PASS",
+    "steps": 21,
+    "all_steps_ok": true,
+    "fatal_crashes": 0,
+    "result_sha256": "089a683df3b076d5c987112ff8fe67df29dd33aa798b15e647fdd8984d486bd9",
+    "scope": "APK/install, onboarding, Flutter atelier, real Kart touch/drive/pause/return, one local test profile, unchanged stored learning snapshot and simulated display sizes; this is separate from the following native Learning/Cards gate."
+  },
+  "failing_gate": {
+    "result": "FAIL",
+    "error": "RuntimeError: No live Flutter route: ['Neue Sätze offline vorlesen']",
+    "result_sha256": "50ba5159fd3c4612a7f6e54ead82c81376eb8444a8d9222c427be30ea7b6df70",
+    "callsite": ".github/probes/lumo_studio_surfaces_android_probe.py:105 local_voice_permission -> tap_flutter -> creative_android_probe.flutter_tap",
+    "learning_roundtrip_reached": false,
+    "cards_roundtrip_reached": false,
+    "local_model_assent_completed": false
+  },
+  "observed_cause": {
+    "finding": "Die begrenzte Suchschleife beobachtet jeweils vor einer Wischgeste. Nach der letzten erlaubten Geste endet sie ohne erneute Live-Abfrage. Der gesicherte abschließende Screenshot zeigt anschließend das gesuchte Ziel vollständig.",
+    "last_observation": "nextgen/voice-license-open-27-1-15.xml",
+    "last_observed_scroll_viewport": "[0,346][1080,1859]",
+    "last_observed_preceding_text": "Lumo Frei: eine helle deutsche Charakterstimme... bei y=1820..1859 abgeschnitten; der gesuchte Schalter ist noch nicht im abgefragten Baum.",
+    "computed_last_swipe_from_actual_viewport": {
+      "from": [
+        540,
+        1556
+      ],
+      "to": [
+        540,
+        649
+      ],
+      "duration_ms": 400,
+      "basis": "Unveränderte Helperformel mit20/80Prozent des tatsächlich beobachteten Scrollviewports; dies ist eine Quellcodeableitung, kein zusätzlicher Androidlauf."
+    },
+    "target_observations_before_failure": [
+      {
+        "file": "nextgen/voice-license-open-27--1-0.xml",
+        "sha256": "9671f7380053652801cadc55e3ba0e4c4522f575a6418c28a3493ec3df2b0156",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-1.xml",
+        "sha256": "5f367cc78d31dbd950a7f1c8fafa4d3f668e7352f1722cb3c70a253ae52f7368",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-2.xml",
+        "sha256": "5f367cc78d31dbd950a7f1c8fafa4d3f668e7352f1722cb3c70a253ae52f7368",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-3.xml",
+        "sha256": "5f367cc78d31dbd950a7f1c8fafa4d3f668e7352f1722cb3c70a253ae52f7368",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-4.xml",
+        "sha256": "5f367cc78d31dbd950a7f1c8fafa4d3f668e7352f1722cb3c70a253ae52f7368",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-5.xml",
+        "sha256": "5f367cc78d31dbd950a7f1c8fafa4d3f668e7352f1722cb3c70a253ae52f7368",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-6.xml",
+        "sha256": "dc855992a4113c7373b6890401cf76dd021922284be1d4f424f9e3b342c2bb24",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-7.xml",
+        "sha256": "a5a3d99fe36be29a69650145cf073fba8bab0134ef48aa80ee93fdfdfb4f77ab",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-8.xml",
+        "sha256": "5f367cc78d31dbd950a7f1c8fafa4d3f668e7352f1722cb3c70a253ae52f7368",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-9.xml",
+        "sha256": "5f367cc78d31dbd950a7f1c8fafa4d3f668e7352f1722cb3c70a253ae52f7368",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-10.xml",
+        "sha256": "5f367cc78d31dbd950a7f1c8fafa4d3f668e7352f1722cb3c70a253ae52f7368",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-11.xml",
+        "sha256": "dc855992a4113c7373b6890401cf76dd021922284be1d4f424f9e3b342c2bb24",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-12.xml",
+        "sha256": "49e17da54cc78bf1141112d329fb05577bc9ad74bdd43970099c0ffa228bf734",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-13.xml",
+        "sha256": "dc855992a4113c7373b6890401cf76dd021922284be1d4f424f9e3b342c2bb24",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-14.xml",
+        "sha256": "dc855992a4113c7373b6890401cf76dd021922284be1d4f424f9e3b342c2bb24",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27--1-15.xml",
+        "sha256": "dc855992a4113c7373b6890401cf76dd021922284be1d4f424f9e3b342c2bb24",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-0.xml",
+        "sha256": "5f367cc78d31dbd950a7f1c8fafa4d3f668e7352f1722cb3c70a253ae52f7368",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-1.xml",
+        "sha256": "22da4d3d19d7c9b146f740461f6a5ebeb19fdec1a867e9ec0a68a2af9de1ffc4",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-2.xml",
+        "sha256": "988525ab5631d97b95a01521b5c375c54ff5f1a54792cdb460cf46ef045e6b5d",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-3.xml",
+        "sha256": "c612343dd3b5cf1b963453d59cb18c6afb912b6929a9112f3a45f9e577a8c76c",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-4.xml",
+        "sha256": "034179b06a254c52e6499c469b3a02c96d12db29b029e9e98004746974b152b7",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-5.xml",
+        "sha256": "af32f8377800c8b5087b7e7c572216ed58bb38985a822b59427b8e97a2955af6",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-6.xml",
+        "sha256": "058ad0739a1d039c0aaed162d57fb8c3e002fd3b6338cac079d97b9911bc9db9",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-7.xml",
+        "sha256": "4126d3c0abed109e932b8fa72616e21beb4d6b2f541f45c75336ff927ca57366",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-8.xml",
+        "sha256": "83bbcda67f9fc99bc9a94b1c7023558e6640ff6117afd1dd36283a15c1ea1a9b",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-9.xml",
+        "sha256": "fef3134afe91bd462bc9099a49270693de5af439ead4cdeef5af251a22402878",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-10.xml",
+        "sha256": "c041f675f8e3b7aa9461e2b6bf670b05620b87e9067139bcd1ecc9955ee599b2",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-11.xml",
+        "sha256": "50cb3e0ea8417e6dcafa5e2614d1f9c21f94206ed1b0d2442f141b2b66ced45a",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-12.xml",
+        "sha256": "c2b2f16f6c126589d0f9feab64ef909cf6878d6a479063627f17da5620d33f9e",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-13.xml",
+        "sha256": "eb0ecdc9fb3b42126bb639184c0bee68474c5eb96431c539f74425bc9991ffc2",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-14.xml",
+        "sha256": "470bbb02fa3efec7265ea6e93682bb78329271d86e148c330dbe4fe847d5040b",
+        "matching_targets": 0
+      },
+      {
+        "file": "nextgen/voice-license-open-27-1-15.xml",
+        "sha256": "e5d0bb44744a47c2f2086c4233ad40d2e119729871f4ba93600b657d9396c5e9",
+        "matching_targets": 0
+      }
+    ],
+    "interpretation_limit": "Eine letzte Live-Abfrage fehlt tatsächlich. Vollständige Sichtbarkeit im Fehlerbild beweist weder erfolgreiche Bedienung noch Freigabe des Modells. Ein Produkt-/Semantikfehler des Schalters ist hier nicht nachgewiesen; die korrigierte Probe muss weiter real auf Android laufen."
+  },
+  "actually_opened_images": [
+    {
+      "file": "nextgen/99_nextgen_failure.png",
+      "sha256": "4f49884af94ace8c9b4ce8220e06e18c205873d020eb93b7e90d9a4c01dc99df",
+      "observed": "Elternbereich/Ton und Stimme sichtbar. Neue Sätze offline vorlesen samt ausgeschaltetem Schalter vollständig im mittleren Scrollbereich. Kein Lizenzdialog geöffnet."
+    },
+    {
+      "file": "nextgen/voice-license-open-27-missing.png",
+      "sha256": "4f49884af94ace8c9b4ce8220e06e18c205873d020eb93b7e90d9a4c01dc99df",
+      "same_bytes_as_final_failure": true
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "sha256": "2408d2f47ce227558e41c231e3093ee71e4bb04231f465ec91861875940684ed",
+      "matches_exact_host_source": true
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "sha256": "8bd1d84aeef0803852227b1e20776b0a0dc99cde86d95ebc3d6843a13efb832c",
+      "matches_exact_host_source": true
+    },
+    {
+      "path": "lib/features/settings/settings_content.dart",
+      "sha256": "0f692e8dcd4d3562feaf443631aee7b5eb013e62495f537f1f996835f8b13cb1",
+      "matches_exact_host_source": true
+    }
+  ],
+  "proposed_bounded_repair": "Nach N erlaubten Gesten noch einmal denselben realen Zielselektor auswerten; keine zusätzliche Scrollgeste, keine synthetischen Zielkoordinaten und kein Erfolg bei weiterhin fehlendem Ziel. Elternfreigabe unverändert.",
+  "current_acceptance": "NO complete API35 native-surface acceptance; no Android17/Fold7/performance/release approval.",
+  "product_or_ci_changes": false
+}

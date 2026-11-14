@@ -1,0 +1,626 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_at_utc": "2026-11-13T23:42:25.269857+00:00",
+  "status": "COMPLETE_SELECTED_VISUAL_REVIEW_NO_BLOCKING_FINDING",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "native_tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+  "workflow_run_id": 43524051371,
+  "workflow_attempt": 1,
+  "workflow_conclusion_from_current_metadata": "success",
+  "original_bundle": {
+    "artifact_id": 14085523056,
+    "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-original.zip",
+    "bytes": 199274727,
+    "sha256": "3b4fcac817efd007797658117f3c62185e3834cbdd624de02d6072fce688a798",
+    "members": 4447,
+    "crc_check": "PASS",
+    "source_stamp_groups": [
+      {
+        "group": "nextgen-evidence/nextgen",
+        "source_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+        "dirty": ""
+      },
+      {
+        "group": "studio-evidence",
+        "source_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+        "dirty": "",
+        "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c"
+      },
+      {
+        "group": "touch-evidence/build",
+        "source_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+        "dirty": "",
+        "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c"
+      },
+      {
+        "group": "touch-evidence/treasure",
+        "source_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+        "dirty": "",
+        "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c"
+      },
+      {
+        "group": "touch-evidence/workshop",
+        "source_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+        "dirty": "",
+        "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c"
+      }
+    ],
+    "clean_source_groups": 5,
+    "matching_tree_stamps_present": 4
+  },
+  "early_studio_original": {
+    "artifact_id": 14084682972,
+    "path": "/workspace/scratch/5987865ae883/qa/studio-803e-original.zip",
+    "bytes": 48010581,
+    "sha256": "a29ea9d83fcd5cb4f5561dd8cd82c9d56347e5faeb2c953f28bf8e628a3f3328",
+    "crc_check": "PASS",
+    "source_stamps": {
+      "source-sha.txt": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3\n",
+      "source-tree.txt": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c\n",
+      "source-dirty.txt": ""
+    }
+  },
+  "preserved_partial_review": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/character-animation-803e-partial-studio-review.json",
+    "bytes": 10176,
+    "sha256": "bd56dd5c0c2a27d7971b58b14a01125809b663b1cf58273209d4f7a3cfee440a"
+  },
+  "expected_selected_images": 13,
+  "individually_viewed_images": 13,
+  "selected_images_matched_to_original_bundle": 13,
+  "full_bundle_binding_complete": true,
+  "entries": [
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "bytes": 605286,
+      "sha256": "eba10e3d7c56465094a8a544c1cbc5050f7ca9137f9f9334dff00c41401f49a1",
+      "width": 690,
+      "height": 829,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_combined_zip": true,
+      "visual_result": "NO_VISIBLE_BLOCKING_FINDING_IN_SELECTED_IMAGE",
+      "findings": [
+        "Die Fuchsfigur ist in einer Luftpose vor der erhöhten nächsten Plattform sichtbar; Kopf, Körper, Arme, Beine und Schwanz bilden eine zusammenhängende Silhouette ohne sichtbar abgetrennte Gliedmaßen.",
+        "Plattformen, Weg, Kristalle und räumliche Tiefe bleiben erkennbar. Insel-, Etappen- und Halten-zum-höher-Springen-Hinweise sind lesbar.",
+        "Linker Bewegungsstick und rechter Sprungknopf liegen sichtbar getrennt im Bild; Zurück und Pause haben eigene obere Flächen."
+      ],
+      "limits": [
+        "Der Moment der Luftpose allein belegt keine Sprunghöhe, Kollisionsqualität, Eingabelatenz oder gemessene Bildrate. Die Bildgröße ist kein physischer Fold7-Nachweis."
+      ]
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "bytes": 473524,
+      "sha256": "8dad3d2796bb0003b1681f128870eca0e9d76b5df696c828274cbf17638bb5c0",
+      "width": 412,
+      "height": 915,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_combined_zip": true,
+      "visual_result": "NO_VISIBLE_BLOCKING_FINDING_IN_SELECTED_IMAGE",
+      "findings": [
+        "Die Figur steht in einer Bodenpose auf dem Steinweg der Startinsel; die sichtbaren Füße und der Schatten haben Bezug zur Plattform, ohne im Bild offensichtliches Durchsinken.",
+        "Die schmale Portraitansicht hält Zurück, Pause, Bewegungsstick, Sprungaktion und Sprunghinweis sichtbar getrennt.",
+        "Der obere Zähler bricht kontrolliert über mehrere Zeilen um. Die kommenden Plattformen und der Weg bleiben im mittleren Bildbereich sichtbar."
+      ],
+      "limits": [
+        "Ein Landestandbild kann weder die komplette Landesequenz noch die Zuverlässigkeit jeder Kollision belegen. Diese Prüfung ist Desktop-Renderer-Evidenz, keine Android-Ausführung."
+      ]
+    },
+    {
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "bytes": 1409243,
+      "sha256": "712c218b7d7ebab55028b239b27a42cee7dd236a4f3f12ff1299b5871e6ce21a",
+      "width": 1280,
+      "height": 720,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_combined_zip": true,
+      "visual_result": "NO_VISIBLE_BLOCKING_FINDING_IN_SELECTED_IMAGE",
+      "findings": [
+        "Eine cyan markierte Brücke und ein Haus sind als räumliche Objekte auf dem Gelände sichtbar; der Status meldet zwei Teile und 90 Grad.",
+        "Die Meldung „Brücke versetzt. Rückgängig stellt den vorherigen Platz wieder her.“ ist lesbar; Verschieben, Drehen, Rückgängig und Wiederholen bleiben in der oberen Reihe sichtbar.",
+        "Bauziel, Zoom-/Mittetasten und die Kategorien sind getrennt angeordnet. Die untere Bauteilauswahl zeigt rechts eine angeschnittene Folgeoption und eine horizontale Scrollleiste."
+      ],
+      "limits": [
+        "Aus dem Zustand allein werden keine tatsächliche Vorher-Nachher-Verschiebung, Undo-/Redo- oder Speicheroperationen abgeleitet; dafür sind die separat gebundenen aktuellen Spielprotokolle zuständig. Nicht alle Bauteile sind gleichzeitig sichtbar."
+      ]
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "bytes": 129588,
+      "sha256": "cbea53eb68d7d3a9e0c911c033fee24174833a3deb51fd7f05c24800334cce39",
+      "width": 640,
+      "height": 360,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_combined_zip": true,
+      "visual_result": "NO_VISIBLE_BLOCKING_FINDING_IN_SELECTED_IMAGE",
+      "findings": [
+        "Das aktuelle Bauziel wird im kleinen Querformat vollständig mit Titel, Aufgabe und beiden Aktionen angezeigt.",
+        "„Mein Bauwerk testen“ und „Abbrechen“ liegen innerhalb des Dialogs und innerhalb des Bildes, ohne Überdeckung ihrer Beschriftungen.",
+        "Der Dialog liegt über der Welt und dem scrollbaren Editor; die verbleibenden Hintergrundteile sind für den angezeigten Dialog nicht erforderlich."
+      ],
+      "limits": [
+        "Dieses kleine Fensterbild beweist noch keine Android-dp-Größe oder erfolgreiche Betätigung. Die sichtbaren197 Teile sind vorbereiteter Testzustand, kein Beleg, dass hier197 Objekte manuell gebaut wurden."
+      ]
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "bytes": 1284146,
+      "sha256": "1d71cff9276cdde7219a24818ff1f2403ed56c141a0b25754d69e0a818873352",
+      "width": 1080,
+      "height": 2400,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_combined_zip": true,
+      "visual_result": "NO_VISIBLE_BLOCKING_FINDING_IN_SELECTED_IMAGE",
+      "findings": [
+        "Der nach unten gescrollte Vorlagendialog zeigt Brücke, Sternenturm, Garten, Garten-/Hafen-/Insel-Parzelle und Leere Insel mit lesbaren Beschriftungen.",
+        "Der untere Abschluss „Abbrechen“ bleibt als eigene feste Aktion vollständig sichtbar. Scrollleiste und die am oberen Scrollrand teilweise abgeschnittene Starter-Haus-Zeile machen den Ausschnitt nachvollziehbar.",
+        "Der Hintergrundtitel ist in der schmalen Ansicht verkürzt; die aktuell maßgeblichen Dialogüberschrift und Dialogaktionen sind vollständig lesbar."
+      ],
+      "limits": [
+        "Nicht die gesamte Liste ist gleichzeitig sichtbar. Ein Standbild belegt weder den echten Wischvorgang noch dessen Freiheit von versehentlichen Aktivierungen; diese Aussagen werden nur den aktuellen Eingabeprotokollen zugeordnet."
+      ]
+    },
+    {
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "bytes": 57478,
+      "sha256": "8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2",
+      "width": 388,
+      "height": 390,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_combined_zip": true,
+      "visual_result": "NO_VISIBLE_BLOCKING_FINDING_IN_SELECTED_IMAGE",
+      "findings": [
+        "Der eigenständige Dialog „Platz für Neues?“ erläutert verständlich den vorübergehenden Auszug eines Bewohners, die zwei verbleibenden Bewohner und die Rückgabe von Holz, Stein und Münze.",
+        "Der Hinweis auf Rückgängig ist sichtbar. „Haus behalten“ und „Ja, umbauen“ sind getrennte, vollständig sichtbare Aktionen."
+      ],
+      "limits": [
+        "Die 388 × 390-Aufnahme zeigt ausschließlich den Dialog, keine Gesamtwelt und keine ausgeführte Umsiedlung. Ressourcenerstattung und Wiederherstellung werden hier nicht aus einem Bild behauptet."
+      ]
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "bytes": 436821,
+      "sha256": "e5c7126f114931c0f7776743120887d206e92874e5ff7206ff170aabdb2e169a",
+      "width": 1280,
+      "height": 720,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_combined_zip": true,
+      "visual_result": "NO_VISIBLE_BLOCKING_FINDING_IN_SELECTED_IMAGE",
+      "findings": [
+        "Kart und Fuchsfigur stehen sichtbar in einer räumlichen Werkstatt mit Podest, Werkzeugen, Reifenständer, Licht und Bodenschatten.",
+        "Kartliste, Kategorien, Sternestand, Lack-/Teile-/Effekt-Einstieg, Rückkehr und Rennen starten sind lesbar und räumlich vom Hauptmotiv getrennt.",
+        "Die linke Fahrzeugliste zeigt ein ausgewähltes Kart und sichtbare weitere Einträge; die untere Folgezeile ist Teil des erkennbar scrollbaren Ausschnitts."
+      ],
+      "limits": [
+        "Das Bild belegt keine ausgeführte Rundumsicht, keine Auswahlreaktion über Zeit und keine Aufwertung aller Strecken. Die Werkstattansicht ist kein Android-Leistungsnachweis."
+      ]
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "bytes": 864319,
+      "sha256": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b",
+      "width": 1080,
+      "height": 2400,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_combined_zip": true,
+      "visual_result": "NO_VISIBLE_BLOCKING_FINDING_IN_SELECTED_IMAGE",
+      "findings": [
+        "Die Portraitansicht zeigt den gelben Kart mit sitzender Fuchsfigur als räumliches Hauptmotiv, dazu getrennte Leistungswerte und Farb-/Felgen-/Neon-Auswahl.",
+        "Die ausgewählte goldene Lackfarbe ist markiert; Goldglanz, Neon und Weiß sind lesbar. Der Sternestand und die Rückkehraktion bleiben oben sichtbar.",
+        "Die unterste Aktion „Alle Teile zurücksetzen und ★ 16 zurückholen“ ist vollständig im Bild erreichbar dargestellt. Der Werkstatttitel wird oben mit Auslassungspunkten gekürzt."
+      ],
+      "limits": [
+        "Dies ist die sichtbare Rücksetzoption vor ihrer Bestätigung, kein aus dem Bild abgeleiteter Erstattungsnachweis. Nicht alle Optionen des Scrollbereichs sind gleichzeitig sichtbar."
+      ]
+    },
+    {
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "bytes": 655541,
+      "sha256": "2c7f33890b366729cbd3495c17234cb813d29cdce1070790bbf42ae78c9f5ea5",
+      "width": 1280,
+      "height": 720,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_combined_zip": true,
+      "visual_result": "NO_VISIBLE_BLOCKING_FINDING_IN_SELECTED_IMAGE",
+      "findings": [
+        "Vier räumlich nach hinten verlaufende Spuren, farbige Noten, eine sichtbare Folgerichtung und die Bühnenfigur sind erkennbar.",
+        "Die Meldung „Zur nächsten Spur!“ steht getrennt über dem Spielfeld; die vier breiten unteren Eingabeflächen mit 1 / D bis 4 / H bleiben vollständig sichtbar.",
+        "Punkte-, Combo- und Fortschrittsanzeige sowie Zurück und Pause sind lesbar. Lichtkegel und Sterne stören die Unterscheidung der vier Spuren nicht."
+      ],
+      "limits": [
+        "Die sichtbare Slide-Anweisung belegt allein weder musikalische Synchronität noch faire Zeitfenster oder erfolgreiche Mehrfingereingaben. Diese Aspekte bleiben den getrennten aktuellen Laufprotokollen zugeordnet."
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "bytes": 113792,
+      "sha256": "64cfd6c4bb10862a8cfb6499fe096282e273574a469dcdf2c80893b3aa43081a",
+      "width": 640,
+      "height": 360,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_combined_zip": true,
+      "visual_result": "NO_VISIBLE_BLOCKING_FINDING_IN_SELECTED_IMAGE",
+      "findings": [
+        "Der Titel, die Zeile „Mini · Drehpuzzle · 1 / 6 Teile · 1 Tipps“ und die konkrete Hilfemeldung sind vollständig lesbar.",
+        "Die untere sichtbare Reihe mit Drehen, beiden Teile-Tasten, Randteile, Bild ansehen und Ein Tipp bleibt innerhalb des Bildes; Zurück und Pause sind getrennt am oberen Rand.",
+        "Der mittlere Ausschnitt zeigt die räumliche Ablage, Bildfragmente und das hervorgehobene Feld; die große Oberfläche reduziert den sichtbaren Tischbereich, verdeckt aber keine der gezeigten Hauptaktionen."
+      ],
+      "limits": [
+        "Eine statische 640×360-Aufnahme belegt weder Android-dp noch Eingabelatenz. Die hier nicht sichtbaren weiteren Toolbar-Aktionen werden durch dieses Einzelbild nicht beurteilt."
+      ],
+      "byte_equal_original_early_studio_zip": true,
+      "early_review_sha256": "bd56dd5c0c2a27d7971b58b14a01125809b663b1cf58273209d4f7a3cfee440a"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "bytes": 509560,
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "width": 1280,
+      "height": 720,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_combined_zip": true,
+      "visual_result": "NO_VISIBLE_BLOCKING_FINDING_IN_SELECTED_IMAGE",
+      "findings": [
+        "Ein einzelnes Bildteil liegt auf dem zentralen blauen Brett; die Anzeige meldet 1 / 6 Teile und „Das passt! Dein Bild wächst.“.",
+        "Die restlichen Bildfragmente liegen auf zwei seitlichen Ablagen. Dicke, Perspektive und Schatten der Teile und Ablagen sind sichtbar.",
+        "Die unteren Aktionen einschließlich Speichern und Neues Puzzle sind vollständig sichtbar. Drehen ist erkennbar deaktiviert; Titel, Status, Pause und Zurück überlagern die Hauptaktionen nicht."
+      ],
+      "limits": [
+        "Das Bild zeigt den erreichten Zustand, nicht den gesamten Touch-, Rotations- oder Speicherablauf. Die Aussagen zu diesen Abläufen stammen getrennt aus den aktuellen zugehörigen Protokollen."
+      ],
+      "byte_equal_original_early_studio_zip": true,
+      "early_review_sha256": "bd56dd5c0c2a27d7971b58b14a01125809b663b1cf58273209d4f7a3cfee440a"
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "bytes": 1365772,
+      "sha256": "9cf63708774f49aef5abc66ea216c8dafe2bf6e6daee047bcc562ff45c55b44d",
+      "width": 1280,
+      "height": 720,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_combined_zip": true,
+      "visual_result": "NO_VISIBLE_BLOCKING_FINDING_IN_SELECTED_IMAGE",
+      "findings": [
+        "Die Fuchsfigur, räumliche Bäume, Blumen, Turm, Mauer und Schatten sind sichtbar. Figur und Bewegungsstick sind nicht vom Hinweisfenster verdeckt.",
+        "Der Hinweis zeigt 3 / 7 gelöste Hinweise und die Wahl zwischen Kristallwächter und Mondgarten; der Text erläutert, dass beide Funde für das Schloss benötigt werden.",
+        "Zurück, Rucksack, Pause, Springen und Ansehen liegen sichtbar getrennt innerhalb des Bildes. Die Fundmeldung „Brückenwappen“ ist lesbar.",
+        "Der Entdeckungszähler bricht vor der letzten 3 um, bleibt aber vollständig lesbar; darin liegt hier kein abgeschnittener Inhalt."
+      ],
+      "limits": [
+        "Dieses Bild belegt keine vollständige Reise, keine Wahl beider Wege und keine neue Gesicht-/Lippensynchronisierung. Aus der sichtbaren Figur wird keine zusätzliche Rig- oder Clip-Eigenschaft abgeleitet."
+      ],
+      "byte_equal_original_early_studio_zip": true,
+      "early_review_sha256": "bd56dd5c0c2a27d7971b58b14a01125809b663b1cf58273209d4f7a3cfee440a"
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "bytes": 4414005,
+      "sha256": "e14559539b807df855d18061d8e312ab69739d2e815f2f7948130cd2b8619fd7",
+      "width": 2176,
+      "height": 1812,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_combined_zip": true,
+      "visual_result": "NO_VISIBLE_BLOCKING_FINDING_IN_SELECTED_IMAGE",
+      "findings": [
+        "Der Abschlussdialog meldet sieben gelöste Hinweise, alle Schlüssel sowie drei Sterne und 54 Erfahrungspunkte; die oberen Zähler zeigen 7 / 7 und 3 / 3.",
+        "„Insel weiter erkunden“, „Neues Abenteuer“ und „Zur Spielewelt“ sind vollständig lesbar, getrennt und innerhalb des Bildes angeordnet.",
+        "Die 3D-Umgebung bleibt hinter dem Dialog sichtbar. Der obere Entdeckungszähler bricht vor der letzten 3 um, bleibt vollständig lesbar."
+      ],
+      "limits": [
+        "Der Abschluss ist ein im echten Renderer dargestellter Testzustand, kein Nachweis eines vollständigen Android-Abenteuers durch ein Kind oder einer physischen Fold7-Ausführung. Die Belohnungsverbuchung wird nicht allein aus dem Text abgeleitet."
+      ]
+    }
+  ],
+  "current_related_original_logs": [
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/jump_nextgen_capture-rendered.log",
+      "bytes": 1727,
+      "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3",
+      "observed_markers": [
+        "[JumpNextgenCapture] PASS 80 checks, 16 actual renderer frames and native two-finger jumps"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/jump_nextgen_regression-headless.log",
+      "bytes": 1997,
+      "sha256": "d9b281bc042b4978a0fced1a760668fffc6b892eae044121835ec4978c3d9444",
+      "observed_markers": [
+        "[JumpNextgen] PASS 84 checks: actual variable jumps, coyote, buffer, original rig, pause, dp layouts and isolated saves"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/build_nextgen_play_regression-headless.log",
+      "bytes": 687,
+      "sha256": "5d965821ba7508d9a4d83eb5c3a22f7db90aa25f810b22ec348961974bdfd61d",
+      "observed_markers": [
+        "[BuildNextgen] PASS checks=62: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/build_nextgen_play_regression-rendered.log",
+      "bytes": 1334,
+      "sha256": "4439cc99723397dd2a4ead00eea92141438eb24a56c360d22aa9308b4ba78552",
+      "observed_markers": [
+        "[BuildNextgen] PASS checks=70: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/build_settlement_play_regression-headless.log",
+      "bytes": 2069,
+      "sha256": "bddad00b5183a4e10a69a2b12daefdf519c1f5daeb65a2912fb181d1f561bf9a",
+      "observed_markers": [
+        "[SettlementPlay] PASS checks=127: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/build_settlement_play_regression-rendered.log",
+      "bytes": 2716,
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127",
+      "observed_markers": [
+        "[SettlementPlay] PASS checks=139: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/kart_nextgen_garage_regression-headless.log",
+      "bytes": 734,
+      "sha256": "85548fd5a6e77accad5c6a73357b753849880e7c327e71ceb951dc6073a2f9ab",
+      "observed_markers": [
+        "[NextGenGarage] PASS 93 checks; captures=0"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/kart_nextgen_garage_regression-rendered.log",
+      "bytes": 1383,
+      "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5",
+      "observed_markers": [
+        "[NextGenGarage] PASS 118 checks; captures=12"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/rhythm_tour_play_regression-headless.log",
+      "bytes": 600,
+      "sha256": "d227dd4228251b5e9dd1523af71676e5f4ccd2928188843335c0203ed29fe4e9",
+      "observed_markers": [
+        "[RhythmTourPlay] PASS checks=87: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/rhythm_tour_play_regression-rendered.log",
+      "bytes": 1247,
+      "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9",
+      "observed_markers": [
+        "[RhythmTourPlay] PASS checks=93: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "touch-evidence/build/build_dialog_density_regression-headless.log",
+      "bytes": 1436,
+      "sha256": "1307bed659258fafaa6405d25402f8cf591958f7a884d1cec2706f4364e7d192",
+      "observed_markers": [
+        "[BuildDialogDensity] PASS 2016 checks: bounded dialogs, preserved choices, actual scroll/select/cancel, >=48dp and restore"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "touch-evidence/build/build_dialog_density_regression-rendered.log",
+      "bytes": 3219,
+      "sha256": "67214f8a15915dbfab23d1b8a78beff1317179f81d3a5ed171f11a2608b855ff",
+      "observed_markers": [
+        "[BuildDialogDensity] PASS 2046 checks: bounded dialogs, preserved choices, actual scroll/select/cancel, >=48dp and restore"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "touch-evidence/workshop/kart_workshop_density_regression-headless.log",
+      "bytes": 3863,
+      "sha256": "2bf2418d495133cbaa5d4c4a84e66c1be0f9b3bcf0c0a9dfe778897e30c74e62",
+      "observed_markers": [
+        "[WorkshopDensity] PASS 4129 checks: eight layouts, actual >=48dp canvas targets, all palette/upgrade/purchase/refund/return touches"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "touch-evidence/workshop/kart_workshop_density_regression-rendered.log",
+      "bytes": 4510,
+      "sha256": "4ab2179a3f74f8cbc91725bfde5516237f5ccb7dc822377e3a384e60cffe188d",
+      "observed_markers": [
+        "[WorkshopDensity] PASS 4148 checks: eight layouts, actual >=48dp canvas targets, all palette/upgrade/purchase/refund/return touches"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "touch-evidence/treasure/treasure_density_regression-headless.log",
+      "bytes": 895,
+      "sha256": "1df99465018c0758f9c9a9d72ca4b1dc85a7cd2ef7dc901e8c778af25d4b3a2c",
+      "observed_markers": [
+        "[TreasureDensity] PASS checks=1085 captures=0; actual dp, edge touches, scroll, rotation, unchanged quests/saves/rewards"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "touch-evidence/treasure/treasure_density_regression-rendered.log",
+      "bytes": 1543,
+      "sha256": "f80f934417f5e54e5400426cc4b3f8be71226927a7697a3ff0f4c056156b05d0",
+      "observed_markers": [
+        "[TreasureDensity] PASS checks=1114 captures=14; actual dp, edge touches, scroll, rotation, unchanged quests/saves/rewards"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "studio-evidence/puzzle_rotation_regression-headless.log",
+      "bytes": 571,
+      "sha256": "eb6e0efe8ad9f642c5d6cb53e35b175a2679ff50441ddd45859e531d80fd81d9",
+      "observed_markers": [
+        "[PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "studio-evidence/puzzle_rotation_regression-rendered.log",
+      "bytes": 1218,
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+      "observed_markers": [
+        "[PuzzleRotation] PASS 4565 checks: orientation, legacy saves, real picking, touch rotation and resume"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "studio-evidence/treasure_exploration_regression-headless.log",
+      "bytes": 589,
+      "sha256": "02d20b766c253672fea75aa6cc8744460cb1134dd54beeb4d73fa6b743825b76",
+      "observed_markers": [
+        "[TreasureExploration] PASS 87 checks: branching, actual location questions, movement, legacy saves and original rewards"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    },
+    {
+      "artifact_entry": "studio-evidence/treasure_exploration_regression-rendered.log",
+      "bytes": 1236,
+      "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a",
+      "observed_markers": [
+        "[TreasureExploration] PASS 90 checks: branching, actual location questions, movement, legacy saves and original rewards"
+      ],
+      "scope": "Existing current 803e Godot/headless-or-desktop-renderer execution; not a physical Android run."
+    }
+  ],
+  "metadata_sources": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/native-original-artifact.json",
+      "bytes": 727,
+      "sha256": "49b1382e83d6d8c59842afcb41d077a4d3153cdcc2248e0c32095496884806b1"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/run-completed-original.json",
+      "bytes": 13411,
+      "sha256": "9eac18745735afbd5e6f3918198ec748f2936b59fc5db7aa563075082b2e11fa"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/jobs-completed-original.json",
+      "bytes": 19812,
+      "sha256": "1b07aceb20205b0c975f6b1fc4f0e470a71a48466cf77430b0eef86099dc6cf5"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/review-plan-extraction.json",
+      "bytes": 18534,
+      "sha256": "e192a122d8ed3ff1284a81ea5009634d148950350287021ea186d1e4b9295ce5"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/review-plan.json",
+      "bytes": 6004,
+      "sha256": "7cdc0715d8767c6d7ea3fa0648f9ca140efb724c98da9f423deaa1b2b9fbcfe6"
+    }
+  ],
+  "current_jobs": [
+    {
+      "id": 132225270715,
+      "name": "learning-preview",
+      "conclusion": "success"
+    },
+    {
+      "id": 132225271017,
+      "name": "touch-workshop",
+      "conclusion": "success"
+    },
+    {
+      "id": 132225271066,
+      "name": "gameplay",
+      "conclusion": "success"
+    },
+    {
+      "id": 132225271223,
+      "name": "touch-build",
+      "conclusion": "success"
+    },
+    {
+      "id": 132225271238,
+      "name": "touch-treasure",
+      "conclusion": "success"
+    },
+    {
+      "id": 132225271330,
+      "name": "studio",
+      "conclusion": "success"
+    },
+    {
+      "id": 132229996720,
+      "name": "new-worlds",
+      "conclusion": "success"
+    },
+    {
+      "id": 132237586623,
+      "name": "bundle-evidence",
+      "conclusion": "success"
+    },
+    {
+      "id": 132237747822,
+      "name": "archive-evidence",
+      "conclusion": "success"
+    }
+  ],
+  "result_scope": {
+    "selected_images_have_no_observed_blocking_visual_defect": true,
+    "entire_application_visual_approval": false,
+    "android_execution_approval": false,
+    "physical_fold7_performance_approval": false,
+    "final_apk_receipt": false
+  },
+  "limits": [
+    "All 13 selected images were individually opened from the new803e originals. The three earlier 803e Studio images were preserved and subsequently byte-compared to the original combined archive.",
+    "No 796b or 20fd screenshot approval was reused as 803e evidence. Historical baseline 2017 entries inside the archive are not counted as current 803e source stamps or tests.",
+    "This review covers only the 13 assigned views; it does not replace the root reviewer’s remaining 19 views or the final receipt.",
+    "Static screenshots establish visible state and layout, not full gameplay sequences, timing, 60 FPS, thermal behavior, input latency or physical Fold7 behavior.",
+    "Current related gameplay markers are read from bound original logs and are explicitly desktop Godot/headless evidence. No tests were rerun here.",
+    "Some scroll views show partial neighboring rows and some narrow background titles are shortened. Their actual displayed action labels and current modal controls were inspected, without claiming that every option is simultaneously visible.",
+    "No source, workflow, existing receipt, APK or GitHub state was changed."
+  ]
+}

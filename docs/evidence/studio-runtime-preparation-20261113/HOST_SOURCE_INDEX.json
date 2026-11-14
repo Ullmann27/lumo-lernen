@@ -1,0 +1,693 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-13T22:17:03.948766+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "branch": "chatgpt/lumo-studio-runtime-integration-20261113",
+  "parent": "908493ec29551bb6f7d7fa0e8ed23f8468a88bd8",
+  "base_tree": "b38d3f64848a9c7e0a4db4e2cc4d93e0dfa13fdc",
+  "scope": "HOST_PREPARATION_ONLY_AWAITING_NEW_NATIVE_COMMIT_AND_RECEIPT",
+  "file_count": 97,
+  "source_file_count": 31,
+  "total_bytes": 5067507,
+  "files": [
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 47960,
+      "sha256": "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6",
+      "git_blob": "3263e051efb35835b32df8d3df074c7db4db6a68",
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "bytes": 55952,
+      "sha256": "b46a5098615168fb0db1773ccbc1ae9d9fed3970fe4bb06d94afff43548255bb",
+      "git_blob": "9095cb600e8d241efa7e2320d98b767f82e26f70",
+      "mode": "100644"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "bytes": 48718,
+      "sha256": "1df347d88bf1da49bb22d50dc84c4a989752e84fbb9a04056d57037b6101c772",
+      "git_blob": "977e0c37f9bc93630ebbf1dc97b8257e0efc3512",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-capture-binding-20261113/after-capture-only-result.json",
+      "bytes": 438,
+      "sha256": "ddf8396f6ac35831bea6c90c4153bff757450856f3481099a75eb48bb4081e82",
+      "git_blob": "192d576716facd5ab990e599411f63e6e9146a6c",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-capture-binding-20261113/after-capture-only.log",
+      "bytes": 8362,
+      "sha256": "fd1f3d7d98a72b17f3d49904f1b7c6ab70b3edae880063ff32dee1a0adb97af3",
+      "git_blob": "63bd4112bc2a54a04eec92c6a60bc34497bae5a4",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-capture-binding-20261113/before-result.json",
+      "bytes": 348,
+      "sha256": "cc379bf8ec0d97904ba280d6be5d6d1b291bff3c87d83d9ff863b8fee80cac85",
+      "git_blob": "0c1c14f15e1ba46f616bd17e9a40848637b54552",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-capture-binding-20261113/before.log",
+      "bytes": 5866,
+      "sha256": "aa64bd4eae41485c15ae1e83bdff2343a6d9ebd13b7d2f4b281f0269e6073fc6",
+      "git_blob": "7771b0645e69411aa5660ccb2a9d60eb99e8316c",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-capture-binding-20261113/capture-focused-final-result.json",
+      "bytes": 567,
+      "sha256": "f222224af42a86511d1e0ce0d4ba171d1f128734fdcdc1b01a5e07e800cfee03",
+      "git_blob": "ac177554275a8566d4539b7eedd43325ea7c8342",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-capture-binding-20261113/capture-focused-final.log",
+      "bytes": 744,
+      "sha256": "6b37ab1cd644fc5f971e6cc234b852225d6f503255a5b2d19db6a0cc481e41cb",
+      "git_blob": "94a3a1e28e1419129893f2cc2e5a30ec0379684d",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-capture-binding-20261113/integrated-ast-preservation-result.json",
+      "bytes": 444,
+      "sha256": "45c342af23e011598fc23b33200c570c361d9631571c710b6037256a0f7a8647",
+      "git_blob": "9f29ba16876526cca247cc62a78fce1fe95abc7e",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-capture-binding-20261113/integrated-ast-preservation.log",
+      "bytes": 287,
+      "sha256": "26596092e28cf7d531b4869fc3452ce4aa08b6101bc4720f64e88a73f0f32d5c",
+      "git_blob": "1491ddf17858b5b4422a6e4cd8020732d20fe2d8",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-capture-binding-20261113/integrated-layout-and-capture-result.json",
+      "bytes": 449,
+      "sha256": "0aac5fb3ef877be62e64ea4355bc54afe2f322801da02b8fa6ca778ae9fe79b6",
+      "git_blob": "fd7303839ce1d0f83fb24828b0cfd7d56402972d",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-capture-binding-20261113/integrated-layout-and-capture.log",
+      "bytes": 8568,
+      "sha256": "33cc162e5faa31361789a3c4ee2dc5fabcc0b58c0fae3d00e9b6288bba8ed40b",
+      "git_blob": "f3d779db5106b4ba9eb81ebf0061822296281380",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/README.md",
+      "bytes": 3506,
+      "sha256": "5f6123c8fdf764023939294d6ee74f46c1939fc49248a26081c8097b505375a7",
+      "git_blob": "43371a5782c6d7786e8ea24c61bd11499f74b664",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/capture-binding-before-deadline-fix.log",
+      "bytes": 4492,
+      "sha256": "3411848e9499d41cb3c2dcafe409431cde542140048669932fbcb3ea7d2280e6",
+      "git_blob": "fa69cdc351629fbbebb0d6402fba581c41247937",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/capture-projection-return-green.log",
+      "bytes": 9441,
+      "sha256": "2f1635dbf9f11fb0566d1d76e70072c2ee293d1871b7125429e2a426152291f9",
+      "git_blob": "40f4abf1cddb3d9034843d5d713d0c80bd09f798",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/final-capture-projection-return-green.log",
+      "bytes": 9651,
+      "sha256": "fdbb63d411f6fe345d2bf8e48eabbd5d2801e3cdbd96f819a7c3c4a0f563c068",
+      "git_blob": "59b2ed33fd53486d0f488f1b12a6e7b3390dd2ea",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/flutter-return-green.log",
+      "bytes": 1370,
+      "sha256": "d9e622f3596c1186a50431e6cb6db9fc6ff6d15fc54be5956bceb6de25631b76",
+      "git_blob": "7dc91ca4bf77973be86fffcbaa8c7ef69aebe3a3",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/flutter-return-red.log",
+      "bytes": 5293,
+      "sha256": "74be862c7e8ce7d977aee5b717be28d22013f8bf773f089adc4754bfb1738494",
+      "git_blob": "903533c0739b0c07d1ab4504f9ac290c30caa194",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/host-source-freeze.json",
+      "bytes": 8851,
+      "sha256": "2d1a501694a8fd87765031f50eb25db7fff7744673722e0db9e1d01c3c2bf4d8",
+      "git_blob": "496a611bf4468bf4345c17c940a5be39b330283c",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/layout-contract-green.log",
+      "bytes": 1968,
+      "sha256": "d8e500e041357d15fea8490f56f4786d6031fd68b0a3d4d8f2a87ebce0872b2d",
+      "git_blob": "ad18c170f4f065b816ff6646d0d64866bbef6898",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/layout-contract-red.log",
+      "bytes": 20458,
+      "sha256": "a926f72af8b905c199127fb4bb5a1eb616dcd894302f45c3f155225b6aa43829",
+      "git_blob": "b8c8628fe8b8ec5d4d5ad3f9832d6ef2f8e2523e",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/legacy-ast-additive-red.log",
+      "bytes": 1304,
+      "sha256": "c01181f318680666ed32a167b7e48f68991bb2d86c32cd385a652d09884e9e51",
+      "git_blob": "46b4931d670375d5c639311b77bf46e406d1e509",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/lifecycle-layout-contracts-green.log",
+      "bytes": 2851,
+      "sha256": "cfc17558c9b93ff61a1fcbadac45b3d1ec45ed130fdbda28105eb2d1244ddebd",
+      "git_blob": "704d81a245830668fa8578a8d7b0b5eed91aa809",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/projection-counterexample.py",
+      "bytes": 1190,
+      "sha256": "6e1f0495d9cd5b583f640f4b74508d046ba6953732fbf2587d70da50e3ecd8ad",
+      "git_blob": "d06868f30d08707da085d0b68d95914e6c45b873",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/projection-green.log",
+      "bytes": 185,
+      "sha256": "99ead2bd4e4d33f99287353d297f574b42a5b47413a396db723b59ff720eb121",
+      "git_blob": "ff41bd2ade6045b4511b8dd25f2a0dd1dd212657",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/projection-red.log",
+      "bytes": 181,
+      "sha256": "7dba80aa5a72ba91ff1341ce407ee2fab1eece5740f9cbf9567263960e60f66b",
+      "git_blob": "befd2eb61fcbd2a9095d9ddfdf8172d0b75516cf",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/publisher-baseline-github.json",
+      "bytes": 343,
+      "sha256": "57c243a623e68f2a066edc954f4024eb7d980e86de94cd65383ee4f31d9cb9ce",
+      "git_blob": "4e68aeb9f40a02ee0e8425b1c8c2e2eada29943e",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/publisher-baseline-verified.json",
+      "bytes": 413,
+      "sha256": "61005809b57115b21ab708e22f6e42344b04cdf0ec37e1ec145ede7d883ee6cd",
+      "git_blob": "4251db7ad32c6f8c0d953e78427b62bdc6f5ac31",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/publisher-layout-legacy-green.log",
+      "bytes": 3000,
+      "sha256": "c178101c8a9c8eee46742e3a4c7880d1cad76faa76c7c239606066ce65ac7840",
+      "git_blob": "3be3303d8f6f45c6f698a05bafc88a6ce109bd1b",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/publisher-layout-red.log",
+      "bytes": 16269,
+      "sha256": "8483fc2904e0a59c1fef8415a78b5f1fb53968408e265f3ad5699159b934f98c",
+      "git_blob": "625c538462f04514e9c7b4713a3554228c519e34",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/real-cards-ocr-review.json",
+      "bytes": 2972,
+      "sha256": "843546e8dfd7fc6174ff9a19033f35520074433937ededbba9b988fe5489d55b",
+      "git_blob": "27a865fff414d3f836e6aef9f4959e617af39625",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/review.json",
+      "bytes": 4798,
+      "sha256": "e7ed7087fa3f425986cc732a39dc043293243e9654c8a037755a90da961bdfe2",
+      "git_blob": "7e709d72161ab8304e0b70bd58d79ea8cfd0026e",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-host-20261113/source-baseline-verified.json",
+      "bytes": 1181,
+      "sha256": "f3ded6308f2e8e9102ff1edd577a42ba2ea4e32392e9c51a8ec1c06cd4384515",
+      "git_blob": "8563b889b9ed3b6f2aa64a05e501bfed633399a7",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-root-review-20261113/execution.json",
+      "bytes": 692,
+      "sha256": "59a611294e93df421cf6a54035de36888bfd0293e17470d373415acd18c9b18e",
+      "git_blob": "0d8f188ea9d3c061ffcd0fc720b596a80b305bd6",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-root-review-20261113/freeze.json",
+      "bytes": 1718,
+      "sha256": "b01873c5bd041096ba5b9302cc23294e8ab927cd514ad11ed50ba5651e1bbd39",
+      "git_blob": "a775355e6d74e11c22567726182ed1bfa8e25315",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-root-review-20261113/integration-38-original.log",
+      "bytes": 7650,
+      "sha256": "19f98222d06cbf2a37826e1ac46f4903787272314d87f5d5f5105deaeaacbad9",
+      "git_blob": "5477438157293c055193bd793d4cad6cadecf6e7",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-root-review-20261113/review.json",
+      "bytes": 4613,
+      "sha256": "0ffa9e50906743044b94db8ce2a27d3b117a9a121a5a1f701f569beadac0970d",
+      "git_blob": "14acdc2283a8c73cb13c8ee1722b7b5b16cf094d",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-root-review-20261113/source-after.json",
+      "bytes": 11948,
+      "sha256": "fb53ec34e4f80fd3f425219770d518c96e77db59718992859f7afd8db8aa9c3f",
+      "git_blob": "37b746329fb3a8356535f72ac2edc8405e5eb4f7",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-cards-layout-root-review-20261113/source-before.json",
+      "bytes": 11948,
+      "sha256": "fb53ec34e4f80fd3f425219770d518c96e77db59718992859f7afd8db8aa9c3f",
+      "git_blob": "37b746329fb3a8356535f72ac2edc8405e5eb4f7",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/PREPARATION.json",
+      "bytes": 6890,
+      "sha256": "c49980d50e20f552860979e25310201847115b4109d1975fcacc4f02500b76e0",
+      "git_blob": "b10f3aaf23e6dfefc4f83df41f8291224a26b446",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/actionlint-final-result.json",
+      "bytes": 243,
+      "sha256": "0866987346072fa985ae3a235c25f4ac9f48a822d0cf01a2f3bd825cddf943e2",
+      "git_blob": "035b5ff5a669a233458c1549c5e6d180e05d6dc0",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/actionlint-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/actionlint-first-result.json",
+      "bytes": 243,
+      "sha256": "64f834bd2969b0b3c2914f326782304bf7bcf99c5baee38b40e3c6204609a1a6",
+      "git_blob": "a0bcbd95c92ff2b52241a5955ad1fa1f442cbcc9",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/actionlint-first.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/creative-contracts-final-result.json",
+      "bytes": 306,
+      "sha256": "193c7fdd3daad925e6b3401d3f7f2d1994cd0becd94cddb77ce6590b25d43b7e",
+      "git_blob": "3f87508b59fb9726db7579652fb14f582f1a1efc",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/creative-contracts-final.log",
+      "bytes": 3146,
+      "sha256": "46878f9a6c47bf6a8002dc3cc76d054885edcb8f5e9fc2efb4da6e6701b58b98",
+      "git_blob": "ee80e60e1317c4d346524f551ad03c587f345dc8",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/creative-contracts-first-result.json",
+      "bytes": 306,
+      "sha256": "a2b2e5b21af742182ec29426df678544771fb1fdbcb8a8fd75b86bb3bfd23706",
+      "git_blob": "6a2c1b26d5e2ddc21c0158d6b81718e7114cc3af",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/creative-contracts-first.log",
+      "bytes": 3146,
+      "sha256": "70dfa73924fceae696fdc23371ed427ccf40ebfbb9efc2e5e5ca91be80d8e503",
+      "git_blob": "4641604bd23f0356acbcfbd342e184c7bb0fce1c",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/download-action-source-review.json",
+      "bytes": 719,
+      "sha256": "bae73ac07370a03dce35827ed81b05bdb793e84278858fbf24d543616fdb5474",
+      "git_blob": "0b826aa19a9172ae1b25fefc3f7e44ccef32b3b5",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/scope-comparison.json",
+      "bytes": 1339,
+      "sha256": "7ad36fe7f5549b0ed87b8534f6500a8e477ece73f79928fb79ee34e6ffba772e",
+      "git_blob": "b2611d325278dbf448ab8ad3c3a97965d94438b1",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/shell-syntax.json",
+      "bytes": 9157,
+      "sha256": "925850905d6e8b6805c0883896c842ec1db3f2b760a087873c164f22d514faee",
+      "git_blob": "bf10543613a3ebdd480078a5a57eefa2e02c7e65",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-creative-required-integration-20261113/workflow-before.yml.txt",
+      "bytes": 41327,
+      "sha256": "64deb34a245f9ae55a5f4b7bc140717725ad1cd583e9a2041a78bb35c7c0a722",
+      "git_blob": "6f753f12e56108220a0e7f9e0028ee38e43965fd",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/api35/cards-native-safe-area-independent-review.json",
+      "bytes": 5182,
+      "sha256": "a5cd27cada4162421b61b524a3ff87dcb43c083fa91e6e229ecdebe1675fb94f",
+      "git_blob": "28fd3db61fd37f2950862ed48b43e395a415d1f9",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/api35/cards-publisher-legacy-independent-review.json",
+      "bytes": 6279,
+      "sha256": "c698193fb49ab25c38708bfeeffe26558c5f786f50b74dba4841535b895870b5",
+      "git_blob": "cafefcb5f4bc50ceb50e0f475f9e0c885fc9d6c6",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/spielwelt-accessibility-fix/REVIEW.json",
+      "bytes": 4706,
+      "sha256": "c573d417f51fc99e4b6fe1d9471ae633abbbb1a3e336ffca8ccd15748786ccc0",
+      "git_blob": "0b0aaf909b3ac0e8a89260dcd68e697672a6c898",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/spielwelt-accessibility-fix/evidence-file-manifest.json",
+      "bytes": 5471,
+      "sha256": "25fa5a9eca642185f47ca974ae67065c66d6fe705dd21ac82b60dc751a9b194f",
+      "git_blob": "d7eb7e56db0e408dae1fabae39149fb741db2eb0",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/spielwelt-accessibility-fix/flutter-version.json",
+      "bytes": 630,
+      "sha256": "07eaf8ffdc8062c69a0f6d31f1b9cae6b8ebee4e9be8912e9848c1f12d2ac93f",
+      "git_blob": "84a712bce42a9ebc81a4af834667fb5701c0e0de",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/spielwelt-accessibility-fix/product.patch",
+      "bytes": 635,
+      "sha256": "29c6ac8aebb98aa0230b9080c681aa2ec95574be463573687011742336cf5fff",
+      "git_blob": "bc6e0568ddf12aee9aa94f6c2f7846eb17e30e47",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/spielwelt-accessibility-fix/semantics-and-routing-after-result.json",
+      "bytes": 359,
+      "sha256": "c9bee28e1db133c8849cff88a26689476ecc2725086a3f2444afdfe0a5fae9ca",
+      "git_blob": "01cc0aadc6839e663800c2aeb86f651c1ca5f9f1",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/spielwelt-accessibility-fix/semantics-and-routing-after.log",
+      "bytes": 8256,
+      "sha256": "a8436099608b88e22724494b6a7b315f9d191321bcdd274dbc216fb45edca007",
+      "git_blob": "ee350ba98e1a468a68ab38b34c57170a06f428d6",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/spielwelt-accessibility-fix/semantics-and-routing-final-result.json",
+      "bytes": 531,
+      "sha256": "cb22a230aa668a4c35ee6bd4075f02a9e931f2d9f17013bb4ac2bf0eefd0930a",
+      "git_blob": "1eab68b28c15523fb7af70023d792e4c7233aeb4",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/spielwelt-accessibility-fix/semantics-and-routing-final.log",
+      "bytes": 1322,
+      "sha256": "07acb6d22cbcb2ab6feab033e358e356c2c5d53fc517de4f6de0889672c089b5",
+      "git_blob": "5fa5d3a28154d57402fe1c1429144186c8db2dba",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/spielwelt-accessibility-fix/semantics-before-final-result.json",
+      "bytes": 484,
+      "sha256": "6df0bc8771eea748f522544a8316d465da9e409634598e0cbe7cd7f515a29fc2",
+      "git_blob": "514b4f0f30af63e5e358a7248416e85a47cb9716",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/spielwelt-accessibility-fix/semantics-before-final.log",
+      "bytes": 7661,
+      "sha256": "d7a65bf2ea42beb2132d08c6ff6b4e09912493a572dfea0ed9dc2d7290d0caf8",
+      "git_blob": "f734666859ee5fcfd73f97fe901ae23059e89099",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/spielwelt-accessibility-fix/semantics-before-result.json",
+      "bytes": 313,
+      "sha256": "cb5d79cc64bb6640aff84f1b7559cb4d15625a2972d86e4aaf103fb7df842d41",
+      "git_blob": "816ef8c4a90b20cde581759656808992da539247",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/spielwelt-accessibility-fix/semantics-before.log",
+      "bytes": 7661,
+      "sha256": "a35184abb9283bf42d8da32ce346215ecfa8c8c086a363e341fd2c388d3b7e51",
+      "git_blob": "a58096666ee0e57287cb623629843972ff03b429",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-runtime-preparation-20261113/ROOT_REVIEW.json",
+      "bytes": 2765,
+      "sha256": "4769eb9961c0a665b8ba649f8499e9a872c54212e8fbcad2c53832f0dc505912",
+      "git_blob": "86eb55edaaba3ff93db96fcb576a4f511fa434e2",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "bytes": 28438,
+      "sha256": "c23fc88187cfea258250262c510e599c71a42466cd2058f151f3fe5ab39cf146",
+      "git_blob": "8097e4695614b8215e59025707ec9cc1b12c4d80",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_android/jump_1a4ddc9981f500ebde157d11_1_2b7e53f847a7.cfg",
+      "bytes": 425,
+      "sha256": "dd4b43efa2202f92ddad79640ed4443880154c4e76b928fb4d72ad5aa067dd5c",
+      "git_blob": "4a373b848fc245cd14b1c95f0992377de54e2ff8",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_android/serialize_jump_config.gd",
+      "bytes": 1410,
+      "sha256": "e48a43329efb453ad9cb23833575c258fb2a871a554440b36fbad23cdef9c450",
+      "git_blob": "964b11647c4df8d1b6e0ed2e0786d5a88e8dfbcf",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_studio_cards_capture_binding.py",
+      "bytes": 2068,
+      "sha256": "c180a46751657ba7ef274fd3b2bab48a05501719615972a5df7a9b970cf7c233",
+      "git_blob": "aee0fa45c3e268121b959273a3169c1fdd00dca3",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_studio_cards_delivery.py",
+      "bytes": 10124,
+      "sha256": "5c92f154787f6d9666d11d443df2c2d66371285371e5562a6970fd94701d26a1",
+      "git_blob": "c45a037b641964b8e8732b80c0196c9071331db5",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_studio_creative_android_probe.py",
+      "bytes": 9707,
+      "sha256": "23bdf174ece40e32334f31d8f60de0af39ea7150d41c24b123d26a7ffb84d866",
+      "git_blob": "05615090bc63ef3c043ea53b2b6aa3e74f296122",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_studio_creative_delivery.py",
+      "bytes": 13138,
+      "sha256": "82db31fe93884013f027d07a35f6486858bf1215ff2cf393c117bc0c0139a3d5",
+      "git_blob": "90677d6363f2ac5a335d96ad5866c740c92c457b",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_studio_delivery.py",
+      "bytes": 41577,
+      "sha256": "87e01822d11e33d3fe2cbc0effeb39ff82e0059ea716c9cf9827787ab20a5907",
+      "git_blob": "334f0af3204c22bd6a902d965ad1bde51ebf8959",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/verify_nextgen_delivery.py",
+      "bytes": 26986,
+      "sha256": "5b9f6658007ffc93f106e24a7fc001e68418dea450f46a4e4b3405b0afb3e44c",
+      "git_blob": "a732fa011ce387364e97e6e6cf8a8e0b7eda665a",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/verify_studio_creative_android.py",
+      "bytes": 9526,
+      "sha256": "a9788458c601b22406e7a7755c51a75c6ff343d47b71a948e056963d5cfd4f1c",
+      "git_blob": "347090ac420eb1fc0054241ed488187b6e65545d",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/verify_studio_delivery.py",
+      "bytes": 28756,
+      "sha256": "e7cba79b96eb2483886229bc85ded4dab52ffc6e095ad93eb5e2a404d02e14f4",
+      "git_blob": "551f302d9acae65c2361aac63aaaa261469787db",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/spielwelt_semantics_action_test.dart",
+      "bytes": 5847,
+      "sha256": "0a36e6270c802223e373d8f86b817eb988f68c50650023327893978c2223531e",
+      "git_blob": "b702778f7553fd1bbb3a40d87bfee1458a7ab0a4",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/nextgen_evidence.py",
+      "bytes": 28512,
+      "sha256": "0fdba9381b25cdc69e6a97bdc613f1b04aa8d792edae376a2883b4bb232f21e8",
+      "git_blob": "c1105e64bce4c13300f0fbf41e103e4f53194419",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/android35_portrait-playing-ocr-contrast.tsv",
+      "bytes": 7142,
+      "sha256": "bbff4c1c05a766f9fcb73819f718aa58f8cbc69db9276df65d5484ea2f80e49c",
+      "git_blob": "2f34e4d474c756fe59d09ebd28f6b6371948e9f6",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/android35_portrait-playing.layout.json",
+      "bytes": 1278,
+      "sha256": "c487377a24237e5bcf2f5952fe31d6d53d407aa87c84337d65cfef3531a45ce3",
+      "git_blob": "8d1d95a722f808eff7b7426a304dc0fa56ff1a61",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/android35_portrait-playing.png",
+      "bytes": 1272873,
+      "sha256": "9754ab497a1b17a04f1170e7cec881f4e4d3c3ef692c45119b145c96510e7fe2",
+      "git_blob": "f27035bdf74da5b04f30b7aa8f5a0f4983c9aad4",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/landscape_cutout_fixture-playing-ocr-contrast.tsv",
+      "bytes": 4189,
+      "sha256": "bbcdf5c03adab6fc9949f646f8e9382b2a0ec6051c7c1ea28236098018ba3726",
+      "git_blob": "8d127582a5c26a8d7430df6cd955ad47a3ac82bb",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/landscape_cutout_fixture-playing.layout.json",
+      "bytes": 1955,
+      "sha256": "d8eb6951924c5caf03fb03d6516e591e040be67c983b7043ff8a1403276fa129",
+      "git_blob": "fb7d907cd32c8098ae2605cc28a9233e10f039fe",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/landscape_cutout_fixture-playing.png",
+      "bytes": 1002645,
+      "sha256": "90b49f1abdfd70a5b835cc6a4432dc291a2ed748ecd2d8f53b47ab75b157bfa8",
+      "git_blob": "8bcf5a95bd1b76821313c247612f273e13e5db12",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/manifest.json",
+      "bytes": 3285,
+      "sha256": "7d61270fece35d835c1d39c8cf44a007a5c45c19c7b5f4a06f8986223c3280f5",
+      "git_blob": "3ced29ff1256c82146b605c4543f235d83e51475",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/observations.json",
+      "bytes": 1314,
+      "sha256": "7838ed31a7c6f463aeac4ed56a7c7969afb4501f36f026b2bbb9038a3f7e86f1",
+      "git_blob": "da52f293f457be2679d0fd8d03fdad435eaf55f9",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/public-fixture.json",
+      "bytes": 1489,
+      "sha256": "c0f0118dadcc08c5701c4a1c5aa4d717d15ba9c71d6908bc9463f69c200d25d7",
+      "git_blob": "933214c26bc728b92dbc000a6296380471c7a31a",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_flutter_return_318/android35_current_flutter.png",
+      "bytes": 1509079,
+      "sha256": "d59786fbcbd8f4219f46c4fc0d52ed5c93c147d0c0eaa78a1e3b82cc7f9e8438",
+      "git_blob": "9958edda957fda02a4d2cf0efed8190462df1eb6",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_flutter_return_318/android37_stale_native.png",
+      "bytes": 582222,
+      "sha256": "0778858862aa6f56eab57f03b4574ffb7a9f65178d30133ad64498659bf1dd1e",
+      "git_blob": "0e8e5b287f11fe012d9216888fd3e527f1502475",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_flutter_return_318/manifest.json",
+      "bytes": 931,
+      "sha256": "43b42df7db8a3bc2fe88983a465eabd05a29105645def42823325e8379807507",
+      "git_blob": "c361a37713f981a705f5b830a62a0d03e87c7034",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/test_cards_lifecycle_observation.py",
+      "bytes": 11642,
+      "sha256": "d7fe7573b548c4f70fc30931b5ced837756722730cb7ff5fd8d1a1f6ed18bb6c",
+      "git_blob": "12f950bcfd1314c7403c5effaa13adb250a7c71b",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/test_studio_cards_layout.py",
+      "bytes": 17375,
+      "sha256": "536e8b8db30ba27b96f5ce0e70f7202fc33bf74f4a4e6a97cd4030a769784bbd",
+      "git_blob": "feef9435be5d4c308a33da615ac258690e1cb604",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/test_studio_flutter_return.py",
+      "bytes": 7508,
+      "sha256": "c560cdccbc0c00c70c3dc2ecb9ac2e075c607a0cb77eeb525cd69151cee5d51b",
+      "git_blob": "ff75eb69840c0c7c5fb64cc3ad8490eadb6c5270",
+      "mode": "100644"
+    }
+  ]
+}

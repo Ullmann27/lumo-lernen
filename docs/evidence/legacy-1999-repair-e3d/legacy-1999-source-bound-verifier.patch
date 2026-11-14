@@ -1,0 +1,414 @@
+diff --git a/.github/workflows/lumo-1999-update-gate.yml b/.github/workflows/lumo-1999-update-gate.yml
+index b67faef2..744f805b 100644
+--- a/.github/workflows/lumo-1999-update-gate.yml
++++ b/.github/workflows/lumo-1999-update-gate.yml
+@@ -5,6 +5,8 @@ on:
+       - '.github/workflows/lumo-1999-update-gate.yml'
+       - '.github/probes/candidate_update_android_probe.py'
+       - '.github/probes/lumo_learning_journey_probe.py'
++      - 'scripts/verify_unified_apk.py'
++      - 'scripts/tests/test_historical_apk_expectations.py'
+       - 'tools/android_qa/update_preservation.py'
+       - 'tools/android_qa/tests/test_update_preservation.py'
+   workflow_dispatch:
+@@ -45,6 +47,19 @@ jobs:
+               assert data['status'] == 'completed' and data['conclusion'] == 'success'
+               assert data['repository']['full_name'] == 'Ullmann27/lumo-lernen'
+           PY
++      - name: Read immutable 1999 expectation files without executing historical verifier code
++        uses: actions/checkout@v4
++        with:
++          repository: Ullmann27/lumo-lernen
++          ref: c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf
++          path: historical-1999-source
++          persist-credentials: false
++          sparse-checkout-cone-mode: false
++          sparse-checkout: |
++            /pubspec.yaml
++            /config/godot-source.json
++            /config/lumo-offline-voice.json
++            /assets/audio/voice/lumo_free/catalog.json
+       - uses: actions/download-artifact@v4
+         with:
+           name: lumo-lernen-kart-unified-2026-candidate
+@@ -67,11 +82,12 @@ jobs:
+           .update-python/bin/python -m unittest discover -s tools/android_qa/tests -p test_update_preservation.py -v
+           .update-python/bin/python -m unittest discover -s tools/android_qa/tests -p test_kart_tour_evidence.py -v
+           .update-python/bin/python -m unittest discover -s tools/android_qa/tests -p test_modernization_tour_identity.py -v
++          .update-python/bin/python -m unittest discover -s scripts/tests -p test_historical_apk_expectations.py -v
+       - name: Independently verify both candidate ABIs and baseline signature
+         run: |
+           set -euo pipefail
+-          python3 scripts/verify_unified_apk.py candidate/dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > update-proof/arm64-verification.json
+-          python3 scripts/verify_unified_apk.py candidate/dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 > update-proof/x86-verification.json
++          python3 scripts/verify_unified_apk.py candidate/dist/Lumo-Lernen-Neu.apk --abi arm64-v8a --expectations-repository historical-1999-source --expectations-revision c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf > update-proof/arm64-verification.json
++          python3 scripts/verify_unified_apk.py candidate/dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 --expectations-repository historical-1999-source --expectations-revision c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf > update-proof/x86-verification.json
+           python3 scripts/verify_android_apk.py baseline/dist/x86_64/Lumo-Lernen-Neu.apk > update-proof/baseline-signature.txt
+           sha256sum candidate/dist/Lumo-Lernen-Neu.apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk baseline/dist/x86_64/Lumo-Lernen-Neu.apk > update-proof/apk-sha256.txt
+       - name: Enable accelerated disposable emulator
+diff --git a/scripts/verify_unified_apk.py b/scripts/verify_unified_apk.py
+index c2e5bd64..455a6942 100644
+--- a/scripts/verify_unified_apk.py
++++ b/scripts/verify_unified_apk.py
+@@ -16,6 +16,28 @@ SUPPORTED_ABIS = {'arm64-v8a', 'x86_64'}
+ EXPECTED_SIGNING_CERT_SHA256 = (
+     'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+ )
++EXPECTATION_PATHS = (
++    'pubspec.yaml', 'config/godot-source.json', 'config/lumo-offline-voice.json',
++    'assets/audio/voice/lumo_free/catalog.json',
++)
++
++
++def load_expectations(repository: Path | None, revision: str | None) -> tuple[dict, dict | None]:
++    """Keep current verification code while binding historical inputs to Git bytes."""
++    if repository is None and revision is None:
++        return {name: (ROOT / name).read_bytes() for name in EXPECTATION_PATHS}, None
++    if repository is None or revision is None:
++        raise RuntimeError('Expectation repository and revision must be supplied together')
++    if not re.fullmatch(r'[0-9a-f]{40}', revision):
++        raise RuntimeError('Expected a full immutable expectation commit SHA')
++    git = ['git', '--no-replace-objects', '-C', str(repository)]
++    commit = subprocess.check_output(git + ['rev-parse', revision + '^{commit}'], text=True).strip()
++    if commit != revision:
++        raise RuntimeError('Expectation revision does not identify the exact commit')
++    files = {name: subprocess.check_output(git + ['show', f'{revision}:{name}'])
++             for name in EXPECTATION_PATHS}
++    return files, {'revision': revision, 'files': {
++        name: hashlib.sha256(content).hexdigest() for name, content in files.items()}}
+ 
+ 
+ def validate_abis(actual: set[str], expected: set[str] | None = None) -> None:
+@@ -78,7 +100,9 @@ def validate_offline_voice(archive: zipfile.ZipFile, abis: set[str],
+     }
+ 
+ 
+-def verify(path: Path, expected_abis: set[str] | None = None):
++def verify(path: Path, expected_abis: set[str] | None = None, *,
++           expectations_repository: Path | None = None,
++           expectations_revision: str | None = None):
+     certificate = verify_apk(path)
+     if certificate.lower() != EXPECTED_SIGNING_CERT_SHA256:
+         raise RuntimeError(
+@@ -90,12 +114,16 @@ def verify(path: Path, expected_abis: set[str] | None = None):
+     package = re.search(r"package: name='([^']+)' versionCode='([^']+)' versionName='([^']+)'", badging)
+     if package is None or package.group(1) != 'dev.ullmann.lumo.lumo_lernen.coachpreview':
+         raise RuntimeError('Wrong package: this delivery must safely update the Build 274 parallel app')
++    expectations, expectations_source = load_expectations(expectations_repository, expectations_revision)
+     version = re.search(r'^version:\s*([^\s+]+)\+(\d+)\s*$',
+-                        (ROOT / 'pubspec.yaml').read_text(), re.MULTILINE)
++                        expectations['pubspec.yaml'].decode('utf-8'), re.MULTILINE)
+     if version is None:
+         raise RuntimeError('Expected a version name and build number in pubspec.yaml')
+     expected_code = os.environ.get('LUMO_BUILD_NUMBER', version.group(2))
+     expected_name = os.environ.get('LUMO_VERSION_NAME', version.group(1))
++    if expectations_source is not None and (expected_code != version.group(2)
++                                            or expected_name != version.group(1)):
++        raise RuntimeError('Version overrides cannot change source-bound expectations')
+     if package.group(2) != expected_code or package.group(3) != expected_name:
+         raise RuntimeError(
+             f'Wrong Android version: {package.group(3)}+{package.group(2)}, '
+@@ -104,7 +132,7 @@ def verify(path: Path, expected_abis: set[str] | None = None):
+         raise RuntimeError('Unexpected minimum Android version')
+     if "targetSdkVersion:'36'" not in badging:
+         raise RuntimeError('Unexpected target Android version')
+-    source = json.loads((ROOT / 'config/godot-source.json').read_text())
++    source = json.loads(expectations['config/godot-source.json'])
+     with zipfile.ZipFile(path) as archive:
+         if archive.testzip() is not None:
+             raise RuntimeError('APK ZIP integrity failed')
+@@ -117,8 +145,8 @@ def verify(path: Path, expected_abis: set[str] | None = None):
+                     raise RuntimeError(f'Missing {abi}/{library}')
+         offline_voice = validate_offline_voice(
+             archive, abis,
+-            json.loads((ROOT / 'config/lumo-offline-voice.json').read_text()),
+-            json.loads((ROOT / 'assets/audio/voice/lumo_free/catalog.json').read_text()),
++            json.loads(expectations['config/lumo-offline-voice.json']),
++            json.loads(expectations['assets/audio/voice/lumo_free/catalog.json']),
+         )
+         info = archive.getinfo('resources.arsc')
+         if info.compress_type != zipfile.ZIP_STORED:
+@@ -164,6 +192,8 @@ def verify(path: Path, expected_abis: set[str] | None = None):
+               'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
+               'signingCertificateSha256': certificate, 'godot': provenance,
+               'offlineVoice': offline_voice}
++    if expectations_source is not None:
++        result['expectationsSource'] = expectations_source
+     print(json.dumps(result, indent=2))
+     return result
+ 
+@@ -173,5 +203,13 @@ if __name__ == '__main__':
+     parser.add_argument('apk', type=Path)
+     parser.add_argument('--abi', action='append', choices=sorted(SUPPORTED_ABIS),
+                         help='Exact expected ABI; repeat for multiple. Default checks both.')
++    parser.add_argument('--expectations-repository', type=Path,
++                        help='Git checkout containing an explicitly pinned historical expectation commit.')
++    parser.add_argument('--expectations-revision',
++                        help='Full commit SHA supplying version, Godot pin and voice metadata; current guards remain.')
+     args = parser.parse_args()
+-    verify(args.apk, set(args.abi) if args.abi else None)
++    if (args.expectations_repository is None) != (args.expectations_revision is None):
++        parser.error('--expectations-repository and --expectations-revision must be supplied together')
++    verify(args.apk, set(args.abi) if args.abi else None,
++           expectations_repository=args.expectations_repository,
++           expectations_revision=args.expectations_revision)
+diff --git a/scripts/tests/test_historical_apk_expectations.py b/scripts/tests/test_historical_apk_expectations.py
+new file mode 100644
+index 00000000..5658f332
+--- /dev/null
++++ b/scripts/tests/test_historical_apk_expectations.py
+@@ -0,0 +1,254 @@
++"""Historical expectation contracts; synthetic ZIPs, not signed Android proof.
++
++Only the external APK signature and aapt readers are stubbed. Git commit reads,
++the current verifier, voice hashes, PCK, ABI and resource checks execute normally.
++"""
++from contextlib import redirect_stdout
++import hashlib
++import io
++import json
++import os
++from pathlib import Path
++import re
++import runpy
++import struct
++import subprocess
++import sys
++import tempfile
++import unittest
++from unittest.mock import patch
++import zipfile
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++import verify_android_apk
++import verify_unified_apk as verifier
++import test_unified_apk_voice as voice_fixtures
++
++ROOT = Path(__file__).resolve().parents[2]
++PACKAGE = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
++HISTORICAL_COMMIT = 'c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf'
++HISTORICAL_CHECKOUT = 'historical-1999-source'
++
++
++class HistoricalApkExpectationsTest(unittest.TestCase):
++    def setUp(self):
++        self.temporary = tempfile.TemporaryDirectory()
++        self.addCleanup(self.temporary.cleanup)
++        self.directory = Path(self.temporary.name)
++        self.source = self.directory / 'source'
++        self.source.mkdir()
++        self.files, config, catalog = voice_fixtures.UnifiedApkVoiceTest().fixture()
++        self.pin = '4d0fd40fdf188be6ca86057596c7b51f41701fa3'
++        expected = {
++            'pubspec.yaml': 'name: synthetic_fixture\nversion: 0.12.87+1999\n',
++            'config/godot-source.json': json.dumps({'revision': self.pin}),
++            'config/lumo-offline-voice.json': json.dumps(config),
++            'assets/audio/voice/lumo_free/catalog.json': json.dumps(catalog),
++        }
++        for name, content in expected.items():
++            destination = self.source / name
++            destination.parent.mkdir(parents=True, exist_ok=True)
++            destination.write_text(content)
++        self.real_check_output = subprocess.check_output
++        self.git('init', '-q')
++        self.git('add', '.')
++        self.git('-c', 'user.name=Contract Fixture', '-c',
++                 'user.email=fixture@example.invalid', 'commit', '-qm', 'Synthetic historical inputs')
++        self.revision = self.git('rev-parse', 'HEAD').strip()
++        self.package = PACKAGE
++        self.version_name = '0.12.87'
++        self.version_code = '1999'
++        self.xml = 'LumoGameActivity :lumo_game'
++        self.resource_compression = zipfile.ZIP_STORED
++        self.pack = struct.pack('<4s4I', b'GDPC', 3, 4, 6, 3) + b'synthetic PCK payload'
++        self.files['assets/lumo_game.pck'] = self.pack
++        self.files['assets/lumo_game_source.json'] = json.dumps({
++            'revision': self.pin, 'pck_sha256': hashlib.sha256(self.pack).hexdigest(),
++        }).encode()
++        self.files['resources.arsc'] = b'synthetic resources, not an Android application'
++        self.certificate = self.enterContext(patch.object(
++            verifier, 'verify_apk', return_value=verifier.EXPECTED_SIGNING_CERT_SHA256))
++        self.enterContext(patch.object(verifier, 'find_apksigner', return_value='/fixture-tools/apksigner'))
++        self.enterContext(patch.object(verifier.subprocess, 'check_output', side_effect=self.tool_output))
++        self.enterContext(patch.dict(os.environ))
++        os.environ.pop('LUMO_BUILD_NUMBER', None)
++        os.environ.pop('LUMO_VERSION_NAME', None)
++
++    def git(self, *arguments):
++        return self.real_check_output(['git', '-C', str(self.source), *arguments], text=True)
++
++    def tool_output(self, command, **kwargs):
++        if command[0] == 'git':
++            return self.real_check_output(command, **kwargs)
++        if command[:3] == ['/fixture-tools/aapt', 'dump', 'badging']:
++            return (f"package: name='{self.package}' versionCode='{self.version_code}' "
++                    f"versionName='{self.version_name}'\nsdkVersion:'24'\ntargetSdkVersion:'36'\n")
++        if command[:3] == ['/fixture-tools/aapt', 'dump', 'xmltree']:
++            return self.xml
++        raise AssertionError(f'Unexpected external command: {command}')
++
++    @staticmethod
++    def elf(alignment=16384):
++        data = bytearray(120)
++        data[:6] = b'\x7fELF\x02\x01'
++        struct.pack_into('<Q', data, 32, 64)
++        struct.pack_into('<HH', data, 54, 56, 1)
++        struct.pack_into('<I', data, 64, 1)
++        struct.pack_into('<Q', data, 112, alignment)
++        return data
++
++    def apk(self, abi='arm64-v8a', *, omitted_library=None, alignment=16384):
++        files = {key: value for key, value in self.files.items() if not key.startswith('lib/')}
++        for library in ('libflutter.so', 'libapp.so', 'libgodot_android.so',
++                        'libonnxruntime.so', 'libonnxruntime4j_jni.so'):
++            if library != omitted_library:
++                files[f'lib/{abi}/{library}'] = self.elf(alignment)
++        path = self.directory / f'fixture-{abi}.apk'
++        with zipfile.ZipFile(path, 'w') as archive:
++            # The first local header is 30 + 14 bytes: a real 4-byte alignment.
++            archive.writestr('resources.arsc', files.pop('resources.arsc'),
++                             compress_type=self.resource_compression)
++            for name, content in files.items():
++                archive.writestr(name, content)
++        return path
++
++    def verify(self, abi='arm64-v8a', *, apk=None, **overrides):
++        arguments = dict(expectations_repository=self.source, expectations_revision=self.revision)
++        arguments.update(overrides)
++        with redirect_stdout(io.StringIO()):
++            return verifier.verify(apk or self.apk(abi), {abi}, **arguments)
++
++    def test_original_default_reproduces_current_version_mismatch(self):
++        with self.assertRaisesRegex(RuntimeError, r'Wrong Android version: 0\.12\.87\+1999, expected'):
++            verifier.verify(self.apk(), {'arm64-v8a'})
++
++    def test_exact_commit_inputs_allow_both_historical_abis(self):
++        for abi in ('arm64-v8a', 'x86_64'):
++            with self.subTest(abi=abi):
++                result = self.verify(abi)
++                self.assertEqual(result['versionCode'], 1999)
++                self.assertEqual(result['versionName'], '0.12.87')
++                self.assertEqual(result['godot']['revision'], self.pin)
++                self.assertEqual(result['signingCertificateSha256'], verifier.EXPECTED_SIGNING_CERT_SHA256)
++                self.assertEqual(result['expectationsSource']['revision'], self.revision)
++                self.assertEqual(len(result['expectationsSource']['files']), 4)
++                self.assertEqual(result['offlineVoice']['clipCount'], 150)
++                self.assertTrue(result['elf16KiBAligned'] and result['resourcesArscAligned'])
++
++    def test_changed_working_copy_cannot_replace_committed_expectations(self):
++        (self.source / 'pubspec.yaml').write_text('version: 0.13.7+2019\n')
++        (self.source / 'config/godot-source.json').write_text(json.dumps({'revision': 'f' * 40}))
++        result = self.verify()
++        self.assertEqual(result['versionCode'], 1999)
++        self.assertEqual(result['godot']['revision'], self.pin)
++
++    def test_revision_must_be_a_full_immutable_commit(self):
++        for revision in ('HEAD', 'main', self.revision[:8], '0' * 40):
++            with self.subTest(revision=revision), self.assertRaises((RuntimeError, subprocess.CalledProcessError)):
++                self.verify(expectations_revision=revision)
++
++    def test_repository_and_revision_must_be_supplied_together(self):
++        for missing in ('expectations_repository', 'expectations_revision'):
++            with self.subTest(missing=missing), self.assertRaisesRegex(RuntimeError, 'together'):
++                self.verify(**{missing: None})
++
++    def test_environment_cannot_replace_source_bound_version(self):
++        for name, value in (('LUMO_BUILD_NUMBER', '2019'), ('LUMO_VERSION_NAME', '0.13.7')):
++            with self.subTest(name=name), patch.dict(os.environ, {name: value}):
++                with self.assertRaisesRegex(RuntimeError, 'source-bound'):
++                    self.verify()
++
++    def test_wrong_package_or_version_is_still_rejected(self):
++        for attribute, value, message in (
++            ('package', 'org.example.unrelated', 'Wrong package'),
++            ('version_code', '2019', 'Wrong Android version'),
++            ('version_name', '0.13.7', 'Wrong Android version'),
++        ):
++            with self.subTest(attribute=attribute), patch.object(self, attribute, value):
++                with self.assertRaisesRegex(RuntimeError, message):
++                    self.verify()
++
++    def test_fixed_family_certificate_is_still_required(self):
++        self.certificate.return_value = 'd' * 64
++        with self.assertRaisesRegex(RuntimeError, 'Signing certificate SHA-256'):
++            self.verify()
++
++    def test_exact_abi_and_embedded_godot_library_are_still_required(self):
++        with self.assertRaisesRegex(RuntimeError, 'Unexpected native architectures'):
++            self.verify(apk=self.apk('x86_64'))
++        with self.assertRaisesRegex(RuntimeError, 'libgodot_android'):
++            self.verify(apk=self.apk(omitted_library='libgodot_android.so'))
++
++    def test_voice_weights_clips_and_original_license_are_still_pinned(self):
++        for name in ('assets/lumo_offline_voice/model.onnx',
++                     'assets/flutter_assets/assets/audio/voice/lumo_free/free_0000000000000000.m4a',
++                     'assets/lumo_offline_voice/LICENSE-MODEL.txt'):
++            with self.subTest(file=name), patch.dict(self.files, {name: b'changed bytes'}):
++                with self.assertRaisesRegex(RuntimeError, 'digest mismatch|license missing or changed'):
++                    self.verify()
++
++    def test_pck_digest_and_historical_native_revision_are_still_required(self):
++        for field, value, message in (
++            ('revision', 'f' * 40, 'Wrong Godot source revision'),
++            ('pck_sha256', 'f' * 64, 'Embedded PCK digest mismatch'),
++        ):
++            content = json.loads(self.files['assets/lumo_game_source.json'])
++            content[field] = value
++            with self.subTest(field=field), patch.dict(self.files, {
++                    'assets/lumo_game_source.json': json.dumps(content).encode()}):
++                with self.assertRaisesRegex(RuntimeError, message):
++                    self.verify()
++
++    def test_native_page_alignment_and_resource_packaging_are_still_required(self):
++        with self.assertRaisesRegex(RuntimeError, '16-KiB load alignment'):
++            self.verify(apk=self.apk(alignment=4096))
++        self.resource_compression = zipfile.ZIP_DEFLATED
++        with self.assertRaisesRegex(RuntimeError, 'uncompressed resources'):
++            self.verify()
++
++    def test_private_activity_and_release_manifest_are_still_required(self):
++        for xml, message in (('unrelated activity', 'Private embedded'),
++                             ('LumoGameActivity :lumo_game android:debuggable 0xffffffff', 'debuggable')):
++            with self.subTest(xml=xml), patch.object(self, 'xml', xml):
++                with self.assertRaisesRegex(RuntimeError, message):
++                    self.verify()
++
++    def test_actual_cli_passes_commit_bound_inputs_to_the_current_verifier(self):
++        apk = self.apk()
++        arguments = [str(ROOT / 'scripts/verify_unified_apk.py'), str(apk), '--abi', 'arm64-v8a',
++                     '--expectations-repository', str(self.source),
++                     '--expectations-revision', self.revision]
++        with patch.object(verify_android_apk, 'verify_apk', return_value=verifier.EXPECTED_SIGNING_CERT_SHA256), \
++                patch.object(verify_android_apk, 'find_apksigner', return_value='/fixture-tools/apksigner'), \
++                patch.object(sys, 'argv', arguments), redirect_stdout(io.StringIO()) as output:
++            runpy.run_path(str(ROOT / 'scripts/verify_unified_apk.py'), run_name='__main__')
++        result = json.loads(output.getvalue())
++        self.assertEqual(result['versionCode'], 1999)
++        self.assertEqual(result['expectationsSource']['revision'], self.revision)
++
++
++class HistoricalWorkflowContractTest(unittest.TestCase):
++    def test_only_expectations_are_pinned_while_current_probes_and_guards_remain(self):
++        source = (ROOT / '.github/workflows/lumo-1999-update-gate.yml').read_text()
++        self.assertIn(f'ref: {HISTORICAL_COMMIT}', source)
++        self.assertIn(f'path: {HISTORICAL_CHECKOUT}', source)
++        calls = re.findall(r'^\s*python3 scripts/verify_unified_apk.py (.+)$', source, re.M)
++        self.assertEqual(len(calls), 2)
++        for call, abi in zip(calls, ('arm64-v8a', 'x86_64')):
++            self.assertIn(f'--abi {abi}', call)
++            self.assertIn(f'--expectations-repository {HISTORICAL_CHECKOUT}', call)
++            self.assertIn(f'--expectations-revision {HISTORICAL_COMMIT}', call)
++        for preserved in (
++            'run-id: 40096024152', 'run-id: 39755153883',
++            'python3 scripts/verify_android_apk.py baseline/dist/x86_64/Lumo-Lernen-Neu.apk',
++            'test_update_preservation.py', 'test_kart_tour_evidence.py', 'test_modernization_tour_identity.py',
++            'script: .update-python/bin/python .github/probes/candidate_update_android_probe.py --baseline baseline/dist/x86_64/Lumo-Lernen-Neu.apk --candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out update-proof',
++        ):
++            self.assertIn(preserved, source)
++        self.assertNotIn('continue-on-error:', source)
++        self.assertNotIn('LUMO_BUILD_NUMBER:', source)
++        self.assertNotIn('LUMO_VERSION_NAME:', source)
++
++
++if __name__ == '__main__':
++    unittest.main()

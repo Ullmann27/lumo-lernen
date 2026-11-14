@@ -1,0 +1,318 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-11-13T19:55:16.647098+00:00",
+  "status": "FINAL_SOURCE_WITH_DESCRIPTOR_FIX_FROZEN_CANDIDATE_CI_PENDING",
+  "baseline": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "intended_first_parent": "651d4d967f6d7c918a3e5cd666c5364283abbaa5",
+  "intended_additional_parent": "a5e03117158c157ba3154083db25947724e67727",
+  "native_source": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "native_run": 43479909943,
+  "native_result": "success, all eight required jobs and archive, attempt1",
+  "visual_receipt_sha256": "4091bc1c79a0efa75c368b35ea77472a5bb2cf2ea8fd2f0e1b096ebdb43eebae",
+  "current_reviewed_images": 29,
+  "selected_receipt_images": 25,
+  "source_files": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 52523,
+      "sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+      "git_blob": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1"
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 40745,
+      "sha256": "d1b2bb2072e6ae5bbbfafc2c03d3ad580a096b1b5729a19079587a5490045801",
+      "git_blob": "581c8ce765958a8aea1f9a436b10c494ab2e1f40"
+    },
+    {
+      "path": ".github/workflows/lumo-1999-update-gate.yml",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 6865,
+      "sha256": "bd5cc6b336c8d6a986cb057abf15aa5711c9b0270ffbed9e4911edbed468c6e1",
+      "git_blob": "744f805b60382529b329aa6070d3863a8ac0dea5"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 41327,
+      "sha256": "64deb34a245f9ae55a5f4b7bc140717725ad1cd583e9a2041a78bb35c7c0a722",
+      "git_blob": "6f753f12e56108220a0e7f9e0028ee38e43965fd"
+    },
+    {
+      "path": "config/godot-source.json",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 145,
+      "sha256": "a6e4ff3630754999ab0281f80f1e1512141af65e9ff10e6ab72bafd6096f4214",
+      "git_blob": "a3b714cbcd67a1bda3df8f1afbcb5e2c84123434"
+    },
+    {
+      "path": "config/studio-2019-visual-review.json",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 22028,
+      "sha256": "4091bc1c79a0efa75c368b35ea77472a5bb2cf2ea8fd2f0e1b096ebdb43eebae",
+      "git_blob": "2b2aef0c2ece4c1bdae94dc49b87fdd5618a1151"
+    },
+    {
+      "path": "scripts/android_framework_ready.py",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 18083,
+      "sha256": "aa2a0d0ee55191e6e57fa5631dcd9be1e5feebc7f2e5af185844b770fe0385e4",
+      "git_blob": "808c403960f871dbac2086d4a9a7415f7442e3f4"
+    },
+    {
+      "path": "scripts/prepare_android37_cli22.py",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 21200,
+      "sha256": "83b8f30c9364124a97cf583a447bf08eb801c025a305df6b21602c768ab1abf7",
+      "git_blob": "78c91d7ed9ec21a09dfe89e3094fc3888cf740cc"
+    },
+    {
+      "path": "scripts/prepare_android37_emulator_action.py",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 8434,
+      "sha256": "ac1e40c8bc07cca1cbb58a3ce4b9d990bee98a156e13f33231887a835a4cbdfa",
+      "git_blob": "fed987334b4873011dbf811274cb9f93299dea8a"
+    },
+    {
+      "path": "scripts/record_studio_visual_review.py",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 6036,
+      "sha256": "ddf9355213d65cd4055265c5319baeedf51df257f3553ca1ab2d23da87d8b1c1",
+      "git_blob": "f688087f77d6f9b52a83aa4e7e89aaf886d6ce7b"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_image_43494312623/README.md",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 833,
+      "sha256": "ef4638a25ee9d893ae2a20274e00701d4e2dfcdbdbab949fdb430b5cf6bde4ef",
+      "git_blob": "5cd60a1093368815a7b61296c14fadd4a5b95c4c"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_image_43494312623/package.xml",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062",
+      "git_blob": "c4178b5a3ef0ba6a49d990d4225f82813553402c"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_image_43494312623/provenance.json",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 1319,
+      "sha256": "9992208f99f00d47b6010e05769a681322b414f0dbbb22af1b784622df4843bb",
+      "git_blob": "11513ebf919b14a17a28bff3e4855b6029c512f8"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_image_43494312623/source.properties",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e",
+      "git_blob": "8e0a9ce9cb7af106a9e8f55c06e83bfccbb67085"
+    },
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/LICENSE",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 11343,
+      "sha256": "0b64a565cedfa1ac8d2cd7cf40965e6098f97f260fe51a4df9f697a063d0a8db",
+      "git_blob": "925b59625c0d4f8ed5ae95ab3f0fcbc55cce5ffd"
+    },
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/README.md",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 1776,
+      "sha256": "308c0ed63517568cc0ab514d2c7201c54b54d4c905f1038d9419d32ccb6c083d",
+      "git_blob": "8035dc637325d6fe3341795b0c9862546e3637c1"
+    },
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/action.yml",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 3980,
+      "sha256": "a7c4de9a466ae7d70a599ffdc5a27b2bccadd7b2d602e24b44f8b490cb7bbdfe",
+      "git_blob": "4f9767ce6c4ecbe37e35cf0c1246ec1c79dfd51a"
+    },
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/lib/emulator-manager.js",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 7155,
+      "sha256": "a63db8fe9ffb4fb3651e9a2c97f8bac5ca4ce0078a7bbe61ef2e02019082c577",
+      "git_blob": "e878461a849d9f71420dea8cbd7e30e98a1e8710"
+    },
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/lib/main.js",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 11865,
+      "sha256": "8121ea56f1c89d470071e89f80e15f932b2d8d5f711c28fc99476f34a442bc35",
+      "git_blob": "98f6404696c17f8923ebf7ff7b81f249576fcaf4"
+    },
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/src/emulator-manager.ts",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 5396,
+      "sha256": "1e9ca00c20d35d925440afc1ce82303c42cddc4c1ac196da65e39209ef87696f",
+      "git_blob": "d10943d432f21e03baf300dfc73e3b0e973dd29a"
+    },
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/src/main.ts",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 9407,
+      "sha256": "a52d9ff8ea3b544677bbfaeb995b1db4d0cf8f9b520f34e25b0532250123358d",
+      "git_blob": "a6c787e7489260719e28e56710fe899c404ba92c"
+    },
+    {
+      "path": "scripts/tests/test_android37_cli22.py",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 12249,
+      "sha256": "669d390d24bdb44cf3b94c057824254f5ede1cec4fdfebe68f2f973bfb2c2c26",
+      "git_blob": "d319987972a6bb6c2efd344ea4a59bbed58cb7d2"
+    },
+    {
+      "path": "scripts/tests/test_android_framework_ready.py",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 11337,
+      "sha256": "e27c5bee071abbe89fdb60dd2461a6fd867282e5b40c2c83a5a12166da4e369d",
+      "git_blob": "931f2a0f1cb66c35a6b1c00331833a79be84ee0f"
+    },
+    {
+      "path": "scripts/tests/test_android_voice_scroll.py",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 7778,
+      "sha256": "abb6822c5bc721c97b210222433d273618f5e5b9ef0ebfea8a35025c0e9e794a",
+      "git_blob": "c207e73d0c865a60067acb21e124762a4235ae32"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 16790,
+      "sha256": "b67dfb412de165322794b493c22f83933e2785a1a02049247f9d4c79ad1b8bb0",
+      "git_blob": "15131d461511c2101207e45fc27f8e85948eb092"
+    },
+    {
+      "path": "scripts/tests/test_cards_lifecycle_heartbeat.py",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 16774,
+      "sha256": "0dec7101f0d345a62169e96a2f88562a04baf240574d429e5169d0f6dd6dfab1",
+      "git_blob": "ee7d10ead2c02d036bbaed88be442e48823f47a7"
+    },
+    {
+      "path": "scripts/tests/test_historical_apk_expectations.py",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 13552,
+      "sha256": "6d9f146935c5f80ff305f7171843c34ce17f514161894014348b79810260af0f",
+      "git_blob": "5658f3326cf3b2fa5cab678a23cf62e8f262b83d"
+    },
+    {
+      "path": "scripts/tests/test_studio_delivery.py",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 40476,
+      "sha256": "4715fc13dcd5534f380ac90e2ca59a7c1dc20413a9d1e9123a0e71cd5ff47aad",
+      "git_blob": "45828bc2f5324b529f182287186ce23049204f91"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 10421,
+      "sha256": "6d7a692ae6ad0b1ff4860f7d681e34c0a0022c77084b84a98cf674eb5f4f723c",
+      "git_blob": "35720aef514a52ac835130b0beda43ac8adaa5bf"
+    },
+    {
+      "path": "scripts/verify_studio_delivery.py",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 28318,
+      "sha256": "62e2e434677e036b0dc76809cc01c17aead83262c1ea3b9fb7556a23e8a9a101",
+      "git_blob": "fb25c967401fa2bd72ddd825981d9ddd0d03e428"
+    },
+    {
+      "path": "scripts/verify_unified_apk.py",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 12075,
+      "sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382",
+      "git_blob": "455a69423b887843efc4477568d5f2cd094d6088"
+    },
+    {
+      "path": "tools/android_qa/tests/test_cards_lifecycle_observation.py",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 9288,
+      "sha256": "de3244764ed9606879323d9c75cc0c3f3391b90b12f7052685b1b1945f228d12",
+      "git_blob": "8dbe816e0bedb5b85d276c979b8fb8cb8696f901"
+    },
+    {
+      "path": "tools/android_qa/tests/test_flutter_tap_scroll_budget.py",
+      "change": "added",
+      "mode": "100644",
+      "bytes": 5556,
+      "sha256": "886247df7bcf68e811b401db6f804b502d4e8e9b06aabba072606b1035600781",
+      "git_blob": "827b26e03949c60fa421f3f8c0972e50f9ff1579"
+    },
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "change": "modified",
+      "mode": "100644",
+      "bytes": 11695,
+      "sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674",
+      "git_blob": "b9f48afed517b6123b13e7c77b81e00a1b908e13"
+    }
+  ],
+  "unexpected_files": [],
+  "diagnostic": {
+    "commit": "f63618670359af93a25f84a69cbfab4c583b6c53",
+    "tree": "aab1da10907815dca4f491d94db2d556797be3ce",
+    "parent": "fbb9a28e76a08455fc796ed1915a7c5a2ef8226f",
+    "branch": "chatgpt/lumo-android17-cli22-recheck-20261113",
+    "pr": 472,
+    "explicit_combined_files_verified": 33,
+    "scope": "Unchanged e3d APK diagnostic; actual new run pending",
+    "run": 43496485216,
+    "job": 132130816831,
+    "actual_result": "in_progress; no AVD or framework result yet"
+  },
+  "failed_preceding_diagnostic": {
+    "source": "fbb9a28e76a08455fc796ed1915a7c5a2ef8226f",
+    "run": 43494312623,
+    "failure": "Helper confused embedded properties revision7 with installed package descriptor revision8; before AVD/CLI22/runtime; original evidence preserved"
+  },
+  "new_local_tests": {
+    "descriptor_contracts": 12,
+    "passed": 12,
+    "skipped": 0,
+    "seconds": 0.114,
+    "original_metadata_case_failed_under_old_helper": true
+  },
+  "scope": [
+    "This records actual source bytes; no new complete Host-CI success is asserted.",
+    "The previous 30-file sourcefreeze remains a dated historical record before this two-source/four-fixture correction.",
+    "Current Android/Fold7 performance and full master delivery are not established."
+  ]
+}

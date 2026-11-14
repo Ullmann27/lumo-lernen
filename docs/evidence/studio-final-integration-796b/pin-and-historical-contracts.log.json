@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_candidate_2011_pin",
+    "scripts.tests.test_historical_apk_expectations",
+    "-v"
+  ],
+  "exit": 1,
+  "elapsed_seconds": 0.162751109994133,
+  "log_sha256": "61e1ba5ddec1fac0a94c218fe4ea81c4fcee15774d48f0898bfd6ab17599869a",
+  "log": "pin-and-historical-contracts.log"
+}

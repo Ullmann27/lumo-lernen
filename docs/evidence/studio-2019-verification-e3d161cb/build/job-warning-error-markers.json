@@ -1,0 +1,698 @@
+[
+  {
+    "line": 149,
+    "text": "Note: switching to 'e3d161cb2f79b732ac2dbafc2764b151247f018b'."
+  },
+  {
+    "line": 239,
+    "text": "##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5."
+  },
+  {
+    "line": 243,
+    "text": "(node:2430) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "line": 552,
+    "text": "warning • The declaration '_capturePhoto' isn't referenced. Try removing the declaration of '_capturePhoto' • lib/features/live/lumo_live_pro_screen.dart:343:16 • unused_element"
+  },
+  {
+    "line": 553,
+    "text": "warning • Unused import: '../../widgets/premium/lumo_magic_background.dart'. Try removing the import directive • lib/features/magic_hub/lumo_magic_hub_screen.dart:16:8 • unused_import"
+  },
+  {
+    "line": 562,
+    "text": "warning • The value of the field '_ink' isn't used. Try removing the field, or using it • lib/features/story/widgets/lumo_story_scene.dart:150:16 • unused_field"
+  },
+  {
+    "line": 571,
+    "text": "warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/design/denkprofil_knobel_before_after_capture_test.dart:11:8 • unused_import"
+  },
+  {
+    "line": 579,
+    "text": "warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/iq/iq_extended_adventure_test.dart:5:8 • unused_import"
+  },
+  {
+    "line": 654,
+    "text": "(node:3403) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "line": 660,
+    "text": "(node:3403) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+  },
+  {
+    "line": 727,
+    "text": "(node:7074) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "line": 733,
+    "text": "(node:7074) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+  },
+  {
+    "line": 814,
+    "text": "(node:7170) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "line": 820,
+    "text": "(node:7170) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+  },
+  {
+    "line": 2703,
+    "text": "(node:9556) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "line": 2709,
+    "text": "(node:9556) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+  },
+  {
+    "line": 5355,
+    "text": "cannot connect to daemon at tcp:5037: Connection refused"
+  },
+  {
+    "line": 5382,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5388,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5396,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5402,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5410,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5416,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5424,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5430,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5438,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5444,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5452,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5458,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5466,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5472,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending"
+  },
+  {
+    "line": 5483,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: retry-test"
+  },
+  {
+    "line": 5494,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: host-test-1794587798059-1721059"
+  },
+  {
+    "line": 5501,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: host-test-1794587798059-1721059"
+  },
+  {
+    "line": 5507,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: host-test-1794587798059-1721059"
+  },
+  {
+    "line": 5513,
+    "text": "WARNING: [LumoHost] reward not saved; retry on return: host-test-1794587798059-1721059"
+  },
+  {
+    "line": 5833,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 5837,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 5839,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 5873,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 5899,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 5902,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6129,
+    "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+  },
+  {
+    "line": 6131,
+    "text": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+  },
+  {
+    "line": 6160,
+    "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+  },
+  {
+    "line": 6162,
+    "text": "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+  },
+  {
+    "line": 6215,
+    "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+  },
+  {
+    "line": 6217,
+    "text": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+  },
+  {
+    "line": 6552,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6556,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6558,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6577,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6581,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6583,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6645,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6649,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6651,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6672,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6676,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6678,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6694,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6698,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6700,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6714,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6718,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6720,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6761,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6765,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6767,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6780,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6784,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6786,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6802,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6806,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6808,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6820,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6824,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6826,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6839,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6843,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6845,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6873,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6877,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6879,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6893,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6897,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6899,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 6958,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 6962,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 6964,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 7021,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 7025,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 7027,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 7082,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 7086,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 7088,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 7108,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 7112,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 7114,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 7617,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 7621,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 7623,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 7712,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 7716,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 7718,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 7750,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 7754,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 7756,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 7769,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 7773,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 7775,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 7802,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 7806,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 7808,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 7820,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 7824,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 7826,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 7841,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 7845,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 7847,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 7859,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 7863,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 7865,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 7877,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 7881,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 7883,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 8030,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 8034,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 8036,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 8078,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 8082,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 8084,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 8096,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 8100,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 8102,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 8114,
+    "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  },
+  {
+    "line": 8118,
+    "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+  },
+  {
+    "line": 8120,
+    "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  },
+  {
+    "line": 8149,
+    "text": "(node:13241) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "line": 8155,
+    "text": "(node:13241) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+  },
+  {
+    "line": 10679,
+    "text": "cannot connect to daemon at tcp:5037: Connection refused"
+  },
+  {
+    "line": 12067,
+    "text": "cannot connect to daemon at tcp:5037: Connection refused"
+  },
+  {
+    "line": 12120,
+    "text": "WARNING: Unsupported Kotlin plugin version."
+  },
+  {
+    "line": 12134,
+    "text": "WARNING: The option setting 'android.builtInKotlin=false' is deprecated."
+  },
+  {
+    "line": 12137,
+    "text": "WARNING: The option setting 'android.newDsl=false' is deprecated."
+  },
+  {
+    "line": 12140,
+    "text": "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:7:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension."
+  },
+  {
+    "line": 12142,
+    "text": "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:49:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension."
+  },
+  {
+    "line": 12144,
+    "text": "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:70:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension."
+  },
+  {
+    "line": 12146,
+    "text": "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:98:5: 'val Project.android: BaseAppModuleExtension' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension."
+  },
+  {
+    "line": 12148,
+    "text": "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:109:34: 'val Project.android: BaseAppModuleExtension' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension."
+  },
+  {
+    "line": 12157,
+    "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+  },
+  {
+    "line": 12164,
+    "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+  },
+  {
+    "line": 12171,
+    "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.35/android/build.gradle.kts:26:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension."
+  },
+  {
+    "line": 12173,
+    "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+  },
+  {
+    "line": 12180,
+    "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+  },
+  {
+    "line": 12187,
+    "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+  },
+  {
+    "line": 12194,
+    "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/image_picker_android-0.8.13+25/android/build.gradle.kts:34:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension."
+  },
+  {
+    "line": 12196,
+    "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+  },
+  {
+    "line": 12203,
+    "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+  },
+  {
+    "line": 12210,
+    "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+  },
+  {
+    "line": 12217,
+    "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.28/android/build.gradle.kts:40:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension."
+  },
+  {
+    "line": 12219,
+    "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+  },
+  {
+    "line": 12226,
+    "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+  },
+  {
+    "line": 12233,
+    "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.33/android/build.gradle.kts:34:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension."
+  },
+  {
+    "line": 12235,
+    "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+  },
+  {
+    "line": 12243,
+    "text": "WARNING: API 'ApkVariantOutput.getVersionCodeOverride()' is obsolete and has been replaced with 'VariantOutput.versionCode()'."
+  },
+  {
+    "line": 12254,
+    "text": "Deprecated Gradle features were used in this build, making it incompatible with Gradle 10."
+  },
+  {
+    "line": 12274,
+    "text": "Caught exception: Already watching path: /home/runner/work/lumo-lernen/lumo-lernen/android"
+  },
+  {
+    "line": 12478,
+    "text": "(node:14975) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "line": 12484,
+    "text": "(node:14975) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+  },
+  {
+    "line": 12591,
+    "text": "(node:14988) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "line": 12599,
+    "text": "(node:14988) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+  },
+  {
+    "line": 12655,
+    "text": "(node:15028) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "line": 12672,
+    "text": "##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+  }
+]

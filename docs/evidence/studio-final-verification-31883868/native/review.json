@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T20:50:00.381531+00:00",
+  "status": "PASS_FRESH_NATIVE_STEP_WITH_RECORDED_RESOURCE_AND_RENDERER_WARNINGS",
+  "host_source_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "native_source_commit": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "native_source_tree": "ffd943c83079c5957514934ad7077f32e743fe68",
+  "host_run_id": 43496928833,
+  "host_job_id": 132132346118,
+  "native_step_number": 28,
+  "native_step_conclusion": "success",
+  "artifact_id": 14075601738,
+  "github_reported_original_zip_sha256": "8593614c11dc4de32bc7582c0830765ef7fa2c9f1e61e9873c416b61fc92974b",
+  "original_zip_bytes": 132553758,
+  "retrieval": {
+    "whole_zip_downloaded": false,
+    "whole_zip_sha256_recomputed": false,
+    "selected_original_members_crc_checked": true,
+    "transferred_bytes": 797764,
+    "selected_members": 148,
+    "selected_uncompressed_bytes": 741312
+  },
+  "source_stamps": [
+    {
+      "path": "action-stage/source-sha.txt",
+      "bytes": 41,
+      "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe",
+      "content": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+    },
+    {
+      "path": "nextgen/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "content": ""
+    },
+    {
+      "path": "nextgen/source-sha.txt",
+      "bytes": 41,
+      "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe",
+      "content": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+    },
+    {
+      "path": "source-sha.txt",
+      "bytes": 41,
+      "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe",
+      "content": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+    },
+    {
+      "path": "studio/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "content": ""
+    },
+    {
+      "path": "studio/source-sha.txt",
+      "bytes": 41,
+      "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe",
+      "content": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+    },
+    {
+      "path": "studio/source-tree.txt",
+      "bytes": 41,
+      "sha256": "f1b1b40c466d1f14909c8b67f309b2537a93d57f5e006771199084b8f57a8c90",
+      "content": "ffd943c83079c5957514934ad7077f32e743fe68"
+    },
+    {
+      "path": "technical-art/source-sha.txt",
+      "bytes": 41,
+      "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe",
+      "content": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+    }
+  ],
+  "primary_log_groups": {
+    "2014": 18,
+    "action-stage": 5,
+    ".": 2,
+    "nextgen": 25,
+    "studio": 11,
+    "technical-art": 8
+  },
+  "key_actual_results": {
+    "project": {
+      "passed": 117,
+      "warnings": 7,
+      "failed": 0
+    },
+    "learning_world_checks": 5340,
+    "learning_sharing_checks": 1811,
+    "learning_studio_checks": 183,
+    "lumo_studio_motion_checks": 1046,
+    "puzzle_rotation_checks": {
+      "headless": 4558,
+      "rendered": 4565
+    },
+    "puzzle_menu_lifecycle_checks": {
+      "headless": 720,
+      "rendered": 732
+    },
+    "treasure_exploration_checks": {
+      "headless": 87,
+      "rendered": 90
+    },
+    "cards_table_runtime": {
+      "checks": 208,
+      "failures": 0
+    },
+    "jump_nextgen_runtime_checks": 84,
+    "jump_capture_checks": 80,
+    "build_nextgen_checks": {
+      "headless": 62,
+      "rendered": 70
+    },
+    "settlement_play_checks": {
+      "headless": 127,
+      "rendered": 139
+    },
+    "rhythm_play_checks": {
+      "headless": 87,
+      "rendered": 93
+    },
+    "actual_renderer_png_entries": {
+      "nextgen": 70,
+      "studio": 30
+    },
+    "screenshots_opened_for_this_review": 0
+  },
+  "diagnostics": {
+    "resource_exit_error_lines": [
+      {
+        "path": "2014/kart_full_field_regression.log",
+        "line": 310,
+        "message": "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+      },
+      {
+        "path": "2014/kart_harbor_race_hook_regression.log",
+        "line": 23,
+        "message": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+      },
+      {
+        "path": "2014/kart_racecraft_regression.log",
+        "line": 17,
+        "message": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+      },
+      {
+        "path": "legacy-gameplay.log",
+        "line": 3198,
+        "message": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+      },
+      {
+        "path": "legacy-gameplay.log",
+        "line": 3229,
+        "message": "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+      }
+    ],
+    "warning_counts_primary_logs_only": {
+      "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.": 33,
+      "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.": 33,
+      "WARNING: Volumetric fog is only available when using the Forward+ renderer.": 33,
+      "WARNING: ObjectDB instances leaked at exit (run with --verbose for details).": 5,
+      "WARNING: [LumoHost] reward not saved; retry on return: integer-pending": 14,
+      "WARNING: [LumoHost] reward not saved; retry on return: retry-test": 1,
+      "WARNING: [LumoHost] reward not saved; retry on return: host-test-1794600685272-1420220": 4
+    },
+    "project_warnings": [
+      "[WARN] asset: lumo_fox fehlt (assets/models/lumo_fox.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] tool: tools/build_web_bundle.sh nicht ausfuehrbar (chmod +x fehlt)"
+    ],
+    "script_error_lines_primary_logs": 0,
+    "interpretation": "The successful gate is preserved alongside all five resource-at-exit diagnostics. Their absence or harmlessness on Android is not claimed. Compatibility-renderer warnings identify unavailable VSync changes, screen-space AA and volumetric fog; they are not Fold7 performance measurements."
+  },
+  "renderer": "Godot4.6.3 / X11 / OpenGL Compatibility / Mesa llvmpipe LLVM20.1.2 as printed in fresh renderer logs",
+  "limits": [
+    "No aggregate mixes checks, suites, frames and screenshots. Each original primary log and its exact marker remains available.",
+    "The fresh host step ran25 nextgen logs and11 studio logs; the separate native workflow touch jobs are not relabeled as freshly executed by this host step.",
+    "Legacy MenuFlow >=44px is an old test threshold, not a proof of the user48dp requirement.",
+    "No blanket visual approval of the100 current capture entries, no whole-ZIP digest recomputation, no Android runtime, release APK, physical device or60FPS claim.",
+    "The enclosing verify-and-build job was still building the APK when native evidence became available."
+  ]
+}

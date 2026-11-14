@@ -1,0 +1,29 @@
+{
+  "before_commit": "399e75b8b5d5187579e5d75b9b71f882239e9991",
+  "checked_tracked_non_docs_blobs": 1868,
+  "changed_files": [
+    {
+      "path": ".github/probes/lumo_2003_update_android_probe.py",
+      "before_blob": "b954af180595870d1b4510a732c191d9c1f049ed",
+      "after_blob": "0712dd5e583f6da5cef5b2dc06876a6455107e68",
+      "sha256": "38573146ea7623a4b62759be88a982a1b8990d0beabf2c6c0df94927d16b68eb",
+      "bytes": 10533
+    },
+    {
+      "path": "tools/android_qa/tests/test_update_preservation.py",
+      "before_blob": "394f40e95114c931a6bb6f0d3d85ab0dcbaca5e0",
+      "after_blob": "b0f825dc3e077851f7a773cc295ea60170d045a4",
+      "sha256": "d292dd0ec9968bb6b5cd8836c3d0c170ef9d8fac7532d578d8bec26929db389a",
+      "bytes": 23444
+    },
+    {
+      "path": "tools/android_qa/update_preservation.py",
+      "before_blob": "229e196efbdec9216303ed1d00868aa036bf2ae9",
+      "after_blob": "60e74d96e2766657138f52d28301c39e78b85015",
+      "sha256": "723828c1583f254617205d7094fb12b4a4b4d15596f2a58c62fd58e4909212c6",
+      "bytes": 9134
+    }
+  ],
+  "all_other_tracked_non_docs_contents_unchanged": true,
+  "scope": "Byte comparison, not a clean checkout, permission or cache attestation."
+}

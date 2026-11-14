@@ -1,0 +1,173 @@
+{
+  "reviewer": "/root/games_worlds",
+  "recorded_utc": "2026-11-13T19:21:38.869741+00:00",
+  "scope": "Unabhängige lesende Quellenprüfung zur echten Android-17-Startdiagnose; keine Produkt-, Workflow- oder SDK-Mutation und keine neue Emulatorausführung.",
+  "observed_run": {
+    "run": 43489065730,
+    "job": 132105094062,
+    "head": "e4ed59e226ab76c4d7accf174f1f05fc05089d87",
+    "artifact": 14068108901,
+    "artifact_sha256": "8489c35f3ed4619d9fb2c37a9854e8e757f1baf94a01e71b978df874ab5ac71d",
+    "status": "Framework-Guard stoppte vor Appinstallation/Tour. Die genaue Crashkette wird separat von /root/character_animation aus Originaldaten geprüft."
+  },
+  "upstream_action": {
+    "repository": "ReactiveCircus/android-emulator-runner",
+    "commit": "a421e43855164a8197daf9d8d40fe71c6996bb0d",
+    "installer_sources": [
+      {
+        "name": "sdk-installer.ts",
+        "git_blob": "6dfef13d5f460486092c5981900c45e4c73737e1",
+        "url": "https://github.com/ReactiveCircus/android-emulator-runner/blob/a421e43855164a8197daf9d8d40fe71c6996bb0d/src/sdk-installer.ts",
+        "bytes": 3985,
+        "sha256": "b96a07a6a63a950dfc91b4c314ae1f89f19cb2d0954e259681ec0543487af62f"
+      },
+      {
+        "name": "sdk-installer.js",
+        "git_blob": "0e4f33eb144511d23dd1bf49e99ddde7f9a9bace",
+        "url": "https://github.com/ReactiveCircus/android-emulator-runner/blob/a421e43855164a8197daf9d8d40fe71c6996bb0d/lib/sdk-installer.js",
+        "bytes": 5745,
+        "sha256": "0d393abad551932cb94a26860eab8af113e68788f9f95475b2fd5a520022f19e"
+      }
+    ],
+    "entrypoint_fixture": {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/fixtures/android_emulator_runner_a421/lib/main.js",
+      "bytes": 11865,
+      "sha256": "8121ea56f1c89d470071e89f80e15f932b2d8d5f711c28fc99476f34a442bc35"
+    },
+    "avd_fixture": {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/fixtures/android_emulator_runner_a421/lib/emulator-manager.js",
+      "bytes": 7155,
+      "sha256": "a63db8fe9ffb4fb3651e9a2c97f8bac5ca4ce0078a7bbe61ef2e02019082c577"
+    },
+    "findings": [
+      "src/sdk-installer.ts und das wirklich ausgeführte lib/sdk-installer.js prüfen nur, ob ANDROID_HOME/cmdline-tools existiert. Bei bestehendem Verzeichnis wird keine neue CLI installiert.",
+      "Nur beim fehlenden cmdline-tools-Verzeichnis lädt dieser Commit das fest benannte CLI20-Archiv14742923. Das garantiert keine CLI20 auf einem bereits eingerichteten Runner.",
+      "core.addPath setzt anschließend cmdline-tools/latest sowie latest/bin vor den bisherigen Suchpfad. Ein früheres PATH auf einen anderen CLI22-Ordner allein ist deshalb nicht zuverlässig.",
+      "createAvd ruft avdmanager aus dem Suchpfad auf. main.js wartet zunächst auf installAndroidSdk, danach auf createAvd und führt erst anschließend pre-emulator-launch-script aus.",
+      "Ein CLI-Austausch für die AVD-Erstellung muss vor dem Actionaufruf stattfinden. Der bestehende Prelaunch-Hook eignet sich zum lesenden Prüfen der tatsächlich erzeugten AVD-Dateien."
+    ],
+    "source_locations": {
+      "sdk-installer.ts": [
+        {
+          "line": 10,
+          "match": "CMDLINE_TOOLS_URL_LINUX"
+        },
+        {
+          "line": 31,
+          "match": "const cmdlineToolsPath"
+        },
+        {
+          "line": 32,
+          "match": "if (!fs.existsSync"
+        },
+        {
+          "line": 34,
+          "match": "CMDLINE_TOOLS_URL_LINUX"
+        },
+        {
+          "line": 41,
+          "match": "core.addPath"
+        }
+      ],
+      "lib/main.js": [
+        {
+          "line": 184,
+          "match": "await (0, sdk_installer_1.installAndroidSdk)"
+        },
+        {
+          "line": 186,
+          "match": "await (0, emulator_manager_1.createAvd)"
+        },
+        {
+          "line": 188,
+          "match": "if (preEmulatorLaunchScripts !== undefined)"
+        },
+        {
+          "line": 205,
+          "match": "await (0, emulator_manager_1.launchEmulator)"
+        }
+      ],
+      "lib/emulator-manager.js": [
+        {
+          "line": 53,
+          "match": "avdmanager create avd"
+        }
+      ]
+    }
+  },
+  "official_installation_reference": {
+    "url": "https://developer.android.com/tools/sdkmanager",
+    "web_ref": "turn118378979view0",
+    "finding": "Die offizielle Installationsanleitung legt den echten Inhalt des entpackten cmdline-tools-Pakets einschließlich bin, lib und source.properties unter cmdline-tools/latest ab und empfiehlt für Skripte eine feste Version. Das erlaubt einen realen Werkzeugwechsel am von der Action verwendeten Pfad; es rechtfertigt keine manipulierten Plattform-/AVD-Metadaten."
+  },
+  "verified_cli22_existing_inventory": {
+    "run": 43476259207,
+    "head": "31b6c1d69e5ac0b588df91bd8b34149e142e05d4",
+    "artifact": 14064150357,
+    "download_identity": {
+      "url": "https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip",
+      "expected_sha256": "4e4c464f145a7512b57d088ac6c278c03c9eea610886b35a5e0804e74eedf583",
+      "actual_sha256": "4e4c464f145a7512b57d088ac6c278c03c9eea610886b35a5e0804e74eedf583",
+      "bytes": 181833628,
+      "verified": true
+    },
+    "fresh_version": "22.0",
+    "existing_version": "12.0",
+    "files": [
+      {
+        "path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/sdk-diagnostic/artifact/fresh-download-identity.json",
+        "bytes": 317,
+        "sha256": "e965121087f48a35fc0a18936aaea91ad51c76128f59cf0d95434db7083aa6a7"
+      },
+      {
+        "path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/sdk-diagnostic/artifact/fresh-version/stdout.txt",
+        "bytes": 6,
+        "sha256": "39f79f7a6ad9a4128eeda6c3caeafd5ebda63edb99d50e35cd870cbe1196c821"
+      },
+      {
+        "path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/sdk-diagnostic/artifact/existing-version/stdout.txt",
+        "bytes": 6,
+        "sha256": "73d0675fb2da2b7916637864fccdfd1e19a3d28c2cf31f1e4901a92f887c19e1"
+      },
+      {
+        "path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-verification-e3d161cb/android37/sdk-diagnostic/catalog-analysis.json",
+        "bytes": 7331,
+        "sha256": "da1c5a5f953275c37013259c05f009beee44cbddff6e2075fe6ac78f4b5659f6"
+      }
+    ],
+    "limitation": "Dies ist ein eigener früherer erfolgreicher Inventurlauf. Er beweist nicht die tatsächliche CLI-Version oder das generierte target des später gescheiterten e4ed-Laufs."
+  },
+  "aosp_mapper_reference": {
+    "url": "https://android.googlesource.com/device/generic/goldfish/+/refs/heads/main/hals/gralloc/mapper.cpp",
+    "git_blob": "8d1353a3c645794b683146edd46c185f3f664e48",
+    "web_ref": "turn118378979view1",
+    "function": "GoldfishMapper::readFromHost",
+    "expression": "LOG_ALWAYS_FATAL_IF(!rcEnc->featureInfo()->hasReadColorBufferDma);",
+    "interpretation": "Die Fatal-Bedingung liegt auf dem Fehlen der erforderlichen ReadColorBufferDma-Fähigkeit; danach folgen bindDmaDirectly und rcReadColorBufferDMA. Die Meldung belegt gerade nicht, dass man DMA deaktivieren sollte.",
+    "limitation": "Passender veröffentlichter Quellpfad und Ausdruck, keine nachgewiesene Buildidentität zwischen diesem Upstream-Blob und dem mapper.ranchu-Binary des Systemimages."
+  },
+  "first_hand_external_comparison": {
+    "url": "https://github.com/actions/runner-images/issues/14484",
+    "web_ref": "turn497771278view0",
+    "comment_author": "danny801208-beep",
+    "comment_date": "2026-09-30",
+    "summary": "Ein Ersthandbericht vergleicht CLI12 und CLI22 mit demselben API37.0-Image, Emulator37.1.11 und Software-GPU. Die alte CLI erzeugte android-0; die neue erzeugte android-37.0. Der Bericht nennt dieselbe RegionSampling/mapper.ranchu-Abortsignatur im alten Fall und keine solchen Neustarts im ungefähr dreiminütigen neuen Beobachtungsfenster.",
+    "classification": "Fremder reproduzierter Vergleich; konkrete prüfbare Hypothese, kein eigener Android-PASS und keine bewiesene Ursache unseres e4ed-Laufs."
+  },
+  "minimal_supported_followup": [
+    "Vor dem Actionaufruf die echte bestehende latest-CLI, ihre aufgelösten Pfade, Version und source.properties sichern; mit dieser CLI ein gesondertes AVD desselben bereits festgelegten Images erzeugen und INI/Config unverändert archivieren.",
+    "Das bereits geprüfte offizielle CLI22-Archiv SHA2564e4c464f145a7512b57d088ac6c278c03c9eea610886b35a5e0804e74eedf583 verwenden; Originalwerkzeuge erhalten und die echten neuen Paketbytes an den kanonischen latest-Pfad installieren. Tatsächliche Version und Auflösung danach prüfen.",
+    "Die gepinnte Action das endgültige frische AVD erzeugen lassen. Im Prelaunch-Hook erzeugte INI/Config und Image-source.properties lesen und den real erzeugten target-Wert android-37.0 verlangen. Kein target-Wert wird geschrieben oder nachgebessert.",
+    "Nur API37 erhält diese Vorbereitung. API35, Imagekennung, Emulatorversion, GPU-Einstellung, Runtime-SDK37/Release17, Frameworkstabilitätsguard und vollständige App-Tour/Learning/Cards-Prüfungen bleiben bestehen."
+  ],
+  "not_proven": [
+    "AVD-target oder tatsächlich verwendete CLI im gescheiterten e4ed-Lauf; diese Dateien fehlen im Originalartefakt.",
+    "Dass CLI22 den eigenen Emulatorstart bereits repariert.",
+    "Eignung eines GLDMA-Flags als Reparatur; keine solche Änderung empfohlen.",
+    "Android17-, Geräte- oder Leistungsfreigabe."
+  ],
+  "product_changes": [],
+  "workflow_changes": [],
+  "new_emulator_runs": 0,
+  "next_owner": "/root/learning_worlds implementiert den eng abgegrenzten Vorbereitungs-/AVD-Nachweis; /root/games_worlds prüft dessen Freeze anschließend unabhängig."
+}

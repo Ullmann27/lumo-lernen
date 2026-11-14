@@ -1,0 +1,404 @@
+{
+  "schema": 1,
+  "reviewer": "games_worlds / Agent C",
+  "status": "FAILURE_CONFIRMED_NO_ANDROID_ACCEPTANCE",
+  "run": 43480051009,
+  "job": 132073880264,
+  "run_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43480051009",
+  "probe_source_commit": "21df16b1278e5294a225f796e599d8bb0155e9f5",
+  "tested_apk_source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "tested_native_source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "artifact": {
+    "id": 14065289644,
+    "name": "lumo-2019-android-recheck-api35-43480051009-1",
+    "bytes": 102960186,
+    "sha256": "fedf1f3b59e4d56115aa176e4fa5b2be9897c054130bb804b45f1c483d282744",
+    "original_zip": "/workspace/scratch/5987865ae883/qa/studio-recheck-21df16b1-api35.zip",
+    "extracted_regular_files": 990,
+    "selected_original_files": 32,
+    "selected_original_bytes": 3396077,
+    "crc_and_all_extracted_bytes_verified": true
+  },
+  "original_job_log": {
+    "path": "original-job.log",
+    "bytes": 1519647,
+    "sha256": "520cb93cbdbab3b2465571b7042ba911e4f30a97abba3b132539f14328bf9ce7"
+  },
+  "identity": {
+    "x86_apk_sha256": "d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93",
+    "embedded_pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+    "actual_runtime": {
+      "sdk": 35,
+      "release": "15",
+      "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+      "model": "sdk_gphone64_x86_64"
+    },
+    "identity_guards_all_passed": true,
+    "independent_local_x86_apk_download": false,
+    "scope": "Original APK/PCK identity was checked by the real CI binary verifier and original reports; local combined-APK ZIP download is blocked by the connector size limit."
+  },
+  "last_successful_scope": {
+    "normal_tour_status": "PASS",
+    "normal_tour_steps": 21,
+    "normal_tour_successful_steps": 21,
+    "parent_voice_assent": {
+      "local_model_assent": true,
+      "voice_enabled": true,
+      "auto_read": true,
+      "unrelated_permissions_unchanged": true,
+      "no_audio_emulator": true,
+      "audible_quality_verified": false,
+      "lip_sync_verified": false
+    },
+    "learning_roundtrip": {
+      "moves": {
+        "moved_objects": 5,
+        "ten_filled_after": 2,
+        "remainder": 3,
+        "target_indices": [
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "preservation": {
+        "profile": {
+          "id": "1794593684220090",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-13T18:14:44.220090"
+        },
+        "learning_keys_compared": 2,
+        "learning_keys_added": []
+      },
+      "same_lesson_after_return": true,
+      "speech": {
+        "initial": {
+          "native_process_pid": 6854,
+          "completed_utterance_ids": [
+            3
+          ],
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "audible_quality_verified": false,
+          "lip_sync_verified": false
+        },
+        "result": {
+          "native_process_pid": 6854,
+          "completed_utterance_ids": [
+            18
+          ],
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "audible_quality_verified": false,
+          "lip_sync_verified": false
+        },
+        "native_process_gone_on_return": true,
+        "audible_quality_verified": false,
+        "lip_sync_verified": false
+      },
+      "illustration_did_not_award_mastery": true
+    },
+    "cards_initial_resume": {
+      "status": "READY",
+      "mode": "native_resume_acknowledged",
+      "touch": [
+        538,
+        1210
+      ],
+      "resume_request": {
+        "action": "resume",
+        "revision": 4,
+        "sequence": 1,
+        "token": "867e84faa545a2627fd185c8ce0d585a"
+      }
+    },
+    "limits": [
+      "Ein synthetisches lokales Kind; zwei vorhandene Lern-/Profilkeys verglichen. Kein neuer Nachweis für mehrere verdiente Kompetenzhistorien oder sämtliche Profile.",
+      "Sprachabschlussmarker und explizite lokale Modellfreigabe beobachtet; keine hörbare Audioqualitäts- oder Lippenanimationsprüfung.",
+      "Cards Ziehen, anschließende Pause/Wiederaufnahme und Speicherrückkehr wurden in diesem Lauf nicht erreicht."
+    ]
+  },
+  "observed_failure": {
+    "stage": "11_cards_real_table_before_draw",
+    "outer_error": "Cards front faces did not pass current unpaused pixel/UI evidence before deadline",
+    "elapsed_seconds": 60.173214,
+    "captured_frames": 1,
+    "frame_error": "Current Cards frame still has a paused/modal transition",
+    "public_before": {
+      "revision": 5,
+      "ack": 1,
+      "paused": false,
+      "canDraw": true
+    },
+    "public_after_in_frame_record": false,
+    "subsequent_state": {
+      "first_observed_file": "cards-mailbox-009-state.json",
+      "last_observed_file": "cards-mailbox-074-state.json",
+      "revision": 6,
+      "ack": 1,
+      "paused": true,
+      "canDraw": false,
+      "error": false
+    },
+    "public_identity_stayed_same": true,
+    "actual_completed_pixel_acceptance": false
+  },
+  "visual_review": {
+    "images_opened": [
+      {
+        "zip_member": "nextgen/11_cards_real_table_before_draw-face-check-00.png",
+        "sha256": "d5d2f8026142c245d527d42b672eff27328bf21b20c700ad1fa909aa8144643c",
+        "observations": "Originaler 1080×2400-Androidframe: räumlicher grüner Tisch, sitzender Lumo, sichtbare Frontgestaltung der drei aktuellen Handkarten; zentraler Pause-/Weiterspielen-Dialog und ausstehende Speicheranzeige. Kein sichtbarer Blankkartenfehler."
+      },
+      {
+        "zip_member": "nextgen/99_nextgen_failure.png",
+        "sha256": "f563dc91cc2a0694503d65bd02dc3bcb5045061bbe065999fd447562af33e12f",
+        "observations": "Originaler Fehlerframe: dieselbe sichtbare Frontgestaltung und weiterhin Pause-/Weiterspielen-Dialog; Speicheranzeige bereits wieder durch normale Zugmeldung ersetzt."
+      }
+    ],
+    "acceptance": "Keine Karten-Pixel- oder Gesamtfreigabe. Der unveränderte unpaused/UI-Guard lehnt die tatsächlich pausierte Aufnahme korrekt ab."
+  },
+  "cause_boundary": {
+    "confirmed": "Der bereits quittierte Resume-Zustand revision=5 geht in revision=6, paused=true über und bleibt bis zum Fristablauf pausiert. Keine Ziehaktion; die Kartenfronten sind sichtbar.",
+    "code_path": "lumo_cards_table_session.dart:229–250 setzt die explizite Pause bei erhöhtem pauseEpoch oder verlorener/frischerloser Native-Aktivität; der 2500-ms-Heartbeat wird über getCardsState aus dem nativen Renderpoll geschrieben.",
+    "runtime_observation": "Logcat zeigt um 18:31:19–18:31:28 für den nativen PID 7560 EGL-Framezeiten überwiegend 1,1–1,4 Sekunden im Software-Emulator. Das ist kein Geräte-FPS-Nachweis und beweist allein kein Heartbeat-Timeout.",
+    "not_observed": "Die Originalartefakte enthalten keine lifecycle.json-Snapshots/Stamp-/pauseEpoch-Zeitreihe. Damit ist tatsächliches onPause gegenüber verspätetem Renderheartbeat beziehungsweise anderer Pauseursache nicht abschließend getrennt.",
+    "not_claimed": [
+      "Kein bewiesener Blankkarten-Produktfehler",
+      "Kein sicher bewiesener reiner OCR-/Fristfehler",
+      "Kein reproduzierter Speicherverlust",
+      "Kein Android-17- oder Fold7-Leistungsnachweis"
+    ],
+    "next_diagnostic_scope": "Eine ausdrücklich beauftragte Folgeprobe müsste unveränderte Zustands-, lifecycle-Stamp-/Epoch- und Gerätezeitbeobachtungen an denselben Übergängen sichern; keine bloße Erhöhung der Frist oder Abschwächung des Karten-Pixelguards."
+  },
+  "sources_read": [
+    {
+      "repository": "lumo-lernen",
+      "commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "path": "lib/features/games/lumo_cards/lumo_cards_table_session.dart",
+      "sha256": "feff3a6895eca621696dffbd6ad69694dcafb26a6b4704cdec10eaaededfd8ee",
+      "local_copy_byte_equal": true
+    },
+    {
+      "repository": "lumo-lernen",
+      "commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "sha256": "6e4ac87b1013dc7b82be2c3ca8de9a8f2ba63faf5c9866728db45dbcfbb31eb2",
+      "local_copy_byte_equal": true
+    },
+    {
+      "repository": "lumo-lernen",
+      "commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "path": "tools/auto_install/CardsTableBridge.kt",
+      "sha256": "ef5f702ecf6f89aae1b8cc8e4cc640b3b481a01d24a510ff393de100d800e572",
+      "local_copy_byte_equal": true
+    },
+    {
+      "repository": "lumo-godot",
+      "commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "path": "scripts/games/cards/cards_table.gd",
+      "sha256": "43eb3d55b8572f0ff2da67e5bf080d100b64e9511419a03d409b3278878fde03",
+      "local_copy_byte_equal": true
+    }
+  ],
+  "changes_performed": "Nur Originalbelege kopiert und diese Auswertung geschrieben; keine Produkt-/Prüferquelle, CI, Veröffentlichung oder Wiederholung geändert.",
+  "selected_files": [
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/tour-result.json",
+      "original_zip_member": "tour-result.json",
+      "bytes": 9774,
+      "sha256": "41c7b580c2f2dee3302e7492b2fecc9238167aba42df18ad0ee4dfce21f276bb"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/android-sdk.txt",
+      "original_zip_member": "android-sdk.txt",
+      "bytes": 3,
+      "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/android-release.txt",
+      "original_zip_member": "android-release.txt",
+      "bytes": 3,
+      "sha256": "238903180cc104ec2c5d8b3f20c5bc61b389ec0a967df8cc208cdc7cd454174f"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/tested-apk-sha256.txt",
+      "original_zip_member": "tested-apk-sha256.txt",
+      "bytes": 108,
+      "sha256": "3bc93abf3d66d2a0bf52f63b0d16fc399f9a8d70b757c5f49dd5365da9a6dcfa"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/installed-package.txt",
+      "original_zip_member": "installed-package.txt",
+      "bytes": 9106,
+      "sha256": "e917e68864ac2bd89bbf558da1d7eeb69a96f51429eea93a50cddacf5ed7fbaa"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/install.txt",
+      "original_zip_member": "install.txt",
+      "bytes": 181,
+      "sha256": "3314edac0cdf245f07677738405e30cd7f6f6f3379f03d5bd827d6ea6100a2b8"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/fatal-logcat.txt",
+      "original_zip_member": "fatal-logcat.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/recheck/before.json",
+      "original_zip_member": "recheck/before.json",
+      "bytes": 2344,
+      "sha256": "12f7918dc60dc24116f618004a356eea5837c45cb610ec99893e4b65e19bf23e"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/21_race_drive_telemetry.json",
+      "original_zip_member": "21_race_drive_telemetry.json",
+      "bytes": 817,
+      "sha256": "71cf12076c929a21ddeb377429b958da493385e1234922418bf748bad965bcbc"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/native-surfaces-result.json",
+      "original_zip_member": "nextgen/native-surfaces-result.json",
+      "bytes": 5479,
+      "sha256": "9dc3bb3529c65f5cfbf4699359287767b752cfdd527be0777ef52517dc1b2b23"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/11_cards_real_table_before_draw-face-evidence.json",
+      "original_zip_member": "nextgen/11_cards_real_table_before_draw-face-evidence.json",
+      "bytes": 2834,
+      "sha256": "b226ac5c33e2294996642d376574548e4e19a81884a812777dd1fc2ed49e90b9"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/11_cards_real_table_before_draw-face-check-00.png",
+      "original_zip_member": "nextgen/11_cards_real_table_before_draw-face-check-00.png",
+      "bytes": 816778,
+      "sha256": "d5d2f8026142c245d527d42b672eff27328bf21b20c700ad1fa909aa8144643c"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/11_cards_real_table_before_draw-face-check-00-ocr.json",
+      "original_zip_member": "nextgen/11_cards_real_table_before_draw-face-check-00-ocr.json",
+      "bytes": 13923,
+      "sha256": "3ed3790a3d5224da79b73834a5309a5b33ee2f53da53279d8cba3636cadf6dcd"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/99_nextgen_failure.png",
+      "original_zip_member": "nextgen/99_nextgen_failure.png",
+      "bytes": 818491,
+      "sha256": "f563dc91cc2a0694503d65bd02dc3bcb5045061bbe065999fd447562af33e12f"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/cards-initial-readiness.json",
+      "original_zip_member": "nextgen/cards-initial-readiness.json",
+      "bytes": 4285,
+      "sha256": "43e2125918a8612837f360dd9ce8891e9177024b0d40b69a2e939f81ff12279e"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/cards-actual-display-density.txt",
+      "original_zip_member": "nextgen/cards-actual-display-density.txt",
+      "bytes": 44,
+      "sha256": "0a17eaf0deeb48603ff4903c4da16fb9fe0c3b0f702657f6f07621fd98886eee"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/cards-before-native-preferences.xml",
+      "original_zip_member": "nextgen/cards-before-native-preferences.xml",
+      "bytes": 5986,
+      "sha256": "3a894abcc7bebe9ede417b2204b4133cfbfc779bb04ff3f5eca86f8b68aca73b"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/cards-mailbox-001-state.json",
+      "original_zip_member": "nextgen/cards-mailbox-001-state.json",
+      "bytes": 1659,
+      "sha256": "593f8b0d261de8adfc67d39cdde1c6a42ee4874616dc1877722dfc6faaca1387"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/cards-mailbox-006-request.json",
+      "original_zip_member": "nextgen/cards-mailbox-006-request.json",
+      "bytes": 105,
+      "sha256": "709006e4312f3241e53157b5da0e162e71938963aa96857e485483890bec61ee"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/cards-mailbox-007-state.json",
+      "original_zip_member": "nextgen/cards-mailbox-007-state.json",
+      "bytes": 1657,
+      "sha256": "16585ebdae5e2b894795bef4577a0abffd38b7e6130a7957185e219b7e4209c9"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/cards-mailbox-008-state.json",
+      "original_zip_member": "nextgen/cards-mailbox-008-state.json",
+      "bytes": 1657,
+      "sha256": "16585ebdae5e2b894795bef4577a0abffd38b7e6130a7957185e219b7e4209c9"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/cards-mailbox-009-state.json",
+      "original_zip_member": "nextgen/cards-mailbox-009-state.json",
+      "bytes": 1659,
+      "sha256": "e323741e53852bd179be5425bf3cba3f99c22191d9c7adf1f8e2fa538bb275c7"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/cards-mailbox-074-state.json",
+      "original_zip_member": "nextgen/cards-mailbox-074-state.json",
+      "bytes": 1659,
+      "sha256": "e323741e53852bd179be5425bf3cba3f99c22191d9c7adf1f8e2fa538bb275c7"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/logcat.txt",
+      "original_zip_member": "nextgen/logcat.txt",
+      "bytes": 1624672,
+      "sha256": "6950e38168f83e276b385ad6dfd383aff5925b2681417010c1b784335bef6c1f"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/learning-before-native-preferences.xml",
+      "original_zip_member": "nextgen/learning-before-native-preferences.xml",
+      "bytes": 2763,
+      "sha256": "401cae6453a092c3caef23a23a86f65eb41dbe24be7c08d199bae4ce9ca1c074"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/learning-after-native-preferences.xml",
+      "original_zip_member": "nextgen/learning-after-native-preferences.xml",
+      "bytes": 2763,
+      "sha256": "401cae6453a092c3caef23a23a86f65eb41dbe24be7c08d199bae4ce9ca1c074"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/learning-movement-logcat.txt",
+      "original_zip_member": "nextgen/learning-movement-logcat.txt",
+      "bytes": 2303,
+      "sha256": "f7883231f4ad141c2b612e798909b938461ff1ebf17a91cf599913e47e61f057"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/learning-speech-logcat.txt",
+      "original_zip_member": "nextgen/learning-speech-logcat.txt",
+      "bytes": 2426,
+      "sha256": "62ba1aa9603e9fdc2b4b14a389c23f8a2719f23470318716226ae2931cab14a4"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/05_learning_same_flutter_lesson-0.xml",
+      "original_zip_member": "nextgen/05_learning_same_flutter_lesson-0.xml",
+      "bytes": 24016,
+      "sha256": "9c98ee3003044018139dbe0ca859498fded6fcb8ccc3ea1654b83fd690ce338c"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/voice-license-dialog.xml",
+      "original_zip_member": "nextgen/voice-license-dialog.xml",
+      "bytes": 33802,
+      "sha256": "50998733e05d39305395bc323dd49b7e722c1b0c70435c298ca5ed79a23ea8e2"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/voice-settings-before-preferences.xml",
+      "original_zip_member": "nextgen/voice-settings-before-preferences.xml",
+      "bytes": 2017,
+      "sha256": "08515e27eea7ebfc9f4cf917fc9e26e245bf18e9fe7303290a3fd795bc6beb85"
+    },
+    {
+      "path": "docs/evidence/studio-2019-android-recheck-21df16b1/api35/selected-originals/nextgen/voice-settings-after-preferences.xml",
+      "original_zip_member": "nextgen/voice-settings-after-preferences.xml",
+      "bytes": 2763,
+      "sha256": "401cae6453a092c3caef23a23a86f65eb41dbe24be7c08d199bae4ce9ca1c074"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[HoverProbe] before mode=fresh point=(30.0, 12.5) draw=0 mouse=(4800.0, 4880.0) hover=<Object#null>
+[HoverProbe] GUI fresh InputEventMouseButton: button_index=1, mods=none, pressed=true, canceled=false, position=((100.0, 30.0)), button_mask=1, double_click=false
+[HoverProbe] GUI fresh InputEventScreenTouch: index=4, pressed=true, canceled=false, position=((100.0, 30.0)), double_tap=false
+[HoverProbe] after pressed=true draw=0 mouse=(4800.0, 4880.0) hover=<Object#null>
+[HoverProbe] GUI fresh InputEventMouseButton: button_index=1, mods=none, pressed=false, canceled=false, position=((100.0, 30.0)), button_mask=0, double_click=false
+[HoverProbe] GUI fresh InputEventScreenTouch: index=4, pressed=false, canceled=false, position=((100.0, 30.0)), double_tap=false
+[HoverProbe] after pressed=false draw=0 mouse=(4800.0, 4880.0) hover=<Object#null>
+[HoverProbe] result mode=fresh received=false
+[HoverProbe] before mode=pointer-inside-window point=(30.0, 12.5) draw=0 mouse=(4800.0, 4880.0) hover=<Object#null>
+[HoverProbe] entered pointer-inside-window
+[HoverProbe] GUI pointer-inside-window InputEventMouseButton: button_index=1, mods=none, pressed=true, canceled=false, position=((100.0, 30.0)), button_mask=1, double_click=false
+[HoverProbe] DOWN pointer-inside-window draw=1
+[HoverProbe] GUI pointer-inside-window InputEventScreenTouch: index=4, pressed=true, canceled=false, position=((100.0, 30.0)), double_tap=false
+[HoverProbe] after pressed=true draw=1 mouse=(400.0, 400.0) hover=@Button@4:<Button#31792825802>
+[HoverProbe] GUI pointer-inside-window InputEventMouseButton: button_index=1, mods=none, pressed=false, canceled=false, position=((100.0, 30.0)), button_mask=0, double_click=false
+[HoverProbe] PRESSED pointer-inside-window
+[HoverProbe] UP pointer-inside-window draw=2
+[HoverProbe] GUI pointer-inside-window InputEventScreenTouch: index=4, pressed=false, canceled=false, position=((100.0, 30.0)), double_tap=false
+[HoverProbe] after pressed=false draw=2 mouse=(400.0, 400.0) hover=@Button@4:<Button#31792825802>
+[HoverProbe] result mode=pointer-inside-window received=true
+[HoverProbe] exited pointer-inside-window
+[HoverProbe] before mode=replacement point=(30.0, 12.5) draw=0 mouse=(400.0, 400.0) hover=<Object#null>
+[HoverProbe] entered replacement
+[HoverProbe] GUI replacement InputEventMouseButton: button_index=1, mods=none, pressed=true, canceled=false, position=((100.0, 30.0)), button_mask=1, double_click=false
+[HoverProbe] DOWN replacement draw=1
+[HoverProbe] GUI replacement InputEventScreenTouch: index=4, pressed=true, canceled=false, position=((100.0, 30.0)), double_tap=false
+[HoverProbe] after pressed=true draw=1 mouse=(400.0, 400.0) hover=@Button@5:<Button#32782681547>
+[HoverProbe] GUI replacement InputEventMouseButton: button_index=1, mods=none, pressed=false, canceled=false, position=((100.0, 30.0)), button_mask=0, double_click=false
+[HoverProbe] PRESSED replacement
+[HoverProbe] UP replacement draw=2
+[HoverProbe] GUI replacement InputEventScreenTouch: index=4, pressed=false, canceled=false, position=((100.0, 30.0)), double_tap=false
+[HoverProbe] after pressed=false draw=2 mouse=(400.0, 400.0) hover=@Button@5:<Button#32782681547>
+[HoverProbe] result mode=replacement received=true
+[HoverProbe] exited replacement
+[HoverProbe] before mode=pointer-on-target point=(30.0, 12.5) draw=0 mouse=(400.0, 400.0) hover=<Object#null>
+[HoverProbe] entered pointer-on-target
+[HoverProbe] GUI pointer-on-target InputEventMouseMotion: button_mask=0, position=((100.0, 28.0)), relative=((-280.0, -352.0)), velocity=((-1243.319, -2582.277)), pressure=0.00, tilt=((0.0, 0.0)), pen_inverted=(false)
+[HoverProbe] GUI pointer-on-target InputEventMouseButton: button_index=1, mods=none, pressed=true, canceled=false, position=((100.0, 30.0)), button_mask=1, double_click=false
+[HoverProbe] DOWN pointer-on-target draw=1
+[HoverProbe] GUI pointer-on-target InputEventScreenTouch: index=4, pressed=true, canceled=false, position=((100.0, 30.0)), double_tap=false
+[HoverProbe] after pressed=true draw=1 mouse=(120.0, 48.0) hover=@Button@6:<Button#33655096774>
+[HoverProbe] GUI pointer-on-target InputEventMouseButton: button_index=1, mods=none, pressed=false, canceled=false, position=((100.0, 30.0)), button_mask=0, double_click=false
+[HoverProbe] PRESSED pointer-on-target
+[HoverProbe] UP pointer-on-target draw=2
+[HoverProbe] GUI pointer-on-target InputEventScreenTouch: index=4, pressed=false, canceled=false, position=((100.0, 30.0)), double_tap=false
+[HoverProbe] after pressed=false draw=2 mouse=(120.0, 48.0) hover=@Button@6:<Button#33655096774>
+[HoverProbe] result mode=pointer-on-target received=true
+[HoverProbe] exited pointer-on-target
+[HoverProbe] before mode=replacement-other-point point=(31.0, 12.5) draw=0 mouse=(120.0, 48.0) hover=<Object#null>
+[HoverProbe] entered replacement-other-point
+[HoverProbe] GUI replacement-other-point InputEventMouseButton: button_index=1, mods=none, pressed=true, canceled=false, position=((104.0, 30.0)), button_mask=1, double_click=false
+[HoverProbe] DOWN replacement-other-point draw=1
+[HoverProbe] GUI replacement-other-point InputEventScreenTouch: index=4, pressed=true, canceled=false, position=((104.0, 30.0)), double_tap=false
+[HoverProbe] after pressed=true draw=1 mouse=(120.0, 48.0) hover=@Button@7:<Button#34678506957>
+[HoverProbe] GUI replacement-other-point InputEventMouseButton: button_index=1, mods=none, pressed=false, canceled=false, position=((104.0, 30.0)), button_mask=0, double_click=false
+[HoverProbe] PRESSED replacement-other-point
+[HoverProbe] UP replacement-other-point draw=2
+[HoverProbe] GUI replacement-other-point InputEventScreenTouch: index=4, pressed=false, canceled=false, position=((104.0, 30.0)), double_tap=false
+[HoverProbe] after pressed=false draw=2 mouse=(120.0, 48.0) hover=@Button@7:<Button#34678506957>
+[HoverProbe] result mode=replacement-other-point received=true
+[HoverProbe] exited replacement-other-point

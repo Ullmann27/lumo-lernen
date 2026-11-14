@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-13T23:49:31.768797+00:00",
+  "published_host_baseline": "39ddc673577e31e76fb992a1b49ef67d1deee908",
+  "local_head_used_as_baseline": false,
+  "source_files": [
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "bytes": 10421,
+      "sha256": "6d7a692ae6ad0b1ff4860f7d681e34c0a0022c77084b84a98cf674eb5f4f723c",
+      "git_blob": "35720aef514a52ac835130b0beda43ac8adaa5bf",
+      "local_matches_39dd": true,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 16790,
+      "sha256": "b67dfb412de165322794b493c22f83933e2785a1a02049247f9d4c79ad1b8bb0",
+      "git_blob": "15131d461511c2101207e45fc27f8e85948eb092",
+      "local_matches_39dd": true,
+      "mode": "100644"
+    }
+  ],
+  "protected_files_before": [
+    {
+      "path": "config/godot-source.json",
+      "bytes": 145,
+      "sha256": "e8d96e2bf2020df2510fad816e77e6e945419955fc31ad2e8cd76b83a3086417",
+      "git_blob": "b98e91c96a678eeed1fb6929bd8079cd0cdb156d"
+    },
+    {
+      "path": "config/studio-2019-visual-review.json",
+      "bytes": 30729,
+      "sha256": "fdd27ad3562f9c63f911bb48ba0fbf0e93494f1937ab8d953fa749486ae99198",
+      "git_blob": "a4b64c86a0b78880ed41c95326b198cb7b18828a"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "bytes": 48718,
+      "sha256": "1df347d88bf1da49bb22d50dc84c4a989752e84fbb9a04056d57037b6101c772",
+      "git_blob": "977e0c37f9bc93630ebbf1dc97b8257e0efc3512"
+    },
+    {
+      "path": "pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+      "git_blob": "40a3226d7b575cc414abc1494dfff5924a5de775"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/manifest.json",
+      "bytes": 3285,
+      "sha256": "7d61270fece35d835c1d39c8cf44a007a5c45c19c7b5f4a06f8986223c3280f5",
+      "git_blob": "3ced29ff1256c82146b605c4543f235d83e51475"
+    }
+  ],
+  "actual_candidate_source": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "engine": "4.6.3"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "baseline": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "guard_ast_review": {
+    "validate_abis": true,
+    "validate_offline_voice": true,
+    "verify_body_identical_after_removing_only_new_expectation_reader_binding_and_extra_report": true
+  },
+  "unchanged_guard_and_product_files": [
+    {
+      "path": "scripts/verify_android_apk.py",
+      "sha256": "1914f1294f618653c23ab54d9bdaf3e69cf74e4050c2a7ade97486345addbbdc",
+      "matches_e3d": true
+    },
+    {
+      "path": "scripts/LumoApkCertificateVerifier.java",
+      "sha256": "caf87af2279cf8d6d453487b39bc240e8a56feb4d021e0c221c8f48064bd82ca",
+      "matches_e3d": true
+    },
+    {
+      "path": "tools/lumo-debug.keystore",
+      "sha256": "af536f19a882d7de1aed2bb4ae5b6bde9235112e0be1dc8ffacd08f3aecf0cfb",
+      "matches_e3d": true
+    },
+    {
+      "path": ".github/probes/candidate_update_android_probe.py",
+      "sha256": "38d6744b48424ac3a038e4d6a4fe6a42c5135cee6bec3315f1b7dbe3a80e8f9f",
+      "matches_e3d": true
+    },
+    {
+      "path": ".github/probes/lumo_learning_journey_probe.py",
+      "sha256": "695aa825f506c77a8d68e3d3063eb4eaad3e1678a03028f6081a344b1ba02e63",
+      "matches_e3d": true
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "sha256": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b",
+      "matches_e3d": true
+    },
+    {
+      "path": "tools/android_qa/update_preservation.py",
+      "sha256": "723828c1583f254617205d7094fb12b4a4b4d15596f2a58c62fd58e4909212c6",
+      "matches_e3d": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_update_preservation.py",
+      "sha256": "d292dd0ec9968bb6b5cd8836c3d0c170ef9d8fac7532d578d8bec26929db389a",
+      "matches_e3d": true
+    },
+    {
+      "path": "config/godot-source.json",
+      "sha256": "ff76449f25572273d0602fff4bb826e14850030c063bb41d9471e262ffcc8896",
+      "matches_e3d": true
+    },
+    {
+      "path": "pubspec.yaml",
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+      "matches_e3d": true
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "sha256": "ae13c51986aeaac5318442669480d890de9beed73655d0595a65ba5ec94f9f98",
+      "matches_e3d": true
+    }
+  ],
+  "live_host_files_unchanged": [
+    {
+      "path": "scripts/verify_unified_apk.py",
+      "current_host_sha256": "20ac42965bc2de166d59218d5feb6d062c35d0c2197662fa530677cad43ed8ed",
+      "matches_e3d": true
+    },
+    {
+      "path": ".github/workflows/lumo-1999-update-gate.yml",
+      "current_host_sha256": "ca6c21f5f33b3ed94e853dca3735b75cb1ca59c4faf2db71dda91649c4bc02df",
+      "matches_e3d": true
+    }
+  ],
+  "changed_worktree_paths": [
+    " M .github/workflows/lumo-1999-update-gate.yml",
+    " M scripts/verify_unified_apk.py",
+    "?? scripts/tests/test_historical_apk_expectations.py"
+  ]
+}

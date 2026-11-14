@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "status": "CURRENT_NATIVE_VISUAL_REVIEW_RECORDED",
+  "native_revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "native_run": 43479909943,
+  "artifact_id": 14067226187,
+  "artifact_sha256": "3aed744b481e02c485ae0ea039750728ad59842b6b4f6ed9a2c3109ca63a2067",
+  "actual_unique_images_individually_opened": 29,
+  "selected_receipt_images": 25,
+  "receipt_path": "config/studio-2019-visual-review.json",
+  "receipt_sha256": "4091bc1c79a0efa75c368b35ea77472a5bb2cf2ea8fd2f0e1b096ebdb43eebae",
+  "receipt_bytes": 22028,
+  "current_workflow_required_jobs": "all eight success, attempt one",
+  "archive_job": "success, original release bytes checked by workflow",
+  "review_note_paths": [
+    "docs/evidence/studio-2019-review-notes/learning-796b-current-review.json",
+    "docs/evidence/studio-2019-review-notes/puzzle-treasure-796b-current-review.json",
+    "docs/evidence/studio-2019-review-notes/cards-796b-current-review.json",
+    "docs/evidence/studio-2019-review-notes/treasure-touch-796b-current-review.json",
+    "docs/evidence/studio-2019-review-notes/selected-15-796b-review.json",
+    "docs/evidence/studio-2019-review-notes/root-796b-full-bundle-image-comparison.json",
+    "docs/evidence/studio-2019-review-notes/review-selection-796b-completed.json"
+  ],
+  "limits": [
+    "Native desktop renderer/input evidence only. No current Android Cards pass.",
+    "No APK release, physical Fold7 measurements or sustained 60 FPS asserted.",
+    "Four extra current learning images reviewed but not included in the selected 25-image receipt."
+  ]
+}

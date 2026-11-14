@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "recorded_at_utc": "2026-11-13T23:40:36.895756+00:00",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run_id": 43524051371,
+  "artifact_id": 14085523056,
+  "read_only_calls": [
+    "verify_native_acceptance",
+    "verify_archive_sources",
+    "capture_module for all32 planned images"
+  ],
+  "host_verifier_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_delivery.py",
+  "host_verifier_before_sha256": "d2d8cad7b1e1e41141b1df0c3f1cb026749580670aa48b2fa82becbd464fa8dd",
+  "host_verifier_after_sha256": "d2d8cad7b1e1e41141b1df0c3f1cb026749580670aa48b2fa82becbd464fa8dd",
+  "source_stamps": {
+    "nextgen-evidence/nextgen": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "studio-evidence": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "touch-evidence/workshop": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "touch-evidence/treasure": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "touch-evidence/build": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+  },
+  "result_tables": {
+    "nextgen-evidence/nextgen": {
+      "rows": 25,
+      "all_pass": true,
+      "sha256": "c61f7b94de60e2388e654f559e170cdc170bf97cac0e84f90850ceae7b1ac991"
+    },
+    "studio-evidence": {
+      "rows": 16,
+      "all_pass": true,
+      "sha256": "b091a75178d616ecc211ce1a6c6eb222df98ef9e0b837725f1ec77daf4427809"
+    },
+    "touch-evidence/workshop": {
+      "rows": 2,
+      "all_pass": true,
+      "sha256": "c9d8181d388096d44183d9cd5580dd5048efa46db21e83275024c2d41fe062e7"
+    },
+    "touch-evidence/treasure": {
+      "rows": 2,
+      "all_pass": true,
+      "sha256": "2899998b1e874e13568468e16ba6a7aa5593bb4342abf28f2746a915a2d373c0"
+    },
+    "touch-evidence/build": {
+      "rows": 2,
+      "all_pass": true,
+      "sha256": "5b5205d32babc9c7ca3ddb0c8616064dec845bbf32cebb2de2d71fdf34d73f26"
+    }
+  },
+  "release": {
+    "id": 444845191,
+    "tag": "studio-evidence-803e7a626ea6ef0aeeda9c37010e844033d3a8e3-14085523056",
+    "asset_id": 745576028,
+    "asset_size": 199274727,
+    "asset_digest": "sha256:3b4fcac817efd007797658117f3c62185e3834cbdd624de02d6072fce688a798",
+    "public_url": "https://github.com/Ullmann27/lumo-godot/releases/download/studio-evidence-803e7a626ea6ef0aeeda9c37010e844033d3a8e3-14085523056/native-evidence.zip",
+    "digest_matches_original_artifact": true,
+    "public_zip_downloaded_again_by_this_agent": false
+  },
+  "limits": [
+    "Native identity and evidence validation only; no visual approval or Android/Fold7 performance approval.",
+    "No Host pin, receipt, source, branch or CI mutation."
+  ]
+}

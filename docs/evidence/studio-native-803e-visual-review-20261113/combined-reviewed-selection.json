@@ -1,0 +1,162 @@
+[
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+    "findings": "Die abgeschlossene Aufgabe 12:3 zeigt drei räumliche Teller mit jeweils vier gelben Würfeln und jeweils der Zahl 4. Die Erklärung stimmt mit 12 verteilten Objekten überein. Original-Lumo und Blender-Atelierobjekte sind sichtbar. Noch einmal und Zur Aufgabe sind erreichbar dargestellt; die Verteilaktion ist im Abschlusszustand deaktiviert."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+    "findings": "Im schmalen Hochformat liegt nach der ersten Runde auf jedem der drei Teller genau ein Würfel; neun Würfel verbleiben im Vorrat. Die Texte 3/12 bewegt und Jede Gruppe hat jetzt 1 passen dazu. Verteil-, Wiederhol- und Rückkehraktion sind innerhalb des Bildes, die Erklärung ist ohne abgeschnittene Zeile lesbar."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+    "findings": "Die breite Abschlussansicht erklärt 180+50=230. Ein Hunderterfeld, ein vollständig gefülltes Zehnerbrett und drei zusätzliche Zehner entsprechen dem sichtbaren Ergebnis 2 Hunderter + 3 Zehner. Die Beschriftung 10 Zehner = 100 einschließlich der zwei getrennten Gleichheitsbalken ist erkennbar. Wiederholung und Rückkehr sind vollständig dargestellt."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+    "findings": "Im schmalen Hochformat bleiben 180+50=230, das Hunderterfeld und alle dreizehn Zehner in der Erklärung sichtbar. 10 Zehner = 100 und 230 = 2 Hunderter + 3 Zehner sind lesbar; +50 liegt innerhalb des Bildrandes. Abschlussmeldung und beide aktiven Folgeaktionen sind vollständig im Bild. Statische Abschlussansicht, keine neue ASR-/Sprachprüfung."
+  },
+  {
+    "module": "jump",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+    "findings": "Die Fuchsfigur ist in einer Luftpose vor der erhöhten nächsten Plattform sichtbar; Kopf, Körper, Arme, Beine und Schwanz bilden eine zusammenhängende Silhouette ohne sichtbar abgetrennte Gliedmaßen. Plattformen, Weg, Kristalle und räumliche Tiefe bleiben erkennbar. Insel-, Etappen- und Halten-zum-höher-Springen-Hinweise sind lesbar. Linker Bewegungsstick und rechter Sprungknopf liegen sichtbar getrennt im Bild; Zurück und Pause haben eigene obere Flächen. Grenze: Der Moment der Luftpose allein belegt keine Sprunghöhe, Kollisionsqualität, Eingabelatenz oder gemessene Bildrate. Die Bildgröße ist kein physischer Fold7-Nachweis."
+  },
+  {
+    "module": "jump",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+    "findings": "Die Figur steht in einer Bodenpose auf dem Steinweg der Startinsel; die sichtbaren Füße und der Schatten haben Bezug zur Plattform, ohne im Bild offensichtliches Durchsinken. Die schmale Portraitansicht hält Zurück, Pause, Bewegungsstick, Sprungaktion und Sprunghinweis sichtbar getrennt. Der obere Zähler bricht kontrolliert über mehrere Zeilen um. Die kommenden Plattformen und der Weg bleiben im mittleren Bildbereich sichtbar. Grenze: Ein Landestandbild kann weder die komplette Landesequenz noch die Zuverlässigkeit jeder Kollision belegen. Diese Prüfung ist Desktop-Renderer-Evidenz, keine Android-Ausführung."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+    "findings": "Eine cyan markierte Brücke und ein Haus sind als räumliche Objekte auf dem Gelände sichtbar; der Status meldet zwei Teile und 90 Grad. Die Meldung „Brücke versetzt. Rückgängig stellt den vorherigen Platz wieder her.“ ist lesbar; Verschieben, Drehen, Rückgängig und Wiederholen bleiben in der oberen Reihe sichtbar. Bauziel, Zoom-/Mittetasten und die Kategorien sind getrennt angeordnet. Die untere Bauteilauswahl zeigt rechts eine angeschnittene Folgeoption und eine horizontale Scrollleiste. Grenze: Aus dem Zustand allein werden keine tatsächliche Vorher-Nachher-Verschiebung, Undo-/Redo- oder Speicheroperationen abgeleitet; dafür sind die separat gebundenen aktuellen Spielprotokolle zuständig. Nicht alle Bauteile sind gleichzeitig sichtbar."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+    "findings": "Das aktuelle Bauziel wird im kleinen Querformat vollständig mit Titel, Aufgabe und beiden Aktionen angezeigt. „Mein Bauwerk testen“ und „Abbrechen“ liegen innerhalb des Dialogs und innerhalb des Bildes, ohne Überdeckung ihrer Beschriftungen. Der Dialog liegt über der Welt und dem scrollbaren Editor; die verbleibenden Hintergrundteile sind für den angezeigten Dialog nicht erforderlich. Grenze: Dieses kleine Fensterbild beweist noch keine Android-dp-Größe oder erfolgreiche Betätigung. Die sichtbaren197 Teile sind vorbereiteter Testzustand, kein Beleg, dass hier197 Objekte manuell gebaut wurden."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+    "findings": "Der nach unten gescrollte Vorlagendialog zeigt Brücke, Sternenturm, Garten, Garten-/Hafen-/Insel-Parzelle und Leere Insel mit lesbaren Beschriftungen. Der untere Abschluss „Abbrechen“ bleibt als eigene feste Aktion vollständig sichtbar. Scrollleiste und die am oberen Scrollrand teilweise abgeschnittene Starter-Haus-Zeile machen den Ausschnitt nachvollziehbar. Der Hintergrundtitel ist in der schmalen Ansicht verkürzt; die aktuell maßgeblichen Dialogüberschrift und Dialogaktionen sind vollständig lesbar. Grenze: Nicht die gesamte Liste ist gleichzeitig sichtbar. Ein Standbild belegt weder den echten Wischvorgang noch dessen Freiheit von versehentlichen Aktivierungen; diese Aussagen werden nur den aktuellen Eingabeprotokollen zugeordnet."
+  },
+  {
+    "module": "settlement",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+    "findings": "Der eigenständige Dialog „Platz für Neues?“ erläutert verständlich den vorübergehenden Auszug eines Bewohners, die zwei verbleibenden Bewohner und die Rückgabe von Holz, Stein und Münze. Der Hinweis auf Rückgängig ist sichtbar. „Haus behalten“ und „Ja, umbauen“ sind getrennte, vollständig sichtbare Aktionen. Grenze: Die 388 × 390-Aufnahme zeigt ausschließlich den Dialog, keine Gesamtwelt und keine ausgeführte Umsiedlung. Ressourcenerstattung und Wiederherstellung werden hier nicht aus einem Bild behauptet."
+  },
+  {
+    "module": "garage",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+    "findings": "Kart und Fuchsfigur stehen sichtbar in einer räumlichen Werkstatt mit Podest, Werkzeugen, Reifenständer, Licht und Bodenschatten. Kartliste, Kategorien, Sternestand, Lack-/Teile-/Effekt-Einstieg, Rückkehr und Rennen starten sind lesbar und räumlich vom Hauptmotiv getrennt. Die linke Fahrzeugliste zeigt ein ausgewähltes Kart und sichtbare weitere Einträge; die untere Folgezeile ist Teil des erkennbar scrollbaren Ausschnitts. Grenze: Das Bild belegt keine ausgeführte Rundumsicht, keine Auswahlreaktion über Zeit und keine Aufwertung aller Strecken. Die Werkstattansicht ist kein Android-Leistungsnachweis."
+  },
+  {
+    "module": "garage",
+    "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+    "findings": "Die Portraitansicht zeigt den gelben Kart mit sitzender Fuchsfigur als räumliches Hauptmotiv, dazu getrennte Leistungswerte und Farb-/Felgen-/Neon-Auswahl. Die ausgewählte goldene Lackfarbe ist markiert; Goldglanz, Neon und Weiß sind lesbar. Der Sternestand und die Rückkehraktion bleiben oben sichtbar. Die unterste Aktion „Alle Teile zurücksetzen und ★ 16 zurückholen“ ist vollständig im Bild erreichbar dargestellt. Der Werkstatttitel wird oben mit Auslassungspunkten gekürzt. Grenze: Dies ist die sichtbare Rücksetzoption vor ihrer Bestätigung, kein aus dem Bild abgeleiteter Erstattungsnachweis. Nicht alle Optionen des Scrollbereichs sind gleichzeitig sichtbar."
+  },
+  {
+    "module": "cards",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+    "findings": "Die Standard-Queransicht zeigt den räumlichen Tisch, Original-Lumo, Zieh-/Ablagestapel und alle sieben Kartenfronten getrennt. Goldene Markierungen, Handgrößen, Zughinweis, Seite1/1 und Ziehen sind erkennbar. Zurück und Pause liegen vollständig im Header. Diese Desktopaufnahme bestätigt die normale Szene, nicht die neue Android-Randmessung."
+  },
+  {
+    "module": "cards",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+    "findings": "Die Standard-Hochansicht zeigt drei große Kartenfronten auf Seite1/3, einen vollständig sichtbaren Ziehen-Knopf sowie getrennte Blätteraktionen. Der Kartenraum, Original-Lumo und beide Handgrößen bleiben sichtbar. Zurück und Pause passen in den oberen Bereich. Keine Aussage über eine tatsächlich gespielte vollständige Runde aus diesem Standbild."
+  },
+  {
+    "module": "rhythm",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+    "findings": "Vier räumlich nach hinten verlaufende Spuren, farbige Noten, eine sichtbare Folgerichtung und die Bühnenfigur sind erkennbar. Die Meldung „Zur nächsten Spur!“ steht getrennt über dem Spielfeld; die vier breiten unteren Eingabeflächen mit 1 / D bis 4 / H bleiben vollständig sichtbar. Punkte-, Combo- und Fortschrittsanzeige sowie Zurück und Pause sind lesbar. Lichtkegel und Sterne stören die Unterscheidung der vier Spuren nicht. Grenze: Die sichtbare Slide-Anweisung belegt allein weder musikalische Synchronität noch faire Zeitfenster oder erfolgreiche Mehrfingereingaben. Diese Aspekte bleiben den getrennten aktuellen Laufprotokollen zugeordnet."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+    "findings": "Der Titel, die Zeile „Mini · Drehpuzzle · 1 / 6 Teile · 1 Tipps“ und die konkrete Hilfemeldung sind vollständig lesbar. Die untere sichtbare Reihe mit Drehen, beiden Teile-Tasten, Randteile, Bild ansehen und Ein Tipp bleibt innerhalb des Bildes; Zurück und Pause sind getrennt am oberen Rand. Der mittlere Ausschnitt zeigt die räumliche Ablage, Bildfragmente und das hervorgehobene Feld; die große Oberfläche reduziert den sichtbaren Tischbereich, verdeckt aber keine der gezeigten Hauptaktionen. Grenze: Eine statische 640×360-Aufnahme belegt weder Android-dp noch Eingabelatenz. Die hier nicht sichtbaren weiteren Toolbar-Aktionen werden durch dieses Einzelbild nicht beurteilt."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+    "findings": "Ein einzelnes Bildteil liegt auf dem zentralen blauen Brett; die Anzeige meldet 1 / 6 Teile und „Das passt! Dein Bild wächst.“. Die restlichen Bildfragmente liegen auf zwei seitlichen Ablagen. Dicke, Perspektive und Schatten der Teile und Ablagen sind sichtbar. Die unteren Aktionen einschließlich Speichern und Neues Puzzle sind vollständig sichtbar. Drehen ist erkennbar deaktiviert; Titel, Status, Pause und Zurück überlagern die Hauptaktionen nicht. Grenze: Das Bild zeigt den erreichten Zustand, nicht den gesamten Touch-, Rotations- oder Speicherablauf. Die Aussagen zu diesen Abläufen stammen getrennt aus den aktuellen zugehörigen Protokollen."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+    "findings": "Die Fuchsfigur, räumliche Bäume, Blumen, Turm, Mauer und Schatten sind sichtbar. Figur und Bewegungsstick sind nicht vom Hinweisfenster verdeckt. Der Hinweis zeigt 3 / 7 gelöste Hinweise und die Wahl zwischen Kristallwächter und Mondgarten; der Text erläutert, dass beide Funde für das Schloss benötigt werden. Zurück, Rucksack, Pause, Springen und Ansehen liegen sichtbar getrennt innerhalb des Bildes. Die Fundmeldung „Brückenwappen“ ist lesbar. Der Entdeckungszähler bricht vor der letzten 3 um, bleibt aber vollständig lesbar; darin liegt hier kein abgeschnittener Inhalt. Grenze: Dieses Bild belegt keine vollständige Reise, keine Wahl beider Wege und keine neue Gesicht-/Lippensynchronisierung. Aus der sichtbaren Figur wird keine zusätzliche Rig- oder Clip-Eigenschaft abgeleitet."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+    "findings": "Der Abschlussdialog meldet sieben gelöste Hinweise, alle Schlüssel sowie drei Sterne und 54 Erfahrungspunkte; die oberen Zähler zeigen 7 / 7 und 3 / 3. „Insel weiter erkunden“, „Neues Abenteuer“ und „Zur Spielewelt“ sind vollständig lesbar, getrennt und innerhalb des Bildes angeordnet. Die 3D-Umgebung bleibt hinter dem Dialog sichtbar. Der obere Entdeckungszähler bricht vor der letzten 3 um, bleibt vollständig lesbar. Grenze: Der Abschluss ist ein im echten Renderer dargestellter Testzustand, kein Nachweis eines vollständigen Android-Abenteuers durch ein Kind oder einer physischen Fold7-Ausführung. Die Belohnungsverbuchung wird nicht allein aus dem Text abgeleitet."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+    "findings": "Das 960x540-Menü zeigt Mini, sechs Teile und Modus Drehpuzzle. Alle fünf Menüaktionen einschließlich Neues Puzzle beginnen und Zur Spielewelt sind vollständig sichtbar. Das zentrale Menü ist vom oberen Spiele-/Pausebereich und der unteren Werkzeugleiste getrennt; Hintergrundtexte werden durch das Menü überlagert."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+    "findings": "Nach dem Menüstarter ist die Dialogfläche geschlossen. Mini, Drehpuzzle und 0/6 sind sichtbar; der Hinweis beschreibt eine Vierteldrehung. Der Drehen-Knopf steht links in der vollständigen Werkzeugleiste, das zentrale Brett und die beiden Teileablagen sind räumlich erkennbar."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+    "findings": "Der klassische Modus zeigt 1/6, die Rückmeldung Das passt und ein tatsächlich auf dem mittleren Brett liegendes Bildteil. Der Drehen-Knopf fehlt passend zum klassischen Modus. Teile, Randteile, Bild ansehen, Tipp, Speichern und Neues Puzzle sind vollständig dargestellt."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+    "findings": "Im 640x360-Menü sind Mini, sechs Teile, Drehpuzzle und Neues Puzzle beginnen vollständig lesbar. Die vertikale Scrollleiste ist klar sichtbar; Zur Spielewelt liegt zunächst teilweise unter der Scrollkante. Dies wird als scrollbarer kleiner Dialog dokumentiert, nicht als gleichzeitig vollständig sichtbare Menüliste."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+    "findings": "Kleine Queransicht: Titel, 0/6, Drehpuzzle und Vierteldrehungs-Hinweis sind lesbar. Drehen und die ersten Werkzeugaktionen liegen vollständig in einer horizontal scrollbaren Leiste; die weiteren Aktionen sind über den sichtbaren Scrollbereich erreichbar. Spielbrett und Teileablagen bleiben im mittleren freien Bereich sichtbar."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+    "findings": "Kleine klassische Ansicht: 1/6 und die Erfolgsrückmeldung passen zum sichtbaren platzierten Teil. Die Werkzeugleiste enthält keinen Drehen-Knopf; Speichern ist sichtbar, die äußerste folgende Aktion nur teilweise und über horizontales Scrollen erreichbar. Keine abgeschnittene Statuszeile."
+  },
+  {
+    "module": "cards",
+    "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+    "findings": "Hochformat: Zurück und Pause sind vollständig vom oberen Bildrand abgesetzt. Drei große Kartenfronten, Handseite 1/3 und Ziehen sind getrennt lesbar; Karte legen ist sichtbar deaktiviert. Räumlicher Tisch und Original-Lumo bleiben sichtbar. Desktopfixture mit Android-Randwerten, kein Android-JNI-Nachweis."
+  },
+  {
+    "module": "cards",
+    "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+    "findings": "Pausenzustand: Weiter oben rechts und Weiterspielen im mittigen Dialog sind vollständig sichtbar; der Dialog erklärt, dass der Zug wartet. Die Tisch-/Handdarstellung bleibt als Hintergrund erhalten. Das Standbild belegt die Anordnung, nicht die Ausführung eines Resume-Taps."
+  },
+  {
+    "module": "cards",
+    "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+    "findings": "Querformat mit linkem Aussparungsrand: Zurück und Pause liegen eingerückt; alle sieben Kartenfronten und die untere Ziehen-Aktion sind sichtbar. Die Statuszeile nennt beide Handgrößen und den aktuellen Zug. Aufnahme aus der Cutout-Desktopfixture, keine Aufnahme eines physischen Telefons."
+  },
+  {
+    "module": "jump",
+    "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+    "findings": "Original-Lumo steht auf der vorderen 3D-Insel; Folgeplattformen, Wolken und Bäume sind räumlich erkennbar. Linker Stick und rechter Sprungknopf sind getrennt und mit Abstand zu den Außenrändern sichtbar. Die Status- und Zieltexte bleiben lesbar. Die statische Aufnahme ersetzt keinen Bewegungs- oder FPS-Nachweis."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+    "findings": "3D-Bauinsel mit Burg, Fluss und platzierten Teilen ist sichtbar. Spiele, Pause und Mit Lumo laufen sind innerhalb des eingerückten Bereichs. Beide horizontalen Werkzeugleisten zeigen ihre Scrollleisten; weitere Optionen sind am rechten Rand teilweise angeschnitten und müssen gescrollt werden. Keine Behauptung, alle Katalogoptionen seien gleichzeitig sichtbar."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+    "findings": "Räumlicher Puzzletisch mit zentralem Menü. Bild-, Schwierigkeits-, Modus- und Startauswahl sind klar lesbar; die vertikale Scrollleiste ist sichtbar. Der untere Zur-Spielewelt-Eintrag ist zunächst nur teilweise sichtbar und gehört zum scrollbaren Dialog. Spiele- und Pauseflächen sind vom Aussparungsrand abgesetzt."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+    "findings": "Burg, Weg, Pflanzen und begehbare 3D-Umgebung bleiben erkennbar. Stick, Springen und Ansehen sind getrennte sichtbare Flächen; Spiele, Rucksack und Pause liegen eingerückt. Der Entdeckungszähler bricht vor der 3 um, bleibt jedoch lesbar. Das große Hinweisfeld verdeckt einen Teil der Figur; die Aufnahme ist eine Layoutfixture, kein vollständiger Gameplaynachweis."
+  }
+]

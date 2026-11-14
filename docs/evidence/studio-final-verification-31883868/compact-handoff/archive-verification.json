@@ -1,0 +1,26 @@
+{
+  "verified_at": "2026-11-13T21:17:35.515820+00:00",
+  "archive": {
+    "file": "studio-31883868-build-and-update-evidence.zip",
+    "bytes": 29936080,
+    "sha256": "097c0180cf6ed0f478d996bace00002cc69e076b4d70fe1ce5b3645fb946674b",
+    "member_count": 180,
+    "uncompressed_bytes": 35115190
+  },
+  "checks": {
+    "both_input_manifest_sha256_match_frozen_values": true,
+    "all_179_listed_files_match_frozen_sha256_size_and_git_blob": true,
+    "original_update_manifest_added_unchanged": true,
+    "archive_member_set_exactly_180": true,
+    "crc_all_members": "PASS",
+    "all_members_read_back": 180,
+    "all_members_byte_equal_to_original_sources": 180,
+    "member_sha256_size_and_mode_checks": "PASS",
+    "source_bytes_unchanged_after_pack": true,
+    "original_source_files_deleted": 0,
+    "original_source_files_rewritten": 0,
+    "apk_files_in_archive": 0,
+    "whole_external_artifact_zip_files_in_archive": 0
+  },
+  "method": "ZIP Deflate level9 only; source PNG/log/JSON/XML/CFG bytes are not transformed. Fixed ZIP metadata dates are archive-generation metadata, not claimed original evidence timestamps. Every original record retains its actual raw bytes and origin/hash metadata."
+}

@@ -1,10 +1,18 @@
 """An update gate must reject empty progress and a replaced installation."""
 import copy
+import contextlib
 import hashlib
+import importlib.util
+import io
 import json
+import os
 from pathlib import Path
+import runpy
 import sys
+import tempfile
+import types
 import unittest
+from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from update_preservation import (require_in_place_update, require_learning_preserved,
@@ -12,6 +20,7 @@ from update_preservation import (require_in_place_update, require_learning_prese
 
 _FIXTURE = Path(__file__).parent / 'fixtures/update_2017_2018_independent_evidence.json'
 _FIXTURE_SHA256 = '8815f517552ebdde7908ff98b1bb389147a4857ccb4a75cabd65e2142eb3338a'
+_ROOT = Path(__file__).resolve().parents[3]
 
 
 class UpdatePreservationTests(unittest.TestCase):
@@ -73,6 +82,8 @@ class UpdatePreservationTests(unittest.TestCase):
 
 
 class Build2018IndependentEvidenceMigrationTests(unittest.TestCase):
+    versions = (2017, 2018)
+
     def setUp(self):
         fixture = json.loads(_FIXTURE.read_text(encoding='utf-8'))
         self.metadata = fixture['metadata']
@@ -81,11 +92,11 @@ class Build2018IndependentEvidenceMigrationTests(unittest.TestCase):
         self.key = self.metadata['skill_preference_key']
         self.skill = 'mathematik::plus bis 10'
 
-    def require(self, after=None, before=None, versions=(2017, 2018)):
+    def require(self, after=None, before=None, versions=None):
         return require_learning_preserved(
             self.before if before is None else before,
             self.after if after is None else after,
-            migration_versions=versions)
+            migration_versions=self.versions if versions is None else versions)
 
     def change_record(self, field, value, *, remove=False):
         after = copy.deepcopy(self.after)
@@ -117,6 +128,8 @@ class Build2018IndependentEvidenceMigrationTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             require_learning_preserved(self.before, self.after)
         report = self.require()
+        self.assertEqual(report['approved_migration']['from_version'], self.versions[0])
+        self.assertEqual(report['approved_migration']['to_version'], self.versions[1])
         self.assertEqual(report['correct_answers_preserved'], 1)
         self.assertEqual((report['earned_stars'], report['earned_xp']), (1, 5))
         self.assertEqual(report['approved_migration']['records'], [{
@@ -129,8 +142,11 @@ class Build2018IndependentEvidenceMigrationTests(unittest.TestCase):
         self.assertNotIn('independentEvidence', json.loads(self.before[self.key])[self.skill])
 
     def test_unapproved_version_pairs_types_and_missing_opt_in_fail(self):
-        for versions in [(2016, 2018), (2017, 2019), (2018, 2018),
-                         ('2017', 2018), [2017, 2018], (True, 2018), ()]:
+        for versions in [(2016, 2018), (2016, 2019), (2017, 2020),
+                         (2018, 2018), (2018, 2019), (2019, 2019),
+                         ('2017', 2018), ('2017', 2019), [2017, 2018],
+                         [2017, 2019], (True, 2018), (2017, True),
+                         (2017.0, 2019), (2017, 2019.0), ()]:
             with self.subTest(versions=versions), self.assertRaises(RuntimeError):
                 self.require(versions=versions)
 
@@ -279,10 +295,11 @@ class Build2018IndependentEvidenceMigrationTests(unittest.TestCase):
 
     def test_every_post_update_snapshot_is_byte_exact_plus_transitive_history(self):
         report = require_post_update_learning_preserved(
-            self.before, self.after, self.after, migration_versions=(2017, 2018))
+            self.before, self.after, self.after, migration_versions=self.versions)
         self.assertEqual(report['after_update_exact']['correct_answers_preserved'], 1)
         self.assertEqual(report['baseline_history']['correct_answers_preserved'], 1)
         self.assertIn('approved_migration', report['baseline_history'])
+        self.assertEqual(report['approved_migration']['to_version'], self.versions[1])
         reformatted = dict(self.after)
         reformatted[self.key] = json.dumps(json.loads(self.after[self.key]), indent=2)
         self.require(reformatted)  # Initial migration permits JSON formatting only after full validation.
@@ -292,12 +309,12 @@ class Build2018IndependentEvidenceMigrationTests(unittest.TestCase):
                           version=1, correct=0, wrong=0, correctStreak=0, wrongStreak=0))]:
             with self.subTest(later=later[self.key]), self.assertRaises(RuntimeError):
                 require_post_update_learning_preserved(
-                    self.before, self.after, later, migration_versions=(2017, 2018))
+                    self.before, self.after, later, migration_versions=self.versions)
         changed_baseline = copy.deepcopy(self.before)
         changed_baseline[self.key] = changed_baseline[self.key].replace('"correct":1', '"correct":2')
         with self.assertRaises(RuntimeError):
             require_post_update_learning_preserved(
-                changed_baseline, self.after, self.after, migration_versions=(2017, 2018))
+                changed_baseline, self.after, self.after, migration_versions=self.versions)
 
     def test_default_post_update_report_shape_and_byte_gate_are_unchanged(self):
         expected = require_learning_preserved(self.before, self.before)
@@ -305,6 +322,120 @@ class Build2018IndependentEvidenceMigrationTests(unittest.TestCase):
             self.before, self.before, self.before), expected)
         with self.assertRaises(RuntimeError):
             require_post_update_learning_preserved(self.before, self.after, self.after)
+
+
+class Build2019IndependentEvidenceMigrationTests(Build2018IndependentEvidenceMigrationTests):
+    """Apply every existing data invariant to 2019 using unchanged historical data.
+
+    The fixture remains the original 2017/2018 Android artifact. Reusing its
+    schema here is a validator regression, not a claim of a live 2019 update.
+    """
+    versions = (2017, 2019)
+
+
+class StudioUpdateWrapperExecutionTests(unittest.TestCase):
+    """Execute the real wrapper and identity gates; stop before Android I/O."""
+    source = 'a' * 40
+    baseline_source = '47889f74a651b073965def70743417cf320b1eb9'
+    baseline_native = '1d5c5cb45a323228f627ec529e6ff1ddd86f1c57'
+    package = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+    certificate = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+    boundary = 'TEST BOUNDARY: no Android device was contacted'
+
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.directory = Path(temporary.name)
+        self.native = json.loads((_ROOT / 'config/godot-source.json').read_text())['revision']
+        self.paths = {}
+        for label, version, source, native in (
+            ('baseline', 2017, self.baseline_source, self.baseline_native),
+            ('candidate', 2019, self.source, self.native),
+        ):
+            folder = self.directory / label
+            folder.mkdir()
+            apk = folder / 'synthetic-metadata-fixture.apk'
+            apk.write_bytes(f'METADATA VALIDATOR FIXTURE {version}; NOT AN APK'.encode())
+            (folder / 'BUILD-PROVENANCE.json').write_text(json.dumps({
+                'flutter_source_commit': source, 'tracked_source_clean': True,
+                'versionCode': version, 'package': self.package,
+                'signingCertificateSha256': self.certificate,
+                'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
+                'abis': ['x86_64'], 'godot': {'revision': native},
+            }))
+            self.paths[label] = apk
+
+    def run_wrapper(self):
+        # Only external device boundaries are replaced. The real wrapper,
+        # reviewed-pin policy, main() and APK identity validators all execute.
+        tour = types.ModuleType('modernization_android_tour')
+        tour.PACKAGE = self.package
+        tour.probe = types.SimpleNamespace(
+            CERT=self.certificate,
+            ensure_rooted_emulator=mock.Mock(side_effect=RuntimeError(self.boundary)),
+            capture=mock.Mock(),
+        )
+        tour.base = types.SimpleNamespace(adb=mock.Mock(return_value=''))
+        tour.live = types.SimpleNamespace()
+        name = 'lumo_2003_update_android_probe'
+        spec = importlib.util.spec_from_file_location(
+            name, _ROOT / '.github/probes/lumo_2003_update_android_probe.py')
+        module = importlib.util.module_from_spec(spec)
+        output = self.directory / 'result'
+        arguments = ['lumo_2019_update_android_probe.py',
+                     '--baseline', str(self.paths['baseline']),
+                     '--candidate', str(self.paths['candidate']), '--out', str(output)]
+        with mock.patch.dict(sys.modules, {'modernization_android_tour': tour, name: module}), \
+                mock.patch.dict(os.environ, {'LUMO_CANDIDATE_SOURCE_SHA': self.source}), \
+                mock.patch.object(sys, 'argv', arguments), \
+                contextlib.redirect_stdout(io.StringIO()):
+            spec.loader.exec_module(module)
+            with self.assertRaises(SystemExit) as stopped:
+                runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+                               run_name='__main__')
+        # This unit probe deliberately cannot issue Android PASS.
+        self.assertEqual(stopped.exception.code, 1)
+        tour.base.adb.assert_called_once_with('logcat', '-d', timeout=60)
+        report = json.loads((output / 'update-result.json').read_text())
+        self.assertEqual(report['status'], 'FAIL')
+        return report, tour.probe.ensure_rooted_emulator
+
+    def test_actual_2019_wrapper_validates_both_artifacts_before_device_boundary(self):
+        report, boundary = self.run_wrapper()
+        self.assertEqual(report['error'], self.boundary)
+        self.assertEqual(report['baseline']['versionCode'], 2017)
+        self.assertEqual(report['candidate']['versionCode'], 2019)
+        self.assertEqual(report['candidate_source'], self.source)
+        boundary.assert_called_once()
+
+    def test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity(self):
+        invalid = [
+            ('baseline', {'versionCode': 2016}),
+            ('baseline', {'flutter_source_commit': 'b' * 40}),
+            ('candidate', {'versionCode': 2018}),
+            ('candidate', {'tracked_source_clean': False}),
+            ('candidate', {'flutter_source_commit': 'b' * 40}),
+            ('candidate', {'signingCertificateSha256': 'untrusted'}),
+            ('candidate', {'package': 'another.app'}),
+            ('candidate', {'sha256': '0' * 64}),
+            ('candidate', {'abis': ['arm64-v8a']}),
+            ('candidate', {'godot': {'revision': self.baseline_native}}),
+        ]
+        for label, changes in invalid:
+            path = self.paths[label].parent / 'BUILD-PROVENANCE.json'
+            original = path.read_bytes()
+            with self.subTest(label=label, changes=changes):
+                try:
+                    path.write_text(json.dumps({**json.loads(original), **changes}))
+                    report, boundary = self.run_wrapper()
+                    self.assertIn(report['error'], (
+                        'Artifact provenance does not identify the expected APK',
+                        'Update gate requires the actual x86_64 native APK',
+                        'Native source is not the reviewed pin',
+                    ))
+                    boundary.assert_not_called()
+                finally:
+                    path.write_bytes(original)
 
 
 if __name__ == '__main__':

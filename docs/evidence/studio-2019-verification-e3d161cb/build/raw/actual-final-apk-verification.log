@@ -1,0 +1,102 @@
+2026-11-13T17:26:51.2369410Z ##[group]Run set -euo pipefail
+2026-11-13T17:26:51.2369807Z [36;1mset -euo pipefail[0m
+2026-11-13T17:26:51.2370133Z [36;1mtest -s dist/Lumo-Lernen-Neu.apk[0m
+2026-11-13T17:26:51.2370664Z [36;1mpython3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a[0m
+2026-11-13T17:26:51.2371574Z [36;1msha256sum dist/Lumo-Lernen-Neu.apk | tee dist/APK-SHA256.txt[0m
+2026-11-13T17:26:51.2372025Z [36;1mtest -s dist/APK-VERIFICATION.json[0m
+2026-11-13T17:26:51.2372390Z [36;1mtest -s dist/BUILD-PROVENANCE.json[0m
+2026-11-13T17:26:51.2372884Z [36;1mpython3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64[0m
+2026-11-13T17:26:51.2373515Z [36;1msha256sum dist/x86_64/Lumo-Lernen-Neu.apk > dist/ANDROID-TOUR-SHA256SUMS.txt[0m
+2026-11-13T17:26:51.2374064Z [36;1mgrep '^version:' pubspec.yaml | tee dist/APP-VERSION.txt[0m
+2026-11-13T17:26:51.2667156Z shell: /usr/bin/bash -e {0}
+2026-11-13T17:26:51.2667476Z env:
+2026-11-13T17:26:51.2667759Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-13T17:26:51.2668176Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-13T17:26:51.2668760Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-13T17:26:51.2669501Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-13T17:26:51.2670003Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-13T17:26:51.2670320Z ##[endgroup]
+2026-11-13T17:26:56.2594017Z {
+2026-11-13T17:26:56.2594641Z   "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+2026-11-13T17:26:56.2595254Z   "versionCode": 2019,
+2026-11-13T17:26:56.2595664Z   "versionName": "0.13.7",
+2026-11-13T17:26:56.2596063Z   "minSdk": 24,
+2026-11-13T17:26:56.2596431Z   "targetSdk": 36,
+2026-11-13T17:26:56.2596802Z   "abis": [
+2026-11-13T17:26:56.2597146Z     "arm64-v8a"
+2026-11-13T17:26:56.2597494Z   ],
+2026-11-13T17:26:56.2597851Z   "elf16KiBAligned": true,
+2026-11-13T17:26:56.2598287Z   "resourcesArscAligned": true,
+2026-11-13T17:26:56.2598764Z   "bytes": 322123041,
+2026-11-13T17:26:56.2599362Z   "sha256": "c8f3f15a2e9eb77a1f03152f849f0e73211de91cd6f4299fb6555e557735a3d1",
+2026-11-13T17:26:56.2600369Z   "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+2026-11-13T17:26:56.2601409Z   "godot": {
+2026-11-13T17:26:56.2601943Z     "repository": "https://github.com/Ullmann27/lumo-godot.git",
+2026-11-13T17:26:56.2602624Z     "revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+2026-11-13T17:26:56.2603154Z     "engine": "4.6.3",
+2026-11-13T17:26:56.2603781Z     "pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+2026-11-13T17:26:56.2604472Z     "bytes": 66217416
+2026-11-13T17:26:56.2604830Z   },
+2026-11-13T17:26:56.2605152Z   "offlineVoice": {
+2026-11-13T17:26:56.2605585Z     "profile": "lumo-free-supertonic-de-v1",
+2026-11-13T17:26:56.2606138Z     "preset": "F2",
+2026-11-13T17:26:56.2606555Z     "speakerId": 1,
+2026-11-13T17:26:56.2606966Z     "sampleRate": 44100,
+2026-11-13T17:26:56.2607437Z     "onnxruntimeVersion": "1.23.1",
+2026-11-13T17:26:56.2607943Z     "clipCount": 155,
+2026-11-13T17:26:56.2608364Z     "modelSha256": {
+2026-11-13T17:26:56.2609193Z       "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+2026-11-13T17:26:56.2610463Z       "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+2026-11-13T17:26:56.2611859Z       "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+2026-11-13T17:26:56.2612958Z       "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+2026-11-13T17:26:56.2613992Z       "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+2026-11-13T17:26:56.2615024Z       "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+2026-11-13T17:26:56.2616655Z       "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+2026-11-13T17:26:56.2617513Z     },
+2026-11-13T17:26:56.2618221Z     "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+2026-11-13T17:26:56.2619301Z     "scope": "Actual APK package validation, not audible playback acceptance"
+2026-11-13T17:26:56.2620013Z   }
+2026-11-13T17:26:56.2620343Z }
+2026-11-13T17:26:56.4977455Z c8f3f15a2e9eb77a1f03152f849f0e73211de91cd6f4299fb6555e557735a3d1  dist/Lumo-Lernen-Neu.apk
+2026-11-13T17:27:01.5446026Z {
+2026-11-13T17:27:01.5446641Z   "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+2026-11-13T17:27:01.5447227Z   "versionCode": 2019,
+2026-11-13T17:27:01.5447636Z   "versionName": "0.13.7",
+2026-11-13T17:27:01.5448078Z   "minSdk": 24,
+2026-11-13T17:27:01.5448432Z   "targetSdk": 36,
+2026-11-13T17:27:01.5448799Z   "abis": [
+2026-11-13T17:27:01.5449133Z     "x86_64"
+2026-11-13T17:27:01.5449473Z   ],
+2026-11-13T17:27:01.5449824Z   "elf16KiBAligned": true,
+2026-11-13T17:27:01.5450262Z   "resourcesArscAligned": true,
+2026-11-13T17:27:01.5450737Z   "bytes": 325277610,
+2026-11-13T17:27:01.5451576Z   "sha256": "d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93",
+2026-11-13T17:27:01.5452614Z   "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+2026-11-13T17:27:01.5453839Z   "godot": {
+2026-11-13T17:27:01.5454352Z     "repository": "https://github.com/Ullmann27/lumo-godot.git",
+2026-11-13T17:27:01.5455011Z     "revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+2026-11-13T17:27:01.5455531Z     "engine": "4.6.3",
+2026-11-13T17:27:01.5456151Z     "pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+2026-11-13T17:27:01.5456843Z     "bytes": 66217416
+2026-11-13T17:27:01.5457208Z   },
+2026-11-13T17:27:01.5457538Z   "offlineVoice": {
+2026-11-13T17:27:01.5457989Z     "profile": "lumo-free-supertonic-de-v1",
+2026-11-13T17:27:01.5458545Z     "preset": "F2",
+2026-11-13T17:27:01.5458952Z     "speakerId": 1,
+2026-11-13T17:27:01.5459360Z     "sampleRate": 44100,
+2026-11-13T17:27:01.5459841Z     "onnxruntimeVersion": "1.23.1",
+2026-11-13T17:27:01.5460346Z     "clipCount": 155,
+2026-11-13T17:27:01.5460773Z     "modelSha256": {
+2026-11-13T17:27:01.5461804Z       "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+2026-11-13T17:27:01.5463062Z       "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+2026-11-13T17:27:01.5464270Z       "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+2026-11-13T17:27:01.5465339Z       "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+2026-11-13T17:27:01.5466407Z       "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+2026-11-13T17:27:01.5467406Z       "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+2026-11-13T17:27:01.5468549Z       "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+2026-11-13T17:27:01.5469394Z     },
+2026-11-13T17:27:01.5470100Z     "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+2026-11-13T17:27:01.5471435Z     "scope": "Actual APK package validation, not audible playback acceptance"
+2026-11-13T17:27:01.5472213Z   }
+2026-11-13T17:27:01.5472545Z }
+2026-11-13T17:27:01.7868797Z version: 0.13.7+2019

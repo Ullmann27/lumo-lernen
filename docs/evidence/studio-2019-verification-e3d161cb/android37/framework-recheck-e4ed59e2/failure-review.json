@@ -1,0 +1,570 @@
+{
+  "schema": "lumo-android37-runtime-failure-review-v1",
+  "reviewed_at_utc": "2026-11-13T19:21:02.087828+00:00",
+  "result": "FAIL_FRAMEWORK_CRASH_LOOP_BEFORE_UNLOCK_OR_APP",
+  "global_release_receipt": false,
+  "github": {
+    "repository": "Ullmann27/lumo-lernen",
+    "probe_revision": "e4ed59e226ab76c4d7accf174f1f05fc05089d87",
+    "probe_tree": "403ef4e138bee73d633231349258332e34122494",
+    "branch": "chatgpt/lumo-android17-framework-recheck-20261113",
+    "run_id": 43489065730,
+    "run_attempt": 1,
+    "job_id": 132105094062,
+    "job_name": "Unchanged e3d APK diagnostic on API 37",
+    "job_conclusion": "failure",
+    "job_started_at": "2026-11-13T19:06:45Z",
+    "job_completed_at": "2026-11-13T19:11:25Z",
+    "artifact_id": 14068108901,
+    "artifact_name": "lumo-2019-android37-framework-recheck-43489065730-1",
+    "artifact_digest": "sha256:8489c35f3ed4619d9fb2c37a9854e8e757f1baf94a01e71b978df874ab5ac71d"
+  },
+  "original_evidence": {
+    "zip": {
+      "path": "original-artifact.zip",
+      "bytes": 2516134,
+      "sha256": "8489c35f3ed4619d9fb2c37a9854e8e757f1baf94a01e71b978df874ab5ac71d",
+      "crc": "PASS",
+      "member_count": 241,
+      "all_unpacked_members_byte_equal": true
+    },
+    "job_log": {
+      "path": "original-job.log",
+      "bytes": 372530,
+      "sha256": "45fcc3ba557700f166d5156babbe51a81c8ced8d76b0b71e6245dbc308a74e30",
+      "scope": "Complete decoded GitHub job log written as UTF-8 without trimming or appending a newline."
+    },
+    "full_logcat": {
+      "zip_member": "framework-start/logcat-all.stdout",
+      "bytes": 17831736,
+      "sha256": "61fb81324909a820369f062f1111beac259e86d1547047cede0fe5f18b33edb4",
+      "line_count": 130316,
+      "preservation": "Complete unchanged bytes remain inside the original ZIP and the unchanged local extraction; the uncompressed extraction is excluded from the proposed Git upload list."
+    },
+    "curated_original_copies": [
+      {
+        "original_zip_member": "framework-start/framework-readiness.json",
+        "curated_file": "curated/framework-readiness.json",
+        "bytes": 47823,
+        "sha256": "965944cfb526d911d6dd38ac9daafe29c89c672387e7b753602dccbd792f6634"
+      },
+      {
+        "original_zip_member": "framework-start/action-patch-manifest.json",
+        "curated_file": "curated/action-patch-manifest.json",
+        "bytes": 3295,
+        "sha256": "2f2b78d4d8b1d90610b340679d88f5066bee547446fbad5b5b53f7e619953c1b"
+      },
+      {
+        "original_zip_member": "framework-start/monitor-process.json",
+        "curated_file": "curated/monitor-process.json",
+        "bytes": 471,
+        "sha256": "9e0894d95864d9967b049fe2899e1b7effc6af189f7dc2ab97b817f5f0be7ccf"
+      },
+      {
+        "original_zip_member": "framework-start/monitor-commands.json",
+        "curated_file": "curated/monitor-commands.json",
+        "bytes": 965,
+        "sha256": "6cd9add3ab17b0621c70914543f30b64ee7c74761939c5a6af7276163842a8c7"
+      },
+      {
+        "original_zip_member": "framework-start/monitor-finished.json",
+        "curated_file": "curated/monitor-finished.json",
+        "bytes": 1074,
+        "sha256": "c702f68353e5f4594df003f482339ce47c61359cbbf18dec5c2e7d9ba6f309f8"
+      },
+      {
+        "original_zip_member": "framework-start/monitor-stop.json",
+        "curated_file": "curated/monitor-stop.json",
+        "bytes": 35458,
+        "sha256": "80f35a332ddd95c59824370acc3293bca0cf4905de804df408def9bea4317cef"
+      },
+      {
+        "original_zip_member": "framework-start/logcat-all.stderr",
+        "curated_file": "curated/logcat-all.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "original_zip_member": "recheck/before.json",
+        "curated_file": "curated/before.json",
+        "bytes": 2346,
+        "sha256": "978ab1d10c6e6c387ca9aab79f6aca882b7b1935c6a212642f06bb848a2c3fdc"
+      },
+      {
+        "original_zip_member": "mesa-renderer.txt",
+        "curated_file": "curated/mesa-renderer.txt",
+        "bytes": 1774,
+        "sha256": "590bb7cf2134fce8f04aa747c74f40b475e32a7f84f9fc59e30937b8b7a3d0b2"
+      },
+      {
+        "original_zip_member": "tested-apk-sha256.txt",
+        "curated_file": "curated/tested-apk-sha256.txt",
+        "bytes": 108,
+        "sha256": "3bc93abf3d66d2a0bf52f63b0d16fc399f9a8d70b757c5f49dd5365da9a6dcfa"
+      }
+    ]
+  },
+  "actual_runtime": {
+    "ro.build.version.sdk": "37",
+    "ro.build.version.sdk_full": "37.0",
+    "ro.build.version.release": "17",
+    "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys",
+    "ro.product.model": "sdk_gphone64_x86_64",
+    "ro.product.device": "emu64xa",
+    "ro.boot.hardware": "ranchu",
+    "ro.hardware.egl": "emulation",
+    "ro.boot.hardware.gltransport": "pipe"
+  },
+  "original_apk_preflight": {
+    "status": "PASS",
+    "probe_source": {
+      "revision": "e4ed59e226ab76c4d7accf174f1f05fc05089d87",
+      "tree": "403ef4e138bee73d633231349258332e34122494",
+      "tracked_source_clean": true
+    },
+    "apk_source": {
+      "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "tree": "2e05089253dcfa51f2541b94f88565e4c33b4609",
+      "tracked_source_clean": true
+    },
+    "original_apk": {
+      "apk_source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "native_source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "apk_bytes": 325277610,
+      "apk_sha256": "d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93",
+      "pck_bytes": 66217416,
+      "pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+      "versionCode": 2019,
+      "versionName": "0.13.7",
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "signature_from_original_verified_provenance": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "scope": "Exact original APK/PCK byte identity; no new APK build or new signing claim."
+    },
+    "local_x86_binary_redownload_or_rehash_by_this_reviewer": false,
+    "scope": "Current CI verifier successfully checked the actual downloaded unchanged x86 APK/PCK. This report reads its original result, not a new local x86 APK measurement."
+  },
+  "first_observed_fatal": {
+    "component": "SurfaceFlinger / mapper.ranchu / RegionSampling",
+    "assertion": {
+      "line": 20797,
+      "text": "11-13 19:10:02.613   497   562 F mapper.ranchu: Assertion failed: !rcEnc->featureInfo()->hasReadColorBufferDma"
+    },
+    "signal": {
+      "line": 20799,
+      "text": "11-13 19:10:02.613   497   562 F libc    : Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 562 (RegionSampling), pid 497 (surfaceflinger)"
+    },
+    "surfaceflinger_pid": 497,
+    "thread_id": 562,
+    "first_observed_system_server_pid": 626,
+    "stack": [
+      "GoldfishMapper::readFromHost(cb_handle_t const&) const+543",
+      "Gralloc5Mapper::lock",
+      "GraphicBufferMapper::lock",
+      "GraphicBuffer::lockAsync",
+      "GraphicBuffer::lock",
+      "RegionSamplingThread::threadMain()+2571"
+    ],
+    "mapper_build_id": "7b353e53a651ae1223cbe45b0946e22b",
+    "surfaceflinger_build_id": "25d13f27c4a5b6e198dbf71cb2b70894",
+    "inference": "The captured failure is an explicit graphics readback assertion followed by SIGABRT, not a failed LUMO input or app assertion."
+  },
+  "confirmed_restart_chain": {
+    "first_chain": [
+      "19:09:27.149 Zygote PID 431 creates system_server PID 626",
+      "19:10:02.613 mapper assertion and SurfaceFlinger PID 497 SIGABRT",
+      "19:10:03.554 init records SurfaceFlinger PID 497 SIGABRT",
+      "19:10:03.634 init sends SIGKILL to Zygote PID 431",
+      "19:10:05.040 replacement Zygote PID 1670 creates system_server PID 1753"
+    ],
+    "time_basis": "Timestamps as logged by device logcat; complete original lines are preserved in the ZIP and curated excerpt.",
+    "surfaceflinger_assertion_count": 8,
+    "surfaceflinger_signal_count": 8,
+    "system_server_start_count_in_log": 9,
+    "system_server_starts": [
+      {
+        "line": 4138,
+        "text": "11-13 19:09:27.149   431   431 I Zygote  : System server process 626 has been created"
+      },
+      {
+        "line": 23115,
+        "text": "11-13 19:10:05.040  1670  1670 I Zygote  : System server process 1753 has been created"
+      },
+      {
+        "line": 37049,
+        "text": "11-13 19:10:15.025  2485  2485 I Zygote  : System server process 2564 has been created"
+      },
+      {
+        "line": 50800,
+        "text": "11-13 19:10:25.027  3321  3321 I Zygote  : System server process 3404 has been created"
+      },
+      {
+        "line": 66817,
+        "text": "11-13 19:10:36.313  4280  4280 I Zygote  : System server process 4343 has been created"
+      },
+      {
+        "line": 81607,
+        "text": "11-13 19:10:46.018  5051  5051 I Zygote  : System server process 5130 has been created"
+      },
+      {
+        "line": 97592,
+        "text": "11-13 19:10:56.836  5988  5988 I Zygote  : System server process 6074 has been created"
+      },
+      {
+        "line": 113847,
+        "text": "11-13 19:11:08.437  6893  6893 I Zygote  : System server process 7033 has been created"
+      },
+      {
+        "line": 128686,
+        "text": "11-13 19:11:19.492  7949  7949 I Zygote  : System server process 8024 has been created"
+      }
+    ],
+    "surfaceflinger_assertions": [
+      {
+        "line": 20797,
+        "text": "11-13 19:10:02.613   497   562 F mapper.ranchu: Assertion failed: !rcEnc->featureInfo()->hasReadColorBufferDma"
+      },
+      {
+        "line": 35260,
+        "text": "11-13 19:10:12.965  1675  1720 F mapper.ranchu: Assertion failed: !rcEnc->featureInfo()->hasReadColorBufferDma"
+      },
+      {
+        "line": 49269,
+        "text": "11-13 19:10:22.825  2490  2537 F mapper.ranchu: Assertion failed: !rcEnc->featureInfo()->hasReadColorBufferDma"
+      },
+      {
+        "line": 64196,
+        "text": "11-13 19:10:33.641  3328  3373 F mapper.ranchu: Assertion failed: !rcEnc->featureInfo()->hasReadColorBufferDma"
+      },
+      {
+        "line": 79820,
+        "text": "11-13 19:10:44.039  4257  4270 F mapper.ranchu: Assertion failed: !rcEnc->featureInfo()->hasReadColorBufferDma"
+      },
+      {
+        "line": 94913,
+        "text": "11-13 19:10:54.131  5058  5111 F mapper.ranchu: Assertion failed: !rcEnc->featureInfo()->hasReadColorBufferDma"
+      },
+      {
+        "line": 110829,
+        "text": "11-13 19:11:04.989  5993  6045 F mapper.ranchu: Assertion failed: !rcEnc->featureInfo()->hasReadColorBufferDma"
+      },
+      {
+        "line": 126844,
+        "text": "11-13 19:11:17.243  6898  6955 F mapper.ranchu: Assertion failed: !rcEnc->featureInfo()->hasReadColorBufferDma"
+      }
+    ]
+  },
+  "guard_result": {
+    "schema": 1,
+    "status": "FAIL",
+    "reason": "observed_system_server_identity_changed",
+    "elapsed_seconds": 13.730278247000001,
+    "budget_seconds": 120.0,
+    "required_stable_seconds": 10.0,
+    "required_minimum_samples": 3,
+    "consecutive_ready_samples": 0,
+    "stable_observed_seconds": 0,
+    "observed_start_count_greater_than_one": true,
+    "scope": "Sampled pre-app framework readiness only; raw startup logs must distinguish any early race from a system-server failure. This is not an app test or physical-device performance measurement.",
+    "serial": "emulator-5554",
+    "adb": "/usr/local/lib/android/sdk/platform-tools/adb",
+    "finished_at": "2026-11-13T19:11:20.701235+00:00",
+    "monitor_alive_at_finish": true
+  },
+  "guard_time_series": [
+    {
+      "observed_at": "2026-11-13T19:11:07.774576+00:00",
+      "ready": false,
+      "errors": [
+        "command_unavailable:pid-before",
+        "command_unavailable:settings-read",
+        "command_unavailable:package-read",
+        "command_unavailable:window-read",
+        "command_unavailable:pid-after",
+        "system_server_pid_not_consistent",
+        "service_not_registered:input",
+        "service_not_registered:settings",
+        "service_not_registered:activity",
+        "service_not_registered:package",
+        "service_not_registered:window",
+        "settings_provider_not_readable",
+        "android_package_not_readable",
+        "window_manager_not_readable"
+      ],
+      "pid": "",
+      "start_count": "7",
+      "android_runtime": {
+        "sdk": "37",
+        "release": "17",
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys"
+      },
+      "services": {
+        "input": "Service input: not found",
+        "settings": "Service settings: not found",
+        "activity": "Service activity: not found",
+        "package": "Service package: not found",
+        "window": "Service window: not found"
+      },
+      "settings_boot_count": "",
+      "package_android": "",
+      "window_size": ""
+    },
+    {
+      "observed_at": "2026-11-13T19:11:10.084477+00:00",
+      "ready": false,
+      "errors": [
+        "command_unavailable:window-read",
+        "service_not_registered:input",
+        "service_not_registered:settings",
+        "service_not_registered:window",
+        "window_manager_not_readable"
+      ],
+      "pid": "7033",
+      "start_count": "8",
+      "android_runtime": {
+        "sdk": "37",
+        "release": "17",
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys"
+      },
+      "services": {
+        "input": "Service input: not found",
+        "settings": "Service settings: not found",
+        "activity": "Service activity: found",
+        "package": "Service package: found",
+        "window": "Service window: not found"
+      },
+      "settings_boot_count": "7",
+      "package_android": "package:/system/framework/framework-res.apk",
+      "window_size": ""
+    },
+    {
+      "observed_at": "2026-11-13T19:11:12.564605+00:00",
+      "ready": true,
+      "errors": [],
+      "pid": "7033",
+      "start_count": "8",
+      "android_runtime": {
+        "sdk": "37",
+        "release": "17",
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys"
+      },
+      "services": {
+        "input": "Service input: found",
+        "settings": "Service settings: found",
+        "activity": "Service activity: found",
+        "package": "Service package: found",
+        "window": "Service window: found"
+      },
+      "settings_boot_count": "8",
+      "package_android": "package:/system/framework/framework-res.apk",
+      "window_size": "Physical size: 1080x2340"
+    },
+    {
+      "observed_at": "2026-11-13T19:11:15.907704+00:00",
+      "ready": true,
+      "errors": [],
+      "pid": "7033",
+      "start_count": "8",
+      "android_runtime": {
+        "sdk": "37",
+        "release": "17",
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys"
+      },
+      "services": {
+        "input": "Service input: found",
+        "settings": "Service settings: found",
+        "activity": "Service activity: found",
+        "package": "Service package: found",
+        "window": "Service window: found"
+      },
+      "settings_boot_count": "8",
+      "package_android": "package:/system/framework/framework-res.apk",
+      "window_size": "Physical size: 1080x2340"
+    },
+    {
+      "observed_at": "2026-11-13T19:11:18.289145+00:00",
+      "ready": false,
+      "errors": [
+        "command_unavailable:pid-before",
+        "command_unavailable:settings-read",
+        "command_unavailable:package-read",
+        "command_unavailable:window-read",
+        "command_unavailable:pid-after",
+        "system_server_pid_not_consistent",
+        "settings_provider_not_readable",
+        "android_package_not_readable",
+        "window_manager_not_readable"
+      ],
+      "pid": "",
+      "start_count": "8",
+      "android_runtime": {
+        "sdk": "37",
+        "release": "17",
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys"
+      },
+      "services": {
+        "input": "Service input: found",
+        "settings": "Service settings: found",
+        "activity": "Service activity: found",
+        "package": "Service package: found",
+        "window": "Service window: found"
+      },
+      "settings_boot_count": "cmd: Failure calling service settings: Broken pipe (32)",
+      "package_android": "cmd: Failure calling service package: Broken pipe (32)",
+      "window_size": "cmd: Failure calling service window: Broken pipe (32)"
+    },
+    {
+      "observed_at": "2026-11-13T19:11:20.701015+00:00",
+      "ready": false,
+      "errors": [
+        "command_unavailable:settings-read",
+        "command_unavailable:package-read",
+        "command_unavailable:window-read",
+        "service_not_registered:input",
+        "service_not_registered:settings",
+        "service_not_registered:activity",
+        "service_not_registered:package",
+        "service_not_registered:window",
+        "settings_provider_not_readable",
+        "android_package_not_readable",
+        "window_manager_not_readable"
+      ],
+      "pid": "8024",
+      "start_count": "9",
+      "android_runtime": {
+        "sdk": "37",
+        "release": "17",
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys"
+      },
+      "services": {
+        "input": "Service input: not found",
+        "settings": "Service settings: not found",
+        "activity": "Service activity: not found",
+        "package": "Service package: not found",
+        "window": "Service window: not found"
+      },
+      "settings_boot_count": "",
+      "package_android": "",
+      "window_size": ""
+    }
+  ],
+  "resource_and_graphics_scope": {
+    "first_data_storage_error": {
+      "line": 19058,
+      "text": "11-13 19:10:00.426  1422  1422 E FileApkUtils: Failed to stage asset chimera-modules/CronetDynamite.apk: java.io.IOException: write failed: ENOSPC (No space left on device)"
+    },
+    "storage_errors": [
+      {
+        "line": 19058,
+        "text": "11-13 19:10:00.426  1422  1422 E FileApkUtils: Failed to stage asset chimera-modules/CronetDynamite.apk: java.io.IOException: write failed: ENOSPC (No space left on device)"
+      },
+      {
+        "line": 112306,
+        "text": "11-13 19:11:06.272  6390  6609 E bluetooth: system/gd/os/linux_generic/files.cc:145 WriteToFile: unable to flush buffer to file '/data/misc/bluedroid/bt_config.conf.new', error: No space left on device"
+      },
+      {
+        "line": 122483,
+        "text": "11-13 19:11:12.316  7508  7508 W ContextImpl: android.system.ErrnoException: mkdir failed: ENOSPC (No space left on device)"
+      },
+      {
+        "line": 123579,
+        "text": "11-13 19:11:13.542  7468  7468 E bluetooth: system/gd/hal/snoop_logger_file.cc:144 OpenNextSnoopLogFile: Failed to flush, error: \"No space left on device\""
+      },
+      {
+        "line": 127150,
+        "text": "11-13 19:11:17.642  7894  7894 E DEBUG   : failed to write proto tombstone: No space left on device"
+      }
+    ],
+    "first_storage_error_precedes_first_surfaceflinger_assertion": true,
+    "system_server_or_surfaceflinger_oom_kill_and_watchdog_pattern_matches": [],
+    "actual_graphics_and_avd_job_lines": [
+      {
+        "line": 974,
+        "text": "2026-11-13T19:09:14.0492824Z [command]/usr/bin/sh -c \\echo no | avdmanager create avd --force -n test --package 'system-images;android-37.0;google_apis;x86_64' --device 'pixel_5'"
+      },
+      {
+        "line": 980,
+        "text": "2026-11-13T19:09:15.6212880Z [command]/usr/bin/sh -c \\printf 'hw.cpu.ncore=2\\nhw.ramSize=4096M\\nhw.heapSize=512M\\n' >> /home/runner/.android/avd/test.avd/config.ini"
+      },
+      {
+        "line": 987,
+        "text": "2026-11-13T19:09:15.6715504Z [command]/usr/bin/sh -c \\/usr/local/lib/android/sdk/emulator/emulator -port 5554 -avd test -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none &"
+      },
+      {
+        "line": 988,
+        "text": "2026-11-13T19:09:15.6823871Z INFO         | Android emulator version 37.2.13.0 (build_id 16740729) (CL:N/A)"
+      },
+      {
+        "line": 989,
+        "text": "2026-11-13T19:09:15.6824758Z INFO         | Graphics backend: gfxstream"
+      },
+      {
+        "line": 990,
+        "text": "2026-11-13T19:09:15.6826098Z INFO         | Found systemPath /usr/local/lib/android/sdk/system-images/android-37.0/google_apis/x86_64/"
+      },
+      {
+        "line": 1006,
+        "text": "2026-11-13T19:09:15.8042414Z INFO         | emuglConfig_init: vulkan_mode_selected:host gles_mode_selected:host"
+      },
+      {
+        "line": 1007,
+        "text": "2026-11-13T19:09:15.8043786Z ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+      },
+      {
+        "line": 1059,
+        "text": "2026-11-13T19:09:16.0996385Z INFO         | Graphics Adapter Vendor Google (Mesa)"
+      },
+      {
+        "line": 1060,
+        "text": "2026-11-13T19:09:16.0997091Z INFO         | Graphics Adapter Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))"
+      },
+      {
+        "line": 1061,
+        "text": "2026-11-13T19:09:16.0997976Z INFO         | Graphics API Version OpenGL ES 3.0 (4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4)"
+      },
+      {
+        "line": 2101,
+        "text": "2026-11-13T19:10:23.6036904Z ERROR        | DisplaySurfaceGlContextHelper context was preempted by others, current=0x3, needed=0x3, thread=0x5611b4d0f0e8"
+      },
+      {
+        "line": 2102,
+        "text": "2026-11-13T19:10:23.6038139Z ERROR        | Failed to restore previous context: 12297"
+      }
+    ],
+    "interpretation": [
+      "ENOSPC occurs before the first graphics assertion, and later Bluetooth/tombstone writes also fail. It is a separate observed storage problem; the actual data-partition size/free-space was not recorded.",
+      "No matching system_server/SurfaceFlinger low-memory kill or system-watchdog kill appears in the scoped scan. This is not a claim that every memory-pressure condition was measured or excluded.",
+      "The actual emulator uses 37.2.13.0 build 16740729, gfxstream and -gpu host through llvmpipe LLVM 20.1.2 / Mesa 25.2.8. Vulkan initialization and later GL-context errors are recorded, but their causal role in the mapper assertion is not established."
+    ]
+  },
+  "not_reached": {
+    "executed_command_counts": {
+      "original_unlock_keyevent": 0,
+      "original_global_settings_writes": 0,
+      "app_tour_runner": 0,
+      "apk_install_command": 0
+    },
+    "tour_result_present": false,
+    "after_identity_report_present": false,
+    "png_count": 0,
+    "original_unlock_completed": false,
+    "apk_installed_by_tour": false,
+    "app_tour_started": false,
+    "studio_learning_cards_exercised": false
+  },
+  "configuration_evidence_gaps": {
+    "sdkmanager_version_this_run": "NOT_CAPTURED",
+    "avdmanager_version_this_run": "NOT_CAPTURED",
+    "command_line_tools_source_properties_this_run": "NOT_CAPTURED",
+    "actual_avd_ini_target_this_run": "NOT_CAPTURED",
+    "actual_avd_config_and_hardware_ini_this_run": "NOT_CAPTURED",
+    "actual_data_partition_size_or_free_space": "NOT_CAPTURED",
+    "confirmed_image_argument": "system-images;android-37.0;google_apis;x86_64",
+    "warning": "The earlier separate SDK inventory observed tools 12.0 and 22.0, but those measurements are not retroactively attributed to this e4ed run. No target=android-0 value is claimed for this run."
+  },
+  "next_step_constraints": [
+    "Preserve the unchanged SDK 37 / release 17 checks, original keyevent/settings and application/binary gates; do not permit observed restarts or extend waiting to turn this failure into PASS.",
+    "Review exact action SDK/AVD tool selection and capture actual command-line tool identity, generated AVD target/config and data-partition facts before selecting a new diagnostic configuration.",
+    "The external first-hand report at https://github.com/actions/runner-images/issues/14484, being independently reviewed by Root/C, describes the same assertion corrected by Command-line Tools 22. This is a configuration hypothesis, not a measurement of this AVD. The current review makes no claim that its published AOSP source has the same build identity as this mapper.ranchu binary.",
+    "No GPU, image, action or workflow change and no CI retry was performed by this reviewer."
+  ]
+}

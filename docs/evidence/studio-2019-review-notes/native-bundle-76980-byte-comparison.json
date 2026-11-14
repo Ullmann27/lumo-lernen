@@ -1,0 +1,40 @@
+{
+  "review_utc": "2026-11-13T15:43:06.378105+00:00",
+  "native_sha": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "artifact_id": 14052637839,
+  "run_id": 43449903088,
+  "bundle_bytes": 170742944,
+  "bundle_sha256": "d7ebc000680f3c613e005b8c9eb91e82b488d6f326c36a038a3492459222178c",
+  "status": "BYTE_IDENTITY_PASS",
+  "sources": [
+    {
+      "original_zip": "studio-new-native-76980a94.zip",
+      "sha256": "ca2f4f6c3ae63546bb4b205d47ef1a66b478e227f7399d8932b45f1312485674",
+      "bundle_prefix": "studio-evidence/",
+      "identical_regular_files": 779,
+      "identical_pngs": 24
+    },
+    {
+      "original_zip": "studio-touch-build-76980a94.zip",
+      "sha256": "74c3d123807fc97a25c2479375b1c3f919cf45de1268fae57522bd939953f6f7",
+      "bundle_prefix": "touch-evidence/",
+      "identical_regular_files": 326,
+      "identical_pngs": 12
+    },
+    {
+      "original_zip": "studio-touch-workshop-76980a94.zip",
+      "sha256": "d59e97479b2e15b9cdb1c1c0768cd433797cd19bb2d1c55084505a956efd814b",
+      "bundle_prefix": "touch-evidence/",
+      "identical_regular_files": 302,
+      "identical_pngs": 6
+    },
+    {
+      "original_zip": "studio-touch-treasure-76980a94.zip",
+      "sha256": "922ca89312027ee4d640e9a00f246dc45fe4416fe2838ab750e6f3ff29cab2af",
+      "bundle_prefix": "touch-evidence/",
+      "identical_regular_files": 356,
+      "identical_pngs": 14
+    }
+  ],
+  "scope": "The final original bundle contains byte-identical copies of all files in the four already inspected Studio/touch artifacts. Their actual visual reviews therefore apply to these exact bundle members without substituting older-source images. Nextgen learning/world images are reviewed separately. This alone is not overall acceptance."
+}

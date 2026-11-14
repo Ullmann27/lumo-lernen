@@ -1,0 +1,179 @@
+{
+  "schema": 1,
+  "verified_utc": "2026-11-13T22:37:30.266549+00:00",
+  "source_freeze_sha256": "f19731f1814dab3a6e4dabc5f9cfca0dbfee233db607d6e26ebe707e06417a21",
+  "all_21_files_match": true,
+  "files": [
+    {
+      "path": "scripts/app/android_safe_area.gd",
+      "bytes": 5708,
+      "sha256": "28077c1eca89e7e915fc346973c6397d2c1b545fca9592f16394b2d9d2b04564",
+      "git_blob": "9658440b3effad06358fe7cfe62f04a95ccbe279",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/app/mobile_runtime.gd",
+      "bytes": 7146,
+      "sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+      "git_blob": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/creative/creative_runtime.gd",
+      "bytes": 3498,
+      "sha256": "b800c7d77c7a4fcc9a47081c2f25672fb2f2eefbb95c24fdc442f4f2df2185aa",
+      "git_blob": "45596983292c4f7c8fbcd847a5dca671b324ba5c",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/creative/build_world.gd",
+      "bytes": 55131,
+      "sha256": "14469b5e2e483219c63aaef3b581b26341db64c6f16f9fff053cc0a1a009c96e",
+      "git_blob": "5ac587b4733948d7eaa4a8f2d4548f58f00e7a49",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/creative/puzzle_world.gd",
+      "bytes": 31169,
+      "sha256": "fe07f9113556f7ff11994eb7d99811c25349ff4c12fa27a48ed6e014ca0447bb",
+      "git_blob": "231a1db11686d858d4e27e6aa24e19b5fcfd6b8c",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/creative/treasure_world.gd",
+      "bytes": 24782,
+      "sha256": "c46d260fef1c4f6ee88db1b5e5704707b35771f2fc64522fc5927a25c3bd34cf",
+      "git_blob": "38da987abf4d152c1095a72ed1ac49ed30d9d381",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/creative/build_settlement_world.gd",
+      "bytes": 34725,
+      "sha256": "c3ee8df70deaf9a10d2e093f1c618a01a3ee030c3841f75951a98f808d63790f",
+      "git_blob": "a4c55b4daba91f19b5cd8f846cdb62f9a727466c",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/creative/rhythm_world.gd",
+      "bytes": 30625,
+      "sha256": "2782420445115b1e303ea2e4e46cce114d981882afac0b52fac2d029432708f4",
+      "git_blob": "ae1050e4273076bdbc3907eb2623f545a93d0989",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/games/jump_islands.gd",
+      "bytes": 36310,
+      "sha256": "1190ef1e717d6fd714ad53a4c5a5120018c6486627e75ebae37be564e119f1db",
+      "git_blob": "c4bf551b3b679554c8fe2b2d1307b0439870e8fe",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/games/cards/cards_table.gd",
+      "bytes": 41353,
+      "sha256": "5abea79b066e16f32f3951eda277db5cfdeced51ed3cbd85685be1aac0ae62d1",
+      "git_blob": "d2d68ea69756e25936f3f44d59b01d0c1b17f2d4",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "bytes": 45147,
+      "sha256": "715e0940904ea0e4fda789a7738b89896a9c86a6cecca015834e4abc30716d95",
+      "git_blob": "5ab38de47eaf8aa960423faae4fb11430f4136f4",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/app/app_boot.gd",
+      "bytes": 18658,
+      "sha256": "991d189afa1af113a4791883da8c669bc1404ee384c07699c8e1bda87b4340c8",
+      "git_blob": "8456b1933098f0bc852bfb6c227d7a5f7f59756c",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/games/kart_garage_menu.gd",
+      "bytes": 82990,
+      "sha256": "8fa0b96833c65b1f78f2612cbaf482d88815bd4c900fb830a177d5b517a3723c",
+      "git_blob": "35fe7c6b0dad531db4eebebae7e822509e1ebcdf",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/games/kart_workshop.gd",
+      "bytes": 28208,
+      "sha256": "944a57897ef6d0cc98075500b71b137efc96b1f75fe34a77423314f88b656ea3",
+      "git_blob": "d4be69c12c56719e7e230319c8c9f72243abab08",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/games/kart_island.gd",
+      "bytes": 169697,
+      "sha256": "11cc762f98c7520d31d15bae16fc3dfcd2e6cde82bc2746fd71043dad379c37c",
+      "git_blob": "8319609143cc6de2b2f618a4c262cf1903fd290c",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/ui/mobile_safe_area.gd",
+      "bytes": 1519,
+      "sha256": "5a6a7f78075d216de1b799de39b7331ad2ae39f31612ddefc5dc135ae5927c9e",
+      "git_blob": "6e65b507b1503809cce5c2fc5f9852ccbdb5810f",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/tests/cards_safe_area_android_contract.gd",
+      "bytes": 6711,
+      "sha256": "734cfcaa308b294c6017f5b040c9ccff49457ae32961c847acb170dca4d6f9e2",
+      "git_blob": "a375771d3a2bfd71481383052b236135cd37188a",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/tests/cards_safe_area_regression.gd",
+      "bytes": 14531,
+      "sha256": "03dee7a9cc15df5be1132491289c79093e9d2a42e771caf54beac3bab5b557f2",
+      "git_blob": "a7000e7f6ccc75c6aef16cbbab67194b5b1ae3d8",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/tests/fixtures/cards_safe_area_table.gd",
+      "bytes": 540,
+      "sha256": "1518dda4fdc09383d36cda8c95c28e68cf9bed34196bd2f0e830a0385d3f5bd2",
+      "git_blob": "73e5f8663e7bb458a9cd41e7bcaf3bdc3f55cdfd",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "scripts/tests/mobile_safe_area_regression.gd",
+      "bytes": 17619,
+      "sha256": "bca22822a2df33a69bcac5071b16827cecef179b077a08d1b2b0372a68e6fa4f",
+      "git_blob": "61ded805fdbc70c3499814b4e8f74214079fc96c",
+      "mode": "100644",
+      "matches_frozen_source": true
+    },
+    {
+      "path": "tools/validate_studio.sh",
+      "bytes": 7230,
+      "sha256": "78d1cd6df60968c9d4d767b0c27c9b240df9968a817e703cec8d77294057b587",
+      "git_blob": "97e25c3ebef6f88a65ccee615ba144fe4b64b86a",
+      "mode": "100644",
+      "matches_frozen_source": true
+    }
+  ],
+  "published_commit_reported_by_integrator": "20fd2880494c10f8f7d3a266956995e97f9011df",
+  "published_tree_reported_by_integrator": "20050679a3034eb9a03ded02ee3374b5cc54673e",
+  "remote_binding_scope": "Integrator Root verified and published these exact 21 source blobs. This follow-up independently rereads local bytes, modes and Git blob hashes; it does not claim the stale local Git HEAD equals the published commit."
+}

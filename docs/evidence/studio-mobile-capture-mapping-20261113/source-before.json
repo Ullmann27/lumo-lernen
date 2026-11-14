@@ -1,0 +1,50 @@
+[
+  {
+    "path": "scripts/verify_studio_delivery.py",
+    "bytes": 28756,
+    "sha256": "e7cba79b96eb2483886229bc85ded4dab52ffc6e095ad93eb5e2a404d02e14f4",
+    "owned_for_this_task": true
+  },
+  {
+    "path": "scripts/tests/test_studio_delivery.py",
+    "bytes": 41577,
+    "sha256": "87e01822d11e33d3fe2cbc0effeb39ff82e0059ea716c9cf9827787ab20a5907",
+    "owned_for_this_task": true
+  },
+  {
+    "path": "scripts/tests/test_studio_cards_capture_binding.py",
+    "bytes": 2068,
+    "sha256": "c180a46751657ba7ef274fd3b2bab48a05501719615972a5df7a9b970cf7c233",
+    "owned_for_this_task": true
+  },
+  {
+    "path": ".github/workflows/lumo-studio-2019.yml",
+    "bytes": 48718,
+    "sha256": "1df347d88bf1da49bb22d50dc84c4a989752e84fbb9a04056d57037b6101c772",
+    "owned_for_this_task": false
+  },
+  {
+    "path": "config/godot-source.json",
+    "bytes": 145,
+    "sha256": "a6e4ff3630754999ab0281f80f1e1512141af65e9ff10e6ab72bafd6096f4214",
+    "owned_for_this_task": false
+  },
+  {
+    "path": "config/studio-2019-visual-review.json",
+    "bytes": 22028,
+    "sha256": "4091bc1c79a0efa75c368b35ea77472a5bb2cf2ea8fd2f0e1b096ebdb43eebae",
+    "owned_for_this_task": false
+  },
+  {
+    "path": "scripts/verify_nextgen_delivery.py",
+    "bytes": 26986,
+    "sha256": "5b9f6658007ffc93f106e24a7fc001e68418dea450f46a4e4b3405b0afb3e44c",
+    "owned_for_this_task": false
+  },
+  {
+    "path": "scripts/record_studio_visual_review.py",
+    "bytes": 6036,
+    "sha256": "ddf9355213d65cd4055265c5319baeedf51df257f3553ca1ab2d23da87d8b1c1",
+    "owned_for_this_task": false
+  }
+]

@@ -1,0 +1,125 @@
+{
+  "reviewed_at": "2026-11-13T21:12:33.328365+00:00",
+  "host_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "host_tree": "5ca2eeee9ea3af3f67acbee83f19934942c1c5d5",
+  "native_commit": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "method": "Local file Git-blob hashes independently matched the exact entries in Root retained 1888-file GitHub tree verification. Original completed job log separately checks out the same host commit. Local worktree HEAD is intentionally e3d and is not represented as 318.",
+  "root_verification_records": [
+    {
+      "file": "qa/studio-final-all-expected-files.json",
+      "bytes": 276028,
+      "sha256": "ecf8075a99b4f5022de377a5fb42d9aca56efb5a87b158b661b784e6e69e041f"
+    },
+    {
+      "file": "qa/studio-final-full-tree-verification.json",
+      "bytes": 457,
+      "sha256": "0b6239b79ccfe899db20be08508bdc4a5fa101923a55b9ea3af95cdd201cd6ca"
+    },
+    {
+      "file": "qa/studio-final-github-checkpoint.json",
+      "bytes": 570,
+      "sha256": "ba8892c5fcba7cbf48c02c4e7682255f801176579b4b2d48c9ad63245bb789ee"
+    }
+  ],
+  "files": [
+    {
+      "file": ".github/workflows/lumo-studio-2019.yml",
+      "bytes": 41327,
+      "sha256": "64deb34a245f9ae55a5f4b7bc140717725ad1cd583e9a2041a78bb35c7c0a722",
+      "git_blob": "6f753f12e56108220a0e7f9e0028ee38e43965fd",
+      "published_expected_blob": "6f753f12e56108220a0e7f9e0028ee38e43965fd",
+      "published_mode": "100644",
+      "matches_root_verified_published_tree": true
+    },
+    {
+      "file": ".github/probes/lumo_2019_update_android_probe.py",
+      "bytes": 1899,
+      "sha256": "dbfe68735789ec47ef3e0095fcc8ffaf9435ab1f4a58f3035b64ec62bc72c416",
+      "git_blob": "0ab5b619ef63645195fb9c2174b46788bc17de30",
+      "published_expected_blob": "0ab5b619ef63645195fb9c2174b46788bc17de30",
+      "published_mode": "100644",
+      "matches_root_verified_published_tree": true
+    },
+    {
+      "file": ".github/probes/lumo_2003_update_android_probe.py",
+      "bytes": 10533,
+      "sha256": "38573146ea7623a4b62759be88a982a1b8990d0beabf2c6c0df94927d16b68eb",
+      "git_blob": "0712dd5e583f6da5cef5b2dc06876a6455107e68",
+      "published_expected_blob": "0712dd5e583f6da5cef5b2dc06876a6455107e68",
+      "published_mode": "100644",
+      "matches_root_verified_published_tree": true
+    },
+    {
+      "file": ".github/probes/lumo_learning_journey_probe.py",
+      "bytes": 16929,
+      "sha256": "695aa825f506c77a8d68e3d3063eb4eaad3e1678a03028f6081a344b1ba02e63",
+      "git_blob": "6b222823529c83146528159ab15ed88a0dfa0130",
+      "published_expected_blob": "6b222823529c83146528159ab15ed88a0dfa0130",
+      "published_mode": "100644",
+      "matches_root_verified_published_tree": true
+    },
+    {
+      "file": ".github/probes/creative_android_probe.py",
+      "bytes": 52523,
+      "sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+      "git_blob": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1",
+      "published_expected_blob": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1",
+      "published_mode": "100644",
+      "matches_root_verified_published_tree": true
+    },
+    {
+      "file": ".github/probes/modernization_android_tour.py",
+      "bytes": 46556,
+      "sha256": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b",
+      "git_blob": "c04397ae8e99e0d02cefa341dcf4523deb464d99",
+      "published_expected_blob": "c04397ae8e99e0d02cefa341dcf4523deb464d99",
+      "published_mode": "100644",
+      "matches_root_verified_published_tree": true
+    },
+    {
+      "file": "tools/android_qa/update_preservation.py",
+      "bytes": 9134,
+      "sha256": "723828c1583f254617205d7094fb12b4a4b4d15596f2a58c62fd58e4909212c6",
+      "git_blob": "60e74d96e2766657138f52d28301c39e78b85015",
+      "published_expected_blob": "60e74d96e2766657138f52d28301c39e78b85015",
+      "published_mode": "100644",
+      "matches_root_verified_published_tree": true
+    },
+    {
+      "file": "tools/android_qa/update_artifact_identity.py",
+      "bytes": 1105,
+      "sha256": "4a6bb7d2809f5551abcc07e0cae997d4b56180f962a19b0d9866a218c0d63dd4",
+      "git_blob": "2f039f067f809e830aa9ff1bef7f57a586f04366",
+      "published_expected_blob": "2f039f067f809e830aa9ff1bef7f57a586f04366",
+      "published_mode": "100644",
+      "matches_root_verified_published_tree": true
+    },
+    {
+      "file": "tools/android_qa/kart_tour_evidence.py",
+      "bytes": 9299,
+      "sha256": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+      "git_blob": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+      "published_expected_blob": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+      "published_mode": "100644",
+      "matches_root_verified_published_tree": true
+    },
+    {
+      "file": "pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+      "git_blob": "40a3226d7b575cc414abc1494dfff5924a5de775",
+      "published_expected_blob": "40a3226d7b575cc414abc1494dfff5924a5de775",
+      "published_mode": "100644",
+      "matches_root_verified_published_tree": true
+    },
+    {
+      "file": "config/godot-source.json",
+      "bytes": 145,
+      "sha256": "a6e4ff3630754999ab0281f80f1e1512141af65e9ff10e6ab72bafd6096f4214",
+      "git_blob": "a3b714cbcd67a1bda3df8f1afbcb5e2c84123434",
+      "published_expected_blob": "a3b714cbcd67a1bda3df8f1afbcb5e2c84123434",
+      "published_mode": "100644",
+      "matches_root_verified_published_tree": true
+    }
+  ]
+}

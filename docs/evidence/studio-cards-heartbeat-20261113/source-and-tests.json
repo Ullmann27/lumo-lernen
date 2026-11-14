@@ -1,0 +1,244 @@
+{
+  "schema": 1,
+  "status": "HOST_PATCH_LOCAL_CONTRACTS_PASS_ANDROID_PENDING",
+  "reviewer": "Agent C / games_worlds",
+  "original_failure": {
+    "workflow_run": 43480051009,
+    "api35_job": 132073880264,
+    "tested_host": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "tested_native": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "artifact": 14065289644,
+    "artifact_sha256": "fedf1f3b59e4d56115aa176e4fa5b2be9897c054130bb804b45f1c483d282744",
+    "finding": "Quittierter Resume bei revision=5, danach revision=6 paused=true; zwei Originalbilder zeigen tatsächlichen Pausedialog und vorhandene Kartenfronten.",
+    "cause_limit": "Der alte Emulatorlauf enthält keine lifecycle.json-Zeitreihe; der genaue Trigger dieses Laufs bleibt ungeklärt. Die fragliche Architekturkopplung ist separat reproduziert, keine nachträgliche Behauptung eines bewiesenen Original-Timeouts."
+  },
+  "implementation": {
+    "heartbeat_interval_ms": 500,
+    "thread_owner": "Android main looper",
+    "render_reads_write_heartbeats": false,
+    "generation_guard": true,
+    "stop_on": [
+      "onPause",
+      "onStop",
+      "onDestroy",
+      "returnToLearningApp",
+      "authority loss",
+      "closed mailbox"
+    ],
+    "original_dart_lease_ms": 2500,
+    "new_background_service_or_permissions": false,
+    "native_source_changed": false,
+    "saved_child_data_schema_changed": false
+  },
+  "executable_red_green": {
+    "source_under_test": "Complete verbatim production LumoGameActivity.kt",
+    "boundary": "Explicit Kotlin Android/Godot doubles, deterministic main looper, actual JVM execution; not Android or Binder-process validation",
+    "old_source_sha256": "6e4ac87b1013dc7b82be2c3ca8de9a8f2ba63faf5c9866728db45dbcfbb31eb2",
+    "test_file_sha256": "0dec7101f0d345a62169e96a2f88562a04baf240574d429e5169d0f6dd6dfab1",
+    "old": {
+      "tests": 13,
+      "passed": 4,
+      "failed": 9,
+      "errors": 0,
+      "skipped": 0,
+      "elapsed_seconds": 7.704,
+      "log": "before-final-contract.log"
+    },
+    "new": {
+      "tests": 13,
+      "passed": 13,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "elapsed_seconds": 6.456,
+      "log": "after-final-contract.log"
+    },
+    "core_counterexample": "Six seconds without any render/getCardsState call expires the unchanged 2500-ms lease in the original host; independent resumed/bound lifecycle keeps it fresh after the patch.",
+    "initial_harness_correction": "First fixture compile lacked the JSONObject default constructor; preserved separately, fixed before the identical red/green runs. It was not counted as a product regression.",
+    "initial_eleven_case_red_green": {
+      "old": {
+        "tests": 11,
+        "passed": 2,
+        "failed": 9,
+        "errors": 0,
+        "elapsed_seconds": 6.139,
+        "log": "before-original-host.log"
+      },
+      "new": {
+        "tests": 11,
+        "passed": 11,
+        "failed": 0,
+        "errors": 0,
+        "elapsed_seconds": 7.31,
+        "log": "after-lifecycle-host.log"
+      },
+      "test_file_sha256": "301f04d8849c980826108f8f323d9c22dfb3513f820ac5a1b63556f85aa3e9e8"
+    },
+    "require_all_tests": "true",
+    "scope_of_count": "Eleven real compiled-Activity scheduler/lifecycle cases plus two dependency policy contracts; the lifecycle cases themselves are unchanged."
+  },
+  "other_executed_checks": [
+    {
+      "scope": "Existing production registry and Android preparation plus return wiring",
+      "tests": 9,
+      "passed": 9,
+      "skipped": 0,
+      "elapsed_seconds": 0.974,
+      "log": "existing-host-contracts.log"
+    },
+    {
+      "scope": "Existing Dart Cards session, authority expiry/background/profile withdrawal, save-before-ack and 12 complete rounds",
+      "tests": 8,
+      "passed": 8,
+      "skipped": 0,
+      "log": "existing-dart-session.log",
+      "working_directory": "Prepared lumo-lernen checkout; table-session implementation and test byte-equal final checkout/e3d before invocation."
+    },
+    {
+      "scope": "12 additive observation contracts plus 40 established Cards readiness/pixels/authority and Studio speech checks",
+      "tests": 52,
+      "passed": 52,
+      "skipped": 0,
+      "elapsed_seconds": 1.547,
+      "log": "lifecycle-observation-and-existing-probes.log"
+    }
+  ],
+  "diagnostics": {
+    "kind": "After each existing state read, optional one bounded read-only adb observation",
+    "timeout_seconds": 0.75,
+    "fields": [
+      "actual lifecycle active/stamp/pauseEpoch",
+      "actual device millisecond clock immediately around lifecycle-file read",
+      "state filename/revision/ack/paused",
+      "diagnostic elapsed duration",
+      "raw command output or explicit missing-observation reason"
+    ],
+    "atomic_state_lifecycle_pair_claimed": false,
+    "new_touch_resume_or_state_write": false,
+    "unchanged_card_guard_functions": [
+      "cards_ready_to_draw",
+      "cards_display_density",
+      "capture_cards_faces",
+      "cards_roundtrip"
+    ],
+    "failure_semantics": "Original state exceptions re-raised; missing optional observation saved, write failure logged to stderr; no timeout or gate weakened."
+  },
+  "sources": [
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "bytes": 11695,
+      "sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674"
+    },
+    {
+      "path": "scripts/tests/test_cards_lifecycle_heartbeat.py",
+      "bytes": 16774,
+      "sha256": "0dec7101f0d345a62169e96a2f88562a04baf240574d429e5169d0f6dd6dfab1"
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 40745,
+      "sha256": "d1b2bb2072e6ae5bbbfafc2c03d3ad580a096b1b5729a19079587a5490045801"
+    },
+    {
+      "path": "tools/android_qa/tests/test_cards_lifecycle_observation.py",
+      "bytes": 9288,
+      "sha256": "de3244764ed9606879323d9c75cc0c3f3391b90b12f7052685b1b1945f228d12"
+    }
+  ],
+  "unchanged_guards": [
+    {
+      "path": "tools/auto_install/CardsTableBridge.kt",
+      "sha256": "ef5f702ecf6f89aae1b8cc8e4cc640b3b481a01d24a510ff393de100d800e572",
+      "byte_equal_e3d": true
+    },
+    {
+      "path": "tools/auto_install/CardsAuthorityService.kt",
+      "sha256": "271cd63897272579a362d520741779be97d1d2f38e88615184f5e45cc19f37cc",
+      "byte_equal_e3d": true
+    },
+    {
+      "path": "tools/auto_install/CardsAuthorityRegistry.java",
+      "sha256": "e7076a168a9f3c8b19dda22af6311a28d0a170899f9092b6c2bb65c8174a6e4a",
+      "byte_equal_e3d": true
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_table_session.dart",
+      "sha256": "feff3a6895eca621696dffbd6ad69694dcafb26a6b4704cdec10eaaededfd8ee",
+      "byte_equal_e3d": true
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_screen.dart",
+      "sha256": "a4eea82732cf5f09dd87d19302edc9a4f1e703e88d18809c6410fa2d53423945",
+      "byte_equal_e3d": true
+    },
+    {
+      "path": "test/lumo_cards_table_session_test.dart",
+      "sha256": "dbe23b6a99a0b2f1d45c16337f6612389e779b9eadc280604b55207ee41d77ce",
+      "byte_equal_e3d": true
+    }
+  ],
+  "compiler": {
+    "existing_toolchain": "gradle-9.1.0/lib/kotlin-compiler-embeddable-2.2.0.jar",
+    "download_performed": false,
+    "configuration": "Existing LUMO_KOTLIN_LIB_DIR, GRADLE_HOME/lib or installed gradle/lib; identical discovery pattern to established Kotlin return-store tests.",
+    "missing_dependency_policy": "Optional legacy environments report SkipTest. REQUIRE_ALL_TESTS=true raises RuntimeError instead; no compiler download or mandatory-gate bypass."
+  },
+  "independent_review": "Agent A read exact Activity and original test hashes and raw 11/11 result; no additional concrete blocker. Final two dependency-policy contracts and optional diagnostics are assigned to Agent A for separate read-only review; no unobserved acceptance is claimed here.",
+  "limits": [
+    "Full real Android host compilation and fresh APK are not produced by this local JVM test.",
+    "Fresh API35/37 real Cards draw/pause/save/return gates remain required.",
+    "No physical Fold7/60-FPS, audible speech or full-master acceptance."
+  ],
+  "evidence_files": [
+    {
+      "path": "README.md",
+      "bytes": 3352,
+      "sha256": "033667879ea7e10db1a9f8fac1e1a45a203bf9a7f69a42e9918887bbcf901c37"
+    },
+    {
+      "path": "after-final-contract.log",
+      "bytes": 3047,
+      "sha256": "5422e7fe644a91e716bce11b2b448082e0c9452151cfa39469bedb9b4e7bd70d"
+    },
+    {
+      "path": "after-lifecycle-host.log",
+      "bytes": 2619,
+      "sha256": "677eb7fb706f025ccc79162b8276c3bbca14f0f0924a268a727bc5a7261ad95c"
+    },
+    {
+      "path": "before-final-contract.log",
+      "bytes": 12953,
+      "sha256": "47ba1c56eb81b7f6966f3bc1c198b35ae05f9461607732cf0468462d61050d66"
+    },
+    {
+      "path": "before-original-host.log",
+      "bytes": 12525,
+      "sha256": "51bd3885be816c95252f48e0877103ada27f4dec72b2b6f4155acb98a6a5b470"
+    },
+    {
+      "path": "existing-dart-session.log",
+      "bytes": 811,
+      "sha256": "302b939a7f725ee2f96c2124211ac2f4f64b82771640b3b251725898ccf3edbe"
+    },
+    {
+      "path": "existing-host-contracts.log",
+      "bytes": 1953,
+      "sha256": "393f9bd6e5112fe38221fadb16873f7ee8f05a385ac62fa1e2c11c66aafa2764"
+    },
+    {
+      "path": "harness-initial-compile-error.log",
+      "bytes": 1000,
+      "sha256": "e5975c062928f9a1478ec693cff81eede739aa53868bec1aa3b6a3f69d8cfc97"
+    },
+    {
+      "path": "lifecycle-observation-and-existing-probes.log",
+      "bytes": 10427,
+      "sha256": "2c73a52ece12fa5620ac8c551e22b82a295eea378caa77394bd5a38164080bdf"
+    },
+    {
+      "path": "original-e3d-LumoGameActivity.kt",
+      "bytes": 8963,
+      "sha256": "6e4ac87b1013dc7b82be2c3ca8de9a8f2ba63faf5c9866728db45dbcfbb31eb2"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[LearningCapture] SCREENSHOT math-start-1280x720 lit=49938 orange=34375 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningWorld] move kind=bridge_ten token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_ten token=1 target=9 placed=2 complete=false
+[LearningCapture] SCREENSHOT math-ten-1280x720 lit=50377 orange=34707 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningWorld] move kind=bridge_ten token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_ten token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_ten token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT math-complete-1280x720 lit=51426 orange=36104 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT math-start-412x915 lit=18911 orange=10575 fox_head_orange=969 clipped_ratio=0.0005812376487
+[LearningWorld] move kind=bridge_ten token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_ten token=1 target=9 placed=2 complete=false
+[LearningCapture] SCREENSHOT math-ten-412x915 lit=19182 orange=10798 fox_head_orange=969 clipped_ratio=0.0005812376487
+[LearningWorld] move kind=bridge_ten token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_ten token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_ten token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT math-complete-412x915 lit=18426 orange=10694 fox_head_orange=870 clipped_ratio=0.00073087542634
+[LearningCapture] SCREENSHOT math-start-2400x1080 lit=96433 orange=34791 fox_head_orange=2525 clipped_ratio=0.00057823614214
+[LearningWorld] move kind=bridge_ten token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_ten token=1 target=9 placed=2 complete=false
+[LearningCapture] SCREENSHOT math-ten-2400x1080 lit=96764 orange=35026 fox_head_orange=2525 clipped_ratio=0.00057823614214
+[LearningWorld] move kind=bridge_ten token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_ten token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_ten token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT math-complete-2400x1080 lit=97696 orange=36297 fox_head_orange=2525 clipped_ratio=0.00057823614214
+[LearningCapture] SCREENSHOT syllables-start lit=54902 orange=26477 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningWorld] move kind=syllables token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=syllables token=1 target=1 placed=2 complete=false
+[LearningWorld] move kind=syllables token=2 target=2 placed=3 complete=true
+[LearningCapture] SCREENSHOT syllables-complete lit=55821 orange=26388 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT plant_parts-start lit=55469 orange=32380 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT plant_parts-complete lit=54784 orange=31852 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT subtract_ten-start lit=47822 orange=29063 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningWorld] move kind=subtract_ten token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=subtract_ten token=1 target=1 placed=2 complete=false
+[LearningWorld] move kind=subtract_ten token=2 target=2 placed=3 complete=false
+[LearningWorld] move kind=subtract_ten token=3 target=3 placed=4 complete=false
+[LearningWorld] move kind=subtract_ten token=4 target=4 placed=5 complete=true
+[LearningCapture] SCREENSHOT subtract_ten-complete lit=48209 orange=29361 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT equal_groups-start lit=56494 orange=26927 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningWorld] move kind=equal_groups token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=equal_groups token=1 target=1 placed=2 complete=false
+[LearningWorld] move kind=equal_groups token=2 target=2 placed=3 complete=false
+[LearningWorld] move kind=equal_groups token=3 target=3 placed=4 complete=false
+[LearningWorld] move kind=equal_groups token=4 target=4 placed=5 complete=false
+[LearningWorld] move kind=equal_groups token=5 target=5 placed=6 complete=false
+[LearningWorld] move kind=equal_groups token=6 target=6 placed=7 complete=false
+[LearningWorld] move kind=equal_groups token=7 target=7 placed=8 complete=false
+[LearningWorld] move kind=equal_groups token=8 target=8 placed=9 complete=false
+[LearningWorld] move kind=equal_groups token=9 target=9 placed=10 complete=false
+[LearningWorld] move kind=equal_groups token=10 target=10 placed=11 complete=false
+[LearningWorld] move kind=equal_groups token=11 target=11 placed=12 complete=true
+[LearningCapture] SCREENSHOT equal_groups-complete lit=56735 orange=27056 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT bridge_hundred-start lit=49302 orange=31487 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningWorld] move kind=bridge_hundred token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_hundred token=1 target=9 placed=2 complete=false
+[LearningWorld] move kind=bridge_hundred token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_hundred token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_hundred token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT bridge_hundred-complete lit=50804 orange=33220 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT fraction_parts-start lit=53701 orange=24193 fox_head_orange=1904 clipped_ratio=0.00077895355673
+[LearningWorld] move kind=fraction_parts token=0 target=1 placed=1 complete=false
+[LearningWorld] move kind=fraction_parts token=1 target=2 placed=2 complete=true
+[LearningCapture] SCREENSHOT fraction_parts-complete lit=54092 orange=24115 fox_head_orange=1904 clipped_ratio=0.00077895355673
+[LearningCapture] SCREENSHOT bridge_hundred-start-412x915 lit=18650 orange=9387 fox_head_orange=969 clipped_ratio=0.0005812376487
+[LearningWorld] move kind=bridge_hundred token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_hundred token=1 target=9 placed=2 complete=false
+[LearningWorld] move kind=bridge_hundred token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_hundred token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_hundred token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT bridge_hundred-complete-412x915 lit=18196 orange=9599 fox_head_orange=870 clipped_ratio=0.00073087542634
+[LearningCapture] SCREENSHOT bridge_hundred-start-2400x1080 lit=95645 orange=31808 fox_head_orange=2525 clipped_ratio=0.00057823614214
+[LearningWorld] move kind=bridge_hundred token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_hundred token=1 target=9 placed=2 complete=false
+[LearningWorld] move kind=bridge_hundred token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_hundred token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_hundred token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT bridge_hundred-complete-2400x1080 lit=96926 orange=33316 fox_head_orange=2525 clipped_ratio=0.00057823614214
+[LearningCapture] PASS captures=25

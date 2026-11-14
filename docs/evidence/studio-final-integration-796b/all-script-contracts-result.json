@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-v"
+  ],
+  "started_utc": "2026-11-13T19:14:29.997163+00:00",
+  "elapsed_seconds": 68.46363355999347,
+  "exit_code": 1,
+  "require_all_tests": true,
+  "action_test_source_env_set": false,
+  "source_hashes_unchanged": true,
+  "log_bytes": 80013,
+  "log_sha256": "f23cb00aa2811a134b5217e2c62a1bd55478ebfaa171ca95e7bf49d5755aa793",
+  "scope": "Actual local integrated script suite; not an Android runtime or release proof."
+}

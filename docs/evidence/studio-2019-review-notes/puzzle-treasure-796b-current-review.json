@@ -1,0 +1,74 @@
+{
+  "reviewer": "root integrator",
+  "native_source": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "artifact": {
+    "id": 14064024974,
+    "name": "lumo-studio-2019-new-evidence",
+    "size_in_bytes": 23602687,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14064024974",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14064024974/zip",
+    "expired": false,
+    "created_at": "2026-11-13T18:15:43Z",
+    "expires_at": "2026-12-13T18:15:41Z",
+    "updated_at": "2026-11-13T18:15:43Z",
+    "digest": "sha256:ffdd3aec274ac8ca97955ef5212b35bf603881dcbc6d5732620e38741106e2e7",
+    "workflow_run": {
+      "id": 43479909943,
+      "repository_id": 1251414584,
+      "head_repository_id": 1251414584,
+      "head_branch": "chatgpt/lumo-studio-20261113",
+      "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+    }
+  },
+  "job": {
+    "id": 132073398621,
+    "name": "studio",
+    "conclusion": "success",
+    "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+  },
+  "original_zip_sha256": "ffdd3aec274ac8ca97955ef5212b35bf603881dcbc6d5732620e38741106e2e7",
+  "source_tree": "ffd943c83079c5957514934ad7077f32e743fe68",
+  "source_dirty_empty": true,
+  "images": [
+    {
+      "module": "puzzle",
+      "standalone_artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "expected_full_bundle_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "sha256": "f781e5cdf9aa32bcf83aec408ab52a5800249480ae1ed6c4a97550755292b460",
+      "dimensions": [
+        640,
+        360
+      ],
+      "bytes": 113801,
+      "actually_opened_individually": true,
+      "findings": "Actual compact 640x360 play view: board and pieces remain between HUD and toolbar; selected target is visibly outlined, one placed part and one hint are shown. Only the visible toolbar segment is assessed; the existing horizontal scroll affordance remains."
+    },
+    {
+      "module": "puzzle",
+      "standalone_artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "expected_full_bundle_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 509560,
+      "actually_opened_individually": true,
+      "findings": "Actual landscape state after placing a correctly oriented part: 1/6, zero hints; extruded piece geometry and side trays visible; unavailable rotate control is disabled; current feedback and buttons are legible."
+    },
+    {
+      "module": "treasure",
+      "standalone_artifact_entry": "captures/treasure_exploration_regression/treasure_choose_route.png",
+      "expected_full_bundle_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "sha256": "d751095dec4aed5503d7d8f3821adae6730258efcd26611a43d6fc0d6cd6c7a7",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 1365776,
+      "actually_opened_individually": true,
+      "findings": "Actual branch point after bridge discovery: instruction explicitly names crystal/garden choice and requirement for both finds. Scene contains playable terrain, companion, objects and touch controls. Existing large background wall and simpler companion remain; this is not a complete art overhaul."
+    }
+  ],
+  "scope": "Three actual selected production rasters independently opened, with original ZIP byte equality; complete bundle and other jobs are pending. No Android or physical device performance claim."
+}

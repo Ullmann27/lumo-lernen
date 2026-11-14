@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_legacy_release_pin.py", line 166, in <module>
+    version, sha = verify(
+                   ^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_legacy_release_pin.py", line 162, in verify
+    raise ValueError(f"Native revision mismatch for build {version}: expected {required}, got {cfg['revision']}")
+ValueError: Native revision mismatch for build 2019: expected 796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e, got 803e7a626ea6ef0aeeda9c37010e844033d3a8e3

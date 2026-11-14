@@ -1,0 +1,90 @@
+{
+  "schema": "lumo-independent-scoped-source-review-v1",
+  "reviewer": "character_animation / agent B",
+  "reviewed_at_utc": "2026-11-13T23:02:22.094569+00:00",
+  "result": "NO_ADDITIONAL_BLOCKER_IN_SCOPED_READ_ONLY_REVIEW",
+  "files": [
+    {
+      "path": "tools/android_qa/fold_device_capture.py",
+      "bytes": 23101,
+      "sha256": "72ebc6fcb029b6bbae1a8d13162e61ccfb68f67d0216175268e1d5722dfbfd4c",
+      "git_blob": "500c8728602593e3ff34be62cbc81d32f7cdfbe5"
+    },
+    {
+      "path": "tools/android_qa/tests/test_fold_device_capture.py",
+      "bytes": 19766,
+      "sha256": "5218e628d752d44424eaee3e03308b343019bcfbe1895aa0114122e5306c8acd",
+      "git_blob": "ff92292a0d960fa9a82818863e714f4547ee7ecb"
+    },
+    {
+      "path": "tools/android_qa/runtime_resource_evidence.py",
+      "bytes": 5371,
+      "sha256": "c2cc08ca11c0d1539c7322255de34b5b12754e24f43fcf5498e213f6ca9f84f0",
+      "git_blob": "caf093f18059272d7c3a5c9ceada574747519212"
+    }
+  ],
+  "scope": [
+    "Explicit device selection and local/installed APK provenance identity",
+    "Allowed Android diagnostic commands and preservation of original output",
+    "CPU/memory/thermal/HWUI/SurfaceView measurement interpretation",
+    "Deadline, errors, interruption and unavailable data boundaries"
+  ],
+  "findings": [],
+  "observations": [
+    {
+      "area": "Identity",
+      "functions": [
+        "validate_local_artifact",
+        "base_apk_path",
+        "installed_binding"
+      ],
+      "observation": "Full explicit host/native SHAs and trusted expected APK SHA256 are required. The local APK hash, length, ARM64 provenance, original signing metadata, embedded native source and streamed PCK hash are checked. Every adb command contains the required explicit serial. Before/after device bindings require matching serial, ordinary shell UID2000, one monolithic installed base.apk with exact bytes/hash and equal fingerprint. Invalid or split paths fail closed."
+    },
+    {
+      "area": "Read-only command scope",
+      "functions": [
+        "allowed_read",
+        "Recorder.read"
+      ],
+      "observation": "Only explicit diagnostic forms are allowlisted. No install, root, force-stop, pm clear, settings change, input injection or stats reset is admitted. Device shell arguments are passed through shlex.join, including the optional exact SurfaceView layer as one quoted argument. Local evidence is written to a newly created output directory; an existing output is not overwritten."
+    },
+    {
+      "area": "Bounded collection and raw evidence",
+      "functions": [
+        "Recorder.read",
+        "collect"
+      ],
+      "observation": "Commands use a per-command and total adb budget; exit codes, timestamps and original stdout/stderr are retained and hashed. Empty/missing/denied services remain unavailable. Interruption records the interrupted command, keeps partial bytes and produces INTERRUPTED_UNVERIFIED_END without accepting the after-binding. Source/identity failure cannot become a successful recording."
+    },
+    {
+      "area": "Measurement interpretation",
+      "functions": [
+        "process_sample",
+        "thermal_observation",
+        "hwui_observation",
+        "snapshot"
+      ],
+      "observation": "CPU remains original ticks without guessed Hz/percent or RSS byte conversion. PID start ticks detect reuse around samples; unavailable lifetime checks are explicit. Native memory text must identify the expected process/PID. Thermal data distinguishes override/HAL status and preserves sensor units as raw only. HWUI rows and unreset SurfaceFlinger latency buffers never produce a native FPS, GPU frame-time or touch-latency value."
+    }
+  ],
+  "author_test_log_read_not_reexecuted": {
+    "path": "/tmp/lumo-fold-device-capture-tests-final-19.log",
+    "bytes": 3800,
+    "sha256": "a3d82ff4ce108f702d9678e56abf0bc42708790f7501edd7a5892faf572086a0",
+    "reported_tests": 19,
+    "reported_failures": 0,
+    "reported_seconds": 0.066,
+    "reviewer_executed_tests": false,
+    "kind": "Synthetic boundary tests only; no adb/device/APK installation"
+  },
+  "limits": [
+    "No physical device, Android shell, APK installation or performance measurement was executed by this reviewer.",
+    "A recorded device model/property is not a physical Fold7 approval. The collector does not assert model identity or produce a performance PASS.",
+    "The signing-certificate metadata is trusted through the supplied verified-delivery APK digest, not independently rechecked with apksigner by this collector.",
+    "Sequential diagnostic reads perturb load and can be unavailable on real vendor builds; raw-only/missing states remain explicit.",
+    "This source review is neither a fresh native/Android CI result nor an APK release receipt."
+  ],
+  "mutations_by_reviewer": [
+    "This independent documentation note only. No source or test mutation."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "baseline_host": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "baseline_workflow_sha256": "ae13c51986aeaac5318442669480d890de9beed73655d0595a65ba5ec94f9f98",
+  "proposed_workflow_sha256": "b78837819d5694530d537656ea0585f60574b0b275b2c2d82d70cb1917b3aed4",
+  "patch_sha256": "a27adafd81d76dccda1de5a3819df0f3b15e40065a94755f20bddb30249b707e",
+  "only_change": "Map the API37 package suffix to the catalog-backed string 37.0 in the emulator action input.",
+  "matrix_api_unchanged": true,
+  "expected_api_probe_argument_unchanged": true,
+  "sdk37_and_release17_runtime_gates_unchanged": true,
+  "package_channel": "stable / 0",
+  "platform_revision": 2,
+  "system_image_revision": 8,
+  "minimum_emulator_revision": "37.2.11",
+  "available_stable_emulator_revision": "37.2.13",
+  "actionlint": {
+    "version": "1.7.12",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "applied_to_active_workflow": false,
+  "boot_success_proven": false
+}

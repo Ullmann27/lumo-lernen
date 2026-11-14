@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "foreground": "    topResumedActivity=ActivityRecord{6f1bb37 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t10}",
+  "exact_visible_caption": "Spielen",
+  "capture": {
+    "file": "23_zurueck_in_flutter.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "b943dec19955537975b25e1fc1d3a0bd6961cc2cb484673bca05276ef7f1d89c"
+  },
+  "scope": "Observed current Flutter frame after private game exit"
+}

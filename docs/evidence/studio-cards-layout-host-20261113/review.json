@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "status": "FROZEN_LOCAL_CONTRACTS_PASS_NOT_ANDROID_ACCEPTANCE",
+  "base_source": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "source_freeze_sha256": "2d1a501694a8fd87765031f50eb25db7fff7744673722e0db9e1d01c3c2bf4d8",
+  "changes": [
+    "Independent Cards projection now accepts strictly validated actual WindowInsets/RenderView observations, derives the safe UI rectangle and screenshot transform, and cross-checks real Godot mesh readbacks within0.05px. Supplied polygons never become sampling coordinates.",
+    "Runtime capture reads and preserves the raw atomic layout file before and after the actual PNG. Token/round/revision/ack/viewer/phase, pending/selection/page/settled state, physical screenshot size, density, UI rectangle and mesh identities must agree. Two consecutive frames require identical layout/state. Missing measurements fail closed.",
+    "Original OCR captions, color fraction0.12, luminance spread24, interior sampling0.72 and original60s Cards deadline remain. A new late-OCR countercase additionally prevents success after that deadline.",
+    "Actual Flutter process return and semantics are still required. Fresh return pixels now additionally require two consecutive original screenshots with visible matching captions. The actual stale API37 native PNG is rejected; capture budget remains30s and12 frames.",
+    "Historical2018 shared publisher defaults to require_layout=False. Studio explicitly enablesTrue and repeats the actual raw-file/geometry/pixel verification. Original action, pause, persistence, authority and task-return functions remain unchanged.",
+    "The sole changed original top-level definition in verify_nextgen_delivery.py is verify_cards_front_faces; GitHub318 original file is blob-verified. Root alone integrates the Studio callsite and its tests."
+  ],
+  "executed_tests": [
+    {
+      "command": "python3 -m unittest tools.android_qa.tests.test_studio_cards_layout tools.android_qa.tests.test_cards_lifecycle_observation tools.android_qa.tests.test_studio_flutter_return tools.android_qa.tests.test_nextgen_cards_faces -v",
+      "log": "final-capture-projection-return-green.log",
+      "tests": 44,
+      "seconds": 7.489,
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -m unittest scripts.tests.test_studio_cards_delivery scripts.tests.test_nextgen_delivery -v",
+      "log": "publisher-layout-legacy-green.log",
+      "tests": 14,
+      "seconds": 23.148,
+      "exit_code": 0
+    }
+  ],
+  "negative_evidence": [
+    {
+      "log": "projection-red.log",
+      "finding": "Old projection misses the real safe-area hand by63.151997812807394px; same counterexample after patch0.00016696483476152935px."
+    },
+    {
+      "log": "layout-contract-red.log",
+      "finding": "Original9 contract methods produced21 failed subcases before the measured-layout validator."
+    },
+    {
+      "log": "flutter-return-red.log",
+      "finding": "Original6 return contracts had5 failures; stale native pixels were accepted by entropy-only capture."
+    },
+    {
+      "log": "capture-binding-before-deadline-fix.log",
+      "finding": "17 cases:16passed, late-second-OCR case failed; fixed without increasing the deadline."
+    },
+    {
+      "log": "publisher-layout-red.log",
+      "finding": "6methods:11 failed subassertions and1error; the original verifier accepted missing layout and rejected new valid layout reports through its legacy-only recomputation."
+    }
+  ],
+  "actual_ocr": {
+    "log": "real-cards-ocr-review.json",
+    "screenshots": "Unchanged actual local Godot X11 portrait/landscape PNGs",
+    "reader": "Actual existing production image_lines function and Tesseract contrast2x",
+    "captions": [
+      "Pause",
+      "1/3",
+      "1/1"
+    ],
+    "language_limit": "Localdeu absent; eng fallback warnings preserved. No Android/OCR device pass."
+  },
+  "independent_native_review": "docs/evidence/studio-final-verification-31883868/api35/cards-native-safe-area-independent-review.json",
+  "independent_publisher_review": "docs/evidence/studio-final-verification-31883868/api35/cards-publisher-legacy-independent-review.json",
+  "limits": [
+    "No new installed Android35/37 APK run, no Fold7 hardware/FPS/thermal/input-latency claim.",
+    "Transport/clock/lifecycle doubles and constructed publisher sessions are explicitly synthetic; positive pixels remain original renderer or Android fixtures.",
+    "Native fixture source is bound by per-file hashes and genuine raw sidecars, not a new already-approved GitHub commit.",
+    "Root/A subsequently extended the common native inset cache; this note does not pre-approve unseen new native source or its final CI.",
+    "Original318 Android failures and stale API37 PNG remain preserved and rejected; none are relabeled as success."
+  ]
+}

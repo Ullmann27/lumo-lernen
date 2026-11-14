@@ -1,0 +1,21 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_build-dialog-density-5-0_1.json
+[Perf] quality_profile:medium
+[BuildDialogDensity] CASE [(2400, 1080), 2.625] checks=400 failures=0
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_build-dialog-density-5-1_1.json
+[BuildDialogDensity] CASE [(1080, 2400), 2.625] checks=797 failures=0
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_build-dialog-density-5-2_1.json
+[BuildDialogDensity] CASE [(2176, 1812), 2.25] checks=1194 failures=0
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_build-dialog-density-5-3_1.json
+[BuildDialogDensity] CASE [(640, 360), 1.0] checks=1605 failures=0
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_build-dialog-density-5-4_1.json
+[BuildDialogDensity] CASE [(640, 320), 1.0] checks=2016 failures=0
+[BuildDialogDensity] PASS 2016 checks: bounded dialogs, preserved choices, actual scroll/select/cancel, >=48dp and restore

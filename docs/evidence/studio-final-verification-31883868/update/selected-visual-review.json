@@ -1,0 +1,181 @@
+{
+  "reviewed_at": "2026-11-13T21:14:10.944690+00:00",
+  "scope": "13 individually opened original screenshots; no blanket review of all 121 PNG entries",
+  "archive_sha256": "e057bb050ba8ae6874acfeb9c172b7d3467f6f511308405abba28f3275643293",
+  "source_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "native_commit": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "images": [
+    {
+      "archive_member": "baseline-learning/06-math-task.png",
+      "file": "original-reports/baseline-learning/06-math-task.png",
+      "bytes": 1925835,
+      "sha256": "da6acfd252266a25f0931b9cb0fd84be8aeff76c3c3fec3ce489e00570dd393a",
+      "dimensions": [
+        1080,
+        2340
+      ],
+      "actually_opened_with_view_image": true,
+      "verdict": "BASELINE_TASK_VISIBLE",
+      "observed": "Actual 2017 math task 3 + 5 = ?, four answer targets including 8, wallet still 0 stars / 0 XP."
+    },
+    {
+      "archive_member": "baseline-learning/07-feedback.png",
+      "file": "original-reports/baseline-learning/07-feedback.png",
+      "bytes": 1915670,
+      "sha256": "1f99a1e57236c7b8ed5275fe77417b086ce2de16bb491ed4f722e800483cc205",
+      "dimensions": [
+        1080,
+        2340
+      ],
+      "actually_opened_with_view_image": true,
+      "verdict": "BASELINE_REWARD_VISIBLE",
+      "observed": "Image already shows the next problem 4 + 3, one answer at first attempt, 1 star and 5 / 400 XP. It is not a captured transient correct-answer popup."
+    },
+    {
+      "archive_member": "baseline-learning/t1-deutsch-missing.png",
+      "file": "original-reports/baseline-learning/t1-deutsch-missing.png",
+      "bytes": 1970713,
+      "sha256": "ae16c068b2378c3eba1b55d317f9d09417df00710a11addb0e683dec09febbe4",
+      "dimensions": [
+        1080,
+        2340
+      ],
+      "actually_opened_with_view_image": true,
+      "verdict": "OPTIONAL_NAVIGATION_FAILURE_VISIBLE_CONTEXT",
+      "observed": "Deutsch and Englisch subject cards are visibly present; the report says no matching accessibility-prefix control was found. This screenshot does not prove their navigation worked or that those modules were absent."
+    },
+    {
+      "archive_member": "updated-profile-offline.png",
+      "file": "original-reports/updated-profile-offline.png",
+      "bytes": 3056713,
+      "sha256": "07879cefbbecdd984c58223a81f8a6abe08ebb4d0ec0a5a41ed8a0ad653b26f9",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "actually_opened_with_view_image": true,
+      "verdict": "SCOPED_PASS",
+      "observed": "After update, actual Flutter home shows LumoTest, class 1, 1 star and 5 / 400 XP; airplane icon visible."
+    },
+    {
+      "archive_member": "21_lumo_kart_real_race.png",
+      "file": "original-reports/21_lumo_kart_real_race.png",
+      "bytes": 1787114,
+      "sha256": "e78ee037fae83af6397e59b23a3b3394520f9494797c6034fe78538b25d3c3b8",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "actually_opened_with_view_image": true,
+      "verdict": "INTRO_ONLY_NOT_DRIVING_PROOF",
+      "observed": "Despite its filename, this frame shows the Sonnenhafen track-introduction flyover and touch controls. Driving is evaluated using separate actual before/after frames and persisted telemetry."
+    },
+    {
+      "archive_member": "21_race_before_gas.png",
+      "file": "original-reports/21_race_before_gas.png",
+      "bytes": 1977105,
+      "sha256": "b5e1bbf8b06efadc99c23556dd02578ef9ecebb2aa34bd4f9a1c88a3e2b741e4",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "actually_opened_with_view_image": true,
+      "verdict": "RACE_START_VISIBLE",
+      "observed": "Actual fox kart at starting grid with opponent, lap 1/2 and 0 km/h. Race and controls are visible."
+    },
+    {
+      "archive_member": "21_race_driving_late_2.png",
+      "file": "original-reports/21_race_driving_late_2.png",
+      "bytes": 1852880,
+      "sha256": "b49f76144433d0f0eea573545e879b697d3929c55f869f48a4201a25e220a754",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "actually_opened_with_view_image": true,
+      "verdict": "RACE_MOVEMENT_VISIBLE",
+      "observed": "Fox kart appears farther along the course beside the left barrier, HUD reads lap 1/2, position 6/6 and 25 km/h. This is a real later screenshot, not a frame-rate or handling-quality measurement."
+    },
+    {
+      "archive_member": "21_lumo_kart_pause.png",
+      "file": "original-reports/21_lumo_kart_pause.png",
+      "bytes": 818318,
+      "sha256": "4a9ca1bd60728d45db5092342b584082df5962ad1f78eb8ead50ae914eaedfa7",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "actually_opened_with_view_image": true,
+      "verdict": "PAUSE_VISIBLE",
+      "observed": "Actual pause modal and Weiterfahren / Zur Spieleauswahl / Zum Lernen buttons appear over the race. Lower options are within a scroll area; no complete pause-options input audit is claimed."
+    },
+    {
+      "archive_member": "23_zurueck_in_flutter.png",
+      "file": "original-reports/23_zurueck_in_flutter.png",
+      "bytes": 1965644,
+      "sha256": "499a801e305514ba398937e86e20caacff550b626ad35a215f7589948eeab148",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "actually_opened_with_view_image": true,
+      "verdict": "RETURN_VISIBLE",
+      "observed": "Actual Flutter Spielewelt with game tiles, highlighted Spielen navigation and 1 star; no native race remains in this final return capture."
+    },
+    {
+      "archive_member": "restart-profile-offline.png",
+      "file": "original-reports/restart-profile-offline.png",
+      "bytes": 3056644,
+      "sha256": "3e137214ede375a8f4fdde5c01974a8a50abc79fb0b1a5fb9a5a21b46b720870",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "actually_opened_with_view_image": true,
+      "verdict": "RESTART_VISIBLE",
+      "observed": "Following force-stop and relaunch, actual Flutter home again shows LumoTest, class 1, 1 star and 5 XP with airplane icon."
+    },
+    {
+      "archive_member": "fold-cover.png",
+      "file": "original-reports/fold-cover.png",
+      "bytes": 2569451,
+      "sha256": "a4b53a0bd0581c860b4b293d784756886d35f1e38080a16482f8a655adbd25ba",
+      "dimensions": [
+        904,
+        2316
+      ],
+      "actually_opened_with_view_image": true,
+      "verdict": "COVER_LAYOUT_SCOPED_PASS",
+      "observed": "904 x 2316 emulator window shows the retained named profile and wallet, readable home/card navigation; it is a display-size simulation, not Fold7 hardware."
+    },
+    {
+      "archive_member": "fold-open.png",
+      "file": "original-reports/fold-open.png",
+      "bytes": 4336070,
+      "sha256": "ea9f8666f56366e6dc88950cc26aaa2c88b69ca342f80d74533dfd412af018b6",
+      "dimensions": [
+        1812,
+        2176
+      ],
+      "actually_opened_with_view_image": true,
+      "verdict": "OPEN_LAYOUT_SCOPED_PASS",
+      "observed": "1812 x 2176 emulator window shows LumoTest, class 1, 1 star and 5 XP in expanded layout."
+    },
+    {
+      "archive_member": "fold-landscape.png",
+      "file": "original-reports/fold-landscape.png",
+      "bytes": 1772153,
+      "sha256": "28ca5aa845ee1821cdc09c9555485371b581f6ffbf966965eb5c6e9e24775800",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "actually_opened_with_view_image": true,
+      "verdict": "LANDSCAPE_LAYOUT_SCOPED_PASS",
+      "observed": "2400 x 1080 emulator window shows retained profile greeting, class 1 and wallet with sidebar. Only the visible retained-profile state is accepted; not every scrolled navigation target was exercised here."
+    }
+  ],
+  "byte_equal_but_not_separately_opened": [
+    "baseline-learning/t2-englisch-missing.png (identical to the actually opened t1-deutsch-missing.png)"
+  ]
+}

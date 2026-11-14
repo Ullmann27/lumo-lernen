@@ -1,0 +1,6361 @@
+{
+	"images": [
+		{
+			"density": 2.625,
+			"filename": "build-dialog-2400x1080-current-goal.png",
+			"height": 1080,
+			"renderer": "gl_compatibility",
+			"width": 2400
+		},
+		{
+			"density": 2.625,
+			"filename": "build-dialog-2400x1080-templates-top.png",
+			"height": 1080,
+			"renderer": "gl_compatibility",
+			"width": 2400
+		},
+		{
+			"density": 2.625,
+			"filename": "build-dialog-2400x1080-templates-bottom.png",
+			"height": 1080,
+			"renderer": "gl_compatibility",
+			"width": 2400
+		},
+		{
+			"density": 2.625,
+			"filename": "build-dialog-1080x2400-current-goal.png",
+			"height": 2400,
+			"renderer": "gl_compatibility",
+			"width": 1080
+		},
+		{
+			"density": 2.625,
+			"filename": "build-dialog-1080x2400-templates-top.png",
+			"height": 2400,
+			"renderer": "gl_compatibility",
+			"width": 1080
+		},
+		{
+			"density": 2.625,
+			"filename": "build-dialog-1080x2400-templates-bottom.png",
+			"height": 2400,
+			"renderer": "gl_compatibility",
+			"width": 1080
+		},
+		{
+			"density": 2.25,
+			"filename": "build-dialog-2176x1812-current-goal.png",
+			"height": 1812,
+			"renderer": "gl_compatibility",
+			"width": 2176
+		},
+		{
+			"density": 2.25,
+			"filename": "build-dialog-2176x1812-templates-top.png",
+			"height": 1812,
+			"renderer": "gl_compatibility",
+			"width": 2176
+		},
+		{
+			"density": 2.25,
+			"filename": "build-dialog-2176x1812-templates-bottom.png",
+			"height": 1812,
+			"renderer": "gl_compatibility",
+			"width": 2176
+		},
+		{
+			"density": 1.0,
+			"filename": "build-dialog-640x360-current-goal.png",
+			"height": 360,
+			"renderer": "gl_compatibility",
+			"width": 640
+		},
+		{
+			"density": 1.0,
+			"filename": "build-dialog-640x360-templates-top.png",
+			"height": 360,
+			"renderer": "gl_compatibility",
+			"width": 640
+		},
+		{
+			"density": 1.0,
+			"filename": "build-dialog-640x360-templates-bottom.png",
+			"height": 360,
+			"renderer": "gl_compatibility",
+			"width": 640
+		}
+	],
+	"scope": "Production scene, own popup transforms, real InputEvents and explicit density fixtures; not a physical Android/Fold7 test",
+	"targets": [
+		{
+			"density": 2.625,
+			"dp": [
+				156.048736572266,
+				48.050048828125
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Aktuelles Bauziel",
+			"physical_size": [
+				409.6279296875,
+				126.131378173828
+			],
+			"popup_size": [
+				2400,
+				1080
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				156.048736572266,
+				48.050048828125
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Aktuelles Bauziel",
+			"physical_size": [
+				409.6279296875,
+				126.131378173828
+			],
+			"popup_size": [
+				2400,
+				1080
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "assignment cancel after layout change",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "assignment actual test action",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				48.015022277832,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action −",
+			"physical_size": [
+				126.039428710938,
+				126.131408691406
+			],
+			"popup_size": [
+				2400,
+				1080
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				48.0149726867676,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action +",
+			"physical_size": [
+				126.039306640625,
+				126.131408691406
+			],
+			"popup_size": [
+				2400,
+				1080
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				66.0206451416016,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action Mitte",
+			"physical_size": [
+				173.30419921875,
+				126.131408691406
+			],
+			"popup_size": [
+				2400,
+				1080
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				93.0290679931641,
+				48.050048828125
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				244.201293945312,
+				126.131378173828
+			],
+			"popup_size": [
+				2400,
+				1080
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Großes Sternenschloss",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Dorf für Freunde",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Starter-Haus",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Brücke",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Sternenturm",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Garten",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Garten-Parzelle",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500373840332
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Hafen-Parzelle",
+			"physical_size": [
+				940.043701171875,
+				126.13134765625
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500373840332
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Insel-Parzelle",
+			"physical_size": [
+				940.043701171875,
+				126.13134765625
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500373840332
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Leere Insel",
+			"physical_size": [
+				940.043701171875,
+				126.13134765625
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				93.0290679931641,
+				48.050048828125
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				244.201293945312,
+				126.131378173828
+			],
+			"popup_size": [
+				2400,
+				1080
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				102.031898498535,
+				48.050048828125
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Welten (6)",
+			"physical_size": [
+				267.833740234375,
+				126.131378173828
+			],
+			"popup_size": [
+				2400,
+				1080
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 1 · weiterbauen",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 2 · neue Insel",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 3 · neue Insel",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 4 · neue Insel",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 5 · neue Insel",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 6 · neue Insel",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				102.031898498535,
+				48.050048828125
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Welten (6)",
+			"physical_size": [
+				267.833740234375,
+				126.131378173828
+			],
+			"popup_size": [
+				2400,
+				1080
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				90.0281372070312,
+				48.050048828125
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Bauziele",
+			"physical_size": [
+				236.323852539062,
+				126.131378173828
+			],
+			"popup_size": [
+				2400,
+				1080
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Ein Zuhause bauen",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Die Inseln verbinden",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Turm der Sterne",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Ein Garten zum Verweilen",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Großes Sternenschloss",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Dorf für Freunde",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				90.0281372070312,
+				48.050048828125
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Bauziele",
+			"physical_size": [
+				236.323852539062,
+				126.131378173828
+			],
+			"popup_size": [
+				2400,
+				1080
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				358.111877441406,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				940.043701171875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				93.0290679931641,
+				48.050048828125
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				244.201293945312,
+				126.131378173828
+			],
+			"popup_size": [
+				2400,
+				1080
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				366.114410400391,
+				48.0500602722168
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				961.05029296875,
+				126.131408691406
+			],
+			"popup_size": [
+				390,
+				387
+			],
+			"surface": [
+				2400,
+				1080
+			],
+			"viewport_screen_transform": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (687.965, 31.53285)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "cancel after live resize",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				93.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				93.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				260.271118164062,
+				48.0149955749512
+			],
+			"fully_exposed_required": true,
+			"label": "inline goal test before rotation",
+			"physical_size": [
+				683.211669921875,
+				126.039367675781
+			],
+			"popup_size": [
+				1080,
+				2400
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				156.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Aktuelles Bauziel",
+			"physical_size": [
+				156.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				156.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Aktuelles Bauziel",
+			"physical_size": [
+				156.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "assignment cancel after layout change",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.0149955749512
+			],
+			"fully_exposed_required": true,
+			"label": "assignment actual test action",
+			"physical_size": [
+				953.86865234375,
+				126.039367675781
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				260.271118164062,
+				48.0149955749512
+			],
+			"fully_exposed_required": true,
+			"label": "restored inline goal action",
+			"physical_size": [
+				683.211669921875,
+				126.039367675781
+			],
+			"popup_size": [
+				1080,
+				2400
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				48.0500602722168,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action −",
+			"physical_size": [
+				126.131408691406,
+				126.039428710938
+			],
+			"popup_size": [
+				1080,
+				2400
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				48.0500602722168,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action +",
+			"physical_size": [
+				126.131408691406,
+				126.039428710938
+			],
+			"popup_size": [
+				1080,
+				2400
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				66.0688247680664,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action Mitte",
+			"physical_size": [
+				173.4306640625,
+				126.039428710938
+			],
+			"popup_size": [
+				1080,
+				2400
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				93.0969848632812,
+				48.0150032043457
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				244.379577636719,
+				126.03938293457
+			],
+			"popup_size": [
+				1080,
+				2400
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				355.370178222656,
+				48.0149955749512
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Großes Sternenschloss",
+			"physical_size": [
+				932.846740722656,
+				126.039367675781
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				355.370178222656,
+				48.0149955749512
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Dorf für Freunde",
+			"physical_size": [
+				932.846740722656,
+				126.039367675781
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				355.370178222656,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Starter-Haus",
+			"physical_size": [
+				932.846740722656,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				355.370178222656,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Brücke",
+			"physical_size": [
+				932.846740722656,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				355.370178222656,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Sternenturm",
+			"physical_size": [
+				932.846740722656,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				355.370178222656,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Garten",
+			"physical_size": [
+				932.846740722656,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				355.370178222656,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Garten-Parzelle",
+			"physical_size": [
+				932.846740722656,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				355.370178222656,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Hafen-Parzelle",
+			"physical_size": [
+				932.846740722656,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				355.370178222656,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Insel-Parzelle",
+			"physical_size": [
+				932.846740722656,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				355.370178222656,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Leere Insel",
+			"physical_size": [
+				932.846740722656,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				355.370178222656,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				932.846740722656,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				93.0969848632812,
+				48.0150032043457
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				244.379577636719,
+				126.03938293457
+			],
+			"popup_size": [
+				1080,
+				2400
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				355.370178222656,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				932.846740722656,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				102.10636138916,
+				48.0150032043457
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Welten (6)",
+			"physical_size": [
+				268.029205322266,
+				126.03938293457
+			],
+			"popup_size": [
+				1080,
+				2400
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.0149955749512
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 1 · weiterbauen",
+			"physical_size": [
+				953.86865234375,
+				126.039367675781
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.0149955749512
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 2 · neue Insel",
+			"physical_size": [
+				953.86865234375,
+				126.039367675781
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 3 · neue Insel",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 4 · neue Insel",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 5 · neue Insel",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 6 · neue Insel",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "last choice already exposed",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				102.10636138916,
+				48.0150032043457
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Welten (6)",
+			"physical_size": [
+				268.029205322266,
+				126.03938293457
+			],
+			"popup_size": [
+				1080,
+				2400
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				90.0938415527344,
+				48.0150032043457
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Bauziele",
+			"physical_size": [
+				236.496337890625,
+				126.03938293457
+			],
+			"popup_size": [
+				1080,
+				2400
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.0149955749512
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Ein Zuhause bauen",
+			"physical_size": [
+				953.86865234375,
+				126.039367675781
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.0149955749512
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Die Inseln verbinden",
+			"physical_size": [
+				953.86865234375,
+				126.039367675781
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Turm der Sterne",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Ein Garten zum Verweilen",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Großes Sternenschloss",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Dorf für Freunde",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "last choice already exposed",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				90.0938415527344,
+				48.0150032043457
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Bauziele",
+			"physical_size": [
+				236.496337890625,
+				126.03938293457
+			],
+			"popup_size": [
+				1080,
+				2400
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				93.0969696044922,
+				48.0150032043457
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				244.379547119141,
+				126.03938293457
+			],
+			"popup_size": [
+				1080,
+				2400
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.625,
+			"dp": [
+				363.378540039062,
+				48.015022277832
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				953.86865234375,
+				126.039428710938
+			],
+			"popup_size": [
+				387,
+				500
+			],
+			"surface": [
+				1080,
+				2400
+			],
+			"viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "cancel after live resize",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				93.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				93.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				260.029876708984,
+				48.0198822021484
+			],
+			"fully_exposed_required": true,
+			"label": "inline goal test before rotation",
+			"physical_size": [
+				585.067199707031,
+				108.044738769531
+			],
+			"popup_size": [
+				2176,
+				1812
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				156.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Aktuelles Bauziel",
+			"physical_size": [
+				156.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				156.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Aktuelles Bauziel",
+			"physical_size": [
+				156.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "assignment cancel after layout change",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198822021484
+			],
+			"fully_exposed_required": true,
+			"label": "assignment actual test action",
+			"physical_size": [
+				823.594543457031,
+				108.044738769531
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				260.029876708984,
+				48.0198822021484
+			],
+			"fully_exposed_required": true,
+			"label": "restored inline goal action",
+			"physical_size": [
+				585.067199707031,
+				108.044738769531
+			],
+			"popup_size": [
+				2176,
+				1812
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				48.0055351257324,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action −",
+			"physical_size": [
+				108.012451171875,
+				108.044677734375
+			],
+			"popup_size": [
+				2176,
+				1812
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				48.0055351257324,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action +",
+			"physical_size": [
+				108.012451171875,
+				108.044677734375
+			],
+			"popup_size": [
+				2176,
+				1812
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				66.0075988769531,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action Mitte",
+			"physical_size": [
+				148.51708984375,
+				108.044677734375
+			],
+			"popup_size": [
+				2176,
+				1812
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				93.0106887817383,
+				48.0198707580566
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				209.274047851562,
+				108.044708251953
+			],
+			"popup_size": [
+				2176,
+				1812
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				358.041137695312,
+				48.0198822021484
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Großes Sternenschloss",
+			"physical_size": [
+				805.592590332031,
+				108.044738769531
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				358.041137695312,
+				48.0198822021484
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Dorf für Freunde",
+			"physical_size": [
+				805.592590332031,
+				108.044738769531
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				358.041137695312,
+				48.0198822021484
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Starter-Haus",
+			"physical_size": [
+				805.592590332031,
+				108.044738769531
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				358.041137695312,
+				48.0198822021484
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Brücke",
+			"physical_size": [
+				805.592590332031,
+				108.044738769531
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				358.041137695312,
+				48.0198554992676
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Sternenturm",
+			"physical_size": [
+				805.592590332031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				358.041137695312,
+				48.0198554992676
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Garten",
+			"physical_size": [
+				805.592590332031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				358.041137695312,
+				48.0198554992676
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Garten-Parzelle",
+			"physical_size": [
+				805.592590332031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				358.041137695312,
+				48.0198554992676
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Hafen-Parzelle",
+			"physical_size": [
+				805.592590332031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				358.041137695312,
+				48.0198554992676
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Insel-Parzelle",
+			"physical_size": [
+				805.592590332031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				358.041137695312,
+				48.0198554992676
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Leere Insel",
+			"physical_size": [
+				805.592590332031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				358.041137695312,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				805.592590332031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				93.0106887817383,
+				48.0198707580566
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				209.274047851562,
+				108.044708251953
+			],
+			"popup_size": [
+				2176,
+				1812
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				358.041137695312,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				805.592590332031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				102.01171875,
+				48.0198707580566
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Welten (6)",
+			"physical_size": [
+				229.5263671875,
+				108.044708251953
+			],
+			"popup_size": [
+				2176,
+				1812
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198822021484
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 1 · weiterbauen",
+			"physical_size": [
+				823.594543457031,
+				108.044738769531
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198822021484
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 2 · neue Insel",
+			"physical_size": [
+				823.594543457031,
+				108.044738769531
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198822021484
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 3 · neue Insel",
+			"physical_size": [
+				823.594543457031,
+				108.044738769531
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198822021484
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 4 · neue Insel",
+			"physical_size": [
+				823.594543457031,
+				108.044738769531
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 5 · neue Insel",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 6 · neue Insel",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "last choice already exposed",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				102.01171875,
+				48.0198707580566
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Welten (6)",
+			"physical_size": [
+				229.5263671875,
+				108.044708251953
+			],
+			"popup_size": [
+				2176,
+				1812
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				90.0103607177734,
+				48.0198707580566
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Bauziele",
+			"physical_size": [
+				202.523315429688,
+				108.044708251953
+			],
+			"popup_size": [
+				2176,
+				1812
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198822021484
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Ein Zuhause bauen",
+			"physical_size": [
+				823.594543457031,
+				108.044738769531
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198822021484
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Die Inseln verbinden",
+			"physical_size": [
+				823.594543457031,
+				108.044738769531
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198822021484
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Turm der Sterne",
+			"physical_size": [
+				823.594543457031,
+				108.044738769531
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198822021484
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Ein Garten zum Verweilen",
+			"physical_size": [
+				823.594543457031,
+				108.044738769531
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Großes Sternenschloss",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Dorf für Freunde",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "last choice already exposed",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				90.0103607177734,
+				48.0198707580566
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Bauziele",
+			"physical_size": [
+				202.523315429688,
+				108.044708251953
+			],
+			"popup_size": [
+				2176,
+				1812
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				93.0106887817383,
+				48.0198707580566
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				209.274047851562,
+				108.044708251953
+			],
+			"popup_size": [
+				2176,
+				1812
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 2.25,
+			"dp": [
+				366.042022705078,
+				48.0198554992676
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				823.594543457031,
+				108.044677734375
+			],
+			"popup_size": [
+				390,
+				500
+			],
+			"surface": [
+				2176,
+				1812
+			],
+			"viewport_screen_transform": "[X: (2.250258, 0.0), Y: (0.0, 2.250932), O: (648.0745, 342.1416)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "cancel after live resize",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				93.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				93.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				156.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Aktuelles Bauziel",
+			"physical_size": [
+				156.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				360
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				156.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Aktuelles Bauziel",
+			"physical_size": [
+				156.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				360
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "assignment cancel after layout change",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "assignment actual test action",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				48.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action −",
+			"physical_size": [
+				48.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				360
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				48.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action +",
+			"physical_size": [
+				48.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				360
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				66.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action Mitte",
+			"physical_size": [
+				66.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				360
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				93.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				93.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				360
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Großes Sternenschloss",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Dorf für Freunde",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Starter-Haus",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Brücke",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Sternenturm",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Garten",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Garten-Parzelle",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Hafen-Parzelle",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Insel-Parzelle",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Leere Insel",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				93.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				93.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				360
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				102.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Welten (6)",
+			"physical_size": [
+				102.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				360
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 1 · weiterbauen",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 2 · neue Insel",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 3 · neue Insel",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 4 · neue Insel",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 5 · neue Insel",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 6 · neue Insel",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				102.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Welten (6)",
+			"physical_size": [
+				102.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				360
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				90.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Bauziele",
+			"physical_size": [
+				90.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				360
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Ein Zuhause bauen",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Die Inseln verbinden",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Turm der Sterne",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Ein Garten zum Verweilen",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Großes Sternenschloss",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Dorf für Freunde",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				90.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Bauziele",
+			"physical_size": [
+				90.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				360
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				93.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				93.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				360
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				336
+			],
+			"surface": [
+				640,
+				360
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "cancel after live resize",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				93.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				93.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				156.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Aktuelles Bauziel",
+			"physical_size": [
+				156.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				156.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Aktuelles Bauziel",
+			"physical_size": [
+				156.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "assignment cancel after layout change",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "assignment actual test action",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				48.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action −",
+			"physical_size": [
+				48.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				48.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action +",
+			"physical_size": [
+				48.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				66.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "reachable camera action Mitte",
+			"physical_size": [
+				66.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				93.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				93.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Großes Sternenschloss",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Dorf für Freunde",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Starter-Haus",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Brücke",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Sternenturm",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Garten",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Garten-Parzelle",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Hafen-Parzelle",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Insel-Parzelle",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Leere Insel",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				93.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				93.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				102.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Welten (6)",
+			"physical_size": [
+				102.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 1 · weiterbauen",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 2 · neue Insel",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 3 · neue Insel",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 4 · neue Insel",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 5 · neue Insel",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Welt 6 · neue Insel",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				102.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Welten (6)",
+			"physical_size": [
+				102.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				90.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Bauziele",
+			"physical_size": [
+				90.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Ein Zuhause bauen",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Die Inseln verbinden",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Turm der Sterne",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Ein Garten zum Verweilen",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Großes Sternenschloss",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": false,
+			"label": "preserved option Dorf für Freunde",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel after bottom scroll",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				90.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Bauziele",
+			"physical_size": [
+				90.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				358.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "last choice after real vertical drag",
+			"physical_size": [
+				358.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				93.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				93.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "cancel after live resize",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				93.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "toolbar Vorlagen",
+			"physical_size": [
+				93.0,
+				48.0
+			],
+			"popup_size": [
+				640,
+				320
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]"
+		},
+		{
+			"density": 1.0,
+			"dp": [
+				366.0,
+				48.0
+			],
+			"fully_exposed_required": true,
+			"label": "fixed cancel at opening",
+			"physical_size": [
+				366.0,
+				48.0
+			],
+			"popup_size": [
+				390,
+				296
+			],
+			"surface": [
+				640,
+				320
+			],
+			"viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+		}
+	]
+}

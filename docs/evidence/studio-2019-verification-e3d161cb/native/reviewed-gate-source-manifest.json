@@ -1,0 +1,65 @@
+[
+  {
+    "path": "tools/validate_project.py",
+    "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "bytes": 13288,
+    "sha256": "c2309d85ac895296b426a5b0054d1a4dfb5b99dc93381e3c3430e4682f978615",
+    "git_blob": "9cfe2db9504c0141061a2388deb6dc73be9513ec"
+  },
+  {
+    "path": "tools/validate_project.sh",
+    "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "bytes": 5195,
+    "sha256": "89c337c38384639e3f626788835e28f1b7819ec0a683cd5460c24fc620088953",
+    "git_blob": "c518204f1e64410052a8fb31956f786cceb091a9"
+  },
+  {
+    "path": "tools/validate_2014.sh",
+    "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "bytes": 2738,
+    "sha256": "1dcb83e7ced02d374e67c23293559cf62f2803e96d598added7a3501ad51f215",
+    "git_blob": "4fb01fdc83cf91ea09af56365c3ec325ebe999bc"
+  },
+  {
+    "path": "tools/validate_technical_art.sh",
+    "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "bytes": 2275,
+    "sha256": "16a6ff18fdc8ea3193753795b103b751d13356553b5d0fca2209ec41c456fdff",
+    "git_blob": "f3e102c31215e5b9b9bff973ef2c4129d3c5112d"
+  },
+  {
+    "path": "tools/validate_action_stage.sh",
+    "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "bytes": 1890,
+    "sha256": "aff17bc1c763cdd8d6a25852d9cf276bc403f5ce1c64e835a772831ed5582be9",
+    "git_blob": "d5c980624727b3b6b39bdc2c7f51c653dd5899ad"
+  },
+  {
+    "path": "tools/validate_nextgen.sh",
+    "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "bytes": 5035,
+    "sha256": "34472fbe2e552f1332418d5544e33626b9343e5894589c31951472f2e0ead5e6",
+    "git_blob": "bf5e8e129fa8c3d7872fb92d21046c1ef7f87e9e"
+  },
+  {
+    "path": "tools/validate_studio.sh",
+    "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "bytes": 3920,
+    "sha256": "ee692c4843354f62123e1ce9506dcaca23489beda877227c5836cc65f4de2241",
+    "git_blob": "b495e03e8a44952e8ad70dda0930d34ff3237599"
+  },
+  {
+    "path": "tools/run_godot_probe.py",
+    "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "bytes": 2934,
+    "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+    "git_blob": "c23859ece2d62101d000d7a89556fda5d3fe4105"
+  },
+  {
+    "path": "scripts/tests/host_bridge_regression.gd",
+    "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "bytes": 11738,
+    "sha256": "032aca81ac9b8e21d3b3a72851ed02ed7d8b09813796793e0c9c2fed5c5d9a1c",
+    "git_blob": "df08510a9a6b2e1037561cc4277299bfcb0204b0"
+  }
+]

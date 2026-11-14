@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-11-13T19:13:13.088773+00:00",
+  "reviewer": "learning_worlds (Agent A), independent read-only review",
+  "status": "NO_ADDITIONAL_CONCRETE_BLOCKER_IN_EXACT_REVIEWED_SNAPSHOT",
+  "source_checkout": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "baseline_host_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "scope": "Review of the exact file hashes below, not a blanket freeze of the checkout or of later additions.",
+  "reviewed_files": {
+    ".github/workflows/lumo-studio-2019.yml": {
+      "reviewed_sha256": "b0a91ffa4c1cdafc29d8c3ea3b55494dc80c6d9f57f844c7bb95b6e5689e2043",
+      "reviewed_bytes": 40199,
+      "current_sha256_at_recording": "b0a91ffa4c1cdafc29d8c3ea3b55494dc80c6d9f57f844c7bb95b6e5689e2043",
+      "current_matches_reviewed": true
+    },
+    "config/godot-source.json": {
+      "reviewed_sha256": "a6e4ff3630754999ab0281f80f1e1512141af65e9ff10e6ab72bafd6096f4214",
+      "reviewed_bytes": 145,
+      "current_sha256_at_recording": "a6e4ff3630754999ab0281f80f1e1512141af65e9ff10e6ab72bafd6096f4214",
+      "current_matches_reviewed": true
+    },
+    "config/studio-2019-visual-review.json": {
+      "reviewed_sha256": "4091bc1c79a0efa75c368b35ea77472a5bb2cf2ea8fd2f0e1b096ebdb43eebae",
+      "reviewed_bytes": 22028,
+      "current_sha256_at_recording": "4091bc1c79a0efa75c368b35ea77472a5bb2cf2ea8fd2f0e1b096ebdb43eebae",
+      "current_matches_reviewed": true
+    },
+    "scripts/verify_studio_delivery.py": {
+      "reviewed_sha256": "62e2e434677e036b0dc76809cc01c17aead83262c1ea3b9fb7556a23e8a9a101",
+      "reviewed_bytes": 28318,
+      "current_sha256_at_recording": "62e2e434677e036b0dc76809cc01c17aead83262c1ea3b9fb7556a23e8a9a101",
+      "current_matches_reviewed": true
+    },
+    "scripts/verify_legacy_release_pin.py": {
+      "reviewed_sha256": "6d7a692ae6ad0b1ff4860f7d681e34c0a0022c77084b84a98cf674eb5f4f723c",
+      "reviewed_bytes": 10421,
+      "current_sha256_at_recording": "6d7a692ae6ad0b1ff4860f7d681e34c0a0022c77084b84a98cf674eb5f4f723c",
+      "current_matches_reviewed": true
+    },
+    "scripts/prepare_android37_emulator_action.py": {
+      "reviewed_sha256": "2aeada254a220c14528f344669f1afbb64d50a9f1d24cd663dc38263afe0bfde",
+      "reviewed_bytes": 8260,
+      "current_sha256_at_recording": "2aeada254a220c14528f344669f1afbb64d50a9f1d24cd663dc38263afe0bfde",
+      "current_matches_reviewed": true
+    },
+    "scripts/android_framework_ready.py": {
+      "reviewed_sha256": "7114e856b81513a34b63e3e197190f70e5c15402e217cd2a45f6f82ccddc4066",
+      "reviewed_bytes": 15405,
+      "current_sha256_at_recording": "7114e856b81513a34b63e3e197190f70e5c15402e217cd2a45f6f82ccddc4066",
+      "current_matches_reviewed": true
+    },
+    "scripts/tests/test_android_framework_ready.py": {
+      "reviewed_sha256": "e27c5bee071abbe89fdb60dd2461a6fd867282e5b40c2c83a5a12166da4e369d",
+      "reviewed_bytes": 11337,
+      "current_sha256_at_recording": "e27c5bee071abbe89fdb60dd2461a6fd867282e5b40c2c83a5a12166da4e369d",
+      "current_matches_reviewed": true
+    },
+    "tools/auto_install/LumoGameActivity.kt": {
+      "reviewed_sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674",
+      "reviewed_bytes": 11695,
+      "current_sha256_at_recording": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674",
+      "current_matches_reviewed": true
+    },
+    "scripts/tests/test_cards_lifecycle_heartbeat.py": {
+      "reviewed_sha256": "301f04d8849c980826108f8f323d9c22dfb3513f820ac5a1b63556f85aa3e9e8",
+      "reviewed_bytes": 15950,
+      "current_sha256_at_recording": "0dec7101f0d345a62169e96a2f88562a04baf240574d429e5169d0f6dd6dfab1",
+      "current_matches_reviewed": false
+    },
+    "tools/auto_install/CardsTableBridge.kt": {
+      "reviewed_sha256": "ef5f702ecf6f89aae1b8cc8e4cc640b3b481a01d24a510ff393de100d800e572",
+      "reviewed_bytes": 7302,
+      "current_sha256_at_recording": "ef5f702ecf6f89aae1b8cc8e4cc640b3b481a01d24a510ff393de100d800e572",
+      "current_matches_reviewed": true
+    },
+    "tools/auto_install/CardsAuthorityService.kt": {
+      "reviewed_sha256": "271cd63897272579a362d520741779be97d1d2f38e88615184f5e45cc19f37cc",
+      "reviewed_bytes": 2121,
+      "current_sha256_at_recording": "271cd63897272579a362d520741779be97d1d2f38e88615184f5e45cc19f37cc",
+      "current_matches_reviewed": true
+    },
+    "lib/features/games/lumo_cards/lumo_cards_table_session.dart": {
+      "reviewed_sha256": "feff3a6895eca621696dffbd6ad69694dcafb26a6b4704cdec10eaaededfd8ee",
+      "reviewed_bytes": 11296,
+      "current_sha256_at_recording": "feff3a6895eca621696dffbd6ad69694dcafb26a6b4704cdec10eaaededfd8ee",
+      "current_matches_reviewed": true
+    },
+    "lib/features/games/lumo_cards/lumo_cards_screen.dart": {
+      "reviewed_sha256": "a4eea82732cf5f09dd87d19302edc9a4f1e703e88d18809c6410fa2d53423945",
+      "reviewed_bytes": 56432,
+      "current_sha256_at_recording": "a4eea82732cf5f09dd87d19302edc9a4f1e703e88d18809c6410fa2d53423945",
+      "current_matches_reviewed": true
+    }
+  },
+  "native_binding": {
+    "revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+    "run_id": 43479909943,
+    "artifact_id": 14067226187,
+    "original_zip_sha256": "3aed744b481e02c485ae0ea039750728ad59842b6b4f6ed9a2c3109ca63a2067",
+    "metadata_read": [
+      {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-native-796b-metadata/artifact.json",
+        "sha256": "0876f64aaaafb8b36647226a2c4c609731eed1e9bee7e4222e04b0e93c79ded8",
+        "bytes": 761
+      },
+      {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-native-796b-metadata/run.json",
+        "sha256": "95e34b42474369f96473bc8ec1d515b51ec2cc4fe59d4306b275ea0836beccab",
+        "bytes": 14410
+      },
+      {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-native-796b-metadata/jobs.json",
+        "sha256": "8327118dd365f5577839aea2536ff225064a454837fbd10c4ccbe756ac7804a2",
+        "bytes": 27628
+      }
+    ],
+    "run_attempt": 1,
+    "run_conclusion": "success",
+    "required_jobs_all_success": [
+      "gameplay",
+      "new-worlds",
+      "studio",
+      "learning-preview",
+      "touch-workshop",
+      "touch-treasure",
+      "touch-build",
+      "bundle-evidence"
+    ],
+    "additional_archive_job": "success",
+    "selected_images": 25,
+    "modules": {
+      "learning": 4,
+      "jump": 2,
+      "build": 3,
+      "settlement": 1,
+      "garage": 2,
+      "cards": 2,
+      "rhythm": 1,
+      "puzzle": 8,
+      "treasure": 2
+    },
+    "visual_limit": "Receipt identity/coverage checked; no new image sighting or blanket visual re-review by this reviewer."
+  },
+  "workflow_findings": [
+    "API35 uses the original pinned action. API37 retains the complete original tour, Learning and Cards commands after the additive bounded framework-ready guard.",
+    "The final guard manifest uses the actual PR head/github.sha and current Native config pin, without fixed e3d/76980 diagnostic attribution.",
+    "Artifact paths match proofs/tour and proofs/android17. Full APK/PCK/source/signature/Cards-pixel proof checks apply independently to both; API37 and Android17 release remain mandatory.",
+    "Publisher dependencies require the full API35/API37 matrix, actual 2017-to-2019 update, build and independent Android-host compile, plus current exact-SHA Native metadata and original ZIP.",
+    "Offline upstream fixture files lie outside active app-source scans. Historical workflow tests continue reading their own unchanged files.",
+    "Verified Gradle9.1.0 is installed before full scripts/tests in the final Verify job, satisfying the existing and new Kotlin test dependency."
+  ],
+  "heartbeat_findings": [
+    "Lifecycle/ServiceConnection callbacks and Handler(MainLooper) own lifecycle writes. Render state reads no longer write lifecycle pulses.",
+    "Cancellation and generation prevent stale callbacks from reviving paused/stopped leases; close remains terminal for late onResume.",
+    "Binder authority loss and closed mailbox stop renewal and invoke the existing return flow. Stored return evidence precedes returning=true and finish.",
+    "CardsTableBridge, CardsAuthorityService and both read Dart Cards files are byte-identical to e3d: original age<2500ms, pauseEpoch and explicit resume rules remain unchanged."
+  ],
+  "existing_test_log_read": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-cards-heartbeat/after-lifecycle-host.log",
+    "sha256": "677eb7fb706f025ccc79162b8276c3bbca14f0f0924a268a727bc5a7261ad95c",
+    "bytes": 2619,
+    "result": "11/11 PASS, 0 skipped, 7.310 seconds; exact Activity0b3f2dee and test301f04d8",
+    "rerun_by_reviewer": false,
+    "scope": "Full production Activity compiled with deterministic JVM looper and explicit boundary doubles; no actual emulator/Binder-thread acceptance."
+  },
+  "pending_additive_diagnostic_change": {
+    "owner": "games_worlds (Agent C)",
+    "status": "NOT_YET_INDEPENDENTLY_REVIEWED_IN_THIS_NOTE",
+    "reported_final_hashes": {
+      "scripts/tests/test_cards_lifecycle_heartbeat.py": "0dec7101f0d345a62169e96a2f88562a04baf240574d429e5169d0f6dd6dfab1",
+      ".github/probes/lumo_studio_surfaces_android_probe.py": "d1b2bb2072e6ae5bbbfafc2c03d3ad580a096b1b5729a19079587a5490045801",
+      "tools/android_qa/tests/test_cards_lifecycle_observation.py": "de3244764ed9606879323d9c75cc0c3f3391b90b12f7052685b1b1945f228d12"
+    },
+    "note": "The dependency/diagnostic additions were reported after this review. They explicitly do not inherit approval from the earlier test301f snapshot; independent follow-up reading is pending."
+  },
+  "review_actions": {
+    "new_test_runs": 0,
+    "product_or_workflow_edits": 0,
+    "ci_runs_started": 0
+  },
+  "limits": [
+    "No new final Android APK or API35/API37 runtime approval. Physical Fold7 FPS/temperature unmeasured.",
+    "The earlier API35 pause artifact lacked lifecycle stamps/epochs; its exact heartbeat-versus-real-pause mechanism is not proven by this code review.",
+    "The actual final candidate still requires its own build and all original live Android/publication gates."
+  ]
+}

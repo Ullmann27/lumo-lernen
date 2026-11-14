@@ -1,0 +1,33 @@
+{
+  "kind": "observed_software_renderer_timeout",
+  "native_revision": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "workflow_run_id": 43442579190,
+  "job_id": 131943679561,
+  "artifact_id": 14047872796,
+  "artifact_sha256": "30456bfba5f7a80c384c2668fecc8bd4545cfd5821e428d6f09d8f9124b99e35",
+  "observed_result": "FAIL: process timeout after1200 seconds; five of six PNGs present",
+  "completed_render_layouts_without_failures": 6,
+  "partial_next_layout": "1080x2400 density2.625; reached paid-paint swipe",
+  "headless_checks_passed": 4129,
+  "next_change": "Only workshop rendered-process budget increases to2100 seconds; enclosing touch job limit50minutes. All eight layouts, real input checks, six captures and success/error gates remain required.",
+  "scope": "CI software-renderer throughput; not physical Android or Fold7 frame performance.",
+  "original_log_excerpt": [
+    "2026-11-13T14:26:53.0808438Z [WorkshopDensity] CASE [(1280, 720), 1.0] checks=516 failures=0",
+    "2026-11-13T14:27:13.5954650Z [WorkshopDensity] CASE [(640, 360), 1.0] checks=1032 failures=0",
+    "2026-11-13T14:27:34.0104900Z [WorkshopDensity] CASE [(640, 320), 1.0] checks=1548 failures=0",
+    "2026-11-13T14:27:54.7786218Z [WorkshopDensity] CASE [(412, 915), 1.0] checks=2064 failures=0",
+    "2026-11-13T14:28:15.2610130Z [WorkshopDensity] CASE [(690, 829), 1.0] checks=2580 failures=0",
+    "2026-11-13T14:28:36.0848324Z [WorkshopDensity] CASE [(2400, 1080), 2.625] checks=3096 failures=0",
+    "2026-11-13T14:28:56.5836944Z [WorkshopDensity] CASE [(1080, 2400), 2.625] checks=3612 failures=0",
+    "2026-11-13T14:29:17.0983633Z [WorkshopDensity] CASE [(2176, 1812), 2.25] checks=4128 failures=0",
+    "2026-11-13T14:31:59.7564508Z [WorkshopDensity] CASE [(1280, 720), 1.0] checks=516 failures=0",
+    "2026-11-13T14:34:04.4285783Z [WorkshopDensity] CASE [(640, 360), 1.0] checks=1032 failures=0",
+    "2026-11-13T14:36:06.1184118Z [WorkshopDensity] CASE [(640, 320), 1.0] checks=1548 failures=0",
+    "2026-11-13T14:39:28.8664816Z [WorkshopDensity] CASE [(412, 915), 1.0] checks=2064 failures=0",
+    "2026-11-13T14:41:43.3056457Z [WorkshopDensity] CASE [(690, 829), 1.0] checks=2580 failures=0",
+    "2026-11-13T14:45:25.8406498Z [WorkshopDensity] CASE [(2400, 1080), 2.625] checks=3105 failures=0",
+    "2026-11-13T14:49:17.5265108Z [ProbeRunner] timeout after 1200s",
+    "2026-11-13T14:49:17.5265734Z [ProbeRunner] FAIL: clean exit and required success marker were not both present",
+    "2026-11-13T14:49:17.6338004Z AssertionError: ('kart_workshop_density_regression', 5, 6)"
+  ]
+}

@@ -1,0 +1,11 @@
+--- a/.github/workflows/lumo-studio-2019.yml
++++ b/.github/workflows/lumo-studio-2019.yml
+@@ -391,7 +391,7 @@
+           GALLIUM_DRIVER: llvmpipe
+           LP_NUM_THREADS: '2'
+         with:
+-          api-level: ${{ matrix.api }}
++          api-level: ${{ matrix.api == 37 && '37.0' || matrix.api }}
+           target: google_apis
+           arch: x86_64
+           profile: pixel_5
