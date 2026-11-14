@@ -29,6 +29,34 @@ jobs:
         run: flutter test --no-pub test/lumo3d_launcher_lifecycle_test.dart --reporter=expanded
       - name: Static Flutter analysis of all modified production and UI code
         run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Capture the real Flutter Spielewelt including Dorfwirtschaft on phone and Fold
+        env:
+          LUMO_VILLAGE_CAPTURES: ${{ github.workspace }}/proof/village
+        run: |
+          set -euo pipefail
+          flutter test --no-pub test/design/dorfwirtschaft_spielewelt_capture_test.dart --reporter=expanded
+          python3 - <<'PY'
+          import os, struct
+          folder = "proof/village"
+          for name, dims in (
+              ("village-fold-cover.png", (344, 882)),
+              ("village-phone.png", (412, 915)),
+              ("village-fold-open.png", (690, 829)),
+              ("village-fold-landscape.png", (1200, 900)),
+          ):
+              file = os.path.join(folder, name)
+              with open(file, "rb") as stream:
+                  header = stream.read(24)
+              assert header[:8] == b"\x89PNG\r\n\x1a\n", name
+              assert struct.unpack(">II", header[16:24]) == dims, name
+              print("Verified original Flutter PNG", file, os.stat(file).st_size)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-village-visible-flutter-phone-fold
+          path: proof/village/
+          if-no-files-found: error
+          retention-days: 30
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
