@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "reviewer": "/root/pipeline_repair",
+  "created_at": "2026-11-14T19:40:22.526764+00:00",
+  "result": "NO_CONCRETE_SOURCE_BLOCKER_FOUND",
+  "scope": "Read-only review of four frozen PR494 files and nine included dependency sources; no imports, product/test execution, API export, source write or ref mutation.",
+  "source_binding": {
+    "base_host": "b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1",
+    "base_tree": "4ebddcbe209191714dc64cba2815e5a67b64513b",
+    "producer": "28462a7547048b75fa114e6f5832248e54c94faa",
+    "producer_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+    "freeze_sha256": "babda3083f2a8af4ff9053504f6a10c74dd816b0d75ae9f2ff3b1f3180e007ad",
+    "final_source_count": 4,
+    "preimages_checked": 2,
+    "new_paths_checked": 2,
+    "dependency_bytes_checked": 9
+  },
+  "findings": [
+    {
+      "area": "Reading observations",
+      "finding": "The two public builders retain their readingSummaries parameters but no longer derive competence, deficits, problem words or practice priority from ASR summaries. Existing reading-summary storage is not changed or migrated."
+    },
+    {
+      "area": "Assessed learning",
+      "finding": "Existing SkillRecord mastery and weaknessScore use assessed independent evidence. The unchanged subject helper and supplied skill records still support positive reading strength and assessed-error practice; the new tests expressly retain these cases."
+    },
+    {
+      "area": "Memory persistence",
+      "finding": "Both adapter read paths await a successful platform reload immediately before getString. Failed reload propagates rather than acknowledging the optimistic Dart cache; all write implementations and profile-owned key construction remain byte-identical."
+    },
+    {
+      "area": "Owner and result guards",
+      "finding": "The unchanged controller serializes by owner, checks its captured profile guard around reads/writes, compares persisted round content/revision, and reuses the owner-plus-round result identity when settling an uncertain reward. The new adapter does not bypass these paths."
+    },
+    {
+      "area": "Regression design",
+      "finding": "The two complete new test files retain real adapter/controller and SharedPreferences caching behavior with a controlled platform backend; cases distinguish rejected writes from committed writes with lost replies, failed reloads, revoked ownership and old-owner in-flight writes. Reading cases distinguish observations from independent assessed records and preserve old serialized summaries."
+    },
+    {
+      "area": "Other modules",
+      "finding": "The frozen source list has exactly two changed production files and two new tests; no workflow, pins, lockfile, C4/Village probe, writer, journal or InkSurface file is included. Reference package constraints and exact lockfile bytes are bound separately; no dependency installation was requested."
+    }
+  ],
+  "boundaries": [
+    "This independent review did not rerun the producer or current candidate tests and does not certify Android, rendering, audio or performance.",
+    "Producer report names 24 successful cases (14 Memory, 10 reading) on 28462a7547048b75fa114e6f5832248e54c94faa. That is attributed existing evidence, not a newly measured result in this review.",
+    "The producer complete 343185779-byte ZIP was not downloaded here. Existing producer evidence documents its own selected-original and transfer boundaries.",
+    "Current 7ac integration was reported by Root; this review independently binds frozen source bytes and their stated b3c2/28462 preimages rather than repeating a whole active-candidate tree comparison."
+  ],
+  "tests_executed": false,
+  "source_edits": false,
+  "new_ci_or_artifact_queries_for_review": false,
+  "producer_evidence_reference": {
+    "path": "/tmp/host-pr494-28462-integration-b3c2bd-20261114/producer-24-original-review.json",
+    "identity": {
+      "bytes": 20637,
+      "sha256": "1cacae6003e847bae0e047fbdbe93a9b006ab11dc0d00adc910b88f8548d87d7",
+      "git_blob": "dbd2469712ca650ef035db62347c827477daf852"
+    },
+    "run_id": 43624674585,
+    "job_id": 132537752822,
+    "host": "28462a7547048b75fa114e6f5832248e54c94faa"
+  }
+}

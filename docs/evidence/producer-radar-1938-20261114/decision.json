@@ -1,0 +1,69 @@
+{
+  "observed_utc": "2026-11-14T19:38:24Z",
+  "scope": "First100 open PRs per repository, compared with previous 19:01 bounded pages; not a complete 72-hour history assertion.",
+  "host_changes": [
+    {
+      "number": 508,
+      "title": "LUMO 2020: fehlenden 3D-Einstieg/C4-Sofortstart reparieren und 20 echte Kontrollgänge ausführen",
+      "updated_at": "2026-11-14T19:37:58Z",
+      "head": "c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85",
+      "previous": null,
+      "base": "integration/lumo-live-connections-20261114"
+    },
+    {
+      "number": 485,
+      "title": "Integrate C4 2020 with original Lumo PCM/facial fixes and full acceptance gates",
+      "updated_at": "2026-11-14T19:37:28Z",
+      "head": "7ac736fdbd042769592e88de0f9849632242316d",
+      "previous": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+      "base": "integration/lumo-connections-20261113"
+    },
+    {
+      "number": 507,
+      "title": "Confirm Memory saves and reward receipts; recover paused C4 actions",
+      "updated_at": "2026-11-14T19:35:37Z",
+      "head": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+      "previous": null,
+      "base": "chatgpt/lumo-studio-2020-20261114"
+    },
+    {
+      "number": 493,
+      "title": "LUMO: Zeichenbedienung, exakte Lernaufgaben und zuverlässige Spielrückkehr",
+      "updated_at": "2026-11-14T19:30:10Z",
+      "head": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+      "previous": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+      "base": "qa/lumo-agent-base-20261114"
+    },
+    {
+      "number": 331,
+      "title": "Lumo M0: Opus Maven-Reparatur und beweisbarer Flutter→Kart→Rennen Android-Test",
+      "updated_at": "2026-10-29T09:36:55Z",
+      "head": "c116408a70bda73b73292ed6ff6e8f1db8b81945",
+      "previous": null,
+      "base": "chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16"
+    }
+  ],
+  "native_changes": [],
+  "active_apk_run": {
+    "run": 43632790204,
+    "attempt": 1,
+    "host": "7ac736fdbd042769592e88de0f9849632242316d",
+    "host_tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2",
+    "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+    "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "workflow_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064",
+    "source_checkpoint": "05d96d94d9e08f083ea451c3f4d661fb77fee9c5",
+    "branch": "integration/lumo-c4-connections-20261114",
+    "pr": 485,
+    "created_at": "2026-11-14T19:34:03Z",
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43632790204"
+  },
+  "decisions": {
+    "PR507": "READ_REVIEW_ONLY: producer failed analysis/compiler before 45 new Flutter tests; no broken head integration or active C4 move.",
+    "PR508": "READ_REVIEW_ONLY: compare duplicate 3D hub wiring and new C4 opt-in against current implementation and actual probe.",
+    "PR493": "READ_REVIEW_ONLY: narrow Garage observation optimization requires exact hunk and original evidence review.",
+    "PR485": "Own known activation, not new producer source.",
+    "PR331": "Old PR entered bounded list; no new source inferred."
+  }
+}
