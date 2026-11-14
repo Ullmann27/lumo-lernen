@@ -1,0 +1,76 @@
+name: Exact Kart observer Python regression
+
+on:
+  push:
+    branches: [qa/lumo-kart-observer-20261114]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-kart-observer-20261114
+  cancel-in-progress: false
+
+jobs:
+  verify-observer:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/qa/lumo-kart-observer-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Read the exact proposed QA source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: proposed
+          persist-credentials: false
+          fetch-depth: 2
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/qa/lumo_kart_observer_regression.py
+            /.github/workflows/lumo-kart-observer-qa.yml
+            /.github/probes/
+            /scripts/
+            /tools/android_qa/
+            /tools/qa/
+            /config/godot-source.json
+            /pubspec.yaml
+            /pubspec.lock
+      - name: Read unchanged 9de in its own checkout
+        uses: actions/checkout@v4
+        with:
+          ref: 9deaa3f24561bc65caba898585c0c00f1c77162b
+          path: baseline
+          persist-credentials: false
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/probes/
+            /scripts/
+            /tools/android_qa/
+            /tools/qa/
+            /config/godot-source.json
+            /pubspec.yaml
+            /pubspec.lock
+      - name: Prepare only the reviewed Python image dependency
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/lumo-observer-python"
+          "$RUNNER_TEMP/lumo-observer-python/bin/python" -m pip install --disable-pip-version-check --no-cache-dir Pillow==12.3.0
+      - name: Reproduce the exact old failure and require all 54 current QA tests
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/lumo-observer-python/bin/python" -B proposed/.github/qa/lumo_kart_observer_regression.py \
+            --baseline "$GITHUB_WORKSPACE/baseline" \
+            --proposed "$GITHUB_WORKSPACE/proposed" \
+            --out "$GITHUB_WORKSPACE/observer-evidence"
+      - name: Preserve complete original red and green logs and source receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-kart-observer-regression-${{ github.run_id }}-${{ github.run_attempt }}
+          path: observer-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

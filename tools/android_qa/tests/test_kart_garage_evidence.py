@@ -116,7 +116,8 @@ class GarageObservedScrollTests(unittest.TestCase):
 
     def test_actual_scroll_needs_two_stable_frames_and_unchanged_screenshot(self):
         from test_kart_garage_scroll_recovery import (
-            VISIBLE_LIST, gesture_is_inside, original_observation)
+            VISIBLE_LIST, gesture_is_inside, original_observation,
+            scroll_recovery_from_validated_observations)
         frame, lines, original_source = original_observation('main', 0)
         with tempfile.TemporaryDirectory() as folder:
             def observation(index):
@@ -127,7 +128,7 @@ class GarageObservedScrollTests(unittest.TestCase):
             second_frame, second_source = observation(1)
             third_frame, third_source = observation(2)
             fourth_frame, fourth_source = observation(3)
-            callback = tour._stage_kart_scroll_recovery()
+            callback = scroll_recovery_from_validated_observations()
             with patch.object(tour.base, 'adb') as adb, patch.object(tour.time, 'monotonic', return_value=0):
                 first = callback(first_frame, lines, first_source, deadline=10, previous_missing_frame=None)
                 self.assertEqual(first['status'], 'WAITING_FOR_SECOND_LIST_FRAME')
