@@ -129,6 +129,56 @@ void main() {
         isEmpty);
   }
 
+  testWidgets('Live word magic offers explanations without a picture promise',
+      (tester) async {
+    final state = await openPhotoQuiz(tester);
+    final rewards = (state.state.stars, state.state.xp);
+    await tester.tap(find.text('Wort-Magie').first);
+    await settleLocalOperations(tester);
+
+    expect(find.text('Sag ein Wort - ich erkläre es!'), findsWidgets);
+    expect(find.text('Sag mir ein Wort und ich erkläre es dir!'), findsOneWidget);
+    expect(find.textContaining('ich male'), findsNothing);
+    expect(find.byWidgetPredicate(
+        (widget) => widget is Image && widget.image is NetworkImage), findsNothing);
+    expect(camera.captures, isEmpty);
+    expectNoMicrophone();
+    expect((state.state.stars, state.state.xp), rewards);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Live safari displays its existing animal and advances the round',
+      (tester) async {
+    final state = await openPhotoQuiz(tester);
+    final rewards = (state.state.stars, state.state.xp);
+    await tester.tap(find.text('Tier-Safari').first);
+    await settleLocalOperations(tester);
+
+    final animal = find.byWidgetPredicate((widget) =>
+        widget is Text && widget.style?.fontSize == 112);
+    expect(find.text('Welches Tier siehst du? Sag mir den Namen!'), findsOneWidget);
+    expect(find.text('0 von 1'), findsOneWidget);
+    expect(animal, findsOneWidget);
+    expect(tester.widget<Text>(animal).data, isNotEmpty);
+    await tester.ensureVisible(animal);
+    await tester.pump();
+    expect(animal.hitTestable(), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.skip_next_rounded));
+    await settleLocalOperations(tester);
+    expect(find.text('0 von 2'), findsOneWidget);
+    expect(animal, findsOneWidget);
+    expect(tester.widget<Text>(animal).data, isNotEmpty);
+    await tester.tap(find.text('Foto-Quiz').first);
+    await settleLocalOperations(tester);
+    expect(animal, findsNothing);
+    expect(find.text('Foto machen'), findsOneWidget);
+    expect(camera.captures, isEmpty);
+    expectNoMicrophone();
+    expect((state.state.stars, state.state.xp), rewards);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('Live photo quiz checks camera consent before capture',
       (tester) async {
     final state = await openPhotoQuiz(tester, cameraAllowed: false);

@@ -4,7 +4,7 @@
 // Premium-Wert fuer 10 Euro/Monat Abo.
 //
 // 3 MODI:
-//   1. WORT-MAGIE: Kind sagt Wort -> Lumo malt + erklaert
+//   1. WORT-MAGIE: Kind sagt Wort -> Lumo erklaert
 //   2. FOTO-QUIZ:  Kind macht Foto -> Lumo stellt 3 Fragen drum
 //   3. SAFARI:     Lumo zeigt Tier -> Kind muss raten und sprechen
 // ════════════════════════════════════════════════════════════════════════
@@ -29,7 +29,7 @@ import '../../widgets/premium/lumo_premium_card.dart';
 import '../../widgets/premium/lumo_reward_burst.dart';
 
 enum LiveMode {
-  wordMagic, // Sprich ein Wort -> Bild + Erklaerung
+  wordMagic, // Sprich ein Wort -> Erklaerung
   photoQuiz, // Foto -> 3 Fragen
   safari, // Lumo zeigt Tier -> Kind raet
 }
@@ -49,7 +49,7 @@ extension LiveModeMeta on LiveMode {
   String get subtitle {
     switch (this) {
       case LiveMode.wordMagic:
-        return 'Sag ein Wort - ich male es!';
+        return 'Sag ein Wort - ich erkläre es!';
       case LiveMode.photoQuiz:
         return 'Mach ein Foto - ich frage dich!';
       case LiveMode.safari:
@@ -89,7 +89,6 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   bool _capturingPhoto = false;
   int _modeRevision = 0;
   String _recognized = '';
-  String? _generatedImageUrl;
   String? _capturedImagePath;
   String? _lumoMessage;
   LumoMirrorMood _mood = LumoMirrorMood.idle;
@@ -199,7 +198,6 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
       _mode = m;
       _listening = false;
       _recognized = '';
-      _generatedImageUrl = null;
       _capturedImagePath = null;
       _lumoMessage = null;
       _safariAnimal = null;
@@ -213,7 +211,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     if (m == LiveMode.safari) {
       _nextSafariAnimal();
     } else if (m == LiveMode.wordMagic) {
-      _speak('Sag mir ein Wort und ich male es fuer dich!');
+      _speak('Sag mir ein Wort und ich erkläre es dir!');
     } else if (m == LiveMode.photoQuiz) {
       _speak('Mach ein Foto und ich stelle dir kluge Fragen!');
     }
@@ -343,7 +341,6 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     final reply =
         LumoBrain.instance.ask('Was ist ein $word?', topicId: 's1_tiere');
     setState(() {
-      _generatedImageUrl = null;
       _mood = LumoMirrorMood.happy;
     });
     widget.appState.addStars(1);
@@ -431,7 +428,6 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     final animal = animals[_rng.nextInt(animals.length)];
     setState(() {
       _safariAnimal = animal;
-      _generatedImageUrl = null;
       _recognized = '';
       _mood = LumoMirrorMood.curious;
     });
@@ -604,9 +600,9 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
                       // Safari-Score
                       if (_mode == LiveMode.safari && _safariRound > 0)
                         _buildSafariScore(),
-                      // Generiertes / Captured Bild
-                      if (_generatedImageUrl != null ||
-                          _capturedImagePath != null)
+                      // Aufgenommenes Foto oder vorhandenes Safari-Tier
+                      if (_capturedImagePath != null ||
+                          (_mode == LiveMode.safari && _safariAnimal != null))
                         _buildImagePane(),
                     ],
                   ),
@@ -716,7 +712,6 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   }
 
   Widget _buildImagePane() {
-    final url = _generatedImageUrl;
     final path = _capturedImagePath;
     if (_mode == LiveMode.safari && _safariAnimal != null) {
       return AspectRatio(
@@ -734,53 +729,13 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
         padding: EdgeInsets.zero,
         child: ClipRRect(
           borderRadius: LumoTokens.brLarge,
-          child: url != null
-              ? Image.network(
-                  url,
-                  fit: BoxFit.cover,
-                  loadingBuilder: (_, child, p) {
-                    if (p == null) return child;
-                    return Container(
-                      decoration:
-                          BoxDecoration(gradient: LumoTokens.colors.bgMagic),
-                      alignment: Alignment.center,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Text('🎨', style: TextStyle(fontSize: 56)),
-                          const SizedBox(height: 12),
-                          Text('Lumo malt...',
-                              style: LumoTokens.typo.titleMedium
-                                  .copyWith(color: Colors.white)),
-                          const SizedBox(height: 12),
-                          const CircularProgressIndicator(color: Colors.white),
-                        ],
-                      ),
-                    );
-                  },
-                  errorBuilder: (_, __, ___) => Container(
-                    decoration:
-                        BoxDecoration(gradient: LumoTokens.colors.bgMagic),
-                    alignment: Alignment.center,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text('🎨', style: TextStyle(fontSize: 64)),
-                        const SizedBox(height: 8),
-                        Text('Bild konnte nicht laden',
-                            style: LumoTokens.typo.bodyMedium
-                                .copyWith(color: Colors.white)),
-                      ],
-                    ),
-                  ),
-                )
-              : path != null
-                  ? Image.file(File(path), fit: BoxFit.cover)
-                  : Container(
-                      color: LumoTokens.colors.cremeDeep,
-                      alignment: Alignment.center,
-                      child: const Text('📷', style: TextStyle(fontSize: 80)),
-                    ),
+          child: path != null
+              ? Image.file(File(path), fit: BoxFit.cover)
+              : Container(
+                  color: LumoTokens.colors.cremeDeep,
+                  alignment: Alignment.center,
+                  child: const Text('📷', style: TextStyle(fontSize: 80)),
+                ),
         ),
       ),
     );
