@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T16:03:03Z",
+  "base": "9c5a14d73679f68249d31db5401c489094ccf903",
+  "base_tree": "34506c87f4d66f97612caf95d345b4fa5186655f",
+  "files": [
+    {
+      "path": "lib/features/live/lumo_live_pro_screen.dart",
+      "bytes": 29612,
+      "git_blob": "f42eb9e1f206fe87c64008906c6b911d59a49fe4",
+      "sha256": "0db3f873d11f8521bf2ea69f5abf9b42725089e0abf2a63040319526bbd3305b"
+    },
+    {
+      "path": "test/feature_permission_regression_test.dart",
+      "bytes": 26390,
+      "git_blob": "c3867fac07d8835b3364cf7eb751a365f60e8829",
+      "sha256": "01dce7c8314981c62cb575252964288cd3ef1822077937cd8ddaf73a69c49949"
+    },
+    {
+      "path": ".github/workflows/lumo-feature-connections.yml",
+      "bytes": 11975,
+      "git_blob": "08eed3e61b850b06ec1976902d00f84de2b4739e",
+      "sha256": "ab2fff27c5554a9f52bb64edb415933015cacccc45b3dfdfca280b07d8586c9d"
+    }
+  ],
+  "supporting_sources": [
+    {
+      "path": "lib/core/lumo_speech_listener.dart",
+      "blob": "8c6da203e9620fda1e2762869199f1f0c37cf434",
+      "local_read_bytes_equal_exact_base": true
+    },
+    {
+      "path": "lib/widgets/premium/lumo_reward_burst.dart",
+      "blob": "9a12b2e3831b6e54575054204724ae75c3a184a3",
+      "local_read_bytes_equal_exact_base": true
+    }
+  ],
+  "conclusion": "No concrete source-level blocker found in the narrow Safari delayed-mode repair and eight added regression cases.",
+  "findings": [
+    "Product changes are exactly one captured _modeRevision and two delayed guards using mounted, unchanged revision and current learning-profile lease.",
+    "Locked speech_to_text and platform-interface source confirms textRecognition with String JSON, alternates and resultType=2 reaches the installed result listener.",
+    "The public final-recognition event is delivered through the TestDefaultBinaryMessenger, not a private screen callback.",
+    "The visible +10 XP hit target is inside the actual reward-overlay GestureDetector; its tap closes that route before touching mode controls.",
+    "500 ms of explicit test pumping before the mode/profile change is below the 2200/2500 ms continuation delays; later three-second pumping passes both continuation deadlines.",
+    "The eight cases are correct/wrong answers crossed with word-mode change, Safari exit/reentry, unchanged Safari and profile change; unchanged context must still advance exactly once.",
+    "Exact reward-wallet totals, one on-device listen, no camera use and absence of extra delayed awards are retained.",
+    "The strict feature-workflow count rises from 22 to 30 without changing the failure rule."
+  ],
+  "limitations": [
+    "Read-only review only; no Dart SDK, Flutter runtime, widget test or Android execution.",
+    "The actual widget cases still require the real CI harness.",
+    "This patch is independent of the running unchanged-APK diagnostic 43612493152 on QA4017/candidate1e22; no diagnostic source or APK was changed."
+  ]
+}
