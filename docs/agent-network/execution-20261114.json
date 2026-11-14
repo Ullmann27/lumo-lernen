@@ -1,40 +1,43 @@
 {
   "date": "2026-11-14",
   "record_type": "pre_ci_merge_checkpoint",
-  "source_checkpoint": "a1dc59729e0f5c40e7176e81782327ddd628705c",
-  "merged_host_base": "729585db3f49ecff7f0632439f90edb882f09454",
+  "source_checkpoint": "51a33d79bcd94ae6ad310f61c9bf90f8a6a73244",
+  "merged_host_base": "2b586530db4f2cb20c28f426e2549342316151bf",
   "actual_started_subagents": 3,
   "execution_mode": "three_development_sessions_with_coordinator",
   "agents": [
     {
       "session": "/root/lumo_learning",
       "implementation": "Single-pointer shape tracing, cancellation and repaint regressions; C4 fallback readiness and delayed-native-refusal regression.",
-      "verification": "Current input regressions passed on b3f75f6. New C4 test synchronization is source-reviewed; its merged runtime verification is pending."
+      "verification": "Current 51a33d79 input, retry, production selection and exact generator tests pass. The previous 18c12e00 full Flutter suite passed 2,562 tests. Historical QA-fixture repair is independently reviewed and awaits the new full candidate."
     },
     {
       "session": "/root/lumo_gameplay",
       "implementation": "Retry an acknowledged but temporarily rejected native return; use one shared board/control scroll geometry with real 48dp touch targets.",
-      "verification": "Native c99 return21 and real Dart/Godot170 passed on host b3f75f6. The newer native merge50ac7da and Flutter geometry require the fresh combined run."
+      "verification": "Current 51a33d79 focused C4 tests pass: two real game/fallback tests, five layouts and one Fold test. Native return21 and two-process tests passed on 50ac7da; the newer bebf7bba native merge and additional Wisp gate require fresh combined execution."
     },
     {
       "session": "/root/lumo_integration",
       "implementation": "Production exact topic selection, personalization and level changes; strict source-bound branch, learning-audit, native-raster and mandatory-return delivery gates.",
-      "verification": "Seven production selection tests passed on b3f75f6. Gate merging preserves the current newer base; new combined acceptance remains mandatory."
+      "verification": "Both approved branches remain source/run/PR-bound. Current delivery preserves all mandatory native52/raster17, APK, Android and update gates, with separate return21 and Wisp14 runtime requirements. Full combined runtime verification is pending."
     }
   ],
-  "native_pin": "50ac7da95d8a7049c497952fd291bdbb7a1cfcbb",
+  "native_pin": "bebf7bba48f09afc834469db0ea3c5541a184f55",
   "prior_current_source_evidence": {
-    "host_source": "b3f75f6fe3506321b7991f975cdc3854b341c596",
-    "learning_run": 43574398667,
-    "focused_flutter_tests_passed": 23,
+    "host_source": "18c12e00d3279ff81db3d7e8a0a3ce3e69009b34",
+    "learning_run": 43577548583,
+    "focused_flutter_tests_passed": 31,
     "learning_families": 236,
     "learning_samples": 7552,
     "structural_issues": 0,
-    "combined_run": 43574400943,
-    "full_flutter_tests_passed": 2558,
-    "full_flutter_tests_failed": 3,
+    "combined_run": 43577553187,
+    "full_flutter_tests_passed": 2562,
+    "full_flutter_tests_failed": 0,
     "full_flutter_tests_skipped": 0,
-    "failure_scope": "C4 full-game readiness and two small-layout tests; repairs are saved and require fresh execution."
+    "capture_png_count": 546,
+    "subsequent_python_tests": 832,
+    "subsequent_python_errors": 1,
+    "failure_scope": "Historical 2019 QA fixture reused the current source pin. The narrow committed-fixture repair is preserved; no APK was built in this earlier run."
   },
   "state_at_record_creation": {
     "apk_built": false,
@@ -44,5 +47,23 @@
     "physical_fold7_tested": false,
     "device_fps_measured": null
   },
-  "scope": "These three real sessions do not turn the existing planned 30-task tree into 30 running processes."
+  "scope": "These three real sessions do not turn the existing planned 30-task tree into 30 running processes.",
+  "latest_focused_evidence": {
+    "host_source": "51a33d79bcd94ae6ad310f61c9bf90f8a6a73244",
+    "run_id": 43579888139,
+    "core_tests_passed": 23,
+    "c4_tests_passed": 8,
+    "learning_families": 236,
+    "learning_samples": 7552,
+    "structural_issues": 0,
+    "scope": "Successful focused tests before merging the newly advanced host/native integration bases; not a full combined acceptance."
+  },
+  "integration_provenance": {
+    "host_product_and_diagnostic_source": "2b586530db4f2cb20c28f426e2549342316151bf",
+    "native_product_source": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+    "native_merged_tree": "35492eec16cac6774bc546b6e57628900bef61cb",
+    "existing_native_modes": 52,
+    "existing_studio_rasters": 17,
+    "main_modified": false
+  }
 }

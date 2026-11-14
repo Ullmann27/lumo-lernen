@@ -126,24 +126,26 @@ class OriginalAcceptanceTests(unittest.TestCase):
             with self.subTest(branch=branch), self.assertRaises(ValueError):
                 self.check()
 
-    def test_return_recovery_cannot_be_omitted_or_skipped_on_either_branch(self):
-        label = 'Retry the acknowledged native exit after a transient Android refusal'
-        for branch in ('integration/lumo-c4-connections-20261114',
-                       'integration/lumo-agent-execution-20261114'):
-            self.run['head_branch'] = self.pull['head']['ref'] = branch
-            runtime = next(row for row in self.jobs['jobs']
-                           if row['name'] == 'connect-four-runtime')
-            other_steps = [step for step in runtime['steps'] if step['name'] != label]
-            probe = {'name': label, 'status': 'completed', 'conclusion': 'success'}
-            runtime['steps'] = other_steps + [probe]
-            self.check()
-            runtime['steps'] = other_steps
-            with self.subTest(branch=branch, case='missing'), self.assertRaises(ValueError):
+    def test_native_return_and_wisp_cannot_be_omitted_or_skipped_on_either_branch(self):
+        labels = ('Retry the acknowledged native exit after a transient Android refusal',
+                  'Require bounded native Wisp feedback on the exact source')
+        for label in labels:
+            for branch in ('integration/lumo-c4-connections-20261114',
+                           'integration/lumo-agent-execution-20261114'):
+                self.run['head_branch'] = self.pull['head']['ref'] = branch
+                runtime = next(row for row in self.jobs['jobs']
+                               if row['name'] == 'connect-four-runtime')
+                other_steps = [step for step in runtime['steps'] if step['name'] != label]
+                probe = {'name': label, 'status': 'completed', 'conclusion': 'success'}
+                runtime['steps'] = other_steps + [probe]
                 self.check()
-            runtime['steps'] = other_steps + [{**probe, 'conclusion': 'skipped'}]
-            with self.subTest(branch=branch, case='skipped'), self.assertRaises(ValueError):
-                self.check()
-            runtime['steps'] = other_steps + [probe]
+                runtime['steps'] = other_steps
+                with self.subTest(step=label, branch=branch, case='missing'), self.assertRaises(ValueError):
+                    self.check()
+                runtime['steps'] = other_steps + [{**probe, 'conclusion': 'skipped'}]
+                with self.subTest(step=label, branch=branch, case='skipped'), self.assertRaises(ValueError):
+                    self.check()
+                runtime['steps'] = other_steps + [probe]
 
     def test_each_failure_skip_cancel_and_foreign_attempt_blocks_delivery(self):
         for row in self.jobs['jobs'][:-1]:

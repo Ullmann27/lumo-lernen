@@ -195,6 +195,9 @@ void main() {
       expect(enabled, isNotEmpty,
           reason: 'Turn $turns must be playable or show the actual result. '
               '${_connectState(tester)}');
+      await tester.ensureVisible(enabled.first);
+      await tester.pump();
+      expect(enabled.first.hitTestable(), findsOneWidget);
       await tester.tap(enabled.first);
       await tester.pump(const Duration(milliseconds: 1000));
       await tester.pump(const Duration(milliseconds: 600));
@@ -205,8 +208,8 @@ void main() {
       // deadline so a stuck animation still fails this complete-game test.
       for (var frame = 0; frame < 30; frame++) {
         if (find.byType(AlertDialog).evaluate().isNotEmpty ||
-            buttons.any((f) =>
-                tester.widget<IconButton>(f).onPressed != null)) {
+            buttons
+                .any((f) => tester.widget<IconButton>(f).onPressed != null)) {
           break;
         }
         await tester.pump(const Duration(milliseconds: 100));
@@ -220,6 +223,10 @@ void main() {
     await tester.tap(find.text('Nochmal!'));
     await tester.pump();
     await _waitForConnectTurn(tester, 'Replay after the completed game');
+    await tester.ensureVisible(find.byKey(const ValueKey('connect-column-0')));
+    await tester.pump();
+    expect(find.byKey(const ValueKey('connect-column-0')).hitTestable(),
+        findsOneWidget);
     await tester.tap(find.byKey(const ValueKey('connect-column-0')));
     await tester.tap(find.byTooltip('Pausieren / Zurück'));
     await tester.pump();
@@ -289,6 +296,10 @@ void main() {
         MissingPluginException('Delayed Flutter fallback fixture'));
     await _waitForConnectTurn(tester, 'Fallback after delayed native refusal');
     expect(find.text('Spiel pausiert'), findsNothing);
+    await tester.ensureVisible(find.byKey(const ValueKey('connect-column-0')));
+    await tester.pump();
+    expect(find.byKey(const ValueKey('connect-column-0')).hitTestable(),
+        findsOneWidget);
     await tester.tap(find.byKey(const ValueKey('connect-column-0')));
     await tester.pump();
     expect(

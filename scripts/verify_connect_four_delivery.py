@@ -52,6 +52,7 @@ REQUIRED_STEPS = {
     'connect-four-runtime': (
         'Import the exact configured native source in its own directory',
         'Retry the acknowledged native exit after a transient Android refusal',
+        'Require bounded native Wisp feedback on the exact source',
         'Require the actual production Dart and rendered Godot two-process gate',
     ),
     'android-host-compile': (

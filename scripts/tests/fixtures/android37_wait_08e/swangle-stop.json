@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/usr/local/lib/android/sdk/platform-tools/adb",
+    "-s",
+    "emulator-5554",
+    "shell",
+    "kill",
+    "-TERM",
+    "2528"
+  ],
+  "started_at": "2026-11-14T08:10:30.791570+00:00",
+  "finished_at": "2026-11-14T08:10:30.807038+00:00",
+  "returncode": 0,
+  "timed_out": false,
+  "stdout_file": "commands/0005-stop.stdout",
+  "stderr_file": "commands/0005-stop.stderr"
+}

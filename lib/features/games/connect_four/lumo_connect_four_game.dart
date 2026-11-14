@@ -23,6 +23,8 @@ const _boardPadding = 10.0;
 const _boardBorderWidth = 2.4;
 const _boardInset = _boardPadding + _boardBorderWidth;
 const _columnTouchSize = 48.0;
+const _minimumBoardWidth =
+    ConnectFourEngine.columns * _columnTouchSize + 2 * _boardInset;
 
 class LumoConnectFourScreen extends StatefulWidget {
   const LumoConnectFourScreen({super.key, required this.appState, this.seed});
@@ -499,13 +501,20 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
           SafeArea(
             child: LayoutBuilder(builder: (context, constraints) {
               final wide = constraints.maxWidth > constraints.maxHeight;
+              // Use the edge space before making a phone board scroll.
+              final horizontalPadding = wide
+                  ? 20.0
+                  : math.min(
+                      12.0,
+                      math.max(0.0,
+                          (constraints.maxWidth - _minimumBoardWidth) / 2));
               return Column(children: [
                 _header(),
                 if (!wide) _modes(),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: wide ? 20 : 12, vertical: 8),
+                        horizontal: horizontalPadding, vertical: 8),
                     child: wide
                         ? Row(children: [
                             Expanded(flex: 3, child: _playArea()),
@@ -851,12 +860,16 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
   Widget _playArea() => LayoutBuilder(
         builder: (context, constraints) {
           const tableExtra = 28.0;
+          const controlsGap = 8.0;
           final availableHeight = math.max(
             0.0,
-            constraints.maxHeight - _columnTouchSize - 8 - tableExtra,
+            constraints.maxHeight -
+                _columnTouchSize -
+                controlsGap -
+                tableExtra,
           );
           final width = math.max(
-            ConnectFourEngine.columns * _columnTouchSize + 2 * _boardInset,
+            _minimumBoardWidth,
             math.min(constraints.maxWidth, availableHeight * 7 / 6),
           );
           final boardHeight = math.min(width * 6 / 7, availableHeight);
@@ -902,7 +915,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                           ],
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: controlsGap),
                       _columnControls(),
                     ],
                   ),

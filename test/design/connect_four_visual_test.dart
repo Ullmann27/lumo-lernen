@@ -79,7 +79,11 @@ void main() {
       await _waitForPlayableBoard(tester);
       expect(find.byKey(const ValueKey('connect-level-mittel')), findsNothing);
       for (final column in [3, 2, 3, 2, 4, 5]) {
-        await tester.tap(find.byKey(ValueKey('connect-column-$column')));
+        final control = find.byKey(ValueKey('connect-column-$column'));
+        await tester.ensureVisible(control);
+        await tester.pump();
+        expect(control.hitTestable(), findsOneWidget);
+        await tester.tap(control);
         await _waitForPlayableBoard(tester);
       }
       var occupiedCells = 0;

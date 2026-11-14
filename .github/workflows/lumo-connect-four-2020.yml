@@ -89,6 +89,15 @@ jobs:
             exit 1
           fi
           grep -Fx 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log
+      - name: Require bounded native Wisp feedback on the exact source
+        run: |
+          set -euo pipefail
+          timeout 180s godot --headless --audio-driver Dummy --path native-source --script res://scripts/tests/treasure_wisp_regression.gd 2>&1 | tee c4-runtime/treasure-wisps.log
+          if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:|ObjectDB instances leaked|resources still in use at exit' c4-runtime/treasure-wisps.log; then
+            echo 'The actual native Wisp regression reported an engine or resource failure' >&2
+            exit 1
+          fi
+          grep -Fx '[TreasureWisp] PASS checks=14' c4-runtime/treasure-wisps.log
       - name: Require the actual production Dart and rendered Godot two-process gate
         run: |
           set -euo pipefail

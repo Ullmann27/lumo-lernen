@@ -134,6 +134,25 @@ class WorkflowTests(unittest.TestCase):
             with self.subTest(step=name): self.assertEqual(step(build,name),expected)
         self.assertNotIn('continue-on-error',self.workflow)
 
+    def test_wisp_feedback_has_its_own_mandatory_original_runtime_gate(self):
+        runtime=job(self.workflow,'connect-four-runtime')
+        label='Require bounded native Wisp feedback on the exact source'
+        probe=step(runtime,label)
+        self.assertIn('set -euo pipefail',probe)
+        self.assertIn('timeout 180s godot --headless --audio-driver Dummy --path native-source',probe)
+        self.assertIn('--script res://scripts/tests/treasure_wisp_regression.gd',probe)
+        self.assertIn('tee c4-runtime/treasure-wisps.log',probe)
+        self.assertIn("grep -Fx '[TreasureWisp] PASS checks=14'",probe)
+        self.assertIn('ObjectDB instances leaked|resources still in use at exit',probe)
+        self.assertNotIn('if:',probe)
+        self.assertLess(runtime.index('Import the exact configured native source in its own directory'),
+                        runtime.index(label))
+        self.assertLess(runtime.index(label),
+                        runtime.index('Require the actual production Dart and rendered Godot two-process gate'))
+        saved=step(runtime,'Preserve every original C4 runtime result and rendered frame')
+        self.assertIn('path: c4-runtime/',saved)
+        self.assertIn('if: always()',saved)
+
     def test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload(self):
         build=job(self.workflow,'verify-and-build')
         self.assertIn("LUMO_SPLIT_PER_ABI: '1'",build)
