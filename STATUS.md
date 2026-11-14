@@ -1,3 +1,81 @@
+# Activate the complete Memory, Quiz, English and return-repair candidate
+
+Updated: 2026-11-14. This activation follows the fully published source checkpoint
+`05d96d94d9e08f083ea451c3f4d661fb77fee9c5`, tree `36db95e0b283526ece10aea39b37cfe9aa926775`.
+Version remains **0.13.8+2020**, with exact Native `f9d9772bb932d7ee8702eeb5bca6d98c286f3b98`,
+tree `4036a20ab80de78bcdf0d074b585be88c2946492`, Godot 4.6.3.
+
+This documentation-only successor requests the existing complete seven-job C4
+workflow through PR485 on `integration/lumo-c4-connections-20261114`.
+Its actual run, attempt, source and artifacts must be bound after activation.
+No new complete APK, Android tour, update result or public release is claimed here.
+
+## Connected product behavior
+
+- Memory and Quiz now use their private native transport with the existing Dart
+  rules, authority, persistence and reward ownership. Existing learning modules,
+  writer, InkSurface and journal sources remain intact.
+- The English object scene preserves its own fitted camera after the garden
+  wrapper layout. The original Lumo and the existing 48dp minimum remain.
+  The existing offline speech connection is preserved; no audible pronunciation
+  or physical-device frame-rate acceptance is inferred from desktop checks.
+- Memory reads reload the platform preference snapshot before acknowledging
+  stored round/statistics state. Optimistic cache values after failed writes
+  cannot impersonate durable saves.
+- Reading summaries remain stored and their public API remains available.
+  Competence reports use learning SkillRecords; ASR alignment observations
+  do not establish confirmed reading competence or current-profile provenance.
+- Village return observes fresh, uniquely bound frame/OCR/UI/process evidence
+  under its shared 60-second local return limit and unchanged 900-second total.
+- C4 return observes actual native exit, the correct MainActivity and a successful
+  empty mailbox query together within its unchanged 45-second limit.
+  Both probes retain their one explicit return touch and fail-closed checks.
+- The Android preparation adds only the Godot downloader notification manifest
+  declaration. Existing private Cards/C4/Table services, reflection rules and
+  repeatable preparation are preserved. No runtime permission grant is added.
+
+## Actual evidence already bound
+
+The five-group run **43629637557/1** succeeded on Host
+`b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1` with the same exact Native above:
+Flutter 53 visible cases; Android host compilation plus 19 orchestrator,
+11 Java and 8 Kotlin cases; Quiz 381 checks/6 captures; Memory presenter
+7020 checks/8 captures and pair 243 checks/57 inputs; English
+7635 checks/17 captures/196 inputs. Full logs, final APIs and exact scope
+are attached under `docs/integration/2026-11-14/next-candidate/qualification-b3-f9`.
+This qualified predecessor result is not transferred to later changed Host files.
+
+The frozen return repairs each ran once: Village **46 PASS**, C4 mailbox
+**54 PASS**. The exact combined notification manifest case **1 PASS**.
+Current pin contracts **64 PASS** (24 Candidate + 40 Legacy), all 50 historical
+pins unchanged. Independent source reviews and full original outputs are retained.
+The PR494 producer has 24 new cases (14 Memory + 10 reading) within its actual
+2632-case successful suite on `28462a7547048b75fa114e6f5832248e54c94faa`.
+Those remain producer results until this integrated Host is actually executed.
+
+## Complete APK delivery still required
+
+The old run **43614047730/1** on Host `5ad005bd` remains failed at the
+Village returned-frame check. Its successful build and preserved 2017-to-2020
+update do not clear that failure. No old APK is the new candidate.
+
+The unchanged C4 workflow must execute exact source: native runtime, actual
+Android host compilation, full Flutter/script/Android-contract suites, signed
+ARM64 and x86_64 builds, the actual main/Village/C4 Android tour, the preserved
+2017-to-2020 update, candidate verification and delivery bundle preparation.
+Only an accepted same-run bundle may enter the prepared publisher. A new immutable
+`coachpreview-build-2020` release requires the verified signature, source/native
+identities, SHA256 and complete unauthenticated HTTPS APK byte verification.
+The release and tag were both absent at the 19:31 UTC preflight.
+
+Main, producer refs and old releases remain protected. Keep this active C4 head
+stable while its workflow runs because its concurrency policy cancels superseded
+runs. Further producer work belongs on separate integration preparation branches.
+
+---
+
+# Historical record below — earlier candidates and results
+
 # Activate the checked Hub, native notices and Garage connection
 
 Updated: 2026-11-14. This documentation-only activation follows exact Host
@@ -444,3 +522,4 @@ The unified workflow now requires the existing full Flutter, legacy-native, 2014
 Publication is restricted to this same-repository pull request after build, Android tour and update jobs succeed. It rechecks the actual ARM64 manifest, certificate, native source, APK hash and source-bound emulator evidence. It creates the immutable `coachpreview-build-2017` prerelease; an existing matching release can only be verified, never replaced. The final public APK is downloaded without authentication and compared byte-for-byte by size and SHA-256 before its link is accepted.
 
 At this handoff there is **no newly built APK for `1d5c5cb` and no 2017 public download receipt**. Previous intermediate sources remain visually rejected; the cancelled c0ff update artifact is a partial record, not a successful upgrade result. The public test key, emulator acceptance and physical-device performance are distinct claims. Main and older published APKs remain unchanged.
+

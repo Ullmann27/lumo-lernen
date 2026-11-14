@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "purpose": "Activate the exact fully prepared candidate via an ancestor-preserving update of the existing PR485 head ref.",
+  "source_checkpoint": "05d96d94d9e08f083ea451c3f4d661fb77fee9c5",
+  "source_tree": "36db95e0b283526ece10aea39b37cfe9aa926775",
+  "previous_active_c4": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+  "active_branch": "integration/lumo-c4-connections-20261114",
+  "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+  "version": "0.13.8+2020",
+  "workflow_path": ".github/workflows/lumo-connect-four-2020.yml",
+  "workflow_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064",
+  "mutation_scope": "STATUS.md, CONTINUE.md and evidence only; all product, workflow, manifest and pin bytes inherit the checkpoint unchanged.",
+  "qualification_run": 43629637557,
+  "old_failed_run": 43614047730,
+  "actual_new_run": "Not yet observed at commit creation; must be bound from GitHub after ref activation.",
+  "release_preflight": {
+    "release_tag": "coachpreview-build-2020",
+    "release_get": 404,
+    "tag_get": 404
+  },
+  "autosave_prebuild": {
+    "chunk_id": "ecbfed",
+    "wall_time_seconds": 0.532953457,
+    "exit_code": 0,
+    "original_token_count": 20,
+    "output": "[LUMO-CHECKPOINT] Nothing new to save on validation/host-v4-syntax-20261114.\n"
+  },
+  "main_or_producer_ref_changes": false
+}

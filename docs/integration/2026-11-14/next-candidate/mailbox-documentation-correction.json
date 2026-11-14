@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "kind": "documentation_only_correction",
+  "frozen_source_freeze_sha256": "1a2c51d922eb7b9993b467eb44f04061a43541313e03fcb7383a066eb09332f8",
+  "original_file": "/tmp/host-pr493-mailbox-close-observation-repair-20261114/preservation-scope.json",
+  "original_file_sha256": "dddc00e47b198452e99ce502ea2f43db3e1dd7637fd184af2bfe3843e1f58843",
+  "incorrect_prose_name": "observed_touch",
+  "correct_nested_function": "Probe.transition.arrived",
+  "original_machine_readable_function_list_is_already_correct": true,
+  "corrected_description": "The frozen source-preservation.json roster counts module-level and direct class methods. This supplemental read-only AST check also counts the nested Probe.transition.arrived function; no source bytes changed.",
+  "frozen_original_pack_unchanged": true,
+  "source_or_test_change": false,
+  "actual54_test_result_unchanged": true,
+  "new_test_invocation": false
+}
