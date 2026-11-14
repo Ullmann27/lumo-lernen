@@ -124,7 +124,8 @@ class VillageProbe(Probe):
                       and native == self.args.expected_native, 'Actual Village QA source/native pin differs')
             subprocess.run(['git', 'diff', '--exit-code', 'HEAD', '--'], cwd=ROOT, check=True)
             identity = self.main.verify_apk_identity(self.args.apk, self.args.provenance, self.args.sums)
-            c4.demand(identity['versionCode'] == 2020 and identity['godot_revision'] == native,
+            c4.demand(identity['versionCode'] == 2020 and identity['godot_revision'] == native
+                      and identity['flutter_source_commit'] == source,
                       'Wrong actual Village candidate identity')
             result['identity'] = identity
             metadata = [json.loads((self.args.metadata_dir/(name+'.json')).read_text())

@@ -14,10 +14,11 @@ import re
 import unicodedata
 import xml.etree.ElementTree as ET
 
-from PIL import Image
+from PIL import Image, ImageChops
 
 import connect_four_android_evidence as c4
 from native_surface_readiness import inspect_surface, target_observation
+from native_ocr_tiles import observed_matches, tile_boxes
 
 PORTAL = 'Dorf & Wirtschaft. Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn! Spielen'
 SCENE = 'res://scenes/creative/build_settlement_world.tscn'
@@ -25,6 +26,19 @@ REPORT = 'village-result.json'
 PREFS = f'/data/user/0/{c4.PACKAGE}/shared_prefs/FlutterSharedPreferences.xml'
 MARKER = '[VillageHostReady] '
 HUD = ('LUMO DORFWELT', 'Nächster Tag')
+RETURN_MARKER = '[LumoHost] return: games'
+
+
+def strict_json(raw: str):
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            c4.demand(key not in result, 'Duplicate key in original Village JSON: '+key)
+            result[key] = value
+        return result
+    def constant(value):
+        raise ValueError('Non-finite value in original Village JSON: '+value)
+    return json.loads(raw, object_pairs_hook=pairs, parse_constant=constant)
 
 
 def normalized(value: str) -> str:
@@ -33,7 +47,7 @@ def normalized(value: str) -> str:
 
 
 def read(root: Path, name: str) -> dict:
-    value = json.loads(c4.safe_member(root, name).read_text())
+    value = strict_json(c4.safe_member(root, name).read_text())
     c4.demand(isinstance(value, dict), 'Missing original Village evidence object: '+name)
     return value
 
@@ -64,7 +78,7 @@ def owner(prefs: dict) -> str:
 
 
 def child_key(prefs: dict) -> str:
-    registry = json.loads(prefs.get('flutter.lumo_3d_profile_keys_v1', '{}'))
+    registry = strict_json(prefs.get('flutter.lumo_3d_profile_keys_v1', '{}'))
     owners = registry.get('owners', {})
     c4.demand(registry.get('version') == 1 and isinstance(owners, dict)
               and isinstance(registry.get('legacy'), dict)
@@ -95,7 +109,7 @@ def ready(raw: str, pid: int, prefs: dict) -> dict:
                              r'(\d+)\s+\d+\s+[VDIWEF]\s+[^:]+:\s*(.*)', line)
         c4.demand(match is not None and int(match[1]) == pid
                   and match[2].startswith(MARKER), 'Village marker is not from the actual native PID')
-        found.append(json.loads(match[2][len(MARKER):]))
+        found.append(strict_json(match[2][len(MARKER):]))
     c4.demand(len(found) == 1, 'Missing or ambiguous actual VillageHostReady marker')
     item = found[0]
     expected_path = 'user://lumo_settlement_'+hashlib.sha256(child_key(prefs).encode()).hexdigest()+'_1_village.json'
@@ -111,6 +125,22 @@ def ready(raw: str, pid: int, prefs: dict) -> dict:
               and c4.integer(item.get('initialized_plot_nodes'), 1, item['plots']),
               'Village marker does not describe an initialized actual settlement')
     return item
+
+
+def acknowledged_return(before: str, after: str, pid: int) -> None:
+    def markers(raw):
+        result = []
+        for line in raw.splitlines():
+            if '[LumoHost] return:' not in line:
+                continue
+            match = re.fullmatch(r'\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\.\d+\s+'
+                                 r'(\d+)\s+\d+\s+[VDIWEF]\s+[^:]+:\s*(.*)', line)
+            c4.demand(match is not None, 'Host ACK marker lacks original threadtime process identity')
+            if int(match[1]) == pid:
+                result.append(match[2].strip())
+        return result
+    c4.demand(markers(before) == [] and markers(after) == [RETURN_MARKER],
+              'Visible Village return lacks one fresh successful games host ACK from its native PID')
 
 
 def process(root: Path, row: dict, *, native: bool) -> tuple[int, int | None]:
@@ -144,9 +174,64 @@ def capture(root: Path, row: dict, *, native=False) -> Path:
     return path
 
 
+def fallback_caption(root: Path, image: Path, tag: str, wanted: str, row: dict) -> None:
+    """Replay existing component/tile OCR with its actual crop and source offset."""
+    variant = row['variant']
+    component = re.fullmatch(r'gold-component-(\d+)', variant)
+    tiled = re.fullmatch(r'white-latin(-dim)?-tile-([0-5])', variant)
+    c4.demand(component is not None or tiled is not None, 'Unknown original OCR variant')
+    journal = read(root, tag+('-ocr-components.json' if component else '-ocr-tiles.json'))
+    with Image.open(image) as source:
+        source = source.convert('RGB')
+    c4.demand(journal.get('status') == 'READ' and journal.get('matched') is True
+              and journal.get('source') == image.name and journal.get('source_sha256') == c4.sha256(image)
+              and journal.get('surface') == list(source.size)
+              and journal.get('wanted') == normalized(wanted)
+              and journal.get('confidence_minimum') == 15, 'Original fallback OCR source differs')
+    tsv = tag+'-ocr-'+variant+'.tsv'
+    entries = [entry for entry in journal.get('components' if component else 'tiles', [])
+               if entry.get('tsv') == tsv]
+    c4.demand(len(entries) == 1, 'Missing unique original fallback OCR crop')
+    entry = entries[0]
+    box = entry['bounds']
+    x0, y0, x1, y1 = c4.vector(box, 4, 'original OCR crop')
+    c4.demand(all(type(value) is int for value in box)
+              and 0 <= x0 < x1 <= source.width and 0 <= y0 < y1 <= source.height,
+              'Original OCR crop escapes its source PNG')
+    if component:
+        c4.demand(entry.get('index') == int(component[1]) and entry.get('scale') == 1
+                  and entry.get('psm') == 6 and box in journal.get('observed_component_boxes', []),
+                  'Original component OCR geometry differs')
+        scale, pixels = 1, source.crop(box)
+    else:
+        index = int(tiled[2])
+        c4.demand(entry.get('index') == index and entry.get('status') == 'READ'
+                  and journal.get('tile_scale') == 3 and box == list(tile_boxes(*source.size)[index]),
+                  'Original tile OCR geometry differs')
+        red, green, blue = source.split()
+        darkest = ImageChops.darker(ImageChops.darker(red, green), blue)
+        lightest = ImageChops.lighter(ImageChops.lighter(red, green), blue)
+        threshold = 120 if tiled[1] else 150
+        bright = darkest.point(lambda value: 255 if value >= threshold else 0)
+        neutral = ImageChops.subtract(lightest, darkest).point(lambda value: 255 if value <= 45 else 0)
+        pixels = ImageChops.invert(ImageChops.multiply(bright, neutral)).crop(box)
+        scale = 3
+        pixels = pixels.resize((pixels.width*scale, pixels.height*scale))
+    c4.demand(entry.get('image') == tag+'-ocr-'+variant+'.png', 'Original OCR crop filename differs')
+    with Image.open(c4.safe_member(root, entry['image'])) as crop:
+        crop.load()
+        c4.demand(crop.format == 'PNG' and crop.mode == pixels.mode and crop.size == pixels.size
+                  and crop.tobytes() == pixels.tobytes(), 'Original OCR crop pixels differ from the actual source')
+    with c4.safe_member(root, tsv).open() as stream:
+        matches = observed_matches(csv.DictReader(stream, delimiter='\t', quoting=csv.QUOTE_NONE),
+            tuple(box), scale, source.size, normalized(wanted), normalized, variant)
+    c4.demand(row in matches and row in entry.get('matches', []) and row in journal.get('matches', []),
+              'Fallback caption is not established by its original TSV and actual source offset')
+
+
 def caption(root: Path, image: Path, tag: str, wanted: str, *, bounds=None) -> list:
     """Validate observed OCR text/bounds against original Tesseract TSV words."""
-    rows = json.loads(c4.safe_member(root, tag+'-ocr.json').read_text())
+    rows = strict_json(c4.safe_member(root, tag+'-ocr.json').read_text())
     c4.demand(isinstance(rows, list), 'Missing actual OCR observations')
     with Image.open(image) as frame:
         width, height = frame.size
@@ -159,6 +244,9 @@ def caption(root: Path, image: Path, tag: str, wanted: str, *, bounds=None) -> l
         x0, y0, x1, y1 = c4.vector(actual, 4, 'observed OCR caption')
         c4.demand(0 <= x0 < x1 <= width and 0 <= y0 < y1 <= height, 'OCR target escapes the original PNG')
         variant = row.get('variant')
+        if isinstance(variant, str) and (variant.startswith('gold-component-') or '-tile-' in variant):
+            fallback_caption(root, image, tag, wanted, row)
+            return actual
         c4.demand(variant in ('contrast', 'raw', 'white-text', 'white-latin', 'navy-latin',
                               'navy-latin-1x', 'teal-text-1x'), 'Unknown original OCR variant')
         scale = 1 if variant.endswith('-1x') else 2
@@ -267,6 +355,7 @@ def verify_report(root: Path, binding: dict, identity: dict) -> dict:
                       (node.get('text', ''), node.get('content-desc', '')))
               for node in tree.iter('node')), 'Actual Flutter Spielewelt did not return')
     log = original(root, report['original_logcat'], ['logcat', '-b', 'all', '-d', '-v', 'threadtime'])
+    acknowledged_return(raw, log, pid)
     c4.demand(not c4.runtime_errors(log) and not c4.runtime_errors(raw)
               and report.get('fatal_entries') == [], 'Actual Android/engine errors remain in Village evidence')
     return {'status': 'PASS', 'android_api': 35, 'host_pid': host, 'native_pid': pid,
