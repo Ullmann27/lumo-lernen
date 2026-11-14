@@ -1,0 +1,63 @@
+{
+  "git_optional_locks": "0",
+  "host": "bdced7beb49dd37bc8bf86ea2115c6ad242a672c",
+  "materialized_count": 1784,
+  "no_source_or_git_writes": true,
+  "results": [
+    {
+      "command": [
+        "env",
+        "-u",
+        "LUMO_C4_REFERENCE_HOST",
+        "-u",
+        "LUMO_C4_PROBE_SOURCE",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "-v",
+        "scripts.tests.test_connect_four_delivery",
+        "scripts.tests.test_connect_four_pipeline",
+        "tools.android_qa.tests.test_connect_four_probe_deadlines",
+        "scripts.tests.test_legacy_release_pin",
+        "scripts.tests.test_candidate_2011_pin"
+      ],
+      "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration",
+      "elapsed_seconds": 0.31582746699859854,
+      "exit_code": 0,
+      "name": "unittest-114",
+      "original_log": {
+        "bytes": 22923,
+        "path": "/tmp/host-c4-bdced7be-targeted-validation-20261114/unittest-114.log",
+        "sha256": "aa692909fd270f46f2f413a07880d1a17777a2bf3a10b182bde2982016542ab4"
+      },
+      "started_at": "2026-11-14T07:16:21.767227+00:00",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        "-oneline",
+        ".github/workflows/lumo-connect-four-2020.yml",
+        ".github/workflows/lumo-1966-cards-route-kart-qa.yml",
+        ".github/workflows/lumo-astra-script-recovery.yml"
+      ],
+      "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration",
+      "elapsed_seconds": 0.01739782199729234,
+      "exit_code": 0,
+      "name": "actionlint-3",
+      "original_log": {
+        "bytes": 0,
+        "path": "/tmp/host-c4-bdced7be-targeted-validation-20261114/actionlint-3.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "started_at": "2026-11-14T07:16:22.083504+00:00",
+      "timed_out": false
+    }
+  ],
+  "schema": 1,
+  "scope": "Exactly 114 authorized existing local contracts and actionlint on 3 workflows; no PCM/engine/device run",
+  "source_unchanged": true,
+  "sparse_absent_count": 2298,
+  "tree": "7487932ca39fb46996289da45fed993955f8ce18"
+}
