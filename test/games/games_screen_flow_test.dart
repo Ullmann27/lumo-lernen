@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
@@ -23,6 +24,11 @@ void main() {
     LumoSound.instance.muted = true;
     LumoMusic.instance.muted = true;
     LumoVoice.instance.isEnabled = false;
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+            const MethodChannel('lumo_lernen/connect_four'),
+            (_) async =>
+                throw MissingPluginException('Flutter fallback fixture'));
   });
 
   testWidgets(
@@ -133,7 +139,7 @@ void main() {
     await app.hydrateFromWallet();
     await tester.pumpWidget(
         MaterialApp(home: LumoConnectFourScreen(appState: app, seed: 1)));
-    await tester.pump();
+    await tester.pumpAndSettle();
     var turns = 0;
     while (find.byType(AlertDialog).evaluate().isEmpty && turns < 60) {
       final buttons = [
@@ -142,6 +148,7 @@ void main() {
       final enabled =
           buttons.where((f) => tester.widget<IconButton>(f).onPressed != null);
       expect(enabled, isNotEmpty);
+      await tester.ensureVisible(enabled.first);
       await tester.tap(enabled.first);
       await tester.pump(const Duration(milliseconds: 1000));
       await tester.pump(const Duration(milliseconds: 600));
@@ -152,8 +159,8 @@ void main() {
       // deadline so a stuck animation still fails this complete-game test.
       for (var frame = 0; frame < 30; frame++) {
         if (find.byType(AlertDialog).evaluate().isNotEmpty ||
-            buttons.any((f) =>
-                tester.widget<IconButton>(f).onPressed != null)) {
+            buttons
+                .any((f) => tester.widget<IconButton>(f).onPressed != null)) {
           break;
         }
         await tester.pump(const Duration(milliseconds: 100));

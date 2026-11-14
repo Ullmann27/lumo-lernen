@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "status": "READY_FOR_ROOT_SOURCE_CHECKPOINT_NOT_TESTED",
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "sha256": "037fb4e27d8d16e9adbe88c25735762d354d63ace2b26c520b733cff87dc41a5"
+  },
+  "base_source": "729585db3f49ecff7f0632439f90edb882f09454",
+  "base_tree": "93301ed1c1e0b18f15163ae6198be0bc6b962762",
+  "application_directory": "final-source",
+  "exact_application_paths": [
+    "lib/core/school_exercise_generator.dart",
+    "lib/features/games/connect_four/lumo_connect_four_game.dart",
+    "lib/features/home/widgets/lumo_home_hero.dart",
+    "lib/features/learning/learning_content.dart",
+    "lib/features/learning/widgets/lumo_shape_trace_canvas.dart",
+    "lib/widgets/design/lumo_adventure_card.dart",
+    "lib/widgets/design/lumo_scene_atmosphere.dart",
+    "lib/widgets/shell/left_navigation.dart",
+    "test/design/connect_four_visual_test.dart",
+    "test/games/connect_four_scroll_alignment_test.dart",
+    "test/games/games_screen_flow_test.dart",
+    "test/learning/learning_exact_selection_test.dart",
+    "test/learning_selection_integration_test.dart",
+    "test/lumo_left_navigation_motion_test.dart",
+    "test/lumo_scene_atmosphere_test.dart",
+    "test/shape_trace_input_regression_test.dart",
+    "test/shape_trace_input_test.dart"
+  ],
+  "source_count": 17,
+  "product_count": 8,
+  "test_file_count": 9,
+  "bytes": 373786,
+  "patch": {
+    "path": "integration.patch",
+    "bytes": 80879,
+    "sha256": "bea54360c0141a7216443269cbd4f8ff5d7835dab7ebd45ff22ac3990b5b07ac"
+  },
+  "no_source_merge_conflict_remaining": true,
+  "overlap_decisions": "source-overlap-proofs.json",
+  "producer_ci": "producer-ci-review.json",
+  "exclusions": "producer-path-dispositions.json",
+  "protected_dependencies": "protected-dependencies.json",
+  "planned_validation": "validation-plan.json",
+  "tests_run": false,
+  "worktree_git_ci_mutations": false,
+  "assets_sdks_apks_downloaded": false,
+  "pending": [
+    "Root applies/checkpoints the17exact source files on729or a compatible descendant.",
+    "Run49 planned Flutter cases with normal assets and sampled audit on the newly committed source.",
+    "Any Android/render/performance/semantic acceptance remains a separate actual run."
+  ],
+  "repository_source_gate_unchanged": [
+    "workflows",
+    "native pin identities",
+    "receipts",
+    "Play distribution/signing",
+    "writing/journal implementations"
+  ]
+}

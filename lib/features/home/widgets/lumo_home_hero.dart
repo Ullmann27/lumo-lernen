@@ -106,14 +106,12 @@ class LumoHomeHero extends StatelessWidget {
               borderRadius: BorderRadius.circular(27),
               child: LumoSceneAtmosphere(
                 reduceMotion: reduceMotion,
+                scenery: const LumoSceneArtwork(
+                  asset: 'assets/lumo_design/bg/bg_glass_islands.png',
+                  alignment: Alignment(0, -.42),
+                ),
                 child: Stack(
                   children: [
-                    const Positioned.fill(
-                      child: LumoSceneArtwork(
-                        asset: 'assets/lumo_design/bg/bg_glass_islands.png',
-                        alignment: Alignment(0, -.42),
-                      ),
-                    ),
                     const Positioned.fill(
                       child: DecoratedBox(
                         decoration: BoxDecoration(
