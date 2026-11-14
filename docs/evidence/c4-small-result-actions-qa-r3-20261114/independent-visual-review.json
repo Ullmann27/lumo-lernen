@@ -1,0 +1,434 @@
+{
+  "schema": "lumo.c4-small-result-actions.r3-independent-visual-action-review.v1",
+  "conclusion": "Both intended lower result-dialog actions are visibly exposed and supported by corresponding real scroll/touch requests and acknowledged state changes in this exact desktop fixture. No target-specific visual blocker found.",
+  "provenance": {
+    "run": 43596764202,
+    "attempt": 1,
+    "job": 132452818400,
+    "qa_head": "51d05896aec9bced8c789504161f2255441cd07f",
+    "qa_tree": "1c95ba11ba980ed01bd3e76c91a66fdfcb23b8a4",
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+    "artifact_id": 14114498334,
+    "archive_bytes": 1619461,
+    "archive_sha256": "415ce3b5f51d510983c0184d37e479dc00844fa50f9dcd70c4f0493454228f64",
+    "provenance_scope": "Parent independently downloaded and verified archive/API/source binding once. This reviewer opened only the four supplied original PNGs and read their paired layout/native/Dart reports."
+  },
+  "originals": [
+    {
+      "path": "runtime/small_result_restart_before.png",
+      "bytes": 21030,
+      "sha256": "1172ea356ab844f357ed0c3eb678a4e07b2c79dcb757077f0a43b6880dbe2352",
+      "git_blob": "d57460775512d80e3c906f0217b32635dd4d6bfe",
+      "dimensions": [
+        640,
+        360
+      ],
+      "personally_opened": true,
+      "visible_findings": [
+        "Opened the original image: Neue Runde is fully visible, readable and unobstructed inside the scrolled result dialog.",
+        "The winning-state footer says Cyan gewinnt!; all seven column buttons are visible and disabled.",
+        "The preceding Brett ansehen button is partially clipped at the top of the scroll viewport; the tested Neue Runde target is complete."
+      ]
+    },
+    {
+      "path": "runtime/small_result_restart_after.png",
+      "bytes": 29157,
+      "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+      "git_blob": "093d05df37c4033689cffbe08057706740d23072",
+      "dimensions": [
+        640,
+        360
+      ],
+      "personally_opened": true,
+      "visible_findings": [
+        "Opened the original image: the result dialog is closed and an empty board is visible.",
+        "Zurück, Pause, all seven column buttons and Gespeichert · Cyan ist dran are visible.",
+        "The two-player mode is established by the bound state data; this image has no visible standalone mode label."
+      ]
+    },
+    {
+      "path": "runtime/small_result_mode_before.png",
+      "bytes": 22337,
+      "sha256": "b76ce45ea178deaaa994821fccd6341793d08c64e859489a0d868220b38dbc6d",
+      "git_blob": "7870c0a298e52724718be1c06ac63520e357d2cc",
+      "dimensions": [
+        640,
+        360
+      ],
+      "personally_opened": true,
+      "visible_findings": [
+        "Opened the original image: Gegen Lumo spielen is fully visible, readable and unobstructed inside the scrolled result dialog.",
+        "The winning-state footer says Cyan gewinnt!; all seven column buttons are visible and disabled.",
+        "The preceding Neue Runde button is partially clipped at the top of the scroll viewport; the tested Gegen Lumo spielen target is complete."
+      ]
+    },
+    {
+      "path": "runtime/small_result_mode_after.png",
+      "bytes": 29157,
+      "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+      "git_blob": "093d05df37c4033689cffbe08057706740d23072",
+      "dimensions": [
+        640,
+        360
+      ],
+      "personally_opened": true,
+      "visible_findings": [
+        "Opened the original image: the result dialog is closed and an empty board is visible.",
+        "Zurück, Pause, all seven column buttons and Gespeichert · Cyan ist dran are visible.",
+        "This original has the same SHA256 and bytes as restart_after; the successful solo-mode transition is established by the bound layout and original Dart events, not by a unique visual mode label."
+      ]
+    }
+  ],
+  "paired_original_reports": [
+    {
+      "path": "runtime/small_result_restart_before.layout.json",
+      "bytes": 19747,
+      "sha256": "0ec0375232a0afcc9b679791f2cae9cc5a0d76559671ed0cd0d10357dea1fe41",
+      "git_blob": "947320b44a4850ccdbdfe6093bc0bffd70a05916"
+    },
+    {
+      "path": "runtime/small_result_restart_after.layout.json",
+      "bytes": 19708,
+      "sha256": "e345fbce9613c338566259e8077546dbb5afefe1114f519461a8df42ec02689d",
+      "git_blob": "f17c9c6e582ca2032d7c8e206c98195dfe5742c2"
+    },
+    {
+      "path": "runtime/small_result_mode_before.layout.json",
+      "bytes": 19746,
+      "sha256": "c607ed9d5f836a5d134cb462d7c46784a03cb47979d6d7d112585726680faf5c",
+      "git_blob": "6fa17005fdc3ee85c221c9797ad554b5924efa32"
+    },
+    {
+      "path": "runtime/small_result_mode_after.layout.json",
+      "bytes": 19707,
+      "sha256": "68046c696d9ce45abf2a1ad245c41d7b811b4d43da465463e1c20ce68c8712ea",
+      "git_blob": "c1b177946bd441e06e3c45236ae03f8297c2ee1b"
+    },
+    {
+      "path": "runtime/native-result.json",
+      "bytes": 21697,
+      "sha256": "827dc0314da49c5e593528ce62b5c31b6e29445f0365aac56ecf99797a51680f",
+      "git_blob": "ebb894e4c98a5203c24c4e910fd0f1aeac9226ca"
+    },
+    {
+      "path": "runtime/dart-result.json",
+      "bytes": 24752,
+      "sha256": "736b0205f58ff8409c6a5e4d4e712bef14abc55dd4be4468832a0f5b4bde2a30",
+      "git_blob": "4f908351d8cd1197285063379037c11f97c6fb1b"
+    },
+    {
+      "path": "runtime/small-result-actions-gate.json",
+      "bytes": 3809,
+      "sha256": "a9a1ce253f789953bafdc3b88d08326b33479d2e9caeca8de8237d306e5516c2",
+      "git_blob": "5b85003774a4e5790b7c6b66b428ccbad6e36fa2"
+    }
+  ],
+  "observed_action_records": [
+    {
+      "action": "restart",
+      "capture_state_match": {
+        "before": true,
+        "after": true
+      },
+      "capture_sequences": [
+        5,
+        6
+      ],
+      "geometry": {
+        "window_px": [
+          640,
+          360
+        ],
+        "viewport_px": [
+          640,
+          360
+        ],
+        "safe_rect": [
+          0,
+          24,
+          640,
+          312
+        ],
+        "density": 1,
+        "target": {
+          "clipped": false,
+          "enabled": true,
+          "hit_rect_px": [
+            22,
+            146,
+            588,
+            52
+          ],
+          "id": "restart",
+          "rect_px": [
+            22,
+            146,
+            588,
+            52
+          ],
+          "text": "Neue Runde",
+          "visible": true
+        },
+        "exact_target_record": true
+      },
+      "actual_scroll": {
+        "drag_events": 8,
+        "initial_target_rect_px": [
+          22,
+          174,
+          588,
+          52
+        ],
+        "input_end_exclusive": 52,
+        "input_start_inclusive": 44,
+        "scroll_after": 89,
+        "scroll_before": 61,
+        "range_input_count": 8,
+        "all_range_inputs_drag": true,
+        "all_drag_revisions_match_before": true,
+        "frames": [
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218
+        ]
+      },
+      "actual_taps": [
+        {
+          "frame": 231,
+          "label": "restart exposed result action",
+          "pressed": true,
+          "screen_px": [
+            316,
+            172
+          ],
+          "snapshot_revision": 18
+        },
+        {
+          "frame": 232,
+          "label": "restart exposed result action",
+          "pressed": false,
+          "screen_px": [
+            316,
+            172
+          ],
+          "snapshot_revision": 18
+        }
+      ],
+      "tapped_center": [
+        316,
+        172
+      ],
+      "request": {
+        "action": "restart",
+        "revision": 18,
+        "roundId": "9cfa9f4fc152e46a41204df44de59d65",
+        "sequence": 11,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "request_observed_by_dart": true,
+      "original_published_state_matches": {
+        "before": true,
+        "after": true
+      },
+      "transition": {
+        "before_round": "9cfa9f4fc152e46a41204df44de59d65",
+        "after_round": "d14950fcfa6dea8004ed186de8036654",
+        "before_revision": 18,
+        "after_revision": 19,
+        "before_ack": 10,
+        "after_ack": 11,
+        "before_phase": "won",
+        "after_phase": "playing",
+        "before_paused": true,
+        "after_paused": false,
+        "before_twoPlayers": true,
+        "after_twoPlayers": true,
+        "after_columns": [],
+        "after_board_empty": true,
+        "after_canDrop": true,
+        "after_rewarded": false
+      }
+    },
+    {
+      "action": "mode",
+      "capture_state_match": {
+        "before": true,
+        "after": true
+      },
+      "capture_sequences": [
+        9,
+        10
+      ],
+      "geometry": {
+        "window_px": [
+          640,
+          360
+        ],
+        "viewport_px": [
+          640,
+          360
+        ],
+        "safe_rect": [
+          0,
+          24,
+          640,
+          312
+        ],
+        "density": 1,
+        "target": {
+          "clipped": false,
+          "enabled": true,
+          "hit_rect_px": [
+            22,
+            147,
+            588,
+            52
+          ],
+          "id": "mode",
+          "rect_px": [
+            22,
+            147,
+            588,
+            52
+          ],
+          "text": "Gegen Lumo spielen",
+          "visible": true
+        },
+        "exact_target_record": true
+      },
+      "actual_scroll": {
+        "drag_events": 16,
+        "initial_target_rect_px": [
+          22,
+          236,
+          588,
+          52
+        ],
+        "input_end_exclusive": 94,
+        "input_start_inclusive": 78,
+        "scroll_after": 148,
+        "scroll_before": 59,
+        "range_input_count": 16,
+        "all_range_inputs_drag": true,
+        "all_drag_revisions_match_before": true,
+        "frames": [
+          387,
+          388,
+          389,
+          390,
+          391,
+          392,
+          393,
+          394,
+          408,
+          409,
+          410,
+          411,
+          412,
+          413,
+          414,
+          415
+        ]
+      },
+      "actual_taps": [
+        {
+          "frame": 428,
+          "label": "mode exposed result action",
+          "pressed": true,
+          "screen_px": [
+            316,
+            173
+          ],
+          "snapshot_revision": 33
+        },
+        {
+          "frame": 429,
+          "label": "mode exposed result action",
+          "pressed": false,
+          "screen_px": [
+            316,
+            173
+          ],
+          "snapshot_revision": 33
+        }
+      ],
+      "tapped_center": [
+        316,
+        173
+      ],
+      "request": {
+        "action": "mode",
+        "revision": 33,
+        "roundId": "d14950fcfa6dea8004ed186de8036654",
+        "sequence": 20,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "twoPlayers": false
+      },
+      "request_observed_by_dart": true,
+      "original_published_state_matches": {
+        "before": true,
+        "after": true
+      },
+      "transition": {
+        "before_round": "d14950fcfa6dea8004ed186de8036654",
+        "after_round": "9729b63cc7402806d9c46124770f4f5c",
+        "before_revision": 33,
+        "after_revision": 34,
+        "before_ack": 19,
+        "after_ack": 20,
+        "before_phase": "won",
+        "after_phase": "playing",
+        "before_paused": true,
+        "after_paused": false,
+        "before_twoPlayers": true,
+        "after_twoPlayers": false,
+        "after_columns": [],
+        "after_board_empty": true,
+        "after_canDrop": true,
+        "after_rewarded": false
+      }
+    }
+  ],
+  "verified_runtime_results": {
+    "native_passed": true,
+    "native_checks": 283,
+    "native_errors": [],
+    "completed_actions": [
+      "restart",
+      "mode"
+    ],
+    "dart_passed": true,
+    "dart_verified_actions": [
+      "restart",
+      "mode"
+    ],
+    "stars": 10,
+    "xp": 80,
+    "reopened_same_round": true,
+    "final_exit_ack": 21,
+    "final_exit": true
+  },
+  "interpretation": [
+    "The before captures show complete 588x52 targets at declared density 1.0, matching their full unclipped hit rectangles inside the declared 640x360 window and [0,24,640,312] safe area.",
+    "Restart uses eight recorded drag events, scrolling 61 to 89, followed by a real press/release at [316,172]; request sequence 11 receives ACK 11 and a new empty two-player round.",
+    "Mode uses sixteen recorded drag events, scrolling 59 to 148, followed by a real press/release at [316,173]; request sequence 20 receives ACK 20 and a new empty solo round.",
+    "Both exact requests appear in original Dart received_requests; both before/after states match actual published Dart state events and their corresponding layout observations.",
+    "Partial clipping of adjacent non-target actions is visible at the scroll boundary; neither tested target is clipped.",
+    "The two after PNGs share the same original hash and image content. Mode differentiation therefore rests on the bound real state/ACK data."
+  ],
+  "limits": [
+    "This is the exact 640x360 desktop rendering/input fixture with declared density and safe-area data, not an Android device or Binder test.",
+    "The images themselves do not prove scrolling or request acceptance; those conclusions use their paired original input, layout and Dart state records.",
+    "Recorded frame indices identify ordered logical probe steps; they are not a measured FPS or latency result.",
+    "No new test, engine, renderer, artifact download, source edit, ref update or publication was performed by this review.",
+    "This targeted result does not constitute whole-app, Play Store, audio, performance or general device certification."
+  ]
+}

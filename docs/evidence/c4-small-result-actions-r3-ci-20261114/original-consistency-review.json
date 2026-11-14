@@ -1,0 +1,236 @@
+{
+  "schema": "lumo.c4.small-result-actions.r3-original-consistency-review.v1",
+  "all_asserted_original_bindings_valid": true,
+  "source_before_after": {
+    "bytes": 616879,
+    "sha256": "009c0dd5b9cfde08e3a977249a4db64a0db935a48fde71f819271e5ca9a0490d",
+    "git_blob": "3293e58f3b217793aedb3d5fc013cb2c5097f923"
+  },
+  "matched_remote_source_entries": {
+    "host": 447,
+    "native": 1256,
+    "qa": 4
+  },
+  "heads": {
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "qa": "51d05896aec9bced8c789504161f2255441cd07f"
+  },
+  "trees": {
+    "host": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "native": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+    "qa": "1c95ba11ba980ed01bd3e76c91a66fdfcb23b8a4"
+  },
+  "generated_uid_entries": 334,
+  "uid_source_bindings_and_reconstructed_metadata_hashes_valid": true,
+  "all_103_original_members_unchanged": true,
+  "native_checks": 283,
+  "native_errors": [],
+  "process_exit_codes": {
+    "dart": 0,
+    "godot": 0
+  },
+  "request_count": 21,
+  "requests_native_dart_semantically_identical": true,
+  "dart_state_event_count": 35,
+  "actions": [
+    {
+      "action": "restart",
+      "label": "Neue Runde",
+      "drag_events": 8,
+      "scroll_before": 61,
+      "scroll_after": 89,
+      "tap_events": [
+        {
+          "frame": 231,
+          "label": "restart exposed result action",
+          "pressed": true,
+          "screen_px": [
+            316.0,
+            172.0
+          ],
+          "snapshot_revision": 18.0
+        },
+        {
+          "frame": 232,
+          "label": "restart exposed result action",
+          "pressed": false,
+          "screen_px": [
+            316.0,
+            172.0
+          ],
+          "snapshot_revision": 18.0
+        }
+      ],
+      "hit_rect_px": [
+        22.0,
+        146.0,
+        588.0,
+        52.0
+      ],
+      "target_size_dp": [
+        588.0,
+        52.0
+      ],
+      "before": {
+        "roundId": "9cfa9f4fc152e46a41204df44de59d65",
+        "revision": 18.0,
+        "ack": 10.0
+      },
+      "request": {
+        "action": "restart",
+        "revision": 18.0,
+        "roundId": "9cfa9f4fc152e46a41204df44de59d65",
+        "sequence": 11.0,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "after": {
+        "roundId": "d14950fcfa6dea8004ed186de8036654",
+        "revision": 19.0,
+        "ack": 11.0,
+        "twoPlayers": true,
+        "empty_board": true
+      }
+    },
+    {
+      "action": "mode",
+      "label": "Gegen Lumo spielen",
+      "drag_events": 16,
+      "scroll_before": 59,
+      "scroll_after": 148,
+      "tap_events": [
+        {
+          "frame": 428,
+          "label": "mode exposed result action",
+          "pressed": true,
+          "screen_px": [
+            316.0,
+            173.0
+          ],
+          "snapshot_revision": 33.0
+        },
+        {
+          "frame": 429,
+          "label": "mode exposed result action",
+          "pressed": false,
+          "screen_px": [
+            316.0,
+            173.0
+          ],
+          "snapshot_revision": 33.0
+        }
+      ],
+      "hit_rect_px": [
+        22.0,
+        147.0,
+        588.0,
+        52.0
+      ],
+      "target_size_dp": [
+        588.0,
+        52.0
+      ],
+      "before": {
+        "roundId": "d14950fcfa6dea8004ed186de8036654",
+        "revision": 33.0,
+        "ack": 19.0
+      },
+      "request": {
+        "action": "mode",
+        "revision": 33.0,
+        "roundId": "d14950fcfa6dea8004ed186de8036654",
+        "sequence": 20.0,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "twoPlayers": false
+      },
+      "after": {
+        "roundId": "9729b63cc7402806d9c46124770f4f5c",
+        "revision": 34.0,
+        "ack": 20.0,
+        "twoPlayers": false,
+        "empty_board": true
+      }
+    }
+  ],
+  "captures": [
+    {
+      "path": "small_result_restart_before.png",
+      "bytes": 21030,
+      "sha256": "1172ea356ab844f357ed0c3eb678a4e07b2c79dcb757077f0a43b6880dbe2352",
+      "git_blob": "d57460775512d80e3c906f0217b32635dd4d6bfe",
+      "layout": "small_result_restart_before.layout.json",
+      "layout_sequence": 5,
+      "revision": 18,
+      "ack": 10
+    },
+    {
+      "path": "small_result_restart_after.png",
+      "bytes": 29157,
+      "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+      "git_blob": "093d05df37c4033689cffbe08057706740d23072",
+      "layout": "small_result_restart_after.layout.json",
+      "layout_sequence": 6,
+      "revision": 19,
+      "ack": 11
+    },
+    {
+      "path": "small_result_mode_before.png",
+      "bytes": 22337,
+      "sha256": "b76ce45ea178deaaa994821fccd6341793d08c64e859489a0d868220b38dbc6d",
+      "git_blob": "7870c0a298e52724718be1c06ac63520e357d2cc",
+      "layout": "small_result_mode_before.layout.json",
+      "layout_sequence": 9,
+      "revision": 33,
+      "ack": 19
+    },
+    {
+      "path": "small_result_mode_after.png",
+      "bytes": 29157,
+      "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+      "git_blob": "093d05df37c4033689cffbe08057706740d23072",
+      "layout": "small_result_mode_after.layout.json",
+      "layout_sequence": 10,
+      "revision": 34,
+      "ack": 20
+    }
+  ],
+  "layout_sequences": [
+    5,
+    6,
+    9,
+    10
+  ],
+  "awards": [
+    {
+      "resultId": "c4:c6fe0e38855f93fc20490eb88cdc5e23a5ff16cc8fa1330c4c299717bd8f8781:9cfa9f4fc152e46a41204df44de59d65",
+      "stars": 5,
+      "xp": 40
+    },
+    {
+      "resultId": "c4:c6fe0e38855f93fc20490eb88cdc5e23a5ff16cc8fa1330c4c299717bd8f8781:d14950fcfa6dea8004ed186de8036654",
+      "stars": 5,
+      "xp": 40
+    }
+  ],
+  "stars": 10,
+  "xp": 80,
+  "exit": {
+    "sequence": 21,
+    "revision": 35,
+    "ack": 21,
+    "acknowledged": true
+  },
+  "same_process_test_preferences_reopen": {
+    "reported_true": true,
+    "round_id": "9729b63cc7402806d9c46124770f4f5c",
+    "twoPlayers": false,
+    "empty_unrewarded_round": true
+  },
+  "identical_after_png_bytes": true,
+  "limits": [
+    "Pure read-only original-artifact consistency review; no production or engine rerun.",
+    "Desktop local-file process boundary with injected density/insets and a SharedPreferences test backend; not Android Binder or cross-process persistence.",
+    "Mode change is evidenced by state/layout/ACK events; the two after PNGs are byte-identical empty-board views.",
+    "437 logical probe frames and --fixed-fps 24 are not an FPS measurement."
+  ]
+}

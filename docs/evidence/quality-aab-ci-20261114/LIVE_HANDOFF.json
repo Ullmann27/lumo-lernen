@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14T12:50:32Z",
+  "recorded_at_utc": "2026-11-14T13:00:00Z",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -26,14 +26,14 @@
     "attempt": 1,
     "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772",
     "status_at_last_read": "in_progress",
-    "last_read_utc": "2026-11-14 12:22:43 UTC",
+    "last_read_utc": "2026-11-14T12:54:43Z",
     "job": 132436033818,
     "job_started_utc": "2026-11-14T11:40:59Z",
     "current_step_at_last_read": "Require actual gameplay gates on the exact pinned native source",
     "step_started_utc": "2026-11-14T12:03:05Z",
     "old_comparable_step_seconds": 2639,
     "old_timing_is_not_current_success_or_eta": true,
-    "last_observed_at_utc": "2026-11-14T12:46:31Z",
+    "last_observed_at_utc": "2026-11-14T12:54:43Z",
     "jobs_snapshot": [
       {
         "id": 132435073772,
@@ -71,7 +71,11 @@
           }
         ]
       }
-    ]
+    ],
+    "active_log_read": {
+      "time": "2026-11-14T12:57:29Z",
+      "result": "404 BlobNotFound from official job-log endpoint; not a job failure conclusion"
+    }
   },
   "completed_original_evidence": {
     "desktop_runtime": {
@@ -419,7 +423,7 @@
         ],
         "gameplay_success_not_inferred": true
       },
-      "runtime_status": "not yet triggered"
+      "runtime_status": "R3 completed success; original artifacts read and all four pictures visually reviewed"
     },
     "r3": {
       "branch": "qa/lumo-c4-small-result-actions-20261114-2708-r3",
@@ -427,7 +431,7 @@
       "tree": "1c95ba11ba980ed01bd3e76c91a66fdfcb23b8a4",
       "run_id": 43596764202,
       "attempt": 1,
-      "status": "in_progress",
+      "status": "completed",
       "event": "push",
       "first_api_total_runs": 1,
       "root_decision": {
@@ -529,8 +533,132 @@
         "original_failure_preserved_in": "7526c6d189989ddd88817905a0034183f654c70b",
         "actual_gameplay_result": "pending; synthetic predicate acceptance is not gameplay acceptance",
         "permissions": "existing read-only contents permission; no release or APK build"
-      }
-    }
+      },
+      "conclusion": "success",
+      "artifact": {
+        "id": 14114498334,
+        "bytes": 1619461,
+        "sha256": "415ce3b5f51d510983c0184d37e479dc00844fa50f9dcd70c4f0493454228f64",
+        "git_blob": "5c6f90d0fb881f881d70faea5b84d2cfb974b977",
+        "path": "/workspace/scratch/2708c7907f28/r3-original-43596764202/original-artifact.zip",
+        "members": 103
+      },
+      "root_original_review": {
+        "schema": 1,
+        "run_id": 43596764202,
+        "attempt": 1,
+        "qa_head": "51d05896aec9bced8c789504161f2255441cd07f",
+        "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+        "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+        "root_read_only_original_replay": {
+          "native_checks": 283,
+          "errors": [],
+          "both_processes_exit_zero": true,
+          "native_dart_all_requests_equal": 21,
+          "actions_matched_to_original_dart_events_and_layouts": [
+            {
+              "action": "restart",
+              "ack": [
+                10,
+                11
+              ],
+              "revision": [
+                18,
+                19
+              ],
+              "new_round": "d14950fcfa6dea8004ed186de8036654",
+              "two_players_after": true,
+              "target_dp": [
+                588,
+                52
+              ],
+              "drag_events": 8
+            },
+            {
+              "action": "mode",
+              "ack": [
+                19,
+                20
+              ],
+              "revision": [
+                33,
+                34
+              ],
+              "new_round": "9729b63cc7402806d9c46124770f4f5c",
+              "two_players_after": false,
+              "target_dp": [
+                588,
+                52
+              ],
+              "drag_events": 16
+            }
+          ],
+          "awards": {
+            "unique": 2,
+            "stars": 10,
+            "xp": 80
+          },
+          "same_process_reopen": true,
+          "source_snapshots_byte_identical": true,
+          "source_snapshot_sha256": "009c0dd5b9cfde08e3a977249a4db64a0db935a48fde71f819271e5ca9a0490d"
+        },
+        "images": [
+          {
+            "path": "small_result_mode_after.png",
+            "bytes": 29157,
+            "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+            "dimensions": [
+              640,
+              360
+            ]
+          },
+          {
+            "path": "small_result_mode_before.png",
+            "bytes": 22337,
+            "sha256": "b76ce45ea178deaaa994821fccd6341793d08c64e859489a0d868220b38dbc6d",
+            "dimensions": [
+              640,
+              360
+            ]
+          },
+          {
+            "path": "small_result_restart_after.png",
+            "bytes": 29157,
+            "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+            "dimensions": [
+              640,
+              360
+            ]
+          },
+          {
+            "path": "small_result_restart_before.png",
+            "bytes": 21030,
+            "sha256": "1172ea356ab844f357ed0c3eb678a4e07b2c79dcb757077f0a43b6880dbe2352",
+            "dimensions": [
+              640,
+              360
+            ]
+          }
+        ],
+        "root_visual_review": {
+          "four_original_pngs_opened": true,
+          "restart_target": "Neue Runde fully visible in its own scrolled viewport; target not clipped",
+          "mode_target": "Gegen Lumo spielen fully visible in its own scrolled viewport; target not clipped",
+          "after_images": "Both show the same empty board and available drop buttons. Byte-identical after-images do not visually distinguish the mode; mode is proved by matching original Dart and layout states.",
+          "adjacent_control": "The preceding control is partly clipped by the scroll viewport; the targeted control is fully visible."
+        },
+        "limitations": [
+          "Actual desktop rendering and two-process local file transport only.",
+          "SharedPreferences test backend with same-process reopen; no Android Binder or disk durability claim.",
+          "No measured FPS or physical Android acceptance.",
+          "No game, renderer, or production tests rerun for this original-file review."
+        ]
+      },
+      "parent_full_remote_source_hash_handoff": "11feb336cdfbfdf26939a1d06f58aa80ab7a2e94",
+      "originals_and_review_complete": true,
+      "proof_scope": "Two actual desktop 640x360 scrolled result actions; Android/physical FPS outside scope"
+    },
+    "current_attempt": "r3"
   },
   "remaining": [
     "Native52, mandatory Return21 and Dream5/7/2 actual results",
@@ -564,7 +692,7 @@
   },
   "evidence": {
     "branch": "checkpoint/lumo-aab-ci-20261114-2708",
-    "prior_head": "296e7b098f2fcb8c592c44486ae2e46e55b31772",
+    "prior_head": "1000ca89dca1d31e76121f26c1e00fcce6272aa7",
     "original_803_evidence": "6a5ae5327570fc60434672074f246c95e1c59283",
     "old_803_apk_is_not_current_candidate": true
   },
