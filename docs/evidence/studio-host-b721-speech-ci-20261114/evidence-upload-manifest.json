@@ -1,0 +1,204 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T17:03:59.289623+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "scope": "Finite current b721 compile/Speech original evidence; no ZIP duplicate, no product source, no image, no live monitorfile",
+  "host_revision": "b7210db3f53361987fd33592de438fd7984d991a",
+  "run_id": 43618076296,
+  "job_id": 132517423515,
+  "files": [
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/README.md",
+      "mode": "100644",
+      "bytes": 3247,
+      "sha256": "902cd15609fe05dbc9e41d738f448a59a3b51e403577c03706d4092db1f6142f",
+      "git_blob": "fec9b953a4bee140ef9dead786a4c7dab870c68f"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/review.json",
+      "mode": "100644",
+      "bytes": 18266,
+      "sha256": "8106dab9b52cf8acebec6f260c1a62f711ea07b628dbbe0f91c2aa583629fd65",
+      "git_blob": "47f7222de314f389f8084ea6979a2264e86a2e7b"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/ci-source-comparison.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/ci-source-comparison.json",
+      "mode": "100644",
+      "bytes": 5533,
+      "sha256": "e22b8054ee26a599730fc0f3ce3de1c98b84d0c4661c72573214045bbf24fac0",
+      "git_blob": "1056d514720d31ed424470cf272d74f07cdd665c"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/original-artifact-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/original-artifact-binding.json",
+      "mode": "100644",
+      "bytes": 5633,
+      "sha256": "15da9f14fdb552caaad9d85e4a7beeed3074698261c1412dd858dbc626081b23",
+      "git_blob": "63d62e3f3ad2e254ddc21dbde153252200e4a07a"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/hostcompile-original-job.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/hostcompile-original-job.log",
+      "mode": "100644",
+      "bytes": 248796,
+      "sha256": "27a93b089b94a03f12849eb95ab8662440a73cc00a0d00033eef59e22e76d7fc",
+      "git_blob": "8dab820f420c92330b72ee155b86c296b9870247"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/run-initial-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/run-initial-original.json",
+      "mode": "100644",
+      "bytes": 13692,
+      "sha256": "1a7805106b7798c796e245b66f703fa955c52d6a0cbd5557d5977c27ff6bee5f",
+      "git_blob": "61f774a84c83bf3c13b6a47aa3022b5d0ee9d20c"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/jobs-165426-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/jobs-165426-original.json",
+      "mode": "100644",
+      "bytes": 8543,
+      "sha256": "2c173e9f8f3d1dbc0cfb09b604d098020824ab843c34711171f6653931042c53",
+      "git_blob": "e73fd46d7f6f623c7023ec45e8c5c3bdbc622c66"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/jobs-165627-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/jobs-165627-original.json",
+      "mode": "100644",
+      "bytes": 8887,
+      "sha256": "26018ead9de7bcc7406b2e01c2b783b04b8506ac7d8f268290e3c8d9abbc37b0",
+      "git_blob": "29627d529dd86cd23f65a5460ba53d7beab57251"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/jobs-165849-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/jobs-165849-original.json",
+      "mode": "100644",
+      "bytes": 8930,
+      "sha256": "42fdfdfc8315bd7cb68f1a65d5d5df7b9c4345cf1c3b9761fe6f86197f408326",
+      "git_blob": "95e070f7999e75fe819cd34d8ff30145eecaaf89"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/jobs-terminal-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/jobs-terminal-original.json",
+      "mode": "100644",
+      "bytes": 9341,
+      "sha256": "c2e87126e042719c81869ec89feaeaace907a1a2b5d7af7265259d32aca8130c",
+      "git_blob": "2e30316c09f176f5b06773aef537a8ca225a41dd"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/artifacts-terminal-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/artifacts-terminal-original.json",
+      "mode": "100644",
+      "bytes": 1513,
+      "sha256": "d57246cd012ad10d93a89eeb492f8d07e8a1b0a8c1f67549e40d96d41a81eec0",
+      "git_blob": "7f799860323742cc2ff2b4fc3bfbfdc928753aaa"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/cards-authority-registry.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/cards-authority-registry.log",
+      "mode": "100644",
+      "bytes": 1325,
+      "sha256": "5a1829d3a4e5c4fe33cca6af2cb79afa6df0ef59d7b4851cea2ca63e50eedc19",
+      "git_blob": "b66455a29bdeab5cafbd3313e5b722d8a70f9b02"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/compile.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/compile.log",
+      "mode": "100644",
+      "bytes": 34386,
+      "sha256": "4cdd8bca988b0a1a98b4fafcc33eda49e62241cc97b10a4f2af79f45c7e5790b",
+      "git_blob": "27e570a3f21a194c11ff78f0216c399c10d8c3c6"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/flutter-version.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/flutter-version.txt",
+      "mode": "100644",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/result.json",
+      "mode": "100644",
+      "bytes": 5235,
+      "sha256": "aec93cba646eebcb721714fcf7a4f94c5fce2513dabea228ae91798a827ec3e7",
+      "git_blob": "e03e969bce913e43a7069d27bd8c223df734584e"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/source-sha.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/source-sha.txt",
+      "mode": "100644",
+      "bytes": 41,
+      "sha256": "d2eb08849fc1e67c5546e8c94cd35c7485354cc48336de67d88beb5285d7a718",
+      "git_blob": "736c55be82243a7ebe0c7a7c4c2ecb4d3e73c570"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/resolved-toolchain.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/resolved-toolchain.json",
+      "mode": "100644",
+      "bytes": 321,
+      "sha256": "8b6ce8612de42cb27e8423e298e6df75f3b71523467006d18fc832e7a1a968c4",
+      "git_blob": "d2f2f0e24bfa6554e14dac47e8f08e261d28aba5"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/result.json",
+      "mode": "100644",
+      "bytes": 62738,
+      "sha256": "a3ac7e32c7433ca237b1d2102132d9ecae16703158c47b9443e3221965e11b35",
+      "git_blob": "d3d2ab7e9be66b08dae147d4041b65933e69a237"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/test_english_lesson_speech.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/test_english_lesson_speech.json",
+      "mode": "100644",
+      "bytes": 1338,
+      "sha256": "5d6d207c1fa1ebbf0d02c88f770ba95d3a51f703154b3cb08a9b41376687e9f5",
+      "git_blob": "5af2255c23b340a608068059672ee3e53bb26ecd"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/test_english_lesson_speech.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/test_english_lesson_speech.log",
+      "mode": "100644",
+      "bytes": 2894,
+      "sha256": "0654d0af03fece793d9a904b1ad5f792aafe2f0d68144c0684f9280b7517e50c",
+      "git_blob": "ffcb93a949a7a16a6a85736763b2f1c5c7ff328a"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/test_learning_english_speech_lifecycle.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/test_learning_english_speech_lifecycle.json",
+      "mode": "100644",
+      "bytes": 1264,
+      "sha256": "b561a7c397e245e5c0756d6690744ef50a37d76ca658ff10e90a817ebb16342a",
+      "git_blob": "9b0d584d1a595ae6d27d4930bec34bc5fc1e4930"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/test_learning_english_speech_lifecycle.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/test_learning_english_speech_lifecycle.log",
+      "mode": "100644",
+      "bytes": 2709,
+      "sha256": "550234e2bbb8198964c3aac01b13246f68d9c49d36d862ce0af16f6a5533df22",
+      "git_blob": "68d22fc01f704ba25f707128fa72ab972743a0dc"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/toolchain-original.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/toolchain-original.log",
+      "mode": "100644",
+      "bytes": 493,
+      "sha256": "08d6c47210556d277a874e674b6c75b0add0f52a55267343be3990268ec001a7",
+      "git_blob": "cd2b9f3f13b2c0d47999ecd8fd56b9ac408c103f"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/table-native-contracts.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/table-native-contracts.log",
+      "mode": "100644",
+      "bytes": 4804,
+      "sha256": "37084aab3aa66bba3148196e9da81de9f0b7770a1abad1f6707f2899192e1e44",
+      "git_blob": "375760df15431bc607e4504946f11dcfc1fca936"
+    }
+  ],
+  "count": 24
+}

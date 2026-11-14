@@ -1,0 +1,23 @@
+test_host_descriptor_owns_word_and_language (test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_host_descriptor_owns_word_and_language) ... ok
+test_late_results_after_pause_replace_and_destroy (test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_late_results_after_pause_replace_and_destroy) ... ok
+test_malformed_current_lesson_refused (test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_malformed_current_lesson_refused) ... ok
+test_one_player_real_position_and_pcm_gap (test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_one_player_real_position_and_pcm_gap) ... ok
+test_original_seventeen_lifecycle_assertions (test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_original_seventeen_lifecycle_assertions) ... ok
+test_original_twenty_three_envelope_assertions (test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_original_twenty_three_envelope_assertions) ... ok
+test_parent_guards_and_old_german_signature (test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_parent_guards_and_old_german_signature) ... ok
+test_wrong_result_word_locale_identity_refused (test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_wrong_result_word_locale_identity_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 22.170s
+
+OK
+Complete production Kotlin LumoLearningSpeech.kt SHA256=2102205e2976e074c9d0d0fca71448671edd82a5d74a8e2974a6ba9408ca525f
+Complete production Kotlin LumoSpeechEnvelope.kt SHA256=c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8
+ENGLISH_LESSON_LIFECYCLE_PASS scenario=binding checks=44 platform=synthetic_JVM_boundary no_inference_or_Android_audio_claim=true
+ENGLISH_LESSON_LIFECYCLE_PASS scenario=late-callback checks=3 platform=synthetic_JVM_boundary no_inference_or_Android_audio_claim=true
+ENGLISH_LESSON_LIFECYCLE_PASS scenario=invalid-descriptor checks=14 platform=synthetic_JVM_boundary no_inference_or_Android_audio_claim=true
+ENGLISH_LESSON_LIFECYCLE_PASS scenario=one-player checks=6 platform=synthetic_JVM_boundary no_inference_or_Android_audio_claim=true
+LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true
+LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47
+ENGLISH_LESSON_LIFECYCLE_PASS scenario=parent-and-default checks=6 platform=synthetic_JVM_boundary no_inference_or_Android_audio_claim=true
+ENGLISH_LESSON_LIFECYCLE_PASS scenario=result-identity checks=6 platform=synthetic_JVM_boundary no_inference_or_Android_audio_claim=true

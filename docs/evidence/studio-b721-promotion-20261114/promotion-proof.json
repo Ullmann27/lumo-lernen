@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "branch": "refs/heads/chatgpt/lumo-studio-2020-20261114",
+  "before": "14ca47948b25ac0aca221654ac6f5d1a093b349a",
+  "after": "b7210db3f53361987fd33592de438fd7984d991a",
+  "tree": "c65558a13e4dd2950eda7a685583e5484d9b9959",
+  "ancestors_ahead": 12,
+  "merge_base": "14ca47948b25ac0aca221654ac6f5d1a093b349a",
+  "feature_run": 43618076296,
+  "feature_jobs": [
+    {
+      "id": 132517423515,
+      "name": "android-host-compile",
+      "conclusion": "success"
+    },
+    {
+      "id": 132517423810,
+      "name": "flutter-contracts",
+      "conclusion": "success"
+    },
+    {
+      "id": 132517423829,
+      "name": "memory-source-contracts",
+      "conclusion": "success"
+    }
+  ],
+  "script_recovery_run": 43618078329,
+  "script_recovery_conclusion": "success",
+  "force": false,
+  "expected_head_lease": true,
+  "post_ref_verified": true,
+  "main_unchanged": "b24474875fe6eb02d4de01030eab9fa4a4aa6007",
+  "scope": "Development Studio fast-forward only. Android/APK/update/publication outcomes remain pending."
+}

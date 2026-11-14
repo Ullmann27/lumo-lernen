@@ -1,0 +1,349 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_utc": "2026-11-14T17:03:59.289623+00:00",
+  "status": "PASS_WITHIN_ANDROID_COMPILE_AND_JVM_CONTRACT_SCOPE",
+  "host_revision": "b7210db3f53361987fd33592de438fd7984d991a",
+  "run_id": 43618076296,
+  "job_id": 132517423515,
+  "job_name": "android-host-compile",
+  "job_conclusion": "success",
+  "completed_at": "2026-11-14T17:00:08Z",
+  "scope": "Current actual host compilation and speech JVM execution; no whole feature workflow, APK, Android playback, learned pronunciation or model inference acceptance",
+  "artifact": {
+    "id": 14123441105,
+    "bytes": 29621,
+    "sha256": "b7475b6099187a0562cd11b8471f19b755052829014b7c046d42f91a2cf3deeb",
+    "all_crc_pass": true,
+    "members": 13,
+    "downloads_performed": 1
+  },
+  "original_job_log": {
+    "path": "hostcompile-original-job.log",
+    "bytes": 248796,
+    "sha256": "27a93b089b94a03f12849eb95ab8662440a73cc00a0d00033eef59e22e76d7fc",
+    "git_blob": "8dab820f420c92330b72ee155b86c296b9870247",
+    "fetches_performed": 1,
+    "fetched_only_after_terminal": true
+  },
+  "host_compile": {
+    "status": "PASS",
+    "compile_step_started": "2026-11-14T16:54:56Z",
+    "compile_step_completed": "2026-11-14T16:58:40Z",
+    "actual_class_names": [
+      "MainActivity",
+      "LumoGameActivity",
+      "LumoHostPlugin",
+      "CardsTableBridge",
+      "CardsAuthorityService",
+      "CardsAuthorityRegistry",
+      "LumoLearningSpeech",
+      "LumoSpeechEnvelope",
+      "LumoOfflineSpeechBridge",
+      "LumoOfflineSpeechEngine",
+      "ConnectFourBridge",
+      "ConnectFourGameActivity",
+      "ConnectFourAuthorityService",
+      "TableGameActivity",
+      "TableGamesHostPlugin",
+      "TableGamesBridge",
+      "TableAuthorityService",
+      "TableGameIntent"
+    ],
+    "class_count": 18,
+    "reported_class_hashes": {
+      "MainActivity": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/MainActivity.class",
+          "bytes": 26713,
+          "sha256": "290383312f05823e052c187a979876ca6363530e59fadc14d709d30de2ef4b40"
+        }
+      ],
+      "LumoGameActivity": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoGameActivity.class",
+          "bytes": 15416,
+          "sha256": "337b5b66b83a3531bb22af6c0cadc167c454e0d6e645195543037d2cfb92072e"
+        }
+      ],
+      "LumoHostPlugin": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoHostPlugin.class",
+          "bytes": 4594,
+          "sha256": "4c189b04c5a68b667a016df1197854fae2a7d16b447c54065b217994cdb5d9b4"
+        }
+      ],
+      "CardsTableBridge": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/CardsTableBridge.class",
+          "bytes": 20859,
+          "sha256": "434667a7937f5ce3957f6aa3ce5bd9db3ece3c69a10262746fa628e19d3792fa"
+        }
+      ],
+      "CardsAuthorityService": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/CardsAuthorityService.class",
+          "bytes": 2674,
+          "sha256": "f9fbd8919270c109d3e52fbe61d2f6fae00f95392a637ebb7eb1799007c74b1d"
+        }
+      ],
+      "CardsAuthorityRegistry": [
+        {
+          "path": "build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/dev/ullmann/lumo/lumo_lernen/CardsAuthorityRegistry.class",
+          "bytes": 1797,
+          "sha256": "4f6a6545b1fd26f90b563be7c75628f8223b63edb3be646208a43eff39991b35"
+        }
+      ],
+      "LumoLearningSpeech": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.class",
+          "bytes": 20316,
+          "sha256": "99e9c05523e135982f9464b6c2133d8924d4d377f5a9f0c02311ded2d3476f97"
+        }
+      ],
+      "LumoSpeechEnvelope": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoSpeechEnvelope.class",
+          "bytes": 2625,
+          "sha256": "215fa731eccaa126e6581e4914a359f5059d6590417d40ad5e26d66da60f0b27"
+        }
+      ],
+      "LumoOfflineSpeechBridge": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoOfflineSpeechBridge.class",
+          "bytes": 20540,
+          "sha256": "751d25bdfa2e70a2af2ab994fcfcb2fc1795c60b46ac568f2258133f8ae12524"
+        }
+      ],
+      "LumoOfflineSpeechEngine": [
+        {
+          "path": "build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/dev/ullmann/lumo/lumo_lernen/LumoOfflineSpeechEngine.class",
+          "bytes": 19093,
+          "sha256": "261d8f9d58ee326563f0f006f71e6b25e97cede5a094acb87cf7f3d7c7bca6aa"
+        }
+      ],
+      "ConnectFourBridge": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/ConnectFourBridge.class",
+          "bytes": 22994,
+          "sha256": "d32a52ab426bdd2a7b3e30a6201c0292079d214067077c91f911de31d8857986"
+        }
+      ],
+      "ConnectFourGameActivity": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/ConnectFourGameActivity.class",
+          "bytes": 13297,
+          "sha256": "62a52e94a0ee9c976d62e72180b6b19fdd8311e373ead886659aa29337c99c98"
+        }
+      ],
+      "ConnectFourAuthorityService": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/ConnectFourAuthorityService.class",
+          "bytes": 2552,
+          "sha256": "9b179b88f63f2197bf476de1965af84876e2283ab840c1a31996146c92938aaa"
+        }
+      ],
+      "TableGameActivity": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/TableGameActivity.class",
+          "bytes": 13750,
+          "sha256": "69b9b7800ec9941a9553f64ba75e4cf9e238be2ae8292dd410c44e0f21585442"
+        }
+      ],
+      "TableGamesHostPlugin": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/TableGamesHostPlugin.class",
+          "bytes": 2347,
+          "sha256": "71fe7c02fbb1038eaa6eb4f4731a39550ff25fd30bed40ca49a2425c742502e1"
+        }
+      ],
+      "TableGamesBridge": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/TableGamesBridge.class",
+          "bytes": 23573,
+          "sha256": "c67a34611bca1097583079a8c9f1eece040d1aac6c70d739caa97c99ab15c4b6"
+        }
+      ],
+      "TableAuthorityService": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/TableAuthorityService.class",
+          "bytes": 2639,
+          "sha256": "5fd44f603f42304792584e209bf53879aa7b81527883222305ad44117e8c8d7d"
+        }
+      ],
+      "TableGameIntent": [
+        {
+          "path": "build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/dev/ullmann/lumo/lumo_lernen/TableGameIntent.class",
+          "bytes": 3821,
+          "sha256": "68a789ac3a8f757798859a719a59e466be3450a0be34a789a8fc34f0c3520608"
+        }
+      ]
+    },
+    "scope": "Actual Android Kotlin/Java compilation report includes CAFEBABE-checked class files; artifact contains their report, not class-file payloads",
+    "report": {
+      "path": "originals/result.json",
+      "bytes": 5235,
+      "sha256": "aec93cba646eebcb721714fcf7a4f94c5fce2513dabea228ae91798a827ec3e7",
+      "git_blob": "e03e969bce913e43a7069d27bd8c223df734584e"
+    }
+  },
+  "speech": {
+    "status": "PASS",
+    "started_utc": "2026-11-14T16:58:40.327717+00:00",
+    "completed_utc": "2026-11-14T16:59:29.342619+00:00",
+    "groups": [
+      {
+        "module": "test_english_lesson_speech",
+        "cases": 11,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "duration_seconds": 2.247062550999999,
+        "process_seconds": 2.3213495119999834,
+        "exit_code": 0,
+        "log": "originals/speech/test_english_lesson_speech.log",
+        "log_binding": {
+          "bytes": 2894,
+          "sha256": "0654d0af03fece793d9a904b1ad5f792aafe2f0d68144c0684f9280b7517e50c",
+          "git_blob": "ffcb93a949a7a16a6a85736763b2f1c5c7ff328a"
+        }
+      },
+      {
+        "module": "test_learning_english_speech_lifecycle",
+        "cases": 8,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "duration_seconds": 22.16979704000005,
+        "process_seconds": 22.275171524999962,
+        "exit_code": 0,
+        "log": "originals/speech/test_learning_english_speech_lifecycle.log",
+        "log_binding": {
+          "bytes": 2709,
+          "sha256": "550234e2bbb8198964c3aac01b13246f68d9c49d36d862ce0af16f6a5533df22",
+          "git_blob": "68d22fc01f704ba25f707128fa72ab972743a0dc"
+        }
+      }
+    ],
+    "total_cases": 19,
+    "java_assertions": 103,
+    "current_historical_kotlin_assertions": {
+      "envelope": 23,
+      "lifecycle": 17
+    },
+    "new_kotlin_scenarios": [
+      {
+        "scenario": "binding",
+        "checks": 44
+      },
+      {
+        "scenario": "late-callback",
+        "checks": 3
+      },
+      {
+        "scenario": "invalid-descriptor",
+        "checks": 14
+      },
+      {
+        "scenario": "one-player",
+        "checks": 6
+      },
+      {
+        "scenario": "parent-and-default",
+        "checks": 6
+      },
+      {
+        "scenario": "result-identity",
+        "checks": 6
+      }
+    ],
+    "new_kotlin_assertions": 79,
+    "source_before_after_equal": true,
+    "source_count": 15,
+    "independent_source_comparison": {
+      "path": "ci-source-comparison.json",
+      "bytes": 5533,
+      "sha256": "e22b8054ee26a599730fc0f3ce3de1c98b84d0c4661c72573214045bbf24fac0",
+      "git_blob": "1056d514720d31ed424470cf272d74f07cdd665c"
+    },
+    "toolchain": {
+      "gradle_home": "/home/runner/.gradle/wrapper/dists/gradle-9.1.0-all/7wzd0jkjit61aq2p43wpjgij9/gradle-9.1.0",
+      "gradle_version": "9.1.0",
+      "kotlin_lib_dir": "/home/runner/.gradle/wrapper/dists/gradle-9.1.0-all/7wzd0jkjit61aq2p43wpjgij9/gradle-9.1.0/lib",
+      "java_home": "/usr/lib/jvm/temurin-17-jdk-amd64",
+      "java_version": "17.0.21"
+    },
+    "compiler": "kotlin-compiler-embeddable-2.2.0.jar",
+    "stdlib": "kotlin-stdlib-2.2.0.jar",
+    "recorded_compiler_jar_count": 181,
+    "offline_toolchain_exit_code": 0,
+    "report": {
+      "path": "originals/speech/result.json",
+      "bytes": 62738,
+      "sha256": "a3ac7e32c7433ca237b1d2102132d9ecae16703158c47b9443e3221965e11b35",
+      "git_blob": "d3d2ab7e9be66b08dae147d4041b65933e69a237"
+    }
+  },
+  "following_table_contracts": {
+    "cases": 28,
+    "duration_seconds": 32.872,
+    "status": "PASS",
+    "original_log": {
+      "path": "originals/table-native-contracts.log",
+      "bytes": 4804,
+      "sha256": "37084aab3aa66bba3148196e9da81de9f0b7770a1abad1f6707f2899192e1e44",
+      "git_blob": "375760df15431bc607e4504946f11dcfc1fca936"
+    }
+  },
+  "warnings": {
+    "present": true,
+    "original_lines": [
+      "WARNING: Unsupported Kotlin plugin version.",
+      "WARNING: The option setting 'android.builtInKotlin=false' is deprecated.",
+      "WARNING: The option setting 'android.newDsl=false' is deprecated.",
+      "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:7:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.",
+      "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:49:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.",
+      "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:70:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.",
+      "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:98:5: 'val Project.android: BaseAppModuleExtension' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.",
+      "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:109:34: 'val Project.android: BaseAppModuleExtension' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.",
+      "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+      "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+      "w: file:///home/runner/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.35/android/build.gradle.kts:26:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension.",
+      "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+      "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+      "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+      "w: file:///home/runner/.pub-cache/hosted/pub.dev/image_picker_android-0.8.13+25/android/build.gradle.kts:34:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension.",
+      "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+      "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+      "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+      "w: file:///home/runner/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.28/android/build.gradle.kts:40:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension.",
+      "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+      "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+      "w: file:///home/runner/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.33/android/build.gradle.kts:34:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension.",
+      "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+      "w: file:///home/runner/.pub-cache/hosted/pub.dev/audioplayers_android-5.3.0/android/src/main/kotlin/xyz/luan/audioplayers/AudioplayersPlugin.kt:72:30 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.",
+      "w: file:///home/runner/.pub-cache/hosted/pub.dev/audioplayers_android-5.3.0/android/src/main/kotlin/xyz/luan/audioplayers/player/WrappedPlayer.kt:172:22 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.",
+      "w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:381:23 Unnecessary safe call on a non-null receiver of type 'SpeechRecognizer'.",
+      "w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:386:35 Unnecessary safe call on a non-null receiver of type 'SpeechRecognizer'.",
+      "w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:390:35 Unnecessary safe call on a non-null receiver of type 'SpeechRecognizer'.",
+      "w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:575:45 'static fun getDefaultAdapter(): BluetoothAdapter!' is deprecated. Deprecated in Java.",
+      "w: file:///home/runner/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.28/android/src/main/kotlin/io/flutter/plugins/sharedpreferences/SharedPreferencesPlugin.kt:450:52 Unnecessary non-null assertion (!!) on a non-null receiver of type 'String'.",
+      "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/ConnectFourGameActivity.kt:78:27 The corresponding parameter in the supertype 'GodotActivity' is named 'savedInstanceState'. This may cause problems when calling this function with named arguments.",
+      "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.kt:208:51 Unnecessary non-null assertion (!!) on a non-null receiver of type 'MediaPlayer'.",
+      "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.kt:209:51 Unnecessary non-null assertion (!!) on a non-null receiver of type 'MediaPlayer'.",
+      "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/MainActivity.kt:282:97 Unnecessary non-null assertion (!!) on a non-null receiver of type 'String'.",
+      "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/TableGameActivity.kt:51:27 The corresponding parameter in the supertype 'GodotActivity' is named 'savedInstanceState'. This may cause problems when calling this function with named arguments.",
+      "Deprecated Gradle features were used in this build, making it incompatible with Gradle 10."
+    ],
+    "specific_version_warning": "Gradle embedded-kotlin/kotlin-dsl expects 2.2.0 whereas the build requests 2.2.20; the original compile succeeds. The independent JVM harness uses the observed installed Kotlin 2.2.0 compiler.",
+    "no_claim_of_warning_free_compilation": true
+  },
+  "limits": [
+    "Java inference boundaries are synthetic ONNX doubles; no model weights inferred or new speech audio created by these tests.",
+    "Kotlin lifecycle uses declared Android/bridge boundary fixtures; success is not Android MediaPlayer playback or heard English pronunciation.",
+    "The original apfel WAV is preserved and used by the envelope contract; no listening claim.",
+    "The Native29080 pin is context supplied by the integrated host; this compile artifact does not build or verify an embedded PCK or APK.",
+    "The local17/19Python runner-boundary results are historical separate evidence and were not counted as these19CI production cases.",
+    "No workflow rerun, source patch, tree, commit, ref or PR mutation performed."
+  ]
+}

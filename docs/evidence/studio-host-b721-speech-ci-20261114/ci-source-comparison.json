@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "host_revision": "b7210db3f53361987fd33592de438fd7984d991a",
+  "run_id": 43618076296,
+  "job_id": 132517423515,
+  "scope": "Read-only comparison of actual original CI source-before records against preserved exact2e20 Git tree and the frozen EN/DE/runner source manifests; no tests repeated",
+  "all_fifteen_match": true,
+  "files": [
+    {
+      "path": "scripts/run_speech_jvm_contracts.py",
+      "git_blob": "9d17f343b16d80bddb861cf26cfeae9e38994f24",
+      "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+      "bytes": 19493,
+      "expected_from": "Frozen exact EN/DE or runner source manifest",
+      "matches": true
+    },
+    {
+      "path": "scripts/compile_android_host.sh",
+      "git_blob": "c5138523453d4e185f6af46f96e15478888075de",
+      "sha256": "42ad647a647183845ae2ec48dfd778166d6c36f7828b2e1f06b51b4756bf1419",
+      "bytes": 3499,
+      "expected_from": "Complete exact 2e20 GitHub baseline tree",
+      "matches": true
+    },
+    {
+      "path": "scripts/gradle/lumo-maven-central-mirror.init.gradle",
+      "git_blob": "2bc1e7655536e92a8d7ff2cccbc8026f932ea208",
+      "sha256": "c2e916a873e72ec168419f50bda024184c692d16c5c1d0406af50e5813685ac6",
+      "bytes": 3574,
+      "expected_from": "Complete exact 2e20 GitHub baseline tree",
+      "matches": true
+    },
+    {
+      "path": "scripts/speech_contracts/test_english_lesson_speech.py",
+      "git_blob": "93b4d63069533f160207e098ff6093c963ce3bfd",
+      "sha256": "96326b009847dfe0b4979dd80d247d6d343c97ed3778e0e1e5394df2590e9a81",
+      "bytes": 18072,
+      "expected_from": "Frozen exact EN/DE or runner source manifest",
+      "matches": true
+    },
+    {
+      "path": "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+      "git_blob": "b0fe0ebe291be6ba1f84ab6bda50ab34c987823a",
+      "sha256": "f2f49ce0928b18058beefa9539c776da4379c6470073976831388d7e993b3e89",
+      "bytes": 6350,
+      "expected_from": "Frozen exact EN/DE or runner source manifest",
+      "matches": true
+    },
+    {
+      "path": "scripts/voice/LumoOfflineSpeechEngineProbe.java",
+      "git_blob": "e16b0a53e240bf4fffb536f0b698ea42560c8437",
+      "sha256": "34e29837463ee55953c6f518c1ee02137bc2fbacf3d37dbce72517ec0c42e516",
+      "bytes": 5482,
+      "expected_from": "Complete exact 2e20 GitHub baseline tree",
+      "matches": true
+    },
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "git_blob": "755077c4f1385f9b09464113aeaab3a20ec8a376",
+      "sha256": "2102205e2976e074c9d0d0fca71448671edd82a5d74a8e2974a6ba9408ca525f",
+      "bytes": 11318,
+      "expected_from": "Frozen exact EN/DE or runner source manifest",
+      "matches": true
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "git_blob": "9e034ca2a46e53adf8a3014c0e8868d33ba54a9c",
+      "sha256": "3e2ab56fe6c75cdfd04ef032dc20d07f38b1e8fc8f925a7753893482c623270c",
+      "bytes": 9663,
+      "expected_from": "Frozen exact EN/DE or runner source manifest",
+      "matches": true
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "git_blob": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd",
+      "sha256": "6a8383795979c7bea9f89c44b5419a417edce249c92a93db63e896ce8a303ddc",
+      "bytes": 19214,
+      "expected_from": "Frozen exact EN/DE or runner source manifest",
+      "matches": true
+    },
+    {
+      "path": "tools/auto_install/LumoSpeechEnvelope.kt",
+      "git_blob": "5721274734e111e96d55762d86b3d3e830fc26e8",
+      "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8",
+      "bytes": 4697,
+      "expected_from": "Complete exact 2e20 GitHub baseline tree",
+      "matches": true
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt",
+      "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292",
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+      "bytes": 4342,
+      "expected_from": "Frozen exact EN/DE or runner source manifest",
+      "matches": true
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt",
+      "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a",
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+      "bytes": 4381,
+      "expected_from": "Frozen exact EN/DE or runner source manifest",
+      "matches": true
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt",
+      "git_blob": "9e22b98ad3938b6d0dafd4c1971d20faf09e337a",
+      "sha256": "78375595ea5456a6106933bc1f5463242b836e72f4a0c989ca275a9f1c9a1bd5",
+      "bytes": 9459,
+      "expected_from": "Frozen exact EN/DE or runner source manifest",
+      "matches": true
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/platform_fixture.py",
+      "git_blob": "40897dc0e2a48cb0c054f19820557ffa7fc43579",
+      "sha256": "99203bbf7a00f908af1f0df57b97156894668f3b615f58ff56264a4dcbf1fa4d",
+      "bytes": 5481,
+      "expected_from": "Frozen exact EN/DE or runner source manifest",
+      "matches": true
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/apfel-original.wav",
+      "git_blob": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905",
+      "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+      "bytes": 40970,
+      "expected_from": "Frozen exact EN/DE or runner source manifest",
+      "matches": true
+    }
+  ]
+}
