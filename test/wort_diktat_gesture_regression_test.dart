@@ -28,10 +28,14 @@ class _SourceAssetBundle extends CachingAssetBundle {
   Future<ByteData> load(String key) async {
     if (key == 'AssetManifest.bin') {
       return const StandardMessageCodec().encodeMessage({
-        for (final image in images) image: [<String, Object>{'asset': image}],
+        for (final image in images)
+          image: [
+            <String, Object>{'asset': image}
+          ],
       })!;
     }
-    final root = Platform.environment['LUMO_GESTURE_ASSET_ROOT'] ?? Directory.current.path;
+    final root = Platform.environment['LUMO_GESTURE_ASSET_ROOT'] ??
+        Directory.current.path;
     return ByteData.sublistView(await File('$root/$key').readAsBytes());
   }
 }
@@ -59,8 +63,10 @@ void main() {
     final loader = FontLoader('Nunito');
     for (final name in ['Regular', 'Bold', 'ExtraBold', 'Black']) {
       final font = File('assets/fonts/Nunito-$name.ttf');
-      expect(font.existsSync(), isTrue, reason: 'Use the production font metrics.');
-      loader.addFont(Future.value(ByteData.sublistView(await font.readAsBytes())));
+      expect(font.existsSync(), isTrue,
+          reason: 'Use the production font metrics.');
+      loader.addFont(
+          Future.value(ByteData.sublistView(await font.readAsBytes())));
     }
     await loader.load();
   });
@@ -97,12 +103,14 @@ void main() {
         ),
       ));
       await frames(tester);
-      final area = find.descendant(
-        of: find.byType(WortDiktatScreen),
-        matching: find.byWidgetPredicate((widget) =>
-            widget is CustomPaint &&
-            widget.painter?.runtimeType.toString() == '_StrokesPainter'),
-      ).first;
+      final area = find
+          .descendant(
+            of: find.byType(WortDiktatScreen),
+            matching: find.byWidgetPredicate((widget) =>
+                widget is CustomPaint &&
+                widget.painter?.runtimeType.toString() == '_StrokesPainter'),
+          )
+          .first;
       expect(area, findsOneWidget);
       await tester.ensureVisible(area);
       await frames(tester, 8);
@@ -117,7 +125,8 @@ void main() {
       expect(positions, isNotEmpty,
           reason: 'Exercise the real compact/landscape scrolling fallback.');
       final before = tester.getRect(area);
-      final initialOffsets = positions.map((position) => position.pixels).toList();
+      final initialOffsets =
+          positions.map((position) => position.pixels).toList();
       final travel = math.min(50.0, before.height - 12);
       expect(travel, greaterThan(18),
           reason: 'The visible row must permit a meaningful vertical stroke.');
@@ -147,12 +156,26 @@ void main() {
       for (final origin in origins) {
         expect((origin - before.topLeft).distance, lessThan(0.001));
       }
+      List<List<Offset>> strokes() =>
+          (tester.widget<CustomPaint>(area).painter as dynamic).strokes
+              as List<List<Offset>>;
+      expect(strokes(), hasLength(1));
+      final completedStroke = List<Offset>.of(strokes().single);
+      expect(completedStroke.length, greaterThan(1));
+      final interrupted =
+          await tester.startGesture(before.center, pointer: 102);
+      await interrupted.moveBy(const Offset(10, 15));
+      await interrupted.cancel();
+      await tester.pump();
+      expect(strokes(), [completedStroke],
+          reason: 'Cancelling another stroke must preserve the completed word');
       final finish = find.text('Fertig ✓');
       await tester.ensureVisible(finish);
       await tester.tap(finish);
       await frames(tester, 10);
       expect(find.text('Das richtige Wort war:'), findsOneWidget,
-          reason: 'The stationary real stroke must still reach the existing comparison.');
+          reason:
+              'The stationary real stroke must still reach the existing comparison.');
     });
   }
 }

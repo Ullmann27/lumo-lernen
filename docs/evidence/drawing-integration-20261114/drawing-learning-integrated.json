@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--no-test-assets",
+    "--concurrency=1",
+    "--reporter=expanded",
+    "test/lumo_ink_surface_motion_regression_test.dart",
+    "test/legacy_letter_repaint_regression_test.dart",
+    "test/shape_trace_gesture_regression_test.dart",
+    "test/wort_diktat_gesture_regression_test.dart",
+    "test/lumo_ink_surface_regression_test.dart",
+    "test/shape_trace_input_regression_test.dart",
+    "test/shape_trace_input_test.dart",
+    "test/learning/learning_exact_selection_test.dart",
+    "test/learning_selection_integration_test.dart",
+    "test/writing_practice_trainer_test.dart",
+    "test/writing_word_progress_test.dart",
+    "test/shape_trace_retry_test.dart"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 24.617,
+  "log": "/tmp/lumo-integration-909ddb52fe7b/flutter-evidence/drawing-learning-integrated.log"
+}

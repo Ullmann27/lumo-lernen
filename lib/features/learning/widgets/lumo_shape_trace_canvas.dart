@@ -374,6 +374,7 @@ class _TraceStage extends StatelessWidget {
         builder: (context, constraints) {
           final size = Size(constraints.maxWidth, constraints.maxHeight);
           return LumoInkSurface(
+            key: const ValueKey('lumo-shape-ink-surface'),
             onStart: (position) => onStart(_clamp(position, size)),
             onUpdate: (position) => onMove(_clamp(position, size)),
             onEnd: onEnd,
@@ -385,7 +386,10 @@ class _TraceStage extends StatelessWidget {
                 border: Border.all(color: const Color(0xFFE5E7EB), width: 1.4),
               ),
               child: CustomPaint(
-                painter: _TracePainter(strokes: strokes, active: active),
+                painter: _TracePainter(
+                  strokes: List<List<Offset>>.unmodifiable(strokes),
+                  active: active,
+                ),
                 size: Size.infinite,
               ),
             ),

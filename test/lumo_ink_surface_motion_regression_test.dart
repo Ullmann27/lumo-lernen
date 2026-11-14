@@ -37,9 +37,15 @@ void main() {
     final host = GlobalKey<_InkHostState>();
     await tester.pumpWidget(_InkHost(key: host));
     final state = host.currentState!;
-    await tester.flingFrom(const Offset(40, 420), const Offset(0, -45), 700);
+    // Travel beyond the scroll physics' minimum fling distance so this
+    // exercises a real ballistic activity, not an already idle page.
+    await tester.flingFrom(const Offset(40, 420), const Offset(0, -100), 800);
+    final offsetAtRelease = state.scroll.offset;
+    await tester.pump(const Duration(milliseconds: 16));
     await tester.pump(const Duration(milliseconds: 16));
     expect(state.scroll.position.isScrollingNotifier.value, isTrue);
+    expect(state.scroll.offset, greaterThan(offsetAtRelease),
+        reason: 'The paper must actually be moving before the pen lands');
     final stoppedOffset = state.scroll.offset;
     final pen = await tester.startGesture(
       tester.getCenter(find.byKey(_inkKey)),
@@ -134,6 +140,106 @@ void main() {
         tester.getCenter(find.byKey(secondKey)), const Offset(15, 25));
     await tester.pump();
     expect(secondStarts, 1);
+  });
+
+  testWidgets('scroll hit testing follows the lifetime of all mounted canvases',
+      (tester) async {
+    final scroll = ScrollController();
+    addTearDown(scroll.dispose);
+    var showFirst = true;
+    var showSecond = true;
+    var secondStarts = 0;
+    var passiveContacts = 0;
+    late StateSetter rebuild;
+    const secondKey = ValueKey('remaining-ink-slot');
+    Widget ink({bool second = false}) => LumoInkSurface(
+          onStart: (_) {
+            if (second) secondStarts++;
+          },
+          onUpdate: (_) {},
+          onEnd: () {},
+          onCancel: () {},
+          child: const ColoredBox(color: Colors.white),
+        );
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: StatefulBuilder(builder: (context, setState) {
+          rebuild = setState;
+          return SingleChildScrollView(
+            controller: scroll,
+            physics: const ClampingScrollPhysics(),
+            child: Column(children: [
+              const SizedBox(height: 60),
+              SizedBox(
+                  width: 250, height: 120, child: showFirst ? ink() : null),
+              const SizedBox(height: 40),
+              SizedBox(
+                key: secondKey,
+                width: 250,
+                height: 120,
+                child: showSecond
+                    ? ink(second: true)
+                    : Listener(
+                        behavior: HitTestBehavior.opaque,
+                        onPointerDown: (_) => passiveContacts++,
+                      ),
+              ),
+              const SizedBox(height: 900),
+            ]),
+          );
+        }),
+      ),
+    ));
+
+    final palm = await tester.startGesture(const Offset(40, 420));
+    rebuild(() => showFirst = false);
+    await tester.pump();
+    final pen = await tester.startGesture(
+        tester.getCenter(find.byKey(secondKey)),
+        kind: PointerDeviceKind.stylus);
+    await pen.moveBy(const Offset(0, 20));
+    await pen.up();
+    await palm.up();
+    await tester.pump();
+    expect(secondStarts, 1,
+        reason: 'Removing one canvas must not disable another mounted canvas');
+
+    rebuild(() => showSecond = false);
+    await tester.pump();
+    final outside = await tester.startGesture(const Offset(40, 420));
+    await tester.tapAt(tester.getCenter(find.byKey(secondKey)));
+    expect(passiveContacts, 0,
+        reason:
+            'Without ink, scrolling must restore its normal hit-test policy');
+    await outside.up();
+    await tester.pumpAndSettle();
+    await tester.tapAt(tester.getCenter(find.byKey(secondKey)));
+    expect(passiveContacts, 1,
+        reason: 'The ordinary child must remain hittable after scrolling ends');
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('disposing an active writing page releases its pointer owner',
+      (tester) async {
+    final previous = GlobalKey<_InkHostState>();
+    await tester.pumpWidget(_InkHost(key: previous));
+    final oldPen =
+        await tester.startGesture(tester.getCenter(find.byKey(_inkKey)));
+    await oldPen.moveBy(const Offset(10, 20));
+    await tester.pumpWidget(const SizedBox.shrink());
+
+    final next = GlobalKey<_InkHostState>();
+    await tester.pumpWidget(_InkHost(key: next));
+    final pen =
+        await tester.startGesture(tester.getCenter(find.byKey(_inkKey)));
+    await oldPen.up();
+    await pen.moveBy(const Offset(10, 20));
+    await pen.up();
+    await tester.pump();
+    expect(next.currentState!.starts, 1);
+    expect(next.currentState!.ends, 1);
+    expect(next.currentState!.cancels, 0);
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('a second contact outside the canvas cannot scroll an ink stroke',

@@ -35,6 +35,8 @@ class _LumoInkSurfaceState extends State<LumoInkSurface> {
   int? _activePointer;
   Size? _strokeSize;
   Matrix4? _strokeTransform;
+  final _scrollPositions = <ScrollPosition>{};
+  final _scrollHolds = <ScrollPosition, ScrollHoldController>{};
 
   @override
   void initState() {
@@ -43,10 +45,54 @@ class _LumoInkSurfaceState extends State<LumoInkSurface> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final positions = <ScrollPosition>{};
+    var scrollable = Scrollable.maybeOf(context);
+    while (scrollable != null) {
+      positions.add(scrollable.position);
+      scrollable = Scrollable.maybeOf(scrollable.context);
+    }
+    for (final position in _scrollPositions.difference(positions)) {
+      _scrollHolds.remove(position)?.cancel();
+      _InkScrollHosts.detach(position);
+    }
+    for (final position in positions.difference(_scrollPositions)) {
+      _InkScrollHosts.attach(position);
+    }
+    _scrollPositions
+      ..clear()
+      ..addAll(positions);
+  }
+
+  void _stopScrolling() {
+    for (final position in _scrollPositions) {
+      if (position.isScrollingNotifier.value) {
+        _scrollHolds[position] = position.hold(() {
+          _scrollHolds.remove(position);
+        });
+      }
+    }
+  }
+
+  void _releaseScrollHolds() {
+    final holds = _scrollHolds.values.toList();
+    _scrollHolds.clear();
+    for (final hold in holds) {
+      hold.cancel();
+    }
+  }
+
+  @override
   void dispose() {
     _activePointer = null;
     _strokeSize = null;
     _strokeTransform = null;
+    _releaseScrollHolds();
+    for (final position in _scrollPositions) {
+      _InkScrollHosts.detach(position);
+    }
+    _scrollPositions.clear();
     _InkContacts.release(this);
     _InkContacts.detach();
     super.dispose();
@@ -66,6 +112,7 @@ class _LumoInkSurfaceState extends State<LumoInkSurface> {
     _strokeSize = null;
     _strokeTransform = null;
     _InkContacts.release(this);
+    _releaseScrollHolds();
     if (cancelled) {
       widget.onCancel();
     } else {
@@ -90,6 +137,7 @@ class _LumoInkSurfaceState extends State<LumoInkSurface> {
           if (_activePointer != null || !_InkContacts.claim(this, event)) {
             return;
           }
+          _stopScrolling();
           final box = context.findRenderObject()! as RenderBox;
           _activePointer = event.pointer;
           _strokeSize = box.size;
@@ -119,6 +167,47 @@ class _LumoInkSurfaceState extends State<LumoInkSurface> {
         child: SizedBox.expand(child: widget.child),
       ),
     );
+  }
+}
+
+/// Scrollable normally removes its children from hit testing during a drag or
+/// ballistic animation. A writing page must still let the first pen contact
+/// reach the paper. Keep only ancestors of mounted ink surfaces hittable, using
+/// the public ScrollContext contract; restore their ordinary policy when the
+/// last surface leaves. No pointer is synthesized or sent around hit testing.
+class _InkScrollHosts {
+  static final _hosts = <ScrollPosition, _InkScrollHost>{};
+
+  static void attach(ScrollPosition position) {
+    final host = _hosts.putIfAbsent(position, () => _InkScrollHost(position));
+    host.surfaces++;
+  }
+
+  static void detach(ScrollPosition position) {
+    final host = _hosts[position]!;
+    if (--host.surfaces == 0) {
+      _hosts.remove(position);
+      host.dispose();
+    }
+  }
+}
+
+class _InkScrollHost {
+  _InkScrollHost(this.position) {
+    position.isScrollingNotifier.addListener(_allowInkHitTesting);
+    position.addListener(_allowInkHitTesting);
+    _allowInkHitTesting();
+  }
+
+  final ScrollPosition position;
+  int surfaces = 0;
+
+  void _allowInkHitTesting() => position.context.setIgnorePointer(false);
+
+  void dispose() {
+    position.isScrollingNotifier.removeListener(_allowInkHitTesting);
+    position.removeListener(_allowInkHitTesting);
+    position.context.setIgnorePointer(position.shouldIgnorePointer);
   }
 }
 
