@@ -1,0 +1,18 @@
+test_original_top_to_visible_replay_records_scroll_and_fresh_confirmed_tap (new_navigation_contracts.CurrentC4HubNavigation.test_original_top_to_visible_replay_records_scroll_and_fresh_confirmed_tap) ... ERROR
+
+======================================================================
+ERROR: test_original_top_to_visible_replay_records_scroll_and_fresh_confirmed_tap (new_navigation_contracts.CurrentC4HubNavigation.test_original_top_to_visible_replay_records_scroll_and_fresh_confirmed_tap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/prepared/host/scripts/tests/test_studio_c4_navigation.py", line 193, in test_original_top_to_visible_replay_records_scroll_and_fresh_confirmed_tap
+    replay.run()
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/prepared/host/scripts/tests/test_studio_c4_navigation.py", line 169, in run
+    self.subject.navigate()
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/baseline/host/.github/probes/lumo_connect_four_android_probe.py", line 507, in navigate
+    raise RuntimeError('Actual C4 hub tile never appeared')
+RuntimeError: Actual C4 hub tile never appeared
+
+----------------------------------------------------------------------
+Ran 1 test in 0.420s
+
+FAILED (errors=1)

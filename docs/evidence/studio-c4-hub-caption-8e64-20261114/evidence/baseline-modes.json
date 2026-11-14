@@ -1,0 +1,17 @@
+{
+  "base_commit": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "verified_git_tree_leaves": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffa5c6d9a0c8e4403847fd07e8436234f7af979e"
+    },
+    {
+      "path": "scripts/tests/test_studio_c4_navigation.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73f7b88fc567dbeb3b3cc72ad3832d7a60219012"
+    }
+  ]
+}

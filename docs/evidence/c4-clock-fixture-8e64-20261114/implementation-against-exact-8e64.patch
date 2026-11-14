@@ -1,0 +1,112 @@
+--- a/test/games/connect_four_bot_save_retry_test.dart
++++ b/test/games/connect_four_bot_save_retry_test.dart
+@@ -243,43 +243,55 @@
+   testWidgets('Lifecycle pause during reward retry defers the settled result',
+       (tester) async {
+     final fixture = await _open(tester);
+-    fixture.platform.rejectSecondMove = false;
+-    fixture.platform.rejectRewards = true;
+-    await tester.tap(find.byKey(const ValueKey('connect-mode-true')));
+-    await tester.pump();
+-    for (final column in [0, 6, 1, 6, 2, 5, 3]) {
+-      await tester.tap(find.byKey(ValueKey('connect-column-$column')));
++    final held = _HeldReward();
++    try {
++      fixture.platform.rejectSecondMove = false;
++      fixture.platform.rejectRewards = true;
++      await tester.tap(find.byKey(const ValueKey('connect-mode-true')));
++      await tester.pump();
++      for (final column in [0, 6, 1, 6, 2, 5, 3]) {
++        await tester.tap(find.byKey(ValueKey('connect-column-$column')));
++        await tester.pump(const Duration(milliseconds: 1));
++        await tester.pump();
++      }
++      expect(find.text('Spiel pausiert'), findsOneWidget);
++      fixture.platform.rejectRewards = false;
++      fixture.platform.nextRewardGate = held;
++      await tester.tap(find.text('Fortsetzen'));
++      // The resumed production clock queues a zero-delay Timer. Advance fake
++      // time so the test reaches the held platform ACK before sending inactive.
+       await tester.pump(const Duration(milliseconds: 1));
+-      await tester.pump();
+-    }
+-    expect(find.text('Spiel pausiert'), findsOneWidget);
+-    fixture.platform.rejectRewards = false;
+-    final held = _HeldReward();
+-    fixture.platform.nextRewardGate = held;
+-    await tester.tap(find.text('Fortsetzen'));
+-    await tester.pump();
+-    expect(held.entered.isCompleted, isTrue);
+-
+-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+-    await tester.pump();
+-    expect(find.text('Spiel pausiert'), findsOneWidget);
+-    held.release.complete();
+-    await tester.pump();
+-    await tester.pump(const Duration(milliseconds: 2500));
+-    expect(fixture.app.state.stars, 5);
+-    expect(find.byType(AlertDialog), findsNothing);
+-    expect(_pieces(tester, 'child'), 4);
+-    expect(_pieces(tester, 'lumo'), 3);
+-
+-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+-    await tester.pump();
+-    expect(find.text('Spiel pausiert'), findsOneWidget);
+-    await tester.tap(find.text('Fortsetzen'));
+-    await tester.pump();
+-    await tester.pump(const Duration(milliseconds: 2500));
+-    expect(find.byType(AlertDialog), findsOneWidget);
+-    expect(fixture.app.state.stars, 5);
+-    expect(tester.takeException(), isNull);
+-    await _close(tester, fixture.app);
+-  });
+-}
++      expect(held.entered.isCompleted, isTrue);
++      expect(held.release.isCompleted, isFalse);
++      expect(fixture.app.state.stars, 0);
++      expect(find.byType(AlertDialog), findsNothing);
++
++      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
++      await tester.pump();
++      expect(find.text('Spiel pausiert'), findsOneWidget);
++      held.release.complete();
++      await tester.pump();
++      await tester.pump(const Duration(milliseconds: 2500));
++      expect(fixture.app.state.stars, 5);
++      expect(find.byType(AlertDialog), findsNothing);
++      expect(_pieces(tester, 'child'), 4);
++      expect(_pieces(tester, 'lumo'), 3);
++
++      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
++      await tester.pump();
++      expect(find.text('Spiel pausiert'), findsOneWidget);
++      await tester.tap(find.text('Fortsetzen'));
++      await tester.pump();
++      await tester.pump(const Duration(milliseconds: 2500));
++      expect(find.byType(AlertDialog), findsOneWidget);
++      expect(fixture.app.state.stars, 5);
++      expect(tester.takeException(), isNull);
++    } finally {
++      if (!held.release.isCompleted) held.release.complete();
++      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
++      await tester.idle();
++      await _close(tester, fixture.app);
++      await tester.idle();
++    }
++  });
++}
+--- a/.github/workflows/lumo-nextgen-feature-contracts.yml
++++ b/.github/workflows/lumo-nextgen-feature-contracts.yml
+@@ -39,10 +39,11 @@
+         run: |
+           set -euo pipefail
+           flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee feature-evidence/flutter-analyze.log
+-      - name: Recheck durable wallet queues across caller zones and actual Memory profiles
++      - name: Recheck persisted wallet queues, Memory profiles and Connect Four retries
+         run: |
+           set -euo pipefail
+           flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
++            test/games/connect_four_bot_save_retry_test.dart \
+             test/reward_wallet_queue_zone_test.dart \
+             test/reward_wallet_transaction_test.dart \
+             test/games/memory_profile_storage_test.dart \

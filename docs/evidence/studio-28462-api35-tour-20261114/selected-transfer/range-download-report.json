@@ -1,0 +1,509 @@
+{
+  "schema": 1,
+  "artifact_id": 14130101135,
+  "expected_archive_bytes": 196404454,
+  "published_archive_sha256": "bfddd9c10504e2271a8b785bd3a46aef4ec76c3fab80bdd2dadea6162ea58e0b",
+  "full_archive_downloaded": false,
+  "full_archive_sha256_locally_verified": false,
+  "whole_archive_crc_verified": false,
+  "temporary_url_saved": false,
+  "members": [
+    {
+      "artifact_entry": "connect-four/result.json",
+      "bytes": 261,
+      "sha256": "45321729d170c6e9acb4bcc5aa483106797d732ab0237c550e9a42daabb2329e",
+      "crc32": "adc46968",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/result.json"
+    },
+    {
+      "artifact_entry": "connect-four/failure-traceback.txt",
+      "bytes": 778,
+      "sha256": "ed80c96de754e99bf71244e9f88aa271ded9af8a10bffeff575d8638c3a4543c",
+      "crc32": "305fe9ee",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/failure-traceback.txt"
+    },
+    {
+      "artifact_entry": "connect-four/input-events.json",
+      "bytes": 961,
+      "sha256": "cb2cf0b70a8ac1be88feb546154f8ea9ce089f040196814674459b2e70b8e5a6",
+      "crc32": "9dcfb671",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/input-events.json"
+    },
+    {
+      "artifact_entry": "connect-four/binding-before.json",
+      "bytes": 3029,
+      "sha256": "12726c7cb24cb78ee7e467416b1160b7f8918965295af6cf3741a43fb46c5224",
+      "crc32": "c0b7f443",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/binding-before.json"
+    },
+    {
+      "artifact_entry": "connect-four/0001-actual-flutter-navigation-route.json",
+      "bytes": 370,
+      "sha256": "583e21589e2a12c1d0aae0635ce870d06c8b127d209fcc81447740bfbf36da83",
+      "crc32": "e35ed62c",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0001-actual-flutter-navigation-route.json"
+    },
+    {
+      "artifact_entry": "connect-four/0002-actual-flutter-navigation-route.json",
+      "bytes": 374,
+      "sha256": "283dee2b0d5c1c46b2dd1a5a7ef6a9d8b19fe5b7db69de8303df1fd0d845f7ee",
+      "crc32": "5e4cf9be",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0002-actual-flutter-navigation-route.json"
+    },
+    {
+      "artifact_entry": "connect-four/0003-actual-flutter-navigation-route.json",
+      "bytes": 258,
+      "sha256": "b8145b5cfbdd3e30b79da81f2d22780becc5acd234d5ca8044db3433258a2df1",
+      "crc32": "25b8ef07",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0003-actual-flutter-navigation-route.json"
+    },
+    {
+      "artifact_entry": "connect-four/0001-actual-flutter-navigation-confirmed.xml",
+      "bytes": 34224,
+      "sha256": "c774224b0160d1d6f65d1330aaa928a8386ab761decc5b2ea5475aa08a46a0b0",
+      "crc32": "3856e441",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0001-actual-flutter-navigation-confirmed.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0002-actual-flutter-navigation-confirmed.xml",
+      "bytes": 15889,
+      "sha256": "718a26da0525403f5bfbaa18f4f3c7148a91fe280159dadd1799f0325d5a1c1a",
+      "crc32": "95441276",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0002-actual-flutter-navigation-confirmed.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0003-actual-flutter-navigation-confirmed.xml",
+      "bytes": 25229,
+      "sha256": "9f965db4c05303926a2173c43fafa7ae07ffa9f94aaa8524a18b068d33c7dfda",
+      "crc32": "c81485db",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0003-actual-flutter-navigation-confirmed.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0003-actual-flutter-navigation.png",
+      "bytes": 1822689,
+      "sha256": "7b4487cbedc71a95bb1721afe65763181747115d93671ccc6f3b717d5a726a4c",
+      "crc32": "7fa52888",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0003-actual-flutter-navigation.png"
+    },
+    {
+      "artifact_entry": "connect-four/0025-actual-c4-hub.xml",
+      "bytes": 25229,
+      "sha256": "0f1bd62257f5df3126bdf6cb88bc76bcfc6520affd2a7ac8c4396f1b47d88e6f",
+      "crc32": "5ba5565b",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0025-actual-c4-hub.xml"
+    },
+    {
+      "artifact_entry": "connect-four/failure-actual-screen.png",
+      "bytes": 1913672,
+      "sha256": "9433c9f68a08c52583ae6865719e154f240a2913a6d32bcc7cf09dda3807ae48",
+      "crc32": "71e578e3",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/failure-actual-screen.png"
+    }
+  ],
+  "central_directory_start": 196273090,
+  "entry_count": 1429,
+  "central_directory_range": {
+    "start": 196273090,
+    "end": 196404431,
+    "bytes": 131342,
+    "status": 206,
+    "content_range": "bytes 196273090-196404431/196404454",
+    "sha256": "4b7bf1e722e3acf8b592e1905ed0c5ffd3ce4693bc52f883b74ed1a9bbc04284",
+    "local_file": "ranges/range-002-196273090-196404431.bin"
+  },
+  "status": "SELECTED_ORIGINAL_MEMBERS_VERIFIED",
+  "range_requests": [
+    {
+      "start": 196404432,
+      "end": 196404453,
+      "bytes": 22,
+      "status": 206,
+      "content_range": "bytes 196404432-196404453/196404454",
+      "sha256": "b91d5dca46ab9a1aa60b0aea9a1ed01df194c5245c33feb69557312d53b3dca4",
+      "local_file": "ranges/range-000-196404432-196404453.bin"
+    },
+    {
+      "start": 196404412,
+      "end": 196404431,
+      "bytes": 20,
+      "status": 206,
+      "content_range": "bytes 196404412-196404431/196404454",
+      "sha256": "15da238d72b3ea3dfae214e3ec6d71fdcb0c3339be76c6b92a09ddf14d8037c8",
+      "local_file": "ranges/range-001-196404412-196404431.bin"
+    },
+    {
+      "start": 196273090,
+      "end": 196404431,
+      "bytes": 131342,
+      "status": 206,
+      "content_range": "bytes 196273090-196404431/196404454",
+      "sha256": "4b7bf1e722e3acf8b592e1905ed0c5ffd3ce4693bc52f883b74ed1a9bbc04284",
+      "local_file": "ranges/range-002-196273090-196404431.bin"
+    },
+    {
+      "start": 133733089,
+      "end": 133733118,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 133733089-133733118/196404454",
+      "sha256": "308a59396dc9ee010dfe9560e2b31908f16709769bed7a6e3e7c8e68d006e439",
+      "local_file": "ranges/range-003-133733089-133733118.bin"
+    },
+    {
+      "start": 133733119,
+      "end": 133733142,
+      "bytes": 24,
+      "status": 206,
+      "content_range": "bytes 133733119-133733142/196404454",
+      "sha256": "a1eddab4b0e5f5878b23bf198ac36c4615c7bedf19175ca0f5f7a2fac9180402",
+      "local_file": "ranges/range-004-133733119-133733142.bin"
+    },
+    {
+      "start": 133733143,
+      "end": 133733337,
+      "bytes": 195,
+      "status": 206,
+      "content_range": "bytes 133733143-133733337/196404454",
+      "sha256": "09f1cf01ee91e9e0b202f103e956305125569937c67d05beb95f2f437e3a77f6",
+      "local_file": "ranges/range-005-133733143-133733337.bin"
+    },
+    {
+      "start": 133732271,
+      "end": 133732300,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 133732271-133732300/196404454",
+      "sha256": "78bebc62ad8c889dce5da21c04cf901c004f03d4c708b5b494ad80d16aae97d9",
+      "local_file": "ranges/range-006-133732271-133732300.bin"
+    },
+    {
+      "start": 133732301,
+      "end": 133732334,
+      "bytes": 34,
+      "status": 206,
+      "content_range": "bytes 133732301-133732334/196404454",
+      "sha256": "b5f326739ac3a96af56d9cd6a3c10313e2540c98f45d8c28c940729d5a3cf3f9",
+      "local_file": "ranges/range-007-133732301-133732334.bin"
+    },
+    {
+      "start": 133732335,
+      "end": 133732623,
+      "bytes": 289,
+      "status": 206,
+      "content_range": "bytes 133732335-133732623/196404454",
+      "sha256": "476bf1888aaf8b9264e3e27b14b847d6200fab1c74bd48a7fcd8b6d924dc36d6",
+      "local_file": "ranges/range-008-133732335-133732623.bin"
+    },
+    {
+      "start": 133732640,
+      "end": 133732669,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 133732640-133732669/196404454",
+      "sha256": "198c7fb9813dc0919fcdebfd4b3e1c9f44d23b1abef08fe9dd0a1386b8dd6a65",
+      "local_file": "ranges/range-009-133732640-133732669.bin"
+    },
+    {
+      "start": 133732670,
+      "end": 133732699,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 133732670-133732699/196404454",
+      "sha256": "aa956987f0d121a2aab00578e863dbb10a2d110ca165ef451aaae30d874ea18c",
+      "local_file": "ranges/range-010-133732670-133732699.bin"
+    },
+    {
+      "start": 133732700,
+      "end": 133733072,
+      "bytes": 373,
+      "status": 206,
+      "content_range": "bytes 133732700-133733072/196404454",
+      "sha256": "c2c10d77ec88341a1d52439e0f89f4ac9775728989c77f0e68cbba21c483e746",
+      "local_file": "ranges/range-011-133732700-133733072.bin"
+    },
+    {
+      "start": 131818178,
+      "end": 131818207,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 131818178-131818207/196404454",
+      "sha256": "c41efe43c5faff05fe63b55e1999ffe132f4783499606beeaf4962cd82023ab5",
+      "local_file": "ranges/range-012-131818178-131818207.bin"
+    },
+    {
+      "start": 131818208,
+      "end": 131818239,
+      "bytes": 32,
+      "status": 206,
+      "content_range": "bytes 131818208-131818239/196404454",
+      "sha256": "f24ca47426cf9a4ebc39db0fdb24e2d8e93fb1a7c27152ba26b501db4522b1d1",
+      "local_file": "ranges/range-013-131818208-131818239.bin"
+    },
+    {
+      "start": 131818240,
+      "end": 131819589,
+      "bytes": 1350,
+      "status": 206,
+      "content_range": "bytes 131818240-131819589/196404454",
+      "sha256": "45f58e952be9b274af76527ed0d841994be2bcde4d4de14aeb4a7220cf41dae3",
+      "local_file": "ranges/range-014-131818240-131819589.bin"
+    },
+    {
+      "start": 87461657,
+      "end": 87461686,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 87461657-87461686/196404454",
+      "sha256": "c7e48a6a3946a2eabd46a5702342e0fa34582424463eea694fc25d6d54f8b324",
+      "local_file": "ranges/range-015-87461657-87461686.bin"
+    },
+    {
+      "start": 87461687,
+      "end": 87461740,
+      "bytes": 54,
+      "status": 206,
+      "content_range": "bytes 87461687-87461740/196404454",
+      "sha256": "bad4201d6cefbdeaa418c8a2749d46f5bb8bbc93923549f8e479c95666383097",
+      "local_file": "ranges/range-016-87461687-87461740.bin"
+    },
+    {
+      "start": 87461741,
+      "end": 87461978,
+      "bytes": 238,
+      "status": 206,
+      "content_range": "bytes 87461741-87461978/196404454",
+      "sha256": "f17f2013a4f9c2f4f661587d114c6b70a8e7f2f1b89a663668f280278a736dfe",
+      "local_file": "ranges/range-017-87461741-87461978.bin"
+    },
+    {
+      "start": 87465516,
+      "end": 87465545,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 87465516-87465545/196404454",
+      "sha256": "0118b437024bfa8b3df7686e5ed99ab4adbf11366f7d718e6f45faf88e355365",
+      "local_file": "ranges/range-018-87465516-87465545.bin"
+    },
+    {
+      "start": 87465546,
+      "end": 87465599,
+      "bytes": 54,
+      "status": 206,
+      "content_range": "bytes 87465546-87465599/196404454",
+      "sha256": "67ed2bd4b1ade0ebe0dffc1a2963a7e64e750014b400f0264f0befad89898826",
+      "local_file": "ranges/range-019-87465546-87465599.bin"
+    },
+    {
+      "start": 87465600,
+      "end": 87465844,
+      "bytes": 245,
+      "status": 206,
+      "content_range": "bytes 87465600-87465844/196404454",
+      "sha256": "627c34d57221f06252693232b667d0eab2d29149970645a02cf7808dd8a0bcae",
+      "local_file": "ranges/range-020-87465600-87465844.bin"
+    },
+    {
+      "start": 91019160,
+      "end": 91019189,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 91019160-91019189/196404454",
+      "sha256": "16be353de89ef3757ce9a32e7d0b4d71d37d45f324bb7828b20f905ed4cd9ce0",
+      "local_file": "ranges/range-021-91019160-91019189.bin"
+    },
+    {
+      "start": 91019190,
+      "end": 91019243,
+      "bytes": 54,
+      "status": 206,
+      "content_range": "bytes 91019190-91019243/196404454",
+      "sha256": "fbccad0611e77d8cf9418217ab7e04cd5e90034530d8ca774a98b68b340a2b4b",
+      "local_file": "ranges/range-022-91019190-91019243.bin"
+    },
+    {
+      "start": 91019244,
+      "end": 91019426,
+      "bytes": 183,
+      "status": 206,
+      "content_range": "bytes 91019244-91019426/196404454",
+      "sha256": "afe359b80de3ac6439bc764e0137f4dc3cb1a877fb56e14eef5b5d491f8f72fa",
+      "local_file": "ranges/range-023-91019244-91019426.bin"
+    },
+    {
+      "start": 86941681,
+      "end": 86941710,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 86941681-86941710/196404454",
+      "sha256": "18ba0b0d652cac831dddd626c6e1cfe81ef59c210be4a6f234f09cce2aa8f76b",
+      "local_file": "ranges/range-024-86941681-86941710.bin"
+    },
+    {
+      "start": 86941711,
+      "end": 86941767,
+      "bytes": 57,
+      "status": 206,
+      "content_range": "bytes 86941711-86941767/196404454",
+      "sha256": "d6798dde4b83a49439429bb8a88cd5b520f1ead03ed9b21e0ac2c107829246ef",
+      "local_file": "ranges/range-025-86941711-86941767.bin"
+    },
+    {
+      "start": 86941768,
+      "end": 86943868,
+      "bytes": 2101,
+      "status": 206,
+      "content_range": "bytes 86941768-86943868/196404454",
+      "sha256": "7bb676073a4a0b0113b5741affc90bd36b437cf0a3fdace1e966b61f25e363e3",
+      "local_file": "ranges/range-026-86941768-86943868.bin"
+    },
+    {
+      "start": 87464189,
+      "end": 87464218,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 87464189-87464218/196404454",
+      "sha256": "141c4c0bba948846dbbd24b0c9205ea86437037c9f7ff58a8784333ec062f08e",
+      "local_file": "ranges/range-027-87464189-87464218.bin"
+    },
+    {
+      "start": 87464219,
+      "end": 87464275,
+      "bytes": 57,
+      "status": 206,
+      "content_range": "bytes 87464219-87464275/196404454",
+      "sha256": "3f5872bffda45c12bac2433229c5600c950fd7aa26ed018ea23fba3b01036d6c",
+      "local_file": "ranges/range-028-87464219-87464275.bin"
+    },
+    {
+      "start": 87464276,
+      "end": 87465499,
+      "bytes": 1224,
+      "status": 206,
+      "content_range": "bytes 87464276-87465499/196404454",
+      "sha256": "4c39eac3938de8fd59de13308550e2d745d407e8a10eb59c408610cca22cfeb6",
+      "local_file": "ranges/range-029-87464276-87465499.bin"
+    },
+    {
+      "start": 89195693,
+      "end": 89195722,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 89195693-89195722/196404454",
+      "sha256": "5a0005a6cdc742e9180d8b707e244f2e72b432f9e45f05caf877b716df1782af",
+      "local_file": "ranges/range-030-89195693-89195722.bin"
+    },
+    {
+      "start": 89195723,
+      "end": 89195779,
+      "bytes": 57,
+      "status": 206,
+      "content_range": "bytes 89195723-89195779/196404454",
+      "sha256": "39cc7438db441040d98c14bacd6af2f71628ca1c1b8de737f206dde17331a0f8",
+      "local_file": "ranges/range-031-89195723-89195779.bin"
+    },
+    {
+      "start": 89195780,
+      "end": 89197567,
+      "bytes": 1788,
+      "status": 206,
+      "content_range": "bytes 89195780-89197567/196404454",
+      "sha256": "2e77b9ab8188a6ce345576a802cc516abae560d8ea611624647e8ebff0c961f8",
+      "local_file": "ranges/range-032-89195780-89197567.bin"
+    },
+    {
+      "start": 89197584,
+      "end": 89197613,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 89197584-89197613/196404454",
+      "sha256": "b63472f2d3da01079b80ab80e56add482b0b158d782f3180061a4e4b69950be0",
+      "local_file": "ranges/range-033-89197584-89197613.bin"
+    },
+    {
+      "start": 89197614,
+      "end": 89197660,
+      "bytes": 47,
+      "status": 206,
+      "content_range": "bytes 89197614-89197660/196404454",
+      "sha256": "aca2c4716ee37638a669764cdb69ba6105931a8e4be48b9d6b19d48db00372af",
+      "local_file": "ranges/range-034-89197614-89197660.bin"
+    },
+    {
+      "start": 89197661,
+      "end": 91019143,
+      "bytes": 1821483,
+      "status": 206,
+      "content_range": "bytes 89197661-91019143/196404454",
+      "sha256": "01eed78d7fb1e9dbe5d6b2bd2077c172836e179cf7b88a9dd45af6e07c469bd3",
+      "local_file": "ranges/range-035-89197661-91019143.bin"
+    },
+    {
+      "start": 131814508,
+      "end": 131814537,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 131814508-131814537/196404454",
+      "sha256": "1e889fc6490b85d4509da5e203e1f1d4a66dad7d6fa33b7c156bad34d32f55d9",
+      "local_file": "ranges/range-036-131814508-131814537.bin"
+    },
+    {
+      "start": 131814538,
+      "end": 131814572,
+      "bytes": 35,
+      "status": 206,
+      "content_range": "bytes 131814538-131814572/196404454",
+      "sha256": "ee0b3748972a94b9f3fe548590c882d478d9d63f021e84e3eff8f55ca7e46b45",
+      "local_file": "ranges/range-037-131814538-131814572.bin"
+    },
+    {
+      "start": 131814573,
+      "end": 131816360,
+      "bytes": 1788,
+      "status": 206,
+      "content_range": "bytes 131814573-131816360/196404454",
+      "sha256": "2147d37fc2ad4793c9cf897661c117acf8c2624f0ca93f03150d0d2a493a1c88",
+      "local_file": "ranges/range-038-131814573-131816360.bin"
+    },
+    {
+      "start": 131819606,
+      "end": 131819635,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 131819606-131819635/196404454",
+      "sha256": "b302782a27c45ae28a806341625190ce1f1f550a1280dc74cc572df31820d60b",
+      "local_file": "ranges/range-039-131819606-131819635.bin"
+    },
+    {
+      "start": 131819636,
+      "end": 131819673,
+      "bytes": 38,
+      "status": 206,
+      "content_range": "bytes 131819636-131819673/196404454",
+      "sha256": "087b84bb1a30f04a8851b8a6b04251903f75ede9250082c5a7d5f05f98a294fc",
+      "local_file": "ranges/range-040-131819636-131819673.bin"
+    },
+    {
+      "start": 131819674,
+      "end": 133732254,
+      "bytes": 1912581,
+      "status": 206,
+      "content_range": "bytes 131819674-133732254/196404454",
+      "sha256": "b913d09a85d0c87c22019b8efb974eaf1251a3dae5637125a99f3bca54e288b4",
+      "local_file": "ranges/range-041-131819674-133732254.bin"
+    }
+  ],
+  "transferred_bytes": 3876185
+}

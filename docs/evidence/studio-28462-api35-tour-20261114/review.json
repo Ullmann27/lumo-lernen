@@ -1,0 +1,331 @@
+{
+  "schema": 1,
+  "host_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "native_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "run_id": 43626348519,
+  "job_id": 132563694518,
+  "job_conclusion": "failure",
+  "artifact_id": 14130101135,
+  "artifact_bytes": 196404454,
+  "published_archive_sha256": "bfddd9c10504e2271a8b785bd3a46aef4ec76c3fab80bdd2dadea6162ea58e0b",
+  "full_archive_downloaded": false,
+  "full_archive_sha256_locally_verified": false,
+  "whole_archive_crc_verified": false,
+  "transferred_bytes_including_repeated_directory_ranges": 6074421,
+  "unique_full_original_members": 24,
+  "members": [
+    {
+      "artifact_entry": "connect-four/result.json",
+      "bytes": 261,
+      "sha256": "45321729d170c6e9acb4bcc5aa483106797d732ab0237c550e9a42daabb2329e",
+      "crc32": "adc46968",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/result.json",
+      "source_path": "selected-transfer/originals/connect-four/result.json"
+    },
+    {
+      "artifact_entry": "connect-four/failure-traceback.txt",
+      "bytes": 778,
+      "sha256": "ed80c96de754e99bf71244e9f88aa271ded9af8a10bffeff575d8638c3a4543c",
+      "crc32": "305fe9ee",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/failure-traceback.txt",
+      "source_path": "selected-transfer/originals/connect-four/failure-traceback.txt"
+    },
+    {
+      "artifact_entry": "connect-four/input-events.json",
+      "bytes": 961,
+      "sha256": "cb2cf0b70a8ac1be88feb546154f8ea9ce089f040196814674459b2e70b8e5a6",
+      "crc32": "9dcfb671",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/input-events.json",
+      "source_path": "selected-transfer/originals/connect-four/input-events.json"
+    },
+    {
+      "artifact_entry": "connect-four/binding-before.json",
+      "bytes": 3029,
+      "sha256": "12726c7cb24cb78ee7e467416b1160b7f8918965295af6cf3741a43fb46c5224",
+      "crc32": "c0b7f443",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/binding-before.json",
+      "source_path": "selected-transfer/originals/connect-four/binding-before.json"
+    },
+    {
+      "artifact_entry": "connect-four/0001-actual-flutter-navigation-route.json",
+      "bytes": 370,
+      "sha256": "583e21589e2a12c1d0aae0635ce870d06c8b127d209fcc81447740bfbf36da83",
+      "crc32": "e35ed62c",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0001-actual-flutter-navigation-route.json",
+      "source_path": "selected-transfer/originals/connect-four/0001-actual-flutter-navigation-route.json"
+    },
+    {
+      "artifact_entry": "connect-four/0002-actual-flutter-navigation-route.json",
+      "bytes": 374,
+      "sha256": "283dee2b0d5c1c46b2dd1a5a7ef6a9d8b19fe5b7db69de8303df1fd0d845f7ee",
+      "crc32": "5e4cf9be",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0002-actual-flutter-navigation-route.json",
+      "source_path": "selected-transfer/originals/connect-four/0002-actual-flutter-navigation-route.json"
+    },
+    {
+      "artifact_entry": "connect-four/0003-actual-flutter-navigation-route.json",
+      "bytes": 258,
+      "sha256": "b8145b5cfbdd3e30b79da81f2d22780becc5acd234d5ca8044db3433258a2df1",
+      "crc32": "25b8ef07",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0003-actual-flutter-navigation-route.json",
+      "source_path": "selected-transfer/originals/connect-four/0003-actual-flutter-navigation-route.json"
+    },
+    {
+      "artifact_entry": "connect-four/0001-actual-flutter-navigation-confirmed.xml",
+      "bytes": 34224,
+      "sha256": "c774224b0160d1d6f65d1330aaa928a8386ab761decc5b2ea5475aa08a46a0b0",
+      "crc32": "3856e441",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0001-actual-flutter-navigation-confirmed.xml",
+      "source_path": "selected-transfer/originals/connect-four/0001-actual-flutter-navigation-confirmed.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0002-actual-flutter-navigation-confirmed.xml",
+      "bytes": 15889,
+      "sha256": "718a26da0525403f5bfbaa18f4f3c7148a91fe280159dadd1799f0325d5a1c1a",
+      "crc32": "95441276",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0002-actual-flutter-navigation-confirmed.xml",
+      "source_path": "selected-transfer/originals/connect-four/0002-actual-flutter-navigation-confirmed.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0003-actual-flutter-navigation-confirmed.xml",
+      "bytes": 25229,
+      "sha256": "9f965db4c05303926a2173c43fafa7ae07ffa9f94aaa8524a18b068d33c7dfda",
+      "crc32": "c81485db",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0003-actual-flutter-navigation-confirmed.xml",
+      "source_path": "selected-transfer/originals/connect-four/0003-actual-flutter-navigation-confirmed.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0003-actual-flutter-navigation.png",
+      "bytes": 1822689,
+      "sha256": "7b4487cbedc71a95bb1721afe65763181747115d93671ccc6f3b717d5a726a4c",
+      "crc32": "7fa52888",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0003-actual-flutter-navigation.png",
+      "source_path": "selected-transfer/originals/connect-four/0003-actual-flutter-navigation.png"
+    },
+    {
+      "artifact_entry": "connect-four/0025-actual-c4-hub.xml",
+      "bytes": 25229,
+      "sha256": "0f1bd62257f5df3126bdf6cb88bc76bcfc6520affd2a7ac8c4396f1b47d88e6f",
+      "crc32": "5ba5565b",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0025-actual-c4-hub.xml",
+      "source_path": "selected-transfer/originals/connect-four/0025-actual-c4-hub.xml"
+    },
+    {
+      "artifact_entry": "connect-four/failure-actual-screen.png",
+      "bytes": 1913672,
+      "sha256": "9433c9f68a08c52583ae6865719e154f240a2913a6d32bcc7cf09dda3807ae48",
+      "crc32": "71e578e3",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/failure-actual-screen.png",
+      "source_path": "selected-transfer/originals/connect-four/failure-actual-screen.png"
+    },
+    {
+      "artifact_entry": "connect-four/0005-actual-c4-hub.xml",
+      "bytes": 24357,
+      "sha256": "3ff70dddcbb2633d52c7b58fd21c22a4cddda005600f164b2a6690758b62ddec",
+      "crc32": "e729cfe3",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0005-actual-c4-hub.xml",
+      "source_path": "intermediate-xml-transfer/originals/connect-four/0005-actual-c4-hub.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0006-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "crc32": "ed9876f5",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0006-actual-c4-hub.xml",
+      "source_path": "intermediate-xml-transfer/originals/connect-four/0006-actual-c4-hub.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0007-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "crc32": "ed9876f5",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0007-actual-c4-hub.xml",
+      "source_path": "intermediate-xml-transfer/originals/connect-four/0007-actual-c4-hub.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0008-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "crc32": "ed9876f5",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0008-actual-c4-hub.xml",
+      "source_path": "intermediate-xml-transfer/originals/connect-four/0008-actual-c4-hub.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0009-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "crc32": "ed9876f5",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0009-actual-c4-hub.xml",
+      "source_path": "intermediate-xml-transfer/originals/connect-four/0009-actual-c4-hub.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0010-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "crc32": "ed9876f5",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0010-actual-c4-hub.xml",
+      "source_path": "intermediate-xml-transfer/originals/connect-four/0010-actual-c4-hub.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0011-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "crc32": "ed9876f5",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0011-actual-c4-hub.xml",
+      "source_path": "intermediate-xml-transfer/originals/connect-four/0011-actual-c4-hub.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0012-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "crc32": "ed9876f5",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0012-actual-c4-hub.xml",
+      "source_path": "intermediate-xml-transfer/originals/connect-four/0012-actual-c4-hub.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0013-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "crc32": "ed9876f5",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0013-actual-c4-hub.xml",
+      "source_path": "intermediate-xml-transfer/originals/connect-four/0013-actual-c4-hub.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0014-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "crc32": "ed9876f5",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0014-actual-c4-hub.xml",
+      "source_path": "intermediate-xml-transfer/originals/connect-four/0014-actual-c4-hub.xml"
+    },
+    {
+      "artifact_entry": "connect-four/0006-actual-c4-hub.png",
+      "bytes": 1786323,
+      "sha256": "62fd8514be063af465444c4b42651d23d42f7ee82c4dc87d2cfc35cbd4677dec",
+      "crc32": "f59123e6",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0006-actual-c4-hub.png",
+      "source_path": "visible-c4-frame-transfer-v2/originals/connect-four/0006-actual-c4-hub.png"
+    }
+  ],
+  "range_reports": [
+    {
+      "directory": "index-transfer",
+      "status": "SELECTED_ORIGINAL_MEMBERS_VERIFIED",
+      "bytes": 131384,
+      "sha256": "ace4980dd373c98b9684a9aa5d822b190717fe9c10c8d389483d22f93ab051d6",
+      "requests": 3
+    },
+    {
+      "directory": "selected-transfer",
+      "status": "SELECTED_ORIGINAL_MEMBERS_VERIFIED",
+      "bytes": 3876185,
+      "sha256": "33b059f2a59e1a01db38ba26f43adad3c35b89160b312f2418e8a96b1edefae9",
+      "requests": 42
+    },
+    {
+      "directory": "intermediate-xml-transfer",
+      "status": "SELECTED_ORIGINAL_MEMBERS_VERIFIED",
+      "bytes": 149975,
+      "sha256": "66048b6d63f05c430c45c24fb0c8c92450a312fff669d46ed97d0effcb1cacfb",
+      "requests": 33
+    },
+    {
+      "directory": "visible-c4-frame-transfer",
+      "status": "FAILED",
+      "bytes": 0,
+      "sha256": "a29ca5a3d4f8653a8088b224a068b17d9bf3a0a237d5bd54bbda3a7ea7dc7cb4",
+      "requests": 0
+    },
+    {
+      "directory": "visible-c4-frame-transfer-v2",
+      "status": "SELECTED_ORIGINAL_MEMBERS_VERIFIED",
+      "bytes": 1916877,
+      "sha256": "96aedfa3ca477dd6837549fc92288cde2d4bcdba3aadcaa649f74d66a10c502a",
+      "requests": 6
+    }
+  ],
+  "confirmed_target_node": {
+    "index": "5",
+    "text": "",
+    "resource-id": "",
+    "class": "android.widget.Button",
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "content-desc": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+    "checkable": "false",
+    "checked": "false",
+    "clickable": "true",
+    "enabled": "true",
+    "focusable": "true",
+    "focused": "false",
+    "scrollable": "false",
+    "long-clickable": "false",
+    "password": "false",
+    "selected": "false",
+    "visible-to-user": "true",
+    "bounds": "[42,1072][524,1536]",
+    "drawing-order": "0",
+    "hint": "",
+    "display-id": "0"
+  },
+  "observations": [
+    "General modernization tour completed before the Connect Four probe.",
+    "Original job line 10870 records the NextgenAndroid PASS for real learning touch, Cards IPC, save, pause, return and reopen.",
+    "The Connect Four probe failed before entering the game: Actual C4 hub tile never appeared.",
+    "The original intermediate XML has the enabled clickable semantic caption Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen.",
+    "Root visually inspected original 0006: the 4 Gewinnt tile is fully visible. Root also inspected the original terminal failure screenshot at the top of the hub.",
+    "Actual intermediate frames prove scrolling occurred; input-events.json does not journal the old direct ADB swipes. Missing swipe journal entries are not evidence that no scrolling happened.",
+    "The old navigation code sought Vier gewinnt; the actual canonical semantic title is Lumo 4 Gewinnt.",
+    "Quiz, Memory and English downstream probes were not reached by this failed shell sequence."
+  ],
+  "scope_limits": [
+    "This is evidence of the older Studio candidate, not acceptance of a corrected feature head.",
+    "No device performance or physical Fold7 measurement.",
+    "No later Connect Four gameplay PASS inferred from the visible tile.",
+    "No full archive SHA verification claimed.",
+    "Individual HTTP range bytes remain temporary working data; their recorded hashes are retained, and each selected complete original member is preserved."
+  ],
+  "visual_review": [
+    {
+      "source_path": "visible-c4-frame-transfer-v2/originals/connect-four/0006-actual-c4-hub.png",
+      "reviewer": "root",
+      "actually_viewed": true,
+      "finding": "4 Gewinnt tile fully visible; game hub scrolled to lower section."
+    },
+    {
+      "source_path": "selected-transfer/originals/connect-four/failure-actual-screen.png",
+      "reviewer": "root",
+      "actually_viewed": true,
+      "finding": "Terminal frame returned to top portion of Games hub."
+    }
+  ],
+  "failed_transfer_preserved": {
+    "path": "visible-c4-frame-transfer/range-download-report.json",
+    "bytes": 0,
+    "reason": "Temporary artifact URL had expired; a fresh ordinary GitHub download reference was obtained, and v2 succeeded. The failed transfer report is retained."
+  },
+  "new_corrected_android_test": "NOT_RUN"
+}

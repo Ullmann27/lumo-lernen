@@ -1,0 +1,42 @@
+{
+  "host": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "native": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "apk": {
+    "apk_sha256": "2e1b763153d7bf46ef4ce89b7ed14e51ec38fc488339e73b25e45e920a4379d4",
+    "flutter_source_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+    "godot_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "godot_pck_sha256": "5f97ffec4f5af7b9d8493a16846195993b0f94541c46cd6e5356e42c981f78a6",
+    "versionName": "0.13.8",
+    "versionCode": 2020,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "actual_installed_apk_sha256": "2e1b763153d7bf46ef4ce89b7ed14e51ec38fc488339e73b25e45e920a4379d4",
+  "source_hashes": {
+    ".github/probes/lumo_connect_four_android_probe.py": "eb26424167b24fd2c2959bce0ba07668452147d8a1212fd4d5b525ffc9584a82",
+    ".github/probes/creative_android_probe.py": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+    ".github/probes/modernization_android_tour.py": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+    ".github/probes/lumo_studio_surfaces_android_probe.py": "b072e4b218e05e3756a902d9cb887c1a02275d708bb7a25da83fb6c9b810b415",
+    ".github/probes/studio_creative_android_probe.py": "2bf513aa1486e54a3da1e512ba66ab87c0fc4510705dfcbb92d36bd5f34d0de8",
+    "scripts/probes/pr207_android_smoke.py": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e",
+    "scripts/probes/pr207_android_ui_probe.py": "b94dc20910a27f88613b520674d8594793621d238578da4f3918be73b7c36cb4",
+    "tools/android_qa/kart_tour_evidence.py": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+    "tools/auto_install/ConnectFourBridge.kt": "02ce58b8863197c9d4395b192f238d52a4e2b049ce59d01e451a0189088433cd",
+    "tools/auto_install/ConnectFourGameActivity.kt": "02ea7fb0f3909da8013e6a97b52901dd8e2981ae13e5c1a74ac1e03979364fe5",
+    "tools/auto_install/ConnectFourAuthorityService.kt": "7fb5ecdfd6e0b8c64f678258d3722483220d3e1574cc300916da6da50ccd2289",
+    "lib/features/games/connect_four/connect_four_round.dart": "dcc411d6687df70934d83253990248c4a0654b13a36ec54338ec43a257329754",
+    "lib/features/games/connect_four/connect_four_table_session.dart": "3a4c99538f50f057c2951ef16bbc55f6275865d90cafce36517c16f0545e615e",
+    "lib/features/games/connect_four/lumo_connect_four_game.dart": "6cf0e3e402090ebfa61539b98403ba82c5381f68ded4b722d683d440cb737569",
+    "native/scripts/games/connect_four/connect_four_table.gd": "76ab128b835bffd41b87274566408b8baab4073fe6733b2f5e3e990e0e027a72",
+    "native/scenes/games/connect_four_table.tscn": "49d116bd0436200d01b1e03eac3601854b33bf75142969b69d2c588418dd3af2"
+  }
+}

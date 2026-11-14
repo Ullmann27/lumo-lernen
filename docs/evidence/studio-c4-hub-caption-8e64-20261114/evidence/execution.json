@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "boundary": "Pure Python with original XML fixtures, actual production selectors; ADB/capture transport and image-size reader are doubled. No Android, OCR, Dart or Flutter execution.",
+  "sources_before": {
+    "baseline/host/.github/probes/lumo_connect_four_android_probe.py": "eb26424167b24fd2c2959bce0ba07668452147d8a1212fd4d5b525ffc9584a82",
+    "prepared/host/scripts/tests/test_studio_c4_navigation.py": "95305d3251c81cf04a654c8b3f15b08e474f317ca03a35b79434e515e14775a7",
+    "prepared/host/.github/probes/lumo_connect_four_android_probe.py": "514451ce71c0e870ab2d708d6a88c031838d5b0541f9392fb2eee2ab747ca11b"
+  },
+  "executions": [
+    {
+      "name": "red-original-visible-tile",
+      "command": [
+        "python3",
+        "-B",
+        "-c",
+        "import importlib.util,unittest,sys\nfrom pathlib import Path\ndef module(name,path):\n s=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m\nt=module('new_navigation_contracts',sys.argv[1]);t.MODULE=module('original_navigation_probe',sys.argv[2])\ns=unittest.TestSuite([t.CurrentC4HubNavigation('test_original_top_to_visible_replay_records_scroll_and_fresh_confirmed_tap')])\nr=unittest.TextTestRunner(verbosity=2).run(s)\nsys.exit(not r.wasSuccessful())\n",
+        "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/prepared/host/scripts/tests/test_studio_c4_navigation.py",
+        "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/baseline/host/.github/probes/lumo_connect_four_android_probe.py"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/prepared/host",
+      "env_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 1,
+      "elapsed_seconds": 0.9999982059998729,
+      "log": "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/evidence/red-original-visible-tile.log",
+      "log_bytes": 1408,
+      "log_sha256": "e9e77fafc00dcf4a7ac019acacb2b8a691b91d338bb7d6cc0a9f15c54d324dc2"
+    },
+    {
+      "name": "green-current-navigation",
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-p",
+        "test_studio_c4_navigation.py",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/prepared/host",
+      "env_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 1,
+      "elapsed_seconds": 1.898381633000099,
+      "log": "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/evidence/green-current-navigation.log",
+      "log_bytes": 3139,
+      "log_sha256": "faaca69e9353fb5f791f0ac04d4405ff5786b8ccc87ba24e9782cadad11ab5d6"
+    }
+  ],
+  "sources_after": {
+    "baseline/host/.github/probes/lumo_connect_four_android_probe.py": "eb26424167b24fd2c2959bce0ba07668452147d8a1212fd4d5b525ffc9584a82",
+    "prepared/host/scripts/tests/test_studio_c4_navigation.py": "95305d3251c81cf04a654c8b3f15b08e474f317ca03a35b79434e515e14775a7",
+    "prepared/host/.github/probes/lumo_connect_four_android_probe.py": "514451ce71c0e870ab2d708d6a88c031838d5b0541f9392fb2eee2ab747ca11b"
+  },
+  "source_bytes_unchanged": true
+}

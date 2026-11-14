@@ -1,0 +1,68 @@
+{
+  "existing_current_8e64_fixtures": [
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-home.xml",
+      "bytes": 32222,
+      "sha256": "f0b5578b948a839e2fbf018ce982b17ad2645abea2932e26a892eb1b8cc4f52b",
+      "git_blob_sha": "80349515b3c4f5b2f1e4fad4c303a9152a325edf"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-hub.xml",
+      "bytes": 28551,
+      "sha256": "fa7a6e746ed13a0f325b2d9da0639e221f06a41ee5b953d7f77ce1517ba4472a",
+      "git_blob_sha": "4d284085abc30785e4e0b4c34970c2e4d5a64d1f"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-paused.xml",
+      "bytes": 34244,
+      "sha256": "ac47cdf55d8d8f9db8d266d9f1a0734b4d01dc780dbbd511f770595a7fe72b90",
+      "git_blob_sha": "d3a07990f85c9709457bf75293865437e0aa1916"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-showcase.xml",
+      "bytes": 15889,
+      "sha256": "9ec7b4a5e1653ee8597f05e0e3a46f7661b35b15b6feada1879b406865e051be",
+      "git_blob_sha": "adea5bac5d52c0cfe6000f5b48288a040d40346a"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api37-paused.xml",
+      "bytes": 35172,
+      "sha256": "995714f918e1b1f7e2a366a339baee5d6b1714a35aabe0ac24c73db84360b996",
+      "git_blob_sha": "f328465dc61c58f93aeaf7a2cc5a023a785da0e6"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api37-showcase.xml",
+      "bytes": 16801,
+      "sha256": "5acfb1348da462257433d03c761a16eaab6adedfb1235d1c3aa318f895495588",
+      "git_blob_sha": "ec4a80a2abba2bd18ffdb6b019b1aa0aabd19d96"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/provenance.json",
+      "bytes": 2297,
+      "sha256": "8752814041fade9e17528b1a6038bb92f0ea4dba167cfa685c89fb5c5ca94e51",
+      "git_blob_sha": "a801d687a0e1c897e3c4fd4dc2d162ae4cc1b2b4"
+    }
+  ],
+  "new_original_fixtures": [
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-hub-top.xml",
+      "artifact_entry": "connect-four/0003-actual-flutter-navigation-confirmed.xml",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0003-actual-flutter-navigation-confirmed.xml",
+      "bytes": 25229,
+      "sha256": "9f965db4c05303926a2173c43fafa7ae07ffa9f94aaa8524a18b068d33c7dfda",
+      "git_blob_sha": "0e3ea3a4002c8421176e85e36b75b710309ecdab",
+      "crc32": "c81485db",
+      "selected_member_crc_verified": true
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-c4-visible.xml",
+      "artifact_entry": "connect-four/0006-actual-c4-hub.xml",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0006-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "git_blob_sha": "80469d00bd6b11600840ae116b48408928a54349",
+      "crc32": "ed9876f5",
+      "selected_member_crc_verified": true
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+test_changed_foreground_after_fresh_ui_read_prevents_tap (test_studio_c4_navigation.CurrentC4HubNavigation.test_changed_foreground_after_fresh_ui_read_prevents_tap) ... ok
+test_changed_scroll_viewport_is_never_used_for_input (test_studio_c4_navigation.CurrentC4HubNavigation.test_changed_scroll_viewport_is_never_used_for_input) ... ok
+test_changed_tile_between_capture_and_confirmation_is_never_tapped (test_studio_c4_navigation.CurrentC4HubNavigation.test_changed_tile_between_capture_and_confirmation_is_never_tapped) ... ok
+test_failed_swipe_keeps_attempt_unconfirmed_and_stops (test_studio_c4_navigation.CurrentC4HubNavigation.test_failed_swipe_keeps_attempt_unconfirmed_and_stops) ... ok
+test_original_top_to_visible_replay_records_scroll_and_fresh_confirmed_tap (test_studio_c4_navigation.CurrentC4HubNavigation.test_original_top_to_visible_replay_records_scroll_and_fresh_confirmed_tap) ... ok
+test_original_visible_caption_resolves_only_its_current_interactive_tile (test_studio_c4_navigation.CurrentC4HubNavigation.test_original_visible_caption_resolves_only_its_current_interactive_tile) ... ok
+test_ambiguous_target_and_unknown_page_are_rejected (test_studio_c4_navigation.CurrentFlutterNavigation.test_ambiguous_target_and_unknown_page_are_rejected) ... ok
+test_both_actual_failure_pages_require_showcase_back_instead_of_hidden_tabs (test_studio_c4_navigation.CurrentFlutterNavigation.test_both_actual_failure_pages_require_showcase_back_instead_of_hidden_tabs) ... ok
+test_both_original_paused_cards_pages_require_their_visible_exit (test_studio_c4_navigation.CurrentFlutterNavigation.test_both_original_paused_cards_pages_require_their_visible_exit) ... ok
+test_hidden_disabled_foreign_and_undersized_back_controls_cannot_pass (test_studio_c4_navigation.CurrentFlutterNavigation.test_hidden_disabled_foreign_and_undersized_back_controls_cannot_pass) ... ok
+test_original_home_and_hub_are_distinct_current_routes (test_studio_c4_navigation.CurrentFlutterNavigation.test_original_home_and_hub_are_distinct_current_routes) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 1.464s
+
+OK

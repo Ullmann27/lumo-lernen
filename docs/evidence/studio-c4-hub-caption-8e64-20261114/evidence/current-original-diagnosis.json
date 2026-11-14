@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "base_commit": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "executed_host": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "native": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "run_id": 43626348519,
+  "job_id": 132563694518,
+  "original_android_result": "FAIL",
+  "root_original_job_log": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/original-job.log",
+    "bytes": 2045230,
+    "sha256": "ac261d415340ab497c4a8c1e88e87f0390102f0b2869063f43b0a95e87005782"
+  },
+  "current_visual_review": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/visible-c4-frame-transfer-v2/originals/connect-four/0006-actual-c4-hub.png",
+    "bytes": 1786323,
+    "sha256": "62fd8514be063af465444c4b42651d23d42f7ee82c4dc87d2cfc35cbd4677dec",
+    "artifact_entry": "connect-four/0006-actual-c4-hub.png",
+    "dimensions": [
+      1080,
+      2400
+    ],
+    "personally_opened": true,
+    "observed": "Complete 4 Gewinnt tile and board illustration visibly present below Rhythm/Schatzsuche beside Quizshow. The icon/text area is readable and not covered by a modal. This frame is a hub, not native C4 gameplay."
+  },
+  "original_intermediate_ui_reads": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0005-actual-c4-hub.xml",
+      "bytes": 24357,
+      "sha256": "3ff70dddcbb2633d52c7b58fd21c22a4cddda005600f164b2a6690758b62ddec",
+      "actual_c4_matches": [
+        {
+          "caption": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+          "bounds": "[42,1817][524,1993]",
+          "enabled": "true",
+          "clickable": "true",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview"
+        }
+      ]
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0006-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "actual_c4_matches": [
+        {
+          "caption": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+          "bounds": "[42,1072][524,1536]",
+          "enabled": "true",
+          "clickable": "true",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview"
+        }
+      ]
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0007-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "actual_c4_matches": [
+        {
+          "caption": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+          "bounds": "[42,1072][524,1536]",
+          "enabled": "true",
+          "clickable": "true",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview"
+        }
+      ]
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0008-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "actual_c4_matches": [
+        {
+          "caption": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+          "bounds": "[42,1072][524,1536]",
+          "enabled": "true",
+          "clickable": "true",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview"
+        }
+      ]
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0009-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "actual_c4_matches": [
+        {
+          "caption": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+          "bounds": "[42,1072][524,1536]",
+          "enabled": "true",
+          "clickable": "true",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview"
+        }
+      ]
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0010-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "actual_c4_matches": [
+        {
+          "caption": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+          "bounds": "[42,1072][524,1536]",
+          "enabled": "true",
+          "clickable": "true",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview"
+        }
+      ]
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0011-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "actual_c4_matches": [
+        {
+          "caption": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+          "bounds": "[42,1072][524,1536]",
+          "enabled": "true",
+          "clickable": "true",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview"
+        }
+      ]
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0012-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "actual_c4_matches": [
+        {
+          "caption": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+          "bounds": "[42,1072][524,1536]",
+          "enabled": "true",
+          "clickable": "true",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview"
+        }
+      ]
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0013-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "actual_c4_matches": [
+        {
+          "caption": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+          "bounds": "[42,1072][524,1536]",
+          "enabled": "true",
+          "clickable": "true",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview"
+        }
+      ]
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0014-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "actual_c4_matches": [
+        {
+          "caption": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+          "bounds": "[42,1072][524,1536]",
+          "enabled": "true",
+          "clickable": "true",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview"
+        }
+      ]
+    }
+  ],
+  "original_input_journal": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/input-events.json",
+    "bytes": 961,
+    "sha256": "cb2cf0b70a8ac1be88feb546154f8ea9ce089f040196814674459b2e70b8e5a6",
+    "entries": 2,
+    "boundary": "No recorded scroll event is not evidence that ADB swipe was absent; old source executes swipes without journaling them. Actual intermediate XMLs and the viewed frame prove scrolling reached the tile."
+  },
+  "cause": {
+    "old_exact_selector_title": "Vier gewinnt",
+    "actual_semantic_title": "Lumo 4 Gewinnt",
+    "actual_full_caption": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+    "selector_contract": "Production helper requires caption.startswith(title + . + space) and caption.endswith( Spielen).",
+    "caption_mismatch_verified": true,
+    "scroll_failure_claim": false
+  },
+  "fix": "Exact current title; fresh UI target/viewport and MainActivity confirmation; explicit scroll attempts/positive ADB-return journaling. Existing coordinates and all downstream gates preserved.",
+  "new_execution": "Only targeted Python control-flow replay with original XML, real selectors and explicit transport/size doubles. No new Android/OCR/FPS claim.",
+  "transfer_scope": "Root owns selective HTTP-206 extraction and original member CRC/SHA. No complete archive verification or second download claimed here.",
+  "peer_review": "Agent character_animation independently read frozen sources and originals without rerunning tests; canonical separate note will be referenced."
+}

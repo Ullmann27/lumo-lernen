@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "scope": "Narrow C4 timer fixture and original early-gate-only workflow change. A later separate OCR gate extension needs its own review; this package does not claim review of that later extension.",
+  "files": [
+    {
+      "path": "docs/evidence/c4-clock-fixture-8e64-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/c4-clock-fixture-8e64-20261114/README.md",
+      "bytes": 1818,
+      "sha256": "e55b3d1c14bdcd242628c7e4bbd71dbc781ed6d89b3b6d32fd630799ada2a7fb",
+      "sha": "d10706ba8aae50c6af3e89deb6bd679cce2664d2",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/c4-clock-fixture-8e64-20261114/implementation-against-exact-8e64.patch",
+      "local_path": "/workspace/scratch/5987865ae883/qa/c4-clock-fixture-8e64-20261114/implementation-against-exact-8e64.patch",
+      "bytes": 5022,
+      "sha256": "8add49e73d786616e1de75e9ec48731049752a7f48650ccf88fb23ace59c90f2",
+      "sha": "1eec53ea38921536ef9cf03ef464a25712b65049",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/c4-clock-fixture-8e64-20261114/source-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/c4-clock-fixture-8e64-20261114/source-upload-manifest.json",
+      "bytes": 1327,
+      "sha256": "804a3e8081516f24d870d0f597a849a187246e21c0b47702efb85238189cf728",
+      "sha": "8cbfe98e840c444b23a6b63c268dad5c2d6dfa64",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/c4-clock-fixture-8e64-20261114/confirmed-source-tree-inputs.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/c4-clock-fixture-8e64-20261114/confirmed-source-tree-inputs.json",
+      "bytes": 345,
+      "sha256": "f994ea6eed6436a10883fcbd86c324a6437ba1fc59c2e0531ee8770a83c94a5e",
+      "sha": "929380ee3e8da321d6b4c90837c4726b2562df9a",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/c4-clock-fixture-8e64-20261114/prepared/test/games/connect_four_bot_save_retry_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/c4-clock-fixture-8e64-20261114/prepared/test/games/connect_four_bot_save_retry_test.dart",
+      "bytes": 11449,
+      "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+      "sha": "830b3f661c2a289f5ae76ed545cfed60fe27b36a",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/c4-clock-fixture-8e64-20261114/prepared/.github/workflows/lumo-nextgen-feature-contracts.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/c4-clock-fixture-8e64-20261114/prepared/.github/workflows/lumo-nextgen-feature-contracts.yml",
+      "bytes": 7711,
+      "sha256": "865996a3c4a6ad81a4629cb983a364b0a80474e0aa00c5715667be3fa02b48b7",
+      "sha": "5a5c88cd1cc63e629461acb88fe62dd442d65d83",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/c4-clock-fixture-8e64-20261114/baseline/test/games/connect_four_bot_save_retry_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/c4-clock-fixture-8e64-20261114/baseline/test/games/connect_four_bot_save_retry_test.dart",
+      "bytes": 10816,
+      "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+      "sha": "c4b90bc73b76a2df23acdb253fa4213b798fed21",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/c4-clock-fixture-8e64-20261114/baseline/.github/workflows/lumo-nextgen-feature-contracts.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/c4-clock-fixture-8e64-20261114/baseline/.github/workflows/lumo-nextgen-feature-contracts.yml",
+      "bytes": 7651,
+      "sha256": "b4c04ffd59a131a0535ddfcd53f99887adfe77dfc73de6516d3126da787edcef",
+      "sha": "829b819945d980e2082f478c1ddccea9463e3fa5",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/c4-clock-fixture-8e64-20261114/peer/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/c4-clock-fixture-8e64-20261114/peer/review.json",
+      "bytes": 6638,
+      "sha256": "fff5dc4e3435e7de97021f4df07edc635149826627a28a074526b219c13b1584",
+      "sha": "a5123038d4e5151ae941569df09741e782ef129b",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/c4-clock-fixture-8e64-20261114/peer/upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/c4-clock-fixture-8e64-20261114/peer/upload-manifest.json",
+      "bytes": 600,
+      "sha256": "70c107de4d9b055d7b94c51b6342f18393cbf53861d19e2b3bc18e24e6a72e2c",
+      "sha": "cbb4ee9a391c38dae371550728b6016f872d4771",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    }
+  ]
+}

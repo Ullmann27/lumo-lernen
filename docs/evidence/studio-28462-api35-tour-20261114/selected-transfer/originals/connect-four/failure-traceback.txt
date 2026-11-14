@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_connect_four_android_probe.py", line 614, in main
+    probe=AndroidProbe(args);result=probe.run();write(args.out/'result.json',result);return 0
+                                    ^^^^^^^^^^^
+  File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_connect_four_android_probe.py", line 551, in run
+    write(self.out/'binding-before.json',before);self.navigate()
+                                                 ^^^^^^^^^^^^^^^
+  File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_connect_four_android_probe.py", line 507, in navigate
+    raise RuntimeError('Actual C4 hub tile never appeared')
+RuntimeError: Actual C4 hub tile never appeared
