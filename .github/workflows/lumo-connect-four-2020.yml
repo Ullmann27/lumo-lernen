@@ -13,7 +13,8 @@ jobs:
       github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
-      github.head_ref == 'work/lumo-play-quality-20261114')
+      github.head_ref == 'work/lumo-play-quality-20261114' ||
+      github.head_ref == 'repair/lumo-2020-one-apk-20261114')
     runs-on: ubuntu-latest
     timeout-minutes: 35
     outputs:
@@ -78,6 +79,14 @@ jobs:
             echo 'Actual C4 source import failed' >&2
             exit 1
           fi
+      - name: Verify native C4 host return after an acknowledged temporary refusal
+        run: |
+          set -euo pipefail
+          mkdir -p c4-runtime/return-proof
+          (cd native-source && python3 tools/run_godot_probe.py \
+            --log "$GITHUB_WORKSPACE/c4-runtime/return-proof/live-return.log" \
+            --timeout 180 --required 'CONNECT_FOUR_RETURN_PASS checks=21' -- \
+            godot --headless --path . --audio-driver Dummy --script scripts/tests/connect_four_return_regression.gd)
       - name: Require the actual production Dart and rendered Godot two-process gate
         run: |
           set -euo pipefail
@@ -98,7 +107,8 @@ jobs:
       (github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
-      github.head_ref == 'work/lumo-play-quality-20261114'))
+      github.head_ref == 'work/lumo-play-quality-20261114' ||
+      github.head_ref == 'repair/lumo-2020-one-apk-20261114'))
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
@@ -154,7 +164,8 @@ jobs:
       (github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
-      github.head_ref == 'work/lumo-play-quality-20261114'))
+      github.head_ref == 'work/lumo-play-quality-20261114' ||
+      github.head_ref == 'repair/lumo-2020-one-apk-20261114'))
     runs-on: ubuntu-latest
     timeout-minutes: 90
     outputs:
@@ -415,6 +426,7 @@ jobs:
             LUMO_ACTION_LOG_DIR="$native_logs/action-stage" bash tools/validate_action_stage.sh
           fi
           LUMO_NEXTGEN_LOG_DIR="$native_logs/nextgen" bash tools/validate_nextgen.sh 2>&1 | tee "$native_logs/nextgen-runner.log"
+          LUMO_LIVE_LOG_DIR="$native_logs/live-connections" bash tools/validate_live_connections.sh 2>&1 | tee "$native_logs/live-connections-runner.log"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -733,7 +745,8 @@ jobs:
       github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
-      github.head_ref == 'work/lumo-play-quality-20261114') &&
+      github.head_ref == 'work/lumo-play-quality-20261114' ||
+      github.head_ref == 'repair/lumo-2020-one-apk-20261114') &&
       needs.verify-and-build.result == 'success' &&
       needs.android-host-compile.result == 'success' &&
       needs.connect-four-runtime.result == 'success' &&
