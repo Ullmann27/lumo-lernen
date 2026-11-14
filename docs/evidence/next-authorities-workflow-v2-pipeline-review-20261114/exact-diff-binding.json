@@ -1,0 +1,53 @@
+{
+  "status": "EXACT_TEXTUAL_DIFF_BINDING",
+  "hunks": [
+    {
+      "oldStart": 311,
+      "newStart": 311,
+      "oldCount": 12,
+      "newCount": 121,
+      "added": 111,
+      "removed": 2
+    },
+    {
+      "oldStart": 618,
+      "newStart": 727,
+      "oldCount": 19,
+      "newCount": 61,
+      "added": 49,
+      "removed": 7
+    },
+    {
+      "oldStart": 639,
+      "newStart": 790,
+      "oldCount": 6,
+      "newCount": 13,
+      "added": 7,
+      "removed": 0
+    },
+    {
+      "oldStart": 674,
+      "newStart": 832,
+      "oldCount": 12,
+      "newCount": 12,
+      "added": 3,
+      "removed": 3
+    }
+  ],
+  "old_bytes": {
+    "bytes": 46286,
+    "sha256": "efe60d3b94da7ace00eeeab849ec5904b686afc92a3529d44802c7bb1c164ece",
+    "git_blob": "821df1e199079b6fc3d1e7ec3609d328c7b5d332"
+  },
+  "new_bytes": {
+    "bytes": 56951,
+    "sha256": "536bc3224df90bd9fd7838912e0847d55ea96d5edbce06b70ef371e2872495e5",
+    "git_blob": "f798a0a5090a326fb9718bc427b9887ff15e9be1"
+  },
+  "reconstructed_bytes": {
+    "bytes": 56951,
+    "sha256": "536bc3224df90bd9fd7838912e0847d55ea96d5edbce06b70ef371e2872495e5",
+    "git_blob": "f798a0a5090a326fb9718bc427b9887ff15e9be1"
+  },
+  "executed_production": false
+}

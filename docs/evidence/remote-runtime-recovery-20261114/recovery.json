@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-11-14 17:26:24 UTC",
+  "status": "LOCAL_EXECUTOR_UNAVAILABLE_GITHUB_CONTINUES",
+  "observed_failure": "exec-server transport disconnected; failed to resume exec-server session: recovery timed out after 45s",
+  "environment_status": "unavailable, explicitly reported in current environment context",
+  "local_lint_attempt": "No Actionlint or new product test process started; the read-only source access failed before a process could be created.",
+  "recovery_capabilities": {
+    "executor_skills": "empty available catalog",
+    "runtime_skill": "package unavailable",
+    "appropriate_restart_tool_observed": false,
+    "github_connector": "actual source ref readback succeeded"
+  },
+  "source_checkpoints": {
+    "future_host": {
+      "sha": "e664ba4732222a64af58d44a6bab768846f47ccb",
+      "tree": "080082fa52a3940bd6dce08ff0348f7dacf00e68"
+    },
+    "future_native": {
+      "sha": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+      "tree": "e2a374b2154f7ecb080f693c4bc90def53a20a00"
+    },
+    "active_host": {
+      "sha": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+      "tree": "54a12aee5b76ea289e23546bee7ffc462e0dabdb"
+    },
+    "evidence_head_before_this_checkpoint": "e903131908c0385fd57d3a0b74743a401f29e88e",
+    "publisher_sha": "72143d3586109967773d6442072d486c11dc1449"
+  },
+  "active_build": {
+    "run": 43614047730,
+    "attempt": 1,
+    "last_agent_report": "2026-11-14 17:21:28 UTC",
+    "job": 132506515793,
+    "step": 31,
+    "state": "Native gameplay in progress; no new failure in the observed job API",
+    "scope": "Agent's original API snapshot; not a completed run result"
+  },
+  "remote_lint_proposal": {
+    "branch": "integration/lumo-next-authorities-lint-20261114",
+    "blob": "47bd17fe808d3843bb76399cf9c0f74c5a64969c",
+    "sha256": "b043fcd5cdc9ef963ca07a180124cac65e77380378ef48fc2559b848915600f9",
+    "status": "Immutable source blob created and fully read back, not activated; independent review pending"
+  },
+  "incoming_speech": {
+    "producer": "b7210db3f53361987fd33592de438fd7984d991a",
+    "source_count": 13,
+    "freeze_sha256": "f76320fd641973128624523375c899a9910b86b9b14c692decf79bb4355da99d",
+    "status": "Frozen source strings, not yet committed at receipt creation; no tests run"
+  },
+  "limits": [
+    "Existing original test failures and local import terminations remain preserved in prior evidence commits.",
+    "No local file persistence after the executor failure is claimed without a remote object readback.",
+    "No active-candidate restart, release/tag creation, main write or automation enablement is performed by this recovery checkpoint."
+  ],
+  "continuation": [
+    "Finish the reviewed13-file speech checkpoint; bind the final compiler and speech runner into a separate workflow V3.",
+    "Run exact workflow syntax qualification on an isolated read-only GitHub branch, then the five source-bound authority groups.",
+    "Await actual active C4, Android, update and delivery results before creating any public APK release."
+  ]
+}

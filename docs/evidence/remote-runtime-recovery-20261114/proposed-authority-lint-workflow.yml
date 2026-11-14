@@ -1,0 +1,160 @@
+name: LUMO isolated future-workflow source lint
+
+on:
+  push:
+    branches: [integration/lumo-next-authorities-lint-20261114]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-next-authorities-lint-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  lint:
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/integration/lumo-next-authorities-lint-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GIT_OPTIONAL_LOCKS: '0'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out the exact lint commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/workflows/lumo-next-table-authorities.yml
+            /.github/workflows/lumo-next-authorities-lint.yml
+
+      - name: Prepare a fresh external evidence directory
+        id: prepare
+        run: |
+          set -euo pipefail
+          proof="$RUNNER_TEMP/lumo-authority-lint-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          test ! -e "$proof"
+          mkdir -p "$proof"
+          printf 'LUMO_LINT_PROOF=%s\n' "$proof" >> "$GITHUB_ENV"
+          git cat-file commit HEAD > "$proof/source-commit.raw"
+          git ls-tree -rz --full-tree HEAD > "$proof/source-tree.raw"
+          git ls-files --stage -z > "$proof/source-index-stage.raw"
+
+      - name: Bind and syntax-check the actual workflow source
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import ast, hashlib, json, os, pathlib, subprocess, sys, textwrap
+          root = pathlib.Path.cwd()
+          proof = pathlib.Path(os.environ['LUMO_LINT_PROOF'])
+          def git(*args):
+              return subprocess.check_output(['git', *args])
+          head = git('rev-parse', 'HEAD').decode().strip()
+          tree = git('rev-parse', 'HEAD^{tree}').decode().strip()
+          if head != os.environ['GITHUB_SHA']:
+              raise ValueError('Actual lint checkout is not the pushed source')
+          paths = ['.github/workflows/lumo-next-table-authorities.yml',
+                   '.github/workflows/lumo-next-authorities-lint.yml']
+          records, blocks = [], []
+          for relative in paths:
+              raw = (root / relative).read_bytes()
+              expected = git('show', head + ':' + relative)
+              if raw != expected:
+                  raise ValueError('Workflow differs from the exact Git commit: ' + relative)
+              blob = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+              if git('rev-parse', head + ':' + relative).decode().strip() != blob:
+                  raise ValueError('Original workflow blob identity differs')
+              (proof / pathlib.Path(relative).name).write_bytes(raw)
+              records.append({'path': relative, 'bytes': len(raw),
+                              'sha256': hashlib.sha256(raw).hexdigest(), 'git_blob': blob})
+              lines = raw.decode('utf-8').splitlines()
+              position = 0
+              while position < len(lines):
+                  if not lines[position].rstrip().endswith("<<'PY'"):
+                      position += 1
+                      continue
+                  start = position + 1
+                  position = start
+                  while position < len(lines) and lines[position].strip() != 'PY':
+                      position += 1
+                  if position == len(lines):
+                      raise ValueError('Unclosed original Python heredoc')
+                  code = textwrap.dedent('\n'.join(lines[start:position])) + '\n'
+                  ast.parse(code, filename=relative + ':' + str(start + 1))
+                  blocks.append({'path': relative, 'first_line': start + 1,
+                                 'last_line': position,
+                                 'sha256': hashlib.sha256(code.encode()).hexdigest()})
+                  position += 1
+          if not any(row['path'] == paths[0] for row in blocks):
+              raise ValueError('No original qualification Python blocks were parsed')
+          result = {'schema': 1, 'status': 'PASS', 'head': head, 'tree': tree,
+                    'python_version': sys.version, 'files': records,
+                    'parsed_original_python_blocks': blocks,
+                    'scope': 'Workflow and embedded Python syntax only; no imports or product execution'}
+          (proof / 'source-and-python-syntax.json').write_text(json.dumps(result, indent=2) + '\n')
+          print(json.dumps(result))
+          PY
+
+      - name: Fetch the exact previously used Actionlint binary
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 \
+            https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz \
+            -o "$LUMO_LINT_PROOF/actionlint.tar.gz"
+          printf '%s  %s\n' 8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8 \
+            "$LUMO_LINT_PROOF/actionlint.tar.gz" | sha256sum -c -
+          tar -xzf "$LUMO_LINT_PROOF/actionlint.tar.gz" -C "$LUMO_LINT_PROOF" actionlint
+          printf '%s  %s\n' c872d6db8c6bf83a8eaa704fc93999f027d55dffbc63b8a6abdccb47df5f4cd4 \
+            "$LUMO_LINT_PROOF/actionlint" | sha256sum -c -
+          "$LUMO_LINT_PROOF/actionlint" --version > "$LUMO_LINT_PROOF/actionlint-version.txt"
+          cat "$LUMO_LINT_PROOF/actionlint-version.txt"
+
+      - name: Run actual Actionlint once on both exact workflow files
+        run: |
+          set -euo pipefail
+          set +e
+          "$LUMO_LINT_PROOF/actionlint" -no-color \
+            .github/workflows/lumo-next-table-authorities.yml \
+            .github/workflows/lumo-next-authorities-lint.yml \
+            > "$LUMO_LINT_PROOF/actionlint.stdout" 2> "$LUMO_LINT_PROOF/actionlint.stderr"
+          result=$?
+          set -e
+          printf '%s\n' "$result" > "$LUMO_LINT_PROOF/actionlint.exit-code.txt"
+          cat "$LUMO_LINT_PROOF/actionlint.stdout"
+          cat "$LUMO_LINT_PROOF/actionlint.stderr"
+          test "$result" = 0
+          git diff --exit-code HEAD --
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          root = pathlib.Path.cwd()
+          proof = pathlib.Path(os.environ['LUMO_LINT_PROOF'])
+          before = json.loads((proof / 'source-and-python-syntax.json').read_bytes())
+          for item in before['files']:
+              raw = (root / item['path']).read_bytes()
+              if len(raw) != item['bytes'] or hashlib.sha256(raw).hexdigest() != item['sha256']:
+                  raise ValueError('Workflow source changed during lint')
+          if subprocess.check_output(['git', 'ls-files', '--stage', '-z']) != (proof / 'source-index-stage.raw').read_bytes():
+              raise ValueError('Original source index changed')
+          result = {'schema': 1, 'status': 'PASS', 'head': before['head'],
+                    'tree': before['tree'], 'actionlint_exit': 0,
+                    'files': before['files'], 'python_blocks': len(before['parsed_original_python_blocks']),
+                    'scope': 'Exact workflow and embedded Python syntax, not functional acceptance'}
+          (proof / 'lint-result.json').write_text(json.dumps(result, indent=2) + '\n')
+          print(json.dumps(result))
+          PY
+
+      - name: Preserve complete prepared lint originals on every outcome
+        if: always() && steps.prepare.outcome == 'success'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: lumo-authority-workflow-lint-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/lumo-authority-lint-${{ github.run_id }}-${{ github.run_attempt }}/
+          if-no-files-found: error
+          include-hidden-files: true
+          compression-level: 0
+          retention-days: 30

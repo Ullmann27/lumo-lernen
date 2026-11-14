@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14 17:14:05 UTC",
+  "files": [
+    {
+      "path": "review.json",
+      "bytes": 6994,
+      "sha256": "8631c436565ed62e1c711ab2b9fa8de70f8c3a1f97b614413af0f8867c1c41ab",
+      "git_blob": "14713c03ae961e15f33b04179844c325118c8c3c"
+    },
+    {
+      "path": "input-bindings.json",
+      "bytes": 23387,
+      "sha256": "043c1ad4976b9561547518d7980139f308b19fd9395bffbc089f56980e35216f",
+      "git_blob": "9d0a8db8ec850294399eae69ddf35e167c99619f"
+    },
+    {
+      "path": "exact-diff-binding.json",
+      "bytes": 1216,
+      "sha256": "b82385539f715723e15512639a1e90a3094413136b56ab1c986fa76bac6d1817",
+      "git_blob": "f6db53ecaa9a3e965a15ba064b83dec1decea465"
+    },
+    {
+      "path": "README.md",
+      "bytes": 922,
+      "sha256": "7579f6ce7f2b6e02ff75b561efc49868b54b8c2025114480b783c7edb7fdb043",
+      "git_blob": "d887c2e9435fc25aacdf06713c061a8df3dc3b3a"
+    }
+  ]
+}

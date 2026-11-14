@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14 17:14:05 UTC",
+  "reviewer": "/root/pipeline_repair",
+  "status": "NO_CONCRETE_SOURCE_BLOCKER_FOUND_READ_ONLY",
+  "scope": "Independent complete V2 workflow reading, exact V1-to-V2 textual diff binding, original renderer/compiler/source contract reading and original input hash comparison. No execution qualification.",
+  "source_pack": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-v2-20261114",
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "bytes": 1642,
+    "sha256": "703d612e4b0a4e33da962046e0d671d57608353217d0b3af911a0da787f94f74",
+    "git_blob": "c89452efcba1e9985e6e19eceb7fc234491c77cc"
+  },
+  "workflow": {
+    "path": "final-source/.github/workflows/lumo-next-table-authorities.yml",
+    "bytes": 56951,
+    "sha256": "536bc3224df90bd9fd7838912e0847d55ea96d5edbce06b70ef371e2872495e5",
+    "git_blob": "f798a0a5090a326fb9718bc427b9887ff15e9be1"
+  },
+  "manifest": {
+    "path": "manifest.json",
+    "bytes": 13349,
+    "sha256": "30db2df6b516cfc9a9f25938fc2a1548f8d1d69c14a5d113c856216b1c555c91",
+    "git_blob": "4f97b5b2f64b6fda1562ff28f3c88d50dc58b408"
+  },
+  "patch": {
+    "path": "v1-to-v2.patch",
+    "bytes": 15640,
+    "sha256": "57b8942b222d1b95f02d9edb5038b2e3fef6e140ec71e7808c8576727962782a",
+    "git_blob": "effbe57894020a2117d934bec59f6051724218b3"
+  },
+  "v1": {
+    "workflow": {
+      "path": "final-source/.github/workflows/lumo-next-table-authorities.yml",
+      "bytes": 46286,
+      "sha256": "efe60d3b94da7ace00eeeab849ec5904b686afc92a3529d44802c7bb1c164ece",
+      "git_blob": "821df1e199079b6fc3d1e7ec3609d328c7b5d332"
+    },
+    "status": "Historical V1 remains unmodified; its three identified issues are not retrospectively declared successful."
+  },
+  "review_inputs": {
+    "v1_original_reference_files_independently_hash_checked": 26,
+    "v2_manifest_files_independently_hash_checked": 55,
+    "all_original_reference_bindings": "input-bindings.json",
+    "textual_diff_audit": "exact-diff-binding.json"
+  },
+  "fixes": [
+    {
+      "id": "actual_pub_resolution",
+      "finding": "V2 resolves the real current checkout first, copies actual package_config.json, package_graph.json when present, and pubspec.lock before and after, retains byte identities/presence, and binds pubspec.lock to the committed source inventory. It resolves package roots as local file URIs and requires lumo_lernen to resolve to host-source and host-source/lib. Every resolved dependency root is recorded and compared. No old mapping is supplied to the new execution.",
+      "limit": "Third-party package lib directories are recorded without requiring them to exist; optional graph absence is explicitly recorded and must remain identical. The separate historical format examples are not a future CI result."
+    },
+    {
+      "id": "seven_real_suites",
+      "finding": "Actual suite IDs and absolute paths must correspond to the seven requested files. Each testStart.suiteID is mapped to a requested original suite and paired with a testDone; malformed/duplicate identities, missing completions, stream error events and incorrect final done cardinality are errors. Each requested file must have at least one visible successful, unskipped completion. The unchanged summarize() checker additionally rejects failures/skips/nonzero process result."
+    },
+    {
+      "id": "prepared_upload_only",
+      "finding": "The always-upload is conditional on successful Prepare and uses a fixed runner.temp/run/attempt/matrix-group evidence path. The empty-environment-to-filesystem-root path is removed; hidden originals and no-files failure remain."
+    }
+  ],
+  "unchanged_contracts": [
+    "Exactly one new repo path; push branch integration/lumo-next-table-authorities-20261114, repository guard, contents:read, actual Host github.sha, immutable Native ce909c4d3bab3a5514b653bf945a0ef46adfa539/tree e2a374b2154f7ecb080f693c4bc90def53a20a00.",
+    "Five independent matrix groups: memory, quiz, english, android-host-compile, flutter-contracts. No APK/release/candidate workflow mutation and no replacement of C4 or delivery gates.",
+    "Full tracked bytes/modes and Git index are bound before/after against exact sources; snapshots require all tracked entries materialized and no sparse exclusions. Generated UID/import originals remain inventoried separately.",
+    "The actual source snapshot/PNG helper is hash/blob/committed-byte-bound before import; actual Godot binary and engine version are fixed.",
+    "English CLI/output/task fixture arguments match the original generator. Its 17 PNG/report/sidecar fields match; complete PNG decode/dimensions/hash and exact final roster remain required.",
+    "Memory view eight PNGs plus actual pair eight PNGs and twelve motion frames; Quiz six PNGs. Pair source trees/HEADs, two child exit codes, real return/authority contract and current layout identities remain required.",
+    "Existing 900-second view/English and 330-second actual pair limits remain; native import remains 300 seconds with nonzero/timeout/error/engine-banner checks. Outer job remains 35 minutes.",
+    "The unchanged compile_android_host.sh runs from host-source, preserves original compiler outputs and requires actual CAFEBABE bytecode for five Table and three retained C4 classes. Scope is compilation only.",
+    "Flutter remains one precisely selected seven-file machine process, no-pub, concurrency one, 1200-second process deadline and unchanged no-skip summarizer.",
+    "The four exact unified diff hunks reconstruct the entire 56,951-byte V2 workflow from the 46,286-byte V1. No other executable delta was found."
+  ],
+  "observed_pub_compatibility": {
+    "format_only_config_sha256": "253d12511ab82c11bf3b71ef0f66d17aabdf2edff7d7f56434069676fc6675f7",
+    "format_only_graph_sha256": "979410dc4465cc6fe6f536adf519d6daa74bd830d373f209e7e57c9ff78aa39b",
+    "finding": "The provided actual Flutter 3.44.9/Dart 3.12.2 configuration and graph have no generated/time field; their own package is rootUri ../, packageUri lib/. The provided package_config serializer emits no clock itself.",
+    "limit": "The new shared Pub-get followed by the unchanged compile helper's two Pub calls has not been executed with this new before/after binding. No prior repeated-Pub byte-identity result is asserted. The strict byte check remains and a real CI difference must fail."
+  },
+  "concrete_blockers": [],
+  "execution": {
+    "tests": 0,
+    "lint": 0,
+    "engine_or_renderer": 0,
+    "workflow_imports": 0,
+    "generated_helper_runs": 0,
+    "Git_mutations": 0,
+    "CI_actions": 0,
+    "production_edits": 0
+  },
+  "non_claims": [
+    "No five-group CI PASS.",
+    "No Android runtime, APK, audio or FPS acceptance.",
+    "No transfer of historical source or renderer success to this new workflow."
+  ],
+  "end_source_identity": "Actual local V2 hash agrees with the frozen SHA256 and Git blob; final review files are separate from all source packs/checkouts."
+}

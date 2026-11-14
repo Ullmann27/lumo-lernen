@@ -1,0 +1,280 @@
+{
+  "schema": 1,
+  "kind": "INDEPENDENT_READ_ONLY_SOURCE_REVIEW",
+  "status": "SOURCE_REVIEW_COMPLETE_NO_CURRENT_PRODUCT_OR_PIN_CHANGE",
+  "producer": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "supplied_union_parent": "fe861bd09296ef0051887dc21f48ca38215fc76b",
+  "supplied_union_tree": "c4271487ba818845a5428e31877ca701c4dd5f5f",
+  "comparison": {
+    "current_native": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+    "qualified_future_native": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+    "qualified_future_tree": "e2a374b2154f7ecb080f693c4bc90def53a20a00",
+    "provenance_scope": "Root's complete fixed-identity triage plus supplied exact source files; current ce909 raster-test bytes were read and hashed directly. This is not a new whole-tree or CI query."
+  },
+  "input_root": "/workspace/scratch/b3485b7bb989/native173-847-readonly-20261114",
+  "output_root_planned": "/workspace/scratch/b3485b7bb989/native173-847-qa-tools-independent-review-20261114",
+  "sources": [
+    {
+      "path": "scripts/tests/treasure_wisp_regression.gd",
+      "producer_blob": "67927a6f2147658d13e60cacdbbd24bf717a0c1d",
+      "root2281_and_ce909_blob": "7f256c202defeeba47c8c96a577065ee2eda16c1",
+      "mode": "100644",
+      "review": "Complete published source and supplied patch read"
+    },
+    {
+      "path": "tools/tests/test_studio_2020_rasters.py",
+      "producer_blob": "575c3ab5de57ec614684263fa594ea76fe8b8edc",
+      "producer_sha256": "088268c074459d38010c087b52da51257c75d8b3106001b1aa710bbc3dcd6dfd",
+      "root2281_and_ce909_blob": "8f8310c66e6477680996a5fabd407e53ec0d9e2b",
+      "ce909_sha256": "a6de009cd8d8c7e55b0a0273125346ee8c0bc715259f10618d70985b23ba6fde",
+      "mode": "100644",
+      "review": "Complete source/diff, all 24 methods and static AST comparison; no import or test"
+    },
+    {
+      "path": "tools/art/build_dream_garden.py",
+      "producer_blob": "e93e2416a31b0b6ec2c1de7a1713b5f8844386a4",
+      "producer_sha256": "45b0b6bf33fd1b42abad06226efb2ba707a47de5373ac82749becfbf081f67ab",
+      "bytes": 18339,
+      "mode": "100644",
+      "root2281_and_ce909_blob": null,
+      "review": "One necessary exact immutable GitHub blob read, full text read and local readback verified before environment outage"
+    },
+    {
+      "path": "tools/validate_live_connections.sh",
+      "producer_blob": "047c48b60af8ea8c1ed91426604cdb0e5dac7299",
+      "root2281_and_ce909_blob": null,
+      "mode": "100755",
+      "review": "Complete supplied caller source read only as invocation/dependency reference; not recommended as replacement for current runners"
+    }
+  ],
+  "wisp": {
+    "producer_lines": [
+      19,
+      85
+    ],
+    "headless_checks_retained": 14,
+    "additional_rendered_checks": 4,
+    "rendered_expected_marker": "[TreasureWisp] PASS checks=18",
+    "headless_expected_marker": "[TreasureWisp] PASS checks=14",
+    "additions": [
+      "After the single-goal route is applied and a process frame occurs, inspect GuideGold MultiMesh instance 0: z < 5.",
+      "After the fork is applied and a process frame occurs, inspect GuideGold instance 0: x < 0.",
+      "Inspect GuideMoon instance 0: x > 0.",
+      "With reduced motion enabled, retain GuideGold instance 0 transform, wait five process frames, require approximately equal transform."
+    ],
+    "retained": "Existing route counts, 16/16/20 instances, no extra shadow, one/two/zero-route visibility, CPU route geometry, pause clock, reduced-motion route position, nonfinite-target and completion checks remain.",
+    "actual_new_effect": "Additional Godot MultiMesh transform observations in non-headless mode, beyond the existing route_point calculations. No product algorithm changes.",
+    "limits": [
+      "Only instance 0 of the relevant route batches is sampled.",
+      "Left/right checks do not verify the color named in their diagnostic labels.",
+      "Non-headless DisplayServer enables these assertions; that condition alone is not proof of physical GPU rendering, screenshots, or FPS.",
+      "This review executed neither the 14- nor the 18-check probe."
+    ],
+    "future_action": "Useful separate future rendered Wisp18 regression, using the existing strict source/engine/log/deadline binding. Keep current Wisp14, 52/17, Dream and Discovery gates intact."
+  },
+  "rasters": {
+    "base_test_methods": 19,
+    "producer_test_methods": 24,
+    "common_methods_ast_identical": 18,
+    "changed_common_method": {
+      "name": "test_treasure_contrast_profile_safe_bounds_and_original_hash_are_mandatory",
+      "base_lines": [
+        346,
+        357
+      ],
+      "producer_lines": [
+        458,
+        469
+      ],
+      "change": "The same four mutations now target fresh observation 0 instead of restored observation 1.",
+      "caveat": "The image_sha256 mutation on an uncaptured fresh observation checks rejection of forbidden image metadata, not the hash of an actually captured PNG."
+    },
+    "preserved_restored_method": {
+      "name": "test_treasure_restored_contrast_profile_safe_bounds_and_original_hash_are_mandatory",
+      "producer_lines": [
+        545,
+        556
+      ],
+      "effect": "Preserves the original four restored-observation mutations under a new method name, so the original restored checks are not removed."
+    },
+    "added_groups": [
+      {
+        "name": "test_treasure_title_requires_five_hash_bound_contrast_and_safe_layout_reports",
+        "lines": [
+          492,
+          503
+        ],
+        "named_mutations": 21,
+        "coverage": "Missing/renamed/wrong-sized image; missing/malformed/failing/partial or boolean-count report; wrong or duplicate profile, original image hash/name/window/density/insets/start fixture, low/nonfinite title contrast, offscreen/zero-area title, false Android-device scope."
+      },
+      {
+        "name": "test_treasure_requires_both_start_states_and_exact_cutout_capture_assignment",
+        "lines": [
+          505,
+          516
+        ],
+        "named_mutations": 12,
+        "coverage": "Missing/wrong-sized cutout PNG, swapped insets, capture on wrong state, extra/partial fresh image, missing/duplicate state, fresh-avatar occlusion or low contrast despite no captured PNG, obsolete 137/3273 counts."
+      },
+      {
+        "name": "test_treasure_requires_actual_avatar_and_complete_semantic_hud_bounds",
+        "lines": [
+          518,
+          529
+        ],
+        "named_mutations": 13,
+        "coverage": "Missing/zero/nonfinite/offscreen avatar; missing/duplicate/unnamed/wrong hint-clue HUD roles; empty names, nonfinite/zero rectangles, unsafe cutout HUD."
+      },
+      {
+        "name": "test_treasure_recomputes_occlusion_and_preserves_accessible_hint_and_message",
+        "lines": [
+          531,
+          542
+        ],
+        "named_mutations": 7,
+        "coverage": "Actual avatar overlap despite reported zero, false overlap report, toast covering Jump/Hint, too-small touch rect, low/nonfinite secondary contrast."
+      }
+    ],
+    "named_mutations_in_four_added_groups": 53,
+    "coverage_count_boundary": "53 named subcases are source-enumerated, not executed results and not 53 unique new invariants. Several duplicate earlier five-view/avatar/overlap/cutout cases. The fifth added method preserves old restored coverage.",
+    "fixture_change": {
+      "removed_helper": "treasure_visibility_fixture",
+      "added_helper": "write_treasure_fixture",
+      "added_helper_lines": [
+        125,
+        285
+      ],
+      "scope": "Synthetic five-profile by two-start-state report builder with five designated PNGs, ten observations and source-fixed scope/count. It makes targeted negative mutations explicit; no renderer is invoked.",
+      "retained_original_reports_literal_bytes": 13910,
+      "retained_original_reports_literal_sha256": "8e552689dd1aa7103945a52a06cb228f669e89f642943afd1490c26131272403",
+      "original_reports_literal_equal": true
+    },
+    "verifier_read": {
+      "path": "tools/verify_studio_2020_rasters.py",
+      "relevant_lines": [
+        245,
+        324
+      ],
+      "guarantees_read": "Exact 5x2 profile/state set, checks>=3341 with integer/nonboolean type, exact fixture scope, failure-free report, finite positive rectangles, inset-safe title/HUD, real avatar containment/nonocclusion, semantic roles, 47.99-dp minimum within rounding tolerance, toast input clearance and designated-only capture metadata.",
+      "change": "No new production verifier change is proposed by this test-only delta."
+    },
+    "limits": [
+      "Each new group invokes the existing verifier with write=False on explicit synthetic fixtures; these are parser counterexamples, not gameplay, Android, rendered-image or visual acceptance.",
+      "Accepted exception classes remain broad (ValueError/KeyError/TypeError/OSError), so a future real run must still be examined rather than treating the label alone as proof of the intended rejection branch.",
+      "The helper hardcodes the current title-capture path; it matches the current verifier but is a maintenance dependency.",
+      "All old Movie, Face, C4, read-only, dirty-source and CLI checks remain; no claim of a repaired portrait-title truncation follows."
+    ],
+    "future_action": "Useful optional additive regression coverage after the current pair qualification. Keep the current 19-case result historical, checkpoint the exact proposed test blob first, and run the expanded methods only when Root authorizes."
+  },
+  "generator": {
+    "full_source_read": true,
+    "declared_command": "blender --background --threads 2 --python tools/art/build_dream_garden.py -- --preview",
+    "dependencies": [
+      "Blender bpy",
+      "Blender mathutils.Vector",
+      "Python standard library"
+    ],
+    "writes": [
+      "assets/dream_garden/dream_storybook.glb",
+      "assets/dream_garden/dream_blossom.glb",
+      "assets/dream_garden/provenance.json",
+      "docs/design/dream-garden-20261114/.gdignore",
+      "docs/design/dream-garden-20261114/dream_storybook.blend",
+      "docs/design/dream-garden-20261114/dream_blossom.blend",
+      "docs/design/dream-garden-20261114/blender-dream-garden.png when --preview"
+    ],
+    "actual_behavior": "Resets Blender scenes, builds original rounded/lathed/petaled/book/tree geometry, groups static same-material meshes while preserving named animated parts, exports GLB without cameras/lights/animations and with extras, writes source hashes and optional 1280x820 CPU Cycles 40-sample preview.",
+    "enforced_export_limits": {
+      "triangles_per_glb_max": 14000,
+      "surfaces_per_glb_max": 12,
+      "bytes_per_glb_max": 1000000
+    },
+    "source_lines": {
+      "fixed_paths": [
+        22,
+        24
+      ],
+      "static_consolidation": [
+        267,
+        279
+      ],
+      "limited_glb_inspection": [
+        282,
+        305
+      ],
+      "preview": [
+        308,
+        347
+      ],
+      "overwriting_export_and_manifest": [
+        350,
+        383
+      ]
+    },
+    "existing_manifest_read": {
+      "path": "assets/dream_garden/provenance.json",
+      "declared_tool": "Blender 4.3.2",
+      "declared_generator": "tools/art/build_dream_garden.py",
+      "assets": [
+        {
+          "file": "dream_storybook.glb",
+          "bytes": 115136,
+          "sha256": "f64698452dc41c10f9659e1641c9386775af891577207ac04a0e5ee82106f102",
+          "triangles": 5156,
+          "surfaces": 7
+        },
+        {
+          "file": "dream_blossom.glb",
+          "bytes": 115408,
+          "sha256": "7390bce21e80f9404b009d7a21859b6c1adbb6d9c9f945c79469dc7bd6859ec4",
+          "triangles": 6884,
+          "surfaces": 9
+        }
+      ],
+      "scope": "Read declarations only in this review; the final extra direct GLB hash read did not execute because the environment disconnected."
+    },
+    "limits": [
+      "It is an authoring/export tool with fixed output paths and no fresh-output or tracked-source invariance gate; running it would overwrite current assets and provenance.",
+      "It records the actual Blender version but does not pin/enforce one, and does not compare generated bytes with the already published GLB hashes.",
+      "inspect_glb verifies header/first JSON chunk, primitive mode and aggregate budgets. It is not a full buffer/accessor/resource/triangle-index validation and does not enforce recorded texture count or exact animated-node set.",
+      "Optional preview lighting is added after export and is separate from runtime assets.",
+      "Deterministic byte reproduction, Blender API compatibility and Android/60-FPS performance are not established by this read-only review."
+    ],
+    "future_action": "Useful missing authoring provenance source. Store as source only in a later isolated authoring branch if desired; do not execute it as qualification or replace current exact GLBs."
+  },
+  "live_runner_reference": {
+    "path": "tools/validate_live_connections.sh",
+    "observed_calls": 9,
+    "rendered_calls": 4,
+    "headless_calls": 5,
+    "reported_pngs": 7,
+    "new_relevant_call": "treasure_wisp_regression rendered '[TreasureWisp] PASS checks=18'",
+    "reasons_not_to_replace_current_pipeline": [
+      "Only reads git HEAD at the end; lacks expected-HEAD/tree/index/all-tracked-byte before/after binding and helper hashes.",
+      "Uses bare godot / ambient DISPLAY or Xvfb and a local-renderer fallback, not the approved exact binary/source-only contract.",
+      "All headless calls receive 120 seconds and rendered calls 180 seconds; this must not silently replace Root's preserved per-probe budgets.",
+      "grep requires a marker line but not unique marker/engine invocation counts.",
+      "Pillow.load actually decodes PNGs, but report dimensions are partly accepted as inputs and original report PNG hash claims are not compared with the computed hashes.",
+      "Eight of its calls duplicate existing Root gates; it omits the separate existing Learning5347 headless gate."
+    ],
+    "disposition": "Read as provenance for the Wisp18 invocation only; no wholesale runner/workflow adoption."
+  },
+  "protected": [
+    "Current manifest cleanup, exact Android Notice include_filter and executable web-tool mode remain.",
+    "Current ce909 Memory/Quiz/English product integrations remain.",
+    "Existing Dream, Discovery, Village, Magic, PCM, C4 return, source guards, 52 modes and 17-image contract remain."
+  ],
+  "execution": {
+    "tests": 0,
+    "imports": 0,
+    "renderers": 0,
+    "ci_queries": 0,
+    "source_or_pin_changes": 0,
+    "git_or_remote_mutations": 0
+  },
+  "environment_boundary": {
+    "final_extra_reads": "The final batch attempting to read existing lumo_dream_props.gd, dream_garden_props_regression.gd and direct current Git/source asset identities failed to create processes with exec-server transport disconnected / recovery timeout. None of those reads is claimed complete here.",
+    "retries": 0,
+    "final_disk_report_or_archive": "Not materialized before the outage. The complete report and immutable generator original are held in Functions store for Root-directed recovery."
+  }
+}
