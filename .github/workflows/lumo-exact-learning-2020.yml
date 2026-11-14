@@ -25,7 +25,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p audit/learning-all-grades
-          flutter test --no-pub --no-test-assets test/shape_trace_input_test.dart test/shape_trace_retry_test.dart test/lumo_ink_surface_regression_test.dart --reporter=expanded 2>&1 | tee audit/learning-all-grades/shape-input-tests.log
+          flutter test --no-pub --no-test-assets test/shape_trace_input_regression_test.dart test/shape_trace_retry_test.dart test/lumo_ink_surface_regression_test.dart --reporter=expanded 2>&1 | tee audit/learning-all-grades/shape-input-tests.log
       - name: Test production topic selection, repeated reading and level changes
         run: |
           set -euo pipefail
