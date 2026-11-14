@@ -1,0 +1,426 @@
+﻿2026-11-14T16:31:12.8794418Z Current runner version: '2.338.2'
+2026-11-14T16:31:12.8814257Z ##[group]Runner Image Provisioner
+2026-11-14T16:31:12.8814969Z Hosted Compute Agent
+2026-11-14T16:31:12.8815384Z Version: 20261103.629
+2026-11-14T16:31:12.8815856Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T16:31:12.8816410Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T16:31:12.8816887Z Worker ID: {562072f9-eddb-455d-8d8c-095a223fbb65}
+2026-11-14T16:31:12.8817412Z Region: us-east-1
+2026-11-14T16:31:12.8817807Z Cloud: AWS
+2026-11-14T16:31:12.8818411Z ##[endgroup]
+2026-11-14T16:31:12.8819333Z ##[group]Operating System
+2026-11-14T16:31:12.8819756Z Ubuntu
+2026-11-14T16:31:12.8820176Z 24.04.5
+2026-11-14T16:31:12.8820589Z LTS
+2026-11-14T16:31:12.8820969Z ##[endgroup]
+2026-11-14T16:31:12.8821371Z ##[group]Runner Image
+2026-11-14T16:31:12.8821785Z Image: ubuntu-24.04
+2026-11-14T16:31:12.8822207Z Version: 20261111.127.1
+2026-11-14T16:31:12.8823443Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.127/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T16:31:12.8824562Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.127
+2026-11-14T16:31:12.8825252Z ##[endgroup]
+2026-11-14T16:31:12.8826072Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T16:31:12.8827930Z Contents: read
+2026-11-14T16:31:12.8828410Z Metadata: read
+2026-11-14T16:31:12.8828799Z ##[endgroup]
+2026-11-14T16:31:12.8830369Z Secret source: Actions
+2026-11-14T16:31:12.8831037Z Cache mode: write
+2026-11-14T16:31:12.8831670Z Prepare workflow directory
+2026-11-14T16:31:12.9076728Z Prepare all required actions
+2026-11-14T16:31:12.9113998Z Getting action download info
+2026-11-14T16:31:13.0981130Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T16:31:15.0651559Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
+2026-11-14T16:31:15.1535529Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-14T16:31:15.5496260Z Getting action download info
+2026-11-14T16:31:15.6187625Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+2026-11-14T16:31:15.9006240Z Complete job name: core-learning
+2026-11-14T16:31:15.9671891Z ##[group]Run actions/checkout@v4
+2026-11-14T16:31:15.9673017Z with:
+2026-11-14T16:31:15.9673529Z   persist-credentials: false
+2026-11-14T16:31:15.9674293Z   ref: 6b3047b7979dfb86d837e74a21b0fd890e4f9e66
+2026-11-14T16:31:15.9674989Z   repository: Ullmann27/lumo-lernen
+2026-11-14T16:31:15.9678502Z   token: ***
+2026-11-14T16:31:15.9679072Z   ssh-strict: true
+2026-11-14T16:31:15.9679598Z   ssh-user: git
+2026-11-14T16:31:15.9680020Z   clean: true
+2026-11-14T16:31:15.9680527Z   sparse-checkout-cone-mode: true
+2026-11-14T16:31:15.9681206Z   fetch-depth: 1
+2026-11-14T16:31:15.9681688Z   fetch-tags: false
+2026-11-14T16:31:15.9682185Z   show-progress: true
+2026-11-14T16:31:15.9683001Z   lfs: false
+2026-11-14T16:31:15.9683524Z   submodules: false
+2026-11-14T16:31:15.9684145Z   set-safe-directory: true
+2026-11-14T16:31:15.9684735Z   allow-unsafe-pr-checkout: false
+2026-11-14T16:31:15.9685627Z ##[endgroup]
+2026-11-14T16:31:19.6413994Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T16:31:19.6415376Z ##[group]Getting Git version info
+2026-11-14T16:31:19.6415724Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T16:31:19.6416300Z [command]/usr/bin/git version
+2026-11-14T16:31:19.8535888Z git version 2.56.1
+2026-11-14T16:31:19.8550388Z ##[endgroup]
+2026-11-14T16:31:19.8560865Z Temporarily overriding HOME='/home/runner/work/_temp/b96c94ad-7e06-45cf-b40e-95f89c9e438f' before making global git config changes
+2026-11-14T16:31:19.8561675Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T16:31:19.8565243Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:31:19.8977388Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T16:31:19.8980189Z ##[group]Initializing the repository
+2026-11-14T16:31:19.8984501Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:31:19.9415093Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T16:31:19.9415701Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T16:31:19.9416282Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T16:31:19.9416751Z hint: call:
+2026-11-14T16:31:19.9416968Z hint:
+2026-11-14T16:31:19.9417284Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T16:31:19.9417568Z hint:
+2026-11-14T16:31:19.9417831Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T16:31:19.9418259Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T16:31:19.9418723Z hint:
+2026-11-14T16:31:19.9419109Z hint: 	git branch -m <name>
+2026-11-14T16:31:19.9419405Z hint:
+2026-11-14T16:31:19.9419774Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T16:31:19.9420454Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-14T16:31:19.9429090Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T16:31:19.9479511Z ##[endgroup]
+2026-11-14T16:31:19.9480214Z ##[group]Disabling automatic garbage collection
+2026-11-14T16:31:19.9482908Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T16:31:19.9504534Z ##[endgroup]
+2026-11-14T16:31:19.9504944Z ##[group]Setting up auth
+2026-11-14T16:31:19.9509378Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:31:19.9533218Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:31:20.2014086Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:31:20.2037492Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:31:20.2190057Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:31:20.2212384Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:31:20.2363681Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T16:31:20.2387419Z ##[endgroup]
+2026-11-14T16:31:20.2388133Z ##[group]Fetching the repository
+2026-11-14T16:31:20.2399237Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 6b3047b7979dfb86d837e74a21b0fd890e4f9e66
+2026-11-14T16:31:25.7557793Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T16:31:25.7558264Z  * branch            6b3047b7979dfb86d837e74a21b0fd890e4f9e66 -> FETCH_HEAD
+2026-11-14T16:31:25.7564009Z ##[endgroup]
+2026-11-14T16:31:25.7564823Z ##[group]Determining the checkout info
+2026-11-14T16:31:25.7565418Z ##[endgroup]
+2026-11-14T16:31:25.7569254Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T16:31:25.7644122Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T16:31:25.7664240Z ##[group]Checking out the ref
+2026-11-14T16:31:25.7685657Z [command]/usr/bin/git checkout --progress --force 6b3047b7979dfb86d837e74a21b0fd890e4f9e66
+2026-11-14T16:31:26.8121579Z Updating files:  65% (3252/4975)
+2026-11-14T16:31:26.8413906Z Updating files:  66% (3284/4975)
+2026-11-14T16:31:26.8657265Z Updating files:  67% (3334/4975)
+2026-11-14T16:31:26.8836956Z Updating files:  68% (3383/4975)
+2026-11-14T16:31:26.8859346Z Updating files:  69% (3433/4975)
+2026-11-14T16:31:26.8885596Z Updating files:  70% (3483/4975)
+2026-11-14T16:31:26.8909964Z Updating files:  71% (3533/4975)
+2026-11-14T16:31:26.8940419Z Updating files:  72% (3582/4975)
+2026-11-14T16:31:26.8982948Z Updating files:  73% (3632/4975)
+2026-11-14T16:31:26.9014088Z Updating files:  74% (3682/4975)
+2026-11-14T16:31:26.9045589Z Updating files:  75% (3732/4975)
+2026-11-14T16:31:26.9074395Z Updating files:  76% (3781/4975)
+2026-11-14T16:31:26.9102141Z Updating files:  77% (3831/4975)
+2026-11-14T16:31:26.9123457Z Updating files:  78% (3881/4975)
+2026-11-14T16:31:26.9143636Z Updating files:  79% (3931/4975)
+2026-11-14T16:31:26.9282781Z Updating files:  80% (3980/4975)
+2026-11-14T16:31:26.9308114Z Updating files:  81% (4030/4975)
+2026-11-14T16:31:26.9335667Z Updating files:  82% (4080/4975)
+2026-11-14T16:31:26.9354629Z Updating files:  83% (4130/4975)
+2026-11-14T16:31:26.9371245Z Updating files:  84% (4179/4975)
+2026-11-14T16:31:26.9388181Z Updating files:  85% (4229/4975)
+2026-11-14T16:31:26.9403040Z Updating files:  86% (4279/4975)
+2026-11-14T16:31:26.9421527Z Updating files:  87% (4329/4975)
+2026-11-14T16:31:26.9436639Z Updating files:  88% (4378/4975)
+2026-11-14T16:31:26.9452022Z Updating files:  89% (4428/4975)
+2026-11-14T16:31:26.9468537Z Updating files:  90% (4478/4975)
+2026-11-14T16:31:26.9495031Z Updating files:  91% (4528/4975)
+2026-11-14T16:31:26.9895791Z Updating files:  92% (4577/4975)
+2026-11-14T16:31:27.0100651Z Updating files:  93% (4627/4975)
+2026-11-14T16:31:27.0260655Z Updating files:  94% (4677/4975)
+2026-11-14T16:31:27.0455551Z Updating files:  95% (4727/4975)
+2026-11-14T16:31:27.0488587Z Updating files:  96% (4776/4975)
+2026-11-14T16:31:27.0633248Z Updating files:  97% (4826/4975)
+2026-11-14T16:31:27.0658323Z Updating files:  98% (4876/4975)
+2026-11-14T16:31:27.0681744Z Updating files:  99% (4926/4975)
+2026-11-14T16:31:27.0682191Z Updating files: 100% (4975/4975)
+2026-11-14T16:31:27.0683034Z Updating files: 100% (4975/4975), done.
+2026-11-14T16:31:27.0726997Z Note: switching to '6b3047b7979dfb86d837e74a21b0fd890e4f9e66'.
+2026-11-14T16:31:27.0727391Z 
+2026-11-14T16:31:27.0727566Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T16:31:27.0728140Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T16:31:27.0728772Z state without impacting any branches by switching back to a branch.
+2026-11-14T16:31:27.0729004Z 
+2026-11-14T16:31:27.0729173Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T16:31:27.0729602Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T16:31:27.0729820Z 
+2026-11-14T16:31:27.0729946Z   git switch -c <new-branch-name>
+2026-11-14T16:31:27.0730100Z 
+2026-11-14T16:31:27.0730216Z Or undo this operation with:
+2026-11-14T16:31:27.0730425Z 
+2026-11-14T16:31:27.0730539Z   git switch -
+2026-11-14T16:31:27.0730647Z 
+2026-11-14T16:31:27.0730832Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T16:31:27.0731099Z 
+2026-11-14T16:31:27.0731337Z HEAD is now at 6b3047b ci(lumo): verify the actual Safari reward dismissal and full integrated APK
+2026-11-14T16:31:27.0795536Z ##[endgroup]
+2026-11-14T16:31:27.0834944Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T16:31:27.0853700Z 6b3047b7979dfb86d837e74a21b0fd890e4f9e66
+2026-11-14T16:31:27.0860573Z ##[group]Removing auth
+2026-11-14T16:31:27.0863976Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:31:27.0885988Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:31:27.1040538Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:31:27.1059769Z http.https://github.com/.extraheader
+2026-11-14T16:31:27.1063903Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T16:31:27.1085762Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:31:27.1242417Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:31:27.1262998Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:31:27.1411968Z ##[endgroup]
+2026-11-14T16:31:27.1690367Z ##[group]Run subosito/flutter-action@v2
+2026-11-14T16:31:27.1690694Z with:
+2026-11-14T16:31:27.1690914Z   flutter-version: 3.44.9
+2026-11-14T16:31:27.1691150Z   channel: stable
+2026-11-14T16:31:27.1691367Z   cache: true
+2026-11-14T16:31:27.1691576Z   architecture: X64
+2026-11-14T16:31:27.1691831Z   pub-cache-path: default
+2026-11-14T16:31:27.1692061Z   dry-run: false
+2026-11-14T16:31:27.1692345Z   git-source: https://github.com/flutter/flutter.git
+2026-11-14T16:31:27.1692881Z ##[endgroup]
+2026-11-14T16:31:27.1741883Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-11-14T16:31:27.1758542Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-14T16:31:27.1760958Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-11-14T16:31:27.1791712Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-11-14T16:31:27.1792176Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-11-14T16:31:27.4530105Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:31:27.4530724Z ##[endgroup]
+2026-11-14T16:31:27.4621010Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=285]
+2026-11-14T16:31:27.4623816Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-11-14T16:31:27.4654416Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-11-14T16:31:27.4654779Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-11-14T16:31:27.4655061Z [36;1m  -n '3.44.9' \[0m
+2026-11-14T16:31:27.4655314Z [36;1m  -f '' \[0m
+2026-11-14T16:31:27.4655529Z [36;1m  -a 'X64' \[0m
+2026-11-14T16:31:27.4655732Z [36;1m  -k '' \[0m
+2026-11-14T16:31:27.4655985Z [36;1m  -c '' \[0m
+2026-11-14T16:31:27.4656191Z [36;1m  -l '' \[0m
+2026-11-14T16:31:27.4656431Z [36;1m  -d 'default' \[0m
+2026-11-14T16:31:27.4656720Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-11-14T16:31:27.4657014Z [36;1m  stable[0m
+2026-11-14T16:31:27.4681165Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:31:27.4681551Z ##[endgroup]
+2026-11-14T16:31:27.5875002Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=125]
+2026-11-14T16:31:27.5879365Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-11-14T16:31:27.5916529Z ##[group]Run actions/cache@v5
+2026-11-14T16:31:27.5916790Z with:
+2026-11-14T16:31:27.5917158Z   path: /opt/hostedtoolcache/flutter/stable-3.44.9-x64
+2026-11-14T16:31:27.5917610Z   key: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T16:31:27.5917978Z   enableCrossOsArchive: false
+2026-11-14T16:31:27.5918249Z   fail-on-cache-miss: false
+2026-11-14T16:31:27.5918490Z   lookup-only: false
+2026-11-14T16:31:27.5918743Z   save-always: false
+2026-11-14T16:31:27.5918964Z ##[endgroup]
+2026-11-14T16:31:27.8230797Z Cache hit for: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T16:31:28.9224818Z Received 226492416 of 1692352766 (13.4%), 215.8 MBs/sec
+2026-11-14T16:31:29.9188550Z Received 532676608 of 1692352766 (31.5%), 253.9 MBs/sec
+2026-11-14T16:31:30.9210505Z Received 734003200 of 1692352766 (43.4%), 233.3 MBs/sec
+2026-11-14T16:31:31.9188172Z Received 985661440 of 1692352766 (58.2%), 234.9 MBs/sec
+2026-11-14T16:31:32.9244727Z Received 1220542464 of 1692352766 (72.1%), 232.7 MBs/sec
+2026-11-14T16:31:33.9224265Z Received 1484783616 of 1692352766 (87.7%), 235.9 MBs/sec
+2026-11-14T16:31:34.7859649Z Received 1692352766 of 1692352766 (100.0%), 235.0 MBs/sec
+2026-11-14T16:31:34.7860729Z Cache Size: ~1614 MB (1692352766 B)
+2026-11-14T16:31:34.8009561Z [command]/usr/bin/tar -xf /home/runner/work/_temp/a67fbb47-3cb9-45fa-b53e-676fb94fbf93/cache.tzst -P -C /home/runner/work/lumo-lernen/lumo-lernen --use-compress-program unzstd
+2026-11-14T16:31:42.1534373Z Cache restored successfully
+2026-11-14T16:31:42.2124040Z Cache restored from key: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T16:31:42.2213308Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=14633]
+2026-11-14T16:31:42.2215819Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-11-14T16:31:42.4677585Z ##[group]Run actions/cache@v5
+2026-11-14T16:31:42.4677907Z with:
+2026-11-14T16:31:42.4678170Z   path: /home/runner/.pub-cache
+2026-11-14T16:31:42.4678891Z   key: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-07a42308f945467ea716bf9dfc154480292fdac641dd361ec5d48db65fa9fdd9
+2026-11-14T16:31:42.4679482Z   enableCrossOsArchive: false
+2026-11-14T16:31:42.4679763Z   fail-on-cache-miss: false
+2026-11-14T16:31:42.4680092Z   lookup-only: false
+2026-11-14T16:31:42.4680313Z   save-always: false
+2026-11-14T16:31:42.4680539Z ##[endgroup]
+2026-11-14T16:31:42.6167413Z Cache hit for: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-07a42308f945467ea716bf9dfc154480292fdac641dd361ec5d48db65fa9fdd9
+2026-11-14T16:31:42.9733638Z Received 80496554 of 80496554 (100.0%), 240.7 MBs/sec
+2026-11-14T16:31:42.9734519Z Cache Size: ~77 MB (80496554 B)
+2026-11-14T16:31:42.9754059Z [command]/usr/bin/tar -xf /home/runner/work/_temp/aba08ea3-1482-4055-a7d9-2147a90af507/cache.tzst -P -C /home/runner/work/lumo-lernen/lumo-lernen --use-compress-program unzstd
+2026-11-14T16:31:43.4831399Z Cache restored successfully
+2026-11-14T16:31:43.5310942Z Cache restored from key: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-07a42308f945467ea716bf9dfc154480292fdac641dd361ec5d48db65fa9fdd9
+2026-11-14T16:31:43.5413491Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=1319]
+2026-11-14T16:31:43.5416227Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-11-14T16:31:43.5458869Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-11-14T16:31:43.5459209Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-11-14T16:31:43.5459518Z [36;1m  -n '3.44.9' \[0m
+2026-11-14T16:31:43.5459753Z [36;1m  -a 'x64' \[0m
+2026-11-14T16:31:43.5460359Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.44.9-x64' \[0m
+2026-11-14T16:31:43.5460728Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2026-11-14T16:31:43.5460983Z [36;1m  stable[0m
+2026-11-14T16:31:43.5488441Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:31:43.5488852Z ##[endgroup]
+2026-11-14T16:31:43.6656143Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=123]
+2026-11-14T16:31:43.6708004Z ##[group]Run flutter pub get --enforce-lockfile
+2026-11-14T16:31:43.6708377Z [36;1mflutter pub get --enforce-lockfile[0m
+2026-11-14T16:31:43.6736560Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:31:43.6736848Z env:
+2026-11-14T16:31:43.6737232Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:31:43.6737606Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:31:43.6737896Z ##[endgroup]
+2026-11-14T16:31:45.3532935Z Resolving dependencies...
+2026-11-14T16:31:45.4227017Z Downloading packages...
+2026-11-14T16:31:45.4517762Z   clock 1.1.2 (1.1.3 available)
+2026-11-14T16:31:45.4518220Z   code_assets 1.2.1 (2.2.0 available)
+2026-11-14T16:31:45.4518500Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-11-14T16:31:45.4518830Z   crypto 3.0.7 (3.0.8 available)
+2026-11-14T16:31:45.4519155Z   file_selector_macos 0.9.5+1 (0.9.5+2 available)
+2026-11-14T16:31:45.4519700Z   flutter_lints 4.0.0 (6.0.0 available)
+2026-11-14T16:31:45.4520125Z   google_mlkit_commons 0.8.1 (1.0.3 available)
+2026-11-14T16:31:45.4520511Z   google_mlkit_text_recognition 0.13.1 (1.0.3 available)
+2026-11-14T16:31:45.4520904Z   hooks 2.0.2 (2.2.0 available)
+2026-11-14T16:31:45.4521220Z   image_picker 1.2.3 (1.2.4 available)
+2026-11-14T16:31:45.4521553Z   image_picker_ios 0.8.13+9 (0.8.13+15 available)
+2026-11-14T16:31:45.4521893Z   image_picker_platform_interface 2.11.1 (2.11.2 available)
+2026-11-14T16:31:45.4522256Z   jni 1.1.0 (1.1.2 available)
+2026-11-14T16:31:45.4522522Z   jni_flutter 1.0.3 (1.0.4+1 available)
+2026-11-14T16:31:45.4522982Z   lints 4.0.0 (6.1.0 available)
+2026-11-14T16:31:45.4523297Z   matcher 0.12.19 (0.12.20 available)
+2026-11-14T16:31:45.4523599Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-11-14T16:31:45.4523935Z   meta 1.18.0 (1.19.0 available)
+2026-11-14T16:31:45.4524190Z   objective_c 9.5.0 (9.6.4 available)
+2026-11-14T16:31:45.4524483Z   record_use 0.6.0 (1.1.1 available)
+2026-11-14T16:31:45.4524818Z   shared_preferences 2.5.5 (2.5.6 available)
+2026-11-14T16:31:45.4525152Z   shared_preferences_android 2.4.28 (2.5.5 available)
+2026-11-14T16:31:45.4525510Z   shared_preferences_foundation 2.5.7 (2.6.2 available)
+2026-11-14T16:31:45.4525811Z   stack_trace 1.12.1 (1.12.2 available)
+2026-11-14T16:31:45.4526091Z   synchronized 3.4.2 (3.6.1+1 available)
+2026-11-14T16:31:45.4526395Z   test_api 0.7.11 (0.7.15 available)
+2026-11-14T16:31:45.4526691Z   vector_math 2.2.0 (2.4.4 available)
+2026-11-14T16:31:45.4526957Z   vm_service 15.3.0 (15.4.0 available)
+2026-11-14T16:31:45.4527258Z   web 1.1.1 (1.1.2 available)
+2026-11-14T16:31:45.4527557Z Got dependencies!
+2026-11-14T16:31:45.4528280Z 29 packages have newer versions incompatible with dependency constraints.
+2026-11-14T16:31:45.4528677Z Try `flutter pub outdated` for more information.
+2026-11-14T16:31:45.6470627Z ##[group]Run set -euo pipefail
+2026-11-14T16:31:45.6471046Z [36;1mset -euo pipefail[0m
+2026-11-14T16:31:45.6471334Z [36;1mmkdir -p audit/learning-all-grades[0m
+2026-11-14T16:31:45.6472109Z [36;1mflutter test --no-pub --no-test-assets test/shape_trace_input_test.dart test/shape_trace_retry_test.dart test/lumo_ink_surface_regression_test.dart --reporter=expanded 2>&1 | tee audit/learning-all-grades/shape-input-tests.log[0m
+2026-11-14T16:31:45.6500228Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:31:45.6500560Z env:
+2026-11-14T16:31:45.6500887Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:31:45.6501277Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:31:45.6501567Z ##[endgroup]
+2026-11-14T16:31:46.5896268Z 00:00 +0: loading /home/runner/work/lumo-lernen/lumo-lernen/test/shape_trace_input_test.dart
+2026-11-14T16:31:54.5943975Z 00:00 +0: /home/runner/work/lumo-lernen/lumo-lernen/test/shape_trace_input_test.dart: shape strokes keep the lesson stationary in every direction
+2026-11-14T16:31:55.1177894Z 00:00 +1: /home/runner/work/lumo-lernen/lumo-lernen/test/shape_trace_input_test.dart: shape strokes keep the lesson stationary in every direction
+2026-11-14T16:31:55.1441143Z 00:00 +2: /home/runner/work/lumo-lernen/lumo-lernen/test/shape_trace_retry_test.dart: shape tracing honours allowRetry=false after a mistake
+2026-11-14T16:31:55.1731617Z 00:00 +3: /home/runner/work/lumo-lernen/lumo-lernen/test/shape_trace_input_test.dart: lifting a second finger cannot finish the active shape stroke
+2026-11-14T16:31:55.2326866Z 00:00 +4: /home/runner/work/lumo-lernen/lumo-lernen/test/shape_trace_input_test.dart: cancelled shape strokes are discarded and the next stroke works
+2026-11-14T16:31:55.2891566Z 00:00 +5: /home/runner/work/lumo-lernen/lumo-lernen/test/shape_trace_input_test.dart: cancelling a later stroke preserves earlier completed work
+2026-11-14T16:31:55.3544248Z 00:00 +6: /home/runner/work/lumo-lernen/lumo-lernen/test/shape_trace_input_test.dart: undo and clear actually erase the painted stroke pixels
+2026-11-14T16:31:55.4657810Z 00:00 +7: /home/runner/work/lumo-lernen/lumo-lernen/test/shape_trace_input_test.dart: undo and clear invalidate ink without an ancestor repaint
+2026-11-14T16:31:55.6455565Z 00:01 +8: /home/runner/work/lumo-lernen/lumo-lernen/test/lumo_ink_surface_regression_test.dart: vertical letter stroke does not scroll its learning page
+2026-11-14T16:31:56.0382876Z 00:01 +9: /home/runner/work/lumo-lernen/lumo-lernen/test/lumo_ink_surface_regression_test.dart: a second finger never creates a second ink stroke
+2026-11-14T16:31:56.0743047Z 00:01 +10: All tests passed!
+2026-11-14T16:31:56.1120676Z ##[group]Run set -euo pipefail
+2026-11-14T16:31:56.1121043Z [36;1mset -euo pipefail[0m
+2026-11-14T16:31:56.1121615Z [36;1mflutter test --no-pub test/learning_selection_integration_test.dart --reporter=expanded 2>&1 | tee audit/learning-all-grades/production-selection-tests.log[0m
+2026-11-14T16:31:56.1148793Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:31:56.1149414Z env:
+2026-11-14T16:31:56.1149766Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:31:56.1150149Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:31:56.1150443Z ##[endgroup]
+2026-11-14T16:31:56.9581981Z 00:00 +0: loading /home/runner/work/lumo-lernen/lumo-lernen/test/learning_selection_integration_test.dart
+2026-11-14T16:31:58.5888270Z 00:00 +0: exact adventure generation preserves the child name and selection
+2026-11-14T16:31:58.6196130Z 00:00 +1: Woerter lesen stays a reading lesson after the finite bank repeats
+2026-11-14T16:31:59.7674252Z 00:01 +2: Wörter lesen stays a reading lesson after the finite bank repeats
+2026-11-14T16:32:00.3081285Z 00:01 +3: canonical Zahlenstrahl is not replaced by the old alias
+2026-11-14T16:32:00.4258115Z 00:01 +4: test difficulty changes replace the task and companion context
+2026-11-14T16:32:00.5047958Z 00:01 +5: Alle keeps its deliberate mixed-topic round
+2026-11-14T16:32:00.5527430Z 00:01 +6: Mathematik keeps its deliberate mixed-topic round
+2026-11-14T16:32:00.6172145Z 00:02 +7: All tests passed!
+2026-11-14T16:32:00.6511530Z ##[group]Run flutter test --no-pub test/learning/learning_exact_selection_test.dart --reporter=expanded
+2026-11-14T16:32:00.6512147Z [36;1mflutter test --no-pub test/learning/learning_exact_selection_test.dart --reporter=expanded[0m
+2026-11-14T16:32:00.6539306Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:32:00.6539659Z env:
+2026-11-14T16:32:00.6540041Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:32:00.6540398Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:32:00.6540716Z ##[endgroup]
+2026-11-14T16:32:01.1083213Z 00:00 +0: loading /home/runner/work/lumo-lernen/lumo-lernen/test/learning/learning_exact_selection_test.dart
+2026-11-14T16:32:02.2293591Z 00:00 +0: Exact curriculum selection is never silently rerouted grade out of range is rejected rather than clamped
+2026-11-14T16:32:02.2425503Z 00:00 +1: Exact curriculum selection is never silently rerouted unknown subject does not become Mathematics
+2026-11-14T16:32:02.2444613Z 00:00 +2: Exact curriculum selection is never silently rerouted unknown topic does not become random question
+2026-11-14T16:32:02.2497557Z 00:00 +3: Exact curriculum selection is never silently rerouted all or mixed is invalid for explicit selection
+2026-11-14T16:32:02.2513125Z 00:00 +4: Exact curriculum selection is never silently rerouted explicit first-grade addition returns the selected lesson
+2026-11-14T16:32:02.2612401Z 00:00 +5: Exact curriculum selection is never silently rerouted mixed existing generation remains a separate API
+2026-11-14T16:32:02.2656359Z 00:00 +6: Exact curriculum selection is never silently rerouted current-grade filter excludes earlier subjects and units
+2026-11-14T16:32:02.2810593Z 00:00 +7: All tests passed!
+2026-11-14T16:32:02.3143844Z ##[group]Run dart run tools/audit_learning_tasks_all_grades.dart audit/learning-all-grades
+2026-11-14T16:32:02.3144456Z [36;1mdart run tools/audit_learning_tasks_all_grades.dart audit/learning-all-grades[0m
+2026-11-14T16:32:02.3170560Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:32:02.3170842Z env:
+2026-11-14T16:32:02.3171263Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:32:02.3171695Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:32:02.3171995Z ##[endgroup]
+2026-11-14T16:32:03.2479857Z {
+2026-11-14T16:32:03.2483823Z   "status": "SAMPLED_CONTRACT_PASS",
+2026-11-14T16:32:03.2484182Z   "grades": [
+2026-11-14T16:32:03.2484434Z     1,
+2026-11-14T16:32:03.2484656Z     2,
+2026-11-14T16:32:03.2484886Z     3,
+2026-11-14T16:32:03.2485081Z     4
+2026-11-14T16:32:03.2485387Z   ],
+2026-11-14T16:32:03.2485696Z   "familyCount": 236,
+2026-11-14T16:32:03.2486005Z   "generatedSamples": 7552,
+2026-11-14T16:32:03.2486376Z   "issues": 0,
+2026-11-14T16:32:03.2486818Z   "allExistingTasksReviewed": false,
+2026-11-14T16:32:03.2487201Z   "officialCurriculumApproval": false,
+2026-11-14T16:32:03.2487613Z   "allVariantsEnumerated": false,
+2026-11-14T16:32:03.2488160Z   "scope": "ExerciseFactory core only. Other reading, handwriting, games, lesson banks need separate review."
+2026-11-14T16:32:03.2488641Z }
+2026-11-14T16:32:03.2626159Z Running build hooks...Running build hooks...
+2026-11-14T16:32:03.2669238Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T16:32:03.2669553Z with:
+2026-11-14T16:32:03.2669825Z   name: lumo-learning-grades1-4-sampled-contracts
+2026-11-14T16:32:03.2670179Z   path: audit/learning-all-grades/
+2026-11-14T16:32:03.2670466Z   if-no-files-found: warn
+2026-11-14T16:32:03.2670738Z   retention-days: 30
+2026-11-14T16:32:03.2671002Z   compression-level: 6
+2026-11-14T16:32:03.2671249Z   overwrite: false
+2026-11-14T16:32:03.2671526Z   include-hidden-files: false
+2026-11-14T16:32:03.2671773Z env:
+2026-11-14T16:32:03.2672074Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:32:03.2672720Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:32:03.2673050Z ##[endgroup]
+2026-11-14T16:32:03.3874997Z (node:2712) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T16:32:03.3875858Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T16:32:03.3919708Z With the provided path, there will be 6 files uploaded
+2026-11-14T16:32:03.3922894Z Artifact name is valid!
+2026-11-14T16:32:03.3923367Z Root directory input is valid!
+2026-11-14T16:32:03.5875526Z Beginning upload of artifact content to blob storage
+2026-11-14T16:32:03.6326944Z (node:2712) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T16:32:03.6770558Z Uploaded bytes 211498
+2026-11-14T16:32:03.6951196Z Finished uploading artifact content to blob storage!
+2026-11-14T16:32:03.6952219Z SHA256 digest of uploaded artifact zip is c9b4711990d09d7e36d68ba20e786c57c0c930098a2a9319ebca1bceefcf1656
+2026-11-14T16:32:03.6953362Z Finalizing artifact upload
+2026-11-14T16:32:04.0133035Z Artifact lumo-learning-grades1-4-sampled-contracts.zip successfully finalized. Artifact ID 14121912086
+2026-11-14T16:32:04.0133868Z Artifact lumo-learning-grades1-4-sampled-contracts has been successfully uploaded! Final size is 211498 bytes. Artifact ID is 14121912086
+2026-11-14T16:32:04.0137697Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43616035073/artifacts/14121912086
+2026-11-14T16:32:04.0322523Z Post job cleanup.
+2026-11-14T16:32:04.0326799Z ##[start-action display=Cache pub dependencies;id=__d8ffd7e1-ab2f-422b-aa3f-e77a58869ee3.cache-pub]
+2026-11-14T16:32:04.2821209Z Post job cleanup.
+2026-11-14T16:32:04.3768915Z Cache hit occurred on the primary key flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-07a42308f945467ea716bf9dfc154480292fdac641dd361ec5d48db65fa9fdd9, not saving cache.
+2026-11-14T16:32:04.3807514Z ##[end-action id=__d8ffd7e1-ab2f-422b-aa3f-e77a58869ee3.cache-pub;outcome=success;conclusion=success;duration_ms=347]
+2026-11-14T16:32:04.3810698Z ##[start-action display=Cache Flutter;id=__d8ffd7e1-ab2f-422b-aa3f-e77a58869ee3.cache-flutter]
+2026-11-14T16:32:04.3844847Z Post job cleanup.
+2026-11-14T16:32:04.4805457Z Cache hit occurred on the primary key flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33, not saving cache.
+2026-11-14T16:32:04.4850513Z ##[end-action id=__d8ffd7e1-ab2f-422b-aa3f-e77a58869ee3.cache-flutter;outcome=success;conclusion=success;duration_ms=103]
+2026-11-14T16:32:04.5062989Z Post job cleanup.
+2026-11-14T16:32:04.5707109Z [command]/usr/bin/git version
+2026-11-14T16:32:04.5735756Z git version 2.56.1
+2026-11-14T16:32:04.5760643Z Temporarily overriding HOME='/home/runner/work/_temp/bfa4dc53-f845-4ed4-8d64-cbe4fee32227' before making global git config changes
+2026-11-14T16:32:04.5761853Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T16:32:04.5764718Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:32:04.5792442Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:32:04.5816192Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:32:04.5976717Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:32:04.6000590Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:32:04.6155347Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:32:04.6178016Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:32:04.6432235Z Cleaning up orphan processes
+2026-11-14T16:32:04.6674648Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
