@@ -426,6 +426,24 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     teal_ink = ImageChops.multiply(ImageChops.multiply(teal_dark, teal_blue), teal_balance)
     if teal_ink.getbbox():
         variants.append(('teal-text-1x', ImageChops.invert(teal_ink), 'deu+eng', 1))
+    # The actual Kart intro uses muted blue text over translucent 3D scenery.
+    # Its first captured frame can still be fading. Exhausting every general
+    # OCR fallback on that frame consumed the shared race-ready deadline in
+    # run 43626348513. For this exact cue, read two full-frame colour/scale
+    # variants and return missing promptly so native_tap observes a NEW frame.
+    # Two independently captured exact captions, stable bounds and the original
+    # deadline are still required before any touch. No region is assumed.
+    preview_cue = exact and wanted == normalized('Tippen zum Überspringen')
+    if preview_cue:
+        muted_red = red.point(lambda value: 255 if 80 <= value <= 220 else 0)
+        muted_blue = ImageChops.subtract(blue, red).point(
+            lambda value: 255 if 8 <= value <= 65 else 0)
+        muted_green = ImageChops.subtract(green, red).point(
+            lambda value: 255 if 5 <= value <= 45 else 0)
+        muted_text = ImageChops.invert(ImageChops.multiply(
+            ImageChops.multiply(muted_red, muted_blue), muted_green))
+        variants = [('preview-muted-blue', muted_text, 'deu+eng', 2),
+                    ('preview-raw-1x', image, 'deu+eng', 1)]
     for variant, pixels, language, scale in variants:
         remaining = deadline - time.monotonic()
         if remaining <= 0:
@@ -485,7 +503,7 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
         if wanted and any(wanted == normalized(line['text']) if exact
                           else wanted in normalized(line['text']) for line in result):
             break
-    if wanted and not any(wanted == normalized(line['text']) if exact
+    if wanted and not preview_cue and not any(wanted == normalized(line['text']) if exact
                           else wanted in normalized(line['text']) for line in result):
         # Real API35/37 frames can lose a complete dark caption inside its gold
         # rounded outline under sparse-page segmentation. Find colour regions
@@ -496,7 +514,7 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
             raise TimeoutError('Current native screenshot OCR deadline exceeded')
         result.extend(read_component_caption(source, out, tag, wanted, base.command,
                                              timeout=min(15, remaining)))
-    if wanted and not any(wanted == normalized(line['text']) if exact
+    if wanted and not preview_cue and not any(wanted == normalized(line['text']) if exact
                           else wanted in normalized(line['text']) for line in result):
         # The API 36 cover frame has a visible empty ITEM caption which all four
         # whole-frame variants miss among adjacent 3D edges. Read the same full

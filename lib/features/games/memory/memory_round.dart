@@ -11,6 +11,26 @@ abstract interface class MemoryStore {
   Future<void> writeStats(String value);
 }
 
+/// A platform snapshot alone is not a successful write acknowledgement.
+/// Stores with an optimistic native cache opt into this explicit barrier.
+abstract interface class MemoryReadbackConfirmation {
+  Future<void> confirmRoundReadback(String value);
+  Future<void> confirmStatsReadback(String value);
+}
+
+/// The storage operation has no positive platform acknowledgement. In
+/// particular, a transport error does not prove whether a write committed.
+class MemoryStorageUnconfirmed extends StateError {
+  MemoryStorageUnconfirmed(super.message, {this.cause});
+
+  final Object? cause;
+}
+
+/// The platform explicitly returned false for this write attempt.
+class MemoryStorageRejected extends MemoryStorageUnconfirmed {
+  MemoryStorageRejected(super.message);
+}
+
 typedef MemoryAward = Future<void> Function(
   String resultId, String difficulty, int kindPairs, int lumoPairs,
 );
@@ -136,7 +156,10 @@ class MemoryRoundController {
       controller._guard();
       if (raw != null) {
         // Corrupt/private foreign rounds are never replaced with defaults.
-        controller._round = MemoryRound.read(raw, catalog, owner);
+        final restored = MemoryRound.read(raw, catalog, owner);
+        await controller._confirmRoundReadback(raw);
+        controller._guard();
+        controller._round = restored;
         controller.restored = true;
         final rules = controller._round.rules;
         final unplayed = rules.phase == 'select' && rules.turn == 'kind' &&
@@ -222,12 +245,37 @@ class MemoryRoundController {
         }
         values[entry.key as String] = entry.value as int;
       }
+      await _confirmStatsReadback(raw);
+      _guard();
       _stats = Map<String, dynamic>.from(document);
       _best = values;
+    } on MemoryStorageUnconfirmed {
+      _guard();
+      // An unavailable or unconfirmed platform is not corrupt legacy data.
+      // Never skip its statistics and mark an unsettled finish as rewarded.
+      rethrow;
     } catch (_) {
       _guard();
       // Existing unreadable statistics remain byte-for-byte untouched.
       _statsWritable = false;
+    }
+  }
+
+  Future<void> _confirmRoundReadback(String value) async {
+    _guard();
+    final confirmation = store;
+    if (confirmation is MemoryReadbackConfirmation) {
+      await confirmation.confirmRoundReadback(value);
+      _guard();
+    }
+  }
+
+  Future<void> _confirmStatsReadback(String value) async {
+    _guard();
+    final confirmation = store;
+    if (confirmation is MemoryReadbackConfirmation) {
+      await confirmation.confirmStatsReadback(value);
+      _guard();
     }
   }
 
@@ -243,6 +291,7 @@ class MemoryRoundController {
     } catch (_) {
       _guard();
       if (await store.readRound() != text) rethrow;
+      await _confirmRoundReadback(text);
     }
     _guard();
     _round = next;
@@ -258,6 +307,8 @@ class MemoryRoundController {
       if (disk.id != _round.id || disk.revision < _round.revision) {
         throw StateError('Memory-Spielstand wurde anderweitig ersetzt');
       }
+      await _confirmRoundReadback(raw);
+      _guard();
       _round = disk;
       _uncertain = false;
     } else if (jsonEncode(disk.toJson()) != jsonEncode(_round.toJson())) {
@@ -281,6 +332,8 @@ class MemoryRoundController {
       final observed = await store.readRound();
       _guard();
       if (observed != text) rethrow;
+      await _confirmRoundReadback(text);
+      _guard();
       _uncertain = false;
     }
     _guard();
@@ -352,6 +405,7 @@ class MemoryRoundController {
     } catch (_) {
       _guard();
       if (await store.readStats() != encoded) rethrow;
+      await _confirmStatsReadback(encoded);
     }
     _guard();
     _stats = next;

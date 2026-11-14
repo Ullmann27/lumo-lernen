@@ -424,6 +424,35 @@ class PreviewSkipTests(unittest.TestCase):
         self.assertEqual(len(inputs), 1)
         self.assertLess(self.clock.now, 55)
 
+    def test_faded_preview_yields_to_fresh_frames_without_general_ocr_fallbacks(self):
+        helper, commands = self.use_actual_helper(first_fresh_frame_faded=True)
+        report = self.skip()
+        self.assertEqual(report['status'], 'TOUCH_SENT')
+        self.assertEqual(len(report['readiness']['frames']), 3)
+        # One failed frame uses two whole-frame reads; each of the next two
+        # independent observations succeeds in its first read.
+        self.assertEqual(len(commands), 4)
+        self.assertTrue(all('preview-' in Path(args[2]).name for args, _ in commands))
+        helper.read_component_caption.assert_not_called()
+        helper.read_tiled_word.assert_not_called()
+        self.assertEqual(len(report['cue_witnesses']), 2)
+        self.assertNotEqual(report['cue_witnesses'][0]['source'],
+                            report['cue_witnesses'][1]['source'])
+        inputs = [args for args, _ in self.adb_calls
+                  if args[:3] == ('shell', 'input', 'swipe')]
+        self.assertEqual(len(inputs), 1)
+        self.assertLess(self.clock.now, 55)
+
+    def test_other_exact_captions_keep_the_existing_general_reader(self):
+        helper, commands = self.use_actual_helper(first_fresh_frame_faded=True)
+        helper.image_lines(self.out, 'touch-0', 'weiter',
+                           source_path=self.source, timeout=30, exact=True)
+        self.assertTrue(commands)
+        self.assertFalse(any('preview-' in Path(args[2]).name for args, _ in commands))
+        helper.read_component_caption.assert_called_once()
+        helper.read_tiled_word.assert_called_once()
+        self.assertFalse(self.adb_calls)
+
     def test_actual_helper_cannot_touch_after_original_deadline(self):
         self.use_actual_helper()
         self.clock.now = 54
