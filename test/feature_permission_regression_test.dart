@@ -594,6 +594,7 @@ void main() {
           final reward = find.text('+10 XP');
           expect(reward.hitTestable(), findsOneWidget);
           await tester.tap(reward);
+          await tester.pump();
         }
         await tester.pump(const Duration(milliseconds: 300));
         expect(find.text('+10 XP'), findsNothing);
