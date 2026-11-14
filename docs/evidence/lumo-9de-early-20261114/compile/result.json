@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "scope": "Actual Android Kotlin/Java compilation only; no APK or runtime claim",
+  "flutter_source_commit": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+  "godot_aar": "org.godotengine:godot:4.6.3.stable",
+  "onnxruntime_android": "1.23.1",
+  "classes": {
+    "MainActivity": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/MainActivity.class",
+        "bytes": 26139,
+        "sha256": "dfdab18c5755e42420f8a4c662877b7ccd20200ac9a516b52a27dfe18557cde0"
+      }
+    ],
+    "LumoGameActivity": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoGameActivity.class",
+        "bytes": 16606,
+        "sha256": "929271664e4b5100d87ebbe99ebf91589cbf8b1c16d358821b5b7c66c001b0f0"
+      }
+    ],
+    "LumoHostPlugin": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoHostPlugin.class",
+        "bytes": 4594,
+        "sha256": "014ce0108dcc2072b35d90c73707835655c1451f2ddc074b9c43005c46ed6517"
+      }
+    ],
+    "CardsTableBridge": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/CardsTableBridge.class",
+        "bytes": 20859,
+        "sha256": "434667a7937f5ce3957f6aa3ce5bd9db3ece3c69a10262746fa628e19d3792fa"
+      }
+    ],
+    "CardsAuthorityService": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/CardsAuthorityService.class",
+        "bytes": 2674,
+        "sha256": "f9fbd8919270c109d3e52fbe61d2f6fae00f95392a637ebb7eb1799007c74b1d"
+      }
+    ],
+    "CardsAuthorityRegistry": [
+      {
+        "path": "build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/dev/ullmann/lumo/lumo_lernen/CardsAuthorityRegistry.class",
+        "bytes": 1797,
+        "sha256": "4f6a6545b1fd26f90b563be7c75628f8223b63edb3be646208a43eff39991b35"
+      }
+    ],
+    "LumoLearningSpeech": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.class",
+        "bytes": 17437,
+        "sha256": "85030cba5be690ae9e2e90252f9ba5f79d1499525ea22f1c2c2270d8c62b919e"
+      }
+    ],
+    "LumoOfflineSpeechBridge": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoOfflineSpeechBridge.class",
+        "bytes": 19017,
+        "sha256": "205454042f42b167261e16b9dffd63f8095d752aad0bf7b49feccd8ae840408b"
+      }
+    ],
+    "LumoOfflineSpeechEngine": [
+      {
+        "path": "build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/dev/ullmann/lumo/lumo_lernen/LumoOfflineSpeechEngine.class",
+        "bytes": 17178,
+        "sha256": "c9944e14323d807932a1fb3b1cbfa6ac05a2df46f8b88b7ea493755e0a6be5af"
+      }
+    ]
+  }
+}

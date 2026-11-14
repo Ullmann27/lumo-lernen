@@ -1,0 +1,780 @@
+{
+  "kind": "new_independent_review_index_not_an_original_CI_receipt",
+  "repository": "Ullmann27/lumo-lernen",
+  "candidate_source": {
+    "commit": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "tree": "c0a9e29c831113ea8e49e632bc7959a15079bc94",
+    "tracked_source_clean": true
+  },
+  "candidate_native": {
+    "commit": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+    "tree": "35492eec16cac6774bc546b6e57628900bef61cb",
+    "tracked_source_clean": true
+  },
+  "main_run_id": 43622379532,
+  "run_attempt": 1,
+  "main_job_id": 132532172676,
+  "audit_run_id": 43626324478,
+  "audit_job_id": 132542831841,
+  "audit_source": {
+    "commit": "368803543b4beb3906677f207188d90888ce4309",
+    "tree": "323bd9b9d9ff9fe95f38f4bc1bbf4a98af5faeb4",
+    "tracked_source_clean": true
+  },
+  "audit_output_artifact": {
+    "id": 14125799939,
+    "name": "lumo-original-artifact-audit-43626324478-1",
+    "bytes": 682762,
+    "api_and_original_upload_digest": "sha256:151de226db7f27c34f86fea33a18e264924a817f246b5e4736644da3ced108c6",
+    "downloaded_again_by_this_reviewer": false
+  },
+  "original_joblog": {
+    "read_count": 1,
+    "decoded_utf8_bytes": 4725530,
+    "decoded_utf8_sha256": "87dc07f1c9a32f6c6b9c06adfe947c518dd61d267866b9977207a1eb2f2ecc46"
+  },
+  "original_receipt": {
+    "blob": {
+      "name": "receipt-original-log-line.txt",
+      "export_key": null,
+      "bytes": 22679,
+      "sha256": "e61f703db98707a721dac390fb2f1f1426c32963af872210bf1c607fea103d0a",
+      "git_sha1": "edef2a062c738ff37d751d9d2cf9431724833a9a",
+      "original_bytes": true,
+      "scope": "exact_original_joblog_receipt_line_with_its_LF",
+      "created_or_confirmed_blob": "edef2a062c738ff37d751d9d2cf9431724833a9a"
+    },
+    "status": "ORIGINALS_CHECKED_WITH_DECLARED_SCOPE",
+    "errors": [],
+    "candidate_acceptance": false,
+    "publication_authorization": false
+  },
+  "scopes": {
+    "all_five_zip_sha_and_all_member_crcs_checked_by_actual_audit_runner": true,
+    "all_original_members_unchanged_after_readers": true,
+    "all_297_chunks_and_all_29_export_sizes_sha256_independently_checked_in_functions": true,
+    "whole_flutter_jsonl_and_all_capture_counts_independently_recounted": true,
+    "learning_sample_rows_checked_by_unchanged_real_candidate_helper": true,
+    "learning_task_sample_jsonl_reread_by_this_reviewer": false,
+    "flutter_png_decode_by_this_reviewer": false,
+    "human_visual_approval": false,
+    "whole_candidate_acceptance": false
+  },
+  "archives": [
+    {
+      "kind": "compile",
+      "artifact_id": 14125230288,
+      "bytes": 6281,
+      "sha256": "faaf5b263f94e28c7699597dd7eb8f696dc82233ba970c54c187d05fad21c778",
+      "new_inventory_files": 6
+    },
+    {
+      "kind": "desktop",
+      "artifact_id": 14125175288,
+      "bytes": 22152757,
+      "sha256": "a9c9c57d4aa08d4065ad55270204fed53674da0f83f01594fffe0c53f81b6e6f",
+      "new_inventory_files": 399
+    },
+    {
+      "kind": "learning",
+      "artifact_id": 14124159972,
+      "bytes": 212134,
+      "sha256": "f48f870d095b4ddbafeb20059038579060bf0672dafde2be1b5cd0742265d365",
+      "new_inventory_files": 7
+    },
+    {
+      "kind": "flutter",
+      "artifact_id": 14124469903,
+      "bytes": 332478563,
+      "sha256": "c9a45c4a0200c5fe430d32d6c073210674d740bca9928b85df06b939f51ca5b9",
+      "new_inventory_files": 548
+    },
+    {
+      "kind": "contracts",
+      "artifact_id": 14125486284,
+      "bytes": 26371,
+      "sha256": "b49d22f9fe98f7f3db2cdd3fff20e1d103cf8360928dd37dd06fa498d3e603f3",
+      "new_inventory_files": 1
+    }
+  ],
+  "summary": {
+    "flutter": {
+      "source": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+      "main_run": 43622379532,
+      "main_job": 132532172676,
+      "artifact": 14124469903,
+      "audit_run": 43626324478,
+      "audit_job": 132542831841,
+      "own_reassembled_complete_machine_log": true,
+      "own_strict_json_parse": true,
+      "passed": 2576,
+      "failed": [],
+      "skipped": [],
+      "completed_test_records": 3141,
+      "hidden_completed_records": 565,
+      "test_start_records": 3141,
+      "event_types": {
+        "start": 1,
+        "suite": 385,
+        "testStart": 3141,
+        "allSuites": 1,
+        "testDone": 3141,
+        "group": 469,
+        "print": 328,
+        "done": 1
+      },
+      "process_notifications": 385,
+      "blank_separators": 385,
+      "machine_lines": 8237,
+      "unparsed_nonempty_lines": 0,
+      "done_success": true,
+      "flutter_exit_code": 0,
+      "archive_inventory_files": 548,
+      "rendered_png_count": 546,
+      "capture_error_files": [],
+      "capture_png_counts": {
+        "LUMO_TUTORING_CAPTURE_DIR": {
+          "directory": "tutoring",
+          "pngs": 6
+        },
+        "LUMO_RIG_STRESS": {
+          "directory": "rig-stress",
+          "pngs": 27
+        },
+        "LUMO_CARDS_OPPONENT_CAPTURE": {
+          "directory": "cards-opponents",
+          "pngs": 4
+        },
+        "LUMO_STREAM_E_CAPTURE": {
+          "directory": "cards-memory",
+          "pngs": 8
+        },
+        "LUMO_NAVIGATION_CAPTURES": {
+          "directory": "navigation",
+          "pngs": 26
+        },
+        "LUMO_GUIDED_CAPTURE_DIR": {
+          "directory": "guided-learning",
+          "pngs": 170
+        },
+        "LUMO_VISUAL_CAPTURE_DIR": {
+          "directory": "reasoning",
+          "pngs": 15
+        },
+        "LUMO_TOUR_DIR": {
+          "directory": "tour",
+          "pngs": 62
+        },
+        "LUMO_FLUTTER_GAMES_CAPTURE": {
+          "directory": "games",
+          "pngs": 16
+        },
+        "LUMO_LEARNING_CAPTURE_DIR": {
+          "directory": "learning-adventure",
+          "pngs": 80
+        },
+        "LUMO_COMPANION_CAPTURE_DIR": {
+          "directory": "companion",
+          "pngs": 6
+        },
+        "LUMO_SPATIAL_CAPTURES": {
+          "directory": "reading",
+          "pngs": 12
+        },
+        "LUMO_CAPTURE_DIR": {
+          "directory": "modernization",
+          "pngs": 42
+        },
+        "LUMO_CARD_FACE_EXPORT_DIR": {
+          "directory": "card-face-exports",
+          "pngs": 56
+        },
+        "LUMO_NEXTGEN_READING_CAPTURES": {
+          "directory": "nextgen-reading",
+          "pngs": 6
+        },
+        "LUMO_READING_CAPTURES": {
+          "directory": "reading-passages",
+          "pngs": 3
+        },
+        "LUMO_ASSISTED_LEARNING_CAPTURES": {
+          "directory": "assisted-learning",
+          "pngs": 2
+        },
+        "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+          "directory": "native-profiles",
+          "pngs": 4
+        }
+      },
+      "summary_sha256": "4b42a006f29da124641e5d97792dc7301ba8e86141941288969dd28a66e0bac3",
+      "machine_log_sha256": "e50e13b3e3ce35b8c105e414d523fead11c74972d7398dc9fec50fceaaf6e6e1",
+      "png_decode_by_us": false,
+      "human_visual_claim": false,
+      "complete_zip_download_by_us": false,
+      "full_zip_integrity_checked_by_audit_runner": true
+    },
+    "compile": {
+      "build_success": "BUILD SUCCESSFUL in 3m 6s",
+      "tasks": "107 actionable tasks: 102 executed, 5 up-to-date",
+      "core_class_names": [
+        "MainActivity",
+        "LumoGameActivity",
+        "LumoHostPlugin",
+        "CardsTableBridge",
+        "CardsAuthorityService",
+        "CardsAuthorityRegistry",
+        "LumoLearningSpeech",
+        "LumoOfflineSpeechBridge",
+        "LumoOfflineSpeechEngine"
+      ],
+      "c4_class_names": [
+        "ConnectFourGameActivity",
+        "ConnectFourAuthorityService",
+        "ConnectFourBridge"
+      ],
+      "registry_summary": "Ran 10 tests in 13.936s",
+      "registry_ok": true,
+      "warning_scope": "Original compiler/deprecation warnings retained; no BUILD FAILED/error record found. See unchanged complete compile.log."
+    },
+    "desktop": {
+      "status": "ORIGINAL_DESKTOP_REPLAY_PASS",
+      "results": {
+        "native_checks": 170,
+        "frames": 250,
+        "observed_moving_frames": 90,
+        "observed_winning_frames": 43,
+        "actual_recording_format_fps": 24,
+        "device_fps_claim": false,
+        "backend": "production Dart controller with test SharedPreferences and local file transport",
+        "android_binder_or_disk_claim": false
+      },
+      "verified_original_pngs": 259,
+      "original_godot_log": {
+        "bytes": 2551,
+        "sha256": "e107eb01927fd40b21601ef5d8f8bf80392bdc2b5a306300dac5adb48b67fede",
+        "errors": []
+      },
+      "android_or_device_fps_acceptance": false,
+      "return_checks": 21,
+      "wisp_checks": 14
+    },
+    "learning": {
+      "independent_family_count": 236,
+      "canonical_reader_samples": 7552,
+      "issues": 0,
+      "source_bound": true,
+      "scope": "ExerciseFactory core only. Other reading, handwriting, games, lesson banks need separate review.",
+      "official_curriculum_approval": false,
+      "own_task_sample_jsonl_reread": false
+    },
+    "contracts": {
+      "tests": 845,
+      "seconds": 227.23,
+      "skips": 0,
+      "pcm_assertions": 70,
+      "original_summary": "Ran 845 tests in 227.230s"
+    }
+  },
+  "exports": [
+    {
+      "key": "new-inventory/compile",
+      "scope": "new_read_only_audit_inventory",
+      "media": "json",
+      "original_bytes": false,
+      "bytes": 1295,
+      "sha256": "3b80e976746f32737a8826ccce08884565c5aa39c9a072de205b61a0f60fa813",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": null
+    },
+    {
+      "key": "14125230288/result.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 2769,
+      "sha256": "5f195619b789dd87fe169c8d2a1a40490b6ef73dc8b03f60d3d978c3b4d9c199",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "cda6b0f760b94121046420c9b0ab7f3c47ba899c"
+    },
+    {
+      "key": "14125230288/connect-four-classes.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 927,
+      "sha256": "47d97899fbe2745200e69e0746bdce06961cdab8876e6ad2362a6b82c2ec62ac",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "df06da0b74317918a72b072e0ca53e9786662455"
+    },
+    {
+      "key": "14125230288/compile.log",
+      "scope": "original_archive_member",
+      "media": "text",
+      "original_bytes": true,
+      "bytes": 34084,
+      "sha256": "74267215a0060138bfde554e986b7ca74c812a43a568cfbfcc7e459acfc385e4",
+      "chunks": 3,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "5b85814bac6ec66495ee333f6b55a85389153fcb"
+    },
+    {
+      "key": "14125230288/cards-authority-registry.log",
+      "scope": "original_archive_member",
+      "media": "text",
+      "original_bytes": true,
+      "bytes": 2556,
+      "sha256": "5d5b0a0d81569d3501024141d5411600a858deae02441db5a8425814f387f4c7",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "b6a472f0d893006f2d43dc8031620990a9858a04"
+    },
+    {
+      "key": "new-inventory/desktop",
+      "scope": "new_read_only_audit_inventory",
+      "media": "json",
+      "original_bytes": false,
+      "bytes": 83859,
+      "sha256": "3b05b48a31680367a0fee4b1f1aa9e33cd03ffc3d9a45469f5809c355f38d625",
+      "chunks": 7,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": null
+    },
+    {
+      "key": "14125175288/runtime/runtime-gate.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 55426,
+      "sha256": "7b4b5648394f381e46de77ded01766fac6a2b6f750fbf49f9f86762482f9fe98",
+      "chunks": 5,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "f9ca5570f805a41d2e70b8533ede6aa43223c37a"
+    },
+    {
+      "key": "14125175288/runtime/source-before.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 474176,
+      "sha256": "f826bb721c6d5ef25eda9f409f97a6f7e792c550b83c46ab6516ef0791515427",
+      "chunks": 39,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "43ea980d9079f06351b9b5fc7c3f4fdffa0517c7"
+    },
+    {
+      "key": "14125175288/runtime/source-after.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 474176,
+      "sha256": "f826bb721c6d5ef25eda9f409f97a6f7e792c550b83c46ab6516ef0791515427",
+      "chunks": 39,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "43ea980d9079f06351b9b5fc7c3f4fdffa0517c7"
+    },
+    {
+      "key": "14125175288/runtime/dart-result.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 20387,
+      "sha256": "c255fc64db005aab3a22e57882ca1490632b1e43205a3a8484b2f723f31539f9",
+      "chunks": 2,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "ae3c10f0af519c20332dc12061b7e152ef910f79"
+    },
+    {
+      "key": "14125175288/runtime/native-result.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 73209,
+      "sha256": "60dc8f03ce70fddfd0873383bbb2f0df94849587285316c73ec37f3af33a7ef2",
+      "chunks": 6,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "3a9fa00f3989b366fd0854d0727631d578536ccb"
+    },
+    {
+      "key": "14125175288/return-recovery.log",
+      "scope": "original_archive_member",
+      "media": "text",
+      "original_bytes": true,
+      "bytes": 504,
+      "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "186e8fa528a9138ea17a0a1395010f440192a280"
+    },
+    {
+      "key": "14125175288/treasure-wisps.log",
+      "scope": "original_archive_member",
+      "media": "text",
+      "original_bytes": true,
+      "bytes": 499,
+      "sha256": "2addbad1078d83ba3fe151557f3748812201ed8dffe5675ec741557083b51d39",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "a9af201e589b4813f21814579f5112b87e66b46a"
+    },
+    {
+      "key": "new-inventory/learning",
+      "scope": "new_read_only_audit_inventory",
+      "media": "json",
+      "original_bytes": false,
+      "bytes": 1463,
+      "sha256": "d904042f898693f3ce5df482afe2f552490c8d099474afc7fa80db50851bba21",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": null
+    },
+    {
+      "key": "14124159972/source-binding.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 2257,
+      "sha256": "6ac22107a83b857306abd08212a30aff1f5aa5c20ea08060b30c4b83cfc34f53",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "e16176549d83ba529068abe43a2097591a0f931a"
+    },
+    {
+      "key": "14124159972/summary.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 371,
+      "sha256": "018c376e1a7c9b047b0625f90cbb0c27528c2c80ccc4907bca678f107e6c5e67",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "ea8c91f4239d3efe0665823a6d1a59dfe815fb0f"
+    },
+    {
+      "key": "14124159972/task-families.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 34450,
+      "sha256": "27431f158ebb1a7bff323f989d4da9064f1ba20c5e7046c46537d805c574d703",
+      "chunks": 3,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": null
+    },
+    {
+      "key": "14124159972/issues.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "key": "new-inventory/flutter",
+      "scope": "new_read_only_audit_inventory",
+      "media": "json",
+      "original_bytes": false,
+      "bytes": 115777,
+      "sha256": "75eca7183d8ace9563af8282b11f226356f404121386538ec2ed4efb6bdbe789",
+      "chunks": 10,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": null
+    },
+    {
+      "key": "14124469903/acceptance-summary.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 2118,
+      "sha256": "4b42a006f29da124641e5d97792dc7301ba8e86141941288969dd28a66e0bac3",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "ca1127e2863b47e0b886ab7ce67f84e81b8b1b4c"
+    },
+    {
+      "key": "14124469903/flutter-machine.jsonl",
+      "scope": "original_archive_member",
+      "media": "text",
+      "original_bytes": true,
+      "bytes": 1741398,
+      "sha256": "e50e13b3e3ce35b8c105e414d523fead11c74972d7398dc9fec50fceaaf6e6e1",
+      "chunks": 142,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "6d1d60a4081bd1a76a9400420588302be88da5ac"
+    },
+    {
+      "key": "new-inventory/contracts",
+      "scope": "new_read_only_audit_inventory",
+      "media": "json",
+      "original_bytes": false,
+      "bytes": 381,
+      "sha256": "e37aa6c9a0662c203bcccfddb5ef5e30c48df9a72487b3ff0641dac7c35540b9",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": null
+    },
+    {
+      "key": "14125486284/build-contracts.log",
+      "scope": "original_archive_member",
+      "media": "text",
+      "original_bytes": true,
+      "bytes": 167905,
+      "sha256": "102a3abcbc71e0cac5f237d69ba2d2394bec5f42f21ae28c8a0b5a697e1b61d4",
+      "chunks": 14,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": "5130456911b5f7732310620f6f47cfcfefcfd434"
+    },
+    {
+      "key": "provenance/api/001-audit-run.json",
+      "scope": "original_github_api_response",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 12438,
+      "sha256": "1e5a4502a9464cf23ea5a638c2929acbd7624ebd9e70e3a7e32d4e6f2a4b9dda",
+      "chunks": 2,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": null
+    },
+    {
+      "key": "provenance/api/002-audit-script.json",
+      "scope": "original_github_api_response",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 83839,
+      "sha256": "38e5c2e3ec66dc1c4b54b9be74e301006fd3e5540ded87e549c98bed419d2782",
+      "chunks": 7,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": null
+    },
+    {
+      "key": "provenance/api/003-audit-manifest.json",
+      "scope": "original_github_api_response",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 4450,
+      "sha256": "c588817c9b3a0a0244723af9eb8fb3f90716f54d90b4a03e78d7cfdb4fc12cd8",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": null
+    },
+    {
+      "key": "provenance/api/004-original-run.json",
+      "scope": "original_github_api_response",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 12996,
+      "sha256": "9f8e0ca12cb4bb2b41cdebb648354337d14c6bf1424546edc523420aeed8ecf0",
+      "chunks": 2,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": null
+    },
+    {
+      "key": "provenance/api/005-original-jobs.json",
+      "scope": "original_github_api_response",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 15412,
+      "sha256": "f37d00b8d643242f6c682dac73365c18b29471e9d34b7aae2d6ab2a453e0a876",
+      "chunks": 2,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": null
+    },
+    {
+      "key": "provenance/api/006-original-artifacts.json",
+      "scope": "original_github_api_response",
+      "media": "json",
+      "original_bytes": true,
+      "bytes": 6014,
+      "sha256": "dbb5cbecc4aeaad190ee678b69ed778f1311f577b37ec0c734e7fd451f9a41ca",
+      "chunks": 1,
+      "all_chunks_reassembled": true,
+      "independent_byte_hash_match": true,
+      "secured_git_blob": null
+    }
+  ],
+  "saved_original_blobs": [
+    {
+      "name": "receipt-original-log-line.txt",
+      "export_key": null,
+      "bytes": 22679,
+      "sha256": "e61f703db98707a721dac390fb2f1f1426c32963af872210bf1c607fea103d0a",
+      "git_sha1": "edef2a062c738ff37d751d9d2cf9431724833a9a",
+      "scope": "exact_original_joblog_receipt_line_with_its_LF"
+    },
+    {
+      "name": "flutter/acceptance-summary.json",
+      "export_key": "14124469903/acceptance-summary.json",
+      "bytes": 2118,
+      "sha256": "4b42a006f29da124641e5d97792dc7301ba8e86141941288969dd28a66e0bac3",
+      "git_sha1": "ca1127e2863b47e0b886ab7ce67f84e81b8b1b4c",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "flutter/flutter-machine.jsonl",
+      "export_key": "14124469903/flutter-machine.jsonl",
+      "bytes": 1741398,
+      "sha256": "e50e13b3e3ce35b8c105e414d523fead11c74972d7398dc9fec50fceaaf6e6e1",
+      "git_sha1": "6d1d60a4081bd1a76a9400420588302be88da5ac",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "learning/source-binding.json",
+      "export_key": "14124159972/source-binding.json",
+      "bytes": 2257,
+      "sha256": "6ac22107a83b857306abd08212a30aff1f5aa5c20ea08060b30c4b83cfc34f53",
+      "git_sha1": "e16176549d83ba529068abe43a2097591a0f931a",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "learning/summary.json",
+      "export_key": "14124159972/summary.json",
+      "bytes": 371,
+      "sha256": "018c376e1a7c9b047b0625f90cbb0c27528c2c80ccc4907bca678f107e6c5e67",
+      "git_sha1": "ea8c91f4239d3efe0665823a6d1a59dfe815fb0f",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "learning/issues.json",
+      "export_key": "14124159972/issues.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "git_sha1": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "compile/result.json",
+      "export_key": "14125230288/result.json",
+      "bytes": 2769,
+      "sha256": "5f195619b789dd87fe169c8d2a1a40490b6ef73dc8b03f60d3d978c3b4d9c199",
+      "git_sha1": "cda6b0f760b94121046420c9b0ab7f3c47ba899c",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "compile/connect-four-classes.json",
+      "export_key": "14125230288/connect-four-classes.json",
+      "bytes": 927,
+      "sha256": "47d97899fbe2745200e69e0746bdce06961cdab8876e6ad2362a6b82c2ec62ac",
+      "git_sha1": "df06da0b74317918a72b072e0ca53e9786662455",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "compile/compile.log",
+      "export_key": "14125230288/compile.log",
+      "bytes": 34084,
+      "sha256": "74267215a0060138bfde554e986b7ca74c812a43a568cfbfcc7e459acfc385e4",
+      "git_sha1": "5b85814bac6ec66495ee333f6b55a85389153fcb",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "compile/cards-authority-registry.log",
+      "export_key": "14125230288/cards-authority-registry.log",
+      "bytes": 2556,
+      "sha256": "5d5b0a0d81569d3501024141d5411600a858deae02441db5a8425814f387f4c7",
+      "git_sha1": "b6a472f0d893006f2d43dc8031620990a9858a04",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "desktop/runtime/runtime-gate.json",
+      "export_key": "14125175288/runtime/runtime-gate.json",
+      "bytes": 55426,
+      "sha256": "7b4b5648394f381e46de77ded01766fac6a2b6f750fbf49f9f86762482f9fe98",
+      "git_sha1": "f9ca5570f805a41d2e70b8533ede6aa43223c37a",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "desktop/runtime/dart-result.json",
+      "export_key": "14125175288/runtime/dart-result.json",
+      "bytes": 20387,
+      "sha256": "c255fc64db005aab3a22e57882ca1490632b1e43205a3a8484b2f723f31539f9",
+      "git_sha1": "ae3c10f0af519c20332dc12061b7e152ef910f79",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "desktop/runtime/native-result.json",
+      "export_key": "14125175288/runtime/native-result.json",
+      "bytes": 73209,
+      "sha256": "60dc8f03ce70fddfd0873383bbb2f0df94849587285316c73ec37f3af33a7ef2",
+      "git_sha1": "3a9fa00f3989b366fd0854d0727631d578536ccb",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "desktop/runtime/source-before.json",
+      "export_key": "14125175288/runtime/source-before.json",
+      "bytes": 474176,
+      "sha256": "f826bb721c6d5ef25eda9f409f97a6f7e792c550b83c46ab6516ef0791515427",
+      "git_sha1": "43ea980d9079f06351b9b5fc7c3f4fdffa0517c7",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "desktop/runtime/source-after.json",
+      "export_key": "14125175288/runtime/source-after.json",
+      "bytes": 474176,
+      "sha256": "f826bb721c6d5ef25eda9f409f97a6f7e792c550b83c46ab6516ef0791515427",
+      "git_sha1": "43ea980d9079f06351b9b5fc7c3f4fdffa0517c7",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "desktop/return-recovery.log",
+      "export_key": "14125175288/return-recovery.log",
+      "bytes": 504,
+      "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2",
+      "git_sha1": "186e8fa528a9138ea17a0a1395010f440192a280",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "desktop/treasure-wisps.log",
+      "export_key": "14125175288/treasure-wisps.log",
+      "bytes": 499,
+      "sha256": "2addbad1078d83ba3fe151557f3748812201ed8dffe5675ec741557083b51d39",
+      "git_sha1": "a9af201e589b4813f21814579f5112b87e66b46a",
+      "scope": "exact_reconstructed_original_export"
+    },
+    {
+      "name": "contracts/build-contracts.log",
+      "export_key": "14125486284/build-contracts.log",
+      "bytes": 167905,
+      "sha256": "102a3abcbc71e0cac5f237d69ba2d2394bec5f42f21ae28c8a0b5a697e1b61d4",
+      "git_sha1": "5130456911b5f7732310620f6f47cfcfefcfd434",
+      "scope": "exact_reconstructed_original_export"
+    }
+  ],
+  "mutations": {
+    "only_unreferenced_git_blobs": true,
+    "branches_written": false,
+    "refs_written": false,
+    "PR_or_candidate_changed": false
+  }
+}

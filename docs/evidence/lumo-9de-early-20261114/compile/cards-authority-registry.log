@@ -1,0 +1,21 @@
+test_actual_stale_mailbox_does_not_revive_session (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_actual_stale_mailbox_does_not_revive_session) ... ok
+test_close_revokes_before_file_cleanup (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_close_revokes_before_file_cleanup) ... ok
+test_detach_and_replacement_engine_revoke_old_tokens (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_detach_and_replacement_engine_revoke_old_tokens) ... ok
+test_invalid_and_foreign_tokens_never_gain_authority (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_invalid_and_foreign_tokens_never_gain_authority) ... ok
+test_restarted_process_requires_new_live_session (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_restarted_process_requires_new_live_session) ... ok
+test_same_package_private_engine_repeatable_preparation (scripts.tests.test_embedded_android.EmbeddedAndroidTest.test_same_package_private_engine_repeatable_preparation) ... ok
+test_cards_initializes_real_start_flags_and_resume_window_calls (scripts.tests.test_embedded_android.EmbeddedCardsWindowTest.test_cards_initializes_real_start_flags_and_resume_window_calls) ... ok
+test_cards_waits_for_engine_and_dispatches_main_loop_window_calls_on_ui_thread (scripts.tests.test_embedded_android.EmbeddedCardsWindowTest.test_cards_waits_for_engine_and_dispatches_main_loop_window_calls_on_ui_thread) ... ok
+test_cards_window_hook_keeps_live_authority_pause_resume_and_stop_guards (scripts.tests.test_embedded_android.EmbeddedCardsWindowTest.test_cards_window_hook_keeps_live_authority_pause_resume_and_stop_guards) ... ok
+test_other_games_keep_their_original_arguments_and_window_lifecycle (scripts.tests.test_embedded_android.EmbeddedCardsWindowTest.test_other_games_keep_their_original_arguments_and_window_lifecycle) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 13.936s
+
+OK
+Embedded Godot host prepared; same APK, private activity, durable reward events.
+Embedded Godot host prepared; same APK, private activity, durable reward events.
+CARDS_WINDOW_CALLS_PASS cards (JVM boundary adapters; no Android pixels or measured insets)
+CARDS_WINDOW_CALLS_PASS delayed-engine (JVM boundary adapters; no Android pixels or measured insets)
+CARDS_WINDOW_CALLS_PASS authority (JVM boundary adapters; no Android pixels or measured insets)
+CARDS_WINDOW_CALLS_PASS non-cards (JVM boundary adapters; no Android pixels or measured insets)
