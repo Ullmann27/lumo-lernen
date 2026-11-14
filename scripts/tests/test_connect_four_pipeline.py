@@ -57,12 +57,42 @@ class WorkflowTests(unittest.TestCase):
                 'github.head_ref':'integration/lumo-agent-execution-20261114'}))
             self.assertTrue(condition(block,{**values,
                 'github.head_ref':'integration/lumo-live-connections-20261114'}))
+            self.assertTrue(condition(block,{**values,
+                'github.head_ref':'repair/lumo-single-apk-20261114'}))
             for key,value in (('github.event_name','push'),('github.event_name','workflow_dispatch'),
                               ('github.event.pull_request.head.repo.full_name','outside/fork'),
                               ('github.head_ref','integration/lumo-connections-20261113'),
                               ('github.head_ref','integration/lumo-agent-execution-20261114-copy')):
                 with self.subTest(job=name,key=key,value=value):
                     self.assertFalse(condition(block,{**values,key:value}))
+
+    def test_exact_repair_branch_keeps_repository_event_and_delivery_success_guards(self):
+        values={'github.repository':'Ullmann27/lumo-lernen', 'github.event_name':'pull_request',
+                'github.event.pull_request.head.repo.full_name':'Ullmann27/lumo-lernen',
+                'github.head_ref':'repair/lumo-single-apk-20261114'}
+        gates=('verify-and-build','android-host-compile','connect-four-runtime',
+               'android-c4','update-2020-from-2017','verify-c4-candidate')
+        values.update({'needs.'+name+'.result':'success' for name in gates})
+        for name in ('connect-four-runtime','android-host-compile','verify-and-build',
+                     'prepare-c4-delivery'):
+            block=job(self.workflow,name)
+            with self.subTest(job=name): self.assertTrue(condition(block,values))
+            for key,value in (
+                ('github.repository','outside/fork'),
+                ('github.event.pull_request.head.repo.full_name','outside/fork'),
+                ('github.event_name','push'), ('github.event_name','workflow_dispatch'),
+                ('github.head_ref','repair/lumo-single-apk-20261114-copy'),
+                ('github.head_ref','repair/lumo-single-apk-20261115'),
+                ('github.head_ref','outside/repair/lumo-single-apk-20261114'),
+                ('github.head_ref','main'),
+            ):
+                with self.subTest(job=name,key=key,value=value):
+                    self.assertFalse(condition(block,{**values,key:value}))
+        block=job(self.workflow,'prepare-c4-delivery')
+        for name in gates:
+            for result in ('failure','skipped','cancelled'):
+                with self.subTest(gate=name,result=result):
+                    self.assertFalse(condition(block,{**values,'needs.'+name+'.result':result}))
 
     def test_source_pin_guard_executes_real_existing_policy(self):
         block=step(job(self.workflow,'connect-four-runtime'),

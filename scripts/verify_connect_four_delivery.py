@@ -30,7 +30,8 @@ BRANCH = 'integration/lumo-c4-connections-20261114'
 QUALITY_BRANCH = 'work/lumo-play-quality-20261114'
 AGENT_BRANCH = 'integration/lumo-agent-execution-20261114'
 LIVE_BRANCH = 'integration/lumo-live-connections-20261114'
-ACCEPTED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH, AGENT_BRANCH, LIVE_BRANCH))
+REPAIR_BRANCH = 'repair/lumo-single-apk-20261114'
+ACCEPTED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH, AGENT_BRANCH, LIVE_BRANCH, REPAIR_BRANCH))
 DELIVERY_JOB = 'prepare-c4-delivery'
 BUNDLE_ARTIFACT = 'lumo-connect-four-2020-delivery-bundle'
 LEARNING_AUDIT_ARTIFACT = 'lumo-connect-four-2020-learning-curriculum-audit'
@@ -68,6 +69,7 @@ REQUIRED_STEPS = {
         'Code-level Android probe regression with verified image dependencies',
         'Require actual gameplay gates on the exact pinned native source',
         'Verify connected dream ambience and garden on exact native source',
+        'Verify repaired village saves and full region rendering',
         'Build unified real Android APK',
         'Verify APK archive and collect reproducible source hashes',
         'Upload exact candidate (no release or synthetic screenshots)',
@@ -104,6 +106,11 @@ NEW_NATIVE = {
     ('lumo_facial_capture', 'rendered'),
     ('connect_four_visual_capture', 'rendered'),
     ('treasure_title_contrast_regression', 'rendered'),
+}
+VILLAGE_MARKERS = {
+    'economy.log': '[VillageEconomy] PASS 339 checks',
+    'scaling-headless.log': '[VillageScaling] PASS 42 checks: full 2178-house model, camera and explorer',
+    'scaling-rendered.log': '[VillageScaling] PASS 46 checks: full 2178-house model, camera and explorer',
 }
 ERROR_LINE = re.compile(r'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|'
                         r'ObjectDB instances leaked|resources still in use at exit')
@@ -523,10 +530,12 @@ def checked_native(logs: Path, source: Path, revision: str) -> dict:
     before = checked_native_extension(root, source, revision, tree)
     rosters['studio-2020-images.json'] = before
     connections = checked_native_connections(logs, source, revision, tree)
+    village = checked_village_completion(logs/'village-support', revision, tree)
     return {'source': revision, 'tree': tree, 'core_modes': 52, 'mode_logs': proofs,
             'complete_runner_log': runner_record,
             'original_rosters': rosters,
             'connections': connections,
+            'village_completion': village,
             'scope': 'Actual pinned-source desktop engine and raster/movie proofs; no device FPS/audio claim'}
 
 
@@ -685,6 +694,42 @@ def checked_native_connections(logs: Path, source: Path, revision: str, tree: st
 
 
 
+def checked_village_completion(root: Path, revision: str, tree: str) -> dict:
+    require(regular(root/'source-sha.txt').read_text().strip() == revision
+            and regular(root/'source-tree.txt').read_text().strip() == tree,
+            'Village repair evidence belongs to a different native source/tree')
+    proofs = []
+    for name, marker in VILLAGE_MARKERS.items():
+        path = root/name
+        text = regular(path).read_text()
+        require(marker in text.splitlines() and not ERROR_LINE.search(text)
+                and '[VillageScaling] FAIL' not in text and '[VillageEconomy] FAIL' not in text,
+                'Original village save/scale probe is missing or failed: '+name)
+        proofs.append({'path': name, 'marker': marker, **record(path)})
+    captures = root/'captures'
+    names = ('01-home-region.png', '02-river-boundary.png')
+    require(captures.is_dir() and not captures.is_symlink()
+            and {path.relative_to(captures).as_posix() for path in captures.rglob('*.png')} == set(names),
+            'Exactly the two original full-region village renderer images are required')
+    from PIL import Image, ImageChops
+    images, records = [], []
+    for name in names:
+        path = regular(captures/name)
+        with Image.open(path) as original:
+            original.load()
+            require(original.format == 'PNG' and original.size == (1280, 720),
+                    'Original village image dimensions/format differ: '+name)
+            image = original.convert('RGB')
+            require(any(low != high for low, high in image.getextrema()),
+                    'Village renderer image is uniform: '+name)
+        images.append(image)
+        records.append({'path': 'captures/'+name, 'width': 1280, 'height': 720, **record(path)})
+    require(ImageChops.difference(images[0], images[1]).getbbox() is not None,
+            'The two village camera positions produced an unchanged renderer image')
+    return {'source': revision, 'tree': tree, 'mode_logs': proofs, 'original_pngs': records,
+            'physical_android_fps_measured': False}
+
+
 def committed_pcm_sources() -> dict:
     paths = [ROOT/'tools/auto_install/LumoLearningSpeech.kt',
              ROOT/'tools/auto_install/LumoSpeechEnvelope.kt', ROOT/'scripts/prepare_android.py',
@@ -786,6 +831,8 @@ def prepare(args) -> dict:
         'Original acceptance run: https://github.com/'+REPOSITORY+'/actions/runs/'+str(args.build_run)+'\n\n'
         'All current Flutter/build contracts, the current 236-family/7552-sample structural learning audit, '
         '52 native modes with 17 additional face/C4/treasure rasters and movie, '
+        'the original Live9 and Discovery10 connection suites with 45 bound PNGs, '
+        'repaired village save/scale checks and two additional original renderer views, '
         'the real Dart/Godot C4 pair, actual API35 C4 touches/IPC/return and 2017→2020 preservation '
         'passed and their originals were rechecked before this new version was published.\n'
         'The learning audit is not semantic or official curriculum approval. '
@@ -878,6 +925,70 @@ def checked_bundle(archive: Path, root: Path, artifacts: dict, binding: dict, ar
             'archive': original_archive, 'members': members}
 
 
+def checked_completion_facts(native: dict, revision: str) -> None:
+    def valid_record(item):
+        return (isinstance(item, dict) and type(item.get('bytes')) is int and item['bytes'] > 0
+                and re.fullmatch('[a-f0-9]{64}', str(item.get('sha256'))) is not None)
+
+    def named_records(rows, count):
+        return (isinstance(rows, list) and len(rows) == count
+                and all(valid_record(row) and isinstance(row.get('path'), str) and row['path']
+                        for row in rows)
+                and len({row['path'] for row in rows}) == count)
+
+    require(isinstance(native, dict) and native.get('source') == revision
+            and re.fullmatch('[a-f0-9]{40}', str(native.get('tree')))
+            and type(native.get('core_modes')) is int and native['core_modes'] == 52
+            and named_records(native.get('mode_logs'), 52)
+            and valid_record(native.get('complete_runner_log')),
+            'Prepared native identity or complete original core is missing')
+    rosters = native.get('original_rosters')
+    require(isinstance(rosters, dict) and set(rosters) == {
+                'renderer-images.json', 'village-images.json', 'puzzle-menu-images.json',
+                'safe-area-images.json', 'studio-2020-images.json'}
+            and all(valid_record(row) for row in rosters.values()),
+            'Prepared original native raster rosters are incomplete')
+    tree = native['tree']
+    connections = native.get('connections')
+    require(isinstance(connections, dict), 'Prepared native connections are missing')
+    helpers = connections.get('pinned_helpers')
+    require(isinstance(helpers, dict) and set(helpers) == {
+                'validate_live_connections.sh', 'validate_discovery_connections.sh',
+                'verify_discovery_rasters.py'}
+            and all(valid_record(row) for row in helpers.values()),
+            'Prepared native verifier source identities are incomplete')
+    for kind, probes, pngs in (('live', 9, 7), ('discovery', 10, 38)):
+        proof = connections.get(kind)
+        require(isinstance(proof, dict) and proof.get('source') == revision
+                and proof.get('tree') == tree
+                and type(proof.get('probe_count')) is int and proof['probe_count'] == probes
+                and type(proof.get('png_count')) is int and proof['png_count'] == pngs
+                and named_records(proof.get('probes'), probes)
+                and all(row['path'].startswith(kind+'/') and row['path'].endswith('.log')
+                        and isinstance(row.get('marker'), str) and row['marker'] for row in proof['probes'])
+                and valid_record(proof.get('manifest')) and valid_record(proof.get('runner')),
+                'Prepared native connection identities or logs are incomplete: '+kind)
+        captures = proof.get('captures')
+        require(isinstance(captures, dict)
+                and all(isinstance(name, str) and name.startswith('captures/')
+                        and '..' not in PurePosixPath(name).parts and '\\' not in name
+                        and str(PurePosixPath(name)) == name and valid_record(row)
+                        for name, row in captures.items())
+                and sum(name.endswith('.png') for name in captures) == pngs,
+                'Prepared original native connection captures are incomplete: '+kind)
+    village = native.get('village_completion')
+    require(isinstance(village, dict) and village.get('source') == revision
+            and village.get('tree') == tree and named_records(village.get('mode_logs'), 3)
+            and {row['path']: row.get('marker') for row in village['mode_logs']} == VILLAGE_MARKERS
+            and named_records(village.get('original_pngs'), 2)
+            and {row['path'] for row in village['original_pngs']}
+            == {'captures/01-home-region.png', 'captures/02-river-boundary.png'}
+            and all(row.get('width') == 1280 and row.get('height') == 720
+                    for row in village['original_pngs'])
+            and village.get('physical_android_fps_measured') is False,
+            'Prepared village repair modes, original rasters or desktop scope differ')
+
+
 def checked_current(delivery: Path, metadata: Path, archive: Path,
                     artifact_id: int, pull_request: int) -> dict:
     plan = checked_plan(delivery)
@@ -894,6 +1005,10 @@ def checked_current(delivery: Path, metadata: Path, archive: Path,
             'Publication verifier checkout differs from the exact accepted source/tree')
     subprocess.run(['git', 'diff', '--exit-code', 'HEAD', '--'], cwd=ROOT, check=True)
     binding = facts['binding']
+    pin = read(ROOT/'config/godot-source.json')['revision']
+    require(facts.get('native_source') == binding.get('native_source') == pin,
+            'Prepared native source differs from current verified Host pin')
+    checked_completion_facts(facts.get('native'), pin)
     jobs = checked_jobs(read(metadata/'run.json'), read(metadata/'jobs.json'),
                         read(metadata/'pull.json'), binding, pull_request, publication=True)
     originals = read(metadata/'artifacts.json')
