@@ -340,13 +340,16 @@ class Probe:
                 self.remaining()
                 if time.monotonic() >= deadline:
                     raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
-                break
+                closed, closed_file = self.original(tag + '-closed-mailbox', 'shell', 'find',
+                    self.mailbox.rsplit('/',1)[0], '-maxdepth','2','-type','f','-name','state.json')
+                self.remaining()
+                if time.monotonic() >= deadline:
+                    raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
+                if not closed.strip():
+                    break
             time.sleep(min(.5, max(0, deadline-time.monotonic())))
         else:
-            raise RuntimeError('Native C4 did not return to the actual Flutter activity')
-        closed, closed_file = self.original(tag + '-closed-mailbox', 'shell', 'find',
-            self.mailbox.rsplit('/',1)[0], '-maxdepth','2','-type','f','-name','state.json')
-        contract.demand(not closed.strip(), 'Closed C4 mailbox still exists')
+            raise RuntimeError('Native C4 did not return to the actual Flutter activity with a closed mailbox')
         prefs, prefs_file = self.read_preferences(tag + '-after-return')
         record = contract.persisted_round(prefs, before['state'])
         frame = self.ui.capture_flutter_ready(self.out, tag + '-flutter', timeout=self.remaining(30))

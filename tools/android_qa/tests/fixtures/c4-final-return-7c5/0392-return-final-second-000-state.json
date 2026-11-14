@@ -1,0 +1,14 @@
+{
+  "command": [
+    "adb",
+    "exec-out",
+    "cat",
+    "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1/8a54abd67d7e9f0ea13f23f09d2708d9/state.json"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 0.08631126900013442,
+  "stdout_bytes": 568,
+  "stderr_bytes": 0,
+  "stdout_sha256": "c3a963e3717010e8050653c3a44908573ae1bd013bb7d2a07e9276ed7a0d99b2",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
