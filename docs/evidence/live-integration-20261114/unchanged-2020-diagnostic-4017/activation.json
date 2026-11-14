@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "observed_at": "2026-11-14 15:53:00 UTC",
+  "authorized_by": "Root explicit instruction to prepare and activate this QA-only branch after exact six-module preflight",
+  "source": {
+    "commit": "4017a94dd4a859f7b571e9b6a1f0208695e5e815",
+    "tree": "7680b8ab9b32d526b365ad2376092da267f0063b",
+    "branch": "qa/lumo-android-runtime-1e22-20261114",
+    "parent": "2590ff2738f4ec7e2d8999e9fca4f84444ad3a20",
+    "base": "1e22d2455937e2640d1e44e153d290746f3afe49"
+  },
+  "prepared_checkpoint": "2590ff2738f4ec7e2d8999e9fca4f84444ad3a20",
+  "workflow_blob": "bbe5664273280239fc3f2a509c21130dc4a179e2",
+  "tree_verification": {
+    "tree": "7680b8ab9b32d526b365ad2376092da267f0063b",
+    "leaf_files": 4807,
+    "differences": []
+  },
+  "source_comparison": "Complete recursive remote tree equals d7b5289f plus exactly four diagnosis source files and preserved/new textual QA evidence.",
+  "tests": {
+    "passed": 101,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 12.596
+  },
+  "run_id": 43612493152,
+  "attempt": 1,
+  "event": "push",
+  "original_apk": {
+    "source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "native": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "run_id": 43596913210,
+    "attempt": 1,
+    "artifact_id": 14119280540,
+    "sha256": "e65662ccc91366177a80bf6c6d43d364d9908836eb50bbe43625725d6010ab4b",
+    "bytes": 334507298
+  },
+  "scope": "Running isolated API35 diagnostic. No Android PASS, seven-job acceptance or release approval asserted.",
+  "ref_update": {
+    "initial_branch_absent": true,
+    "created_at_exact_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "initial_source_readback": true,
+    "expected_sha": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "force": false,
+    "final_source_readback": true
+  },
+  "central_refs_changed": false,
+  "releases_changed": false
+}
