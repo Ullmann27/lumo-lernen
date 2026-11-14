@@ -1,0 +1,107 @@
+{
+  "files": [
+    {
+      "bytes": 9893,
+      "git_blob": "1a2d06f3be0147275cd8f0a6854df6cd7805dd07",
+      "path": "README.md",
+      "sha256": "66e5ad0a558b08908a8692a162fc9c56de8368e89e10837370607ed957453e63"
+    },
+    {
+      "bytes": 1692,
+      "git_blob": "8b86a4ec648f9c265d4d5692e6ad478b5c9bceb0",
+      "path": "base-binding-37ec6c6a.json",
+      "sha256": "15f8e75778f27a3cf04b3a75181ae96bf31c1371d9f124bcced9a5ba55efa1a0"
+    },
+    {
+      "bytes": 848,
+      "git_blob": "b331d28304f8617c8d482d9b81e1164f0360f9a3",
+      "path": "base-binding.json",
+      "sha256": "5da3adf03417d3f574489e7998e3fd26b975193dd9a98c0bc3cf4a96ffd291b4"
+    },
+    {
+      "bytes": 1585,
+      "git_blob": "a5c3593c1812f7466f38120dcc32e53782a1b2d0",
+      "path": "handoff.json",
+      "sha256": "7025d335bb7b342c35897113e8918bb73515fc79e011a23522632b22d8866865"
+    },
+    {
+      "bytes": 764,
+      "git_blob": "35adf61867ead0537d0a654cd6111813354c09d3",
+      "path": "latest-candidate-root-handoff.json",
+      "sha256": "3a2f7a28072dd2e6bf81fafe99a93d8097481e785c40a03578aa12bca79ab408"
+    },
+    {
+      "bytes": 49103,
+      "git_blob": "2110d672ede7c80819fe3ff365339936b5406d8c",
+      "path": "original-source/.github/workflows/lumo-connect-four-2020.yml",
+      "sha256": "72224aca469231aaeb6f3db0b5e5ec7fea9bb32e8d5804ea8cd46509003d879e"
+    },
+    {
+      "bytes": 145,
+      "git_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a",
+      "path": "original-source/config/godot-source.json",
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50"
+    },
+    {
+      "bytes": 2718,
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "path": "original-source/pubspec.yaml",
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1"
+    },
+    {
+      "bytes": 9853,
+      "git_blob": "4c8097ce7643e189f37815c38214dd650e022d8c",
+      "path": "original-source/scripts/release_pipeline_gates.py",
+      "sha256": "400e54f2952f0d8aae07fc964e4688c48f16c9213ea022fa8754731004551946"
+    },
+    {
+      "bytes": 86764,
+      "git_blob": "2b3650bda8e2ba92545e2566c534c1ec664c5c16",
+      "path": "original-source/scripts/tests/test_connect_four_delivery.py",
+      "sha256": "eab724190785e4714a6b9766d10a7ad0d68177513bcd425e8708d66065999f88"
+    },
+    {
+      "bytes": 67003,
+      "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871",
+      "path": "original-source/scripts/verify_connect_four_delivery.py",
+      "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18"
+    },
+    {
+      "bytes": 332,
+      "git_blob": "6064147524ad8c5e11926b7ffa2ad2a6f257fe08",
+      "path": "originals/host-37ec6c6a-commit.txt",
+      "sha256": "864e33d28eb21f1c232528022095c2d6c3a6a4256bd384de6b0a2371be9ee191"
+    },
+    {
+      "bytes": 48264,
+      "git_blob": "982f8cf3c85a6bf85f49bed842b3c7e08a20730e",
+      "path": "proposed/scripts/publish_connect_four_delivery.py",
+      "sha256": "cc06aaf7472e675171344e6321078749101d21ea112795bf1d6ed8dd15228a7d"
+    },
+    {
+      "bytes": 32411,
+      "git_blob": "6e4227fc52e35e924c19d8b17cb3ea9ac6669eef",
+      "path": "proposed/scripts/tests/test_publish_connect_four_delivery.py",
+      "sha256": "e6818f8afa9b941ea48f403e728307f32e33310ccf5cb8f242e92aff816eb70c"
+    },
+    {
+      "bytes": 82590,
+      "git_blob": "84d65435b23183789869a119ff04c5a006b2ce51",
+      "path": "proposed.patch",
+      "sha256": "f39703056c6aca2302dde47cab792a54626bc1c37776d5bf30449740adaa2c9e"
+    },
+    {
+      "bytes": 2728,
+      "git_blob": "6ec27ddd0bd3679598d7310e22597c3f8d5f3327",
+      "path": "source-freeze.json",
+      "sha256": "466342f824a8bd8aece218ced810bf5c88e667b95367437d47721582ed90335a"
+    },
+    {
+      "bytes": 2347,
+      "git_blob": "12eefa00803a8c3f1e0fd4c305c55c3b9e75df2e",
+      "path": "test-inventory.json",
+      "sha256": "c8f3b4f80b9fd8d09667dc05d5ed6d7bd331922d700559495a046cd3e5fbd1ea"
+    }
+  ],
+  "schema": 1
+}

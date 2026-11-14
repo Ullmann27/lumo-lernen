@@ -1,0 +1,73 @@
+{
+  "base_source": "37ec6c6aee67c31ce16550cd59d616c80e80e305",
+  "base_tree": "6ab0e6cafc9fb37d3b3d95d76805aff4b6810d7a",
+  "created_utc": "2026-11-14T14:08:33.066935+00:00",
+  "execution": {
+    "apk_or_bundle_download": false,
+    "github_writes": false,
+    "release_or_tag": false,
+    "tests": "NOT_RUN_AWAITING_ROOT_CHECKPOINT",
+    "worktree_or_git_mutation": false
+  },
+  "files": [
+    {
+      "before_git_blob": null,
+      "bytes": 48264,
+      "git_blob": "982f8cf3c85a6bf85f49bed842b3c7e08a20730e",
+      "mode": "100644",
+      "path": "scripts/publish_connect_four_delivery.py",
+      "sha256": "cc06aaf7472e675171344e6321078749101d21ea112795bf1d6ed8dd15228a7d"
+    },
+    {
+      "before_git_blob": null,
+      "bytes": 32411,
+      "git_blob": "6e4227fc52e35e924c19d8b17cb3ea9ac6669eef",
+      "mode": "100644",
+      "path": "scripts/tests/test_publish_connect_four_delivery.py",
+      "sha256": "e6818f8afa9b941ea48f403e728307f32e33310ccf5cb8f242e92aff816eb70c"
+    }
+  ],
+  "planned_test_methods": 32,
+  "protected_original_sources": [
+    {
+      "bytes": 67003,
+      "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871",
+      "path": "scripts/verify_connect_four_delivery.py",
+      "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18"
+    },
+    {
+      "bytes": 9853,
+      "git_blob": "4c8097ce7643e189f37815c38214dd650e022d8c",
+      "path": "scripts/release_pipeline_gates.py",
+      "sha256": "400e54f2952f0d8aae07fc964e4688c48f16c9213ea022fa8754731004551946"
+    },
+    {
+      "bytes": 86764,
+      "git_blob": "2b3650bda8e2ba92545e2566c534c1ec664c5c16",
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "sha256": "eab724190785e4714a6b9766d10a7ad0d68177513bcd425e8708d66065999f88"
+    },
+    {
+      "bytes": 145,
+      "git_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a",
+      "path": "config/godot-source.json",
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50"
+    },
+    {
+      "bytes": 2718,
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "path": "pubspec.yaml",
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1"
+    },
+    {
+      "bytes": 49103,
+      "git_blob": "2110d672ede7c80819fe3ff365339936b5406d8c",
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "sha256": "72224aca469231aaeb6f3db0b5e5ec7fea9bb32e8d5804ea8cd46509003d879e"
+    }
+  ],
+  "schema": 1,
+  "source_parse": "AST parsing for source inventory only; no module imports or test execution",
+  "status": "SOURCE_FROZEN_TESTS_NOT_RUN",
+  "workflow": "Deferred until genuine final successful candidate/bundle identities exist; no workflow or placeholder values created"
+}

@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "parent_source": "79c7f2f5a80ab1e5491f2898e7a522a919334813",
+  "parent_tree": "c72bdd5b19cffcd9d05bb5bd4a5507c7a83a1fb1",
+  "scope": "Nonexecuting separate publisher source checkpoint; no workflow, candidate ref, release, tag or asset mutation.",
+  "source_basis": "37ec6c6aee67c31ce16550cd59d616c80e80e305",
+  "current_parent_difference": "Only external build budget and corresponding old delivery test assertions differ in executable files; existing delivery verifier and helper remain identical.",
+  "tests": "NOT_RUN",
+  "independent_review": "IN_PROGRESS",
+  "archive_members_root_byte_compared": 18,
+  "source_pack_sha256": "30206d923080858f3127d58046426766561e036ba3a8b1c2084fdd850d2b6c62"
+}

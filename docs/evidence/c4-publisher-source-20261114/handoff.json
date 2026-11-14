@@ -1,0 +1,37 @@
+{
+  "bundle_identity": null,
+  "failure_policy": "No mutation retry, resume, overwrite, deletion or cleanup; partial remote state remains a failure requiring Root review.",
+  "immutable_source_basis": "37ec6c6aee67c31ce16550cd59d616c80e80e305",
+  "immutable_tree_basis": "6ab0e6cafc9fb37d3b3d95d76805aff4b6810d7a",
+  "latest_candidate_root_handoff": "latest-candidate-root-handoff.json",
+  "mandatory_arguments": [
+    "candidate-source",
+    "host-sha",
+    "host-tree",
+    "publisher-source",
+    "publisher-sha",
+    "publisher-tree",
+    "build-run",
+    "run-attempt",
+    "bundle-artifact-id",
+    "bundle-artifact-digest",
+    "bundle-artifact-size",
+    "pull-request",
+    "output"
+  ],
+  "next_step": "Root source checkpoint and independent read-only review, then isolated tests. Real publication awaits full current CI/artifact evidence and a separately reviewed exact one-time workflow.",
+  "original_preservation": "All copied verifier/baseline bytes preserved; no original delivery archive currently downloaded",
+  "repository_paths": [
+    "scripts/publish_connect_four_delivery.py",
+    "scripts/tests/test_publish_connect_four_delivery.py"
+  ],
+  "schema": 1,
+  "scope": "Separate new publisher CLI plus isolated negative contracts; existing candidate verifier and active CI unchanged",
+  "source_freeze": {
+    "bytes": 2728,
+    "git_blob": "6ec27ddd0bd3679598d7310e22597c3f8d5f3327",
+    "path": "source-freeze.json",
+    "sha256": "466342f824a8bd8aece218ced810bf5c88e667b95367437d47721582ed90335a"
+  },
+  "status": "SOURCE_READY_FOR_ROOT_CHECKPOINT_NOT_TESTED"
+}
