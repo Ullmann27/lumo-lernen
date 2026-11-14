@@ -1,0 +1,471 @@
+{
+  "schema": 1,
+  "original_pack": "/tmp/lumo-c4-delivery-20261114",
+  "members": 92,
+  "complete_readback": true,
+  "original_bytes": 2191505,
+  "archive_bytes": 504356,
+  "archive_sha256": "64b719433e1dff2206e4ba68136d9399827b0f6e32c6c4dc3ba05e558c2afa7f",
+  "members_index": [
+    {
+      "bytes": 6270,
+      "path": "README.md",
+      "sha256": "4b4220966be9bb5fb50f4bc823aec1592b6e9d5a7759815b859f23f235e3bdd9"
+    },
+    {
+      "bytes": 61366,
+      "path": "before/reference/lumo-kart-graphics-2019.yml",
+      "sha256": "1356506d64a8777d7aeddeaf78de47f4aceb8aaa3c0fdd07d5166da2fb53f800"
+    },
+    {
+      "bytes": 8567,
+      "path": "before/reference/native-52-gate-contract.json",
+      "sha256": "bacf00a979217d3d4394e74e221886d9839cd400c42c55bf32b8fb0ec7ce0018"
+    },
+    {
+      "bytes": 2651,
+      "path": "before/reference/native-52-source-freeze-v1.json",
+      "sha256": "66893fcc808cb546f777c18149e4801c82426913c5d4763e475fd7c8a651fde8"
+    },
+    {
+      "bytes": 8135,
+      "path": "before/reference/native-gate-handoff.json",
+      "sha256": "f0c3794066b2847fa406ba50ec53cf7bf30bec4fcd5bf054ac0956d58425ae32"
+    },
+    {
+      "bytes": 8884,
+      "path": "before/reference/pcm-source-freeze.json",
+      "sha256": "552e3dca4aab9b2bca250c5c827218448168db1f6b50e6c4994251de6054ff80"
+    },
+    {
+      "bytes": 3660,
+      "path": "before/reference/pcm-test.py",
+      "sha256": "30f75c17006c47c4410d0309a79193a0a97024d479d8b93e94e7d706b0632a3f"
+    },
+    {
+      "bytes": 5369,
+      "path": "before/reference/prepare_family_draft_release.sh",
+      "sha256": "52953f157caeb31f3a2123d90d6685238932fa781ec1db814bc0fc7e72a27569"
+    },
+    {
+      "bytes": 9853,
+      "path": "before/reference/release_pipeline_gates.py",
+      "sha256": "400e54f2952f0d8aae07fc964e4688c48f16c9213ea022fa8754731004551946"
+    },
+    {
+      "bytes": 12075,
+      "path": "before/reference/verify_unified_apk.py",
+      "sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382"
+    },
+    {
+      "bytes": 34203,
+      "path": "before/v1/.github/workflows/lumo-connect-four-2020.yml",
+      "sha256": "6b6f3bccbfd69fd41911b177a3492a613f9f03cda9d096e33bf295166408ac93"
+    },
+    {
+      "bytes": 13267,
+      "path": "before/v1/scripts/tests/test_connect_four_pipeline.py",
+      "sha256": "d072f3fc1d0c7d460deb71b2251b2ad90d11e8843d05370be6013fd07d186bb4"
+    },
+    {
+      "bytes": 3070,
+      "path": "before/v1/source-freeze.json",
+      "sha256": "dfeddf79d75361ae351f32eb3e46448353ae38c4ac0c040110e6b75b3b18167d"
+    },
+    {
+      "bytes": 89666,
+      "path": "delivery.patch",
+      "sha256": "53132114d0a1ba2febe43b23fbd35127b92eb7a5eb4e331e8985bf1ba58245fb"
+    },
+    {
+      "bytes": 433,
+      "path": "evidence/actionlint-first/result.json",
+      "sha256": "3086a650f1fd5e88933f2701b4764fd2fd1070879aa32a6ebd354bdaaaaff472"
+    },
+    {
+      "bytes": 0,
+      "path": "evidence/actionlint-first/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2364,
+      "path": "evidence/final-test-bindings.json",
+      "sha256": "dadf19f4aec5d014b22c5da183058c2431e727faf8ecfda2655559dfc7793e8c"
+    },
+    {
+      "bytes": 2124,
+      "path": "evidence/focused-first/result.json",
+      "sha256": "fa9e3dbef041bc92b8a88d1f01ed176394f67619e86ca2c67b9f3a9f206c11dc"
+    },
+    {
+      "bytes": 88245,
+      "path": "evidence/focused-first/sources-after.json",
+      "sha256": "9b40264134bdcc606fecda763041b5cd5095a0694b295bf7ec2ef15bfb50ea2a"
+    },
+    {
+      "bytes": 88245,
+      "path": "evidence/focused-first/sources-before.json",
+      "sha256": "9b40264134bdcc606fecda763041b5cd5095a0694b295bf7ec2ef15bfb50ea2a"
+    },
+    {
+      "bytes": 4317,
+      "path": "evidence/focused-first/suite-1.log",
+      "sha256": "2abe39a6988a389f7d76a476b6545f497df621f2687bdf7bb79247fc4e27414a"
+    },
+    {
+      "bytes": 1690,
+      "path": "evidence/focused-first/suite-2.log",
+      "sha256": "16754a496393bfe1540f6f7de2d8726668e1ed667ea5e9943eae76e8eee26004"
+    },
+    {
+      "bytes": 25274,
+      "path": "evidence/focused-first/validation-view/.github/probes/lumo_connect_four_android_probe.py",
+      "sha256": "4249de4352a32694f28bb45786b73437eb2d32f360fb754a4ab48c9d5212f77c"
+    },
+    {
+      "bytes": 45164,
+      "path": "evidence/focused-first/validation-view/.github/workflows/lumo-connect-four-2020.yml",
+      "sha256": "b1bcb90a72d0b59fec8cc513bb10553e5edc06ca1e38c11ea47d35728f498ccc"
+    },
+    {
+      "bytes": 82301,
+      "path": "evidence/focused-first/validation-view/.github/workflows/lumo-unified-integration-2026.yml",
+      "sha256": "2dc3e1506b1abb0784fb246a32135a76fedf43284bee7df346232e0eba68b096"
+    },
+    {
+      "bytes": 21654,
+      "path": "evidence/focused-first/validation-view/scripts/tests/test_connect_four_delivery.py",
+      "sha256": "e55328c68b021583182a565cd235d215979842a91aa65ab38fafd0f2fb29e133"
+    },
+    {
+      "bytes": 13689,
+      "path": "evidence/focused-first/validation-view/scripts/tests/test_connect_four_pipeline.py",
+      "sha256": "481a94fca03ea542404c2b1921479b8b97bbfaa0e788be98d981d220818d11ed"
+    },
+    {
+      "bytes": 10811,
+      "path": "evidence/focused-first/validation-view/scripts/verify_connect_four_candidate.py",
+      "sha256": "c8a6b714a330c564bde68c619b07a342eb3eedf7e6191f9f3a3deacc98e594e1"
+    },
+    {
+      "bytes": 30800,
+      "path": "evidence/focused-first/validation-view/scripts/verify_connect_four_delivery.py",
+      "sha256": "7228ac84de5fb916ce78c1dc088f383d26fcc650712897d4136b98ecd6f9ac18"
+    },
+    {
+      "bytes": 36130,
+      "path": "evidence/focused-first/validation-view/tools/android_qa/connect_four_android_evidence.py",
+      "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7"
+    },
+    {
+      "bytes": 23974,
+      "path": "evidence/focused-first/validation-view/tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "sha256": "091d4640f277486998dc47fded5820d1986d9036244bc92d2f8c4ccf6afa794f"
+    },
+    {
+      "bytes": 1690,
+      "path": "evidence/focused-readonly-final/check-1.log",
+      "sha256": "3688314059b813e0e70ea1e9c7d45b274bfb08bbed0d7a5b20d6bf255203da0c"
+    },
+    {
+      "bytes": 0,
+      "path": "evidence/focused-readonly-final/check-2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "evidence/focused-readonly-final/check-3.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1989,
+      "path": "evidence/focused-readonly-final/result.json",
+      "sha256": "a2cb86cc98364cc20ff8d5bbcedf97acf4389defea32c7ca801eaabe8be30607"
+    },
+    {
+      "bytes": 949,
+      "path": "evidence/focused-readonly-final/sources-after.json",
+      "sha256": "3caa16bb8dac74a0bf8bb05e420778a41d3f6e5bc76c8d4a5dc3298bb6dcdb32"
+    },
+    {
+      "bytes": 949,
+      "path": "evidence/focused-readonly-final/sources-before.json",
+      "sha256": "3caa16bb8dac74a0bf8bb05e420778a41d3f6e5bc76c8d4a5dc3298bb6dcdb32"
+    },
+    {
+      "bytes": 25274,
+      "path": "evidence/focused-readonly-final/validation-view/.github/probes/lumo_connect_four_android_probe.py",
+      "sha256": "4249de4352a32694f28bb45786b73437eb2d32f360fb754a4ab48c9d5212f77c"
+    },
+    {
+      "bytes": 41022,
+      "path": "evidence/focused-readonly-final/validation-view/.github/workflows/lumo-connect-four-2020.yml",
+      "sha256": "d1d2ee70ef53d83755f7175c07bb5c0d5c6419356948afe80ce3402011de8ad3"
+    },
+    {
+      "bytes": 82301,
+      "path": "evidence/focused-readonly-final/validation-view/.github/workflows/lumo-unified-integration-2026.yml",
+      "sha256": "2dc3e1506b1abb0784fb246a32135a76fedf43284bee7df346232e0eba68b096"
+    },
+    {
+      "bytes": 37374,
+      "path": "evidence/focused-readonly-final/validation-view/scripts/tests/test_connect_four_delivery.py",
+      "sha256": "cc82d7e481e0a02e5f919d29947428c52025bc2f08279e6dd253c93a4c18a30f"
+    },
+    {
+      "bytes": 14309,
+      "path": "evidence/focused-readonly-final/validation-view/scripts/tests/test_connect_four_pipeline.py",
+      "sha256": "113ba57248fe3a12dffb9249e9d62c60db023b7861935819a08e9b2d325fb6b0"
+    },
+    {
+      "bytes": 10811,
+      "path": "evidence/focused-readonly-final/validation-view/scripts/verify_connect_four_candidate.py",
+      "sha256": "c8a6b714a330c564bde68c619b07a342eb3eedf7e6191f9f3a3deacc98e594e1"
+    },
+    {
+      "bytes": 39637,
+      "path": "evidence/focused-readonly-final/validation-view/scripts/verify_connect_four_delivery.py",
+      "sha256": "80164a710b8dadedbe05aa7468018c32ae9a60e1e44ef96b2ac6a68309976cc8"
+    },
+    {
+      "bytes": 36130,
+      "path": "evidence/focused-readonly-final/validation-view/tools/android_qa/connect_four_android_evidence.py",
+      "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7"
+    },
+    {
+      "bytes": 23974,
+      "path": "evidence/focused-readonly-final/validation-view/tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "sha256": "091d4640f277486998dc47fded5820d1986d9036244bc92d2f8c4ccf6afa794f"
+    },
+    {
+      "bytes": 2147,
+      "path": "evidence/focused-readonly-v1/result.json",
+      "sha256": "80d8e43b4903991ead09f6fada17f758e478b28f8c65fa84191461cb654a0216"
+    },
+    {
+      "bytes": 88245,
+      "path": "evidence/focused-readonly-v1/sources-after.json",
+      "sha256": "1a1af22942f022abb737ad5e398cb6c8f86eaa3fe1bed29ac123cbe30d5182de"
+    },
+    {
+      "bytes": 88245,
+      "path": "evidence/focused-readonly-v1/sources-before.json",
+      "sha256": "1a1af22942f022abb737ad5e398cb6c8f86eaa3fe1bed29ac123cbe30d5182de"
+    },
+    {
+      "bytes": 6220,
+      "path": "evidence/focused-readonly-v1/suite-1.log",
+      "sha256": "f132e5ce25b14fd30f6560539f110e781a71863d69d7012bf8fc2515db715255"
+    },
+    {
+      "bytes": 2973,
+      "path": "evidence/focused-readonly-v1/suite-2.log",
+      "sha256": "9c02098b637e18022eac2b545fbc9732d099bc57d638d7764c877499c1d806fd"
+    },
+    {
+      "bytes": 25274,
+      "path": "evidence/focused-readonly-v1/validation-view/.github/probes/lumo_connect_four_android_probe.py",
+      "sha256": "4249de4352a32694f28bb45786b73437eb2d32f360fb754a4ab48c9d5212f77c"
+    },
+    {
+      "bytes": 41022,
+      "path": "evidence/focused-readonly-v1/validation-view/.github/workflows/lumo-connect-four-2020.yml",
+      "sha256": "d1d2ee70ef53d83755f7175c07bb5c0d5c6419356948afe80ce3402011de8ad3"
+    },
+    {
+      "bytes": 82301,
+      "path": "evidence/focused-readonly-v1/validation-view/.github/workflows/lumo-unified-integration-2026.yml",
+      "sha256": "2dc3e1506b1abb0784fb246a32135a76fedf43284bee7df346232e0eba68b096"
+    },
+    {
+      "bytes": 37374,
+      "path": "evidence/focused-readonly-v1/validation-view/scripts/tests/test_connect_four_delivery.py",
+      "sha256": "cc82d7e481e0a02e5f919d29947428c52025bc2f08279e6dd253c93a4c18a30f"
+    },
+    {
+      "bytes": 14199,
+      "path": "evidence/focused-readonly-v1/validation-view/scripts/tests/test_connect_four_pipeline.py",
+      "sha256": "90c471289b14d74948094cfd79d03b7229ce347a20fba5a7516153ca9f6e2733"
+    },
+    {
+      "bytes": 10811,
+      "path": "evidence/focused-readonly-v1/validation-view/scripts/verify_connect_four_candidate.py",
+      "sha256": "c8a6b714a330c564bde68c619b07a342eb3eedf7e6191f9f3a3deacc98e594e1"
+    },
+    {
+      "bytes": 39637,
+      "path": "evidence/focused-readonly-v1/validation-view/scripts/verify_connect_four_delivery.py",
+      "sha256": "80164a710b8dadedbe05aa7468018c32ae9a60e1e44ef96b2ac6a68309976cc8"
+    },
+    {
+      "bytes": 36130,
+      "path": "evidence/focused-readonly-v1/validation-view/tools/android_qa/connect_four_android_evidence.py",
+      "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7"
+    },
+    {
+      "bytes": 23974,
+      "path": "evidence/focused-readonly-v1/validation-view/tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "sha256": "091d4640f277486998dc47fded5820d1986d9036244bc92d2f8c4ccf6afa794f"
+    },
+    {
+      "bytes": 659,
+      "path": "evidence/multiline-native-red/result.json",
+      "sha256": "03ebfb592e3d01c5f37821b77181eaca1242d5c3bdb919fc35bb538cc76e1c09"
+    },
+    {
+      "bytes": 2026,
+      "path": "evidence/multiline-native-red/stdout.log",
+      "sha256": "c2b0626de5ccf868bd78a64e631da540263136c2514bc154845cfa6ed28ecb03"
+    },
+    {
+      "bytes": 31836,
+      "path": "evidence/multiline-native-red/verifier-before.py",
+      "sha256": "5998755ffbd2ee93bf7e1fa9818619bb82b1e3a2aeca635a6bf4d20b6e4c65ba"
+    },
+    {
+      "bytes": 25274,
+      "path": "evidence/multiline-native-red/view/.github/probes/lumo_connect_four_android_probe.py",
+      "sha256": "4249de4352a32694f28bb45786b73437eb2d32f360fb754a4ab48c9d5212f77c"
+    },
+    {
+      "bytes": 45041,
+      "path": "evidence/multiline-native-red/view/.github/workflows/lumo-connect-four-2020.yml",
+      "sha256": "c20c6a87a8aa2db443a8f0075be693245ea72973579acdf617ef5f6ead844ed5"
+    },
+    {
+      "bytes": 82301,
+      "path": "evidence/multiline-native-red/view/.github/workflows/lumo-unified-integration-2026.yml",
+      "sha256": "2dc3e1506b1abb0784fb246a32135a76fedf43284bee7df346232e0eba68b096"
+    },
+    {
+      "bytes": 22259,
+      "path": "evidence/multiline-native-red/view/scripts/tests/test_connect_four_delivery.py",
+      "sha256": "341de2f9428d8dd51173cb5978529f5b2054d7abad5173a2cdaacb2cbdc1df84"
+    },
+    {
+      "bytes": 14201,
+      "path": "evidence/multiline-native-red/view/scripts/tests/test_connect_four_pipeline.py",
+      "sha256": "ba5bb3c455320067580bc3845f578aa4946556a983974d6ca36de561daa0f311"
+    },
+    {
+      "bytes": 10811,
+      "path": "evidence/multiline-native-red/view/scripts/verify_connect_four_candidate.py",
+      "sha256": "c8a6b714a330c564bde68c619b07a342eb3eedf7e6191f9f3a3deacc98e594e1"
+    },
+    {
+      "bytes": 31836,
+      "path": "evidence/multiline-native-red/view/scripts/verify_connect_four_delivery.py",
+      "sha256": "5998755ffbd2ee93bf7e1fa9818619bb82b1e3a2aeca635a6bf4d20b6e4c65ba"
+    },
+    {
+      "bytes": 36130,
+      "path": "evidence/multiline-native-red/view/tools/android_qa/connect_four_android_evidence.py",
+      "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7"
+    },
+    {
+      "bytes": 23974,
+      "path": "evidence/multiline-native-red/view/tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "sha256": "091d4640f277486998dc47fded5820d1986d9036244bc92d2f8c4ccf6afa794f"
+    },
+    {
+      "bytes": 45120,
+      "path": "evidence/pre-auth-draft/.github/workflows/lumo-connect-four-2020.yml",
+      "sha256": "4fa7027319c6721bc1bbfc21702a26cb5b5eaa9ce371b82ceaa340c7603a34b1"
+    },
+    {
+      "bytes": 28619,
+      "path": "evidence/pre-auth-draft/scripts/tests/test_connect_four_delivery.py",
+      "sha256": "34453d74796bc8f7d8fb096399047151a661918df08ae495e2dbca3afe757504"
+    },
+    {
+      "bytes": 14201,
+      "path": "evidence/pre-auth-draft/scripts/tests/test_connect_four_pipeline.py",
+      "sha256": "ba5bb3c455320067580bc3845f578aa4946556a983974d6ca36de561daa0f311"
+    },
+    {
+      "bytes": 32494,
+      "path": "evidence/pre-auth-draft/scripts/verify_connect_four_delivery.py",
+      "sha256": "be42f64844426949ce1739c9d1c620f3cec191649eac31f84569d7549b9db547"
+    },
+    {
+      "bytes": 1041,
+      "path": "evidence/pre-auth-draft/status.json",
+      "sha256": "f8982403d0275006f9a9b924ace3e9d5cebe2fced3365542d5b404aade1ae618"
+    },
+    {
+      "bytes": 590,
+      "path": "evidence/publication-syntax-final/result.json",
+      "sha256": "6c136769fb7a0dd7942eba29ea513c6d08785397855e496dee8dbc92aa5019da"
+    },
+    {
+      "bytes": 0,
+      "path": "evidence/publication-syntax-final/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 3275,
+      "path": "evidence/source-before.json",
+      "sha256": "46035de55910c833f40da68277c62a404a2254363ff28c5e8b9a909b8375e304"
+    },
+    {
+      "bytes": 1564,
+      "path": "handoff.json",
+      "sha256": "df6862f1870cdb75504e71ff524813a0ab8cbc0526b4cb10c685a3d3d1dcdc6e"
+    },
+    {
+      "bytes": 941,
+      "path": "primary-sources.json",
+      "sha256": "d392b6928a718e57460c562bdd220dc09755975b3328110fa9628447d4231463"
+    },
+    {
+      "bytes": 41022,
+      "path": "proposed/.github/workflows/lumo-connect-four-2020.yml",
+      "sha256": "d1d2ee70ef53d83755f7175c07bb5c0d5c6419356948afe80ce3402011de8ad3"
+    },
+    {
+      "bytes": 37374,
+      "path": "proposed/scripts/tests/test_connect_four_delivery.py",
+      "sha256": "cc82d7e481e0a02e5f919d29947428c52025bc2f08279e6dd253c93a4c18a30f"
+    },
+    {
+      "bytes": 14309,
+      "path": "proposed/scripts/tests/test_connect_four_pipeline.py",
+      "sha256": "113ba57248fe3a12dffb9249e9d62c60db023b7861935819a08e9b2d325fb6b0"
+    },
+    {
+      "bytes": 39637,
+      "path": "proposed/scripts/verify_connect_four_delivery.py",
+      "sha256": "80164a710b8dadedbe05aa7468018c32ae9a60e1e44ef96b2ac6a68309976cc8"
+    },
+    {
+      "bytes": 5388,
+      "path": "publication/README.md",
+      "sha256": "edb128ac9935c566e66091c8839ff7f56170d1f753aff4f81f0eb68d1918e4a8"
+    },
+    {
+      "bytes": 5632,
+      "path": "publication/publish_verified_bundle.sh",
+      "sha256": "e388a6a1759bd12dcd6add3ba27e3f9e92f3830f747c04c432dad1e78304cea1"
+    },
+    {
+      "bytes": 3057,
+      "path": "run_focused.py",
+      "sha256": "09a0b51a0f734b802df766a226168b375e22856966cd53eada1eebb6247dd8ef"
+    },
+    {
+      "bytes": 2547,
+      "path": "source-freeze.json",
+      "sha256": "3921641b874b9c1c2672b272e3dbbe6ba5a1c453efbdaa919fd1d7e55b566578"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 17666,
+      "sha256": "7f29e4417b29cec457ed9321afa8674f7d7c36c148159bfa1089c26ba656ea45"
+    },
+    {
+      "path": "SHA256SUMS",
+      "bytes": 11468,
+      "sha256": "17f1e320e7538ec64354826609dbbe4ec121be7a606fb516c7b2fb3b3048f48c"
+    }
+  ]
+}

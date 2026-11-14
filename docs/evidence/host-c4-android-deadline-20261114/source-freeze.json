@@ -1,0 +1,30 @@
+{
+  "changed_methods": [
+    "observation",
+    "return_to_flutter",
+    "wait_observation"
+  ],
+  "created_at_utc": "2026-11-14T07:01:04.847799+00:00",
+  "files": [
+    {
+      "bytes": 25726,
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "sha256": "6df9b6a7b3cc2253a2be78a7cec93b6f9ac30f14bcab4f127db6b9df065ed9ba"
+    },
+    {
+      "bytes": 10734,
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "sha256": "0a9e75ff6694b2b023e345e7ca0da098b8f19ec7658ca78f9574875390e46831"
+    }
+  ],
+  "patch": {
+    "bytes": 13003,
+    "sha256": "67dd884f5092aa6c3f52b7c40cb1efd61474765bfec00d3c8cdcf7532c40278f"
+  },
+  "schema": 1,
+  "scope": "Three existing return boundaries only; no larger timeout, layout/control/save/source relaxation",
+  "source_binding": {
+    "bytes": 969,
+    "sha256": "7738a2b561f28f823cd072ced41abfc253aaf10356260eb0d9fa6999575c35ec"
+  }
+}

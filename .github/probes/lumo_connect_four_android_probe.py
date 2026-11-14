@@ -161,8 +161,10 @@ class Probe:
                          'density':density_file}}
         if control is not None:
             result['target'] = contract.touch_target(layout, state, pixels, int(native), density, control)
-        self.observations.append(result)
+        self.remaining()
         write(self.out / ('observations/' + tag + '.json'), result)
+        self.remaining()
+        self.observations.append(result)
         return result
 
     def wait_observation(self, tag: str, condition, *, control=None, timeout=90) -> dict:
@@ -177,6 +179,9 @@ class Probe:
                 observed = self.observation(name, control)
                 if condition(observed):
                     self.remaining()
+                    if time.monotonic() >= deadline:
+                        failures.append({'attempt':name, 'reason':'Actual observation finished after its local deadline'})
+                        break
                     return observed
                 failures.append({'attempt':name, 'reason':'Actual state has not reached the required phase'})
             except (ValueError, RuntimeError, json.JSONDecodeError) as error:
@@ -275,6 +280,9 @@ class Probe:
             activity, af = self.original(tag + '-return-activity', 'shell', 'dumpsys', 'activity', 'activities')
             active = [line for line in activity.splitlines() if 'mResumedActivity' in line or 'topResumedActivity' in line]
             if not native.strip() and active and all('MainActivity' in line and contract.PACKAGE in line for line in active):
+                self.remaining()
+                if time.monotonic() >= deadline:
+                    raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
                 break
             time.sleep(min(.5, max(0, deadline-time.monotonic())))
         else:

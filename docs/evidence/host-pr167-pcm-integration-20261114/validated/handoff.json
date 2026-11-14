@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "status": "TARGETED_LOCAL_RED_GREEN_COMPLETE",
+  "source_host_sha": "8dd2ad1fc2f04a8a116c15147436da3c15102b87",
+  "source_tree": "37ac9221832bc4ec8d0b2faf98bcd1360f2d103c",
+  "source_bindings_verified": 17,
+  "unchanged_inputs_verified": 4,
+  "worktree_clean_before_after": true,
+  "four_phases": [
+    {
+      "name": "installer-red",
+      "returncode": 1,
+      "expected_returncode": 1,
+      "seconds": 0.11414847699052189,
+      "sources_unchanged": true,
+      "original_log": {
+        "bytes": 4368,
+        "sha256": "731b570b613d4a87701eab2bb62e3029e3a68e0a8c71bce3c6d68d7e8beb6245"
+      }
+    },
+    {
+      "name": "installer-green",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "seconds": 0.11458177500753663,
+      "sources_unchanged": true,
+      "original_log": {
+        "bytes": 2772,
+        "sha256": "d31b43ce3b8be9cf415001e9b824be246bab95859856cd02c4781a410fe2aa41"
+      }
+    },
+    {
+      "name": "producer-learning-only-red",
+      "returncode": 1,
+      "expected_returncode": 1,
+      "seconds": 6.635298685010639,
+      "sources_unchanged": true,
+      "original_log": {
+        "bytes": 2148,
+        "sha256": "3d8eaed63b810462d5b48a1ab8dbf5aef3531c050b0b96f874f96267660b3580"
+      }
+    },
+    {
+      "name": "merged-pcm-green",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "seconds": 5.57770899598836,
+      "sources_unchanged": true,
+      "original_log": {
+        "bytes": 857,
+        "sha256": "55effd039d490c64dba93574c00ed5b711b50181be1ef816725bb7985be28c55"
+      }
+    }
+  ],
+  "total_elapsed_seconds": 12.441737932997057,
+  "green_unittest_methods": 6,
+  "jvm_assertions": {
+    "original_envelope": 23,
+    "original_learning_lifecycle": 17,
+    "build_neighbor": 30,
+    "total": 70
+  },
+  "actual_markers": [
+    "LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47",
+    "LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+    "LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+  ],
+  "archive": {
+    "path": "/tmp/lumo-pcm-validation-8dd2ad1f-20261114/handoff/compact-originals.tar.gz",
+    "bytes": 70460,
+    "sha256": "0f20acd36cfb23339cae79ba4c647033f871b860727193c24129809c66c2b26f"
+  },
+  "manifest": {
+    "path": "/tmp/lumo-pcm-validation-8dd2ad1f-20261114/handoff/manifest.json",
+    "bytes": 8225,
+    "sha256": "7557c1ff39f31eebfdad5cd4378072d0400aa9bdbf680c928c61bbe0227c59bb"
+  },
+  "full_readback": {
+    "members": 40,
+    "all_paths_sizes_sha256_exact": true
+  },
+  "limits": [
+    "Installer fixtures and synthetic JVM Android boundary only; no Android compilation, emulator, speaker output or facial visual acceptance.",
+    "The two intentional red phases remain genuine failures in their complete original logs; they are not counted as successful product tests.",
+    "The historical source-freeze remains byte-identical and still records its pre-test state; this separate handoff adds the actual later result.",
+    "No active repository source, index, commit, ref, pin or receipt changed during this validation."
+  ]
+}

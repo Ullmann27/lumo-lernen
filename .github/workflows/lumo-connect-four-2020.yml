@@ -302,6 +302,14 @@ jobs:
             echo 'Build acceptance rejects skipped contract tests.' >&2
             exit 1
           fi
+      - name: Preserve the complete original script contracts for PCM delivery replay
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-connect-four-2020-build-contracts
+          path: .ci-results/build-contracts.log
+          if-no-files-found: error
+          retention-days: 30
       - name: Code-level Android probe regression with verified image dependencies
         run: |
           set -euo pipefail
@@ -357,7 +365,7 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0 ffmpeg
           export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"
           native_revision="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
           native_source="$RUNNER_TEMP/lumo-native-acceptance"
@@ -384,7 +392,7 @@ jobs:
           if [ "$REQUIRE_ACTION_STAGE" = true ]; then
             LUMO_ACTION_LOG_DIR="$native_logs/action-stage" bash tools/validate_action_stage.sh
           fi
-          LUMO_NEXTGEN_LOG_DIR="$native_logs/nextgen" bash tools/validate_nextgen.sh
+          LUMO_NEXTGEN_LOG_DIR="$native_logs/nextgen" bash tools/validate_nextgen.sh 2>&1 | tee "$native_logs/nextgen-runner.log"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -695,3 +703,137 @@ jobs:
             proofs/metadata/
           if-no-files-found: error
           retention-days: 30
+
+  prepare-c4-delivery:
+    needs: [verify-and-build, android-host-compile, connect-four-runtime, android-c4, update-2020-from-2017, verify-c4-candidate]
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.head_ref == 'integration/lumo-c4-connections-20261114' &&
+      needs.verify-and-build.result == 'success' &&
+      needs.android-host-compile.result == 'success' &&
+      needs.connect-four-runtime.result == 'success' &&
+      needs.android-c4.result == 'success' &&
+      needs.update-2020-from-2017.result == 'success' &&
+      needs.verify-c4-candidate.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    outputs:
+      delivery-artifact-id: ${{ steps.upload-delivery.outputs.artifact-id }}
+      delivery-artifact-digest: ${{ steps.upload-delivery.outputs.artifact-digest }}
+    permissions:
+      contents: read
+      actions: read
+    env:
+      SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      NATIVE_REVISION: ${{ needs.connect-four-runtime.outputs.native-revision }}
+      CANDIDATE_ARTIFACT_ID: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}
+      CANDIDATE_ARTIFACT_DIGEST: ${{ needs.verify-and-build.outputs.candidate-artifact-digest }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/checkout@v4
+        with:
+          repository: Ullmann27/lumo-godot
+          ref: ${{ needs.connect-four-runtime.outputs.native-revision }}
+          path: native-source
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
+        with:
+          packages: platform-tools
+      - name: Prepare actual APK signature and original raster verification
+        run: |
+          set -euo pipefail
+          sdkmanager 'build-tools;36.0.0'
+          python3 -m venv .c4-delivery
+          .c4-delivery/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+      - uses: actions/download-artifact@v4
+        with:
+          artifact-ids: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}
+          merge-multiple: true
+          path: candidate/dist/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-connect-four-2020-desktop-runtime
+          path: proofs/runtime/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-connect-four-2020-android-host-compile
+          path: proofs/host/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-connect-four-2020-android-c4
+          path: proofs/android/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-connect-four-2020-in-place-update-proof
+          path: proofs/update/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-connect-four-2020-candidate-verification
+          path: proofs/final/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-connect-four-2020-build-contracts
+          path: proofs/contracts/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-candidate-pinned-native-gameplay
+          path: proofs/native/
+      - name: Read exact current original acceptance and release catalog
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p proofs/publication-metadata
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > proofs/publication-metadata/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs?per_page=100" > proofs/publication-metadata/jobs.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts?per_page=100" > proofs/publication-metadata/artifacts.json
+          gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" > proofs/publication-metadata/pull.json
+          gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/releases?per_page=100" > proofs/publication-metadata/releases.json
+          gh api "repos/$GITHUB_REPOSITORY/git/matching-refs/tags/coachpreview-build-2020" > proofs/publication-metadata/tags.json
+      - name: Reverify actual current APKs C4 update PCM and complete native originals
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          test "$(git -C native-source rev-parse HEAD)" = "$NATIVE_REVISION"
+          .c4-delivery/bin/python scripts/verify_connect_four_delivery.py prepare \
+            --source "$SOURCE_SHA" --build-run "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --pull-request "$PR_NUMBER" --artifact-id "$CANDIDATE_ARTIFACT_ID" --artifact-digest "$CANDIDATE_ARTIFACT_DIGEST" \
+            --candidate candidate/dist --runtime proofs/runtime/runtime --host-compile proofs/host \
+            --android proofs/android --update proofs/update --metadata proofs/publication-metadata \
+            --facts proofs/final/C4-CANDIDATE-FACTS.json --build-contracts proofs/contracts \
+            --native-evidence proofs/native --native-source native-source --out delivery
+      - name: Preserve the complete verified 2020 ARM64 delivery bundle without publication
+        id: upload-delivery
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-connect-four-2020-delivery-bundle
+          path: delivery/
+          include-hidden-files: true
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - name: Preserve original verification evidence even when bundle preparation fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-connect-four-2020-delivery-verification
+          path: |
+            delivery/audit/
+            delivery/publication-plan.json
+            delivery/assets/C4-DELIVERY-FACTS.json
+            delivery/assets/PUBLISH-VERIFICATION.json
+            proofs/publication-metadata/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

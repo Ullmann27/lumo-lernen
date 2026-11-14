@@ -106,7 +106,15 @@ class WorkflowTests(unittest.TestCase):
             'Build unified real Android APK',
             'Verify APK archive and collect reproducible source hashes')
         for name in preserved:
-            with self.subTest(step=name): self.assertEqual(step(build,name),step(original,name))
+            expected=step(original,name)
+            if name == 'Require actual gameplay gates on the exact pinned native source':
+                expected=expected.replace('install -y xvfb libgl1-mesa-dri libglx-mesa0\n',
+                                          'install -y xvfb libgl1-mesa-dri libglx-mesa0 ffmpeg\n')
+                command='LUMO_NEXTGEN_LOG_DIR="$native_logs/nextgen" bash tools/validate_nextgen.sh'
+                self.assertEqual(expected.count(command),1)
+                expected=expected.replace(command,
+                                          command+' 2>&1 | tee "$native_logs/nextgen-runner.log"')
+            with self.subTest(step=name): self.assertEqual(step(build,name),expected)
         self.assertNotIn('continue-on-error',self.workflow)
 
     def test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload(self):
@@ -132,11 +140,16 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn('scripts/verify_connect_four_candidate.py',verify)
         self.assertNotIn('    if: always()',verify.split('    steps:',1)[0])
 
-    def test_dedicated_test_candidate_has_no_release_or_2019_receipt_path(self):
+    def test_dedicated_2020_delivery_keeps_every_gate_and_no_2019_receipt_path(self):
         names=re.findall(r'^  ([a-z][\w-]*):\s*$',self.workflow.split('jobs:\n',1)[1],re.M)
         self.assertEqual(names,['connect-four-runtime','android-host-compile','verify-and-build',
-                                'android-c4','update-2020-from-2017','verify-c4-candidate'])
-        for forbidden in ('gh release','contents: write','workflow_dispatch:','publish-reviewed',
+                                'android-c4','update-2020-from-2017','verify-c4-candidate','prepare-c4-delivery'])
+        publisher=job(self.workflow,'prepare-c4-delivery')
+        self.assertIn('needs: [verify-and-build, android-host-compile, connect-four-runtime, android-c4, update-2020-from-2017, verify-c4-candidate]',publisher)
+        self.assertNotIn('contents: write',self.workflow)
+        self.assertIn('contents: read',publisher)
+        self.assertIn('scripts/verify_connect_four_delivery.py prepare',publisher)
+        for forbidden in ('gh release','workflow_dispatch:','publish-reviewed',
                           'verify_kart_graphics_delivery.py','studio_creative_android_probe.py',
                           'lumo_studio_surfaces_android_probe.py'):
             self.assertNotIn(forbidden,self.workflow)

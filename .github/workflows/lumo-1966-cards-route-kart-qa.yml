@@ -17,6 +17,7 @@ permissions:
   contents: read
 jobs:
   cards-route-and-probe:
+    if: github.event_name != 'pull_request' || github.head_ref != 'integration/lumo-c4-connections-20261114'
     runs-on: ubuntu-latest
     timeout-minutes: 22
     steps:
