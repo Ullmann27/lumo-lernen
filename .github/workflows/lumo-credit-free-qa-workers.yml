@@ -1,0 +1,48 @@
+name: LUMO Credit-Free Learning and Play QA Workers
+on:
+  push:
+    branches: [chatgpt/lumo-three-qa-workers-20261114]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-three-qa-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  learning-worker:
+    name: Learning QA worker – grades 1 through 4
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - run: flutter pub get --enforce-lockfile
+      - name: Exact grade, subject and lesson regression
+        run: flutter test --no-pub test/learning/learning_exact_selection_test.dart --reporter=expanded
+      - name: Real sampled catalog audit of 236-plus topic families
+        run: dart run tools/audit_learning_tasks_all_grades.dart audit/learning-all-grades
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-learning-qa-20261114
+          path: audit/learning-all-grades/
+          if-no-files-found: warn
+          retention-days: 30
+  play-readiness-worker:
+    name: Android and Play release gap audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect actual source signing, AAB and Play prerequisites
+        run: python3 tools/check_lumo_play_readiness.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-play-readiness-blockers-20261114
+          path: audit/play/play-readiness.json
+          if-no-files-found: error
+          retention-days: 30
