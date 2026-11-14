@@ -23,7 +23,7 @@ GAMEPLAY_2016_REVISION = "b4ccf593d7833e8c259ff0f963494b00d245d03d"
 ACTION_STAGE_2017_REVISION = "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57"
 NEXTGEN_2018_REVISION = "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
 STUDIO_2019_REVISION = "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845"
-CONNECT_FOUR_2020_REVISION = "3213d2aca377476cf4959f380701d87177cec959"
+CONNECT_FOUR_2020_REVISION = "2cea87a45a10c92cf46e752b759452925bc2f2ea"
 SUPERSEDED_2017_CANDIDATES = {
     "460c94b10df6adae11def608068d72e99c0950db",
     "a16a4fc6791c3c7a594273f4544458382cc2c884",
@@ -288,6 +288,40 @@ class Candidate2011PinTests(unittest.TestCase):
                 data[field] = value
                 with self.assertRaisesRegex(ValueError, message):
                     POLICY.verify(version(2019), json.dumps(data))
+
+    def test_2020_only_accepts_its_exact_source_and_preserves_every_prior_pin(self):
+        self.assertEqual(
+            POLICY.verify(version(2020), config(CONNECT_FOUR_2020_REVISION)),
+            (2020, CONNECT_FOUR_2020_REVISION),
+        )
+        previous = {build: sha for build, sha in POLICY.APPROVED.items() if build < 2020}
+        invalid = set(previous.values()) | {
+            "3213d2aca377476cf4959f380701d87177cec959",
+            "0" * 40,
+            "",
+            CONNECT_FOUR_2020_REVISION[:8],
+        }
+        for revision in sorted(invalid):
+            with self.subTest(revision=revision):
+                with self.assertRaisesRegex(ValueError, "revision mismatch for build 2020"):
+                    POLICY.verify(version(2020), config(revision))
+        for build, revision in previous.items():
+            with self.subTest(historical_build=build):
+                self.assertEqual(POLICY.verify(version(build), config(revision)), (build, revision))
+                with self.assertRaisesRegex(ValueError, "revision mismatch"):
+                    POLICY.verify(version(build), config(CONNECT_FOUR_2020_REVISION))
+
+    def test_2020_rejects_foreign_origin_engine_and_extra_keys(self):
+        for field, value, message in (
+            ("repository", "https://example.invalid/game.git", "origin"),
+            ("engine", "4.7", "engine"),
+            ("skip_verification", True, "config keys"),
+        ):
+            with self.subTest(field=field):
+                data = json.loads(config(CONNECT_FOUR_2020_REVISION))
+                data[field] = value
+                with self.assertRaisesRegex(ValueError, message):
+                    POLICY.verify(version(2020), json.dumps(data))
 
     def test_2019_rejects_superseded_796b_native_identity(self):
         with self.assertRaisesRegex(ValueError, "revision mismatch for build 2019"):
