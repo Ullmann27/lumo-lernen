@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "prepared_utc": "2026-11-14T07:38:59.144836+00:00",
+  "file": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/host/scripts/tests/test_candidate_2011_pin.py",
+  "sha256": "4a6b91f1097d828afb0fa75138bf56117379cdccfcfb0e9656a7be43daf2e4cd",
+  "bytes": 19946,
+  "git_blob_sha": "b0fb033aa2b371ff2f64acd5183a52fadace2982",
+  "scope": "prospective test source only; no new policy, pubspec, actual config, Host branch or approved receipt",
+  "native_ci_still_required": true,
+  "new_tests_executed": false,
+  "independent_review_of_previous_test_sha256": "7dff7b45a74445a62e8c1c54b3e322de5b57237db1b3c9f15ce382273b32d9a6",
+  "delta": "replace prospective revision with785413 and explicitly reject visually blocked acf51"
+}

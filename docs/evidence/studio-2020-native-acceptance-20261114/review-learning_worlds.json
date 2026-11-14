@@ -1,0 +1,208 @@
+{
+  "schema": 1,
+  "review_owner": "learning_worlds",
+  "reviewed_utc": "2026-11-14T08:15:54.096214+00:00",
+  "status": "SCOPED_VISUAL_REVIEW_PASSED_NO_BLOCKING_ISSUE",
+  "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "run_id": 43570887024,
+  "artifact_id": 14105224381,
+  "archive_sha256": "31c926ae589073839dd4e89c955a0b59644c23e355e7685a4e31149d22d32c4e",
+  "archive_bytes": 227410428,
+  "extraction_manifest_sha256": "8549474e622f91c320d87e4134045ae76cd82ec6090773ec9e265b98f2c652ef",
+  "images_actually_opened": 9,
+  "blocking_issues": 0,
+  "images": [
+    {
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "module": "learning",
+      "sha256": "f4fd4581a9bccd5ad0221baab0ee04fea174345b08ecc66f0c46196cc0673fa3",
+      "bytes": 249517,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "reviewed": true,
+      "method": "Original PNG actually opened with view_image during this review",
+      "findings": [
+        "Die drei Teller zeigen jeweils vier Würfel; alle zwölf Würfel sind sichtbar verteilt. Die Zahlen4/4/4 und die Erklärung12 geteilt durch3 ist4 stimmen mit dem Bild überein.",
+        "Lumo ist vollständig sichtbar; Gruppen und Ziffern werden nicht vom Header oder Footer verdeckt.",
+        "Der Abschluss ist klar lesbar. Noch einmal und Zur Aufgabe sind vollständig sichtbar; der Verteilknopf ist erkennbar deaktiviert."
+      ],
+      "blocking_issue": false,
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/f4fd4581a9bccd5ad0221baab0ee04fea174345b08ecc66f0c46196cc0673fa3-learning-sharing-complete-1280x720.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "module": "learning",
+      "sha256": "928f386de806eb9aa96c7dbfe1f3e61b5692f87cd2c0c8f77a00615f88e80709",
+      "bytes": 111652,
+      "dimensions": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "method": "Original PNG actually opened with view_image during this review",
+      "findings": [
+        "Jeder der drei Teller zeigt genau einen Würfel und die Zahl1; neun weitere Würfel liegen sichtbar im Vorrat. Der Footer3/12 bewegt und die Erklärung der ersten Runde passen dazu.",
+        "Die Beschriftungen umbrechen innerhalb ihrer Flächen. Einen Würfel verteilen, Noch einmal und Zur Aufgabe bleiben vollständig sichtbar.",
+        "Lumo steht frei oberhalb der Verteilfläche; weder eine Gruppe noch der Vorrat ist durch die Bedienelemente verdeckt."
+      ],
+      "blocking_issue": false,
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/928f386de806eb9aa96c7dbfe1f3e61b5692f87cd2c0c8f77a00615f88e80709-learning-sharing-first-round-412x915.png"
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "module": "learning",
+      "sha256": "7a4cf591f73638501c0864b52963f19f5c0c14fb92161fd38cce03debecbb075",
+      "bytes": 723941,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "reviewed": true,
+      "method": "Original PNG actually opened with view_image during this review",
+      "findings": [
+        "180+50=230 und die sichtbare Zerlegung sind nachvollziehbar: vorhandene100-Platte, vollständige zehn Zehner und drei übrige Zehner.",
+        "Die obere Beschriftung10 Zehner =100 zeigt zwei getrennte Gleichheitsbalken. Die untere230 =2 Hunderter +3 Zehner steht lesbar auf dunklem Schild.",
+        "Lumo ist vollständig im Arbeitsbereich sichtbar; mathematische Labels, Mengen und aktive Abschlussaktionen sind nicht vom HUD abgeschnitten."
+      ],
+      "blocking_issue": false,
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/7a4cf591f73638501c0864b52963f19f5c0c14fb92161fd38cce03debecbb075-learning-bridge_hundred-complete-2400x1080.png"
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "module": "learning",
+      "sha256": "91bcfd6c2505e850165bc88d713b16159501e4488693d57877f0ac0d2959ca45",
+      "bytes": 135401,
+      "dimensions": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "method": "Original PNG actually opened with view_image during this review",
+      "findings": [
+        "Auch bei412×915 bleiben180+50=230, die100-Platte, zehn gebündelte Zehner und drei weitere Zehner sichtbar.",
+        "Obere Gleichheit und unteres dunkles Stellenwertschild sind lesbar; die beiden Gleichheitsbalken bleiben getrennt.",
+        "Die Lernfigur bleibt vollständig sichtbar. Der Footer ordnet Noch einmal und Zur Aufgabe auf mehrere Zeilen, ohne sie am Bildrand abzuschneiden."
+      ],
+      "blocking_issue": false,
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/91bcfd6c2505e850165bc88d713b16159501e4488693d57877f0ac0d2959ca45-learning-bridge_hundred-complete-412x915.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "module": "treasure",
+      "sha256": "679fd4b6574194c6945014e892e16437c57262851dcd75e74832b2febae37d43",
+      "bytes": 2718305,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "reviewed": true,
+      "method": "Original PNG actually opened with view_image during this review",
+      "findings": [
+        "Titel, Spielauswahl, Rucksack und Pause sind klar auf dunkler Headerfläche lesbar.",
+        "Lumo ist von Ohren bis Füßen vollständig sichtbar; das dauerhafte Hinweisfeld liegt links oberhalb und überschneidet die Figur nicht.",
+        "Der vollständige Wasserfallhinweis und1/7 sowie0/3 sind lesbar. Der dunkle Toast liegt im unteren Zwischenraum; Joystick, Springen und ANSEHEN bleiben frei."
+      ],
+      "blocking_issue": false,
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/679fd4b6574194c6945014e892e16437c57262851dcd75e74832b2febae37d43-treasure-treasure-title-landscape.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "module": "treasure",
+      "sha256": "ac3adaae69494cb8903f39008c0ff2a9a532ab625bfe0fd817d3b242da05fcfd",
+      "bytes": 2101412,
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "reviewed": true,
+      "method": "Original PNG actually opened with view_image during this review",
+      "findings": [
+        "Der Titel ist in der schmalen Headerfläche sichtbar mit Ellipse gekürzt; Spielauswahl, Rucksack und Pause bleiben getrennt und lesbar.",
+        "Das große Hinweisfeld zeigt den vollständigen Wasserfalltext. Lumo bleibt vollständig unterhalb des Feldes sichtbar.",
+        "Der dunkle zweizeilige Toast ist lesbar und liegt mit Abstand oberhalb des Springenknopfs. Joystick und ANSEHEN sind vollständig sichtbar, ohne Toastüberdeckung."
+      ],
+      "blocking_issue": false,
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/ac3adaae69494cb8903f39008c0ff2a9a532ab625bfe0fd817d3b242da05fcfd-treasure-treasure-title-portrait.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "module": "treasure",
+      "sha256": "bd94bfa43d8479470610815d24ddb4cee222175557cb48acfb06c077289f2bec",
+      "bytes": 4225193,
+      "dimensions": [
+        2176,
+        1812
+      ],
+      "reviewed": true,
+      "method": "Original PNG actually opened with view_image during this review",
+      "findings": [
+        "Der vollständige Titel ist lesbar. Hinweisfeld und Fortschrittszahlen bleiben auf dunklem Hintergrund erkennbar.",
+        "Lumo ist im mittleren Weltbereich vollständig sichtbar; weder Header noch Hinweis oder Toast schneiden seine projizierte Figur.",
+        "Der Toast liegt unten zwischen den großen Touchflächen; Springen, Joystick und ANSEHEN bleiben optisch erreichbar. Das Auflösungsprofil ist keine tatsächliche Fold-Gerätemessung."
+      ],
+      "blocking_issue": false,
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/bd94bfa43d8479470610815d24ddb4cee222175557cb48acfb06c077289f2bec-treasure-treasure-title-fold.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "module": "treasure",
+      "sha256": "1ab8b0fbe64aa4fd4bb1e4c16b4df4f18bf0bb76dc092f0818477555f501084a",
+      "bytes": 323915,
+      "dimensions": [
+        640,
+        320
+      ],
+      "reviewed": true,
+      "method": "Original PNG actually opened with view_image during this review",
+      "findings": [
+        "Bei640×320 ersetzt der klar sichtbare Hinweisbutton das große Dauerfeld; Titel und Toast bleiben lesbar.",
+        "Der gesamte Lumo ist unterhalb der zweiten HUD-Zeile sichtbar; keine Figurpartie wird von Hinweis oder Toast verdeckt.",
+        "Spielauswahl, Rucksack, Pause, Hinweis, Springen, Joystick und ANSEHEN bleiben innerhalb des Bildes sichtbar. Aus dem Standbild allein wird keine Touchausführung oder physische dp-Messung abgeleitet."
+      ],
+      "blocking_issue": false,
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/1ab8b0fbe64aa4fd4bb1e4c16b4df4f18bf0bb76dc092f0818477555f501084a-treasure-treasure-title-compact.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "module": "treasure",
+      "sha256": "9a74ce795a05310b19bb3168e6f5334827eb13820891de3fc935a64f6bd80570",
+      "bytes": 2622672,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "reviewed": true,
+      "method": "Original PNG actually opened with view_image during this review",
+      "findings": [
+        "Im2400×1080-Cutoutprofil liegen Header und Hinweisbutton sichtbar eingerückt; der dunkle Toast liegt in einer separaten Zeile daneben.",
+        "Lumo ist vollständig im freien Weltbereich sichtbar. Hinweis/Toast überdecken weder Figur noch Springen, Joystick oder ANSEHEN.",
+        "Der linke sowie obere und untere Sicherheitsrand der deklarierten Plattformfixture ist erkennbar eingehalten. Dies ist eine gerenderte Insets-Fixture und kein Android-Systemleisten-Screenshot."
+      ],
+      "blocking_issue": false,
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/9a74ce795a05310b19bb3168e6f5334827eb13820891de3fc935a64f6bd80570-treasure-treasure-title-landscape-cutout.png"
+    }
+  ],
+  "supporting_original_bytes_report": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/original-bytes-learning_worlds.json",
+    "bytes": 7898,
+    "sha256": "3adab4d4f639c7b230a88b4e8c3006adb933408c91806c0ff69433cbd4f88df7",
+    "git_blob_sha": "6c592a122696c6c261a059421577255d000daf1b"
+  },
+  "treasure_ci_report_review": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/treasure-sidecar-review-learning_worlds.json",
+    "bytes": 2325,
+    "sha256": "f2ff86adf015daaaf14dc7376ba62fb4b250e74bfe859a81f8782503ab676be0",
+    "git_blob_sha": "8f39f34f22b05b182f946dbbf41ef6d93473ea42"
+  },
+  "limits": [
+    "Nine selected fresh original native CI frames only; no reuse of previous image hashes or findings.",
+    "Static frames do not independently prove animations, complete gameplay, Hint-dialog scrolling/closing or return navigation. Those remain separate runtime/Android gates.",
+    "Treasure report uses explicitly declared saved-position and platform-inset fixtures. Its fold-sized capture is not a physical Fold7 run; cutout rendering is not an Android screenshot.",
+    "No Android installation, real device touch routing, 60 FPS, thermal, GPU or memory certification.",
+    "No claim of high-end/AAA visual equivalence: hard shadows and simple environment forms remain visible.",
+    "This review neither creates a final receipt nor approves release/pins."
+  ],
+  "image_tool_note": "The third image in one batch (cutout) was discarded by the tool output limit and was then independently reopened successfully. All nine listed images were actually displayed."
+}

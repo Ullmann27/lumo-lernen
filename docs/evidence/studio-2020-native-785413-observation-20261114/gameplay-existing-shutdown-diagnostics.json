@@ -1,0 +1,52 @@
+{
+  "scope": "Read-only comparison of completed original job logs; no test rerun or claim of a clean whole-job stderr.",
+  "logs": [
+    {
+      "file": "qa/studio-2020-native-acf51-observation-20261114/completed-success/gameplay-original-job.log",
+      "sha256": "1202bb4bdf2aedca7cb71efb6d65db1e029959cbf947c7be8b03e228105d6563",
+      "issues": [
+        {
+          "line": 3820,
+          "error": "2026-11-14T06:21:16.5593844Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+          "nearest_prior_pass": "2026-11-14T06:21:16.4664275Z [KartAI] PASS: no teleport, no rubber-band, difficulty order holds"
+        },
+        {
+          "line": 3909,
+          "error": "2026-11-14T06:21:52.5402112Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+          "nearest_prior_pass": "2026-11-14T06:21:52.5012874Z [KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake"
+        },
+        {
+          "line": 4234,
+          "error": "2026-11-14T06:22:28.0953574Z ERROR: 2 resources still in use at exit (run with --verbose for details).",
+          "nearest_prior_pass": "2026-11-14T06:22:28.0217968Z [KartFullField] PASS: continuous field two-lap drive with bounded movement"
+        }
+      ]
+    },
+    {
+      "file": "qa/studio-2020-native-785413-observation-20261114/gameplay-132374803862-original.log",
+      "sha256": "8069ec161d5e2cf38673687789ed1f8fca0748d6f3a73d68f06e2ab7e1be1ff8",
+      "issues": [
+        {
+          "line": 3847,
+          "error": "2026-11-14T07:37:17.0801121Z ERROR: 2 resources still in use at exit (run with --verbose for details).",
+          "nearest_prior_pass": "2026-11-14T07:37:16.9887752Z [GarageTargets] PASS: 255 visible controls checked at >= 48x48 dp"
+        },
+        {
+          "line": 3909,
+          "error": "2026-11-14T07:37:48.6992902Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+          "nearest_prior_pass": "2026-11-14T07:37:48.6734932Z [KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake"
+        },
+        {
+          "line": 3927,
+          "error": "2026-11-14T07:37:52.8905845Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+          "nearest_prior_pass": "2026-11-14T07:37:52.8075065Z [KartRivalDrift] PASS: earned drift, gold pickup, fair pulse, shield and mini-turbo"
+        },
+        {
+          "line": 4238,
+          "error": "2026-11-14T07:38:39.5418603Z ERROR: 2 resources still in use at exit (run with --verbose for details).",
+          "nearest_prior_pass": "2026-11-14T07:38:39.5023830Z [KartFullField] PASS: continuous field two-lap drive with bounded movement"
+        }
+      ]
+    }
+  ]
+}

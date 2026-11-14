@@ -1,0 +1,269 @@
+{
+  "schema": 1,
+  "host_commit": {
+    "sha": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+    "node_id": "C_kwDOSNzcp9oAKGFlMzk0ZjU1YzYwNmNlNjY5OTlkZjViNzJhY2QxZjhkMzRlYzNlZTQ",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T08:33:19Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T08:33:19Z"
+    },
+    "tree": {
+      "sha": "63af179a4ef7a4ab9edb35e8365c1ea059f9258a",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/63af179a4ef7a4ab9edb35e8365c1ea059f9258a"
+    },
+    "message": "feat(studio): integrate reviewed native 2020 worlds and Android acceptance\n\nBind 0.13.8+2020 to reviewed Godot 785413d, retaining all historical pins.\nConnect the 3D Connect Four room to Dart authority and per-child persistence;\ninclude Lumo PCM speech envelope, German Cards feedback and actual Android\nlifecycle, update, surface and Creative acceptance gates.\n\nRecord 49 actually reviewed native renderer images and their immutable\nartifact identities. Android APK approval remains gated by the new run.\nPreserve all 4,116 unrelated baseline files and Main.",
+    "parents": [
+      {
+        "sha": "86445f53af5d573549fc8cf03405261611f3cb7e",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/86445f53af5d573549fc8cf03405261611f3cb7e",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/86445f53af5d573549fc8cf03405261611f3cb7e"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "host_ref": {
+    "ref": "refs/heads/chatgpt/lumo-studio-2020-20261114",
+    "node_id": "REF_kwDOSNzcp9oALHJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby0yMDIwLTIwMjYxMTE0",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/chatgpt/lumo-studio-2020-20261114",
+    "object": {
+      "sha": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/ae394f55c606ce66999df5b72acd1f8d34ec3ee4"
+    }
+  },
+  "tree_proof": {
+    "schema": 1,
+    "parent": "86445f53af5d573549fc8cf03405261611f3cb7e",
+    "base_tree": "2389b97232041bb77307e47ecc0e550772339a4e",
+    "final_tree": "63af179a4ef7a4ab9edb35e8365c1ea059f9258a",
+    "base_leaves": 4145,
+    "final_leaves": 4239,
+    "final_entries": 4805,
+    "changed_or_new": 123,
+    "untouched_leaves_verified": 4116,
+    "added": 94,
+    "mismatches": [],
+    "unexpected_entries": [],
+    "all_modes_types_and_blob_ids_preserved_outside_explicit_targets": true,
+    "main_mutated": false
+  },
+  "tree_journal": [
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08",
+      "sha": "855b481258118acb81b5572348846dfba7edb724",
+      "entries": 8
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/connect_four_android",
+      "sha": "140e25f22370fc3b1ef5f2c86bc2b27753ecf986",
+      "entries": 2
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445",
+      "sha": "c53cc2c8a82b5a2e653d35182a2f799a542a80fe",
+      "entries": 7
+    },
+    {
+      "path": "lib/features/games/connect_four",
+      "sha": "2fa4f865617014e67a2805f0fa952c82f474b505",
+      "entries": 5
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures",
+      "sha": "bc10f2ab02b6ade930693721b295647f5b93e26c",
+      "entries": 31
+    },
+    {
+      "path": "lib/features/games/lumo_cards",
+      "sha": "118b103ab24c5dfa3f601b7a0b9454a8a0830f8c",
+      "entries": 14
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed",
+      "sha": "6ef74d8032174dbe188ef552340683bea2e20d31",
+      "entries": 49
+    },
+    {
+      "path": "scripts/tests/fixtures",
+      "sha": "9e2870a9a2daf17f6149a638f9847d7fe3d9ab35",
+      "entries": 10
+    },
+    {
+      "path": "tools/android_qa/tests",
+      "sha": "03cd875319a0c9120aa8fd7f5ee50ec13d78d467",
+      "entries": 65
+    },
+    {
+      "path": "lib/features/lumo3d",
+      "sha": "4046705e31fd157a4ba29389a8b9f7e08e84bd45",
+      "entries": 3
+    },
+    {
+      "path": "lib/features/games",
+      "sha": "5320f07a2ea1fe2c3481052c052fb65d5fe82461",
+      "entries": 11
+    },
+    {
+      "path": "tools/auto_install",
+      "sha": "979abc23e45904e02ebd5398af21e4dd209576e8",
+      "entries": 14
+    },
+    {
+      "path": ".github/workflows",
+      "sha": "725609a13efa87eb270c7d6008559b035556de7b",
+      "entries": 105
+    },
+    {
+      "path": "tools/android_qa",
+      "sha": "e7c8346d51565ffe8abf62629daf52469f4abea6",
+      "entries": 37
+    },
+    {
+      "path": ".github/probes",
+      "sha": "525c7983680f7d78a189084ddfdb5766a3198c62",
+      "entries": 31
+    },
+    {
+      "path": "docs/evidence",
+      "sha": "9362c8c20afd6e8fbc1552ac6d4a060f6e0c0760",
+      "entries": 59
+    },
+    {
+      "path": "scripts/tests",
+      "sha": "a931f7e420de989afb32fe59f46bfe680f2c163f",
+      "entries": 59
+    },
+    {
+      "path": "lib/features",
+      "sha": "c5468806865aa9e2e175ea5026e5456dc6599449",
+      "entries": 30
+    },
+    {
+      "path": "test/games",
+      "sha": "480aa23918b7813393d994427f3c33955874fe8f",
+      "entries": 45
+    },
+    {
+      "path": "lib/app",
+      "sha": "5763e3af93238543255029a68ba6f8e32408136a",
+      "entries": 5
+    },
+    {
+      "path": ".github",
+      "sha": "e82117c566b8cce1d96d8faed7b9e39e375a4475",
+      "entries": 4
+    },
+    {
+      "path": "scripts",
+      "sha": "59acfa479b845e3f4a1e096e7faaec6da9fa82d2",
+      "entries": 44
+    },
+    {
+      "path": "config",
+      "sha": "5ff8dbf708053ed71aaf97911db8dea0afeb8c74",
+      "entries": 5
+    },
+    {
+      "path": "tools",
+      "sha": "c0128a7e79b5792b1e1647e13322715a510179ca",
+      "entries": 21
+    },
+    {
+      "path": "docs",
+      "sha": "10c361e37d1bc2c147ff9787427af7dd06207f12",
+      "entries": 114
+    },
+    {
+      "path": "test",
+      "sha": "29d62ee924d67727742daeb0dbae0df426b0e8ee",
+      "entries": 224
+    },
+    {
+      "path": "lib",
+      "sha": "8d1b70984a017f90763282d6fe77137bdab6eea5",
+      "entries": 8
+    },
+    {
+      "path": "",
+      "sha": "63af179a4ef7a4ab9edb35e8365c1ea059f9258a",
+      "entries": 26
+    }
+  ],
+  "source_manifest_sha256": "73a80a2378d11eed3e9f129be05c7008da99f09bc7a18954fcfe371092c769d3",
+  "independent_pin_review_sha256": "b72725397c32a2eeba7c4ee37c8d2de69d059e645b978a2f000a6330d313260e",
+  "independent_image_integration_sha256": "199a495e0434c823a0fbe6bcfcf78aa3d10ccd6e89290c1b33c75a8a50043e49",
+  "pr": {
+    "url": "https://github.com/Ullmann27/lumo-lernen/pull/494",
+    "number": 494,
+    "state": "open",
+    "merged": false,
+    "mergeable": false,
+    "draft": true,
+    "body": "## Problem und Ergebnis\n\nVier Gewinnt benötigt einen tatsächlich spielbaren 3D-Raum mit der bestehenden Dart-Regelautorität, während Lumo im Lernraum sichtbare Lid-, Blick- und Sprachbewegung erhalten soll. Die gemeinsame Android-Auslieferung muss diese neuen Komponenten samt Speicherständen, Rückkehr und unveränderten historischen Versionszuordnungen prüfen.\n\nDieser getrennte Kandidat **0.13.8+2020** integriert die aktuelle, tatsächlich gerenderte Godot-Quelle. Main bleibt unberührt. Dieser Draft ist noch keine APK- oder Gerätefreigabe.\n\n## Quellen\n\n- Host: `ae394f55c606ce66999df5b72acd1f8d34ec3ee4`\n- Host-Parent: `86445f53af5d573549fc8cf03405261611f3cb7e`\n- Host-Tree: `63af179a4ef7a4ab9edb35e8365c1ea059f9258a`\n- Native: `785413d395292a243eaa0a0748671eb15d3f80ff` — [Godot-Draft #167](https://github.com/Ullmann27/lumo-godot/pull/167)\n- Native-Run: [43570887024](https://github.com/Ullmann27/lumo-godot/actions/runs/43570887024), Versuch 1, **alle neun Jobs erfolgreich**. Auch die sechs zusätzlichen Native-PR-Prüfläufe bestanden.\n\n## Implementiert und angeschlossen\n\n- Echter Vier-Gewinnt-Spielraum: 3D-Brett mit 42 durchbrochenen Feldern, fallende Steine und Gewinnringe. Flutter/Dart bleibt für legale Züge und die drei Botstärken maßgeblich.\n- Sitzungsbindung pro Kind, Speichern vor Bestätigung, Abweisung veralteter Anfragen, idempotente Belohnungen sowie eigene Android-Activity, Bridge und Authority-Service.\n- Original-Lumo mit zusätzlicher skinned Lid-/Faltengeometrie, Blickbewegung und dezenter Artikulation. Die Android-PCM-Hüllkurve folgt der tatsächlichen Wiedergabeposition; Stopp und Stummschaltung schließen die Bewegung.\n- Deutsche Cards-Rückmeldungen ohne Änderung des Regel- oder Speicherformats.\n- Native-Korrektur der tatsächlich beobachteten Verdeckung von Lumo in kurzen Schatzsuche-Ansichten: kompakter Hinweisbutton, scrollbarer vollständiger Dialog und kontrastfeste Meldungsfläche außerhalb von Figur und Touchzielen.\n- Konkrete Creative-/Rückkehrprüfungen für relative Stickgröße, Puzzle-Geometrie, stabile Szenenbereitschaft und die ausdrückliche Zurückweisung eines Flutter-Ladebildschirms.\n- Neuer Android-2020-Prüfablauf mit echtem Host-Compile, vollständiger vorhandener Flutter-Prüfung, tatsächlichem Dart/Godot-C4-Prozess vor dem APK-Bau, Touren auf API 35 und API 37, Creative-Tour sowie Update 2017 → 2020.\n\n## Tatsächliche Native- und lokale Evidenz\n\nDas aktuelle vollständige Native-Originalarchiv wurde heruntergeladen und geprüft:\n\n- Artefakt **14105224381**, **227.410.428 Bytes**\n- SHA-256 `31c926ae589073839dd4e89c955a0b59644c23e355e7685a4e31149d22d32c4e`\n- **5.085 ZIP-Einträge** CRC-geprüft, fünf saubere Quellstempel an exakt Native 785413 gebunden.\n- **49 aktuelle Originalbilder aus zehn Modulen** durch Root und drei Agenten tatsächlich geöffnet. Alle 49 unveränderten PNGs sind in diesem Commit enthalten; ein unabhängiger Integrationscheck bestätigt sämtliche Bytes, Zielpfade, Gitblobs, Abmessungen und Archivmitglieder.\n- Receipt `config/studio-2020-visual-review.json`: SHA-256 `12ffaba3dac821f480aaeb3a9392f2f6fbfdf669535d6b6351026ec22fef70b7`; tatsächlicher `verify_visual_review`-Aufruf PASS.\n- Nach dieser Sichtprüfung: **26/26 Pin-Verträge bestanden, Exit 0, kein Skip**. Alle 50 historischen Versionszuordnungen unverändert; 8be3 und visuell blockiertes acf51 werden als 2020-Quellen ausdrücklich zurückgewiesen.\n- Expliziter Git-Tree-Abgleich: **123 gezielte Dateien** (94 neu, 29 geändert); **4.116 andere Basisdateien** in Modus, Typ und Gitblob unverändert. Keine lokalen Backup-/Cachedateien übernommen.\n\nWeitere Originalprotokolle und die bisherige Arbeitsinventur bleiben auf dem separaten [Evidenz-Draft #477](https://github.com/Ullmann27/lumo-lernen/pull/477) nachvollziehbar. Historische Fehlschläge werden nicht als aktuelle Erfolge umetikettiert.\n\n## Noch zu bestehen\n\nDer neue gemeinsame Hostlauf und dessen Android-Touren sind zum Zeitpunkt der PR-Erstellung noch ausstehend. Erst erfolgreiche aktuelle Integrations-, Creative- und Update-Gates erlauben den APK-Publisher. Dieser prüft erneut die vollständigen Originalartefakte, Quellstände, Bilder, Laufzeitdaten und APK-Identität; bestehende Veröffentlichungsbytes dürfen nicht überschrieben werden.\n\n## Bekannte Grenzen\n\n- Kein physischer Fold7: keine gemessenen 60 FPS, Temperatur- oder Touchlatenzwerte.\n- Native-Gameplay behält vier Ressourcenmeldungen beim Prozessende. Vier gezielte lokale Verbose-Läufe reproduzierten sie nicht; die Ursache bleibt offen.\n- Dichte HUDs und scrollende Bauwerkzeugleisten, teilweise überlagerter oberster Kopf-/Brillenbereich in einer breiten Cards-Ansicht, kleine C4-Hochkantansicht ohne Lumo neben dem Brett, dünne Lidnaht und dezente amplitudenbasierte Artikulation bleiben dokumentiert. Kein phonemgenaues Visemsystem.\n- Die neue Native-Abnahme und die lokalen Prüfläufe sind keine Android-Abnahme. Die tatsächliche Updateprüfung wird nur ihren aufgezeichneten Datensatz belegen.\n- Keine pauschale Fertigstellung aller Master-Anforderungen: insbesondere nicht sämtliche neuen Memory-/Quiz-/Englisch-/Geschichtenwelten oder eine neue Vollproduktion aller Kart-Strecken.\n\nAusführliche Quellen- und Integrationsbeschreibung: `docs/studio-2020-integration.md`.\n",
+    "title": "LUMO 0.13.8+2020: reviewed 3D worlds, Lumo animation and Android integration",
+    "base": "chatgpt/lumo-studio-20261113",
+    "base_sha": "86445f53af5d573549fc8cf03405261611f3cb7e",
+    "head": "chatgpt/lumo-studio-2020-20261114",
+    "head_sha": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+    "head_repo_id": 1222433959,
+    "head_repo_full_name": "Ullmann27/lumo-lernen",
+    "merge_commit_sha": null,
+    "user": {
+      "login": "Ullmann27",
+      "name": "Ullmann27",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "id": 64243701
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-11-14T08:34:15Z",
+    "updated_at": "2026-11-14T08:34:15Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 1,
+    "changed_files": 123,
+    "additions": 11181,
+    "deletions": 241,
+    "display_url": "https://github.com/Ullmann27/lumo-lernen/pull/494",
+    "display_title": "LUMO 0.13.8+2020: reviewed 3D worlds, Lumo animation and Android integration"
+  },
+  "post_pr_mains": {
+    "host": {
+      "ref": "refs/heads/main",
+      "node_id": "REF_kwDOSNzcp69yZWZzL2hlYWRzL21haW4",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/main",
+      "object": {
+        "sha": "b24474875fe6eb02d4de01030eab9fa4a4aa6007",
+        "type": "commit",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/b24474875fe6eb02d4de01030eab9fa4a4aa6007"
+      }
+    },
+    "native": {
+      "ref": "refs/heads/main",
+      "node_id": "REF_kwDOSpcSOK9yZWZzL2hlYWRzL21haW4",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/refs/heads/main",
+      "object": {
+        "sha": "aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4",
+        "type": "commit",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4"
+      }
+    }
+  }
+}

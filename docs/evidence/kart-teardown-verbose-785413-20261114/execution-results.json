@@ -1,0 +1,152 @@
+[
+  {
+    "command": [
+      "/usr/local/bin/godot",
+      "--headless",
+      "--verbose",
+      "--path",
+      "/tmp/lumo-attention-8be3-20261114/runtime",
+      "--script",
+      "scripts/tests/kart_ai_behavior_regression.gd"
+    ],
+    "cwd": "/tmp/lumo-attention-8be3-20261114/runtime",
+    "started_utc": "2026-11-14T07:40:58.774753+00:00",
+    "finished_utc": "2026-11-14T07:41:02.886147+00:00",
+    "elapsed_seconds": 4.111418796994258,
+    "exit_code": 0,
+    "timed_out": false,
+    "deadline_seconds": 180,
+    "original_log": {
+      "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/kart_ai_behavior_regression.log",
+      "bytes": 15058,
+      "sha256": "7ee71916cfb02ab640bcb918f27dd210122e2016a29703bc92d7aa582b08e7db"
+    },
+    "probe": "kart_ai_behavior_regression",
+    "mode": "headless",
+    "required_marker": "[KartAI] PASS",
+    "source_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "code_unchanged": true,
+    "marker_present": true,
+    "error_lines": []
+  },
+  {
+    "command": [
+      "/usr/local/bin/godot",
+      "--headless",
+      "--verbose",
+      "--path",
+      "/tmp/lumo-attention-8be3-20261114/runtime",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "scripts/tests/kart_racecraft_regression.gd"
+    ],
+    "cwd": "/tmp/lumo-attention-8be3-20261114/runtime",
+    "started_utc": "2026-11-14T07:41:03.002630+00:00",
+    "finished_utc": "2026-11-14T07:41:06.144000+00:00",
+    "elapsed_seconds": 3.141392135003116,
+    "exit_code": 0,
+    "timed_out": false,
+    "deadline_seconds": 240,
+    "original_log": {
+      "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/kart_racecraft_regression.log",
+      "bytes": 14575,
+      "sha256": "46721d2d54923521a960853e9346f7175f29f9e3b3342421377a2b368e5bcf0e"
+    },
+    "probe": "kart_racecraft_regression",
+    "mode": "headless",
+    "required_marker": "[KartRacecraft] PASS",
+    "source_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "code_unchanged": true,
+    "marker_present": true,
+    "error_lines": []
+  },
+  {
+    "command": [
+      "/usr/local/bin/godot",
+      "--headless",
+      "--verbose",
+      "--path",
+      "/tmp/lumo-attention-8be3-20261114/runtime",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "scripts/tests/kart_full_field_regression.gd"
+    ],
+    "cwd": "/tmp/lumo-attention-8be3-20261114/runtime",
+    "started_utc": "2026-11-14T07:41:06.260026+00:00",
+    "finished_utc": "2026-11-14T07:41:38.990987+00:00",
+    "elapsed_seconds": 32.73098484899674,
+    "exit_code": 0,
+    "timed_out": false,
+    "deadline_seconds": 240,
+    "original_log": {
+      "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/kart_full_field_regression.log",
+      "bytes": 107415,
+      "sha256": "999ac4990d812e12fed101cb6123159b13f775eae8c7edee4918ec5b98d6d570"
+    },
+    "probe": "kart_full_field_regression",
+    "mode": "headless",
+    "required_marker": "[KartFullField] PASS",
+    "source_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "code_unchanged": true,
+    "marker_present": true,
+    "error_lines": []
+  },
+  {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "/workspace/scratch/5987865ae883/lumo-godot/tools/run_local_renderer.py",
+      "--display",
+      "106",
+      "--output",
+      "/tmp/lumo-kart-verbose-785413-20261114/kart_harbor_race_hook_regression",
+      "--timeout",
+      "240",
+      "--project",
+      "/tmp/lumo-attention-8be3-20261114/runtime",
+      "--",
+      "--verbose",
+      "--script",
+      "scripts/tests/kart_harbor_race_hook_regression.gd"
+    ],
+    "cwd": "/tmp/lumo-attention-8be3-20261114/runtime",
+    "started_utc": "2026-11-14T07:41:39.110621+00:00",
+    "finished_utc": "2026-11-14T07:41:45.529004+00:00",
+    "elapsed_seconds": 6.4184060510015115,
+    "exit_code": 0,
+    "timed_out": false,
+    "deadline_seconds": 252,
+    "original_log": {
+      "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/kart_harbor_race_hook_regression.log",
+      "bytes": 16957,
+      "sha256": "ff473824e5d768099244bfe3aa791c5ba523f129358b4f354df29bc17e13885e"
+    },
+    "renderer_run": {
+      "exit_code": 0,
+      "elapsed_seconds": 6.36288020000211,
+      "display": 106,
+      "project": "/tmp/lumo-attention-8be3-20261114/runtime",
+      "godot_arguments": [
+        "--verbose",
+        "--script",
+        "scripts/tests/kart_harbor_race_hook_regression.gd"
+      ],
+      "timed_out": false,
+      "scope": "Local software renderer; not physical Android performance"
+    },
+    "engine_deadline_seconds": 240,
+    "wrapper_deadline_seconds": 252,
+    "probe": "kart_harbor_race_hook_regression",
+    "mode": "rendered",
+    "required_marker": "[HarborRaceHook] PASS",
+    "source_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "code_unchanged": true,
+    "marker_present": true,
+    "error_lines": [
+      "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+      "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+      "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    ]
+  }
+]

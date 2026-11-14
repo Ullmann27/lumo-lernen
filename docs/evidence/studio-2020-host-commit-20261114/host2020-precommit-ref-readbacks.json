@@ -1,0 +1,51 @@
+{
+  "hostBase": {
+    "ref": "refs/heads/chatgpt/lumo-studio-20261113",
+    "node_id": "REF_kwDOSNzcp9oAJ3JlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby0yMDI2MTExMw",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/chatgpt/lumo-studio-20261113",
+    "object": {
+      "sha": "86445f53af5d573549fc8cf03405261611f3cb7e",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/86445f53af5d573549fc8cf03405261611f3cb7e"
+    }
+  },
+  "hostMain": {
+    "ref": "refs/heads/main",
+    "node_id": "REF_kwDOSNzcp69yZWZzL2hlYWRzL21haW4",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/main",
+    "object": {
+      "sha": "b24474875fe6eb02d4de01030eab9fa4a4aa6007",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/b24474875fe6eb02d4de01030eab9fa4a4aa6007"
+    }
+  },
+  "nativeFinal": {
+    "ref": "refs/heads/chatgpt/lumo-studio-2020-20261114",
+    "node_id": "REF_kwDOSpcSONoALHJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby0yMDIwLTIwMjYxMTE0",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/refs/heads/chatgpt/lumo-studio-2020-20261114",
+    "object": {
+      "sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/785413d395292a243eaa0a0748671eb15d3f80ff"
+    }
+  },
+  "nativeMain": {
+    "ref": "refs/heads/main",
+    "node_id": "REF_kwDOSpcSOK9yZWZzL2hlYWRzL21haW4",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/refs/heads/main",
+    "object": {
+      "sha": "aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4"
+    }
+  },
+  "newHostBranch": {
+    "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/git/refs#get-a-reference\",\"status\":\"404\"}",
+    "error_code": "NOT_FOUND",
+    "error_data": {
+      "message": "Not Found",
+      "documentation_url": "https://docs.github.com/rest/git/refs#get-a-reference",
+      "status": "404"
+    }
+  }
+}

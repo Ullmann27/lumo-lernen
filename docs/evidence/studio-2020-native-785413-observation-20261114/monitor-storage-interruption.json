@@ -1,0 +1,10 @@
+{
+  "attempted_snapshot": "20261114T074648Z-jobs.json",
+  "exec_error": "Failed to create unified exec process: exec-server transport disconnected; failed to resume exec-server session: recovery timed out after 45s",
+  "recovery_read_at_utc": "2026-11-14T07:47:55Z",
+  "attempted_file_was_absent": true,
+  "next_fresh_snapshot": "20261114T074755Z-jobs.json",
+  "earlier_complete_blob_upload_proof_still_matches_sha256": "36d1a277be7e80b69e80652b7e66c72f972e17491a6768d6d7b61c650e1fba2c",
+  "git_or_test_mutation": false,
+  "old_snapshot_not_fabricated": true
+}

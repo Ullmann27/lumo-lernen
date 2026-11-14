@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-godot",
+  "source_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "tree": "635cf3d68631ed62ba3b3ce6f2c1fc5448768787",
+  "runtime": "/tmp/lumo-attention-8be3-20261114/runtime",
+  "complete_checkout": false,
+  "included_tracked_roots": [
+    "scripts/",
+    "scenes/",
+    "assets/",
+    "project.godot",
+    "icon.svg"
+  ],
+  "tracked_paths": 1186,
+  "initial_inventory": {
+    "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/initial-runtime-inventory.json",
+    "bytes": 811120,
+    "sha256": "90d61dae147eab87fa9a65603f6ac2bf706457e9f092b7056e0990152ae52261",
+    "git_blob_sha": "6b2ef74e4e81dfc642b785b94560dc8892e58178"
+  },
+  "initial_matching_tracked_paths": 1181,
+  "initial_different_paths": [
+    {
+      "path": "scripts/tests/treasure_title_contrast_regression.gd",
+      "bytes": 8982,
+      "sha256": "1f0d170fbe05c89a36501463ec9307d3f830e10a4cb63a02f663f98a5e7b600d",
+      "git_blob_sha": "6e50ace998d896fd88f0006112152e490e7c64e3",
+      "is_symlink": false,
+      "links": 1,
+      "expected": {
+        "path": "scripts/tests/treasure_title_contrast_regression.gd",
+        "sha": "73939c37e38bdbaca77220f79227e3dcde26e59c",
+        "mode": "100644",
+        "size": 15261
+      }
+    },
+    {
+      "path": "scripts/tests/lumo_facial_capture.gd",
+      "bytes": 8675,
+      "sha256": "cd223ad265b46626a09350583466d3cbcb70c1d7061170c753f58d24269aba38",
+      "git_blob_sha": "e272be6f0aed98fdc5b5a1bfca58bb7f0d0edba9",
+      "is_symlink": false,
+      "links": 1,
+      "expected": {
+        "path": "scripts/tests/lumo_facial_capture.gd",
+        "sha": "55304d9eb68ecc2f335bb66288446945c84d27cd",
+        "mode": "100644",
+        "size": 9009
+      }
+    },
+    {
+      "path": "scripts/creative/treasure_world.gd",
+      "bytes": 25074,
+      "sha256": "ce7c7df90f85604f912ff1afc46077935053e883359db47c3f9e9d7dcc4fe65d",
+      "git_blob_sha": "fdddd40fdf9958b7bc0bff50b75ccd4e8a2458b8",
+      "is_symlink": false,
+      "links": 1,
+      "expected": {
+        "path": "scripts/creative/treasure_world.gd",
+        "sha": "aae80484834823c8cf063df6bfb2607313f39ef7",
+        "mode": "100644",
+        "size": 26887
+      }
+    },
+    {
+      "path": "scripts/creative/build_settlement_world.gd",
+      "bytes": 34725,
+      "sha256": "c3ee8df70deaf9a10d2e093f1c618a01a3ee030c3841f75951a98f808d63790f",
+      "git_blob_sha": "a4c55b4daba91f19b5cd8f846cdb62f9a727466c",
+      "is_symlink": false,
+      "links": 1,
+      "expected": {
+        "path": "scripts/creative/build_settlement_world.gd",
+        "sha": "a0b2b6c34d2242075f9f735adae481b7e3ecc3c5",
+        "mode": "100644",
+        "size": 34831
+      }
+    }
+  ],
+  "initial_missing_paths": [
+    "icon.svg"
+  ],
+  "private_sync": [
+    {
+      "path": "scripts/tests/treasure_title_contrast_regression.gd",
+      "from": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "old_sha256": "1f0d170fbe05c89a36501463ec9307d3f830e10a4cb63a02f663f98a5e7b600d",
+      "new_sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "expected_git_blob": "73939c37e38bdbaca77220f79227e3dcde26e59c",
+      "bytes": 15261,
+      "scope": "Private ended runtime synchronization only; original source files remain unchanged."
+    },
+    {
+      "path": "scripts/creative/treasure_world.gd",
+      "from": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/creative/treasure_world.gd",
+      "old_sha256": "ce7c7df90f85604f912ff1afc46077935053e883359db47c3f9e9d7dcc4fe65d",
+      "new_sha256": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+      "expected_git_blob": "aae80484834823c8cf063df6bfb2607313f39ef7",
+      "bytes": 26887,
+      "scope": "Private ended runtime synchronization only; original source files remain unchanged."
+    },
+    {
+      "path": "scripts/tests/lumo_facial_capture.gd",
+      "from": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/patched/native/scripts/tests/lumo_facial_capture.gd",
+      "old_sha256": "cd223ad265b46626a09350583466d3cbcb70c1d7061170c753f58d24269aba38",
+      "new_sha256": "d5c519844281ec83d2965e2cfdf4b0157f8304fb1e9f093d705356315ee924a5",
+      "expected_git_blob": "55304d9eb68ecc2f335bb66288446945c84d27cd",
+      "bytes": 9009,
+      "scope": "Private ended runtime synchronization only; original source files remain unchanged."
+    },
+    {
+      "path": "scripts/creative/build_settlement_world.gd",
+      "from": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/native/scripts/creative/build_settlement_world.gd",
+      "old_sha256": "c3ee8df70deaf9a10d2e093f1c618a01a3ee030c3841f75951a98f808d63790f",
+      "new_sha256": "f1c1633dfa9b35895c2c51e943fead257e9621169b0c618e3b8ce8bfbc9850a0",
+      "expected_git_blob": "a0b2b6c34d2242075f9f735adae481b7e3ecc3c5",
+      "bytes": 34831,
+      "scope": "Private ended runtime synchronization only; original source files remain unchanged."
+    },
+    {
+      "path": "icon.svg",
+      "from": "/workspace/scratch/5987865ae883/lumo-godot/icon.svg",
+      "old_sha256": null,
+      "new_sha256": "8f55446a927cf3a912e1cb170dbd1fcdc2e1756792c510981645d6d60d99b5ec",
+      "expected_git_blob": "1dfa1114a6ce5d6621ec343925ebcec588c4d345",
+      "bytes": 1981,
+      "scope": "Private ended runtime synchronization only; original source files remain unchanged."
+    }
+  ],
+  "generated_untracked_file_types": {
+    ".uid": 320,
+    ".import": 456,
+    ".translation": 3
+  },
+  "generated_untracked_file_count": 779,
+  "unknown_executable_source_files": [],
+  "generated_cache_scope": "Existing private .godot imports reused; source MD5 stamps were checked for 457 imports, then the ordinary private editor import completed. Not a clean-cache or full-checkout reproduction. No cache/asset bytes uploaded.",
+  "import_source_stamps_checked": 457,
+  "import_source_stamp_mismatches": [],
+  "post_run_mode_observation": "A separate read-only command before the environment disconnect reported zero executable-mode differences for all1186 files; this is an observation, not an additional engine test.",
+  "isolation": "Fresh private XDG data/config/cache per headless probe; unchanged renderer launcher uses private XDG directories and authenticated Xorg106. No preexisting save copied.",
+  "launcher": {
+    "path": "/workspace/scratch/5987865ae883/lumo-godot/tools/run_local_renderer.py",
+    "bytes": 5308,
+    "sha256": "d7169f0353071159e64a74d76e6e35718117402a597dfcc05c8f99ed7f275247",
+    "git_blob_sha": "7fa41c18b853bd156b5365270132c35887b49c77"
+  },
+  "frozen_original_sources_modified": false,
+  "environment_recovery_limit": "After the exec transport disconnect/recovery, the original /tmp runtime was no longer present. Original workspace raw logs and all seven source snapshots survived. No runtime was recreated; no test was repeated. Generated imported artifact bytes cannot now receive an additional post-hoc hash."
+}

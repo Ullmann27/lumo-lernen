@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "status": "complete_immutable_blobs_only",
+  "completed_utc": "2026-11-14T07:51:59.450383+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "dd7a7c16a79b50596731612e5a5b70063f2bfdee",
+  "base_tree": "179ac404caa8d263d0028aa9503cb514ae484d41",
+  "new_docs_targets": 30,
+  "unique_confirmed_blobs": 30,
+  "newly_created_blobs": 30,
+  "reused_base_blobs": 0,
+  "uploaded_bytes": 1678152,
+  "all_local_files_rehashed_after_upload": true,
+  "all_returned_git_blob_shas_exact": true,
+  "target_collisions": 0,
+  "no_product_cache_asset_upload": true,
+  "no_tree_commit_ref_pr_mutation": true,
+  "finding": "Four unchanged local verbose probes passed; historical/current CI teardown warnings remain unresolved and were not reproduced locally. No resource class/path/owner assignment.",
+  "manifest": {
+    "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/blob-upload-manifest.json",
+    "bytes": 15096,
+    "sha256": "4a4dba234418fd35fea4a4be8952b21a6507a4f2f997922b9e084cbb2967fff9",
+    "git_blob_sha": "04832d8cd4e8cb4b9d6a58c9de5ee41e64a3c444"
+  },
+  "tree_inputs": {
+    "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/confirmed-tree-inputs.json",
+    "bytes": 6771,
+    "sha256": "1ca8ee05960f4fe86ce96dced962f7ef78ca71408a7e82938978cc1e875e804b",
+    "git_blob_sha": "e0e219eeaae060d1b06e277152d9dcffd70edb29"
+  },
+  "progress": {
+    "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/blob-upload-progress.json",
+    "bytes": 10291,
+    "sha256": "f8c1d9140e381741e78f8bfb0fa9fc61db9ad190d9a7134660030044f3c96ec2",
+    "git_blob_sha": "fcc3e7f70332ec369933bb01f171edff39307c66"
+  },
+  "base_observation": {
+    "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/evidence-base-observation.json",
+    "bytes": 4893,
+    "sha256": "d3df0bf8d9377ade72ae727d0ce7fd2d42f9c46f50c1cbbee250cbfafa440a76",
+    "git_blob_sha": "35a3e3f09be4872e4b7051cba1f1409d409893cb"
+  }
+}

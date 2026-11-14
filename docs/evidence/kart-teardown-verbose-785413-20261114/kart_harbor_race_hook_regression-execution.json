@@ -1,0 +1,56 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/5987865ae883/lumo-godot/tools/run_local_renderer.py",
+    "--display",
+    "106",
+    "--output",
+    "/tmp/lumo-kart-verbose-785413-20261114/kart_harbor_race_hook_regression",
+    "--timeout",
+    "240",
+    "--project",
+    "/tmp/lumo-attention-8be3-20261114/runtime",
+    "--",
+    "--verbose",
+    "--script",
+    "scripts/tests/kart_harbor_race_hook_regression.gd"
+  ],
+  "cwd": "/tmp/lumo-attention-8be3-20261114/runtime",
+  "started_utc": "2026-11-14T07:41:39.110621+00:00",
+  "finished_utc": "2026-11-14T07:41:45.529004+00:00",
+  "elapsed_seconds": 6.4184060510015115,
+  "exit_code": 0,
+  "timed_out": false,
+  "deadline_seconds": 252,
+  "original_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/kart_harbor_race_hook_regression.log",
+    "bytes": 16957,
+    "sha256": "ff473824e5d768099244bfe3aa791c5ba523f129358b4f354df29bc17e13885e"
+  },
+  "renderer_run": {
+    "exit_code": 0,
+    "elapsed_seconds": 6.36288020000211,
+    "display": 106,
+    "project": "/tmp/lumo-attention-8be3-20261114/runtime",
+    "godot_arguments": [
+      "--verbose",
+      "--script",
+      "scripts/tests/kart_harbor_race_hook_regression.gd"
+    ],
+    "timed_out": false,
+    "scope": "Local software renderer; not physical Android performance"
+  },
+  "engine_deadline_seconds": 240,
+  "wrapper_deadline_seconds": 252,
+  "probe": "kart_harbor_race_hook_regression",
+  "mode": "rendered",
+  "required_marker": "[HarborRaceHook] PASS",
+  "source_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "code_unchanged": true,
+  "marker_present": true,
+  "error_lines": [
+    "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+    "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+    "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  ]
+}

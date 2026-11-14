@@ -1,0 +1,630 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T07:35:46.731995+00:00",
+  "reviewer": "learning_worlds",
+  "scope": "Read-only bounded diagnosis of four process-end warning groups. No tests, product edits, renderer runs or Git-ref mutations.",
+  "classification": "UNRESOLVED_TEARDOWN_DIAGNOSTIC; FUNCTIONAL_PASS_IS_NOT_LEAK_FREE_PROOF",
+  "acf51_original": {
+    "source": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "run_id": 43565059832,
+    "run_attempt": 1,
+    "job_id": 132356963393,
+    "job_status": "completed/success",
+    "status_evidence": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/polls/064334-jobs-original.json",
+      "bytes": 16343,
+      "sha256": "e4726ae7a6222515568b4aa18923997a6b922c52bc737234a5a1176d34a64fc2"
+    },
+    "original_log": {
+      "path": "qa/studio-2020-native-acf51-observation-20261114/completed-success/gameplay-original-job.log",
+      "bytes": 528847,
+      "sha256": "1202bb4bdf2aedca7cb71efb6d65db1e029959cbf947c7be8b03e228105d6563",
+      "git_blob_sha": "2c8228fee5f621a1f361469df357f0ec7254f4b3"
+    },
+    "previous_precise_log_review": {
+      "path": "qa/studio-2020-native-acf51-review/log-review/review.json",
+      "bytes": 54253,
+      "sha256": "9e82e4eadabbe7bd98a79fdc241526fa8f00cfd9fe02f851ca23f270cd02818f",
+      "git_blob_sha": "a2608af1512c5da08bba6f658551a33fdc09f9cd"
+    }
+  },
+  "source_binding": {
+    "new_commit": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "new_tree": "635cf3d68631ed62ba3b3ce6f2c1fc5448768787",
+    "acf51_tree": "625d501c8517fa88787a0a415cd5d5b2e75ac845",
+    "old803e_tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+    "selected_git_blobs_modes_and_local_bytes_equal_in_all_three_commits": true,
+    "read_source_files": [
+      {
+        "path": "scripts/games/kart_audio.gd",
+        "bytes": 5383,
+        "sha256": "a4f4f0a88faa47645c90e7274e3694adbd6634df7212fc72c797e83738191427",
+        "git_blob_sha": "f8256867f410aafe7602734b3d59615c1c8a896a",
+        "mode": "100644",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      },
+      {
+        "path": "scripts/games/kart_island.gd",
+        "bytes": 169697,
+        "sha256": "11cc762f98c7520d31d15bae16fc3dfcd2e6cde82bc2746fd71043dad379c37c",
+        "git_blob_sha": "8319609143cc6de2b2f618a4c262cf1903fd290c",
+        "mode": "100644",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      },
+      {
+        "path": "scripts/games/kart_rival_flight.gd",
+        "bytes": 8352,
+        "sha256": "0e99e7d1d4217b929dc5ae33383c01736373be6ff297d91d99bcd386a99cc6f1",
+        "git_blob_sha": "adbbf596e6b10cb23a046b248d1b8641a53bf721",
+        "mode": "100644",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      },
+      {
+        "path": "scripts/games/kart_rival_racecraft.gd",
+        "bytes": 5546,
+        "sha256": "cacdf3318a4ea11a9a71eebf5c6fe04e66211ebdf0967cc38c7c23518e3cb4f1",
+        "git_blob_sha": "6adefb8d084d669218f124ffced9dd8f8162ca0f",
+        "mode": "100644",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      },
+      {
+        "path": "scripts/games/kart_rival_stunts.gd",
+        "bytes": 5082,
+        "sha256": "ad8c76f6c9674cf37e34f71e2db0c1fdb693fe0876ddd4bfcfaa0eca0f7dda55",
+        "git_blob_sha": "3dc6f95395bfe6b300623d0d6dc27253745e0057",
+        "mode": "100644",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      },
+      {
+        "path": "scripts/games/kart_roadside_lasso.gd",
+        "bytes": 12014,
+        "sha256": "eebc1f08b3c0899c21120a06cb873d7e702d4f77038516c4c53bb9eef854a4d7",
+        "git_blob_sha": "070e8b28049b90a54a9ab4a1b00ed33aed5a881d",
+        "mode": "100644",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      },
+      {
+        "path": "scripts/games/kart_world.gd",
+        "bytes": 80202,
+        "sha256": "3c3643c2e36161e51a79a6f55a1c946faa67d31b6c1f5185a8a62c9a2341ce59",
+        "git_blob_sha": "a782cf44677b08917cc0af77f4cbe7317ac25e43",
+        "mode": "100644",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      },
+      {
+        "path": "scripts/tests/kart_ai_behavior_regression.gd",
+        "bytes": 10477,
+        "sha256": "19b6dcb13d282a10931b30da1dca4966d2f4d0e41383b969f76f9da81881176b",
+        "git_blob_sha": "48203354c8a1fcd2aed96cacfacbec191aabf1ae",
+        "mode": "100644",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      },
+      {
+        "path": "scripts/tests/kart_full_field_regression.gd",
+        "bytes": 11238,
+        "sha256": "c8a8b42a534605286a6537a3fdb22f4edacccee35c5bcd4028e077b4cce5fdf8",
+        "git_blob_sha": "33c4c28025092097111ba5c87b70d89bf27b4c0d",
+        "mode": "100644",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      },
+      {
+        "path": "scripts/tests/kart_harbor_race_hook_regression.gd",
+        "bytes": 3585,
+        "sha256": "1c458ba60d7a80bb0d5cb3677d5d479a8219b11e12aa8d52a1031f27ea9a3db0",
+        "git_blob_sha": "deab9cb9ab7725ba32723548ecd6512f8732eca4",
+        "mode": "100644",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      },
+      {
+        "path": "scripts/tests/kart_racecraft_regression.gd",
+        "bytes": 6842,
+        "sha256": "8bb388d736776b08a352da368543308b253842dd714839be59b9f6c770cd89a3",
+        "git_blob_sha": "9da775e1e12fd1d307c939a71bd7394d456d6a9b",
+        "mode": "100644",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      },
+      {
+        "path": "tools/validate_2014.sh",
+        "bytes": 2738,
+        "sha256": "1dcb83e7ced02d374e67c23293559cf62f2803e96d598added7a3501ad51f215",
+        "git_blob_sha": "4fb01fdc83cf91ea09af56365c3ec325ebe999bc",
+        "mode": "100644",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      },
+      {
+        "path": "tools/validate_project.sh",
+        "bytes": 5195,
+        "sha256": "89c337c38384639e3f626788835e28f1b7819ec0a683cd5460c24fc620088953",
+        "git_blob_sha": "c518204f1e64410052a8fb31956f786cceb091a9",
+        "mode": "100755",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      },
+      {
+        "path": "tools/validate_technical_art.sh",
+        "bytes": 2275,
+        "sha256": "16a6ff18fdc8ea3193753795b103b751d13356553b5d0fca2209ec41c456fdff",
+        "git_blob_sha": "f3e102c31215e5b9b9bff973ef2c4129d3c5112d",
+        "mode": "100755",
+        "same_in_commits": [
+          "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+          "785413d395292a243eaa0a0748671eb15d3f80ff"
+        ]
+      }
+    ],
+    "saved_exact_tree_queries": {
+      "path": "qa/kart-teardown-readonly-acf51-785413-20261114/github-source-tree-selection.json",
+      "bytes": 11945,
+      "sha256": "d96c405d7202a369a01d550c834608160a30fa9dc045f58707a554e409da73f0",
+      "git_blob_sha": "735e6f6e1d8afd27ed033eab09791336975413b2"
+    },
+    "saved_acf51_tree": {
+      "path": "qa/treasure-gameplay-visibility-acf51/evidence/actual-acf51-tree.json",
+      "bytes": 806298,
+      "sha256": "371b9ec472891cedb4725fccfb98f71834e2a9c59c80fb4648de8e2a9a868581",
+      "git_blob_sha": "16bfc136f01c1dea1d5df718144d89c7ecfdbea0"
+    }
+  },
+  "cases": [
+    {
+      "test": "KartAI",
+      "script": "scripts/tests/kart_ai_behavior_regression.gd",
+      "original_log_range": [
+        3817,
+        3822
+      ],
+      "log_context": [
+        {
+          "line": 3817,
+          "text": "[KartAI] PASS: no teleport, no rubber-band, difficulty order holds",
+          "original": "2026-11-14T06:21:16.4664275Z [KartAI] PASS: no teleport, no rubber-band, difficulty order holds"
+        },
+        {
+          "line": 3818,
+          "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:21:16.5591284Z WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+        },
+        {
+          "line": 3819,
+          "text": "at: cleanup (core/object/object.cpp:2663)",
+          "original": "2026-11-14T06:21:16.5591741Z    at: cleanup (core/object/object.cpp:2663)"
+        },
+        {
+          "line": 3820,
+          "text": "ERROR: 4 resources still in use at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:21:16.5593844Z ERROR: 4 resources still in use at exit (run with --verbose for details)."
+        },
+        {
+          "line": 3821,
+          "text": "at: clear (core/io/resource.cpp:810)",
+          "original": "2026-11-14T06:21:16.5594230Z    at: clear (core/io/resource.cpp:810)"
+        },
+        {
+          "line": 3822,
+          "text": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org",
+          "original": "2026-11-14T06:21:16.6054624Z Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+        }
+      ],
+      "reported_resource_cache_entries": 4,
+      "objectdb_warning": true,
+      "functional_marker_observed": true,
+      "explicit_numeric_exit_in_log": false,
+      "effective_exit_inferred_from_unmasked_pipeline": 0,
+      "exit_evidence": "Inferred, not an explicit numeric console field: exact acf51 harness uses set -euo pipefail and an unmasked timeout/Godot | tee pipeline; the next named probe executes and the recorded GitHub step completes successfully.",
+      "source_teardown": {
+        "lines": [
+          266,
+          275
+        ],
+        "facts": "After PASS, game.queue_free() then quit(0); no explicit intervening await. Godot finalize itself flushes deletion, so this alone does not prove a skipped free."
+      },
+      "classification": "Unresolved process-shutdown ownership diagnostic; no specific resource/object identity in this nonverbose log, no independently established functional regression."
+    },
+    {
+      "test": "KartRacecraft",
+      "script": "scripts/tests/kart_racecraft_regression.gd",
+      "original_log_range": [
+        3905,
+        3911
+      ],
+      "log_context": [
+        {
+          "line": 3905,
+          "text": "[KartRacecraft] production cone clearance 1.785m; travelled 111.83m",
+          "original": "2026-11-14T06:21:52.4916378Z [KartRacecraft] production cone clearance 1.785m; travelled 111.83m"
+        },
+        {
+          "line": 3906,
+          "text": "[KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake",
+          "original": "2026-11-14T06:21:52.5012874Z [KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake"
+        },
+        {
+          "line": 3907,
+          "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:21:52.5399848Z WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+        },
+        {
+          "line": 3908,
+          "text": "at: cleanup (core/object/object.cpp:2663)",
+          "original": "2026-11-14T06:21:52.5400214Z    at: cleanup (core/object/object.cpp:2663)"
+        },
+        {
+          "line": 3909,
+          "text": "ERROR: 4 resources still in use at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:21:52.5402112Z ERROR: 4 resources still in use at exit (run with --verbose for details)."
+        },
+        {
+          "line": 3910,
+          "text": "at: clear (core/io/resource.cpp:810)",
+          "original": "2026-11-14T06:21:52.5402512Z    at: clear (core/io/resource.cpp:810)"
+        },
+        {
+          "line": 3911,
+          "text": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org",
+          "original": "2026-11-14T06:21:52.5851975Z Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+        }
+      ],
+      "reported_resource_cache_entries": 4,
+      "objectdb_warning": true,
+      "functional_marker_observed": true,
+      "explicit_numeric_exit_in_log": false,
+      "effective_exit_inferred_from_unmasked_pipeline": 0,
+      "exit_evidence": "Inferred, not an explicit numeric console field: exact acf51 harness uses set -euo pipefail and an unmasked timeout/Godot | tee pipeline; the next named probe executes and the recorded GitHub step completes successfully.",
+      "source_teardown": {
+        "lines": [
+          170,
+          177
+        ],
+        "facts": "abandoned=true, game.queue_free(), await process_frame, then quit based on failures. The isolated RefCounted flight instance was removed from rival metadata at line102; no unparented Node intentionally retained in this direct test."
+      },
+      "classification": "Unresolved process-shutdown ownership diagnostic; no specific resource/object identity in this nonverbose log, no independently established functional regression."
+    },
+    {
+      "test": "KartFullField",
+      "script": "scripts/tests/kart_full_field_regression.gd",
+      "original_log_range": [
+        4231,
+        4236
+      ],
+      "log_context": [
+        {
+          "line": 4231,
+          "text": "[KartFullField] PASS: continuous field two-lap drive with bounded movement",
+          "original": "2026-11-14T06:22:28.0217968Z [KartFullField] PASS: continuous field two-lap drive with bounded movement"
+        },
+        {
+          "line": 4232,
+          "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:22:28.0950097Z WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+        },
+        {
+          "line": 4233,
+          "text": "at: cleanup (core/object/object.cpp:2663)",
+          "original": "2026-11-14T06:22:28.0950473Z    at: cleanup (core/object/object.cpp:2663)"
+        },
+        {
+          "line": 4234,
+          "text": "ERROR: 2 resources still in use at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:22:28.0953574Z ERROR: 2 resources still in use at exit (run with --verbose for details)."
+        },
+        {
+          "line": 4235,
+          "text": "at: clear (core/io/resource.cpp:810)",
+          "original": "2026-11-14T06:22:28.0954077Z    at: clear (core/io/resource.cpp:810)"
+        },
+        {
+          "line": 4236,
+          "text": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org",
+          "original": "2026-11-14T06:22:28.1417088Z Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+        }
+      ],
+      "reported_resource_cache_entries": 2,
+      "objectdb_warning": true,
+      "functional_marker_observed": true,
+      "explicit_numeric_exit_in_log": false,
+      "effective_exit_inferred_from_unmasked_pipeline": 0,
+      "exit_evidence": "Inferred, not an explicit numeric console field: exact acf51 harness uses set -euo pipefail and an unmasked timeout/Godot | tee pipeline; the next named probe executes and the recorded GitHub step completes successfully.",
+      "source_teardown": {
+        "lines": [
+          315,
+          318
+        ],
+        "facts": "Each _drive finishes by setting abandoned=true, queue_free and awaiting process_frame before returning its report. The outer runner exits after all selected scenarios; no direct intentional open-scene fixture is declared."
+      },
+      "classification": "Unresolved process-shutdown ownership diagnostic; no specific resource/object identity in this nonverbose log, no independently established functional regression."
+    },
+    {
+      "test": "HarborRaceHook",
+      "script": "scripts/tests/kart_harbor_race_hook_regression.gd",
+      "original_log_range": [
+        4407,
+        4412
+      ],
+      "log_context": [
+        {
+          "line": 4407,
+          "text": "[Kart] race_world_ready: sonnenhafen mode=race",
+          "original": "2026-11-14T06:23:52.4944611Z [Kart] race_world_ready: sonnenhafen mode=race"
+        },
+        {
+          "line": 4408,
+          "text": "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish",
+          "original": "2026-11-14T06:23:52.6510265Z [HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+        },
+        {
+          "line": 4409,
+          "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:23:52.7225941Z WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+        },
+        {
+          "line": 4410,
+          "text": "at: cleanup (core/object/object.cpp:2663)",
+          "original": "2026-11-14T06:23:52.7226399Z    at: cleanup (core/object/object.cpp:2663)"
+        },
+        {
+          "line": 4411,
+          "text": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org",
+          "original": "2026-11-14T06:23:52.7920394Z Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+        },
+        {
+          "line": 4412,
+          "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+          "original": "2026-11-14T06:23:52.9168433Z WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+        }
+      ],
+      "reported_resource_cache_entries": null,
+      "objectdb_warning": true,
+      "functional_marker_observed": true,
+      "explicit_numeric_exit_in_log": false,
+      "effective_exit_inferred_from_unmasked_pipeline": 0,
+      "exit_evidence": "Inferred, not an explicit numeric console field: exact acf51 harness uses set -euo pipefail and an unmasked timeout/Godot | tee pipeline; the next named probe executes and the recorded GitHub step completes successfully.",
+      "source_teardown": {
+        "lines": [
+          91,
+          100
+        ],
+        "facts": "Sets abandoned=true, queue_free, awaits process_frame, then emits PASS and quits. The successful physics/pause/resume/reduced-motion assertions are not a resource-lifetime assertion."
+      },
+      "classification": "Unresolved process-shutdown ownership diagnostic; no specific resource/object identity in this nonverbose log, no independently established functional regression."
+    }
+  ],
+  "direct_product_source_findings": [
+    {
+      "path": "scripts/games/kart_island.gd",
+      "lines": [
+        3996,
+        4012
+      ],
+      "finding": "Exit disconnects viewport/safe-area listeners, stops generator player, nulls engine_playback and stream, then restores window settings. No omitted player cleanup is visible in this method."
+    },
+    {
+      "path": "scripts/games/kart_audio.gd",
+      "lines": [
+        186,
+        201
+      ],
+      "finding": "Exit kills the crossfade, stops both music and effect players, clears their streams and the stream cache. This code is identical at803e/acf51/785413; it is not evidence identifying the logged residual objects."
+    },
+    {
+      "path": "scripts/games/kart_world.gd",
+      "lines": [
+        56,
+        59,
+        499,
+        520
+      ],
+      "finding": "An intentional per-track static Sky cache exists, creating a Sky and ProceduralSkyMaterial. Its comment states a renderer workaround, but this review does not independently verify that explanation and cannot attribute the4/4/2 cached-resource warnings to these objects."
+    },
+    {
+      "path": "scripts/tests/kart_ai_behavior_regression.gd",
+      "lines": [
+        266,
+        268
+      ],
+      "finding": "No explicit drain/assertion before quit; however the official SceneTree finalize path flushes queued deletions, so attributing the warnings solely to immediate quit would be unsupported."
+    }
+  ],
+  "official_engine_readback": {
+    "evidence": {
+      "path": "qa/kart-teardown-readonly-acf51-785413-20261114/official-engine-excerpts.json",
+      "bytes": 4532,
+      "sha256": "118dc05e1bd5404dd5a2bc2bf9084277b2f647f9db54091718e9cbd5163e028c",
+      "git_blob_sha": "15b40b6793f8b3a3ac27e02ff98da507ff053646"
+    },
+    "findings": [
+      "SceneTree::finalize (844–873) flushes the deletion queue before root deletion and again afterwards, then clears timers and tweens. quit (875–880) sets exit code and quit flag.",
+      "ResourceCache::clear (802–815) emits the number of still-cached resource paths. With --verbose it also prints each path and class; the current original logs have no such identities.",
+      "ObjectDB::cleanup (2659–2703) reports remaining objects; --verbose adds classes, instance IDs and available reference/path detail. Four warning lines mean four affected process shutdowns, not four known leaked objects."
+    ]
+  },
+  "old803e_comparison": {
+    "run_id": 43530667812,
+    "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "artifact_id": 14090026570,
+    "original_archive_bytes": 157198504,
+    "original_archive_sha256": "452061825ace93484d7699c27e858c66ca225c3f893b329e35cb1d92f9d4804c",
+    "saved_original_review": {
+      "path": "qa/studio-final-4ab96666/native-host/review.json",
+      "bytes": 3504,
+      "sha256": "3d04f82c93e4ee01b52260f0e9f008a78c749c1c06d275bb084871b1892def66",
+      "git_blob_sha": "c909175f0376fb3fa27ed07115c59c6a91fc038c"
+    },
+    "source_stamp": {
+      "path": "qa/studio-final-4ab96666/native-host/original/source-sha.txt",
+      "bytes": 41,
+      "sha256": "cf7b2ee3e631a5d4f65d887b4f8cc6a7e6c055a1803ef9708ccf21da8e7e3043",
+      "git_blob_sha": "11e53496922ca969e368698fac4736f3509ca5d9"
+    },
+    "selected_files_rehashed_and_crc_checked_against_saved_original_manifests": true,
+    "logs": [
+      {
+        "path": "qa/studio-final-4ab96666/native-host/original/legacy-gameplay.log",
+        "bytes": 214814,
+        "sha256": "66b9d01aad2bca3b36d136d0a02fbaeab3206fd96c700ea583f2b82bc93c7a67",
+        "git_blob_sha": "71236aeb2ba8d4b46802903d5b7d4a854455ceb9",
+        "archive_entry": "legacy-gameplay.log",
+        "crc32_verified_against_saved_original_inventory": "1262e603",
+        "events": [
+          {
+            "line": 3200,
+            "text": "[KartAI] PASS: no teleport, no rubber-band, difficulty order holds"
+          },
+          {
+            "line": 3201,
+            "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+          },
+          {
+            "line": 3203,
+            "text": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+          },
+          {
+            "line": 3232,
+            "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+          },
+          {
+            "line": 3234,
+            "text": "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+          }
+        ]
+      },
+      {
+        "path": "qa/studio-final-4ab96666/native-host/original/2014/kart_racecraft_regression.log",
+        "bytes": 746,
+        "sha256": "aca583711d723dd93e678019c2e86726de12e1c6e4979929690385b0fb4a1254",
+        "git_blob_sha": "0da30fe684ecc8f25b99658fded75faa9f7d2760",
+        "archive_entry": "2014/kart_racecraft_regression.log",
+        "crc32_verified_against_saved_original_inventory": "18d0e76f",
+        "events": [
+          {
+            "line": 14,
+            "text": "[KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake"
+          }
+        ]
+      },
+      {
+        "path": "qa/studio-final-4ab96666/native-host/original/2014/kart_full_field_regression.log",
+        "bytes": 83417,
+        "sha256": "9ecdce84a323f9d1b02c249841e72041fcded9399e85ae20ea55d82c532a2303",
+        "git_blob_sha": "68ed90219989505b2d9a284316aa6201d206591b",
+        "archive_entry": "2014/kart_full_field_regression.log",
+        "crc32_verified_against_saved_original_inventory": "143836bb",
+        "events": [
+          {
+            "line": 307,
+            "text": "[KartFullField] PASS: continuous field two-lap drive with bounded movement"
+          }
+        ]
+      },
+      {
+        "path": "qa/studio-final-4ab96666/native-host/original/2014/kart_harbor_race_hook_regression.log",
+        "bytes": 1557,
+        "sha256": "8f6628ca97fc52c0af0e8ad2facb34cf8028cab83fa612630ebdad8dcf5e3df1",
+        "git_blob_sha": "90f05e8a50fcdef5e6d4bf93e1af9529abd55702",
+        "archive_entry": "2014/kart_harbor_race_hook_regression.log",
+        "crc32_verified_against_saved_original_inventory": "b93ac8f1",
+        "events": [
+          {
+            "line": 20,
+            "text": "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+          },
+          {
+            "line": 21,
+            "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+          },
+          {
+            "line": 23,
+            "text": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+          }
+        ]
+      },
+      {
+        "path": "qa/studio-final-4ab96666/native-host/original/technical-art/kart_harbor_race_hook_regression.log",
+        "bytes": 1329,
+        "sha256": "b80d9ee2cea36de13d2645acbeb64efbaddb63e26a0d2d83874d4a61228eb656",
+        "git_blob_sha": "0fe3e6f51f7de13ea83f6eb2f0fe71387bbf5fcf",
+        "archive_entry": "technical-art/kart_harbor_race_hook_regression.log",
+        "crc32_verified_against_saved_original_inventory": "4f7e668d",
+        "events": [
+          {
+            "line": 20,
+            "text": "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+          }
+        ]
+      }
+    ],
+    "summary": "AI also reports4 resources at803e. The saved803e Racecraft and FullField logs contain their PASS markers and no teardown warning. Harbor2014 reportsObjectDB plus4resources; its second technical-art invocation has no such warning. These are different original invocations and are not added together or treated as proof of harmlessness."
+  },
+  "harness_acceptance_boundary": {
+    "validate_project_lines": [
+      5,
+      22
+    ],
+    "validate_2014_lines": [
+      29,
+      33
+    ],
+    "finding": "Both existing exact harnesses require the functional marker and an unmasked successful timeout/Godot pipeline, but explicitly exclude the literal resources-still-in-use line from their ERROR filter. ObjectDB is a WARNING. This explains green job acceptance without establishing clean teardown; the source comment calling the message known is not an independent causal proof."
+  },
+  "recommended_narrow_gate_not_executed": [
+    "On the final exact native source, run only these same four existing probes with --verbose and their existing respective deadlines; preserve complete exit codes and logs, including resource paths/classes and leaked-instance detail.",
+    "If identities are owned by the Kart scene or its audio, demonstrate their release after scene removal before quit; retain a bounded scene-lifecycle check rather than silencing diagnostics. If identities belong to an intentional cache, document bounded ownership and actual cleanup separately before calling it harmless.",
+    "Keep every existing gameplay assertion and the original warning evidence. Do not claim leak-free runtime or Fold7 memory stability from current PASS markers; no recommended gate was added or run in this review."
+  ],
+  "conclusion": "The original logs prove unresolved shutdown diagnostics, not a newly established gameplay malfunction. Direct tests request cleanup rather than intentionally leave their scenes open. The exact affected source files are unchanged across803e/acf51/785413; the varied original occurrence pattern does not identify a responsible object. A verbose bounded teardown attribution is still needed.",
+  "tests_executed_by_reviewer": 0,
+  "source_mutations": false,
+  "new_ci_result_claimed": false
+}

@@ -1,0 +1,32 @@
+{
+  "command": [
+    "/usr/local/bin/godot",
+    "--headless",
+    "--verbose",
+    "--path",
+    "/tmp/lumo-attention-8be3-20261114/runtime",
+    "--audio-driver",
+    "Dummy",
+    "--script",
+    "scripts/tests/kart_full_field_regression.gd"
+  ],
+  "cwd": "/tmp/lumo-attention-8be3-20261114/runtime",
+  "started_utc": "2026-11-14T07:41:06.260026+00:00",
+  "finished_utc": "2026-11-14T07:41:38.990987+00:00",
+  "elapsed_seconds": 32.73098484899674,
+  "exit_code": 0,
+  "timed_out": false,
+  "deadline_seconds": 240,
+  "original_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/kart_full_field_regression.log",
+    "bytes": 107415,
+    "sha256": "999ac4990d812e12fed101cb6123159b13f775eae8c7edee4918ec5b98d6d570"
+  },
+  "probe": "kart_full_field_regression",
+  "mode": "headless",
+  "required_marker": "[KartFullField] PASS",
+  "source_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "code_unchanged": true,
+  "marker_present": true,
+  "error_lines": []
+}

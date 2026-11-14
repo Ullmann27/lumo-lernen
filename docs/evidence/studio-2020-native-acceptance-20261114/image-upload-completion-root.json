@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "completed_utc": "2026-11-14T08:22:46.144545+00:00",
+  "status": "complete_immutable_root_images_only",
+  "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "run_id": 43570887024,
+  "artifact_id": 14105224381,
+  "visual_reviewer": "root",
+  "upload_operator": "learning_worlds",
+  "independent_visual_review_by_upload_operator": false,
+  "image_count": 13,
+  "total_bytes": 17780990,
+  "tree_inputs": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-tree-inputs-root.json",
+    "bytes": 12566,
+    "sha256": "a2e230ccec573dc1d5f69d4e1852b2df0030bbb65b201e8e1b6fe03ecd6c6454",
+    "git_blob_sha": "a6aeca581ef2109a4dbb63175c9c7bd1f13c7720"
+  },
+  "root_review": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/review-root.json",
+    "bytes": 10914,
+    "sha256": "36dc552bf97e3b279c293815495ccaee9c70aea63480863991ce4863439811af",
+    "git_blob_sha": "34379584eb11ca9b2dde9086441dfe14d8313d98"
+  },
+  "progress": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-upload-progress-root.json",
+    "bytes": 7877,
+    "sha256": "bc72d3cfd8cca2d329ddc1c9b67331c69fccc6f83dc60449e325609aa6b6a455",
+    "git_blob_sha": "922b80882f8baa6f5a61d3aadf864919cb0e7929"
+  },
+  "manifest": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-upload-manifest-root.json",
+    "bytes": 13592,
+    "sha256": "fee80577b42af9904d474d52f340c5307a7b8155529a34a042edcbbb9d56588d",
+    "git_blob_sha": "b1339a6f790da74b8977717979a7238e278237ce"
+  },
+  "before_after_all_equal": true,
+  "previous_nine_image_handoff_files_unchanged": {
+    "review-learning_worlds.json": "bc9d6b060566dd3d49da71a041a23afd2211927c96273e73e0ff3c8eef7fa581",
+    "image-tree-inputs-learning_worlds.json": "12bdee72f72210d00f0b5e9a32e4d6c34e00aecf2812faf0fd825236b3793a36",
+    "image-upload-completion-learning_worlds.json": "497fd54401861a1f8570648635ffa04332c409a070e1cc982b9be089c7efdcc5",
+    "image-upload-manifest-learning_worlds.json": "c1825f295381d9131fe9bd2fd529ca80265dd10226a620b15378b809e9a698c0"
+  },
+  "no_product_tree_commit_ref_receipt_pin_mutation": true
+}
