@@ -1,3 +1,34 @@
+# Current build-budget correction — 2026-11-14
+
+This narrowly scoped successor follows Host
+`37ec6c6aee67c31ce16550cd59d616c80e80e305`, tree
+`6ab0e6cafc9fb37d3b3d95d76805aff4b6810d7a`. Its unchanged Native pin is
+`baf148b03a7a32c6ad9f737d731f900eb9113ea1`. The current outer Host build
+budget is **150 minutes**; the Android budget remains **80 minutes**.
+Every individual probe limit, required gate, source/PR binding, signature
+policy and publication check remains unchanged. Only one workflow value
+and its two existing Delivery-test expectations change.
+
+The reason is original predecessor run 43590864772, job 132436033818:
+the service recorded a 90-minute whole-job timeout during APK construction.
+Its original API timeline shows 22m06 before Native, 64m07 for the Native
+step and 1m17 for Dream. The current integration also includes the additional
+Discovery stage (19m05 actually observed on c300). The new outer limit leaves
+reserve for the real APK build, verification, upload and runner variation.
+Root read the original API and the separately published timeout observation;
+no current-candidate timeout or new Android success is claimed.
+
+The 37ec run 43601673844 belongs to the previous source, even though its
+Runtime and Android-compile stages completed successfully. The corrected
+successor requires its own exact-source complete workflow. Local verification
+of the budget correction follows its published source checkpoint. Originals:
+[`docs/evidence/host-build-budget150-20261114/`](docs/evidence/host-build-budget150-20261114/).
+
+## Previous activation notes retained verbatim
+
+The following 120-minute references describe the preceding activation and
+are superseded only by the current outer build budget stated above.
+
 # Continue the combined 2020 acceptance
 
 Updated: 2026-11-14. Documentation activation base:
