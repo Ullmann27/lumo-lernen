@@ -82,9 +82,9 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
       });
       unawaited(LumoVoice.instance
           .speak(controller.announcement, style: VoiceStyle.greeting));
-      if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
-        await _openNative();
-      } else if (_game.phase == ConnectPhase.playing &&
+      // A child must be able to play a move before opting into 3D.
+      // The native process can fail to start; never force it on entering 4 Gewinnt.
+      if (_game.phase == ConnectPhase.playing &&
           !_twoPlayers &&
           _game.turn == ConnectPiece.lumo) {
         _resumeBot();
