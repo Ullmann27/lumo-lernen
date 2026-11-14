@@ -522,9 +522,11 @@ def checked_native(logs: Path, source: Path, revision: str) -> dict:
             rosters[manifest] = record(root/manifest)
     before = checked_native_extension(root, source, revision, tree)
     rosters['studio-2020-images.json'] = before
+    connections = checked_native_connections(logs, source, revision, tree)
     return {'source': revision, 'tree': tree, 'core_modes': 52, 'mode_logs': proofs,
             'complete_runner_log': runner_record,
             'original_rosters': rosters,
+            'connections': connections,
             'scope': 'Actual pinned-source desktop engine and raster/movie proofs; no device FPS/audio claim'}
 
 
@@ -543,6 +545,144 @@ def checked_native_extension(root: Path, source: Path, revision: str, tree: str)
             and len(fresh.get('movies', [])) == 1,
             'The original new 2020 face/C4/treasure raster/movie evidence differs')
     return before
+
+
+def checked_connection_logs(logs: Path, kind: str, runner: str, count: int) -> dict:
+    root = logs/kind
+    runner_path = logs/(kind+'-runner.log')
+    complete = regular(runner_path).read_text()
+    require(not ERROR_LINE.search(complete), 'Original '+kind+' runner contains an engine error or leak')
+    final = ('[LumoLiveConnections] PASS 9 original probes and 7 verified renderer PNGs'
+             if kind == 'live' else
+             '[LumoDiscoveryConnections] PASS 10 original probes and 38 verified renderer PNGs')
+    require(final in complete.splitlines(), 'Original '+kind+' runner lacks its exact final PASS')
+    logical = runner.replace(chr(92)+chr(10), ' ')
+    rows = [shlex.split(line) for line in logical.splitlines() if line.startswith('probe ')]
+    index = 3 if kind == 'live' else 4
+    require(len(rows) == count and all(len(row) > index for row in rows)
+            and len({(row[1], row[2]) for row in rows}) == count,
+            'Pinned '+kind+' runner does not contain its complete unique probe roster')
+    proofs, original_directory = [], None
+    for row in rows:
+        name, mode, marker = row[1], row[2], row[index]
+        require(re.fullmatch(r'[a-z][a-z0-9_]*', name)
+                and re.fullmatch(r'(headless|rendered)(-[a-z]+)?', mode)
+                and marker and '\n' not in marker,
+                'Invalid original '+kind+' probe or marker')
+        path = root/(name+'-'+mode+'.log')
+        text = regular(path).read_text()
+        require(not ERROR_LINE.search(text), 'Original '+kind+' probe contains an engine error or leak')
+        if '$LOG_DIR' in marker:
+            require(marker.count('$LOG_DIR') == 1, 'Ambiguous original capture directory')
+            pattern = re.escape(marker).replace(re.escape('$LOG_DIR'), r'(?P<directory>/[^\r\n]+)')
+            matches = {match.group('directory') for line in text.splitlines()
+                       if (match := re.fullmatch(pattern, line))}
+            require(len(matches) == 1, 'Missing exact original capture-path PASS')
+            directory = matches.pop()
+            parsed = PurePosixPath(directory)
+            require(parsed.is_absolute() and '..' not in parsed.parts and '\\' not in directory
+                    and str(parsed) == directory
+                    and (original_directory is None or original_directory == directory),
+                    'Original live captures disagree about their actual output directory')
+            original_directory = directory
+            marker = marker.replace('$LOG_DIR', directory)
+        require(marker in text.splitlines() and marker in complete.splitlines(),
+                'Original '+kind+' probe/runner lacks its complete exact PASS: '+name)
+        proofs.append({'path': str(path.relative_to(logs)), 'marker': marker, **record(path)})
+    return {'runner': record(runner_path), 'probes': proofs,
+            'original_capture_directory': original_directory}
+
+
+def connection_capture_records(root: Path) -> dict:
+    captures = root/'captures'
+    require(captures.is_dir() and not captures.is_symlink(), 'Original connection captures required')
+    files = {}
+    for path in sorted(captures.rglob('*')):
+        require(not path.is_symlink(), 'Connection capture symlinks are not accepted')
+        if path.is_dir():
+            continue
+        require(path.resolve().is_relative_to(captures.resolve()), 'Connection capture escapes its root')
+        files[path.relative_to(root).as_posix()] = record(path)
+    return files
+
+
+def checked_connection_images(root: Path, rows, count: int, captures: dict) -> None:
+    from PIL import Image
+    require(type(rows) is list and len(rows) == count, 'Incomplete original connection image roster')
+    seen = set()
+    for row in rows:
+        require(type(row) is dict and type(row.get('path')) is str, 'Invalid original connection image')
+        name = row['path']
+        parsed = PurePosixPath(name)
+        require(parsed.parts and parsed.parts[0] == 'captures' and '..' not in parsed.parts
+                and not parsed.is_absolute() and '\\' not in name and str(parsed) == name
+                and name.endswith('.png') and name not in seen and name in captures,
+                'Unsafe, missing or duplicate original connection image')
+        seen.add(name)
+        require(type(row.get('width')) is int and row['width'] > 0
+                and type(row.get('height')) is int and row['height'] > 0
+                and row.get('sha256') == captures[name]['sha256'],
+                'Original connection image identity differs')
+        with Image.open(regular(root/name)) as image:
+            image.load()
+            require(image.format == 'PNG' and image.size == (row['width'], row['height']),
+                    'Original connection PNG dimensions differ')
+    require(seen == {name for name in captures if name.endswith('.png')},
+            'Unexpected or missing original connection PNG')
+
+
+def checked_native_connections(logs: Path, source: Path, revision: str, tree: str) -> dict:
+    # These are the real pinned helpers. The Live heredoc writes its manifest,
+    # so replay only copied captures; never execute it over downloaded originals.
+    helpers = {}
+    for name in ('validate_live_connections.sh', 'validate_discovery_connections.sh',
+                 'verify_discovery_rasters.py'):
+        path = regular(source/'tools'/name)
+        committed = subprocess.check_output(['git', 'show', 'HEAD:tools/'+name], cwd=source)
+        require(path.read_bytes() == committed, 'Connection verifier differs from committed Native source')
+        helpers[name] = record(path)
+    result = {}
+    for kind, probes, pngs in (('live', 9, 7), ('discovery', 10, 38)):
+        root = logs/kind
+        require(root.is_dir() and not root.is_symlink(), 'Original '+kind+' evidence directory required')
+        manifest = root/(kind+'-connections.json')
+        before = record(manifest)
+        original = read(manifest)
+        require(type(original) is dict and type(original.get('schema')) is int and original['schema'] == 1
+                and original.get('native_source') == revision
+                and type(original.get('probes')) is int and original['probes'] == probes
+                and original.get('physical_android_fps_measured') is False,
+                'Original '+kind+' source/count/FPS identity differs')
+        runner = regular(source/'tools'/('validate_'+kind+'_connections.sh')).read_text()
+        proof = checked_connection_logs(logs, kind, runner, probes)
+        captures = connection_capture_records(root)
+        checked_connection_images(root, original.get('original_pngs'), pngs, captures)
+        if kind == 'live':
+            bodies = re.findall(r'^python3 - "\$LOG_DIR" <<\'PY\'\n(.*?)^PY$', runner, re.M|re.S)
+            require(len(bodies) == 1, 'Exactly one original pinned Live Python verifier is required')
+            with tempfile.TemporaryDirectory(prefix='c4-live-replay-') as temporary:
+                replay = Path(temporary)
+                shutil.copytree(root/'captures', replay/'captures')
+                checked = subprocess.run([sys.executable, '-B', '-', str(replay)], input=bodies[0],
+                                         cwd=source, text=True, stdout=subprocess.PIPE,
+                                         stderr=subprocess.STDOUT, check=True, timeout=120)
+                require('[LumoLiveConnections] PASS 9 original probes and 7 verified renderer PNGs'
+                        in checked.stdout.splitlines() and not ERROR_LINE.search(checked.stdout),
+                        'Original Live verifier did not complete cleanly')
+                fresh = read(replay/'live-connections.json')
+        else:
+            require(original.get('native_tree') == tree, 'Original Discovery native tree differs')
+            records = native_module(source, 'verify_discovery_rasters.py').verify(root)
+            fresh = {'schema': 1, 'native_source': revision, 'native_tree': tree, 'probes': 10,
+                     'original_pngs': records, 'physical_android_fps_measured': False}
+        require(fresh == original and record(manifest) == before
+                and connection_capture_records(root) == captures,
+                'Original '+kind+' raster/metadata replay differs or changed its inputs')
+        result[kind] = {'source': revision, 'tree': tree, 'probe_count': probes, 'png_count': pngs,
+                        'manifest': before, 'captures': captures, **proof}
+    result['pinned_helpers'] = helpers
+    return result
+
 
 
 def committed_pcm_sources() -> dict:

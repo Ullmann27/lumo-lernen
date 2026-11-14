@@ -1,0 +1,9 @@
+[LumoLiveConnections] PASS 9 original probes and 7 verified renderer PNGs
+PASS exact original 3 Native helper sources: 9/7 Live fixture + 10/38 original Discovery raster copy
+PASS live: missing PNG rejected
+PASS live: wrong source rejected
+PASS discovery: missing PNG rejected
+PASS discovery: wrong source rejected
+PASS live: original checker rejected nonadvancing production clock
+PASS discovery: original checker rejected false production progress
+{"status": "PASS", "scope": "Checker integration fixture only: 7 synthetic Live PNGs/logs plus copy of 38 original Discovery PNGs; not an engine run, final Git checkout, or Android acceptance", "native_helper_source_commit": "a7bb5815009ea4ae9b8842026f4f3761ae99c98b", "fixture_commit": "f2c79a369315166452094f4db4dc6d6d908f88f3", "fixture_tree": "1206e8dac6d536d186317f0b9152cb911b748756", "originals_unchanged": true, "helper_records": {"validate_live_connections.sh": {"bytes": 5085, "sha256": "12fdf2e50f90ec452d66048324edaf5fbd1f9f658128422d9ec55af7e67ba4dd"}, "validate_discovery_connections.sh": {"bytes": 3315, "sha256": "2c609712f6bba22c2cb109b72bfd0349c380f4b0e28d7297dbca16ee4813e3fe"}, "verify_discovery_rasters.py": {"bytes": 7060, "sha256": "c23fb5f22824be358eed1322a2db68785b279f2fcf96b693db28fb2817359a8c"}}, "positive": {"live": [9, 7], "discovery": [10, 38]}, "negative_cases": ["live: missing PNG rejected", "live: wrong source rejected", "discovery: missing PNG rejected", "discovery: wrong source rejected", "live: original checker rejected nonadvancing production clock", "discovery: original checker rejected false production progress"], "elapsed_seconds": 4.067451491006068}
