@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_NOT_RUN",
+  "producer_comparison": [
+    {
+      "path": "test/games/memory_profile_storage_test.dart",
+      "producer_before": {
+        "bytes": 10767,
+        "sha256": "19f2c236ebcd24d64866d90d98567f18e498da1063211b0f0f8e2a7e6839f869",
+        "git_blob": "5fa7cf5b882a20b85c31a2693e9fcff8cec21508"
+      },
+      "producer_after": {
+        "bytes": 13044,
+        "sha256": "9f63b7ad07c7a74a78279cf58e95c93de08d319c713575d06f6f4c83ab99f8fa",
+        "git_blob": "3da940a91cf02aae13083693e8f702d1bbc55fc5"
+      },
+      "current_37414": {
+        "bytes": 12801,
+        "sha256": "378a2c560ea344a7be832628e993244d4424c396ee55850cb97ed7ab01388388",
+        "git_blob": "cfc75adfea811babde60c96938ba79ee03036475"
+      }
+    },
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "producer_before": {
+        "bytes": 9797,
+        "sha256": "7062af9ecdcb3ecdccd428adadfb72a67e529e81cb670735b2b3f73042acf347",
+        "git_blob": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3"
+      },
+      "producer_after": {
+        "bytes": 10841,
+        "sha256": "87c86d87ea01e6d8298d3ab48d2e5911924396b8836b2d03746b323543fb712c",
+        "git_blob": "b90f1a40bbe2cf7a1d415689e3d4ad22f2dd5341"
+      },
+      "current_37414": {
+        "bytes": 10757,
+        "sha256": "082861273c381ffb946ac6b4205d41eb77065868bfc5d70c165cac7464c0753c",
+        "git_blob": "79d94286312aea5231b0906e8514be132aeee94b"
+      }
+    },
+    {
+      "path": "test/reward_wallet_transaction_test.dart",
+      "producer_before": {
+        "bytes": 21962,
+        "sha256": "fbb6759879533037d8d1044cb8232c711b50aa784d149f40c7170cdd63c19a27",
+        "git_blob": "2419030446ada34710594160fc7f732669d97649"
+      },
+      "producer_after": {
+        "bytes": 22524,
+        "sha256": "91864a9f6f5c371b230fd189df78f1d3280069b85bb4dcb6152c2ed01f1a7ac9",
+        "git_blob": "a818134e16fadb009d6d00a1e61e0c5676f29b6a"
+      },
+      "current_37414": {
+        "bytes": 22807,
+        "sha256": "295a857b766a6ddf5107dd7f1bf8824eeec5d32f0772a3ebefe297f2a1269128",
+        "git_blob": "77862a23eb251266b319beb4d2fe24251e409dab"
+      }
+    }
+  ],
+  "decisions": {
+    "test/reward_wallet_queue_zone_test.dart": "No change. Existing exact three/four-write histories, same replay identity, final disk binding, one accepted emission/no replay emission and teardown cancellation already cover the producer intention.",
+    "test/reward_wallet_transaction_test.dart": "No change. Existing exact five-write and three-emission sequences plus duplicate full snapshot/disk equality remain stronger concrete invariants.",
+    "test/games/memory_profile_storage_test.dart": "Only cleanup scope/timing added in the two existing gated cases. Every prior assertion and all six names retained."
+  },
+  "concrete_control_flow_gain": "In 37414, initial _open and initial ACK assertion precede try/finally. V2 includes both in the protected scope, so failures there also unmount and drain. Each controlled gate is released before cleanup.",
+  "idle_scope": "The locally present Flutter framework source documents pump as flushing microtasks and idle as additionally running already scheduled zero-time timers. V2 adds idle before the existing pumps and after unmount. No historical zero-timer failure or executed stability PASS is claimed.",
+  "sdk_source_reference": [
+    {
+      "local_full_path": "/workspace/scratch/b3485b7bb989/toolchains/flutter-3.44.9/flutter/packages/flutter_test/lib/src/widget_tester.dart",
+      "full_identity": {
+        "bytes": 47166,
+        "sha256": "3ec4821f7ebec1974295dc35e554db9c6f95d27613db6b57aeef69ff5d38107e",
+        "git_blob": "f8fcbdbd4af6b454cf192f4f17badbf2d9e6706d"
+      },
+      "line_ranges": [
+        [
+          1007,
+          1018
+        ]
+      ],
+      "excerpt": {
+        "bytes": 622,
+        "sha256": "d8a8c13b7c05432b62aa2640ecc98955ef1753349599398b2ba7ab3a1dcb99b3",
+        "git_blob": "177fe2408fe0901db9783300aa0261dd64764035"
+      }
+    },
+    {
+      "local_full_path": "/workspace/scratch/b3485b7bb989/toolchains/flutter-3.44.9/flutter/packages/flutter_test/lib/src/binding.dart",
+      "full_identity": {
+        "bytes": 118336,
+        "sha256": "3841b362c87d7dfd9fb07272338a20a0dd6bdd09ed916dd096b5dce4a99b162f",
+        "git_blob": "44b74b7d6be7726228605cce77c04231c6070bd6"
+      },
+      "line_ranges": [
+        [
+          1479,
+          1496
+        ],
+        [
+          2247,
+          2265
+        ],
+        [
+          2390,
+          2396
+        ]
+      ],
+      "excerpt": {
+        "bytes": 1570,
+        "sha256": "e691158844ea80d3d31b000b3b1c753dd053050a3f51ff9325a5ba97b9948287",
+        "git_blob": "57d667c65280add5d61f51ff49351a2894533595"
+      }
+    }
+  ],
+  "preservation": {
+    "all_expect_calls_lexically_identical_ignoring_formatting": true,
+    "expect_call_count": 48,
+    "all_test_names_identical": true,
+    "two_existing_cleanup_pumps_per_case_retained": true,
+    "wallet_files_byte_unchanged": true,
+    "four_product_files_unchanged": true
+  },
+  "execution": {
+    "tests": false,
+    "dart_flutter_or_package_calls": false,
+    "api_calls": false,
+    "git_ref_changes": false
+  }
+}

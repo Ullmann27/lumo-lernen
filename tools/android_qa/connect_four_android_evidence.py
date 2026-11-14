@@ -24,6 +24,7 @@ PACKAGE = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
 CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
 ROUND_PREFIX = 'flutter.lumo.connect_four.round.v1.'
 PORTAL = 'Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen'
+NATIVE_ENTRY = 'In 3D weiterspielen'
 LEARNING_PREFIXES = (
     'flutter.lumo_progress', 'flutter.lumo_writing_progress', 'flutter.lumo_journal',
     'flutter.lumo_story_library', 'flutter.lumo_reading_sessions', 'flutter.lumo_attempt_log',
@@ -513,6 +514,65 @@ def checked_flutter_touch(root: Path, name: str, label: str) -> None:
     checked_dispatch(root, touch)
 
 
+def checked_flutter_readiness(root: Path, name: str, label: str) -> list[dict]:
+    """Replay the read-only wait; only its last observation may be ready."""
+    record = json.loads(safe_member(root, name).read_text())
+    observations = record.get('observations')
+    demand(record.get('label') == label and isinstance(observations, list) and observations
+           and all(isinstance(item, dict) for item in observations),
+           'Original Flutter readiness record is missing or bound to another control')
+    for index, frame in enumerate(observations):
+        screenshot = safe_member(root, frame['capture']['file'])
+        demand(sha256(screenshot) == frame['capture']['sha256'], 'Original Flutter readiness frame changed')
+        with Image.open(screenshot) as image:
+            image.load()
+            demand(image.format == 'PNG' and list(image.size) ==
+                   [frame['capture']['width'], frame['capture']['height']],
+                   'Original Flutter readiness PNG dimensions differ')
+            pixels = image.size
+        density = device_density(read_original(root, frame['density'], command=['adb','shell','wm','density']))
+        ui = ET.fromstring(safe_member(root, frame['ui']).read_text())
+        demand(ui.tag == 'hierarchy', 'Original Flutter readiness hierarchy is missing')
+        nodes = list(ui.iter('node'))
+        captions = {line for node in nodes if node.get('package') == PACKAGE
+                    for key in ('text', 'content-desc') for line in node.get(key, '').splitlines()}
+        try:
+            demand('Spiel pausiert' not in captions, 'The previous Flutter pause is still visible')
+            target = flutter_control(nodes, label, pixels, density)
+        except ValueError as error:
+            demand(index < len(observations) - 1 and 'target' not in frame
+                   and frame.get('reason') == str(error),
+                   'Original Flutter readiness does not end in an accepted current control')
+        else:
+            demand(index == len(observations) - 1 and frame.get('target') == target
+                   and 'reason' not in frame,
+                   'Original Flutter readiness must stop at its first accepted current control')
+    return observations
+
+
+def checked_native_opening(root: Path, portal_name: str, ready_name: str,
+                           native_name: str, opened: dict) -> None:
+    """Bind each explicit opt-in to fresh original controls before Native appears."""
+    demand(isinstance(portal_name, str) and isinstance(native_name, str)
+           and portal_name and native_name and portal_name != native_name,
+           'Both distinct original portal and native opt-in touches are required')
+    demand(isinstance(ready_name, str) and ready_name and ready_name not in (portal_name, native_name),
+           'A separate original native-entry readiness record is required')
+    checked_flutter_touch(root, portal_name, PORTAL)
+    ready = checked_flutter_readiness(root, ready_name, NATIVE_ENTRY)
+    checked_flutter_touch(root, native_name, NATIVE_ENTRY)
+    portal = json.loads(safe_member(root, portal_name).read_text())
+    native = json.loads(safe_member(root, native_name).read_text())
+    frames = [portal['first'], portal['second'], *ready, native['first'], native['second']]
+    demand(len({frame['ui'] for frame in frames}) == len(frames)
+           and len({frame['capture']['file'] for frame in frames}) == len(frames),
+           'Native opt-in must use new original frames and hierarchies')
+    times = [frame['observed_monotonic'] for frame in frames] + [opened['observed_monotonic']]
+    demand(all(type(value) in (int, float) and math.isfinite(value) and value >= 0 for value in times)
+           and all(first < second for first, second in zip(times, times[1:])),
+           'Original native opt-in must follow its portal and precede its native observation')
+
+
 def verify_report(root: Path, binding: dict, identity: dict) -> dict:
     report = json.loads(safe_member(root, 'c4-result.json').read_text())
     demand(report.get('schema') == 1 and report.get('status') == 'PASS'
@@ -524,7 +584,8 @@ def verify_report(root: Path, binding: dict, identity: dict) -> dict:
     initial = observations[report['initial']]
     demand(initial['state']['columns'] == [] and initial['state']['twoPlayers'] is False,
            'No untouched actual initial single-player round')
-    checked_flutter_touch(root, report['entry_touch'], PORTAL)
+    checked_native_opening(root, report['entry_touch'], report.get('native_entry_ready'),
+                           report.get('native_entry_touch'), initial)
     transitions = report['transitions']
     demand([step.get('action') for step in transitions] == ['drop','pause','resume','drop','pause','pause'],
            'Required child/bot/pause/resume sequence is incomplete')
@@ -554,7 +615,7 @@ def verify_report(root: Path, binding: dict, identity: dict) -> dict:
     demand(closed['pid'] != opened['pid'], 'Actual native process did not change on reopen')
     demand(len(closed['state']['columns']) == 4 and opened['host_pid'] == initial['host_pid'],
            'Reopen did not preserve both actual child/bot pairs and the Flutter authority')
-    checked_flutter_touch(root, route['touch'], PORTAL)
+    checked_native_opening(root, route['touch'], route.get('native_ready'), route.get('native_touch'), opened)
     demand(len(report['returns']) == 2, 'Both actual Flutter returns are mandatory')
     demand(report['returns'][0]['before'] == closed['id'], 'Reopen does not follow the actual first return')
     for index, returned in enumerate(report['returns']):

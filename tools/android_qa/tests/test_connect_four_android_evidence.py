@@ -221,13 +221,15 @@ class SyntheticEvidence:
     def flutter_touch(self, name, label):
         frames=[]
         for number in (1,2):
+            self.count += 1
             tag=name+'-'+str(number)
             tree=ET.Element('hierarchy')
             ET.SubElement(tree,'node',{'text':label,'package':c4.PACKAGE,'enabled':'true',
                                       'clickable':'true','bounds':'[100,300][980,500]'})
             ui=self.write(tag+'.xml',ET.tostring(tree))
             density=self.original(tag+'-density',['adb','shell','wm','density'],'Physical density: 400\n')
-            frames.append({'ui':ui,'capture':self.screenshot(tag),'density':density,'observed_monotonic':number})
+            frames.append({'ui':ui,'capture':self.screenshot(tag),'density':density,
+                           'observed_monotonic':10+self.count*.7})
         target=c4.flutter_control(list(tree.iter('node')),label,PIXELS,2.5)
         x,y=map(str,target['point'])
         command=self.original(name+'-dispatch',['adb','shell','input','swipe',x,y,x,y,'120'],'')
@@ -249,6 +251,26 @@ class SyntheticEvidence:
             'to_games_touch':self.flutter_touch(name+'-games','Zur Spieleauswahl')})
         return before
 
+    def flutter_ready(self, name, label, *, delayed=False):
+        observations=[]
+        for pending in ([True, False] if delayed else [False]):
+            self.count += 1
+            tag=name+'-'+str(len(observations))
+            tree=ET.Element('hierarchy')
+            if not pending:
+                ET.SubElement(tree,'node',{'text':label,'package':c4.PACKAGE,'enabled':'true',
+                                          'clickable':'true','bounds':'[100,300][980,500]'})
+            ui=self.write(tag+'.xml',ET.tostring(tree))
+            density=self.original(tag+'-density',['adb','shell','wm','density'],'Physical density: 400\n')
+            frame={'ui':ui,'capture':self.screenshot(tag),'density':density,
+                   'observed_monotonic':10+self.count*.7}
+            if pending:
+                frame['reason']='No unique complete enabled Flutter control: '+label
+            else:
+                frame['target']=c4.flutter_control(list(tree.iter('node')),label,PIXELS,2.5)
+            observations.append(frame)
+        return self.write(name+'.json',{'label':label,'observations':observations})
+
     def build(self):
         a=state()
         b=state([3,0],revision=4,ack=1)
@@ -259,6 +281,8 @@ class SyntheticEvidence:
         g=state([3,0,2,6],token='b'*32)
         h=state([3,0,2,6],revision=2,ack=1,paused=True,token='b'*32)
         entry=self.flutter_touch('entry',c4.PORTAL)
+        native_ready=self.flutter_ready('native-ready',c4.NATIVE_ENTRY,delayed=True)
+        native_entry=self.flutter_touch('native-entry',c4.NATIVE_ENTRY)
         initial=self.observe('initial',a)
         self.transition('first-drop',a,b,'drop','column_3')
         pause=self.transition('first-pause',b,c,'pause','pause')
@@ -269,6 +293,8 @@ class SyntheticEvidence:
         self.transition('second-pause',e,f,'pause','pause')
         closed=self.returned('return-one',f)
         reopen_touch=self.flutter_touch('reopen',c4.PORTAL)
+        reopen_ready=self.flutter_ready('reopen-ready',c4.NATIVE_ENTRY)
+        reopen_native=self.flutter_touch('reopen-native',c4.NATIVE_ENTRY)
         reopened=self.observe('reopened',g,pid=201)
         self.transition('third-pause',g,h,'pause','pause',pid=201)
         self.returned('return-two',h,pid=201)
@@ -278,11 +304,13 @@ class SyntheticEvidence:
                            'Synthetic contract log, not an Android execution\n')
         sdk=self.original('sdk',['adb','shell','getprop','ro.build.version.sdk'],'35\n')
         report={'schema':1,'status':'PASS','binding':self.binding,'identity':self.identity,
-                'synthetic_fixture':True,'entry_touch':entry,'initial':initial['id'],
+                'synthetic_fixture':True,'entry_touch':entry,'native_entry_ready':native_ready,
+                'native_entry_touch':native_entry,'initial':initial['id'],
                 'observations':self.observations,'transitions':self.transitions,'returns':self.returns,
                 'pause_hold':{'first':pause['id'],'second':held['id'],
                               'elapsed':held['observed_monotonic']-pause['observed_monotonic']},
-                'reopen':{'closed':closed['id'],'opened':reopened['id'],'touch':reopen_touch},
+                'reopen':{'closed':closed['id'],'opened':reopened['id'],'touch':reopen_touch,
+                          'native_ready':reopen_ready,'native_touch':reopen_native},
                 'preferences_before':before,'preferences_after':after,
                 'original_logcat':log,'fatal_entries':[],'android_sdk_original':sdk}
         self.report=report
@@ -440,6 +468,105 @@ class CompleteEvidenceTests(unittest.TestCase):
         self.report['status']='PASS';self.report['binding']['host_source']='e'*40
         self.fixture.refresh()
         with self.assertRaises(ValueError): c4.verify_report(self.root,bind(),self.fixture.identity)
+
+    def test_first_and_reopened_native_opt_in_cannot_be_omitted(self):
+        for item,key in ((self.report,'native_entry_touch'),(self.report['reopen'],'native_touch')):
+            original=item.pop(key)
+            self.fixture.refresh()
+            with self.assertRaisesRegex(ValueError,'distinct original portal and native opt-in'):
+                self.verify()
+            item[key]=original
+
+    def test_portal_cannot_substitute_for_either_explicit_native_touch(self):
+        for item,key,portal in ((self.report,'native_entry_touch',self.report['entry_touch']),
+                                (self.report['reopen'],'native_touch',self.report['reopen']['touch'])):
+            original=item[key];item[key]=portal;self.fixture.refresh()
+            with self.assertRaisesRegex(ValueError,'distinct original portal and native opt-in'):
+                self.verify()
+            item[key]=original
+
+    def test_reopen_cannot_reuse_the_first_native_opt_in_record(self):
+        self.report['reopen']['native_touch']=self.report['native_entry_touch']
+        self.fixture.refresh()
+        with self.assertRaisesRegex(ValueError,'follow its portal and precede its native observation'):
+            self.verify()
+
+    def test_native_opt_in_replays_actual_caption_enabled_and_dispatch(self):
+        touch=json.loads((self.root/self.report['native_entry_touch']).read_text())
+        ui_path=self.root/touch['second']['ui']; original=ui_path.read_bytes()
+        for change in ({'text':'Another control'},{'enabled':'false'},
+                       {'clickable':'false'},{'bounds':'[100,300][150,350]'}):
+            with self.subTest(change=change):
+                tree=ET.fromstring(original);tree.find('node').attrib.update(change)
+                ui_path.write_bytes(ET.tostring(tree));self.fixture.refresh()
+                with self.assertRaisesRegex(ValueError,'No unique complete enabled Flutter control'):
+                    self.verify()
+        ui_path.write_bytes(original)
+        command=self.root/(touch['command_original'][:-7]+'.json')
+        metadata=json.loads(command.read_text());metadata['command']=['adb','shell','am','start','synthetic']
+        self.fixture.write(command.relative_to(self.root).as_posix(),metadata);self.fixture.refresh()
+        with self.assertRaisesRegex(ValueError,'Original command reads another source'):
+            self.verify()
+
+    def test_native_opt_in_observation_must_precede_actual_native_state(self):
+        name=self.report['native_entry_touch']; path=self.root/name
+        original=json.loads(path.read_text())
+        initial=json.loads((self.root/('observations/'+self.report['initial']+'.json')).read_text())
+        changed=copy.deepcopy(original)
+        changed['second']['observed_monotonic']=initial['observed_monotonic']
+        self.fixture.write(name,changed);self.fixture.refresh()
+        with self.assertRaisesRegex(ValueError,'follow its portal and precede its native observation'):
+            self.verify()
+
+    def test_each_opening_requires_its_separate_readiness_record(self):
+        for item,key in ((self.report,'native_entry_ready'),(self.report['reopen'],'native_ready')):
+            original=item.pop(key);self.fixture.refresh()
+            with self.assertRaisesRegex(ValueError,'separate original native-entry readiness'):
+                self.verify()
+            item[key]=original
+
+    def test_reopen_readiness_cannot_reuse_the_first_opening(self):
+        self.report['reopen']['native_ready']=self.report['native_entry_ready']
+        self.fixture.refresh()
+        with self.assertRaisesRegex(ValueError,'follow its portal and precede its native observation'):
+            self.verify()
+
+    def test_readiness_replays_actual_control_and_all_original_frames(self):
+        name=self.report['native_entry_ready']
+        ready=json.loads((self.root/name).read_text())
+        final=ready['observations'][-1]
+        ui_path=self.root/final['ui']; original=ui_path.read_bytes()
+        for change in ({'text':'Another control'},{'enabled':'false'},
+                       {'clickable':'false'},{'bounds':'[100,300][150,350]'}):
+            with self.subTest(change=change):
+                tree=ET.fromstring(original);tree.find('node').attrib.update(change)
+                ui_path.write_bytes(ET.tostring(tree));self.fixture.refresh()
+                with self.assertRaisesRegex(ValueError,'readiness does not end in an accepted'):
+                    self.verify()
+        ui_path.write_bytes(original)
+        first=ready['observations'][0]
+        image=self.root/first['capture']['file']
+        image.write_bytes(image.read_bytes()+b'changed-original-wait-frame')
+        self.fixture.refresh()
+        with self.assertRaisesRegex(ValueError,'Original Flutter readiness frame changed'):
+            self.verify()
+
+    def test_readiness_cannot_authorize_the_actual_native_touch_frame(self):
+        ready=json.loads((self.root/self.report['native_entry_ready']).read_text())
+        name=self.report['native_entry_touch'];native=json.loads((self.root/name).read_text())
+        native['first']=copy.deepcopy(ready['observations'][-1])
+        self.fixture.write(name,native);self.fixture.refresh()
+        with self.assertRaisesRegex(ValueError,'new original frames and hierarchies'):
+            self.verify()
+
+    def test_readiness_cannot_skip_an_earlier_accepted_control(self):
+        name=self.report['native_entry_ready'];ready=json.loads((self.root/name).read_text())
+        first,final=ready['observations']
+        (self.root/first['ui']).write_bytes((self.root/final['ui']).read_bytes())
+        first.pop('reason');first['target']=copy.deepcopy(final['target'])
+        self.fixture.write(name,ready);self.fixture.refresh()
+        with self.assertRaisesRegex(ValueError,'readiness must stop at its first accepted'):
+            self.verify()
 
 
 if __name__ == '__main__':

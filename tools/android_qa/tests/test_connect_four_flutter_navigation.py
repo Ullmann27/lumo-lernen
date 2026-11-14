@@ -228,6 +228,171 @@ class NavigationTests(unittest.TestCase):
         self.assertEqual(len(self.capture_timeouts), 1)
         self.assertEqual(self.inputs, [])
 
+    def arm_native_opt_in(self, tag, *, controls=None, after_portal=None):
+        """Synthetic navigation boundary; real target/frame methods stay active."""
+        def dispatch(name, *args, **kwargs):
+            result = self.original(name, *args, **kwargs)
+            if name == tag + '-touch':
+                self.destination = ([node(PROBE.contract.NATIVE_ENTRY, bounds='[820,100][970,250]')]
+                                    if controls is None else controls)
+                if after_portal is not None:
+                    after_portal()
+            return result
+        self.value.original = mock.Mock(side_effect=dispatch)
+
+    def test_first_opening_uses_fresh_portal_and_enabled_native_opt_in(self):
+        self.direct_destination()
+        self.arm_native_opt_in('open-c4')
+        result = self.value.open_native_from_flutter('open-c4')
+        self.assertEqual(self.inputs, [
+            ('open-c4-touch', ('shell','input','swipe','283','1905','283','1905','120')),
+            ('open-c4-native-touch', ('shell','input','swipe','895','175','895','175','120')),
+        ])
+        portal = json.loads((self.out/result['portal_touch']).read_text())
+        readiness = json.loads((self.out/result['native_ready']).read_text())
+        native = json.loads((self.out/result['native_touch']).read_text())
+        self.assertEqual(portal['target']['label'], PROBE.contract.PORTAL)
+        self.assertEqual(readiness['label'], PROBE.contract.NATIVE_ENTRY)
+        self.assertEqual(len(readiness['observations']), 1)
+        self.assertEqual(native['target']['label'], PROBE.contract.NATIVE_ENTRY)
+        frames = [portal['first'],portal['second'],*readiness['observations'],native['first'],native['second']]
+        self.assertEqual(len({frame['ui'] for frame in frames}), 5)
+        self.assertEqual(len({frame['capture']['file'] for frame in frames}), 5)
+        self.assertTrue(all(first['observed_monotonic'] < second['observed_monotonic']
+                            for first, second in zip(frames, frames[1:])))
+        self.assertEqual(len(self.capture_timeouts), 5)
+
+    def test_reopening_after_one_return_requires_another_actual_opt_in_touch(self):
+        self.arm_native_opt_in('reopen-c4')
+        self.value.return_to_flutter('return-first')
+        self.value.native_touch.assert_called_once_with('return-first', 'back')
+        self.assertEqual(len(self.inputs), 1)
+        ready = json.loads((self.out/self.value.returns[0]['games_ready']).read_text())
+        result = self.value.open_native_from_flutter('reopen-c4')
+        self.assertEqual([entry[0] for entry in self.inputs],
+                         ['return-first-to-games-touch','reopen-c4-touch','reopen-c4-native-touch'])
+        portal = json.loads((self.out/result['portal_touch']).read_text())
+        native_ready = json.loads((self.out/result['native_ready']).read_text())
+        native = json.loads((self.out/result['native_touch']).read_text())
+        self.assertGreater(portal['first']['observed_monotonic'],
+                           ready['observations'][-1]['observed_monotonic'])
+        self.assertGreater(native_ready['observations'][0]['observed_monotonic'],
+                           portal['second']['observed_monotonic'])
+        self.assertGreater(native['first']['observed_monotonic'],
+                           native_ready['observations'][-1]['observed_monotonic'])
+        self.assertEqual(len(self.value.returns), 1)
+
+    def test_ineligible_native_opt_in_never_dispatches_native_input(self):
+        valid = node(PROBE.contract.NATIVE_ENTRY, bounds='[820,100][970,250]')
+        cases = {
+            'missing':[], 'disabled':[{**valid,'enabled':'false'}],
+            'ambiguous':[valid,valid], 'not-clickable':[{**valid,'clickable':'false'}],
+            'clipped':[{**valid,'bounds':'[950,100][1100,250]'}],
+            'too-small':[{**valid,'bounds':'[820,100][920,200]'}],
+            'foreign-package':[{**valid,'package':'another.app'}],
+            'wrong-caption':[{**valid,'content-desc':'3D'}],
+        }
+        for name, controls in cases.items():
+            with self.subTest(name=name):
+                self.now=0.0; self.direct_destination(); self.inputs.clear()
+                self.value.deadline=5.0
+                self.destination=[node(PROBE.contract.PORTAL)]
+                tag='ineligible-'+name
+                self.arm_native_opt_in(tag,controls=controls)
+                with self.assertRaises(TimeoutError):
+                    self.value.open_native_from_flutter(tag)
+                self.assertEqual([entry[0] for entry in self.inputs], [tag+'-touch'])
+
+    def test_native_opt_in_must_remain_enabled_for_its_second_observation(self):
+        self.direct_destination()
+        self.arm_native_opt_in('changed')
+        read = self.read_nodes
+        count = 0
+        def changing_nodes(out, name):
+            nonlocal count
+            if name.startswith('changed-native-') and not name.startswith('changed-native-ready-'):
+                count += 1
+                if count == 2:
+                    self.destination=[node(PROBE.contract.NATIVE_ENTRY, enabled='false',
+                                           bounds='[820,100][970,250]')]
+            return read(out,name)
+        self.value.ui.read_live_nodes = changing_nodes
+        with self.assertRaises(ValueError):
+            self.value.open_native_from_flutter('changed')
+        self.assertEqual(count, 2)
+        self.assertEqual([entry[0] for entry in self.inputs], ['changed-touch'])
+
+    def test_native_opt_in_frame_change_blocks_dispatch_after_portal(self):
+        self.direct_destination()
+        self.arm_native_opt_in('frame-change')
+        wait = self.value.wait_for_flutter_control
+        def tamper_after_readiness(*args, **kwargs):
+            result = wait(*args, **kwargs)
+            self.tamper_frame=True
+            return result
+        self.value.wait_for_flutter_control = tamper_after_readiness
+        with self.assertRaisesRegex(ValueError,'Flutter frame changed before touch'):
+            self.value.open_native_from_flutter('frame-change')
+        self.assertEqual([entry[0] for entry in self.inputs], ['frame-change-touch'])
+
+    def test_existing_global_budget_expires_between_portal_and_opt_in(self):
+        self.direct_destination()
+        def expire():
+            self.now=900.0
+        self.arm_native_opt_in('expired-after-portal',after_portal=expire)
+        with self.assertRaisesRegex(TimeoutError,'exceeded 900 seconds'):
+            self.value.open_native_from_flutter('expired-after-portal')
+        self.assertEqual([entry[0] for entry in self.inputs], ['expired-after-portal-touch'])
+        self.assertEqual(len(self.capture_timeouts), 2)
+
+    def test_delayed_native_button_is_observed_without_another_portal_touch(self):
+        self.direct_destination()
+        portal_at = None
+        def remember_portal():
+            nonlocal portal_at
+            portal_at = self.now
+        self.arm_native_opt_in('delayed', controls=[], after_portal=remember_portal)
+        read = self.read_nodes
+        def delayed_nodes(out, name):
+            if portal_at is not None and self.now - portal_at >= 4.5:
+                self.destination=[node(PROBE.contract.NATIVE_ENTRY, bounds='[820,100][970,250]')]
+            if name.startswith('delayed-native-ready-'):
+                self.assertEqual([entry[0] for entry in self.inputs], ['delayed-touch'])
+            return read(out, name)
+        self.value.ui.read_live_nodes = delayed_nodes
+        result = self.value.open_native_from_flutter('delayed')
+        ready = json.loads((self.out/result['native_ready']).read_text())
+        self.assertGreater(len(ready['observations']), 1)
+        self.assertTrue(all('reason' in item and 'target' not in item
+                            for item in ready['observations'][:-1]))
+        self.assertEqual(ready['observations'][-1]['target']['label'], PROBE.contract.NATIVE_ENTRY)
+        native = json.loads((self.out/result['native_touch']).read_text())
+        self.assertLess(ready['observations'][-1]['observed_monotonic'],
+                        native['first']['observed_monotonic'])
+        self.assertEqual(len(self.capture_timeouts), len(ready['observations']) + 4)
+        self.assertTrue(all(0 < value <= 30 for value in self.capture_timeouts))
+        self.assertEqual([entry[0] for entry in self.inputs], ['delayed-touch','delayed-native-touch'])
+
+    def test_native_button_timeout_keeps_one_portal_touch_and_no_native_input(self):
+        self.direct_destination()
+        portal_at = None
+        def remember_portal():
+            nonlocal portal_at
+            portal_at = self.now
+        self.arm_native_opt_in('never-ready', controls=[], after_portal=remember_portal)
+        with self.assertRaisesRegex(TimeoutError, 'No qualifying actual Flutter destination'):
+            self.value.open_native_from_flutter('never-ready')
+        self.assertEqual([entry[0] for entry in self.inputs], ['never-ready-touch'])
+        self.assertGreaterEqual(self.now - portal_at, 30.0)
+        self.assertLess(self.now - portal_at, 30.25)
+        failure = json.loads((self.out/'never-ready-native-ready-wait-failure.json').read_text())
+        self.assertEqual(failure['timeout_seconds'], 30)
+        self.assertTrue(failure['observations'])
+        self.assertTrue(all('target' not in item for item in failure['observations']))
+        self.assertFalse((self.out/'never-ready-native-flutter-touch.json').exists())
+        self.assertFalse((self.out/'never-ready-native-ready-flutter-ready.json').exists())
+        self.value.native_touch.assert_not_called()
+
 
 if __name__ == '__main__':
     unittest.main()

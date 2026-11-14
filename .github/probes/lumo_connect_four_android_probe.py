@@ -328,6 +328,16 @@ class Probe:
             time.sleep(min(.6, self.remaining()))
         raise RuntimeError('No two stable actual Flutter observations: ' + label)
 
+    def open_native_from_flutter(self, tag: str) -> dict:
+        """Wait without input, then freshly observe the explicit native opt-in."""
+        self.remaining()
+        portal = self.flutter_touch(contract.PORTAL, tag)
+        self.remaining()
+        ready = self.wait_for_flutter_control(contract.NATIVE_ENTRY, tag + '-native-ready', timeout=30)
+        native = self.flutter_touch(contract.NATIVE_ENTRY, tag + '-native')
+        self.remaining()
+        return {'portal_touch':portal, 'native_ready':ready, 'native_touch':native}
+
     def return_to_flutter(self, tag: str) -> dict:
         before = self.native_touch(tag, 'back')
         contract.demand(before['state']['paused'], 'Return must follow the proved actual pause')
@@ -405,7 +415,10 @@ class Probe:
                             'Actual games navigation is unavailable')
             before_prefs, before_file = self.read_preferences('before-c4')
             result['preferences_before'] = before_file
-            result['entry_touch'] = self.flutter_touch(contract.PORTAL, 'open-c4')
+            entry = self.open_native_from_flutter('open-c4')
+            result['entry_touch'] = entry['portal_touch']
+            result['native_entry_ready'] = entry['native_ready']
+            result['native_entry_touch'] = entry['native_touch']
             initial = self.wait_observation('initial', lambda o:not o['state']['paused'] and o['state']['canDrop'])
             contract.demand(initial['state']['columns'] == [] and not initial['state']['twoPlayers'],
                             'Initial actual C4 round is not the untouched single-player game')
@@ -423,12 +436,14 @@ class Probe:
             closed = self.return_to_flutter('return-first')
             old_token = self.token
             self.mailbox, self.token = '', ''
-            reopen_touch = self.flutter_touch(contract.PORTAL, 'reopen-c4')
+            reopening = self.open_native_from_flutter('reopen-c4')
             again = self.wait_observation('reopened', lambda o:not o['state']['paused'] and o['state']['canDrop'])
             contract.reopened(closed['state'], again['state'])
             contract.demand(again['state']['token'] != old_token and again['pid'] != closed['pid'],
                             'Reopen did not create a new real private native session/process')
-            result['reopen'] = {'closed':closed['id'], 'opened':again['id'], 'touch':reopen_touch}
+            result['reopen'] = {'closed':closed['id'], 'opened':again['id'],
+                                'touch':reopening['portal_touch'], 'native_ready':reopening['native_ready'],
+                                'native_touch':reopening['native_touch']}
             self.transition('pause-after-reopen', 'pause', 'pause')
             self.return_to_flutter('return-final')
             after_prefs, after_file = self.read_preferences('after-c4')

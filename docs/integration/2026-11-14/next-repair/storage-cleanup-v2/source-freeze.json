@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_NOT_RUN",
+  "base_host": "37414d0ceeb6db13ddd2b5bbc64789e3260ac1e5",
+  "base_tree": "a2ab2d1883aa764424e48e3b992cc3d09c3a84e5",
+  "producer_head": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "producer_base": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "files": [
+    {
+      "path": "test/games/memory_profile_storage_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 12801,
+        "sha256": "378a2c560ea344a7be832628e993244d4424c396ee55850cb97ed7ab01388388",
+        "git_blob": "cfc75adfea811babde60c96938ba79ee03036475"
+      },
+      "after": {
+        "bytes": 12937,
+        "sha256": "33d2b6b63a139f0cd8b8ef75197d515e7c04a3cc9a043e0b07e5815de7dee20f",
+        "git_blob": "375812cb6b17b638a070dd9382249d2a3c5fef5a"
+      },
+      "derivation": "Minimal integration cleanup over our exact 37414 regression; not a whole producer-file replacement."
+    }
+  ],
+  "tests_run": false,
+  "production_changes": false,
+  "unchanged_test_names": [
+    "Old unowned record stays byte-identical and is assigned to no child",
+    "Real completed round restores only its child best and difficulty",
+    "Delayed old-child write cannot overwrite the newly selected child",
+    "Delayed identity load cannot expose old best after profile switch",
+    "Pending successive choices retain captured snapshots and final order",
+    "Unreadable existing child stats are preserved instead of reset"
+  ],
+  "unchanged_expect_calls": 48,
+  "new_idle_calls": 4
+}

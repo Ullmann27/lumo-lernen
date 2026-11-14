@@ -167,15 +167,15 @@ void main() {
     final app = await _app();
     addTearDown(app.dispose);
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    await _open(tester, app);
-    expect(store.writes, [
-      (key: 'flutter.${_key(_a)}',
-       value: '{"difficulty":"leicht","best":{"leicht":7}}'),
-    ], reason: 'Opening confirms the unchanged, validated child snapshot.');
     final gate = Completer<void>();
-    store.blockedKey = 'flutter.${_key(_a)}';
-    store.gate = gate;
     try {
+      await _open(tester, app);
+      expect(store.writes, [
+        (key: 'flutter.${_key(_a)}',
+         value: '{"difficulty":"leicht","best":{"leicht":7}}'),
+      ], reason: 'Opening confirms the unchanged, validated child snapshot.');
+      store.blockedKey = 'flutter.${_key(_a)}';
+      store.gate = gate;
       await _choose(tester, MemoryDifficulty.profi);
       expect(store.writes, hasLength(2));
       expect(store.writes.last,
@@ -212,9 +212,11 @@ void main() {
     } finally {
       // A failed assertion must not retain this child's static owner queue.
       if (!gate.isCompleted) gate.complete();
+      await tester.idle();
       await tester.pump();
       await tester.pump();
       await tester.pumpWidget(const SizedBox.shrink());
+      await tester.idle();
     }
   });
 
@@ -252,15 +254,15 @@ void main() {
     final app = await _app();
     addTearDown(app.dispose);
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    await _open(tester, app);
-    expect(store.writes, [
-      (key: 'flutter.${_key(_a)}',
-       value: '{"difficulty":"leicht","best":{"leicht":7}}'),
-    ], reason: 'Opening confirms the unchanged, validated child snapshot.');
     final gate = Completer<void>();
-    store.blockedKey = 'flutter.${_key(_a)}';
-    store.gate = gate;
     try {
+      await _open(tester, app);
+      expect(store.writes, [
+        (key: 'flutter.${_key(_a)}',
+         value: '{"difficulty":"leicht","best":{"leicht":7}}'),
+      ], reason: 'Opening confirms the unchanged, validated child snapshot.');
+      store.blockedKey = 'flutter.${_key(_a)}';
+      store.gate = gate;
       await _choose(tester, MemoryDifficulty.mittel);
       await _choose(tester, MemoryDifficulty.profi);
       expect(store.writes, hasLength(2),
@@ -284,9 +286,11 @@ void main() {
           {'difficulty': 'profi', 'best': {'leicht': 7}});
     } finally {
       if (!gate.isCompleted) gate.complete();
+      await tester.idle();
       await tester.pump();
       await tester.pump();
       await tester.pumpWidget(const SizedBox.shrink());
+      await tester.idle();
     }
   });
 

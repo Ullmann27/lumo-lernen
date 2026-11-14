@@ -1,0 +1,90 @@
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "expected_parent": "37414d0ceeb6db13ddd2b5bbc64789e3260ac1e5",
+  "expected_parent_tree": "a2ab2d1883aa764424e48e3b992cc3d09c3a84e5",
+  "remote_actions_performed": false,
+  "entries": [
+    {
+      "source": "/tmp/host-pr508-c4-optin-followup-v2-20261114/final-source/.github/probes/lumo_connect_four_android_probe.py",
+      "target": ".github/probes/lumo_connect_four_android_probe.py",
+      "mode": "100644",
+      "old_blob": "585af5913ac8ec24216bd7eb877415da8c886025",
+      "new_blob": "dae27bce72a09d786fd5a96cb39d10cc716dc5e2",
+      "bytes": 30044,
+      "sha256": "6623bcff15f2e3d1425c46fd044be2e0ffbe6018b1f4567634ae1429ae2c4658"
+    },
+    {
+      "source": "/tmp/host-pr508-c4-optin-followup-v2-20261114/final-source/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "target": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "mode": "100644",
+      "old_blob": "0927a3b853e168325e00ebaacc2156a49356ac1e",
+      "new_blob": "6c9ee29c314bf999349c73da6faf9226ac0f8916",
+      "bytes": 45094,
+      "sha256": "5ea73c94211bb0286aba1167da845d4ccc08ae31d3888dc6b6789b8df86b2772"
+    },
+    {
+      "source": "/tmp/host-pr508-c4-optin-followup-v2-20261114/final-source/lib/features/games/spielwelt/spielwelt_hub.dart",
+      "target": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "mode": "100644",
+      "old_blob": "41202eac77fb0b77d83cb417cb8cd2f4ef4d1bb7",
+      "new_blob": "f9bfdef2f54343291a0c2bfa985fb1287302a7ed",
+      "bytes": 31775,
+      "sha256": "8a10bff946ecd4fd92964709d595bc7b3dde1912c12480dff60762a3fedf03a9"
+    },
+    {
+      "source": "/tmp/host-pr508-c4-optin-followup-v2-20261114/final-source/test/games/connect_four_native_route_test.dart",
+      "target": "test/games/connect_four_native_route_test.dart",
+      "mode": "100644",
+      "old_blob": "d5178ab675bbc83b8fcb6dd0f6a3b7d675b1f3d0",
+      "new_blob": "8f9a3a275edec12141b88804ef36dc11dc12d524",
+      "bytes": 5165,
+      "sha256": "7e4637c8c0a1330738723d2398a88e2e45ceb1d892e925f04c52ff58f93e99a6"
+    },
+    {
+      "source": "/tmp/host-pr508-c4-optin-followup-v2-20261114/final-source/test/games/connect_four_navigation_test.dart",
+      "target": "test/games/connect_four_navigation_test.dart",
+      "mode": "100644",
+      "old_blob": null,
+      "new_blob": "5607de8ddeeb54b1cbb77372c0ee3926f57ff374",
+      "bytes": 5291,
+      "sha256": "15904ba2dff28e5afbef5d4f23febfca8f2a70066a6e081c873dad57da219f08"
+    },
+    {
+      "source": "/tmp/host-pr508-c4-optin-followup-v2-20261114/final-source/test/games/games_screen_flow_test.dart",
+      "target": "test/games/games_screen_flow_test.dart",
+      "mode": "100644",
+      "old_blob": "254267c9f84d5c8e507307178015d281db238e4f",
+      "new_blob": "6b47469525edf37135802be0b9546b22394b3e00",
+      "bytes": 15945,
+      "sha256": "af22d37de998a52ac7c403f5531eea2287eb5b12b60fb1d491ee9921b2573566"
+    },
+    {
+      "source": "/tmp/host-pr508-c4-optin-followup-v2-20261114/final-source/tools/android_qa/connect_four_android_evidence.py",
+      "target": "tools/android_qa/connect_four_android_evidence.py",
+      "mode": "100644",
+      "old_blob": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa",
+      "new_blob": "6c9a4c24da94e485d47f453af9ac82f5d1994ad4",
+      "bytes": 40210,
+      "sha256": "0413fd322e16a68947e9f9a57abf957a90f43b404b0a9074e6559dc11907409c"
+    },
+    {
+      "source": "/tmp/host-pr508-c4-optin-followup-v2-20261114/final-source/tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "target": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "mode": "100644",
+      "old_blob": "701d1dab0a7224803fe2780c6a0674400b081795",
+      "new_blob": "457e391524fd1c72d4c1d434e53c9518fbe89516",
+      "bytes": 31507,
+      "sha256": "8b820e2b2e8b47066eea80a332d60ae0f03fd9c0adc989b14a275d3d4342a199"
+    },
+    {
+      "source": "/tmp/host-pr508-c4-optin-followup-v2-20261114/final-source/tools/android_qa/tests/test_connect_four_flutter_navigation.py",
+      "target": "tools/android_qa/tests/test_connect_four_flutter_navigation.py",
+      "mode": "100644",
+      "old_blob": "37ef806cd79e06273950753bd1442d05472f7106",
+      "new_blob": "d3c2267437ef418e48ba2bfd85477a3a10f8015d",
+      "bytes": 20349,
+      "sha256": "7999444bce601abcd067251c8230bb81512da60f99a08912e4100f4d932e5570"
+    }
+  ],
+  "note": "C4 preimage is the published PR507 union parent 0927a3b8. Other PR507/Speech paths remain outside this pack. No workflow changes."
+}

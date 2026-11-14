@@ -276,11 +276,20 @@ void main() {
     LumoVoice.instance.isEnabled = false;
     await tester.pumpWidget(
         MaterialApp(home: LumoConnectFourScreen(appState: app, seed: 1)));
+    await _waitForConnectTurn(tester, 'Initial playable Flutter round');
+    expect(openCalls, 0,
+        reason: 'Opening 4 Gewinnt must not automatically start Godot');
+    final nativeButton = find.byKey(const ValueKey('connect-open-native'));
+    expect(nativeButton, findsOneWidget);
+    await tester.tap(nativeButton);
+    // A direct tap sends input immediately; a frame is required to rebuild
+    // the disabled column buttons before checking their visible state.
+    await tester.pump();
     for (var frame = 0; frame < 50 && openCalls == 0; frame++) {
       await tester.pump(const Duration(milliseconds: 100));
     }
     expect(openCalls, 1,
-        reason: 'The actual Android route must request the native table');
+        reason: 'Only the requested 3D action may open the native table');
     expect(_playableConnectColumns(tester), isEmpty);
     await tester.pump(const Duration(seconds: 1));
     expect(_playableConnectColumns(tester), isEmpty,

@@ -1,0 +1,16 @@
+{
+  "base": "7ac736fdbd042769592e88de0f9849632242316d",
+  "base_blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+  "pr507_frozen_blob": "0927a3b853e168325e00ebaacc2156a49356ac1e",
+  "pr507_frozen_sha256": "3d6d5d669307170728f62cc221bc840c48e57b22c13b9c64a081db7dfa606971",
+  "pr508_published_blob": "7c01be0c899a7c90b25b61ae17ecd4dd7d855487",
+  "exact_unique_pr508_hunks_applied": 4,
+  "combined": {
+    "bytes": 45094,
+    "sha256": "5ea73c94211bb0286aba1167da845d4ccc08ae31d3888dc6b6789b8df86b2772",
+    "git_blob": "6c9ee29c314bf999349c73da6faf9226ac0f8916"
+  },
+  "peer_frozen_pack_unmodified": true,
+  "reverse_application_order_identical": true,
+  "pr507_unique_hunks": 2
+}
