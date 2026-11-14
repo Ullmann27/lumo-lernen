@@ -179,7 +179,13 @@ class MainActivity : FlutterActivity() {
                     try {
                         assets.open("lumo_game.pck").close()
                         val requested = call.argument<String>("scene")
-                        val game = if (requested in setOf("kart", "jump", "puzzle", "build", "rhythm", "treasure", "learning", "cards", "connect_four")) requested!! else "kart"
+                        val villageRequested = call.argument<Boolean>("livingVillage") == true
+                        if ((requested == "settlement") != villageRequested ||
+                            (villageRequested && call.argument<String>("settlementMode") != "settlement")) {
+                            result.error("invalid_village", "Der Dorfmodus wurde nicht sicher ausgewählt.", null)
+                            return@setMethodCallHandler
+                        }
+                        val game = if (requested in setOf("kart", "jump", "puzzle", "build", "settlement", "rhythm", "treasure", "learning", "cards", "connect_four")) requested!! else "kart"
                         val options = JSONObject()
                             .put("game", game)
                             .put("grade", (call.argument<Int>("grade") ?: 1).coerceIn(1, 4))
@@ -188,6 +194,9 @@ class MainActivity : FlutterActivity() {
                             .put("stars", (call.argument<Int>("stars") ?: 0).coerceAtLeast(0))
                             .put("lifetimeStars", (call.argument<Int>("lifetimeStars") ?: 0).coerceAtLeast(0))
                             .put("childKey", call.argument<String>("childKey")?.takeIf { it.matches(Regex("[A-Za-z0-9_-]{1,80}")) } ?: "standalone")
+                        if (game == "settlement") {
+                            options.put("livingVillage", true).put("settlementMode", "settlement")
+                        }
                         if (game == "learning") {
                             val learning = call.argument<Map<String, Any?>>("learning")
                             if (learning == null || learning["kind"] !in setOf("bridge_ten", "addition", "subtract_ten", "equal_groups", "equal_sharing", "bridge_hundred", "fraction_parts", "syllables", "plant_parts")) {
@@ -196,7 +205,7 @@ class MainActivity : FlutterActivity() {
                             }
                             options.put("learning", JSONObject(learning))
                         }
-                        if (game in setOf("learning", "build")) {
+                        if (game in setOf("learning", "build", "settlement")) {
                             options.put("learningVoiceEnabled", call.argument<Boolean>("learningVoiceEnabled") == true)
                                 .put("localVoiceLicenseAccepted", call.argument<Boolean>("localVoiceLicenseAccepted") == true)
                                 .put("learningAutoRead", call.argument<Boolean>("learningAutoRead") == true)

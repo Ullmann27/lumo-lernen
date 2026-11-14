@@ -1,0 +1,686 @@
+--- a/lib/features/games/games_content.dart
++++ b/lib/features/games/games_content.dart
+@@ -179,7 +179,7 @@
+     }
+   }
+ 
+-  Future<void> _launch3D(String scene) async {
++  Future<void> _launch3D(String scene, {bool livingVillage = false}) async {
+     if (_launchingGame) return;
+     setState(() => _launchingGame = true);
+     HapticFeedback.mediumImpact();
+@@ -188,6 +188,7 @@
+       final launched = await launchLumo3D(
+         context,
+         scene: scene,
++        livingVillage: livingVillage,
+         grade: _kartGrade ?? state.grade,
+         subject: _kartSubject ??
+             (state.subject == 'Deutsch' ? 'Deutsch' : 'Mathematik'),
+@@ -440,7 +441,11 @@
+   List<SpielweltPortal> _portals() {
+     return [
+       for (final route in SpielweltRoutes.all)
+-        if (route.identity == 'connectFour')
++        if (route.identity == 'village')
++          SpielweltPortal.village(
++            onOpen: () => _launch3D('settlement', livingVillage: true),
++          )
++        else if (route.identity == 'connectFour')
+           SpielweltPortal.connectFour(onOpen: _launchConnectFour)
+         else if (route.identity == 'quizShow')
+           SpielweltPortal.quizShow(onOpen: _launchLumoMeister)
+@@ -491,7 +496,7 @@
+               ])
+             : CustomScrollView(
+                 slivers: [
+-                  // One familiar game grid: all ten existing routes remain
++                  // Keep every established portal; the living economy has its own entry.
+                   // available, with original Lumo artwork and clear toy icons.
+                   SliverToBoxAdapter(
+                     child: SpielweltHub(
+--- a/lib/features/games/spielwelt/spielwelt_game_icon.dart
++++ b/lib/features/games/spielwelt/spielwelt_game_icon.dart
+@@ -12,6 +12,7 @@
+ 
+   static String? assetFor(String identity) => switch (identity) {
+         'kart' => 'assets/lumo_design/characters/kart_side.webp',
++        'village' => 'assets/lumo_design/spielwelt/portal_bauwelt.png',
+         'treasure' => 'assets/lumo_design/icons/treasure_chest.png',
+         'quizShow' => 'assets/lumo_design/icons/trophy_gold.png',
+         'jumpRun' => 'assets/lumo_design/characters/fox_trophy_jump.webp',
+--- a/lib/features/games/spielwelt/spielwelt_hub.dart
++++ b/lib/features/games/spielwelt/spielwelt_hub.dart
+@@ -35,6 +35,14 @@
+         semanticTitle = 'Lumo 4 Gewinnt',
+         specialId = 'connectFour';
+ 
++  /// Direct economic village; independent of the classic Bauwelt's unlocks.
++  /// The native Android bridge must still validate the child's actual launch.
++  const SpielweltPortal.village({required this.onOpen})
++      : game = null,
++        state = const GameUnlockState(unlocked: true),
++        semanticTitle = 'Dorf & Wirtschaft',
++        specialId = 'village';
++
+   final GameDefinition? game;
+   final GameUnlockState state;
+   final VoidCallback onOpen;
+@@ -49,6 +57,8 @@
+         return 'Quizshow';
+       case 'connectFour':
+         return '4 Gewinnt';
++      case 'village':
++        return 'Dorfwirtschaft';
+       case 'rhythm':
+         return 'Rhythm';
+       default:
+@@ -63,6 +73,7 @@
+ 
+   String get tagline => switch (specialId) {
+         'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
++        'village' => 'Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn!',
+         'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
+         _ => game?.tagline ?? '',
+       };
+@@ -72,6 +83,17 @@
+   /// Vorleser- und Prüftext, falls er vom sichtbaren Titel abweicht.
+   final String? semanticTitle;
+ }
++
++const _gameTileTitleStyle = TextStyle(
++  fontFamily: 'Nunito',
++  fontSize: 17,
++  height: 1.08,
++  fontWeight: FontWeight.w900,
++  color: Colors.white,
++);
++
++double _gameTileHorizontalInset(SpielweltPortal portal) =>
++    portal.identity == 'village' ? 5 : 9;
+ 
+ /// The familiar game grid, presented as one calm blue stage. Each tile opens
+ /// its original game directly; neither artwork nor layout owns save state.
+@@ -110,6 +132,7 @@
+ 
+   static const _featuredOrder = [
+     'kart',
++    'village',
+     'cards',
+     'build',
+     'puzzle',
+@@ -135,8 +158,29 @@
+ 
+   Widget _grid(List<SpielweltPortal> portals, double width, int columns) {
+     const gap = 12.0;
+-    final tileWidth = (width - gap * (columns - 1)) / columns;
+-    final textScale = MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0);
++    // The tile's Material supplies bodyMedium, including letter spacing.
++    final titleStyle =
++        Theme.of(context).textTheme.bodyMedium!.merge(_gameTileTitleStyle);
++    final textScaler = MediaQuery.textScalerOf(context);
++    var fittedColumns = columns;
++    for (final portal in portals.where((portal) => portal.identity == 'village')) {
++      final title = TextPainter(
++        text: TextSpan(text: portal.title, style: titleStyle),
++        textDirection: Directionality.of(context),
++        textScaler: textScaler,
++        locale: Localizations.maybeLocaleOf(context),
++      )..layout();
++      // Reserve the focused 2 dp border as well as the real text inset.
++      final minimumWidth =
++          title.minIntrinsicWidth + 2 * (_gameTileHorizontalInset(portal) + 2);
++      title.dispose();
++      final availableColumns =
++          math.max(1, ((width + gap) / (minimumWidth + gap)).floor());
++      fittedColumns = math.min(fittedColumns, availableColumns);
++    }
++    final tileWidth =
++        (width - gap * (fittedColumns - 1)) / fittedColumns;
++    final textScale = textScaler.scale(1).clamp(1.0, 2.0);
+     final iconHeight = (tileWidth * .67).clamp(76.0, 139.0);
+     final tileHeight = iconHeight + 54 * textScale;
+     return Wrap(
+@@ -150,6 +194,7 @@
+             child: _GameTile(
+               key: ValueKey('spielwelt-portal-${portal.identity}'),
+               portal: portal,
++              titleStyle: titleStyle,
+               reduceMotion: widget.reduceMotion,
+               onTap: () {
+                 if (portal.state.unlocked && portal.playable) _lumo.cheer();
+@@ -438,10 +483,12 @@
+   const _GameTile({
+     super.key,
+     required this.portal,
++    required this.titleStyle,
+     required this.onTap,
+     required this.reduceMotion,
+   });
+   final SpielweltPortal portal;
++  final TextStyle titleStyle;
+   final VoidCallback onTap;
+   final bool reduceMotion;
+ 
+@@ -549,7 +596,12 @@
+                     ),
+                   ),
+                   Padding(
+-                    padding: const EdgeInsets.fromLTRB(9, 9, 9, 11),
++                    padding: EdgeInsets.fromLTRB(
++                      _gameTileHorizontalInset(portal),
++                      9,
++                      _gameTileHorizontalInset(portal),
++                      11,
++                    ),
+                     child: Column(
+                       children: [
+                         Expanded(
+@@ -561,13 +613,7 @@
+                           textAlign: TextAlign.center,
+                           maxLines: 2,
+                           overflow: TextOverflow.ellipsis,
+-                          style: const TextStyle(
+-                            fontFamily: 'Nunito',
+-                            fontSize: 17,
+-                            height: 1.08,
+-                            fontWeight: FontWeight.w900,
+-                            color: Colors.white,
+-                          ),
++                          style: widget.titleStyle,
+                         ),
+                       ],
+                     ),
+--- a/lib/features/games/spielwelt/spielwelt_routes.dart
++++ b/lib/features/games/spielwelt/spielwelt_routes.dart
+@@ -57,7 +57,7 @@
+   }
+ }
+ 
+-/// Canonical ten-game Spielwelt. Order is the phone-grid hierarchy and
++/// Canonical game worlds. Each portal identifies a real destination.
+ /// matches Heinz's 2013 list.
+ class SpielweltRoutes {
+   SpielweltRoutes._();
+@@ -139,6 +139,16 @@
+       target: 'build',
+       targetDescription: 'Godot Bauwelt (launch3D scene=build)',
+       gameId: GameId.build,
++    ),
++    SpielweltRoute(
++      identity: 'village',
++      title: 'Dorfwirtschaft',
++      semanticTitle: 'Dorf & Wirtschaft',
++      tagline: 'Versorge deine Freunde und baue ein lebendiges Dorf!',
++      coverAsset: 'assets/lumo_design/spielwelt/portal_bauwelt.png',
++      kind: SpielweltTargetKind.nativeScene,
++      target: 'settlement',
++      targetDescription: 'Godot living village economy (launch3D scene=settlement)',
+     ),
+     SpielweltRoute(
+       identity: 'kart',
+@@ -181,6 +191,7 @@
+     'rhythm',
+     'treasure',
+     'build',
++    'village',
+     'kart',
+     'connectFour',
+     'quizShow',
+--- a/lib/features/lumo3d/lumo3d_launcher.dart
++++ b/lib/features/lumo3d/lumo3d_launcher.dart
+@@ -19,6 +19,7 @@
+ Future<bool> launchLumo3D(
+   BuildContext context, {
+   String scene = 'kart',
++  bool livingVillage = false,
+   int? grade,
+   String? subject,
+   LumoAppState? appState,
+@@ -30,6 +31,8 @@
+   if (!context.mounted || appState?.resetting == true) return false;
+   // Only reviewed, bounded lesson descriptors open the educational route.
+   if ((scene == 'learning') != (learning != null)) return false;
++  // The economy is opt-in. Never silently open Kart or classic settlements.
++  if ((scene == 'settlement') != livingVillage) return false;
+   if (legacyGameKey != null &&
+       (appState == null ||
+           !const ['kart', 'jump', 'puzzle', 'build', 'rhythm', 'treasure']
+@@ -139,6 +142,10 @@
+     entry?.setPhase(LumoGameEntryPhase.opening);
+     final response = await bridge.invokeMapMethod<String, dynamic>('launch3D', {
+       'scene': scene,
++      if (livingVillage) ...{
++        'livingVillage': true,
++        'settlementMode': 'settlement',
++      },
+       'grade': grade ?? appState?.state.grade ?? 1,
+       'subject': subject ?? appState?.state.subject ?? 'Mathematik',
+       'stars': appState?.state.stars ?? 0,
+@@ -148,7 +155,7 @@
+           (appState?.state.settings.reduceAnimations ?? false) ||
+               (appState?.state.settings.calmMode ?? false),
+       if (learning != null) 'learning': learning.toLaunchOptions(),
+-      if (learning != null || scene == 'build') ...{
++      if (learning != null || scene == 'build' || scene == 'settlement') ...{
+         // Preserve the selected voice. Only the existing, licensed local
+         // identity is available in the isolated engine; no silent fallback.
+         'learningVoiceEnabled': appState?.state.settings.voiceEnabled == true &&
+--- a/lib/features/lumo3d/lumo_game_entry_overlay.dart
++++ b/lib/features/lumo3d/lumo_game_entry_overlay.dart
+@@ -11,6 +11,7 @@
+   static String titleFor(String scene) => switch (scene) {
+         'kart' => 'Lumo Kart',
+         'build' => 'Lumo Bauwelt',
++        'settlement' => 'Dorfwirtschaft',
+         'puzzle' => 'Lumo Puzzle-Atelier',
+         'rhythm' => 'Lumo Rhythm Party',
+         'treasure' => 'Lumo Schatzsuche',
+@@ -23,6 +24,7 @@
+   static String imageFor(String scene) => switch (scene) {
+         'kart' => 'assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp',
+         'build' => 'assets/lumo_design/gameplay/build.png',
++        'settlement' => 'assets/lumo_design/spielwelt/portal_bauwelt.png',
+         'puzzle' => 'assets/lumo_design/gameplay/puzzle.png',
+         'rhythm' => 'assets/lumo_design/gameplay/rhythm.png',
+         'treasure' => 'assets/lumo_design/gameplay/treasure.png',
+@@ -34,6 +36,7 @@
+   static String categoryFor(String scene) => switch (scene) {
+         'kart' => '3D-RENNSPIEL',
+         'build' => 'BAUABENTEUER',
++        'settlement' => 'DEIN LEBENDIGES DORF',
+         'puzzle' => 'PUZZLE-WELT',
+         'rhythm' => 'MUSIKSPIEL',
+         'treasure' => 'ENTDECKUNGSREISE',
+--- a/tools/auto_install/MainActivity.kt
++++ b/tools/auto_install/MainActivity.kt
+@@ -179,7 +179,13 @@
+                     try {
+                         assets.open("lumo_game.pck").close()
+                         val requested = call.argument<String>("scene")
+-                        val game = if (requested in setOf("kart", "jump", "puzzle", "build", "rhythm", "treasure", "learning", "cards", "connect_four")) requested!! else "kart"
++                        val villageRequested = call.argument<Boolean>("livingVillage") == true
++                        if ((requested == "settlement") != villageRequested ||
++                            (villageRequested && call.argument<String>("settlementMode") != "settlement")) {
++                            result.error("invalid_village", "Der Dorfmodus wurde nicht sicher ausgewählt.", null)
++                            return@setMethodCallHandler
++                        }
++                        val game = if (requested in setOf("kart", "jump", "puzzle", "build", "settlement", "rhythm", "treasure", "learning", "cards", "connect_four")) requested!! else "kart"
+                         val options = JSONObject()
+                             .put("game", game)
+                             .put("grade", (call.argument<Int>("grade") ?: 1).coerceIn(1, 4))
+@@ -188,6 +194,9 @@
+                             .put("stars", (call.argument<Int>("stars") ?: 0).coerceAtLeast(0))
+                             .put("lifetimeStars", (call.argument<Int>("lifetimeStars") ?: 0).coerceAtLeast(0))
+                             .put("childKey", call.argument<String>("childKey")?.takeIf { it.matches(Regex("[A-Za-z0-9_-]{1,80}")) } ?: "standalone")
++                        if (game == "settlement") {
++                            options.put("livingVillage", true).put("settlementMode", "settlement")
++                        }
+                         if (game == "learning") {
+                             val learning = call.argument<Map<String, Any?>>("learning")
+                             if (learning == null || learning["kind"] !in setOf("bridge_ten", "addition", "subtract_ten", "equal_groups", "equal_sharing", "bridge_hundred", "fraction_parts", "syllables", "plant_parts")) {
+@@ -196,7 +205,7 @@
+                             }
+                             options.put("learning", JSONObject(learning))
+                         }
+-                        if (game in setOf("learning", "build")) {
++                        if (game in setOf("learning", "build", "settlement")) {
+                             options.put("learningVoiceEnabled", call.argument<Boolean>("learningVoiceEnabled") == true)
+                                 .put("localVoiceLicenseAccepted", call.argument<Boolean>("localVoiceLicenseAccepted") == true)
+                                 .put("learningAutoRead", call.argument<Boolean>("learningAutoRead") == true)
+--- a/tools/auto_install/LumoGameActivity.kt
++++ b/tools/auto_install/LumoGameActivity.kt
+@@ -192,7 +192,7 @@
+         cardsEdgeToEdge = options.optString("game") == "cards"
+         if (cardsEdgeToEdge) enableEdgeToEdge()
+         super.onCreate(savedInstanceState)
+-        if (options.optString("game") in setOf("learning", "build")) {
++        if (options.optString("game") in setOf("learning", "build", "settlement")) {
+             learningSpeech = LumoLearningSpeech(applicationContext, options)
+         }
+     }
+--- /dev/null
++++ b/test/games/dorfwirtschaft_portal_test.dart
+@@ -0,0 +1,69 @@
++import 'package:flutter/foundation.dart';
++import 'package:flutter/material.dart';
++import 'package:flutter/services.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:shared_preferences/shared_preferences.dart';
++import 'package:lumo_lernen/app/app_state.dart';
++import 'package:lumo_lernen/features/games/games_content.dart';
++import 'package:lumo_lernen/features/games/spielwelt/spielwelt_routes.dart';
++
++void main() {
++  setUp(() => SharedPreferences.setMockInitialValues({}));
++
++  test('Village economy has its own real native scene and unique identity', () {
++    final village = SpielweltRoutes.byIdentity('village');
++    expect(village.isNative, isTrue);
++    expect(village.target, 'settlement');
++    expect(village.identity, 'village');
++    expect(village.title, 'Dorfwirtschaft');
++    expect(village.coverAsset, isNot(SpielweltRoutes.byIdentity('build').coverAsset));
++    expect(SpielweltRoutes.identities, contains('village'));
++    expect(SpielweltRoutes.all.map((r) => r.identity).toSet().length,
++        SpielweltRoutes.all.length);
++  });
++
++  testWidgets('Dorfwirtschaft tile launches true village, not Kart or the classic settlement',
++      (tester) async {
++    debugDefaultTargetPlatformOverride = TargetPlatform.android;
++    const bridge = MethodChannel('lumo_lernen/bridge');
++    final calls = <MethodCall>[];
++    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
++        .setMockMethodCallHandler(bridge, (call) async {
++      calls.add(call);
++      return {'destination': 'games'};
++    });
++    try {
++      await tester.binding.setSurfaceSize(const Size(392, 2800));
++      addTearDown(() => tester.binding.setSurfaceSize(null));
++      final app = LumoAppState();
++      addTearDown(app.dispose);
++      await tester.pumpWidget(
++        MaterialApp(home: Scaffold(body: GamesContent(appState: app))),
++      );
++      await tester.runAsync(
++          () => Future<void>.delayed(const Duration(milliseconds: 300)));
++      await tester.pump(const Duration(milliseconds: 700));
++      final tile = find.byKey(const ValueKey('spielwelt-portal-village'));
++      expect(tile, findsOneWidget);
++      await tester.ensureVisible(tile);
++      await tester.tap(tile);
++      await tester.runAsync(
++          () => Future<void>.delayed(const Duration(milliseconds: 300)));
++      await tester.pump(const Duration(milliseconds: 700));
++      final launched = calls.where((c) => c.method == 'launch3D').toList();
++      expect(launched, hasLength(1));
++      final options = launched.single.arguments as Map;
++      expect(options['scene'], 'settlement');
++      expect(options['livingVillage'], true);
++      expect(options['settlementMode'], 'settlement');
++      expect(options['childKey'], isNotNull);
++      expect(options['grade'], inInclusiveRange(1, 4));
++      expect(tester.takeException(), isNull);
++      await tester.pumpWidget(const SizedBox());
++    } finally {
++      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
++          .setMockMethodCallHandler(bridge, null);
++      debugDefaultTargetPlatformOverride = null;
++    }
++  });
++}
+--- a/test/games/games_world_layout_test.dart
++++ b/test/games/games_world_layout_test.dart
+@@ -11,7 +11,7 @@
+ void main() {
+   setUp(() => SharedPreferences.setMockInitialValues({}));
+ 
+-  testWidgets('Spielewelt zeigt die vier Spiele und Lumo Kart', (tester) async {
++  testWidgets('Spielewelt zeigt alle elf Spiele einschließlich Dorfwirtschaft', (tester) async {
+     await tester.binding.setSurfaceSize(const Size(392, 2800));
+     addTearDown(() => tester.binding.setSurfaceSize(null));
+     final handle = tester.ensureSemantics();
+@@ -36,6 +36,7 @@
+       'Rhythm',
+       'Schatzsuche',
+       'Bauwelt',
++      'Dorfwirtschaft',
+       'Lumo Kart',
+     ]) {
+       expect(find.text(title), findsWidgets, reason: title);
+@@ -75,6 +76,7 @@
+       'rhythm',
+       'treasure',
+       'build',
++      'village',
+       'kart',
+       'connectFour',
+       'quizShow',
+@@ -94,7 +96,7 @@
+   });
+ 
+ 
+-  testWidgets('Fold7 open portrait and tablet keep the tile hub with all ten games', (tester) async {
++  testWidgets('Fold7 open portrait and tablet keep the tile hub with all eleven games', (tester) async {
+     for (final size in const [Size(690, 829), Size(768, 1024), Size(1024, 768)]) {
+       await tester.binding.setSurfaceSize(size);
+       final app = LumoAppState();
+@@ -111,7 +113,7 @@
+       expect(find.text('Auf ins Abenteuer!'), findsOneWidget, reason: '$size');
+       for (final identity in const [
+         'memory', 'cards', 'puzzle', 'jumpRun', 'rhythm',
+-        'treasure', 'build', 'kart', 'connectFour', 'quizShow',
++        'treasure', 'build', 'village', 'kart', 'connectFour', 'quizShow',
+       ]) {
+         expect(find.byKey(ValueKey('spielwelt-portal-$identity')), findsOneWidget,
+             reason: '$size $identity');
+--- a/test/games/spielwelt_hub_capture_test.dart
++++ b/test/games/spielwelt_hub_capture_test.dart
+@@ -55,6 +55,7 @@
+         'rhythm',
+         'treasure',
+         'build',
++        'village',
+         'kart',
+         'connectFour',
+         'quizShow',
+@@ -68,7 +69,7 @@
+             reason: '${entry.key} $identity height');
+         if (entry.key == 'fold7-open-portrait') {
+           expect(box.top, greaterThanOrEqualTo(0),
+-              reason: 'All ten games start inside the open Fold viewport');
++              reason: 'All eleven games start inside the open Fold viewport');
+           expect(box.bottom, lessThanOrEqualTo(entry.value.height),
+               reason: 'The compact stage must not push $identity off screen');
+         }
+@@ -87,6 +88,7 @@
+         'Rhythm',
+         'Schatzsuche',
+         'Bauwelt',
++        'Dorfwirtschaft',
+         'Lumo Kart',
+         '4 Gewinnt',
+         'Quizshow',
+--- a/test/games/spielwelt_routing_test.dart
++++ b/test/games/spielwelt_routing_test.dart
+@@ -30,9 +30,9 @@
+ 
+   setUp(() => SharedPreferences.setMockInitialValues({}));
+ 
+-  test('routing table lists ten unique portals and unique covers', () {
++  test('routing table lists eleven unique portals and unique covers', () {
+     expect(SpielweltRoutes.all.map((r) => r.identity), SpielweltRoutes.identities);
+-    expect(SpielweltRoutes.all, hasLength(10));
++    expect(SpielweltRoutes.all, hasLength(11));
+     final covers = [
+       for (final route in SpielweltRoutes.all)
+         if (route.coverAsset.isNotEmpty) route.coverAsset
+--- a/test/games/spielwelt_semantics_action_test.dart
++++ b/test/games/spielwelt_semantics_action_test.dart
+@@ -4,6 +4,7 @@
+ 
+ import 'package:lumo_lernen/domain/games/game_world.dart';
+ import 'package:lumo_lernen/features/games/spielwelt/spielwelt_hub.dart';
++import 'package:lumo_lernen/features/games/spielwelt/spielwelt_routes.dart';
+ 
+ SpielweltPortal _portal(
+   GameId id,
+@@ -70,16 +71,19 @@
+ 
+ void main() {
+   testWidgets(
+-      'all ten game portals dispatch each accessibility and touch tap once',
++      'all eleven game portals dispatch each accessibility and touch tap once',
+       (tester) async {
+     await _prepare(tester);
+     var opened = 0;
+     final portals = [
+       for (final game in GameCatalog.games) _portal(game.id, () => opened++),
++      SpielweltPortal.village(onOpen: () => opened++),
+       SpielweltPortal.connectFour(onOpen: () => opened++),
+       SpielweltPortal.quizShow(onOpen: () => opened++),
+     ];
+-    expect(portals, hasLength(10));
++    expect(portals, hasLength(11));
++    expect(portals.map((portal) => portal.identity).toSet(),
++        SpielweltRoutes.identities.toSet());
+ 
+     for (final portal in portals) {
+       await tester.pumpWidget(_hub(portal));
+@@ -106,7 +110,7 @@
+           reason: '${portal.identity}: existing InkWell still fires once');
+       expect(tester.takeException(), isNull, reason: portal.identity);
+     }
+-    expect(opened, 20);
++    expect(opened, 22);
+     await tester.pumpWidget(const SizedBox.shrink());
+   });
+ 
+--- a/test/lumo_game_entry_overlay_test.dart
++++ b/test/lumo_game_entry_overlay_test.dart
+@@ -9,6 +9,7 @@
+     const expected = <String, (String, String)>{
+       'kart': ('Lumo Kart', 'assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp'),
+       'build': ('Lumo Bauwelt', 'assets/lumo_design/gameplay/build.png'),
++      'settlement': ('Dorfwirtschaft', 'assets/lumo_design/spielwelt/portal_bauwelt.png'),
+       'puzzle': ('Lumo Puzzle-Atelier', 'assets/lumo_design/gameplay/puzzle.png'),
+       'rhythm': ('Lumo Rhythm Party', 'assets/lumo_design/gameplay/rhythm.png'),
+       'treasure': ('Lumo Schatzsuche', 'assets/lumo_design/gameplay/treasure.png'),
+--- /dev/null
++++ b/test/design/dorfwirtschaft_spielewelt_capture_test.dart
+@@ -0,0 +1,123 @@
++// Original production Spielewelt widget capture, not an illustrated concept.
++import 'dart:io';
++
++import 'package:flutter/foundation.dart';
++import 'package:flutter/material.dart';
++import 'package:flutter/rendering.dart';
++import 'package:flutter/services.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:shared_preferences/shared_preferences.dart';
++import 'package:lumo_lernen/app/app_state.dart';
++import 'package:lumo_lernen/app/app_theme.dart';
++import 'package:lumo_lernen/features/games/games_content.dart';
++
++import '../helpers/lumo_capture.dart';
++
++void main() {
++  final dir = Platform.environment['LUMO_VILLAGE_CAPTURES'];
++  setUpAll(loadLumoCaptureFonts);
++
++  for (final (device, size, textScale) in <(String, Size, double)>[
++    for (final config in lumoCaptureSizes.entries)
++      (config.key, config.value, 1),
++    ('fold-landscape', const Size(1200, 900), 1),
++    ('fold-wide-min', const Size(640, 829), 1),
++    ('fold-open-large-text', const Size(690, 829), 1.2),
++  ]) {
++    testWidgets(
++      'Actual games hub includes a direct village ' + device,
++      (tester) async {
++        SharedPreferences.setMockInitialValues({});
++        const bridge = MethodChannel('lumo_lernen/bridge');
++        final calls = <MethodCall>[];
++        final messenger =
++            TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
++        messenger.setMockMethodCallHandler(bridge, (call) async {
++          calls.add(call);
++          return {'destination': 'games'};
++        });
++        addTearDown(() => messenger.setMockMethodCallHandler(bridge, null));
++        await tester.binding.setSurfaceSize(size);
++        addTearDown(() => tester.binding.setSurfaceSize(null));
++        final app = LumoAppState();
++        addTearDown(app.dispose);
++        const key = ValueKey('lumo-village-real-capture');
++        await tester.pumpWidget(
++          MaterialApp(
++            debugShowCheckedModeBanner: false,
++            theme: LumoAppTheme.light(),
++            builder: (context, child) => MediaQuery(
++              data: MediaQuery.of(
++                context,
++              ).copyWith(textScaler: TextScaler.linear(textScale)),
++              child: child!,
++            ),
++            home: RepaintBoundary(
++              key: key,
++              child: Scaffold(body: GamesContent(appState: app)),
++            ),
++          ),
++        );
++        await tester.runAsync(
++          () => Future<void>.delayed(const Duration(milliseconds: 300)),
++        );
++        await tester.pump(const Duration(milliseconds: 800));
++        final village = find.byKey(const ValueKey('spielwelt-portal-village'));
++        expect(village, findsOneWidget);
++        await tester.ensureVisible(village);
++        await tester.pump(const Duration(milliseconds: 150));
++        expect(tester.getSize(village).width, greaterThanOrEqualTo(48));
++        expect(tester.getSize(village).height, greaterThanOrEqualTo(48));
++        expect(village.hitTestable(), findsOneWidget);
++        final label = find.descendant(
++          of: village,
++          matching: find.text('Dorfwirtschaft'),
++        );
++        expect(label, findsOneWidget);
++        final paragraph = tester.renderObject<RenderParagraph>(label);
++        expect(paragraph.text.toPlainText(), 'Dorfwirtschaft');
++        expect(paragraph.didExceedMaxLines, isFalse);
++        final boxes = paragraph.getBoxesForSelection(
++          const TextSelection(baseOffset: 0, extentOffset: 14),
++        );
++        expect(
++          boxes,
++          hasLength(1),
++          reason: '$device must retain the entire village word on one line',
++        );
++        final glyphs = boxes.single.toRect();
++        expect(glyphs.left, greaterThanOrEqualTo(0));
++        expect(glyphs.right, lessThanOrEqualTo(paragraph.size.width));
++        final globalGlyphs = glyphs.shift(paragraph.localToGlobal(Offset.zero));
++        final cardRect = tester.getRect(village);
++        expect(globalGlyphs.left, greaterThanOrEqualTo(cardRect.left));
++        expect(globalGlyphs.right, lessThanOrEqualTo(cardRect.right));
++        expect(globalGlyphs.top, greaterThanOrEqualTo(cardRect.top));
++        expect(globalGlyphs.bottom, lessThanOrEqualTo(cardRect.bottom));
++        expect(tester.widget<Text>(label).style?.fontSize, 17);
++        expect(paragraph.textScaler.scale(17), closeTo(17 * textScale, .001));
++        await captureLumoBoundary(
++          tester,
++          key,
++          '$dir/village-$device.png',
++          pixelRatio: 1,
++        );
++        await tester.tap(village);
++        await tester.runAsync(
++          () => Future<void>.delayed(const Duration(milliseconds: 300)),
++        );
++        await tester.pump(const Duration(milliseconds: 700));
++        final launches = calls.where((call) => call.method == 'launch3D');
++        expect(launches, hasLength(1));
++        final options = launches.single.arguments as Map;
++        expect(options['scene'], 'settlement');
++        expect(options['livingVillage'], isTrue);
++        expect(options['settlementMode'], 'settlement');
++        expect(tester.takeException(), isNull);
++        await tester.pumpWidget(const SizedBox());
++      },
++      skip: dir == null,
++      variant: TargetPlatformVariant.only(TargetPlatform.android),
++    );
++  }
++}
+--- a/scripts/run_full_flutter_acceptance.py
++++ b/scripts/run_full_flutter_acceptance.py
+@@ -32,6 +32,7 @@
+     'LUMO_READING_CAPTURES': 'reading-passages',
+     'LUMO_ASSISTED_LEARNING_CAPTURES': 'assisted-learning',
+     'LUMO_NATIVE_PROFILE_CAPTURE_DIR': 'native-profiles',
++    'LUMO_VILLAGE_CAPTURES': 'village',
+ }
+ CAPTURE_FILES = {'LUMO_CARDS_CUP_CAPTURE': 'cards-cup/trophy.png'}
+ 

@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "source-freeze.json",
+      "bytes": 24911,
+      "sha256": "c5df8d36119680d4b634f3c294545d7d43be5b43fc6a1e8e819f956bfc9426c8",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr497-village-route-integration-a118-20261114/source-freeze.json"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 3572,
+      "sha256": "f9c871f9652cffa859fb9b4a4c0fbcd490d41a32659a9de19da6f0b237e29b77",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr497-village-route-integration-a118-20261114/handoff.json"
+    },
+    {
+      "path": "product-originals.tar.gz",
+      "bytes": 896439,
+      "sha256": "7fbac331a4cbb964249da66d836698f79ccde9576c1b4c81d1defb06159af180",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr497-village-route-integration-a118-20261114/compact-originals.tar.gz"
+    },
+    {
+      "path": "integration.patch",
+      "bytes": 29600,
+      "sha256": "72424cc613ae80653ab6bc492abb1ff52bfc365c472c0382d006a167be56da28",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr497-village-route-integration-a118-20261114/integration.patch"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 22396,
+      "sha256": "6448e6663f8cb9831d0fe5460226bd9ed837e415812c0086a9fa52b4a7119367",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr497-village-product-independent-review-20261114/review.json"
+    },
+    {
+      "path": "root-base-binding.json",
+      "bytes": 14765,
+      "sha256": "d5c5fab1ba1ae9883e7ed01de50e3c0bd3937ff3d7677235186ca4fb40474120",
+      "source": "/tmp/lumo-root-recovery-1105/village-product-root-base-binding.json"
+    },
+    {
+      "path": "root-archive-review.json",
+      "bytes": 247,
+      "sha256": "51ba58f776fff84903d10f5063f59e1e25daf55783c3b4287a07aceeefd0c441",
+      "source": "/tmp/lumo-root-recovery-1105/village-product-root-archive-review.json"
+    },
+    {
+      "path": "host-4f5-targeted/summary.json",
+      "bytes": 1779,
+      "sha256": "f033103f9509a2343889f7eabb1e81efe5ce4c511e763fe231e44699a52fbac1",
+      "source": "/tmp/host-4f5d66f-discovery-targeted-validation-20261114/summary.json"
+    },
+    {
+      "path": "host-4f5-targeted/delivery-and-pipeline.stderr.log",
+      "bytes": 17482,
+      "sha256": "ecb2353f2693dcb828fe9a2ac80df6cfd702824fc4115436370ca77a317ad3b9",
+      "source": "/tmp/host-4f5d66f-discovery-targeted-validation-20261114/delivery-and-pipeline.stderr.log"
+    },
+    {
+      "path": "host-4f5-targeted/originals.tar.gz",
+      "bytes": 512513,
+      "sha256": "23784f8cf3e458c47197f6edb741d782a2d360d434a80348672532bb5d8f0cd6",
+      "source": "/tmp/host-4f5d66f-discovery-targeted-validation-20261114",
+      "members": 11,
+      "original_manifest_sha256": "c38bb5a2610fc6fc596f98c601fbf3ebc5b6a1212f55e9c7e2d7299fcca3f2cc",
+      "all_members_read_back_equal": true
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "head": "4f5d66f96c5ad84939e4cd09bc66fb4744ae2a6b",
+  "tree": "0e89490ea5d877c8249c8d461270b8e364d2c986",
+  "status": "PASS",
+  "results": [
+    {
+      "name": "delivery-and-pipeline",
+      "argv": [
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=5s",
+        "240s",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "scripts.tests.test_connect_four_delivery",
+        "scripts.tests.test_connect_four_pipeline",
+        "-v"
+      ],
+      "started_at_utc": "2026-11-14T12:09:50.198057+00:00",
+      "finished_at_utc": "2026-11-14T12:09:51.323449+00:00",
+      "elapsed_seconds": 1.125392512010876,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "name": "actionlint",
+      "argv": [
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=5s",
+        "60s",
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        ".github/workflows/lumo-connect-four-2020.yml"
+      ],
+      "started_at_utc": "2026-11-14T12:09:51.323600+00:00",
+      "finished_at_utc": "2026-11-14T12:09:51.332952+00:00",
+      "elapsed_seconds": 0.009380578994750977,
+      "returncode": 0,
+      "pass": true
+    }
+  ],
+  "delivery_cases": 69,
+  "pipeline_cases": 11,
+  "total_cases": 80,
+  "skips": 0,
+  "tracked_source_entries": 4325,
+  "materialized_source_entries": 1845,
+  "explicit_sparse_entries": 2480,
+  "source_index_and_untracked_inventory_unchanged": true,
+  "actual_engine_runs": 0,
+  "actual_widget_runs": 0,
+  "actual_device_runs": 0,
+  "native_pin_changed": false,
+  "scope": "69 delivery boundary cases and11 existing pipeline contracts on exact4f5d66f, plus one Actionlint; no combined product or device acceptance."
+}

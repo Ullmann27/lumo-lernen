@@ -32,6 +32,7 @@ CAPTURE_DIRECTORIES = {
     'LUMO_READING_CAPTURES': 'reading-passages',
     'LUMO_ASSISTED_LEARNING_CAPTURES': 'assisted-learning',
     'LUMO_NATIVE_PROFILE_CAPTURE_DIR': 'native-profiles',
+    'LUMO_VILLAGE_CAPTURES': 'village',
 }
 CAPTURE_FILES = {'LUMO_CARDS_CUP_CAPTURE': 'cards-cup/trophy.png'}
 
