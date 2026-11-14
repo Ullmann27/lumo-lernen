@@ -1,0 +1,34 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "scripts.tests.test_connect_four_delivery",
+    "scripts.tests.test_connect_four_pipeline",
+    "scripts.tests.test_legacy_release_pin",
+    "-v"
+  ],
+  "exit_code": 0,
+  "seconds": 0.2792408210079884,
+  "log_sha256": "b11129b6aef26527acff5e15043b6c72d95e10824c91adcf345143e43fabd0e6",
+  "files_sha256_before": {
+    ".github/workflows/lumo-connect-four-2020.yml": "2bbf0ecbdd287ae293c0d9923b13c41e049a635d4c76765e54f08f8452a9ce93",
+    ".github/workflows/lumo-unified-integration-2026.yml": "531357b8f1ac7b0208b227632ee1d43d056e8cd4a70358fd1e97936bb2337963",
+    "scripts/verify_connect_four_delivery.py": "3560b7180284b8542cac0d00db4a6b6863b0aa0c919918704fa6bd47c82b2055",
+    "scripts/tests/test_connect_four_delivery.py": "85919a0bc467581167d016d6bed9a81304706c395d91f1fe152db33ac025dc99",
+    "scripts/tests/test_connect_four_pipeline.py": "f5ad31e421200d140d64c99a95c091c12626084cee71c911930b08cdedb0f7a7",
+    "config/godot-source.json": "b06fd116c41053ec67f8a8aeb0c85dc1b85e62eaf59e87dcc84040051555a510",
+    "scripts/verify_legacy_release_pin.py": "70a1b243b7de814087addf5b05a0aa2f1c2579527eaad14bdf41fcaa252a5633"
+  },
+  "files_sha256_after": {
+    ".github/workflows/lumo-connect-four-2020.yml": "2bbf0ecbdd287ae293c0d9923b13c41e049a635d4c76765e54f08f8452a9ce93",
+    ".github/workflows/lumo-unified-integration-2026.yml": "531357b8f1ac7b0208b227632ee1d43d056e8cd4a70358fd1e97936bb2337963",
+    "scripts/verify_connect_four_delivery.py": "3560b7180284b8542cac0d00db4a6b6863b0aa0c919918704fa6bd47c82b2055",
+    "scripts/tests/test_connect_four_delivery.py": "85919a0bc467581167d016d6bed9a81304706c395d91f1fe152db33ac025dc99",
+    "scripts/tests/test_connect_four_pipeline.py": "f5ad31e421200d140d64c99a95c091c12626084cee71c911930b08cdedb0f7a7",
+    "config/godot-source.json": "b06fd116c41053ec67f8a8aeb0c85dc1b85e62eaf59e87dcc84040051555a510",
+    "scripts/verify_legacy_release_pin.py": "70a1b243b7de814087addf5b05a0aa2f1c2579527eaad14bdf41fcaa252a5633"
+  },
+  "scope": "Complete actual offline Delivery/Pipeline/Pin contracts after additive Live Connections gate; original52-mode execution block remains unchanged. This is not a native runtime or Android device claim."
+}

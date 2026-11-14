@@ -140,6 +140,32 @@ class WorkflowTests(unittest.TestCase):
             with self.subTest(step=name): self.assertEqual(step(build,name),expected)
         self.assertNotIn('continue-on-error',self.workflow)
 
+    def test_live_connections_gate_reuses_exact_native_source_before_artifact_and_build(self):
+        build=job(self.workflow,'verify-and-build')
+        label='Verify connected dream ambience and garden on exact native source'
+        positions=[build.index(name) for name in (
+            'Require actual gameplay gates on the exact pinned native source', label,
+            'name: lumo-candidate-pinned-native-gameplay', 'Build unified real Android APK')]
+        self.assertEqual(positions,sorted(positions))
+        block=step(build,label)
+        for required in (
+            "LIBGL_ALWAYS_SOFTWARE: '1'", 'set -euo pipefail',
+            'export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"',
+            'native_source="$RUNNER_TEMP/lumo-native-acceptance"',
+            'test "$(git -C "$native_source" rev-parse HEAD)" = "$native_revision"',
+            'native_logs="$GITHUB_WORKSPACE/acceptance-native"',
+            'export XDG_DATA_HOME="$native_logs/user-data"',
+            'export XDG_CONFIG_HOME="$native_logs/user-config"',
+            'export XDG_CACHE_HOME="$native_logs/user-cache"',
+            'cd "$native_source"',
+            'LUMO_LIVE_LOG_DIR="$GITHUB_WORKSPACE/acceptance-native/live" '
+            'bash tools/validate_live_connections.sh 2>&1 | tee "$native_logs/live-runner.log"',
+        ):
+            with self.subTest(required=required): self.assertIn(required,block)
+        self.assertIn('config/godot-source.json',block)
+        self.assertLess(block.index('rev-parse HEAD'),block.index('cd "$native_source"'))
+        self.assertLess(block.index('cd "$native_source"'),block.index('bash tools/validate_live_connections.sh'))
+
     def test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload(self):
         build=job(self.workflow,'verify-and-build')
         self.assertIn("LUMO_SPLIT_PER_ABI: '1'",build)

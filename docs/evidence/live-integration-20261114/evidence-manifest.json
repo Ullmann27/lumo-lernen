@@ -2,8 +2,8 @@
   "scope": "Original compact QA evidence files; this manifest excludes itself. No large CI logs or rendered PNG bytes are duplicated.",
   "files": {
     "README.md": {
-      "bytes": 4126,
-      "sha256": "384e049b51b7673d876fe6461698894eccabb9a54940689cb13f845207aae3e2"
+      "bytes": 5061,
+      "sha256": "2f650414785678b576e67252c99498bb287bae256aab46caa47e6695ff75da1e"
     },
     "c4-captures-manifest.json": {
       "bytes": 1541,
@@ -16,6 +16,30 @@
     "c4-widget-integration-run.log": {
       "bytes": 8509,
       "sha256": "99b215dcc16e0cbaaaa046f791f454c009bc590228382b3c8c2f280906cbc6c9"
+    },
+    "live-gate-actionlint.json": {
+      "bytes": 900,
+      "sha256": "d997c03068a2fcac98ceeebbb9940199cecf5eacb4661b3736038e001f47e066"
+    },
+    "live-gate-actionlint.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "live-gate-green.json": {
+      "bytes": 2323,
+      "sha256": "9518d5f2de4cc7e9fd6e2cd21839166b10ccada0a3df16aa2c26a2280fa368ac"
+    },
+    "live-gate-green.log": {
+      "bytes": 17524,
+      "sha256": "b11129b6aef26527acff5e15043b6c72d95e10824c91adcf345143e43fabd0e6"
+    },
+    "live-gate-red.json": {
+      "bytes": 786,
+      "sha256": "70a06465207813a682d5e110cd9d83035385c801dcd4caa2b6794c72c998d152"
+    },
+    "live-gate-red.log": {
+      "bytes": 3318,
+      "sha256": "e2e71a884dbaa5b5140820998cc7933c950b325e1920451c36b7c6a9c009e177"
     },
     "pr491-original-flutter-failures.json": {
       "bytes": 910,
@@ -39,7 +63,7 @@
     },
     "tested-source-files.json": {
       "bytes": 2366,
-      "sha256": "9d5e2328b38044fb8ae77ccd6f9b5294fa6e5c3b1cc2c06f2c978693eedb44a7"
+      "sha256": "4f2a0d5a14e073346497d131ae7d1124aa8c953e700a33c7bb419ea816ec7ed3"
     },
     "unchanged-apk-fixture-recovered-green.json": {
       "bytes": 819,

@@ -132,6 +132,18 @@ class OriginalAcceptanceTests(unittest.TestCase):
                 self.check()
             obj[key] = previous
 
+    def test_reported_build_success_cannot_hide_missing_or_skipped_live_connections(self):
+        label = 'Verify connected dream ambience and garden on exact native source'
+        build = next(row for row in self.jobs['jobs'] if row['name'] == 'verify-and-build')
+        original = copy.deepcopy(build['steps'])
+        for state in ('missing', 'skipped'):
+            build['steps'] = [step for step in original if step['name'] != label]
+            if state == 'skipped':
+                build['steps'].append({'name': label, 'status': 'completed', 'conclusion': 'skipped'})
+            with self.subTest(state=state), self.assertRaisesRegex(
+                    ValueError, 'Actual required step missing or skipped: ' + label):
+                self.check()
+
     def test_incomplete_duplicate_or_extra_jobs_cannot_hide_an_unchecked_gate(self):
         original = copy.deepcopy(self.jobs)
         for changed in ({'total_count': 8, 'jobs': self.jobs['jobs']},

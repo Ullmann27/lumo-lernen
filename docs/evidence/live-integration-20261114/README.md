@@ -15,8 +15,9 @@ product changes are contained in the QA repair branch.
 | Historical APK diagnostic | Original test reproduced one error; repaired fixture and direct neighbors passed all 47 tests | `unchanged-apk-fixture-recovered-red-source-bound.*`, `unchanged-apk-fixture-recovered-green.*` |
 | Android C4 evidence contracts | New integration branches first rejected by old helper; final four-branch contract and direct deadline/update neighbors passed all 51 tests | `pr493-android-evidence-red.*`, `pr493-four-branches-android-evidence-green.*` |
 | C4 Flutter tests | 44 passed, zero failures/skips, across seven files | `c4-widget-integration-run.*` |
-| Workflow/delivery contracts | Before the change, missing/skipped Return recovery was accepted and the new branch was blocked; final delivery/workflow/source-pin suite passed all 83 tests | `workflow-delivery-red.*`, `workflow-delivery-green.*` |
-| Workflow syntax and expressions | Installed actionlint 1.7.12 checked both changed workflows and returned zero with no diagnostics | `workflow-actionlint.*` |
+| Workflow/delivery contracts | Missing/skipped Return recovery was initially accepted and the new branch was blocked; that integration passed all 83 tests | `workflow-delivery-red.*`, `workflow-delivery-green.*` |
+| Additive Live Connections gate | Missing/skipped ambience/garden acceptance was initially accepted; final complete delivery/workflow/source-pin suite passed all 85 tests | `live-gate-red.*`, `live-gate-green.*` |
+| Workflow syntax and expressions | Installed actionlint 1.7.12 checked both changed workflows before and after the additive gate; both runs returned zero with no diagnostics | `workflow-actionlint.*`, `live-gate-actionlint.*` |
 
 The unchanged diagnostic production verifier remains historical. The fixture
 repair preserves its real helper/Git/APK checks. The two C4 test repairs exercise
@@ -30,8 +31,17 @@ agent-execution and live-integration branch names. The additional native Return
 regression runs after source import and before the real Dart/Godot two-process
 gate. Its exact successful step is mandatory in the delivery verifier: a green
 job cannot conceal that step being absent or skipped. Existing LIVE-branch and
-17-raster integration changes are preserved. This patch does not change the
-current or historical Native source pins.
+17-raster integration changes are preserved.
+
+The separate `Verify connected dream ambience and garden on exact native source`
+step follows the unchanged 52-mode execution block and precedes its artifact
+upload and the APK build. It checks the configured Native commit again, reuses
+the same native checkout, Python/Mesa/XDG environment, and calls
+`tools/validate_live_connections.sh` with original output under
+`acceptance-native/live` plus `acceptance-native/live-runner.log`. The exact
+successful step is mandatory in the final delivery verifier; missing and skipped
+counterexamples fail even when the enclosing build job reports success. This
+patch does not change the current or historical Native source pins.
 
 ## Original failing CI and rendered captures
 
@@ -54,7 +64,8 @@ The Python evidence checks use explicitly synthetic contract inputs. The
 Flutter native-route tests use their declared platform fixtures. These results
 do not establish an Android device run, a newly built APK, device performance,
 physical audio, or publication. The new native Return script has not been run
-by this workflow-editing task. The final combined Native source must still be
+by this workflow-editing task. The additive Live Connections script likewise
+requires its own actual native execution. The final combined Native source must still be
 pinned by the integration coordinator, and the complete build, Android tour,
 in-place update and delivery verification must execute on that combined source.
 

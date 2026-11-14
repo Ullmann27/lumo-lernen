@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_reported_build_success_cannot_hide_missing_or_skipped_live_connections",
+    "scripts.tests.test_connect_four_pipeline.WorkflowTests.test_live_connections_gate_reuses_exact_native_source_before_artifact_and_build",
+    "-v"
+  ],
+  "exit_code": 1,
+  "seconds": 0.14264385399292223,
+  "log_sha256": "e2e71a884dbaa5b5140820998cc7933c950b325e1920451c36b7c6a9c009e177",
+  "prior_checkpoint": "9db9c14978b95209b5430ae5a63d2e28065275dc",
+  "scope": "New additive Live Connections gate counterexamples before workflow/delivery wiring; original52-mode step and source pin unchanged."
+}
