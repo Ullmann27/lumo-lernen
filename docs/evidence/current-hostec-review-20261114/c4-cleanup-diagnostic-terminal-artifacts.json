@@ -1,0 +1,45 @@
+{
+  "total_count": 2,
+  "artifacts": [
+    {
+      "id": 14130249406,
+      "node_id": "MDg6QXJ0aWZhY3QxNDEzMDI0OTQwNg==",
+      "name": "lumo-6b-roundtrip-diagnostic-main-api35",
+      "size_in_bytes": 173452037,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14130249406",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14130249406/zip",
+      "expired": false,
+      "digest": "sha256:4177ce50b507c715d0fe4285859e6380aa8a1380ce68f263964e0587f4c210e8",
+      "created_at": "2026-11-14T20:22:11Z",
+      "updated_at": "2026-11-14T20:22:11Z",
+      "expires_at": "2026-12-14T20:22:02Z",
+      "workflow_run": {
+        "id": 43634531860,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "qa/lumo-village-return-6b-20261114",
+        "head_sha": "3cae9c407a6eef1970e24bc9a61516b13fe0af52"
+      }
+    },
+    {
+      "id": 14129034945,
+      "node_id": "MDg6QXJ0aWZhY3QxNDEyOTAzNDk0NQ==",
+      "name": "lumo-6b-roundtrip-diagnostic-probe-contracts",
+      "size_in_bytes": 4994,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14129034945",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14129034945/zip",
+      "expired": false,
+      "digest": "sha256:75430010b2ce24e17b74ef76ff31ee76a4519f638b807572ea83226ed0e7a94e",
+      "created_at": "2026-11-14T19:54:56Z",
+      "updated_at": "2026-11-14T19:54:56Z",
+      "expires_at": "2026-12-14T19:54:56Z",
+      "workflow_run": {
+        "id": 43634531860,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "qa/lumo-village-return-6b-20261114",
+        "head_sha": "3cae9c407a6eef1970e24bc9a61516b13fe0af52"
+      }
+    }
+  ]
+}

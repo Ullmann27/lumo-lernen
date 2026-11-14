@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "identity": {
+    "qa": "3cae9c407a6eef1970e24bc9a61516b13fe0af52",
+    "tree": "16dbaa5024c0bba79c9ab8a9d23b9025a0c2f5d7",
+    "files": 5010,
+    "parent": "a7de740901d436d35aedd6507a0738b7fcb5d5e9",
+    "branch": "qa/lumo-village-return-6b-20261114",
+    "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "run": 43634531860,
+    "seven_job_acceptance": false,
+    "attempt": 1
+  },
+  "run": 43634531860,
+  "attempt": 1,
+  "job": 132568698911,
+  "status": "CI_SUCCESS_ORIGINAL_REPLAY_PENDING",
+  "completed_at": "2026-11-14T20:22:15Z",
+  "original_job_log_downloads_by_root": 1,
+  "original_log_chars": 1641357,
+  "original_log_lines": 4205,
+  "actual_markers": [
+    {
+      "line": 639,
+      "text": "UNCHANGED_6B_APK_DIAGNOSTIC BOUND: APK source 6b3047b7979dfb86d837e74a21b0fd890e4f9e66; QA source 3cae9c407a6eef1970e24bc9a61516b13fe0af52"
+    },
+    {
+      "line": 3875,
+      "text": "[DiagnosticVillageAndroid] {\"status\": \"PASS\", \"error\": null}"
+    },
+    {
+      "line": 4114,
+      "text": "[DiagnosticConnectFourAndroid] {\"status\": \"PASS\", \"error\": null, \"observations\": 25, \"transitions\": 6}"
+    },
+    {
+      "line": 4115,
+      "text": "UNCHANGED_6B_APK_DIAGNOSTIC BOUND: APK source 6b3047b7979dfb86d837e74a21b0fd890e4f9e66; QA source 3cae9c407a6eef1970e24bc9a61516b13fe0af52"
+    }
+  ],
+  "original_village_result": {
+    "status": "PASS",
+    "error": null
+  },
+  "original_c4_result": {
+    "status": "PASS",
+    "error": null,
+    "observations": 25,
+    "transitions": 6
+  },
+  "artifact": {
+    "id": 14130249406,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEzMDI0OTQwNg==",
+    "name": "lumo-6b-roundtrip-diagnostic-main-api35",
+    "size_in_bytes": 173452037,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14130249406",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14130249406/zip",
+    "expired": false,
+    "digest": "sha256:4177ce50b507c715d0fe4285859e6380aa8a1380ce68f263964e0587f4c210e8",
+    "created_at": "2026-11-14T20:22:11Z",
+    "updated_at": "2026-11-14T20:22:11Z",
+    "expires_at": "2026-12-14T20:22:02Z",
+    "workflow_run": {
+      "id": 43634531860,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "qa/lumo-village-return-6b-20261114",
+      "head_sha": "3cae9c407a6eef1970e24bc9a61516b13fe0af52"
+    }
+  },
+  "current_integrated_host": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "offline_reader_owner": "/root/godot_integration",
+  "offline_reader_result": "pending",
+  "main_update_apk_acceptance": false,
+  "scope": "Separate unchanged-6b APK diagnosis with QA3cae; preserve exact original CI success, but do not substitute it for the current ec full seven-job acceptance or invent later cleanup timings, screenshots or a C4 win."
+}
