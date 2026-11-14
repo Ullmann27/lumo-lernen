@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "kind": "original_current_learning_reader_replay",
+  "performed": true,
+  "passed": true,
+  "started_at_utc": "2026-11-14T13:32:56.217794+00:00",
+  "reader_elapsed_seconds": 0.15773894100038888,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "host": "1375da193af0152af64f91d86577aa9768cd50db",
+  "tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+  "run_id": 43599456596,
+  "run_attempt": 1,
+  "artifact_id": 14115902201,
+  "archive": {
+    "bytes": 212134,
+    "sha256": "7489e6509517754b5fcf0ef17d15779f9aa0b0782a80e760ea438f2044722e78",
+    "git_blob": "0448f1ec5beddf65fc60e2691587816e1ef44085"
+  },
+  "reader": {
+    "bytes": 57147,
+    "sha256": "f1237d9f4e48ed0cf3253b67768d1d4aad947be32da2158be7df6b1f8cb6dc2a",
+    "git_blob": "18fdff098115570b69fc43ccfe6a3d573605e55b"
+  },
+  "result": {
+    "family_count": 236,
+    "generated_samples": 7552,
+    "structural_issues": 0,
+    "official_curriculum_approval": false,
+    "all_variants_enumerated": false,
+    "scope": "Current core ExerciseFactory samples only; no semantic, Android or 3D approval",
+    "originals": {
+      "summary.json": {
+        "bytes": 371,
+        "sha256": "018c376e1a7c9b047b0625f90cbb0c27528c2c80ccc4907bca678f107e6c5e67"
+      },
+      "task-families.json": {
+        "bytes": 34450,
+        "sha256": "27431f158ebb1a7bff323f989d4da9064f1ba20c5e7046c46537d805c574d703"
+      },
+      "task-samples.jsonl": {
+        "bytes": 3174060,
+        "sha256": "271445137ea3a6e8f821cc31f49d876ec1d11aacac47be898638d04c2bcd3051"
+      },
+      "issues.json": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "audit.stdout.log": {
+        "bytes": 372,
+        "sha256": "ac585dfc0dc3b160279d05a38a493a2828569cb7b1e9eb68961f25cb251fa184"
+      },
+      "audit.stderr.log": {
+        "bytes": 44,
+        "sha256": "dd35d399349c10aa3a96d7b290940c947560d0a57270cc0c46cfa73c85128ef6"
+      }
+    },
+    "source": {
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "files": {
+        ".github/workflows/lumo-connect-four-2020.yml": {
+          "bytes": 47633,
+          "sha256": "37a200af022777ab2fc3432186415e1e195084e7f2a8a8389a0ee095ce3ebfbd"
+        },
+        "lib/core/school_exercise_generator.dart": {
+          "bytes": 83871,
+          "sha256": "cf7dfba7e5d587be0eef4cbec853f016211ee0715b460f1c365064142165c778"
+        },
+        "pubspec.lock": {
+          "bytes": 24467,
+          "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97"
+        },
+        "pubspec.yaml": {
+          "bytes": 2675,
+          "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5"
+        },
+        "test/learning/learning_exact_selection_test.dart": {
+          "bytes": 2701,
+          "sha256": "c7c29db55aa5121ae6f9d23bde48e5a6f220ed5218efa22fcb1803d0352755e7"
+        },
+        "tools/audit_learning_tasks_all_grades.dart": {
+          "bytes": 4475,
+          "sha256": "93c551fee28609a4cb7348d843938020f292e88a1af7649970c1a80b795b4a75"
+        }
+      },
+      "tree": "ebaf259b92a4c7923782e195c3a932112ce81027"
+    },
+    "binding": {
+      "bytes": 2257,
+      "sha256": "b55c7ffd5b177be364445b5b163b4c01fb394117f5d150ae190d28826cd842be"
+    }
+  },
+  "originals_before_and_after_identical": true,
+  "original_files": {
+    "audit.stdout.log": {
+      "bytes": 372,
+      "sha256": "ac585dfc0dc3b160279d05a38a493a2828569cb7b1e9eb68961f25cb251fa184",
+      "git_blob": "8f8bfd68f51c47afb3457ab4d79d1ae0ebca628c"
+    },
+    "issues.json": {
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "git_blob": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    "audit.stderr.log": {
+      "bytes": 44,
+      "sha256": "dd35d399349c10aa3a96d7b290940c947560d0a57270cc0c46cfa73c85128ef6",
+      "git_blob": "2450d230449b1ff52016afad625c91bfebef1b04"
+    },
+    "source-binding.json": {
+      "bytes": 2257,
+      "sha256": "b55c7ffd5b177be364445b5b163b4c01fb394117f5d150ae190d28826cd842be",
+      "git_blob": "82bf63f2d7ed123e6855c26e1d60f794d40b92c3"
+    },
+    "summary.json": {
+      "bytes": 371,
+      "sha256": "018c376e1a7c9b047b0625f90cbb0c27528c2c80ccc4907bca678f107e6c5e67",
+      "git_blob": "ea8c91f4239d3efe0665823a6d1a59dfe815fb0f"
+    },
+    "task-families.json": {
+      "bytes": 34450,
+      "sha256": "27431f158ebb1a7bff323f989d4da9064f1ba20c5e7046c46537d805c574d703",
+      "git_blob": "ba78f4a10c19a282927dec14b55651cfdf7881b3"
+    },
+    "task-samples.jsonl": {
+      "bytes": 3174060,
+      "sha256": "271445137ea3a6e8f821cc31f49d876ec1d11aacac47be898638d04c2bcd3051",
+      "git_blob": "bdcab999267b1d63b7b94bdc9491e1ce0028d620"
+    }
+  },
+  "reader_and_tracked_source_unchanged": true,
+  "limitations": [
+    "Replays original structural audit evidence using the unchanged committed reader.",
+    "No new Dart, Flutter, Android, engine, renderer or application test was executed.",
+    "No semantic teaching quality, official curriculum approval or enumeration of every variant is inferred."
+  ]
+}

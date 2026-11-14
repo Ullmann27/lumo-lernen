@@ -1,0 +1,7 @@
+{
+  "chunk_id": "8062c5",
+  "wall_time_seconds": 0.00002474,
+  "exit_code": 0,
+  "original_token_count": 214,
+  "output": "{\n  \"performed\": true,\n  \"passed\": true,\n  \"source_bindings\": {\n    \"host\": {\n      \"head\": \"1375da193af0152af64f91d86577aa9768cd50db\",\n      \"tree\": \"ebaf259b92a4c7923782e195c3a932112ce81027\",\n      \"file_count\": 447,\n      \"exact_path_mode_blob_size_match\": true\n    },\n    \"native\": {\n      \"head\": \"e2d15dbc5f3709306decb139eeb70a1cf30c0b73\",\n      \"tree\": \"ea0f73ae6aad8792a963cadaa483c290a2f2a62e\",\n      \"file_count\": 1256,\n      \"exact_path_mode_blob_size_match\": true\n    }\n  },\n  \"native_checks\": 170,\n  \"native_errors\": [],\n  \"frame_count\": 250,\n  \"validated_png_count\": 259,\n  \"original_process_exit_codes\": {\n    \"dart\": 0,\n    \"godot\": 0\n  },\n  \"all_original_hashes_unchanged\": true,\n  \"final_ack\": 23.0,\n  \"final_revision\": 33.0,\n  \"recording_format_fps\": 24,\n  \"measured_device_fps\": false,\n  \"reader_elapsed_seconds\": 2.3689092589997927\n}\n"
+}

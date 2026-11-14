@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "kind": "current_runtime_original_readonly_verification",
+  "host": "1375da193af0152af64f91d86577aa9768cd50db",
+  "host_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+  "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+  "run_id": 43599456596,
+  "run_attempt": 1,
+  "job_id": 132460874104,
+  "artifact_id": 14115597521,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "pillow": "13.0.0",
+  "performed": true,
+  "passed": true,
+  "scope": "Original JSON/log/image/source-metadata verification only. No renderer, engine, Flutter test or new game run.",
+  "archive": {
+    "bytes": 22157468,
+    "sha256": "dec176c035f5183ce2fbd33f78e95cdb55d7b9b58f16841e3ac34bfee80be836",
+    "git_blob": "31780181353746c7736d81e5a058d458486b49fc"
+  },
+  "archive_file_count": 399,
+  "all_original_hashes_unchanged": true,
+  "source_bindings": {
+    "host": {
+      "head": "1375da193af0152af64f91d86577aa9768cd50db",
+      "tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+      "file_count": 447,
+      "exact_path_mode_blob_size_match": true
+    },
+    "native": {
+      "head": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+      "file_count": 1256,
+      "exact_path_mode_blob_size_match": true
+    }
+  },
+  "source_snapshots_byte_equal": true,
+  "source_snapshot": {
+    "bytes": 476939,
+    "sha256": "353356ec89c4a4d13ae12b4ddcaa16779a607c1625f8b838061d6a9a44b9f202",
+    "git_blob": "d1ddbeeba0fbff75bde4bbf71ce380c3b10c3af8"
+  },
+  "helper": {
+    "path": "scripts/run_connect_four_runtime.py",
+    "bytes": 15683,
+    "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b",
+    "git_blob": "36d93ed0908705e339346bf5ef451cf047b641b5"
+  },
+  "actual_pure_calls": [
+    "validate_native_log(runtime/original-godot.log)",
+    "validate_results(runtime, original_session)"
+  ],
+  "fresh_result_equals_original": true,
+  "fresh_native_log_equals_original": true,
+  "original_process_exit_codes": {
+    "dart": 0,
+    "godot": 0
+  },
+  "native_checks": 170,
+  "native_errors": [],
+  "frame_count": 250,
+  "validated_png_count": 259,
+  "observed_moving_frames": 90,
+  "observed_winning_frames": 43,
+  "recording_format_fps": 24,
+  "measured_device_fps": false,
+  "inputs": 54,
+  "touched_targets": 23,
+  "touched_target_labels": [
+    "Portrait single-player human move",
+    "Pause before mode choice",
+    "Start local two-player round",
+    "Drop 1 into column 1",
+    "Pause during actual falling motion",
+    "Resume actual paused drop",
+    "Drop 2 into column 7",
+    "Drop 3 into column 2",
+    "Pause real round",
+    "Resume same round",
+    "Drop 4 into column 7",
+    "Drop 5 into column 3",
+    "Drop 6 into column 6",
+    "Drop 7 into column 4",
+    "phone_portrait menu in real safe area",
+    "phone_portrait actual visible resume",
+    "fold_landscape menu in real safe area",
+    "fold_landscape actual visible resume",
+    "small_landscape menu in real safe area",
+    "small_landscape actual visible resume",
+    "small_portrait menu in real safe area",
+    "small_portrait actual visible resume",
+    "Return to exact Flutter caller"
+  ],
+  "dart_event_count": 33,
+  "last_dart_state_equals_native_final": true,
+  "final_ack": 23.0,
+  "final_revision": 33.0,
+  "final_exit": true,
+  "stars": 5,
+  "xp": 40,
+  "reopened_same_round": true,
+  "preferences_backend": "SharedPreferences test backend, same process reopen",
+  "single_player_human_and_bot_observed": true,
+  "reader_elapsed_seconds": 2.3689092589997927,
+  "limitations": [
+    "Source metadata was compared against the exact immutable remote Git trees, not presented as a new complete source checkout.",
+    "Original CI used local file transport, test SharedPreferences, desktop llvmpipe and declared Android-style insets; this is not an Android/device-FPS acceptance.",
+    "24 is the configured recording format, not measured rendering throughput.",
+    "The small landscape standard capture does not newly demonstrate scrolling to and activating restart/mode in the won modal. The separate R3 interaction proof is not transferred.",
+    "No complete main workflow success or APK/Play release approval is implied."
+  ]
+}

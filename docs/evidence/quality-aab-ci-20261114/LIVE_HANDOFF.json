@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14 13:27:50 UTC",
+  "recorded_at_utc": "2026-11-14 13:38:09 UTC",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -32,9 +32,55 @@
     "created_at": "2026-11-14T13:22:40Z",
     "trigger": "pull_request from reviewed quality-branch fast-forward",
     "job_budget_minutes": 150,
-    "last_read_utc": "2026-11-14 13:22:36 UTC"
+    "last_read_utc": "2026-11-14 13:38:09 UTC",
+    "main_job_id": 132461940239,
+    "main_job_started_at": "2026-11-14T13:26:58Z",
+    "main_job_deadline_utc": "2026-11-14T15:56:58Z",
+    "active_steps": [
+      {
+        "number": 13,
+        "name": "Full Flutter regression suite including every capture",
+        "started_at": "2026-11-14T13:28:28Z"
+      }
+    ]
   },
-  "completed_original_evidence": {},
+  "completed_original_evidence": {
+    "android_host_compile": {
+      "job_id": 132460873849,
+      "conclusion": "success",
+      "completed_at": "2026-11-14T13:26:57Z",
+      "original_log_blob": "b5e2fb120f666e17a368f33f9691df476806563b"
+    },
+    "c4_runtime": {
+      "job_id": 132460874104,
+      "conclusion": "success",
+      "completed_at": "2026-11-14T13:25:21Z",
+      "artifact": 14115597521,
+      "archive_sha256": "dec176c035f5183ce2fbd33f78e95cdb55d7b9b58f16841e3ac34bfee80be836",
+      "checks": 170,
+      "return_checks": 21,
+      "wisp_checks": 14,
+      "reader_exit_code": 0,
+      "original_files": 399,
+      "host_bound_files": 447,
+      "native_bound_files": 1256,
+      "root_viewed_pngs": 4,
+      "independent_viewed_pngs": 4,
+      "handoff_blob": "4fe36051ede3f97f84ee3278f651bfd4ff4f3c57",
+      "scope": "Desktop/file transport/test SharedPreferences; no Android or measured FPS acceptance."
+    },
+    "learning_audit": {
+      "artifact": 14115902201,
+      "archive_bytes": 212134,
+      "archive_sha256": "7489e6509517754b5fcf0ef17d15779f9aa0b0782a80e760ea438f2044722e78",
+      "whole_zip_blob": "0448f1ec5beddf65fc60e2691587816e1ef44085",
+      "actual_root_reader_exit_code": 0,
+      "families": 236,
+      "samples": 7552,
+      "structural_issues": 0,
+      "semantic_approval": false
+    }
+  },
   "remaining": [
     "Complete fresh exact1375 main/native/Flutter/contracts and source-bound acceptance",
     "Fresh signed ARM64 candidate identity/provenance and signature evidence",
@@ -99,7 +145,7 @@
     }
   },
   "next_repair": {
-    "scope": "Only verify-and-build timeout-minutes90 to150, preparation only",
+    "scope": "Activated minimal timeout-minutes 90 to 150 correction and matching existing test expectation; all other product/workflow/test bytes unchanged.",
     "reason": "Actual public job annotation explicitly says maximum1h30m0s exceeded",
     "all_existing_gates_preserved": true,
     "activated": true,

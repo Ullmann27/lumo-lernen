@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "kind": "root_review_of_current_completed_originals",
+  "recorded_at_utc": "2026-11-14 13:38:09 UTC",
+  "host": "1375da193af0152af64f91d86577aa9768cd50db",
+  "host_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+  "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "run_id": 43599456596,
+  "run_attempt": 1,
+  "read_original_job_logs": [
+    "0e0243629f4d21c681e96b61c3cce59f6c702231",
+    "b5e2fb120f666e17a368f33f9691df476806563b"
+  ],
+  "actual_job_results": {
+    "android_host_compile": "success",
+    "c4_runtime": "success",
+    "return_checks": 21,
+    "wisp_checks": 14
+  },
+  "read_runtime_reader_source": "49495bfda3ced5c1c2545744e4de32a3c61829b0",
+  "read_runtime_execution": "d2a1c9c7c25db58b1b03cc08aeba405da972d90f",
+  "runtime": {
+    "passed": true,
+    "native_checks": 170,
+    "native_errors": 0,
+    "original_exit_codes": {
+      "dart": 0,
+      "godot": 0
+    },
+    "all_original_files": 399,
+    "decoded_pngs": 259,
+    "host_bound_files": 447,
+    "native_bound_files": 1256,
+    "source_snapshots_byte_equal": true
+  },
+  "root_opened_original_pngs": [
+    "runtime/connect_four_empty.png",
+    "runtime/connect_four_win.png",
+    "runtime/connect_four_phone_portrait.png",
+    "runtime/connect_four_small_landscape.png"
+  ],
+  "root_visual_observations": [
+    "Empty and won 960x540 boards are complete within their original captures; title, status and seven column controls are visible.",
+    "The portrait capture shows all three result actions completely within the open dialog.",
+    "The 640x360 capture shows only view-board fully in the current scroll viewport. Restart and mode are outside that viewport; no new activation proof is inferred."
+  ],
+  "independent_visual_review_blob": "7e9768a77ff5d224aa94fce0ab77266600f18fb3",
+  "learning_audit": {
+    "actual_root_reader_execution": true,
+    "exit_code": 0,
+    "artifact_id": 14115902201,
+    "families": 236,
+    "samples": 7552,
+    "structural_issues": 0,
+    "original_files_unchanged": 7,
+    "reader_blob": "18fdff098115570b69fc43ccfe6a3d573605e55b"
+  },
+  "limits": [
+    "Only the named four runtime images were visually reviewed by Root.",
+    "The separate R3 interaction proof remains attached to its unchanged aab product checkout and is not represented as a new 1375 run.",
+    "24 FPS is the recording format, not measured device performance.",
+    "Structural learning samples are not semantic or official curriculum approval.",
+    "The main workflow is still running; no fresh APK, Android acceptance or Play approval is asserted."
+  ]
+}
