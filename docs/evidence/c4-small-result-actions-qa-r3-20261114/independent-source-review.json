@@ -1,0 +1,115 @@
+{
+  "schema": "lumo.c4-small-result-actions.r3-independent-source-review.v1",
+  "result": "No concrete blocker found in the final four-file preparation",
+  "review_method": "Read-only original R2/R3 file-byte comparison and complete changed-workflow review; unchanged runner and Dart bytes matched the previously independently reviewed sources",
+  "reviewed_files": [
+    {
+      "path": ".github/workflows/lumo-c4-small-result-actions-qa.yml",
+      "before": {
+        "bytes": 4486,
+        "sha256": "19db5547d2cd2d4f2d465d4f4d80d0a97b09aeffab8fd69a97682cabbe6e318f",
+        "git_blob": "b480b4664efa0d2d9dcd04c09d50a74848b9d9ca"
+      },
+      "after": {
+        "bytes": 4486,
+        "sha256": "5b1234d2ca77f4158597dea7b92aabc4d79070fc9c9cc69fcf8aa6b9fb40f326",
+        "git_blob": "5c02a9274bf91b428e1080ff58884af9e89d46a8"
+      },
+      "unchanged": false,
+      "diff": "--- r2/.github/workflows/lumo-c4-small-result-actions-qa.yml\n+++ r3/.github/workflows/lumo-c4-small-result-actions-qa.yml\n@@ -3,7 +3,7 @@\n on:\n   push:\n     branches:\n-      - qa/lumo-c4-small-result-actions-20261114-2708-r2\n+      - qa/lumo-c4-small-result-actions-20261114-2708-r3\n     paths:\n       - .github/workflows/lumo-c4-small-result-actions-qa.yml\n       - scripts/run_connect_four_small_result_actions_qa.py\n@@ -22,7 +22,7 @@\n     if: >-\n       github.repository == 'Ullmann27/lumo-lernen' &&\n       github.event_name == 'push' &&\n-      github.ref == 'refs/heads/qa/lumo-c4-small-result-actions-20261114-2708-r2'\n+      github.ref == 'refs/heads/qa/lumo-c4-small-result-actions-20261114-2708-r3'\n     runs-on: ubuntu-latest\n     timeout-minutes: 25\n     steps:\n"
+    },
+    {
+      "path": "scripts/run_connect_four_small_result_actions_qa.py",
+      "before": {
+        "bytes": 21346,
+        "sha256": "6ac05e59737a8ffb342a20024a25de08308278721550b4b106d0e54c66c57183",
+        "git_blob": "3ad5492989e2dcdee4303699e0fbbd2f04f3bbe3"
+      },
+      "after": {
+        "bytes": 21346,
+        "sha256": "6ac05e59737a8ffb342a20024a25de08308278721550b4b106d0e54c66c57183",
+        "git_blob": "3ad5492989e2dcdee4303699e0fbbd2f04f3bbe3"
+      },
+      "unchanged": true,
+      "diff": ""
+    },
+    {
+      "path": "test/games/connect_four_small_result_actions_qa.dart",
+      "before": {
+        "bytes": 9498,
+        "sha256": "427d21556c3597ca363ed16c2799bd9f933a0b3583ddead7b32464ce63c75b4b",
+        "git_blob": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e"
+      },
+      "after": {
+        "bytes": 9498,
+        "sha256": "427d21556c3597ca363ed16c2799bd9f933a0b3583ddead7b32464ce63c75b4b",
+        "git_blob": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e"
+      },
+      "unchanged": true,
+      "diff": ""
+    },
+    {
+      "path": "tools/qa/connect_four_small_result_actions_qa.gd",
+      "before": {
+        "bytes": 16807,
+        "sha256": "2c0e7d1aedec11140dd6004c4023a63e8671de973c2cd67986f6f6efb5c44469",
+        "git_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f"
+      },
+      "after": {
+        "bytes": 16823,
+        "sha256": "6a6370bc3a28da849d67cfaaf46768e2bf02298306972b0c6e716b0c7765dbf3",
+        "git_blob": "1b474002b3b93db9cae53a19c90fe75cb80c0604"
+      },
+      "unchanged": false,
+      "diff": "--- r2/tools/qa/connect_four_small_result_actions_qa.gd\n+++ r3/tools/qa/connect_four_small_result_actions_qa.gd\n@@ -125,10 +125,10 @@\n \t\tand value.get(\"twoPlayers\") == table._state.twoPlayers\n \t\tand value.get(\"rewarded\") == table._state.rewarded\n \t\tand value.get(\"columns\") == table._state.columns\n-\t\tand value.get(\"window_px\") == [640, 360]\n-\t\tand value.get(\"viewport_px\") == [640, 360]\n+\t\tand value.get(\"window_px\") == [640.0, 360.0]\n+\t\tand value.get(\"viewport_px\") == [640.0, 360.0]\n \t\tand absf(float(value.get(\"density\", 0.0)) - 1.0) < 0.0001\n-\t\tand value.get(\"safe_rect\") == [0, 24, 640, 312]\n+\t\tand value.get(\"safe_rect\") == [0.0, 24.0, 640.0, 312.0]\n \t)\n \n \n"
+    }
+  ],
+  "exact_native_candidate_matches_minimal_tested_function": true,
+  "unchanged_frozen_production": {
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+  },
+  "findings": [
+    "The only Native QA change is three INT-array literals becoming numerically identical FLOAT-array literals in _layout_matches.",
+    "All geometry values, density tolerance, source/state/layout sequence binding, ACK checks and touch/scroll/capture assertions remain unchanged.",
+    "The workflow changes only its exact dedicated push-branch filter and matching job ref condition from r2 to r3.",
+    "The pinned Host and Native product refs, read-only workflow permissions, source preflight and source-before/after identity checks remain unchanged.",
+    "The R2 runner with tightly bound UID sidecar metadata is byte-identical.",
+    "The Dart request/event/reward assertions are byte-identical."
+  ],
+  "executed_minimal_reproduction": {
+    "manifest_path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction.json",
+    "manifest_git_blob": "fff0b599f31e82141b091429024682381457d766",
+    "red": {
+      "checks": 15,
+      "failures": 1,
+      "exit_code": 1,
+      "sole_failed_case": "exact_geometry"
+    },
+    "green": {
+      "checks": 15,
+      "failures": 0,
+      "exit_code": 0
+    },
+    "identical_cases_inputs_expectations": true,
+    "fourteen_incorrect_geometry_or_structure_cases_still_rejected": true,
+    "source_before_after_identical": true,
+    "scope": "Only two small headless SceneTree JSON/type reproductions using the exact extracted predicate and synthetic layout metadata. No game scene/rendered capture/input or Android runtime.",
+    "no_additional_execution_for_final_source_review": true
+  },
+  "prior_reviews": [
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/independent-uid-review.json",
+      "git_blob": "8306bef90672946976f6714e91ce9ee148a94d86"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/independent-failure-review.json",
+      "git_blob": "653f6be25398506e27565bbaa32dfafaea6878af"
+    }
+  ],
+  "limitations": [
+    "This review covers the materialized four-file candidate; creating and verifying the dedicated direct-Host-child Git commit/ref remains the integrating parent's/root's action.",
+    "No actual success of either 640x360 lower result-dialog action, no original new captures and no Android/performance result are inferred from the minimal JSON reproduction.",
+    "A later real QA execution is still required."
+  ]
+}
