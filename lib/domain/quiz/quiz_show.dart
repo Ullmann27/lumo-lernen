@@ -8,8 +8,6 @@
 ///   - falsche Antwort sichert die zuletzt erreichte Stern-Stufe
 library;
 
-import 'package:flutter/foundation.dart';
-
 /// Schwierigkeit einer Quiz-Frage.
 enum QuizDifficulty {
   easy,
@@ -30,7 +28,6 @@ enum QuizJoker {
 }
 
 /// Eine einzelne Quiz-Frage mit 4 Antwortoptionen.
-@immutable
 class QuizQuestion {
   const QuizQuestion({
     required this.id,
@@ -62,7 +59,6 @@ class QuizQuestion {
 }
 
 /// Zustand des laufenden Quiz-Spiels.
-@immutable
 class QuizShowState {
   const QuizShowState({
     required this.questions,
@@ -229,9 +225,12 @@ class QuizShowEngine {
             .toList();
         final seed = _stableSeed('${s.currentQuestion.id}|5050');
         wrong.sort((a, b) => ((a + seed) % 7).compareTo((b + seed) % 7));
+        final hidden = wrong.take(2).toSet();
         return s.copyWith(
           usedJokers: used,
-          fiftyFiftyHiddenOptions: wrong.take(2).toSet(),
+          fiftyFiftyHiddenOptions: hidden,
+          // A removed answer cannot remain locked in behind a disabled button.
+          clearSelection: hidden.contains(s.selectedOption),
         );
       case QuizJoker.audience:
         return s.copyWith(

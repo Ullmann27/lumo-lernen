@@ -220,6 +220,25 @@ class RewardWalletRepository {
         ));
       });
 
+  /// The quiz authority uses its original milestone amounts with no XP.
+  /// This keeps the generic native-game reward cap unchanged.
+  Future<RewardWallet> awardQuizResult({
+    required String resultId,
+    required int stars,
+  }) =>
+      _transaction((current) async {
+        if (!RegExp(r'^quiz:[a-f0-9]{64}:[a-f0-9]{32}$').hasMatch(resultId) ||
+            !const {50, 200, 800, 5000}.contains(stars)) {
+          throw ArgumentError('Ungültiges Quizergebnis');
+        }
+        if (current.gameResultIds.contains(resultId)) return current;
+        return _commit(current.copyWith(
+          stars: (current.stars + stars).clamp(0, 999999),
+          totalEarnedStars: current.totalEarnedStars + stars,
+          gameResultIds: [...current.gameResultIds, resultId],
+        ));
+      });
+
   /// Cards reward, win sequence, and XP either all persist or all remain pending.
   Future<RewardWallet> awardLumoCardsResult({
     required bool won,

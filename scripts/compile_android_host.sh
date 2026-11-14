@@ -46,7 +46,9 @@ import subprocess
 required = ('MainActivity', 'LumoGameActivity', 'LumoHostPlugin', 'CardsTableBridge', 'CardsAuthorityService',
             'CardsAuthorityRegistry',
             'LumoLearningSpeech', 'LumoSpeechEnvelope', 'LumoOfflineSpeechBridge', 'LumoOfflineSpeechEngine',
-            'ConnectFourBridge', 'ConnectFourGameActivity', 'ConnectFourAuthorityService')
+            'ConnectFourBridge', 'ConnectFourGameActivity', 'ConnectFourAuthorityService',
+            'TableGameActivity', 'TableGamesHostPlugin', 'TableGamesBridge',
+            'TableAuthorityService', 'TableGameIntent')
 classes = {}
 for name in required:
     paths = list(Path('build/app').rglob(name + '.class'))
@@ -65,5 +67,5 @@ report = {'status': 'PASS', 'scope': 'Actual Android Kotlin/Java compilation onl
           'onnxruntime_android': json.loads(Path('config/lumo-offline-voice.json').read_text())['onnxruntime_version'],
           'classes': classes}
 Path('host-compile-evidence/result.json').write_text(json.dumps(report, indent=2) + '\n')
-print('[AndroidHostCompile] PASS: actual Kotlin/Java bytecode for native lifecycle, Cards/C4 IPC and local speech envelope')
+print('[AndroidHostCompile] PASS: actual Kotlin/Java bytecode for native lifecycle, Cards/C4/Memory/Quiz IPC and local speech envelope')
 PY

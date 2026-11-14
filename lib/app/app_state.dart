@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/app_settings.dart';
+import '../domain/games/memory_board.dart';
 import '../core/daily_mission_repository.dart';
 import '../core/learning_profile_engine.dart';
 import '../core/learning_journey.dart';
@@ -56,18 +57,22 @@ class _PendingRewardWrite {
     this.xp = 0,
     this.cardsWon,
     this.resultId,
+    this.quizMilestone = false,
   });
   final int stars;
   final int xp;
   final bool? cardsWon;
   final String? resultId;
+  final bool quizMilestone;
 
   Future<RewardWallet> persist(RewardWalletRepository wallet) =>
       cardsWon != null
           ? wallet.awardLumoCardsResult(won: cardsWon!, resultId: resultId)
-          : resultId == null
-              ? wallet.applyRewardDelta(starsDelta: stars, xpDelta: xp)
-              : wallet.awardGameResult(resultId: resultId!, stars: stars, xp: xp);
+          : quizMilestone
+              ? wallet.awardQuizResult(resultId: resultId!, stars: stars)
+              : resultId == null
+                  ? wallet.applyRewardDelta(starsDelta: stars, xpDelta: xp)
+                  : wallet.awardGameResult(resultId: resultId!, stars: stars, xp: xp);
 }
 
 enum LumoSessionKind { quickPractice, exerciseSet, test, schoolwork, tutoring }
@@ -1293,6 +1298,68 @@ class LumoAppState extends ChangeNotifier {
     await flushRewards();
     guard();
     _rewardWrites.add(_PendingRewardWrite(stars: stars, xp: xp, resultId: resultId));
+    await _beginRewardDrain();
+    guard();
+  }
+
+
+  /// Preserve the existing Memory reward formula with an owner-bound result ID.
+  Future<void> recordMemoryResult({
+    required LearningProfileLease lease,
+    required String resultId,
+    required String difficulty,
+    required int kindPairs,
+    required int lumoPairs,
+  }) async {
+    final level = MemoryDifficulty.values.where((v) => v.name == difficulty);
+    if (level.length != 1 || kindPairs < 0 || lumoPairs < 0 ||
+        kindPairs + lumoPairs != level.single.pairs) {
+      throw StateError('Memory-Ergebnis nicht freigegeben');
+    }
+    final stars = level.single.starsFor(
+        won: kindPairs > lumoPairs, draw: kindPairs == lumoPairs);
+    await _recordTableGameResult(lease: lease, resultId: resultId,
+        game: 'memory', stars: stars, xp: stars * 8);
+  }
+
+  /// Quiz milestones use the existing 50/200/800/5000-star amounts and no XP.
+  Future<void> recordQuizShowResult({
+    required LearningProfileLease lease,
+    required String resultId,
+    required int stars,
+  }) async {
+    if (!const {50, 200, 800, 5000}.contains(stars)) {
+      throw StateError('Quiz-Ergebnis nicht freigegeben');
+    }
+    await _recordTableGameResult(lease: lease, resultId: resultId,
+        game: 'quiz', stars: stars, xp: 0);
+  }
+
+  Future<void> _recordTableGameResult({
+    required LearningProfileLease lease,
+    required String resultId,
+    required String game,
+    required int stars,
+    required int xp,
+  }) async {
+    final owner = sha256.convert(utf8.encode(lease.studentId)).toString();
+    void guard() {
+      if (!canUseLearningLease(lease) ||
+          lease.generation != _profileGeneration ||
+          school.cachedActiveStudentId !=
+              (lease.logStudentId == 'self' ? null : lease.studentId) ||
+          _disposed || _resetting ||
+          !const {'memory', 'quiz'}.contains(game) ||
+          !RegExp('^$game:$owner:[a-f0-9]{32}\$').hasMatch(resultId)) {
+        throw StateError('Spielergebnis gehört nicht zum aktiven Kinderprofil');
+      }
+    }
+    guard();
+    await flushRewards();
+    guard();
+    _rewardWrites.add(_PendingRewardWrite(
+        stars: stars, xp: xp, resultId: resultId,
+        quizMilestone: game == 'quiz'));
     await _beginRewardDrain();
     guard();
   }

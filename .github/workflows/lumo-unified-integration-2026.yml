@@ -58,7 +58,8 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify-and-build:
-    if: github.head_ref != 'chatgpt/lumo-nextgen-20261113' && github.ref_name != 'chatgpt/lumo-nextgen-20261113' && github.head_ref != 'chatgpt/lumo-2018-android-acceptance-20261113' && github.ref_name != 'chatgpt/lumo-2018-android-acceptance-20261113'
+    # Source-only feature review must not export an APK with the previous native pin.
+    if: github.head_ref != 'chatgpt/lumo-nextgen-feature-20261114' && github.ref_name != 'chatgpt/lumo-nextgen-feature-20261114' && github.head_ref != 'chatgpt/lumo-nextgen-20261113' && github.ref_name != 'chatgpt/lumo-nextgen-20261113' && github.head_ref != 'chatgpt/lumo-2018-android-acceptance-20261113' && github.ref_name != 'chatgpt/lumo-2018-android-acceptance-20261113'
     runs-on: ubuntu-latest
     timeout-minutes: 75
     env:
