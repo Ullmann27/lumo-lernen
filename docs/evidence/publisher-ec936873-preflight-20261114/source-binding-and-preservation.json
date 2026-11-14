@@ -1,0 +1,101 @@
+{
+  "old_publisher_commit": "1dbf11115923fa5c2ef8f30d8a2ecf990d91e5db",
+  "old_publisher_blob": "712529847807e1d0a7135654703a13b7a63a1e1e",
+  "new_source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "new_source_tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+  "new_main_run": 43633922088,
+  "attempt": 1,
+  "records": [
+    {
+      "path": "lumo-live-2020-publish.yml",
+      "before_git_blob": "712529847807e1d0a7135654703a13b7a63a1e1e",
+      "after_git_blob": "ecbf779ab2e5ce2776fce6418e9419ce013f9b82",
+      "replacements": [
+        {
+          "before": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+          "after": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+          "count": 4
+        },
+        {
+          "before": "43628840534",
+          "after": "43633922088",
+          "count": 1
+        },
+        {
+          "before": "43628830465",
+          "after": "43633918165",
+          "count": 7
+        },
+        {
+          "before": "132550661600",
+          "after": "132566422728",
+          "count": 1
+        },
+        {
+          "before": "14126808268",
+          "after": "14129211522",
+          "count": 1
+        },
+        {
+          "before": "1169894",
+          "after": "1173118",
+          "count": 1
+        },
+        {
+          "before": "a6ae2c6ae9e4b0e8b600bdd54687288ec6d229ae2cf20b28df128c28658de805",
+          "after": "b37096982a441331ff6ee43810e9a5b8fdb5a04d71e06a58884f007be8be0f50",
+          "count": 1
+        }
+      ],
+      "inverse_replacement_byte_identical": true
+    },
+    {
+      "path": "verify_additional_acceptance.py",
+      "before_git_blob": "fec13f21dff004b6d7864cc2369293d03ad1b2cf",
+      "after_git_blob": "694654cb80a7fc7aa62d1592c093f7da6c17518f",
+      "replacements": [
+        {
+          "before": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+          "after": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+          "count": 2
+        },
+        {
+          "before": "43628840534",
+          "after": "43633922088",
+          "count": 0
+        },
+        {
+          "before": "43628830465",
+          "after": "43633918165",
+          "count": 1
+        },
+        {
+          "before": "132550661600",
+          "after": "132566422728",
+          "count": 1
+        },
+        {
+          "before": "14126808268",
+          "after": "14129211522",
+          "count": 1
+        },
+        {
+          "before": "1169894",
+          "after": "1173118",
+          "count": 1
+        },
+        {
+          "before": "a6ae2c6ae9e4b0e8b600bdd54687288ec6d229ae2cf20b28df128c28658de805",
+          "after": "b37096982a441331ff6ee43810e9a5b8fdb5a04d71e06a58884f007be8be0f50",
+          "count": 1
+        }
+      ],
+      "inverse_replacement_byte_identical": true
+    }
+  ],
+  "binding_field_order_preserved": true,
+  "native_binding_byte_semantics_unchanged": true,
+  "additional_test_file_byte_identical": true,
+  "tests_git_blob": "5cac6f3b404554d3c7b04f07874c811525e5d270",
+  "independent_root_derived_workflow_blob_matches": "ecbf779ab2e5ce2776fce6418e9419ce013f9b82"
+}

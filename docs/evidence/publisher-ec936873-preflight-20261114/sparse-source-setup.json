@@ -1,0 +1,43 @@
+[
+  {
+    "argv": [
+      "git",
+      "clone",
+      "--shared",
+      "--no-checkout",
+      "--quiet",
+      "/workspace/scratch/909ddb52fe7b/lumo-accepted-source",
+      "/workspace/scratch/909ddb52fe7b/publisher-preparation-ec936873/exact-source"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/workspace/scratch/909ddb52fe7b/publisher-preparation-ec936873/exact-source",
+      "sparse-checkout",
+      "set",
+      "--no-cone",
+      "/config/godot-source.json"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/workspace/scratch/909ddb52fe7b/publisher-preparation-ec936873/exact-source",
+      "checkout",
+      "--detach",
+      "ec936873a45ffeb9ab347cc6bdb10951e38fac5e"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "Previous HEAD position was 1e22d245 Integrate the complete Lumo Live, Dream and current quality sources\nHEAD is now at ec936873 fix: await actual C4 session cleanup within the shared return deadline\n"
+  }
+]

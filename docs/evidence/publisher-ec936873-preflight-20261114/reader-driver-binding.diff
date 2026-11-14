@@ -1,0 +1,24 @@
+--- reader04.py
++++ readerec.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Read the exact accepted 04 original archives without executing games or Android."""
++"""Read the exact accepted ec original archives without executing games or Android."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -15,11 +15,11 @@
+ from types import SimpleNamespace
+ import zipfile
+ 
+-HOST = "04a8e850d4c198e16ff758df614ce6e53eab4524"
+-HOST_TREE = "80a797c2b547ed72fc496600f7959f6ac4f5f9e6"
++HOST = "ec936873a45ffeb9ab347cc6bdb10951e38fac5e"
++HOST_TREE = "c7d6541e474f8d8ba64b204beb6466c811fb246b"
+ NATIVE = "84789d0c2c6fb4b6ecd2897ce1951b89f958b604"
+ NATIVE_TREE = "91cc8fc1c6f8a36336b7ac9a12585284a983a6f6"
+-RUN = 43628840534
++RUN = 43633922088
+ ATTEMPT = 1
+ PR = 497
+ REPOSITORY = "Ullmann27/lumo-lernen"

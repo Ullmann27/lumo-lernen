@@ -1,0 +1,27 @@
+{
+  "before": {
+    "head": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+    "tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+    "status": "",
+    "pin_sha256": "dbeaddce16edd1d77f31a3e40ba5d8426b03a61a057928fee2ebb6c020cdb495",
+    "index_sha256": "bd9164ca27fd896b0ac85cb0e52d58613d6f856b66e3b57c5907e00604326eae"
+  },
+  "after": {
+    "head": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+    "tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+    "status": "",
+    "pin_sha256": "dbeaddce16edd1d77f31a3e40ba5d8426b03a61a057928fee2ebb6c020cdb495",
+    "index_sha256": "bd9164ca27fd896b0ac85cb0e52d58613d6f856b66e3b57c5907e00604326eae"
+  },
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "/workspace/scratch/909ddb52fe7b/publisher-preparation-ec936873/verify_additional_acceptance.py",
+    "--metadata",
+    "/workspace/scratch/909ddb52fe7b/publisher-preparation-ec936873/original-metadata",
+    "--output",
+    "/workspace/scratch/909ddb52fe7b/publisher-preparation-ec936873/additional-guard-original-metadata-replay.json"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.39186508799684816
+}

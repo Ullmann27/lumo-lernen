@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "status": "FRESH_ADDITIONAL_METADATA_MATCHES_REVIEWED_ORIGINALS",
+  "checks": {
+    "native": {
+      "repository": "Ullmann27/lumo-godot",
+      "source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+      "run": 43613299144,
+      "attempt": 1,
+      "job": 132502826135,
+      "artifact": {
+        "id": 14122180486,
+        "name": "lumo-discovery-connections-native-evidence-43613299144-1",
+        "bytes": 66954397,
+        "digest": "sha256:af8a7b6f08d59f52dd25c2b061b4119b369f3793845132bb39ef9fca6b0446f0"
+      },
+      "all_exact_original_steps_successful": true
+    },
+    "feature": {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+      "run": 43633918165,
+      "attempt": 1,
+      "job": 132566422728,
+      "artifact": {
+        "id": 14129211522,
+        "name": "lumo-feature-connections-ec936873a45ffeb9ab347cc6bdb10951e38fac5e-attempt-1",
+        "bytes": 1173118,
+        "digest": "sha256:b37096982a441331ff6ee43810e9a5b8fdb5a04d71e06a58884f007be8be0f50"
+      },
+      "all_exact_original_steps_successful": true
+    }
+  },
+  "metadata_sha256": {
+    "native-run.json": "bb87e07394bdeb865f04c826477b8bc8a0ce0a33c87ae822d6cb47dbfa5e664e",
+    "native-jobs.json": "005d56d9d2639f04d6b1df2809eb1fcc8948f790823ff5926d4408eb78ad8ce5",
+    "native-artifacts.json": "e62496ed88d18f296ea0c132f3fb682298aeef80e5849b584f88df5e074e137a",
+    "feature-run.json": "cf996591c2f4b565fc5e48aff59095dec0094a4ea85eec6dd2f0d599f0610d2a",
+    "feature-jobs.json": "59915a161001850deb4cbd19236052aa939bb2a67cc5568325a5a4ef2b25ffb6",
+    "feature-artifacts.json": "5a95274da06e12d4bbebf1968303743b635319b7b3ab855a940ef713e490bc9d"
+  },
+  "original_artifacts_replayed_here": false,
+  "host_source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604"
+}

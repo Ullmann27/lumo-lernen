@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "status": "PREPARED_INACTIVE_NOT_RELEASED",
+  "host_source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "host_tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+  "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "acceptance_run": 43633922088,
+  "attempt": 1,
+  "pull_request": 497,
+  "integration_branch": "integration/lumo-live-connections-20261114",
+  "activation_branch": "delivery/lumo-live-2020-20261114",
+  "checkpoint_branch": "checkpoint/lumo-live-publisher-ec936873-20261114",
+  "workflow": ".github/workflows/lumo-live-2020-publish.yml",
+  "workflow_blob": "ecbf779ab2e5ce2776fce6418e9419ce013f9b82",
+  "workflow_sha256": "d8419d37fccba50d4b4e6185b7b7b25c898624caee14deb21b0e699e1a153fc6",
+  "workflow_bytes": 30052,
+  "previous_publisher_commit": "1dbf11115923fa5c2ef8f30d8a2ecf990d91e5db",
+  "previous_publisher_blob": "712529847807e1d0a7135654703a13b7a63a1e1e",
+  "exact_binding_values_changed": 7,
+  "inverse_binding_replacement_byte_identical": true,
+  "bindings_shape_and_order_unchanged": true,
+  "native_additional_binding_unchanged": true,
+  "preserved_gates": [
+    "Exactly seven current mandatory jobs and the immutable source/run/attempt",
+    "Unchanged original delivery bundle and exactly eleven assets",
+    "Fresh original ARM64 signature/package/version/certificate/PCK/host/native verification before mutation",
+    "Exact additional Native and Feature original metadata at preflight and immediately before publish",
+    "Fresh source/PR/head and full release catalog/tag/draft vacancy checks",
+    "Fresh uploaded-draft check immediately before publishing",
+    "Public unauthenticated download with exact original byte verification"
+  ],
+  "additional_original_metadata_checks": {
+    "native": {
+      "repository": "Ullmann27/lumo-godot",
+      "source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+      "run": 43613299144,
+      "attempt": 1,
+      "job": 132502826135,
+      "artifact": {
+        "id": 14122180486,
+        "name": "lumo-discovery-connections-native-evidence-43613299144-1",
+        "bytes": 66954397,
+        "digest": "sha256:af8a7b6f08d59f52dd25c2b061b4119b369f3793845132bb39ef9fca6b0446f0"
+      },
+      "all_exact_original_steps_successful": true
+    },
+    "feature": {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+      "run": 43633918165,
+      "attempt": 1,
+      "job": 132566422728,
+      "artifact": {
+        "id": 14129211522,
+        "name": "lumo-feature-connections-ec936873a45ffeb9ab347cc6bdb10951e38fac5e-attempt-1",
+        "bytes": 1173118,
+        "digest": "sha256:b37096982a441331ff6ee43810e9a5b8fdb5a04d71e06a58884f007be8be0f50"
+      },
+      "all_exact_original_steps_successful": true
+    }
+  },
+  "verification": {
+    "contract_tests": 51,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "unittest_seconds": 0.06,
+    "test_file_unchanged_blob": "5cac6f3b404554d3c7b04f07874c811525e5d270",
+    "yaml_duplicate_keys": false,
+    "bash_blocks": 8,
+    "python_heredocs": 4,
+    "actionlint_exit": 0,
+    "actual_metadata_cli_exit": 0,
+    "cli_actual_git_head": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+    "cli_actual_git_tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+    "source_head_tree_pin_index_before_after_identical": true,
+    "main_workflow_and_apk_reader_not_executed_locally": true
+  },
+  "independent_reader_review": {
+    "schema": 1,
+    "scope": "Independent source comparison; no tests, archives, reader or publisher execution.",
+    "reader_checkpoint": "99faf8deee4b43594965ed7b9e172919fe6ef6aa",
+    "reader_tree": "660864f7b96bf2e19de8d6c1d5becd3fd3138749",
+    "reader_workflow_blob": "ed72f394fb7674a3e7ac960235c22cee82450477",
+    "publisher_workflow_blob": "ecbf779ab2e5ce2776fce6418e9419ce013f9b82",
+    "seven_publisher_read_steps_structurally_identical_in_reader": true,
+    "reader_step_positions": [
+      1,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "literal_first_seven_reader_steps_equal": false,
+    "reader_extra_setup_steps": [
+      "Load immutable reviewed reader sources and exact image dependencies",
+      "Check out the exact original Native source for its existing readers",
+      "Test the original archive and materialized source safeguards"
+    ],
+    "first_seven_step_names": [
+      "Check out the exact accepted source and its original verifier",
+      "Revalidate the exact additional Native and Feature acceptance",
+      "Read the complete current acceptance and download its original bundle",
+      "Verify and safely unpack every original delivery byte",
+      "Set up the existing APK certificate verifier Java runtime",
+      "Set up the pinned Android toolchain for independent original APK verification",
+      "Reverify original ARM64 APK signature package and source before creating a release"
+    ],
+    "source_and_main_run_env_identical": true,
+    "embedded_additional_verifier_and_bindings_identical": true,
+    "old_reader_driver_blob": "0028aac49374245c85da27a69d1ae4113e87c1a9",
+    "new_reader_driver_blob": "72406f6f995b0c85414c8c8560ca563273071921",
+    "driver_only_four_exact_substitutions": [
+      {
+        "old": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+        "new": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+        "occurrences": 1
+      },
+      {
+        "old": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+        "new": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+        "occurrences": 1
+      },
+      {
+        "old": "43628840534",
+        "new": "43633922088",
+        "occurrences": 1
+      },
+      {
+        "old": "exact accepted 04 original archives",
+        "new": "exact accepted ec original archives",
+        "occurrences": 1
+      }
+    ],
+    "all_other_driver_bytes_unchanged": true,
+    "unchanged_24_plus_3_tests_and_png_exporter": {
+      "test_original_replay.py": "11c5ad2de2ce556a66273c776da2947ad23de8cd",
+      "original_png_transport.py": "88388945e5e31eaefb2dad69f400b93f65a6b94a",
+      "test_original_png_transport.py": "313fdb2c57f018cf251be00b6171fccb3c2bfa67"
+    },
+    "reader_compare_only_eight_added_files": true,
+    "reader_or_publisher_activated": false,
+    "conclusion": "No source rebind or read-step parity blocker. Full seven-job acceptance and original replay remain mandatory."
+  },
+  "limits": [
+    "This preparation did not activate the delivery ref, run a release workflow, create tags/drafts/releases or publish any asset.",
+    "Current ec seven-job acceptance and original delivery validation are still required; earlier 6b/04 runs are not substituted.",
+    "The existing local tests validate metadata and syntax only; actual original APK signature/bytes revalidation remains a mandatory publisher/reader step."
+  ]
+}

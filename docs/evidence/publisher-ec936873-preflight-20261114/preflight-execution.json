@@ -1,0 +1,27 @@
+[
+  {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-B",
+      "preflight.py"
+    ],
+    "original_log": "syntax-driver.original.log",
+    "exit_code": 0,
+    "elapsed_seconds": 1.6352959809992171,
+    "log_sha256": "34c4704fbcbf865b5e9bae8ced25ab058f160ac64d6788b77e695eff0f237354"
+  },
+  {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "-v",
+      "test_additional_acceptance.py"
+    ],
+    "original_log": "additional-guard-tests.original.log",
+    "exit_code": 0,
+    "elapsed_seconds": 0.6725954009998532,
+    "log_sha256": "00dccab9f55ef81a1d7770dabe3170be9a54c8796b2645aae3540fb642c91982"
+  }
+]
