@@ -150,7 +150,7 @@ class LumoGameResultBack extends StatelessWidget {
 }
 
 /// Gemeinsames Pausenfenster aller Lumo-Spiele: dunkles Glas, Cyan-Kante,
-/// goldenes Pausensymbol, große Knöpfe (mind. 52 dp). Texte bleiben gleich,
+/// goldenes Pausensymbol, große Knöpfe (mind. 48 dp). Texte bleiben gleich,
 /// damit Vorlesefunktion und Android-Prüfungen sie wiederfinden.
 class LumoPausePanel extends StatelessWidget {
   const LumoPausePanel({
@@ -265,12 +265,9 @@ class LumoPausePanel extends StatelessWidget {
                           TextButton.icon(
                             key: const ValueKey('pause-leave-games'),
                             style: TextButton.styleFrom(
-                              minimumSize:
-                                  Size.fromHeight(compact ? 44 : 48),
+                              minimumSize: const Size.fromHeight(48),
                               foregroundColor: Colors.white,
-                              visualDensity: compact
-                                  ? VisualDensity.compact
-                                  : VisualDensity.standard,
+                              visualDensity: VisualDensity.standard,
                             ),
                             onPressed: onLeave,
                             icon: const Icon(Icons.arrow_back_rounded),
@@ -325,7 +322,7 @@ class _PauseButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(99),
             onTap: onTap,
             child: Ink(
-              height: compact ? 46 : 54,
+              height: compact ? 48 : 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(99),
                 gradient: primary
