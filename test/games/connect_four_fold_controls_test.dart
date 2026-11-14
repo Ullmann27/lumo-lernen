@@ -1,3 +1,5 @@
+import 'package:lumo_lernen/core/reward_wallet_repository.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,19 +9,27 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/features/games/connect_four/lumo_connect_four_game.dart';
 
 void main() {
+  setUp(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+            const MethodChannel('lumo_lernen/connect_four'),
+            (_) async =>
+                throw MissingPluginException('Flutter fallback fixture'));
+  });
   testWidgets(
-      'Fold outer-screen at 320dp: all seven real 44dp column buttons remain reachable',
+      'Fold outer-screen at 320dp: all seven real 48dp column buttons remain reachable',
       (tester) async {
     SharedPreferences.setMockInitialValues({});
     LumoVoice.instance.isEnabled = false;
     await tester.binding.setSurfaceSize(const Size(320, 740));
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    final app = LumoAppState();
+    final app = LumoAppState(walletRepository: RewardWalletRepository());
     await app.hydrateFromWallet();
+    LumoVoice.instance.isEnabled = false;
     await tester.pumpWidget(MaterialApp(
       home: LumoConnectFourScreen(appState: app, seed: 1978),
     ));
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     // Use the actual local two-player game, not a mocked board.
     await tester.tap(find.byKey(const ValueKey('connect-mode-true')));
@@ -32,6 +42,11 @@ void main() {
 
     // Last physical column must remain accessible even when all seven
     // non-shrunk touch targets exceed the device's outer-screen width.
+    for (var i = 0; i < 7; i++) {
+      final size = tester.getSize(find.byKey(ValueKey('connect-column-$i')));
+      expect(size.width, greaterThanOrEqualTo(48));
+      expect(size.height, greaterThanOrEqualTo(48));
+    }
     final lastColumn = find.byKey(const ValueKey('connect-column-6'));
     await tester.ensureVisible(lastColumn);
     await tester.pump();
