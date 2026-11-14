@@ -1,0 +1,35 @@
+{
+  "changed_functions": [
+    "_run"
+  ],
+  "unchanged_functions": {
+    "_initialize": "6473cac1ca3064f69a239cf4e071ec876da359d632a4ee08273067ce5e47e7ba",
+    "_check": "6559b30c1dafa1bcdca381073664e21370abe1bcfb43fa705373372daad53e95",
+    "_write": "dddb415206ada242745642261884fe8243f4e33a1b7c4be38fc84bd690ae27b5",
+    "_read": "1f1cd2c8d5021468ed0b1635919a124655615f40cae2b2d9a9f6d1e9c0d908a1",
+    "_frame": "ec6a69fc49c90497ddffe0102f0554cd54c3a2379dff8a22bad047658cd7a079",
+    "_frames": "c74daa69dea0c2074efac28774a3518cd4418300683a0c6ed7f08a11eaf01630",
+    "_until": "c47bbdd309ede9f7df34b3f52fa52a0a6831a68210985ae9924a6e15c388beea",
+    "_physical": "3aa92ef172228bcf7740689a884c0731ae676a6558ea7150275fd332b66332e6",
+    "_exposed": "82c2a3d8651f5fe22b3861aba848816d348652195dad18be3ebef51f137d3208",
+    "_swipe_to": "82a90622572b03f82c825f58f46e83092ef527c55b73007c048fedda583765e3",
+    "_tap": "62c7184e39a5ace20236f8b6900476729a6ad63651aa3acd970648cbb5add825",
+    "_snapshot": "14e14f62007c84355e19a33cc336b4e5df9a00104baa1ac2e2a52f2f9ed3cdba",
+    "_profile": "afdcdeea92afff9a3b8a3240643186a578da2429bba67884f886bedd5e87d0b5",
+    "_fixture_state": "5cf25cd925d73c7b52d68e0f58e9645147d2417989f73bebab0e156e614bd11e",
+    "_fixture_publish": "4f8da3ba640890d12a185a1b7510380bab11edccc46ac1c03d792c10e59ef968",
+    "_fixture_ack": "a9b40c428428c7b0f48d26bc27e3e6cf7bfd0bbbe456b85945e9d19c4078caf9",
+    "_fixture_contracts": "5b1eb6f65ff61539f25751cd3a687d1dc6676bbf237191a12212eb205051dd3d",
+    "_authority_action": "b4cde241006cb2eb7ca6771bd8d64a16fa505f54f22dea7368ba3cd19bf95010",
+    "_authority_contracts": "f9eb195db8818300e37ff2e4e6c6411b2b936e2d1ed9e691c10f2fd4b26bc045",
+    "_finish": "2a6cedc91c214131f2051a7e1a78b2e66d0478766213672787a2baa1a104a6e6",
+    "_source_hashes": "79cc2ed7f65aed56ce9c594dd6f687c66314e699073f682d40d699a31357d32c"
+  },
+  "startup_deadline_ms_before": 15000,
+  "startup_deadline_ms_after": 15000,
+  "original_active_predicate_retained": true,
+  "production_scene_sha256": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29",
+  "product_sources_modified": false,
+  "heartbeats_or_request_writes_changed": false,
+  "limits": "External Dart 2500ms lease/300s deadline and paired runner330s unchanged; no local Dart execution."
+}

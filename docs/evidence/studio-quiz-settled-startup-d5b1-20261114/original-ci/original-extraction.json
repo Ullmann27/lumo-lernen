@@ -1,0 +1,269 @@
+{
+  "artifact_id": 14116468839,
+  "run_id": 43601103353,
+  "native": "d5b1ed3749e332e996fa21a41d88325fad266553",
+  "host": "ddc9d89ef1bb6fc37315fd4aff0da166ce213b67",
+  "zip_bytes": 2447881,
+  "zip_sha256": "5d0eb24a8cd4ce232fbd2c036c63234d6847c72bbb8c1897cdd77293f11a1f95",
+  "crc_valid": true,
+  "members": [
+    {
+      "entry": "NATIVE-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "6473f8cdebe235d0903581760321a521fb99bf560e1081607ce033ac98655411",
+      "crc": 2642232172
+    },
+    {
+      "entry": "NATIVE-TREE.txt",
+      "bytes": 41,
+      "sha256": "c1a68bc0fde33d6670e89df4750e7a196cf9bf80e6afa74f8befe22362e89a27",
+      "crc": 1055252412
+    },
+    {
+      "entry": "HOST-TREE.txt",
+      "bytes": 41,
+      "sha256": "51d73574fb402ce9e82c6bd665f005f33adb1e99b59f44758287d91587b287cb",
+      "crc": 714469416
+    },
+    {
+      "entry": "HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "86cdd8d7d2ba6a1079369370bc5026ac197776581678b310f2cb8cac8e4c770b",
+      "crc": 3241484039
+    },
+    {
+      "entry": "dart-version.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "crc": 2842139938
+    },
+    {
+      "entry": "english-activity.json",
+      "bytes": 3246,
+      "sha256": "b8c9f003d602004e44b387e3c63d21437a32f90f14ed0b88fed8f86102c20242",
+      "crc": 2159150875
+    },
+    {
+      "entry": "english-authority.log",
+      "bytes": 620,
+      "sha256": "d554271cdaf9978d98bcc25d950ffefa3ffe41b44cd37821b095292c868af003",
+      "crc": 3382749389
+    },
+    {
+      "entry": "english-native/english-apple-960x540-start.json",
+      "bytes": 2833,
+      "sha256": "b2bb8ed9cebef4bf83e14723cfc7a5e2e3571ce7afada267b80d6cd1811f1d92",
+      "crc": 1653638316
+    },
+    {
+      "entry": "english-native/english-apple-960x540-start.png",
+      "bytes": 172510,
+      "sha256": "1416cba4fc39029d16bb7ec79efeb493cd70e47fdf7a73b91d9006787abdb3b0",
+      "crc": 769115885
+    },
+    {
+      "entry": "english-native/english-ball-960x540-complete.json",
+      "bytes": 2832,
+      "sha256": "f17cd3bc61cf70c8f1e8381caf35349a8e5f1ced6dae08e7cba6e79fa3d81f13",
+      "crc": 2927597356
+    },
+    {
+      "entry": "english-native/english-ball-960x540-complete.png",
+      "bytes": 168681,
+      "sha256": "093be19e851b43512b1fd269c54e69ffad51a99812afb4ecaefa761321692f9f",
+      "crc": 3961121481
+    },
+    {
+      "entry": "english-native/english-ball-960x540-hint.json",
+      "bytes": 2829,
+      "sha256": "70c647da1d08d0a3d9549fd6ab818978899152332d7765720750fa880cb1bf5b",
+      "crc": 2533208739
+    },
+    {
+      "entry": "english-native/english-ball-960x540-hint.png",
+      "bytes": 169038,
+      "sha256": "e7db38405eb1e016ca5e72292fe69af97046c28a19ddf5ea04f3063c2a03deef",
+      "crc": 226419380
+    },
+    {
+      "entry": "english-native/english-ball-960x540-start.json",
+      "bytes": 2827,
+      "sha256": "e8f79164b120519b920889308da5dd486059bf57be5dc0597965c6a5ac1500c1",
+      "crc": 2096821679
+    },
+    {
+      "entry": "english-native/english-ball-960x540-start.png",
+      "bytes": 168828,
+      "sha256": "11147ab0a3bbb105452a14fc9e7e04be484ad947be201122cd8e51379a6bc0ce",
+      "crc": 1534981624
+    },
+    {
+      "entry": "english-native/english-book-412x915-complete.json",
+      "bytes": 2840,
+      "sha256": "ba4de6f83ad66e9732ab435b0e1cd4caf7ff2e06c81e5dfd5a299ab28022f542",
+      "crc": 1549148137
+    },
+    {
+      "entry": "english-native/english-book-412x915-complete.png",
+      "bytes": 121407,
+      "sha256": "3bdc440b9c52f4ff856dedea9272f5c46e98543478e24108ad45ff79db50c8f9",
+      "crc": 2329805782
+    },
+    {
+      "entry": "english-native/english-book-412x915-start.json",
+      "bytes": 2834,
+      "sha256": "b020ec19d3cf0b5cb1c0cc10f057d0dc55a66026221bd45987302bd2fab0b20c",
+      "crc": 2062377313
+    },
+    {
+      "entry": "english-native/english-book-412x915-start.png",
+      "bytes": 122010,
+      "sha256": "c7674c0450c0943f7baaff8beb4e1f4e365d3d19dfce2acf53759eb8ea1f3516",
+      "crc": 3148488414
+    },
+    {
+      "entry": "english-native/english-car-2400x1080-start.json",
+      "bytes": 3068,
+      "sha256": "867b8d0f4373d668679500f172af8231de81a465d98ca313f5dc77a05bf2de5e",
+      "crc": 3689971952
+    },
+    {
+      "entry": "english-native/english-car-2400x1080-start.png",
+      "bytes": 660231,
+      "sha256": "2fa7d2d8a4766d01a41e037c3622525ec33ebc22aad86d2b2417c61a4c0a6d2c",
+      "crc": 322473050
+    },
+    {
+      "entry": "english-native/english-pen-1080x2400-start.json",
+      "bytes": 2931,
+      "sha256": "b958c602af884d74abe8886356c33deb35ebce712180dc42d66d3271e4972a2f",
+      "crc": 333099822
+    },
+    {
+      "entry": "english-native/english-pen-1080x2400-start.png",
+      "bytes": 583559,
+      "sha256": "94ff4bb506de46f338435d5d4754b0c3112fa014790e5fe3c45fc45b0ea4fa7c",
+      "crc": 4148060803
+    },
+    {
+      "entry": "english-native/english-ruler-640x360-start.json",
+      "bytes": 2825,
+      "sha256": "8744addc1cd7ceb9664f3d44786241d26e9bd9c1b703375718d88c53a0981175",
+      "crc": 2418655017
+    },
+    {
+      "entry": "english-native/english-ruler-640x360-start.png",
+      "bytes": 95536,
+      "sha256": "9c710a0e56d09aacbb6ced0ad13a2564bc5860aa679d6c6209de364dbe512e53",
+      "crc": 1566405816
+    },
+    {
+      "entry": "english-native/english-sun-960x540-start.json",
+      "bytes": 2824,
+      "sha256": "8d1d7cc6da7f5fab3b11c7f7c139c1d7ecdc354ad1d9c75a8c62722a96757d5d",
+      "crc": 1369121252
+    },
+    {
+      "entry": "english-native/english-sun-960x540-start.png",
+      "bytes": 169258,
+      "sha256": "fb6bc7da0229d8001443225fa59e3a14e2c31acae8c55d6beba2966fdb47b48c",
+      "crc": 4174943763
+    },
+    {
+      "entry": "english-native/learning-english-report.json",
+      "bytes": 51218,
+      "sha256": "d0f987daab1c5a12e0044ee63ffb23011b1e222bddef146ef6ec1601fc28da3d",
+      "crc": 3111257124
+    },
+    {
+      "entry": "english-render.log",
+      "bytes": 4021,
+      "sha256": "a0acf316f89a3c533d949c5b6540f42ae08cecd97cfd3ac9c4621d7ac6804105",
+      "crc": 890345979
+    },
+    {
+      "entry": "godot-version.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "crc": 304619283
+    },
+    {
+      "entry": "import.log",
+      "bytes": 162663,
+      "sha256": "9030aaf85da7f0554795c9400b75e2343f34104ecf98a9af6d1d75c5729078c3",
+      "crc": 50866859
+    },
+    {
+      "entry": "project-validation.log",
+      "bytes": 6138,
+      "sha256": "568ea0a47cb029675d191242bc84b97020e92d2fe3a8104639fdf080c5d04fe7",
+      "crc": 953976684
+    },
+    {
+      "entry": "quiz-authority-contract.log",
+      "bytes": 1829,
+      "sha256": "13c2e7773efb5ec23b7125b6eda2ef466f8573cd4aec32c7e226f45cb52b8194",
+      "crc": 3949620773
+    },
+    {
+      "entry": "quiz-pair/authority/lifecycle.json",
+      "bytes": 52,
+      "sha256": "8b687b32eafcee34fd57e727502f072ce041983635f3eee8697c5af94fc181bc",
+      "crc": 35927277
+    },
+    {
+      "entry": "quiz-pair/authority/native-result.json",
+      "bytes": 90,
+      "sha256": "5c5f039f2c514665e39d903d1dfd23ca55faeda13ed44b5a01cbd34cd255e3ed",
+      "crc": 1343765292
+    },
+    {
+      "entry": "quiz-pair/authority/private-test-control.json",
+      "bytes": 134,
+      "sha256": "a278b582c27f9fddf7e238ce725f7404c375a87468bf68112ea9fabaf74887af",
+      "crc": 300327987
+    },
+    {
+      "entry": "quiz-pair/authority/public-state.json",
+      "bytes": 754,
+      "sha256": "70858519a5e0af146b73f58a2930f8a3aedc3b0368aa1c7b41297cb7100846e7",
+      "crc": 1556848809
+    },
+    {
+      "entry": "quiz-pair/authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 4212,
+      "sha256": "0c75a2c52bc76725d30cbc8a5dfef4fdca94f73a4bc95d8be506d0d5cdaff253",
+      "crc": 2750936536
+    },
+    {
+      "entry": "quiz-pair/dart-authority.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc": 0
+    },
+    {
+      "entry": "quiz-pair/godot-runtime.log",
+      "bytes": 1558,
+      "sha256": "715106cfb15e85a0a711af022164390ec702ee67e8867105f55aa55f63a1b189",
+      "crc": 414798173
+    },
+    {
+      "entry": "quiz-pair/native/quiz-runtime-report.json",
+      "bytes": 13137,
+      "sha256": "e520e96a2da63e0954a1fa46c2ae0664ca5eeaa3cac6772950696eb88e15a9a1",
+      "crc": 4243738033
+    },
+    {
+      "entry": "quiz-pair/pair-result.json",
+      "bytes": 2947,
+      "sha256": "21ef719a3b5b7eaaf89de672dfcec85ae1e1c0b3f88bb7ac5074a041540fc201",
+      "crc": 422875846
+    },
+    {
+      "entry": "quiz-pair/source-identity.json",
+      "bytes": 265,
+      "sha256": "6f0e7591524c1012de56cc068faadbd8693951f721c339ed91dd0294df3e9cfd",
+      "crc": 4276523708
+    }
+  ]
+}

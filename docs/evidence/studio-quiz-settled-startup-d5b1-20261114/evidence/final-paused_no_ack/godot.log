@@ -1,0 +1,11 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+ERROR: [QuizStudioRuntime] Current Quiz startup Resume has a same-round authoritative ACK
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:82)
+       [1] _until (res://scripts/tests/quiz_studio_runtime.gd:134)
+       [2] _frame (res://scripts/tests/quiz_settled_startup_replay.gd:61)
+       [3] _frame (res://scripts/tests/quiz_studio_runtime.gd:120)
+[QuizStudioFixture] FAIL checks=18 captures=0

@@ -1,0 +1,199 @@
+--- d5b1/scripts/tests/quiz_studio_runtime.gd
++++ settled-startup/scripts/tests/quiz_studio_runtime.gd
+@@ -156,10 +156,42 @@
+ 	return true
+ 
+ 
++enum InputResult { FAILED, DONE, STATE_CHANGED }
++
++
++func _input_guard(condition: Callable, deadline_msec: int) -> int:
++	if deadline_msec > 0 and Time.get_ticks_msec() >= deadline_msec:
++		_check(false, "Input stays inside the original startup deadline")
++		return InputResult.FAILED
++	if condition.is_valid() and not condition.call():
++		return InputResult.STATE_CHANGED
++	return InputResult.DONE
++
++
++func _cancel_pointer(index: int, point: Vector2, label: String) -> void:
++	var cancel := InputEventScreenTouch.new()
++	cancel.index = index
++	cancel.position = point
++	cancel.pressed = false
++	cancel.canceled = true
++	Input.parse_input_event(cancel)
++	Input.flush_buffered_events()
++	inputs.append({"frame": frames, "kind": "screen_touch", "pressed": false,
++		"canceled": true, "label": label, "position": [point.x, point.y]})
++	await _frame()
++
++
+ func _swipe_to(control: Control) -> bool:
++	return await _swipe_checked(control) == InputResult.DONE
++
++
++func _swipe_checked(control: Control, condition: Callable = Callable(), deadline_msec: int = 0) -> int:
+ 	for attempt in range(13):
++		var guarded := _input_guard(condition, deadline_msec)
++		if guarded != InputResult.DONE:
++			return guarded
+ 		if _exposed(control):
+-			return true
++			return InputResult.DONE
+ 		if attempt == 12:
+ 			break
+ 		var rect := _physical(table.content_scroll)
+@@ -178,6 +210,10 @@
+ 		await _frame()
+ 		var previous := start
+ 		for step in range(1, 9):
++			guarded = _input_guard(condition, deadline_msec)
++			if guarded != InputResult.DONE:
++				await _cancel_pointer(3, previous, "Canceled startup swipe after authority/deadline change")
++				return guarded
+ 			var point := start.lerp(end, float(step) / 8.0)
+ 			var drag := InputEventScreenDrag.new()
+ 			drag.index = 3
+@@ -191,6 +227,10 @@
+ 			inputs.append({"frame": frames, "kind": "screen_drag", "target": str(control.name), "position": [point.x, point.y]})
+ 			previous = point
+ 			await _frame()
++		guarded = _input_guard(condition, deadline_msec)
++		if guarded != InputResult.DONE:
++			await _cancel_pointer(3, end, "Canceled startup swipe after authority/deadline change")
++			return guarded
+ 		var release := InputEventScreenTouch.new()
+ 		release.index = 3
+ 		release.position = end
+@@ -198,19 +238,35 @@
+ 		Input.parse_input_event(release)
+ 		Input.flush_buffered_events()
+ 		inputs.append({"frame": frames, "kind": "screen_touch", "pressed": false, "target": str(control.name), "position": [end.x, end.y]})
+-		await _frames(14)
+-	return _check(false, "Bounded real swipe exposes " + str(control.name))
++		for idle_frame in range(14):
++			await _frame()
++			guarded = _input_guard(condition, deadline_msec)
++			if guarded != InputResult.DONE:
++				return guarded
++	_check(false, "Bounded real swipe exposes " + str(control.name))
++	return InputResult.FAILED
+ 
+ 
+ func _tap(control: Button, label: String) -> bool:
++	return await _tap_checked(control, label) == InputResult.DONE
++
++
++func _tap_checked(control: Button, label: String, condition: Callable = Callable(), deadline_msec: int = 0) -> int:
++	var guarded := _input_guard(condition, deadline_msec)
++	if guarded != InputResult.DONE:
++		return guarded
+ 	if not _check(control.is_visible_in_tree() and not control.disabled, label + " is enabled and visible"):
+-		return false
+-	if not await _swipe_to(control):
+-		return false
++		return InputResult.FAILED
++	var exposed := await _swipe_checked(control, condition, deadline_msec)
++	if exposed != InputResult.DONE:
++		return exposed
++	guarded = _input_guard(condition, deadline_msec)
++	if guarded != InputResult.DONE:
++		return guarded
+ 	var rect := _physical(control)
+ 	var dp: Vector2 = rect.size / table._density
+ 	if not _check(dp.x >= 48.0 - 0.00001 and dp.y >= 48.0 - 0.00001 and _exposed(control), label + " has a fully exposed >=48dp target"):
+-		return false
++		return InputResult.FAILED
+ 	var point := rect.get_center()
+ 	for at in [Vector2.ZERO, point]:
+ 		var motion := InputEventMouseMotion.new()
+@@ -218,6 +274,11 @@
+ 		Input.parse_input_event(motion)
+ 		Input.flush_buffered_events()
+ 	for down in [true, false]:
++		guarded = _input_guard(condition, deadline_msec)
++		if guarded != InputResult.DONE:
++			if not down:
++				await _cancel_pointer(1, point, "Canceled startup tap after authority/deadline change")
++			return guarded
+ 		var touch := InputEventScreenTouch.new()
+ 		touch.index = 1
+ 		touch.position = point
+@@ -228,7 +289,48 @@
+ 			"position": [point.x, point.y], "rect_px": [rect.position.x, rect.position.y, rect.size.x, rect.size.y],
+ 			"roundId": table._state.get("roundId"), "revision": table._state.get("revision"), "pending": table._pending})
+ 		await _frame()
+-	return true
++	# Once released, the real request must be checked even if its ACK already
++	# made the previous paused condition false. Never reinterpret a sent tap.
++	return _input_guard(Callable(), deadline_msec)
++
++
++func _startup_layout_current() -> bool:
++	if not table._authority_ready or table._state.is_empty() or table._pending != 0:
++		return false
++	var layout := _read(table.LAYOUT_OBSERVATION)
++	return layout.get("schema") == 1 and layout.get("game") == "quiz" and layout.get("settled") == true and layout.get("pid") == OS.get_process_id() and layout.get("pending") == 0 and layout.get("token") == table._token and layout.get("state") == JSON.parse_string(JSON.stringify(table._state)) and layout.get("window_px") == [float(root.size.x), float(root.size.y)] and _physical(table.content_scroll).size.y > 0
++
++
++func _startup_authority(deadline_msec: int) -> bool:
++	var initial_round := ""
++	while Time.get_ticks_msec() < deadline_msec:
++		if not await _until(func(): return _startup_layout_current() and (initial_round.is_empty() or str(table._state.roundId) == initial_round), "Current settled Quiz startup layout and authority agree", maxf(0.0, float(deadline_msec - Time.get_ticks_msec()) / 1000.0)):
++			return false
++		if initial_round.is_empty():
++			initial_round = str(table._state.roundId)
++		if not bool(table._state.paused) and bool(table._state.canSelect):
++			state_trace.append({"name": "startup-active-current-layout", "frame": frames, "state": table._state.duplicate(true), "layout_sha256": FileAccess.get_sha256(table.LAYOUT_OBSERVATION)})
++			return _check(true, "Current Quiz authority is active")
++		if not bool(table._state.paused):
++			await _frame()
++			continue
++		var initial_ack: int = int(table._state.ack)
++		var requests_before: int = bridge.requests.size()
++		var still_paused := func(): return table._authority_ready and str(table._state.roundId) == initial_round and bool(table._state.paused) and table._pending == 0
++		var result := await _tap_checked(table.resume_button, "Resume observed paused Quiz at startup", still_paused, deadline_msec)
++		if result == InputResult.FAILED:
++			return false
++		if result == InputResult.STATE_CHANGED:
++			# A fresh lifecycle may activate the initial unlatched session while
++			# its old Resume target is being exposed. No request is invented.
++			if not _check(bridge.requests.size() == requests_before, "Canceled startup input submitted no request"):
++				return false
++			continue
++		if not _check(bridge.requests.size() == requests_before + 1 and bridge.requests.back().get("action") == "resume", "Actual startup Resume publishes exactly one request"):
++			return false
++		if not await _until(func(): return table._authority_ready and str(table._state.roundId) == initial_round and int(table._state.ack) > initial_ack and table._pending == 0 and not bool(table._state.paused), "Current Quiz startup Resume has a same-round authoritative ACK", maxf(0.0, float(deadline_msec - Time.get_ticks_msec()) / 1000.0)):
++			return false
++	return _check(false, "Current Quiz authority is active within the original startup deadline")
+ 
+ 
+ func _snapshot(name: String) -> void:
+@@ -550,23 +652,10 @@
+ 	table = load(SCENE).instantiate()
+ 	table._host = bridge
+ 	root.add_child(table)
+-	# A fresh external authority may validly remain paused after a lifecycle
+-	# interruption. Resume through the real current UI, within the same original
+-	# 15-second startup budget; never invent an active state or heartbeat.
++	# Observe the actual settled current UI before deciding whether Resume is
++	# needed. Initial lifecycle activation may naturally remove the pause.
+ 	var startup_deadline := Time.get_ticks_msec() + 15000
+-	if not await _until(func(): return table._authority_ready, "Current Quiz authority is valid", 15):
+-		await _finish()
+-		return
+-	if bool(table._state.get("paused", false)):
+-		var initial_round: String = str(table._state.roundId)
+-		var initial_ack: int = int(table._state.ack)
+-		if not await _tap(table.resume_button, "Resume observed paused Quiz at startup"):
+-			await _finish()
+-			return
+-		if not await _until(func(): return table._authority_ready and str(table._state.roundId) == initial_round and int(table._state.ack) > initial_ack and table._pending == 0 and not bool(table._state.paused), "Current Quiz startup Resume has a same-round authoritative ACK", maxf(0.0, float(startup_deadline - Time.get_ticks_msec()) / 1000.0)):
+-			await _finish()
+-			return
+-	if not await _until(func(): return table._authority_ready and bool(table._state.get("canSelect", false)), "Current Quiz authority is active", maxf(0.0, float(startup_deadline - Time.get_ticks_msec()) / 1000.0)):
++	if not await _startup_authority(startup_deadline):
+ 		await _finish()
+ 		return
+ 	_check(table.fox.is_usable() and table.fox.skeleton.get_bone_count() == 65 and table.fox.CLIPS.size() == 9, "Actual original Lumo retains 65 bones and nine clips")

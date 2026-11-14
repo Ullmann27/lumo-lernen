@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-godot",
+  "baseline": "d5b1ed3749e332e996fa21a41d88325fad266553",
+  "created_utc": "2026-11-14T14:02:33.691839+00:00",
+  "scope": "One QA source only; production unchanged; original 15s startup/2500ms lease/300s Dart contract retained",
+  "files": [
+    {
+      "path": "scripts/tests/quiz_studio_runtime.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-settled-startup-d5b1-20261114/patched/native/scripts/tests/quiz_studio_runtime.gd",
+      "bytes": 33632,
+      "sha256": "8df756dee8e5daee17a88a8899d6189aba8acd8b9148ca3cd0c5e606fdd1d0cd",
+      "git_blob_sha": "59cf4a16d2e53b65a97277574c6866db5a5929fb",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ]
+}

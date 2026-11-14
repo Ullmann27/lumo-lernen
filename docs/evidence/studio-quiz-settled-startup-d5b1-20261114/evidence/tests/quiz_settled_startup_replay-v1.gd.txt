@@ -1,0 +1,95 @@
+extends "res://scripts/tests/quiz_studio_runtime.gd"
+## Explicit synthetic lifecycle/ACK transport, using the unchanged final CI
+## state. The paused initial projection is derived from QuizTableSession's
+## initial _active=false, not claimed to be an archived initial-state sample.
+const ORIGINAL_FINAL_SHA := "70858519a5e0af146b73f58a2930f8a3aedc3b0368aa1c7b41297cb7100846e7"
+var original_final: Dictionary = {}
+var replay_case := ""
+var replay_path := ""
+var processed := 0
+var activated := false
+var started := 0
+var transitions: Array[Dictionary] = []
+
+
+func _initialize() -> void:
+	started = Time.get_ticks_msec()
+	replay_case = OS.get_environment("LUMO_QUIZ_STARTUP_REPLAY_CASE")
+	replay_path = OS.get_environment("LUMO_QUIZ_STARTUP_REPLAY_STATE")
+	if replay_case not in ["active_after_first_frame", "active_during_search", "active_before_release", "paused_ack", "paused_no_ack", "active_no_touch"] or FileAccess.get_sha256(replay_path) != ORIGINAL_FINAL_SHA:
+		printerr("Unchanged d5b1 final state and explicit replay case required")
+		quit(2)
+		return
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(replay_path))
+	if not parsed is Dictionary:
+		quit(2)
+		return
+	original_final = parsed
+	super._initialize()
+
+
+func _fixture_state() -> Dictionary:
+	var value := original_final.duplicate(true)
+	value.token = FIXTURE_TOKEN
+	if replay_case != "active_no_touch":
+		value.paused = true
+		value.canSelect = false
+		value.revision = 1
+	return value
+
+
+func _frame() -> void:
+	await super._frame()
+	if not is_instance_valid(table) or not is_instance_valid(bridge):
+		return
+	var last: Dictionary = inputs.back() if not inputs.is_empty() else {}
+	var should_activate := replay_case == "active_after_first_frame" and frames == 1
+	should_activate = should_activate or (replay_case == "active_during_search" and last.get("target") == "ResumeQuiz" and last.get("pressed") == true)
+	should_activate = should_activate or (replay_case == "active_before_release" and last.get("label") == "Resume observed paused Quiz at startup" and last.get("pressed") == true)
+	if should_activate and not activated:
+		activated = true
+		bridge.value = original_final.duplicate(true)
+		bridge.value.token = FIXTURE_TOKEN
+		transitions.append({"frame": frames, "reason": replay_case, "state": bridge.value.duplicate(true)})
+		table._poll_state()
+	while processed < bridge.requests.size():
+		var request: Dictionary = bridge.requests[processed]
+		processed += 1
+		if not _check(request.get("action") == "resume" and request.get("token") == FIXTURE_TOKEN and request.get("roundId") == original_final.roundId and int(request.get("revision", -1)) == int(bridge.value.revision), "Only exact current Resume intent may reach the synthetic transport"):
+			return
+		_check(replay_case in ["paused_ack", "paused_no_ack"] and bool(bridge.value.paused), "Natural activation never submits a hidden/stale Resume")
+		if replay_case == "paused_no_ack":
+			continue
+		var value: Dictionary = bridge.value.duplicate(true)
+		value.revision = int(value.revision) + 1
+		value.ack = int(request.sequence)
+		value.paused = false
+		value.canSelect = true
+		bridge.value = value
+		table._poll_state()
+
+
+func _fixture_contracts() -> void:
+	var expected := 1 if replay_case == "paused_ack" else 0
+	_check(replay_case != "paused_no_ack", "Missing ACK never reaches the quiz contracts")
+	_check(bridge.requests.size() == expected and int(table._state.ack) == expected, "Only a genuinely needed Resume receives an acknowledgement")
+	_check(table._authority_ready and not bool(table._state.paused) and bool(table._state.canSelect) and table._pending == 0, "Actual current authority is interactive before the next contract")
+	if replay_case in ["active_after_first_frame", "active_during_search", "active_before_release"]:
+		_check(activated and transitions.size() == 1, "The requested natural-activation boundary actually occurred")
+	if replay_case in ["active_during_search", "active_before_release"]:
+		_check(inputs.any(func(event: Dictionary): return event.get("canceled") == true), "A context change cancels the already pressed pointer")
+	if replay_case in ["active_no_touch", "active_after_first_frame"]:
+		_check(inputs.is_empty(), "An already active settled start has no unnecessary UI input")
+	for key in ["roundId", "owner", "recordRevision", "subject", "grade", "number", "total", "questionSubject", "prompt", "options", "selected", "revealed", "gameOver", "won", "correctIndex", "explanation", "hidden", "usedJokers", "audience", "hint", "securedStars", "awardedStars", "rewarded"]:
+		_check(table._state[key] == original_final[key], "Captured question/reward field remains unchanged: " + key)
+	_check(FileAccess.get_sha256(replay_path) == ORIGINAL_FINAL_SHA, "The original final CI state bytes remain unchanged")
+
+
+func _finish() -> void:
+	_write(output + "/startup-replay.json", {"schema": 1, "case": replay_case,
+		"scope": "Actual Godot UI and input; explicit synthetic lifecycle/ACK transport, no Dart/Android acceptance",
+		"original_final_sha256": ORIGINAL_FINAL_SHA, "initial_projection": "Only paused=true,canSelect=false,revision=1 before synthetic first lifecycle; original token mapped to isolated fixture token" if replay_case != "active_no_touch" else "Original final state with isolated fixture token",
+		"elapsed_ms": Time.get_ticks_msec() - started, "transitions": transitions,
+		"requests": bridge.requests if is_instance_valid(bridge) else [], "inputs": inputs,
+		"final_state": table._state.duplicate(true) if is_instance_valid(table) else {}, "failures": failures.duplicate()})
+	await super._finish()

@@ -1,0 +1,27 @@
+--- a/scripts/tests/quiz_studio_runtime.gd
++++ b/scripts/tests/quiz_studio_runtime.gd
+@@ -550,7 +550,23 @@
+ 	table = load(SCENE).instantiate()
+ 	table._host = bridge
+ 	root.add_child(table)
+-	if not await _until(func(): return table._authority_ready and bool(table._state.get("canSelect", false)), "Current Quiz authority is active", 15):
++	# A fresh external authority may validly remain paused after a lifecycle
++	# interruption. Resume through the real current UI, within the same original
++	# 15-second startup budget; never invent an active state or heartbeat.
++	var startup_deadline := Time.get_ticks_msec() + 15000
++	if not await _until(func(): return table._authority_ready, "Current Quiz authority is valid", 15):
++		await _finish()
++		return
++	if bool(table._state.get("paused", false)):
++		var initial_round: String = str(table._state.roundId)
++		var initial_ack: int = int(table._state.ack)
++		if not await _tap(table.resume_button, "Resume observed paused Quiz at startup"):
++			await _finish()
++			return
++		if not await _until(func(): return table._authority_ready and str(table._state.roundId) == initial_round and int(table._state.ack) > initial_ack and table._pending == 0 and not bool(table._state.paused), "Current Quiz startup Resume has a same-round authoritative ACK", maxf(0.0, float(startup_deadline - Time.get_ticks_msec()) / 1000.0)):
++			await _finish()
++			return
++	if not await _until(func(): return table._authority_ready and bool(table._state.get("canSelect", false)), "Current Quiz authority is active", maxf(0.0, float(startup_deadline - Time.get_ticks_msec()) / 1000.0)):
+ 		await _finish()
+ 		return
+ 	_check(table.fox.is_usable() and table.fox.skeleton.get_bone_count() == 65 and table.fox.CLIPS.size() == 9, "Actual original Lumo retains 65 bones and nine clips")
