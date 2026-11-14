@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "kind": "completed_original_zip_relocation",
+  "files": [
+    {
+      "stage": "completed",
+      "at": "2026-11-14T16:32:28.759548+00:00",
+      "old": "/tmp/host-pr485-0b7bacad-pipeline-evidence-20261114/full-flutter-artifact-14118412926/14118412926-original.zip",
+      "new": "/workspace/scratch/b3485b7bb989/retained-original-zips-20261114/0b7-14118412926-original.zip",
+      "source_signature_before": {
+        "device": 39,
+        "inode": 71752,
+        "size": 336105163,
+        "mtime_ns": 1794667400676880677,
+        "mode": 420
+      },
+      "source_identity_before": {
+        "bytes": 336105163,
+        "sha256": "3f13c849b45fdc47d1c7597c1f4afb58867a64e8c8a78a3365a4dd2f20a15939"
+      },
+      "copy_stream_identity": {
+        "bytes": 336105163,
+        "sha256": "3f13c849b45fdc47d1c7597c1f4afb58867a64e8c8a78a3365a4dd2f20a15939"
+      },
+      "source_after_copy": {
+        "bytes": 336105163,
+        "sha256": "3f13c849b45fdc47d1c7597c1f4afb58867a64e8c8a78a3365a4dd2f20a15939"
+      },
+      "destination_after_copy": {
+        "bytes": 336105163,
+        "sha256": "3f13c849b45fdc47d1c7597c1f4afb58867a64e8c8a78a3365a4dd2f20a15939"
+      },
+      "old_index": {
+        "path": "/tmp/host-pr485-0b7bacad-pipeline-evidence-20261114/full-flutter-artifact-14118412926/archive-index.json",
+        "bytes": 133800,
+        "sha256": "5f69791c0e2eff80eb9ea7add4a3f82e68adbdf30af9c8dedc5586b9895fd82b"
+      },
+      "started_at": "2026-11-14T16:32:26.576683+00:00",
+      "completed_at": "2026-11-14T16:32:29.529109+00:00",
+      "old_path_is_symlink": true,
+      "symlink_target": "/workspace/scratch/b3485b7bb989/retained-original-zips-20261114/0b7-14118412926-original.zip",
+      "old_path_after": {
+        "bytes": 336105163,
+        "sha256": "3f13c849b45fdc47d1c7597c1f4afb58867a64e8c8a78a3365a4dd2f20a15939"
+      },
+      "destination_is_regular": true,
+      "original_index_unchanged": true
+    },
+    {
+      "stage": "completed",
+      "at": "2026-11-14T16:32:33.558441+00:00",
+      "old": "/tmp/host-pr485-37ec6c6a-pipeline-evidence-20261114/flutter-failure-14117615115/14117615115-original.zip",
+      "new": "/workspace/scratch/b3485b7bb989/retained-original-zips-20261114/37ec-14117615115-original.zip",
+      "source_signature_before": {
+        "device": 39,
+        "inode": 43573,
+        "size": 336174142,
+        "mtime_ns": 1794665472468893395,
+        "mode": 420
+      },
+      "source_identity_before": {
+        "bytes": 336174142,
+        "sha256": "0e45f92561aad071a57612c0efe7dec2278b232cdd8721e1bbc315f949882de7"
+      },
+      "copy_stream_identity": {
+        "bytes": 336174142,
+        "sha256": "0e45f92561aad071a57612c0efe7dec2278b232cdd8721e1bbc315f949882de7"
+      },
+      "source_after_copy": {
+        "bytes": 336174142,
+        "sha256": "0e45f92561aad071a57612c0efe7dec2278b232cdd8721e1bbc315f949882de7"
+      },
+      "destination_after_copy": {
+        "bytes": 336174142,
+        "sha256": "0e45f92561aad071a57612c0efe7dec2278b232cdd8721e1bbc315f949882de7"
+      },
+      "old_index": {
+        "path": "/tmp/host-pr485-37ec6c6a-pipeline-evidence-20261114/flutter-failure-14117615115/archive-index.json",
+        "bytes": 133636,
+        "sha256": "55dc58b8f8b0cfe86eb7738c72e420cc4e9f39917c7b0b0d0cc638e004b05fab"
+      },
+      "started_at": "2026-11-14T16:32:30.674633+00:00",
+      "completed_at": "2026-11-14T16:32:34.404952+00:00",
+      "old_path_is_symlink": true,
+      "symlink_target": "/workspace/scratch/b3485b7bb989/retained-original-zips-20261114/37ec-14117615115-original.zip",
+      "old_path_after": {
+        "bytes": 336174142,
+        "sha256": "0e45f92561aad071a57612c0efe7dec2278b232cdd8721e1bbc315f949882de7"
+      },
+      "destination_is_regular": true,
+      "original_index_unchanged": true
+    }
+  ],
+  "before": {
+    "time": "2026-11-14T16:32:25.223243+00:00",
+    "tmp": {
+      "total": 5225709568,
+      "used": 4524756992,
+      "free": 700952576
+    },
+    "workspace": {
+      "total": 67586535424,
+      "used": 47017533440,
+      "free": 17116254208
+    }
+  },
+  "after": {
+    "time": "2026-11-14T16:32:34.408128+00:00",
+    "tmp": {
+      "total": 5225709568,
+      "used": 3852476416,
+      "free": 1373233152
+    },
+    "workspace": {
+      "total": 67586535424,
+      "used": 47692046336,
+      "free": 16441741312
+    }
+  },
+  "verified_original_bytes_retained": 672279305,
+  "released_tmpfs_file_bytes": 672279305,
+  "observed_tmpfs_free_delta_bytes": 672280576,
+  "all_old_paths_preserved_as_verified_symlinks": true,
+  "source_or_active_candidate_changes": false,
+  "current_5ad_originals_touched": false,
+  "all_original_bytes_unchanged": true
+}
