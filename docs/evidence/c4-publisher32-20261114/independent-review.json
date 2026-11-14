@@ -1,0 +1,465 @@
+{
+  "schema": 1,
+  "review_kind": "independent read-only source review",
+  "reviewer": "/root/godot_integration",
+  "reviewed_pack": "/workspace/scratch/b3485b7bb989/host-c4-publication-orchestrator-20261114",
+  "source_freeze_sha256": "466342f824a8bd8aece218ced810bf5c88e667b95367437d47721582ed90335a",
+  "outcome": "NO_CONCRETE_SOURCE_BLOCKER_FOUND",
+  "execution": {
+    "reviewed_module_imports": 0,
+    "test_runs": 0,
+    "engine_runs": 0,
+    "remote_requests": 0,
+    "source_edits": 0,
+    "git_mutations": 0,
+    "publication": false
+  },
+  "direct_checkout_binding": {
+    "checkout": "/tmp/lumo-root-recovery-1242/host",
+    "head": "37ec6c6aee67c31ce16550cd59d616c80e80e305",
+    "tree": "6ab0e6cafc9fb37d3b3d95d76805aff4b6810d7a",
+    "status": "",
+    "files": [
+      {
+        "path": "scripts/verify_connect_four_delivery.py",
+        "bytes": 67003,
+        "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18",
+        "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871",
+        "commit_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871",
+        "pack_original_present": true,
+        "pack_original_equal": true
+      },
+      {
+        "path": "scripts/release_pipeline_gates.py",
+        "bytes": 9853,
+        "sha256": "400e54f2952f0d8aae07fc964e4688c48f16c9213ea022fa8754731004551946",
+        "git_blob": "4c8097ce7643e189f37815c38214dd650e022d8c",
+        "commit_blob": "4c8097ce7643e189f37815c38214dd650e022d8c",
+        "pack_original_present": true,
+        "pack_original_equal": true
+      },
+      {
+        "path": "scripts/tests/test_connect_four_delivery.py",
+        "bytes": 86764,
+        "sha256": "eab724190785e4714a6b9766d10a7ad0d68177513bcd425e8708d66065999f88",
+        "git_blob": "2b3650bda8e2ba92545e2566c534c1ec664c5c16",
+        "commit_blob": "2b3650bda8e2ba92545e2566c534c1ec664c5c16",
+        "pack_original_present": true,
+        "pack_original_equal": true
+      },
+      {
+        "path": "config/godot-source.json",
+        "bytes": 145,
+        "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50",
+        "git_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a",
+        "commit_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a",
+        "pack_original_present": true,
+        "pack_original_equal": true
+      },
+      {
+        "path": "pubspec.yaml",
+        "bytes": 2718,
+        "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+        "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+        "commit_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+        "pack_original_present": true,
+        "pack_original_equal": true
+      },
+      {
+        "path": ".github/workflows/lumo-connect-four-2020.yml",
+        "bytes": 49103,
+        "sha256": "72224aca469231aaeb6f3db0b5e5ec7fea9bb32e8d5804ea8cd46509003d879e",
+        "git_blob": "2110d672ede7c80819fe3ff365339936b5406d8c",
+        "commit_blob": "2110d672ede7c80819fe3ff365339936b5406d8c",
+        "pack_original_present": true,
+        "pack_original_equal": true
+      }
+    ]
+  },
+  "fully_read": [
+    {
+      "path": "proposed/scripts/publish_connect_four_delivery.py",
+      "lines": 868,
+      "sha256": "cc06aaf7472e675171344e6321078749101d21ea112795bf1d6ed8dd15228a7d",
+      "git_blob": "982f8cf3c85a6bf85f49bed842b3c7e08a20730e"
+    },
+    {
+      "path": "proposed/scripts/tests/test_publish_connect_four_delivery.py",
+      "lines": 620,
+      "sha256": "e6818f8afa9b941ea48f403e728307f32e33310ccf5cb8f242e92aff816eb70c",
+      "git_blob": "6e4227fc52e35e924c19d8b17cb3ea9ac6669eef"
+    },
+    {
+      "path": "/tmp/lumo-root-recovery-1242/host/scripts/verify_connect_four_delivery.py",
+      "lines": 1112,
+      "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18",
+      "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871"
+    },
+    {
+      "path": "/tmp/lumo-root-recovery-1242/host/scripts/release_pipeline_gates.py",
+      "lines": 262,
+      "sha256": "400e54f2952f0d8aae07fc964e4688c48f16c9213ea022fa8754731004551946",
+      "git_blob": "4c8097ce7643e189f37815c38214dd650e022d8c"
+    }
+  ],
+  "findings": [
+    {
+      "topic": "CLI and source separation",
+      "locations": [
+        "publisher:478-497",
+        "publisher:345-372",
+        "publisher:812-845"
+      ],
+      "finding": "Every actual candidate and publisher identity, run/attempt, original bundle ID/digest/size and PR485 are explicit mandatory arguments. The executed file is bound to the committed publisher checkout. Candidate HEAD/tree, clean tracked/untracked status, raw index, stage bytes, committed protected files and fixed verifier hashes are checked before and after verifier calls and before mutations. Output must be new and outside both checkouts."
+    },
+    {
+      "topic": "Exact successful run and current PR",
+      "locations": [
+        "publisher:547-604",
+        "publisher:696-705",
+        "delivery:175-232"
+      ],
+      "finding": "Latest-run and exact-attempt metadata must both be completed/success with the actual Host, exact repository/workflow/branch and pull_request event. Current same-repository PR485 must be open and unmoved. Exactly seven distinct successful jobs of the prescribed names are required; the unchanged verifier checks required step names and refuses skipped mandatory steps. Fresh source/run/PR guards precede every mutation."
+    },
+    {
+      "topic": "Complete authenticated bundle",
+      "locations": [
+        "publisher:410-458",
+        "publisher:730-747",
+        "delivery:939-1036"
+      ],
+      "finding": "One actual artifact identity is required from complete API pages. Complete ZIP size and SHA are checked before use, every file is streamed through ZIP CRC and SHA checking, and canonical paths, duplicate names, symlinks, special/encrypted members and expansion limits are rejected. The unchanged check-current ties every local member back to that whole authenticated archive and freshly read original artifact identities."
+    },
+    {
+      "topic": "Native and immutable delivery facts",
+      "locations": [
+        "publisher:657-693",
+        "publisher:795-808",
+        "delivery:1013-1036"
+      ],
+      "finding": "Prepared Host/tree/run/attempt identities must match the explicit accepted candidate. facts.native_source and binding.native_source must agree with its committed config/godot-source.json revision. Historical delivery facts retain published=false and release_approved=false; publication receipts are written only outside the original delivery. Final bundle/member equality is checked again."
+    },
+    {
+      "topic": "Vacancy and no clobber",
+      "locations": [
+        "publisher:606-648",
+        "publisher:730-778",
+        "delivery:382-445"
+      ],
+      "finding": "Release/tag catalogs are paginated to an empty page, tag names are cross-checked against matching refs, version floor and vacancy are checked, and existing release/tag reuse is rejected. Only POST new tag, POST new empty prerelease draft, eleven POST asset uploads and one PATCH of that just-created release are used. No delete, tag update, overwrite, resume, cleanup or mutation retry exists. Unknown outcomes remain a failure requiring review."
+    },
+    {
+      "topic": "Exactly eleven assets and stable identities",
+      "locations": [
+        "publisher:37-42",
+        "publisher:712-728",
+        "publisher:758-789",
+        "delivery:407-445"
+      ],
+      "finding": "The fixed eleven-name roster equals the prepared roster. Every original upload byte record is checked; each positive response must supply exact name/state/size/SHA digest/public URL and a fresh ID. Paginated release-asset records must equal the release embedded records and the actual IDs originally returned by uploads. Additional, replaced or duplicate assets stop publication."
+    },
+    {
+      "topic": "Public HTTPS byte verification",
+      "locations": [
+        "publisher:155-183",
+        "publisher:244-303",
+        "publisher:779-808",
+        "delivery:1095-1107"
+      ],
+      "finding": "Automatic redirects are disabled. HTTPS scheme/port/host/userinfo/fragment checks apply on each explicit bounded download hop. Authorization is used only on the initial fixed artifact API request and never on redirects; the canonical public APK download uses no Authorization on any hop and no cookie jar. Full length/SHA and readback are required. A fresh release/source/run recheck follows download, and verify-public creates a separate receipt only for matching APK bytes."
+    },
+    {
+      "topic": "Credential-safe originals and failure evidence",
+      "locations": [
+        "publisher:119-145",
+        "publisher:185-242",
+        "publisher:306-313",
+        "publisher:379-407",
+        "publisher:849-864"
+      ],
+      "finding": "Exact JSON bodies, request-body hashes, HTTP status and full verifier stdout/stderr are retained outside delivery. Signed redirect locations and authorization are not logged. Token-bearing or recognized signed-query responses are omitted with hash/count and explicit failure. Transport exceptions disclose only a fixed code/class, not exception URLs. The verifier child receives an explicit credential-free environment with fresh bytecode-cache namespace."
+    },
+    {
+      "topic": "All32 tests read",
+      "locations": [
+        "tests:1-620"
+      ],
+      "finding": "All 32 written methods and their fixtures/API boundaries were read. The baseline synthetic sequence invokes the actual existing verifier CLI dispatcher/functions through a narrow fake Git boundary; network connection attempts are denied. Negative paths cover run/attempt/required steps, bundle bytes/CRC/path/types, vacancy, source/index, uncertain mutations, changing upload IDs/digests, and unauthenticated public-byte failure. These are written contracts, not executed results."
+    }
+  ],
+  "blockers": [],
+  "limits": [
+    "This is a static independent review only; the 32 tests had not been run during this review.",
+    "No final successful real Host candidate/bundle identity or publication result is inferred from the review.",
+    "The publisher authenticates the complete original successful CI bundle and reuses the unchanged read-only publication checks. It does not rerun engine/device tests at publication.",
+    "Only the public APK is completely downloaded unauthenticated. The other ten assets are checked through exact upload/API digests and identities; no public byte-download claim is made for them.",
+    "The proposed source pack intentionally contains no activation workflow. The later separately reviewed workflow must bind exact committed sources and actual final run/artifact inputs, use read-only default permissions, one publisher, an outer timeout and exact checkout SHAs.",
+    "Fresh reads do not create a distributed repository lock. A concurrent remote change after the last read remains an API race; the documented single-writer/held-head operational boundary remains necessary.",
+    "Per-operation acceptance budgets are not a hard total wall-clock runtime guarantee. Failure may leave a newly created tag/draft or an already published release; automatic recovery is intentionally absent."
+  ],
+  "test_methods": [
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_complete_protocol_uses_original_verifier_and_exactly_eleven_assets",
+      "line_start": 312,
+      "line_end": 329,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_failed_or_rerun_candidate_stops_before_archive_or_writes",
+      "line_start": 331,
+      "line_end": 338,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_missing_job_page_is_not_a_complete_success",
+      "line_start": 340,
+      "line_end": 342,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_actual_failed_job_stops_before_writes",
+      "line_start": 344,
+      "line_end": 346,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_required_step_skip_is_rejected_by_unchanged_verifier",
+      "line_start": 348,
+      "line_end": 351,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_wrong_explicit_bundle_digest_stops_before_writes",
+      "line_start": 353,
+      "line_end": 355,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_changed_local_bundle_is_not_accepted_by_correct_api_identity",
+      "line_start": 357,
+      "line_end": 360,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_prepared_tree_differs_stops_before_writes",
+      "line_start": 362,
+      "line_end": 367,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_prepared_native_differs_from_candidate_pin",
+      "line_start": 369,
+      "line_end": 371,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_existing_release_is_never_resumed",
+      "line_start": 373,
+      "line_end": 375,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_existing_tag_is_never_replaced",
+      "line_start": 377,
+      "line_end": 380,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_tag_catalog_omission_is_rejected",
+      "line_start": 382,
+      "line_end": 385,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_moved_pr_after_new_tag_stops_before_release_creation",
+      "line_start": 387,
+      "line_end": 390,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_unknown_mutation_outcome_has_no_retry_cleanup_or_publish",
+      "line_start": 392,
+      "line_end": 395,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_changed_upload_digest_never_reaches_publication",
+      "line_start": 397,
+      "line_end": 400,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_unexpected_draft_asset_never_reaches_publication",
+      "line_start": 402,
+      "line_end": 405,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_changed_tag_after_upload_never_reaches_publication",
+      "line_start": 407,
+      "line_end": 409,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_replaced_asset_with_same_bytes_but_new_id_is_not_accepted",
+      "line_start": 411,
+      "line_end": 414,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_new_attempt_during_upload_stops_publication",
+      "line_start": 416,
+      "line_end": 418,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_public_download_mismatch_never_creates_success_receipt",
+      "line_start": 420,
+      "line_end": 426,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_payload_cannot_enable_non_draft_release",
+      "line_start": 428,
+      "line_end": 433,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_source_change_stops_without_any_write",
+      "line_start": 435,
+      "line_end": 437,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "PublicationProtocolTests",
+      "name": "test_output_reuse_and_output_inside_checkout_are_rejected",
+      "line_start": 439,
+      "line_end": 443,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "ArchiveAndTransportTests",
+      "name": "test_zip_crc_failure_is_checked_even_with_matching_archive_digest",
+      "line_start": 455,
+      "line_end": 464,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "ArchiveAndTransportTests",
+      "name": "test_unsafe_duplicate_symlink_and_oversize_members_are_rejected",
+      "line_start": 466,
+      "line_end": 487,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "ArchiveAndTransportTests",
+      "name": "test_direct_and_redirect_download_never_forward_authorization",
+      "line_start": 489,
+      "line_end": 517,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "ArchiveAndTransportTests",
+      "name": "test_mutation_timeout_is_one_attempt_and_does_not_log_exception_url",
+      "line_start": 519,
+      "line_end": 530,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "ArchiveAndTransportTests",
+      "name": "test_secret_response_is_hash_only_and_forbidden_mutation_is_blocked",
+      "line_start": 532,
+      "line_end": 544,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "ArchiveAndTransportTests",
+      "name": "test_mutation_redirect_is_never_followed",
+      "line_start": 546,
+      "line_end": 558,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "ArchiveAndTransportTests",
+      "name": "test_verifier_child_does_not_receive_publication_credentials",
+      "line_start": 560,
+      "line_end": 565,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "ArchiveAndTransportTests",
+      "name": "test_changed_source_rejected_before_verifier_subprocess",
+      "line_start": 567,
+      "line_end": 575,
+      "reviewed": true,
+      "executed": false
+    },
+    {
+      "class": "ArchiveAndTransportTests",
+      "name": "test_source_guard_binds_real_verifier_bytes_and_raw_index",
+      "line_start": 577,
+      "line_end": 616,
+      "reviewed": true,
+      "executed": false
+    }
+  ],
+  "reviewed_pack_manifest": {
+    "bytes": 3969,
+    "sha256": "3c666489fae671d538cd048f6380ae1fe5736aa283c9b06dd78573eb17b6f8d1",
+    "git_blob": "77039a72efc25c4149a56bef21e8158ba1850ec4"
+  },
+  "reviewed_pack_all_manifest_entries_match": true,
+  "created_utc": "2026-11-14T14:17:03.614656+00:00"
+}

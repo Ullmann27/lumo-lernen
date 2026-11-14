@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "host_source": "9799d1d637eb870dbb366d95d6593ed7ca876849",
+  "host_tree": "0760912044f5beefcf24a734e49a956259116e8b",
+  "result": "32 PASS / 0 errors / 0 skips",
+  "executions": 1,
+  "original_stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "original_stderr": {
+    "bytes": 6267,
+    "sha256": "8c0c2af0bda4e8af3e8357a460d57adb56689ee449896b58bf307338d1966cff"
+  },
+  "result_file": {
+    "bytes": 3474,
+    "sha256": "05f0758449fe8ac849b82077c26a933389aba338b114a2ed6b1db086be74bcd1"
+  },
+  "source_comparison": {
+    "head_tree_index_stage_materialized_bytes_modes_unchanged": true,
+    "all_tracked_entries": 4474,
+    "materialized_count": 9,
+    "explicit_missing_skip_worktree_count": 4465,
+    "autosave_did_not_change_source_or_index": true
+  },
+  "prior_independent_review": {
+    "path": "../host-c4-publication-v1-independent-review-20261114/review.json",
+    "sha256": "ada268b44f540266e1ca85a14b4b563101cbae07fa6eeb88d77eb61e021a0c40"
+  },
+  "no_real_publication_claim": true
+}

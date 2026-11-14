@@ -1,0 +1,326 @@
+{
+  "schema": 1,
+  "state": "FROZEN",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2056,
+      "sha256": "b98b600b17a1089c36e7aa8b260fe8e2aa025396b2fb2e8175eb576051f233af"
+    },
+    {
+      "path": "after-tests/flags.bin",
+      "bytes": 288593,
+      "sha256": "d4fe8917ddb7e9ed63bb1a8b9da9438bd10fc18cc71d92da5b8fba5811f95bb6"
+    },
+    {
+      "path": "after-tests/ignored.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after-tests/index.bin",
+      "bytes": 607505,
+      "sha256": "c26a5d94cae9d581e008a3c007961b1d441f1f089179080f120abae696e1176c"
+    },
+    {
+      "path": "after-tests/inventory.json",
+      "bytes": 1011878,
+      "sha256": "376d54ab6612fbd1a94edf51462bed3d0e6eab05f96b76af0fc1e014620ffd57"
+    },
+    {
+      "path": "after-tests/stage.bin",
+      "bytes": 503345,
+      "sha256": "99e00f85f5ac631c947bcf11bbfb02d088dfe2f7c57c8566861b1009f5d41842"
+    },
+    {
+      "path": "after-tests/status.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after-tests/tree.bin",
+      "bytes": 516767,
+      "sha256": "66c665e810ecdcbbfdc55270f3bf785960aee38fb279daa11bac4837c0795103"
+    },
+    {
+      "path": "after-tests/untracked.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "autosave-once.json",
+      "bytes": 586,
+      "sha256": "1d1468d0f4cecdc1efc73ed2cbd0ad03d50952d928b072234dd4a282bbff416f"
+    },
+    {
+      "path": "autosave-once.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "autosave-once.stdout",
+      "bytes": 76,
+      "sha256": "4658ed630ca1da0516b61562f8b18fd3e2b62bf30c98697088359cf98a990b20"
+    },
+    {
+      "path": "before-autosave/flags.bin",
+      "bytes": 288593,
+      "sha256": "d4fe8917ddb7e9ed63bb1a8b9da9438bd10fc18cc71d92da5b8fba5811f95bb6"
+    },
+    {
+      "path": "before-autosave/ignored.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before-autosave/index.bin",
+      "bytes": 607505,
+      "sha256": "c26a5d94cae9d581e008a3c007961b1d441f1f089179080f120abae696e1176c"
+    },
+    {
+      "path": "before-autosave/inventory.json",
+      "bytes": 1011878,
+      "sha256": "376d54ab6612fbd1a94edf51462bed3d0e6eab05f96b76af0fc1e014620ffd57"
+    },
+    {
+      "path": "before-autosave/stage.bin",
+      "bytes": 503345,
+      "sha256": "99e00f85f5ac631c947bcf11bbfb02d088dfe2f7c57c8566861b1009f5d41842"
+    },
+    {
+      "path": "before-autosave/status.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before-autosave/tree.bin",
+      "bytes": 516767,
+      "sha256": "66c665e810ecdcbbfdc55270f3bf785960aee38fb279daa11bac4837c0795103"
+    },
+    {
+      "path": "before-autosave/untracked.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before-tests/flags.bin",
+      "bytes": 288593,
+      "sha256": "d4fe8917ddb7e9ed63bb1a8b9da9438bd10fc18cc71d92da5b8fba5811f95bb6"
+    },
+    {
+      "path": "before-tests/ignored.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before-tests/index.bin",
+      "bytes": 607505,
+      "sha256": "c26a5d94cae9d581e008a3c007961b1d441f1f089179080f120abae696e1176c"
+    },
+    {
+      "path": "before-tests/inventory.json",
+      "bytes": 1011878,
+      "sha256": "376d54ab6612fbd1a94edf51462bed3d0e6eab05f96b76af0fc1e014620ffd57"
+    },
+    {
+      "path": "before-tests/stage.bin",
+      "bytes": 503345,
+      "sha256": "99e00f85f5ac631c947bcf11bbfb02d088dfe2f7c57c8566861b1009f5d41842"
+    },
+    {
+      "path": "before-tests/status.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before-tests/tree.bin",
+      "bytes": 516767,
+      "sha256": "66c665e810ecdcbbfdc55270f3bf785960aee38fb279daa11bac4837c0795103"
+    },
+    {
+      "path": "before-tests/untracked.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commit-original.txt",
+      "bytes": 361,
+      "sha256": "5a507761b97034fc029754e4c965bd16d02596bb2d793ee56d8bbedefc2b6ce7"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1100,
+      "sha256": "6636f4d4f563d85c82f72a78b746462ca8a6d68d8ee2dfa893a9e50418290649"
+    },
+    {
+      "path": "input-source/.github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 49103,
+      "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226"
+    },
+    {
+      "path": "input-source/AGENTS.md",
+      "bytes": 6312,
+      "sha256": "79b2088274f4fa71f05baabb802b6d9c23759c23e0b1d884013e81748a61fd84"
+    },
+    {
+      "path": "input-source/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50"
+    },
+    {
+      "path": "input-source/pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1"
+    },
+    {
+      "path": "input-source/scripts/publish_connect_four_delivery.py",
+      "bytes": 48264,
+      "sha256": "cc06aaf7472e675171344e6321078749101d21ea112795bf1d6ed8dd15228a7d"
+    },
+    {
+      "path": "input-source/scripts/release_pipeline_gates.py",
+      "bytes": 9853,
+      "sha256": "400e54f2952f0d8aae07fc964e4688c48f16c9213ea022fa8754731004551946"
+    },
+    {
+      "path": "input-source/scripts/tests/test_publish_connect_four_delivery.py",
+      "bytes": 32411,
+      "sha256": "e6818f8afa9b941ea48f403e728307f32e33310ccf5cb8f242e92aff816eb70c"
+    },
+    {
+      "path": "input-source/scripts/verify_connect_four_delivery.py",
+      "bytes": 67003,
+      "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18"
+    },
+    {
+      "path": "input-source/tools/lumo_autosave.py",
+      "bytes": 9165,
+      "sha256": "8179a267db0174b0a50dcbb881569a2ec75ca707e28699d51a36b7d41c62887c"
+    },
+    {
+      "path": "publisher32.json",
+      "bytes": 638,
+      "sha256": "7c9583326478cb167dc1b063434791459f1c21a02cc3373e1f9c5ceffb061eb8"
+    },
+    {
+      "path": "publisher32.stderr",
+      "bytes": 6267,
+      "sha256": "8c0c2af0bda4e8af3e8357a460d57adb56689ee449896b58bf307338d1966cff"
+    },
+    {
+      "path": "publisher32.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3474,
+      "sha256": "05f0758449fe8ac849b82077c26a933389aba338b114a2ed6b1db086be74bcd1"
+    },
+    {
+      "path": "setup-00.json",
+      "bytes": 225,
+      "sha256": "4eca20a6e3e5c90642e609fbfdb6e91fe3a29e7e3c14812dd003d2392abf7f69"
+    },
+    {
+      "path": "setup-00.stderr",
+      "bytes": 586,
+      "sha256": "3e70934f1909b0f5a846d62237fcc1509d733b9fb0321187024723dfc67176d3"
+    },
+    {
+      "path": "setup-00.stdout",
+      "bytes": 95,
+      "sha256": "27996e66a67e91535ae0bc55c32b64c2fee69288495b3edc66417c0b1622ed57"
+    },
+    {
+      "path": "setup-01.json",
+      "bytes": 314,
+      "sha256": "7f6cc0624f09450514765ce9ed5e94f6eb0897a3f2edc3d5d8ca59ddf97a973c"
+    },
+    {
+      "path": "setup-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "setup-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "setup-02.json",
+      "bytes": 433,
+      "sha256": "942cb95fcd73a34b085c44ff38c96a6f577a2455c7c5959c25d0c90493b08e96"
+    },
+    {
+      "path": "setup-02.stderr",
+      "bytes": 122,
+      "sha256": "c017aa5c6a5f11ad5fb567a504d4d761957c806f1f9d054034166b1b09b8da10"
+    },
+    {
+      "path": "setup-02.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "setup-03.json",
+      "bytes": 275,
+      "sha256": "ae1b87ca7860832bfc9603dba510cce717e9c48e82f25bbbe0cc713fc7fff06c"
+    },
+    {
+      "path": "setup-03.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "setup-03.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "setup-04.json",
+      "bytes": 629,
+      "sha256": "e95867b57c09c96c746b3a0353a9b09082919be113a34bcea944546bf30cbe4e"
+    },
+    {
+      "path": "setup-04.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "setup-04.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "setup-05.json",
+      "bytes": 411,
+      "sha256": "4286d944a567ffd35044d93107c7fd18fc4f0211e2fad46df293992819104c67"
+    },
+    {
+      "path": "setup-05.stderr",
+      "bytes": 61,
+      "sha256": "42754951f47edf1c581e89211ea8130f48a9abe708fb56b44bbdcf7a16e170e9"
+    },
+    {
+      "path": "setup-05.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source-comparison.json",
+      "bytes": 228,
+      "sha256": "4dc36104bf81ab9380dd6dbd6478ac399e42c6ee3cb45d5f5abef9eda686e8c1"
+    },
+    {
+      "path": "test-input-binding.json",
+      "bytes": 2413,
+      "sha256": "95f767c83a4e29e810a75765b587cd9b4e925ba00f9258b29c35821bc23fa7a9"
+    },
+    {
+      "path": "validate_once.py",
+      "bytes": 6981,
+      "sha256": "2ee029fa7bdbc3367a95aea60e529bef1b7415e956954112350896dd96ef3d07"
+    }
+  ]
+}
