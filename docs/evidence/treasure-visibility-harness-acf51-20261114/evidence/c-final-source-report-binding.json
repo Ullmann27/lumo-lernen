@@ -1,0 +1,44 @@
+{
+  "scope": "Read-only binding of C final product/test, final headless log and final renderer report; own task ran only Python/shell and original report replay.",
+  "files": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/creative/treasure_world.gd",
+      "bytes": 26887,
+      "sha256": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+      "git_blob_sha": "aae80484834823c8cf063df6bfb2607313f39ef7"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "bytes": 15261,
+      "sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "git_blob_sha": "73939c37e38bdbaca77220f79227e3dcde26e59c"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-green.log",
+      "bytes": 3366,
+      "sha256": "2f8dbddbb3bdd1f0927946fd59b29ac99e1e9f8efdb81430ae17293a8207ddbb"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-green-execution.json",
+      "bytes": 634,
+      "sha256": "8d36846cf2d44da5563fea55fa5cc5b47b43d829878a74e14a7641070838a8b2"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-render-v2-execution.json",
+      "bytes": 1143,
+      "sha256": "398b99176d74905125ca6d736ef48cf5b0fa4e51c65990fd71be91208dd0ab65"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-report.json",
+      "bytes": 30295,
+      "sha256": "2eacc62e102f3b835fa938bab7966ac507b9be210c604120ab42d61c559d7f02"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/source-upload-manifest.json",
+      "bytes": 1517,
+      "sha256": "e218e73e7a54f2e0d64553ab9398716634aa0cb94efad4021e55ea54a4f14bb7"
+    }
+  ],
+  "report_copied_byte_exact": true,
+  "hint_contract_source": "_hint_input performs genuine ScreenTouch/open/full text/background blocking/scroll container/close and unchanged progress; mandatory original strict Engine runner remains unchanged."
+}

@@ -1,0 +1,18 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-treasure-visibility-acf51/runtime",
+    "--audio-driver",
+    "Dummy",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/treasure_title_contrast_regression.gd"
+  ],
+  "exit_code": 1,
+  "seconds": 19.713924609008245,
+  "product_sha256": "a984ad87d1a039e4cb2a71869389d8662a3e816540d958193136e132478a26b1",
+  "test_sha256": "b66ed6501cb8957530b0dd1526c60878f81293602ddc7861618c566c04608c2b"
+}

@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "source_read_at_utc": "2026-11-14T06:58:10.033163+00:00",
+  "fetch": {
+    "request": {
+      "repository_full_name": "Ullmann27/lumo-godot",
+      "path": "scripts/creative/build_settlement_world.gd",
+      "ref": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "encoding": "base64"
+    },
+    "response": {
+      "sha": "a4c55b4daba91f19b5cd8f846cdb62f9a727466c",
+      "encoding": "base64",
+      "display_url": "https://github.com/Ullmann27/lumo-godot/blob/acf51d3bd2997c4b731e9a48e1791e05e756a132/scripts/creative/build_settlement_world.gd",
+      "display_title": "build_settlement_world.gd"
+    }
+  },
+  "baseline": {
+    "path": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/baseline/native/scripts/creative/build_settlement_world.gd",
+    "bytes": 34725,
+    "sha256": "c3ee8df70deaf9a10d2e093f1c618a01a3ee030c3841f75951a98f808d63790f",
+    "git_blob_sha": "a4c55b4daba91f19b5cd8f846cdb62f9a727466c"
+  },
+  "patched": {
+    "path": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/native/scripts/creative/build_settlement_world.gd",
+    "bytes": 34831,
+    "sha256": "f1c1633dfa9b35895c2c51e943fead257e9621169b0c618e3b8ce8bfbc9850a0",
+    "git_blob_sha": "a0b2b6c34d2242075f9f735adae481b7e3ecc3c5"
+  },
+  "original_visual_evidence": {
+    "native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "run_id": 43565059832,
+    "artifact_id": 14103142984,
+    "archive_sha256": "4c1e6705f952efe789b0f5eb17d0bcf26cc369c4411b52a6ec5a4567a9b26aac",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+    "bytes": 57478,
+    "sha256": "8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2",
+    "dimensions": [
+      388,
+      390
+    ],
+    "byte_equal_to_original_zip_member": true,
+    "actually_opened_by_character_animation": true,
+    "observed_text": "Du erhältst 4 Holz, 3 Stein, 1 Münzen zurück."
+  },
+  "change_scope": "Only the visible coins label inside _cost_text is singular at exact integer quantity1. All quantities, resource lookup/filter/order, separators and other labels unchanged.",
+  "other_source_bytes_identical_after_reversing_exact_hunk": true,
+  "new_engine_or_unit_tests_run": false,
+  "regression_image_after_patch_available": false,
+  "next_validation": "Existing actual Settlement capture must execute against the follow-up candidate; no new visual PASS claimed here."
+}

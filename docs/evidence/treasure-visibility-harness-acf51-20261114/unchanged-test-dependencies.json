@@ -1,0 +1,26 @@
+{
+  "files": [
+    {
+      "path": "tools/validate_nextgen.sh",
+      "bytes": 5035,
+      "sha256": "34472fbe2e552f1332418d5544e33626b9343e5894589c31951472f2e0ead5e6",
+      "git_blob_sha": "bf5e8e129fa8c3d7872fb92d21046c1ef7f87e9e",
+      "source_commit": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    },
+    {
+      "path": "tools/run_godot_probe.py",
+      "bytes": 2934,
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "git_blob_sha": "c23859ece2d62101d000d7a89556fda5d3fe4105",
+      "source_commit": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "bytes": 19772,
+      "sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+      "git_blob_sha": "fcf5fec5a43eda65b7d2c077af281fa5497635ae",
+      "source_commit": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    }
+  ],
+  "scope": "Read-only exact published fixtures for13existing Python contracts; not included in source patch."
+}

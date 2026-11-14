@@ -1,0 +1,18 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-treasure-visibility-acf51/runtime",
+    "--audio-driver",
+    "Dummy",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/treasure_density_regression.gd"
+  ],
+  "exit_code": 0,
+  "seconds": 30.409585820001666,
+  "product_sha256": "36004959166262bb64e81cf33512f57f5a259e9f0072203cafdae649d47ab88f",
+  "unchanged_test_sha256": "b3be76fa9caa6da23490fb2de684397f21afac7c21b02e65a3a137c16d655f70"
+}

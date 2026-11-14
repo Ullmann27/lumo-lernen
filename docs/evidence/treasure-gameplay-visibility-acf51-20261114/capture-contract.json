@@ -1,0 +1,68 @@
+{
+  "script": "scripts/tests/treasure_title_contrast_regression.gd",
+  "marker": "[TreasureTitleContrast] PASS",
+  "cli": [
+    "--",
+    "--capture"
+  ],
+  "environment": "LUMO_CAPTURE_DIR",
+  "actual_final_headless_checks": 3341,
+  "actual_final_rendered_checks": 3351,
+  "report": "treasure-title-report.json",
+  "observations": 10,
+  "source_hashes": {
+    "scripts/creative/treasure_world.gd": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+    "scripts/tests/treasure_title_contrast_regression.gd": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea"
+  },
+  "required_images": [
+    {
+      "name": "treasure-title-compact.png",
+      "width": 640,
+      "height": 320
+    },
+    {
+      "name": "treasure-title-fold.png",
+      "width": 2176,
+      "height": 1812
+    },
+    {
+      "name": "treasure-title-landscape-cutout.png",
+      "width": 2400,
+      "height": 1080
+    },
+    {
+      "name": "treasure-title-landscape.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "treasure-title-portrait.png",
+      "width": 1080,
+      "height": 2400
+    }
+  ],
+  "new_image": "treasure-title-landscape-cutout.png",
+  "roles_high": [
+    "header",
+    "clue",
+    "toast",
+    "joystick",
+    "action",
+    "jump"
+  ],
+  "roles_short": [
+    "header",
+    "toast",
+    "joystick",
+    "action",
+    "jump",
+    "hint"
+  ],
+  "short_profiles": [
+    "compact",
+    "landscape-cutout"
+  ],
+  "shared_harness_owner": "/root/character_animation",
+  "shared_harness_not_modified_by_this_package": true,
+  "runtime_scope": "Declared Android boundary/save fixtures with genuine desktop production scene and ScreenTouch; no device result."
+}

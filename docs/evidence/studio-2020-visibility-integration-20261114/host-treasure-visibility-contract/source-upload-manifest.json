@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "scope": "add fifth current Treasure visibility image to unpublished Studio2020 Host contract; preserve all prior functions",
+  "files": [
+    {
+      "path": "scripts/verify_studio_delivery.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/source/scripts/verify_studio_delivery.py",
+      "bytes": 32643,
+      "sha256": "831a3aafbef39b53f7883b103b9d650eb14b49164c774fb1aae499d05174e8ae",
+      "git_blob_sha": "f4bf0481002a08bf9c88704d4ff3dd9cc9a43916",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_studio_2020_delivery.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/source/scripts/tests/test_studio_2020_delivery.py",
+      "bytes": 10116,
+      "sha256": "897b02a653bc4dffb2dbf990bc86ac721b6fc6014bdb7fff23fbae286601a977",
+      "git_blob_sha": "3a3d6539d865c1e23c9a8345775b387e31c04ea5",
+      "mode": "100644"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "baseline_native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "baseline_tree": "625d501c8517fa88787a0a415cd5d5b2e75ac845",
+  "scope": "Only existing Treasure HUD visibility/contrast and its additive existing regression; no camera, quest, save, reward, world, shared harness, pin or Git changes.",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/creative/treasure_world.gd",
+      "target": "scripts/creative/treasure_world.gd",
+      "mode": "100644",
+      "bytes": 26887,
+      "sha256": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+      "git_blob_sha": "aae80484834823c8cf063df6bfb2607313f39ef7",
+      "baseline_blob": "fdddd40fdf9958b7bc0bff50b75ccd4e8a2458b8",
+      "baseline_sha256": "ce7c7df90f85604f912ff1afc46077935053e883359db47c3f9e9d7dcc4fe65d"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "target": "scripts/tests/treasure_title_contrast_regression.gd",
+      "mode": "100644",
+      "bytes": 15261,
+      "sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "git_blob_sha": "73939c37e38bdbaca77220f79227e3dcde26e59c",
+      "baseline_blob": "6e50ace998d896fd88f0006112152e490e7c64e3",
+      "baseline_sha256": "1f0d170fbe05c89a36501463ec9307d3f830e10a4cb63a02f663f98a5e7b600d"
+    }
+  ],
+  "total_bytes": 42148
+}

@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T07:18:23.569697+00:00",
+  "reviewer": "/root",
+  "status": "local targeted visibility correction visually accepted; new complete GitHub source acceptance pending",
+  "source_sha256": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+  "test_sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+  "renderer_report_sha256": "2eacc62e102f3b835fa938bab7966ac507b9be210c604120ab42d61c559d7f02",
+  "images": [
+    {
+      "file": "/tmp/lumo-treasure-visibility-acf51/final-render-v2-captures/treasure-title-compact.png",
+      "profile": "compact",
+      "bytes": 324217,
+      "sha256": "01fb3aa476f1c07950023cfdb2e6c8ee56af9ff902ed91a4ceab2e5812787fb9",
+      "dimensions": [
+        640,
+        320
+      ],
+      "findings": "640×320 tatsächlich geöffnet: Die vorher verdeckte Figur ist nun vollständig zwischen oberer Hinweis-/Meldungszeile und den seitlichen Eingaben sichtbar. Titel und Erkundungshinweis sind auf dunklem Hintergrund klar lesbar. Der vollständige Aufgabeninhalt ist in dieser kurzen Ansicht über Hinweis erreichbar; seine Bedienung folgt aus dem gesonderten Laufzeitbeleg, nicht aus dem Standbild."
+    },
+    {
+      "file": "/tmp/lumo-treasure-visibility-acf51/final-render-v2-captures/treasure-title-landscape-cutout.png",
+      "profile": "landscape-cutout",
+      "bytes": 2622432,
+      "sha256": "a4ddd95b35a4253bca35863eb5f6a04b7cc24af731c2d314f774502fa769f328",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "findings": "2400×1080 tatsächlich geöffnet: Hinweis und allgemeine Meldung liegen in der oberen Zeile; die ganze Spielfigur ist darunter frei sichtbar. Seitliche sichere Ränder und die drei unteren Eingabeflächen bleiben erkennbar getrennt. Der zuvor von Root beanstandete Aufgabenfeld-Schnitt ist in dieser konkreten Aufnahme behoben."
+    },
+    {
+      "file": "/tmp/lumo-treasure-visibility-acf51/final-render-v2-captures/treasure-title-portrait.png",
+      "profile": "portrait",
+      "bytes": 2101916,
+      "sha256": "a9dd2fb6b1d56f94d67b74e5665acc328ba70a5d20c0bd2e49e2285767c4df7f",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "findings": "1080×2400 tatsächlich geöffnet: Das direkte Aufgabenfeld bleibt sichtbar, Lumo steht frei darunter. Die kontraststarke Meldung hat nun einen sichtbaren Abstand oberhalb von Springen. Die Überschrift bleibt gekürzt und der Entdeckungszähler umbrechend; keine Behauptung eines vollständig neu gestalteten Portrait-HUD."
+    },
+    {
+      "file": "/tmp/lumo-treasure-visibility-acf51/final-render-v2-captures/treasure-title-landscape.png",
+      "profile": "landscape",
+      "bytes": 2718314,
+      "sha256": "609ae9a2f31c55cac080e90ea98187bde3d8f75523e3cca768fd00ffb4a2c398",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "findings": "1920×1080 tatsächlich geöffnet: Direkter Hinweis und vollständiger Spieltitel bleiben lesbar, Lumo liegt außerhalb des Hinweisfelds. Die neue dunkle Meldungszeile liegt unten zwischen den Steuerbereichen und verdeckt die Figur nicht."
+    },
+    {
+      "file": "/tmp/lumo-treasure-visibility-acf51/final-render-v2-captures/treasure-title-fold.png",
+      "profile": "fold",
+      "bytes": 4225356,
+      "sha256": "e2913b19defe9a740494da0aab2eb63a008adb07f7de85d6cef2d1122d04099f",
+      "dimensions": [
+        2176,
+        1812
+      ],
+      "findings": "2176×1812 nach verworfener Werkzeug-Ausgabe separat vollständig geöffnet: Figur, Hinweis, Titel und Eingabeflächen sind sichtbar getrennt. Die dunkle Meldung liegt zwischen den unteren Steuerbereichen. Dies ist eine lokale Rendereransicht im angegebenen Format, keine Aufnahme oder Messung eines physischen Fold7."
+    }
+  ],
+  "all_five_actually_viewed": true,
+  "host_pin_changed": false,
+  "receipt_created": false,
+  "android_execution": false,
+  "physical_device_measurements": false,
+  "tool_output_limit_note": "The first combined image-output call omitted the Fold image; it was then emitted and reviewed in a separate successful call."
+}

@@ -1,0 +1,9 @@
+{
+  "baseline_commit": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "scope": "Synthetic complete five-PNG/ten-state fixture evaluated by unchanged original roster; not a renderer execution",
+  "exit_code": 1,
+  "renderer_report_emitted": false,
+  "elapsed_seconds": 0.335218359992723,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"<stdin>\", line 171, in <module>\nAssertionError: ('treasure_title_contrast_regression', 5, 4)\n"
+}

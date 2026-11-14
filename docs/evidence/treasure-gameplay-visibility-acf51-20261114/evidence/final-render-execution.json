@@ -1,0 +1,26 @@
+{
+  "command": [
+    "python3",
+    "/workspace/scratch/5987865ae883/lumo-godot/tools/run_local_renderer.py",
+    "--display",
+    "95",
+    "--output",
+    "/tmp/lumo-treasure-visibility-acf51/final-render",
+    "--timeout",
+    "540",
+    "--project",
+    "/tmp/lumo-treasure-visibility-acf51/runtime",
+    "--",
+    "--script",
+    "res://scripts/tests/treasure_title_contrast_regression.gd",
+    "--",
+    "--capture"
+  ],
+  "environment": {
+    "LUMO_CAPTURE_DIR": "/tmp/lumo-treasure-visibility-acf51/final-render-captures"
+  },
+  "exit_code": 0,
+  "seconds": 255.6804757630016,
+  "product_sha256": "36004959166262bb64e81cf33512f57f5a259e9f0072203cafdae649d47ab88f",
+  "test_sha256": "b66ed6501cb8957530b0dd1526c60878f81293602ddc7861618c566c04608c2b"
+}
