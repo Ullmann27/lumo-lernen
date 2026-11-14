@@ -39,6 +39,43 @@ def condition(source,values):
     return eval(text,{'__builtins__':{}},{})
 
 
+class VillageCandidateOriginalEvidenceTests(unittest.TestCase):
+    def setUp(self):
+        sys.path.insert(0,str(ROOT/'tools/android_qa/tests'))
+        from test_village_android_evidence import SyntheticVillage
+        self.temporary=tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root=Path(self.temporary.name)
+        self.village=self.root/'village'; self.village.mkdir()
+        self.prior=self.root/'tour-result.json'
+        self.prior.write_text(json.dumps({'synthetic_fixture':True}))
+        self.fixture=SyntheticVillage(self.village)
+        self.report=self.fixture.build()
+        self.report['prior_tour']['sha256']=final.c4.sha256(self.prior)
+        self.fixture.refresh()
+
+    def verify(self):
+        return final.village_proof(self.village,self.fixture.binding,self.fixture.identity,self.prior)
+
+    def test_candidate_replays_the_complete_original_village_contract(self):
+        self.assertEqual(self.verify()['status'],'PASS')
+
+    def test_candidate_rejects_a_different_original_main_tour(self):
+        self.prior.write_text('changed')
+        with self.assertRaisesRegex(ValueError,'same complete original main tour'):
+            self.verify()
+
+    def test_candidate_rejects_missing_or_mutated_original_native_frame(self):
+        (self.village/self.report['native']['frame']['file']).unlink()
+        with self.assertRaises(ValueError): self.verify()
+
+    def test_candidate_rejects_a_still_running_native_process(self):
+        self.fixture.replace_original(self.report['returned']['native_pid'],'200\n',returncode=0)
+        self.fixture.refresh()
+        with self.assertRaisesRegex(ValueError,'process absence'):
+            self.verify()
+
+
 class WorkflowTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -210,6 +247,15 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn('api-level: 35',android)
         script=android.split('          script: |\n',1)[1]
         self.assertLess(script.index('modernization_android_tour.py'),script.index('lumo_connect_four_android_probe.py'))
+        self.assertLess(script.index('modernization_android_tour.py'),script.index('lumo_village_android_probe.py'))
+        self.assertLess(script.index('lumo_village_android_probe.py'),script.index('lumo_connect_four_android_probe.py'))
+        village_line=next(line for line in script.splitlines() if 'lumo_village_android_probe.py' in line)
+        for flag in ('--out tour/village','--prior-tour tour/main/tour-result.json',
+                     '--expected-source "$SOURCE_SHA"','--expected-native "$NATIVE_REVISION"',
+                     '--build-run "$GITHUB_RUN_ID"','--run-attempt "$GITHUB_RUN_ATTEMPT"',
+                     '--artifact-id "$CANDIDATE_ARTIFACT_ID"','--artifact-digest "$CANDIDATE_ARTIFACT_DIGEST"'):
+            self.assertIn(flag,village_line)
+        self.assertIn("-p 'test_village_android_evidence.py' -v",android)
         for flag in ('--prior-tour tour/main/tour-result.json','--expected-source "$SOURCE_SHA"',
                      '--expected-native "$NATIVE_REVISION"','--artifact-id "$CANDIDATE_ARTIFACT_ID"',
                      '--artifact-digest "$CANDIDATE_ARTIFACT_DIGEST"','--run-attempt "$GITHUB_RUN_ATTEMPT"'):

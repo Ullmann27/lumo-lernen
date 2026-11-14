@@ -144,7 +144,7 @@ APPROVED = {
     # 2020: reviewed C4, original-Lumo facial and Treasure source, paired
     # with the installed PCM envelope. Fresh 52-mode native, Android and
     # preserved-update gates remain mandatory; this entry binds source identity.
-    2020: "570bcde335e064fe96d8ef90c3ef403c0a08ae3f",
+    2020: "be58fe0afcbbd8bf982592d05d83f0e7742e8934",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

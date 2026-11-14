@@ -1,3 +1,79 @@
+# Active LUMO 2020 integration and complete acceptance — 2026-11-14
+
+Active review: https://github.com/Ullmann27/lumo-lernen/pull/497
+Working branch: `integration/lumo-live-connections-20261114`.
+Version: `0.13.8+2020`.
+Exact native source: `71a4c1e2304b52005950b12490d070c286c45438`.
+Native review: https://github.com/Ullmann27/lumo-godot/pull/173.
+Main remains protected.
+
+## Integrated behavior
+
+The complete host integration through `cf2593cb6dec51b66461c8e5984dfbfdd5091c22`
+is retained, including the Play-quality base, drawing and learning progress,
+eleven Flutter game portals, responsive C4, direct Dorfwirtschaft launch and the
+existing handwriting/journal modules.
+
+The native Hub now loads the existing original facial Lumo rig. Its actual GLB,
+bones, animations, visible mesh and free camera framing are checked. Eight native
+routes are retained. The original portrait and landscape PNGs were independently
+viewed; the portrait keeps its existing scroll continuation.
+
+A direct embedded Dorfwirtschaft entry now has the visible `‹ Spiele` return
+through the existing save and HostBridge path. Failed saves block departure,
+and a refused return acknowledgement remains retryable. The original internal
+Bauwelt context and the optional Bauwelt route remain available. AndroidBack
+continues to pause. The original initialized-state marker identifies the actual
+running village for the additive API35 roundtrip proof.
+
+The Home capture tests now open the real subject expansion, wait for its actual
+animation frames, require the first Mathe card to be fully visible and hittable,
+and capture that state. Village captures use Flutter's SDK-owned Android platform
+variant so the framework restores its debug state correctly.
+
+## Actual predecessor and focused results
+
+The first combined run on 7fd9e916 reported 2,612 passed / three failed / zero
+skipped / 546 PNGs. Its three outdated Diktat finders were repaired.
+
+The next combined run [43582160954](https://github.com/Ullmann27/lumo-lernen/actions/runs/43582160954)
+on cf2593cb passed native C4 runtime, actual Android host compilation, static
+analysis and all 888 script tests. Full Flutter reported **2,619 passed / six
+failed / zero skipped / 566 PNGs**. All three repaired Diktat cases passed
+individually. The six failures were the Village tests' platform-cleanup invariant,
+after their layout and real launch assertions. No APK was built by this run.
+
+The focused corrections subsequently passed:
+- Home run 43584516810: 13 Home/navigation tests and eight additional world tests,
+  with eight original captures; the four learning-card captures now show real
+  opened subject cards.
+- Village run 43583899148: 27 Flutter tests, six original captures and actual
+  Kotlin/Android host compilation.
+- Native 71a4c1e2: original Hub identity and two real renders; Village host return,
+  save/restore and rejected-ACK retry; existing Rig, VillageScene and Economy
+  regressions; eleven helper tests with 57 negative cases and a read-only replay
+  of the complete 38-image set.
+
+## Required final acceptance
+
+The exact next combined host must pass its own full Flutter suite, the native
+52-mode suite and original 17-image extension, Live nine-probe/seven-image suite,
+Discovery ten-probe/38-image suite, signed APK build, actual API35
+Atelier/Kart/Village/C4 journeys, 2017-to-2020 data-preserving update and final
+delivery replay. The Village result must be bound to the same original APK,
+source, run, main tour, native PID, profile, real scene and preserved learning data.
+Only the complete accepted source may be used for a new direct APK release.
+
+Focused or predecessor results do not certify the final APK. No physical Android
+60-FPS, Play-production signing or curriculum-wide approval is claimed.
+Original evidence and source provenance remain under
+`docs/evidence/live-root-integration-20261114/source-integration.json`,
+`docs/evidence/capture-state-qa-20261114/` and the corresponding native evidence.
+
+---
+
+## Previous combined-candidate handoff
+
 # Active LUMO 2020 combined integration — 2026-11-14
 
 Active review: https://github.com/Ullmann27/lumo-lernen/pull/497
