@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,36 +16,41 @@ void main() {
   setUpAll(loadLumoCaptureFonts);
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
-  testWidgets('Premium learning cards: complete description, progress and tap',
-      (tester) async {
-    await tester.binding.setSurfaceSize(const Size(160, 198));
-    addTearDown(() => tester.binding.setSurfaceSize(null));
-    var pressed = 0;
-    await tester.pumpWidget(MaterialApp(
-      home: Scaffold(
-        body: LumoSubjectShowcaseCard(
-          subject: 'Mathematik',
-          shortName: 'Mathe',
-          subtitle: 'Zahlen, Rechnen und Formen',
-          icon: Icons.calculate_rounded,
-          accent: const Color(0xFFFFC04A),
-          completed: 5,
-          onTap: () => pressed++,
+  testWidgets(
+    'Premium learning cards: complete description, progress and tap',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(160, 198));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      var pressed = 0;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: LumoSubjectShowcaseCard(
+              subject: 'Mathematik',
+              shortName: 'Mathe',
+              subtitle: 'Zahlen, Rechnen und Formen',
+              icon: Icons.calculate_rounded,
+              accent: const Color(0xFFFFC04A),
+              completed: 5,
+              onTap: () => pressed++,
+            ),
+          ),
         ),
-      ),
-    ));
-    await tester.pump();
-    expect(find.text('Mathe'), findsOneWidget);
-    expect(find.text('Zahlen, Rechnen und Formen'), findsOneWidget);
-    expect(find.text('5 Aufgaben geschafft'), findsOneWidget);
-    expect(find.text('MEIN FORTSCHRITT'), findsOneWidget);
-    final progress = tester.widget<LinearProgressIndicator>(
-      find.byType(LinearProgressIndicator));
-    expect(progress.value, .5);
-    await tester.tap(find.byKey(const ValueKey('home-island-mathe')));
-    expect(pressed, 1);
-    expect(tester.takeException(), isNull);
-  });
+      );
+      await tester.pump();
+      expect(find.text('Mathe'), findsOneWidget);
+      expect(find.text('Zahlen, Rechnen und Formen'), findsOneWidget);
+      expect(find.text('5 Aufgaben geschafft'), findsOneWidget);
+      expect(find.text('MEIN FORTSCHRITT'), findsOneWidget);
+      final progress = tester.widget<LinearProgressIndicator>(
+        find.byType(LinearProgressIndicator),
+      );
+      expect(progress.value, .5);
+      await tester.tap(find.byKey(const ValueKey('home-island-mathe')));
+      expect(pressed, 1);
+      expect(tester.takeException(), isNull);
+    },
+  );
 
   for (final (device, size, textScale) in <(String, Size, double)>[
     ('phone', const Size(393, 852), 1.0),
@@ -56,6 +62,7 @@ void main() {
       await tester.binding.setSurfaceSize(size);
       addTearDown(() => tester.binding.setSurfaceSize(null));
       final state = LumoAppState();
+      final sections = <LumoSection>[];
       addTearDown(state.dispose);
       const captureKey = ValueKey('home-1989-boundary');
       await tester.pumpWidget(
@@ -69,67 +76,154 @@ void main() {
             child: Scaffold(
               body: RepaintBoundary(
                 key: captureKey,
-                child: HomeContent(appState: state, onSection: (_) {}),
+                child: HomeContent(appState: state, onSection: sections.add),
               ),
             ),
           ),
         ),
       );
       await tester.pump(const Duration(milliseconds: 700));
-      final out = Platform.environment['LUMO_1989_CARD_CAPTURES'];
-      if (out != null) {
-        await captureLumoBoundary(
-          tester, captureKey, '$out/$device-start.png',
+      final testsCard = find.byKey(const ValueKey('home-secondary-tests'));
+      final rewardsCard = find.byKey(const ValueKey('home-secondary-rewards'));
+      for (final (card, title) in [
+        (testsCard, 'Tests'),
+        (rewardsCard, 'Belohnungen'),
+      ]) {
+        final cardRect = tester.getRect(card);
+        expect(cardRect.width, greaterThanOrEqualTo(48));
+        expect(cardRect.height, greaterThanOrEqualTo(48));
+        final titleFinder = find.descendant(
+          of: card,
+          matching: find.text(title),
         );
+        final paragraph = tester.renderObject<RenderParagraph>(titleFinder);
+        final boxes = paragraph.getBoxesForSelection(
+          TextSelection(baseOffset: 0, extentOffset: title.length),
+        );
+        expect(paragraph.didExceedMaxLines, isFalse);
+        expect(
+          boxes,
+          hasLength(1),
+          reason: '$device must keep the complete $title label on one line',
+        );
+        final textRect = boxes.single.toRect().shift(
+          paragraph.localToGlobal(Offset.zero),
+        );
+        expect(textRect.left, greaterThanOrEqualTo(cardRect.left));
+        expect(textRect.right, lessThanOrEqualTo(cardRect.right));
+        expect(textRect.top, greaterThanOrEqualTo(cardRect.top));
+        expect(textRect.bottom, lessThanOrEqualTo(cardRect.bottom));
       }
-      // The narrow Fold cover is the simplified overview; deep secondary
-      // islands are intentionally not part of its first-screen contract.
-      // Primary 48dp navigation is separately verified in the 1992 cover test.
       if (device == 'fold-cover') {
         expect(find.byKey(const ValueKey('home-learn')), findsOneWidget);
         expect(find.byKey(const ValueKey('home-games')), findsOneWidget);
-        expect(tester.takeException(), isNull);
-        if (out != null) {
-          // Retain the screenshot artifact identity with the real, deliberately
-          // compact cover-screen viewport. Never counterfeit a hidden tile.
-          await captureLumoBoundary(
-              tester, captureKey, '$out/$device-learning-cards.png');
-        }
-        await tester.pumpWidget(const SizedBox.shrink());
-        await tester.pump(const Duration(milliseconds: 300));
-        return;
+        expect(testsCard.hitTestable(), findsOneWidget);
+        expect(rewardsCard.hitTestable(), findsOneWidget);
+        await tester.tap(testsCard);
+        await tester.pump();
+        await tester.tap(rewardsCard);
+        await tester.pump();
+        expect(sections, [LumoSection.tests, LumoSection.rewards]);
+        await tester.pump(const Duration(milliseconds: 500));
       }
-      final subjects = find.text('Alle Fächer direkt öffnen');
+      final out = Platform.environment['LUMO_1989_CARD_CAPTURES'];
+      if (out != null) {
+        await captureLumoBoundary(tester, captureKey, '$out/$device-start.png');
+      }
+      final homeList = find.byKey(
+        const PageStorageKey<String>('lumo-home-scroll'),
+      );
+      final homeScroll = find
+          .descendant(of: homeList, matching: find.byType(Scrollable))
+          .first;
+      final expansion = find.byKey(
+        const PageStorageKey<String>('home-all-subjects'),
+      );
+      final subjects = find.descendant(
+        of: expansion,
+        matching: find.text('Alle Fächer direkt öffnen'),
+      );
       await tester.scrollUntilVisible(
-        subjects, -270,
-        scrollable: find.byType(Scrollable).first,
-        maxScrolls: 140);
-      await tester.ensureVisible(subjects);
+        subjects.hitTestable(),
+        270,
+        scrollable: homeScroll,
+        maxScrolls: 140,
+      );
       await tester.pump(const Duration(milliseconds: 250));
       expect(subjects.hitTestable(), findsOneWidget);
       await tester.tap(subjects);
+      // Start the expansion ticker before advancing it to its completed frame.
+      await tester.pump();
       await tester.pump(const Duration(milliseconds: 650));
-      final first = find.byKey(const ValueKey('home-island-mathe'));
-      await tester.scrollUntilVisible(
-        first, -270, scrollable: find.byType(Scrollable).first,
+      expect(
+        find.descendant(of: expansion, matching: find.text('Deine Lernfächer')),
+        findsOneWidget,
       );
-      await tester.pump(const Duration(milliseconds: 500));
+      final first = find.byKey(const ValueKey('home-island-mathe'));
       expect(first, findsOneWidget);
+      debugPrint(
+        '[HomeCaptureExpansion] device=$device '
+        'scroll=${tester.state<ScrollableState>(homeScroll).position.pixels} '
+        'firstSubject=${tester.getRect(first)} '
+        'hits=${first.hitTestable().evaluate().length}',
+      );
+      await tester.scrollUntilVisible(
+        first.hitTestable(),
+        270,
+        scrollable: homeScroll,
+        maxScrolls: 140,
+      );
+      await Scrollable.ensureVisible(tester.element(first), alignment: .08);
+      await tester.pump(const Duration(milliseconds: 500));
+      expect(
+        first.hitTestable(),
+        findsOneWidget,
+        reason: '$device must display the real opened first subject card',
+      );
+      final firstRect = tester.getRect(first);
+      final viewport = tester.getRect(find.byKey(captureKey));
+      expect(firstRect.left, greaterThanOrEqualTo(viewport.left));
+      expect(firstRect.right, lessThanOrEqualTo(viewport.right));
+      expect(firstRect.top, greaterThanOrEqualTo(viewport.top));
+      expect(firstRect.bottom, lessThanOrEqualTo(viewport.bottom));
+      debugPrint(
+        '[HomeCapture] device=$device '
+        'scroll=${tester.state<ScrollableState>(homeScroll).position.pixels} '
+        'firstSubject=$firstRect viewport=$viewport',
+      );
       final deutsch = find.byKey(const ValueKey('home-island-deutsch'));
       expect(deutsch, findsOneWidget);
       if (size.width < 460) {
         final matheRect = tester.getRect(first);
         final deutschRect = tester.getRect(deutsch);
-        expect(deutschRect.top, greaterThanOrEqualTo(matheRect.bottom),
-            reason: 'Narrow phone needs full-width legible card rows');
+        expect(
+          deutschRect.top,
+          greaterThanOrEqualTo(matheRect.bottom),
+          reason: 'Narrow phone needs full-width legible card rows',
+        );
         expect(deutschRect.left, closeTo(matheRect.left, 1));
       }
-      expect(tester.takeException(), isNull,
-          reason: 'No small-cover/Fold overflow for $device');
+      expect(
+        tester.takeException(),
+        isNull,
+        reason: 'No small-cover/Fold overflow for $device',
+      );
       if (out != null) {
         await captureLumoBoundary(
-          tester, captureKey, '$out/$device-learning-cards.png',
+          tester,
+          captureKey,
+          '$out/$device-learning-cards.png',
         );
+        expect(
+          first.hitTestable(),
+          findsOneWidget,
+          reason: 'The subject card must remain visible through rasterization',
+        );
+        final capturedRect = tester.getRect(first);
+        expect(capturedRect.left, closeTo(firstRect.left, .001));
+        expect(capturedRect.top, closeTo(firstRect.top, .001));
+        expect(capturedRect.right, closeTo(firstRect.right, .001));
+        expect(capturedRect.bottom, closeTo(firstRect.bottom, .001));
       }
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pump(const Duration(milliseconds: 300));

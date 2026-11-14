@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery",
+    "scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_exact_integration_branches_require_the_same_current_pull_branch",
+    "scripts.tests.test_connect_four_pipeline.WorkflowTests.test_return_recovery_runs_between_import_and_the_two_process_gate",
+    "scripts.tests.test_connect_four_pipeline.WorkflowTests.test_only_exact_same_repository_c4_pull_request_starts",
+    "scripts.tests.test_connect_four_pipeline.WorkflowTests.test_only_c4_branch_is_added_to_existing_unified_exclusions",
+    "-v"
+  ],
+  "exit_code": 1,
+  "seconds": 0.12904793499910738,
+  "log_sha256": "832a5a7a43d03ad26406969712ae8ebfe66f8953a397ae148d31bca227a1f2da",
+  "scope": "New Return-step and agent-execution branch regression tests against the prior shared workflow/delivery files, before integration; expected failures."
+}

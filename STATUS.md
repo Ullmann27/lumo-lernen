@@ -1,3 +1,268 @@
+# Aktueller gemeinsamer LUMO-2020-Integrationsstand — 14. November 2026
+
+Host-Review: [PR 497](https://github.com/Ullmann27/lumo-lernen/pull/497).
+Arbeitszweig: `integration/lumo-live-connections-20261114`.
+Version: **0.13.8+2020**, unveröffentlichter Family-Testkandidat.
+Native-Review: [PR 173](https://github.com/Ullmann27/lumo-godot/pull/173).
+Exakt gebundene Godot-4.6.3-Quelle: `e9a9f60f20403ffa6b2b26d1437f958b2704d2aa`,
+Tree `1c2b5da7a4485cb8b911adcac2b567481cf902b5`.
+Main und vorhandene Veröffentlichungen bleiben geschützt.
+
+## Vollständige Zusammenführung
+
+Dieser Host-Merge führt `9516068cfb67938fc90d48ff45d56169f00941fc` und den
+tatsächlichen aktuellen Qualitätszweig `aab09275ec6b5808de9be539ca4e1a7e70921249`
+mit beiden realen Eltern zusammen. Die gemeinsame Basis ist
+`803a4e960ffb804a46b6d09417731c031f00f680`.
+Der Abgleich verwendet vollständige rekursive Git-Bäume, weil die
+Compare-Dateiliste bei 300 der 302 Upstreamänderungen endet.
+280 Änderungen werden als Originalblobs übernommen; 18 konkurrierende Dateien
+werden ausdrücklich aufgelöst. Vier bereits identische Änderungen und sämtliche
+151 ausschließlich eigenen Änderungen bleiben erhalten. Es gibt keine Löschung.
+
+Der Native-Merge verbindet `71a4c1e2304b52005950b12490d070c286c45438`
+mit `e2d15dbc5f3709306decb139eeb70a1cf30c0b73`.
+Sein vollständiger Baum wurde unabhängig mit allen 3.712 Nicht-Tree-Einträgen
+verglichen: null Abweichungen von der berechneten Vereinigung. Die 63 zusätzlichen
+Upstreamblobs und zwei Provenienzdateien ergänzen den bisherigen Stand.
+Alle geschützten Hub-/Village-Dateien und bisherigen Prüfprogramme bleiben
+blob- und modusgleich.
+
+Die elf Spieleportale, der direkte Dorfwirtschaft-Einstieg samt sichtbarer
+Rückkehr zu Spiele, gesicherte Profile/Lernstände, Original-Lumo, gemeinsames
+Zeichnen sowie die vorhandenen Schreibtrainer- und Journalmodule bleiben
+angeschlossen. Dazu kommen die exakte kumulative Mathematik-Themenwahl,
+unverkleinerte gedrückte C4-Touchflächen, sichere Kart-Minimap-Geometrie,
+die zusätzliche Dream-Abnahme und die präzise Android-Continue-Erkennung.
+
+Die Testauflösung behält echte Spielzüge, Replay-/Restart-Nachweise, vollständige
+Rückwege und alle Herkunftsprüfungen. Die Auslieferung verlangt weiterhin genau
+elf Assets einschließlich des originalen Village-Android-Ergebnisses.
+Live9/7 und Discovery10/38 bleiben zusätzlich zu Dream5/7/2 verpflichtend.
+
+## Tatsächlicher abgeschlossener Vorgängerlauf
+
+Run [43586101225](https://github.com/Ullmann27/lumo-lernen/actions/runs/43586101225),
+Versuch 1, prüfte Host `07cac7225e2f7b6451665dfda9c38841f51c758b`
+und Native `71a4c1e2304b52005950b12490d070c286c45438`.
+
+- C4-Runtime und tatsächliche Android-Host-Kompilierung bestanden.
+- Die vollständige Flutter-Abnahme bestand **2.625 Tests**, ohne Fehler,
+  übersprungene Tests, Runner- oder Capturefehler; **566 PNGs** wurden erfasst.
+- Die 52 Native-Modi mit 17 Extension-PNGs bestanden. Der gesamte große
+  Native-Schritt benötigte 58 Minuten 51 Sekunden; die 52er-Stufe selbst
+  rund 41 Minuten 25 Sekunden.
+- Live bestand neun Proben und sieben PNGs. Bei Discovery waren acht von zehn
+  Proben abgeschlossen; die Lernwelt-Capture erreichte zehn von 25 Bildern.
+  Die abschließende Discovery10/38-Freigabe wurde nicht erreicht.
+- Der Buildjob wurde nach etwa 90 Minuten abgebrochen. Das Originalprotokoll
+  meldet `The operation was canceled.`; die vollständige Providerannotation
+  war nicht zugänglich. Vorher wurde im Native-Abschnitt kein Engine-,
+  Assertion-, Ressourcenleck- oder innerer Probe-Timeoutfehler gefunden.
+  APK-Build, Android-Touren, Update und Abschlussjobs wurden nicht ausgeführt.
+
+Das äußere Buildbudget wurde deshalb von 90 auf 150 Minuten erhöht.
+Alle inneren Probegrenzen, Fehlermarker und erforderlichen Prüfungen bleiben
+bestehen. Der neue Dream-Vertrag ergänzt fünf echte Proben, sieben Original-PNGs
+und zwei Originalberichte; sein Reader bleibt vor dem Import exakt an
+Gitblob `da8eed7d6383fcbc82a03596518a5fcc3b9a00c5` und SHA256
+`f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d` gebunden.
+
+Die ungekürzten Vorgängeroriginale sind dauerhaft gesichert:
+[Android/Build](https://github.com/Ullmann27/lumo-lernen/commit/5cc5ef0498012cf49ce5070cc8d932a855b3260a),
+[Flutter](https://github.com/Ullmann27/lumo-lernen/commit/b40260edaf5ecfa8eef060a46364021b2a9eadd0)
+und [Native-Originalprüfung](https://github.com/Ullmann27/lumo-lernen/commit/a6216484bd48bc2db8615d73d1397c0b5b35feb4).
+Sie bescheinigen keinen neuen APK-Erfolg.
+
+## Noch auszuführende gemeinsame Abnahme und Auslieferung
+
+Der exakte neue Hostkopf muss seinen eigenen vollständigen Flutter-/Scriptlauf,
+Native52/17, Live9/7, Discovery10/38, Dream5/7/2 und zusätzlichen Return-/Wisp-Nachweis
+bestehen. Danach folgen frische signierte ARM64-/x86-APKs, die tatsächlichen
+API35-Atelier/Kart/Village/C4-Touren, das datenerhaltende 2017→2020-Update und die
+vollständige erneute Auslieferungsprüfung. Alle sieben Pflichtjobs müssen zum
+selben aktuellen Quellstand und Run gehören.
+
+Der ausführbare Publisher ist vorbereitet, aber die früher an Host07/Run43586101225
+gebundenen Objekte sind verworfen und dürfen nicht aktiviert werden.
+Er wird erst an den endgültigen erfolgreichen neuen Kopf und dessen tatsächlichen
+Run gebunden. Er prüft das originale Delivery-Bundle, wiederholt Signatur,
+Paket-/Versions-/ABI-/Quellenprüfung an der tatsächlichen ARM64-APK, erstellt
+ausschließlich ein neues Release und vergleicht anschließend die anonym
+heruntergeladenen öffentlichen APK-Bytes mit den freigegebenen Originalen.
+Der dauerhafte Eigentümerauftrag in AGENTS.md erlaubt diese neue Testauslieferung
+ohne erneute Nachfrage; ein geplanter Pfad ist noch kein gültiger Downloadlink.
+
+Die Ausführungsumgebung wurde nach dem Remote-Quellabgleich als frische leere
+Umgebung wiederhergestellt. Der vollständige Checkpoint
+`f36579a3a7e06045eaecea7c00e497ac06930100`, Tree
+`ed67b3939bb3caeb69231a2c70387860155b1a83`, wurde tatsächlich ausgecheckt.
+
+Auf genau diesem gemeinsamen Produkt-/Test-/Workflowstand bestanden am
+14.11.2026 von 12:47:32 bis 12:49:03 UTC **373 gezielte Tests in 16 Dateien**,
+ohne Fehler oder Skips. Sechs YAMLs, sechs echte extrahierte Native-Shellblöcke
+und die vorhandene Diagnostic-Shell bestanden ihre Syntaxprüfung.
+Alle 4.655 Dateien wurden vor und nach dem Lauf gegen ihre Gitblobs geprüft;
+Quelle und gesamte Dateiidentität blieben unverändert. Root hat die 16
+Originalprotokolle, ihre Hashes und Testzahlen unabhängig nachgelesen.
+Lokale Werkzeuge: Python 3.12.14, PyYAML 6.0.3 und Pillow 13.0.0.
+Der vollständige Kandidatenworkflow verwendet weiterhin sein gepinntes
+Pillow 12.3.0. Actionlint war lokal nicht vorhanden und wurde nicht ausgeführt.
+Diese fokussierten Tests ersetzen keinen Flutter-, Renderer-, APK- oder
+Emulatorlauf auf dem endgültigen Hostkopf.
+
+Der vorliegende Freigabe-Commit ergänzt zum geprüften Checkpoint ausschließlich
+diese Originalbelege und Statusdokumentation. Produkt, Tests, Policies, Assets,
+Native-Pin und Workflows bleiben bytegleich. Der separate alte Publisher wurde
+zusätzlich tatsächlich nur auf Syntax geprüft: YAML, sieben Bash-Blöcke und
+drei Python-Heredocs bestanden; seine verworfene07-Bindung blieb unverändert.
+Originale: [Publisher-Syntaxbeleg](https://github.com/Ullmann27/lumo-lernen/commit/68cff44598c141e5f1f0c02012c5e6503503d4da).
+
+Play-Produktionssignierung, Play-Console-Abnahme, physische Android-Bildraten und
+thermisches Dauerverhalten sind weiterhin unbelegt. Die strukturelle
+Mathematik-/Curriculumprüfung ersetzt keine vollständige pädagogische Freigabe.
+Private Profildaten werden nicht als öffentliche Betreiberangaben übernommen.
+
+
+---
+
+# Historische Übergaben beider Eltern
+
+Die folgenden unveränderten Texte dokumentieren die jeweiligen früheren Quellen.
+Alte Pins, offene Prüfungen, Zugangsgrenzen und vorgeschlagene Aktionen sind
+historisch; maßgeblich ist der aktuelle gemeinsame Stand oben.
+
+## Bisheriger eigener Integrationsstand
+
+# Active LUMO 2020 integration and complete acceptance — 2026-11-14
+
+Active review: https://github.com/Ullmann27/lumo-lernen/pull/497
+Working branch: `integration/lumo-live-connections-20261114`.
+Version: `0.13.8+2020`.
+Exact native source: `71a4c1e2304b52005950b12490d070c286c45438`.
+Native review: https://github.com/Ullmann27/lumo-godot/pull/173.
+Main remains protected.
+
+## Integrated behavior
+
+The complete host integration through `cf2593cb6dec51b66461c8e5984dfbfdd5091c22`
+is retained, including the Play-quality base, drawing and learning progress,
+eleven Flutter game portals, responsive C4, direct Dorfwirtschaft launch and the
+existing handwriting/journal modules.
+
+The native Hub now loads the existing original facial Lumo rig. Its actual GLB,
+bones, animations, visible mesh and free camera framing are checked. Eight native
+routes are retained. The original portrait and landscape PNGs were independently
+viewed; the portrait keeps its existing scroll continuation.
+
+A direct embedded Dorfwirtschaft entry now has the visible `‹ Spiele` return
+through the existing save and HostBridge path. Failed saves block departure,
+and a refused return acknowledgement remains retryable. The original internal
+Bauwelt context and the optional Bauwelt route remain available. AndroidBack
+continues to pause. The original initialized-state marker identifies the actual
+running village for the additive API35 roundtrip proof.
+
+The Home capture tests now open the real subject expansion, wait for its actual
+animation frames, require the first Mathe card to be fully visible and hittable,
+and capture that state. Village captures use Flutter's SDK-owned Android platform
+variant so the framework restores its debug state correctly.
+
+## Actual predecessor and focused results
+
+The first combined run on 7fd9e916 reported 2,612 passed / three failed / zero
+skipped / 546 PNGs. Its three outdated Diktat finders were repaired.
+
+The next combined run [43582160954](https://github.com/Ullmann27/lumo-lernen/actions/runs/43582160954)
+on cf2593cb passed native C4 runtime, actual Android host compilation, static
+analysis and all 888 script tests. Full Flutter reported **2,619 passed / six
+failed / zero skipped / 566 PNGs**. All three repaired Diktat cases passed
+individually. The six failures were the Village tests' platform-cleanup invariant,
+after their layout and real launch assertions. No APK was built by this run.
+
+The focused corrections subsequently passed:
+- Home run 43584516810: 13 Home/navigation tests and eight additional world tests,
+  with eight original captures; the four learning-card captures now show real
+  opened subject cards.
+- Village run 43583899148: 27 Flutter tests, six original captures and actual
+  Kotlin/Android host compilation.
+- Native 71a4c1e2: original Hub identity and two real renders; Village host return,
+  save/restore and rejected-ACK retry; existing Rig, VillageScene and Economy
+  regressions; eleven helper tests with 57 negative cases and a read-only replay
+  of the complete 38-image set.
+
+## Required final acceptance
+
+The exact next combined host must pass its own full Flutter suite, the native
+52-mode suite and original 17-image extension, Live nine-probe/seven-image suite,
+Discovery ten-probe/38-image suite, signed APK build, actual API35
+Atelier/Kart/Village/C4 journeys, 2017-to-2020 data-preserving update and final
+delivery replay. The Village result must be bound to the same original APK,
+source, run, main tour, native PID, profile, real scene and preserved learning data.
+Only the complete accepted source may be used for a new direct APK release.
+
+Focused or predecessor results do not certify the final APK. No physical Android
+60-FPS, Play-production signing or curriculum-wide approval is claimed.
+Original evidence and source provenance remain under
+`docs/evidence/live-root-integration-20261114/source-integration.json`,
+`docs/evidence/capture-state-qa-20261114/` and the corresponding native evidence.
+
+---
+
+## Previous combined-candidate handoff
+
+# Active LUMO 2020 combined integration — 2026-11-14
+
+Active review: https://github.com/Ullmann27/lumo-lernen/pull/497
+Working branch: `integration/lumo-live-connections-20261114`.
+Version: `0.13.8+2020`.
+Exact native source: `7d53f29e68269c21d1d5a66bdf3d488f8e886970`.
+Native review: https://github.com/Ullmann27/lumo-godot/pull/173.
+Main remains protected.
+
+## Integrated source and acceptance boundary
+
+The complete Play-quality follow-up through `803a4e960ffb804a46b6d09417731c031f00f680`
+is preserved in the host integration. The native integration also includes the
+actual latest native base `f052c2795b765265dbb6f5c27b9e92b557d39a39`; all original
+Wisp checks and the four additional GPU checks remain enabled.
+
+This candidate connects the eleven game portals, the direct Dorfwirtschaft
+Flutter/Android/native route, the shared drawing surface, native learning
+feedback and celebrations, game-hub routes, the learning world and its garden,
+and the existing learning/journal modules. Responsive Home and village title
+layouts retain real touch, navigation, large-text and original-image checks.
+The Diktat tests now draw on the actual shared ink surface while retaining all
+progress, repeated-rating and earned-reward assertions.
+
+The first combined host `7fd9e91683ecf703c00f100e314aced9191f7847` was tested in
+run https://github.com/Ullmann27/lumo-lernen/actions/runs/43579007561.
+Native C4 runtime and Android host compilation passed. Full Flutter acceptance
+reported 2,612 passed, three failed, zero skipped and 546 original PNGs.
+All three failures came from the outdated Diktat gesture finder; their original
+failure evidence is retained. No APK was built by that failed run.
+
+The expanded native source passed ten local probes and all 38 discovery PNG
+checks. The delivery verifier passed 129 Python tests, including its negative
+checks. These focused results do not replace the new combined acceptance run.
+The exact current host must pass the complete Flutter and native suites, signed
+APK build, Android API35 journey, 2017-to-2020 data-preserving update, and final
+delivery verification before its APK can be presented as accepted.
+Physical Android 60-FPS performance has not been measured.
+
+Source provenance and original evidence:
+`docs/evidence/live-root-integration-20261114/source-integration.json`.
+The full acceptance runner now requires original Village, Home and Nextgen
+captures. The main C4 workflow also requires all discovery probes and images,
+and the delivery verifier replays both original native connection helpers.
+
+---
+
+## Preserved earlier project handoff
+
+# Active LUMO 2020 Play-quality candidate — 2026-11-14
+
+## Hinzugekommener Qualitätsstand aab09275
+
 # Aktueller LUMO-2020-Kandidat – 14. November 2026
 
 Review: [PR 491](https://github.com/Ullmann27/lumo-lernen/pull/491). Arbeitszweig: `work/lumo-play-quality-20261114`. Wiederaufnahme: `checkpoint/lumo-next-quality-20261114-2708`. Version **0.13.8+2020** bleibt ein unveröffentlichter Testkandidat. Main und bestehende Releases bleiben geschützt.
@@ -53,6 +318,9 @@ Originalcode und Nachweise sind in Git gesichert. Lokale Änderungen vor jeder A
 The following earlier notes are retained as history. Older pins, pending-test statements and proposed actions below do not override the current source and results above.
 
 ## Earlier 803a quality candidate
+
+## Gemeinsame frühere Projekthistorie
+
 
 Active review: https://github.com/Ullmann27/lumo-lernen/pull/491
 Working branch: `work/lumo-play-quality-20261114`.

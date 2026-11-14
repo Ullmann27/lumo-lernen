@@ -11,6 +11,7 @@ class LumoGameEntryArt {
   static String titleFor(String scene) => switch (scene) {
         'kart' => 'Lumo Kart',
         'build' => 'Lumo Bauwelt',
+        'settlement' => 'Dorfwirtschaft',
         'puzzle' => 'Lumo Puzzle-Atelier',
         'rhythm' => 'Lumo Rhythm Party',
         'treasure' => 'Lumo Schatzsuche',
@@ -23,6 +24,7 @@ class LumoGameEntryArt {
   static String imageFor(String scene) => switch (scene) {
         'kart' => 'assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp',
         'build' => 'assets/lumo_design/gameplay/build.png',
+        'settlement' => 'assets/lumo_design/spielwelt/portal_bauwelt.png',
         'puzzle' => 'assets/lumo_design/gameplay/puzzle.png',
         'rhythm' => 'assets/lumo_design/gameplay/rhythm.png',
         'treasure' => 'assets/lumo_design/gameplay/treasure.png',
@@ -34,6 +36,7 @@ class LumoGameEntryArt {
   static String categoryFor(String scene) => switch (scene) {
         'kart' => '3D-RENNSPIEL',
         'build' => 'BAUABENTEUER',
+        'settlement' => 'DEIN LEBENDIGES DORF',
         'puzzle' => 'PUZZLE-WELT',
         'rhythm' => 'MUSIKSPIEL',
         'treasure' => 'ENTDECKUNGSREISE',

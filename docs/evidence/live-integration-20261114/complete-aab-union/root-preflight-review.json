@@ -1,0 +1,87 @@
+{
+  "original_logs_independently_rechecked": true,
+  "head": "f36579a3a7e06045eaecea7c00e497ac06930100",
+  "tree": "ed67b3939bb3caeb69231a2c70387860155b1a83",
+  "source_identity_unchanged": true,
+  "tracked_files": 4655,
+  "tracked_identity_sha256": "aeca529c3f6a4ae39dc8e6289ac8fb896a2f62fadb89d8940082850a830ff77a",
+  "tests": 373,
+  "failed": 0,
+  "skipped": 0,
+  "counts": [
+    {
+      "file": "scripts/tests/test_candidate_2011_pin.py",
+      "tests": 25
+    },
+    {
+      "file": "scripts/tests/test_legacy_release_pin.py",
+      "tests": 40
+    },
+    {
+      "file": "scripts/tests/test_connect_four_delivery.py",
+      "tests": 72
+    },
+    {
+      "file": "scripts/tests/test_connect_four_pipeline.py",
+      "tests": 18
+    },
+    {
+      "file": "scripts/tests/test_connect_four_return_gate.py",
+      "tests": 11
+    },
+    {
+      "file": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "tests": 19
+    },
+    {
+      "file": "scripts/tests/test_runtime_followup_workflow.py",
+      "tests": 10
+    },
+    {
+      "file": "scripts/tests/test_android_runtime_wait_notification.py",
+      "tests": 9
+    },
+    {
+      "file": "scripts/tests/test_verify_android_runtime_anr.py",
+      "tests": 19
+    },
+    {
+      "file": "scripts/tests/test_android_runtime_device_logger.py",
+      "tests": 23
+    },
+    {
+      "file": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "tests": 22
+    },
+    {
+      "file": "tools/android_qa/tests/test_village_android_evidence.py",
+      "tests": 31
+    },
+    {
+      "file": "tools/android_qa/tests/test_kart_continue_caption.py",
+      "tests": 9
+    },
+    {
+      "file": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "tests": 25
+    },
+    {
+      "file": "tools/android_qa/tests/test_update_2019_preservation.py",
+      "tests": 19
+    },
+    {
+      "file": "tools/android_qa/tests/test_update_2020_preservation.py",
+      "tests": 21
+    }
+  ],
+  "tools": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "python_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "pyyaml": "6.0.3",
+    "pillow": "13.0.0"
+  },
+  "syntax_checks": 13,
+  "report_sha256": "4780d9c4e846e7e3c9d5ff76c902502fbabd22ebc79f5c941a8086192aea7bdd",
+  "kind": "Independent read-only replay of all16 original unit-test logs and unchanged source summaries",
+  "runtime_rerun": false
+}

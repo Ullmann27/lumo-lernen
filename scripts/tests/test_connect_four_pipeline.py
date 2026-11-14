@@ -39,6 +39,43 @@ def condition(source,values):
     return eval(text,{'__builtins__':{}},{})
 
 
+class VillageCandidateOriginalEvidenceTests(unittest.TestCase):
+    def setUp(self):
+        sys.path.insert(0,str(ROOT/'tools/android_qa/tests'))
+        from test_village_android_evidence import SyntheticVillage
+        self.temporary=tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root=Path(self.temporary.name)
+        self.village=self.root/'village'; self.village.mkdir()
+        self.prior=self.root/'tour-result.json'
+        self.prior.write_text(json.dumps({'synthetic_fixture':True}))
+        self.fixture=SyntheticVillage(self.village)
+        self.report=self.fixture.build()
+        self.report['prior_tour']['sha256']=final.c4.sha256(self.prior)
+        self.fixture.refresh()
+
+    def verify(self):
+        return final.village_proof(self.village,self.fixture.binding,self.fixture.identity,self.prior)
+
+    def test_candidate_replays_the_complete_original_village_contract(self):
+        self.assertEqual(self.verify()['status'],'PASS')
+
+    def test_candidate_rejects_a_different_original_main_tour(self):
+        self.prior.write_text('changed')
+        with self.assertRaisesRegex(ValueError,'same complete original main tour'):
+            self.verify()
+
+    def test_candidate_rejects_missing_or_mutated_original_native_frame(self):
+        (self.village/self.report['native']['frame']['file']).unlink()
+        with self.assertRaises(ValueError): self.verify()
+
+    def test_candidate_rejects_a_still_running_native_process(self):
+        self.fixture.replace_original(self.report['returned']['native_pid'],'200\n',returncode=0)
+        self.fixture.refresh()
+        with self.assertRaisesRegex(ValueError,'process absence'):
+            self.verify()
+
+
 class WorkflowTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -53,9 +90,14 @@ class WorkflowTests(unittest.TestCase):
             self.assertTrue(condition(block,values))
             self.assertTrue(condition(block,{**values,
                 'github.head_ref':'work/lumo-play-quality-20261114'}))
+            self.assertTrue(condition(block,{**values,
+                'github.head_ref':'integration/lumo-agent-execution-20261114'}))
+            self.assertTrue(condition(block,{**values,
+                'github.head_ref':'integration/lumo-live-connections-20261114'}))
             for key,value in (('github.event_name','push'),('github.event_name','workflow_dispatch'),
                               ('github.event.pull_request.head.repo.full_name','outside/fork'),
-                              ('github.head_ref','integration/lumo-connections-20261113')):
+                              ('github.head_ref','integration/lumo-connections-20261113'),
+                              ('github.head_ref','integration/lumo-agent-execution-20261114-copy')):
                 with self.subTest(job=name,key=key,value=value):
                     self.assertFalse(condition(block,{**values,key:value}))
 
@@ -83,6 +125,22 @@ class WorkflowTests(unittest.TestCase):
                         self.assertEqual(output.read_text(),'revision='+current['revision']+'\n')
                     else:
                         self.assertFalse(output.exists())
+
+    def test_return_recovery_runs_between_import_and_the_two_process_gate(self):
+        runtime=job(self.workflow,'connect-four-runtime')
+        label='Retry the acknowledged native exit after a transient Android refusal'
+        positions=[runtime.index(name) for name in (
+            'Import the exact configured native source in its own directory', label,
+            'Require the actual production Dart and rendered Godot two-process gate')]
+        self.assertEqual(positions,sorted(positions))
+        block=step(runtime,label)
+        self.assertIn('set -euo pipefail',block)
+        self.assertIn('timeout 60s godot --headless --audio-driver Dummy --path native-source '
+                      '--script res://scripts/tests/connect_four_return_regression.gd',block)
+        self.assertIn('2>&1 | tee c4-runtime/return-recovery.log',block)
+        self.assertIn("if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:|Assertion failed' c4-runtime/return-recovery.log; then",block)
+        self.assertIn('exit 1',block)
+        self.assertIn("test \"$(grep -Fxc 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log)\" = 1",block)
 
     def test_real_runtime_compile_and_existing_build_gates_remain_mandatory(self):
         runtime=job(self.workflow,'connect-four-runtime')
@@ -119,6 +177,36 @@ class WorkflowTests(unittest.TestCase):
             with self.subTest(step=name): self.assertEqual(step(build,name),expected)
         self.assertNotIn('continue-on-error',self.workflow)
 
+    def test_live_connections_gate_reuses_exact_native_source_before_artifact_and_build(self):
+        build=job(self.workflow,'verify-and-build')
+        label='Verify connected dream ambience and garden on exact native source'
+        positions=[build.index(name) for name in (
+            'Require actual gameplay gates on the exact pinned native source', label,
+            'name: lumo-candidate-pinned-native-gameplay', 'Build unified real Android APK')]
+        self.assertEqual(positions,sorted(positions))
+        block=step(build,label)
+        for required in (
+            "LIBGL_ALWAYS_SOFTWARE: '1'", 'set -euo pipefail',
+            'export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"',
+            'native_source="$RUNNER_TEMP/lumo-native-acceptance"',
+            'test "$(git -C "$native_source" rev-parse HEAD)" = "$native_revision"',
+            'native_logs="$GITHUB_WORKSPACE/acceptance-native"',
+            'export XDG_DATA_HOME="$native_logs/user-data"',
+            'export XDG_CONFIG_HOME="$native_logs/user-config"',
+            'export XDG_CACHE_HOME="$native_logs/user-cache"',
+            'cd "$native_source"',
+            'LUMO_LIVE_LOG_DIR="$GITHUB_WORKSPACE/acceptance-native/live" '
+            'bash tools/validate_live_connections.sh 2>&1 | tee "$native_logs/live-runner.log"',
+            'LUMO_DISCOVERY_LOG_DIR="$GITHUB_WORKSPACE/acceptance-native/discovery" '
+            'bash tools/validate_discovery_connections.sh 2>&1 | tee "$native_logs/discovery-runner.log"',
+        ):
+            with self.subTest(required=required): self.assertIn(required,block)
+        self.assertIn('config/godot-source.json',block)
+        self.assertLess(block.index('rev-parse HEAD'),block.index('cd "$native_source"'))
+        self.assertLess(block.index('cd "$native_source"'),block.index('bash tools/validate_live_connections.sh'))
+        self.assertLess(block.index('bash tools/validate_live_connections.sh'),
+                        block.index('bash tools/validate_discovery_connections.sh'))
+
     def test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload(self):
         build=job(self.workflow,'verify-and-build')
         self.assertIn("LUMO_SPLIT_PER_ABI: '1'",build)
@@ -129,6 +217,15 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn('api-level: 35',android)
         script=android.split('          script: |\n',1)[1]
         self.assertLess(script.index('modernization_android_tour.py'),script.index('lumo_connect_four_android_probe.py'))
+        self.assertLess(script.index('modernization_android_tour.py'),script.index('lumo_village_android_probe.py'))
+        self.assertLess(script.index('lumo_village_android_probe.py'),script.index('lumo_connect_four_android_probe.py'))
+        village_line=next(line for line in script.splitlines() if 'lumo_village_android_probe.py' in line)
+        for flag in ('--out tour/village','--prior-tour tour/main/tour-result.json',
+                     '--expected-source "$SOURCE_SHA"','--expected-native "$NATIVE_REVISION"',
+                     '--build-run "$GITHUB_RUN_ID"','--run-attempt "$GITHUB_RUN_ATTEMPT"',
+                     '--artifact-id "$CANDIDATE_ARTIFACT_ID"','--artifact-digest "$CANDIDATE_ARTIFACT_DIGEST"'):
+            self.assertIn(flag,village_line)
+        self.assertIn("-p 'test_village_android_evidence.py' -v",android)
         for flag in ('--prior-tour tour/main/tour-result.json','--expected-source "$SOURCE_SHA"',
                      '--expected-native "$NATIVE_REVISION"','--artifact-id "$CANDIDATE_ARTIFACT_ID"',
                      '--artifact-digest "$CANDIDATE_ARTIFACT_DIGEST"','--run-attempt "$GITHUB_RUN_ATTEMPT"'):
@@ -192,6 +289,43 @@ class WorkflowTests(unittest.TestCase):
             self.assertNotIn(forbidden,self.workflow)
         self.assertNotIn('27ae4270',self.workflow)
 
+    def test_curriculum_audit_runs_exact_candidate_heads_and_retains_all_learning_regressions(self):
+        workflow=(ROOT/'.github/workflows/lumo-learning-curriculum-audit.yml').read_text()
+        trigger=workflow.split('jobs:\n',1)[0]
+        self.assertRegex(trigger,r'(?m)^  pull_request:\s*$')
+        self.assertRegex(trigger,r'(?m)^  workflow_dispatch:\s*$')
+        push=re.search(r'^  push:\n(.*?)(?=^  [a-z_]+:)',trigger,re.M|re.S)
+        self.assertIsNotNone(push)
+        branches={
+            'integration/lumo-c4-connections-20261114',
+            'work/lumo-play-quality-20261114',
+            'integration/lumo-agent-execution-20261114',
+            'integration/lumo-live-connections-20261114',
+        }
+        self.assertEqual(set(re.findall(r'^      - (\S+)$',push[1],re.M)),
+                         branches | {'chatgpt/lumo-learning-curriculum-audit-20261114'})
+        core=job(workflow,'core-learning')
+        values={'github.repository':'Ullmann27/lumo-lernen','github.event_name':'pull_request',
+                'github.event.pull_request.head.repo.full_name':'Ullmann27/lumo-lernen'}
+        for branch in branches:
+            with self.subTest(branch=branch):
+                candidate={**values,'github.head_ref':branch}
+                self.assertTrue(condition(core,candidate))
+                self.assertFalse(condition(core,{**candidate,'github.head_ref':branch+'-copy'}))
+                self.assertFalse(condition(core,{**candidate,
+                    'github.event.pull_request.head.repo.full_name':'outside/fork'}))
+                self.assertFalse(condition(core,{**candidate,'github.repository':'outside/fork'}))
+        checkout=core.split('      - uses: actions/checkout@v4\n',1)[1].split('\n      - ',1)[0]
+        self.assertIn('persist-credentials: false',checkout)
+        self.assertIn('ref: ${{ github.event.pull_request.head.sha || github.sha }}',checkout)
+        for path in ('test/shape_trace_input_test.dart','test/shape_trace_retry_test.dart',
+                     'test/lumo_ink_surface_regression_test.dart',
+                     'test/learning_selection_integration_test.dart',
+                     'test/learning/learning_exact_selection_test.dart',
+                     'tools/audit_learning_tasks_all_grades.dart'):
+            with self.subTest(path=path): self.assertIn(path,core)
+        self.assertNotIn('continue-on-error',workflow)
+
     def test_only_c4_branch_is_added_to_existing_unified_exclusions(self):
         unified=(ROOT/'.github/workflows/lumo-unified-integration-2026.yml').read_text()
         block=job(unified,'verify-and-build')
@@ -201,6 +335,12 @@ class WorkflowTests(unittest.TestCase):
         quality='work/lumo-play-quality-20261114'
         self.assertFalse(condition(block,{'github.head_ref':quality,'github.ref_name':'123/merge'}))
         self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':quality}))
+        agent='integration/lumo-agent-execution-20261114'
+        self.assertFalse(condition(block,{'github.head_ref':agent,'github.ref_name':'123/merge'}))
+        self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':agent}))
+        live='integration/lumo-live-connections-20261114'
+        self.assertFalse(condition(block,{'github.head_ref':live,'github.ref_name':'123/merge'}))
+        self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':live}))
         self.assertTrue(condition(block,{'github.head_ref':'unrelated-existing-branch','github.ref_name':'123/merge'}))
         self.assertIn("assert int(version[1]) != 2018",block)
         self.assertIn("assert int(version[1]) != 2019",block)

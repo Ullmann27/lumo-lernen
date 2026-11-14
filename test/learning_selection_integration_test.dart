@@ -120,7 +120,8 @@ void main() {
     final task = _renderer(tester).task;
     expect(task.templateId, 'legacy.Mathematik.Zahlenstrahl');
     expect(task.parameters['unit'], 'Zahlenstrahl');
-    expect(LumoCompanionRequests.instance.taskContext.value?.unit, 'Zahlenstrahl');
+    expect(
+        LumoCompanionRequests.instance.taskContext.value?.unit, 'Zahlenstrahl');
     await _close(tester, state);
   });
 
@@ -143,7 +144,8 @@ void main() {
     expect(after.difficulty, 3);
     expect(after.templateId, 'legacy.Lesen.Sätze lesen');
     expect(after.taskInstanceId, isNot(before.taskInstanceId));
-    expect(LumoCompanionRequests.instance.taskContext.value?.prompt, after.prompt);
+    expect(
+        LumoCompanionRequests.instance.taskContext.value?.prompt, after.prompt);
     expect(LumoCompanionRequests.instance.taskContext.value?.isExam, isTrue);
     expect(state.state.stars, 0);
     expect(state.state.xp, 0);
@@ -159,7 +161,8 @@ void main() {
       final current = LumoCompanionRequests.instance.taskContext.value!;
       expect(task.prompt, isNotEmpty);
       expect(Curriculum.exerciseSubjectsForGrade(1), contains(current.subject));
-      expect(Curriculum.unitsForGrade(current.subject, 1), contains(current.unit));
+      expect(
+          Curriculum.unitsForGrade(current.subject, 1), contains(current.unit));
       expect(current.unit, isNot('Alle'));
       if (subject != 'Alle') expect(current.subject, subject);
       expect(state.state.stars, 0);

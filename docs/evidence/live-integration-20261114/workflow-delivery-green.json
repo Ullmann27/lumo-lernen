@@ -1,0 +1,34 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "scripts.tests.test_connect_four_delivery",
+    "scripts.tests.test_connect_four_pipeline",
+    "scripts.tests.test_legacy_release_pin",
+    "-v"
+  ],
+  "exit_code": 0,
+  "seconds": 0.34339690300112125,
+  "log_sha256": "865b2956fbcbf2de79c07b9da19fa35ee2bcc91b0f9b99d12b98e329e7bb5526",
+  "files_sha256_before": {
+    ".github/workflows/lumo-connect-four-2020.yml": "9814fc28d044d8a248f9f994e7447a3356759bfe26e426f230726e944e94f945",
+    ".github/workflows/lumo-unified-integration-2026.yml": "531357b8f1ac7b0208b227632ee1d43d056e8cd4a70358fd1e97936bb2337963",
+    "scripts/verify_connect_four_delivery.py": "8b010259bd208818fafad9af70dd021b12140ade84791ef2ae587759465e30b4",
+    "scripts/tests/test_connect_four_delivery.py": "afb309a2b255594296cb161ef91771779a662348c6af7567af47b23e969b8239",
+    "scripts/tests/test_connect_four_pipeline.py": "4446db1c29b90d4a83a33dd8a79b227a8a9a3546e8bd4c2fa2a85590fb8bd5c5",
+    "config/godot-source.json": "b06fd116c41053ec67f8a8aeb0c85dc1b85e62eaf59e87dcc84040051555a510",
+    "scripts/verify_legacy_release_pin.py": "70a1b243b7de814087addf5b05a0aa2f1c2579527eaad14bdf41fcaa252a5633"
+  },
+  "files_sha256_after": {
+    ".github/workflows/lumo-connect-four-2020.yml": "9814fc28d044d8a248f9f994e7447a3356759bfe26e426f230726e944e94f945",
+    ".github/workflows/lumo-unified-integration-2026.yml": "531357b8f1ac7b0208b227632ee1d43d056e8cd4a70358fd1e97936bb2337963",
+    "scripts/verify_connect_four_delivery.py": "8b010259bd208818fafad9af70dd021b12140ade84791ef2ae587759465e30b4",
+    "scripts/tests/test_connect_four_delivery.py": "afb309a2b255594296cb161ef91771779a662348c6af7567af47b23e969b8239",
+    "scripts/tests/test_connect_four_pipeline.py": "4446db1c29b90d4a83a33dd8a79b227a8a9a3546e8bd4c2fa2a85590fb8bd5c5",
+    "config/godot-source.json": "b06fd116c41053ec67f8a8aeb0c85dc1b85e62eaf59e87dcc84040051555a510",
+    "scripts/verify_legacy_release_pin.py": "70a1b243b7de814087addf5b05a0aa2f1c2579527eaad14bdf41fcaa252a5633"
+  },
+  "scope": "Actual offline delivery, workflow and preserved-source-pin contract tests. Shared LIVE/17-raster changes retained. No current Native pin change and no Android/Return-runtime execution claim."
+}

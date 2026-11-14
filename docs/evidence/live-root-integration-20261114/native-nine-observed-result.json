@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "date": "2026-11-14",
+  "record_kind": "observed_command_result",
+  "tested_native_commit": "9ad09a32bcd42d21b89b2a83ceee68b1dd2bd7cf",
+  "tested_tree": "953c6216669659b20074d2c732962848250f200f",
+  "command": [
+    "bash",
+    "tools/validate_live_connections.sh"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 74.105,
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "environment": {
+    "LP_NUM_THREADS": "2",
+    "LUMO_LIVE_DISPLAY": "144"
+  },
+  "original_log_sha256": "5c621c57d6400d16f94ba56f020d3bb23100b98fec2338429826469c7738ce58",
+  "original_success_marker": "[LumoLiveConnections] PASS 9 original probes and 7 verified renderer PNGs",
+  "committed_source_checked_before_execution": true,
+  "original_probes": 9,
+  "verified_renderer_pngs": 7,
+  "final_native_commit": "454e81229b0193cba75844e9985a53deb2ce5c91",
+  "runtime_identity_preserved": {
+    "assets": "e668c92ef0e3540598a79191c61fa345a994095a",
+    "scripts": "473afcf7204530a12e282fd73822e01ce601a0ec",
+    "scenes": "86bc6e97e89cc2a7aa568d6d05eeef3b8b811376",
+    "project.godot": "296b8b1752ebfd526aedd019907ac88efbfd0c02"
+  },
+  "final_helper_tests": {
+    "count": 47,
+    "exit_code": 0,
+    "evidence": "Ullmann27/lumo-godot@454e81229b0193cba75844e9985a53deb2ce5c91:docs/integration/2026-11-14/helper-reconciliation-evidence.json"
+  },
+  "original_raw_files_at_recording": "The original complete run log, frame manifests and PNGs were copied into the local integration checkout before the second execution-environment outage. They are inaccessible while that environment is unavailable and are not reconstructed in this record. The command result, duration, exit code and original log digest above were returned by the actual completed tool call. The final CI gate must create fresh complete artifacts.",
+  "physical_android_fps_measured": false,
+  "apk_build_or_android_acceptance_claimed": false
+}
