@@ -1,0 +1,115 @@
+{
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "workflow_run_id": 43611803408,
+  "images": [
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "bytes": 249517,
+      "sha256": "f4fd4581a9bccd5ad0221baab0ee04fea174345b08ecc66f0c46196cc0673fa3",
+      "git_blob": "eaddeb0eff8e91211cefadfb6d0307e1461bfe3a",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "bytes": 111652,
+      "sha256": "928f386de806eb9aa96c7dbfe1f3e61b5692f87cd2c0c8f77a00615f88e80709",
+      "git_blob": "b234b00e4d75d1051412c9c3a350f112a5772de2",
+      "dimensions": [
+        412,
+        915
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "bytes": 723941,
+      "sha256": "7a4cf591f73638501c0864b52963f19f5c0c14fb92161fd38cce03debecbb075",
+      "git_blob": "696f4e7dd2e1e2e7136d9306c2c8acb37284c3b5",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "bytes": 135401,
+      "sha256": "91bcfd6c2505e850165bc88d713b16159501e4488693d57877f0ac0d2959ca45",
+      "git_blob": "4164e34b8d8d768e4a0f672fa8ae3e104e3c593a",
+      "dimensions": [
+        412,
+        915
+      ]
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "bytes": 436816,
+      "sha256": "8019bd04cb84e5255a2063445c52cbb15d083fc22d4eac2ebe841bf8253ba8fe",
+      "git_blob": "64ccf185d0ab662789ba6607b9b2e2360500ea46",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "bytes": 864319,
+      "sha256": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b",
+      "git_blob": "b81accdc6b88a1e975d61bbd01ec7fff65f6cc90",
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "bytes": 2718169,
+      "sha256": "a08282b78b4619f339234eb819e920b5e8a162148b7fae4ef5800c1e212fe64c",
+      "git_blob": "2d2b179c4e62fb509a1610a47edb491794471b5d",
+      "dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "bytes": 2101615,
+      "sha256": "d50db1c35fc74fc5c995dc7505ee617a1a4ec31d3a1346457920e1111927fbd7",
+      "git_blob": "26cd10ab5d863cf8029fd819fa20e7707da97974",
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "bytes": 323978,
+      "sha256": "21b4712aad8d0e07e2795509b389ddfee4114a26088d0e7ce8f3159ecf943027",
+      "git_blob": "9be6cc02a87f47be365ad49c05040d16f8356bfb",
+      "dimensions": [
+        640,
+        320
+      ]
+    }
+  ],
+  "visually_reviewed_in_this_preflight": false
+}

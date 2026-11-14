@@ -1,0 +1,566 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T16:50:52.800411+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "evidence_base_head": "0dcfd51761480886c94e5b36b9f27f620e28b703",
+  "evidence_base_tree": "984fc38cdf2d270f4f697e179736c4cd10a68eef",
+  "evidence_base_leaf_count": 7993,
+  "target_prefix": "docs/evidence/native29080-full-acceptance-20261114/",
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "workflow_run_id": 43611803408,
+  "scope": "Frozen current complete native-run documentation, four personal review pairs, original gameplay log, receipt-assembly reports, Root-selected movie frames and exact current MP4 plus two raw sidecars. Blob upload only.",
+  "reviewed_unique_receipt_images": 49,
+  "receipt_png_bytes_included": false,
+  "root_selected_movie_frames": 16,
+  "supplementary_authority_note": "Three additional Root views repeat already reviewed authority originals and are not counted as additional unique images. The note only is included.",
+  "archive": {
+    "artifact_id": 14121618349,
+    "bytes": 227270408,
+    "sha256": "f9d84c3d4f80f27fe134ab5e4cb040b811262d6d6c6a032433bc5f644ed886fc",
+    "release_id": 445426354,
+    "asset_id": 748057299,
+    "public_url": "https://github.com/Ullmann27/lumo-godot/releases/download/studio-2020-evidence-29080ef8cd1a5b385eeeec97976fbefd31280427-14121618349/native-evidence.zip",
+    "github_immutable": false,
+    "description": "Publicly published and bound by size/SHA-256; GitHub reports immutable=false.",
+    "included": false
+  },
+  "boundaries": [
+    "No source installation, tests, tree, commit, ref or PR mutation.",
+    "The 49 receipt PNGs and the 227 MB original ZIP are excluded.",
+    "The current 1,067,731-byte MP4 and two sidecars are byte-identical to the original archive members. The 16 derived PNGs are the already selected/personal-reviewed Root movie frames; no additional C sighting or hearing is asserted.",
+    "Original resource-at-exit diagnostics remain unchanged in gameplay-original-job.log and gameplay-exit-diagnostics.json. Workflow success is not zero-diagnostics or Android/60-FPS acceptance."
+  ],
+  "files": [
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/archive-integrity.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/archive-integrity.json",
+      "bytes": 301,
+      "sha256": "08021c8647731b6c9af893cc0b72e85d3feff887a6e777c277730a134aba9687",
+      "git_blob_sha": "1c07e32383544183d6d9c36e9d9c5236c07f50b5",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/archive-release.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/archive-release.json",
+      "bytes": 9081,
+      "sha256": "a9fff4feb3f6c3e359f7a86b3ffa373f87067a7df57424f0c10ad881123ed3ab",
+      "git_blob_sha": "a46f14ca616c5ddb6dc84db2f3f78d1df89f705e",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/artifact.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/artifact.json",
+      "bytes": 770,
+      "sha256": "8c13b7fb2a172697ff15e0bf8fa317a693c6f91c2934cdb7640c13e42697b5dc",
+      "git_blob_sha": "ee673305e38d98810f2d477a3ae2ee94062256d7",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/artifacts.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/artifacts.json",
+      "bytes": 6785,
+      "sha256": "539a7f981ff0626f195a6a03c42159aab7220314b08731a858dff07b1d7c3ec2",
+      "git_blob_sha": "f9ff5b32c19e74c242e17c21b91642def6e103ef",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/assignment-character_animation.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/assignment-character_animation.json",
+      "bytes": 4011,
+      "sha256": "89460b149ee3db7242b361e10fc03c76ef10c24d7482b03b9efe826638951ade",
+      "git_blob_sha": "9aa8c5248fe99888afb8046d8b9aaf507e2824dc",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/assignment-games_worlds.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/assignment-games_worlds.json",
+      "bytes": 5514,
+      "sha256": "bf48ed33b7f85006b07e61f63cb145ea2c735b3d44624322667a58beb0635e39",
+      "git_blob_sha": "b64badcc03a4691f71f8014672b158b8a2a7531d",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/assignment-learning_worlds.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/assignment-learning_worlds.json",
+      "bytes": 3471,
+      "sha256": "5a1b0b85853212207de6a34ef18edf98682ec5062a978c08faec3c8de0b8c55c",
+      "git_blob_sha": "6f3739477e57253b30104207b46685a7fc31b108",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/assignment-root.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/assignment-root.json",
+      "bytes": 4723,
+      "sha256": "38fdc2aea30a80c08bd77af75badde9dfaf41d9a427ead2331131b912553be4a",
+      "git_blob_sha": "db7be5e0f2e17b14cb1058112d1e30292cb977e3",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/binding-games_worlds.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/binding-games_worlds.json",
+      "bytes": 9307,
+      "sha256": "31dbd3d4f2f216f86bef850d602fa9aa73993e0571f88547a1d6829e97164fca",
+      "git_blob_sha": "6bcabdefc0f193e50a290b30e1c70f4c486756b0",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/capture-source-verification.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/capture-source-verification.json",
+      "bytes": 1317,
+      "sha256": "95410d13fb18ba04b09524602f0a5819c62b6801b6887fd8c06dbe1df093f82d",
+      "git_blob_sha": "b8eb9a4f0f3018f522930f0568fdb34996010e6a",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/existing-verifier-acceptance.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/existing-verifier-acceptance.json",
+      "bytes": 609,
+      "sha256": "a7d2c1fb0f86279cb646fe65e75baa717486408bd16396d06dbab8843c70e7cf",
+      "git_blob_sha": "bafe305133e27cff9676a982a423954b46b96474",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/gameplay-exit-diagnostics.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/gameplay-exit-diagnostics.json",
+      "bytes": 1541,
+      "sha256": "29edd9a96b0bbc3e4800de2aac506194f64b898826cc39c98400081420f946cc",
+      "git_blob_sha": "03d81415ef2c38270854fc365ed9bdeee4f4d2dc",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/gameplay-original-job.log",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/gameplay-original-job.log",
+      "bytes": 533491,
+      "sha256": "18c5817802d77ce75f2880d7cc31f61c62a1083a249c7600713d5d6fa2ec3a70",
+      "git_blob_sha": "b7d5aacd67a04c27f4a21942d825a5411f6a6512",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/gameplay-touch-review-games_worlds.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/gameplay-touch-review-games_worlds.json",
+      "bytes": 29685,
+      "sha256": "cb1f5510cf6fc9cb18f30d78e0ebebe759f955fe58e8734112f8653315e7be4c",
+      "git_blob_sha": "d7798ad0bc98bcb2a8160b1b43e0158ef6204283",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/image-original-binding-character_animation.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/image-original-binding-character_animation.json",
+      "bytes": 9557,
+      "sha256": "f5c6474ae43941302a5af7653c77bfde99082b045ef417b388ddcd6802923d49",
+      "git_blob_sha": "b03957a86a05ad1ca21f8be50eac8a7492790f69",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/image-original-binding-learning_worlds.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/image-original-binding-learning_worlds.json",
+      "bytes": 6194,
+      "sha256": "2f53ff698bdb7b059e974da64a832f9c2f1a223a6323642e7535f79b7463edd6",
+      "git_blob_sha": "e926faa3da45f94d5a7737e3612d1b27de0d91c7",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/image-preflight-learning_worlds.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/image-preflight-learning_worlds.json",
+      "bytes": 5411,
+      "sha256": "3008137249e81a086215532ae1a9b462e39e03e71d2a70ab59183cdd8fdb404e",
+      "git_blob_sha": "8d3248ad02ec33083e8b7ee2cddae2512a087b3a",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/jobs.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/jobs.json",
+      "bytes": 27754,
+      "sha256": "ed1d55649efa03ff910d5c3c1bad58c38deaa04d1422ab87e984f3f5673bf155",
+      "git_blob_sha": "e8ba73953af83079ee131e21b9cea64040326dd9",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/manifest-games_worlds.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/manifest-games_worlds.json",
+      "bytes": 1911,
+      "sha256": "b3a2063c85bb7eb6a309aa301ca78492166f12ed49c50ce076e3d7f37d443405",
+      "git_blob_sha": "43a708d8d1d76f86b89fd3fa7420df59abffaa75",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/current-ffprobe.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/current-ffprobe.json",
+      "bytes": 4659,
+      "sha256": "201a34dd824edfabf468d323608c664c8e631d88cbbe5e877e0b84525dec62fe",
+      "git_blob_sha": "af1d0039009216cc8110db530b618a190338f5e1",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/review.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/review.json",
+      "bytes": 5642,
+      "sha256": "2adf9c89c0c617fa3f80c0941c6a5c256a5b09040c1706b1ed6e049a55df2df1",
+      "git_blob_sha": "ce8f115c8c02ccefc7e71ff65609ec19f8439ede",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/selected-frames.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/selected-frames.json",
+      "bytes": 2325,
+      "sha256": "f5802aba8eb6ffcce1b179950291e1af65bc5223b8d351aa4c60f3ddfc3aa6f8",
+      "git_blob_sha": "34b214afe4b9db34a951f0ea7e0ad7dd6f836e42",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/strict-decode.log",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/strict-decode.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/receipt-generation.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/receipt-generation.json",
+      "bytes": 1789,
+      "sha256": "4b548c8921fc08ce8476bae5e49f3fc6e33186c3f2465dce88a1e64a8e6af7fc",
+      "git_blob_sha": "ac6a0c4d864f842bb03618d3a7992306cc4cf82a",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/receipt-generation.log",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/receipt-generation.log",
+      "bytes": 140,
+      "sha256": "f4f69cb4b929e0106848f0ed82c84225e1b5cd6b2e2c8d59f0468046e39417c6",
+      "git_blob_sha": "9e395733a077384ab8a6a9554b988b15ef238a05",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/receipt-review-assembly.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/receipt-review-assembly.json",
+      "bytes": 1261,
+      "sha256": "fdbc704093a99704e777d4f06ee305de58f7b631f7ee01a8f8fa97f69e0706b1",
+      "git_blob_sha": "43984d630f1dfb3fa2b9814c208887f7f32e1e2c",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/review-character_animation.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/review-character_animation.json",
+      "bytes": 18815,
+      "sha256": "5921aef6ed5e69ef8b02a886d43b27011aca965cf5c4aa97f636ae3aa4cd0712",
+      "git_blob_sha": "c4b80d142fc67205655094b779a8dd7854e1b58c",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/review-character_animation.md",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/review-character_animation.md",
+      "bytes": 11247,
+      "sha256": "ec5e53d9e0603e160108da9abfac7f3dd6342ddf3c486ba432ea799743b414e5",
+      "git_blob_sha": "798197c6516415d41f34ca67f96a86185d77ac91",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/review-games_worlds.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/review-games_worlds.json",
+      "bytes": 25798,
+      "sha256": "3cd6da92cca3e3386fcc382242cd05897e762e98786848eb1a9bb7fd748223be",
+      "git_blob_sha": "fa4a0c9953bbd88a1a22b18763a40d474e50c2fd",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/review-games_worlds.md",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/review-games_worlds.md",
+      "bytes": 19685,
+      "sha256": "65d1b76d1193cf8559555f923796a96d204e75a9218660c1281a3cc397660cd1",
+      "git_blob_sha": "79e906734c4364a10d696cdec16d0c4c27b2efb1",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/review-learning_worlds.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/review-learning_worlds.json",
+      "bytes": 20035,
+      "sha256": "967c846ea98d743eaeff7bb29c794b4492d376c2949af790d4a84a75d6657166",
+      "git_blob_sha": "c0ffa0c0580e1a8e89006b79bfe78fbb64e103a8",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/review-learning_worlds.md",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/review-learning_worlds.md",
+      "bytes": 13289,
+      "sha256": "e729a8e814b23abbc3b1c8b4f32df928e39cf8412111218643d4c82d4d0fdbbb",
+      "git_blob_sha": "3ee8fbc0633f7ddf349fd4a762dc77ca82217022",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/review-root.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/review-root.json",
+      "bytes": 12308,
+      "sha256": "e7765c7929213e951a0555575cc8ef3b657e8f0c52f9372f885bbbe272ac2fb3",
+      "git_blob_sha": "13cdae47cdcfc9cda4fc087a6cbf6af4a30b3867",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/review-root.md",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/review-root.md",
+      "bytes": 6126,
+      "sha256": "14865d0dc0ed03fb0420e72e0006d20d96a96379ab62ca2c927771c6f82b507b",
+      "git_blob_sha": "a41c3bbbb7e62f354289fc3cfb955956bb63d1e2",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/run.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/run.json",
+      "bytes": 14659,
+      "sha256": "f4bef2ab190c020244c06b548874a5d9ec3ddec3469f729de85fa8077d6d45aa",
+      "git_blob_sha": "f2785f4f40563442b942983ac49b0dfaea14f73c",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/selection.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/selection.json",
+      "bytes": 36844,
+      "sha256": "1b2165e61d54ae9c51f124426409d233bd034216611c69d2e3c751d92897dabb",
+      "git_blob_sha": "09eb81e081a49afc4569d77e61fc57b0672b3316",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/stage2-run.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/stage2-run.json",
+      "bytes": 14682,
+      "sha256": "333fc66a4995c56cceffb395a64aa9430e234c7eb9c200f274b31692df8b48f9",
+      "git_blob_sha": "b6936306fed971b8eeac2a5e3e1159ab42521ae8",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/supplementary-authority-root-views.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/supplementary-authority-root-views.json",
+      "bytes": 2018,
+      "sha256": "9a065bceb8d0bd820c858aa07607a318cb396e1d4f5cac17e42ced2f483b16d6",
+      "git_blob_sha": "402a4584f4b9120c114565d32492d3795fa0b738",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/zip-members.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/zip-members.json",
+      "bytes": 643867,
+      "sha256": "3c07fc1e14147b951bfcc82b452ea4ce6194f5aad5ee5b7e1eadb2a7cdffef1c",
+      "git_blob_sha": "f881dc0f7ae4891534167d9a5499e5ed1e7cc929",
+      "encoding": "utf-8",
+      "content_kind": "original_or_review_document"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-01.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-01.png",
+      "bytes": 266719,
+      "sha256": "28f991ab6a56f5f3d5372adaccd6a3677a830b32b4b06db8cfc178f6f68d1156",
+      "git_blob_sha": "ad629af8bc3ea737a451839970b7f9a3cb001226",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-02.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-02.png",
+      "bytes": 267085,
+      "sha256": "9b7c206daae511d69729f963a1b75cb705ba5237b3a5d8664203fde9ca1707ee",
+      "git_blob_sha": "0d8b8441dd738496dde945d6ac5c088e6e61758b",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-03.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-03.png",
+      "bytes": 266790,
+      "sha256": "0a9418d843d170ca714c6b8ff462595a5478a4ce170d4cdd9e353479b4d7c5ab",
+      "git_blob_sha": "870b9449b36a2df97e3400ed69a37875755469ca",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-04.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-04.png",
+      "bytes": 398013,
+      "sha256": "5d4714fc520997de3dd261d2d6682a674f584e8e7ff2bf4ba0281d21807044a0",
+      "git_blob_sha": "c857a589d1477dfe353004377fd45e15bb323565",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-05.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-05.png",
+      "bytes": 399588,
+      "sha256": "7bf170cd41875ce4188720bd4b9d89f26588c0f3feffdb62a29ea7b1ca7126e7",
+      "git_blob_sha": "96f6482a7e0d2d94dd6bf202aa9c6202acc287fb",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-06.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-06.png",
+      "bytes": 425674,
+      "sha256": "a424b30d45c91417b95a10350c671218fa3d0293152a10cd11d22931f38bbffa",
+      "git_blob_sha": "aeb070f804f2f057506b4b922f40227b48c808cc",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-07.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-07.png",
+      "bytes": 429467,
+      "sha256": "9fbf9565e9c95f35be17f6d40a80d74ea038f1ae8401364c16ba8e4642ad63f3",
+      "git_blob_sha": "eb8aa2b9f2e3f0099a6960e7a73713944bbe1375",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-08.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-08.png",
+      "bytes": 428657,
+      "sha256": "85e8d4cbe2e6fdde0e9aa6b0b22c6a24253d22fd432be9018aba567fd06df9fb",
+      "git_blob_sha": "c180cea5fe8eed86211f7c68bcb38ea403d8db05",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-09.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-09.png",
+      "bytes": 431588,
+      "sha256": "45767bb541a6e87e7ef6a77a7004f38837abc3c3da0080fa7db127db9d6dc780",
+      "git_blob_sha": "b810d15e5495996f39a0026506d1c7d766d55a76",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-10.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-10.png",
+      "bytes": 432000,
+      "sha256": "b1cd54b1f2bd9cd8c3820fd8fef1b0cacb50a20083eeda64dfeae7f225534db8",
+      "git_blob_sha": "8860eaf5447989d342882202ef403b8aa7391654",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-11.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-11.png",
+      "bytes": 431021,
+      "sha256": "8e699390e7d6b0de97da0094e9e48ca269c8e78f381d2c6a41b914e8fbea0e65",
+      "git_blob_sha": "c579d5720d5cdc1dc440dea3c174947326b164db",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-12.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-12.png",
+      "bytes": 431721,
+      "sha256": "66e8c7b75ecfbb8c6c2134f5fa939c25f00b1f3f32932a6c2f50793d1c76226a",
+      "git_blob_sha": "4efe84adefe9281ae53ce1e4b0fcf75a22fe74a4",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-13.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-13.png",
+      "bytes": 418430,
+      "sha256": "d891ce271555bee61ca9f1fc039d61f898f43b080d4ef342b3fcc3addaedb356",
+      "git_blob_sha": "f8945ca100fbe996d0d96c7dafdc885a47454a20",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-14.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-14.png",
+      "bytes": 426437,
+      "sha256": "8a0fff24c794904bc7f443e2dc65edec49da6a72601fc3f4fbd368d7cfda85ed",
+      "git_blob_sha": "a1fde07285ec6c965742075d771feba1fc59e670",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-15.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-15.png",
+      "bytes": 425188,
+      "sha256": "1eaa8301387ac82784d6635da885d5be89a2ab9a296187886f7a50a5f09743b8",
+      "git_blob_sha": "f55285c6d2c142638ebad5e1505fca94cc051b5d",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-16.png",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/movie-review/frame-16.png",
+      "bytes": 3524,
+      "sha256": "81264952b7f740feebf38cbd25abc68d839214f550e950df4c5daa6e85880baf",
+      "git_blob_sha": "3fae9fad4df63062e58147d5077b2da3b972955a",
+      "encoding": "base64",
+      "content_kind": "derived_movie_frame_selected_and_reviewed_by_root"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/originals/lumo_facial_capture/facial-runtime.mp4",
+      "bytes": 1067731,
+      "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+      "git_blob_sha": "a84fa3b0433861a19ea9829460141144873e26dc",
+      "encoding": "base64",
+      "content_kind": "original_movie",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4",
+      "byte_equal_original_archive": true
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/runtime-frames.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/originals/lumo_facial_capture/runtime-frames.json",
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+      "git_blob_sha": "471e2e633df635545f99270e1960eb5ba41ced2e",
+      "encoding": "utf-8",
+      "content_kind": "original_movie_sidecar",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/runtime-frames.json",
+      "byte_equal_original_archive": true
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/movie.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/originals/lumo_facial_capture/movie.json",
+      "bytes": 732,
+      "sha256": "47d7c024f20a7dd68eae5e45f3cdbe37df652de7e601a6b43314e690e5bb7ca3",
+      "git_blob_sha": "a144e1f9012fb8a654306df9b1541e1686b212d1",
+      "encoding": "utf-8",
+      "content_kind": "original_movie_sidecar",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/movie.json",
+      "byte_equal_original_archive": true
+    }
+  ],
+  "file_count_excluding_manifest": 58,
+  "bytes_excluding_manifest": 8550155,
+  "manifest_self_target": "docs/evidence/native29080-full-acceptance-20261114/evidence-upload-manifest.json"
+}

@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "scope": "Immutable blobs only; no trees, commits, refs or PRs",
+  "files": [
+    {
+      "path": "scripts/run_speech_jvm_contracts.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d17f343b16d80bddb861cf26cfeae9e38994f24",
+      "bytes": 19493,
+      "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+      "full_utf8_readback_equal": true
+    },
+    {
+      "path": "scripts/tests/test_speech_jvm_runner.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4358a2540c65c19701b39d582465089672f884e5",
+      "bytes": 14569,
+      "sha256": "5b4161a58a3280fe0b70ae0cddca57e58411a04c1a475ad5c9c55ecbb63f2276",
+      "full_utf8_readback_equal": true
+    }
+  ]
+}

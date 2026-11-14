@@ -1,0 +1,19 @@
+{
+  "id": 14121618349,
+  "name": "lumo-studio-2020-native-evidence",
+  "size_in_bytes": 227270408,
+  "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14121618349",
+  "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14121618349/zip",
+  "expired": false,
+  "created_at": "2026-11-14T16:22:34Z",
+  "expires_at": "2026-12-14T16:22:23Z",
+  "updated_at": "2026-11-14T16:22:34Z",
+  "digest": "sha256:f9d84c3d4f80f27fe134ab5e4cb040b811262d6d6c6a032433bc5f644ed886fc",
+  "workflow_run": {
+    "id": 43611803408,
+    "repository_id": 1251414584,
+    "head_repository_id": 1251414584,
+    "head_branch": "chatgpt/lumo-nextgen-feature-20261114",
+    "head_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427"
+  }
+}

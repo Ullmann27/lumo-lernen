@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "scope": "Four new games_worlds-owned read-only review documents; excludes original images/archive and other reviewers files.",
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "workflow_run_id": 43611803408,
+  "files": [
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/binding-games_worlds.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/binding-games_worlds.json",
+      "bytes": 9307,
+      "sha256": "31dbd3d4f2f216f86bef850d602fa9aa73993e0571f88547a1d6829e97164fca",
+      "git_blob_sha": "6bcabdefc0f193e50a290b30e1c70f4c486756b0"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/review-games_worlds.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/review-games_worlds.json",
+      "bytes": 25798,
+      "sha256": "3cd6da92cca3e3386fcc382242cd05897e762e98786848eb1a9bb7fd748223be",
+      "git_blob_sha": "fa4a0c9953bbd88a1a22b18763a40d474e50c2fd"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/review-games_worlds.md",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/review-games_worlds.md",
+      "bytes": 19685,
+      "sha256": "65d1b76d1193cf8559555f923796a96d204e75a9218660c1281a3cc397660cd1",
+      "git_blob_sha": "79e906734c4364a10d696cdec16d0c4c27b2efb1"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/gameplay-touch-review-games_worlds.json",
+      "target_path": "docs/evidence/native29080-full-acceptance-20261114/gameplay-touch-review-games_worlds.json",
+      "bytes": 29685,
+      "sha256": "cb1f5510cf6fc9cb18f30d78e0ebebe759f955fe58e8734112f8653315e7be4c",
+      "git_blob_sha": "d7798ad0bc98bcb2a8160b1b43e0158ef6204283"
+    }
+  ]
+}

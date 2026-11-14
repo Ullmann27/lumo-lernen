@@ -1,0 +1,83 @@
+{
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "workflow_run_id": 43611803408,
+  "status": "awaiting successful current full run and original archive; no images reviewed by this assignment",
+  "reviewer": "games_worlds",
+  "images": [
+    {
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png"
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png"
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png"
+    },
+    {
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png"
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png"
+    },
+    {
+      "module": "build",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png"
+    }
+  ]
+}

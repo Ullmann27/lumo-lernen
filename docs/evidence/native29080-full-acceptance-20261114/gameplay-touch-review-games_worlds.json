@@ -1,0 +1,931 @@
+{
+  "schema": 1,
+  "reviewer": "games_worlds",
+  "created_utc": "2026-11-14T16:35:48.959991+00:00",
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "workflow_run_id": 43611803408,
+  "original_archive": {
+    "artifact_id": 14121618349,
+    "bytes": 227270408,
+    "sha256": "f9d84c3d4f80f27fe134ab5e4cb040b811262d6d6c6a032433bc5f644ed886fc",
+    "local_original": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/native29080-evidence.zip",
+    "full_crc_scope": "Root independently checked all 5085 members; C compared and CRC-read the 15 selected PNG members and the listed report members.",
+    "root_integrity_report_sha256": "08021c8647731b6c9af893cc0b72e85d3feff887a6e777c277730a134aba9687"
+  },
+  "scope": "Read-only review of current original CI logs and sidecars; separate from personal PNG inspection. No new engine, Android or test execution.",
+  "members": [
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/build_nextgen_play_regression-headless.log",
+      "bytes": 687,
+      "sha256": "5d965821ba7508d9a4d83eb5c3a22f7db90aa25f810b22ec348961974bdfd61d",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/build_nextgen_play_regression-rendered.log",
+      "bytes": 1334,
+      "sha256": "4439cc99723397dd2a4ead00eea92141438eb24a56c360d22aa9308b4ba78552",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/build_settlement_play_regression-headless.log",
+      "bytes": 2069,
+      "sha256": "bddad00b5183a4e10a69a2b12daefdf519c1f5daeb65a2912fb181d1f561bf9a",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/build_settlement_play_regression-rendered.log",
+      "bytes": 2716,
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "touch-evidence/build/build_dialog_density_regression-headless.log",
+      "bytes": 1436,
+      "sha256": "b31cf0f43611c90eb8cd007e9095bcbebead917945412ea9d4a78fb790137ecf",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "touch-evidence/build/build_dialog_density_regression-rendered.log",
+      "bytes": 3219,
+      "sha256": "ef38a74d7f336739acf5360c3ac44eeb1db8fa326571e092a8d757ad6a3b0224",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "studio-evidence/puzzle_rotation_regression-headless.log",
+      "bytes": 571,
+      "sha256": "eb6e0efe8ad9f642c5d6cb53e35b175a2679ff50441ddd45859e531d80fd81d9",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "studio-evidence/puzzle_rotation_regression-rendered.log",
+      "bytes": 1218,
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "studio-evidence/puzzle_menu_lifecycle_regression-headless.log",
+      "bytes": 3084,
+      "sha256": "661f94c08a44790f949ab961e19f751b58d12bd0673b7b8925da0bac91232a98",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "studio-evidence/puzzle_menu_lifecycle_regression-rendered.log",
+      "bytes": 3733,
+      "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "studio-evidence/mobile_safe_area_regression-headless.log",
+      "bytes": 8426,
+      "sha256": "924314230fdfddfcdf14aab796ba8209388b5ca5093d4156365e4ffefddcdf57",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "studio-evidence/mobile_safe_area_regression-rendered.log",
+      "bytes": 9354,
+      "sha256": "cb151ce9de78256734e68844349008817acde696085c9546f664a6faa4c7707b",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/measurements.json",
+      "bytes": 113460,
+      "sha256": "1f8406c4d5efaccb39d8ea340d285f19aa528b74e9a02eae20368c9fc8d26a44",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/puzzle-menu-lifecycle.json",
+      "bytes": 37700,
+      "sha256": "f0fd4f759aca7be0a5d3f1dbf2d5118fd0dbe9e70d0a813c7b507568020a6c11",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/mobile-safe-area.json",
+      "bytes": 12524,
+      "sha256": "7416df4d5efe022d3ce802b34036e0dcc629fd6898dd68b36ce44e4c5490bbce",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/source-sha.txt",
+      "bytes": 41,
+      "sha256": "cc7d7df4f9a8560292f59c1c310864e279a589a464a57d216c4425caddb3703d",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "studio-evidence/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "studio-evidence/source-sha.txt",
+      "bytes": 41,
+      "sha256": "cc7d7df4f9a8560292f59c1c310864e279a589a464a57d216c4425caddb3703d",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "studio-evidence/source-tree.txt",
+      "bytes": 41,
+      "sha256": "2026c5958af62e253bd00d24d4c3f3b285bfeb69f5ac4fe3355b2b6a3219d13b",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "studio-evidence/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "touch-evidence/build/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "touch-evidence/build/source-sha.txt",
+      "bytes": 41,
+      "sha256": "cc7d7df4f9a8560292f59c1c310864e279a589a464a57d216c4425caddb3703d",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "touch-evidence/build/source-tree.txt",
+      "bytes": 41,
+      "sha256": "2026c5958af62e253bd00d24d4c3f3b285bfeb69f5ac4fe3355b2b6a3219d13b",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "touch-evidence/build/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "zip_member_crc_verified_on_read": true
+    },
+    {
+      "artifact_entry": "touch-evidence/build/source-dirty-after.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "zip_member_crc_verified_on_read": true
+    }
+  ],
+  "source_stamps": {
+    "nextgen-evidence/nextgen/engine.txt": "4.6.3.stable.official.7d41c59c4\n",
+    "nextgen-evidence/nextgen/source-sha.txt": "29080ef8cd1a5b385eeeec97976fbefd31280427\n",
+    "nextgen-evidence/nextgen/source-dirty.txt": "",
+    "studio-evidence/engine.txt": "4.6.3.stable.official.7d41c59c4\n",
+    "studio-evidence/source-sha.txt": "29080ef8cd1a5b385eeeec97976fbefd31280427\n",
+    "studio-evidence/source-tree.txt": "5ddbea2b1d5e76ed592a27c36079632d7f26cada\n",
+    "studio-evidence/source-dirty.txt": "",
+    "touch-evidence/build/engine.txt": "4.6.3.stable.official.7d41c59c4\n",
+    "touch-evidence/build/source-sha.txt": "29080ef8cd1a5b385eeeec97976fbefd31280427\n",
+    "touch-evidence/build/source-tree.txt": "5ddbea2b1d5e76ed592a27c36079632d7f26cada\n",
+    "touch-evidence/build/source-dirty.txt": "",
+    "touch-evidence/build/source-dirty-after.txt": ""
+  },
+  "original_log_findings": {
+    "nextgen-evidence/nextgen/build_nextgen_play_regression-headless.log": {
+      "pass_lines": [
+        "[BuildNextgen] PASS checks=62: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout"
+      ],
+      "warning_lines": [],
+      "engine_error_lines": []
+    },
+    "nextgen-evidence/nextgen/build_nextgen_play_regression-rendered.log": {
+      "pass_lines": [
+        "[BuildNextgen] PASS checks=70: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout"
+      ],
+      "warning_lines": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ],
+      "engine_error_lines": []
+    },
+    "nextgen-evidence/nextgen/build_settlement_play_regression-headless.log": {
+      "pass_lines": [
+        "[SettlementPlay] PASS checks=127: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts"
+      ],
+      "warning_lines": [],
+      "engine_error_lines": []
+    },
+    "nextgen-evidence/nextgen/build_settlement_play_regression-rendered.log": {
+      "pass_lines": [
+        "[SettlementPlay] PASS checks=139: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts"
+      ],
+      "warning_lines": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ],
+      "engine_error_lines": []
+    },
+    "touch-evidence/build/build_dialog_density_regression-headless.log": {
+      "pass_lines": [
+        "[BuildDialogDensity] PASS 2016 checks: bounded dialogs, preserved choices, actual scroll/select/cancel, >=48dp and restore"
+      ],
+      "warning_lines": [],
+      "engine_error_lines": []
+    },
+    "touch-evidence/build/build_dialog_density_regression-rendered.log": {
+      "pass_lines": [
+        "[BuildDialogDensity] PASS 2046 checks: bounded dialogs, preserved choices, actual scroll/select/cancel, >=48dp and restore"
+      ],
+      "warning_lines": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ],
+      "engine_error_lines": []
+    },
+    "studio-evidence/puzzle_rotation_regression-headless.log": {
+      "pass_lines": [
+        "[PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume"
+      ],
+      "warning_lines": [],
+      "engine_error_lines": []
+    },
+    "studio-evidence/puzzle_rotation_regression-rendered.log": {
+      "pass_lines": [
+        "[PuzzleRotation] PASS 4565 checks: orientation, legacy saves, real picking, touch rotation and resume"
+      ],
+      "warning_lines": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ],
+      "engine_error_lines": []
+    },
+    "studio-evidence/puzzle_menu_lifecycle_regression-headless.log": {
+      "pass_lines": [
+        "[PuzzleMenuLifecycle] PASS 720 behavioral checks; strict native log gate still required"
+      ],
+      "warning_lines": [],
+      "engine_error_lines": []
+    },
+    "studio-evidence/puzzle_menu_lifecycle_regression-rendered.log": {
+      "pass_lines": [
+        "[PuzzleMenuLifecycle] PASS 732 behavioral checks; strict native log gate still required"
+      ],
+      "warning_lines": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ],
+      "engine_error_lines": []
+    },
+    "studio-evidence/mobile_safe_area_regression-headless.log": {
+      "pass_lines": [
+        "MOBILE_SAFE_AREA_PASS checks=112 failures=0 controls=15 images=0 scope=platform_boundary_fixture"
+      ],
+      "warning_lines": [],
+      "engine_error_lines": []
+    },
+    "studio-evidence/mobile_safe_area_regression-rendered.log": {
+      "pass_lines": [
+        "MOBILE_SAFE_AREA_PASS checks=124 failures=0 controls=15 images=4 scope=platform_boundary_fixture"
+      ],
+      "warning_lines": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ],
+      "engine_error_lines": []
+    }
+  },
+  "build_nextgen": {
+    "headless_checks": 62,
+    "rendered_checks": 70,
+    "reported_contract": "real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout",
+    "evidence_boundary": "The current original PASS lines state the executed contract; this small log does not contain a per-input journal for every build action."
+  },
+  "settlement": {
+    "headless_checks": 127,
+    "rendered_checks": 139,
+    "reported_contract": "actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts",
+    "observed_routes": "Original logs include repeated build → settlement → build routing and distinct save identifiers for the two tested child scopes."
+  },
+  "build_dialogs": {
+    "headless_checks": 2016,
+    "rendered_checks": 2046,
+    "reported_contract": "bounded dialogs, preserved choices, actual scroll/select/cancel, >=48dp and restore",
+    "raw_scope": "Production scene, own popup transforms, real InputEvents and explicit density fixtures; not a physical Android/Fold7 test",
+    "measurements": 285,
+    "capture_count": 12,
+    "profiles": [
+      {
+        "surface": [
+          2400,
+          1080
+        ],
+        "density": 2.625,
+        "measurements": 54,
+        "minimum_recorded_dp": [
+          48.0149726867676,
+          48.0500373840332
+        ],
+        "fully_exposed_required": 32,
+        "other_preserved_option_measurements": 22
+      },
+      {
+        "surface": [
+          640,
+          320
+        ],
+        "density": 1.0,
+        "measurements": 77,
+        "minimum_recorded_dp": [
+          48.0,
+          48.0
+        ],
+        "fully_exposed_required": 55,
+        "other_preserved_option_measurements": 22
+      },
+      {
+        "surface": [
+          1080,
+          2400
+        ],
+        "density": 2.625,
+        "measurements": 50,
+        "minimum_recorded_dp": [
+          48.0500602722168,
+          48.0149955749512
+        ],
+        "fully_exposed_required": 28,
+        "other_preserved_option_measurements": 22
+      },
+      {
+        "surface": [
+          2176,
+          1812
+        ],
+        "density": 2.25,
+        "measurements": 50,
+        "minimum_recorded_dp": [
+          48.0055351257324,
+          48.0198554992676
+        ],
+        "fully_exposed_required": 28,
+        "other_preserved_option_measurements": 22
+      },
+      {
+        "surface": [
+          640,
+          360
+        ],
+        "density": 1.0,
+        "measurements": 54,
+        "minimum_recorded_dp": [
+          48.0,
+          48.0
+        ],
+        "fully_exposed_required": 32,
+        "other_preserved_option_measurements": 22
+      }
+    ],
+    "exposure_caution": "175 measurements demand fully exposed targets; 110 preserved-option measurements do not. The report is not evidence that all 285 controls are simultaneously exposed.",
+    "selected_actions": [
+      {
+        "density": 2.625,
+        "dp": [
+          363.378540039062,
+          48.0149955749512
+        ],
+        "fully_exposed_required": true,
+        "label": "assignment actual test action",
+        "physical_size": [
+          953.86865234375,
+          126.039367675781
+        ],
+        "popup_size": [
+          387,
+          500
+        ],
+        "surface": [
+          1080,
+          2400
+        ],
+        "viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+      },
+      {
+        "density": 2.625,
+        "dp": [
+          355.370178222656,
+          48.015022277832
+        ],
+        "fully_exposed_required": true,
+        "label": "last choice after real vertical drag",
+        "physical_size": [
+          932.846740722656,
+          126.039428710938
+        ],
+        "popup_size": [
+          387,
+          500
+        ],
+        "surface": [
+          1080,
+          2400
+        ],
+        "viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+      },
+      {
+        "density": 2.625,
+        "dp": [
+          363.378540039062,
+          48.015022277832
+        ],
+        "fully_exposed_required": true,
+        "label": "fixed cancel after bottom scroll",
+        "physical_size": [
+          953.86865234375,
+          126.039428710938
+        ],
+        "popup_size": [
+          387,
+          500
+        ],
+        "surface": [
+          1080,
+          2400
+        ],
+        "viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+      },
+      {
+        "density": 2.625,
+        "dp": [
+          355.370178222656,
+          48.015022277832
+        ],
+        "fully_exposed_required": true,
+        "label": "last choice after real vertical drag",
+        "physical_size": [
+          932.846740722656,
+          126.039428710938
+        ],
+        "popup_size": [
+          387,
+          500
+        ],
+        "surface": [
+          1080,
+          2400
+        ],
+        "viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+      },
+      {
+        "density": 2.625,
+        "dp": [
+          363.378540039062,
+          48.015022277832
+        ],
+        "fully_exposed_required": true,
+        "label": "fixed cancel after bottom scroll",
+        "physical_size": [
+          953.86865234375,
+          126.039428710938
+        ],
+        "popup_size": [
+          387,
+          500
+        ],
+        "surface": [
+          1080,
+          2400
+        ],
+        "viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+      },
+      {
+        "density": 2.625,
+        "dp": [
+          363.378540039062,
+          48.015022277832
+        ],
+        "fully_exposed_required": true,
+        "label": "fixed cancel after bottom scroll",
+        "physical_size": [
+          953.86865234375,
+          126.039428710938
+        ],
+        "popup_size": [
+          387,
+          500
+        ],
+        "surface": [
+          1080,
+          2400
+        ],
+        "viewport_screen_transform": "[X: (2.627737, 0.0), Y: (0.0, 2.625821), O: (31.53285, 543.5449)]"
+      },
+      {
+        "density": 1.0,
+        "dp": [
+          366.0,
+          48.0
+        ],
+        "fully_exposed_required": true,
+        "label": "assignment actual test action",
+        "physical_size": [
+          366.0,
+          48.0
+        ],
+        "popup_size": [
+          390,
+          336
+        ],
+        "surface": [
+          640,
+          360
+        ],
+        "viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+      },
+      {
+        "density": 1.0,
+        "dp": [
+          358.0,
+          48.0
+        ],
+        "fully_exposed_required": true,
+        "label": "last choice after real vertical drag",
+        "physical_size": [
+          358.0,
+          48.0
+        ],
+        "popup_size": [
+          390,
+          336
+        ],
+        "surface": [
+          640,
+          360
+        ],
+        "viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+      },
+      {
+        "density": 1.0,
+        "dp": [
+          366.0,
+          48.0
+        ],
+        "fully_exposed_required": true,
+        "label": "fixed cancel after bottom scroll",
+        "physical_size": [
+          366.0,
+          48.0
+        ],
+        "popup_size": [
+          390,
+          336
+        ],
+        "surface": [
+          640,
+          360
+        ],
+        "viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+      },
+      {
+        "density": 1.0,
+        "dp": [
+          358.0,
+          48.0
+        ],
+        "fully_exposed_required": true,
+        "label": "last choice after real vertical drag",
+        "physical_size": [
+          358.0,
+          48.0
+        ],
+        "popup_size": [
+          390,
+          336
+        ],
+        "surface": [
+          640,
+          360
+        ],
+        "viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+      },
+      {
+        "density": 1.0,
+        "dp": [
+          358.0,
+          48.0
+        ],
+        "fully_exposed_required": true,
+        "label": "last choice after real vertical drag",
+        "physical_size": [
+          358.0,
+          48.0
+        ],
+        "popup_size": [
+          390,
+          336
+        ],
+        "surface": [
+          640,
+          360
+        ],
+        "viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+      },
+      {
+        "density": 1.0,
+        "dp": [
+          366.0,
+          48.0
+        ],
+        "fully_exposed_required": true,
+        "label": "fixed cancel after bottom scroll",
+        "physical_size": [
+          366.0,
+          48.0
+        ],
+        "popup_size": [
+          390,
+          336
+        ],
+        "surface": [
+          640,
+          360
+        ],
+        "viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+      },
+      {
+        "density": 1.0,
+        "dp": [
+          358.0,
+          48.0
+        ],
+        "fully_exposed_required": true,
+        "label": "last choice after real vertical drag",
+        "physical_size": [
+          358.0,
+          48.0
+        ],
+        "popup_size": [
+          390,
+          336
+        ],
+        "surface": [
+          640,
+          360
+        ],
+        "viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+      },
+      {
+        "density": 1.0,
+        "dp": [
+          358.0,
+          48.0
+        ],
+        "fully_exposed_required": true,
+        "label": "last choice after real vertical drag",
+        "physical_size": [
+          358.0,
+          48.0
+        ],
+        "popup_size": [
+          390,
+          336
+        ],
+        "surface": [
+          640,
+          360
+        ],
+        "viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+      },
+      {
+        "density": 1.0,
+        "dp": [
+          366.0,
+          48.0
+        ],
+        "fully_exposed_required": true,
+        "label": "fixed cancel after bottom scroll",
+        "physical_size": [
+          366.0,
+          48.0
+        ],
+        "popup_size": [
+          390,
+          336
+        ],
+        "surface": [
+          640,
+          360
+        ],
+        "viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+      },
+      {
+        "density": 1.0,
+        "dp": [
+          358.0,
+          48.0
+        ],
+        "fully_exposed_required": true,
+        "label": "last choice after real vertical drag",
+        "physical_size": [
+          358.0,
+          48.0
+        ],
+        "popup_size": [
+          390,
+          336
+        ],
+        "surface": [
+          640,
+          360
+        ],
+        "viewport_screen_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (125.0, 12.0)]"
+      }
+    ]
+  },
+  "puzzle_rotation": {
+    "headless_checks": 4558,
+    "rendered_checks": 4565,
+    "reported_contract": "orientation, legacy saves, real picking, touch rotation and resume",
+    "count_caution": "These are checks, including state/geometry contracts; they are not 4565 separate physical touches."
+  },
+  "puzzle_menu_lifecycle": {
+    "headless_checks": 720,
+    "rendered_checks": 732,
+    "failures": [],
+    "production_scene": "res://scenes/creative/puzzle_world.tscn",
+    "display": "X11",
+    "state_or_piece_position_injection_used": false,
+    "device_fps_measured": false,
+    "events": 140,
+    "touch_press_count": 62,
+    "touch_release_count": 62,
+    "drag_event_count": 16,
+    "pressed_labels": {
+      "count": 18,
+      "Modus:": 16,
+      "Bild:": 10,
+      "Neues Puzzle beginnen": 4,
+      "select real piece": 2,
+      "↻ Drehen": 2,
+      "Ⅱ": 4,
+      "Anderes Puzzle": 2,
+      "classic piece pick": 2,
+      "Weiterpuzzeln": 2
+    },
+    "menu_samples": 42,
+    "piece_counts": [
+      6,
+      12,
+      24,
+      48,
+      96
+    ],
+    "motif_indices": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "rotation_values": [
+      false,
+      true
+    ],
+    "captures": [
+      "960x540-rotation-menu.png",
+      "960x540-rotation-play.png",
+      "960x540-classic-play.png",
+      "640x360-rotation-menu.png",
+      "640x360-rotation-play.png",
+      "640x360-classic-play.png"
+    ],
+    "caution": "The actual journal covers start, selected piece, quarter-turn, classic drag/place, pause, different puzzle and resume. It contains no press on Zur Spielewelt; the partially scrolled menu-return control is not independently released by this journal."
+  },
+  "safe_area": {
+    "headless_checks": 112,
+    "rendered_checks": 124,
+    "failures": [],
+    "scope": "production cache and scenes with asynchronous Android boundary fixture; not device execution",
+    "surface": [
+      2400,
+      1080
+    ],
+    "density": 2.625,
+    "observed_system_inset_fixture": [
+      136,
+      63,
+      0,
+      63
+    ],
+    "build_puzzle_measured_targets": [
+      {
+        "caption": "‹ Spiele",
+        "exposed_dp": [
+          82.025640578497,
+          48.050051734561
+        ],
+        "fully_inside_true_safe_area": true,
+        "module": "build",
+        "rect_px": [
+          167.509841918945,
+          89.2773666381836,
+          215.317306518555,
+          126.131385803223
+        ],
+        "target_dp": [
+          82.0256423950195,
+          48.0500526428223
+        ]
+      },
+      {
+        "caption": "Ⅱ",
+        "exposed_dp": [
+          52.0162295386905,
+          48.050051734561
+        ],
+        "fully_inside_true_safe_area": true,
+        "module": "build",
+        "rect_px": [
+          1824.40270996094,
+          89.2773666381836,
+          136.542602539062,
+          126.131385803223
+        ],
+        "target_dp": [
+          52.016227722168,
+          48.0500526428223
+        ]
+      },
+      {
+        "caption": "Verschieben",
+        "exposed_dp": [
+          120.037527901786,
+          48.0500604538691
+        ],
+        "fully_inside_true_safe_area": true,
+        "module": "build",
+        "rect_px": [
+          167.509841918945,
+          294.240875244141,
+          315.098510742188,
+          126.131408691406
+        ],
+        "target_dp": [
+          120.037528991699,
+          48.0500602722168
+        ]
+      },
+      {
+        "caption": "‹ Spiele",
+        "exposed_dp": [
+          82.025640578497,
+          48.050051734561
+        ],
+        "fully_inside_true_safe_area": true,
+        "module": "puzzle",
+        "rect_px": [
+          172.761489868164,
+          94.532844543457,
+          215.317306518555,
+          126.131385803223
+        ],
+        "target_dp": [
+          82.0256423950195,
+          48.0500526428223
+        ]
+      },
+      {
+        "caption": "Ⅱ",
+        "exposed_dp": [
+          52.0161830357143,
+          48.050051734561
+        ],
+        "fully_inside_true_safe_area": true,
+        "module": "puzzle",
+        "rect_px": [
+          2226.1533203125,
+          94.532844543457,
+          136.54248046875,
+          126.131385803223
+        ],
+        "target_dp": [
+          52.0161819458008,
+          48.0500526428223
+        ]
+      }
+    ],
+    "caution": "Five measured controls for these two modules: Build back/pause/move and Puzzle back/pause. Their exposed sizes are at least 48 dp. This is not an assertion about every visible menu or physical Android insets."
+  },
+  "boundaries": [
+    "No assertion-count sum is presented as unique tests or user actions.",
+    "Known renderer warnings remain recorded: unsupported V-Sync change, screen-space AA unsupported by Compatibility, volumetric fog unsupported by Compatibility. No ERROR/SCRIPT ERROR lines were found in the 12 selected logs.",
+    "PASS in these desktop fixtures does not establish Android integration, physical touch hardware, frame pacing or 60 FPS.",
+    "The historical baseline-2017 members of the archive are not used as current native gameplay evidence."
+  ]
+}

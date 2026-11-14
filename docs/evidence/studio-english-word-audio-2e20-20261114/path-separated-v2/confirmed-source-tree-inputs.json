@@ -1,0 +1,62 @@
+[
+  {
+    "path": "tools/auto_install/LumoLearningSpeech.kt",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "755077c4f1385f9b09464113aeaab3a20ec8a376"
+  },
+  {
+    "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "9e034ca2a46e53adf8a3014c0e8868d33ba54a9c"
+  },
+  {
+    "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd"
+  },
+  {
+    "path": "scripts/speech_contracts/test_english_lesson_speech.py",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "93b4d63069533f160207e098ff6093c963ce3bfd"
+  },
+  {
+    "path": "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "b0fe0ebe291be6ba1f84ab6bda50ab34c987823a"
+  },
+  {
+    "path": "scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+  },
+  {
+    "path": "scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+  },
+  {
+    "path": "scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "9e22b98ad3938b6d0dafd4c1971d20faf09e337a"
+  },
+  {
+    "path": "scripts/tests/fixtures/learning_english_speech/platform_fixture.py",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "40897dc0e2a48cb0c054f19820557ffa7fc43579"
+  },
+  {
+    "path": "scripts/tests/fixtures/learning_english_speech/apfel-original.wav",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905"
+  }
+]

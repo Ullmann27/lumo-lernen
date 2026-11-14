@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T16:42:14.593477+00:00",
+  "scope": "docs-only independent source/interface review; no tests rerun",
+  "files": [
+    {
+      "path": "docs/evidence/host-native29080-pin-workflow-independent-review-20261114/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/review.json",
+      "bytes": 17580,
+      "sha256": "3ce8f348a799853c4efc15b78fe18b207a346b47be83985e865bed63e2f771f1",
+      "git_blob": "6a1d75c473ef3929ef3ce32b9a4540172c43d9da",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/host-native29080-pin-workflow-independent-review-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/README.md",
+      "bytes": 2840,
+      "sha256": "22a1b84ff6cd7f96efd08ee0b3e776b5d2234c4e99ecb8fdbc6cbc39403dde05",
+      "git_blob": "5dea2e903ec8165eb33a16ac7bc9ea67211d8706",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/host-native29080-pin-workflow-independent-review-20261114/static-comparison-proof.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/static-comparison-proof.json",
+      "bytes": 8366,
+      "sha256": "2d6d4e039db60e91a1a6bc8aa16f7d22386b80bc229489974b8f8617b18937ac",
+      "git_blob": "6f6c5bf5aff44025564ff84c05e490831a17637c",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/host-native29080-pin-workflow-independent-review-20261114/reviewed-diff-against-published2e20.patch",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/reviewed-diff-against-published2e20.patch",
+      "bytes": 3644,
+      "sha256": "f00d9f4e9d0a4c5cfd2c634f88b4a4840cb1f0fd2006c4d34832b32f7f8a0bdb",
+      "git_blob": "f8594edc9ebd460b72c8e9528a5c6fbf9beaad56",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/host-native29080-pin-workflow-independent-review-20261114/published-baseline-tree-entries.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/published-baseline-tree-entries.json",
+      "bytes": 1699,
+      "sha256": "aa2e3f4839a7271d2676572d3a2d6c71985cc4dc1102f5a5e86246307eeba577",
+      "git_blob": "f49dd017f66cdb5604415c92294d551109a3bb38",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/host-native29080-pin-workflow-independent-review-20261114/reference-compile-android-host.sh",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/reference-compile-android-host.sh",
+      "bytes": 3499,
+      "sha256": "42ad647a647183845ae2ec48dfd778166d6c36f7828b2e1f06b51b4756bf1419",
+      "git_blob": "c5138523453d4e185f6af46f96e15478888075de",
+      "mode": "100644"
+    }
+  ],
+  "count": 6,
+  "bytes": 37628
+}

@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "baseline_host": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "source": "Complete exact GitHub UTF-8 source previously read in this session, still preserved in session cache and rehashed for this finite binding; no new execution implied",
+  "sources": [
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "bytes": 7458,
+      "sha256": "e0cad577d7e2fe37674ebe6b05935611e82c19200646e5f8df1310674fa0bf8f",
+      "git_blob": "5ea2906e200a8a513e2a941da165b9450f3b5ea8"
+    },
+    {
+      "path": "scripts/compile_android_host.sh",
+      "bytes": 3499,
+      "sha256": "42ad647a647183845ae2ec48dfd778166d6c36f7828b2e1f06b51b4756bf1419",
+      "git_blob": "c5138523453d4e185f6af46f96e15478888075de"
+    },
+    {
+      "path": "scripts/tests/test_table_games_native_contract.py",
+      "bytes": 15542,
+      "sha256": "a789650b477ded58f3dad9611e6ba187b04f368b488d588902958cefad1478b5",
+      "git_blob": "1379b936394dba8f70137657e9f91f68b5a9bee2"
+    }
+  ],
+  "facts": {
+    "compile_result": "compile_android_host.sh writes host-compile-evidence/result.json only after actual Kotlin/Java compile, clean tracked checkout, and CAFEBABE/class hashes; includes all four speech production classes",
+    "mirror_init": "The existing compile script installs scripts/gradle/lumo-maven-central-mirror.init.gradle in the actual GRADLE_USER_HOME/init.d; the follow-up offline distribution invocation uses the same home",
+    "existing_compiler_contract": "Existing table JVM tests use K2JVMCompiler from already installed Gradle lib/*.jar; missing tools fail with REQUIRE_ALL_TESTS=true",
+    "runner": "Resolves only a pre-existing matching wrapper distribution, invokes its installed executable with --offline, records actual Gradle home/JDK, then executes the two dedicated modules serially",
+    "no_fixed_kotlinc_path": true,
+    "no_new_installation": true
+  },
+  "api_reference": {
+    "url": "https://docs.gradle.org/current/javadoc/org/gradle/api/invocation/Gradle.html",
+    "method": "getGradleHomeDir",
+    "reviewed_api_fact": "Returns actual running Gradle distribution home; API marked since 0.8; no local Gradle/Kotlin execution claimed"
+  },
+  "bound_driver_manifest": {
+    "path": "qa/studio-english-word-audio-2e20-20261114/path-separated-v2/source-upload-manifest.json",
+    "sha256": "f0f0e43979fb3c99c280bf1cffb39ea3f62388f84aa3521f8adee92bee01d791"
+  },
+  "execution_limits": "Local 19/19 runner orchestration tests only. Full production Kotlin 8-case/23+17+6-scenario run remains pending in real CI."
+}

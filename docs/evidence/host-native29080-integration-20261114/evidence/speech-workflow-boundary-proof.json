@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "workflows": [
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "baseline_sha256": "e0cad577d7e2fe37674ebe6b05935611e82c19200646e5f8df1310674fa0bf8f",
+      "candidate_sha256": "b4c04ffd59a131a0535ddfcd53f99887adfe77dfc73de6516d3126da787edcef",
+      "only_change": "one mandatory step after successful actual Android host compilation",
+      "all_old_jobs_steps_conditions_and_publisher_unchanged": true,
+      "added_command": "python3 -B scripts/run_speech_jvm_contracts.py --output host-compile-evidence/speech",
+      "bash_syntax_exit_code": 0
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "baseline_sha256": "0caabde427205969d2cc70a258e554463d189edffd7f2e43c90b1cd4bca0ed2c",
+      "candidate_sha256": "6261e26cd489fe0497bc035f1575ab76e95e33a1e092977ef1c13970658a2b28",
+      "only_change": "one mandatory step after successful actual Android host compilation",
+      "all_old_jobs_steps_conditions_and_publisher_unchanged": true,
+      "added_command": "python3 -B scripts/run_speech_jvm_contracts.py --output host-compile-evidence/speech",
+      "bash_syntax_exit_code": 0
+    }
+  ],
+  "android_execution": "pending actual CI",
+  "no_local_flutter_or_dependency_restore": true
+}

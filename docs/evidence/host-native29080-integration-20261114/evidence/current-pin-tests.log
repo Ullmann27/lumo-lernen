@@ -1,0 +1,9 @@
+test_current_candidate_identity_exceeds_existing_2008_and_reserved_2010 (scripts.tests.test_candidate_2011_pin.Candidate2011PinTests.test_current_candidate_identity_exceeds_existing_2008_and_reserved_2010) ... ok
+test_2020_accepts_its_exact_source_and_preserves_all_historical_pins (scripts.tests.test_candidate_2011_pin.Candidate2011PinTests.test_2020_accepts_its_exact_source_and_preserves_all_historical_pins) ... ok
+test_2020_update_wrapper_requires_the_current_exact_source (scripts.tests.test_candidate_2011_pin.Candidate2011PinTests.test_2020_update_wrapper_requires_the_current_exact_source) ... ok
+test_all_existing_native_identities_are_unchanged (scripts.tests.test_candidate_2011_pin.Candidate2011PinTests.test_all_existing_native_identities_are_unchanged) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.012s
+
+OK

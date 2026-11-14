@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T16:38:17.432602+00:00",
+  "historical_manifest_sha256": "465eb8e570ef8ca79ef862a635ac526188ccc4eef875573e59deef998198efab",
+  "derived_manifest_sha256": "f0f0e43979fb3c99c280bf1cffb39ea3f62388f84aa3521f8adee92bee01d791",
+  "files": [
+    {
+      "old_path": "scripts/tests/test_english_lesson_speech.py",
+      "new_path": "scripts/speech_contracts/test_english_lesson_speech.py",
+      "bytes_identical": true,
+      "sha256": "96326b009847dfe0b4979dd80d247d6d343c97ed3778e0e1e5394df2590e9a81",
+      "git_blob": "93b4d63069533f160207e098ff6093c963ce3bfd",
+      "root_expression": "Path(__file__).resolve().parents[2]",
+      "test_methods_read_statically": 11,
+      "under_scripts_tests": false,
+      "package_init_created": false
+    },
+    {
+      "old_path": "scripts/tests/test_learning_english_speech_lifecycle.py",
+      "new_path": "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+      "bytes_identical": true,
+      "sha256": "f2f49ce0928b18058beefa9539c776da4379c6470073976831388d7e993b3e89",
+      "git_blob": "b0fe0ebe291be6ba1f84ab6bda50ab34c987823a",
+      "root_expression": "Path(__file__).resolve().parents[2]",
+      "test_methods_read_statically": 8,
+      "under_scripts_tests": false,
+      "package_init_created": false
+    }
+  ],
+  "all_ten_original_source_bytes_sha256_git_blobs_unchanged": true,
+  "product_files_unchanged": 3,
+  "fixtures_unchanged": 5,
+  "driver_bytes_unchanged": 2,
+  "tests_executed_for_this_change": 0,
+  "ci_required": "B-owned strict runner invokes 11 Java + 8 Kotlin cases with REQUIRE_ALL_TESTS=true. Missing compiler or any skip is a failure in that runner.",
+  "fixture_path": "scripts/tests/fixtures/learning_english_speech/apfel-original.wav",
+  "fixture_location_unchanged": true,
+  "root_paths_and_fixture_lookup_checked_statically": true
+}

@@ -1,0 +1,73 @@
+{
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "workflow_run_id": 43611803408,
+  "status": "awaiting successful current full run and original archive; no images reviewed by this assignment",
+  "reviewer": "root",
+  "images": [
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png"
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png"
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png"
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png"
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png"
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png"
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png"
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png"
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png"
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png"
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png"
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png"
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T16:38:17.432296+00:00",
+  "baseline_host": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "baseline_host_tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+  "native_unchanged": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "architecture": "Exactly three existing product templates. PCM join is a static helper inside LumoOfflineSpeechEngine.java; no new runtime type or installation-copy-list change.",
+  "files": [
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/prepared/host/tools/auto_install/LumoLearningSpeech.kt",
+      "bytes": 11318,
+      "sha256": "2102205e2976e074c9d0d0fca71448671edd82a5d74a8e2974a6ba9408ca525f",
+      "git_blob": "755077c4f1385f9b09464113aeaab3a20ec8a376",
+      "mode": "100644",
+      "change": "modified"
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/prepared/host/tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "bytes": 9663,
+      "sha256": "3e2ab56fe6c75cdfd04ef032dc20d07f38b1e8fc8f925a7753893482c623270c",
+      "git_blob": "9e034ca2a46e53adf8a3014c0e8868d33ba54a9c",
+      "mode": "100644",
+      "change": "modified"
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/prepared/host/tools/auto_install/LumoOfflineSpeechEngine.java",
+      "bytes": 19214,
+      "sha256": "6a8383795979c7bea9f89c44b5419a417edce249c92a93db63e896ce8a303ddc",
+      "git_blob": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd",
+      "mode": "100644",
+      "change": "modified"
+    },
+    {
+      "path": "scripts/speech_contracts/test_english_lesson_speech.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/path-separated-v2/prepared/host/scripts/speech_contracts/test_english_lesson_speech.py",
+      "bytes": 18072,
+      "sha256": "96326b009847dfe0b4979dd80d247d6d343c97ed3778e0e1e5394df2590e9a81",
+      "git_blob": "93b4d63069533f160207e098ff6093c963ce3bfd",
+      "mode": "100644",
+      "change": "added",
+      "previous_unpublished_target": "scripts/tests/test_english_lesson_speech.py"
+    },
+    {
+      "path": "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/path-separated-v2/prepared/host/scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+      "bytes": 6350,
+      "sha256": "f2f49ce0928b18058beefa9539c776da4379c6470073976831388d7e993b3e89",
+      "git_blob": "b0fe0ebe291be6ba1f84ab6bda50ab34c987823a",
+      "mode": "100644",
+      "change": "added",
+      "previous_unpublished_target": "scripts/tests/test_learning_english_speech_lifecycle.py"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/prepared/host/scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt",
+      "bytes": 4342,
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+      "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292",
+      "mode": "100644",
+      "change": "added"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/prepared/host/scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt",
+      "bytes": 4381,
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+      "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a",
+      "mode": "100644",
+      "change": "added"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/prepared/host/scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt",
+      "bytes": 9459,
+      "sha256": "78375595ea5456a6106933bc1f5463242b836e72f4a0c989ca275a9f1c9a1bd5",
+      "git_blob": "9e22b98ad3938b6d0dafd4c1971d20faf09e337a",
+      "mode": "100644",
+      "change": "added"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/platform_fixture.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/prepared/host/scripts/tests/fixtures/learning_english_speech/platform_fixture.py",
+      "bytes": 5481,
+      "sha256": "99203bbf7a00f908af1f0df57b97156894668f3b615f58ff56264a4dcbf1fa4d",
+      "git_blob": "40897dc0e2a48cb0c054f19820557ffa7fc43579",
+      "mode": "100644",
+      "change": "added"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/apfel-original.wav",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/prepared/host/scripts/tests/fixtures/learning_english_speech/apfel-original.wav",
+      "bytes": 40970,
+      "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+      "git_blob": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905",
+      "mode": "100644",
+      "change": "added"
+    }
+  ],
+  "count": 10,
+  "bytes": 129250,
+  "local_tests": {
+    "java_cases": 11,
+    "java_assertions": 103,
+    "java_status": "PASS",
+    "java_log": "evidence/java-contracts-second/original.log",
+    "kotlin_status": "NOT_EXECUTED_no_installed_Kotlin_compiler",
+    "kotlin_prepared_cases": 8,
+    "historical_kotlin_assertions_separate": [
+      23,
+      17
+    ]
+  },
+  "installer_requirement": "Keep existing copying of all three listed tools/auto_install template paths; no new runtime source path. Root-owned scripts/prepare_android.py and prepare_embedded_games.py are not changed.",
+  "derived_from": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/source-upload-manifest.json",
+    "sha256": "465eb8e570ef8ca79ef862a635ac526188ccc4eef875573e59deef998198efab",
+    "status": "historical_source_freeze_unchanged"
+  },
+  "integration_change": "Only two new driver target paths change to scripts/speech_contracts; their complete bytes/Gitblobs and all other eight source/fixture entries are identical. Do not integrate the two historical scripts/tests/test_*.py targets.",
+  "execution_scope": "All 19 cases must be invoked explicitly by the strict speech runner. General scripts/tests discovery must not collect either driver. No tests rerun for this path-only change."
+}

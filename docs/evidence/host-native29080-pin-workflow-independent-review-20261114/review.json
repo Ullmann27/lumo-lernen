@@ -1,0 +1,301 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T16:42:14.593477+00:00",
+  "reviewer": "learning_worlds",
+  "status": "no_additional_concrete_blocker_in_reviewed_scope",
+  "scope": "Read-only independent review of three Root-prepared native-pin files, two additive SpeechRunner workflow steps and the final B-owned Runner interface. No new tests, Gradle, Kotlin, Android or audio execution by this reviewer.",
+  "baseline_host": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "baseline_tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+  "target_native": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "sources": [
+    {
+      "path": "config/godot-source.json",
+      "published_baseline": {
+        "path": "config/godot-source.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "52e9940c0a9803f089d3fbca0a90804bdd20cfac",
+        "size": 145,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/52e9940c0a9803f089d3fbca0a90804bdd20cfac"
+      },
+      "baseline": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/baseline/host/config/godot-source.json",
+        "bytes": 145,
+        "sha256": "20521c9254c7b1f498ae470c8ae1e73f4223d44aaf5800f7281f4b1ab922b7cf",
+        "git_blob": "52e9940c0a9803f089d3fbca0a90804bdd20cfac"
+      },
+      "candidate": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/prepared/host/config/godot-source.json",
+        "bytes": 145,
+        "sha256": "1eebdb508ada42b93519ca8e30c9ea2ac75de47afcf869fbbebe33c7826a40a8",
+        "git_blob": "942eb5395127c775f4355721f4c04b974e02df48"
+      }
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "published_baseline": {
+        "path": "scripts/verify_legacy_release_pin.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "41de47f88741f7949535d311d1fd4ba66607888f",
+        "size": 10697,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/41de47f88741f7949535d311d1fd4ba66607888f"
+      },
+      "baseline": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/baseline/host/scripts/verify_legacy_release_pin.py",
+        "bytes": 10697,
+        "sha256": "8d134c6be35875567bcf429d70ec1f8f50b16357940806c21b5c59678fde048e",
+        "git_blob": "41de47f88741f7949535d311d1fd4ba66607888f"
+      },
+      "candidate": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/prepared/host/scripts/verify_legacy_release_pin.py",
+        "bytes": 10708,
+        "sha256": "e76cc4d3bca1072eacad7b3f1da6f86cdb2461636f6cce30365c7461d02c0f68",
+        "git_blob": "0118449f0946468dd41cfe2afdc19e12a17e3c30"
+      }
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "published_baseline": {
+        "path": "scripts/tests/test_candidate_2011_pin.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "42732298903b794adb458d60664ae89e6b09f24d",
+        "size": 19946,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/42732298903b794adb458d60664ae89e6b09f24d"
+      },
+      "baseline": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/baseline/host/scripts/tests/test_candidate_2011_pin.py",
+        "bytes": 19946,
+        "sha256": "965a15746ddf16ddbfa20f759d32c745b818e56281259df22c3940294aebb8d5",
+        "git_blob": "42732298903b794adb458d60664ae89e6b09f24d"
+      },
+      "candidate": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/prepared/host/scripts/tests/test_candidate_2011_pin.py",
+        "bytes": 20217,
+        "sha256": "7bcb7b74f734f43c724caf0c58b6dbd271d3dbe2aa7cfa02b2cd498d697b149d",
+        "git_blob": "b2c4abbdb26b5831663ed042d0fba6aabbb57cfb"
+      }
+    }
+  ],
+  "workflow_sources": [
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "baseline": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/baseline/host/.github/workflows/lumo-nextgen-feature-contracts.yml",
+        "bytes": 7458,
+        "sha256": "e0cad577d7e2fe37674ebe6b05935611e82c19200646e5f8df1310674fa0bf8f",
+        "git_blob": "5ea2906e200a8a513e2a941da165b9450f3b5ea8"
+      },
+      "candidate": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/prepared/host/.github/workflows/lumo-nextgen-feature-contracts.yml",
+        "bytes": 7651,
+        "sha256": "b4c04ffd59a131a0535ddfcd53f99887adfe77dfc73de6516d3126da787edcef",
+        "git_blob": "829b819945d980e2082f478c1ddccea9463e3fa5"
+      },
+      "baseline_gitblob_matches_published2e20": true,
+      "exact_inverse_removal_yields_all_original_bytes": true,
+      "all_previous_yaml_values_unchanged": true,
+      "added_step_index_zero_based": 5,
+      "immediate_predecessor": "bash scripts/compile_android_host.sh",
+      "command": "python3 -B scripts/run_speech_jvm_contracts.py --output host-compile-evidence/speech",
+      "mandatory_after_compile": true,
+      "job_timeout_minutes_unchanged": 35,
+      "upload_if_always": true,
+      "artifact_name": "lumo-nextgen-feature-android-host-evidence",
+      "artifact_path": "host-compile-evidence/",
+      "publisher": null
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "baseline": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/baseline/host/.github/workflows/lumo-studio-2020.yml",
+        "bytes": 74063,
+        "sha256": "0caabde427205969d2cc70a258e554463d189edffd7f2e43c90b1cd4bca0ed2c",
+        "git_blob": "7111ad168903f5bc97808f74bd7944392d7325da"
+      },
+      "candidate": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/prepared/host/.github/workflows/lumo-studio-2020.yml",
+        "bytes": 74256,
+        "sha256": "6261e26cd489fe0497bc035f1575ab76e95e33a1e092977ef1c13970658a2b28",
+        "git_blob": "2684ac3cf034fdcd5c71570182396f0664979735"
+      },
+      "baseline_gitblob_matches_published2e20": true,
+      "exact_inverse_removal_yields_all_original_bytes": true,
+      "all_previous_yaml_values_unchanged": true,
+      "added_step_index_zero_based": 5,
+      "immediate_predecessor": "bash scripts/compile_android_host.sh",
+      "command": "python3 -B scripts/run_speech_jvm_contracts.py --output host-compile-evidence/speech",
+      "mandatory_after_compile": true,
+      "job_timeout_minutes_unchanged": 35,
+      "upload_if_always": true,
+      "artifact_name": "lumo-studio-2020-android-host-compile",
+      "artifact_path": "host-compile-evidence/",
+      "publisher": {
+        "needs": [
+          "verify-and-build",
+          "android-host-compile",
+          "android-tour",
+          "update-2020-from-2017",
+          "creative-android",
+          "nextgen-authorities"
+        ],
+        "host_compile_success_required": true,
+        "entire_existing_publisher_structure_unchanged": true
+      }
+    }
+  ],
+  "pin_findings": [
+    "All three published2e20 baseline blobs were freshly fetched and fully checked against the saved exact Git tree.",
+    "APPROVED has the same 51 keys; all 50 entries other than 2020 are byte-equivalent values. Only 2020 changes from34421 to29080. Config origin and engine stay exact.",
+    "The complete verify() and __main__ bytes are unchanged. Unknown release/origin/engine/extra-key rejection is preserved.",
+    "The test constant advances to29080; the existing2020 rejection method adds exact34421 and47ca identities. All other test-method ASTs are identical.",
+    "The revised policy comment correctly limits approval to source identity and retains the separate current renderer receipt, APK and Android/update gates."
+  ],
+  "historical_policy_entries_unchanged": 50,
+  "historical_policy_sha256": "8e30ba078ed723765449a46f8b6bbd5cb786c2bb641dfa9395e5fb19f309ae00",
+  "existing_root_tests_read": {
+    "cases": 4,
+    "exit_code": 0,
+    "unittest_seconds": 0.012,
+    "wrapper_seconds": 0.198,
+    "scope": "four named existing pin contracts, read from the original completed log and execution record; not rerun and not represented as the complete26-case suite",
+    "sources": [
+      {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/current-pin-tests.json",
+        "bytes": 775,
+        "sha256": "97d7169bae06888334c6cfa46026ad5e46e72b55bde876bef99e485a8267bae8",
+        "git_blob": "f776def982f4a8721e1d6bcef3d2d547e1fdce83"
+      },
+      {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/current-pin-tests.log",
+        "bytes": 874,
+        "sha256": "84b1a08caa7c1ed64b3ffbdbb1917ba924e5d0d7cc8096004cbb5a4a2d27b633",
+        "git_blob": "121bba166cb6653106eb802565f1f034f862f019"
+      }
+    ]
+  },
+  "workflow_findings": [
+    "For each workflow, removing exactly the two new SpeechRunner lines reproduces all published baseline bytes. All old jobs, steps, conditions, permissions, budgets and Publisher structure are unchanged.",
+    "Exactly one mandatory SpeechRunner call is immediately after successful compile_android_host.sh in each android-host-compile job; no continue-on-error or conditional skip was added.",
+    "Both artifact uploads retain if:always() and collect host-compile-evidence/, which contains the requested speech subdirectory and raw execution records.",
+    "Studio Android tours and Creative still depend on android-host-compile; the Publisher still requires its successful result. A failed SpeechRunner therefore prevents normal publication. The independent update job may run separately, as in the unchanged baseline."
+  ],
+  "runner_interface": {
+    "source": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/prepared/host/scripts/run_speech_jvm_contracts.py",
+      "bytes": 19493,
+      "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+      "git_blob": "9d17f343b16d80bddb861cf26cfeae9e38994f24"
+    },
+    "tests_source_binding_only": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/prepared/host/scripts/tests/test_speech_jvm_runner.py",
+      "bytes": 14569,
+      "sha256": "5b4161a58a3280fe0b70ae0cddca57e58411a04c1a475ad5c9c55ecbb63f2276",
+      "git_blob": "4358a2540c65c19701b39d582465089672f884e5"
+    },
+    "original_orchestration_log_read": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/evidence/runner-boundaries-final.log",
+      "bytes": 3183,
+      "sha256": "e617bada26916a8ffb0325762f8b5f69d5d8cb7afb5ce06f9b45526e9a27ab33",
+      "git_blob": "69819cd94de72374882b0010e59453b43a715a26"
+    },
+    "actual_python_orchestration_cases": 19,
+    "python_orchestration_seconds": 0.486,
+    "python_log_scope": "B executed pure Python boundary/orchestration cases. This reviewer only read the original log; no Gradle/Kotlin or real speech execution is implied.",
+    "command": "python3 -B scripts/run_speech_jvm_contracts.py --output host-compile-evidence/speech",
+    "compile_producer": {
+      "path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/reference-compile-android-host.sh",
+      "bytes": 3499,
+      "sha256": "42ad647a647183845ae2ec48dfd778166d6c36f7828b2e1f06b51b4756bf1419",
+      "git_blob": "c5138523453d4e185f6af46f96e15478888075de"
+    },
+    "compile_producer_original_path": "scripts/compile_android_host.sh",
+    "compile_producer_published_blob": "c5138523453d4e185f6af46f96e15478888075de",
+    "compile_interface_matches": true,
+    "findings": [
+      "The actual compile producer writes host-compile-evidence/result.json with status PASS, the real checkout SHA, and all four required speech class paths/byte counts/SHA256 values. The Runner checks those existing compiled bytes.",
+      "The previously observed PR merge/head mismatch is closed in finalc411: pull_request reads the original event head with same-repository validation; other current events use GITHUB_SHA. Both current checkout forms therefore have a matching source rule.",
+      "Only the dedicated scripts/speech_contracts drivers are explicitly imported. Old broad-discovery driver paths are refused. The final layout keeps exactly one original apfel fixture path.",
+      "The exact11 Java and8 Kotlin rosters require unique test IDs, zero skips/errors/expected failures and one occurrence of every actual marker, including original23/17. REQUIRE_ALL_TESTS=true is set by the Runner.",
+      "Only the already installed wrapper-version distribution is selected. The observed Gradle executable runs offline; missing or ambiguous compiler/runtime resources are errors, with no bootstrap installation.",
+      "The Runner retains raw logs/exitcodes/timeouts, checks current source before/after, and rechecks compiler-library bytes. This supplies executable CI gates; no full Runner success has yet been claimed."
+    ]
+  },
+  "test_path_derivation": {
+    "historical_manifest": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/source-upload-manifest.json",
+      "bytes": 5849,
+      "sha256": "465eb8e570ef8ca79ef862a635ac526188ccc4eef875573e59deef998198efab",
+      "git_blob": "822157b7de1151fa77dee4bfa9a9fcd79885d2c0"
+    },
+    "current_manifest": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/path-separated-v2/source-upload-manifest.json",
+      "bytes": 6843,
+      "sha256": "f0f0e43979fb3c99c280bf1cffb39ea3f62388f84aa3521f8adee92bee01d791",
+      "git_blob": "3e6c7391fa05578205f9fd6ea213b77aaa596cb1"
+    },
+    "path_only_proof": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/path-separated-v2/path-only-proof.json",
+      "bytes": 1873,
+      "sha256": "d3dd45760e9adc5b34b6fb8c708d165f365a4e21c63fb6fb1b66b12c0c2f8f5b",
+      "git_blob": "5b5fee2d39557eb6077f9adbadd74ae822cac832"
+    },
+    "confirmed_source_tree_inputs": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/path-separated-v2/confirmed-source-tree-inputs.json",
+      "bytes": 1829,
+      "sha256": "11cbee5ca2ff7db237606c7b4e27b08aa0d53c7550bd8b0677715048015692b5",
+      "git_blob": "a8abdd91a1dd9db5ff4e58c6b07ad13c2a1db2b4"
+    },
+    "all_ten_content_blobs_unchanged": true,
+    "only_target_path_changes": [
+      "scripts/tests/test_english_lesson_speech.py -> scripts/speech_contracts/test_english_lesson_speech.py",
+      "scripts/tests/test_learning_english_speech_lifecycle.py -> scripts/speech_contracts/test_learning_english_speech_lifecycle.py"
+    ],
+    "no_init_file_added": true,
+    "tests_reexecuted_for_move": 0
+  },
+  "native_acceptance_binding": {
+    "run_id": 43611803408,
+    "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "run_metadata": {
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/run.json",
+      "bytes": 14659,
+      "sha256": "f4bef2ab190c020244c06b548874a5d9ec3ddec3469f729de85fa8077d6d45aa",
+      "git_blob": "f2785f4f40563442b942983ac49b0dfaea14f73c"
+    },
+    "job_metadata": {
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/jobs.json",
+      "bytes": 27754,
+      "sha256": "ed1d55649efa03ff910d5c3c1bad58c38deaa04d1422ab87e984f3f5673bf155",
+      "git_blob": "e8ba73953af83079ee131e21b9cea64040326dd9"
+    },
+    "terminal_run_and_all_nine_jobs_success_observed": true,
+    "personal_image_review_count": 9,
+    "personal_image_review": {
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/review-learning_worlds.json",
+      "bytes": 20035,
+      "sha256": "967c846ea98d743eaeff7bb29c794b4492d376c2949af790d4a84a75d6657166",
+      "git_blob": "c0ffa0c0580e1a8e89006b79bfe78fbb64e103a8"
+    },
+    "scope": "Only this reviewer’s nine current images were personally opened; the remaining assigned images and final combined receipt belong to the separate reviewers/Root."
+  },
+  "limitations": [
+    "No product files, Root-owned workflow files, pins, tests or Git refs were changed by this review.",
+    "Source approval is not an APK/release approval. The final current receipt and actual candidate Android/update/Publisher gates remain separately mandatory.",
+    "The new Kotlin lifecycle cases and actual modified Android classes still require the mandatory real CI compilation and strict SpeechRunner.",
+    "No real ONNX inference, English pronunciation, heard audio, device playback or mouth/speech synchronization was asserted."
+  ],
+  "independent_comparison_proof": {
+    "path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/static-comparison-proof.json",
+    "bytes": 8366,
+    "sha256": "2d6d4e039db60e91a1a6bc8aa16f7d22386b80bc229489974b8f8617b18937ac",
+    "git_blob": "6f6c5bf5aff44025564ff84c05e490831a17637c"
+  },
+  "reviewed_diff": {
+    "path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/reviewed-diff-against-published2e20.patch",
+    "bytes": 3644,
+    "sha256": "f00d9f4e9d0a4c5cfd2c634f88b4a4840cb1f0fd2006c4d34832b32f7f8a0bdb",
+    "git_blob": "f8594edc9ebd460b72c8e9528a5c6fbf9beaad56"
+  }
+}

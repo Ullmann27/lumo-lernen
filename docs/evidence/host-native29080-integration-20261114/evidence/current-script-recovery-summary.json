@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "host": "b7210db3f53361987fd33592de438fd7984d991a",
+  "run_id": 43618078329,
+  "job_id": 132517429410,
+  "status": "success",
+  "reported_tests": 618,
+  "reported_duration_seconds": 116.025,
+  "terminal_summary": "OK",
+  "failed": 0,
+  "skipped": 0,
+  "new_python_runner_cases": 19,
+  "scope": "Entire current app-script inventory, including pure speech-runner orchestration. This is not execution of the separate 11 Java and eight Kotlin speech contracts."
+}

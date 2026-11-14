@@ -1,0 +1,68 @@
+{
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "workflow_run_id": 43611803408,
+  "status": "awaiting successful current full run and original archive; no images reviewed by this assignment",
+  "reviewer": "character_animation",
+  "images": [
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png"
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png"
+    },
+    {
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png"
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png"
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/teacher_scene.png"
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/gaze_left.png"
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/neutral.png"
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/muted.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/muted.png"
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/blink.png"
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/stopped.png"
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/blink_intermediate.png"
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/audio_jaw.png"
+    }
+  ]
+}

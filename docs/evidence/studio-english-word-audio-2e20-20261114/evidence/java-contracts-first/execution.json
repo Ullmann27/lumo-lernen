@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_english_lesson_speech.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/prepared/host",
+  "started_at_utc": "2026-11-14T16:24:52.989300+00:00",
+  "duration_seconds": 0.38159906300097646,
+  "exit_code": 5,
+  "boundary": "Complete production Java compiled with explicit synthetic ONNX API doubles; no weights, Android playback or heard audio.",
+  "source_sha256": "6a8383795979c7bea9f89c44b5419a417edce249c92a93db63e896ce8a303ddc",
+  "log_sha256": "b2a130373d6847251d03f19617e0d31da5b395e724bc97d6de859ef11a52a1ab"
+}

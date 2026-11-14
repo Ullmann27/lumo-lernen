@@ -1,0 +1,22 @@
+[
+  {
+    "path": "scripts/record_studio_visual_review.py",
+    "git_blob": "bf4d6ab27e239cac5840c32da4f438fc8785cc56",
+    "sha256": "c09f3e01e95b947e8c5df0ecc735ff703254e9f05ebdded26fda866617f31e89"
+  },
+  {
+    "path": "scripts/verify_studio_delivery.py",
+    "git_blob": "f4bf0481002a08bf9c88704d4ff3dd9cc9a43916",
+    "sha256": "831a3aafbef39b53f7883b103b9d650eb14b49164c774fb1aae499d05174e8ae"
+  },
+  {
+    "path": "scripts/verify_nextgen_delivery.py",
+    "git_blob": "a732fa011ce387364e97e6e6cf8a8e0b7eda665a",
+    "sha256": "5b9f6658007ffc93f106e24a7fc001e68418dea450f46a4e4b3405b0afb3e44c"
+  },
+  {
+    "path": "scripts/release_pipeline_gates.py",
+    "git_blob": "4c8097ce7643e189f37815c38214dd650e022d8c",
+    "sha256": "400e54f2952f0d8aae07fc964e4688c48f16c9213ea022fa8754731004551946"
+  }
+]

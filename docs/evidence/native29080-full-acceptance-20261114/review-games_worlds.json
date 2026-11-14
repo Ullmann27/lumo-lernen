@@ -1,0 +1,419 @@
+{
+  "schema": 1,
+  "reviewer": "games_worlds",
+  "created_utc": "2026-11-14T16:35:48.959991+00:00",
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "native_tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+  "workflow_run": {
+    "id": 43611803408,
+    "attempt": 1,
+    "url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43611803408",
+    "status": "completed",
+    "conclusion": "success",
+    "job_count": 9,
+    "all_nine_jobs_success": true
+  },
+  "original_archive": {
+    "artifact_id": 14121618349,
+    "bytes": 227270408,
+    "sha256": "f9d84c3d4f80f27fe134ab5e4cb040b811262d6d6c6a032433bc5f644ed886fc",
+    "local_original": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/native29080-evidence.zip",
+    "full_crc_scope": "Root independently checked all 5085 members; C compared and CRC-read the 15 selected PNG members and the listed report members.",
+    "root_integrity_report_sha256": "08021c8647731b6c9af893cc0b72e85d3feff887a6e777c277730a134aba9687"
+  },
+  "local_metadata_sha256": {
+    "run.json": "f4bef2ab190c020244c06b548874a5d9ec3ddec3469f729de85fa8077d6d45aa",
+    "jobs.json": "ed1d55649efa03ff910d5c3c1bad58c38deaa04d1422ab87e984f3f5673bf155",
+    "capture-source-verification.json": "95410d13fb18ba04b09524602f0a5819c62b6801b6887fd8c06dbe1df093f82d",
+    "assignment-games_worlds.json": "bf48ed33b7f85006b07e61f63cb145ea2c735b3d44624322667a58beb0635e39",
+    "binding-games_worlds.json": "31dbd3d4f2f216f86bef850d602fa9aa73993e0571f88547a1d6829e97164fca"
+  },
+  "assignment_note": "The assignment file retains a planned status label. Actual completed/success metadata and the current archive, not that planning label, bind this review.",
+  "summary": {
+    "reviewed": 15,
+    "accepted": 15,
+    "blocking_issues": 0,
+    "modules": {
+      "build": 4,
+      "settlement": 1,
+      "puzzle": 9,
+      "treasure": 1
+    },
+    "status": "ACCEPTED_WITH_RECORDED_LIMITATIONS"
+  },
+  "scope_limits": [
+    "Only these 15 current original PNGs were personally opened by this reviewer; this is not a personal review of all 49 images.",
+    "Static visual acceptance does not establish touch delivery, completed gameplay, Android lifecycle, device rendering speed or 60 FPS.",
+    "Renderer evidence is Godot 4.6.3 on Linux/X11 with Compatibility and Mesa llvmpipe. Density and safe-area samples are explicit platform-boundary fixtures.",
+    "The gameplay/touch report review is recorded separately in gameplay-touch-review-games_worlds.json. No test was rerun and no source, pin, receipt or Git ref was changed."
+  ],
+  "images": [
+    {
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "bytes": 1409012,
+      "sha256": "0abe31a9da071d3a58ec841204fb9297c11a4cfae5a252c92eb13ddca086d5ca",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Welt 1, zwei Teile, Ebene 0 und 90 Grad; eine cyan markierte Brücke und ein kleines Haus stehen in der gerenderten Inselwelt. Die Statuszeile meldet die versetzte Brücke und verweist auf Rückgängig.",
+      "readability": "Titel, Werkzeugnamen, Bauziel und Testaktion sind lesbar. Die Szene zeigt räumliche Baukörper, Fluss und Schatten; die Auswahl ist sichtbar.",
+      "limitations": "Werkzeug- und Materialreihen sind horizontal scrollbar; rechts sind weitere Elemente angeschnitten. Die dunkle Statusschrift liegt unmittelbar auf dem grünen Weltbild und besitzt geringeren Kontrast als die Dialogflächen. Ein Standbild beweist weder die Bewegung noch Rückgängig.",
+      "findings": [
+        "Bauziel und ausgewähltes Bauteil sind gleichzeitig sichtbar.",
+        "Keine neue blockierende Überdeckung im geprüften Bild."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "0abe31a9da071d3a58ec841204fb9297c11a4cfae5a252c92eb13ddca086d5ca"
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "bytes": 129694,
+      "sha256": "3cecaad0266b7aadfe894f0736e51dddd9cc5fc0ca59ac16e1c61bd61a11121a",
+      "dimensions": [
+        640,
+        360
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Der Dialog Aktuelles Bauziel ist auf 640 × 360 geöffnet. Er zeigt Verbinde die Inseln, die vollständige Wegaufgabe sowie Mein Bauwerk testen und Abbrechen.",
+      "readability": "Die beiden Hauptaktionen und der gesamte Zieltext passen in die helle Dialogfläche und sind klar lesbar.",
+      "limitations": "Der Dialog verdeckt bestimmungsgemäß Teile der dahinterliegenden Bauwelt. Dieses Bild allein belegt keine ausgelöste Test- oder Abbrechen-Aktion.",
+      "findings": [
+        "Kompakter Zieldialog ohne abgeschnittene aktive Hauptaktion."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "3cecaad0266b7aadfe894f0736e51dddd9cc5fc0ca59ac16e1c61bd61a11121a"
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "bytes": 1284317,
+      "sha256": "aa2cc71d6070dad41ece420119b669099a03a0b8578bc62bab6055d326850332",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Der Vorlagendialog Neue Welt / Vorlage steht auf 1080 × 2400 am unteren Scrollbereich. Brücke ist markiert; Sternenturm, Garten, drei Parzellen, Leere Insel und Abbrechen sind sichtbar.",
+      "readability": "Die sichtbaren Vorlagen und der feststehende Abbrechen-Knopf sind lesbar. Die vertikale Scrollleiste kennzeichnet die Liste.",
+      "limitations": "Der obere Eintrag Starter-Haus ist durch die Scrollposition angeschnitten. Der darunterliegende Weltkopf ist teilweise verdeckt bzw. gekürzt; daraus folgt keine vollständige Freigabe jeder Hintergrundbeschriftung. Die Dialogbedienung wird separat durch den Touchbericht gestützt.",
+      "findings": [
+        "Die letzte Vorlage und Abbrechen sind vollständig sichtbar.",
+        "Scrollinhalt wird nicht als gleichzeitig vollständig exponiert ausgegeben."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "aa2cc71d6070dad41ece420119b669099a03a0b8578bc62bab6055d326850332"
+    },
+    {
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "bytes": 57203,
+      "sha256": "6824c6062589561b0ad965dba32b186ca550a514f789f62ee1198f4f22db30cc",
+      "dimensions": [
+        388,
+        390
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Der Siedlungsdialog Platz für Neues? erläutert den vorübergehenden Auszug eines Bewohners, zwei verbleibende Bewohner und die Rückgabe von 4 Holz, 3 Stein und 1 Münze.",
+      "readability": "Der gesamte Text einschließlich der Rückgängig-Erklärung sowie Haus behalten und Ja, umbauen passt in 388 × 390. Die Singularform 1 Münze ist sichtbar korrekt.",
+      "limitations": "Die Aufnahme zeigt einen Bestätigungsdialog, nicht den anschließenden Umbau oder die Wiederherstellung. Die beiden Aktionen wurden in dieser Sichtprüfung nicht manuell bedient.",
+      "findings": [
+        "Kein abgeschnittener Dialogtext oder verdeckter Bestätigungsknopf."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "6824c6062589561b0ad965dba32b186ca550a514f789f62ee1198f4f22db30cc"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "bytes": 113800,
+      "sha256": "67e8ca45d30825868e9b703b5b450ea210d43eaaca9d31acb6853776cbb3b829",
+      "dimensions": [
+        640,
+        360
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Das kompakte Drehpuzzle zeigt Mini, 1 / 6 Teile und eine hervorgehobene Zielstelle. Der Hinweis lautet, dass das angehobene Teil auf den leuchtenden Platz passt.",
+      "readability": "Der Puzzlebereich, die hervorgehobene Stelle und sechs erste Werkzeugaktionen sind sichtbar. Titel, Pause und Zurück sind lesbar.",
+      "limitations": "Die Statuszeile lautet grammatisch fehlerhaft 1 Tipps. Die Werkzeugleiste ist horizontal scrollbar; Speichern und Neues Puzzle sind in diesem Ausschnitt nicht sichtbar. Das große HUD lässt im kompakten Format einen kleineren, aber sichtbaren Tischbereich.",
+      "findings": [
+        "Nicht blockierender Sprachbefund: 1 Tipps statt 1 Tipp.",
+        "Auswahl-/Hinweiszustand sichtbar; kein Abschluss einer ganzen Runde behauptet."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "67e8ca45d30825868e9b703b5b450ea210d43eaaca9d31acb6853776cbb3b829"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "bytes": 509560,
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Das Drehpuzzle auf 1280 × 720 zeigt ein korrekt abgelegtes Teil auf dem mittleren Brett, 1 / 6 Teile, 0 Tipps und Das passt! Dein Bild wächst.",
+      "readability": "Bildmotiv, Puzzleform und mittleres Brett sind deutlich erkennbar. Die Aktionsleiste einschließlich Speichern und Neues Puzzle passt sichtbar in die Breite.",
+      "limitations": "Drehen ist in diesem nicht ausgewählten Zustand sichtbar deaktiviert. Weitere Teile überlappen sich in den seitlichen Ablagen; aus dem Standbild folgt kein Beleg ihrer einzelnen Auswahl.",
+      "findings": [
+        "Die abgelegte Form ist vom dunklen Brett klar unterscheidbar.",
+        "Fortschritt und positive Rückmeldung stimmen im dargestellten Zustand zusammen."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9"
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "bytes": 1290384,
+      "sha256": "0df2ae372487275460ff9cd987c17e98ab4115da8a39c7f870329ded536a309d",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Die Schatzsuche steht nach drei von sieben Hinweisen vor der Wahl Kristallwächter oder Mondgarten. Lumo ist vollständig in der Mitte sichtbar; unten wird das gefundene Brückenwappen gemeldet.",
+      "readability": "Der Titel steht auf dunklem Hintergrund. Questtext, Rucksack, Springen, ANSEHEN und Fundmeldung sind lesbar. Die Fundmeldung verdeckt weder Lumo noch die sichtbaren Hauptcontrols.",
+      "limitations": "Die Zahl Entdeckungen 0 / 3 bricht im Questfeld über zwei Zeilen um. Diese Aufnahme zeigt die Wegwahl, nicht die beiden vollständigen Wege oder die finale Abgabe.",
+      "findings": [
+        "Lumo einschließlich Füßen ist frei sichtbar.",
+        "Die ausgewählte Schatzsuche-Szene zeigt keinen erneuten HUD-/Figuren-Überdeckungsblocker."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "0df2ae372487275460ff9cd987c17e98ab4115da8a39c7f870329ded536a309d"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "bytes": 151982,
+      "sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb",
+      "dimensions": [
+        960,
+        540
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Das Puzzlemenü auf 960 × 540 zeigt Leuchtturm-Bucht, Mini mit sechs Teilen, Modus Drehpuzzle, Neues Puzzle beginnen und Zur Spielewelt.",
+      "readability": "Der Menütitel und alle fünf Menüaktionen sind vollständig sichtbar und auf dunklen Flächen gut lesbar.",
+      "limitations": "Die Weltanweisung im Hintergrund wird vom geöffneten Menü überlagert. Die Abbildung allein beweist keinen Menüwechsel oder Rücksprung.",
+      "findings": [
+        "Vollständige Startauswahl mit sichtbarer Rückkehraktion."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "bytes": 300994,
+      "sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f",
+      "dimensions": [
+        960,
+        540
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Das gestartete Drehpuzzle auf 960 × 540 zeigt 0 / 6 Teile, 0 Tipps und Eine Vierteldrehung. Vergleiche Bild und Form.; die Schaltfläche Drehen ist hervorgehoben.",
+      "readability": "Der leere zentrale Brettbereich und die seitlichen Teile sind sichtbar. Sämtliche acht unteren Aktionen passen in die Breite.",
+      "limitations": "Teile überlappen sich in den Ablagen. Die tatsächliche Vierteldrehung wird über die separate Ereignis-/Spielprüfung belegt, nicht durch dieses einzelne Bild.",
+      "findings": [
+        "Drehmodus, sichtbare Auswahlaktion und Status sind konsistent."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "bytes": 302119,
+      "sha256": "96ff13eb4370bef6964f8e428dc76f8abbaef13df60c826ba79f4624b7e0b2de",
+      "dimensions": [
+        960,
+        540
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Das klassische Bilderpuzzle auf 960 × 540 zeigt ein abgelegtes Teil, 1 / 6 Teile, 0 Tipps und die positive Rückmeldung Das passt! Dein Bild wächst.",
+      "readability": "Das mittlere Brett, das passende Bildteil und die sieben unteren Aktionen sind klar erkennbar. Eine Drehaktion ist im klassischen Modus nicht eingeblendet.",
+      "limitations": "Der Zustand belegt einen sichtbaren Teilerfolg, keine vollständige Runde. Seitliche Teile bleiben teilweise überlappt.",
+      "findings": [
+        "Klassischer Modus unterscheidet sich sichtbar vom Drehmodus."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "96ff13eb4370bef6964f8e428dc76f8abbaef13df60c826ba79f4624b7e0b2de"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "bytes": 72841,
+      "sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec",
+      "dimensions": [
+        640,
+        360
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Das Startmenü des Drehpuzzles auf 640 × 360 zeigt Leuchtturm-Bucht, Mini mit sechs Teilen und den Startknopf.",
+      "readability": "Die wesentlichen Auswahlfelder und Neues Puzzle beginnen sind lesbar. Rechts ist die vertikale Scrollleiste sichtbar.",
+      "limitations": "Die untere Aktion Zur Spielewelt ist am unteren Scrollrand nur teilweise sichtbar. Das ist eine Scrollposition, kein Beleg einer vollständig exponierten 48-dp-Rückkehrfläche in genau diesem Frame. Der gelesene Puzzle-Ereignisbericht belegt Start/Pause/Fortsetzen, jedoch keinen gesonderten Tipp auf diese teilweise verdeckte Menüaktion.",
+      "findings": [
+        "Kompaktes scrollbar aufgebautes Menü; die partielle Rückkehraktion bleibt ausdrücklich als Sichtgrenze dokumentiert."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "bytes": 109731,
+      "sha256": "932f5b2023b9311eebe53405a174bccf9b5c6ab700395037bb350df498c17fb4",
+      "dimensions": [
+        640,
+        360
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Das Drehpuzzle auf 640 × 360 zeigt 0 / 6 Teile, 0 Tipps und die Rückmeldung zur Vierteldrehung.",
+      "readability": "Titel und Status sind lesbar, der zentrale Brettbereich bleibt sichtbar. Drehen und die fünf folgenden Werkzeuge sind vollständig abgebildet.",
+      "limitations": "Die Werkzeugleiste läuft horizontal weiter; spätere Aktionen sind in dieser Scrollposition nicht sichtbar. Die Szene besitzt wegen der großen Bedienflächen einen kleinen Tischbereich.",
+      "findings": [
+        "Keine Überdeckung des zentralen Bretts durch einen offenen Dialog."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "932f5b2023b9311eebe53405a174bccf9b5c6ab700395037bb350df498c17fb4"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "bytes": 109561,
+      "sha256": "265de3d2eecaeb019e5708c91183ff0d545187a44bf3ba37e0d66307b620f275",
+      "dimensions": [
+        640,
+        360
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Das klassische Bilderpuzzle auf 640 × 360 zeigt ein abgelegtes Teil, 1 / 6 Teile und Das passt! Dein Bild wächst.",
+      "readability": "Der Erfolgshinweis und das eingesetzte Teil sind sichtbar. Die Werkzeugleiste bis Speichern ist lesbar.",
+      "limitations": "Die folgende Aktion am rechten Rand ist angeschnitten und über die horizontale Scrollleiste erreichbar gedacht; dieses Bild beweist deren Bedienung nicht. Der Puzzlebereich ist im kompakten Format klein.",
+      "findings": [
+        "Sichtbarer klassischer Teilerfolg ohne Drehschaltfläche."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "265de3d2eecaeb019e5708c91183ff0d545187a44bf3ba37e0d66307b620f275"
+    },
+    {
+      "module": "build",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "bytes": 2497261,
+      "sha256": "04c77e2634b3f35924c623c26f5b540c1dce3f724f65f39bd75cae826393f2d5",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Die Bauwelt im Landscape-Cutout-Profil zeigt Welt 1 mit 197 Teilen, Ebene 0 und 0 Grad; Inseln, Burg, Brücke und weitere Baukörper sind gerendert.",
+      "readability": "Zurück, Titel, Pause, Mit Lumo laufen sowie die ersten Werkzeuge stehen deutlich innerhalb des linken Sicherheitsabstands. Die großen Beschriftungen sind lesbar.",
+      "limitations": "Die langen Werkzeug- und Materialreihen werden am rechten Rand abgeschnitten und horizontal gescrollt. Die hohe Dichte führt zu großen HUD-Flächen; der Welttext liegt direkt über dem Landschaftsbild. Die Randwerte sind eine Desktop-Fixture, keine Messung an einem realen Androidgerät.",
+      "findings": [
+        "Keine im Bild erkennbare Kollision von Zurück/Pause mit dem vorgegebenen linken Cutout-Rand.",
+        "Die 197 Teile sind ein dargestellter Szenenzustand, kein durch dieses Bild gemessener Performancewert."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "04c77e2634b3f35924c623c26f5b540c1dce3f724f65f39bd75cae826393f2d5"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "bytes": 479283,
+      "sha256": "6622d8c3ab667f13e83b827f560168b254e768beb0b280f076a3d31c5323d719",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "byte_equal_archive": true,
+      "selected_entry_crc_verified": true,
+      "reviewed": true,
+      "personally_opened_current_png": true,
+      "observed_game_state": "Das Puzzlemenü im Landscape-Cutout-Profil zeigt Leuchtturm-Bucht, Leicht mit zwölf Teilen, Bilderpuzzle und Neues Puzzle beginnen.",
+      "readability": "Die Hauptfelder und der Startknopf sind kontrastreich und lesbar. Zurück und Pause bleiben außerhalb des mittleren Menüs sichtbar.",
+      "limitations": "Zur Spielewelt ist am unteren Scrollrand teilweise angeschnitten. Titel und Weltanweisung werden vom geöffneten Menü überlagert. Die gesonderte Safe-Area-Prüfung misst für Puzzle Zurück und Pause, nicht sämtliche Menüaktionen.",
+      "findings": [
+        "Der Menüscrollbereich ist erkennbar; keine Behauptung, alle Aktionen seien im selben Frame vollständig exponiert.",
+        "Safe-Area-Aussage ist auf die tatsächlich berichteten Controls begrenzt."
+      ],
+      "accepted": true,
+      "blocking_issue": false,
+      "post_review_sha256": "6622d8c3ab667f13e83b827f560168b254e768beb0b280f076a3d31c5323d719"
+    }
+  ]
+}
