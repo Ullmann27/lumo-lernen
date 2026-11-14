@@ -8,10 +8,12 @@ No game completion, score, unlock, XML or touch target is injected into the app.
 from __future__ import annotations
 
 import argparse
+from collections import deque
 import csv
 import hashlib
 from http.client import RemoteDisconnected
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -32,7 +34,7 @@ os.environ.setdefault('OMP_THREAD_LIMIT','1')
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts' / 'probes'))
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools' / 'android_qa'))
 from rooted_emulator import ensure_rooted_emulator
-from native_ocr_tiles import read_tiled_word
+from native_ocr_tiles import observed_matches, read_tiled_word
 from native_surface_readiness import inspect_surface, target_observation
 import pr207_android_smoke as base
 import pr207_android_ui_probe as live
@@ -259,6 +261,113 @@ def flutter_tap(out: Path, label: str, tag: str, *,
     raise RuntimeError('No enabled live Flutter control: '+label)
 
 
+def gold_caption_boxes(image: Image.Image) -> list[list[int]]:
+    """Find observed gold surfaces throughout a frame, without control coordinates."""
+    width, height = image.size
+    # Bound the connected-component scan even on large captured displays.
+    reduction = max(4, math.ceil(max(width, height) / 600))
+    small = image.resize((math.ceil(width / reduction), math.ceil(height / reduction)),
+                         Image.Resampling.NEAREST)
+    red, green, blue = small.split()
+    mask = ImageChops.multiply(red.point(lambda value: 255 if value >= 140 else 0),
+                              green.point(lambda value: 255 if value >= 80 else 0))
+    mask = ImageChops.multiply(mask, ImageChops.subtract(red, green).point(
+        lambda value: 255 if value >= 15 else 0))
+    mask = ImageChops.multiply(mask, ImageChops.subtract(green, blue).point(
+        lambda value: 255 if value >= 25 else 0))
+    pixels = bytearray(mask.tobytes())
+    small_width, small_height = small.size
+    sx, sy = width / small_width, height / small_height
+    found = []
+    for index in range(len(pixels)):
+        if not pixels[index]:
+            continue
+        pixels[index] = 0
+        queue = deque([index])
+        x0 = x1 = index % small_width
+        y0 = y1 = index // small_width
+        area = 0
+        while queue:
+            cell = queue.popleft()
+            x, y = cell % small_width, cell // small_width
+            x0, x1, y0, y1 = min(x0, x), max(x1, x), min(y0, y), max(y1, y)
+            area += 1
+            for nx, ny in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
+                if 0 <= nx < small_width and 0 <= ny < small_height:
+                    neighbour = ny * small_width + nx
+                    if pixels[neighbour]:
+                        pixels[neighbour] = 0
+                        queue.append(neighbour)
+        component_width, component_height = x1 - x0 + 1, y1 - y0 + 1
+        if (component_width * sx < 32 or component_height * sy < 20
+                or component_width * sx < component_height * sy
+                or component_height * sy > height / 3
+                or area / (component_width * component_height) < .3):
+            continue
+        box = [max(0, math.floor(x0 * sx) - 8), max(0, math.floor(y0 * sy) - 8),
+               min(width, math.ceil((x1 + 1) * sx) + 8),
+               min(height, math.ceil((y1 + 1) * sy) + 8)]
+        found.append((area, box))
+    return [box for _, box in sorted(found, reverse=True)[:16]]
+
+
+def read_component_caption(source: Path, out: Path, tag: str, wanted: str, command,
+                           *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+    """Read actual text blocks missed by whole-frame sparse-text segmentation."""
+    started = clock()
+    deadline = started + timeout
+    before = digest(source)
+    with Image.open(source) as original:
+        image = original.convert('RGB')
+    evidence = {'status': 'READING', 'scope': 'Independent OCR; no gameplay or visibility PASS',
+                'source': source.name, 'source_sha256': before, 'surface': list(image.size),
+                'wanted': wanted, 'confidence_minimum': 15, 'timeout_seconds': timeout,
+                'components': [], 'matches': []}
+    journal = out / (tag + '-ocr-components.json')
+    try:
+        if not wanted or timeout <= 0:
+            raise ValueError('An exact requested caption and positive OCR deadline are required')
+        boxes = gold_caption_boxes(image)
+        evidence['observed_component_boxes'] = boxes
+        for index, box in enumerate(boxes):
+            remaining = deadline - clock()
+            if remaining <= 0:
+                raise TimeoutError('Screenshot component OCR deadline exceeded')
+            variant = 'gold-component-' + str(index)
+            prefix = out / (tag + '-ocr-' + variant)
+            # Crop only an observed colour component. Recognition sees its
+            # original RGB pixels; the requested caption is never painted in.
+            image.crop(box).save(prefix.with_suffix('.png'))
+            attempt = {'index': index, 'bounds': box, 'image': prefix.with_suffix('.png').name,
+                       'tsv': prefix.with_suffix('.tsv').name, 'psm': 6, 'scale': 1}
+            evidence['components'].append(attempt)
+            remaining = deadline - clock()
+            if remaining <= 0:
+                raise TimeoutError('Screenshot component OCR deadline exceeded')
+            attempt['output'] = command('tesseract', str(prefix.with_suffix('.png')), str(prefix),
+                                        '--psm', '6', '-l', 'deu+eng', 'tsv',
+                                        timeout=min(10, remaining))
+            with prefix.with_suffix('.tsv').open() as stream:
+                matches = observed_matches(csv.DictReader(stream, delimiter='\t', quoting=csv.QUOTE_NONE),
+                                           tuple(box), 1, image.size, wanted, normalized, variant)
+            attempt['matches'] = matches
+            if clock() >= deadline:
+                raise TimeoutError('Screenshot component OCR deadline exceeded')
+            if matches:
+                evidence['matches'].extend(matches)
+                break
+        if digest(source) != before:
+            raise RuntimeError('Current screenshot changed during OCR')
+        evidence.update(status='READ', matched=bool(evidence['matches']))
+        return evidence['matches']
+    except Exception as error:
+        evidence.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        evidence['elapsed_seconds'] = round(clock() - started, 6)
+        journal.write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + '\n')
+
+
 def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None = None,
                 timeout: float = 225, exact: bool = False) -> list[dict]:
     deadline = time.monotonic() + timeout
@@ -354,6 +463,17 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
         if wanted and any(wanted == normalized(line['text']) if exact
                           else wanted in normalized(line['text']) for line in result):
             break
+    if wanted and not any(wanted == normalized(line['text']) if exact
+                          else wanted in normalized(line['text']) for line in result):
+        # Real API35/37 frames can lose a complete dark caption inside its gold
+        # rounded outline under sparse-page segmentation. Find colour regions
+        # across this same frame, then read their unchanged pixels as text blocks.
+        # Actual exact word/confidence/bounds and the shared deadline still apply.
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise TimeoutError('Current native screenshot OCR deadline exceeded')
+        result.extend(read_component_caption(source, out, tag, wanted, base.command,
+                                             timeout=min(15, remaining)))
     if wanted and not any(wanted == normalized(line['text']) if exact
                           else wanted in normalized(line['text']) for line in result):
         # The API 36 cover frame has a visible empty ITEM caption which all four
