@@ -60,6 +60,8 @@ jobs:
           .c4-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
           flutter pub get --enforce-lockfile
           command -v xvfb-run
+      - name: Verify historical APK source isolation before native integration
+        run: .c4-python/bin/python -m unittest discover -s scripts/tests -p 'test_verify_unchanged_apk_diagnostic.py' -v
       - name: Install the actual pinned Godot engine
         run: bash scripts/install_godot_for_build.sh
       - name: Import the exact configured native source in its own directory
