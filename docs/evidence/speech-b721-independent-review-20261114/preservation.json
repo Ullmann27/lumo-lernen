@@ -1,0 +1,230 @@
+{
+  "schema": 1,
+  "sections": [
+    {
+      "label": "Learning rate/state/WavSource/pulse/active",
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "identical": true,
+      "bytes": 1762,
+      "sha256": "9180b712133a604664daee18a3d0c7db29045c397582b1d5cb635e5b2c64a3da",
+      "git_blob": "855de69b3c01dcfbca45e34991d2ec50be9f8649"
+    },
+    {
+      "label": "Learning MediaPlayer/envelope/lifecycle",
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "identical": true,
+      "bytes": 3189,
+      "sha256": "97a51177f96912c4f6169cc65c4a8c919eb2f7a4e32a435c82177b709ade72f6",
+      "git_blob": "04b7a179c3ba949157c8224e014678d9f46ef858"
+    },
+    {
+      "label": "Learning destroy",
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "identical": true,
+      "bytes": 248,
+      "sha256": "4cf383c93ad90f5c6eb178ea24c7b5c9d00cb9cb379347c9228a0514f0f574c2",
+      "git_blob": "6356fcfd4cc2097021b6bde46939d725ebb19f6f"
+    },
+    {
+      "label": "Bridge setup/Flutter channel",
+      "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "identical": true,
+      "bytes": 2612,
+      "sha256": "23a4fffc5230438ff908f85772747776b02feee7216d69639393efcf85b7ae1b",
+      "git_blob": "87c8cfb5d0bcd0b4616e034eaa9b78656f070a1a"
+    },
+    {
+      "label": "Bridge cancellation/model hashes/lifecycle",
+      "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "identical": true,
+      "bytes": 3093,
+      "sha256": "cf674b4e9a4a037d6db364306c689102209835513fea64ae5d72d67b8d0b5b61",
+      "git_blob": "0e397d64e46eabe79f0611e9b82ba263759b4273"
+    },
+    {
+      "label": "Engine constants/constructor/F2/German normalization",
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "identical": true,
+      "bytes": 5695,
+      "sha256": "dff3fd58e2a0513630d32f1da3a8be948647c23c32b5d3f19e13a304027a10cf",
+      "git_blob": "3213da5a51b6300a46b8f804406eba2e0b31b1b8"
+    },
+    {
+      "label": "Engine index/rates/native termination",
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "identical": true,
+      "bytes": 1165,
+      "sha256": "0f98e0671010f922a3610c3a656cf5e07a43eb202124be4f389efc485f904316",
+      "git_blob": "e7b60cf0ff2f24e3a40b954fd8ad2915e556975e"
+    },
+    {
+      "label": "Engine inference/tensor body",
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "identical": true,
+      "bytes": 4638,
+      "sha256": "65ce150199d03807174e06880cc95ff02c2dfde2924af43f56eb3503fb87da34",
+      "git_blob": "106d81d02bc5ddc617b25992a5dd6cdf794f49b5"
+    },
+    {
+      "label": "Engine cancellation/PCM/binary validation/close",
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "identical": true,
+      "bytes": 2990,
+      "sha256": "85d05a129cfc5bd970692d411c47e8fdec65ae9b0f38e79c016cf55297e73816",
+      "git_blob": "0a5684fdec21d1065b75e3c6aeaf47ef71f64cea"
+    }
+  ],
+  "learning_exact_two_root_lines_preserved": true,
+  "compile_exactly_one_required_name_added": true,
+  "method": "Literal substring/whole-file comparison in functions JS; no repository import or test execution",
+  "text_patch_reconstructions": [
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "hunks": 5,
+      "applied_patch_exact_target": true,
+      "before": {
+        "bytes": 8921,
+        "sha256": "ff154885806c7c8fcf0fe730367b8fd2d25760584037ea6f5e0851324bd2c1e0",
+        "git_blob": "95b57595d0cc788746c20fe5c26ef448c18121c2"
+      },
+      "after": {
+        "bytes": 11337,
+        "sha256": "415e137cf51e339d3dc3fdd283eebb246989605a95ab2bc41c3f1d05ba8d6d4d",
+        "git_blob": "e4954dd792ba8b7ac9b66cbbe9a84752cbdab830"
+      }
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "hunks": 2,
+      "applied_patch_exact_target": true,
+      "before": {
+        "bytes": 8395,
+        "sha256": "91e5d2dcafd1f04c7d116b05785f4ca284cbe31457ed1777e7c057d60becd62f",
+        "git_blob": "b40217befd633a2a606a5cd8ae732f33068a1c22"
+      },
+      "after": {
+        "bytes": 9663,
+        "sha256": "3e2ab56fe6c75cdfd04ef032dc20d07f38b1e8fc8f925a7753893482c623270c",
+        "git_blob": "9e034ca2a46e53adf8a3014c0e8868d33ba54a9c"
+      }
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "hunks": 5,
+      "applied_patch_exact_target": true,
+      "before": {
+        "bytes": 15809,
+        "sha256": "e2fd0ac015a1957053bde4b15d1fe5c518581e423d3d7573698bbbf8c22fdd72",
+        "git_blob": "7a986433953773678feb4c98226caafb47c6abd9"
+      },
+      "after": {
+        "bytes": 19214,
+        "sha256": "6a8383795979c7bea9f89c44b5419a417edce249c92a93db63e896ce8a303ddc",
+        "git_blob": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd"
+      }
+    },
+    {
+      "path": "scripts/run_speech_jvm_contracts.py",
+      "hunks": 1,
+      "applied_patch_exact_target": true,
+      "before": null,
+      "after": {
+        "bytes": 19493,
+        "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+        "git_blob": "9d17f343b16d80bddb861cf26cfeae9e38994f24"
+      }
+    },
+    {
+      "path": "scripts/speech_contracts/test_english_lesson_speech.py",
+      "hunks": 1,
+      "applied_patch_exact_target": true,
+      "before": null,
+      "after": {
+        "bytes": 18072,
+        "sha256": "96326b009847dfe0b4979dd80d247d6d343c97ed3778e0e1e5394df2590e9a81",
+        "git_blob": "93b4d63069533f160207e098ff6093c963ce3bfd"
+      }
+    },
+    {
+      "path": "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+      "hunks": 1,
+      "applied_patch_exact_target": true,
+      "before": null,
+      "after": {
+        "bytes": 6350,
+        "sha256": "f2f49ce0928b18058beefa9539c776da4379c6470073976831388d7e993b3e89",
+        "git_blob": "b0fe0ebe291be6ba1f84ab6bda50ab34c987823a"
+      }
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt",
+      "hunks": 1,
+      "applied_patch_exact_target": true,
+      "before": null,
+      "after": {
+        "bytes": 9459,
+        "sha256": "78375595ea5456a6106933bc1f5463242b836e72f4a0c989ca275a9f1c9a1bd5",
+        "git_blob": "9e22b98ad3938b6d0dafd4c1971d20faf09e337a"
+      }
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt",
+      "hunks": 1,
+      "applied_patch_exact_target": true,
+      "before": null,
+      "after": {
+        "bytes": 4342,
+        "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+        "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+      }
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt",
+      "hunks": 1,
+      "applied_patch_exact_target": true,
+      "before": null,
+      "after": {
+        "bytes": 4381,
+        "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+        "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+      }
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/platform_fixture.py",
+      "hunks": 1,
+      "applied_patch_exact_target": true,
+      "before": null,
+      "after": {
+        "bytes": 5481,
+        "sha256": "99203bbf7a00f908af1f0df57b97156894668f3b615f58ff56264a4dcbf1fa4d",
+        "git_blob": "40897dc0e2a48cb0c054f19820557ffa7fc43579"
+      }
+    },
+    {
+      "path": "scripts/tests/test_speech_jvm_runner.py",
+      "hunks": 1,
+      "applied_patch_exact_target": true,
+      "before": null,
+      "after": {
+        "bytes": 14569,
+        "sha256": "5b4161a58a3280fe0b70ae0cddca57e58411a04c1a475ad5c9c55ecbb63f2276",
+        "git_blob": "4358a2540c65c19701b39d582465089672f884e5"
+      }
+    },
+    {
+      "path": "scripts/compile_android_host.sh",
+      "hunks": 1,
+      "applied_patch_exact_target": true,
+      "before": {
+        "bytes": 3364,
+        "sha256": "fb7c338e9c551fdbb5711ed30bb19c7b799ecf75f87176757eede9cac7e7bb03",
+        "git_blob": "73d0c0d8726e6352f0bf89c25cf17bdf1270ad2f"
+      },
+      "after": {
+        "bytes": 3386,
+        "sha256": "eaa36179179a172f1dff6bc49cf1917813e0143f6beed8a04b2c1a49071618f8",
+        "git_blob": "48893609d274834c58f7b6eceb63b0b5ec86951f"
+      }
+    }
+  ]
+}

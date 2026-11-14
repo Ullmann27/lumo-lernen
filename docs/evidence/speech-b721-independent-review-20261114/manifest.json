@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "scope": "Independent source review, no execution; local save unavailable",
+  "members": [
+    {
+      "path": "review.json",
+      "bytes": 9291,
+      "sha256": "84883238c5b42d4cb5a7d1784eef7fd317960cba539b290a47a66e4ccb5bc234",
+      "git_blob": "bacbe210896d5e4af12a4da9f54ad05c9bc4aa09"
+    },
+    {
+      "path": "input-bindings.json",
+      "bytes": 7638,
+      "sha256": "5186b37447c7cb46240cfd76df5f876970b726ee2cc5fdb360e9069689c348a2",
+      "git_blob": "47861bce5cb08814025f72f1e7620779b6d489ce"
+    },
+    {
+      "path": "preservation.json",
+      "bytes": 8276,
+      "sha256": "e957fe0ece9f27bdbeb9edb8037f15e8893ba65ab3e54b27d717de418aaff7ea",
+      "git_blob": "044de4d795f6a92aec177c0ad96083c9b7bac99f"
+    },
+    {
+      "path": "static-test-rosters.json",
+      "bytes": 3302,
+      "sha256": "5f6e6f000dd79149eebdcebfe4c6f1a1c1eaf5c3ce8553e647eb29c3dc217aed",
+      "git_blob": "2241941ea882de99dfe2e4f8840c6948015beedb"
+    }
+  ]
+}

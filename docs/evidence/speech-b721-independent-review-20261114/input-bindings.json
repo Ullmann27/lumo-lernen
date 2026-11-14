@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "source_freeze": {
+    "bytes": 9728,
+    "sha256": "f76320fd641973128624523375c899a9910b86b9b14c692decf79bb4355da99d",
+    "git_blob": "b789addc1af8f5cc43439780513ebb9e9a889534",
+    "path": "source-freeze.json"
+  },
+  "metadata": [
+    {
+      "path": "source-index.json",
+      "bytes": 11145,
+      "sha256": "958c5f0541384d2ed1b1996216d5dbe3e77a5ca9885767270e024e0e9449bcc7",
+      "git_blob": "2dcc126aaf3cf35b1ffa639aa9a41e9cb2f6d4e6"
+    },
+    {
+      "path": "source-preservation.json",
+      "bytes": 11454,
+      "sha256": "86f5210c9dff4bafb84e5533638b0822092255913ad6956a3242b9f3d50d2e6b",
+      "git_blob": "39f7f18d9719f25dbe709484b64d13e7149e2b01"
+    },
+    {
+      "path": "integration.patch",
+      "bytes": 100582,
+      "sha256": "b0e98ce514d5263ccb41ee2ab9a54f1b9be17197ca2ee2158192ddde22511fb0",
+      "git_blob": "74d7fa0bccf5f72f79ed4f059cb994347a702d22"
+    }
+  ],
+  "text_sources": [
+    {
+      "status": "fulfilled",
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "bytes": 11337,
+      "sha256": "415e137cf51e339d3dc3fdd283eebb246989605a95ab2bc41c3f1d05ba8d6d4d",
+      "git_blob": "e4954dd792ba8b7ac9b66cbbe9a84752cbdab830"
+    },
+    {
+      "status": "fulfilled",
+      "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "bytes": 9663,
+      "sha256": "3e2ab56fe6c75cdfd04ef032dc20d07f38b1e8fc8f925a7753893482c623270c",
+      "git_blob": "9e034ca2a46e53adf8a3014c0e8868d33ba54a9c"
+    },
+    {
+      "status": "fulfilled",
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "bytes": 19214,
+      "sha256": "6a8383795979c7bea9f89c44b5419a417edce249c92a93db63e896ce8a303ddc",
+      "git_blob": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd"
+    },
+    {
+      "status": "fulfilled",
+      "path": "scripts/run_speech_jvm_contracts.py",
+      "bytes": 19493,
+      "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+      "git_blob": "9d17f343b16d80bddb861cf26cfeae9e38994f24"
+    },
+    {
+      "status": "fulfilled",
+      "path": "scripts/speech_contracts/test_english_lesson_speech.py",
+      "bytes": 18072,
+      "sha256": "96326b009847dfe0b4979dd80d247d6d343c97ed3778e0e1e5394df2590e9a81",
+      "git_blob": "93b4d63069533f160207e098ff6093c963ce3bfd"
+    },
+    {
+      "status": "fulfilled",
+      "path": "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+      "bytes": 6350,
+      "sha256": "f2f49ce0928b18058beefa9539c776da4379c6470073976831388d7e993b3e89",
+      "git_blob": "b0fe0ebe291be6ba1f84ab6bda50ab34c987823a"
+    },
+    {
+      "status": "fulfilled",
+      "path": "scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt",
+      "bytes": 9459,
+      "sha256": "78375595ea5456a6106933bc1f5463242b836e72f4a0c989ca275a9f1c9a1bd5",
+      "git_blob": "9e22b98ad3938b6d0dafd4c1971d20faf09e337a"
+    },
+    {
+      "status": "fulfilled",
+      "path": "scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt",
+      "bytes": 4342,
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+      "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+    },
+    {
+      "status": "fulfilled",
+      "path": "scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt",
+      "bytes": 4381,
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+      "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+    },
+    {
+      "status": "fulfilled",
+      "path": "scripts/tests/fixtures/learning_english_speech/platform_fixture.py",
+      "bytes": 5481,
+      "sha256": "99203bbf7a00f908af1f0df57b97156894668f3b615f58ff56264a4dcbf1fa4d",
+      "git_blob": "40897dc0e2a48cb0c054f19820557ffa7fc43579"
+    },
+    {
+      "status": "fulfilled",
+      "path": "scripts/tests/test_speech_jvm_runner.py",
+      "bytes": 14569,
+      "sha256": "5b4161a58a3280fe0b70ae0cddca57e58411a04c1a475ad5c9c55ecbb63f2276",
+      "git_blob": "4358a2540c65c19701b39d582465089672f884e5"
+    },
+    {
+      "status": "fulfilled",
+      "path": "scripts/compile_android_host.sh",
+      "bytes": 3386,
+      "sha256": "eaa36179179a172f1dff6bc49cf1917813e0143f6beed8a04b2c1a49071618f8",
+      "git_blob": "48893609d274834c58f7b6eceb63b0b5ec86951f"
+    }
+  ],
+  "binary_fixture": {
+    "path": "scripts/tests/fixtures/learning_english_speech/apfel-original.wav",
+    "bytes": 40970,
+    "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+    "git_blob": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905",
+    "before": null,
+    "producer": {
+      "bytes": 40970,
+      "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+      "git_blob": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905"
+    },
+    "mode": "100644",
+    "verification_scope": "Published immutable blob and original producer/Flutter freeze binding; no independent binary rehash by this reviewer",
+    "connector_attempt": {
+      "kind": "github_fetch",
+      "outcome": "Rejected non-UTF-8 response",
+      "retained_store_key": "speech-b721-review-wav-api-result"
+    }
+  },
+  "references": [
+    {
+      "status": "fulfilled",
+      "path": "before/tools/auto_install/LumoLearningSpeech.kt",
+      "bytes": 8921,
+      "sha256": "ff154885806c7c8fcf0fe730367b8fd2d25760584037ea6f5e0851324bd2c1e0",
+      "git_blob": "95b57595d0cc788746c20fe5c26ef448c18121c2"
+    },
+    {
+      "status": "fulfilled",
+      "path": "before/tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "bytes": 8395,
+      "sha256": "91e5d2dcafd1f04c7d116b05785f4ca284cbe31457ed1777e7c057d60becd62f",
+      "git_blob": "b40217befd633a2a606a5cd8ae732f33068a1c22"
+    },
+    {
+      "status": "fulfilled",
+      "path": "before/tools/auto_install/LumoOfflineSpeechEngine.java",
+      "bytes": 15809,
+      "sha256": "e2fd0ac015a1957053bde4b15d1fe5c518581e423d3d7573698bbbf8c22fdd72",
+      "git_blob": "7a986433953773678feb4c98226caafb47c6abd9"
+    },
+    {
+      "status": "fulfilled",
+      "path": "before/scripts/compile_android_host.sh",
+      "bytes": 3364,
+      "sha256": "fb7c338e9c551fdbb5711ed30bb19c7b799ecf75f87176757eede9cac7e7bb03",
+      "git_blob": "73d0c0d8726e6352f0bf89c25cf17bdf1270ad2f"
+    },
+    {
+      "status": "fulfilled",
+      "path": "dependency/tools/auto_install/LumoSpeechEnvelope.kt",
+      "bytes": 4697,
+      "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8",
+      "git_blob": "5721274734e111e96d55762d86b3d3e830fc26e8"
+    },
+    {
+      "status": "fulfilled",
+      "path": "dependency/scripts/prepare_android.py",
+      "bytes": 8826,
+      "sha256": "e80c31269ba8d15fc5db171dd46e1c45cb418f1ff799b03292e89e45b7e4dc6f",
+      "git_blob": "83d6421d0fe26848962c8a2433b0b78182596261"
+    },
+    {
+      "status": "fulfilled",
+      "path": "dependency/scripts/voice/LumoOfflineSpeechEngineProbe.java",
+      "bytes": 5482,
+      "sha256": "34e29837463ee55953c6f518c1ee02137bc2fbacf3d37dbce72517ec0c42e516",
+      "git_blob": "e16b0a53e240bf4fffb536f0b698ea42560c8437"
+    },
+    {
+      "status": "fulfilled",
+      "path": "dependency/lib/domain/tutoring/native_english_vocabulary.dart",
+      "bytes": 3323,
+      "sha256": "375ecb52b84b59f34be006e2f9768e98cb8c6839e1a794e08a87760d68b7486f",
+      "git_blob": "4469849b204f91fab3e645604e11922e29cb594c"
+    },
+    {
+      "status": "fulfilled",
+      "path": "producer/tools/auto_install/LumoLearningSpeech.kt",
+      "bytes": 11318,
+      "sha256": "2102205e2976e074c9d0d0fca71448671edd82a5d74a8e2974a6ba9408ca525f",
+      "git_blob": "755077c4f1385f9b09464113aeaab3a20ec8a376"
+    }
+  ]
+}

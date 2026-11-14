@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "kind": "independent_read_only_speech_source_review",
+  "created_utc": "2026-11-14 17:37:25 UTC",
+  "reviewer": "/root/pipeline_repair",
+  "status": "NO_CONCRETE_SOURCE_BLOCKER_FOUND",
+  "execution": {
+    "tests": 0,
+    "repository_imports": 0,
+    "jvm_or_compiler": 0,
+    "renderer": 0,
+    "android": 0,
+    "lint": 0,
+    "local_processes": 0,
+    "source_or_index_writes": 0,
+    "trees_commits_refs_or_ci": 0
+  },
+  "storage_boundary": "Executor unavailable. This review is frozen as complete strings in functions.store and is eligible only for the Root-authorized immutable evidence-blob creation with full readback. No successful new local materialization is claimed.",
+  "scope": {
+    "frozen_source_count": 13,
+    "source_freeze": {
+      "git_blob": "b789addc1af8f5cc43439780513ebb9e9a889534",
+      "sha256": "f76320fd641973128624523375c899a9910b86b9b14c692decf79bb4355da99d",
+      "bytes": 9728
+    },
+    "basis": {
+      "head": "36274db2941963c59b1f819ad7bc2358470d3a76",
+      "tree": "39ee9cdf1567271599922d6b991399927affccae",
+      "known_workflow_only_successor": "e664ba4732222a64af58d44a6bab768846f47ccb"
+    },
+    "producer": "b7210db3f53361987fd33592de438fd7984d991a",
+    "producer_tree": "c65558a13e4dd2950eda7a685583e5484d9b9959",
+    "root_reported_published_checkpoint": {
+      "commit": "3a5b2241b7a329a8b36ee655bceedd874ae50268",
+      "tree": "de979455e4bd490c8cf69241f4dc77a0ca0408e2",
+      "parent": "e664ba4732222a64af58d44a6bab768846f47ccb",
+      "independently_refetched_by_this_reviewer": false
+    },
+    "active_c4_candidate_unchanged": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+    "scope_note": "Source review of the exact 13 frozen entries. Root retains publication and execution decisions; this review does not attest a future combined workflow."
+  },
+  "independently_verified": [
+    "All 12 final text blobs were completely fetched and their UTF-8 byte counts, Git blob SHA-1 and SHA-256 recomputed against the source freeze.",
+    "The complete text hunks reconstruct each of the 12 final text files byte-for-byte from the bound before source or an empty source for new files.",
+    "Nine exact unchanged production sections were independently compared and hashed; the detailed identities are in preservation.json.",
+    "The LearningSpeech merge equals the published producer file with exactly the original learning/build consent line and original village comment retained.",
+    "The compile helper equals its bound original with only LumoSpeechEnvelope added to the existing required-class tuple.",
+    "Complete before-source, unchanged envelope, installer, existing German Java probe and actual 14-word Dart catalogue were fetched as immutable blobs and bound separately."
+  ],
+  "findings": [
+    {
+      "area": "Parent consent and host-owned English descriptor",
+      "assessment": "The existing allowed condition for learning or build and both learningVoiceEnabled/localVoiceLicenseAccepted booleans remain unchanged. English mode captures the closed descriptor once: kind english_objects, one of 14 exact words, its exact permitted German meaning, three distinct allowed objects and presence of the target word. Invalid English descriptors are refused; the native request's englishWord/language fields cannot replace the captured word. The unchanged Dart catalogue agrees with the Kotlin mapping, including the pen meaning alias."
+    },
+    {
+      "area": "German behavior and native-only English entry",
+      "assessment": "The existing Flutter channel still exposes the existing German synthesize route and reports de. The added bilingual entry is called by the bound native lesson. Original German normalization, F2 preset, speaker index 1, 44100-Hz output, profile, eight inference steps, CPU thread bounds and binary/model hash checks are retained. No model weights, voice configuration, network or microphone path are added by these 13 entries."
+    },
+    {
+      "area": "Request cancellation and actual player/envelope ownership",
+      "assessment": "Both inference segments use one request revision and the same cancellation supplier. Checks precede inference and separate EN, DE, joining and return. The original MediaPlayer, generation, active/destroyed, pause/stop/release, measured PCM envelope, actual media-position and system-volume/mute sections are byte-identical. Bilingual result word, en-de language, local flag, profile, preset and sample rate are checked before a player can be prepared; late or replaced generations remain rejected."
+    },
+    {
+      "area": "Bounded real PCM joining",
+      "assessment": "The engine joins its own exact mono PCM16/44100-Hz RIFF format, preserving both data payloads with exactly 11025 zero frames (250 ms) between them. Both headers, sample format, block alignment, declared sizes and lengths are checked; the complete joined sequence, including silence, must fit the existing 30-second bound. This is a source-level and contract-design finding, not a claim of successful real English synthesis or heard audio."
+    },
+    {
+      "area": "Installer and actual Android compile",
+      "assessment": "The unchanged installer already installs the four speech sources in the existing namespaces. Adding LumoSpeechEnvelope to the compile helper's required tuple closes the identified report dependency without removing any earlier class or build check. The new JVM runner requires a successful actual compile report for the exact checkout and rehashes every recorded speech class under build/app with the JVM class magic. New compile and runtime outcomes remain unexecuted in this review."
+    },
+    {
+      "area": "Runner toolchain, source and deadline boundaries",
+      "assessment": "The runner binds actual CI source (same-repository PR head or push SHA), committed input bytes and immutable historical fixture hashes. It selects exactly one already installed wrapper distribution using the real wrapper properties, validates the existing Kotlin compiler/stdlib class entries and invokes that observed Gradle directly with offline/no-daemon/no-configuration-cache. It does not bootstrap a distribution. Actual resolved Gradle/JDK paths must agree, REQUIRE_ALL_TESTS is forced true, complete raw merged process logs are retained, and nonzero exits/timeouts remain failures. Limits are 120 seconds for toolchain resolution and 300/420 seconds for the two dedicated contract processes."
+    },
+    {
+      "area": "Contract completeness and declared simulation boundaries",
+      "assessment": "Static method rosters are exactly 11 Java-boundary methods, 8 Kotlin-boundary methods and 19 orchestration methods. The dedicated JVM modules remain outside broad scripts/tests discovery. Their child recorder requires exact positive case counts, unique module-qualified identities, no errors/failures/skips/expected failures/unexpected successes and exactly one actual line for each required marker. The old 11 German Java guards and original 17/23 Kotlin assertions remain explicit. Doubled ONNX/Android boundaries, synthetic combined PCM and tiny fake JARs are labeled as such and cannot establish model inference or Android playback."
+    },
+    {
+      "area": "Negative coverage read statically",
+      "assessment": "Read cases cover malformed/unknown/duplicated task descriptors, forged native word/language, denied consent, wrong result identity, stale callbacks after pause/replacement/destruction, exact PCM joining and header/length corruption, the exact 30-second boundary, cancellation at each sequence boundary, absent/ambiguous/invalid compiler/JDK inputs, foreign source/class paths, incomplete/duplicate/foreign test identities, missing/duplicate/unexecuted markers, skipped child tests, timeout original-output retention and discovery isolation. These cases were not run by the reviewer."
+    }
+  ],
+  "limits": [
+    "The 40970-byte apfel-original.wav was not independently re-downloaded and hashed by this reviewer. It is bound to the exact published Git blob 671784b6bdf9ebb3c0aa994b762e236c7f3a8905 and SHA256 39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586 from the producer source freeze and Flutter agent's complete binary verification. One UTF-8-only connector request rejected the binary; no replacement data or artificial hash was created.",
+    "No new source was compiled, imported, tested, run on Android or listened to in this review. Real Android compilation, the 19 dedicated JVM cases and 19 runner contracts remain execution gates after Root publication.",
+    "Actual English inference with the packaged weights and final media playback/return behavior require their own real-device evidence; synthetic JVM results must remain separate.",
+    "The combined V3 workflow is a separate review and must bind the changed compile blob 48893609d274834c58f7b6eceb63b0b5ec86951f and preserve complete speech logs before its existing always-copy stage."
+  ],
+  "conclusion": "The frozen 13-source change has no concrete blocker in the reviewed source, consent, PCM, lifecycle, source/compile binding or contract integration. The finding supports proceeding with the coordinated source checkpoint and actual validation gates; it is not a PASS for unexecuted gates or the active C4 candidate."
+}
