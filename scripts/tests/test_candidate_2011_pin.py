@@ -23,7 +23,7 @@ GAMEPLAY_2016_REVISION = "b4ccf593d7833e8c259ff0f963494b00d245d03d"
 ACTION_STAGE_2017_REVISION = "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57"
 NEXTGEN_2018_REVISION = "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
 STUDIO_2019_REVISION = "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845"
-CONNECT_FOUR_2020_REVISION = "0e26153f0e58cc05739e72923b4c563a4cf380b8"
+CONNECT_FOUR_2020_REVISION = "f0c19f9eb69ea330ac5d2b8f9948cb029ca218aa"
 SUPERSEDED_2017_CANDIDATES = {
     "460c94b10df6adae11def608068d72e99c0950db",
     "a16a4fc6791c3c7a594273f4544458382cc2c884",
@@ -52,6 +52,13 @@ class Candidate2011PinTests(unittest.TestCase):
         self.assertEqual((build, revision), (2020, CONNECT_FOUR_2020_REVISION))
         self.assertGreater(build, 2019)
         self.assertIn("version: 0.13.8+2020\n", pubspec)
+
+    def test_2020_rejects_the_source_before_acknowledged_return_retry(self):
+        with self.assertRaisesRegex(ValueError, "revision mismatch for build 2020"):
+            POLICY.verify(
+                version(2020),
+                config("0e26153f0e58cc05739e72923b4c563a4cf380b8"),
+            )
 
     def test_new_candidate_has_exact_reviewed_native_identity(self):
         self.assertEqual(

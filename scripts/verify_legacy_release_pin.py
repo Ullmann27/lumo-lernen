@@ -142,9 +142,10 @@ APPROVED = {
     # Android integration and preserved 2017 upgrade remain mandatory.
     2019: "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
     # 2020: reviewed C4, original-Lumo facial and Treasure source, paired
-    # with the installed PCM envelope. Fresh 52-mode native, Android and
-    # preserved-update gates remain mandatory; this entry binds source identity.
-    2020: "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+    # with the installed PCM envelope and acknowledged Android return retry.
+    # The independent return regression is green; fresh 52-mode native, Android
+    # and preserved-update gates remain mandatory. This binds source identity.
+    2020: "f0c19f9eb69ea330ac5d2b8f9948cb029ca218aa",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
