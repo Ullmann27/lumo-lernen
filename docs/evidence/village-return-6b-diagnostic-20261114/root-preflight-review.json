@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "prepared_utc": "2026-11-14 18:54:30 UTC",
+  "status": "PREPARED_NOT_ACTIVATED",
+  "scope": "Only an unchanged 6b APK diagnostic; never a replacement for the failed 6b acceptance or new exact-source 04 acceptance.",
+  "actual_candidate": {
+    "host": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "run": 43616038272,
+    "attempt": 1,
+    "successful_build_job": 132512734271,
+    "artifact": 14125990109,
+    "artifact_bytes": 665918783,
+    "artifact_digest": "sha256:1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6",
+    "x86_apk_bytes": 334516947,
+    "x86_apk_sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+    "embedded_pck_bytes": 75401304,
+    "embedded_pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4"
+  },
+  "exact_source_checkpoint": {
+    "commit": "df9536ebf82fe070c0e068533448f3dd5b273406",
+    "tree": "c4063429e04052e5b4a280d918d123122a06a636",
+    "branch": "checkpoint/lumo-village-return-diagnostic-20261114",
+    "activated": false
+  },
+  "full_tree_preservation": {
+    "base_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "tree": "c4063429e04052e5b4a280d918d123122a06a636",
+    "files": 4981,
+    "all_expected_entries_exact": true,
+    "product_sources_unchanged": true,
+    "two_reviewed_observer_changes": true,
+    "six_diagnostic_additions": true
+  },
+  "source_entries": [
+    {
+      "path": ".github/workflows/lumo-village-return-6b-diagnostic.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33e0483133c8eab58b121ee532d78d7a75930c4b"
+    },
+    {
+      "path": ".github/probes/lumo_6b_roundtrip_diagnostic.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "276daa83fada8c9d1014c930dd39bd72c92b0947"
+    },
+    {
+      "path": "scripts/run_unchanged_6b_village_diagnostic.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a1428595c8a51682e7f2d1c58cfaa0ccb10d68e"
+    },
+    {
+      "path": "scripts/verify_unchanged_6b_village_diagnostic.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c267eadbac17f163cd24c4c149c5640e9b32c9b7"
+    },
+    {
+      "path": "scripts/tests/test_verify_unchanged_6b_village_diagnostic.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "067e16cd95527d1c63be4354ae06e53e974f28b5"
+    },
+    {
+      "path": "scripts/tests/test_6b_roundtrip_diagnostic.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "247b943be29a25564e7f8f3602b3a86eabbc94ce"
+    },
+    {
+      "path": ".github/probes/lumo_village_android_probe.py",
+      "sha": "3e601644198f0b8c62fdaebcf783e3f631974bb1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "tools/android_qa/tests/test_village_android_evidence.py",
+      "sha": "d21f941b2f5cff410f8e4cd7ae23fbbbf894743a",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "preflight": {
+    "diagnostic_contracts": 35,
+    "failures": 0,
+    "skips": 0,
+    "reported_seconds": 37.586,
+    "original_log": "diagnostic-contracts.original.log",
+    "bash_syntax_exit": 0,
+    "actionlint_exit": 0,
+    "scope": "35 diagnostic contracts were executed on the final six diagnostic source files before the reviewed two-file observer was copied. Four source/journey preservation contracts were then executed against the integrated observer.",
+    "integrated_observer_journey_contracts": 4,
+    "integrated_observer_failures": 0,
+    "integrated_observer_skips": 0,
+    "integrated_observer_reported_seconds": 0.05,
+    "integrated_observer_log": "integrated-observer-parity.original.log",
+    "observer_43_regression_checkpoint": "a7e06055f70929e918d48a1397bf656c1880adb4",
+    "observer_43_independent_review": "ff6928999a2b425ea6c7446daef7b2d2dbd715bf"
+  },
+  "required_runtime_guards": [
+    "Original exact 6b successful build job despite original Android failure",
+    "Complete real API collections and immutable artifact ID/digest",
+    "Original APK size/hash/certificate/source and actual embedded PCK",
+    "Distinct QA commit/tree/clean tracked source and 6b candidate source/tree",
+    "Every committed observer helper byte matches real Git blob before and after",
+    "Actual API35 main tour, then full Village roundtrip and full C4 journey",
+    "No original source identity spoofing; adapter explicitly binds both distinct commits",
+    "All original UI actions/process/profile/ACK/touch/OCR checks retained",
+    "Strict C4 original replay and original Village replay required",
+    "Fail-closed postflight with immutable result receipts",
+    "Only contents/actions read permissions, no release write operations"
+  ],
+  "shared_budgets": {
+    "village_seconds": 900,
+    "c4_seconds": 900,
+    "village_visible_return_acceptance_seconds": 90,
+    "android_job_minutes": 80
+  },
+  "not_claimed": [
+    "No diagnostic Android pass yet",
+    "No seven-job acceptance",
+    "No new APK built by diagnostic source",
+    "No release created or approved"
+  ]
+}
