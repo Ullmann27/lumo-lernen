@@ -1,0 +1,82 @@
+{
+  "host_sha": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "native_sha": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "run_id": 43604903064,
+  "artifact_id": 14117443108,
+  "original_zip_sha256": "2d7b91b3d9da60979b438c71604dc4e85b4b6738e26ca17890aba1a28e835488",
+  "images": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_empty.png",
+      "member": "runtime/connect_four_empty.png",
+      "sha256": "aa1bde4d9f074b6d509024f064f14e27a40866d344657a7d522005bb60e52fd8",
+      "bytes": 82537,
+      "width": 960,
+      "height": 540
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_fold_landscape.png",
+      "member": "runtime/connect_four_fold_landscape.png",
+      "sha256": "aac2efa26eafaf9eebdd9288f4db8b7a7f747860ebaade1a159b54a2747e7e96",
+      "bytes": 123809,
+      "width": 2400,
+      "height": 1080
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_pause.png",
+      "member": "runtime/connect_four_pause.png",
+      "sha256": "7203ccc962921b3573febf6a56fcfd60af3178cbbb0ad99cc623857b0e662ee1",
+      "bytes": 47760,
+      "width": 960,
+      "height": 540
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_phone_bot_response.png",
+      "member": "runtime/connect_four_phone_bot_response.png",
+      "sha256": "3278b7867f790cc16f60738995404b436d8dd05b02a3132387005872a671ab04",
+      "bytes": 239686,
+      "width": 1080,
+      "height": 2400
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_phone_playing.png",
+      "member": "runtime/connect_four_phone_playing.png",
+      "sha256": "daec6b50de75b5932865e7e25d79cd6fa181e974291df26b0371a18b60605dab",
+      "bytes": 235104,
+      "width": 1080,
+      "height": 2400
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_phone_portrait.png",
+      "member": "runtime/connect_four_phone_portrait.png",
+      "sha256": "0d22adcedf99e68060f7091a3cb9bf8b99abea7c9415c724e2ef81a0b7600de1",
+      "bytes": 170661,
+      "width": 1080,
+      "height": 2400
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_small_landscape.png",
+      "member": "runtime/connect_four_small_landscape.png",
+      "sha256": "b5c074d659a5a20c646a3a8e977e052b5a11267e9082743c06b72fdd7fc98d55",
+      "bytes": 22915,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_small_portrait.png",
+      "member": "runtime/connect_four_small_portrait.png",
+      "sha256": "dc189342ac6f0150c5a1a569d4377d484a015a49fbafafe3e924e9f51f1740e1",
+      "bytes": 35739,
+      "width": 320,
+      "height": 740
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_win.png",
+      "member": "runtime/connect_four_win.png",
+      "sha256": "c1ae15494092fa78aed6d074196b60bd9bfeac8b145a4d2b0dfecae866767e1a",
+      "bytes": 84544,
+      "width": 960,
+      "height": 540
+    }
+  ],
+  "human_review_status": "PENDING_ROOT_VIEW"
+}

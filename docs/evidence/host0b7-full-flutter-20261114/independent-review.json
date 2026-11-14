@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T14:45:37.409275+00:00",
+  "scope": "Read-only independent parsing of already preserved original JSONL and metadata; no CI call, download, test, source or Git mutation.",
+  "source": {
+    "host": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+    "run_id": 43604903064,
+    "attempt": 1,
+    "artifact_id": 14118412926,
+    "artifact_digest": "sha256:3f13c849b45fdc47d1c7597c1f4afb58867a64e8c8a78a3365a4dd2f20a15939",
+    "artifact_size": 336105163
+  },
+  "originals": [
+    {
+      "path": "/tmp/host-pr485-0b7bacad-pipeline-evidence-20261114/full-flutter-artifact-14118412926/originals/acceptance-summary.json",
+      "bytes": 2202,
+      "sha256": "75e49b929a6dd161647ecd4394e3a918f13cf699d9c713189676e476527dde06"
+    },
+    {
+      "path": "/tmp/host-pr485-0b7bacad-pipeline-evidence-20261114/initial-20261114T142727Z/run.original.json",
+      "bytes": 13000,
+      "sha256": "32471f2b9956ee9d5cb7a30bc5deade0b2591fc3c67db5b700ee68a1a23bfbe8"
+    },
+    {
+      "path": "/tmp/host-pr485-0b7bacad-pipeline-evidence-20261114/artifacts-20261114T1442Z/artifacts.original.json",
+      "bytes": 3775,
+      "sha256": "dc08248f9324f9454cf6ed5f82740dd6baeb826dc9317182f677b70c1e4eebd9"
+    },
+    {
+      "path": "/tmp/host-pr485-0b7bacad-pipeline-evidence-20261114/full-flutter-artifact-14118412926/originals/flutter-machine.jsonl",
+      "bytes": 1759702,
+      "sha256": "22d8ff13865fd9192386f4643a284c8c5c424a892146c182172f83307b5ed28b"
+    }
+  ],
+  "result": "NO_CONCRETE_DISCREPANCY",
+  "visible_cases": 2608,
+  "visible_failures": 0,
+  "visible_skips": 0,
+  "hidden_successful_events": 573,
+  "process_notification_arrays": 389,
+  "final_done_line": 8318,
+  "final_done": {
+    "success": true,
+    "type": "done",
+    "time": 547025
+  },
+  "all_17_progress_cases_successful": true,
+  "three_repaired_cases": [
+    {
+      "test_start_line": 6458,
+      "test_done_line": 6491,
+      "test": {
+        "id": 3233,
+        "name": "d1_woerter real registry answer persists its exact subject and topic",
+        "suiteID": 3215,
+        "groupIDs": [
+          3219
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 289,
+        "root_column": 5,
+        "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "test_done": {
+        "testID": 3233,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 455254
+      }
+    },
+    {
+      "test_start_line": 6609,
+      "test_done_line": 6626,
+      "test": {
+        "id": 3310,
+        "name": "actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+        "suiteID": 3215,
+        "groupIDs": [
+          3219
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 500,
+        "root_column": 3,
+        "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "test_done": {
+        "testID": 3310,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 464732
+      }
+    },
+    {
+      "test_start_line": 6627,
+      "test_done_line": 6679,
+      "test": {
+        "id": 3319,
+        "name": "two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+        "suiteID": 3215,
+        "groupIDs": [
+          3219
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 537,
+        "root_column": 3,
+        "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "test_done": {
+        "testID": 3319,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 473052
+      }
+    }
+  ],
+  "summary_exit_code": 0,
+  "captures_in_summary": 552,
+  "limits": [
+    "The complete artifact CRC/SHA inventory is the separately preserved Pipeline work, not repeated here.",
+    "No PNG viewed or visual/device/Native/performance approval in this review.",
+    "Flutter stage only; no overall C4/job/release success inferred."
+  ],
+  "review_parser_note": "Initial inspection assumed every JSONL entry was an object and stopped on a notification array before counting; corrected read explicitly verifies all 389 arrays as test.startedProcess notifications. Original stream was unchanged."
+}

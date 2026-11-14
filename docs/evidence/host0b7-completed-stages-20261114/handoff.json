@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "frozen_at": "2026-11-14T14:39:30.117787+00:00",
+  "scope": "Completed current 0b7 runtime and host compilation plus sampled curriculum originals; build and full Flutter still in progress at 14:39:16 UTC",
+  "host_sha": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "native_sha": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "run_id": 43604903064,
+  "run_attempt": 1,
+  "source_root": "/tmp/host-pr485-0b7bacad-pipeline-evidence-20261114",
+  "source_file_count": 193,
+  "compact_member_count": 192,
+  "selected_member_roundtrip_equal": true,
+  "archive": {
+    "path": "compact-originals.tar.gz",
+    "bytes": 2218967,
+    "sha256": "eda8932d03de05caf5d327b487bbca0eccce2a0fa12c74f6d90006eb1365e45e"
+  },
+  "complete_source_file_index": {
+    "path": "source-file-index.json",
+    "bytes": 69834,
+    "sha256": "0c56701d60ea138a3aa70023cd08b4c5cbcc5706d9de82e64740b904f06ec912"
+  },
+  "explicit_exclusions": [
+    {
+      "path": "runtime-132477340646/artifact-14117443108/14117443108-original.zip",
+      "bytes": 22155121,
+      "sha256": "2d7b91b3d9da60979b438c71604dc4e85b4b6738e26ca17890aba1a28e835488",
+      "reason": "Large complete original ZIP retained at source path and Actions artifact, not duplicated in compact transport"
+    }
+  ],
+  "full_run_pass": false,
+  "terminal_run": false,
+  "new_tests_or_devices_run": false
+}

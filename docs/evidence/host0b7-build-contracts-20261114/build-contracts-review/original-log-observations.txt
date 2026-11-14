@@ -1,0 +1,8 @@
+members [{'path': 'build-contracts.log', 'bytes': 174562, 'compressed_bytes': 27102, 'crc32': 'c37361c4', 'sha256': '149bfb4b30d7b5018e892253ccde9c8b0dee5014d53a40545b46dcbf38288b44'}]
+988 Ran 877 tests in 298.960s
+990 OK
+1029 LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true
+1030 LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true
+1031 LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47
+last_lines ['  "preset": "F2",', '  "model_sha256": {', '    "model.int8.onnx": "1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747"', '  },', '  "runtime_cloud_calls": 0,', '  "system_tts": false,', '  "model_asset_bytes": 51', '}', 'LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true', 'LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true', 'LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47', 'Android host prepared: example.studio.learning; stable signing; installer and 3D bridge connected']
+counts {'method_ok_lines': 872, 'skipped_lines': 0}
