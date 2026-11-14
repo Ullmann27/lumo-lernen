@@ -1,0 +1,27 @@
+--- producer/.github/workflows/lumo-console-joystick-7b16.yml
++++ root/.github/workflows/lumo-console-joystick-7b16.yml
+@@ -379,15 +379,6 @@
+             sleep 0.25
+           done
+           grep -i 'OpenGL renderer string' creative/mesa-renderer.txt
+-      - name: Prepare the private init-console channel before emulator launch
+-        env:
+-          LUMO_ANDROID_CONSOLE_SOCKET: ${{ runner.temp }}/lumo-serial-${{ github.run_id }}-${{ github.run_attempt }}/console.sock
+-        run: |
+-          set -euo pipefail
+-          mkdir -p creative/console-preparation
+-          python3 -B scripts/android_console_transport.py prepare --socket "$LUMO_ANDROID_CONSOLE_SOCKET" > creative/console-preparation/console-prepare-command.json
+-          cp -- "$(dirname -- "$LUMO_ANDROID_CONSOLE_SOCKET")/prepare.json" creative/console-preparation/console-prepare.json
+-          printf 'LUMO_ANDROID_CONSOLE_SOCKET=%s\n' "$LUMO_ANDROID_CONSOLE_SOCKET" >> "$GITHUB_ENV"
+       - name: Observe actual Jump Build Puzzle Treasure inputs on the unchanged APK
+         uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+         env:
+@@ -405,7 +396,7 @@
+           heap-size: 512M
+           disable-animations: true
+           emulator-boot-timeout: 300
+-          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none -shell-serial unix:${{ env.LUMO_ANDROID_CONSOLE_SOCKET }},server,nowait
++          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+           script: .creative-venv/bin/python -B scripts/run_unchanged_creative_diagnostic.py --qa-source . --candidate-source candidate-source --native-source native-source --candidate-metadata-dir creative/metadata --qa-metadata-dir creative/qa-metadata --expected-qa-source "$SOURCE_SHA" --expected-qa-run "$GITHUB_RUN_ID" --expected-qa-attempt "$GITHUB_RUN_ATTEMPT" --qa-job-name unchanged-apk-console-joystick-creative-api35 --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out creative/tour
+       - name: Preserve actual creative Android evidence on success or failure
+         if: always()

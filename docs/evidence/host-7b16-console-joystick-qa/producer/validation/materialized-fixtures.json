@@ -1,0 +1,511 @@
+{
+  "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+  "files": [
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0011-native-haltenhoherspringen-1-ocr.json",
+      "git_blob": "0682a73e1c4474037341ff2ed24ce08f37d3c614",
+      "bytes": 40738,
+      "sha256": "8b0bfdb3a1ce50bf8c459f62a6aef8abbd7795573bdbb3e0c89c421de90afa5d"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0011-native-haltenhoherspringen-3-ocr.json",
+      "git_blob": "ca67df7c0dfc35fa19f1b94f66d32ae9a08a8f2d",
+      "bytes": 13549,
+      "sha256": "2804d317253aab176319b15ac77407bc48dad79daa38e29f4b79f632d2fdcd51"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0011-native-haltenhoherspringen-3.png",
+      "git_blob": "484b01da14911faef0a9a67919058f2aa93356c8",
+      "bytes": 1641530,
+      "sha256": "e1fcabce089d93dfff50e2f6c966a7dc9ff80561fabc61e9f1251d70e926e4af"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0013-native-pause-surface-readiness.json",
+      "git_blob": "1599d50e4f2e8e81c4a9cccb3dafeb590158191e",
+      "bytes": 25110,
+      "sha256": "4c7662f3dbd1a551fe61721c985a147e875f41c58a0f8e9d75228ae4d40ed680"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0014-jump-failure.png",
+      "git_blob": "98785e13c73433e7919f6c02ca73aba88f8a8ded",
+      "bytes": 1649475,
+      "sha256": "2eddc9a9d19fcb7cb14dadfdb52a91d26ce2c44fdf711d3e20f6831a00da367a"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0100-observe-bild-ocr.json",
+      "git_blob": "50ea88ea36dfc0d801d136c0b279cea6cfb89a04",
+      "bytes": 2641,
+      "sha256": "bbb51fa3c1a7d2879d859e61f2ab496deb931d891387cd1c148c9c444dbc3c2c"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0100-observe-bild.png",
+      "git_blob": "44e47dcaea9f7fec65962bfa7ec3b76c8c17f132",
+      "bytes": 510432,
+      "sha256": "50b2854a9e6b7bcd32d454287b56b878088f785292e2e398e172636240f2186a"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0124-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+      "git_blob": "78b141af29bfe289ef949255c040e1b9838b89d1",
+      "bytes": 276,
+      "sha256": "5931c7de32f1549d13bafba889d0bce8cb9e03faac9430f20b3d243d3968b8ee"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0130-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+      "git_blob": "7c922939f262c416b135d069bbfffce9f053e67a",
+      "bytes": 304,
+      "sha256": "5915b3b36b4a6c54c263051d6a384bd1b27a929c1e6b11266dd239a7785a351a"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0136-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+      "git_blob": "f2667d55e425c9e24948ab2bcc17207b35cde396",
+      "bytes": 303,
+      "sha256": "5a2c3bf0b2e0ce93d9e6379e6db1a923d5bd4c5213786b5aa814733b1d3a6ecf"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0142-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+      "git_blob": "6842270bb63b9410869d60c71919a44823a14f8c",
+      "bytes": 303,
+      "sha256": "0baa04f6b329bc7c57f2c51f131da29e8ac8cfe78df2fe8f0dbbc93153d5ef15"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0148-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+      "git_blob": "d81e3bf1ca1c03a04381a25119f4a43fa6979e06",
+      "bytes": 302,
+      "sha256": "ea763cdcb9d3e5a611275f9d53546ed7b1e163ccbe89bfb589b870c186e98452"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0154-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+      "git_blob": "396eb07ac2b69a453302843846210ef37b889f57",
+      "bytes": 303,
+      "sha256": "bb0920357a1129c87f89c3514b554494d21122d44d5a868f28a7e98d99a28bc1"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0160-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+      "git_blob": "f42092b6f483cd33b6181f4c503d42315896ad3e",
+      "bytes": 303,
+      "sha256": "c0a2881615dca9f3ff2abfc4f4bfa0e442fc22e26f52f4f5f476b88c0d8abaf0"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0166-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+      "git_blob": "0386afec28a02df1be01ea9c4b0f04fee430ffd0",
+      "bytes": 305,
+      "sha256": "dbb774580a8ef44bc765a723d0e7942647f3149babb6157e40ac2ab48ff9ef22"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0172-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+      "git_blob": "5a19ea126a0a3de09188eb0c4ff3ed90af93be9b",
+      "bytes": 304,
+      "sha256": "a3fb3842528ee81b98f3306af22b5f6ed03cc7ea47d7d9a63a8be1aa70cec9b3"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0178-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+      "git_blob": "fc07251e801753832427bd9f4d6788597a900ef5",
+      "bytes": 304,
+      "sha256": "15c0b194cdb6b51ae82e618fcc053f8f5081dff4764245b10bef6c56071883c1"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0184-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+      "git_blob": "696bb1ed205c88b38de828de3d9c7ad29ba6337b",
+      "bytes": 304,
+      "sha256": "1689aaa42454127503f5ffc947e2dc9a2d60233083a3a8aed959295179397292"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0190-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+      "git_blob": "5bf5f47d4a1ee687fc6a177e2c9eb9a9c29b3667",
+      "bytes": 304,
+      "sha256": "3b1d7ef2adc3f7dddef9ae325b82757c4e507c75a0689a64824d696861da5f51"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/0196-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+      "git_blob": "f3fcf90f8564c5d6fc73019670d6e835821f853c",
+      "bytes": 304,
+      "sha256": "cf741c1c34677387413131dc76998b926588c4454cec03647dd0a1185bb26da2"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/local-replay/actual-original-springen-ocr.json",
+      "git_blob": "bc13ed955e0e222d13788b43c99c93635e19c0c1",
+      "bytes": 14087,
+      "sha256": "b7469a9ca775ef07aaeb3bf3a3dd602a970e04d7f43fe254026e3444aaf62b16"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/local-replay/replay.json",
+      "git_blob": "ffd639628c5722717a41cc119765780ba997cdf4",
+      "bytes": 1064,
+      "sha256": "90de3d5105059aea2fd9a7f50894aa5cdad3d01b192dcf9bd585fcaad46facd0"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/provenance.json",
+      "git_blob": "98d9df06c29dfb3ae1952693435753930b8e26a8",
+      "bytes": 6935,
+      "sha256": "e72589be9921d4a25b85cb835d3db788fc7719ee0bf9ea4e94edb97428a73ae8"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_d2c/real-input-events.json",
+      "git_blob": "a1ef2a8824fe3e6954a8ff7930a55b2d4a26bd3f",
+      "bytes": 68705,
+      "sha256": "5624f7e2953eda164b563e686b7860038f4ca6367d579fdd880a2339a4f1bb20"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/0017-observe-springen-ocr.json",
+      "git_blob": "aa5d9573376767e2277a84f6400950977e00bfcc",
+      "bytes": 7134,
+      "sha256": "a25508b81d09e588f14ab9094a3e5ff5097ab3eaafa3788a54fdb3cd2aede51a"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/0017-observe-springen.png",
+      "git_blob": "4d01e24b5a5feb97d92f90642e558f0d7f41b3fb",
+      "bytes": 1635411,
+      "sha256": "7f1af89c0e879f0f50317a080297602bed83004355538c98285bf63172d4aac7"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/0081-entered-bauwelt.png",
+      "git_blob": "dd846d25160923489285c86ecffcbcfc363ec892",
+      "bytes": 13231,
+      "sha256": "306431a523d5dd167ae67f9b390354e88d25957ec0aa074907120d05bd784c7d"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/0082-native-weiterbauen-9-ocr.json",
+      "git_blob": "b0768baeb12562eb5b8f649bceddca4a3bdde4eb",
+      "bytes": 46150,
+      "sha256": "4193fd8a786b8057fdf8fc845fd52486b70f30e0afd5ce5f20a2be4d638dbd83"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/0082-native-weiterbauen-9.png",
+      "git_blob": "2905b2781eaafd9ff48cf92faf575b6dd7acaffb",
+      "bytes": 2486383,
+      "sha256": "22a66a427485a21f009328785fe44c8be2b8eec8bd33f9c2df1fff8a6ad53c0f"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/0122-puzzle-save-lumo_puzzle_p_0768095c1da522693b0639510a4d3037.json",
+      "git_blob": "da04e727b48fc19ab1f21fa3bce87097b380c627",
+      "bytes": 950,
+      "sha256": "66a665ccbce2e279b5e26d34e46ce48f099c2d97cc7fa0a7c50f7e60288e1028"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/0125-puzzle-observed-board.png",
+      "git_blob": "dd1b5ad3b1980635fa5e1cc9eba394d8456f6895",
+      "bytes": 1013160,
+      "sha256": "84031d5f6d9b57037110bb463104d40ebbdeb6653d948b0224c373fd8c6fc30e"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-contrast.tsv",
+      "git_blob": "b671c610d347000c932bd55b95e1b2d670b834d9",
+      "bytes": 2909,
+      "sha256": "eebdc23cb5147e976d75930e876b10fc29e3182ec2a3229dac5d4e0aeca6a57e"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-0.tsv",
+      "git_blob": "7f05682ca40134d59eaabcfc3a38d27e81ec928b",
+      "bytes": 322,
+      "sha256": "e528cb6d8305209d6ed45d8d569b29d4558a33f512fb4998ec79837c4b007916"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-1.tsv",
+      "git_blob": "bca25de4e1329a3c2f21e4b4016f36190b88d400",
+      "bytes": 227,
+      "sha256": "23a6810e5bb3a206e8fde7b29d257b9232c12f8a021007dce5fbac4e4f825689"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-10.tsv",
+      "git_blob": "91cf142212405828908384debdef1078403d1844",
+      "bytes": 226,
+      "sha256": "af5b73b77e41d931a80dddccd8de42a982802d7a0588b3532edc2dc3cfbaf756"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-11.tsv",
+      "git_blob": "949d3ab528d8ee21da9197b37f33c461e6be6929",
+      "bytes": 226,
+      "sha256": "56d1950a89a40ea421c0f561de02cb6950117fc5d034fb4066e7ef4f6610de8d"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-12.tsv",
+      "git_blob": "3270e09d76769f322b6bc249a6b5dd730c36439d",
+      "bytes": 226,
+      "sha256": "19af41061063063c902e7e8021cb75401a909c221abcf624d79022770735704a"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-13.tsv",
+      "git_blob": "d329c94ecd783ed20efd489f6a126625da3eaeab",
+      "bytes": 226,
+      "sha256": "03431adbe9480c9cae5cfd239a3732c5f98ad184797af80554278422e096b7bd"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-14.tsv",
+      "git_blob": "a2f24dff599c18acfa0086f03ab492076d675892",
+      "bytes": 226,
+      "sha256": "526dfaa2ccc33fc0c27d8b521f23d48b35dae6a3311a3d28bd4ba92f54d1017b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-15.tsv",
+      "git_blob": "d0aadc22963746885a1d3732f264991b0d62aa11",
+      "bytes": 226,
+      "sha256": "af364c3142b61051de114b5c71671ca41a0413c298b16ae3683cd0fd8c62cd99"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-16.tsv",
+      "git_blob": "e8938b53e3185ffc481124fed96ee74e7fc7438f",
+      "bytes": 226,
+      "sha256": "499a7b7f204512ea6e3cf9d9bfedc0397766857aa0728f2954030c139b6ada61"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-17.tsv",
+      "git_blob": "1cceb310d168471c17473d9dbb5171bb2fea19d1",
+      "bytes": 226,
+      "sha256": "77da37f850917f6699c05e078b3dfce6c6c0e2ac4bf166c7e1d321fe802ecd29"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-18.tsv",
+      "git_blob": "881605b5817b5473bc006a1f5621af644e0dfc8e",
+      "bytes": 226,
+      "sha256": "4c973855b23f1bc412f00dcde436088a45b154e71afb77a813c86d12921fa00a"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-19.tsv",
+      "git_blob": "4ca4f20c4d0f0fc717cb6f859143eb7ef86c4e7c",
+      "bytes": 226,
+      "sha256": "e7aff8d6a889a9b4df20f0a86f2aaed1555f20df786228c150be945d82f422e9"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-2.tsv",
+      "git_blob": "b63583ac801ee1c5731d2b6158cc6213ce4f6948",
+      "bytes": 111,
+      "sha256": "b7c8a95dedaf98dbc225a3772981fe10c52ba0eaf218a43b059635fa73410842"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-20.tsv",
+      "git_blob": "bd64ebea531b37bdb0afa8b0fb750ef16e723317",
+      "bytes": 226,
+      "sha256": "011a0b52f05503c037d92c8c4960023685b60693dad98bb7e1ef3c7d2a0c176d"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-21.tsv",
+      "git_blob": "98fe68eca4dd22ff11446dccb8ba454b6287ec92",
+      "bytes": 110,
+      "sha256": "da2713f36dc7ccf32b99181b97ef9cb1d1aa6861215be92cc9ead9b3f87be059"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-22.tsv",
+      "git_blob": "0d88174f8587f48f2f00a3149856de90b096d274",
+      "bytes": 235,
+      "sha256": "796f64274821dc15b47d420a14a44a1de6ac6d59e539f0016c4868c6cc9bac1f"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-23.tsv",
+      "git_blob": "8b4a8fedd5ddae1c537063de9e174e5500410b3d",
+      "bytes": 221,
+      "sha256": "be9cf335fd69c95c208137f913f2d07c1de649899c0994d271e2510000d0876e"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-24.tsv",
+      "git_blob": "cf6bb312713d5091c2ae47f1c3a21c0e8cde48c3",
+      "bytes": 221,
+      "sha256": "96094d7f750d9240d75ae3324c591178fa6c60cbca06f4c5dd5568f3586ae88f"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-25.tsv",
+      "git_blob": "188b6c1ba64a02aa04fcf72d302f41e9de0ed331",
+      "bytes": 222,
+      "sha256": "be397053e53d61ef88f4e1f6350156b1fc0d12b53b3063607d72a7483e5a6789"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-3.tsv",
+      "git_blob": "6300f3bf29d22de2ca791e850e93aae720f82078",
+      "bytes": 227,
+      "sha256": "3950cd80c541a318144f414c660185b8e19ebf15f6d2aa1bc1c31568d93aca6a"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-4.tsv",
+      "git_blob": "513b693c6d4b5c1a4c826dc6f2e195f2a4500a60",
+      "bytes": 263,
+      "sha256": "af56219a14b99b92ce4d14b1239507cea323c0c17f456c4e48aa5ac9e0632cfc"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-5.tsv",
+      "git_blob": "5fd3365dcf1db30dd179e5d266211f1419350608",
+      "bytes": 110,
+      "sha256": "315bb0a45af5cfcc720a57c85d60cc5cd675145aec7bb38963275993a30340ca"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-6.tsv",
+      "git_blob": "f385e6b705b9541feef04632960cd39ea5273173",
+      "bytes": 227,
+      "sha256": "442dd14948471b468baff3ee2038e6ea3fe7c03e082990363ebe14daa43a23f9"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-7.tsv",
+      "git_blob": "d4aaa85561da2914e43373b6e21e8d81880c0517",
+      "bytes": 230,
+      "sha256": "7e6c71624d7c368fb95c575c10160ff8a36131cd9ba189634c1b8d51d7b779ac"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-8.tsv",
+      "git_blob": "1cd535a9cea88c3b1d9636dd777f9988da56fccc",
+      "bytes": 228,
+      "sha256": "14e98cf058c01afc1ab5a3edfebf6bfee0f4f73e978684c4081c78b2d48bedd3"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-gold-component-9.tsv",
+      "git_blob": "eb11b557c83ac0916a184e38433b481b50fffad3",
+      "bytes": 226,
+      "sha256": "bac2e68d79acc1b47c6b9d00ace661474267237c367c35726a616fc69816e21f"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-navy-latin-1x.tsv",
+      "git_blob": "58481c41c63d663811900a94bbe328bd3b45d81d",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-navy-latin.tsv",
+      "git_blob": "75315e5bc7732c891663eff65e9e0df9800b745f",
+      "bytes": 361,
+      "sha256": "55f9e7ec3e39137620519a0747c1c45b5dc7e43ee10508b0334e0654aeab4a49"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-raw.tsv",
+      "git_blob": "365dfed30f4be0009b074b9e8b22aecc3a78af1b",
+      "bytes": 3224,
+      "sha256": "f0b48fb7c3d89814a3b386f8634b3dd42310c53952f492880368b2c4aee33891"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-teal-text-1x.tsv",
+      "git_blob": "d5038c269feddc029152fbb5f74980f3076d76f0",
+      "bytes": 4249,
+      "sha256": "510626ed396b2a4c8aaaff7c0c3284f912ab5451ea8c48fddb96afcc00669922"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-white-latin.tsv",
+      "git_blob": "84b82588b0e1ea5455fcfec93e230cd0cd73d0ee",
+      "bytes": 2609,
+      "sha256": "556019296b4df665f3d9912d09e3a999aed96777d625e6856afd256d86634659"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr-white-text.tsv",
+      "git_blob": "4ed925dd834bca45235554f1199cfca71a10d8db",
+      "bytes": 2729,
+      "sha256": "ca4d75bfb3b0be88db2042d7fa5d653a2a5cde0a6882fb9ac5bf88621cbbb8d2"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr.json",
+      "git_blob": "fd463bc7438c8aeb2a6cb8333041ff43c3ec4256",
+      "bytes": 9937,
+      "sha256": "d74c0ef513346292647f1037adbbd01b93585127968301057bc4c670194fe8bb"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0.png",
+      "git_blob": "2c12c53e9281bc626fec8933cb14616e40ed4de1",
+      "bytes": 554441,
+      "sha256": "4362e3030fb3a040e76ce90c6520eca15dba3617397ee497ca5054c1e7b45663"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-surface-readiness.json",
+      "git_blob": "78d127383bea7f990b226ad2c048513b2ef7a192",
+      "bytes": 5851,
+      "sha256": "50bad08d6b5b3c66a8a3f85b659e66fdeea4a244073888eca387ea68a3602608"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/native-surfaces-result.json",
+      "git_blob": "343d95acc8d58a2b83046910c8afe4b42cd674bc",
+      "bytes": 4509,
+      "sha256": "2e33c87c9c4c6ec85a69ba0f0fbd65b64a852d402c3f78e3581a76f3c120b721"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/provenance.json",
+      "git_blob": "9b1417bc8c35180a83b0840f92b5b8a8527112bf",
+      "bytes": 13400,
+      "sha256": "d2ca89c09ed495af09dd81475327e9a9cf6ad77e2fcb3928846c42c6e74a56db"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/0017-observe-springen-ocr-contrast.tsv",
+      "git_blob": "3974f8ef4a5369e6eb67050ac08db87228aec81f",
+      "bytes": 9061,
+      "sha256": "ae11f39687dd95c183fb4f26aa3aa1b0fc6a54079823bf95974936dea9c59224"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/0017-observe-springen-ocr-gold-component-0.tsv",
+      "git_blob": "d0e1ee7ba3b6e4583cd47388790e12b44e2d7a0b",
+      "bytes": 233,
+      "sha256": "9f79ea0c2f94dd641d0c8870b33867f1c8e300f752a2fed12c42c9eed2533aaa"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/0017-observe-springen-ocr-gold-component-1.tsv",
+      "git_blob": "be9b51a37db73731898a39764c4ca5d803fddff1",
+      "bytes": 262,
+      "sha256": "0dc6a09de7b15b648cd37edb741ec93e6fa163b95c17f841b4d271c01443e029"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/0017-observe-springen-ocr-gold-component-2.tsv",
+      "git_blob": "47b453ecafdb5450c342409b4cf565fb7eb8cdb0",
+      "bytes": 231,
+      "sha256": "952832cee45f400b97d34a75f8d5c58c96ccfb52d180a972f4b30b51c1d61fff"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/0017-observe-springen-ocr-gold-component-3.tsv",
+      "git_blob": "1680a7d2b6b3da2490aa493f19b16d9fb0a33ea8",
+      "bytes": 226,
+      "sha256": "1fc886b051fe6187448b14e2f0027193223467095c47c09e9bce3c68766b0685"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/0017-observe-springen-ocr-gold-component-4.tsv",
+      "git_blob": "514a737ff56fe2fa0316db4d106a8b10f28b2223",
+      "bytes": 260,
+      "sha256": "e3d0d9836bd74697c8462132e34044dc3838d0488781b14a3e98de7e47c15894"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/0017-observe-springen-ocr-gold-component-5.tsv",
+      "git_blob": "ebaf21f300562b5c3b1726bc0411b8c81999cab0",
+      "bytes": 224,
+      "sha256": "872155999834e4c64dc208ee8b02c7c87f93a5b3ef85a90204f80a68e988eeff"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/0017-observe-springen-ocr-navy-latin-1x.tsv",
+      "git_blob": "5fc7a05d078d817b9ef2355e8ee0dd32ad81ee6f",
+      "bytes": 2169,
+      "sha256": "03ce0aea17b2eca0f12bfd87a3adbaff1a5e34ed71c4ae11dd0e34526085473e"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/0017-observe-springen-ocr-navy-latin.tsv",
+      "git_blob": "fc2672c482de5b39a0068cbd5518971a6ed6854f",
+      "bytes": 2611,
+      "sha256": "7c6856a72b188b726b994aaf763d446b5c67922b80634e2d8c5d216014cf6dde"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/0017-observe-springen-ocr-raw.tsv",
+      "git_blob": "c94a24cf84b058bb41bad49e5589a9887ec069ae",
+      "bytes": 10066,
+      "sha256": "49be41a7996775a92540b305d00761b90826ce61cd601e9573fbb41073f36c39"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/0017-observe-springen-ocr-teal-text-1x.tsv",
+      "git_blob": "5d5f17e9a9b627278c75610f7837eb47d877f9d2",
+      "bytes": 4634,
+      "sha256": "1dced4a27c2bd98fea667c33df3d9985adbfa3ce04e4c660d7e851d1910698be"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/0017-observe-springen-ocr-white-latin.tsv",
+      "git_blob": "f12b8a93a482db5f7ce3b17b0e6dd005d4003b2a",
+      "bytes": 5991,
+      "sha256": "9f503de6fef9f3aee4c88409eefc4ec1dea4ba35b9c3aaf781e419ff59866fa3"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/0017-observe-springen-ocr-white-text.tsv",
+      "git_blob": "631f6f6bc77488af7ceb0613aa286313cec3633d",
+      "bytes": 5533,
+      "sha256": "c4ce7117dd363a6f194aa01e32d622efd325e5149ddea731c29897d49e4b2138"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/local-ocr/provenance.json",
+      "git_blob": "ec1688a84c4406635efe77c33e2dddc3961c688a",
+      "bytes": 3160,
+      "sha256": "1ea1da123fe84f409ac8b2d13c218f8d6fdd59ecfec230bf7421e8114a734a5c"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_creative_7b/provenance.json",
+      "git_blob": "dea774bf479debd0d204589e5e2d695000ac0adb",
+      "bytes": 3261,
+      "sha256": "147b1416c577b6827fdba99c3c671e5a6fc6b0f2dd5ea1b541b37a16ded00d0c"
+    }
+  ],
+  "total_bytes": 9838524,
+  "scope": "Actual Git blobs materialized solely in isolated scratch test view; no worktree edit/download."
+}

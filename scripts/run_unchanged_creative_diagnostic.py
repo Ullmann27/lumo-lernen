@@ -63,7 +63,7 @@ def validate_tour_context(args, context: dict) -> str:
     common.require(isinstance(context, dict) and context.get('schema') == 1
                    and context.get('status') == 'BOUND',
                    'A completed, separately bound Creative preflight is required')
-    common.require(args.qa_job_name == common.CREATIVE_QA_JOB
+    common.require(args.qa_job_name in common.CREATIVE_QA_JOBS
                    and args.qa_source == args.probe_source == ROOT
                    and args.candidate_source != ROOT
                    and args.native_source not in (ROOT, args.candidate_source),
@@ -83,7 +83,7 @@ def validate_tour_context(args, context: dict) -> str:
     qa = common.verify_qa(
         data['qa/run.json'], data['qa/jobs.json'], source=args.expected_qa_source,
         run_id=args.expected_qa_run, attempt=args.expected_qa_attempt,
-        job_name=common.CREATIVE_QA_JOB)
+        job_name=args.qa_job_name)
     common.require(context.get('diagnostic_qa') == qa,
                    'Creative QA report belongs to another job, attempt or source')
     creative = common.load_module(
@@ -143,7 +143,9 @@ def prepare(args):
         common.require(not value.is_symlink(), 'Diagnostic inputs must not be symlinks')
         setattr(args, key, value.resolve())
     common.require(not args.out.exists(), 'Refusing to reuse a Creative tour directory')
-    args.qa_job_name = common.CREATIVE_QA_JOB
+    args.qa_job_name = getattr(args, 'qa_job_name', common.CREATIVE_QA_JOB)
+    common.require(args.qa_job_name in common.CREATIVE_QA_JOBS,
+                   'Unsupported Creative diagnostic job name')
     args.probe_source = args.qa_source
     args.metadata_dir = args.candidate_metadata_dir
     args.expected_source = common.HOST
@@ -184,6 +186,8 @@ def main(argv=None) -> int:
     parser.add_argument('--expected-qa-source', required=True)
     parser.add_argument('--expected-qa-run', type=int, required=True)
     parser.add_argument('--expected-qa-attempt', type=int, required=True)
+    parser.add_argument('--qa-job-name', choices=common.CREATIVE_QA_JOBS,
+                        default=common.CREATIVE_QA_JOB)
     args = parser.parse_args(argv)
     try:
         creative = prepare(args)

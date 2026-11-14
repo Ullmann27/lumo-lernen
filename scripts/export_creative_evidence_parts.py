@@ -26,10 +26,12 @@ MAX_FILES = 20_000
 MAX_INDEX_BYTES = 4 * 1024 * 1024
 MAX_PART_MANIFEST_BYTES = 16 * 1024
 DIAGNOSTIC_WORKFLOW = ".github/workflows/lumo-creative-7b16-diagnostic.yml"
+CONSOLE_JOYSTICK_WORKFLOW = ".github/workflows/lumo-console-joystick-7b16.yml"
 WORKFLOWS = (
     ".github/workflows/lumo-kart-graphics-2019.yml",
     ".github/workflows/lumo-studio-2019.yml",
     DIAGNOSTIC_WORKFLOW,
+    CONSOLE_JOYSTICK_WORKFLOW,
 )
 
 
@@ -151,7 +153,7 @@ def export_parts(source: Path, output: Path, *, repository: str, workflow_path: 
     sizes = {path: signature[3] for path, signature in signatures.items()}
     groups = plan_parts(sizes, max_part_bytes)
     assigned = {path: number for number, group in enumerate(groups, 1) for path in group}
-    diagnostic = workflow_path == DIAGNOSTIC_WORKFLOW
+    diagnostic = workflow_path in (DIAGNOSTIC_WORKFLOW, CONSOLE_JOYSTICK_WORKFLOW)
     source_key = "probe_source_sha" if diagnostic else "host_source_sha"
     index = {
         "schema": 2 if diagnostic else 1,

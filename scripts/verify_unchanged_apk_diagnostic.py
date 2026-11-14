@@ -59,10 +59,22 @@ FOLLOWUP_QA_JOBS = (
     'unchanged-apk-followup-api37-swiftshader', 'unchanged-apk-followup-api37-swangle',
     'unchanged-apk-followup-update2017',
 )
+CONSOLE_JOYSTICK_QA_WORKFLOW = '.github/workflows/lumo-console-joystick-7b16.yml'
+CONSOLE_JOYSTICK_QA_BRANCH = 'qa/lumo-console-joystick-7b16-20261114'
+CONSOLE_JOYSTICK_CREATIVE_JOB = 'unchanged-apk-console-joystick-creative-api35'
+CONSOLE_JOYSTICK_QA_JOBS = (
+    'unchanged-apk-console-joystick-api37-host',
+    'unchanged-apk-console-joystick-api37-swiftshader',
+    'unchanged-apk-console-joystick-api37-swangle',
+    CONSOLE_JOYSTICK_CREATIVE_JOB,
+)
+CREATIVE_QA_JOBS = (CREATIVE_QA_JOB, CONSOLE_JOYSTICK_CREATIVE_JOB)
 QA_ROUTES = {name: (QA_WORKFLOW, QA_BRANCH) for name in QA_JOBS}
 QA_ROUTES[CREATIVE_QA_JOB] = (CREATIVE_QA_WORKFLOW, CREATIVE_QA_BRANCH)
 QA_ROUTES.update({name: (FOLLOWUP_QA_WORKFLOW, FOLLOWUP_QA_BRANCH)
                   for name in FOLLOWUP_QA_JOBS})
+QA_ROUTES.update({name: (CONSOLE_JOYSTICK_QA_WORKFLOW, CONSOLE_JOYSTICK_QA_BRANCH)
+                  for name in CONSOLE_JOYSTICK_QA_JOBS})
 BUILD_STEPS = (
     'Build unified real Android APK',
     'Verify APK archive and collect reproducible source hashes',
