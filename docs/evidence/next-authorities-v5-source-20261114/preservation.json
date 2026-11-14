@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "exact_reverse_to_original": true,
+  "original_workflow": {
+    "bytes": 65909,
+    "sha256": "fa59d9fa5b2fbc333300c57b821561132aab0f043bf1ba4e9f7f07840b1d17eb",
+    "git_blob": "fbd470a24012b238de1e347c0021e40951aa7c23"
+  },
+  "patched_workflow": {
+    "bytes": 65937,
+    "sha256": "7ce46ff7e4f1433b6639f826ab8b9072f7caea2e95a6236bdc51053d56d086e5",
+    "git_blob": "f64febdb79ff9a0f80c858421bcbce96c1e450db"
+  },
+  "only_changed_source_text": {
+    "before": "for key in ('head', 'tree', 'index_sha256', 'tracked_count'):",
+    "after": "for key in ('head', 'tree', 'index_stage_sha256', 'index_flags_sha256', 'tracked_count'):"
+  },
+  "source_snapshot_before_after_byte_equal": true,
+  "source_snapshot": {
+    "bytes": 7535,
+    "sha256": "1ed0e3cd4c7839d9d3e3427767fb5eaadf0550a782885fb373bd694e2cc65760",
+    "git_blob": "123e8b002086006b576160d65a52949531812e22"
+  },
+  "original_inventory_block": {
+    "bytes": 1473,
+    "sha256": "29d1a3a1ed91365dfc492b1fb5100eb05df911f40266f8ceebf78bd27ab9e0dd",
+    "git_blob": "1ef72b2d683f8b20ac6ff2ee5dc8e1e1f45a8056"
+  },
+  "patched_inventory_block": {
+    "bytes": 1501,
+    "sha256": "2ef7180f1d210e8627260624b6ab0c85fb159b9ba7f071069b184a3b86c67b7a",
+    "git_blob": "764fc655fbfa446966007653f2e17a6cebae83ce"
+  },
+  "original_binary_hashes_preserved": "Both complete original source-summary files and raw binary indices remain untouched and are fully hashed by the same final inventory.",
+  "unchanged": [
+    "All five groups and their tests/compilers/renderers",
+    "All source snapshot, commit/tree/tracked/stage/flag guards",
+    "All image/marker/input/deadline/ACK/return conditions",
+    "Artifact names, exact run/pair binding, upload conditions and permissions",
+    "Final full original file inventory and complete result-writing body outside the key tuple"
+  ]
+}

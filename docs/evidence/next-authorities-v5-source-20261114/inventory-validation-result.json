@@ -1,0 +1,269 @@
+{
+  "schema": 1,
+  "scope": "Six local file-inventory process calls only; no product, renderer, Dart, Android or CI rerun.",
+  "status": "ALL_EXPECTED_OUTCOMES_MATCHED",
+  "process_calls": 6,
+  "original_red_reproduced": true,
+  "patched_full_original_replay_succeeded": true,
+  "negative_stage_flag_cases_rejected": 4,
+  "shared_originals_unchanged": true,
+  "full_original_file_count": 197,
+  "results": [
+    {
+      "name": "old_original_red",
+      "kind": "controlled local original-evidence replay; not CI",
+      "program": {
+        "bytes": 1473,
+        "sha256": "29d1a3a1ed91365dfc492b1fb5100eb05df911f40266f8ceebf78bd27ab9e0dd",
+        "git_blob": "1ef72b2d683f8b20ac6ff2ee5dc8e1e1f45a8056"
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/b3485b7bb989/host-abb531-final-inventory-repair-20261114/validation/original-inventory.py"
+      ],
+      "environment": {
+        "LUMO_QUAL_EVIDENCE": "/workspace/scratch/b3485b7bb989/host-abb531-final-inventory-repair-20261114/controlled-replays-not-ci/old_original_red/copied-originals",
+        "QUALIFICATION_GROUP": "quiz",
+        "EXPECTED_HOST": "abb53125528bae174b26fcec4c1d6cb6b4a899b5",
+        "EXPECTED_NATIVE": "2e023854b49979720fec7e176dfe3d7cbc7fc3c7",
+        "EXPECTED_NATIVE_TREE": "0904821ed75ad1adbcc6a7057be2355c694f5dba",
+        "GITHUB_RUN_ID": "43627104987",
+        "GITHUB_RUN_ATTEMPT": "1"
+      },
+      "original_ci_identifiers_are_input_provenance_only": true,
+      "synthetic_mutation": null,
+      "changed_paths": [],
+      "exit_code": 1,
+      "timed_out": false,
+      "elapsed_seconds": 0.06499493500086828,
+      "expected_exit_code": 1,
+      "expected_error": "ValueError: Final source binding differs",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "stderr": {
+        "bytes": 268,
+        "sha256": "7a41a13e04d0a80d5098c656d44ddc1e8d3ac3b356445089e1af1a05bed84630",
+        "git_blob": "82880d7a109b9d0a618e5d03873fd4c16e356a89"
+      }
+    },
+    {
+      "name": "patched_original_green",
+      "kind": "controlled local original-evidence replay; not CI",
+      "program": {
+        "bytes": 1501,
+        "sha256": "2ef7180f1d210e8627260624b6ab0c85fb159b9ba7f071069b184a3b86c67b7a",
+        "git_blob": "764fc655fbfa446966007653f2e17a6cebae83ce"
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/b3485b7bb989/host-abb531-final-inventory-repair-20261114/validation/patched-inventory.py"
+      ],
+      "environment": {
+        "LUMO_QUAL_EVIDENCE": "/workspace/scratch/b3485b7bb989/host-abb531-final-inventory-repair-20261114/controlled-replays-not-ci/patched_original_green/copied-originals",
+        "QUALIFICATION_GROUP": "quiz",
+        "EXPECTED_HOST": "abb53125528bae174b26fcec4c1d6cb6b4a899b5",
+        "EXPECTED_NATIVE": "2e023854b49979720fec7e176dfe3d7cbc7fc3c7",
+        "EXPECTED_NATIVE_TREE": "0904821ed75ad1adbcc6a7057be2355c694f5dba",
+        "GITHUB_RUN_ID": "43627104987",
+        "GITHUB_RUN_ATTEMPT": "1"
+      },
+      "original_ci_identifiers_are_input_provenance_only": true,
+      "synthetic_mutation": null,
+      "changed_paths": [],
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.11507348800296313,
+      "expected_exit_code": 0,
+      "expected_error": null,
+      "stdout": {
+        "bytes": 45,
+        "sha256": "980a2e3bbf6d3abc59dd981e58d3646825e57a8b94c0b33bcd48b8945bd08905",
+        "git_blob": "2d8257c22823455e8df05f17f2f494e6ce34b89e"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      }
+    },
+    {
+      "name": "changed_native_stage",
+      "kind": "controlled local original-evidence replay; not CI",
+      "program": {
+        "bytes": 1501,
+        "sha256": "2ef7180f1d210e8627260624b6ab0c85fb159b9ba7f071069b184a3b86c67b7a",
+        "git_blob": "764fc655fbfa446966007653f2e17a6cebae83ce"
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/b3485b7bb989/host-abb531-final-inventory-repair-20261114/validation/patched-inventory.py"
+      ],
+      "environment": {
+        "LUMO_QUAL_EVIDENCE": "/workspace/scratch/b3485b7bb989/host-abb531-final-inventory-repair-20261114/controlled-replays-not-ci/changed_native_stage/copied-originals",
+        "QUALIFICATION_GROUP": "quiz",
+        "EXPECTED_HOST": "abb53125528bae174b26fcec4c1d6cb6b4a899b5",
+        "EXPECTED_NATIVE": "2e023854b49979720fec7e176dfe3d7cbc7fc3c7",
+        "EXPECTED_NATIVE_TREE": "0904821ed75ad1adbcc6a7057be2355c694f5dba",
+        "GITHUB_RUN_ID": "43627104987",
+        "GITHUB_RUN_ATTEMPT": "1"
+      },
+      "original_ci_identifiers_are_input_provenance_only": true,
+      "synthetic_mutation": "stage",
+      "changed_paths": [
+        "source/native/source-index-stage-after.raw",
+        "source-after.json"
+      ],
+      "exit_code": 1,
+      "timed_out": false,
+      "elapsed_seconds": 0.06464221100031864,
+      "expected_exit_code": 1,
+      "expected_error": "ValueError: Final source binding differs",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "stderr": {
+        "bytes": 267,
+        "sha256": "776215de42036953d6f32ff8751af5a44edfa57cc105d7f33ea03f75cf4bb473",
+        "git_blob": "e66e365d65f80b93242b18b72c2572c89f7b1730"
+      }
+    },
+    {
+      "name": "changed_native_flags",
+      "kind": "controlled local original-evidence replay; not CI",
+      "program": {
+        "bytes": 1501,
+        "sha256": "2ef7180f1d210e8627260624b6ab0c85fb159b9ba7f071069b184a3b86c67b7a",
+        "git_blob": "764fc655fbfa446966007653f2e17a6cebae83ce"
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/b3485b7bb989/host-abb531-final-inventory-repair-20261114/validation/patched-inventory.py"
+      ],
+      "environment": {
+        "LUMO_QUAL_EVIDENCE": "/workspace/scratch/b3485b7bb989/host-abb531-final-inventory-repair-20261114/controlled-replays-not-ci/changed_native_flags/copied-originals",
+        "QUALIFICATION_GROUP": "quiz",
+        "EXPECTED_HOST": "abb53125528bae174b26fcec4c1d6cb6b4a899b5",
+        "EXPECTED_NATIVE": "2e023854b49979720fec7e176dfe3d7cbc7fc3c7",
+        "EXPECTED_NATIVE_TREE": "0904821ed75ad1adbcc6a7057be2355c694f5dba",
+        "GITHUB_RUN_ID": "43627104987",
+        "GITHUB_RUN_ATTEMPT": "1"
+      },
+      "original_ci_identifiers_are_input_provenance_only": true,
+      "synthetic_mutation": "flags",
+      "changed_paths": [
+        "source/native/source-index-flags-after.raw",
+        "source-after.json"
+      ],
+      "exit_code": 1,
+      "timed_out": false,
+      "elapsed_seconds": 0.06497394899997744,
+      "expected_exit_code": 1,
+      "expected_error": "ValueError: Final source binding differs",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "stderr": {
+        "bytes": 267,
+        "sha256": "776215de42036953d6f32ff8751af5a44edfa57cc105d7f33ea03f75cf4bb473",
+        "git_blob": "e66e365d65f80b93242b18b72c2572c89f7b1730"
+      }
+    },
+    {
+      "name": "missing_native_stage",
+      "kind": "controlled local original-evidence replay; not CI",
+      "program": {
+        "bytes": 1501,
+        "sha256": "2ef7180f1d210e8627260624b6ab0c85fb159b9ba7f071069b184a3b86c67b7a",
+        "git_blob": "764fc655fbfa446966007653f2e17a6cebae83ce"
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/b3485b7bb989/host-abb531-final-inventory-repair-20261114/validation/patched-inventory.py"
+      ],
+      "environment": {
+        "LUMO_QUAL_EVIDENCE": "/workspace/scratch/b3485b7bb989/host-abb531-final-inventory-repair-20261114/controlled-replays-not-ci/missing_native_stage/copied-originals",
+        "QUALIFICATION_GROUP": "quiz",
+        "EXPECTED_HOST": "abb53125528bae174b26fcec4c1d6cb6b4a899b5",
+        "EXPECTED_NATIVE": "2e023854b49979720fec7e176dfe3d7cbc7fc3c7",
+        "EXPECTED_NATIVE_TREE": "0904821ed75ad1adbcc6a7057be2355c694f5dba",
+        "GITHUB_RUN_ID": "43627104987",
+        "GITHUB_RUN_ATTEMPT": "1"
+      },
+      "original_ci_identifiers_are_input_provenance_only": true,
+      "synthetic_mutation": "missing_stage",
+      "changed_paths": [
+        "source-after.json"
+      ],
+      "exit_code": 1,
+      "timed_out": false,
+      "elapsed_seconds": 0.06513621900012367,
+      "expected_exit_code": 1,
+      "expected_error": "KeyError: 'index_stage_sha256'",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "stderr": {
+        "bytes": 339,
+        "sha256": "c126c9ccbf4a3ae1bcb38f1a113016efd7ab244a30a3f73d46b4597c1a9d7b7c",
+        "git_blob": "cb30013bc69090596042c9fe6c9e5771c96bf555"
+      }
+    },
+    {
+      "name": "missing_native_flags",
+      "kind": "controlled local original-evidence replay; not CI",
+      "program": {
+        "bytes": 1501,
+        "sha256": "2ef7180f1d210e8627260624b6ab0c85fb159b9ba7f071069b184a3b86c67b7a",
+        "git_blob": "764fc655fbfa446966007653f2e17a6cebae83ce"
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/b3485b7bb989/host-abb531-final-inventory-repair-20261114/validation/patched-inventory.py"
+      ],
+      "environment": {
+        "LUMO_QUAL_EVIDENCE": "/workspace/scratch/b3485b7bb989/host-abb531-final-inventory-repair-20261114/controlled-replays-not-ci/missing_native_flags/copied-originals",
+        "QUALIFICATION_GROUP": "quiz",
+        "EXPECTED_HOST": "abb53125528bae174b26fcec4c1d6cb6b4a899b5",
+        "EXPECTED_NATIVE": "2e023854b49979720fec7e176dfe3d7cbc7fc3c7",
+        "EXPECTED_NATIVE_TREE": "0904821ed75ad1adbcc6a7057be2355c694f5dba",
+        "GITHUB_RUN_ID": "43627104987",
+        "GITHUB_RUN_ATTEMPT": "1"
+      },
+      "original_ci_identifiers_are_input_provenance_only": true,
+      "synthetic_mutation": "missing_flags",
+      "changed_paths": [
+        "source-after.json"
+      ],
+      "exit_code": 1,
+      "timed_out": false,
+      "elapsed_seconds": 0.0653060020013072,
+      "expected_exit_code": 1,
+      "expected_error": "KeyError: 'index_flags_sha256'",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "stderr": {
+        "bytes": 339,
+        "sha256": "4a43fbc2e317b29acd491245556cfcfabf60548fa4a4bbed9804ff8a246d81eb",
+        "git_blob": "885449bc6fd244f504b0f9af4ec37bc644cb993c"
+      }
+    }
+  ]
+}

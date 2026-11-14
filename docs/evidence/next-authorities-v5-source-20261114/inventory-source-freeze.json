@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "state": "SOURCE_FROZEN_BEFORE_AUTHORIZED_ORIGINAL_REPLAYS",
+  "repository": "Ullmann27/lumo-lernen",
+  "base_sha": "abb53125528bae174b26fcec4c1d6cb6b4a899b5",
+  "base_tree": "cbe1cd4d125a8550995c29c2db94e22737921e2c",
+  "sources": [
+    {
+      "path": ".github/workflows/lumo-next-table-authorities.yml",
+      "mode": "100644",
+      "before": {
+        "bytes": 65909,
+        "sha256": "fa59d9fa5b2fbc333300c57b821561132aab0f043bf1ba4e9f7f07840b1d17eb",
+        "git_blob": "fbd470a24012b238de1e347c0021e40951aa7c23"
+      },
+      "after": {
+        "bytes": 65937,
+        "sha256": "7ce46ff7e4f1433b6639f826ab8b9072f7caea2e95a6236bdc51053d56d086e5",
+        "git_blob": "f64febdb79ff9a0f80c858421bcbce96c1e450db"
+      },
+      "file": "final-source/.github/workflows/lumo-next-table-authorities.yml"
+    }
+  ],
+  "repo_source_paths": 1,
+  "product_runs": 0,
+  "source_or_ref_mutations_outside_pack": false
+}

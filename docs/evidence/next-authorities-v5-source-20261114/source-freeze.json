@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_BEFORE_NEW_CI",
+  "host_parent": "abb53125528bae174b26fcec4c1d6cb6b4a899b5",
+  "host_parent_tree": "cbe1cd4d125a8550995c29c2db94e22737921e2c",
+  "native_sha": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+  "native_wrapper_blob": "6027cc48be6862a9f01b98814b6345fa05d74a2e",
+  "path": ".github/workflows/lumo-next-table-authorities.yml",
+  "before_tuple_repair": {
+    "bytes": 65909,
+    "sha256": "fa59d9fa5b2fbc333300c57b821561132aab0f043bf1ba4e9f7f07840b1d17eb",
+    "git_blob": "fbd470a24012b238de1e347c0021e40951aa7c23"
+  },
+  "tested_tuple_repair": {
+    "bytes": 65937,
+    "sha256": "7ce46ff7e4f1433b6639f826ab8b9072f7caea2e95a6236bdc51053d56d086e5",
+    "git_blob": "f64febdb79ff9a0f80c858421bcbce96c1e450db"
+  },
+  "final_workflow": {
+    "bytes": 65937,
+    "sha256": "adcda65ec04244a6f30795f232d8fcb9e695167c6ff7168237b54f7b3c770d74",
+    "git_blob": "73f6ea13daf89c21d9ba497476c6bb1d0f91b0b3"
+  },
+  "changes_after_tested_repair": {
+    "native_sha_substitutions": 2,
+    "native_tree_substitutions": 1,
+    "exact_reverse_to_tested_source": true
+  },
+  "unchanged_source_snapshot_sha256": "1ed0e3cd4c7839d9d3e3427767fb5eaadf0550a782885fb373bd694e2cc65760",
+  "actual_original_replay": "Six local inventory-reader processes, 1 old rejection / 1 corrected acceptance / 4 rejecting altered/missing stage or flag cases; no new product pass claimed.",
+  "required_next_gate": "Actual five-group workflow on the new activation commit and exact pinned native source."
+}

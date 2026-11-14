@@ -13,8 +13,8 @@ concurrency:
 
 env:
   EXPECTED_HOST: ${{ github.sha }}
-  EXPECTED_NATIVE: 2e023854b49979720fec7e176dfe3d7cbc7fc3c7
-  EXPECTED_NATIVE_TREE: 0904821ed75ad1adbcc6a7057be2355c694f5dba
+  EXPECTED_NATIVE: f9d9772bb932d7ee8702eeb5bca6d98c286f3b98
+  EXPECTED_NATIVE_TREE: 4036a20ab80de78bcdf0d074b585be88c2946492
   GIT_OPTIONAL_LOCKS: '0'
   PYTHONDONTWRITEBYTECODE: '1'
   LIBGL_ALWAYS_SOFTWARE: '1'
@@ -50,7 +50,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Ullmann27/lumo-godot
-          ref: 2e023854b49979720fec7e176dfe3d7cbc7fc3c7
+          ref: f9d9772bb932d7ee8702eeb5bca6d98c286f3b98
           path: native-source
           persist-credentials: false
       - uses: actions/setup-java@v4
@@ -935,7 +935,7 @@ jobs:
           before = json.loads((root / 'source-before.json').read_bytes())
           after = json.loads((root / 'source-after.json').read_bytes())
           for name in ('host', 'native'):
-              for key in ('head', 'tree', 'index_sha256', 'tracked_count'):
+              for key in ('head', 'tree', 'index_stage_sha256', 'index_flags_sha256', 'tracked_count'):
                   if before['sources'][name][key] != after['sources'][name][key]:
                       raise ValueError('Final source binding differs')
           files = []
