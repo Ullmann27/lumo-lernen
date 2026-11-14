@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "parent": "e168f6ae96c4a1a50fb7c4313963425d0b15a1eb",
+  "parent_tree": "522b84e760dd8526429c0ba031628236457cb4e0",
+  "branch": "evidence/lumo-producer-1225-host-20261114",
+  "prefix": "docs/evidence/producer-1225-host-20261114/",
+  "status": "Source-only producer comparison; no new runtime pass",
+  "files": [
+    {
+      "path": "review.json",
+      "key": "producer122521_host497_502_review",
+      "type": "json",
+      "identity": {
+        "bytes": 10584,
+        "sha256": "6ffa7538ed948e9fabc3bfcd1d7ebb769419b4105fb7823c2cdca2af4ef6f14d",
+        "git_blob": "ee530e4baad383772a807492ce43bd59249d8759"
+      },
+      "url": null
+    },
+    {
+      "path": "baseline-review.json",
+      "key": "producer105014_final_review",
+      "type": "json",
+      "identity": {
+        "bytes": 28768,
+        "sha256": "d214e53b5472958deb47d51e7e1a58836d92ae2b11654c52bb74fedc2c9fb9e7",
+        "git_blob": "fe3a1f15eecf4647693dd258c307d69a0584779c"
+      },
+      "url": null
+    },
+    {
+      "path": "originals/host-open-pulls.json",
+      "key": "producer122521_lumo-lernen_pulls",
+      "type": "json",
+      "identity": {
+        "bytes": 1819250,
+        "sha256": "69063efbe37ce7063667a914ae7ff170d256954eac3c8c2f39a52dc6c2622c83",
+        "git_blob": "79d75a412bdd30d5958d0ef3daed342a1cdd4d0a"
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/pulls?state=open&sort=updated&direction=desc&per_page=100"
+    },
+    {
+      "path": "originals/host497-compare.json",
+      "key": "producer122521_host497_compare",
+      "type": "json",
+      "identity": {
+        "bytes": 13822,
+        "sha256": "f3ade58afa8106b7487fb5c568df510e3af79f3bbcf68e90ea82f21ace282743",
+        "git_blob": "846a0c853c8b27d6cc55f326fa34253e9752f2cb"
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/07cac7225e2f7b6451665dfda9c38841f51c758b...9516068cfb67938fc90d48ff45d56169f00941fc"
+    },
+    {
+      "path": "originals/host502-compare.json",
+      "key": "producer122521_host502_compare",
+      "type": "json",
+      "identity": {
+        "bytes": 577855,
+        "sha256": "20bc8526abdbea7b29a81c497ddb04912ba2442b76935945dba1ac0315ed4aab",
+        "git_blob": "45da8eddbbc45fdedc6046dd5f1a4b242c182c06"
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/c3f44ea7acdfe2ee8be68e8c37ad5fa25f2a1e23...53a9816e8412e31feee19a965c75dbf93790dfc1"
+    },
+    {
+      "path": "originals/host502-test-commit034.json",
+      "key": "producer122521_host502_test_commit",
+      "type": "json",
+      "identity": {
+        "bytes": 16496,
+        "sha256": "631ef1e93896b7d5faea25f4ea83e712f5d86f792d57c4f77abf7a0b9bc93eb5",
+        "git_blob": "70165ce78a2487bdf5e756efe502a8df9ac47505"
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/034fb8742a12675fff140321ccf140a518c45a65"
+    },
+    {
+      "path": "originals/village-capture-034.dart",
+      "key": "producer122521_village034_source",
+      "type": "dart",
+      "identity": {
+        "bytes": 5234,
+        "sha256": "b985d75c182f6d876230920a28cfe0f048940c907bb0672965e60c9b624abc74",
+        "git_blob": "f9c45cbcbd38c94b0d3b6acd6bbd5005f565f100"
+      },
+      "url": "https://github.com/Ullmann27/lumo-lernen/raw/034fb8742a12675fff140321ccf140a518c45a65/test/design/dorfwirtschaft_spielewelt_capture_test.dart"
+    },
+    {
+      "path": "originals/village-capture-53a.dart",
+      "key": "producer122521_village053_source",
+      "type": "dart",
+      "identity": {
+        "bytes": 5217,
+        "sha256": "cc42bda018a3433cebaef86177bb72fc1279f38f91e2def6f59b2fb66289db0a",
+        "git_blob": "935ca225a6fa67df73f520494d61480943435595"
+      },
+      "url": "https://github.com/Ullmann27/lumo-lernen/raw/53a9816e8412e31feee19a965c75dbf93790dfc1/test/design/dorfwirtschaft_spielewelt_capture_test.dart"
+    }
+  ],
+  "omissions": {
+    "reason": "This publication is limited to completed Host497/502 assessment. Other peer scopes remain in their separately owned original packs; full original response identities are retained in review.json.",
+    "referenced_but_not_copied": [
+      {
+        "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/lumo-godot-open-pulls.json",
+        "bytes": 1759869,
+        "sha256": "95adc96a412b561d20431666eb2b2259e9384a700172809400190a6c856e28c2",
+        "git_blob": "4d4bc039f5d4d9833cd6628167dfcc1a1d39bf3c",
+        "full_utf8_json_readback": true
+      },
+      {
+        "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/host491-compare.json",
+        "bytes": 1404725,
+        "sha256": "4d5d55958dce9068a4687e23dfd6870005c6357e138c2233840f4fb853c0ff6d",
+        "git_blob": "e88f6facbb0536429ea313aca55bb4f1787c30d3",
+        "full_utf8_json_readback": true
+      },
+      {
+        "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/host493-compare.json",
+        "bytes": 32633,
+        "sha256": "16e1e88a48bb69ba866b3da755ee1d189e7ee8d832805038f0dfe169c35b8c9c",
+        "git_blob": "acf5e1963a05909ff8830237a42f03622c4e16fb",
+        "full_utf8_json_readback": true
+      },
+      {
+        "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/host494-compare.json",
+        "bytes": 144857,
+        "sha256": "fafa54a1265efc0e41541ea78ac3422cecf4bda7fb0267310bb9cb7b678806f9",
+        "git_blob": "0a860bb21ee5e80d4a96654ca7ba35bd0c29a73d",
+        "full_utf8_json_readback": true
+      },
+      {
+        "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/host477-compare.json",
+        "bytes": 654598,
+        "sha256": "a8e250dcf616e04b7194e1cfb24281a4bbc7fc50b6e74202f5fd701eea9ce3c3",
+        "git_blob": "1c5e51d23ab00eb085f84de84ede4f2127f5a347",
+        "full_utf8_json_readback": true
+      },
+      {
+        "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/native167-compare.json",
+        "bytes": 19896,
+        "sha256": "e6ab5ca3c929a55ed54cfbb011e01a8b680d56b5a8a224e28c099b6f5d532454",
+        "git_blob": "1f6327e8cc1f340888defc3b4974e85a3d9f0985",
+        "full_utf8_json_readback": true
+      },
+      {
+        "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/native181-compare.json",
+        "bytes": 101892,
+        "sha256": "a3b413322279d0c5348d06d9c6b4b677c1752b1eed7b4e2964a53367201494a7",
+        "git_blob": "81614236cbf53519bd69b6c349305f953a8132e9",
+        "full_utf8_json_readback": true
+      }
+    ]
+  },
+  "context": "Review.json is preserved byte-for-byte from the completed pre-publication review. Statements about its then-pending local materialization describe the original recording time. This inventory is the later remote publication wrapper.",
+  "validation": "Before publication: original strings re-parsed as applicable and UTF-8 byte/SHA/Gitblob identities checked. After publication: every published original will be read back from immutable commit; separate publication receipt will record outcomes. No changes to source, pins, workflows, release or production refs."
+}
