@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "qa_source": "6bf22513facf2292233e05914609089b759e0cd4",
+  "run_id": 43570856914,
+  "run_attempt": 1,
+  "scope": "Byte-original failed Android console launches; no repaired Android result.",
+  "files": [
+    {
+      "path": "host/config.json",
+      "artifact_id": 14104332459,
+      "archive_sha256": "a567dcc9892e11e5fa924d8df89d749c994518a093ddb787a6d55cef07ce1526",
+      "archive_member": "runtime-anr/device-logger/console/config.json",
+      "bytes": 415,
+      "sha256": "ce175474d4613f167f8944fe8ffb2dbd01aa606237e892afb98786b61bafb560",
+      "source_original": "/tmp/host-pr486-6bf22513-console-evidence/artifacts/14104332459/selected-originals/runtime-anr/device-logger/console/config.json"
+    },
+    {
+      "path": "host/program.sh",
+      "artifact_id": 14104332459,
+      "archive_sha256": "a567dcc9892e11e5fa924d8df89d749c994518a093ddb787a6d55cef07ce1526",
+      "archive_member": "runtime-anr/device-logger/console/program.sh",
+      "bytes": 1738,
+      "sha256": "ff018a0a321badb4bec080ef0891d7339b709c23f764ca14b938a152c16dd0e8",
+      "source_original": "/tmp/host-pr486-6bf22513-console-evidence/artifacts/14104332459/selected-originals/runtime-anr/device-logger/console/program.sh"
+    },
+    {
+      "path": "host/transcript.stdout",
+      "artifact_id": 14104332459,
+      "archive_sha256": "a567dcc9892e11e5fa924d8df89d749c994518a093ddb787a6d55cef07ce1526",
+      "archive_member": "runtime-anr/device-logger/console/transcript.stdout",
+      "bytes": 13278,
+      "sha256": "0fca6f277c8e541576791c2140b23a8c751d166d37b6d6c3e6372fd69c663f75",
+      "source_original": "/tmp/host-pr486-6bf22513-console-evidence/artifacts/14104332459/selected-originals/runtime-anr/device-logger/console/transcript.stdout"
+    },
+    {
+      "path": "host/launch-stderr.stdout",
+      "artifact_id": 14104332459,
+      "archive_sha256": "a567dcc9892e11e5fa924d8df89d749c994518a093ddb787a6d55cef07ce1526",
+      "archive_member": "runtime-anr/device-logger/start/launch-failure/launch-stderr.stdout",
+      "bytes": 101,
+      "sha256": "3047bd80eaea315daa096465492d9030662f21452e49c19646d632e23474cabd",
+      "source_original": "/workspace/scratch/b3485b7bb989/host-pr486-6bf22513-console-evidence/artifacts/14104332459/selected-originals/runtime-anr/device-logger/start/launch-failure/launch-stderr.stdout"
+    },
+    {
+      "path": "swiftshader/config.json",
+      "artifact_id": 14104313927,
+      "archive_sha256": "6f4c397aa9355c7edc8a49de88a5cf043c68413b5df72fc7887eb6f900fa5798",
+      "archive_member": "runtime-anr/device-logger/console/config.json",
+      "bytes": 415,
+      "sha256": "395ab55b286e801ba80177d18dda86cf745e7ae238c9d66b9872511ef280fbf3",
+      "source_original": "/tmp/host-pr486-6bf22513-console-evidence/artifacts/14104313927/selected-originals/runtime-anr/device-logger/console/config.json"
+    },
+    {
+      "path": "swiftshader/program.sh",
+      "artifact_id": 14104313927,
+      "archive_sha256": "6f4c397aa9355c7edc8a49de88a5cf043c68413b5df72fc7887eb6f900fa5798",
+      "archive_member": "runtime-anr/device-logger/console/program.sh",
+      "bytes": 1738,
+      "sha256": "90193fc553527eb1f7dda5739eaf1e083b633d3f6de371899c86c7d272278576",
+      "source_original": "/tmp/host-pr486-6bf22513-console-evidence/artifacts/14104313927/selected-originals/runtime-anr/device-logger/console/program.sh"
+    },
+    {
+      "path": "swiftshader/transcript.stdout",
+      "artifact_id": 14104313927,
+      "archive_sha256": "6f4c397aa9355c7edc8a49de88a5cf043c68413b5df72fc7887eb6f900fa5798",
+      "archive_member": "runtime-anr/device-logger/console/transcript.stdout",
+      "bytes": 13278,
+      "sha256": "5dd9027246e35ec9c0ddcca771708000730440690e238f2db274d3ccadb4d533",
+      "source_original": "/tmp/host-pr486-6bf22513-console-evidence/artifacts/14104313927/selected-originals/runtime-anr/device-logger/console/transcript.stdout"
+    },
+    {
+      "path": "swiftshader/launch-stderr.stdout",
+      "artifact_id": 14104313927,
+      "archive_sha256": "6f4c397aa9355c7edc8a49de88a5cf043c68413b5df72fc7887eb6f900fa5798",
+      "archive_member": "runtime-anr/device-logger/start/launch-failure/launch-stderr.stdout",
+      "bytes": 101,
+      "sha256": "83599ddb5e645c1a9f5090cc139cdbd00fe80373142b31d00e7a95f3696e15a3",
+      "source_original": "/workspace/scratch/b3485b7bb989/host-pr486-6bf22513-console-evidence/artifacts/14104313927/selected-originals/runtime-anr/device-logger/start/launch-failure/launch-stderr.stdout"
+    },
+    {
+      "path": "swangle/config.json",
+      "artifact_id": 14103618471,
+      "archive_sha256": "b5913e0cd6dd446d2a4a9e04347bd46f2521589d48be37655d680bf43cbef95e",
+      "archive_member": "runtime-anr/device-logger/console/config.json",
+      "bytes": 415,
+      "sha256": "6c0625c644239a54981a3930d62db11bb28297046168c543a99c810796ba3794",
+      "source_original": "/tmp/host-pr486-6bf22513-console-evidence/artifacts/14103618471/selected-originals/runtime-anr/device-logger/console/config.json"
+    },
+    {
+      "path": "swangle/program.sh",
+      "artifact_id": 14103618471,
+      "archive_sha256": "b5913e0cd6dd446d2a4a9e04347bd46f2521589d48be37655d680bf43cbef95e",
+      "archive_member": "runtime-anr/device-logger/console/program.sh",
+      "bytes": 1738,
+      "sha256": "6f4108490e96bc0ceef87e59b879f578dee2edeb52a9c22b763aaf6fefcbdc6a",
+      "source_original": "/tmp/host-pr486-6bf22513-console-evidence/artifacts/14103618471/selected-originals/runtime-anr/device-logger/console/program.sh"
+    },
+    {
+      "path": "swangle/transcript.stdout",
+      "artifact_id": 14103618471,
+      "archive_sha256": "b5913e0cd6dd446d2a4a9e04347bd46f2521589d48be37655d680bf43cbef95e",
+      "archive_member": "runtime-anr/device-logger/console/transcript.stdout",
+      "bytes": 13278,
+      "sha256": "7c9f6c3c75833d3b85673ff02974ed6d0daddb38dd1532cead8599fb61dcab65",
+      "source_original": "/tmp/host-pr486-6bf22513-console-evidence/artifacts/14103618471/selected-originals/runtime-anr/device-logger/console/transcript.stdout"
+    },
+    {
+      "path": "swangle/launch-stderr.stdout",
+      "artifact_id": 14103618471,
+      "archive_sha256": "b5913e0cd6dd446d2a4a9e04347bd46f2521589d48be37655d680bf43cbef95e",
+      "archive_member": "runtime-anr/device-logger/start/launch-failure/launch-stderr.stdout",
+      "bytes": 101,
+      "sha256": "e202a930221a868910c05902f6edc8d3a9ba235d65ed625fa3afd2a9f6ef9f92",
+      "source_original": "/tmp/host-pr486-6bf22513-console-evidence/artifacts/14103618471/selected-originals/runtime-anr/device-logger/start/launch-failure/launch-stderr.stdout"
+    }
+  ]
+}

@@ -142,6 +142,41 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn('scripts/verify_connect_four_candidate.py',verify)
         self.assertNotIn('    if: always()',verify.split('    steps:',1)[0])
 
+    def test_exact_learning_audit_runs_in_build_and_its_originals_reach_delivery(self):
+        build=job(self.workflow,'verify-and-build')
+        label='Audit every exact current-grade learning family on this candidate'
+        audit=step(build,label)
+        self.assertIn('set -euo pipefail',audit)
+        self.assertIn('SOURCE_SHA: ${{ github.event.pull_request.head.sha }}',audit)
+        self.assertIn('dart run tools/audit_learning_tasks_all_grades.dart "$audit_dir"',audit)
+        self.assertIn('2> "$audit_dir/audit.stderr.log" | tee "$audit_dir/audit.stdout.log"',audit)
+        self.assertIn('verify_connect_four_delivery.py bind-learning-audit',audit)
+        for flag in ('--source "$SOURCE_SHA"','--build-run "$GITHUB_RUN_ID"',
+                     '--run-attempt "$GITHUB_RUN_ATTEMPT"','--directory "$audit_dir"'):
+            self.assertIn(flag,audit)
+        self.assertNotIn('if:',audit)
+        self.assertLess(build.index('Resolve immutable Flutter dependencies'),build.index(label))
+        self.assertLess(build.index(label),build.index('Build unified real Android APK'))
+        saved=step(build,'Preserve the original current-source learning family audit')
+        for value in ('if: always()','name: lumo-connect-four-2020-learning-curriculum-audit',
+                      'path: .ci-results/learning-curriculum-audit/','if-no-files-found: error'):
+            self.assertIn(value,saved)
+        delivery=job(self.workflow,'prepare-c4-delivery')
+        self.assertIn('name: lumo-connect-four-2020-learning-curriculum-audit',delivery)
+        self.assertIn('path: proofs/learning/',delivery)
+        self.assertIn('--learning-audit proofs/learning',delivery)
+
+    def test_actual_original_jump_decode_dependencies_precede_unskipped_script_discovery(self):
+        build=job(self.workflow,'verify-and-build')
+        prerequisites=step(build,'Install actual app-script verification dependencies')
+        for command in ('install -y ripgrep ffmpeg','command -v ffmpeg','command -v ffprobe'):
+            self.assertIn(command,prerequisites)
+        self.assertLess(build.index('Install actual app-script verification dependencies'),
+                        build.index('Verify all build and preservation contracts'))
+        contracts=step(build,'Verify all build and preservation contracts')
+        self.assertIn('unittest discover -s scripts/tests -v',contracts)
+        self.assertIn('Build acceptance rejects skipped contract tests.',contracts)
+
     def test_dedicated_2020_delivery_keeps_every_gate_and_no_2019_receipt_path(self):
         names=re.findall(r'^  ([a-z][\w-]*):\s*$',self.workflow.split('jobs:\n',1)[1],re.M)
         self.assertEqual(names,['connect-four-runtime','android-host-compile','verify-and-build',

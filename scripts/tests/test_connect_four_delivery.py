@@ -56,6 +56,41 @@ def fixture():
     return binding, run, pull, jobs, artifacts
 
 
+def learning_identity():
+    return {'commit': 'a'*40, 'tree': 'e'*40,
+            'files': {name: {'bytes': 1, 'sha256': 'f'*64} for name in delivery.LEARNING_AUDIT_SOURCES}}
+
+
+def learning_fixture(root):
+    """Complete synthetic transport records; these are not generated learning tasks."""
+    root.mkdir(exist_ok=True)
+    families = [{'grade': grade, 'subject': 'Synthetic subject', 'unit': 'Synthetic family '+str(index),
+                 'generatedSamples': 32, 'allVariantsEnumerated': False}
+                for grade in range(1, 5) for index in range(59)]
+    summary = {'status': 'SAMPLED_CONTRACT_PASS', 'grades': [1, 2, 3, 4],
+               'familyCount': 236, 'generatedSamples': 7552, 'issues': 0,
+               'allExistingTasksReviewed': False, 'officialCurriculumApproval': False,
+               'allVariantsEnumerated': False, 'scope': 'Explicit synthetic verification fixture'}
+    for name, value in [('summary.json', summary), ('task-families.json', families),
+                         ('issues.json', []), ('audit.stdout.log', summary)]:
+        delivery.write_new(root/name, value)
+    with (root/'task-samples.jsonl').open('x') as handle:
+        for family in families:
+            for seed in (0, 1, 17, 1937):
+                for attempt in range(8):
+                    handle.write(json.dumps({**{key: family[key] for key in ('grade', 'subject', 'unit')},
+                        'seed': seed, 'attempt': attempt, 'prompt': 'Synthetic prompt',
+                        'answer': 'Synthetic answer', 'choices': ['Synthetic answer', 'Synthetic distractor'],
+                        'explanation': 'Synthetic explanation', 'issues': [],
+                        'semanticCurriculumReview': 'pending', 'threeDSceneApproval': False})+'\n')
+    (root/'audit.stderr.log').write_bytes(b'')
+    delivery.write_new(root/'source-binding.json', {
+        'schema': 1, 'kind': 'c4_current_learning_audit', 'repository': delivery.REPOSITORY,
+        'workflow': delivery.WORKFLOW, 'job': 'verify-and-build', 'run_id': 12345, 'run_attempt': 1,
+        'host_source': 'a'*40, 'source': learning_identity(),
+        'originals': {name: delivery.record(root/name) for name in delivery.LEARNING_AUDIT_FILES}})
+
+
 class OriginalAcceptanceTests(unittest.TestCase):
     def setUp(self):
         self.binding, self.run, self.pull, self.jobs, self.artifacts = fixture()
@@ -182,6 +217,92 @@ class PcmOriginalLogTests(unittest.TestCase):
                 delivery.checked_pcm_log(self.path)
 
 
+class CurrentLearningAuditTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)/'learning'
+        learning_fixture(self.root)
+        self.binding = fixture()[0]
+
+    def check(self):
+        with mock.patch.object(delivery, 'learning_source_identity', return_value=learning_identity()):
+            return delivery.checked_learning_audit(self.root, self.binding)
+
+    def test_all_original_family_seed_attempt_rows_are_rechecked_without_changing_bytes(self):
+        before = {path.name: path.read_bytes() for path in self.root.iterdir()}
+        result = self.check()
+        self.assertEqual((result['family_count'], result['generated_samples'], result['structural_issues']),
+                         (236, 7552, 0))
+        self.assertIs(result['official_curriculum_approval'], False)
+        self.assertIs(result['all_variants_enumerated'], False)
+        self.assertEqual(before, {path.name: path.read_bytes() for path in self.root.iterdir()})
+
+    def test_source_tree_run_attempt_and_workflow_cannot_be_relabelled(self):
+        path = self.root/'source-binding.json'; original = path.read_bytes()
+        for key, value in [('host_source', 'd'*40), ('run_id', 12346), ('run_attempt', 2),
+                           ('run_attempt', True), ('workflow', '.github/workflows/old.yml'),
+                           ('job', 'different-job'), ('source', {**learning_identity(), 'tree': 'c'*40})]:
+            data = json.loads(original); data[key] = value; path.write_text(json.dumps(data))
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'source/tree/run/attempt'):
+                self.check()
+        path.write_bytes(original)
+
+    def test_unchanged_report_values_cannot_hide_changed_original_bytes(self):
+        path = self.root/'issues.json'; path.write_bytes(path.read_bytes()+b'\n')
+        with self.assertRaisesRegex(ValueError, 'output bytes changed'): self.check()
+
+    def test_duplicate_missing_or_wrong_family_sample_is_rejected_before_hash_binding(self):
+        path = self.root/'task-samples.jsonl'; original = path.read_bytes(); lines = original.splitlines(True)
+        wrong = json.loads(lines[0]); wrong['unit'] = 'Not a registered family'
+        variants = [b''.join(lines[:-1]), b''.join(lines[:-1]+[lines[0]]),
+                    json.dumps(wrong).encode()+b'\n'+b''.join(lines[1:])]
+        for data in variants:
+            path.write_bytes(data)
+            with self.subTest(bytes=len(data)), self.assertRaises(ValueError): self.check()
+        path.write_bytes(original)
+
+    def test_structural_errors_false_approval_and_incomplete_family_roster_are_rejected(self):
+        variants = [('issues.json', [{'issue': 'missing_answer'}]),
+                    ('task-families.json', delivery.read(self.root/'task-families.json')[:-1]),
+                    ('summary.json', {**delivery.read(self.root/'summary.json'), 'officialCurriculumApproval': True}),
+                    ('audit.stdout.log', {'status': 'NEEDS_REPAIR'})]
+        for name, value in variants:
+            path = self.root/name; original = path.read_bytes(); path.write_text(json.dumps(value))
+            with self.subTest(name=name), self.assertRaises(ValueError): self.check()
+            path.write_bytes(original)
+
+    def test_actual_binding_cli_never_overwrites_a_prior_receipt(self):
+        path = self.root/'source-binding.json'; path.unlink()
+        command = ['verify_connect_four_delivery.py', 'bind-learning-audit', '--directory', str(self.root),
+                   '--source', 'a'*40, '--build-run', '12345', '--run-attempt', '1']
+        with mock.patch.object(delivery, 'learning_source_identity', return_value=learning_identity()), \
+             mock.patch.object(sys, 'argv', command), contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(delivery.main(), 0)
+            original = path.read_bytes()
+            with self.assertRaisesRegex(ValueError, 'overwrite'): delivery.main()
+        self.assertEqual(path.read_bytes(), original)
+        self.assertEqual(self.check()['generated_samples'], 7552)
+
+    def test_binding_requires_current_committed_bytes_and_clean_tracked_source(self):
+        source = Path(self.temp.name)/'source'
+        for relative in delivery.LEARNING_AUDIT_SOURCES:
+            path = source/relative; path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(b'x')
+        def git(command, **kwargs):
+            if command == ['git', 'rev-parse', 'HEAD']: return 'a'*40+'\n'
+            if command == ['git', 'rev-parse', 'HEAD^{tree}']: return 'e'*40+'\n'
+            self.assertEqual(command[:2], ['git', 'show'])
+            return b'x'
+        with mock.patch.object(delivery, 'ROOT', source), \
+             mock.patch.object(delivery.subprocess, 'check_output', side_effect=git), \
+             mock.patch.object(delivery.subprocess, 'run') as clean:
+            result = delivery.learning_source_identity('a'*40)
+            self.assertEqual(set(result['files']), set(delivery.LEARNING_AUDIT_SOURCES))
+            clean.assert_called_with(['git', 'diff', '--exit-code', 'HEAD', '--'], cwd=source, check=True)
+            (source/delivery.LEARNING_AUDIT_SOURCES[0]).write_bytes(b'changed')
+            with self.assertRaisesRegex(ValueError, 'executable source changed'):
+                delivery.learning_source_identity('a'*40)
+
+
 class NewReleaseOnlyTests(unittest.TestCase):
     def setUp(self):
         self.facts = {'versionName': '0.13.8', 'versionCode': 2020}
@@ -289,6 +410,56 @@ class NativeOriginalLogTests(unittest.TestCase):
         self.assertEqual(len(delivery.checked_native_results(self.root, multiline)), 52)
 
 
+class NativeSeventeenRasterTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        # Only the Host count/identity/nonmutation boundary is simulated here.
+        # Actual PNG decoding belongs to the pinned Native helper, called below.
+        self.original = {'schema': 1, 'kind': 'studio_2020_extension',
+                         'source': {'commit': 'b'*40, 'tree': 'c'*40},
+                         'images': [{'synthetic': index} for index in range(17)],
+                         'reports': [{}, {}, {}], 'movies': [{}]}
+        self.path = self.root/'studio-2020-images.json'
+        delivery.write_new(self.path, self.original)
+
+    def check(self, fresh=None):
+        verifier = mock.Mock(return_value=self.original if fresh is None else fresh)
+        with mock.patch.object(delivery, 'native_module', return_value=SimpleNamespace(verify=verifier)) as load:
+            result = delivery.checked_native_extension(self.root, self.root/'source', 'b'*40, 'c'*40)
+        load.assert_called_once_with(self.root/'source', 'verify_studio_2020_rasters.py')
+        verifier.assert_called_once_with(self.root, write=False)
+        return result
+
+    def test_seventeen_original_rasters_still_require_the_actual_readonly_native_helper(self):
+        before = self.path.read_bytes()
+        self.assertEqual(self.check(), delivery.record(self.path))
+        self.assertEqual(self.path.read_bytes(), before)
+
+    def test_old_sixteen_images_wrong_identity_and_missing_sidecars_or_movie_fail(self):
+        for change in ({'images': self.original['images'][:-1]},
+                       {'source': {'commit': 'd'*40, 'tree': 'c'*40}},
+                       {'source': {'commit': 'b'*40, 'tree': 'd'*40}},
+                       {'reports': [{}, {}]}, {'movies': []}):
+            fresh = {**self.original, **change}
+            # Even a mutually identical old/reduced index and replay must fail.
+            self.path.write_text(json.dumps(fresh))
+            with self.subTest(change=change), self.assertRaises(ValueError): self.check(fresh)
+        self.path.write_text(json.dumps(self.original))
+
+    def test_both_current_runner_markers_are_seventeen_and_post_pass_errors_still_fail(self):
+        path = self.root/'nextgen-runner.log'
+        text = ('[Studio2020RasterRoster] PASS 17 actual PNG files, 3 original sidecars and 1 verified facial movie\n'
+                '[LumoNextgen52] PASS: all 48 previous modes plus four Studio2020 modes and 17 bound rasters/movie/sidecars\n'
+                '[LumoNextgen] PASS\n')
+        path.write_text(text)
+        self.assertEqual(delivery.checked_native_runner_log(path), delivery.record(path))
+        for wrong in (text.replace('17', '16'), text.split('\n', 1)[1],
+                      text.replace('[LumoNextgen] PASS', ''), text+'ERROR: retained resource\n'):
+            path.write_text(wrong)
+            with self.subTest(text=wrong), self.assertRaises(ValueError): delivery.checked_native_runner_log(path)
+
+
 class OriginalBundleTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
@@ -377,7 +548,7 @@ class RealFilesAndCommandsTests(unittest.TestCase):
         pin = {'revision': binding['native_source'], 'repository': 'https://github.com/Ullmann27/lumo-godot.git'}
         delivery.write_new(source/'config/godot-source.json', pin)
         for name in ('candidate', 'runtime', 'host_compile', 'android', 'update', 'metadata',
-                     'build_contracts', 'native_evidence', 'native_source'):
+                     'build_contracts', 'native_evidence', 'native_source', 'learning_audit'):
             (root/name).mkdir()
         (root/'android/c4').mkdir()
         payload = b'explicitly-synthetic-byte-transport-fixture-not-a-real-signed-APK'
@@ -403,8 +574,9 @@ class RealFilesAndCommandsTests(unittest.TestCase):
                          for method in delivery.PCM_CONTRACTS]
                         +['Ran 600 tests in 120.005s', 'OK', *delivery.PCM_CONTRACTS.values(), ''])
         (root/'build_contracts/build-contracts.log').write_text(log)
+        learning_fixture(root/'learning_audit')
         args = SimpleNamespace(**{name: root/name for name in ('candidate', 'runtime', 'host_compile', 'android',
-                               'update', 'metadata', 'build_contracts', 'native_evidence', 'native_source')},
+                               'update', 'metadata', 'build_contracts', 'native_evidence', 'native_source', 'learning_audit')},
                                source='a'*40, build_run=12345, run_attempt=1, artifact_id=100,
                                artifact_digest='c'*64, pull_request=999, facts=root/'facts.json', out=root/'delivery')
         return source, args, facts
@@ -416,6 +588,7 @@ class RealFilesAndCommandsTests(unittest.TestCase):
             # its explicit boundary. This is not an APK/device acceptance run.
             with mock.patch('verify_connect_four_candidate.verify', return_value=facts) as candidate, \
                  mock.patch.object(delivery, 'committed_pcm_sources', return_value={'fixture': {}}), \
+                 mock.patch.object(delivery, 'learning_source_identity', return_value=learning_identity()), \
                  mock.patch.object(delivery, 'checked_native', side_effect=ValueError('actual native evidence missing')):
                 with self.assertRaisesRegex(ValueError, 'actual native evidence missing'):
                     delivery.prepare(args)
@@ -431,6 +604,7 @@ class RealFilesAndCommandsTests(unittest.TestCase):
             source, args, facts = self.preparation_fixture(Path(temporary))
             with mock.patch('verify_connect_four_candidate.verify', return_value=facts), \
                  mock.patch.object(delivery, 'committed_pcm_sources', return_value={'fixture': {}}), \
+                 mock.patch.object(delivery, 'learning_source_identity', return_value=learning_identity()), \
                  mock.patch.object(delivery, 'checked_native', return_value={'fixture': True, 'core_modes': 52}) as native, \
                  mock.patch.object(delivery, 'ROOT', source), \
                  mock.patch.object(delivery.subprocess, 'check_output', return_value='e'*40+'\n'), \
@@ -450,12 +624,29 @@ class RealFilesAndCommandsTests(unittest.TestCase):
             self.assertEqual(report['status'], 'VERIFIED_TEST_BUNDLE_NOT_PUBLISHED')
             self.assertIs(report['published'], False)
             self.assertIs(report['release_approved'], False)
+            self.assertEqual(report['learning_audit']['generated_samples'], 7552)
+            for name in (*delivery.LEARNING_AUDIT_FILES, 'source-binding.json'):
+                self.assertEqual((args.out/'audit/learning-curriculum'/name).read_bytes(),
+                                 (args.learning_audit/name).read_bytes())
+
+    def test_preparation_cannot_omit_the_current_source_learning_audit(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            source, args, facts = self.preparation_fixture(Path(temporary))
+            (args.learning_audit/'summary.json').unlink()
+            with mock.patch('verify_connect_four_candidate.verify', return_value=facts), \
+                 mock.patch.object(delivery, 'committed_pcm_sources', return_value={'fixture': {}}), \
+                 mock.patch.object(delivery, 'learning_source_identity', return_value=learning_identity()), \
+                 mock.patch.object(delivery, 'checked_native', return_value={'core_modes': 52}):
+                with self.assertRaisesRegex(ValueError, 'Original regular file required'):
+                    delivery.prepare(args)
+            self.assertFalse(args.out.exists())
 
     def test_current_publication_gate_replays_completed_source_and_whole_original_bundle(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary); source, args, facts = self.preparation_fixture(root)
             with mock.patch('verify_connect_four_candidate.verify', return_value=facts), \
                  mock.patch.object(delivery, 'committed_pcm_sources', return_value={'fixture': {}}), \
+                 mock.patch.object(delivery, 'learning_source_identity', return_value=learning_identity()), \
                  mock.patch.object(delivery, 'checked_native', return_value={'core_modes': 52}), \
                  mock.patch.object(delivery, 'ROOT', source), \
                  mock.patch.object(delivery.subprocess, 'check_output', return_value='e'*40+'\n'), \

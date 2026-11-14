@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T08:11:14.685937+00:00",
+  "status": "NO_CONCRETE_SOURCE_BLOCKER",
+  "scope": "New independent read-only review of exactly five recovered Jump decoder paths, not the full 47-path integration pack",
+  "base_host": "b394cd4f73cc4ab3d2e818aa94c0a10b26a55b9e",
+  "base_tree": "0fd0d967b76d152ebb8d72a1b534703b22ce7d7f",
+  "combined_source_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-c4-combined-followup-b394-20261114/source-freeze.json",
+    "bytes": 22694,
+    "sha256": "da9b218fa0323f802105d9bf1f3d9caf3e89de3f185f8bc9c54ecb3464f324e4"
+  },
+  "sources": [
+    {
+      "repo_path": ".github/probes/studio_creative_android_probe.py",
+      "path": "/workspace/scratch/b3485b7bb989/host-c4-combined-followup-b394-20261114/final-source/.github/probes/studio_creative_android_probe.py",
+      "bytes": 79294,
+      "sha256": "4eac8342846bf42561e45d132450ebf90648283f75c7f4333d77b6fd43739e28",
+      "git_blob": "cd3a11c2206ab31c4933df7388f2a62a07e6399f"
+    },
+    {
+      "repo_path": "scripts/tests/fixtures/studio_jump_decode_pr483/jump-actual-android.mp4",
+      "path": "/workspace/scratch/b3485b7bb989/host-c4-combined-followup-b394-20261114/final-source/scripts/tests/fixtures/studio_jump_decode_pr483/jump-actual-android.mp4",
+      "bytes": 1707720,
+      "sha256": "0ad7becc5b6572f74968aa99a5b6533219cb5a661b4458e13a984fb2c97236c8",
+      "git_blob": "29074b7e79d12f6b34f954f1c12bdf0bf99998ac"
+    },
+    {
+      "repo_path": "scripts/tests/fixtures/studio_jump_decode_pr483/jump-recording.json",
+      "path": "/workspace/scratch/b3485b7bb989/host-c4-combined-followup-b394-20261114/final-source/scripts/tests/fixtures/studio_jump_decode_pr483/jump-recording.json",
+      "bytes": 804,
+      "sha256": "b6f78c5315d47dcef2210864f4d705053700557c2160f802c4be710cadca08dd",
+      "git_blob": "5c03b9b97a2cfb1f67d5d76d8c6057ae084e1a70"
+    },
+    {
+      "repo_path": "scripts/tests/fixtures/studio_jump_decode_pr483/provenance.json",
+      "path": "/workspace/scratch/b3485b7bb989/host-c4-combined-followup-b394-20261114/final-source/scripts/tests/fixtures/studio_jump_decode_pr483/provenance.json",
+      "bytes": 1588,
+      "sha256": "9de9c8b15161aedcd4185a033a33a18fd6b51b2d01c357d934bc60190edb9683",
+      "git_blob": "35531cfbb9ca96fb238ac567c54866f2a0924988"
+    },
+    {
+      "repo_path": "scripts/tests/test_studio_jump_decode.py",
+      "path": "/workspace/scratch/b3485b7bb989/host-c4-combined-followup-b394-20261114/final-source/scripts/tests/test_studio_jump_decode.py",
+      "bytes": 6309,
+      "sha256": "27623fe917ac3946ef3143d97b2358cf21336a11b9e964932d4381f936d4bccd",
+      "git_blob": "a789321a82b70c15288578d3bbae1ae2a8ce90b4"
+    }
+  ],
+  "original_fixture_matches": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr483-7e2ab2-creative-evidence/artifacts/14103409762/originals/originals/tour/jump-actual-android.mp4",
+      "bytes": 1707720,
+      "sha256": "0ad7becc5b6572f74968aa99a5b6533219cb5a661b4458e13a984fb2c97236c8"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr483-7e2ab2-creative-evidence/artifacts/14103409762/originals/originals/tour/jump-recording.json",
+      "bytes": 804,
+      "sha256": "b6f78c5315d47dcef2210864f4d705053700557c2160f802c4be710cadca08dd"
+    }
+  ],
+  "source_preservation": {
+    "existing_definitions_counting_rule": "Top-level functions plus direct class methods; nested functions are not separately counted",
+    "total_existing_definitions": 50,
+    "unchanged_existing_definitions": 49,
+    "only_changed_existing_definitions": [
+      "Tour.jump"
+    ],
+    "removing_two_demux_arguments_restores_entire_original_ast": true,
+    "removing_exact_new_comment_and_command_format_restores_entire_base_bytes": true,
+    "original_base_probe_sha256": "a8246afe23edf8de01929af91839bc204e72a55187c84d6ed48ae3c5446541b0"
+  },
+  "findings": [
+    {
+      "topic": "Minimal actual command",
+      "finding": "Only -enc_time_base demux is added to the complete original MP4-to-null decode. Full input, timeout=120, retained original decoder output and mandatory exit0 plus empty stderr are unchanged."
+    },
+    {
+      "topic": "Preserved later acceptance",
+      "finding": "Dimensions from the observed orientation, all dispatched-action coverage, pause/save identity, actual leave/reopen and durable resume checks remain byte-identical. The option does not create, transcode or modify the original MP4."
+    },
+    {
+      "topic": "Original data and test identity",
+      "finding": "The 1,707,720-byte MP4 and 804-byte recording are byte-identical to preserved original PR483 artifact members. The complete 6,309-byte regression source matches its previous 27623fe9 SHA. The provenance and production comment/formatting have explicit new hashes."
+    },
+    {
+      "topic": "Meaningful required countercases",
+      "finding": "Read all four regression methods: the original film must decode without stderr; all 144 original packets/frames and dispatched actions must be covered; real H.264 packet corruption and real container truncation must still fail the actual production guard. Test executes the actual extracted decode/write/require statements and hard-fails missing FFmpeg/ffprobe."
+    }
+  ],
+  "history": {
+    "previous_review_sha256": "e6beb791aa0fc953a210f6af4ccbddbff52bc47d7b2d4bf75f095bf542300eaa",
+    "previous_review_state": "Lost with transient /tmp contents; this is a new review with new input identities, not a reconstruction or reuse of that hash",
+    "prior_original_run": 43566692796,
+    "prior_original_job": 132362172873,
+    "prior_original_artifact": 14103409762,
+    "prior_original_result": "FAIL remains unchanged",
+    "prior_local_test_reports": "Historical reported local 4-case red/green are not recreated and do not constitute a test of this newly combined source"
+  },
+  "execution": {
+    "tests_run": 0,
+    "decoder_runs": 0,
+    "downloads": 0,
+    "git_operations": 0,
+    "worktree_writes": 0,
+    "new_review_files_only": "/workspace/scratch/b3485b7bb989/host-c4-jump-decoder-recovery-independent-review-20261114"
+  },
+  "limits": [
+    "No new combined-source test PASS is asserted; Root checkpoints the 47 paths before targeted execution.",
+    "The previously read exact upstream n6.1.1 parser/documentation accepts demux; this review does not recreate lost copies or claim execution of the actual Ubuntu6.1.1 binary. A new actual CI run remains required.",
+    "This source review does not prove Android save/return/reopen, jump motion quality, numeric physics or device FPS."
+  ]
+}
