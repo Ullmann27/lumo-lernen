@@ -1,0 +1,69 @@
+{
+  "commit": {
+    "sha": "16442f286fd1b5cd8b40a5c6b402f54fe345391b",
+    "node_id": "C_kwDOSNzcp9oAKDE2NDQyZjI4NmZkMWI1Y2Q4YjQwYTVjNmI0MDJmNTRmZTM0NTM5MWI",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/16442f286fd1b5cd8b40a5c6b402f54fe345391b",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/16442f286fd1b5cd8b40a5c6b402f54fe345391b",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T21:19:09Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T21:19:09Z"
+    },
+    "tree": {
+      "sha": "53f3e116b990da09c13492019483ece990eb91f2",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/53f3e116b990da09c13492019483ece990eb91f2"
+    },
+    "message": "test(android): assert complete OCR inventory in calibration fixture\n\nAccept and verify the parallel_inventory keyword in the existing Studio clock calibration test double. Preserve all timing, activity, modal and video assertions. The targeted eight-case regression passed before the local workspace became unavailable; the full CI regression remains the acceptance gate.",
+    "parents": [
+      {
+        "sha": "bd07b82fd01fcb8ceecb21894bf825d7c5ff0761",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/bd07b82fd01fcb8ceecb21894bf825d7c5ff0761",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/bd07b82fd01fcb8ceecb21894bf825d7c5ff0761"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "tree_proof": {
+    "old_tree": "c532887418bd2a15bac21034e1ecbb65128828db",
+    "new_tree": "53f3e116b990da09c13492019483ece990eb91f2",
+    "old_leaves": 4383,
+    "new_leaves": 4383,
+    "changed": [
+      "scripts/tests/test_studio_creative_clock_calibration.py"
+    ],
+    "unchanged": 4382,
+    "added": 0,
+    "removed": 0,
+    "full_recursive_comparison": true
+  },
+  "source_delta": {
+    "old_blob": "6a49d7a43d7679dec3eaf897fa5e668aafd89104",
+    "new_blob": "6efad581faaac700105b69c8c95fb3eb2969b439",
+    "path": "scripts/tests/test_studio_creative_clock_calibration.py",
+    "exact_single_replacement": true,
+    "inverse_equal": true,
+    "old_fragment": "def image_lines(out, tag, source_path, timeout):\n            self.assertGreater(timeout, 0)",
+    "new_fragment": "def image_lines(out, tag, source_path, timeout, *, parallel_inventory=False):\n            self.assertGreater(timeout, 0)\n            self.assertIs(parallel_inventory, True)"
+  },
+  "ref_readback": {
+    "ref": "refs/heads/chatgpt/lumo-nextgen-feature-20261114",
+    "node_id": "REF_kwDOSNzcp9oAMHJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLW5leHRnZW4tZmVhdHVyZS0yMDI2MTExNA",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/chatgpt/lumo-nextgen-feature-20261114",
+    "object": {
+      "sha": "16442f286fd1b5cd8b40a5c6b402f54fe345391b",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/16442f286fd1b5cd8b40a5c6b402f54fe345391b"
+    }
+  }
+}

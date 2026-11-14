@@ -1,0 +1,7 @@
+# Creative-Recovery: expliziter Inventory-Parameter im bestehenden Testdouble
+
+Der tatsächliche Recoverylauf43640057159 auf dem PR-Merge c4cae108908a766bc884c45180eaee595b0484d8 endete mit624 Tests und3 Errors. Der vollständige einmal abgerufene Originaljoblog benennt einen fehlenden `parallel_inventory`-Parameter im bestehenden Testdouble. Die frisch gelesenen Git-Commitobjekte zeigen für diesen Merge und Feature bd07b82fd01fcb8ceecb21894bf825d7c5ff0761 denselben vollständigen Baum c532887418bd2a15bac21034e1ecbb65128828db.
+
+Die einzige Sourceänderung ergänzt den expliziten Keywordparameter und `self.assertIs(parallel_inventory, True)`. Alle alten Modal-, Foreground-, Zeit-, Medien- und Negativprüfungen bleiben erhalten. Genau die bestehende betroffene Datei wurde einmal ausgeführt:8/8 bestanden,0 Skips,0,996s unittest,Exit0. Die ganze624er-Suite und ein Androidlauf wurden nicht wiederholt.
+
+Nach dem abgeschlossenen gezielten Lauf fiel die Dateiumgebung aus. Dieser neue Remotecheckpoint erhält die exakte gecachte Source, den vollständigen ursprünglichen CI-Log, die Gitobjekte und den gezielten Originallog. Dessen rekonstruierter vollständiger Tooltext stimmt mit seinem bereits vor dem Ausfall gemessenen SHA256 überein. `remote-observed-execution.json` ist ausdrücklich ein neuer aus dem vollständigen Tooloutput abgeleiteter Bericht; er wird nicht als unveränderter früherer Dateireadback bezeichnet. Die versuchten anschließenden lokalen README-/Manifestdateien wurden nicht als geschrieben behauptet.

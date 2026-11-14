@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "bd07b82fd01fcb8ceecb21894bf825d7c5ff0761",
+  "actual_failed_ci_checkout": "c4cae108908a766bc884c45180eaee595b0484d8",
+  "base_and_merge_tree": "c532887418bd2a15bac21034e1ecbb65128828db",
+  "scope": "Exactly one existing test fixture signature and mandatory true assertion; no production/probe/workflow mutation",
+  "files": [
+    {
+      "path": "scripts/tests/test_studio_creative_clock_calibration.py",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8",
+      "bytes": 10566,
+      "sha256": "3c870194a0193e901c9c6a20a841f31bf5b886a47b83be0c42c373bffa80e774",
+      "git_blob_sha": "6efad581faaac700105b69c8c95fb3eb2969b439",
+      "confirmed_sha": "6efad581faaac700105b69c8c95fb3eb2969b439",
+      "full_utf8_readback": true
+    }
+  ],
+  "baseline": {
+    "path": "scripts/tests/test_studio_creative_clock_calibration.py",
+    "bytes": 10485,
+    "sha256": "a96e0514711fb1b31ca3762c2a94123510bb8771d4ead36d8e6730e8b36f9266",
+    "git_blob_sha": "6a49d7a43d7679dec3eaf897fa5e668aafd89104"
+  },
+  "delta": {
+    "old": "        def image_lines(out, tag, source_path, timeout):\n            self.assertGreater(timeout, 0)\n",
+    "new": "        def image_lines(out, tag, source_path, timeout, *, parallel_inventory=False):\n            self.assertGreater(timeout, 0)\n            self.assertIs(parallel_inventory, True)\n",
+    "exact_inverse_restores_entire_baseline": true
+  }
+}

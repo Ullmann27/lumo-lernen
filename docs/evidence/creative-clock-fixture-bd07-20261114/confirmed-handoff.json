@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "scope": "Confirmed immutable blob handoff only; no tree, commit, branch or PR mutation",
+  "source_tree_inputs": [
+    {
+      "path": "scripts/tests/test_studio_creative_clock_calibration.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6efad581faaac700105b69c8c95fb3eb2969b439"
+    }
+  ],
+  "evidence_tree_inputs": [
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "869782923b1df3db301e2b683962fc84a2b54ec8"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f406dadb2d5f3284aacbccc447ed88bceb0df976"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/original-recovery-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "beb8b303b9b347a82aeff3a8dbf6d0c2fddd01b7"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/original-recovery-jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8102c9abe03dbf9eeac07c09cff35b4895ebcb6"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/github-feature-commit.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3580fb7eac8a93cdd7ca5820e9f7c5b8fde84729"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/github-pr-merge-commit.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "09d0ff7c5e44be460801ec2e88ee5aeaf3bf002e"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/github-original-fixture-directory.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "005d5783bcfe4765de9339fee702bd012122c4a6"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/targeted-python-original.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef18d9781baae571186f70c5aae82cddedecfb39"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/remote-observed-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6005d8ca6a0a76ee097fb9805527d7511d965e47"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5790cc77f66949346d464dd3b8efde396cae5aaa"
+    }
+  ],
+  "upload_proof": {
+    "schema": 1,
+    "repository": "Ullmann27/lumo-lernen",
+    "ref_tree_commit_mutations": 0,
+    "files": [
+      {
+        "path": "docs/evidence/creative-clock-fixture-bd07-20261114/README.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "869782923b1df3db301e2b683962fc84a2b54ec8",
+        "bytes": 1541,
+        "sha256": "dcc71ee2ce38f95e00cc5e1da53366273a7b1eda2405e581a5460e3b3f63224c",
+        "before_after_equal": true,
+        "full_utf8_readback": true,
+        "reused_previously_confirmed_blob": false
+      },
+      {
+        "path": "docs/evidence/creative-clock-fixture-bd07-20261114/source-upload-manifest.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f406dadb2d5f3284aacbccc447ed88bceb0df976",
+        "bytes": 1480,
+        "sha256": "bf2e32cf3d6a33c1f4db08a540987f8d3af89e8880f8e63568a8a0f7d001294a",
+        "before_after_equal": true,
+        "full_utf8_readback": true,
+        "reused_previously_confirmed_blob": false
+      },
+      {
+        "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/original-recovery-job.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "beb8b303b9b347a82aeff3a8dbf6d0c2fddd01b7",
+        "bytes": 235203,
+        "sha256": "06f0ebf75a4815bbaad3a14ab27f8b3be5f02dcbee6d275b329c5b7aac8c6857",
+        "before_after_equal": true,
+        "full_utf8_readback": true,
+        "reused_previously_confirmed_blob": false
+      },
+      {
+        "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/original-recovery-jobs.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a8102c9abe03dbf9eeac07c09cff35b4895ebcb6",
+        "bytes": 1914,
+        "sha256": "22263d78dcb1b84d30ccb03689df39be6ff1acf8ee172f4e1c69b8347ead3d9c",
+        "before_after_equal": true,
+        "full_utf8_readback": true,
+        "reused_previously_confirmed_blob": false
+      },
+      {
+        "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/github-feature-commit.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3580fb7eac8a93cdd7ca5820e9f7c5b8fde84729",
+        "bytes": 1894,
+        "sha256": "f370a3186f8ca4da64c4d61647404229011768ac653a463afe1f6620569e95c0",
+        "before_after_equal": true,
+        "full_utf8_readback": true,
+        "reused_previously_confirmed_blob": false
+      },
+      {
+        "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/github-pr-merge-commit.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "09d0ff7c5e44be460801ec2e88ee5aeaf3bf002e",
+        "bytes": 2675,
+        "sha256": "479e5ece14dbe9966379ecca8b52110b2c3dafb7fd9b3656c6abbce29d431219",
+        "before_after_equal": true,
+        "full_utf8_readback": true,
+        "reused_previously_confirmed_blob": false
+      },
+      {
+        "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/github-original-fixture-directory.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "005d5783bcfe4765de9339fee702bd012122c4a6",
+        "bytes": 11264,
+        "sha256": "23acb477fc77cd38826619dd3f5f67d077e53aee20971d18ab62b05e829d4951",
+        "before_after_equal": true,
+        "full_utf8_readback": true,
+        "reused_previously_confirmed_blob": false
+      },
+      {
+        "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/targeted-python-original.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ef18d9781baae571186f70c5aae82cddedecfb39",
+        "bytes": 1830,
+        "sha256": "b26a4bb80c1b5030738735448452cb3bb1cacee70ce62dcea4eba31f783e9c05",
+        "before_after_equal": true,
+        "full_utf8_readback": true,
+        "reused_previously_confirmed_blob": true
+      },
+      {
+        "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/remote-observed-execution.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6005d8ca6a0a76ee097fb9805527d7511d965e47",
+        "bytes": 3521,
+        "sha256": "50eb019eb0b3a8bf27ec5fb975dd24ad5641a9f208cd610969f63ab3af51391b",
+        "before_after_equal": true,
+        "full_utf8_readback": true,
+        "reused_previously_confirmed_blob": false
+      },
+      {
+        "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence-upload-manifest.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5790cc77f66949346d464dd3b8efde396cae5aaa",
+        "bytes": 3380,
+        "sha256": "2581abd8fed13573ea630e1605980c1907ac82ec4b4c1b48cfeceb78bbdecb2e",
+        "before_after_equal": true,
+        "full_utf8_readback": true,
+        "reused_previously_confirmed_blob": false
+      }
+    ]
+  },
+  "source_proof": {
+    "bytes": 10566,
+    "sha256": "3c870194a0193e901c9c6a20a841f31bf5b886a47b83be0c42c373bffa80e774",
+    "git_blob_sha": "6efad581faaac700105b69c8c95fb3eb2969b439",
+    "full_utf8_readback": true
+  },
+  "environment": "Unavailable after actual targeted eight-test completion; no further local calls. New observed-execution receipt is explicitly derived; exact original logs remain hash-bound."
+}

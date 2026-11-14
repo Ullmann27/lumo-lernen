@@ -1,0 +1,52 @@
+{
+  "artifact_id": 14131955552,
+  "artifact_name": "memory-source",
+  "bytes": 3103,
+  "sha256": "1b716c4f3bf7c1ec5c34264bcda72d9b19922d969fca124ec8f339e64b0fde47",
+  "download_count": 1,
+  "whole_archive_sha256_verified": true,
+  "all_member_crcs_verified": true,
+  "members": [
+    {
+      "path": "HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "02112b4b7c092612f84c0a34650b2b3530b07a4f8771b26096883aa2f5d348a7",
+      "crc32": "5096cb34",
+      "full_member_crc_verified": true,
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/HOST-SOURCE.txt"
+    },
+    {
+      "path": "dart-version.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "crc32": "a9679d22",
+      "full_member_crc_verified": true,
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/dart-version.txt"
+    },
+    {
+      "path": "memory-round.log",
+      "bytes": 2319,
+      "sha256": "31e51040106853dddceef856cdcba56a008ac7d279062969c816ab756b3cc68c",
+      "crc32": "92460123",
+      "full_member_crc_verified": true,
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/memory-round.log"
+    },
+    {
+      "path": "memory-scheduler.log",
+      "bytes": 689,
+      "sha256": "bd79138720f22b33bcdcbf10e0eb70bda5729a11e1922a783bc73fa22bc5a0a1",
+      "crc32": "8082ae07",
+      "full_member_crc_verified": true,
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/memory-scheduler.log"
+    },
+    {
+      "path": "quiz-round.log",
+      "bytes": 1785,
+      "sha256": "7429cc464b0ce54672578ea38c427db97e5539cf358495d57b1aa2865ee08981",
+      "crc32": "ab423993",
+      "full_member_crc_verified": true,
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/quiz-round.log"
+    }
+  ],
+  "temporary_url_saved": false
+}

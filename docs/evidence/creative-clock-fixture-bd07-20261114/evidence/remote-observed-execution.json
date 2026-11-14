@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "status": "ACTUAL_TARGETED8_PASS_FULL_RECOVERY_RERUN_PENDING",
+  "scope": "New receipt derived from the complete observed execution-tool output; not a claim of byte identity with the unavailable local targeted-python-execution.json",
+  "feature_head": "bd07b82fd01fcb8ceecb21894bf825d7c5ff0761",
+  "actual_failed_ci_checkout": "c4cae108908a766bc884c45180eaee595b0484d8",
+  "identical_complete_tree": "c532887418bd2a15bac21034e1ecbb65128828db",
+  "failed_run_id": 43640057159,
+  "failed_job_id": 132585430267,
+  "original_failure_log": {
+    "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/original-recovery-job.log",
+    "bytes": 235203,
+    "sha256": "06f0ebf75a4815bbaad3a14ab27f8b3be5f02dcbee6d275b329c5b7aac8c6857",
+    "git_blob_sha": "beb8b303b9b347a82aeff3a8dbf6d0c2fddd01b7",
+    "download_count": 1
+  },
+  "original_summary": {
+    "tests_run": 624,
+    "errors": 3,
+    "seconds": 155.148,
+    "exit_code": 1,
+    "cause": "Nested make_observed_tour image_lines lacks the keyword parallel_inventory; two methods, one with foreign/modal subcases, produce three TypeError records."
+  },
+  "local_execution_observed": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts/tests",
+      "-p",
+      "test_studio_creative_clock_calibration.py",
+      "-v"
+    ],
+    "cwd": "/workspace/scratch/5987865ae883/qa/creative-clock-fixture-bd07-20261114/prepared/host",
+    "start_utc": "2026-11-14T21:09:48.587656+00:00",
+    "end_utc": "2026-11-14T21:09:49.859516+00:00",
+    "process_seconds": 1.2718623809996643,
+    "unittest_seconds": 0.996,
+    "exit_code": 0,
+    "tests_run": 8,
+    "passed": 8,
+    "skipped": 0,
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "pillow": "13.0.0",
+    "source_before_after_equal": true,
+    "inputs_checked": 10,
+    "test_sha256": "3c870194a0193e901c9c6a20a841f31bf5b886a47b83be0c42c373bffa80e774",
+    "studio_probe_sha256": "1396fa80e3ca0e82fc131b9849dcec9d46375c27756168060dc2a1ba4eebc4d0",
+    "source_binding_json_before_outage": {
+      "path": "qa/creative-clock-fixture-bd07-20261114/evidence/source-binding.json",
+      "bytes": 7504,
+      "sha256": "4e0272d081970853c7f323c9fcff7c48e021bfb31cb701057c4fd6f34303b55f"
+    },
+    "log": {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/targeted-python-original.log",
+      "bytes": 1830,
+      "sha256": "b26a4bb80c1b5030738735448452cb3bb1cacee70ce62dcea4eba31f783e9c05",
+      "git_blob_sha": "ef18d9781baae571186f70c5aae82cddedecfb39",
+      "provenance": "Complete observed original stdout recovered after environment loss and matched to its SHA256 already recorded in the actual execution report before the outage."
+    }
+  },
+  "limits": [
+    "Only the existing eight-case Python file ran locally. No whole624-suite rerun or new Android/Dart/Flutter/SDK execution occurred.",
+    "Existing historical86-frame ffprobe/decode/truncation checks ran as part of that file; no new media capture or viewing claim.",
+    "LocalPython3.12.14/Pillow13.0.0 differ from CI and are not relabelled as its toolchain.",
+    "The following manifest/README writes failed before local process creation during the environment outage; this immutable remote checkpoint is a new accurately labelled recovery document."
+  ],
+  "source_mutations": "Only the isolated test file. No ref/tree/commit mutation."
+}

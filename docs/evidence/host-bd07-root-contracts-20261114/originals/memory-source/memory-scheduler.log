@@ -1,0 +1,8 @@
+PASS a real Dart Timer executes the exact scheduled interval once
+PASS partial elapsed is captured before cancellation
+PASS an old queued callback cannot advance the newly scheduled round
+PASS dispose prevents an already queued callback and any new schedule
+PASS clock reversal cannot create negative elapsed time
+PASS pause after the deadline charges at most the pending action
+PASS non-game timer budgets fail instead of silently changing time
+MEMORY_TURN_SCHEDULER {"status":"PASS","cases":7,"passed":7,"failed":[],"checks":13,"skipped":0,"scope":"Actual production scheduler; one real Dart event-loop Timer plus deterministic delayed-callback and clock boundaries; no Android claim."}
