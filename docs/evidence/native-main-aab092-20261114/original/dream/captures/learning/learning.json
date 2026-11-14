@@ -1,0 +1,36 @@
+{
+	"device_fps_measured": false,
+	"display": "X11",
+	"frames": [
+		{
+			"ambience": {
+				"animation_time": 0.5,
+				"batches": 2,
+				"butterflies": 8,
+				"motes": 28,
+				"preset": "learning_garden",
+				"reduced_motion": false,
+				"tier": "high"
+			},
+			"height": 1280,
+			"path": "/home/runner/work/lumo-lernen/lumo-lernen/acceptance-native/dream/captures/learning/learning_00.png",
+			"width": 720
+		},
+		{
+			"ambience": {
+				"animation_time": 1.9,
+				"batches": 2,
+				"butterflies": 8,
+				"motes": 28,
+				"preset": "learning_garden",
+				"reduced_motion": false,
+				"tier": "high"
+			},
+			"height": 1280,
+			"path": "/home/runner/work/lumo-lernen/lumo-lernen/acceptance-native/dream/captures/learning/learning_01.png",
+			"width": 720
+		}
+	],
+	"renderer": "gl_compatibility",
+	"scene": "res://scenes/learning/learning_world.tscn"
+}

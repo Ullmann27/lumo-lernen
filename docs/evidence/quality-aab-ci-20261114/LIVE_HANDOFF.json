@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14 13:26:15 UTC",
+  "recorded_at_utc": "2026-11-14 13:27:50 UTC",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -67,7 +67,7 @@
   },
   "evidence": {
     "branch": "checkpoint/lumo-aab-ci-20261114-2708",
-    "prior_head": "3774c6c54f8220331bd88bf8be934a3aa4452aff",
+    "prior_head": "08498934e45fd1476b7045d7c305f11d5ba3bf14",
     "original_803_evidence": "6a5ae5327570fc60434672074f246c95e1c59283",
     "old_803_apk_is_not_current_candidate": true
   },
@@ -403,7 +403,68 @@
             "engine_or_renderer_runs": 0,
             "original_members": 0
           },
-          "technical_reader_review_pending": true
+          "technical_reader_review_pending": false
+        },
+        "native_original_reader": {
+          "actual_execution": {
+            "performed": true,
+            "exit_code": 0,
+            "command": [
+              "python3",
+              "-B",
+              "/workspace/scratch/2708c7907f28/aab-native-evidence-14114314120/reader-replay.py"
+            ],
+            "python": "3.12.14",
+            "pillow": "13.0.0",
+            "reader_elapsed_seconds": 1.529860435000046,
+            "process_wall_time_seconds": 1.795562895,
+            "approved_calls": [
+              "checked_native_results(nextgen, exact_committed_validate_nextgen_text)",
+              "checked_native_runner_log(original_nextgen_runner_log)",
+              "verify_studio_2020_rasters.verify(nextgen, write=False)",
+              "verify_dream_rasters.verify(dream, write=False)"
+            ],
+            "core_modes": 52,
+            "studio": {
+              "images": 17,
+              "reports": 3,
+              "movies": 1,
+              "fresh_result_equals_original": true
+            },
+            "dream": {
+              "probes": 5,
+              "images": 7,
+              "reports": 2,
+              "fresh_result_equals_original": true
+            },
+            "remote_tracked_tree_entries": 3649,
+            "source_inventory_files_byte_equal": true,
+            "tracked_inventory_and_index_unchanged": true,
+            "original_records_checked_unchanged": 116,
+            "helpers_unchanged": true
+          },
+          "independent_visual_review": {
+            "blob": "40696ba26847152a7957f6f470a2b932b7aa59f6",
+            "selected_images": 7,
+            "total_selected_original_bytes": 6986261,
+            "all_selected_pngs_saved_unchanged": true,
+            "visible_functional_blocker_found": false,
+            "observations": [
+              "Kart ramp original 1280×720: minimap fully visible and separated from SPEED in this frame.",
+              "Treasure portrait title visibly ellipsized; selected landscape shows full title.",
+              "Dream garden narrow view: decorative right board edge clipped while described task content and controls remain visible."
+            ],
+            "not_inferred": [
+              "All viewport configurations",
+              "Touch, scrolling, ACK or dynamic operation",
+              "Measured device FPS",
+              "Android/APK/Play readiness",
+              "Whole main workflow success"
+            ]
+          },
+          "reader_result_blob": "c56587c4fe693c2e8021fd3c727a047fd5163b47",
+          "handoff_blob": "873e4b69f1d85fbd2421db9910606e0912a8d2ed",
+          "root_read_replay_source_and_actual_result": true
         }
       },
       "additional_qa": {
