@@ -20,7 +20,9 @@ Dieser Stand führt den Qualitätscheckpoint `38c2fe8cb9e1b1021842e886c1a7cfa199
 
 **Bisheriger Host-Zwischenstand:** Auf `dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f` bestanden 226 gezielte Python-Tests sowie Actionlint und die Bash-Syntaxprüfungen der vier bisherigen Native-Blöcke. Ein erster Fehler beim Modul-Suchpfad ist zusammen mit dem unveränderten erfolgreichen Wiederholungslauf gesichert. Auf `38c2fe8cb9e1b1021842e886c1a7cfa199e687ca` bestanden zusätzlich die 65 aktuellen und historischen Pin-Verträge. Originale: `docs/evidence/quality-32e7-merge-20261114/local-execution/`.
 
-Die gezielte Prüfung des jetzt gemeinsam gebundenen Host-/Dream-Stands sowie der komplette neue Kandidatenlauf stehen zum Zeitpunkt dieses Zwischencheckpoints noch aus. Frühere Erfolge werden diesem Stand nicht als APK- oder Android-Freigabe zugerechnet.
+**Gemeinsamer Host-/Dream-Stand:** Auf dem tatsächlichen Merge `dc966e8e4e4f69c5cb19e53822625025bb0fe766` (Tree `883461f7827d92eb4175b191bb66202a98251f60`) bestanden 237 gezielte Python-Tests in 26,816 Sekunden, Actionlint und Bash-Syntaxprüfungen aller fünf relevanten Native-Blöcke. HEAD, Tree, verfolgte Dateien und Index blieben unverändert. Vollständige Originale und der tatsächlich ausgeführte Treiber: `docs/evidence/quality-dream-merge-20261114/execution/` und `run_committed_source_checks.py`.
+
+Der abschließende Freigabe-Commit ergänzt ausschließlich diese Nachweise und die Statusdokumente; der geprüfte Produkt-, Test-, Policy- und Workflow-Code bleibt bytegleich. Der vollständige CI-Lauf auf genau diesem neuen PR-Kopf wird damit angefordert und muss noch tatsächlich bestehen. Frühere Erfolge werden diesem Stand nicht als APK- oder Android-Freigabe zugerechnet.
 
 ## Abgeschlossener Vorgängerlauf und seine Grenzen
 
