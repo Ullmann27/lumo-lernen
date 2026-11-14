@@ -1,0 +1,67 @@
+{
+  "schema": "lumo-057a-prebuild-original-review-v1",
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "host_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "native": "a69f53518b2510873d88f00ff2783d616ab53702",
+    "native_tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+    "run_id": 43607156921,
+    "run_attempt": 1,
+    "event": "pull_request",
+    "path": ".github/workflows/lumo-connect-four-2020.yml",
+    "branch": "work/lumo-play-quality-20261114",
+    "created_at": "2026-11-14T14:52:50Z",
+    "activated_at": "2026-11-14T14:52:47Z"
+  },
+  "observed_at": "2026-11-14 15:03:41 UTC",
+  "jobs": [
+    {
+      "id": 132484413080,
+      "name": "connect-four-runtime",
+      "conclusion": "success",
+      "started_at": "2026-11-14T14:53:51Z",
+      "completed_at": "2026-11-14T14:56:13Z",
+      "log_git_blob": "90c973860e9ff0ba3d9b3e6d77251ae11058ca7e",
+      "decoded_text_utf16_code_units": 288252
+    },
+    {
+      "id": 132484413382,
+      "name": "android-host-compile",
+      "conclusion": "success",
+      "started_at": "2026-11-14T14:53:52Z",
+      "completed_at": "2026-11-14T14:58:01Z",
+      "log_git_blob": "45d79512b79f12038f7e2a0e131ce624eccd3778",
+      "decoded_text_utf16_code_units": 241291
+    }
+  ],
+  "actual_original_markers": {
+    "runtime": [
+      "2026-11-14T14:55:19.5130379Z CONNECT_FOUR_RETURN_PASS checks=21",
+      "2026-11-14T14:55:19.9146078Z [TreasureWisp] PASS checks=14"
+    ],
+    "host_compile": [
+      "2026-11-14T14:54:51.2606310Z CARDS_WINDOW_CALLS_PASS cards (JVM boundary adapters; no Android pixels or measured insets)",
+      "2026-11-14T14:54:51.2607837Z CARDS_WINDOW_CALLS_PASS delayed-engine (JVM boundary adapters; no Android pixels or measured insets)",
+      "2026-11-14T14:54:51.2609498Z CARDS_WINDOW_CALLS_PASS authority (JVM boundary adapters; no Android pixels or measured insets)",
+      "2026-11-14T14:54:51.2610884Z CARDS_WINDOW_CALLS_PASS non-cards (JVM boundary adapters; no Android pixels or measured insets)",
+      "2026-11-14T14:57:57.5720704Z BUILD SUCCESSFUL in 2m 37s",
+      "2026-11-14T14:57:58.0824705Z [AndroidHostCompile] PASS: actual Kotlin/Java bytecode for native lifecycle, Cards IPC and offline speech"
+    ]
+  },
+  "separate_runtime_original_review_handoff": "75e36ebf630f69580fa9c74563c7f6d0d0cc7cdf",
+  "main": {
+    "job_id": 132485496250,
+    "started_at": "2026-11-14T14:58:03Z",
+    "budget_minutes": 150,
+    "budget_end_utc": "2026-11-14T17:28:03Z",
+    "snapshot_step": "Full Flutter regression suite including every capture",
+    "step_started_at": "2026-11-14T14:59:38Z",
+    "status": "in_progress"
+  },
+  "limits": [
+    "Completed prebuild jobs are not completion of the main build or downstream Android/update/delivery gates.",
+    "Complete decoded GitHub job logs and original API JSON were preserved; runtime archive was downloaded once separately by LearningLead.",
+    "No old1375 or aab whole-source approval is assigned to057a."
+  ]
+}

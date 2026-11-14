@@ -1,0 +1,579 @@
+{
+  "schema": "lumo.ai-output-feedback-routes-review.v2",
+  "status": "completed_read_only_source_review",
+  "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "host_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+  "lib_tree": "73b810ba0c1d3982e99a9d2df8eda3389756feef",
+  "host_parents": [
+    "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+    "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62"
+  ],
+  "native_context": {
+    "commit": "a69f53518b2510873d88f00ff2783d616ab53702",
+    "binding": "Native merge reported by parent; independently reviewed native tree separately. This report does not re-read the Host native pin."
+  },
+  "method": {
+    "materialized_directory": "/workspace/scratch/2708c7907f28/lumo-host-merge-7793-0b7/checkout",
+    "directory_is_git_checkout": false,
+    "evidence": "Read local regular file bytes, calculate Git blob SHA1 from the Git blob header plus bytes, compare to complete immutable 057 lib tree, and compare against the prior exact779 audit. All442 materialized lib blobs match057. All18 audited source files match779. Read all9 changed-lib diffs; no added/removed lib files.",
+    "executions": "No application, test, renderer, build, provider request, or runtime action executed. No production/source/reference mutation. This finished report is saved only as an unreferenced evidence blob."
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "path": "lib/core/lumo_ai_proxy_client.dart",
+      "blob": "c9f3cb2da48fdd07f308c9b72465314943947bc4",
+      "lines": [
+        "23–78",
+        "109–227",
+        "254–260",
+        "635–713"
+      ],
+      "final_blob": "c9f3cb2da48fdd07f308c9b72465314943947bc4",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S2",
+      "path": "lib/features/agent/lumo_agent_content.dart",
+      "blob": "480a76eb4375dc8a49831b68d6c37f90de59ac41",
+      "lines": [
+        "223–260",
+        "288–296",
+        "464–573"
+      ],
+      "final_blob": "480a76eb4375dc8a49831b68d6c37f90de59ac41",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S3",
+      "path": "lib/core/lumo_conversation_controller.dart",
+      "blob": "9c25c959a934df019af0eede7a84fcc6982bf6ab",
+      "lines": [
+        "105–115",
+        "152–186"
+      ],
+      "final_blob": "9c25c959a934df019af0eede7a84fcc6982bf6ab",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S4",
+      "path": "lib/features/teacher_mode/lumo_teacher_screen.dart",
+      "blob": "6d0cfa67721ab4de5245f6a37f3ce6315fe584d5",
+      "lines": [
+        "39–87",
+        "179–235",
+        "391–430",
+        "590–801"
+      ],
+      "final_blob": "6d0cfa67721ab4de5245f6a37f3ce6315fe584d5",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S5",
+      "path": "lib/core/lumo_image_generator.dart",
+      "blob": "d8f14f1c344e7c3721f6f337b733fded012db897",
+      "lines": [
+        "219–292"
+      ],
+      "final_blob": "d8f14f1c344e7c3721f6f337b733fded012db897",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S6",
+      "path": "lib/features/learning/learning_content.dart",
+      "blob": "5e62d675606d5e9b0024fa1476c0459343b5da7a",
+      "lines": [
+        "317–348",
+        "701–748",
+        "1131–1154",
+        "1842–1864"
+      ],
+      "final_blob": "5e62d675606d5e9b0024fa1476c0459343b5da7a",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S7",
+      "path": "lib/core/ai_tutor_service.dart",
+      "blob": "ff8fe3ca4d19da8f758cc281096fde30fd503c74",
+      "lines": [
+        "39–119"
+      ],
+      "final_blob": "ff8fe3ca4d19da8f758cc281096fde30fd503c74",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S8",
+      "path": "lib/core/ai_task_cache.dart",
+      "blob": "c705e7340641d0c4ef0858bccc725300fe292654",
+      "lines": [
+        "23–32",
+        "135–144"
+      ],
+      "final_blob": "c705e7340641d0c4ef0858bccc725300fe292654",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S9",
+      "path": "lib/core/lumo_visual_aid_service.dart",
+      "blob": "61e96c0fdf3923d6c430defc2b9696203e470099",
+      "lines": [
+        "75–116",
+        "250–252"
+      ],
+      "final_blob": "61e96c0fdf3923d6c430defc2b9696203e470099",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S10",
+      "path": "lib/core/lumo_story_generator.dart",
+      "blob": "0ae860dd6b765c16ab49686f0f8a65ee55325322",
+      "lines": [
+        "166–208",
+        "231–287"
+      ],
+      "final_blob": "0ae860dd6b765c16ab49686f0f8a65ee55325322",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S11",
+      "path": "lib/features/story/lumo_story_setup_screen.dart",
+      "blob": "bb534f21cb4288cc832e7c2972f2da1fbffba158",
+      "lines": [
+        "48–106"
+      ],
+      "final_blob": "bb534f21cb4288cc832e7c2972f2da1fbffba158",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S12",
+      "path": "lib/features/story/lumo_story_reader_screen.dart",
+      "blob": "7743e998780666d46440f315ca54d03032595061",
+      "lines": [
+        "350–425",
+        "628–634",
+        "741–758"
+      ],
+      "final_blob": "7743e998780666d46440f315ca54d03032595061",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S13",
+      "path": "lib/features/story/widgets/lumo_story_scene.dart",
+      "blob": "32c0b08c2aa472b3cb154754dd24c08c6f9218b8",
+      "lines": [
+        "22–83"
+      ],
+      "final_blob": "32c0b08c2aa472b3cb154754dd24c08c6f9218b8",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S14",
+      "path": "lib/features/story/lumo_story_library_screen.dart",
+      "blob": "cc376c72add70cc3e9f1c5a27b65da9a0c98972b",
+      "lines": [
+        "451–479",
+        "560–579"
+      ],
+      "final_blob": "cc376c72add70cc3e9f1c5a27b65da9a0c98972b",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S15",
+      "path": "lib/core/lumo_story_library.dart",
+      "blob": "9c6433fdb90b818aef1d11fd8938d236807f4241",
+      "lines": [
+        "148–186",
+        "241–251"
+      ],
+      "final_blob": "9c6433fdb90b818aef1d11fd8938d236807f4241",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S16",
+      "path": "lib/features/settings/settings_content.dart",
+      "blob": "efaac818451f3bcc121510bf18a587a191ee562e",
+      "lines": [
+        "230–262",
+        "433–459",
+        "2205–2225",
+        "2341–2405"
+      ],
+      "final_blob": "efaac818451f3bcc121510bf18a587a191ee562e",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S17",
+      "path": "lib/core/lumo_error_log.dart",
+      "blob": "73d15b0ce0a2c7e520d4b53bb6531f53bb37bd55",
+      "lines": [
+        "42–70"
+      ],
+      "final_blob": "73d15b0ce0a2c7e520d4b53bb6531f53bb37bd55",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    },
+    {
+      "id": "S18",
+      "path": "lib/core/app_settings.dart",
+      "blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+      "lines": [
+        "7–22"
+      ],
+      "final_blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+      "mode": "100644",
+      "match_779": true,
+      "local_match": true
+    }
+  ],
+  "additional_sources": [
+    {
+      "id": "S19",
+      "path": "lib/features/live/lumo_live_pro_screen.dart",
+      "blob": "f592b2459a6b79a1b2fe685c15671df908c5ad15",
+      "lines": [
+        "151–160",
+        "190–235",
+        "314–430",
+        "571–618",
+        "726–808"
+      ]
+    },
+    {
+      "id": "S20",
+      "path": "lib/core/lumo_brain.dart",
+      "blob": "47dd9462cdc7852a287c10a4738064012864256b",
+      "lines": [
+        "19",
+        "465–640"
+      ],
+      "unchanged_from_779": true
+    },
+    {
+      "id": "S21",
+      "path": "lib/widgets/profile_screen.dart",
+      "blob": "5cc989e2258cf5123d306f01ca268d007a4de105",
+      "lines": [
+        "711–730"
+      ],
+      "delta_read": "Actual779-to-materialized unified diff; current blob independently bound to057 lib tree."
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "AI text and short-story prompts in Agent",
+      "sources": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "fact": "Agent assigns the real reply to its answer state and displays it in _AnswerBubble. Visible response actions are Vorlesen and Stopp; quick questions can ask for a three-sentence story. Text requests go to the configured base URL plus /chat after the enabled learning-area guard and input filter; returned text is filtered before use. In the inspected output UI no report/rating or individual-result delete action is bound. Conversation history is an in-memory list capped to eight turns and cleared on context change/dispose.",
+      "limit": "No server-side deletion or handling of a complaint is established."
+    },
+    {
+      "id": "F2",
+      "topic": "Teacher text and online generated images",
+      "sources": [
+        "S1",
+        "S4",
+        "S5"
+      ],
+      "fact": "Teacher questions call the same chat client with learningTutor context and place the reply in chat bubbles. On unavailable cloud response a local fallback can be retried. For requested images, and eligible proactive Sachkunde topics, _generateImage reads aiProxyEnabled and calls buildSafeImageUrl. Without allowOnline the generator returns null. Enabled URL content is built from fixed topic/color translations and fetched by Image.network from image.pollinations.ai. The inspected bubble has text/image/loading/error display but no bound report/rating/delete action.",
+      "limit": "The provider flags and local allowlist are source behavior, not proof of provider output safety or a reporting service. No provider was contacted."
+    },
+    {
+      "id": "F3",
+      "topic": "Learning help, task cache and visual aid distinction",
+      "sources": [
+        "S1",
+        "S6",
+        "S7",
+        "S8",
+        "S9"
+      ],
+      "fact": "Online task hints use the real ask client; cloud replies populate _aiHelpReply and a visible _AiHelpBubble with a speak callback. AiTutorService requests task batches and stores validated drafts in AiTaskCache. Settings can clear local task/metadata keys per child, subject and grades. Although LumoVisualAidService contains a /visual-aid request, the observed LearningContent UI call explicitly passes settings.copyWith(aiProxyEnabled:false); that actual path remains local.",
+      "limit": "The dormant /visual-aid implementation must not be presented as an active online transfer from the inspected learning UI. Cached-task removal is not provider-side deletion."
+    },
+    {
+      "id": "F4",
+      "topic": "Storybook route is local",
+      "sources": [
+        "S10",
+        "S11",
+        "S12",
+        "S13"
+      ],
+      "fact": "Story setup calls local generateReadingAdventure, which assembles text from in-source templates. Reader uses LumoStoryScene with Canvas and bundled Image.asset art. The old generator header mentioning live Pollinations does not describe this inspected active route. A short story requested in Agent is a separate possible /chat response.",
+      "limit": "No claim that all narrative content everywhere is local; this finding is restricted to the actual setup/reader route."
+    },
+    {
+      "id": "F5",
+      "topic": "Story saving, favorites and deletion",
+      "sources": [
+        "S12",
+        "S14",
+        "S15"
+      ],
+      "fact": "Finishing a new story calls addStory. Library has favorite and confirmed Geschichte löschen actions; delete removes that story from the local list and persists the JSON collection through SharedPreferences. Save failure restores the prior in-memory list and propagates the error.",
+      "limit": "This removes the stored local book. It does not report content or establish deletion from any external provider."
+    },
+    {
+      "id": "F6",
+      "topic": "Parent advisor result",
+      "sources": [
+        "S1",
+        "S16"
+      ],
+      "fact": "Settings parent-advisor asks the chat client with parentAdvisor context, assigns response.reply, and displays it as Text. In the inspected result container there is no bound report/rating/server-delete action.",
+      "limit": "Other parenting/permission/privacy details are owned by the parent audit; no broad account or operator review was added."
+    },
+    {
+      "id": "F7",
+      "topic": "Actual diagnostics feedback target",
+      "sources": [
+        "S16",
+        "S17"
+      ],
+      "fact": "The Diagnose error-log UI offers copy, show/hide and delete. Copy invokes Clipboard.setData. Its text asks the person to send copied diagnostics to Claude, but this code binds no recipient address, reporting endpoint, mail composer or automatic transmission. Delete clears the in-memory error list and removes local SharedPreferences key lumo_error_log_v1.",
+      "limit": "This is crash-diagnostics handling, not a result-linked AI content complaint flow. External recipients and actual delivery are not established."
+    }
+  ],
+  "additional_findings": [
+    {
+      "id": "F8",
+      "topic": "Changed Lumo Live Pro route",
+      "sources": [
+        "S19",
+        "S20"
+      ],
+      "fact": "The merge removes the nullable generated-image URL field and its Image.network presentation branch, and changes the Word Magic promise to explaining a word. The real Word Magic handler calls LumoBrain.ask and passes reply.text to its visible/spoken message; this ask implementation uses local patterns/templates and returns empty non-confident text when unmatched, with no online handoff in the inspected handler. The photo quiz displays Image.file from the camera-returned path and asks the fixed _extendedPhotoQuestions. Safari displays the source's animal emoji map. Result UI/actions show messages, close/mode/photo/speech/next-animal controls; no result-bound complaint/rating/server-delete action was added in these diffs.",
+      "limit": "Do not label the removed pre-existing network-image branch an observed active image request: the inspected former state field had no non-null assignment. Resetting the in-memory captured path on mode switch is not evidence of deleting the captured file. Speech/TTS SDK transport and whole-app privacy are outside this narrow source review."
+    },
+    {
+      "id": "F9",
+      "topic": "New settings entrance is not a new privacy declaration",
+      "sources": [
+        "S21",
+        "S16"
+      ],
+      "fact": "The changed Profile extra tile now says Dein Profil / Klasse und Einstellungen ansehen and invokes widget.onSection(LumoSection.settings). This adds an entrance to the existing settings screen; SettingsContent is byte-identical to779. None of the9 read lib diffs introduces a dedicated privacy URL, a new full privacy declaration, or an AI-result complaint binding.",
+      "limit": "This is a bounded delta conclusion for the9 changed lib files, not a whole-app or legal completeness assessment."
+    }
+  ],
+  "lib_delta": [
+    {
+      "path": "lib/features/games/games_content.dart",
+      "blob779": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+      "current": {
+        "path": "lib/features/games/games_content.dart",
+        "sha": "166ee19435146a9d42c69eeadd71754dac88d9d7",
+        "bytes": 60198,
+        "symlink": false
+      }
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_game_icon.dart",
+      "blob779": "c3cb6bb44c1eff098245aec5d06fbda97b7ab87d",
+      "current": {
+        "path": "lib/features/games/spielwelt/spielwelt_game_icon.dart",
+        "sha": "4411dc35a0d9dbb063d061f532698fb27bd9a6ea",
+        "bytes": 11910,
+        "symlink": false
+      }
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "blob779": "8097e4695614b8215e59025707ec9cc1b12c4d80",
+      "current": {
+        "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+        "sha": "597defa53a3959a3b1fa95f1e495b91a9ce47af5",
+        "bytes": 30182,
+        "symlink": false
+      }
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "blob779": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+      "current": {
+        "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+        "sha": "a5ad13f364e40d19ab2b4c809dbb4ea3729f631d",
+        "bytes": 6778,
+        "symlink": false
+      }
+    },
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "blob779": "814fc2191015e6c9f6c1f6e96232405a26cc9027",
+      "current": {
+        "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+        "sha": "625f7a73b71046225bbba395920d9d8a59d5775c",
+        "bytes": 26157,
+        "symlink": false
+      }
+    },
+    {
+      "path": "lib/features/live/lumo_live_pro_screen.dart",
+      "blob779": "6ed89441742e6ca2603d128dfbee3f7b3b161707",
+      "current": {
+        "path": "lib/features/live/lumo_live_pro_screen.dart",
+        "sha": "f592b2459a6b79a1b2fe685c15671df908c5ad15",
+        "bytes": 29612,
+        "symlink": false
+      }
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "blob779": "dd95361b132c7a73b372a3225c75e645be07e1b7",
+      "current": {
+        "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+        "sha": "f34753575463af153ac72efaf93dd485ba3f30e1",
+        "bytes": 10640,
+        "symlink": false
+      }
+    },
+    {
+      "path": "lib/features/lumo3d/lumo_game_entry_overlay.dart",
+      "blob779": "3408e5f304003c91fc3172d03b4d22ad467d8ec0",
+      "current": {
+        "path": "lib/features/lumo3d/lumo_game_entry_overlay.dart",
+        "sha": "fe23f1ad8ceb3f8c26d378b475e1f3d946929b36",
+        "bytes": 13724,
+        "symlink": false
+      }
+    },
+    {
+      "path": "lib/widgets/profile_screen.dart",
+      "blob779": "56980b0c3867e52df7011fd968f1a50423bbd467",
+      "current": {
+        "path": "lib/widgets/profile_screen.dart",
+        "sha": "5cc989e2258cf5123d306f01ca268d007a4de105",
+        "bytes": 34479,
+        "symlink": false
+      }
+    }
+  ],
+  "lib_delta_read_identity": [
+    {
+      "path": "lib/features/games/games_content.dart",
+      "original_blob": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+      "current_blob": "166ee19435146a9d42c69eeadd71754dac88d9d7",
+      "original_match": true,
+      "current_match": true
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_game_icon.dart",
+      "original_blob": "c3cb6bb44c1eff098245aec5d06fbda97b7ab87d",
+      "current_blob": "4411dc35a0d9dbb063d061f532698fb27bd9a6ea",
+      "original_match": true,
+      "current_match": true
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "original_blob": "8097e4695614b8215e59025707ec9cc1b12c4d80",
+      "current_blob": "597defa53a3959a3b1fa95f1e495b91a9ce47af5",
+      "original_match": true,
+      "current_match": true
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "original_blob": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+      "current_blob": "a5ad13f364e40d19ab2b4c809dbb4ea3729f631d",
+      "original_match": true,
+      "current_match": true
+    },
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "original_blob": "814fc2191015e6c9f6c1f6e96232405a26cc9027",
+      "current_blob": "625f7a73b71046225bbba395920d9d8a59d5775c",
+      "original_match": true,
+      "current_match": true
+    },
+    {
+      "path": "lib/features/live/lumo_live_pro_screen.dart",
+      "original_blob": "6ed89441742e6ca2603d128dfbee3f7b3b161707",
+      "current_blob": "f592b2459a6b79a1b2fe685c15671df908c5ad15",
+      "original_match": true,
+      "current_match": true
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "original_blob": "dd95361b132c7a73b372a3225c75e645be07e1b7",
+      "current_blob": "f34753575463af153ac72efaf93dd485ba3f30e1",
+      "original_match": true,
+      "current_match": true
+    },
+    {
+      "path": "lib/features/lumo3d/lumo_game_entry_overlay.dart",
+      "original_blob": "3408e5f304003c91fc3172d03b4d22ad467d8ec0",
+      "current_blob": "fe23f1ad8ceb3f8c26d378b475e1f3d946929b36",
+      "original_match": true,
+      "current_match": true
+    },
+    {
+      "path": "lib/widgets/profile_screen.dart",
+      "original_blob": "56980b0c3867e52df7011fd968f1a50423bbd467",
+      "current_blob": "5cc989e2258cf5123d306f01ca268d007a4de105",
+      "original_match": true,
+      "current_match": true
+    }
+  ],
+  "conclusions": [
+    "The18 previously audited sources and their line ranges remain byte-identical in the actual057 commit.",
+    "The existing inspected Agent/Teacher/Parent AI output UIs still do not bind a result-specific complaint endpoint or provider-side deletion action.",
+    "The real existing deletion paths reviewed here remove local story/cache/error-log records; diagnostic Copy only invokes Clipboard and supplies no recipient binding.",
+    "Local storybook route and deliberately disabled online visual-aid call must remain distinct from actual online text/image paths.",
+    "No new report or remote-deletion binding appears in the9 changed lib diffs; Lumo Live Pro's changes are explicitly covered above."
+  ],
+  "negative_search_scope": "Read-only lib keyword search for melden, reportIssue/reportContent, report_content/report_issue, mailto, feedback endpoints and thumbs-up/down found no corresponding output-report binding; ordinary student report/game-result matches were not treated as reports of harmful output. The new PromptCard blob unavailable to one local grep was explicitly excluded in the later successful search; immutable compare and previous exact one-color source review establish it contains no new AI/report route. Negative conclusion is bounded to inspected flows, not a proof about every possible external service.",
+  "open_operator_decisions": [
+    "A concrete in-app recipient/endpoint and operational handling for reports about AI outputs is not bound in the inspected flows.",
+    "Receipt, moderation/review process, response times and provider-side deletion cannot be inferred from local UI and code.",
+    "Backend deployment and configured operator/provider facts were not contacted or verified; the parent owns existing disclosure/operator evidence."
+  ],
+  "scope_limits": [
+    "No runtime or CI success for057 is asserted or inherited from779 or any other revision.",
+    "No recipient, controller/operator, retention/deletion policy, complaint processing, endpoint availability, or provider moderation outcome is assumed.",
+    "This is source evidence for the listed UI/data paths and the changed lib call-sites, not a legal or Google Play release approval.",
+    "Parent owns Play documentation, SDK/installer deltas and the broader privacy/operator audit."
+  ],
+  "persistence": {
+    "repository": "Ullmann27/lumo-lernen",
+    "path": "docs/evidence/play-preparation-057a-20261114/ai-result-feedback-review.json",
+    "kind": "unreferenced_git_blob",
+    "commit_created": false,
+    "reference_updated": false
+  }
+}

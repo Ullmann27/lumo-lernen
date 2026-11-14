@@ -1,0 +1,1179 @@
+{
+  "schema": 1,
+  "kind": "bounded-read-only-play-preparation-and-ai-reporting-review",
+  "status": "complete_source_review",
+  "reviewed_date_utc": "2026-11-14",
+  "repository": "Ullmann27/lumo-lernen",
+  "source": {
+    "commit": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "parents": [
+      "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+      "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62"
+    ],
+    "native_commit": "a69f53518b2510873d88f00ff2783d616ab53702",
+    "native_engine": "4.6.3",
+    "version": "0.13.8+2020",
+    "method": "Final immutable Host commit/tree read independently.17 materialized build/privacy files matched their final Gitblobs;10 omitted documents/server files were rebound by identical immutable blob to already read originals. Child independently bound18 AI sources plus3 additional sources and read all9 changed-lib diffs."
+  },
+  "scope": {
+    "new_tests": false,
+    "builds": false,
+    "rendering": false,
+    "device_runs": false,
+    "product_network_requests": false,
+    "accounts_or_console_access": false,
+    "product_or_ref_changes": false,
+    "legal_or_store_approval": false,
+    "prior_results_relabelled_as779": false,
+    "new057_ci_execution_claimed": false,
+    "repository_write": "Only inert evidence blobs; no product, commit or ref changes in this audit."
+  },
+  "technical_facts": [
+    {
+      "id": "separate_play_path",
+      "finding": "Dedicated local builder checks clean source and committed version, performs real signing/tool preflight before preparation/downloads, prepares --distribution play, exports the pinned native source, enforces pubspec.lock and builds a release appbundle for arm64 and x86_64. Family builder remains separate; this source review did not build an AAB.",
+      "sources": [
+        {
+          "path": "scripts/build_play_bundle.sh",
+          "git_blob": "213c95f80ea4473bae5e1d8dd97e553dfd7d86c4",
+          "lines": [
+            [
+              95,
+              128
+            ],
+            [
+              179,
+              203
+            ],
+            [
+              206,
+              222
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "external_signing",
+      "finding": "Four required environment variables name an existing external keystore and private-entry credentials. Repository/public family key and standard debug alias are rejected. Source config uses environment lookups. Verifier invokes the real Java preflight and signature verifier; no credentials were inspected or supplied in this audit.",
+      "variables": [
+        "LUMO_PLAY_STORE_FILE",
+        "LUMO_PLAY_STORE_PASSWORD",
+        "LUMO_PLAY_KEY_ALIAS",
+        "LUMO_PLAY_KEY_PASSWORD"
+      ],
+      "sources": [
+        {
+          "path": "scripts/prepare_android.py",
+          "git_blob": "054324b3f9ba8b7dc269e42a20b9c91a8717b27a",
+          "lines": [
+            [
+              40,
+              57
+            ],
+            [
+              60,
+              94
+            ]
+          ]
+        },
+        {
+          "path": "scripts/verify_play_bundle.py",
+          "git_blob": "1a7aac51f55132aac2d607867e3bdee8bf5787ab",
+          "lines": [
+            [
+              49,
+              70
+            ],
+            [
+              274,
+              284
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "play_identity_permissions_updates",
+      "finding": "Canonical package dev.ullmann.lumo.lumo_lernen, committed version, minSdk24 and targetSdk36 are verifier requirements. Prepare writes installer-permission merge-removal markers for both declaration forms and keeps INTERNET/CAMERA/RECORD_AUDIO. Native actual manifest channel governs installation; Play/unknown channels cannot use the family installer. Play update path opens the canonical Play listing. Final merged artifact is not observed here.",
+      "sources": [
+        {
+          "path": "scripts/prepare_android.py",
+          "git_blob": "054324b3f9ba8b7dc269e42a20b9c91a8717b27a",
+          "lines": [
+            [
+              101,
+              139
+            ]
+          ]
+        },
+        {
+          "path": "tools/auto_install/MainActivity.kt",
+          "git_blob": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b",
+          "lines": [
+            [
+              25,
+              31
+            ],
+            [
+              82,
+              94
+            ]
+          ]
+        },
+        {
+          "path": "lib/core/app_update_service.dart",
+          "git_blob": "cecc8a39d7a8b5ee55abbf98b8a800058166e07d",
+          "lines": [
+            [
+              139,
+              161
+            ],
+            [
+              360,
+              365
+            ],
+            [
+              383,
+              396
+            ]
+          ]
+        },
+        {
+          "path": "scripts/verify_play_bundle.py",
+          "git_blob": "1a7aac51f55132aac2d607867e3bdee8bf5787ab",
+          "lines": [
+            [
+              98,
+              134
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "artifact_reader_scope",
+      "finding": "AAB verifier checks archive structure, required ABIs/libraries, ELF alignment, native receipt/PCK bytes, offline voice payload and real signatures. Its success report still explicitly sets Play acceptance, Play download size, AAB-derived APK tests and16KiB runtime evidence false.",
+      "sources": [
+        {
+          "path": "scripts/verify_play_bundle.py",
+          "git_blob": "1a7aac51f55132aac2d607867e3bdee8bf5787ab",
+          "lines": [
+            [
+              137,
+              155
+            ],
+            [
+              164,
+              196
+            ],
+            [
+              212,
+              254
+            ],
+            [
+              257,
+              294
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "new_notice_packaging",
+      "finding": "The source contains the accepted outer-package notice binding through the shared native export after its dirty-source gate; the AAB verifier requires those assets. The helper and policy are unchanged from779; config now pins a69 and all4 native original notice blobs remain identical. This is source behavior, not a newly verified built package or rights approval.",
+      "sources": [
+        {
+          "path": "scripts/export_embedded_game.py",
+          "git_blob": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba",
+          "lines": [
+            [
+              166,
+              172
+            ]
+          ]
+        },
+        {
+          "path": "scripts/package_notices.py",
+          "git_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc",
+          "lines": [
+            [
+              9,
+              18
+            ],
+            [
+              86,
+              146
+            ]
+          ]
+        },
+        {
+          "path": "scripts/verify_play_bundle.py",
+          "git_blob": "1a7aac51f55132aac2d607867e3bdee8bf5787ab",
+          "lines": [
+            [
+              242,
+              253
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "optional_settings",
+      "finding": "Fresh/restored missing settings disable online AI, microphone, scanner and cloud voice. Configured proxy is a public default HTTPS URL that can be changed. Explicit Server prüfen calls health checking independently of the AI-enabled switch. These feature defaults are not evidence of app-wide or SDK-wide network silence.",
+      "sources": [
+        {
+          "path": "lib/core/app_settings.dart",
+          "git_blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+          "lines": [
+            [
+              2,
+              22
+            ],
+            [
+              138,
+              149
+            ]
+          ]
+        },
+        {
+          "path": "lib/features/settings/settings_content.dart",
+          "git_blob": "efaac818451f3bcc121510bf18a587a191ee562e",
+          "lines": [
+            [
+              187,
+              207
+            ],
+            [
+              712,
+              750
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "privacy_surface",
+      "finding": "Reviewed settings retain four short privacy lines and no full policy link/text. PRIVACY.md still explicitly labels itself a historical technical inventory, not a legal declaration, and is not declared as a pubspec asset. Its personal contact values are not reproduced here or treated as approved operational store contacts. Child's review of all9 changed-lib diffs found no new dedicated privacy URL or declaration; the new Profile tile points to the existing Settings. No approved public policy endpoint or operational contact was established.",
+      "sources": [
+        {
+          "path": "lib/features/settings/settings_content.dart",
+          "git_blob": "efaac818451f3bcc121510bf18a587a191ee562e",
+          "lines": [
+            [
+              578,
+              590
+            ]
+          ]
+        },
+        {
+          "path": "PRIVACY.md",
+          "git_blob": "beef1032426cd2bc0af356a7a739c926cdbc3719",
+          "lines": [
+            [
+              1,
+              4
+            ],
+            [
+              56,
+              65
+            ]
+          ]
+        },
+        {
+          "path": "pubspec.yaml",
+          "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+          "lines": [
+            [
+              29,
+              93
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "local_ocr_narrow_statement",
+      "finding": "Scanner still passes a local image-picker file to MLKit Latin recognition and returns detected text; current banner describes local recognition without an app-wide no-Internet guarantee. SDK versions/archive hashes are unchanged: the complete lockfile delta only changes image_picker_platform_interface from transitive to direct dev. The historical SDK/conditional-speech/backup evidence remains bounded; no resolved Gradle graph, traffic or merged final Play manifest was observed.",
+      "sources": [
+        {
+          "path": "lib/widgets/scan_screen.dart",
+          "git_blob": "bc8dd3881a234c6d21be1dc3aa229dad2cffa5fb",
+          "lines": [
+            [
+              6,
+              11
+            ],
+            [
+              44,
+              74
+            ]
+          ]
+        },
+        {
+          "path": "docs/release/SCANNER_COPY_EVIDENCE_2026-11-14.md",
+          "git_blob": "7871de534c92f61ed15dc54d63bcbe6285e9e0b1",
+          "lines": [
+            [
+              15,
+              36
+            ],
+            [
+              38,
+              57
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "reused_evidence": [
+    {
+      "source": {
+        "path": "docs/release/PLAY_DISTRIBUTION_2026-11-14.md",
+        "git_blob": "a6d1febf62c7f0204bbafa500682194a56871050",
+        "lines": [
+          [
+            3,
+            4
+          ],
+          [
+            40,
+            62
+          ]
+        ]
+      },
+      "scope": "Historical focused preparation/updater checks, not a new779 execution or signed artifact."
+    },
+    {
+      "source": {
+        "path": "docs/release/PLAY_AAB_LOCAL_BUILD_2026-11-14.md",
+        "git_blob": "c54b86523e5994eacca2cee9c841cf0ec9e6e3a7",
+        "lines": [
+          [
+            89,
+            111
+          ],
+          [
+            113,
+            155
+          ]
+        ]
+      },
+      "scope": "Historical52 focused orchestration/verifier/icon tests and real missing-signing rejection; fake/synthetic cases remain labelled. No genuine Play-signed AAB recorded by this document."
+    },
+    {
+      "source": {
+        "path": "docs/evidence/play-aab-local-20261114/root-independent-result.json",
+        "git_blob": "84bf284159eb1eeba2128578dd8c681a29cc9232",
+        "lines": [
+          [
+            1,
+            31
+          ]
+        ]
+      },
+      "scope": "Root historical52-test record is reused with its original4564/50d source scope. Current AAB verifier has since gained notice checks."
+    },
+    {
+      "source": {
+        "path": "docs/evidence/play-data-audit-20261114-2708/README.md",
+        "git_blob": "3f9ee6f6e90e270dde1e4c5f61960d6d1eb11f80",
+        "lines": [
+          [
+            3,
+            44
+          ]
+        ]
+      },
+      "scope": "Historical01575 source/SDK audit is reused with explicit provenance.9 of its11 selected source bindings remain byte-identical. MainActivity adds only Village launch/options while the inspected installer/speech sections remain unchanged; the lockfile changes only one dependency classification, not version/archive hashes. Historical SDK preparation is not re-executed."
+    },
+    {
+      "source": {
+        "path": "docs/evidence/play-data-audit-20261114-2708/sdk/sdk-manifest-audit.md",
+        "git_blob": "f9aa6565d6068f32b750fd4815894cee91e70f65",
+        "lines": [
+          [
+            5,
+            27
+          ],
+          [
+            29,
+            67
+          ]
+        ]
+      },
+      "scope": "Known local-recognizer conditional fallback, unbounded backup configuration, OCR SDK-metric distinction and transitive permission uncertainty remain evidence limits. Original generated XML was not fully preserved. No actual network transmission inferred."
+    }
+  ],
+  "historical_source_byte_bindings": [
+    {
+      "path": "pubspec.lock",
+      "historical_audit_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+      "historical_blob": "7843602e3d858660dc52d95587983858803976a5",
+      "current_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1",
+      "byte_identical_to_historical_audit": false
+    },
+    {
+      "path": "lib/core/app_settings.dart",
+      "historical_audit_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+      "historical_blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+      "current_blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+      "byte_identical_to_historical_audit": true
+    },
+    {
+      "path": "lib/core/lumo_speech_listener.dart",
+      "historical_audit_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+      "historical_blob": "8c6da203e9620fda1e2762869199f1f0c37cf434",
+      "current_blob": "8c6da203e9620fda1e2762869199f1f0c37cf434",
+      "byte_identical_to_historical_audit": true
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "historical_audit_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+      "historical_blob": "ec28f8863e01302721b993b00793280c148c3541",
+      "current_blob": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b",
+      "byte_identical_to_historical_audit": false
+    },
+    {
+      "path": "scripts/prepare_android.py",
+      "historical_audit_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+      "historical_blob": "054324b3f9ba8b7dc269e42a20b9c91a8717b27a",
+      "current_blob": "054324b3f9ba8b7dc269e42a20b9c91a8717b27a",
+      "byte_identical_to_historical_audit": true
+    },
+    {
+      "path": "scripts/prepare_embedded_games.py",
+      "historical_audit_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+      "historical_blob": "a1615455b5ea6251926d5037900e025d46971c18",
+      "current_blob": "a1615455b5ea6251926d5037900e025d46971c18",
+      "byte_identical_to_historical_audit": true
+    },
+    {
+      "path": "lib/core/profile_repository.dart",
+      "historical_audit_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+      "historical_blob": "35cfa44b277284cdb1310b778760367a331b5ebe",
+      "current_blob": "35cfa44b277284cdb1310b778760367a331b5ebe",
+      "byte_identical_to_historical_audit": true
+    },
+    {
+      "path": "server/lumo-ai-proxy/src/server.js",
+      "historical_audit_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+      "historical_blob": "aca2d9a2a26b9823d34db42a341fde260a46bafa",
+      "current_blob": "aca2d9a2a26b9823d34db42a341fde260a46bafa",
+      "byte_identical_to_historical_audit": true
+    },
+    {
+      "path": "lib/core/lumo_ai_proxy_client.dart",
+      "historical_audit_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+      "historical_blob": "c9f3cb2da48fdd07f308c9b72465314943947bc4",
+      "current_blob": "c9f3cb2da48fdd07f308c9b72465314943947bc4",
+      "byte_identical_to_historical_audit": true
+    },
+    {
+      "path": "lib/features/settings/settings_content.dart",
+      "historical_audit_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+      "historical_blob": "efaac818451f3bcc121510bf18a587a191ee562e",
+      "current_blob": "efaac818451f3bcc121510bf18a587a191ee562e",
+      "byte_identical_to_historical_audit": true
+    },
+    {
+      "path": "PRIVACY.md",
+      "historical_audit_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+      "historical_blob": "beef1032426cd2bc0af356a7a739c926cdbc3719",
+      "current_blob": "beef1032426cd2bc0af356a7a739c926cdbc3719",
+      "byte_identical_to_historical_audit": true
+    }
+  ],
+  "open_operator_decisions_and_evidence": [
+    {
+      "id": "release_owner_signing",
+      "status": "previously_known_unresolved_in_reviewed_evidence",
+      "needed": "Authorized upload key/certificate registration, Play version availability and owner release decision; no key or Console was inspected.",
+      "sources": [
+        {
+          "path": "docs/release/PLAY_AAB_LOCAL_BUILD_2026-11-14.md",
+          "git_blob": "c54b86523e5994eacca2cee9c841cf0ec9e6e3a7",
+          "lines": [
+            [
+              89,
+              111
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "actual_play_artifact",
+      "needed": "Genuine signed AAB, merged manifest including transitive components, exact package notices, AAB-derived APKs, download-size evidence and16KiB runtime/device acceptance. Existing family/native/Flutter evidence cannot substitute.",
+      "sources": [
+        {
+          "path": "scripts/verify_play_bundle.py",
+          "git_blob": "1a7aac51f55132aac2d607867e3bdee8bf5787ab",
+          "lines": [
+            [
+              285,
+              294
+            ]
+          ]
+        },
+        {
+          "path": "docs/release/PLAY_AAB_LOCAL_BUILD_2026-11-14.md",
+          "git_blob": "c54b86523e5994eacca2cee9c841cf0ec9e6e3a7",
+          "lines": [
+            [
+              89,
+              111
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "operator_and_contact",
+      "status": "previously_known_not_a_new_discovery",
+      "needed": "Approved developer/operator identity, public support email, privacy contact and active public privacy declaration appropriate to the actual released build. No personal contact values copied and no recipient invented.",
+      "sources": [
+        {
+          "path": "docs/release/PLAY_STORE_LISTING_DE_2026-11-14.md",
+          "git_blob": "4b13aee3f26bbcd51c7190d1ab2ea04d8c4f9fd1",
+          "lines": [
+            [
+              68,
+              77
+            ]
+          ]
+        },
+        {
+          "path": "docs/evidence/play-data-audit-20261114-2708/README.md",
+          "git_blob": "3f9ee6f6e90e270dde1e4c5f61960d6d1eb11f80",
+          "lines": [
+            [
+              38,
+              44
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deployed_service_facts",
+      "needed": "Actual deployed proxy revision/providers, recipients, hosting/retention/deletion and operational handling of data requests. Repository server source and no-store headers do not prove deployment or provider retention.",
+      "sources": [
+        {
+          "path": "docs/evidence/play-data-audit-20261114-2708/README.md",
+          "git_blob": "3f9ee6f6e90e270dde1e4c5f61960d6d1eb11f80",
+          "lines": [
+            [
+              19,
+              26
+            ],
+            [
+              38,
+              44
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "privacy_console_alignment",
+      "needed": "Build-specific Data safety, target-audience/Families declarations and user-facing policy/consent decisions, grounded in actual optional and SDK data flows. No form filled, submitted, account checked or policy/legal acceptance claimed.",
+      "sources": [
+        {
+          "path": "docs/evidence/play-data-audit-20261114-2708/README.md",
+          "git_blob": "3f9ee6f6e90e270dde1e4c5f61960d6d1eb11f80",
+          "lines": [
+            [
+              30,
+              44
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai_result_reporting",
+      "status": "confirmed_source_gap_in_inspected_result_routes_not_a_new_runtime_observation",
+      "needed": "Decide the actual release scope of optional online AI/images and provide a genuine in-app content-report recipient/endpoint plus receipt/handling procedure. Agent/Teacher/Parent result views inspected here bind none; diagnostic Clipboard copy is not that service. Provider-side deletion/retention and complaint handling remain unverified.",
+      "sources": [
+        {
+          "path": "docs/evidence/play-preparation-057a-20261114/ai-result-feedback-review.json",
+          "git_blob": "e27680ebc4b97440e6ccdbc544280cef3fe04874",
+          "findings": [
+            "F1",
+            "F2",
+            "F3",
+            "F6",
+            "F7",
+            "F9"
+          ]
+        }
+      ]
+    }
+  ],
+  "source_catalog": [
+    {
+      "path": "docs/release/PLAY_DISTRIBUTION_2026-11-14.md",
+      "git_blob": "a6d1febf62c7f0204bbafa500682194a56871050",
+      "bytes": 4312,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/release/PLAY_AAB_LOCAL_BUILD_2026-11-14.md",
+      "git_blob": "c54b86523e5994eacca2cee9c841cf0ec9e6e3a7",
+      "bytes": 10319,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/release/SCANNER_COPY_EVIDENCE_2026-11-14.md",
+      "git_blob": "7871de534c92f61ed15dc54d63bcbe6285e9e0b1",
+      "bytes": 3523,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/release/PLAY_STORE_LISTING_DE_2026-11-14.md",
+      "git_blob": "4b13aee3f26bbcd51c7190d1ab2ea04d8c4f9fd1",
+      "bytes": 6566,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/build_play_bundle.sh",
+      "git_blob": "213c95f80ea4473bae5e1d8dd97e553dfd7d86c4",
+      "bytes": 8319,
+      "mode": "100755"
+    },
+    {
+      "path": "scripts/verify_play_bundle.py",
+      "git_blob": "1a7aac51f55132aac2d607867e3bdee8bf5787ab",
+      "bytes": 17151,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/play-data-audit-20261114-2708/README.md",
+      "git_blob": "3f9ee6f6e90e270dde1e4c5f61960d6d1eb11f80",
+      "bytes": 10089,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/play-data-audit-20261114-2708/sdk/sdk-manifest-audit.md",
+      "git_blob": "f9aa6565d6068f32b750fd4815894cee91e70f65",
+      "bytes": 9602,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/privacy-history-source-review.json",
+      "git_blob": "2fc40e231500e694b931f335997f87b279d312a5",
+      "bytes": 1315,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/play-aab-local-20261114/root-independent-result.json",
+      "git_blob": "84bf284159eb1eeba2128578dd8c681a29cc9232",
+      "bytes": 1919,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/app_settings.dart",
+      "git_blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+      "bytes": 11518,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/settings/settings_content.dart",
+      "git_blob": "efaac818451f3bcc121510bf18a587a191ee562e",
+      "bytes": 93219,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/widgets/scan_screen.dart",
+      "git_blob": "bc8dd3881a234c6d21be1dc3aa229dad2cffa5fb",
+      "bytes": 6952,
+      "mode": "100644"
+    },
+    {
+      "path": "config/godot-source.json",
+      "git_blob": "6f05fad948c0b3c07d5266afac3e0725c188bae7",
+      "bytes": 145,
+      "mode": "100644"
+    },
+    {
+      "path": "pubspec.yaml",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "bytes": 2718,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/prepare_android.py",
+      "git_blob": "054324b3f9ba8b7dc269e42a20b9c91a8717b27a",
+      "bytes": 13367,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "git_blob": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b",
+      "bytes": 19093,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/app_update_service.dart",
+      "git_blob": "cecc8a39d7a8b5ee55abbf98b8a800058166e07d",
+      "bytes": 19810,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/package_notices.py",
+      "git_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc",
+      "bytes": 6926,
+      "mode": "100644"
+    },
+    {
+      "path": "PRIVACY.md",
+      "git_blob": "beef1032426cd2bc0af356a7a739c926cdbc3719",
+      "bytes": 5269,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/export_embedded_game.py",
+      "git_blob": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba",
+      "bytes": 8642,
+      "mode": "100644"
+    },
+    {
+      "path": "pubspec.lock",
+      "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1",
+      "bytes": 24469,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/lumo_speech_listener.dart",
+      "git_blob": "8c6da203e9620fda1e2762869199f1f0c37cf434",
+      "bytes": 6130,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/profile_repository.dart",
+      "git_blob": "35cfa44b277284cdb1310b778760367a331b5ebe",
+      "bytes": 3877,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/prepare_embedded_games.py",
+      "git_blob": "a1615455b5ea6251926d5037900e025d46971c18",
+      "bytes": 10377,
+      "mode": "100644"
+    },
+    {
+      "path": "server/lumo-ai-proxy/src/server.js",
+      "git_blob": "aca2d9a2a26b9823d34db42a341fde260a46bafa",
+      "bytes": 27750,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/lumo_ai_proxy_client.dart",
+      "git_blob": "c9f3cb2da48fdd07f308c9b72465314943947bc4",
+      "bytes": 40704,
+      "mode": "100644"
+    }
+  ],
+  "limitations": [
+    "No new local test, Flutter/Android build, renderer, provider request or Play Console/account inspection was performed for this review.",
+    "Historical52 Play-path checks, prior SDK observations and old runtime evidence retain their original commits/scopes. Root's separately reported248 integration cases are not claimed as this agent's execution.",
+    "The repository's same-day official policy references were reused from existing audited documents; this source review does not supply a new legal, policy or Play acceptance opinion.",
+    "Known external signing/operator/privacy/reporting decisions are not new discoveries and are not marked complete.",
+    "No057 CI, signed Play AAB, AAB-derived APK, Play download size or16KiB runtime acceptance is inferred from this source review."
+  ],
+  "ai_review": {
+    "path": "docs/evidence/play-preparation-057a-20261114/ai-result-feedback-review.json",
+    "git_blob": "e27680ebc4b97440e6ccdbc544280cef3fe04874",
+    "independently_read_by_parent": true,
+    "all21_cited_file_blobs_rebound_to_final057_tree": true,
+    "summary": [
+      "Active optional proxy text results and Teacher Pollinations images are distinct from the local storybook setup/reader and the LearningContent visual-aid call that explicitly disables online access.",
+      "Reviewed Agent/Teacher/Parent result UIs do not bind a result-specific complaint/rating endpoint or provider deletion action.",
+      "Story-library deletion, task-cache clearing and diagnostics deletion are local operations. Diagnostics Copy uses Clipboard; the displayed instruction to send to Claude is not an implemented recipient or transport.",
+      "The actual9 changed-lib diffs add no AI complaint or full privacy route. LivePro removes a formerly unassigned network-image presentation branch; its inspected word/photo paths remain local. A new Profile tile opens unchanged Settings.",
+      "No provider contact, output-safety certification, content moderation acceptance or full-app legal conclusion is inferred."
+    ],
+    "source_bindings": [
+      {
+        "path": "lib/core/lumo_ai_proxy_client.dart",
+        "git_blob": "c9f3cb2da48fdd07f308c9b72465314943947bc4",
+        "lines": [
+          "23–78",
+          "109–227",
+          "254–260",
+          "635–713"
+        ]
+      },
+      {
+        "path": "lib/features/agent/lumo_agent_content.dart",
+        "git_blob": "480a76eb4375dc8a49831b68d6c37f90de59ac41",
+        "lines": [
+          "223–260",
+          "288–296",
+          "464–573"
+        ]
+      },
+      {
+        "path": "lib/core/lumo_conversation_controller.dart",
+        "git_blob": "9c25c959a934df019af0eede7a84fcc6982bf6ab",
+        "lines": [
+          "105–115",
+          "152–186"
+        ]
+      },
+      {
+        "path": "lib/features/teacher_mode/lumo_teacher_screen.dart",
+        "git_blob": "6d0cfa67721ab4de5245f6a37f3ce6315fe584d5",
+        "lines": [
+          "39–87",
+          "179–235",
+          "391–430",
+          "590–801"
+        ]
+      },
+      {
+        "path": "lib/core/lumo_image_generator.dart",
+        "git_blob": "d8f14f1c344e7c3721f6f337b733fded012db897",
+        "lines": [
+          "219–292"
+        ]
+      },
+      {
+        "path": "lib/features/learning/learning_content.dart",
+        "git_blob": "5e62d675606d5e9b0024fa1476c0459343b5da7a",
+        "lines": [
+          "317–348",
+          "701–748",
+          "1131–1154",
+          "1842–1864"
+        ]
+      },
+      {
+        "path": "lib/core/ai_tutor_service.dart",
+        "git_blob": "ff8fe3ca4d19da8f758cc281096fde30fd503c74",
+        "lines": [
+          "39–119"
+        ]
+      },
+      {
+        "path": "lib/core/ai_task_cache.dart",
+        "git_blob": "c705e7340641d0c4ef0858bccc725300fe292654",
+        "lines": [
+          "23–32",
+          "135–144"
+        ]
+      },
+      {
+        "path": "lib/core/lumo_visual_aid_service.dart",
+        "git_blob": "61e96c0fdf3923d6c430defc2b9696203e470099",
+        "lines": [
+          "75–116",
+          "250–252"
+        ]
+      },
+      {
+        "path": "lib/core/lumo_story_generator.dart",
+        "git_blob": "0ae860dd6b765c16ab49686f0f8a65ee55325322",
+        "lines": [
+          "166–208",
+          "231–287"
+        ]
+      },
+      {
+        "path": "lib/features/story/lumo_story_setup_screen.dart",
+        "git_blob": "bb534f21cb4288cc832e7c2972f2da1fbffba158",
+        "lines": [
+          "48–106"
+        ]
+      },
+      {
+        "path": "lib/features/story/lumo_story_reader_screen.dart",
+        "git_blob": "7743e998780666d46440f315ca54d03032595061",
+        "lines": [
+          "350–425",
+          "628–634",
+          "741–758"
+        ]
+      },
+      {
+        "path": "lib/features/story/widgets/lumo_story_scene.dart",
+        "git_blob": "32c0b08c2aa472b3cb154754dd24c08c6f9218b8",
+        "lines": [
+          "22–83"
+        ]
+      },
+      {
+        "path": "lib/features/story/lumo_story_library_screen.dart",
+        "git_blob": "cc376c72add70cc3e9f1c5a27b65da9a0c98972b",
+        "lines": [
+          "451–479",
+          "560–579"
+        ]
+      },
+      {
+        "path": "lib/core/lumo_story_library.dart",
+        "git_blob": "9c6433fdb90b818aef1d11fd8938d236807f4241",
+        "lines": [
+          "148–186",
+          "241–251"
+        ]
+      },
+      {
+        "path": "lib/features/settings/settings_content.dart",
+        "git_blob": "efaac818451f3bcc121510bf18a587a191ee562e",
+        "lines": [
+          "230–262",
+          "433–459",
+          "2205–2225",
+          "2341–2405"
+        ]
+      },
+      {
+        "path": "lib/core/lumo_error_log.dart",
+        "git_blob": "73d15b0ce0a2c7e520d4b53bb6531f53bb37bd55",
+        "lines": [
+          "42–70"
+        ]
+      },
+      {
+        "path": "lib/core/app_settings.dart",
+        "git_blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+        "lines": [
+          "7–22"
+        ]
+      },
+      {
+        "path": "lib/features/live/lumo_live_pro_screen.dart",
+        "git_blob": "f592b2459a6b79a1b2fe685c15671df908c5ad15",
+        "lines": [
+          "151–160",
+          "190–235",
+          "314–430",
+          "571–618",
+          "726–808"
+        ]
+      },
+      {
+        "path": "lib/core/lumo_brain.dart",
+        "git_blob": "47dd9462cdc7852a287c10a4738064012864256b",
+        "lines": [
+          "19",
+          "465–640"
+        ]
+      },
+      {
+        "path": "lib/widgets/profile_screen.dart",
+        "git_blob": "5cc989e2258cf5123d306f01ca268d007a4de105",
+        "lines": [
+          "711–730"
+        ]
+      }
+    ]
+  },
+  "materialized_and_commit_binding": {
+    "commit": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "verified_materialized_files": 17,
+    "mismatches": [],
+    "present": [
+      {
+        "path": "scripts/build_play_bundle.sh",
+        "git_blob": "213c95f80ea4473bae5e1d8dd97e553dfd7d86c4",
+        "sha256": "84a3baaa57df1a511e47fb2b42504aec1171c9d0f9a9f42b1bf34a82c17a351a",
+        "bytes": 8319
+      },
+      {
+        "path": "scripts/verify_play_bundle.py",
+        "git_blob": "1a7aac51f55132aac2d607867e3bdee8bf5787ab",
+        "sha256": "dc50b5fe6a54e7ed98ed44a08b5cc87018269cb5224fb192782e59040c949dd4",
+        "bytes": 17151
+      },
+      {
+        "path": "lib/core/app_settings.dart",
+        "git_blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+        "sha256": "f2ab011d6189845e9f424fa10539148584566020c149f4ed955a739c9406fd4d",
+        "bytes": 11518
+      },
+      {
+        "path": "lib/features/settings/settings_content.dart",
+        "git_blob": "efaac818451f3bcc121510bf18a587a191ee562e",
+        "sha256": "8f1467dca55ba455cd168da3ad8e8a584175cb9b76228afcaa0c6065100df75a",
+        "bytes": 93219
+      },
+      {
+        "path": "lib/widgets/scan_screen.dart",
+        "git_blob": "bc8dd3881a234c6d21be1dc3aa229dad2cffa5fb",
+        "sha256": "9cb629d829e9b59f744bad760c6bc884bd1bc10d815459d58de346c2eb191795",
+        "bytes": 6952
+      },
+      {
+        "path": "config/godot-source.json",
+        "git_blob": "6f05fad948c0b3c07d5266afac3e0725c188bae7",
+        "sha256": "f881f696df6902e350c825bb669fddc418e3a0902b50fe875ebaf8919b6b57c3",
+        "bytes": 145
+      },
+      {
+        "path": "pubspec.yaml",
+        "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+        "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+        "bytes": 2718
+      },
+      {
+        "path": "scripts/prepare_android.py",
+        "git_blob": "054324b3f9ba8b7dc269e42a20b9c91a8717b27a",
+        "sha256": "4d5a55148f440c8b42d4def6bc864505329a073a384112288d67519923d90c2a",
+        "bytes": 13367
+      },
+      {
+        "path": "tools/auto_install/MainActivity.kt",
+        "git_blob": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b",
+        "sha256": "b1b223b5e39cd4989505f83a9ecef9bd33bc21ee5a17fd377d6e41137fa8a5d7",
+        "bytes": 19093
+      },
+      {
+        "path": "lib/core/app_update_service.dart",
+        "git_blob": "cecc8a39d7a8b5ee55abbf98b8a800058166e07d",
+        "sha256": "4d643c4b2204fe7952e724f535368ac6a798bc6f112b076e5beb7a6036b2c75c",
+        "bytes": 19810
+      },
+      {
+        "path": "scripts/package_notices.py",
+        "git_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc",
+        "sha256": "2a0a2bc6bd4ccd4f6aedc92b91349aceee0f44f6d5d0f2008f81c105c9c156ce",
+        "bytes": 6926
+      },
+      {
+        "path": "scripts/export_embedded_game.py",
+        "git_blob": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba",
+        "sha256": "95987d1c3b188194dcaf4725d4564a56bdf71fd441b408aa302e8b31fc32394d",
+        "bytes": 8642
+      },
+      {
+        "path": "pubspec.lock",
+        "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1",
+        "sha256": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea",
+        "bytes": 24469
+      },
+      {
+        "path": "lib/core/lumo_speech_listener.dart",
+        "git_blob": "8c6da203e9620fda1e2762869199f1f0c37cf434",
+        "sha256": "5a0a5e10ad2312596f1bd3ef9564e1d32803354a7e2a70b10dfe6da122e753be",
+        "bytes": 6130
+      },
+      {
+        "path": "lib/core/profile_repository.dart",
+        "git_blob": "35cfa44b277284cdb1310b778760367a331b5ebe",
+        "sha256": "0aec803483aecbf6b34ef95c8807c5895d859ceba8a0bfe404a2868ab85af6e8",
+        "bytes": 3877
+      },
+      {
+        "path": "scripts/prepare_embedded_games.py",
+        "git_blob": "a1615455b5ea6251926d5037900e025d46971c18",
+        "sha256": "694c115184bd6464ff8e7a3e0bd078e58f5f37d47739ac1d7675827c2f21e129",
+        "bytes": 10377
+      },
+      {
+        "path": "lib/core/lumo_ai_proxy_client.dart",
+        "git_blob": "c9f3cb2da48fdd07f308c9b72465314943947bc4",
+        "sha256": "2202bfc2019e43398db76746d049dd83b1a531770a645d2b5b7a2bbf841c68c0",
+        "bytes": 40704
+      }
+    ],
+    "unmaterialized_source_metadata_checked": [
+      {
+        "path": "docs/release/PLAY_DISTRIBUTION_2026-11-14.md",
+        "git_blob": "a6d1febf62c7f0204bbafa500682194a56871050",
+        "reused_by_exact_blob_identity": true
+      },
+      {
+        "path": "docs/release/PLAY_AAB_LOCAL_BUILD_2026-11-14.md",
+        "git_blob": "c54b86523e5994eacca2cee9c841cf0ec9e6e3a7",
+        "reused_by_exact_blob_identity": true
+      },
+      {
+        "path": "docs/release/SCANNER_COPY_EVIDENCE_2026-11-14.md",
+        "git_blob": "7871de534c92f61ed15dc54d63bcbe6285e9e0b1",
+        "reused_by_exact_blob_identity": true
+      },
+      {
+        "path": "docs/release/PLAY_STORE_LISTING_DE_2026-11-14.md",
+        "git_blob": "4b13aee3f26bbcd51c7190d1ab2ea04d8c4f9fd1",
+        "reused_by_exact_blob_identity": true
+      },
+      {
+        "path": "docs/evidence/play-data-audit-20261114-2708/README.md",
+        "git_blob": "3f9ee6f6e90e270dde1e4c5f61960d6d1eb11f80",
+        "reused_by_exact_blob_identity": true
+      },
+      {
+        "path": "docs/evidence/play-data-audit-20261114-2708/sdk/sdk-manifest-audit.md",
+        "git_blob": "f9aa6565d6068f32b750fd4815894cee91e70f65",
+        "reused_by_exact_blob_identity": true
+      },
+      {
+        "path": "docs/evidence/host-complete-current-connections-20261114/privacy-history-source-review.json",
+        "git_blob": "2fc40e231500e694b931f335997f87b279d312a5",
+        "reused_by_exact_blob_identity": true
+      },
+      {
+        "path": "docs/evidence/play-aab-local-20261114/root-independent-result.json",
+        "git_blob": "84bf284159eb1eeba2128578dd8c681a29cc9232",
+        "reused_by_exact_blob_identity": true
+      },
+      {
+        "path": "PRIVACY.md",
+        "git_blob": "beef1032426cd2bc0af356a7a739c926cdbc3719",
+        "reused_by_exact_blob_identity": true
+      },
+      {
+        "path": "server/lumo-ai-proxy/src/server.js",
+        "git_blob": "aca2d9a2a26b9823d34db42a341fde260a46bafa",
+        "reused_by_exact_blob_identity": true
+      }
+    ],
+    "read_changes": [
+      {
+        "path": "config/godot-source.json",
+        "git_blob": "6f05fad948c0b3c07d5266afac3e0725c188bae7",
+        "diff": "--- 779/config/godot-source.json\n+++ materialized/config/godot-source.json\n@@ -1,5 +1,5 @@\n {\n   \"repository\": \"https://github.com/Ullmann27/lumo-godot.git\",\n-  \"revision\": \"e2d15dbc5f3709306decb139eeb70a1cf30c0b73\",\n+  \"revision\": \"a69f53518b2510873d88f00ff2783d616ab53702\",\n   \"engine\": \"4.6.3\"\n }"
+      },
+      {
+        "path": "pubspec.yaml",
+        "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+        "diff": "--- 779/pubspec.yaml\n+++ materialized/pubspec.yaml\n@@ -23,6 +23,7 @@\n   flutter_test:\n     sdk: flutter\n   flutter_lints: ^4.0.0\n+  image_picker_platform_interface: ^2.11.1\n   shared_preferences_platform_interface: ^2.4.2\n \n flutter:"
+      },
+      {
+        "path": "tools/auto_install/MainActivity.kt",
+        "git_blob": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b",
+        "diff": "--- 779/tools/auto_install/MainActivity.kt\n+++ materialized/tools/auto_install/MainActivity.kt\n@@ -195,7 +195,13 @@\n                     try {\n                         assets.open(\"lumo_game.pck\").close()\n                         val requested = call.argument<String>(\"scene\")\n-                        val game = if (requested in setOf(\"kart\", \"jump\", \"puzzle\", \"build\", \"rhythm\", \"treasure\", \"learning\", \"cards\", \"connect_four\")) requested!! else \"kart\"\n+                        val villageRequested = call.argument<Boolean>(\"livingVillage\") == true\n+                        if ((requested == \"settlement\") != villageRequested ||\n+                            (villageRequested && call.argument<String>(\"settlementMode\") != \"settlement\")) {\n+                            result.error(\"invalid_village\", \"Der Dorfmodus wurde nicht sicher ausgewählt.\", null)\n+                            return@setMethodCallHandler\n+                        }\n+                        val game = if (requested in setOf(\"kart\", \"jump\", \"puzzle\", \"build\", \"settlement\", \"rhythm\", \"treasure\", \"learning\", \"cards\", \"connect_four\")) requested!! else \"kart\"\n                         val options = JSONObject()\n                             .put(\"game\", game)\n                             .put(\"grade\", (call.argument<Int>(\"grade\") ?: 1).coerceIn(1, 4))\n@@ -204,6 +210,9 @@\n                             .put(\"stars\", (call.argument<Int>(\"stars\") ?: 0).coerceAtLeast(0))\n                             .put(\"lifetimeStars\", (call.argument<Int>(\"lifetimeStars\") ?: 0).coerceAtLeast(0))\n                             .put(\"childKey\", call.argument<String>(\"childKey\")?.takeIf { it.matches(Regex(\"[A-Za-z0-9_-]{1,80}\")) } ?: \"standalone\")\n+                        if (game == \"settlement\") {\n+                            options.put(\"livingVillage\", true).put(\"settlementMode\", \"settlement\")\n+                        }\n                         if (game == \"learning\") {\n                             val learning = call.argument<Map<String, Any?>>(\"learning\")\n                             if (learning == null || learning[\"kind\"] !in setOf(\"bridge_ten\", \"addition\", \"subtract_ten\", \"equal_groups\", \"equal_sharing\", \"bridge_hundred\", \"fraction_parts\", \"syllables\", \"plant_parts\")) {\n@@ -212,7 +221,7 @@\n                             }\n                             options.put(\"learning\", JSONObject(learning))\n                         }\n-                        if (game in setOf(\"learning\", \"build\")) {\n+                        if (game in setOf(\"learning\", \"build\", \"settlement\")) {\n                             options.put(\"learningVoiceEnabled\", call.argument<Boolean>(\"learningVoiceEnabled\") == true)\n                                 .put(\"localVoiceLicenseAccepted\", call.argument<Boolean>(\"localVoiceLicenseAccepted\") == true)\n                                 .put(\"learningAutoRead\", call.argument<Boolean>(\"learningAutoRead\") == true)"
+      }
+    ],
+    "lockfile_change": "--- 779/pubspec.lock\n+++ materialized/pubspec.lock\n@@ -321,7 +321,7 @@\n     source: hosted\n     version: \"0.2.2+1\"\n   image_picker_platform_interface:\n-    dependency: transitive\n+    dependency: \"direct dev\"\n     description:\n       name: image_picker_platform_interface\n       sha256: \"567e056716333a1647c64bb6bd873cff7622233a5c3f694be28a583d4715690c\""
+  },
+  "integration_delta_scope": [
+    {
+      "path": "config/godot-source.json",
+      "git_blob": "6f05fad948c0b3c07d5266afac3e0725c188bae7",
+      "change": "Only native revision e2→a69, engine4.6.3 retained."
+    },
+    {
+      "path": "pubspec.yaml",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "change": "One image_picker_platform_interface dev dependency added; version0.13.8+2020 and production dependency declarations unchanged."
+    },
+    {
+      "path": "pubspec.lock",
+      "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1",
+      "change": "Exactly dependency classification transitive→direct dev; all locked versions and archive checksums unchanged."
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "git_blob": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b",
+      "change": "Village launch validation, settlement options and local-learning voice option propagation added. Installer channel and on-device speech availability code retain exact prior bytes."
+    }
+  ]
+}

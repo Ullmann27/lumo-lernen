@@ -1,0 +1,352 @@
+{
+  "schema": 1,
+  "kind": "fresh-desktop-runtime-original-review-handoff",
+  "repository": "Ullmann27/lumo-lernen",
+  "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "host_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+  "native": "a69f53518b2510873d88f00ff2783d616ab53702",
+  "native_tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+  "run_id": 43607156921,
+  "attempt": 1,
+  "job_id": 132484413080,
+  "job_conclusion": "success",
+  "artifact_id": 14119216097,
+  "artifact_name": "lumo-connect-four-2020-desktop-runtime",
+  "archive": {
+    "bytes": 22155436,
+    "sha256": "6bd4d84880566265dcd392cd41bdcfe4b34a2a760b5634f6623e18fb5c63d604",
+    "git_blob": "db019b53f19ac874716d473ff81931833b7d514e"
+  },
+  "archive_downloads_by_this_team_for_this_artifact": 1,
+  "archive_file_count": 399,
+  "archive_crc_and_canonical_paths_verified": true,
+  "official_api_binding_checked": true,
+  "original_directory": "/workspace/scratch/2708c7907f28/runtime-057a-original-14119216097/original",
+  "archive_local_path": "/workspace/scratch/2708c7907f28/runtime-057a-original-14119216097/artifact.zip",
+  "tree_entries": [
+    {
+      "path": "docs/evidence/runtime-057a-20261114/archive-index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3cdd0122202289c275a23753823ad8fbdf2e950"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original-api-metadata.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1bc7f1b3acba9aaa999036aa214ded8152d9961"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/archive-inspection.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64d4aa245015c3b9868485d301002a7ebdeb8c38"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/expected-immutable-sources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df7d5c264509279cea7a1b5322044759defba124"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/review-original.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9c9c568c3f274e33d7fd3e04ef5af03fa2d3f37"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/reader-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5dbf99d969167d5730a48ff33040b7e90d96df47"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/reader-original-output.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7ae2c3ef991bc59f439ef85ab998db13385100a"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00eabde7852a76f7f4fac9029970b92c03f400b1"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/fresh-runtime-results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19c9310f0a626f6b67b0218c050a16f6e6cde8c3"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/source-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7f393f9d0554647501700e02380986caaa5eeb2"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/source-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7f393f9d0554647501700e02380986caaa5eeb2"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/session.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0cf0b727d44d1be4da08eee8ae6aae197e3d4034"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/done.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67f49cd9c460cbcaa519d63e8147a4e1186b0de7"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/closed.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14143da215bd17cf2fc16a3f4393d0e02671d848"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/runtime-gate.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88ee37a15857eba0340163a80c0bdfe87e7a60b5"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/native-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4622ee6d969915f13221990928d2ff6d4b45ddb9"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/dart-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7d450302f0f8fa41c0699502d09219a37831650"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/original-godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "997285528a8faeaa0bbfb5b2633976946eaa5eaf"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/original-dart.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "939e21d7e15cac2d02668bf0648e0b4cd8403631"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/original-import.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59ab73bb0721c30426e8a82b2505cbea95b140bb"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/return-recovery.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "186e8fa528a9138ea17a0a1395010f440192a280"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/wisps.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a9af201e589b4813f21814579f5112b87e66b46a"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/connect_four_empty.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2ca2570863ef418c7cf93e443cb176c776b045f"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/connect_four_empty.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c319486156ad535cd666f326e6f084fdd010da94"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/connect_four_win.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5165b197e9b7deb677975e4bdf0ce6cf0737076f"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/connect_four_win.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dceb463a717ba3493ad885b61d21df7ece4ee03f"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/connect_four_phone_portrait.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "328038c8271f171e9575a021145fd090b83e9307"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/connect_four_phone_portrait.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43c0d8d5e57aa7e2d93fbc584cda69a198aad7b6"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/connect_four_small_landscape.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec730039bb8e2ec4fea8ed293c914cff24d81289"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/original/runtime/connect_four_small_landscape.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76110bebb11fcd1715127de837395fbeb6c006a1"
+    },
+    {
+      "path": "docs/evidence/runtime-057a-20261114/visual-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7727c268a280e75ce78094f0a1fb5a62a08af9b5"
+    }
+  ],
+  "preservation": {
+    "unchanged_selected_originals_and_review_records": 30,
+    "independent_visual_review": true,
+    "full_archive_uploaded_as_git_blob": false,
+    "full_archive_and_all399_originals_locally_present_at_review": true,
+    "full399_file_hash_index_persisted": true,
+    "entire_frame_sequence_decoded_and_hashed": true,
+    "selected_original_pngs_persisted": 4,
+    "remaining_images_not_claimed_as_individually_persisted_blobs": true,
+    "full_github_prebuild_job_logs_owned_by_release_lead": true,
+    "no_duplicate_log_api_download_by_this_agent": true
+  },
+  "review_execution": {
+    "source_binding": {
+      "host": {
+        "head": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+        "tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+        "file_count": 447,
+        "exact_path_mode_blob_size_match": true
+      },
+      "native": {
+        "head": "a69f53518b2510873d88f00ff2783d616ab53702",
+        "tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+        "file_count": 1268,
+        "exact_path_mode_blob_size_match": true
+      }
+    },
+    "snapshots_byte_equal": true,
+    "source_snapshot": {
+      "bytes": 480285,
+      "sha256": "14c1bf6dfa5cdb83f2adc325d128fd2ede4037b1c70fb09ba06601601119c021",
+      "git_blob": "d7f393f9d0554647501700e02380986caaa5eeb2"
+    },
+    "actual_pure_reader_calls": [
+      "validate_native_log(runtime/original-godot.log)",
+      "validate_results(runtime, original_session)"
+    ],
+    "helper": {
+      "path": "scripts/run_connect_four_runtime.py",
+      "bytes": 15683,
+      "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b",
+      "git_blob": "36d93ed0908705e339346bf5ef451cf047b641b5"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 2.3578128814697266,
+    "reader_before_after_identical": true,
+    "all399_originals_unchanged": true,
+    "original_result_replay_equal": true,
+    "original_godot_log_replay_equal": true
+  },
+  "actual_runtime_results": {
+    "original_process_exit_codes": {
+      "dart": 0,
+      "godot": 0
+    },
+    "native_checks": 170,
+    "native_errors": [],
+    "frames": 250,
+    "decoded_pngs": 259,
+    "observed_moving_frames": 90,
+    "observed_winning_frames": 43,
+    "original_inputs": 54,
+    "original_touched_targets": 23,
+    "original_dart_events": 33,
+    "final_ack": 23,
+    "final_revision": 33,
+    "final_exit": true,
+    "stars": 5,
+    "xp": 40,
+    "reopened_same_round": true,
+    "single_player_human_and_bot_observed": true,
+    "preferences_backend": "SharedPreferences test backend, same process reopen",
+    "recording_format_fps": 24,
+    "measured_device_fps": false,
+    "separate_original_preflight_markers": [
+      "CONNECT_FOUR_RETURN_PASS checks=21",
+      "[TreasureWisp] PASS checks=14"
+    ]
+  },
+  "visual_review": {
+    "blob": "7727c268a280e75ce78094f0a1fb5a62a08af9b5",
+    "this_parent_read_full_child_review": true,
+    "files_actually_opened_by_child": 4,
+    "images": [
+      {
+        "path": "runtime/connect_four_empty.png",
+        "dimensions": [
+          960,
+          540
+        ],
+        "bytes": 82537,
+        "sha256": "aa1bde4d9f074b6d509024f064f14e27a40866d344657a7d522005bb60e52fd8",
+        "git_blob": "e2ca2570863ef418c7cf93e443cb176c776b045f"
+      },
+      {
+        "path": "runtime/connect_four_win.png",
+        "dimensions": [
+          960,
+          540
+        ],
+        "bytes": 84544,
+        "sha256": "c1ae15494092fa78aed6d074196b60bd9bfeac8b145a4d2b0dfecae866767e1a",
+        "git_blob": "5165b197e9b7deb677975e4bdf0ce6cf0737076f"
+      },
+      {
+        "path": "runtime/connect_four_phone_portrait.png",
+        "dimensions": [
+          1080,
+          2400
+        ],
+        "bytes": 170661,
+        "sha256": "0d22adcedf99e68060f7091a3cb9bf8b99abea7c9415c724e2ef81a0b7600de1",
+        "git_blob": "328038c8271f171e9575a021145fd090b83e9307"
+      },
+      {
+        "path": "runtime/connect_four_small_landscape.png",
+        "dimensions": [
+          640,
+          360
+        ],
+        "bytes": 22915,
+        "sha256": "b5c074d659a5a20c646a3a8e977e052b5a11267e9082743c06b72fdd7fc98d55",
+        "git_blob": "ec730039bb8e2ec4fea8ed293c914cff24d81289"
+      }
+    ],
+    "observation": "Empty/winning landscape and portrait-result captures show readable displayed controls. The current 640x360 result image shows only Brett ansehen within the scroll viewport. Neue Runde and Gegen Lumo spielen are not visible in that image.",
+    "no_new_small_landscape_lower_actions_execution_claim": true
+  },
+  "limits": [
+    "Read-only original archive/metadata/log/result verification. No engine, renderer, Flutter test, device, APK or provider call was started locally.",
+    "The actual CI runtime uses the production Dart controller with local file transport, SharedPreferences test backend and desktop rendering. This is not Android Binder, durable disk-persistence or device-FPS acceptance.",
+    "The configured 24 recording FPS is not a measured throughput result.",
+    "Only four current original PNGs were opened for visual review; all259 were decoded by the unchanged pure reader, which is a different scope.",
+    "No historical R3/1375/803 action or runtime acceptance is transferred to this current057/a69 source.",
+    "Current small-landscape image/target evidence does not newly prove scrolling to and activating the two lower won-modal actions.",
+    "Full main workflow success, APK/Play readiness and remaining Native/Flutter/Android/Delivery gates are outside this bounded evidence handoff.",
+    "Evidence was stored as inert Git blobs only; no source, branch or ref was changed."
+  ]
+}

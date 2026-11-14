@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14 14:54:46 UTC",
+  "recorded_at_utc": "2026-11-14 15:14:57 UTC",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -31,23 +31,120 @@
     "id": 43607156921,
     "attempt": 1,
     "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43607156921",
-    "status_at_last_read": "pending",
+    "status_at_last_read": "in_progress",
     "conclusion": null,
     "head": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
     "created_at": "2026-11-14T14:52:50Z",
     "trigger": "pull_request",
     "job_budget_minutes": 150,
     "android_tour_budget_minutes": 80,
-    "last_read_utc": "2026-11-14 14:54:46 UTC"
+    "last_read_utc": "2026-11-14 15:14:57 UTC",
+    "main_job_id": 132485496250,
+    "main_job_started_at": "2026-11-14T14:58:03Z",
+    "main_job_deadline_utc": "2026-11-14T17:28:03Z",
+    "active_steps": [
+      {
+        "name": "Verify all build and preservation contracts",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 20,
+        "started_at": "2026-11-14T15:09:53Z",
+        "completed_at": null
+      }
+    ],
+    "jobs_snapshot": [
+      {
+        "id": 132484413080,
+        "name": "connect-four-runtime",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-14T14:53:51Z",
+        "completed_at": "2026-11-14T14:56:13Z"
+      },
+      {
+        "id": 132484413382,
+        "name": "android-host-compile",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-14T14:53:52Z",
+        "completed_at": "2026-11-14T14:58:01Z"
+      },
+      {
+        "id": 132485496250,
+        "name": "verify-and-build",
+        "status": "in_progress",
+        "conclusion": null,
+        "started_at": "2026-11-14T14:58:03Z",
+        "completed_at": null
+      }
+    ]
   },
-  "completed_original_evidence": {},
+  "completed_original_evidence": {
+    "android_host_compile": {
+      "job_id": 132484413382,
+      "conclusion": "success",
+      "completed_at": "2026-11-14T14:58:01Z",
+      "original_log_blob": "45d79512b79f12038f7e2a0e131ce624eccd3778",
+      "scope": "Actual Kotlin/Java boundary compilation; not a signed APK or Android tour."
+    },
+    "c4_runtime": {
+      "job_id": 132484413080,
+      "conclusion": "success",
+      "artifact": 14119216097,
+      "archive_bytes": 22155436,
+      "archive_sha256": "6bd4d84880566265dcd392cd41bdcfe4b34a2a760b5634f6623e18fb5c63d604",
+      "checks": 170,
+      "return_checks": 21,
+      "wisp_checks": 14,
+      "actual_readonly_reader_exit_code": 0,
+      "original_files": 399,
+      "host_bound_files": 447,
+      "native_bound_files": 1268,
+      "root_opened_images": 2,
+      "child_opened_images": 4,
+      "handoff_blob": "75e36ebf630f69580fa9c74563c7f6d0d0cc7cdf",
+      "scope": "Actual desktop/file transport/test preferences. Current images do not prove Android won-dialog lower-action input."
+    },
+    "learning_audit": {
+      "artifact": 14119441036,
+      "archive_bytes": 212134,
+      "archive_sha256": "644fcf9a52c441ea2b781c5c15ac36ff9493d97f530c257c68991192f3d8f8ab",
+      "whole_original_zip_blob": "c27aa4d234e1c49408dc37473c0aa48fb2dd44c1",
+      "actual_root_reader_exit_code": 0,
+      "reader_blob": "214e21a6300b361985615c0a90b79d48a43ca2fd",
+      "families": 236,
+      "samples": 7552,
+      "structural_issues": 0,
+      "all_seven_originals_unchanged": true,
+      "semantic_or_official_curriculum_approval": false
+    },
+    "full_flutter": {
+      "artifact": 14119611994,
+      "archive_bytes": 336114687,
+      "archive_sha256": "5ec602547df2553ba1c8ac496d850560f2cf32b9ad69e3742583de343627d0a8",
+      "completed_at": "2026-11-14T15:08:48Z",
+      "passed": 2612,
+      "failed": 0,
+      "skipped": 0,
+      "actual_root_parser_exit_code": 0,
+      "parser_blob": "9999632174044af584c87147c5347c167b830918",
+      "original_files": 554,
+      "original_pngs": 552,
+      "original_machine_done_time_ms": 548409,
+      "exact_topic_test_id": 608,
+      "original_reports_zip_blob": "b209f91a7e9a1ac1ab88343a9caa87bdd58b8b4f",
+      "root_visual_review": "pending selected current screenshots",
+      "preservation_scope": "Complete original machine and summary reports in the small storage ZIP, complete554-member hash index and actual readonly execution checkpointed; full336MB image archive remains local and in original Actions artifact, not wholly in Git."
+    }
+  },
   "remaining": [
-    "Complete fresh exact057a/a69 full Flutter/build/native/Dream/Discovery gates and signed APK build",
-    "Verify all six packaged-notice entries and original bytes in the actual new APK",
-    "Review current original APK identity, signature/provenance, Android main/Village/C4 tours and2017-to2020 update preservation",
+    "Complete current057a/a69 build-contract/native/Dream/Discovery gates and signed APK build",
+    "Verify six packaged-notice members and exact original bytes in the actual new APK",
+    "Complete actual current Android main/Village/C4 tours and2017-to2020 update preservation",
+    "Resolve the bounded current Android won-dialog lower-action evidence gap without repeating unchanged desktop cases",
     "Complete current final candidate and delivery gates",
-    "Make the actual accepted current APK available and obtain actual public immutable single-APK publishing access if still needed",
-    "Complete Play upload signing/AAB/Console and verified operator/privacy/backend facts; physical Android performance remains unmeasured"
+    "Provide the actual accepted current APK and complete real public immutable single-APK publication",
+    "Complete real Play upload signing/AAB/Console and verified operator/privacy/backend facts; physical Android performance remains unmeasured"
   ],
   "publication": {
     "verified_public_apk_url": null,
@@ -73,29 +170,34 @@
   },
   "evidence": {
     "branch": "checkpoint/lumo-aab-ci-20261114-2708",
-    "checkpoint_before_this_record": "bdebaf09c7b16e51f5aa72e2bc9d067416095b9b",
+    "checkpoint_before_this_record": "eeefc4901c2e545e8d80d080960712a9e80f5329",
     "merge_prefix": "docs/evidence/host-7793-0b7-merge-20261114/",
     "native_merge_prefix": "docs/evidence/native-baf-e2-merge-20261114/",
     "current_main": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43607156921",
-    "scope": "Original failed and successful local invocations and source reviews already durable."
+    "scope": "Current runtime/prebuild/learning/Flutter originals and read-only readers, current Play source review, complete old1375 terminal scope and actual local recovery preserved."
   },
-  "resume": "ReleaseLead owns run43607156921 and terminal1375 original preservation. LearningLead and Child own source-bound057a Play/privacy/AI report-path audit. Root owns APK/Android/update/delivery, refs, evidence and PR. Four-agent hierarchy retained.",
+  "resume": "ReleaseLead owns current main/native monitoring and completed main-log/contract evidence. LearningLead/Child finish bounded Android won-dialog coverage proposal and inspect selected existing current Village/profile PNGs. Root owns current Flutter/learning originals, APK/Android/update/delivery, refs and publication. Four-agent hierarchy unchanged.",
   "local_execution": {
     "actual_existing_git_checkout": "/workspace/scratch/2708c7907f28/lumo-host-current",
-    "last_verified_git_head": "1375da193af0152af64f91d86577aa9768cd50db",
+    "last_verified_git_head": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
     "last_verified_git_status": "clean",
     "current_materialized_test_source": "/workspace/scratch/2708c7907f28/lumo-host-merge-7793-0b7/checkout",
     "materialized_tree_bound_to": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
     "materialized_directory_is_git_repository": false,
-    "local_git_successor_recovery_pending": true
+    "local_git_successor_recovery_pending": false,
+    "last_verified_git_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "verified_materialized_files": 1655,
+    "verified_materialized_bytes": 64047744,
+    "actual_recovery_report": "docs/evidence/host-7793-0b7-merge-20261114/actual-local-recovery.json",
+    "original_recovery_archive": "docs/evidence/host-7793-0b7-merge-20261114/git-recovery-originals.zip",
+    "original_merge_exit_code": 128,
+    "following_independent_verification_passed": true,
+    "recovery_note": "The ff-only command advanced HEAD/index/worktree, then failed reading an excluded missing blob. Actual subsequent complete sparse blob/mode, ancestor and clean-state checks passed. No reset, force or second merge.",
+    "autosave_check_and_once_passed": true,
+    "watch_120_seconds_actually_started": true,
+    "watch_is_best_effort": true
   },
-  "next_repair": {
-    "scope": "No further source mutation planned while fresh057a acceptance runs. Diagnose only actual current failures and preserve original evidence.",
-    "all_existing_gates_preserved": true,
-    "activated": true,
-    "new_head": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
-    "triggered_run": 43607156921
-  },
+  "next_repair": "No current product defect inferred from passed desktop evidence. Await exact new APK/Android results; investigate only a concrete failed gate or the separately bounded won-dialog Android input gap.",
   "previous_candidates": [
     {
       "candidate": {
@@ -1017,7 +1119,7 @@
         "id": 43599456596,
         "attempt": 1,
         "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43599456596",
-        "status_at_last_read": "in_progress",
+        "status_at_last_read": "completed",
         "head": "1375da193af0152af64f91d86577aa9768cd50db",
         "created_at": "2026-11-14T13:22:40Z",
         "trigger": "pull_request from reviewed quality-branch fast-forward",
@@ -1026,13 +1128,9 @@
         "main_job_id": 132461940239,
         "main_job_started_at": "2026-11-14T13:26:58Z",
         "main_job_deadline_utc": "2026-11-14T15:56:58Z",
-        "active_steps": [
-          {
-            "number": 31,
-            "name": "Require actual gameplay gates on the exact pinned native source",
-            "started_at": "2026-11-14T13:50:10Z"
-          }
-        ]
+        "active_steps": [],
+        "conclusion": "cancelled",
+        "completed_at": "2026-11-14T14:53:49Z"
       },
       "completed_original_evidence": {
         "android_host_compile": {
@@ -1110,10 +1208,16 @@
       },
       "scope": "All original1375 results remain bound to1375/e2. Superseded by7793 then057a; they are not current057a acceptance.",
       "transition_observation": {
-        "observed_by": "lumo_release_lead",
-        "observed_at_utc": "2026-11-14 14:53:07 UTC",
-        "native_step31": "cancelled at14:53:03; terminal run/log preservation pending",
-        "reason_scope": "Actual cancellation state only; not a native test failure or pass."
+        "recorded_at_utc": "2026-11-14 15:14:57 UTC",
+        "native_step31": "cancelled at2026-11-14T14:53:03Z",
+        "main_completed_at": "2026-11-14T14:53:49Z",
+        "original_cancellation_line": "2026-11-14T14:53:03.2837786Z ##[error]The operation was canceled.",
+        "handoff_blob": "104f1d1b9922fa450a9d9feff3d284eabb3e21f3",
+        "full_original_log_blob": "e47fc9478140dc9f8899650abae13c48d5d9a8f4",
+        "partial_native_pass_rows": 51,
+        "full_native_acceptance": false,
+        "apk_produced": false,
+        "reason_scope": "Actual cancellation coincides with activation of057a in the unchanged cancel-in-progress concurrency group; not a150-minute timeout or evidence of a failed built APK."
       }
     },
     {
@@ -1521,5 +1625,15 @@
     "evidence_commit": "bdebaf09c7b16e51f5aa72e2bc9d067416095b9b",
     "prefix": "docs/evidence/host-7793-0b7-merge-20261114/",
     "archive_blob": "ff982a492e772c334ceda29ff98895d3a00d15bd"
+  },
+  "current_source_reviews": {
+    "play": {
+      "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+      "native": "a69f53518b2510873d88f00ff2783d616ab53702",
+      "handoff_blob": "9ba0aae8207f819118cc2e42dd9f3b94f86aa746",
+      "parent_review_blob": "c0ca0e9e29be8f83391446c2f71206d32698c916",
+      "child_ai_review_blob": "e27680ebc4b97440e6ccdbc544280cef3fe04874",
+      "scope": "Current source review only; no actual Play signing/AAB, deployed backend audit, operator publication or Play approval."
+    }
   }
 }
