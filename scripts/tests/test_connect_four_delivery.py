@@ -102,6 +102,51 @@ class OriginalAcceptanceTests(unittest.TestCase):
         self.assertEqual(set(self.check()), set(delivery.REQUIRED_STEPS))
         self.assertEqual(set(delivery.checked_artifacts(self.artifacts, self.binding)), set(delivery.ARTIFACT_NAMES))
 
+    def test_both_approved_branches_require_their_own_matching_run_and_pull(self):
+        branches = ('integration/lumo-c4-connections-20261114',
+                    'integration/lumo-agent-execution-20261114')
+        for branch in branches:
+            self.run['head_branch'] = branch
+            self.pull['head']['ref'] = branch
+            with self.subTest(branch=branch):
+                self.assertEqual(set(self.check()), set(delivery.REQUIRED_STEPS))
+                for other in branches:
+                    if other == branch:
+                        continue
+                    self.pull['head']['ref'] = other
+                    with self.assertRaises(ValueError):
+                        self.check()
+                self.pull['head']['ref'] = branch
+
+    def test_similarly_named_or_unknown_branch_is_never_an_approved_candidate(self):
+        for branch in ('main', 'integration/lumo-agent-execution-20261114-copy',
+                       'integration/lumo-agent-execution-20261115', ''):
+            self.run['head_branch'] = branch
+            self.pull['head']['ref'] = branch
+            with self.subTest(branch=branch), self.assertRaises(ValueError):
+                self.check()
+
+    def test_native_return_and_wisp_cannot_be_omitted_or_skipped_on_either_branch(self):
+        labels = ('Retry the acknowledged native exit after a transient Android refusal',
+                  'Require bounded native Wisp feedback on the exact source')
+        for label in labels:
+            for branch in ('integration/lumo-c4-connections-20261114',
+                           'integration/lumo-agent-execution-20261114'):
+                self.run['head_branch'] = self.pull['head']['ref'] = branch
+                runtime = next(row for row in self.jobs['jobs']
+                               if row['name'] == 'connect-four-runtime')
+                other_steps = [step for step in runtime['steps'] if step['name'] != label]
+                probe = {'name': label, 'status': 'completed', 'conclusion': 'success'}
+                runtime['steps'] = other_steps + [probe]
+                self.check()
+                runtime['steps'] = other_steps
+                with self.subTest(step=label, branch=branch, case='missing'), self.assertRaises(ValueError):
+                    self.check()
+                runtime['steps'] = other_steps + [{**probe, 'conclusion': 'skipped'}]
+                with self.subTest(step=label, branch=branch, case='skipped'), self.assertRaises(ValueError):
+                    self.check()
+                runtime['steps'] = other_steps + [probe]
+
     def test_each_failure_skip_cancel_and_foreign_attempt_blocks_delivery(self):
         for row in self.jobs['jobs'][:-1]:
             for field, value in [('conclusion', 'failure'), ('conclusion', 'skipped'),
@@ -697,12 +742,18 @@ class RealFilesAndCommandsTests(unittest.TestCase):
                   'github.head_ref': delivery.BRANCH,
                   **{'needs.'+name+'.result': 'success' for name in delivery.REQUIRED_STEPS}}
         def allowed(conditions):
-            code = expression.replace('&&', 'and')
+            code = expression.replace('&&', 'and').replace('||', 'or')
             for key in sorted(conditions, key=len, reverse=True): code = code.replace(key, repr(conditions[key]))
             return eval(code.strip(), {'__builtins__': {}}, {})
         self.assertTrue(allowed(values))
+        self.assertTrue(allowed({**values,
+            'github.head_ref': 'integration/lumo-agent-execution-20261114'}))
         for key in values:
             with self.subTest(key=key): self.assertFalse(allowed({**values, key: 'different'}))
+            with self.subTest(key=key, branch='new integration'):
+                self.assertFalse(allowed({**values,
+                    'github.head_ref': 'integration/lumo-agent-execution-20261114',
+                    key: 'different'}))
         self.assertNotIn('if: always()', head)
         for name in delivery.ARTIFACT_NAMES[1:]: self.assertIn('name: '+name, block)
 

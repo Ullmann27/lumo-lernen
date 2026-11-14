@@ -19,12 +19,12 @@ const _cyan = Color(0xFF53DDFD);
 const _gold = Color(0xFFFFD166);
 const _ink = Color(0xFF071A3D);
 const _panel = Color(0xEB0C2C58);
-const _columnTouchSize = 48.0;
 const _boardPadding = 10.0;
 const _boardBorderWidth = 2.4;
-const _boardContentInset = _boardPadding + _boardBorderWidth;
+const _boardInset = _boardPadding + _boardBorderWidth;
+const _columnTouchSize = 48.0;
 const _minimumBoardWidth =
-    ConnectFourEngine.columns * _columnTouchSize + _boardContentInset * 2;
+    ConnectFourEngine.columns * _columnTouchSize + 2 * _boardInset;
 
 class LumoConnectFourScreen extends StatefulWidget {
   const LumoConnectFourScreen({super.key, required this.appState, this.seed});
@@ -857,108 +857,123 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
     );
   }
 
-  Widget _playArea() => LayoutBuilder(builder: (context, constraints) {
-        const tableExtra = 28.0;
-        const controlsGap = 8.0;
-        final availableHeight = math.max(
+  Widget _playArea() => LayoutBuilder(
+        builder: (context, constraints) {
+          const tableExtra = 28.0;
+          const controlsGap = 8.0;
+          final availableHeight = math.max(
             0.0,
             constraints.maxHeight -
                 _columnTouchSize -
                 controlsGap -
-                tableExtra);
-        final fittedWidth =
-            math.min(constraints.maxWidth, availableHeight * 7 / 6);
-        final width = math.max(fittedWidth, _minimumBoardWidth);
-        final boardHeight = math.min(availableHeight, width * 6 / 7);
-        // Board wells and their 48dp controls share one coordinate system.
-        // On narrow/short displays they scroll together; only the well spacing
-        // changes with the available height, never the column hit targets.
-        return Align(
-          alignment: Alignment.topCenter,
-          child: SizedBox(
-            width: math.min(constraints.maxWidth, width),
-            child: SingleChildScrollView(
-              key: const ValueKey('connect-column-scroll'),
-              scrollDirection: Axis.horizontal,
-              child: SizedBox(
-                width: width,
-                child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  SizedBox(
-                    height: boardHeight + tableExtra,
-                    child: Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        Positioned(
-                          left: -18,
-                          right: -18,
-                          bottom: 0,
-                          height: boardHeight * 0.42 + tableExtra,
-                          child: const IgnorePointer(
-                            child: CustomPaint(
-                              painter: LumoConnectFourTablePedestal(),
-                              child: SizedBox.expand(),
+                tableExtra,
+          );
+          final width = math.max(
+            _minimumBoardWidth,
+            math.min(constraints.maxWidth, availableHeight * 7 / 6),
+          );
+          final boardHeight = math.min(width * 6 / 7, availableHeight);
+          return Align(
+            alignment: Alignment.topCenter,
+            child: SizedBox(
+              width: math.min(width, constraints.maxWidth),
+              // Scroll the board and its controls together. Both use the same
+              // column spacing, including the board's padding and border.
+              child: SingleChildScrollView(
+                key: const ValueKey('connect-column-scroll'),
+                scrollDirection: Axis.horizontal,
+                child: SizedBox(
+                  width: width,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(
+                        width: width,
+                        height: boardHeight + tableExtra,
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Positioned(
+                              left: -18,
+                              right: -18,
+                              bottom: 0,
+                              height: boardHeight * 0.42 + tableExtra,
+                              child: const IgnorePointer(
+                                child: CustomPaint(
+                                  painter: LumoConnectFourTablePedestal(),
+                                  child: SizedBox.expand(),
+                                ),
+                              ),
                             ),
-                          ),
+                            Positioned(
+                              top: 0,
+                              left: 0,
+                              right: 0,
+                              height: boardHeight,
+                              child: _board(),
+                            ),
+                          ],
                         ),
-                        Positioned(
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          height: boardHeight,
-                          child: _board(),
-                        ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: controlsGap),
+                      _columnControls(),
+                    ],
                   ),
-                  const SizedBox(height: controlsGap),
-                  _columnControls(),
-                ]),
+                ),
               ),
             ),
-          ),
-        );
-      });
+          );
+        },
+      );
 
   Widget _columnControls() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: _boardContentInset),
-        child: Row(children: [
-          for (var c = 0; c < ConnectFourEngine.columns; c++)
-            Expanded(
-              child: LumoPressable(
-                enabled: !_busy && !_clock.value,
-                radius: 12,
-                child: IconButton(
-                  key: ValueKey('connect-column-$c'),
-                  tooltip: 'Stein in Spalte ${c + 1}',
-                  style: IconButton.styleFrom(
-                    backgroundColor: _panel,
-                    minimumSize: const Size.square(_columnTouchSize),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      side: BorderSide(color: _cyan.withValues(alpha: .5)),
+        padding: const EdgeInsets.symmetric(horizontal: _boardInset),
+        child: Row(
+          children: [
+            for (var c = 0; c < ConnectFourEngine.columns; c++)
+              Expanded(
+                child: LumoPressable(
+                  enabled: !_busy && !_clock.value,
+                  radius: 12,
+                  pressedScale: 1,
+                  child: IconButton(
+                    key: ValueKey('connect-column-$c'),
+                    tooltip: 'Stein in Spalte ${c + 1}',
+                    style: IconButton.styleFrom(
+                      backgroundColor: _panel,
+                      minimumSize:
+                          const Size(_columnTouchSize, _columnTouchSize),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        side: BorderSide(color: _cyan.withValues(alpha: .5)),
+                      ),
                     ),
-                  ),
-                  onPressed: !_busy &&
-                          !_clock.value &&
-                          _game.phase == ConnectPhase.playing &&
-                          _game.validColumns.contains(c)
-                      ? () => _tapColumn(c)
-                      : null,
-                  icon: Icon(Icons.arrow_downward_rounded,
+                    onPressed: !_busy &&
+                            !_clock.value &&
+                            _game.phase == ConnectPhase.playing &&
+                            _game.validColumns.contains(c)
+                        ? () => _tapColumn(c)
+                        : null,
+                    icon: Icon(
+                      Icons.arrow_downward_rounded,
                       size: 24,
                       color: _busy
                           ? Colors.white24
                           : _game.turn == ConnectPiece.child
                               ? _cyan
-                              : _gold),
+                              : _gold,
+                    ),
+                  ),
                 ),
               ),
-            ),
-        ]),
+          ],
+        ),
       );
 
   Widget _board() => Center(
         child: SizedBox.expand(
+          // A short landscape panel can reduce row spacing without shrinking
+          // the shared 48dp column pitch. Disc diameters still fit both axes.
           child: RepaintBoundary(
             child: Stack(
               clipBehavior: Clip.none,

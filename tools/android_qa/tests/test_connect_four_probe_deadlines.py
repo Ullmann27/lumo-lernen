@@ -180,6 +180,7 @@ class DeadlineTests(unittest.TestCase):
         value.ui = SimpleNamespace(capture_flutter_ready=lambda *_a, **_k: {'file': 'synthetic.png'},
             read_live_nodes=lambda *_a: [{'text': 'Spiel pausiert'}, {'text': 'Fortsetzen'}])
         value.flutter_touch = mock.Mock(return_value='synthetic-return-touch.json')
+        value.wait_for_flutter_control = mock.Mock(return_value='synthetic-games-ready.json')
         self.stack.enter_context(mock.patch.object(PROBE.contract, 'persisted_round', return_value={'synthetic': True}))
         return value, before
 
@@ -190,6 +191,7 @@ class DeadlineTests(unittest.TestCase):
                 with self.assertRaises(TimeoutError): value.return_to_flutter('late-return'+stage)
                 value.read_preferences.assert_not_called()
                 value.flutter_touch.assert_not_called()
+                value.wait_for_flutter_control.assert_not_called()
                 self.assertEqual(value.returns, [])
 
     def test_return_exact_deadline_is_closed_and_timely_return_keeps_full_checks(self):
@@ -199,6 +201,8 @@ class DeadlineTests(unittest.TestCase):
         self.assertIs(value.return_to_flutter('timely-return'), before)
         value.read_preferences.assert_called_once()
         value.flutter_touch.assert_called_once_with('Zur Spieleauswahl', 'timely-return-to-games', scrolls=3)
+        value.wait_for_flutter_control.assert_called_once_with(PROBE.contract.PORTAL, 'timely-return-games')
+        self.assertEqual(value.returns[0]['games_ready'], 'synthetic-games-ready.json')
         self.assertEqual(len(value.returns), 1)
 
     def test_return_still_requires_observed_pause(self):
