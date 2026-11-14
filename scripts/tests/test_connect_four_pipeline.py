@@ -138,9 +138,9 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn('timeout 60s godot --headless --audio-driver Dummy --path native-source '
                       '--script res://scripts/tests/connect_four_return_regression.gd',block)
         self.assertIn('2>&1 | tee c4-runtime/return-recovery.log',block)
-        self.assertIn("if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:' c4-runtime/return-recovery.log; then",block)
+        self.assertIn("if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:|Assertion failed' c4-runtime/return-recovery.log; then",block)
         self.assertIn('exit 1',block)
-        self.assertIn("grep -Fx 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log",block)
+        self.assertIn("test \"$(grep -Fxc 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log)\" = 1",block)
 
     def test_real_runtime_compile_and_existing_build_gates_remain_mandatory(self):
         runtime=job(self.workflow,'connect-four-runtime')
