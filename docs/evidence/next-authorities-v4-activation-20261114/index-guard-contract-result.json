@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "created_utc": "2026-11-14T18:11:05.484888+00:00",
+  "cases": [
+    {
+      "case": "unchanged",
+      "status": "PASS",
+      "before_exit": 0,
+      "after_exit": 0,
+      "expected_success": true,
+      "original_guard_failure_reproduced": false,
+      "host_fixture_head": "c1684b7f6512c440435858d49c424bf62f960745",
+      "native_fixture_head": "3e825c27464e93bfb5d782404842367a9ac360b2"
+    },
+    {
+      "case": "refreshed_index_metadata",
+      "status": "PASS",
+      "before_exit": 0,
+      "after_exit": 0,
+      "expected_success": true,
+      "original_guard_failure_reproduced": true,
+      "host_fixture_head": "109ec83ab0165f372c93b689cd08234d8962fe1e",
+      "native_fixture_head": "fb4312b54c1c3648ec8d9797c6fef93a2d40fff1"
+    },
+    {
+      "case": "changed_bytes",
+      "status": "PASS",
+      "before_exit": 0,
+      "after_exit": 1,
+      "expected_success": false,
+      "original_guard_failure_reproduced": false,
+      "host_fixture_head": "109ec83ab0165f372c93b689cd08234d8962fe1e",
+      "native_fixture_head": "fb4312b54c1c3648ec8d9797c6fef93a2d40fff1"
+    },
+    {
+      "case": "changed_executable_bit",
+      "status": "PASS",
+      "before_exit": 0,
+      "after_exit": 1,
+      "expected_success": false,
+      "original_guard_failure_reproduced": false,
+      "host_fixture_head": "2e76ab7158b98498c4209a0391eddb10a5e04815",
+      "native_fixture_head": "f66969e1ae428616812f175309c498c75c77cea0"
+    },
+    {
+      "case": "staged_only_change",
+      "status": "PASS",
+      "before_exit": 0,
+      "after_exit": 1,
+      "expected_success": false,
+      "original_guard_failure_reproduced": false,
+      "host_fixture_head": "2e76ab7158b98498c4209a0391eddb10a5e04815",
+      "native_fixture_head": "f66969e1ae428616812f175309c498c75c77cea0"
+    },
+    {
+      "case": "assume_unchanged_flag",
+      "status": "PASS",
+      "before_exit": 0,
+      "after_exit": 1,
+      "expected_success": false,
+      "original_guard_failure_reproduced": false,
+      "host_fixture_head": "4a8ea8208a84364840f4129e62fb6f4b5d5d195d",
+      "native_fixture_head": "b4310f42aa934573d5df65d6e0102b59d385a53c"
+    }
+  ],
+  "cases_run": 6,
+  "patched_workflow": {
+    "bytes": 65909,
+    "sha256": "621f260417603e135088f6d0023f3c9fbca6bfc14df83091777e405499230a78",
+    "git_blob": "3e9c5cab10d05c47204f87003e439e4a2d884709"
+  },
+  "original_workflow": {
+    "bytes": 64401,
+    "sha256": "9dbda2369930ed77275cb3adc401fedc58538ebe21736f7e29b68dad23ab6f9e",
+    "git_blob": "6a08dfb852cbec128db96aaa84add2bc69a7194b"
+  },
+  "unchanged_reader": {
+    "bytes": 20254,
+    "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+    "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+  },
+  "patched_snapshot_program": {
+    "bytes": 7535,
+    "sha256": "1ed0e3cd4c7839d9d3e3427767fb5eaadf0550a782885fb373bd694e2cc65760",
+    "git_blob": "123e8b002086006b576160d65a52949531812e22"
+  },
+  "scope": "Six actual local Git fixture contracts, not application, engine, Android or CI qualification.",
+  "historical_limit": "The original CI binary index bytes were absent. This controlled refresh demonstrates a valid metadata-only change; it does not identify which binary fields changed in those historical runs."
+}
