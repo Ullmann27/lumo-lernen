@@ -22,7 +22,7 @@ class EmbeddedAndroidTest(unittest.TestCase):
             gradle.write_text('android { namespace = "dev.ullmann.lumo.lumo_lernen"\n defaultConfig { applicationId = "dev.ullmann.lumo.lumo_lernen.coachpreview" } }')
             templates = root / 'tools/auto_install'
             templates.mkdir(parents=True)
-            for filename in ('GameEventStore.kt', 'LumoGameActivity.kt', 'CardsTableBridge.kt', 'CardsAuthorityService.kt', 'CardsAuthorityRegistry.java'):
+            for filename in ('GameEventStore.kt', 'LumoGameActivity.kt', 'CardsTableBridge.kt', 'CardsAuthorityService.kt', 'CardsAuthorityRegistry.java', 'ConnectFourBridge.kt', 'ConnectFourAuthorityService.kt', 'ConnectFourGameActivity.kt'):
                 (templates / filename).write_text((ROOT / 'tools/auto_install' / filename).read_text())
             # Upgrade a host already prepared by the old script. Existing app
             # rules and its reflected plugin rule must survive the JNI fix.
@@ -45,16 +45,25 @@ class EmbeddedAndroidTest(unittest.TestCase):
             doc = ET.parse(manifest).getroot()
             attr = lambda name: '{http://schemas.android.com/apk/res/android}' + name
             activities = doc.findall('application/activity')
-            self.assertEqual(len(activities), 2)
+            self.assertEqual(len(activities), 3)
             engine = activities[1]
             self.assertEqual(engine.get(attr('exported')), 'false')
             self.assertEqual(engine.get(attr('process')), ':lumo_game')
             self.assertEqual(engine.get(attr('resizeableActivity')), 'true')
             services = doc.findall('application/service')
-            self.assertEqual(len(services), 1)
+            self.assertEqual(len(services), 2)
             self.assertEqual(services[0].get(attr('name')), 'dev.ullmann.lumo.lumo_lernen.CardsAuthorityService')
             self.assertEqual(services[0].get(attr('exported')), 'false')
             self.assertIsNone(services[0].get(attr('process')), 'Authority must share the Dart main process')
+            c4 = activities[2]
+            self.assertEqual(c4.get(attr('name')), 'dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity')
+            self.assertEqual(c4.get(attr('exported')), 'false')
+            self.assertEqual(c4.get(attr('process')), ':lumo_game')
+            self.assertEqual(c4.get(attr('screenOrientation')), 'sensor')
+            self.assertEqual(services[1].get(attr('name')), 'dev.ullmann.lumo.lumo_lernen.ConnectFourAuthorityService')
+            self.assertEqual(services[1].get(attr('exported')), 'false')
+            self.assertIsNone(services[1].get(attr('process')))
+            self.assertIn('-keep class dev.ullmann.lumo.lumo_lernen.ConnectFourHostPlugin { *; }', rules.read_text())
             self.assertFalse(doc.findall('uses-permission'), 'No new background/wake/network permissions')
             service_file = main / 'kotlin/dev/ullmann/lumo/lumo_lernen/CardsAuthorityService.kt'
             self.assertTrue(service_file.is_file())

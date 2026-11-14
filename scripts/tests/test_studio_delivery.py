@@ -135,6 +135,23 @@ class StudioDeliveryTests(unittest.TestCase):
     def test_android_gate_body_is_preserved_without_rewriting_evidence(self):
         old = ast.parse(inspect.getsource(historical.verify_proofs)).body[0]
         new = ast.parse(inspect.getsource(delivery.verify_proofs)).body[0]
+        self.assertEqual(ast.dump(new.body.pop(0)), ast.dump(ast.parse(
+            'release = studio_release(studio_version)').body[0]))
+        self.assertEqual([argument.arg for argument in new.args.kwonlyargs], ['studio_version'])
+        self.assertEqual([ast.dump(value) for value in new.args.kw_defaults],
+                         [ast.dump(ast.Name(id='VERSION_CODE', ctx=ast.Load()))])
+        new.args.kwonlyargs = []
+        new.args.kw_defaults = []
+
+        class ExplicitReleasePolicy(ast.NodeTransformer):
+            def visit_Attribute(self, node):
+                if isinstance(node.value, ast.Name) and node.value.id == 'release':
+                    names = {'version_code': 'VERSION_CODE', 'version_name': 'VERSION_NAME'}
+                    if node.attr in names:
+                        return ast.copy_location(ast.Name(id=names[node.attr], ctx=ast.Load()), node)
+                return self.generic_visit(node)
+
+        new = ExplicitReleasePolicy().visit(new)
         self.assertIn('VERSION_NAME', ast.dump(new.body[0]))
         new.body.pop(0)  # Additional exact 0.13.7 guard.
         layout_calls = [node for node in ast.walk(new) if isinstance(node, ast.Call)
