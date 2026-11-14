@@ -1,3 +1,59 @@
+# LUMO 2020 – vollständige Vier-gewinnt-Rückkehr nachweisen
+
+Stand: 2026-11-14 19:46:00 UTC. Der auf Host04 vorbereitete Korrekturstand
+`d04ac2596fdd383dc49b1a111d9f6d699bd7cb76` ändert ausschließlich den
+Vier-gewinnt-Androidbeobachter und seine vorhandene Deadline-Testdatei.
+Alle Produktdateien, sämtliche Workflows und der Native-Pin
+`84789d0c2c6fb4b6ecd2897ce1951b89f958b604` bleiben bytegleich.
+
+Die getrennte [Diagnose 43629575654/1](https://github.com/Ullmann27/lumo-lernen/actions/runs/43629575654)
+auf der unveränderten tatsächlichen 6b-APK hat die Main-Tour und den sichtbaren
+Dorf-Rückweg bestanden. Die erhaltenen Originale zeigen zuerst noch die native
+Dorfwelt und anschließend die echte Flutter-Spieleübersicht mit „Spielen“.
+In Vier gewinnt sind zwei tatsächliche Kindzüge und zwei Botantworten belegt.
+Die Rückkehrprüfung brach beim ersten Dateilesen ab, weil die aktuelle
+Sitzungsdatei noch existierte. Es gibt in diesem fehlgeschlagenen Original
+keine spätere Prüfung dieser Datei; weder ein dauerhafter Cleanupfehler noch
+eine nachträgliche erfolgreiche Löschung ist damit bewiesen.
+
+Der geprüfte Quellablauf erklärt das Beobachtungsfenster: Erst nach dem
+Native-Rückgabekanal führt Flutter den gesonderten Host-Cleanup aus.
+Der korrigierte Beobachter wartet innerhalb derselben 45 Sekunden auf alle
+drei Bedingungen: Native-Prozess beendet, richtige MainActivity aktiv und
+keine state.json im vollständigen privaten C4-Sitzungswurzelverzeichnis.
+Jeder Versuch behält frische, eindeutig benannte Originalausgaben.
+Es bleibt genau ein Zurück-Tap; kein Löschbefehl, Neustart, längeres Budget
+oder gelockerter Offline-Verifier wurde ergänzt. Die weiteren Anforderungen
+an Lernstände, sichtbare Flutter-Rückkehr, Wiederöffnung und zweite Rückkehr
+bleiben vollständig erhalten.
+
+Der Original-Rotlauf reproduziert den frühen ValueError. Der tatsächliche
+Grünlauf besteht **42 Tests ohne Fehler oder Skips** in 137,145 Sekunden:
+20 Deadline-Fälle mit allen elf unveränderten bisherigen Methoden und neun
+gezielten Ergänzungen sowie 22 unveränderte Evidenzverträge. Root hat beide
+Originalprotokolle, alle Quellidentitäten, den vollständigen Baum und den
+unabhängigen Gegenreview gelesen. Die Vorlaufbelege stehen unter
+`docs/evidence/live-integration-20261114/c4-return-observation-04a8e850/` und
+`docs/evidence/live-integration-20261114/final-04a8e850/c4-return-cleanup/`.
+Diese gezielten Tests verwenden synthetische ADB-/Zeitgrenzen und sind
+keine neue Geräteabnahme.
+
+Host04 hat tatsächlich Feature30, 2.651 vollständige Flutterfälle und 963
+Buildverträge bestanden. Der neue exakte Hostkopf muss trotzdem erneut die
+vollständige Abnahme mit allen sieben Pflichtjobs, eigenen Original-APKs,
+API35-Main-/Village-/C4-Touren, Updateerhaltung und Original-Delivery-Replay
+bestehen. Der unveränderte separate 6b-Diagnosepfad bleibt ergänzend und
+ersetzt keine neue Quellabnahme.
+
+Version bleibt der noch unveröffentlichte Testkandidat **0.13.8+2020**.
+Die vorbereiteten 04-Reader-/Publisherstände werden nicht für diesen neuen
+Host aktiviert; ihre Bindungen müssen auf seine tatsächlichen neuen
+Originalmetadaten aktualisiert werden. Main und frühere Releases bleiben
+unverändert. Eine neue öffentliche APK wird erst nach den vollständigen
+Originalnachweisen und überprüftem öffentlichem Download ausgewiesen.
+
+## Archiv: vorheriger Aktivierungsstand
+
 # LUMO 2020 – tatsächlichen sichtbaren Dorf-Rückweg erneut abnehmen
 
 Stand: 2026-11-14 18:50:01 UTC. Der unmittelbar auf Host6b vorbereitete Korrekturstand
