@@ -1,3 +1,88 @@
+# Active LUMO 2020 Play-quality candidate — 2026-11-14
+
+Active review: https://github.com/Ullmann27/lumo-lernen/pull/491
+Working branch: `work/lumo-play-quality-20261114`.
+Base review: PR485, `integration/lumo-c4-connections-20261114`.
+Version remains `0.13.8+2020`; native integration pin remains
+`504c8ba70d02702cbccc370d0d96c36a292c5d27`.
+Main is protected.
+
+## Implemented and independently checked
+
+- Shape drawing uses the existing ink surface, keeps the primary pointer,
+  does not scroll the parent, and drops cancelled unfinished strokes.
+- Left navigation respects reduced-animation and calm settings. The recovered
+  exact learning selector and the 7,552-sample / 236-family audit are preserved;
+  this is structural sample evidence, not a curriculum-wide approval.
+- Family and Play distribution are separated in Android metadata, updater
+  behavior and signing preparation. The new local `scripts/build_play_bundle.sh`
+  prepares a canonical, externally signed AAB and verifies the actual bundle.
+- Connect Four's board and minimum-48dp controls share a horizontal viewport.
+  Phone margins adapt before scrolling is necessary. Older Flutter-only tests
+  now explicitly establish the unavailable-native-plugin boundary.
+- The historical APK diagnostic uses a stable QA pin fixture while the actual
+  production verifier still rejects a wrong native revision/repository.
+- The scanner accurately describes on-device text recognition. Unsupported
+  app-wide tracking/Families assertions are removed from its developer header.
+
+Focused final evidence is in:
+`docs/evidence/connect-four-scroll-20261114/` (15 tests, five real PNGs,
+0 analyzer errors/warnings and ten unchanged informational diagnostics);
+`docs/evidence/play-aab-local-20261114/` (52 tests run together by root);
+and `docs/evidence/play-quality-20261114/ci-followup/` (19 diagnostic tests
+after reproducing the original failure). Root opened all five final C4 images.
+The small landscape scroll mask still clips some decorative edge pixels; the
+actual board cells and controls remain visible.
+
+The preserved source checkpoints are C4
+`43d66732d9450657147fb9a12a7811121a9557dc` and Play
+`864452466627b366bd67f53ce2d581a05897ed62`. Their real ancestry is retained
+when combining the next candidate. Earlier shape/learning/distribution evidence
+under the 2026-11-14 directories remains applicable only to its recorded scope.
+
+## Exact prior full-run result and next gate
+
+Candidate `4564ad40c4d000b764e67719d19bd2445c04c870`, run 43572640442,
+passed the real Dart/rendered-Godot gate, Android host compilation and Flutter
+analysis. Its complete Flutter/capture run passed 2,558 tests, failed exactly
+three C4 tests and skipped none. It produced 546 rendered PNGs. Its APK build
+and Android acceptance were not reached. The separate 799-test Python run
+failed one historical-native-pin fixture; that failure is reproduced and
+repaired above. These original failures remain preserved.
+
+The combined follow-up needs a fresh `lumo-connect-four-2020.yml` run on its
+actual PR head. Retain all full Flutter, build-contract, native, APK,
+Android-C4, 2017-to-2020 preservation and delivery-verifier gates. A green
+checkpoint test or an older source's APK does not approve this candidate.
+
+## Release items still requiring real evidence
+
+No Play-upload-signed AAB was produced: authorized external upload signing
+inputs were not supplied. The builder and validator are executable source,
+not proof of Play acceptance, generated-APK runtime, download size or physical
+16-KiB compatibility. See `docs/release/PLAY_AAB_LOCAL_BUILD_2026-11-14.md`.
+
+A read-only exact-tree audit confirmed that replacing the current native pin
+with PR167's `785413d3` would lose integration modules and required raster
+verifiers. Its narrower Treasure visibility fix is missing from the current
+pin: the original `treasure_world.gd` blob matches the producer source with
+documented avatar occlusion. A separate bounded native port is being prepared;
+no unverified replacement pin or visual approval is introduced here.
+
+Actual child-data/backend disclosures, Play Console declarations, signed AAB
+testing, and physical device frame-rate/thermal measurements remain separate
+acceptance work. No Google Play publication or Nintendo-level performance is
+claimed by this source checkpoint.
+
+The delegated work used a coordinator, a release lead, a specialist and its
+review worker within four concurrent sessions total. Recover work from the
+published branches and immutable evidence; role files alone do not launch
+persistent workers.
+
+Earlier notes below are retained as historical context, not current approval.
+
+---
+
 # Integration follow-up: repair the real Android Cup selector
 
 Updated: 2026-11-13. This follows published Host51e92fb5/treea13ab981.
