@@ -1,0 +1,343 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T13:32:32.335953+00:00",
+  "scope": "New English original renderer images and real Dart-producer compatibility from the exact e4e5 CI; independent of later Quiz failure",
+  "native_source": "e4e5ce03e644a2f23b01a96f1d340a882a1798c4",
+  "host_source": "bdd86f289a165ea5140a01607d78fcf4c31c98c6",
+  "run_id": 43598637301,
+  "attempt": 1,
+  "job": {
+    "id": 132458415469,
+    "status": "completed",
+    "conclusion": "failure",
+    "english_step": {
+      "name": "Exercise English meshes with actual host producer output",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9,
+      "started_at": "2026-11-14T13:15:15Z",
+      "completed_at": "2026-11-14T13:19:50Z"
+    },
+    "subsequent_quiz_step": {
+      "name": "Play all twenty Quiz questions through the real Dart and Godot processes",
+      "status": "completed",
+      "conclusion": "failure",
+      "number": 10,
+      "started_at": "2026-11-14T13:19:50Z",
+      "completed_at": "2026-11-14T13:20:09Z"
+    },
+    "tracked_source_trees_step": {
+      "name": "Verify both tracked source trees remain unchanged",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 11,
+      "started_at": "2026-11-14T13:20:09Z",
+      "completed_at": "2026-11-14T13:20:10Z"
+    }
+  },
+  "artifact": {
+    "id": 14116025924,
+    "node_id": "MDg6QXJ0aWZhY3QxNDExNjAyNTkyNA==",
+    "name": "lumo-nextgen-actual-authority-evidence",
+    "size_in_bytes": 2462783,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14116025924",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14116025924/zip",
+    "expired": false,
+    "digest": "sha256:6a1966d5619718f290e3bcdc19c50443fe416e333407f7b16c050e5ac01bd1e9",
+    "created_at": "2026-11-14T13:20:12Z",
+    "updated_at": "2026-11-14T13:20:12Z",
+    "expires_at": "2026-12-14T13:20:11Z",
+    "workflow_run": {
+      "id": 43598637301,
+      "repository_id": 1251414584,
+      "head_repository_id": 1251414584,
+      "head_branch": "chatgpt/lumo-nextgen-feature-20261114",
+      "head_sha": "e4e5ce03e644a2f23b01a96f1d340a882a1798c4"
+    }
+  },
+  "archive_bytes": 2462783,
+  "archive_sha256": "6a1966d5619718f290e3bcdc19c50443fe416e333407f7b16c050e5ac01bd1e9",
+  "actual_dart_producer": {
+    "sha256": "489e7179254cfb951fdf0e8c538a75b000c1f5e61ac74f796ee369e9f457e606",
+    "cases": 8,
+    "checks": 1060,
+    "english_audio_audition": false,
+    "note": "This run executed a new real producer output. Its bytes and distractors differ from the earlier bdd86 Hostartifact output, which remains a separate original. The cause of that difference is not claimed here."
+  },
+  "godot_report": {
+    "sha256": "b1f8ceae41586e2e956ad4eecc572a5d18085a233da68cfa23734b0e9725ef6d",
+    "checks": 1115,
+    "failures": [],
+    "captures": 10,
+    "input_events": 98,
+    "renderer": "X11",
+    "fixture_kind": "actual_dart_producer_report",
+    "source_sha256": {
+      "scripts/learning/english_object_gallery.gd": "4c6268517ae47fc9075bc4824e4aae1b2044190a1971fd8ca32b06662bf3cb55",
+      "scripts/learning/english_vocabulary.gd": "618701afa536b4caaeac108ede440fe2f7bf220e5be5d7c9357709c3ec8c1eb3",
+      "scripts/learning/learning_activity.gd": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+      "scripts/learning/learning_world.gd": "4f37dc1f540f2a6c4c43d71f3508da1840abb6fdd3c18ad143d13f9948b2aa3e",
+      "scripts/tests/learning_english_regression.gd": "00c2a1756562db1c49fdad8ff6944b14065f204ad7e831d98cd2ea41ac31badf"
+    }
+  },
+  "images": [
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-e4e5-ci-20261114/originals/english-native/english-ball-960x540-start.png",
+      "sha256": "14bd48f5a78c745ad3ccd8ee37e534e17fad82866d33a8792db71b25db042698",
+      "git_blob": "d7925c442fbc273d525240d625239e587cc9d91f",
+      "dimensions": [
+        960,
+        540
+      ],
+      "objects_order": [
+        "ball",
+        "ruler",
+        "car"
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened with view_image in this review; no reused earlier image findings",
+      "blocking_issue": false,
+      "findings": [
+        "Gelesener Titel Englisch · ball; Ball, Lineal und Auto stehen sichtbar in dieser Reihenfolge auf den drei nummerierten Podesten.",
+        "Original-Lumo links vollständig erkennbar; Kopftext und Bedienzeile verdecken die Gegenstände nicht. Nummern-, Hinweis-, Neu-, Sprach- und Rückkehrtasten sind sichtbar."
+      ],
+      "measured_control_min_exposed_dp": 52.0
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-e4e5-ci-20261114/originals/english-native/english-ball-960x540-hint.png",
+      "sha256": "08554fa6a7dca123395da983fdb0cbaa056ded338c926edbf2649b082f16fa36",
+      "git_blob": "c49deda4d041768238e45cb07f09ad8018abe983",
+      "dimensions": [
+        960,
+        540
+      ],
+      "objects_order": [
+        "ball",
+        "ruler",
+        "car"
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened with view_image in this review; no reused earlier image findings",
+      "blocking_issue": false,
+      "findings": [
+        "Der tatsächlich gezeigte zweite Hinweis fordert selbständiges Tippen auf den hell umrandeten Gegenstand; der Ball auf Podest 1 ist sichtbar umrandet.",
+        "Hinweis ist deaktiviert; die drei Auswahlknöpfe und Zur Aufgabe bleiben sichtbar. Kein Abschluss- oder Punktegewinn wird aus dem Hinweisbild abgeleitet."
+      ],
+      "measured_control_min_exposed_dp": 52.0
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-e4e5-ci-20261114/originals/english-native/english-ball-960x540-complete.png",
+      "sha256": "49d26ca02c74bf07eec89042bfde567b0b1266ae032719b3d70bffc771882a91",
+      "git_blob": "f9c83f57c04f4d632d834cdcf1973d6594a2ed27",
+      "dimensions": [
+        960,
+        540
+      ],
+      "objects_order": [
+        "ball",
+        "ruler",
+        "car"
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened with view_image in this review; no reused earlier image findings",
+      "blocking_issue": false,
+      "findings": [
+        "Der sichtbare Abschluss sagt Richtig: „Ball“. Wähle jetzt „Zur Aufgabe“. Die Statuszeile lautet ball = Ball · Passend zugeordnet.",
+        "Die drei Wahlknöpfe und Hinweis sind deaktiviert; Neu, Schritt anhören und Zur Aufgabe bleiben sichtbar. Ball, Lineal und Auto bleiben vollständig erkennbar."
+      ],
+      "measured_control_min_exposed_dp": 52.0
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-e4e5-ci-20261114/originals/english-native/english-book-412x915-start.png",
+      "sha256": "12c3b13dfe212b21c14a7d258c7a3a902e7a2d758548124e2e45115402a3f76d",
+      "git_blob": "18927f17bace9fb42bfbec2866ed3f21d30921e8",
+      "dimensions": [
+        412,
+        915
+      ],
+      "objects_order": [
+        "book",
+        "ruler",
+        "ball"
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened with view_image in this review; no reused earlier image findings",
+      "blocking_issue": false,
+      "findings": [
+        "Schmales Hochformat: book ist lesbar, Buch, Lineal und Ball stehen vertikal auf den nummerierten Podesten 1–3; Lumo bleibt links sichtbar.",
+        "Die Bedienung bricht in zwei Zeilen um. Kein Gegenstand wird vom Kopf- oder Fußfeld verdeckt; der Rückkehrknopf ist vollständig sichtbar."
+      ],
+      "measured_control_min_exposed_dp": 52.0
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-e4e5-ci-20261114/originals/english-native/english-book-412x915-complete.png",
+      "sha256": "911ec06d3a692eb01275d4a2f5a98699f3ccfe414972596d63d2a60d0e02ad4e",
+      "git_blob": "2ebc27e2c2a0b98fb27a0df674ac0108ef9fab61",
+      "dimensions": [
+        412,
+        915
+      ],
+      "objects_order": [
+        "book",
+        "ruler",
+        "ball"
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened with view_image in this review; no reused earlier image findings",
+      "blocking_issue": false,
+      "findings": [
+        "Der sichtbare Abschluss nennt Buch und fordert Zur Aufgabe; book = Buch · Passend zugeordnet ist lesbar.",
+        "Die vertikale Gegenstandsanordnung bleibt frei. Deaktivierte Auswahlknöpfe und der aktive Rückkehrknopf sind visuell unterscheidbar."
+      ],
+      "measured_control_min_exposed_dp": 52.0
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-e4e5-ci-20261114/originals/english-native/english-ruler-640x360-start.png",
+      "sha256": "56a77b53674f050ef21f7e594643a502c1962b7dcd350d167fe612be703fc918",
+      "git_blob": "20cc757d2f23dc2ba551547fa015602e3bdf0206",
+      "dimensions": [
+        640,
+        360
+      ],
+      "objects_order": [
+        "ruler",
+        "book",
+        "sun"
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened with view_image in this review; no reused earlier image findings",
+      "blocking_issue": false,
+      "findings": [
+        "Kurzes Querformat: ruler und die vollständige Anweisung sind lesbar. Lineal, Buch und Sonne sowie Lumo sind in dem begrenzten mittleren Bereich sichtbar.",
+        "Die kompakte einzeilige Bedienung zeigt alle drei Nummern, Hinweis, Neu, Anhören und Zur Aufgabe vollständig. Die kleinere räumliche Darstellung bleibt eine Darstellungsgrenze dieses Formats, kein Verdeckungsblocker."
+      ],
+      "measured_control_min_exposed_dp": 52.0
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-e4e5-ci-20261114/originals/english-native/english-car-2400x1080-start.png",
+      "sha256": "095e4a4c4edda8575bbfa8f7dd4b59eb492e7cce367b110dec1e2151d748a862",
+      "git_blob": "87366bca88f1b1950814ce47d40d5630d5d40fd7",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "objects_order": [
+        "apple",
+        "car",
+        "sun"
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened with view_image in this review; no reused earlier image findings",
+      "blocking_issue": false,
+      "findings": [
+        "Breites Fenster mit deklarierter Plattformfixture: Apfel, Auto und Sonne stehen auf den Podesten 1–3; car und Anweisung sind lesbar.",
+        "Lumo, alle drei Körper und die kompakte Bedienzeile bleiben getrennt sichtbar; kein realer Android-Cutout wird durch dieses Desktopbild bestätigt."
+      ],
+      "measured_control_min_exposed_dp": 52.0
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-e4e5-ci-20261114/originals/english-native/english-pen-1080x2400-start.png",
+      "sha256": "5b923efd6bc2ef8d7e901cc705dfa4c57a32ac8ff47c95e4603379fdb13aa5b3",
+      "git_blob": "8f9674d2ea0ae6f5f92f05479a577cddf0d66b26",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "objects_order": [
+        "ruler",
+        "book",
+        "pen"
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened with view_image in this review; no reused earlier image findings",
+      "blocking_issue": false,
+      "findings": [
+        "Hohes Fenster: Lineal, Buch und blauer Kugelschreiber sind vertikal auf Podesten 1–3 sichtbar; pen ist lesbar.",
+        "Lumo bleibt vollständig sichtbar; Kopftext und zweizeilige Bedienung überschneiden die Gegenstände nicht. Der Kugelschreiber ist als Körper mit Spitze und Clip erkennbar."
+      ],
+      "measured_control_min_exposed_dp": 52.0
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-e4e5-ci-20261114/originals/english-native/english-sun-960x540-start.png",
+      "sha256": "e39e97a8b95870770dc74c48fb246931cfbd9eed6cd0f0d271c232c2c29be824",
+      "git_blob": "fef6c5ab7282490e0e97a28726660c0ea3994dd0",
+      "dimensions": [
+        960,
+        540
+      ],
+      "objects_order": [
+        "car",
+        "sun",
+        "ball"
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened with view_image in this review; no reused earlier image findings",
+      "blocking_issue": false,
+      "findings": [
+        "sun und Anweisung sind lesbar; Auto, Sonne mit Strahlen und Ball stehen sichtbar auf Podesten 1–3.",
+        "Lumo und die Bedienzeile sind frei sichtbar. Die Sonne ist eine bewusst stilisierte gegenständliche Darstellung auf einem Sockel."
+      ],
+      "measured_control_min_exposed_dp": 52.0
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-e4e5-ci-20261114/originals/english-native/english-apple-960x540-start.png",
+      "sha256": "1dde63894a348d3afe4b35b432c5316dacf163a9f7fbc502597c2fad0a466bd5",
+      "git_blob": "8423139ce0062fc54c628fa842f7af903602fca8",
+      "dimensions": [
+        960,
+        540
+      ],
+      "objects_order": [
+        "book",
+        "apple",
+        "sun"
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened with view_image in this review; no reused earlier image findings",
+      "blocking_issue": false,
+      "findings": [
+        "apple und Anweisung sind lesbar; Buch, roter Apfel mit Blatt und Sonne stehen sichtbar auf Podesten 1–3.",
+        "Alle drei Gegenstände, Lumo und die Rückkehrbedienung sind sichtbar; einfache Materialien und harte Schatten sind erkennbar."
+      ],
+      "measured_control_min_exposed_dp": 52.0
+    }
+  ],
+  "status": "English step and ten original desktop images reviewed without a new concrete blocker; overall workflow FAILURE remains",
+  "warnings": [
+    {
+      "path": "english-render.log",
+      "line": 2,
+      "message": "Could not set V-Sync mode; driver does not support changing V-Sync."
+    },
+    {
+      "path": "english-render.log",
+      "line": 6,
+      "message": "Screen-space AA only available in Forward+ or Mobile renderer."
+    },
+    {
+      "path": "english-render.log",
+      "line": 8,
+      "message": "Volumetric fog only available in Forward+ renderer."
+    }
+  ],
+  "limits": [
+    "The successful English step is not a successful whole Native workflow: the subsequent Quiz step failed.",
+    "Desktop software rendering with explicit platform/JNI/audio test doubles; no actual Android installation, system inset, physical-device touch or Fold7 measurement.",
+    "The real Dart producer and production Godot interaction are checked, but no real JNI return or physical Android lifecycle is proved.",
+    "No English pronunciation or audio listening claim; the current voice path remains German.",
+    "No measured 60 FPS, GPU/thermal performance, phoneme lip sync or release approval.",
+    "No global progress/reward mastery is inferred from the local illustration state.",
+    "Simple geometric teaching props and hard shadows remain visible."
+  ],
+  "checks_not_added_across_runs": true
+}

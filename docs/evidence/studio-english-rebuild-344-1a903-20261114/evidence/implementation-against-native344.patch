@@ -1,0 +1,1152 @@
+--- /dev/null
++++ b/scripts/learning/english_object_gallery.gd
+@@ -0,0 +1,164 @@
++extends RefCounted
++## Bounded, real object meshes. No downloaded models, answer rules or saves.
++## Each object has its own distinguishing geometry and a numbered plinth.
++const VOCABULARY = preload("res://scripts/learning/english_vocabulary.gd")
++
++
++static func _material(color: String, roughness: float = 0.58, unlit: bool = false) -> StandardMaterial3D:
++	var result := StandardMaterial3D.new()
++	result.albedo_color = Color(color)
++	result.roughness = roughness
++	result.metallic_specular = 0.24
++	if unlit:
++		result.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
++	return result
++
++
++static func _mesh(parent: Node3D, label: String, mesh: Mesh, at: Vector3, material: Material) -> MeshInstance3D:
++	var node := MeshInstance3D.new()
++	node.name = label
++	node.mesh = mesh
++	node.material_override = material
++	node.position = at
++	parent.add_child(node)
++	return node
++
++
++static func _box(parent: Node3D, label: String, at: Vector3, size: Vector3, material: Material) -> MeshInstance3D:
++	var mesh := BoxMesh.new()
++	mesh.size = size
++	return _mesh(parent, label, mesh, at, material)
++
++
++static func _sphere(parent: Node3D, label: String, at: Vector3, size: Vector3, material: Material) -> MeshInstance3D:
++	var mesh := SphereMesh.new()
++	mesh.radius = 0.5
++	mesh.height = 1.0
++	mesh.radial_segments = 24
++	mesh.rings = 12
++	var node := _mesh(parent, label, mesh, at, material)
++	node.scale = size
++	return node
++
++
++static func _cylinder(parent: Node3D, label: String, at: Vector3, radius: float, height: float, material: Material, top_radius: float = -1.0) -> MeshInstance3D:
++	var mesh := CylinderMesh.new()
++	mesh.bottom_radius = radius
++	mesh.top_radius = radius if top_radius < 0 else top_radius
++	mesh.height = height
++	mesh.radial_segments = 24
++	return _mesh(parent, label, mesh, at, material)
++
++
++static func make(word: String, index: int) -> Node3D:
++	if not VOCABULARY.ENTRIES.has(word) or index < 0 or index > 2:
++		return null
++	var object := Node3D.new()
++	object.name = "EnglishObject%d" % index
++	object.set_meta("word", word)
++	object.set_meta("choice_index", index)
++	var plinth_material := _material("e4d6b5")
++	_cylinder(object, "NumberedPlinth", Vector3(0, 0.09, 0), 1.0, 0.18, plinth_material)
++	_cylinder(object, "PlinthEdge", Vector3(0, 0.02, 0), 1.04, 0.06, _material("355968"))
++	var shape := Node3D.new()
++	shape.name = "RecognizableObject"
++	shape.position.y = 0.22
++	object.add_child(shape)
++	match word:
++		"book":
++			var red := _material("a94238")
++			var pages := _material("f6edcf")
++			_box(shape, "LowerCover", Vector3(0, 0.03, 0), Vector3(1.28, 0.06, 1.58), red)
++			_box(shape, "RealPages", Vector3(0.025, 0.15, 0), Vector3(1.15, 0.20, 1.45), pages)
++			_box(shape, "UpperCover", Vector3(0, 0.29, 0), Vector3(1.28, 0.07, 1.58), red)
++			_box(shape, "Spine", Vector3(-0.60, 0.16, 0), Vector3(0.10, 0.31, 1.58), red)
++			for line in range(3):
++				_box(shape, "PageEdge%d" % line, Vector3(0.03, 0.095 + line * 0.06, 0.735), Vector3(1.10, 0.012, 0.015), _material("c6b98e"))
++			_box(shape, "CoverDecoration", Vector3(0.08, 0.335, -0.12), Vector3(0.60, 0.012, 0.72), _material("dbb658"))
++			shape.rotation.y = -0.16
++		"pen":
++			var pen := Node3D.new()
++			pen.name = "PenAxis"
++			pen.position = Vector3(0, 0.92, 0)
++			pen.rotation.z = -0.52
++			shape.add_child(pen)
++			_cylinder(pen, "BlueBarrel", Vector3(0, -0.02, 0), 0.12, 1.36, _material("2879b3", 0.35))
++			_cylinder(pen, "MetalTip", Vector3(0, -0.82, 0), 0.025, 0.25, _material("d2d8d8", 0.30), 0.12)
++			_cylinder(pen, "InkNib", Vector3(0, -0.98, 0), 0.022, 0.10, _material("1b293a"))
++			_cylinder(pen, "Cap", Vector3(0, 0.71, 0), 0.15, 0.20, _material("173b66"))
++			_box(pen, "PocketClip", Vector3(0.16, 0.51, 0), Vector3(0.05, 0.48, 0.07), _material("e1bd61"))
++		"ruler":
++			var plank := _box(shape, "MeasuringRuler", Vector3(0, 0.13, 0), Vector3(1.75, 0.12, 0.55), _material("e7c76d"))
++			plank.set_meta("unit_marks", 16)
++			for mark in range(17):
++				var length := 0.26 if mark % 4 == 0 else 0.14
++				_box(shape, "MeasureMark%02d" % mark, Vector3(-0.78 + mark * 0.0975, 0.195, -0.21 + length * 0.5), Vector3(0.018, 0.012, length), _material("293d4d"))
++			shape.rotation.y = -0.12
++		"ball":
++			_sphere(shape, "RoundBall", Vector3(0, 0.63, 0), Vector3.ONE * 1.25, _material("3f91be", 0.38))
++			for stripe in range(3):
++				var ring_mesh := TorusMesh.new()
++				ring_mesh.inner_radius = 0.610
++				ring_mesh.outer_radius = 0.636
++				ring_mesh.rings = 32
++				ring_mesh.ring_segments = 8
++				var stripe_node := _mesh(shape, "BallStripe%d" % stripe, ring_mesh, Vector3(0, 0.63, 0), _material("f0bd4f"))
++				stripe_node.rotation = Vector3(PI * 0.5 if stripe != 0 else 0.0, 0, PI * 0.5 if stripe == 2 else 0.0)
++		"car":
++			_box(shape, "VehicleBody", Vector3(0, 0.43, 0), Vector3(1.65, 0.37, 0.84), _material("bd493f", 0.38))
++			_box(shape, "Cabin", Vector3(-0.05, 0.78, 0), Vector3(0.88, 0.39, 0.73), _material("c54a3b", 0.38))
++			_box(shape, "FrontWindow", Vector3(0.405, 0.79, 0), Vector3(0.014, 0.26, 0.59), _material("2b4c67", 0.28))
++			for side in [-1.0, 1.0]:
++				_box(shape, "SideWindow%d" % int(side), Vector3(-0.04, 0.79, side * 0.375), Vector3(0.68, 0.24, 0.016), _material("3d7592", 0.28))
++				for axle in [-0.55, 0.55]:
++					var wheel := _cylinder(shape, "Wheel_%s_%s" % [side, axle], Vector3(axle, 0.25, side * 0.47), 0.25, 0.16, _material("23313b"))
++					wheel.rotation.x = PI * 0.5
++					var hub := _cylinder(shape, "WheelHub_%s_%s" % [side, axle], Vector3(axle, 0.25, side * 0.565), 0.11, 0.02, _material("c4c8c8"))
++					hub.rotation.x = PI * 0.5
++			for side in [-0.24, 0.24]:
++				_box(shape, "Headlight%s" % side, Vector3(0.84, 0.45, side), Vector3(0.03, 0.14, 0.18), _material("f7e8a0", 0.5, true))
++		"sun":
++			_cylinder(shape, "SunStand", Vector3(0, 0.50, 0), 0.055, 0.9, _material("b98a39"))
++			var disk := _cylinder(shape, "SolarDisk", Vector3(0, 1.15, 0), 0.47, 0.18, _material("f3be45", 0.6, true))
++			disk.rotation.x = PI * 0.5
++			for ray in range(12):
++				var angle := ray * TAU / 12.0
++				var node := _cylinder(shape, "SunRay%02d" % ray, Vector3(sin(angle) * 0.68, 1.15 + cos(angle) * 0.68, 0), 0.095, 0.30, _material("f6d674", 0.6, true), 0.0)
++				node.rotation.z = -angle
++		"apple":
++			var red := _material("ba4136", 0.42)
++			_sphere(shape, "AppleLeft", Vector3(-0.19, 0.57, 0), Vector3(0.82, 1.08, 1.05), red)
++			_sphere(shape, "AppleRight", Vector3(0.19, 0.57, 0), Vector3(0.82, 1.08, 1.05), red)
++			var stem := _cylinder(shape, "AppleStem", Vector3(0, 1.17, 0), 0.055, 0.30, _material("765137"))
++			stem.rotation.z = -0.16
++			var leaf := _sphere(shape, "AppleLeaf", Vector3(0.22, 1.25, 0), Vector3(0.50, 0.09, 0.23), _material("5d8748"))
++			leaf.rotation.z = 0.30
++	var label_mesh := TextMesh.new()
++	label_mesh.font = ThemeDB.fallback_font
++	label_mesh.font_size = 64
++	label_mesh.pixel_size = 0.009
++	label_mesh.text = str(index + 1)
++	label_mesh.depth = 0.025
++	var label := _mesh(object, "ChoiceNumber", label_mesh, Vector3(0, 0.13, 1.06), _material("15364d", 0.8, true))
++	label.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
++	var halo_mesh := TorusMesh.new()
++	halo_mesh.inner_radius = 1.035
++	halo_mesh.outer_radius = 1.095
++	halo_mesh.rings = 40
++	halo_mesh.ring_segments = 8
++	var halo := _mesh(object, "HintRing", halo_mesh, Vector3(0, 0.18, 0), _material("ffe18a", 0.8, true))
++	halo.hide()
++	var body := StaticBody3D.new()
++	body.name = "ObjectTouchBody"
++	body.collision_layer = 8
++	body.collision_mask = 0
++	body.set_meta("english_choice", index)
++	object.add_child(body)
++	var collision := CollisionShape3D.new()
++	collision.name = "CollisionShape3D"
++	var box := BoxShape3D.new()
++	box.size = Vector3(2.14, 2.20, 2.10)
++	collision.shape = box
++	collision.position.y = 0.95
++	body.add_child(collision)
++	return object
+--- /dev/null
++++ b/scripts/learning/english_vocabulary.gd
+@@ -0,0 +1,58 @@
++extends RefCounted
++## Closed object vocabulary shared by the actual host task contract.
++## German descriptions use the existing German local voice. The English word
++## stays visible; this class does not claim an English pronunciation channel.
++const ENTRIES := {
++	"book": {
++		"meanings": ["Buch"],
++		"hint": "Dieser Gegenstand hat viele Seiten. Du kannst darin lesen.",
++	},
++	"pen": {
++		"meanings": ["Kugelschreiber", "Stift"],
++		"hint": "Damit kannst du schreiben und zeichnen. Achte auf die schmale Spitze.",
++	},
++	"ruler": {
++		"meanings": ["Lineal"],
++		"hint": "Damit misst du gerade Strecken. Die kleinen Striche zeigen die Länge.",
++	},
++	"ball": {
++		"meanings": ["Ball"],
++		"hint": "Dieser runde Gegenstand kann rollen und springen.",
++	},
++	"car": {
++		"meanings": ["Auto"],
++		"hint": "Dieses Fahrzeug fährt auf vier Rädern.",
++	},
++	"sun": {
++		"meanings": ["Sonne"],
++		"hint": "Dieses helle Himmelsobjekt gibt uns Licht und Wärme.",
++	},
++	"apple": {
++		"meanings": ["Apfel"],
++		"hint": "Diese Frucht wächst am Baum. Sie hat einen Stiel und ein Blatt.",
++	},
++}
++
++
++static func checked_payload(raw: Dictionary) -> Dictionary:
++	if raw.get("kind") != "english_objects":
++		return {}
++	var word: Variant = raw.get("word")
++	var meaning: Variant = raw.get("meaning")
++	var objects: Variant = raw.get("objects")
++	if not word is String or not ENTRIES.has(word) or not meaning is String:
++		return {}
++	if meaning not in ENTRIES[word].meanings or not objects is Array or objects.size() != 3:
++		return {}
++	var seen: Array[String] = []
++	for item in objects:
++		if not item is String or not ENTRIES.has(item) or seen.has(item):
++			return {}
++		seen.append(item)
++	if not seen.has(word):
++		return {}
++	return {"word": word, "meaning": meaning, "objects": seen.duplicate()}
++
++
++static func hint_for(word: String) -> String:
++	return str(ENTRIES[word].hint) if ENTRIES.has(word) else ""
+--- a/scripts/learning/learning_activity.gd
++++ b/scripts/learning/learning_activity.gd
+@@ -1,4 +1,5 @@
+ extends RefCounted
++const ENGLISH = preload("res://scripts/learning/english_vocabulary.gd")
+ ## Deterministic manipulative state, separate from presentation and rewards.
+ ## No independent-answer evidence is emitted by an explanatory activity.
+ 
+@@ -13,12 +14,28 @@
+ var watered := false
+ var sunlight := false
+ var inspected: Array[String] = []
++var english_objects: Array[String] = []
++var english_meaning := ""
++var english_choice := -1
++var english_hint_level := 0
++var english_attempts := 0
++var english_complete := false
+ 
+ 
+ func configure(raw: Dictionary) -> bool:
+ 	reset()
+ 	kind = str(raw.get("kind", "invalid"))
+ 	match kind:
++		"english_objects":
++			var checked := ENGLISH.checked_payload(raw)
++			if checked.is_empty():
++				kind = "invalid"
++				return false
++			word = checked.word
++			english_meaning = checked.meaning
++			english_objects.clear()
++			for item: String in checked.objects:
++				english_objects.append(item)
+ 		"bridge_ten":
+ 			if not _whole_number(raw.get("a")) or not _whole_number(raw.get("b")):
+ 				kind = "invalid"
+@@ -116,10 +133,16 @@
+ 	watered = false
+ 	sunlight = false
+ 	inspected.clear()
++	english_choice = -1
++	english_hint_level = 0
++	english_attempts = 0
++	english_complete = false
+ 
+ 
+ func token_count() -> int:
+ 	match kind:
++		"english_objects":
++			return english_objects.size()
+ 		"bridge_ten", "addition":
+ 			return b
+ 		"subtract_ten", "equal_sharing":
+@@ -134,6 +157,8 @@
+ 
+ 
+ func goal_count() -> int:
++	if kind == "english_objects":
++		return 1
+ 	return b if kind == "subtract_ten" else token_count()
+ 
+ 
+@@ -146,6 +171,8 @@
+ 
+ 
+ func is_complete() -> bool:
++	if kind == "english_objects":
++		return english_complete
+ 	if kind == "plant_parts":
+ 		return watered and sunlight and inspected.size() == 4
+ 	return kind != "invalid" and placed.size() == goal_count()
+@@ -180,7 +207,7 @@
+ 
+ 
+ func place(token: int, target: int) -> bool:
+-	if kind in ["invalid", "plant_parts"] or is_complete() or token < 0 or token >= token_count():
++	if kind in ["invalid", "plant_parts", "english_objects"] or is_complete() or token < 0 or token >= token_count():
+ 		return false
+ 	if placed.has(token) or target != target_index():
+ 		return false
+@@ -200,8 +227,34 @@
+ 	return true
+ 
+ 
++func choose_english(index: int) -> bool:
++	if kind != "english_objects" or english_complete or index < 0 or index >= english_objects.size():
++		return false
++	english_choice = index
++	english_attempts += 1
++	english_complete = english_objects[index] == word
++	return english_complete
++
++
++func english_hint() -> bool:
++	if kind != "english_objects" or english_complete or english_hint_level >= 2:
++		return false
++	english_hint_level += 1
++	return true
++
++
+ func explanation() -> String:
+ 	match kind:
++		"english_objects":
++			if english_complete:
++				return "Richtig: „%s“. Wähle jetzt „Zur Aufgabe“." % english_meaning
++			if english_hint_level == 2:
++				return "Tippe selbst auf den hell umrandeten Gegenstand."
++			if english_hint_level == 1:
++				return ENGLISH.hint_for(word)
++			if english_attempts > 0:
++				return "Das passt noch nicht. Ein Hinweis kann dir helfen."
++			return "Tippe auf den Gegenstand zum englischen Wort."
+ 		"bridge_ten", "addition":
+ 			var filled: int = a + placed.size()
+ 			if kind == "addition" and a + b <= 10:
+--- a/scripts/learning/learning_world.gd
++++ b/scripts/learning/learning_world.gd
+@@ -5,6 +5,7 @@
+ const ACTIVITY = preload("res://scripts/learning/learning_activity.gd")
+ const FOX = preload("res://scripts/characters/lumo/lumo_rigged_actor.gd")
+ const ATELIER = preload("res://scripts/learning/learning_atelier.gd")
++const ENGLISH_GALLERY = preload("res://scripts/learning/english_object_gallery.gd")
+ const BEVEL = preload("res://scripts/games/visual/kart_harbor_cinema.gd")
+ const PART_LABELS := {"root": "Wurzel", "stem": "Stängel", "leaf": "Blatt", "flower": "Blüte"}
+ const PART_HELP := {
+@@ -73,6 +74,11 @@
+ var _speech_state := "idle"
+ var _speech_text := ""
+ var voice_button: Button
++var english_models: Array[Node3D] = []
++var english_buttons: Array[Button] = []
++var english_stage_rect := Rect2()
++var _atelier: Node3D
++var _english_compact := false
+ 
+ 
+ func _ready() -> void:
+@@ -233,7 +239,8 @@
+ 	fill.light_energy = 0.09
+ 	fill.light_specular = 0.0
+ 	add_child(fill)
+-	add_child(ATELIER.new())
++	_atelier = ATELIER.new()
++	add_child(_atelier)
+ 	fox = FOX.new()
+ 	fox.name = "OriginalLearningLumo"
+ 	add_child(fox)
+@@ -262,6 +269,11 @@
+ 	add_child(camera)
+ 	camera.position = Vector3(0.0, 14.0, 11.0)
+ 	camera.look_at(Vector3(0.0, 0.7, 0.0))
++	if activity.kind == "english_objects":
++		# Keep every existing atelier mesh behind the fitted object gallery.
++		# Orthographic translation along view depth preserves its screen position.
++		_atelier.position = -camera.global_basis.z * 24.0
++		camera.far = 100.0
+ 
+ 
+ func _soften_teacher_materials() -> void:
+@@ -379,6 +391,8 @@
+ 	targets.clear()
+ 	token_sources.clear()
+ 	part_nodes.clear()
++	english_models.clear()
++	english_buttons.clear()
+ 	water_particles.clear()
+ 	_arrangement_set = false
+ 	_source_tray = null
+@@ -395,6 +409,9 @@
+ 	main_button = null
+ 	voice_button = null
+ 	match activity.kind:
++		"english_objects":
++			_build_english_objects()
++			main_button = _button("Hinweis", _english_hint)
+ 		"bridge_ten", "addition", "bridge_hundred":
+ 			_build_ten_frame()
+ 			main_button = _button("Ein Objekt zeigen", _show_one)
+@@ -420,7 +437,7 @@
+ 			for part in PART_LABELS:
+ 				_button(str(PART_LABELS[part]), _inspect.bind(str(part)))
+ 	# Rebuilding frees the old controls after their input signal has returned.
+-	_button("Noch einmal", restart, CONNECT_DEFERRED)
++	_button("Neu" if activity.kind == "english_objects" else "Noch einmal", restart, CONNECT_DEFERRED)
+ 	if (
+ 		_speech_enabled
+ 		and is_instance_valid(_speech_host)
+@@ -800,6 +817,15 @@
+ 	if activity.kind == "invalid":
+ 		title.text = "Lumo Lernwerkstatt"
+ 		status.text = "Kehre zur Aufgabe zurück und öffne die Lernansicht erneut."
++	elif activity.kind == "english_objects":
++		status.text = ("%s = %s · Passend zugeordnet" % [activity.word, activity.english_meaning]
++			if activity.is_complete() else "Tippe den Gegenstand oder seine Zahl an.")
++		main_button.disabled = activity.is_complete() or activity.english_hint_level >= 2
++		for index in range(english_models.size()):
++			english_buttons[index].disabled = activity.is_complete()
++			english_models[index].get_node("HintRing").visible = (
++				activity.english_objects[index] == activity.word
++				and (activity.english_hint_level >= 2 or activity.is_complete()))
+ 	elif activity.kind == "plant_parts":
+ 		title.text = "Pflanzen entdecken"
+ 		status.text = "%d von 4 Pflanzenteilen entdeckt" % activity.inspected.size()
+@@ -811,7 +837,7 @@
+ 			% [activity.placed.size(), activity.goal_count()]
+ 		)
+ 		main_button.disabled = activity.is_complete() or not _moving.is_empty()
+-	if activity.is_complete():
++	if activity.is_complete() and activity.kind != "english_objects":
+ 		status.text = "Geschafft! Zurück bei deiner Aufgabe kannst du es selbst versuchen."
+ 	_layout.call_deferred()
+ 
+@@ -839,6 +865,14 @@
+ 	var insets := MobileRuntime.get_safe_area_insets() if OS.has_feature("android") or MobileRuntime.requires_safe_area_observation() else Rect2()
+ 	var origin := insets.position / scale_value
+ 	var available := logical - (insets.position + insets.size) / scale_value
++	if activity.kind == "english_objects":
++		_english_compact = available.x > available.y and available.y < 480.0
++		# A short landscape window needs one row of full-sized actions, not a
++		# two-row footer that reduces the real objects to tiny thumbnails.
++		status.visible = not _english_compact
++		for button: Button in actions.get_children():
++			button.custom_minimum_size = Vector2(52, 52)
++		_update_voice_button()
+ 	header.position = origin + Vector2(12, 12)
+ 	header.size.x = maxf(100, available.x - 24)
+ 	header.size.y = header.get_combined_minimum_size().y
+@@ -848,6 +882,9 @@
+ 		origin.x + 12,
+ 		maxf(header.position.y + header.size.y + 20, origin.y + available.y - footer.size.y - 12)
+ 	)
++	if activity.kind == "english_objects":
++		_layout_english(dimensions, scale_value)
++		return
+ 	var portrait := dimensions.x / dimensions.y < 0.95
+ 	if not _arrangement_set or portrait != _portrait:
+ 		_arrange_activity(portrait)
+@@ -991,6 +1028,9 @@
+ 
+ 
+ func _begin_drag(point: Vector2, finger: int) -> void:
++	if activity.kind == "english_objects":
++		_pick_english_object(point)
++		return
+ 	if activity.kind == "plant_parts":
+ 		var best := ""
+ 		var distance := 60.0 * ui.scale.x
+@@ -1338,11 +1378,157 @@
+ func _update_voice_button() -> void:
+ 	if not is_instance_valid(voice_button):
+ 		return
+-	voice_button.text = (
+-		"Stimme stoppen" if _speech_state in ["preparing", "playing"] else "Schritt anhören"
+-	)
++	if activity.kind == "english_objects" and _english_compact:
++		voice_button.text = "Stopp" if _speech_state in ["preparing", "playing"] else "Anhören"
++	else:
++		voice_button.text = (
++			"Stimme stoppen" if _speech_state in ["preparing", "playing"] else "Schritt anhören"
++		)
+ 	voice_button.tooltip_text = (
+ 		"Die lokale Stimme ist gerade nicht verfügbar. Der Lernschritt bleibt lesbar."
+ 		if _speech_state == "unavailable"
+ 		else ""
+ 	)
++
++
++func _build_english_objects() -> void:
++	title.text = "Englisch · " + activity.word
++	for index in range(activity.english_objects.size()):
++		var model: Node3D = ENGLISH_GALLERY.make(activity.english_objects[index], index)
++		content.add_child(model)
++		english_models.append(model)
++		var button := _button(str(index + 1), _choose_english.bind(index))
++		button.name = "EnglishChoice%d" % (index + 1)
++		button.tooltip_text = "Gegenstand %d auswählen" % (index + 1)
++		english_buttons.append(button)
++
++
++func _english_projected_bounds(node: Node3D) -> Rect2:
++	var result := Rect2()
++	var found := false
++	for item: Node in node.find_children("*", "MeshInstance3D", true, false):
++		var mesh := item as MeshInstance3D
++		if mesh.mesh == null or not mesh.is_visible_in_tree():
++			continue
++		var box := mesh.get_aabb()
++		for corner in range(8):
++			var point := camera.unproject_position(mesh.to_global(box.get_endpoint(corner)))
++			result = result.expand(point) if found else Rect2(point, Vector2.ZERO)
++			found = true
++	return result
++
++
++func _layout_english(dimensions: Vector2, scale_value: float) -> void:
++	if english_models.size() != 3 or dimensions.y <= 0.0:
++		return
++	var portrait := dimensions.x < dimensions.y * 0.95
++	_portrait = portrait
++	_arrangement_set = true
++	camera.size = 12.0
++	camera.h_offset = 0.0
++	camera.v_offset = 0.0
++	fox.position.x = -2.15 if portrait else -4.2
++	fox.position.z = -0.6 if portrait else 0.2
++	fox.rotation.y = 0.10 if portrait else 0.35
++	for index in range(english_models.size()):
++		english_models[index].position = (
++			Vector3(1.25, 0, -2.8 + index * 2.8)
++			if portrait else Vector3(-1.15 + index * 2.55, 0, 0.15))
++		var number := english_models[index].get_node("ChoiceNumber") as MeshInstance3D
++		number.global_basis = camera.global_basis
++	if portrait:
++		# Stack the actual projected geometry, including its number and base.
++		# Different objects have different heights; a fixed depth gap can let
++		# a tall pen cover the ruler or book behind it.
++		var pixels_per_depth := (
++			camera.unproject_position(Vector3.FORWARD * -1.0).y
++			- camera.unproject_position(Vector3.ZERO).y)
++		if pixels_per_depth > 0.001:
++			for index in range(1, english_models.size()):
++				var previous := _english_projected_bounds(english_models[index - 1])
++				var current := _english_projected_bounds(english_models[index])
++				var missing := previous.end.y + pixels_per_depth * 0.35 - current.position.y
++				if missing > 0.0:
++					english_models[index].position.z += missing / pixels_per_depth
++	var top: float = header.get_global_rect().end.y + 8.0 * scale_value
++	var bottom: float = footer.get_global_rect().position.y - 8.0 * scale_value
++	var left: float = header.get_global_rect().position.x + 4.0 * scale_value
++	english_stage_rect = Rect2(left, top, header.get_global_rect().size.x - 8.0 * scale_value, maxf(1.0, bottom - top))
++	var bounds := _english_projected_bounds(content)
++	var fox_bounds := _english_projected_bounds(fox)
++	if fox_bounds.has_area():
++		bounds = bounds.merge(fox_bounds)
++	if bounds.size.x < 1.0 or bounds.size.y < 1.0:
++		return
++	var fitting := minf(english_stage_rect.size.x / bounds.size.x, english_stage_rect.size.y / bounds.size.y) * 0.94
++	camera.size /= maxf(0.001, fitting)
++	bounds = _english_projected_bounds(content)
++	if fox_bounds.has_area():
++		bounds = bounds.merge(_english_projected_bounds(fox))
++	var shift := english_stage_rect.get_center() - bounds.get_center()
++	var pixels_per_unit := dimensions.y / camera.size
++	camera.h_offset = -shift.x / pixels_per_unit
++	camera.v_offset = shift.y / pixels_per_unit
++	if fox.is_usable():
++		fox.set_teaching_target(english_models[activity.english_objects.find(activity.word)].global_position + Vector3.UP)
++
++
++func english_pick_rect(index: int) -> Rect2:
++	# Only offer a spatial target when a real 48dp square fits inside both
++	# its projected collision volume and the unobscured current scene area.
++	# Numbered 52dp buttons remain the equivalent action in tighter layouts.
++	if index < 0 or index >= english_models.size() or not camera.is_inside_tree():
++		return Rect2()
++	var collision := english_models[index].get_node("ObjectTouchBody/CollisionShape3D") as CollisionShape3D
++	var shape := collision.shape as BoxShape3D
++	var box := AABB(-shape.size * 0.5, shape.size)
++	var points := PackedVector2Array()
++	for corner in range(8):
++		points.append(camera.unproject_position(collision.to_global(box.get_endpoint(corner))))
++	var hull := Geometry2D.convex_hull(points)
++	var center := camera.unproject_position(collision.global_position)
++	var edge: float = 48.0 * MobileRuntime.get_ui_density()
++	var target := Rect2(center - Vector2.ONE * edge * 0.5, Vector2.ONE * edge)
++	if not english_stage_rect.encloses(target):
++		return Rect2()
++	for corner in [target.position, Vector2(target.end.x, target.position.y), target.end, Vector2(target.position.x, target.end.y)]:
++		if not Geometry2D.is_point_in_polygon(corner, hull):
++			return Rect2()
++	return target
++
++
++func _pick_english_object(point: Vector2) -> void:
++	if suspended or activity.is_complete():
++		return
++	var origin := camera.project_ray_origin(point)
++	var query := PhysicsRayQueryParameters3D.create(origin, origin + camera.project_ray_normal(point) * 60.0, 8)
++	var hit := get_world_3d().direct_space_state.intersect_ray(query)
++	if hit.is_empty() or not hit.collider.has_meta("english_choice"):
++		return
++	var index: int = int(hit.collider.get_meta("english_choice"))
++	if not english_pick_rect(index).has_area():
++		return
++	_choose_english(index)
++	get_viewport().set_input_as_handled()
++
++
++func _choose_english(index: int) -> void:
++	if suspended or activity.kind != "english_objects" or activity.is_complete():
++		return
++	if index < 0 or index >= english_models.size():
++		return
++	_stop_speech()
++	var matched: bool = activity.choose_english(index)
++	_teacher("correct" if matched else "encourage", english_models[index].global_position + Vector3.UP)
++	_refresh()
++	_queue_narration()
++	print("[LearningEnglish] choice=", index, " attempts=", activity.english_attempts, " complete=", activity.is_complete())
++
++
++func _english_hint() -> void:
++	if suspended or not activity.english_hint():
++		return
++	_stop_speech()
++	_teacher("explain", english_models[activity.english_objects.find(activity.word)].global_position + Vector3.UP)
++	_refresh()
++	_queue_narration()
+--- /dev/null
++++ b/scripts/tests/learning_english_regression.gd
+@@ -0,0 +1,512 @@
++extends SceneTree
++## Executes the production learning scene. JNI/audio and Android Insets are
++## explicit test boundaries; this does not award mastery or claim device FPS.
++const ACTIVITY = preload("res://scripts/learning/learning_activity.gd")
++const VOCABULARY = preload("res://scripts/learning/english_vocabulary.gd")
++const WORLD := "res://scenes/learning/learning_world.tscn"
++const OWNED := [
++	"scripts/learning/english_vocabulary.gd",
++	"scripts/learning/english_object_gallery.gd",
++	"scripts/learning/learning_activity.gd",
++	"scripts/learning/learning_world.gd",
++	"scripts/tests/learning_english_regression.gd",
++]
++var checks := 0
++var failures: Array[String] = []
++var input_events: Array[Dictionary] = []
++var captures: Array[Dictionary] = []
++var cases: Array[Dictionary] = []
++var output := ""
++var capture := false
++var fixture_path := ""
++var fixture_kind := "native_catalogue_fixture"
++var examples: Dictionary = {}
++
++
++class TestHost:
++	extends RefCounted
++	var requests: Array[Dictionary] = []
++	var returns: Array[Dictionary] = []
++	var rewards: Array[Dictionary] = []
++	var stops := 0
++	var request: Dictionary = {}
++	var speech_state := "idle"
++
++	func speakLearning(raw: String) -> int:
++		request = JSON.parse_string(raw)
++		requests.append(request.duplicate(true))
++		speech_state = "preparing"
++		return 1
++
++	func getLearningSpeechStatus() -> String:
++		return JSON.stringify({
++			"id": request.get("id", 0), "state": speech_state, "positionMs": 220,
++			"durationMs": 1200, "audible": speech_state == "playing",
++			"envelopeAvailable": false, "envelope": 0.0,
++		})
++
++	func stopLearningSpeech() -> void:
++		stops += 1
++		speech_state = "idle"
++
++	func returnToApp(destination: String, raw: String) -> int:
++		returns.append({"destination": destination, "payload": JSON.parse_string(raw)})
++		return 1
++
++	func reward(raw: String) -> int:
++		rewards.append(JSON.parse_string(raw))
++		return 1
++
++
++func _initialize() -> void:
++	for arg in OS.get_cmdline_user_args():
++		if arg == "--capture":
++			capture = true
++		elif arg.begins_with("--output="):
++			output = arg.trim_prefix("--output=")
++		elif arg.begins_with("--task-fixtures="):
++			fixture_path = arg.trim_prefix("--task-fixtures=")
++	_run.call_deferred()
++
++
++func _check(condition: bool, description: String) -> void:
++	checks += 1
++	if not condition:
++		failures.append(description)
++		push_error("[LearningEnglish] " + description)
++
++
++func _settle(count: int = 10) -> void:
++	for frame in range(count):
++		await process_frame
++	await physics_frame
++
++
++func _payload(word: String) -> Dictionary:
++	if examples.has(word):
++		return examples[word].activity.duplicate(true)
++	var objects := {
++		"ball": ["book", "ball", "car"],
++		"book": ["ruler", "pen", "book"],
++		"ruler": ["ruler", "apple", "sun"],
++		"car": ["sun", "car", "ruler"],
++		"pen": ["pen", "book", "apple"],
++		"sun": ["apple", "sun", "pen"],
++		"apple": ["ball", "ruler", "apple"],
++	}
++	return {
++		"kind": "english_objects", "word": word,
++		"meaning": VOCABULARY.ENTRIES[word].meanings[0],
++		"objects": objects[word].duplicate(),
++	}
++
++
++func _load_actual_tasks() -> bool:
++	if fixture_path.is_empty():
++		return true
++	if not FileAccess.file_exists(fixture_path):
++		_check(false, "supplied actual Dart task file exists")
++		return false
++	var raw: Variant = JSON.parse_string(FileAccess.get_file_as_string(fixture_path))
++	if not raw is Dictionary or raw.get("failures") != 0 or not raw.get("examples") is Dictionary:
++		_check(false, "actual Dart producer report is complete and successful")
++		return false
++	var source: Dictionary = raw.examples
++	_check(source.size() == VOCABULARY.ENTRIES.size(), "actual Dart producer supplies all seven supported words")
++	for word: String in VOCABULARY.ENTRIES:
++		var entry: Variant = source.get(word)
++		if not entry is Dictionary or not entry.get("activity") is Dictionary:
++			_check(false, "actual task entry exists for " + word)
++			return false
++		var payload: Dictionary = entry.activity
++		_check(not VOCABULARY.checked_payload(payload).is_empty(), "actual producer payload validates: " + word)
++		_check(payload.get("word") == word and entry.get("answer") == payload.get("meaning"), "actual task answer and word remain bound: " + word)
++		_check(entry.get("prompt") in ["Was bedeutet „%s“?" % word, "Was heißt %s auf Deutsch?" % word], "actual prompt belongs to the closed native contract")
++		var options: Variant = entry.get("options")
++		if not options is Array or options.count(entry.get("answer")) != 1:
++			_check(false, "actual task retains one exact answer choice: " + word)
++			return false
++	examples = source.duplicate(true)
++	fixture_kind = "actual_dart_producer_report"
++	return failures.is_empty()
++
++
++func _state_contracts() -> void:
++	for word: String in VOCABULARY.ENTRIES:
++		var payload := _payload(word)
++		var model = ACTIVITY.new()
++		_check(model.configure(payload), "valid English payload: " + word)
++		_check(not model.is_complete(), "new object task starts uncompleted")
++		var options_before := JSON.stringify(payload)
++		var target: int = model.english_objects.find(word)
++		var wrong: int = (target + 1) % 3
++		_check(not model.choose_english(wrong), "wrong object does not complete task")
++		_check(model.english_attempts == 1 and not model.is_complete(), "wrong selection remains a learning attempt")
++		_check(model.english_hint(), "first targeted description is available")
++		_check(model.explanation() == VOCABULARY.hint_for(word), "first hint is the exact reviewed German description")
++		_check(model.english_hint(), "second hint is available")
++		_check(not model.is_complete() and model.english_attempts == 1, "hints do not select or complete for the child")
++		_check(not model.english_hint() and model.english_hint_level == 2, "hint budget is bounded to two")
++		_check(not model.place(target, 0), "arithmetic move API cannot complete an English choice")
++		_check(model.choose_english(target) and model.is_complete(), "actual correct object completes only this illustration")
++		_check(model.explanation().contains(model.english_meaning), "completion explains the actual German meaning")
++		_check(not model.choose_english(wrong) and model.english_attempts == 2, "completed task ignores extra selection")
++		model.reset()
++		_check(not model.is_complete() and model.english_attempts == 0 and model.english_hint_level == 0, "restart clears local illustration state")
++		_check(JSON.stringify(payload) == options_before and model.word == word, "input descriptor is immutable across attempts and restart")
++	var valid := _payload("book")
++	var invalid: Array = [
++		{}, {"kind": "english_objects"},
++		{"kind": "english_objects", "word": "cat", "meaning": "Katze", "objects": ["cat", "book", "ball"]},
++		{"kind": "english_objects", "word": "book", "meaning": "Auto", "objects": ["car", "book", "ball"]},
++		{"kind": "english_objects", "word": "book", "meaning": "Buch", "objects": ["book", "book", "ball"]},
++		{"kind": "english_objects", "word": "book", "meaning": "Buch", "objects": ["car", "sun", "ball"]},
++		{"kind": "english_objects", "word": "book", "meaning": "Buch", "objects": ["book", "ball"]},
++		{"kind": "english_objects", "word": "book", "meaning": "Buch", "objects": "book,car,ball"},
++		{"kind": "english_objects", "word": "book", "meaning": "Buch", "objects": ["book", "res://secret.glb", "ball"]},
++		{"kind": "english_objects", "word": 3, "meaning": "Buch", "objects": ["book", "car", "ball"]},
++		{"kind": "english_objects", "word": "book", "meaning": 7, "objects": ["book", "car", "ball"]},
++	]
++	for bad in invalid:
++		var model = ACTIVITY.new()
++		_check(not model.configure(bad), "malformed or unsupported object task fails closed")
++	var model = ACTIVITY.new()
++	_check(model.configure(valid), "fresh valid state after invalid inputs")
++	_check(not model.choose_english(-1) and not model.choose_english(3) and model.english_attempts == 0, "out-of-range choices cannot mutate state")
++
++
++func _rect_json(rect: Rect2) -> Array:
++	return [rect.position.x, rect.position.y, rect.size.x, rect.size.y]
++
++
++func _progress_snapshot() -> Dictionary:
++	var progress := root.get_node("ProgressStore")
++	return {
++		"stars": progress.total_stars(), "lifetime": progress.lifetime_stars(),
++		"best_streak": progress.best_streak(), "current_streak": progress.current_streak(),
++		"letters": progress.learned_letters().duplicate(),
++		"file_sha256": FileAccess.get_sha256("user://progress.cfg") if FileAccess.file_exists("user://progress.cfg") else null,
++	}
++
++
++func _exposed(button: Control) -> Rect2:
++	var result := button.get_global_rect().intersection(Rect2(Vector2.ZERO, Vector2(root.size)))
++	var node := button.get_parent()
++	while node is Control:
++		if node.clip_contents:
++			result = result.intersection(node.get_global_rect())
++		node = node.get_parent()
++	return result
++
++
++func _tap_point(point: Vector2, context: String) -> void:
++	for pressed in [true, false]:
++		var event := InputEventScreenTouch.new()
++		event.index = 7
++		event.position = point
++		event.pressed = pressed
++		input_events.append({"context": context, "position": [point.x, point.y], "pressed": pressed, "ticks_msec": Time.get_ticks_msec()})
++		Input.parse_input_event(event)
++		await process_frame
++	await _settle(6)
++
++
++func _tap(button: Button, context: String) -> void:
++	var bounds := _exposed(button)
++	var density: float = root.get_node("MobileRuntime").get_ui_density()
++	_check(button.is_visible_in_tree() and not button.disabled, context + ": actual button is enabled and visible")
++	_check(minf(bounds.size.x, bounds.size.y) / density >= 48.0, context + ": actual exposed hit surface is at least48dp")
++	if not bounds.has_area() or button.disabled:
++		return
++	await _tap_point(bounds.get_center(), context)
++
++
++func _button(game: Node3D, text: String) -> Button:
++	for candidate: Button in game.actions.get_children():
++		if candidate.text == text:
++			return candidate
++	return null
++
++
++func _meshes(node: Node3D) -> Array[MeshInstance3D]:
++	var result: Array[MeshInstance3D] = []
++	for item: Node in node.find_children("*", "MeshInstance3D", true, false):
++		var mesh := item as MeshInstance3D
++		if mesh.mesh != null and mesh.is_visible_in_tree():
++			result.append(mesh)
++	return result
++
++
++func _mesh_rect(mesh: MeshInstance3D, camera: Camera3D) -> Rect2:
++	var box := mesh.get_aabb()
++	var rect := Rect2(camera.unproject_position(mesh.to_global(box.get_endpoint(0))), Vector2.ZERO)
++	for index in range(1, 8):
++		rect = rect.expand(camera.unproject_position(mesh.to_global(box.get_endpoint(index))))
++	return rect
++
++
++
++func _geometry_depth(node: Node3D, camera: Camera3D) -> Vector2:
++	var low := INF
++	var high := -INF
++	var inverse := camera.get_camera_transform().affine_inverse()
++	for item: Node in node.find_children("*", "GeometryInstance3D", true, false):
++		if not item.is_visible_in_tree():
++			continue
++		var box := AABB()
++		if item is MeshInstance3D and item.mesh != null:
++			box = item.get_aabb()
++		elif item is MultiMeshInstance3D and item.multimesh != null:
++			box = item.multimesh.get_aabb()
++		else:
++			continue
++		for corner in range(8):
++			var position: Vector3 = inverse * item.to_global(box.get_endpoint(corner))
++			low = minf(low, -position.z)
++			high = maxf(high, -position.z)
++	return Vector2(low, high)
++
++func _observe(game: Node3D, name: String) -> Dictionary:
++	var viewport := Rect2(Vector2.ZERO, Vector2(root.size))
++	var body: Rect2 = game.english_stage_rect
++	var density: float = root.get_node("MobileRuntime").get_ui_density()
++	_check(game.ui.visible and game.fox.is_usable() and game.fox.is_visible_in_tree(), name + ": original usable Lumo remains visible")
++	var objects_depth := _geometry_depth(game.content, game.camera)
++	var fox_depth := _geometry_depth(game.fox, game.camera)
++	var background_depth := _geometry_depth(game._atelier, game.camera)
++	_check(background_depth.x > maxf(objects_depth.y, fox_depth.y), name + ": actual atelier meshes cannot occlude objects or Lumo along camera depth")
++	_check(viewport.encloses(game.header.get_global_rect()) and viewport.encloses(game.footer.get_global_rect()), name + ": complete header and footer fit actual window")
++	_check(body.has_area(), name + ": a nonempty unobscured scene remains")
++	var geometries: Array[Dictionary] = []
++	var aggregate: Array[Rect2] = []
++	for index in range(game.english_models.size()):
++		var object: Node3D = game.english_models[index]
++		var projected := Rect2()
++		var first := true
++		var triangle_count := 0
++		for mesh in _meshes(object):
++			var rect := _mesh_rect(mesh, game.camera)
++			projected = rect if first else projected.merge(rect)
++			first = false
++			triangle_count += mesh.mesh.get_faces().size() / 3
++			_check(body.grow(0.1).encloses(rect), name + ": actual object geometry stays outside HUD: " + str(mesh.name))
++		_check(triangle_count >= 24, name + ": object has actual three-dimensional mesh triangles")
++		_check(minf(projected.size.x, projected.size.y) / density >= 48.0, name + ": real object projection remains at least48dp across both axes")
++		aggregate.append(projected)
++		geometries.append({"word": object.get_meta("word"), "bounds_px": _rect_json(projected), "triangles": triangle_count, "spatial_48dp_target_px": _rect_json(game.english_pick_rect(index))})
++	var fox_rect := Rect2()
++	var first_fox := true
++	for mesh in _meshes(game.fox):
++		var bounds := _mesh_rect(mesh, game.camera)
++		fox_rect = bounds if first_fox else fox_rect.merge(bounds)
++		first_fox = false
++		_check(body.grow(0.1).encloses(bounds), name + ": original Lumo mesh is outside HUD: " + str(mesh.name))
++	_check(fox_rect.size.y / density >= 96.0, name + ": original Lumo stays at a readable projected height rather than a thumbnail")
++	for index in range(aggregate.size()):
++		_check(not aggregate[index].intersects(fox_rect), name + ": complete object is separate from Lumo")
++		for other in range(index):
++			_check(not aggregate[index].intersects(aggregate[other]), name + ": actual object projections are separate")
++	var controls: Array[Dictionary] = []
++	for button: Button in game.actions.get_children():
++		var bounds := _exposed(button)
++		_check(button.is_visible_in_tree() and minf(bounds.size.x, bounds.size.y) / density >= 48.0, name + ": every exposed action retains48dp: " + button.text)
++		controls.append({"text": button.text, "enabled": not button.disabled, "rect_px": _rect_json(button.get_global_rect()), "exposed_px": _rect_json(bounds)})
++	return {
++		"name": name, "window_px": [root.size.x, root.size.y], "density": density,
++		"observation_source": "platform_fixture", "stage_px": _rect_json(body),
++		"header_px": _rect_json(game.header.get_global_rect()), "footer_px": _rect_json(game.footer.get_global_rect()),
++		"lumo_px": _rect_json(fox_rect), "objects": geometries, "controls": controls,
++		"background_depth": [background_depth.x, background_depth.y], "foreground_far_depth": maxf(objects_depth.y, fox_depth.y),
++		"title": game.title.text, "explanation": game.explanation.text, "status": game.status.text,
++		"word": game.activity.word, "objects_order": game.activity.english_objects.duplicate(),
++		"hint_level": game.activity.english_hint_level, "attempts": game.activity.english_attempts,
++		"complete": game.activity.is_complete(),
++	}
++
++
++func _capture(game: Node3D, name: String) -> void:
++	await _settle()
++	var report := _observe(game, name)
++	var sidecar := FileAccess.open(output.path_join(name + ".json"), FileAccess.WRITE)
++	_check(sidecar != null, "write original scene observation: " + name)
++	if sidecar != null:
++		sidecar.store_string(JSON.stringify(report, "\t") + "\n")
++		sidecar.close()
++	if capture:
++		await RenderingServer.frame_post_draw
++		var image := root.get_texture().get_image()
++		_check(not image.is_empty(), "actual rendered image exists: " + name)
++		_check(image.get_size() == root.size, "actual image matches configured window: " + name)
++		var path := output.path_join(name + ".png")
++		_check(image.save_png(path) == OK, "save actual renderer image: " + name)
++		report["png"] = name + ".png"
++		report["sha256"] = FileAccess.get_sha256(path)
++	captures.append(report)
++
++
++func _install_inset_fixture(dimensions: Vector2i, insets: Rect2) -> void:
++	var mobile := root.get_node("MobileRuntime")
++	mobile._android_safe_area_enabled = false
++	mobile._safe_area_request_pending = false
++	root.size = dimensions
++	await _settle(3)
++	mobile._safe_area_reader = func(completed: Callable) -> bool:
++		completed.call_deferred({
++			"view_size": Vector2(dimensions), "decor_size": Vector2(dimensions),
++			"render_rect": Rect2(Vector2.ZERO, Vector2(dimensions)),
++			"system_insets": insets, "insets": insets,
++		})
++		return true
++	mobile._android_safe_area_enabled = true
++	mobile._invalidate_safe_area()
++	mobile.request_safe_area_refresh()
++	await _settle(3)
++	_check(mobile.safe_area_is_ready(), "real shared cache accepts explicit layout fixture")
++
++
++func _exercise(word: String, dimensions: Vector2i, density: float, insets: Rect2) -> void:
++	var bridge := root.get_node("HostBridge")
++	var test_host := TestHost.new()
++	var options := {
++		"sessionId": "english-native-contract-" + word, "childKey": "synthetic-child",
++		"subject": "Englisch", "stars": 13, "displayDensity": density,
++	}
++	bridge._host = test_host
++	bridge._options = options.duplicate(true)
++	bridge._return_pending = false
++	var profile_before := JSON.stringify(bridge._options)
++	var progress_before := _progress_snapshot()
++	await _install_inset_fixture(dimensions, insets)
++	var game = load(WORLD).instantiate()
++	game._speech_host = test_host
++	game.capture_options = {"learning": _payload(word), "reduceAnimations": true,
++		"learningVoiceEnabled": true, "localVoiceLicenseAccepted": true, "learningAutoRead": false}
++	var task_before := JSON.stringify(game.capture_options)
++	root.add_child(game)
++	await _settle(14)
++	_check(game.activity.kind == "english_objects" and game.title.text.ends_with(word), "actual scene displays the exact current word")
++	_check(game.english_models.size() == 3 and game.english_buttons.size() == 3, "three actual objects and equivalent buttons exist")
++	var stem := "english-%s-%dx%d" % [word, dimensions.x, dimensions.y]
++	await _capture(game, stem + "-start")
++	var target: int = game.activity.english_objects.find(word)
++	var wrong: int = (target + 1) % 3
++	await _tap(game.english_buttons[wrong], word + ": wrong visible object choice")
++	_check(not game.activity.is_complete() and game.activity.english_attempts == 1, "actual wrong touch cannot complete or award")
++	await _tap(game.main_button, word + ": first targeted hint")
++	_check(game.activity.english_hint_level == 1 and game.explanation.text == VOCABULARY.hint_for(word), "actual first hint shows the intended object clue")
++	await _tap(game.main_button, word + ": bounded outline hint")
++	_check(game.activity.english_hint_level == 2 and not game.activity.is_complete(), "actual second hint leaves selection to the child")
++	_check(game.english_models[target].get_node("HintRing").visible, "correct object has real visible hint geometry")
++	for index in range(3):
++		if index != target:
++			_check(not game.english_models[index].get_node("HintRing").visible, "distractor has no false correct outline")
++	if word == "ball":
++		await _capture(game, stem + "-hint")
++		var pick: Rect2 = game.english_pick_rect(target)
++		_check(pick.has_area(), "landscape offers a measured48dp actual spatial target")
++		if pick.has_area():
++			await _tap_point(pick.get_center(), "actual3D collision target for ball")
++	else:
++		await _tap(game.english_buttons[target], word + ": correct actual object")
++	_check(game.activity.is_complete() and game.activity.english_attempts == 2, "actual child choice completes only the illustration")
++	_check(game.status.text.contains(word) and game.status.text.contains(game.activity.english_meaning), "completion visibly binds exact word and meaning")
++	if word in ["ball", "book"]:
++		await _capture(game, stem + "-complete")
++	var stops_before: int = test_host.stops
++	await _tap(game.voice_button, word + ": existing local German readback")
++	_check(test_host.requests.size() == 1 and test_host.requests[0].text.contains(game.activity.english_meaning), "existing local speech receives actual German explanation")
++	test_host.speech_state = "playing"
++	game._tick_speech(0.06)
++	game._notification(NOTIFICATION_APPLICATION_PAUSED)
++	var attempts_before: int = game.activity.english_attempts
++	game._choose_english(wrong)
++	game._english_hint()
++	_check(game.suspended and test_host.stops > stops_before and game.activity.english_attempts == attempts_before, "pause stops speech and rejects new learning input")
++	game._notification(NOTIFICATION_APPLICATION_RESUMED)
++	_check(not game.suspended and game.activity.is_complete(), "resume preserves this local illustration")
++	await _tap(_button(game, "Neu"), word + ": restart local illustration")
++	_check(not game.activity.is_complete() and game.activity.english_hint_level == 0 and game.activity.english_attempts == 0, "actual restart resets only local interaction state")
++	_check(JSON.stringify(game.capture_options) == task_before, "task launch descriptor remains byte-equivalent")
++	await _tap(_button(game, "Zur Aufgabe"), word + ": return to actual host task")
++	_check(test_host.returns.size() == 1, "actual return acknowledged exactly once")
++	if test_host.returns.size() == 1:
++		var result: Dictionary = test_host.returns[0]
++		_check(result.destination == "learn" and result.payload.get("status") == "illustrated", "return remains bounded help result")
++		_check(result.payload.get("sessionId") == options.sessionId and result.payload.get("game") == "learning", "return preserves the exact launch session")
++		_check(not result.payload.has("answer") and not result.payload.has("stars") and not result.payload.has("xp"), "return does not submit answer or rewards")
++	_check(test_host.rewards.is_empty() and _progress_snapshot() == progress_before, "no native reward, progress or persistence mutation")
++	_check(JSON.stringify(bridge._options) == profile_before, "child/profile/actual launch fields remain unchanged")
++	cases.append({"word": word, "dimensions": [dimensions.x, dimensions.y], "input_boundary": "actual Godot ScreenTouch", "host_boundary": "explicit JNI/audio test double", "return_count": test_host.returns.size(), "reward_count": test_host.rewards.size()})
++	game.queue_free()
++	await _settle(3)
++	bridge._host = null
++	bridge._options = {}
++	bridge._return_pending = false
++
++
++func _voice_permission_gate() -> void:
++	var host := TestHost.new()
++	var game = load(WORLD).instantiate()
++	game._speech_host = host
++	game.capture_options = {"learning": _payload("book"), "reduceAnimations": true,
++		"learningVoiceEnabled": true, "localVoiceLicenseAccepted": false, "learningAutoRead": true}
++	root.add_child(game)
++	await _settle(12)
++	game._speak("Diese deutsche Erklärung darf ohne Zustimmung nicht abgespielt werden.")
++	game._tick_speech(1.0)
++	_check(game.voice_button == null and host.requests.is_empty(), "existing parent/license guard rejects speech without consent")
++	game.queue_free()
++	await _settle(3)
++
++
++func _run() -> void:
++	if output.is_empty():
++		push_error("--output=<directory> is required for source-bound evidence")
++		quit(2)
++		return
++	DirAccess.make_dir_recursive_absolute(output)
++	if capture and DisplayServer.get_name() == "headless":
++		push_error("English image capture requires an actual renderer")
++		quit(2)
++		return
++	var sources: Dictionary = {}
++	for path: String in OWNED:
++		sources[path] = FileAccess.get_sha256("res://" + path)
++	if not _load_actual_tasks():
++		quit(1)
++		return
++	_state_contracts()
++	var profiles := [
++		["ball", Vector2i(960, 540), 1.0, Rect2()],
++		["book", Vector2i(412, 915), 1.0, Rect2()],
++		["ruler", Vector2i(640, 360), 1.0, Rect2()],
++		["car", Vector2i(2400, 1080), 2.625, Rect2(136, 0, 0, 63)],
++		["pen", Vector2i(1080, 2400), 2.625, Rect2(0, 136, 0, 63)],
++		["sun", Vector2i(960, 540), 1.0, Rect2()],
++		["apple", Vector2i(960, 540), 1.0, Rect2()],
++	]
++	for profile in profiles:
++		await _exercise(profile[0], profile[1], profile[2], profile[3])
++	await _voice_permission_gate()
++	var mobile := root.get_node("MobileRuntime")
++	mobile._android_safe_area_enabled = false
++	mobile._safe_area_observation.clear()
++	for path: String in OWNED:
++		_check(FileAccess.get_sha256("res://" + path) == sources[path], "source stayed byte-identical during the actual run: " + path)
++	var file := FileAccess.open(output.path_join("learning-english-report.json"), FileAccess.WRITE)
++	_check(file != null, "final original report can be written")
++	if file != null:
++		file.store_string(JSON.stringify({
++			"schema": 1, "scope": "actual production Godot scene; explicit platform/JNI/audio fixtures; no Android/FPS/mastery claim",
++			"fixture_kind": fixture_kind, "task_fixture_sha256": FileAccess.get_sha256(fixture_path) if not fixture_path.is_empty() else null,
++			"checks": checks, "failures": failures, "renderer": DisplayServer.get_name(),
++			"source_sha256": sources, "cases": cases, "captures": captures,
++			"input_events": input_events, "audio_listened": false, "english_pronunciation_verified": false,
++		}, "\t") + "\n")
++		file.close()
++	if failures.is_empty():
++		print("LEARNING_ENGLISH_PASS checks=", checks, " captures=", captures.size(), " input_events=", input_events.size(), " fixture=", fixture_kind)
++		quit(0)
++	else:
++		print("LEARNING_ENGLISH_FAIL checks=", checks, " failures=", failures.size())
++		quit(1)

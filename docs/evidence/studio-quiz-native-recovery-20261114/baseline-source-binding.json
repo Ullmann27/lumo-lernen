@@ -1,0 +1,97 @@
+{
+  "host_revision": "1a903aefc751f80537c7dd4c96ae8c99915962f5",
+  "native_revision": "34421df83566dd4773420cc2a225887956459435",
+  "files": [
+    {
+      "kind": "host",
+      "path": "lib/features/quiz/quiz_show_round.dart",
+      "bytes": 14125,
+      "sha256": "ed036809b409b44d72cfbd6be275ff64a949a8701f31891c46131034fa758676",
+      "git_blob_sha": "6606300c19972195b4cf7fcee4810835a3c5ddcc"
+    },
+    {
+      "kind": "host",
+      "path": "lib/features/quiz/quiz_table_session.dart",
+      "bytes": 8060,
+      "sha256": "3c36f48119c7091d48ab510c93651526eaab791c08e2aa58e52b37a2e6743ea6",
+      "git_blob_sha": "c4105f3899d7cfb52fc0e5ec64b7b274a03a0fa4"
+    },
+    {
+      "kind": "host",
+      "path": "lib/features/lumo3d/native_table_transport.dart",
+      "bytes": 502,
+      "sha256": "dcd4826bb7903e575220537dd0b477d32d8fee810bf5523eb3c33c51df324ae1",
+      "git_blob_sha": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2"
+    },
+    {
+      "kind": "host",
+      "path": "tools/android_qa/quiz_native_authority.dart",
+      "bytes": 5561,
+      "sha256": "c17053575ab585f637806927c433ad7b82db3d6782321d09d6b475e8d3b65a34",
+      "git_blob_sha": "7ded270bb685306e74faa024043ec9638f0cc8d1"
+    },
+    {
+      "kind": "host",
+      "path": "tools/auto_install/TableGameActivity.kt",
+      "bytes": 6633,
+      "sha256": "e15923d2f0878733b41a4eae32eb5ea56cc5f067fa481c503bfee72c77440b2e",
+      "git_blob_sha": "74e9f7476cb192e016f5bf42421c89a30f58ee28"
+    },
+    {
+      "kind": "host",
+      "path": "tools/auto_install/TableGamesBridge.kt",
+      "bytes": 8236,
+      "sha256": "40ec31c127830d948fd847a88518a07cb30329273ff4b8ff2cfdee97e00e2a60",
+      "git_blob_sha": "4b25e208043ac9cd939e98eb955ef6a850315461"
+    },
+    {
+      "kind": "native",
+      "path": "scripts/games/connect_four/connect_four_table.gd",
+      "bytes": 30031,
+      "sha256": "76ab128b835bffd41b87274566408b8baab4073fe6733b2f5e3e990e0e027a72",
+      "git_blob_sha": "cdeb31fc6cfe30c18fc6c96afb2b1d749532c37f"
+    },
+    {
+      "kind": "native",
+      "path": "scenes/games/connect_four_table.tscn",
+      "bytes": 204,
+      "sha256": "49d116bd0436200d01b1e03eac3601854b33bf75142969b69d2c588418dd3af2",
+      "git_blob_sha": "e1c14734e2bde85fd9852db3d8ef20f4cd0ca24d"
+    },
+    {
+      "kind": "native",
+      "path": "scripts/tests/connect_four_runtime_regression.gd",
+      "bytes": 14782,
+      "sha256": "83852fdd2e19cd32b20ec6de62179ee3f9e7712e574f723773bcc40cc35dd0a7",
+      "git_blob_sha": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99"
+    },
+    {
+      "kind": "native",
+      "path": "scripts/tests/connect_four_visual_capture.gd",
+      "bytes": 19435,
+      "sha256": "178bc5b179e0402f1e4cc9901b21f2592745eae20b164706ec621506350f9324",
+      "git_blob_sha": "6e3d98071bf3f0f16f4a20a6599d4950521c8a29"
+    },
+    {
+      "kind": "native",
+      "path": "project.godot",
+      "bytes": 1944,
+      "sha256": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280",
+      "git_blob_sha": "296b8b1752ebfd526aedd019907ac88efbfd0c02"
+    },
+    {
+      "kind": "native",
+      "path": "scripts/creative/creative_runtime.gd",
+      "bytes": 3498,
+      "sha256": "b800c7d77c7a4fcc9a47081c2f25672fb2f2eefbb95c24fdc442f4f2df2185aa",
+      "git_blob_sha": "45596983292c4f7c8fbcd847a5dca671b324ba5c"
+    },
+    {
+      "kind": "native",
+      "path": "scripts/app/mobile_runtime.gd",
+      "bytes": 7146,
+      "sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+      "git_blob_sha": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f"
+    }
+  ]
+}

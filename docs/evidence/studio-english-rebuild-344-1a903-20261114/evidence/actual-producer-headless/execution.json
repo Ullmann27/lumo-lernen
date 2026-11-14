@@ -1,0 +1,25 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-english-rebuild-344-1a903",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/learning_english_regression.gd",
+    "--",
+    "--output=/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/actual-producer-headless/captures",
+    "--task-fixtures=/workspace/scratch/5987865ae883/qa/feature-bdd86-flutter-artifact/extracted/feature-evidence/english-activity.json"
+  ],
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "exit_code": 0,
+  "elapsed_seconds": 12.059738209999978,
+  "log_bytes": 3718,
+  "log_sha256": "83cc8bda7b75952580f1b3bbb06d7e2df3cd2d25432f8b661e57d06907bd8a49",
+  "actual_host_source": "bdd86f289a165ea5140a01607d78fcf4c31c98c6",
+  "task_fixture_sha256_before": "4f3df3fe61f45c2b899d1e50e71ea3f4980c1d78b92547fb7ca676be0a6f198b",
+  "task_fixture_sha256_after": "4f3df3fe61f45c2b899d1e50e71ea3f4980c1d78b92547fb7ca676be0a6f198b",
+  "scope": "Actual unmodified Dart production producer JSON from original GitHub artifact; native production scene executed, platform/JNI/audio boundaries remain explicit fixtures. No Android claim."
+}

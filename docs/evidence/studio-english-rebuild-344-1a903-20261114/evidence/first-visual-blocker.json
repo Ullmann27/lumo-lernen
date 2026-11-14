@@ -1,0 +1,8 @@
+{
+  "status": "concrete visual blocker in first renderer; previous numeric geometry tests insufficient",
+  "image": "renderer-first-captures/english-ruler-640x360-start.png",
+  "image_sha256": "8e5b50d280080622b5de6069ffdb5335fd3b7e91c521752c06e22ee9b85240fa",
+  "reviewed": true,
+  "finding": "640x360 head/footer leave only a tiny scene strip. Objects and original Lumo are too small even though all geometry stays inside HUD boundaries. Portrait image is separately readable.",
+  "planned_fix": "English-only short guidance and compact landscape one-row52dp controls; add actual minimum object48dp and Lumo96dp projected-size checks. Preserve original run and thresholds; no active runtime changes."
+}

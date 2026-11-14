@@ -1,0 +1,35 @@
+{
+  "native_base": "34421df83566dd4773420cc2a225887956459435",
+  "host_protocol_base": "1a903aefc751f80537c7dd4c96ae8c99915962f5",
+  "repository": "Ullmann27/lumo-godot",
+  "scope": "Three new independently rebuilt Quiz scene/presenter/test sources; old lost test/render claims excluded",
+  "files": [
+    {
+      "path": "scenes/games/quiz_studio.tscn",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-recovery-20261114/prepared/native/scenes/games/quiz_studio.tscn",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 193,
+      "sha256": "4b9d269b4410810637e2e8db74ca7ce2725f66d5c20190fdaddf8eca6a68c05f",
+      "git_blob_sha": "7b674ff774f5cd05120472949dffc1b5c37cea8a"
+    },
+    {
+      "path": "scripts/games/quiz/quiz_studio.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-recovery-20261114/prepared/native/scripts/games/quiz/quiz_studio.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 32033,
+      "sha256": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29",
+      "git_blob_sha": "573af4e6c55dd44b8832f588545300d18309c89d"
+    },
+    {
+      "path": "scripts/tests/quiz_studio_runtime.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-recovery-20261114/prepared/native/scripts/tests/quiz_studio_runtime.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 28120,
+      "sha256": "22d0d8a4357b63453d35f5befaaae2c4ba0fea19b95bd54bf025a9a00a6ac36c",
+      "git_blob_sha": "22a76b56645a495887a7e39ede10707a38d6efc5"
+    }
+  ]
+}

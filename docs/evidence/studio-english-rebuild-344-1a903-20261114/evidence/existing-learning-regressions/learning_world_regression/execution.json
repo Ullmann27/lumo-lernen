@@ -1,0 +1,32 @@
+{
+  "name": "learning_world_regression",
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-english-rebuild-344-1a903",
+    "--audio-driver",
+    "Dummy",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/learning_world_regression.gd"
+  ],
+  "timeout_seconds": 420,
+  "timed_out": false,
+  "exit_code": 0,
+  "elapsed_seconds": 20.629443950999757,
+  "log_bytes": 10943,
+  "log_sha256": "93b7eab0d8d8eb0d8460ead529024b3c66357bddef7134362c1bf1a9b47197f2",
+  "required_marker": "[LearningWorld] PASS",
+  "markers": [
+    "[LearningWorld] PASS checks=5340"
+  ],
+  "errors": [],
+  "warnings": [
+    "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+    "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  ],
+  "test_source_sha256": "4873ac19bfadf84f318973d02950e11ffafd57024898148790e3d66d221f715d",
+  "test_unchanged_vs_native344": true
+}

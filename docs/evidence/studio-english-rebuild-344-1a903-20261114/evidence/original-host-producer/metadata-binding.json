@@ -1,0 +1,44 @@
+{
+  "method": "Read exact original REST response files previously saved by games_worlds; did not reconstruct or redownload archive. Direct artifact-per-ID connector GET was unsupported; preserved official original response used.",
+  "run": 43597316639,
+  "head": "bdd86f289a165ea5140a01607d78fcf4c31c98c6",
+  "attempt": 1,
+  "status": "completed",
+  "conclusion": "success",
+  "artifact": {
+    "id": 14115223622,
+    "node_id": "MDg6QXJ0aWZhY3QxNDExNTIyMzYyMg==",
+    "name": "lumo-nextgen-feature-flutter-evidence",
+    "size_in_bytes": 343010045,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14115223622",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14115223622/zip",
+    "expired": false,
+    "digest": "sha256:22eebaca28f20260013060cf9d31503370b1f157c4bb075f2f94076bcae6adae",
+    "created_at": "2026-11-14T13:08:34Z",
+    "updated_at": "2026-11-14T13:08:34Z",
+    "expires_at": "2026-12-14T13:08:25Z",
+    "workflow_run": {
+      "id": 43597316639,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "chatgpt/lumo-nextgen-feature-20261114",
+      "head_sha": "bdd86f289a165ea5140a01607d78fcf4c31c98c6"
+    }
+  },
+  "files": [
+    {
+      "original_path": "/workspace/scratch/5987865ae883/qa/studio-nextgen-feature-bdd86-observation-20261114/run-original.json",
+      "target": "run-original.json",
+      "bytes": 13382,
+      "sha256": "ed4d84afac006275c60c08333967794ac0218c5f756b082f62de836348284555",
+      "byte_identical": true
+    },
+    {
+      "original_path": "/workspace/scratch/5987865ae883/qa/studio-nextgen-feature-bdd86-observation-20261114/artifacts-original.json",
+      "target": "artifacts-original.json",
+      "bytes": 1520,
+      "sha256": "4ad1dd9090796821d45c109c132f8117cbeb312ed4fd42d0947722d17897d2c9",
+      "byte_identical": true
+    }
+  ]
+}

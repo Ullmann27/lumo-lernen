@@ -1,0 +1,15 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 240.17246999000008,
+  "display": 105,
+  "project": "/tmp/lumo-english-rebuild-344-1a903",
+  "godot_arguments": [
+    "--script",
+    "res://scripts/tests/learning_english_regression.gd",
+    "--",
+    "--capture",
+    "--output=/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-first-captures"
+  ],
+  "timed_out": false,
+  "scope": "Local software renderer; not physical Android performance"
+}

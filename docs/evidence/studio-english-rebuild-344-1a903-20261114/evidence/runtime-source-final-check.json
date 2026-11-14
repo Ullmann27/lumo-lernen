@@ -1,0 +1,348 @@
+{
+  "native_base": "34421df83566dd4773420cc2a225887956459435",
+  "published_source": "e4e5ce03e644a2f23b01a96f1d340a882a1798c4",
+  "scope": "partial runtime dependency graph; no full-checkout claim; original project only has private main-scene override",
+  "used_baseline_files_unchanged": [
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+      "bytes": 5156596,
+      "sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+      "git_blob": "53cb01bfbd23a2962da5428a08b8aee313d5e152",
+      "runtime_sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5"
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb.import",
+      "bytes": 1098,
+      "sha256": "fc146ea239d84439eba0c6c31810d9da031d10daf6e2302b7395dc3826deab2a",
+      "git_blob": "6c334b3039ef0847f278d42e8c32b6cf8386809f",
+      "runtime_sha256": "fc146ea239d84439eba0c6c31810d9da031d10daf6e2302b7395dc3826deab2a"
+    },
+    {
+      "path": "assets/characters/lumo_animated/lumo_studio_clips.gd",
+      "bytes": 196296,
+      "sha256": "c0b4be7f094b4f69942d92ad25d54c8c45f01b6cb8471c00e7d5a0513ee8df18",
+      "git_blob": "10b38ae0590626db40b24080e8a55edcb47ecf2b",
+      "runtime_sha256": "c0b4be7f094b4f69942d92ad25d54c8c45f01b6cb8471c00e7d5a0513ee8df18"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "bytes": 8408740,
+      "sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+      "git_blob": "4d18f240a34a5aa6320ecd61c0ab0fa719c0b0ad",
+      "runtime_sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "bytes": 1341,
+      "sha256": "ea8637187b5af2f1315958c27117d05d594873c61727f6bdf0e2d910581dfb5a",
+      "git_blob": "0fc3016ba886172aaf2575db2984e81b5567455c",
+      "runtime_sha256": "ea8637187b5af2f1315958c27117d05d594873c61727f6bdf0e2d910581dfb5a"
+    },
+    {
+      "path": "assets/creative/models/lumo_lantern.glb",
+      "bytes": 58924,
+      "sha256": "88628b79065a08963e27bc7c12da68a38782c4fe9dfe34eeaffc903675c45ea3",
+      "git_blob": "38d75ea1b5ec21a360098f282b02081f2974e453",
+      "runtime_sha256": "88628b79065a08963e27bc7c12da68a38782c4fe9dfe34eeaffc903675c45ea3"
+    },
+    {
+      "path": "assets/learning/studio/learning_studio.glb",
+      "bytes": 1522224,
+      "sha256": "e5b33abceaba8df76b6475efc04454aac3db353a1b40005267d2986be718a034",
+      "git_blob": "1f133149d426691330b193e0ce563d899a3c0622",
+      "runtime_sha256": "e5b33abceaba8df76b6475efc04454aac3db353a1b40005267d2986be718a034"
+    },
+    {
+      "path": "assets/learning/studio/studio_leaf_motion.gdshader",
+      "bytes": 562,
+      "sha256": "92e405a96eb23e5da0f12bf229e6e9227d2cc4c9b28f2aaf080f51e7ab63c410",
+      "git_blob": "61df8690c84dbbd6c75453d68235c5f804a0e693",
+      "runtime_sha256": "92e405a96eb23e5da0f12bf229e6e9227d2cc4c9b28f2aaf080f51e7ab63c410"
+    },
+    {
+      "path": "assets/manifests/assets.json",
+      "bytes": 22295,
+      "sha256": "170c162ccd67158ee12409b3bdca23a1af287438d1093e19490c11c19423e185",
+      "git_blob": "d1d8130bf5652aae3d23f651011a4872e19c10c9",
+      "runtime_sha256": "170c162ccd67158ee12409b3bdca23a1af287438d1093e19490c11c19423e185"
+    },
+    {
+      "path": "assets/shaders/kart_lumo_cinema_high.gdshader",
+      "bytes": 3921,
+      "sha256": "85881b8a48a4b4f48e772d4518f846b4e3934eeaf418d52a9db33e37104c49f4",
+      "git_blob": "c72e2d6d510c5b2c32b323d173b7798196c56cc7",
+      "runtime_sha256": "85881b8a48a4b4f48e772d4518f846b4e3934eeaf418d52a9db33e37104c49f4"
+    },
+    {
+      "path": "assets/shaders/kart_lumo_cinema_mobile.gdshader",
+      "bytes": 2254,
+      "sha256": "928e51083968d94e4361f6aa75f84c60a7c21141f3130a3901fc445c58582536",
+      "git_blob": "0107cdef09f8106c86f38c8483a0037750e2981b",
+      "runtime_sha256": "928e51083968d94e4361f6aa75f84c60a7c21141f3130a3901fc445c58582536"
+    },
+    {
+      "path": "icon.svg",
+      "bytes": 1981,
+      "sha256": "8f55446a927cf3a912e1cb170dbd1fcdc2e1756792c510981645d6d60d99b5ec",
+      "git_blob": "1dfa1114a6ce5d6621ec343925ebcec588c4d345",
+      "runtime_sha256": "8f55446a927cf3a912e1cb170dbd1fcdc2e1756792c510981645d6d60d99b5ec"
+    },
+    {
+      "path": "project.godot",
+      "bytes": 1944,
+      "sha256": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280",
+      "git_blob": "296b8b1752ebfd526aedd019907ac88efbfd0c02",
+      "runtime_sha256": "5ff1d3609c38cc67e53a1c64e7ff0accc7a02f290f99b2aeb5d549079fcaf7f0"
+    },
+    {
+      "path": "scenes/default_env.tres",
+      "bytes": 1700,
+      "sha256": "659c707ad122dc81f36e11a872ade3a0eabdb2bc548cea50521d72ffc8976fa3",
+      "git_blob": "67cff9c763ea80bd6a43adc66f4abe31f7c240f9",
+      "runtime_sha256": "659c707ad122dc81f36e11a872ade3a0eabdb2bc548cea50521d72ffc8976fa3"
+    },
+    {
+      "path": "scenes/learning/learning_world.tscn",
+      "bytes": 191,
+      "sha256": "9f9d43a306a500da06ae3a4625695e3f6cf348b275d8d515a8bfcdc3097c846e",
+      "git_blob": "05f835f6c87c528b64b38054c2c41adc8cbef078",
+      "runtime_sha256": "9f9d43a306a500da06ae3a4625695e3f6cf348b275d8d515a8bfcdc3097c846e"
+    },
+    {
+      "path": "scripts/app/android_safe_area.gd",
+      "bytes": 5708,
+      "sha256": "28077c1eca89e7e915fc346973c6397d2c1b545fca9592f16394b2d9d2b04564",
+      "git_blob": "9658440b3effad06358fe7cfe62f04a95ccbe279",
+      "runtime_sha256": "28077c1eca89e7e915fc346973c6397d2c1b545fca9592f16394b2d9d2b04564"
+    },
+    {
+      "path": "scripts/app/mobile_runtime.gd",
+      "bytes": 7146,
+      "sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+      "git_blob": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f",
+      "runtime_sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517"
+    },
+    {
+      "path": "scripts/app/scene_router.gd",
+      "bytes": 4457,
+      "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06",
+      "git_blob": "0e28e5c797af076d2a2410143e42605982e8d1d5",
+      "runtime_sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_body_space_pose.gd",
+      "bytes": 2902,
+      "sha256": "043d9eb3cbd1d56f2be4ad62aff71b99753540b524f3d4b69c030fc9217dcd9e",
+      "git_blob": "2b0c2f5b379535cbc4e54c9c1badca72c0f1bc19",
+      "runtime_sha256": "043d9eb3cbd1d56f2be4ad62aff71b99753540b524f3d4b69c030fc9217dcd9e"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_facial_pose.gd",
+      "bytes": 6120,
+      "sha256": "2d89319ccb622cad1b54c36113bda8594706c024d77f2a0605ec057d51a0f6ef",
+      "git_blob": "91b8a8cd25f21dab84b77f178aa82d06673b54f9",
+      "runtime_sha256": "2d89319ccb622cad1b54c36113bda8594706c024d77f2a0605ec057d51a0f6ef"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_platform_pose.gd",
+      "bytes": 5002,
+      "sha256": "2f89ad0660ed3f74ff0cfe50837e18265bcf54fdccd24712de6a8b0d680c0a59",
+      "git_blob": "f2085dc82b9840077e631f586a4f4fb5159d7c08",
+      "runtime_sha256": "2f89ad0660ed3f74ff0cfe50837e18265bcf54fdccd24712de6a8b0d680c0a59"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "bytes": 11313,
+      "sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+      "git_blob": "e4b6a6081a922a137f68491de66f51e096528510",
+      "runtime_sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_teacher_pose.gd",
+      "bytes": 4228,
+      "sha256": "1be589448b18f2c63faebfb72ff81639f4e014b828093d931f9e9c04c4ce2a6d",
+      "git_blob": "5d3a1ae763e84cb09276cafe9ba5f9541bf49447",
+      "runtime_sha256": "1be589448b18f2c63faebfb72ff81639f4e014b828093d931f9e9c04c4ce2a6d"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_walk_locomotion.gd",
+      "bytes": 2736,
+      "sha256": "95366a2716a557b27383757771923ec73971a385651749c78da8f2cc14a24ec2",
+      "git_blob": "0f5f8f508cf6cfb6f67c8178a25e5522580a5e85",
+      "runtime_sha256": "95366a2716a557b27383757771923ec73971a385651749c78da8f2cc14a24ec2"
+    },
+    {
+      "path": "scripts/games/visual/kart_cinema_materials.gd",
+      "bytes": 2016,
+      "sha256": "69fc8def6197e5173104f015d82daf7a6b7c8574e0e6b158ae3e2a083ba0df15",
+      "git_blob": "9b10945c42d91086739c49b4b64ce272b7828043",
+      "runtime_sha256": "69fc8def6197e5173104f015d82daf7a6b7c8574e0e6b158ae3e2a083ba0df15"
+    },
+    {
+      "path": "scripts/games/visual/kart_harbor_cinema.gd",
+      "bytes": 11619,
+      "sha256": "bc180fa343ad690680d52c8223e1ceca105457bf8db8db6e487060098511eb90",
+      "git_blob": "5a409d72db69d93b861576aaa2eb53052eb88e1d",
+      "runtime_sha256": "bc180fa343ad690680d52c8223e1ceca105457bf8db8db6e487060098511eb90"
+    },
+    {
+      "path": "scripts/learning/learning_activity.gd",
+      "bytes": 9286,
+      "sha256": "c8071598b341a9ef8d905effe70aafacf98f325e9289903bb12a370d0d29541a",
+      "git_blob": "c1eed0eefb4017ac4db3cb3d1d4551e2d9c601fe",
+      "runtime_sha256": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede"
+    },
+    {
+      "path": "scripts/learning/learning_atelier.gd",
+      "bytes": 6954,
+      "sha256": "6696a9f5604bf71efa5eb6d64fe5b6ff4ca85f76cee8553586dec8743ad7022b",
+      "git_blob": "c14873748bd8ff42cc7f00bd1c39653626de4664",
+      "runtime_sha256": "6696a9f5604bf71efa5eb6d64fe5b6ff4ca85f76cee8553586dec8743ad7022b"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "bytes": 45446,
+      "sha256": "1ec88577645b89d11d13191a0dcc987af9beb6b3d2b2e7f0379525470711921a",
+      "git_blob": "25e41d3d81e091e7e357400ff8ba76a18d6d2890",
+      "runtime_sha256": "4f37dc1f540f2a6c4c43d71f3508da1840abb6fdd3c18ad143d13f9948b2aa3e"
+    },
+    {
+      "path": "scripts/systems/asset_loader.gd",
+      "bytes": 6824,
+      "sha256": "e51ab8ee60a6c86b9f6e610141de74636c987f7f4b40c56642ee0dc58fd9b436",
+      "git_blob": "5436978a86ea21c70ee3affed30eec1219d6a571",
+      "runtime_sha256": "e51ab8ee60a6c86b9f6e610141de74636c987f7f4b40c56642ee0dc58fd9b436"
+    },
+    {
+      "path": "scripts/systems/audio_manager.gd",
+      "bytes": 5507,
+      "sha256": "286e18ee8b728cd52de7defab64670d602e4ef25231a6695a7879873eb423bd0",
+      "git_blob": "36462f609a2a27d02a91fc12177f1c441054911a",
+      "runtime_sha256": "286e18ee8b728cd52de7defab64670d602e4ef25231a6695a7879873eb423bd0"
+    },
+    {
+      "path": "scripts/systems/event_bus.gd",
+      "bytes": 2299,
+      "sha256": "b809f381eb919f7b9c6cba5c13be737612c853f5fdfb688b8c20c5983ec9f340",
+      "git_blob": "b754dae939c4837288b8baa6862c68e75e670c20",
+      "runtime_sha256": "b809f381eb919f7b9c6cba5c13be737612c853f5fdfb688b8c20c5983ec9f340"
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "bytes": 5193,
+      "sha256": "56ecb470319ea047aa5d8c3aad92d55c99355ee07c533a6543fcf167f098abb7",
+      "git_blob": "dab96a1b918dc754568c0eda14cdda05175c89fb",
+      "runtime_sha256": "56ecb470319ea047aa5d8c3aad92d55c99355ee07c533a6543fcf167f098abb7"
+    },
+    {
+      "path": "scripts/systems/performance_manager.gd",
+      "bytes": 5167,
+      "sha256": "a5de6bc948e15d84f117f8f137d4d1bb7b844e194b19bb29a579b13e9902a8c0",
+      "git_blob": "b81a5c2202cc832cdd6c773a459bb90ab6520d53",
+      "runtime_sha256": "a5de6bc948e15d84f117f8f137d4d1bb7b844e194b19bb29a579b13e9902a8c0"
+    },
+    {
+      "path": "scripts/systems/progress_store.gd",
+      "bytes": 5664,
+      "sha256": "9e61f231e9a207be2d49f6917fbec66a5236c4f5f9f05d726a25939d961c5811",
+      "git_blob": "c197f75e913373bcc74f36cde9ac8b58cd56e275",
+      "runtime_sha256": "9e61f231e9a207be2d49f6917fbec66a5236c4f5f9f05d726a25939d961c5811"
+    },
+    {
+      "path": "scripts/systems/settings_store.gd",
+      "bytes": 1673,
+      "sha256": "dc0ac7f96f8e47d7c9735b6593ec3da69cff4d5aad9505590cd201ab426b2b82",
+      "git_blob": "930181998c72b62004ec43c66e8b1c674f6eb193",
+      "runtime_sha256": "dc0ac7f96f8e47d7c9735b6593ec3da69cff4d5aad9505590cd201ab426b2b82"
+    },
+    {
+      "path": "scripts/tests/learning_sharing_regression.gd",
+      "bytes": 5398,
+      "sha256": "2d829cf28cd7b9fdd1396d0dda7e9dd20d14c5285d25940943c15bccc55fa9f3",
+      "git_blob": "0825be1375f3adbbaa4578a84877082b4599edc0",
+      "runtime_sha256": "2d829cf28cd7b9fdd1396d0dda7e9dd20d14c5285d25940943c15bccc55fa9f3"
+    },
+    {
+      "path": "scripts/tests/learning_studio_regression.gd",
+      "bytes": 10378,
+      "sha256": "db69f9b6f2b629b655534f5d11610709a15eee5d76317cc55e8a88e0c1b74c1c",
+      "git_blob": "2d38ac5b5363f3c5c6322c9c307bd7e83c33dac6",
+      "runtime_sha256": "db69f9b6f2b629b655534f5d11610709a15eee5d76317cc55e8a88e0c1b74c1c"
+    },
+    {
+      "path": "scripts/tests/learning_world_regression.gd",
+      "bytes": 22332,
+      "sha256": "4873ac19bfadf84f318973d02950e11ffafd57024898148790e3d66d221f715d",
+      "git_blob": "93a903efb43a2bdef97121434fc7e89e60cab6ac",
+      "runtime_sha256": "4873ac19bfadf84f318973d02950e11ffafd57024898148790e3d66d221f715d"
+    },
+    {
+      "path": "tools/run_local_renderer.py",
+      "bytes": 5308,
+      "sha256": "d7169f0353071159e64a74d76e6e35718117402a597dfcc05c8f99ed7f275247",
+      "git_blob": "7fa41c18b853bd156b5365270132c35887b49c77",
+      "runtime_sha256": "d7169f0353071159e64a74d76e6e35718117402a597dfcc05c8f99ed7f275247"
+    }
+  ],
+  "final_sources_equal_runtime_and_both_pass_reports": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/prepared/native/scripts/learning/english_object_gallery.gd",
+      "path": "scripts/learning/english_object_gallery.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 7670,
+      "sha256": "4c6268517ae47fc9075bc4824e4aae1b2044190a1971fd8ca32b06662bf3cb55",
+      "git_blob": "44e9031dd31c86197b90ac004558ba50f01a2d7a",
+      "baseline": null
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/prepared/native/scripts/learning/english_vocabulary.gd",
+      "path": "scripts/learning/english_vocabulary.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1857,
+      "sha256": "618701afa536b4caaeac108ede440fe2f7bf220e5be5d7c9357709c3ec8c1eb3",
+      "git_blob": "6819e564f2c0b42afa6e9c4b18e36bc3ead884d4",
+      "baseline": null
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/prepared/native/scripts/learning/learning_activity.gd",
+      "path": "scripts/learning/learning_activity.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 10967,
+      "sha256": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+      "git_blob": "245a966e00259c2d0189c932c40374d855a4b0bc",
+      "baseline": {
+        "bytes": 9286,
+        "sha256": "c8071598b341a9ef8d905effe70aafacf98f325e9289903bb12a370d0d29541a",
+        "git_blob": "c1eed0eefb4017ac4db3cb3d1d4551e2d9c601fe"
+      }
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/prepared/native/scripts/learning/learning_world.gd",
+      "path": "scripts/learning/learning_world.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 53802,
+      "sha256": "4f37dc1f540f2a6c4c43d71f3508da1840abb6fdd3c18ad143d13f9948b2aa3e",
+      "git_blob": "1e8b528797b2c89f9833a1f0d5d6d98a9950948c",
+      "baseline": {
+        "bytes": 45446,
+        "sha256": "1ec88577645b89d11d13191a0dcc987af9beb6b3d2b2e7f0379525470711921a",
+        "git_blob": "25e41d3d81e091e7e357400ff8ba76a18d6d2890"
+      }
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/prepared/native/scripts/tests/learning_english_regression.gd",
+      "path": "scripts/tests/learning_english_regression.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 25074,
+      "sha256": "00c2a1756562db1c49fdad8ff6944b14065f204ad7e831d98cd2ea41ac31badf",
+      "git_blob": "c91720bbeb41b08bc46316a485e94356e2d50c66",
+      "baseline": null
+    }
+  ],
+  "not_a_full_checkout": true
+}
