@@ -178,7 +178,7 @@ jobs:
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
       github.head_ref == 'integration/lumo-agent-execution-20261114'))
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     outputs:
       candidate-artifact-id: ${{ steps.upload-candidate.outputs.artifact-id }}
       candidate-artifact-digest: ${{ steps.upload-candidate.outputs.artifact-digest }}
