@@ -1,0 +1,152 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart
+00:00 +0: API35 original number message uses the existing German card name
+00:00 +0 -1: API35 original number message uses the existing German card name [E]
+  Expected: 'Lumo legt Grün 2.'
+    Actual: 'Lumo legt green 2.'
+     Which: is different.
+            Expected: Lumo legt Grün 2.
+              Actual: Lumo legt green 2.
+                                ^
+             Differ at offset 10
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/games/cards_german_feedback_test.dart 100:5    main.<fn>
+  
+00:00 +0 -1: API37 original whirlwind message addresses the child correctly
+00:00 +0 -2: API37 original whirlwind message addresses the child correctly [E]
+  Expected: 'Wirbelwind! Du ziehst 1 Karte.'
+    Actual: 'Wirbelwind! Du zieht 1 Karte.'
+     Which: is different.
+            Expected: ... d! Du ziehst 1 Karte ...
+              Actual: ... d! Du zieht 1 Karte. ...
+                                    ^
+             Differ at offset 19
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/games/cards_german_feedback_test.dart 109:5    main.<fn>
+  
+00:00 +0 -2: Number messages distinguish Du from named human and bot for all colors
+00:00 +0 -3: Number messages distinguish Du from named human and bot for all colors [E]
+  Expected: 'Du legst Rot 2.'
+    Actual: 'Du legt orange 2.'
+     Which: is different.
+            Expected: Du legst Rot 2.
+              Actual: Du legt orange 2 ...
+                            ^
+             Differ at offset 6
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/games/cards_german_feedback_test.dart 121:9    main.<fn>
+  
+00:00 +0 -3: Draw message uses second person only for the actual display pronoun
+00:00 +0 -4: Draw message uses second person only for the actual display pronoun [E]
+  Expected: 'Du ziehst eine Karte.'
+    Actual: 'Du zieht eine Karte.'
+     Which: is different.
+            Expected: Du ziehst eine Ka ...
+              Actual: Du zieht eine Kar ...
+                             ^
+             Differ at offset 7
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/games/cards_german_feedback_test.dart 132:7    main.<fn>
+  
+00:00 +0 -4: Rain and super rain conjugate the actual recipient without changing draw counts
+00:00 +0 -5: Rain and super rain conjugate the actual recipient without changing draw counts [E]
+  Expected: 'Sternenregen! Du ziehst 2 Karten.'
+    Actual: 'Sternenregen! Du zieht 2 Karten.'
+     Which: is different.
+            Expected: ... n! Du ziehst 2 Karte ...
+              Actual: ... n! Du zieht 2 Karten ...
+                                    ^
+             Differ at offset 21
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/games/cards_german_feedback_test.dart 148:9    main.<fn>
+  
+00:00 +0 -5: Whirlwind also names human and bot recipients in third person
+00:00 +1 -5: Wild prompt and chosen color use proper German without changing enum IDs
+00:00 +1 -6: Wild prompt and chosen color use proper German without changing enum IDs [E]
+  Expected: 'Farbzauber! Du wählst eine Farbe.'
+    Actual: 'Farbzauber! Du waehlt eine Farbe.'
+     Which: is different.
+            Expected: ... uber! Du wählst eine ...
+              Actual: ... uber! Du waehlt eine ...
+                                    ^
+             Differ at offset 16
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/games/cards_german_feedback_test.dart 170:7    main.<fn>
+  
+00:00 +1 -6: Winning feedback conjugates Du and named winners correctly
+00:00 +1 -7: Winning feedback conjugates Du and named winners correctly [E]
+  Expected: 'Du hast alle Karten abgelegt!'
+    Actual: 'Du hat alle Karten abgelegt!'
+     Which: is different.
+            Expected: Du hast alle Ka ...
+              Actual: Du hat alle Kar ...
+                           ^
+             Differ at offset 5
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/games/cards_german_feedback_test.dart 188:7    main.<fn>
+  
+00:00 +1 -7: Learning prompt uses dich and preserves the actual question
+00:00 +1 -8: Learning prompt uses dich and preserves the actual question [E]
+  Expected: 'Denkpause! Lumo hat eine kleine Frage für dich.'
+    Actual: 'Denkpause! Lumo hat eine kleine Frage fuer Du.'
+     Which: is different.
+            Expected: ... ne Frage für dich.
+              Actual: ... ne Frage fuer Du.
+                                    ^
+             Differ at offset 39
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/games/cards_german_feedback_test.dart 200:7    main.<fn>
+  
+00:00 +1 -8: Correct answer feedback agrees in both verbs and keeps exactly one star
+00:00 +1 -9: Correct answer feedback agrees in both verbs and keeps exactly one star [E]
+  Expected: 'Richtig! Du bekommst einen Stern und darfst nochmal.'
+    Actual: 'Richtig! Du bekommt einen Stern und darf nochmal.'
+     Which: is different.
+            Expected: ...  Du bekommst einen S ...
+              Actual: ...  Du bekommt einen St ...
+                                    ^
+             Differ at offset 18
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/games/cards_german_feedback_test.dart 215:7    main.<fn>
+  
+00:00 +1 -9: Native public view forwards corrected messages while machine color stays green
+00:00 +1 -10: Native public view forwards corrected messages while machine color stays green [E]
+  Expected: 'Lumo legt Grün 2.'
+    Actual: 'Lumo legt green 2.'
+     Which: is different.
+            Expected: Lumo legt Grün 2.
+              Actual: Lumo legt green 2.
+                                ^
+             Differ at offset 10
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/games/cards_german_feedback_test.dart 235:7    main.<fn>
+  
+00:00 +1 -10: Saved rounds never serialize presentation messages
+00:00 +2 -10: (tearDownAll)
+00:00 +2 -10: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: API35 original number message uses the existing German card name
+  /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: API37 original whirlwind message addresses the child correctly
+  /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: Correct answer feedback agrees in both verbs and keeps exactly one star
+  /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: Draw message uses second person only for the actual display pronoun
+  ... and 6 more

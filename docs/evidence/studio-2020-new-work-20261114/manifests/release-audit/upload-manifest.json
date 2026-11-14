@@ -1,0 +1,59 @@
+{
+  "kind": "docs_only_readonly_audit_no_source_changes",
+  "baseline_host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "baseline_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "status": "AUDIT_COMPLETE_NO_2020_APPROVAL",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-release-audit-20261114/README.md",
+      "path": "docs/evidence/studio-2020-release-audit-20261114/README.md",
+      "bytes": 15062,
+      "sha256": "d5f2a8027dbd3e856a213d951274abd5cc43be5b081a17bda47a96abc919beee",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-release-audit-20261114/patch-matrix.json",
+      "path": "docs/evidence/studio-2020-release-audit-20261114/patch-matrix.json",
+      "bytes": 9719,
+      "sha256": "85c94b7af033c5b39fe62ed26ea7f5dd07088a7b28f3f504bdb2a3405df38d50",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-release-audit-20261114/baseline-tree-inventory.json",
+      "path": "docs/evidence/studio-2020-release-audit-20261114/baseline-tree-inventory.json",
+      "bytes": 11361,
+      "sha256": "f791a6e13dc9368e6fcc1c4dbf82d24216a7a6fd1ba01dc981bad0a519dcc0b4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-release-audit-20261114/baseline-extended-tree-inventory.json",
+      "path": "docs/evidence/studio-2020-release-audit-20261114/baseline-extended-tree-inventory.json",
+      "bytes": 13924,
+      "sha256": "7bd65282acb864e041bff2a23b34c796b658b57f2585009ac8761c4bbe806e46",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-release-audit-20261114/source-binding-before.json",
+      "path": "docs/evidence/studio-2020-release-audit-20261114/source-binding-before.json",
+      "bytes": 18645,
+      "sha256": "d65d46410b0707776ad3997da3fa126ccd74aa16ad24360585e755b4d51dd09c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-release-audit-20261114/source-binding-after.json",
+      "path": "docs/evidence/studio-2020-release-audit-20261114/source-binding-after.json",
+      "bytes": 23121,
+      "sha256": "febef60da496e270f7d78a41e3aa6530a4890265e2bd2533f99d9f99c4ce694b",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "file_count": 6,
+  "bytes": 91832,
+  "tests_executed": []
+}

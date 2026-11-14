@@ -1,0 +1,996 @@
+--- /dev/null
++++ b/native/scripts/characters/lumo/lumo_facial_pose.gd
+@@ -0,0 +1,167 @@
++extends RefCounted
++## Authored original-surface morphs and additional Head-skinned physical lids.
++## Speech is measured PCM amplitude at the real player's media position.
++## No phoneme/viseme or independent eyeball anatomy is claimed.
++const BODY_NAMES: Array[String] = ["LookLeft", "LookRight", "LookUp", "LookDown", "JawArticulation"]
++const LID_NAMES: Array[String] = ["BlinkLeftQuarter", "BlinkLeftHalf", "BlinkLeftThreeQuarter", "BlinkLeftClose", "BlinkRightQuarter", "BlinkRightHalf", "BlinkRightThreeQuarter", "BlinkRightClose"]
++const STALE_AUDIO_SECONDS: float = 0.35
++var body: MeshInstance3D
++var lids: MeshInstance3D
++var skeleton: Skeleton3D
++var head: int = -1
++var body_ids: PackedInt32Array = PackedInt32Array()
++var lid_ids: PackedInt32Array = PackedInt32Array()
++var _body_values: PackedFloat32Array = PackedFloat32Array()
++var has_target: bool = false
++var target: Vector3 = Vector3.ZERO
++var gaze: Vector2 = Vector2.ZERO
++var jaw: float = 0.0
++var blink: float = 0.0
++var _clock: float = 0.0
++var _blink_start: float = 1.8
++var _blink_cycle: int = 0
++var _speech_age: float = 1000.0
++var _speech_position: float = -1.0
++var _speech_envelope: float = 0.0
++var _speaking: bool = false
++
++
++func bind(visual: Node3D, source: Skeleton3D) -> bool:
++	if not is_instance_valid(source):
++		return false
++	skeleton = source
++	head = source.find_bone("Head")
++	for node in visual.find_children("*", "MeshInstance3D", true, false):
++		var candidate := node as MeshInstance3D
++		if candidate.mesh == null:
++			continue
++		var names: Array[String] = []
++		for index in range(candidate.mesh.get_blend_shape_count()):
++			names.append(str(candidate.mesh.get_blend_shape_name(index)))
++		if names.has("JawArticulation"):
++			body = candidate
++			for name in BODY_NAMES:
++				if not names.has(name):
++					return false
++				body_ids.append(names.find(name))
++		if names.has("BlinkLeftClose"):
++			lids = candidate
++			for name in LID_NAMES:
++				if not names.has(name):
++					return false
++				lid_ids.append(names.find(name))
++	if head < 0 or not is_instance_valid(body) or not is_instance_valid(lids):
++		return false
++	_body_values.resize(body_ids.size())
++	# Force each first zero assignment: Godot must register the imported
++	# instance blend parameters before subsequent unchanged writes are skipped.
++	_body_values.fill(-1.0)
++	reset()
++	return true
++
++
++func set_target(world_position: Vector3) -> void:
++	if world_position.is_finite():
++		target = world_position
++		has_target = true
++
++
++func speech_sample(media_seconds: float, envelope: float, speaking: bool) -> void:
++	if not speaking or not is_finite(media_seconds) or media_seconds < 0.0 or not is_finite(envelope):
++		stop_speech()
++		return
++	# Repeated stale transport snapshots cannot keep a frozen player talking.
++	if not _speaking or not is_equal_approx(media_seconds, _speech_position):
++		_speech_age = 0.0
++	_speaking = true
++	_speech_position = media_seconds
++	_speech_envelope = clampf(envelope, 0.0, 1.0)
++
++
++func stop_speech() -> void:
++	_speaking = false
++	_speech_age = 1000.0
++	_speech_position = -1.0
++	_speech_envelope = 0.0
++	jaw = 0.0
++	if is_instance_valid(body) and body_ids.size() == BODY_NAMES.size():
++		_set_body(4, 0.0)
++
++
++func reset() -> void:
++	stop_speech()
++	gaze = Vector2.ZERO
++	blink = 0.0
++	_clock = 0.0
++	_blink_start = 1.8
++	_blink_cycle = 0
++	if is_instance_valid(body):
++		for index in range(body_ids.size()):
++			_set_body(index, 0.0)
++	if is_instance_valid(lids):
++		for index in range(lid_ids.size()):
++			_set_lid(index, 0.0)
++		lids.visible = false
++
++
++func advance(delta: float) -> void:
++	if not is_instance_valid(body) or not is_instance_valid(lids) or not is_instance_valid(skeleton):
++		return
++	if not is_finite(delta) or delta <= 0.0:
++		return
++	_speech_age += minf(delta, 1.0)
++	var dt := minf(delta, 0.10)
++	_clock += dt
++	var phase := _clock - _blink_start
++	blink = 0.0
++	if phase >= 0.0 and phase < 0.18:
++		blink = clampf(phase / 0.07, 0.0, 1.0) if phase < 0.07 else clampf((0.18 - phase) / 0.11, 0.0, 1.0)
++	elif phase >= 0.18:
++		_blink_cycle += 1
++		_blink_start = _clock + 3.2 + float(_blink_cycle % 3) * 0.35
++	var desired := Vector2.ZERO
++	if has_target:
++		var pose := skeleton.get_bone_global_pose(head)
++		# Conjugate the animated head through its measured rest basis so +Z
++		# is the original face forward, not an arbitrary imported bone axis.
++		var frame := (
++			skeleton.global_basis * pose.basis * skeleton.get_bone_global_rest(head).basis.inverse()
++		).orthonormalized()
++		var direction := frame.inverse() * (target - skeleton.to_global(pose.origin))
++		var horizontal := Vector2(direction.x, direction.z).length()
++		if direction.z > 0.05 and horizontal > 0.05:
++			desired = Vector2(
++				clampf(atan2(direction.x, direction.z) / 0.32, -1.0, 1.0),
++				clampf(atan2(direction.y, horizontal) / 0.24, -1.0, 1.0)
++			)
++	gaze = gaze.lerp(desired, 1.0 - exp(-10.0 * dt))
++	# Return the painted eye surface under its measured lids as they close.
++	# This is a restrained surface morph, not an independently rotating eyeball.
++	var visible_gaze := gaze * (1.0 - smoothstep(0.0, 0.30, blink))
++	_set_body(0, maxf(0.0, -visible_gaze.x))
++	_set_body(1, maxf(0.0, visible_gaze.x))
++	_set_body(2, maxf(0.0, visible_gaze.y))
++	_set_body(3, maxf(0.0, -visible_gaze.y))
++	var desired_jaw := _speech_envelope if _speaking and _speech_age < STALE_AUDIO_SECONDS else 0.0
++	jaw = lerpf(jaw, desired_jaw, 1.0 - exp(-25.0 * dt))
++	if jaw < 0.0001:
++		jaw = 0.0
++	_set_body(4, jaw)
++	# Keep the full small imported lid mix synchronized. Skipping unchanged
++	# lid slots exposed a reproduced Godot 4.6.3 dummy-material teardown error.
++	for index in range(lid_ids.size()):
++		var stage := float(index % 4 + 1)
++		_set_lid(index, maxf(0.0, 1.0 - absf(blink * 4.0 - stage)))
++	lids.visible = blink > 0.002
++
++
++func _set_body(index: int, value: float) -> void:
++	# Most actors are silent and are not looking at a teacher target. Avoid
++	# repeatedly uploading unchanged mesh weights on every animation tick.
++	if not is_equal_approx(_body_values[index], value):
++		_body_values[index] = value
++		body.set_blend_shape_value(body_ids[index], value)
++
++
++func _set_lid(index: int, value: float) -> void:
++	lids.set_blend_shape_value(lid_ids[index], value)
+--- a/native/scripts/characters/lumo/lumo_rigged_actor.gd
++++ b/native/scripts/characters/lumo/lumo_rigged_actor.gd
+@@ -3,10 +3,12 @@
+ ## Uses the existing companion behavior names rather than a second event bus.
+ signal behavior_started(behavior: String)
+ signal behavior_finished(behavior: String)
+-const MODEL := "res://assets/characters/lumo_animated/Lumo-Animated-Mobile.glb"
++const MODEL := "res://assets/characters/lumo_facial/Lumo-Facial-Mobile.glb"
++const ORIGINAL_MODEL := "res://assets/characters/lumo_animated/Lumo-Animated-Mobile.glb"
+ const WALK = preload("res://scripts/characters/lumo/lumo_walk_locomotion.gd")
+ const PLATFORM_POSE = preload("res://scripts/characters/lumo/lumo_platform_pose.gd")
+ const TEACHER_POSE = preload("res://scripts/characters/lumo/lumo_teacher_pose.gd")
++const FACIAL_POSE = preload("res://scripts/characters/lumo/lumo_facial_pose.gd")
+ static var _cached_model: PackedScene
+ static var _cached_load_kind := ""
+ var model_load_kind := ""
+@@ -21,6 +23,8 @@
+ var reduced_motion := false
+ var suspended := false
+ var mouth_supported := false
++var phoneme_lipsync_supported := false
++var facial_pose
+ var last_audio_position := 0.0
+ var last_audio_envelope := 0.0
+ var audio_active := false
+@@ -36,17 +40,20 @@
+ 
+ func _ready() -> void:
+ 	if _cached_model == null:
++		var selected_model := MODEL
++		if not ResourceLoader.exists(selected_model, "PackedScene") and not FileAccess.file_exists(selected_model):
++			selected_model = ORIGINAL_MODEL
+ 		# Exported games resolve the GLB through Godot's imported PackedScene.
+ 		# Do not require raw source bytes, and never put loading side effects
+ 		# inside assert(): release builds remove those expressions.
+-		if ResourceLoader.exists(MODEL, "PackedScene"):
+-			_cached_model = ResourceLoader.load(MODEL, "PackedScene") as PackedScene
++		if ResourceLoader.exists(selected_model, "PackedScene"):
++			_cached_model = ResourceLoader.load(selected_model, "PackedScene") as PackedScene
+ 			_cached_load_kind = "imported_packed_scene"
+-		elif FileAccess.file_exists(MODEL):
++		elif FileAccess.file_exists(selected_model):
+ 			# Bare headless review fixtures can run before editor import.
+ 			var document := GLTFDocument.new()
+ 			var state := GLTFState.new()
+-			var error := document.append_from_file(MODEL, state)
++			var error := document.append_from_file(selected_model, state)
+ 			if error != OK:
+ 				push_warning("[LumoRig] Source model cannot be loaded; retain existing visual")
+ 				return
+@@ -84,6 +91,10 @@
+ 		player.get_animation(clip).loop_mode = Animation.LOOP_LINEAR
+ 	player.animation_finished.connect(_finished)
+ 	locomotion = WALK.new()
++	facial_pose = FACIAL_POSE.new()
++	if not facial_pose.bind(visual, skeleton):
++		facial_pose = null
++	mouth_supported = facial_pose != null
+ 	play_behavior("idle")
+ 
+ 
+@@ -99,9 +110,16 @@
+ 			teacher_pose.restore_sampled_pose()
+ 			player.advance(minf(delta, 0.10))
+ 			teacher_pose.advance(self, delta)
++		_advance_face(delta)
+ 		return
+ 	if walking and not platform_active and not suspended and not reduced_motion and locomotion != null:
+ 		locomotion.advance(delta, walk_speed_mps)
++	_advance_face(delta)
++
++
++func _advance_face(delta: float) -> void:
++	if facial_pose != null and not suspended and not reduced_motion:
++		facial_pose.advance(delta)
+ 
+ 
+ ## The owner supplies actual horizontal velocity from navigation/physics.
+@@ -205,12 +223,16 @@
+ func set_teaching_target(world_position: Vector3) -> bool:
+ 	if not world_position.is_finite() or not _enable_teacher_mode():
+ 		return false
++	if facial_pose != null:
++		facial_pose.set_target(world_position)
+ 	return teacher_pose.set_target(world_position)
+ 
+ 
+ func clear_teaching_target() -> void:
+ 	if teacher_enabled:
+ 		teacher_pose.has_target = false
++	if facial_pose != null:
++		facial_pose.has_target = false
+ 
+ 
+ func teacher_react(event: String) -> bool:
+@@ -276,6 +298,9 @@
+ 	if suspended == value:
+ 		return
+ 	suspended = value
++	if value and facial_pose != null:
++		facial_pose.reset()
++		apply_speech_sample(0.0, 0.0, false)
+ 	if player == null:
+ 		return
+ 	if value:
+@@ -291,6 +316,9 @@
+ 
+ func set_reduced_motion(value: bool) -> void:
+ 	reduced_motion = value
++	if value and facial_pose != null:
++		facial_pose.reset()
++		apply_speech_sample(0.0, 0.0, false)
+ 	if platform_active:
+ 		if value:
+ 			platform_pose.stop()
+@@ -300,11 +328,14 @@
+ 
+ 
+ func apply_speech_sample(media_seconds: float, envelope: float, speaking: bool) -> void:
+-	# Transport-neutral synchronization seam. The current model has no mouth
+-	# morphs, so accepting a real playback envelope does NOT claim lip sync.
++	# Actual PCM amplitude drives the derived closed-muzzle shape. The source
++	# still has no mouth cavity or phoneme/viseme model; do not claim lip sync.
++	speaking = speaking and not suspended and not reduced_motion
+ 	last_audio_position = maxf(0.0, media_seconds) if is_finite(media_seconds) else 0.0
+ 	last_audio_envelope = clampf(envelope, 0.0, 1.0) if speaking and is_finite(envelope) else 0.0
+ 	audio_active = speaking
++	if facial_pose != null:
++		facial_pose.speech_sample(media_seconds, envelope, speaking)
+ 
+ 
+ func get_current_behavior() -> String:
+--- a/native/scripts/learning/learning_world.gd
++++ b/native/scripts/learning/learning_world.gd
+@@ -1295,6 +1295,7 @@
+ 		_speech_host.call("stopLearningSpeech")
+ 	if is_instance_valid(fox) and fox.is_usable():
+ 		fox.set_teacher_speaking(false)
++		fox.apply_speech_sample(0.0, 0.0, false)
+ 	_update_voice_button()
+ 
+ 
+@@ -1309,7 +1310,7 @@
+ 	if not is_instance_valid(_speech_host) or not _speech_enabled:
+ 		return
+ 	_speech_poll += delta
+-	if _speech_poll < 0.15:
++	if _speech_poll < 0.05:
+ 		return
+ 	_speech_poll = 0.0
+ 	if not _speech_host.has_method("getLearningSpeechStatus"):
+@@ -1321,10 +1322,16 @@
+ 	if received_state not in ["preparing", "playing", "completed", "unavailable", "idle"]:
+ 		return
+ 	_speech_state = received_state
+-	# Only a confirmed MediaPlayer start animates speech. Synthesis and a timer
+-	# cannot masquerade as audible playback. The original rig has no jaw morph.
++	# Amplitude comes from the exact synthesized WAV and MediaPlayer position.
++	# Preparing, mute, missing envelope and stopped playback remain closed.
+ 	if is_instance_valid(fox) and fox.is_usable():
+-		fox.set_teacher_speaking(_speech_state == "playing")
++		var audible: bool = _speech_state == "playing" and received.get("audible", false) == true
++		fox.set_teacher_speaking(audible)
++		fox.apply_speech_sample(
++			float(received.get("positionMs", 0.0)) / 1000.0,
++			float(received.get("envelope", 0.0)),
++			audible and received.get("envelopeAvailable", false) == true
++		)
+ 	_update_voice_button()
+ 
+ 
+--- a/native/scripts/tests/learning_world_regression.gd
++++ b/native/scripts/tests/learning_world_regression.gd
+@@ -19,7 +19,7 @@
+ 
+ 	func getLearningSpeechStatus() -> String:
+ 		return JSON.stringify(
+-			{"id": request.get("id", 0), "state": state, "positionMs": 0, "durationMs": 1000}
++			{"id": request.get("id", 0), "state": state, "positionMs": 0, "durationMs": 1000, "audible": state == "playing", "envelopeAvailable": false, "envelope": 0.0}
+ 		)
+ 
+ 	func stopLearningSpeech() -> void:
+--- /dev/null
++++ b/native/scripts/tests/lumo_facial_capture.gd
+@@ -0,0 +1,181 @@
++extends SceneTree
++## Actual production teacher and viewport; the desktop bridge plays one
++## preserved local word clip. MovieMaker 24fps is recording format, not FPS QA.
++const WORLD := "res://scripts/learning/learning_world.gd"
++var rows: Array[Dictionary] = []
++var lesson: Node3D
++var status_label: Label
++var output: String
++
++class LocalPlayback:
++	extends RefCounted
++	var player: AudioStreamPlayer
++	var envelope: PackedFloat32Array = PackedFloat32Array()
++	var id: int = 0
++	var state: String = "idle"
++	var muted: bool = false
++	func prepare(stream: AudioStreamWAV) -> bool:
++		var data: PackedByteArray = stream.data
++		var channels: int = 2 if stream.stereo else 1
++		var frames: int = data.size() / (channels * 2)
++		var window: int = stream.mix_rate * 20 / 1000
++		if stream.format != AudioStreamWAV.FORMAT_16_BITS or window <= 0:
++			return false
++		for first in range(0, frames, window):
++			var last: int = mini(frames, first + window)
++			var square: float = 0.0
++			for frame in range(first, last):
++				for channel in range(channels):
++					var at: int = frame * channels * 2 + channel * 2
++					var value: int = int(data[at]) | (int(data[at + 1]) << 8)
++					if value >= 32768:
++						value -= 65536
++					var sample: float = float(value) / 32768.0
++					square += sample * sample
++			var rms: float = sqrt(square / float((last - first) * channels))
++			envelope.append(clampf((rms - 0.006) / 0.24, 0.0, 1.0))
++		return not envelope.is_empty()
++	func speakLearning(payload: String) -> int:
++		var request: Dictionary = JSON.parse_string(payload)
++		id = int(request.id)
++		player.play()
++		state = "playing"
++		return 1
++	func stopLearningSpeech() -> void:
++		if is_instance_valid(player):
++			player.stop()
++		state = "idle"
++	func getLearningSpeechStatus() -> String:
++		if state == "playing" and not player.playing:
++			state = "completed"
++		var seconds: float = player.get_playback_position() if player.playing else 0.0
++		var audible: bool = player.playing and not muted
++		var index: int = int(seconds * 50.0)
++		var amplitude: float = envelope[index] if audible and index >= 0 and index < envelope.size() else 0.0
++		return JSON.stringify({"id": id, "state": state, "positionMs": seconds * 1000.0, "durationMs": player.stream.get_length() * 1000.0, "audible": audible, "envelopeAvailable": true, "envelope": amplitude})
++
++func _initialize() -> void:
++	_run.call_deferred()
++
++func _run() -> void:
++	if DisplayServer.get_name() == "headless":
++		push_error("A real renderer is required")
++		quit(1)
++		return
++	output = OS.get_environment("LUMO_FACE_CAPTURE_DIR")
++	if output.is_empty():
++		push_error("Explicit capture directory is required")
++		quit(1)
++		return
++	DirAccess.make_dir_recursive_absolute(output)
++	root.size = Vector2i(640, 640)
++	lesson = load(WORLD).new()
++	lesson.capture_options = {"learningVoiceEnabled": true, "localVoiceLicenseAccepted": true, "learningAutoRead": false, "learning": {"kind": "syllables", "word": "Apfel", "syllables": ["Ap", "fel"]}}
++	root.add_child(lesson)
++	await process_frame
++	await RenderingServer.frame_post_draw
++	if lesson.activity.kind != "syllables" or lesson.activity.word != "Apfel" or lesson.tokens.size() != 2:
++		push_error("A valid productive Apfel syllable lesson is required")
++		quit(1)
++		return
++	var audio := AudioStreamPlayer.new()
++	# Read the preserved original WAV bytes. Godot's asset importer normally
++	# compresses this file; envelope measurement must use the actual PCM source.
++	var wave: PackedByteArray = FileAccess.get_file_as_bytes("res://assets/audio/voice/words/apfel.wav")
++	if wave.size() != 40970 or wave.slice(0, 4).get_string_from_ascii() != "RIFF" or wave.slice(8, 16).get_string_from_ascii() != "WAVEfmt " or wave.decode_u16(20) != 1 or wave.decode_u16(22) != 1 or wave.decode_u32(24) != 22050 or wave.decode_u16(34) != 16 or wave.slice(36, 40).get_string_from_ascii() != "data" or wave.decode_u32(40) != wave.size() - 44:
++		push_error("Preserved original word PCM WAV identity/format mismatch")
++		quit(1)
++		return
++	var stream := AudioStreamWAV.new()
++	stream.format = AudioStreamWAV.FORMAT_16_BITS
++	stream.mix_rate = wave.decode_u32(24)
++	stream.stereo = false
++	stream.data = wave.slice(44)
++	audio.stream = stream
++	root.add_child(audio)
++	var bridge := LocalPlayback.new()
++	bridge.player = audio
++	if not bridge.prepare(audio.stream):
++		push_error("Original PCM envelope preparation failed")
++		quit(1)
++		return
++	lesson._speech_host = bridge
++	var layer := CanvasLayer.new()
++	root.add_child(layer)
++	status_label = Label.new()
++	status_label.position = Vector2(12, 606)
++	status_label.visible = false
++	status_label.add_theme_font_size_override("font_size", 18)
++	status_label.add_theme_color_override("font_color", Color.WHITE)
++	status_label.add_theme_color_override("font_shadow_color", Color.BLACK)
++	status_label.add_theme_constant_override("shadow_offset_x", 2)
++	status_label.add_theme_constant_override("shadow_offset_y", 2)
++	layer.add_child(status_label)
++	var captures: Dictionary = {20: "teacher_scene", 28: "neutral", 39: "audio_jaw", 43: "blink", 44: "blink_intermediate", 67: "muted", 90: "gaze_left", 112: "stopped"}
++	for frame in range(144):
++		if frame == 24:
++			status_label.visible = true
++			lesson.ui.hide()
++			lesson.fox.play_behavior("idle")
++			var centre: Vector3 = lesson.fox.to_global(Vector3(0.0, 1.40, 0.13))
++			lesson.camera.size = 0.86 * lesson.fox.scale.y
++			lesson.camera.look_at_from_position(centre + lesson.fox.global_basis.orthonormalized() * Vector3(0.4, 0.05, 4.0), centre)
++		if frame in [31, 60, 96]:
++			bridge.muted = false
++			audio.volume_db = 0.0
++			lesson._speak("Apfel")
++		if frame == 66:
++			bridge.muted = true
++			audio.volume_db = -80.0
++		if frame == 76:
++			lesson._stop_speech()
++		if frame == 108:
++			lesson._stop_speech()
++		if frame in [30, 80]:
++			var head: int = lesson.fox.skeleton.find_bone("Head")
++			var centre: Vector3 = lesson.fox.skeleton.to_global(lesson.fox.skeleton.get_bone_global_pose(head).origin)
++			lesson.fox.set_teaching_target(centre + lesson.fox.global_basis.orthonormalized() * Vector3(0.8 if frame == 30 else -0.8, 0.1, 4.0))
++		await process_frame
++		await RenderingServer.frame_post_draw
++		var status: Dictionary = JSON.parse_string(bridge.getLearningSpeechStatus())
++		var actual_lids: Array[float] = []
++		for index in lesson.fox.facial_pose.lid_ids:
++			actual_lids.append(lesson.fox.facial_pose.lids.get_blend_shape_value(index))
++		rows.append({"lid_mesh_weights": actual_lids, "step": frame, "engine_drawn_frames": Engine.get_frames_drawn(), "player": status, "actual_jaw_weight": lesson.fox.facial_pose.body.get_blend_shape_value(lesson.fox.facial_pose.body_ids[4]), "blink": lesson.fox.facial_pose.blink, "gaze": [lesson.fox.facial_pose.gaze.x, lesson.fox.facial_pose.gaze.y]})
++		status_label.text = "Original-Lumo · " + ("stumm" if bridge.muted else "„Apfel“ – lokale WAV" if status.state == "playing" else "Pause / geschlossen")
++		if captures.has(frame):
++			var path := output.path_join(str(captures[frame]) + ".png")
++			if root.get_texture().get_image().save_png(path) != OK:
++				push_error("Capture failed")
++	var saw_audible_jaw: bool = false
++	var saw_muted: bool = false
++	var saw_stopped: bool = false
++	var saw_blink: bool = false
++	var max_jaw: float = 0.0
++	for row in rows:
++		max_jaw = maxf(max_jaw, float(row.actual_jaw_weight))
++		if row.player.audible and row.actual_jaw_weight > 0.05:
++			saw_audible_jaw = true
++		if row.step >= 67 and row.step < 76 and not row.player.audible and is_zero_approx(row.actual_jaw_weight):
++			saw_muted = true
++		if row.step >= 112 and row.player.state == "idle" and is_zero_approx(row.actual_jaw_weight):
++			saw_stopped = true
++		if row.blink > 0.9:
++			saw_blink = true
++	if not (saw_audible_jaw and saw_muted and saw_stopped and saw_blink):
++		push_error("Captured runtime did not show every required actual facial state")
++		quit(1)
++		return
++	var report := {"scope": "actual Godot production teacher, inspection camera, original local word; not Android/phonemes/FPS", "recording_fps": 24, "actual_max_jaw_weight": max_jaw, "observed_audible_jaw": saw_audible_jaw, "observed_muted_closed": saw_muted, "observed_stopped_closed": saw_stopped, "observed_blink": saw_blink, "lesson_kind": lesson.activity.kind, "lesson_word": lesson.activity.word, "word_source": "res://assets/audio/voice/words/apfel.wav", "rows": rows}
++	var file := FileAccess.open(output.path_join("runtime-frames.json"), FileAccess.WRITE)
++	file.store_string(JSON.stringify(report, "  "))
++	file.close()
++	lesson._stop_speech()
++	lesson.queue_free()
++	layer.queue_free()
++	await process_frame
++	await process_frame
++	audio.queue_free()
++	await process_frame
++	print("LUMO_FACIAL_CAPTURE_PASS frames=", rows.size(), " original_word=true recording_fps=24 not_device_fps=true")
++	quit(0)
+--- /dev/null
++++ b/native/scripts/tests/lumo_facial_regression.gd
+@@ -0,0 +1,142 @@
++extends SceneTree
++const ACTOR = preload("res://scripts/characters/lumo/lumo_rigged_actor.gd")
++const WORLD := "res://scripts/learning/learning_world.gd"
++var checks: int = 0
++var failures: Array[String] = []
++
++class SpeechHost:
++	extends RefCounted
++	var response: Dictionary = {"id": 77, "state": "preparing", "positionMs": 0, "envelope": 0.8, "audible": false, "envelopeAvailable": true}
++	var stops: int = 0
++	func getLearningSpeechStatus() -> String:
++		return JSON.stringify(response)
++	func stopLearningSpeech() -> void:
++		stops += 1
++
++func _initialize() -> void:
++	_run.call_deferred()
++
++func _check(value: bool, label: String) -> void:
++	checks += 1
++	if not value:
++		failures.append(label)
++		push_error("[LumoFacial] " + label)
++
++func _run() -> void:
++	var actor = ACTOR.new()
++	root.add_child(actor)
++	actor.set_process(false)
++	_check(actor.is_usable() and actor.skeleton.get_bone_count() == 65, "original 65-bone rig imports")
++	if not actor.is_usable() or actor.facial_pose == null:
++		_check(false, "derived geometry adapter must bind")
++		quit(1)
++		return
++	for clip in ACTOR.CLIPS:
++		_check(actor.player.has_animation(clip), "original clip preserved: " + clip)
++	_check(actor.mouth_supported and not actor.phoneme_lipsync_supported, "actual muzzle morph supported without phoneme claim")
++	var face = actor.facial_pose
++	_check(face.body.mesh.get_blend_shape_count() == 5, "five actual surface morphs exist")
++	_check(face.lids.mesh.get_blend_shape_count() == 8, "eight actual curved-surface lid stages exist")
++	_check(face.lids.mesh.get_surface_count() == 2, "physical lids batch into two material surfaces")
++	_check(actor.model_load_kind == "imported_packed_scene", "imported asset required to verify deforming-mesh LOD policy")
++	var body_surfaces: Array = face.body.mesh.get("_surfaces")
++	var lid_surfaces: Array = face.lids.mesh.get("_surfaces")
++	_check(body_surfaces[0].get("lods", []).size() > 0, "original body LODs remain generated")
++	for surface in lid_surfaces:
++		_check(surface.get("lods", []).is_empty(), "authored lid topology survives import without destructive neutral-state LODs")
++	_check(not face.lids.visible and is_zero_approx(face.jaw), "neutral face hides additional lids and leaves mouth unchanged")
++	actor.player.pause()
++	var neutral: Array[Quaternion] = []
++	for bone in range(65):
++		neutral.append(actor.skeleton.get_bone_pose_rotation(bone))
++	var arrays: Array = face.body.mesh.surface_get_arrays(0)
++	var shapes: Array = face.body.mesh.surface_get_blend_shape_arrays(0)
++	var base_vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
++	var jaw_vertices: PackedVector3Array = shapes[face.body_ids[4]][Mesh.ARRAY_VERTEX]
++	var maximum_delta: float = 0.0
++	for index in range(base_vertices.size()):
++		maximum_delta = maxf(maximum_delta, base_vertices[index].distance_to(jaw_vertices[index]))
++	print("[LumoFacial] jaw_mesh_delta_m=", maximum_delta, " blend_mode=", face.body.mesh.get_blend_shape_mode())
++	_check(maximum_delta > 0.002 and maximum_delta < 0.015, "imported jaw changes real bounded geometry")
++	face.set_target(Vector3(2, 1.7, 4))
++	for frame in range(100):
++		face.advance(1.0 / 60.0)
++	_check(face.gaze.x > 0.2 and face.body.get_blend_shape_value(face.body_ids[1]) > 0.2, "visible gaze morph follows an actual world point")
++	for frame in range(12):
++		face.advance(1.0 / 60.0)
++	_check(face.blink > 0.8 and face.lids.visible, "elapsed idle produces actual physical eyelid closure")
++	_check(face.lids.get_blend_shape_value(face.lid_ids[3]) > 0.6, "closed lid mesh receives nonzero authored shape")
++	for bone in range(65):
++		_check(neutral[bone] == actor.skeleton.get_bone_pose_rotation(bone), "face leaves exact body-bone quaternion unchanged " + str(bone))
++	for frame in range(20):
++		actor.apply_speech_sample(float(frame) / 60.0, 0.75, true)
++		face.advance(1.0 / 60.0)
++	_check(face.jaw > 0.70 and face.body.get_blend_shape_value(face.body_ids[4]) > 0.70, "actual envelope seam moves actual muzzle geometry")
++	actor.apply_speech_sample(0.5, 0.9, false)
++	_check(face.jaw == 0.0 and face.body.get_blend_shape_value(face.body_ids[4]) == 0.0, "stop/mute closes immediately without a timer")
++	actor.apply_speech_sample(1.0, 0.8, true)
++	for frame in range(60):
++		actor.apply_speech_sample(1.0, 0.8, true)
++		face.advance(1.0 / 60.0)
++	_check(face.jaw < 0.001, "repeated frozen player positions cannot perpetuate speech")
++	actor.apply_speech_sample(NAN, 0.8, true)
++	_check(face.jaw == 0.0, "nonfinite media position closes")
++	actor.apply_speech_sample(2.0, NAN, true)
++	_check(face.jaw == 0.0, "nonfinite amplitude closes")
++	actor.apply_speech_sample(2.0, 0.8, true)
++	face.advance(0.05)
++	actor.set_suspended(true)
++	_check(face.jaw == 0.0 and not face.lids.visible and not actor.audio_active, "suspension clears face and audio state")
++	actor.set_suspended(false)
++	actor.set_reduced_motion(true)
++	actor.apply_speech_sample(3.0, 0.8, true)
++	actor._process(0.1)
++	_check(face.jaw == 0.0 and not face.lids.visible, "reduced-motion preference remains effective")
++	actor.set_reduced_motion(false)
++	actor.queue_free()
++	await process_frame
++	await process_frame
++	var lesson = load(WORLD).new()
++	lesson.capture_options = {"learningVoiceEnabled": true, "localVoiceLicenseAccepted": true, "learningAutoRead": false, "learning": {"kind": "bridge_ten", "a": 8, "b": 5}}
++	root.add_child(lesson)
++	await process_frame
++	_check(lesson.activity.kind == "bridge_ten" and lesson.tokens.size() == 5, "voice seam is exercised in a valid productive 8+5 lesson")
++	lesson.set_process(false)
++	lesson.fox.set_process(false)
++	var speech := SpeechHost.new()
++	lesson._speech_host = speech
++	lesson._speech_id = 77
++	lesson._speech_enabled = true
++	lesson._tick_speech(0.06)
++	lesson.fox._process(0.06)
++	_check(lesson.fox.facial_pose.jaw == 0.0, "production teacher rejects synthesis-only amplitude")
++	speech.response.state = "playing"
++	speech.response.audible = true
++	speech.response.positionMs = 200
++	lesson._tick_speech(0.06)
++	lesson.fox._process(0.06)
++	_check(lesson.fox.facial_pose.jaw > 0.4, "actual productive teacher reads matching playback envelope")
++	speech.response.audible = false
++	lesson._tick_speech(0.06)
++	_check(lesson.fox.facial_pose.jaw == 0.0, "actual productive teacher closes for host stream mute")
++	speech.response.audible = true
++	speech.response.envelopeAvailable = false
++	lesson._tick_speech(0.06)
++	_check(lesson.fox.facial_pose.jaw == 0.0, "unavailable PCM envelope cannot invent articulation")
++	speech.response.envelopeAvailable = true
++	speech.response.positionMs = 350
++	lesson._tick_speech(0.06)
++	lesson.fox._process(0.06)
++	lesson._stop_speech()
++	_check(lesson.fox.facial_pose.jaw == 0.0 and speech.stops > 0, "production stop clears geometry and calls actual transport seam")
++	lesson._tick_speech(0.06)
++	_check(lesson.fox.facial_pose.jaw == 0.0, "cancelled utterance ID cannot reopen the muzzle")
++	lesson.queue_free()
++	await process_frame
++	await process_frame
++	if failures.is_empty():
++		print("LUMO_FACIAL_PASS checks=", checks, " actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false")
++		quit(0)
++	else:
++		print("LUMO_FACIAL_FAIL checks=", checks, " failures=", failures)
++		quit(1)
+--- a/native/scripts/tests/lumo_rigged_animation_capture.gd
++++ b/native/scripts/tests/lumo_rigged_animation_capture.gd
+@@ -111,7 +111,7 @@
+ 	actor.apply_speech_sample(0.25, 0.8, true)
+ 	_check(actor.audio_active and is_equal_approx(actor.last_audio_envelope, 0.8),
+ 		"Playback-envelope interface accepts a synthetic test sample")
+-	_check(not actor.mouth_supported, "No false lip-sync claim")
++	_check(actor.mouth_supported and not actor.phoneme_lipsync_supported, "No false lip-sync claim")
+ 	actor.apply_speech_sample(0.5, 0.7, false)
+ 	_check(is_zero_approx(actor.last_audio_envelope), "Stopping audio clears the envelope")
+ 	actor.set_reduced_motion(true)
+--- a/native/scripts/tests/lumo_studio_motion_regression.gd
++++ b/native/scripts/tests/lumo_studio_motion_regression.gd
+@@ -47,7 +47,8 @@
+ 		return
+ 	var report: Dictionary = raw
+ 	_check(bool(report.source_unchanged), "Blender leaves original source unchanged")
+-	_check(FileAccess.get_sha256(ACTOR.MODEL) == str(report.source_sha256), "source hash still matches Blender input")
++	_check(FileAccess.get_sha256(ACTOR.ORIGINAL_MODEL) == str(report.source_sha256), "untouched source hash still matches Blender body-clip input")
++	_check(FileAccess.get_sha256(ACTOR.MODEL) != FileAccess.get_sha256(ACTOR.ORIGINAL_MODEL), "authored facial derivative is distinct from preserved source")
+ 	var original_lengths: Dictionary = {}
+ 	for side in ["L", "R"]:
+ 		original_lengths[side] = Vector2(
+@@ -131,7 +132,7 @@
+ 	actor.set_locomotion_speed(0.0)
+ 	for clip in ACTOR.CLIPS:
+ 		_check(actor.play_behavior(clip), "original clip retained: " + clip)
+-	_check(not actor.mouth_supported, "no facial rig or phoneme evidence is invented")
++	_check(actor.mouth_supported and not actor.phoneme_lipsync_supported, "no facial rig or phoneme evidence is invented")
+ 
+ 
+ func _idle_phase_independence() -> void:
+--- a/native/scripts/tests/lumo_teacher_pose_regression.gd
++++ b/native/scripts/tests/lumo_teacher_pose_regression.gd
+@@ -160,7 +160,7 @@
+ 		"actual playback owner can enable gentle speech motion"
+ 	)
+ 	actor.apply_speech_sample(2.5, 0.7, true)
+-	_check(not actor.mouth_supported, "voice envelope is not misreported as unsupported lip-sync")
++	_check(actor.mouth_supported and not actor.phoneme_lipsync_supported, "voice envelope is not misreported as unsupported lip-sync")
+ 	actor.set_suspended(true)
+ 	var paused_angle: Quaternion = actor.skeleton.get_bone_pose_rotation(head)
+ 	var paused_time: float = actor.player.current_animation_position
+--- a/host/tools/auto_install/LumoLearningSpeech.kt
++++ b/host/tools/auto_install/LumoLearningSpeech.kt
+@@ -2,6 +2,7 @@
+ 
+ import android.content.Context
+ import android.media.AudioAttributes
++import android.media.AudioManager
+ import android.media.MediaPlayer
+ import android.media.MediaDataSource
+ import android.os.Handler
+@@ -9,12 +10,21 @@
+ import android.util.Log
+ import io.flutter.plugin.common.MethodChannel
+ import org.json.JSONObject
++import java.util.concurrent.CancellationException
++import java.util.concurrent.Executors
++import java.util.concurrent.Future
+ 
+ /** Original F2 synthesis and real playback, confined to the native lesson.
+  * No microphone, system TTS, online service or learning score is involved. */
+ class LumoLearningSpeech(context: Context, options: JSONObject) {
+     private val main = Handler(Looper.getMainLooper())
+     private val bridge = LumoOfflineSpeechBridge(context.applicationContext)
++    private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
++    private val envelopeWorker = Executors.newSingleThreadExecutor { job ->
++        Thread(job, "LumoSpeechEnvelope").apply { isDaemon = true }
++    }
++    private var envelopeTask: Future<*>? = null
++    private var envelope = LumoSpeechEnvelope.EMPTY
+     private val allowed = options.optString("game") == "learning" &&
+         options.optBoolean("learningVoiceEnabled", false) &&
+         options.optBoolean("localVoiceLicenseAccepted", false)
+@@ -27,7 +37,7 @@
+     private var state = "idle"
+     private var active = false
+     private var destroyed = false
+-    @Volatile private var snapshot = "{\"state\":\"idle\",\"id\":0,\"positionMs\":0,\"durationMs\":0}"
++    @Volatile private var snapshot = "{\"state\":\"idle\",\"id\":0,\"positionMs\":0,\"durationMs\":0,\"envelope\":0,\"audible\":false}"
+ 
+     // Avoid blocking the UI/render thread on a temporary WAV write. Android
+     // reads the completed local synthesis buffer directly; release drops it.
+@@ -47,7 +57,7 @@
+     private val pulse = object : Runnable {
+         override fun run() {
+             publish()
+-            if (!destroyed && state == "playing") main.postDelayed(this, 150)
++            if (!destroyed && state == "playing") main.postDelayed(this, 50)
+         }
+     }
+ 
+@@ -87,35 +97,23 @@
+                         failed(token)
+                         return
+                     }
+-                    try {
+-                        val source = WavSource(bytes)
+-                        audioSource = source
+-                        val playback = MediaPlayer()
+-                        player = playback
+-                        playback.setAudioAttributes(AudioAttributes.Builder()
+-                            .setUsage(AudioAttributes.USAGE_MEDIA)
+-                            .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
+-                        playback.setDataSource(source)
+-                        playback.setOnPreparedListener {
+-                            if (token != generation || !active || destroyed) return@setOnPreparedListener
+-                            try {
+-                                playback.playbackParams = playback.playbackParams.setSpeed(speed)
+-                                playback.start()
+-                                state = "playing"
+-                                Log.i("LumoLearningSpeech", "started id=$id profile=${LumoOfflineSpeechEngine.PROFILE}")
+-                                main.post(pulse)
+-                            } catch (_: Exception) { failed(token) }
++                    // Synthesis is complete, but there is no audible playback
++                    // yet. Derive its real envelope away from the UI thread.
++                    envelopeTask = envelopeWorker.submit {
++                        try {
++                            val measured = LumoSpeechEnvelope.fromWave(bytes)
++                            main.post {
++                                if (token != generation || !active || destroyed) return@post
++                                envelopeTask = null
++                                envelope = measured
++                                preparePlayback(bytes, token, id)
++                            }
++                        } catch (_: CancellationException) {
++                            // Stop/pause owns the published idle state.
++                        } catch (_: Exception) {
++                            main.post { failed(token) }
+                         }
+-                        playback.setOnCompletionListener {
+-                            if (token != generation) return@setOnCompletionListener
+-                            releasePlayer()
+-                            state = "completed"
+-                            publish()
+-                            Log.i("LumoLearningSpeech", "completed id=$id")
+-                        }
+-                        playback.setOnErrorListener { _, _, _ -> failed(token); true }
+-                        playback.prepareAsync()
+-                    } catch (_: Exception) { failed(token) }
++                    }
+                 }
+ 
+                 override fun error(code: String, message: String?, details: Any?) { failed(token) }
+@@ -123,6 +121,38 @@
+             })
+         }
+         return true
++    }
++
++    private fun preparePlayback(bytes: ByteArray, token: Long, id: Int) {
++        try {
++            val source = WavSource(bytes)
++            audioSource = source
++            val playback = MediaPlayer()
++            player = playback
++            playback.setAudioAttributes(AudioAttributes.Builder()
++                .setUsage(AudioAttributes.USAGE_MEDIA)
++                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
++            playback.setDataSource(source)
++            playback.setOnPreparedListener {
++                if (token != generation || !active || destroyed) return@setOnPreparedListener
++                try {
++                    playback.playbackParams = playback.playbackParams.setSpeed(speed)
++                    playback.start()
++                    state = "playing"
++                    Log.i("LumoLearningSpeech", "started id=$id profile=${LumoOfflineSpeechEngine.PROFILE}")
++                    main.post(pulse)
++                } catch (_: Exception) { failed(token) }
++            }
++            playback.setOnCompletionListener {
++                if (token != generation) return@setOnCompletionListener
++                releasePlayer()
++                state = "completed"
++                publish()
++                Log.i("LumoLearningSpeech", "completed id=$id")
++            }
++            playback.setOnErrorListener { _, _, _ -> failed(token); true }
++            playback.prepareAsync()
++        } catch (_: Exception) { failed(token) }
+     }
+ 
+     fun stop() { main.post { if (!destroyed) stopOnMain() } }
+@@ -144,6 +174,9 @@
+ 
+     private fun releasePlayer() {
+         main.removeCallbacks(pulse)
++        envelopeTask?.cancel(true)
++        envelopeTask = null
++        envelope = LumoSpeechEnvelope.EMPTY
+         player?.let { try { it.release() } catch (_: Exception) {} }
+         player = null
+         audioSource?.close()
+@@ -152,11 +185,18 @@
+ 
+     private fun publish() {
+         val playback = player
+-        val playing = state == "playing" && playback != null
++        val playing = state == "playing" && playback != null &&
++            try { playback.isPlaying } catch (_: Exception) { false }
+         val position = if (playing) try { playback!!.currentPosition } catch (_: Exception) { 0 } else 0
+         val duration = if (playing) try { playback!!.duration } catch (_: Exception) { 0 } else 0
++        val audible = playing && allowed && active && !destroyed && try {
++            audioManager != null && !audioManager.isStreamMute(AudioManager.STREAM_MUSIC) &&
++                audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) > 0
++        } catch (_: Exception) { false }
+         snapshot = JSONObject().put("state", state).put("id", utterance)
+-            .put("positionMs", position).put("durationMs", duration).toString()
++            .put("positionMs", position).put("durationMs", duration)
++            .put("audible", audible).put("envelopeAvailable", envelope.available)
++            .put("envelope", if (audible) envelope.amplitudeAt(position) else 0.0).toString()
+     }
+ 
+     fun destroy() {
+@@ -166,6 +206,7 @@
+             destroyed = true
+             active = false
+             bridge.destroy()
++            envelopeWorker.shutdownNow()
+         }
+     }
+ }
+--- /dev/null
++++ b/host/tools/auto_install/LumoSpeechEnvelope.kt
+@@ -0,0 +1,89 @@
++package dev.ullmann.lumo
++
++import java.util.concurrent.CancellationException
++import kotlin.math.sqrt
++
++/** A bounded RMS envelope from the actual local PCM bytes.
++ * This controls the closed muzzle's amplitude; it is not a phoneme/viseme map.
++ * Parse once off the main thread. Sampling is allocation-free and uses the
++ * MediaPlayer's media position, including its actual playback-rate changes. */
++class LumoSpeechEnvelope private constructor(
++    private val amplitudes: FloatArray,
++    val durationMs: Int,
++    val sampleRate: Int,
++    val channels: Int,
++) {
++    val available: Boolean get() = amplitudes.isNotEmpty()
++
++    fun amplitudeAt(positionMs: Int): Double {
++        if (positionMs < 0 || positionMs >= durationMs || amplitudes.isEmpty()) return 0.0
++        return amplitudes[(positionMs / WINDOW_MS).coerceAtMost(amplitudes.lastIndex)].toDouble()
++    }
++
++    companion object {
++        const val WINDOW_MS = 20
++        private const val MAX_BYTES = 3 * 1024 * 1024
++        private const val MAX_SECONDS = 30
++        val EMPTY = LumoSpeechEnvelope(FloatArray(0), 0, 0, 0)
++
++        fun fromWave(bytes: ByteArray): LumoSpeechEnvelope {
++            if (bytes.size < 44 || bytes.size > MAX_BYTES) return EMPTY
++            fun tag(at: Int, value: String): Boolean = at >= 0 && at + 4 <= bytes.size &&
++                (0..3).all { bytes[at + it].toInt() and 255 == value[it].code }
++            fun u16(at: Int): Int = (bytes[at].toInt() and 255) or
++                ((bytes[at + 1].toInt() and 255) shl 8)
++            fun u32(at: Int): Long = u16(at).toLong() or (u16(at + 2).toLong() shl 16)
++            if (!tag(0, "RIFF") || !tag(8, "WAVE") || u32(4) + 8 != bytes.size.toLong()) return EMPTY
++            var rate = 0; var channelCount = 0; var alignment = 0
++            var dataStart = -1; var dataBytes = 0; var cursor = 12; var chunks = 0
++            while (cursor + 8 <= bytes.size) {
++                if (Thread.currentThread().isInterrupted) throw CancellationException("Envelope cancelled")
++                if (++chunks > 512) return EMPTY
++                val size = u32(cursor + 4)
++                val start = cursor + 8
++                val end = start.toLong() + size
++                if (size > Int.MAX_VALUE || end > bytes.size || end < start) return EMPTY
++                when {
++                    tag(cursor, "fmt ") -> {
++                        if (rate != 0 || size < 16 || u16(start) != 1 || u16(start + 14) != 16) return EMPTY
++                        channelCount = u16(start + 2)
++                        val sampleRate = u32(start + 4)
++                        if (channelCount !in 1..2 || sampleRate !in 8000..48000) return EMPTY
++                        rate = sampleRate.toInt(); alignment = u16(start + 12)
++                        if (alignment != channelCount * 2 || u32(start + 8) != rate.toLong() * alignment) return EMPTY
++                    }
++                    tag(cursor, "data") -> {
++                        if (dataStart >= 0 || size == 0L) return EMPTY
++                        dataStart = start; dataBytes = size.toInt()
++                    }
++                }
++                cursor = (end + (size and 1)).toInt()
++                if (cursor > bytes.size) return EMPTY
++            }
++            if (cursor != bytes.size || rate == 0 || dataStart < 0 || dataBytes % alignment != 0) return EMPTY
++            val frames = dataBytes / alignment
++            if (frames < 1 || frames > rate * MAX_SECONDS) return EMPTY
++            val windowFrames = rate * WINDOW_MS / 1000
++            val windows = (frames + windowFrames - 1) / windowFrames
++            val result = FloatArray(windows)
++            for (window in result.indices) {
++                if (Thread.currentThread().isInterrupted) throw CancellationException("Envelope cancelled")
++                val first = window * windowFrames
++                val last = minOf(frames, first + windowFrames)
++                var squared = 0.0
++                for (frame in first until last) {
++                    for (channel in 0 until channelCount) {
++                        val at = dataStart + frame * alignment + channel * 2
++                        val signed = u16(at).toShort().toInt()
++                        val sample = signed / 32768.0
++                        squared += sample * sample
++                    }
++                }
++                val rms = sqrt(squared / ((last - first) * channelCount))
++                // Fixed, documented art gain; silence never creates motion.
++                result[window] = ((rms - 0.006) / 0.24).coerceIn(0.0, 1.0).toFloat()
++            }
++            return LumoSpeechEnvelope(result, ((frames.toLong() * 1000 + rate - 1) / rate).toInt(), rate, channelCount)
++        }
++    }
++}

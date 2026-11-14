@@ -1,0 +1,568 @@
+{
+  "schema": 1,
+  "scope": "Explicit docs-only original failure plus new real local resolution-fix evidence; no product source delta installed by this manifest. Historical338-file evidence freeze remains unchanged. No next CI success claimed.",
+  "baseline_native": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "source_upload_manifest_sha256": "4e5e85902a32660e67057917e4071d9e0d8ff8014adcff507da27fdc8f15f8f2",
+  "files": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/README.md",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/README.md",
+      "mode": "100644",
+      "bytes": 4362,
+      "sha256": "5b5ee0a3a06ccf0e1fa098cca824085a69a44cf1cfe0fa5b14dd44bae3654be7",
+      "git_blob_sha": "f11adc7e3ba67e873eda579dad123038bbb958c7"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/source-upload-manifest.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/source-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 1502,
+      "sha256": "4e5e85902a32660e67057917e4071d9e0d8ff8014adcff507da27fdc8f15f8f2",
+      "git_blob_sha": "2326f574b6e0968024e5a146caa1357214cdc80a"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/implementation-against-8be3.patch",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/implementation-against-8be3.patch",
+      "mode": "100644",
+      "bytes": 2071,
+      "sha256": "89a56fc98b9255b51cce1dc466a61e81170529ed290209a6648f378582b70a76",
+      "git_blob_sha": "e047066468d22436a52d7c3dc22d883a94986f96"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/baseline-harness-binding.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/baseline-harness-binding.json",
+      "mode": "100644",
+      "bytes": 356,
+      "sha256": "f62458d69c4f6e19ba7200349c574d6b632d084fda49c716b398d4b539e1ba9b",
+      "git_blob_sha": "346abf4e30e47ef3ee7c521106a8afa34b1c1fc8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/engine-source-order.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/engine-source-order.json",
+      "mode": "100644",
+      "bytes": 2997,
+      "sha256": "b0d360b0e03541caeb4fac7db8be25c8f72359762f663f8e537206aaf907fd97",
+      "git_blob_sha": "23217e6c72acabecdc103df53a14123c4f7a1dfb"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/runtime-setup.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/runtime-setup.json",
+      "mode": "100644",
+      "bytes": 19791,
+      "sha256": "17a927992ddfae033042e97a113415bd0d97e79e8c44af6762560b4035639485",
+      "git_blob_sha": "5395001fa5affd7536410fb63b8c85a34214feb9"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/runtime-source-after.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/runtime-source-after.json",
+      "mode": "100644",
+      "bytes": 577,
+      "sha256": "02969b4721381ee41f81049ec6325bc402f5767fe3370f6ba47f5fb8dc0d29c9",
+      "git_blob_sha": "a2ab341b30f71a65d15fd607e98d427d20826a4f"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/unchanged-test-dependencies.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/unchanged-test-dependencies.json",
+      "mode": "100644",
+      "bytes": 1133,
+      "sha256": "0d4212cc6484918a5d356f0e703391c8a60fd702713640cafd529dde21d731ab",
+      "git_blob_sha": "fbcd475605b377563e6a5574d57f80bd58092992"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/strict-local-log-review.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/strict-local-log-review.json",
+      "mode": "100644",
+      "bytes": 468,
+      "sha256": "df8649de44bb9840173aa98add9ff35ff93b2bdcb18b78c71c51845638a175c6",
+      "git_blob_sha": "1e3b282630b9b6d301587799783d94e68b54ddf9"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/visual-review.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/visual-review.json",
+      "mode": "100644",
+      "bytes": 10613,
+      "sha256": "bb55dd3370a27acb45612e98e79665da03336cad8d6fa01f73917b0fa5a98b90",
+      "git_blob_sha": "6b2d624ee234d7919f1464ebe990ea70cd238e52"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/decoded-frame-index.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/decoded-frame-index.json",
+      "mode": "100644",
+      "bytes": 23781,
+      "sha256": "b5efed2f9848cc3756ca136827af766258537e31e288e1f542138c8a5a01e874",
+      "git_blob_sha": "b2ac58c961e8a46136a3504535a3e6636e956ec8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/original-media-predicate-red.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-media-predicate-red.log",
+      "mode": "100644",
+      "bytes": 407,
+      "sha256": "0ae4318db6aa7d56e621684c47db377f2f1257dde38b960ad57d0133362ff43e",
+      "git_blob_sha": "b257ef0806922ceb6cca49c570e61d6adf73c2b9"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/original-media-predicate-red.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-media-predicate-red.json",
+      "mode": "100644",
+      "bytes": 426,
+      "sha256": "c179e6481e911aef8a8265c95cf6272ef201d9a3bb4f6a6cf02b3cd0bb9028f4",
+      "git_blob_sha": "fab0926d24297cf4679958ccc9c234df92337577"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/unchanged-face-report-green.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/unchanged-face-report-green.json",
+      "mode": "100644",
+      "bytes": 703,
+      "sha256": "639961e9a61dc0dfc2a9cef3f2c3c48499eb0d7b4f0a732bca408a4fe0261635",
+      "git_blob_sha": "372552b870c6319eeb4dd6b3fcd05f8446ab02e3"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/replay-unchanged-movie-helper.py",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/replay-unchanged-movie-helper.py",
+      "mode": "100644",
+      "bytes": 1943,
+      "sha256": "81fbf036489d31b60aa79ed2bf051d5b0292631841f716fb6067b287d3eb808a",
+      "git_blob_sha": "baf3a00c30cd57f7689c5ef5e34d952ec8569a97"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/movie-helper-green.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/movie-helper-green.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/movie-helper-green-execution.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/movie-helper-green-execution.json",
+      "mode": "100644",
+      "bytes": 164,
+      "sha256": "a1c1461caaecd3df3b350d011043ae7113d940174975f59b922d4ee93e768741",
+      "git_blob_sha": "710520959a7531e6e6992f25f1eec33e7309ef8e"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-render-godot.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-render-godot.log",
+      "mode": "100644",
+      "bytes": 2027,
+      "sha256": "00850b46b56e90f593f26fa45878f2c8f523acdb58cf472f0c1a046a5d4cb617",
+      "git_blob_sha": "009970d7482109582e1df82db1c9c26ee8848e72"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-render-run.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-render-run.json",
+      "mode": "100644",
+      "bytes": 517,
+      "sha256": "3fc62bd05bb291803945ccb11335815bcc7fccb37b8927ae20ff6d27beb836a1",
+      "git_blob_sha": "a46a302fe4f8da090b171cf14c13c7e503e3952d"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-render-Xorg.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-render-Xorg.log",
+      "mode": "100644",
+      "bytes": 58894,
+      "sha256": "3f77ae0fcb3bedeae2730f62995bce31d4713f9e4c35d99ac6460fd9e1db2280",
+      "git_blob_sha": "fbd2a62ffca1bbd7c06b92f5529eafc40263b512"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-render-server-stdout.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-render-server-stdout.log",
+      "mode": "100644",
+      "bytes": 2039,
+      "sha256": "ad2d74a6c4749a28352fcb883be53ffff255ddeb25575da1a71a9f4aa6f8a547",
+      "git_blob_sha": "a7559d7bebea017b3d41c9d9ccf0938b73355e3c"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/contracts-initial-missing-workflow.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/contracts-initial-missing-workflow.log",
+      "mode": "100644",
+      "bytes": 4072,
+      "sha256": "18ab0f6f1dad0c0601dca2c68e0423b88328553774d0f6e2cbc374cb20a3b689",
+      "git_blob_sha": "7422ef77782dd21aa021fcc24586695086eba83a"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/contracts-initial-missing-workflow-execution.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/contracts-initial-missing-workflow-execution.json",
+      "mode": "100644",
+      "bytes": 400,
+      "sha256": "96f808756bba635ef3160294b19568c92c902b09cdce0064c8fa5da9a77a57c7",
+      "git_blob_sha": "64f85f037ea65aae08003c05160ff70293adfbd3"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/contracts-final-green.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/contracts-final-green.log",
+      "mode": "100644",
+      "bytes": 2626,
+      "sha256": "45a0a9c37e2e33ba8b387071b0bc0b68d5da4aa3a638b34eb3b2515215bb14cc",
+      "git_blob_sha": "cb3390cb29314f9e5a4a71bda99132063711868d"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/contracts-final-green-execution.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/contracts-final-green-execution.json",
+      "mode": "100644",
+      "bytes": 519,
+      "sha256": "5c77351cc765aa4cc32a8f1220c48d79fc06606fa24176012e4cd09fa6c52fb6",
+      "git_blob_sha": "e6d8009b29f7a1dfdb59334dc3a49f501aaeb64a"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/audio_jaw.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/audio_jaw.png",
+      "mode": "100644",
+      "bytes": 306464,
+      "sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "git_blob_sha": "24726cedcaf53ed7cd2589594c54cdfb6d0034a8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/blink.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/blink.png",
+      "mode": "100644",
+      "bytes": 301312,
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "git_blob_sha": "22808f200b3258d7ec2f25d3bac6ad3302742b0e"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/blink_intermediate.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/blink_intermediate.png",
+      "mode": "100644",
+      "bytes": 302531,
+      "sha256": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+      "git_blob_sha": "1f7ca9f42343c3653990403225db5529808207da"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/facial-runtime.mp4",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/facial-runtime.mp4",
+      "mode": "100644",
+      "bytes": 1178093,
+      "sha256": "498f3670e0148ffdd0bd581147b5d312c0dac82d3cd4e3b4fab58747c87765d0",
+      "git_blob_sha": "587757210dddbdd1d95633d9f77991b0321e92b6"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/gaze_left.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/gaze_left.png",
+      "mode": "100644",
+      "bytes": 295200,
+      "sha256": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+      "git_blob_sha": "67e626fd8edf3af3bf3c4955fd905047d9897e7c"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/movie-decode.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/movie-decode.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/movie-encode.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/movie-encode.log",
+      "mode": "100644",
+      "bytes": 5917,
+      "sha256": "ca685dca2174210db118f278e9da19abb680cb59f768540fb7ac303ddc184f4c",
+      "git_blob_sha": "c2679345d563eda94c9d4537e4095c4dae225d78"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/movie-ffprobe-stderr.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/movie-ffprobe-stderr.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/movie-ffprobe.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/movie-ffprobe.json",
+      "mode": "100644",
+      "bytes": 4643,
+      "sha256": "bb3485d15c70397912257176362fa36cf8d35d2299f60407d2ff86005f8946f3",
+      "git_blob_sha": "d686611290348b45fd7711c44601d4098ffce62a"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/movie.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/movie.json",
+      "mode": "100644",
+      "bytes": 732,
+      "sha256": "52346e80e627480af4616a1b5b05fa30335e0e382b6c920eb1d0ae11f07173c6",
+      "git_blob_sha": "dfd96c34a57ca8485a6609102752329eb1d4e1f7"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/muted.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/muted.png",
+      "mode": "100644",
+      "bytes": 303002,
+      "sha256": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+      "git_blob_sha": "87810252dcc1e0e627c267320a43e2cc8346f277"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/neutral.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/neutral.png",
+      "mode": "100644",
+      "bytes": 283007,
+      "sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "git_blob_sha": "8645e70de9f6badf6e4c260eaf02957c6e4ad147"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/runtime-frames.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/runtime-frames.json",
+      "mode": "100644",
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+      "git_blob_sha": "471e2e633df635545f99270e1960eb5ba41ced2e"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/stopped.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/stopped.png",
+      "mode": "100644",
+      "bytes": 299811,
+      "sha256": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+      "git_blob_sha": "5c1e879ffaadce433c9cba63fdcf0d37e3b4b36b"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/teacher_scene.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/teacher_scene.png",
+      "mode": "100644",
+      "bytes": 113407,
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "git_blob_sha": "efb39582dec4efb6352c1a2915f60d6f760af5f4"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-decoded-review/frames-001-012.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-001-012.png",
+      "mode": "100644",
+      "bytes": 251261,
+      "sha256": "8daf28c29635ec899bce5f047c7d7ea4f6cad4963c42634038eecab027459d5f",
+      "git_blob_sha": "3d727898fb567c7bf5f22452f4c88c41892f945d"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-decoded-review/frames-013-024.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-013-024.png",
+      "mode": "100644",
+      "bytes": 226873,
+      "sha256": "55c6cb610b46ce1039483b805efe81cc486ffdb63e28fbdf3d380d11c87d3035",
+      "git_blob_sha": "4ab6c3fe9b5c0f5bcc9669529de71fd1367e28ef"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-decoded-review/frames-025-036.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-025-036.png",
+      "mode": "100644",
+      "bytes": 693462,
+      "sha256": "e8a6713c488893c61686314c5eba2654346d5bc995ca213fbfd97f33cf1b71b6",
+      "git_blob_sha": "062f5cf7b368b8ea72410d968afd0894632ad5bf"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-decoded-review/frames-037-048.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-037-048.png",
+      "mode": "100644",
+      "bytes": 706854,
+      "sha256": "d3f890bb735dabd0d10365aebc4288c6da25e640ee44169ebc9f13d390683409",
+      "git_blob_sha": "bda7430312f9c53daea55bd4828172b3219db88f"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-decoded-review/frames-049-060.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-049-060.png",
+      "mode": "100644",
+      "bytes": 714773,
+      "sha256": "d4e36dc9442e2102b1507728fbac454e789e806525b7ab1c01b38beea1fd4328",
+      "git_blob_sha": "30314271df03d80fc57c6679fd081580c803b8b2"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-decoded-review/frames-061-072.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-061-072.png",
+      "mode": "100644",
+      "bytes": 715409,
+      "sha256": "dac84e935d5d8ada7980d2d7f8efaf2d680707c607431f5e43450414285aba20",
+      "git_blob_sha": "141e66a3a0425b2f8db1bff395d57137f18bcc06"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-decoded-review/frames-073-084.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-073-084.png",
+      "mode": "100644",
+      "bytes": 682431,
+      "sha256": "136769a2962eed0cb3203970202cb43a0a776749721848929be22ee2598833c4",
+      "git_blob_sha": "5c5ec75337a6f87ea0e203b20e2a908ddb2ed052"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-decoded-review/frames-085-096.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-085-096.png",
+      "mode": "100644",
+      "bytes": 699913,
+      "sha256": "d55fae197c6196c6db83de0742a0ca14e8baf0c391ecd63a53ee94e4619bf3d6",
+      "git_blob_sha": "3de7aa06109741fa653ef6e051001b85297784ac"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-decoded-review/frames-097-108.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-097-108.png",
+      "mode": "100644",
+      "bytes": 696637,
+      "sha256": "3566e44a47fb8b086be6b53345f3151855d7e5762aef2ec6252d93cb613417a3",
+      "git_blob_sha": "9c55c2d43386c05780d2b67f618f961bfdcc9482"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-decoded-review/frames-109-120.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-109-120.png",
+      "mode": "100644",
+      "bytes": 671231,
+      "sha256": "4dd75bb0264292fd8462552902ed8f5e7a4537cc33a792c3984059b4c4ea542a",
+      "git_blob_sha": "bc63e8c8d878bdb215932391c6472533eb0dee19"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-decoded-review/frames-121-132.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-121-132.png",
+      "mode": "100644",
+      "bytes": 691379,
+      "sha256": "bcb2cae4fb158efcb4492dd9ab534d843ec22a11c55803b33116df51287b5f4a",
+      "git_blob_sha": "a76bd44f9d486e3d6a23db587f24fc6be621bec9"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-decoded-review/frames-133-144.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-133-144.png",
+      "mode": "100644",
+      "bytes": 695108,
+      "sha256": "7d581397d81975b6a9f4c8c72d903a7e221ef4e66e55b38a08760f3fd37c22fc",
+      "git_blob_sha": "4e94924dea4c2716e4a6aa700655a20f487519ac"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-decoded-review/frames-145-148.png",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-145-148.png",
+      "mode": "100644",
+      "bytes": 76579,
+      "sha256": "996223bf4981da33b9f8029f74c2dfa9c4c195265561e9457989bff0db458125",
+      "git_blob_sha": "0389afb701373f0bd95bc96df3320e85df330995"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/original-job.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/original-job.log",
+      "mode": "100644",
+      "bytes": 369663,
+      "sha256": "329f1111c208b6767c777055b981b61cf2faf737e72506fb9d2915a242a99b34",
+      "git_blob_sha": "a367c19bab5d5085f0eab6a2c8b63fa5b107fa13"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/sidecar-transfer.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/sidecar-transfer.json",
+      "mode": "100644",
+      "bytes": 3024,
+      "sha256": "d4b7e13c7a5b185d4abdb79d2b246abb2736ad78bb3b6205223c5e79419fad58",
+      "git_blob_sha": "21480af3ed82c95d44e2d57413926a751c7f57e5"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-decode.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/movie-decode.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-encode.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/movie-encode.log",
+      "mode": "100644",
+      "bytes": 6185,
+      "sha256": "fbcb6a2fee6eb9ebe189be9fb95b92fb0cbc68e93faf876ec54a8d47a7b1e8c9",
+      "git_blob_sha": "787cfd42820ceccee1746bc9c0f454071148f17d"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-ffprobe-stderr.log",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/movie-ffprobe-stderr.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-ffprobe.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/movie-ffprobe.json",
+      "mode": "100644",
+      "bytes": 4555,
+      "sha256": "39708856ab9932c1f72ff026ab47db2e6dcce57cb293728adf378abeadfb9741",
+      "git_blob_sha": "77138ebe810b46b19f8d7844211203c43365658d"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/movie.json",
+      "mode": "100644",
+      "bytes": 733,
+      "sha256": "38ee52d3bb79b9857cad230b6fad8420edc0f3b037996c7a3de3903b4ae61bbb",
+      "git_blob_sha": "1e79f8677dfe3d5c1c57dd23c47e4556217ca1cc"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/runtime-frames.json",
+      "target": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/runtime-frames.json",
+      "mode": "100644",
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+      "git_blob_sha": "471e2e633df635545f99270e1960eb5ba41ced2e"
+    }
+  ],
+  "file_count": 61,
+  "total_bytes": 11608913,
+  "excluded_preserved_local_avi": {
+    "repository": "Ullmann27/lumo-lernen",
+    "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/green-capture/facial-runtime.avi",
+    "target": "not-uploaded-local-original-avi",
+    "mode": "100644",
+    "bytes": 7678592,
+    "sha256": "e12b636171923d8668692a3c4039dfa4e995e4a5721667fceef1bd177e19c166",
+    "git_blob_sha": "10e255aa1448b1bf093ee3ec787e48b701f7cb65"
+  }
+}

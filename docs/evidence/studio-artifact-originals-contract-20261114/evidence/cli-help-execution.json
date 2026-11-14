@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "scripts/verify_studio_artifact_originals.py",
+    "--help"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.034448916994733736,
+  "log_sha256": "6a663f6382cac42cd7c735faa6b1020135b75cf41b9b91b49099ceeb2b8b17bb",
+  "no_download": true
+}

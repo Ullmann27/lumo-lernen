@@ -1,0 +1,164 @@
+{
+  "raw_frame_sidecar_sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+  "source_avi_sha256": "0061f12d5694a93cfe8e8ccf176fa8091a7c80dc41976c0fa36490e4bda25e36",
+  "phase_measurements": [
+    {
+      "phase": "first_word",
+      "steps": [
+        31,
+        54
+      ],
+      "rows": 24,
+      "audible_rows": 22,
+      "position_ms_range": [
+        0.0,
+        922.993183135986
+      ],
+      "jaw_range": [
+        0.0,
+        0.41340583562851
+      ],
+      "envelope_range": [
+        0.0,
+        0.747239828109741
+      ]
+    },
+    {
+      "phase": "second_word_pre_mute",
+      "steps": [
+        60,
+        65
+      ],
+      "rows": 6,
+      "audible_rows": 6,
+      "position_ms_range": [
+        46.4399084448814,
+        249.614506959915
+      ],
+      "jaw_range": [
+        0.0,
+        0.699060499668121
+      ],
+      "envelope_range": [
+        0.00993218831717968,
+        0.798483192920685
+      ]
+    },
+    {
+      "phase": "muted",
+      "steps": [
+        67,
+        75
+      ],
+      "rows": 9,
+      "audible_rows": 0,
+      "position_ms_range": [
+        330.884367227554,
+        661.768734455109
+      ],
+      "jaw_range": [
+        0.0,
+        0.0
+      ],
+      "envelope_range": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "phase": "third_word",
+      "steps": [
+        96,
+        107
+      ],
+      "rows": 12,
+      "audible_rows": 12,
+      "position_ms_range": [
+        46.4399084448814,
+        505.034029483795
+      ],
+      "jaw_range": [
+        0.0,
+        0.699060499668121
+      ],
+      "envelope_range": [
+        0.0,
+        0.798483192920685
+      ]
+    },
+    {
+      "phase": "stopped",
+      "steps": [
+        112,
+        143
+      ],
+      "rows": 32,
+      "audible_rows": 0,
+      "position_ms_range": [
+        0.0,
+        0.0
+      ],
+      "jaw_range": [
+        0.0,
+        0.0
+      ],
+      "envelope_range": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "actual_recorded_audio_measurements": [
+    {
+      "phase": "before_voice",
+      "movie_seconds": [
+        0.1,
+        1.2
+      ],
+      "rms": 0.0,
+      "peak": 0.0,
+      "samples": 52800
+    },
+    {
+      "phase": "first_voice",
+      "movie_seconds": [
+        1.45,
+        2.1
+      ],
+      "rms": 0.03664766060399204,
+      "peak": 0.391876220703125,
+      "samples": 31200
+    },
+    {
+      "phase": "muted_middle",
+      "movie_seconds": [
+        2.95,
+        3.15
+      ],
+      "rms": 9.834720630731968e-06,
+      "peak": 3.0517578125e-05,
+      "samples": 9600
+    },
+    {
+      "phase": "third_voice",
+      "movie_seconds": [
+        4.1,
+        4.45
+      ],
+      "rms": 0.05917859588659391,
+      "peak": 0.403656005859375,
+      "samples": 16801
+    },
+    {
+      "phase": "after_stop",
+      "movie_seconds": [
+        4.75,
+        5.9
+      ],
+      "rms": 0.0,
+      "peak": 0.0,
+      "samples": 55200
+    }
+  ],
+  "limits": "Desktop MovieMaker/AudioStreamPlayer only. RMS is an amplitude measure, not phoneme detection. Playback position is real; movie time uses fixed 24-fps recording cadence, not device FPS. The final three movie frames are normal scene teardown."
+}

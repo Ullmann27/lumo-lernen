@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-14T05:09:10.636740+00:00",
+  "scope": "Renderer-only visual fixture of the existing production C4 PackedScene. No rule, bot, reward, persistence, Android, physical Fold7, thermal or 60FPS acceptance.",
+  "source_script": {
+    "path": "scripts/tests/connect_four_visual_capture.gd",
+    "bytes": 19435,
+    "sha256": "178bc5b179e0402f1e4cc9901b21f2592745eae20b164706ec621506350f9324",
+    "git_blob_sha1": "6e3d98071bf3f0f16f4a20a6599d4950521c8a29"
+  },
+  "production_table_sha256": "76ab128b835bffd41b87274566408b8baab4073fe6733b2f5e3e990e0e027a72",
+  "fixture_json_sha256": "cb2b8d22d32066777698ba4af01eb139e90c2d75bf7a7c2b95ab4b757de7f6c0",
+  "result": {
+    "exit_code": 0,
+    "checks": 303,
+    "errors": [],
+    "rendered_pngs": 4,
+    "elapsed_seconds": 9.336774048992083,
+    "actual_input_events": 30,
+    "state_mutations": 0,
+    "accepted_host_actions": 0,
+    "minimum_exposed_target_side_dp": 50.0
+  },
+  "raster": {
+    "display_driver": "X11",
+    "rendering_method": "gl_compatibility",
+    "video_adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "density": 1.0,
+    "safe_area": "Desktop full viewport; no Android WindowInsets fixture or device-density measurement in this capture."
+  },
+  "headless_negative": {
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/runtime",
+      "--script",
+      "res://scripts/tests/connect_four_visual_capture.gd",
+      "--",
+      "--capture"
+    ],
+    "exit_code": 2,
+    "elapsed_seconds": 0.3153534720040625,
+    "expected_exit": 2,
+    "source_sha256": "178bc5b179e0402f1e4cc9901b21f2592745eae20b164706ec621506350f9324",
+    "captured_pngs": [],
+    "scope": "Negative renderer guard: no rendering or gameplay PASS"
+  },
+  "all_four_final_images_actually_opened": true,
+  "images": [
+    {
+      "path": "render-v2/captures/c4-empty-landscape.png",
+      "bytes": 83161,
+      "sha256": "cdeff17141082e592e3db17251209319b54ee0204afaf3d00aac6be76a3d82fc",
+      "size_px": [
+        960,
+        540
+      ],
+      "actual_disc_meshes": 0,
+      "actual_win_ring_meshes": 0,
+      "verdict": "PASS within visual-fixture scope",
+      "observed": "Tatsächlich geöffnet: vollständiges leeres 7×6-Lochbrett, Original-Lumo rechts, gut lesbare Zurück-/Pause-Ziele und sieben Spaltenknöpfe. Keine Steine; keine Gewinnmarkierung."
+    },
+    {
+      "path": "render-v2/captures/c4-playing-phone.png",
+      "bytes": 67841,
+      "sha256": "efaf5d1739f04b95b41dd44476bcfa03dae34cc6bd812540993314ccd00780eb",
+      "size_px": [
+        412,
+        915
+      ],
+      "actual_disc_meshes": 2,
+      "actual_win_ring_meshes": 0,
+      "verdict": "PASS within visual-fixture scope",
+      "observed": "Tatsächlich geöffnet: aufrechtes Format mit zwei sichtbar getrennten Steinen in Spalte 4, unten Cyan und darüber Gold; alle sieben Spaltenknöpfe, Zurück und Pause vollständig sichtbar. Der Originalfuchs wird durch das unveränderte Produktionslayout in schmaler Ansicht ausgeblendet. Größere freie Flächen gehören zum bestehenden Kameralayout."
+    },
+    {
+      "path": "render-v2/captures/c4-win-landscape.png",
+      "bytes": 85162,
+      "sha256": "d6ccec6f4cf435d329fc32d7280ea8467d5c966945dbceb2c9794e0782a10456",
+      "size_px": [
+        960,
+        540
+      ],
+      "actual_disc_meshes": 7,
+      "actual_win_ring_meshes": 4,
+      "verdict": "PASS within visual-fixture scope",
+      "observed": "Tatsächlich geöffnet: sieben Steine, vier Cyan-Steine in der untersten Reihe mit jeweils sichtbarem hellem Ring; drei Gold-Steine rechts; Caption Cyan gewinnt!, deaktivierte Spaltenknöpfe und erreichbares Menü. Original-Lumo sichtbar."
+    },
+    {
+      "path": "render-v2/captures/c4-paused-small.png",
+      "bytes": 29544,
+      "sha256": "2f5c7b8b6c52363db3ee2164fd8ba21f86866e155a1fff46d97330c63bfeda17",
+      "size_px": [
+        640,
+        360
+      ],
+      "actual_disc_meshes": 3,
+      "actual_win_ring_meshes": 0,
+      "verdict": "PASS within visual-fixture scope",
+      "observed": "Tatsächlich geöffnet: echte Pause-Erklärung und Fortsetzen vollständig sichtbar, Neue Runde darunter und ein Scrollbalken. Das Modal verdeckt einen Teil des Bretts; die drei Steine sind durch die tatsächliche Szenengeometrie gezählt, nicht als vollständig sichtbare Pixelzahl behauptet. Resume/Restart/Mode wurden vorher durch echte Wischereignisse vollständig exponiert."
+    }
+  ],
+  "warnings": [
+    "Three invalid imported texture UID warnings in the isolated small project; Godot explicitly fell back to each existing texture text path. All three exact source PNG bytes were bound before/after; the actual displayed Original-Lumo material was inspected. No missing resource error or engine/runtime error in the final capture log.",
+    "Hard shadows and simple room materials are present; this fixture makes no AAA-quality, facial-rig or speech-performance claim."
+  ],
+  "iterations": [
+    {
+      "path": "render-v1",
+      "checks": 302,
+      "exit_code": 0,
+      "note": "Original pass retained. Final small-screen image left explanatory caption above scroll clip after exposing menu buttons. Only the new capture harness was refined to scroll genuinely back to the menu top; no production edit or test threshold reduction."
+    },
+    {
+      "path": "render-v2",
+      "checks": 303,
+      "exit_code": 0,
+      "note": "Additional final-caption exposure assertion; the same four geometry/layout cases and targets remain."
+    }
+  ],
+  "source_integrity": {
+    "files_compared": 30,
+    "all_unchanged": true,
+    "proof": "evidence/runtime-source-after.json",
+    "no_global_clean_checkout_or_cache_assertion": true
+  },
+  "future_ci": "This local result is bound to the explicit source hashes. A new native commit and actual CI capture with the combined source remain necessary; source_revision is empty locally, not a fabricated commit."
+}

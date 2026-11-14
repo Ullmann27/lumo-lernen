@@ -1,0 +1,279 @@
+{
+  "repository": "Ullmann27/lumo-godot",
+  "branch": "chatgpt/lumo-studio-2020-20261114",
+  "baseline": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "base_tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/systems/host_bridge.gd",
+      "path": "scripts/systems/host_bridge.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5193,
+      "sha256": "56ecb470319ea047aa5d8c3aad92d55c99355ee07c533a6543fcf167f098abb7",
+      "git_blob_sha": "dab96a1b918dc754568c0eda14cdda05175c89fb",
+      "baseline_blob": "7d0c4e67ace04af02f91738368648380d573bcd3"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/app/scene_router.gd",
+      "path": "scripts/app/scene_router.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4457,
+      "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06",
+      "git_blob_sha": "0e28e5c797af076d2a2410143e42605982e8d1d5",
+      "baseline_blob": "9cfea6e6d7f0ab5322a1e0d0b140a7109f9a6307"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/app/app_boot.gd",
+      "path": "scripts/app/app_boot.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 18707,
+      "sha256": "4ed973120d62f1942842c43f3fe1f1b6b7390997d39e8cef7c1cefdd6ffebaf0",
+      "git_blob_sha": "2fc3b5ea4fac7440733ae5a77a8289bcd57557f6",
+      "baseline_blob": "8456b1933098f0bc852bfb6c227d7a5f7f59756c"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/tests/connect_four_runtime_regression.gd",
+      "path": "scripts/tests/connect_four_runtime_regression.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 14782,
+      "sha256": "83852fdd2e19cd32b20ec6de62179ee3f9e7712e574f723773bcc40cc35dd0a7",
+      "git_blob_sha": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/games/connect_four/connect_four_table.gd",
+      "path": "scripts/games/connect_four/connect_four_table.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 30031,
+      "sha256": "76ab128b835bffd41b87274566408b8baab4073fe6733b2f5e3e990e0e027a72",
+      "git_blob_sha": "cdeb31fc6cfe30c18fc6c96afb2b1d749532c37f",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scenes/games/connect_four_table.tscn",
+      "path": "scenes/games/connect_four_table.tscn",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 204,
+      "sha256": "49d116bd0436200d01b1e03eac3601854b33bf75142969b69d2c588418dd3af2",
+      "git_blob_sha": "e1c14734e2bde85fd9852db3d8ef20f4cd0ca24d",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 8408740,
+      "sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+      "git_blob_sha": "4d18f240a34a5aa6320ecd61c0ab0fa719c0b0ad",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1162,
+      "sha256": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15",
+      "git_blob_sha": "3b65ce3c2d8e63efe4c2251261b047be37e383a0",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/characters/lumo/lumo_facial_pose.gd",
+      "path": "scripts/characters/lumo/lumo_facial_pose.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 6120,
+      "sha256": "2d89319ccb622cad1b54c36113bda8594706c024d77f2a0605ec057d51a0f6ef",
+      "git_blob_sha": "91b8a8cd25f21dab84b77f178aa82d06673b54f9",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/characters/lumo/lumo_rigged_actor.gd",
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 11313,
+      "sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+      "git_blob_sha": "e4b6a6081a922a137f68491de66f51e096528510",
+      "baseline_blob": "dea775d2f26877c858bb79079a01b3b464e4d88f"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/learning/learning_world.gd",
+      "path": "scripts/learning/learning_world.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 45446,
+      "sha256": "1ec88577645b89d11d13191a0dcc987af9beb6b3d2b2e7f0379525470711921a",
+      "git_blob_sha": "25e41d3d81e091e7e357400ff8ba76a18d6d2890",
+      "baseline_blob": "5ab38de47eaf8aa960423faae4fb11430f4136f4"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/tests/learning_world_regression.gd",
+      "path": "scripts/tests/learning_world_regression.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 22332,
+      "sha256": "4873ac19bfadf84f318973d02950e11ffafd57024898148790e3d66d221f715d",
+      "git_blob_sha": "93a903efb43a2bdef97121434fc7e89e60cab6ac",
+      "baseline_blob": "e4526f35b78188022fd5bcad94e943fc7b7a5b00"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/tests/lumo_facial_capture.gd",
+      "path": "scripts/tests/lumo_facial_capture.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 8675,
+      "sha256": "cd223ad265b46626a09350583466d3cbcb70c1d7061170c753f58d24269aba38",
+      "git_blob_sha": "e272be6f0aed98fdc5b5a1bfca58bb7f0d0edba9",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/tests/lumo_facial_regression.gd",
+      "path": "scripts/tests/lumo_facial_regression.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 7102,
+      "sha256": "dc98c2521543d5b28238f37ed064b0ccd105378d124e44bbefd668c1b16cc03e",
+      "git_blob_sha": "9834e1c8cbef59f86f8ec1840895357cb429b624",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/tests/lumo_rigged_animation_capture.gd",
+      "path": "scripts/tests/lumo_rigged_animation_capture.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5631,
+      "sha256": "03ce996e765947e20c32cea4b683e70b25ec07e20f8d8c844a0cb0af038df151",
+      "git_blob_sha": "f821f2b7bfa5d15c9dc1a23b0f171caf31264926",
+      "baseline_blob": "6ac65a9f97718230932fdd3de375f21c4ef752ca"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/tests/lumo_studio_motion_regression.gd",
+      "path": "scripts/tests/lumo_studio_motion_regression.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 8857,
+      "sha256": "f6451145eec7729f35b3aab70d9fe69ad970e171288c156de3e484213984253e",
+      "git_blob_sha": "2a3e40da3a48e68d587f635658f9db645e70e4e7",
+      "baseline_blob": "b3f1fa0c3bf6c7d47cac6665039ccb7fc891a146"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/tests/lumo_teacher_pose_regression.gd",
+      "path": "scripts/tests/lumo_teacher_pose_regression.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 7298,
+      "sha256": "51b32d1cb3d3684334bb5445626cacc5b20d87471f9e0f8325f07514f23f1a26",
+      "git_blob_sha": "bc534776d2f9295369e5e2de90abb8a2f3a46268",
+      "baseline_blob": "e04b3bd36cdaaa34ce07dd599e86bb24c5908575"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/assets/characters/lumo_facial/ATTRIBUTION.md",
+      "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2626,
+      "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+      "git_blob_sha": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/native/scripts/tests/connect_four_visual_capture.gd",
+      "path": "scripts/tests/connect_four_visual_capture.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 19435,
+      "sha256": "178bc5b179e0402f1e4cc9901b21f2592745eae20b164706ec621506350f9324",
+      "git_blob_sha": "6e3d98071bf3f0f16f4a20a6599d4950521c8a29",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/native/scripts/creative/treasure_world.gd",
+      "path": "scripts/creative/treasure_world.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 25074,
+      "sha256": "ce7c7df90f85604f912ff1afc46077935053e883359db47c3f9e9d7dcc4fe65d",
+      "git_blob": "fdddd40fdf9958b7bc0bff50b75ccd4e8a2458b8",
+      "baseline_git_blob": "38da987abf4d152c1095a72ed1ac49ed30d9d381",
+      "git_blob_sha": "fdddd40fdf9958b7bc0bff50b75ccd4e8a2458b8",
+      "baseline_blob": "38da987abf4d152c1095a72ed1ac49ed30d9d381"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "path": "scripts/tests/treasure_title_contrast_regression.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 8982,
+      "sha256": "1f0d170fbe05c89a36501463ec9307d3f830e10a4cb63a02f663f98a5e7b600d",
+      "git_blob": "6e50ace998d896fd88f0006112152e490e7c64e3",
+      "baseline_git_blob": null,
+      "git_blob_sha": "6e50ace998d896fd88f0006112152e490e7c64e3",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/native/scripts/tests/fixtures/treasure_title_86445.json",
+      "path": "scripts/tests/fixtures/treasure_title_86445.json",
+      "repository": "Ullmann27/lumo-godot",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 317,
+      "sha256": "29bcc428329e2a6106f0608a3f0a53060d3073ca4c1fdffa5fd809848977ce73",
+      "git_blob": "78afb5e77187170a345940059da450eed02530cf",
+      "baseline_git_blob": null,
+      "git_blob_sha": "78afb5e77187170a345940059da450eed02530cf",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native/docs/studio-2020-implementation.md",
+      "path": "docs/studio-2020-implementation.md",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4639,
+      "sha256": "d9ae8f2468445944554ff95b078f76e391df30d75d9ac1bb04b7de73e828e999",
+      "git_blob_sha": "638d086741f5ce6962410e3097bac9b254f97f6f",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native/.github/workflows/lumo-studio-2020.yml",
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 19772,
+      "sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+      "git_blob_sha": "fcf5fec5a43eda65b7d2c077af281fa5497635ae",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native/tools/validate_studio.sh",
+      "path": "tools/validate_studio.sh",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 22674,
+      "sha256": "ba194e2cdb3b39e95249a347b1e53a2b146ffe2eda1380877743156ebd2fd8b1",
+      "git_blob_sha": "3b41626b54845e70e3ac9046e5120f7aa0eb7907",
+      "baseline_blob": "97e25c3ebef6f88a65ccee615ba144fe4b64b86a"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native/tools/tests/test_nextgen_runner.py",
+      "path": "tools/tests/test_nextgen_runner.py",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 40391,
+      "sha256": "9dc3ed010222305ff100b6d7c9cc0118ea690e4f4b8a498ce0b113aa245bbf7d",
+      "git_blob_sha": "7b7b9049889848354abc64d0e4028bcb943c2811",
+      "baseline_blob": "398f3ff46d9dc85f08f2824a749bc2ec9fe7780f"
+    }
+  ],
+  "file_count": 26,
+  "bytes": 8749960
+}

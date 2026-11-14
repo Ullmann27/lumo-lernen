@@ -1,0 +1,21 @@
+--- a/.github/probes/lumo_connect_four_android_probe.py
++++ b/.github/probes/lumo_connect_four_android_probe.py
+@@ -367,7 +367,9 @@
+         while time.monotonic()<deadline:
+             try:
+                 value=observe()
+-                if accept(value):return value
++                if accept(value):
++                    require(time.monotonic()<deadline, name+' observation completed after its unchanged deadline')
++                    return value
+             except (RuntimeError,json.JSONDecodeError,KeyError,TypeError) as e:
+                 errors.append(str(e))
+             time.sleep(.4)
+@@ -395,6 +397,7 @@
+                 state_after=self.state(layout['token']);later,later_hash=self.raw(LAYOUT,'layout-after')
+                 require(state==state_after and raw_hash==later_hash,'State/layout changed during actual capture')
+                 self.foreground();require(pid==self.pid(),'Native process changed during capture')
++                require(time.monotonic()<deadline,'Snapshot reads completed after the unchanged capture deadline')
+                 report={'capture':shot,'layout_sha256':raw_hash,'state':state,'layout':layout,'geometry':projected,'disc_pixels':pixels}
+                 write(self.out/(self.tag(name)+'-observation.json'),report)
+                 return report

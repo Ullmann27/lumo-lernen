@@ -1,0 +1,18 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/runtime",
+    "--script",
+    "res://scripts/tests/connect_four_visual_capture.gd",
+    "--",
+    "--capture"
+  ],
+  "exit_code": 2,
+  "elapsed_seconds": 0.3153534720040625,
+  "expected_exit": 2,
+  "source_sha256": "178bc5b179e0402f1e4cc9901b21f2592745eae20b164706ec621506350f9324",
+  "captured_pngs": [],
+  "scope": "Negative renderer guard: no rendering or gameplay PASS"
+}

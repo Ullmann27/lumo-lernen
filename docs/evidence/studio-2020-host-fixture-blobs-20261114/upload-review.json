@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "completed_utc": "2026-11-14T06:07:04.408497+00:00",
+  "status": "FOUR_BLOBS_CREATED_AND_VERIFIED",
+  "repository": "Ullmann27/lumo-lernen",
+  "source_manifest": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-prospective-delta-audit-before-native-repairs.json",
+  "source_manifest_sha256": "7614821c6549da91d13d7c90c075feadc6837e47c546bd66b95ef0c31fbb7c00",
+  "source_manifest_unchanged": true,
+  "operations": {
+    "create_blob": 4,
+    "create_tree": 0,
+    "create_commit": 0,
+    "update_ref": 0,
+    "create_pull_request": 0
+  },
+  "transfer": {
+    "encoding": "base64",
+    "read_chunk_bytes": 32766,
+    "max_parallel_reads": 8,
+    "create_blob_serial": true,
+    "total_bytes": 7003176,
+    "verified_chunks": 216
+  },
+  "files": [
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/build-loading.png",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/tests/fixtures/creative_geometry_86445/build-loading.png",
+      "bytes": 1871144,
+      "sha256": "b6805765bf524301a036bb87207d3572e8f475164692bd0039420160c8f4cd38",
+      "git_blob_sha": "487d90aa87a710acab7f30f95e8632fc7956cd3d",
+      "mode": "100644",
+      "source_unchanged_after_upload": true,
+      "github_returned_sha_matches": true
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/build-playing.png",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/tests/fixtures/creative_geometry_86445/build-playing.png",
+      "bytes": 2480067,
+      "sha256": "cd4efedb88413e2de07755dce3bb99ed2440fe6de4fb075b5c9900a6ea44f7a1",
+      "git_blob_sha": "12aa1d09a1baf74fcbdeacce551886a0d51b669b",
+      "mode": "100644",
+      "source_unchanged_after_upload": true,
+      "github_returned_sha_matches": true
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/jump-portrait.png",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/tests/fixtures/creative_geometry_86445/jump-portrait.png",
+      "bytes": 1634627,
+      "sha256": "8c95fc1433958c63b53727f36f4bc414d1caf2935544b1fb3cbc46036c735c07",
+      "git_blob_sha": "7a90c4325d7299780800e37b40fa487fdda3862b",
+      "mode": "100644",
+      "source_unchanged_after_upload": true,
+      "github_returned_sha_matches": true
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/puzzle-board.png",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/tests/fixtures/creative_geometry_86445/puzzle-board.png",
+      "bytes": 1017338,
+      "sha256": "0ffb971f2ec18e8031cd58f9370a44e41c09fdda7c099456365e177253641eb3",
+      "git_blob_sha": "24b9d5119aa6c439786c26ae249334407e2b9d3d",
+      "mode": "100644",
+      "source_unchanged_after_upload": true,
+      "github_returned_sha_matches": true
+    }
+  ],
+  "limits": [
+    "Only content-addressed repository blobs were created; no branch or commit points to them as a result of these calls.",
+    "No PNG was regenerated or modified; local source files and the parent provenance manifest remain unchanged.",
+    "This upload operation is not a new renderer, test, Android, or release result."
+  ]
+}

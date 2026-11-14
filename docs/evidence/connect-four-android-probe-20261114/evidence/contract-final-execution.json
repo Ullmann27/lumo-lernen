@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python3",
+    "-W",
+    "error::ResourceWarning",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_connect_four_android_probe.py",
+    "-v"
+  ],
+  "started_utc": "2026-11-14T04:44:04.021307+00:00",
+  "duration_seconds": 0.20314841099025216,
+  "exit_code": 0,
+  "log_bytes": 4794,
+  "log_sha256": "3ee5ac474f071de3123a2d5bafda42dddc895600d6ecc77d89ff35e35a025662",
+  "scope": "25 pure/synthetic/recorded-desktop-sidecar unit contracts. No Android, emulator, app, new native renderer or hardware invoked."
+}

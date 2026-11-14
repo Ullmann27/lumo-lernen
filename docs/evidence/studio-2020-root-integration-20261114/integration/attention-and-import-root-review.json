@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "scope": "Targeted read-only review of exact first shared native runtime after the confirmed identity failure",
+  "source_commit": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "attention_patch_sha256": "84789b1e8d4404a637481b5df0f099a7fa4d7fe437dc4a48b35c1c1735a81e53",
+  "original_model_path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+  "original_model_sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+  "facial_model_path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+  "facial_model_sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+  "root_checks": [
+    "Read the complete diff and active original/derivative identity guards",
+    "Read original red and green provenance; 1842 existing checks preserved and four explicit identity guards replace the failing single comparison",
+    "Read full1185-file import change proof: only facial .glb.import canonicalization changed a tracked input",
+    "Searched bound production/test scripts for the old model hash and active actor.MODEL; no additional hardcoded original-hash comparison against the active facial derivative found"
+  ],
+  "test_execution_by_root": false,
+  "actual_targeted_tests_owner": "games_worlds",
+  "red": {
+    "checks": 1843,
+    "failures": 1
+  },
+  "green": {
+    "checks": 1846,
+    "failures": 0
+  },
+  "new_full_native_ci": "not run at the correction yet"
+}

@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "host_evidence_parent": "e423df58117c8f49bcd03c634e438392dc79c3ef",
+  "host_evidence_parent_tree": "61d1aa197fb28072ab9405039b0d171cb4ce1aea",
+  "target_repository": "Ullmann27/lumo-lernen",
+  "scope": "Frozen explicitly manifested documentation only. No source deployment and no test re-execution.",
+  "sources": [
+    {
+      "id": "facial",
+      "manifest": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/upload-manifest.json",
+      "manifest_sha256": "dab367a6b66ec6d5814d31cf6b942874b7cb032ad1cc6194e69889e29401043c",
+      "entries_expected": 123,
+      "evidence_expected": 109
+    },
+    {
+      "id": "harness",
+      "manifest": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/native-harness-upload-manifest.json",
+      "manifest_sha256": "ce6ef92b008a7e986e7cbdbee7efd2c9c3d95b2b4ccdf3f8745c0b4357824c1b",
+      "entries_expected": 37,
+      "evidence_expected": 34
+    },
+    {
+      "id": "cards-german",
+      "manifest": "/workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/evidence-upload-manifest.json",
+      "manifest_sha256": "7beb781cffd8e3b0b9ef713add9cc016e09f0de42611f56bf760d97f77459f04",
+      "entries_expected": 17,
+      "evidence_expected": 17
+    },
+    {
+      "id": "creative-native",
+      "manifest": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/native-evidence-upload-manifest.json",
+      "manifest_sha256": "2a447d637749ea67bb60a3d53bcbf57de2c348e88f98701d6e81ce03c60b40fa",
+      "entries_expected": 80,
+      "evidence_expected": 80
+    },
+    {
+      "id": "creative-host",
+      "manifest": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/host-evidence-upload-manifest.json",
+      "manifest_sha256": "91b9239f6d55df2eb727726bb919964bab5688ccccaf59892329e1e68f34b589",
+      "entries_expected": 13,
+      "evidence_expected": 13
+    },
+    {
+      "id": "c4-visual",
+      "manifest": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/evidence-upload-manifest.json",
+      "manifest_sha256": "5288359fe057359c907021e0be4d879b3a7f331c02a351ddd92583d690a6807d",
+      "entries_expected": 19,
+      "evidence_expected": 19
+    },
+    {
+      "id": "c4-android",
+      "manifest": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-86445/evidence-upload-manifest.json",
+      "manifest_sha256": "6d6f442a95e211e22ed874822d28ad89e6f55c4b3fc08d26de04ee8480159f98",
+      "entries_expected": 7,
+      "evidence_expected": 7
+    },
+    {
+      "id": "c4-android-deadline",
+      "manifest": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-deadline-86445/evidence-upload-manifest.json",
+      "manifest_sha256": "d680e13799d016c2c080553b6195caa11af831933643cdbbb749db99bd4c2671",
+      "entries_expected": 8,
+      "evidence_expected": 8
+    },
+    {
+      "id": "android-contracts2020",
+      "manifest": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/evidence-upload-manifest.json",
+      "manifest_sha256": "a49d1d72b8403ea891b7d81e27cfe384130147891595e5d3dc5a0d0ba274a20c",
+      "entries_expected": 18,
+      "evidence_expected": 18
+    },
+    {
+      "id": "release-audit",
+      "manifest": "/workspace/scratch/5987865ae883/qa/studio-2020-release-audit-20261114/upload-manifest.json",
+      "manifest_sha256": "b903e97394317917bf16673981ac17ff569cf82502cb6485b9db6c7861799e50",
+      "entries_expected": 6,
+      "evidence_expected": 6
+    },
+    {
+      "id": "review-c4-runner",
+      "manifest": "/workspace/scratch/5987865ae883/qa/connect-four-root-review-20261114/runner-closure-upload-manifest.json",
+      "manifest_sha256": "9238f6583082afcb231992d5180f270955e5b44a21506bfadaa78c8d9240bc0b",
+      "entries_expected": 1,
+      "evidence_expected": 1
+    },
+    {
+      "id": "review-android-contracts2020",
+      "manifest": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-review-20261114/upload-manifest.json",
+      "manifest_sha256": "e926abbc4669e915577f8286246d9134b54f2c2dbe0c30fe840628a51ea5aab2",
+      "entries_expected": 1,
+      "evidence_expected": 1
+    },
+    {
+      "id": "review-facial-native",
+      "manifest": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-independent-review-20261114/upload-manifest.json",
+      "manifest_sha256": "028215b044c85dabc3f53cd502725d9c6e06e5ba0d5cbd031d387e19410715ea",
+      "entries_expected": 1,
+      "evidence_expected": 1
+    },
+    {
+      "id": "review-c4-android",
+      "manifest": "/workspace/scratch/5987865ae883/qa/connect-four-android-independent-review-20261114/upload-manifest.json",
+      "manifest_sha256": "6fb4d31db534c88653e3022f5388905a30139a2d275be0baa1b11df8b3b8dbf8",
+      "entries_expected": 1,
+      "evidence_expected": 1
+    },
+    {
+      "id": "review-workflow-draft",
+      "manifest": "/workspace/scratch/5987865ae883/qa/studio-2020-workflow-independent-review-20261114/upload-manifest.json",
+      "manifest_sha256": "c75660d2ebc8f71c91afac72ce1aeec301414229c0c18844085ab36c0a8c650e",
+      "entries_expected": 1,
+      "evidence_expected": 1
+    },
+    {
+      "id": "review-c4-harness",
+      "manifest": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/harness-review-upload-manifest.json",
+      "manifest_sha256": "3f9d3213d532bb98770207430ff2345f099e0e1c5fb63ed4ea10390897442510",
+      "entries_expected": 1,
+      "evidence_expected": 1
+    }
+  ],
+  "excluded_later_work": [
+    "Root integration logs",
+    "new C4 publisher",
+    "later C4 publisher closure",
+    "new Native2020 CI artifacts",
+    "new Host2020/Android2020 evidence"
+  ],
+  "root_reported_native_status": {
+    "commit": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+    "tree": "9edd7afed143c83fec5d2dc89949ca9325e042ce",
+    "branch": "chatgpt/lumo-studio-2020-20261114",
+    "pull_request": 167,
+    "run_id": 43561885899,
+    "status_at_parent_message": "in_progress",
+    "conclusion": null,
+    "source": "Root reports actual GitHub source/tree verification and newly started run; not a result obtained by this packaging task",
+    "host_pin_approved": false
+  }
+}

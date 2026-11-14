@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T05:48:37.451158+00:00",
+  "status": "EXACT_TRACKED_FACIAL_IMPORT_REWRITE_REPRODUCED",
+  "source_commit": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "tree": "9edd7afed143c83fec5d2dc89949ca9325e042ce",
+  "original_source_files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 8408740,
+      "sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+      "git_blob_sha": "4d18f240a34a5aa6320ecd61c0ab0fa719c0b0ad",
+      "baseline_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1162,
+      "sha256": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15",
+      "git_blob_sha": "3b65ce3c2d8e63efe4c2251261b047be37e383a0",
+      "baseline_blob": null
+    }
+  ],
+  "stage2_original_workflow": {
+    "path": "qa/studio-2020-native-8be3-observation-20261114/additional-workflows/stage2-failure/workflow-at-8be3.yml",
+    "sha256": "b0d866d00d28576560debc2b29aa4790e69de2533c5c4ea65666127fa81f3e00"
+  },
+  "stage2_original_log": {
+    "path": "qa/studio-2020-native-8be3-observation-20261114/additional-workflows/stage2-failure/original-job.log",
+    "sha256": "41b3bedfb569e74709d14ef2c37bf70041c81d11dc3ee02a59330805b6ecfc55",
+    "observed_failure": "git diff --quiet HEAD -- returned exit1 after successful anatomy/start/aquarium probes; changed paths not printed"
+  },
+  "reproduction": {
+    "engine": "4.6.3.stable.official.7d41c59c4",
+    "exit_code": 0,
+    "elapsed_seconds": 4.151262429993949,
+    "import_before_sha256": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15",
+    "import_after_sha256": "ea8637187b5af2f1315958c27117d05d594873c61727f6bdf0e2d910581dfb5a",
+    "glb_unchanged": true,
+    "frozen_sources_unchanged": true,
+    "minimal_project_scope": "Only exact Facial GLB and tracked import bytes; same production renderer/features. No autoloads/main scene/default environment or unrelated assets. Empty generated import cache. No git init/ref and no screenshot."
+  },
+  "actual_added_fields": {
+    "generate/lightmap_uv": 0,
+    "generate/shadow_meshes": 0,
+    "lods/normal_merge_angle": 20.0,
+    "save_to_file/enabled": false,
+    "save_to_file/fallback_path": "",
+    "save_to_file/path": ""
+  },
+  "preserved_explicit_setting": {
+    "generate/lods": 2
+  },
+  "bounded_correction_candidate": "Use the exact Godot4.6.3-normalized after.glb.import bytes; preserve original GLB and the lid LOD override. No mutation has been applied to the frozen product. A separately authorized clean reimport can establish idempotence.",
+  "limits": [
+    "This minimal project reproduces a tracked rewrite, not the complete original CI working-tree diff",
+    "No claim that this was the only modified path in Stage2",
+    "No new render/animation/Android/performance acceptance",
+    "No git repository or refs were created or changed"
+  ]
+}

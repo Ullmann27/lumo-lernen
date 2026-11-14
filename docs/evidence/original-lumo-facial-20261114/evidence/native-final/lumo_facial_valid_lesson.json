@@ -1,0 +1,17 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "qa/original-lumo-facial-studio-803e/runtime",
+    "--script",
+    "res://scripts/tests/lumo_facial_regression.gd"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.5766448150097858,
+  "sha256": "8a3ba1eef6bead880d8965bbdda6a3277f2be445063aa84d6c6652e11312a22b",
+  "engine_errors": [],
+  "markers": [
+    "LUMO_FACIAL_PASS checks=102 actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false"
+  ]
+}

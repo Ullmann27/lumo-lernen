@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "scope": "New isolated C4 Android probe, tests and explicitly desktop-only layout fixture. Not yet an Android execution.",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-86445/.github/probes/lumo_connect_four_android_probe.py",
+      "target": ".github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 36232,
+      "sha256": "3859544988fb84345fc14f247a5c4ef55db0d65e6aac39b2b261875fd194a273",
+      "git_blob_sha": "e2cce2bd4d56318849f641e1f05704ce82c71fb4",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-86445/tools/android_qa/tests/test_connect_four_android_probe.py",
+      "target": "tools/android_qa/tests/test_connect_four_android_probe.py",
+      "bytes": 17055,
+      "sha256": "149712bdaf8bf87b0c9d9046b4a80b2ce6dcbdaf4b37e00361eb5b261265d8f3",
+      "git_blob_sha": "63cd79c61699db5d4e2902cf7a497a7f8ab4ff81",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-86445/tools/android_qa/tests/fixtures/connect_four_android/phone-playing.layout.json",
+      "target": "tools/android_qa/tests/fixtures/connect_four_android/phone-playing.layout.json",
+      "bytes": 20990,
+      "sha256": "6bc6ec736379fae23fa641543704017a3514036c66de2d2c5e2badd436d867ff",
+      "git_blob_sha": "4fb9d09fcc554e198604833d2be9972a86864bc1",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-86445/tools/android_qa/tests/fixtures/connect_four_android/origin.json",
+      "target": "tools/android_qa/tests/fixtures/connect_four_android/origin.json",
+      "bytes": 587,
+      "sha256": "8b7ba4224d5f7f1a31ed449512a9b2a00a7e74e5ab787a6d7d0950a1fb71fba5",
+      "git_blob_sha": "addb39b9a20d43f8274f3cd3881d5adbc638a127",
+      "mode": "100644"
+    }
+  ]
+}

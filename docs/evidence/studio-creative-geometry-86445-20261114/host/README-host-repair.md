@@ -1,0 +1,9 @@
+# Enger Creative-Prüferfix gegen Host86445
+
+Der ursprüngliche Androidjob bleibt FAILURE. Die Originale wurden vollständig als Datenstrom gehasht und nur selektiv extrahiert; kein vollständiges ZIP wurde gespeichert. Die genaue Ursache und die neun tatsächlich angesehenen Bilder sind in der separaten Originaldiagnose gebunden.
+
+Jump: Der sichtbare186px-Joystick wurde vom auf die1920px-Höhe bezogenen Mindestmaß verworfen. Das gleiche relative Maß bindet nun an die kürzere tatsächliche Bildkante; Ringfarbe, Loch, Eindeutigkeit und erkannte Koordinaten bleiben verpflichtend. Puzzle: Der tatsächlich gerenderte dunkelblaue Untergrund47/55/87 war außerhalb der alten Maske. Eine enge Navy-Farbgrenze erkennt ihn; einzigartiger Umriss, unabhängige Homografie und tatsächliche nichtleere Ablage bleiben Pflicht.
+
+Bauwelt hatte den echten neuen Block, Undo/Redo und den bestehenden Hausabschluss bereits erreicht. Beim Wiedereinstieg wurde ein gleichlautender Boottitel zu früh akzeptiert und Back beendete die Bootszene. Der Prüfer beobachtet jetzt höchstens zehn Frames binnen120s, verwirft unvollständige/fliegend rotierte/erkannte Ladeansichten und verlangt zwei stabile aktuelle Titelbeobachtungen. Alle eigentlichen Spielaktionen, Back, Speicherung, Reward- und Rückkehrprüfungen bleiben bytegleich in ihren Definitionen.
+
+Die elf neuen Vertragsfälle ergeben auf ursprünglichem Helper zwei bestandene, fünf fehlgeschlagene und vier Fehlerfälle. Derselbe Test ist gepatcht11/11grün. Zusätzlich sind die neun vorhandenen unveränderten Creativeverträge9/9grün. Tests enthalten echte Originalbilder und ausdrücklich synthetischen Capture-/OCR-/Clocktransport für den Bereitschaftsablauf; sie sind kein neuer Android-PASS. Version-/APK-/Native-Identitätsregeln sind unverändert. Root integriert separat As2020-Versiondelta.

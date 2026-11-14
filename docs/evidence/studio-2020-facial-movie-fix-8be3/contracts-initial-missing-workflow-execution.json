@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/tests",
+    "-p",
+    "test_nextgen_runner.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/patched/native",
+  "exit_code": 1,
+  "duration_seconds": 28.561675810007728,
+  "scope": "Synthetic orchestration/roster contracts, not rendering or Android evidence"
+}

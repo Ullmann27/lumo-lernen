@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "reviewer": "/root/games_worlds",
+  "created_utc": "2026-11-14T05:42:16.904906+00:00",
+  "status": "READ_ONLY_ORIGINAL_ARCHIVE_VERIFIER_REVIEW_NO_ADDITIONAL_CONCRETE_BLOCKER",
+  "scope": "Two frozen new verifier/test files; actual archive downloads and combined Publisher execution remain pending. No source edits, downloads, tests or extraction performed by this reviewer.",
+  "bindings": [
+    {
+      "path": "qa/studio-2020-artifact-originals-86445/host/scripts/verify_studio_artifact_originals.py",
+      "bytes": 14822,
+      "sha256": "99dd5ea5555c7f07ad6ea1a3302aaeb8f6fd2e4fc83ee2b5e0733241503eab0d"
+    },
+    {
+      "path": "qa/studio-2020-artifact-originals-86445/host/scripts/tests/test_studio_artifact_originals.py",
+      "bytes": 16122,
+      "sha256": "d4b1c03a81cc46847da24ed1d61f0a922a95e179799e474212e1282377a8b688"
+    },
+    {
+      "path": "qa/studio-2020-artifact-originals-86445/evidence/contracts.log",
+      "bytes": 4313,
+      "sha256": "9ba1aed2778b6da8a0cd22c54a85a0ff0f3b02a5f2c2ea1559aa7806b4adf37f"
+    }
+  ],
+  "reviewed_contract": [
+    "Exactly three distinct API35/API37/runtime artifact IDs are selected from the complete original metadata list; current repository,2020workflow, source and run are required. Current job-success/attempt chronology remains a separate mandatory C4Publisher check.",
+    "gh api downloads the exact repository/artifact endpoint into one newly created temporary file at a time, with a900sprocess bound. It does not print credentials, redirect/error bodies or stderr. Failed download does not enter archive validation.",
+    "Actual complete ZIP size and SHA256 must equal GitHub metadata before inspecting any contents.",
+    "ZIP members reject duplicate names, traversal, absolute/drive/backslash paths, control characters, encryption, symlinks/special nodes and file/directory prefix collisions. Empty directories are read as well; every regular member is streamed to EOF so zipfile validates its CRC.",
+    "The entire downloaded original directory is enumerated without following symlinks, and its file set must exactly equal ZIPregularmembers. Each file is opened through O_NOFOLLOW relative directory descriptors; every byte is compared streamwise with the original member.",
+    "Per-file device/inode/size/mtime/ctime are checked before and after comparison, the directory inventory is checked again, and size/membermanifest/hash evidence is recorded. No archive extraction or original-directory write occurs.",
+    "Temporary archive cleanup is retained even on failure. Three original-directory roots must be distinct/nonoverlapping; the new output must be outside all three and cannot replace an existing report."
+  ],
+  "actual_test_log_read": {
+    "tests": 20,
+    "failures": 0,
+    "skips": 0,
+    "unittest_seconds": 0.023,
+    "scope": "Synthetic metadata and temporary ZIP/filesystem counterexamples; no actual GitHub artifact download."
+  },
+  "integration_obligations": [
+    "Run this verifier on the three full directories produced by the actual original download before any derived file is inserted into them. Do not pass only connect-four subdirectories or selectively extracted files.",
+    "Require successful original-archive verification AND the separate C4PublisherValidator. This archive verifier deliberately does not replace gameplay, current successful job or visual evidence gates.",
+    "Retain its output outside the originaldirectories and include it with the final delivery receipt. The surrounding workflow must install/authenticate gh and grant only the existing read access needed for these artifacts."
+  ],
+  "tests_executed_by_reviewer": [],
+  "actual_downloads_by_reviewer": [],
+  "whole_candidate_approved": false
+}

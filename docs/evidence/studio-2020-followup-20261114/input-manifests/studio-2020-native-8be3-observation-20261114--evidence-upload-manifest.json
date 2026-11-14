@@ -1,0 +1,207 @@
+{
+  "schema": 1,
+  "scope": "Explicit docs-only failed-run originals and selected sidecars; no large ZIP or video payload.",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/README.md",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/README.md",
+      "bytes": 4277,
+      "sha256": "86f7b185857ecd65efbf0904fdc7c9a1db85ef2d4c10639c14edf86afa408228",
+      "git_blob_sha": "436c161930405a7df2413ce60e4b159c0f112539",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/review.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/review.json",
+      "bytes": 3515,
+      "sha256": "c7880d8cff771a7aff20d256cdff37ab8bdc3fef6171efba62113f8fb36dedd6",
+      "git_blob_sha": "b959bec0ec4df7beb74af341c29f8724975e11aa",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/expected-job-contract.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/expected-job-contract.json",
+      "bytes": 1803,
+      "sha256": "dd8a88c56c987d89d73a40fc80531af530fcf58441fe2c0d4d95e08bdcf5b926",
+      "git_blob_sha": "5b3682031f07d68ec1822e26e71983352ab2f039",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/workflow-at-8be3.yml",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/workflow-at-8be3.yml",
+      "bytes": 19772,
+      "sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+      "git_blob_sha": "fcf5fec5a43eda65b7d2c077af281fa5497635ae",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/final-run-original.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/final-run-original.json",
+      "bytes": 13139,
+      "sha256": "17fa66c6c9eb7aa11945e558271be4d157ace8419e52c0949a88f1709adbafec",
+      "git_blob_sha": "83fe622dd110d5e901416ce0347591ff34b9a2f7",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/final-jobs-original.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/final-jobs-original.json",
+      "bytes": 16476,
+      "sha256": "da31ca14cf5dd673351903f1709fbd4fe7ac6c9673ecc694002aa614e7710c55",
+      "git_blob_sha": "482af0a8be6c4e8e96cefe3019329c5ae2b4a325",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/final-commit-workflows-original.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/final-commit-workflows-original.json",
+      "bytes": 92197,
+      "sha256": "a57cd83d5778d31e83324d80d9386f926f7c9d5b1ef486249ce799b65cacc8b8",
+      "git_blob_sha": "9fb8e575e70eec105c535b1544af29725dbd46a5",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/final-artifacts-original.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/final-artifacts-original.json",
+      "bytes": 4414,
+      "sha256": "324a59152965e0312a8c9cae4ef352b907e0fd71b72aa0ee0d3067e8fea9e61a",
+      "git_blob_sha": "157c6395d4caf5c03d39c8d69625e924399dcef2",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/gameplay-failure/original-job.log",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/gameplay-failure/original-job.log",
+      "bytes": 520533,
+      "sha256": "ee7e31b2ed09235be1eda56a0643ada22cf9374a7cb08fc2344732454bc00d6b",
+      "git_blob_sha": "b068af08e0930b7212d0d97825ca7b827d5dffe7",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/gameplay-failure/lumo_attention_landing_regression-at-8be3.gd",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/gameplay-failure/lumo_attention_landing_regression-at-8be3.gd",
+      "bytes": 8486,
+      "sha256": "7c56887fd79b6f18514922104ce97f5239f10f6d5208c73fed99d337839f50ea",
+      "git_blob_sha": "dce46931a81eef51cc2251d4de29d87c493b567b",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/original-job.log",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/original-job.log",
+      "bytes": 369663,
+      "sha256": "329f1111c208b6767c777055b981b61cf2faf737e72506fb9d2915a242a99b34",
+      "git_blob_sha": "a367c19bab5d5085f0eab6a2c8b63fa5b107fa13",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/artifacts-original.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/artifacts-original.json",
+      "bytes": 3684,
+      "sha256": "4b0bca8fde4ca0df01edb06fe4dd99b960e1831dad4398cebdd812a430140d08",
+      "git_blob_sha": "323a9570abc3148d36cad890b94d5ecc1ad7e984",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/artifact-inventory.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/artifact-inventory.json",
+      "bytes": 516161,
+      "sha256": "886610b043fbc78fd5ca44b381381ef63ffe938a65413e9d5c48b2ec2dcf2b2e",
+      "git_blob_sha": "5335c83cb4de85e408eb60c1dfa74336395ad3a9",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/read_sidecars.py",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/read_sidecars.py",
+      "bytes": 5248,
+      "sha256": "3a43480a2e0f46fbcba7d38bff7ded51e081865f2ed958cd7955328b0e1039f2",
+      "git_blob_sha": "de4fbeb1af97ef8d36d3426acf5baf5a0272e5b9",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/sidecar-transfer.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/sidecar-transfer.json",
+      "bytes": 3024,
+      "sha256": "d4b7e13c7a5b185d4abdb79d2b246abb2736ad78bb3b6205223c5e79419fad58",
+      "git_blob_sha": "21480af3ed82c95d44e2d57413926a751c7f57e5",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/additional-workflows/stage2-failure/artifacts-original.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/additional-workflows/stage2-failure/artifacts-original.json",
+      "bytes": 765,
+      "sha256": "79bed1cb377d90db84507a4420936d6985acffdadb44be86f159bd8ba2e3b30f",
+      "git_blob_sha": "9d8798436bf1c0b67021bfb55b6a744dc150e371",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/additional-workflows/stage2-failure/jobs-original.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/additional-workflows/stage2-failure/jobs-original.json",
+      "bytes": 6084,
+      "sha256": "2f96ca7802da1455a663c95155928830053bc5b8344a2b1f7fb383425f2daf0f",
+      "git_blob_sha": "14c0a00e3382538c7d52098ba207c44f040fca29",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/additional-workflows/stage2-failure/original-job.log",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/additional-workflows/stage2-failure/original-job.log",
+      "bytes": 599989,
+      "sha256": "41b3bedfb569e74709d14ef2c37bf70041c81d11dc3ee02a59330805b6ecfc55",
+      "git_blob_sha": "78d416ad152dd9ed4fbe2652f8267fc0a858e026",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/additional-workflows/stage2-failure/workflow-at-8be3.yml",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/additional-workflows/stage2-failure/workflow-at-8be3.yml",
+      "bytes": 31842,
+      "sha256": "b0d866d00d28576560debc2b29aa4790e69de2533c5c4ea65666127fa81f3e00",
+      "git_blob_sha": "f6f4fbe990c05600e7a5e8b12443f7ecb50a3134",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-decode.log",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-decode.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-encode.log",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-encode.log",
+      "bytes": 6185,
+      "sha256": "fbcb6a2fee6eb9ebe189be9fb95b92fb0cbc68e93faf876ec54a8d47a7b1e8c9",
+      "git_blob_sha": "787cfd42820ceccee1746bc9c0f454071148f17d",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-ffprobe-stderr.log",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-ffprobe-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-ffprobe.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-ffprobe.json",
+      "bytes": 4555,
+      "sha256": "39708856ab9932c1f72ff026ab47db2e6dcce57cb293728adf378abeadfb9741",
+      "git_blob_sha": "77138ebe810b46b19f8d7844211203c43365658d",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie.json",
+      "bytes": 733,
+      "sha256": "38ee52d3bb79b9857cad230b6fad8420edc0f3b037996c7a3de3903b4ae61bbb",
+      "git_blob_sha": "1e79f8677dfe3d5c1c57dd23c47e4556217ca1cc",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/runtime-frames.json",
+      "target": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/runtime-frames.json",
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+      "git_blob_sha": "471e2e633df635545f99270e1960eb5ba41ced2e",
+      "mode": "100644"
+    }
+  ],
+  "total_bytes": 2315713
+}

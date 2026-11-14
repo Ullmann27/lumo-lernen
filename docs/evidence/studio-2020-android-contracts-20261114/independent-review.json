@@ -1,0 +1,92 @@
+{
+  "status": "READ_ONLY_REVIEW_NO_ADDITIONAL_BLOCKER",
+  "reviewer": "games_worlds",
+  "baseline_host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "source_manifest": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/source-upload-manifest.json",
+  "source_manifest_sha256": "cc11a884c9ba2282181ccd82b18f35616582a05ce1e962b2703e4fa369adc69d",
+  "sources": [
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "sha256": "b2ca7ebef49eecac2b4b30fe442af2f6bb1f0f7901b282d351e9ae6ef9107f5d",
+      "bytes": 48845
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "sha256": "26f747933f97e9450e92bf4db9de5da4f776ca77f53553bef8f965d9a2bb7d08",
+      "bytes": 65504
+    },
+    {
+      "path": ".github/probes/lumo_2020_update_android_probe.py",
+      "sha256": "39eb95d3a69d476b34f80e44d2d54eb640dae527a0aa8912f3b9b7d6feaad293",
+      "bytes": 1899
+    },
+    {
+      "path": ".github/probes/lumo_2003_update_android_probe.py",
+      "sha256": "5f2b41e16f1ade611b2a1170d8142b5ed8b7fbfc038294bc1fa5c59fc9928b20",
+      "bytes": 10553
+    },
+    {
+      "path": "tools/android_qa/update_preservation.py",
+      "sha256": "e0df95f2352bdce13fd8068f8f064fb139aa5beac575d8ba7e7bdef85b5dbc4e",
+      "bytes": 9154
+    },
+    {
+      "path": "tools/android_qa/tests/test_update_preservation.py",
+      "sha256": "d6c7d9f271b328dd62886bbd9035b514cfa88ff3fcdaa0aa3405d3edc972a6e4",
+      "bytes": 27137
+    },
+    {
+      "path": "scripts/tests/test_studio_2020_android_contracts.py",
+      "sha256": "fa9dcad4afbf536eda132d7d7f8e3d3e28c62d355b6bd08ba411bdbab44270d2",
+      "bytes": 9331
+    }
+  ],
+  "checks": [
+    {
+      "area": "Explicit generations",
+      "finding": "Default2019 remains; 2020 requires explicit version, exact0.13.8 name,2020 artifact and2020 workflow. Wrong names/codes/types/heads/digests/build failures are rejected."
+    },
+    {
+      "area": "Migration",
+      "finding": "Only exact tuple2017→2020 added to both opt-in guards;2017→2018/2019 retained;2019→2020 andunlisted/type-invalidpairs rejected. Existing owner, namespace, originalfields, independentEvidence schema/derivedvalues, unrelateddata andafterhistory checks unchanged."
+    },
+    {
+      "area": "Wrapper",
+      "finding": "New2020 wrapper derives native from actual reviewed policy+config, retains original2017source/native andpackage/cert flow; no production placeholderpin. Syntheticc40 exists only in isolatedunitfixture."
+    },
+    {
+      "area": "Core behavior",
+      "finding": "AllfourCreativegamefunctions retained. Cards/learning/pixel/source/Androidrelease checks retained; Surface composition note binds unrelated loading-negative guard separately."
+    },
+    {
+      "area": "Integration",
+      "finding": "Root must compose disjoint Creativegeometry/readinessdelta and Surface loadingdelta with theseversionfunctions; no active source overwritten by this review."
+    }
+  ],
+  "original_logs_read": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/evidence/update-contracts.log",
+      "sha256": "859c8e4d8f84cf4968ec2d3b085c26eb4b94bb7ceeba3c963315b623fe93ef1f",
+      "actual_reported_tests": 53,
+      "reviewed_not_rerun": true
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/evidence/studio-version-contracts.log",
+      "sha256": "bafe1637b06e7733555ae57f9768d345772175829a069fd5017b4edd833ab4de",
+      "actual_reported_tests": 8,
+      "reviewed_not_rerun": true
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/evidence/existing-creative-contracts.log",
+      "sha256": "405e1510ca208ebdb473bdb5be0a62905857ff390ae20012679a413fbd308fec",
+      "actual_reported_tests": 9,
+      "reviewed_not_rerun": true
+    }
+  ],
+  "tests_executed_by_reviewer": [],
+  "scope_limits": [
+    "No2020 emulator/installedAPK evidence",
+    "No physicalFold7/performance evidence",
+    "Actualnewnativepin/receipt andworkflowassembly belong toRoot and require fresh acceptance"
+  ]
+}

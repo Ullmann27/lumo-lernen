@@ -1,0 +1,261 @@
+{
+  "schema": 1,
+  "status": "READ_ONLY_AUDIT_NO_RELEASE_APPROVAL",
+  "host_source": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "requested_candidate": {
+    "version_name": "0.13.8",
+    "version_code": 2020,
+    "native_revision": null,
+    "receipt": null,
+    "published_url": null
+  },
+  "proposal_not_created": {
+    "host_branch": "chatgpt/lumo-studio-2020-20261114",
+    "host_pr_base": "chatgpt/lumo-studio-20261113",
+    "native_branch": "chatgpt/lumo-studio-2020-20261114",
+    "host_workflow": ".github/workflows/lumo-studio-2020.yml",
+    "native_workflow": ".github/workflows/lumo-studio-2020.yml",
+    "receipt": "config/studio-2020-visual-review.json",
+    "review_directory": "docs/evidence/studio-2020-reviewed",
+    "release_tag": "coachpreview-build-2020"
+  },
+  "tests_executed": [],
+  "mutations_performed": [],
+  "patches": [
+    {
+      "id": "version_pin",
+      "repository": "host",
+      "paths": [
+        "pubspec.yaml",
+        "config/godot-source.json",
+        "scripts/verify_legacy_release_pin.py",
+        "scripts/tests/test_candidate_2011_pin.py"
+      ],
+      "facts": [
+        "Current pubspec is 0.13.7+2019.",
+        "APPROVED[2019] is exact native803.",
+        "2020 is currently explicitly unreviewed in pin regression.",
+        "Current-repository test and historical-policy checksum filter are version-bound."
+      ],
+      "change": "Add reviewed exact2020 identity only after actual native acceptance; preserve every existing policy mapping.",
+      "tests": [
+        "current2020 exact pin",
+        "reject2019pin for2020",
+        "reject2020pin for2019",
+        "unknown2021 stays closed",
+        "old49pins unchanged"
+      ],
+      "risk": "A placeholder or reused803pin would falsely imply new C4/face source."
+    },
+    {
+      "id": "host_workflow",
+      "repository": "host",
+      "paths": [
+        ".github/workflows/lumo-studio-2019.yml"
+      ],
+      "new_paths": [
+        ".github/workflows/lumo-studio-2020.yml"
+      ],
+      "facts": [
+        "PR base is Nextgen; build head and publisher are Studio2019.",
+        "Version assertion, artifact names and tag are2019."
+      ],
+      "change": "Add distinct base/head/dispatch/concurrency/artifact/version/publisher contract; preserve original workflow.",
+      "tests": [
+        "correct stackedPR runs",
+        "foreignhead/base/fork cannot publish",
+        "manual dispatch does not publish",
+        "publisher needs original five dependency roles plus new feature gates"
+      ]
+    },
+    {
+      "id": "native_workflow",
+      "repository": "native",
+      "paths": [
+        ".github/workflows/lumo-studio-2019.yml"
+      ],
+      "new_paths": [
+        ".github/workflows/lumo-studio-2020.yml"
+      ],
+      "facts": [
+        "Push and archive branch restricted to Studio2019.",
+        "Native artifact name and bundle download patterns are2019.",
+        "Archive tag already binds sourceSHA and artifactID."
+      ],
+      "change": "Add exact2020branch/artifacts while preserving all8requiredjobs plusarchive; retain source/id archive naming.",
+      "tests": [
+        "missing job fails",
+        "wrong workflow/artifact/source rejected",
+        "all5original source scopes retained"
+      ]
+    },
+    {
+      "id": "delivery_policy",
+      "repository": "host",
+      "paths": [
+        "scripts/verify_studio_delivery.py",
+        "scripts/record_studio_visual_review.py",
+        "scripts/tests/test_studio_delivery.py",
+        "scripts/tests/test_studio_cards_capture_binding.py"
+      ],
+      "new_paths": [
+        "config/studio-2020-visual-review.json",
+        "docs/evidence/studio-2020-reviewed/"
+      ],
+      "facts": [
+        "VERSION_CODE2019, VERSION_NAME0.13.7, nativeartifact/workflow and receipt/directory are fixed.",
+        "Exactly9productionmodules,3touchmodes,puzzlemenu,CardsSafeArea and sharedcutout captures are required."
+      ],
+      "change": "Add an explicit immutable2020policy and retain2019default; fresh exact combinedsource receipt, plus requiredC4/faceproofs. No mutable-global override.",
+      "tests": [
+        "all2019tests remain",
+        "2019recipe/PNG cannot satisfy2020",
+        "newnative/source/PNGhash binding",
+        "missingC4orfaceblocks",
+        "ASTAndroidguard preservation retained"
+      ]
+    },
+    {
+      "id": "android_probes",
+      "repository": "host",
+      "paths": [
+        ".github/probes/lumo_studio_surfaces_android_probe.py",
+        ".github/probes/studio_creative_android_probe.py",
+        "scripts/verify_studio_creative_android.py",
+        "scripts/tests/test_studio_creative_android_probe.py",
+        "scripts/tests/test_studio_creative_delivery.py"
+      ],
+      "facts": [
+        "Surfaces rejects versions otherthan2019.",
+        "Creative binds currentartifactname,workflowpath and installed2019."
+      ],
+      "change": "Add coordinated exact2020policy; preserve all existing input/readiness/OCR/state/layout/pixel/pause/save/return/time budgets.",
+      "tests": [
+        "wrongversion/workflow/digest fails",
+        "samex86/PCK/host across both APIjobs",
+        "all4creativegamecontracts remain"
+      ]
+    },
+    {
+      "id": "update",
+      "repository": "host",
+      "paths": [
+        ".github/probes/lumo_2003_update_android_probe.py",
+        "tools/android_qa/update_preservation.py",
+        "tools/android_qa/tests/test_update_preservation.py"
+      ],
+      "new_paths": [
+        ".github/probes/lumo_2020_update_android_probe.py"
+      ],
+      "facts": [
+        "Existing2019wrapper retains exactbaseline2017.",
+        "Approvedmigrationpairs only(2017,2018),(2017,2019).",
+        "Negativecase currently rejects(2017,2020)."
+      ],
+      "change": "Retain2019wrapper; afterschemaequivalence allow exactly(2017,2020), preserve all ten oldfields/identity/type/owner/inplace checks. Add actual2019to2020proof separately when real2019baselineexists.",
+      "tests": [
+        "all2018/2019invariants remain",
+        "2020realwrapper toAndroidboundary",
+        "wrongpair/type/nooptin rejected",
+        "foreignchild/mutatedfield rejected"
+      ],
+      "risk": "Do not treat reusing historicalschemafixture as real2020Androidupdate."
+    },
+    {
+      "id": "native_harness",
+      "repository": "native",
+      "paths": [
+        "tools/validate_studio.sh",
+        "tools/tests/test_nextgen_runner.py"
+      ],
+      "facts": [
+        "Existing16calls and37PNGs explicitly asserted."
+      ],
+      "change": "Keepold16/37 andsidecars; append newlyrequired featurecalls/roster/negativefixturecases.",
+      "tests": [
+        "oldroster preserved",
+        "missingnewframe/state fails",
+        "source/log gates remain"
+      ]
+    },
+    {
+      "id": "c4_and_face",
+      "repository": "both",
+      "paths": [],
+      "integration_references": [
+        "qa/connect-four-native-86445-803e/source-upload-manifest.json",
+        "qa/studio-c4-gate-integration-86445/host/scripts/run_connect_four_runtime.py",
+        "qa/original-lumo-facial-studio-803e/"
+      ],
+      "change": "Integrate exactreviewed featurepackages and sharedinsertions; add mandatory C4two-process/Android and facialproduction/speech evidence beforepublisher.",
+      "tests": [
+        "C4productionDart rules/session/save/reward",
+        "C4actualAndroidBot/Pause/Reopen/Profile/Return",
+        "faceactualruntime/audio plus lifecycle"
+      ],
+      "limits": [
+        "LocalC4uses testpreferences and fileIPC, notAndroid",
+        "old86445APK has noC4",
+        "newfacesource notyetapproved bythisaudit"
+      ]
+    },
+    {
+      "id": "release",
+      "repository": "host",
+      "paths": [
+        ".github/workflows/lumo-studio-2019.yml",
+        "scripts/release_pipeline_gates.py"
+      ],
+      "change": "Newworkflow selects coachpreview-build-2020 everywhere; retaingenericfamily/package/cert/ABI/liveversionfloor and nooverwrite/fullpublicreadback.",
+      "tests": [
+        "existingconflictingtag rejects",
+        "oldassetsunchanged",
+        "freshdownloadbytes equaltestedAPK"
+      ],
+      "risk": "Publisher must include newfeaturejob needs, not merely run them."
+    },
+    {
+      "id": "generic_unchanged",
+      "repository": "host",
+      "paths": [
+        "scripts/build_version.py",
+        "scripts/build_unified_apk.sh",
+        "scripts/verify_unified_apk.py",
+        "scripts/prepare_embedded_games.py",
+        "scripts/export_embedded_game.py",
+        ".github/probes/modernization_android_tour.py",
+        "scripts/android_framework_ready.py",
+        "scripts/prepare_android37_cli22.py",
+        "scripts/prepare_android37_emulator_action.py"
+      ],
+      "change": "No version-specific relaxation needed. Use actual new invokingworkflowpath forprovenance.",
+      "preserve": [
+        "pubspecdrivenversion",
+        "ABIversionequality",
+        "exactnativeHEAD",
+        "actualAPIsdk37/release17",
+        "CLI22/AVD/image/Systemserverstability",
+        "samepackage/signature"
+      ]
+    }
+  ],
+  "preserve_mandatory": [
+    "fullFlutter/Pythonsuites and noskip policies",
+    "actualOCRmodels/replay",
+    "Androidhostcompile",
+    "8nativejobs +5cleanstampareas +originalZIP/PNG",
+    "separateAPI35 andAPI37",
+    "existingLearning/Cards/Creative actions",
+    "real2017update",
+    "ARM64/x86/PCKidentity",
+    "samefamilypackage/certificate",
+    "existing2019receipt/tag/source untouched"
+  ],
+  "uncertainties": [
+    "Future combined native andhost commit unknown; mustnot invent.",
+    "New2020receipt notcreated.",
+    "Full2020Android/physicalFold7/FPS nottested.",
+    "No liveReleaseexistence claim made."
+  ]
+}

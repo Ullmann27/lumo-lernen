@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "qa/studio-2020-integration/test-host/scripts/tests",
+    "-p",
+    "test_studio*delivery.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 27.197157767994213,
+  "scope": "synthetic parser/actual saved-image replay contracts; not 2020 device acceptance"
+}

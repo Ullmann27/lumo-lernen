@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "baseline_native": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "scope": "Exact Godot4.6.3-generated canonical import bytes only; GLB and explicit lid LOD unchanged",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/canonical/native/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "target": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "bytes": 1341,
+      "sha256": "ea8637187b5af2f1315958c27117d05d594873c61727f6bdf0e2d910581dfb5a",
+      "git_blob_sha": "0fc3016ba886172aaf2575db2984e81b5567455c",
+      "mode": "100644",
+      "baseline_blob": "3b65ce3c2d8e63efe4c2251261b047be37e383a0",
+      "baseline_sha256": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15"
+    }
+  ],
+  "total_bytes": 1341
+}

@@ -1,0 +1,29 @@
+{
+  "negative_caption_base_sha256": "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34",
+  "composed_source_sha256": "b072e4b218e05e3756a902d9cb887c1a02275d708bb7a25da83fb6c9b810b415",
+  "existing_function_asts_unchanged": [
+    "_speech_logcat",
+    "capture_cards_faces",
+    "capture_returned_flutter",
+    "cards_display_density",
+    "cards_ready_to_draw",
+    "cards_roundtrip",
+    "completed_native_speech",
+    "learning_roundtrip",
+    "local_voice_permission",
+    "must_see",
+    "native_ready",
+    "read_cards_layout",
+    "resumed_activity",
+    "returned_to_flutter",
+    "tap_flutter",
+    "wait_for"
+  ],
+  "changed": [
+    "main: explicit version selector added; prior exact versionCode assertion replaced by name+code contract"
+  ],
+  "added": [
+    "require_studio_version"
+  ],
+  "scope": "Composition check only; actual 2020 Android execution remains pending"
+}

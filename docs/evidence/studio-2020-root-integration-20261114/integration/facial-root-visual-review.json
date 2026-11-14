@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-11-14T05:12:06.514583+00:00",
+  "source_freeze_sha256": "ee7abfc2eee1d932e50042432be720ea8c4c25311752dafdce35f3f4e563acfe",
+  "all_14_frozen_source_bytes_and_git_blobs_match": true,
+  "images": [
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/godot-capture/teacher_scene.png",
+      "bytes": 113407,
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "actually_opened_by": "Root via image viewer",
+      "finding": "Actual Apfel syllable lesson visible with original Lumo, two movable syllable blocks and readable bottom controls. Square inspection resolution; not Android acceptance."
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/godot-capture/neutral.png",
+      "bytes": 283007,
+      "sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "actually_opened_by": "Root via image viewer",
+      "finding": "Original fox identity, goggles and body material remain recognizable in actual scene close-up."
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/godot-capture/blink.png",
+      "bytes": 301312,
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "actually_opened_by": "Root via image viewer",
+      "finding": "Real closed eyelid geometry visible; a fine lower-lid seam remains visible."
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/godot-capture/audio_jaw.png",
+      "bytes": 306464,
+      "sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "actually_opened_by": "Root via image viewer",
+      "finding": "Local Apfel utterance state visible; muzzle articulation is subtle and does not establish phoneme-driven lip synchronization."
+    }
+  ],
+  "limitations": [
+    "Only these four images directly reviewed by Root; agent review records cover the other originals and full film.",
+    "Not a mobile FPS, audio-quality or phoneme-lipsync measurement.",
+    "No complete AAA visual acceptance claimed."
+  ]
+}

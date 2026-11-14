@@ -1,0 +1,34 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+[Mobile] runtime ready screen:(960, 540) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+WARNING: 'res://assets/characters/lumo_animated/Lumo-Animated-Mobile.glb': In external resource #0, invalid UID: 'uid://c3lklb5dfxvmv' - using text path instead: 'res://assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_0.png'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/characters/lumo/lumo_rigged_actor.gd:43)
+         [1] _build_room (res://scripts/games/connect_four/connect_four_table.gd:422)
+         [2] _ready (res://scripts/games/connect_four/connect_four_table.gd:71)
+         [3] _capture_case (res://scripts/tests/connect_four_visual_capture.gd:224)
+         [4] _frames (res://scripts/tests/connect_four_visual_capture.gd:66)
+         [5] _frame (res://scripts/tests/connect_four_visual_capture.gd:61)
+WARNING: 'res://assets/characters/lumo_animated/Lumo-Animated-Mobile.glb': In external resource #1, invalid UID: 'uid://yek0tfgbrmit' - using text path instead: 'res://assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_1.png'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/characters/lumo/lumo_rigged_actor.gd:43)
+         [1] _build_room (res://scripts/games/connect_four/connect_four_table.gd:422)
+         [2] _ready (res://scripts/games/connect_four/connect_four_table.gd:71)
+         [3] _capture_case (res://scripts/tests/connect_four_visual_capture.gd:224)
+         [4] _frames (res://scripts/tests/connect_four_visual_capture.gd:66)
+         [5] _frame (res://scripts/tests/connect_four_visual_capture.gd:61)
+WARNING: 'res://assets/characters/lumo_animated/Lumo-Animated-Mobile.glb': In external resource #2, invalid UID: 'uid://dmkovlxpg1pp4' - using text path instead: 'res://assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_2.png'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/characters/lumo/lumo_rigged_actor.gd:43)
+         [1] _build_room (res://scripts/games/connect_four/connect_four_table.gd:422)
+         [2] _ready (res://scripts/games/connect_four/connect_four_table.gd:71)
+         [3] _capture_case (res://scripts/tests/connect_four_visual_capture.gd:224)
+         [4] _frames (res://scripts/tests/connect_four_visual_capture.gd:66)
+         [5] _frame (res://scripts/tests/connect_four_visual_capture.gd:61)
+CONNECT_FOUR_VISUAL_PASS checks=303 captures=4 fixture=true

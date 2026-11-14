@@ -1,0 +1,26 @@
+[
+  {
+    "path": "tools/validate_studio.sh",
+    "sha256": "ba194e2cdb3b39e95249a347b1e53a2b146ffe2eda1380877743156ebd2fd8b1",
+    "git_blob": "3b41626b54845e70e3ac9046e5120f7aa0eb7907",
+    "scope": "Unchanged test dependency, not an upload source delta"
+  },
+  {
+    "path": "tools/validate_nextgen.sh",
+    "sha256": "34472fbe2e552f1332418d5544e33626b9343e5894589c31951472f2e0ead5e6",
+    "git_blob": "bf5e8e129fa8c3d7872fb92d21046c1ef7f87e9e",
+    "scope": "Unchanged test dependency, not an upload source delta"
+  },
+  {
+    "path": "tools/run_godot_probe.py",
+    "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+    "git_blob": "c23859ece2d62101d000d7a89556fda5d3fe4105",
+    "scope": "Unchanged test dependency, not an upload source delta"
+  },
+  {
+    "path": ".github/workflows/lumo-studio-2020.yml",
+    "sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+    "git_blob": "fcf5fec5a43eda65b7d2c077af281fa5497635ae",
+    "scope": "Unchanged workflow dependency restored to the isolated test fixture after an explicit missing-file setup error; no source change"
+  }
+]

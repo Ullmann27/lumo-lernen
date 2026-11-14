@@ -1,0 +1,2034 @@
+{
+  "scope": "Prepared immutable entries only; not submitted to create_tree",
+  "base_tree": "61d1aa197fb28072ab9405039b0d171cb4ce1aea",
+  "entries": [
+    {
+      "path": "docs/evidence/connect-four-android-deadline-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6df363b06b2375881ffc2fe70dfb2b0ff9f84dc"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-deadline-20261114/evidence/ast-preservation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2b79eaa7fd8623f798a4bf7c64da9a38b410e23"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-deadline-20261114/evidence/deadline-green-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da8e0b1a458b808d12cbd120e2ae48b2e9bfb509"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-deadline-20261114/evidence/deadline-green.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "08eb4e6c5339e36c8556fb43bd03e592653e4dcd"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-deadline-20261114/evidence/deadline-only.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1fcd56bcd3286562e338e10477960abc9aa22cc"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-deadline-20261114/evidence/deadline-red-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77992e3c4ae4513ef7cbcc852c6d20f46853de96"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-deadline-20261114/evidence/deadline-red.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b10d5065b3e1e98a3ef08d8cad369b4795457cb"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-deadline-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22a42b7f75b37feadb4e0d29e4d2165ead671a62"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-probe-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "511cae6fd746c49f088c75e30dc0966c5d63a0f4"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-probe-20261114/evidence/cli-help.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80d7d4da566ef8425200bbe78e9734074855c405"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-probe-20261114/evidence/compile-and-helper-contract.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f769512443bc1c159d30c3269084526ffb41c29e"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-probe-20261114/evidence/contract-final-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d97357c57466eb7ca1d9d875376b7c29b1693365"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-probe-20261114/evidence/contract-final.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d56bf5c8edb91f319833c537e7767af58a06f27"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-probe-20261114/evidence/first-contract-run.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82e89558f9ce1d710c7d5919830872eec5b9271d"
+    },
+    {
+      "path": "docs/evidence/connect-four-android-probe-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e77ffd45e2aacf9833360df625c5216945a7131"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2301a89c0bdd932adf360e802eb8c832900d9f14"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/fixture-source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca67390c9df24adef50d39cbc240c7c26d1a1010"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/headless-final.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0e5f3bdb390f6e2ae01df6160d9593207f17d2f"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/headless-final.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1fb9dc89fae497da694b092e99cfa4e368cec9ef"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/headless-rejection.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de9fa13c699d50301c412d1f9e00232580a9c3db"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/headless-rejection.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38d74bd1afa41c57cfe8853c815a1bb1bed58d48"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/independent-harness-schema-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd1976917cb07112f2b74f6438a9ab04e9a09d42"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f6d0f3ee632c2fe802098ced7759849867f317e"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/runtime-source-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "afdfb7c25ca3891b67cca7efe0f205192c01d28b"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/runtime-source-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55d554f13f852a0ac79770d1ec5f4541eb17904d"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v1/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3c4d3f7ee8c1b0791126ec792c0627d0557bf5f"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v1/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36623fbeffae4916b208f89ec05cae079906b64e"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/captures/c4-empty-landscape.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7fcce651affe10c1908b09e1e39ca202f6d6a4c"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/captures/c4-paused-small.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab4d9717d8bbc6c51c32154d4a5906a304affeb3"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/captures/c4-playing-phone.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0d40e48707a3313656728e962f0aeea683f7e5f"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/captures/c4-win-landscape.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a34e250ae1c3111b10997285d6d1627ad15d198"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/captures/visual-state.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e983da1da396e2b6cc80a2a53227d0b04561903"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8bb524a0db9229dbe4eafa8d639ee1e437c0a14"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1decbcb166964ee20882f9adcb966fd2dafb4720"
+    },
+    {
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b57ffde73286b31b5894d7388010915e2c5f5003"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/.gdignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50e4d381682d65c0025c59a29f54c64b37088e3b"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actionlint-final.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actual-movie-helper.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actual-movie/movie-decode.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actual-movie/movie-encode.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "223a3ef9bd81c07bf1ad5179e0a82b472cdfd246"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actual-movie/movie-ffprobe-stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actual-movie/movie-ffprobe.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e7b0302d57a68d72255d673eced6509db6ffeb0"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actual-movie/movie.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b2cd43414854efa80284f93a83deb0b442a2507"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/baseline-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10e16344d061ae49609ee2ec88eef173ba6027ab"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/bash-syntax-final.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/contracts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f14333265ac39a5c313d995228751d48bfb8603"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "444eb1aae469a4d139b6c90de5485f91f2f28d6e"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/implementation.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dfa25f1a6a4bc48d27bd70e7668ba42a145ccb1d"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/original-sidecars-green.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0dd29ea08d0cd5c608c5197ebf720e6b9fe2db01"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/original-sidecars-green.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0dd29ea08d0cd5c608c5197ebf720e6b9fe2db01"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/source-freeze.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a180ff1f9462424da5b1ce0f298c4eaffe81e78"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/structural-contract.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e0e0583a5d7c42036f12feb3391e6561f7a498f"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/test_nextgen_runner.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2374a9b4d614e9e37163705d1777e5a7c18345c3"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/validate_studio.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "436aee252a47cb6613d2854bb8e3795c5ca242b9"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/contracts-final.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35c148ee2af15a26ad52aa8d34e6abdc90b37793"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/contracts-final.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30f23d11a15338ad42fc99b3d70491d42f84d848"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/implementation-against-803e.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a148cfd0407d45119ae381306caada9b26cc420b"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/independent-treasure-connection-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9b6f039e74a787060f1437376f9ab075820bbf0"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/manifest-preparation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d9bd3ee5fc19f745eb881accaebc155406fb3e8"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/rejected-before-c4-visibility/original-sidecar-red.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c49eb14ed97f74c0988b8f70b7dd3ec3df38902"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/rejected-before-c4-visibility/original-sidecar-red.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd847034c8d68f949182908091b768514b5a0aad"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/rejected-before-c4-visibility/validate_studio.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7064d04a6c2f5b89ba4a18af03dc123ea1f12abb"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/replay_new_native_sidecars.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f58d1feb4239b91808f00d002d11b65a50fcf74"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/source-freeze.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9bb89f85c482df6e0cb7486ae0309c7e8237922"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/structural-final.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31a7f18524f643ce286aa04af8cf33a44e1cd123"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/treasure-original-sidecar-replay.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f004e9d70ae3661ecfc1202d89cef2b0a9d78b87"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/unchanged-dependencies.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52350f637abc3f391238af2f5ef76e63bf1f24be"
+    },
+    {
+      "path": "docs/evidence/native-studio-2020-harness-20261114/unchanged-face-c4-readers-after-treasure.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4cf8ab537325719106a5c68aeaced2c0ebbba04"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/.gdignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d75278ab50ecf099f35c08b06a4c9cb9e693cee"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/ci-contract.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "393d3aa4fd6b4ef7b20faa59f43451ffab17d807"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/Lumo-Original-Facial-Runtime.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5370873ff0235602477936fda1ad1b8186e7637c"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/asset-preservation-v9.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "209d12cb5b7e25f33bf37c24f931372d038b74cb"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/capture-before-inspection-caption.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6088e7f145e4580f79a1b894d4ac2e3f10c8cf02"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/capture-before-valid-payload.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b3bb805bebc7df8e196285b6c2ec56613766f87"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/envelope-compile.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/envelope-contract.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68f0af5087b64c0340d24b16d161b93316da26d1"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/left-paint-mask.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7f24406956c27a914a0656563b0ac353e0b9e28"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/measurement-correction.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf4c893c7d9460310254efb337e158cdc002c8cf"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/measurement.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca35cd4b5739c700de6e197bde368effff170c8b"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/original-textured-surface.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0ee87f54ae4bc4ca5b7cf2fd855791e628e4bae"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/projected-surface.npz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "75a022755bdfe610735905e88ba63888e548253b"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/right-paint-mask.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "722d65bff5a804e46ab678091268b32a629433f2"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/sampling-surface.npz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8cef58c0f9242c2472e3670b313f9a94f7001e1"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/facial-regression-before-valid-payload.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0429215e4e6a003ff8d39a5918eda41d2f546035"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/final-visual-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "338234e3933593c3c46c70669f051a189c021196"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture-rejected-payload/teacher_scene.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02d2c9fed34e272bd5455c6a5855e5ffdd200a7c"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/audio_jaw.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24726cedcaf53ed7cd2589594c54cdfb6d0034a8"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/blink.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22808f200b3258d7ec2f25d3bac6ad3302742b0e"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/blink_intermediate.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f7ca9f42343c3653990403225db5529808207da"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/gaze_left.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67e626fd8edf3af3bf3c4955fd905047d9897e7c"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/muted.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87810252dcc1e0e627c267320a43e2cc8346f277"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/neutral.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8645e70de9f6badf6e4c260eaf02957c6e4ad147"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/runtime-frames.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "471e2e633df635545f99270e1960eb5ba41ced2e"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/stopped.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c1e879ffaadce433c9cba63fdcf0d37e3b4b36b"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/teacher_scene.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "efb39582dec4efb6352c1a2915f60d6f760af5f4"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-renderer-final-capture/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1fe98f074564bc41150fe992ad199070fc0aeefc"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-renderer-final-capture/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44d76ee59ce86a4bbb782c5142825826726089af"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-renderer-final/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2057f97dc7d5eb3cca93daf17531715e3e75bd31"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-renderer-first/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48fd670329c8c5231105a228992237ee26af3f94"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-renderer-v9/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd861622c9cb5bf60f1dc7e691715346d5f55093"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/import-lod-inspection.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50fbf82bd89e201e2e068a2b59a589187bcc5b9d"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/independent-speech-source-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00e7c39c7f3b66a78c20b9db18c667fad3a8f033"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/inspection/geometry-inspection.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34ec6df1386cde172a6529a62704f08e282b221f"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/lid-interpolation-v7-rejected.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ed2965ec80055242ebc02b10a98b6015f653c1f"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/lid-interpolation-v8.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2335fcbadc9708bc82e6f6950da57cfc4642cbad"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/motion-reference-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83577ecf865a475ff4e202001862ae2eb79b36db"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/learning_world_regression.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a6d9158290c2d5c7898077b63723f51928dd069"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/lumo_facial_regression.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb23b559f89f2ca683b979252aff45ddc842c47c"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/lumo_facial_valid_lesson.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b10e8e4838d766602a9218197862d7a09105374"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/lumo_facial_valid_lesson.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2374357756a7f9a2320bceb9c0533fa6b58a02b9"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/lumo_rigged_animation_capture.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc8cdcef94ecf38f4a29ba928cbf5d6af87d33b4"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/lumo_studio_motion_regression.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d06b4aa8600722e4474cd7584db3ac81f134d1e4"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/lumo_teacher_pose_regression.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9afe1fa0218bcaeb55c301046a7a9507c10fd10f"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "777408b0231c08f982ea80e9b819a0bae74ed042"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-audio-geometry-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f7f006e639783687279876445fc5b39dba377b4"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-import-lid-lod-fixed.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "004351b20db7377f9ae056c45fd480246d746315"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-import-lid-lod-fixed.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db2c07f7e4c5c520d2c1017d86b4f8b287738362"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "461ac9c06f813ecb5748958b8c49ad2af09ba579"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-encode.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "beced3d028c96c97aa8e8b79ecc354f75582c8f0"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-ffprobe.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56f528214d30b6bbf8ef2d3b9cfc1a7906676290"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-full-decode.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-000-011.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb5b572ca61ec2caba55711f0ee26a15c6b6d482"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-012-023.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef580abe24d17a8cce7f0efe67e603b63396eb77"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-024-035.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f134d89ba1e403cbdd6344d5d1c78eda4451df3"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-036-047.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce8a91988ac93567e95e258104362cae0a658f99"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-048-059.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c673d7218d9c71f74f3aaa4a075e780412a4e88"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-060-071.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "138f5cbd858c564fbf0188629e08f21c1c3a4b81"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-072-083.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2263146f87abde331c2f4c87f5f2a1aaa6e31c2b"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-084-095.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a760ed588d5cede87b828efef448a646b2950e18"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-096-107.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8307fb1231078e7611d7bcecbbda8795d40a373a"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-108-119.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "140eb9da54a44709c80e4752cf872ff03a491a2f"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-120-131.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e15ae1c2acdc082508306284a01b93bda3ce748"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-132-143.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e768fd28ba154aabc18461e565297d3a45e5ad0c"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-144-147.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e52d302143cf4cc48e22551cf47b759bf2794e5"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/full-frame-018.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d89309c2da65fb1ee53684abf1ebb0bf2a856cb"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/full-frame-024.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "768b136dc0f328a284486f0d389fdcc6e198ac6a"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de93a5359a7d0095f4b3b1e78691b03d39c30c4c"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-verification.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6f5dfc297015602553c35fb2ac8aba810dfbd69"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44f60110b8810589527ba148207883a5ea046263"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a293e9d688fdf5cb8743ca17492317f785b9d59"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/Lumo-Facial-Authoring.blend",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e031a8fa118e5b5842dc3bd1118cf815125d752"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/authoring-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5dc4cc20a4c91251cae1f4c2b657755f09ba13d6"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/blink.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80b95dd9641f06be7fcdb80b0652a71b868f4067"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/blink_half.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9466deeebd26ce720fb3f390cc1f07954b9ad283"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/blink_intermediate.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81db5c102c02fa90717dd0de0cdca437eb55ade0"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/blink_three_quarter.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b11fd96abd08a1ed24eed20e041ac920fcdd264a"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/gaze_right.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9cffef4f9316634bbbf2a7cfba331a12d5d431d3"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/jaw_articulation.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18afd58e281dec3eeb0a6b8e040bba20f66ef985"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/neutral.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "daff12677cf2b00df58f19f2b4693a2ad2efa9f9"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/speech-lifecycle-compile.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/speech-lifecycle-contract.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d75bc478c8fd7ea1f56202c2ba7e30510c42474"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/weight-cache-body_always.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a012b58f87c332b7c51a0a23cc839f24214f5f2"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/weight-cache-isolation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2b13515f4d3dc84332f7b0ed4323ce81f258bb9"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/weight-cache-lid_always.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb23b559f89f2ca683b979252aff45ddc842c47c"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/host-source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5def84e53b786821f2eaddf7644372bccd01f2f6"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/LearningSpeechLifecycleContract.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/SpeechEnvelopeContract.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Bridge.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3560fa5b3537dcd6b881dc9090ef4f0099b20e50"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Channel.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56fe64be87d4489133e83855df5a612b6225a174"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Context.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0685bbdf9b4cf3efe20bbb4d0e646e94e647c33c"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Handler.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "855d09cd8dbc4af5bd91b29fa1db1e52488dbd9e"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Json.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8bf77f00b631df5027e17d6eb84dd29f5594f462"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Log.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c060a6b11c5e44f72ea3b0204b49d69995ec0e04"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Media.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6857f886fada7cdba117053b559024ef2c0386bd"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/independent-native-source-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "110fde64499b35c2977f07d53d23b8cb5ab9614f"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/source-against-803e-86445.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa54c4b7d68a8e79b4f388d60c40e9257c8dc862"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/source-binding-initial.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2cc3036b454a0eefdfb32a3dc403e7acf128c97"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/source-freeze-before-caption-layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06d4435c4d186ac41047f23213f9a3db69c78725"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/source-freeze-before-valid-lesson.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cff8f506d835efed1cfffab0545a7a3eeebc7182"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/source-freeze.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d79f3bd878d865473408ca09c99083e6bfd09e45"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/author_face_geometry.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0f80e5e433050734d9a15c191d57890bc6555e6"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/author_face_shapes.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e655cf147e5b4be44c1ff3b68d8e7a35d4ebb93"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/inspect_original_face.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ff9dc82f190a3b8a7659eb27a20e4168d87bde2"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/measure_eye_surface.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdf7f9891bf86e994669878997319d18ebc7813c"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/prepare_runtime.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "add8eef1545bcbfa1c09e48ba125f0b006fbaa17"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/verify_face_asset.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1a25c76c2e4926142d138d05cf1a95ec43081e1"
+    },
+    {
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/write_speech_test_platform.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "169ddf38eedca18f6acbd588c397778e55f1cce6"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2c757d4c5d294533f98c886e70c6fe8100bce31"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/baseline-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5375a69960b02af6f68081b90e60e080472c98b6"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/evidence/ast-preservation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63decd464d8487c3b5e5a15825170fea4c39aef1"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/evidence/execution-first.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "485ec682bb1cf9e7ea0af385a050dc109d6623d1"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/evidence/existing-creative-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37f1c0e2b8f3c47d502bc19c5272e45b5b2d664e"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/evidence/inspection-tooling-notes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb287b05c431eb49654ba776df9950894685cb25"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/evidence/studio-version-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2cac2b28b9df1a90e3f8cd66dbe09e84c008c47"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/evidence/surface-composition.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5017a4f6222b47caff7bac3113ca4fc5e7bcee34"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/evidence/surface-composition.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0a1ab5c29845f753ddf3cb0ae072d6df6c9cb78"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/evidence/update-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8cd4128311a8c5e441151dc120c13930241a751b"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/independent-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4601bc7423e19a16a4cf9ccfdc6ad4d7829ed46"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/schema-baseline/lib/core/progress_repository.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d41e9f90c9297188f8a924dfa04ce822d09126ee"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/schema-baseline/lib/domain/learning/independent_evidence.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b19215fe6e410b5439467541453e2608537e041"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/schema-baseline/lib/domain/learning/lumo_learning_domain.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb08dc6572828d21d94ca96844994797aaa68bd6"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/schema-source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f901845431b0dc8b549c2cfc73b5c3c82d195e45"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "074dd1f672754e69adf57ea53dcc929f263f5eea"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/surface-version-only.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "617a983b5ab4183ec76c02578eacd53969615bbc"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/test-support-files.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3f6359fd2107a3c0099daa7576238bdea0338e5"
+    },
+    {
+      "path": "docs/evidence/studio-2020-android-contracts-20261114/version-contracts.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a20dbc459a4a7eb5b84e1ce2d0b26e06a5bfd0e1"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35d9dc864fe6a3e249271496131a67023737e572"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/input-manifests.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0091cf805ad6667c34ad8fc2a8d9b2606038153"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/android-contracts2020/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "905c16ffdcd095a23b104b09951f1f5070f3f44b"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/c4-android-deadline/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7cb33dc3e625ae5a41a0b908a1de6ce1a3955eda"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/c4-android/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adc3725a49cf0920be4a8497add54ea0a02ecfd2"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/c4-visual/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8da14feca340cfe882076e358d4104af35bb39c"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/cards-german/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fda0384410e408edb062741787abdc263fcd463b"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/creative-host/host-evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b4d812fc6e4de1ecab89348f3d9ebea32e98cc0"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/creative-native/native-evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "621e4d30ae5b72118fbcbf024a32c38eaa2d1e70"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/facial/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2039dfa9507e20aae03802f2ce095d6a53579528"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/harness/native-harness-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38a125cc0189d38e04a44d1c58f431d66b6d73a4"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/release-audit/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7134ce9b3c1dfa1959da0c42b3aa3fab94437ded"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/review-android-contracts2020/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b22e9afb46bc8434aa4090ae4c861dfa788ea2a1"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/review-c4-android/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01e2bd3c867f9e50c88b515996f278c28463f2c8"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/review-c4-harness/harness-review-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "408fe8c341ce478cce280ddb623ac27ee94663b3"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/review-c4-runner/runner-closure-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "460fb5bce56f310beb978ef690dfe0655db72686"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/review-facial-native/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dad7d5b990b21a5a37c4e2ea2039a72839a2eb58"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/manifests/review-workflow-draft/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6b731d1968b1a7e0c92b44816fbb57d9cddff80"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/verification.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28b9da5c9cded0faf180820f92600262e24aa230"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/verify_and_prepare_manifest.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b25853b06f5ab7019bf9c95274041865314301d"
+    },
+    {
+      "path": "docs/evidence/studio-2020-release-audit-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8d36f533d2f0120ee2c4cc5c47d89ccbc379e18"
+    },
+    {
+      "path": "docs/evidence/studio-2020-release-audit-20261114/baseline-extended-tree-inventory.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea88e46a007de4a465d9b7ff238607b3e1ca0416"
+    },
+    {
+      "path": "docs/evidence/studio-2020-release-audit-20261114/baseline-tree-inventory.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "69744d1fbf6a455c66023a06ca4de1e59b67a259"
+    },
+    {
+      "path": "docs/evidence/studio-2020-release-audit-20261114/patch-matrix.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99314165a8b80c5c7f44987734da09f73faaf388"
+    },
+    {
+      "path": "docs/evidence/studio-2020-release-audit-20261114/source-binding-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8fe2e724cd676d3aaa5a8c04d76bd524750e8c3b"
+    },
+    {
+      "path": "docs/evidence/studio-2020-release-audit-20261114/source-binding-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4f57867eeeaa0959dc4f674cc2e597b807e57f8"
+    },
+    {
+      "path": "docs/evidence/studio-2020-workflow-independent-review-20261114/independent-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a30d8b967a5466f08e9deed0fed285495b993500"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c599c602ad0d1687237b4d10cfb7a15494089ace"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/baseline-tree-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aefecc7ba42db5c7b6ad8c036c70110b89868cf5"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/green-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21765ef80a07d1c169fa63e4df261ee9304cfaf5"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/green-focused-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a374365923de045f3b272905c405986f9128558"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/green-observations.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00d8d6bb963d262a4953c3456bb2bb9a3ebcf084"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/initial-staging-asset-error-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3dfb60ad82d42f9aafe41e00ead1bbcc1e58a962"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/initial-staging-asset-error.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10b7f45b4a7e5b102d2133d458b7e340f7e423fa"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/non-message-source-preservation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73a8744bc7134b8f33d7ea1c6f58f341a4f75092"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/original-android-observations.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50ef816fd690eb9af3ac325c3cb8100017a9bba0"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/patch-against-86445.diff",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8834bfdb9201b6959a9bd5eb6ffbc56da82d48c8"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/red-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "daece0a0901a265fe387fbfbf6e966324f1ca20d"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/red-observations.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "69d6340f9429d59bd15b5e85b5e1bb25cf8dc78b"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/red-original-86445.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d1a2cf52637f3d6d316d7eae323f48185a6a5ff"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/same-state-and-save-comparison.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b2539551ab17b987a5cf5ccde3c0287255b10e0"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/source-binding-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2be7bedc0fc76c5ccadbcd84fbc32e73fb855db"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/source-binding-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "952fca9e69c702181523e0c4161279b043ec62e1"
+    },
+    {
+      "path": "docs/evidence/studio-cards-german-feedback-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5ba682b2fcfb9bf6b1918beddedfc51f8101b2b"
+    },
+    {
+      "path": "docs/evidence/studio-connect-four-android-independent-review-20261114/independent-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eceea3c4c176b92d55652cee500d6633252dabcf"
+    },
+    {
+      "path": "docs/evidence/studio-connect-four-root-review-20261114/runner-closure-independent-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b268a28df698be40e1edc450b52fc7519d0109be"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/README-host-repair.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68311dcc0f7fe663135b020a86a1f8820921590c"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/existing-nine-contracts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8242a55ead8337965656c4dca2a5b28d37f56d2a"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/existing-nine-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b84e65c1112950cbb48dd4d162f4e7f33d72e10"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/green-initial.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fba4d25a1129158f73931fcf285544da00797f5"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/green-initial.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6cfd4b62c7db7439a9aeab17e4161b2341663611"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/host-against-86445.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5004e10b270dd67c5ab8659ba1f7da58a7d6f16"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/host-ast-scope.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1fc20356b5b9551de02c88e297a12beace9b7fbe"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/host-repair-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d0d1f719c4dadfb40e4d5a07d8ab3a3ffba6c1a"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/red-original-86445.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f389c88d8ff6666d6d0c69609a0fff24618a099"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/red-original-86445.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a73b2da873f326c34d2f4b0a1c633f0d94b57dbd"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/source-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b24bc0b62190dd6af5a43edbd9d2d16f1546d724"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/source-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d6db6f96dc11ca679523aeaa0a495563c223cf8"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/host-source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "610c54e5014f97c5d7b775b0a804eed7d4d3320c"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/README-native-title.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04745888ccd377d37f7e8f17ebcf8cd1265004f7"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/initial-native-harness-error.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2dd366fe59d1bc59298527a4143e15104e63daca"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/native-title-against-803.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b1b628ae2f7e886ab249773488736492d34a8ed"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/native-title-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89d119655227e0ca4fe550924c158e5c9ec6c11d"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/runtime-dependency-binding-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a33eb84d557217a30b560c43600ad6d36ab564a"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/runtime-dependency-binding-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d4aff02359fb56af32074275f3ab0da3fc89d7d"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/runtime-import.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7072d2095bd801228267ae9fb493133a785de26"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/runtime-import.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e797c67e5a40b7356079a9b144b48ce407ece353"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/source-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d6db6f96dc11ca679523aeaa0a495563c223cf8"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr-original.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0b3e6e9d4251db40620baef720d3e78f886cfb7"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr-replay.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "471b10fb4cc93787735f7f957ddcf57bd8f306da"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-components.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "275e9da94ab86252d2257b9e7a3c74ee7ad8763a"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-contrast.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b836fc79577107801745e7b2b12767ab9030d2e3"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-gold-component-0.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2acae09ca9779bb18489d9e52ef63a19a6b6fefb"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-navy-latin-1x.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f83c6039633d21db11b2e8076a19c886412b11ca"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-navy-latin.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "994242775c2e6e4b221a0fa3f2f083f2f395e3d0"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-raw.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e1615827ab16b85602f5edcd16e1353aaff30c2"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-teal-text-1x.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7770625b78d307e331f75da1731c641536c90c5"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-0.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad35f056a8ee40236c098b6517cf2ae9d6ec23e4"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-1.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86ab8067cfa09adbf5b97a12804c75104e720953"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-2.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "358147d41ef005960edf053d8c3c1385592280d7"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-3.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3176e8d997336fc99f9d953cfe71ec2120aa4cc6"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-4.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1db645ed9ad8df5febc4c727f2f79984d1338785"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-5.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50eb34fa766422b48d1a8555f2d8a464e2e7100c"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-tile-0.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a5fdbf9a248b62882d942cb944c6bcb60174689c"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-tile-1.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a3aa1c1086ab5e79ddb856fc26bbde055489698"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-tile-2.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3a0655f2399c66fb723f63e11ed8205a1c019d6"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-tile-3.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55346fa9743211e1dc65318d7640b80c9b81fb17"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-tile-4.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c57babfb34b9520301ec5112648a9d327793bda8"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-tile-5.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae5e8c2b32edb820c973c7b7534e200099ac279a"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8bc64407a7c40d8145e711c11ca661973625e4af"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-text.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8bc64407a7c40d8145e711c11ca661973625e4af"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-fold-ocr-contrast.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5569af18e11cc742eb52a689c0478a334966e5dd"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-landscape-ocr-contrast.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea7de83cbdda8d2b4b8d45819a97bae6fac79cb2"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-landscape-ocr-raw.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4cde1fec8beaeb3bdbdde3376fc78a579cd277c4"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-components.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a35995613fdba2d61253e4ae4a0f5039ed35ed7"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-contrast.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eaaa7b71eeb83974967f012cfbb7bce7c93e924d"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-gold-component-0.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34572a65393cff7e083237f0fe0d9e0e38d36cb0"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-gold-component-1.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3462f6360aea17340778e4e0c56b2ba71aca29f1"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-gold-component-2.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "305b28cac8129168230ae0f88e3900972b3fd1b9"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-gold-component-3.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e07b9de01bf7486c15d7c4d39abdca5fe086592f"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-gold-component-4.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "71e9e980cbbc3b1b01517024740be404a2c6a967"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-navy-latin-1x.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88deb1e01c7016c367355a223fd061809cf795fb"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-navy-latin.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df0b8eb397d5195e05fcf8c8048cd065654d9bea"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-raw.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2da82c061ac9f98e6d5d291353fb1a0bb1d3a634"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-teal-text-1x.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5c25149988c02c1f1b0d71d565891c4636aa8cf"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-0.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f20fc4cbdf8e091fdadb42d3dfec96323eece71"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-1.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6cf416d2a66c41f7e8921d2ccb413a201fda030"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-2.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40f02aa691c4850ad93c7feaa80588579d9778cd"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-3.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76693eb3ce3268180fa99c9e9f4d06e27923ca89"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-4.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d015656a6cb14eb7b399130b5cecc08dfc0898e3"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-5.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc3035ace1de15eac5da66271fc05f61b75fd051"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-tile-0.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d24bcae54c4e1c30ed4ceba9abf437e27dbf07c1"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-tile-1.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88bfa21c1f0e91dd53b2523ec9b61464a0423b3f"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-tile-2.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d6329f1f32f9418d09d6497cb65f2af14bd958f"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-tile-3.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6866c442fb41bc05e239ba1b74e25b939d20d940"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-tile-4.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a83a9cc696039d9bc3d26930a51bfcecc04c769d"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-tile-5.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33f26fb076982e72a9a9df0f2279f953d47b2629"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c8e7a077fef6edd9f39999ce0b444a5dd3de7658"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-text.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c8e7a077fef6edd9f39999ce0b444a5dd3de7658"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74976b16240eafd418b781ee3e63cc3fa3b414e1"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/treasure-render-launcher.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b7388d0ec7092166285f17c9be4005462e0f8913"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/treasure-render-launcher.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0aefd64b1cd444b7f22f2080b4c50bc40fbf714c"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/native-source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd2eeb8d03a725dc79ca0ed00e57bb9e20ceb4f8"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/replay_treasure_title_ocr.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "794464e0ddca6c3327a9fb39b6bfb48e72a58e1f"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-existing-density-headless/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab86404111af1442a8ec6f645ed9e4baacc44b65"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-existing-density-headless/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0faa9236aaa5016eac807f0d81a97e5f6e5bf0fc"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-headless/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb06f626425ac8c18a1a73d40ef20c7a40eaa4dd"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-headless/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82c81d3897b4636d88e4f44acc0abd191584b4dd"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render-captures/treasure-title-compact.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e4ba50dbf65d56ed6f9a3f68f0cf65c2f107dce"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render-captures/treasure-title-fold.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33d134dd94f6fd779f32d6f8d66dddde007919f9"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render-captures/treasure-title-landscape.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d89ec9c2ecf97f316af62e4dddea876046b00db0"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render-captures/treasure-title-portrait.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33b705d6742504886b0d679479019a0ba4403180"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render-captures/treasure-title-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f4f492af458d1e83aaf73bb9102c1f85e81aac00"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f027dab34d8e2beb825551011424ffe2cfdab0f"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c91480be26b472dda3e4358523d1f5d04971a48"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-red-headless-v2/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e18bead861178b7f0b5622366e9ed063cc84968"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-red-headless-v2/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40396d6821ecf996dfea30cf6970e321d302d2a7"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-red-headless/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9eb0fdd70b33ab1b0db561a5e39c05961e315f7d"
+    },
+    {
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-red-headless/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d563377f086e5c03ac9ff48d3d4c6af8455378d8"
+    },
+    {
+      "path": "docs/evidence/studio-2020-new-work-20261114/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6ff677cdc4bd13ba0fa83ff8fb69e57e68c3d7e"
+    }
+  ]
+}

@@ -1,0 +1,481 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "host_base": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "status": "all 68 initial product/test deltas are existing or uploaded immutable blobs; final docs/version/pin/review remain separate",
+  "files": [
+    {
+      "path": "tools/android_qa/tests/fixtures/connect_four_android/phone-playing.layout.json",
+      "sha": "4fb9d09fcc554e198604833d2be9972a86864bc1",
+      "bytes": 20990,
+      "kind": "known-existing-blob"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause-contrast.tsv",
+      "sha": "752b0e82eecc7f3dee6c2106e13ad044590aa83e",
+      "bytes": 1441,
+      "kind": "known-existing-blob"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause.png",
+      "sha": "079ef467b495fbeee65dde5577e56f1e31037079",
+      "bytes": 519505,
+      "kind": "known-existing-blob"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause-contrast.tsv",
+      "sha": "5123bc5603466b885147057a0dc2da437fc4022e",
+      "bytes": 1441,
+      "kind": "known-existing-blob"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause.png",
+      "sha": "395f6df8112fe13e85d2a2438bcae90e8be4297b",
+      "bytes": 519056,
+      "kind": "known-existing-blob"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-eventual-pause.png",
+      "sha": "c59914e7412dc42ae223bf9ea9ff146906784605",
+      "bytes": 520559,
+      "kind": "known-existing-blob"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading-contrast.tsv",
+      "sha": "a5b02c00874f623724f11b7eaaaa50b949f6c726",
+      "bytes": 6071,
+      "kind": "known-existing-blob"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading.png",
+      "sha": "87ac5dcf26440b0142c9425a49e1c5c0a5f4856e",
+      "bytes": 2673455,
+      "kind": "known-existing-blob"
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "sha": "45ff0d24400ee21673c707b4b6448f914c85ee87",
+      "sha256": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+      "bytes": 60697,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": ".github/probes/lumo_2003_update_android_probe.py",
+      "sha": "6616883a5653f5c8958de92e86da514505e68312",
+      "sha256": "5f2b41e16f1ade611b2a1170d8142b5ed8b7fbfc038294bc1fa5c59fc9928b20",
+      "bytes": 10553,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": ".github/probes/lumo_2020_update_android_probe.py",
+      "sha": "f0fd4597111a158ce81ccfc071d480c118208ce0",
+      "sha256": "39eb95d3a69d476b34f80e44d2d54eb640dae527a0aa8912f3b9b7d6feaad293",
+      "bytes": 1899,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "sha": "53679cb2a9adda7fbae82621afb29efd920c4485",
+      "sha256": "d9c72a9f4c98851ef37095441404947b178237fa4b560b3ae232759a6adf961e",
+      "bytes": 36483,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "sha": "84147964ce848bde78ff8cc9cb7d5a17176da2a8",
+      "sha256": "b072e4b218e05e3756a902d9cb887c1a02275d708bb7a25da83fb6c9b810b415",
+      "bytes": 48924,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "sha": "4747ac3d62fddcf7ec3b12f96ca01ff3a93830b5",
+      "sha256": "5b2aad1a5fe0a9bac1e52f891c836393a9ca41492da110d50fcd59d98d4fc2e0",
+      "bytes": 69712,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "sha": "91900659c06ab2d6713b8bd24d37800eb533c470",
+      "sha256": "43c795cc9aff8b4c7479e559ff5e5bf48213dc79232b1528b406152de3b3bf7a",
+      "bytes": 56929,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "sha": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+      "sha256": "50b9d9e4c7ecaf2a5e9cc24d99f1b2ee49e0bf50318a0c6c28cabacda2028efd",
+      "bytes": 54663,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "sha": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+      "sha256": "dcc411d6687df70934d83253990248c4a0654b13a36ec54338ec43a257329754",
+      "bytes": 12082,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "sha": "fd8efe8e114de656b6802e097b96910535d83c39",
+      "sha256": "3a4c99538f50f057c2951ef16bbc55f6275865d90cafce36517c16f0545e615e",
+      "bytes": 9737,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "sha": "1275d6616c6cb850ad55633e51a9450d5887dd34",
+      "sha256": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075",
+      "bytes": 42692,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_rules.dart",
+      "sha": "067a16c3e6061120fe8b58c1e3585d2982964be7",
+      "sha256": "ef94f30fd339e46da6fb58a39989dfacdb0f2a8f5d881314f40afdfcf5503d13",
+      "bytes": 18821,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "sha": "b9eff2d23c35d01e6df674cad909c5c495a87bde",
+      "sha256": "a385e88006fba6a4f6126e0eceb57dc2185ebf0c34149746d369ae0c790ea732",
+      "bytes": 10316,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/compile_android_host.sh",
+      "sha": "002eb5a6177d92ab2bc7d53078823283d6b48ead",
+      "sha256": "5263daebef5cd69d3950ef642eaba011b8da960083f2cec276b287c3461407a7",
+      "bytes": 3354,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/prepare_android.py",
+      "sha": "83d6421d0fe26848962c8a2433b0b78182596261",
+      "sha256": "e80c31269ba8d15fc5db171dd46e1c45cb418f1ff799b03292e89e45b7e4dc6f",
+      "bytes": 8826,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/prepare_embedded_games.py",
+      "sha": "a1615455b5ea6251926d5037900e025d46971c18",
+      "sha256": "694c115184bd6464ff8e7a3e0bd078e58f5f37d47739ac1d7675827c2f21e129",
+      "bytes": 10377,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/record_studio_visual_review.py",
+      "sha": "bf4d6ab27e239cac5840c32da4f438fc8785cc56",
+      "sha256": "c09f3e01e95b947e8c5df0ecc735ff703254e9f05ebdded26fda866617f31e89",
+      "bytes": 6472,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/run_connect_four_runtime.py",
+      "sha": "36d93ed0908705e339346bf5ef451cf047b641b5",
+      "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b",
+      "bytes": 15683,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/build-loading-ocr.json",
+      "sha": "64de9e3d315c8509c086a043e6c479fcf946ebbc",
+      "sha256": "1869325650b5e41f21aa48e5275c937a655fd6e1fff6169ea1d211c15a460b66",
+      "bytes": 22464,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/origin.json",
+      "sha": "a66290d7c8c3d3d7ca68a539caf15ec38d459ea6",
+      "sha256": "aeae2b24735af8d5c69649b50c809848467903286d3b8e533a987c5106e1dafd",
+      "bytes": 1642,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/puzzle-save.json",
+      "sha": "7294c1d0dab06b2ec85e493bf010701c43f5626e",
+      "sha256": "29a335c9ee631fb25fb0dbd55b4889daa0a2755d8f7c7ac7a308ecd1d43c28d0",
+      "bytes": 950,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_native_contract.py",
+      "sha": "e167e11d44f5525c07ef65bf8fc0d1be3e7711bf",
+      "sha256": "2ce7e21eb9be9a4e98211538e9cef5e219f3b9fc4d08aabd22d72e0489665b73",
+      "bytes": 17557,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_runtime_gate.py",
+      "sha": "5a0d3123167ab26c882a049e7e90dbdd8f0a73de",
+      "sha256": "53be3d0d582f72709b00437a8f91386a7bfa245a3c35be85a5f320686b3a2d55",
+      "bytes": 10033,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/test_creative_geometry_readiness.py",
+      "sha": "ace0a51805217347bcb3ec62fbf2c838b9faa4a6",
+      "sha256": "3635e484f4aedb3ab70283deb382749a61631757c65539f79adf1e8db42f0764",
+      "bytes": 10636,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/test_embedded_android.py",
+      "sha": "6ad0e520940b6e576324fff7615c2cf5c400bf8f",
+      "sha256": "3dd23569d8c75422dbfe42f69c30aa9538b481db42b3be0dd33eb85804da9f1a",
+      "bytes": 6750,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/test_game_return_contract.py",
+      "sha": "186cecdca050b1e16e24996480ccb005b580ec57",
+      "sha256": "1e61af9b6e1b69a0271b13c07f77ceb75f8a879f4a589da29dceb9d0ff56f5b7",
+      "bytes": 17104,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/test_prepare_android.py",
+      "sha": "da5211fc10f88e90c2444013967999e76822b973",
+      "sha256": "f5b55e9ec9642ad34429a938e6ddcb5a250bafc3792c6c8ca44e55c5fb43df94",
+      "bytes": 9901,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/test_studio_2020_android_contracts.py",
+      "sha": "e78d763194e513f2f157006975acf215d50139f0",
+      "sha256": "fa9dcad4afbf536eda132d7d7f8e3d3e28c62d355b6bd08ba411bdbab44270d2",
+      "bytes": 9331,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/test_studio_2020_delivery.py",
+      "sha": "4d696d150bdf53976782bf10dc5c31fd278140a0",
+      "sha256": "26a74be04ffd031bce3934896f415b0bf5d5de974d9385500865a0976cc17630",
+      "bytes": 9305,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/test_studio_artifact_originals.py",
+      "sha": "4d3d089261181cfcb02cb7e390384fe8e99d9774",
+      "sha256": "d4b1c03a81cc46847da24ed1d61f0a922a95e179799e474212e1282377a8b688",
+      "bytes": 16122,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/test_studio_connect_four_android_delivery.py",
+      "sha": "36c09e7061942a8eafabcfe71c91c5989f837fe0",
+      "sha256": "707e4aceed63868f282775035642ad6c6341bdcf75db211b3eb24109508963f4",
+      "bytes": 22231,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/test_studio_delivery.py",
+      "sha": "3a6e3f3943c80a8428830ae4ddf87e3424ecb27a",
+      "sha256": "ed820f7cca2e15612975efe075e583fdba8eafc4cff174908c957f5a4e0acbe2",
+      "bytes": 42563,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/verify_studio_artifact_originals.py",
+      "sha": "995da085c5d3b5406d5e9aa9829cb2f7691e66b3",
+      "sha256": "99dd5ea5555c7f07ad6ea1a3302aaeb8f6fd2e4fc83ee2b5e0733241503eab0d",
+      "bytes": 14822,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/verify_studio_connect_four_android.py",
+      "sha": "b05348751d7c3c8b74ed91dd03d0acd6f21cd4a8",
+      "sha256": "b17f88f8d499e28be1663d9bcf1ada451221703174939fa60fde8bf990363e4c",
+      "bytes": 34503,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/verify_studio_creative_android.py",
+      "sha": "52293d7a3e121862ef033e139f87016692f56d05",
+      "sha256": "0ab298bef6fbe6f500d471b58958e6952a2141069a2077056da872b85b5fa62c",
+      "bytes": 9714,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/verify_studio_delivery.py",
+      "sha": "938ff72d12751d9a7fa83a43b7f8f2703356e04a",
+      "sha256": "7d97aca5339d24841febd29765ec9ae0f2d391e073edead5fb9d1fe4b3a3077b",
+      "bytes": 32623,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "test/games/cards_german_feedback_test.dart",
+      "sha": "ac53a542304fd1ca1239a4e71abe0a00ec729c28",
+      "sha256": "2b0be338ce21fe68a359d487c1e9b47233ed446667fd03fdf37006e980170829",
+      "bytes": 10882,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "sha": "92956444dee338921853aea037ca32033bcd3b2e",
+      "sha256": "1d2196fd362c11f03df9cec6fbc36a557df542ac90277cd7d13f65010938fcdd",
+      "bytes": 2650,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "test/games/connect_four_interaction_test.dart",
+      "sha": "379c1dee8358507493ba60dbd683ca7f4a3821a6",
+      "sha256": "9fe8e5ed4b94e024c6b1d35c968c8ee4434ec921e07334ff8a5c360eaf363305",
+      "bytes": 5768,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "test/games/connect_four_lumo_level_test.dart",
+      "sha": "229a531e9fe61337e05f92cb50409eef409bd57f",
+      "sha256": "792d6bd0552f890ac50f74d0c4d02e480400cf85ad933a2138b0a403ad6d7098",
+      "bytes": 3831,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "test/games/connect_four_native_route_test.dart",
+      "sha": "d5178ab675bbc83b8fcb6dd0f6a3b7d675b1f3d0",
+      "sha256": "0d6636896a01653e006862cdbcce5f673182f66996b71c44710ca8351b31b9ed",
+      "bytes": 4803,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "test/games/connect_four_native_session_test.dart",
+      "sha": "a540779dc16fe894493e1b13b4de720a33765c7d",
+      "sha256": "0ea59f0986842361b1422cf8e2d2b4cc47efb6d6eb9982ab234cfa676d289576",
+      "bytes": 19735,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "test/games/connect_four_runtime_bridge.dart",
+      "sha": "6ae4695d06f955d5c9501bdce22ed9a83a0a26d0",
+      "sha256": "f74b56bc14994b9f9a987ec0719fa85f9d2427012c83ae18b8740a98c18fed65",
+      "bytes": 4838,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/connect_four_android/origin.json",
+      "sha": "addb39b9a20d43f8274f3cd3881d5adbc638a127",
+      "sha256": "8b7ba4224d5f7f1a31ed449512a9b2a00a7e74e5ab787a6d7d0950a1fb71fba5",
+      "bytes": 587,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/manifest.json",
+      "sha": "6ce0a25604c0bcd7f6d33eec7416bd82b6d33bcc",
+      "sha256": "31fa110427af3528835df32174a07acb71cc7e3bd86f94fab1213752204daee0",
+      "bytes": 4818,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "tools/android_qa/tests/replay_flutter_loading_frame_ocr.py",
+      "sha": "ce969e7a1236b8ed601b598ce13810a088f91f60",
+      "sha256": "4c8f154a259ce22b734977ef5c2dd7257d8ed4968cf370abf8dd62a09e853d81",
+      "bytes": 4793,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_probe.py",
+      "sha": "3c760b4711b1bc6c57544095ac08b5df8f942825",
+      "sha256": "cdc678f97a8f60ea53d91e3682cf7e49e88151a8079de6a9d58f38b36dee0548",
+      "bytes": 19270,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "tools/android_qa/tests/test_flutter_loading_frame_rejection.py",
+      "sha": "20fe9e8d8640fe9aa41695b9dd10b4b4a38a23ce",
+      "sha256": "4cb4ba9c25293f46534ff5b90ee712f866f6f12d23ee58b3db32d39844390529",
+      "bytes": 9631,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "tools/android_qa/tests/test_update_preservation.py",
+      "sha": "2d76d5893cd23867988e89d558fee20fb231a873",
+      "sha256": "d6c7d9f271b328dd62886bbd9035b514cfa88ff3fcdaa0aa3405d3edc972a6e4",
+      "bytes": 27137,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "tools/android_qa/update_preservation.py",
+      "sha": "b52850ecc4d0b80dd76388ca3b5a4af7933540bc",
+      "sha256": "e0df95f2352bdce13fd8068f8f064fb139aa5beac575d8ba7e7bdef85b5dbc4e",
+      "bytes": 9154,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "tools/auto_install/ConnectFourAuthorityService.kt",
+      "sha": "0b687707c7a1a0627eab8fa8bf47b06ba72aead3",
+      "sha256": "7fb5ecdfd6e0b8c64f678258d3722483220d3e1574cc300916da6da50ccd2289",
+      "bytes": 1708,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "tools/auto_install/ConnectFourBridge.kt",
+      "sha": "f6e41ada005cc01f3b75d05370e5098048188d37",
+      "sha256": "02ce58b8863197c9d4395b192f238d52a4e2b049ce59d01e451a0189088433cd",
+      "bytes": 7788,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "tools/auto_install/ConnectFourGameActivity.kt",
+      "sha": "d49a93cf8588b3fdad7ce1bb693843febc7e7984",
+      "sha256": "02ea7fb0f3909da8013e6a97b52901dd8e2981ae13e5c1a74ac1e03979364fe5",
+      "bytes": 7355,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "sha": "d9adf0665b3a037c090299091340fdae76af9e3a",
+      "sha256": "13bf313696c626a3453cddacdd8e95fb20b4075d84ddaeb8a5c0054d68e43f8d",
+      "bytes": 8902,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "tools/auto_install/LumoSpeechEnvelope.kt",
+      "sha": "5721274734e111e96d55762d86b3d3e830fc26e8",
+      "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8",
+      "bytes": 4697,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "sha": "ed589d9bbc5a99e7b37e606bc45cf932b5ce9257",
+      "sha256": "79e7b8f58cb841c9a3a120429860d0c329656300164b67416c7a38ab8e51f758",
+      "bytes": 17568,
+      "kind": "created-and-git-sha-verified"
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/build-loading.png",
+      "sha": "487d90aa87a710acab7f30f95e8632fc7956cd3d",
+      "sha256": "b6805765bf524301a036bb87207d3572e8f475164692bd0039420160c8f4cd38",
+      "bytes": 1871144,
+      "kind": "agent-created-and-git-sha-verified",
+      "proof_sha256": "9bc2ffa4abda4d63f5e698bd4c3fbc38e6e239070e3785dd23fbac5d9f77fdcb"
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/build-playing.png",
+      "sha": "12aa1d09a1baf74fcbdeacce551886a0d51b669b",
+      "sha256": "cd4efedb88413e2de07755dce3bb99ed2440fe6de4fb075b5c9900a6ea44f7a1",
+      "bytes": 2480067,
+      "kind": "agent-created-and-git-sha-verified",
+      "proof_sha256": "9bc2ffa4abda4d63f5e698bd4c3fbc38e6e239070e3785dd23fbac5d9f77fdcb"
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/jump-portrait.png",
+      "sha": "7a90c4325d7299780800e37b40fa487fdda3862b",
+      "sha256": "8c95fc1433958c63b53727f36f4bc414d1caf2935544b1fb3cbc46036c735c07",
+      "bytes": 1634627,
+      "kind": "agent-created-and-git-sha-verified",
+      "proof_sha256": "9bc2ffa4abda4d63f5e698bd4c3fbc38e6e239070e3785dd23fbac5d9f77fdcb"
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/puzzle-board.png",
+      "sha": "24b9d5119aa6c439786c26ae249334407e2b9d3d",
+      "sha256": "0ffb971f2ec18e8031cd58f9370a44e41c09fdda7c099456365e177253641eb3",
+      "bytes": 1017338,
+      "kind": "agent-created-and-git-sha-verified",
+      "proof_sha256": "9bc2ffa4abda4d63f5e698bd4c3fbc38e6e239070e3785dd23fbac5d9f77fdcb"
+    }
+  ],
+  "ref_mutations": 0
+}

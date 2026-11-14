@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "scope": "C4 Android probe preparation only; raw logs retain the initial synthetic test arrangement error.",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-86445/README.md",
+      "target": "docs/evidence/connect-four-android-probe-20261114/README.md",
+      "bytes": 7532,
+      "sha256": "e9998a0cae1136a50c809c1ad0c959a93f5af2fc2a96d94ac83f49ca25b01f13",
+      "git_blob_sha": "511cae6fd746c49f088c75e30dc0966c5d63a0f4",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-86445/evidence/first-contract-run.log",
+      "target": "docs/evidence/connect-four-android-probe-20261114/evidence/first-contract-run.log",
+      "bytes": 6470,
+      "sha256": "98c5b19d078afef88b05eb264a702cf3e3acf4caee5fb5a0310b0bf471c46e89",
+      "git_blob_sha": "82e89558f9ce1d710c7d5919830872eec5b9271d",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-86445/evidence/contract-final.log",
+      "target": "docs/evidence/connect-four-android-probe-20261114/evidence/contract-final.log",
+      "bytes": 4794,
+      "sha256": "3ee5ac474f071de3123a2d5bafda42dddc895600d6ecc77d89ff35e35a025662",
+      "git_blob_sha": "2d56bf5c8edb91f319833c537e7767af58a06f27",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-86445/evidence/contract-final-execution.json",
+      "target": "docs/evidence/connect-four-android-probe-20261114/evidence/contract-final-execution.json",
+      "bytes": 581,
+      "sha256": "6a4e511fb6a5b8940faf3d3f5a09b654d5ff823b023e8bedaa5153109b70bea5",
+      "git_blob_sha": "d97357c57466eb7ca1d9d875376b7c29b1693365",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-86445/evidence/cli-help.txt",
+      "target": "docs/evidence/connect-four-android-probe-20261114/evidence/cli-help.txt",
+      "bytes": 1367,
+      "sha256": "daf382c4da492030fb5259b4bab65d7f34be74f09ab4e29b96e4ec812089bad6",
+      "git_blob_sha": "80d7d4da566ef8425200bbe78e9734074855c405",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-86445/evidence/compile-and-helper-contract.json",
+      "target": "docs/evidence/connect-four-android-probe-20261114/evidence/compile-and-helper-contract.json",
+      "bytes": 194,
+      "sha256": "47747f9761c938ae67af71e3534167e11dacd51f66f275c344c8a1255750f060",
+      "git_blob_sha": "f769512443bc1c159d30c3269084526ffb41c29e",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-86445/source-upload-manifest.json",
+      "target": "docs/evidence/connect-four-android-probe-20261114/source-upload-manifest.json",
+      "bytes": 1918,
+      "sha256": "8a2b90c8cd60471487ede963cf00aefaf415c3228c9165625fcfceda51c0bcbb",
+      "git_blob_sha": "4e77ffd45e2aacf9833360df625c5216945a7131",
+      "mode": "100644"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+usage: verify_studio_artifact_originals.py [-h] --source-sha SOURCE_SHA
+                                           --build-run BUILD_RUN
+                                           --metadata-dir METADATA_DIR --api35
+                                           API35 --api37 API37 --runtime
+                                           RUNTIME --out OUT
+
+Bind three downloaded Studio2020 directories to their original GitHub ZIPs.
+Original directories are only read. Each original archive is downloaded once
+into its own temporary directory, fully checked and then removed. No archive
+is extracted, and neither credentials nor redirect/error-response bodies are
+logged. The game/probe acceptance remains the separate C4 publisher's task.
+
+options:
+  -h, --help            show this help message and exit
+  --source-sha SOURCE_SHA
+  --build-run BUILD_RUN
+  --metadata-dir METADATA_DIR
+  --api35 API35
+  --api37 API37
+  --runtime RUNTIME
+  --out OUT

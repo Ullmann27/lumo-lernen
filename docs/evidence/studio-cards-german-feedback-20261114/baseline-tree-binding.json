@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "host_source": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "host": [
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_rules.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9326aeb6b9db4909aed2de83f1e03e1fc1c6dd7",
+      "size": 18226,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/c9326aeb6b9db4909aed2de83f1e03e1fc1c6dd7"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_models.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7b12e70190c31284d56f83220fe7e486907fcce",
+      "size": 7913,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/f7b12e70190c31284d56f83220fe7e486907fcce"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_deck.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57476c6e1b59431066a74c24e7d069ef7d26e7c7",
+      "size": 4778,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/57476c6e1b59431066a74c24e7d069ef7d26e7c7"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_game_controller.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52beeb4f154045e54cf8f6a8e35a3bcb7255eda3",
+      "size": 17240,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/52beeb4f154045e54cf8f6a8e35a3bcb7255eda3"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_session.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99b84e1ee43d01f1c856d9ecd6335239b9f6a649",
+      "size": 9395,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/99b84e1ee43d01f1c856d9ecd6335239b9f6a649"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_table_session.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "278ffb71145ad75a62f9aa45a78d4c8bcd8b8f82",
+      "size": 11296,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/278ffb71145ad75a62f9aa45a78d4c8bcd8b8f82"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_bot_policy.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f18191ac1d5d8c7c394ab4adcfb4c8771f0e0d9e",
+      "size": 6430,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/f18191ac1d5d8c7c394ab4adcfb4c8771f0e0d9e"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_playing_card.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84721285bfce7c527e8c9fe46a663f760c6ee2e7",
+      "size": 19874,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/84721285bfce7c527e8c9fe46a663f760c6ee2e7"
+    },
+    {
+      "path": "test/lumo_cards_rules_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7128f88a0d11ef9d1887ca2f9f4c771de60ffe54",
+      "size": 23388,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/7128f88a0d11ef9d1887ca2f9f4c771de60ffe54"
+    },
+    {
+      "path": "test/lumo_cards_table_session_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42d68dda20b1a817686a0d5fb4b70eb044e08de3",
+      "size": 12681,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/42d68dda20b1a817686a0d5fb4b70eb044e08de3"
+    },
+    {
+      "path": "test/lumo_cards_persistence_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b57489e38777b9331bb886f1a16b8da20b3f459",
+      "size": 10810,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/7b57489e38777b9331bb886f1a16b8da20b3f459"
+    },
+    {
+      "path": "test/games/cards_color_consistency_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f34617bafedf5144d02c7d19b55e0745b519eedc",
+      "size": 1926,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/f34617bafedf5144d02c7d19b55e0745b519eedc"
+    },
+    {
+      "path": "pubspec.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40a3226d7b575cc414abc1494dfff5924a5de775",
+      "size": 2675,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/40a3226d7b575cc414abc1494dfff5924a5de775"
+    },
+    {
+      "path": "pubspec.lock",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7843602e3d858660dc52d95587983858803976a5",
+      "size": 24467,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/7843602e3d858660dc52d95587983858803976a5"
+    }
+  ],
+  "native": [
+    {
+      "path": "scripts/games/cards/cards_table.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2d68ea69756e25936f3f44d59b01d0c1b17f2d4",
+      "size": 41353,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/d2d68ea69756e25936f3f44d59b01d0c1b17f2d4"
+    }
+  ],
+  "writes_allowed": [
+    "isolated patched lib/features/games/lumo_cards/lumo_cards_rules.dart",
+    "isolated new test/games/cards_german_feedback_test.dart",
+    "local QA evidence"
+  ]
+}

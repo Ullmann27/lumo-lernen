@@ -1,0 +1,43 @@
+{
+  "scope": "Unchanged supporting modules copied only for isolated verifier tests; none included as modified source in this package",
+  "files": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "source": "qa/connect-four-android-probe-deadline-86445/.github/probes/lumo_connect_four_android_probe.py",
+      "sha256": "d9c72a9f4c98851ef37095441404947b178237fa4b560b3ae232759a6adf961e",
+      "bytes": 36483
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "source": "qa/studio-2020-android-contracts-86445/patched/.github/probes/studio_creative_android_probe.py",
+      "sha256": "26f747933f97e9450e92bf4db9de5da4f776ca77f53553bef8f965d9a2bb7d08",
+      "bytes": 65504
+    },
+    {
+      "path": ".github/probes/flutter_surface_readiness.py",
+      "source": "lumo-studio-final-e3d/.github/probes/flutter_surface_readiness.py",
+      "sha256": "26219bb28b51e599bf220d639eb0ec38fd41881a07c6d4fa4503e1b0e3a1d6dc",
+      "bytes": 4078
+    },
+    {
+      "path": "tools/android_qa/kart_tour_evidence.py",
+      "source": "lumo-studio-final-e3d/tools/android_qa/kart_tour_evidence.py",
+      "sha256": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+      "bytes": 9299
+    },
+    {
+      "path": "scripts/run_connect_four_runtime.py",
+      "source": "qa/studio-c4-gate-integration-86445/host/scripts/run_connect_four_runtime.py",
+      "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b",
+      "bytes": 15683
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/connect_four_android/phone-playing.layout.json",
+      "source": "qa/connect-four-android-probe-86445/tools/android_qa/tests/fixtures/connect_four_android/phone-playing.layout.json",
+      "sha256": "6bc6ec736379fae23fa641543704017a3514036c66de2d2c5e2badd436d867ff",
+      "bytes": 20990
+    }
+  ],
+  "supersedes_for_final_contract_execution": "unmodified-test-support-binding.json",
+  "note": "Original support binding and 28-case log remain historical; final run uses the independently reviewed deadline-only probe follow-up."
+}

@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "baseline_host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "baseline_tree": "2389b97232041bb77307e47ecc0e550772339a4e",
+  "status": "FROZEN_LOCAL_CONTRACT_PASS_NOT_ANDROID_EXECUTED",
+  "future_native_pin": null,
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/patched/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "target": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 48845,
+      "sha256": "b2ca7ebef49eecac2b4b30fe442af2f6bb1f0f7901b282d351e9ae6ef9107f5d",
+      "git_blob_sha": "4cf16daaa1119cd03016474399d4738343c2fb3c",
+      "mode": "100644",
+      "composition_note": "Version-only delta against exact 86445; compose with the separately reviewed loading-caption patch"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/patched/.github/probes/studio_creative_android_probe.py",
+      "target": ".github/probes/studio_creative_android_probe.py",
+      "bytes": 65504,
+      "sha256": "26f747933f97e9450e92bf4db9de5da4f776ca77f53553bef8f965d9a2bb7d08",
+      "git_blob_sha": "e9245001ceff14302c498a188aac791eac3e2a04",
+      "mode": "100644",
+      "composition_note": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/patched/.github/probes/lumo_2020_update_android_probe.py",
+      "target": ".github/probes/lumo_2020_update_android_probe.py",
+      "bytes": 1899,
+      "sha256": "39eb95d3a69d476b34f80e44d2d54eb640dae527a0aa8912f3b9b7d6feaad293",
+      "git_blob_sha": "f0fd4597111a158ce81ccfc071d480c118208ce0",
+      "mode": "100644",
+      "composition_note": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/patched/.github/probes/lumo_2003_update_android_probe.py",
+      "target": ".github/probes/lumo_2003_update_android_probe.py",
+      "bytes": 10553,
+      "sha256": "5f2b41e16f1ade611b2a1170d8142b5ed8b7fbfc038294bc1fa5c59fc9928b20",
+      "git_blob_sha": "6616883a5653f5c8958de92e86da514505e68312",
+      "mode": "100644",
+      "composition_note": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/patched/tools/android_qa/update_preservation.py",
+      "target": "tools/android_qa/update_preservation.py",
+      "bytes": 9154,
+      "sha256": "e0df95f2352bdce13fd8068f8f064fb139aa5beac575d8ba7e7bdef85b5dbc4e",
+      "git_blob_sha": "b52850ecc4d0b80dd76388ca3b5a4af7933540bc",
+      "mode": "100644",
+      "composition_note": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/patched/tools/android_qa/tests/test_update_preservation.py",
+      "target": "tools/android_qa/tests/test_update_preservation.py",
+      "bytes": 27137,
+      "sha256": "d6c7d9f271b328dd62886bbd9035b514cfa88ff3fcdaa0aa3405d3edc972a6e4",
+      "git_blob_sha": "2d76d5893cd23867988e89d558fee20fb231a873",
+      "mode": "100644",
+      "composition_note": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/patched/scripts/tests/test_studio_2020_android_contracts.py",
+      "target": "scripts/tests/test_studio_2020_android_contracts.py",
+      "bytes": 9331,
+      "sha256": "fa9dcad4afbf536eda132d7d7f8e3d3e28c62d355b6bd08ba411bdbab44270d2",
+      "git_blob_sha": "e78d763194e513f2f157006975acf215d50139f0",
+      "mode": "100644",
+      "composition_note": null
+    }
+  ]
+}

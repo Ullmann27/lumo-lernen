@@ -1,0 +1,31 @@
+{
+  "command": [
+    "python3",
+    "-W",
+    "error::ResourceWarning",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_studio_artifact_originals.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-2020-artifact-originals-86445/host",
+  "started_utc": "2026-11-14T05:40:41.319584+00:00",
+  "elapsed_seconds": 0.13569432600343134,
+  "exit_code": 0,
+  "sources_before": {
+    "scripts/verify_studio_artifact_originals.py": "99dd5ea5555c7f07ad6ea1a3302aaeb8f6fd2e4fc83ee2b5e0733241503eab0d",
+    "scripts/tests/test_studio_artifact_originals.py": "d4b1c03a81cc46847da24ed1d61f0a922a95e179799e474212e1282377a8b688"
+  },
+  "sources_after": {
+    "scripts/verify_studio_artifact_originals.py": "99dd5ea5555c7f07ad6ea1a3302aaeb8f6fd2e4fc83ee2b5e0733241503eab0d",
+    "scripts/tests/test_studio_artifact_originals.py": "d4b1c03a81cc46847da24ed1d61f0a922a95e179799e474212e1282377a8b688"
+  },
+  "sources_unchanged": true,
+  "log_sha256": "9ba1aed2778b6da8a0cd22c54a85a0ff0f3b02a5f2c2ea1559aa7806b4adf37f",
+  "scope": "Tiny synthetic ZIPs and mocked gh subprocess only; no real archive download or Android execution"
+}

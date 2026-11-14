@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python3",
+    "-W",
+    "error::ResourceWarning",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_studio_connect_four_android_delivery.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/host",
+  "exit_code": 0,
+  "elapsed_seconds": 2.426623057006509,
+  "scope": "Synthetic contracts only; no Android or publication acceptance"
+}

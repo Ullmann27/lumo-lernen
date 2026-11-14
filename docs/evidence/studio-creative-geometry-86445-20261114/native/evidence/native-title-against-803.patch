@@ -1,0 +1,14 @@
+--- a/scripts/creative/treasure_world.gd
++++ b/scripts/creative/treasure_world.gd
+@@ -252,6 +252,11 @@
+ 	safe_ui.add_child(top)
+ 	top.add_child(KIT.button("‹ Spiele", _leave))
+ 	title_label = KIT.label("LUMOS STERNENSCHATZ", 24)
++	# Bright clouds can sit directly behind the white title after restoring a
++	# saved position. Keep the original caption legible against every view.
++	var title_backdrop := KIT.panel()
++	title_backdrop.set_content_margin_all(4)
++	title_label.add_theme_stylebox_override("normal", title_backdrop)
+ 	title_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+ 	title_label.clip_text = true
+ 	title_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS

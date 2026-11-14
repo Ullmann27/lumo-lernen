@@ -1,0 +1,178 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T06:09:38.620144+00:00",
+  "reviewer": "/root/games_worlds",
+  "decision": "No concrete blocker found in this narrow capture-format correction; ready for controlled integration and a fresh full native run.",
+  "baseline_native": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "baseline_tree": "9edd7afed143c83fec5d2dc89949ca9325e042ce",
+  "review_method": "Read-only diff, exact Git-blob/byte provenance, original sidecars and completed logs; no repeated engine, contract, decode or Android run.",
+  "source_manifest": {
+    "path": "qa/studio-2020-facial-movie-8be3/source-upload-manifest.json",
+    "bytes": 1502,
+    "sha256": "4e5e85902a32660e67057917e4071d9e0d8ff8014adcff507da27fdc8f15f8f2"
+  },
+  "source_files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/patched/native/scripts/tests/lumo_facial_capture.gd",
+      "target": "scripts/tests/lumo_facial_capture.gd",
+      "mode": "100644",
+      "bytes": 9009,
+      "sha256": "d5c519844281ec83d2965e2cfdf4b0157f8304fb1e9f093d705356315ee924a5",
+      "git_blob_sha": "55304d9eb68ecc2f335bb66288446945c84d27cd",
+      "baseline_blob": "e272be6f0aed98fdc5b5a1bfca58bb7f0d0edba9",
+      "baseline_sha256": "cd223ad265b46626a09350583466d3cbcb70c1d7061170c753f58d24269aba38"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/patched/native/tools/tests/test_nextgen_runner.py",
+      "target": "tools/tests/test_nextgen_runner.py",
+      "mode": "100644",
+      "bytes": 40545,
+      "sha256": "9e0252a70d1b9d961696eef1bd90499a2f111c63df51515cf815e46aa21778ca",
+      "git_blob_sha": "603c13b63d6ba64bbcef036f1505c370ec9a8963",
+      "baseline_blob": "7b7b9049889848354abc64d0e4028bcb943c2811",
+      "baseline_sha256": "9dc3ed010222305ff100b6d7c9cc0118ea690e4f4b8a498ce0b113aa245bbf7d"
+    }
+  ],
+  "original_failure": {
+    "run_id": 43561885899,
+    "job_id": 132347187651,
+    "artifact_id": 14100974125,
+    "archive_sha256": "46db85923551b9e6508047fba6d8d096540e081b2d1ac3680e753476936f3ce1",
+    "original_ffprobe": {
+      "path": "qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-ffprobe.json",
+      "bytes": 4555,
+      "sha256": "39708856ab9932c1f72ff026ab47db2e6dcce57cb293728adf378abeadfb9741"
+    },
+    "video_size": [
+      720,
+      1280
+    ],
+    "original_resolution_cli_already_present": true
+  },
+  "findings": [
+    {
+      "scope": "Capture initialization",
+      "finding": "Only the test SceneTree gains _init that sets two in-memory Window override values to640. No ProjectSettings.save, production project edit, actor/asset/lesson change or runtime default override is introduced."
+    },
+    {
+      "scope": "Engine order",
+      "finding": "Independent direct read of official4.6.3 Main::start confirms script assignment before MovieWriter.begin; MovieWriter selects viewport/Window override settings rather than the parsed --resolution window size. All three saved source ranges match the independent retrieval.",
+      "evidence": "engine-source-order-review.json"
+    },
+    {
+      "scope": "Published source and private runtime",
+      "finding": "All56 published dependency rows were independently matched to the original8be3 Git tree and reread from the completed private runtime; only the declared capture-script delta differs. Generated imported data are separately disclosed, not called a full clean checkout. project.godot remains the published720×1280 default."
+    },
+    {
+      "scope": "Unchanged hard gates",
+      "finding": "The actual validate_studio.sh is byte-identical to8be3, SHAba194e2c...; original53PNG/20gate roster plus all facial frame/state/audio/stream/decode/hash checks remain. The test delta only adds the exact720×1280 wrong-resolution rejection fixture."
+    },
+    {
+      "scope": "Actual new media",
+      "finding": "The new AVI, MP4 and ffprobe bytes were independently hashed against movie.json. Actual local render exits0; unchanged encode/decode/probe helper exits0, and original face_report accepts the new640² movie. No new screenshot/movie creation or playback by reviewer."
+    },
+    {
+      "scope": "Completed contract logs",
+      "finding": "Original missing-workflow fixture error is preserved. After adding the exact unchanged published workflow dependency, final13 tests pass with0 skipped; log duration29.599s and wrapper duration29.69054963s are separate recorded measures."
+    }
+  ],
+  "new_media": {
+    "movie": {
+      "path": "qa/studio-2020-facial-movie-8be3/green-capture/facial-runtime.mp4",
+      "bytes": 1178093,
+      "sha256": "498f3670e0148ffdd0bd581147b5d312c0dac82d3cd4e3b4fab58747c87765d0"
+    },
+    "avi": {
+      "path": "qa/studio-2020-facial-movie-8be3/green-capture/facial-runtime.avi",
+      "bytes": 7678592,
+      "sha256": "e12b636171923d8668692a3c4039dfa4e995e4a5721667fceef1bd177e19c166"
+    },
+    "ffprobe": {
+      "path": "qa/studio-2020-facial-movie-8be3/green-capture/movie-ffprobe.json",
+      "bytes": 4643,
+      "sha256": "bb3485d15c70397912257176362fa36cf8d35d2299f60407d2ff86005f8946f3"
+    },
+    "video": {
+      "codec_name": "h264",
+      "width": 640,
+      "height": 640,
+      "r_frame_rate": "24/1",
+      "nb_frames": "148",
+      "nb_read_frames": "148",
+      "duration": "6.166667"
+    },
+    "audio": {
+      "codec_name": "aac",
+      "nb_read_frames": "290",
+      "duration": "6.166000"
+    },
+    "encode_exit_code": 0,
+    "decode_exit_code": 0,
+    "probe_exit_code": 0
+  },
+  "read_logs": [
+    {
+      "path": "qa/studio-2020-facial-movie-8be3/green-render-run.json",
+      "bytes": 517,
+      "sha256": "3fc62bd05bb291803945ccb11335815bcc7fccb37b8927ae20ff6d27beb836a1"
+    },
+    {
+      "path": "qa/studio-2020-facial-movie-8be3/green-render-godot.log",
+      "bytes": 2027,
+      "sha256": "00850b46b56e90f593f26fa45878f2c8f523acdb58cf472f0c1a046a5d4cb617"
+    },
+    {
+      "path": "qa/studio-2020-facial-movie-8be3/movie-helper-green-execution.json",
+      "bytes": 164,
+      "sha256": "a1c1461caaecd3df3b350d011043ae7113d940174975f59b922d4ee93e768741"
+    },
+    {
+      "path": "qa/studio-2020-facial-movie-8be3/unchanged-face-report-green.json",
+      "bytes": 703,
+      "sha256": "639961e9a61dc0dfc2a9cef3f2c3c48499eb0d7b4f0a732bca408a4fe0261635"
+    },
+    {
+      "path": "qa/studio-2020-facial-movie-8be3/original-media-predicate-red.json",
+      "bytes": 426,
+      "sha256": "c179e6481e911aef8a8265c95cf6272ef201d9a3bb4f6a6cf02b3cd0bb9028f4"
+    },
+    {
+      "path": "qa/studio-2020-facial-movie-8be3/contracts-final-green.log",
+      "bytes": 2626,
+      "sha256": "45a0a9c37e2e33ba8b387071b0bc0b68d5da4aa3a638b34eb3b2515215bb14cc"
+    },
+    {
+      "path": "qa/studio-2020-facial-movie-8be3/contracts-final-green-execution.json",
+      "bytes": 519,
+      "sha256": "5c77351cc765aa4cc32a8f1220c48d79fc06606fa24176012e4cd09fa6c52fb6"
+    },
+    {
+      "path": "qa/studio-2020-facial-movie-8be3/contracts-initial-missing-workflow.log",
+      "bytes": 4072,
+      "sha256": "18ab0f6f1dad0c0601dca2c68e0423b88328553774d0f6e2cbc374cb20a3b689"
+    },
+    {
+      "path": "qa/studio-2020-facial-movie-8be3/strict-local-log-review.json",
+      "bytes": 468,
+      "sha256": "df8649de44bb9840173aa98add9ff35ff93b2bdcb18b78c71c51845638a175c6"
+    },
+    {
+      "path": "qa/studio-2020-facial-movie-8be3/runtime-source-after.json",
+      "bytes": 577,
+      "sha256": "02969b4721381ee41f81049ec6325bc402f5767fe3370f6ba47f5fb8dc0d29c9"
+    },
+    {
+      "path": "qa/studio-2020-facial-movie-8be3/visual-review.json",
+      "bytes": 10613,
+      "sha256": "bb55dd3370a27acb45612e98e79665da03336cad8d6fa01f73917b0fa5a98b90"
+    }
+  ],
+  "own_visual_images_opened": [],
+  "own_new_tests": 0,
+  "own_new_recordings": 0,
+  "limits": [
+    "Visual inspection of148 frames and8 stills is the separately bound author review; this reviewer does not claim to have opened those images.",
+    "24fps is a movie format, not device FPS; no physical Android/Fold7 or phoneme-lip-sync claim.",
+    "Original Native8be3 run remains failed; no new GitHub source or release has been approved by this local review."
+  ]
+}

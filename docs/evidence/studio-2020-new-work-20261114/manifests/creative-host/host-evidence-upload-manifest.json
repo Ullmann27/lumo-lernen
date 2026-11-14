@@ -1,0 +1,124 @@
+{
+  "kind": "docs_only_explicit_evidence",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/README-host-repair.md",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/README-host-repair.md",
+      "bytes": 1856,
+      "sha256": "1d200d03335f1ad61ce57f3d54fb62e5f925dbd3a9cb58aebb5fa56cdfdf6535",
+      "git_blob": "68311dcc0f7fe663135b020a86a1f8820921590c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/host-source-upload-manifest.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/host-source-upload-manifest.json",
+      "bytes": 5252,
+      "sha256": "42f968237181909fd1091953b74bec201c16fa7c919df7b18e619534cecf807c",
+      "git_blob": "610c54e5014f97c5d7b775b0a804eed7d4d3320c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/host-against-86445.patch",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/host-against-86445.patch",
+      "bytes": 6004,
+      "sha256": "25157ecdb782ff550e4d23a34240c0eb5a4a8df747426a9977c48938801f752b",
+      "git_blob": "f5004e10b270dd67c5ab8659ba1f7da58a7d6f16",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/host-repair-review.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/host-repair-review.json",
+      "bytes": 2835,
+      "sha256": "9cd88b9924b5bc75ef369282c872f5d94c1d7753fceb417dcb254908ffc42043",
+      "git_blob": "3d0d1f719c4dadfb40e4d5a07d8ab3a3ffba6c1a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/host-ast-scope.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/host-ast-scope.json",
+      "bytes": 3588,
+      "sha256": "ffabf9981138747a2695246c53c1556a2ce26bf3b244ce3fbf7a24db86fa8426",
+      "git_blob": "1fc20356b5b9551de02c88e297a12beace9b7fbe",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/source-before.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/source-before.json",
+      "bytes": 537,
+      "sha256": "4fff42ccc1244c6a96fa878dbdae3f6038291dbbb5cde09018ccc1aee3c14cfe",
+      "git_blob": "9d6db6f96dc11ca679523aeaa0a495563c223cf8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/source-after.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/source-after.json",
+      "bytes": 601,
+      "sha256": "c919e7529a75c2564feb6fd12485722b4fc932525dc3974ee6d05d3189c73142",
+      "git_blob": "b24bc0b62190dd6af5a43edbd9d2d16f1546d724",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/red-original-86445.log",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/red-original-86445.log",
+      "bytes": 9404,
+      "sha256": "5b7f601612b6beec922d347f3d123160e757f6ec2859624cc24458137a72eb6b",
+      "git_blob": "a73b2da873f326c34d2f4b0a1c633f0d94b57dbd",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/red-original-86445.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/red-original-86445.json",
+      "bytes": 642,
+      "sha256": "f5a04acf78e177d96ab17384bd221fb527b13851d38c7fa2ba0f063ea8ee4aaa",
+      "git_blob": "5f389c88d8ff6666d6d0c69609a0fff24618a099",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/green-initial.log",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/green-initial.log",
+      "bytes": 1733,
+      "sha256": "a99f1446fda226d96fa38c09959aadf587c3afee539aa060f891886c3027409a",
+      "git_blob": "6cfd4b62c7db7439a9aeab17e4161b2341663611",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/green-initial.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/green-initial.json",
+      "bytes": 635,
+      "sha256": "92fa7f3ab8c45b9a79732c94e87c3fb3b969d9ecc4e927cd52007eff291ffa61",
+      "git_blob": "5fba4d25a1129158f73931fcf285544da00797f5",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/existing-nine-contracts.log",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/existing-nine-contracts.log",
+      "bytes": 1550,
+      "sha256": "3197f4a3ea996bc81dacd00ac9c2854d7522025bdfe8245a2db8734071611281",
+      "git_blob": "7b84e65c1112950cbb48dd4d162f4e7f33d72e10",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/existing-nine-contracts.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/host/evidence/existing-nine-contracts.json",
+      "bytes": 572,
+      "sha256": "7007862c62053511f349cdbeb032ff577322147a037fbe5108203f37a89ff8c6",
+      "git_blob": "8242a55ead8337965656c4dca2a5b28d37f56d2a",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "file_count": 13,
+  "bytes": 35209
+}

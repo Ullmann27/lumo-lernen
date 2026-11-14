@@ -1,0 +1,37 @@
+{
+  "base": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "workflow_is_additive_new_file": true,
+  "old_2019_workflow_unchanged": true,
+  "scope": "Only new2020 workflow + Studio harness + associated existing contract test. No active repository or Git ref changes.",
+  "required_studio_gates": 20,
+  "required_studio_pngs": 53,
+  "files": [
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native/.github/workflows/lumo-studio-2020.yml",
+      "mode": "100644",
+      "bytes": 19772,
+      "sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+      "git_blob": "fcf5fec5a43eda65b7d2c077af281fa5497635ae"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "tools/validate_studio.sh",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native/tools/validate_studio.sh",
+      "mode": "100644",
+      "bytes": 22674,
+      "sha256": "ba194e2cdb3b39e95249a347b1e53a2b146ffe2eda1380877743156ebd2fd8b1",
+      "git_blob": "3b41626b54845e70e3ac9046e5120f7aa0eb7907"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "tools/tests/test_nextgen_runner.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native/tools/tests/test_nextgen_runner.py",
+      "mode": "100644",
+      "bytes": 40391,
+      "sha256": "9dc3ed010222305ff100b6d7c9cc0118ea690e4f4b8a498ce0b113aa245bbf7d",
+      "git_blob": "7b7b9049889848354abc64d0e4028bcb943c2811"
+    }
+  ]
+}

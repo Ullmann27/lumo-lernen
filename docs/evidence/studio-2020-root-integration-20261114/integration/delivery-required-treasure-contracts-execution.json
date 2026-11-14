@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "qa/studio-2020-integration/test-host/scripts/tests",
+    "-p",
+    "test_studio_2020_delivery.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 2.658878515008837,
+  "scope": "Parser contracts for16 additional mandatory current original PNGs; no actual2020 release review"
+}

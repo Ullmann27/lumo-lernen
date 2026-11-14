@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "baseline_host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "scope": "Exactly two new stdlib original-artifact verifier/test files; existing publisher and sources unchanged",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-artifact-originals-86445/host/scripts/verify_studio_artifact_originals.py",
+      "target": "scripts/verify_studio_artifact_originals.py",
+      "bytes": 14822,
+      "sha256": "99dd5ea5555c7f07ad6ea1a3302aaeb8f6fd2e4fc83ee2b5e0733241503eab0d",
+      "git_blob_sha": "995da085c5d3b5406d5e9aa9829cb2f7691e66b3",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-artifact-originals-86445/host/scripts/tests/test_studio_artifact_originals.py",
+      "target": "scripts/tests/test_studio_artifact_originals.py",
+      "bytes": 16122,
+      "sha256": "d4b1c03a81cc46847da24ed1d61f0a922a95e179799e474212e1282377a8b688",
+      "git_blob_sha": "4d3d089261181cfcb02cb7e390384fe8e99d9774",
+      "mode": "100644"
+    }
+  ],
+  "total_bytes": 30944
+}

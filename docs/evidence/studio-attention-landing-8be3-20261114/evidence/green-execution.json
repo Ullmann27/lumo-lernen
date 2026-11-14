@@ -1,0 +1,35 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-attention-8be3-20261114/runtime",
+    "--audio-driver",
+    "Dummy",
+    "--script",
+    "res://scripts/tests/lumo_attention_landing_regression.gd",
+    "--",
+    "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence/green-patched-report.json"
+  ],
+  "environment": {
+    "XDG_DATA_HOME": "/tmp/lumo-attention-8be3-20261114/green-data",
+    "XDG_CONFIG_HOME": "/tmp/lumo-attention-8be3-20261114/green-config",
+    "XDG_CACHE_HOME": "/tmp/lumo-attention-8be3-20261114/green-cache",
+    "GODOT_SILENCE_ROOT_WARNING": "1"
+  },
+  "started_utc": "2026-11-14T05:57:44.825891+00:00",
+  "elapsed_seconds": 0.8777159949968336,
+  "exit_code": 0,
+  "runtime_source": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "test_sha256": "84789b1e8d4404a637481b5df0f099a7fa4d7fe437dc4a48b35c1c1735a81e53",
+  "shared_import_difference": {
+    "changed": [
+      {
+        "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+        "before_sha256": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15",
+        "after_sha256": "ea8637187b5af2f1315958c27117d05d594873c61727f6bdf0e2d910581dfb5a"
+      }
+    ],
+    "scope": "All 1185 preselected exact published files after Godot editor import; generated cache excluded."
+  }
+}

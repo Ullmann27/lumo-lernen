@@ -1,0 +1,45 @@
+--- a/scripts/tests/lumo_attention_landing_regression.gd
++++ b/scripts/tests/lumo_attention_landing_regression.gd
+@@ -1,9 +1,12 @@
+ extends SceneTree
+-## Existing production vehicle + unchanged original GLB. Real bone and wheel
+-## transforms prove visual behavior; this is not a hardware/FPS benchmark.
++## Production vehicle with the explicit facial derivative and retained original
++## GLB. Real bone and wheel transforms prove behavior, not hardware/FPS.
+ const VEHICLE = preload("res://scripts/games/kart_vehicle.gd")
+ const STEP := 1.0 / 30.0
++const ORIGINAL_MODEL_PATH := "res://assets/characters/lumo_animated/Lumo-Animated-Mobile.glb"
+ const ORIGINAL_MODEL_SHA256 := "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5"
++const FACIAL_MODEL_PATH := "res://assets/characters/lumo_facial/Lumo-Facial-Mobile.glb"
++const FACIAL_MODEL_SHA256 := "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524"
+ var checks := 0
+ var failures := 0
+ var kart
+@@ -64,8 +67,14 @@
+ 		quit(1)
+ 		return
+ 	_check(adapter.actor.skeleton.get_bone_count() == 65, "Existing 65-bone identity is retained")
++	_check(adapter.actor.ORIGINAL_MODEL == ORIGINAL_MODEL_PATH,
++		"Original shipped GLB remains bound to its original path")
++	var original_model_sha := FileAccess.get_sha256(ORIGINAL_MODEL_PATH)
++	_check(original_model_sha == ORIGINAL_MODEL_SHA256, "Original shipped GLB bytes are unchanged")
++	_check(adapter.actor.MODEL == FACIAL_MODEL_PATH,
++		"Production actor explicitly selects the reviewed facial derivative")
+ 	var model_sha := FileAccess.get_sha256(adapter.actor.MODEL)
+-	_check(model_sha == ORIGINAL_MODEL_SHA256, "Original shipped GLB bytes are unchanged")
++	_check(model_sha == FACIAL_MODEL_SHA256, "Reviewed facial derivative GLB bytes are unchanged")
+ 	_check(not adapter.is_processing(), "Vehicle remains the sole visual clock")
+ 	# Rotation/translation makes accidental world-as-local gaze coordinates fail.
+ 	kart.transform = Transform3D(Basis(Vector3.UP, 0.7), Vector3(2.0, 0.0, -3.0))
+@@ -173,7 +182,10 @@
+ 		"Scene teardown leaves no orphan nodes")
+ 	var report := {"checks": checks, "failures": failures, "worst_hand_contact_mm": worst_contact * 1000.0,
+ 		"landing_peak": peak, "model_load_kind": load_kind,
+-		"model_unchanged": model_sha == ORIGINAL_MODEL_SHA256, "model_sha256": model_sha,
++		"original_model_unchanged": original_model_sha == ORIGINAL_MODEL_SHA256,
++		"original_model_path": ORIGINAL_MODEL_PATH, "original_model_sha256": original_model_sha,
++		"facial_model_verified": model_sha == FACIAL_MODEL_SHA256,
++		"model_path": FACIAL_MODEL_PATH, "model_sha256": model_sha,
+ 		"godot": Engine.get_version_info().string, "display": DisplayServer.get_name(),
+ 		"android_test": false, "fps_measured": false}
+ 	DirAccess.make_dir_recursive_absolute(output.get_base_dir())

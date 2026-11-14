@@ -1,0 +1,452 @@
+{
+  "source_commit": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "source_tree": "9edd7afed143c83fec5d2dc89949ca9325e042ce",
+  "project": "/tmp/lumo-facial-movie-8be3-vwdctltw/project",
+  "scope": "Private exact published dependency closure with exact production project.godot and reused local generated asset imports; not a full clean Git checkout. No engine run before this binding.",
+  "published_files": [
+    {
+      "path": "icon.svg",
+      "bytes": 1981,
+      "sha256": "8f55446a927cf3a912e1cb170dbd1fcdc2e1756792c510981645d6d60d99b5ec",
+      "git_blob": "1dfa1114a6ce5d6621ec343925ebcec588c4d345"
+    },
+    {
+      "path": "project.godot",
+      "bytes": 1944,
+      "sha256": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280",
+      "git_blob": "296b8b1752ebfd526aedd019907ac88efbfd0c02"
+    },
+    {
+      "path": "scenes/default_env.tres",
+      "bytes": 1700,
+      "sha256": "659c707ad122dc81f36e11a872ade3a0eabdb2bc548cea50521d72ffc8976fa3",
+      "git_blob": "67cff9c763ea80bd6a43adc66f4abe31f7c240f9"
+    },
+    {
+      "path": "scenes/learning/learning_world.tscn",
+      "bytes": 191,
+      "sha256": "9f9d43a306a500da06ae3a4625695e3f6cf348b275d8d515a8bfcdc3097c846e",
+      "git_blob": "05f835f6c87c528b64b38054c2c41adc8cbef078"
+    },
+    {
+      "path": "scripts/tests/lumo_facial_capture.gd",
+      "bytes": 8675,
+      "sha256": "cd223ad265b46626a09350583466d3cbcb70c1d7061170c753f58d24269aba38",
+      "git_blob": "e272be6f0aed98fdc5b5a1bfca58bb7f0d0edba9"
+    },
+    {
+      "path": "scripts/tests/learning_world_regression.gd",
+      "bytes": 22332,
+      "sha256": "4873ac19bfadf84f318973d02950e11ffafd57024898148790e3d66d221f715d",
+      "git_blob": "93a903efb43a2bdef97121434fc7e89e60cab6ac"
+    },
+    {
+      "path": "scripts/tests/lumo_rigged_animation_capture.gd",
+      "bytes": 5631,
+      "sha256": "03ce996e765947e20c32cea4b683e70b25ec07e20f8d8c844a0cb0af038df151",
+      "git_blob": "f821f2b7bfa5d15c9dc1a23b0f171caf31264926"
+    },
+    {
+      "path": "scripts/tests/lumo_studio_motion_regression.gd",
+      "bytes": 8857,
+      "sha256": "f6451145eec7729f35b3aab70d9fe69ad970e171288c156de3e484213984253e",
+      "git_blob": "2a3e40da3a48e68d587f635658f9db645e70e4e7"
+    },
+    {
+      "path": "scripts/tests/lumo_teacher_pose_regression.gd",
+      "bytes": 7298,
+      "sha256": "51b32d1cb3d3684334bb5445626cacc5b20d87471f9e0f8325f07514f23f1a26",
+      "git_blob": "bc534776d2f9295369e5e2de90abb8a2f3a46268"
+    },
+    {
+      "path": "scripts/tests/lumo_facial_regression.gd",
+      "bytes": 7102,
+      "sha256": "dc98c2521543d5b28238f37ed064b0ccd105378d124e44bbefd668c1b16cc03e",
+      "git_blob": "9834e1c8cbef59f86f8ec1840895357cb429b624"
+    },
+    {
+      "path": "scripts/app/scene_router.gd",
+      "bytes": 4457,
+      "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06",
+      "git_blob": "0e28e5c797af076d2a2410143e42605982e8d1d5"
+    },
+    {
+      "path": "scripts/app/mobile_runtime.gd.uid",
+      "bytes": 19,
+      "sha256": "18fa16722095e76b37dbc261b87b05c32253b63a9df42298170c6879b4f43272",
+      "git_blob": "c296e23e58a6eb20650094e69b99a5828983e340"
+    },
+    {
+      "path": "scripts/app/scene_router.gd.uid",
+      "bytes": 20,
+      "sha256": "508c4098d7a15d88ed33dcbe42b647cfd99c161e5a7e4a0645ec7126b5c8512f",
+      "git_blob": "69e05df322309e44bdb15a8782553ef8cd097d9d"
+    },
+    {
+      "path": "scripts/app/mobile_runtime.gd",
+      "bytes": 7146,
+      "sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+      "git_blob": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f"
+    },
+    {
+      "path": "scripts/app/android_safe_area.gd",
+      "bytes": 5708,
+      "sha256": "28077c1eca89e7e915fc346973c6397d2c1b545fca9592f16394b2d9d2b04564",
+      "git_blob": "9658440b3effad06358fe7cfe62f04a95ccbe279"
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd.uid",
+      "bytes": 20,
+      "sha256": "ed53088ed51379935ba303a185c1aeac1208e6c9d703b7891f6e2f711d27f5ff",
+      "git_blob": "b625d455a59b7fbf023b686df028acaed9d27e5c"
+    },
+    {
+      "path": "scripts/systems/audio_manager.gd",
+      "bytes": 5507,
+      "sha256": "286e18ee8b728cd52de7defab64670d602e4ef25231a6695a7879873eb423bd0",
+      "git_blob": "36462f609a2a27d02a91fc12177f1c441054911a"
+    },
+    {
+      "path": "scripts/systems/performance_manager.gd",
+      "bytes": 5167,
+      "sha256": "a5de6bc948e15d84f117f8f137d4d1bb7b844e194b19bb29a579b13e9902a8c0",
+      "git_blob": "b81a5c2202cc832cdd6c773a459bb90ab6520d53"
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "bytes": 5193,
+      "sha256": "56ecb470319ea047aa5d8c3aad92d55c99355ee07c533a6543fcf167f098abb7",
+      "git_blob": "dab96a1b918dc754568c0eda14cdda05175c89fb"
+    },
+    {
+      "path": "scripts/systems/asset_loader.gd.uid",
+      "bytes": 20,
+      "sha256": "750f2e76f139d76154820b9c43fb5b9faf7a112b4ed039b3da9a529a4288025a",
+      "git_blob": "b70084d7ae5313da2b83c8393c6520644b065699"
+    },
+    {
+      "path": "scripts/systems/event_bus.gd.uid",
+      "bytes": 20,
+      "sha256": "acf358613296d1540289d32cb69725a6e71309b6328673137ffa82185a7b29ca",
+      "git_blob": "af1288fc4cda6b19b33398d6c2a42ce9d8ba4d54"
+    },
+    {
+      "path": "scripts/systems/progress_store.gd",
+      "bytes": 5664,
+      "sha256": "9e61f231e9a207be2d49f6917fbec66a5236c4f5f9f05d726a25939d961c5811",
+      "git_blob": "c197f75e913373bcc74f36cde9ac8b58cd56e275"
+    },
+    {
+      "path": "scripts/systems/event_bus.gd",
+      "bytes": 2299,
+      "sha256": "b809f381eb919f7b9c6cba5c13be737612c853f5fdfb688b8c20c5983ec9f340",
+      "git_blob": "b754dae939c4837288b8baa6862c68e75e670c20"
+    },
+    {
+      "path": "scripts/systems/progress_store.gd.uid",
+      "bytes": 20,
+      "sha256": "c083a888ef0aa821a1fd370e9a55aba4fdbf58eae8ac6b1ec917c8346196ca20",
+      "git_blob": "42d0ca0a9c1ca118c2985e2a7aab1beb48b85915"
+    },
+    {
+      "path": "scripts/systems/audio_manager.gd.uid",
+      "bytes": 20,
+      "sha256": "6dbbb23edbf6a5744ba33c3049d0e238adbb80dbc248d529fcb33a5792c049b4",
+      "git_blob": "0f87277d4bf165b976b4732c7e00946ab22acb74"
+    },
+    {
+      "path": "scripts/systems/settings_store.gd.uid",
+      "bytes": 20,
+      "sha256": "51569f27f5af217c3da5afe0cb3d6cf7369cc262a5d3f73e896cc8fd6c9ecb09",
+      "git_blob": "2b49865c00caa000acfc79fc284db11354bb79e5"
+    },
+    {
+      "path": "scripts/systems/performance_manager.gd.uid",
+      "bytes": 19,
+      "sha256": "4a21b8f7f3d74ea5dae256e4f24d129f87ceface87adb44a50f5c38c3be87a62",
+      "git_blob": "ca6f47100266727e2b2f035e525c83b702c25e36"
+    },
+    {
+      "path": "scripts/systems/settings_store.gd",
+      "bytes": 1673,
+      "sha256": "dc0ac7f96f8e47d7c9735b6593ec3da69cff4d5aad9505590cd201ab426b2b82",
+      "git_blob": "930181998c72b62004ec43c66e8b1c674f6eb193"
+    },
+    {
+      "path": "scripts/systems/asset_loader.gd",
+      "bytes": 6824,
+      "sha256": "e51ab8ee60a6c86b9f6e610141de74636c987f7f4b40c56642ee0dc58fd9b436",
+      "git_blob": "5436978a86ea21c70ee3affed30eec1219d6a571"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "bytes": 45446,
+      "sha256": "1ec88577645b89d11d13191a0dcc987af9beb6b3d2b2e7f0379525470711921a",
+      "git_blob": "25e41d3d81e091e7e357400ff8ba76a18d6d2890"
+    },
+    {
+      "path": "scripts/learning/learning_activity.gd",
+      "bytes": 9286,
+      "sha256": "c8071598b341a9ef8d905effe70aafacf98f325e9289903bb12a370d0d29541a",
+      "git_blob": "c1eed0eefb4017ac4db3cb3d1d4551e2d9c601fe"
+    },
+    {
+      "path": "scripts/learning/learning_atelier.gd",
+      "bytes": 6954,
+      "sha256": "6696a9f5604bf71efa5eb6d64fe5b6ff4ca85f76cee8553586dec8743ad7022b",
+      "git_blob": "c14873748bd8ff42cc7f00bd1c39653626de4664"
+    },
+    {
+      "path": "scripts/games/visual/kart_cinema_materials.gd",
+      "bytes": 2016,
+      "sha256": "69fc8def6197e5173104f015d82daf7a6b7c8574e0e6b158ae3e2a083ba0df15",
+      "git_blob": "9b10945c42d91086739c49b4b64ce272b7828043"
+    },
+    {
+      "path": "scripts/games/visual/kart_harbor_cinema.gd",
+      "bytes": 11619,
+      "sha256": "bc180fa343ad690680d52c8223e1ceca105457bf8db8db6e487060098511eb90",
+      "git_blob": "5a409d72db69d93b861576aaa2eb53052eb88e1d"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_teacher_pose.gd",
+      "bytes": 4228,
+      "sha256": "1be589448b18f2c63faebfb72ff81639f4e014b828093d931f9e9c04c4ce2a6d",
+      "git_blob": "5d3a1ae763e84cb09276cafe9ba5f9541bf49447"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd.uid",
+      "bytes": 20,
+      "sha256": "c27c2c00a55b15b9a7726504f41ae48b29e850220702a941a47557d4d2c5af79",
+      "git_blob": "137fcfc743a0506901976758306c9cc74b11f611"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_facial_pose.gd",
+      "bytes": 6120,
+      "sha256": "2d89319ccb622cad1b54c36113bda8594706c024d77f2a0605ec057d51a0f6ef",
+      "git_blob": "91b8a8cd25f21dab84b77f178aa82d06673b54f9"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_walk_locomotion.gd",
+      "bytes": 2736,
+      "sha256": "95366a2716a557b27383757771923ec73971a385651749c78da8f2cc14a24ec2",
+      "git_blob": "0f5f8f508cf6cfb6f67c8178a25e5522580a5e85"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "bytes": 11313,
+      "sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+      "git_blob": "e4b6a6081a922a137f68491de66f51e096528510"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_body_space_pose.gd",
+      "bytes": 2902,
+      "sha256": "043d9eb3cbd1d56f2be4ad62aff71b99753540b524f3d4b69c030fc9217dcd9e",
+      "git_blob": "2b0c2f5b379535cbc4e54c9c1badca72c0f1bc19"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_platform_pose.gd",
+      "bytes": 5002,
+      "sha256": "2f89ad0660ed3f74ff0cfe50837e18265bcf54fdccd24712de6a8b0d680c0a59",
+      "git_blob": "f2085dc82b9840077e631f586a4f4fb5159d7c08"
+    },
+    {
+      "path": "docs/evidence/studio-character-20261113/motion_build.json",
+      "bytes": 41859,
+      "sha256": "4513ca5eb16f37d31c2f06c9ce6043059223da3fb6d42b110322aa124a3f4637",
+      "git_blob": "69a0688789c8bcbdfabb297e3c7fbc283ecbf948"
+    },
+    {
+      "path": "assets/manifests/assets.json",
+      "bytes": 22295,
+      "sha256": "170c162ccd67158ee12409b3bdca23a1af287438d1093e19490c11c19423e185",
+      "git_blob": "d1d8130bf5652aae3d23f651011a4872e19c10c9"
+    },
+    {
+      "path": "assets/shaders/kart_lumo_cinema_mobile.gdshader",
+      "bytes": 2254,
+      "sha256": "928e51083968d94e4361f6aa75f84c60a7c21141f3130a3901fc445c58582536",
+      "git_blob": "0107cdef09f8106c86f38c8483a0037750e2981b"
+    },
+    {
+      "path": "assets/shaders/kart_lumo_cinema_mobile.gdshader.uid",
+      "bytes": 20,
+      "sha256": "b5951bb7e8838beca2c162bb91f669b1fce6c8c003d36cd70fcd3ffdf1f18482",
+      "git_blob": "e78695005a2c00312c7078485a02cfa45e2e2879"
+    },
+    {
+      "path": "assets/shaders/kart_lumo_cinema_high.gdshader",
+      "bytes": 3921,
+      "sha256": "85881b8a48a4b4f48e772d4518f846b4e3934eeaf418d52a9db33e37104c49f4",
+      "git_blob": "c72e2d6d510c5b2c32b323d173b7798196c56cc7"
+    },
+    {
+      "path": "assets/shaders/kart_lumo_cinema_high.gdshader.uid",
+      "bytes": 20,
+      "sha256": "7867a13694ef4fa59b1bf25f1d88bba2599a0ad94326c473f71bb92091631714",
+      "git_blob": "ead7b96525ef480738b8d058d0105709088ece83"
+    },
+    {
+      "path": "assets/audio/voice/words/apfel.wav",
+      "bytes": 40970,
+      "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+      "git_blob": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "bytes": 8408740,
+      "sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+      "git_blob": "4d18f240a34a5aa6320ecd61c0ab0fa719c0b0ad"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "bytes": 1162,
+      "sha256": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15",
+      "git_blob": "3b65ce3c2d8e63efe4c2251261b047be37e383a0"
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb.import",
+      "bytes": 1098,
+      "sha256": "fc146ea239d84439eba0c6c31810d9da031d10daf6e2302b7395dc3826deab2a",
+      "git_blob": "6c334b3039ef0847f278d42e8c32b6cf8386809f"
+    },
+    {
+      "path": "assets/characters/lumo_animated/lumo_studio_clips.gd",
+      "bytes": 196296,
+      "sha256": "c0b4be7f094b4f69942d92ad25d54c8c45f01b6cb8471c00e7d5a0513ee8df18",
+      "git_blob": "10b38ae0590626db40b24080e8a55edcb47ecf2b"
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+      "bytes": 5156596,
+      "sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+      "git_blob": "53cb01bfbd23a2962da5428a08b8aee313d5e152"
+    },
+    {
+      "path": "assets/learning/studio/studio_leaf_motion.gdshader",
+      "bytes": 562,
+      "sha256": "92e405a96eb23e5da0f12bf229e6e9227d2cc4c9b28f2aaf080f51e7ab63c410",
+      "git_blob": "61df8690c84dbbd6c75453d68235c5f804a0e693"
+    },
+    {
+      "path": "assets/learning/studio/learning_studio.glb",
+      "bytes": 1522224,
+      "sha256": "e5b33abceaba8df76b6475efc04454aac3db353a1b40005267d2986be718a034",
+      "git_blob": "1f133149d426691330b193e0ce563d899a3c0622"
+    },
+    {
+      "path": "assets/creative/models/lumo_lantern.glb",
+      "bytes": 58924,
+      "sha256": "88628b79065a08963e27bc7c12da68a38782c4fe9dfe34eeaffc903675c45ea3",
+      "git_blob": "38d75ea1b5ec21a360098f282b02081f2974e453"
+    }
+  ],
+  "generated_import_files": [
+    {
+      "path": "assets/audio/voice/words/apfel.wav.import",
+      "bytes": 498,
+      "sha256": "4822dd98fdc203845f5065e9dd468852bdc1f7b88f4139510864d3997648a6d8",
+      "git_blob": "49461332bb273f904ee618511f0e00f49ce99492",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile_Image_1.png",
+      "bytes": 922619,
+      "sha256": "e2495211d243143048b6e106b43d6c6e4e7ad6c67571d2b533f8db0a277b05e1",
+      "git_blob": "462f4cc44eff8e9c8b01fdb83797f361e22e278e",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile_Image_0.png",
+      "bytes": 1475490,
+      "sha256": "9e361a61a6c7478cd0e81aa83250db88c4f5d1a51dd754ad827b8f721671bf54",
+      "git_blob": "d75ed3e723e8a82583dbaf7487a3efd57f563aa3",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile_Image_1.png.import",
+      "bytes": 1078,
+      "sha256": "37aeb85fe76f55f445c86dd9302f1f3c20d3edcca25791a6b1086cf529c0e1eb",
+      "git_blob": "99d5d2c188ed4272aa81cc6458dbef5d019eebd5",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile_Image_2.png.import",
+      "bytes": 1078,
+      "sha256": "91ef170e7061412b87e9f4c81c327eb0a09230aa991332a37f463201ef595e5b",
+      "git_blob": "ff7c669fc74f7f0ee1b5434768eecb5d8106d92b",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile_Image_2.png",
+      "bytes": 1137366,
+      "sha256": "477289ce9ae77e28e60be151a7999f5e16f9116e2fed7a60efdb8ac37fda19e5",
+      "git_blob": "f575961c4aa9019069b7664b431b2559348b248f",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile_Image_0.png.import",
+      "bytes": 1078,
+      "sha256": "3e2572bc1d12b38e7311f777049bc4c487b52e5cb7c1b4ad0fc23be200324b50",
+      "git_blob": "96ea8a8a3ba873c7a4a22ea6713051489aea8fac",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_1.png",
+      "bytes": 922619,
+      "sha256": "e2495211d243143048b6e106b43d6c6e4e7ad6c67571d2b533f8db0a277b05e1",
+      "git_blob": "462f4cc44eff8e9c8b01fdb83797f361e22e278e",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_0.png.import",
+      "bytes": 1086,
+      "sha256": "2795f8dd9a8097a76fe94fd9122f8f844c07f4163bc4843fdf9d78fc864f019d",
+      "git_blob": "32776e94bd0b18d9eccda8fda4fe13808eaf9007",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_2.png.import",
+      "bytes": 1086,
+      "sha256": "78260cb83d35978d5ce01b2d35a4e0fcb0a2722b3afab4a465778c884f82d2d7",
+      "git_blob": "4488247d6ab52548edbdb00c8c70ee94d0aeccd4",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_1.png.import",
+      "bytes": 1086,
+      "sha256": "fcfca4ed1b4b03283cc592ef01daed347748814b72bdeb33487ccd3024779137",
+      "git_blob": "98933d2e43f412dc6b9fd95a9dab5de32403ae4a",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_2.png",
+      "bytes": 1137366,
+      "sha256": "477289ce9ae77e28e60be151a7999f5e16f9116e2fed7a60efdb8ac37fda19e5",
+      "git_blob": "f575961c4aa9019069b7664b431b2559348b248f",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_0.png",
+      "bytes": 1475490,
+      "sha256": "9e361a61a6c7478cd0e81aa83250db88c4f5d1a51dd754ad827b8f721671bf54",
+      "git_blob": "d75ed3e723e8a82583dbaf7487a3efd57f563aa3",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/learning/studio/learning_studio.glb.import",
+      "bytes": 1074,
+      "sha256": "7cc98fe3dd4ae39e1aa966e0bb2b828121ecc53fe0567b8992b8d7eccb4c62c9",
+      "git_blob": "88cbb9e344d84105e595f6ff49cef3f81d3befc2",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    },
+    {
+      "path": "assets/creative/models/lumo_lantern.glb.import",
+      "bytes": 1065,
+      "sha256": "1d6681f22b81a5e9c21076d18988fb7bf6870dc665fe8e92c742341f9bc06bf2",
+      "git_blob": "a77eeff97d26614813d9ae8c77aed922a142a6bf",
+      "classification": "Previously generated Godot import/extracted texture cache from the bound GLB/WAV; not a published source file"
+    }
+  ],
+  "first_setup_rejected": "Copied local UID metadata was corrected in this private runtime to exact published UID bytes before binding. The rejected setup did not run."
+}
