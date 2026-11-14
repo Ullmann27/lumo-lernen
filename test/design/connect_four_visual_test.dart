@@ -104,12 +104,17 @@ void main() {
       for (var column = 0; column < 7; column++) {
         final cell =
             tester.getRect(find.byKey(ValueKey('connect-cell-5-$column')));
-        final control =
-            tester.getRect(find.byKey(ValueKey('connect-column-$column')));
+        final controlFinder = find.byKey(ValueKey('connect-column-$column'));
+        final control = tester.getRect(controlFinder);
+        final controlSize = tester.getSize(controlFinder);
         expect(control.center.dx, closeTo(cell.center.dx, 1),
             reason: 'Each drop button must align with its board column.');
-        expect(control.width, greaterThanOrEqualTo(48));
-        expect(control.height, greaterThanOrEqualTo(48));
+        expect(controlSize.width, greaterThanOrEqualTo(48));
+        expect(controlSize.height, greaterThanOrEqualTo(48));
+        // Rect dimensions subtract global coordinates. Allow only arithmetic
+        // roundoff, while requiring the untransformed target to remain 48dp.
+        expect(control.width, closeTo(controlSize.width, 1e-9));
+        expect(control.height, closeTo(controlSize.height, 1e-9));
       }
       final folder = Platform.environment['LUMO_CONNECT_CAPTURES'];
       if (folder != null) {

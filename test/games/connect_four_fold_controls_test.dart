@@ -75,8 +75,13 @@ void main() {
     try {
       await tester.pump(const Duration(milliseconds: 150));
       final pressedTarget = tester.getRect(lastColumn);
-      expect(pressedTarget.width, greaterThanOrEqualTo(48));
-      expect(pressedTarget.height, greaterThanOrEqualTo(48));
+      final pressedSize = tester.getSize(lastColumn);
+      expect(pressedSize.width, greaterThanOrEqualTo(48));
+      expect(pressedSize.height, greaterThanOrEqualTo(48));
+      // Global-coordinate subtraction can round 48dp to 47.99999999999997.
+      // This tolerance cannot hide a pressed transform shrinking the target.
+      expect(pressedTarget.width, closeTo(pressedSize.width, 1e-9));
+      expect(pressedTarget.height, closeTo(pressedSize.height, 1e-9));
     } finally {
       await gesture.up();
     }
