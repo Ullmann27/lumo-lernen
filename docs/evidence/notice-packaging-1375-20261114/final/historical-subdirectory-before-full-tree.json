@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_historical_apk_expectations.py",
+    "-v"
+  ],
+  "exit_code": 1,
+  "production_git_blob": "611e4f37a2be163365ef949ca097895a79f95090",
+  "test_sha256": "15c36cbba49327f5f92269d138ea7d764577dac402b89d96a11735e0fe55bbee"
+}

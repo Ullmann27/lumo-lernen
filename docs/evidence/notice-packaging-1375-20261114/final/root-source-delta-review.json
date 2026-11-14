@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "base": "1375da193af0152af64f91d86577aa9768cd50db",
+  "path": "scripts/verify_unified_apk.py",
+  "first_blob": "611e4f37a2be163365ef949ca097895a79f95090",
+  "final_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40",
+  "root_exact_full_byte_delta": "Exactly one --full-tree argument added to the new historical ls-tree read; all other bytes equal to the fully read first snapshot.",
+  "reason": "A repository subdirectory must not hide an existing root policy. Independent reviewers reproduced the Git behavior; the implementation owner ran the same concrete regression red then green.",
+  "historical_test_blob": "0762e6174d2ff8d8170aff16fdc0bf5781d817b2",
+  "pure_archive_helper_unchanged": "e706edf1d87c4222f17498ff8ef67ade30443dfc",
+  "root_repeated_tests": false,
+  "root_read_final_test_deltas": true,
+  "final_independent_child_static_blockers": 0
+}

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14 14:18:44 UTC",
+  "recorded_at_utc": "2026-11-14 14:30:25 UTC",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -152,7 +152,7 @@
   },
   "evidence": {
     "branch": "checkpoint/lumo-aab-ci-20261114-2708",
-    "prior_head": "6930802a2e03fb46871c8f74ca0f6e42087bf05b",
+    "prior_head": "bfccae2fe578cd730d96df047cf0fac157ea8e04",
     "original_803_evidence": "6a5ae5327570fc60434672074f246c95e1c59283",
     "old_803_apk_is_not_current_candidate": true
   },
@@ -1137,14 +1137,16 @@
       "id": "packaged_third_party_notices",
       "status": "Actual historical803 APK/PCK lacks the four specified existing Native notice paths and an explicit outer Nunito notice in inspected filenames/consolidated literals. Five Host packaging files plus five Native export/notice files are byte-identical to1375/e2. Explicit packaging repair is being prepared; no new1375 APK or legal finding.",
       "historical_root_review_blob": "d430b2fec927ce57b990e966409b7c9a99c91b68",
-      "implementation_state": "First five Host-only production files preserved in evidence6930802; static Root review found no blocker, focused tests/final review ongoing.",
+      "implementation_state": "Final10-file Host-only patch accepted after71 focused methods, exact original source copy/path-view checks, real historical APK negative and independent review. Historical subdirectory bug fixed by exactly --full-tree; final new APK check pending.",
       "actual_historical_apk_negative": {
         "reader_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc",
         "result_blob": "1d20d751b25dc9416a03b5c05d56907e6fe00a83",
         "exit_code": 0,
         "result": "EXPECTED_REJECTION",
         "current_positive_apk_check": false
-      }
+      },
+      "final_handoff_blob": "c631fe30184c6cd5445e43011de3edc74657ee1f",
+      "independent_review_blob": "3be3ea0dabd4aaa2eb7eb4de60f82b646e54ea4f"
     },
     {
       "id": "reading_capture_answer_glyphs",
@@ -1333,5 +1335,122 @@
     "claims": 11,
     "actual_execution_exit": 0,
     "current_apk_match": false
+  },
+  "prepared_combined_candidate": {
+    "schema": 1,
+    "kind": "root_acceptance_of_scoped_notice_and_contrast_integration",
+    "recorded_at_utc": "2026-11-14 14:30:25 UTC",
+    "candidate": {
+      "head": "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+      "tree": "8ee5c9335d7f9484f3bce5c4cb2b52c60e88137f",
+      "parent": "1375da193af0152af64f91d86577aa9768cd50db",
+      "branch": "work/lumo-play-quality-20261114",
+      "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "version": "0.13.8+2020",
+      "entries": [
+        {
+          "path": "config/lumo-notices.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6bfb5f7bec41c91af963f47fc80d66977135ab74"
+        },
+        {
+          "path": "lib/widgets/lumo/lumo_prompt_card.dart",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+        },
+        {
+          "path": "scripts/export_embedded_game.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba"
+        },
+        {
+          "path": "scripts/package_notices.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e706edf1d87c4222f17498ff8ef67ade30443dfc"
+        },
+        {
+          "path": "scripts/tests/notice_fixtures.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "fc99b36bce1f647ca6134acd37cc2fc6247e527c"
+        },
+        {
+          "path": "scripts/tests/test_export_embedded_game.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "2fdd9c93b58f59d7e030956fa1cce7c1e9ee8876"
+        },
+        {
+          "path": "scripts/tests/test_historical_apk_expectations.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0762e6174d2ff8d8170aff16fdc0bf5781d817b2"
+        },
+        {
+          "path": "scripts/tests/test_packaged_notices.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f6dba61589a15220cea4fe3eb7800d6c58b5f776"
+        },
+        {
+          "path": "scripts/tests/test_verify_play_bundle.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "96cfdd41fe2400836a94f1e443e6eadd9d95f850"
+        },
+        {
+          "path": "scripts/verify_play_bundle.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1a7aac51f55132aac2d607867e3bdee8bf5787ab"
+        },
+        {
+          "path": "scripts/verify_unified_apk.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40"
+        }
+      ],
+      "activated": false
+    },
+    "notice_handoff_blob": "c631fe30184c6cd5445e43011de3edc74657ee1f",
+    "notice_independent_final_review": "3be3ea0dabd4aaa2eb7eb4de60f82b646e54ea4f",
+    "root_notice_delta_review": {
+      "schema": 1,
+      "base": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "scripts/verify_unified_apk.py",
+      "first_blob": "611e4f37a2be163365ef949ca097895a79f95090",
+      "final_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40",
+      "root_exact_full_byte_delta": "Exactly one --full-tree argument added to the new historical ls-tree read; all other bytes equal to the fully read first snapshot.",
+      "reason": "A repository subdirectory must not hide an existing root policy. Independent reviewers reproduced the Git behavior; the implementation owner ran the same concrete regression red then green.",
+      "historical_test_blob": "0762e6174d2ff8d8170aff16fdc0bf5781d817b2",
+      "pure_archive_helper_unchanged": "e706edf1d87c4222f17498ff8ef67ade30443dfc",
+      "root_repeated_tests": false,
+      "root_read_final_test_deltas": true,
+      "final_independent_child_static_blockers": 0
+    },
+    "root_reviewed_actual_originals": {
+      "final_71_test_log": "76c850895f50c6ab982c8c7baaf54362040538ff",
+      "execution_and_unchanged_10_sources": "82f006d816ae7dba9bfdf4e1098233f715d446ab",
+      "actual_original_preparation": "1177838d3daa9347b0df94a12464bb362ce19246",
+      "all_ten_local_final_sources_independently_rehashed": true,
+      "actual_root_source_check_exit_code": 0
+    },
+    "actual_historical_apk_negative": "1d20d751b25dc9416a03b5c05d56907e6fe00a83",
+    "contrast_qa_handoff": "42998c8743b5476ce70409a19892728881e92270",
+    "remote_compare": {
+      "direct_parent": "1375da193af0152af64f91d86577aa9768cd50db",
+      "total_commits": 1,
+      "changed_paths": 11,
+      "exact_blob_set": true,
+      "prompt_additions": 1,
+      "prompt_deletions": 1
+    },
+    "decision": "Proceed with the exact reviewed11-file fast-forward after expected quality-ref/PR checks. Existing workflow cancellation semantics supersede the old1375 run; fresh full results must bind to77936fae.",
+    "scope": "Source/integration acceptance only. Current new APK/AAB, Android/update, signing and delivery outcomes remain pending; no legal or Play approval."
   }
 }

@@ -1,0 +1,23 @@
+test_export_embedded_game (unittest.loader._FailedTest.test_export_embedded_game) ... ERROR
+
+======================================================================
+ERROR: test_export_embedded_game (unittest.loader._FailedTest.test_export_embedded_game)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_export_embedded_game
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/2708c7907f28/lumo-notices-1375-2708/scripts/tests/test_export_embedded_game.py", line 17, in <module>
+    SPEC.loader.exec_module(MODULE)
+  File "/workspace/scratch/2708c7907f28/lumo-notices-1375-2708/scripts/export_embedded_game.py", line 11, in <module>
+    from package_notices import bundle_notices
+ModuleNotFoundError: No module named 'package_notices'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

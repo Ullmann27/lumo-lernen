@@ -1,0 +1,280 @@
+{
+  "schema": "lumo-notice-independent-final-source-review-v2",
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "1375da193af0152af64f91d86577aa9768cd50db",
+  "reviewers": [
+    "/root/lumo_release_lead/learning_ux_lead",
+    "/root/lumo_release_lead/learning_ux_lead/touch_worker"
+  ],
+  "verdict": "No remaining static blocker identified in the final scoped notice packaging patch",
+  "scope": "Read-only review of five production files and five test/fixture files; existing original execution evidence read, no duplicate test or package build",
+  "final_files": {
+    "config/lumo-notices.json": {
+      "bytes": 1313,
+      "sha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+      "git_blob": "6bfb5f7bec41c91af963f47fc80d66977135ab74"
+    },
+    "scripts/package_notices.py": {
+      "bytes": 6926,
+      "sha256": "2a0a2bc6bd4ccd4f6aedc92b91349aceee0f44f6d5d0f2008f81c105c9c156ce",
+      "git_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc"
+    },
+    "scripts/export_embedded_game.py": {
+      "bytes": 8642,
+      "sha256": "95987d1c3b188194dcaf4725d4564a56bdf71fd441b408aa302e8b31fc32394d",
+      "git_blob": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba"
+    },
+    "scripts/verify_unified_apk.py": {
+      "bytes": 13676,
+      "sha256": "8089083e35978c701a4694a7f189beee2c91c076d78d51af1909d4f275427620",
+      "git_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40"
+    },
+    "scripts/verify_play_bundle.py": {
+      "bytes": 17151,
+      "sha256": "dc50b5fe6a54e7ed98ed44a08b5cc87018269cb5224fb192782e59040c949dd4",
+      "git_blob": "1a7aac51f55132aac2d607867e3bdee8bf5787ab"
+    },
+    "scripts/tests/notice_fixtures.py": {
+      "bytes": 1622,
+      "sha256": "69a63a367e0bbdd2941b0cb12d03fe40a36b08d9f52afb85898b4a6f00f9cd69",
+      "git_blob": "fc99b36bce1f647ca6134acd37cc2fc6247e527c"
+    },
+    "scripts/tests/test_packaged_notices.py": {
+      "bytes": 6916,
+      "sha256": "6e3ea629f848e4378ebb1021ac81d2bde7c412726bdcaa3f34442350bccd2ae8",
+      "git_blob": "f6dba61589a15220cea4fe3eb7800d6c58b5f776"
+    },
+    "scripts/tests/test_export_embedded_game.py": {
+      "bytes": 12197,
+      "sha256": "f10a62339f65f86e158572583b7a453b101dbe6e9e5ee020ed03a00f189fde45",
+      "git_blob": "2fdd9c93b58f59d7e030956fa1cce7c1e9ee8876"
+    },
+    "scripts/tests/test_historical_apk_expectations.py": {
+      "bytes": 18541,
+      "sha256": "15c36cbba49327f5f92269d138ea7d764577dac402b89d96a11735e0fe55bbee",
+      "git_blob": "0762e6174d2ff8d8170aff16fdc0bf5781d817b2"
+    },
+    "scripts/tests/test_verify_play_bundle.py": {
+      "bytes": 20162,
+      "sha256": "e83c0f3d73990424c34b2d931b98a649fcec2e3a35cf7aaebe5ebde50bbf2597",
+      "git_blob": "96cfdd41fe2400836a94f1e443e6eadd9d95f850"
+    }
+  },
+  "resolved_finding": {
+    "path": "scripts/verify_unified_apk.py",
+    "line": 43,
+    "prior_blob": "611e4f37a2be163365ef949ca097895a79f95090",
+    "final_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40",
+    "exact_delta": "One insertion of , '--full-tree'; removing that exact insertion from the final bytes reproduces the complete prior Git blob",
+    "reason": "The policy ls-tree lookup is now anchored to the immutable root tree even if the supplied repository path points to a subdirectory, consistently with revision:path git-show reads.",
+    "independently_confirmed_by_both_reviewers": true,
+    "primary_documentation": "https://git-scm.com/docs/git-ls-tree",
+    "previous_read_only_observation": {
+      "scope": "Read-only Git object lookup on an existing tracked file; no fixture, application or test execution",
+      "queries": [
+        {
+          "label": "root ls-tree",
+          "command": [
+            "git",
+            "-C",
+            "/workspace/scratch/2708c7907f28/lumo-notices-1375-2708",
+            "ls-tree",
+            "-z",
+            "1375da193af0152af64f91d86577aa9768cd50db",
+            "--",
+            "config/godot-source.json"
+          ],
+          "exit_code": 0,
+          "stdout_bytes": 78,
+          "stdout_sha256": "d6f0c8929eff0ba3967a2f277aaf9d30ca7a2f9e3b4c7eeb33cbc59ae8556b31",
+          "stderr": "",
+          "stdout_records": [
+            "100644 blob 3ce3b0d1f53f5d9b9f7ff0dcb7c3bd519c250788\tconfig/godot-source.json",
+            ""
+          ]
+        },
+        {
+          "label": "nested ls-tree",
+          "command": [
+            "git",
+            "-C",
+            "/workspace/scratch/2708c7907f28/lumo-notices-1375-2708/scripts",
+            "ls-tree",
+            "-z",
+            "1375da193af0152af64f91d86577aa9768cd50db",
+            "--",
+            "config/godot-source.json"
+          ],
+          "exit_code": 0,
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "",
+          "stdout_records": [
+            ""
+          ]
+        },
+        {
+          "label": "nested root-qualified show",
+          "command": [
+            "git",
+            "-C",
+            "/workspace/scratch/2708c7907f28/lumo-notices-1375-2708/scripts",
+            "show",
+            "1375da193af0152af64f91d86577aa9768cd50db:config/godot-source.json"
+          ],
+          "exit_code": 0,
+          "stdout_bytes": 145,
+          "stdout_sha256": "1b7c5f504dd2de26b0ae889f32f16971d960e18374b169c5862c3b1bd9a0b20f",
+          "stderr": ""
+        },
+        {
+          "label": "nested full-tree ls-tree",
+          "command": [
+            "git",
+            "-C",
+            "/workspace/scratch/2708c7907f28/lumo-notices-1375-2708/scripts",
+            "ls-tree",
+            "--full-tree",
+            "-z",
+            "1375da193af0152af64f91d86577aa9768cd50db",
+            "--",
+            "config/godot-source.json"
+          ],
+          "exit_code": 0,
+          "stdout_bytes": 78,
+          "stdout_sha256": "d6f0c8929eff0ba3967a2f277aaf9d30ca7a2f9e3b4c7eeb33cbc59ae8556b31",
+          "stderr": "",
+          "stdout_records": [
+            "100644 blob 3ce3b0d1f53f5d9b9f7ff0dcb7c3bd519c250788\tconfig/godot-source.json",
+            ""
+          ]
+        }
+      ]
+    }
+  },
+  "final_regression_source": {
+    "path": "scripts/tests/test_historical_apk_expectations.py",
+    "git_blob": "0762e6174d2ff8d8170aff16fdc0bf5781d817b2",
+    "method": "test_repository_subdirectory_cannot_hide_a_present_notice_policy",
+    "lines": [
+      192,
+      211
+    ],
+    "real_git_and_current_verifier": true,
+    "notice_check_mocked": false,
+    "states": [
+      "A real committed policyless revision selected via its config/ subdirectory is explicitly unverified",
+      "A real subsequent commit containing the policy must verify via the same subdirectory",
+      "Missing packaged notice must reject",
+      "Changed packaged notice bytes must reject"
+    ],
+    "additional_source_checks": [
+      "Current default positive case at178-180 uses the real verifier",
+      "ls-tree and git-show-policy read failures are separately required to propagate at228-243"
+    ]
+  },
+  "original_execution_evidence_read": {
+    "performer": "ReleaseLead; reviewed here without rerunning",
+    "before_fix": {
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-p",
+        "test_historical_apk_expectations.py",
+        "-v"
+      ],
+      "exit_code": 1,
+      "production_git_blob": "611e4f37a2be163365ef949ca097895a79f95090",
+      "test_sha256": "15c36cbba49327f5f92269d138ea7d764577dac402b89d96a11735e0fe55bbee",
+      "summary": "22 methods, 3 subtest failures: present-policy, missing, changed",
+      "log_git_blob": "d34a0cb27df2b92d0a4d910ca7da4370d291ef19",
+      "metadata_git_blob": "cebff587288d104bbcf5a234769773a44f9fa4be"
+    },
+    "after_fix": {
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-p",
+        "test_historical_apk_expectations.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "production_git_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40",
+      "test_sha256": "15c36cbba49327f5f92269d138ea7d764577dac402b89d96a11735e0fe55bbee",
+      "summary": "22 methods, OK, 1.234 seconds",
+      "log_git_blob": "eacb4ad61ab7889133453a26b0d46c1859ffc1d1",
+      "metadata_git_blob": "b67c794d0e3250296d9e8755326feca22c96ea6e"
+    },
+    "final_targeted_set": {
+      "command": [
+        "python3",
+        "-B",
+        "-c",
+        "import sys,unittest; loader=unittest.TestLoader(); suite=unittest.TestSuite(loader.discover('scripts/tests',pattern=p) for p in ['test_export_embedded_game.py','test_packaged_notices.py','test_historical_apk_expectations.py','test_verify_play_bundle.py']); result=unittest.TextTestRunner(verbosity=2).run(suite); raise SystemExit(0 if result.wasSuccessful() else 1)"
+      ],
+      "methods": 71,
+      "seconds": 6.371,
+      "exit_code": 0,
+      "summary": "OK",
+      "log": {
+        "local_path": "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/final-targeted-71.log",
+        "bytes": 17451,
+        "sha256": "7406c5e537b05f9d34a496d2649483f3a14874fb04ecaca6121ddcda6f1588b8",
+        "git_blob": "76c850895f50c6ab982c8c7baaf54362040538ff"
+      },
+      "source_manifest": {
+        "local_path": "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/final-targeted-71-source-identity.json",
+        "bytes": 6131,
+        "sha256": "ac3e9330b28977f0c7d3fb36cfe3832f6b3d648a1a347bdefbc144f56aeec03b",
+        "git_blob": "82f006d816ae7dba9bfdf4e1098233f715d446ab"
+      },
+      "all_10_source_before_and_after_identities_match_current_bytes": true,
+      "actual_changed_paths_equal_expected_10_paths": true
+    }
+  },
+  "preserved_boundaries": {
+    "export_hook": "bundle_notices at export_embedded_game.py:172 follows the final native dirty-source rejection at169-171",
+    "unchanged_before_hook": "Original Git checkout, import, PCK format/provenance, sidecar/gate cleanup and final dirty guard",
+    "policy": "Exactly the five approved original source texts, bounded identities and paths; no license text modification",
+    "package_checks": "Exact outer-package notice manifest, native source identity, original payload hashes and unique expected ZIP members",
+    "historical_exception": "Only actual absence in an explicitly pinned full-commit Git tree remains marked not_verified_for_historical_source; current absence, malformed/nonregular policy and Git read failures reject",
+    "existing_security_checks": "APK/AAB signing, package/version, ABI, native provenance, PCK, voices, manifest/installer and existing alignment guards remain",
+    "original_tests": {
+      "export_methods_text_identical": 23,
+      "historical_methods_text_identical": 15,
+      "historical_final_method_count": 22,
+      "aab_methods_text_identical": 17,
+      "aab_original_method_with_only_additional_assertions": 1,
+      "removed_or_weakened_original_methods": 0
+    },
+    "no_native_pin_pck_exportpreset_pubspec_workflow_or_original_license_text_change": true
+  },
+  "reviewer_actions": {
+    "source_reads": true,
+    "read_only_git_object_queries": true,
+    "source_ast_text_comparison": true,
+    "original_log_and_manifest_reads": true,
+    "tests_executed": false,
+    "fixtures_executed": false,
+    "renderer_or_build_executed": false,
+    "production_or_test_files_changed": false,
+    "refs_changed": false,
+    "output": "This single inert review blob only"
+  },
+  "limitations": [
+    "This is scoped source acceptance plus independent inspection of the producer's actual targeted test evidence",
+    "The71 methods use synthetic APK/AAB fixtures and existing real JDK rejection checks; no newly built real APK/AAB or Godot export is proven here",
+    "Outer-package original notice byte preservation is not legal rights approval or proof of notice placement inside the Godot PCK",
+    "Full integration and actual final package verification remain separate gates"
+  ]
+}

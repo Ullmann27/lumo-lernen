@@ -1,0 +1,242 @@
+{
+  "schema": "lumo-notice-packaging-verification-v1",
+  "reviewed_at_utc": "2026-11-14T14:28:44Z",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_base": "1375da193af0152af64f91d86577aa9768cd50db",
+  "native_revision": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "status": "Scoped implementation and targeted verification complete; awaiting integration and actual new package validation",
+  "changes": [
+    "Five unchanged existing source notice texts are explicitly copied to outer Android assets with canonical manifest, raw policy hash, complete pinned native source configuration and exact byte/SHA256/Git-blob bindings.",
+    "Shared APK/AAB archive verification requires the exact six-member notice inventory including manifest and rejects missing, additional, duplicate or changed members.",
+    "Current default expectations require the notice policy. An explicitly pinned immutable historical Git revision may omit it only when root-relative ls-tree proves actual absence; this produces explicit not_verified_for_historical_source output.",
+    "The existing embedded-game exporter invokes preparation after its final dirty-source guard; existing cleanup and all previous package checks remain."
+  ],
+  "scope_preserved": [
+    "No native pin, PCK, export preset, pubspec, workflow or original notice text changes.",
+    "No delivery verifier change is needed: Root independently confirmed both candidate and delivery compare every complete fresh verifier result field to build provenance.",
+    "Only five production files and five test/fixture files change from the exact base."
+  ],
+  "verification": {
+    "final_targeted": {
+      "methods": 71,
+      "seconds": 6.371,
+      "exit_code": 0,
+      "log_git_blob": "76c850895f50c6ab982c8c7baaf54362040538ff",
+      "source_execution_record_git_blob": "82f006d816ae7dba9bfdf4e1098233f715d446ab",
+      "source_before_after_identical": true,
+      "git_diff_check_exit": 0
+    },
+    "unchanged_1375_red": {
+      "methods": 2,
+      "failing_subcases": 8,
+      "exit_code": 1,
+      "log_git_blob": "3ff88c3093fcf43e637e1ad6278e13f6dd3e1bee",
+      "record_git_blob": "4184c83223d0f32cd9084d3bae27391adec6e6d5",
+      "scope": "Actual old verifier execution against the exact final test bytes and explicitly synthetic APK/AAB fixtures; pre-existing signature/aapt stubs unchanged."
+    },
+    "historical_subdirectory_red_green": {
+      "same_test_git_blob": "0762e6174d2ff8d8170aff16fdc0bf5781d817b2",
+      "before": {
+        "methods": 22,
+        "failing_subcases": 3,
+        "exit_code": 1,
+        "production_git_blob": "611e4f37a2be163365ef949ca097895a79f95090",
+        "log_git_blob": "d34a0cb27df2b92d0a4d910ca7da4370d291ef19"
+      },
+      "after": {
+        "methods": 22,
+        "exit_code": 0,
+        "production_git_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40",
+        "log_git_blob": "eacb4ad61ab7889133453a26b0d46c1859ffc1d1"
+      },
+      "delta": "One --full-tree argument; actual committed policy is no longer mistaken for absence when invoked from a repository subdirectory."
+    },
+    "real_original_preparation": {
+      "record_git_blob": "1177838d3daa9347b0df94a12464bb362ce19246",
+      "original_source_texts": 5,
+      "manifest": 1,
+      "sources_unchanged": true,
+      "exit_code": 0,
+      "scope": "Actual source bytes copied by production preparation; two standalone ZIP path views checked. These ZIPs are not an APK/AAB build."
+    },
+    "root_actual_historical_apk_negative": {
+      "apk_sha256": "6c380ea99a0ee9119b3179b36df714336936247654216cec1f2188f34a96f164",
+      "unchanged_helper_git_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc",
+      "result_git_blob": "1d20d751b25dc9416a03b5c05d56907e6fe00a83",
+      "execution_git_blob": "8672d7f9663c701fbbc2b3e6008f19bf13b9e861",
+      "result": "Expected inventory rejection of a genuinely produced historical APK; no whole-APK or signature acceptance performed."
+    },
+    "initial_failures_retained": [
+      "The isolated existing exporter test initially failed because its importlib loader did not add scripts/ to sys.path. The minimal test-import setup was corrected; all 23 old test methods remain text-identical and pass.",
+      "One early historical run encountered a missing unchanged workflow in the intentionally sparse checkout. Restoring the original .github paths allowed the same tests to run. This was an environment fixture failure, not a passing test."
+    ],
+    "independent_final_review_git_blob": "3be3ea0dabd4aaa2eb7eb4de60f82b646e54ea4f",
+    "independent_review_scope": "LearningLead and TouchWorker read all final code and original execution records without repeating tests; no remaining static blocker in the scoped patch."
+  },
+  "limits": [
+    "No new genuine APK/AAB has yet been produced or accepted with this patch.",
+    "No full Android, Godot export, Flutter or rendering workload was run for this patch.",
+    "Exact outer-package notice preservation does not verify every asset's rights chain or approve legal use.",
+    "Current main candidate1375 and its running CI remain unchanged; final integration/activation belongs to Root."
+  ],
+  "source_files": [
+    {
+      "path": "config/lumo-notices.json",
+      "bytes": 1313,
+      "sha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+      "git_blob": "6bfb5f7bec41c91af963f47fc80d66977135ab74"
+    },
+    {
+      "path": "scripts/package_notices.py",
+      "bytes": 6926,
+      "sha256": "2a0a2bc6bd4ccd4f6aedc92b91349aceee0f44f6d5d0f2008f81c105c9c156ce",
+      "git_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc"
+    },
+    {
+      "path": "scripts/export_embedded_game.py",
+      "bytes": 8642,
+      "sha256": "95987d1c3b188194dcaf4725d4564a56bdf71fd441b408aa302e8b31fc32394d",
+      "git_blob": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba"
+    },
+    {
+      "path": "scripts/verify_unified_apk.py",
+      "bytes": 13676,
+      "sha256": "8089083e35978c701a4694a7f189beee2c91c076d78d51af1909d4f275427620",
+      "git_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40"
+    },
+    {
+      "path": "scripts/verify_play_bundle.py",
+      "bytes": 17151,
+      "sha256": "dc50b5fe6a54e7ed98ed44a08b5cc87018269cb5224fb192782e59040c949dd4",
+      "git_blob": "1a7aac51f55132aac2d607867e3bdee8bf5787ab"
+    },
+    {
+      "path": "scripts/tests/notice_fixtures.py",
+      "bytes": 1622,
+      "sha256": "69a63a367e0bbdd2941b0cb12d03fe40a36b08d9f52afb85898b4a6f00f9cd69",
+      "git_blob": "fc99b36bce1f647ca6134acd37cc2fc6247e527c"
+    },
+    {
+      "path": "scripts/tests/test_packaged_notices.py",
+      "bytes": 6916,
+      "sha256": "6e3ea629f848e4378ebb1021ac81d2bde7c412726bdcaa3f34442350bccd2ae8",
+      "git_blob": "f6dba61589a15220cea4fe3eb7800d6c58b5f776"
+    },
+    {
+      "path": "scripts/tests/test_export_embedded_game.py",
+      "bytes": 12197,
+      "sha256": "f10a62339f65f86e158572583b7a453b101dbe6e9e5ee020ed03a00f189fde45",
+      "git_blob": "2fdd9c93b58f59d7e030956fa1cce7c1e9ee8876"
+    },
+    {
+      "path": "scripts/tests/test_historical_apk_expectations.py",
+      "bytes": 18541,
+      "sha256": "15c36cbba49327f5f92269d138ea7d764577dac402b89d96a11735e0fe55bbee",
+      "git_blob": "0762e6174d2ff8d8170aff16fdc0bf5781d817b2"
+    },
+    {
+      "path": "scripts/tests/test_verify_play_bundle.py",
+      "bytes": 20162,
+      "sha256": "e83c0f3d73990424c34b2d931b98a649fcec2e3a35cf7aaebe5ebde50bbf2597",
+      "git_blob": "96cfdd41fe2400836a94f1e443e6eadd9d95f850"
+    }
+  ],
+  "original_evidence_records": [
+    {
+      "name": "export-isolated-before-fixture-import.log",
+      "bytes": 1315,
+      "sha256": "ea9e188d4a460f570475d6bc6f8c38e246091aae83460bf7aaba5c2bca00117b",
+      "git_blob": "ef6e53cfcfc93d4238929c6f2158db475e6a0d91"
+    },
+    {
+      "name": "export-isolated-before-fixture-import.json",
+      "bytes": 144,
+      "sha256": "6c9461d75146d7031153fda25828bc1a61e4bed4f16a068bab2d70eb6f57cfdc",
+      "git_blob": "3dfe2c3146fbbac9e28096ba1c70175af598ed1c"
+    },
+    {
+      "name": "test_export_embedded_game.log",
+      "bytes": 8457,
+      "sha256": "4e610f89582fadb87e9e99f08fd676c342d5c5fd41940d81aa356ebe9ebf1275",
+      "git_blob": "c5a187581f77ea573c68c3641203112c0d856735"
+    },
+    {
+      "name": "targeted-first-run.json",
+      "bytes": 1642,
+      "sha256": "517d4a5ce85254c8cbed3938d60ad7200bfba4ae61247ae850b46d35ffc2f6c1",
+      "git_blob": "dccb4f299ae9864bc4bb233f9cef0320f9a4adee"
+    },
+    {
+      "name": "test_historical_apk_expectations.log",
+      "bytes": 7745,
+      "sha256": "f91e46a6ce9c4749128bc8ff0b53b39dc58d8bc925a3a3bc5bed9341346773c8",
+      "git_blob": "dcb1c269f257c52567c13789b178ee9c09fd8fc4"
+    },
+    {
+      "name": "unchanged-1375-final-test-red.log",
+      "bytes": 10324,
+      "sha256": "059b8af6578cf899ec02092aab60bccda84b6b341396fc7333c8dcb335a2e632",
+      "git_blob": "3ff88c3093fcf43e637e1ad6278e13f6dd3e1bee"
+    },
+    {
+      "name": "unchanged-1375-final-test-red.json",
+      "bytes": 2169,
+      "sha256": "351564329f448591ea4ed18c7ca90def437f08c094442721f27dc5cf39a14855",
+      "git_blob": "4184c83223d0f32cd9084d3bae27391adec6e6d5"
+    },
+    {
+      "name": "historical-subdirectory-before-full-tree.log",
+      "bytes": 10819,
+      "sha256": "8164a2d01aa8aa6463fa5f8c39e8742b6b48564d3f9d8c225ca41258438ba411",
+      "git_blob": "d34a0cb27df2b92d0a4d910ca7da4370d291ef19"
+    },
+    {
+      "name": "historical-subdirectory-before-full-tree.json",
+      "bytes": 355,
+      "sha256": "8af5dee6d2df5d40704947ed53238a20f95d3e964012f9a89e34526cbc9fd0ea",
+      "git_blob": "cebff587288d104bbcf5a234769773a44f9fa4be"
+    },
+    {
+      "name": "historical-subdirectory-after-full-tree.log",
+      "bytes": 7175,
+      "sha256": "92d040767220bb1c4c90210856f11571b18f1715070a1a0a99f6902aa210af14",
+      "git_blob": "eacb4ad61ab7889133453a26b0d46c1859ffc1d1"
+    },
+    {
+      "name": "historical-subdirectory-after-full-tree.json",
+      "bytes": 355,
+      "sha256": "3094374304f7d47dff7af17d0f3f7f23a45e97108b6f45c4800c42eebab2b1b3",
+      "git_blob": "b67c794d0e3250296d9e8755326feca22c96ea6e"
+    },
+    {
+      "name": "final-targeted-71.log",
+      "bytes": 17451,
+      "sha256": "7406c5e537b05f9d34a496d2649483f3a14874fb04ecaca6121ddcda6f1588b8",
+      "git_blob": "76c850895f50c6ab982c8c7baaf54362040538ff"
+    },
+    {
+      "name": "final-targeted-71-source-identity.json",
+      "bytes": 6131,
+      "sha256": "ac3e9330b28977f0c7d3fb36cfe3832f6b3d648a1a347bdefbc144f56aeec03b",
+      "git_blob": "82f006d816ae7dba9bfdf4e1098233f715d446ab"
+    },
+    {
+      "name": "real-original-preparation.json",
+      "bytes": 10828,
+      "sha256": "84079505a6bdc93247649442307e27da53d690431d9e15b2ec2441bb3131436c",
+      "git_blob": "1177838d3daa9347b0df94a12464bb362ce19246"
+    },
+    {
+      "name": "apk-path-view-original-notices-only.zip",
+      "bytes": 17718,
+      "sha256": "d3d888f84a8a7f6c0f3cff50a96d76c95cd3bed8690bfe637de9a03749b7170d",
+      "git_blob": "e5d5ce4010d2f34e92449d76609f31082950268f"
+    },
+    {
+      "name": "aab-base-path-view-original-notices-only.zip",
+      "bytes": 17778,
+      "sha256": "b4a02d1a2cb8cfc33ba7d3612769f07dd7d19f80c9fc2b28474e371ecfd63c5a",
+      "git_blob": "c11a0eae862fecd7ea219651b43cff7e906568cb"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+test_current_default_requires_the_notice_policy (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_current_default_requires_the_notice_policy) ... /workspace/scratch/2708c7907f28/notice-checks-1375-2708/unchanged-1375-final-test-red/scripts/verify_unified_apk.py:192: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmpmpcg3rai/fixture-arm64-v8a.apk'>
+  'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+FAIL
+test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) ... 
+  test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) (member='base/assets/lumo_notices/host/assets/fonts/OFL.txt') ... FAIL
+  test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) (member='base/assets/lumo_notices/native/assets/fonts/Nunito-LICENSE.txt') ... FAIL
+  test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) (member='base/assets/lumo_notices/native/assets/characters/lumo_animated/ATTRIBUTION.md') ... FAIL
+  test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) (member='base/assets/lumo_notices/native/assets/characters/lumo_facial/ATTRIBUTION.md') ... FAIL
+  test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) (member='base/assets/lumo_notices/native/THIRD_PARTY_NOTICES.md') ... FAIL
+  test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) (member='base/assets/lumo_notices/manifest.json') ... FAIL
+test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) ... FAIL
+
+======================================================================
+FAIL: test_current_default_requires_the_notice_policy (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_current_default_requires_the_notice_policy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/unchanged-1375-final-test-red/scripts/tests/test_historical_apk_expectations.py", line 163, in test_current_default_requires_the_notice_policy
+    with self.assertRaises(FileNotFoundError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: FileNotFoundError not raised
+
+======================================================================
+FAIL: test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) (member='base/assets/lumo_notices/host/assets/fonts/OFL.txt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/unchanged-1375-final-test-red/scripts/tests/test_verify_play_bundle.py", line 283, in test_notice_members_and_current_policy_are_required_by_payload_verifier
+    with self.assertRaisesRegex(RuntimeError, 'notice.*inventory'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) (member='base/assets/lumo_notices/native/assets/fonts/Nunito-LICENSE.txt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/unchanged-1375-final-test-red/scripts/tests/test_verify_play_bundle.py", line 283, in test_notice_members_and_current_policy_are_required_by_payload_verifier
+    with self.assertRaisesRegex(RuntimeError, 'notice.*inventory'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) (member='base/assets/lumo_notices/native/assets/characters/lumo_animated/ATTRIBUTION.md')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/unchanged-1375-final-test-red/scripts/tests/test_verify_play_bundle.py", line 283, in test_notice_members_and_current_policy_are_required_by_payload_verifier
+    with self.assertRaisesRegex(RuntimeError, 'notice.*inventory'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) (member='base/assets/lumo_notices/native/assets/characters/lumo_facial/ATTRIBUTION.md')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/unchanged-1375-final-test-red/scripts/tests/test_verify_play_bundle.py", line 283, in test_notice_members_and_current_policy_are_required_by_payload_verifier
+    with self.assertRaisesRegex(RuntimeError, 'notice.*inventory'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) (member='base/assets/lumo_notices/native/THIRD_PARTY_NOTICES.md')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/unchanged-1375-final-test-red/scripts/tests/test_verify_play_bundle.py", line 283, in test_notice_members_and_current_policy_are_required_by_payload_verifier
+    with self.assertRaisesRegex(RuntimeError, 'notice.*inventory'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier) (member='base/assets/lumo_notices/manifest.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/unchanged-1375-final-test-red/scripts/tests/test_verify_play_bundle.py", line 283, in test_notice_members_and_current_policy_are_required_by_payload_verifier
+    with self.assertRaisesRegex(RuntimeError, 'notice.*inventory'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_notice_members_and_current_policy_are_required_by_payload_verifier (test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/unchanged-1375-final-test-red/scripts/tests/test_verify_play_bundle.py", line 288, in test_notice_members_and_current_policy_are_required_by_payload_verifier
+    with self.assertRaises(FileNotFoundError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: FileNotFoundError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.094s
+
+FAILED (failures=8)
+{
+  "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+  "versionCode": 1999,
+  "versionName": "0.12.87",
+  "minSdk": 24,
+  "targetSdk": 36,
+  "abis": [
+    "arm64-v8a"
+  ],
+  "elf16KiBAligned": true,
+  "resourcesArscAligned": true,
+  "bytes": 61378,
+  "sha256": "21e630180c8d43b14a995c6d968038d4e7a652485209a0008486847ec7a1e348",
+  "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+  "godot": {
+    "revision": "4d0fd40fdf188be6ca86057596c7b51f41701fa3",
+    "pck_sha256": "7da290c2a2c66a07d169b585def63c8f8c17cbce65b41872f1aa3451f4bdb780"
+  },
+  "offlineVoice": {
+    "profile": "fixture-local-voice",
+    "preset": "F2",
+    "speakerId": 1,
+    "sampleRate": 44100,
+    "onnxruntimeVersion": "1.23.1",
+    "clipCount": 150,
+    "modelSha256": {
+      "model.onnx": "e7842a0ba0da38db522186f7b83e10daaee3278e6e8599feafa0d8400006adcb"
+    },
+    "modelLicenseSha256": "82d52f0296fc4d2fe89d9e25173edd31b0694d269b402b84345f252bcf261984",
+    "scope": "Actual APK package validation, not audible playback acceptance"
+  }
+}

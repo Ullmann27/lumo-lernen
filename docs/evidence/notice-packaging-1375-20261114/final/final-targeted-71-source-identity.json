@@ -1,0 +1,143 @@
+{
+  "base": "1375da193af0152af64f91d86577aa9768cd50db",
+  "branch": "work/lumo-notice-package-20261114-2708",
+  "test_command": [
+    "python3",
+    "-B",
+    "-c",
+    "import sys,unittest; loader=unittest.TestLoader(); suite=unittest.TestSuite(loader.discover('scripts/tests',pattern=p) for p in ['test_export_embedded_game.py','test_packaged_notices.py','test_historical_apk_expectations.py','test_verify_play_bundle.py']); result=unittest.TextTestRunner(verbosity=2).run(suite); raise SystemExit(0 if result.wasSuccessful() else 1)"
+  ],
+  "test_exit_code": 0,
+  "git_diff_check_exit": 0,
+  "git_diff_check_output": "",
+  "source_before": {
+    "config/lumo-notices.json": {
+      "bytes": 1313,
+      "sha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+      "git_blob": "6bfb5f7bec41c91af963f47fc80d66977135ab74"
+    },
+    "scripts/export_embedded_game.py": {
+      "bytes": 8642,
+      "sha256": "95987d1c3b188194dcaf4725d4564a56bdf71fd441b408aa302e8b31fc32394d",
+      "git_blob": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba"
+    },
+    "scripts/package_notices.py": {
+      "bytes": 6926,
+      "sha256": "2a0a2bc6bd4ccd4f6aedc92b91349aceee0f44f6d5d0f2008f81c105c9c156ce",
+      "git_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc"
+    },
+    "scripts/tests/notice_fixtures.py": {
+      "bytes": 1622,
+      "sha256": "69a63a367e0bbdd2941b0cb12d03fe40a36b08d9f52afb85898b4a6f00f9cd69",
+      "git_blob": "fc99b36bce1f647ca6134acd37cc2fc6247e527c"
+    },
+    "scripts/tests/test_export_embedded_game.py": {
+      "bytes": 12197,
+      "sha256": "f10a62339f65f86e158572583b7a453b101dbe6e9e5ee020ed03a00f189fde45",
+      "git_blob": "2fdd9c93b58f59d7e030956fa1cce7c1e9ee8876"
+    },
+    "scripts/tests/test_historical_apk_expectations.py": {
+      "bytes": 18541,
+      "sha256": "15c36cbba49327f5f92269d138ea7d764577dac402b89d96a11735e0fe55bbee",
+      "git_blob": "0762e6174d2ff8d8170aff16fdc0bf5781d817b2"
+    },
+    "scripts/tests/test_packaged_notices.py": {
+      "bytes": 6916,
+      "sha256": "6e3ea629f848e4378ebb1021ac81d2bde7c412726bdcaa3f34442350bccd2ae8",
+      "git_blob": "f6dba61589a15220cea4fe3eb7800d6c58b5f776"
+    },
+    "scripts/tests/test_verify_play_bundle.py": {
+      "bytes": 20162,
+      "sha256": "e83c0f3d73990424c34b2d931b98a649fcec2e3a35cf7aaebe5ebde50bbf2597",
+      "git_blob": "96cfdd41fe2400836a94f1e443e6eadd9d95f850"
+    },
+    "scripts/verify_play_bundle.py": {
+      "bytes": 17151,
+      "sha256": "dc50b5fe6a54e7ed98ed44a08b5cc87018269cb5224fb192782e59040c949dd4",
+      "git_blob": "1a7aac51f55132aac2d607867e3bdee8bf5787ab"
+    },
+    "scripts/verify_unified_apk.py": {
+      "bytes": 13676,
+      "sha256": "8089083e35978c701a4694a7f189beee2c91c076d78d51af1909d4f275427620",
+      "git_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40"
+    }
+  },
+  "source_after": {
+    "config/lumo-notices.json": {
+      "bytes": 1313,
+      "sha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+      "git_blob": "6bfb5f7bec41c91af963f47fc80d66977135ab74"
+    },
+    "scripts/export_embedded_game.py": {
+      "bytes": 8642,
+      "sha256": "95987d1c3b188194dcaf4725d4564a56bdf71fd441b408aa302e8b31fc32394d",
+      "git_blob": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba"
+    },
+    "scripts/package_notices.py": {
+      "bytes": 6926,
+      "sha256": "2a0a2bc6bd4ccd4f6aedc92b91349aceee0f44f6d5d0f2008f81c105c9c156ce",
+      "git_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc"
+    },
+    "scripts/tests/notice_fixtures.py": {
+      "bytes": 1622,
+      "sha256": "69a63a367e0bbdd2941b0cb12d03fe40a36b08d9f52afb85898b4a6f00f9cd69",
+      "git_blob": "fc99b36bce1f647ca6134acd37cc2fc6247e527c"
+    },
+    "scripts/tests/test_export_embedded_game.py": {
+      "bytes": 12197,
+      "sha256": "f10a62339f65f86e158572583b7a453b101dbe6e9e5ee020ed03a00f189fde45",
+      "git_blob": "2fdd9c93b58f59d7e030956fa1cce7c1e9ee8876"
+    },
+    "scripts/tests/test_historical_apk_expectations.py": {
+      "bytes": 18541,
+      "sha256": "15c36cbba49327f5f92269d138ea7d764577dac402b89d96a11735e0fe55bbee",
+      "git_blob": "0762e6174d2ff8d8170aff16fdc0bf5781d817b2"
+    },
+    "scripts/tests/test_packaged_notices.py": {
+      "bytes": 6916,
+      "sha256": "6e3ea629f848e4378ebb1021ac81d2bde7c412726bdcaa3f34442350bccd2ae8",
+      "git_blob": "f6dba61589a15220cea4fe3eb7800d6c58b5f776"
+    },
+    "scripts/tests/test_verify_play_bundle.py": {
+      "bytes": 20162,
+      "sha256": "e83c0f3d73990424c34b2d931b98a649fcec2e3a35cf7aaebe5ebde50bbf2597",
+      "git_blob": "96cfdd41fe2400836a94f1e443e6eadd9d95f850"
+    },
+    "scripts/verify_play_bundle.py": {
+      "bytes": 17151,
+      "sha256": "dc50b5fe6a54e7ed98ed44a08b5cc87018269cb5224fb192782e59040c949dd4",
+      "git_blob": "1a7aac51f55132aac2d607867e3bdee8bf5787ab"
+    },
+    "scripts/verify_unified_apk.py": {
+      "bytes": 13676,
+      "sha256": "8089083e35978c701a4694a7f189beee2c91c076d78d51af1909d4f275427620",
+      "git_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40"
+    }
+  },
+  "source_unchanged_by_verification": true,
+  "expected_changed_paths": [
+    "config/lumo-notices.json",
+    "scripts/export_embedded_game.py",
+    "scripts/package_notices.py",
+    "scripts/tests/notice_fixtures.py",
+    "scripts/tests/test_export_embedded_game.py",
+    "scripts/tests/test_historical_apk_expectations.py",
+    "scripts/tests/test_packaged_notices.py",
+    "scripts/tests/test_verify_play_bundle.py",
+    "scripts/verify_play_bundle.py",
+    "scripts/verify_unified_apk.py"
+  ],
+  "actual_changed_paths": [
+    "config/lumo-notices.json",
+    "scripts/export_embedded_game.py",
+    "scripts/package_notices.py",
+    "scripts/tests/notice_fixtures.py",
+    "scripts/tests/test_export_embedded_game.py",
+    "scripts/tests/test_historical_apk_expectations.py",
+    "scripts/tests/test_packaged_notices.py",
+    "scripts/tests/test_verify_play_bundle.py",
+    "scripts/verify_play_bundle.py",
+    "scripts/verify_unified_apk.py"
+  ],
+  "scope": "71 focused Python methods including synthetic APK/AAB fixtures and existing real JDK rejection checks; no real new APK/AAB, export or renderer"
+}

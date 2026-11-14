@@ -1,0 +1,203 @@
+{
+  "schema": "lumo-notice-packaging-final-handoff-v1",
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "1375da193af0152af64f91d86577aa9768cd50db",
+  "base_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+  "native_revision_unchanged": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "local_branch": "work/lumo-notice-package-20261114-2708",
+  "local_checkout": "/workspace/scratch/2708c7907f28/lumo-notices-1375-2708",
+  "status": "Ready for Root integration review; no remote product ref changed",
+  "final_validation": {
+    "methods": 71,
+    "seconds": 6.371,
+    "exit_code": 0,
+    "source_before_after_identical": true,
+    "original_log_git_blob": "76c850895f50c6ab982c8c7baaf54362040538ff",
+    "execution_and_source_record_git_blob": "82f006d816ae7dba9bfdf4e1098233f715d446ab"
+  },
+  "final_source_review_git_blob": "e15acb452785429c07440296f7bad32e259d7024",
+  "independent_final_review_git_blob": "3be3ea0dabd4aaa2eb7eb4de60f82b646e54ea4f",
+  "superseded_prepared_apk_verifier_blob": "611e4f37a2be163365ef949ca097895a79f95090",
+  "final_apk_verifier_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40",
+  "scope": "Five production files plus five tests/fixture files; no native pin, PCK, export preset, pubspec, workflow, original license text or delivery verifier changes",
+  "code_tree_entries": [
+    {
+      "path": "config/lumo-notices.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bfb5f7bec41c91af963f47fc80d66977135ab74"
+    },
+    {
+      "path": "scripts/package_notices.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e706edf1d87c4222f17498ff8ef67ade30443dfc"
+    },
+    {
+      "path": "scripts/export_embedded_game.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba"
+    },
+    {
+      "path": "scripts/verify_unified_apk.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40"
+    },
+    {
+      "path": "scripts/verify_play_bundle.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a7aac51f55132aac2d607867e3bdee8bf5787ab"
+    },
+    {
+      "path": "scripts/tests/notice_fixtures.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc99b36bce1f647ca6134acd37cc2fc6247e527c"
+    },
+    {
+      "path": "scripts/tests/test_packaged_notices.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6dba61589a15220cea4fe3eb7800d6c58b5f776"
+    },
+    {
+      "path": "scripts/tests/test_export_embedded_game.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2fdd9c93b58f59d7e030956fa1cce7c1e9ee8876"
+    },
+    {
+      "path": "scripts/tests/test_historical_apk_expectations.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0762e6174d2ff8d8170aff16fdc0bf5781d817b2"
+    },
+    {
+      "path": "scripts/tests/test_verify_play_bundle.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96cfdd41fe2400836a94f1e443e6eadd9d95f850"
+    }
+  ],
+  "evidence_tree_entries": [
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/export-isolated-before-fixture-import.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef6e53cfcfc93d4238929c6f2158db475e6a0d91"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/export-isolated-before-fixture-import.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3dfe2c3146fbbac9e28096ba1c70175af598ed1c"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/test_export_embedded_game.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5a187581f77ea573c68c3641203112c0d856735"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/targeted-first-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dccb4f299ae9864bc4bb233f9cef0320f9a4adee"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/test_historical_apk_expectations.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dcb1c269f257c52567c13789b178ee9c09fd8fc4"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/unchanged-1375-final-test-red.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ff88c3093fcf43e637e1ad6278e13f6dd3e1bee"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/unchanged-1375-final-test-red.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4184c83223d0f32cd9084d3bae27391adec6e6d5"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/historical-subdirectory-before-full-tree.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d34a0cb27df2b92d0a4d910ca7da4370d291ef19"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/historical-subdirectory-before-full-tree.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cebff587288d104bbcf5a234769773a44f9fa4be"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/historical-subdirectory-after-full-tree.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eacb4ad61ab7889133453a26b0d46c1859ffc1d1"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/historical-subdirectory-after-full-tree.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b67c794d0e3250296d9e8755326feca22c96ea6e"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/final-targeted-71.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76c850895f50c6ab982c8c7baaf54362040538ff"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/final-targeted-71-source-identity.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82f006d816ae7dba9bfdf4e1098233f715d446ab"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/real-original-preparation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1177838d3daa9347b0df94a12464bb362ce19246"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/apk-path-view-original-notices-only.zip",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5d5ce4010d2f34e92449d76609f31082950268f"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/aab-base-path-view-original-notices-only.zip",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c11a0eae862fecd7ea219651b43cff7e906568cb"
+    },
+    {
+      "path": "docs/evidence/notice-packaging-1375-20261114/final/verification-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e15acb452785429c07440296f7bad32e259d7024"
+    },
+    {
+      "path": "docs/evidence/notice-package-1375-20261114/independent-final-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3be3ea0dabd4aaa2eb7eb4de60f82b646e54ea4f"
+    }
+  ],
+  "evidence_entries_excluding_this_handoff": 18,
+  "limitations": [
+    "71 actual targeted Python methods include explicitly synthetic package fixtures and pre-existing real JDK rejection checks.",
+    "Five actual original source texts were copied and checked in standalone ZIP path views, not a newly built APK/AAB.",
+    "Root's unchanged-helper real historical APK negative probe remains valid and separately archived.",
+    "No new signed APK/AAB, Android/rendering, Play or legal-rights approval is asserted.",
+    "Only Root may integrate and activate the final product candidate."
+  ]
+}
