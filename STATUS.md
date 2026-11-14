@@ -3,8 +3,9 @@
 Active review: https://github.com/Ullmann27/lumo-lernen/pull/491
 Working branch: `work/lumo-play-quality-20261114`.
 Base review: PR485, `integration/lumo-c4-connections-20261114`.
-Version remains `0.13.8+2020`; native integration pin remains
-`504c8ba70d02702cbccc370d0d96c36a292c5d27`.
+Version remains `0.13.8+2020`. Integration base `729585db3f49ecff7f0632439f90edb882f09454`
+is merged with the actual ancestry retained. Its native integration pin is
+`0e26153f0e58cc05739e72923b4c563a4cf380b8`.
 Main is protected.
 
 ## Implemented and independently checked
@@ -40,6 +41,25 @@ The preserved source checkpoints are C4
 when combining the next candidate. Earlier shape/learning/distribution evidence
 under the 2026-11-14 directories remains applicable only to its recorded scope.
 
+## Integration merge verification
+
+Checkpoint `c1fef2d548ceaf42ccde8c8d8553d81f8400c349`, tree
+`a2c9c60f56d536241ccc6ac84d8bf90b26734044`, joins the previous quality
+candidate `95f12c7173e6ee718b03dce67ca2d7c6543fe716` with integration
+`729585db3f49ecff7f0632439f90edb882f09454`. The two add/add conflicts were
+resolved by retaining the formatted audit and stronger current-grade negative
+checks. The complete live-source learning audit, console/decoder repairs and
+17-raster native contract remain mandatory; the two exact permitted branches
+still share every source/run/PR-head gate.
+
+On the committed merged source: 123 focused Python contract methods passed,
+workflow actionlint passed, and actual Dart generation plus the production
+output verifier checked 7,552 samples across all 236 selected families.
+This was a local check, with no invented GitHub run binding. The first attempt
+before local HEAD advanced correctly failed the immutable-helper check; its
+raw failure is preserved alongside the successful committed-source run.
+Evidence: `docs/evidence/quality-integration-20261114/`.
+
 ## Exact prior full-run result and next gate
 
 Candidate `4564ad40c4d000b764e67719d19bd2445c04c870`, run 43572640442,
@@ -62,12 +82,15 @@ inputs were not supplied. The builder and validator are executable source,
 not proof of Play acceptance, generated-APK runtime, download size or physical
 16-KiB compatibility. See `docs/release/PLAY_AAB_LOCAL_BUILD_2026-11-14.md`.
 
-A read-only exact-tree audit confirmed that replacing the current native pin
-with PR167's `785413d3` would lose integration modules and required raster
-verifiers. Its narrower Treasure visibility fix is missing from the current
-pin: the original `treasure_world.gd` blob matches the producer source with
-documented avatar occlusion. A separate bounded native port is being prepared;
-no unverified replacement pin or visual approval is introduced here.
+The direct native child `0e26153f` already contains the narrow Treasure
+visibility correction, the five-profile/ten-state regression and the strict
+17-raster compatibility update. Independent exact-blob review found production
+and regression byte-identical to the separately tested port. The old source
+failed 40 of 3,221 headless checks; the corrected source passed all 3,341.
+Two local X11 attempts ended with SIGKILL before producing PNGs, so no local
+render approval is claimed. The actual full 52-mode rendered CI gate is still
+required. Directly replacing integration with PR167's divergent `785413d3`
+would lose modules; its whole tree was not substituted.
 
 Actual child-data/backend disclosures, Play Console declarations, signed AAB
 testing, and physical device frame-rate/thermal measurements remain separate
