@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-14 12:26:27 UTC",
+  "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
+  "agent_tree": [
+    "/root",
+    "/root/lumo_release_lead",
+    "/root/lumo_release_lead/learning_ux_lead",
+    "/root/lumo_release_lead/learning_ux_lead/touch_worker"
+  ],
+  "maximum_concurrent_agents": 4,
+  "candidate": {
+    "repository": "Ullmann27/lumo-lernen",
+    "branch": "work/lumo-play-quality-20261114",
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+    "version": "0.13.8+2020",
+    "pull_request": 491,
+    "frozen": true,
+    "main_not_modified_by_team": true
+  },
+  "main_run": {
+    "id": 43590864772,
+    "attempt": 1,
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772",
+    "status_at_last_read": "in_progress",
+    "last_read_utc": "2026-11-14 12:22:43 UTC",
+    "job": 132436033818,
+    "job_started_utc": "2026-11-14T11:40:59Z",
+    "current_step_at_last_read": "Require actual gameplay gates on the exact pinned native source",
+    "step_started_utc": "2026-11-14T12:03:05Z",
+    "old_comparable_step_seconds": 2639,
+    "old_timing_is_not_current_success_or_eta": true
+  },
+  "completed_original_evidence": {
+    "desktop_runtime": {
+      "artifact": 14112302039,
+      "checks": 170,
+      "errors": 0,
+      "return_checks": 21,
+      "wisp_checks": 14,
+      "source_bound_to_candidate": true,
+      "backend": "production Dart with test SharedPreferences and file transport; not Android Binder"
+    },
+    "android_host_compile": {
+      "job": 132435074028,
+      "status": "success",
+      "actual_jvm_bytecode_bound": true
+    },
+    "flutter": {
+      "artifact": 14112921501,
+      "passed": 2586,
+      "failed": 0,
+      "skipped": 0,
+      "pngs": 546,
+      "actually_visually_reviewed": 4,
+      "new_math_exact_topic_test": 603,
+      "original_machine_parser_replayed": true
+    },
+    "learning_audit": {
+      "artifact": 14112501631,
+      "families": 236,
+      "samples": 7552,
+      "structural_issues": 0,
+      "exact_current_verifier_replayed": true,
+      "semantic_curriculum_approval": false
+    },
+    "build_contracts": {
+      "artifact": 14112728895,
+      "tests": 911,
+      "seconds": 358.962,
+      "skips": 0,
+      "original_current_verifier_replayed": true,
+      "synthetic_pcm_boundary_assertions": 70,
+      "android_audio_claim": false
+    }
+  },
+  "additional_qa": {
+    "purpose": "Actually scroll and activate restart and mode(false) after two 640x360 winning rounds",
+    "qa1": {
+      "head": "dc2e1b50ebeadb895aa691d809f2c457e0142633",
+      "run": 43594135818,
+      "attempt": 1,
+      "job": 132444932236,
+      "status": "completed",
+      "conclusion": "failure",
+      "preflight": "success",
+      "import": "success",
+      "failure": "Runner rejects 334 generated sidecars (329 .gd.uid, 5 .gdshader.uid) before either test process starts",
+      "dart_exit": null,
+      "godot_exit": null,
+      "artifact": 14113587571,
+      "artifact_sha256": "38bdeb870ce8c681d7663038decbfb4f29ca35986659ed248fde487e32014481",
+      "runtime_result_sha256": "3f68fdeb6494d53cb62af6bd296505e001dbe8b8eef5fcf3e0438d860413a447",
+      "product_bug_claim": false
+    },
+    "qa2": {
+      "state": "preparing narrow runner correction; not yet approved or triggered",
+      "planned_branch": "qa/lumo-c4-small-result-actions-20261114-2708-r2",
+      "constraints": "New direct child of aab with exactly four QA files; only workflow branch and strict tracked-source UID metadata validation may change. Preserve original failure. No force/reset, no product or release-allowlist mutation."
+    }
+  },
+  "remaining": [
+    "Native52, mandatory Return21 and Dream5/7/2 actual results",
+    "Fresh signed ARM64 candidate identity/provenance and signature evidence",
+    "Real API35 C4 tour and 2017-to-2020 preservation results",
+    "Final candidate and delivery gates",
+    "Public immutable single-APK publication access",
+    "Actual Play upload key/AAB/Console, operator/privacy facts and physical Android performance"
+  ],
+  "publication": {
+    "verified_public_apk_url": null,
+    "github_release_write_tool": false,
+    "local_gh_authenticated": false,
+    "confirmed_github_browser_session": false,
+    "do_not_reuse_historical_publishers": true
+  },
+  "evidence": {
+    "branch": "checkpoint/lumo-aab-ci-20261114-2708",
+    "prior_head": "8002c05a0b77ead7536740fbf1db684d3551e43c",
+    "original_803_evidence": "6a5ae5327570fc60434672074f246c95e1c59283",
+    "old_803_apk_is_not_current_candidate": true
+  },
+  "resume": "Keep the candidate source frozen; ReleaseLead owns main/native artifact download, LearningLead owns additional QA artifact download, Root owns APK/Android/update/delivery. Use existing four agents. Read actual terminal outputs before any success claim."
+}
