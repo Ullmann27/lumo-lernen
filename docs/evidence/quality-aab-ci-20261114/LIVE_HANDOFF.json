@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14 14:30:25 UTC",
+  "recorded_at_utc": "2026-11-14 14:54:46 UTC",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -12,121 +12,42 @@
   "candidate": {
     "repository": "Ullmann27/lumo-lernen",
     "branch": "work/lumo-play-quality-20261114",
-    "host": "1375da193af0152af64f91d86577aa9768cd50db",
-    "host_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
-    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
-    "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+    "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "host_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "native": "a69f53518b2510873d88f00ff2783d616ab53702",
+    "native_tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
     "version": "0.13.8+2020",
     "pull_request": 491,
     "frozen": true,
     "main_not_modified_by_team": true,
-    "previous_host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
-    "change_scope": "Only outer verify-and-build budget90-to150 and the same existing contract expectation; all app/native code and all other test/workflow bytes unchanged"
+    "parents": [
+      "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+      "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62"
+    ],
+    "activated_at_utc": "2026-11-14 14:52:47 UTC",
+    "change_scope": "Real two-parent merge of current0b7 integration and7793 quality source; five automatic source/test merges, three coordinated Native pin bindings and two history-preserving status resolutions. Notice/contrast improvements preserved."
   },
   "main_run": {
-    "id": 43599456596,
+    "id": 43607156921,
     "attempt": 1,
-    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43599456596",
-    "status_at_last_read": "in_progress",
-    "head": "1375da193af0152af64f91d86577aa9768cd50db",
-    "created_at": "2026-11-14T13:22:40Z",
-    "trigger": "pull_request from reviewed quality-branch fast-forward",
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43607156921",
+    "status_at_last_read": "pending",
+    "conclusion": null,
+    "head": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "created_at": "2026-11-14T14:52:50Z",
+    "trigger": "pull_request",
     "job_budget_minutes": 150,
-    "last_read_utc": "2026-11-14 14:06:27 UTC",
-    "main_job_id": 132461940239,
-    "main_job_started_at": "2026-11-14T13:26:58Z",
-    "main_job_deadline_utc": "2026-11-14T15:56:58Z",
-    "active_steps": [
-      {
-        "number": 31,
-        "name": "Require actual gameplay gates on the exact pinned native source",
-        "started_at": "2026-11-14T13:50:10Z"
-      }
-    ]
+    "android_tour_budget_minutes": 80,
+    "last_read_utc": "2026-11-14 14:54:46 UTC"
   },
-  "completed_original_evidence": {
-    "android_host_compile": {
-      "job_id": 132460873849,
-      "conclusion": "success",
-      "completed_at": "2026-11-14T13:26:57Z",
-      "original_log_blob": "b5e2fb120f666e17a368f33f9691df476806563b"
-    },
-    "c4_runtime": {
-      "job_id": 132460874104,
-      "conclusion": "success",
-      "completed_at": "2026-11-14T13:25:21Z",
-      "artifact": 14115597521,
-      "archive_sha256": "dec176c035f5183ce2fbd33f78e95cdb55d7b9b58f16841e3ac34bfee80be836",
-      "checks": 170,
-      "return_checks": 21,
-      "wisp_checks": 14,
-      "reader_exit_code": 0,
-      "original_files": 399,
-      "host_bound_files": 447,
-      "native_bound_files": 1256,
-      "root_viewed_pngs": 4,
-      "independent_viewed_pngs": 4,
-      "handoff_blob": "4fe36051ede3f97f84ee3278f651bfd4ff4f3c57",
-      "scope": "Desktop/file transport/test SharedPreferences; no Android or measured FPS acceptance."
-    },
-    "learning_audit": {
-      "artifact": 14115902201,
-      "archive_bytes": 212134,
-      "archive_sha256": "7489e6509517754b5fcf0ef17d15779f9aa0b0782a80e760ea438f2044722e78",
-      "whole_zip_blob": "0448f1ec5beddf65fc60e2691587816e1ef44085",
-      "actual_root_reader_exit_code": 0,
-      "families": 236,
-      "samples": 7552,
-      "structural_issues": 0,
-      "semantic_approval": false
-    },
-    "full_flutter": {
-      "artifact": 14116675111,
-      "archive_bytes": 332341284,
-      "archive_sha256": "5f5796a883a80423668fe6c9b13a09f08cf70a39d79430213f8c71090eca3bbd",
-      "completed_at": "2026-11-14T13:39:59Z",
-      "passed": 2586,
-      "failed": 0,
-      "skipped": 0,
-      "actual_root_parser_exit_code": 0,
-      "parser_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
-      "original_files": 548,
-      "original_pngs": 546,
-      "root_opened_images": 3,
-      "original_machine_done_time_ms": 689181,
-      "exact_topic_test_id": 603,
-      "exact_topic_test_passed": true,
-      "preserved_reports_zip_blob": "ff27767a8e8e857e5e2a24e7730e2945bf4d65c4",
-      "preservation_scope": "Complete original machine/summary reports, full 548-file member index and six selected original PNGs are checkpointed; entire 332 MB Actions ZIP is locally retained and at the original Actions artifact, not in Git.",
-      "independent_opened_images": 3,
-      "total_distinct_selected_images": 6,
-      "independent_visual_review_blob": "26b02f75379e2670865a90efefa51c6a337d5372"
-    },
-    "build_contracts": {
-      "artifact": 14116845475,
-      "archive_bytes": 28103,
-      "archive_sha256": "4c413db8e808135a5e228640abda43ae6d658adcdd78271f5add029cfe8a37d9",
-      "complete_original_zip_blob": "f373e345171c16d4a0744fe3f6677c2eabd4e5ae",
-      "original_log_blob": "75c403157cb0ae7a0e9876008a7029cc2be6d721",
-      "completed_at": "2026-11-14T13:47:24Z",
-      "actual_original_tests": 911,
-      "original_seconds": 371.251,
-      "skips": 0,
-      "root_reader_exit_code": 0,
-      "pcm_assertions": 70,
-      "committed_pcm_source_files": 17,
-      "scope": "Original current CI contracts; readonly replay, synthetic JVM PCM boundary, no new tests or audible Android acceptance."
-    }
-  },
+  "completed_original_evidence": {},
   "remaining": [
-    "Complete fresh exact1375 Native gameplay and APK build",
-    "Complete isolated PromptCard after-render review and integrate its accepted one-line correction",
-    "Explicitly package existing third-party notices and verify actual new package membership/bytes",
-    "Fresh signed ARM64 candidate identity/provenance and signature evidence",
-    "Actual API35 C4 tour and2017-to2020 preservation results",
-    "Final candidate and delivery gates",
-    "Public immutable single-APK publication access",
-    "Actual Play upload key/AAB/Console, operator/privacy facts and physical Android performance"
+    "Complete fresh exact057a/a69 full Flutter/build/native/Dream/Discovery gates and signed APK build",
+    "Verify all six packaged-notice entries and original bytes in the actual new APK",
+    "Review current original APK identity, signature/provenance, Android main/Village/C4 tours and2017-to2020 update preservation",
+    "Complete current final candidate and delivery gates",
+    "Make the actual accepted current APK available and obtain actual public immutable single-APK publishing access if still needed",
+    "Complete Play upload signing/AAB/Console and verified operator/privacy/backend facts; physical Android performance remains unmeasured"
   ],
   "publication": {
     "verified_public_apk_url": null,
@@ -152,44 +73,28 @@
   },
   "evidence": {
     "branch": "checkpoint/lumo-aab-ci-20261114-2708",
-    "prior_head": "bfccae2fe578cd730d96df047cf0fac157ea8e04",
-    "original_803_evidence": "6a5ae5327570fc60434672074f246c95e1c59283",
-    "old_803_apk_is_not_current_candidate": true
+    "checkpoint_before_this_record": "bdebaf09c7b16e51f5aa72e2bc9d067416095b9b",
+    "merge_prefix": "docs/evidence/host-7793-0b7-merge-20261114/",
+    "native_merge_prefix": "docs/evidence/native-baf-e2-merge-20261114/",
+    "current_main": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43607156921",
+    "scope": "Original failed and successful local invocations and source reviews already durable."
   },
-  "resume": "ReleaseLead owns current main/native original download and minimal notice packaging repair plan. LearningLead owns isolated contrast QA original download and child visual review. Root owns product/ref integration, actual APK/Android/update/delivery and evidence ref updates. Four-agent hierarchy retained; current quality branch1375 remains frozen until reviewed repair integration.",
+  "resume": "ReleaseLead owns run43607156921 and terminal1375 original preservation. LearningLead and Child own source-bound057a Play/privacy/AI report-path audit. Root owns APK/Android/update/delivery, refs, evidence and PR. Four-agent hierarchy retained.",
   "local_execution": {
-    "status": "recovered",
-    "explicit_workdir": "/workspace/scratch/2708c7907f28",
-    "old_paths": "not present after recovery; actually checked /home and old scratch",
-    "host_checkout": "/workspace/scratch/2708c7907f28/lumo-host-current",
-    "host_head": "1375da193af0152af64f91d86577aa9768cd50db",
-    "host_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
-    "tracked_changes": "none",
-    "autosave_check_exit": 0,
-    "autosave_once_exit": 0,
-    "watcher_interval_seconds": 120,
-    "tools": {
-      "java": true,
-      "keytool": true,
-      "apksigner": false,
-      "flutter": false
-    },
-    "diagnostic_ci": "Cancelled preparation; normal exact R2 artifact download succeeded.",
-    "autosave": {
-      "check_exit": 0,
-      "once_exit": 0,
-      "initial_detached_child_visible": false,
-      "active_exec_session": 87960,
-      "actual_start_output": "Watch mode active; checking at most once every 120s. Nothing new to save on work/lumo-play-quality-20261114."
-    }
+    "actual_existing_git_checkout": "/workspace/scratch/2708c7907f28/lumo-host-current",
+    "last_verified_git_head": "1375da193af0152af64f91d86577aa9768cd50db",
+    "last_verified_git_status": "clean",
+    "current_materialized_test_source": "/workspace/scratch/2708c7907f28/lumo-host-merge-7793-0b7/checkout",
+    "materialized_tree_bound_to": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "materialized_directory_is_git_repository": false,
+    "local_git_successor_recovery_pending": true
   },
   "next_repair": {
-    "scope": "Activated minimal timeout-minutes 90 to 150 correction and matching existing test expectation; all other product/workflow/test bytes unchanged.",
-    "reason": "Actual public job annotation explicitly says maximum1h30m0s exceeded",
+    "scope": "No further source mutation planned while fresh057a acceptance runs. Diagnose only actual current failures and preserve original evidence.",
     "all_existing_gates_preserved": true,
     "activated": true,
-    "new_head": "1375da193af0152af64f91d86577aa9768cd50db",
-    "triggered_run": 43599456596
+    "new_head": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "triggered_run": 43607156921
   },
   "previous_candidates": [
     {
@@ -1092,17 +997,138 @@
         },
         "current_attempt": "r3"
       }
+    },
+    {
+      "candidate": {
+        "repository": "Ullmann27/lumo-lernen",
+        "branch": "work/lumo-play-quality-20261114",
+        "host": "1375da193af0152af64f91d86577aa9768cd50db",
+        "host_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+        "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+        "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+        "version": "0.13.8+2020",
+        "pull_request": 491,
+        "frozen": true,
+        "main_not_modified_by_team": true,
+        "previous_host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+        "change_scope": "Only outer verify-and-build budget90-to150 and the same existing contract expectation; all app/native code and all other test/workflow bytes unchanged"
+      },
+      "main_run": {
+        "id": 43599456596,
+        "attempt": 1,
+        "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43599456596",
+        "status_at_last_read": "in_progress",
+        "head": "1375da193af0152af64f91d86577aa9768cd50db",
+        "created_at": "2026-11-14T13:22:40Z",
+        "trigger": "pull_request from reviewed quality-branch fast-forward",
+        "job_budget_minutes": 150,
+        "last_read_utc": "2026-11-14 14:06:27 UTC",
+        "main_job_id": 132461940239,
+        "main_job_started_at": "2026-11-14T13:26:58Z",
+        "main_job_deadline_utc": "2026-11-14T15:56:58Z",
+        "active_steps": [
+          {
+            "number": 31,
+            "name": "Require actual gameplay gates on the exact pinned native source",
+            "started_at": "2026-11-14T13:50:10Z"
+          }
+        ]
+      },
+      "completed_original_evidence": {
+        "android_host_compile": {
+          "job_id": 132460873849,
+          "conclusion": "success",
+          "completed_at": "2026-11-14T13:26:57Z",
+          "original_log_blob": "b5e2fb120f666e17a368f33f9691df476806563b"
+        },
+        "c4_runtime": {
+          "job_id": 132460874104,
+          "conclusion": "success",
+          "completed_at": "2026-11-14T13:25:21Z",
+          "artifact": 14115597521,
+          "archive_sha256": "dec176c035f5183ce2fbd33f78e95cdb55d7b9b58f16841e3ac34bfee80be836",
+          "checks": 170,
+          "return_checks": 21,
+          "wisp_checks": 14,
+          "reader_exit_code": 0,
+          "original_files": 399,
+          "host_bound_files": 447,
+          "native_bound_files": 1256,
+          "root_viewed_pngs": 4,
+          "independent_viewed_pngs": 4,
+          "handoff_blob": "4fe36051ede3f97f84ee3278f651bfd4ff4f3c57",
+          "scope": "Desktop/file transport/test SharedPreferences; no Android or measured FPS acceptance."
+        },
+        "learning_audit": {
+          "artifact": 14115902201,
+          "archive_bytes": 212134,
+          "archive_sha256": "7489e6509517754b5fcf0ef17d15779f9aa0b0782a80e760ea438f2044722e78",
+          "whole_zip_blob": "0448f1ec5beddf65fc60e2691587816e1ef44085",
+          "actual_root_reader_exit_code": 0,
+          "families": 236,
+          "samples": 7552,
+          "structural_issues": 0,
+          "semantic_approval": false
+        },
+        "full_flutter": {
+          "artifact": 14116675111,
+          "archive_bytes": 332341284,
+          "archive_sha256": "5f5796a883a80423668fe6c9b13a09f08cf70a39d79430213f8c71090eca3bbd",
+          "completed_at": "2026-11-14T13:39:59Z",
+          "passed": 2586,
+          "failed": 0,
+          "skipped": 0,
+          "actual_root_parser_exit_code": 0,
+          "parser_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+          "original_files": 548,
+          "original_pngs": 546,
+          "root_opened_images": 3,
+          "original_machine_done_time_ms": 689181,
+          "exact_topic_test_id": 603,
+          "exact_topic_test_passed": true,
+          "preserved_reports_zip_blob": "ff27767a8e8e857e5e2a24e7730e2945bf4d65c4",
+          "preservation_scope": "Complete original machine/summary reports, full 548-file member index and six selected original PNGs are checkpointed; entire 332 MB Actions ZIP is locally retained and at the original Actions artifact, not in Git.",
+          "independent_opened_images": 3,
+          "total_distinct_selected_images": 6,
+          "independent_visual_review_blob": "26b02f75379e2670865a90efefa51c6a337d5372"
+        },
+        "build_contracts": {
+          "artifact": 14116845475,
+          "archive_bytes": 28103,
+          "archive_sha256": "4c413db8e808135a5e228640abda43ae6d658adcdd78271f5add029cfe8a37d9",
+          "complete_original_zip_blob": "f373e345171c16d4a0744fe3f6677c2eabd4e5ae",
+          "original_log_blob": "75c403157cb0ae7a0e9876008a7029cc2be6d721",
+          "completed_at": "2026-11-14T13:47:24Z",
+          "actual_original_tests": 911,
+          "original_seconds": 371.251,
+          "skips": 0,
+          "root_reader_exit_code": 0,
+          "pcm_assertions": 70,
+          "committed_pcm_source_files": 17,
+          "scope": "Original current CI contracts; readonly replay, synthetic JVM PCM boundary, no new tests or audible Android acceptance."
+        }
+      },
+      "scope": "All original1375 results remain bound to1375/e2. Superseded by7793 then057a; they are not current057a acceptance.",
+      "transition_observation": {
+        "observed_by": "lumo_release_lead",
+        "observed_at_utc": "2026-11-14 14:53:07 UTC",
+        "native_step31": "cancelled at14:53:03; terminal run/log preservation pending",
+        "reason_scope": "Actual cancellation state only; not a native test failure or pass."
+      }
+    },
+    {
+      "candidate": {
+        "host": "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+        "host_tree": "8ee5c9335d7f9484f3bce5c4cb2b52c60e88137f",
+        "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+      },
+      "activated_at_utc": "2026-11-14 14:30:58 UTC",
+      "new_pipeline_observed": false,
+      "blocked_by": "Actual PR merge conflict with incoming0b7; resolved through the subsequent two-parent057a merge",
+      "evidence": "docs/evidence/quality-7793-activation-20261114/ACTUAL_ACTIVATION_AND_CONFLICT.json"
     }
   ],
-  "prior_proof_scope": {
-    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
-    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
-    "application_bytes_identical": true,
-    "workflow_and_one_contract_literal_differ": true,
-    "new_run_artifact_results_must_be_verified_separately": true,
-    "additional_c4_r3_run": 43596764202,
-    "no_previous_apk_can_be_substituted": true
-  },
+  "prior_proof_scope": "All earlier Flutter/native/C4 and contrast QA artifacts retain their actual source identities. The current completed_original_evidence map is empty until fresh057a originals are inspected. The scoped248 local contracts and static merge/source checks are separately reported, not substituted for current full acceptance.",
   "source_notices_inventory": {
     "blob": "450ee85f4323cd1b41c9abdcc211d2715c06db99",
     "source_entries": 37,
@@ -1121,7 +1147,7 @@
       "actual_capture": "modernization/schreibcoach_phone.png",
       "capture_blob": "0d4cbe429c4c96fa928fa815bffaef54f294fb42",
       "observed": "Small hint is visibly pale on white; source color #C8DDF0 on #FFFFFF gives calculated sRGB luminance ratio 1.3947273062300911.",
-      "status": "Exact isolated QA completed success;36 cases,42PNG,4524 source entries and unchanged source snapshots checked. Child reviewed3 pairs, Root phone plus confined pixel diff. Exact one-line product blob accepted for joint integration; quality branch1375 remains unchanged.",
+      "status": "Exact accepted one-line blob643c3bd6 is integrated unchanged into7793 and057a. Isolated36-case42-PNG proof remains scoped to21e0368; fresh full057a/Android appearance still pending.",
       "prepared_product_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb",
       "source_review_blob": "9eb1fb29bf40cd5715914c12a540398ea7b362ca",
       "proposed_color": "#28486D",
@@ -1135,9 +1161,9 @@
     },
     {
       "id": "packaged_third_party_notices",
-      "status": "Actual historical803 APK/PCK lacks the four specified existing Native notice paths and an explicit outer Nunito notice in inspected filenames/consolidated literals. Five Host packaging files plus five Native export/notice files are byte-identical to1375/e2. Explicit packaging repair is being prepared; no new1375 APK or legal finding.",
+      "status": "Exact accepted10-file patch is integrated unchanged into7793 and057a. Current actual APK positive membership/byte proof remains pending.",
       "historical_root_review_blob": "d430b2fec927ce57b990e966409b7c9a99c91b68",
-      "implementation_state": "Final10-file Host-only patch accepted after71 focused methods, exact original source copy/path-view checks, real historical APK negative and independent review. Historical subdirectory bug fixed by exactly --full-tree; final new APK check pending.",
+      "implementation_state": "Integrated and locally exercised; no new APK or legal approval claim.",
       "actual_historical_apk_negative": {
         "reader_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc",
         "result_blob": "1d20d751b25dc9416a03b5c05d56907e6fe00a83",
@@ -1451,6 +1477,49 @@
       "prompt_deletions": 1
     },
     "decision": "Proceed with the exact reviewed11-file fast-forward after expected quality-ref/PR checks. Existing workflow cancellation semantics supersede the old1375 run; fresh full results must bind to77936fae.",
-    "scope": "Source/integration acceptance only. Current new APK/AAB, Android/update, signing and delivery outcomes remain pending; no legal or Play approval."
+    "scope": "Source/integration acceptance only. Current new APK/AAB, Android/update, signing and delivery outcomes remain pending; no legal or Play approval.",
+    "actual_followup": {
+      "activated": true,
+      "source": "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+      "activated_at_utc": "2026-11-14 14:30:58 UTC",
+      "superseded_by": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+      "reason": "Actual incoming base conflict resolved preserving both histories."
+    }
+  },
+  "current_pull_state": {
+    "head": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "base": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+    "mergeable": true,
+    "mergeable_state": "unstable",
+    "scope": "Actual initial API observation; current checks pending."
+  },
+  "local_integration_validation": {
+    "distinct_actual_passing_cases": 248,
+    "invocations": [
+      {
+        "loader_cases": 203,
+        "passed": 200,
+        "import_errors": 3
+      },
+      {
+        "cases": 48,
+        "passed": 47,
+        "missing_original_catalog_errors": 1
+      },
+      {
+        "cases": 1,
+        "passed": 1
+      }
+    ],
+    "product_and_test_source_edits_between_invocations": false,
+    "original_failures_preserved": true,
+    "final_materialized_file_bindings_to_actual_candidate": 1642,
+    "all_initial1641_files_unchanged": true,
+    "yaml_parsed": true,
+    "bash_syntax_checks": 48,
+    "full_new_app_acceptance": false,
+    "evidence_commit": "bdebaf09c7b16e51f5aa72e2bc9d067416095b9b",
+    "prefix": "docs/evidence/host-7793-0b7-merge-20261114/",
+    "archive_blob": "ff982a492e772c334ceda29ff98895d3a00d15bd"
   }
 }
