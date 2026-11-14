@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "kind": "actual_separate_prompt_contrast_qa_activation",
+  "recorded_at_utc": "2026-11-14 14:06:27 UTC",
+  "candidate": {
+    "head": "21e0368603e38d1dfd063485f5307ec201f0d872",
+    "tree": "0a5042254cd27c70597952842fdc8d71b089b417",
+    "branch": "qa/lumo-prompt-label-contrast-20261114-2708",
+    "parent": "1375da193af0152af64f91d86577aa9768cd50db",
+    "workflow_blob": "bfd93a088d3181444248e57e0ea5b7599921c242",
+    "product_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb",
+    "activated": true,
+    "activation_read_time": "2026-11-14 14:05:52 UTC"
+  },
+  "remote_compare": {
+    "total_commits": 1,
+    "files": [
+      {
+        "path": ".github/workflows/lumo-prompt-label-contrast-qa.yml",
+        "status": "added",
+        "additions": 313,
+        "deletions": 0,
+        "blob": "bfd93a088d3181444248e57e0ea5b7599921c242"
+      },
+      {
+        "path": "lib/widgets/lumo/lumo_prompt_card.dart",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+      }
+    ]
+  },
+  "ref_creation": {
+    "new_branch_absent_before": true,
+    "first_update_ref_attempt": {
+      "outcome": "Rejected422 Reference does not exist; no ref mutation",
+      "recorded": true
+    },
+    "create_branch": {
+      "outcome": "success, exact created ref subsequently read",
+      "ref": "qa/lumo-prompt-label-contrast-20261114-2708",
+      "head": "21e0368603e38d1dfd063485f5307ec201f0d872"
+    }
+  },
+  "quality_branch_unchanged": "1375da193af0152af64f91d86577aa9768cd50db",
+  "actual_run": {
+    "id": 43603068259,
+    "name": "Lumo prompt label contrast QA",
+    "event": "push",
+    "head": "21e0368603e38d1dfd063485f5307ec201f0d872",
+    "branch": "qa/lumo-prompt-label-contrast-20261114-2708",
+    "attempt": 1,
+    "created_at": "2026-11-14T14:05:54Z",
+    "status": "in_progress",
+    "conclusion": null,
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43603068259",
+    "api_push_run_count": 1
+  },
+  "scope": "One isolated existing renderer focus for the one-line PromptCard label color change. No production quality branch update, APK build or publication; result remains pending at this snapshot."
+}

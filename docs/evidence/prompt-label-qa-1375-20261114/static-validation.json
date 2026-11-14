@@ -1,0 +1,102 @@
+{
+  "scope": "YAML parse, bash -n of actual run blocks, and compile() of embedded Python only; no Flutter test, dependency resolution, render, or workflow execution",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "pyyaml": "6.0.3",
+  "workflow_git_blob": "bfd93a088d3181444248e57e0ea5b7599921c242",
+  "workflow_sha256": "b78694efe0f737c5bd3002e02bdcf420836ff56a08b042cfed88e1d6beefb03a",
+  "workflow_bytes": 15102,
+  "yaml_parse": "PASS",
+  "jobs": [
+    "capture"
+  ],
+  "run_blocks": [
+    {
+      "command": [
+        "/bin/bash",
+        "-n",
+        "/workspace/scratch/2708c7907f28/prompt-label-qa-review-1375-2708/capture-02.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "c004e25b050a72cc88919e957fa54838fdf56f588604be6114fb4d982e79fd81"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-n",
+        "/workspace/scratch/2708c7907f28/prompt-label-qa-review-1375-2708/capture-04.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "a38028a04cebdcf6f8be6065b9bf863dbdc13fb970b781921ee64b526ccc9e78"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-n",
+        "/workspace/scratch/2708c7907f28/prompt-label-qa-review-1375-2708/capture-05.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "1e3d7100c09ce3c089a0e7876a05cf3674fcf2aa082eba8aff56ad97a9848d86"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-n",
+        "/workspace/scratch/2708c7907f28/prompt-label-qa-review-1375-2708/capture-06.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "3bc4e62beeedf9f0c82394e412690d6980ea971a1e0dc926ac6b177ee7d4ca22"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-n",
+        "/workspace/scratch/2708c7907f28/prompt-label-qa-review-1375-2708/capture-07.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "05caf810a28e09c83a0790fb6f55e99d6321d37154f1da7790b09d141573f1a4"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-n",
+        "/workspace/scratch/2708c7907f28/prompt-label-qa-review-1375-2708/capture-08.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "cad184aa95d2362cd463783489c1712caed1aafb06182ba94f8e237fbb3fc6ea"
+    }
+  ],
+  "python_blocks": [
+    {
+      "step": 2,
+      "block": 1,
+      "sha256": "6d9c773a61361cd0a6c140332db0ee24524023ba22450ff55c1392fdac863479",
+      "syntax": "compiled without execution"
+    },
+    {
+      "step": 7,
+      "block": 1,
+      "sha256": "e5c80a490355fcd14a9d099ee2ae09b01015f74f9201a38c75f3c981ef26955d",
+      "syntax": "compiled without execution"
+    },
+    {
+      "step": 8,
+      "block": 1,
+      "sha256": "b49c004295594e7ea06f723363510faaa8268096528a2b106a3c702fcc227cf0",
+      "syntax": "compiled without execution"
+    }
+  ],
+  "actionlint": "Not found in PATH; no actionlint execution claimed",
+  "status": "PASS"
+}

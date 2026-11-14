@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14 13:51:24 UTC",
+  "recorded_at_utc": "2026-11-14 14:07:42 UTC",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -32,7 +32,7 @@
     "created_at": "2026-11-14T13:22:40Z",
     "trigger": "pull_request from reviewed quality-branch fast-forward",
     "job_budget_minutes": 150,
-    "last_read_utc": "2026-11-14 13:51:24 UTC",
+    "last_read_utc": "2026-11-14 14:06:27 UTC",
     "main_job_id": 132461940239,
     "main_job_started_at": "2026-11-14T13:26:58Z",
     "main_job_deadline_utc": "2026-11-14T15:56:58Z",
@@ -119,9 +119,11 @@
     }
   },
   "remaining": [
-    "Complete fresh exact1375 main/native/Flutter/contracts and source-bound acceptance",
+    "Complete fresh exact1375 Native gameplay and APK build",
+    "Complete isolated PromptCard after-render review and integrate its accepted one-line correction",
+    "Explicitly package existing third-party notices and verify actual new package membership/bytes",
     "Fresh signed ARM64 candidate identity/provenance and signature evidence",
-    "Real API35 C4 tour and2017-to2020 preservation results",
+    "Actual API35 C4 tour and2017-to2020 preservation results",
     "Final candidate and delivery gates",
     "Public immutable single-APK publication access",
     "Actual Play upload key/AAB/Console, operator/privacy facts and physical Android performance"
@@ -150,11 +152,11 @@
   },
   "evidence": {
     "branch": "checkpoint/lumo-aab-ci-20261114-2708",
-    "prior_head": "08498934e45fd1476b7045d7c305f11d5ba3bf14",
+    "prior_head": "bcee066fd0edefb16fbf0426cc3146b08f593562",
     "original_803_evidence": "6a5ae5327570fc60434672074f246c95e1c59283",
     "old_803_apk_is_not_current_candidate": true
   },
-  "resume": "Keep the candidate source frozen; ReleaseLead owns main/native artifact download, LearningLead owns additional QA artifact download, Root owns APK/Android/update/delivery. Use existing four agents. Read actual terminal outputs before any success claim.",
+  "resume": "ReleaseLead owns current main/native original download and minimal notice packaging repair plan. LearningLead owns isolated contrast QA original download and child visual review. Root owns product/ref integration, actual APK/Android/update/delivery and evidence ref updates. Four-agent hierarchy retained; current quality branch1375 remains frozen until reviewed repair integration.",
   "local_execution": {
     "status": "recovered",
     "explicit_workdir": "/workspace/scratch/2708c7907f28",
@@ -1106,7 +1108,10 @@
     "source_entries": 37,
     "root_read_complete_report": true,
     "actual_apk_pck_inspected": false,
-    "external_rights_review": false
+    "external_rights_review": false,
+    "historical_apk_pck_inspected": true,
+    "historical_host": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "current_apk_pck_inspected": false
   },
   "pending_quality_findings": [
     {
@@ -1116,7 +1121,7 @@
       "actual_capture": "modernization/schreibcoach_phone.png",
       "capture_blob": "0d4cbe429c4c96fa928fa815bffaef54f294fb42",
       "observed": "Small hint is visibly pale on white; source color #C8DDF0 on #FFFFFF gives calculated sRGB luminance ratio 1.3947273062300911.",
-      "status": "Root, lead, parent and child confirmed exact isolated one-line change. A separate focused existing-renderer QA workflow is being prepared; 1375 source not activated or changed.",
+      "status": "Separate QA branch21e03686 activated and actual push run43603068259 in_progress at last read; current1375 product branch unchanged. After-render acceptance pending.",
       "prepared_product_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb",
       "source_review_blob": "9eb1fb29bf40cd5715914c12a540398ea7b362ca",
       "proposed_color": "#28486D",
@@ -1129,14 +1134,85 @@
     },
     {
       "id": "packaged_third_party_notices",
-      "status": "Check actual new APK/PCK membership or consolidated notice content after package exists; source files alone do not prove package delivery."
+      "status": "Actual historical803 APK/PCK lacks the four specified existing Native notice paths and an explicit outer Nunito notice in inspected filenames/consolidated literals. Five Host packaging files plus five Native export/notice files are byte-identical to1375/e2. Explicit packaging repair is being prepared; no new1375 APK or legal finding.",
+      "historical_root_review_blob": "d430b2fec927ce57b990e966409b7c9a99c91b68"
     },
     {
       "id": "reading_capture_answer_glyphs",
       "observed_by": "touch_worker",
       "actual_capture": "reading-passages/reading-phone.png",
       "capture_blob": "e73bea5318499c85c6c1258507e46973403185dd",
-      "status": "Empty colored square shapes visible before two answers in the selected Linux capture; cause and Android behavior not established."
+      "status": "Root source follow-up found capture loads Nunito only while answer renderer uses MaterialIcons; font setup is a supported explanation, not controlled causal or Android proof. Three original wrong/correct interaction cases actually passed.",
+      "source_followup_blob": "3b2cd307147e741fb4dae3435c7f828ed1c4f98c"
     }
-  ]
+  ],
+  "additional_prompt_qa": {
+    "schema": 1,
+    "kind": "actual_separate_prompt_contrast_qa_activation",
+    "recorded_at_utc": "2026-11-14 14:06:27 UTC",
+    "candidate": {
+      "head": "21e0368603e38d1dfd063485f5307ec201f0d872",
+      "tree": "0a5042254cd27c70597952842fdc8d71b089b417",
+      "branch": "qa/lumo-prompt-label-contrast-20261114-2708",
+      "parent": "1375da193af0152af64f91d86577aa9768cd50db",
+      "workflow_blob": "bfd93a088d3181444248e57e0ea5b7599921c242",
+      "product_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb",
+      "activated": true,
+      "activation_read_time": "2026-11-14 14:05:52 UTC"
+    },
+    "remote_compare": {
+      "total_commits": 1,
+      "files": [
+        {
+          "path": ".github/workflows/lumo-prompt-label-contrast-qa.yml",
+          "status": "added",
+          "additions": 313,
+          "deletions": 0,
+          "blob": "bfd93a088d3181444248e57e0ea5b7599921c242"
+        },
+        {
+          "path": "lib/widgets/lumo/lumo_prompt_card.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+        }
+      ]
+    },
+    "ref_creation": {
+      "new_branch_absent_before": true,
+      "first_update_ref_attempt": {
+        "outcome": "Rejected422 Reference does not exist; no ref mutation",
+        "recorded": true
+      },
+      "create_branch": {
+        "outcome": "success, exact created ref subsequently read",
+        "ref": "qa/lumo-prompt-label-contrast-20261114-2708",
+        "head": "21e0368603e38d1dfd063485f5307ec201f0d872"
+      }
+    },
+    "quality_branch_unchanged": "1375da193af0152af64f91d86577aa9768cd50db",
+    "actual_run": {
+      "id": 43603068259,
+      "name": "Lumo prompt label contrast QA",
+      "event": "push",
+      "head": "21e0368603e38d1dfd063485f5307ec201f0d872",
+      "branch": "qa/lumo-prompt-label-contrast-20261114-2708",
+      "attempt": 1,
+      "created_at": "2026-11-14T14:05:54Z",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43603068259",
+      "api_push_run_count": 1
+    },
+    "scope": "One isolated existing renderer focus for the one-line PromptCard label color change. No production quality branch update, APK build or publication; result remains pending at this snapshot."
+  },
+  "store_copy_current_source_binding": {
+    "blob": "82486503971c2419aa5dc0e72193e74aa8a29a7e",
+    "source_files": 15,
+    "all_byte_identical": true,
+    "claims": 11,
+    "actual_execution_exit": 0,
+    "current_apk_match": false
+  }
 }
