@@ -53,9 +53,14 @@ class WorkflowTests(unittest.TestCase):
             self.assertTrue(condition(block,values))
             self.assertTrue(condition(block,{**values,
                 'github.head_ref':'work/lumo-play-quality-20261114'}))
+            self.assertTrue(condition(block,{**values,
+                'github.head_ref':'integration/lumo-agent-execution-20261114'}))
+            self.assertTrue(condition(block,{**values,
+                'github.head_ref':'integration/lumo-live-connections-20261114'}))
             for key,value in (('github.event_name','push'),('github.event_name','workflow_dispatch'),
                               ('github.event.pull_request.head.repo.full_name','outside/fork'),
-                              ('github.head_ref','integration/lumo-connections-20261113')):
+                              ('github.head_ref','integration/lumo-connections-20261113'),
+                              ('github.head_ref','integration/lumo-agent-execution-20261114-copy')):
                 with self.subTest(job=name,key=key,value=value):
                     self.assertFalse(condition(block,{**values,key:value}))
 
@@ -83,6 +88,22 @@ class WorkflowTests(unittest.TestCase):
                         self.assertEqual(output.read_text(),'revision='+current['revision']+'\n')
                     else:
                         self.assertFalse(output.exists())
+
+    def test_return_recovery_runs_between_import_and_the_two_process_gate(self):
+        runtime=job(self.workflow,'connect-four-runtime')
+        label='Retry the acknowledged native exit after a transient Android refusal'
+        positions=[runtime.index(name) for name in (
+            'Import the exact configured native source in its own directory', label,
+            'Require the actual production Dart and rendered Godot two-process gate')]
+        self.assertEqual(positions,sorted(positions))
+        block=step(runtime,label)
+        self.assertIn('set -euo pipefail',block)
+        self.assertIn('timeout 60s godot --headless --audio-driver Dummy --path native-source '
+                      '--script res://scripts/tests/connect_four_return_regression.gd',block)
+        self.assertIn('2>&1 | tee c4-runtime/return-recovery.log',block)
+        self.assertIn("if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:' c4-runtime/return-recovery.log; then",block)
+        self.assertIn('exit 1',block)
+        self.assertIn("grep -Fx 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log",block)
 
     def test_real_runtime_compile_and_existing_build_gates_remain_mandatory(self):
         runtime=job(self.workflow,'connect-four-runtime')
@@ -166,6 +187,12 @@ class WorkflowTests(unittest.TestCase):
         quality='work/lumo-play-quality-20261114'
         self.assertFalse(condition(block,{'github.head_ref':quality,'github.ref_name':'123/merge'}))
         self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':quality}))
+        agent='integration/lumo-agent-execution-20261114'
+        self.assertFalse(condition(block,{'github.head_ref':agent,'github.ref_name':'123/merge'}))
+        self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':agent}))
+        live='integration/lumo-live-connections-20261114'
+        self.assertFalse(condition(block,{'github.head_ref':live,'github.ref_name':'123/merge'}))
+        self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':live}))
         self.assertTrue(condition(block,{'github.head_ref':'unrelated-existing-branch','github.ref_name':'123/merge'}))
         self.assertIn("assert int(version[1]) != 2018",block)
         self.assertIn("assert int(version[1]) != 2019",block)

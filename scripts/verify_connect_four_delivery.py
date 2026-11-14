@@ -28,7 +28,9 @@ REPOSITORY = 'Ullmann27/lumo-lernen'
 WORKFLOW = '.github/workflows/lumo-connect-four-2020.yml'
 BRANCH = 'integration/lumo-c4-connections-20261114'
 QUALITY_BRANCH = 'work/lumo-play-quality-20261114'
-ACCEPTED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH))
+AGENT_BRANCH = 'integration/lumo-agent-execution-20261114'
+LIVE_BRANCH = 'integration/lumo-live-connections-20261114'
+ACCEPTED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH, AGENT_BRANCH, LIVE_BRANCH))
 DELIVERY_JOB = 'prepare-c4-delivery'
 BUNDLE_ARTIFACT = 'lumo-connect-four-2020-delivery-bundle'
 DELIVERY_ASSETS = {
@@ -40,6 +42,7 @@ DELIVERY_ASSETS = {
 REQUIRED_STEPS = {
     'connect-four-runtime': (
         'Import the exact configured native source in its own directory',
+        'Retry the acknowledged native exit after a transient Android refusal',
         'Require the actual production Dart and rendered Godot two-process gate',
     ),
     'android-host-compile': (
@@ -343,8 +346,8 @@ def checked_native(logs: Path, source: Path, revision: str) -> dict:
     proofs = checked_native_results(root, runner)
     runner_log = regular(logs/'nextgen-runner.log').read_text()
     for marker in (
-        '[Studio2020RasterRoster] PASS 16 actual PNG files, 3 original sidecars and 1 verified facial movie',
-        '[LumoNextgen52] PASS: all 48 previous modes plus four Studio2020 modes and 16 bound rasters/movie/sidecars',
+        '[Studio2020RasterRoster] PASS 17 actual PNG files, 3 original sidecars and 1 verified facial movie',
+        '[LumoNextgen52] PASS: all 48 previous modes plus four Studio2020 modes and 17 bound rasters/movie/sidecars',
         '[LumoNextgen] PASS',
     ):
         require(marker in runner_log, 'Original complete 52-mode runner lacks its required ending: '+marker)
@@ -392,7 +395,7 @@ def checked_native(logs: Path, source: Path, revision: str) -> dict:
                             'Original raster did not decode to its reported physical dimensions')
             rosters[manifest] = record(root/manifest)
     # This is the actual additive helper from the configured Native commit.
-    # Its write=False contract rechecks all 16 new PNGs, original sidecars,
+    # Its write=False contract rechecks all 17 new PNGs, original sidecars,
     # movie hashes and bound original decoding proofs without rewriting them.
     original = read(root/'studio-2020-images.json')
     before = record(root/'studio-2020-images.json')
@@ -401,7 +404,7 @@ def checked_native(logs: Path, source: Path, revision: str) -> dict:
             and fresh.get('schema') == 1 and fresh.get('kind') == 'studio_2020_extension'
             and fresh.get('source', {}).get('commit') == revision
             and fresh.get('source', {}).get('tree') == tree
-            and len(fresh.get('images', [])) == 16 and len(fresh.get('reports', [])) == 3
+            and len(fresh.get('images', [])) == 17 and len(fresh.get('reports', [])) == 3
             and len(fresh.get('movies', [])) == 1,
             'The original new 2020 face/C4/treasure raster/movie evidence differs')
     rosters['studio-2020-images.json'] = before

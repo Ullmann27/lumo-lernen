@@ -1,0 +1,85 @@
+{
+  "scope": "Original compact QA evidence files; this manifest excludes itself. No large CI logs or rendered PNG bytes are duplicated.",
+  "files": {
+    "README.md": {
+      "bytes": 4126,
+      "sha256": "384e049b51b7673d876fe6461698894eccabb9a54940689cb13f845207aae3e2"
+    },
+    "c4-captures-manifest.json": {
+      "bytes": 1541,
+      "sha256": "b6a5125c32f8c402a82161528afb46e967b43621b37979374fc125730cfdd87a"
+    },
+    "c4-widget-integration-run.json": {
+      "bytes": 3025,
+      "sha256": "477250c6108d73494fb8b5b7177a22d38117da3a1bf2beed6e166ddf99d37327"
+    },
+    "c4-widget-integration-run.log": {
+      "bytes": 8509,
+      "sha256": "99b215dcc16e0cbaaaa046f791f454c009bc590228382b3c8c2f280906cbc6c9"
+    },
+    "pr491-original-flutter-failures.json": {
+      "bytes": 910,
+      "sha256": "95b4877af6b1dd6d0e62e310d12344add997618f708bb6fe239afd9ff60b9a24"
+    },
+    "pr493-android-evidence-red.json": {
+      "bytes": 500,
+      "sha256": "93deb53de1fa6549a8000b3b98c326ee31e9d97c746aa4ca673438a2f4cd061f"
+    },
+    "pr493-android-evidence-red.log": {
+      "bytes": 4561,
+      "sha256": "72a56d2e0c04eeb9ba664b7dbce49a43ff11e885f7546e7d8532447f42e70bd9"
+    },
+    "pr493-four-branches-android-evidence-green.json": {
+      "bytes": 950,
+      "sha256": "bf87357a0376005d3711320de03348f7b22724906612631107b95ac2c888e5b7"
+    },
+    "pr493-four-branches-android-evidence-green.log": {
+      "bytes": 11406,
+      "sha256": "0f83a230d8e5bbd371081543064be621351db3487be896ae9c419b1c1bb867db"
+    },
+    "tested-source-files.json": {
+      "bytes": 2366,
+      "sha256": "9d5e2328b38044fb8ae77ccd6f9b5294fa6e5c3b1cc2c06f2c978693eedb44a7"
+    },
+    "unchanged-apk-fixture-recovered-green.json": {
+      "bytes": 819,
+      "sha256": "f9ceaf965bc5ea61db1d92faf8a163ceb288afdfd0ee933f5e73dbcf781de5c2"
+    },
+    "unchanged-apk-fixture-recovered-green.log": {
+      "bytes": 9317,
+      "sha256": "221c988cdaaf83e8ed0fb8f65b5ce60d9f5c12cf4c4ddd692c8d09fa30e36238"
+    },
+    "unchanged-apk-fixture-recovered-red-source-bound.json": {
+      "bytes": 580,
+      "sha256": "7f3b53322549030febc211bc3f4bd40a27f61dc4b54a13ede9c14ebe6b11b433"
+    },
+    "unchanged-apk-fixture-recovered-red-source-bound.log": {
+      "bytes": 1241,
+      "sha256": "8993642ded00ebcb8f90d9b07d46be2395811f57438d58f0c62e7ffbb077a662"
+    },
+    "workflow-actionlint.json": {
+      "bytes": 940,
+      "sha256": "1a4f3e7931036762159ac8771fd9973b018a34bfd08a590cea3ac416f3256874"
+    },
+    "workflow-actionlint.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-delivery-green.json": {
+      "bytes": 2316,
+      "sha256": "3f449547bfe004e4cff653f0ab9e5d64782e78472cf6c6e01adb416793ad1cb9"
+    },
+    "workflow-delivery-green.log": {
+      "bytes": 17074,
+      "sha256": "865b2956fbcbf2de79c07b9da19fa35ee2bcc91b0f9b99d12b98e329e7bb5526"
+    },
+    "workflow-delivery-red.json": {
+      "bytes": 1105,
+      "sha256": "141c05012d4cf57dc7e2b729fd9c53e97c6d11170cf1ae7f2ebb25397c500729"
+    },
+    "workflow-delivery-red.log": {
+      "bytes": 6813,
+      "sha256": "832a5a7a43d03ad26406969712ae8ebfe66f8953a397ae148d31bca227a1f2da"
+    }
+  }
+}

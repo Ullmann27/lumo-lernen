@@ -67,19 +67,27 @@ class OriginalAcceptanceTests(unittest.TestCase):
         self.assertEqual(set(self.check()), set(delivery.REQUIRED_STEPS))
         self.assertEqual(set(delivery.checked_artifacts(self.artifacts, self.binding)), set(delivery.ARTIFACT_NAMES))
 
-    def test_quality_branch_requires_the_same_current_pull_branch(self):
-        self.run['head_branch'] = 'work/lumo-play-quality-20261114'
-        self.pull['head']['ref'] = 'work/lumo-play-quality-20261114'
-        self.assertEqual(set(self.check()), set(delivery.REQUIRED_STEPS))
-        self.pull['head']['ref'] = delivery.BRANCH
-        with self.assertRaises(ValueError):
-            self.check()
+    def test_exact_integration_branches_require_the_same_current_pull_branch(self):
+        for branch in ('work/lumo-play-quality-20261114',
+                       'integration/lumo-agent-execution-20261114',
+                       'integration/lumo-live-connections-20261114'):
+            with self.subTest(branch=branch):
+                self.run['head_branch'] = branch
+                self.pull['head']['ref'] = branch
+                self.assertEqual(set(self.check()), set(delivery.REQUIRED_STEPS))
+                self.pull['head']['ref'] = delivery.BRANCH
+                with self.assertRaises(ValueError):
+                    self.check()
 
     def test_unapproved_branch_cannot_reuse_all_green_jobs(self):
-        self.run['head_branch'] = 'work/unapproved'
-        self.pull['head']['ref'] = 'work/unapproved'
-        with self.assertRaises(ValueError):
-            self.check()
+        for branch in ('work/unapproved', 'integration/lumo-c4-connections-20261114-copy',
+                       'work/lumo-play-quality-20261114-copy',
+                       'integration/lumo-agent-execution-20261114-copy',
+                       'integration/lumo-live-connections-20261114-copy'):
+            self.run['head_branch'] = branch
+            self.pull['head']['ref'] = branch
+            with self.subTest(branch=branch), self.assertRaises(ValueError):
+                self.check()
 
     def test_each_failure_skip_cancel_and_foreign_attempt_blocks_delivery(self):
         for row in self.jobs['jobs'][:-1]:
@@ -99,6 +107,18 @@ class OriginalAcceptanceTests(unittest.TestCase):
                     with self.subTest(step=step['name'], value=value), self.assertRaises(ValueError):
                         self.check()
                 step['conclusion'] = 'success'
+
+    def test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery(self):
+        label = 'Retry the acknowledged native exit after a transient Android refusal'
+        runtime = next(row for row in self.jobs['jobs'] if row['name'] == 'connect-four-runtime')
+        original = copy.deepcopy(runtime['steps'])
+        for state in ('missing', 'skipped'):
+            runtime['steps'] = [step for step in original if step['name'] != label]
+            if state == 'skipped':
+                runtime['steps'].append({'name': label, 'status': 'completed', 'conclusion': 'skipped'})
+            with self.subTest(state=state), self.assertRaisesRegex(
+                    ValueError, 'Actual required step missing or skipped: ' + label):
+                self.check()
 
     def test_stale_or_foreign_branch_event_or_pull_request_is_rejected(self):
         for obj, key, value in [(self.run, 'event', 'workflow_dispatch'),
@@ -525,6 +545,8 @@ class RealFilesAndCommandsTests(unittest.TestCase):
             return eval(code.strip(), {'__builtins__': {}}, {})
         self.assertTrue(allowed(values))
         self.assertTrue(allowed({**values, 'github.head_ref':'work/lumo-play-quality-20261114'}))
+        self.assertTrue(allowed({**values, 'github.head_ref':'integration/lumo-agent-execution-20261114'}))
+        self.assertTrue(allowed({**values, 'github.head_ref':'integration/lumo-live-connections-20261114'}))
         for key in values:
             with self.subTest(key=key): self.assertFalse(allowed({**values, key: 'different'}))
         self.assertNotIn('if: always()', head)
