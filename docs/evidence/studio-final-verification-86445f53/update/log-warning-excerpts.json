@@ -1,0 +1,115 @@
+{
+  "scope": "Literal warning/error/deprecated lines; successful job is not described as warning-free. No severity inference from a substring alone.",
+  "original_log_sha256": "b17a2227094e63a27bdf0692e611da8e8b9184aa129493bb6779e427150282c9",
+  "matched_count": 27,
+  "lines": [
+    {
+      "line_1based": 69,
+      "text": "2026-11-14T04:01:34.9632360Z hint: to use in all of your new repositories, which will suppress this warning,"
+    },
+    {
+      "line_1based": 150,
+      "text": "2026-11-14T04:01:58.5721502Z (node:2210) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+    },
+    {
+      "line_1based": 151,
+      "text": "2026-11-14T04:01:58.5722154Z (Use `node --trace-deprecation ...` to show where the warning was created)"
+    },
+    {
+      "line_1based": 156,
+      "text": "2026-11-14T04:01:59.0922660Z (node:2210) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead."
+    },
+    {
+      "line_1based": 172,
+      "text": "2026-11-14T04:02:07.7857417Z (node:2223) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+    },
+    {
+      "line_1based": 173,
+      "text": "2026-11-14T04:02:07.7857920Z (Use `node --trace-deprecation ...` to show where the warning was created)"
+    },
+    {
+      "line_1based": 174,
+      "text": "2026-11-14T04:02:07.7981524Z (node:2223) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+    },
+    {
+      "line_1based": 181,
+      "text": "2026-11-14T04:02:08.7203874Z (node:2223) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead."
+    },
+    {
+      "line_1based": 601,
+      "text": "2026-11-14T04:03:56.2273498Z ##                        WARNING - ACTION REQUIRED                         ##"
+    },
+    {
+      "line_1based": 604,
+      "text": "2026-11-14T04:03:56.2274594Z ##  flag to bypass this warning and turn off the metrics collection.        ##"
+    },
+    {
+      "line_1based": 605,
+      "text": "2026-11-14T04:03:56.2274857Z ##  In a future release this warning will turn into a one-time blocking     ##"
+    },
+    {
+      "line_1based": 614,
+      "text": "2026-11-14T04:03:56.2277464Z ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+    },
+    {
+      "line_1based": 616,
+      "text": "2026-11-14T04:03:56.2277949Z ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+    },
+    {
+      "line_1based": 619,
+      "text": "2026-11-14T04:03:56.2278545Z WARNING      | Could not detect GPU properly for Vulkan emulation. Please try updating your GPU Drivers."
+    },
+    {
+      "line_1based": 627,
+      "text": "2026-11-14T04:03:56.2280251Z ERROR        | Unable to connect to adb daemon on port: 5037"
+    },
+    {
+      "line_1based": 637,
+      "text": "2026-11-14T04:03:56.2303303Z WARNING      | Could not open libX11.so, try libX11.so.6"
+    },
+    {
+      "line_1based": 648,
+      "text": "2026-11-14T04:03:56.2307106Z WARNING      | Could not open libX11-xcb.so, try libX11-xcb.so.1"
+    },
+    {
+      "line_1based": 752,
+      "text": "2026-11-14T04:03:56.5888227Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+    },
+    {
+      "line_1based": 753,
+      "text": "2026-11-14T04:03:56.9420521Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+    },
+    {
+      "line_1based": 1125,
+      "text": "2026-11-14T04:04:35.5958273Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -e shell settings put system accelerometer_rotation 1 ' failed: 'adb: device offline'"
+    },
+    {
+      "line_1based": 3104,
+      "text": "2026-11-14T04:14:28.8793990Z WARNING      | Not saving state: RAM not mapped as shared"
+    },
+    {
+      "line_1based": 3106,
+      "text": "2026-11-14T04:14:29.7850346Z ERROR        | stop: Not implemented"
+    },
+    {
+      "line_1based": 3107,
+      "text": "2026-11-14T04:14:29.7850745Z WARNING      | Emulator client has not yet been configured.. Call configure me first!"
+    },
+    {
+      "line_1based": 3120,
+      "text": "2026-11-14T04:14:30.7254457Z (node:4630) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+    },
+    {
+      "line_1based": 3121,
+      "text": "2026-11-14T04:14:30.7255165Z (Use `node --trace-deprecation ...` to show where the warning was created)"
+    },
+    {
+      "line_1based": 3126,
+      "text": "2026-11-14T04:14:31.3249189Z (node:4630) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+    },
+    {
+      "line_1based": 3161,
+      "text": "2026-11-14T04:14:34.6507169Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+--- a/lib/app/app_state.dart
++++ b/lib/app/app_state.dart
+@@ -1,5 +1,8 @@
+ import 'dart:async';
+ import 'dart:collection';
++import 'dart:convert';
++
++import 'package:crypto/crypto.dart';
+ 
+ import 'package:flutter/foundation.dart';
+ import 'package:flutter/services.dart';
+@@ -1264,6 +1267,36 @@
+     return _beginRewardDrain();
+   }
+ 
++  /// Existing C4 amounts through the injected, idempotent wallet transaction.
++  Future<void> recordConnectFourResult({
++    required LearningProfileLease lease,
++    required String resultId,
++    required int stars,
++    required int xp,
++  }) async {
++    final owner = sha256.convert(utf8.encode(lease.studentId)).toString();
++    void guard() {
++      if (!canUseLearningLease(lease) ||
++          lease.generation != _profileGeneration ||
++          school.cachedActiveStudentId !=
++              (lease.logStudentId == 'self' ? null : lease.studentId) ||
++          _disposed || _resetting ||
++          !RegExp('^c4:$owner:[a-f0-9]{32}\$').hasMatch(resultId) ||
++          !const {(3, 20), (5, 40), (2, 16)}.contains((stars, xp))) {
++        throw StateError('Vier-Gewinnt-Ergebnis nicht freigegeben');
++      }
++    }
++    guard();
++    // Do not enqueue an old child's result behind an unrelated pending write.
++    // Once this write starts it keeps its captured owner/result ID, and the
++    // caller must recheck the lease before acknowledging the round.
++    await flushRewards();
++    guard();
++    _rewardWrites.add(_PendingRewardWrite(stars: stars, xp: xp, resultId: resultId));
++    await _beginRewardDrain();
++    guard();
++  }
++
+   /// A resumed Cards question/call can replay its pending star safely.
+   Future<void> recordLumoCardsBonus({required String resultId}) {
+     if (_disposed || _resetting) return Future<void>.value();

@@ -1,0 +1,104 @@
+{
+  "host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "run": 43549076631,
+  "job": 132307097663,
+  "scope": "completed builder only; Android/creative/update gates still running",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/build/apk-verification-reports-from-original-job.json",
+      "repository_path": "docs/evidence/studio-final-verification-86445f53/build/apk-verification-reports-from-original-job.json",
+      "bytes": 8705,
+      "sha256": "bc4e3ed92506f78526442445ee11db5a6395ed64c9cdd8c14736bd2d1776c77c",
+      "git_blob": "8c3a8fbfcc20ddf132f7f9c10dfaa5dce96497cc",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/build/flutter-suite-result-from-original-job.json",
+      "repository_path": "docs/evidence/studio-final-verification-86445f53/build/flutter-suite-result-from-original-job.json",
+      "bytes": 2388,
+      "sha256": "4abe130eff9014354a6d0d46fb185612bb2bfa70a870143bbd4ee97d96248dcf",
+      "git_blob": "c09b37bfc79a6d6562c0c04064161a9047768c80",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/build/native-pass-markers-from-original-job.json",
+      "repository_path": "docs/evidence/studio-final-verification-86445f53/build/native-pass-markers-from-original-job.json",
+      "bytes": 17718,
+      "sha256": "acac157dc3a7a9b624723904cde4a30193bb15eb96842a41e7bad508b7db45a6",
+      "git_blob": "3901b57e2485d02df5aea0ea1ec66ff969fe6b66",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/build/nonfatal-original-diagnostics.json",
+      "repository_path": "docs/evidence/studio-final-verification-86445f53/build/nonfatal-original-diagnostics.json",
+      "bytes": 4212,
+      "sha256": "1cbaa2548673030e9d395d969bd3bf86b523d73ad5061048d092fc40ae0e93d9",
+      "git_blob": "e99b3376cac8b3e9301e5299b1e59c4195e28c2d",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/build/original-artifact-metadata.json",
+      "repository_path": "docs/evidence/studio-final-verification-86445f53/build/original-artifact-metadata.json",
+      "bytes": 6614,
+      "sha256": "9b6ad29894f832e276d197a82e31ac6d986cd3a06344d544e012bd1001b7eaa3",
+      "git_blob": "1d614fa17488145bd5448641345f2d2e8e5c3a70",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/build/original-job-metadata.json",
+      "repository_path": "docs/evidence/studio-final-verification-86445f53/build/original-job-metadata.json",
+      "bytes": 10655,
+      "sha256": "c0b4e4387c4bbf4f657d996fa32ea70f21b536076728eceeb91ffb6e2d06d2df",
+      "git_blob": "73251adef46a1db9584801941b027df4ff3cb443",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/build/original-job-transfer.json",
+      "repository_path": "docs/evidence/studio-final-verification-86445f53/build/original-job-transfer.json",
+      "bytes": 377,
+      "sha256": "972d619113ed5f087a556688f5ffe6c16c44522e5ec98a83f0d1aed913eb97af",
+      "git_blob": "264bd714f18524b5a26fd4f3e713177d7d770945",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/build/original-job.log",
+      "repository_path": "docs/evidence/studio-final-verification-86445f53/build/original-job.log",
+      "bytes": 1585604,
+      "sha256": "4524a28f72ebcf31d90f4b55f3706fc714cdd1c918704e6531ba1846687a4f7e",
+      "git_blob": "ab0b3ddc0c329f51a71779f97cb2cac86b047144",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/build/original-jobs-metadata.json",
+      "repository_path": "docs/evidence/studio-final-verification-86445f53/build/original-jobs-metadata.json",
+      "bytes": 25120,
+      "sha256": "c3d5c5fe012eb0ae83fd835d77e067f929a7fe596a3b6b08bcf8d39f8f2f3d7f",
+      "git_blob": "3fd1bdd39ad2ca83c48eb4caffb3c0b1aa64cc74",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/build/original-run-metadata.json",
+      "repository_path": "docs/evidence/studio-final-verification-86445f53/build/original-run-metadata.json",
+      "bytes": 13396,
+      "sha256": "4a43e1d52368bf3bf5c71fcf26eb480fb9611670d231dcdd2035ea9160bdc18d",
+      "git_blob": "6ee58e04071ea3b0f4f4639e0c6451041c70be77",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/build/review.json",
+      "repository_path": "docs/evidence/studio-final-verification-86445f53/build/review.json",
+      "bytes": 4699,
+      "sha256": "f5a6af658d08177b1d287fae888b389e1af2eb071a3c35903d17816817c0f6f8",
+      "git_blob": "88ac3bcd6c8575ae8baca94ad2661960ef9ef75e",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/build/source-workflow-86445.yml",
+      "repository_path": "docs/evidence/studio-final-verification-86445f53/build/source-workflow-86445.yml",
+      "bytes": 49746,
+      "sha256": "7cc0d3355ee80bdc58e1648e5e41259ca15994c283a5572ad8841d94953cf8d8",
+      "git_blob": "4c1f4a5c2b963278b0d9c5facb8d4abfc74eb2be",
+      "mode": "100644"
+    }
+  ]
+}

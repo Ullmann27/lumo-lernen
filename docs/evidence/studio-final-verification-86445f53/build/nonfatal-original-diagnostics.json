@@ -1,0 +1,58 @@
+[
+  {
+    "line_1based": 6356,
+    "original": "2026-11-14T03:16:00.3469733Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+    "context": [
+      "2026-11-14T03:16:00.2716044Z [KartAI] estimated lap times: Entdecken 63.23 s, Abenteuer 45.23 s, Extrem 36.76 s",
+      "2026-11-14T03:16:00.2865183Z [KartAI] same unobstructed 50 m road: { \"gemuetlich\": 0.56411637403433, \"flott\": 0.01108185532805, \"pro\": 0.16766471711416 }",
+      "2026-11-14T03:16:00.2865851Z [KartAI] PASS: no teleport, no rubber-band, difficulty order holds",
+      "2026-11-14T03:16:00.3467066Z WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+      "2026-11-14T03:16:00.3467548Z    at: cleanup (core/object/object.cpp:2663)",
+      "2026-11-14T03:16:00.3469733Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+      "2026-11-14T03:16:00.3470269Z    at: clear (core/io/resource.cpp:810)",
+      "2026-11-14T03:16:00.4017103Z Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+    ]
+  },
+  {
+    "line_1based": 6438,
+    "original": "2026-11-14T03:16:36.5310547Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+    "context": [
+      "2026-11-14T03:16:36.4155758Z [Kart] race_world_ready: sonnenhafen mode=race",
+      "2026-11-14T03:16:36.4620823Z [KartRacecraft] production cone clearance 1.785m; travelled 111.83m",
+      "2026-11-14T03:16:36.4701257Z [KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake",
+      "2026-11-14T03:16:36.5306918Z WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+      "2026-11-14T03:16:36.5307503Z    at: cleanup (core/object/object.cpp:2663)",
+      "2026-11-14T03:16:36.5310547Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+      "2026-11-14T03:16:36.5310930Z    at: clear (core/io/resource.cpp:810)",
+      "2026-11-14T03:16:36.5869572Z Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+    ]
+  },
+  {
+    "line_1based": 6456,
+    "original": "2026-11-14T03:16:39.7779535Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+    "context": [
+      "2026-11-14T03:16:39.6551697Z [Kart] race_world_ready: sonnenhafen mode=race",
+      "2026-11-14T03:16:39.7009371Z [KartRivalDrift] charge 1.029 earned after 0.53s of production driving",
+      "2026-11-14T03:16:39.7178993Z [KartRivalDrift] PASS: earned drift, gold pickup, fair pulse, shield and mini-turbo",
+      "2026-11-14T03:16:39.7776287Z WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+      "2026-11-14T03:16:39.7776886Z    at: cleanup (core/object/object.cpp:2663)",
+      "2026-11-14T03:16:39.7779535Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+      "2026-11-14T03:16:39.7780021Z    at: clear (core/io/resource.cpp:810)",
+      "2026-11-14T03:16:39.8354620Z Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+    ]
+  },
+  {
+    "line_1based": 12792,
+    "original": "2026-11-14T03:59:30.2593555Z Caught exception: Already watching path: /home/runner/work/lumo-lernen/lumo-lernen/android",
+    "context": [
+      "2026-11-14T03:57:55.1543583Z \"Install CMake 3.22.1 v.3.22.1\" ready.",
+      "2026-11-14T03:57:55.1544540Z Installing CMake 3.22.1 in /usr/local/lib/android/sdk/cmake/3.22.1",
+      "2026-11-14T03:57:55.1545502Z \"Install CMake 3.22.1 v.3.22.1\" complete.",
+      "2026-11-14T03:57:55.1546163Z \"Install CMake 3.22.1 v.3.22.1\" finished.",
+      "2026-11-14T03:58:17.5546756Z Font asset \"MaterialIcons-Regular.otf\" was tree-shaken, reducing it from 1645184 to 43868 bytes (97.3% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.",
+      "2026-11-14T03:59:30.2593555Z Caught exception: Already watching path: /home/runner/work/lumo-lernen/lumo-lernen/android",
+      "2026-11-14T04:00:52.5769085Z Running Gradle task 'assembleRelease'...                          181.4s",
+      "2026-11-14T04:00:54.8750621Z \u2713 Built build/app/outputs/flutter-apk/app-arm64-v8a-release.apk (322.1MB)"
+    ]
+  }
+]

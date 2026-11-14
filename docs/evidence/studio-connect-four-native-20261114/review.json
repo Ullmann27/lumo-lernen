@@ -1,0 +1,187 @@
+{
+  "status": "LOCAL_IMPLEMENTATION_VALIDATED_ANDROID_PENDING",
+  "baseline_host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "baseline_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "source_manifest_sha256": "ab5686602c40335fbc381ff42c1e66085f2244dcdefc27eca189a8c2bf179683",
+  "tested_scene_sha256": "76ab128b835bffd41b87274566408b8baab4073fe6733b2f5e3e990e0e027a72",
+  "tested_runtime_probe_sha256": "83852fdd2e19cd32b20ec6de62179ee3f9e7712e574f723773bcc40cc35dd0a7",
+  "checks": {
+    "flutter_tests": 48,
+    "kotlin_python_tests": 25,
+    "native_runtime_checks": 170,
+    "native_runtime_errors": [],
+    "dart_driver_tests": 1,
+    "dart_driver_passed": true,
+    "renderer_exit": 0,
+    "dart_exit": 0,
+    "source_unchanged": true,
+    "analyzer_issues": 0
+  },
+  "native_runtime_log": "xorg-final-v7/godot.log",
+  "dart_runtime_log": "logs/runtime-dart-final-v7.log",
+  "single_player_human_and_bot_observed": true,
+  "won_round_columns": [
+    0,
+    6,
+    1,
+    6,
+    2,
+    5,
+    3
+  ],
+  "saved_round_rewarded": true,
+  "same_process_reopened_same_round": true,
+  "wallet_after_reopen": {
+    "stars": 5,
+    "xp": 40
+  },
+  "actual_touch_targets": 23,
+  "min_measured_target_dp": [
+    50.0521430969238,
+    52.0
+  ],
+  "frame_count": 248,
+  "media_fps_format": 24,
+  "media_duration_seconds": 10.333333333333334,
+  "images_opened": [
+    {
+      "path": "runtime-final-v7/connect_four_empty.png",
+      "sha256": "155b8aff298a362f50866805be50596d91a70ff24baec8b50e20584844486bf6",
+      "bytes": 83439,
+      "opened_by": "agent_C",
+      "observed": "Echtes perforiertes Brett, räumlicher Tisch und unverändertes Original-Lumo sichtbar; alle sieben Touchspalten im freien unteren Bereich.",
+      "layout_sidecar": "runtime-final-v7/connect_four_empty.layout.json",
+      "layout_sha256": "4b85b841d4981813dfcd61bc2a1232a9a665ea8be1b69f9ca192d57f2e2eb490"
+    },
+    {
+      "path": "runtime-final-v7/connect_four_phone_playing.png",
+      "sha256": "e9de525286c1c8e8a746bcd52035b1520719cc96947a9f940eb65b5e7d9604d2",
+      "bytes": 235959,
+      "opened_by": "agent_C",
+      "observed": "Spielbereites 1080x2400-Hochformat bei deklarierter Dichte2,625; alle sieben Spaltenschalter vollständig sichtbar;32-Segment-Löcher.",
+      "layout_sidecar": "runtime-final-v7/connect_four_phone_playing.layout.json",
+      "layout_sha256": "6bc6ec736379fae23fa641543704017a3514036c66de2d2c5e2badd436d867ff"
+    },
+    {
+      "path": "runtime-final-v7/connect_four_phone_bot_response.png",
+      "sha256": "ed70f08ef80e17a1fddd0307acc61c519f9676db748285ff1bb82c082a4689d5",
+      "bytes": 240961,
+      "opened_by": "agent_C",
+      "observed": "Ein tatsächlich gespielter Cyan-Stein und die nachfolgende Gold-Antwort der unveränderten Dart-KI; danach wieder Kindzug.",
+      "layout_sidecar": "runtime-final-v7/connect_four_phone_bot_response.layout.json",
+      "layout_sha256": "b871ef7da990d3f31143a80caa9cd4739d91a0dcf0028e56734d61ddfcf56ab6"
+    },
+    {
+      "path": "runtime-final-v7/connect_four_pause.png",
+      "sha256": "539cbb2504e6659c889fa7b12cad98b7a481ca930469ce8c03154b4a11582a08",
+      "bytes": 47667,
+      "opened_by": "agent_C",
+      "observed": "Nach drei legalen Zügen echte Pause; kein Weiterlaufen von Brett oder Fallbewegung während der bestätigten Pause.",
+      "layout_sidecar": "runtime-final-v7/connect_four_pause.layout.json",
+      "layout_sha256": "6812f85731ce01cf4aed2b34962fa86644ebec07728268f9ff100252e58f99f7"
+    },
+    {
+      "path": "runtime-final-v7/connect_four_win.png",
+      "sha256": "abc6a8a19b9cd450e1be7c3ca78440f67bbe730d9138205bf4330387727c8d0d",
+      "bytes": 85166,
+      "opened_by": "agent_C",
+      "observed": "Sieben legal bestätigte Züge; vier untere Cyan-Steine mit echter Geometriemarkierung entsprechend Dart-Gewinnlinie.",
+      "layout_sidecar": "runtime-final-v7/connect_four_win.layout.json",
+      "layout_sha256": "f19e96174c8d970a7d10df04259d05e99e370ef1884a5eda8682da48f09d5cc8"
+    },
+    {
+      "path": "runtime-final-v7/connect_four_phone_portrait.png",
+      "sha256": "45f41265f7d9e838cc7126caca96d431d58874405299dbc46baadad8ba74be9e",
+      "bytes": 170864,
+      "opened_by": "agent_C",
+      "observed": "Ergebnismenü und alle sieben Spalten im Hochformat; Ausgänge sichtbar, Aktionen nach Abschluss passend gesperrt.",
+      "layout_sidecar": "runtime-final-v7/connect_four_phone_portrait.layout.json",
+      "layout_sha256": "365fe0ca900a1851f28e4386228c4be0819f4271353cc533d68e29811bcf7540"
+    },
+    {
+      "path": "runtime-final-v7/connect_four_fold_landscape.png",
+      "sha256": "9cf3622180a4bae097e68ab227d927b67c2b91285d2c9b7b2fc6a02d6f708e00",
+      "bytes": 124751,
+      "opened_by": "agent_C",
+      "observed": "Deklarierte linke/top/bottom Insetfixture respektiert; kompletter Resume-Knopf sichtbar; längeres Menü ist scrollbar.",
+      "layout_sidecar": "runtime-final-v7/connect_four_fold_landscape.layout.json",
+      "layout_sha256": "b900f52c15ce02ba87d54505e4e5b092e38946945c52d961d72db85beb9d2ed3"
+    },
+    {
+      "path": "runtime-final-v7/connect_four_small_landscape.png",
+      "sha256": "2f7f4cda46d7d88b99bae3df558af0e79a4e9de3b898e67aec541381efc6ca5c",
+      "bytes": 23044,
+      "opened_by": "agent_C",
+      "observed": "Nach echtem Wischer ist der vollständige52dp-Knopf Brett ansehen im schmalen Menü sichtbar; anschließender echter Touch bestätigt.",
+      "layout_sidecar": "runtime-final-v7/connect_four_small_landscape.layout.json",
+      "layout_sha256": "ca7e76627abd15bdaafa1390201a461c39fdfd8236c62177ec5e8dc3e258917a"
+    },
+    {
+      "path": "runtime-final-v7/connect_four_small_portrait.png",
+      "sha256": "1533a8f67b00fc1d11deeef8359371b66c2b735c72572c18990f3b1826fa2f3b",
+      "bytes": 35865,
+      "opened_by": "agent_C",
+      "observed": "Menü vollständig im sicheren Bereich; die mindestens48dp breite Spaltenreihe zeigt eine horizontale Scrollleiste. Spalte7 liegt initial außerhalb. Ein eigener nativer320dp-Wischer bis Spalte7 gehört nicht zu diesem Lauf.",
+      "layout_sidecar": "runtime-final-v7/connect_four_small_portrait.layout.json",
+      "layout_sha256": "e60c7b14fe5a78ba347f543ef912dafa0d5c1241806fecd206ffd01ab2bfe3d9"
+    }
+  ],
+  "decoded_frames_opened": [
+    {
+      "path": "runtime-final-v7/decoded/frame-00000.png",
+      "sha256": "064ef7d25675509c60ea938240ec49a601d9c7c7b0f69eb5a53a596e1a444c26",
+      "opened_by": "agent_C"
+    },
+    {
+      "path": "runtime-final-v7/decoded/frame-00017.png",
+      "sha256": "cbf9639ff208e0f05004448996c8f8c3e2cb8f1f39e3f53927bc306533264d02",
+      "opened_by": "agent_C"
+    },
+    {
+      "path": "runtime-final-v7/decoded/frame-00124.png",
+      "sha256": "962fd4b2e87804ca461378d1e315a313bd26ce4d45d2694fb4115bb5dfad8759",
+      "opened_by": "agent_C"
+    },
+    {
+      "path": "runtime-final-v7/decoded/frame-00205.png",
+      "sha256": "df2ae535509cd397008d6f3a7e09c187bda9e6b4df59ebd6318bf9595425572a",
+      "opened_by": "agent_C"
+    },
+    {
+      "path": "runtime-final-v7/decoded/frame-00247.png",
+      "sha256": "86d30bb5c3370ff0ce4cdd32daaf2352f71370cbe52c30eaef98fa522f0b2bf2",
+      "opened_by": "agent_C"
+    }
+  ],
+  "visual_blockers_found_in_this_selection": [],
+  "historical_reds": [
+    {
+      "path": "runtime-menu-red-v5/two-process-run.json",
+      "finding": "Unveränderte v4-Produktquelle blockiert echte Scrollgeste auf Menübutton: zwei konkrete Fehler, nativerExit1."
+    },
+    {
+      "path": "runtime-final-v6/two-process-run.json",
+      "finding": "MouseFilter-Reparatur lässt Scrollen zu; der neue zunächst konstante Testwischer überschießt den Zielknopf. Teststeuerung auf aktuelleBounds und begrenzte relativeStrecke korrigiert; keine Lockerung der Mindestfläche."
+    },
+    {
+      "path": "logs/runtime-native-headless-v3.log",
+      "finding": "Früher numerischer JSON-Integrationsfehler: native Array-Mitgliedschaft von int gegen JSON-float blockiert legale Spalten; die Produktion prüft nun explizit int(value)."
+    },
+    {
+      "path": "logs/runtime-native-headless-v4.log",
+      "finding": "Folgefehler war nur die typstrikte Test-Arraygleichheit für die richtige Gewinnlinie; Vergleich explizit normalisiert, Regelwert nicht geändert."
+    }
+  ],
+  "limitations": [
+    "Kein Android-/Binder-End-to-end-Lauf dieses neuen C4-Kandidaten; lokale Datei-IPC ersetzt nur den Transport.",
+    "SharedPreferences-Testbackend und Wiederöffnung im selben Prozess; kein belegter Android-Disk-/Prozessneustart.",
+    "Kotlin mit echten Produktionsklassen/Dateien und org.json; Android/Godot/Flutter-API-Rand und Looper sind JVM-Testadapter.",
+    "Insets sind deklarierte Plattformfixtures; Android muss echte android_window_insets beobachten.",
+    "Der10,333s-Film zeigt die Zweispieler-Siegrunde; die einzelne echte KI-Antwort ist separat in PNG/Layout/Input-/Dart-Logs belegt.",
+    "24Bilder/s ist Aufnahmeformat, kein Geräte- oder60FPS-Nachweis.",
+    "Original-Lumo und dessen vorhandene803-Animationen wiederverwendet; keine neue Gesichtsanimation aus Bs separater Arbeit integriert.",
+    "Die globale vorhandene Walletsemantik ist unverändert; neue C4-Runden sind anhand stabiler Kinder-ID getrennt.",
+    "Kontrollierte Integration/Build/CI/Android-Prüfung und neuer nativer Pin liegen beim Integrator.",
+    "Die native320dp-Spaltenreihe ist scrollbar implementiert, aber der gezielte native Lauf prüft dort Menü/Resume; den Wischer bis zur letzten spielbereiten Spalte belegt er nicht. Alle sieben gleichzeitig sichtbaren Spalten und der echte Zug sind im411dp-Portrait belegt; Flutter-Fallback320dp ist separat getestet."
+  ]
+}

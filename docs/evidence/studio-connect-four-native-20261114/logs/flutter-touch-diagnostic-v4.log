@@ -1,0 +1,100 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart
+00:00 +0: tapping the board selects its column and locks repeated taps
+C4DBG new source init
+C4DBG round loaded platform=TargetPlatform.android current=true
+C4DBG native start
+C4DBG before session open
+C4DBG session settle before
+C4DBG session settle after
+C4DBG before transport
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-mode-true'>]: [
+  FilledButton-[<'connect-mode-true'>](style: ButtonStyle#df82c(textStyle: WidgetStatePropertyAll(TextStyle(inherit: true, family: Nunito, size: 16.0, weight: 900)), backgroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 0.9216, red: 0.0471, green: 0.1725, blue: 0.3451, colorSpace: ColorSpace.sRGB)}), foregroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor: WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), padding: WidgetStatePropertyAll(EdgeInsets(16.0, 0.0, 16.0, 0.0)), minimumSize: WidgetStatePropertyAll(Size(116.0, 44.0)), mouseCursor: WidgetStateMapper<MouseCursor?>({WidgetState.disabled: null, WidgetState.any: null})), dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#5665d]], state: _ButtonStyleState#8adc4),
+]" derived an Offset (Offset(180.0, 200.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#a561f relayoutBoundary=up8
+The hit test result at that offset is: HitTestResult(RenderDecoratedBox#80934@Offset(29.0, 6.5), RenderPositionedBox#87915@Offset(136.0, 6.5), RenderFlex#ad71d@Offset(136.0, 6.5), RenderPadding#e397b@Offset(160.0, 26.5), RenderDecoratedBox#f7549@Offset(160.0, 26.5), RenderConstrainedBox#b9ee0@Offset(160.0, 26.5), RenderPadding#482c1@Offset(180.0, 46.5), _RenderSingleChildViewport#0cd24@Offset(180.0, 46.5), RenderIgnorePointer#a3240@Offset(180.0, 46.5), RenderSemanticsAnnotations#9632a@Offset(180.0, 46.5), RenderPointerListener#f1205@Offset(180.0, 46.5), RenderSemanticsGestureHandler#adba7@Offset(180.0, 46.5), RenderPointerListener#ca7ad@Offset(180.0, 46.5), _RenderScrollSemantics#d8d25@Offset(180.0, 46.5), RenderClipRect#d6afd@Offset(180.0, 46.5), RenderPositionedBox#0dbfa@Offset(180.0, 200.0), _RenderLayoutBuilder#e900d@Offset(180.0, 200.0), RenderPadding#1e48a@Offset(180.0, 200.0), RenderStack#45945@Offset(180.0, 200.0), _RenderInkFeatures#887c6@Offset(180.0, 200.0), RenderCustomPaint#2dba3@Offset(180.0, 200.0), RenderClipPath#3624c@Offset(180.0, 200.0), RenderStack#28fca@Offset(180.0, 200.0), RenderSemanticsAnnotations#28041@Offset(180.0, 200.0), RenderRepaintBoundary#aaaa2@Offset(180.0, 200.0), RenderIgnorePointer#0418c@Offset(180.0, 200.0), RenderAnimatedOpacity#1688c@Offset(180.0, 200.0), RenderAnimatedOpacity#74efc@Offset(180.0, 200.0), _RenderColoredBox#4b12c@Offset(180.0, 200.0), RenderAnimatedOpacity#18baa@Offset(180.0, 200.0), RenderIgnorePointer#507a8@Offset(180.0, 200.0), RenderAnimatedOpacity#612af@Offset(180.0, 200.0), RenderRepaintBoundary#6f5b8@Offset(180.0, 200.0), RenderSemanticsAnnotations#cd565@Offset(180.0, 200.0), RenderOffstage#89940@Offset(180.0, 200.0), RenderSemanticsAnnotations#27ab9@Offset(180.0, 200.0), _RenderTheater#ae9f6@Offset(180.0, 200.0), RenderAbsorbPointer#f7b51@Offset(180.0, 200.0), RenderPointerListener#22061@Offset(180.0, 200.0), RenderSemanticsAnnotations#34962@Offset(180.0, 200.0), RenderCustomPaint#9a92b@Offset(180.0, 200.0), RenderSemanticsAnnotations#28b92@Offset(180.0, 200.0), RenderSemanticsAnnotations#6377c@Offset(180.0, 200.0), RenderSemanticsAnnotations#9bc71@Offset(180.0, 200.0), RenderTapRegionSurface#ddc47@Offset(180.0, 200.0), RenderSemanticsAnnotations#ce962@Offset(180.0, 200.0), RenderSemanticsAnnotations#888cb@Offset(180.0, 200.0), HitTestEntry<HitTestTarget>#a2f33(_ReusableRenderView#3923e), HitTestEntry<HitTestTarget>#2f589(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart:39:18)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-cell-0-4'>]: [
+  Semantics-[<'connect-cell-0-4'>](container: false, properties: SemanticsProperties, label: "Reihe 1, Spalte 5: empty", dependencies: [Directionality], renderObject: RenderSemanticsAnnotations#ed58f),
+]" derived an Offset (Offset(212.6, 313.4)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#ed58f
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#1f4c9(TextSpan(debugLabel: ((englishLike bodyMedium 2021).merge((blackMountainView bodyMedium).apply)).merge(unknown), inherit: false, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), family: Nunito, size: 26.0, weight: 900, letterSpacing: 0.3, baseline: alphabetic, height: 1.4x, leadingDistribution: even, decoration: Color(alpha: 1.0000, red: 0.1137, green: 0.1059, blue: 0.1255, colorSpace: ColorSpace.sRGB) TextDecoration.none, "Spiel pausiert")), RenderParagraph#28265@Offset(168.6, 49.9), RenderFlex#ad71d@Offset(168.6, 119.9), RenderPadding#e397b@Offset(192.6, 139.9), RenderDecoratedBox#f7549@Offset(192.6, 139.9), RenderConstrainedBox#b9ee0@Offset(192.6, 139.9), RenderPadding#482c1@Offset(212.6, 159.9), _RenderSingleChildViewport#0cd24@Offset(212.6, 159.9), RenderIgnorePointer#a3240@Offset(212.6, 159.9), RenderSemanticsAnnotations#9632a@Offset(212.6, 159.9), RenderPointerListener#f1205@Offset(212.6, 159.9), RenderSemanticsGestureHandler#adba7@Offset(212.6, 159.9), RenderPointerListener#ca7ad@Offset(212.6, 159.9), _RenderScrollSemantics#d8d25@Offset(212.6, 159.9), RenderClipRect#d6afd@Offset(212.6, 159.9), RenderPositionedBox#0dbfa@Offset(212.6, 313.4), _RenderLayoutBuilder#e900d@Offset(212.6, 313.4), RenderPadding#1e48a@Offset(212.6, 313.4), RenderStack#45945@Offset(212.6, 313.4), _RenderInkFeatures#887c6@Offset(212.6, 313.4), RenderCustomPaint#2dba3@Offset(212.6, 313.4), RenderClipPath#3624c@Offset(212.6, 313.4), RenderStack#28fca@Offset(212.6, 313.4), RenderSemanticsAnnotations#28041@Offset(212.6, 313.4), RenderRepaintBoundary#aaaa2@Offset(212.6, 313.4), RenderIgnorePointer#0418c@Offset(212.6, 313.4), RenderAnimatedOpacity#1688c@Offset(212.6, 313.4), RenderAnimatedOpacity#74efc@Offset(212.6, 313.4), _RenderColoredBox#4b12c@Offset(212.6, 313.4), RenderAnimatedOpacity#18baa@Offset(212.6, 313.4), RenderIgnorePointer#507a8@Offset(212.6, 313.4), RenderAnimatedOpacity#612af@Offset(212.6, 313.4), RenderRepaintBoundary#6f5b8@Offset(212.6, 313.4), RenderSemanticsAnnotations#cd565@Offset(212.6, 313.4), RenderOffstage#89940@Offset(212.6, 313.4), RenderSemanticsAnnotations#27ab9@Offset(212.6, 313.4), _RenderTheater#ae9f6@Offset(212.6, 313.4), RenderAbsorbPointer#f7b51@Offset(212.6, 313.4), RenderPointerListener#22061@Offset(212.6, 313.4), RenderSemanticsAnnotations#34962@Offset(212.6, 313.4), RenderCustomPaint#9a92b@Offset(212.6, 313.4), RenderSemanticsAnnotations#28b92@Offset(212.6, 313.4), RenderSemanticsAnnotations#6377c@Offset(212.6, 313.4), RenderSemanticsAnnotations#9bc71@Offset(212.6, 313.4), RenderTapRegionSurface#ddc47@Offset(212.6, 313.4), RenderSemanticsAnnotations#ce962@Offset(212.6, 313.4), RenderSemanticsAnnotations#888cb@Offset(212.6, 313.4), HitTestEntry<HitTestTarget>#c952b(_ReusableRenderView#3923e), HitTestEntry<HitTestTarget>#1fb19(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart:41:18)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-cell-0-2'>]: [
+  Semantics-[<'connect-cell-0-2'>](container: false, properties: SemanticsProperties, label: "Reihe 1, Spalte 3: empty", dependencies: [Directionality], renderObject: RenderSemanticsAnnotations#39d99),
+]" derived an Offset (Offset(147.4, 313.4)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#39d99
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#51228(TextSpan(debugLabel: ((englishLike bodyMedium 2021).merge((blackMountainView bodyMedium).apply)).merge(unknown), inherit: false, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), family: Nunito, size: 26.0, weight: 900, letterSpacing: 0.3, baseline: alphabetic, height: 1.4x, leadingDistribution: even, decoration: Color(alpha: 1.0000, red: 0.1137, green: 0.1059, blue: 0.1255, colorSpace: ColorSpace.sRGB) TextDecoration.none, "Spiel pausiert")), RenderParagraph#28265@Offset(103.4, 49.9), RenderFlex#ad71d@Offset(103.4, 119.9), RenderPadding#e397b@Offset(127.4, 139.9), RenderDecoratedBox#f7549@Offset(127.4, 139.9), RenderConstrainedBox#b9ee0@Offset(127.4, 139.9), RenderPadding#482c1@Offset(147.4, 159.9), _RenderSingleChildViewport#0cd24@Offset(147.4, 159.9), RenderIgnorePointer#a3240@Offset(147.4, 159.9), RenderSemanticsAnnotations#9632a@Offset(147.4, 159.9), RenderPointerListener#f1205@Offset(147.4, 159.9), RenderSemanticsGestureHandler#adba7@Offset(147.4, 159.9), RenderPointerListener#ca7ad@Offset(147.4, 159.9), _RenderScrollSemantics#d8d25@Offset(147.4, 159.9), RenderClipRect#d6afd@Offset(147.4, 159.9), RenderPositionedBox#0dbfa@Offset(147.4, 313.4), _RenderLayoutBuilder#e900d@Offset(147.4, 313.4), RenderPadding#1e48a@Offset(147.4, 313.4), RenderStack#45945@Offset(147.4, 313.4), _RenderInkFeatures#887c6@Offset(147.4, 313.4), RenderCustomPaint#2dba3@Offset(147.4, 313.4), RenderClipPath#3624c@Offset(147.4, 313.4), RenderStack#28fca@Offset(147.4, 313.4), RenderSemanticsAnnotations#28041@Offset(147.4, 313.4), RenderRepaintBoundary#aaaa2@Offset(147.4, 313.4), RenderIgnorePointer#0418c@Offset(147.4, 313.4), RenderAnimatedOpacity#1688c@Offset(147.4, 313.4), RenderAnimatedOpacity#74efc@Offset(147.4, 313.4), _RenderColoredBox#4b12c@Offset(147.4, 313.4), RenderAnimatedOpacity#18baa@Offset(147.4, 313.4), RenderIgnorePointer#507a8@Offset(147.4, 313.4), RenderAnimatedOpacity#612af@Offset(147.4, 313.4), RenderRepaintBoundary#6f5b8@Offset(147.4, 313.4), RenderSemanticsAnnotations#cd565@Offset(147.4, 313.4), RenderOffstage#89940@Offset(147.4, 313.4), RenderSemanticsAnnotations#27ab9@Offset(147.4, 313.4), _RenderTheater#ae9f6@Offset(147.4, 313.4), RenderAbsorbPointer#f7b51@Offset(147.4, 313.4), RenderPointerListener#22061@Offset(147.4, 313.4), RenderSemanticsAnnotations#34962@Offset(147.4, 313.4), RenderCustomPaint#9a92b@Offset(147.4, 313.4), RenderSemanticsAnnotations#28b92@Offset(147.4, 313.4), RenderSemanticsAnnotations#6377c@Offset(147.4, 313.4), RenderSemanticsAnnotations#9bc71@Offset(147.4, 313.4), RenderTapRegionSurface#ddc47@Offset(147.4, 313.4), RenderSemanticsAnnotations#ce962@Offset(147.4, 313.4), RenderSemanticsAnnotations#888cb@Offset(147.4, 313.4), HitTestEntry<HitTestTarget>#df325(_ReusableRenderView#3923e), HitTestEntry<HitTestTarget>#6ad63(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart:43:18)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <1>
+  Actual: <0>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart:45:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart line 45
+The test description was:
+  tapping the board selects its column and locks repeated taps
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -1: tapping the board selects its column and locks repeated taps [E]
+  Test failed. See exception logs above.
+  The test description was: tapping the board selects its column and locks repeated taps
+  
+00:01 +0 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart: tapping the board selects its column and locks repeated taps

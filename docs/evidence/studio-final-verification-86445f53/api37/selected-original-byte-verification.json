@@ -1,0 +1,259 @@
+{
+  "source": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "files": [
+    {
+      "path": "fatal-logcat.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "framework-start/action-patch-manifest.json",
+      "bytes": 3475,
+      "sha256": "5d6b10bff32e232f8838356c42d8525f12762538572c414b3cb8e2f90148b4c9",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/observed-guard.json",
+      "bytes": 14200,
+      "sha256": "3cc4bb2d23ac386642547e34cda8f047fa6da026ba051d3afc1db873a2a8b6f0",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/prepared.json",
+      "bytes": 48082,
+      "sha256": "a8a39f73f6f50a780cfa15a097191973a6502ea7d5e4d67db4ae4a7c9c0cbf5d",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "framework-start/cli22/verified-guard.json",
+      "bytes": 38200,
+      "sha256": "3e148c034c591cb818b14ae4f0817b67b5d4552b07af5f39b1e206e814bc8fdc",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "framework-start/framework-readiness.json",
+      "bytes": 32969,
+      "sha256": "cf5d284802671149afc0063795817aa20dc334a7ae6ecfd30c39277a8bb26c6d",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "installed-package.txt",
+      "bytes": 9473,
+      "sha256": "3c0b08df477c93c60245e482b65e4e1e64228a7175d69250019c97fd851cd876",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/04_learning_native_thirteen.png",
+      "bytes": 582641,
+      "sha256": "eae8ed1e5ea64e4887ff2c028cf2851288b78fee9dc3f4f17d8a70cf0696ea35",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/05_learning_same_flutter_lesson-return-pixels.json",
+      "bytes": 2623,
+      "sha256": "9c163af8cd2df48aadeccac68c5d6ee3fa625cf7d9c0c553962ddc3ac36adb84",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/05_learning_same_flutter_lesson.png",
+      "bytes": 1508026,
+      "sha256": "4aede83d3e6f4ef9589f4ee447a0aa9eae8b25f5f2cafae92f850ce677fcf31a",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/11_cards_real_table_before_draw-face-check-00-after-layout.json",
+      "bytes": 1326,
+      "sha256": "1cc9b0c1dd02dbec7d5423441d1ac3a8d654733409745c9a009955b245f2b642",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/11_cards_real_table_before_draw-face-check-00-before-layout.json",
+      "bytes": 1326,
+      "sha256": "1cc9b0c1dd02dbec7d5423441d1ac3a8d654733409745c9a009955b245f2b642",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/11_cards_real_table_before_draw.png",
+      "bytes": 1164918,
+      "sha256": "cb7fccc055c7af5f83719a2cfea2a823aef1804b26f2c8bc5ad4edfa9f673994",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/12_cards_real_table_persisted_draw-face-check-03-after-layout.json",
+      "bytes": 1326,
+      "sha256": "e2621d3797bbe4fc07f0fa5acf5a284e3dc23aa301fc70de62323abb86f847c1",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/12_cards_real_table_persisted_draw-face-check-03-before-layout.json",
+      "bytes": 1326,
+      "sha256": "e2621d3797bbe4fc07f0fa5acf5a284e3dc23aa301fc70de62323abb86f847c1",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/12_cards_real_table_persisted_draw.png",
+      "bytes": 1150194,
+      "sha256": "9ee4cfbc5880aae53b5b6b57b9859699d08146fee467b6a8fe272cb7bd0a0cba",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/12a_cards_real_table_before_late_draw-face-check-00-after-layout.json",
+      "bytes": 1326,
+      "sha256": "e2621d3797bbe4fc07f0fa5acf5a284e3dc23aa301fc70de62323abb86f847c1",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/12a_cards_real_table_before_late_draw-face-check-00-before-layout.json",
+      "bytes": 1326,
+      "sha256": "e2621d3797bbe4fc07f0fa5acf5a284e3dc23aa301fc70de62323abb86f847c1",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-06-after-layout.json",
+      "bytes": 1329,
+      "sha256": "ba734d48fcbfe8dba81d0f473791b1ea3dffe232f344a6e184025bda2af6370d",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-06-before-layout.json",
+      "bytes": 1329,
+      "sha256": "ba734d48fcbfe8dba81d0f473791b1ea3dffe232f344a6e184025bda2af6370d",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "bytes": 1144565,
+      "sha256": "3f8bfa78adae6d24dc294d3764b6ece28aa52bf9a33208c40765e33182d50ecc",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/13_cards_native_pause.png",
+      "bytes": 1030451,
+      "sha256": "81825dbaaca3a62e475eee8967ed2c0a43598807ef77eb7c2f1f95e20d8e794f",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/14_cards_same_flutter_round-return-pixels.json",
+      "bytes": 2562,
+      "sha256": "2ea1a310f123476f80ab6f61654861af0a73095aceb751679a9499827696072c",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/14_cards_same_flutter_round.png",
+      "bytes": 524182,
+      "sha256": "81a58d26a36440064a55fcac5b90c1704a141ebc88fdd7ab8cf2f4ed48731dc4",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/15_cards_reopened_same_round.png",
+      "bytes": 1144500,
+      "sha256": "740ff81bb53e1d3c1cd51274c7fb28935a5b722f7116f9935fa5dc6ffb5a1f6c",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/16_cards_final_flutter_return-return-pixels.json",
+      "bytes": 2006,
+      "sha256": "b289667c48d26f140fda26ed850023b37bc5ce0b13973e9dfa60a522dc8556c2",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/16_cards_final_flutter_return.png",
+      "bytes": 526873,
+      "sha256": "1e3cc51faa12d0a82673c6b4ed8957145eee2706490ac7b5dab25bf6c6d7fbeb",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/cards-actual-display-density.txt",
+      "bytes": 44,
+      "sha256": "0a17eaf0deeb48603ff4903c4da16fb9fe0c3b0f702657f6f07621fd98886eee",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/cards-after-native-preferences.xml",
+      "bytes": 5979,
+      "sha256": "e5fe3dd3337d78b3f4ef055c3cfc612f37ca95c0bc1c3e8bc9ff7101a70ea0f7",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/cards-before-native-preferences.xml",
+      "bytes": 5979,
+      "sha256": "e1f69abc349a7a6cf93943ed104b957a9170b69c939290a7a4419d83c4c9a7ca",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/cards-save-001-preferences.xml",
+      "bytes": 5979,
+      "sha256": "e5fe3dd3337d78b3f4ef055c3cfc612f37ca95c0bc1c3e8bc9ff7101a70ea0f7",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/cards-save-005-preferences.xml",
+      "bytes": 5979,
+      "sha256": "e1f69abc349a7a6cf93943ed104b957a9170b69c939290a7a4419d83c4c9a7ca",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/cards-save-015-preferences.xml",
+      "bytes": 5979,
+      "sha256": "aecee26f39e0c36f1207b96b7f25cb30e668169d60f83dbbe0a5bb5796c72df6",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/cards-save-020-preferences.xml",
+      "bytes": 5979,
+      "sha256": "aecee26f39e0c36f1207b96b7f25cb30e668169d60f83dbbe0a5bb5796c72df6",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/cards-save-032-preferences.xml",
+      "bytes": 5979,
+      "sha256": "e5fe3dd3337d78b3f4ef055c3cfc612f37ca95c0bc1c3e8bc9ff7101a70ea0f7",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/cards-save-033-preferences.xml",
+      "bytes": 5979,
+      "sha256": "e5fe3dd3337d78b3f4ef055c3cfc612f37ca95c0bc1c3e8bc9ff7101a70ea0f7",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/cards-save-034-preferences.xml",
+      "bytes": 5979,
+      "sha256": "e5fe3dd3337d78b3f4ef055c3cfc612f37ca95c0bc1c3e8bc9ff7101a70ea0f7",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/learning-after-native-preferences.xml",
+      "bytes": 2757,
+      "sha256": "ed3a125173fcb477d4aa085f23eb0fe935ae091978c0f1be6de962e7e2054c8b",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/learning-before-native-preferences.xml",
+      "bytes": 2757,
+      "sha256": "ed3a125173fcb477d4aa085f23eb0fe935ae091978c0f1be6de962e7e2054c8b",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "nextgen/native-surfaces-result.json",
+      "bytes": 206887,
+      "sha256": "4c609626bde6a3307d14b13cb08b79efc16d08e571e9e1fa705f11fb60616d96",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "tested-apk-sha256.txt",
+      "bytes": 108,
+      "sha256": "c08d1edd8bdcae4a351439aa500e62a50f24faf197882b5d6fe8d8f1b4e2fe65",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "tour-result.json",
+      "bytes": 9773,
+      "sha256": "43ed77e479742eb6e26c0d23fe0a6c6418d59f5c66d074400a27731c9357b817",
+      "zip_member_byte_equal": true
+    }
+  ],
+  "file_count": 42,
+  "total_bytes": 9216691
+}

@@ -1,0 +1,12 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+[Mobile] runtime ready screen:(960, 540) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (640.0, 360.0), "decor_size": (640.0, 360.0), "render_rect": [P: (0.0, 0.0), S: (640.0, 360.0)], "system_insets": [P: (0.0, 24.0), S: (0.0, 24.0)], "insets": [P: (0.0, 24.0), S: (0.0, 24.0)], "window_size": (640, 360) }
+[Mobile] actual Android View insets { "view_size": (320.0, 740.0), "decor_size": (320.0, 740.0), "render_rect": [P: (0.0, 0.0), S: (320.0, 740.0)], "system_insets": [P: (0.0, 24.0), S: (0.0, 24.0)], "insets": [P: (0.0, 24.0), S: (0.0, 24.0)], "window_size": (320, 740) }
+[ConnectFourRuntime] PASS 170 checks, 248 frames

@@ -1,0 +1,32 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart
+00:00 +0 -1: loading /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart [E]
+  Error: The Dart compiler exited unexpectedly.
+  package:flutter_tools/src/base/common.dart 34:3  throwToolExit
+  package:flutter_tools/src/compile.dart 1009:11   DefaultResidentCompiler._compile.<fn>
+  dart:async/zone_root.dart 48:47                  _rootRunUnary
+  dart:async/zone.dart 733:19                      _CustomZone.runUnary
+  dart:async/future_impl.dart 948:45               Future._propagateToListeners.handleValueCallback
+  dart:async/future_impl.dart 977:13               Future._propagateToListeners
+  dart:async/future_impl.dart 720:5                Future._completeWithValue
+  dart:async/future_impl.dart 804:7                Future._asyncCompleteWithValue.<fn>
+  dart:async/zone_root.dart 35:13                  _rootRun
+  dart:async/zone.dart 726:19                      _CustomZone.run
+  dart:async/zone.dart 625:7                       _CustomZone.runGuarded
+  dart:async/zone.dart 666:23                      _CustomZone.bindCallbackGuarded.<fn>
+  dart:async/schedule_microtask.dart 40:35         _microtaskLoop
+  dart:async/schedule_microtask.dart 49:5          _startMicrotaskLoop
+  dart:isolate-patch/isolate_patch.dart 127:13     _runPendingImmediateCallback
+  dart:isolate-patch/isolate_patch.dart 193:5      _RawReceivePort._handleMessage
+  
+00:00 +0 -1: local two-player win rewards once and replay preserves wallet
+C4TEST move 0 child=1 lumo=0 {"schema":1,"owner":"e49f3978848d384c5a68580171bd596e0c246f063bc0b0c1d118c64ac0e3f66e","id":"add96de2b806011570b746f64957d7f0","seed":1744031548,"revision":3,"twoPlayers":true,"level":"mittel","columns":[0],"rewarded":false}
+C4TEST move 6 child=1 lumo=1 {"schema":1,"owner":"e49f3978848d384c5a68580171bd596e0c246f063bc0b0c1d118c64ac0e3f66e","id":"add96de2b806011570b746f64957d7f0","seed":1744031548,"revision":4,"twoPlayers":true,"level":"mittel","columns":[0,6],"rewarded":false}
+C4TEST move 1 child=2 lumo=1 {"schema":1,"owner":"e49f3978848d384c5a68580171bd596e0c246f063bc0b0c1d118c64ac0e3f66e","id":"add96de2b806011570b746f64957d7f0","seed":1744031548,"revision":5,"twoPlayers":true,"level":"mittel","columns":[0,6,1],"rewarded":false}
+C4TEST move 6 child=2 lumo=2 {"schema":1,"owner":"e49f3978848d384c5a68580171bd596e0c246f063bc0b0c1d118c64ac0e3f66e","id":"add96de2b806011570b746f64957d7f0","seed":1744031548,"revision":6,"twoPlayers":true,"level":"mittel","columns":[0,6,1,6],"rewarded":false}
+C4TEST move 2 child=3 lumo=2 {"schema":1,"owner":"e49f3978848d384c5a68580171bd596e0c246f063bc0b0c1d118c64ac0e3f66e","id":"add96de2b806011570b746f64957d7f0","seed":1744031548,"revision":7,"twoPlayers":true,"level":"mittel","columns":[0,6,1,6,2],"rewarded":false}
+C4TEST move 5 child=3 lumo=3 {"schema":1,"owner":"e49f3978848d384c5a68580171bd596e0c246f063bc0b0c1d118c64ac0e3f66e","id":"add96de2b806011570b746f64957d7f0","seed":1744031548,"revision":8,"twoPlayers":true,"level":"mittel","columns":[0,6,1,6,2,5],"rewarded":false}
+C4TEST move 3 child=4 lumo=3 {"schema":1,"owner":"e49f3978848d384c5a68580171bd596e0c246f063bc0b0c1d118c64ac0e3f66e","id":"add96de2b806011570b746f64957d7f0","seed":1744031548,"revision":10,"twoPlayers":true,"level":"mittel","columns":[0,6,1,6,2,5,3],"rewarded":true}
+00:01 +1 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart: loading /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart

@@ -1,0 +1,196 @@
+{
+  "scope": "Independent read-only comparison of this original artifact; no app or test rerun",
+  "source": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "protected_keys": [
+    "flutter.lumo_attempt_log_v1",
+    "flutter.lumo_learning_local_student_id_v1",
+    "flutter.lumo_progress_daily::local-f613560f2e172b0a11517a18b19c330c",
+    "flutter.lumo_progress_journey_v1::local-f613560f2e172b0a11517a18b19c330c",
+    "flutter.lumo_progress_last::local-f613560f2e172b0a11517a18b19c330c",
+    "flutter.lumo_progress_skills::local-f613560f2e172b0a11517a18b19c330c",
+    "flutter.lumo_reward_wallet_v1"
+  ],
+  "profile_count_exercised": 1,
+  "profile": {
+    "id": "1794629134629450",
+    "name": "LumoTest",
+    "age": 7,
+    "grade": 1,
+    "createdAt": "2026-11-14T04:05:34.629450",
+    "lastActiveAt": "2026-11-14T04:05:34.629719"
+  },
+  "profile_fields_unchanged": {
+    "before-update": {
+      "id": true,
+      "name": true,
+      "age": true,
+      "grade": true,
+      "createdAt": true
+    },
+    "after-update": {
+      "id": true,
+      "name": true,
+      "age": true,
+      "grade": true,
+      "createdAt": true
+    },
+    "after-kart": {
+      "id": true,
+      "name": true,
+      "age": true,
+      "grade": true,
+      "createdAt": true
+    },
+    "after-restart": {
+      "id": true,
+      "name": true,
+      "age": true,
+      "grade": true,
+      "createdAt": true
+    },
+    "fold-cover": {
+      "id": true,
+      "name": true,
+      "age": true,
+      "grade": true,
+      "createdAt": true
+    },
+    "fold-open": {
+      "id": true,
+      "name": true,
+      "age": true,
+      "grade": true,
+      "createdAt": true
+    },
+    "fold-landscape": {
+      "id": true,
+      "name": true,
+      "age": true,
+      "grade": true,
+      "createdAt": true
+    }
+  },
+  "original_skill_fields": {
+    "skillId": "mathematik::plus bis 10",
+    "subject": "Mathematik",
+    "unit": "Plus bis 10",
+    "correct": 1,
+    "wrong": 0,
+    "hintCount": 0,
+    "currentStreak": 1,
+    "currentMisses": 0,
+    "difficulty": 1,
+    "lastSeen": "2026-11-14T04:06:13.623710"
+  },
+  "original_skill_value_and_type_equal": {
+    "skillId": true,
+    "subject": true,
+    "unit": true,
+    "correct": true,
+    "wrong": true,
+    "hintCount": true,
+    "currentStreak": true,
+    "currentMisses": true,
+    "difficulty": true,
+    "lastSeen": true
+  },
+  "only_new_skill_field": [
+    "independentEvidence"
+  ],
+  "new_independent_evidence": {
+    "version": 1,
+    "correct": 1,
+    "wrong": 0,
+    "correctStreak": 1,
+    "wrongStreak": 0
+  },
+  "other_protected_values_exact_after_update": {
+    "flutter.lumo_attempt_log_v1": true,
+    "flutter.lumo_learning_local_student_id_v1": true,
+    "flutter.lumo_progress_daily::local-f613560f2e172b0a11517a18b19c330c": true,
+    "flutter.lumo_progress_journey_v1::local-f613560f2e172b0a11517a18b19c330c": true,
+    "flutter.lumo_progress_last::local-f613560f2e172b0a11517a18b19c330c": true,
+    "flutter.lumo_reward_wallet_v1": true
+  },
+  "later_protected_values_exact_to_after_update": {
+    "after-kart": {
+      "flutter.lumo_attempt_log_v1": true,
+      "flutter.lumo_learning_local_student_id_v1": true,
+      "flutter.lumo_progress_daily::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_journey_v1::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_last::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_skills::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_reward_wallet_v1": true
+    },
+    "after-restart": {
+      "flutter.lumo_attempt_log_v1": true,
+      "flutter.lumo_learning_local_student_id_v1": true,
+      "flutter.lumo_progress_daily::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_journey_v1::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_last::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_skills::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_reward_wallet_v1": true
+    },
+    "fold-cover": {
+      "flutter.lumo_attempt_log_v1": true,
+      "flutter.lumo_learning_local_student_id_v1": true,
+      "flutter.lumo_progress_daily::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_journey_v1::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_last::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_skills::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_reward_wallet_v1": true
+    },
+    "fold-open": {
+      "flutter.lumo_attempt_log_v1": true,
+      "flutter.lumo_learning_local_student_id_v1": true,
+      "flutter.lumo_progress_daily::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_journey_v1::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_last::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_skills::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_reward_wallet_v1": true
+    },
+    "fold-landscape": {
+      "flutter.lumo_attempt_log_v1": true,
+      "flutter.lumo_learning_local_student_id_v1": true,
+      "flutter.lumo_progress_daily::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_journey_v1::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_last::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_progress_skills::local-f613560f2e172b0a11517a18b19c330c": true,
+      "flutter.lumo_reward_wallet_v1": true
+    }
+  },
+  "all_protected_key_sets_unchanged": true,
+  "candidate_matches_current_build": {
+    "package": true,
+    "versionCode": true,
+    "versionName": true,
+    "bytes": true,
+    "sha256": true,
+    "signingCertificateSha256": true,
+    "abis": true,
+    "godot": true
+  },
+  "build_report_sha256": "bc4e3ed92506f78526442445ee11db5a6395ed64c9cdd8c14736bd2d1776c77c",
+  "original_installed_identities": {
+    "baseline": {
+      "uid": "10209",
+      "firstInstallTime": "2026-11-14 04:04:57",
+      "versionCode": 2017
+    },
+    "updated": {
+      "uid": "10209",
+      "firstInstallTime": "2026-11-14 04:04:57",
+      "versionCode": 2019
+    }
+  },
+  "earned_stars": 1,
+  "earned_xp": 5,
+  "source_install_command": "base.adb('install', '-r', '--no-streaming', str(args.candidate), timeout=300)",
+  "install_command_scope": "Read from exact executed source; installation stdout plus identical Android UID/firstInstallTime are actual run evidence. No separate adb argument audit is claimed.",
+  "exact_probe_source": {
+    "commit": "86445f53af5d573549fc8cf03405261611f3cb7e",
+    "path": ".github/probes/lumo_2003_update_android_probe.py",
+    "sha256": "38573146ea7623a4b62759be88a982a1b8990d0beabf2c6c0df94927d16b68eb"
+  }
+}

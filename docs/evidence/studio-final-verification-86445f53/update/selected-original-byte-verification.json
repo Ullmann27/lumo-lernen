@@ -1,0 +1,258 @@
+{
+  "schema": 1,
+  "source": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "artifact_id": 14098251050,
+  "run_id": 43549076631,
+  "zip_sha256": "f081342733fe2f5cf0f2ac2cbedcf2d1ecf59e917c805476a2000bd4a7bcd5d5",
+  "selected_count": 41,
+  "selected_bytes": 22675822,
+  "checked_at_utc": "2026-11-14T04:23:00.907672+00:00",
+  "files": [
+    {
+      "path": "21_kart_real_touches.json",
+      "bytes": 104,
+      "sha256": "e533dd4a00b7fe4db7f7b77a9a9e64fbeafb850c62dd52cb15d5b901d4a9c6c2",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "21_race_drive_telemetry.json",
+      "bytes": 631,
+      "sha256": "d7275929b4fd39f8dd2532d5fa8ed0361f92bac8e3e703f2d7dd2e84b70815b2",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "21_race_driving_late_1.png",
+      "bytes": 1830775,
+      "sha256": "ced16719e7480c7467e9dbf1cdaf9db5aabbbc133eac59c6fa12629659fc9a38",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "21_stage_navigation.json",
+      "bytes": 707,
+      "sha256": "f0aca52581636e7096a3d5411e3227d454d2935d2bbd534b23097b6fc4ad7c90",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-return.json",
+      "bytes": 468,
+      "sha256": "c2990dca22d87a3e744110cc48cc52081a55ccd85746eef81d62d5fbacfd8a9d",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "23_zurueck_in_flutter.png",
+      "bytes": 1936930,
+      "sha256": "e846bf0f3d375971c52abaf33fb38708ce2933420e12d22ab475027e217a01cd",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "after-kart-preferences.xml",
+      "bytes": 4879,
+      "sha256": "eaebb63ca5984583dca58b56f75882ebec5316402eb22b5434cfc4ba1128aac6",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "after-restart-preferences.xml",
+      "bytes": 4879,
+      "sha256": "828d6920ba35293b102cbf24a75aece90eb7f46221ba6213439ff903870ac92b",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "after-update-preferences.xml",
+      "bytes": 4514,
+      "sha256": "486e870cde43786e528e6442e86c6ea8a8b7ca079347a5087cecc3d28403b8a7",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "baseline-install.txt",
+      "bytes": 138,
+      "sha256": "67bc8b2ab91619292818334ef4cc51c17346b01bc443a4f91d48dd1c55cf541a",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "baseline-learning/07-feedback.png",
+      "bytes": 1997867,
+      "sha256": "52b653993795589d93bc2987d3c1615a926144372699aa1a35f2a5f833e1c9d1",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "baseline-learning/12-restored-learning-menu.png",
+      "bytes": 1839605,
+      "sha256": "7a300ba9cfa6e2789a7ad371553bec86ccc07d111edc7987b7825f563f6ce0e1",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "baseline-learning/learning-journey-result.json",
+      "bytes": 4215,
+      "sha256": "3cd204651fd1187e684d91664da93437295f1c768cfbee3905e761236bc403be",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "baseline-package-uid.txt",
+      "bytes": 59,
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "baseline-package.txt",
+      "bytes": 9968,
+      "sha256": "a82bda64d84ac048604ebc00c2215f420763f90965b688c3abde259acec69626",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "before-update-preferences.xml",
+      "bytes": 4362,
+      "sha256": "9eb5c92273a60fc5329ca1e5825e7cd257ef9d00f73515487747c30c91a1a785",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "fatal-logcat.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "fold-cover-0.xml",
+      "bytes": 28876,
+      "sha256": "fa10ceca00d6f26c6ca774a1e38d764a25bb26d3b7dda91e75502c7a41223d0f",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "fold-cover-preferences.xml",
+      "bytes": 4879,
+      "sha256": "828d6920ba35293b102cbf24a75aece90eb7f46221ba6213439ff903870ac92b",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "fold-cover-render-readiness.json",
+      "bytes": 528,
+      "sha256": "8380b1ae815e0a4635c245a989da6469aeded9a0135e3070d726255fb2871d80",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "fold-cover.png",
+      "bytes": 2583651,
+      "sha256": "9d81faa0733e2b469d086c771b8967fa98a9fa80f0aaee739f730b7a2110dbb5",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "fold-landscape-0.xml",
+      "bytes": 30880,
+      "sha256": "0c2805d025eb1f904eb83470ebe80f8214e76510b27f7579ce4a3cf80914afe5",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "fold-landscape-preferences.xml",
+      "bytes": 4879,
+      "sha256": "828d6920ba35293b102cbf24a75aece90eb7f46221ba6213439ff903870ac92b",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "fold-landscape-render-readiness.json",
+      "bytes": 538,
+      "sha256": "f36354fe4cf2b301b218e4ef98f048224284046c5f02f9552aacc032649b1e5a",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "fold-landscape.png",
+      "bytes": 1771525,
+      "sha256": "36afc5edcdb0cce321145dde896b3182671f00d860c0e37ac997f79fd202b0b2",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "fold-open-0.xml",
+      "bytes": 28008,
+      "sha256": "e830fc34666b8a06575b1f6e5bf04739d01661f3d05801fe76244242e35cbbc8",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "fold-open-preferences.xml",
+      "bytes": 4879,
+      "sha256": "828d6920ba35293b102cbf24a75aece90eb7f46221ba6213439ff903870ac92b",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "fold-open-render-readiness.json",
+      "bytes": 527,
+      "sha256": "636624e5989f2f7d21bdad83a084282d6ebcf67a031e7ee5c6a380bf54a72dd6",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "fold-open.png",
+      "bytes": 4266822,
+      "sha256": "a9b63ee5ba95ddacd0c674040c004b0121f83d79d8b79bd36b6e0a2ac0fd142e",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "restart-profile-offline-0.xml",
+      "bytes": 28900,
+      "sha256": "e998de5b0b9b44ac05b70ac6c1f2423803f7c590ba5249b4658dc3bcf8daad53",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "restart-profile-offline-render-readiness.json",
+      "bytes": 556,
+      "sha256": "24d515b51118fac2a07156b5bd34ab6be96413f0cfa1337247134466dc0968e2",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "restart-profile-offline.png",
+      "bytes": 3099746,
+      "sha256": "43d39cdc840c4f8e8d518b5053e5510a03df17a96259a374546dedf98d463eba",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "rooted-emulator.json",
+      "bytes": 1545,
+      "sha256": "fef3147488f442d8a1f43751b6aab33599d59d9690040622efa77867759569f3",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "tested-apk-sha256.txt",
+      "bytes": 108,
+      "sha256": "c08d1edd8bdcae4a351439aa500e62a50f24faf197882b5d6fe8d8f1b4e2fe65",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "update-install.txt",
+      "bytes": 139,
+      "sha256": "336376d859c47b86adf09d932d1c43b74f291606a0d1206e86bfbd4f31b3ce87",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "update-result.json",
+      "bytes": 39868,
+      "sha256": "3a7ddbeaec4a052c688d4ce02d6d19459dc4b6450b0b196759db1b2b7cbd2436",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "updated-package-uid.txt",
+      "bytes": 59,
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "updated-package.txt",
+      "bytes": 9340,
+      "sha256": "dd8173d2dfe90053c2931d89c4c80d1ea74f0c3b131fdf09e653db9aa3cf5df2",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "updated-profile-offline-0.xml",
+      "bytes": 28900,
+      "sha256": "403b40fb6bf3c5511c58f5155bc6c79d677082d7b84a953d61ca17a17e2b0570",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "updated-profile-offline-render-readiness.json",
+      "bytes": 555,
+      "sha256": "83a6d21ab2e30c9ac39e0a3ba25e4bf2a749db6e8ee8da7fb020532db3e7ebc0",
+      "zip_member_byte_equal": true
+    },
+    {
+      "path": "updated-profile-offline.png",
+      "bytes": 3100013,
+      "sha256": "cdafbe391d4b5ba38315cacd20455a9dee0b514e1ddd211459c3c023e717f7e7",
+      "zip_member_byte_equal": true
+    }
+  ]
+}

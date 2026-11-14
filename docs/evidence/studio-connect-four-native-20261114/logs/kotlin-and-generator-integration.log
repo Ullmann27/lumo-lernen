@@ -1,0 +1,53 @@
+test_authority (test_connect_four_native_contract.ConnectFourNativeContractTest.test_authority) ... ok
+test_bind_timeout (test_connect_four_native_contract.ConnectFourNativeContractTest.test_bind_timeout) ... ok
+test_bridge_intents (test_connect_four_native_contract.ConnectFourNativeContractTest.test_bridge_intents) ... ok
+test_closed_mailbox (test_connect_four_native_contract.ConnectFourNativeContractTest.test_closed_mailbox) ... ok
+test_invalid_intents (test_connect_four_native_contract.ConnectFourNativeContractTest.test_invalid_intents) ... ok
+test_pause_stale (test_connect_four_native_contract.ConnectFourNativeContractTest.test_pause_stale) ... ok
+test_pending_terminal (test_connect_four_native_contract.ConnectFourNativeContractTest.test_pending_terminal) ... ok
+test_plugin_isolation (test_connect_four_native_contract.ConnectFourNativeContractTest.test_plugin_isolation) ... ok
+test_render_stall (test_connect_four_native_contract.ConnectFourNativeContractTest.test_render_stall) ... ok
+test_return_durable (test_connect_four_native_contract.ConnectFourNativeContractTest.test_return_durable) ... ok
+test_return_write_failure (test_connect_four_native_contract.ConnectFourNativeContractTest.test_return_write_failure) ... ok
+test_stop_resume (test_connect_four_native_contract.ConnectFourNativeContractTest.test_stop_resume) ... ok
+test_2017_events_and_legacy_kart (test_game_return_contract.GameReturnStoreTest.test_2017_events_and_legacy_kart) ... ok
+test_cold_recreated_host_preserves_fallback (test_game_return_contract.GameReturnStoreTest.test_cold_recreated_host_preserves_fallback) ... ok
+test_failed_commit_retains_fallback_and_explicit_reset_still_works (test_game_return_contract.GameReturnStoreTest.test_failed_commit_retains_fallback_and_explicit_reset_still_works) ... ok
+test_foreign_stale_and_wrong_destination (test_game_return_contract.GameReturnStoreTest.test_foreign_stale_and_wrong_destination) ... ok
+test_invalid_session_never_writes (test_game_return_contract.GameReturnStoreTest.test_invalid_session_never_writes) ... ok
+test_new_launch_supersedes_only_stale_navigation (test_game_return_contract.GameReturnStoreTest.test_new_launch_supersedes_only_stale_navigation) ... ok
+test_result_before_resume (test_game_return_contract.GameReturnStoreTest.test_result_before_resume) ... ok
+test_resume_before_result (test_game_return_contract.GameReturnStoreTest.test_resume_before_result) ... ok
+test_stale_ack_keeps_return_and_unacknowledged_rewards (test_game_return_contract.GameReturnStoreTest.test_stale_ack_keeps_return_and_unacknowledged_rewards) ... ok
+test_completion_is_live_session_bound_and_commit_precedes_success_and_unlock (test_game_return_contract.GameReturnWiringTest.test_completion_is_live_session_bound_and_commit_precedes_success_and_unlock) ... ok
+test_native_persists_fallback_before_return_and_retains_process_shutdown (test_game_return_contract.GameReturnWiringTest.test_native_persists_fallback_before_return_and_retains_process_shutdown) ... ok
+test_validated_private_launch_owns_learning_cards_and_separate_connect_four (test_game_return_contract.GameReturnWiringTest.test_validated_private_launch_owns_learning_cards_and_separate_connect_four) ... ok
+test_same_package_private_engine_repeatable_preparation (test_embedded_android.EmbeddedAndroidTest.test_same_package_private_engine_repeatable_preparation) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 29.425s
+
+OK
+CONNECT_FOUR_NATIVE_PASS authority
+CONNECT_FOUR_NATIVE_PASS bind-timeout
+CONNECT_FOUR_NATIVE_PASS bridge-intents
+CONNECT_FOUR_NATIVE_PASS closed-mailbox
+CONNECT_FOUR_NATIVE_PASS invalid-intents
+CONNECT_FOUR_NATIVE_PASS pause-stale
+CONNECT_FOUR_NATIVE_PASS pending-terminal
+CONNECT_FOUR_NATIVE_PASS plugin-isolation
+CONNECT_FOUR_NATIVE_PASS render-stall
+CONNECT_FOUR_NATIVE_PASS return-durable
+CONNECT_FOUR_NATIVE_PASS return-write-failure
+CONNECT_FOUR_NATIVE_PASS stop-resume
+GAME_RETURN_STORE_PASS legacy-2017
+GAME_RETURN_STORE_PASS cold-recreated
+GAME_RETURN_STORE_PASS storage-failure-and-reset
+GAME_RETURN_STORE_PASS foreign-stale-and-destination
+GAME_RETURN_STORE_PASS invalid-session
+GAME_RETURN_STORE_PASS new-launch-stale-navigation
+GAME_RETURN_STORE_PASS result-before-resume
+GAME_RETURN_STORE_PASS resume-before-result
+GAME_RETURN_STORE_PASS stale-ack-and-rewards
+Embedded Godot host prepared; same APK, private activity, durable reward events.
+Embedded Godot host prepared; same APK, private activity, durable reward events.

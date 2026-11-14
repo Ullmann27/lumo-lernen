@@ -1,0 +1,96 @@
+{
+  "status": "PASS",
+  "expected_captions": [
+    "Erklärung lesen",
+    "Schritt 6 von 6"
+  ],
+  "frames": [
+    {
+      "status": "CONFIRMED_FLUTTER_PIXELS",
+      "source": "05_learning_same_flutter_lesson-return-candidate-1.png",
+      "source_sha256": "541acdabe5635756f87c8967a98c29ccac7ed697e387d98f633e7620110ced1b",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 6.128,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      },
+      "captions": [
+        {
+          "expected": "Erklärung lesen",
+          "ocr": {
+            "text": "Erklärung lesen",
+            "bounds": [
+              168.0,
+              1736.0,
+              445.0,
+              1771.0
+            ],
+            "variant": "contrast"
+          }
+        },
+        {
+          "expected": "Schritt 6 von 6",
+          "ocr": {
+            "text": "Schritt 6 von 6",
+            "bounds": [
+              97.0,
+              1109.0,
+              393.0,
+              1140.0
+            ],
+            "variant": "contrast"
+          }
+        }
+      ]
+    },
+    {
+      "status": "CONFIRMED_FLUTTER_PIXELS",
+      "source": "05_learning_same_flutter_lesson-return-candidate-2.png",
+      "source_sha256": "541acdabe5635756f87c8967a98c29ccac7ed697e387d98f633e7620110ced1b",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 6.128,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      },
+      "captions": [
+        {
+          "expected": "Erklärung lesen",
+          "ocr": {
+            "text": "Erklärung lesen",
+            "bounds": [
+              168.0,
+              1736.0,
+              445.0,
+              1771.0
+            ],
+            "variant": "contrast"
+          }
+        },
+        {
+          "expected": "Schritt 6 von 6",
+          "ocr": {
+            "text": "Schritt 6 von 6",
+            "bounds": [
+              97.0,
+              1109.0,
+              393.0,
+              1140.0
+            ],
+            "variant": "contrast"
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Unmodified consecutive Android captures plus actual OCR; no input or state repair",
+  "consecutive_confirmed_frames": 2,
+  "source": "05_learning_same_flutter_lesson.png",
+  "source_sha256": "541acdabe5635756f87c8967a98c29ccac7ed697e387d98f633e7620110ced1b",
+  "elapsed_seconds": 4.873846
+}
