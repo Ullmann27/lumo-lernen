@@ -1,0 +1,109 @@
+{
+  "source_sha": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "run_id": 43616038272,
+  "run_attempt": 1,
+  "artifact_id": 14122179663,
+  "original_archive_sha256": "a7c841acff29e762f19fcd11a55e34bb070ae37a2ac91d112d345fed051a390b",
+  "images": [
+    {
+      "path": "home-premium/fold-cover-learning-cards.png",
+      "bytes": 684983,
+      "sha256": "daacd2d4a91d121022bf63cd43b3d9778f24ac9522b1f30778581dd412b39bab",
+      "zip_crc32": "a3a1d53d",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "home-premium/fold-cover-start.png",
+      "bytes": 1355033,
+      "sha256": "d7ef4b21860e3741864b3aa3fab754dab490faa55aac6d08823f697446caf4e0",
+      "zip_crc32": "b7817218",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "home-premium/fold-open-learning-cards.png",
+      "bytes": 1804878,
+      "sha256": "63cc52a93abbb90ea3e7b793bb83d857f06c0a53fbd109a47671dd168a18a6f8",
+      "zip_crc32": "5bf2994b",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1920
+    },
+    {
+      "path": "home-premium/large-text-learning-cards.png",
+      "bytes": 2275791,
+      "sha256": "e2c082d2df2bb1a57fe19e77e10d28fca7e871c95987f8f5eeeceacf3f130930",
+      "zip_crc32": "4a0891e5",
+      "extracted_original_text": false,
+      "width": 1800,
+      "height": 2400
+    },
+    {
+      "path": "home-premium/phone-learning-cards.png",
+      "bytes": 946745,
+      "sha256": "d942ce36645ad2127b78951fe5148c300898469681e0b8dbf1a4273d3a3bc073",
+      "zip_crc32": "24934edb",
+      "extracted_original_text": false,
+      "width": 786,
+      "height": 1704
+    },
+    {
+      "path": "village/village-fold-cover.png",
+      "bytes": 337946,
+      "sha256": "fa00127e0316de2b083ba8d55578f79e01197203cacc2ad5ff3431d0a47b6361",
+      "zip_crc32": "b8f1ffc6",
+      "extracted_original_text": false,
+      "width": 344,
+      "height": 882
+    },
+    {
+      "path": "village/village-fold-landscape.png",
+      "bytes": 1102593,
+      "sha256": "213edb9568f70aa0cb1673d06cc5ce242a37385cc29803b69fe5371698ee92ac",
+      "zip_crc32": "c469eb91",
+      "extracted_original_text": false,
+      "width": 1200,
+      "height": 900
+    },
+    {
+      "path": "village/village-fold-open-large-text.png",
+      "bytes": 600959,
+      "sha256": "a2397df28ac69a41b918a0ea6ffb741bc92b2b7c7cb833874881652bf6ec6d18",
+      "zip_crc32": "1c776c5b",
+      "extracted_original_text": false,
+      "width": 690,
+      "height": 829
+    },
+    {
+      "path": "village/village-fold-open.png",
+      "bytes": 595416,
+      "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f",
+      "zip_crc32": "5c0e14e1",
+      "extracted_original_text": false,
+      "width": 690,
+      "height": 829
+    },
+    {
+      "path": "village/village-fold-wide-min.png",
+      "bytes": 555532,
+      "sha256": "a3593c4b81d93ea955f5502b1a50dcad759312c753ebd4b8a4d3bc28ab42e9e9",
+      "zip_crc32": "c6800a03",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 829
+    },
+    {
+      "path": "village/village-phone.png",
+      "bytes": 401998,
+      "sha256": "12e3d0ca6f514f12b58106ddb1a197bdaa09a773a2703e5d4708db8d6e710dc7",
+      "zip_crc32": "5bc2fdf7",
+      "extracted_original_text": false,
+      "width": 412,
+      "height": 915
+    }
+  ],
+  "image_changes": "None; original ZIP member bytes extracted and SHA256 verified"
+}
