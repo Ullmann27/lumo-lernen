@@ -9,9 +9,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/games/connect_four/lumo_connect_four_game.dart';
 
 void main() {
+  const bridge = MethodChannel('lumo_lernen/connect_four');
+  setUp(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+            bridge,
+            (_) async =>
+                throw MissingPluginException('Flutter fallback fixture'));
+  });
+  tearDown(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(bridge, null);
+  });
   setUpAll(() async {
     await (FontLoader('Nunito')
           ..addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'))
@@ -34,7 +47,11 @@ void main() {
       LumoVoice.instance.isEnabled = false;
       await tester.binding.setSurfaceSize(size);
       addTearDown(() => tester.binding.setSurfaceSize(null));
-      final app = LumoAppState();
+      final app = LumoAppState(walletRepository: RewardWalletRepository());
+      addTearDown(() async {
+        await tester.pumpWidget(const SizedBox());
+        app.dispose();
+      });
       await app.hydrateFromWallet();
       const key = ValueKey('connect-capture');
       await tester.pumpWidget(MaterialApp(
@@ -44,8 +61,7 @@ void main() {
           child: LumoConnectFourScreen(appState: app, seed: 1),
         ),
       ));
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 100));
+      await _waitForPlayableBoard(tester);
       await tester.runAsync(() async {
         final context = tester.element(find.byType(LumoConnectFourScreen));
         for (final asset in [
@@ -57,13 +73,25 @@ void main() {
       });
       await tester.pump();
       // Capture actual gameplay, not an empty concept board.
+      expect(find.byKey(const ValueKey('connect-mode-true')).hitTestable(),
+          findsOneWidget);
       await tester.tap(find.byKey(const ValueKey('connect-mode-true')));
-      await tester.pump();
+      await _waitForPlayableBoard(tester);
+      expect(find.byKey(const ValueKey('connect-level-mittel')), findsNothing);
       for (final column in [3, 2, 3, 2, 4, 5]) {
         await tester.tap(find.byKey(ValueKey('connect-column-$column')));
-        await tester.pump(const Duration(milliseconds: 400));
-        await tester.pump();
+        await _waitForPlayableBoard(tester);
       }
+      var occupiedCells = 0;
+      for (var row = 0; row < 6; row++) {
+        for (var column = 0; column < 7; column++) {
+          final cell = tester.widget<Semantics>(
+              find.byKey(ValueKey('connect-cell-$row-$column')));
+          if (!cell.properties.label!.endsWith(': empty')) occupiedCells++;
+        }
+      }
+      expect(occupiedCells, 6,
+          reason: 'The capture must show all six real moves.');
       if (size.width > size.height) {
         final fox =
             tester.getRect(find.byKey(const ValueKey('connect-companion-fox')));
@@ -80,6 +108,8 @@ void main() {
             tester.getRect(find.byKey(ValueKey('connect-column-$column')));
         expect(control.center.dx, closeTo(cell.center.dx, 1),
             reason: 'Each drop button must align with its board column.');
+        expect(control.width, greaterThanOrEqualTo(48));
+        expect(control.height, greaterThanOrEqualTo(48));
       }
       final folder = Platform.environment['LUMO_CONNECT_CAPTURES'];
       if (folder != null) {
@@ -96,8 +126,19 @@ void main() {
         });
       }
       expect(tester.takeException(), isNull);
-      await tester.pumpWidget(const SizedBox());
-      app.dispose();
     });
   }
+}
+
+Future<void> _waitForPlayableBoard(WidgetTester tester) async {
+  final column = find.byKey(const ValueKey('connect-column-0'));
+  for (var frame = 0; frame < 50; frame++) {
+    await tester.pump(const Duration(milliseconds: 100));
+    if (column.evaluate().isNotEmpty &&
+        tester.widget<IconButton>(column).onPressed != null &&
+        find.byKey(const ValueKey('lumo-pause-panel')).evaluate().isEmpty) {
+      return;
+    }
+  }
+  fail('The real Flutter board did not become playable within five seconds.');
 }
