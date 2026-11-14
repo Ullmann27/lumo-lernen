@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "status": "V2_SOURCE_PREPARED_PNG_TESTS_NOT_YET_EXECUTED",
+  "accepted_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "unchanged_driver_blob": "3c81457f029952ea4125bdb20da9e89a4f15d3b8",
+  "successful_prior_selftest": {
+    "run": 43622436508,
+    "attempt": 1,
+    "tests": 24,
+    "syntax": true,
+    "known_original_png_transport": true,
+    "source": "28ec801a81de99b0480e1c3cd578d064e491df56"
+  },
+  "changes": [
+    {
+      "path": "docs/evidence/original-replay-preparation-6b-20261114/original_png_transport.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88388945e5e31eaefb2dad69f400b93f65a6b94a"
+    },
+    {
+      "path": "docs/evidence/original-replay-preparation-6b-20261114/test_original_png_transport.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "313fdb2c57f018cf251be00b6171fccb3c2bfa67"
+    },
+    {
+      "path": ".github/workflows/lumo-original-replay-6b.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd0cfaba2b3eb4b9d275b5d7dc2f5b682586b116"
+    },
+    {
+      "path": ".github/workflows/lumo-original-replay-selftest-6b.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1e4f063037ac343400f053ff77945c0b8d8ddf6"
+    }
+  ],
+  "additional_test_methods": 3,
+  "original_reader_activated": false,
+  "publisher_activated": false,
+  "scope": "Add exact accepted original PNG selection and unchanged byte transport, plus a pre-download compressed archive budget. Accepted app source and all existing source-bound verification calls remain unchanged."
+}

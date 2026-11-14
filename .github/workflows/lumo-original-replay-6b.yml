@@ -50,6 +50,8 @@ jobs:
           bindings = {
               "original_replay.py": "3c81457f029952ea4125bdb20da9e89a4f15d3b8",
               "test_original_replay.py": "11c5ad2de2ce556a66273c776da2947ad23de8cd",
+              "original_png_transport.py": "88388945e5e31eaefb2dad69f400b93f65a6b94a",
+              "test_original_png_transport.py": "313fdb2c57f018cf251be00b6171fccb3c2bfa67",
           }
           root = Path("publication/reader-replay/code")
           for name, expected in bindings.items():
@@ -80,6 +82,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 -B publication/reader-replay/code/test_original_replay.py 2>&1 | tee publication/reader-replay/selftests.original.log
+          python3 -B publication/reader-replay/code/test_original_png_transport.py 2>&1 | tee publication/reader-replay/png-selftests.original.log
 
       - name: Revalidate the exact additional Native and Feature acceptance
         env:
@@ -398,6 +401,26 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python3 -B - <<'PY'
+          import json, shutil, sys
+          from pathlib import Path
+          sys.path.insert(0, str(Path("publication/reader-replay/code").resolve()))
+          import original_replay as reader
+          facts = reader.read(Path("publication/delivery/assets/C4-DELIVERY-FACTS.json"))
+          rows = facts["original_artifacts"]
+          reader.require(set(rows) == set(reader.DESTINATIONS), "Incomplete original archive budget roster")
+          reader.require(all(type(row["size_in_bytes"]) is int and 0 < row["size_in_bytes"] <= reader.MAX_ARCHIVE for row in rows.values()),
+                         "An API-declared original archive exceeds the per-archive download bound")
+          total = sum(row["size_in_bytes"] for row in rows.values())
+          free = shutil.disk_usage(".").free
+          reader.require(total <= 8 * 1024**3, "Cumulative original compressed download exceeds 8GiB")
+          reader.require(free > total + 1024**3, "Insufficient free space for the compressed original downloads")
+          result = {"status": "PASS_COMPRESSED_DOWNLOAD_BUDGET",
+                    "archives": len(rows), "compressed_original_bytes": total, "free_bytes_before_download": free,
+                    "scope": "Compressed download bound only. ZIP expansion/member bounds and exact original contents are checked separately during extraction."}
+          reader.write_new(reader.OUTPUT / "download-budget.json", result)
+          print("ORIGINAL_ARCHIVE_DOWNLOAD_BUDGET " + json.dumps(result, sort_keys=True))
+          PY
           python3 -B publication/reader-replay/code/original_replay.py extract
 
       - name: Replay both original APKs and all current mandatory original proofs
@@ -424,6 +447,12 @@ jobs:
         run: |
           set -euo pipefail
           python3 -B publication/reader-replay/code/original_replay.py finalize
+
+      - name: Transport eight unchanged accepted original PNGs for independent review
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B publication/reader-replay/code/original_png_transport.py
 
       - name: Preserve exact reader receipts and original failure evidence
         if: always()

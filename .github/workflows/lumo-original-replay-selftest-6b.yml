@@ -1,4 +1,4 @@
-name: Test LUMO original archive reader and unchanged image transport
+name: Test LUMO original reader and accepted PNG selection
 
 on:
   push:
@@ -45,7 +45,9 @@ jobs:
           bindings = {
               "original_replay.py": "3c81457f029952ea4125bdb20da9e89a4f15d3b8",
               "test_original_replay.py": "11c5ad2de2ce556a66273c776da2947ad23de8cd",
-              "review-workflow.yml": "5bc0b97f8b76f9f1500c41bd1eec90f3dc483847",
+              "original_png_transport.py": "88388945e5e31eaefb2dad69f400b93f65a6b94a",
+              "test_original_png_transport.py": "313fdb2c57f018cf251be00b6171fccb3c2bfa67",
+              "review-workflow.yml": "fd0cfaba2b3eb4b9d275b5d7dc2f5b682586b116",
               "publisher-reviewed.yml": "c4a901a649f49b80cd16e22ece3c40b1a3cbd12d",
           }
           root = Path("publication/reader-replay/code")
@@ -64,7 +66,7 @@ jobs:
           "$RUNNER_TEMP/lumo-original-replay-python/bin/python" -m pip install --disable-pip-version-check Pillow==12.3.0 PyYAML==6.0.3
           printf '%s\n' "$RUNNER_TEMP/lumo-original-replay-python/bin" >> "$GITHUB_PATH"
 
-      - name: Check real workflow syntax and execute archive tamper regressions
+      - name: Check actual workflow syntax and original archive and PNG safeguards
         shell: bash
         run: |
           set -euo pipefail
@@ -106,10 +108,10 @@ jobs:
               for part, block in enumerate(re.findall(r"<<'PY'\n(.*?)\nPY(?:\n|$)", script, re.S), 1):
                   ast.parse(block, filename=f"workflow-step-{number}-python-{part}.py")
                   python_blocks += 1
-          for filename in ("original_replay.py", "test_original_replay.py"):
+          for filename in ("original_replay.py", "test_original_replay.py", "original_png_transport.py", "test_original_png_transport.py"):
               ast.parse((root / filename).read_text(), filename=filename)
           result = {"status": "PASS_STATIC_SOURCE_AND_SYNTAX", "bash_blocks": bash_blocks,
-                    "python_heredocs": python_blocks, "standalone_python_files": 2,
+                    "python_heredocs": python_blocks, "standalone_python_files": 4,
                     "original_publisher_steps_unchanged": 7, "write_permissions": False,
                     "original_acceptance_executed": False}
           with Path("publication/reader-replay/syntax-result.json").open("x") as handle:
@@ -117,45 +119,9 @@ jobs:
           print("ORIGINAL_READER_SYNTAX " + json.dumps(result, sort_keys=True))
           PY
           python3 -B publication/reader-replay/code/test_original_replay.py 2>&1 | tee publication/reader-replay/selftests.original.log
+          python3 -B publication/reader-replay/code/test_original_png_transport.py 2>&1 | tee publication/reader-replay/png-selftests.original.log
 
-      - name: Transfer one unchanged previously reviewed original PNG without the local executor
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 -B - <<'PY'
-          import base64, hashlib, io, json, subprocess
-          from pathlib import Path
-          from PIL import Image
-          expected = "d26cb04b370a3af9211b51f4dacb3c3956bdd2a2"
-          item = json.loads(subprocess.check_output(["gh", "api", "repos/Ullmann27/lumo-godot/git/blobs/" + expected]))
-          assert item["sha"] == expected and item["encoding"] == "base64"
-          payload = base64.b64decode("".join(item["content"].split()), validate=True)
-          assert len(payload) == 1852218
-          assert hashlib.sha256(payload).hexdigest() == "2a340a7bb05ae9cbf70feb02d8b2deead48578aae08990b9d08c2884d96aeed9"
-          assert hashlib.sha1(b"blob " + str(len(payload)).encode() + b"\0" + payload).hexdigest() == expected
-          with Image.open(io.BytesIO(payload)) as picture:
-              assert picture.format == "PNG" and picture.size == (2400, 1080)
-              picture.verify()
-          encoded = base64.b64encode(payload).decode("ascii")
-          chunks = [encoded[start:start + 8192] for start in range(0, len(encoded), 8192)]
-          metadata = {"id": "native847-dense-left-cutout", "kind": "unchanged_previously_reviewed_original",
-                      "source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
-                      "evidence_commit": "1a96e90bcbd927e458ccc2c2626d2e4b979a429e",
-                      "path": "docs/evidence/native-discovery-847-43613299144/originals/mobile-minimap/captures/minimap/dense-left-cutout.png",
-                      "git_blob": expected, "sha256": hashlib.sha256(payload).hexdigest(),
-                      "bytes": len(payload), "mime_type": "image/png", "width": 2400, "height": 1080,
-                      "encoded_characters": len(encoded), "parts": len(chunks)}
-          with Path("publication/reader-replay/image-transport-metadata.json").open("x") as handle:
-              handle.write(json.dumps(metadata, indent=2, sort_keys=True) + "\n")
-          print("LUMO_PNG_BEGIN " + json.dumps(metadata, sort_keys=True), flush=True)
-          for index, chunk in enumerate(chunks):
-              print("LUMO_PNG_PART " + json.dumps({"id": metadata["id"], "index": index, "data": chunk}, sort_keys=True), flush=True)
-          print("LUMO_PNG_END " + json.dumps({"id": metadata["id"], "parts": len(chunks), "sha256": metadata["sha256"]}, sort_keys=True), flush=True)
-          PY
-
-      - name: Preserve actual selftest and transport originals
+      - name: Preserve actual selftest originals
         if: always()
         uses: actions/upload-artifact@v4
         with:
