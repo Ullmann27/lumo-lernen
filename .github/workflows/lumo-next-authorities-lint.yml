@@ -49,7 +49,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import ast, hashlib, json, os, pathlib, subprocess, sys, textwrap
+          import ast, hashlib, json, os, pathlib, shlex, subprocess, sys, textwrap
           root = pathlib.Path.cwd()
           proof = pathlib.Path(os.environ['LUMO_LINT_PROOF'])
           def git(*args):
@@ -75,9 +75,17 @@ jobs:
               lines = raw.decode('utf-8').splitlines()
               position = 0
               while position < len(lines):
-                  if not lines[position].rstrip().endswith("<<'PY'"):
+                  _, marker, suffix = lines[position].partition("<<'PY'")
+                  if not marker:
                       position += 1
                       continue
+                  redirects = shlex.split(suffix, posix=True)
+                  if len(redirects) % 2 or any(
+                      redirects[index] not in ('>', '1>', '2>', '>>', '1>>', '2>>')
+                      or not redirects[index + 1]
+                      for index in range(0, len(redirects), 2)
+                  ):
+                      raise ValueError('Unsupported original Python heredoc suffix')
                   start = position + 1
                   position = start
                   while position < len(lines) and lines[position].strip() != 'PY':
@@ -90,9 +98,14 @@ jobs:
                                  'last_line': position,
                                  'sha256': hashlib.sha256(code.encode()).hexdigest()})
                   position += 1
-          if not any(row['path'] == paths[0] for row in blocks):
-              raise ValueError('No original qualification Python blocks were parsed')
+          expected_counts = {paths[0]: 9, paths[1]: 2}
+          actual_counts = {relative: sum(row['path'] == relative for row in blocks)
+                           for relative in paths}
+          if actual_counts != expected_counts:
+              raise ValueError('Original Python heredoc roster differs: ' + repr(actual_counts))
           result = {'schema': 1, 'status': 'PASS', 'head': head, 'tree': tree,
+                    'expected_python_block_counts': expected_counts,
+                    'actual_python_block_counts': actual_counts,
                     'python_version': sys.version, 'files': records,
                     'parsed_original_python_blocks': blocks,
                     'scope': 'Workflow and embedded Python syntax only; no imports or product execution'}
