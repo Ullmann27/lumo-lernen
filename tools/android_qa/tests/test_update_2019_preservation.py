@@ -94,7 +94,24 @@ class StudioUpdateWrapperExecutionTests(unittest.TestCase):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
         self.directory = Path(temporary.name)
-        self.native = json.loads((_ROOT / 'config/godot-source.json').read_text())['revision']
+        # Historical identity already approved by the unchanged real policy.
+        # Never borrow the running checkout's current release or native pin.
+        self.native = '17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845'
+        self.source_fixture = self.directory / 'reviewed-2019-source'
+        policy = self.source_fixture / 'scripts/verify_legacy_release_pin.py'
+        policy.parent.mkdir(parents=True)
+        policy.write_bytes((_ROOT / 'scripts/verify_legacy_release_pin.py').read_bytes())
+        (self.source_fixture / 'pubspec.yaml').write_text('version: 0.13.7+2019\n')
+        self.source_config = {
+            'repository': 'https://github.com/Ullmann27/lumo-godot.git',
+            'revision': self.native, 'engine': '4.6.3',
+        }
+        (self.source_fixture / 'config').mkdir()
+        (self.source_fixture / 'config/godot-source.json').write_text(
+            json.dumps(self.source_config))
+        self.wrapper = self.source_fixture / '.github/probes/lumo_2019_update_android_probe.py'
+        self.wrapper.parent.mkdir(parents=True)
+        self.wrapper.write_bytes((_ROOT / '.github/probes/lumo_2019_update_android_probe.py').read_bytes())
         self.paths = {}
         for label, version, source, native in (
             ('baseline', 2017, self.baseline_source, self.baseline_native),
@@ -139,7 +156,7 @@ class StudioUpdateWrapperExecutionTests(unittest.TestCase):
                 contextlib.redirect_stdout(io.StringIO()):
             spec.loader.exec_module(module)
             with self.assertRaises(SystemExit) as stopped:
-                runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+                runpy.run_path(str(self.wrapper),
                                run_name='__main__')
         # This unit probe deliberately cannot issue Android PASS.
         self.assertEqual(stopped.exception.code, 1)
@@ -184,6 +201,33 @@ class StudioUpdateWrapperExecutionTests(unittest.TestCase):
                     boundary.assert_not_called()
                 finally:
                     path.write_bytes(original)
+
+
+    def test_actual_wrapper_rejects_2020_and_unreviewed_2019_before_runner(self):
+        policy = runpy.run_path(
+            str(self.source_fixture / 'scripts/verify_legacy_release_pin.py'),
+            run_name='historical_2019_policy_test')
+        cases = (
+            ('reviewed-2020', 'version: 0.13.8+2020\n',
+             {**self.source_config, 'revision': policy['APPROVED'][2020]},
+             'This update proof requires candidate version 2019'),
+            ('unreviewed-2019', 'version: 0.13.7+2019\n',
+             {**self.source_config, 'revision': '0' * 40},
+             'Native revision mismatch for build 2019'),
+        )
+        runner = types.ModuleType('lumo_2003_update_android_probe')
+        runner.main = mock.Mock(side_effect=AssertionError(
+            'Rejected historical configuration reached the update runner'))
+        with mock.patch.dict(sys.modules, {runner.__name__: runner}), \
+                mock.patch.dict(os.environ, {}):
+            for label, pubspec, source_config, error in cases:
+                with self.subTest(configuration=label):
+                    (self.source_fixture / 'pubspec.yaml').write_text(pubspec)
+                    (self.source_fixture / 'config/godot-source.json').write_text(
+                        json.dumps(source_config))
+                    with self.assertRaisesRegex(ValueError, error):
+                        runpy.run_path(str(self.wrapper), run_name='__main__')
+                    runner.main.assert_not_called()
 
 
 if __name__ == '__main__':
