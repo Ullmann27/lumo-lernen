@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/live/lumo_live_pro_screen.dart';
 import 'package:lumo_lernen/features/photo_lesson/lumo_photo_lesson_screen.dart';
 import 'package:lumo_lernen/widgets/scan_screen.dart';
@@ -29,6 +30,48 @@ class _CameraPicker extends ImagePickerPlatform {
     return path == null ? null : XFile(path);
   }
 }
+
+// Identify the animal actually shown by the public Safari widget.
+const _safariAnimalNames = <String, String>{
+  '🦁': 'Loewe',
+  '🐘': 'Elefant',
+  '🦒': 'Giraffe',
+  '🦓': 'Zebra',
+  '🐒': 'Affe',
+  '🐯': 'Tiger',
+  '🐻': 'Baer',
+  '🐺': 'Wolf',
+  '🦉': 'Eule',
+  '🐧': 'Pinguin',
+  '🐬': 'Delfin',
+  '🦋': 'Schmetterling',
+  '🐕': 'Hund',
+  '🐈': 'Katze',
+  '🐎': 'Pferd',
+  '🐄': 'Kuh',
+  '🐑': 'Schaf',
+  '🐖': 'Schwein',
+  '🐊': 'Krokodil',
+  '🦏': 'Nashorn',
+  '🦛': 'Flusspferd',
+  '🦘': 'Kaenguru',
+  '🐨': 'Koala',
+  '🦥': 'Faultier',
+  '🦈': 'Hai',
+  '🐳': 'Wal',
+  '🦭': 'Robbe',
+  '🐻‍❄️': 'Eisbaer',
+  '🦌': 'Rentier',
+  '🦊': 'Fuchs',
+  '🐿️': 'Eichhoernchen',
+  '🦔': 'Igel',
+  '🐸': 'Frosch',
+  '🐢': 'Schildkroete',
+  '🦅': 'Adler',
+  '🦜': 'Papagei',
+  '🐝': 'Biene',
+  '🐞': 'Marienkaefer',
+};
 
 void main() {
   final sensorCalls = <MethodCall>[];
@@ -73,18 +116,20 @@ void main() {
   });
 
   Future<LumoAppState> openPhotoQuiz(WidgetTester tester,
-      {bool cameraAllowed = true}) async {
+      {bool cameraAllowed = true,
+      bool microphoneAllowed = false,
+      RewardWalletRepository? walletRepository}) async {
     await tester.binding.setSurfaceSize(const Size(900, 1600));
     SharedPreferences.setMockInitialValues({
       'lumo_app_settings_v1': jsonEncode(AppSettings(
-        microphoneEnabled: false,
+        microphoneEnabled: microphoneAllowed,
         scannerEnabled: cameraAllowed,
         voiceEnabled: false,
       ).toJson()),
     });
     late LumoAppState state;
     await tester.runAsync(() async {
-      state = LumoAppState();
+      state = LumoAppState(walletRepository: walletRepository);
       await state.ensureSettingsLoaded();
       await state.loadLearningProfile();
     });
@@ -121,6 +166,27 @@ void main() {
 
   Finder capturedImage() => find.byWidgetPredicate(
       (widget) => widget is Image && widget.image is FileImage);
+
+  Future<void> deliverFinalSpeech(WidgetTester tester, String words) async {
+    // Exercise the locked speech_to_text 7.5.0 platform protocol. The real
+    // listener and screen callbacks remain installed by the visible button.
+    const codec = StandardMethodCodec();
+    final dispatch = tester.binding.defaultBinaryMessenger.handlePlatformMessage(
+      'plugin.csdcorp.com/speech_to_text',
+      codec.encodeMethodCall(MethodCall('textRecognition', jsonEncode({
+        'alternates': [
+          {'recognizedWords': words, 'confidence': 1.0},
+        ],
+        'resultType': 2,
+      }))),
+      null,
+    );
+    await tester.pump();
+    final response = await dispatch;
+    expect(response, isNotNull,
+        reason: 'The real plugin must receive the native recognition event.');
+    expect(codec.decodeEnvelope(response!), isNull);
+  }
 
   void expectNoMicrophone() {
     expect(
@@ -463,4 +529,132 @@ void main() {
     state.dispose();
     expect(tester.takeException(), isNull);
   });
+
+  for (final correct in [true, false]) {
+    for (final continuation in [
+      'word magic',
+      'safari round trip',
+      'unchanged safari',
+      'profile change',
+    ]) {
+      testWidgets(
+          'Live safari ${correct ? 'correct' : 'wrong'} answer keeps its delayed continuation bound during $continuation',
+          (tester) async {
+        final wallet = RewardWalletRepository();
+        final state = await openPhotoQuiz(tester,
+            microphoneAllowed: true, walletRepository: wallet);
+        final messenger = tester.binding.defaultBinaryMessenger;
+        const speech = MethodChannel('plugin.csdcorp.com/speech_to_text');
+        messenger.setMockMethodCallHandler(speech, (call) async {
+          sensorCalls.add(call);
+          return switch (call.method) {
+            'initialize' || 'listen' => true,
+            'locales' => <String>['de_AT:Deutsch (Österreich)'],
+            'stop' || 'cancel' => null,
+            _ => throw StateError('Unexpected speech call: ${call.method}'),
+          };
+        });
+        await tester.tap(find.text('Tier-Safari').first);
+        await settleLocalOperations(tester);
+        final animal = find.byWidgetPredicate((widget) =>
+            widget is Text && widget.style?.fontSize == 112);
+        await tester.ensureVisible(animal);
+        await tester.pump();
+        expect(animal.hitTestable(), findsOneWidget);
+        final name = _safariAnimalNames[tester.widget<Text>(animal).data];
+        expect(name, isNotNull,
+            reason: 'Answer the actual visible animal, not a private state.');
+        expect(find.text('0 von 1'), findsOneWidget);
+        late LearningProfileLease owner;
+        await tester.runAsync(() async {
+          owner = await state.captureLearningProfile();
+        });
+        expect(state.isCurrentLearningLease(owner), isTrue);
+
+        await pressAction(tester, 'Sprechen');
+        final listens = sensorCalls.where((call) => call.method == 'listen');
+        expect(listens, hasLength(1));
+        expect((listens.single.arguments as Map)['onDevice'], isTrue);
+        await deliverFinalSpeech(tester, correct ? name! : 'ein blaues Fahrrad');
+        final feedback = correct
+            ? 'Richtig! Das ist ein $name!'
+            : 'Hmm, nicht ganz. Es ist ein $name. Versuch noch eins!';
+        expect(find.text(feedback), findsOneWidget);
+        expect(find.text('${correct ? 1 : 0} von 1'), findsOneWidget);
+        await tester.runAsync(state.flushRewards);
+        final earned = correct ? (2, 10) : (0, 0);
+        expect((wallet.snapshot.stars, wallet.snapshot.xp), earned);
+        expect((state.state.stars, state.state.xp), earned);
+
+        // A correct answer opens the real reward route. Dismiss that route
+        // through its visible content before touching the underlying modes.
+        // These 500 ms remain below both the 2200 and 2500 ms continuations.
+        await tester.pump(const Duration(milliseconds: 200));
+        if (correct) {
+          final reward = find.text('+10 XP');
+          expect(reward.hitTestable(), findsOneWidget);
+          await tester.tap(reward);
+        }
+        await tester.pump(const Duration(milliseconds: 300));
+        expect(find.text('+10 XP'), findsNothing);
+        expect(find.text('${correct ? 1 : 0} von 1'), findsOneWidget);
+
+        if (continuation == 'word magic' ||
+            continuation == 'safari round trip') {
+          final mode = find.text('Wort-Magie').first;
+          expect(mode.hitTestable(), findsOneWidget);
+          await tester.tap(mode);
+          await tester.pump();
+          expect(find.text('Sag mir ein Wort und ich erkläre es dir!'),
+              findsOneWidget);
+          if (continuation == 'safari round trip') {
+            await tester.tap(find.text('Tier-Safari').first);
+            await tester.pump();
+            expect(find.text('0 von 1'), findsOneWidget);
+          }
+        } else if (continuation == 'profile change') {
+          await tester.runAsync(() async {
+            await state.school.setActiveStudent('safari-next-owner');
+            await state.loadLearningProfile();
+          });
+          expect(state.isCurrentLearningLease(owner), isFalse);
+        }
+        final beforeDelay = (state.state.stars, state.state.xp);
+        await tester.pump(const Duration(seconds: 3));
+        await settleLocalOperations(tester);
+
+        if (continuation == 'word magic') {
+          expect(find.text('Sag mir ein Wort und ich erkläre es dir!'),
+              findsOneWidget);
+          expect(find.text('Welches Tier siehst du? Sag mir den Namen!'),
+              findsNothing);
+          expect(animal, findsNothing);
+        } else if (continuation == 'safari round trip') {
+          expect(find.text('0 von 1'), findsOneWidget,
+              reason: 'An old response cannot advance a newly entered Safari.');
+          expect(animal, findsOneWidget);
+        } else if (continuation == 'profile change') {
+          expect(find.text('${correct ? 1 : 0} von 1'), findsOneWidget);
+          expect(find.text(feedback), findsOneWidget,
+              reason: 'The old profile cannot start a new question here.');
+          expect(find.text('Welches Tier siehst du? Sag mir den Namen!'),
+              findsNothing);
+        } else {
+          expect(find.text('${correct ? 1 : 0} von 2'), findsOneWidget,
+              reason: 'The same mode and owner must still advance exactly once.');
+          expect(find.text('Welches Tier siehst du? Sag mir den Namen!'),
+              findsOneWidget);
+          expect(animal, findsOneWidget);
+          expect(find.text(feedback), findsNothing);
+        }
+        await tester.runAsync(state.flushRewards);
+        expect((state.state.stars, state.state.xp), beforeDelay);
+        expect((wallet.snapshot.stars, wallet.snapshot.xp), earned,
+            reason: 'The delayed continuation must not award another reward.');
+        expect(camera.captures, isEmpty);
+        expect(sensorCalls.where((call) => call.method == 'listen'), hasLength(1));
+        expect(tester.takeException(), isNull);
+      });
+    }
+  }
 }

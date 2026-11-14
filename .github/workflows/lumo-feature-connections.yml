@@ -178,7 +178,7 @@ jobs:
           print(json.dumps({"original_assets": observed}, indent=2))
           PY
 
-      - name: Execute exactly the 22 feature widget cases
+      - name: Execute exactly the 30 feature cases
         id: flutter
         shell: bash
         run: |
@@ -232,11 +232,11 @@ jobs:
               "scope": ["test/wort_diktat_gesture_regression_test.dart",
                         "test/feature_permission_regression_test.dart",
                         "test/profile_screen_test.dart"],
-              "expected_cases": 22, "event_errors": event_errors,
+              "expected_cases": 30, "event_errors": event_errors,
               "non_event_stdout_lines": non_event_lines,
               "raw_stdout": raw_path.name, "raw_stderr": "flutter.stderr.log",
           })
-          if report["passed"] != 22 or event_errors:
+          if report["passed"] != 30 or event_errors:
               report["status"] = "FAIL"
           (output / "feature-test-summary.json").write_text(
               json.dumps(report, ensure_ascii=False, indent=2) + "\n")
