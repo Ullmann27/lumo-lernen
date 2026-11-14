@@ -1,0 +1,42 @@
+[
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+    "findings": "Die Abschlussansicht zeigt drei räumliche Gruppen mit jeweils vier gelben Würfeln; die drei sichtbaren Zähler lauten 4. Die Erklärung zu 12 : 3 stimmt mit dem sichtbaren Endstand überein. Original-Lumo und die hölzerne Lernumgebung sind sichtbar. Erfolgstext, Noch einmal und Zur Aufgabe bleiben frei; der Verteilknopf ist im Abschlusszustand sichtbar deaktiviert. Kein konkreter visueller Blocker in diesem Bild festgestellt."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+    "findings": "Die erste Verteilrunde zeigt je einen Würfel in drei Gruppen und neun noch nicht verteilte Würfel. Die Zähler 1 und die Anzeige 3/12 bewegt passen zu diesem sichtbaren Zustand. Im Hochformat sind die Erklärung, die Gruppen, Lumo sowie Verteilknopf, Noch einmal und Zur Aufgabe sichtbar. Die Rückkehraktion steht in einer eigenen Footerzeile; kein konkreter visueller Blocker in diesem Bild festgestellt."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+    "findings": "Die Erklärung 180 plus 50 ist 230 ist lesbar. Oben besitzt das echte räumliche Gleichheitszeichen in 10 Zehner = 100 zwei sichtbar getrennte Balken. Die untere Beschriftung 230 = 2 Hunderter + 3 Zehner steht kontrastreich auf einem dunklen Schild. Zehnerblöcke, Hundertermodell und Lumo sind sichtbar; Header und Footer überdecken diese beiden mathematischen Beschriftungen nicht."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+    "findings": "Auch im Hochformat bleiben die getrennten Balken des oberen Gleichheitszeichens sichtbar. Das untere dunkle Schild macht 230 = 2 Hunderter + 3 Zehner lesbar. Die Figur steht nah am linken Beginn der oberen Beschriftung; das Gleichheitszeichen selbst bleibt frei. Zehnergruppen und Hundertermodell sowie die zweizeilige Anordnung der Footeraktionen sind sichtbar. Keine eigenständige Touch- oder Animationsprüfung durch dieses Standbild."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+    "findings": "Der vollständige Titel LUMOS STERNENSCHATZ steht hell auf einer dunklen, umrandeten Fläche und ist gegenüber der hellen 3D-Szene lesbar. Zur Spieleauswahl, Rucksack, Pause, Springen, Ansehen und der Stick sind sichtbar. Aktuelle Aufgabe, Spielfigur und Umgebung sind in diesem 1920×1080-Bild erkennbar; keine Titelüberlagerung durch die Nachbarbuttons festgestellt."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+    "findings": "Im Hochformat erscheint der Spieltitel platzbedingt als LUMOS STER…; der sichtbare Teil kontrastiert klar. Die Ellipse wird ausdrücklich nicht als vollständige Darstellung des Spielnamens ausgegeben. Aufgabenfeld und Fortschrittsangaben sind lesbar, der Zähler 0 / 3 bricht auf zwei Zeilen um. Die Figur und die unteren Steuerflächen sind sichtbar; Zur Spieleauswahl, Rucksack und Pause überlappen den sichtbaren Titelbereich nicht."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+    "findings": "Im 2176×1812-Format ist LUMOS STERNENSCHATZ vollständig und kontrastreich lesbar. Aktuelle Aufgabe und Fortschritt stehen auf einer dunklen Fläche. Figur, Stick, Springen, Ansehen und obere Bedienelemente sind sichtbar. Dies ist ein Desktop-Rendererbild in einem Fold-ähnlichen Format, kein Screenshot eines physischen Galaxy Z Fold7."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+    "findings": "Der Titel LUMOS STERNENSCHATZ und die aktuelle Aufgabe bleiben im 640×320-Bild lesbar; Zur Spieleauswahl, Rucksack, Pause, Springen, Ansehen und Stick sind sichtbar. Konkreter Gameplay-/Layoutblocker: Das große Aufgabenfeld verdeckt den größten Teil der Spielfigur. Der zusätzliche weiße Erkundungshinweis liegt außerdem über einer hellen, unruhigen Szene und hat dort schlechteren Kontrast. Der bestandene enge Titelkontrast hebt diese Sichtbarkeitsprobleme nicht auf."
+  }
+]

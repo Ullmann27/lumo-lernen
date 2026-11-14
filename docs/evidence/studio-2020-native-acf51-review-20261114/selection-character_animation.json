@@ -1,0 +1,62 @@
+[
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+    "findings": "Produktive Apfel-Silbenlektion im räumlichen Atelier: Original-Lumo steht links, zwei leere Zielfächer und die tatsächlich sichtbaren Silben fel/Ap passen zum Status0/2 und zur Aufforderung, zuerst Ap zu wählen. Aufgabenleiste und alle drei unteren Aktionen sind vollständig lesbar und frei. Dieses Bild zeigt die Ausgangslektion, keinen abgeschlossenen Lernerfolg."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+    "findings": "Kopf- und Blickrichtung sind gegenüber der neutralen Aufnahme sichtbar verschoben; Augen und Brille bleiben am Kopf. Geschlossene Schnauze und Originalidentität bleiben erhalten. Das Standbild allein misst keine isolierte Pupillenbewegung oder Blickverfolgungspräzision."
+  },
+  {
+    "module": "connect_four",
+    "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png",
+    "findings": "Bei640×360 sind die vollständige Pausenerklärung, Fortsetzen und Neue Runde im sichtbaren Scrollausschnitt lesbar. Der rechte Scrollindikator ist vorhanden; Brett und weitere Menüeinträge sind hier teilweise verdeckt bzw. außerhalb dieses Ausschnitts. Zurück bleibt frei, Pause und sieben Spaltentasten erscheinen deaktiviert. Kein behaupteter simultaner Sichtnachweis aller Menüpunkte."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/lumo_facial_capture/neutral.png",
+    "findings": "Erkennbarer Original-Lumo mit orangeweißem Fell, Schutzbrille und cyanfarbenem Anzug. Augen sind offen, die Schnauze geschlossen; Nahaufnahme zeigt keine abgelösten Gesichtsteile. Der Körper ist durch den gewählten Nahbildausschnitt absichtlich nicht vollständig sichtbar."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/lumo_facial_capture/muted.png",
+    "findings": "Nahaufnahme mit der sichtbaren Kennzeichnung stumm und geschlossener Schnauze. Keine grobe Gesichtsverformung sichtbar. Die Beschriftung ist allein kein Audiohörbeweis; der tatsächliche Sidecar dokumentiert den stummen Zustand und das Abklingen des kleinen Restgewichts."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink.png",
+    "findings": "Beide Lider sind deutlich abgesenkt und weitgehend geschlossen. Eine feine helle Restlinie an den Lidkanten bleibt sichtbar; daher keine Behauptung einer vollständig lichtdichten Schließung. Der aktuelle Film zeigt zusätzlich das Schließen und Wiederöffnen."
+  },
+  {
+    "module": "connect_four",
+    "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png",
+    "findings": "Leeres räumliches Brett mit sieben Spalten und sechs Lochreihen, Sockel, Tischfläche und Schatten; Original-Lumo steht rechts. Zurück/Pause, Status und alle sieben Spaltentasten sind lesbar und frei. Dies ist eine Produktionsszene mit ausdrücklich kontrolliertem Hostzustand, kein Android-Savebeweis."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/lumo_facial_capture/stopped.png",
+    "findings": "Pause/geschlossen ist lesbar; Schnauze geschlossen, Kopf und Blick bleiben stabil verbunden. Kein sichtbares offenes Maul nach dem Stopzustand. Die Wirkung von Android-MediaPlayer-Stop ist aus diesem Desktopbild nicht abgenommen."
+  },
+  {
+    "module": "connect_four",
+    "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png",
+    "findings": "Vier zusammenhängende cyanfarbene Steine unten links sind jeweils mit einem hellen Ring hervorgehoben; drei gelbe Steine liegen rechts. Cyan gewinnt ist eindeutig lesbar, Spaltentasten erscheinen deaktiviert und Lumo steht rechts mit erhobenem Arm. Das Bild belegt die Gewinninszenierung der Fixture, keinen hier erneut gespielten Android-Sieg."
+  },
+  {
+    "module": "connect_four",
+    "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png",
+    "findings": "Hochformat412×915 zeigt das vollständige Brett, einen cyanfarbenen und darüber einen gelben Stein in derselben mittleren Spalte. Zurück/Pause sowie sieben getrennte Spaltentasten bleiben sichtbar; Status Cyan ist dran passt zur dargestellten Zweizug-Fixture. Große obere/untere Freiräume und fehlende Lumo-Figur sind erkennbare Layoutgrenzen, keine behauptete Vollbildinszenierung."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+    "findings": "Beide orangefarbenen Lidschalen verdecken die Augen teilweise, Pupillen bleiben noch sichtbar: ein erkennbarer Zwischenzustand. Geometrische Lidkanten sind in dieser starken Nahaufnahme sichtbar; kein Anspruch auf vollständig geglättete Filmcharakter-Qualität."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+    "findings": "Originalkopf frontal, Augen offen und Schnauze weiterhin geschlossen. Die Artikulation ist dezent; keine offene Mundhöhle und keine phonemgenauen Lippenformen sichtbar. Ein Standbild beweist keine Audiosynchronität; der aktuelle Film und seine getrennt gebundenen Playback-/Meshwerte ergänzen diese Grenze."
+  }
+]

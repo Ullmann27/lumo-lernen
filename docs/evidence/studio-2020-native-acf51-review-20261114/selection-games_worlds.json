@@ -1,0 +1,77 @@
+[
+  {
+    "module": "cards",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+    "findings": "Räumlicher grüner Tisch mit sichtbaren Stapelkanten, beleuchtetem Raum und sieben unterscheidbaren Kartenfronten. Zugtext, Zurück, Pause, Seitenwechsel und Ziehen sind lesbar und frei. Keine sichtbare Überdeckung der Hauptbedienung; die vorhandene WILD-Textur bleibt englisch beschriftet."
+  },
+  {
+    "module": "cards",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+    "findings": "Hochformat zeigt drei gut lesbare Handkarten und die ausdrückliche Seite 1/3. Tisch, Nachziehstapel und Ablage bleiben räumlich erkennbar. Zurück/Pause sowie beide Seitenpfeile und Ziehen vollständig im Bild, keine sichtbare Beschneidung dieser Bedienung."
+  },
+  {
+    "module": "rhythm",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+    "findings": "Vier farblich getrennte räumliche Bahnen, Bühnenlicht und Lumo im Hintergrund sind erkennbar. Stern und Verbindung zur nächsten Spur visualisieren die Gleitaufgabe; alle vier unteren Eingabefelder, Punktestand, Hinweis und Pause bleiben lesbar. Keine Timing- oder Latenzaussage aus diesem Standbild."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+    "findings": "Bei 640×360 liegen Brett, seitliche Teile und markierter Zielbereich im freien Streifen zwischen Kopfanzeige und Werkzeugleiste. Drehknopf und Hilfe sind sichtbar; Status 1/6 und Hinweis passen. Weitere rechte Werkzeugaktionen liegen im ausdrücklich horizontal scrollbaren Bereich."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+    "findings": "Ein Teil ist auf dem zentralen Brett sichtbar eingesetzt; Status 1/6 und „Das passt! Dein Bild wächst.“ stimmen visuell dazu. Seitliche Teile, Brettkanten, Speichern und Neues Puzzle bleiben frei. Die Stillaufnahme allein ersetzt keinen Drag- oder Speicherbeleg."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+    "findings": "Das Startmenü zeigt Motiv, sechs Teile, Drehpuzzle-Modus sowie Start- und Rückkehraktion vollständig. Deutlich abgesetzte Schaltflächen; die Hauptüberschrift ist lesbar. Hintergrundanzeige bleibt hinter dem halbtransparenten Dialog sichtbar, überdeckt aber keinen Menütext."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+    "findings": "Leeres mittleres Brett und beide Teilablagen sind sichtbar. Der aktive Drehknopf und „Eine Vierteldrehung. Vergleiche Bild und Form.“ passen zum Drehmodus. Alle unteren Aktionen einschließlich Speichern und Neues Puzzle liegen im Bild."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+    "findings": "Klassische Spielansicht mit einem platzierten Teil und Status 1/6. Die Werkzeugleiste enthält keine Drehaktion; Brett, seitliche Restteile und Rückkehr/Pause sind frei. Die Erfolgsanzeige ist vollständig lesbar."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+    "findings": "Das kompakte Startmenü zeigt Motiv, Teilezahl, Drehmodus und Start vollständig. Ein vertikaler Scrollbalken ist sichtbar; „Zur Spielewelt“ ist am unteren Scrollrand nur teilweise dargestellt. Daraus wird keine vollständige Touch-Erreichbarkeit dieses letzten Eintrags abgeleitet; der separate Spiele-Zugang oben bleibt erkennbar."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+    "findings": "Im kleinen Querformat stehen Brett und beide Teilablagen frei zwischen HUD und Toolbar. Drehknopf und Vierteldrehung-Hinweis sind vollständig lesbar. Die horizontale Werkzeugleiste zeigt ihren Scrollbalken; rechts liegende Aktionen sind in diesem Ausschnitt nicht sämtlich sichtbar."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+    "findings": "Ein platziertes Teil und 1/6-Anzeige sind im kleinen Querformat klar erkennbar. Brett und Ablagen bleiben unterhalb des HUD und oberhalb der Werkzeugleiste. Speichern ist sichtbar, die äußerste rechte Aktion liegt teilweise außerhalb des horizontalen Scrollausschnitts."
+  },
+  {
+    "module": "cards",
+    "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+    "findings": "Die echte Rendereraufnahme mit Android-Randfixture zeigt freien Abstand oberhalb der Kopfzeile und unterhalb der unteren Aktionen. Kartenfronten, Seite 1/3, Zurück, Pause und Ziehen sind vollständig lesbar. Der Dateiname ist kein Beleg einer Android-Geräteausführung."
+  },
+  {
+    "module": "cards",
+    "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+    "findings": "Pausenzustand mit deutlich lesbarem zentralem Dialog „Dein Zug wartet auf dich.“ und vollständig sichtbarem Weiterspielen-Knopf; oben steht Weiter. Der Dialog bleibt innerhalb des Bildes und verdrängt keine erforderliche Dialogaktion. Stillbild belegt weder angehaltene Uhr noch Resume-Verhalten."
+  },
+  {
+    "module": "cards",
+    "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+    "findings": "Querformat mit linkem Safe-Area-Abstand: Zurück/Pause, sieben Kartenfronten, Seitenpfeile und Ziehen sind frei und vollständig sichtbar. Der Header liegt teilweise vor dem oberen Bereich der dekorativen Lumofigur, das Gesicht und die spielrelevanten Karten bleiben erkennbar. Fixture, keine tatsächlichen Android-Systemleisten."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+    "findings": "Die linke Safe-Area wird sichtbar freigehalten; Spiele und Pause liegen innerhalb des sicheren Bereichs. Großes Menü mit Motiv, zwölf Teilen, Bilderpuzzle-Modus und Start ist lesbar. „Zur Spielewelt“ ist unten teilweise im vertikal scrollbaren Dialog abgeschnitten; der Scrollbalken ist sichtbar. Dies ist eine Randfixture, kein Android-Bediennachweis."
+  }
+]

@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "owner": "character_animation",
+  "prepared_at_utc": "2026-11-14T06:30:11.660815+00:00",
+  "scope": "Docs-only inventory of actual app entrances, inherited mechanisms, Studio2019 changes, staged Host2020 and published Native2020; no product edits or new tests.",
+  "host_baseline": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "native_source": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "host2020_staged": true,
+  "complete2020_acceptance_claimed": false,
+  "source_files_to_install": 0,
+  "raw_media_or_archives_to_duplicate": 0,
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/MODUL_ABNAHMEMATRIX.md",
+      "target": "docs/evidence/studio-2020-final-module-scope-20261114/MODUL_ABNAHMEMATRIX.md",
+      "bytes": 23169,
+      "sha256": "ab9bcc0ad6fd5b18818002d9f06a0feae68a3ad99926c1ffd924a472c9123656",
+      "git_blob_sha": "2a4025597c34194b9cc248ca970e1ff5f5cf884d",
+      "mode": "100644",
+      "role": "documentation"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/host-entry-source-binding.json",
+      "target": "docs/evidence/studio-2020-final-module-scope-20261114/host-entry-source-binding.json",
+      "bytes": 11367,
+      "sha256": "e6fab3889db31e865b261afc3cf3d7c5f841246e1ce95c14940b1d2496142ac9",
+      "git_blob_sha": "2aca0cbf537347dcc4d7600a0587c0d173048be6",
+      "mode": "100644",
+      "role": "documentation"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/staged-host-entry-deltas.json",
+      "target": "docs/evidence/studio-2020-final-module-scope-20261114/staged-host-entry-deltas.json",
+      "bytes": 3076,
+      "sha256": "221a41d64c35cebc7895d985667629fa5595ed27227f1604285078ecd2c47be3",
+      "git_blob_sha": "0118a64579dd96258061b821b11c3913b2c75522",
+      "mode": "100644",
+      "role": "documentation"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/entry-catalog-inventory.json",
+      "target": "docs/evidence/studio-2020-final-module-scope-20261114/entry-catalog-inventory.json",
+      "bytes": 5197,
+      "sha256": "2d2dec25e5af4d4ff633c9fe8c9178ea36577627a45fc21b13461213aa90d3e9",
+      "git_blob_sha": "e6f22ee136206d9a8f384c00d85698d12818568b",
+      "mode": "100644",
+      "role": "documentation"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/evidence-source-index.json",
+      "target": "docs/evidence/studio-2020-final-module-scope-20261114/evidence-source-index.json",
+      "bytes": 22290,
+      "sha256": "8dba8a3cfb1e130e0b83c80753380d632522cbbe439c2ff2ecf90a1f653e4176",
+      "git_blob_sha": "27a24d4b2c483518876a1481d0ea49956ef43838",
+      "mode": "100644",
+      "role": "documentation"
+    }
+  ],
+  "file_count": 5,
+  "total_bytes": 65099,
+  "manifest_target": "docs/evidence/studio-2020-final-module-scope-20261114/upload-manifest.json",
+  "self_hash_note": "This file does not contain its own digest; parent may add its unchanged bytes as the sixth docs target.",
+  "revised_at_utc": "2026-11-14T06:32:21.964121+00:00",
+  "superseded_local_freeze": {
+    "status": "Unpublished local documentation freeze superseded before Git publication; no source or tests changed.",
+    "markdown": {
+      "name": "MODUL_ABNAHMEMATRIX.md",
+      "bytes": 23123,
+      "sha256": "02404e86fe7224f53351a3ee63d879f1be83fea49b751b99e4d2378b432d5c43",
+      "git_blob_sha": "c14acf8b76246f94681244413bb3a4de61d810d5"
+    },
+    "manifest": {
+      "name": "upload-manifest.json",
+      "bytes": 3190,
+      "sha256": "38cbca5ff5312e7eb78b047c00bbc3247e898ddcc0a17edef451a4eaf874034a",
+      "git_blob_sha": "8ea42814af5355b955baf7b59c7bd29d59bd2c69"
+    },
+    "exact_markdown_change": {
+      "old": "Main bleibt geschützt.",
+      "new": "Main wurde nicht verändert; ein Merge bedarf weiterhin der Freigabe."
+    },
+    "reason": "No claim of configured technical branch protection; Main was left unchanged and merge still requires approval.",
+    "all_other_markdown_bytes_unchanged": true,
+    "other_four_payload_files_unchanged": true
+  }
+}

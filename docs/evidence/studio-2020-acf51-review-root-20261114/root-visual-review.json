@@ -1,0 +1,190 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14 06:52:31 UTC",
+  "reviewer": "/root",
+  "native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "run_id": 43565059832,
+  "artifact_id": 14103142984,
+  "artifact_sha256": "4c1e6705f952efe789b0f5eb17d0bcf26cc369c4411b52a6ec5a4567a9b26aac",
+  "status": "VISUAL_CORRECTION_REQUIRED_BEFORE_HOST_PIN",
+  "all_thirteen_opened_individually": true,
+  "blocker": "Treasure landscape safe-area hint panel occludes playable character at spawn; toast contrast is weak over bright masonry.",
+  "additional_known_limits": [
+    "Dense existing Build/Jump HUDs",
+    "Settlement singular typo: 1 Münzen",
+    "Inset fixtures do not measure physical Android input or Fold7 performance"
+  ],
+  "images": [
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "module": "jump",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "bytes": 605546,
+      "sha256": "65e08072a50951b448ae36ebb7a9828c896b941907b501f52ad32095cbc70e95",
+      "dimensions": [
+        690,
+        829
+      ],
+      "findings": "Tatsächlich geöffnetes 690×829-Rendererbild: Original-Lumo ist vor der ersten Plattform sichtbar in der Luft; räumliche Inseln, Schatten, Wegsteine und erreichbare Folgeplattformen sind klar getrennt. Linker Stick und rechter Sprungknopf liegen sichtbar auseinander, HUD und Haltehinweis sind lesbar. Das Standbild belegt die gezeigte Pose und Anordnung, keine Eingabelatenz, Sprungdauer oder Geräte-FPS."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "module": "jump",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "bytes": 473649,
+      "sha256": "df9e6a43f3c97814393dbfcc6a42e4f68f441c4da23537e7f99408f69d2d1d01",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Tatsächlich geöffnetes 412×915-Rendererbild: Lumo steht auf dem vorderen Inselweg mit Bodenschatten, die folgenden Plattformen bleiben im Hochkantblick sichtbar. Kopfzeilen umbrechen, ohne Pause/Spiele oder die unteren Touchflächen zu überlagern. Stick, SPRINGEN und HALTEN = HÖHER sind lesbar; das enge Sichtfeld und die sehr helle Beleuchtung bleiben gestalterische Grenzen. Keine dynamische Steuerungs- oder Leistungsfreigabe aus diesem einzelnen Bild."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "module": "build",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "bytes": 1409093,
+      "sha256": "8caff5083c48781b2a3bd6441591ab9b8df716293de79480d6d8b15c835b9099",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Tatsächlich geöffnetes 1280×720-Bauweltbild: Insel, Fluss, Steingrenzen, Haus und durchscheinende Brücken-Vorschau besitzen erkennbare Tiefe und Schatten. Der Auftrag sowie die Rückmeldung zum Versetzen und Rückgängig sind lesbar. Die beiden umfangreichen Werkzeug-/Bauteilreihen sind innerhalb des Bildes voneinander getrennt; am rechten Rand läuft die horizontale Bauteilliste weiter. Der Bildschirm ist funktional dicht und noch keine radikal vereinfachte Kinderoberfläche. Save/Undo werden durch eigene Laufzeitbelege geprüft, nicht durch das Standbild."
+    },
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "module": "build",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "bytes": 129604,
+      "sha256": "29ca242d189256066c39c3a82a85ef7037130de2b48ac3fcaeb5a5e7048ca7f2",
+      "dimensions": [
+        640,
+        360
+      ],
+      "findings": "Tatsächlich geöffnetes kompaktes 640×360-Bild: Das modale aktuelle Bauziel zeigt vollständigen Auftrag mit Zeilenumbruch sowie getrennte, vollständig sichtbare Schaltflächen Mein Bauwerk testen und Abbrechen. Der Dialog liegt über der bestehenden Welt und verdeckt erwartungsgemäß Teile des Hintergrund-HUD. Kleine dunkle Flächen an den gerundeten Dialogecken bleiben sichtbar; daraus wird keine makellose grafische Gesamtqualität abgeleitet."
+    },
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "module": "build",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "bytes": 1284117,
+      "sha256": "12f6c4741e987e55554ec6be9b6f483943075540b10c3a53e9499e684b4debb4",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "findings": "Tatsächlich geöffnetes 1080×2400-Bild der nach unten gescrollten Vorlagen: Brücke, Sternenturm, Garten, die drei Parzellen, Leere Insel und Abbrechen sind groß und lesbar; der Scrollbalken und der oben abgeschnittene vorangehende Listeneintrag machen den Scrollzustand sichtbar. Der Modalinhalt überlagert seine eigenen Aktionen nicht. Im Hintergrund ist die schmale Hauptüberschrift gekürzt und die Werkzeugoberfläche bleibt dicht; die Aufnahme ist eine Vorlagen-/Dialogabnahme, keine allgemeine Hochkant-HUD-Perfektionsbehauptung."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "module": "settlement",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "bytes": 57478,
+      "sha256": "8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2",
+      "dimensions": [
+        388,
+        390
+      ],
+      "findings": "Tatsächlich geöffnetes 388×390-Dialogbild aus der Siedlung: Die Erklärung zum Umbau, der vorübergehend ausziehende Bewohner, die Rückerstattung und die Rückgängig-Hilfe sind vollständig sichtbar. Haus behalten und Ja, umbauen sind klar getrennte Aktionen. Das Bild enthält nur den Dialog, keine räumliche Siedlungsübersicht. Der vorhandene Text 1 Münzen hat einen Singularfehler; dieser bleibt als Sprachpolitur offen und wird nicht als fehlerfrei bewertet."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "module": "garage",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "bytes": 436816,
+      "sha256": "8019bd04cb84e5255a2063445c52cbb15d083fc22d4eac2ebe841bf8253ba8fe",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Tatsächlich geöffnetes 1280×720-Garagenbild: Kart und daneben stehender Original-Lumo stehen räumlich auf dem beleuchteten Podest; Werkbank, Radhalter, Schubladen und Bodenlinien erzeugen echte Tiefenstaffelung. Auswahl, Sperrhinweis, Lack/Teile, Kart-Menü und Rennen starten sind lesbar und voneinander getrennt. Der Bildschirm zeigt den aktuellen Auswahlzustand, keine abgespielte Drehbewegung oder Reaktion. Er bleibt menülastig; kein vollständiger neuer Garagenumbau oder Konsolenqualitätsclaim."
+    },
+    {
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "module": "garage",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "bytes": 864319,
+      "sha256": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "findings": "Tatsächlich geöffnetes 1080×2400-Werkstattbild: gelbes Kart mit fahrendem Lumo-Modell, Reifen, Felgen, plastische Beleuchtung und Bodenschatten sind vollständig sichtbar. Die nach unten gescrollte Auswahl zeigt Goldglanz, Felgen, Neon und den Rückerstattungsbutton vollständig; 370 freie Sterne und 16 Rückerstattungssterne sind lesbar. Die Werkstattüberschrift ist im schmalen Format bewusst elliptisch. Das Bild prüft sichtbare Dichte und Inhalt, nicht den tatsächlichen Kauf-/Refund-Vorgang oder physische Touchgröße."
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "module": "treasure",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "bytes": 1306263,
+      "sha256": "965a5ff692b45aa1d186e320fa62d6411090cc327fd1a2b5ec19424173915fa4",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Tatsächlich geöffnetes 1280×720-Schatzsuchebild: begehbar wirkender Garten mit Bäumen, Blumen, Burgmauern, Schatten und Begleiter; links steht die konkrete Wahl Kristallwächter oder Mondgarten mit beiden benötigten Funden. Die neue dunkle Titelplatte hält LUMOS STERNENSCHATZ lesbar. Stick, Springen, Ansehen und Rucksack sind getrennt sichtbar. Der Entdeckungszähler umbrecht innerhalb seines Feldes; der vereinfachte Begleiter und die sehr große Hintergrundmauer bleiben erkennbare gestalterische Grenzen. Ein Standbild beweist keine ausgeführte Routenwahl."
+    },
+    {
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "module": "treasure",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "bytes": 4338078,
+      "sha256": "00a9d94b235e34a51f3a0ab2cd3d2ad3a93cc46ac25cd037a534720600ff7731",
+      "dimensions": [
+        2176,
+        1812
+      ],
+      "findings": "Tatsächlich geöffnetes 2176×1812-Abschlussbild: Das Schlossumfeld bleibt räumlich sichtbar; dunkle Titel-/Textplatten tragen klare weiße Schrift. Die konkrete Abschlussmeldung zeigt sieben Hinweise, drei Sterne und 54 Erfahrungspunkte. Alle drei Folgeaktionen einschließlich Zur Spielewelt sind vollständig sichtbar und getrennt. Der Entdeckungszähler hat einen Zeilenumbruch; die modal überdeckte Szene ist kein Nachweis einer vollständigen neuen Tour oder einer tatsächlich verbuchten Belohnung."
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "module": "jump",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "bytes": 1856440,
+      "sha256": "c27f8124a7b76e30f73c0baf91b2e1addb891d07adbde3e59fd002f4cc0fd236",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "findings": "Tatsächlich geöffnetes 2400×1080-Bild des seitlichen Safe-Area-Fixtures: Spiele und Pause sind von den äußersten Bildkanten eingerückt, beide großen Eingabeflächen und ihre Beschriftungen bleiben vollständig sichtbar. Lumo und die Folgeinseln liegen zwischen den Steuerbereichen. Das Status-HUD beansprucht viel obere Bildfläche, die Weltbeleuchtung ist sehr hell. Dies ist eine echte Godotaufnahme mit kontrollierten Insetbedingungen, keine Aufnahme eines physischen Fold7 und keine Latenz-/FPS-Messung."
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "module": "build",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "bytes": 2497544,
+      "sha256": "a0393d39489570e65f424a4b9bce7f63749106434c76cc13d57a79f723fcd40c",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "findings": "Tatsächlich geöffnetes 2400×1080-Bauwelt-Safe-Area-Bild: äußere Navigationsaktionen sind eingerückt; die horizontal scrollbaren Werkzeug- und Bauteilreihen bleiben getrennt. Die räumliche Bauwelt mit Fluss, Brücke, Häusern und Schatten ist in der Mitte sichtbar. Sehr große und zahlreiche Bedienelemente beanspruchen weiterhin einen wesentlichen Teil der Ansicht. Rechter Listenanschnitt ist ein Scrollausschnitt, keine behauptete vollständige Sichtbarkeit aller Werkzeuge; keine physische Geräteabnahme."
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "module": "treasure",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "bytes": 2660787,
+      "sha256": "4990f7b0c4e364b1a4894d4598391dc459da61efe2624c2bbf03b556b4142818",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "findings": "Tatsächlich geöffnetes 2400×1080-Schatzsuche-Safe-Area-Bild: Die neue Titelplatte ist kontraststark und die seitlich eingerückten Aktionen sind sichtbar. ABNAHMEBLOCKER: Das große linke Hinweisfeld überdeckt Lumo am Start fast vollständig; unter dem Feld sind überwiegend nur seine Füße zu sehen. Die weiße Begrüßungszeile rechts verliert auf der hellen Burgmauer zudem Kontrast. Dieser aktuelle Originalbefund wurde an den zuständigen Agenten zur engen Produktkorrektur übergeben; er wird trotz erfolgreichem CI-Job nicht als vollständige visuelle Freigabe gewertet."
+    }
+  ],
+  "product_changes_in_this_review": false,
+  "receipt_created": false
+}
