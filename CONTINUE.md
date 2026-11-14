@@ -1,3 +1,23 @@
+# Activate the verified complete-build budget
+
+This documentation/evidence-only activation follows published Host
+`c77e2456ac8eb7e02a9950e7b764684da6f5eb7b`, tree
+`d124623c936de7d2fe142a22c2683dfbb1343ac2`. Its actual single Delivery
+regression invocation passed all **71 methods**, with exit 0 and no failures,
+errors or skips. One Actionlint invocation passed the exact changed workflow.
+All 4,460 index paths, 749 materialized sources, HEAD, tree, raw index and
+Git status remained unchanged. Full original streams, invocation and inventories
+are preserved in [the actual validation pack](docs/evidence/host-budget150-acceptance-20261114/).
+
+The effective outer Host build/Android budgets are **150/80 minutes**.
+Individual probes, exact Native pin, every runtime/product file and all
+release verifiers are unchanged by this activation. The actual complete
+C4 workflow must bind this successor, its attempt and original artifacts.
+Previous run 43601673844 remains bound to Host37ec; its successful Runtime
+and Android compile do not substitute for this new source run.
+
+## Preserved correction and preceding activation records
+
 # Current build-budget correction — 2026-11-14
 
 This narrowly scoped successor follows Host
