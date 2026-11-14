@@ -1,0 +1,46 @@
+{
+  "entries": [
+    {
+      "path": "binding-v3.json",
+      "bytes": 5811,
+      "sha256": "32a25edbf74a7055e9e2e606fb18b16ca06aa8ecd66985e423d1d8552465dcdc",
+      "git_blob": "968a4db9d628686ba782916e7d69fb9970252980"
+    },
+    {
+      "path": "catalog-v3.json",
+      "bytes": 42277,
+      "sha256": "df36b6b7fb0ef6ea9d58f0ac75088247eb266187048da714d64885582b35d903",
+      "git_blob": "e8622f4ec883badb09db6483ff62f245b3b3b2d8"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 813,
+      "sha256": "fcc8c7d963f9ec961f320ef503ac7b8ebc28fa0706196cfe4c3d734ac5a5742d",
+      "git_blob": "912a29eadd275df5699c66c54c2e193b3580940c"
+    },
+    {
+      "path": "originals/0cda-activation-binding.json",
+      "bytes": 7947,
+      "sha256": "08dea040864a59a8288888ea3d15a01aa5c0ee7fce7ceb33cc281e733e4e770c",
+      "git_blob": "b8f12b32a28b3cd99aff61d179f908438a30eaf2"
+    },
+    {
+      "path": "originals/a5ac-source-checkpoint-binding.json",
+      "bytes": 1272431,
+      "sha256": "64a5b6e76b0901e8e957c636147e0167c33e67771629d5c44bb9e181371ed8ae",
+      "git_blob": "41696cce763d3b5fd98ab8231c500200295abe7e"
+    },
+    {
+      "path": "originals/catalog-v2.json",
+      "bytes": 39986,
+      "sha256": "4a4bd535610d1f82ba59ce5f6bbb70ba370fc097b5aef030036bd7d6e092af3a",
+      "git_blob": "19ffb1b3118828b1bd01937c9c24410dfe12a4b9"
+    },
+    {
+      "path": "originals/clock-source-freeze.json",
+      "bytes": 1163,
+      "sha256": "f44ecdbb7e73155d309ab147748b612f619010b4229007b05577bc969d05ef0b",
+      "git_blob": "3a34c3d415e6c71986e54eb00cdd27918c99d638"
+    }
+  ]
+}

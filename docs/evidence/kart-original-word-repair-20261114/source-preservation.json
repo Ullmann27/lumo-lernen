@@ -1,0 +1,83 @@
+{
+  "comparison": "AST inspection only; no production function/test executed",
+  "functions": {
+    "tools/android_qa/kart_garage_evidence.py": {
+      "unchanged": [
+        "demand",
+        "require_selected_race",
+        "selected_race_readiness",
+        "require_resumed_progress",
+        "normalize",
+        "stage_cup_target_observation",
+        "stage_driver_word_observations",
+        "stage_driver_target_observation"
+      ],
+      "changed": [
+        "stage_garage_scroll_observation"
+      ],
+      "added": [
+        "stage_garage_word_observations"
+      ]
+    },
+    ".github/probes/modernization_android_tour.py": {
+      "unchanged": [
+        "diagnostic_logcat_context",
+        "logcat_fatal",
+        "alive",
+        "godot_alive",
+        "try_tap",
+        "labels",
+        "_atelier_roundtrip",
+        "_simplify",
+        "_screencap",
+        "_shot",
+        "verify_apk_identity",
+        "_read_garage_footer",
+        "_select_stage_kart",
+        "_select_stage_driver",
+        "_stage_cup_text",
+        "_return_stage_kart_menu",
+        "_inspect_spatial_kart_menu",
+        "_previous_kart_race_id",
+        "_confirm_stage_selection",
+        "_start_actual_embedded_race",
+        "RaceSession",
+        "wait_race_running",
+        "_pause_actual_race",
+        "_continue_actual_race",
+        "wait_race_hud",
+        "find_gas",
+        "drive_with_gas",
+        "log_images",
+        "main"
+      ],
+      "changed": [
+        "_stage_kart_scroll_recovery"
+      ],
+      "added": []
+    }
+  },
+  "new_tests_written_not_run": [
+    "test_original_boru_frame_recovers_only_scroll_after_two_bound_frames",
+    "test_all_original_fixture_bytes_and_pixels_are_bound_to_the_failed_job",
+    "test_original_line_failure_and_existing_exact_comet_path_are_preserved",
+    "test_known_complete_names_keep_case_whitespace_and_longest_caption",
+    "test_partial_interrupted_cross_line_and_word_number_gap_are_rejected",
+    "test_distant_columns_or_disjoint_word_rows_are_not_joined",
+    "test_word_confidence_and_original_tsv_presence_remain_mandatory",
+    "test_invalid_or_outside_word_rectangles_are_rejected",
+    "test_right_preview_header_and_footer_captions_cannot_be_scroll_cards",
+    "test_duplicate_real_regions_and_conflicting_names_are_ambiguous",
+    "test_same_card_ocr_variants_remain_one_region_and_top_card_order_is_preserved",
+    "test_unstable_words_need_a_new_pair_and_changed_png_or_deadline_never_swipe",
+    "test_five_gesture_limit_remains_hard_after_word_recovery",
+    "test_missing_anchors_or_incomplete_surface_never_activate_word_recovery"
+  ],
+  "test_count": 14,
+  "unchanged_controls": "Tour suffix from stable = through return recovery is byte-equal to baseline; APK/driver/cup/save/target-touch/global budgets unchanged.",
+  "controller_suffix": {
+    "byte_equal": true,
+    "bytes": 1081,
+    "sha256": "cb2f6ccecea76e39bb4880e12fd8fd1219f728ff0450b4cab5a796dafa2951eb"
+  }
+}

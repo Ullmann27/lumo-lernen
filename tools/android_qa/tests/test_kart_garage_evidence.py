@@ -94,37 +94,54 @@ class GarageSelectionEvidenceTests(unittest.TestCase):
 
 
 class GarageObservedScrollTests(unittest.TestCase):
-    def test_current_hidden_title_layout_uses_only_the_tab_footer_and_left_card(self):
-        proof = evidence.stage_garage_scroll_observation(list_frame(), list_lines())
-        self.assertEqual(proof['gesture'], [175, 320, 175, 208])
+    def test_current_hidden_title_layout_uses_the_observed_clip_not_only_tab_and_footer(self):
+        from test_kart_garage_scroll_recovery import (
+            VISIBLE_LIST, gesture_is_inside, original_observation)
+        frame, lines, source = original_observation('main', 0)
+        proof = evidence.stage_garage_scroll_observation(frame, lines, source=source)
+        self.assertTrue(gesture_is_inside(proof['gesture'], VISIBLE_LIST['main']))
+        self.assertFalse(gesture_is_inside([374, 486, 374, 351], VISIBLE_LIST['main']))
 
-    def test_missing_anchors_incomplete_frames_and_right_preview_are_rejected(self):
-        bad_preview = copy.deepcopy(list_lines())
-        bad_preview[1]['bounds'] = [1500, 300, 1650, 340]
-        for frame, lines in ((dict(list_frame(), acceptable_for_target_sampling=False), list_lines()),
-                             (list_frame(), list_lines()[1:]),
-                             (list_frame(), list_lines()[:2]),
-                             (list_frame(), bad_preview)):
-            with self.subTest(frame=frame, lines=lines), self.assertRaises(RuntimeError):
-                evidence.stage_garage_scroll_observation(frame, lines)
+    def test_missing_current_context_and_incomplete_frames_are_rejected(self):
+        from test_kart_garage_scroll_recovery import original_observation
+        frame, lines, source = original_observation('main', 0)
+        without_tab = [row for row in lines if evidence.normalize(row['text']) != 'karts']
+        without_footer = [row for row in lines if evidence.normalize(row['text']) not in
+                          ('kartmenu', 'menu', 'start', 'rennenstarten')]
+        for current, observed in (
+                (dict(frame, acceptable_for_target_sampling=False), lines),
+                (frame, without_tab), (frame, without_footer)):
+            with self.subTest(frame=current), self.assertRaises(RuntimeError):
+                evidence.stage_garage_scroll_observation(current, observed, source=source)
 
     def test_actual_scroll_needs_two_stable_frames_and_unchanged_screenshot(self):
+        from test_kart_garage_scroll_recovery import (
+            VISIBLE_LIST, gesture_is_inside, original_observation,
+            scroll_recovery_from_validated_observations)
+        frame, lines, original_source = original_observation('main', 0)
         with tempfile.TemporaryDirectory() as folder:
-            source = Path(folder) / 'synthetic-observation.png'
-            source.write_bytes(b'synthetic screenshot observation')
-            frame = dict(list_frame(), source_sha256=hashlib.sha256(source.read_bytes()).hexdigest())
-            callback = tour._stage_kart_scroll_recovery()
+            def observation(index):
+                source = Path(folder) / f'current-{index}.png'
+                source.write_bytes(original_source.read_bytes())
+                return dict(frame, source=source.name), source
+            first_frame, first_source = observation(0)
+            second_frame, second_source = observation(1)
+            third_frame, third_source = observation(2)
+            fourth_frame, fourth_source = observation(3)
+            callback = scroll_recovery_from_validated_observations()
             with patch.object(tour.base, 'adb') as adb, patch.object(tour.time, 'monotonic', return_value=0):
-                first = callback(frame, list_lines(), source, deadline=10, previous_missing_frame=None)
+                first = callback(first_frame, lines, first_source, deadline=10, previous_missing_frame=None)
                 self.assertEqual(first['status'], 'WAITING_FOR_SECOND_LIST_FRAME')
                 adb.assert_not_called()
-                second = callback(frame, list_lines(), source, deadline=10, previous_missing_frame=frame)
+                second = callback(second_frame, lines, second_source, deadline=10, previous_missing_frame=first_frame)
                 self.assertEqual(second['status'], 'SWIPE_SENT')
-                self.assertEqual(adb.call_args.args, ('shell', 'input', 'swipe', '175', '320', '175', '208', '650'))
-                callback(frame, list_lines(), source, deadline=10, previous_missing_frame=None)
-                source.write_bytes(b'changed after sampling')
-                with self.assertRaisesRegex(RuntimeError, 'screenshot changed'):
-                    callback(frame, list_lines(), source, deadline=10, previous_missing_frame=frame)
+                self.assertTrue(gesture_is_inside(
+                    list(map(int, adb.call_args.args[3:7])), VISIBLE_LIST['main']))
+                self.assertNotEqual(adb.call_args.args[3:5], adb.call_args.args[5:7])
+                callback(third_frame, lines, third_source, deadline=10, previous_missing_frame=None)
+                third_source.write_bytes(b'changed after sampling')
+                with self.assertRaises(RuntimeError):
+                    callback(fourth_frame, lines, fourth_source, deadline=10, previous_missing_frame=third_frame)
                 self.assertEqual(adb.call_count, 1)
 
 
@@ -400,21 +417,23 @@ class CurrentGarageProbeWiringTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'No physical progress'):
             scope['pause']()
 
-    def test_selection_needs_a_successful_observed_native_touch_receipt(self):
+    def test_selection_reports_success_only_after_the_observed_input_succeeds(self):
+        from test_kart_garage_scroll_recovery import GarageObservationReplay
         with tempfile.TemporaryDirectory() as folder:
             out = Path(folder)
-            def tap(path, label, tag, **kwargs):
-                self.assertEqual(label, 'Gecko Velo')
-                self.assertTrue(kwargs['exact'])
-                self.assertTrue(callable(kwargs['missing_caption']))
-                (path / (tag + '-surface-readiness.json')).write_text(json.dumps(
-                    {'status': 'TOUCH_SENT', 'touch': [101, 202]}))
-            with patch.object(tour.probe, 'native_tap', side_effect=tap):
-                report = tour._select_stage_kart(out, 'gecko_velo')
-            self.assertEqual(report['touch'], [101, 202])
-            (out / '21_stage_select_gecko_velo-surface-readiness.json').write_text('{"status":"FAIL"}')
-            with patch.object(tour.probe, 'native_tap'), self.assertRaisesRegex(RuntimeError, 'No observed'):
-                tour._select_stage_kart(out, 'gecko_velo')
+            replay = GarageObservationReplay(out, [('main', 0), ('main', 0)])
+            with replay.installed():
+                report = tour._select_stage_kart(out, 'comet')
+            self.assertEqual(report['touch'], [374, 486])
+            self.assertEqual(replay.capture_count, 2)
+            self.assertEqual(len(replay.inputs), 1)
+            replay = GarageObservationReplay(out, [('main', 0), ('main', 0)])
+            with replay.installed(), \
+                    patch.object(tour.base, 'adb', side_effect=RuntimeError('Observed ADB input failed')), \
+                    self.assertRaisesRegex(RuntimeError, 'Observed ADB input failed'):
+                tour._select_stage_kart(out, 'comet')
+            receipt = json.loads((out / '21_stage_select_comet-surface-readiness.json').read_text())
+            self.assertEqual(receipt['status'], 'FAIL')
 
     def test_selection_wait_reads_old_and_new_snapshots_without_accepting_wrong_new_car(self):
         states = iter([race(result_id='old', selected_kart='comet', mode='race'),
@@ -465,7 +484,7 @@ class CurrentGarageProbeWiringTests(unittest.TestCase):
             session.path = '/observed/kart_sonnenhafen_session.cfg'
             order = []
             def touch(out, label, tag, **kwargs):
-                self.assertEqual((label, kwargs), ('Weiterfahren', {'tap': True, 'exact': True}))
+                self.assertEqual((label, kwargs), ('Weiterfahren', {'tap': True, 'exact': True, 'standalone_caption': True}))
                 order.append('touch')
                 (out / (tag + '-surface-readiness.json')).write_text(
                     '{"status":"TOUCH_SENT","touch":[123,456]}')

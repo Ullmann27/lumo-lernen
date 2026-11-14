@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "status": "NO_CONCRETE_SOURCE_BLOCKER_IN_REVIEWED_DELTA",
+  "source_freeze": {
+    "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/source-freeze.json",
+    "bytes": 2691,
+    "sha256": "9ecab881e99f0d164a0f6a390de2f69cbbbf9908d58a6d18d158cc2de350ea81",
+    "git_blob": "fd02fd5779916480e406802a9eb9d69b215f8027"
+  },
+  "base": "7ac736fdbd042769592e88de0f9849632242316d",
+  "tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2",
+  "producer": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "read_bound_sources": [
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/before-source/.github/probes/modernization_android_tour.py",
+      "bytes": 78635,
+      "sha256": "7d2034119f06846ede165ec039dfab54e31aafd02a5e05c7fef02d9a75f31bf1",
+      "git_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/final-source/.github/probes/modernization_android_tour.py",
+      "bytes": 79210,
+      "sha256": "e52e39270f976e8d9e90c6fbf7a64133474dd1fa12115c2c9aef26e2b69ebe5a",
+      "git_blob": "c89d9284c76b25b20eb50d1dcb260d0b91d3007f"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/producer-final-source/.github/probes/modernization_android_tour.py",
+      "bytes": 77078,
+      "sha256": "56ca9ec28c1599e5efeb56044580c55b8214aa247e6b9f445af2a47f41d71cbc",
+      "git_blob": "f8c266c672632aa086b11e695fb1883a063e2123"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/before-source/tools/android_qa/tests/test_kart_garage_evidence.py",
+      "bytes": 31326,
+      "sha256": "cad2a5b39eeb118b3419aca07ad9bee1356d20af3af4c1bca8dde611d13a48b0",
+      "git_blob": "84469b5d3ba41c68b4d193396a444fe2192b55f1"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/final-source/tools/android_qa/tests/test_kart_garage_evidence.py",
+      "bytes": 31394,
+      "sha256": "03a5508a572c2446e1a8c1c96889ec1e7cbcb47787dc9205bd416b17edbc213d",
+      "git_blob": "a2257b5bbe4e61e4c560441a570410c56baf517c"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/producer-final-source/tools/android_qa/tests/test_kart_garage_evidence.py",
+      "bytes": 31366,
+      "sha256": "74141d7e9b15a82927e0261b359b82890c4239b14afea5b2661fa71911fb8f4a",
+      "git_blob": "20f856522493f5fdfc41d147de70bb096a2938fa"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/before-source/tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "bytes": 27545,
+      "sha256": "c6a88af95fab0bd5d1ac0dd41b42a985cc72051d19e803ed766ef0e793d4bec9",
+      "git_blob": "4abc7df8a9ebef448c85a9cfb1789e5bcaf638bf"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/final-source/tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "bytes": 38164,
+      "sha256": "1e5e629efd384cb2addc05c973317b94a25198da947501bb4b76949bf34d9e27",
+      "git_blob": "f4a1f3b262ebced3ebd823d07748ecaee7834cac"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/producer-final-source/tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "bytes": 34511,
+      "sha256": "08a35511622b134bda11b1c9da4b09c12d52f73a74c41a96bcd472645ef280b0",
+      "git_blob": "3da90d30a2c602e800fda9b6165e335eb039afb7"
+    }
+  ],
+  "production": {
+    "functions_before": 42,
+    "functions_after": 42,
+    "changed_functions_including_nested": [
+      "_stage_kart_scroll_recovery",
+      "_stage_kart_scroll_recovery.recovery",
+      "_select_stage_kart"
+    ],
+    "unchanged_functions": 39,
+    "original_boru_and_words_stable_block": "byte-identical",
+    "standalone_continue": "byte-identical retained requirement",
+    "proof_reuse": "Only the same caller-created full pixel/list observation is reused; source_sha256 equality is checked, and a shallow copy prevents metadata edits to caller proof. Legacy callbacks can omit current and still run full analysis.",
+    "freshness": "Distinct observed frame names, stable geometry/direction/TSV wording, current and prior image rehash before scroll retained; maximum five scroll gestures unchanged.",
+    "timing": "Same150s selection boundary and before/after input checks. Bounded settling remains after incomplete frames and actual scroll/tap. Only the unconditional pause between complete passive observations is removed.",
+    "targets": "Requested complete caption must still be observed twice inside the real current list; word evidence guides scrolling only, never a guessed tap.",
+    "scope": "No Android throughput, current device success, extra gesture or weakened race/identity gate is claimed."
+  },
+  "tests": {
+    "original_assertions": [
+      {
+        "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+        "old_assertions": 92,
+        "new_assertions": 92,
+        "all_original_assertion_expressions_retained": true
+      },
+      {
+        "path": "tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+        "old_assertions": 72,
+        "new_assertions": 114,
+        "all_original_assertion_expressions_retained": true
+      }
+    ],
+    "new_methods_reviewed": 6,
+    "coverage": [
+      "wrong-current-PNG proof rejection",
+      "combined original Boru TSV fallback and stable pair with caller proof left unchanged",
+      "one full list analysis per fresh frame and input-only settle",
+      "incomplete surfaces still wait without OCR/input",
+      "PNG mutation after analysis still rejects real gesture",
+      "sixth list gesture still rejected"
+    ],
+    "execution_by_reviewer": "NONE; no imports, tests, ADB, downloads or edits"
+  },
+  "existing_validation_boundary": {
+    "source": {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/validation/result.json",
+      "bytes": 1194,
+      "sha256": "7773cec0a3c570b2d0e1ab71e28a7651998b4226dbad1d9260228b9b71c8ec10",
+      "git_blob": "5bb54066de5cf439136b2bb52baf6771acad05f5"
+    },
+    "observed": {
+      "schema": 1,
+      "started_at": "2026-11-14T19:49:01.517570+00:00",
+      "finished_at": "2026-11-14T19:53:01.909500+00:00",
+      "process_exit": null,
+      "runner_error": "TimeoutExpired(['/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3', '-B', '-m', 'unittest', '-v', 'test_kart_garage_evidence', 'test_kart_garage_scroll_recovery', 'test_kart_scroll_word_evidence', 'test_kart_driver_word_evidence', 'test_kart_continue_caption', 'test_native_surface_readiness'], 239.99985906400252)",
+      "wall_seconds": 240.0817513740003,
+      "unittest_count": null,
+      "unittest_seconds": null,
+      "terminal_ok": false,
+      "inline_ok_count": 51,
+      "sources_unchanged": true,
+      "bound_files": 75,
+      "streams": {
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+        },
+        "stderr": {
+          "bytes": 10838,
+          "sha256": "54d685838a6c1e3f0abd71941b42d5660da42effd297d8223f3bf2ba8110278c",
+          "git_blob": "96f5258163ee4fab5717b4d5d8bf9bf992837c71"
+        }
+      },
+      "result_scope": "Local controlled regression contracts; no Android or live throughput acceptance"
+    },
+    "interpretation": "The separate owner-run is recorded as outer240s timeout with51 inline ok markers and no terminal suite result or known child exit. This source review does not call that109PASS or rerun it."
+  }
+}

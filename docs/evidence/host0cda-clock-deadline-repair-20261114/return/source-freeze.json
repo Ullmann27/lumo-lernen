@@ -1,0 +1,32 @@
+{
+  "created_at_utc": "2026-11-14T20:46:42.262303+00:00",
+  "baseline_host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "baseline_tree": "a97942c991cbb38d22c8b97f06a3e5bb162ab942",
+  "producer_pr": 497,
+  "producer_head": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "producer_probe_blob": "836cf90f170545ce6d6393d5034dc149f5f6cf8c",
+  "scope": "Port only per-command remaining local deadline; retain existing conditional mailbox observation, one Back, all result checks and original logs.",
+  "existing_return_tests_byte_identical": 9,
+  "new_return_tests": 1,
+  "tests_run": false,
+  "files": [
+    {
+      "source": "/tmp/root-c4-return-deadline-integration-20261114/source/.github/probes/lumo_connect_four_android_probe.py",
+      "target": ".github/probes/lumo_connect_four_android_probe.py",
+      "mode": "100644",
+      "old_blob": "dae27bce72a09d786fd5a96cb39d10cc716dc5e2",
+      "new_blob": "9a80d1092cc50123aa638d81f3d4a75897fb2c2e",
+      "bytes": 30524,
+      "sha256": "93631ce630ac1f73a027d21f48a773cb2b3d7d18d3d7719caf8727893a9412c7"
+    },
+    {
+      "source": "/tmp/root-c4-return-deadline-integration-20261114/source/tools/android_qa/tests/test_connect_four_return_observation.py",
+      "target": "tools/android_qa/tests/test_connect_four_return_observation.py",
+      "mode": "100644",
+      "old_blob": "2cb7163b257e997af5597e11fc2f10dec69daffb",
+      "new_blob": "6ca069bac94d3380912ac865b6eceb0c8a4a33fb",
+      "bytes": 20553,
+      "sha256": "9bbc8142ce0c945d3ba4dc5b83185c48bc0a03a3557a6c3e3757569759269d92"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "new": 9,
+  "unchanged": 45,
+  "total": 54,
+  "execution": "NOT_RUN",
+  "modules": [
+    {
+      "module": "tools.android_qa.tests.test_connect_four_return_observation",
+      "path": "tools/android_qa/tests/test_connect_four_return_observation.py",
+      "count": 9,
+      "tests": [
+        "ReturnObservationTests.test_fixture_bytes_metadata_and_actual_token_are_bound_to_originals",
+        "ReturnObservationTests.test_original_current_mailbox_remainder_requires_a_fresh_later_empty_observation",
+        "ReturnObservationTests.test_permanent_current_or_foreign_mailbox_remains_failure_without_input_repetition",
+        "ReturnObservationTests.test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity",
+        "ReturnObservationTests.test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success",
+        "ReturnObservationTests.test_find_finished_at_or_after_local_deadline_cannot_accept_empty_output",
+        "ReturnObservationTests.test_global_deadline_during_find_saves_raw_answer_but_cannot_accept_it",
+        "ReturnObservationTests.test_expired_global_or_local_activity_read_never_starts_an_additional_find",
+        "ReturnObservationTests.test_failed_find_is_not_an_empty_mailbox_proof"
+      ]
+    },
+    {
+      "module": "tools.android_qa.tests.test_connect_four_preferences_observation",
+      "path": "tools/android_qa/tests/test_connect_four_preferences_observation.py",
+      "count": 9,
+      "tests": [
+        "OriginalPreferencesObservationTests.test_original_fixture_bytes_and_metadata_remain_exact",
+        "OriginalPreferencesObservationTests.test_reader_preserves_original_bytes_and_parse_cause_without_fallback",
+        "OriginalPreferencesObservationTests.test_one_touch_missing_then_old_data_requires_fresh_matching_ack",
+        "OriginalPreferencesObservationTests.test_permanently_missing_or_broken_xml_fails_with_one_touch",
+        "OriginalPreferencesObservationTests.test_valid_xml_with_wrong_owner_round_or_revision_never_confirms",
+        "OriginalPreferencesObservationTests.test_valid_old_state_and_ack_never_confirm_the_touch",
+        "OriginalPreferencesObservationTests.test_existing_120_second_boundary_after_real_pixel_analysis_stays_closed",
+        "OriginalPreferencesObservationTests.test_global_budget_expiring_during_original_read_blocks_parse",
+        "OriginalPreferencesObservationTests.test_global_budget_after_actual_pixel_analysis_cannot_accept_result"
+      ]
+    },
+    {
+      "module": "tools.android_qa.tests.test_connect_four_android_evidence",
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "count": 17,
+      "tests": [
+        "BindingTests.test_real_size_identifiers_and_exact_source_contract",
+        "BindingTests.test_actual_upload_digest_is_canonicalized_against_rest_metadata",
+        "BindingTests.test_rejects_wrong_source_workflow_attempt_artifact_and_job",
+        "ObservationTests.test_actual_complete_target_and_density",
+        "ObservationTests.test_no_clipped_small_duplicate_fake_or_other_revision_target",
+        "ObservationTests.test_ack_requires_actual_bot_and_same_round",
+        "ObservationTests.test_owner_and_durable_round_must_match",
+        "ObservationTests.test_reopen_requires_same_round_and_new_token",
+        "ObservationTests.test_pixel_evidence_rejects_missing_actual_acknowledged_disc",
+        "ObservationTests.test_flutter_target_requires_actual_package_and_unambiguous_full_control",
+        "ObservationTests.test_anr_and_engine_errors_remain_rejected",
+        "CompleteEvidenceTests.test_complete_synthetic_observation_replay",
+        "CompleteEvidenceTests.test_original_byte_change_and_unlisted_file_fail",
+        "CompleteEvidenceTests.test_return_cannot_omit_actual_back_touch",
+        "CompleteEvidenceTests.test_state_chain_cannot_skip_first_child_bot_pair",
+        "CompleteEvidenceTests.test_fresh_heartbeat_and_actual_density_are_mandatory",
+        "CompleteEvidenceTests.test_failure_status_cannot_be_relabelled_with_old_binding"
+      ]
+    },
+    {
+      "module": "tools.android_qa.tests.test_connect_four_probe_deadlines",
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "count": 11,
+      "tests": [
+        "DeadlineTests.test_wait_rejects_successful_observation_completed_after_local_90_seconds",
+        "DeadlineTests.test_wait_rejects_condition_that_finishes_after_the_same_local_deadline",
+        "DeadlineTests.test_wait_keeps_exact_boundary_closed_and_timely_result_unchanged",
+        "DeadlineTests.test_wait_still_rejects_incomplete_state_and_expired_global_budget",
+        "DeadlineTests.test_observation_rejects_late_last_read_pixels_or_target_without_accepting_result",
+        "DeadlineTests.test_observation_rechecks_after_evidence_write_before_successful_return",
+        "DeadlineTests.test_timely_observation_preserves_state_target_and_original_record",
+        "DeadlineTests.test_incomplete_actual_surface_still_blocks_observation",
+        "DeadlineTests.test_return_rejects_slow_pid_or_activity_reads_before_accepting_local_45_second_result",
+        "DeadlineTests.test_return_exact_deadline_is_closed_and_timely_return_keeps_full_checks",
+        "DeadlineTests.test_return_still_requires_observed_pause"
+      ]
+    },
+    {
+      "module": "tools.android_qa.tests.test_connect_four_flutter_navigation",
+      "path": "tools/android_qa/tests/test_connect_four_flutter_navigation.py",
+      "count": 8,
+      "tests": [
+        "NavigationTests.test_one_leave_tap_waits_for_delayed_games_before_fresh_portal_touch",
+        "NavigationTests.test_permanent_pause_fails_without_repeating_leave_or_opening_a_route",
+        "NavigationTests.test_invalid_destinations_never_authorize_input",
+        "NavigationTests.test_ready_observation_is_not_reused_as_a_portal_touch_authorization",
+        "NavigationTests.test_exact_deadline_rejects_late_hierarchy_frame_and_density",
+        "NavigationTests.test_evidence_write_cannot_turn_an_expired_observation_into_success",
+        "NavigationTests.test_global_deadline_remains_mandatory",
+        "NavigationTests.test_current_frame_integrity_failure_is_not_retried_or_accepted"
+      ]
+    }
+  ]
+}

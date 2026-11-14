@@ -1,0 +1,168 @@
+{
+  "schema": 1,
+  "base": "7ac736fdbd042769592e88de0f9849632242316d",
+  "base_tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2",
+  "producer": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "producer_parent": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "sources": [
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 14366,
+        "sha256": "9a3b669a055b3764d42e58c0511ecfb7c03cd99ea42aa757ab2f77be9fd91045",
+        "git_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+      },
+      "selection": "exact_published_producer",
+      "producer_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "producer_blob": "a0aa9a9bc0865c74b02d1284188df8e5c9c76a3c",
+      "after": {
+        "bytes": 14543,
+        "sha256": "737ba4778054657f5cb7d3efc109ff48175f6551486e7f4040f3add057ab13d9",
+        "git_blob": "a0aa9a9bc0865c74b02d1284188df8e5c9c76a3c"
+      }
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 2632,
+        "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+        "git_blob": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14"
+      },
+      "selection": "exact_published_producer",
+      "producer_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "producer_blob": "ddbafa79864878446bc3efa064b71c81e252fc63",
+      "after": {
+        "bytes": 3275,
+        "sha256": "dd00f01aabc503869540e396e757cb86538523dc6146a0ee54357235bbaca260",
+        "git_blob": "ddbafa79864878446bc3efa064b71c81e252fc63"
+      }
+    },
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 14257,
+        "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+        "git_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+      },
+      "selection": "exact_published_producer",
+      "producer_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "producer_blob": "4844cabaa5ed881d8f29dbd7c9758f03ef510df4",
+      "after": {
+        "bytes": 16155,
+        "sha256": "e1911d59e58d92b92dbb56a1447702656dff491ae1a61edec051b976ce74af1d",
+        "git_blob": "4844cabaa5ed881d8f29dbd7c9758f03ef510df4"
+      }
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 43222,
+        "sha256": "c2de19c0f7d628434a9af9f04e391a5df4d234b59659a3e709288ba90ec58d9b",
+        "git_blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96"
+      },
+      "selection": "exact_two_producer_hunks_on_root",
+      "producer_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "producer_blob": "7e0dfc297090d5d3e558367107a28ff5986de786",
+      "after": {
+        "bytes": 44948,
+        "sha256": "3d6d5d669307170728f62cc221bc840c48e57b22c13b9c64a081db7dfa606971",
+        "git_blob": "0927a3b853e168325e00ebaacc2156a49356ac1e"
+      }
+    },
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "mode": "100644",
+      "before": null,
+      "selection": "exact_published_producer",
+      "producer_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "producer_blob": "c4b90bc73b76a2df23acdb253fa4213b798fed21",
+      "after": {
+        "bytes": 10816,
+        "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+        "git_blob": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+      }
+    },
+    {
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "mode": "100644",
+      "before": null,
+      "selection": "exact_published_producer",
+      "producer_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "producer_blob": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b",
+      "after": {
+        "bytes": 29908,
+        "sha256": "33331c4b0c804b803e22785e9f7a5e25fe3e3086913bc0e02beecf529f956c32",
+        "git_blob": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b"
+      }
+    },
+    {
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "mode": "100644",
+      "before": null,
+      "selection": "exact_published_producer",
+      "producer_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "producer_blob": "4615f10622420d53dedb380ff4648e5692995861",
+      "after": {
+        "bytes": 13409,
+        "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+        "git_blob": "4615f10622420d53dedb380ff4648e5692995861"
+      }
+    },
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 9797,
+        "sha256": "7062af9ecdcb3ecdccd428adadfb72a67e529e81cb670735b2b3f73042acf347",
+        "git_blob": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3"
+      },
+      "selection": "root_exact_regression_update",
+      "producer_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "producer_blob": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3",
+      "after": {
+        "bytes": 10757,
+        "sha256": "082861273c381ffb946ac6b4205d41eb77065868bfc5d70c165cac7464c0753c",
+        "git_blob": "79d94286312aea5231b0906e8514be132aeee94b"
+      }
+    },
+    {
+      "path": "test/reward_wallet_transaction_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 21962,
+        "sha256": "fbb6759879533037d8d1044cb8232c711b50aa784d149f40c7170cdd63c19a27",
+        "git_blob": "2419030446ada34710594160fc7f732669d97649"
+      },
+      "selection": "root_exact_regression_update",
+      "producer_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "producer_blob": "2419030446ada34710594160fc7f732669d97649",
+      "after": {
+        "bytes": 22807,
+        "sha256": "295a857b766a6ddf5107dd7f1bf8824eeec5d32f0772a3ebefe297f2a1269128",
+        "git_blob": "77862a23eb251266b319beb4d2fe24251e409dab"
+      }
+    },
+    {
+      "path": "test/games/memory_profile_storage_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 10767,
+        "sha256": "19f2c236ebcd24d64866d90d98567f18e498da1063211b0f0f8e2a7e6839f869",
+        "git_blob": "5fa7cf5b882a20b85c31a2693e9fcff8cec21508"
+      },
+      "selection": "root_exact_regression_update",
+      "producer_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "producer_blob": "5fa7cf5b882a20b85c31a2693e9fcff8cec21508",
+      "after": {
+        "bytes": 12801,
+        "sha256": "378a2c560ea344a7be832628e993244d4424c396ee55850cb97ed7ab01388388",
+        "git_blob": "cfc75adfea811babde60c96938ba79ee03036475"
+      }
+    }
+  ],
+  "execution": "NOT_RUN: source checkpoint required"
+}

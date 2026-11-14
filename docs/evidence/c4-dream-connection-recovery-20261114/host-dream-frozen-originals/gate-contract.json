@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "host_base": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+  "host_tree": "10234debe8d5f2f9577ac28aa05ae99322d9190f",
+  "native_revision_source": "config/godot-source.json revision (Root owns pin/policy updates)",
+  "new_required_step": "Require actual Dream gates on the exact pinned native source",
+  "job": "verify-and-build",
+  "job_timeout_minutes_unchanged": 90,
+  "ordered_position": "After all existing full Native gates, before existing native artifact upload and APK build",
+  "native_checkout": "$RUNNER_TEMP/lumo-native-acceptance",
+  "python_path": "$GITHUB_WORKSPACE/.ci-python/bin prepended to PATH before cd; Pillow12.3.0 installed by existing required step",
+  "env": {
+    "LUMO_DREAM_LOG_DIR": "$GITHUB_WORKSPACE/acceptance-native/dream (must not exist)",
+    "LUMO_EXPECTED_NATIVE_SHA": "exact config revision",
+    "LIBGL_ALWAYS_SOFTWARE": "1"
+  },
+  "command": "bash tools/validate_dream_connections.sh",
+  "native_artifact": "lumo-candidate-pinned-native-gameplay",
+  "artifact_root": "acceptance-native/",
+  "original_paths": {
+    "dream_root": "dream/",
+    "outer_log": "dream-runner.log",
+    "preserved_reader": "dream-verifier-original.py",
+    "manifest": "dream/dream-images.json"
+  },
+  "reader": {
+    "path": "/tmp/lumo-root-recovery-0900/native-dream/tools/verify_dream_rasters.py",
+    "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+    "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+    "bytes": 20254
+  },
+  "delivery_replay": "checked_native_dream invokes the exact committed hash-bound source verify(root, write=False); the preserved artifact copy is never executed",
+  "mandatory_counts": {
+    "existing_core_modes": 52,
+    "existing_studio2020_images": 17,
+    "return_checks": 21,
+    "wisp_checks": 14,
+    "additional_dream_modes": 5,
+    "additional_dream_pngs": 7,
+    "additional_dream_reports": 2
+  },
+  "original_preservation": "All Dream logs/PNGs/reports/stamps/inventories plus exact reader bytes remain in the same original Native artifact. Delivery facts bind their hashes and full fresh recomputation; original files are never rewritten.",
+  "existing_steps_guards_and_deadlines_preserved": true,
+  "tests": {
+    "previous_delivery_methods_unchanged": 45,
+    "new_delivery_methods": 11,
+    "total_delivery_methods": 56,
+    "executed": 0,
+    "boundary": "New unit fixtures explicitly simulate the Native decoder boundary; they do not claim real raster/engine acceptance."
+  },
+  "measured_separate_native_ci": {
+    "source": "bd0712259bb64908a5649ee1999638826c9eb597",
+    "tree": "2eb628d3e3a327ee8985385130c96168db7aa852",
+    "run_id": 43585768986,
+    "job_id": 132419791499,
+    "step": {
+      "name": "Collect all five new Dream gates and seven original renderer images",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8,
+      "started_at": "2026-11-14T10:33:36Z",
+      "completed_at": "2026-11-14T10:34:22Z"
+    },
+    "seconds": 46.0,
+    "original_metadata_sha256": "197c6c40982e494b422269defe021e2f4d1422a965965447674e66e06ff7b153",
+    "limit": "Existing native-source CI observation only; no predicted complete Host duration or transferred Host result."
+  },
+  "out_of_scope": [
+    "Native pin/policy/candidate constants",
+    "new Git/CI mutations",
+    "Engine/render/device runs",
+    "Publication or FPS approval"
+  ]
+}

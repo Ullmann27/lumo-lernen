@@ -1,0 +1,31 @@
+{
+  "scope": "source review only, no local execution",
+  "privacy": {
+    "actual_caller": "lib/features/teacher_mode/lumo_teacher_screen.dart: buildSafeImageUrl(childPrompt, allowOnline: online)",
+    "allowOnline_default_false_unchanged": true,
+    "whole_function_prefix_and_suffix_around_translation_delta_byte_equal": true,
+    "new_network_calls": false,
+    "published_original_red": {
+      "failed": 2,
+      "passed": 5,
+      "harness": "minimal Flutter harness, synthetic private text, no HTTP"
+    },
+    "published_original_green": {
+      "passed": 7,
+      "failed": 0,
+      "harness": "same exact new production and test bytes"
+    }
+  },
+  "historical_fixture": {
+    "production_policy_wrapper_unchanged": true,
+    "synthetic_source": "2019 version and already reviewed17f5 identity; copied real current wrapper and policy",
+    "negative_cases_preserved": 10,
+    "new_negatives": [
+      "reviewed 2020 version rejected before update runner",
+      "unreviewed 2019 native revision rejected before update runner"
+    ],
+    "actual_original_ci_error": "01575 job132391949339: 928 methods; 11 subtest/errors because current2020 source is not a2019 candidate",
+    "published_focused_green": "3 wrapper execution tests PASS; no device I/O",
+    "combined_current_source_tests": "NOT_RUN"
+  }
+}

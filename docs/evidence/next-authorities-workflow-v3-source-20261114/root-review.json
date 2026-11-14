@@ -1,0 +1,22 @@
+{
+  "status": "ROOT_STATIC_REVIEW_COMPLETE_NOT_EXECUTED",
+  "parent": "3a5b2241b7a329a8b36ee655bceedd874ae50268",
+  "parent_tree": "de979455e4bd490c8cf69241f4dc77a0ca0408e2",
+  "workflow_blob": "6a08dfb852cbec128db96aaa84add2bc69a7194b",
+  "workflow_sha256": "9dbda2369930ed77275cb3adc401fedc58538ebe21736f7e29b68dad23ab6f9e",
+  "all_six_remote_blobs_fully_verified": true,
+  "all_pack_members_fully_verified": 18,
+  "exact_single_hunk_reconstructs_v3": true,
+  "insertions": 105,
+  "deletions": 2,
+  "final_speech_sources_match_parent": true,
+  "full_delta_read": true,
+  "no_concrete_static_blocker_found": true,
+  "scope": "19 actual unittest identities and strict outcomes after real compile, followed by unchanged eleven Java/eight Kotlin runner; original five groups and all other gates retained byte-for-byte",
+  "execution": "NOT_RUN; syntax/Actionlint and subsequent actual qualification remain required",
+  "checked_utc": "2026-11-14 17:39:08 UTC",
+  "historical_freeze_basis": "The original frozen V3 records e664; actual checkpoint parent 3a5b adds only the reviewed Speech source set and documentation, retaining the V2 workflow byte-for-byte.",
+  "pending": "Independent review and actual isolated syntax lint; no product tests or CI execution claimed.",
+  "timestamp_source": "Actual clock observation after the completed static checks; supersedes the premature rounded timestamp in the first evidence checkpoint.",
+  "independent_speech_review": "bacbe210896d5e4af12a4da9f54ad05c9bc4aa09"
+}

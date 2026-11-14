@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "host_source": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+  "native_source": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "run": 43581113174,
+  "attempt": 1,
+  "actual_flutter_summary": {
+    "status": "PASS",
+    "passed": 2581,
+    "failed": [],
+    "skipped": [],
+    "capture_error_files": [],
+    "flutter_exit_code": 0,
+    "runner_completed_successfully": true,
+    "runner_errors": [],
+    "scope": [
+      "complete Flutter suite; capture outputs recorded below"
+    ],
+    "capture_png_counts": {
+      "LUMO_TUTORING_CAPTURE_DIR": {
+        "directory": "tutoring",
+        "pngs": 6
+      },
+      "LUMO_RIG_STRESS": {
+        "directory": "rig-stress",
+        "pngs": 27
+      },
+      "LUMO_CARDS_OPPONENT_CAPTURE": {
+        "directory": "cards-opponents",
+        "pngs": 4
+      },
+      "LUMO_STREAM_E_CAPTURE": {
+        "directory": "cards-memory",
+        "pngs": 8
+      },
+      "LUMO_NAVIGATION_CAPTURES": {
+        "directory": "navigation",
+        "pngs": 26
+      },
+      "LUMO_GUIDED_CAPTURE_DIR": {
+        "directory": "guided-learning",
+        "pngs": 170
+      },
+      "LUMO_VISUAL_CAPTURE_DIR": {
+        "directory": "reasoning",
+        "pngs": 15
+      },
+      "LUMO_TOUR_DIR": {
+        "directory": "tour",
+        "pngs": 62
+      },
+      "LUMO_FLUTTER_GAMES_CAPTURE": {
+        "directory": "games",
+        "pngs": 16
+      },
+      "LUMO_LEARNING_CAPTURE_DIR": {
+        "directory": "learning-adventure",
+        "pngs": 80
+      },
+      "LUMO_COMPANION_CAPTURE_DIR": {
+        "directory": "companion",
+        "pngs": 6
+      },
+      "LUMO_SPATIAL_CAPTURES": {
+        "directory": "reading",
+        "pngs": 12
+      },
+      "LUMO_CAPTURE_DIR": {
+        "directory": "modernization",
+        "pngs": 42
+      },
+      "LUMO_CARD_FACE_EXPORT_DIR": {
+        "directory": "card-face-exports",
+        "pngs": 56
+      },
+      "LUMO_NEXTGEN_READING_CAPTURES": {
+        "directory": "nextgen-reading",
+        "pngs": 6
+      },
+      "LUMO_READING_CAPTURES": {
+        "directory": "reading-passages",
+        "pngs": 3
+      },
+      "LUMO_ASSISTED_LEARNING_CAPTURES": {
+        "directory": "assisted-learning",
+        "pngs": 2
+      },
+      "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+        "directory": "native-profiles",
+        "pngs": 4
+      }
+    },
+    "capture_file_outputs": {
+      "LUMO_CARDS_CUP_CAPTURE": {
+        "path": "cards-cup/trophy.png",
+        "created": true
+      }
+    },
+    "rendered_png_count": 546
+  },
+  "flutter_artifact_downloaded": false,
+  "flutter_capture_scope": "546 PNGs reported by the actual original runner. The 332428936-byte capture artifact was not downloaded or visually reviewed here.",
+  "actual_build_contracts": {
+    "ran": 845,
+    "passed": 844,
+    "errors": 1,
+    "failures": 0,
+    "skipped": 0,
+    "seconds": 350.312,
+    "sole_error": "ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate: Source checkout native pin differs"
+  },
+  "bound_fix_commit": "186283019a44a01897f5fac3ee6c471e94ad7297",
+  "fix_scope": "One exact published historical QA test fixture plus three exact published visibility/touch-size test improvements. Production and native pin unchanged.",
+  "repair_evidence": "docs/evidence/c4-historical-qa-fixture-repair-20261114 in 186283019a44a01897f5fac3ee6c471e94ad7297",
+  "preserved_fail": "No rerun, edited outcome, hidden error, skipped-gate acceptance or reclassification of original run.",
+  "acceptance": "Actual original run FAILED before pinned-native full acceptance/APK/device jobs. No APK or release was created by this run."
+}

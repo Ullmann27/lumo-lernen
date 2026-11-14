@@ -1,0 +1,172 @@
+{
+  "schema": 1,
+  "kind": "read_only_static_timeout_followup",
+  "created_at": "2026-11-14T20:23:51.868667+00:00",
+  "conclusion": "No fake-clock non-progress path from removing the unconditional sleep is established for the actual last reported test. Its loops and relevant replay-clock progress are statically bounded. The cause of the whole-run 240-second timeout is not established.",
+  "last_reported_test": "test_both_original_layouts_keep_every_scroll_point_inside_the_real_clip",
+  "historical_result": {
+    "planned_methods": 109,
+    "explicit_inline_ok": 51,
+    "terminal_ok": false,
+    "child_exit": null,
+    "outer_timeout_seconds": 240,
+    "wall_seconds": 240.0817513740003,
+    "stdout_bytes": 0,
+    "last_stderr_line": "test_both_original_layouts_keep_every_scroll_point_inside_the_real_clip (test_kart_garage_scroll_recovery.OriginalGarageViewportTests.test_both_original_layouts_keep_every_scroll_point_inside_the_real_clip) ... "
+  },
+  "findings": [
+    {
+      "id": "actual_last_method",
+      "source": "final-source/tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "lines": [
+        87,
+        93
+      ],
+      "detail": "The unchanged method iterates the two entries of VISIBLE_LIST and frame indexes (0,2), so it plans at most four direct calls to stage_garage_scroll_observation plus finite assertions. It does not call the modified _select_stage_kart, install a fake clock, or call sleep/monotonic."
+    },
+    {
+      "id": "pure_pixel_helper",
+      "source": "validation-source/tools/android_qa/kart_garage_evidence.py",
+      "lines": [
+        330,
+        403,
+        435,
+        526
+      ],
+      "detail": "The workshop scan uses finite image-coordinate ranges. Its connected-component worklist removes every point from the finite points set before appending it; no point is reinserted. The outer points loop also removes its first point. Scrollbar scanning and grouping operate on finite ranges/lists. These functions do not consult a real or fake clock and do not depend on the removed tour sleep."
+    },
+    {
+      "id": "separate_caller_replay",
+      "source": "final-source/tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "lines": [
+        398,
+        465
+      ],
+      "detail": "The separate GarageObservationReplay used by caller tests advances now in capture (default0.25s) and OCR (default0.5s), independently of sleep. Each capture increments capture_count and raises after count>20. Thus its defined progression/bound does not depend solely on the removed unconditional sleep. The named last method does not instantiate this replay."
+    },
+    {
+      "id": "actual_production_delta",
+      "source": "final-source/.github/probes/modernization_android_tour.py",
+      "lines": [
+        441,
+        516
+      ],
+      "detail": "_select_stage_kart retains its monotonic deadline while loop and 150-second default. The frozen current-frame-reuse revision sleeps after incomplete surfaces, observed swipe input and final touch, while valid observations without new input no longer have the unconditional final1.5s sleep. The frozen diff also reuses only a matching current-frame SHA and keeps the five-gesture cap and two fresh target observations. No field evidence here demonstrates a production loop exceeding its own deadline."
+    }
+  ],
+  "bound_execution_inventory_entries": [
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "mode": "0o644",
+      "view": {
+        "bytes": 31013,
+        "sha256": "287d12f156ec7839b3d8bb2999fca825f7e2b1775b93fcd801a3c4087578dd8f",
+        "git_blob": "b80f0d8f12fe86031a91cec39c26f9d1cfa65a94"
+      },
+      "origin": {
+        "bytes": 31013,
+        "sha256": "287d12f156ec7839b3d8bb2999fca825f7e2b1775b93fcd801a3c4087578dd8f",
+        "git_blob": "b80f0d8f12fe86031a91cec39c26f9d1cfa65a94"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "mode": "0o644",
+      "view": {
+        "bytes": 31394,
+        "sha256": "03a5508a572c2446e1a8c1c96889ec1e7cbcb47787dc9205bd416b17edbc213d",
+        "git_blob": "a2257b5bbe4e61e4c560441a570410c56baf517c"
+      },
+      "origin": {
+        "bytes": 31394,
+        "sha256": "03a5508a572c2446e1a8c1c96889ec1e7cbcb47787dc9205bd416b17edbc213d",
+        "git_blob": "a2257b5bbe4e61e4c560441a570410c56baf517c"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "mode": "0o644",
+      "view": {
+        "bytes": 38164,
+        "sha256": "1e5e629efd384cb2addc05c973317b94a25198da947501bb4b76949bf34d9e27",
+        "git_blob": "f4a1f3b262ebced3ebd823d07748ecaee7834cac"
+      },
+      "origin": {
+        "bytes": 38164,
+        "sha256": "1e5e629efd384cb2addc05c973317b94a25198da947501bb4b76949bf34d9e27",
+        "git_blob": "f4a1f3b262ebced3ebd823d07748ecaee7834cac"
+      }
+    }
+  ],
+  "original_source_inventories_equal": true,
+  "original_named_test_body_equal_before_after": true,
+  "source_inputs": [
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/final-source/tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "bytes": 38164,
+      "sha256": "1e5e629efd384cb2addc05c973317b94a25198da947501bb4b76949bf34d9e27",
+      "git_blob": "f4a1f3b262ebced3ebd823d07748ecaee7834cac"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/before-source/tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "bytes": 27545,
+      "sha256": "c6a88af95fab0bd5d1ac0dd41b42a985cc72051d19e803ed766ef0e793d4bec9",
+      "git_blob": "4abc7df8a9ebef448c85a9cfb1789e5bcaf638bf"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/final-source/.github/probes/modernization_android_tour.py",
+      "bytes": 79210,
+      "sha256": "e52e39270f976e8d9e90c6fbf7a64133474dd1fa12115c2c9aef26e2b69ebe5a",
+      "git_blob": "c89d9284c76b25b20eb50d1dcb260d0b91d3007f"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/before-source/.github/probes/modernization_android_tour.py",
+      "bytes": 78635,
+      "sha256": "7d2034119f06846ede165ec039dfab54e31aafd02a5e05c7fef02d9a75f31bf1",
+      "git_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/validation-source/tools/android_qa/kart_garage_evidence.py",
+      "bytes": 31013,
+      "sha256": "287d12f156ec7839b3d8bb2999fca825f7e2b1775b93fcd801a3c4087578dd8f",
+      "git_blob": "b80f0d8f12fe86031a91cec39c26f9d1cfa65a94"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/validation/invocation.json",
+      "bytes": 1112,
+      "sha256": "d0f7af903fc91b5a0e44cfd6275395b65585a447574e5919b70ec4c2cddd197a",
+      "git_blob": "e01a7f4e16fb6d49e179a8d5747c116d45950f56"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/validation/result.json",
+      "bytes": 1194,
+      "sha256": "7773cec0a3c570b2d0e1ab71e28a7651998b4226dbad1d9260228b9b71c8ec10",
+      "git_blob": "5bb54066de5cf439136b2bb52baf6771acad05f5"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/validation/stderr.log",
+      "bytes": 10838,
+      "sha256": "54d685838a6c1e3f0abd71941b42d5660da42effd297d8223f3bf2ba8110278c",
+      "git_blob": "96f5258163ee4fab5717b4d5d8bf9bf992837c71"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/validation/source-before.json",
+      "bytes": 37421,
+      "sha256": "e96bfe434bbbaf94b5b6e81a9f45e3393c5698b48c91453a4e6cef62b9659648",
+      "git_blob": "4a106762c07d177d7903ff123c61797be2b11a71"
+    },
+    {
+      "path": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/validation/source-after.json",
+      "bytes": 37421,
+      "sha256": "e96bfe434bbbaf94b5b6e81a9f45e3393c5698b48c91453a4e6cef62b9659648",
+      "git_blob": "4a106762c07d177d7903ff123c61797be2b11a71"
+    }
+  ],
+  "limits": [
+    "The last printed unittest name identifies the method active when output stopped; it is not a measured per-method duration or a stack trace of where execution spent time.",
+    "No CPU/memory/I/O/Pillow attribution, 109-PASS claim, test retry or source fix is made.",
+    "This report performs only static reads, hashes and AST inspection of existing sources and original logs. No product/test imports or executions occurred."
+  ],
+  "tests_executed": 0,
+  "source_edits": 0
+}

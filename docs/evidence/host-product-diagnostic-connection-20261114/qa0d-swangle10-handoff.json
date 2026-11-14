@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "status": "FROZEN_PASS_10_LOCAL_REPORTER_CONTRACTS",
+  "source": "0d7ea79cd02b921ed685abc79b27df8a5f6b4ccb",
+  "tree": "863c4b45bcd6a564070ca128565688bde7e1ed11",
+  "worktree": "/tmp/lumo-recovery-20261114/host-qa",
+  "result": {
+    "path": "result.json",
+    "bytes": 1175,
+    "sha256": "4684acad6f480df21f6460d0381f8a103c61b9b79c5813261a81ecdce6da955f"
+  },
+  "raw_log": {
+    "path": "contracts-10.log",
+    "bytes": 2346,
+    "sha256": "5d8db10b2ef166abd21483ba610a877768997e19e2ead45c82c02835622a5bf0"
+  },
+  "counts": {
+    "tests": 10,
+    "reported_seconds": 0.567,
+    "errors": 0,
+    "failures": 0,
+    "skips": 0
+  },
+  "single_test_invocation": true,
+  "all_materialized_sources_git_bound": 735,
+  "source_git_index_status_unchanged": true,
+  "before_after_source_hash": "b5a4f92417e77038875add1b231908cc1bdca0ff630ccb40680bbf68ca237605",
+  "repair_freeze_sha256": "2ea77b280905bb6482ebf93a11fccdcc771fab1fda220e1b12070ab067a5e9fe",
+  "sparse_preflight": {
+    "record": "preflight-missing-inputs.json",
+    "test_started": false,
+    "resolution": "Root materialized the already-published wrapper after the separate Pipeline source-comparison completed; this run used a completely fresh pre-state."
+  },
+  "independent_source_review": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr486-swangle-independent-review-20261114/review.json",
+    "sha256": "ef99cc418729b1d8a2c5273d10aea91da56586c1ddf0be98e168c9635d9dcb6b"
+  },
+  "scope": "Actual local ten-method Python reporter/workflow contract suite, including byte-preserved 08e original data and negative cases. Not a new emulator, graphics, APK, game, ANR-continuity or whole-CI acceptance."
+}

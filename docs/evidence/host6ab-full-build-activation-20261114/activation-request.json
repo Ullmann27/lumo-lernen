@@ -1,0 +1,64 @@
+{
+  "created_at_utc": "2026-11-14T20:55:38.736Z",
+  "source_checkpoint": "6ab8748c1910b256adfde909809e01995c87acf2",
+  "source_tree": "17d791e868f5449b3a7591a432947b39bae7f3a1",
+  "parent_failed_candidate": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "previous_run": 43637785992,
+  "previous_attempt": 1,
+  "previous_result": "FAIL_SINGLE_C4_RETRY_TEST_PRECONDITION",
+  "branch": "integration/lumo-c4-connections-20261114",
+  "expected_branch_sha": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "pull_request": 485,
+  "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+  "workflow_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064",
+  "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+  "version": "0.13.8+2020",
+  "local_validation": {
+    "actual_exit_code": 0,
+    "tests": 21,
+    "stderr_sha256": "e8c887dbe6086b79509f7ae4d48978955ca5dd10afc709e74b62ada498ed7003",
+    "scope": "Deadline11 + Return10; synthetic observation boundaries, no Android acceptance."
+  },
+  "required_jobs": [
+    "connect-four-runtime",
+    "android-host-compile",
+    "verify-and-build",
+    "android-c4",
+    "update-2020-from-2017",
+    "verify-c4-candidate",
+    "prepare-c4-delivery"
+  ],
+  "run_id": null,
+  "attempt": null,
+  "publisher": "NOT_ACTIVATED",
+  "product_source_changes_since_0cda": 0,
+  "changes_since_0cda": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "before": "dae27bce72a09d786fd5a96cb39d10cc716dc5e2",
+      "after": "9a80d1092cc50123aa638d81f3d4a75897fb2c2e"
+    },
+    {
+      "path": "CONTINUE.md",
+      "before": "da7d984b87a65e5adf13a16d7ebb462c6c1ef8b4",
+      "after": "6c1269b8762386a6c826868e532806aa9f95ebd0"
+    },
+    {
+      "path": "STATUS.md",
+      "before": "76d0d41c2bf46b1b8c54fb5102f8dcc04adc46d2",
+      "after": "c2c9cf680b062730677df98e1c33029de2532557"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_return_observation.py",
+      "before": "2cb7163b257e997af5597e11fc2f10dec69daffb",
+      "after": "9f50cf8977644345cdc30e6cbd66e20a978eaca1"
+    },
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "before": "c4b90bc73b76a2df23acdb253fa4213b798fed21",
+      "after": "830b3f661c2a289f5ae76ed545cfed60fe27b36a"
+    }
+  ],
+  "unchanged_existing_paths": 4936
+}

@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "status": "READ_ONLY_REVIEW_NO_CONCRETE_BLOCKER",
+  "reviewed_at": "2026-11-14T04:32:11.246295+00:00",
+  "reviewer": "godot_integration",
+  "scope": "Independent narrow source review of the new workflow, SWANGLE-only wrapper delta and focused contracts. No source edits, tests, downloads, runtime launch or Git/index/ref action.",
+  "source_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/source-freeze.json",
+    "bytes": 1202,
+    "sha256": "f8305a2f383777f478a7f84bd4027eb688834bd8aecf5cbdb7576c6cfeecbe5c"
+  },
+  "reviewed_files": [
+    {
+      "path": ".github/workflows/lumo-android-runtime-7b16-followup.yml",
+      "bytes": 13465,
+      "sha256": "b6573b0ee0a2364b305e69693813b358a65245e1143876c09c8b0aecb809a71c",
+      "frozen_snapshot_equal_current": true
+    },
+    {
+      "path": "scripts/run_unchanged_apk_diagnostic.sh",
+      "bytes": 7218,
+      "sha256": "e8d724d5a6da0d12d193cfb1de851d520eac68ead0f8777b2965c0469da3ae50",
+      "frozen_snapshot_equal_current": true
+    },
+    {
+      "path": "scripts/tests/test_runtime_followup_workflow.py",
+      "bytes": 10332,
+      "sha256": "6c65b0957e388eedb53d973de12aa8a799accde6a2a968678ec584bc8be1c473",
+      "frozen_snapshot_equal_current": true
+    }
+  ],
+  "unchanged_originals": [
+    {
+      "path": ".github/workflows/lumo-unchanged-apk-diagnostic.yml",
+      "bytes": 12962,
+      "sha256": "e186bc6ec6e3dd946d77213307ad7c3b5152e0431b820e0f4c60c399d6fe46fa",
+      "equal_original_61c_equivalent_commit": true
+    },
+    {
+      "path": "config/diagnostic-baselines/android37-7b16.json",
+      "bytes": 1953,
+      "sha256": "4bff2aad1a8420118be47cb0679c211c83b2b99b5526321f9b338fcb8645c32f",
+      "equal_original_61c_equivalent_commit": true
+    }
+  ],
+  "read_evidence": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/swangle-only-wrapper.patch",
+      "bytes": 2320,
+      "sha256": "2c04a5b51ab648a7760fb0e34be0466c830a35dd91a351b99dee3ee68fbfdfba"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/workflow-derivation.patch",
+      "bytes": 4903,
+      "sha256": "030bacc76dd7ba746b196fcdc11ef223dc71775f8f6714bb0c5bb215adac829f"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/validation.json",
+      "bytes": 1632,
+      "sha256": "f21e93fcfd79e5c1ee2723fcb0ad06a1678d0fbf2551e50a2a459f61a9b3e259"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/workflow-contracts.log",
+      "bytes": 1653,
+      "sha256": "8018dcccc27c73a54a1b5e9989e73edf699082acd3c827ae1f955a913acdef67"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/primary-source-notes.json",
+      "bytes": 1267,
+      "sha256": "df3b6c785ca4249c00b61d7b8e2630dcc29afbb65c281926d8c557ba0f19e5e5"
+    }
+  ],
+  "supporting_dependencies": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/verify_unchanged_apk_diagnostic.py",
+      "bytes": 19885,
+      "sha256": "3747027cf3a6b4d91e8d0e8ab59fca07f63ff59b8c189373dbe098bda34d67d4",
+      "scope": "Read only exact new workflow/branch/job routes, candidate constants and QA metadata binding; not a new full helper review."
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/prepare_android37_emulator_action.py",
+      "bytes": 9128,
+      "sha256": "ebb75b2dc289303962bc224ec739567f773ea7912bd07088f02b8ae4117a61ec",
+      "scope": "Read actual original action hash binding and unchanged120-second framework guard invocation."
+    }
+  ],
+  "findings": [
+    {
+      "id": "preserved_cases",
+      "finding": "Original api37-host and api37-swiftshader remain separate cases and jobs; api37-swangle is an additional fifth matrix case. No previous case is renamed to represent the new backend.",
+      "locations": [
+        "workflow lines83-102",
+        "wrapper lines77-85"
+      ]
+    },
+    {
+      "id": "same_apk_and_native",
+      "finding": "Workflow consumes only original artifact14093773196 from build43540111465 and separately checks out fixed candidate7b16. The existing source binder fixes APK cf60f0cc… and PCK04acb69c… with Native17f5, while binding the actual new QA workflow/branch/job separately. No APK build or publisher is added.",
+      "locations": [
+        "workflow lines15-16,111-136,158-188",
+        "source binder lines30-65,157-184"
+      ]
+    },
+    {
+      "id": "fixed_environment",
+      "finding": "All API37 cases share the same action commit, CLI22 preparation, google_apis/x86_64/API37.0/Pixel5,2cores/4096M and declared512Mheap. The unchanged original baseline requires actual effective576heap, display1080x2340, package metadata hashes and exact Android fingerprint. A package/emulator metadata drift causes failure rather than an accepted comparison. This is not a complete system-image byte hash.",
+      "locations": [
+        "workflow lines121-128,196-224,246-271",
+        "wrapper lines60-94",
+        "config/diagnostic-baselines/android37-7b16.json"
+      ]
+    },
+    {
+      "id": "bounded_deadlines",
+      "finding": "API37 job limit65minutes, boot300seconds, explicit monitor3600seconds and framework guard120seconds remain unchanged. No new retry or longer deadline is introduced by SWANGLE.",
+      "locations": [
+        "workflow lines87-104,263-270",
+        "prepare_android37_emulator_action.py GUARD_LINES"
+      ]
+    },
+    {
+      "id": "observed_backend",
+      "finding": "The renderer report reads the actual SurfaceFlinger dump and requires exactly one GLES line. The new case additionally requires effective hw.gpu.mode=swangle and separate case-insensitive ANGLE plus SwiftShader word matches. Empty or duplicate GLES lines, the old pure SwiftShader text, a standalone SWANGLE token and a hardware mismatch remain failures.",
+      "locations": [
+        "wrapper lines48-50,64-94",
+        "focused tests lines143-176"
+      ]
+    },
+    {
+      "id": "no_automatic_fallback",
+      "finding": "Workflow passes the matrix renderer directly once. Wrapper has no alternate backend branch or retry; mismatch exits nonzero under set-e. EXIT handling retains the original tour/configuration failure even if later observation cleanup succeeds. Any internal renderer fallback that changes the observed effective backend is rejected by the comparison gate.",
+      "locations": [
+        "workflow line267",
+        "wrapper lines3,22-35,108-110"
+      ]
+    },
+    {
+      "id": "existing_observers",
+      "finding": "The GPU-only patch changes only the allowedcase list and embedded backend selection/report predicate. It does not alter the frozen logger handoff, the tour commands, the ANR lifecycle or the old host/SwiftShader predicates.",
+      "locations": [
+        "swangle-only-wrapper.patch",
+        "wrapper lines37-45,118-141"
+      ]
+    },
+    {
+      "id": "focused_contracts",
+      "finding": "Seven existing local contract results are recorded without failures/skips. Their source exercises the actual embedded report using explicitly synthetic files and includes pure SwiftShader/SWANGLE-only/absent-or-duplicateGLES/hardware mismatch cases and the preserved old renderercases. I read those logs and source; I did not rerun them.",
+      "locations": [
+        "workflow-contracts.log",
+        "scripts/tests/test_runtime_followup_workflow.py"
+      ]
+    },
+    {
+      "id": "routing_dependency",
+      "finding": "The separately owned current source binder includes exact new workflow/branch routes and unchanged-apk-followup-api37-swangle; unsupportedjob names and mismatching raw QA metadata remain rejected. The adapter receives the actual new workflow path.",
+      "locations": [
+        "source binder lines55-65,157-184",
+        "workflow lines171-188,218-223"
+      ]
+    }
+  ],
+  "primary_sources_binding": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-swiftshader-landing-review/primary-sources.json",
+    "bytes": 2509,
+    "sha256": "c5239a0622cb7ebfc74d79510cde3d6a433b0b2e7570870cddbc8e51b6b0d786"
+  },
+  "original_failure_binding": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-swiftshader-landing-review/handoff.json",
+    "bytes": 958,
+    "sha256": "bef6a026b944127f853ed8b136aa4653f81944fb3e9f887cc5f466a18df471f0"
+  },
+  "limits": [
+    "Code consistency only. No SWANGLE backend was launched or accepted in this review.",
+    "The observed AOSP source is a moving development-branch blob and is not identified as exact emulator37.2.13 build source.",
+    "SurfaceFlinger GLES is a system compositor observation; actual Godot shader startup and readable landing still require the new original app/runtime logs and images.",
+    "Original shader-link failures and earlier logger continuity failure remain failures. No prior PASS is transferred.",
+    "No physical-device performance, FPS, visual or whole-app acceptance is inferred."
+  ],
+  "recommendation": "Proceed with the separate source-bound diagnostic runtime case. Preserve hard configuration, shader, ANR and tour failures; assess actual new originals before claiming a backend repair."
+}

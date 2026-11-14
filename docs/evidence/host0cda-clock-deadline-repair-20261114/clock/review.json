@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "status": "NO_CONCRETE_STATIC_BLOCKER_TEST_SCHEDULING_REPAIR",
+  "base_host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "base_tree": "a97942c991cbb38d22c8b97f06a3e5bb162ab942",
+  "source": {
+    "path": "test/games/connect_four_bot_save_retry_test.dart",
+    "mode": "100644",
+    "before": {
+      "bytes": 10816,
+      "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+      "git_blob": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+    },
+    "after": {
+      "bytes": 11449,
+      "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+      "git_blob": "830b3f661c2a289f5ae76ed545cfed60fe27b36a"
+    },
+    "provenance": "Exact Root-supplied producer-prepared immutable GitHub blob 830b3f661c2a289f5ae76ed545cfed60fe27b36a; fetched once and fully UTF-8/Gitblob checked. No new producer commit identity is assumed."
+  },
+  "current_failure": {
+    "run_id": 43637785992,
+    "job_id": 132579589188,
+    "test_id": 56,
+    "suite_id": 27,
+    "start_line": 113,
+    "framework_line": 123,
+    "error_line": 124,
+    "done_line": 125,
+    "assertion": "held.entered.isCompleted: expected true, actual false at261:5",
+    "before_inactive_and_ack_release": true
+  },
+  "historical_producer_failure": {
+    "host": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+    "run_id": 43634307306,
+    "job_id": 132567623144,
+    "scope": "Root-provided selected original events and published reports; no independent full producer ZIP or machine download in this review."
+  },
+  "mechanism": [
+    "Current C4 6c9ee29c catches failed terminal reward, pauses, then schedules Duration.zero retry; the live generation, owner and native-opening guards are unchanged.",
+    "LumoGameTurnClock 9ffc5f25 stores the paused action; explicit Fortsetzen resumes and arms Timer(_remaining).",
+    "Exact Flutter3.44.9 binding44b74b7d calls FakeAsync.elapse only when pump duration is non-null. Bare pump flushes microtasks and frames but does not advance the queued zero-delay timer.",
+    "The one-millisecond pump reaches the held real platform write before the unchanged entered assertion and before inactive. No fixed success value or mock result replaces this assertion."
+  ],
+  "preservation": {
+    "one_original_test_hunk_applies_without_fuzz": true,
+    "first_five_tests_and_all_helpers_prefix_byte_equal": true,
+    "prefix": {
+      "bytes": 9054,
+      "sha256": "fbe1473b772d6366520db8bfec7cbe5a3fdc4ffd08695d890cdd58301df09dfd",
+      "git_blob": "e9c71c50024f536feb4a1f2f1a3ba8231027ace8"
+    },
+    "six_names_unchanged": [
+      "Failed bot save retries once after the child resumes",
+      "Repeated bot save failure remains paused until explicit retry",
+      "Restart cancels the queued failed bot retry for the old round",
+      "Failed local Gold move never schedules an automatic bot",
+      "A saved winning move retries only its unconfirmed reward",
+      "Lifecycle pause during reward retry defers the settled result"
+    ],
+    "old_sixth_assertions": [
+      "expect(find.text('Spiel pausiert'), findsOneWidget)",
+      "expect(held.entered.isCompleted, isTrue)",
+      "expect(find.text('Spiel pausiert'), findsOneWidget)",
+      "expect(fixture.app.state.stars, 5)",
+      "expect(find.byType(AlertDialog), findsNothing)",
+      "expect(_pieces(tester, 'child'), 4)",
+      "expect(_pieces(tester, 'lumo'), 3)",
+      "expect(find.text('Spiel pausiert'), findsOneWidget)",
+      "expect(find.byType(AlertDialog), findsOneWidget)",
+      "expect(fixture.app.state.stars, 5)",
+      "expect(tester.takeException(), isNull)"
+    ],
+    "new_sixth_assertions": [
+      "expect(find.text('Spiel pausiert'), findsOneWidget)",
+      "expect(held.entered.isCompleted, isTrue)",
+      "expect(held.release.isCompleted, isFalse)",
+      "expect(fixture.app.state.stars, 0)",
+      "expect(find.byType(AlertDialog), findsNothing)",
+      "expect(find.text('Spiel pausiert'), findsOneWidget)",
+      "expect(fixture.app.state.stars, 5)",
+      "expect(find.byType(AlertDialog), findsNothing)",
+      "expect(_pieces(tester, 'child'), 4)",
+      "expect(_pieces(tester, 'lumo'), 3)",
+      "expect(find.text('Spiel pausiert'), findsOneWidget)",
+      "expect(find.byType(AlertDialog), findsOneWidget)",
+      "expect(fixture.app.state.stars, 5)",
+      "expect(tester.takeException(), isNull)"
+    ],
+    "old_11_preserved_in_order": true,
+    "additional_three_pre_ack_assertions": [
+      "expect(held.release.isCompleted, isFalse)",
+      "expect(fixture.app.state.stars, 0)",
+      "expect(find.byType(AlertDialog), findsNothing)"
+    ],
+    "unchanged_product_references": [
+      {
+        "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+        "actual_0cda_tree_entry": {
+          "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6c9ee29c314bf999349c73da6faf9226ac0f8916"
+        },
+        "bytes": 45094,
+        "sha256": "5ea73c94211bb0286aba1167da845d4ccc08ae31d3888dc6b6789b8df86b2772",
+        "git_blob": "6c9ee29c314bf999349c73da6faf9226ac0f8916"
+      },
+      {
+        "path": "lib/features/games/shared/lumo_game_pause_scope.dart",
+        "actual_0cda_tree_entry": {
+          "path": "lib/features/games/shared/lumo_game_pause_scope.dart",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9ffc5f25494bb03c64a68cd704d5069aae41013e",
+          "size": 12273,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/9ffc5f25494bb03c64a68cd704d5069aae41013e"
+        },
+        "bytes": 12273,
+        "sha256": "2098bb9090936ab041905054beaced3133edeb941880757a654d303d51e039e6",
+        "git_blob": "9ffc5f25494bb03c64a68cd704d5069aae41013e"
+      }
+    ]
+  },
+  "cleanup": "Finally conditionally releases the held ACK once, restores resumed, drains idle callbacks, calls unchanged _close to unmount/dispose/reset, and drains again. The finally has no return/catch or result substitution that could convert a failed assertion to success.",
+  "sdk": {
+    "official_url": "https://github.com/flutter/flutter/blob/3.44.9/packages/flutter_test/lib/src/binding.dart",
+    "source": {
+      "bytes": 118336,
+      "sha256": "3841b362c87d7dfd9fb07272338a20a0dd6bdd09ed916dd096b5dce4a99b162f",
+      "git_blob": "44b74b7d6be7726228605cce77c04231c6070bd6"
+    },
+    "pump_body_lines": [
+      2248,
+      2263
+    ],
+    "version_evidence": "originals/current-flutter-version.txt"
+  },
+  "classification": "Test navigation/scheduling precondition repair. Current failing test never reached inactive/result-deferral assertions. This static review does not prove a new runtime pass or rule out other defects beyond the observed failure.",
+  "unchanged_scope": [
+    "All production, workflow, pin, writer, ink, journal and wallet source bytes remain outside the one-file proposed delta.",
+    "All six test names, eleven original assertions in the sixth case, the first five complete cases and all helpers remain.",
+    "Frozen 82-case catalog and current 0cda evidence remain unchanged; a later activated source binding must identify the new testblob."
+  ],
+  "execution": {
+    "tests": false,
+    "dart_or_flutter": false,
+    "packages": false,
+    "ci_start": false,
+    "git_write": false
+  }
+}

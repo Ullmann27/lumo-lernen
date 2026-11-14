@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "lock": {
+    "repository_path": "pubspec.lock",
+    "mode": "100644",
+    "path": "reference-source/current/pubspec.lock",
+    "bytes": 24469,
+    "sha256": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea",
+    "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1"
+  },
+  "pinned_packages": {
+    "shared_preferences": "2.5.5",
+    "shared_preferences_android": "2.4.28"
+  },
+  "sources": [
+    {
+      "path": "reference-source/upstream/shared_preferences_2.5.5_legacy.dart",
+      "url": "https://github.com/flutter/packages/blob/shared_preferences-v2.5.5/packages/shared_preferences/shared_preferences/lib/src/shared_preferences_legacy.dart",
+      "role": "The pinned 2.5.5 legacy Dart cache is changed before platform write; reload obtains the platform snapshot, not an independent disk acknowledgement.",
+      "bytes": 10990,
+      "sha256": "7ccdf3738704630a3d5d947ac73989403b167f3c6aa114b475e8e106f5de1045",
+      "git_blob": "06d89f0010c86f640d19501c2a2a5183523b8039"
+    },
+    {
+      "path": "reference-source/upstream/LegacySharedPreferencesPlugin_2.4.28.kt",
+      "url": "https://github.com/flutter/packages/blob/9854cd5607da4001f2dd3cbdcd6903202d28958c/packages/shared_preferences/shared_preferences_android/android/src/main/kotlin/io/flutter/plugins/sharedpreferences/LegacySharedPreferencesPlugin.kt",
+      "role": "Official Android 2.4.28 tag resolves to 9854cd56. Legacy setString returns synchronous SharedPreferences.Editor.commit; getAll reads the native preferences map.",
+      "bytes": 6824,
+      "sha256": "864b788b5491fc3b00f4ef1b2d8f629f1f5d24af4df13baf50d3b42d27cb9841",
+      "git_blob": "bbdb3ecbadb51f6f1454e987be78285146751b89"
+    },
+    {
+      "path": "reference-source/upstream/SharedPreferencesImpl_android15.java",
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/app/SharedPreferencesImpl.java",
+      "role": "Android15 commit applies commitToMemory before disk write and returns writeToDiskResult. getAll copies mMap; a failed disk return does not make that native snapshot a positive commit. writeToFile retains the distinction between memory and disk generations.",
+      "bytes": 30970,
+      "sha256": "a1daeb52d3211428131f08ae236709059b3c46ab8d050a59d09a935e5ca6f8cd",
+      "git_blob": "a87187b8affb4a8e36bfc28191a575502e78604f"
+    }
+  ],
+  "conclusion": "A platform snapshot equal to an attempted write is insufficient to positively acknowledge it. The proposal requires a true reply from a same-value platform commit before exposing a recovered/restored state or deduplicated award.",
+  "limits": [
+    "Source-derived conditional failure, not a claimed observed data loss in 7ac.",
+    "No Android disk-failure experiment, APK install, crash/power-loss proof or universal OS-version assertion was performed.",
+    "Native Memory consumes the authoritative Dart acknowledgement; it has no independent second SharedPreferences commit barrier."
+  ]
+}

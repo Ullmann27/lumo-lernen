@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_android_framework_ready_android17",
+    "scripts.tests.test_android_framework_ready",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16",
+  "environment_overrides": {
+    "REQUIRE_ALL_TESTS": "true",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit_code": 0,
+  "elapsed_seconds": 0.5320953290065518,
+  "source_count": 24,
+  "source_stable": true,
+  "raw_log_bytes": 6198,
+  "raw_log_sha256": "c7e434cab88038023b075bc8c0279fb4f5f383b434d1a06ebe14c1b04c99aef0",
+  "scope": "Two focused Python readiness/action contracts only. Original window/event fixtures plus explicitly synthetic supplemental input-dispatcher states. No device, emulator, APK, Native or complete suite execution."
+}

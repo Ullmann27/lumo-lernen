@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "kind": "independent_read_only_source_review",
+  "created_at_utc": "2026-11-14T20:48:46.114Z",
+  "reviewer": "/root/pipeline_repair",
+  "outcome": "Kein konkreter Quellenblocker im eng begrenzten Zwei-Dateien-Nachtrag festgestellt.",
+  "pack": "/tmp/root-c4-return-deadline-integration-20261114",
+  "source_freeze": {
+    "bytes": 1554,
+    "sha256": "852d92fe7d3edefe6bb689be9909b6e51047f581641e2cb1d1a4d28f0bc88e54",
+    "git_blob": "865a5468762bc0e5dc5d5669f2718a23552fd3bd"
+  },
+  "baseline": {
+    "host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+    "tree": "a97942c991cbb38d22c8b97f06a3e5bb162ab942",
+    "provenance_limit": "Die Host-/Tree-Zuordnung stammt aus dem bereits bekannten aktuellen Root-Checkpoint und seinem baseline-binding.json. Alle 30 zugeordneten Originaldateien sowie die zwei bekannten Preimage-Gitblobs wurden hier unabhängig aus den vorhandenen Bytes nachgerechnet; kein neuer Remote- oder vollständiger Treeabruf."
+  },
+  "sources": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "before": {
+        "bytes": 30044,
+        "sha256": "6623bcff15f2e3d1425c46fd044be2e0ffbe6018b1f4567634ae1429ae2c4658",
+        "git_blob": "dae27bce72a09d786fd5a96cb39d10cc716dc5e2"
+      },
+      "after": {
+        "bytes": 30524,
+        "sha256": "93631ce630ac1f73a027d21f48a773cb2b3d7d18d3d7719caf8727893a9412c7",
+        "git_blob": "9a80d1092cc50123aa638d81f3d4a75897fb2c2e"
+      },
+      "byte_identical": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_return_observation.py",
+      "before": {
+        "bytes": 18191,
+        "sha256": "bd03248a177a33df7f399c90984c995e3f0352cfe14ef7f1974a9e3f590cfb53",
+        "git_blob": "2cb7163b257e997af5597e11fc2f10dec69daffb"
+      },
+      "after": {
+        "bytes": 20553,
+        "sha256": "9bbc8142ce0c945d3ba4dc5b83185c48bc0a03a3557a6c3e3757569759269d92",
+        "git_blob": "6ca069bac94d3380912ac865b6eceb0c8a4a33fb"
+      },
+      "byte_identical": false
+    }
+  ],
+  "review": {
+    "original": "Nur der rückwärtskompatible optionale Keywordparameter timeout=45 ersetzt den zuvor festen 45-Wert in self.remaining(...). Alle bestehenden Caller behalten dadurch das bisherige Defaultverhalten. Befehl, check=False beim subprocess-Aufruf, binäre stdout/stderr-Dateien, exklusive Schreibweise, Metadaten, Hashes, Replylimit und Prüfung von Exitcode/stderr bleiben unverändert.",
+    "remaining": "Die lokale Frist beginnt unverändert nach dem einen bewiesenen Back-Touch mit time.monotonic()+self.remaining(45). return_remaining prüft das globale Budget und verwirft lokale Restzeit <=0. pidof, dumpsys activity und die bedingte Mailboxsuche bekommen jeweils neu berechnete Restzeit. original begrenzt sie zusätzlich durch die aktuelle globale Restzeit.",
+    "loop": "Jeder weitere Durchlauf liest PID und Activity neu. find wird weiterhin erst bei leerer Native-PID und ausschließlich passenden tatsächlich resumed MainActivity-Zeilen aufgerufen; der unbedingte Producer-find wurde nicht übernommen. Leerer stdout einer erfolgreichen stderr-freien Suche bleibt notwendig. Lokale >=-Prüfungen nach Activity und nach find sowie die globale Prüfung nach original verhindern verspätete Annahme. Die begrenzte Pause zwischen Beobachtungen und das Fehlschlagen bei Fristende bleiben erhalten.",
+    "preservation": "17 andere Top-Level-/Klassenmethoden der Probe sind byte- und AST-identisch. Der gesamte Dateisuffix ab nachgelagerter Preferences-Lektüre ist exakt bytegleich: Persistenz der gleichen Runde, pausierte Flutter-UI, Leave-Touch, frisches Spieleportal-Warten und Bericht bleiben zwingend. Die reine Evidence-Nachrechnung und alle 25 Fixturedateien sind unverändert.",
+    "regression": "Die vorhandenen neun Return-Methoden und alle Helfer sind byte- und AST-identisch. Eine neue Methode beobachtet die wirklich an subprocess.run übergebenen sechs Timeouts über zwei pidof/dumpsys/find-Zyklen. Ihre zwei ausdrücklich kontrollierten Teilfälle unterscheiden rechtzeitigen Abschluss (0.01 s) und verspäteten Abschluss (0.4 s), verlangen positive Timeouts <= verbleibender lokaler Zeit sowie <0.25 s vor der letzten Suche. Ein Back, keine Akzeptanz im späten Fall und unveränderte erste/zweite Raw-find-Ausgaben werden geprüft.",
+    "fixtures": "Alle 24 Raw-/Kommandodateien wurden gegen das erhaltene Originalfixture-Manifest gebunden; die acht Kommandometadaten wurden zusätzlich gegen die originalen stdout/stderr-Längen und SHA256 geprüft. Spätere leere Mailboxantworten im Test bleiben ausdrücklich synthetische Gegenfälle, kein nachträglicher Android-Erfolg."
+  },
+  "counts": {
+    "baseline_files": 30,
+    "changed_files": 2,
+    "unchanged_files": 28,
+    "old_return_tests_preserved": 9,
+    "new_return_methods": 1,
+    "new_return_subcases": 2,
+    "existing_deadline_methods_unchanged": 11,
+    "source_and_test_modules_imported": 0,
+    "tests_run_by_reviewer": 0
+  },
+  "limits": [
+    "Dies ist ein statischer Quellen-/Originalbyte-Review. Der geplante 11+10-Vertragslauf und ein tatsächlicher Android-Return werden dadurch nicht als bestanden ausgegeben.",
+    "Die Restzeit wird vor dem einzelnen original-Aufruf berechnet; diese Prüfung behauptet keine harte Echtzeitgarantie für Python-/Dateisystem-/Prozess-Startoverhead. Die bestehenden Nachprüfungen verweigern verspätete positive Ergebnisse weiterhin.",
+    "Die 45 Sekunden betreffen unverändert die native Prozess-/Activity-/Mailbox-Beobachtung. Der anschließende bestehende Preferences-/Flutter-/Navigationsteil wurde weder in diese Frist umgedeutet noch gelockert.",
+    "Die tatsächliche Full-Flutter-FAIL des aktuellen 0cda-Laufs bleibt eigenständig und wird durch diesen Probe-Nachtrag nicht behoben oder als PASS gewertet."
+  ],
+  "execution": {
+    "only": "Lesen, SHA256/Gitblob-Nachrechnung, AST- und exakter Diffvergleich vorhandener Quellen; Schreiben dieses separaten Reviews.",
+    "no_tests": true,
+    "no_product_imports": true,
+    "no_engine_or_device": true,
+    "no_remote_access": true,
+    "no_git_or_source_mutations": true
+  },
+  "evidence_files": [
+    "source-bindings.json",
+    "read_only_binding.py"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "tested_host": "bdced7beb49dd37bc8bf86ea2115c6ad242a672c",
+  "tested_tree": "7487932ca39fb46996289da45fed993955f8ce18",
+  "native_revision": "504c8ba70d02702cbccc370d0d96c36a292c5d27",
+  "candidate_version": "0.13.8+2020",
+  "branch": "integration/lumo-c4-connections-20261114",
+  "base_branch": "integration/lumo-connections-20261113",
+  "status": "READY_FOR_DRAFT_PR_AND_REAL_COMBINED_CI",
+  "activation_changes": "Evidence only; tested implementation and workflow blobs remain identical.",
+  "local_validation": {
+    "tests": 114,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "actionlint_workflows": 3
+  },
+  "separate_existing_proofs": {
+    "PCM_JVM_assertions": 70,
+    "native_gate_tests": 41,
+    "scope": "Previously retained local contracts; no new Android playback or combined renderer claim."
+  },
+  "required_real_jobs": [
+    "verify-and-build",
+    "android-host-compile",
+    "connect-four-runtime",
+    "android-c4",
+    "update-2020-from-2017",
+    "verify-c4-candidate",
+    "prepare-c4-delivery"
+  ],
+  "publication": "Active pipeline creates a verified test bundle only. No release or public APK publication is claimed.",
+  "preserved": [
+    "main",
+    "integration/lumo-connections-20261113",
+    "producer branches",
+    "PR483 run"
+  ]
+}

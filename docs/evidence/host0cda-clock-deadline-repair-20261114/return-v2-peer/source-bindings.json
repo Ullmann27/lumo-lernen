@@ -1,0 +1,456 @@
+{
+  "kind": "static_v2_source_binding_no_tests",
+  "freeze": {
+    "bytes": 2049,
+    "sha256": "91566ea8ef448a877be89d478845e97d2298653e297e714a06212f320b9d892c",
+    "git_blob": "b162ce4c7f083f620b617b513568f34038fc54f3"
+  },
+  "baseline_host": "a5ac4cbefb2ddb548043e133efc6a385a34ec9ae",
+  "baseline_tree": "337c4ac533cc3f6c9d079e397f7d78facb2ab0bb",
+  "source_records": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "before": {
+        "bytes": 30524,
+        "sha256": "93631ce630ac1f73a027d21f48a773cb2b3d7d18d3d7719caf8727893a9412c7",
+        "git_blob": "9a80d1092cc50123aa638d81f3d4a75897fb2c2e"
+      },
+      "after": {
+        "bytes": 30524,
+        "sha256": "93631ce630ac1f73a027d21f48a773cb2b3d7d18d3d7719caf8727893a9412c7",
+        "git_blob": "9a80d1092cc50123aa638d81f3d4a75897fb2c2e"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "before": {
+        "bytes": 40210,
+        "sha256": "0413fd322e16a68947e9f9a57abf957a90f43b404b0a9074e6559dc11907409c",
+        "git_blob": "6c9a4c24da94e485d47f453af9ac82f5d1994ad4"
+      },
+      "after": {
+        "bytes": 40210,
+        "sha256": "0413fd322e16a68947e9f9a57abf957a90f43b404b0a9074e6559dc11907409c",
+        "git_blob": "6c9a4c24da94e485d47f453af9ac82f5d1994ad4"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "before": {
+        "bytes": 4401,
+        "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+        "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+      },
+      "after": {
+        "bytes": 4401,
+        "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+        "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0392-return-final-second-000-state.json",
+      "before": {
+        "bytes": 480,
+        "sha256": "72581bbb6598e4f49a14506aa964deac6553a4bf2683197d9260d0acba0dd007",
+        "git_blob": "b7f5994338dbf7fa4ad7361b4468e17d224b8093"
+      },
+      "after": {
+        "bytes": 480,
+        "sha256": "72581bbb6598e4f49a14506aa964deac6553a4bf2683197d9260d0acba0dd007",
+        "git_blob": "b7f5994338dbf7fa4ad7361b4468e17d224b8093"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0392-return-final-second-000-state.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0392-return-final-second-000-state.stdout",
+      "before": {
+        "bytes": 568,
+        "sha256": "c3a963e3717010e8050653c3a44908573ae1bd013bb7d2a07e9276ed7a0d99b2",
+        "git_blob": "f6f8b58d6044c6a4b4f1507796a1b38abb92e1fe"
+      },
+      "after": {
+        "bytes": 568,
+        "sha256": "c3a963e3717010e8050653c3a44908573ae1bd013bb7d2a07e9276ed7a0d99b2",
+        "git_blob": "f6f8b58d6044c6a4b4f1507796a1b38abb92e1fe"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0400-return-final-second-000-preferences.json",
+      "before": {
+        "bytes": 444,
+        "sha256": "52b2af918140544eb32a3e6182b139e79fd7f82d68d42357009ac4503ca7254c",
+        "git_blob": "931a9558e803937127b3cb6abc15b0f3a6d1a1f4"
+      },
+      "after": {
+        "bytes": 444,
+        "sha256": "52b2af918140544eb32a3e6182b139e79fd7f82d68d42357009ac4503ca7254c",
+        "git_blob": "931a9558e803937127b3cb6abc15b0f3a6d1a1f4"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0400-return-final-second-000-preferences.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0400-return-final-second-000-preferences.stdout",
+      "before": {
+        "bytes": 2491,
+        "sha256": "0cd65d3aedbd34d5be92fb2345ce5ceb5b8d8c33cbe72bd4a3dd2e3b07e12f0c",
+        "git_blob": "da8d7b3b81547d5360591eb82cacd706a59afede"
+      },
+      "after": {
+        "bytes": 2491,
+        "sha256": "0cd65d3aedbd34d5be92fb2345ce5ceb5b8d8c33cbe72bd4a3dd2e3b07e12f0c",
+        "git_blob": "da8d7b3b81547d5360591eb82cacd706a59afede"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0404-return-final-touch.json",
+      "before": {
+        "bytes": 404,
+        "sha256": "918cbf9d49f8ea4dd07bb3529712d0d00acfbfba9b1abe012808c067af473328",
+        "git_blob": "5abd77f44d4be4587b3470e2e4ec486a3b754a6c"
+      },
+      "after": {
+        "bytes": 404,
+        "sha256": "918cbf9d49f8ea4dd07bb3529712d0d00acfbfba9b1abe012808c067af473328",
+        "git_blob": "5abd77f44d4be4587b3470e2e4ec486a3b754a6c"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0404-return-final-touch.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0404-return-final-touch.stdout",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0405-return-final-native-exit.json",
+      "before": {
+        "bytes": 395,
+        "sha256": "58f56ec275c7dacaf48e3e7ca76771a13e05f09186c148ae5ccde5c2482ba849",
+        "git_blob": "5c879535e4ea68cb86bfe699ab07b7c5d39a0318"
+      },
+      "after": {
+        "bytes": 395,
+        "sha256": "58f56ec275c7dacaf48e3e7ca76771a13e05f09186c148ae5ccde5c2482ba849",
+        "git_blob": "5c879535e4ea68cb86bfe699ab07b7c5d39a0318"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0405-return-final-native-exit.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0405-return-final-native-exit.stdout",
+      "before": {
+        "bytes": 5,
+        "sha256": "8562db7f9631ec4394dbfacac8fef9b8bd4f6079acfe4e371785affc5c8bcce9",
+        "git_blob": "4a6d39c9e590db4479960c263e2bacac6466e85b"
+      },
+      "after": {
+        "bytes": 5,
+        "sha256": "8562db7f9631ec4394dbfacac8fef9b8bd4f6079acfe4e371785affc5c8bcce9",
+        "git_blob": "4a6d39c9e590db4479960c263e2bacac6466e85b"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0406-return-final-return-activity.json",
+      "before": {
+        "bytes": 376,
+        "sha256": "8ad8ac5c642128d8f5e49f57134deaa9ea90a11292877e423138aae7774c8a10",
+        "git_blob": "5232b76398e642b02aad884537ec897965c8c388"
+      },
+      "after": {
+        "bytes": 376,
+        "sha256": "8ad8ac5c642128d8f5e49f57134deaa9ea90a11292877e423138aae7774c8a10",
+        "git_blob": "5232b76398e642b02aad884537ec897965c8c388"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0406-return-final-return-activity.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0406-return-final-return-activity.stdout",
+      "before": {
+        "bytes": 39832,
+        "sha256": "a3417f122b4fb7e2dc8577e4878497e6ce823d1d651057217a788ce17d6234ed",
+        "git_blob": "d61ddcec907789a34f9f333774396275fabf92c6"
+      },
+      "after": {
+        "bytes": 39832,
+        "sha256": "a3417f122b4fb7e2dc8577e4878497e6ce823d1d651057217a788ce17d6234ed",
+        "git_blob": "d61ddcec907789a34f9f333774396275fabf92c6"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0407-return-final-native-exit.json",
+      "before": {
+        "bytes": 395,
+        "sha256": "527ea87ecba81c0aa3b8e06dbcd3e040d297ec717ca0f04de7b0ac3ca392ba76",
+        "git_blob": "3c0705ae48d723ba5c826f9ef18bae7f99e5ea1f"
+      },
+      "after": {
+        "bytes": 395,
+        "sha256": "527ea87ecba81c0aa3b8e06dbcd3e040d297ec717ca0f04de7b0ac3ca392ba76",
+        "git_blob": "3c0705ae48d723ba5c826f9ef18bae7f99e5ea1f"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0407-return-final-native-exit.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0407-return-final-native-exit.stdout",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0408-return-final-return-activity.json",
+      "before": {
+        "bytes": 376,
+        "sha256": "088140bb2d5119abc2a358a1b0af0bed66dafc53db2de3959023675a938a25aa",
+        "git_blob": "be6f3a964f7935ee4706f18ebebd685b980056ca"
+      },
+      "after": {
+        "bytes": 376,
+        "sha256": "088140bb2d5119abc2a358a1b0af0bed66dafc53db2de3959023675a938a25aa",
+        "git_blob": "be6f3a964f7935ee4706f18ebebd685b980056ca"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0408-return-final-return-activity.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0408-return-final-return-activity.stdout",
+      "before": {
+        "bytes": 39921,
+        "sha256": "15ebca68cab4904bd893b15189bbd190e5effc2dd2441e2df64b4caadf458bb6",
+        "git_blob": "7fc543c55d9882f14fd5250179e2d99cf9535dbe"
+      },
+      "after": {
+        "bytes": 39921,
+        "sha256": "15ebca68cab4904bd893b15189bbd190e5effc2dd2441e2df64b4caadf458bb6",
+        "git_blob": "7fc543c55d9882f14fd5250179e2d99cf9535dbe"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0409-return-final-closed-mailbox.json",
+      "before": {
+        "bytes": 513,
+        "sha256": "e1101b651e0b723a5168f9f8798cf1240a0c864aba90c0ed380abd8fb874ffa3",
+        "git_blob": "d66a7a54987756f72f5a8e863d450a8e9d0b193f"
+      },
+      "after": {
+        "bytes": 513,
+        "sha256": "e1101b651e0b723a5168f9f8798cf1240a0c864aba90c0ed380abd8fb874ffa3",
+        "git_blob": "d66a7a54987756f72f5a8e863d450a8e9d0b193f"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0409-return-final-closed-mailbox.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0409-return-final-closed-mailbox.stdout",
+      "before": {
+        "bytes": 134,
+        "sha256": "48298a293602d6d5fc8d49b609fd08249f0a465a0eab3ea55bbc8cb224351fb6",
+        "git_blob": "5310f3a196464be800f85c4ba0ab66294f194761"
+      },
+      "after": {
+        "bytes": 134,
+        "sha256": "48298a293602d6d5fc8d49b609fd08249f0a465a0eab3ea55bbc8cb224351fb6",
+        "git_blob": "5310f3a196464be800f85c4ba0ab66294f194761"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/source.json",
+      "before": {
+        "bytes": 8626,
+        "sha256": "a6afefa3c64b811792639e770edd1352e5807361fa9fe204b137b60e806185fb",
+        "git_blob": "96c86759bf0279dfc15876a39e8f4683162786c0"
+      },
+      "after": {
+        "bytes": 8626,
+        "sha256": "a6afefa3c64b811792639e770edd1352e5807361fa9fe204b137b60e806185fb",
+        "git_blob": "96c86759bf0279dfc15876a39e8f4683162786c0"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "before": {
+        "bytes": 11092,
+        "sha256": "eefb4dd4633a2aa113cb8d50e732b090d10ac804b01b876b42bb2b990e75e630",
+        "git_blob": "c7e8bf69d8dc07980d4a84ad1fd31222beb5e147"
+      },
+      "after": {
+        "bytes": 11092,
+        "sha256": "eefb4dd4633a2aa113cb8d50e732b090d10ac804b01b876b42bb2b990e75e630",
+        "git_blob": "c7e8bf69d8dc07980d4a84ad1fd31222beb5e147"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_return_observation.py",
+      "before": {
+        "bytes": 20553,
+        "sha256": "9bbc8142ce0c945d3ba4dc5b83185c48bc0a03a3557a6c3e3757569759269d92",
+        "git_blob": "6ca069bac94d3380912ac865b6eceb0c8a4a33fb"
+      },
+      "after": {
+        "bytes": 20585,
+        "sha256": "dc4115cca86fe3485076c9726daf2324143c4e6edae20672b6554362ab4c7bdb",
+        "git_blob": "9f50cf8977644345cdc30e6cbd66e20a978eaca1"
+      },
+      "identical": false
+    }
+  ],
+  "changed_path": "tools/android_qa/tests/test_connect_four_return_observation.py",
+  "changed_methods": [
+    "ReturnObservationTests.test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success",
+    "ReturnObservationTests.test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity"
+  ],
+  "other_method_count": 21,
+  "old_new_method_count": [
+    23,
+    23
+  ],
+  "inverse_two_literal_replacements_recovers_complete_before_bytes": true,
+  "all_no_acceptance_no_find_one_back_checks_exactly_preserved": true,
+  "production_blob": {
+    "bytes": 30524,
+    "sha256": "93631ce630ac1f73a027d21f48a773cb2b3d7d18d3d7719caf8727893a9412c7",
+    "git_blob": "9a80d1092cc50123aa638d81f3d4a75897fb2c2e"
+  },
+  "original_red_log": {
+    "path": "/tmp/root-c4-return-deadline-integration-20261114/actual-validation/stderr.original",
+    "bytes": 13128,
+    "sha256": "8c76a4a6548b6d90dd906078dc6decc38df04ea4230f4f8069026f5e50834d66",
+    "git_blob": "e116e5a996d0edd9b4f8e79bc3fb2ad475d81611"
+  },
+  "tests_run_by_reviewer": false
+}

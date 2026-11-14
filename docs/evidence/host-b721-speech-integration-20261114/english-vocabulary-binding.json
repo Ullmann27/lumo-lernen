@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "status": "SOURCE_ONLY_EXACT_14_ENTRY_MAPPING",
+  "dart_source": {
+    "bytes": 3323,
+    "sha256": "375ecb52b84b59f34be006e2f9768e98cb8c6839e1a794e08a87760d68b7486f",
+    "git_blob": "4469849b204f91fab3e645604e11922e29cb594c"
+  },
+  "final_learning_source": {
+    "bytes": 11337,
+    "sha256": "415e137cf51e339d3dc3fdd283eebb246989605a95ab2bc41c3f1d05ba8d6d4d",
+    "git_blob": "e4954dd792ba8b7ac9b66cbbe9a84752cbdab830"
+  },
+  "entries": [
+    [
+      "book",
+      [
+        "Buch"
+      ]
+    ],
+    [
+      "pen",
+      [
+        "Kugelschreiber",
+        "Stift"
+      ]
+    ],
+    [
+      "ruler",
+      [
+        "Lineal"
+      ]
+    ],
+    [
+      "ball",
+      [
+        "Ball"
+      ]
+    ],
+    [
+      "car",
+      [
+        "Auto"
+      ]
+    ],
+    [
+      "sun",
+      [
+        "Sonne"
+      ]
+    ],
+    [
+      "apple",
+      [
+        "Apfel"
+      ]
+    ],
+    [
+      "bag",
+      [
+        "Tasche"
+      ]
+    ],
+    [
+      "rubber",
+      [
+        "Radiergummi"
+      ]
+    ],
+    [
+      "school bag",
+      [
+        "Schultasche"
+      ]
+    ],
+    [
+      "desk",
+      [
+        "Schreibtisch"
+      ]
+    ],
+    [
+      "chair",
+      [
+        "Sessel"
+      ]
+    ],
+    [
+      "pencil case",
+      [
+        "Federpennal"
+      ]
+    ],
+    [
+      "paper",
+      [
+        "Papier"
+      ]
+    ]
+  ],
+  "runtime_executed": false
+}

@@ -1,0 +1,152 @@
+{
+  "schema": 3,
+  "host": "a5ac4cbefb2ddb548043e133efc6a385a34ec9ae",
+  "tree": "337c4ac533cc3f6c9d079e397f7d78facb2ab0bb",
+  "actual_original_binding": {
+    "bytes": 1272431,
+    "sha256": "64a5b6e76b0901e8e957c636147e0167c33e67771629d5c44bb9e181371ed8ae",
+    "git_blob": "41696cce763d3b5fd98ab8231c500200295abe7e"
+  },
+  "full_tree_recomputed": true,
+  "leaf_count": 4963,
+  "catalog": {
+    "bytes": 42277,
+    "sha256": "df36b6b7fb0ef6ea9d58f0ac75088247eb266187048da714d64885582b35d903",
+    "git_blob": "e8622f4ec883badb09db6483ff62f245b3b3b2d8"
+  },
+  "selected_sources": [
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "mode": "100644",
+      "bytes": 11449,
+      "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+      "git_blob": "830b3f661c2a289f5ae76ed545cfed60fe27b36a"
+    },
+    {
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "mode": "100644",
+      "bytes": 29908,
+      "sha256": "33331c4b0c804b803e22785e9f7a5e25fe3e3086913bc0e02beecf529f956c32",
+      "git_blob": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b"
+    },
+    {
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "mode": "100644",
+      "bytes": 13409,
+      "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+      "git_blob": "4615f10622420d53dedb380ff4648e5692995861"
+    },
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "mode": "100644",
+      "bytes": 10757,
+      "sha256": "082861273c381ffb946ac6b4205d41eb77065868bfc5d70c165cac7464c0753c",
+      "git_blob": "79d94286312aea5231b0906e8514be132aeee94b"
+    },
+    {
+      "path": "test/reward_wallet_transaction_test.dart",
+      "mode": "100644",
+      "bytes": 22807,
+      "sha256": "295a857b766a6ddf5107dd7f1bf8824eeec5d32f0772a3ebefe297f2a1269128",
+      "git_blob": "77862a23eb251266b319beb4d2fe24251e409dab"
+    },
+    {
+      "path": "test/games/memory_profile_storage_test.dart",
+      "mode": "100644",
+      "bytes": 12937,
+      "sha256": "33d2b6b63a139f0cd8b8ef75197d515e7c04a3cc9a043e0b07e5815de7dee20f",
+      "git_blob": "375812cb6b17b638a070dd9382249d2a3c5fef5a"
+    },
+    {
+      "path": "test/games/connect_four_native_route_test.dart",
+      "mode": "100644",
+      "bytes": 5165,
+      "sha256": "7e4637c8c0a1330738723d2398a88e2e45ceb1d892e925f04c52ff58f93e99a6",
+      "git_blob": "8f9a3a275edec12141b88804ef36dc11dc12d524"
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "mode": "100644",
+      "bytes": 15945,
+      "sha256": "af22d37de998a52ac7c403f5531eea2287eb5b12b60fb1d491ee9921b2573566",
+      "git_blob": "6b47469525edf37135802be0b9546b22394b3e00"
+    },
+    {
+      "path": "test/games/connect_four_navigation_test.dart",
+      "mode": "100644",
+      "bytes": 5291,
+      "sha256": "15904ba2dff28e5afbef5d4f23febfca8f2a70066a6e081c873dad57da219f08",
+      "git_blob": "5607de8ddeeb54b1cbb77372c0ee3926f57ff374"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/SpeechEnvelopeContract.kt",
+      "mode": "100644",
+      "bytes": 4381,
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+      "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechLifecycleContract.kt",
+      "mode": "100644",
+      "bytes": 4342,
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+      "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechBuildContract.kt",
+      "mode": "100644",
+      "bytes": 4948,
+      "sha256": "484d242949a9f96c315eb8a6853a303988200f4d5f45c20251d6aae94a5fabf8",
+      "git_blob": "a75173645c2f6cc67bc30956accc11793a1fc87a"
+    },
+    {
+      "mode": "100644",
+      "path": "scripts/tests/test_speech_envelope_contract.py",
+      "bytes": 3660,
+      "sha256": "30f75c17006c47c4410d0309a79193a0a97024d479d8b93e94e7d706b0632a3f",
+      "git_blob": "5037fd4078e5f73078cd28e4054992f12e07f317"
+    },
+    {
+      "mode": "100644",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt",
+      "bytes": 798,
+      "sha256": "d67fa4f5a281248ace0164b118be4fe705d5337116b1411a61afd9a3c1ce27b0",
+      "git_blob": "0869980e2111cd3f6f8dcf7f81054f0d286b078f"
+    },
+    {
+      "mode": "100644",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
+      "bytes": 1324,
+      "sha256": "1ad133a550ee517a5645b081da2f176f1298b95a332dc41bdaa49a5a7b7e9423",
+      "git_blob": "0b0a447556323ea0a0eadd03019157ea8ed9d1bb"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "mode": "100644",
+      "bytes": 45094,
+      "sha256": "5ea73c94211bb0286aba1167da845d4ccc08ae31d3888dc6b6789b8df86b2772",
+      "git_blob": "6c9ee29c314bf999349c73da6faf9226ac0f8916"
+    }
+  ],
+  "changed_selected_paths": [
+    "test/games/connect_four_bot_save_retry_test.dart"
+  ],
+  "other_15_sources_exactly_unchanged": true,
+  "all82_names_and_counts_preserved": true,
+  "prior_catalog_hash_after": {
+    "bytes": 39986,
+    "sha256": "4a4bd535610d1f82ba59ce5f6bbb70ba370fc097b5aef030036bd7d6e092af3a",
+    "git_blob": "19ffb1b3118828b1bd01937c9c24410dfe12a4b9"
+  },
+  "prior_actual_binding_hash_after": {
+    "bytes": 7947,
+    "sha256": "08dea040864a59a8288888ea3d15a01aa5c0ee7fce7ceb33cc281e733e4e770c",
+    "git_blob": "b8f12b32a28b3cd99aff61d179f908438a30eaf2"
+  },
+  "new_test_blob": {
+    "bytes": 11449,
+    "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+    "git_blob": "830b3f661c2a289f5ae76ed545cfed60fe27b36a"
+  },
+  "no_new_execution_or_run_identity": true
+}

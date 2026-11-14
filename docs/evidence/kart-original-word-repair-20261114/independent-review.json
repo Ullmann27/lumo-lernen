@@ -1,0 +1,389 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T13:01:06.279713+00:00",
+  "review_type": "INDEPENDENT_READ_ONLY_SOURCE_AND_ORIGINAL_REVIEW",
+  "outcome": "NO_CONCRETE_SOURCE_BLOCKER_IDENTIFIED",
+  "source_freeze": {
+    "path": "/tmp/host-3d91-kart-word-repair-20261114/source-freeze.json",
+    "bytes": 4916,
+    "sha256": "5fe35ce27466d60e975774eaed2cf6077b18ee80125a255034d1a5c134f569ac",
+    "git_blob": "44b8b096a634cd0b1d0d41cf36f6d4d0632c5a3f"
+  },
+  "patch": {
+    "bytes": 24885,
+    "sha256": "b5217099d5bc300355887a310bb98d4e2dc0d6ba8901444311f9765c9e90155d",
+    "git_blob": "4f608382d5a20e1643707e2e2297b2b6fc2560c9"
+  },
+  "source_count_verified": 16,
+  "source_files": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 72474,
+      "sha256": "aaea18ac1db213f8370714de0de0f06a1e22da74d658b85b6fcac7547882d477",
+      "git_blob": "10d5caa657552a0168e5d90cf5bac2ec94b90521"
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "bytes": 20777,
+      "sha256": "84edc6c93aaa06d6af1e9883805935b0bda89a98cc635411fb811c46029f3b31",
+      "git_blob": "bc71fd6556418bd71a99b24af047ea0f7e51d7c3"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0-ocr.json",
+      "bytes": 22111,
+      "sha256": "6138480ca5d08eed03917918641dc66b85dc3cb2c835ec57b51dbb9a0574cc33",
+      "git_blob": "c783718ec55bbb43bf35fce9567e1cb22e800015"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0.png",
+      "bytes": 790695,
+      "sha256": "59a150123c6c06ef63c078230ca51dcf09bc6c74d6fb08b2386ce02380d4772c",
+      "git_blob": "c52ea1af7b3e177f5e187ffa287164d38ec465b9"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "bytes": 5014,
+      "sha256": "50e39063fbf0b94b94e7ff6a0bc7175d89cee20f3566b69e457ff1335b9606d3",
+      "git_blob": "977cbeaeafc73f20e7da8ba77e03c542cfdf75f7"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "bytes": 2502,
+      "sha256": "1b947a31e2c8ba8b42828b2c77f18bb65ca640453f3682d01b3e1c16b51407a8",
+      "git_blob": "ac54992d61917291b0eb7542799ce61e15bbc2e9"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "bytes": 4156,
+      "sha256": "add2cf19c1dfaca6fc0ab11875df56dfc0559caebbd18a866f4a3c848dd5e199",
+      "git_blob": "bab0f2f4cb226f3a9aa6062e45447524c3f2994b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "bytes": 4794,
+      "sha256": "23af4eb6e08d9e9666633e2bec70ec641b692efa5a2a0bf870f9136d46b9409f",
+      "git_blob": "1d62d918dfbebb35d9f9549b33400201e25d3ee6"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "bytes": 6552,
+      "sha256": "751383c2c156608ac81b7fa507d5a68bc4180e614db1cfa3237b46ae070e4849",
+      "git_blob": "7ea4c2c1821623a84bff2443ea5987ba673ee085"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "bytes": 2974,
+      "sha256": "a6ca440b761dda8d31dba3592496adc6e355c572b0e8d480196988f6c3bab81d",
+      "git_blob": "7416b5452293e5664ea2c8a2d1714fc81072b9fe"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "bytes": 2972,
+      "sha256": "7062e17daaf890122f81a4bea7a5055ced14c4478126b5b43ae3b0d5a43b0bee",
+      "git_blob": "df99f3456b8de4e939b09fd2f84dd2dbac20c2a2"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr.json",
+      "bytes": 21249,
+      "sha256": "926590e14d10afc157be939593ebc2fbc38b6c587cf7cd7d59453433161f26eb",
+      "git_blob": "c204245477c52956f864ebafccc41fd2cb445bda"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2.png",
+      "bytes": 787362,
+      "sha256": "06b0a39e612271df34b4a8522ba609234ad4890b3dda7b7de4a16d33d6ac355c",
+      "git_blob": "928e78cac6aa289fac70f4fdc318cc1e8d908436"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-surface-readiness.json",
+      "bytes": 3842,
+      "sha256": "8fd5ce1630d0b63e4711d7f95fd61fbcae70599da3e8e1344567703ea2b00424",
+      "git_blob": "58a2ee61e1936b3d6d661fce57f8fd451ea661ab"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/provenance.json",
+      "bytes": 3992,
+      "sha256": "04a79233773209b939dd13edd0be78cb9a03b4211f7aceba9484650a6015c7af",
+      "git_blob": "9a1e0b10ed23daa546b9fe183dcbceb5234713f3"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+      "bytes": 15159,
+      "sha256": "ba200d7b4ef67ab4deff3bfba7d836192ea8c3a981609c09e47be202823a9cd4",
+      "git_blob": "12e64855f461ad1cf146a1beedaca1c4b0b12710"
+    }
+  ],
+  "base_originals_verified": [
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "bytes": 14145,
+      "sha256": "c8c167ce1b59023248b0aba18ba80c96c4c781e55cb0806eddf5252a2e8336bf",
+      "git_blob": "c5103456e98baa696ec6cac8b6bb8af863d19f5b"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 71930,
+      "sha256": "d98eeb982344bb09762a783aeb71bef2c93cc8ed30d5e932a96712fe382673db",
+      "git_blob": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "bytes": 30218,
+      "sha256": "3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae",
+      "git_blob": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_driver_word_evidence.py",
+      "bytes": 8461,
+      "sha256": "b80b3aa4eb38b289319e32dae9fa6476aa1b3badb77c497246314953230928fd",
+      "git_blob": "b5bb8e3c5f53d79d7a64b5723698292b427c7cf8"
+    }
+  ],
+  "original_archive": {
+    "path": "/tmp/host3d91-terminal-android-evidence-20261114/14114895060-original.zip",
+    "bytes": 53588701,
+    "sha256": "5a2bcf963a14ac300e1cab483a59c68fd77c1dbcf711110e2fcdab7102a0c790"
+  },
+  "fixture_count_verified": 12,
+  "fixtures": [
+    {
+      "path": "21_stage_select_gecko_velo-0.png",
+      "archive_member": "main/21_stage_select_gecko_velo-0.png",
+      "bytes": 790695,
+      "sha256": "59a150123c6c06ef63c078230ca51dcf09bc6c74d6fb08b2386ce02380d4772c",
+      "crc32": "12af9af3"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-0-ocr.json",
+      "archive_member": "main/21_stage_select_gecko_velo-0-ocr.json",
+      "bytes": 22111,
+      "sha256": "6138480ca5d08eed03917918641dc66b85dc3cb2c835ec57b51dbb9a0574cc33",
+      "crc32": "392ee0dc"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2.png",
+      "archive_member": "main/21_stage_select_gecko_velo-2.png",
+      "bytes": 787362,
+      "sha256": "06b0a39e612271df34b4a8522ba609234ad4890b3dda7b7de4a16d33d6ac355c",
+      "crc32": "aead1fcc"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr.json",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr.json",
+      "bytes": 21249,
+      "sha256": "926590e14d10afc157be939593ebc2fbc38b6c587cf7cd7d59453433161f26eb",
+      "crc32": "e18eb8e9"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-surface-readiness.json",
+      "archive_member": "main/21_stage_select_gecko_velo-surface-readiness.json",
+      "bytes": 3842,
+      "sha256": "8fd5ce1630d0b63e4711d7f95fd61fbcae70599da3e8e1344567703ea2b00424",
+      "crc32": "fa27a635"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "bytes": 5014,
+      "sha256": "50e39063fbf0b94b94e7ff6a0bc7175d89cee20f3566b69e457ff1335b9606d3",
+      "crc32": "24d07b69"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "bytes": 4794,
+      "sha256": "23af4eb6e08d9e9666633e2bec70ec641b692efa5a2a0bf870f9136d46b9409f",
+      "crc32": "9da54cb3"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "bytes": 2972,
+      "sha256": "7062e17daaf890122f81a4bea7a5055ced14c4478126b5b43ae3b0d5a43b0bee",
+      "crc32": "70c7d3da"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "bytes": 2974,
+      "sha256": "a6ca440b761dda8d31dba3592496adc6e355c572b0e8d480196988f6c3bab81d",
+      "crc32": "3161c66e"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "bytes": 4156,
+      "sha256": "add2cf19c1dfaca6fc0ab11875df56dfc0559caebbd18a866f4a3c848dd5e199",
+      "crc32": "dcc8cdb1"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "bytes": 2502,
+      "sha256": "1b947a31e2c8ba8b42828b2c77f18bb65ca640453f3682d01b3e1c16b51407a8",
+      "crc32": "d3bba156"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "bytes": 6552,
+      "sha256": "751383c2c156608ac81b7fa507d5a68bc4180e614db1cfa3237b46ae070e4849",
+      "crc32": "9b0eb95d"
+    }
+  ],
+  "ast_preservation": {
+    "tools/android_qa/kart_garage_evidence.py": {
+      "before": {
+        "bytes": 14145,
+        "sha256": "c8c167ce1b59023248b0aba18ba80c96c4c781e55cb0806eddf5252a2e8336bf",
+        "git_blob": "c5103456e98baa696ec6cac8b6bb8af863d19f5b"
+      },
+      "after": {
+        "bytes": 20777,
+        "sha256": "84edc6c93aaa06d6af1e9883805935b0bda89a98cc635411fb811c46029f3b31",
+        "git_blob": "bc71fd6556418bd71a99b24af047ea0f7e51d7c3"
+      },
+      "unchanged": [
+        "demand",
+        "require_selected_race",
+        "selected_race_readiness",
+        "require_resumed_progress",
+        "normalize",
+        "stage_cup_target_observation",
+        "stage_driver_word_observations",
+        "stage_driver_target_observation"
+      ],
+      "changed": [
+        "stage_garage_scroll_observation"
+      ],
+      "added": [
+        "stage_garage_word_observations"
+      ]
+    },
+    ".github/probes/modernization_android_tour.py": {
+      "before": {
+        "bytes": 71930,
+        "sha256": "d98eeb982344bb09762a783aeb71bef2c93cc8ed30d5e932a96712fe382673db",
+        "git_blob": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc"
+      },
+      "after": {
+        "bytes": 72474,
+        "sha256": "aaea18ac1db213f8370714de0de0f06a1e22da74d658b85b6fcac7547882d477",
+        "git_blob": "10d5caa657552a0168e5d90cf5bac2ec94b90521"
+      },
+      "unchanged": [
+        "diagnostic_logcat_context",
+        "logcat_fatal",
+        "alive",
+        "godot_alive",
+        "try_tap",
+        "labels",
+        "_atelier_roundtrip",
+        "_simplify",
+        "_screencap",
+        "_shot",
+        "verify_apk_identity",
+        "_read_garage_footer",
+        "_select_stage_kart",
+        "_select_stage_driver",
+        "_stage_cup_text",
+        "_return_stage_kart_menu",
+        "_inspect_spatial_kart_menu",
+        "_previous_kart_race_id",
+        "_confirm_stage_selection",
+        "_start_actual_embedded_race",
+        "RaceSession",
+        "wait_race_running",
+        "_pause_actual_race",
+        "_continue_actual_race",
+        "wait_race_hud",
+        "find_gas",
+        "drive_with_gas",
+        "log_images",
+        "main"
+      ],
+      "changed": [
+        "_stage_kart_scroll_recovery"
+      ],
+      "added": []
+    }
+  },
+  "controller_suffix_byte_equal": true,
+  "controller_suffix": {
+    "bytes": 1079,
+    "sha256": "8d6113918d0363d5019fd9022453b5f643b93bc91495878a061698d5e924ad82",
+    "git_blob": "a44f8f9699b34c75b045cbf4cbd37855912d944f"
+  },
+  "actual_raw_word_rows": [
+    {
+      "level": "5",
+      "page_num": "1",
+      "block_num": "15",
+      "par_num": "1",
+      "line_num": "1",
+      "word_num": "3",
+      "left": "629",
+      "top": "1186",
+      "width": "173",
+      "height": "56",
+      "conf": "94.942535",
+      "text": "Boru"
+    },
+    {
+      "level": "5",
+      "page_num": "1",
+      "block_num": "15",
+      "par_num": "1",
+      "line_num": "1",
+      "word_num": "4",
+      "left": "833",
+      "top": "1186",
+      "width": "189",
+      "height": "72",
+      "conf": "94.942535",
+      "text": "Rally"
+    }
+  ],
+  "original_png_viewed": {
+    "path": "/tmp/host-3d91-kart-word-repair-20261114/final-source/tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2.png",
+    "bytes": 787362,
+    "sha256": "06b0a39e612271df34b4a8522ba609234ad4890b3dda7b7de4a16d33d6ac355c",
+    "git_blob": "928e78cac6aa289fac70f4fdc318cc1e8d908436",
+    "observation": "Directly viewed: left list contains visible Boru Rally caption below an upper partial card, with Karts header and lower menu/start footer. This verifies visible context only, not a successful swipe or Gecko selection."
+  },
+  "findings": [
+    "Only the exact preexisting missing-visible-card exception invokes the word reader; incomplete surface, missing anchors and orientation failures remain terminal.",
+    "Word matching requires the full known caption as adjacent level5 words in the same original TSV line and consecutive word numbers; NFKC/case normalization never introduces substring matching.",
+    "Original seven variant scales and confidence floor15 are preserved; observed positive word boxes must overlap vertically and have a bounded horizontal gap.",
+    "Nala Comet suppresses its contained Comet match only for the same complete word span. Separate repeated regions and conflicting overlapping names are rejected.",
+    "Candidates remain within the unchanged left half and observed Karts/footer anchors. Derived coordinates authorize a scroll only, not a selected vehicle or race success.",
+    "The entire stable-frame, maximum5 gestures, current PNG hash and remaining deadline suffix is byte-equal. APK/native/selection/driver/cup/save/race methods remain AST-identical."
+  ],
+  "new_test_methods_read": [
+    "test_original_boru_frame_recovers_only_scroll_after_two_bound_frames",
+    "test_all_original_fixture_bytes_and_pixels_are_bound_to_the_failed_job",
+    "test_original_line_failure_and_existing_exact_comet_path_are_preserved",
+    "test_known_complete_names_keep_case_whitespace_and_longest_caption",
+    "test_partial_interrupted_cross_line_and_word_number_gap_are_rejected",
+    "test_distant_columns_or_disjoint_word_rows_are_not_joined",
+    "test_word_confidence_and_original_tsv_presence_remain_mandatory",
+    "test_invalid_or_outside_word_rectangles_are_rejected",
+    "test_right_preview_header_and_footer_captions_cannot_be_scroll_cards",
+    "test_duplicate_real_regions_and_conflicting_names_are_ambiguous",
+    "test_same_card_ocr_variants_remain_one_region_and_top_card_order_is_preserved",
+    "test_unstable_words_need_a_new_pair_and_changed_png_or_deadline_never_swipe",
+    "test_five_gesture_limit_remains_hard_after_word_recovery",
+    "test_missing_anchors_or_incomplete_surface_never_activate_word_recovery"
+  ],
+  "new_test_count": 14,
+  "tests_executed": false,
+  "ocr_executed": false,
+  "adb_or_device_calls": false,
+  "source_mutations": false,
+  "limits": [
+    "No local or CI PASS inferred from reading14 new tests.",
+    "Original failing3d91 run remains FAIL.",
+    "Recovering Boru as a scroll anchor does not establish future visibility, unlock state, selection or driving of Gecko Velo.",
+    "Synthetic two-observation fixtures reuse an original image explicitly; they are not two new Android captures."
+  ]
+}

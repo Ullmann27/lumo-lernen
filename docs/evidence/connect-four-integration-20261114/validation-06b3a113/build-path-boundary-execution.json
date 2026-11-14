@@ -1,0 +1,28 @@
+{
+  "created_at": "2026-11-14T05:40:16.093669+00:00",
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/.dart_tool/package_config.json",
+    "/workspace/scratch/b3485b7bb989/host-native-connect-four-integration-20261114/validation-06b3a113/build-path-boundary.dart"
+  ],
+  "returncode": 0,
+  "script_sha256": "71bec17f52d042560ad2ff612c3f6c276c997aad856309f27e7da5382d57b31f",
+  "log_sha256": "a7956482c8ed9bb5ca6483f91dc80a0a539955b68025f60afdc9697e633feeed",
+  "tool_sources": [
+    {
+      "path": "/workspace/scratch/e0abce7d2838/toolchain/flutter/packages/flutter_tools/lib/src/commands/test.dart",
+      "sha256": "03ad1620037987dd095a53bc22ab2a6d83c00a078fccb144b6399b33555168ae",
+      "bytes": 34227
+    },
+    {
+      "path": "/workspace/scratch/e0abce7d2838/toolchain/flutter/packages/flutter_tools/lib/src/bundle_builder.dart",
+      "sha256": "1c4ca9cb7d67cf33c9cbff7890a09d60ed5699443b9f10e73b6f6d9bde05d4f2",
+      "bytes": 8790
+    },
+    {
+      "path": "/workspace/scratch/e0abce7d2838/toolchain/flutter/packages/flutter_tools/lib/src/build_info.dart",
+      "sha256": "48bcd8cfd32d65c15ce730b56fa464c2771dfcd76597eed11f13292086cd4aab",
+      "bytes": 44714
+    }
+  ]
+}

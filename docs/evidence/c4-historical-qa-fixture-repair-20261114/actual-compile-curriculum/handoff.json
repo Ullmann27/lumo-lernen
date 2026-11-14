@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "frozen_at": "2026-11-14T09:52:12.640663+00:00",
+  "source": {
+    "host": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+    "tree": "e70dccc439c99a1bc2e8546f552a7886b8838225",
+    "run_id": 43581113174,
+    "run_attempt": 1
+  },
+  "scope": "Two assigned current artifacts and the full completed compile job; no overall acceptance",
+  "compile_job": {
+    "id": 132405832302,
+    "conclusion": "success",
+    "completed_at": "2026-11-14T09:37:56Z",
+    "registry_tests": 10,
+    "host_class_reports": 9,
+    "c4_class_reports": 3,
+    "gradle_tasks": 107
+  },
+  "curriculum": {
+    "status": "SAMPLED_CONTRACT_PASS",
+    "families": 236,
+    "samples": 7552,
+    "issues": 0,
+    "semantic_review": "pending",
+    "official_curriculum_approval": false
+  },
+  "artifact_originals": [
+    {
+      "id": 14108218483,
+      "bytes": 6283,
+      "sha256": "b68fd157aac72f74d61a27c07ce61cdf3b27d503a38a92dfe31783ac3a63fff5",
+      "members": 6
+    },
+    {
+      "id": 14108337255,
+      "bytes": 212133,
+      "sha256": "0255e1c47bcfdd35056ae28e69ffc3a80b3d69c35d32b722bf2c80c4505ae028",
+      "members": 7
+    }
+  ],
+  "verification_sha256": "5d80aee476f01996c954423ce28e7c4f5905bf43272873145f3dba86127ccc2c",
+  "full_compile_job_log_sha256": "b735092853de08ce6593c692aaf5cb1338340c64c639c77ff63d359d7dab6274",
+  "no_new_tests_jobs_build_polls_or_source_ref_mutations": true
+}

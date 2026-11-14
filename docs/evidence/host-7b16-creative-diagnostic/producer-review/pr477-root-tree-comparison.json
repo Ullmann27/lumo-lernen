@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "base": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "head": "608add99f207582316184905123fb73a7a1f6132",
+  "comparison_files_truncated_at": 300,
+  "root_tree_comparison_complete": true,
+  "differences": [
+    {
+      "path": "docs",
+      "base": {
+        "path": "docs",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "39a64c1e181c1716c3fdd34d9fd9d8ec795e8d9f",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/39a64c1e181c1716c3fdd34d9fd9d8ec795e8d9f"
+      },
+      "head": {
+        "path": "docs",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "2af1946a063251ca2cc79abaae9e3a1e45ccc2ab",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/2af1946a063251ca2cc79abaae9e3a1e45ccc2ab"
+      }
+    }
+  ],
+  "scope": "Only differing root entries; no claim about contents or correctness of archived evidence."
+}

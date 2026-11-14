@@ -19,16 +19,21 @@ bool _launchInProgress = false;
 Future<bool> launchLumo3D(
   BuildContext context, {
   String scene = 'kart',
+  bool livingVillage = false,
   int? grade,
   String? subject,
   LumoAppState? appState,
   NativeLearningActivity? learning,
   String? cardsToken,
+  String? connectFourToken,
+  String? tableToken,
   String? legacyGameKey,
 }) async {
   if (!context.mounted || appState?.resetting == true) return false;
   // Only reviewed, bounded lesson descriptors open the educational route.
   if ((scene == 'learning') != (learning != null)) return false;
+  // The economy is opt-in. Never silently open Kart or classic settlements.
+  if ((scene == 'settlement') != livingVillage) return false;
   if (legacyGameKey != null &&
       (appState == null ||
           !const ['kart', 'jump', 'puzzle', 'build', 'rhythm', 'treasure']
@@ -37,6 +42,15 @@ Future<bool> launchLumo3D(
   }
   if (scene == 'cards' &&
       (cardsToken == null || !RegExp(r'^[a-f0-9]{32}$').hasMatch(cardsToken))) {
+    return false;
+  }
+  if ((scene == 'connect_four') != (connectFourToken != null) ||
+      (connectFourToken != null &&
+          !RegExp(r'^[a-f0-9]{32}$').hasMatch(connectFourToken))) return false;
+  final tableGame = const {'memory', 'quiz'}.contains(scene);
+  if (tableGame != (tableToken != null) ||
+      (tableGame && appState == null) ||
+      (tableToken != null && !RegExp(r'^[a-f0-9]{32}$').hasMatch(tableToken))) {
     return false;
   }
   if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) {
@@ -135,6 +149,10 @@ Future<bool> launchLumo3D(
     entry?.setPhase(LumoGameEntryPhase.opening);
     final response = await bridge.invokeMapMethod<String, dynamic>('launch3D', {
       'scene': scene,
+      if (livingVillage) ...{
+        'livingVillage': true,
+        'settlementMode': 'settlement',
+      },
       'grade': grade ?? appState?.state.grade ?? 1,
       'subject': subject ?? appState?.state.subject ?? 'Mathematik',
       'stars': appState?.state.stars ?? 0,
@@ -144,7 +162,7 @@ Future<bool> launchLumo3D(
           (appState?.state.settings.reduceAnimations ?? false) ||
               (appState?.state.settings.calmMode ?? false),
       if (learning != null) 'learning': learning.toLaunchOptions(),
-      if (learning != null || scene == 'build') ...{
+      if (learning != null || scene == 'build' || scene == 'settlement') ...{
         // Preserve the selected voice. Only the existing, licensed local
         // identity is available in the isolated engine; no silent fallback.
         'learningVoiceEnabled': appState?.state.settings.voiceEnabled == true &&
@@ -159,6 +177,8 @@ Future<bool> launchLumo3D(
                 .clamp(0.70, 1.60),
       },
       if (scene == 'cards') 'cardsToken': cardsToken,
+      if (scene == 'connect_four') 'connectFourToken': connectFourToken,
+      if (tableGame) 'tableToken': tableToken,
     });
     // MainActivity returns a destination map on actual Activity return.
     // Null/malformed replies must not masquerade as successful game returns.

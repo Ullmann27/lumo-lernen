@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "test_village_flutter_return_observation",
+    "test_village_android_evidence",
+    "-v"
+  ],
+  "cwd": "/tmp/host5ad-village-return-observation-repair-20261114/test-view",
+  "started_at": "2026-11-14T19:03:10.061250+00:00",
+  "ended_at": "2026-11-14T19:03:49.248485+00:00",
+  "elapsed_seconds": 39.187311409998074,
+  "exit_code": 0,
+  "authorized_once": true,
+  "expected_methods": 46,
+  "product_or_device_claim": false
+}

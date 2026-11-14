@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T08:59:42.564918+00:00",
+  "kind": "READ_ONLY_SOURCE_REVIEW",
+  "base_source": "729585db3f49ecff7f0632439f90edb882f09454",
+  "producer_source": "b3f75f6fe3506321b7991f975cdc3854b341c596",
+  "original_retrieval": "Exact immutable raw GitHub URLs. Producer Git blobs match saved immutableCompare; base bytes fetched at exact729 SHA.",
+  "files": [
+    {
+      "path": "base/tools/android_qa/connect_four_android_evidence.py",
+      "bytes": 36130,
+      "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7",
+      "git_blob": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa",
+      "original_file": "base/tools/android_qa/connect_four_android_evidence.py.gz",
+      "gzip_sha256": "ef65ea3bdb9f78919d4a17836f127885d38fd9749d501da6c78b8ba5873249ff"
+    },
+    {
+      "path": "base/tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "bytes": 23974,
+      "sha256": "091d4640f277486998dc47fded5820d1986d9036244bc92d2f8c4ccf6afa794f",
+      "git_blob": "701d1dab0a7224803fe2780c6a0674400b081795",
+      "original_file": "base/tools/android_qa/tests/test_connect_four_android_evidence.py.gz",
+      "gzip_sha256": "1894bc11ce76d7c2af26787117663049a54e65b1aa6698cec6a0869a1d92e571"
+    },
+    {
+      "path": "producer/tools/android_qa/connect_four_android_evidence.py",
+      "bytes": 36224,
+      "sha256": "96e75b9db951ec772545ba90c4dc9fbcb1c335810fc73623db9db87e3cebc15c",
+      "git_blob": "d577691946a3c4100c6665efcc934eab6b7fe9aa",
+      "original_file": "producer/tools/android_qa/connect_four_android_evidence.py.gz",
+      "gzip_sha256": "83f5c8a3cbbf7ecdae207fa743555feec2e168a20c65295c6124fe4f05be99e0"
+    },
+    {
+      "path": "producer/tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "bytes": 25232,
+      "sha256": "7ae487d13dec9b8af7048bdfbbab0559650dfceb98ee52cce2c6533a70649d5d",
+      "git_blob": "ec6aa417a7b8cfda329f6a8d4568f0e59b90d053",
+      "original_file": "producer/tools/android_qa/tests/test_connect_four_android_evidence.py.gz",
+      "gzip_sha256": "957d842eba8d861949a093c8b3397c08d5bc0f31a2585022f139eec8bb3c2a6b"
+    }
+  ],
+  "proof": {
+    "base_source": "729585db3f49ecff7f0632439f90edb882f09454",
+    "producer_source": "b3f75f6fe3506321b7991f975cdc3854b341c596",
+    "helper_base_chars": 36126,
+    "helper_producer_chars": 36220,
+    "helper_after_exact_branch_only_reversal_equals_base": true,
+    "tests_after_removal_of_exact_two_new_methods_equals_base": true,
+    "added_tests_exact_lines": 24,
+    "new_methods": "    def test_both_exact_integration_branches_accept_their_current_source(self):\n        for branch in ('integration/lumo-c4-connections-20261114',\n                       'integration/lumo-agent-execution-20261114'):\n            metadata = original_metadata()\n            metadata[0]['head_branch'] = branch\n            with self.subTest(branch=branch):\n                self.assertEqual(bind(metadata)['host_source'], HOST)\n                metadata[0]['head_sha'] = 'f'*40\n                with self.assertRaises(ValueError):\n                    bind(metadata)\n\n    def test_branch_allowlist_does_not_accept_similar_names_or_foreign_repository(self):\n        for branch in ('main', 'integration/lumo-agent-execution-20261114-copy',\n                       'integration/lumo-agent-execution-20261115', ''):\n            metadata = original_metadata()\n            metadata[0]['head_branch'] = branch\n            with self.subTest(branch=branch), self.assertRaises(ValueError):\n                bind(metadata)\n        metadata = original_metadata()\n        metadata[0]['head_branch'] = 'integration/lumo-agent-execution-20261114'\n        metadata[0]['repository']['full_name'] = 'outside/fork'\n        with self.assertRaises(ValueError):\n            bind(metadata)\n\n",
+    "original_return_gate_unchanged": true,
+    "test_base_count": 17,
+    "test_producer_count": 19,
+    "diagnostic_result": "Producer addition only admits its own exact integration branch; it changes no runtime-return contract."
+  },
+  "helper_definitions": 29,
+  "changed_definitions": [
+    "artifact_binding"
+  ],
+  "remaining_definitions_ast_equal": 28,
+  "findings": [
+    "Only exact branch admission changes; the set contains current C4 integration branch plus producer agent-execution branch.",
+    "SourceSHA, repository, PR event, workflow path, run attempt, candidate identity/digest and three successful upstream jobs remain required.",
+    "Touch targets, native layout, DartACKs, owner/round/state preservation, two native exits, two Flutter returns and same-round reopen are unchanged.",
+    "Two new synthetic methods cover both exact branches, wrong source for each, similar branch names and foreign repository.24 lines are the entire test delta; no test ran."
+  ],
+  "recommendation": "No required change for existing integration/lumo-c4-connections-20261114. Do not expand accepted branch solely to import C4 return gates. Only if Root intentionally enables producerbranch, use paired helper/test delta.",
+  "source_changes": false,
+  "test_execution": false,
+  "ci_or_device_claim": false,
+  "workflow_delivery_review": "Reserved toRoot; not duplicated here."
+}

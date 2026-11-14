@@ -1,0 +1,3724 @@
+{
+  "schema": 1,
+  "status": "VERIFIED_ARCHIVE",
+  "scope": "Transport integrity only; no Android or product acceptance.",
+  "artifact": {
+    "id": 14096976074,
+    "bytes": 39307727,
+    "sha256": "9aaa2850bc96b39833a3e5893f020a5ecf19d7038fc326f18affed7448e37055",
+    "run_id": 43551424080,
+    "head_sha": "61c94cfb78bda8dfbe191331eca0fd0382deb151"
+  },
+  "metadata": {
+    "bytes": 826,
+    "sha256": "3189c558d4cf42960ea8d5e26a35014bf53285b4014c6c7fbaba0cfd130dc7ac"
+  },
+  "input": {
+    "mode": "private_https_download",
+    "complete_zip_preexisted_locally": false,
+    "complete_zip_written_by_collector": false,
+    "complete_zip_retention": "Only the original external Actions artifact retains the complete ZIP; its retention policy is unchanged.",
+    "archive_buffer": "io.BytesIO; no automatic disk spool",
+    "url_recorded": false
+  },
+  "limits": {
+    "archive_bytes": 41943040,
+    "materialized_bytes": 3145728,
+    "expanded_bytes": 2147483648,
+    "members": 20000
+  },
+  "archive_size_and_sha256_verified_before_zip_parsing": true,
+  "all_members_crc_and_sha256_verified": true,
+  "expanded_bytes": 49998319,
+  "members": [
+    {
+      "path": "07_home_after_onboarding-render-candidate-1.png",
+      "kind": "file",
+      "bytes": 22877,
+      "compressed_bytes": 7538,
+      "crc32": "5bdddb72",
+      "sha256": "129bd1378114167f8d404971ec56dfda1b334e33ffbb6769764260199c4578c2"
+    },
+    {
+      "path": "07_home_after_onboarding-render-readiness.json",
+      "kind": "file",
+      "bytes": 947,
+      "compressed_bytes": 404,
+      "crc32": "5276f87d",
+      "sha256": "ae2234ce517c794a4c3962beb2d228217ef3cbf1e1515e0d17429229f743262b"
+    },
+    {
+      "path": "01_erster_start.png",
+      "kind": "file",
+      "bytes": 1524456,
+      "compressed_bytes": 1519331,
+      "crc32": "eda61f75",
+      "sha256": "b0873fe6f8b2c85b28b192e32ef4d1d78da18dcf0c9536d825b9517647744bf2"
+    },
+    {
+      "path": "07_home_after_onboarding.png",
+      "kind": "file",
+      "bytes": 3071782,
+      "compressed_bytes": 3070864,
+      "crc32": "cd5ce998",
+      "sha256": "faf7f0a8e9c96fa0cd4367d6b914081b2a00ba79b1998f0812b6a406f29c07c9"
+    },
+    {
+      "path": "08_games_after_navigation.png",
+      "kind": "file",
+      "bytes": 1562486,
+      "compressed_bytes": 1561048,
+      "crc32": "6bbc3388",
+      "sha256": "e731bd4522456092421beb2250af7a31289e340b0ead1f1099a9022a64580da6"
+    },
+    {
+      "path": "10_lernen-render-readiness.json",
+      "kind": "file",
+      "bytes": 528,
+      "compressed_bytes": 323,
+      "crc32": "ee005fb5",
+      "sha256": "f213b49eabfd29bb3640d06f221160870b952de4ec2092bc89e278f8d040d3de"
+    },
+    {
+      "path": "10_lernen.png",
+      "kind": "file",
+      "bytes": 1893106,
+      "compressed_bytes": 1892198,
+      "crc32": "17b5e4f9",
+      "sha256": "21831b1a864640055f5a6d92923cca5e87feaf675e0d49c3a8a17450f2c62867"
+    },
+    {
+      "path": "10_start-render-readiness.json",
+      "kind": "file",
+      "bytes": 526,
+      "compressed_bytes": 320,
+      "crc32": "2d7bf5d6",
+      "sha256": "5c0d97a7373e87036f2e462f13cb25901d83d6d4ee5f97f2ec5b74a25fb693ae"
+    },
+    {
+      "path": "10_start.png",
+      "kind": "file",
+      "bytes": 3073053,
+      "compressed_bytes": 3072126,
+      "crc32": "cfaa66ed",
+      "sha256": "0f3e9d3b7ac3b1208d476d76721aa99ae4683a1538c0108ee12a932453ae5eac"
+    },
+    {
+      "path": "11_atelier_hub-render-readiness.json",
+      "kind": "file",
+      "bytes": 538,
+      "compressed_bytes": 326,
+      "crc32": "92079b75",
+      "sha256": "2fca8060e02d4024da27a03b45de6286053fe0330c4358d4a5b9cf3e94352e4f"
+    },
+    {
+      "path": "11_atelier_hub.png",
+      "kind": "file",
+      "bytes": 460154,
+      "compressed_bytes": 449795,
+      "crc32": "ac71fd7b",
+      "sha256": "4cdb463d9168ce3de1cd1fb634c0ca2ea02dac71bb9a00430caa5c86329ea5c9"
+    },
+    {
+      "path": "12_atelier_beispiel-render-readiness.json",
+      "kind": "file",
+      "bytes": 547,
+      "compressed_bytes": 327,
+      "crc32": "925f70a6",
+      "sha256": "d6d2184f0a0e165a69d910c80571e517f7e69338cd76397079151b675615c11b"
+    },
+    {
+      "path": "12_atelier_beispiel.png",
+      "kind": "file",
+      "bytes": 348148,
+      "compressed_bytes": 326920,
+      "crc32": "87243686",
+      "sha256": "11da7d6fa949dd0860fd05d732a903c480e7b0b624bcf212cd3ec6af246ac3ea"
+    },
+    {
+      "path": "13_atelier_zehnerbruecke-render-readiness.json",
+      "kind": "file",
+      "bytes": 558,
+      "compressed_bytes": 334,
+      "crc32": "f1c81b68",
+      "sha256": "3c1667716e3d139140cf6db4cb6217a55a7ce1577f2e7b602c6a6cbd0a4e46b6"
+    },
+    {
+      "path": "13_atelier_zehnerbruecke.png",
+      "kind": "file",
+      "bytes": 681331,
+      "compressed_bytes": 659085,
+      "crc32": "4789ef6b",
+      "sha256": "12367ca19ed8f60fe2e591d605c727fc05d869b58a52598e0235f01f0fef35e2"
+    },
+    {
+      "path": "20_spiele-render-readiness.json",
+      "kind": "file",
+      "bytes": 528,
+      "compressed_bytes": 322,
+      "crc32": "6d2d7dc6",
+      "sha256": "6f7ed0eba193f8da8f2c833a68a119fd6093369656ff646c7f47a31bb0911da4"
+    },
+    {
+      "path": "20_spiele.png",
+      "kind": "file",
+      "bytes": 1847526,
+      "compressed_bytes": 1846212,
+      "crc32": "65ce9edd",
+      "sha256": "c44faf66d30a9a257767a31b10b3157340bbd52756af25dc0f9841ec112aeaa3"
+    },
+    {
+      "path": "21_lumo_kart_12s.png",
+      "kind": "file",
+      "bytes": 19244,
+      "compressed_bytes": 7114,
+      "crc32": "3eb12c91",
+      "sha256": "c65aae7f3985120f09a050e7be5b9dae8c6f6dd344266d48aa8536bd7a30db2f"
+    },
+    {
+      "path": "21_lumo_kart_20s.png",
+      "kind": "file",
+      "bytes": 18822,
+      "compressed_bytes": 6654,
+      "crc32": "f135c9d9",
+      "sha256": "2d53fe68237e227fbdf00ed39ff536ab7dbe5951c748217d6a334ddec08e916b"
+    },
+    {
+      "path": "21_stage_mode_cup-0-ocr-contrast.tsv",
+      "kind": "file",
+      "bytes": 630,
+      "compressed_bytes": 222,
+      "crc32": "337a7161",
+      "sha256": "5aa772f2b896bfb86bdd3e89a07fe8f26ce99c4d76245295e96086ef867010c6"
+    },
+    {
+      "path": "21_stage_mode_cup-0-ocr-navy-latin-1x.tsv",
+      "kind": "file",
+      "bytes": 113,
+      "compressed_bytes": 86,
+      "crc32": "52c6252c",
+      "sha256": "09ebb57f2513225863b664271376ba2d5aed980079d00e6908e3acbe7556dccd"
+    },
+    {
+      "path": "21_stage_mode_cup-0-ocr-navy-latin.tsv",
+      "kind": "file",
+      "bytes": 113,
+      "compressed_bytes": 86,
+      "crc32": "95a69067",
+      "sha256": "83f87dcbdb395f3151d7e7aab36505d652b7408b771350fd979161eb64bbc327"
+    },
+    {
+      "path": "21_stage_mode_cup-0-ocr-raw.tsv",
+      "kind": "file",
+      "bytes": 454,
+      "compressed_bytes": 210,
+      "crc32": "baf11eb2",
+      "sha256": "98df3a7d9f0469a4af8f26973026ced1d1c47af51b7a53b7e5619995cbf53217"
+    },
+    {
+      "path": "21_stage_mode_cup-0-ocr-teal-text-1x.tsv",
+      "kind": "file",
+      "bytes": 485,
+      "compressed_bytes": 190,
+      "crc32": "7e966d31",
+      "sha256": "682cb6da02d6ee4c645b0d123be7b38daf633d77d95451755827b29717eee20e"
+    },
+    {
+      "path": "21_stage_mode_cup-0-ocr-white-latin.tsv",
+      "kind": "file",
+      "bytes": 630,
+      "compressed_bytes": 222,
+      "crc32": "192b2e83",
+      "sha256": "5d588a34e224a802e48532a20360854127d81ceb840cf8a2e5b511d6f218f6b6"
+    },
+    {
+      "path": "21_stage_mode_cup-0-ocr-white-text.tsv",
+      "kind": "file",
+      "bytes": 630,
+      "compressed_bytes": 222,
+      "crc32": "1cf5438a",
+      "sha256": "8fdc203127f617cf872fdaef21f6cf9de14005ed8af6863cc8224c23156d3470"
+    },
+    {
+      "path": "21_stage_mode_cup-0-ocr.json",
+      "kind": "file",
+      "bytes": 2045,
+      "compressed_bytes": 279,
+      "crc32": "23728cf7",
+      "sha256": "5f9881609bc2551383ec3bf66d0e2295eb88971920791d1ad539a4785021c6c7"
+    },
+    {
+      "path": "21_stage_mode_cup-0.png",
+      "kind": "file",
+      "bytes": 18822,
+      "compressed_bytes": 6654,
+      "crc32": "f135c9d9",
+      "sha256": "2d53fe68237e227fbdf00ed39ff536ab7dbe5951c748217d6a334ddec08e916b"
+    },
+    {
+      "path": "21_stage_mode_cup-surface-readiness.json",
+      "kind": "file",
+      "bytes": 973,
+      "compressed_bytes": 513,
+      "crc32": "be664cb9",
+      "sha256": "8b7d397da5eddd9141d9bdb87214114d1f146d2396cb2d71dd2cfbf16029597a"
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-return.json",
+      "kind": "file",
+      "bytes": 469,
+      "compressed_bytes": 309,
+      "crc32": "74378e5f",
+      "sha256": "8839f7fe206d370c8cc5666a21bce43aefc05cc306f0c733e5030f1ef3a02d9c"
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-visible-0-ocr-contrast.tsv",
+      "kind": "file",
+      "bytes": 6658,
+      "compressed_bytes": 1848,
+      "crc32": "fad0fcf4",
+      "sha256": "d3f9f340173b8d394db84cd39a91f80cf59877da48446d557ce6626a724672ce"
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-visible-0-ocr.json",
+      "kind": "file",
+      "bytes": 5121,
+      "compressed_bytes": 779,
+      "crc32": "d306d557",
+      "sha256": "940f05c7f834a8ef975fdc14a6a503d61c76fa8fb7ee81ac7671b7493f1603cc"
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-visible-0.png",
+      "kind": "file",
+      "bytes": 1838693,
+      "compressed_bytes": 1837169,
+      "crc32": "b7db3763",
+      "sha256": "8b2e094d30b6178e87298827f298ab33c033ec45d84b8da6bb22b5f1b0265e0b"
+    },
+    {
+      "path": "23_zurueck_in_flutter.png",
+      "kind": "file",
+      "bytes": 1838693,
+      "compressed_bytes": 1837169,
+      "crc32": "b7db3763",
+      "sha256": "8b2e094d30b6178e87298827f298ab33c033ec45d84b8da6bb22b5f1b0265e0b"
+    },
+    {
+      "path": "24_lernen_nach_kart.png",
+      "kind": "file",
+      "bytes": 1893067,
+      "compressed_bytes": 1892043,
+      "crc32": "a2dffa24",
+      "sha256": "b85ff33c4422e5639b00e62a0b1cb24f1b9961779ac40ec07489509abfd7ecea"
+    },
+    {
+      "path": "25_start_nach_kart.png",
+      "kind": "file",
+      "bytes": 2791517,
+      "compressed_bytes": 2790362,
+      "crc32": "5152bc73",
+      "sha256": "26f8f292dfb232955c10807f754591c41bc1466dc3a0031b1a6dfe5b38c10df8"
+    },
+    {
+      "path": "26_neustart.png",
+      "kind": "file",
+      "bytes": 3071766,
+      "compressed_bytes": 3070836,
+      "crc32": "7ced915a",
+      "sha256": "07b114e7bce2e4c243062f543731aae42f0e1599490420391a4ce21b2a4766f6"
+    },
+    {
+      "path": "30_fold_aussen.png",
+      "kind": "file",
+      "bytes": 2565987,
+      "compressed_bytes": 2565540,
+      "crc32": "20ad2700",
+      "sha256": "114a6ab6abf55af618d9187411b3b2865802db105de8381aa1abfd0c75f4b3cc"
+    },
+    {
+      "path": "30_fold_offen.png",
+      "kind": "file",
+      "bytes": 4178143,
+      "compressed_bytes": 4175752,
+      "crc32": "c7940fe7",
+      "sha256": "eaa91a6d085268219191a73a71d58dd428e188b212a9f55c7421f5008542a8c1"
+    },
+    {
+      "path": "30_quer.png",
+      "kind": "file",
+      "bytes": 1799767,
+      "compressed_bytes": 1796179,
+      "crc32": "af863e05",
+      "sha256": "d21f539ecf6e3ae862029f96638609acd481b708ee78184ca076409b39e45044"
+    },
+    {
+      "path": "99_fehler.png",
+      "kind": "file",
+      "bytes": 3071256,
+      "compressed_bytes": 3070285,
+      "crc32": "fe1a3dfa",
+      "sha256": "cee3c22ed4bfb91f576c1a8ac7402476f4a89738cb113da6076343c76d59d69f"
+    },
+    {
+      "path": "after-kart-preferences.xml",
+      "kind": "file",
+      "bytes": 2011,
+      "compressed_bytes": 724,
+      "crc32": "af7aaade",
+      "sha256": "f5a78527170a362fd547a1b8b4ebe098916c6fba76682d8cc9a1498b85900657"
+    },
+    {
+      "path": "after-restart-preferences.xml",
+      "kind": "file",
+      "bytes": 2011,
+      "compressed_bytes": 729,
+      "crc32": "6c912ddc",
+      "sha256": "4952f955d81eb6f8ed7812284116c45d665d222c465da4e185ff5d9bed17a386"
+    },
+    {
+      "path": "android-emulator-version.txt",
+      "kind": "file",
+      "bytes": 655,
+      "compressed_bytes": 418,
+      "crc32": "b0eadd3a",
+      "sha256": "1a523c9091747b7bf48a755396278f2eca455352b40c281336f1c3e075607b54"
+    },
+    {
+      "path": "android-release.txt",
+      "kind": "file",
+      "bytes": 3,
+      "compressed_bytes": 5,
+      "crc32": "aa3a1f9f",
+      "sha256": "54183f4323f377b737433a1e98229ead0fdc686f93bab057ecb612daa94002b5"
+    },
+    {
+      "path": "android-sdk.txt",
+      "kind": "file",
+      "bytes": 3,
+      "compressed_bytes": 5,
+      "crc32": "a9becbf1",
+      "sha256": "b58a3da5fde2680191877ec88a1aa7d06927cc3b30cdf0d0db8c39b488891576"
+    },
+    {
+      "path": "apk-source-sha.txt",
+      "kind": "file",
+      "bytes": 41,
+      "compressed_bytes": 40,
+      "crc32": "21803d85",
+      "sha256": "455ade348412c9937fae13800667513d04ddc909f87343b21ee775ef982c26fd"
+    },
+    {
+      "path": "atelier-after-return.xml",
+      "kind": "file",
+      "bytes": 34511,
+      "compressed_bytes": 2232,
+      "crc32": "f4f2f8ee",
+      "sha256": "56c7e81c2673f089741426d924c82d7e4f69e2e480476f94770d4e015388ca63"
+    },
+    {
+      "path": "atelier-build--1-0.xml",
+      "kind": "file",
+      "bytes": 22723,
+      "compressed_bytes": 1514,
+      "crc32": "22942ae6",
+      "sha256": "2d266d248c723b05c2eeb48ef19626dfaed03761fafdfcc87bd3d354453b53a8"
+    },
+    {
+      "path": "atelier-home-entry--1-0.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-enter-bridge--1-0.xml",
+      "kind": "file",
+      "bytes": 24988,
+      "compressed_bytes": 1649,
+      "crc32": "06d1ccd7",
+      "sha256": "ed052d711064ba1c2bb74e248800f23fa6655554b3757ef1a22f2720e41da962"
+    },
+    {
+      "path": "atelier-home-entry--1-1.xml",
+      "kind": "file",
+      "bytes": 34156,
+      "compressed_bytes": 2190,
+      "crc32": "115b0036",
+      "sha256": "3ec9384a228a33efc75e5058380b42cae34953a1bb04a83d51b89f4c3a37cb40"
+    },
+    {
+      "path": "atelier-home-entry--1-10.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-11.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-12.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-13.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-14.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-15.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-16.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "da9c41a5",
+      "sha256": "497de55753710fd45cac3fd238182044ce576af5fd15f3c2316506dfe1ade308"
+    },
+    {
+      "path": "atelier-home-entry--1-2.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-3.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-17.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "da9c41a5",
+      "sha256": "497de55753710fd45cac3fd238182044ce576af5fd15f3c2316506dfe1ade308"
+    },
+    {
+      "path": "atelier-home-entry--1-18.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-4.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-5.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-6.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-7.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-8.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry--1-9.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "da9c41a5",
+      "sha256": "497de55753710fd45cac3fd238182044ce576af5fd15f3c2316506dfe1ade308"
+    },
+    {
+      "path": "atelier-home-entry-1-0.xml",
+      "kind": "file",
+      "bytes": 33217,
+      "compressed_bytes": 2129,
+      "crc32": "2a28e374",
+      "sha256": "43bbe5360ed4f0a2235976c0664ac1ea721a6569cf709d6a94bdcbffe78f61b4"
+    },
+    {
+      "path": "atelier-home-entry-1-1.xml",
+      "kind": "file",
+      "bytes": 36763,
+      "compressed_bytes": 2302,
+      "crc32": "a685b768",
+      "sha256": "19eae263d5b80aaab1563a573c56dd80c6955c15e76c9ae900b15e46b4973b28"
+    },
+    {
+      "path": "atelier-home-entry-1-2.xml",
+      "kind": "file",
+      "bytes": 34500,
+      "compressed_bytes": 2206,
+      "crc32": "da606bcc",
+      "sha256": "d842534cd8ef2f7287847210b2fd270f4ecd27211a80ff9bb9b679fe8eb78889"
+    },
+    {
+      "path": "atelier-home-entry-1-3.xml",
+      "kind": "file",
+      "bytes": 34511,
+      "compressed_bytes": 2232,
+      "crc32": "f4f2f8ee",
+      "sha256": "56c7e81c2673f089741426d924c82d7e4f69e2e480476f94770d4e015388ca63"
+    },
+    {
+      "path": "atelier-hub-0.xml",
+      "kind": "file",
+      "bytes": 24988,
+      "compressed_bytes": 1649,
+      "crc32": "06d1ccd7",
+      "sha256": "ed052d711064ba1c2bb74e248800f23fa6655554b3757ef1a22f2720e41da962"
+    },
+    {
+      "path": "atelier-model-check-0.xml",
+      "kind": "file",
+      "bytes": 25861,
+      "compressed_bytes": 1740,
+      "crc32": "faff589c",
+      "sha256": "2f3a5fb09627aa7595ea7e0786be7112eb9244128a31c90d835d772ea2f9aeea"
+    },
+    {
+      "path": "atelier-topic-list-0.xml",
+      "kind": "file",
+      "bytes": 24988,
+      "compressed_bytes": 1649,
+      "crc32": "06d1ccd7",
+      "sha256": "ed052d711064ba1c2bb74e248800f23fa6655554b3757ef1a22f2720e41da962"
+    },
+    {
+      "path": "atelier-real-ten-frame-0.xml",
+      "kind": "file",
+      "bytes": 25861,
+      "compressed_bytes": 1740,
+      "crc32": "faff589c",
+      "sha256": "2f3a5fb09627aa7595ea7e0786be7112eb9244128a31c90d835d772ea2f9aeea"
+    },
+    {
+      "path": "atelier-worked-example-0.xml",
+      "kind": "file",
+      "bytes": 22723,
+      "compressed_bytes": 1514,
+      "crc32": "22942ae6",
+      "sha256": "2d266d248c723b05c2eeb48ef19626dfaed03761fafdfcc87bd3d354453b53a8"
+    },
+    {
+      "path": "before-kart-preferences.xml",
+      "kind": "file",
+      "bytes": 1646,
+      "compressed_bytes": 602,
+      "crc32": "84d01fff",
+      "sha256": "72fa5801f4eab1e794da9b6180f7d7b66447074389a6f4a515673ef2cdf40bed"
+    },
+    {
+      "path": "binding-inputs/candidate/artifacts.json",
+      "kind": "file",
+      "bytes": 11187,
+      "compressed_bytes": 1859,
+      "crc32": "b7e22643",
+      "sha256": "bda9b1dcbea0c4c583cbb316eb6844c579cba8ba4dd79f6ae5daa037c956a77c"
+    },
+    {
+      "path": "binding-inputs/candidate/jobs.json",
+      "kind": "file",
+      "bytes": 29940,
+      "compressed_bytes": 3643,
+      "crc32": "d6e4efd5",
+      "sha256": "06f1dca91f9eaed20b563cfd7e06aecfc2aeb45efe8e910d8b8158d5ce1b2e98"
+    },
+    {
+      "path": "binding-inputs/candidate/run.json",
+      "kind": "file",
+      "bytes": 12963,
+      "compressed_bytes": 1704,
+      "crc32": "fcd9dd56",
+      "sha256": "af9dee2a1a7330935226c2cd829f0f359d33830236d400199a25abb732d6c762"
+    },
+    {
+      "path": "binding-inputs/qa/jobs.json",
+      "kind": "file",
+      "bytes": 19808,
+      "compressed_bytes": 1788,
+      "crc32": "8b3882fa",
+      "sha256": "5bd534ead54d7730d98edee85c7dca0e047a48601520bdf7fdc8ac2dfa562ee9"
+    },
+    {
+      "path": "binding-inputs/qa/run.json",
+      "kind": "file",
+      "bytes": 12963,
+      "compressed_bytes": 1701,
+      "crc32": "5e8a1035",
+      "sha256": "5508447d4be98f18ad30e2a68f096d0c52f04770e1ee94ee7456dbf05c460e5f"
+    },
+    {
+      "path": "candidate-and-probe-binding.json",
+      "kind": "file",
+      "bytes": 7441,
+      "compressed_bytes": 2477,
+      "crc32": "282db899",
+      "sha256": "346b08b5aeb7c6e992db15585dacae37611a7b9e4fb89091fa30901d143e93e9"
+    },
+    {
+      "path": "cold-start-launch.txt",
+      "kind": "file",
+      "bytes": 545,
+      "compressed_bytes": 221,
+      "crc32": "821f008d",
+      "sha256": "8a9ced31a7581211c3d3c1b0a0fc10785140269b56839895974934f51a296400"
+    },
+    {
+      "path": "fatal-logcat.txt",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/action-patch-manifest.json",
+      "kind": "file",
+      "bytes": 4144,
+      "compressed_bytes": 1960,
+      "crc32": "e7141e27",
+      "sha256": "acf87414c662c08b3407f1e383135a08eb5399191291043c7765c4ac2c33e864"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/avd.ini",
+      "kind": "file",
+      "bytes": 83,
+      "compressed_bytes": 77,
+      "crc32": "77686298",
+      "sha256": "8f5b9f823df5b5d4e9c43f9ce2624ddec2b4b67e7fae2c994bddf40cba80cabd"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/configuration/bootcompleted.ini",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/configuration/hardware-qemu.ini",
+      "kind": "file",
+      "bytes": 4155,
+      "compressed_bytes": 1184,
+      "crc32": "c76f3a1c",
+      "sha256": "f58d879911724638f32f1099d6389ef2dbafe75a7fc96271b009f3fc53a9aaf5"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/configuration/config.ini",
+      "kind": "file",
+      "bytes": 3620,
+      "compressed_bytes": 1234,
+      "crc32": "a2171b1d",
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/configuration/emu-launch-params.txt",
+      "kind": "file",
+      "bytes": 267,
+      "compressed_bytes": 144,
+      "crc32": "dcebdc0e",
+      "sha256": "a1e8cc0f4f81fd8c99dc4d8b2559df13d91936afb62c9225ff55e738b38d6423"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/configuration/emulator-user.ini",
+      "kind": "file",
+      "bytes": 113,
+      "compressed_bytes": 87,
+      "crc32": "1c252857",
+      "sha256": "543bc7796a55a4cb95c916dbbb920ff266673ca2c524e4040ef4f42bec0c2e7b"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/configuration/modem_simulator/etc/modem_simulator/files/numeric_operator.xml",
+      "kind": "file",
+      "bytes": 297,
+      "compressed_bytes": 196,
+      "crc32": "6bb4493c",
+      "sha256": "c2557e604beea20b67642cdbb14ae7b792f804e4476b3f6cf47035690234f436"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/configuration/modem_simulator/iccprofile_for_carrierapitests.xml",
+      "kind": "file",
+      "bytes": 16537,
+      "compressed_bytes": 2941,
+      "crc32": "bfa7915f",
+      "sha256": "dc4b5f5344f084fc44f89250bbcf2b12e452eb98c104e4ef3ec115366eb6ce32"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/configuration/modem_simulator/iccprofile_for_sim0.xml",
+      "kind": "file",
+      "bytes": 14747,
+      "compressed_bytes": 2160,
+      "crc32": "ded9fced",
+      "sha256": "7c7996b576a53d7f9be538ec417c09825433f0fdf6561d9204afcdb2f54ba98a"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/configuration/modem_simulator/iccprofile_for_sim_tel_alaska.xml",
+      "kind": "file",
+      "bytes": 14474,
+      "compressed_bytes": 2469,
+      "crc32": "16f134c4",
+      "sha256": "462cc26ddaa9d6c470a2d9415771c80e323b526b1863f099accb298955b14db3"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/configuration/netsim.ini",
+      "kind": "file",
+      "bytes": 38,
+      "compressed_bytes": 32,
+      "crc32": "64d924bc",
+      "sha256": "c8fd846ec31ee1d607fc06f150e841e8c5287eb803ab0b2abf23abff6f39a080"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/configuration/qemu-version.txt",
+      "kind": "file",
+      "bytes": 1,
+      "compressed_bytes": 3,
+      "crc32": "1ad5be0d",
+      "sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/configuration/read-snapshot.txt",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/cli22/avd-after-action/snapshot.json",
+      "kind": "file",
+      "bytes": 9636,
+      "compressed_bytes": 2573,
+      "crc32": "dc8676fb",
+      "sha256": "03e00e206664875c6064eb8c2631e7b2ae9cb34b77004a3697b29fab2964962a"
+    },
+    {
+      "path": "framework-start/cli22/avd-before-boot/configuration/config.ini",
+      "kind": "file",
+      "bytes": 3620,
+      "compressed_bytes": 1234,
+      "crc32": "a2171b1d",
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe"
+    },
+    {
+      "path": "framework-start/cli22/avd-before-boot/avd.ini",
+      "kind": "file",
+      "bytes": 83,
+      "compressed_bytes": 77,
+      "crc32": "77686298",
+      "sha256": "8f5b9f823df5b5d4e9c43f9ce2624ddec2b4b67e7fae2c994bddf40cba80cabd"
+    },
+    {
+      "path": "framework-start/cli22/avd-before-boot/snapshot.json",
+      "kind": "file",
+      "bytes": 5782,
+      "compressed_bytes": 1650,
+      "crc32": "a5f66e88",
+      "sha256": "7c3f23e2dc11e7df2e803eb538404daac5fcaeacb96f70ce8292a54eeb2a0068"
+    },
+    {
+      "path": "framework-start/cli22/avd-guard/avd.ini",
+      "kind": "file",
+      "bytes": 83,
+      "compressed_bytes": 77,
+      "crc32": "77686298",
+      "sha256": "8f5b9f823df5b5d4e9c43f9ce2624ddec2b4b67e7fae2c994bddf40cba80cabd"
+    },
+    {
+      "path": "framework-start/cli22/avd-guard/configuration/config.ini",
+      "kind": "file",
+      "bytes": 3620,
+      "compressed_bytes": 1234,
+      "crc32": "a2171b1d",
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe"
+    },
+    {
+      "path": "framework-start/cli22/avd-guard/configuration/emu-launch-params.txt",
+      "kind": "file",
+      "bytes": 267,
+      "compressed_bytes": 144,
+      "crc32": "dcebdc0e",
+      "sha256": "a1e8cc0f4f81fd8c99dc4d8b2559df13d91936afb62c9225ff55e738b38d6423"
+    },
+    {
+      "path": "framework-start/cli22/avd-guard/configuration/hardware-qemu.ini",
+      "kind": "file",
+      "bytes": 4155,
+      "compressed_bytes": 1184,
+      "crc32": "c76f3a1c",
+      "sha256": "f58d879911724638f32f1099d6389ef2dbafe75a7fc96271b009f3fc53a9aaf5"
+    },
+    {
+      "path": "framework-start/cli22/avd-guard/configuration/modem_simulator/etc/modem_simulator/files/numeric_operator.xml",
+      "kind": "file",
+      "bytes": 297,
+      "compressed_bytes": 196,
+      "crc32": "6bb4493c",
+      "sha256": "c2557e604beea20b67642cdbb14ae7b792f804e4476b3f6cf47035690234f436"
+    },
+    {
+      "path": "framework-start/cli22/avd-guard/configuration/modem_simulator/iccprofile_for_carrierapitests.xml",
+      "kind": "file",
+      "bytes": 16537,
+      "compressed_bytes": 2941,
+      "crc32": "bfa7915f",
+      "sha256": "dc4b5f5344f084fc44f89250bbcf2b12e452eb98c104e4ef3ec115366eb6ce32"
+    },
+    {
+      "path": "framework-start/cli22/avd-guard/configuration/modem_simulator/iccprofile_for_sim0.xml",
+      "kind": "file",
+      "bytes": 14647,
+      "compressed_bytes": 2173,
+      "crc32": "127a520c",
+      "sha256": "a2744726a306b18d7547251026201aa5c6a9e120aa1555992eeb8b0a3b4aa6d9"
+    },
+    {
+      "path": "framework-start/cli22/avd-guard/configuration/modem_simulator/iccprofile_for_sim_tel_alaska.xml",
+      "kind": "file",
+      "bytes": 14474,
+      "compressed_bytes": 2469,
+      "crc32": "16f134c4",
+      "sha256": "462cc26ddaa9d6c470a2d9415771c80e323b526b1863f099accb298955b14db3"
+    },
+    {
+      "path": "framework-start/cli22/avd-guard/configuration/netsim.ini",
+      "kind": "file",
+      "bytes": 38,
+      "compressed_bytes": 32,
+      "crc32": "64d924bc",
+      "sha256": "c8fd846ec31ee1d607fc06f150e841e8c5287eb803ab0b2abf23abff6f39a080"
+    },
+    {
+      "path": "framework-start/cli22/avd-guard/configuration/qemu-version.txt",
+      "kind": "file",
+      "bytes": 1,
+      "compressed_bytes": 3,
+      "crc32": "1ad5be0d",
+      "sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "path": "framework-start/cli22/avd-guard/configuration/read-snapshot.txt",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/cli22/avd-original/avd.ini",
+      "kind": "file",
+      "bytes": 137,
+      "compressed_bytes": 112,
+      "crc32": "95df8867",
+      "sha256": "40d93b7337572784b14b5565fb66bb9e54328e538a5fc7d1cb512fb0958880e8"
+    },
+    {
+      "path": "framework-start/cli22/avd-original/configuration/config.ini",
+      "kind": "file",
+      "bytes": 3555,
+      "compressed_bytes": 1218,
+      "crc32": "8ffd10ca",
+      "sha256": "858e0f30354c358913cc64907cd0c4acec70468851bc2882227c8ae50305d22a"
+    },
+    {
+      "path": "framework-start/cli22/avd-original/snapshot.json",
+      "kind": "file",
+      "bytes": 5852,
+      "compressed_bytes": 1683,
+      "crc32": "2a5bebbb",
+      "sha256": "493528914b8f8bfdd16357a3f02e79c3e338b1070cbe78b5d74b1738973b2d1c"
+    },
+    {
+      "path": "framework-start/cli22/avd-guard/snapshot.json",
+      "kind": "file",
+      "bytes": 9163,
+      "compressed_bytes": 2486,
+      "crc32": "49a46d54",
+      "sha256": "26425232ac04f93e92f0e7d076d22ac5ffcb0add73cf5d2a758831f93c8bb61c"
+    },
+    {
+      "path": "framework-start/cli22/commands/01-original-cli-version/result.json",
+      "kind": "file",
+      "bytes": 297,
+      "compressed_bytes": 212,
+      "crc32": "a9217b9d",
+      "sha256": "632ba190b28c1704ce2a993c64fd4d831eef1e69e68e62aec9b7fcc05c247250"
+    },
+    {
+      "path": "framework-start/cli22/commands/01-original-cli-version/stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/cli22/commands/01-original-cli-version/stdout",
+      "kind": "file",
+      "bytes": 6,
+      "compressed_bytes": 8,
+      "crc32": "dbb9a244",
+      "sha256": "73d0675fb2da2b7916637864fccdfd1e19a3d28c2cf31f1e4901a92f887c19e1"
+    },
+    {
+      "path": "framework-start/cli22/commands/02-install-same-sdk-packages/result.json",
+      "kind": "file",
+      "bytes": 481,
+      "compressed_bytes": 285,
+      "crc32": "5657f78e",
+      "sha256": "c91698bd23906311f7754897473a11d989788e027a499deb1e4ca5c6bbbcedf4"
+    },
+    {
+      "path": "framework-start/cli22/commands/02-install-same-sdk-packages/stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/cli22/commands/02-install-same-sdk-packages/stdout",
+      "kind": "file",
+      "bytes": 15716,
+      "compressed_bytes": 1210,
+      "crc32": "5ba89f23",
+      "sha256": "fb3b6121d4b6ae00da1a8447947f343653cb24948d9f8d8635b83b52267d5807"
+    },
+    {
+      "path": "framework-start/cli22/commands/03-original-emulator-version/stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/cli22/commands/03-original-emulator-version/stdout",
+      "kind": "file",
+      "bytes": 655,
+      "compressed_bytes": 418,
+      "crc32": "b0eadd3a",
+      "sha256": "1a523c9091747b7bf48a755396278f2eca455352b40c281336f1c3e075607b54"
+    },
+    {
+      "path": "framework-start/cli22/commands/03-original-emulator-version/result.json",
+      "kind": "file",
+      "bytes": 279,
+      "compressed_bytes": 200,
+      "crc32": "0141964d",
+      "sha256": "181413cab3d5844a46fa42419ed1f4fdda9b30e832f939e5e92122ec7edac530"
+    },
+    {
+      "path": "framework-start/cli22/commands/04-original-real-avd/result.json",
+      "kind": "file",
+      "bytes": 1090,
+      "compressed_bytes": 564,
+      "crc32": "d19e5e84",
+      "sha256": "1e5c7e4a79121c859a1adfe32e2565856802866c3e7b18a672643e76c30a88ae"
+    },
+    {
+      "path": "framework-start/cli22/commands/04-original-real-avd/stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/cli22/commands/04-original-real-avd/stdout",
+      "kind": "file",
+      "bytes": 761,
+      "compressed_bytes": 368,
+      "crc32": "0c1026ed",
+      "sha256": "c2f96b5915acc380cdfa15b893b2a473ec462ba600c244d79e97a6ba3caf1852"
+    },
+    {
+      "path": "framework-start/cli22/commands/05-download-official-cli22/result.json",
+      "kind": "file",
+      "bytes": 485,
+      "compressed_bytes": 297,
+      "crc32": "d38b231f",
+      "sha256": "35cfe739a7e318b091937eaa5b6d468319a8e730c8c459ad1409a87c46d69abe"
+    },
+    {
+      "path": "framework-start/cli22/commands/05-download-official-cli22/stderr",
+      "kind": "file",
+      "bytes": 396,
+      "compressed_bytes": 164,
+      "crc32": "54a0d797",
+      "sha256": "a82893273e28ed1c9b3e92282db6b67236ffa07b853a0dca947e875cdb79de83"
+    },
+    {
+      "path": "framework-start/cli22/commands/05-download-official-cli22/stdout",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/cli22/commands/06-installed-cli22-version/result.json",
+      "kind": "file",
+      "bytes": 297,
+      "compressed_bytes": 212,
+      "crc32": "b944db02",
+      "sha256": "b3fb7701cb3b0b17c94dfb98da5e11077a593917ccfdc13ca1a1b197531e7b2f"
+    },
+    {
+      "path": "framework-start/cli22/commands/06-installed-cli22-version/stderr",
+      "kind": "file",
+      "bytes": 340,
+      "compressed_bytes": 222,
+      "crc32": "7cf8e036",
+      "sha256": "33414add6da35520d5a84e032882487bbb8835eae8767d88e1853859f196bf15"
+    },
+    {
+      "path": "framework-start/cli22/commands/06-installed-cli22-version/stdout",
+      "kind": "file",
+      "bytes": 6,
+      "compressed_bytes": 8,
+      "crc32": "5d2dd0ea",
+      "sha256": "39f79f7a6ad9a4128eeda6c3caeafd5ebda63edb99d50e35cd870cbe1196c821"
+    },
+    {
+      "path": "framework-start/cli22/observed-after-action.json",
+      "kind": "file",
+      "bytes": 14312,
+      "compressed_bytes": 3606,
+      "crc32": "798429ac",
+      "sha256": "3bb3cdd52629f1cee4ab0b9b49e28e07afb4f4065eeb14483e5aa901c02e2899"
+    },
+    {
+      "path": "framework-start/cli22/observed-before-boot.json",
+      "kind": "file",
+      "bytes": 10458,
+      "compressed_bytes": 2700,
+      "crc32": "b9cc2e65",
+      "sha256": "b3520261e9a16de4f1d207fb9d83b36dadd25ccf8ace562753a152cf9ec860aa"
+    },
+    {
+      "path": "framework-start/cli22/observed-guard.json",
+      "kind": "file",
+      "bytes": 13839,
+      "compressed_bytes": 3521,
+      "crc32": "ccd37810",
+      "sha256": "7f539ebef9a6db99c594a5e6da1b7cde6f6e7c3a060fd8e6a68adc4388c7cf87"
+    },
+    {
+      "path": "framework-start/cli22/original-tools.json",
+      "kind": "file",
+      "bytes": 18323,
+      "compressed_bytes": 6373,
+      "crc32": "14934a07",
+      "sha256": "95dc66b01c290c69ae0e5e51135d11f4b5e8e636facae5cb68455316636f870a"
+    },
+    {
+      "path": "framework-start/cli22/original-source.properties",
+      "kind": "file",
+      "bytes": 86,
+      "compressed_bytes": 77,
+      "crc32": "1de1628c",
+      "sha256": "d4eb560d17731d9919dbb91bfecb2d90418cb60c21e07b6c02302a682fbb760e"
+    },
+    {
+      "path": "framework-start/cli22/packages-after-action/emulator/package.xml",
+      "kind": "file",
+      "bytes": 18320,
+      "compressed_bytes": 6166,
+      "crc32": "19cde792",
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+    },
+    {
+      "path": "framework-start/cli22/packages-after-action/emulator/source.properties",
+      "kind": "file",
+      "bytes": 103,
+      "compressed_bytes": 88,
+      "crc32": "bff29e7c",
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    },
+    {
+      "path": "framework-start/cli22/packages-after-action/image/package.xml",
+      "kind": "file",
+      "bytes": 18753,
+      "compressed_bytes": 6340,
+      "crc32": "ce5c94b0",
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    {
+      "path": "framework-start/cli22/packages-after-action/image/source.properties",
+      "kind": "file",
+      "bytes": 359,
+      "compressed_bytes": 208,
+      "crc32": "bf42f894",
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    {
+      "path": "framework-start/cli22/packages-after-action/packages.json",
+      "kind": "file",
+      "bytes": 4327,
+      "compressed_bytes": 1069,
+      "crc32": "49f791c2",
+      "sha256": "5422baf61d45f906e72012f0f46f82e9313904522042e481f57ab4e7e0c7e5e0"
+    },
+    {
+      "path": "framework-start/cli22/packages-after-action/platform/package.xml",
+      "kind": "file",
+      "bytes": 18468,
+      "compressed_bytes": 6218,
+      "crc32": "7291c366",
+      "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609"
+    },
+    {
+      "path": "framework-start/cli22/packages-after-action/platform-tools/source.properties",
+      "kind": "file",
+      "bytes": 38,
+      "compressed_bytes": 40,
+      "crc32": "c915bac7",
+      "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38"
+    },
+    {
+      "path": "framework-start/cli22/packages-after-action/platform/source.properties",
+      "kind": "file",
+      "bytes": 343,
+      "compressed_bytes": 182,
+      "crc32": "fb986422",
+      "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f"
+    },
+    {
+      "path": "framework-start/cli22/packages-after-action/platform-tools/package.xml",
+      "kind": "file",
+      "bytes": 18335,
+      "compressed_bytes": 6171,
+      "crc32": "8f30ecea",
+      "sha256": "26465ee68290f3af08a0fa759d5711573b8787c5ed2a0cd5ecb727ba65a91bb3"
+    },
+    {
+      "path": "framework-start/cli22/packages-before-boot/emulator/package.xml",
+      "kind": "file",
+      "bytes": 18320,
+      "compressed_bytes": 6166,
+      "crc32": "19cde792",
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+    },
+    {
+      "path": "framework-start/cli22/packages-before-boot/emulator/source.properties",
+      "kind": "file",
+      "bytes": 103,
+      "compressed_bytes": 88,
+      "crc32": "bff29e7c",
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    },
+    {
+      "path": "framework-start/cli22/packages-before-boot/image/package.xml",
+      "kind": "file",
+      "bytes": 18753,
+      "compressed_bytes": 6340,
+      "crc32": "ce5c94b0",
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    {
+      "path": "framework-start/cli22/packages-before-boot/image/source.properties",
+      "kind": "file",
+      "bytes": 359,
+      "compressed_bytes": 208,
+      "crc32": "bf42f894",
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    {
+      "path": "framework-start/cli22/packages-before-boot/packages.json",
+      "kind": "file",
+      "bytes": 4327,
+      "compressed_bytes": 1069,
+      "crc32": "49f791c2",
+      "sha256": "5422baf61d45f906e72012f0f46f82e9313904522042e481f57ab4e7e0c7e5e0"
+    },
+    {
+      "path": "framework-start/cli22/packages-before-boot/platform/package.xml",
+      "kind": "file",
+      "bytes": 18468,
+      "compressed_bytes": 6218,
+      "crc32": "7291c366",
+      "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609"
+    },
+    {
+      "path": "framework-start/cli22/packages-before-boot/platform/source.properties",
+      "kind": "file",
+      "bytes": 343,
+      "compressed_bytes": 182,
+      "crc32": "fb986422",
+      "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f"
+    },
+    {
+      "path": "framework-start/cli22/packages-before-boot/platform-tools/package.xml",
+      "kind": "file",
+      "bytes": 18335,
+      "compressed_bytes": 6171,
+      "crc32": "8f30ecea",
+      "sha256": "26465ee68290f3af08a0fa759d5711573b8787c5ed2a0cd5ecb727ba65a91bb3"
+    },
+    {
+      "path": "framework-start/cli22/packages-before-boot/platform-tools/source.properties",
+      "kind": "file",
+      "bytes": 38,
+      "compressed_bytes": 40,
+      "crc32": "c915bac7",
+      "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38"
+    },
+    {
+      "path": "framework-start/cli22/packages-guard/emulator/package.xml",
+      "kind": "file",
+      "bytes": 18320,
+      "compressed_bytes": 6166,
+      "crc32": "19cde792",
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+    },
+    {
+      "path": "framework-start/cli22/packages-guard/emulator/source.properties",
+      "kind": "file",
+      "bytes": 103,
+      "compressed_bytes": 88,
+      "crc32": "bff29e7c",
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    },
+    {
+      "path": "framework-start/cli22/packages-guard/image/package.xml",
+      "kind": "file",
+      "bytes": 18753,
+      "compressed_bytes": 6340,
+      "crc32": "ce5c94b0",
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    {
+      "path": "framework-start/cli22/packages-guard/image/source.properties",
+      "kind": "file",
+      "bytes": 359,
+      "compressed_bytes": 208,
+      "crc32": "bf42f894",
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    {
+      "path": "framework-start/cli22/packages-guard/packages.json",
+      "kind": "file",
+      "bytes": 4327,
+      "compressed_bytes": 1069,
+      "crc32": "49f791c2",
+      "sha256": "5422baf61d45f906e72012f0f46f82e9313904522042e481f57ab4e7e0c7e5e0"
+    },
+    {
+      "path": "framework-start/cli22/packages-guard/platform/package.xml",
+      "kind": "file",
+      "bytes": 18468,
+      "compressed_bytes": 6218,
+      "crc32": "7291c366",
+      "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609"
+    },
+    {
+      "path": "framework-start/cli22/packages-guard/platform/source.properties",
+      "kind": "file",
+      "bytes": 343,
+      "compressed_bytes": 182,
+      "crc32": "fb986422",
+      "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f"
+    },
+    {
+      "path": "framework-start/cli22/packages-guard/platform-tools/package.xml",
+      "kind": "file",
+      "bytes": 18335,
+      "compressed_bytes": 6171,
+      "crc32": "8f30ecea",
+      "sha256": "26465ee68290f3af08a0fa759d5711573b8787c5ed2a0cd5ecb727ba65a91bb3"
+    },
+    {
+      "path": "framework-start/cli22/packages-guard/platform-tools/source.properties",
+      "kind": "file",
+      "bytes": 38,
+      "compressed_bytes": 40,
+      "crc32": "c915bac7",
+      "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38"
+    },
+    {
+      "path": "framework-start/cli22/packages-original/emulator/package.xml",
+      "kind": "file",
+      "bytes": 18320,
+      "compressed_bytes": 6166,
+      "crc32": "19cde792",
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+    },
+    {
+      "path": "framework-start/cli22/packages-original/emulator/source.properties",
+      "kind": "file",
+      "bytes": 103,
+      "compressed_bytes": 88,
+      "crc32": "bff29e7c",
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    },
+    {
+      "path": "framework-start/cli22/packages-original/image/package.xml",
+      "kind": "file",
+      "bytes": 18753,
+      "compressed_bytes": 6340,
+      "crc32": "ce5c94b0",
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    {
+      "path": "framework-start/cli22/packages-original/image/source.properties",
+      "kind": "file",
+      "bytes": 359,
+      "compressed_bytes": 208,
+      "crc32": "bf42f894",
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    {
+      "path": "framework-start/cli22/packages-original/packages.json",
+      "kind": "file",
+      "bytes": 4327,
+      "compressed_bytes": 1069,
+      "crc32": "49f791c2",
+      "sha256": "5422baf61d45f906e72012f0f46f82e9313904522042e481f57ab4e7e0c7e5e0"
+    },
+    {
+      "path": "framework-start/cli22/packages-original/platform/package.xml",
+      "kind": "file",
+      "bytes": 18468,
+      "compressed_bytes": 6218,
+      "crc32": "7291c366",
+      "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609"
+    },
+    {
+      "path": "framework-start/cli22/packages-original/platform/source.properties",
+      "kind": "file",
+      "bytes": 343,
+      "compressed_bytes": 182,
+      "crc32": "fb986422",
+      "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f"
+    },
+    {
+      "path": "framework-start/cli22/packages-original/platform-tools/package.xml",
+      "kind": "file",
+      "bytes": 18335,
+      "compressed_bytes": 6171,
+      "crc32": "8f30ecea",
+      "sha256": "26465ee68290f3af08a0fa759d5711573b8787c5ed2a0cd5ecb727ba65a91bb3"
+    },
+    {
+      "path": "framework-start/cli22/prepared.json",
+      "kind": "file",
+      "bytes": 48456,
+      "compressed_bytes": 14102,
+      "crc32": "1306d3c8",
+      "sha256": "20ea6b3978af5f6bf640cea7430d214f3d63fa48fc46fa3270c9d0fcb6d9a7ea"
+    },
+    {
+      "path": "framework-start/cli22/packages-original/platform-tools/source.properties",
+      "kind": "file",
+      "bytes": 38,
+      "compressed_bytes": 40,
+      "crc32": "c915bac7",
+      "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38"
+    },
+    {
+      "path": "framework-start/cli22/verified-guard.json",
+      "kind": "file",
+      "bytes": 37839,
+      "compressed_bytes": 11640,
+      "crc32": "524e9516",
+      "sha256": "02e0526ce2de7c10a8f166367bbd33ce8eec9dfedc3dad39142fc23b3923b59d"
+    },
+    {
+      "path": "framework-start/cli22-avd-verify.json",
+      "kind": "file",
+      "bytes": 280,
+      "compressed_bytes": 159,
+      "crc32": "fbc9090d",
+      "sha256": "93b116e5cc215905d4ca7a14b45c98726879f99a82687fa725be3d7d608a1ff8"
+    },
+    {
+      "path": "framework-start/cli22-avd-verify.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/cli22-avd-verify.stdout",
+      "kind": "file",
+      "bytes": 48,
+      "compressed_bytes": 50,
+      "crc32": "0b606e36",
+      "sha256": "2c812060f69e4cbe4f1b0e631317c59c9dd9343580f90d8e407c4d8b9f4b53ab"
+    },
+    {
+      "path": "framework-start/commands/0001-data-filesystem.json",
+      "kind": "file",
+      "bytes": 412,
+      "compressed_bytes": 226,
+      "crc32": "624c1577",
+      "sha256": "3c0950f2391f8e23057fa27c5b09678d0eceef23cbfe4fba14092447102202eb"
+    },
+    {
+      "path": "framework-start/commands/0001-data-filesystem.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0001-data-filesystem.stdout",
+      "kind": "file",
+      "bytes": 120,
+      "compressed_bytes": 108,
+      "crc32": "4aef9230",
+      "sha256": "0a152bcc0a5d74c4a3624099bcaeee785bb249118579f20d848b3e974cd40f64"
+    },
+    {
+      "path": "framework-start/commands/0002-memory-info.json",
+      "kind": "file",
+      "bytes": 403,
+      "compressed_bytes": 229,
+      "crc32": "afb7f657",
+      "sha256": "48ddfbe5437007e19eb043ea77f8adff578e5cbcdec89b80822eaafbe3942506"
+    },
+    {
+      "path": "framework-start/commands/0002-memory-info.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0002-memory-info.stdout",
+      "kind": "file",
+      "bytes": 1291,
+      "compressed_bytes": 479,
+      "crc32": "55abaedb",
+      "sha256": "90a982515af560e0a5e413543f0261c3fdded266b6becadcd1f14e0c4dacd1fa"
+    },
+    {
+      "path": "framework-start/commands/0003-mounted-filesystems.json",
+      "kind": "file",
+      "bytes": 418,
+      "compressed_bytes": 232,
+      "crc32": "25edc507",
+      "sha256": "30e4331d2dfeafc9785f0b3ffb9c45f06f41e76865a8da1c4a9fc016e40b0aef"
+    },
+    {
+      "path": "framework-start/commands/0003-mounted-filesystems.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0003-mounted-filesystems.stdout",
+      "kind": "file",
+      "bytes": 13845,
+      "compressed_bytes": 1582,
+      "crc32": "ec151ba7",
+      "sha256": "be68f6508198831bed184438e6d8f32df2bfa9feba450ed2e863d6f272388d0d"
+    },
+    {
+      "path": "framework-start/commands/0004-properties.json",
+      "kind": "file",
+      "bytes": 384,
+      "compressed_bytes": 220,
+      "crc32": "bd306ffe",
+      "sha256": "9132f148843f7c7097d05708fb8e2463b261dab7f89f2ff5ae700abe07924283"
+    },
+    {
+      "path": "framework-start/commands/0004-properties.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0004-properties.stdout",
+      "kind": "file",
+      "bytes": 23709,
+      "compressed_bytes": 6131,
+      "crc32": "545354c6",
+      "sha256": "80bc31f0f69aa786237741300e792a0bf019ceeeb4cae5add874624e0cd1ec5a"
+    },
+    {
+      "path": "framework-start/commands/0005-pid-before.json",
+      "kind": "file",
+      "bytes": 403,
+      "compressed_bytes": 231,
+      "crc32": "00a71f28",
+      "sha256": "953e9dd8a95deb0def3ee0b2f31811f45e0ee410386acd169730b030b483d85f"
+    },
+    {
+      "path": "framework-start/commands/0005-pid-before.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0005-pid-before.stdout",
+      "kind": "file",
+      "bytes": 4,
+      "compressed_bytes": 6,
+      "crc32": "de4ef4f0",
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    {
+      "path": "framework-start/commands/0006-service-input.json",
+      "kind": "file",
+      "bytes": 416,
+      "compressed_bytes": 229,
+      "crc32": "cab8def4",
+      "sha256": "56cdf9c940822239e3e7c12659235a49922cdd7d23bb5bc61a8c34e03d150825"
+    },
+    {
+      "path": "framework-start/commands/0006-service-input.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0006-service-input.stdout",
+      "kind": "file",
+      "bytes": 21,
+      "compressed_bytes": 23,
+      "crc32": "1e63b4f6",
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    {
+      "path": "framework-start/commands/0007-service-settings.json",
+      "kind": "file",
+      "bytes": 425,
+      "compressed_bytes": 231,
+      "crc32": "946b8ec3",
+      "sha256": "d96312d0187711fc91e277a40b5f089672759ddc8e760a3f437c5529a69c98da"
+    },
+    {
+      "path": "framework-start/commands/0007-service-settings.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0007-service-settings.stdout",
+      "kind": "file",
+      "bytes": 24,
+      "compressed_bytes": 26,
+      "crc32": "b5583922",
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    {
+      "path": "framework-start/commands/0008-service-activity.json",
+      "kind": "file",
+      "bytes": 425,
+      "compressed_bytes": 231,
+      "crc32": "97e94354",
+      "sha256": "d158eb9a4be2814d041b1e0eea1d619d6644d0ddcf94b48ded95a3f821c8f3b5"
+    },
+    {
+      "path": "framework-start/commands/0008-service-activity.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0008-service-activity.stdout",
+      "kind": "file",
+      "bytes": 24,
+      "compressed_bytes": 26,
+      "crc32": "0b0ee7f2",
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    {
+      "path": "framework-start/commands/0009-service-package.json",
+      "kind": "file",
+      "bytes": 422,
+      "compressed_bytes": 231,
+      "crc32": "e38aa7ff",
+      "sha256": "b321462d587f408cbd31d8c323e4b6f5d73d3ca642ebd179d28fb09f5f8169f5"
+    },
+    {
+      "path": "framework-start/commands/0009-service-package.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0009-service-package.stdout",
+      "kind": "file",
+      "bytes": 23,
+      "compressed_bytes": 25,
+      "crc32": "0eca780c",
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    {
+      "path": "framework-start/commands/0010-service-window.json",
+      "kind": "file",
+      "bytes": 419,
+      "compressed_bytes": 230,
+      "crc32": "0916c238",
+      "sha256": "efb3ee636fe3a4ef806a638cb58b756ecb2bda1473964bef5922ccbe0f1d9f2c"
+    },
+    {
+      "path": "framework-start/commands/0010-service-window.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0010-service-window.stdout",
+      "kind": "file",
+      "bytes": 22,
+      "compressed_bytes": 24,
+      "crc32": "7a814636",
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    {
+      "path": "framework-start/commands/0011-settings-read.json",
+      "kind": "file",
+      "bytes": 434,
+      "compressed_bytes": 235,
+      "crc32": "582902e0",
+      "sha256": "fd261ada658756ad8021cfb14f710447ce63788626872395413233d78157e0f3"
+    },
+    {
+      "path": "framework-start/commands/0011-settings-read.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0011-settings-read.stdout",
+      "kind": "file",
+      "bytes": 2,
+      "compressed_bytes": 4,
+      "crc32": "6751fc53",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "framework-start/commands/0012-package-read.json",
+      "kind": "file",
+      "bytes": 426,
+      "compressed_bytes": 231,
+      "crc32": "6def0d56",
+      "sha256": "c781454ca8c79cc481097f1d51042a9b1cf9a47a58ebe3a7b0d01f2390a125d9"
+    },
+    {
+      "path": "framework-start/commands/0012-package-read.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0012-package-read.stdout",
+      "kind": "file",
+      "bytes": 44,
+      "compressed_bytes": 37,
+      "crc32": "138ec27b",
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    {
+      "path": "framework-start/commands/0013-window-read.json",
+      "kind": "file",
+      "bytes": 393,
+      "compressed_bytes": 223,
+      "crc32": "778aa104",
+      "sha256": "baf3ce4259a8142ce3afa20fc45cd55f5900ea0cbda8d0fa696a29406dd8ce6a"
+    },
+    {
+      "path": "framework-start/commands/0013-window-read.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0013-window-read.stdout",
+      "kind": "file",
+      "bytes": 25,
+      "compressed_bytes": 27,
+      "crc32": "7b384104",
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    {
+      "path": "framework-start/commands/0014-window-state.json",
+      "kind": "file",
+      "bytes": 412,
+      "compressed_bytes": 231,
+      "crc32": "c62e776a",
+      "sha256": "c775399c06d561f079a946d157d7e7044fbb16fb6e6e0159baec2d8b056fc938"
+    },
+    {
+      "path": "framework-start/commands/0014-window-state.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0014-window-state.stdout",
+      "kind": "file",
+      "bytes": 70753,
+      "compressed_bytes": 10844,
+      "crc32": "8964bf10",
+      "sha256": "385fd865cbfedc6a13b29b49a96cef6f43db344428380c829d4b7a00e169920c"
+    },
+    {
+      "path": "framework-start/commands/0015-input-state.json",
+      "kind": "file",
+      "bytes": 399,
+      "compressed_bytes": 225,
+      "crc32": "57fea50b",
+      "sha256": "8c99cf1bd27bdf626c7468f0c348fba8ff662310db2877fc7a5335078baf27c6"
+    },
+    {
+      "path": "framework-start/commands/0015-input-state.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0015-input-state.stdout",
+      "kind": "file",
+      "bytes": 88353,
+      "compressed_bytes": 8626,
+      "crc32": "642ed332",
+      "sha256": "a2a204038c5f62de93a880c5d971ccc402a38bd52e0fbfae9130a0fd2a8ad3b3"
+    },
+    {
+      "path": "framework-start/commands/0016-events-anr.json",
+      "kind": "file",
+      "bytes": 469,
+      "compressed_bytes": 245,
+      "crc32": "558d0e1e",
+      "sha256": "253d714fea85f68db0a10350c4f2c00d24e798a089c45cab95ecdfad71c08c01"
+    },
+    {
+      "path": "framework-start/commands/0016-events-anr.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0016-events-anr.stdout",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0017-pid-after.json",
+      "kind": "file",
+      "bytes": 401,
+      "compressed_bytes": 232,
+      "crc32": "b586f782",
+      "sha256": "d6a3b0eae61f87f9e5c3fe3148377af230c2fa632c0047d9427921c54000d0da"
+    },
+    {
+      "path": "framework-start/commands/0017-pid-after.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0018-count-after.json",
+      "kind": "file",
+      "bytes": 423,
+      "compressed_bytes": 240,
+      "crc32": "6edf16ca",
+      "sha256": "6c4e7a050e7d6c40e3b7b454267c2dcc350741e2c37d456f8e4a51ca9937c7eb"
+    },
+    {
+      "path": "framework-start/commands/0017-pid-after.stdout",
+      "kind": "file",
+      "bytes": 4,
+      "compressed_bytes": 6,
+      "crc32": "de4ef4f0",
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    {
+      "path": "framework-start/commands/0018-count-after.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0018-count-after.stdout",
+      "kind": "file",
+      "bytes": 2,
+      "compressed_bytes": 4,
+      "crc32": "6751fc53",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "framework-start/commands/0019-properties.json",
+      "kind": "file",
+      "bytes": 384,
+      "compressed_bytes": 221,
+      "crc32": "c800d191",
+      "sha256": "b00bbf38b311991b63cd64689610626b97ecd90390f958e4ec76929ec1b402ae"
+    },
+    {
+      "path": "framework-start/commands/0019-properties.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0019-properties.stdout",
+      "kind": "file",
+      "bytes": 23975,
+      "compressed_bytes": 6173,
+      "crc32": "1bd64ce8",
+      "sha256": "6e241a70762654546deea4144a17ce3832ad5c412a845224fab39ebf0449a9cf"
+    },
+    {
+      "path": "framework-start/commands/0020-pid-before.json",
+      "kind": "file",
+      "bytes": 403,
+      "compressed_bytes": 231,
+      "crc32": "482ad1e6",
+      "sha256": "5256c0105719a90db953e6d56b3d2aa1ef46100f98ce87a16bbc49367f7d2d74"
+    },
+    {
+      "path": "framework-start/commands/0020-pid-before.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0020-pid-before.stdout",
+      "kind": "file",
+      "bytes": 4,
+      "compressed_bytes": 6,
+      "crc32": "de4ef4f0",
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    {
+      "path": "framework-start/commands/0021-service-input.json",
+      "kind": "file",
+      "bytes": 416,
+      "compressed_bytes": 230,
+      "crc32": "1522b164",
+      "sha256": "6b809912fc710587a30ebec66c4fc2497d169bf1be53df9edc3757a4ddb24bab"
+    },
+    {
+      "path": "framework-start/commands/0021-service-input.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0021-service-input.stdout",
+      "kind": "file",
+      "bytes": 21,
+      "compressed_bytes": 23,
+      "crc32": "1e63b4f6",
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    {
+      "path": "framework-start/commands/0022-service-settings.json",
+      "kind": "file",
+      "bytes": 425,
+      "compressed_bytes": 232,
+      "crc32": "58805c95",
+      "sha256": "bd07107b87e7609cdb1c58fdda2732f29536f35b1d4515d95af3bb4f3efcea8d"
+    },
+    {
+      "path": "framework-start/commands/0022-service-settings.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0022-service-settings.stdout",
+      "kind": "file",
+      "bytes": 24,
+      "compressed_bytes": 26,
+      "crc32": "b5583922",
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    {
+      "path": "framework-start/commands/0023-service-activity.json",
+      "kind": "file",
+      "bytes": 425,
+      "compressed_bytes": 232,
+      "crc32": "1e848e3c",
+      "sha256": "06ad8429a789ed6282d7da909a1fff2159095d122e0136cabcc9a2bb00be99ba"
+    },
+    {
+      "path": "framework-start/commands/0023-service-activity.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0023-service-activity.stdout",
+      "kind": "file",
+      "bytes": 24,
+      "compressed_bytes": 26,
+      "crc32": "0b0ee7f2",
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    {
+      "path": "framework-start/commands/0024-service-package.json",
+      "kind": "file",
+      "bytes": 422,
+      "compressed_bytes": 230,
+      "crc32": "5f19e5bc",
+      "sha256": "c8e331f0344509dedb143230efa96e2ce6689b301e472637f787472e0d16c8e3"
+    },
+    {
+      "path": "framework-start/commands/0024-service-package.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0024-service-package.stdout",
+      "kind": "file",
+      "bytes": 23,
+      "compressed_bytes": 25,
+      "crc32": "0eca780c",
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    {
+      "path": "framework-start/commands/0025-service-window.json",
+      "kind": "file",
+      "bytes": 419,
+      "compressed_bytes": 233,
+      "crc32": "a332ef89",
+      "sha256": "b8e833bafc93ac2f40c6855eecd6e83879bf0d0ae33e13db664dd31d382f0cb7"
+    },
+    {
+      "path": "framework-start/commands/0025-service-window.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0026-settings-read.json",
+      "kind": "file",
+      "bytes": 434,
+      "compressed_bytes": 233,
+      "crc32": "be32eaa8",
+      "sha256": "96d35d0eceb38b8c995d98c5c96910e0a53024aa65f05a06985a6d124ed059a8"
+    },
+    {
+      "path": "framework-start/commands/0025-service-window.stdout",
+      "kind": "file",
+      "bytes": 22,
+      "compressed_bytes": 24,
+      "crc32": "7a814636",
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    {
+      "path": "framework-start/commands/0026-settings-read.stdout",
+      "kind": "file",
+      "bytes": 2,
+      "compressed_bytes": 4,
+      "crc32": "6751fc53",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "framework-start/commands/0026-settings-read.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0027-package-read.json",
+      "kind": "file",
+      "bytes": 426,
+      "compressed_bytes": 230,
+      "crc32": "f6c057e2",
+      "sha256": "4f36f28d30e4901315ca67168b1f115d8527ccf5b16bc4b080239814180e41db"
+    },
+    {
+      "path": "framework-start/commands/0027-package-read.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0027-package-read.stdout",
+      "kind": "file",
+      "bytes": 44,
+      "compressed_bytes": 37,
+      "crc32": "138ec27b",
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    {
+      "path": "framework-start/commands/0028-window-read.json",
+      "kind": "file",
+      "bytes": 393,
+      "compressed_bytes": 224,
+      "crc32": "56fe3e12",
+      "sha256": "9b5efc534ec99dba48362e31a1da21fce657ea46e11a6999943b6507e405555b"
+    },
+    {
+      "path": "framework-start/commands/0028-window-read.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0028-window-read.stdout",
+      "kind": "file",
+      "bytes": 25,
+      "compressed_bytes": 27,
+      "crc32": "7b384104",
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    {
+      "path": "framework-start/commands/0029-window-state.json",
+      "kind": "file",
+      "bytes": 412,
+      "compressed_bytes": 232,
+      "crc32": "5c5d1bd9",
+      "sha256": "3669511016848e54108f142c5e4806760987a27e7a2dc045b5028757c2dcf370"
+    },
+    {
+      "path": "framework-start/commands/0029-window-state.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0029-window-state.stdout",
+      "kind": "file",
+      "bytes": 70805,
+      "compressed_bytes": 10842,
+      "crc32": "9c3be840",
+      "sha256": "219c4ef057549f858a3b5a2f2f71f431e770dd92e955f21cadff5f7b9cbfc718"
+    },
+    {
+      "path": "framework-start/commands/0030-input-state.json",
+      "kind": "file",
+      "bytes": 399,
+      "compressed_bytes": 226,
+      "crc32": "f597453a",
+      "sha256": "00df585608b2c90e7c2c357536820adc10bc5910a0b364f8550f03943122879c"
+    },
+    {
+      "path": "framework-start/commands/0030-input-state.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0030-input-state.stdout",
+      "kind": "file",
+      "bytes": 88736,
+      "compressed_bytes": 8714,
+      "crc32": "ac3f22f6",
+      "sha256": "96c39232e8444bad0a4ea0affa9ba1d2a28c33a127834ce0a9027c08a9b80cf7"
+    },
+    {
+      "path": "framework-start/commands/0031-events-anr.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0031-events-anr.json",
+      "kind": "file",
+      "bytes": 469,
+      "compressed_bytes": 245,
+      "crc32": "99afac6d",
+      "sha256": "5b275967f78a97110e0c52bc68835e8f9f8490cfd7e82367ad607f04d3df23f0"
+    },
+    {
+      "path": "framework-start/commands/0032-pid-after.json",
+      "kind": "file",
+      "bytes": 401,
+      "compressed_bytes": 229,
+      "crc32": "3da82adb",
+      "sha256": "f1a3fc8ae1a61fdf2d5edc4caaacd101d6d1a593d752073abf7f2510a4c73261"
+    },
+    {
+      "path": "framework-start/commands/0031-events-anr.stdout",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0032-pid-after.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0032-pid-after.stdout",
+      "kind": "file",
+      "bytes": 4,
+      "compressed_bytes": 6,
+      "crc32": "de4ef4f0",
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    {
+      "path": "framework-start/commands/0033-count-after.json",
+      "kind": "file",
+      "bytes": 423,
+      "compressed_bytes": 239,
+      "crc32": "7628ade9",
+      "sha256": "35ed04f850070117525250bda45471046bb69efb205a03da553f44750110714f"
+    },
+    {
+      "path": "framework-start/commands/0033-count-after.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0033-count-after.stdout",
+      "kind": "file",
+      "bytes": 2,
+      "compressed_bytes": 4,
+      "crc32": "6751fc53",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "framework-start/commands/0034-properties.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0034-properties.json",
+      "kind": "file",
+      "bytes": 384,
+      "compressed_bytes": 220,
+      "crc32": "42cfe304",
+      "sha256": "1b24e2329cbf82283b3a036bbe4173cc74d496f45014d8649888ebaf431c1edb"
+    },
+    {
+      "path": "framework-start/commands/0034-properties.stdout",
+      "kind": "file",
+      "bytes": 24112,
+      "compressed_bytes": 6209,
+      "crc32": "33b894bb",
+      "sha256": "bd7d8de1bfd58a8215e6dab2807b567c1ce0244aa8225aabba7b8565d2ebc75e"
+    },
+    {
+      "path": "framework-start/commands/0035-pid-before.json",
+      "kind": "file",
+      "bytes": 403,
+      "compressed_bytes": 230,
+      "crc32": "e83576e2",
+      "sha256": "fca43c46b1b0a92410ff171c56ee9631ca392d441e4d0e30b83c353a15b4ccf3"
+    },
+    {
+      "path": "framework-start/commands/0035-pid-before.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0035-pid-before.stdout",
+      "kind": "file",
+      "bytes": 4,
+      "compressed_bytes": 6,
+      "crc32": "de4ef4f0",
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    {
+      "path": "framework-start/commands/0036-service-input.json",
+      "kind": "file",
+      "bytes": 416,
+      "compressed_bytes": 230,
+      "crc32": "190c1b38",
+      "sha256": "e9874b203eb9745d70dfe573a45d48f18e2881f17e2971a62646b86070846639"
+    },
+    {
+      "path": "framework-start/commands/0036-service-input.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0037-service-settings.json",
+      "kind": "file",
+      "bytes": 425,
+      "compressed_bytes": 232,
+      "crc32": "14e58c79",
+      "sha256": "cba5fb69ef8f8c70ec1947ac115342b108b009ce2ecdf2fcae4ebae306146e73"
+    },
+    {
+      "path": "framework-start/commands/0036-service-input.stdout",
+      "kind": "file",
+      "bytes": 21,
+      "compressed_bytes": 23,
+      "crc32": "1e63b4f6",
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    {
+      "path": "framework-start/commands/0037-service-settings.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0037-service-settings.stdout",
+      "kind": "file",
+      "bytes": 24,
+      "compressed_bytes": 26,
+      "crc32": "b5583922",
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    {
+      "path": "framework-start/commands/0038-service-activity.json",
+      "kind": "file",
+      "bytes": 425,
+      "compressed_bytes": 230,
+      "crc32": "01c8528a",
+      "sha256": "a8e4139aaf14c0b04f4438af45f6040438772e5adef48ab963da1145dad4f1ce"
+    },
+    {
+      "path": "framework-start/commands/0038-service-activity.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0038-service-activity.stdout",
+      "kind": "file",
+      "bytes": 24,
+      "compressed_bytes": 26,
+      "crc32": "0b0ee7f2",
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    {
+      "path": "framework-start/commands/0039-service-package.json",
+      "kind": "file",
+      "bytes": 422,
+      "compressed_bytes": 230,
+      "crc32": "d74af707",
+      "sha256": "82212bdd34fc0f146a970fb5aa9d801ca36ff50018edf0955585cf347ed34f29"
+    },
+    {
+      "path": "framework-start/commands/0039-service-package.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0039-service-package.stdout",
+      "kind": "file",
+      "bytes": 23,
+      "compressed_bytes": 25,
+      "crc32": "0eca780c",
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    {
+      "path": "framework-start/commands/0040-service-window.json",
+      "kind": "file",
+      "bytes": 419,
+      "compressed_bytes": 231,
+      "crc32": "8e4889dd",
+      "sha256": "3be472fef199398e717d2a6b7d945375c64eca4a2a012830fc8cd32c8aa6bba7"
+    },
+    {
+      "path": "framework-start/commands/0040-service-window.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0040-service-window.stdout",
+      "kind": "file",
+      "bytes": 22,
+      "compressed_bytes": 24,
+      "crc32": "7a814636",
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    {
+      "path": "framework-start/commands/0041-settings-read.json",
+      "kind": "file",
+      "bytes": 434,
+      "compressed_bytes": 235,
+      "crc32": "913211b9",
+      "sha256": "5d6237966be0330b3d19df14f6c92dfa8da40cf5e5840a408f7d501e5cc5bd7c"
+    },
+    {
+      "path": "framework-start/commands/0041-settings-read.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0041-settings-read.stdout",
+      "kind": "file",
+      "bytes": 2,
+      "compressed_bytes": 4,
+      "crc32": "6751fc53",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "framework-start/commands/0042-package-read.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0042-package-read.json",
+      "kind": "file",
+      "bytes": 426,
+      "compressed_bytes": 229,
+      "crc32": "9b46c493",
+      "sha256": "b353d1eca3f0aa5c0f5be326440036313b77a85b43865b4b531513ebe00a2ec3"
+    },
+    {
+      "path": "framework-start/commands/0042-package-read.stdout",
+      "kind": "file",
+      "bytes": 44,
+      "compressed_bytes": 37,
+      "crc32": "138ec27b",
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    {
+      "path": "framework-start/commands/0043-window-read.json",
+      "kind": "file",
+      "bytes": 393,
+      "compressed_bytes": 223,
+      "crc32": "ef0fd1dd",
+      "sha256": "f74d4220fc85418261725bbb81d27a9aeff17282d1096c1d54f5998e1bbd3a2b"
+    },
+    {
+      "path": "framework-start/commands/0043-window-read.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0043-window-read.stdout",
+      "kind": "file",
+      "bytes": 25,
+      "compressed_bytes": 27,
+      "crc32": "7b384104",
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    {
+      "path": "framework-start/commands/0044-window-state.json",
+      "kind": "file",
+      "bytes": 412,
+      "compressed_bytes": 231,
+      "crc32": "4bac52c4",
+      "sha256": "75b2fd7e2d2bd3d743555229c323667bab12ce98583a9692f32f9bb18cb0f45a"
+    },
+    {
+      "path": "framework-start/commands/0044-window-state.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0044-window-state.stdout",
+      "kind": "file",
+      "bytes": 67926,
+      "compressed_bytes": 10877,
+      "crc32": "ac1316ce",
+      "sha256": "37a07862d05362023dc72d39bce412319e47f5dd23c36bca835a0b6745158c68"
+    },
+    {
+      "path": "framework-start/commands/0045-input-state.json",
+      "kind": "file",
+      "bytes": 399,
+      "compressed_bytes": 227,
+      "crc32": "675906ff",
+      "sha256": "f4d188b94c311507125d14a7f8f71cbc5b409ff4438b5549ec976dd2e37d963d"
+    },
+    {
+      "path": "framework-start/commands/0045-input-state.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0045-input-state.stdout",
+      "kind": "file",
+      "bytes": 88347,
+      "compressed_bytes": 8679,
+      "crc32": "19d49760",
+      "sha256": "5bbb0fe57cc1ea321c1ead2b7ad35d39c7a7573c7e8a97957ecafe121b01f686"
+    },
+    {
+      "path": "framework-start/commands/0046-events-anr.json",
+      "kind": "file",
+      "bytes": 469,
+      "compressed_bytes": 245,
+      "crc32": "7d11fcaa",
+      "sha256": "7147296c4f9a33aaf6ff8c0a81a4a96abc06deae04de6cdcb7e779e8bac7fcea"
+    },
+    {
+      "path": "framework-start/commands/0046-events-anr.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0046-events-anr.stdout",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0047-pid-after.json",
+      "kind": "file",
+      "bytes": 401,
+      "compressed_bytes": 230,
+      "crc32": "8781ef4a",
+      "sha256": "ea60122adda30446ec1c528852af8a029e3f7d4feed549899ad0043d10dfa047"
+    },
+    {
+      "path": "framework-start/commands/0047-pid-after.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0047-pid-after.stdout",
+      "kind": "file",
+      "bytes": 4,
+      "compressed_bytes": 6,
+      "crc32": "de4ef4f0",
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    {
+      "path": "framework-start/commands/0048-count-after.json",
+      "kind": "file",
+      "bytes": 423,
+      "compressed_bytes": 240,
+      "crc32": "93146a01",
+      "sha256": "b2070217354a55b86e6ab64d6c3767d616c899c543f05e41577309545a3b247e"
+    },
+    {
+      "path": "framework-start/commands/0048-count-after.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0048-count-after.stdout",
+      "kind": "file",
+      "bytes": 2,
+      "compressed_bytes": 4,
+      "crc32": "6751fc53",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "framework-start/commands/0049-properties.json",
+      "kind": "file",
+      "bytes": 384,
+      "compressed_bytes": 222,
+      "crc32": "de7fb5d9",
+      "sha256": "6fb38c70ef2622b404b333668aaeb878874b761f82729eca5e13c3f5ab63ab46"
+    },
+    {
+      "path": "framework-start/commands/0049-properties.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0049-properties.stdout",
+      "kind": "file",
+      "bytes": 24158,
+      "compressed_bytes": 6213,
+      "crc32": "ff2db397",
+      "sha256": "23d278a427139f9bb68210710a91da6f14dbb567bd7e55ae9f209e7444ac8a35"
+    },
+    {
+      "path": "framework-start/commands/0050-pid-before.json",
+      "kind": "file",
+      "bytes": 403,
+      "compressed_bytes": 230,
+      "crc32": "72e1f575",
+      "sha256": "f6791f3b7847770d153f2f69013ec2801c24672465052d3c0e90a2b20e5c1a12"
+    },
+    {
+      "path": "framework-start/commands/0050-pid-before.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0050-pid-before.stdout",
+      "kind": "file",
+      "bytes": 4,
+      "compressed_bytes": 6,
+      "crc32": "de4ef4f0",
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    {
+      "path": "framework-start/commands/0051-service-input.json",
+      "kind": "file",
+      "bytes": 416,
+      "compressed_bytes": 229,
+      "crc32": "ce0c8fb3",
+      "sha256": "58c51e971a5cb3c03d134edbc5d6e919f02bbac096c5afa7cb5204c81f0059f0"
+    },
+    {
+      "path": "framework-start/commands/0051-service-input.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0051-service-input.stdout",
+      "kind": "file",
+      "bytes": 21,
+      "compressed_bytes": 23,
+      "crc32": "1e63b4f6",
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    {
+      "path": "framework-start/commands/0052-service-settings.json",
+      "kind": "file",
+      "bytes": 425,
+      "compressed_bytes": 231,
+      "crc32": "8609f792",
+      "sha256": "de76e92cd68f0fceafae93c318f756dfa1f6a68486da412a2c67f23b3d76a99f"
+    },
+    {
+      "path": "framework-start/commands/0052-service-settings.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0052-service-settings.stdout",
+      "kind": "file",
+      "bytes": 24,
+      "compressed_bytes": 26,
+      "crc32": "b5583922",
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    {
+      "path": "framework-start/commands/0053-service-activity.json",
+      "kind": "file",
+      "bytes": 425,
+      "compressed_bytes": 232,
+      "crc32": "567abd44",
+      "sha256": "47e075f91d03c14365d841e3b919ce47244521dca9a33de17d111c48a990a4bd"
+    },
+    {
+      "path": "framework-start/commands/0053-service-activity.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0053-service-activity.stdout",
+      "kind": "file",
+      "bytes": 24,
+      "compressed_bytes": 26,
+      "crc32": "0b0ee7f2",
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    {
+      "path": "framework-start/commands/0054-service-package.json",
+      "kind": "file",
+      "bytes": 422,
+      "compressed_bytes": 230,
+      "crc32": "97e683d4",
+      "sha256": "94d4fe1029ebbedcd067d72062c8fa623f1d884399dcd6141e61d26345e49051"
+    },
+    {
+      "path": "framework-start/commands/0054-service-package.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0054-service-package.stdout",
+      "kind": "file",
+      "bytes": 23,
+      "compressed_bytes": 25,
+      "crc32": "0eca780c",
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    {
+      "path": "framework-start/commands/0055-service-window.json",
+      "kind": "file",
+      "bytes": 419,
+      "compressed_bytes": 229,
+      "crc32": "eccf3911",
+      "sha256": "1be4cb2fdbcdc5f20ba55be80b3c7fdd61fa75d6fc8adb66eb540b92c18f9751"
+    },
+    {
+      "path": "framework-start/commands/0055-service-window.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0055-service-window.stdout",
+      "kind": "file",
+      "bytes": 22,
+      "compressed_bytes": 24,
+      "crc32": "7a814636",
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    {
+      "path": "framework-start/commands/0056-settings-read.json",
+      "kind": "file",
+      "bytes": 434,
+      "compressed_bytes": 235,
+      "crc32": "fd871e55",
+      "sha256": "51107fd6db8fa3385ac2e7788c0f16cb95150580e8afdbdf8790ba1793753a56"
+    },
+    {
+      "path": "framework-start/commands/0056-settings-read.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0056-settings-read.stdout",
+      "kind": "file",
+      "bytes": 2,
+      "compressed_bytes": 4,
+      "crc32": "6751fc53",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "framework-start/commands/0057-package-read.json",
+      "kind": "file",
+      "bytes": 426,
+      "compressed_bytes": 229,
+      "crc32": "5cc926f3",
+      "sha256": "6411fd76ffff7eeb0c446e3ceece88a78715d66765f984642c11ff090e3c5e86"
+    },
+    {
+      "path": "framework-start/commands/0057-package-read.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0057-package-read.stdout",
+      "kind": "file",
+      "bytes": 44,
+      "compressed_bytes": 37,
+      "crc32": "138ec27b",
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    {
+      "path": "framework-start/commands/0058-window-read.json",
+      "kind": "file",
+      "bytes": 393,
+      "compressed_bytes": 224,
+      "crc32": "0a4b8e47",
+      "sha256": "d98498dffafeb1f925ecb5fa4a60765eb9d87387badf78ce3c26a7424828d228"
+    },
+    {
+      "path": "framework-start/commands/0058-window-read.stdout",
+      "kind": "file",
+      "bytes": 25,
+      "compressed_bytes": 27,
+      "crc32": "7b384104",
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    {
+      "path": "framework-start/commands/0058-window-read.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0059-window-state.json",
+      "kind": "file",
+      "bytes": 412,
+      "compressed_bytes": 232,
+      "crc32": "35ee6520",
+      "sha256": "dd9a1968be0e4d0aa936511b530ac116b9a7e3d1db6b5fbc7968d32f4fc72e77"
+    },
+    {
+      "path": "framework-start/commands/0059-window-state.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0059-window-state.stdout",
+      "kind": "file",
+      "bytes": 70687,
+      "compressed_bytes": 10915,
+      "crc32": "5cfbaf9c",
+      "sha256": "53f6e896ff72c37c5c7b68845f702cd626e568d19e1a90f956fb1309be3d9c5c"
+    },
+    {
+      "path": "framework-start/commands/0060-input-state.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0060-input-state.json",
+      "kind": "file",
+      "bytes": 399,
+      "compressed_bytes": 225,
+      "crc32": "8e6aa198",
+      "sha256": "fff09b95d1755c56f26670be407e21ab2b3b4ebf61cbca0990bc2d0d2da2b1a0"
+    },
+    {
+      "path": "framework-start/commands/0060-input-state.stdout",
+      "kind": "file",
+      "bytes": 88196,
+      "compressed_bytes": 8623,
+      "crc32": "0a2dfb9a",
+      "sha256": "a22ff05ce9d0e0684b246bbdc247c4dcb55181370406d6d00103c9500b104a90"
+    },
+    {
+      "path": "framework-start/commands/0061-events-anr.json",
+      "kind": "file",
+      "bytes": 469,
+      "compressed_bytes": 244,
+      "crc32": "97c6d461",
+      "sha256": "c332e95d64e1d1766b9d421c24b8ba5d3f390ddecd60f77d2c2dbcd514154408"
+    },
+    {
+      "path": "framework-start/commands/0061-events-anr.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0061-events-anr.stdout",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0062-pid-after.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0062-pid-after.json",
+      "kind": "file",
+      "bytes": 401,
+      "compressed_bytes": 231,
+      "crc32": "961be0f0",
+      "sha256": "b0a2bbb15e572310195eb0c6c243ae92ef9029dec292dc18b18025e4d308863c"
+    },
+    {
+      "path": "framework-start/commands/0062-pid-after.stdout",
+      "kind": "file",
+      "bytes": 4,
+      "compressed_bytes": 6,
+      "crc32": "de4ef4f0",
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    {
+      "path": "framework-start/commands/0063-count-after.json",
+      "kind": "file",
+      "bytes": 423,
+      "compressed_bytes": 240,
+      "crc32": "a585fd27",
+      "sha256": "2780f23c074ebb4df45292673fa6602b610d65fcd16c2d8f2aacd278210e0c39"
+    },
+    {
+      "path": "framework-start/commands/0063-count-after.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/commands/0063-count-after.stdout",
+      "kind": "file",
+      "bytes": 2,
+      "compressed_bytes": 4,
+      "crc32": "6751fc53",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "framework-start/framework-readiness.json",
+      "kind": "file",
+      "bytes": 45328,
+      "compressed_bytes": 3698,
+      "crc32": "c7bfbcef",
+      "sha256": "6060d82cba453968b4d7aa06c9af6638f4f6c24dd6293f03dc7d37b3b46196f9"
+    },
+    {
+      "path": "framework-start/lib-emulator-manager.js.patch",
+      "kind": "file",
+      "bytes": 952,
+      "compressed_bytes": 507,
+      "crc32": "0762398e",
+      "sha256": "bb69ba526d8338090d70941eb562eb75a88767f1ee480fe2040bfc67f4e89acf"
+    },
+    {
+      "path": "framework-start/logcat-all.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/logcat-all.stdout",
+      "kind": "file",
+      "bytes": 4899501,
+      "compressed_bytes": 715256,
+      "crc32": "b781402c",
+      "sha256": "611685048cd7f4caa6d8168874fa0018c4852aeebbbf1abfb6d528640d601dc2"
+    },
+    {
+      "path": "framework-start/monitor-commands.json",
+      "kind": "file",
+      "bytes": 965,
+      "compressed_bytes": 305,
+      "crc32": "846d195f",
+      "sha256": "fc4cc1f029e7604174dddcef0548ed986ce22835658a5045c02ba3acafd4550b"
+    },
+    {
+      "path": "framework-start/monitor-finished.json",
+      "kind": "file",
+      "bytes": 1074,
+      "compressed_bytes": 336,
+      "crc32": "81a85081",
+      "sha256": "be9d7574f67d4cb37a6755ca7f923b468653cb05b9a07cda240b9258bc7f46ed"
+    },
+    {
+      "path": "framework-start/monitor-process.json",
+      "kind": "file",
+      "bytes": 509,
+      "compressed_bytes": 271,
+      "crc32": "413b485e",
+      "sha256": "f28165dfb875a5790adb77d831eabf2c8309a2dceb92506b02c6850e51121cca"
+    },
+    {
+      "path": "framework-start/monitor-stop.json",
+      "kind": "file",
+      "bytes": 43132,
+      "compressed_bytes": 7997,
+      "crc32": "718e6fe8",
+      "sha256": "22eb4083e85b462056181340a1cad4c2f0bbf7cfa235576d435d0dbf710c6ab8"
+    },
+    {
+      "path": "framework-start/monitor.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/monitor.stdout",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/wait-for-device.stderr",
+      "kind": "file",
+      "bytes": 77,
+      "compressed_bytes": 70,
+      "crc32": "5c95a512",
+      "sha256": "d84aaa3222b49c6dfc6c07666347890c6ad2ff255b911fa83525c5814e54963c"
+    },
+    {
+      "path": "framework-start/wait-for-device.stdout",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "framework-start/src-emulator-manager.ts.patch",
+      "kind": "file",
+      "bytes": 825,
+      "compressed_bytes": 473,
+      "crc32": "924523e9",
+      "sha256": "4f31cf1a0b90622720a5618836d0099f61d4290ee14ae3460590f7f2e92af90e"
+    },
+    {
+      "path": "home-to-games-0.xml",
+      "kind": "file",
+      "bytes": 33213,
+      "compressed_bytes": 2134,
+      "crc32": "ce2a4fd3",
+      "sha256": "14b204bce0f9f0266d0ed453fb79dfa2949689304b8dadce4153d816c98c0761"
+    },
+    {
+      "path": "install.txt",
+      "kind": "file",
+      "bytes": 181,
+      "compressed_bytes": 150,
+      "crc32": "329d0a87",
+      "sha256": "5b7ce26d651a3229c86f35d1ee5b5c6a33c9571b957c869df222655faeda87a2"
+    },
+    {
+      "path": "installed-package.txt",
+      "kind": "file",
+      "bytes": 9470,
+      "compressed_bytes": 2441,
+      "crc32": "dd807afc",
+      "sha256": "0542b5aa8120f060c4d33e1a460b67c1dba1a44904ab39738a7f9c211f053d54"
+    },
+    {
+      "path": "installed-package-uid.txt",
+      "kind": "file",
+      "bytes": 59,
+      "compressed_bytes": 57,
+      "crc32": "ba4d4827",
+      "sha256": "8c11f53fb5d69c2fae19c1094597833ba9f8026215e061433eb3c3afab1806ff"
+    },
+    {
+      "path": "lernen-before-kart.xml",
+      "kind": "file",
+      "bytes": 32757,
+      "compressed_bytes": 2141,
+      "crc32": "b72e68f8",
+      "sha256": "b9b2fb1dc7359aa589fb598467da2a725de40423a43e1fbde84c9f93eee2dae1"
+    },
+    {
+      "path": "logcat.txt",
+      "kind": "file",
+      "bytes": 2000006,
+      "compressed_bytes": 281450,
+      "crc32": "e5bbe6bf",
+      "sha256": "9572cfa583f279cb8ba2d17fab64e366052652ab79736767fd5212563be9f122"
+    },
+    {
+      "path": "lernen-after-kart.xml",
+      "kind": "file",
+      "bytes": 32755,
+      "compressed_bytes": 2143,
+      "crc32": "e524c07e",
+      "sha256": "cca4ec9a827e3d4d8b0f24c1de57f5486d476f31b9d18468a7f1db078d6c6508"
+    },
+    {
+      "path": "mesa-renderer.txt",
+      "kind": "file",
+      "bytes": 1774,
+      "compressed_bytes": 567,
+      "crc32": "86410fb7",
+      "sha256": "9b8fd198e5cb0c1454bf07a44fd0d7c2f1d8ef796920fe4203c33a179dcd6e01"
+    },
+    {
+      "path": "nav-lernen-6--1-0.xml",
+      "kind": "file",
+      "bytes": 34511,
+      "compressed_bytes": 2232,
+      "crc32": "f4f2f8ee",
+      "sha256": "56c7e81c2673f089741426d924c82d7e4f69e2e480476f94770d4e015388ca63"
+    },
+    {
+      "path": "nav-lernen-after-kart-6--1-0.xml",
+      "kind": "file",
+      "bytes": 29544,
+      "compressed_bytes": 1959,
+      "crc32": "930a0bd7",
+      "sha256": "704fe1c8b3219bfddc4be3e9f1146d747309a487e4693148818dff1be905d94e"
+    },
+    {
+      "path": "nav-spiele-7--1-0.xml",
+      "kind": "file",
+      "bytes": 32757,
+      "compressed_bytes": 2141,
+      "crc32": "b72e68f8",
+      "sha256": "b9b2fb1dc7359aa589fb598467da2a725de40423a43e1fbde84c9f93eee2dae1"
+    },
+    {
+      "path": "nav-start-5--1-0.xml",
+      "kind": "file",
+      "bytes": 29546,
+      "compressed_bytes": 1961,
+      "crc32": "fb6adaf1",
+      "sha256": "8239dfe559b49893f91b93dfb45fa6c31009b9282c8ed4728a9e7f70a80be88a"
+    },
+    {
+      "path": "nav-start-after-kart-5--1-0.xml",
+      "kind": "file",
+      "bytes": 32754,
+      "compressed_bytes": 2142,
+      "crc32": "01bdc52c",
+      "sha256": "5774999ebc7479597ec76a43d1fb120b01c65a1915f0efbf266bf76c12470db0"
+    },
+    {
+      "path": "ocr-work.png",
+      "kind": "file",
+      "bytes": 199158,
+      "compressed_bytes": 185286,
+      "crc32": "78f30548",
+      "sha256": "3b82adeb0ceea26578e48192525fd986a2bce73201147cc5c62ba6f176f7dac0"
+    },
+    {
+      "path": "onboard-age-next-0.xml",
+      "kind": "file",
+      "bytes": 25496,
+      "compressed_bytes": 1629,
+      "crc32": "6d323be0",
+      "sha256": "50746bb84354df165135a035dcf11b1d484f41799b567e54de5cc0c9ce2adcbb"
+    },
+    {
+      "path": "onboard-char-1-keyboard-0.xml",
+      "kind": "file",
+      "bytes": 98771,
+      "compressed_bytes": 4382,
+      "crc32": "4634ca60",
+      "sha256": "c524888151fa096ef0bdfcac1407380b3ec2dd74111a4da81e5c7c87fe28b7af"
+    },
+    {
+      "path": "onboard-char-2-keyboard-0.xml",
+      "kind": "file",
+      "bytes": 97305,
+      "compressed_bytes": 4296,
+      "crc32": "1d19a53c",
+      "sha256": "914832d55f355d9aede98e5e230c74d234bf84caabd3edb0bb658fddab160dd0"
+    },
+    {
+      "path": "onboard-char-3-keyboard-0.xml",
+      "kind": "file",
+      "bytes": 97312,
+      "compressed_bytes": 4297,
+      "crc32": "13965c80",
+      "sha256": "dbd6c75fccce54ef1a44ccff3eb3224aff94e627963e866d62c5c34a6854abc1"
+    },
+    {
+      "path": "onboard-char-4-keyboard-0.xml",
+      "kind": "file",
+      "bytes": 97317,
+      "compressed_bytes": 4301,
+      "crc32": "0c4bbc13",
+      "sha256": "2c2c8d7997adef1910fae6235b352dd91f00259b5e9f7b3ba02296f3578d2fde"
+    },
+    {
+      "path": "onboard-char-5-keyboard-0.xml",
+      "kind": "file",
+      "bytes": 97316,
+      "compressed_bytes": 4298,
+      "crc32": "98d119c6",
+      "sha256": "19f3c279fa65012538b8d6132cde59ec639c9a342a1b0ad675f5652225cc07c7"
+    },
+    {
+      "path": "onboard-char-5-keyboard-1.xml",
+      "kind": "file",
+      "bytes": 97324,
+      "compressed_bytes": 4309,
+      "crc32": "23a49cab",
+      "sha256": "2f474b435002c71dacd584ed128f33d784a0f397694f16b47ba34c7381110002"
+    },
+    {
+      "path": "onboard-char-6-keyboard-0.xml",
+      "kind": "file",
+      "bytes": 97323,
+      "compressed_bytes": 4303,
+      "crc32": "fbaa9adc",
+      "sha256": "6bbaf7744b638549cb8bd57896cad130ce156c51f59cad9acaecbc1c2be3aa48"
+    },
+    {
+      "path": "onboard-char-7-keyboard-0.xml",
+      "kind": "file",
+      "bytes": 97334,
+      "compressed_bytes": 4304,
+      "crc32": "214b673d",
+      "sha256": "1c9e8c946e7ed8b0e432c86506d1c476f90acbd1f86bcd2d3ea4fdec1f0c42e6"
+    },
+    {
+      "path": "onboard-char-8-keyboard-0.xml",
+      "kind": "file",
+      "bytes": 97335,
+      "compressed_bytes": 4311,
+      "crc32": "f182a43a",
+      "sha256": "596ee1e1f09a56cf0e4fbd103d97b4e7b982788e9cad29f4f12c1507082dc3b5"
+    },
+    {
+      "path": "onboard-games-Spiele-0.xml",
+      "kind": "file",
+      "bytes": 29542,
+      "compressed_bytes": 1966,
+      "crc32": "ee98a0b2",
+      "sha256": "32f51d695c3ff74071ab3dbcc56ca283231d04459153b8e0eb6b37b3cfa16a53"
+    },
+    {
+      "path": "onboard-grade-save-0.xml",
+      "kind": "file",
+      "bytes": 24690,
+      "compressed_bytes": 1626,
+      "crc32": "3d5f90f4",
+      "sha256": "157f17d4a6e35d927d53d51089d4af129578f30940ad2c83ff7fb633185c8ee2"
+    },
+    {
+      "path": "onboard-home-0.xml",
+      "kind": "file",
+      "bytes": 33213,
+      "compressed_bytes": 2134,
+      "crc32": "ce2a4fd3",
+      "sha256": "14b204bce0f9f0266d0ed453fb79dfa2949689304b8dadce4153d816c98c0761"
+    },
+    {
+      "path": "onboard-ime-before-dismiss.xml",
+      "kind": "file",
+      "bytes": 97348,
+      "compressed_bytes": 4305,
+      "crc32": "0ead70e6",
+      "sha256": "61d50bf8df90eaf33d8c12026bb38616e4426538f21e1166869ae2960b09eb03"
+    },
+    {
+      "path": "onboard-name-next-0.xml",
+      "kind": "file",
+      "bytes": 24190,
+      "compressed_bytes": 1596,
+      "crc32": "be433ae5",
+      "sha256": "e57582a4d27593e31aeceb0b4137c51f10d218ab91940d0c39e8ff8e2660371a"
+    },
+    {
+      "path": "onboard-name-written-2-0.xml",
+      "kind": "file",
+      "bytes": 97312,
+      "compressed_bytes": 4297,
+      "crc32": "13965c80",
+      "sha256": "dbd6c75fccce54ef1a44ccff3eb3224aff94e627963e866d62c5c34a6854abc1"
+    },
+    {
+      "path": "onboard-name-written-3-0.xml",
+      "kind": "file",
+      "bytes": 97317,
+      "compressed_bytes": 4301,
+      "crc32": "0c4bbc13",
+      "sha256": "2c2c8d7997adef1910fae6235b352dd91f00259b5e9f7b3ba02296f3578d2fde"
+    },
+    {
+      "path": "onboard-name-written-4-0.xml",
+      "kind": "file",
+      "bytes": 97316,
+      "compressed_bytes": 4298,
+      "crc32": "98d119c6",
+      "sha256": "19f3c279fa65012538b8d6132cde59ec639c9a342a1b0ad675f5652225cc07c7"
+    },
+    {
+      "path": "onboard-name-written-1-0.xml",
+      "kind": "file",
+      "bytes": 99602,
+      "compressed_bytes": 4398,
+      "crc32": "6a5aab5a",
+      "sha256": "af7e8c0c0d226fe0003ba713b189081aea23f08f885a111a28e6ed6581ff749b"
+    },
+    {
+      "path": "onboard-name-written-5-0.xml",
+      "kind": "file",
+      "bytes": 97323,
+      "compressed_bytes": 4303,
+      "crc32": "fbaa9adc",
+      "sha256": "6bbaf7744b638549cb8bd57896cad130ce156c51f59cad9acaecbc1c2be3aa48"
+    },
+    {
+      "path": "onboard-name-written-7-0.xml",
+      "kind": "file",
+      "bytes": 97335,
+      "compressed_bytes": 4311,
+      "crc32": "f182a43a",
+      "sha256": "596ee1e1f09a56cf0e4fbd103d97b4e7b982788e9cad29f4f12c1507082dc3b5"
+    },
+    {
+      "path": "onboard-name-written-6-0.xml",
+      "kind": "file",
+      "bytes": 97334,
+      "compressed_bytes": 4304,
+      "crc32": "214b673d",
+      "sha256": "1c9e8c946e7ed8b0e432c86506d1c476f90acbd1f86bcd2d3ea4fdec1f0c42e6"
+    },
+    {
+      "path": "onboard-name-written-8-0.xml",
+      "kind": "file",
+      "bytes": 97348,
+      "compressed_bytes": 4305,
+      "crc32": "0ead70e6",
+      "sha256": "61d50bf8df90eaf33d8c12026bb38616e4426538f21e1166869ae2960b09eb03"
+    },
+    {
+      "path": "onboard-name.xml",
+      "kind": "file",
+      "bytes": 24204,
+      "compressed_bytes": 1595,
+      "crc32": "3b5ac5fb",
+      "sha256": "dd7c9db55f2c965b0e571e10e41b435d8c5547c48f356d3548aaa6bda174321a"
+    },
+    {
+      "path": "open-kart-47-1-0.xml",
+      "kind": "file",
+      "bytes": 29546,
+      "compressed_bytes": 1961,
+      "crc32": "99dba31b",
+      "sha256": "59db2a2e8ee42629d6c4db4a677f4036ef6a8962a8fac1164b3f0c9c0ccb4584"
+    },
+    {
+      "path": "onboard-welcome--1-0.xml",
+      "kind": "file",
+      "bytes": 23865,
+      "compressed_bytes": 1616,
+      "crc32": "647ddcd3",
+      "sha256": "f0fc30b6300690481332029abf30040ab45ed5fd65cdd906e544126744738c18"
+    },
+    {
+      "path": "probe-source-sha.txt",
+      "kind": "file",
+      "bytes": 41,
+      "compressed_bytes": 42,
+      "crc32": "86bf9c54",
+      "sha256": "a29ace4ef9139b960a357f3cf029ffb5ae37a875df353b6dc85b45ed05bc1d35"
+    },
+    {
+      "path": "profile-ime-taps.json",
+      "kind": "file",
+      "bytes": 1779,
+      "compressed_bytes": 275,
+      "crc32": "420f4cf9",
+      "sha256": "5d788f184e0e96c8dcdff119e5c4a710d904f4da893efde14bcc034989aa23c6"
+    },
+    {
+      "path": "renderer-comparison-binding.json",
+      "kind": "file",
+      "bytes": 2364,
+      "compressed_bytes": 1211,
+      "crc32": "a8088406",
+      "sha256": "cc644c503f97bf2f53b35f580c24efe908a713fd6173e2eaac01fd80f9c3bc72"
+    },
+    {
+      "path": "restart-0.xml",
+      "kind": "file",
+      "bytes": 33214,
+      "compressed_bytes": 2128,
+      "crc32": "7f1fb4d8",
+      "sha256": "b3af2c63d772995e70fb21cf32f0ff218681e4a46876c37ecfd70129837f52f7"
+    },
+    {
+      "path": "restart-after-kart-launch.txt",
+      "kind": "file",
+      "bytes": 545,
+      "compressed_bytes": 222,
+      "crc32": "0d3fbdbc",
+      "sha256": "8ab899eb83c064e3e602061a83ffc979521a4a6511f7ef30a60f1a77fb5d4b38"
+    },
+    {
+      "path": "rooted-emulator.json",
+      "kind": "file",
+      "bytes": 1522,
+      "compressed_bytes": 402,
+      "crc32": "4728f1b1",
+      "sha256": "c8e286dc0c8abfb66e3c6011333a1ea8df884524c159d1f1ade72ce73b9cb370"
+    },
+    {
+      "path": "runtime-anr/commands/0001-properties.json",
+      "kind": "file",
+      "bytes": 384,
+      "compressed_bytes": 218,
+      "crc32": "add5aa59",
+      "sha256": "15711c6c933e6aad3b577a2682ae1ba37badd3d3bd2143728a54d623f33178a7"
+    },
+    {
+      "path": "runtime-anr/commands/0001-properties.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime-anr/commands/0001-properties.stdout",
+      "kind": "file",
+      "bytes": 44794,
+      "compressed_bytes": 10747,
+      "crc32": "4a950cc6",
+      "sha256": "bc2ff41e67c3fcbcace9c1c550e96874a946829c7d1bbce9148e4a7f245a1fdc"
+    },
+    {
+      "path": "runtime-anr/commands/0002-system-server-pid.json",
+      "kind": "file",
+      "bytes": 417,
+      "compressed_bytes": 230,
+      "crc32": "e67422c3",
+      "sha256": "28988e15a0d2c048efe47969a31bdec474f7d2dc3e6f357769305fd30918bec4"
+    },
+    {
+      "path": "runtime-anr/commands/0002-system-server-pid.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime-anr/commands/0002-system-server-pid.stdout",
+      "kind": "file",
+      "bytes": 4,
+      "compressed_bytes": 6,
+      "crc32": "de4ef4f0",
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    {
+      "path": "runtime-anr/commands/0003-input-state.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime-anr/commands/0003-input-state.stdout",
+      "kind": "file",
+      "bytes": 92128,
+      "compressed_bytes": 9094,
+      "crc32": "55db5864",
+      "sha256": "0b450e19a93e15830c7529a1a1b773f248f3b8d8ea2bcdfe3a9b67ac5bb30461"
+    },
+    {
+      "path": "runtime-anr/commands/0004-window-state.json",
+      "kind": "file",
+      "bytes": 412,
+      "compressed_bytes": 229,
+      "crc32": "0da83cc9",
+      "sha256": "0a43858de6cc176590895619fe14d880f342c72d6aaec636c1f3d5aa5fbf49bd"
+    },
+    {
+      "path": "runtime-anr/commands/0003-input-state.json",
+      "kind": "file",
+      "bytes": 399,
+      "compressed_bytes": 225,
+      "crc32": "76b317e3",
+      "sha256": "639f2497218b9c036bf3f58b8580948e6f46c70ec007d20270916231f5d4ea18"
+    },
+    {
+      "path": "runtime-anr/commands/0004-window-state.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime-anr/commands/0004-window-state.stdout",
+      "kind": "file",
+      "bytes": 81343,
+      "compressed_bytes": 12592,
+      "crc32": "92863342",
+      "sha256": "3d2c2f1c1b67539a3b8a24661f98a35b6c50f4bd2cb88713e83eacb9f66cf670"
+    },
+    {
+      "path": "runtime-anr/commands/0005-events-anr.json",
+      "kind": "file",
+      "bytes": 469,
+      "compressed_bytes": 245,
+      "crc32": "6198178e",
+      "sha256": "8e301e09545faa1b20e57512f32376e1208ef8616cd06bd9c104c1d072399a6d"
+    },
+    {
+      "path": "runtime-anr/commands/0005-events-anr.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime-anr/commands/0005-events-anr.stdout",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime-anr/runtime-anr-verification.json",
+      "kind": "file",
+      "bytes": 4511,
+      "compressed_bytes": 1721,
+      "crc32": "a0d488ef",
+      "sha256": "f0ef951e04a448fc36366f06f43010054d94465a3ffcbe617074ae67b9f86f01"
+    },
+    {
+      "path": "runtime-anr/runtime-end.json",
+      "kind": "file",
+      "bytes": 5206,
+      "compressed_bytes": 1130,
+      "crc32": "250851b6",
+      "sha256": "572947cdfe8a967d2c78cf093f5844d48adad3f7986b3e5f5b26b706a4d6f424"
+    },
+    {
+      "path": "runtime-anr/runtime-start.json",
+      "kind": "file",
+      "bytes": 1010,
+      "compressed_bytes": 512,
+      "crc32": "264ab1e6",
+      "sha256": "65a06aff7ba500083fea52153275ea25cd0c98170be2c588759b1e34a733ed10"
+    },
+    {
+      "path": "start-after-kart-0.xml",
+      "kind": "file",
+      "bytes": 34508,
+      "compressed_bytes": 2232,
+      "crc32": "b1a61987",
+      "sha256": "a94b2918cdf3a8b1baf67590f160c9e318d6bc5f967113902c7d7c5171555604"
+    },
+    {
+      "path": "start-after-kart-1.xml",
+      "kind": "file",
+      "bytes": 32770,
+      "compressed_bytes": 2135,
+      "crc32": "6b7cb172",
+      "sha256": "685af41cc44725447f31e85097227fe9d85d2d88cbb6142ae8763fb176714c77"
+    },
+    {
+      "path": "start-after-kart-2.xml",
+      "kind": "file",
+      "bytes": 34484,
+      "compressed_bytes": 2221,
+      "crc32": "1f2bacff",
+      "sha256": "0bec9ee51cc0e977e25af8718cea0e06a33f8908407ba747ee78160f79dbfa40"
+    },
+    {
+      "path": "start-after-kart-3.xml",
+      "kind": "file",
+      "bytes": 35092,
+      "compressed_bytes": 2270,
+      "crc32": "9c1b26d7",
+      "sha256": "9f5e825e80812b6ff41b18b9ce195e373c6490d803f33e33076be073b134738d"
+    },
+    {
+      "path": "surfaceflinger-start.stderr",
+      "kind": "file",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "surfaceflinger-start.stdout",
+      "kind": "file",
+      "bytes": 53344,
+      "compressed_bytes": 10752,
+      "crc32": "20fba0f8",
+      "sha256": "3d121d9d604d2c6f276636ac4b5ebf3a5477ab0dff7f169d2bceb7fa2f14db61"
+    },
+    {
+      "path": "tesseract-installed-languages.txt",
+      "kind": "file",
+      "bytes": 87,
+      "compressed_bytes": 81,
+      "crc32": "d3854710",
+      "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850"
+    },
+    {
+      "path": "tour-result.json",
+      "kind": "file",
+      "bytes": 6252,
+      "compressed_bytes": 1925,
+      "crc32": "c251e8e7",
+      "sha256": "40e3d52ec17be97d01307d674ecfb3e3e873d295546ad1596be0d792d2ca6086"
+    },
+    {
+      "path": "uiautomator-config.json",
+      "kind": "file",
+      "bytes": 189,
+      "compressed_bytes": 118,
+      "crc32": "bc079679",
+      "sha256": "3c2b165df27700f6d282f2c90f42d6f86de01328eed362defbc1f950e04ab8fe"
+    },
+    {
+      "path": "xvfb.log",
+      "kind": "file",
+      "bytes": 4696,
+      "compressed_bytes": 296,
+      "crc32": "ef9e06c9",
+      "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+    }
+  ],
+  "materialized_members": [
+    "logcat.txt",
+    "cold-start-launch.txt",
+    "install.txt",
+    "open-kart-47-1-0.xml",
+    "fatal-logcat.txt",
+    "restart-after-kart-launch.txt"
+  ],
+  "materialized_bytes": 2030823
+}

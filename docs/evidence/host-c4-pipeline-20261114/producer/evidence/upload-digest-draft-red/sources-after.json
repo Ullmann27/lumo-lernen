@@ -1,0 +1,62 @@
+{
+  "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/.github/probes/lumo_connect_four_android_probe.py": {
+    "bytes": 25274,
+    "sha256": "4249de4352a32694f28bb45786b73437eb2d32f360fb754a4ab48c9d5212f77c"
+  },
+  "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/.github/workflows/lumo-connect-four-2020.yml": {
+    "bytes": 34203,
+    "sha256": "6b6f3bccbfd69fd41911b177a3492a613f9f03cda9d096e33bf295166408ac93"
+  },
+  "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/.github/workflows/lumo-unified-integration-2026.yml": {
+    "bytes": 82301,
+    "sha256": "2dc3e1506b1abb0784fb246a32135a76fedf43284bee7df346232e0eba68b096"
+  },
+  "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/scripts/tests/test_connect_four_pipeline.py": {
+    "bytes": 13267,
+    "sha256": "d072f3fc1d0c7d460deb71b2251b2ad90d11e8843d05370be6013fd07d186bb4"
+  },
+  "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/scripts/verify_connect_four_candidate.py": {
+    "bytes": 10811,
+    "sha256": "c8a6b714a330c564bde68c619b07a342eb3eedf7e6191f9f3a3deacc98e594e1"
+  },
+  "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/tools/android_qa/connect_four_android_evidence.py": {
+    "bytes": 35887,
+    "sha256": "9e06d785cac7f09f8a0af3cdcfef6ceed866632625f4415079dcea2c2bd3d5f8"
+  },
+  "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/tools/android_qa/tests/test_connect_four_android_evidence.py": {
+    "bytes": 23974,
+    "sha256": "091d4640f277486998dc47fded5820d1986d9036244bc92d2f8c4ccf6afa794f"
+  },
+  "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/config/godot-source.json": {
+    "bytes": 145,
+    "sha256": "422478cc56f893c6bcd76462cd229b81f518c604fe591bdb6b59167e6121d37c"
+  },
+  "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/pubspec.yaml": {
+    "bytes": 2675,
+    "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5"
+  },
+  "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/scripts/release_pipeline_gates.py": {
+    "bytes": 9853,
+    "sha256": "400e54f2952f0d8aae07fc964e4688c48f16c9213ea022fa8754731004551946"
+  },
+  "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/scripts/run_connect_four_runtime.py": {
+    "bytes": 15683,
+    "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b"
+  },
+  "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/scripts/verify_legacy_release_pin.py": {
+    "bytes": 10621,
+    "sha256": "b738042aeeaa7b810395673bd75075e82705c01ab44da011fd717b25c5e85934"
+  },
+  "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/scripts/verify_unified_apk.py": {
+    "bytes": 12075,
+    "sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382"
+  },
+  "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/tools/android_qa/native_surface_readiness.py": {
+    "bytes": 4401,
+    "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60"
+  },
+  "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/tools/android_qa/update_preservation.py": {
+    "bytes": 10258,
+    "sha256": "73ea7f8155c65e4bd648ab99dd2baaa6261db2c380bcb435c0cb0761730f990a"
+  }
+}

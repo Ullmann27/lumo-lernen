@@ -1,0 +1,19 @@
+{
+  "official_android_docs": {
+    "url": "https://developer.android.com/studio/run/emulator-acceleration",
+    "observed_at": "2026-11-14T04:29:28.099737+00:00",
+    "claim": "swangle is documented as SwiftShader software drivers using an ANGLE backend."
+  },
+  "aosp_reference": {
+    "url": "https://android.googlesource.com/platform/external/qemu/+/refs/heads/emu-master-dev/android/android-ui/modules/aemu-gl-init/src/android/opengl/emugl_config.cpp",
+    "observed_blob": "07c1a129a599927cc2aa0a7f674c0de835c4c5e5",
+    "claim": "The observed SWANGLE path chooses ANGLE libraries, a SwiftShader Vulkan ICD and the SwiftShader ANGLE platform.",
+    "limit": "Moving public development branch, not a build-source identification for the actual 37.2.13 emulator. The real new backend must be measured."
+  },
+  "original_diagnosis": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-swiftshader-landing-review/handoff.json",
+    "bytes": 958,
+    "sha256": "bef6a026b944127f853ed8b136aa4653f81944fb3e9f887cc5f466a18df471f0"
+  },
+  "acceptance": "Exactly hw.gpu.mode=swangle and exactly one actual GLES line containing separate ANGLE and SwiftShader tokens; a SWANGLE token alone is insufficient. Launch failure is failure, no automatic fallback."
+}

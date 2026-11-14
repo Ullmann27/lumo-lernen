@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "status": "ORIGINAL_RUN_FAILURE",
+  "qa": {
+    "run": 43551424080,
+    "attempt": 1,
+    "event": "pull_request",
+    "source": "61c94cfb78bda8dfbe191331eca0fd0382deb151",
+    "tree": "a648b206aba761fc96d0d0c95085981f6da53568"
+  },
+  "apk": {
+    "host": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+    "native": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+    "original_artifact": 14093773196,
+    "new_apk_build": false
+  },
+  "final_snapshot": "20261114T035024Z",
+  "jobs": {
+    "contracts": {
+      "id": 132314515808,
+      "conclusion": "success",
+      "tests": 112
+    },
+    "api37-swiftshader": {
+      "id": 132314688434,
+      "conclusion": "failure",
+      "artifact": 14096976074,
+      "first_tour_error": "Actual landing Fahrer/Garage navigation required before the cup choice",
+      "actual_frame": "Blank native content with system bars; no actual Kart caption",
+      "monitor": "Early logcat 255 around actual root; no complete observation interval"
+    },
+    "api37-host": {
+      "id": 132314688505,
+      "conclusion": "failure",
+      "artifact": 14096004123,
+      "first_tour_error": "No current race HUD (RUNDE) was observed",
+      "monitor": "Early logcat 255 around actual root and a real later GMS broadcast am_anr in endpoint events"
+    },
+    "api35": {
+      "id": 132314688451,
+      "conclusion": "failure",
+      "artifact": 14097450952,
+      "observed": "Main tour PASS, subsequent Studio fails at Ein Objekt zeigen; see owner original handoff"
+    },
+    "update2017": {
+      "id": 132314688494,
+      "conclusion": "failure",
+      "artifact": 14096859041,
+      "observed": "Data/identity preserved after actual update until RUNDE/HUD failure; later drive/restart not reached"
+    }
+  },
+  "central_originals": {
+    "snapshots/20261114T035024Z/run.json": {
+      "bytes": 12966,
+      "sha256": "dd1dcf73c4c2d1dc94b7cb282db088a1d4c76b4f2f153595cf1601f2247af8d0"
+    },
+    "snapshots/20261114T035024Z/jobs.json": {
+      "bytes": 23000,
+      "sha256": "9824239173587464e03dc681c2414f06b2de7774dd1d06c020138c94230b5f63"
+    },
+    "snapshots/20261114T035024Z/artifacts.json": {
+      "bytes": 3722,
+      "sha256": "593325150a8dad007e57504af099891811f4af419dd9ac3624cd31af0fe4c15f"
+    },
+    "initial-binding.json": {
+      "bytes": 3680,
+      "sha256": "a6a0db1211fc41b1ad136d9d7f4247096bd04fe01f5ac68fa58d42eef5f499a7"
+    },
+    "local-source-equivalence.json": {
+      "bytes": 2631,
+      "sha256": "58437f4f9a6eecb91c5b17073b0f1f9a7465b9511421ac24ea84136e72789be4"
+    },
+    "jobs/api37-host-132314688505.log": {
+      "bytes": 1583793,
+      "sha256": "4d2b35829958ec31a092ec52e4965a38655947b4d0b6375125e23a79fbab5dfe"
+    },
+    "jobs/api37-swiftshader-132314688434.log": {
+      "bytes": 1112812,
+      "sha256": "d290df4c39b38a945a3b44934ce59f6fd068a4b294ea1b540b944eafba8a9671"
+    },
+    "artifacts/api37-host-14096004123/verification.json": {
+      "bytes": 258403,
+      "sha256": "21c049fb8245ceefb15b57a9d4199810e89e58e2859aa7d230192a5cf0b9e773"
+    },
+    "artifacts/api37-swiftshader-14096976074/verification.json": {
+      "bytes": 134675,
+      "sha256": "82468a4c5310de7283b15637dde342237ebf1eff0fe26dd5b98b887a46a10ab0"
+    }
+  },
+  "separate_owner_handoffs": {
+    "host-pr480-61c94cfb-android35-update-evidence/api35-original-handoff.json": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-android35-update-evidence/api35-original-handoff.json",
+      "bytes": 28204,
+      "sha256": "b7cd15c5353dc7185cb73512f9b565212bf9d4b13329974049668237a4e78d70"
+    },
+    "host-pr480-61c94cfb-android35-update-evidence/update-original-handoff.json": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-android35-update-evidence/update-original-handoff.json",
+      "bytes": 10963,
+      "sha256": "0df0719195540d5bedb4a1b886cdf2ce56fa0e43eaff22c78a596ffd44e50728"
+    }
+  },
+  "archive_scope": {
+    "api37_host": {
+      "bytes": 134785226,
+      "sha256": "29eae3364927c91522d3771b63b56ce97c6d3400566deb6b037c1a86059f60a2",
+      "members_crc_sha_checked": 932,
+      "materialized_bytes": 8096010
+    },
+    "api37_swiftshader": {
+      "bytes": 39307727,
+      "sha256": "9aaa2850bc96b39833a3e5893f020a5ecf19d7038fc326f18affed7448e37055",
+      "members_crc_sha_checked": 460,
+      "materialized_bytes": 6217487
+    },
+    "method": "Entire archive buffered and verified in RAM, every member CRC/SHA checked, only listed explicit members materialized. Full ZIPs remain in original GitHub Actions artifacts; no local archive or complete image series claimed."
+  },
+  "limits": [
+    "No later source repair changes this run conclusion.",
+    "No inferred Android pass from positive setup, empty final fields or local countertests.",
+    "Further Swiftshader shader-link diagnosis belongs to the separate owner review, retaining this source identity."
+  ]
+}

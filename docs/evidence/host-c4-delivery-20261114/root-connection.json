@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T07:04:51.528350+00:00",
+  "status": "SOURCE_CHECKPOINT_FOR_FINAL_C4_CI",
+  "previous_host": "8dd2ad1fc2f04a8a116c15147436da3c15102b87",
+  "new_native_pin": "504c8ba70d02702cbccc370d0d96c36a292c5d27",
+  "native_tree": "05ba53c02321da069007d5c4b045622f06cc9175",
+  "version": "0.13.8+2020",
+  "unchanged_past_policy_entries": 50,
+  "pcm_source_files_preserved": 17,
+  "pcm_jvm_assertions": 70,
+  "delivery_contracts": 39,
+  "deadline_contracts": 11,
+  "broad_workflow_isolation": [
+    {
+      "path": ".github/workflows/lumo-astra-script-recovery.yml",
+      "job": "full-app-script-regression",
+      "before_sha256": "19b5544720c3d03def287d1cecffcad4d8f9daa65f0b35c6aaea027c5ca6bbac",
+      "after_sha256": "3bb682e9ef0c01b9f8e337ce61f62716687b0617bae9abf3f55f79bbe22aeeee",
+      "only_delta": "if: github.event_name != 'pull_request' || github.head_ref != 'integration/lumo-c4-connections-20261114'",
+      "other_branch_push_dispatch_behavior_retained": true
+    },
+    {
+      "path": ".github/workflows/lumo-1966-cards-route-kart-qa.yml",
+      "job": "cards-route-and-probe",
+      "before_sha256": "0c523700c10fc7ba63805c30251611112adf7ac963ce40e3bb9242616bf90778",
+      "after_sha256": "69c7c2435b2f840e2c4b48c7cc4bbbfb3ba4af2302272ab2b752ccfe8bfaa931",
+      "only_delta": "if: github.event_name != 'pull_request' || github.head_ref != 'integration/lumo-c4-connections-20261114'",
+      "other_branch_push_dispatch_behavior_retained": true
+    }
+  ],
+  "archived_complete_original_packs": [
+    {
+      "schema": 1,
+      "original_pack": "/tmp/lumo-c4-delivery-20261114",
+      "members": 92,
+      "complete_readback": true,
+      "original_bytes": 2191505,
+      "archive_bytes": 504356,
+      "archive_sha256": "64b719433e1dff2206e4ba68136d9399827b0f6e32c6c4dc3ba05e558c2afa7f"
+    },
+    {
+      "schema": 1,
+      "original_pack": "/tmp/host-c4-android-deadline-20261114",
+      "members": 16,
+      "complete_readback": true,
+      "original_bytes": 129697,
+      "archive_bytes": 29972,
+      "archive_sha256": "2a1c3823a619610255e54d558ea80143d64125e27c4afa0a1d2ff23362db896a"
+    }
+  ],
+  "actual_current_APK_or_Android_acceptance": false,
+  "active_publication_enabled": false,
+  "pending": "Independent delivery review, final committed-source integration preflight, then new C4 build/engine/Android/update workflow."
+}

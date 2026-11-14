@@ -1,0 +1,112 @@
+test_exact_original_main_keeps_settings_tour_and_cleanup_after_observed_setup (scripts.tests.test_android_framework_ready.ExactUpstreamActionTests.test_exact_original_main_keeps_settings_tour_and_cleanup_after_observed_setup) ... ok
+test_only_observed_setup_replaces_menu_and_tampered_upstream_is_rejected (scripts.tests.test_android_framework_ready.ExactUpstreamActionTests.test_only_observed_setup_replaces_menu_and_tampered_upstream_is_rejected) ... ok
+test_actual_848_anr_events_reject_service_positive_counterexample (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_actual_848_anr_events_reject_service_positive_counterexample) ... ok
+test_android35_cannot_satisfy_android37_framework_guard (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_android35_cannot_satisfy_android37_framework_guard) ... ok
+test_anr_after_unlock_is_terminal_without_another_unlock (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_anr_after_unlock_is_terminal_without_another_unlock) ... ok
+test_boot_property_cannot_replace_input_or_settings_service (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_boot_property_cannot_replace_input_or_settings_service) ... ok
+test_changed_system_server_identity_is_failure_not_a_new_success_window (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_changed_system_server_identity_is_failure_not_a_new_success_window) ... ok
+test_failed_unlock_stops_and_preserves_the_failure (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_failed_unlock_stops_and_preserves_the_failure) ... ok
+test_focus_change_restarts_the_same_stability_requirement (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_focus_change_restarts_the_same_stability_requirement) ... ok
+test_one_observed_nonsecure_unlock_requires_new_stable_surface (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_one_observed_nonsecure_unlock_requires_new_stable_surface) ... ok
+test_real_command_timeout_preserves_raw_stdout_and_stderr (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_real_command_timeout_preserves_raw_stdout_and_stderr) ... ok
+test_registered_service_without_real_settings_read_still_fails (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_registered_service_without_real_settings_read_still_fails) ... ok
+test_secure_unknown_or_sleeping_keyguard_never_gets_blind_input (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_secure_unknown_or_sleeping_keyguard_never_gets_blind_input) ... ok
+test_transient_missing_service_must_be_followed_by_full_stable_window (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_transient_missing_service_must_be_followed_by_full_stable_window) ... ok
+test_unknown_ambiguous_or_unready_surface_is_not_a_pass (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_unknown_ambiguous_or_unready_surface_is_not_a_pass) ... ok
+test_unlocked_visible_focused_activity_needs_no_input (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_unlocked_visible_focused_activity_needs_no_input) ... ok
+test_window_last_anr_cannot_be_hidden_by_empty_event_buffer (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_window_last_anr_cannot_be_hidden_by_empty_event_buffer) ... ok
+test_zero_exit_from_unlock_is_not_a_surface_acknowledgment (scripts.tests.test_android_framework_ready.FrameworkReadinessTests.test_zero_exit_from_unlock_is_not_a_surface_acknowledgment) ... ok
+test_actual_gms_broadcast_anr_is_terminal_with_positive_dispatch (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_actual_gms_broadcast_anr_is_terminal_with_positive_dispatch) ... ok
+test_explicit_window_freeze_cannot_be_overridden_by_input_boolean (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_explicit_window_freeze_cannot_be_overridden_by_input_boolean) ... ok
+test_failed_or_timed_out_input_command_is_not_readiness (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_failed_or_timed_out_input_command_is_not_readiness) ... ok
+test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation) ... ok
+test_historical_input_anr_section_never_supplies_current_dispatch_or_hides_anr (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_historical_input_anr_section_never_supplies_current_dispatch_or_hides_anr) ... ok
+test_legacy_and_current_system_ready_aliases_cannot_conflict_or_be_unknown (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_legacy_and_current_system_ready_aliases_cannot_conflict_or_be_unknown) ... ok
+test_missing_credential_security_never_borrows_sim_state_for_unlock (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_missing_credential_security_never_borrows_sim_state_for_unlock) ... ok
+test_missing_or_ambiguous_dispatch_fields_cannot_replace_positive_observation (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_missing_or_ambiguous_dispatch_fields_cannot_replace_positive_observation) ... ok
+test_original_unlocked_windows_with_synthetic_positive_dispatch_are_parseable (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_original_unlocked_windows_with_synthetic_positive_dispatch_are_parseable) ... ok
+test_present_malformed_credential_security_fails_closed (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_present_malformed_credential_security_fails_closed) ... ok
+test_real_observer_records_new_read_only_input_command (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_real_observer_records_new_read_only_input_command) ... ok
+test_android_zero_pointer_cannot_pass_even_with_android37_image (scripts.tests.test_android37_cli22.ActualFileBindingTests.test_android_zero_pointer_cannot_pass_even_with_android37_image) ... ok
+test_different_image_or_official_tool_bytes_fail_closed (scripts.tests.test_android37_cli22.ActualFileBindingTests.test_different_image_or_official_tool_bytes_fail_closed) ... ok
+test_foreign_probe_source_or_missing_preparation_is_rejected (scripts.tests.test_android37_cli22.ActualFileBindingTests.test_foreign_probe_source_or_missing_preparation_is_rejected) ... ok
+test_generated_configuration_is_read_not_repaired (scripts.tests.test_android37_cli22.ActualFileBindingTests.test_generated_configuration_is_read_not_repaired) ... ok
+test_later_changed_package_descriptor_fails_with_unchanged_properties (scripts.tests.test_android37_cli22.ActualFileBindingTests.test_later_changed_package_descriptor_fails_with_unchanged_properties) ... ok
+test_later_changed_properties_still_fail_with_same_package_descriptor (scripts.tests.test_android37_cli22.ActualFileBindingTests.test_later_changed_properties_still_fail_with_same_package_descriptor) ... ok
+test_sdk_registration_metadata_does_not_allow_changed_official_files (scripts.tests.test_android37_cli22.ActualFileBindingTests.test_sdk_registration_metadata_does_not_allow_changed_official_files) ... ok
+test_unverified_zip_is_not_extracted_or_executed (scripts.tests.test_android37_cli22.ActualFileBindingTests.test_unverified_zip_is_not_extracted_or_executed) ... ok
+test_failed_actual_avd_binding_cannot_reach_framework_acceptance (scripts.tests.test_android37_cli22.FrameworkBindingTests.test_failed_actual_avd_binding_cannot_reach_framework_acceptance) ... ok
+test_resources_are_exactly_three_read_only_observations (scripts.tests.test_android37_cli22.FrameworkBindingTests.test_resources_are_exactly_three_read_only_observations) ... ok
+test_official_r08_descriptor_is_distinct_from_embedded_properties (scripts.tests.test_android37_cli22.InstalledPackageMetadataTests.test_official_r08_descriptor_is_distinct_from_embedded_properties) ... ok
+test_other_revision_path_missing_or_ambiguous_descriptor_is_rejected (scripts.tests.test_android37_cli22.InstalledPackageMetadataTests.test_other_revision_path_missing_or_ambiguous_descriptor_is_rejected) ... ok
+test_cli_rejects_unbounded_monitor_and_unchanged_guard_budget (scripts.tests.test_verify_android_runtime_anr.MonitorDurationTests.test_cli_rejects_unbounded_monitor_and_unchanged_guard_budget) ... ok
+test_default_and_explicit_duration_preserve_bounded_monitor_lifetime (scripts.tests.test_verify_android_runtime_anr.MonitorDurationTests.test_default_and_explicit_duration_preserve_bounded_monitor_lifetime) ... ok
+test_monitor_start_stamp_precedes_child_with_delayed_parent (scripts.tests.test_verify_android_runtime_anr.MonitorDurationTests.test_monitor_start_stamp_precedes_child_with_delayed_parent) ... ok
+test_real_local_monitor_and_recorder_stop_after_endpoint (scripts.tests.test_verify_android_runtime_anr.MonitorDurationTests.test_real_local_monitor_and_recorder_stop_after_endpoint) ... ok
+test_anr_marker_with_unknown_prefix_is_not_silently_ignored (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_anr_marker_with_unknown_prefix_is_not_silently_ignored) ... ok
+test_budget_exhaustion_or_early_logcat_end_is_not_a_complete_session (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_budget_exhaustion_or_early_logcat_end_is_not_a_complete_session) ... ok
+test_changed_stream_and_truncated_stream_are_rejected (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_changed_stream_and_truncated_stream_are_rejected) ... ok
+test_complete_synthetic_recording_passes_without_device_claim (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_complete_synthetic_recording_passes_without_device_claim) ... ok
+test_dispatcher_anr_history_vetoes_current_positive_dispatch (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_dispatcher_anr_history_vetoes_current_positive_dispatch) ... ok
+test_endpoint_timeout_unknown_dispatch_and_tour_failure_are_rejected (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_endpoint_timeout_unknown_dispatch_and_tour_failure_are_rejected) ... ok
+test_exact_original_successful_adb_start_stderr_is_accepted (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_exact_original_successful_adb_start_stderr_is_accepted) ... ok
+test_later_cleared_events_do_not_remove_already_streamed_original (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_later_cleared_events_do_not_remove_already_streamed_original) ... ok
+test_missing_observations_never_pass (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_missing_observations_never_pass) ... ok
+test_new_monitor_identity_cannot_replace_original_session (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_new_monitor_identity_cannot_replace_original_session) ... ok
+test_offline_cli_reports_actual_original_failure (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_offline_cli_reports_actual_original_failure) ... ok
+test_original_activity_manager_record_alone_is_terminal (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_original_activity_manager_record_alone_is_terminal) ... ok
+test_original_final_window_and_event_anr_are_terminal_without_log_marker (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_original_final_window_and_event_anr_are_terminal_without_log_marker) ... ok
+test_original_gms_anr_after_early_guard_pass_cannot_be_overridden (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_original_gms_anr_after_early_guard_pass_cannot_be_overridden) ... ok
+test_other_adb_start_stderr_or_failed_wait_remains_terminal (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_other_adb_start_stderr_or_failed_wait_remains_terminal) ... ok
+test_another_apk_digest_fails_without_relabeling_qa_source (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_another_apk_digest_fails_without_relabeling_qa_source) ... ok
+test_changed_pck_bytes_fail_even_when_synthetic_outer_apk_matches (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_changed_pck_bytes_fail_even_when_synthetic_outer_apk_matches) ... ok
+test_duplicate_checksum_and_missing_pck_are_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_duplicate_checksum_and_missing_pck_are_rejected) ... ok
+test_duplicate_pck_and_crc_corruption_are_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_duplicate_pck_and_crc_corruption_are_rejected) ... ok
+test_existing_identity_verifier_uses_candidate_cwd_and_actual_pck_bytes (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_existing_identity_verifier_uses_candidate_cwd_and_actual_pck_bytes) ... ok
+test_full_preflight_keeps_qa_run_and_apk_source_separate (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate) ... ok
+test_wrong_provenance_source_native_abi_or_signer_is_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_wrong_provenance_source_native_abi_or_signer_is_rejected) ... ok
+test_failed_different_or_incomplete_build_is_not_accepted (scripts.tests.test_verify_unchanged_apk_diagnostic.MetadataContracts.test_failed_different_or_incomplete_build_is_not_accepted) ... ok
+test_failed_original_android_run_retains_exact_successful_build (scripts.tests.test_verify_unchanged_apk_diagnostic.MetadataContracts.test_failed_original_android_run_retains_exact_successful_build) ... ok
+test_incomplete_or_duplicate_original_collections_are_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.MetadataContracts.test_incomplete_or_duplicate_original_collections_are_rejected) ... ok
+test_original_source_attempt_tree_and_artifact_mismatches_are_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.MetadataContracts.test_original_source_attempt_tree_and_artifact_mismatches_are_rejected) ... ok
+test_pr_merge_sha_other_workflow_and_stale_qa_attempt_are_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.MetadataContracts.test_pr_merge_sha_other_workflow_and_stale_qa_attempt_are_rejected) ... ok
+test_qa_run_and_each_allowed_job_are_distinct_from_apk_source (scripts.tests.test_verify_unchanged_apk_diagnostic.MetadataContracts.test_qa_run_and_each_allowed_job_are_distinct_from_apk_source) ... ok
+test_atomic_report_never_overwrites_existing_bytes (scripts.tests.test_verify_unchanged_apk_diagnostic.OutputContracts.test_atomic_report_never_overwrites_existing_bytes) ... ok
+test_cli_failure_creates_no_report_or_bound_marker (scripts.tests.test_verify_unchanged_apk_diagnostic.OutputContracts.test_cli_failure_creates_no_report_or_bound_marker) ... ok
+test_actual_git_root_sha_tree_and_tracked_clean_are_required (scripts.tests.test_verify_unchanged_apk_diagnostic.SourceContracts.test_actual_git_root_sha_tree_and_tracked_clean_are_required) ... ok
+test_committed_helper_rejects_changed_working_bytes (scripts.tests.test_verify_unchanged_apk_diagnostic.SourceContracts.test_committed_helper_rejects_changed_working_bytes) ... ok
+test_json_duplicates_and_input_symlinks_are_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.SourceContracts.test_json_duplicates_and_input_symlinks_are_rejected) ... ok
+test_kart_garage_evidence (unittest.loader._FailedTest.test_kart_garage_evidence) ... ERROR
+test_kart_driver_word_evidence (unittest.loader._FailedTest.test_kart_driver_word_evidence) ... ERROR
+
+======================================================================
+ERROR: test_kart_garage_evidence (unittest.loader._FailedTest.test_kart_garage_evidence)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_kart_garage_evidence
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/tests/test_kart_garage_evidence.py", line 22, in <module>
+    from test_modernization_tour_identity import TOUR_MODULE as tour
+ModuleNotFoundError: No module named 'test_modernization_tour_identity'
+
+
+======================================================================
+ERROR: test_kart_driver_word_evidence (unittest.loader._FailedTest.test_kart_driver_word_evidence)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_kart_driver_word_evidence
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/tests/test_kart_driver_word_evidence.py", line 17, in <module>
+    from test_modernization_tour_identity import TOUR_MODULE as tour
+ModuleNotFoundError: No module named 'test_modernization_tour_identity'
+
+
+----------------------------------------------------------------------
+Ran 80 tests in 1.436s
+
+FAILED (errors=2)
+{"status": "FAIL", "reason": "actual_cli22_avd_binding_not_verified", "serial": "emulator-5554", "elapsed_seconds": 0.0001689810014795512, "consecutive_ready_samples": 0}

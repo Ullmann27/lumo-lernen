@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-11-14T05:31:04.957762+00:00",
+  "host_head": "06b3a1136cfe2a8a8b13e46ac9819e65b7130ea5",
+  "native_head": "27ae427029a5199699c95a79a84b0027d7571752",
+  "json_jar": {
+    "path": "/workspace/scratch/b3485b7bb989/cards-lifecycle-318-integration-evidence/dependencies/json-20240303.jar",
+    "bytes": 78332,
+    "sha256": "3cf6cd6892e32e2b4c1c39e0f52f5248a2f5b37646fdfbb79a66b46b618414ed"
+  },
+  "kotlin_lib": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib",
+  "python": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "flutter": "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+  "temp_root": "/tmp",
+  "initial_workspace_free_bytes": 189149184,
+  "limits": "No source edits, no full import/build caches. Tests use existing pinned toolchain and org.json; no compiler/JAR downloads."
+}

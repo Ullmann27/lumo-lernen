@@ -1,0 +1,230 @@
+--- a/test/reward_wallet_queue_zone_test.dart
++++ b/test/reward_wallet_queue_zone_test.dart
+@@ -184,6 +184,9 @@
+     SharedPreferencesStorePlatform.instance = store;
+     final wallet = RewardWalletRepository();
+     await wallet.load();
++    final emitted = <RewardWallet>[];
++    final subscription = wallet.changes.listen(emitted.add);
++    addTearDown(subscription.cancel);
+     final originalZone = _HeldMicrotasks();
+     Object? failure;
+     var incorrectlySucceeded = false;
+@@ -199,6 +202,7 @@
+     expect(wallet.snapshot.stars, 0);
+     expect(wallet.snapshot.gameResultIds, isEmpty);
+     expect((await store.persisted())['stars'], 0);
++    expect(emitted, isEmpty);
+ 
+     final retried = await _fromCurrentZone(
+       originalZone,
+@@ -211,12 +215,17 @@
+     expect(retried.stars, 2);
+     expect(retried.xp, 16);
+     expect(retried.gameResultIds, ['retry-round']);
+-    await wallet.awardGameResult(
++    final replay = await wallet.awardGameResult(
+       resultId: 'retry-round',
+       stars: 2,
+       xp: 16,
+     );
+-    expect(store.writes, hasLength(2));
++    await Future<void>.delayed(Duration.zero);
++    // Rejection, successful retry, then the same-value durability confirmation.
++    expect(store.writes, hasLength(3));
++    expect(store.writes, List.filled(3, retried.toJson()));
++    expect(replay, same(retried));
++    expect(emitted.map((value) => value.toJson()).toList(), [retried.toJson()]);
+     expect(await store.persisted(), retried.toJson());
+   });
+ 
+@@ -283,6 +292,9 @@
+     expect(wallet.snapshot.xp, 80);
+     expect(await store.persisted(), wallet.snapshot.toJson());
+     final reopened = RewardWalletRepository();
++    final replayEvents = <RewardWallet>[];
++    final replaySubscription = reopened.changes.listen(replayEvents.add);
++    addTearDown(replaySubscription.cancel);
+     final replay = await reopened.awardGameResult(
+       resultId: 'second',
+       stars: 5,
+@@ -290,6 +302,12 @@
+     );
+     expect(replay.stars, 10);
+     expect(replay.gameResultIds, ['first', 'second', 'third']);
+-    expect(store.writes, hasLength(3));
++    await Future<void>.delayed(Duration.zero);
++    // Reopening confirms the final snapshot; it grants no fourth reward.
++    expect(store.writes, hasLength(4));
++    expect(store.writes.last, store.writes[2]);
++    expect(replay.toJson(), wallet.snapshot.toJson());
++    expect(await store.persisted(), replay.toJson());
++    expect(replayEvents, isEmpty);
+   });
+ }
+--- a/test/reward_wallet_transaction_test.dart
++++ b/test/reward_wallet_transaction_test.dart
+@@ -206,7 +206,32 @@
+       expect(savedAward['gameResultIds'], ['race-1']);
+       await wallet.awardGameResult(resultId: 'race-1', stars: 6, xp: 20);
+       expect(wallet.snapshot.stars, 9);
+-      expect(store.writtenSnapshots, hasLength(4));
++      await Future<void>.delayed(Duration.zero);
++      // The duplicate is a confirmed same-value write, never another award.
++      expect(store.writtenSnapshots, hasLength(5));
++      expect(store.writtenSnapshots[3], savedAward);
++      expect(store.writtenSnapshots[4], savedAward);
++      expect(await store.persistedWallet(), savedAward);
++      expect(
++        store.writtenSnapshots
++            .map((value) => [value['stars'], value['xp'], value['gameResultIds']])
++            .toList(),
++        [
++          [6, 20, ['race-1']],
++          [3, 0, <String>[]],
++          [3, 5, <String>[]],
++          [9, 25, ['race-1']],
++          [9, 25, ['race-1']],
++        ],
++      );
++      expect(
++        emitted.map((value) => [value.stars, value.xp, value.gameResultIds]).toList(),
++        [
++          [3, 0, <String>[]],
++          [3, 5, <String>[]],
++          [9, 25, ['race-1']],
++        ],
++      );
+       await subscription.cancel();
+     });
+   }
+--- a/test/games/memory_profile_storage_test.dart
++++ b/test/games/memory_profile_storage_test.dart
+@@ -168,28 +168,54 @@
+     addTearDown(app.dispose);
+     addTearDown(() => tester.binding.setSurfaceSize(null));
+     await _open(tester, app);
++    expect(store.writes, [
++      (key: 'flutter.${_key(_a)}',
++       value: '{"difficulty":"leicht","best":{"leicht":7}}'),
++    ], reason: 'Opening confirms the unchanged, validated child snapshot.');
+     final gate = Completer<void>();
+     store.blockedKey = 'flutter.${_key(_a)}';
+     store.gate = gate;
+-    await _choose(tester, MemoryDifficulty.profi);
+-    expect(store.writes, hasLength(1));
+-    await app.school.setActiveStudent(_b);
+-    await tester.pump();
+-    expect(_backs(), findsNothing);
+-    expect(find.textContaining('Dein Rekord:'), findsNothing);
+-    await _open(tester, app);
+-    expect(find.text('Dein Rekord: 11 Züge'), findsOneWidget);
+-    await _choose(tester, MemoryDifficulty.knifflig);
+-    gate.complete();
+-    await tester.pump();
+-    await tester.pump();
+-    final disk = await store.disk();
+-    expect(jsonDecode(disk['flutter.${_key(_a)}']! as String),
+-        {'difficulty': 'profi', 'best': {'leicht': 7}});
+-    expect(jsonDecode(disk['flutter.${_key(_b)}']! as String),
+-        {'difficulty': 'knifflig', 'best': {'mittel': 11}});
+-    expect(disk['flutter.lumo_memory_v2'], _legacy);
+-    await tester.pumpWidget(const SizedBox.shrink());
++    try {
++      await _choose(tester, MemoryDifficulty.profi);
++      expect(store.writes, hasLength(2));
++      expect(store.writes.last,
++          (key: 'flutter.${_key(_a)}',
++           value: '{"difficulty":"profi","best":{"leicht":7}}'));
++      expect((await store.disk())['flutter.${_key(_a)}'],
++          '{"difficulty":"leicht","best":{"leicht":7}}');
++      await app.school.setActiveStudent(_b);
++      await tester.pump();
++      expect(_backs(), findsNothing);
++      expect(find.textContaining('Dein Rekord:'), findsNothing);
++      await _open(tester, app);
++      expect(find.text('Dein Rekord: 11 Züge'), findsOneWidget);
++      await _choose(tester, MemoryDifficulty.knifflig);
++      gate.complete();
++      await tester.pump();
++      await tester.pump();
++      final disk = await store.disk();
++      expect(jsonDecode(disk['flutter.${_key(_a)}']! as String),
++          {'difficulty': 'profi', 'best': {'leicht': 7}});
++      expect(jsonDecode(disk['flutter.${_key(_b)}']! as String),
++          {'difficulty': 'knifflig', 'best': {'mittel': 11}});
++      expect(disk['flutter.lumo_memory_v2'], _legacy);
++      expect(store.writes, [
++        (key: 'flutter.${_key(_a)}',
++         value: '{"difficulty":"leicht","best":{"leicht":7}}'),
++        (key: 'flutter.${_key(_a)}',
++         value: '{"difficulty":"profi","best":{"leicht":7}}'),
++        (key: 'flutter.${_key(_b)}',
++         value: '{"difficulty":"mittel","best":{"mittel":11}}'),
++        (key: 'flutter.${_key(_b)}',
++         value: '{"difficulty":"knifflig","best":{"mittel":11}}'),
++      ]);
++    } finally {
++      // A failed assertion must not retain this child's static owner queue.
++      if (!gate.isCompleted) gate.complete();
++      await tester.pump();
++      await tester.pump();
++      await tester.pumpWidget(const SizedBox.shrink());
++    }
+   });
+ 
+   testWidgets('Delayed identity load cannot expose old best after profile switch',
+@@ -227,21 +253,41 @@
+     addTearDown(app.dispose);
+     addTearDown(() => tester.binding.setSurfaceSize(null));
+     await _open(tester, app);
++    expect(store.writes, [
++      (key: 'flutter.${_key(_a)}',
++       value: '{"difficulty":"leicht","best":{"leicht":7}}'),
++    ], reason: 'Opening confirms the unchanged, validated child snapshot.');
+     final gate = Completer<void>();
+     store.blockedKey = 'flutter.${_key(_a)}';
+     store.gate = gate;
+-    await _choose(tester, MemoryDifficulty.mittel);
+-    await _choose(tester, MemoryDifficulty.profi);
+-    expect(store.writes, hasLength(1), reason: 'Second write waits for the first');
+-    expect(jsonDecode(store.writes.single.value)['difficulty'], 'mittel');
+-    gate.complete();
+-    await tester.pump();
+-    await tester.pump();
+-    expect(store.writes, hasLength(2));
+-    expect(jsonDecode(store.writes.last.value)['difficulty'], 'profi');
+-    expect(jsonDecode((await store.disk())['flutter.${_key(_a)}']! as String),
+-        {'difficulty': 'profi', 'best': {'leicht': 7}});
+-    await tester.pumpWidget(const SizedBox.shrink());
++    try {
++      await _choose(tester, MemoryDifficulty.mittel);
++      await _choose(tester, MemoryDifficulty.profi);
++      expect(store.writes, hasLength(2),
++          reason: 'After the opening confirmation, the second choice waits for the first.');
++      expect(jsonDecode(store.writes[1].value)['difficulty'], 'mittel');
++      expect((await store.disk())['flutter.${_key(_a)}'],
++          '{"difficulty":"leicht","best":{"leicht":7}}');
++      gate.complete();
++      await tester.pump();
++      await tester.pump();
++      expect(store.writes, hasLength(3));
++      expect(store.writes.map((entry) => entry.key).toList(),
++          List.filled(3, 'flutter.${_key(_a)}'));
++      expect(store.writes.map((entry) => jsonDecode(entry.value)).toList(), [
++        {'difficulty': 'leicht', 'best': {'leicht': 7}},
++        {'difficulty': 'mittel', 'best': {'leicht': 7}},
++        {'difficulty': 'profi', 'best': {'leicht': 7}},
++      ]);
++      expect(jsonDecode(store.writes.last.value)['difficulty'], 'profi');
++      expect(jsonDecode((await store.disk())['flutter.${_key(_a)}']! as String),
++          {'difficulty': 'profi', 'best': {'leicht': 7}});
++    } finally {
++      if (!gate.isCompleted) gate.complete();
++      await tester.pump();
++      await tester.pump();
++      await tester.pumpWidget(const SizedBox.shrink());
++    }
+   });
+ 
+   testWidgets('Unreadable existing child stats are preserved instead of reset',

@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "scope": "Independent Root source and original-receipt inspection; no product/CI/replay invocation.",
+  "source_only_one_exact_tuple_changed": true,
+  "original_workflow_blob": "fbd470a24012b238de1e347c0021e40951aa7c23",
+  "new_workflow_blob": "f64febdb79ff9a0f80c858421bcbce96c1e450db",
+  "snapshot_sha256": "1ed0e3cd4c7839d9d3e3427767fb5eaadf0550a782885fb373bd694e2cc65760",
+  "all_197_original_zip_members_byte_equal": true,
+  "index_originals": {
+    "host": {
+      "stage": {
+        "equal": true,
+        "before": "767267f6272f7beabc2f141752319da28dc004a90e4292de126913eb634ab6de",
+        "after": "767267f6272f7beabc2f141752319da28dc004a90e4292de126913eb634ab6de"
+      },
+      "flags": {
+        "equal": true,
+        "before": "771aa2003fc727d473c235ec422aaafe3a1de5ace01215f30970eadcd19e6544",
+        "after": "771aa2003fc727d473c235ec422aaafe3a1de5ace01215f30970eadcd19e6544"
+      },
+      "binary": {
+        "equal": true,
+        "before": "8b4359a6096f5a8aeaba110c50bea055e2dff4ac44db3862caf732ac9dea548b",
+        "after": "8b4359a6096f5a8aeaba110c50bea055e2dff4ac44db3862caf732ac9dea548b"
+      }
+    },
+    "native": {
+      "stage": {
+        "equal": true,
+        "before": "119b688664ec8c9d3cff5486472ad3cc6713379690c32e8802125e00f5181008",
+        "after": "119b688664ec8c9d3cff5486472ad3cc6713379690c32e8802125e00f5181008"
+      },
+      "flags": {
+        "equal": true,
+        "before": "97b85910e09d0b6933939bb64258a70c01c35a137691ccf20b671c996aef9a3c",
+        "after": "97b85910e09d0b6933939bb64258a70c01c35a137691ccf20b671c996aef9a3c"
+      },
+      "binary": {
+        "equal": false,
+        "before": "ba6bf56fefe36a9d1bc0549d729cc94e94ef98fb9e0a7c45f8354a53c0064714",
+        "after": "7424df72ab17a01280a8a646df8e28fdb0d04ed0379b9a4679c0d8fc3a1cda0f"
+      }
+    }
+  },
+  "actual_child_receipts": [
+    {
+      "case": "old_original_red",
+      "exit": 1,
+      "stderr_sha256": "7a41a13e04d0a80d5098c656d44ddc1e8d3ac3b356445089e1af1a05bed84630"
+    },
+    {
+      "case": "patched_original_green",
+      "exit": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "changed_native_stage",
+      "exit": 1,
+      "stderr_sha256": "776215de42036953d6f32ff8751af5a44edfa57cc105d7f33ea03f75cf4bb473"
+    },
+    {
+      "case": "changed_native_flags",
+      "exit": 1,
+      "stderr_sha256": "776215de42036953d6f32ff8751af5a44edfa57cc105d7f33ea03f75cf4bb473"
+    },
+    {
+      "case": "missing_native_stage",
+      "exit": 1,
+      "stderr_sha256": "c126c9ccbf4a3ae1bcb38f1a113016efd7ab244a30a3f73d46b4597c1a9d7b7c"
+    },
+    {
+      "case": "missing_native_flags",
+      "exit": 1,
+      "stderr_sha256": "4a43fbc2e317b29acd491245556cfcfabf60548fa4a4bbed9804ff8a246d81eb"
+    }
+  ],
+  "conclusion": "No blocker for the bounded source correction; actual new 5-group CI still required."
+}

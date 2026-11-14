@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "review_type": "Independent read-only source and preserved original-output review",
+  "conclusion": "No concrete blocker in the scoped index-guard repair",
+  "reviewer": "flutter_integration",
+  "source_binding": {
+    "repository": "Ullmann27/lumo-lernen",
+    "root_reported_commit": "62c8753eaef539dd8ddbad6c1b922872eb532a9e",
+    "root_reported_tree": "1ee4aedaad959812d525b2d5bcaba45a5b857c94",
+    "reviewed_actual_source_files": {
+      "patched-workflow.yml": {
+        "bytes": 65909,
+        "sha256": "621f260417603e135088f6d0023f3c9fbca6bfc14df83091777e405499230a78",
+        "git_blob": "3e9c5cab10d05c47204f87003e439e4a2d884709"
+      },
+      "original-workflow.yml": {
+        "bytes": 64401,
+        "sha256": "9dbda2369930ed77275cb3adc401fedc58538ebe21736f7e29b68dad23ab6f9e",
+        "git_blob": "6a08dfb852cbec128db96aaa84add2bc69a7194b"
+      },
+      "patched-snapshot.py": {
+        "bytes": 7535,
+        "sha256": "1ed0e3cd4c7839d9d3e3427767fb5eaadf0550a782885fb373bd694e2cc65760",
+        "git_blob": "123e8b002086006b576160d65a52949531812e22"
+      },
+      "original-snapshot.py": {
+        "bytes": 6207,
+        "sha256": "fd020d787fe98822be46450eb9a5b4091a7fb558db2576edeef914cfe07b896a",
+        "git_blob": "3edac861de51b4823caba4bacec275141d0a902d"
+      },
+      "verify_dream_rasters.py": {
+        "bytes": 20254,
+        "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+        "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+      }
+    },
+    "exact_tested_snapshot_sha256": "1ed0e3cd4c7839d9d3e3427767fb5eaadf0550a782885fb373bd694e2cc65760"
+  },
+  "scope_proof": {
+    "only_changed_region": "Embedded source_snapshot.py heredoc",
+    "unchanged_workflow_prefix_bytes": 4481,
+    "unchanged_workflow_suffix_bytes": 52783,
+    "exact_heredoc_equals_tested_program": true,
+    "runtime_test_reader_or_geometry_changes": false
+  },
+  "findings": [
+    {
+      "id": "preserved-source-identity",
+      "assessment": "Pass on source review",
+      "detail": "Exact pushed Host/branch/repository and Native HEAD/tree are still required. Unchanged committed source helper remains independently hash/blob checked. Git worktree and cached diffs must be empty; every tracked object must be materialized, not skip-worktree, and its actual bytes/mode must match its stage-zero Git entry."
+    },
+    {
+      "id": "two-phase-index-originals",
+      "assessment": "Pass on source review",
+      "detail": "Each phase saves the complete binary index, NUL-delimited stage output and NUL-delimited ls-files -v flag output through exclusive file creation. Binary-index hash is compared to the snapshot hash within that same phase and retained as a factual observation."
+    },
+    {
+      "id": "semantic-index-invariance",
+      "assessment": "Pass on source review",
+      "detail": "After phase requires exact head/tree/tracked records, exact raw stage bytes (paths, modes, OIDs and merge stages), and exact raw ls-files -v flag bytes. It does not require binary metadata/cache representation equality between phases. binary_index_changed reports any observed binary difference."
+    },
+    {
+      "id": "failure-and-generated-originals",
+      "assessment": "Pass on source review",
+      "detail": "No exception catch converts a rejection to success. Missing/changed originals and write errors remain fatal. The existing generated UID/import classification, untouched-file policy, byte-bound archive and full roundtrip remain unchanged."
+    },
+    {
+      "id": "metadata-case",
+      "assessment": "Existing actual Root execution independently inspected",
+      "detail": "The controlled native product.txt mtime refresh changes the actual Git-index bytes while leaving stage bytes, flag bytes, tracked content/modes, HEAD and tree identical. Original V3 rejects index_sha256; patched process exits 0 and saves both binary originals. This controlled case is not asserted to explain the exact historical index-byte change."
+    },
+    {
+      "id": "four-real-negative-cases",
+      "assessment": "Existing actual Root execution independently inspected",
+      "detail": "Changed file bytes, changed executable bit, staged-only content change and assume-unchanged all have actual after exit 1 with the appropriate source/index/flag ValueError and no success summary."
+    }
+  ],
+  "actual_preserved_contracts": {
+    "performed_by": "Root before this review",
+    "cases_run": 6,
+    "new_executions_by_reviewer": 0,
+    "cases": [
+      {
+        "case": "assume_unchanged_flag",
+        "before_exit": 0,
+        "after_exit": 1
+      },
+      {
+        "case": "changed_bytes",
+        "before_exit": 0,
+        "after_exit": 1
+      },
+      {
+        "case": "changed_executable_bit",
+        "before_exit": 0,
+        "after_exit": 1
+      },
+      {
+        "case": "refreshed_index_metadata",
+        "before_exit": 0,
+        "after_exit": 0
+      },
+      {
+        "case": "staged_only_change",
+        "before_exit": 0,
+        "after_exit": 1
+      },
+      {
+        "case": "unchanged",
+        "before_exit": 0,
+        "after_exit": 0
+      }
+    ],
+    "complete_original_archive": {
+      "path": "originals/root-complete-original-pack.tar.gz",
+      "bytes": 333903,
+      "sha256": "0bb8ce7f7862cb61627cc5d6c1bb2056a47c6ded68df53abbf7ee04b31c5a4de",
+      "git_blob": "103052d87cd0f95ad8d7e4f6388f66fd39956fe7"
+    },
+    "original_manifest_entries_verified": 526,
+    "archive_files_verified": 527
+  },
+  "historical_memory_ci": {
+    "host": {
+      "before": {
+        "bytes": 1905862,
+        "sha256": "c5d2cc8c326678b70f2c1e4dd4cd6ba7e57d17a4f54ac6201b817aee3e08a692",
+        "git_blob": "3de0e396680075af80f519c87e12996ab032d37d"
+      },
+      "after": {
+        "bytes": 1905862,
+        "sha256": "c5d2cc8c326678b70f2c1e4dd4cd6ba7e57d17a4f54ac6201b817aee3e08a692",
+        "git_blob": "3de0e396680075af80f519c87e12996ab032d37d"
+      },
+      "head": "bca5333767918398ba2414cc6cf5cd23af079f90",
+      "tree": "82112cd6b9d9a705071e164efe9d97424d2a74c8",
+      "tracked_count": 4690,
+      "equal_head": true,
+      "equal_tree": true,
+      "equal_tracked": true,
+      "index_sha256_before": "e2b079b9da1b97739294e81ab28ff88eac9f614f4d0f9659a599e7e911c9fda7",
+      "index_sha256_after": "e2b079b9da1b97739294e81ab28ff88eac9f614f4d0f9659a599e7e911c9fda7",
+      "binary_index_changed": false,
+      "old_binary_bytes_present": false
+    },
+    "native": {
+      "before": {
+        "bytes": 1553014,
+        "sha256": "45f2c0098a110e9a8c58caff9541c3eb1a73c750ebe52cdaba6212b390fb8082",
+        "git_blob": "699585cb638b8a9247ee4aeaae6adc20d3edf3cc"
+      },
+      "after": {
+        "bytes": 1943285,
+        "sha256": "217a3bc9545a7e447ab3855eb17016a25519ce0d2ca9ef7dfc0a03f173244667",
+        "git_blob": "6f3f3cd1f2571b7f222b92d3c9c3646d869b590c"
+      },
+      "head": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+      "tree": "e2a374b2154f7ecb080f693c4bc90def53a20a00",
+      "tracked_count": 3742,
+      "equal_head": true,
+      "equal_tree": true,
+      "equal_tracked": true,
+      "index_sha256_before": "c4565cac8edae5500eebdf0139713c18beefdf03b7769b454e0b5239810f1a9b",
+      "index_sha256_after": "7f13eb1c859f05453a63075cfe54f4c0f5e9768fd2348ca85390faf64d4476fd",
+      "binary_index_changed": true,
+      "old_binary_bytes_present": false
+    }
+  },
+  "limits": [
+    "Historical CI binary index bytes were not uploaded. The differing historical SHA alone cannot establish which metadata/cache field changed.",
+    "The current workflow source diff is a source/identity guard repair. It does not repair the separately observed Memory marker mismatch or English touch geometry.",
+    "No new application, engine, Android, Flutter, lint or test execution was performed during this review.",
+    "Remote commit/tree are Root-supplied identifiers; the full workflow/program bytes and every preserved original reviewed here were independently locally hashed."
+  ],
+  "evidence": {
+    "readback_observations": {
+      "path": "readback-observations.json",
+      "bytes": 17875,
+      "sha256": "47b9e25fef60b282d69172bc05670d14fef0b243e16e01a7a01f4f51ee53ad02",
+      "git_blob": "be3974bb3ea9f723a1b931a9c8de5b99801533de"
+    },
+    "reviewed_patch": {
+      "path": "reviewed-workflow-delta.patch",
+      "bytes": 4607,
+      "sha256": "603aa0e1541ef992032bda93e05bd6247b36645ed765959b7701e7af9fb24b84",
+      "git_blob": "f70a0e1d1287627688d9f3e1bb1d14fe8e08b3f5"
+    },
+    "validator_program": {
+      "path": "/workspace/scratch/b3485b7bb989/host-bca533-index-guard-repair-20261114/validate_index_guard.py",
+      "bytes": 10080,
+      "sha256": "d8dca155c4c80cc3b3eab3ac1ad086757d2dfa0bd94c424819d0bac1e0729d12",
+      "git_blob": "5f56326f2fb2b149452151e68fb8b0a872e95324"
+    }
+  }
+}

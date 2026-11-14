@@ -1,0 +1,9 @@
+# Current Android race HUD crop repair
+
+The original QA61c Update job and API37-host job rejected a visibly complete race HUD because the old focused OCR crop stopped at y=162 on a 2400×1080 frame. The actual letters extend through about y=187. The only executable change expands the existing crop bottom from 15% to 20% of image height. Its horizontal range, Tesseract settings and timeout are unchanged.
+
+Three byte-exact original PNGs fail real local Tesseract replay before the change. Ten focused tests pass afterward, including the three original rasters, the existing 1978-style synthetic raster, half-drawn-letter rejection, all four pause/result overlay countercases, and preservation of the three-feature and 90-second conditions. The three replay results contain RUNDE 1/2, PLATZ 5/6 or 6/6, and 0 km/h. No new Android, physical input, progress, audio or performance result is claimed.
+
+`source-freeze.json` is the complete nine-file ownership and publication list. The seven fixture objects are byte-exact original PNG/OCR files plus their derived provenance index. Their source ZIPs were fully SHA/CRC checked in RAM; only explicitly selected original members are local. Full ZIPs remain in their original Actions artifacts. Source and fixture hashes are listed, and the original CI failures remain unchanged. API37 frame 20 is from the first attempt; frames 0–18 were overwritten inside the original artifact by a later pause attempt and are not used here.
+
+`before/`, `after/`, `repair.patch`, both complete logs and their command/source-bound JSON reports preserve the actual red and green. `after/` duplicates only the small two source files and fixture provenance; the three large PNGs remain at the exact repository paths listed in the freeze and in the selected original evidence. All other AST nodes and the unchanged tour/garage source hashes were checked. Root owns commit, refs, later CI and release decisions.

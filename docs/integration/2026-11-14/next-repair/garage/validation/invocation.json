@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_kart_garage_evidence",
+    "test_kart_garage_scroll_recovery",
+    "test_kart_scroll_word_evidence",
+    "test_kart_driver_word_evidence",
+    "test_kart_continue_caption",
+    "test_native_surface_readiness"
+  ],
+  "cwd": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/validation-source",
+  "started_at": "2026-11-14T19:49:01.517570+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "pillow": "13.0.0",
+  "source_kind": "Plain private source view; not a Git checkout, no index or HEAD claimed",
+  "expected_methods": 109,
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "PYTHONPATH": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/validation-source/tools/android_qa/tests",
+    "LUMO_KART_WORD_SOURCE_ROOT": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/validation-source",
+    "LUMO_PAUSE_SOURCE_ROOT": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/validation-source"
+  }
+}

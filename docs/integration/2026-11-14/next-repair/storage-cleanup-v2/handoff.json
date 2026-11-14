@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "root": "/tmp/host-pr507-8e64-regression-cleanup-v2-37414-20261114",
+  "source_freeze": {
+    "bytes": 1514,
+    "sha256": "b1a7dcbf4c58dcaa31b204b9221fe652c015312223e6d255c23bc7e563a5ecdc",
+    "git_blob": "9822955b1714c40854391957dc68d2b993a1d534"
+  },
+  "base_host": "37414d0ceeb6db13ddd2b5bbc64789e3260ac1e5",
+  "base_tree": "a2ab2d1883aa764424e48e3b992cc3d09c3a84e5",
+  "source_paths": [
+    "test/games/memory_profile_storage_test.dart"
+  ],
+  "source_after": {
+    "bytes": 12937,
+    "sha256": "33d2b6b63a139f0cd8b8ef75197d515e7c04a3cc9a043e0b07e5815de7dee20f",
+    "git_blob": "375812cb6b17b638a070dd9382249d2a3c5fef5a"
+  },
+  "reason": "Protect initial widget opening/ACK assertions in existing cleanup and drain scheduled zero-time timer work before leaving the two gated WidgetTester contexts.",
+  "test_roster_changed": false,
+  "remaining_validation": "No local test run. The final common full Flutter stream must execute the same six Memory profile cases alongside the preserved Wallet and new 45-case groups.",
+  "remote_mutation": false
+}

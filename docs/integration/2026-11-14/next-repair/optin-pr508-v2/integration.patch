@@ -1,0 +1,741 @@
+--- a/.github/probes/lumo_connect_four_android_probe.py
++++ b/.github/probes/lumo_connect_four_android_probe.py
+@@ -328,6 +328,16 @@
+             time.sleep(min(.6, self.remaining()))
+         raise RuntimeError('No two stable actual Flutter observations: ' + label)
+ 
++    def open_native_from_flutter(self, tag: str) -> dict:
++        """Wait without input, then freshly observe the explicit native opt-in."""
++        self.remaining()
++        portal = self.flutter_touch(contract.PORTAL, tag)
++        self.remaining()
++        ready = self.wait_for_flutter_control(contract.NATIVE_ENTRY, tag + '-native-ready', timeout=30)
++        native = self.flutter_touch(contract.NATIVE_ENTRY, tag + '-native')
++        self.remaining()
++        return {'portal_touch':portal, 'native_ready':ready, 'native_touch':native}
++
+     def return_to_flutter(self, tag: str) -> dict:
+         before = self.native_touch(tag, 'back')
+         contract.demand(before['state']['paused'], 'Return must follow the proved actual pause')
+@@ -405,7 +415,10 @@
+                             'Actual games navigation is unavailable')
+             before_prefs, before_file = self.read_preferences('before-c4')
+             result['preferences_before'] = before_file
+-            result['entry_touch'] = self.flutter_touch(contract.PORTAL, 'open-c4')
++            entry = self.open_native_from_flutter('open-c4')
++            result['entry_touch'] = entry['portal_touch']
++            result['native_entry_ready'] = entry['native_ready']
++            result['native_entry_touch'] = entry['native_touch']
+             initial = self.wait_observation('initial', lambda o:not o['state']['paused'] and o['state']['canDrop'])
+             contract.demand(initial['state']['columns'] == [] and not initial['state']['twoPlayers'],
+                             'Initial actual C4 round is not the untouched single-player game')
+@@ -423,12 +436,14 @@
+             closed = self.return_to_flutter('return-first')
+             old_token = self.token
+             self.mailbox, self.token = '', ''
+-            reopen_touch = self.flutter_touch(contract.PORTAL, 'reopen-c4')
++            reopening = self.open_native_from_flutter('reopen-c4')
+             again = self.wait_observation('reopened', lambda o:not o['state']['paused'] and o['state']['canDrop'])
+             contract.reopened(closed['state'], again['state'])
+             contract.demand(again['state']['token'] != old_token and again['pid'] != closed['pid'],
+                             'Reopen did not create a new real private native session/process')
+-            result['reopen'] = {'closed':closed['id'], 'opened':again['id'], 'touch':reopen_touch}
++            result['reopen'] = {'closed':closed['id'], 'opened':again['id'],
++                                'touch':reopening['portal_touch'], 'native_ready':reopening['native_ready'],
++                                'native_touch':reopening['native_touch']}
+             self.transition('pause-after-reopen', 'pause', 'pause')
+             self.return_to_flutter('return-final')
+             after_prefs, after_file = self.read_preferences('after-c4')
+--- a/lib/features/games/connect_four/lumo_connect_four_game.dart
++++ b/lib/features/games/connect_four/lumo_connect_four_game.dart
+@@ -82,9 +82,9 @@
+       });
+       unawaited(LumoVoice.instance
+           .speak(controller.announcement, style: VoiceStyle.greeting));
+-      if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+-        await _openNative();
+-      } else if (_game.phase == ConnectPhase.playing &&
++      // A child must be able to play a move before opting into 3D.
++      // The native process can fail to start; never force it on entering 4 Gewinnt.
++      if (_game.phase == ConnectPhase.playing &&
+           !_twoPlayers &&
+           _game.turn == ConnectPiece.lumo) {
+         _resumeBot();
+@@ -271,12 +271,12 @@
+   }
+ 
+   void _setMode(bool twoPlayers) {
+-    if (_twoPlayers != twoPlayers && !_busy)
++    if (_twoPlayers != twoPlayers && !_busy && !_nativeOpening)
+       unawaited(_restartRound(twoPlayers: twoPlayers));
+   }
+ 
+   Future<void> _setLevel(ConnectLumoLevel level) async {
+-    if (_controller == null || !_currentOwner() || _busy) return;
++    if (_controller == null || !_currentOwner() || _busy || _nativeOpening) return;
+     try {
+       await _controller!.setLevel(level);
+       if (_currentOwner()) setState(_syncRound);
+@@ -965,7 +965,7 @@
+           for (var c = 0; c < ConnectFourEngine.columns; c++)
+             Expanded(
+               child: LumoPressable(
+-                enabled: !_busy && !_clock.value,
++                enabled: !_busy && !_nativeOpening && !_clock.value,
+                 radius: 12,
+                 pressedScale: 1,
+                 child: IconButton(
+@@ -980,6 +980,7 @@
+                     ),
+                   ),
+                   onPressed: !_busy &&
++                          !_nativeOpening &&
+                           !_clock.value &&
+                           _game.phase == ConnectPhase.playing &&
+                           _game.validColumns.contains(c)
+--- a/lib/features/games/spielwelt/spielwelt_hub.dart
++++ b/lib/features/games/spielwelt/spielwelt_hub.dart
+@@ -368,6 +368,11 @@
+                             'Magische 3D-Spielewelt betreten',
+                             maxLines: 1,
+                             overflow: TextOverflow.ellipsis,
++                            style: TextStyle(
++                              fontFamily: 'Nunito',
++                              fontWeight: FontWeight.w900,
++                              fontSize: 14,
++                            ),
+                           ),
+                           style: OutlinedButton.styleFrom(
+                             foregroundColor: const Color(0xFFFFE7A0),
+--- a/test/games/connect_four_native_route_test.dart
++++ b/test/games/connect_four_native_route_test.dart
+@@ -78,6 +78,12 @@
+       expect(condition(), isTrue);
+     }
+ 
++    // Opening the Flutter round never silently launches a separate Activity.
++    await until(() =>
++        find.byKey(const ValueKey('connect-open-native')).evaluate().isNotEmpty);
++    expect(launches, isEmpty);
++    expect(find.byKey(const ValueKey('connect-column-0')), findsOneWidget);
++    await tester.tap(find.byKey(const ValueKey('connect-open-native')));
+     await until(() => launches.length == 1 && state['canDrop'] == true);
+     expect(launches.single['scene'], 'connect_four');
+     expect(launches.single['connectFourToken'], tokens.single);
+--- /dev/null
++++ b/test/games/connect_four_navigation_test.dart
+@@ -0,0 +1,135 @@
++import 'package:flutter/material.dart';
++import 'package:flutter/services.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:shared_preferences/shared_preferences.dart';
++
++import 'package:lumo_lernen/app/app_state.dart';
++import 'package:lumo_lernen/core/lumo_voice.dart';
++import 'package:lumo_lernen/core/reward_wallet_repository.dart';
++import 'package:lumo_lernen/features/games/connect_four/lumo_connect_four_game.dart';
++
++void main() {
++  for (final size in const [Size(320, 740), Size(640, 360)]) {
++    testWidgets(
++        'Connect Four pushes, leaves and restores its real route at $size',
++        (tester) async {
++      SharedPreferences.setMockInitialValues({});
++      await tester.binding.setSurfaceSize(size);
++      addTearDown(() => tester.binding.setSurfaceSize(null));
++      final previousHitTestPolicy =
++          WidgetController.hitTestWarningShouldBeFatal;
++      WidgetController.hitTestWarningShouldBeFatal = true;
++      addTearDown(() {
++        WidgetController.hitTestWarningShouldBeFatal = previousHitTestPolicy;
++      });
++      final messenger =
++          TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
++      const table = MethodChannel('lumo_lernen/connect_four');
++      var nativeAttempts = 0;
++      messenger.setMockMethodCallHandler(table, (call) async {
++        if (call.method == 'open') nativeAttempts++;
++        throw MissingPluginException('Flutter fallback fixture');
++      });
++      addTearDown(() => messenger.setMockMethodCallHandler(table, null));
++      final app = LumoAppState(walletRepository: RewardWalletRepository());
++      await app.hydrateFromWallet();
++      LumoVoice.instance.isEnabled = false;
++      addTearDown(() async {
++        await tester.pumpWidget(const SizedBox());
++        app.dispose();
++      });
++
++      await tester.pumpWidget(MaterialApp(
++        home: Builder(builder: (context) {
++          return Scaffold(
++            body: Center(
++              child: FilledButton(
++                onPressed: () => Navigator.of(context).push(
++                  MaterialPageRoute<void>(
++                    builder: (_) =>
++                        LumoConnectFourScreen(appState: app, seed: 1978),
++                  ),
++                ),
++                child: const Text('Spielauswahl'),
++              ),
++            ),
++          );
++        }),
++      ));
++
++      Future<void> settle() => tester.pumpAndSettle(
++            const Duration(milliseconds: 100),
++            EnginePhase.sendSemanticsUpdate,
++            const Duration(seconds: 5),
++          );
++      Future<void> tapVisible(Finder finder) async {
++        await tester.ensureVisible(finder);
++        await tester.pump();
++        expect(finder.hitTestable(), findsOneWidget);
++        await tester.tap(finder);
++      }
++
++      await tester.tap(find.text('Spielauswahl'));
++      await settle();
++      expect(nativeAttempts, 0,
++          reason: 'Entering a Flutter round must not launch the native 3D view');
++      expect(find.text('Spiel pausiert'), findsNothing);
++      expect(find.byType(LumoConnectFourScreen), findsOneWidget);
++      await tapVisible(find.byKey(const ValueKey('connect-mode-true')));
++      await settle();
++      final lastColumn = find.byKey(const ValueKey('connect-column-6'));
++      await tapVisible(lastColumn);
++      await tester.pump();
++      await tester.pump(const Duration(milliseconds: 450));
++      expect(tester.getSize(lastColumn).width, greaterThanOrEqualTo(48));
++      expect(tester.getSize(lastColumn).height, greaterThanOrEqualTo(48));
++      expect(
++        tester
++            .widget<Semantics>(find.byKey(const ValueKey('connect-cell-5-6')))
++            .properties
++            .label,
++        endsWith(': child'),
++      );
++
++      await tester.tap(find.byTooltip('Pausieren / Zurück'));
++      await tester.pump();
++      expect(find.text('Spiel pausiert'), findsOneWidget);
++      final leave = find.byKey(const ValueKey('pause-leave-games'));
++      await tapVisible(leave);
++      await settle();
++      expect(find.byType(LumoConnectFourScreen), findsNothing);
++      expect(find.text('Spielauswahl'), findsOneWidget);
++      expect(Navigator.of(tester.element(find.text('Spielauswahl'))).canPop(),
++          isFalse);
++      await tester.pump(const Duration(seconds: 3));
++      expect(app.state.stars, 0);
++
++      await tester.tap(find.text('Spielauswahl'));
++      await settle();
++      expect(nativeAttempts, 0,
++          reason: 'Reopening the saved Flutter round must remain native-free');
++      expect(find.text('Spiel pausiert'), findsNothing);
++      expect(
++        tester
++            .widget<Semantics>(find.byKey(const ValueKey('connect-cell-5-6')))
++            .properties
++            .label,
++        endsWith(': child'),
++        reason: 'Leaving and reopening must preserve the same saved board.',
++      );
++      await tapVisible(find.byKey(const ValueKey('connect-column-0')));
++      await tester.pump();
++      await tester.pump(const Duration(milliseconds: 450));
++      expect(
++        tester
++            .widget<Semantics>(find.byKey(const ValueKey('connect-cell-5-0')))
++            .properties
++            .label,
++        endsWith(': lumo'),
++        reason:
++            'The restored two-player round must keep Gold as the next turn.',
++      );
++      expect(tester.takeException(), isNull);
++    });
++  }
++}
+--- a/test/games/games_screen_flow_test.dart
++++ b/test/games/games_screen_flow_test.dart
+@@ -276,11 +276,20 @@
+     LumoVoice.instance.isEnabled = false;
+     await tester.pumpWidget(
+         MaterialApp(home: LumoConnectFourScreen(appState: app, seed: 1)));
++    await _waitForConnectTurn(tester, 'Initial playable Flutter round');
++    expect(openCalls, 0,
++        reason: 'Opening 4 Gewinnt must not automatically start Godot');
++    final nativeButton = find.byKey(const ValueKey('connect-open-native'));
++    expect(nativeButton, findsOneWidget);
++    await tester.tap(nativeButton);
++    // A direct tap sends input immediately; a frame is required to rebuild
++    // the disabled column buttons before checking their visible state.
++    await tester.pump();
+     for (var frame = 0; frame < 50 && openCalls == 0; frame++) {
+       await tester.pump(const Duration(milliseconds: 100));
+     }
+     expect(openCalls, 1,
+-        reason: 'The actual Android route must request the native table');
++        reason: 'Only the requested 3D action may open the native table');
+     expect(_playableConnectColumns(tester), isEmpty);
+     await tester.pump(const Duration(seconds: 1));
+     expect(_playableConnectColumns(tester), isEmpty,
+--- a/tools/android_qa/connect_four_android_evidence.py
++++ b/tools/android_qa/connect_four_android_evidence.py
+@@ -24,6 +24,7 @@
+ CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+ ROUND_PREFIX = 'flutter.lumo.connect_four.round.v1.'
+ PORTAL = 'Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen'
++NATIVE_ENTRY = 'In 3D weiterspielen'
+ LEARNING_PREFIXES = (
+     'flutter.lumo_progress', 'flutter.lumo_writing_progress', 'flutter.lumo_journal',
+     'flutter.lumo_story_library', 'flutter.lumo_reading_sessions', 'flutter.lumo_attempt_log',
+@@ -513,6 +514,65 @@
+     checked_dispatch(root, touch)
+ 
+ 
++def checked_flutter_readiness(root: Path, name: str, label: str) -> list[dict]:
++    """Replay the read-only wait; only its last observation may be ready."""
++    record = json.loads(safe_member(root, name).read_text())
++    observations = record.get('observations')
++    demand(record.get('label') == label and isinstance(observations, list) and observations
++           and all(isinstance(item, dict) for item in observations),
++           'Original Flutter readiness record is missing or bound to another control')
++    for index, frame in enumerate(observations):
++        screenshot = safe_member(root, frame['capture']['file'])
++        demand(sha256(screenshot) == frame['capture']['sha256'], 'Original Flutter readiness frame changed')
++        with Image.open(screenshot) as image:
++            image.load()
++            demand(image.format == 'PNG' and list(image.size) ==
++                   [frame['capture']['width'], frame['capture']['height']],
++                   'Original Flutter readiness PNG dimensions differ')
++            pixels = image.size
++        density = device_density(read_original(root, frame['density'], command=['adb','shell','wm','density']))
++        ui = ET.fromstring(safe_member(root, frame['ui']).read_text())
++        demand(ui.tag == 'hierarchy', 'Original Flutter readiness hierarchy is missing')
++        nodes = list(ui.iter('node'))
++        captions = {line for node in nodes if node.get('package') == PACKAGE
++                    for key in ('text', 'content-desc') for line in node.get(key, '').splitlines()}
++        try:
++            demand('Spiel pausiert' not in captions, 'The previous Flutter pause is still visible')
++            target = flutter_control(nodes, label, pixels, density)
++        except ValueError as error:
++            demand(index < len(observations) - 1 and 'target' not in frame
++                   and frame.get('reason') == str(error),
++                   'Original Flutter readiness does not end in an accepted current control')
++        else:
++            demand(index == len(observations) - 1 and frame.get('target') == target
++                   and 'reason' not in frame,
++                   'Original Flutter readiness must stop at its first accepted current control')
++    return observations
++
++
++def checked_native_opening(root: Path, portal_name: str, ready_name: str,
++                           native_name: str, opened: dict) -> None:
++    """Bind each explicit opt-in to fresh original controls before Native appears."""
++    demand(isinstance(portal_name, str) and isinstance(native_name, str)
++           and portal_name and native_name and portal_name != native_name,
++           'Both distinct original portal and native opt-in touches are required')
++    demand(isinstance(ready_name, str) and ready_name and ready_name not in (portal_name, native_name),
++           'A separate original native-entry readiness record is required')
++    checked_flutter_touch(root, portal_name, PORTAL)
++    ready = checked_flutter_readiness(root, ready_name, NATIVE_ENTRY)
++    checked_flutter_touch(root, native_name, NATIVE_ENTRY)
++    portal = json.loads(safe_member(root, portal_name).read_text())
++    native = json.loads(safe_member(root, native_name).read_text())
++    frames = [portal['first'], portal['second'], *ready, native['first'], native['second']]
++    demand(len({frame['ui'] for frame in frames}) == len(frames)
++           and len({frame['capture']['file'] for frame in frames}) == len(frames),
++           'Native opt-in must use new original frames and hierarchies')
++    times = [frame['observed_monotonic'] for frame in frames] + [opened['observed_monotonic']]
++    demand(all(type(value) in (int, float) and math.isfinite(value) and value >= 0 for value in times)
++           and all(first < second for first, second in zip(times, times[1:])),
++           'Original native opt-in must follow its portal and precede its native observation')
++
++
+ def verify_report(root: Path, binding: dict, identity: dict) -> dict:
+     report = json.loads(safe_member(root, 'c4-result.json').read_text())
+     demand(report.get('schema') == 1 and report.get('status') == 'PASS'
+@@ -524,7 +584,8 @@
+     initial = observations[report['initial']]
+     demand(initial['state']['columns'] == [] and initial['state']['twoPlayers'] is False,
+            'No untouched actual initial single-player round')
+-    checked_flutter_touch(root, report['entry_touch'], PORTAL)
++    checked_native_opening(root, report['entry_touch'], report.get('native_entry_ready'),
++                           report.get('native_entry_touch'), initial)
+     transitions = report['transitions']
+     demand([step.get('action') for step in transitions] == ['drop','pause','resume','drop','pause','pause'],
+            'Required child/bot/pause/resume sequence is incomplete')
+@@ -554,7 +615,7 @@
+     demand(closed['pid'] != opened['pid'], 'Actual native process did not change on reopen')
+     demand(len(closed['state']['columns']) == 4 and opened['host_pid'] == initial['host_pid'],
+            'Reopen did not preserve both actual child/bot pairs and the Flutter authority')
+-    checked_flutter_touch(root, route['touch'], PORTAL)
++    checked_native_opening(root, route['touch'], route.get('native_ready'), route.get('native_touch'), opened)
+     demand(len(report['returns']) == 2, 'Both actual Flutter returns are mandatory')
+     demand(report['returns'][0]['before'] == closed['id'], 'Reopen does not follow the actual first return')
+     for index, returned in enumerate(report['returns']):
+--- a/tools/android_qa/tests/test_connect_four_android_evidence.py
++++ b/tools/android_qa/tests/test_connect_four_android_evidence.py
+@@ -221,13 +221,15 @@
+     def flutter_touch(self, name, label):
+         frames=[]
+         for number in (1,2):
++            self.count += 1
+             tag=name+'-'+str(number)
+             tree=ET.Element('hierarchy')
+             ET.SubElement(tree,'node',{'text':label,'package':c4.PACKAGE,'enabled':'true',
+                                       'clickable':'true','bounds':'[100,300][980,500]'})
+             ui=self.write(tag+'.xml',ET.tostring(tree))
+             density=self.original(tag+'-density',['adb','shell','wm','density'],'Physical density: 400\n')
+-            frames.append({'ui':ui,'capture':self.screenshot(tag),'density':density,'observed_monotonic':number})
++            frames.append({'ui':ui,'capture':self.screenshot(tag),'density':density,
++                           'observed_monotonic':10+self.count*.7})
+         target=c4.flutter_control(list(tree.iter('node')),label,PIXELS,2.5)
+         x,y=map(str,target['point'])
+         command=self.original(name+'-dispatch',['adb','shell','input','swipe',x,y,x,y,'120'],'')
+@@ -249,6 +251,26 @@
+             'to_games_touch':self.flutter_touch(name+'-games','Zur Spieleauswahl')})
+         return before
+ 
++    def flutter_ready(self, name, label, *, delayed=False):
++        observations=[]
++        for pending in ([True, False] if delayed else [False]):
++            self.count += 1
++            tag=name+'-'+str(len(observations))
++            tree=ET.Element('hierarchy')
++            if not pending:
++                ET.SubElement(tree,'node',{'text':label,'package':c4.PACKAGE,'enabled':'true',
++                                          'clickable':'true','bounds':'[100,300][980,500]'})
++            ui=self.write(tag+'.xml',ET.tostring(tree))
++            density=self.original(tag+'-density',['adb','shell','wm','density'],'Physical density: 400\n')
++            frame={'ui':ui,'capture':self.screenshot(tag),'density':density,
++                   'observed_monotonic':10+self.count*.7}
++            if pending:
++                frame['reason']='No unique complete enabled Flutter control: '+label
++            else:
++                frame['target']=c4.flutter_control(list(tree.iter('node')),label,PIXELS,2.5)
++            observations.append(frame)
++        return self.write(name+'.json',{'label':label,'observations':observations})
++
+     def build(self):
+         a=state()
+         b=state([3,0],revision=4,ack=1)
+@@ -259,6 +281,8 @@
+         g=state([3,0,2,6],token='b'*32)
+         h=state([3,0,2,6],revision=2,ack=1,paused=True,token='b'*32)
+         entry=self.flutter_touch('entry',c4.PORTAL)
++        native_ready=self.flutter_ready('native-ready',c4.NATIVE_ENTRY,delayed=True)
++        native_entry=self.flutter_touch('native-entry',c4.NATIVE_ENTRY)
+         initial=self.observe('initial',a)
+         self.transition('first-drop',a,b,'drop','column_3')
+         pause=self.transition('first-pause',b,c,'pause','pause')
+@@ -269,6 +293,8 @@
+         self.transition('second-pause',e,f,'pause','pause')
+         closed=self.returned('return-one',f)
+         reopen_touch=self.flutter_touch('reopen',c4.PORTAL)
++        reopen_ready=self.flutter_ready('reopen-ready',c4.NATIVE_ENTRY)
++        reopen_native=self.flutter_touch('reopen-native',c4.NATIVE_ENTRY)
+         reopened=self.observe('reopened',g,pid=201)
+         self.transition('third-pause',g,h,'pause','pause',pid=201)
+         self.returned('return-two',h,pid=201)
+@@ -278,11 +304,13 @@
+                            'Synthetic contract log, not an Android execution\n')
+         sdk=self.original('sdk',['adb','shell','getprop','ro.build.version.sdk'],'35\n')
+         report={'schema':1,'status':'PASS','binding':self.binding,'identity':self.identity,
+-                'synthetic_fixture':True,'entry_touch':entry,'initial':initial['id'],
++                'synthetic_fixture':True,'entry_touch':entry,'native_entry_ready':native_ready,
++                'native_entry_touch':native_entry,'initial':initial['id'],
+                 'observations':self.observations,'transitions':self.transitions,'returns':self.returns,
+                 'pause_hold':{'first':pause['id'],'second':held['id'],
+                               'elapsed':held['observed_monotonic']-pause['observed_monotonic']},
+-                'reopen':{'closed':closed['id'],'opened':reopened['id'],'touch':reopen_touch},
++                'reopen':{'closed':closed['id'],'opened':reopened['id'],'touch':reopen_touch,
++                          'native_ready':reopen_ready,'native_touch':reopen_native},
+                 'preferences_before':before,'preferences_after':after,
+                 'original_logcat':log,'fatal_entries':[],'android_sdk_original':sdk}
+         self.report=report
+@@ -441,6 +469,105 @@
+         self.fixture.refresh()
+         with self.assertRaises(ValueError): c4.verify_report(self.root,bind(),self.fixture.identity)
+ 
++    def test_first_and_reopened_native_opt_in_cannot_be_omitted(self):
++        for item,key in ((self.report,'native_entry_touch'),(self.report['reopen'],'native_touch')):
++            original=item.pop(key)
++            self.fixture.refresh()
++            with self.assertRaisesRegex(ValueError,'distinct original portal and native opt-in'):
++                self.verify()
++            item[key]=original
++
++    def test_portal_cannot_substitute_for_either_explicit_native_touch(self):
++        for item,key,portal in ((self.report,'native_entry_touch',self.report['entry_touch']),
++                                (self.report['reopen'],'native_touch',self.report['reopen']['touch'])):
++            original=item[key];item[key]=portal;self.fixture.refresh()
++            with self.assertRaisesRegex(ValueError,'distinct original portal and native opt-in'):
++                self.verify()
++            item[key]=original
++
++    def test_reopen_cannot_reuse_the_first_native_opt_in_record(self):
++        self.report['reopen']['native_touch']=self.report['native_entry_touch']
++        self.fixture.refresh()
++        with self.assertRaisesRegex(ValueError,'follow its portal and precede its native observation'):
++            self.verify()
++
++    def test_native_opt_in_replays_actual_caption_enabled_and_dispatch(self):
++        touch=json.loads((self.root/self.report['native_entry_touch']).read_text())
++        ui_path=self.root/touch['second']['ui']; original=ui_path.read_bytes()
++        for change in ({'text':'Another control'},{'enabled':'false'},
++                       {'clickable':'false'},{'bounds':'[100,300][150,350]'}):
++            with self.subTest(change=change):
++                tree=ET.fromstring(original);tree.find('node').attrib.update(change)
++                ui_path.write_bytes(ET.tostring(tree));self.fixture.refresh()
++                with self.assertRaisesRegex(ValueError,'No unique complete enabled Flutter control'):
++                    self.verify()
++        ui_path.write_bytes(original)
++        command=self.root/(touch['command_original'][:-7]+'.json')
++        metadata=json.loads(command.read_text());metadata['command']=['adb','shell','am','start','synthetic']
++        self.fixture.write(command.relative_to(self.root).as_posix(),metadata);self.fixture.refresh()
++        with self.assertRaisesRegex(ValueError,'Original command reads another source'):
++            self.verify()
++
++    def test_native_opt_in_observation_must_precede_actual_native_state(self):
++        name=self.report['native_entry_touch']; path=self.root/name
++        original=json.loads(path.read_text())
++        initial=json.loads((self.root/('observations/'+self.report['initial']+'.json')).read_text())
++        changed=copy.deepcopy(original)
++        changed['second']['observed_monotonic']=initial['observed_monotonic']
++        self.fixture.write(name,changed);self.fixture.refresh()
++        with self.assertRaisesRegex(ValueError,'follow its portal and precede its native observation'):
++            self.verify()
++
++    def test_each_opening_requires_its_separate_readiness_record(self):
++        for item,key in ((self.report,'native_entry_ready'),(self.report['reopen'],'native_ready')):
++            original=item.pop(key);self.fixture.refresh()
++            with self.assertRaisesRegex(ValueError,'separate original native-entry readiness'):
++                self.verify()
++            item[key]=original
++
++    def test_reopen_readiness_cannot_reuse_the_first_opening(self):
++        self.report['reopen']['native_ready']=self.report['native_entry_ready']
++        self.fixture.refresh()
++        with self.assertRaisesRegex(ValueError,'follow its portal and precede its native observation'):
++            self.verify()
++
++    def test_readiness_replays_actual_control_and_all_original_frames(self):
++        name=self.report['native_entry_ready']
++        ready=json.loads((self.root/name).read_text())
++        final=ready['observations'][-1]
++        ui_path=self.root/final['ui']; original=ui_path.read_bytes()
++        for change in ({'text':'Another control'},{'enabled':'false'},
++                       {'clickable':'false'},{'bounds':'[100,300][150,350]'}):
++            with self.subTest(change=change):
++                tree=ET.fromstring(original);tree.find('node').attrib.update(change)
++                ui_path.write_bytes(ET.tostring(tree));self.fixture.refresh()
++                with self.assertRaisesRegex(ValueError,'readiness does not end in an accepted'):
++                    self.verify()
++        ui_path.write_bytes(original)
++        first=ready['observations'][0]
++        image=self.root/first['capture']['file']
++        image.write_bytes(image.read_bytes()+b'changed-original-wait-frame')
++        self.fixture.refresh()
++        with self.assertRaisesRegex(ValueError,'Original Flutter readiness frame changed'):
++            self.verify()
++
++    def test_readiness_cannot_authorize_the_actual_native_touch_frame(self):
++        ready=json.loads((self.root/self.report['native_entry_ready']).read_text())
++        name=self.report['native_entry_touch'];native=json.loads((self.root/name).read_text())
++        native['first']=copy.deepcopy(ready['observations'][-1])
++        self.fixture.write(name,native);self.fixture.refresh()
++        with self.assertRaisesRegex(ValueError,'new original frames and hierarchies'):
++            self.verify()
++
++    def test_readiness_cannot_skip_an_earlier_accepted_control(self):
++        name=self.report['native_entry_ready'];ready=json.loads((self.root/name).read_text())
++        first,final=ready['observations']
++        (self.root/first['ui']).write_bytes((self.root/final['ui']).read_bytes())
++        first.pop('reason');first['target']=copy.deepcopy(final['target'])
++        self.fixture.write(name,ready);self.fixture.refresh()
++        with self.assertRaisesRegex(ValueError,'readiness must stop at its first accepted'):
++            self.verify()
++
+ 
+ if __name__ == '__main__':
+     unittest.main()
+--- a/tools/android_qa/tests/test_connect_four_flutter_navigation.py
++++ b/tools/android_qa/tests/test_connect_four_flutter_navigation.py
+@@ -228,6 +228,171 @@
+         self.assertEqual(len(self.capture_timeouts), 1)
+         self.assertEqual(self.inputs, [])
+ 
++    def arm_native_opt_in(self, tag, *, controls=None, after_portal=None):
++        """Synthetic navigation boundary; real target/frame methods stay active."""
++        def dispatch(name, *args, **kwargs):
++            result = self.original(name, *args, **kwargs)
++            if name == tag + '-touch':
++                self.destination = ([node(PROBE.contract.NATIVE_ENTRY, bounds='[820,100][970,250]')]
++                                    if controls is None else controls)
++                if after_portal is not None:
++                    after_portal()
++            return result
++        self.value.original = mock.Mock(side_effect=dispatch)
++
++    def test_first_opening_uses_fresh_portal_and_enabled_native_opt_in(self):
++        self.direct_destination()
++        self.arm_native_opt_in('open-c4')
++        result = self.value.open_native_from_flutter('open-c4')
++        self.assertEqual(self.inputs, [
++            ('open-c4-touch', ('shell','input','swipe','283','1905','283','1905','120')),
++            ('open-c4-native-touch', ('shell','input','swipe','895','175','895','175','120')),
++        ])
++        portal = json.loads((self.out/result['portal_touch']).read_text())
++        readiness = json.loads((self.out/result['native_ready']).read_text())
++        native = json.loads((self.out/result['native_touch']).read_text())
++        self.assertEqual(portal['target']['label'], PROBE.contract.PORTAL)
++        self.assertEqual(readiness['label'], PROBE.contract.NATIVE_ENTRY)
++        self.assertEqual(len(readiness['observations']), 1)
++        self.assertEqual(native['target']['label'], PROBE.contract.NATIVE_ENTRY)
++        frames = [portal['first'],portal['second'],*readiness['observations'],native['first'],native['second']]
++        self.assertEqual(len({frame['ui'] for frame in frames}), 5)
++        self.assertEqual(len({frame['capture']['file'] for frame in frames}), 5)
++        self.assertTrue(all(first['observed_monotonic'] < second['observed_monotonic']
++                            for first, second in zip(frames, frames[1:])))
++        self.assertEqual(len(self.capture_timeouts), 5)
++
++    def test_reopening_after_one_return_requires_another_actual_opt_in_touch(self):
++        self.arm_native_opt_in('reopen-c4')
++        self.value.return_to_flutter('return-first')
++        self.value.native_touch.assert_called_once_with('return-first', 'back')
++        self.assertEqual(len(self.inputs), 1)
++        ready = json.loads((self.out/self.value.returns[0]['games_ready']).read_text())
++        result = self.value.open_native_from_flutter('reopen-c4')
++        self.assertEqual([entry[0] for entry in self.inputs],
++                         ['return-first-to-games-touch','reopen-c4-touch','reopen-c4-native-touch'])
++        portal = json.loads((self.out/result['portal_touch']).read_text())
++        native_ready = json.loads((self.out/result['native_ready']).read_text())
++        native = json.loads((self.out/result['native_touch']).read_text())
++        self.assertGreater(portal['first']['observed_monotonic'],
++                           ready['observations'][-1]['observed_monotonic'])
++        self.assertGreater(native_ready['observations'][0]['observed_monotonic'],
++                           portal['second']['observed_monotonic'])
++        self.assertGreater(native['first']['observed_monotonic'],
++                           native_ready['observations'][-1]['observed_monotonic'])
++        self.assertEqual(len(self.value.returns), 1)
++
++    def test_ineligible_native_opt_in_never_dispatches_native_input(self):
++        valid = node(PROBE.contract.NATIVE_ENTRY, bounds='[820,100][970,250]')
++        cases = {
++            'missing':[], 'disabled':[{**valid,'enabled':'false'}],
++            'ambiguous':[valid,valid], 'not-clickable':[{**valid,'clickable':'false'}],
++            'clipped':[{**valid,'bounds':'[950,100][1100,250]'}],
++            'too-small':[{**valid,'bounds':'[820,100][920,200]'}],
++            'foreign-package':[{**valid,'package':'another.app'}],
++            'wrong-caption':[{**valid,'content-desc':'3D'}],
++        }
++        for name, controls in cases.items():
++            with self.subTest(name=name):
++                self.now=0.0; self.direct_destination(); self.inputs.clear()
++                self.value.deadline=5.0
++                self.destination=[node(PROBE.contract.PORTAL)]
++                tag='ineligible-'+name
++                self.arm_native_opt_in(tag,controls=controls)
++                with self.assertRaises(TimeoutError):
++                    self.value.open_native_from_flutter(tag)
++                self.assertEqual([entry[0] for entry in self.inputs], [tag+'-touch'])
++
++    def test_native_opt_in_must_remain_enabled_for_its_second_observation(self):
++        self.direct_destination()
++        self.arm_native_opt_in('changed')
++        read = self.read_nodes
++        count = 0
++        def changing_nodes(out, name):
++            nonlocal count
++            if name.startswith('changed-native-') and not name.startswith('changed-native-ready-'):
++                count += 1
++                if count == 2:
++                    self.destination=[node(PROBE.contract.NATIVE_ENTRY, enabled='false',
++                                           bounds='[820,100][970,250]')]
++            return read(out,name)
++        self.value.ui.read_live_nodes = changing_nodes
++        with self.assertRaises(ValueError):
++            self.value.open_native_from_flutter('changed')
++        self.assertEqual(count, 2)
++        self.assertEqual([entry[0] for entry in self.inputs], ['changed-touch'])
++
++    def test_native_opt_in_frame_change_blocks_dispatch_after_portal(self):
++        self.direct_destination()
++        self.arm_native_opt_in('frame-change')
++        wait = self.value.wait_for_flutter_control
++        def tamper_after_readiness(*args, **kwargs):
++            result = wait(*args, **kwargs)
++            self.tamper_frame=True
++            return result
++        self.value.wait_for_flutter_control = tamper_after_readiness
++        with self.assertRaisesRegex(ValueError,'Flutter frame changed before touch'):
++            self.value.open_native_from_flutter('frame-change')
++        self.assertEqual([entry[0] for entry in self.inputs], ['frame-change-touch'])
++
++    def test_existing_global_budget_expires_between_portal_and_opt_in(self):
++        self.direct_destination()
++        def expire():
++            self.now=900.0
++        self.arm_native_opt_in('expired-after-portal',after_portal=expire)
++        with self.assertRaisesRegex(TimeoutError,'exceeded 900 seconds'):
++            self.value.open_native_from_flutter('expired-after-portal')
++        self.assertEqual([entry[0] for entry in self.inputs], ['expired-after-portal-touch'])
++        self.assertEqual(len(self.capture_timeouts), 2)
++
++    def test_delayed_native_button_is_observed_without_another_portal_touch(self):
++        self.direct_destination()
++        portal_at = None
++        def remember_portal():
++            nonlocal portal_at
++            portal_at = self.now
++        self.arm_native_opt_in('delayed', controls=[], after_portal=remember_portal)
++        read = self.read_nodes
++        def delayed_nodes(out, name):
++            if portal_at is not None and self.now - portal_at >= 4.5:
++                self.destination=[node(PROBE.contract.NATIVE_ENTRY, bounds='[820,100][970,250]')]
++            if name.startswith('delayed-native-ready-'):
++                self.assertEqual([entry[0] for entry in self.inputs], ['delayed-touch'])
++            return read(out, name)
++        self.value.ui.read_live_nodes = delayed_nodes
++        result = self.value.open_native_from_flutter('delayed')
++        ready = json.loads((self.out/result['native_ready']).read_text())
++        self.assertGreater(len(ready['observations']), 1)
++        self.assertTrue(all('reason' in item and 'target' not in item
++                            for item in ready['observations'][:-1]))
++        self.assertEqual(ready['observations'][-1]['target']['label'], PROBE.contract.NATIVE_ENTRY)
++        native = json.loads((self.out/result['native_touch']).read_text())
++        self.assertLess(ready['observations'][-1]['observed_monotonic'],
++                        native['first']['observed_monotonic'])
++        self.assertEqual(len(self.capture_timeouts), len(ready['observations']) + 4)
++        self.assertTrue(all(0 < value <= 30 for value in self.capture_timeouts))
++        self.assertEqual([entry[0] for entry in self.inputs], ['delayed-touch','delayed-native-touch'])
++
++    def test_native_button_timeout_keeps_one_portal_touch_and_no_native_input(self):
++        self.direct_destination()
++        portal_at = None
++        def remember_portal():
++            nonlocal portal_at
++            portal_at = self.now
++        self.arm_native_opt_in('never-ready', controls=[], after_portal=remember_portal)
++        with self.assertRaisesRegex(TimeoutError, 'No qualifying actual Flutter destination'):
++            self.value.open_native_from_flutter('never-ready')
++        self.assertEqual([entry[0] for entry in self.inputs], ['never-ready-touch'])
++        self.assertGreaterEqual(self.now - portal_at, 30.0)
++        self.assertLess(self.now - portal_at, 30.25)
++        failure = json.loads((self.out/'never-ready-native-ready-wait-failure.json').read_text())
++        self.assertEqual(failure['timeout_seconds'], 30)
++        self.assertTrue(failure['observations'])
++        self.assertTrue(all('target' not in item for item in failure['observations']))
++        self.assertFalse((self.out/'never-ready-native-flutter-touch.json').exists())
++        self.assertFalse((self.out/'never-ready-native-ready-flutter-ready.json').exists())
++        self.value.native_touch.assert_not_called()
++
+ 
+ if __name__ == '__main__':
+     unittest.main()

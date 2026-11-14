@@ -1,3 +1,5 @@
+import 'package:lumo_lernen/core/reward_wallet_repository.dart';
+import 'package:flutter/services.dart';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -16,6 +18,13 @@ ConnectFourEngine _play(List<int> columns) {
 }
 
 void main() {
+  setUp(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+            const MethodChannel('lumo_lernen/connect_four'),
+            (_) async =>
+                throw MissingPluginException('Flutter fallback fixture'));
+  });
   test('default Lumo level stays mittel and still blocks at column 3', () {
     final game = _play([0, 6, 1, 6, 2]);
     expect(game.turn, ConnectPiece.lumo);
@@ -68,12 +77,12 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     await tester.binding.setSurfaceSize(const Size(412, 915));
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    final app = LumoAppState();
+    final app = LumoAppState(walletRepository: RewardWalletRepository());
     addTearDown(app.dispose);
     await tester.pumpWidget(MaterialApp(
       home: LumoConnectFourScreen(appState: app, seed: 1),
     ));
-    await tester.pump();
+    await tester.pumpAndSettle();
     expect(find.byKey(const ValueKey('connect-level-leicht')), findsOneWidget);
     expect(find.byKey(const ValueKey('connect-level-mittel')), findsOneWidget);
     expect(find.byKey(const ValueKey('connect-level-schlau')), findsOneWidget);

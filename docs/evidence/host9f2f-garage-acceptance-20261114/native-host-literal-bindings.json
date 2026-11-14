@@ -1,0 +1,25 @@
+{
+  "scope": "Literal current Host bindings to the two changed Native file hashes; static source read only",
+  "command": [
+    "rg",
+    "--hidden",
+    "--fixed-strings",
+    "--line-number",
+    "-e",
+    "170c162ccd67158ee12409b3bdca23a1af287438d1093e19490c11c19423e185",
+    "-e",
+    "d1d8130bf5652aae3d23f651011a4872e19c10c9",
+    "-e",
+    "901a1a919d816895888a58921db557b3f47812950975fc9e04e1b4ab2fbd074c",
+    "-e",
+    "9bea54cf996ac3fecb4c8027d5eb8e98e40b69bc",
+    "scripts",
+    "tools",
+    ".github",
+    "config"
+  ],
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "",
+  "matches": []
+}

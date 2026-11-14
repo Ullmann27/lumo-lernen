@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "worktree": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16",
+  "base_commit": "cc65ea959eaf98efefdfe007df988c32e909b0c5",
+  "owned_paths": [
+    "scripts/android_framework_ready.py",
+    "scripts/verify_android_runtime_anr.py",
+    "scripts/tests/test_verify_android_runtime_anr.py"
+  ],
+  "sources": {
+    "scripts/android_framework_ready.py": {
+      "bytes": 29916,
+      "sha256": "0b501e19f4aaa56c69c593a3fdbcacce508ef55dd255671e059651b1e8e0b190",
+      "git_blob": "61d4f084ba30291796481db51ab9366ddd5d57b8"
+    },
+    "scripts/verify_android_runtime_anr.py": {
+      "bytes": 20361,
+      "sha256": "c71acb91a77285699b8bb70a8e4846f41363e378171707e2c06eae9367b55e60",
+      "git_blob": "3561471b7ac6896faf12a3ad9f78f31fa16abdda"
+    },
+    "scripts/tests/test_verify_android_runtime_anr.py": {
+      "bytes": 24164,
+      "sha256": "afe8e382f58a4a579ac2b25fb49fdf22f7297db0b0d1ceb88264841ee3703046",
+      "git_blob": "ad15a8aa8f81e72e662577742a02d738749a6d6a"
+    }
+  },
+  "tests": [
+    {
+      "log": "focused.log",
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "log": "framework-neighbors.log",
+      "passed": 29,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "unchanged_test_sources": 26,
+  "negative_then_positive_cases": [
+    {
+      "red_log": "delayed-parent-before.log",
+      "cause": "Parent timestamp taken after Popen could follow the actual child start; final code captures immediately beforePopen."
+    },
+    {
+      "red_log": "adb-start-before.log",
+      "cause": "Exact successful original77-byte ADB daemon startup was rejected; final code allows only empty or these exact bytes, with successful wait rc still mandatory."
+    }
+  ],
+  "prior_frozen_pack": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-anr-review",
+    "manifest": {
+      "bytes": 2567,
+      "sha256": "c651946369609b7d21dec053042d88fe5c534e06187868ebccd39269b511044e"
+    },
+    "meaning": "17+29 intermediate source checkpoint remains unchanged; not relabelled as the final19+29 result."
+  },
+  "originals": {
+    "wait-for-device.stderr": {
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/wait-for-device.stderr",
+      "retained_path": "original-config/wait-for-device.stderr",
+      "bytes": 77,
+      "sha256": "d84aaa3222b49c6dfc6c07666347890c6ad2ff255b911fa83525c5814e54963c"
+    },
+    "cli22/packages-guard/image/package.xml": {
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/cli22/packages-guard/image/package.xml",
+      "retained_path": "original-config/cli22/packages-guard/image/package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    "cli22/packages-guard/image/source.properties": {
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/cli22/packages-guard/image/source.properties",
+      "retained_path": "original-config/cli22/packages-guard/image/source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    "cli22/avd-guard/configuration/hardware-qemu.ini": {
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/cli22/avd-guard/configuration/hardware-qemu.ini",
+      "retained_path": "original-config/cli22/avd-guard/configuration/hardware-qemu.ini",
+      "bytes": 4148,
+      "sha256": "0e30db1472fa409bf9dd67d73b464a556b81b83bd9aa7e0b2f6486334b6a0d3a"
+    },
+    "cli22/packages-guard/emulator/source.properties": {
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/cli22/packages-guard/emulator/source.properties",
+      "retained_path": "original-config/cli22/packages-guard/emulator/source.properties",
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    }
+  },
+  "unchanged_controls": [
+    "Original guard120-second maximum",
+    "Default startup-monitor450seconds",
+    "Explicit monitor budget1..7200seconds only; no extension/restart after errors",
+    "Original ANR/ActivityManager/InputDispatcher history veto",
+    "Strict monitor.stderr and logcat-all.stderr; wait stderr only empty or exact successful77bytes",
+    "No GMS exception or rewriting of framework-readiness.json",
+    "No workflow, APK, profile, pin, receipt, Git-index, commit or ref mutation"
+  ],
+  "cli": {
+    "start": "android_framework_ready.py start --out FRAMEWORK --serial emulator-5554 --monitor-seconds 3600",
+    "begin": "verify_android_runtime_anr.py begin --framework-out FRAMEWORK --out RUNTIME --serial emulator-5554",
+    "finish": "verify_android_runtime_anr.py finish --framework-out FRAMEWORK --out RUNTIME --serial emulator-5554 --tour-exit-code CODE",
+    "verify": "verify_android_runtime_anr.py verify --framework-out FRAMEWORK --out RUNTIME [--report NEW_JSON]"
+  },
+  "scope": "Local contracts and source-bound historical ANR replay, including an explicitly synthetic local adb subprocess. No actual new emulator/device/APK/visual/performance acceptance. Root owns the real isolated workflow."
+}

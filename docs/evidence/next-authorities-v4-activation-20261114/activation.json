@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "status": "ACTIVATE_REPAIRED_FIVE_GROUP_QUALIFICATION",
+  "source_checkpoint": {
+    "head": "528a265a7cc9e28f26523249b07fba0fdc1bf801",
+    "tree": "d209a72bf2fefe9890e570d0c5739b760f3bec0d"
+  },
+  "native": {
+    "head": "2e023854b49979720fec7e176dfe3d7cbc7fc3c7",
+    "tree": "0904821ed75ad1adbcc6a7057be2355c694f5dba"
+  },
+  "workflow": {
+    "blob": "fbd470a24012b238de1e347c0021e40951aa7c23",
+    "sha256": "fa59d9fa5b2fbc333300c57b821561132aab0f043bf1ba4e9f7f07840b1d17eb",
+    "bytes": 65909
+  },
+  "prior_run": {
+    "id": 43623178880,
+    "attempt": 1,
+    "host": "bca5333767918398ba2414cc6cf5cd23af079f90",
+    "native": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+    "outcome": "failure",
+    "note": "Original Android and Flutter success; distinct English geometry, Memory report-marker and binary-index comparison failures retained."
+  },
+  "actual_preflight": {
+    "syntax_source_commit": "528a265a7cc9e28f26523249b07fba0fdc1bf801",
+    "python_bodies": 9,
+    "actionlint_invocations": 1,
+    "actionlint_exit": 0,
+    "shellcheck_available": false,
+    "snapshot_program_sha256": "1ed0e3cd4c7839d9d3e3427767fb5eaadf0550a782885fb373bd694e2cc65760",
+    "git_fixture_contracts": 6,
+    "git_fixture_scope": "Actual isolated synthetic repositories; two permitted states and four rejected source/index mutations. Exact snapshot body retained in the final committed workflow."
+  },
+  "execution_identity": "The actual upcoming github.sha, paired with the exact Native commit/tree above; no earlier result transferred.",
+  "groups": [
+    "memory",
+    "quiz",
+    "english",
+    "android-host-compile",
+    "flutter-contracts"
+  ],
+  "minutes_per_group": 35,
+  "active_apk_unchanged": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+  "new_renderer_or_product_outcomes": "PENDING"
+}

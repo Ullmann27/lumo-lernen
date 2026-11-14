@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_NOT_EXECUTED",
+  "base": {
+    "head": "a118409930ecdf605743382051e88f7e0898b8e9",
+    "tree": "68573f0c40ce641a6443a5648fd664bc44ca6c95"
+  },
+  "producer": {
+    "head": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+    "tree": "17b4d10565001b61fe1fa5012004cce4ec7642d9",
+    "parent": [
+      "cf2593cb6dec51b66461c8e5984dfbfdd5091c22"
+    ],
+    "original_compare": {
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/cf2593cb6dec51b66461c8e5984dfbfdd5091c22...07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "identity": {
+        "bytes": 560969,
+        "sha256": "2c18a47de83c3bc156f09e79dc56334bb8e261b53e5e50de0cb3b593bd3333dd",
+        "git_blob": "b50b4ef45409a5f148b9043d63813d25c2af66cb"
+      }
+    }
+  },
+  "source_count": 16,
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "bytes": 24911,
+    "sha256": "c5df8d36119680d4b634f3c294545d7d43be5b43fc6a1e8e819f956bfc9426c8",
+    "git_blob": "36a0657775ac4991acbf9f0714771e38d36a0dd9"
+  },
+  "patch": {
+    "path": "integration.patch",
+    "bytes": 29600,
+    "sha256": "72424cc613ae80653ab6bc492abb1ff52bfc365c472c0382d006a167be56da28",
+    "git_blob": "12ded8db35215d05b73c6420630f83e25d8f0250"
+  },
+  "native_pairing": {
+    "path": "native-pairing.json",
+    "bytes": 4788,
+    "sha256": "a700a2eafb9f53adc4d46c45b532fc246fe3ae3c9213d32ab1529011b876a091",
+    "git_blob": "94eaed1888eeb8f3f9107e353b0ddcf38fa00bb1"
+  },
+  "ownership_paths": [
+    "lib/features/games/games_content.dart",
+    "lib/features/games/spielwelt/spielwelt_game_icon.dart",
+    "lib/features/games/spielwelt/spielwelt_hub.dart",
+    "lib/features/games/spielwelt/spielwelt_routes.dart",
+    "lib/features/lumo3d/lumo3d_launcher.dart",
+    "lib/features/lumo3d/lumo_game_entry_overlay.dart",
+    "scripts/run_full_flutter_acceptance.py",
+    "test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+    "test/games/dorfwirtschaft_portal_test.dart",
+    "test/games/games_world_layout_test.dart",
+    "test/games/spielwelt_hub_capture_test.dart",
+    "test/games/spielwelt_routing_test.dart",
+    "test/games/spielwelt_semantics_action_test.dart",
+    "test/lumo_game_entry_overlay_test.dart",
+    "tools/auto_install/LumoGameActivity.kt",
+    "tools/auto_install/MainActivity.kt"
+  ],
+  "protected_dependency_count": 52,
+  "source_provenance": {
+    "exact_published_files": 14,
+    "selected_main_activity": 1,
+    "single_capture_mapping": 1
+  },
+  "new_tests_and_devices": "NOT_RUN",
+  "current_full_runner_required_capture_cases": 6,
+  "skip_allowance_changed": false,
+  "separate_android_proposal": {
+    "directory": "host-pr497-village-qa-proposal-a118-20261114",
+    "freeze": {
+      "bytes": 6758,
+      "sha256": "f65135ab34e78226e7b3a6a4efdb88378fa85c206063f329667ca72d22d60e37",
+      "git_blob": "b5a3da1a4eac0a04a30afefdf0cd97e8eae05d99"
+    },
+    "source_count": 3,
+    "static_methods": 34,
+    "executed": 0
+  },
+  "independent_review": "Requested from pipeline_repair; final review is a separate later artifact",
+  "git_worktree_version_pin_workflow_changes": false,
+  "artifact_omissions": {
+    "large_original_assets_or_apks": [],
+    "reason": "No such payload was downloaded or required for this source proposal; existing protected assets are bound to their published base blobs."
+  },
+  "limitations": [
+    "Combined Host/Native product behavior has not been executed",
+    "Existing afc0df9 headless originals retain their own source and scope",
+    "No village audio, Android, physical device, FPS or release approval"
+  ]
+}

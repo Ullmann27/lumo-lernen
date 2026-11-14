@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_NOT_RUN",
+  "base_host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "base_tree": "a97942c991cbb38d22c8b97f06a3e5bb162ab942",
+  "created_utc": "2026-11-14T20:49:25.040146+00:00",
+  "source_count": 1,
+  "sources": [
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 10816,
+        "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+        "git_blob": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+      },
+      "after": {
+        "bytes": 11449,
+        "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+        "git_blob": "830b3f661c2a289f5ae76ed545cfed60fe27b36a"
+      },
+      "provenance": "Exact Root-supplied producer-prepared immutable GitHub blob 830b3f661c2a289f5ae76ed545cfed60fe27b36a; fetched once and fully UTF-8/Gitblob checked. No new producer commit identity is assumed."
+    }
+  ],
+  "excluded_producer_hunks": [
+    ".github/workflows/lumo-nextgen-feature-contracts.yml"
+  ],
+  "tests_executed": false,
+  "product_changes": false,
+  "git_or_ci_mutation": false
+}

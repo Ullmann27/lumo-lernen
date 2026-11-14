@@ -1,0 +1,9 @@
+test_exact_five_new_jobs_bind_only_the_followup_workflow_and_branch (scripts.tests.test_unchanged_apk_followup.FollowupRouteContracts.test_exact_five_new_jobs_bind_only_the_followup_workflow_and_branch) ... ok
+test_followup_cannot_borrow_historical_or_creative_run_identity (scripts.tests.test_unchanged_apk_followup.FollowupRouteContracts.test_followup_cannot_borrow_historical_or_creative_run_identity) ... ok
+test_missing_duplicate_wrong_named_or_wrong_attempt_job_never_binds (scripts.tests.test_unchanged_apk_followup.FollowupRouteContracts.test_missing_duplicate_wrong_named_or_wrong_attempt_job_never_binds) ... ok
+test_original_runtime_and_creative_routes_are_unchanged (scripts.tests.test_unchanged_apk_followup.FollowupRouteContracts.test_original_runtime_and_creative_routes_are_unchanged) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+OK

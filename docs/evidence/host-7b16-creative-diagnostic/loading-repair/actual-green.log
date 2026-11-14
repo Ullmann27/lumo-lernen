@@ -1,0 +1,11 @@
+test_actual_api35_final_pause_still_matches (__main__.OriginalLoadingRasterReplay.test_actual_api35_final_pause_still_matches) ... ok
+test_actual_api35_first_pause_still_matches (__main__.OriginalLoadingRasterReplay.test_actual_api35_first_pause_still_matches) ... ok
+test_actual_api37_eventual_pause_still_matches (__main__.OriginalLoadingRasterReplay.test_actual_api37_eventual_pause_still_matches) ... ok
+test_actual_loading_caption_rejects_after_first_pass (__main__.OriginalLoadingRasterReplay.test_actual_loading_caption_rejects_after_first_pass) ... ok
+test_actual_loading_has_priority_even_over_an_observed_positive_title (__main__.OriginalLoadingRasterReplay.test_actual_loading_has_priority_even_over_an_observed_positive_title) ... ok
+test_default_reader_does_not_apply_loading_rejection (__main__.OriginalLoadingRasterReplay.test_default_reader_does_not_apply_loading_rejection) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 4.512s
+
+OK

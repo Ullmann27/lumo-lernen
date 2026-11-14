@@ -1,0 +1,336 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3030,
+      "sha256": "359a3b31c773dc8562a1bc4280bc331bfedda630426bcad9db3d26ba46a0386e",
+      "git_blob": "907c901f23ae26ff2ea5bd30a7c84061875899c6"
+    },
+    {
+      "path": "before/.github/workflows/lumo-next-table-authorities.yml",
+      "bytes": 46286,
+      "sha256": "efe60d3b94da7ace00eeeab849ec5904b686afc92a3529d44802c7bb1c164ece",
+      "git_blob": "821df1e199079b6fc3d1e7ec3609d328c7b5d332"
+    },
+    {
+      "path": "build_v2.py",
+      "bytes": 15965,
+      "sha256": "97928fbd540ba1ea996efa6fbf3d2804b7d160d783d2c35691752949c5c04609",
+      "git_blob": "d0f83ed67a4a3fc838a7596f8e85786830f669e8"
+    },
+    {
+      "path": "change-map.json",
+      "bytes": 1448,
+      "sha256": "4698463e93e3091b025b02179684ad609025337dc5ce9336e02afddb11ab2d93",
+      "git_blob": "d88d033e9d1c9a120ea7f73e2e69166dd83855e5"
+    },
+    {
+      "path": "final-source/.github/workflows/lumo-next-table-authorities.yml",
+      "bytes": 56951,
+      "sha256": "536bc3224df90bd9fd7838912e0847d55ea96d5edbce06b70ef371e2872495e5",
+      "git_blob": "f798a0a5090a326fb9718bc427b9887ff15e9be1"
+    },
+    {
+      "path": "freeze_v2.py",
+      "bytes": 16597,
+      "sha256": "b7f021f7bf5322287eba7e6abf0297087ccf6e09ba02caaea9f96662e1b832f3",
+      "git_blob": "650b439ec631a068b9a5d2f4251db92a25478e47"
+    },
+    {
+      "path": "integration.patch",
+      "bytes": 58107,
+      "sha256": "b79259d51002f77e173c06f4b224c777e6cc9a283403d17510c89c402445c855",
+      "git_blob": "114f4a391fee7b6ea848bc5cebc379dc00d02542"
+    },
+    {
+      "path": "observed-format-only/.dart_tool/package_config.json",
+      "bytes": 24899,
+      "sha256": "253d12511ab82c11bf3b71ef0f66d17aabdf2edff7d7f56434069676fc6675f7",
+      "git_blob": "3eee9e8ec8570dc2fe1a96039fabbc77f27cd152"
+    },
+    {
+      "path": "observed-format-only/.dart_tool/package_graph.json",
+      "bytes": 18715,
+      "sha256": "979410dc4465cc6fe6f536adf519d6daa74bd830d373f209e7e57c9ff78aa39b",
+      "git_blob": "08addc2746e4e693090c3e31d9952ba384dd3b3b"
+    },
+    {
+      "path": "observed-format-only/origin.json",
+      "bytes": 1406,
+      "sha256": "43a728fe062c0b641f9979da56d30df9360fb4e860716f5d6ed8d8091546f329",
+      "git_blob": "edde8fa3948e297dd62177a7dce6f0e96e72b467"
+    },
+    {
+      "path": "observed-format-only/package_config_json.dart",
+      "bytes": 10959,
+      "sha256": "70682ef0a17d72621919ac67080253ecf42a41706420d8743e3e8fba2874362e",
+      "git_blob": "57f2c84a33ed7ac1b68eb1f9adcc0235a29e8575"
+    },
+    {
+      "path": "observed-format-only/pubspec.lock",
+      "bytes": 24469,
+      "sha256": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea",
+      "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1"
+    },
+    {
+      "path": "original-source-map.json",
+      "bytes": 14606,
+      "sha256": "62fc8d416d1a0fae110f045cc594320c34b608bd1ac95de2b318815813613f86",
+      "git_blob": "433fdf061dac98be2f01df732b48b2f74a2d63c4"
+    },
+    {
+      "path": "originals/host3fac/.github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 49103,
+      "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226",
+      "git_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064"
+    },
+    {
+      "path": "originals/host3fac/pubspec.lock",
+      "bytes": 24469,
+      "sha256": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea",
+      "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1"
+    },
+    {
+      "path": "originals/host3fac/pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+    },
+    {
+      "path": "originals/host3fac/scripts/compile_android_host.sh",
+      "bytes": 3364,
+      "sha256": "fb7c338e9c551fdbb5711ed30bb19c7b799ecf75f87176757eede9cac7e7bb03",
+      "git_blob": "73d0c0d8726e6352f0bf89c25cf17bdf1270ad2f"
+    },
+    {
+      "path": "originals/host3fac/scripts/run_full_flutter_acceptance.py",
+      "bytes": 6523,
+      "sha256": "d51614e941cc3c8cec83da860aa9e6b47a0cc47fd5ec8df25c441b8a023c547d",
+      "git_blob": "9999632174044af584c87147c5347c167b830918"
+    },
+    {
+      "path": "originals/host3fac/scripts/verify_connect_four_candidate.py",
+      "bytes": 11403,
+      "sha256": "d4355d1f4ae56fa294fe6ba8c66b1bd145cb772ca9ceda0cc8ac2f803dea0cea",
+      "git_blob": "bb496435fe24ecd34fd24809e12d51df6c2952be"
+    },
+    {
+      "path": "originals/host3fac/scripts/verify_connect_four_delivery.py",
+      "bytes": 67003,
+      "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18",
+      "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871"
+    },
+    {
+      "path": "originals/host3fac/test/games/memory_native_entry_test.dart",
+      "bytes": 15014,
+      "sha256": "7bdc82668c385d1b99a68ee1e5e471d25c778500b09fd4a7f769a4c76b46eee5",
+      "git_blob": "eeb25b267ac05f8256b677428c364d97b5ae1648"
+    },
+    {
+      "path": "originals/host3fac/test/games/memory_result_frame_test.dart",
+      "bytes": 6098,
+      "sha256": "7212a9483853a37bc0e3cc533ae77552db4424a2fadccc8868f0d2ca7605696d",
+      "git_blob": "15ded52fc7465206672a85ad09e287b5393e8e4a"
+    },
+    {
+      "path": "originals/host3fac/test/quiz_native_roundtrip_lifecycle_test.dart",
+      "bytes": 14514,
+      "sha256": "3436faf0dfdc0ba386f2881c057b265b2419aacaff53892d106dac70270b57de",
+      "git_blob": "92e220331786a78b21bf800e98a3d927c9b2711a"
+    },
+    {
+      "path": "originals/host3fac/test/reward_wallet_queue_zone_test.dart",
+      "bytes": 9797,
+      "sha256": "7062af9ecdcb3ecdccd428adadfb72a67e529e81cb670735b2b3f73042acf347",
+      "git_blob": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3"
+    },
+    {
+      "path": "originals/host3fac/test/table_games_launcher_binding_test.dart",
+      "bytes": 10384,
+      "sha256": "ccc6299e38586ffcc86e787a8c194b85218118e2dc637bb4dda7b57a59c16ef1",
+      "git_blob": "705e90212916b784136a33088a4dbedaf7f0f8e2"
+    },
+    {
+      "path": "originals/host3fac/test/table_games_wallet_profile_test.dart",
+      "bytes": 12489,
+      "sha256": "1d15b4610b84c3432cac20446be22f47884af749472fae45570c273a0aab9f3b",
+      "git_blob": "2646c037d575b068a697e99c574ace047aaa57a3"
+    },
+    {
+      "path": "originals/host3fac/test/tutoring/native_english_activity_test.dart",
+      "bytes": 7686,
+      "sha256": "3f0f0c9c331c23fd1f8372349a941976657c10d450c629092d86ec59dacc396c",
+      "git_blob": "e12cadfa4bdc33be932fc1e570f5ce51d17f0c39"
+    },
+    {
+      "path": "originals/host3fac/tool/check_native_english_activity.dart",
+      "bytes": 12610,
+      "sha256": "59c89f50faf62be0f06c3d7c35f4c7d517ec67c73f059779a57767951569997a",
+      "git_blob": "2d304dfbf89e7be2cd123808b8a3352d7622e87b"
+    },
+    {
+      "path": "originals/host3fac/tools/android_qa/memory_native_authority.dart",
+      "bytes": 15449,
+      "sha256": "e3de35b76215e65923d7f45787f2b1351e9bc08c791741c016d8cc9ed4fecf9b",
+      "git_blob": "1126cbb3c26c7f4f4b48eb58910cdb30d73d1f0d"
+    },
+    {
+      "path": "originals/host3fac/tools/android_qa/quiz_native_authority.dart",
+      "bytes": 5561,
+      "sha256": "c17053575ab585f637806927c433ad7b82db3d6782321d09d6b475e8d3b65a34",
+      "git_blob": "7ded270bb685306e74faa024043ec9638f0cc8d1"
+    },
+    {
+      "path": "originals/native-ce909/scripts/tests/learning_english_regression.gd",
+      "bytes": 33455,
+      "sha256": "c6ce712d4b8539c6cb08e0accbd94853cc7c53aa87f43c16342055073f5578e9",
+      "git_blob": "0a86b01f2f1de7058f50f185e60746fb7d7564e1"
+    },
+    {
+      "path": "originals/native-ce909/scripts/tests/memory_table_regression.gd",
+      "bytes": 14227,
+      "sha256": "60d2145c830c4f93f38153031be35aa42760eb646b4a594a1ab8174ef8a3155d",
+      "git_blob": "b9122337e25e9a529e4e8602a0c5e8e3e680f831"
+    },
+    {
+      "path": "originals/native-ce909/scripts/tests/memory_table_runtime.gd",
+      "bytes": 14860,
+      "sha256": "d911b1ce4bb19b83aa919827f4484281898c4eb4ee8621d8c7e5869345c2c775",
+      "git_blob": "f4fc0d96b5b67e91969dac610bdc5c550f590640"
+    },
+    {
+      "path": "originals/native-ce909/scripts/tests/quiz_studio_runtime.gd",
+      "bytes": 40358,
+      "sha256": "bacb40d4b7a585c838920c423ae03a24c7b8b13c3eba79df93d91bf3d498e948",
+      "git_blob": "623e76afd47d1cd96fcaebdebacac0a684f38f7b"
+    },
+    {
+      "path": "originals/native-ce909/tools/run_godot_probe.py",
+      "bytes": 2934,
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "git_blob": "c23859ece2d62101d000d7a89556fda5d3fe4105"
+    },
+    {
+      "path": "originals/native-ce909/tools/run_memory_native_authority.py",
+      "bytes": 12800,
+      "sha256": "0b5f2234fc8ecfcf25f9d7c134a02538e3978d2d7d7413a48cc2a931ddd0c15c",
+      "git_blob": "54103c9ee0cd4070b808273dca48a169883a1ec5"
+    },
+    {
+      "path": "originals/native-ce909/tools/run_quiz_native_authority.py",
+      "bytes": 10531,
+      "sha256": "ac5b669d565a9f0158af450a6e86cf05a7acc869af63a858cfc817a7b9a6388b",
+      "git_blob": "5f02cec5a8eb9f2d0addd43fcfa1cd5717ff63b8"
+    },
+    {
+      "path": "originals/native-ce909/tools/validate_project.py",
+      "bytes": 13288,
+      "sha256": "c2309d85ac895296b426a5b0054d1a4dfb5b99dc93381e3c3430e4682f978615",
+      "git_blob": "9cfe2db9504c0141061a2388deb6dc73be9513ec"
+    },
+    {
+      "path": "originals/native-ce909/tools/verify_dream_rasters.py",
+      "bytes": 20254,
+      "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+      "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+    },
+    {
+      "path": "originals/native290-authority-workflow.original.yml",
+      "bytes": 9280,
+      "sha256": "1c2402dd44a8f9abe13a5d1bdb72c655ef1bcada58e96bfb7f31cbbffc90fd6f",
+      "git_blob": "b8698b092e7f46bcd319f31479f75e0d5e2536e0"
+    },
+    {
+      "path": "qualification-contract.json",
+      "bytes": 8490,
+      "sha256": "a398957ba94e9c1fc5decf364cf75716123797654c87445c8af8dd1e9a1b6fe8",
+      "git_blob": "738d6f2ab7d821caea7b0de556ead507ffce3c7a"
+    },
+    {
+      "path": "review-only-inline-code/flutter_focused_invocation.py",
+      "bytes": 7020,
+      "sha256": "92419ac5b4ae5243d474f900987d172deaf6ea839c7257690d1734b85d655a5a",
+      "git_blob": "a6191b77b7134e1fdd722ba935879c3531fe5634"
+    },
+    {
+      "path": "review-only-inline-code/package_snapshot.py",
+      "bytes": 6203,
+      "sha256": "eee9285bfb556de77b30f0af3e57a2e02e23500485cdffdec0002a53066053fc",
+      "git_blob": "22f874343afde68f6c09c50b42a615cd118254f3"
+    },
+    {
+      "path": "review-only-inline-code/source_snapshot.py",
+      "bytes": 6207,
+      "sha256": "fd020d787fe98822be46450eb9a5b4091a7fb558db2576edeef914cfe07b896a",
+      "git_blob": "3edac861de51b4823caba4bacec275141d0a902d"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 1642,
+      "sha256": "703d612e4b0a4e33da962046e0d671d57608353217d0b3af911a0da787f94f74",
+      "git_blob": "c89452efcba1e9985e6e19eceb7fc234491c77cc"
+    },
+    {
+      "path": "static-self-review.json",
+      "bytes": 2580,
+      "sha256": "a3ca6a3bb1d3d0378fe8f95841a1ddfbca35e0a52849a698c7305233592bc3d2",
+      "git_blob": "9b799b8a70a7d48faa7a5aa937246bc8c494df7b"
+    },
+    {
+      "path": "v1-originals/flutter-independent-review.json",
+      "bytes": 9978,
+      "sha256": "a7a2260870986e2da46e0ea747563f6b4f2fcbbac5994bb18b011e6c8be9a274",
+      "git_blob": "0c090b4dcd520adc0f5fb766cd9ad6b37161cbe1"
+    },
+    {
+      "path": "v1-originals/handoff.json",
+      "bytes": 1547,
+      "sha256": "fc2abc300e321cf1d265b2c52440a43982f7ef12e7185b607696c7642a6854e7",
+      "git_blob": "bdded41e25ef2d1152e28b0cf9468fcd3d3f5126"
+    },
+    {
+      "path": "v1-originals/manifest.json",
+      "bytes": 9883,
+      "sha256": "e3c2ff10386c305793a7a13d5744c61f3960c7957cee5ca491c644ca750f5eb3",
+      "git_blob": "d822393a238e7fa875589daa3682d99cce14cc9f"
+    },
+    {
+      "path": "v1-originals/original-source-map.json",
+      "bytes": 11818,
+      "sha256": "6514aeebbcc835b1c890ac9f8adc93e42323248c4d1171a5da3476b197e8530d",
+      "git_blob": "9dae6e3a4e912823b12b9ae6b00976d831350be1"
+    },
+    {
+      "path": "v1-originals/qualification-contract.json",
+      "bytes": 5734,
+      "sha256": "35998be08062bdb7c23ef6dfa8e5310e6a264626ba08a0646bb9feca81d58f4f",
+      "git_blob": "68ce979dbf69cbebd230a734151cd85238da3180"
+    },
+    {
+      "path": "v1-originals/roundtrip.json",
+      "bytes": 256,
+      "sha256": "734ea46cba08cbe9835ac4ba0b1f7b53908c384d28c4633147837fcfeee02f52",
+      "git_blob": "c96f385d31789cdc7d381c5f4581e727ed24b8e2"
+    },
+    {
+      "path": "v1-originals/source-freeze.json",
+      "bytes": 1262,
+      "sha256": "c78308c9ad99be6517d9c6cfca8e24fb7826300fd4d09f1f7e23943b24565ae4",
+      "git_blob": "9d0ce451a959377ef2c1f6b40ec877f03f53a77d"
+    },
+    {
+      "path": "v1-originals/static-self-review.json",
+      "bytes": 2289,
+      "sha256": "23da19655bbef083f6cd1170e5c458c61ecaea5032756c13df7db725d47084d8",
+      "git_blob": "af35aa0648d65686a0975b83d7830606d73b7f2d"
+    },
+    {
+      "path": "v1-to-v2.patch",
+      "bytes": 15640,
+      "sha256": "57b8942b222d1b95f02d9edb5038b2e3fef6e140ec71e7808c8576727962782a",
+      "git_blob": "effbe57894020a2117d934bec59f6051724218b3"
+    }
+  ]
+}

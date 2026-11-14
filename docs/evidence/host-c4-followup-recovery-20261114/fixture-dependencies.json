@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "fixture_directories": {
+    "scripts/tests/fixtures/console_launch_pr483": {
+      "files": 16,
+      "source": "Exact committed historical originals used by Parser and failure-diagnostics tests"
+    },
+    "scripts/tests/fixtures/console_launch_pr486": {
+      "files": 13,
+      "source": "Exact committed PR486 shell-error originals used by printf tests"
+    },
+    "scripts/tests/fixtures/studio_jump_decode_pr483": {
+      "files": 3,
+      "source": "Unchanged original MP4/recording and newly identified recovery provenance"
+    }
+  },
+  "existing_python_modules": [
+    "scripts/verify_connect_four_candidate.py",
+    "scripts/release_pipeline_gates.py",
+    "scripts/verify_legacy_release_pin.py",
+    "scripts/tests/test_kart_graphics_delivery.py"
+  ],
+  "external_tools": [
+    "Python3 standard library",
+    "ffmpeg and ffprobe; both mandatory, early C4 build install added",
+    "Existing Flutter3.44.9/Dart with locked pubspec dependencies",
+    "Existing actionlint"
+  ],
+  "native_dependencies": "Actual newly published/pinned 17-image Native helper and full52-mode originals; Root owns the pin switch",
+  "future_targeted_commands": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v scripts.tests.test_connect_four_delivery scripts.tests.test_connect_four_pipeline scripts.tests.test_studio_jump_decode scripts.tests.test_console_launch_originals scripts.tests.test_console_launch_failure_diagnostics scripts.tests.test_console_logger_printf",
+    "flutter test --no-pub test/learning/learning_exact_selection_test.dart --reporter=expanded",
+    "dart run tools/audit_learning_tasks_all_grades.dart <new-evidence-directory>",
+    "actionlint .github/workflows/lumo-connect-four-2020.yml .github/workflows/lumo-learning-curriculum-audit.yml"
+  ],
+  "local_vs_CI": "A local Dart audit is local evidence. Only the actual C4 job may bind GITHUB_RUN_ID/attempt and publish its current-source original audit artifact. No artificial CI identity is assigned to a local run.",
+  "no_skips_added": true,
+  "full_CI_discovery": "Existing complete Flutter and scripts suites still include every old test, all86Console cases including real AF_UNIX, and the new tests."
+}

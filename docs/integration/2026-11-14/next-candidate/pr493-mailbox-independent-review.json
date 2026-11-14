@@ -1,0 +1,314 @@
+{
+  "schema": 1,
+  "result": "NO_CONCRETE_SOURCE_BLOCKER_IN_MAILBOX_OBSERVATION_SCOPE",
+  "method": "Independent static full-source, AST and original-byte review; no product imports, tests, ADB, engine, downloads, Git or CI actions.",
+  "input_pack": "/tmp/host-pr493-mailbox-close-observation-repair-20261114",
+  "source_freeze": {
+    "bytes": 9428,
+    "sha256": "1a2c51d922eb7b9993b467eb44f04061a43541313e03fcb7383a066eb09332f8",
+    "git_blob": "ee83db0651b0e00a8d273f03f4965416673908e5"
+  },
+  "producer_commit": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+  "producer_parent": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+  "reference_commit": "36274db2941963c59b1f819ad7bc2358470d3a76",
+  "reference_tree": "39ee9cdf1567271599922d6b991399927affccae",
+  "current_b3_preimage": {
+    "host": "b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1",
+    "tree": "4ebddcbe209191714dc64cba2815e5a67b64513b",
+    "source": {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "git_blob": "f8d4ae7cdd3c38f0240a2bc20c4d78b6108f9f5d",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 28988,
+      "sha256": "e57bec15a0c8e7f57085a33ecfa661fda882af89a92bee906b016d152de54bc2",
+      "actual_blob": "f8d4ae7cdd3c38f0240a2bc20c4d78b6108f9f5d",
+      "materialized": true
+    }
+  },
+  "production": {
+    "path": ".github/probes/lumo_connect_four_android_probe.py",
+    "before": {
+      "bytes": 28988,
+      "sha256": "e57bec15a0c8e7f57085a33ecfa661fda882af89a92bee906b016d152de54bc2",
+      "git_blob": "f8d4ae7cdd3c38f0240a2bc20c4d78b6108f9f5d"
+    },
+    "after": {
+      "bytes": 29187,
+      "sha256": "df9148ab323e6e3255a23449d5342c5a033c9a20361d3d1e4a615b7eb5043583",
+      "git_blob": "585af5913ac8ec24216bd7eb877415da8c886025"
+    },
+    "patch": {
+      "bytes": 1610,
+      "sha256": "063e5c9bf5ee14ea8e51df30a1839a98e290080414617dac24f7e1ed8fc5c0b9",
+      "git_blob": "03486066901aadf5bd1ab555d8bee413c7687eaf"
+    }
+  },
+  "source_binding": {
+    "all_27_published_producer_files_match": true,
+    "files": [
+      {
+        "path": ".github/probes/lumo_connect_four_android_probe.py",
+        "bytes": 29187,
+        "sha256": "df9148ab323e6e3255a23449d5342c5a033c9a20361d3d1e4a615b7eb5043583",
+        "git_blob": "585af5913ac8ec24216bd7eb877415da8c886025"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0392-return-final-second-000-state.json",
+        "bytes": 480,
+        "sha256": "72581bbb6598e4f49a14506aa964deac6553a4bf2683197d9260d0acba0dd007",
+        "git_blob": "b7f5994338dbf7fa4ad7361b4468e17d224b8093"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0392-return-final-second-000-state.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0392-return-final-second-000-state.stdout",
+        "bytes": 568,
+        "sha256": "c3a963e3717010e8050653c3a44908573ae1bd013bb7d2a07e9276ed7a0d99b2",
+        "git_blob": "f6f8b58d6044c6a4b4f1507796a1b38abb92e1fe"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0400-return-final-second-000-preferences.json",
+        "bytes": 444,
+        "sha256": "52b2af918140544eb32a3e6182b139e79fd7f82d68d42357009ac4503ca7254c",
+        "git_blob": "931a9558e803937127b3cb6abc15b0f3a6d1a1f4"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0400-return-final-second-000-preferences.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0400-return-final-second-000-preferences.stdout",
+        "bytes": 2491,
+        "sha256": "0cd65d3aedbd34d5be92fb2345ce5ceb5b8d8c33cbe72bd4a3dd2e3b07e12f0c",
+        "git_blob": "da8d7b3b81547d5360591eb82cacd706a59afede"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0404-return-final-touch.json",
+        "bytes": 404,
+        "sha256": "918cbf9d49f8ea4dd07bb3529712d0d00acfbfba9b1abe012808c067af473328",
+        "git_blob": "5abd77f44d4be4587b3470e2e4ec486a3b754a6c"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0404-return-final-touch.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0404-return-final-touch.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0405-return-final-native-exit.json",
+        "bytes": 395,
+        "sha256": "58f56ec275c7dacaf48e3e7ca76771a13e05f09186c148ae5ccde5c2482ba849",
+        "git_blob": "5c879535e4ea68cb86bfe699ab07b7c5d39a0318"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0405-return-final-native-exit.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0405-return-final-native-exit.stdout",
+        "bytes": 5,
+        "sha256": "8562db7f9631ec4394dbfacac8fef9b8bd4f6079acfe4e371785affc5c8bcce9",
+        "git_blob": "4a6d39c9e590db4479960c263e2bacac6466e85b"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0406-return-final-return-activity.json",
+        "bytes": 376,
+        "sha256": "8ad8ac5c642128d8f5e49f57134deaa9ea90a11292877e423138aae7774c8a10",
+        "git_blob": "5232b76398e642b02aad884537ec897965c8c388"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0406-return-final-return-activity.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0406-return-final-return-activity.stdout",
+        "bytes": 39832,
+        "sha256": "a3417f122b4fb7e2dc8577e4878497e6ce823d1d651057217a788ce17d6234ed",
+        "git_blob": "d61ddcec907789a34f9f333774396275fabf92c6"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0407-return-final-native-exit.json",
+        "bytes": 395,
+        "sha256": "527ea87ecba81c0aa3b8e06dbcd3e040d297ec717ca0f04de7b0ac3ca392ba76",
+        "git_blob": "3c0705ae48d723ba5c826f9ef18bae7f99e5ea1f"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0407-return-final-native-exit.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0407-return-final-native-exit.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0408-return-final-return-activity.json",
+        "bytes": 376,
+        "sha256": "088140bb2d5119abc2a358a1b0af0bed66dafc53db2de3959023675a938a25aa",
+        "git_blob": "be6f3a964f7935ee4706f18ebebd685b980056ca"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0408-return-final-return-activity.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0408-return-final-return-activity.stdout",
+        "bytes": 39921,
+        "sha256": "15ebca68cab4904bd893b15189bbd190e5effc2dd2441e2df64b4caadf458bb6",
+        "git_blob": "7fc543c55d9882f14fd5250179e2d99cf9535dbe"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0409-return-final-closed-mailbox.json",
+        "bytes": 513,
+        "sha256": "e1101b651e0b723a5168f9f8798cf1240a0c864aba90c0ed380abd8fb874ffa3",
+        "git_blob": "d66a7a54987756f72f5a8e863d450a8e9d0b193f"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0409-return-final-closed-mailbox.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0409-return-final-closed-mailbox.stdout",
+        "bytes": 134,
+        "sha256": "48298a293602d6d5fc8d49b609fd08249f0a465a0eab3ea55bbc8cb224351fb6",
+        "git_blob": "5310f3a196464be800f85c4ba0ab66294f194761"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/source.json",
+        "bytes": 8626,
+        "sha256": "a6afefa3c64b811792639e770edd1352e5807361fa9fe204b137b60e806185fb",
+        "git_blob": "96c86759bf0279dfc15876a39e8f4683162786c0"
+      },
+      {
+        "path": "tools/android_qa/tests/test_connect_four_return_observation.py",
+        "bytes": 18191,
+        "sha256": "bd03248a177a33df7f399c90984c995e3f0352cfe14ef7f1974a9e3f590cfb53",
+        "git_blob": "2cb7163b257e997af5597e11fc2f10dec69daffb"
+      }
+    ],
+    "complete_pack_manifest_entries_checked": 70,
+    "immutable_reference_files_checked": 13,
+    "original_command_fixture_files_checked": 24
+  },
+  "preservation": {
+    "definitions_including_nested": 19,
+    "changed": [
+      "Probe.return_to_flutter"
+    ],
+    "unchanged": [
+      "write",
+      "Probe.__init__",
+      "Probe.remaining",
+      "Probe.bounded_command",
+      "Probe.original",
+      "Probe.read_json",
+      "Probe.read_preferences",
+      "Probe.density",
+      "Probe.locate",
+      "Probe.observation",
+      "Probe.wait_observation",
+      "Probe.native_touch",
+      "Probe.transition",
+      "Probe.transition.arrived",
+      "Probe.wait_for_flutter_control",
+      "Probe.flutter_touch",
+      "Probe.run",
+      "main"
+    ],
+    "whole_file_outside_changed_function_byte_equal": true,
+    "one_Back_touch_prefix_byte_equal": true,
+    "post_mailbox_persistence_flutter_games_suffix_byte_equal": true,
+    "pure_evidence_verifier": {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "mode": "100644",
+      "bytes": 36130,
+      "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7",
+      "git_blob": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa"
+    }
+  },
+  "findings": [
+    "One original Back touch still precedes the entire observation loop. The patch adds no input, route opening, filesystem cleanup or repeated action.",
+    "Every retry freshly observes native PID and foreground Activity. An empty later mailbox alone cannot replace native process exit and the existing required MainActivity/package match.",
+    "The complete mailbox find command and parent directory remain unchanged. Any state.json, including a foreign token, prevents acceptance; the patch does not filter away remaining files.",
+    "A successful empty find is accepted only after unchanged stdout-size/returncode/stderr checks, the global remaining-budget check, and the added local time.monotonic() >= deadline rejection.",
+    "The existing local deadline remains 45 seconds and rejects completion exactly at or after its boundary. The existing per-command timeout remains globally bounded; this is an acceptance deadline, not a new hard local mid-command cancellation mechanism.",
+    "Every returned find/Activity/PID response remains a separately numbered original receipt. The final item binds the fresh successful read paths, retaining all earlier nonempty observations.",
+    "The unchanged tail still validates owner and durable round, record revision, board, rules and reward data, then requires the paused Flutter UI and the existing single leave-to-games touch with fresh control observations."
+  ],
+  "historical_original": {
+    "run_id": 43616584326,
+    "attempt": 1,
+    "job_id": 132512855551,
+    "artifact_id": 14122019894,
+    "app_source": "51ec0ac43f3e2aaac065e285e13cf5db5b5875d2",
+    "observer_source": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+    "native_source": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+    "sequence": "0404 one Back; 0405 PID7113 still present; 0407 native absent; 0408 MainActivity resumed; 0409 current session state.json still present.",
+    "outcome": "FAIL remains FAIL. No later real empty response is in these originals.",
+    "scope": "24 complete published command originals and metadata were independently hashed; the old full Android ZIP was not redownloaded/reverified by this reviewer."
+  },
+  "new_test_methods_read": [
+    "test_fixture_bytes_metadata_and_actual_token_are_bound_to_originals",
+    "test_original_current_mailbox_remainder_requires_a_fresh_later_empty_observation",
+    "test_permanent_current_or_foreign_mailbox_remains_failure_without_input_repetition",
+    "test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity",
+    "test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success",
+    "test_find_finished_at_or_after_local_deadline_cannot_accept_empty_output",
+    "test_global_deadline_during_find_saves_raw_answer_but_cannot_accept_it",
+    "test_expired_global_or_local_activity_read_never_starts_an_additional_find",
+    "test_failed_find_is_not_an_empty_mailbox_proof"
+  ],
+  "controlled_test_boundaries": [
+    "The real native_touch/stable_target/original/return_to_flutter/read_preferences/persisted_round methods execute in the producer tests with controlled ADB, clock and Flutter UI boundaries.",
+    "Synthetic pre-touch PNG, later empty find answers, repeated responses and reused pre-touch preferences are explicitly labeled; they are not historical Android observations.",
+    "The nine cases preserve current/foreign mailbox rejection, correct PID/Activity necessity, fresh reobservation, local/global deadline rejection and failure of nonzero/stderr find responses."
+  ],
+  "separate_existing_validation_read": {
+    "executed_by": "pipeline_repair under Root authorization",
+    "actual_invocations": 1,
+    "methods": 54,
+    "new": 9,
+    "unchanged_neighbors": 45,
+    "seconds": 40.399,
+    "returncode": 0,
+    "raw_stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "raw_stderr": {
+      "bytes": 11928,
+      "sha256": "cde5d1aed064cce284847272f996445ab3253c23350ad9a53df508c42fb8b9bc",
+      "git_blob": "402937f0d674658f147707e2bf60faf01e2d0dd7"
+    },
+    "original_status_format": "53 inline ok records; one successful record contains an original Pillow DeprecationWarning then its own ok line. All 54 starts are unique and the complete original ends Ran 54 / OK.",
+    "rerun_by_this_reviewer": false
+  },
+  "nonblocking_documentation_note": "preservation-scope.json correctly lists Probe.transition.arrived and 19/18 definitions, but its prose calls the nested function observed_touch. This stale name is not used by the independent AST comparison and changes no source.",
+  "inspection_history": "The first read-only report assembler stopped before writing the review because it expected all 54 unittest results on one line. Original process receipt is retained separately; the second reader explicitly accounts for the one existing warning-separated success. No test was rerun.",
+  "remaining_limit": "This is source/controlled-evidence review. Actual combined candidate Android return still requires its own execution."
+}

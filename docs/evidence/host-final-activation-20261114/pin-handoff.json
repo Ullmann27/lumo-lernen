@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "status": "FINAL_FROZEN_64_PASS",
+  "pack": "/tmp/host-68f86b7-final-pin-validation-20261114",
+  "host_commit": "68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697",
+  "host_tree": "ecd5df0797c2b4102f2c7bbc30146f3061d713ce",
+  "native_commit": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "source_parent": "a9e03188083db5517d0614b2acfa289342f2de8b",
+  "actual_counts": {
+    "candidate": 24,
+    "legacy": 40,
+    "total": 64,
+    "errors": 0,
+    "failures": 0,
+    "skips": 0
+  },
+  "process": {
+    "argv": [
+      "/tmp/lumo-root-recovery-1242/py/bin/python",
+      "-m",
+      "unittest",
+      "scripts.tests.test_candidate_2011_pin",
+      "scripts.tests.test_legacy_release_pin",
+      "-v"
+    ],
+    "cwd": "/tmp/host-68f86b7-final-pin-validation-20261114/checkout",
+    "started_at": "2026-11-14T13:45:57.261233+00:00",
+    "ended_at": "2026-11-14T13:45:57.389660+00:00",
+    "elapsed_seconds": 0.1283994020004684,
+    "exit_code": 0,
+    "test_invocations": 1,
+    "stdout": {
+      "path": "unittest.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "unittest.stderr.log",
+      "bytes": 12267,
+      "sha256": "856bf81fa60db7c7c087f6b4f2fd388553a6bc8ea4fd0ee76d4d8c031f953e44"
+    }
+  },
+  "unchanged": {
+    "head_tree": true,
+    "full_index_and_status": true,
+    "materialized_source_bytes_modes": true,
+    "logical_index_entries": 4440,
+    "materialized_files": 7,
+    "explicit_sparse_absent_entries": 4433,
+    "index_sha256": "bac1910eac440acf484e889d26fc3c13d8d8e13eba26b76846431beb7b3af616"
+  },
+  "source_identity_only": true,
+  "originals": [
+    "unittest.stdout.log",
+    "unittest.stderr.log",
+    "process-result.json",
+    "environment.json",
+    "before-source.json",
+    "after-source.json",
+    "before.index.bin",
+    "after.index.bin",
+    "input-sources/",
+    "checkout-preparation.json"
+  ],
+  "archive": "compact-originals.tar.gz",
+  "archive_digest_file": "archive-roundtrip.json",
+  "limits": [
+    "No extra suite or device/renderer/CI execution.",
+    "The new Native renderer CI outcome and the final combined C4 workflow remain separate.",
+    "Preparation repaired only absent local blob materialization before the single actual test; no test retry."
+  ]
+}

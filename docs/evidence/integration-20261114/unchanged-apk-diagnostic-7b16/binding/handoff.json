@@ -1,0 +1,52 @@
+{
+  "status": "OFFLINE_CONTRACT_PASS",
+  "tests": 18,
+  "fails": 0,
+  "errors": 0,
+  "skips": 0,
+  "files": [
+    {
+      "path": "scripts/verify_unchanged_apk_diagnostic.py",
+      "bytes": 19033,
+      "sha256": "cf9a078532093362e3c4c3fe0442697115bbc277b3c2cff1abb7a3103f0c437c",
+      "git_blob": "ddc05ceb084ba7aaf9b3ee0ecb5977b3972343f8"
+    },
+    {
+      "path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "bytes": 21760,
+      "sha256": "adb095bbedb9f3b4922493648e86f389b5a042d432ab59b6e5a7d2496e7f40da",
+      "git_blob": "4716d1f8beb20bc349b3a97b347136cd7d8d6664"
+    }
+  ],
+  "source_freeze_sha256": "879ad3ed9a822ad97a201f05ddfa0e51a39b6f98dd90a2bf1874c9094a057f36",
+  "final_log_sha256": "0ad6c976591e67fa8d3ac7024900171b8eccf2f31ed461d93290760e540097e2",
+  "first_run": "Import error from missing local uiautomator2; full original log retained. Tests use the established explicit unused-UI-adapter boundary; production has no mock.",
+  "qa_source_expression": "${{ github.event.pull_request.head.sha || github.sha }}",
+  "allowed_qa_jobs": [
+    "unchanged-apk-api35",
+    "unchanged-apk-api37-host",
+    "unchanged-apk-api37-swiftshader",
+    "unchanged-apk-update2017"
+  ],
+  "qa_workflow": ".github/workflows/lumo-unchanged-apk-diagnostic.yml",
+  "candidate_metadata_files": [
+    "run.json",
+    "jobs.json",
+    "artifacts.json"
+  ],
+  "qa_metadata_files": [
+    "run.json",
+    "jobs.json"
+  ],
+  "inputs": "Complete original collections with total_count, unmodified source checkout and extracted actual APK/provenance/sums",
+  "runtime_dependency": "Use the existing probe venv with Pillow and uiautomator2 before this helper; importing the real tour does not invoke a device.",
+  "original_snapshot_scope": "The original candidate metadata snapshot was still in_progress. This is preserved; synthetic failed-total-run counterexample proves that only its successful exact build is required.",
+  "scope_limits": [
+    "No actual APK was downloaded or checked in this local proof",
+    "The original whole candidate ZIP API digest is bound, not newly measured",
+    "Actual APK/PCK bytes are required by the production helper",
+    "The output only states BOUND, never Android PASS or release approval",
+    "No branch, index, ref, receipt or pin changed"
+  ],
+  "awaiting": "Root workflow review, commit and actual diagnostic execution"
+}

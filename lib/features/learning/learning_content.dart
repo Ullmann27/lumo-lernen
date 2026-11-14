@@ -103,7 +103,7 @@ class _LearningContentState extends State<LearningContent> {
 
   String get _sessionScope {
     final state = widget.appState.state;
-    return '${widget.appState.profileGeneration}|$_childId|${state.subject}|${state.unit}|${state.sessionKind.name}';
+    return '${widget.appState.profileGeneration}|$_childId|$_taskGrade|${state.subject}|${state.unit}|${state.sessionKind.name}';
   }
 
   static const int _recentTaskMemory = RecentTaskRepository.maxTaskKeys;
@@ -803,6 +803,24 @@ class _LearningContentState extends State<LearningContent> {
     final taskGrade = _taskGrade;
     final factorySubject = _factorySubjectFor(st.subject, st.unit);
     final factoryUnit = _factoryUnitFor(st.subject, st.unit);
+    final exactSelection = factoryUnit != 'Alle' &&
+        Curriculum.unitsForGrade(factorySubject, taskGrade).contains(factoryUnit);
+    LumoTask generate(Set<String> avoidUnits) => exactSelection
+        ? _factory.nextExact(
+            grade: taskGrade,
+            subject: factorySubject,
+            unit: factoryUnit,
+            weakSkills: st.weakSkills,
+            childName: st.childName,
+          )
+        : _factory.next(
+            grade: taskGrade,
+            subject: factorySubject,
+            unit: factoryUnit,
+            weakSkills: st.weakSkills,
+            avoidUnits: avoidUnits,
+            childName: st.childName,
+          );
 
     // Nachhilfelehrer-Bypass: wenn KI-Vorrat vorhanden ist und das
     // Subject Mathe oder Deutsch ist, bevorzuge eine KI-Aufgabe.
@@ -841,18 +859,13 @@ class _LearningContentState extends State<LearningContent> {
     final avoidUnits =
         factoryUnit == 'Alle' ? _recentUnits.toSet() : <String>{};
     LumoTask? fallback;
+    LumoTask? repeatedFallback;
 
     for (var attempt = 0; attempt < 80; attempt++) {
-      final task = _factory.next(
-        grade: taskGrade,
-        subject: factorySubject,
-        unit: factoryUnit,
-        weakSkills: st.weakSkills,
-        avoidUnits: attempt < 40 ? avoidUnits : const <String>{},
-        childName: st.childName,
-      );
+      final task = generate(attempt < 40 ? avoidUnits : const <String>{});
 
       if (!_taskQualityGuard.validate(task)) continue;
+      repeatedFallback ??= task;
 
       if (!_wasRecentlySeen(task)) fallback ??= task;
 
@@ -871,20 +884,13 @@ class _LearningContentState extends State<LearningContent> {
           _varietyGuard.allows(task, relaxed: true) ? task : null;
     }
 
-    // Fallback-Reihenfolge:
-    //   1. relaxed-Variante (anderes Muster, evtl. gleiches Wort)
-    //   2. allgemeiner Fallback aus dem ersten Versuch
-    //   3. komplett neuer Generator-Aufruf ohne Vermeidungs-Set
+    // Finite topic banks may repeat after exhaustion. Keep a checked task
+    // in the selected subject and topic instead of switching a reading lesson
+    // to German simply because all its word cards were already seen.
     return relaxedFallback ??
         fallback ??
-        _factory.next(
-          grade: taskGrade,
-          subject: factorySubject == 'Lesen' ? 'Deutsch' : factorySubject,
-          unit: factoryUnit == 'Aktives Lesen' ? 'Satz verstehen' : factoryUnit,
-          weakSkills: st.weakSkills,
-          avoidUnits: const <String>{},
-          childName: st.childName,
-        );
+        repeatedFallback ??
+        generate(const <String>{});
   }
 
   /// Wandelt einen vom Server gelieferten Draft in einen LumoTask um.
@@ -937,6 +943,18 @@ class _LearningContentState extends State<LearningContent> {
   String _factoryUnitFor(String subject, String unit) {
     final normalized = unit.trim().toLowerCase();
     if (normalized.isEmpty || normalized == 'alle themen') return 'Alle';
+
+    final available = Curriculum.unitsForGrade(
+        _factorySubjectFor(subject, unit), _taskGrade);
+    // A real topic always wins over an old shortcut with the same label.
+    // Display labels such as Wörter lesen resolve back to their stable key.
+    if (available.contains(unit.trim())) return unit.trim();
+    for (final candidate in available) {
+      if (candidate.toLowerCase() == normalized ||
+          Curriculum.prettifyUnit(candidate).toLowerCase() == normalized) {
+        return candidate;
+      }
+    }
 
     const aliases = <String, String>{
       'wörter lesen': 'Satz verstehen',

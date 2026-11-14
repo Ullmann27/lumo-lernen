@@ -1,0 +1,29 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_android_runtime_device_logger",
+    "scripts.tests.test_verify_android_runtime_anr",
+    "scripts.tests.test_android_framework_ready",
+    "scripts.tests.test_android_framework_ready_android17",
+    "scripts.tests.test_runtime_logcat_sections",
+    "tools.android_qa.tests.test_nextgen_speech_logcat_recovery",
+    "tools.android_qa.tests.test_studio_speech_logcat_recovery"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "REQUIRE_ALL_TESTS": "true",
+    "PYTHONPATH": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests:/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa"
+  },
+  "exit_code": 0,
+  "elapsed_seconds": 1.9049,
+  "log_bytes": 18082,
+  "log_sha256": "3fe9549bfc9df36c252a4a7bb0136b43e76c743758b9dab8ceffc36be5bed33a",
+  "sources_unchanged": true,
+  "source_files": 17,
+  "scope": "Focused real Python functions and explicit synthetic ADB/logcat contracts, including original current ANR negatives. No device, APK, renderer, or full suite."
+}

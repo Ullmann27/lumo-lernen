@@ -1,0 +1,131 @@
+name: LUMO next integration native hub entry
+
+on:
+  push:
+    branches: [integration/lumo-next-hub-20261114]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-next-hub-entry-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  full-host-entry:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/integration/lumo-next-hub-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      LUMO_HUB_PROOF: lumo-next-hub-proof
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Bind the exact follow-up source
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/$LUMO_HUB_PROOF"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git rev-parse HEAD > "$RUNNER_TEMP/$LUMO_HUB_PROOF/source-before.txt"
+          git rev-parse 'HEAD^{tree}' > "$RUNNER_TEMP/$LUMO_HUB_PROOF/tree-before.txt"
+          git diff --exit-code HEAD --
+          cp config/godot-source.json "$RUNNER_TEMP/$LUMO_HUB_PROOF/godot-source.json"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - run: flutter pub get --enforce-lockfile
+      - name: Exercise the actual hub entry and all eleven existing game routes
+        run: |
+          set -euo pipefail
+          set +e
+          flutter test --no-pub --reporter=json \
+            test/games/native_3d_hub_entry_test.dart \
+            test/games/dorfwirtschaft_portal_test.dart \
+            test/games/spielwelt_routing_test.dart \
+            > "$RUNNER_TEMP/$LUMO_HUB_PROOF/flutter-machine.jsonl" \
+            2> "$RUNNER_TEMP/$LUMO_HUB_PROOF/flutter-stderr.log"
+          test_rc=$?
+          set -e
+          printf '%s\n' "$test_rc" > "$RUNNER_TEMP/$LUMO_HUB_PROOF/flutter-exit-code.txt"
+          exit "$test_rc"
+      - name: Analyze the current Flutter source
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings \
+            2>&1 | tee "$RUNNER_TEMP/$LUMO_HUB_PROOF/analyze-original.log"
+      - name: Preserve source identity after the actual checks
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/$LUMO_HUB_PROOF"
+          git rev-parse HEAD > "$RUNNER_TEMP/$LUMO_HUB_PROOF/source-after.txt"
+          git rev-parse 'HEAD^{tree}' > "$RUNNER_TEMP/$LUMO_HUB_PROOF/tree-after.txt"
+          git diff --exit-code HEAD --
+          cmp "$RUNNER_TEMP/$LUMO_HUB_PROOF/source-before.txt" "$RUNNER_TEMP/$LUMO_HUB_PROOF/source-after.txt"
+          cmp "$RUNNER_TEMP/$LUMO_HUB_PROOF/tree-before.txt" "$RUNNER_TEMP/$LUMO_HUB_PROOF/tree-after.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-next-hub-flutter-entry
+          path: ${{ runner.temp }}/lumo-next-hub-proof/
+          if-no-files-found: error
+          retention-days: 30
+
+  real-android-host:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/integration/lumo-next-hub-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      LUMO_HUB_PROOF: lumo-next-hub-android-proof
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Bind the exact Android source
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/$LUMO_HUB_PROOF"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git rev-parse HEAD > "$RUNNER_TEMP/$LUMO_HUB_PROOF/source-before.txt"
+          git rev-parse 'HEAD^{tree}' > "$RUNNER_TEMP/$LUMO_HUB_PROOF/tree-before.txt"
+          git diff --exit-code HEAD --
+          cp config/godot-source.json "$RUNNER_TEMP/$LUMO_HUB_PROOF/godot-source.json"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Compile the current Kotlin and Java host with the additional games route
+        run: |
+          set -euo pipefail
+          bash scripts/compile_android_host.sh \
+            2>&1 | tee "$RUNNER_TEMP/$LUMO_HUB_PROOF/host-compile-original.log"
+      - name: Preserve source and actual bytecode evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/$LUMO_HUB_PROOF"
+          if [ -d host-compile-evidence ]; then
+            cp -a host-compile-evidence "$RUNNER_TEMP/$LUMO_HUB_PROOF/"
+          fi
+          git rev-parse HEAD > "$RUNNER_TEMP/$LUMO_HUB_PROOF/source-after.txt"
+          git rev-parse 'HEAD^{tree}' > "$RUNNER_TEMP/$LUMO_HUB_PROOF/tree-after.txt"
+          git diff --exit-code HEAD --
+          cmp "$RUNNER_TEMP/$LUMO_HUB_PROOF/source-before.txt" "$RUNNER_TEMP/$LUMO_HUB_PROOF/source-after.txt"
+          cmp "$RUNNER_TEMP/$LUMO_HUB_PROOF/tree-before.txt" "$RUNNER_TEMP/$LUMO_HUB_PROOF/tree-after.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-next-hub-android-host
+          path: ${{ runner.temp }}/lumo-next-hub-android-proof/
+          if-no-files-found: error
+          retention-days: 30

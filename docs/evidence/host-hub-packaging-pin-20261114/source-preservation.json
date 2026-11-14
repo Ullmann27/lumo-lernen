@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "base_sha": "036e33603e50774bd328d1dff71ddff1d468db6f",
+  "base_tree": "9f3d845a2997faa5f4a16dc28fdaac4b65eeb0f1",
+  "base_leaf_count": 4499,
+  "changed_existing_paths": [
+    "config/godot-source.json",
+    "scripts/verify_legacy_release_pin.py",
+    "scripts/tests/test_candidate_2011_pin.py"
+  ],
+  "unchanged_existing_leaf_count": 4496,
+  "only_source_changes": [
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a7480c482d27e36b76e4cd9accab7058dc74201"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "406a868b4c1bd896de214ca248a93c1e79bd91ec"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b6eff95bb6e80094cca408624d49ef9191a8501"
+    }
+  ],
+  "strict_verifier": {
+    "path": "scripts/verify_connect_four_delivery.py",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "1c788c7d1ea153bcbad90813537f022b6c1d8871"
+  },
+  "release_gate": {
+    "path": "scripts/release_pipeline_gates.py",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "4c8097ce7643e189f37815c38214dd650e022d8c",
+    "size": 9853,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/4c8097ce7643e189f37815c38214dd650e022d8c"
+  },
+  "c4_workflow": {
+    "path": ".github/workflows/lumo-connect-four-2020.yml",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "05329a8f7ac3d51d95a9151ead0b7e482ae09064"
+  },
+  "hub_sources": [
+    {
+      "path": "lib/features/games/games_content.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dceef2af05226ba4310df1546f96282e9600c4c4"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41202eac77fb0b77d83cb417cb8cd2f4ef4d1bb7"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57764e62e8db623395f0d2c93a840920805b267f"
+    },
+    {
+      "path": ".github/workflows/lumo-native-3d-hub-entry-qa.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3b97d4bdde3607677ffe00cb6f16b36481150c0"
+    },
+    {
+      "path": "test/games/native_3d_hub_entry_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9911c1c472a4a06248f10fa11ed7fbb9fd4baab6"
+    }
+  ],
+  "historical_pin_values_unchanged": 50,
+  "native": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+  "note": "All base entries outside the exact three source paths are retained with identical Git mode/type/blob. New documentation is additive. No test result for this new source is claimed."
+}

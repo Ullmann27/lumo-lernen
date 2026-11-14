@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "review.json",
+      "bytes": 12747,
+      "sha256": "7fb778e1965d549ead82592c7b6bacc1430e51c3e09b4fe1e1863a3e75a2cadf",
+      "git_blob": "95a0d750105529518529ea822ed5f19bb7ccf15e"
+    },
+    {
+      "path": "source-preservation.original.json",
+      "bytes": 1495,
+      "sha256": "53da51e596222092b2e22c1e82c8e6e607e2a4fab4952ae3681c8956ae0d7d39",
+      "git_blob": "9c4a2bc07bc79cf80a27ec44033543cb612d089b"
+    },
+    {
+      "path": "source-and-fixture-binding.original.json",
+      "bytes": 821,
+      "sha256": "c807be2140b20f430fd6250c4aed8f76c5df73ac15d801e668b567d3aa8b0645",
+      "git_blob": "7e0fcf72cef9442410e97f198e3a569cd6b13738"
+    },
+    {
+      "path": "production-tour.diff",
+      "bytes": 10660,
+      "sha256": "3509647ea36e8d9983c9a1af4c0471fb49759c6dd94af55586166d04590717e5",
+      "git_blob": "33fb161a192881354729d7b55996f0ba7c9e76c0"
+    },
+    {
+      "path": "production-helper.diff",
+      "bytes": 16993,
+      "sha256": "02a21edbd0d4482551b97e1709d6611d4db524c742a3cad572d6666a771ba03e",
+      "git_blob": "a6f441e63f19f37fdb64531d0c20e6862b6fb017"
+    }
+  ]
+}

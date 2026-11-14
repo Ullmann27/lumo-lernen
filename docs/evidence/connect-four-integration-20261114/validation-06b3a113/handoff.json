@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "status": "FROZEN_LOCAL_CONTRACTS_PASS_RUNTIME_BLOCKED_BY_MISSING_XVFB",
+  "finished_at": "2026-11-14T05:43:37.007915+00:00",
+  "sources": {
+    "host": {
+      "head": "06b3a1136cfe2a8a8b13e46ac9819e65b7130ea5",
+      "tree": "2e6ffb0a673251d4d09dfaa4c5fc916cbf898797",
+      "git_status_porcelain": "",
+      "source_file_count": 1272
+    },
+    "native": {
+      "head": "27ae427029a5199699c95a79a84b0027d7571752",
+      "tree": "c389c0de01d9a6ca9fd6e9332fafdf2dedbc8153",
+      "git_status_porcelain": "",
+      "source_file_count": 1233
+    }
+  },
+  "current_validation": [
+    {
+      "group": "Delivered runtime-gate contracts",
+      "tests": 20,
+      "passed": 20,
+      "errors": 0,
+      "skips": 0,
+      "evidence": "contracts.log"
+    },
+    {
+      "group": "Actual C4 Kotlin Activity/Bridge/Authority with explicit JVM boundary adapters",
+      "tests": 12,
+      "passed": 12,
+      "errors": 0,
+      "skips": 0,
+      "evidence": "contracts.log"
+    },
+    {
+      "group": "Existing durable return store and C4 route wiring",
+      "tests": 12,
+      "passed": 12,
+      "errors": 0,
+      "skips": 0,
+      "evidence": "contracts.log"
+    },
+    {
+      "group": "Host generator and preserved Cards window/Binder/late-engine contracts",
+      "tests": 5,
+      "passed": 5,
+      "errors": 0,
+      "skips": 0,
+      "evidence": "contracts.log"
+    },
+    {
+      "group": "Delivered seven-file Flutter C4 regression",
+      "tests": 48,
+      "passed": 48,
+      "errors": 0,
+      "skips": 0,
+      "evidence": "flutter-c4-parent-link.log"
+    }
+  ],
+  "contract_seconds": 16.816442552008084,
+  "flutter_seconds": 18.089617564997752,
+  "retained_original_failures": [
+    {
+      "path": "actual-runtime-gate/runtime-gate.json",
+      "returncode": 1,
+      "cause": "Missing required executable: xvfb-run",
+      "dart_started": false,
+      "godot_started": false,
+      "status": "Current full runtime gate blocked; no replacement or assertion weakening"
+    },
+    {
+      "path": "flutter-c4.log",
+      "returncode": 1,
+      "cause": "ENOSPC while constructing asset bundle before first Flutter test",
+      "fix_scope": "Only local generated-output path; exact existing Flutter command rerun after actual Dart filesystem-boundary proof and Root approval",
+      "later_result": "48 PASS in separate unchanged-source run"
+    }
+  ],
+  "environment": {
+    "offline_pub_get": "PASS using existing104 cached package roots; no version/lock/source change",
+    "original_assets": {
+      "files": 607,
+      "bytes": 82803958,
+      "identity": "All Gitblob/mode validated before selected tests"
+    },
+    "original_org_json": "sha256:3cf6cd6892e32e2b4c1c39e0f52f5248a2f5b37646fdfbb79a66b46b618414ed",
+    "temporary_build_link": "Removed after test. No global Flutter/Git configuration changed.",
+    "remaining_reproducible_generated_cache": {
+      "path": "/tmp/lumo-connect-four-06b3a113-build",
+      "files": 613,
+      "logical_bytes": 134011774,
+      "not_part_of_evidence_or_source": true
+    }
+  },
+  "next_required": "Root-owned isolated CI gate with actual xvfb-run/Godot4.6.3 and these exact published Host/Native checkouts; full delivered two-process runtime gate remains open.",
+  "scope_limits": [
+    "Flutter route tests use MethodChannel/runtime fixtures; their names do not establish Android execution.",
+    "Kotlin classes compile verbatim, but Android/Godot/Flutter interfaces and MainLooper are JVM adapters.",
+    "No new C4 native rendered pixels, Android Binder/insets/disk/process restart or device FPS approval.",
+    "Producer local170-check/248-frame results are not relabeled as current integration results.",
+    "No source, index, commit, ref, workflow, pin or receipt changed by this validation."
+  ]
+}

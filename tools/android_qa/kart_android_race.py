@@ -466,10 +466,12 @@ def focused_race_hud_text(path: Path) -> str:
     width, height = frame.size
     if width < 640 or height < 320 or width <= height:
         raise RuntimeError('Native race HUD needs a real landscape frame')
-    # Exclude the app status row (top) and the central countdown overlay
-    # (lower), and OCR the unmodified HUD's actual screen pixel content.
+    # Exclude the app status row and central countdown overlay. The current
+    # 2019 ribbon's letters extend to y=187 in the original 2400x1080 Android
+    # captures; the former 15% edge cut them at y=162. Keep the full upper
+    # 20% ribbon, without changing the original pixels or HUD predicates.
     box = (round(width * .25), round(height * .035),
-           round(width * .75), round(height * .15))
+           round(width * .75), round(height * .20))
     strip = frame.crop(box)
     strip = strip.resize((strip.width * 3, strip.height * 3))
     buffer = io.BytesIO()

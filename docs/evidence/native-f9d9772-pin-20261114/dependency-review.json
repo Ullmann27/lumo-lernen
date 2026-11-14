@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "scan": {
+    "bytes": 307955,
+    "sha256": "f472fdef04822f0e44d04a9c1aa2dd083e3566a3d153541bafa83de4d03b06d3",
+    "git_blob": "72ccb185e0d8bd6c33f698753a10e02db261aa25"
+  },
+  "text_files_read": 1120,
+  "current_pin_dependencies": [
+    "config/godot-source.json",
+    "scripts/verify_legacy_release_pin.py",
+    "scripts/tests/test_candidate_2011_pin.py"
+  ],
+  "additional_current_pin_dependency": false,
+  "historical_original_fixture_retained": [
+    {
+      "path": "tools/android_qa/tests/fixtures/village-return-5ad/provenance.json",
+      "mode": "100644",
+      "git_blob": "b1ef9d704c021b4d011608ba7999abfaa181facf",
+      "bytes": 11227,
+      "sha256": "d516348545f4508c1f19d3021dd77b47936dae879e1c68a12ec6dee2eef5747a",
+      "matches": [
+        {
+          "line": 7,
+          "text": "  \"native\": \"2281d990fb584db6f2cf786da8fec3badc2d9585\","
+        }
+      ],
+      "classification": "needs-read"
+    }
+  ],
+  "fixture_reason": "This is the original native identity of the failed Host5ad Village capture, not a current candidate selector. Changing it would falsify original provenance.",
+  "native_required_helpers": {
+    "bytes": 3512,
+    "sha256": "d66fc3e0efb76834ba0e4d1ec12c2cd8d07c9173aa427b9ef437420470e7a775",
+    "git_blob": "5c2a11688a281960c9eeb9c4081a4ad5e399ad14"
+  },
+  "candidate_and_delivery_read_current_config": true,
+  "update_2020_reads_policy_and_preserves_2017_baseline": true
+}

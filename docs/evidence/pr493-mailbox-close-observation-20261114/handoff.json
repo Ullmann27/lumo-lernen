@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "status": "54_LOCAL_CONTROLLED_CONTRACTS_PASS",
+  "root": "/tmp/host-pr493-mailbox-close-observation-repair-20261114",
+  "source_freeze": {
+    "bytes": 9428,
+    "sha256": "1a2c51d922eb7b9993b467eb44f04061a43541313e03fcb7383a066eb09332f8",
+    "git_blob": "ee83db0651b0e00a8d273f03f4965416673908e5"
+  },
+  "producer_commit": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+  "base_blob": "f8d4ae7cdd3c38f0240a2bc20c4d78b6108f9f5d",
+  "source_count": 27,
+  "production": {
+    "path": ".github/probes/lumo_connect_four_android_probe.py",
+    "bytes": 29187,
+    "sha256": "df9148ab323e6e3255a23449d5342c5a033c9a20361d3d1e4a615b7eb5043583",
+    "git_blob": "585af5913ac8ec24216bd7eb877415da8c886025"
+  },
+  "test": {
+    "path": "tools/android_qa/tests/test_connect_four_return_observation.py",
+    "bytes": 18191,
+    "sha256": "bd03248a177a33df7f399c90984c995e3f0352cfe14ef7f1974a9e3f590cfb53",
+    "git_blob": "2cb7163b257e997af5597e11fc2f10dec69daffb"
+  },
+  "validation": {
+    "schema": 1,
+    "status": "PASS",
+    "actual_invocations": 1,
+    "returncode": 0,
+    "timed_out": false,
+    "observed_test_count": 54,
+    "unittest_seconds": 40.399,
+    "wall_seconds": 40.778429506000975,
+    "exact_OK_summary": true,
+    "source_snapshot_unchanged": true,
+    "stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "stderr": {
+      "bytes": 11928,
+      "sha256": "cde5d1aed064cce284847272f996445ab3253c23350ad9a53df508c42fb8b9bc",
+      "git_blob": "402937f0d674658f147707e2bf60faf01e2d0dd7"
+    },
+    "count_scope": {
+      "new_return": 9,
+      "unchanged_preferences": 9,
+      "unchanged_evidence": 17,
+      "unchanged_deadlines": 11,
+      "unchanged_navigation": 8
+    },
+    "historical_android_result": "FAIL remains unchanged; later successful cleanup answers in controlled tests are synthetic."
+  },
+  "full_original_process": {
+    "bytes": 744,
+    "sha256": "198b55764644273cefeddf796ffbf0daebc15222f2dfa7d13c631f44fa51b16d",
+    "git_blob": "b54d1312582d83dc44ecd82d5280ceef74fd5c19"
+  },
+  "source_index_comparison": {
+    "bytes": 192,
+    "sha256": "7decf6c445fdb3998720ca4ace4763865525e97793c98a5c06de4be8d4ef81e8",
+    "git_blob": "fe6fd2ff79d7d3828b4adadae590c7941ad9fa71"
+  },
+  "historical_diagnostic_preserved": "FAIL; no real later cleanup observed",
+  "full_android_archive_reexported": false,
+  "scope": "Pure local observer contracts with controlled device/clock/UI boundaries. No Android, engine, APK, CI or ref action; no overall candidate acceptance.",
+  "next_step": "Root source/evidence checkpoint and independent source review; no additional local test run requested."
+}

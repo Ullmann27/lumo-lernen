@@ -1,0 +1,13 @@
+{
+  "exit_code": 0,
+  "tests": 163,
+  "elapsed_seconds": 5.551,
+  "skips": 0,
+  "source_files_unchanged": true,
+  "source_commit_unchanged": true,
+  "clean_after": true,
+  "log_sha256": "81f3bb04e702d23265b64e694bbb6ec7a5a1ce549842a3a46f89e7a99c19484b",
+  "source_commit": "204493e8428d0164a417d2e467a56cbc49536d5d",
+  "remote_checkpoint": "19919d35ff35ebffc31f8970b6221d1a61d2dc0d",
+  "scope": "Exact required workflow contracts in a clean committed source, with complete SHA-checked original upstream fixture; no Android/backend acceptance."
+}

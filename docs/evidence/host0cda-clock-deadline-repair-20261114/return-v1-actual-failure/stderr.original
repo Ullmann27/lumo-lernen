@@ -1,0 +1,96 @@
+test_incomplete_actual_surface_still_blocks_observation (tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_incomplete_actual_surface_still_blocks_observation) ... ok
+test_observation_rechecks_after_evidence_write_before_successful_return (tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_observation_rechecks_after_evidence_write_before_successful_return) ... ok
+test_observation_rejects_late_last_read_pixels_or_target_without_accepting_result (tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_observation_rejects_late_last_read_pixels_or_target_without_accepting_result) ... ok
+test_return_exact_deadline_is_closed_and_timely_return_keeps_full_checks (tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_return_exact_deadline_is_closed_and_timely_return_keeps_full_checks) ... ok
+test_return_rejects_slow_pid_or_activity_reads_before_accepting_local_45_second_result (tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_return_rejects_slow_pid_or_activity_reads_before_accepting_local_45_second_result) ... ok
+test_return_still_requires_observed_pause (tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_return_still_requires_observed_pause) ... ok
+test_timely_observation_preserves_state_target_and_original_record (tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_timely_observation_preserves_state_target_and_original_record) ... ok
+test_wait_keeps_exact_boundary_closed_and_timely_result_unchanged (tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_wait_keeps_exact_boundary_closed_and_timely_result_unchanged) ... ok
+test_wait_rejects_condition_that_finishes_after_the_same_local_deadline (tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_wait_rejects_condition_that_finishes_after_the_same_local_deadline) ... ok
+test_wait_rejects_successful_observation_completed_after_local_90_seconds (tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_wait_rejects_successful_observation_completed_after_local_90_seconds) ... ok
+test_wait_still_rejects_incomplete_state_and_expired_global_budget (tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_wait_still_rejects_incomplete_state_and_expired_global_budget) ... ok
+test_each_read_receives_only_the_remaining_local_budget_across_retries (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_each_read_receives_only_the_remaining_local_budget_across_retries) ... ok
+test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success) ... 
+  test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success) (later=b'7113\n') ... ERROR
+test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity) ... 
+  test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity) (pid=b'7113\n', activity=b'.lumo.lumo_lernen.coachpreview:lumo_game/u0a209}]\n  NumNonAppVisibleWindowUidMap:[ 10180:1 10178:1]\n') ... ERROR
+  test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity) (pid=b'', activity=b'topResumedActivity: foreign.app/MainActivity\n') ... ERROR
+  test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity) (pid=b'', activity=b'No resumed activity\n') ... ERROR
+  test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity) (pid=b'', activity=b'180:1 10178:1]\n\nmResumedActivity: dev.ullmann.lumo.lumo_lernen.coachpreview/ConnectFourGameActivity\n') ... ERROR
+test_expired_global_or_local_activity_read_never_starts_an_additional_find (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_expired_global_or_local_activity_read_never_starts_an_additional_find) ... ok
+test_failed_find_is_not_an_empty_mailbox_proof (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_failed_find_is_not_an_empty_mailbox_proof) ... ok
+test_find_finished_at_or_after_local_deadline_cannot_accept_empty_output (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_find_finished_at_or_after_local_deadline_cannot_accept_empty_output) ... ok
+test_fixture_bytes_metadata_and_actual_token_are_bound_to_originals (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_fixture_bytes_metadata_and_actual_token_are_bound_to_originals) ... ok
+test_global_deadline_during_find_saves_raw_answer_but_cannot_accept_it (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_global_deadline_during_find_saves_raw_answer_but_cannot_accept_it) ... ok
+test_original_current_mailbox_remainder_requires_a_fresh_later_empty_observation (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_original_current_mailbox_remainder_requires_a_fresh_later_empty_observation) ... ok
+test_permanent_current_or_foreign_mailbox_remains_failure_without_input_repetition (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_permanent_current_or_foreign_mailbox_remains_failure_without_input_repetition) ... ok
+
+======================================================================
+ERROR: test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success) (later=b'7113\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/tools/android_qa/tests/test_connect_four_return_observation.py", line 281, in test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success
+    boundary.value.return_to_flutter('return-final')
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/.github/probes/lumo_connect_four_android_probe.py", line 357, in return_to_flutter
+    timeout=return_remaining())
+            ^^^^^^^^^^^^^^^^^^
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/.github/probes/lumo_connect_four_android_probe.py", line 350, in return_remaining
+    raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
+TimeoutError: The actual native C4 return exceeded its 45-second observation deadline
+
+======================================================================
+ERROR: test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity) (pid=b'7113\n', activity=b'.lumo.lumo_lernen.coachpreview:lumo_game/u0a209}]\n  NumNonAppVisibleWindowUidMap:[ 10180:1 10178:1]\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/tools/android_qa/tests/test_connect_four_return_observation.py", line 271, in test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity
+    boundary.value.return_to_flutter('return-final')
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/.github/probes/lumo_connect_four_android_probe.py", line 357, in return_to_flutter
+    timeout=return_remaining())
+            ^^^^^^^^^^^^^^^^^^
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/.github/probes/lumo_connect_four_android_probe.py", line 350, in return_remaining
+    raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
+TimeoutError: The actual native C4 return exceeded its 45-second observation deadline
+
+======================================================================
+ERROR: test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity) (pid=b'', activity=b'topResumedActivity: foreign.app/MainActivity\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/tools/android_qa/tests/test_connect_four_return_observation.py", line 271, in test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity
+    boundary.value.return_to_flutter('return-final')
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/.github/probes/lumo_connect_four_android_probe.py", line 357, in return_to_flutter
+    timeout=return_remaining())
+            ^^^^^^^^^^^^^^^^^^
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/.github/probes/lumo_connect_four_android_probe.py", line 350, in return_remaining
+    raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
+TimeoutError: The actual native C4 return exceeded its 45-second observation deadline
+
+======================================================================
+ERROR: test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity) (pid=b'', activity=b'No resumed activity\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/tools/android_qa/tests/test_connect_four_return_observation.py", line 271, in test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity
+    boundary.value.return_to_flutter('return-final')
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/.github/probes/lumo_connect_four_android_probe.py", line 357, in return_to_flutter
+    timeout=return_remaining())
+            ^^^^^^^^^^^^^^^^^^
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/.github/probes/lumo_connect_four_android_probe.py", line 350, in return_remaining
+    raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
+TimeoutError: The actual native C4 return exceeded its 45-second observation deadline
+
+======================================================================
+ERROR: test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity (tools.android_qa.tests.test_connect_four_return_observation.ReturnObservationTests.test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity) (pid=b'', activity=b'180:1 10178:1]\n\nmResumedActivity: dev.ullmann.lumo.lumo_lernen.coachpreview/ConnectFourGameActivity\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/tools/android_qa/tests/test_connect_four_return_observation.py", line 271, in test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity
+    boundary.value.return_to_flutter('return-final')
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/.github/probes/lumo_connect_four_android_probe.py", line 357, in return_to_flutter
+    timeout=return_remaining())
+            ^^^^^^^^^^^^^^^^^^
+  File "/tmp/root-c4-return-deadline-integration-20261114/source/.github/probes/lumo_connect_four_android_probe.py", line 350, in return_remaining
+    raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
+TimeoutError: The actual native C4 return exceeded its 45-second observation deadline
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.399s
+
+FAILED (errors=5)

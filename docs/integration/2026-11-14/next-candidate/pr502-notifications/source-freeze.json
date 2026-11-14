@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "host": "e53669a2e06d1832cc6844dbe1077d652551fdb8",
+  "tree": "5cf2f3bc7d062d44b12c0b5370c827a07c3002c1",
+  "producer": "eb59c2f6c35361e50c3d9e474a2c7a366b7a35ab",
+  "files": [
+    {
+      "repository_path": "scripts/prepare_embedded_games.py",
+      "before": {
+        "path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_preimage/scripts/prepare_embedded_games.py",
+        "bytes": 11694,
+        "sha256": "e31d0aadd76633b98182a4d2093d838adf9603c46c8ad191561d045d4a0d333e",
+        "git_blob": "e8fb95d785e5f5dea6ba3d0dd7718bb9ca6fc20b"
+      },
+      "after": {
+        "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/scripts/prepare_embedded_games.py",
+        "bytes": 12188,
+        "sha256": "bbf3cf70c2be8ac5016cb2751ec8b7fa300fb311fa257167f556b1a686359163",
+        "git_blob": "42c9ccc7df990577b945563417f9f0db61684b1f"
+      },
+      "producer_original": {
+        "path": "/tmp/host-pr502-notification-manifest-repair-20261114/producer_postimage/scripts/prepare_embedded_games.py",
+        "bytes": 10871,
+        "sha256": "326b5b74f1b24c355e49fca5261cedf36a82b82a00f79e3505c9cff02a908076",
+        "git_blob": "9fb440d949dc509dc9b9790a5a11143d80655777"
+      }
+    },
+    {
+      "repository_path": "scripts/tests/test_embedded_android.py",
+      "before": {
+        "path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_preimage/scripts/tests/test_embedded_android.py",
+        "bytes": 23636,
+        "sha256": "12668cc3df6ebfc3a424849dfa6360f16f222bfc755652594000eb348b29963c",
+        "git_blob": "df44794c5bc75837a11a6cec1272655db168e535"
+      },
+      "after": {
+        "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/scripts/tests/test_embedded_android.py",
+        "bytes": 24053,
+        "sha256": "a9ff2374e19421542a4cc73688ed79487a5f1729addda4a2001cd8a3625fd1e3",
+        "git_blob": "1c59cbd729f51aef7c543aeb69316d53e82e9860"
+      },
+      "producer_original": {
+        "path": "/tmp/host-pr502-notification-manifest-repair-20261114/producer_postimage/scripts/tests/test_embedded_android.py",
+        "bytes": 22402,
+        "sha256": "86c374e7500b83b7ea6c6a2abb3d8740a3fd22dff9b53bd2c8bf624582e1b699",
+        "git_blob": "508449d5ffecd1b87e35b800df08d63a117c5d48"
+      }
+    }
+  ],
+  "execution_inventory": [
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/scripts/prepare_embedded_games.py",
+      "bytes": 12188,
+      "sha256": "bbf3cf70c2be8ac5016cb2751ec8b7fa300fb311fa257167f556b1a686359163",
+      "git_blob": "42c9ccc7df990577b945563417f9f0db61684b1f"
+    },
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/scripts/tests/test_embedded_android.py",
+      "bytes": 24053,
+      "sha256": "a9ff2374e19421542a4cc73688ed79487a5f1729addda4a2001cd8a3625fd1e3",
+      "git_blob": "1c59cbd729f51aef7c543aeb69316d53e82e9860"
+    },
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/CardsAuthorityRegistry.java",
+      "bytes": 1157,
+      "sha256": "e7076a168a9f3c8b19dda22af6311a28d0a170899f9092b6c2bb65c8174a6e4a",
+      "git_blob": "dbc4a5df533828f36a9228f9b12696209ed899ea"
+    },
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/CardsAuthorityService.kt",
+      "bytes": 2121,
+      "sha256": "271cd63897272579a362d520741779be97d1d2f38e88615184f5e45cc19f37cc",
+      "git_blob": "85fa1dc9e0eccbf38073e1e5918fc934b8e91e41"
+    },
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/CardsTableBridge.kt",
+      "bytes": 7302,
+      "sha256": "ef5f702ecf6f89aae1b8cc8e4cc640b3b481a01d24a510ff393de100d800e572",
+      "git_blob": "4433cf840665bfeee3593f7620306ba79f87ad8a"
+    },
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/ConnectFourAuthorityService.kt",
+      "bytes": 1708,
+      "sha256": "7fb5ecdfd6e0b8c64f678258d3722483220d3e1574cc300916da6da50ccd2289",
+      "git_blob": "0b687707c7a1a0627eab8fa8bf47b06ba72aead3"
+    },
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/ConnectFourBridge.kt",
+      "bytes": 7788,
+      "sha256": "02ce58b8863197c9d4395b192f238d52a4e2b049ce59d01e451a0189088433cd",
+      "git_blob": "f6e41ada005cc01f3b75d05370e5098048188d37"
+    },
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/ConnectFourGameActivity.kt",
+      "bytes": 7355,
+      "sha256": "02ea7fb0f3909da8013e6a97b52901dd8e2981ae13e5c1a74ac1e03979364fe5",
+      "git_blob": "d49a93cf8588b3fdad7ce1bb693843febc7e7984"
+    },
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/GameEventStore.kt",
+      "bytes": 5560,
+      "sha256": "8157a28412e82720f52b933ba433058b307ecebbd68dcdbea53b8bdf59b034af",
+      "git_blob": "39963b5ac6ff773e0d39505a355cca70d489b7a5"
+    },
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/LumoGameActivity.kt",
+      "bytes": 12726,
+      "sha256": "ac43bed87efbecd7fd7535120b5eff2839cb05b19662eb9ac93c0bf7f9963287",
+      "git_blob": "81e96786d30c223e9ba145b4f50cbae737946c08"
+    },
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/TableAuthorityService.kt",
+      "bytes": 1945,
+      "sha256": "06a8b6323a6f76820e452b276649d262f245102d041c4b9207eaf0c2b0695ea0",
+      "git_blob": "7db61b3117a52a9ac93daad2de7d7c1b3ac21e08"
+    },
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/TableGameActivity.kt",
+      "bytes": 6633,
+      "sha256": "e15923d2f0878733b41a4eae32eb5ea56cc5f067fa481c503bfee72c77440b2e",
+      "git_blob": "74e9f7476cb192e016f5bf42421c89a30f58ee28"
+    },
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/TableGameIntent.java",
+      "bytes": 3205,
+      "sha256": "6d2af8dd20002c93311f0a823ea24eec3113bac13c10857e6bc3d2b701f3c77f",
+      "git_blob": "d14b09e3438164aea359d478d7af11f8c0fb5433"
+    },
+    {
+      "path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/TableGamesBridge.kt",
+      "bytes": 8236,
+      "sha256": "40ec31c127830d948fd847a88518a07cb30329273ff4b8ff2cfdee97e00e2a60",
+      "git_blob": "4b25e208043ac9cd939e98eb955ef6a850315461"
+    }
+  ],
+  "scope": "Two exact producer hunks applied to newer Table-enabled source; no runtime permission request or grant; unchanged JVM window tests are outside this targeted manifest check.",
+  "planned_test": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_embedded_android.EmbeddedAndroidTest"
+  ]
+}

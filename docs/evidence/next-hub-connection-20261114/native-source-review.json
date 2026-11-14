@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "status": "FROZEN_READ_ONLY_SOURCE_CONFIRMATION",
+  "created_utc": "2026-11-14T15:06:04.269052+00:00",
+  "native_head": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+  "conclusion": "Existing published baf Native code already supports embedded game/scene=games -> GameHub -> on-screen Back -> LumoHost.returnToApp(games). No missing Native product hook was found for the proposed Host504 games-entry connection. This is source confirmation, not a fresh Android or runtime pass.",
+  "source_chain": [
+    {
+      "path": "project.godot",
+      "lines": [
+        20,
+        30,
+        31
+      ],
+      "claim": "Boot scene, HostBridge and SceneRouter autoloads."
+    },
+    {
+      "path": "scenes/app/boot.tscn",
+      "claim": "References scripts/app/app_boot.gd."
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "lines": [
+        19,
+        24,
+        35,
+        39,
+        51
+      ],
+      "claim": "Reads original LumoHost launch JSON and accepts games in ordinary scene allowlist. game takes precedence over scene if both keys exist; Host must send the intended value coherently."
+    },
+    {
+      "path": "scripts/app/app_boot.gd",
+      "lines": [
+        70,
+        81,
+        277
+      ],
+      "claim": "Embedded launch options override other options; games is accepted; completed boot invokes goto_loaded with the exact registered resource."
+    },
+    {
+      "path": "scripts/app/scene_router.gd",
+      "lines": [
+        24,
+        47,
+        56,
+        79,
+        83
+      ],
+      "claim": "games maps to game_hub.tscn; loaded transition verifies scene resource, then records current_scene_id=games after scene change."
+    },
+    {
+      "path": "scenes/games/game_hub.tscn",
+      "lines": [
+        3
+      ],
+      "claim": "References actual GameHub script."
+    },
+    {
+      "path": "scripts/games/game_hub.gd",
+      "lines": [
+        175,
+        177
+      ],
+      "claim": "Visible Back control calls SceneRouter.goto(home); explicit minimum146x56."
+    },
+    {
+      "path": "scripts/app/scene_router.gd",
+      "lines": [
+        95,
+        99
+      ],
+      "claim": "After boot, embedded home/games routes return to Host games rather than opening a second native home."
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "lines": [
+        151,
+        169
+      ],
+      "claim": "Requires embedded Host, retries pending rewards, preserves sessionId, invokes returnToApp and accepts only durable acknowledgement; marks return pending only after success."
+    }
+  ],
+  "preserved_village_contract": "GameHub routes duplicate existing options and add livingVillage=true and settlementMode=settlement for the Village portal; the native launch validator independently retains its explicit Village authorization.",
+  "limits": [
+    "No tests, imports, engine, Android or visual execution.",
+    "Only on-screen Back and existing source chain assessed; no new hardware Back or Host lifecycle result inferred.",
+    "Host/Dart/MainActivity side remains Roots separate review.",
+    "No PR505 opt-in C4 integration or source changes."
+  ],
+  "sources": [
+    {
+      "path": "project.godot",
+      "blob": "296b8b1752ebfd526aedd019907ac88efbfd0c02",
+      "mode": "100644",
+      "bytes": 1944,
+      "sha256": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280"
+    },
+    {
+      "path": "scripts/app/app_boot.gd",
+      "blob": "125376b9018d03258a2be41da99efce175bbca6c",
+      "mode": "100644",
+      "bytes": 18819,
+      "sha256": "e01899fb45fe4b0b8a7f0d54c9751d099bc1431b17668017233d5eeac96dab1f"
+    },
+    {
+      "path": "scripts/app/scene_router.gd",
+      "blob": "0e28e5c797af076d2a2410143e42605982e8d1d5",
+      "mode": "100644",
+      "bytes": 4457,
+      "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06"
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "blob": "1845617ed2659dd377f433209799b12ddf310deb",
+      "mode": "100644",
+      "bytes": 5604,
+      "sha256": "6b86fda5b38f2b966d0da4d26eb9cae24e2185ef9d067b0dfb99aa86bfe644b4"
+    },
+    {
+      "path": "scenes/games/game_hub.tscn",
+      "blob": "9288feb85c85d6226424f2c720cac355bb664071",
+      "mode": "100644",
+      "bytes": 176,
+      "sha256": "35fc2819ad425bb9fc95f4c08319ad61b163598683953064d189871a3c58dc1f"
+    },
+    {
+      "path": "scripts/games/game_hub.gd",
+      "blob": "5a4fd789dcfb3dcd1bc1fcc2f7b0fd7f64ade1f6",
+      "mode": "100644",
+      "bytes": 13887,
+      "sha256": "12fb330dbfe2e7d868df1c702a718f0258c74d8224648a0b4fa523d83f1b050c"
+    },
+    {
+      "path": "scripts/games/game_hub_routes.gd",
+      "blob": "c2df5d620a704f000d46e6c76e30f44fc0afe6a8",
+      "mode": "100644",
+      "bytes": 1773,
+      "sha256": "944dd73cdc17b718417c53f4c116e1aa7e02ea97140a607d682a2e001a851df2"
+    },
+    {
+      "path": "scenes/app/boot.tscn",
+      "blob": "792c0324ae03debe7904517af52fe5473880bb8b",
+      "mode": "100644",
+      "bytes": 1372,
+      "sha256": "678c8b2907c704f9975a2c38936df45c71f04e987f0e1ee6bc36f24216c62823"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "at": "2026-11-14T03:15:03.246186+00:00",
+  "reviewer": "root",
+  "remote_checkpoint": {
+    "branch": "repair/lumo-android-runtime-7b16-20261114",
+    "commit": "fd3076eaf4fd0342d81cffd0219a60ea788a46ae",
+    "tree": "1fe2d91bab1c76fb0086aeb22695bb1e16f04105",
+    "parent": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+    "local_twin": "cc65ea959eaf98efefdfe007df988c32e909b0c5",
+    "verified_blobs": 52,
+    "verified_trees": 20,
+    "source_paths": 38,
+    "evidence_paths": 17
+  },
+  "source_reviews": [
+    "Both original driver images directly reviewed; existing-word repair and ambiguity gates retained.",
+    "New original-candidate/probe binding helper read in full; distinct source roots and original failed run status retained.",
+    "New whole-runtime ANR helper read in full; original GMS event, late ANR, reader continuity and final input history remain required."
+  ],
+  "concrete_review_findings": [
+    {
+      "id": "monitor-parent-timestamp",
+      "status": "repair_requested",
+      "description": "Capture monitor start request before Popen so delayed parent scheduling cannot invert the real child-start order; retain strict chronology."
+    },
+    {
+      "id": "adb-start-diagnostic",
+      "status": "repair_requested",
+      "original_path": "host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/wait-for-device.stderr",
+      "bytes": 77,
+      "sha256": "d84aaa3222b49c6dfc6c07666347890c6ad2ff255b911fa83525c5814e54963c",
+      "description": "The real original stderr records a successful ADB daemon start. Only these exact two normal lines may accompany a successful wait; all other reader errors remain rejection."
+    }
+  ],
+  "official_renderer_reference": {
+    "url": "https://developer.android.com/studio/run/emulator-acceleration",
+    "retrieved": "2026-11-14",
+    "facts": [
+      "swiftshader is documented for GLES and Vulkan software rendering",
+      "swiftshader_indirect is deprecated since36.4.9"
+    ],
+    "scope": "Reason to perform the controlled trial, not proof that a renderer caused or repaired the original GMS ANR."
+  },
+  "official_input_reference": {
+    "url": "https://android.googlesource.com/platform/frameworks/native/+/refs/heads/main/services/inputflinger/dispatcher/InputDispatcher.cpp",
+    "retrieved": "2026-11-14",
+    "fact": "The ANR-history section is emitted only when mLastAnrState is nonempty.",
+    "scope": "Current AOSP output contract, not an exact source claim for the proprietary Google image."
+  },
+  "gate_status": "FINAL_SOURCE_FREEZES_AND_COMBINED_LOCAL_GATE_PENDING",
+  "runtime_status": "NO_NEW_ANDROID_RUN_YET"
+}

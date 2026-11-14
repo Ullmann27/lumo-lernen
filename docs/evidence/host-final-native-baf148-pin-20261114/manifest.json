@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "kind": "final_three_file_native_pin_pack",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 954,
+      "sha256": "98ec2aec22cdd9c8ec16622f102812a44a9d0a89d0efb8980f70dee93071afe1",
+      "git_blob": "c95c0179517d8a2d68d0a6681d1cf0606e2a38b5"
+    },
+    {
+      "path": "before-source/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "9190ff1a60b61ce8cb40d44daea300315a359a5ff1d7d47b4623a4c4ae9bb240",
+      "git_blob": "9dcf0ce0e38caa676777c02eb71aa09c1b425fad"
+    },
+    {
+      "path": "before-source/scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 17393,
+      "sha256": "512094ced303fdffb955eee93fce5ce71a8de757a9510940b8f6cac3da0ac931",
+      "git_blob": "b0373f0f8efb8bda20faf49fbde9d7cb7c54cc06"
+    },
+    {
+      "path": "before-source/scripts/verify_legacy_release_pin.py",
+      "bytes": 10687,
+      "sha256": "14f363f836072e194b0a188af43bc76c9133adcc8a5c04157f25fc7a1217ca2c",
+      "git_blob": "b10d2ba20c93d17f723b9c190652060968505b53"
+    },
+    {
+      "path": "final-source/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50",
+      "git_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a"
+    },
+    {
+      "path": "final-source/scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 17393,
+      "sha256": "0e5c26ad2722735bb9b891827fb52f638363df3fc649162a8c95f99446be1c3e",
+      "git_blob": "77e84cbc276f1653c23e6ebd3b5bd06f3fc4aeec"
+    },
+    {
+      "path": "final-source/scripts/verify_legacy_release_pin.py",
+      "bytes": 10687,
+      "sha256": "722028c30150beccc14f2169f2cea89c97c0f0c3305399029c4b5d9a3c8ea515",
+      "git_blob": "9cbc865858f3337ca2cef66bf0d90d29e2b8777c"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 3272,
+      "sha256": "c477d1766a1041262946a751e06da9e45b18eb7f3f5334a8486e8dde13f1a626",
+      "git_blob": "54f01869c162ff4219f1dcfcb2d4e48c54266ffa"
+    },
+    {
+      "path": "originals/historical-50-pins.json",
+      "bytes": 2703,
+      "sha256": "01ceec86a43ec7ff6492d05cf1deef6d256bfa50572c921a27a811b043b3cf69",
+      "git_blob": "7afcd353bbea1cdf1afe1799cb3478c2b95ecc09"
+    },
+    {
+      "path": "originals/host-base-commit.json",
+      "bytes": 1233,
+      "sha256": "a9e9b837aa765450f450662bf8bd8bb7d37c354615b760addacb92a631d15849",
+      "git_blob": "e7b341559fa246971a274abd755b14b014fe2a82"
+    },
+    {
+      "path": "originals/native-commit.json",
+      "bytes": 1199,
+      "sha256": "aae68ff33c0ae7fbb0c9ab4e7d6f121854fda69ff1f883a6112054ef41ff26af",
+      "git_blob": "b77c5b2de57208739a9ddb5acd2f713e537823f7"
+    },
+    {
+      "path": "pin.patch",
+      "bytes": 1394,
+      "sha256": "6822ee5991926ebe77a3b3e7c11c6213fb7e7f6b3d58132effe9302051a44a4b",
+      "git_blob": "cb7719af2f47f9e59cc8f6fbe763ef56cf19e47a"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 3143,
+      "sha256": "d20139e28668013163da22a48b896f4a097bef6262f17984bbc611cc1731a5fd",
+      "git_blob": "b0f6b95f244ebf4342bbb9ce7b963a7afd4f8623"
+    },
+    {
+      "path": "source-preservation.json",
+      "bytes": 936,
+      "sha256": "337f709428a9b0560afe4f9c274055943aa0aa9414ff4898886d7864b6acc619",
+      "git_blob": "930af77a4da60a0c9a5c1b9c102237ef1612b8eb"
+    },
+    {
+      "path": "upload-plan.json",
+      "bytes": 2100,
+      "sha256": "4022df641d6b67ff1cc8f49d698ea308401d5273786a19f6a3d8ee5db8be76ab",
+      "git_blob": "b3a43cc51d856b23bf38df178c59508b9455e9bd"
+    }
+  ]
+}

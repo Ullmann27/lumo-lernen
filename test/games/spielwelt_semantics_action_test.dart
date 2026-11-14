@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:lumo_lernen/domain/games/game_world.dart';
 import 'package:lumo_lernen/features/games/spielwelt/spielwelt_hub.dart';
+import 'package:lumo_lernen/features/games/spielwelt/spielwelt_routes.dart';
 
 SpielweltPortal _portal(
   GameId id,
@@ -70,16 +71,19 @@ Future<void> _prepare(WidgetTester tester) async {
 
 void main() {
   testWidgets(
-      'all ten game portals dispatch each accessibility and touch tap once',
+      'all eleven game portals dispatch each accessibility and touch tap once',
       (tester) async {
     await _prepare(tester);
     var opened = 0;
     final portals = [
       for (final game in GameCatalog.games) _portal(game.id, () => opened++),
+      SpielweltPortal.village(onOpen: () => opened++),
       SpielweltPortal.connectFour(onOpen: () => opened++),
       SpielweltPortal.quizShow(onOpen: () => opened++),
     ];
-    expect(portals, hasLength(10));
+    expect(portals, hasLength(11));
+    expect(portals.map((portal) => portal.identity).toSet(),
+        SpielweltRoutes.identities.toSet());
 
     for (final portal in portals) {
       await tester.pumpWidget(_hub(portal));
@@ -106,7 +110,7 @@ void main() {
           reason: '${portal.identity}: existing InkWell still fires once');
       expect(tester.takeException(), isNull, reason: portal.identity);
     }
-    expect(opened, 20);
+    expect(opened, 22);
     await tester.pumpWidget(const SizedBox.shrink());
   });
 

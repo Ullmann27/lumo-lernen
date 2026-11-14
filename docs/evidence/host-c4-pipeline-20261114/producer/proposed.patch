@@ -1,0 +1,2591 @@
+diff --git a/.github/probes/lumo_connect_four_android_probe.py b/.github/probes/lumo_connect_four_android_probe.py
+new file mode 100644
+--- /dev/null
++++ b/.github/probes/lumo_connect_four_android_probe.py
+@@ -0,0 +1,413 @@
++#!/usr/bin/env python3
++"""Actual API35 C4 touch/IPC/return on the already fully toured 2020 APK.
++
++All app-private reads are observational. Only real Android UI inputs change the
++round. Native reported control geometry is bound to two current original PNGs,
++the actual activity/process and the production Dart mailbox before each touch.
++"""
++from __future__ import annotations
++
++import argparse
++import hashlib
++import json
++import os
++from pathlib import Path
++import re
++import subprocess
++import sys
++import time
++import traceback
++
++ROOT = Path(__file__).resolve().parents[2]
++sys.path.insert(0, str(ROOT / 'tools/android_qa'))
++import connect_four_android_evidence as contract
++
++
++def write(path: Path, value: object) -> None:
++    path.parent.mkdir(parents=True, exist_ok=True)
++    with path.open('x', encoding='utf-8') as stream:
++        stream.write(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
++
++
++class Probe:
++    def __init__(self, args):
++        import creative_android_probe as live_probe
++        import modernization_android_tour as main_tour
++        self.args, self.out = args, args.out
++        contract.demand(not self.out.exists() or not any(self.out.iterdir()),
++                        'Refusing to overwrite existing C4 evidence')
++        self.out.mkdir(parents=True, exist_ok=True)
++        self.ui, self.main, self.base = live_probe, main_tour, live_probe.base
++        self.deadline = time.monotonic() + 900
++        self.counter = 0
++        self.observations = []
++        self.transitions = []
++        self.returns = []
++        self.old_command = self.base.command
++        self.base.command = self.bounded_command
++        self.mailbox = ''
++        self.token = ''
++
++    def remaining(self, maximum: float = 45) -> float:
++        left = self.deadline - time.monotonic()
++        if left <= 0:
++            raise TimeoutError('The complete C4 Android observation exceeded 900 seconds')
++        return min(left, maximum)
++
++    def bounded_command(self, *args, timeout=60, check=True):
++        return self.old_command(*args, timeout=self.remaining(timeout), check=check)
++
++    def original(self, tag: str, *arguments: str, check=True, bound=1024*1024) -> tuple[str, str]:
++        self.counter += 1
++        prefix = f'commands/{self.counter:04d}-{tag}'
++        stem = self.out / prefix
++        stem.parent.mkdir(parents=True, exist_ok=True)
++        started = time.monotonic()
++        result = subprocess.run(['adb', *arguments], stdout=subprocess.PIPE, stderr=subprocess.PIPE,
++                                timeout=self.remaining(45), check=False)
++        for suffix, data in (('.stdout', result.stdout), ('.stderr', result.stderr)):
++            with Path(str(stem) + suffix).open('xb') as stream:
++                stream.write(data)
++        write(Path(str(stem) + '.json'), {'command':['adb', *arguments],
++              'returncode':result.returncode, 'elapsed_seconds':time.monotonic()-started,
++              'stdout_bytes':len(result.stdout), 'stderr_bytes':len(result.stderr),
++              'stdout_sha256':hashlib.sha256(result.stdout).hexdigest(),
++              'stderr_sha256':hashlib.sha256(result.stderr).hexdigest()})
++        self.remaining()
++        contract.demand(len(result.stdout) <= bound, 'Original reply exceeds its stated bound: ' + tag)
++        if check:
++            contract.demand(result.returncode == 0 and not result.stderr,
++                            'Original read failed: ' + tag + ' (see ' + prefix + ')')
++        return result.stdout.decode('utf-8'), prefix + '.stdout'
++
++    def read_json(self, name: str, path: str) -> tuple[dict, str]:
++        raw, source = self.original(name, 'exec-out', 'cat', path)
++        value = json.loads(raw)
++        contract.demand(isinstance(value, dict), 'Original JSON is not an object: ' + path)
++        return value, source
++
++    def read_preferences(self, tag: str) -> tuple[dict, str]:
++        raw, source = self.original(tag + '-preferences', 'exec-out', 'cat',
++            f'/data/user/0/{contract.PACKAGE}/shared_prefs/FlutterSharedPreferences.xml')
++        return contract.preferences(raw), source
++
++    def density(self) -> tuple[float, str]:
++        text, source = self.original('density', 'shell', 'wm', 'density')
++        return contract.device_density(text), source
++
++    def locate(self) -> bool:
++        directory = f'/data/user/0/{contract.PACKAGE}/files/lumo_connect_four_session_v1'
++        raw, _ = self.original('locate-c4-session', 'shell', 'find', directory,
++                              '-maxdepth', '2', '-type', 'f', '-name', 'state.json', check=False)
++        matches = [p for p in raw.splitlines() if re.fullmatch(
++            re.escape(directory) + r'/[a-f0-9]{32}/state\.json', p)]
++        contract.demand(len(matches) <= 1, 'Multiple actual native C4 sessions exist')
++        if not matches:
++            return False
++        self.mailbox = str(Path(matches[0]).parent)
++        self.token = Path(self.mailbox).name
++        return True
++
++    def observation(self, tag: str, control: str | None = None) -> dict:
++        from PIL import Image
++        contract.demand(bool(self.mailbox), 'No observed private C4 mailbox')
++        state, sf = self.read_json(tag + '-state', self.mailbox + '/state.json')
++        contract.demand(state.get('token') == self.token, 'Private C4 token changed')
++        layout_path = f'/data/user/0/{contract.PACKAGE}/files/connect_four_layout_v1.json'
++        layout, lf = self.read_json(tag + '-layout', layout_path)
++        life, lif = self.read_json(tag + '-lifecycle', self.mailbox + '/lifecycle.json')
++        clock, cf = self.original(tag + '-clock', 'shell', 'date', '+%s%3N')
++        contract.demand(bool(re.fullmatch(r'\d{13}\s*', clock)), 'Missing actual device millisecond clock')
++        contract.demand(life.get('active') is True and contract.integer(life.get('stamp'), 1, 2**63-1)
++                        and 0 <= int(clock)-life['stamp'] < 2500,
++                        'Actual native visible lease is stale or inactive')
++        native, pf = self.original(tag + '-native-pid', 'shell', 'pidof', contract.PACKAGE + ':lumo_game')
++        host, hf = self.original(tag + '-host-pid', 'shell', 'pidof', contract.PACKAGE)
++        contract.demand(bool(re.fullmatch(r'\d+\s*', native)) and bool(re.fullmatch(r'\d+\s*', host))
++                        and int(native) != int(host), 'Actual Flutter/native processes are not distinct')
++        activity, af = self.original(tag + '-activity', 'shell', 'dumpsys', 'activity', 'activities')
++        foreground = [line for line in activity.splitlines()
++                      if 'mResumedActivity' in line or 'topResumedActivity' in line]
++        contract.demand(foreground and all('ConnectFourGameActivity' in line for line in foreground),
++                        'Actual private C4 Activity is not foreground')
++        services, service_file = self.original(tag + '-authority', 'shell', 'dumpsys', 'activity',
++                                               'services', contract.PACKAGE)
++        contract.demand('ConnectFourAuthorityService' in services,
++                        'The real private C4 authority service is not bound')
++        prefs, prefs_file = self.read_preferences(tag)
++        contract.persisted_round(prefs, state)
++        frame = self.ui.capture(self.out, tag, timeout=self.remaining())
++        png = self.out / frame['file']
++        surface = self.ui.inspect_surface(png, orientation='responsive')
++        contract.demand(surface['acceptable_for_target_sampling'], 'Current C4 surface is incomplete')
++        with Image.open(png) as image:
++            image.load()
++            pixels = tuple(image.size)
++        again, s2 = self.read_json(tag + '-state-after-frame', self.mailbox + '/state.json')
++        layout_again, l2 = self.read_json(tag + '-layout-after-frame', layout_path)
++        contract.demand(state == again and layout == layout_again,
++                        'C4 state/layout changed while the original frame was captured')
++        density, density_file = self.density()
++        contract.validate_layout(layout, state, pixels, int(native), density)
++        visual = contract.board_pixels(png, layout, state, int(native), density)
++        result = {'id':tag, 'state':state, 'layout':layout, 'lifecycle':life,
++                  'device_clock_ms':int(clock), 'pid':int(native), 'host_pid':int(host),
++                  'density':density, 'pixels':list(pixels), 'frame':frame['file'],
++                  'frame_sha256':contract.sha256(png), 'visual':visual, 'surface':surface,
++                  'observed_monotonic':time.monotonic(),
++                  'raw':{'state':sf, 'state_after':s2, 'layout':lf, 'layout_after':l2,
++                         'lifecycle':lif, 'clock':cf, 'native_pid':pf, 'host_pid':hf,
++                         'activity':af, 'authority':service_file, 'preferences':prefs_file,
++                         'density':density_file}}
++        if control is not None:
++            result['target'] = contract.touch_target(layout, state, pixels, int(native), density, control)
++        self.observations.append(result)
++        write(self.out / ('observations/' + tag + '.json'), result)
++        return result
++
++    def wait_observation(self, tag: str, condition, *, control=None, timeout=90) -> dict:
++        deadline = time.monotonic() + self.remaining(timeout)
++        failures = []
++        count = 0
++        while time.monotonic() < deadline:
++            name = f'{tag}-{count:03d}'; count += 1
++            try:
++                if not self.mailbox and not self.locate():
++                    raise ValueError('Native C4 has not opened a private session')
++                observed = self.observation(name, control)
++                if condition(observed):
++                    self.remaining()
++                    return observed
++                failures.append({'attempt':name, 'reason':'Actual state has not reached the required phase'})
++            except (ValueError, RuntimeError, json.JSONDecodeError) as error:
++                failures.append({'attempt':name, 'reason':str(error)})
++            time.sleep(min(.6, max(0, deadline-time.monotonic())))
++        write(self.out / (tag + '-wait-failure.json'), failures)
++        raise TimeoutError('No qualifying actual C4 observation: ' + tag)
++
++    def native_touch(self, tag: str, control: str) -> dict:
++        first = self.wait_observation(tag + '-first', lambda value: True, control=control)
++        time.sleep(min(.6, self.remaining()))
++        second = self.wait_observation(tag + '-second', lambda value: True, control=control)
++        target = contract.stable_target(first, second)
++        contract.demand(contract.sha256(self.out / second['frame']) == second['frame_sha256'],
++                        'Current original frame changed before dispatch')
++        self.remaining(.2)
++        x, y = map(str, target['point'])
++        response, source = self.original(tag + '-touch', 'shell', 'input', 'swipe', x, y, x, y, '120')
++        contract.demand(not response.strip(), 'Unexpected actual touch dispatch response')
++        write(self.out / (tag + '-touch.json'), {'first':first['id'], 'second':second['id'],
++              'target':target, 'command_original':source, 'gesture':'120ms stationary actual Android touch'})
++        return second
++
++    def transition(self, tag: str, action: str, control: str) -> dict:
++        before = self.native_touch(tag, control)
++        def arrived(value):
++            state = value['state']
++            if state['ack'] != before['state']['ack'] + 1:
++                return False
++            return (state['paused'] if action == 'pause' else
++                    not state['paused'] and state['canDrop'] and
++                    (len(state['columns']) == len(before['state']['columns']) + 2 if action == 'drop' else True))
++        after = self.wait_observation(tag + '-confirmed', arrived, timeout=120)
++        request, source = self.read_json(tag + '-request', self.mailbox + '/request.json')
++        contract.acknowledged(before['state'], after['state'], request, action)
++        item = {'action':action, 'before':before['id'], 'after':after['id'],
++                'request':source, 'touch':tag + '-touch.json'}
++        self.transitions.append(item)
++        write(self.out / (tag + '-transition.json'), item)
++        return after
++
++    def flutter_touch(self, label: str, tag: str, *, scrolls=12) -> str:
++        previous = None
++        for index in range(scrolls + 1):
++            self.remaining()
++            name = f'{tag}-{index:02d}'
++            nodes = self.ui.read_live_nodes(self.out, name)
++            capture = self.ui.capture_flutter_ready(self.out, name + '-frame', timeout=self.remaining(30))
++            pixels = (capture['width'], capture['height'])
++            density, density_file = self.density()
++            observation = {'capture':capture, 'ui':name + '.xml', 'density':density_file,
++                           'observed_monotonic':time.monotonic()}
++            try:
++                target = contract.flutter_control(nodes, label, pixels, density)
++            except ValueError:
++                visible = [n for n in nodes if n.get('package') == contract.PACKAGE
++                           and n.get('enabled') == 'true' and n.get('clickable') == 'true'
++                           and label in (n.get('text',''), n.get('content-desc',''))]
++                contract.demand(len(visible) <= 1, 'Ambiguous actual Flutter caption: ' + label)
++                previous = None
++                containers = []
++                for node in nodes:
++                    if node.get('package') != contract.PACKAGE or node.get('scrollable') != 'true':
++                        continue
++                    bounds = list(map(int, re.findall(r'\d+', node.get('bounds', ''))))
++                    if len(bounds) == 4 and 0 <= bounds[0] < bounds[2] <= pixels[0] and 0 <= bounds[1] < bounds[3] <= pixels[1]:
++                        containers.append(bounds)
++                if index == scrolls or not containers:
++                    raise
++                rect = max(containers, key=lambda r:(r[2]-r[0])*(r[3]-r[1]))
++                x = round((rect[0]+rect[2])/2)
++                lo = round(rect[1]+(rect[3]-rect[1])*.25)
++                hi = round(rect[1]+(rect[3]-rect[1])*.75)
++                self.original(name + '-scroll', 'shell', 'input', 'swipe', str(x), str(hi), str(x), str(lo), '400')
++                time.sleep(min(.6, self.remaining()))
++                continue
++            if previous and target == previous['target']:
++                source = self.out / capture['file']
++                contract.demand(contract.sha256(source) == capture['sha256'], 'Flutter frame changed before touch')
++                x,y = map(str, target['point'])
++                _, command = self.original(tag + '-touch', 'shell', 'input', 'swipe', x,y,x,y,'120')
++                name = tag + '-flutter-touch.json'
++                write(self.out / name, {'target':target,
++                      'first':previous['observation'], 'second':observation, 'command_original':command})
++                return name
++            previous = {'target':target, 'observation':observation}
++            time.sleep(min(.6, self.remaining()))
++        raise RuntimeError('No two stable actual Flutter observations: ' + label)
++
++    def return_to_flutter(self, tag: str) -> dict:
++        before = self.native_touch(tag, 'back')
++        contract.demand(before['state']['paused'], 'Return must follow the proved actual pause')
++        deadline = time.monotonic() + self.remaining(45)
++        while time.monotonic() < deadline:
++            native, pf = self.original(tag + '-native-exit', 'shell', 'pidof', contract.PACKAGE + ':lumo_game', check=False)
++            activity, af = self.original(tag + '-return-activity', 'shell', 'dumpsys', 'activity', 'activities')
++            active = [line for line in activity.splitlines() if 'mResumedActivity' in line or 'topResumedActivity' in line]
++            if not native.strip() and active and all('MainActivity' in line and contract.PACKAGE in line for line in active):
++                break
++            time.sleep(min(.5, max(0, deadline-time.monotonic())))
++        else:
++            raise RuntimeError('Native C4 did not return to the actual Flutter activity')
++        closed, closed_file = self.original(tag + '-closed-mailbox', 'shell', 'find',
++            self.mailbox.rsplit('/',1)[0], '-maxdepth','2','-type','f','-name','state.json')
++        contract.demand(not closed.strip(), 'Closed C4 mailbox still exists')
++        prefs, prefs_file = self.read_preferences(tag + '-after-return')
++        record = contract.persisted_round(prefs, before['state'])
++        frame = self.ui.capture_flutter_ready(self.out, tag + '-flutter', timeout=self.remaining(30))
++        nodes = self.ui.read_live_nodes(self.out, tag + '-returned-ui')
++        labels = '\n'.join(n.get('text','') + '\n' + n.get('content-desc','') for n in nodes)
++        contract.demand('Spiel pausiert' in labels and 'Fortsetzen' in labels,
++                        'Actual paused Flutter C4 return is not visible')
++        item = {'before':before['id'], 'frame':frame, 'preferences':prefs_file,
++                'native_exit':pf, 'activity':af, 'closed_mailbox':closed_file,
++                'round':record, 'returned_ui':tag + '-returned-ui.xml',
++                'touch':tag + '-touch.json'}
++        item['to_games_touch'] = self.flutter_touch('Zur Spieleauswahl', tag + '-to-games', scrolls=3)
++        self.returns.append(item)
++        write(self.out / (tag + '-return.json'), item)
++        return before
++
++    def run(self) -> int:
++        result = {'schema':1, 'status':'FAIL', 'scope':'Actual API35 C4 candidate test; no release/FPS/API37 claim',
++                  'observations':[], 'transitions':[], 'returns':[]}
++        try:
++            source = subprocess.check_output(['git','rev-parse','HEAD'], cwd=ROOT, text=True).strip()
++            pin = json.loads((ROOT / 'config/godot-source.json').read_text())
++            sys.path.insert(0, str(ROOT / 'scripts'))
++            from verify_legacy_release_pin import verify as verify_pin
++            build, native = verify_pin((ROOT / 'pubspec.yaml').read_text(), (ROOT / 'config/godot-source.json').read_text())
++            contract.demand(build == 2020 and source == self.args.expected_source
++                            and self.args.expected_native == native == pin['revision'],
++                            'Actual checked-out QA/APK/native identity differs')
++            subprocess.run(['git','diff','--exit-code','HEAD','--'], cwd=ROOT, check=True)
++            identity = self.main.verify_apk_identity(self.args.apk, self.args.provenance, self.args.sums)
++            contract.demand(identity['versionCode'] == 2020 and identity['godot_revision'] == native, 'Wrong 2020 candidate identity')
++            result['identity'] = identity
++            meta = [json.loads((self.args.metadata_dir / (name+'.json')).read_text())
++                    for name in ('run','artifacts','jobs')]
++            result['binding'] = contract.artifact_binding(*meta, source=source,
++                run_id=self.args.build_run, attempt=self.args.run_attempt,
++                artifact_id=self.args.artifact_id, digest=self.args.artifact_digest,
++                native=native, version_name=identity['versionName'])
++            prior = json.loads(self.args.prior_tour.read_text())
++            contract.demand(prior.get('status') == 'PASS' and prior.get('apk_sha256') == identity['apk_sha256']
++                            and prior.get('fatal_crashes') == 0
++                            and all(any(s.get('step') == name and s.get('ok') is True for s in prior.get('steps',[]))
++                                    for name in self.main.HARD_STEPS), 'The complete existing main tour must pass first')
++            result['prior_tour'] = {'path':str(self.args.prior_tour), 'sha256':contract.sha256(self.args.prior_tour)}
++            result['root_readiness'] = self.ui.ensure_rooted_emulator(self.base.adb, self.out)
++            api, api_file = self.original('sdk', 'shell','getprop','ro.build.version.sdk')
++            contract.demand(api.strip() == '35', 'This C4 device proof is explicitly API35')
++            result['android_sdk_original'] = api_file
++            self.base.launch(self.out, 'c4-start')
++            self.ui.device_rotation(self.out, 'c4-responsive-portrait', 0)
++            contract.demand(self.main.try_tap(self.out, ['Spielen','Spiele'], 'c4-games') is not None,
++                            'Actual games navigation is unavailable')
++            before_prefs, before_file = self.read_preferences('before-c4')
++            result['preferences_before'] = before_file
++            result['entry_touch'] = self.flutter_touch(contract.PORTAL, 'open-c4')
++            initial = self.wait_observation('initial', lambda o:not o['state']['paused'] and o['state']['canDrop'])
++            contract.demand(initial['state']['columns'] == [] and not initial['state']['twoPlayers'],
++                            'Initial actual C4 round is not the untouched single-player game')
++            result['initial'] = initial['id']
++            first = self.transition('child-first', 'drop', 'column_3')
++            paused = self.transition('pause-first', 'pause', 'pause')
++            time.sleep(min(1.2, self.remaining()))
++            held = self.wait_observation('pause-held', lambda o:o['state']['paused'])
++            contract.paused_unchanged(paused, held, held['observed_monotonic']-paused['observed_monotonic'])
++            result['pause_hold'] = {'first':paused['id'], 'second':held['id'],
++                                   'elapsed':held['observed_monotonic']-paused['observed_monotonic']}
++            self.transition('resume-first', 'resume', 'resume')
++            second = self.transition('child-second', 'drop', 'column_2')
++            self.transition('pause-before-return', 'pause', 'pause')
++            closed = self.return_to_flutter('return-first')
++            old_token = self.token
++            self.mailbox, self.token = '', ''
++            reopen_touch = self.flutter_touch(contract.PORTAL, 'reopen-c4')
++            again = self.wait_observation('reopened', lambda o:not o['state']['paused'] and o['state']['canDrop'])
++            contract.reopened(closed['state'], again['state'])
++            contract.demand(again['state']['token'] != old_token and again['pid'] != closed['pid'],
++                            'Reopen did not create a new real private native session/process')
++            result['reopen'] = {'closed':closed['id'], 'opened':again['id'], 'touch':reopen_touch}
++            self.transition('pause-after-reopen', 'pause', 'pause')
++            self.return_to_flutter('return-final')
++            after_prefs, after_file = self.read_preferences('after-c4')
++            contract.learning_unchanged(before_prefs, after_prefs)
++            result['preferences_after'] = after_file
++            subprocess.run(['git','diff','--exit-code','HEAD','--'], cwd=ROOT, check=True)
++            self.remaining()
++            result['status'] = 'PASS'
++        except Exception as error:
++            result.update(error=f'{type(error).__name__}: {error}', traceback=traceback.format_exc())
++        finally:
++            try:
++                raw, log_file = self.original('final-all-buffer-logcat', 'logcat','-b','all','-d','-v','threadtime',
++                                              bound=256*1024*1024)
++                errors = contract.runtime_errors(raw)
++                result['original_logcat'] = log_file
++                result['fatal_entries'] = errors
++                if errors:
++                    result.update(status='FAIL', error='Actual engine/Android failure in original all-buffer logcat')
++            except Exception as error:
++                result.update(status='FAIL', final_log_error=f'{type(error).__name__}: {error}')
++            self.base.command = self.old_command
++            result.update(observations=[o['id'] for o in self.observations],
++                          transitions=self.transitions, returns=self.returns)
++            files = []
++            for path in sorted(self.out.rglob('*')):
++                if path.is_file():
++                    contract.demand(not path.is_symlink(), 'Original evidence cannot contain symlinks')
++                    files.append({'path':str(path.relative_to(self.out)), 'bytes':path.stat().st_size,
++                                  'sha256':contract.sha256(path)})
++            result['originals'] = files
++            write(self.out / 'c4-result.json', result)
++            print('[ConnectFourAndroid]', json.dumps({'status':result['status'], 'error':result.get('error'),
++                  'observations':len(self.observations), 'transitions':len(self.transitions)}), flush=True)
++        return 0 if result['status'] == 'PASS' else 1
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser(description=__doc__)
++    for name in ('apk','provenance','sums','metadata-dir','prior-tour','out'):
++        parser.add_argument('--'+name, type=Path, required=True)
++    for name in ('expected-source','expected-native','artifact-digest'):
++        parser.add_argument('--'+name, required=True)
++    for name in ('build-run','run-attempt','artifact-id'):
++        parser.add_argument('--'+name, type=int, required=True)
++    args = parser.parse_args()
++    return Probe(args).run()
++
++
++if __name__ == '__main__':
++    raise SystemExit(main())
+diff --git a/.github/workflows/lumo-connect-four-2020.yml b/.github/workflows/lumo-connect-four-2020.yml
+new file mode 100644
+--- /dev/null
++++ b/.github/workflows/lumo-connect-four-2020.yml
+@@ -0,0 +1,697 @@
++name: LUMO Connect Four 2020 signed test candidate
++on:
++  pull_request:
++permissions:
++  contents: read
++concurrency:
++  group: lumo-connect-four-2020-${{ github.head_ref || github.ref_name }}
++  cancel-in-progress: true
++jobs:
++  connect-four-runtime:
++    if: >-
++      github.repository == 'Ullmann27/lumo-lernen' &&
++      github.event_name == 'pull_request' &&
++      github.event.pull_request.head.repo.full_name == github.repository &&
++      github.head_ref == 'integration/lumo-c4-connections-20261114'
++    runs-on: ubuntu-latest
++    timeout-minutes: 35
++    outputs:
++      native-revision: ${{ steps.pin.outputs.revision }}
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          persist-credentials: false
++          ref: ${{ github.event.pull_request.head.sha }}
++      - name: Bind the approved 2020 host and exact native source
++        id: pin
++        env:
++          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
++        run: |
++          set -euo pipefail
++          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
++          python3 - <<'PYCODE'
++          import json, os, sys
++          from pathlib import Path
++          sys.path.insert(0, 'scripts')
++          from verify_legacy_release_pin import verify
++          build, native = verify(Path('pubspec.yaml').read_text(), Path('config/godot-source.json').read_text())
++          assert build == 2020, 'Only the explicit 2020 C4 candidate is accepted'
++          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
++              output.write('revision=' + native + '\n')
++          PYCODE
++      - uses: actions/checkout@v4
++        with:
++          repository: Ullmann27/lumo-godot
++          ref: ${{ steps.pin.outputs.revision }}
++          path: native-source
++          persist-credentials: false
++      - uses: subosito/flutter-action@v2
++        with:
++          flutter-version: '3.44.9'
++          channel: stable
++          cache: true
++      - name: Prepare genuine desktop renderer dependencies
++        run: |
++          set -euo pipefail
++          sudo apt-get -o Acquire::Retries=2 update -qq
++          sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0 fonts-noto-color-emoji
++          python3 -m venv .c4-python
++          .c4-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
++          flutter pub get --enforce-lockfile
++          command -v xvfb-run
++      - name: Install the actual pinned Godot engine
++        run: bash scripts/install_godot_for_build.sh
++      - name: Import the exact configured native source in its own directory
++        env:
++          NATIVE_REVISION: ${{ steps.pin.outputs.revision }}
++        run: |
++          set -euo pipefail
++          test "$(git -C native-source rev-parse HEAD)" = "$NATIVE_REVISION"
++          mkdir -p c4-runtime
++          export XDG_DATA_HOME="$RUNNER_TEMP/c4-import/data"
++          export XDG_CONFIG_HOME="$RUNNER_TEMP/c4-import/config"
++          export XDG_CACHE_HOME="$RUNNER_TEMP/c4-import/cache"
++          mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
++          (cd native-source && timeout 300s godot --headless --audio-driver Dummy --editor --import) 2>&1 | tee c4-runtime/original-import.log
++          if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:' c4-runtime/original-import.log; then
++            echo 'Actual C4 source import failed' >&2
++            exit 1
++          fi
++      - name: Require the actual production Dart and rendered Godot two-process gate
++        run: |
++          set -euo pipefail
++          .c4-python/bin/python scripts/run_connect_four_runtime.py --host "$GITHUB_WORKSPACE" --native "$GITHUB_WORKSPACE/native-source" --output "$GITHUB_WORKSPACE/c4-runtime/runtime"
++      - name: Preserve every original C4 runtime result and rendered frame
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-connect-four-2020-desktop-runtime
++          path: c4-runtime/
++          include-hidden-files: true
++          if-no-files-found: error
++          retention-days: 30
++
++  android-host-compile:
++    if: >-
++      github.repository == 'Ullmann27/lumo-lernen' &&
++      (github.event_name == 'pull_request' &&
++      github.event.pull_request.head.repo.full_name == github.repository &&
++      github.head_ref == 'integration/lumo-c4-connections-20261114')
++    runs-on: ubuntu-latest
++    timeout-minutes: 35
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          persist-credentials: false
++          ref: ${{ github.event.pull_request.head.sha || github.sha }}
++      - uses: actions/setup-java@v4
++        with:
++          distribution: temurin
++          java-version: '17'
++      - uses: subosito/flutter-action@v2
++        with:
++          flutter-version: '3.44.9'
++          channel: stable
++          cache: true
++      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
++        with:
++          packages: platform-tools
++      - name: Compile actual current Android host before native release pin approval
++        run: bash scripts/compile_android_host.sh
++      - name: Bind actual compiled C4 Activity bridge and Binder bytecode
++        run: |
++          set -euo pipefail
++          python3 - <<'PYCODE'
++          import hashlib, json, subprocess
++          from pathlib import Path
++          classes = {}
++          for name in ('ConnectFourGameActivity', 'ConnectFourAuthorityService', 'ConnectFourBridge'):
++              paths = sorted(Path('build/app').rglob(name + '.class'))
++              assert paths, 'Actual current C4 bytecode missing: ' + name
++              classes[name] = []
++              for path in paths:
++                  data = path.read_bytes()
++                  assert data.startswith(bytes.fromhex('cafebabe')), 'Invalid actual C4 class'
++                  classes[name].append({'path':str(path), 'bytes':len(data), 'sha256':hashlib.sha256(data).hexdigest()})
++          source = subprocess.check_output(['git','rev-parse','HEAD'], text=True).strip()
++          Path('host-compile-evidence/connect-four-classes.json').write_text(json.dumps(
++              {'status':'PASS','source':source,'classes':classes}, indent=2) + '\n')
++          PYCODE
++      - uses: actions/upload-artifact@v4
++        if: always()
++        with:
++          name: lumo-connect-four-2020-android-host-compile
++          path: host-compile-evidence/
++          if-no-files-found: error
++          retention-days: 30
++
++  verify-and-build:
++    needs: [android-host-compile, connect-four-runtime]
++    if: >-
++      github.repository == 'Ullmann27/lumo-lernen' &&
++      (github.event_name == 'pull_request' &&
++      github.event.pull_request.head.repo.full_name == github.repository &&
++      github.head_ref == 'integration/lumo-c4-connections-20261114')
++    runs-on: ubuntu-latest
++    timeout-minutes: 90
++    outputs:
++      candidate-artifact-id: ${{ steps.upload-candidate.outputs.artifact-id }}
++      candidate-artifact-digest: ${{ steps.upload-candidate.outputs.artifact-digest }}
++    env:
++      LUMO_SPLIT_PER_ABI: '1'
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          persist-credentials: false
++          ref: ${{ github.event.pull_request.head.sha || github.sha }}
++      - name: Save source identity and validate exact Godot integration pin
++        run: |
++          set -euo pipefail
++          mkdir -p dist
++          git rev-parse HEAD | tee dist/BUILD-SOURCE.txt
++          cat config/godot-source.json | tee dist/GODOT-SOURCE.json
++          python3 - <<'PY'
++          import json
++          import re
++          import sys
++          from pathlib import Path
++          sys.path.insert(0, "scripts")
++          from verify_legacy_release_pin import verify
++          build, native = verify(Path("pubspec.yaml").read_text(), Path("config/godot-source.json").read_text())
++          assert build == 2020, "C4 test workflow requires build 2020"
++          from release_pipeline_gates import parse_pubspec_version
++          assert parse_pubspec_version(Path("pubspec.yaml").read_text())[1] == 2020, "Wrong C4 test candidate version"
++          config=json.load(open("config/godot-source.json"))
++          assert config["repository"]=="https://github.com/Ullmann27/lumo-godot.git", "Unexpected Godot repository"
++          assert isinstance(config["revision"], str) and re.fullmatch(r"[0-9a-f]{40}", config["revision"]), "Godot source must be an immutable 40-character Git SHA"
++          assert config["engine"]=="4.6.3", "Unexpected Godot engine"
++          # Historical bad sources remain rejected on this separate candidate.
++          # Actual rendered review exposed native menu geometry defects.
++          # This workflow revision rejects the measured candidates on every run.
++          # It cannot alter historical workflow revisions used by older runs.
++          rejected_android_layout_sources = {
++              "0aa89cdea3a07d0c2bc0a31a153737a1fee41454":
++                  "Android 2400x1080: header/tab overlap and landing model occlusion",
++              "f04e580ec0d7d8f70e8be269523fabedd15b0766":
++                  "Android 2400x1080: selected kart card exceeds visible scroll viewport",
++          }
++          assert config["revision"] not in rejected_android_layout_sources, (
++              "Rejected Android menu layout: " + rejected_android_layout_sources.get(config["revision"], "")
++          )
++          # scripts/export_embedded_game.py subsequently fetches/checks out this
++          # exact SHA, then compares its HEAD before packaging the native PCK.
++          PY
++      - uses: actions/setup-java@v4
++        with:
++          distribution: temurin
++          java-version: '17'
++      - uses: subosito/flutter-action@v2
++        with:
++          flutter-version: '3.44.9'
++          channel: stable
++          cache: true
++      - name: Install real system emoji for ABC screenshots and Flutter test suite
++        run: |
++          set -euo pipefail
++          sudo apt-get -o Acquire::Retries=2 update -qq
++          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
++          test -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
++      - name: Resolve immutable Flutter dependencies
++        run: flutter pub get --enforce-lockfile
++      - name: Flutter static analysis
++        run: flutter analyze --no-fatal-infos --no-fatal-warnings
++      - name: Real widget tests for premium quiz and 3D learning islands
++        run: |
++          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
++            test/quiz_premium_stage_layout_test.dart \
++            test/quiz_premium_stage_visual_capture_test.dart \
++            test/home_navigation_progress_test.dart \
++            test/home_subject_islands_premium_test.dart \
++            test/academy_grade_3_4_visible_navigation_test.dart \
++            test/lumo_scene_art_panel_test.dart \
++            test/learning_lab_runtime_test.dart \
++            test/parents/parent_school_grade_progression_test.dart
++      - name: Save genuine rendered Quizshow screenshots for reference comparison
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-1983-quiz-studio-captures
++          path: .ci-results/quiz-premium-stage/
++          include-hidden-files: true
++          if-no-files-found: warn
++          retention-days: 30
++      - name: Full Flutter regression suite including every capture
++        env:
++          REQUIRE_ALL_TESTS: 'true'
++        run: |
++          set -euo pipefail
++          if [ "$REQUIRE_ALL_TESTS" = true ]; then
++            python3 scripts/run_full_flutter_acceptance.py --output .ci-results/full-acceptance
++          else
++            flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
++          fi
++      - uses: actions/upload-artifact@v4
++        if: always()
++        with:
++          name: lumo-candidate-all-flutter-tests-and-captures
++          path: .ci-results/full-acceptance/
++          include-hidden-files: true
++          if-no-files-found: warn
++          retention-days: 30
++      - name: Capture and verify actual 2001 tutor, transfer and daily-plan routes
++        if: hashFiles('test/design/lumo_tutor_brain_capture_test.dart') != ''
++        env:
++          LUMO_TUTOR_BRAIN_CAPTURES: .ci-results/tutor-2001
++        run: flutter test --no-pub --reporter=expanded test/design/lumo_tutor_brain_capture_test.dart
++      - uses: actions/upload-artifact@v4
++        if: always() && hashFiles('.ci-results/tutor-2001/*.png') != ''
++        with:
++          name: lumo-tutor-2001-actual-flutter-captures
++          path: .ci-results/tutor-2001/
++          include-hidden-files: true
++          if-no-files-found: error
++          retention-days: 90
++      - name: Capture spatial reading, answer retry and subject cards on phone and Fold
++        env:
++          LUMO_SPATIAL_CAPTURES: visual-evidence/1988/spatial-reading
++        run: flutter test --no-pub --reporter=expanded test/design/lumo_spatial_reading_capture_test.dart
++      - name: Install actual app-script verification dependencies
++        run: |
++          set -euo pipefail
++          sudo apt-get -o Acquire::Retries=2 update -qq
++          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
++          python3 -m venv .ci-python
++          .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
++          command -v rg
++          .ci-python/bin/python -c 'from PIL import Image; print("App-script image verification ready")'
++      - name: Install verified Gradle for the real build-contract probe
++        run: |
++          set -euo pipefail
++          curl -fL --retry 3 https://services.gradle.org/distributions/gradle-9.1.0-bin.zip -o "$RUNNER_TEMP/lumo-gradle.zip"
++          printf '%s  %s\n' a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806 "$RUNNER_TEMP/lumo-gradle.zip" | sha256sum -c -
++          unzip -q "$RUNNER_TEMP/lumo-gradle.zip" -d "$RUNNER_TEMP/lumo-verified-gradle"
++          echo "$RUNNER_TEMP/lumo-verified-gradle/gradle-9.1.0/bin" >> "$GITHUB_PATH"
++      - name: Verify all build and preservation contracts
++        env:
++          REQUIRE_ALL_TESTS: 'true'
++        run: |
++          set -euo pipefail
++          mkdir -p .ci-results
++          .ci-python/bin/python -m unittest discover -s scripts/tests -v 2>&1 | tee .ci-results/build-contracts.log
++          if [ "$REQUIRE_ALL_TESTS" = true ] && grep -Eq '^OK \(skipped=|^FAILED.*skipped=' .ci-results/build-contracts.log; then
++            echo 'Build acceptance rejects skipped contract tests.' >&2
++            exit 1
++          fi
++      - name: Code-level Android probe regression with verified image dependencies
++        run: |
++          set -euo pipefail
++          sudo apt-get -o Acquire::Retries=2 update -qq
++          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu
++          .ci-python/bin/python -c 'from PIL import Image; print("Pillow ready", Image.__version__ if hasattr(Image, "__version__") else "ok")'
++          .ci-python/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v
++      - name: Reject unreadable Ahem-font captures before issuing visual proof
++        run: |
++          set -euo pipefail
++          .ci-python/bin/python -m unittest discover -s tools/qa/tests -p 'test_verify_capture_fonts.py' -v
++          .ci-python/bin/python tools/qa/verify_capture_fonts.py visual-evidence
++      - name: Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety
++        run: python3 -m unittest discover -s scripts/tests -p 'test_export_embedded_game.py' -v
++      - name: Render actual premium lessons on phone and Fold
++        env:
++          LUMO_LESSON_CAPTURES: visual-evidence/1978/lessons
++        run: flutter test --no-pub --reporter=expanded test/design/lesson_premium_capture_test.dart
++      - name: Render actual app sections on phone and Fold
++        env:
++          LUMO_TOUR_DIR: visual-evidence/1978/tour
++          LUMO_TOUR_CAPTURE_SCALE: '1'
++        run: flutter test --no-pub --reporter=expanded test/design/app_tour_capture_test.dart
++      - name: Render playable Connect Four on five real layout sizes
++        env:
++          LUMO_CONNECT_CAPTURES: visual-evidence/1978/connect_four
++        run: flutter test --no-pub --reporter=expanded test/design/connect_four_visual_test.dart
++      - name: Render genuine offline atelier on phone and Fold
++        env:
++          LUMO_LAB_CAPTURES: visual-evidence/1981/atelier
++        run: |
++          set -euo pipefail
++          flutter test --no-pub --reporter=expanded --timeout=60s test/design/learning_lab_visual_capture_test.dart
++          for device in phone fold-open fold-cover-large-text; do
++            for phase in example build; do
++              test -s "visual-evidence/1981/atelier/${device}-${phase}.png"
++            done
++          done
++      - name: Archive only verified readable Flutter captures
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-1981-real-flutter-captures
++          path: visual-evidence/
++          if-no-files-found: error
++          retention-days: 30
++      - name: Install Godot 4.6.3 for the exact pinned Kart source
++        run: bash scripts/install_godot_for_build.sh
++      - name: Require actual gameplay gates on the exact pinned native source
++        env:
++          LIBGL_ALWAYS_SOFTWARE: '1'
++          REQUIRE_TECHNICAL_ART: 'true'
++          REQUIRE_ACTION_STAGE: 'true'
++        run: |
++          set -euo pipefail
++          sudo apt-get -o Acquire::Retries=2 update -qq
++          sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0
++          export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"
++          native_revision="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
++          native_source="$RUNNER_TEMP/lumo-native-acceptance"
++          native_logs="$GITHUB_WORKSPACE/acceptance-native"
++          mkdir -p "$native_logs/user-data/godot/app_userdata/Lumo 3D"
++          git init "$native_source"
++          git -C "$native_source" remote add origin https://github.com/Ullmann27/lumo-godot.git
++          git -C "$native_source" fetch --depth 1 origin "$native_revision"
++          git -C "$native_source" checkout --detach FETCH_HEAD
++          test "$(git -C "$native_source" rev-parse HEAD)" = "$native_revision"
++          printf '%s\n' "$native_revision" > "$native_logs/source-sha.txt"
++          export XDG_DATA_HOME="$native_logs/user-data"
++          export XDG_CONFIG_HOME="$native_logs/user-config"
++          export XDG_CACHE_HOME="$native_logs/user-cache"
++          mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
++          cd "$native_source"
++          python3 -c 'from PIL import Image; print("Pinned-native raster verification ready")'
++          python3 tools/validate_project.py 2>&1 | tee "$native_logs/project.log"
++          bash tools/validate_project.sh 2>&1 | tee "$native_logs/legacy-gameplay.log"
++          LUMO_2014_LOG_DIR="$native_logs/2014" bash tools/validate_2014.sh
++          if [ "$REQUIRE_TECHNICAL_ART" = true ]; then
++            LUMO_ART_LOG_DIR="$native_logs/technical-art" bash tools/validate_technical_art.sh
++          fi
++          if [ "$REQUIRE_ACTION_STAGE" = true ]; then
++            LUMO_ACTION_LOG_DIR="$native_logs/action-stage" bash tools/validate_action_stage.sh
++          fi
++          LUMO_NEXTGEN_LOG_DIR="$native_logs/nextgen" bash tools/validate_nextgen.sh
++      - uses: actions/upload-artifact@v4
++        if: always()
++        with:
++          name: lumo-candidate-pinned-native-gameplay
++          path: acceptance-native/
++          if-no-files-found: warn
++          retention-days: 30
++      - name: Build unified real Android APK
++        run: bash scripts/build_unified_apk.sh
++      - name: Verify APK archive and collect reproducible source hashes
++        run: |
++          set -euo pipefail
++          test -s dist/Lumo-Lernen-Neu.apk
++          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a
++          sha256sum dist/Lumo-Lernen-Neu.apk | tee dist/APK-SHA256.txt
++          test -s dist/APK-VERIFICATION.json
++          test -s dist/BUILD-PROVENANCE.json
++          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64
++          sha256sum dist/x86_64/Lumo-Lernen-Neu.apk > dist/ANDROID-TOUR-SHA256SUMS.txt
++          grep '^version:' pubspec.yaml | tee dist/APP-VERSION.txt
++      - name: Upload exact candidate (no release or synthetic screenshots)
++        id: upload-candidate
++        if: success()
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-connect-four-2020-candidate
++          path: dist/
++          if-no-files-found: error
++          retention-days: 30
++          compression-level: 0
++      - name: Deliver verified ARM64 APK separately for direct download
++        if: success()
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-connect-four-2020-arm64-verified
++          path: |
++            dist/Lumo-Lernen-Neu.apk
++            dist/APK-SHA256.txt
++            dist/APK-VERIFICATION.json
++            dist/BUILD-PROVENANCE.json
++            dist/GODOT-SOURCE.json
++            dist/APP-VERSION.txt
++          if-no-files-found: error
++          retention-days: 30
++          compression-level: 0
++  android-c4:
++    needs: [verify-and-build, android-host-compile, connect-four-runtime]
++    runs-on: ubuntu-latest
++    timeout-minutes: 65
++    permissions:
++      contents: read
++      actions: read
++    env:
++      SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
++      NATIVE_REVISION: ${{ needs.connect-four-runtime.outputs.native-revision }}
++      CANDIDATE_ARTIFACT_ID: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}
++      CANDIDATE_ARTIFACT_DIGEST: ${{ needs.verify-and-build.outputs.candidate-artifact-digest }}
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          persist-credentials: false
++          ref: ${{ github.event.pull_request.head.sha }}
++      - uses: actions/download-artifact@v4
++        with:
++          artifact-ids: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}
++          merge-multiple: true
++          path: candidate/dist/
++      - name: Live UI reader
++        timeout-minutes: 8
++        run: |
++          set -euo pipefail
++          mkdir -p tour
++          sudo apt-get -o Acquire::Retries=2 update -qq
++          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
++          command -v tesseract
++          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt
++          grep -Fxq 'deu' tour/tesseract-installed-languages.txt
++          grep -Fxq 'eng' tour/tesseract-installed-languages.txt
++          python3 -m venv .probe-venv
++          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
++          python3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_connect_four_android_probe.py
++          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen*.py' -v
++          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_studio*.py' -v
++          sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
++      - name: Enable accelerated disposable emulator
++        run: |
++          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
++          sudo udevadm control --reload-rules
++          sudo udevadm trigger --name-match=kvm
++          sudo udevadm settle
++          sudo chmod a+rw /dev/kvm
++      - name: Software display
++        env:
++          DISPLAY: ':99'
++          LIBGL_ALWAYS_SOFTWARE: 'true'
++          GALLIUM_DRIVER: llvmpipe
++          LP_NUM_THREADS: '2'
++        run: |
++          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
++          for attempt in $(seq 1 20); do
++            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
++            sleep 0.25
++          done
++          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
++      - name: Read current original run jobs and exact upload metadata
++        env:
++          GH_TOKEN: ${{ github.token }}
++        run: |
++          set -euo pipefail
++          mkdir -p tour/metadata
++          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
++          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > tour/metadata/run.json
++          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs?per_page=100" > tour/metadata/jobs.json
++          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts?per_page=100" > tour/metadata/artifacts.json
++      - name: Install and tour the exact APK
++        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
++        env:
++          LUMO_NATIVE_STAGE_MENU: '1'
++          DISPLAY: ':99'
++          LIBGL_ALWAYS_SOFTWARE: 'true'
++          GALLIUM_DRIVER: llvmpipe
++          LP_NUM_THREADS: '2'
++        with:
++          api-level: 35
++          target: google_apis
++          arch: x86_64
++          profile: pixel_5
++          emulator-build: '14472402'
++          ram-size: 3072M
++          heap-size: 512M
++          disable-animations: true
++          emulator-boot-timeout: 300
++          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
++          script: |
++            adb shell getprop ro.build.version.sdk > tour/android-sdk.txt
++            adb shell getprop ro.build.version.release > tour/android-release.txt
++            "$ANDROID_HOME/emulator/emulator" -version > tour/android-emulator-version.txt 2>&1
++            .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour/main
++            .probe-venv/bin/python .github/probes/lumo_connect_four_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/main/tour-result.json --metadata-dir tour/metadata --expected-source "$SOURCE_SHA" --expected-native "$NATIVE_REVISION" --build-run "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" --artifact-id "$CANDIDATE_ARTIFACT_ID" --artifact-digest "$CANDIDATE_ARTIFACT_DIGEST" --out tour/c4
++      - name: Preserve complete actual main-tour and C4 Android evidence
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-connect-four-2020-android-c4
++          path: tour/
++          include-hidden-files: true
++          if-no-files-found: error
++          retention-days: 30
++
++  update-2020-from-2017:
++    # Independent emulator and original baseline; the complete update remains
++    # mandatory before this test candidate receives its verification report.
++    needs: [verify-and-build]
++    permissions:
++      contents: read
++      actions: read
++    runs-on: ubuntu-latest
++    timeout-minutes: 55
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          persist-credentials: false
++          ref: ${{ github.event.pull_request.head.sha || github.sha }}
++      - uses: actions/download-artifact@v4
++        with:
++          artifact-ids: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}
++          merge-multiple: true
++          path: candidate/dist/
++      - uses: actions/download-artifact@v4
++        with:
++          artifact-ids: '13948686178'
++          merge-multiple: true
++          path: baseline/dist/
++          run-id: 43220602252
++          github-token: ${{ github.token }}
++      - name: Live UI reader
++        timeout-minutes: 8
++        run: |
++          set -euo pipefail
++          mkdir -p tour
++          sudo apt-get -o Acquire::Retries=2 update -qq
++          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
++          command -v tesseract
++          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt
++          grep -Fxq 'deu' tour/tesseract-installed-languages.txt
++          grep -Fxq 'eng' tour/tesseract-installed-languages.txt
++          python3 -m venv .probe-venv
++          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
++          python3 -m py_compile .github/probes/lumo_2003_update_android_probe.py .github/probes/lumo_2020_update_android_probe.py
++          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_update*preservation.py' -v
++          sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
++      - name: Enable accelerated disposable emulator
++        run: |
++          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
++          sudo udevadm control --reload-rules
++          sudo udevadm trigger --name-match=kvm
++          sudo udevadm settle
++          sudo chmod a+rw /dev/kvm
++      - name: Software display
++        env:
++          DISPLAY: ':99'
++          LIBGL_ALWAYS_SOFTWARE: 'true'
++          GALLIUM_DRIVER: llvmpipe
++          LP_NUM_THREADS: '2'
++        run: |
++          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
++          for attempt in $(seq 1 20); do
++            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
++            sleep 0.25
++          done
++          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
++      - name: Preserve actual 2017 learning through an in-place 2020 upgrade
++        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
++        env:
++          DISPLAY: ':99'
++          LIBGL_ALWAYS_SOFTWARE: 'true'
++          GALLIUM_DRIVER: llvmpipe
++          LP_NUM_THREADS: '2'
++          LUMO_CANDIDATE_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
++        with:
++          api-level: 35
++          target: google_apis
++          arch: x86_64
++          profile: pixel_5
++          emulator-build: '14472402'
++          ram-size: 3072M
++          heap-size: 512M
++          disable-animations: true
++          emulator-boot-timeout: 300
++          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
++          script: .probe-venv/bin/python .github/probes/lumo_2020_update_android_probe.py --baseline baseline/dist/x86_64/Lumo-Lernen-Neu.apk --candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out tour
++      - uses: actions/upload-artifact@v4
++        if: always()
++        with:
++          name: lumo-connect-four-2020-in-place-update-proof
++          path: tour/
++          retention-days: 30
++
++  verify-c4-candidate:
++    needs: [verify-and-build, android-host-compile, connect-four-runtime, android-c4, update-2020-from-2017]
++    runs-on: ubuntu-latest
++    timeout-minutes: 25
++    permissions:
++      contents: read
++      actions: read
++    env:
++      SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
++      CANDIDATE_ARTIFACT_ID: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}
++      CANDIDATE_ARTIFACT_DIGEST: ${{ needs.verify-and-build.outputs.candidate-artifact-digest }}
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          persist-credentials: false
++          ref: ${{ github.event.pull_request.head.sha }}
++      - uses: actions/setup-java@v4
++        with:
++          distribution: temurin
++          java-version: '17'
++      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
++        with:
++          packages: platform-tools
++      - name: Install actual signature manifest and raster verification tools
++        run: |
++          set -euo pipefail
++          sdkmanager 'build-tools;36.0.0'
++          python3 -m venv .c4-verify
++          .c4-verify/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
++      - uses: actions/download-artifact@v4
++        with:
++          artifact-ids: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}
++          merge-multiple: true
++          path: candidate/dist/
++      - uses: actions/download-artifact@v4
++        with:
++          name: lumo-connect-four-2020-desktop-runtime
++          path: proofs/runtime/
++      - uses: actions/download-artifact@v4
++        with:
++          name: lumo-connect-four-2020-android-host-compile
++          path: proofs/host/
++      - uses: actions/download-artifact@v4
++        with:
++          name: lumo-connect-four-2020-android-c4
++          path: proofs/android/
++      - uses: actions/download-artifact@v4
++        with:
++          name: lumo-connect-four-2020-in-place-update-proof
++          path: proofs/update/
++      - name: Bind final original jobs and immutable candidate upload
++        env:
++          GH_TOKEN: ${{ github.token }}
++        run: |
++          set -euo pipefail
++          mkdir -p proofs/metadata
++          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > proofs/metadata/run.json
++          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs?per_page=100" > proofs/metadata/jobs.json
++          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts?per_page=100" > proofs/metadata/artifacts.json
++      - name: Reverify both signed APKs and every mandatory current C4 and update proof
++        run: |
++          set -euo pipefail
++          .c4-verify/bin/python scripts/verify_connect_four_candidate.py --source "$SOURCE_SHA" --build-run "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" --artifact-id "$CANDIDATE_ARTIFACT_ID" --artifact-digest "$CANDIDATE_ARTIFACT_DIGEST" --candidate candidate/dist --runtime proofs/runtime/runtime --host-compile proofs/host --android proofs/android --update proofs/update --metadata proofs/metadata --out C4-CANDIDATE-FACTS.json
++      - uses: actions/upload-artifact@v4
++        if: always()
++        with:
++          name: lumo-connect-four-2020-candidate-verification
++          path: |
++            C4-CANDIDATE-FACTS.json
++            proofs/metadata/
++          if-no-files-found: error
++          retention-days: 30
+diff --git a/.github/workflows/lumo-unified-integration-2026.yml b/.github/workflows/lumo-unified-integration-2026.yml
+--- a/.github/workflows/lumo-unified-integration-2026.yml
++++ b/.github/workflows/lumo-unified-integration-2026.yml
+@@ -63,6 +63,7 @@
+       github.head_ref != 'chatgpt/lumo-2018-android-acceptance-20261113' && github.ref_name != 'chatgpt/lumo-2018-android-acceptance-20261113' &&
+       github.head_ref != 'chatgpt/lumo-kart-graphics-apk-20261113' && github.ref_name != 'chatgpt/lumo-kart-graphics-apk-20261113' &&
+       github.head_ref != 'integration/lumo-connections-20261113' && github.ref_name != 'integration/lumo-connections-20261113' &&
++      github.head_ref != 'integration/lumo-c4-connections-20261114' && github.ref_name != 'integration/lumo-c4-connections-20261114' &&
+       github.head_ref != 'qa/lumo-android-runtime-7b16-20261114' && github.ref_name != 'qa/lumo-android-runtime-7b16-20261114' &&
+       github.head_ref != 'qa/lumo-creative-7b16-20261114' && github.ref_name != 'qa/lumo-creative-7b16-20261114' &&
+       github.head_ref != 'qa/lumo-android-runtime-7b16-followup-20261114' && github.ref_name != 'qa/lumo-android-runtime-7b16-followup-20261114'
+diff --git a/scripts/tests/test_connect_four_pipeline.py b/scripts/tests/test_connect_four_pipeline.py
+new file mode 100644
+--- /dev/null
++++ b/scripts/tests/test_connect_four_pipeline.py
+@@ -0,0 +1,218 @@
++"""Execute the proposed source/update contracts; no APK or device is fabricated."""
++from __future__ import annotations
++
++import importlib.util
++import json
++import os
++from pathlib import Path
++import re
++import subprocess
++import sys
++import tempfile
++import textwrap
++import unittest
++import xml.etree.ElementTree as ET
++
++ROOT = Path(__file__).resolve().parents[2]
++REFERENCE = Path(os.environ.get('LUMO_C4_REFERENCE_HOST', str(ROOT)))
++sys.path.insert(0,str(ROOT/'scripts'))
++sys.path.insert(0,str(ROOT/'tools/android_qa'))
++import verify_connect_four_candidate as final
++
++
++def job(source,name):
++    match=re.search(r'^  '+re.escape(name)+r':\n(.*?)(?=^  [a-z][\w-]*:\n|\Z)',source,re.M|re.S)
++    if match is None:
++        raise AssertionError('Missing actual workflow job: '+name)
++    return match[1]
++
++
++def step(source,name):
++    return source.split('      - name: '+name+'\n',1)[1].split('\n      - ',1)[0]
++
++
++def condition(source,values):
++    text=source.split('    if: >-\n',1)[1].split('    runs-on:',1)[0]
++    text=text.replace('\n',' ').replace('&&','and').replace('||','or').strip()
++    for key in sorted(values,key=len,reverse=True):
++        text=text.replace(key,repr(values[key]))
++    return eval(text,{'__builtins__':{}},{})
++
++
++class WorkflowTests(unittest.TestCase):
++    @classmethod
++    def setUpClass(cls):
++        cls.workflow=(ROOT/'.github/workflows/lumo-connect-four-2020.yml').read_text()
++
++    def test_only_exact_same_repository_c4_pull_request_starts(self):
++        values={'github.repository':'Ullmann27/lumo-lernen', 'github.event_name':'pull_request',
++                'github.event.pull_request.head.repo.full_name':'Ullmann27/lumo-lernen',
++                'github.head_ref':'integration/lumo-c4-connections-20261114'}
++        for name in ('connect-four-runtime','android-host-compile','verify-and-build'):
++            block=job(self.workflow,name)
++            self.assertTrue(condition(block,values))
++            for key,value in (('github.event_name','push'),('github.event_name','workflow_dispatch'),
++                              ('github.event.pull_request.head.repo.full_name','outside/fork'),
++                              ('github.head_ref','integration/lumo-connections-20261113')):
++                with self.subTest(job=name,key=key,value=value):
++                    self.assertFalse(condition(block,{**values,key:value}))
++
++    def test_source_pin_guard_executes_real_existing_policy(self):
++        block=step(job(self.workflow,'connect-four-runtime'),
++                   'Bind the approved 2020 host and exact native source')
++        code=textwrap.dedent(re.search(r"python3 - <<'PYCODE'\n(.*?)^          PYCODE$",block,re.M|re.S)[1])
++        current=json.loads((REFERENCE/'config/godot-source.json').read_text())
++        with tempfile.TemporaryDirectory() as directory:
++            root=Path(directory);(root/'config').mkdir();(root/'scripts').mkdir()
++            (root/'scripts/verify_legacy_release_pin.py').write_bytes((REFERENCE/'scripts/verify_legacy_release_pin.py').read_bytes())
++            cases=[('version: 0.13.8+2020\n',current,True),
++                   ('version: 0.13.8+2020\n',{**current,'revision':'f'*40},False),
++                   ('version: 0.13.7+2019\n',current,False)]
++            for i,(pubspec,pin,expected) in enumerate(cases):
++                (root/'pubspec.yaml').write_text(pubspec)
++                (root/'config/godot-source.json').write_text(json.dumps(pin))
++                output=root/f'output-{i}'
++                env={**os.environ,'GITHUB_OUTPUT':str(output),'PYTHONDONTWRITEBYTECODE':'1'}
++                result=subprocess.run([sys.executable,'-c',code],cwd=root,env=env,
++                                      capture_output=True,text=True,timeout=20)
++                with self.subTest(i=i):
++                    self.assertEqual(result.returncode==0,expected,result.stdout+result.stderr)
++                    if expected:
++                        self.assertEqual(output.read_text(),'revision='+current['revision']+'\n')
++                    else:
++                        self.assertFalse(output.exists())
++
++    def test_real_runtime_compile_and_existing_build_gates_remain_mandatory(self):
++        runtime=job(self.workflow,'connect-four-runtime')
++        self.assertIn('scripts/run_connect_four_runtime.py --host "$GITHUB_WORKSPACE"',runtime)
++        self.assertIn('--native "$GITHUB_WORKSPACE/native-source"',runtime)
++        self.assertIn('command -v xvfb-run',runtime)
++        self.assertIn('flutter pub get --enforce-lockfile',runtime)
++        self.assertIn('cd native-source && timeout 300s godot --headless',runtime)
++        self.assertIn("if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:'",runtime)
++        compile=job(self.workflow,'android-host-compile')
++        self.assertIn('run: bash scripts/compile_android_host.sh',compile)
++        for name in ('ConnectFourGameActivity','ConnectFourAuthorityService','ConnectFourBridge'):
++            self.assertIn(name,compile)
++        build=job(self.workflow,'verify-and-build')
++        self.assertIn('needs: [android-host-compile, connect-four-runtime]',build)
++        original=job((REFERENCE/'.github/workflows/lumo-kart-graphics-2019.yml').read_text(),'verify-and-build')
++        preserved=(
++            'Full Flutter regression suite including every capture',
++            'Verify all build and preservation contracts',
++            'Code-level Android probe regression with verified image dependencies',
++            'Reject unreadable Ahem-font captures before issuing visual proof',
++            'Require actual gameplay gates on the exact pinned native source',
++            'Build unified real Android APK',
++            'Verify APK archive and collect reproducible source hashes')
++        for name in preserved:
++            with self.subTest(step=name): self.assertEqual(step(build,name),step(original,name))
++        self.assertNotIn('continue-on-error',self.workflow)
++
++    def test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload(self):
++        build=job(self.workflow,'verify-and-build')
++        self.assertIn("LUMO_SPLIT_PER_ABI: '1'",build)
++        self.assertIn('${{ steps.upload-candidate.outputs.artifact-id }}',build)
++        self.assertIn('${{ steps.upload-candidate.outputs.artifact-digest }}',build)
++        android=job(self.workflow,'android-c4')
++        self.assertIn('artifact-ids: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}',android)
++        self.assertIn('api-level: 35',android)
++        script=android.split('          script: |\n',1)[1]
++        self.assertLess(script.index('modernization_android_tour.py'),script.index('lumo_connect_four_android_probe.py'))
++        for flag in ('--prior-tour tour/main/tour-result.json','--expected-source "$SOURCE_SHA"',
++                     '--expected-native "$NATIVE_REVISION"','--artifact-id "$CANDIDATE_ARTIFACT_ID"',
++                     '--artifact-digest "$CANDIDATE_ARTIFACT_DIGEST"','--run-attempt "$GITHUB_RUN_ATTEMPT"'):
++            self.assertIn(flag,script)
++        update=job(self.workflow,'update-2020-from-2017')
++        self.assertIn("artifact-ids: '13948686178'",update)
++        self.assertIn('run-id: 43220602252',update)
++        self.assertIn('lumo_2020_update_android_probe.py --baseline baseline/dist/x86_64/Lumo-Lernen-Neu.apk',update)
++        verify=job(self.workflow,'verify-c4-candidate')
++        self.assertIn('needs: [verify-and-build, android-host-compile, connect-four-runtime, android-c4, update-2020-from-2017]',verify)
++        self.assertIn('scripts/verify_connect_four_candidate.py',verify)
++        self.assertNotIn('    if: always()',verify.split('    steps:',1)[0])
++
++    def test_dedicated_test_candidate_has_no_release_or_2019_receipt_path(self):
++        names=re.findall(r'^  ([a-z][\w-]*):\s*$',self.workflow.split('jobs:\n',1)[1],re.M)
++        self.assertEqual(names,['connect-four-runtime','android-host-compile','verify-and-build',
++                                'android-c4','update-2020-from-2017','verify-c4-candidate'])
++        for forbidden in ('gh release','contents: write','workflow_dispatch:','publish-reviewed',
++                          'verify_kart_graphics_delivery.py','studio_creative_android_probe.py',
++                          'lumo_studio_surfaces_android_probe.py'):
++            self.assertNotIn(forbidden,self.workflow)
++        self.assertNotIn('27ae4270',self.workflow)
++
++    def test_only_c4_branch_is_added_to_existing_unified_exclusions(self):
++        unified=(ROOT/'.github/workflows/lumo-unified-integration-2026.yml').read_text()
++        block=job(unified,'verify-and-build')
++        c4='integration/lumo-c4-connections-20261114'
++        self.assertFalse(condition(block,{'github.head_ref':c4,'github.ref_name':'123/merge'}))
++        self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':c4}))
++        self.assertTrue(condition(block,{'github.head_ref':'unrelated-existing-branch','github.ref_name':'123/merge'}))
++        self.assertIn("assert int(version[1]) != 2018",block)
++        self.assertIn("assert int(version[1]) != 2019",block)
++
++
++class OriginalUpdateReplayTests(unittest.TestCase):
++    def setUp(self):
++        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
++        self.root=Path(self.temp.name)
++        path=REFERENCE/'tools/android_qa/tests/test_update_preservation.py'
++        spec=importlib.util.spec_from_file_location('c4_existing_update_fixture',path)
++        legacy=importlib.util.module_from_spec(spec);spec.loader.exec_module(legacy)
++        fixture=legacy.Build2018IndependentEvidenceMigrationTests();fixture.setUp()
++        before,after=fixture.before,fixture.after
++        for name,value in [('before-update',before),*[(n,after) for n in
++                            ('after-update','after-kart','after-restart','fold-cover','fold-open','fold-landscape')]]:
++            tree=ET.Element('map')
++            for key,text in value.items(): ET.SubElement(tree,'string',{'name':key}).text=text
++            (self.root/(name+'-preferences.xml')).write_bytes(ET.tostring(tree))
++        identity={'userId':'10123','firstInstallTime':'synthetic-install-time','versionCode':'2017 minSdk=24'}
++        for name,version in (('baseline',2017),('updated',2020)):
++            # Current Android dumps need not contain userId; the original
++            # PackageManager list/UID file is the production source of truth.
++            (self.root/(name+'-package.txt')).write_text('  firstInstallTime=synthetic-install-time\n'
++                                                    +'  versionCode='+str(version)+' minSdk=24\n')
++            (self.root/(name+'-package-uid.txt')).write_text('package:'+final.c4.PACKAGE+' uid:10123\n')
++        source='a'*40
++        self.candidate={'sha256':'a'*64,'godot':{'revision':'b'*40,'pck_sha256':'c'*64}}
++        later=final.require_post_update_learning_preserved(before,after,after,migration_versions=(2017,2020))
++        self.report={'status':'PASS','offline':True,'fatal_crashes':0,'candidate_source':source,
++              'baseline':{'versionCode':2017,'flutter_source_commit':'47889f74a651b073965def70743417cf320b1eb9',
++                          'godot':{'revision':'1d5c5cb45a323228f627ec529e6ff1ddd86f1c57'}},
++              'candidate':{**self.candidate,'versionCode':2020,'flutter_source_commit':source,
++                           'signingCertificateSha256':final.c4.CERT},
++              'after_update':final.require_learning_preserved(before,after,migration_versions=(2017,2020)),
++              'after_kart':later,'after_restart':later,
++              'fold':{name:later for name in ('cover','open','landscape')},
++              'installation':final.require_in_place_update(identity,{**identity,'versionCode':'2020 minSdk=24'},2020),
++              'native_tour':{name:{'synthetic':True} for name in ('race','hud','drive','pause','return')},
++              'learning_journey':{'status':'PASS'},'onboarding':{'status':'PASS'}}
++        self.write_report()
++        (self.root/'fatal-logcat.txt').write_text('')
++
++    def write_report(self):
++        (self.root/'update-result.json').write_text(json.dumps(self.report))
++
++    def test_existing_migration_and_all_actual_snapshot_contracts_are_replayed(self):
++        result=final.update_proof(self.root,self.candidate,'a'*40)
++        self.assertEqual((result['from_version'],result['to_version']),(2017,2020))
++
++    def test_missing_restart_original_cannot_be_hidden_by_pass_report(self):
++        (self.root/'after-restart-preferences.xml').unlink()
++        with self.assertRaises(FileNotFoundError): final.update_proof(self.root,self.candidate,'a'*40)
++
++    def test_different_uid_version_or_apk_is_rejected(self):
++        for field,value in (('sha256','d'*64),('versionCode',2019)):
++            original=self.report['candidate'][field]
++            self.report['candidate'][field]=value;self.write_report()
++            with self.subTest(field=field),self.assertRaises(ValueError):
++                final.update_proof(self.root,self.candidate,'a'*40)
++            self.report['candidate'][field]=original
++        self.write_report()
++        (self.root/'updated-package-uid.txt').write_text('package:'+final.c4.PACKAGE+' uid:10999\n')
++        with self.assertRaises(RuntimeError): final.update_proof(self.root,self.candidate,'a'*40)
++
++
++if __name__=='__main__':
++    unittest.main()
+diff --git a/scripts/verify_connect_four_candidate.py b/scripts/verify_connect_four_candidate.py
+new file mode 100644
+--- /dev/null
++++ b/scripts/verify_connect_four_candidate.py
+@@ -0,0 +1,174 @@
++#!/usr/bin/env python3
++"""Reverify the complete 2020 test candidate without granting a release receipt."""
++from __future__ import annotations
++
++import argparse
++import importlib.util
++import json
++from pathlib import Path
++import subprocess
++import sys
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(ROOT / 'tools/android_qa'))
++import connect_four_android_evidence as c4
++from update_preservation import (require_learning_preserved,
++                                require_post_update_learning_preserved,
++                                require_in_place_update)
++from verify_unified_apk import verify as verify_apk
++from verify_legacy_release_pin import verify as verify_pin
++
++
++def read(path: Path) -> dict:
++    value = json.loads(path.read_text())
++    c4.demand(isinstance(value, dict), 'Missing original evidence object: ' + str(path))
++    return value
++
++
++def module(path: Path):
++    spec = importlib.util.spec_from_file_location(path.stem, path)
++    loaded = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(loaded)
++    return loaded
++
++
++def update_proof(root: Path, candidate: dict, source: str) -> dict:
++    report = read(root / 'update-result.json')
++    c4.demand(report.get('status') == 'PASS' and report.get('offline') is True
++              and report.get('fatal_crashes') == 0 and report.get('candidate_source') == source,
++              'The complete original 2017 to 2020 update has not passed')
++    old, new = report.get('baseline', {}), report.get('candidate', {})
++    c4.demand(old.get('versionCode') == 2017
++              and old.get('flutter_source_commit') == '47889f74a651b073965def70743417cf320b1eb9'
++              and old.get('godot', {}).get('revision') == '1d5c5cb45a323228f627ec529e6ff1ddd86f1c57',
++              'The actual baseline differs from the reviewed 2017 source')
++    c4.demand(new.get('sha256') == candidate['sha256'] and new.get('versionCode') == 2020
++              and new.get('flutter_source_commit') == source
++              and new.get('godot') == candidate['godot']
++              and new.get('signingCertificateSha256') == c4.CERT,
++              'Update tested another current APK/native source')
++    def prefs(name):
++        return c4.preferences((root / (name+'-preferences.xml')).read_text())
++    before, after = prefs('before-update'), prefs('after-update')
++    c4.demand(require_learning_preserved(before, after, migration_versions=(2017,2020)) == report.get('after_update'),
++              'Original first update preservation replay differs')
++    for name, field in (('after-kart','after_kart'),('after-restart','after_restart')):
++        c4.demand(require_post_update_learning_preserved(before, after, prefs(name), migration_versions=(2017,2020))
++                  == report.get(field), 'Original post-update preservation replay differs: ' + name)
++    c4.demand(set(report.get('fold', {})) == {'cover','open','landscape'}, 'Complete Fold preservation is missing')
++    for name in ('cover','open','landscape'):
++        c4.demand(require_post_update_learning_preserved(before, after, prefs('fold-'+name), migration_versions=(2017,2020))
++                  == report['fold'][name], 'Original Fold preservation replay differs: ' + name)
++    def package(name):
++        import re
++        raw = (root / (name+'-package.txt')).read_text()
++        uid_raw = (root / (name+'-package-uid.txt')).read_text()
++        ids = re.findall(r'^package:'+re.escape(c4.PACKAGE)+r'\s+uid:(\d+)', uid_raw, re.M)
++        c4.demand(len(ids) == 1, 'Original PackageManager UID is missing or ambiguous')
++        result = {'userId':ids[0]}
++        for field in ('firstInstallTime','versionCode'):
++            matches = re.findall(r'(?m)^\s*'+field+r'=([^\n]+)', raw)
++            c4.demand(len(set(matches)) == 1, 'Ambiguous original installed package field: ' + field)
++            result[field] = matches[0].strip()
++        return result
++    c4.demand(require_in_place_update(package('baseline'), package('updated'), 2020) == report.get('installation'),
++              'Actual in-place installation identity differs')
++    c4.demand(set(report.get('native_tour', {})) == {'race','hud','drive','pause','return'}
++              and report.get('learning_journey',{}).get('status') == 'PASS'
++              and report.get('onboarding',{}).get('status') == 'PASS',
++              'Actual baseline learning or post-update Kart sequence is incomplete')
++    c4.demand(not (root / 'fatal-logcat.txt').read_text().strip(), 'The update left a fatal Android trace')
++    return {'status':'PASS','from_version':2017,'to_version':2020,
++            'candidate_apk_sha256':candidate['sha256'], 'raw_report_sha256':c4.sha256(root/'update-result.json')}
++
++
++def verify(args) -> dict:
++    source = subprocess.check_output(['git','rev-parse','HEAD'], cwd=ROOT,text=True).strip()
++    c4.demand(source == args.source, 'Final verifier is not on the exact candidate head')
++    subprocess.run(['git','diff','--exit-code','HEAD','--'], cwd=ROOT,check=True)
++    build,native = verify_pin((ROOT/'pubspec.yaml').read_text(), (ROOT/'config/godot-source.json').read_text())
++    from release_pipeline_gates import parse_pubspec_version
++    version_name,version_code = parse_pubspec_version((ROOT/'pubspec.yaml').read_text())
++    c4.demand(build == version_code == 2020, 'Final version is not the dedicated 2020 candidate')
++    meta = [read(args.metadata/(name+'.json')) for name in ('run','artifacts','jobs')]
++    binding = c4.artifact_binding(*meta,source=source,run_id=args.build_run,attempt=args.run_attempt,
++                                 artifact_id=args.artifact_id,digest=args.artifact_digest,
++                                 native=native,version_name=version_name)
++    for name in ('android-c4','update-2020-from-2017'):
++        jobs = [j for j in meta[2].get('jobs',[]) if j.get('name') == name]
++        c4.demand(len(jobs) == 1 and jobs[0].get('head_sha') == source
++                  and jobs[0].get('run_attempt') == args.run_attempt
++                  and jobs[0].get('conclusion') == 'success', 'Required actual Android job failed: ' + name)
++    apks = {}
++    for abi, directory in (('arm64-v8a',args.candidate),('x86_64',args.candidate/'x86_64')):
++        apk = directory/'Lumo-Lernen-Neu.apk'
++        fresh = verify_apk(apk,{abi})
++        original = read(directory/'BUILD-PROVENANCE.json')
++        c4.demand(all(original.get(k) == v for k,v in fresh.items())
++                  and original.get('flutter_source_commit') == source
++                  and original.get('tracked_source_clean') is True,
++                  'Current signed APK differs from its original build provenance: ' + abi)
++        c4.demand(fresh['versionCode'] == 2020 and fresh['versionName'] == version_name
++                  and fresh['godot']['revision'] == native, 'Wrong candidate version/native revision')
++        apks[abi] = fresh
++    c4.demand(apks['arm64-v8a']['godot'] == apks['x86_64']['godot'], 'The two ABIs embed different native PCK bytes')
++    compile = read(args.host_compile/'result.json')
++    classes = read(args.host_compile/'connect-four-classes.json')
++    c4.demand(compile.get('status') == classes.get('status') == 'PASS'
++              and compile.get('flutter_source_commit') == classes.get('source') == source
++              and set(classes.get('classes',{})) == {'ConnectFourGameActivity','ConnectFourAuthorityService','ConnectFourBridge'}
++              and all(classes['classes'][k] for k in classes['classes']), 'Actual current C4 host bytecode is missing')
++    runtime = read(args.runtime/'runtime-gate.json')
++    before, after = read(args.runtime/'source-before.json'),read(args.runtime/'source-after.json')
++    c4.demand(runtime.get('passed') is True and runtime.get('exit_codes') == {'dart':0,'godot':0}
++              and before == after and before.get('host',{}).get('head') == source
++              and before.get('native',{}).get('head') == native,
++              'The real current Dart/Godot runtime pair is incomplete or failed')
++    runner = module(ROOT/'scripts/run_connect_four_runtime.py')
++    c4.demand(runner.validate_native_log(args.runtime/'original-godot.log') == runtime.get('original_godot_log')
++              and runner.validate_results(args.runtime,runtime['session']) == runtime.get('results'),
++              'Original runtime logs/state/PNG replay differs')
++    android = read(args.android/'c4/c4-result.json')
++    identity = android.get('identity',{})
++    x86 = apks['x86_64']
++    c4.demand(identity.get('apk_sha256') == x86['sha256']
++              and identity.get('flutter_source_commit') == source
++              and identity.get('godot_revision') == native
++              and identity.get('godot_pck_sha256') == x86['godot']['pck_sha256']
++              and identity.get('versionCode') == 2020 and identity.get('versionName') == version_name
++              and identity.get('signingCertificateSha256') == c4.CERT
++              and identity.get('checks') and all(v is True for v in identity['checks'].values()),
++              'Actual C4 device observation belongs to another signed APK')
++    main = read(args.android/'main/tour-result.json')
++    c4.demand(main.get('status') == 'PASS' and main.get('apk_sha256') == x86['sha256']
++              and main.get('fatal_crashes') == 0
++              and c4.sha256(args.android/'main/tour-result.json') == android['prior_tour']['sha256'],
++              'The original complete existing main tour differs')
++    device = c4.verify_report(args.android/'c4',binding,identity)
++    update = update_proof(args.update,x86,source)
++    return {'schema':1,'status':'PASS','versionName':version_name,'versionCode':2020,
++            'binding':binding,'apks':apks,'c4_android':device,'update':update,
++            'runtime_gate_sha256':c4.sha256(args.runtime/'runtime-gate.json'),
++            'scope':'Signed 2020 test candidate with real desktop/API35 C4 and 2017 update evidence',
++            'release_approved':False,'api37_approved':False,'physical_arm64_tested':False}
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser(description=__doc__)
++    for name in ('candidate','runtime','host-compile','android','update','metadata','out'):
++        parser.add_argument('--'+name,type=Path,required=True)
++    for name in ('source','artifact-digest'):
++        parser.add_argument('--'+name,required=True)
++    for name in ('build-run','run-attempt','artifact-id'):
++        parser.add_argument('--'+name,type=int,required=True)
++    args=parser.parse_args()
++    c4.demand(not args.out.exists(),'Refusing to overwrite previous candidate facts')
++    result=verify(args)
++    args.out.parent.mkdir(parents=True,exist_ok=True)
++    args.out.write_text(json.dumps(result,indent=2)+'\n')
++    print('[ConnectFourCandidate] PASS: exact signed 2020 test artifacts and current real C4 evidence')
++    return 0
++
++
++if __name__ == '__main__':
++    raise SystemExit(main())
+diff --git a/tools/android_qa/connect_four_android_evidence.py b/tools/android_qa/connect_four_android_evidence.py
+new file mode 100644
+--- /dev/null
++++ b/tools/android_qa/connect_four_android_evidence.py
+@@ -0,0 +1,602 @@
++"""Read-only contracts for actual Android C4 observations.
++
++The production Dart engine remains the only game authority. This module checks
++its original mailbox, persisted round, native geometry and touch acknowledgments;
++it never chooses a bot move, awards a result or changes application data.
++"""
++from __future__ import annotations
++
++import hashlib
++import json
++import math
++from pathlib import Path
++import re
++import xml.etree.ElementTree as ET
++
++from PIL import Image
++from native_surface_readiness import inspect_surface
++
++
++WORKFLOW = '.github/workflows/lumo-connect-four-2020.yml'
++BRANCH = 'integration/lumo-c4-connections-20261114'
++CANDIDATE = 'lumo-connect-four-2020-candidate'
++PACKAGE = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
++CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
++ROUND_PREFIX = 'flutter.lumo.connect_four.round.v1.'
++PORTAL = 'Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen'
++LEARNING_PREFIXES = (
++    'flutter.lumo_progress', 'flutter.lumo_writing_progress', 'flutter.lumo_journal',
++    'flutter.lumo_story_library', 'flutter.lumo_reading_sessions', 'flutter.lumo_attempt_log',
++    'flutter.lumo_reward_wallet', 'flutter.lumo_school', 'flutter.lumo_learning',
++    'flutter.lumo_legacy',
++)
++STATE_KEYS = ('token', 'owner', 'roundId', 'revision', 'recordRevision', 'ack',
++              'rejected', 'paused', 'canDrop', 'turn', 'phase', 'twoPlayers',
++              'level', 'columns', 'board', 'winningLine', 'rewarded')
++
++
++def demand(condition: bool, message: str) -> None:
++    if not condition:
++        raise ValueError(message)
++
++
++def integer(value, minimum=0, maximum=1_000_000_000) -> bool:
++    return type(value) is int and minimum <= value <= maximum
++
++
++def sha256(path: Path) -> str:
++    with path.open('rb') as source:
++        return hashlib.file_digest(source, 'sha256').hexdigest()
++
++
++def artifact_binding(run: dict, artifacts: dict, jobs: dict, *, source: str,
++                     run_id: int, attempt: int, artifact_id: int, digest: str,
++                     native: str, version_name: str) -> dict:
++    demand(bool(re.fullmatch('[a-f0-9]{40}', source)), 'Invalid exact host source')
++    demand(bool(re.fullmatch('[a-f0-9]{40}', native)), 'Invalid exact configured native source')
++    demand(bool(re.fullmatch(r'[0-9]+(?:\.[0-9]+){2}', version_name)), 'Invalid configured version name')
++    demand(all(integer(v, 1, 2**63-1) for v in (run_id, attempt, artifact_id)), 'Invalid run/artifact identity')
++    # upload-artifact exposes the hexadecimal digest; the original REST
++    # artifact object prefixes the same bytes with "sha256:".
++    if isinstance(digest, str) and re.fullmatch('[a-f0-9]{64}', digest):
++        digest = 'sha256:' + digest
++    demand(bool(re.fullmatch('sha256:[a-f0-9]{64}', digest)), 'Missing original upload digest')
++    demand(run.get('id') == run_id and run.get('run_attempt') == attempt,
++           'Candidate run or attempt differs')
++    demand(run.get('head_sha') == source and run.get('head_branch') == BRANCH
++           and run.get('event') == 'pull_request' and run.get('path') == WORKFLOW,
++           'Candidate source/event/workflow differs')
++    demand(run.get('repository', {}).get('full_name') == 'Ullmann27/lumo-lernen',
++           'Candidate repository differs')
++    rows = [row for row in artifacts.get('artifacts', []) if row.get('name') == CANDIDATE]
++    demand(len(rows) == 1, 'Exactly one current C4 candidate artifact is required')
++    row = rows[0]
++    demand(row.get('id') == artifact_id and row.get('digest') == digest
++           and row.get('expired') is False and integer(row.get('size_in_bytes'), 1),
++           'Candidate artifact identity/digest/availability differs')
++    bound_run = row.get('workflow_run', {})
++    demand(bound_run.get('id') == run_id and bound_run.get('head_sha') == source,
++           'Artifact belongs to another source/run')
++    for name in ('android-host-compile', 'connect-four-runtime', 'verify-and-build'):
++        found = [job for job in jobs.get('jobs', []) if job.get('name') == name]
++        demand(len(found) == 1 and found[0].get('run_id') == run_id
++               and found[0].get('head_sha') == source
++               and found[0].get('run_attempt') == attempt
++               and found[0].get('conclusion') == 'success',
++               'Required current source job did not succeed: ' + name)
++    return {'host_source': source, 'native_source': native, 'versionCode': 2020,
++            'versionName': version_name, 'workflow': WORKFLOW, 'run_id': run_id,
++            'run_attempt': attempt, 'candidate_artifact_id': artifact_id,
++            'candidate_artifact_digest': digest}
++
++
++def preferences(raw: str) -> dict:
++    tree = ET.fromstring(raw)
++    demand(tree.tag == 'map', 'Original SharedPreferences map is missing')
++    names = [node.get('name') for node in tree]
++    demand(len(names) == len(set(names)) and all(names), 'Duplicate/unnamed preference entry')
++    return {node.get('name'): node.text if node.tag == 'string' else node.get('value') for node in tree}
++
++
++def owner_from_preferences(prefs: dict) -> str:
++    selected = (prefs.get('flutter.lumo_school_active_student_v1') or '').strip()
++    owner_id = selected or (prefs.get('flutter.lumo_learning_local_student_id_v1') or '').strip()
++    demand(bool(owner_id) and len(owner_id) <= 512, 'Actual active learning owner is missing')
++    return hashlib.sha256(owner_id.encode('utf-8')).hexdigest()
++
++
++def persisted_round(prefs: dict, state: dict) -> dict:
++    demand(owner_from_preferences(prefs) == state['owner'], 'C4 belongs to a different child')
++    raw = prefs.get(ROUND_PREFIX + state['owner'])
++    demand(isinstance(raw, str), 'Original persisted Dart round is missing')
++    record = json.loads(raw)
++    demand(isinstance(record, dict) and record.get('schema') == 1, 'Invalid stored round schema')
++    for source, stored in (('roundId', 'id'), ('owner', 'owner'), ('columns', 'columns'),
++                           ('recordRevision', 'revision'), ('twoPlayers', 'twoPlayers'),
++                           ('level', 'level'), ('rewarded', 'rewarded')):
++        demand(state[source] == record.get(stored), 'Mailbox differs from durable Dart round: ' + source)
++    return record
++
++
++def validate_state(state: dict) -> None:
++    demand(isinstance(state, dict) and state.get('schema') == 1
++           and state.get('game') == 'connect_four', 'Wrong C4 mailbox schema/game')
++    for key, length in (('token', 32), ('roundId', 32), ('owner', 64)):
++        demand(isinstance(state.get(key), str) and bool(re.fullmatch('[a-f0-9]{%d}' % length, state[key])),
++               'Invalid C4 identity: ' + key)
++    for key in ('revision', 'recordRevision', 'ack', 'rejected'):
++        demand(integer(state.get(key), 1 if key.endswith('evision') else 0), 'Invalid counter: ' + key)
++    for key in ('paused', 'exit', 'canDrop', 'twoPlayers', 'rewarded'):
++        demand(type(state.get(key)) is bool, 'Invalid actual boolean: ' + key)
++    demand(state.get('error') is None and state.get('exit') is False,
++           'C4 controller reports an error or closed state')
++    demand(state.get('phase') in ('playing', 'won', 'draw')
++           and integer(state.get('turn'), 1, 2)
++           and state.get('level') in ('leicht', 'mittel', 'schlau'), 'Invalid C4 phase/turn/level')
++    history, board = state.get('columns'), state.get('board')
++    demand(isinstance(history, list) and len(history) <= 42
++           and all(integer(c, 0, 6) for c in history), 'Invalid authoritative history')
++    demand(isinstance(board, list) and len(board) == 42
++           and all(integer(c, 0, 2) for c in board), 'Invalid authoritative board')
++    # Only replay persisted gravity/history for consistency; no bot/win/reward logic.
++    expected, heights = [0] * 42, [0] * 7
++    for index, column in enumerate(history):
++        demand(heights[column] < 6, 'History exceeds a real column')
++        expected[(5 - heights[column]) * 7 + column] = index % 2 + 1
++        heights[column] += 1
++    demand(board == expected, 'Rendered board disagrees with persisted drop history')
++    demand(isinstance(state.get('winningLine'), list), 'Missing authoritative winning-line field')
++    demand(isinstance(state.get('validColumns'), list)
++           and state['validColumns'] == [c for c in range(7) if heights[c] < 6],
++           'Actual available columns disagree with the persisted board')
++
++
++def vector(value, length: int, label: str) -> list[float]:
++    demand(isinstance(value, list) and len(value) == length
++           and all(type(v) in (int, float) and math.isfinite(v) for v in value),
++           'Invalid original geometry: ' + label)
++    return [float(v) for v in value]
++
++
++def device_density(raw: str) -> float:
++    override = re.findall(r'(?m)^Override density:\s*(\d+)\s*$', raw)
++    physical = re.findall(r'(?m)^Physical density:\s*(\d+)\s*$', raw)
++    values = override or physical
++    demand(len(values) == 1 and int(values[0]) > 0, 'Actual Android density is ambiguous')
++    return min(4, max(.75, int(values[0]) / 160))
++
++
++def rectangle(value, label: str) -> list[float]:
++    x, y, w, h = vector(value, 4, label)
++    demand(x >= 0 and y >= 0 and w > 0 and h > 0, 'Invalid rectangle: ' + label)
++    return [x, y, w, h]
++
++
++def validate_layout(layout: dict, state: dict, pixels: tuple[int, int], pid: int,
++                    observed_density: float) -> dict:
++    validate_state(state)
++    demand(layout.get('schema') == 1 and layout.get('game') == 'connect_four'
++           and layout.get('settled') is True and layout.get('ui_visible') is True
++           and layout.get('pending') == 0 and layout.get('pid') == pid
++           and integer(pid, 1) and integer(layout.get('layout_sequence'), 1)
++           and integer(layout.get('ticks_msec'), 1), 'No current settled native C4 layout')
++    demand(layout.get('observation_source') == 'android_window_insets',
++           'Actual Android window observation is required')
++    for key in STATE_KEYS:
++        demand(layout.get(key) == state.get(key), 'Layout/mailbox revision differs: ' + key)
++    density = layout.get('density')
++    demand(type(density) in (int, float) and math.isfinite(density)
++           and .75 <= density <= 4 and abs(density - observed_density) < .01,
++           'Layout differs from the actual Android density')
++    window = vector(layout.get('window_px'), 2, 'window_px')
++    android = layout.get('android_observation', {})
++    decor = vector(android.get('decor_size'), 2, 'decor_size')
++    view = vector(android.get('view_size'), 2, 'view_size')
++    render = rectangle(android.get('render_rect'), 'render_rect')
++    demand(decor == list(pixels) and min(window) > 0 and min(view) > 0
++           and max(abs(a-b) for a, b in zip(window, view)) <= 1,
++           'Native window/decor differs from current original screenshot')
++    rx, ry, rw, rh = render
++    demand(rx + rw <= pixels[0] + .1 and ry + rh <= pixels[1] + .1,
++           'Actual render rectangle exceeds decor screenshot')
++    sx, sy = rw / window[0], rh / window[1]
++    demand(abs(sx - 1) < .01 and abs(sy - 1) < .01, 'Unexpected Android pixel scaling')
++    safe = rectangle(layout.get('safe_rect'), 'safe_rect')
++    demand(safe[0] + safe[2] <= window[0] + .1
++           and safe[1] + safe[3] <= window[1] + .1, 'Safe area exceeds native window')
++    buttons = layout.get('buttons')
++    demand(isinstance(buttons, list) and len(buttons) == 15
++           and all(isinstance(b, dict) for b in buttons), 'Missing original C4 control roster')
++    ids = [b.get('id') for b in buttons]
++    demand(len(set(ids)) == len(ids) and set(ids) == {
++        'back', 'pause', 'resume', 'restart', 'mode',
++        *('column_' + str(i) for i in range(7)), 'level_leicht', 'level_mittel', 'level_schlau'},
++        'Ambiguous or incomplete real control identities')
++    return {'offset': [rx, ry], 'scale': [sx, sy], 'safe': safe, 'density': density}
++
++
++def touch_target(layout: dict, state: dict, pixels: tuple[int, int], pid: int,
++                 density: float, control: str) -> dict:
++    mapping = validate_layout(layout, state, pixels, pid, density)
++    rows = [row for row in layout['buttons'] if row['id'] == control]
++    demand(len(rows) == 1, 'No unique actual C4 target')
++    row = rows[0]
++    demand(row.get('visible') is True and row.get('enabled') is True
++           and row.get('clipped') is False, 'Target is hidden, disabled or clipped')
++    rect = rectangle(row.get('rect_px'), control)
++    hit = rectangle(row.get('hit_rect_px'), control + ' hit')
++    demand(max(abs(a-b) for a, b in zip(rect, hit)) < .1,
++           'Actual hit region does not contain the complete control')
++    x, y, w, h = hit
++    ax, ay, aw, ah = mapping['safe']
++    demand(x >= ax - .1 and y >= ay - .1 and x + w <= ax + aw + .1
++           and y + h <= ay + ah + .1, 'Target intersects the observed unsafe area')
++    demand(min(w, h) / density >= 47.99, 'Actual target is smaller than 48dp')
++    ox, oy = mapping['offset']; sx, sy = mapping['scale']
++    bounds = [ox + x*sx, oy + y*sy, ox + (x+w)*sx, oy + (y+h)*sy]
++    demand(0 <= bounds[0] < bounds[2] <= pixels[0]
++           and 0 <= bounds[1] < bounds[3] <= pixels[1], 'Target exceeds screenshot')
++    expected = {'back': 'Zurück', 'pause': 'Pause', 'resume': 'Fortsetzen'}
++    if control.startswith('column_'):
++        expected[control] = str(int(control[7:]) + 1) + ' ↓'
++    demand(control in expected and row.get('text') == expected[control],
++           'Actual target caption differs from the published C4 control')
++    return {'id': control, 'text': row['text'], 'bounds': bounds,
++            'point': [round((bounds[0]+bounds[2])/2), round((bounds[1]+bounds[3])/2)],
++            'size_dp': [w / density, h / density]}
++
++
++def stable_target(first: dict, second: dict) -> dict:
++    demand(first['state'] == second['state'], 'Authoritative state changed before touch')
++    for key in ('pid', 'density', 'pixels'):
++        demand(first[key] == second[key], 'Current surface identity changed before touch')
++    demand(first['target']['id'] == second['target']['id']
++           and max(abs(a-b) for a, b in zip(first['target']['bounds'], second['target']['bounds'])) <= 2,
++           'Actual target moved between the two observations')
++    demand(second['lifecycle']['stamp'] > first['lifecycle']['stamp'],
++           'No actual continuing visible Activity heartbeat')
++    return second['target']
++
++
++def acknowledged(before: dict, after: dict, request: dict, action: str) -> None:
++    validate_state(before); validate_state(after)
++    for key in ('owner', 'roundId', 'token', 'twoPlayers', 'level'):
++        demand(before[key] == after[key], 'Unexpected C4 session/round change: ' + key)
++    demand(request.get('action') == action and request.get('token') == before['token']
++           and request.get('roundId') == before['roundId']
++           and request.get('revision') == before['revision']
++           and integer(request.get('sequence'), 1)
++           and request['sequence'] == before['ack'] + 1 == after['ack']
++           and after['revision'] > before['revision']
++           and after['rejected'] == before['rejected'],
++           'Touch lacks the matching positive Dart acknowledgment')
++    if action == 'drop':
++        column = request.get('column')
++        demand(integer(column, 0, 6) and before['canDrop'] and not before['paused']
++               and not before['twoPlayers'] and before['turn'] == 1,
++               'Drop was not a permitted actual child turn')
++        demand(after['columns'][:len(before['columns'])] == before['columns']
++               and len(after['columns']) == len(before['columns']) + 2
++               and after['columns'][len(before['columns'])] == column
++               and after['recordRevision'] == before['recordRevision'] + 2
++               and after['turn'] == 1 and after['canDrop'] and not after['paused'],
++               'Actual child drop and subsequent Dart bot response are missing')
++    elif action in ('pause', 'resume'):
++        demand(after['columns'] == before['columns'] and after['board'] == before['board']
++               and after['recordRevision'] == before['recordRevision']
++               and after['paused'] is (action == 'pause'),
++               'Pause/resume changed the durable board or missed its actual state')
++    else:
++        raise ValueError('Unsupported transition contract')
++
++
++def paused_unchanged(first: dict, second: dict, elapsed: float) -> None:
++    demand(elapsed >= 1 and first['state']['paused'] is True
++           and first['state'] == second['state'], 'Actual pause did not hold the same state')
++    demand(second['lifecycle']['stamp'] > first['lifecycle']['stamp'],
++           'Paused native Activity heartbeat stopped')
++
++
++def reopened(previous: dict, current: dict) -> None:
++    validate_state(previous); validate_state(current)
++    demand(previous['token'] != current['token'], 'Reopen reused the closed private session')
++    for key in ('owner', 'roundId', 'columns', 'board', 'recordRevision', 'twoPlayers',
++                'level', 'phase', 'rewarded', 'winningLine'):
++        demand(previous[key] == current[key], 'Reopen changed the persisted round: ' + key)
++
++
++def board_pixels(path: Path, layout: dict, state: dict, pid: int, density: float) -> dict:
++    with Image.open(path) as original:
++        demand(original.format == 'PNG', 'Original screenshot is not PNG')
++        original.load()
++        image = original.convert('RGB')
++    mapping = validate_layout(layout, state, image.size, pid, density)
++    if state['paused']:
++        return {'sha256':sha256(path), 'pixels':list(image.size), 'occupied_cells':[],
++                'scope':'Pause overlay is visible; this frame does not prove covered disc pixels'}
++    cells = layout.get('cells')
++    demand(isinstance(cells, list) and len(cells) == 42, 'Missing native projected board cells')
++    identities = [(c.get('row'), c.get('column')) for c in cells if isinstance(c, dict)]
++    demand(len(identities) == 42 and set(identities) == {(r,c) for r in range(6) for c in range(7)},
++           'Projected board cells are duplicated or incomplete')
++    observations = []
++    ox, oy = mapping['offset']; sx, sy = mapping['scale']
++    for cell in cells:
++        piece = state['board'][cell['row']*7 + cell['column']]
++        demand(cell.get('piece') == piece, 'Pixel geometry belongs to a different board')
++        quad = cell.get('disc_quad')
++        demand(isinstance(quad, list) and len(quad) == 4, 'Missing actual projected disc corners')
++        points = [vector(point, 2, 'disc_quad') for point in quad]
++        cx = ox + sum(p[0] for p in points) / 4 * sx
++        cy = oy + sum(p[1] for p in points) / 4 * sy
++        radius = min(max(p[0] for p in points)-min(p[0] for p in points),
++                     max(p[1] for p in points)-min(p[1] for p in points)) * .15
++        demand(radius >= 1 and radius <= cx < image.width-radius
++               and radius <= cy < image.height-radius, 'Projected disc has no visible interior')
++        if piece == 0:
++            continue
++        box = (math.floor(cx-radius), math.floor(cy-radius), math.ceil(cx+radius), math.ceil(cy+radius))
++        sampled = list(image.crop(box).getdata())
++        cyan = sum(g > r*1.15 and b > r*1.15 and max(r,g,b) > 70 for r,g,b in sampled)
++        gold = sum(r > b*1.15 and g > b*1.1 and max(r,g,b) > 70 for r,g,b in sampled)
++        matching = cyan if piece == 1 else gold
++        demand(matching / len(sampled) >= .45, 'Original pixels do not show the acknowledged C4 disc')
++        observations.append({'row':cell['row'], 'column':cell['column'], 'piece':piece,
++                             'sample_box':list(box), 'matching_pixels':matching,
++                             'sampled_pixels':len(sampled)})
++    demand(len(observations) == len(state['columns']), 'Missing actual occupied-cell pixel evidence')
++    return {'sha256':sha256(path), 'pixels':list(image.size), 'occupied_cells':observations,
++            'scope':'Projected visible cyan/gold disc interiors; no FPS or visual-style approval'}
++
++
++def learning_unchanged(before: dict, after: dict) -> None:
++    for key in ('flutter.lumo_active_profile',):
++        first, last = json.loads(before.get(key, '{}')), json.loads(after.get(key, '{}'))
++        demand(first and all(first.get(k) == last.get(k) for k in ('id','name','age','grade','createdAt')),
++               'Active child profile changed')
++    selected = {k:v for k,v in before.items() if k.startswith(LEARNING_PREFIXES)}
++    demand(selected and all(after.get(k) == v for k,v in selected.items()),
++           'Actual previous learning/rewards/ownership changed during C4')
++
++
++def flutter_control(nodes: list, label: str, pixels: tuple[int, int], density: float) -> dict:
++    found = []
++    for node in nodes:
++        values = (node.get('text', ''), node.get('content-desc', ''))
++        if not any(label == value or label in value.split('\n') for value in values):
++            continue
++        if (node.get('package') != PACKAGE or node.get('enabled') != 'true'
++                or node.get('clickable') != 'true'):
++            continue
++        raw = node.get('bounds', '')
++        if not re.fullmatch(r'\[\d+,\d+\]\[\d+,\d+\]', raw):
++            continue
++        x0, y0, x1, y1 = map(int, re.findall(r'\d+', raw))
++        if (0 <= x0 < x1 <= pixels[0] and 0 <= y0 < y1 <= pixels[1]
++                and min(x1-x0, y1-y0) / density >= 47.99):
++            found.append({'label':label, 'bounds':[x0,y0,x1,y1],
++                          'point':[(x0+x1)//2,(y0+y1)//2]})
++    demand(len(found) == 1, 'No unique complete enabled Flutter control: ' + label)
++    return found[0]
++
++
++def safe_member(root: Path, relative: str) -> Path:
++    demand(isinstance(relative, str) and relative and '\\' not in relative,
++           'Invalid evidence path')
++    name = Path(relative)
++    demand(not name.is_absolute() and relative == name.as_posix()
++           and all(p not in ('..','.') for p in name.parts),
++           'Evidence path escapes its source')
++    current = root
++    for part in name.parts:
++        current = current / part
++        demand(not current.is_symlink(), 'Evidence cannot use a symlink')
++    demand(current.is_file(), 'Original evidence member is missing: ' + relative)
++    return current
++
++
++def verify_inventory(root: Path, inventory: list[dict]) -> None:
++    demand(isinstance(inventory, list) and all(isinstance(row, dict) for row in inventory),
++           'Missing original evidence inventory')
++    names = [row.get('path') for row in inventory]
++    demand(len(names) == len(set(names)) and names, 'Duplicate/empty original evidence inventory')
++    for row in inventory:
++        member = safe_member(root, row['path'])
++        demand(member.stat().st_size == row.get('bytes') and sha256(member) == row.get('sha256'),
++               'Original evidence bytes changed: ' + row['path'])
++    actual = set()
++    for member in root.rglob('*'):
++        demand(not member.is_symlink(), 'Evidence cannot contain symlinks')
++        if member.is_file() and member != root / 'c4-result.json':
++            actual.add(member.relative_to(root).as_posix())
++    demand(set(names) == actual, 'Evidence inventory does not cover the complete original directory')
++
++
++def runtime_errors(text: str) -> list[dict]:
++    return [{'line':number, 'text':line} for number,line in enumerate(text.splitlines(),1)
++            if any(token in line for token in ('FATAL EXCEPTION','Fatal signal','am_anr:',
++                   'SCRIPT ERROR:', 'Parse Error:', 'GL_MAX_FRAGMENT_UNIFORM_VECTORS'))
++            or re.search(r'(?i)\bgodot\b.*\bERROR:', line)]
++
++
++def read_original(root: Path, name: str, *, empty_ok=False, command=None) -> str:
++    path = safe_member(root, name)
++    raw = path.read_text(encoding='utf-8')
++    demand(empty_ok or bool(raw), 'Original reply is empty: ' + name)
++    if name.endswith('.stdout'):
++        metadata = json.loads(safe_member(root, name[:-7]+'.json').read_text())
++        stderr = safe_member(root, name[:-7]+'.stderr')
++        demand(metadata.get('returncode') == 0 and not stderr.read_bytes(),
++               'Original read/dispatch did not succeed: ' + name)
++        demand(metadata.get('stdout_bytes') == path.stat().st_size
++               and metadata.get('stdout_sha256') == sha256(path)
++               and metadata.get('stderr_bytes') == 0
++               and metadata.get('stderr_sha256') == hashlib.sha256(b'').hexdigest(),
++               'Original command identity differs')
++        if command is not None:
++            demand(metadata.get('command') == command, 'Original command reads another source: ' + name)
++    return raw
++
++
++def checked_observation(root: Path, name: str) -> dict:
++    demand(bool(re.fullmatch(r'[a-z0-9-]+', name)), 'Invalid original observation id')
++    item = json.loads(safe_member(root, 'observations/' + name + '.json').read_text())
++    demand(item.get('id') == name, 'Original observation id differs')
++    raw = item['raw']
++    mailbox = f'/data/user/0/{PACKAGE}/files/lumo_connect_four_session_v1/{item["state"]["token"]}'
++    for key in ('state','layout','lifecycle'):
++        source = (f'/data/user/0/{PACKAGE}/files/connect_four_layout_v1.json' if key == 'layout'
++                  else mailbox + '/' + key + '.json')
++        demand(json.loads(read_original(root, raw[key], command=['adb','exec-out','cat',source])) == item[key],
++               'Observation differs from original ' + key)
++    for key in ('state','layout'):
++        demand(json.loads(read_original(root, raw[key+'_after'])) == item[key], 'Frame crosses a state change')
++    demand(int(read_original(root, raw['native_pid'], command=['adb','shell','pidof',PACKAGE+':lumo_game'])) == item['pid']
++           and int(read_original(root, raw['host_pid'], command=['adb','shell','pidof',PACKAGE])) == item['host_pid']
++           and item['pid'] != item['host_pid'], 'Real process identity differs')
++    activity = read_original(root, raw['activity'])
++    resumed = [line for line in activity.splitlines() if 'mResumedActivity' in line or 'topResumedActivity' in line]
++    demand(resumed and all('ConnectFourGameActivity' in line for line in resumed), 'Actual C4 foreground missing')
++    demand('ConnectFourAuthorityService' in read_original(root, raw['authority']), 'Real Binder authority missing')
++    now = int(read_original(root, raw['clock'], command=['adb','shell','date','+%s%3N']))
++    demand(now == item['device_clock_ms'] and item['lifecycle']['active'] is True
++           and 0 <= now - item['lifecycle']['stamp'] < 2500, 'Actual lifecycle observation is stale')
++    persisted_round(preferences(read_original(root, raw['preferences'])), item['state'])
++    demand(device_density(read_original(root, raw['density'], command=['adb','shell','wm','density']))
++           == item['density'], 'Original device density differs')
++    frame = safe_member(root, item['frame'])
++    demand(sha256(frame) == item['frame_sha256'], 'Current original screenshot differs')
++    surface = inspect_surface(frame, orientation='responsive')
++    demand(surface['acceptable_for_target_sampling'] and surface == item['surface'],
++           'Original C4 surface was incomplete')
++    result = board_pixels(frame, item['layout'], item['state'], item['pid'], item['density'])
++    demand(result == item['visual'] and result['pixels'] == item['pixels'], 'Original pixel replay differs')
++    if 'target' in item:
++        demand(touch_target(item['layout'], item['state'], tuple(item['pixels']), item['pid'], item['density'],
++                            item['target']['id']) == item['target'], 'Observed real target differs')
++    return item
++
++
++def checked_dispatch(root: Path, touch: dict) -> None:
++    x, y = map(str, touch['target']['point'])
++    reply = read_original(root, touch['command_original'], empty_ok=True,
++                          command=['adb','shell','input','swipe',x,y,x,y,'120'])
++    demand(not reply.strip(), 'Actual touch dispatch returned unexpected output')
++
++
++def checked_native_touch(root: Path, name: str, observations: dict, before: dict, control: str) -> None:
++    touch = json.loads(safe_member(root, name).read_text())
++    first, second = observations[touch['first']], observations[touch['second']]
++    demand(second['id'] == before['id'] and stable_target(first, second) == touch['target']
++           and touch['target']['id'] == control, 'Actual two-frame control differs from the touch')
++    checked_dispatch(root, touch)
++
++
++def checked_flutter_touch(root: Path, name: str, label: str) -> None:
++    touch = json.loads(safe_member(root, name).read_text())
++    for frame in (touch['first'], touch['second']):
++        screenshot = safe_member(root, frame['capture']['file'])
++        demand(sha256(screenshot) == frame['capture']['sha256'], 'Original Flutter target frame changed')
++        with Image.open(screenshot) as image:
++            image.load()
++            demand(image.format == 'PNG', 'Flutter target frame is not an original PNG')
++            pixels = image.size
++        density = device_density(read_original(root, frame['density'], command=['adb','shell','wm','density']))
++        ui = ET.fromstring(safe_member(root, frame['ui']).read_text())
++        demand(ui.tag == 'hierarchy', 'Original Flutter hierarchy is missing')
++        target = flutter_control(list(ui.iter('node')), label, pixels, density)
++        demand(target == touch['target'], 'Actual Flutter target differs between original frames')
++    demand(touch['first']['ui'] != touch['second']['ui']
++           and touch['first']['capture']['file'] != touch['second']['capture']['file']
++           and touch['second']['observed_monotonic'] > touch['first']['observed_monotonic'],
++           'The actual Flutter touch lacks two distinct current observations')
++    checked_dispatch(root, touch)
++
++
++def verify_report(root: Path, binding: dict, identity: dict) -> dict:
++    report = json.loads(safe_member(root, 'c4-result.json').read_text())
++    demand(report.get('schema') == 1 and report.get('status') == 'PASS'
++           and report.get('binding') == binding and report.get('identity') == identity,
++           'C4 report is missing, failed or bound to a different candidate')
++    verify_inventory(root, report['originals'])
++    observations = {name:checked_observation(root, name) for name in report['observations']}
++    demand(len(observations) == len(report['observations']), 'Duplicate C4 observations')
++    initial = observations[report['initial']]
++    demand(initial['state']['columns'] == [] and initial['state']['twoPlayers'] is False,
++           'No untouched actual initial single-player round')
++    checked_flutter_touch(root, report['entry_touch'], PORTAL)
++    transitions = report['transitions']
++    demand([step.get('action') for step in transitions] == ['drop','pause','resume','drop','pause','pause'],
++           'Required child/bot/pause/resume sequence is incomplete')
++    previous = initial
++    route = report['reopen']
++    closed, opened = observations[route['closed']], observations[route['opened']]
++    for index, step in enumerate(transitions):
++        before, after = observations[step['before']], observations[step['after']]
++        if index == 5:
++            previous = opened
++        demand(before['state'] == previous['state'] and before['pid'] == previous['pid']
++               and before['host_pid'] == initial['host_pid'], 'C4 transition chain changed authority or round')
++        request = json.loads(read_original(root, step['request']))
++        acknowledged(before['state'], after['state'], request, step['action'])
++        expected_control = {'drop':'column_' + str(request.get('column')),
++                            'pause':'pause','resume':'resume'}[step['action']]
++        checked_native_touch(root, step['touch'], observations, before, expected_control)
++        previous = after
++    hold = report['pause_hold']
++    demand(hold['first'] == transitions[1]['after']
++           and observations[hold['second']]['state'] == observations[hold['first']]['state'],
++           'Pause hold belongs to another transition')
++    demand(hold['elapsed'] == observations[hold['second']]['observed_monotonic']
++           - observations[hold['first']]['observed_monotonic'], 'Pause elapsed time differs')
++    paused_unchanged(observations[hold['first']], observations[hold['second']], hold['elapsed'])
++    reopened(closed['state'], opened['state'])
++    demand(closed['pid'] != opened['pid'], 'Actual native process did not change on reopen')
++    demand(len(closed['state']['columns']) == 4 and opened['host_pid'] == initial['host_pid'],
++           'Reopen did not preserve both actual child/bot pairs and the Flutter authority')
++    checked_flutter_touch(root, route['touch'], PORTAL)
++    demand(len(report['returns']) == 2, 'Both actual Flutter returns are mandatory')
++    demand(report['returns'][0]['before'] == closed['id'], 'Reopen does not follow the actual first return')
++    for index, returned in enumerate(report['returns']):
++        before = observations[returned['before']]
++        demand(before['state']['paused'], 'Return bypassed the proved pause')
++        expected = observations[transitions[4 if index == 0 else 5]['after']]
++        demand(before['state'] == expected['state'] and before['pid'] == expected['pid'],
++               'Return belongs to a different C4 sequence')
++        checked_native_touch(root, returned['touch'], observations, before, 'back')
++        # pidof correctly returns 1 after process exit; retain that original
++        # failure status as positive absence only for this one known command.
++        pid_path = safe_member(root, returned['native_exit'])
++        pid_meta = json.loads(safe_member(root, returned['native_exit'][:-7]+'.json').read_text())
++        pid_stderr = safe_member(root, returned['native_exit'][:-7]+'.stderr')
++        demand(not pid_path.read_bytes() and not pid_stderr.read_bytes()
++               and pid_meta['returncode'] == 1
++               and pid_meta['command'] == ['adb','shell','pidof',PACKAGE+':lumo_game'],
++               'Native process absence is not actually observed')
++        demand(not read_original(root, returned['closed_mailbox'], empty_ok=True).strip(),
++               'Old private C4 mailbox is still live')
++        activity = read_original(root, returned['activity'])
++        resumed = [line for line in activity.splitlines() if 'mResumedActivity' in line or 'topResumedActivity' in line]
++        demand(resumed and all('MainActivity' in line and PACKAGE in line for line in resumed),
++               'Actual Flutter foreground is missing')
++        demand(persisted_round(preferences(read_original(root, returned['preferences'])), before['state'])
++               == returned['round'], 'Actual returned round differs')
++        ui = ET.fromstring(safe_member(root, returned['returned_ui']).read_text())
++        labels = '\n'.join(node.get('text','')+'\n'+node.get('content-desc','') for node in ui.iter('node'))
++        demand('Spiel pausiert' in labels and 'Fortsetzen' in labels, 'Actual paused Flutter UI missing')
++        frame = safe_member(root, returned['frame']['file'])
++        demand(sha256(frame) == returned['frame']['sha256'], 'Returned original Flutter frame differs')
++        with Image.open(frame) as png:
++            png.load()
++            demand(png.format == 'PNG' and png.width > 100 and png.height > 100, 'Invalid return PNG')
++        checked_flutter_touch(root, returned['to_games_touch'], 'Zur Spieleauswahl')
++    learning_unchanged(preferences(read_original(root, report['preferences_before'])),
++                       preferences(read_original(root, report['preferences_after'])))
++    errors = runtime_errors(read_original(root, report['original_logcat']))
++    demand(not errors and report.get('fatal_entries') == [], 'Original Android/engine failure remains')
++    demand(read_original(root, report['android_sdk_original']).strip() == '35', 'Wrong actual Android API')
++    return {'status':'PASS','versionCode':2020,'binding':binding,
++            'actual_child_drops':2, 'actual_bot_responses':2,
++            'same_round_reopened':True,'native_returns':2,'api':35,
++            'original_files':len(report['originals']), 'observations':len(observations),
++            'scope':'C4 candidate device test only; no release, physical ARM64, API37 or FPS acceptance'}
+diff --git a/tools/android_qa/tests/test_connect_four_android_evidence.py b/tools/android_qa/tests/test_connect_four_android_evidence.py
+new file mode 100644
+--- /dev/null
++++ b/tools/android_qa/tests/test_connect_four_android_evidence.py
+@@ -0,0 +1,446 @@
++"""Synthetic contract cases, never represented as an actual Android result."""
++from __future__ import annotations
++
++import copy
++import hashlib
++import json
++from pathlib import Path
++import sys
++import tempfile
++import unittest
++import xml.etree.ElementTree as ET
++
++from PIL import Image, ImageDraw
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++import connect_four_android_evidence as c4
++
++
++HOST = 'a' * 40
++NATIVE = 'b' * 40
++RUN = 43_500_000_001
++ARTIFACT = 14_000_000_001
++DIGEST = 'sha256:' + 'd' * 64
++STUDENT = 'local-' + 'c' * 32
++OWNER = hashlib.sha256(STUDENT.encode()).hexdigest()
++PIXELS = (1080, 2400)
++
++
++def state(columns=(), *, revision=1, ack=0, paused=False, token='a' * 32):
++    board = [0] * 42
++    heights = [0] * 7
++    for turn, column in enumerate(columns):
++        board[(5-heights[column])*7+column] = turn % 2 + 1
++        heights[column] += 1
++    return {'schema':1, 'game':'connect_four', 'token':token, 'roundId':'c' * 32,
++            'owner':OWNER, 'revision':revision, 'recordRevision':len(columns)+1,
++            'ack':ack, 'rejected':0, 'paused':paused, 'exit':False,
++            'canDrop':not paused, 'reduceMotion':False, 'twoPlayers':False,
++            'level':'leicht', 'phase':'playing', 'turn':1, 'columns':list(columns),
++            'validColumns':[c for c in range(7) if heights[c]<6], 'board':board,
++            'winningLine':[], 'rewarded':False, 'error':None}
++
++
++def stored(value):
++    return {'schema':1, 'owner':value['owner'], 'id':value['roundId'], 'seed':4,
++            'revision':value['recordRevision'], 'twoPlayers':value['twoPlayers'],
++            'level':value['level'], 'columns':value['columns'], 'rewarded':value['rewarded']}
++
++
++def prefs(value):
++    return {'flutter.lumo_learning_local_student_id_v1':STUDENT,
++            'flutter.lumo_active_profile':json.dumps({'id':'test-child', 'name':'Synthetic Child',
++                'age':8, 'grade':2, 'createdAt':'fixture'}),
++            'flutter.lumo_progress_v1':'{"syntheticPreserved":1}',
++            c4.ROUND_PREFIX+OWNER:json.dumps(stored(value))}
++
++
++def xml_preferences(value):
++    root = ET.Element('map')
++    for key, item in prefs(value).items():
++        ET.SubElement(root, 'string', {'name':key}).text = item
++    return ET.tostring(root, encoding='unicode')
++
++
++def layout(value, *, pid=200, sequence=1):
++    buttons = []
++    for control in ('back','pause','resume','restart','mode',
++                    *('column_'+str(c) for c in range(7)),
++                    'level_leicht','level_mittel','level_schlau'):
++        rect = [10,10,130,130]
++        text = {'back':'Zurück','pause':'Pause','resume':'Fortsetzen'}.get(control, control)
++        if control.startswith('column_'):
++            column = int(control[7:])
++            rect = [40+column*140,2100,130,130]
++            text = str(column+1)+' ↓'
++        elif control == 'pause':
++            rect = [900,10,130,130]
++        elif control == 'resume':
++            rect = [80,400,900,150]
++        visible = value['paused'] if control == 'resume' else not value['paused'] if control == 'pause' else True
++        buttons.append({'id':control,'text':text,'rect_px':rect,'hit_rect_px':rect[:],
++                        'visible':visible,'enabled':True,'clipped':False})
++    cells = []
++    for row in range(6):
++        for column in range(7):
++            x, y = 200+100*column, 400+100*row
++            cells.append({'row':row,'column':column,'piece':value['board'][row*7+column],
++                          'disc_quad':[[x-40,y-40],[x+40,y-40],[x+40,y+40],[x-40,y+40]]})
++    return {'schema':1,'game':'connect_four','settled':True,'ui_visible':True,
++            'pending':0,'pid':pid,'layout_sequence':sequence,'ticks_msec':sequence*100,
++            'observation_source':'android_window_insets','density':2.5,
++            'window_px':[1080,2300],'viewport_px':[432,920], 'safe_rect':[0,0,1080,2300],
++            'android_observation':{'decor_size':list(PIXELS),'view_size':[1080,2300],
++                                   'render_rect':[0,70,1080,2300]},
++            'buttons':buttons,'cells':cells, **{key:value[key] for key in c4.STATE_KEYS}}
++
++
++def original_metadata():
++    run = {'id':RUN,'run_attempt':1,'head_sha':HOST,'head_branch':c4.BRANCH,
++           'event':'pull_request','path':c4.WORKFLOW,
++           'repository':{'full_name':'Ullmann27/lumo-lernen'}}
++    artifacts = {'artifacts':[{'name':c4.CANDIDATE,'id':ARTIFACT,'digest':DIGEST,
++                    'size_in_bytes':648_000_000,'expired':False,
++                    'workflow_run':{'id':RUN,'head_sha':HOST}}]}
++    jobs = {'jobs':[{'name':name,'run_id':RUN,'run_attempt':1,'head_sha':HOST,
++                    'status':'completed','conclusion':'success'} for name in
++                    ('android-host-compile','connect-four-runtime','verify-and-build')]}
++    return run, artifacts, jobs
++
++
++def bind(metadata=None):
++    return c4.artifact_binding(*(metadata or original_metadata()),source=HOST,run_id=RUN,
++                              attempt=1,artifact_id=ARTIFACT,digest=DIGEST,
++                              native=NATIVE,version_name='0.13.8')
++
++
++class SyntheticEvidence:
++    """Create explicitly synthetic files to execute the actual offline verifier."""
++    def __init__(self, root):
++        self.root = root
++        self.count = 0
++        self.observations = []
++        self.transitions = []
++        self.returns = []
++        self.binding = bind()
++        self.identity = {'synthetic':'contract input, not an APK verification'}
++
++    def write(self, name, data):
++        path = self.root / name
++        path.parent.mkdir(parents=True,exist_ok=True)
++        if isinstance(data, (dict,list)):
++            data = json.dumps(data,sort_keys=True)
++        path.write_bytes(data.encode() if isinstance(data,str) else data)
++        return name
++
++    def original(self, tag, command, raw, rc=0):
++        name = 'commands/'+tag
++        data = raw.encode() if isinstance(raw,str) else raw
++        self.write(name+'.stdout',data)
++        self.write(name+'.stderr',b'')
++        self.write(name+'.json',{'command':command,'returncode':rc,
++                   'stdout_bytes':len(data),'stderr_bytes':0,
++                   'stdout_sha256':hashlib.sha256(data).hexdigest(),
++                   'stderr_sha256':hashlib.sha256(b'').hexdigest()})
++        return name+'.stdout'
++
++    def screenshot(self, name, value=None, geometry=None):
++        image = Image.new('RGB',PIXELS,(20,32,56))
++        if value is not None:
++            draw = ImageDraw.Draw(image)
++            for cell in geometry['cells']:
++                piece = value['board'][cell['row']*7+cell['column']]
++                if piece:
++                    x,y = cell['disc_quad'][0][0]+40,cell['disc_quad'][0][1]+110
++                    draw.ellipse((x-35,y-35,x+35,y+35),fill=(83,221,253) if piece==1 else (255,209,102))
++        path = self.root / (name+'.png')
++        path.parent.mkdir(parents=True,exist_ok=True)
++        image.save(path)
++        return {'file':name+'.png','width':PIXELS[0],'height':PIXELS[1],'sha256':c4.sha256(path)}
++
++    def observe(self, name, value, control=None, pid=200):
++        self.count += 1
++        geometry = layout(value,pid=pid,sequence=self.count)
++        now = 1_700_000_000_000+self.count*700
++        life = {'active':True,'stamp':now-50,'pauseEpoch':0}
++        raw = {}
++        mailbox = f'/data/user/0/{c4.PACKAGE}/files/lumo_connect_four_session_v1/{value["token"]}'
++        for key, data in (('state',value),('state_after',value),('layout',geometry),('layout_after',geometry),('lifecycle',life)):
++            actual = key.removesuffix('_after')
++            source = (f'/data/user/0/{c4.PACKAGE}/files/connect_four_layout_v1.json' if actual=='layout'
++                      else mailbox+'/'+actual+'.json')
++            raw[key] = self.original(name+'-'+key,['adb','exec-out','cat',source],json.dumps(data))
++        fields = {
++            'clock':(['adb','shell','date','+%s%3N'],str(now)+'\n'),
++            'native_pid':(['adb','shell','pidof',c4.PACKAGE+':lumo_game'],str(pid)+'\n'),
++            'host_pid':(['adb','shell','pidof',c4.PACKAGE],'100\n'),
++            'activity':(['adb','shell','dumpsys','activity','activities'],
++                        'mResumedActivity: '+c4.PACKAGE+'/.ConnectFourGameActivity\n'),
++            'authority':(['adb','shell','dumpsys','activity','services',c4.PACKAGE],
++                         'ConnectFourAuthorityService\n'),
++            'density':(['adb','shell','wm','density'],'Physical density: 420\nOverride density: 400\n'),
++            'preferences':(['adb','exec-out','cat',f'/data/user/0/{c4.PACKAGE}/shared_prefs/FlutterSharedPreferences.xml'],xml_preferences(value)),
++        }
++        for key,(command,text) in fields.items():
++            raw[key] = self.original(name+'-'+key,command,text)
++        frame = self.screenshot(name,value,geometry)
++        item = {'id':name,'state':copy.deepcopy(value),'layout':geometry,'lifecycle':life,
++                'device_clock_ms':now,'pid':pid,'host_pid':100,'density':2.5,'pixels':list(PIXELS),
++                'frame':frame['file'],'frame_sha256':frame['sha256'],'raw':raw,
++                'observed_monotonic':10+self.count*.7,
++                'surface':c4.inspect_surface(self.root/frame['file'],orientation='responsive'),
++                'visual':c4.board_pixels(self.root/frame['file'],geometry,value,pid,2.5)}
++        if control:
++            item['target'] = c4.touch_target(geometry,value,PIXELS,pid,2.5,control)
++        self.observations.append(name)
++        self.write('observations/'+name+'.json',item)
++        return item
++
++    def native_touch(self, name, value, control, pid=200):
++        first = self.observe(name+'-first',value,control,pid)
++        second = self.observe(name+'-second',value,control,pid)
++        target = c4.stable_target(first,second)
++        x,y = map(str,target['point'])
++        command = self.original(name+'-touch',['adb','shell','input','swipe',x,y,x,y,'120'],'')
++        touch = self.write(name+'-touch.json',{'first':first['id'],'second':second['id'],
++                                            'target':target,'command_original':command})
++        return second,touch
++
++    def transition(self, name, before, after, action, control, pid=200):
++        current,touch = self.native_touch(name,before,control,pid)
++        finished = self.observe(name+'-after',after,pid=pid)
++        request = {'token':before['token'],'roundId':before['roundId'],'revision':before['revision'],
++                   'sequence':before['ack']+1,'action':action}
++        if action=='drop':
++            request['column'] = int(control[7:])
++        source = self.original(name+'-request',['adb','exec-out','cat','synthetic/request.json'],json.dumps(request))
++        self.transitions.append({'action':action,'before':current['id'],'after':finished['id'],
++                                 'request':source,'touch':touch})
++        return finished
++
++    def flutter_touch(self, name, label):
++        frames=[]
++        for number in (1,2):
++            tag=name+'-'+str(number)
++            tree=ET.Element('hierarchy')
++            ET.SubElement(tree,'node',{'text':label,'package':c4.PACKAGE,'enabled':'true',
++                                      'clickable':'true','bounds':'[100,300][980,500]'})
++            ui=self.write(tag+'.xml',ET.tostring(tree))
++            density=self.original(tag+'-density',['adb','shell','wm','density'],'Physical density: 400\n')
++            frames.append({'ui':ui,'capture':self.screenshot(tag),'density':density,'observed_monotonic':number})
++        target=c4.flutter_control(list(tree.iter('node')),label,PIXELS,2.5)
++        x,y=map(str,target['point'])
++        command=self.original(name+'-dispatch',['adb','shell','input','swipe',x,y,x,y,'120'],'')
++        return self.write(name+'.json',{'first':frames[0],'second':frames[1],
++                                     'target':target,'command_original':command})
++
++    def returned(self, name, value, pid=200):
++        before,touch=self.native_touch(name,value,'back',pid)
++        pidfile=self.original(name+'-exit',['adb','shell','pidof',c4.PACKAGE+':lumo_game'],'',rc=1)
++        closed=self.original(name+'-closed',['adb','shell','find','synthetic'],'')
++        activity=self.original(name+'-activity',['adb','shell','dumpsys','activity','activities'],
++                               'mResumedActivity: '+c4.PACKAGE+'/.MainActivity\n')
++        preference=self.original(name+'-prefs',['adb','exec-out','cat','synthetic/prefs'],xml_preferences(value))
++        ui=ET.Element('hierarchy')
++        ET.SubElement(ui,'node',{'text':'Spiel pausiert','content-desc':'Fortsetzen'})
++        self.returns.append({'before':before['id'],'touch':touch,'native_exit':pidfile,
++            'closed_mailbox':closed,'activity':activity,'preferences':preference,'round':stored(value),
++            'returned_ui':self.write(name+'.xml',ET.tostring(ui)),'frame':self.screenshot(name+'-flutter'),
++            'to_games_touch':self.flutter_touch(name+'-games','Zur Spieleauswahl')})
++        return before
++
++    def build(self):
++        a=state()
++        b=state([3,0],revision=4,ack=1)
++        c=state([3,0],revision=5,ack=2,paused=True)
++        d=state([3,0],revision=6,ack=3)
++        e=state([3,0,2,6],revision=9,ack=4)
++        f=state([3,0,2,6],revision=10,ack=5,paused=True)
++        g=state([3,0,2,6],token='b'*32)
++        h=state([3,0,2,6],revision=2,ack=1,paused=True,token='b'*32)
++        entry=self.flutter_touch('entry',c4.PORTAL)
++        initial=self.observe('initial',a)
++        self.transition('first-drop',a,b,'drop','column_3')
++        pause=self.transition('first-pause',b,c,'pause','pause')
++        self.count += 2
++        held=self.observe('held',c)
++        self.transition('first-resume',c,d,'resume','resume')
++        self.transition('second-drop',d,e,'drop','column_2')
++        self.transition('second-pause',e,f,'pause','pause')
++        closed=self.returned('return-one',f)
++        reopen_touch=self.flutter_touch('reopen',c4.PORTAL)
++        reopened=self.observe('reopened',g,pid=201)
++        self.transition('third-pause',g,h,'pause','pause',pid=201)
++        self.returned('return-two',h,pid=201)
++        before=self.original('before-prefs',['adb','exec-out','cat','synthetic/prefs'],xml_preferences(a))
++        after=self.original('after-prefs',['adb','exec-out','cat','synthetic/prefs'],xml_preferences(h))
++        log=self.original('all-logcat',['adb','logcat','-b','all','-d','-v','threadtime'],
++                           'Synthetic contract log, not an Android execution\n')
++        sdk=self.original('sdk',['adb','shell','getprop','ro.build.version.sdk'],'35\n')
++        report={'schema':1,'status':'PASS','binding':self.binding,'identity':self.identity,
++                'synthetic_fixture':True,'entry_touch':entry,'initial':initial['id'],
++                'observations':self.observations,'transitions':self.transitions,'returns':self.returns,
++                'pause_hold':{'first':pause['id'],'second':held['id'],
++                              'elapsed':held['observed_monotonic']-pause['observed_monotonic']},
++                'reopen':{'closed':closed['id'],'opened':reopened['id'],'touch':reopen_touch},
++                'preferences_before':before,'preferences_after':after,
++                'original_logcat':log,'fatal_entries':[],'android_sdk_original':sdk}
++        self.report=report
++        self.refresh()
++        return report
++
++    def refresh(self):
++        self.report['originals']=[{'path':path.relative_to(self.root).as_posix(),
++                                  'bytes':path.stat().st_size,'sha256':c4.sha256(path)}
++                                 for path in sorted(self.root.rglob('*'))
++                                 if path.is_file() and path!=self.root/'c4-result.json']
++        self.write('c4-result.json',self.report)
++
++
++class BindingTests(unittest.TestCase):
++    def test_real_size_identifiers_and_exact_source_contract(self):
++        result=bind()
++        self.assertEqual(result['run_id'],RUN)
++        self.assertEqual(result['native_source'],NATIVE)
++
++    def test_actual_upload_digest_is_canonicalized_against_rest_metadata(self):
++        actual=c4.artifact_binding(*original_metadata(),source=HOST,run_id=RUN,
++            attempt=1,artifact_id=ARTIFACT,digest=DIGEST.removeprefix('sha256:'),
++            native=NATIVE,version_name='0.13.8')
++        self.assertEqual(actual,bind())
++
++    def test_rejects_wrong_source_workflow_attempt_artifact_and_job(self):
++        alterations=(lambda x:x[0].update(head_sha='f'*40),
++                     lambda x:x[0].update(path='.github/workflows/lumo-kart-graphics-2019.yml'),
++                     lambda x:x[0].update(run_attempt=2),
++                     lambda x:x[1]['artifacts'][0].update(digest='sha256:'+'e'*64),
++                     lambda x:x[2]['jobs'][0].update(conclusion='skipped'),
++                     lambda x:x[2]['jobs'].append(copy.deepcopy(x[2]['jobs'][0])))
++        for alter in alterations:
++            data=original_metadata(); alter(data)
++            with self.subTest(alter=alter),self.assertRaises(ValueError): bind(data)
++
++
++class ObservationTests(unittest.TestCase):
++    def test_actual_complete_target_and_density(self):
++        s=state(); l=layout(s)
++        target=c4.touch_target(l,s,PIXELS,200,2.5,'column_3')
++        self.assertEqual(target['text'],'4 ↓')
++        self.assertEqual(target['size_dp'],[52,52])
++        self.assertEqual(c4.device_density('Physical density: 420\nOverride density: 400\n'),2.5)
++
++    def test_no_clipped_small_duplicate_fake_or_other_revision_target(self):
++        for field,value in (('clipped',True),('visible',False),('enabled',False)):
++            s=state(); l=layout(s); l['buttons'][8][field]=value
++            with self.subTest(field=field),self.assertRaises(ValueError):
++                c4.touch_target(l,s,PIXELS,200,2.5,'column_3')
++        for change in (lambda l:l.update(observation_source='platform_fixture'),
++                       lambda l:l.update(revision=999),
++                       lambda l:l['buttons'].append(copy.deepcopy(l['buttons'][0])),
++                       lambda l:l['buttons'][8].update(rect_px=[460,2100,100,100],hit_rect_px=[460,2100,100,100]),
++                       lambda l:l['buttons'][8].update(rect_px=[460,2200,130,130],hit_rect_px=[460,2200,130,130])):
++            s=state(); l=layout(s); change(l)
++            with self.subTest(change=change),self.assertRaises(ValueError):
++                c4.touch_target(l,s,PIXELS,200,2.5,'column_3')
++
++    def test_ack_requires_actual_bot_and_same_round(self):
++        before=state(); after=state([3,0],revision=4,ack=1)
++        request={'action':'drop','token':before['token'],'roundId':before['roundId'],
++                 'revision':1,'sequence':1,'column':3}
++        c4.acknowledged(before,after,request,'drop')
++        for change in (lambda s:s.update(ack=0),lambda s:s.update(roundId='d'*32),
++                       lambda s:s.update(rejected=1),lambda s:s.update(recordRevision=2)):
++            broken=copy.deepcopy(after);change(broken)
++            with self.subTest(change=change),self.assertRaises(ValueError):
++                c4.acknowledged(before,broken,request,'drop')
++        with self.assertRaises(ValueError):
++            c4.acknowledged(before,state([3],revision=3,ack=1),request,'drop')
++
++    def test_owner_and_durable_round_must_match(self):
++        s=state([3,0]); p=prefs(s)
++        self.assertEqual(c4.persisted_round(p,s)['columns'],[3,0])
++        p['flutter.lumo_school_active_student_v1']='another-child'
++        with self.assertRaises(ValueError): c4.persisted_round(p,s)
++        p=prefs(s);p[c4.ROUND_PREFIX+OWNER]=json.dumps(stored(state()))
++        with self.assertRaises(ValueError): c4.persisted_round(p,s)
++
++    def test_reopen_requires_same_round_and_new_token(self):
++        previous=state([3,0,2,6],paused=True)
++        current=state([3,0,2,6],token='b'*32)
++        c4.reopened(previous,current)
++        for change in (lambda s:s.update(token=previous['token']),lambda s:s.update(roundId='d'*32)):
++            broken=copy.deepcopy(current);change(broken)
++            with self.subTest(change=change),self.assertRaises(ValueError): c4.reopened(previous,broken)
++
++    def test_pixel_evidence_rejects_missing_actual_acknowledged_disc(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root=Path(directory); f=SyntheticEvidence(root)
++            s=state([3,0]); l=layout(s)
++            frame=f.screenshot('fixture',s,l)
++            self.assertEqual(len(c4.board_pixels(root/frame['file'],l,s,200,2.5)['occupied_cells']),2)
++            f.screenshot('fixture')
++            with self.assertRaisesRegex(ValueError,'pixels do not show'):
++                c4.board_pixels(root/frame['file'],l,s,200,2.5)
++
++    def test_flutter_target_requires_actual_package_and_unambiguous_full_control(self):
++        node={'text':c4.PORTAL,'package':c4.PACKAGE,'enabled':'true','clickable':'true',
++              'bounds':'[100,300][980,500]'}
++        self.assertEqual(c4.flutter_control([node],c4.PORTAL,PIXELS,2.5)['point'],[540,400])
++        for nodes in ([node,node],[{**node,'package':'android'}],[{**node,'bounds':'[100,300][980,350]'}]):
++            with self.assertRaises(ValueError): c4.flutter_control(nodes,c4.PORTAL,PIXELS,2.5)
++
++    def test_anr_and_engine_errors_remain_rejected(self):
++        for message in ('FATAL EXCEPTION: main','am_anr: [0,1,system]','SCRIPT ERROR: bad',
++                        'E godot : ERROR: Shader compile error','GL_MAX_FRAGMENT_UNIFORM_VECTORS'):
++            with self.subTest(message=message): self.assertTrue(c4.runtime_errors(message))
++
++
++class CompleteEvidenceTests(unittest.TestCase):
++    def setUp(self):
++        self.temporary=tempfile.TemporaryDirectory()
++        self.addCleanup(self.temporary.cleanup)
++        self.root=Path(self.temporary.name)
++        self.fixture=SyntheticEvidence(self.root)
++        self.report=self.fixture.build()
++
++    def verify(self):
++        return c4.verify_report(self.root,self.fixture.binding,self.fixture.identity)
++
++    def test_complete_synthetic_observation_replay(self):
++        result=self.verify()
++        self.assertEqual((result['actual_child_drops'],result['actual_bot_responses'],result['native_returns']),(2,2,2))
++        self.assertIn('no release',result['scope'])
++
++    def test_original_byte_change_and_unlisted_file_fail(self):
++        path=self.root/'extra.txt';path.write_text('unindexed')
++        with self.assertRaisesRegex(ValueError,'complete original directory'): self.verify()
++        path.unlink()
++        original=self.root/self.report['original_logcat'];original.write_text('tampered')
++        with self.assertRaisesRegex(ValueError,'bytes changed'): self.verify()
++
++    def test_return_cannot_omit_actual_back_touch(self):
++        self.report['returns'][0]['touch']=self.report['transitions'][0]['touch']
++        self.fixture.refresh()
++        with self.assertRaisesRegex(ValueError,'two-frame control'): self.verify()
++
++    def test_state_chain_cannot_skip_first_child_bot_pair(self):
++        self.report['transitions'][0]['before']=self.report['transitions'][3]['before']
++        self.fixture.refresh()
++        with self.assertRaisesRegex(ValueError,'transition chain'): self.verify()
++
++    def test_fresh_heartbeat_and_actual_density_are_mandatory(self):
++        name=self.report['initial'];path=self.root/('observations/'+name+'.json')
++        item=json.loads(path.read_text());item['density']=2.6
++        self.fixture.write('observations/'+name+'.json',item);self.fixture.refresh()
++        with self.assertRaisesRegex(ValueError,'device density differs'): self.verify()
++
++    def test_failure_status_cannot_be_relabelled_with_old_binding(self):
++        self.report['status']='FAIL';self.fixture.refresh()
++        with self.assertRaisesRegex(ValueError,'missing, failed'): self.verify()
++        self.report['status']='PASS';self.report['binding']['host_source']='e'*40
++        self.fixture.refresh()
++        with self.assertRaises(ValueError): c4.verify_report(self.root,bind(),self.fixture.identity)
++
++
++if __name__ == '__main__':
++    unittest.main()

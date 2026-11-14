@@ -1,0 +1,104 @@
+{
+  "reviewed_at": "2026-11-14T03:56:21.245738+00:00",
+  "reviewer": "root",
+  "status": "SCOPED_ORIGINAL_IMAGE_AND_SAVE_REVIEW",
+  "views": [
+    {
+      "file": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-creative-evidence/part-01/additional-originals/originals/tour/0017-observe-springen.png",
+      "bytes": 1635411,
+      "sha256": "7f1af89c0e879f0f50317a080297602bed83004355538c98285bf63172d4aac7",
+      "review": "DIRECT_ROOT_IMAGE_VIEW",
+      "observation": "Direct image view: complete SPRINGEN caption on the lower-right gold action control; the explanatory sentence also contains springen. No jump motion or successful input inferred."
+    },
+    {
+      "file": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-creative-evidence/part-01/additional-originals/originals/tour/0083-build-failure.png",
+      "bytes": 2489344,
+      "sha256": "36c5ac15dbf49db35821c32a4266c9b115a57f35a41ce151cea2ed5e35e2edeb",
+      "review": "DIRECT_ROOT_IMAGE_VIEW",
+      "observation": "Direct image view: active Bauwelt scene and toolbars; no pause modal or visible Weiterbauen control in this captured frame."
+    },
+    {
+      "file": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-creative-evidence/part-01/additional-originals/originals/tour/0125-puzzle-observed-board.png",
+      "bytes": 1013160,
+      "sha256": "84031d5f6d9b57037110bb463104d40ebbdeb6653d948b0224c373fd8c6fc30e",
+      "review": "DIRECT_ROOT_IMAGE_VIEW",
+      "observation": "Direct image view: one visually empty dark-blue central puzzle board, with actual puzzle pieces in both side trays."
+    },
+    {
+      "file": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-creative-evidence/part-03/additional-originals/originals/tour/0237-treasure-real-inventory.png",
+      "bytes": 2508639,
+      "sha256": "a73fb02eada6a445003aee2f1f41e10ce4554500a926f16a97192def1122e1fa",
+      "review": "DIRECT_ROOT_IMAGE_VIEW",
+      "observation": "Direct image view: inventory modal explicitly shows Blattschlüssel; HUD shows Hinweise gelöst 1/7."
+    },
+    {
+      "file": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-creative-evidence/part-03/additional-originals/originals/tour/0253-before-real-input.png",
+      "bytes": 2480661,
+      "sha256": "397bc18bd5228da6d5dc8b5d910044b75308b2f509fceece4b56ead7aaf4bdaf",
+      "review": "DIRECT_ROOT_IMAGE_VIEW",
+      "observation": "Direct image view: genuine Dein Abenteuer wartet pause modal with Weiter erkunden and Zur Spielewelt, while HUD retains Hinweise gelöst 1/7."
+    },
+    {
+      "file": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-android35-update-evidence/artifacts/14096859041/memory-originals/originals/21_race_hud_0.png",
+      "bytes": 2005004,
+      "sha256": "1ae6632355a726470852d5babb0a43ce0967fb8c4bc56fb5b73a810ca1fec8e0",
+      "review": "DIRECT_ROOT_IMAGE_VIEW",
+      "observation": "Direct image view: RUNDE 1/2, PLATZ 5/6 and 0 km/h all fully visible in the actual race HUD."
+    },
+    {
+      "file": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-android35-update-evidence/artifacts/14096859041/memory-originals/originals/21_race_hud_17.png",
+      "bytes": 1965296,
+      "sha256": "c10e6636686baef6511402d5fbd34046307d06f8d2c7a5b01e96fc2c25ba9d07",
+      "review": "DIRECT_ROOT_IMAGE_VIEW",
+      "observation": "Direct image view: RUNDE 1/2, PLATZ 6/6 and 0 km/h all fully visible. No successful driving or frame-rate inference."
+    }
+  ],
+  "creative_original": {
+    "host": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+    "native": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+    "run": 43540111465,
+    "job": 132298281135,
+    "overall_status": "FAIL",
+    "treasure_scope": "Actual first clue tree, visible inventory, read-only state equality after resume; full quest and motion/FPS not reviewed.",
+    "treasure_save_checks": {
+      "one_unchanged_result_id": true,
+      "empty_to_first_tree_clue": true,
+      "answer_pause_resume_full_objects_equal": true
+    },
+    "save_sources": [
+      {
+        "file": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-creative-evidence/part-03/additional-originals/originals/tour/0221-treasure-save-lumo_treasure_p_0768095c1da522693b0639510a4d3037.json",
+        "bytes": 304,
+        "sha256": "e8e82e9a05fd861f12da95ae8683026497bd6e85f72cc2a33383706bde7b0d9e"
+      },
+      {
+        "file": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-creative-evidence/part-03/additional-originals/originals/tour/0231-treasure-save-lumo_treasure_p_0768095c1da522693b0639510a4d3037.json",
+        "bytes": 318,
+        "sha256": "99e3110415a15f17e449fa3556969dce35805a419fb9cf4f44210d971dfe7384"
+      },
+      {
+        "file": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-creative-evidence/part-03/additional-originals/originals/tour/0244-treasure-save-lumo_treasure_p_0768095c1da522693b0639510a4d3037.json",
+        "bytes": 318,
+        "sha256": "99e3110415a15f17e449fa3556969dce35805a419fb9cf4f44210d971dfe7384"
+      },
+      {
+        "file": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-creative-evidence/part-03/additional-originals/originals/tour/0251-treasure-save-lumo_treasure_p_0768095c1da522693b0639510a4d3037.json",
+        "bytes": 318,
+        "sha256": "99e3110415a15f17e449fa3556969dce35805a419fb9cf4f44210d971dfe7384"
+      }
+    ]
+  },
+  "update_original": {
+    "qa": "61c94cfb78bda8dfbe191331eca0fd0382deb151",
+    "apk_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+    "run": 43551424080,
+    "job": 132314688494,
+    "overall_status": "FAIL"
+  },
+  "limits": [
+    "Image visibility does not establish input success or timing causality.",
+    "No complete Jump video exists in the original Creative export index.",
+    "No performance, 60 FPS, Android17 or physical Fold acceptance from these views.",
+    "All original frozen packs remain unchanged."
+  ]
+}

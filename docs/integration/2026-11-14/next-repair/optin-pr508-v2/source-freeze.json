@@ -1,0 +1,179 @@
+{
+  "schema": 2,
+  "status": "SOURCE_FROZEN_NO_TESTS_YET",
+  "base_host": "37414d0ceeb6db13ddd2b5bbc64789e3260ac1e5",
+  "base_tree": "a2ab2d1883aa764424e48e3b992cc3d09c3a84e5",
+  "historical_product_base": "7ac736fdbd042769592e88de0f9849632242316d",
+  "native_unchanged": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "files": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 29187,
+        "sha256": "df9148ab323e6e3255a23449d5342c5a033c9a20361d3d1e4a615b7eb5043583",
+        "git_blob": "585af5913ac8ec24216bd7eb877415da8c886025"
+      },
+      "after": {
+        "bytes": 30044,
+        "sha256": "6623bcff15f2e3d1425c46fd044be2e0ffbe6018b1f4567634ae1429ae2c4658",
+        "git_blob": "dae27bce72a09d786fd5a96cb39d10cc716dc5e2"
+      }
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 44948,
+        "sha256": "3d6d5d669307170728f62cc221bc840c48e57b22c13b9c64a081db7dfa606971",
+        "git_blob": "0927a3b853e168325e00ebaacc2156a49356ac1e"
+      },
+      "after": {
+        "bytes": 45094,
+        "sha256": "5ea73c94211bb0286aba1167da845d4ccc08ae31d3888dc6b6789b8df86b2772",
+        "git_blob": "6c9ee29c314bf999349c73da6faf9226ac0f8916"
+      }
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 31543,
+        "sha256": "0af6e0ae729f6465f9d8116755b4c005dd5226d693ccdef3e6e595d73598bfa9",
+        "git_blob": "41202eac77fb0b77d83cb417cb8cd2f4ef4d1bb7"
+      },
+      "after": {
+        "bytes": 31775,
+        "sha256": "8a10bff946ecd4fd92964709d595bc7b3dde1912c12480dff60762a3fedf03a9",
+        "git_blob": "f9bfdef2f54343291a0c2bfa985fb1287302a7ed"
+      }
+    },
+    {
+      "path": "test/games/connect_four_native_route_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 4803,
+        "sha256": "0d6636896a01653e006862cdbcce5f673182f66996b71c44710ca8351b31b9ed",
+        "git_blob": "d5178ab675bbc83b8fcb6dd0f6a3b7d675b1f3d0"
+      },
+      "after": {
+        "bytes": 5165,
+        "sha256": "7e4637c8c0a1330738723d2398a88e2e45ceb1d892e925f04c52ff58f93e99a6",
+        "git_blob": "8f9a3a275edec12141b88804ef36dc11dc12d524"
+      }
+    },
+    {
+      "path": "test/games/connect_four_navigation_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 5291,
+        "sha256": "15904ba2dff28e5afbef5d4f23febfca8f2a70066a6e081c873dad57da219f08",
+        "git_blob": "5607de8ddeeb54b1cbb77372c0ee3926f57ff374"
+      }
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 15447,
+        "sha256": "1c77db4149a9c584cb20efbf68daacbf69f2a3d2878f93e3c9206f88a099c870",
+        "git_blob": "254267c9f84d5c8e507307178015d281db238e4f"
+      },
+      "after": {
+        "bytes": 15945,
+        "sha256": "af22d37de998a52ac7c403f5531eea2287eb5b12b60fb1d491ee9921b2573566",
+        "git_blob": "6b47469525edf37135802be0b9546b22394b3e00"
+      }
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 36130,
+        "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7",
+        "git_blob": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa"
+      },
+      "after": {
+        "bytes": 40210,
+        "sha256": "0413fd322e16a68947e9f9a57abf957a90f43b404b0a9074e6559dc11907409c",
+        "git_blob": "6c9a4c24da94e485d47f453af9ac82f5d1994ad4"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 23974,
+        "sha256": "091d4640f277486998dc47fded5820d1986d9036244bc92d2f8c4ccf6afa794f",
+        "git_blob": "701d1dab0a7224803fe2780c6a0674400b081795"
+      },
+      "after": {
+        "bytes": 31507,
+        "sha256": "8b820e2b2e8b47066eea80a332d60ae0f03fd9c0adc989b14a275d3d4342a199",
+        "git_blob": "457e391524fd1c72d4c1d434e53c9518fbe89516"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_flutter_navigation.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 10716,
+        "sha256": "4e60efb31942c5d0ce1054024140b282f10042dffd7827f876986c925ab7c99a",
+        "git_blob": "37ef806cd79e06273950753bd1442d05472f7106"
+      },
+      "after": {
+        "bytes": 20349,
+        "sha256": "7999444bce601abcd067251c8230bb81512da60f99a08912e4100f4d932e5570",
+        "git_blob": "d3c2267437ef418e48ba2bfd85477a3a10f8015d"
+      }
+    }
+  ],
+  "unchanged_execution_references": [
+    {
+      "path": "pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "bytes": 4401,
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+      "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "bytes": 11092,
+      "sha256": "eefb4dd4633a2aa113cb8d50e732b090d10ac804b01b876b42bb2b990e75e630",
+      "git_blob": "c7e8bf69d8dc07980d4a84ad1fd31222beb5e147"
+    }
+  ],
+  "v1_preserved": {
+    "path": "/tmp/host-pr508-c4-optin-followup-7ac-20261114",
+    "freeze": {
+      "bytes": 5246,
+      "sha256": "7126b00c1eb5b09b30707efc05b8ca103f727703e18bd55ef136350fbe2218aa",
+      "git_blob": "612668dfe523e31ee1998c373a57257160534a39"
+    },
+    "manifest": {
+      "bytes": 8232,
+      "sha256": "171cfcb15017863eaf9625f1be31639ad938e85b0c2215d5ba3b503e1f838cbb",
+      "git_blob": "73f756c3754c238b08f172cb6faeca7e635e1583"
+    }
+  },
+  "readiness_contract": {
+    "existing_call": "wait_for_flutter_control(contract.NATIVE_ENTRY, tag + '-native-ready', timeout=30)",
+    "existing_global_budget_seconds": 900,
+    "wait_sends_no_input": true,
+    "fresh_touch_observations_after_wait": 2,
+    "report_fields": [
+      "native_entry_ready",
+      "reopen.native_ready"
+    ],
+    "offline_replay": "Every readiness PNG/XML/density/reason/target; strict distinct-file and monotonic order from portal through all wait observations to fresh touch and Native."
+  },
+  "source_scope": "Nine external source paths only; no checkout/index/ref/workflow/Native/pin mutation.",
+  "main_activity_untouched": true,
+  "tests_executed": false
+}

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_actual_api35_icon_line_uses_exact_word_after_two_original_frames",
+    "test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_actual_update_overlapping_icon_line_uses_exact_word_after_two_original_frames"
+  ],
+  "exit": 1,
+  "at": "2026-11-14T02:47:53.125026+00:00",
+  "log_sha256": "e587c1a9cbc7aa28bd00366466bb3900bcc04ef354cb782eb18e94e3d87ac452",
+  "unchanged_helper_sha256": "03b3b9b690b93b74a3a4e385efcb5e4f13de16a1d3f3a6a589bb8caefc0978f6",
+  "unchanged_caller_sha256": "ec21f7b14484bc751b0b172f02c6d0c227a6ed237ac1777c75d0ba2b7fe1347d"
+}

@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_ONLY",
+  "pack": "/tmp/host-discovery-gate-integration-7136fd69-20261114",
+  "base_commit": "7136fd69d7343d6be1ff2171c26fa9d496665fda",
+  "base_tree": "e30bf5e130b41e8ca5588163d1e86de57b5ce6e3",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "before": {
+        "bytes": 45539,
+        "sha256": "543d0415098a18007aa0f863cc4dbbbada7dc82cc30dc77c13446a8f2b5399b6",
+        "git_blob": "d56118529b7493e819262e61427d627c01ee0753"
+      },
+      "after": {
+        "bytes": 48514,
+        "sha256": "b98c9fd932ea56f33f17dcd73fe1c8841901ea1882598682dddb798b58cc26e8",
+        "git_blob": "e33ae242ad70efe73ec923ec2fba87cb8e0af632"
+      },
+      "storage_path": "final-source/.github/workflows/lumo-connect-four-2020.yml"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 56951,
+        "sha256": "332d059e2b7a3da338cb9cc27dd41830020a0cfda1fb19a5fedd789feaccfb82",
+        "git_blob": "cbd999a042b4c7e5ea15b1bb90ab2bc9f72233ff"
+      },
+      "after": {
+        "bytes": 66477,
+        "sha256": "331f1e907f898ee50473e7fb9ca9279669a4005be5eb96605f90e414f8bd4f76",
+        "git_blob": "1fdbf66634b4e932e922b785ad8419f898373d8b"
+      },
+      "storage_path": "final-source/scripts/verify_connect_four_delivery.py"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 66711,
+        "sha256": "9ce1031bf12a677fe346188fdb7f5edcbc77bd12245ecea642adc065735f8f0b",
+        "git_blob": "a91e25120489d21fc409930d893f52b31448aea3"
+      },
+      "after": {
+        "bytes": 82309,
+        "sha256": "0a4ae03274aa1a669525780f628af4d794b929414916f6d9a7530d8339f3cce4",
+        "git_blob": "3ac2a960cdad4589ea18067a4f03f4fd5281f313"
+      },
+      "storage_path": "final-source/scripts/tests/test_connect_four_delivery.py"
+    }
+  ],
+  "source_freeze": {
+    "bytes": 3451,
+    "sha256": "22c9df7d45f1c147a41617f4a2cbbed31a26fbe597cab51f8457d81f62a57144",
+    "git_blob": "d02d25df3b60fda98b1ffab690dcbfa0ed631f02"
+  },
+  "gate_contract": {
+    "bytes": 2714,
+    "sha256": "2ec25593c624a8a54345807b3886f3d9f58f800bed98d0848395e7b126dee11a",
+    "git_blob": "36224474af39293339ce25b246fd6dc5aad39dec"
+  },
+  "patch": {
+    "bytes": 31657,
+    "sha256": "86c2f60b4f39c1012473e676044970fffbbefefbc03ae5651c6fb91645d4f342",
+    "git_blob": "c103be21894772b7bfd534ebd078632019017521"
+  },
+  "source_owner_scope": "Three external Host files only; Native four-file freeze unchanged",
+  "new_test_methods": 13,
+  "preserved_test_methods": 56,
+  "total_test_methods": 69,
+  "tests_executed": false,
+  "actionlint_executed": false,
+  "native_pin_changed": false,
+  "budget_changed": false,
+  "pending": [
+    "Independent source review",
+    "Root checkpoint",
+    "Root-authorized 69 Delivery tests and Actionlint",
+    "Successful separate current-source Native Discovery renderer CI before any later Native-pin change"
+  ],
+  "release_status": "No publication or delivery approval"
+}

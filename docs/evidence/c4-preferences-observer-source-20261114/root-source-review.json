@@ -1,0 +1,285 @@
+{
+  "reviewed_at": "2026-11-14T16:55:37.062567+00:00",
+  "status": "SOURCE_CHECKED_NOT_EXECUTED",
+  "host_base": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+  "host_tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+  "producer": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+  "source_count": 9,
+  "source_bytes_and_git_blobs_checked": true,
+  "original_archive": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr493-preferences-read-repair-3fac-20261114/complete-original-pack.tar.gz",
+    "bytes": 1289925,
+    "sha256": "42057eb42fe97daa0d4dcd8d7ebdaa0a043c70e7b3934e5fe0513d5055b332b7",
+    "members": [
+      {
+        "path": "README.md",
+        "bytes": 1827,
+        "sha256": "9e4cf3cbe42b8551597f4b50fa82191eb3978e2551a3205b601e69c5c143d0e0"
+      },
+      {
+        "path": "SHA256SUMS",
+        "bytes": 6186,
+        "sha256": "1c940f8368c6c95fd8203e4e48e90ee47cfd1d0a570fe17572619716522a53e9"
+      },
+      {
+        "path": "audit-code/freeze_sources.py",
+        "bytes": 14697,
+        "sha256": "b333779273d7f69158dca0c3e2c2517124fcdc5eae3dec13f2fa03c4f20e2b0b"
+      },
+      {
+        "path": "audit-code/raw-manifest.json",
+        "bytes": 250,
+        "sha256": "4df910aa1fde0ff8e2c812cad4ddccff8f35f0b99decdf6118b933be1ef42bca"
+      },
+      {
+        "path": "before-source/.github/probes/lumo_connect_four_android_probe.py",
+        "bytes": 28798,
+        "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19"
+      },
+      {
+        "path": "diagnosis.json",
+        "bytes": 7450,
+        "sha256": "4f2368bf81f951fa69174fecbbc43f26270f5c6315281338db4b422f867d7640"
+      },
+      {
+        "path": "final-source/.github/probes/lumo_connect_four_android_probe.py",
+        "bytes": 28988,
+        "sha256": "e57bec15a0c8e7f57085a33ecfa661fda882af89a92bee906b016d152de54bc2"
+      },
+      {
+        "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.json",
+        "bytes": 444,
+        "sha256": "71ca8b275ea85cbe8ad9a01d36c7877aee24cf132c1933cc6b487a766c7d6c7d"
+      },
+      {
+        "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.stdout",
+        "bytes": 2485,
+        "sha256": "c1f6883e8047900e28981cd7d6bde7b379bd18edd80693b51ff4fd5d88f8811e"
+      },
+      {
+        "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.json",
+        "bytes": 444,
+        "sha256": "7f990fc9ded4487e15e04e21a44c14ecd9b7d2524c5a554d60b98ed68fa85c42"
+      },
+      {
+        "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.stdout",
+        "bytes": 129,
+        "sha256": "18cc4a1f125474c5c4f1f3bf5f414a2e05095b766b5254c2cab20a0db7a4f4ac"
+      },
+      {
+        "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/source.json",
+        "bytes": 3189,
+        "sha256": "4c181f977cccd874e4b13d39bc6796c11e2c9f859bf6480818c503b31ea70023"
+      },
+      {
+        "path": "final-source/tools/android_qa/tests/test_connect_four_preferences_observation.py",
+        "bytes": 17147,
+        "sha256": "6b493f9f5239a546abef96e273d1a28a8a4712a51a519c760555c79193353118"
+      },
+      {
+        "path": "handoff.json",
+        "bytes": 1265,
+        "sha256": "8979ab5eb99c115233730b427921e3566e57b7289b0f753b69b2bb117ab92914"
+      },
+      {
+        "path": "integration-git.patch",
+        "bytes": 28749,
+        "sha256": "eef4e48baa2b2252241ef84457664ebbe87344d5a0a231b2177e391f9f212188"
+      },
+      {
+        "path": "integration.patch",
+        "bytes": 26006,
+        "sha256": "c51b3e5e73c5a5488a25c8022587c00bed81669abf885ad4c0806d555d038dfd"
+      },
+      {
+        "path": "manifest.json",
+        "bytes": 12753,
+        "sha256": "bae4afb69198223f2b9206b20e15bb1b96b4550e907716c4dce0fee35d0e6cf9"
+      },
+      {
+        "path": "original-api/base-3fac-commit.original.json",
+        "bytes": 1125731,
+        "sha256": "ceb7ae804c18f5ef17db7341264e1e0a2b609c918e6991d142890adba60ac97f"
+      },
+      {
+        "path": "original-api/base-ls-tree.json",
+        "bytes": 553,
+        "sha256": "35a60dce7af41652912cce93f286be8e3c83315a87e2608f9866d571f6632446"
+      },
+      {
+        "path": "original-api/failed-artifacts-43605863655.original.json",
+        "bytes": 9753,
+        "sha256": "ae3c11b4faf5db8544bf40c25e6a577cb5c6a96df94b73aad5259a3393f7593b"
+      },
+      {
+        "path": "original-api/failed-jobs-43605863655.original.json",
+        "bytes": 23487,
+        "sha256": "18f6675dbb5ccbf77ec5109557bdfcd7637a0ae5fd9a2806c1eac97ca02fa88c"
+      },
+      {
+        "path": "original-api/failed-run-43605863655.original.json",
+        "bytes": 12964,
+        "sha256": "38d27c0d375b7ba53bfb6286a73ffd507b402fa9517f29887a4f75b2a5944bb0"
+      },
+      {
+        "path": "original-api/job-132499595540.original.log",
+        "bytes": 1534525,
+        "sha256": "8248955e3fc44f7652f6d41fafff0153541d852221b63f5d976ba7614e938ae1"
+      },
+      {
+        "path": "original-api/producer-7c5bef-commit.original.json",
+        "bytes": 37415,
+        "sha256": "0fc8ce9fd8150342ac91ac152e00acfa040705aaaab2cfa091a9429e72176cc7"
+      },
+      {
+        "path": "original-evidence/archive-index.json",
+        "bytes": 290445,
+        "sha256": "e843128d5c27f28af2fb977576486c2637217fd9e415855a0d28ed7d2a00109c"
+      },
+      {
+        "path": "original-evidence/c4/c4-result.json",
+        "bytes": 55449,
+        "sha256": "2b8dc1cc8d6b1018d07cef426ceb61fd1fc82ee5696431ffac10f9563f2c1988"
+      },
+      {
+        "path": "original-evidence/c4/child-first-touch.json",
+        "bytes": 493,
+        "sha256": "ea0f9daeb443efeb42065666f49c47631815d1ef0a68ef61476bddd8a4af4349"
+      },
+      {
+        "path": "original-evidence/c4/commands/0074-child-first-second-000-preferences.json",
+        "bytes": 444,
+        "sha256": "71ca8b275ea85cbe8ad9a01d36c7877aee24cf132c1933cc6b487a766c7d6c7d"
+      },
+      {
+        "path": "original-evidence/c4/commands/0074-child-first-second-000-preferences.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "original-evidence/c4/commands/0074-child-first-second-000-preferences.stdout",
+        "bytes": 2485,
+        "sha256": "c1f6883e8047900e28981cd7d6bde7b379bd18edd80693b51ff4fd5d88f8811e"
+      },
+      {
+        "path": "original-evidence/c4/commands/0078-child-first-touch.json",
+        "bytes": 406,
+        "sha256": "80323a1e44aec524b56865049282d34c3065156a4068c93eed6869ba790b5d37"
+      },
+      {
+        "path": "original-evidence/c4/commands/0078-child-first-touch.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "original-evidence/c4/commands/0078-child-first-touch.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "original-evidence/c4/commands/0079-child-first-confirmed-000-state.json",
+        "bytes": 481,
+        "sha256": "772c24a9a4485193dd3b8e42f630628bdac7a69afa919ab89ef2629325b4420c"
+      },
+      {
+        "path": "original-evidence/c4/commands/0079-child-first-confirmed-000-state.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "original-evidence/c4/commands/0079-child-first-confirmed-000-state.stdout",
+        "bytes": 561,
+        "sha256": "b646b67b025188733552817134b37da7f73594beb30d5fe6aa2e432701688743"
+      },
+      {
+        "path": "original-evidence/c4/commands/0087-child-first-confirmed-000-preferences.json",
+        "bytes": 444,
+        "sha256": "7f990fc9ded4487e15e04e21a44c14ecd9b7d2524c5a554d60b98ed68fa85c42"
+      },
+      {
+        "path": "original-evidence/c4/commands/0087-child-first-confirmed-000-preferences.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "original-evidence/c4/commands/0087-child-first-confirmed-000-preferences.stdout",
+        "bytes": 129,
+        "sha256": "18cc4a1f125474c5c4f1f3bf5f414a2e05095b766b5254c2cab20a0db7a4f4ac"
+      },
+      {
+        "path": "patch-completeness.json",
+        "bytes": 576,
+        "sha256": "dd226cfea9b266cc4c45825f38f31bf938bebc0bdc2f1efd7bc4dd9fa6f963ca"
+      },
+      {
+        "path": "raw-manifest.json",
+        "bytes": 5777,
+        "sha256": "738417d6f40db80e24d859c21a22773977ee8e4867d630e6cf4e35cb3c849ce4"
+      },
+      {
+        "path": "reference-source/active-5ad/.github/probes/lumo_connect_four_android_probe.py",
+        "bytes": 28798,
+        "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19"
+      },
+      {
+        "path": "reference-source/failed-51ec/.github/probes/lumo_connect_four_android_probe.py",
+        "bytes": 28798,
+        "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19"
+      },
+      {
+        "path": "reference-source/tools/android_qa/connect_four_android_evidence.py",
+        "bytes": 36130,
+        "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7"
+      },
+      {
+        "path": "reference-source/tools/android_qa/tests/test_connect_four_android_evidence.py",
+        "bytes": 23974,
+        "sha256": "091d4640f277486998dc47fded5820d1986d9036244bc92d2f8c4ccf6afa794f"
+      },
+      {
+        "path": "retrieval-limitations.json",
+        "bytes": 798,
+        "sha256": "a1c6c7a1bb5b7f8c59a5353c7847e85f9a5a7ebfb265896b7d16b1b3c3e0b6d1"
+      },
+      {
+        "path": "source-freeze.json",
+        "bytes": 4754,
+        "sha256": "ba77676bce3f2fecd97aa62e6c8514462635dc0255843b544b98ac23e47e45f1"
+      },
+      {
+        "path": "source-preservation.json",
+        "bytes": 2406,
+        "sha256": "3e48b28ca401110101eba4150993e639893a119523db84d471f81ba87f461654"
+      },
+      {
+        "path": "upload-plan.json",
+        "bytes": 2654,
+        "sha256": "9b2a3ac3a362757aeff6ac5845628fba94d638a81fd3ed8a16d3db68ac3af6ec"
+      }
+    ]
+  },
+  "same_preimage_on_failed_51ec_active_5ad_and_future_3fac": true,
+  "changed_methods": [
+    "read_preferences"
+  ],
+  "unchanged_methods": 18,
+  "whole_new_test_module_read": true,
+  "new_test_methods": 9,
+  "semantics": "Only XML ParseError becomes the existing retryable ValueError with source path and chained original cause. No valid-XML fallback, no extra touch, no budget or state/owner/round/revision/ack relaxation.",
+  "limits": [
+    "Original device failure belongs to host51ec/bebf; no failure or recovery asserted for active5ad.",
+    "Controlled replay uses synthetic ADB, clock, surfaces and derived later XML; not Android acceptance.",
+    "No tests/imports/device processes executed by this review.",
+    "Active candidate, main, old releases, pins and workflow budgets unchanged."
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T07:45:17.555162+00:00",
+  "source_host": "682f5991feb49d3a73ab7e2b42e23af725857ea9",
+  "native": "504c8ba70d02702cbccc370d0d96c36a292c5d27",
+  "images": [
+    {
+      "artifact_id": 14103697718,
+      "bytes": 123809,
+      "entry": "runtime/connect_four_fold_landscape.png",
+      "height": 1080,
+      "host_source": "682f5991feb49d3a73ab7e2b42e23af725857ea9",
+      "job_id": 132374020129,
+      "local_path": "/workspace/scratch/b3485b7bb989/host-pr485-682f5991-c4-runtime-evidence/originals/runtime/connect_four_fold_landscape.png",
+      "native_source": "504c8ba70d02702cbccc370d0d96c36a292c5d27",
+      "root_viewed": true,
+      "run_id": 43570629751,
+      "sha256": "aac2efa26eafaf9eebdd9288f4db8b7a7f747860ebaade1a159b54a2747e7e96",
+      "width": 2400
+    },
+    {
+      "artifact_id": 14103697718,
+      "bytes": 235104,
+      "entry": "runtime/connect_four_phone_playing.png",
+      "height": 2400,
+      "host_source": "682f5991feb49d3a73ab7e2b42e23af725857ea9",
+      "job_id": 132374020129,
+      "local_path": "/workspace/scratch/b3485b7bb989/host-pr485-682f5991-c4-runtime-evidence/originals/runtime/connect_four_phone_playing.png",
+      "native_source": "504c8ba70d02702cbccc370d0d96c36a292c5d27",
+      "root_viewed": true,
+      "run_id": 43570629751,
+      "sha256": "daec6b50de75b5932865e7e25d79cd6fa181e974291df26b0371a18b60605dab",
+      "width": 1080
+    },
+    {
+      "artifact_id": 14103697718,
+      "bytes": 35739,
+      "entry": "runtime/connect_four_small_portrait.png",
+      "height": 740,
+      "host_source": "682f5991feb49d3a73ab7e2b42e23af725857ea9",
+      "job_id": 132374020129,
+      "local_path": "/workspace/scratch/b3485b7bb989/host-pr485-682f5991-c4-runtime-evidence/originals/runtime/connect_four_small_portrait.png",
+      "native_source": "504c8ba70d02702cbccc370d0d96c36a292c5d27",
+      "root_viewed": true,
+      "run_id": 43570629751,
+      "sha256": "dc189342ac6f0150c5a1a569d4377d484a015a49fbafafe3e924e9f51f1740e1",
+      "width": 320
+    }
+  ],
+  "observations": [
+    "Phone portrait playing frame shows the complete empty six-by-seven board, readable title/status, and seven numbered column controls.",
+    "Small portrait win frame exposes the three end-of-round actions. The seven-column strip uses horizontal scrolling at this width; the last columns are outside the current scroll position.",
+    "Fold landscape win frame uses a bounded vertical scroll area; only its first action is fully visible in this captured position."
+  ],
+  "scope": "Direct static inspection of these three original desktop runtime PNGs only. No other image, film/audio, Android, gesture, saved-state, physical-device or FPS approval."
+}

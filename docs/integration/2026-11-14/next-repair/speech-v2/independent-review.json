@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T20:08:23.148165+00:00",
+  "reviewer": "flutter_integration",
+  "status": "NO_CONCRETE_SOURCE_BLOCKER_V2_NOT_RUN",
+  "base_host": "7ac736fdbd042769592e88de0f9849632242316d",
+  "base_tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2",
+  "reviewed_freeze": {
+    "path": "/tmp/host7ac-speech-envelope-fixture-repair-v2-20261114/source-freeze.json",
+    "bytes": 5260,
+    "sha256": "ab288cc74f9046b9ee9210a10921b5b10391446366a58b4978560d8af1f353e6",
+    "git_blob": "458b63f179dedb99425cc8da9db8162f898bf28b"
+  },
+  "previous_negative_review": {
+    "path": "/tmp/host7ac-speech-envelope-fixture-independent-review-20261114/review.json",
+    "bytes": 4975,
+    "sha256": "23901d19a88fd99ad8564b5d3d6165ec75e5be134a512cee72617fec470de1e0",
+    "git_blob": "be7d2d1b2bad7b04d98536e72f6498c9ca94726e",
+    "retained_unchanged": true
+  },
+  "closure": {
+    "finding_id": "missing-json-array-fixture-api",
+    "result": "CLOSED_AT_SOURCE_INTERFACE_LEVEL",
+    "mapping": [
+      {
+        "callsite": "LumoLearningSpeech.kt:31,224",
+        "fixture": "JSONObject.optJSONObject(String): JSONObject?",
+        "reason": "Nullable typed receiver preserves absent/wrong-type rejection."
+      },
+      {
+        "callsite": "LumoLearningSpeech.kt:237",
+        "fixture": "JSONObject.optJSONArray(String): JSONArray?",
+        "reason": "Nullable safe cast closes the missing array lookup."
+      },
+      {
+        "callsite": "LumoLearningSpeech.kt:238,240",
+        "fixture": "JSONArray.length(): Int",
+        "reason": "Actual values.size supplies the integer bound."
+      },
+      {
+        "callsite": "LumoLearningSpeech.kt:241",
+        "fixture": "JSONArray.opt(Int): Any?",
+        "reason": "List.getOrNull preserves nullable results for both negative and out-of-range positions; production still requires each item to be String."
+      },
+      {
+        "callsite": "LumoLearningSpeech.kt:235,244",
+        "fixture": "Existing JSONObject.optString returns String",
+        "reason": "With the object/array receiver chain typed, the word.takeIf predicate has a String input and Boolean membership result."
+      }
+    ],
+    "not_a_compiler_execution": true
+  },
+  "preservation": {
+    "bridge_v1_byte_identical": true,
+    "two_v2_array_additions_reverse_to_v1_json_exactly": true,
+    "removing_v1_object_getter_recovers_original_json_exactly": true,
+    "old_scalar_parser_unchanged": true,
+    "all_twelve_references_exact_to_v1_and_7ac": true,
+    "complete_base_to_v2_patch_recomputed_exactly": true,
+    "v1_freeze_and_negative_review_exact_copies": true
+  },
+  "findings": [
+    "The new array value type supplies exactly the current production methods; no JSON parser expansion or English audio simulation is introduced.",
+    "The old German build/lifecycle inputs contain no nested learning descriptor. The typed optional getter therefore leaves their ordinary German synthesis branch unchanged.",
+    "Bridge still throws UnsupportedOperationException for English synthesis; it cannot report fake English success, create fake metadata or update the existing German pending callback through that method.",
+    "The actual F2 and 44100 constants match the bound production engine; the clearly synthetic PROFILE remains unchanged.",
+    "The three original Kotlin contracts and Python runner retain every existing assertion and their exact 23/17/30 markers. No skip, timeout, production speech, WAV or workflow modification occurs in the two-file patch."
+  ],
+  "remaining_validation": {
+    "status": "NOT_RUN",
+    "required_existing_contracts": [
+      {
+        "checks": 23,
+        "marker": "LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47"
+      },
+      {
+        "checks": 17,
+        "marker": "LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+      },
+      {
+        "checks": 30,
+        "marker": "LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+      }
+    ],
+    "no_compiler_runtime_audio_or_android_pass_claim": true
+  },
+  "scope_limits": {
+    "tests_run": false,
+    "compiler_or_import_execution": false,
+    "source_edits": false,
+    "git_or_ci_mutation": false,
+    "wav_reread": false
+  }
+}

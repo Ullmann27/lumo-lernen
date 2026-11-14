@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "status": "FROZEN_ACTUAL_TERMINAL_JOB_ORIGINALS",
+  "group": "flutter",
+  "binding": {
+    "run": 43629637557,
+    "attempt": 1,
+    "host": "b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1",
+    "host_tree": "4ebddcbe209191714dc64cba2815e5a67b64513b",
+    "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+    "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+    "workflow_blob": "73f6ea13daf89c21d9ba497476c6bb1d0f91b0b3"
+  },
+  "job": {
+    "id": 132553186097,
+    "status": "completed",
+    "conclusion": "success",
+    "completed_at": "2026-11-14T19:01:02Z"
+  },
+  "actual_result": {
+    "visible_passed": 53,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "per_suite": [
+      {
+        "file": "test/games/memory_native_entry_test.dart",
+        "visible_passed": 8
+      },
+      {
+        "file": "test/games/memory_result_frame_test.dart",
+        "visible_passed": 1
+      },
+      {
+        "file": "test/quiz_native_roundtrip_lifecycle_test.dart",
+        "visible_passed": 4
+      },
+      {
+        "file": "test/reward_wallet_queue_zone_test.dart",
+        "visible_passed": 4
+      },
+      {
+        "file": "test/table_games_launcher_binding_test.dart",
+        "visible_passed": 10
+      },
+      {
+        "file": "test/table_games_wallet_profile_test.dart",
+        "visible_passed": 22
+      },
+      {
+        "file": "test/tutoring/native_english_activity_test.dart",
+        "visible_passed": 4
+      }
+    ],
+    "elapsed_wall_seconds": 18.406822927999997
+  },
+  "source_observation": {
+    "host_records": 4708,
+    "native_records": 3757,
+    "tracked_records_unchanged": true,
+    "actual_stage_and_flag_bytes_unchanged": true,
+    "binary_index_originals_retained": true,
+    "binary_index_changed": {
+      "host": false,
+      "native": false
+    },
+    "untracked_after": {
+      "host": 0,
+      "native": 0
+    }
+  },
+  "package_observation": {
+    "count": 104,
+    "own_package": {
+      "name": "lumo_lernen",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "absolute_root_uri": "file:///home/runner/work/lumo-lernen/lumo-lernen/host-source/",
+      "absolute_package_uri": "file:///home/runner/work/lumo-lernen/lumo-lernen/host-source/lib/",
+      "resolved_root": "/home/runner/work/lumo-lernen/lumo-lernen/host-source",
+      "resolved_package": "/home/runner/work/lumo-lernen/lumo-lernen/host-source/lib",
+      "package_directory_exists": true
+    },
+    "all_three_pub_originals_byte_equal": true
+  },
+  "transport": {
+    "artifact_id": 14127491762,
+    "archive": {
+      "bytes": 3532101,
+      "sha256": "b146359804b04366b0df673298ec4566b8634ec82b96aebad20900285d17eb43",
+      "git_blob": "8b74e8df32dc7821cebd702853d7f4c61db7ab9b"
+    },
+    "all_members_crc_sha256_checked": true,
+    "members": 52,
+    "expanded_bytes": 15052388
+  },
+  "original_log": {
+    "bytes": 145372,
+    "sha256": "f9c5284b948bf86db976c412368d91f8c10642cda5fb22c45b85c3982866104d",
+    "git_blob": "e506504fb43a4194754210b1ca328342f96e3b1d"
+  },
+  "independent_observation": {
+    "bytes": 35630,
+    "sha256": "5862960e092179d6b80477d03557a602545dea0366c98555c17c737a5e202076",
+    "git_blob": "eddfbd168bbd36abfe41eaaad09798f4f2554a17"
+  },
+  "scope": [
+    "Only this actual completed job is accepted; overall five-group status is not inferred.",
+    "No local product/test/engine/package execution, source mutation or CI/ref action.",
+    "The earlier static collector preparation typo is preserved separately; no byte transfer or product process ran in that attempt.",
+    "Full ZIP and terminal log retained; extracted members are indexed and reproducible byte-for-byte."
+  ]
+}

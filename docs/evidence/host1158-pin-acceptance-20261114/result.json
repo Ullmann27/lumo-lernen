@@ -1,0 +1,19 @@
+{
+  "host_sha": "1158c620b1dedba5dfeaab049948ef4cc6458bab",
+  "host_tree": "753efa0bfde9cc4bc6e6e5e87cc0634f188fbe39",
+  "native_sha": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+  "started_at": "2026-11-14T15:42:59.037352+00:00",
+  "finished_at": "2026-11-14T15:42:59.889707+00:00",
+  "exit_code": 0,
+  "wall_seconds": 0.203739085000052,
+  "unittest_count": 64,
+  "unittest_seconds": 0.037,
+  "terminal_ok": true,
+  "case_pass_count": 64,
+  "failure_lines": [],
+  "skip_lines": [],
+  "sources_unchanged": true,
+  "tracked_files": 4507,
+  "materialized_files": 1667,
+  "sparse_absent_files": 2840
+}

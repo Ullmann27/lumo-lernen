@@ -1,0 +1,61 @@
+{
+  "status": "SOURCE_FROZEN_AWAITING_ROOT_CHECKPOINT_AND_TESTS",
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "bytes": 9943,
+    "sha256": "c6890e5009cba9840991e914bfc77ad03413f9280f44e3b57b1ff32011048485",
+    "git_blob": "5f56c11829694db725285d1d8ff2410b8c16dab1"
+  },
+  "exact_proposed_paths": [
+    ".github/probes/modernization_android_tour.py",
+    "tools/android_qa/kart_garage_evidence.py",
+    "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json",
+    "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png",
+    "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json",
+    "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png",
+    "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json",
+    "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json",
+    "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png",
+    "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json",
+    "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png",
+    "tools/android_qa/tests/test_kart_garage_evidence.py",
+    "tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+    "tools/android_qa/tests/test_kart_scroll_word_evidence.py"
+  ],
+  "intended_root_parent": "9aacbca14ccf994e8202fc3b6bf2a32df5a793a5",
+  "known_defect": "Old tab/footer-bound gesture leaves the current short list; not fixed by the later Boru-word fallback when Comet is already a complete line.",
+  "genuine_historical_diagnostic": {
+    "run": 43603335663,
+    "attempt": 1,
+    "job": 132472582962,
+    "status": "SUCCESS",
+    "candidate_eligible": false
+  },
+  "not_retrieved": [
+    {
+      "artifact_id": 14118222059,
+      "bytes": 146019111,
+      "sha256": "890f82e55c64dd47251d97287b85093fe5a6da9f13385928759781ffd1d87dee",
+      "reason": "Full original diagnostic ZIP unnecessary for the present narrow source/log review."
+    },
+    {
+      "artifact_ids": [
+        14115707472,
+        14115699177
+      ],
+      "reason": "Producer-published failed original fixtures verified against Git blobs and embedded provenance; underlying original ZIPs not downloaded."
+    }
+  ],
+  "tests": {
+    "status": "NOT_RUN",
+    "primary_methods": 63,
+    "with_unchanged_neighbors": 103,
+    "plan": "planned-tests.json"
+  },
+  "warnings": [
+    "No current APK acceptance.",
+    "No independent successful-diagnostic gesture-journal or screenshot review.",
+    "The old publisher V1/V2 and active C4 candidate are unchanged."
+  ],
+  "source_edits_end": "2026-11-14T15:58:48.821726+00:00"
+}

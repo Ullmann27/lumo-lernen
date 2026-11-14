@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "status": "FROZEN_LOCAL_PR481_TRANSPORT_PREPARATION",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 6995,
+      "sha256": "b569ceb4b2bc0d35d03851c6c7bd391652c9c1d8cf22ecc438290ef69bce538b",
+      "git_blob_sha1": "ebbc15e242f6dc983eed82f3f5db8a0da49adfb8"
+    },
+    {
+      "path": "evidence/focused-test-result.json",
+      "bytes": 806,
+      "sha256": "42718881493d96b899e4a37765a3132187a38fb0cbf835484bf0373b0253f2ef",
+      "git_blob_sha1": "c09290bb9ab5c694c1c2477c45046cce9eec29c7"
+    },
+    {
+      "path": "evidence/focused-tests.log",
+      "bytes": 2367,
+      "sha256": "62d786b3ce99b9f5ed2fead709a92ef88cf407bdf0664ffb2d17187317f23a05",
+      "git_blob_sha1": "480796a094bb846f2c682f9a3ea8a1e0cc18fc58"
+    },
+    {
+      "path": "evidence/legacy-pack-after.json",
+      "bytes": 2414,
+      "sha256": "a0c196f1114681a31f269e6c068bef1a222369bd2023dac66052c8d99ec9ec1a",
+      "git_blob_sha1": "c01c798f4755b471cd55fe329dccdc66b9b1c8a7"
+    },
+    {
+      "path": "evidence/legacy-pack-before.json",
+      "bytes": 2414,
+      "sha256": "a0c196f1114681a31f269e6c068bef1a222369bd2023dac66052c8d99ec9ec1a",
+      "git_blob_sha1": "c01c798f4755b471cd55fe329dccdc66b9b1c8a7"
+    },
+    {
+      "path": "evidence/source-after.json",
+      "bytes": 1387,
+      "sha256": "7b76762ef20f49800ae804aa129b10bb229ff8676528e262ca4ee7363694d40c",
+      "git_blob_sha1": "3e86b105eeb6f84a4eb65e9ee5e86f35e7402262"
+    },
+    {
+      "path": "evidence/source-before.json",
+      "bytes": 1387,
+      "sha256": "7b76762ef20f49800ae804aa129b10bb229ff8676528e262ca4ee7363694d40c",
+      "git_blob_sha1": "3e86b105eeb6f84a4eb65e9ee5e86f35e7402262"
+    },
+    {
+      "path": "evidence/verifier-adaptation.patch",
+      "bytes": 5940,
+      "sha256": "63a5843e17a47618a0ae5483e7b9da06f955a36a6066946bbe60665c58cf500e",
+      "git_blob_sha1": "3292285964bf5da2fb5224279aeec01731ebfa0c"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 2924,
+      "sha256": "ff20502c7df8ce5599c7834178064491622588bb3343bb04bbadd05c3163b385",
+      "git_blob_sha1": "0049da198b33671f9e68f065dc50d610420cc47b"
+    },
+    {
+      "path": "self-review.json",
+      "bytes": 1323,
+      "sha256": "dd2a074a9697719e97cb10fe63257ba1f97794752a84715213e0f3cf548477d4",
+      "git_blob_sha1": "d2abc89de13d93035767f2b9813939890f121e4f"
+    },
+    {
+      "path": "source-contract/checked_memory_collector.py",
+      "bytes": 15859,
+      "sha256": "9d7b07d27657b9c9a62c7027393419006480bc3d28848cfabe6811be21a6204e",
+      "git_blob_sha1": "7ee2efab3cf83a73cb393c54a93e0b8745c0ca39"
+    },
+    {
+      "path": "source-contract/export_creative_evidence_parts.py",
+      "bytes": 12904,
+      "sha256": "2b1dc64b75456b92a46e2017b6d28ffac11e35b6dcfbb0e20a9d32f32d7fa092",
+      "git_blob_sha1": "4c113e5b73e9f6eb3c02ab48b25f0aa3331f79c9"
+    },
+    {
+      "path": "source-contract/manifest.json",
+      "bytes": 1849,
+      "sha256": "0b2b404531d00c5689428bf4cf891385d7279ef68665d9eca32f7024545d858e",
+      "git_blob_sha1": "416de9f5a7161edb66d41f2cb9dcb6e120f10b5e"
+    },
+    {
+      "path": "source-contract/original-initial-run-list.json",
+      "bytes": 116860,
+      "sha256": "d49b9e9ada3767c2bf286e19a54a624859079b9cef7b1919b730bc7023ef1f5d",
+      "git_blob_sha1": "5dcc6bc655563733051df1ee1a1fce32ec894904"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 2487,
+      "sha256": "bfc66ed6ff9bebda1639e5f9351e1bb4376afab072c51fb8727bfe6949487c5a",
+      "git_blob_sha1": "294a876613a1b0c7c2fe3f0f1ba5ef0d2bfe043c"
+    },
+    {
+      "path": "test_verify_creative_parts.py",
+      "bytes": 15784,
+      "sha256": "97ce8e21e3d9ca223cc9a689965dc211461cf654d441705dcb3b660ed5116ddb",
+      "git_blob_sha1": "e42477542104e3cefc38024a7b60629a5ce812ea"
+    },
+    {
+      "path": "verify_creative_parts.py",
+      "bytes": 19476,
+      "sha256": "0146cb4132dfca9cdb6c764e2d6e738083e3b590abebc8cee610c7676d668537",
+      "git_blob_sha1": "51864e5d25a28a6673ad79a9b08b161510ef19b4"
+    }
+  ],
+  "file_count": 17,
+  "total_bytes": 213176,
+  "all_content_is_source_metadata_or_small_synthetic_test_evidence": true,
+  "large_artifacts_or_apks_included": false
+}

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "root": "/tmp/host-next-repair-82-case-catalog-v2-20261114",
+  "status": "READY_FOR_ROOT_ACTIVATION_BINDING_NOT_EXECUTED",
+  "source_catalog_sha256": "4a4bd535610d1f82ba59ce5f6bbb70ba370fc097b5aef030036bd7d6e092af3a",
+  "expected_visible_flutter_cases": {
+    "new_pr507": 45,
+    "corrected_old_regressions": 30,
+    "pr508_widgets": 7,
+    "targeted_total": 82
+  },
+  "speech_methods": 3,
+  "speech_reported_checks": [
+    23,
+    17,
+    30
+  ],
+  "full_suite_count": "Observe actual future machine stream; this82 is only the targeted subset.",
+  "unchanged_prior_catalog": {
+    "path": "/tmp/host37414-next-build-verification-catalog-20261114/catalog.json",
+    "bytes": 35959,
+    "sha256": "d75297ed7cb6edd5f87d5463014f0560d93cdcf19f996183cbbf6b7e1801ffcc",
+    "git_blob": "30ac9b981eea1a3be3dc0c8698f14e439b985e93"
+  },
+  "workflow_or_product_changes": false,
+  "tests_or_api_calls": false,
+  "next_action": "Wait for Root actual Host/Tree/Run/Attempt; then read each assigned terminal original once, using Pipeline as sole central status owner."
+}

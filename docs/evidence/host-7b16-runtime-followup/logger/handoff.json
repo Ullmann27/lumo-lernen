@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "status": "LOCAL_CONTRACT_PASS_ANDROID_PENDING",
+  "frozen_at": "2026-11-14T04:23:37.206065+00:00",
+  "source_head_unchanged": "76443d3969856bfbba0e5b19231917f1743cf2a6",
+  "source_freeze": {
+    "bytes": 3342,
+    "sha256": "7dbfd55ec64708b7740bda5e6018765e2ec99ea4c049e268d2f1ffa4fac8a11f"
+  },
+  "repair_patch": {
+    "bytes": 90955,
+    "sha256": "f418526bde34e552f891bf9cc2cae8bd2cb02a3deca99efdab9f94898281e7a8"
+  },
+  "clear_speech_patch": {
+    "bytes": 9201,
+    "sha256": "b035936cab662306f0b1a208208bd83df3468047a0a54a805543f236edb945d9"
+  },
+  "test_result": {
+    "bytes": 1285,
+    "sha256": "56c957fa421e9ca853efbebf98e11b26029ba4672f8bf6e2ca1787a6f789e113"
+  },
+  "tests": {
+    "run": 88,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "source_files_before_after": 17
+  },
+  "original_ci_status": "FAILURE_UNCHANGED",
+  "pending": [
+    "Independent final source review",
+    "Actual assigned Android job on this new source"
+  ],
+  "scope": "Runtime evidence continuity and fresh functional speech only; no APK/runtime or renderer changes."
+}

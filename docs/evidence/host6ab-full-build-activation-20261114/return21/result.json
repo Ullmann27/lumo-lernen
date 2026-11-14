@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "started_utc": "2026-11-14T20:54:32.145050+00:00",
+  "finished_utc": "2026-11-14T20:54:32.815375+00:00",
+  "wall_seconds": 0.66786004000096,
+  "actual_returncode": 0,
+  "interruption": null,
+  "original_reported_tests": 21,
+  "original_final_ok": true,
+  "source_before_after_identical": true,
+  "checkpoint": "6ab8748c1910b256adfde909809e01995c87acf2",
+  "tree": "17d791e868f5449b3a7591a432947b39bae7f3a1",
+  "streams": {
+    "stdout.original": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr.original": {
+      "bytes": 4863,
+      "sha256": "e8c887dbe6086b79509f7ae4d48978955ca5dd10afc709e74b62ada498ed7003"
+    }
+  }
+}

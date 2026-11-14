@@ -1,0 +1,248 @@
+{
+  "schema": 1,
+  "host_head": "729585db3f49ecff7f0632439f90edb882f09454",
+  "host_tree": "93301ed1c1e0b18f15163ae6198be0bc6b962762",
+  "file_count": 48,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2287,
+      "sha256": "09b59e0fa966953c5f57f67148ba58793246b965965662e216690db73ccaf8c4"
+    },
+    {
+      "path": "actual-learning-audit/issues.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "actual-learning-audit/summary.json",
+      "bytes": 371,
+      "sha256": "018c376e1a7c9b047b0625f90cbb0c27528c2c80ccc4907bca678f107e6c5e67"
+    },
+    {
+      "path": "actual-learning-audit/task-families.json",
+      "bytes": 34450,
+      "sha256": "27431f158ebb1a7bff323f989d4da9064f1ba20c5e7046c46537d805c574d703"
+    },
+    {
+      "path": "actual-learning-audit/task-samples.jsonl",
+      "bytes": 3174060,
+      "sha256": "271445137ea3a6e8f821cc31f49d876ec1d11aacac47be898638d04c2bcd3051"
+    },
+    {
+      "path": "after-final-binding.json",
+      "bytes": 422,
+      "sha256": "daa3ad2d5c10dbaaab4470c6cf6d37832c769c884dfd2a34889af78b39728727"
+    },
+    {
+      "path": "after-final.json.gz",
+      "bytes": 276537,
+      "sha256": "200e4ce4f2ee8db97d36528d750dfc4a04a04b7e29454b28ed51e7268d9417e2"
+    },
+    {
+      "path": "after-first-run-binding.json",
+      "bytes": 426,
+      "sha256": "627e4feafa4eb1a14c9df039e45820d9465553afe6650b1f4ade70c8b1ab562c"
+    },
+    {
+      "path": "after-first-run.json.gz",
+      "bytes": 276456,
+      "sha256": "df4682071ce8fa876e847b7f506abc24a7163f11f264164ec0f9dbb8099568a9"
+    },
+    {
+      "path": "after-stream-contract-binding.json",
+      "bytes": 432,
+      "sha256": "a469d467b22e51218dbfe25ac9bc9cdbf99c75231819b85a435e79041675fcc6"
+    },
+    {
+      "path": "after-stream-contract.json.gz",
+      "bytes": 276537,
+      "sha256": "200e4ce4f2ee8db97d36528d750dfc4a04a04b7e29454b28ed51e7268d9417e2"
+    },
+    {
+      "path": "audit-result-review.json",
+      "bytes": 2474,
+      "sha256": "1d2375f7d86fa15e13537449d3046d76d427e7d09a34bea893c51ddae976ec0b"
+    },
+    {
+      "path": "before-binding.json",
+      "bytes": 417,
+      "sha256": "da41fc486ef033000f9191b4acf0976f294f5a8f4dc59c1bb2fe73090fea024e"
+    },
+    {
+      "path": "before-flutter-after-asset-binding.json",
+      "bytes": 437,
+      "sha256": "bb35193139d72adf913a131ec43703203c0b309a2e2bd704d200f6a2a4b3dd58"
+    },
+    {
+      "path": "before-flutter-after-asset.json.gz",
+      "bytes": 276537,
+      "sha256": "200e4ce4f2ee8db97d36528d750dfc4a04a04b7e29454b28ed51e7268d9417e2"
+    },
+    {
+      "path": "before-stream-contract-binding.json",
+      "bytes": 433,
+      "sha256": "acac3bf94076be00b223d3cad0d595529cea8674a44f15b172365f30b6b2d5b9"
+    },
+    {
+      "path": "before-stream-contract.json.gz",
+      "bytes": 276537,
+      "sha256": "200e4ce4f2ee8db97d36528d750dfc4a04a04b7e29454b28ed51e7268d9417e2"
+    },
+    {
+      "path": "before.json.gz",
+      "bytes": 276456,
+      "sha256": "df4682071ce8fa876e847b7f506abc24a7163f11f264164ec0f9dbb8099568a9"
+    },
+    {
+      "path": "first-run-source-preservation.json",
+      "bytes": 446,
+      "sha256": "466f7ea6f5585a069a3caeb2e34aaa8fbbaf5dac9f4809c77eb4e617be936d37"
+    },
+    {
+      "path": "flutter-missing-asset.json",
+      "bytes": 490,
+      "sha256": "a364eca5f72e5fefa115594094872efff2874f31682db7f4f9672911e53569e6"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 2731,
+      "sha256": "d2c34e6c64407cd6df4b45b1bb3c4fa7b5e350b905f8e2eec76242ed638c888e"
+    },
+    {
+      "path": "logs/actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/audit.log",
+      "bytes": 416,
+      "sha256": "be00044e68553f5bd5739e7e846ebb325b3e7844746c49265d67e7a0a17ac2f1"
+    },
+    {
+      "path": "logs/flutter-after-asset.log",
+      "bytes": 931,
+      "sha256": "7af576045c54be68a7275c2b5bd68164ddc9a63c01ac91b58a0dd58bb439bc2c"
+    },
+    {
+      "path": "logs/flutter.log",
+      "bytes": 172,
+      "sha256": "fa32f9b58533b55cc9636d689ffd3104801c3bdf3b421cc0518841a3237c2899"
+    },
+    {
+      "path": "logs/python.log",
+      "bytes": 28938,
+      "sha256": "0c595ff833a14a0c10604d675fc9829907463319718110a9eeaf56ad96030ed5"
+    },
+    {
+      "path": "logs/workflow-audit-parser.log",
+      "bytes": 1086,
+      "sha256": "0f086e578f2c514f141e6e90b48cd1da9d8d3648b281d79a64345801f5e552fa"
+    },
+    {
+      "path": "logs/workflow-audit-run.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/workflow-audit-run.stdout.log",
+      "bytes": 372,
+      "sha256": "ac585dfc0dc3b160279d05a38a493a2828569cb7b1e9eb68961f25cb251fa184"
+    },
+    {
+      "path": "python-counts.json",
+      "bytes": 672,
+      "sha256": "95b195f11a2b4e8007362077fbbb27c830481a6f5f4f5038c716cc54179bd2f8"
+    },
+    {
+      "path": "results/actionlint.json",
+      "bytes": 889,
+      "sha256": "80e69edef13ac781e39d398ac77e73a82205d4b10b6f17878c03a452cb05349a"
+    },
+    {
+      "path": "results/audit.json",
+      "bytes": 927,
+      "sha256": "5f7a9c2fc3c5b398373c15e4aca5b997b4c6f3fbd445839513bcaf796029366b"
+    },
+    {
+      "path": "results/flutter-after-asset.json",
+      "bytes": 903,
+      "sha256": "1e1daa8a76ea8b5876a8da631780ebc3994a3c9a3c5d6ffceb00935f2267ac56"
+    },
+    {
+      "path": "results/flutter.json",
+      "bytes": 878,
+      "sha256": "ee310943f1a76db4d5b6bd2941b9751fa26152f1d7d87f957709a90bfcb06fc4"
+    },
+    {
+      "path": "results/python.json",
+      "bytes": 1208,
+      "sha256": "ee3f73e40ab67041cdb4f5225de50e83f39bb1584e8b308fa9502ad4ca4a3b9d"
+    },
+    {
+      "path": "results/workflow-audit-stream-contract.json",
+      "bytes": 3183,
+      "sha256": "243453d3a590eb49d96d85673428899e148406aa1c86323ce9ccabefb2914af0"
+    },
+    {
+      "path": "root-asset-materialization-original.json",
+      "bytes": 562,
+      "sha256": "0e405fbf8ce0fed8b63c0edf0c0e150393405a237beea9d1a71e264a772af7a5"
+    },
+    {
+      "path": "run_stream_contract.py",
+      "bytes": 3443,
+      "sha256": "13848e909ec1292efc5086d3cb231a8d4f39bcae43b07152e854c866110d87fc"
+    },
+    {
+      "path": "run_validation.py",
+      "bytes": 6168,
+      "sha256": "7ffdef14dddcba297ac09bbad9c140d16ab32f624755e094b77f57efdd9ea83c"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 13093,
+      "sha256": "0b68bf0a659a3b8dec4977c2ff5d96dae8f4b173a45296e5f637958fe8083126"
+    },
+    {
+      "path": "source-preservation.json",
+      "bytes": 2219,
+      "sha256": "cb080462d037457aa6ad2312fa3a2664054c23ea916fc915f934e0147283cc70"
+    },
+    {
+      "path": "toolchain.json",
+      "bytes": 4563,
+      "sha256": "85d45ffe3924575c69d4385ddb7856692fa4204104f1486848f497a02fe87eed"
+    },
+    {
+      "path": "workflow-audit-streams/audit.stderr.log",
+      "bytes": 44,
+      "sha256": "dd35d399349c10aa3a96d7b290940c947560d0a57270cc0c46cfa73c85128ef6"
+    },
+    {
+      "path": "workflow-audit-streams/audit.stdout.log",
+      "bytes": 372,
+      "sha256": "ac585dfc0dc3b160279d05a38a493a2828569cb7b1e9eb68961f25cb251fa184"
+    },
+    {
+      "path": "workflow-audit-streams/issues.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "workflow-audit-streams/summary.json",
+      "bytes": 371,
+      "sha256": "018c376e1a7c9b047b0625f90cbb0c27528c2c80ccc4907bca678f107e6c5e67"
+    },
+    {
+      "path": "workflow-audit-streams/task-families.json",
+      "bytes": 34450,
+      "sha256": "27431f158ebb1a7bff323f989d4da9064f1ba20c5e7046c46537d805c574d703"
+    },
+    {
+      "path": "workflow-audit-streams/task-samples.jsonl",
+      "bytes": 3174060,
+      "sha256": "271445137ea3a6e8f821cc31f49d876ec1d11aacac47be898638d04c2bcd3051"
+    }
+  ]
+}

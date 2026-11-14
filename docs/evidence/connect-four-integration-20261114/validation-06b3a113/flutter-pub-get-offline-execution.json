@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "pub",
+    "get",
+    "--offline"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration",
+  "started_at": "2026-11-14T05:36:58.581589+00:00",
+  "completed_at": "2026-11-14T05:36:59.511538+00:00",
+  "seconds": 0.9299734170053853,
+  "returncode": 0,
+  "log_sha256": "4c89089a6ffa6ed9df0cec8929e4fca921ad81d31276fb5e98bd350d2b2d1c7d"
+}

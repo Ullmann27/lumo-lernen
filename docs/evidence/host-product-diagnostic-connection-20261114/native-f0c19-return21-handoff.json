@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "source": "f0c19f9eb69ea330ac5d2b8f9948cb029ca218aa",
+  "tree": "40e7a8d073de320865613152f8a027abbe025d51",
+  "actual_checks": 21,
+  "actual_engine": "4.6.3.stable.official.7d41c59c4",
+  "sources_unchanged": true,
+  "materialized_sources": 1436,
+  "git_identity_unchanged": true,
+  "generated_metadata_archived_then_restored_to_clean": true,
+  "original_log": {
+    "path": "return-regression.log",
+    "bytes": 504,
+    "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2"
+  },
+  "scope": "Actual production Godot scene/send/poll with explicit Android host boundary fixture. No actual Android, complete52-mode run, renderer or device FPS acceptance."
+}

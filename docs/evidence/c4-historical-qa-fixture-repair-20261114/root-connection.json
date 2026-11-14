@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "base_host": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+  "native_unchanged": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "source_scope": "Four exact published test files; no production, pin, workflow, historical result or main-branch changes.",
+  "fixture": {
+    "path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+    "original": "One actual current-source case ERROR: Source checkout native pin differs",
+    "proposed": "Same case PASS against unchanged production modules; original helper Git-byte checks remain active",
+    "other_test_definitions_unchanged": 24
+  },
+  "c4_test_scope": "Three exact published test sources, NOT_RUN locally. Preserve strict real RenderBox width/height >=48dp and add hitTestable checks after scrolling; only global coordinate subtraction permits 1e-9 roundoff.",
+  "source_files": [
+    {
+      "path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "source": "/tmp/host-79c-qa-fixture-repair-20261114/final-source/scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "git_blob": "90a58f5aab7c2b462bad377bd5fbfd03b218e14d",
+      "sha256": "7bc35982ad31c91a7d96f890e2521e5f775618b31c273175f0005dbb8379e7e5",
+      "before_git_blob": "4716d1f8beb20bc349b3a97b347136cd7d8d6664"
+    },
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "source": "/tmp/host-c4-visibility-tests-followup-79c-20261114/final-source/test/design/connect_four_visual_test.dart",
+      "git_blob": "4169f06a21138d253ec3b4298720e97fa9854d95",
+      "sha256": "87b1091e117f341e7ef1f8d9d3492824a90a370b7221bf5f959085920dfd1078",
+      "before_git_blob": "390bcc219e636e63177f1d36613ee78de0a68db2"
+    },
+    {
+      "path": "test/games/connect_four_scroll_alignment_test.dart",
+      "source": "/tmp/host-c4-visibility-tests-followup-79c-20261114/final-source/test/games/connect_four_scroll_alignment_test.dart",
+      "git_blob": "b05fa2ececfef096db3c4c6f7b116ac79e61d197",
+      "sha256": "ab18f5b477d7b8f69fd5ffff8f0f2164f7e3d8579a97a42d73463750f275c54d",
+      "before_git_blob": "29cd071778aae6d5b643e48df7c6a67a4d993db6"
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "source": "/tmp/host-c4-visibility-tests-followup-79c-20261114/final-source/test/games/games_screen_flow_test.dart",
+      "git_blob": "254267c9f84d5c8e507307178015d281db238e4f",
+      "sha256": "1c77db4149a9c584cb20efbf68daacbf69f2a3d2878f93e3c9206f88a099c870",
+      "before_git_blob": "e234c15a45d5ced14b605290e30927baafc0c25d"
+    }
+  ],
+  "source_review": "Root read complete four-file diffs; Pipeline independently reviewed fixture with no source blocker.",
+  "runtime_evidence_checkpoint": "5e186bd0fdb5c0651bd050e91abf941691fd8642",
+  "runtime_evidence_branch": "evidence/lumo-c4-79c0ec8-20261114",
+  "current_run": 43581113174,
+  "run_attempt": 1,
+  "run_status_at_preparation": "Full Flutter suite completed successfully; build/preservation contracts still running. This separate repair branch leaves current run head79c unchanged.",
+  "compile_curriculum_scope": "Compile job132405832302 SUCCESS; curriculum236 families/7552 structural samples, semantic review pending and 3D approval false.",
+  "acceptance": "No current APK, Android, FPS, complete build or public-release approval inferred."
+}

@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T04:01:28.253226+00:00",
+  "repo": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16",
+  "base": {
+    "local_commit": "76443d3969856bfbba0e5b19231917f1743cf2a6",
+    "published_qa_commit": "61c94cfb78bda8dfbe191331eca0fd0382deb151",
+    "tree": "a648b206aba761fc96d0d0c95085981f6da53568"
+  },
+  "ownership": [
+    {
+      "path": "tools/android_qa/kart_android_race.py",
+      "bytes": 39513,
+      "sha256": "9777542758deae314531c4da7bccd4168eb4c730dacc0844f84bab6f6ec3b81a",
+      "git_blob": "a0aad12a6162370e9c0e35849e213963c76c67d2"
+    },
+    {
+      "path": "tools/android_qa/tests/test_focused_race_hud_current.py",
+      "bytes": 5656,
+      "sha256": "735ac3864f9f5203c02273ab1251c60a2bf6bd20a3e36ce9f35ec6ed8bdc7e73",
+      "git_blob": "127502b2e9a143e36d4c76523ae47a6cb60f9353"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/api37-host-20-focused-hud.json",
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860",
+      "git_blob": "a91742f753c053092617dac25f431e49b6dd0e62"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/api37-host-20.png",
+      "bytes": 1967096,
+      "sha256": "7fb26f79a258c50f00de1db7fcd786bc6775ebf3d399840fea3f5defd24672e1",
+      "git_blob": "0f937f9f21c7128a1fb0b2181178319e283a78af"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/provenance.json",
+      "bytes": 3813,
+      "sha256": "7ea39342fcb1ec28faa7a2b8ac955a94c6a2f28537d5120e70e95039166d336c",
+      "git_blob": "ce2153e50fdfea20ef8406550c444edd061fe81f"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/update-0-focused-hud.json",
+      "bytes": 128,
+      "sha256": "c0101fb221d2f2dafaf652aa615666ea9df61f35c06c4e193eeea1ffd6744dc7",
+      "git_blob": "328304bda7f403ff475cf1cf970731cb203cc641"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/update-0.png",
+      "bytes": 2005004,
+      "sha256": "1ae6632355a726470852d5babb0a43ce0967fb8c4bc56fb5b73a810ca1fec8e0",
+      "git_blob": "93492aa88aaf0a442e1916262acaccd3e0c1986d"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/update-17-focused-hud.json",
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860",
+      "git_blob": "a91742f753c053092617dac25f431e49b6dd0e62"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/update-17.png",
+      "bytes": 1965296,
+      "sha256": "c10e6636686baef6511402d5fbd34046307d06f8d2c7a5b01e96fc2c25ba9d07",
+      "git_blob": "a9767327f1b53442a3057814bd1c0d8d7e646be4"
+    }
+  ],
+  "preserved_sources": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "sha256": "3b5ffbd29d6a4c8ccb9bd2850cef55310f52841ab31a82912bea59bbc96278ba",
+      "bytes": 69612
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "sha256": "c8c167ce1b59023248b0aba18ba80c96c4c781e55cb0806eddf5252a2e8336bf",
+      "bytes": 14145
+    }
+  ],
+  "semantic_delta": {
+    "only_one_AST_constant_changed": true,
+    "function": "focused_race_hud_text",
+    "old_bottom_ratio": 0.15,
+    "new_bottom_ratio": 0.2,
+    "all_other_module_AST_nodes_equal": true,
+    "tour_GAS_session_pixel_overlay_and_90s_sources_unchanged": true
+  },
+  "original_raster_red": {
+    "test_methods": 3,
+    "failures": 3,
+    "errors": 0,
+    "exit_code": 1,
+    "report_sha256": "cb1625d0214ee731ef5716b8c9619da3c3c9d569c54eb5c268322fbdfc255cbf"
+  },
+  "focused_green": {
+    "test_methods": 10,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "exit_code": 0,
+    "reported_seconds": 2.646,
+    "report_sha256": "630172196351fe81b26688cdae3a6437bb542bfa082bb6c6f4ac3ad5c2ac9a48"
+  },
+  "limits": [
+    "Local Tesseract replay, no new Android run or input.",
+    "Update and API37-host CI remain failures. Their complete original ZIPs remain only in Actions; transport integrity was checked in RAM.",
+    "API35 main tour passed independently, but its later Studio learning OCR timed out. No transfer of that pass to Update or API37.",
+    "The separate API37 GMS ANR is not repaired or causally explained by this crop change.",
+    "Three full PNG fixture files remain at the listed repository paths and in the selected original evidence; this scratch pack references their exact hashes instead of duplicating six megabytes.",
+    "Original API37 frames0..18 were overwritten in the original artifact by a later pause attempt; only surviving first-attempt frame20 is used."
+  ]
+}

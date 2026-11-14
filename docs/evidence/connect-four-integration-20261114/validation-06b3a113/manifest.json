@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "source": "06b3a113 +27ae4270",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3120,
+      "sha256": "628a9d1b8de66838fa66d9aa2649cd8cb62090131cf558c9e5994b18af44498e"
+    },
+    {
+      "path": "actual-runtime-gate/runtime-gate.json",
+      "bytes": 339,
+      "sha256": "15ecb88841fd25b8ac8e5f1ea3f5d5e6816e90550b8b6ecaabbaf43888e910a1"
+    },
+    {
+      "path": "actual-runtime-preflight-execution.json",
+      "bytes": 777,
+      "sha256": "2242b9b3bcb551dee189046189ef74d8f4464849cdb1c74084c293e1683dd42a"
+    },
+    {
+      "path": "actual-runtime-preflight.log",
+      "bytes": 256,
+      "sha256": "3e8d23ece8200ab7e48a96dc32bef78b3d65bd086b0e6ef1eec008a5ade212d6"
+    },
+    {
+      "path": "asset-prerequisite-inventory.json",
+      "bytes": 110886,
+      "sha256": "730e112637a49d7d8290f83dcfd61370fe193a7c32f8f67215b19b06b1876d5a"
+    },
+    {
+      "path": "asset-source-before.json",
+      "bytes": 161805,
+      "sha256": "cf63868d5385555d4cc56365c07a93725a6afdbeb5d66c4c911b8dfb77b66cf2"
+    },
+    {
+      "path": "autosave-clean-before-flutter.log",
+      "bytes": 80,
+      "sha256": "63dbf40c48ea60a9bb0a263d2a4dafba824d289b4f5cb5b1dd0c7a61ff56a0d8"
+    },
+    {
+      "path": "autosave-clean-before-parent-link.log",
+      "bytes": 80,
+      "sha256": "63dbf40c48ea60a9bb0a263d2a4dafba824d289b4f5cb5b1dd0c7a61ff56a0d8"
+    },
+    {
+      "path": "build-output-mapping.json",
+      "bytes": 881,
+      "sha256": "b45855c2570854eca445d557fd0bb7bd01f3e77bd46012b711310e5201581dd9"
+    },
+    {
+      "path": "build-path-boundary-execution.json",
+      "bytes": 1321,
+      "sha256": "ba294f05e503006666997d2c04a879c52e18cf154c4f606535ec783fb0b8b26e"
+    },
+    {
+      "path": "build-path-boundary.dart",
+      "bytes": 1945,
+      "sha256": "71bec17f52d042560ad2ff612c3f6c276c997aad856309f27e7da5382d57b31f"
+    },
+    {
+      "path": "build-path-boundary.log",
+      "bytes": 521,
+      "sha256": "a7956482c8ed9bb5ca6483f91dc80a0a539955b68025f60afdc9697e633feeed"
+    },
+    {
+      "path": "contract-source-after.json",
+      "bytes": 59438,
+      "sha256": "7e4d3852c564377f7d1e37e9e9aeae78d67a84cbb968a36c9560ce6ef0f570e4"
+    },
+    {
+      "path": "contract-source-before.json",
+      "bytes": 59438,
+      "sha256": "7e4d3852c564377f7d1e37e9e9aeae78d67a84cbb968a36c9560ce6ef0f570e4"
+    },
+    {
+      "path": "contracts-execution.json",
+      "bytes": 692,
+      "sha256": "8ce39d0de685652fbca12aac0a8cc5e1b57ebfd46a46e0c90f53f1a057993310"
+    },
+    {
+      "path": "contracts.log",
+      "bytes": 8999,
+      "sha256": "b782fb9ba931e2788a0d549c7f8d6b246f483482b852299e2adfcb95a1265f9a"
+    },
+    {
+      "path": "environment.json",
+      "bytes": 867,
+      "sha256": "b1e4218de1174462b1a05d97568941efdeb965323145cffd72d6f5f35ab81776"
+    },
+    {
+      "path": "final-source-binding.json",
+      "bytes": 7117,
+      "sha256": "99dc8bb666d822678cf734491c4935ec545341cbfe0678064e9313bf0929a185"
+    },
+    {
+      "path": "flutter-c4-execution.json",
+      "bytes": 1047,
+      "sha256": "0ce2dc4a54364733f575a7e7c1ab8703a8b5581cad15164da51532d032736989"
+    },
+    {
+      "path": "flutter-c4-parent-link-execution.json",
+      "bytes": 1157,
+      "sha256": "76bf7a99eb8b06c2dc4315fa85b8b36bcbaf3136cf70d7362e9aa4c59f77ba12"
+    },
+    {
+      "path": "flutter-c4-parent-link.log",
+      "bytes": 9984,
+      "sha256": "ae0eca5a8534eb87b94118dd32577dc1b5faf23e1bbbdb80463d46f4e9b7d1da"
+    },
+    {
+      "path": "flutter-c4.log",
+      "bytes": 288,
+      "sha256": "7699f9e5667dec1e2a4e78ed3d2f7774da2430611645a33d1379d2b63dd0287e"
+    },
+    {
+      "path": "flutter-parent-link-source-after.json",
+      "bytes": 701946,
+      "sha256": "b76861f18f014a7ebe22e468d9a0abcf135dc15f50d324e5009c7da3d9862f67"
+    },
+    {
+      "path": "flutter-parent-link-source-before.json",
+      "bytes": 701946,
+      "sha256": "b76861f18f014a7ebe22e468d9a0abcf135dc15f50d324e5009c7da3d9862f67"
+    },
+    {
+      "path": "flutter-pub-get-offline-execution.json",
+      "bytes": 451,
+      "sha256": "006d5ed6a40a397f6c6fe499e8c6b259f423f5d50749351b3b7fd52d89ad50d6"
+    },
+    {
+      "path": "flutter-pub-get-offline.log",
+      "bytes": 295,
+      "sha256": "4c89089a6ffa6ed9df0cec8929e4fca921ad81d31276fb5e98bd350d2b2d1c7d"
+    },
+    {
+      "path": "generated-cache-cleanup.json",
+      "bytes": 994,
+      "sha256": "12a30accc6cf2dc4945d28bc1965576517252a7bb8f96f4fc92204d34542e95d"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 3787,
+      "sha256": "6b042b86db58b61b8a88d637edac12253fe3780cf39f29be3d96e6f145cf6ba0"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 470533,
+      "sha256": "cad5d3d6af4280acc0a00e6d527fdc318cc68041d859d8aa7ad79aa26f77eacf"
+    }
+  ],
+  "file_count": 29,
+  "bytes": 2310990,
+  "source_edits": false,
+  "retained_failures": true,
+  "large_cache_payloads_included": false
+}

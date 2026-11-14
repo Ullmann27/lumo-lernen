@@ -1,0 +1,102 @@
+{
+  "status": "FROZEN",
+  "source_freeze": "source-freeze.json",
+  "source_freeze_sha256": "718830b2dc1d1261159f78c3c81fa94da617110f31f96b154dd59b09ca306364",
+  "owned_paths": "owned-source-paths.txt",
+  "patch": "creative-sources.patch",
+  "original_creative_pack": "../host-pr465-7b16f2f5-creative-evidence/manifest.json",
+  "original_creative_pack_sha256": "42787c4698b0308f16d997e2dd5605ad9faa4a8629118595d4983facc85d7e8c",
+  "repairs": [
+    {
+      "area": "Jump",
+      "cause": "Whole-frame OCR stopped at the explanatory word springen before its source-confirmed lower-right action could be sampled",
+      "change": "Opt-in complete caption-region collection; every distinct matching Gold region is retained for the existing same-control check; observed source pixels/TSV and shared deadlines retained"
+    },
+    {
+      "area": "Build",
+      "cause": "Single title observation accepted entry, followed by unguarded BACK despite the separately captured blank entry frame; exact original Android callback consumption not logged",
+      "change": "Two current full-surface editor or paired pause observations before the single bounded BACK; already observed pause sends no BACK; failed post-BACK pause never retries input; original save/reward/resume assertions retained"
+    },
+    {
+      "area": "Puzzle",
+      "cause": "Observed tone-mapped empty felt exceeded the old red-channel ceiling",
+      "change": "Colour proposes components; continuous straight trapezoid edges, perspective widening, filled interior and actual gold side rims select one board; empty real-save/tray predicates, homography, entropy and subsequent rotation assertions retained"
+    },
+    {
+      "area": "Learning",
+      "cause": "Four published prior originals and new QA61c originals show the full caption but old sparse OCR missed it; current live guard exhausted120s",
+      "change": "Published Gold-component reader connected as bounded fallback; no ordinary early-success path is expanded to complete-region mode; no time budget enlarged"
+    }
+  ],
+  "validation": {
+    "tests": {
+      "count": 51,
+      "failures": 0,
+      "skips": 0,
+      "new_tests": 13,
+      "existing_tests": 38,
+      "log": "final-tests.log",
+      "sha256": "6abfccecc4755de1afdd7bd116d982eaa26cbe35e267e20b685389d7f3d6c887"
+    },
+    "current_originals": {
+      "status": "PASS",
+      "checks": [
+        {
+          "name": "current_jump_lower_action",
+          "status": "PASS",
+          "seconds": 20.945791538004414
+        },
+        {
+          "name": "current_empty_puzzle_board",
+          "status": "PASS",
+          "seconds": 0.1887887269986095
+        },
+        {
+          "name": "current_blank_build_waits_without_input",
+          "status": "PASS",
+          "seconds": 3.739595676001045
+        },
+        {
+          "name": "current_active_build_has_observed_editor_anchors",
+          "status": "PASS",
+          "seconds": 11.9482012350054
+        }
+      ],
+      "report": "final-original-replay/replay.json"
+    },
+    "new_qa61c_learning": {
+      "status": "PASS",
+      "count": 2,
+      "report": "current-learning-61c-replay/report.json",
+      "original_live_status": "FAIL",
+      "request_budget_seconds": 60
+    },
+    "published_learning": {
+      "status": "PASS",
+      "count": 4,
+      "report": "published-learning-replay/report.json",
+      "request_budget_seconds": 60
+    },
+    "red_logs": [
+      "original-red.log",
+      "build-original-red.log",
+      "producer-first-match-red.log"
+    ],
+    "infrastructure_attempt": "replay-prerequisite-failure.log is a missing TSV-config attempt, not a behavioral RED; installed original config then restored exact command prerequisites"
+  },
+  "limits": [
+    "No Android game, touch, persistence, FPS or visual acceptance is claimed by these local replays",
+    "Original Creative7b run remains FAIL; original QA61c Learning remains FAIL",
+    "Synthetic pause-state transitions and contour/ambiguity negatives are explicitly labelled",
+    "The exact original BACK consumption remains unproven; the observed missing prerequisite is repaired",
+    "Native17f5 runtime code, original APK/PCK, Root Cards changes, run/__init__ and candidate/source guards were not changed",
+    "Root alone handles separated QA entry binding, staging, commits, refs and the next real same-APK device run"
+  ],
+  "runtime_models": {
+    "languages": "deu+eng required, no silent eng-only fallback",
+    "metadata": "ocr-runtime/language-models.json",
+    "deu_git_blob": "97ed7b2b60f2771c07040660ef0f6daf596dc7bf",
+    "config": "ocr-runtime/configs-provenance.json",
+    "scope": "Existing installed original language/config bytes copied only into scratch; model payloads excluded from compact handoff"
+  }
+}

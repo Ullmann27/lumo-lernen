@@ -1,0 +1,1803 @@
+--- a/.github/probes/lumo_connect_four_android_probe.py
++++ b/.github/probes/lumo_connect_four_android_probe.py
+@@ -340,13 +340,16 @@
+                 self.remaining()
+                 if time.monotonic() >= deadline:
+                     raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
+-                break
++                closed, closed_file = self.original(tag + '-closed-mailbox', 'shell', 'find',
++                    self.mailbox.rsplit('/',1)[0], '-maxdepth','2','-type','f','-name','state.json')
++                self.remaining()
++                if time.monotonic() >= deadline:
++                    raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
++                if not closed.strip():
++                    break
+             time.sleep(min(.5, max(0, deadline-time.monotonic())))
+         else:
+-            raise RuntimeError('Native C4 did not return to the actual Flutter activity')
+-        closed, closed_file = self.original(tag + '-closed-mailbox', 'shell', 'find',
+-            self.mailbox.rsplit('/',1)[0], '-maxdepth','2','-type','f','-name','state.json')
+-        contract.demand(not closed.strip(), 'Closed C4 mailbox still exists')
++            raise RuntimeError('Native C4 did not return to the actual Flutter activity with a closed mailbox')
+         prefs, prefs_file = self.read_preferences(tag + '-after-return')
+         record = contract.persisted_round(prefs, before['state'])
+         frame = self.ui.capture_flutter_ready(self.out, tag + '-flutter', timeout=self.remaining(30))
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0392-return-final-second-000-state.json
+@@ -0,0 +1,14 @@
++{
++  "command": [
++    "adb",
++    "exec-out",
++    "cat",
++    "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1/8a54abd67d7e9f0ea13f23f09d2708d9/state.json"
++  ],
++  "returncode": 0,
++  "elapsed_seconds": 0.08631126900013442,
++  "stdout_bytes": 568,
++  "stderr_bytes": 0,
++  "stdout_sha256": "c3a963e3717010e8050653c3a44908573ae1bd013bb7d2a07e9276ed7a0d99b2",
++  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++}
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0392-return-final-second-000-state.stdout
+@@ -0,0 +1 @@
++{"schema":1,"game":"connect_four","token":"8a54abd67d7e9f0ea13f23f09d2708d9","roundId":"b20d2224f8417b12803c2034b431e3ca","owner":"ac96a2dff39b2161ec8bab01924a6409bbc656705523b377d2d351fc5f764456","revision":3,"ack":1,"rejected":0,"recordRevision":5,"paused":true,"exit":false,"canDrop":false,"reduceMotion":true,"twoPlayers":false,"level":"mittel","phase":"playing","turn":1,"columns":[3,3,2,1],"validColumns":[0,1,2,3,4,5,6],"board":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,1,1,0,0,0],"winningLine":[],"rewarded":false,"error":null}--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0400-return-final-second-000-preferences.json
+@@ -0,0 +1,14 @@
++{
++  "command": [
++    "adb",
++    "exec-out",
++    "cat",
++    "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/shared_prefs/FlutterSharedPreferences.xml"
++  ],
++  "returncode": 0,
++  "elapsed_seconds": 0.09069671299994297,
++  "stdout_bytes": 2491,
++  "stderr_bytes": 0,
++  "stdout_sha256": "0cd65d3aedbd34d5be92fb2345ce5ceb5b8d8c33cbe72bd4a3dd2e3b07e12f0c",
++  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++}
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0400-return-final-second-000-preferences.stdout
+@@ -0,0 +1,13 @@
++<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
++<map>
++    <string name="flutter.lumo_3d_save_salt_v1">00b31ecd2a837029f532ebf733bcf2142fd99ad51155c5b9</string>
++    <string name="flutter.lumo.games.curriculum50.local_lumotest_1">[]</string>
++    <boolean name="flutter.lumo_intro_seen" value="true" />
++    <string name="flutter.lumo_active_profile">{&quot;id&quot;:&quot;1794674491436418&quot;,&quot;name&quot;:&quot;LumoTest&quot;,&quot;age&quot;:7,&quot;grade&quot;:1,&quot;createdAt&quot;:&quot;2026-11-14T16:41:31.436418&quot;,&quot;lastActiveAt&quot;:&quot;2026-11-14T16:41:31.436476&quot;}</string>
++    <string name="flutter.lumo_reward_wallet_v1">{&quot;stars&quot;:0,&quot;xp&quot;:0,&quot;level&quot;:1,&quot;streak&quot;:0,&quot;totalEarnedStars&quot;:0,&quot;lastDailyKey&quot;:&quot;&quot;,&quot;gameResultIds&quot;:[],&quot;lumoCardsWinStreak&quot;:0}</string>
++    <string name="flutter.lumo_game_unlocks_v1">[&quot;build&quot;,&quot;cards&quot;,&quot;jumpRun&quot;,&quot;kart&quot;,&quot;memory&quot;,&quot;puzzle&quot;,&quot;rhythm&quot;,&quot;treasure&quot;]</string>
++    <string name="flutter.lumo.connect_four.round.v1.ac96a2dff39b2161ec8bab01924a6409bbc656705523b377d2d351fc5f764456">{&quot;schema&quot;:1,&quot;owner&quot;:&quot;ac96a2dff39b2161ec8bab01924a6409bbc656705523b377d2d351fc5f764456&quot;,&quot;id&quot;:&quot;b20d2224f8417b12803c2034b431e3ca&quot;,&quot;seed&quot;:602278469,&quot;revision&quot;:5,&quot;twoPlayers&quot;:false,&quot;level&quot;:&quot;mittel&quot;,&quot;columns&quot;:[3,3,2,1],&quot;rewarded&quot;:false}</string>
++    <string name="flutter.lumo_learning_local_student_id_v1">local-4962cf05261986f438d3d3e1edafd506</string>
++    <string name="flutter.lumo_daily_mission_v1::local-4962cf05261986f438d3d3e1edafd506">{&quot;version&quot;:1,&quot;dayKey&quot;:&quot;2026-11-14&quot;,&quot;lastSeenAt&quot;:&quot;2026-11-14T16:54:14.705594Z&quot;,&quot;stations&quot;:[{&quot;subject&quot;:&quot;Mathematik&quot;,&quot;completed&quot;:0,&quot;target&quot;:4},{&quot;subject&quot;:&quot;Deutsch&quot;,&quot;completed&quot;:0,&quot;target&quot;:4},{&quot;subject&quot;:&quot;Englisch&quot;,&quot;completed&quot;:0,&quot;target&quot;:4}],&quot;acceptedTaskIds&quot;:[]}</string>
++    <string name="flutter.lumo_3d_profile_keys_v1">{&quot;version&quot;:1,&quot;legacyAvailable&quot;:false,&quot;owners&quot;:{&quot;local-4962cf05261986f438d3d3e1edafd506&quot;:&quot;p_e692b2e6b46aa7446c172a7e762481ef&quot;},&quot;legacy&quot;:{}}</string>
++</map>
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0404-return-final-touch.json
+@@ -0,0 +1,19 @@
++{
++  "command": [
++    "adb",
++    "shell",
++    "input",
++    "swipe",
++    "164",
++    "241",
++    "164",
++    "241",
++    "120"
++  ],
++  "returncode": 0,
++  "elapsed_seconds": 0.21126831199990193,
++  "stdout_bytes": 0,
++  "stderr_bytes": 0,
++  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++}
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0405-return-final-native-exit.json
+@@ -0,0 +1,14 @@
++{
++  "command": [
++    "adb",
++    "shell",
++    "pidof",
++    "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
++  ],
++  "returncode": 0,
++  "elapsed_seconds": 0.10306056800004626,
++  "stdout_bytes": 5,
++  "stderr_bytes": 0,
++  "stdout_sha256": "8562db7f9631ec4394dbfacac8fef9b8bd4f6079acfe4e371785affc5c8bcce9",
++  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++}
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0405-return-final-native-exit.stdout
+@@ -0,0 +1 @@
++7113
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0406-return-final-return-activity.json
+@@ -0,0 +1,15 @@
++{
++  "command": [
++    "adb",
++    "shell",
++    "dumpsys",
++    "activity",
++    "activities"
++  ],
++  "returncode": 0,
++  "elapsed_seconds": 0.09664121299988437,
++  "stdout_bytes": 39832,
++  "stderr_bytes": 0,
++  "stdout_sha256": "a3417f122b4fb7e2dc8577e4878497e6ce823d1d651057217a788ce17d6234ed",
++  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++}
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0406-return-final-return-activity.stdout
+@@ -0,0 +1,521 @@
++ACTIVITY MANAGER ACTIVITIES (dumpsys activity activities)
++Display #0 (activities from top to bottom):
++  * Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=2}
++    mLastPausedActivity: ActivityRecord{8bea93f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}
++    mLastNonFullscreenBounds=Rect(284, 660 - 796, 1740)
++    isSleeping=false
++    topResumedActivity=ActivityRecord{79d89f0 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9}
++    * Hist  #1: ActivityRecord{79d89f0 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9}
++      packageName=dev.ullmann.lumo.lumo_lernen.coachpreview processName=dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game
++      launchedFromUid=10209 launchedFromPackage=dev.ullmann.lumo.lumo_lernen.coachpreview launchedFromFeature=null userId=0
++      app=ProcessRecord{4e2ee8f 7113:dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game/u0a209}
++      Intent { cmp=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity (has extras) }
++      rootOfTask=false task=Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++      taskAffinity=10209:dev.ullmann.lumo.lumo_lernen.coachpreview
++      mActivityComponent=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity
++      baseDir=/data/app/~~wdxDpQ_-jiLy2yuaVeoXsA==/dev.ullmann.lumo.lumo_lernen.coachpreview-Q8etOiLYetAMJ5NspVoFuA==/base.apk
++      dataDir=/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview
++      stateNotNeeded=false componentSpecified=true mActivityType=standard
++      compat={420dpi} theme=0x7f0e00a4
++      mLastReportedConfigurations:
++        mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.361 fontWeightAdjustment=0}
++        mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.2 fontWeightAdjustment=0}
++      mLastReportedActivityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 1080, 2400), taskFragmentBounds=Rect(0, 0 - 1080, 2400)}
++      CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.2 fontWeightAdjustment=0}
++      RequestedOverrideConfiguration={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=undefined mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}
++      resultTo=ActivityRecord{8bea93f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9} resultWho=null resultCode=8201
++      taskDescription: label="null" icon=null iconResource=/0 iconFilename=null primaryColor=fff5f5f5
++        backgroundColor=fffafafa statusBarColor=ff757575 navigationBarColor=808080
++       backgroundColorFloating=ffffffff
++      launchFailed=false launchCount=1 lastLaunchTime=-25s544ms
++      mHaveState=false mIcicle=null
++      state=RESUMED delayedResume=false finishing=false
++      keysPaused=false inHistory=true idle=true
++      occludesParent=true noDisplay=false immersive=false launchMode=0
++      mActivityType=standard
++      mImeInsetsFrozenUntilStartInput=false
++      windows=[Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}]
++      windowType=2
++      mOccludesParent=true
++      overrideOrientation=SCREEN_ORIENTATION_FULL_USER
++      requestedOrientation=SCREEN_ORIENTATION_FULL_USER
++      mVisibleRequested=true mVisible=true mClientVisible=true reportedDrawn=true reportedVisible=true
++      mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=true lastAllDrawn=false)
++      startingData=null firstWindowDrawn=true mIsExiting=false
++      nowVisible=true lastVisibleTime=-23s707ms
++      connections={ConnectionRecord{81f3e4d u0 CR dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourAuthorityService:@aa0e9e4 flags=0x1}}
++      resizeMode=RESIZE_MODE_RESIZEABLE
++      mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false
++      supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA
++      configChanges=0x80005ff3
++      neverSandboxDisplayApis=false
++      alwaysSandboxDisplayApis=false
++      areBoundsLetterboxed=false
++      mCameraCompatControlState=hidden
++      mCameraCompatControlEnabled=true
++    * Hist  #0: ActivityRecord{8bea93f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}
++      packageName=dev.ullmann.lumo.lumo_lernen.coachpreview processName=dev.ullmann.lumo.lumo_lernen.coachpreview
++      launchedFromUid=0 launchedFromPackage=null launchedFromFeature=null userId=0
++      app=ProcessRecord{579f6a4 5689:dev.ullmann.lumo.lumo_lernen.coachpreview/u0a209}
++      Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity }
++      rootOfTask=true task=Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++      taskAffinity=null
++      mActivityComponent=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity
++      baseDir=/data/app/~~wdxDpQ_-jiLy2yuaVeoXsA==/dev.ullmann.lumo.lumo_lernen.coachpreview-Q8etOiLYetAMJ5NspVoFuA==/base.apk
++      dataDir=/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview
++      stateNotNeeded=false componentSpecified=true mActivityType=standard
++      compat={420dpi} theme=0x7f0e00a3
++      mLastReportedConfigurations:
++        mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.392 fontWeightAdjustment=0}
++        mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.7 fontWeightAdjustment=0}
++      mLastReportedActivityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 1080, 2400), taskFragmentBounds=Rect(0, 0 - 1080, 2400)}
++      CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.7 fontWeightAdjustment=0}
++      RequestedOverrideConfiguration={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=standard mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}
++      taskDescription: label="Lumo Lernen" icon=null iconResource=dev.ullmann.lumo.lumo_lernen.coachpreview/0 iconFilename=null primaryColor=ff03193f
++        backgroundColor=ffffffff statusBarColor=ff000000 navigationBarColor=808080
++       backgroundColorFloating=ffffffff
++      launchFailed=false launchCount=0 lastLaunchTime=-3m3s790ms
++      mHaveState=true mIcicle=Bundle[mParcelledData.dataSize=972]
++      state=STOPPED delayedResume=false finishing=false
++      keysPaused=false inHistory=true idle=true
++      occludesParent=true noDisplay=false immersive=false launchMode=1
++      mActivityType=standard
++      mImeInsetsFrozenUntilStartInput=true
++      windows=[Window{dab28ce u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}]
++      windowType=2
++      mOccludesParent=true
++      overrideOrientation=SCREEN_ORIENTATION_USER
++      requestedOrientation=SCREEN_ORIENTATION_USER
++      mVisibleRequested=false mVisible=false mClientVisible=false reportedDrawn=false reportedVisible=false
++      mAppStopped=true
++      mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=true lastAllDrawn=false)
++      nowVisible=false lastVisibleTime=-39s236ms
++      resizeMode=RESIZE_MODE_RESIZEABLE
++      mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false
++      supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA
++      configChanges=0x40003fb7
++      neverSandboxDisplayApis=false
++      alwaysSandboxDisplayApis=false
++      areBoundsLetterboxed=false
++      mCameraCompatControlState=hidden
++      mCameraCompatControlEnabled=true
++
++  * Task{d28e898 #1 type=home U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}
++    * Task{45f403f #7 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity U=0 rootTaskId=1 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}
++      mLastPausedActivity: ActivityRecord{58cd45e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}
++      mLastNonFullscreenBounds=Rect(291, 693 - 790, 1773)
++      isSleeping=false
++      * Hist  #1: ActivityRecord{58cd45e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}
++        packageName=com.google.android.apps.nexuslauncher processName=com.google.android.apps.nexuslauncher
++        launchedFromUid=0 launchedFromPackage=null launchedFromFeature=null userId=0
++        app=ProcessRecord{31269ed 1233:com.google.android.apps.nexuslauncher/u0a178}
++        Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.google.android.apps.nexuslauncher/.NexusLauncherActivity (has extras) }
++        rootOfTask=true task=Task{45f403f #7 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity}
++        taskAffinity=null
++        mActivityComponent=com.google.android.apps.nexuslauncher/.NexusLauncherActivity
++        baseDir=/system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk
++        dataDir=/data/user/0/com.google.android.apps.nexuslauncher
++        stateNotNeeded=true componentSpecified=true mActivityType=home
++        compat={420dpi} theme=0x7f140019
++        mLastReportedConfigurations:
++          mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.393 fontWeightAdjustment=0}
++          mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.12 fontWeightAdjustment=0}
++        mLastReportedActivityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 1080, 2400), taskFragmentBounds=Rect(0, 0 - 1080, 2400)}
++        CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.12 fontWeightAdjustment=0}
++        RequestedOverrideConfiguration={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=home mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}
++        taskDescription: label="null" icon=null iconResource=/0 iconFilename=null primaryColor=fff1f0f7
++          backgroundColor=fff1f0f7 statusBarColor=0 navigationBarColor=0
++         backgroundColorFloating=fff1f0f7
++        launchFailed=false launchCount=0 lastLaunchTime=-16m55s114ms
++        mHaveState=true mIcicle=Bundle[mParcelledData.dataSize=6716]
++        state=STOPPED delayedResume=false finishing=false
++        keysPaused=false inHistory=true idle=true
++        occludesParent=true noDisplay=false immersive=false launchMode=2
++        mActivityType=home
++        mImeInsetsFrozenUntilStartInput=true
++        windows=[Window{3e1861f u0 com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}]
++        windowType=2
++        mOccludesParent=true
++        overrideOrientation=SCREEN_ORIENTATION_NOSENSOR
++        requestedOrientation=SCREEN_ORIENTATION_NOSENSOR
++        mVisibleRequested=false mVisible=false mClientVisible=false reportedDrawn=false reportedVisible=false
++        mAppStopped=true
++        mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=true lastAllDrawn=false)
++        nowVisible=false lastVisibleTime=-3m7s712ms
++        connections={ConnectionRecord{b129ac5 u0 com.google.android.apps.nexuslauncher/com.android.quickstep.TouchInteractionService:@d3e8d3c flags=0x0}}
++        resizeMode=RESIZE_MODE_RESIZEABLE
++        mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false
++        supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA
++        configChanges=0xdf3
++        neverSandboxDisplayApis=false
++        alwaysSandboxDisplayApis=false
++        areBoundsLetterboxed=false
++        mCameraCompatControlState=hidden
++        mCameraCompatControlEnabled=true
++      * TaskFragment{e7e350f mode=multi-window organizerUid=10178 organizerProc=com.google.android.apps.nexuslauncher}
++
++  * Task{1e064cc #2 type=undefined U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}
++    mCreatedByOrganizer=true
++    * Task{6a0262a #4 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}
++      mBounds=Rect(0, 2340 - 1080, 3510)
++      mCreatedByOrganizer=true
++      isSleeping=false
++    * Task{d094315 #3 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}
++      mCreatedByOrganizer=true
++      isSleeping=false
++
++  Resumed activities in task display areas (from top to bottom):
++    Resumed: ActivityRecord{79d89f0 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9}
++
++  ResumedActivity: ActivityRecord{79d89f0 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9}
++
++ActivityTaskSupervisor state:
++  topDisplayFocusedRootTask=Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++  Display: mDisplayId=0 (organized)
++    init=1080x2340 440dpi mMinSizeOfResizeableTaskDp=220 base=1080x2400 420dpi cur=1080x2400 app=1080x2400 rng=1080x1080-2400x2400
++    deferred=false mLayoutNeeded=false
++  mLastOrientationSource=WindowedMagnification:0:31@56572426
++  deepestLastOrientationSource=ActivityRecord{79d89f0 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9}
++  overrideConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.361 fontWeightAdjustment=0}
++  mLayoutSeq=285
++  mCurrentFocus=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++  mFocusedApp=ActivityRecord{79d89f0 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9}
++
++  mHoldScreenWindow=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++  mObscuringWindow=null
++  mLastWakeLockHoldingWindow=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++  mLastWakeLockObscuringWindow=null
++
++  displayId=0
++  mWallpaperTarget=null
++  mLastWallpaperZoomOut=0.0
++  token WallpaperWindowToken{4fdeb05 token=android.os.Binder@7fff67c}:
++    canShowWhenLocked=true
++    mWallpaperX=0.0
++    mWallpaperY=0.5
++    mWallpaperXStep=0.33333334
++    mWallpaperYStep=1.0
++    mWallpaperDisplayOffsetX=NA
++    mWallpaperDisplayOffsetY=NA
++
++  mSystemGestureExclusion=SkRegion()
++
++  Display areas in top down Z order:
++    * Leaf:36:36
++    * HideDisplayCutout:32:35
++      * OneHanded:34:35
++        * FullscreenMagnification:34:35
++          * Leaf:34:35
++      * FullscreenMagnification:33:33
++        * Leaf:33:33
++      * OneHanded:32:32
++        * Leaf:32:32
++    * WindowedMagnification:0:31
++      * HideDisplayCutout:26:31
++        * OneHanded:26:31
++          * FullscreenMagnification:29:31
++            * Leaf:29:31
++          * Leaf:28:28
++          * FullscreenMagnification:26:27
++            * Leaf:26:27
++      * Leaf:24:25
++      * HideDisplayCutout:18:23
++        * OneHanded:18:23
++          * FullscreenMagnification:18:23
++            * Leaf:18:23
++      * OneHanded:17:17
++        * FullscreenMagnification:17:17
++          * Leaf:17:17
++      * HideDisplayCutout:16:16
++        * OneHanded:16:16
++          * FullscreenMagnification:16:16
++            * Leaf:16:16
++      * OneHanded:15:15
++        * FullscreenMagnification:15:15
++          * Leaf:15:15
++      * HideDisplayCutout:0:14
++        * OneHanded:0:14
++          * ImePlaceholder:13:14
++            * ImeContainer
++          * FullscreenMagnification:0:12
++            * Leaf:3:12
++            * DefaultTaskDisplayArea (organized)
++            * Leaf:0:1
++
++  Task display areas in top down Z order:
++    TaskDisplayArea DefaultTaskDisplayArea
++      overrideConfig={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}
++      mPreferredTopFocusableRootTask=Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++      mLastFocusedRootTask=Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++      Application tokens in top down Z order:
++      * Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=2}
++        bounds=[0,0][1080,2400]
++        * ActivityRecord{79d89f0 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9}
++        * ActivityRecord{8bea93f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}
++      * Task{d28e898 #1 type=home U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}
++        bounds=[0,0][1080,2400]
++        * Task{45f403f #7 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity U=0 rootTaskId=1 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}
++          bounds=[0,0][1080,2400]
++          * ActivityRecord{58cd45e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}
++          * TaskFragment{e7e350f mode=multi-window organizerUid=10178 organizerProc=com.google.android.apps.nexuslauncher}
++            bounds=[0,0][1080,2400]
++      * Task{1e064cc #2 type=undefined U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}
++        bounds=[0,0][1080,2400]
++        * Task{6a0262a #4 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}
++          bounds=[0,2340][1080,3510]
++        * Task{d094315 #3 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}
++          bounds=[0,0][1080,2400]
++
++  no ScreenRotationAnimation 
++
++  rootHomeTask=Task=1
++
++  PinnedTaskController
++    mIsImeShowing=false
++    mImeHeight=0
++    mMinAspectRatio=0.41841003
++    mMaxAspectRatio=2.39
++
++  DisplayFrames w=1080 h=2400 r=0
++
++  DisplayPolicy
++    mCarDockEnablesAccelerometer=true mDeskDockEnablesAccelerometer=true
++    mDockMode=EXTRA_DOCK_STATE_UNDOCKED mLidState=LID_OPEN
++    mAwake=true mScreenOnEarly=true mScreenOnFully=true
++    mKeyguardDrawComplete=true mWindowManagerDrawComplete=true
++    mHdmiPlugged=false
++    mLastBehavior=DEFAULT
++    mShowingDream=false mDreamingLockscreen=false
++    mStatusBar=Window{7b202ab u0 StatusBar}
++    mExpandedPanel=Window{108c033 u0 NotificationShade}
++    isKeyguardShowing=false
++    mNavigationBar=Window{dda3a0e u0 Taskbar}
++    mNavBarOpacityMode=2
++    mNavigationBarCanMove=false
++    mNavigationBarPosition=4
++    mLeftGestureHost=Window{dda3a0e u0 Taskbar}
++    mTopGestureHost=Window{7b202ab u0 StatusBar}
++    mRightGestureHost=Window{dda3a0e u0 Taskbar}
++    mBottomGestureHost=Window{dda3a0e u0 Taskbar}
++    mFocusedWindow=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++    mTopFullscreenOpaqueWindowState=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++    mSystemBarColorApps={ActivityRecord{79d89f0 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9}}
++    mNavBarColorWindowCandidate=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++    mNavBarBackgroundWindowCandidate=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++    mLastStatusBarAppearanceRegions=
++      AppearanceRegion{ bounds=[0,0][1080,2400]}
++    mLastLetterboxDetails=
++    mStatusBarBackgroundWindows=
++      Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++    mTopIsFullscreen=false
++    mImeInsetsConsumed=false
++    mForceShowNavigationBarEnabled=false mAllowLockscreenWhenOn=false
++    mRemoteInsetsControllerControlsSystemBars=false
++    mDecorInsetsInfo:
++      ROTATION_0={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,136][0,63], configInsets=[0,0][0,0], overrideConfigInsets=[0,136][0,63], nonDecorFrame=[0,0][1080,2400], overrideNonDecorFrame=[0,136][1080,2337], configFrame=[0,0][1080,2400], overrideConfigFrame=[0,136][1080,2337]}
++      ROTATION_90={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[136,0][0,63], configInsets=[0,0][0,0], overrideConfigInsets=[136,63][0,63], nonDecorFrame=[0,0][2400,1080], overrideNonDecorFrame=[136,0][2400,1017], configFrame=[0,0][2400,1080], overrideConfigFrame=[136,63][2400,1017]}
++      ROTATION_180={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,0][0,136], configInsets=[0,0][0,0], overrideConfigInsets=[0,63][0,136], nonDecorFrame=[0,0][1080,2400], overrideNonDecorFrame=[0,0][1080,2264], configFrame=[0,0][1080,2400], overrideConfigFrame=[0,63][1080,2264]}
++      ROTATION_270={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,0][136,63], configInsets=[0,0][0,0], overrideConfigInsets=[0,63][136,63], nonDecorFrame=[0,0][2400,1080], overrideNonDecorFrame=[0,0][2264,1017], configFrame=[0,0][2400,1080], overrideConfigFrame=[0,63][2264,1017]}
++    SystemGestures:
++      mDisplayCutoutTouchableRegionSize=32
++      mSwipeStartThreshold=Rect(63, 168 - 63, 63)
++      mSwipeDistanceThreshold=63
++
++  DisplayRotation
++    mCurrentAppOrientation=SCREEN_ORIENTATION_FULL_USER
++    mLastOrientation=13
++    mRotation=0 mDeferredRotationPauseCount=0
++    mLandscapeRotation=ROTATION_90 mSeascapeRotation=ROTATION_270
++    mPortraitRotation=ROTATION_0 mUpsideDownRotation=ROTATION_180
++    mSupportAutoRotation=true
++    WindowOrientationListener
++      mEnabled=true
++      mCurrentRotation=ROTATION_0
++      mSensorType=null
++      mSensor={Sensor name="Goldfish 3-axis Accelerometer", vendor="The Android Open Source Project", version=1, type=1, maxRange=39.300102, resolution=2.480159E-4, power=3.0, minDelay=10000}
++      mRate=2
++      AccelSensorJudge
++        mProposedRotation=0
++        mPredictedRotation=0
++        mLastFilteredX=0.0
++        mLastFilteredY=9.776321
++        mLastFilteredZ=0.812345
++        mLastFilteredTimestampNanos=1066942990044 (49.40158ms ago)
++        mTiltHistory={last: 5.0}
++        mFlat=false
++        mSwinging=false
++        mAccelerating=false
++        mOverhead=false
++        mTouched=false
++        mTiltToleranceConfig=[[-25, 70], [-25, 65], [-25, 60], [-25, 65]]
++
++    mCarDockRotation=-1 mDeskDockRotation=-1
++    mUserRotationMode=USER_ROTATION_LOCKED mUserRotation=ROTATION_0 mCameraRotationMode=0 mAllowAllRotations=unknown
++    mDemoHdmiRotation=ROTATION_90 mDemoHdmiRotationLock=false mUndockedHdmiRotation=-1
++    mLidOpenRotation=-1
++    mFixedToUserRotation=false
++  FoldController
++    mPauseAutorotationDuringUnfolding=false
++    mShouldDisableRotationSensor=false
++    mShouldIgnoreSensorRotation=false
++    mLastDisplaySwitchTime=0
++    mLastHingeAngleEventTime=0
++    mDeviceState=FOLDED
++
++    RotationHistory
++      11-14 16:42:45.668 ROTATION_0 to ROTATION_90
++        source=ActivityRecord{d1f4f67 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t8} SCREEN_ORIENTATION_SENSOR_LANDSCAPE
++        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0
++       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED
++      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }
++       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false
++      11-14 16:42:48.079 ROTATION_90 to ROTATION_0
++        source=ActivityRecord{d1f4f67 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t8} SCREEN_ORIENTATION_PORTRAIT
++        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0
++       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED
++      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }
++       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false
++      11-14 16:42:59.957 ROTATION_0 to ROTATION_90
++        source=ActivityRecord{d1f4f67 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t8} SCREEN_ORIENTATION_USER_LANDSCAPE
++        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0
++       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED
++      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }
++       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false
++      11-14 16:53:48.246 ROTATION_90 to ROTATION_0
++        source=ActivityRecord{bdb002c u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t8} SCREEN_ORIENTATION_USER
++        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0
++       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED
++      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }
++       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false
++
++        RotationLockHistory
++          11-14 16:40:53.936: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent
++          11-14 16:40:53.937: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent
++          11-14 16:54:13.589: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent
++          11-14 16:54:13.696: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent
++          11-14 16:54:13.856: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=DeviceStateRotationLockSettingController#readPersistedSetting
++          11-14 16:54:55.481: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent
++          11-14 16:54:55.483: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent
++          11-14 16:55:01.586: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=WindowManagerShellCommand#lock
++
++  InputConsumers:
++    name=recents_animation_input_consumer pid=1233 user=UserHandle{0}
++
++  WindowInsetsStateController
++    InsetsState
++      mDisplayFrame=Rect(0, 0 - 1080, 2400)
++      mDisplayCutout=DisplayCutout{insets=Rect(0, 136 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 136, 136), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2400 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.75} cutoutSpec={M 41,77 a 40,40 0 1 0 80,0 40,40 0 1 0 -80,0 Z @left} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}
++      mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=0, center=Point(0, 0)}, RoundedCorner{position=TopRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomLeft, radius=0, center=Point(0, 0)}]}
++      mRoundedCornerFrame=Rect(0, 0 - 0, 0)
++      mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(827, 0 - 1043, 136) rotation=0}
++      mDisplayShape=DisplayShape{ spec=-1084927657 displayWidth=1080 displayHeight=2340 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}
++        InsetsSource id=be880001 type=navigationBars frame=[0,2337][1080,2400] visible=true flags=SUPPRESS_SCRIM|ANIMATE_RESIZING sideHint=BOTTOM boundingRects=null
++        InsetsSource id=be880004 type=systemGestures frame=[0,0][78,2400] visible=true flags= sideHint=LEFT boundingRects=null
++        InsetsSource id=be880005 type=mandatorySystemGestures frame=[0,2316][1080,2400] visible=true flags= sideHint=BOTTOM boundingRects=null
++        InsetsSource id=be880006 type=tappableElement frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null
++        InsetsSource id=be880024 type=systemGestures frame=[1002,0][1080,2400] visible=true flags= sideHint=RIGHT boundingRects=null
++        InsetsSource id=d1510000 type=statusBars frame=[0,0][1080,136] visible=true flags= sideHint=TOP boundingRects=null
++        InsetsSource id=d1510005 type=mandatorySystemGestures frame=[0,0][1080,169] visible=true flags= sideHint=TOP boundingRects=null
++        InsetsSource id=d1510006 type=tappableElement frame=[0,0][1080,136] visible=true flags= sideHint=TOP boundingRects=null
++        InsetsSource id=3 type=ime frame=[0,0][0,0] visible=false flags= sideHint=NONE boundingRects=null
++        InsetsSource id=27 type=displayCutout frame=[0,0][1080,136] visible=true flags= sideHint=TOP boundingRects=null
++    Control map:
++      Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}:
++        InsetsSourceControl: {3 mType=ime mSurfacePosition=Point(0, 63) mInsetsHint=Insets{left=0, top=0, right=0, bottom=883}}
++        InsetsSourceControl: {be880001 mType=navigationBars initiallyVisible mSurfacePosition=Point(0, 2337) mInsetsHint=Insets{left=0, top=0, right=0, bottom=63}}
++        InsetsSourceControl: {d1510000 mType=statusBars initiallyVisible mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=136, right=0, bottom=0}}
++    InsetsSourceProviders:
++      ImeInsetsSourceProvider
++        mSource=InsetsSource id=3 type=ime frame=[0,0][0,0] visible=false flags= sideHint=NONE boundingRects=null
++        mSourceFrame=Rect(0, 2274 - 1080, 2400)
++        mControl=InsetsSourceControl mId=3 mType=ime mLeash=Surface(name=Surface(name=5945b1d InputMethod)/@0x8fadf60 - animation-leash of insets_animation)/@0xb2af9f3 mInitiallyVisible=false mSurfacePosition=Point(0, 63) mInsetsHint=Insets{left=0, top=0, right=0, bottom=883} mSkipAnimationOnce=false
++        mInsetsHint=Insets{left=0, top=0, right=0, bottom=883} stale
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{5945b1d u0 InputMethod}
++        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=5945b1d InputMethod)/@0x8fadf60 - animation-leash of insets_animation)/@0xb2af9f3
++        mControlTarget=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++        mImeShowing=false        showImePostLayout not scheduled, mImeRequester=null
++
++      InsetsSourceProvider
++        mSource=InsetsSource id=d1510006 type=tappableElement frame=[0,0][1080,136] visible=true flags= sideHint=TOP boundingRects=null
++        mSourceFrame=Rect(0, 0 - 1080, 136)
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{7b202ab u0 StatusBar}
++      InsetsSourceProvider
++        mSource=InsetsSource id=d1510005 type=mandatorySystemGestures frame=[0,0][1080,169] visible=true flags= sideHint=TOP boundingRects=null
++        mSourceFrame=Rect(0, 0 - 1080, 169)
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{7b202ab u0 StatusBar}
++      InsetsSourceProvider
++        mSource=InsetsSource id=d1510000 type=statusBars frame=[0,0][1080,136] visible=true flags= sideHint=TOP boundingRects=null
++        mSourceFrame=Rect(0, 0 - 1080, 136)
++        mControl=InsetsSourceControl mId=d1510000 mType=statusBars mLeash=Surface(name=Surface(name=7b202ab StatusBar)/@0x7b00ca1 - animation-leash of insets_animation)/@0xe66a6b0 mInitiallyVisible=true mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=136, right=0, bottom=0} mSkipAnimationOnce=false
++        mInsetsHint=Insets{left=0, top=136, right=0, bottom=0}
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{7b202ab u0 StatusBar}
++        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=7b202ab StatusBar)/@0x7b00ca1 - animation-leash of insets_animation)/@0xe66a6b0
++        mControlTarget=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++      InsetsSourceProvider
++        mSource=InsetsSource id=be880024 type=systemGestures frame=[1002,0][1080,2400] visible=true flags= sideHint=RIGHT boundingRects=null
++        mSourceFrame=Rect(1002, 0 - 1080, 2400)
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{dda3a0e u0 Taskbar}
++      InsetsSourceProvider
++        mSource=InsetsSource id=be880006 type=tappableElement frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null
++        mSourceFrame=Rect(0, 0 - 0, 0)
++        mOverrideFrames={2011=Rect(0, 2337 - 1080, 2400), 2031=Rect(0, 0 - 0, 0)}
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{dda3a0e u0 Taskbar}
++      InsetsSourceProvider
++        mSource=InsetsSource id=be880005 type=mandatorySystemGestures frame=[0,2316][1080,2400] visible=true flags= sideHint=BOTTOM boundingRects=null
++        mSourceFrame=Rect(0, 2316 - 1080, 2400)
++        mOverrideFrames={2011=Rect(0, 2337 - 1080, 2400), 2031=Rect(0, 2316 - 1080, 2400)}
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{dda3a0e u0 Taskbar}
++      InsetsSourceProvider
++        mSource=InsetsSource id=be880004 type=systemGestures frame=[0,0][78,2400] visible=true flags= sideHint=LEFT boundingRects=null
++        mSourceFrame=Rect(0, 0 - 78, 2400)
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{dda3a0e u0 Taskbar}
++      InsetsSourceProvider
++        mSource=InsetsSource id=be880001 type=navigationBars frame=[0,2337][1080,2400] visible=true flags=SUPPRESS_SCRIM|ANIMATE_RESIZING sideHint=BOTTOM boundingRects=null
++        mSourceFrame=Rect(0, 2337 - 1080, 2400)
++        mOverrideFrames={2011=Rect(0, 2337 - 1080, 2400), 2031=Rect(0, 2337 - 1080, 2400)}
++        mControl=InsetsSourceControl mId=be880001 mType=navigationBars mLeash=Surface(name=Surface(name=dda3a0e Taskbar)/@0x1d273bd - animation-leash of insets_animation)/@0x49ec929 mInitiallyVisible=true mSurfacePosition=Point(0, 2337) mInsetsHint=Insets{left=0, top=0, right=0, bottom=63} mSkipAnimationOnce=false
++        mInsetsHint=Insets{left=0, top=0, right=0, bottom=63}
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{dda3a0e u0 Taskbar}
++        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=dda3a0e Taskbar)/@0x1d273bd - animation-leash of insets_animation)/@0x49ec929
++        mControlTarget=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++  InsetsPolicy
++    status: WINDOW_STATE_SHOWING
++    nav: WINDOW_STATE_SHOWING
++
++  KeyguardController:
++    mKeyguardShowing=false
++    mAodShowing=false
++    mKeyguardGoingAway=false
++   KeyguardShowing=false AodShowing=false KeyguardGoingAway=false DismissalRequested=false  Occluded=false DismissingKeyguardActivity=null TurnScreenOnActivity=null at display=0
++    mDismissalRequested=false
++
++  LockTaskController:
++    mLockTaskModeState=NONE
++    mLockTaskModeTasks=
++    mLockTaskPackages (userId:packages)=
++
++  mCurTaskIdForUser={0=9}
++  mUserRootTaskInFront={}
++  mVisibilityTransactionDepth=0
++  isHomeRecentsComponent=true
++  mNoHistoryActivities=[]
++
++  TaskOrganizerController:
++      android.window.ITaskOrganizer$Stub$Proxy@34ec32f uid=10180 (active):
++        (fullscreen) Task{d28e898 #1 type=home}
++        (fullscreen) Task{1e064cc #2 type=undefined}
++        (multi-window) Task{d094315 #3 type=undefined}
++        (multi-window) Task{6a0262a #4 type=undefined}
++        (fullscreen) Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++
++  VisibleActivityProcess:[ ProcessRecord{4e2ee8f 7113:dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game/u0a209}]
++  NumNonAppVisibleWindowUidMap:[ 10180:1 10178:1]
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0407-return-final-native-exit.json
+@@ -0,0 +1,14 @@
++{
++  "command": [
++    "adb",
++    "shell",
++    "pidof",
++    "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
++  ],
++  "returncode": 1,
++  "elapsed_seconds": 0.09238991000006536,
++  "stdout_bytes": 0,
++  "stderr_bytes": 0,
++  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++}
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0408-return-final-return-activity.json
+@@ -0,0 +1,15 @@
++{
++  "command": [
++    "adb",
++    "shell",
++    "dumpsys",
++    "activity",
++    "activities"
++  ],
++  "returncode": 0,
++  "elapsed_seconds": 0.07789077600000383,
++  "stdout_bytes": 39921,
++  "stderr_bytes": 0,
++  "stdout_sha256": "15ebca68cab4904bd893b15189bbd190e5effc2dd2441e2df64b4caadf458bb6",
++  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++}
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0408-return-final-return-activity.stdout
+@@ -0,0 +1,525 @@
++ACTIVITY MANAGER ACTIVITIES (dumpsys activity activities)
++Display #0 (activities from top to bottom):
++  * Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=2}
++    mLastPausedActivity: ActivityRecord{79d89f0 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9 f}}
++    mLastNonFullscreenBounds=Rect(284, 660 - 796, 1740)
++    isSleeping=false
++    topResumedActivity=ActivityRecord{8bea93f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}
++    * Hist  #1: ActivityRecord{79d89f0 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9 f}}
++      packageName=dev.ullmann.lumo.lumo_lernen.coachpreview processName=dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game
++      launchedFromUid=10209 launchedFromPackage=dev.ullmann.lumo.lumo_lernen.coachpreview launchedFromFeature=null userId=0
++      app=ProcessRecord{4e2ee8f 7113:dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game/u0a209}
++      Intent { cmp=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity (has extras) }
++      rootOfTask=false task=Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++      taskAffinity=10209:dev.ullmann.lumo.lumo_lernen.coachpreview
++      mActivityComponent=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity
++      baseDir=/data/app/~~wdxDpQ_-jiLy2yuaVeoXsA==/dev.ullmann.lumo.lumo_lernen.coachpreview-Q8etOiLYetAMJ5NspVoFuA==/base.apk
++      dataDir=/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview
++      stateNotNeeded=false componentSpecified=true mActivityType=standard
++      compat={420dpi} theme=0x7f0e00a4
++      mLastReportedConfigurations:
++        mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.361 fontWeightAdjustment=0}
++        mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.2 fontWeightAdjustment=0}
++      mLastReportedActivityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 1080, 2400), taskFragmentBounds=Rect(0, 0 - 1080, 2400)}
++      CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.2 fontWeightAdjustment=0}
++      RequestedOverrideConfiguration={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=undefined mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}
++      taskDescription: label="null" icon=null iconResource=/0 iconFilename=null primaryColor=fff5f5f5
++        backgroundColor=fffafafa statusBarColor=ff757575 navigationBarColor=808080
++       backgroundColorFloating=ffffffff
++      launchFailed=false launchCount=1 lastLaunchTime=-26s271ms
++      mHaveState=false mIcicle=null
++      state=STOPPING delayedResume=false finishing=true
++      keysPaused=false inHistory=true idle=true
++      occludesParent=false noDisplay=false immersive=false launchMode=0
++      mActivityType=standard
++      mImeInsetsFrozenUntilStartInput=false
++      windows=[Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}]
++      windowType=2
++      mOccludesParent=true
++      overrideOrientation=SCREEN_ORIENTATION_FULL_USER
++      requestedOrientation=SCREEN_ORIENTATION_FULL_USER
++      mVisibleRequested=false mVisible=true mClientVisible=true reportedDrawn=true reportedVisible=true
++      mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=true lastAllDrawn=false)
++      startingData=null firstWindowDrawn=true mIsExiting=false
++      nowVisible=true lastVisibleTime=-24s434ms
++      connections={}
++      resizeMode=RESIZE_MODE_RESIZEABLE
++      mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false
++      supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA
++      configChanges=0x80005ff3
++      neverSandboxDisplayApis=false
++      alwaysSandboxDisplayApis=false
++      areBoundsLetterboxed=false
++      mCameraCompatControlState=hidden
++      mCameraCompatControlEnabled=true
++    * Hist  #0: ActivityRecord{8bea93f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}
++      packageName=dev.ullmann.lumo.lumo_lernen.coachpreview processName=dev.ullmann.lumo.lumo_lernen.coachpreview
++      launchedFromUid=0 launchedFromPackage=null launchedFromFeature=null userId=0
++      app=ProcessRecord{579f6a4 5689:dev.ullmann.lumo.lumo_lernen.coachpreview/u0a209}
++      Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity }
++      rootOfTask=true task=Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++      taskAffinity=null
++      mActivityComponent=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity
++      baseDir=/data/app/~~wdxDpQ_-jiLy2yuaVeoXsA==/dev.ullmann.lumo.lumo_lernen.coachpreview-Q8etOiLYetAMJ5NspVoFuA==/base.apk
++      dataDir=/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview
++      stateNotNeeded=false componentSpecified=true mActivityType=standard
++      compat={420dpi} theme=0x7f0e00a3
++      mLastReportedConfigurations:
++        mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.392 fontWeightAdjustment=0}
++        mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.7 fontWeightAdjustment=0}
++      mLastReportedActivityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 1080, 2400), taskFragmentBounds=Rect(0, 0 - 1080, 2400)}
++      CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.7 fontWeightAdjustment=0}
++      RequestedOverrideConfiguration={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=standard mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}
++      taskDescription: label="Lumo Lernen" icon=null iconResource=dev.ullmann.lumo.lumo_lernen.coachpreview/0 iconFilename=null primaryColor=ff03193f
++        backgroundColor=ffffffff statusBarColor=ff000000 navigationBarColor=808080
++       backgroundColorFloating=ffffffff
++      launchFailed=false launchCount=0 lastLaunchTime=-3m4s505ms
++      mHaveState=false mIcicle=null
++      state=RESUMED delayedResume=false finishing=false
++      keysPaused=false inHistory=true idle=false
++      occludesParent=true noDisplay=false immersive=false launchMode=1
++      mActivityType=standard
++      mImeInsetsFrozenUntilStartInput=true
++      windows=[Window{dab28ce u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}]
++      windowType=2
++      mOccludesParent=true
++      overrideOrientation=SCREEN_ORIENTATION_USER
++      requestedOrientation=SCREEN_ORIENTATION_USER
++      mVisibleRequested=true mVisible=false mClientVisible=true reportedDrawn=false reportedVisible=false
++      mNumInterestingWindows=1 mNumDrawnWindows=0 allDrawn=false lastAllDrawn=false)
++      nowVisible=false lastVisibleTime=-39s951ms
++      resizeMode=RESIZE_MODE_RESIZEABLE
++      mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false
++      supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA
++      configChanges=0x40003fb7
++      neverSandboxDisplayApis=false
++      alwaysSandboxDisplayApis=false
++      areBoundsLetterboxed=false
++      mCameraCompatControlState=hidden
++      mCameraCompatControlEnabled=true
++
++  * Task{d28e898 #1 type=home U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}
++    * Task{45f403f #7 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity U=0 rootTaskId=1 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}
++      mLastPausedActivity: ActivityRecord{58cd45e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}
++      mLastNonFullscreenBounds=Rect(291, 693 - 790, 1773)
++      isSleeping=false
++      * Hist  #1: ActivityRecord{58cd45e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}
++        packageName=com.google.android.apps.nexuslauncher processName=com.google.android.apps.nexuslauncher
++        launchedFromUid=0 launchedFromPackage=null launchedFromFeature=null userId=0
++        app=ProcessRecord{31269ed 1233:com.google.android.apps.nexuslauncher/u0a178}
++        Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.google.android.apps.nexuslauncher/.NexusLauncherActivity (has extras) }
++        rootOfTask=true task=Task{45f403f #7 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity}
++        taskAffinity=null
++        mActivityComponent=com.google.android.apps.nexuslauncher/.NexusLauncherActivity
++        baseDir=/system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk
++        dataDir=/data/user/0/com.google.android.apps.nexuslauncher
++        stateNotNeeded=true componentSpecified=true mActivityType=home
++        compat={420dpi} theme=0x7f140019
++        mLastReportedConfigurations:
++          mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.393 fontWeightAdjustment=0}
++          mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.12 fontWeightAdjustment=0}
++        mLastReportedActivityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 1080, 2400), taskFragmentBounds=Rect(0, 0 - 1080, 2400)}
++        CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.12 fontWeightAdjustment=0}
++        RequestedOverrideConfiguration={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=home mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}
++        taskDescription: label="null" icon=null iconResource=/0 iconFilename=null primaryColor=fff1f0f7
++          backgroundColor=fff1f0f7 statusBarColor=0 navigationBarColor=0
++         backgroundColorFloating=fff1f0f7
++        launchFailed=false launchCount=0 lastLaunchTime=-16m55s829ms
++        mHaveState=true mIcicle=Bundle[mParcelledData.dataSize=6716]
++        state=STOPPED delayedResume=false finishing=false
++        keysPaused=false inHistory=true idle=true
++        occludesParent=true noDisplay=false immersive=false launchMode=2
++        mActivityType=home
++        mImeInsetsFrozenUntilStartInput=true
++        windows=[Window{3e1861f u0 com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}]
++        windowType=2
++        mOccludesParent=true
++        overrideOrientation=SCREEN_ORIENTATION_NOSENSOR
++        requestedOrientation=SCREEN_ORIENTATION_NOSENSOR
++        mVisibleRequested=false mVisible=false mClientVisible=false reportedDrawn=false reportedVisible=false
++        mAppStopped=true
++        mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=true lastAllDrawn=false)
++        nowVisible=false lastVisibleTime=-3m8s427ms
++        connections={ConnectionRecord{b129ac5 u0 com.google.android.apps.nexuslauncher/com.android.quickstep.TouchInteractionService:@d3e8d3c flags=0x0}}
++        resizeMode=RESIZE_MODE_RESIZEABLE
++        mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false
++        supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA
++        configChanges=0xdf3
++        neverSandboxDisplayApis=false
++        alwaysSandboxDisplayApis=false
++        areBoundsLetterboxed=false
++        mCameraCompatControlState=hidden
++        mCameraCompatControlEnabled=true
++      * TaskFragment{e7e350f mode=multi-window organizerUid=10178 organizerProc=com.google.android.apps.nexuslauncher}
++
++  * Task{1e064cc #2 type=undefined U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}
++    mCreatedByOrganizer=true
++    * Task{6a0262a #4 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}
++      mBounds=Rect(0, 2340 - 1080, 3510)
++      mCreatedByOrganizer=true
++      isSleeping=false
++    * Task{d094315 #3 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}
++      mCreatedByOrganizer=true
++      isSleeping=false
++
++  Resumed activities in task display areas (from top to bottom):
++    Resumed: ActivityRecord{8bea93f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}
++
++  Activities waiting to stop:
++    Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++      Stop #0: ActivityRecord{79d89f0 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9 f}}
++
++  ResumedActivity: ActivityRecord{8bea93f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}
++
++ActivityTaskSupervisor state:
++  topDisplayFocusedRootTask=Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++  Display: mDisplayId=0 (organized)
++    init=1080x2340 440dpi mMinSizeOfResizeableTaskDp=220 base=1080x2400 420dpi cur=1080x2400 app=1080x2400 rng=1080x1080-2400x2400
++    deferred=false mLayoutNeeded=false
++  mLastOrientationSource=WindowedMagnification:0:31@56572426
++  deepestLastOrientationSource=ActivityRecord{8bea93f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}
++  overrideConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.361 fontWeightAdjustment=0}
++  mLayoutSeq=287
++  mCurrentFocus=Window{dab28ce u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++  mFocusedApp=ActivityRecord{8bea93f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}
++
++  mHoldScreenWindow=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++  mObscuringWindow=null
++  mLastWakeLockHoldingWindow=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++  mLastWakeLockObscuringWindow=null
++
++  displayId=0
++  mWallpaperTarget=null
++  mLastWallpaperZoomOut=0.0
++  token WallpaperWindowToken{4fdeb05 token=android.os.Binder@7fff67c}:
++    canShowWhenLocked=true
++    mWallpaperX=0.0
++    mWallpaperY=0.5
++    mWallpaperXStep=0.33333334
++    mWallpaperYStep=1.0
++    mWallpaperDisplayOffsetX=NA
++    mWallpaperDisplayOffsetY=NA
++
++  mSystemGestureExclusion=SkRegion()
++
++  Display areas in top down Z order:
++    * Leaf:36:36
++    * HideDisplayCutout:32:35
++      * OneHanded:34:35
++        * FullscreenMagnification:34:35
++          * Leaf:34:35
++      * FullscreenMagnification:33:33
++        * Leaf:33:33
++      * OneHanded:32:32
++        * Leaf:32:32
++    * WindowedMagnification:0:31
++      * HideDisplayCutout:26:31
++        * OneHanded:26:31
++          * FullscreenMagnification:29:31
++            * Leaf:29:31
++          * Leaf:28:28
++          * FullscreenMagnification:26:27
++            * Leaf:26:27
++      * Leaf:24:25
++      * HideDisplayCutout:18:23
++        * OneHanded:18:23
++          * FullscreenMagnification:18:23
++            * Leaf:18:23
++      * OneHanded:17:17
++        * FullscreenMagnification:17:17
++          * Leaf:17:17
++      * HideDisplayCutout:16:16
++        * OneHanded:16:16
++          * FullscreenMagnification:16:16
++            * Leaf:16:16
++      * OneHanded:15:15
++        * FullscreenMagnification:15:15
++          * Leaf:15:15
++      * HideDisplayCutout:0:14
++        * OneHanded:0:14
++          * ImePlaceholder:13:14
++            * ImeContainer
++          * FullscreenMagnification:0:12
++            * Leaf:3:12
++            * DefaultTaskDisplayArea (organized)
++            * Leaf:0:1
++
++  Task display areas in top down Z order:
++    TaskDisplayArea DefaultTaskDisplayArea
++      overrideConfig={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}
++      mPreferredTopFocusableRootTask=Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++      mLastFocusedRootTask=Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++      Application tokens in top down Z order:
++      * Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=2}
++        bounds=[0,0][1080,2400]
++        * ActivityRecord{79d89f0 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9 f}}
++        * ActivityRecord{8bea93f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}
++      * Task{d28e898 #1 type=home U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}
++        bounds=[0,0][1080,2400]
++        * Task{45f403f #7 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity U=0 rootTaskId=1 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}
++          bounds=[0,0][1080,2400]
++          * ActivityRecord{58cd45e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}
++          * TaskFragment{e7e350f mode=multi-window organizerUid=10178 organizerProc=com.google.android.apps.nexuslauncher}
++            bounds=[0,0][1080,2400]
++      * Task{1e064cc #2 type=undefined U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}
++        bounds=[0,0][1080,2400]
++        * Task{6a0262a #4 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}
++          bounds=[0,2340][1080,3510]
++        * Task{d094315 #3 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}
++          bounds=[0,0][1080,2400]
++
++  no ScreenRotationAnimation 
++
++  rootHomeTask=Task=1
++
++  PinnedTaskController
++    mIsImeShowing=false
++    mImeHeight=0
++    mMinAspectRatio=0.41841003
++    mMaxAspectRatio=2.39
++
++  DisplayFrames w=1080 h=2400 r=0
++
++  DisplayPolicy
++    mCarDockEnablesAccelerometer=true mDeskDockEnablesAccelerometer=true
++    mDockMode=EXTRA_DOCK_STATE_UNDOCKED mLidState=LID_OPEN
++    mAwake=true mScreenOnEarly=true mScreenOnFully=true
++    mKeyguardDrawComplete=true mWindowManagerDrawComplete=true
++    mHdmiPlugged=false
++    mLastAppearance=FORCE_LIGHT_NAVIGATION_BARS
++    mLastBehavior=DEFAULT
++    mShowingDream=false mDreamingLockscreen=false
++    mStatusBar=Window{7b202ab u0 StatusBar}
++    mExpandedPanel=Window{108c033 u0 NotificationShade}
++    isKeyguardShowing=false
++    mNavigationBar=Window{dda3a0e u0 Taskbar}
++    mNavBarOpacityMode=2
++    mNavigationBarCanMove=false
++    mNavigationBarPosition=4
++    mLeftGestureHost=Window{dda3a0e u0 Taskbar}
++    mTopGestureHost=Window{7b202ab u0 StatusBar}
++    mRightGestureHost=Window{dda3a0e u0 Taskbar}
++    mBottomGestureHost=Window{dda3a0e u0 Taskbar}
++    mFocusedWindow=Window{dab28ce u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++    mTopFullscreenOpaqueWindowState=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++    mSystemBarColorApps={ActivityRecord{79d89f0 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9 f}}}
++    mNavBarColorWindowCandidate=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++    mNavBarBackgroundWindowCandidate=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++    mLastStatusBarAppearanceRegions=
++      AppearanceRegion{ bounds=[0,0][1080,2400]}
++    mLastLetterboxDetails=
++    mStatusBarBackgroundWindows=
++      Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++    mTopIsFullscreen=false
++    mImeInsetsConsumed=false
++    mForceShowNavigationBarEnabled=false mAllowLockscreenWhenOn=false
++    mRemoteInsetsControllerControlsSystemBars=false
++    mDecorInsetsInfo:
++      ROTATION_0={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,136][0,63], configInsets=[0,0][0,0], overrideConfigInsets=[0,136][0,63], nonDecorFrame=[0,0][1080,2400], overrideNonDecorFrame=[0,136][1080,2337], configFrame=[0,0][1080,2400], overrideConfigFrame=[0,136][1080,2337]}
++      ROTATION_90={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[136,0][0,63], configInsets=[0,0][0,0], overrideConfigInsets=[136,63][0,63], nonDecorFrame=[0,0][2400,1080], overrideNonDecorFrame=[136,0][2400,1017], configFrame=[0,0][2400,1080], overrideConfigFrame=[136,63][2400,1017]}
++      ROTATION_180={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,0][0,136], configInsets=[0,0][0,0], overrideConfigInsets=[0,63][0,136], nonDecorFrame=[0,0][1080,2400], overrideNonDecorFrame=[0,0][1080,2264], configFrame=[0,0][1080,2400], overrideConfigFrame=[0,63][1080,2264]}
++      ROTATION_270={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,0][136,63], configInsets=[0,0][0,0], overrideConfigInsets=[0,63][136,63], nonDecorFrame=[0,0][2400,1080], overrideNonDecorFrame=[0,0][2264,1017], configFrame=[0,0][2400,1080], overrideConfigFrame=[0,63][2264,1017]}
++    SystemGestures:
++      mDisplayCutoutTouchableRegionSize=32
++      mSwipeStartThreshold=Rect(63, 168 - 63, 63)
++      mSwipeDistanceThreshold=63
++
++  DisplayRotation
++    mCurrentAppOrientation=SCREEN_ORIENTATION_USER
++    mLastOrientation=2
++    mRotation=0 mDeferredRotationPauseCount=0
++    mLandscapeRotation=ROTATION_90 mSeascapeRotation=ROTATION_270
++    mPortraitRotation=ROTATION_0 mUpsideDownRotation=ROTATION_180
++    mSupportAutoRotation=true
++    WindowOrientationListener
++      mEnabled=true
++      mCurrentRotation=ROTATION_0
++      mSensorType=null
++      mSensor={Sensor name="Goldfish 3-axis Accelerometer", vendor="The Android Open Source Project", version=1, type=1, maxRange=39.300102, resolution=2.480159E-4, power=3.0, minDelay=10000}
++      mRate=2
++      AccelSensorJudge
++        mProposedRotation=0
++        mPredictedRotation=0
++        mLastFilteredX=0.0
++        mLastFilteredY=9.776321
++        mLastFilteredZ=0.812345
++        mLastFilteredTimestampNanos=1067676327044 (23.897907ms ago)
++        mTiltHistory={last: 5.0}
++        mFlat=false
++        mSwinging=false
++        mAccelerating=false
++        mOverhead=false
++        mTouched=false
++        mTiltToleranceConfig=[[-25, 70], [-25, 65], [-25, 60], [-25, 65]]
++
++    mCarDockRotation=-1 mDeskDockRotation=-1
++    mUserRotationMode=USER_ROTATION_LOCKED mUserRotation=ROTATION_0 mCameraRotationMode=0 mAllowAllRotations=unknown
++    mDemoHdmiRotation=ROTATION_90 mDemoHdmiRotationLock=false mUndockedHdmiRotation=-1
++    mLidOpenRotation=-1
++    mFixedToUserRotation=false
++  FoldController
++    mPauseAutorotationDuringUnfolding=false
++    mShouldDisableRotationSensor=false
++    mShouldIgnoreSensorRotation=false
++    mLastDisplaySwitchTime=0
++    mLastHingeAngleEventTime=0
++    mDeviceState=FOLDED
++
++    RotationHistory
++      11-14 16:42:45.668 ROTATION_0 to ROTATION_90
++        source=ActivityRecord{d1f4f67 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t8} SCREEN_ORIENTATION_SENSOR_LANDSCAPE
++        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0
++       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED
++      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }
++       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false
++      11-14 16:42:48.079 ROTATION_90 to ROTATION_0
++        source=ActivityRecord{d1f4f67 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t8} SCREEN_ORIENTATION_PORTRAIT
++        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0
++       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED
++      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }
++       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false
++      11-14 16:42:59.957 ROTATION_0 to ROTATION_90
++        source=ActivityRecord{d1f4f67 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t8} SCREEN_ORIENTATION_USER_LANDSCAPE
++        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0
++       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED
++      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }
++       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false
++      11-14 16:53:48.246 ROTATION_90 to ROTATION_0
++        source=ActivityRecord{bdb002c u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t8} SCREEN_ORIENTATION_USER
++        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0
++       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED
++      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }
++       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false
++
++        RotationLockHistory
++          11-14 16:40:53.936: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent
++          11-14 16:40:53.937: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent
++          11-14 16:54:13.589: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent
++          11-14 16:54:13.696: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent
++          11-14 16:54:13.856: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=DeviceStateRotationLockSettingController#readPersistedSetting
++          11-14 16:54:55.481: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent
++          11-14 16:54:55.483: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent
++          11-14 16:55:01.586: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=WindowManagerShellCommand#lock
++
++  InputConsumers:
++    name=recents_animation_input_consumer pid=1233 user=UserHandle{0}
++
++  WindowInsetsStateController
++    InsetsState
++      mDisplayFrame=Rect(0, 0 - 1080, 2400)
++      mDisplayCutout=DisplayCutout{insets=Rect(0, 136 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 136, 136), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2400 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.75} cutoutSpec={M 41,77 a 40,40 0 1 0 80,0 40,40 0 1 0 -80,0 Z @left} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}
++      mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=0, center=Point(0, 0)}, RoundedCorner{position=TopRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomLeft, radius=0, center=Point(0, 0)}]}
++      mRoundedCornerFrame=Rect(0, 0 - 0, 0)
++      mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(827, 0 - 1043, 136) rotation=0}
++      mDisplayShape=DisplayShape{ spec=-1084927657 displayWidth=1080 displayHeight=2340 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}
++        InsetsSource id=be880001 type=navigationBars frame=[0,2337][1080,2400] visible=true flags=SUPPRESS_SCRIM|ANIMATE_RESIZING sideHint=BOTTOM boundingRects=null
++        InsetsSource id=be880004 type=systemGestures frame=[0,0][78,2400] visible=true flags= sideHint=LEFT boundingRects=null
++        InsetsSource id=be880005 type=mandatorySystemGestures frame=[0,2316][1080,2400] visible=true flags= sideHint=BOTTOM boundingRects=null
++        InsetsSource id=be880006 type=tappableElement frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null
++        InsetsSource id=be880024 type=systemGestures frame=[1002,0][1080,2400] visible=true flags= sideHint=RIGHT boundingRects=null
++        InsetsSource id=d1510000 type=statusBars frame=[0,0][1080,136] visible=true flags= sideHint=TOP boundingRects=null
++        InsetsSource id=d1510005 type=mandatorySystemGestures frame=[0,0][1080,169] visible=true flags= sideHint=TOP boundingRects=null
++        InsetsSource id=d1510006 type=tappableElement frame=[0,0][1080,136] visible=true flags= sideHint=TOP boundingRects=null
++        InsetsSource id=3 type=ime frame=[0,0][0,0] visible=false flags= sideHint=NONE boundingRects=null
++        InsetsSource id=27 type=displayCutout frame=[0,0][1080,136] visible=true flags= sideHint=TOP boundingRects=null
++    Control map:
++      Window{dab28ce u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}:
++        InsetsSourceControl: {be880001 mType=navigationBars initiallyVisible mSurfacePosition=Point(0, 2337) mInsetsHint=Insets{left=0, top=0, right=0, bottom=63}}
++        InsetsSourceControl: {d1510000 mType=statusBars initiallyVisible mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=136, right=0, bottom=0}}
++      Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}:
++        InsetsSourceControl: {3 mType=ime mSurfacePosition=Point(0, 63) mInsetsHint=Insets{left=0, top=0, right=0, bottom=883}}
++    InsetsSourceProviders:
++      ImeInsetsSourceProvider
++        mSource=InsetsSource id=3 type=ime frame=[0,0][0,0] visible=false flags= sideHint=NONE boundingRects=null
++        mSourceFrame=Rect(0, 2274 - 1080, 2400)
++        mControl=InsetsSourceControl mId=3 mType=ime mLeash=Surface(name=Surface(name=5945b1d InputMethod)/@0x8fadf60 - animation-leash of insets_animation)/@0xb2af9f3 mInitiallyVisible=false mSurfacePosition=Point(0, 63) mInsetsHint=Insets{left=0, top=0, right=0, bottom=883} mSkipAnimationOnce=false
++        mInsetsHint=Insets{left=0, top=0, right=0, bottom=883} stale
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{5945b1d u0 InputMethod}
++        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=5945b1d InputMethod)/@0x8fadf60 - animation-leash of insets_animation)/@0xb2af9f3
++        mControlTarget=Window{7dae06f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity}
++        mImeShowing=false        showImePostLayout not scheduled, mImeRequester=null
++
++      InsetsSourceProvider
++        mSource=InsetsSource id=d1510006 type=tappableElement frame=[0,0][1080,136] visible=true flags= sideHint=TOP boundingRects=null
++        mSourceFrame=Rect(0, 0 - 1080, 136)
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{7b202ab u0 StatusBar}
++      InsetsSourceProvider
++        mSource=InsetsSource id=d1510005 type=mandatorySystemGestures frame=[0,0][1080,169] visible=true flags= sideHint=TOP boundingRects=null
++        mSourceFrame=Rect(0, 0 - 1080, 169)
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{7b202ab u0 StatusBar}
++      InsetsSourceProvider
++        mSource=InsetsSource id=d1510000 type=statusBars frame=[0,0][1080,136] visible=true flags= sideHint=TOP boundingRects=null
++        mSourceFrame=Rect(0, 0 - 1080, 136)
++        mControl=InsetsSourceControl mId=d1510000 mType=statusBars mLeash=Surface(name=Surface(name=7b202ab StatusBar)/@0x7b00ca1 - animation-leash of insets_animation)/@0x6b00a40 mInitiallyVisible=true mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=136, right=0, bottom=0} mSkipAnimationOnce=false
++        mInsetsHint=Insets{left=0, top=136, right=0, bottom=0}
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{7b202ab u0 StatusBar}
++        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=7b202ab StatusBar)/@0x7b00ca1 - animation-leash of insets_animation)/@0x6b00a40
++        mControlTarget=Window{dab28ce u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++      InsetsSourceProvider
++        mSource=InsetsSource id=be880024 type=systemGestures frame=[1002,0][1080,2400] visible=true flags= sideHint=RIGHT boundingRects=null
++        mSourceFrame=Rect(1002, 0 - 1080, 2400)
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{dda3a0e u0 Taskbar}
++      InsetsSourceProvider
++        mSource=InsetsSource id=be880006 type=tappableElement frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null
++        mSourceFrame=Rect(0, 0 - 0, 0)
++        mOverrideFrames={2011=Rect(0, 2337 - 1080, 2400), 2031=Rect(0, 0 - 0, 0)}
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{dda3a0e u0 Taskbar}
++      InsetsSourceProvider
++        mSource=InsetsSource id=be880005 type=mandatorySystemGestures frame=[0,2316][1080,2400] visible=true flags= sideHint=BOTTOM boundingRects=null
++        mSourceFrame=Rect(0, 2316 - 1080, 2400)
++        mOverrideFrames={2011=Rect(0, 2337 - 1080, 2400), 2031=Rect(0, 2316 - 1080, 2400)}
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{dda3a0e u0 Taskbar}
++      InsetsSourceProvider
++        mSource=InsetsSource id=be880004 type=systemGestures frame=[0,0][78,2400] visible=true flags= sideHint=LEFT boundingRects=null
++        mSourceFrame=Rect(0, 0 - 78, 2400)
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{dda3a0e u0 Taskbar}
++      InsetsSourceProvider
++        mSource=InsetsSource id=be880001 type=navigationBars frame=[0,2337][1080,2400] visible=true flags=SUPPRESS_SCRIM|ANIMATE_RESIZING sideHint=BOTTOM boundingRects=null
++        mSourceFrame=Rect(0, 2337 - 1080, 2400)
++        mOverrideFrames={2011=Rect(0, 2337 - 1080, 2400), 2031=Rect(0, 2337 - 1080, 2400)}
++        mControl=InsetsSourceControl mId=be880001 mType=navigationBars mLeash=Surface(name=Surface(name=dda3a0e Taskbar)/@0x1d273bd - animation-leash of insets_animation)/@0x9940d79 mInitiallyVisible=true mSurfacePosition=Point(0, 2337) mInsetsHint=Insets{left=0, top=0, right=0, bottom=63} mSkipAnimationOnce=false
++        mInsetsHint=Insets{left=0, top=0, right=0, bottom=63}
++        mIsLeashReadyForDispatching=true mHasPendingPosition=false
++        mWindowContainer=Window{dda3a0e u0 Taskbar}
++        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=dda3a0e Taskbar)/@0x1d273bd - animation-leash of insets_animation)/@0x9940d79
++        mControlTarget=Window{dab28ce u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++  InsetsPolicy
++    status: WINDOW_STATE_SHOWING
++    nav: WINDOW_STATE_SHOWING
++
++  KeyguardController:
++    mKeyguardShowing=false
++    mAodShowing=false
++    mKeyguardGoingAway=false
++   KeyguardShowing=false AodShowing=false KeyguardGoingAway=false DismissalRequested=false  Occluded=false DismissingKeyguardActivity=null TurnScreenOnActivity=null at display=0
++    mDismissalRequested=false
++
++  LockTaskController:
++    mLockTaskModeState=NONE
++    mLockTaskModeTasks=
++    mLockTaskPackages (userId:packages)=
++
++  mCurTaskIdForUser={0=9}
++  mUserRootTaskInFront={}
++  mVisibilityTransactionDepth=0
++  isHomeRecentsComponent=true
++  mNoHistoryActivities=[]
++
++  TaskOrganizerController:
++      android.window.ITaskOrganizer$Stub$Proxy@34ec32f uid=10180 (active):
++        (fullscreen) Task{d28e898 #1 type=home}
++        (fullscreen) Task{1e064cc #2 type=undefined}
++        (multi-window) Task{d094315 #3 type=undefined}
++        (multi-window) Task{6a0262a #4 type=undefined}
++        (fullscreen) Task{679720c #9 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}
++
++  VisibleActivityProcess:[ ProcessRecord{579f6a4 5689:dev.ullmann.lumo.lumo_lernen.coachpreview/u0a209} ProcessRecord{4e2ee8f 7113:dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game/u0a209}]
++  NumNonAppVisibleWindowUidMap:[ 10180:1 10178:1]
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0409-return-final-closed-mailbox.json
+@@ -0,0 +1,20 @@
++{
++  "command": [
++    "adb",
++    "shell",
++    "find",
++    "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1",
++    "-maxdepth",
++    "2",
++    "-type",
++    "f",
++    "-name",
++    "state.json"
++  ],
++  "returncode": 0,
++  "elapsed_seconds": 0.02633323599980031,
++  "stdout_bytes": 134,
++  "stderr_bytes": 0,
++  "stdout_sha256": "48298a293602d6d5fc8d49b609fd08249f0a465a0eab3ea55bbc8cb224351fb6",
++  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++}
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/0409-return-final-closed-mailbox.stdout
+@@ -0,0 +1 @@
++/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1/8a54abd67d7e9f0ea13f23f09d2708d9/state.json
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/c4-final-return-7c5/source.json
+@@ -0,0 +1,201 @@
++{
++  "schema": 1,
++  "source_type": "actual_failed_diagnostic_return",
++  "repository": "Ullmann27/lumo-lernen",
++  "diagnostic_source": "cd03e1e2da22efa2e982795cddc12217f821b14b",
++  "app_source": "51ec0ac43f3e2aaac065e285e13cf5db5b5875d2",
++  "observer_source": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
++  "native_source": "bebf7bba48f09afc834469db0ea3c5541a184f55",
++  "run_id": 43616584326,
++  "run_attempt": 1,
++  "job_id": 132512855551,
++  "artifact_id": 14122019894,
++  "artifact_bytes": 140850732,
++  "artifact_sha256": "03dbde65dba65c00d3b36f0283d3d66fee7778d9bd176005c66e470c16eeaaaa",
++  "full_archive_sha256_and_all_member_crcs_verified": true,
++  "c4_inventory_files_verified": 1335,
++  "status_of_original_diagnostic": "FAIL",
++  "session_token": "8a54abd67d7e9f0ea13f23f09d2708d9",
++  "round_id": "b20d2224f8417b12803c2034b431e3ca",
++  "native_pid_before_return": 7113,
++  "host_pid": 5689,
++  "files": [
++    {
++      "path": "0392-return-final-second-000-state.json",
++      "archive_path": "c4/commands/0392-return-final-second-000-state.json",
++      "bytes": 480,
++      "sha256": "72581bbb6598e4f49a14506aa964deac6553a4bf2683197d9260d0acba0dd007",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0392-return-final-second-000-state.stderr",
++      "archive_path": "c4/commands/0392-return-final-second-000-state.stderr",
++      "bytes": 0,
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0392-return-final-second-000-state.stdout",
++      "archive_path": "c4/commands/0392-return-final-second-000-state.stdout",
++      "bytes": 568,
++      "sha256": "c3a963e3717010e8050653c3a44908573ae1bd013bb7d2a07e9276ed7a0d99b2",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0400-return-final-second-000-preferences.json",
++      "archive_path": "c4/commands/0400-return-final-second-000-preferences.json",
++      "bytes": 444,
++      "sha256": "52b2af918140544eb32a3e6182b139e79fd7f82d68d42357009ac4503ca7254c",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0400-return-final-second-000-preferences.stderr",
++      "archive_path": "c4/commands/0400-return-final-second-000-preferences.stderr",
++      "bytes": 0,
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0400-return-final-second-000-preferences.stdout",
++      "archive_path": "c4/commands/0400-return-final-second-000-preferences.stdout",
++      "bytes": 2491,
++      "sha256": "0cd65d3aedbd34d5be92fb2345ce5ceb5b8d8c33cbe72bd4a3dd2e3b07e12f0c",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0404-return-final-touch.json",
++      "archive_path": "c4/commands/0404-return-final-touch.json",
++      "bytes": 404,
++      "sha256": "918cbf9d49f8ea4dd07bb3529712d0d00acfbfba9b1abe012808c067af473328",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0404-return-final-touch.stderr",
++      "archive_path": "c4/commands/0404-return-final-touch.stderr",
++      "bytes": 0,
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0404-return-final-touch.stdout",
++      "archive_path": "c4/commands/0404-return-final-touch.stdout",
++      "bytes": 0,
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0405-return-final-native-exit.json",
++      "archive_path": "c4/commands/0405-return-final-native-exit.json",
++      "bytes": 395,
++      "sha256": "58f56ec275c7dacaf48e3e7ca76771a13e05f09186c148ae5ccde5c2482ba849",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0405-return-final-native-exit.stderr",
++      "archive_path": "c4/commands/0405-return-final-native-exit.stderr",
++      "bytes": 0,
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0405-return-final-native-exit.stdout",
++      "archive_path": "c4/commands/0405-return-final-native-exit.stdout",
++      "bytes": 5,
++      "sha256": "8562db7f9631ec4394dbfacac8fef9b8bd4f6079acfe4e371785affc5c8bcce9",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0406-return-final-return-activity.json",
++      "archive_path": "c4/commands/0406-return-final-return-activity.json",
++      "bytes": 376,
++      "sha256": "8ad8ac5c642128d8f5e49f57134deaa9ea90a11292877e423138aae7774c8a10",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0406-return-final-return-activity.stderr",
++      "archive_path": "c4/commands/0406-return-final-return-activity.stderr",
++      "bytes": 0,
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0406-return-final-return-activity.stdout",
++      "archive_path": "c4/commands/0406-return-final-return-activity.stdout",
++      "bytes": 39832,
++      "sha256": "a3417f122b4fb7e2dc8577e4878497e6ce823d1d651057217a788ce17d6234ed",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0407-return-final-native-exit.json",
++      "archive_path": "c4/commands/0407-return-final-native-exit.json",
++      "bytes": 395,
++      "sha256": "527ea87ecba81c0aa3b8e06dbcd3e040d297ec717ca0f04de7b0ac3ca392ba76",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0407-return-final-native-exit.stderr",
++      "archive_path": "c4/commands/0407-return-final-native-exit.stderr",
++      "bytes": 0,
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0407-return-final-native-exit.stdout",
++      "archive_path": "c4/commands/0407-return-final-native-exit.stdout",
++      "bytes": 0,
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0408-return-final-return-activity.json",
++      "archive_path": "c4/commands/0408-return-final-return-activity.json",
++      "bytes": 376,
++      "sha256": "088140bb2d5119abc2a358a1b0af0bed66dafc53db2de3959023675a938a25aa",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0408-return-final-return-activity.stderr",
++      "archive_path": "c4/commands/0408-return-final-return-activity.stderr",
++      "bytes": 0,
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0408-return-final-return-activity.stdout",
++      "archive_path": "c4/commands/0408-return-final-return-activity.stdout",
++      "bytes": 39921,
++      "sha256": "15ebca68cab4904bd893b15189bbd190e5effc2dd2441e2df64b4caadf458bb6",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0409-return-final-closed-mailbox.json",
++      "archive_path": "c4/commands/0409-return-final-closed-mailbox.json",
++      "bytes": 513,
++      "sha256": "e1101b651e0b723a5168f9f8798cf1240a0c864aba90c0ed380abd8fb874ffa3",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0409-return-final-closed-mailbox.stderr",
++      "archive_path": "c4/commands/0409-return-final-closed-mailbox.stderr",
++      "bytes": 0,
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "original_inventory_verified": true
++    },
++    {
++      "path": "0409-return-final-closed-mailbox.stdout",
++      "archive_path": "c4/commands/0409-return-final-closed-mailbox.stdout",
++      "bytes": 134,
++      "sha256": "48298a293602d6d5fc8d49b609fd08249f0a465a0eab3ea55bbc8cb224351fb6",
++      "original_inventory_verified": true
++    }
++  ],
++  "chronology": [
++    "0404: one actual stationary 120ms Back touch, returncode 0.",
++    "0405/0406: native process still present, first Activity observation.",
++    "0407: native process absent; pidof returncode 1, empty stdout and stderr.",
++    "0408: MainActivity resumed and focused.",
++    "0409: find returns the current session state.json path; returncode 0, stderr empty."
++  ],
++  "truth_limit": "This run contains no later mailbox query, empty-find response or completed second return. Any later successful cleanup response in a regression is synthetic.",
++  "pre_touch_fixture_scope": "0392 and0400 are the actual last pre-Back-touch state and matching valid preferences. Later reuse in any replay is synthetic, not an observed post-return read."
++}
+--- /dev/null
++++ b/tools/android_qa/tests/test_connect_four_return_observation.py
+@@ -0,0 +1,344 @@
++"""Controlled replay of the final-return boundary, not Android acceptance.
++
++The original diagnostic ended with a current mailbox still present. No later
++empty answer was observed there; later empty find answers and repeated answers
++in these tests are explicitly synthetic. ADB execution, clock, the two native
++pre-touch observations/PNG and Flutter UI/navigation boundaries are controlled.
++The actual native_touch/stable_target, original, return_to_flutter,
++read_preferences and persisted_round paths execute. Original paused state and
++preferences predate the Back touch; their reuse afterward is synthetic.
++"""
++from __future__ import annotations
++
++from contextlib import ExitStack
++import copy
++import hashlib
++import importlib.util
++import io
++import json
++import os
++from pathlib import Path
++import subprocess
++import sys
++import tempfile
++from types import SimpleNamespace
++import unittest
++from unittest import mock
++
++from PIL import Image
++
++ROOT = Path(__file__).resolve().parents[3]
++sys.path.insert(0, str(ROOT / 'tools/android_qa'))
++SOURCE = Path(os.environ.get('LUMO_C4_PROBE_SOURCE',
++    str(ROOT / '.github/probes/lumo_connect_four_android_probe.py')))
++SPEC = importlib.util.spec_from_file_location('c4_return_subject', SOURCE)
++PROBE = importlib.util.module_from_spec(SPEC)
++SPEC.loader.exec_module(PROBE)
++C4 = PROBE.contract
++FIXTURE = Path(__file__).with_name('fixtures') / 'c4-final-return-7c5'
++
++
++def original(name):
++    return {
++        'metadata': json.loads((FIXTURE / (name + '.json')).read_text()),
++        'stdout': (FIXTURE / (name + '.stdout')).read_bytes(),
++        'stderr': (FIXTURE / (name + '.stderr')).read_bytes(),
++    }
++
++
++TOUCH = original('0404-return-final-touch')
++LIVE = original('0405-return-final-native-exit')
++NATIVE = original('0406-return-final-return-activity')
++DEAD = original('0407-return-final-native-exit')
++MAIN = original('0408-return-final-return-activity')
++REMAINDER = original('0409-return-final-closed-mailbox')
++STATE = json.loads(original('0392-return-final-second-000-state')['stdout'])
++PREFERENCES = original('0400-return-final-second-000-preferences')
++PREFS_PATH = PREFERENCES['metadata']['command'][-1]
++FIND_COMMAND = REMAINDER['metadata']['command']
++
++
++def derived(response, *, stdout=None, stderr=None, returncode=None):
++    """Explicit synthetic later/negative response, leaving fixture bytes intact."""
++    result = copy.deepcopy(response)
++    for key, value in (('stdout', stdout), ('stderr', stderr)):
++        if value is not None:
++            result[key] = value
++    if returncode is not None:
++        result['metadata']['returncode'] = returncode
++    return result
++
++
++def sample(*, pid=DEAD, activity=MAIN, mailbox=REMAINDER):
++    return {'pid': pid, 'activity': activity, 'mailbox': mailbox}
++
++
++class Clock:
++    def __init__(self, start=0.0):
++        self.value = start
++
++    def monotonic(self):
++        return self.value
++
++    def sleep(self, seconds):
++        self.value += seconds
++
++
++class ReturnBoundary:
++    def __init__(self, out, clock, samples, frame):
++        self.out, self.clock, self.samples = out, clock, samples
++        self.commands, self.inputs = [], []
++        self.round = -1
++        self.find_at = None
++        self.stage_at = {}
++        self.return_start = None
++        self.after_preferences = PREFERENCES
++        self.value = PROBE.Probe.__new__(PROBE.Probe)
++        value = self.value
++        value.out, value.deadline, value.counter = out, 900.0, 0
++        value.token = STATE['token']
++        value.mailbox = FIND_COMMAND[3] + '/' + value.token
++        value.observations, value.transitions, value.returns = [], [], []
++        png = out / 'synthetic-pre-touch.png'
++        png.write_bytes(frame)
++        point = list(map(int, TOUCH['metadata']['command'][4:6]))
++        x, y = point
++        target = {'id': 'back', 'text': 'Zurück', 'point': point,
++                  'bounds': [x-24, y-24, x+24, y+24], 'size_dp': [48.0, 48.0]}
++        observations = [
++            {'id': 'controlled-pre-touch-' + str(index),
++             'state': copy.deepcopy(STATE), 'pid': 7113, 'density': 1.0,
++             'pixels': [1080, 2400], 'target': copy.deepcopy(target),
++             'lifecycle': {'active': True, 'stamp': index+1},
++             'frame': png.name, 'frame_sha256': C4.sha256(png)}
++            for index in range(2)
++        ]
++        self.before = observations[-1]
++        value.wait_observation = mock.Mock(side_effect=observations)
++        value.native_touch = mock.Mock(wraps=value.native_touch)
++        value.ui = SimpleNamespace(
++            capture_flutter_ready=mock.Mock(return_value={'file': 'synthetic-flutter.png'}),
++            read_live_nodes=mock.Mock(return_value=[
++                {'text': 'Spiel pausiert'}, {'text': 'Fortsetzen'}]))
++        value.flutter_touch = mock.Mock(return_value='synthetic-leave-touch.json')
++        value.wait_for_flutter_control = mock.Mock(return_value='synthetic-games-ready.json')
++
++    def command(self, arguments, *, stdout, stderr, timeout, check):
++        if arguments[:4] == ['adb', 'shell', 'input', 'swipe']:
++            if arguments != TOUCH['metadata']['command']:
++                raise AssertionError('Unexpected synthetic input: ' + repr(arguments))
++            response, kind = TOUCH, 'touch'
++            self.inputs.append(list(arguments))
++        elif arguments[:3] == ['adb', 'shell', 'pidof']:
++            self.round += 1
++            response, kind = self.samples[min(self.round, len(self.samples)-1)]['pid'], 'pid'
++        elif arguments[:4] == ['adb', 'shell', 'dumpsys', 'activity']:
++            response, kind = self.samples[min(self.round, len(self.samples)-1)]['activity'], 'activity'
++        elif arguments[:3] == ['adb', 'shell', 'find']:
++            if arguments != FIND_COMMAND:
++                raise AssertionError('The original mailbox search changed: ' + repr(arguments))
++            response, kind = self.samples[min(self.round, len(self.samples)-1)]['mailbox'], 'find'
++        elif arguments == ['adb', 'exec-out', 'cat', PREFS_PATH]:
++            response, kind = self.after_preferences, 'preferences'
++        else:
++            raise AssertionError('Unexpected device command: ' + repr(arguments))
++        self.clock.value += response['metadata']['elapsed_seconds']
++        if kind == 'touch':
++            self.return_start = self.clock.value
++        if kind in self.stage_at:
++            self.clock.value = self.stage_at[kind]
++        if kind == 'find' and self.find_at is not None:
++            self.clock.value = self.find_at(self)
++        self.commands.append({'arguments': list(arguments), 'kind': kind,
++                              'stdout': response['stdout'], 'stderr': response['stderr']})
++        return subprocess.CompletedProcess(arguments, response['metadata']['returncode'],
++                                           response['stdout'], response['stderr'])
++
++
++class ReturnObservationTests(unittest.TestCase):
++    @classmethod
++    def setUpClass(cls):
++        output = io.BytesIO()
++        Image.new('RGB', (1080, 2400), '#647880').save(output, format='PNG')
++        cls.synthetic_frame = output.getvalue()
++
++    def setUp(self):
++        self.temp = tempfile.TemporaryDirectory()
++        self.addCleanup(self.temp.cleanup)
++        self.root = Path(self.temp.name)
++        self.stack = ExitStack()
++        self.addCleanup(self.stack.close)
++        self.count = 0
++
++    def boundary(self, samples, *, start=0.0):
++        self.count += 1
++        out = self.root / str(self.count)
++        out.mkdir()
++        clock = Clock(start)
++        result = ReturnBoundary(out, clock, samples, self.synthetic_frame)
++        self.stack.enter_context(mock.patch.object(PROBE.time, 'monotonic', clock.monotonic))
++        self.stack.enter_context(mock.patch.object(PROBE.time, 'sleep', clock.sleep))
++        self.stack.enter_context(mock.patch.object(PROBE.subprocess, 'run', result.command))
++        return result
++
++    def assert_one_back(self, boundary):
++        boundary.value.native_touch.assert_called_once_with('return-final', 'back')
++        self.assertEqual(boundary.inputs, [TOUCH['metadata']['command']])
++        receipt = json.loads((boundary.out / 'return-final-touch.json').read_text())
++        self.assertEqual((boundary.out / receipt['command_original']).read_bytes(), b'')
++
++    def assert_no_acceptance(self, boundary):
++        self.assert_one_back(boundary)
++        self.assertEqual(boundary.value.returns, [])
++        boundary.value.ui.capture_flutter_ready.assert_not_called()
++        boundary.value.flutter_touch.assert_not_called()
++        boundary.value.wait_for_flutter_control.assert_not_called()
++        self.assertFalse(any(item['kind'] == 'preferences' for item in boundary.commands))
++        self.assertFalse((boundary.out / 'return-final-return.json').exists())
++
++    def test_fixture_bytes_metadata_and_actual_token_are_bound_to_originals(self):
++        manifest = json.loads((FIXTURE / 'source.json').read_text())
++        for item in manifest['files']:
++            data = (FIXTURE / item['path']).read_bytes()
++            self.assertEqual(len(data), item['bytes'])
++            self.assertEqual(hashlib.sha256(data).hexdigest(), item['sha256'])
++        for path in FIXTURE.glob('*.json'):
++            if path.name == 'source.json':
++                continue
++            metadata = json.loads(path.read_text())
++            for stream in ('stdout', 'stderr'):
++                data = path.with_suffix('.' + stream).read_bytes()
++                self.assertEqual(len(data), metadata[stream + '_bytes'])
++                self.assertEqual(hashlib.sha256(data).hexdigest(), metadata[stream + '_sha256'])
++        self.assertEqual(REMAINDER['stdout'],
++            (FIND_COMMAND[3] + '/' + STATE['token'] + '/state.json\n').encode())
++        self.assertTrue(STATE['paused'])
++        C4.validate_state(STATE)
++        C4.persisted_round(C4.preferences(PREFERENCES['stdout'].decode()), STATE)
++
++    def test_original_current_mailbox_remainder_requires_a_fresh_later_empty_observation(self):
++        boundary = self.boundary([
++            sample(pid=LIVE, activity=NATIVE), sample(),
++            sample(mailbox=derived(REMAINDER, stdout=b''))])
++        result = boundary.value.return_to_flutter('return-final')
++        self.assertIs(result, boundary.before)
++        self.assert_one_back(boundary)
++        self.assertEqual([item['kind'] for item in boundary.commands],
++            ['touch', 'pid', 'activity', 'pid', 'activity', 'find',
++             'pid', 'activity', 'find', 'preferences'])
++        finds = sorted((boundary.out / 'commands').glob('*-closed-mailbox.stdout'))
++        self.assertEqual([p.read_bytes() for p in finds], [REMAINDER['stdout'], b''])
++        self.assertEqual(len(list((boundary.out / 'commands').glob('*.json'))), len(boundary.commands))
++        for metadata_path, command in zip(sorted((boundary.out / 'commands').glob('*.json')), boundary.commands):
++            metadata = json.loads(metadata_path.read_text())
++            self.assertEqual(metadata['command'], command['arguments'])
++            for stream in ('stdout', 'stderr'):
++                data = metadata_path.with_suffix('.' + stream).read_bytes()
++                self.assertEqual(data, command[stream])
++                self.assertEqual(metadata[stream + '_sha256'], hashlib.sha256(data).hexdigest())
++        item = boundary.value.returns[0]
++        self.assertEqual(boundary.out / item['closed_mailbox'], finds[-1])
++        self.assertEqual(Path(item['native_exit']).name, '0007-return-final-native-exit.stdout')
++        self.assertEqual(Path(item['activity']).name, '0008-return-final-return-activity.stdout')
++        boundary.value.flutter_touch.assert_called_once_with('Zur Spieleauswahl', 'return-final-to-games', scrolls=3)
++        boundary.value.wait_for_flutter_control.assert_called_once_with(C4.PORTAL, 'return-final-games')
++        self.assertLess(boundary.clock.value - boundary.return_start, 45)
++
++    def test_permanent_current_or_foreign_mailbox_remains_failure_without_input_repetition(self):
++        foreign = REMAINDER['stdout'].replace(STATE['token'].encode(), b'f' * 32)
++        for raw in (REMAINDER['stdout'], foreign):
++            with self.subTest(raw=raw):
++                boundary = self.boundary([sample(mailbox=derived(REMAINDER, stdout=raw))])
++                with self.assertRaises((RuntimeError, TimeoutError)):
++                    boundary.value.return_to_flutter('return-final')
++                self.assert_no_acceptance(boundary)
++                files = sorted((boundary.out / 'commands').glob('*-closed-mailbox.stdout'))
++                self.assertGreater(len(files), 1)
++                self.assertTrue(all(p.read_bytes() == raw for p in files))
++                self.assertGreaterEqual(boundary.clock.value - boundary.return_start, 45.0)
++
++    def test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity(self):
++        foreign_main = derived(MAIN, stdout=b'topResumedActivity: foreign.app/MainActivity\n')
++        missing = derived(MAIN, stdout=b'No resumed activity\n')
++        mixed = derived(MAIN, stdout=MAIN['stdout'] + b'\nmResumedActivity: ' +
++                        C4.PACKAGE.encode() + b'/ConnectFourGameActivity\n')
++        for pid, activity in ((LIVE, MAIN), (DEAD, NATIVE), (DEAD, foreign_main),
++                              (DEAD, missing), (DEAD, mixed)):
++            with self.subTest(pid=pid['stdout'], activity=activity['stdout'][-100:]):
++                boundary = self.boundary([sample(pid=pid, activity=activity,
++                    mailbox=derived(REMAINDER, stdout=b''))])
++                with self.assertRaises(RuntimeError):
++                    boundary.value.return_to_flutter('return-final')
++                self.assert_no_acceptance(boundary)
++                self.assertFalse(any(item['kind'] == 'find' for item in boundary.commands))
++
++    def test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success(self):
++        for later in (sample(pid=LIVE, mailbox=derived(REMAINDER, stdout=b'')),
++                      sample(activity=NATIVE, mailbox=derived(REMAINDER, stdout=b''))):
++            with self.subTest(later=later['pid']['stdout']):
++                boundary = self.boundary([sample(), later])
++                with self.assertRaises(RuntimeError):
++                    boundary.value.return_to_flutter('return-final')
++                self.assert_no_acceptance(boundary)
++                self.assertEqual([item['stdout'] for item in boundary.commands if item['kind'] == 'find'],
++                                 [REMAINDER['stdout']])
++
++    def test_find_finished_at_or_after_local_deadline_cannot_accept_empty_output(self):
++        for elapsed, accepted in ((44.999, True), (45.0, False), (45.001, False)):
++            with self.subTest(elapsed=elapsed):
++                boundary = self.boundary([sample(mailbox=derived(REMAINDER, stdout=b''))])
++                boundary.find_at = lambda value, seconds=elapsed: value.return_start + seconds
++                if accepted:
++                    self.assertIs(boundary.value.return_to_flutter('return-final'), boundary.before)
++                    self.assert_one_back(boundary)
++                else:
++                    with self.assertRaisesRegex(TimeoutError, '45-second observation deadline'):
++                        boundary.value.return_to_flutter('return-final')
++                    self.assert_no_acceptance(boundary)
++                files = list((boundary.out / 'commands').glob('*-closed-mailbox.stdout'))
++                self.assertEqual(len(files), 1)
++                self.assertEqual(files[0].read_bytes(), b'')
++
++    def test_global_deadline_during_find_saves_raw_answer_but_cannot_accept_it(self):
++        for finished in (900.0, 900.001):
++            with self.subTest(finished=finished):
++                boundary = self.boundary([sample(mailbox=derived(REMAINDER, stdout=b''))], start=890)
++                boundary.find_at = lambda _, seconds=finished: seconds
++                with self.assertRaisesRegex(TimeoutError, '900 seconds'):
++                    boundary.value.return_to_flutter('return-final')
++                self.assert_no_acceptance(boundary)
++                files = list((boundary.out / 'commands').glob('*-closed-mailbox.json'))
++                self.assertEqual(len(files), 1)
++                self.assertEqual(files[0].with_suffix('.stdout').read_bytes(), b'')
++                self.assertEqual(files[0].with_suffix('.stderr').read_bytes(), b'')
++
++    def test_expired_global_or_local_activity_read_never_starts_an_additional_find(self):
++        for finished in (900.0, 45.0):
++            with self.subTest(finished=finished):
++                boundary = self.boundary([sample(mailbox=derived(REMAINDER, stdout=b''))])
++                # The return starts after the controlled real native_touch path.
++                def stage_after_touch(arguments, **kwargs):
++                    response = boundary.command(arguments, **kwargs)
++                    if arguments[:4] == ['adb', 'shell', 'dumpsys', 'activity']:
++                        boundary.clock.value = (900.0 if finished == 900.0
++                                                else boundary.return_start + finished)
++                    return response
++                with mock.patch.object(PROBE.subprocess, 'run', stage_after_touch):
++                    with self.assertRaises(TimeoutError):
++                        boundary.value.return_to_flutter('return-final')
++                self.assert_no_acceptance(boundary)
++                self.assertFalse(any(item['kind'] == 'find' for item in boundary.commands))
++
++    def test_failed_find_is_not_an_empty_mailbox_proof(self):
++        for response in (derived(REMAINDER, stdout=b'', returncode=1),
++                         derived(REMAINDER, stdout=b'', stderr=b'Permission denied\n')):
++            with self.subTest(returncode=response['metadata']['returncode']):
++                boundary = self.boundary([sample(mailbox=response)])
++                with self.assertRaisesRegex(ValueError, 'Original read failed'):
++                    boundary.value.return_to_flutter('return-final')
++                self.assert_no_acceptance(boundary)
++                self.assertEqual(sum(item['kind'] == 'find' for item in boundary.commands), 1)
++
++
++if __name__ == '__main__':
++    unittest.main()

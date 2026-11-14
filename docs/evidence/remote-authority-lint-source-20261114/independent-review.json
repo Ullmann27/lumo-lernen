@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "reviewer": "/root/pipeline_repair",
+  "created_utc": "2026-11-14 17:27:11 UTC",
+  "status": "NO_CONCRETE_STATIC_SOURCE_BLOCKER_FOUND",
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "path": ".github/workflows/lumo-next-authorities-lint.yml",
+    "bytes": 8011,
+    "sha256": "b043fcd5cdc9ef963ca07a180124cac65e77380378ef48fc2559b848915600f9",
+    "git_blob": "47bd17fe808d3843bb76399cf9c0f74c5a64969c",
+    "readback": "complete fetch_blob UTF-8 text independently hashed"
+  },
+  "checks": [
+    "Only push on integration/lumo-next-authorities-lint-20261114, exact repository/ref/event guard, contents:read, no manual/PR/product activation, no cancel-in-progress.",
+    "Pinned checkout of actual github.sha, credentials not persisted, non-cone sparse patterns name exactly the qualification workflow and lint workflow.",
+    "Fresh evidence directory lies in runner.temp. GITHUB_ENV assignment happens in Prepare's run script; no unsupported job.env runner context is introduced.",
+    "Before syntax work, actual HEAD must equal GITHUB_SHA and both workflow bytes must equal git show at that HEAD; Git blob identities are recalculated. Complete commit/tree/index originals are retained.",
+    "Python heredoc extraction recognizes only shell lines whose trimmed end is the exact quoted PY introducer. It advances through the complete heredoc before resuming; the parser's own matching-expression line is not another introducer. Its two actual heredocs are at original lines 51 and 132, closed at 101 and 149. textwrap.dedent retains internal Python nesting; ast.parse compiles syntax without importing/executing the extracted repository program. Unclosed bodies or syntax errors fail.",
+    "The Actionlint archive must match SHA256 8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8 before extraction; only actionlint is extracted and its full bytes must match c872d6db8c6bf83a8eaa704fc93999f027d55dffbc63b8a6abdccb47df5f4cd4 before invocation.",
+    "One Actionlint validation invocation receives both exact paths; the separate --version query is not a second lint validation. Complete stdout, stderr and the actual shell return code are saved; nonzero exits remain failure.",
+    "After successful lint, git diff must be empty, both workflow byte hashes must still match and the complete staged-index listing must be identical. Final status is syntax qualification only.",
+    "Upload requires successful Prepare and uses the fixed runner.temp/run/attempt path. It cannot derive a root-directory upload from an empty evidence environment. Hidden originals and no-files failure remain."
+  ],
+  "limitations": [
+    "This is a static source review, not an AST/Actionlint/CI success result.",
+    "The qualifying workflow's future Speech/V3 bytes are checked by the proposed CI at its own actual commit; this review does not pre-qualify those future bytes.",
+    "The official release/asset metadata was supplied as independently checked by Root; this review verifies the hardcoded digest/execution sequence without fetching or executing the archive.",
+    "AST failure tracebacks remain in the job output; the success-only syntax-result JSON is not created on an AST failure.",
+    "Local environment is unavailable. No local review-file write is claimed; this exact report is retained in functions.store for Root evidence capture."
+  ],
+  "concrete_blockers": [],
+  "execution": {
+    "AST_parser": 0,
+    "Actionlint": 0,
+    "shell_processes": 0,
+    "repository_imports": 0,
+    "tests": 0,
+    "engine_or_device": 0,
+    "source_edits": 0,
+    "Git_or_CI_mutations": 0
+  }
+}

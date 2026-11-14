@@ -1,0 +1,686 @@
+{
+  "kind": "read_only_source_binding_no_tests",
+  "source_freeze": {
+    "bytes": 1554,
+    "sha256": "852d92fe7d3edefe6bb689be9909b6e51047f581641e2cb1d1a4d28f0bc88e54",
+    "git_blob": "865a5468762bc0e5dc5d5669f2718a23552fd3bd"
+  },
+  "baseline_binding": {
+    "bytes": 8497,
+    "sha256": "88c69e315739c86743e0c1a06013d8cfda996bbe8f88f0c45b41c1cb7627a6de",
+    "git_blob": "29fe55db6fa1a77b856354ef7a5a936c68f43e22"
+  },
+  "patch": {
+    "bytes": 6256,
+    "sha256": "bfadad8a2e3190f2ccdfc9eb52b39a0498b7258842a934855ba11ef55fdb034f",
+    "git_blob": "49ea55c0d407ff40755f1c34bfc26062c6fb9f2e"
+  },
+  "baseline_host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "baseline_tree": "a97942c991cbb38d22c8b97f06a3e5bb162ab942",
+  "records": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "before": {
+        "bytes": 30044,
+        "sha256": "6623bcff15f2e3d1425c46fd044be2e0ffbe6018b1f4567634ae1429ae2c4658",
+        "git_blob": "dae27bce72a09d786fd5a96cb39d10cc716dc5e2"
+      },
+      "after": {
+        "bytes": 30524,
+        "sha256": "93631ce630ac1f73a027d21f48a773cb2b3d7d18d3d7719caf8727893a9412c7",
+        "git_blob": "9a80d1092cc50123aa638d81f3d4a75897fb2c2e"
+      },
+      "byte_identical": false
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "before": {
+        "bytes": 4401,
+        "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+        "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+      },
+      "after": {
+        "bytes": 4401,
+        "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+        "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "before": {
+        "bytes": 40210,
+        "sha256": "0413fd322e16a68947e9f9a57abf957a90f43b404b0a9074e6559dc11907409c",
+        "git_blob": "6c9a4c24da94e485d47f453af9ac82f5d1994ad4"
+      },
+      "after": {
+        "bytes": 40210,
+        "sha256": "0413fd322e16a68947e9f9a57abf957a90f43b404b0a9074e6559dc11907409c",
+        "git_blob": "6c9a4c24da94e485d47f453af9ac82f5d1994ad4"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "before": {
+        "bytes": 11092,
+        "sha256": "eefb4dd4633a2aa113cb8d50e732b090d10ac804b01b876b42bb2b990e75e630",
+        "git_blob": "c7e8bf69d8dc07980d4a84ad1fd31222beb5e147"
+      },
+      "after": {
+        "bytes": 11092,
+        "sha256": "eefb4dd4633a2aa113cb8d50e732b090d10ac804b01b876b42bb2b990e75e630",
+        "git_blob": "c7e8bf69d8dc07980d4a84ad1fd31222beb5e147"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_return_observation.py",
+      "before": {
+        "bytes": 18191,
+        "sha256": "bd03248a177a33df7f399c90984c995e3f0352cfe14ef7f1974a9e3f590cfb53",
+        "git_blob": "2cb7163b257e997af5597e11fc2f10dec69daffb"
+      },
+      "after": {
+        "bytes": 20553,
+        "sha256": "9bbc8142ce0c945d3ba4dc5b83185c48bc0a03a3557a6c3e3757569759269d92",
+        "git_blob": "6ca069bac94d3380912ac865b6eceb0c8a4a33fb"
+      },
+      "byte_identical": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0392-return-final-second-000-state.json",
+      "before": {
+        "bytes": 480,
+        "sha256": "72581bbb6598e4f49a14506aa964deac6553a4bf2683197d9260d0acba0dd007",
+        "git_blob": "b7f5994338dbf7fa4ad7361b4468e17d224b8093"
+      },
+      "after": {
+        "bytes": 480,
+        "sha256": "72581bbb6598e4f49a14506aa964deac6553a4bf2683197d9260d0acba0dd007",
+        "git_blob": "b7f5994338dbf7fa4ad7361b4468e17d224b8093"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0392-return-final-second-000-state.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0392-return-final-second-000-state.stdout",
+      "before": {
+        "bytes": 568,
+        "sha256": "c3a963e3717010e8050653c3a44908573ae1bd013bb7d2a07e9276ed7a0d99b2",
+        "git_blob": "f6f8b58d6044c6a4b4f1507796a1b38abb92e1fe"
+      },
+      "after": {
+        "bytes": 568,
+        "sha256": "c3a963e3717010e8050653c3a44908573ae1bd013bb7d2a07e9276ed7a0d99b2",
+        "git_blob": "f6f8b58d6044c6a4b4f1507796a1b38abb92e1fe"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0400-return-final-second-000-preferences.json",
+      "before": {
+        "bytes": 444,
+        "sha256": "52b2af918140544eb32a3e6182b139e79fd7f82d68d42357009ac4503ca7254c",
+        "git_blob": "931a9558e803937127b3cb6abc15b0f3a6d1a1f4"
+      },
+      "after": {
+        "bytes": 444,
+        "sha256": "52b2af918140544eb32a3e6182b139e79fd7f82d68d42357009ac4503ca7254c",
+        "git_blob": "931a9558e803937127b3cb6abc15b0f3a6d1a1f4"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0400-return-final-second-000-preferences.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0400-return-final-second-000-preferences.stdout",
+      "before": {
+        "bytes": 2491,
+        "sha256": "0cd65d3aedbd34d5be92fb2345ce5ceb5b8d8c33cbe72bd4a3dd2e3b07e12f0c",
+        "git_blob": "da8d7b3b81547d5360591eb82cacd706a59afede"
+      },
+      "after": {
+        "bytes": 2491,
+        "sha256": "0cd65d3aedbd34d5be92fb2345ce5ceb5b8d8c33cbe72bd4a3dd2e3b07e12f0c",
+        "git_blob": "da8d7b3b81547d5360591eb82cacd706a59afede"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0404-return-final-touch.json",
+      "before": {
+        "bytes": 404,
+        "sha256": "918cbf9d49f8ea4dd07bb3529712d0d00acfbfba9b1abe012808c067af473328",
+        "git_blob": "5abd77f44d4be4587b3470e2e4ec486a3b754a6c"
+      },
+      "after": {
+        "bytes": 404,
+        "sha256": "918cbf9d49f8ea4dd07bb3529712d0d00acfbfba9b1abe012808c067af473328",
+        "git_blob": "5abd77f44d4be4587b3470e2e4ec486a3b754a6c"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0404-return-final-touch.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0404-return-final-touch.stdout",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0405-return-final-native-exit.json",
+      "before": {
+        "bytes": 395,
+        "sha256": "58f56ec275c7dacaf48e3e7ca76771a13e05f09186c148ae5ccde5c2482ba849",
+        "git_blob": "5c879535e4ea68cb86bfe699ab07b7c5d39a0318"
+      },
+      "after": {
+        "bytes": 395,
+        "sha256": "58f56ec275c7dacaf48e3e7ca76771a13e05f09186c148ae5ccde5c2482ba849",
+        "git_blob": "5c879535e4ea68cb86bfe699ab07b7c5d39a0318"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0405-return-final-native-exit.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0405-return-final-native-exit.stdout",
+      "before": {
+        "bytes": 5,
+        "sha256": "8562db7f9631ec4394dbfacac8fef9b8bd4f6079acfe4e371785affc5c8bcce9",
+        "git_blob": "4a6d39c9e590db4479960c263e2bacac6466e85b"
+      },
+      "after": {
+        "bytes": 5,
+        "sha256": "8562db7f9631ec4394dbfacac8fef9b8bd4f6079acfe4e371785affc5c8bcce9",
+        "git_blob": "4a6d39c9e590db4479960c263e2bacac6466e85b"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0406-return-final-return-activity.json",
+      "before": {
+        "bytes": 376,
+        "sha256": "8ad8ac5c642128d8f5e49f57134deaa9ea90a11292877e423138aae7774c8a10",
+        "git_blob": "5232b76398e642b02aad884537ec897965c8c388"
+      },
+      "after": {
+        "bytes": 376,
+        "sha256": "8ad8ac5c642128d8f5e49f57134deaa9ea90a11292877e423138aae7774c8a10",
+        "git_blob": "5232b76398e642b02aad884537ec897965c8c388"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0406-return-final-return-activity.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0406-return-final-return-activity.stdout",
+      "before": {
+        "bytes": 39832,
+        "sha256": "a3417f122b4fb7e2dc8577e4878497e6ce823d1d651057217a788ce17d6234ed",
+        "git_blob": "d61ddcec907789a34f9f333774396275fabf92c6"
+      },
+      "after": {
+        "bytes": 39832,
+        "sha256": "a3417f122b4fb7e2dc8577e4878497e6ce823d1d651057217a788ce17d6234ed",
+        "git_blob": "d61ddcec907789a34f9f333774396275fabf92c6"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0407-return-final-native-exit.json",
+      "before": {
+        "bytes": 395,
+        "sha256": "527ea87ecba81c0aa3b8e06dbcd3e040d297ec717ca0f04de7b0ac3ca392ba76",
+        "git_blob": "3c0705ae48d723ba5c826f9ef18bae7f99e5ea1f"
+      },
+      "after": {
+        "bytes": 395,
+        "sha256": "527ea87ecba81c0aa3b8e06dbcd3e040d297ec717ca0f04de7b0ac3ca392ba76",
+        "git_blob": "3c0705ae48d723ba5c826f9ef18bae7f99e5ea1f"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0407-return-final-native-exit.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0407-return-final-native-exit.stdout",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0408-return-final-return-activity.json",
+      "before": {
+        "bytes": 376,
+        "sha256": "088140bb2d5119abc2a358a1b0af0bed66dafc53db2de3959023675a938a25aa",
+        "git_blob": "be6f3a964f7935ee4706f18ebebd685b980056ca"
+      },
+      "after": {
+        "bytes": 376,
+        "sha256": "088140bb2d5119abc2a358a1b0af0bed66dafc53db2de3959023675a938a25aa",
+        "git_blob": "be6f3a964f7935ee4706f18ebebd685b980056ca"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0408-return-final-return-activity.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0408-return-final-return-activity.stdout",
+      "before": {
+        "bytes": 39921,
+        "sha256": "15ebca68cab4904bd893b15189bbd190e5effc2dd2441e2df64b4caadf458bb6",
+        "git_blob": "7fc543c55d9882f14fd5250179e2d99cf9535dbe"
+      },
+      "after": {
+        "bytes": 39921,
+        "sha256": "15ebca68cab4904bd893b15189bbd190e5effc2dd2441e2df64b4caadf458bb6",
+        "git_blob": "7fc543c55d9882f14fd5250179e2d99cf9535dbe"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0409-return-final-closed-mailbox.json",
+      "before": {
+        "bytes": 513,
+        "sha256": "e1101b651e0b723a5168f9f8798cf1240a0c864aba90c0ed380abd8fb874ffa3",
+        "git_blob": "d66a7a54987756f72f5a8e863d450a8e9d0b193f"
+      },
+      "after": {
+        "bytes": 513,
+        "sha256": "e1101b651e0b723a5168f9f8798cf1240a0c864aba90c0ed380abd8fb874ffa3",
+        "git_blob": "d66a7a54987756f72f5a8e863d450a8e9d0b193f"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0409-return-final-closed-mailbox.stderr",
+      "before": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "after": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/0409-return-final-closed-mailbox.stdout",
+      "before": {
+        "bytes": 134,
+        "sha256": "48298a293602d6d5fc8d49b609fd08249f0a465a0eab3ea55bbc8cb224351fb6",
+        "git_blob": "5310f3a196464be800f85c4ba0ab66294f194761"
+      },
+      "after": {
+        "bytes": 134,
+        "sha256": "48298a293602d6d5fc8d49b609fd08249f0a465a0eab3ea55bbc8cb224351fb6",
+        "git_blob": "5310f3a196464be800f85c4ba0ab66294f194761"
+      },
+      "byte_identical": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-final-return-7c5/source.json",
+      "before": {
+        "bytes": 8626,
+        "sha256": "a6afefa3c64b811792639e770edd1352e5807361fa9fe204b137b60e806185fb",
+        "git_blob": "96c86759bf0279dfc15876a39e8f4683162786c0"
+      },
+      "after": {
+        "bytes": 8626,
+        "sha256": "a6afefa3c64b811792639e770edd1352e5807361fa9fe204b137b60e806185fb",
+        "git_blob": "96c86759bf0279dfc15876a39e8f4683162786c0"
+      },
+      "byte_identical": true
+    }
+  ],
+  "changed_paths": [
+    ".github/probes/lumo_connect_four_android_probe.py",
+    "tools/android_qa/tests/test_connect_four_return_observation.py"
+  ],
+  "definition_comparisons": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "before_definitions": 19,
+      "after_definitions": 19,
+      "changed_definitions": [
+        "Probe.original",
+        "Probe.return_to_flutter"
+      ],
+      "added_definitions": [],
+      "removed_definitions": [],
+      "unchanged_definitions": [
+        "Probe.__init__",
+        "Probe.bounded_command",
+        "Probe.density",
+        "Probe.flutter_touch",
+        "Probe.locate",
+        "Probe.native_touch",
+        "Probe.observation",
+        "Probe.open_native_from_flutter",
+        "Probe.read_json",
+        "Probe.read_preferences",
+        "Probe.remaining",
+        "Probe.run",
+        "Probe.transition",
+        "Probe.wait_for_flutter_control",
+        "Probe.wait_observation",
+        "main",
+        "write"
+      ]
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_return_observation.py",
+      "before_definitions": 22,
+      "after_definitions": 23,
+      "changed_definitions": [],
+      "added_definitions": [
+        "ReturnObservationTests.test_each_read_receives_only_the_remaining_local_budget_across_retries"
+      ],
+      "removed_definitions": [],
+      "unchanged_definitions": [
+        "Clock.__init__",
+        "Clock.monotonic",
+        "Clock.sleep",
+        "ReturnBoundary.__init__",
+        "ReturnBoundary.command",
+        "ReturnObservationTests.assert_no_acceptance",
+        "ReturnObservationTests.assert_one_back",
+        "ReturnObservationTests.boundary",
+        "ReturnObservationTests.setUp",
+        "ReturnObservationTests.setUpClass",
+        "ReturnObservationTests.test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success",
+        "ReturnObservationTests.test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity",
+        "ReturnObservationTests.test_expired_global_or_local_activity_read_never_starts_an_additional_find",
+        "ReturnObservationTests.test_failed_find_is_not_an_empty_mailbox_proof",
+        "ReturnObservationTests.test_find_finished_at_or_after_local_deadline_cannot_accept_empty_output",
+        "ReturnObservationTests.test_fixture_bytes_metadata_and_actual_token_are_bound_to_originals",
+        "ReturnObservationTests.test_global_deadline_during_find_saves_raw_answer_but_cannot_accept_it",
+        "ReturnObservationTests.test_original_current_mailbox_remainder_requires_a_fresh_later_empty_observation",
+        "ReturnObservationTests.test_permanent_current_or_foreign_mailbox_remains_failure_without_input_repetition",
+        "derived",
+        "original",
+        "sample"
+      ]
+    }
+  ],
+  "old_return_tests_byte_and_ast_identical": [
+    "ReturnObservationTests.test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success",
+    "ReturnObservationTests.test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity",
+    "ReturnObservationTests.test_expired_global_or_local_activity_read_never_starts_an_additional_find",
+    "ReturnObservationTests.test_failed_find_is_not_an_empty_mailbox_proof",
+    "ReturnObservationTests.test_find_finished_at_or_after_local_deadline_cannot_accept_empty_output",
+    "ReturnObservationTests.test_fixture_bytes_metadata_and_actual_token_are_bound_to_originals",
+    "ReturnObservationTests.test_global_deadline_during_find_saves_raw_answer_but_cannot_accept_it",
+    "ReturnObservationTests.test_original_current_mailbox_remainder_requires_a_fresh_later_empty_observation",
+    "ReturnObservationTests.test_permanent_current_or_foreign_mailbox_remains_failure_without_input_repetition"
+  ],
+  "deadline_tests_byte_identical": [
+    "DeadlineTests.test_incomplete_actual_surface_still_blocks_observation",
+    "DeadlineTests.test_observation_rechecks_after_evidence_write_before_successful_return",
+    "DeadlineTests.test_observation_rejects_late_last_read_pixels_or_target_without_accepting_result",
+    "DeadlineTests.test_return_exact_deadline_is_closed_and_timely_return_keeps_full_checks",
+    "DeadlineTests.test_return_rejects_slow_pid_or_activity_reads_before_accepting_local_45_second_result",
+    "DeadlineTests.test_return_still_requires_observed_pause",
+    "DeadlineTests.test_timely_observation_preserves_state_target_and_original_record",
+    "DeadlineTests.test_wait_keeps_exact_boundary_closed_and_timely_result_unchanged",
+    "DeadlineTests.test_wait_rejects_condition_that_finishes_after_the_same_local_deadline",
+    "DeadlineTests.test_wait_rejects_successful_observation_completed_after_local_90_seconds",
+    "DeadlineTests.test_wait_still_rejects_incomplete_state_and_expired_global_budget"
+  ],
+  "entire_post_mailbox_persistence_ui_navigation_suffix_byte_identical": true,
+  "fixtures": [
+    {
+      "path": "0392-return-final-second-000-state.json",
+      "bytes": 480,
+      "sha256": "72581bbb6598e4f49a14506aa964deac6553a4bf2683197d9260d0acba0dd007",
+      "git_blob": "b7f5994338dbf7fa4ad7361b4468e17d224b8093"
+    },
+    {
+      "path": "0392-return-final-second-000-state.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "0392-return-final-second-000-state.stdout",
+      "bytes": 568,
+      "sha256": "c3a963e3717010e8050653c3a44908573ae1bd013bb7d2a07e9276ed7a0d99b2",
+      "git_blob": "f6f8b58d6044c6a4b4f1507796a1b38abb92e1fe"
+    },
+    {
+      "path": "0400-return-final-second-000-preferences.json",
+      "bytes": 444,
+      "sha256": "52b2af918140544eb32a3e6182b139e79fd7f82d68d42357009ac4503ca7254c",
+      "git_blob": "931a9558e803937127b3cb6abc15b0f3a6d1a1f4"
+    },
+    {
+      "path": "0400-return-final-second-000-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "0400-return-final-second-000-preferences.stdout",
+      "bytes": 2491,
+      "sha256": "0cd65d3aedbd34d5be92fb2345ce5ceb5b8d8c33cbe72bd4a3dd2e3b07e12f0c",
+      "git_blob": "da8d7b3b81547d5360591eb82cacd706a59afede"
+    },
+    {
+      "path": "0404-return-final-touch.json",
+      "bytes": 404,
+      "sha256": "918cbf9d49f8ea4dd07bb3529712d0d00acfbfba9b1abe012808c067af473328",
+      "git_blob": "5abd77f44d4be4587b3470e2e4ec486a3b754a6c"
+    },
+    {
+      "path": "0404-return-final-touch.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "0404-return-final-touch.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "0405-return-final-native-exit.json",
+      "bytes": 395,
+      "sha256": "58f56ec275c7dacaf48e3e7ca76771a13e05f09186c148ae5ccde5c2482ba849",
+      "git_blob": "5c879535e4ea68cb86bfe699ab07b7c5d39a0318"
+    },
+    {
+      "path": "0405-return-final-native-exit.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "0405-return-final-native-exit.stdout",
+      "bytes": 5,
+      "sha256": "8562db7f9631ec4394dbfacac8fef9b8bd4f6079acfe4e371785affc5c8bcce9",
+      "git_blob": "4a6d39c9e590db4479960c263e2bacac6466e85b"
+    },
+    {
+      "path": "0406-return-final-return-activity.json",
+      "bytes": 376,
+      "sha256": "8ad8ac5c642128d8f5e49f57134deaa9ea90a11292877e423138aae7774c8a10",
+      "git_blob": "5232b76398e642b02aad884537ec897965c8c388"
+    },
+    {
+      "path": "0406-return-final-return-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "0406-return-final-return-activity.stdout",
+      "bytes": 39832,
+      "sha256": "a3417f122b4fb7e2dc8577e4878497e6ce823d1d651057217a788ce17d6234ed",
+      "git_blob": "d61ddcec907789a34f9f333774396275fabf92c6"
+    },
+    {
+      "path": "0407-return-final-native-exit.json",
+      "bytes": 395,
+      "sha256": "527ea87ecba81c0aa3b8e06dbcd3e040d297ec717ca0f04de7b0ac3ca392ba76",
+      "git_blob": "3c0705ae48d723ba5c826f9ef18bae7f99e5ea1f"
+    },
+    {
+      "path": "0407-return-final-native-exit.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "0407-return-final-native-exit.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "0408-return-final-return-activity.json",
+      "bytes": 376,
+      "sha256": "088140bb2d5119abc2a358a1b0af0bed66dafc53db2de3959023675a938a25aa",
+      "git_blob": "be6f3a964f7935ee4706f18ebebd685b980056ca"
+    },
+    {
+      "path": "0408-return-final-return-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "0408-return-final-return-activity.stdout",
+      "bytes": 39921,
+      "sha256": "15ebca68cab4904bd893b15189bbd190e5effc2dd2441e2df64b4caadf458bb6",
+      "git_blob": "7fc543c55d9882f14fd5250179e2d99cf9535dbe"
+    },
+    {
+      "path": "0409-return-final-closed-mailbox.json",
+      "bytes": 513,
+      "sha256": "e1101b651e0b723a5168f9f8798cf1240a0c864aba90c0ed380abd8fb874ffa3",
+      "git_blob": "d66a7a54987756f72f5a8e863d450a8e9d0b193f"
+    },
+    {
+      "path": "0409-return-final-closed-mailbox.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "0409-return-final-closed-mailbox.stdout",
+      "bytes": 134,
+      "sha256": "48298a293602d6d5fc8d49b609fd08249f0a465a0eab3ea55bbc8cb224351fb6",
+      "git_blob": "5310f3a196464be800f85c4ba0ab66294f194761"
+    }
+  ],
+  "fixture_command_metadata_count": 8,
+  "test_execution": false,
+  "imports_of_product_or_test_modules": false
+}

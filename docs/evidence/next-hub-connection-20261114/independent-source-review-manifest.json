@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "files": [
+    {
+      "path": "reference-source/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50",
+      "git_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a"
+    },
+    {
+      "path": "reference-source/lib/features/lumo3d/lumo3d_launcher.dart",
+      "bytes": 10640,
+      "sha256": "14b5cc7147fe001faf3c299d6bfa787b3eed1da07a6f848e688f3a947258407b",
+      "git_blob": "f34753575463af153ac72efaf93dd485ba3f30e1"
+    },
+    {
+      "path": "reference-source/scripts/compile_android_host.sh",
+      "bytes": 3231,
+      "sha256": "0cb7b2b2ef189e96d92fb3bf6b8e5d051b1a12013bbfc09331f539f02f929cb4",
+      "git_blob": "58eb1fe98d31155aceda49721092122b85fd4e6b"
+    },
+    {
+      "path": "reference-source/test/games/dorfwirtschaft_portal_test.dart",
+      "bytes": 3074,
+      "sha256": "bc036e23a30432e83fb8946adf6a997ebf0173ea360ec7697866f96221ddd321",
+      "git_blob": "bbc01f1341ba6f6dce42c907cd52d45ffe21108f"
+    },
+    {
+      "path": "reference-source/test/games/spielwelt_routing_test.dart",
+      "bytes": 5470,
+      "sha256": "70766c77e6fef0827832c542a43310f031debd3f422a0dcb615e77ff96c0979e",
+      "git_blob": "e5cfc3a8bfff14d5f2d7f7870c33c01e3cc6fafb"
+    },
+    {
+      "path": "review.json",
+      "bytes": 8512,
+      "sha256": "d87c1f97cbd026ba1e03e071827c0403ce5e624605a115083bcb2cf0adfef40f",
+      "git_blob": "6c3314748bbc338cf98358a6dbf435424d12bcb8"
+    }
+  ]
+}

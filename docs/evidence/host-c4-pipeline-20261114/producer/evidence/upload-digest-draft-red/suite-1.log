@@ -1,0 +1,19 @@
+test_actual_upload_digest_is_canonicalized_against_rest_metadata (test_connect_four_android_evidence.BindingTests.test_actual_upload_digest_is_canonicalized_against_rest_metadata) ... ERROR
+
+======================================================================
+ERROR: test_actual_upload_digest_is_canonicalized_against_rest_metadata (test_connect_four_android_evidence.BindingTests.test_actual_upload_digest_is_canonicalized_against_rest_metadata)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/tools/android_qa/tests/test_connect_four_android_evidence.py", line 307, in test_actual_upload_digest_is_canonicalized_against_rest_metadata
+    actual=c4.artifact_binding(*original_metadata(),source=HOST,run_id=RUN,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/tools/android_qa/connect_four_android_evidence.py", line 59, in artifact_binding
+    demand(bool(re.fullmatch('sha256:[a-f0-9]{64}', digest)), 'Missing original upload digest')
+  File "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/tools/android_qa/connect_four_android_evidence.py", line 40, in demand
+    raise ValueError(message)
+ValueError: Missing original upload digest
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "created_utc": "2026-11-14T18:28:19.793791+00:00",
+  "host": "528a265a7cc9e28f26523249b07fba0fdc1bf801",
+  "tree": "d209a72bf2fefe9890e570d0c5739b760f3bec0d",
+  "workflow_git_blob": "fbd470a24012b238de1e347c0021e40951aa7c23",
+  "workflow_sha256": "fa59d9fa5b2fbc333300c57b821561132aab0f043bf1ba4e9f7f07840b1d17eb",
+  "workflow_bytes": 65909,
+  "actual_python_blocks": [
+    {
+      "first_line": 101,
+      "last_line": 105,
+      "bytes": 239,
+      "sha256": "9de47795eb8a6aff69224063a9e999afd9590a869154afb95bbe94d0bb1347e6"
+    },
+    {
+      "first_line": 112,
+      "last_line": 222,
+      "bytes": 7535,
+      "sha256": "1ed0e3cd4c7839d9d3e3427767fb5eaadf0550a782885fb373bd694e2cc65760"
+    },
+    {
+      "first_line": 229,
+      "last_line": 287,
+      "bytes": 3058,
+      "sha256": "beda31b27a5779f491053c3ec5d089926444486245a1b842fc8dcfce45bdf1b6"
+    },
+    {
+      "first_line": 340,
+      "last_line": 443,
+      "bytes": 6203,
+      "sha256": "eee9285bfb556de77b30f0af3e57a2e02e23500485cdffdec0002a53066053fc"
+    },
+    {
+      "first_line": 494,
+      "last_line": 630,
+      "bytes": 10534,
+      "sha256": "626a71cb698a72db466df66c625a4371c819e07acf27eb0087c386222b271d1c"
+    },
+    {
+      "first_line": 649,
+      "last_line": 723,
+      "bytes": 4952,
+      "sha256": "c2e9c6951a13aeb443c47eb57cd6bcad12383c66287b69c27701e2a44c679734"
+    },
+    {
+      "first_line": 757,
+      "last_line": 789,
+      "bytes": 2174,
+      "sha256": "3fe2f6a06f1c315192fd2ce9d84116b9b2323f5261ea984472d4d15cfe3d0024"
+    },
+    {
+      "first_line": 797,
+      "last_line": 912,
+      "bytes": 7020,
+      "sha256": "92419ac5b4ae5243d474f900987d172deaf6ea839c7257690d1734b85d655a5a"
+    },
+    {
+      "first_line": 932,
+      "last_line": 954,
+      "bytes": 1473,
+      "sha256": "29d1a3a1ed91365dfc492b1fb5100eb05df911f40266f8ceebf78bd27ab9e0dd"
+    }
+  ],
+  "actual_python_block_count": 9,
+  "actual_actionlint_exit": 0,
+  "actual_actionlint_invocations": 1,
+  "actionlint_sha256": "c872d6db8c6bf83a8eaa704fc93999f027d55dffbc63b8a6abdccb47df5f4cd4",
+  "shellcheck_available": null,
+  "source_and_index_unchanged": true,
+  "scope": "Actual exact committed workflow syntax and nine Python bodies; no product imports, renderer, JVM, Android or APK result."
+}

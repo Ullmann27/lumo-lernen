@@ -25,9 +25,11 @@ MAX_PARTS = 8
 MAX_FILES = 20_000
 MAX_INDEX_BYTES = 4 * 1024 * 1024
 MAX_PART_MANIFEST_BYTES = 16 * 1024
+DIAGNOSTIC_WORKFLOW = ".github/workflows/lumo-creative-7b16-diagnostic.yml"
 WORKFLOWS = (
     ".github/workflows/lumo-kart-graphics-2019.yml",
     ".github/workflows/lumo-studio-2019.yml",
+    DIAGNOSTIC_WORKFLOW,
 )
 
 
@@ -133,7 +135,7 @@ def export_parts(source: Path, output: Path, *, repository: str, workflow_path: 
     if workflow_path not in WORKFLOWS:
         raise ValueError("Unapproved Creative workflow path")
     if not re.fullmatch(r"[a-f0-9]{40}", source_sha):
-        raise ValueError("Exact lowercase 40-character Host source SHA required")
+        raise ValueError("Exact lowercase 40-character workflow source SHA required")
     if type(run_id) is not int or run_id <= 0 or type(run_attempt) is not int or run_attempt <= 0:
         raise ValueError("Positive integer workflow run and attempt required")
     source = _directory_without_links(source)
@@ -149,10 +151,12 @@ def export_parts(source: Path, output: Path, *, repository: str, workflow_path: 
     sizes = {path: signature[3] for path, signature in signatures.items()}
     groups = plan_parts(sizes, max_part_bytes)
     assigned = {path: number for number, group in enumerate(groups, 1) for path in group}
+    diagnostic = workflow_path == DIAGNOSTIC_WORKFLOW
+    source_key = "probe_source_sha" if diagnostic else "host_source_sha"
     index = {
-        "schema": 1,
+        "schema": 2 if diagnostic else 1,
         "binding": {"repository": repository, "workflow_path": workflow_path,
-                    "host_source_sha": source_sha, "run_id": run_id, "run_attempt": run_attempt},
+                    source_key: source_sha, "run_id": run_id, "run_attempt": run_attempt},
         "original_path_prefix": "originals/",
         "limits": {"part_payload_bytes": max_part_bytes, "max_parts": MAX_PARTS,
                    "max_files": MAX_FILES, "index_bytes": MAX_INDEX_BYTES,

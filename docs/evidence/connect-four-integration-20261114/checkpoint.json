@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-11-14T05:14:10.622782+00:00",
+  "status": "SOURCE_CHECKPOINT_BEFORE_INTEGRATION_TESTS",
+  "scope": "host",
+  "remote_parent": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+  "local_parent": "cf0ed7fe743cd8ba067ae7a9adf26745fa7bc628",
+  "parent_tree": "09776392ac3133c992a73809dc0f31e9def555a7",
+  "producer_pr": 477,
+  "producer_commit": "e423df58117c8f49bcd03c634e438392dc79c3ef",
+  "source_files": 21,
+  "source_freeze_sha256": "1d80004900ff3f18bf51c5e19ec4f3e50b05c9c4883662d41e84ccc8fb928267",
+  "new_tests_run": false,
+  "android_connect_four_accepted": false,
+  "native_pin_updated": false,
+  "notes": [
+    "The 25 producer files were found at their published frozen paths and matched their exact published sizes, SHA256 and Git blobs.",
+    "Two finished runtime-gate files were separately bound to the published final producer review.",
+    "Three shared host files were integrated by hunks; learning/build speech and the existing Cards window/binder/lifecycle assertions were preserved.",
+    "This checkpoint preserves source; it is not an APK, emulator, image, FPS or release approval."
+  ]
+}

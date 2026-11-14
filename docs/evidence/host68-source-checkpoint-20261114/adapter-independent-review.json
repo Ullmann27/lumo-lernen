@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "kind": "independent_read_only_source_review",
+  "reviewer": "/root/pipeline_repair",
+  "reviewed_at_utc": "2026-11-14 16:22:03 UTC",
+  "scope": "Five-file shared Android authority adapter only; not the full prerequisite 66-file product integration or a real Android acceptance.",
+  "pack": "/workspace/scratch/b3485b7bb989/host-pr503-table-probe-adapter-9f2f-20261114",
+  "source_freeze": {
+    "bytes": 2756,
+    "sha256": "739e09c60bb22a24d131fe43ce1c508dad7d67248f2a9990fb6a990203e7491d",
+    "git_blob": "3b017d4381eae24a7b799881ea0d40d50ef7123e"
+  },
+  "result": "NO_CONCRETE_SOURCE_BLOCKER_FOUND",
+  "sources": [
+    {
+      "path": ".github/probes/lumo_memory_android_probe.py",
+      "bytes": 49752,
+      "sha256": "f2aa53592298b3b2465740310db7b2c455ae12d6c7c0431cf22b0db3ec4a05b6",
+      "git_blob": "a794544795f504c43bc38db2de23cef91e75e843"
+    },
+    {
+      "path": ".github/probes/lumo_quiz_android_probe.py",
+      "bytes": 56893,
+      "sha256": "1c0bcc3fba463fde2c377eb7fe0bee2a97f66724f6a7a99524e7ee6d8a19f4a4",
+      "git_blob": "90d91a9ee40b6fe59e91158bfa5afe199cd6b764"
+    },
+    {
+      "path": ".github/probes/lumo_table_authority_android_shared.py",
+      "bytes": 14624,
+      "sha256": "7bc2a18d4e5c7071f95e053246d0719ef22c8750e02f9aa226050a78a2fc381a",
+      "git_blob": "9d069accc96991080a5e79e394b06a81c2c498df"
+    },
+    {
+      "path": "tools/android_qa/tests/test_quiz_android_probe.py",
+      "bytes": 27652,
+      "sha256": "56f84ac160ca42507dfc9ad4a0c4fb60992ec70751c12fc6141d79ba191d07a1",
+      "git_blob": "0ac81ff1611d7aac6f103da8de5ae9a2fb0df3dd"
+    },
+    {
+      "path": "tools/android_qa/tests/test_table_authority_android_shared.py",
+      "bytes": 11513,
+      "sha256": "46ab8a40253282b43d13af2339fe38896e72c9dca6fb0f751f4a802aacde0e21",
+      "git_blob": "c3881e31ac8d530bcd83bf4064ed77391ad30fbc"
+    }
+  ],
+  "producer_pure_helper": {
+    "bytes": 39906,
+    "sha256": "eb26424167b24fd2c2959bce0ba07668452147d8a1212fd4d5b525ffc9584a82",
+    "git_blob": "ffa5c6d9a0c8e4403847fd07e8436234f7af979e"
+  },
+  "findings": [
+    {
+      "topic": "Minimal module connection",
+      "finding": "Memory's file-based loader and Quiz's normal import both select the new standalone shared helper. Neither final probe imports or inherits the current C4 probe. The allowed five-file set contains no existing C4 production or verifier path."
+    },
+    {
+      "topic": "Pure function identity",
+      "finding": "All fifteen geometry, JSON, PCK, navigation and small utility definitions are independently AST-identical to the bound published producer helper. The original helper Git blob is ffa5c6d9a0c8e4403847fd07e8436234f7af979e."
+    },
+    {
+      "topic": "Actual loaded source identity",
+      "finding": "The new init checks candidate CWD and expected full Host HEAD, obtains its tree, rejects tracked changes, compares each selected file's actual bytes to git show HEAD:path, rejects missing/symlink/escaping/duplicate paths and binds its executing __file__. All six imported runtime modules plus the actual tour.probe/base/live module objects are checked against exact candidate paths. A second source binding must equal the first after import. Both game reports include the same binding again before and after the tour."
+    },
+    {
+      "topic": "Deadline connection",
+      "finding": "Memory now sets its existing 600-second deadline before entering the shared initializer; Quiz's existing 900-second initialization and enclosing bounded_runtime context are unchanged. New Git reads use positive remaining time capped at 30 seconds and check again after returning. Shared wait checks the local/global boundary after a positive observation; equality or lateness stays failure. Game-specific observation/input/deadline methods remain AST-identical."
+    },
+    {
+      "topic": "Process and image/ACK boundary",
+      "finding": "The inherited PID reader permits exactly one positive native process ID. Tag generation stays unique per probe instance. Both unchanged run methods still require the same already-installed APK, actual source/PCK identities, all 21 prior main-tour steps, current owner/round/token, real captures and authority ACKs, durable save preservation, native-to-Flutter returns and same-round reopening. The adapter introduces no board/save/mailbox injection or replacement renderer."
+    },
+    {
+      "topic": "Preserved definitions",
+      "finding": "The independent comparison found only Memory.__init__, Memory.binding and Memory.main changed, and only Quiz.binding changed. All 27 other Memory definitions, 38 other Quiz definitions and all 37 existing Quiz test/helper definitions are AST-identical; module-level changes are the explicit import/source-list wiring. Memory main now rejects any nonempty output rather than only a prior result.json."
+    },
+    {
+      "topic": "Focused tests as source",
+      "finding": "All sixteen new test methods were read but not executed. They cover actual temporary Git source/tree/bytes, hidden tracked mutation, wrong helper/module path, symlink/duplicate/traversal inputs, post-read/local/global deadline boundaries, no import after expired init, one PID, full PCK stream/duplicate entry rejection, exact hub controls and ambiguity, real probe import pairing and rejection of existing output."
+    }
+  ],
+  "boundaries": [
+    "No tests, product imports, renderer, emulator, ADB, Git command, network download or source edit was performed for this review.",
+    "The preceding native/Android/C4 results are not a Memory/Quiz acceptance result.",
+    "The frozen prerequisite Host66 product integration has not been independently reviewed in full by this five-file adapter review.",
+    "The new sixteen methods and eventual actual Android execution still require the separately published combined checkpoint and Root authorization.",
+    "Source binding covers the explicit helper/module/source list; this report does not claim that every transitive Python module was independently bound by module object identity.",
+    "The existing Memory source-binding subprocess calls outside the new helper were preserved; this review does not assert a newly added process-wide Memory alarm."
+  ],
+  "audit_file": "independent-byte-ast-audit.json",
+  "tests_executed": 0,
+  "imports_executed": 0,
+  "source_writes": 0,
+  "active_candidate_changed": false
+}

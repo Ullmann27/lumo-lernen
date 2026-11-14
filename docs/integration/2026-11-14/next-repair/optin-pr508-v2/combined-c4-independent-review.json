@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T20:06:16.504942+00:00",
+  "status": "NO_CONCRETE_SOURCE_BLOCKER_IN_REVIEWED_UNION",
+  "reviewer": "flutter_integration",
+  "scope": "Only preservation of the two frozen PR507 C4 changes while adding the four PR508 UI/native-opt-in hunks. The six other PR508 package paths are outside this review.",
+  "base_host": "7ac736fdbd042769592e88de0f9849632242316d",
+  "base_tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2",
+  "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+  "pr507_source": {
+    "path": "/tmp/host-pr507-0d7e-integration-7ac-20261114/final-source/lib/features/games/connect_four/lumo_connect_four_game.dart",
+    "bytes": 44948,
+    "sha256": "3d6d5d669307170728f62cc221bc840c48e57b22c13b9c64a081db7dfa606971",
+    "git_blob": "0927a3b853e168325e00ebaacc2156a49356ac1e"
+  },
+  "combined_source": {
+    "path": "/tmp/host-pr508-c4-optin-followup-7ac-20261114/final-source/lib/features/games/connect_four/lumo_connect_four_game.dart",
+    "bytes": 45094,
+    "sha256": "5ea73c94211bb0286aba1167da845d4ccc08ae31d3888dc6b6789b8df86b2772",
+    "git_blob": "6c9ee29c314bf999349c73da6faf9226ac0f8916"
+  },
+  "reviewed_diff": {
+    "path": "/tmp/host-pr508-c4-optin-followup-7ac-20261114/combined-c4-vs-pr507.patch",
+    "bytes": 1998,
+    "sha256": "c5471aac7eb90ea750507530c5ecf7c3c1daf58f340446b5a4d3a1bf9b9dc848",
+    "git_blob": "b5e5e9e8b6f850f87ae3b33cf6de1af2dc76fe06",
+    "recomputed_exactly": true,
+    "hunks": 4
+  },
+  "godot_source_freeze": {
+    "path": "/tmp/host-pr508-c4-optin-followup-7ac-20261114/source-freeze.json",
+    "bytes": 5246,
+    "sha256": "7126b00c1eb5b09b30707efc05b8ca103f727703e18bd55ef136350fbe2218aa",
+    "git_blob": "612668dfe523e31ee1998c373a57257160534a39"
+  },
+  "peer_binding": {
+    "path": "/tmp/host-pr508-c4-optin-followup-7ac-20261114/combined-c4-binding.json",
+    "bytes": 682,
+    "sha256": "fcc9e4a5354b6f38a6a64e01aceb38c01c3a2e73ac1124c4c1438c21b81397e1",
+    "git_blob": "5f6f77bf62da480a2517270d61208a7ead8e51de"
+  },
+  "preserved_blocks": [
+    {
+      "name": "_place",
+      "bytes": 3473,
+      "sha256": "6debef4e942a10b0d3dc594e903b8e45d5e11d693b04f343fb1fea8d7f261115",
+      "git_blob": "4ad9a063aebc3079af594506733e56fef83db775",
+      "exact_bytes_preserved_from_pr507": true
+    },
+    {
+      "name": "_retryFinishedRound",
+      "bytes": 1054,
+      "sha256": "68c8bd0baadcd8ae8554229451b53656680c1a57bb507868a278ccfaa3770c86",
+      "git_blob": "b071ad19854acf16fe426af49e91ef8a9adac02e",
+      "exact_bytes_preserved_from_pr507": true
+    }
+  ],
+  "findings": [
+    "The complete _place method including bot rearming and terminal retry scheduling is byte-identical to the independently reviewed PR507 freeze.",
+    "The complete _retryFinishedRound method is byte-identical: same owner/generation/native-opening guards, only settleReward, same pausable clock, no extra piece or invented reward.",
+    "The four additional hunks remove automatic Android native entry at initialization and add native-opening guards to mode, level and column controls. Existing explicit native-entry behavior remains outside these hunks.",
+    "The actual unified diff is byte-identical to the supplied four-hunk patch; in-memory reversal recovers the exact frozen PR507 source. The PR507 source file was read only."
+  ],
+  "limits": {
+    "tests_run": false,
+    "imports_run": false,
+    "source_edits": false,
+    "git_or_ci_changes": false,
+    "runtime_or_android_acceptance": false
+  }
+}

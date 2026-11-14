@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T06:19:54.927831+00:00",
+  "status": "NO_SOURCE_PAIRING_BLOCKER_FOUND",
+  "scope": "Read-only source pairing only, no additional tests or device playback",
+  "native_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/native-pr167-facial-treasure-integration-20261114/source-freeze.json",
+    "bytes": 9501,
+    "sha256": "adebc0799e1178c65590c007af735c8860c766842bfb47331c98796f051dd717",
+    "git_blob": "d1f4679fc04d15cf483df324f0ce4453dc22dc92"
+  },
+  "native_files": [
+    {
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "bytes": 11313,
+      "sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+      "git_blob": "e4b6a6081a922a137f68491de66f51e096528510",
+      "published_blob": "e4b6a6081a922a137f68491de66f51e096528510"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "bytes": 45446,
+      "sha256": "1ec88577645b89d11d13191a0dcc987af9beb6b3d2b2e7f0379525470711921a",
+      "git_blob": "25e41d3d81e091e7e357400ff8ba76a18d6d2890",
+      "published_blob": "25e41d3d81e091e7e357400ff8ba76a18d6d2890"
+    }
+  ],
+  "host_unchanged_dependencies": [
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "revision": "43db2662e890b6468cf77f7044da16364a259482",
+      "bytes": 12712,
+      "sha256": "6808e0ab858907aec1b1e149b53184aa3ad72d1a214ce4d252a8ddc91c01f5e2",
+      "git_blob": "0621cafe29b703d29f7b067991a90c8ceac84ba6"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "revision": "43db2662e890b6468cf77f7044da16364a259482",
+      "bytes": 17671,
+      "sha256": "831fa3580a3330583d3f4a92e0cf9882a703224e3d0f3a65f666e67f52c4c946",
+      "git_blob": "9027d1106287c1c295a94ebcf3828e5dcac35b7b"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "revision": "43db2662e890b6468cf77f7044da16364a259482",
+      "bytes": 10336,
+      "sha256": "900e533784109cecc11e0da27cb7ae1e6909de74e58a9119c030b91e8956085f",
+      "git_blob": "dd95361b132c7a73b372a3225c75e645be07e1b7"
+    }
+  ],
+  "host_candidate": {
+    "path": "tools/auto_install/LumoLearningSpeech.kt",
+    "bytes": 8921,
+    "sha256": "ff154885806c7c8fcf0fe730367b8fd2d25760584037ea6f5e0851324bd2c1e0",
+    "git_blob": "95b57595d0cc788746c20fe5c26ef448c18121c2"
+  },
+  "connections": [
+    {
+      "name": "call_boundary",
+      "finding": "Published LumoHost exports speakLearning/getLearningSpeechStatus/stopLearningSpeech; Activity delegates to actual Speech.speak/status/stop. Native uses those exact methods."
+    },
+    {
+      "name": "ownership",
+      "finding": "Native increments its utterance id on stop and speaks with its next id. It consumes only a matching id and recognized state. Host snapshot carries that utterance and reports preparing separately from actual playing."
+    },
+    {
+      "name": "actual_sample",
+      "finding": "Native permits teacher-speaking only for state playing plus audible true. Jaw sampling additionally requires envelopeAvailable true and passes positionMs/1000 plus measured envelope to Actor. Host uses actual MediaPlayer.isPlaying/currentPosition and stream mute/volume with existing consent/activity gates."
+    },
+    {
+      "name": "lifecycle",
+      "finding": "Native stop resets both speaking and sampled amplitude; suspension and reduced motion reset facial pose and suppress articulation. Host Activity activates/resumes, deactivates/pauses, destroys, and stops before actual return. Pending synthesis/envelope generation is cancelled and generation checked."
+    },
+    {
+      "name": "build_preserved",
+      "finding": "All three current launch/Activity boundaries still carry learning and build. Merged Speech retains exactly that allow-list and its existing voice/license/rate/offline semantics. Native facial learning-world does not require broadening any other scene."
+    }
+  ],
+  "limits": [
+    "Neither Host nor Native packet is a fresh combined runtime or Android playback result.",
+    "PCM is bounded amplitude for a closed muzzle; no phoneme, viseme or lip-sync claim.",
+    "The current unchanged 7b16 APK remains tied to Native17f5 and does not contain this candidate."
+  ]
+}

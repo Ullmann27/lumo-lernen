@@ -1,0 +1,67 @@
+{
+  "producer_head": "1aeb6879221aa08291f712faef353e0efedd12cc",
+  "delta_original": {
+    "bytes": 31556,
+    "sha256": "49c06aa649858fb08b495867cb629053637f804d9b65a6083eb0b80b2a197165",
+    "git_blob": "7adb172587c45a21f1cbe85b105a44760661572b"
+  },
+  "selected_sources": [
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "producer_end": {
+        "bytes": 31771,
+        "sha256": "e4af88eb3f026809669f16adc4b92820e00b601c783ed1ed722e3feb76a80192",
+        "git_blob": "ac3e83d06306d15962e4cc7ca0bd8598429c3ab4"
+      },
+      "applied_hunks": 1,
+      "whole_producer_file_used": false,
+      "actual_end": {
+        "bytes": 31775,
+        "sha256": "8a10bff946ecd4fd92964709d595bc7b3dde1912c12480dff60762a3fedf03a9",
+        "git_blob": "f9bfdef2f54343291a0c2bfa985fb1287302a7ed"
+      }
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "producer_end": {
+        "bytes": 16687,
+        "sha256": "4d9654f08aa2fea9e2a09ae323fba181748608cb4d635cf22aae674413b70929",
+        "git_blob": "6263bb89d2bdc9cd303eaeadc71a58c58062d5aa"
+      },
+      "applied_hunks": 1,
+      "whole_producer_file_used": false,
+      "actual_end": {
+        "bytes": 15945,
+        "sha256": "af22d37de998a52ac7c403f5531eea2287eb5b12b60fb1d491ee9921b2573566",
+        "git_blob": "6b47469525edf37135802be0b9546b22394b3e00"
+      }
+    },
+    {
+      "path": "test/games/connect_four_navigation_test.dart",
+      "producer_end": {
+        "bytes": 5291,
+        "sha256": "15904ba2dff28e5afbef5d4f23febfca8f2a70066a6e081c873dad57da219f08",
+        "git_blob": "5607de8ddeeb54b1cbb77372c0ee3926f57ff374"
+      },
+      "new_file_absent_in_both_7ac_and_37414": true,
+      "whole_producer_file_used": true,
+      "widget_instances": "two sizes: 320x740 and 640x360; no tests executed"
+    }
+  ],
+  "excluded_workflow": ".github/workflows/lumo-20-wiring-control-passes.yml",
+  "font": {
+    "path": "assets/fonts/Nunito-Black.ttf",
+    "bytes": 39260,
+    "sha256": "3a373c4d17cffecdc9f3c351e2ce9ec83edb0622925a59d802be24fd442346f8",
+    "git_blob": "9e7743ebb7efc2bda51e99eda079cb9b2061f566",
+    "sfnt_header": "00010000",
+    "pubspec": {
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+    },
+    "family": "Nunito",
+    "weight": 900,
+    "asset_unchanged": true
+  }
+}

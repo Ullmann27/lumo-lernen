@@ -299,9 +299,15 @@ def prepare(out: Path, sdk: Path, action: Path) -> dict:
               'expected_actual_avd_name': 'test', 'expected_target': EXPECTED_TARGET,
               'expected_image_directory': str((sdk / IMAGE_RELATIVE).resolve()),
               'configuration_changes': ['Official SHA256-pinned CLI22 at canonical cmdline-tools/latest'],
-              'unchanged': ['API37.0', 'google_apis x86_64 image revision8', 'emulator37.2.13', 'gpu host',
-                            'pixel_5', '2 cores', '4096M RAM', '512M heap', 'original partition defaults',
-                            'framework identity-change rejection', 'original APK and tour gates']}
+              'unchanged': ['API37.0', 'google_apis x86_64 installed package revision8', 'emulator37.2.13',
+                            'requested pixel_5', 'requested 2 cores', 'requested 4096M RAM',
+                            'requested 512M heap', 'original partition defaults',
+                            'framework identity-change rejection', 'original APK and tour gates'],
+              'runtime_configuration_scope': (
+                  'This preparation does not observe the running GPU or effective VM heap. '
+                  'The invoking workflow declares the renderer; original emulator startup logs '
+                  'and generated hardware-qemu.ini must establish the actual runtime values. '
+                  'Both image package.xml and source.properties remain separate original evidence.')}
     write_json(out / 'prepared.json', result)
     return result
 

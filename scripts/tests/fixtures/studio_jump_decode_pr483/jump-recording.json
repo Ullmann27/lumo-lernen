@@ -1,0 +1,38 @@
+{
+  "source": "Actual Android screenrecord, unchanged production Jump scene",
+  "requested_size": "540x960",
+  "started_monotonic": 718.180132454,
+  "actions": [
+    {
+      "type": "separate-stick",
+      "start_seconds": 6.060785689999989,
+      "duration_ms": 350,
+      "axis": [
+        1,
+        0
+      ]
+    },
+    {
+      "type": "separate-stick",
+      "start_seconds": 12.585830141999963,
+      "duration_ms": 350,
+      "axis": [
+        -1,
+        0
+      ]
+    },
+    {
+      "type": "short-jump",
+      "start_seconds": 43.293118687999936,
+      "duration_ms": 80
+    },
+    {
+      "type": "held-jump",
+      "start_seconds": 77.65928363799992,
+      "duration_ms": 650
+    }
+  ],
+  "numeric_physics": "NOT_MEASURED",
+  "multitouch": "NOT_TESTED",
+  "fps_performance": "NOT_MEASURED"
+}

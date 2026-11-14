@@ -1,0 +1,227 @@
+{
+  "all_four_sources_unchanged_after_review": true,
+  "created_at": "2026-11-14T07:07:03.462593+00:00",
+  "existing_validation_read_only": {
+    "actionlint": {
+      "exit_code": 0,
+      "log": {
+        "bytes": 0,
+        "path": "/tmp/lumo-c4-delivery-20261114/evidence/focused-readonly-final/check-2.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "binding": {
+      "bytes": 2364,
+      "path": "/tmp/lumo-c4-delivery-20261114/evidence/final-test-bindings.json",
+      "sha256": "dadf19f4aec5d014b22c5da183058c2431e727faf8ecfda2655559dfc7793e8c"
+    },
+    "delivery_tests": {
+      "count": 30,
+      "errors": 0,
+      "failures": 0,
+      "log": {
+        "bytes": 6220,
+        "path": "/tmp/lumo-c4-delivery-20261114/evidence/focused-readonly-v1/suite-1.log",
+        "sha256": "f132e5ce25b14fd30f6560539f110e781a71863d69d7012bf8fc2515db715255"
+      },
+      "skips": 0
+    },
+    "pipeline_tests": {
+      "count": 9,
+      "errors": 0,
+      "failures": 0,
+      "log": {
+        "bytes": 1690,
+        "path": "/tmp/lumo-c4-delivery-20261114/evidence/focused-readonly-final/check-1.log",
+        "sha256": "3688314059b813e0e70ea1e9c7d45b274bfb08bbed0d7a5b20d6bf255203da0c"
+      },
+      "skips": 0
+    },
+    "scope": "Existing authored results read and hashes verified; reviewer executed no tests. Final four-source view is byte-identical. The older v1 pipeline test source differs and is not used as the final 9-test evidence."
+  },
+  "findings": [
+    {
+      "facts": [
+        "Exactly six distinct specialist jobs and their named mandatory steps must be completed/success on the same run/attempt/head.",
+        "Preparation explicitly requires overall workflow and its own delivery job in_progress with null conclusion; it does not demand premature overall completion.",
+        "Only the separate later publication-readiness path requires overall completion and actual successful delivery replay/upload.",
+        "Missing/duplicate/extra jobs, wrong head/attempt/event/repository/current PR and failed/skipped required steps are rejected."
+      ],
+      "id": "six_completed_jobs_before_running_bundle",
+      "jobs": [
+        "connect-four-runtime",
+        "android-host-compile",
+        "verify-and-build",
+        "android-c4",
+        "update-2020-from-2017",
+        "verify-c4-candidate"
+      ],
+      "source": "scripts/verify_connect_four_delivery.py:checked_jobs; .github/workflows/lumo-connect-four-2020.yml:prepare-c4-delivery",
+      "status": "consistent"
+    },
+    {
+      "facts": [
+        "The actual configured Native checkout supplies the logical shell roster; backslash/newline commands are joined before parsing. There must be exactly 52 unique probe/mode pairs including the four new modes.",
+        "results.tsv must exactly equal the ordered current roster, all PASS; every original mode log must contain its actual marker and no strict engine/leak errors.",
+        "Both original source SHA stamps, actual tree, empty dirty stamp and Godot 4.6.3 bind the evidence to the dynamically configured Native revision.",
+        "Existing 24 Studio, 4 Village, 6 Puzzle-menu and 7 Safe-Area raster manifests are recomputed in a disposable mirror, compared to originals and their PNG payloads fully decoded.",
+        "The actual configured verify_studio_2020_rasters.verify(root, write=False) replays 16 new PNGs, three original reports and one facial movie with hashes and bound original encode/decode/ffprobe evidence; the original new manifest hash must remain unchanged.",
+        "The actual full runner transcript must contain all three completion markers and no strict error. No producer-only movie.json lacking the new collector log fields is accepted as Root52."
+      ],
+      "id": "current_native_52_and_original_rasters_movie",
+      "new_modes": [
+        {
+          "marker": "LUMO_FACIAL_PASS checks=102 actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false",
+          "mode": "headless",
+          "probe": "lumo_facial_regression"
+        },
+        {
+          "marker": "LUMO_FACIAL_CAPTURE_PASS frames=144 original_word=true recording_fps=24 not_device_fps=true",
+          "mode": "rendered",
+          "probe": "lumo_facial_capture"
+        },
+        {
+          "marker": "CONNECT_FOUR_VISUAL_PASS",
+          "mode": "rendered",
+          "probe": "connect_four_visual_capture"
+        },
+        {
+          "marker": "[TreasureTitleContrast] PASS",
+          "mode": "rendered",
+          "probe": "treasure_title_contrast_regression"
+        }
+      ],
+      "reference_gate_contract": {
+        "bytes": 8567,
+        "path": "/tmp/native-studio-52-gate-integration-20261114/gate-contract.json",
+        "sha256": "bacf00a979217d3d4394e74e221886d9839cd400c42c55bf32b8fb0ec7ce0018"
+      },
+      "reference_helper": {
+        "bytes": 23524,
+        "path": "/tmp/native-studio-52-gate-integration-20261114/final-source/tools/verify_studio_2020_rasters.py",
+        "sha256": "4deca56cc7f4a6751b16da8e01352044d44e5c7428bcde6594d48576e675e792"
+      },
+      "reference_runner": {
+        "bytes": 9791,
+        "path": "/tmp/native-studio-52-gate-integration-20261114/final-source/tools/validate_nextgen.sh",
+        "sha256": "f48fdff8bd0a96b7c81468f4a8b516fd8bcb9f2a4b1ea31b232d931aad2475df"
+      },
+      "source": "scripts/verify_connect_four_delivery.py:checked_native_results, checked_native",
+      "static_mode_count": 52,
+      "status": "consistent"
+    },
+    {
+      "assertions": 70,
+      "facts": [
+        "All three explicit JVM test success lines and exact 23/17/30 assertion markers are required once, together with a single complete successful scripts-suite summary and no skips/failures.",
+        "The three marker strings match the existing actual merged PCM JVM original exactly; their scope remains synthetic JVM compilation of production Kotlin, not audible Android playback.",
+        "The full committed production PCM sources, installer and original fixtures are checked against current Host Git bytes.",
+        "The earlier local three-method command used scripts.tests.test_speech_envelope_contract; the future workflow uses unittest discover -s scripts/tests, matching the verifier's top-level test_speech_envelope_contract identifier. No prior local log is presented as the future full-suite result."
+      ],
+      "id": "actual_pcm_assertion_markers",
+      "markers": {
+        "test_build_consent_rate_and_activity_contract": "LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+        "test_original_learning_lifecycle_contract": "LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+        "test_original_pcm_envelope_contract": "LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47"
+      },
+      "reference_actual_jvm_log": {
+        "bytes": 857,
+        "path": "/tmp/lumo-pcm-validation-8dd2ad1f-20261114/validation/merged-pcm-green/original.log",
+        "sha256": "55effd039d490c64dba93574c00ed5b711b50181be1ef816725bb7985be28c55"
+      },
+      "reference_pcm_source": {
+        "bytes": 3660,
+        "path": "/tmp/lumo-c4-delivery-20261114/before/reference/pcm-test.py",
+        "sha256": "30f75c17006c47c4410d0309a79193a0a97024d479d8b93e94e7d706b0632a3f"
+      },
+      "source": "scripts/verify_connect_four_delivery.py:checked_pcm_log, committed_pcm_sources",
+      "status": "consistent"
+    },
+    {
+      "candidate_verifier_reference": {
+        "bytes": 10811,
+        "path": "/tmp/lumo-c4-delivery-20261114/evidence/focused-readonly-final/validation-view/scripts/verify_connect_four_candidate.py",
+        "sha256": "c8a6b714a330c564bde68c619b07a342eb3eedf7e6191f9f3a3deacc98e594e1"
+      },
+      "facts": [
+        "Host is the exact PR head; configured Native is read through the existing approved 2020 pin policy and passed to each relevant checkout/probe/verifier.",
+        "The existing candidate verifier is actually called again for both signed ABIs, current real desktop C4 pair, current API35 C4 originals and 2017→2020 preservation; fresh facts must equal the saved candidate facts.",
+        "Current Git Host/Native identities, actual APK/PCK source, signatures, run/attempt/artifact ID/digest and current GODOT-SOURCE.json remain required. No fixed 27ae/7e03 Native acceptance is added.",
+        "The workflow installs ffmpeg for actual movie collection and uses an absolute Host venv PATH before cd into Native."
+      ],
+      "id": "dynamic_current_host_and_native_pins",
+      "source": "workflow pin output, exact checkouts, verify_connect_four_candidate.verify and prepare",
+      "status": "consistent"
+    },
+    {
+      "facts": [
+        "The active workflow has contents:read; delivery adds only actions:read. GitHub calls in the delivery job read original API metadata and catalog objects.",
+        "The active job invokes prepare and uploads a bundle. It performs no tag/release/branch write and never sets release_approved or published true.",
+        "The assets/report explicitly deny API37, physical ARM64, audible device PCM, measured device FPS and separate human visual approval.",
+        "The audit release/tag JSONs are inactive planned inputs, not executed publication. publication/ is absent from all four active patch paths.",
+        "The later check-current path separately binds the complete original bundle ZIP digest, safe unique members, CRC/full hashes and unchanged extracted originals before any separately authorized publication procedure."
+      ],
+      "id": "readonly_preparation_not_publication",
+      "source": "workflow permissions and delivery prepare/current/verify-public separation",
+      "status": "consistent"
+    }
+  ],
+  "limitations": [
+    "No new 2020 combined native/host workflow has been accepted by this source review.",
+    "No new APK, device input, audio playback, renderer run, performance result or publication was produced.",
+    "Producer acf51d3 visual/film evidence remains a separate source and cannot replace combined 504c8ba7/Host evidence.",
+    "Future CI must supply every original 52-mode/movie/PCM/API35 artifact; a static review is not that acceptance."
+  ],
+  "no_git_index_ref_or_publication_mutations": true,
+  "no_network_requests": true,
+  "no_source_edits": true,
+  "no_tests_run": true,
+  "reference_host": {
+    "commit": "8dd2ad1fc2f04a8a116c15147436da3c15102b87",
+    "tree": "37ac9221832bc4ec8d0b2faf98bcd1360f2d103c"
+  },
+  "reviewed_freeze": {
+    "bytes": 2547,
+    "path": "/tmp/lumo-c4-delivery-20261114/source-freeze.json",
+    "sha256": "3921641b874b9c1c2672b272e3dbbe6ba5a1c453efbdaa919fd1d7e55b566578"
+  },
+  "reviewed_patch": {
+    "bytes": 89666,
+    "path": "/tmp/lumo-c4-delivery-20261114/delivery.patch",
+    "sha256": "53132114d0a1ba2febe43b23fbd35127b92eb7a5eb4e331e8985bf1ba58245fb"
+  },
+  "reviewer": "godot_integration",
+  "schema": 1,
+  "scope": "Independent read-only review of four frozen delivery sources and existing evidence; no test rerun, engine, APK, CI, Git or publication action.",
+  "source_files": [
+    {
+      "bytes": 41022,
+      "matches_original_freeze": true,
+      "path": "/tmp/lumo-c4-delivery-20261114/proposed/.github/workflows/lumo-connect-four-2020.yml",
+      "repository_path": ".github/workflows/lumo-connect-four-2020.yml",
+      "sha256": "d1d2ee70ef53d83755f7175c07bb5c0d5c6419356948afe80ce3402011de8ad3"
+    },
+    {
+      "bytes": 37374,
+      "matches_original_freeze": true,
+      "path": "/tmp/lumo-c4-delivery-20261114/proposed/scripts/tests/test_connect_four_delivery.py",
+      "repository_path": "scripts/tests/test_connect_four_delivery.py",
+      "sha256": "cc82d7e481e0a02e5f919d29947428c52025bc2f08279e6dd253c93a4c18a30f"
+    },
+    {
+      "bytes": 14309,
+      "matches_original_freeze": true,
+      "path": "/tmp/lumo-c4-delivery-20261114/proposed/scripts/tests/test_connect_four_pipeline.py",
+      "repository_path": "scripts/tests/test_connect_four_pipeline.py",
+      "sha256": "113ba57248fe3a12dffb9249e9d62c60db023b7861935819a08e9b2d325fb6b0"
+    },
+    {
+      "bytes": 39637,
+      "matches_original_freeze": true,
+      "path": "/tmp/lumo-c4-delivery-20261114/proposed/scripts/verify_connect_four_delivery.py",
+      "repository_path": "scripts/verify_connect_four_delivery.py",
+      "sha256": "80164a710b8dadedbe05aa7468018c32ae9a60e1e44ef96b2ac6a68309976cc8"
+    }
+  ],
+  "status": "NO_CONCRETE_SOURCE_BLOCKER_FOUND"
+}

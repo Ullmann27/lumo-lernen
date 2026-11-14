@@ -1,0 +1,34 @@
+{
+  "status": "PENDING_ROOT_CHECKPOINT",
+  "argv": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "tools.android_qa.tests.test_connect_four_flutter_navigation",
+    "tools.android_qa.tests.test_connect_four_android_evidence",
+    "tools.android_qa.tests.test_connect_four_probe_deadlines",
+    "-v"
+  ],
+  "cwd": "Exact future published checkpoint checkout",
+  "expected_methods_from_static_source": 54,
+  "navigation_methods": 16,
+  "evidence_methods": 27,
+  "unchanged_deadline_methods": 11,
+  "original_methods_retained": 36,
+  "new_vs_original": 18,
+  "additional_vs_v1": 7,
+  "require_actual_exit_zero_no_failures_errors_skips_expected_failures": true,
+  "dependencies": [
+    "Python standard library",
+    "Pillow",
+    "tools/android_qa/native_surface_readiness.py"
+  ],
+  "widget_tests_only_in_future_real_CI": [
+    "test/games/connect_four_native_route_test.dart",
+    "test/games/connect_four_navigation_test.dart",
+    "test/games/games_screen_flow_test.dart"
+  ],
+  "tests_executed": false,
+  "remaining_device_gate": "Actual first entry and reopening via observed enabled opt-in, complete native/save/ACK sequence, one Back and unchanged mailbox/return verification."
+}

@@ -1,0 +1,20 @@
+--- v1/.github/workflows/lumo-android-runtime-7b16-followup.yml
++++ v2/.github/workflows/lumo-android-runtime-7b16-followup.yml
+@@ -55,6 +55,7 @@
+             scripts.tests.test_android_runtime_device_logger \
+             scripts.tests.test_runtime_logcat_sections \
+             scripts.tests.test_runtime_followup_workflow \
++            scripts.tests.test_unchanged_apk_followup \
+             tools.android_qa.tests.test_nextgen_speech_logcat_recovery \
+             tools.android_qa.tests.test_studio_speech_logcat_recovery \
+             scripts.tests.test_verify_unchanged_apk_diagnostic \
+--- v1/scripts/tests/test_runtime_followup_workflow.py
++++ v2/scripts/tests/test_runtime_followup_workflow.py
+@@ -22,6 +22,7 @@
+     'scripts.tests.test_android_runtime_device_logger',
+     'scripts.tests.test_runtime_logcat_sections',
+     'scripts.tests.test_runtime_followup_workflow',
++    'scripts.tests.test_unchanged_apk_followup',
+     'tools.android_qa.tests.test_nextgen_speech_logcat_recovery',
+     'tools.android_qa.tests.test_studio_speech_logcat_recovery',
+ )

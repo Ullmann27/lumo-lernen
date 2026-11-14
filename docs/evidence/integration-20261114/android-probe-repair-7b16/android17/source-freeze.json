@@ -1,0 +1,126 @@
+{
+  "created_at": "2026-11-14T02:49:04.272988+00:00",
+  "worktree": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16",
+  "head": "2cac2543ba6f6eca77034dc095c7abf66cf49d57",
+  "files": [
+    {
+      "path": "scripts/android_framework_ready.py",
+      "bytes": 29085,
+      "sha256": "b5ddd549a6cbea5b9fbe2bba643eae903a94e23869f495f8229dc999fdd1041f",
+      "git_blob": "af4fb454e3c5cb7a2d7379a32eeecbf7ca7fe75a",
+      "before_sha256": "9c4131396884ec87f574fd1466501991bd9d94b8442da8eb00a131cf8df43045"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_window_7b16/0014-window-state.stdout",
+      "bytes": 65303,
+      "sha256": "0b86a5079bf41b9efb6cf3c7822ea1d3163a1bf09a52de8a33c4e86aaa23703d",
+      "git_blob": "ee6d7dddf1b4d706ee2387fa38adf5fbd136503f",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_window_7b16/0015-events-anr.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_window_7b16/0028-window-state.stdout",
+      "bytes": 65905,
+      "sha256": "545f84f72288d6963859b62dda1fb4c35171d9d9bc60c08858433bcea6f4c304",
+      "git_blob": "fcad8d1d5814bcbad312c5f9cc0ef59c4869356d",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_window_7b16/0029-events-anr.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_window_7b16/0042-window-state.stdout",
+      "bytes": 70847,
+      "sha256": "61239cc72fa54650a73fa0116745d47774fe92f90c69e3f9c04f6743784189e6",
+      "git_blob": "e00c10d8d0132d8e358288ec623cb9a64a03f6d2",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_window_7b16/0043-events-anr.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_window_7b16/0056-window-state.stdout",
+      "bytes": 70792,
+      "sha256": "09abd55916c001ea6ff8c5af2a2a9e099cc8fcaf4976ea572ca861cfcae3fc73",
+      "git_blob": "aa41c1064b3b08bb882b114337c87328e2405102",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_window_7b16/0057-events-anr.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_window_7b16/0070-window-state.stdout",
+      "bytes": 70850,
+      "sha256": "2911b4441eb668178c5cd5cb52e6002c453d4b035997de6910c59011e8fa49c9",
+      "git_blob": "40ff548876a2e67e9e50428053ede2a0b5df0daa",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_window_7b16/0071-events-anr.stdout",
+      "bytes": 321,
+      "sha256": "fbfd393693d76bbcb6bf776050fe6f08a7d80effa6f9925bc768cd1db6aff7eb",
+      "git_blob": "cb3c0a02c6cd2bafbdc83488b39df211237c2a52",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_window_7b16/manifest.json",
+      "bytes": 4796,
+      "sha256": "32148cc451040f18b4c0200857cd521e9cd198e10b8d484605c708e9e7333dbd",
+      "git_blob": "c066a942e14f6465f26b36f3917bb656a9e0c4a4",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/test_android_framework_ready.py",
+      "bytes": 19723,
+      "sha256": "b44b891fbedb5bd8e34b1507e069017c1350f1e7232aa43d0c2207df22247e5d",
+      "git_blob": "20c9eca7fd2187d34f8b790274604ac36f0b5c29",
+      "before_sha256": "7101b56376ea4692d8347ee3fe14a72742c87b4c680034721a4410713d6e28f3"
+    },
+    {
+      "path": "scripts/tests/test_android_framework_ready_android17.py",
+      "bytes": 10171,
+      "sha256": "944ac3c8940b0deccc7d0258903f732c61362f5925e8aea8d441407d6a1a7ce6",
+      "git_blob": "9a1bd11278c6fe68ae7c803626c6f94e64d282d6",
+      "before_sha256": null
+    }
+  ],
+  "existing_test_methods_ast_identical": [
+    "FrameworkReadinessTests.test_boot_property_cannot_replace_input_or_settings_service",
+    "FrameworkReadinessTests.test_registered_service_without_real_settings_read_still_fails",
+    "FrameworkReadinessTests.test_changed_system_server_identity_is_failure_not_a_new_success_window",
+    "FrameworkReadinessTests.test_android35_cannot_satisfy_android37_framework_guard",
+    "FrameworkReadinessTests.test_transient_missing_service_must_be_followed_by_full_stable_window",
+    "FrameworkReadinessTests.test_real_command_timeout_preserves_raw_stdout_and_stderr",
+    "FrameworkReadinessTests.test_unlocked_visible_focused_activity_needs_no_input",
+    "FrameworkReadinessTests.test_actual_848_anr_events_reject_service_positive_counterexample",
+    "FrameworkReadinessTests.test_window_last_anr_cannot_be_hidden_by_empty_event_buffer",
+    "FrameworkReadinessTests.test_unknown_ambiguous_or_unready_surface_is_not_a_pass",
+    "FrameworkReadinessTests.test_one_observed_nonsecure_unlock_requires_new_stable_surface",
+    "FrameworkReadinessTests.test_zero_exit_from_unlock_is_not_a_surface_acknowledgment",
+    "FrameworkReadinessTests.test_secure_unknown_or_sleeping_keyguard_never_gets_blind_input",
+    "FrameworkReadinessTests.test_failed_unlock_stops_and_preserves_the_failure",
+    "FrameworkReadinessTests.test_focus_change_restarts_the_same_stability_requirement",
+    "FrameworkReadinessTests.test_anr_after_unlock_is_terminal_without_another_unlock",
+    "ExactUpstreamActionTests.test_only_observed_setup_replaces_menu_and_tampered_upstream_is_rejected",
+    "ExactUpstreamActionTests.test_exact_original_main_keeps_settings_tour_and_cleanup_after_observed_setup"
+  ],
+  "scope": "Only the readiness parser, its test recorder, one targeted test and ten byte-identical originals plus provenance. No action-adapter, workflow, CLI22, emulator configuration or current running source was changed."
+}

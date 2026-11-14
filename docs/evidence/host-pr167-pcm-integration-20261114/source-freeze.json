@@ -1,0 +1,208 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T06:11:37.495489+00:00",
+  "status": "SOURCE_FROZEN_BEFORE_OWN_TESTS",
+  "scope": "Only external final-source; Root owns application/index/commits/refs. No source worktree or producer file was changed.",
+  "base_host_sha": "43db2662e890b6468cf77f7044da16364a259482",
+  "base_host_tree": "4a70b60c254d3ee35832cb2a4b5eb9aa819e02fd",
+  "producer_stage_only": true,
+  "producer_host_base": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "producer_source_freeze": {
+    "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/source-freeze.json",
+    "bytes": 6334,
+    "sha256": "ee7abfc2eee1d932e50042432be720ea8c4c25311752dafdce35f3f4e563acfe",
+    "git_blob": "d79f3bd878d865473408ca09c99083e6bfd09e45"
+  },
+  "files": [
+    {
+      "path": "scripts/prepare_android.py",
+      "origin": "current_host_with_integration_delta",
+      "bytes": 8826,
+      "sha256": "e80c31269ba8d15fc5db171dd46e1c45cb418f1ff799b03292e89e45b7e4dc6f",
+      "git_blob": "83d6421d0fe26848962c8a2433b0b78182596261",
+      "before": {
+        "bytes": 8781,
+        "sha256": "552aba5a06cc3ad403e61e47f7d1e4f43592dae028baadcec09bd4130173bae5",
+        "git_blob": "f54580d334774dd0f275429b12deeac658a725d4"
+      }
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechBuildContract.kt",
+      "origin": "integration_test_or_provenance",
+      "bytes": 4948,
+      "sha256": "484d242949a9f96c315eb8a6853a303988200f4d5f45c20251d6aae94a5fabf8",
+      "git_blob": "a75173645c2f6cc67bc30956accc11793a1fc87a",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechLifecycleContract.kt",
+      "origin": "exact_frozen_producer",
+      "bytes": 4342,
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+      "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/SpeechEnvelopeContract.kt",
+      "origin": "exact_frozen_producer",
+      "bytes": 4381,
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+      "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/apfel.wav",
+      "origin": "exact_frozen_producer",
+      "bytes": 40970,
+      "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+      "git_blob": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt",
+      "origin": "exact_frozen_producer",
+      "bytes": 462,
+      "sha256": "86c558d488458ecb25dec947fd0935114cfbe9c69b35c08b45ce592536c930c6",
+      "git_blob": "3560fa5b3537dcd6b881dc9090ef4f0099b20e50",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Channel.kt",
+      "origin": "exact_frozen_producer",
+      "bytes": 172,
+      "sha256": "c42bc41b86360bc28f84f59fbec760a633460ffab930439921c344cafc093950",
+      "git_blob": "56fe64be87d4489133e83855df5a612b6225a174",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Context.kt",
+      "origin": "exact_frozen_producer",
+      "bytes": 318,
+      "sha256": "bfadda67fce0bcfd940e6d275f0e4184c2a592febb7ab3c5639a40c1f6ec21ac",
+      "git_blob": "0685bbdf9b4cf3efe20bbb4d0e646e94e647c33c",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Handler.kt",
+      "origin": "exact_frozen_producer",
+      "bytes": 992,
+      "sha256": "2baa97b0f65a6a7cc59a26f5f80e823608d5e18f546236db7850d902c7963dce",
+      "git_blob": "855d09cd8dbc4af5bd91b29fa1db1e52488dbd9e",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
+      "origin": "exact_frozen_producer",
+      "bytes": 964,
+      "sha256": "457539a65101608c93b64b1fab0705406814d4fc7c7da64ed0914c94f815d1b9",
+      "git_blob": "8bf77f00b631df5027e17d6eb84dd29f5594f462",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt",
+      "origin": "exact_frozen_producer",
+      "bytes": 73,
+      "sha256": "d9bef1b203ec4e7cfe515061ee7cae2d333c7bce7fdee8e460e8554c00ec43e6",
+      "git_blob": "c060a6b11c5e44f72ea3b0204b49d69995ec0e04",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Media.kt",
+      "origin": "exact_frozen_producer",
+      "bytes": 1466,
+      "sha256": "26dadd1a5347836a72d034e925f3098221a86055ede2c4e80906fb41893dd962",
+      "git_blob": "6857f886fada7cdba117053b559024ef2c0386bd",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/provenance.json",
+      "origin": "integration_test_or_provenance",
+      "bytes": 5131,
+      "sha256": "f24e2f2007e4a88a98b8aebae423e7e746b34bd5a33ddbeb734df2d49826fda3",
+      "git_blob": "c17a9e08d412fac7108784ed1f276e1894e3fc68",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/test_prepare_android.py",
+      "origin": "current_host_with_integration_delta",
+      "bytes": 9930,
+      "sha256": "9fa4421ab6647ef884039797929fdebc4c8023a15cd59a919bfd075f63eb9ce9",
+      "git_blob": "058cd4d7a078cb3318fef27ccdc2d50aed5688de",
+      "before": {
+        "bytes": 9815,
+        "sha256": "5362b51a1e4985cde746c7711b7a6839271cc7698bbf430e8324127c42f14899",
+        "git_blob": "d8576e0edef2af24d9465ab28664d0bff7a5cb7d"
+      }
+    },
+    {
+      "path": "scripts/tests/test_speech_envelope_contract.py",
+      "origin": "integration_test_or_provenance",
+      "bytes": 3660,
+      "sha256": "30f75c17006c47c4410d0309a79193a0a97024d479d8b93e94e7d706b0632a3f",
+      "git_blob": "5037fd4078e5f73078cd28e4054992f12e07f317",
+      "before": null
+    },
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "origin": "current_host_with_integration_delta",
+      "bytes": 8921,
+      "sha256": "ff154885806c7c8fcf0fe730367b8fd2d25760584037ea6f5e0851324bd2c1e0",
+      "git_blob": "95b57595d0cc788746c20fe5c26ef448c18121c2",
+      "before": {
+        "bytes": 7039,
+        "sha256": "3353e4dd04fd96fa0e4e2b79dac1d7ecfc2b87fe5c2c4cfbeca472a481a5a06c",
+        "git_blob": "a2533a240b798efb6bc58672164758c1ab4da882"
+      }
+    },
+    {
+      "path": "tools/auto_install/LumoSpeechEnvelope.kt",
+      "origin": "exact_frozen_producer",
+      "bytes": 4697,
+      "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8",
+      "git_blob": "5721274734e111e96d55762d86b3d3e830fc26e8",
+      "before": null
+    }
+  ],
+  "unchanged_test_inputs": [
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "bytes": 8395,
+      "sha256": "91e5d2dcafd1f04c7d116b05785f4ca284cbe31457ed1777e7c057d60becd62f",
+      "git_blob": "b40217befd633a2a606a5cd8ae732f33068a1c22"
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "bytes": 15809,
+      "sha256": "e2fd0ac015a1957053bde4b15d1fe5c518581e423d3d7573698bbbf8c22fdd72",
+      "git_blob": "7a986433953773678feb4c98226caafb47c6abd9"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "bytes": 17671,
+      "sha256": "831fa3580a3330583d3f4a92e0cf9882a703224e3d0f3a65f666e67f52c4c946",
+      "git_blob": "9027d1106287c1c295a94ebcf3828e5dcac35b7b"
+    },
+    {
+      "path": "tools/auto_install/lumo_file_paths.xml",
+      "bytes": 263,
+      "sha256": "5adc65ba583b3a16bfb9b755b21ef3c86d5757a5f47eb8db27799ce2c61e5e29",
+      "git_blob": "99b01b8c35942305df70d95cafcc18d04adaa649"
+    }
+  ],
+  "preserved_current_hunks": [
+    "Speech accepts exactly learning or build, still requiring learningVoiceEnabled and localVoiceLicenseAccepted.",
+    "Existing lesson-and-village documentation retained."
+  ],
+  "installer_delta": "Add only ('LumoSpeechEnvelope.kt', 'kotlin') to the existing namespace-aware copy list.",
+  "planned_validation": [
+    "Existing installer fixture with original installer: expected missing Envelope Red.",
+    "Same fixture with new installer: both namespaces, repeated preparation and fictional retained data unchanged.",
+    "Producer original learning-only Speech against new Build neighbor: expected Red, separate from original 40 producer checks.",
+    "Merged actual Speech+unchanged Envelope: byte-original producer 23+17 checks, additional 30 build/consent/rate/lifecycle assertions."
+  ],
+  "not_claimed": [
+    "No own test result yet.",
+    "No Android build, emulator, audible device playback, facial visual acceptance or Native/Host release claimed.",
+    "Native facial source must be paired separately before a combined runtime acceptance."
+  ]
+}

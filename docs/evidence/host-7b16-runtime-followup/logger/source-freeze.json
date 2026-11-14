@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "frozen_at": "2026-11-14T04:21:32.141974+00:00",
+  "root": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16",
+  "head": "76443d3969856bfbba0e5b19231917f1743cf2a6",
+  "files": [
+    {
+      "path": "scripts/android_framework_ready.py",
+      "bytes": 47400,
+      "sha256": "9d26d8141dd9aeacf6a57be29959b4dc442ed9c5db09e452dc4cf92b7653396a",
+      "before": {
+        "bytes": 29916,
+        "sha256": "0b501e19f4aaa56c69c593a3fdbcacce508ef55dd255671e059651b1e8e0b190"
+      }
+    },
+    {
+      "path": "scripts/verify_android_runtime_anr.py",
+      "bytes": 37662,
+      "sha256": "96e17dad46b487ec3215d917e525d09a0be3515b4c9f7a025971cf7a4e137a57",
+      "before": {
+        "bytes": 20361,
+        "sha256": "c71acb91a77285699b8bb70a8e4846f41363e378171707e2c06eae9367b55e60"
+      }
+    },
+    {
+      "path": "scripts/run_unchanged_apk_diagnostic.sh",
+      "bytes": 6960,
+      "sha256": "02d369163de84cb80bf63ef55ecb6397f9df2a2c2c0356fd13efdf399a4f12a5",
+      "before": {
+        "bytes": 6772,
+        "sha256": "c94033c7d3568ca7e432891d72dfe1a00be982166301815bb4b15f335891239d"
+      }
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 71882,
+      "sha256": "dcf7ba4c315efe600ac5001de0935a5597e1ac25f63711e9f8732fd92de9257f",
+      "before": {
+        "bytes": 69612,
+        "sha256": "3b5ffbd29d6a4c8ccb9bd2850cef55310f52841ab31a82912bea59bbc96278ba"
+      }
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 50962,
+      "sha256": "6b572feb22830651f99f5b01678bcb0532b433c861d040f04916ae8a1b0466ec",
+      "before": {
+        "bytes": 48262,
+        "sha256": "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34"
+      }
+    },
+    {
+      "path": "scripts/tests/test_android_runtime_device_logger.py",
+      "bytes": 16836,
+      "sha256": "bf6b1e4f547f844287f9e0e1afa860427a3838d0384b5527488875cd48df6ae2",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/test_runtime_logcat_sections.py",
+      "bytes": 12513,
+      "sha256": "745703233623614da345102745322a49b9aa75bcfba1849ee6ac71201023de58",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_root_monitor_61c/host-gms-events-anr.stdout",
+      "bytes": 321,
+      "sha256": "cdea9d527ca2d3ef09ebdbf26ff496f2dda5f4af0aedfbbb3e0bf4eb3e1e8d31",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_root_monitor_61c/host-monitor-finished.json",
+      "bytes": 1074,
+      "sha256": "8af85369c2b34f0de7e26a49fef151ccb69bdab9195446c8076b3dab7f1c3cf1",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_root_monitor_61c/manifest.json",
+      "bytes": 1390,
+      "sha256": "87c8604d17b5c7586c1a3e2a6a33398fab3d8dfeb7ae18e054cbe08b4af16d0f",
+      "before": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_root_monitor_61c/swiftshader-monitor-finished.json",
+      "bytes": 1074,
+      "sha256": "be9d7574f67d4cb37a6755ca7f923b468653cb05b9a07cda240b9258bc7f46ed",
+      "before": null
+    }
+  ],
+  "scope": "Only owned runtime logger sources, two precisely authorized clear/speech probe hunks, focused tests and byte-exact failed-QA fixtures. Other agents' changes are excluded from this patch. No Android execution."
+}

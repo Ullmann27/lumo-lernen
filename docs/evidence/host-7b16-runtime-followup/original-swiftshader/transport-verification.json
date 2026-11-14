@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "verified_at": "2026-11-14T04:28:22.911882+00:00",
+  "status": "TRANSPORT_VERIFIED_ONLY",
+  "archive_sha256": "9aaa2850bc96b39833a3e5893f020a5ecf19d7038fc326f18affed7448e37055",
+  "archive_bytes": 39307727,
+  "all_member_count": 460,
+  "expanded_bytes": 49998319,
+  "all_member_crc_sha256_verified": true,
+  "new_inventory_byte_records_equal_prior_inventory": true,
+  "materialized_originals": [
+    {
+      "path": "memory-originals/originals/logcat.txt",
+      "archive_member": "logcat.txt",
+      "bytes": 2000006,
+      "sha256": "9572cfa583f279cb8ba2d17fab64e366052652ab79736767fd5212563be9f122",
+      "crc32": "e5bbe6bf"
+    },
+    {
+      "path": "memory-originals/originals/cold-start-launch.txt",
+      "archive_member": "cold-start-launch.txt",
+      "bytes": 545,
+      "sha256": "8a9ced31a7581211c3d3c1b0a0fc10785140269b56839895974934f51a296400",
+      "crc32": "821f008d"
+    },
+    {
+      "path": "memory-originals/originals/install.txt",
+      "archive_member": "install.txt",
+      "bytes": 181,
+      "sha256": "5b7ce26d651a3229c86f35d1ee5b5c6a33c9571b957c869df222655faeda87a2",
+      "crc32": "329d0a87"
+    },
+    {
+      "path": "memory-originals/originals/open-kart-47-1-0.xml",
+      "archive_member": "open-kart-47-1-0.xml",
+      "bytes": 29546,
+      "sha256": "59db2a2e8ee42629d6c4db4a677f4036ef6a8962a8fac1164b3f0c9c0ccb4584",
+      "crc32": "99dba31b"
+    },
+    {
+      "path": "memory-originals/originals/fatal-logcat.txt",
+      "archive_member": "fatal-logcat.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "memory-originals/originals/restart-after-kart-launch.txt",
+      "archive_member": "restart-after-kart-launch.txt",
+      "bytes": 545,
+      "sha256": "8ab899eb83c064e3e602061a83ffc979521a4a6511f7ef30a60f1a77fb5d4b38",
+      "crc32": "0d3fbdbc"
+    }
+  ],
+  "materialized_bytes": 2030823,
+  "collector": {
+    "path": "/workspace/scratch/b3485b7bb989/host-artifact-memory-collector/collect_artifact.py",
+    "bytes": 15859,
+    "sha256": "9d7b07d27657b9c9a62c7027393419006480bc3d28848cfabe6811be21a6204e"
+  },
+  "collector_used_without_modification": true,
+  "collector_report": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-swiftshader-landing-review/memory-originals/report.json",
+    "bytes": 120188,
+    "sha256": "c3fe727d0c988e590019601cf79a7c3d74dc30865100a395199b1794f4e2c6dc"
+  },
+  "private_url_retained": false,
+  "complete_zip_written": false,
+  "new_png_written": false,
+  "external_complete_zip_retention": "Original GitHub Actions artifact 14096976074; API expires_at 2026-12-14T03:31:30Z. No complete local ZIP retained.",
+  "limits": {
+    "archive_bytes": 41943040,
+    "materialized_bytes": 3145728,
+    "expanded_bytes": 2147483648,
+    "members": 20000
+  }
+}

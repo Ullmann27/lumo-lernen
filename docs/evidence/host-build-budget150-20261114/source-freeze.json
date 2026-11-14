@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "kind": "only_build_job_outer_budget_150",
+  "created_at_utc": "2026-11-14T13:54:40.321Z",
+  "host_base": {
+    "commit": "37ec6c6aee67c31ce16550cd59d616c80e80e305",
+    "tree": "6ab0e6cafc9fb37d3b3d95d76805aff4b6810d7a",
+    "repository": "Ullmann27/lumo-lernen"
+  },
+  "native_pin": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "type": "blob",
+      "before": {
+        "bytes": 49103,
+        "sha256": "72224aca469231aaeb6f3db0b5e5ec7fea9bb32e8d5804ea8cd46509003d879e",
+        "git_blob": "2110d672ede7c80819fe3ff365339936b5406d8c"
+      },
+      "after": {
+        "bytes": 49103,
+        "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226",
+        "git_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064"
+      },
+      "changed_budget_lines": 1
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "type": "blob",
+      "before": {
+        "bytes": 86764,
+        "sha256": "eab724190785e4714a6b9766d10a7ad0d68177513bcd425e8708d66065999f88",
+        "git_blob": "2b3650bda8e2ba92545e2566c534c1ec664c5c16"
+      },
+      "after": {
+        "bytes": 86764,
+        "sha256": "baf14a20e411ff725a50a9c058148f8c029273e018c64fec398ea8bbf160e6a0",
+        "git_blob": "12ca0d0ce5298ebe9e07511db9320f012f013687"
+      },
+      "changed_budget_lines": 2
+    }
+  ],
+  "scope": "One verify-and-build timeout 120->150; the two existing assertions of that exact build budget change 120->150. All other bytes, individual probe limits, Android80, branch guards, sources, pins and fake 120.005s log fixture values remain unchanged.",
+  "tests": "NOT_RUN; after Root publishes checkpoint: existing 71 Delivery methods once plus one actionlint of this workflow. No Pipeline17/Pin64 rerun.",
+  "active_run": "43601673844 is not cancelled or changed by this preparation; actual replacement/supersession is Root-owned."
+}

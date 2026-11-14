@@ -1,0 +1,63 @@
+{
+  ".github/probes/modernization_android_tour.py": {
+    "changed_allowed": [
+      "diagnostic_logcat_context",
+      "main"
+    ],
+    "other_functions_classes_unchanged": [
+      "RaceSession",
+      "_atelier_roundtrip",
+      "_confirm_stage_selection",
+      "_continue_actual_race",
+      "_inspect_spatial_kart_menu",
+      "_pause_actual_race",
+      "_previous_kart_race_id",
+      "_read_garage_footer",
+      "_return_stage_kart_menu",
+      "_screencap",
+      "_select_stage_driver",
+      "_select_stage_kart",
+      "_shot",
+      "_simplify",
+      "_stage_cup_text",
+      "_stage_kart_scroll_recovery",
+      "_start_actual_embedded_race",
+      "alive",
+      "drive_with_gas",
+      "find_gas",
+      "godot_alive",
+      "labels",
+      "log_images",
+      "logcat_fatal",
+      "try_tap",
+      "verify_apk_identity",
+      "wait_race_hud",
+      "wait_race_running"
+    ]
+  },
+  ".github/probes/lumo_studio_surfaces_android_probe.py": {
+    "changed_allowed": [
+      "_speech_logcat",
+      "_start_learning_speech_section",
+      "completed_native_speech",
+      "learning_roundtrip"
+    ],
+    "other_functions_classes_unchanged": [
+      "CardsMailbox",
+      "capture_cards_faces",
+      "capture_returned_flutter",
+      "cards_display_density",
+      "cards_ready_to_draw",
+      "cards_roundtrip",
+      "local_voice_permission",
+      "main",
+      "must_see",
+      "native_ready",
+      "read_cards_layout",
+      "resumed_activity",
+      "returned_to_flutter",
+      "tap_flutter",
+      "wait_for"
+    ]
+  }
+}

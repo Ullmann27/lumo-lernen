@@ -1,0 +1,300 @@
+{
+  "schema": 1,
+  "source_head": "36274db2941963c59b1f819ad7bc2358470d3a76",
+  "source_tree": "39ee9cdf1567271599922d6b991399927affccae",
+  "allowed_changed_paths": [
+    "tools/auto_install/LumoLearningSpeech.kt",
+    "tools/auto_install/LumoOfflineSpeechBridge.kt",
+    "tools/auto_install/LumoOfflineSpeechEngine.java",
+    "scripts/run_speech_jvm_contracts.py",
+    "scripts/speech_contracts/test_english_lesson_speech.py",
+    "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+    "scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt",
+    "scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt",
+    "scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt",
+    "scripts/tests/fixtures/learning_english_speech/apfel-original.wav",
+    "scripts/tests/fixtures/learning_english_speech/platform_fixture.py",
+    "scripts/tests/test_speech_jvm_runner.py",
+    "scripts/compile_android_host.sh"
+  ],
+  "all_other_existing_blob_entries": 4638,
+  "all_other_tree_entries_are_preserved_by_scope": true,
+  "protected_files": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "mode": "100644",
+      "bytes": 78635,
+      "git_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "bytes": 145,
+      "git_blob": "6a7480c482d27e36b76e4cd9accab7058dc74201",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "config/lumo-offline-voice.json",
+      "mode": "100644",
+      "bytes": 1877,
+      "git_blob": "200b67029cd4e19f27118f77b52e683c49461a6b",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "lib/core/math_task_templates.dart",
+      "mode": "100644",
+      "bytes": 49784,
+      "git_blob": "85fbad4a0b09753a7f22663690a9660f98382f39",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "mode": "100644",
+      "bytes": 3323,
+      "git_blob": "4469849b204f91fab3e645604e11922e29cb594c",
+      "decision": "unchanged_not_in_13_path_patch",
+      "sha256": "375ecb52b84b59f34be006e2f9768e98cb8c6839e1a794e08a87760d68b7486f"
+    },
+    {
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "mode": "100644",
+      "bytes": 7587,
+      "git_blob": "f8bfc0af97806255ec8b72d89963c2831e250089",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "mode": "100644",
+      "bytes": 3696,
+      "git_blob": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "mode": "100644",
+      "bytes": 33174,
+      "git_blob": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "mode": "100644",
+      "bytes": 26157,
+      "git_blob": "625f7a73b71046225bbba395920d9d8a59d5775c",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "mode": "100644",
+      "bytes": 10958,
+      "git_blob": "f41e6d7351304deb9635116b0635845abac8932c",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+      "mode": "100644",
+      "bytes": 28091,
+      "git_blob": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "mode": "100644",
+      "bytes": 38878,
+      "git_blob": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "mode": "100644",
+      "bytes": 2434,
+      "git_blob": "123c13786584c3f9c487ae1b71317841d2995420",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_letter_practice_board.dart",
+      "mode": "100644",
+      "bytes": 39576,
+      "git_blob": "2b7f283d826ca09d85e7bec8cb7f51b0f562c466",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "lib/features/writing/writing_engine.dart",
+      "mode": "100644",
+      "bytes": 57931,
+      "git_blob": "a6df9ce87657681d776d5f46ff10a63acf74b6ba",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "lib/features/writing/writing_feature_flags.dart",
+      "mode": "100644",
+      "bytes": 1534,
+      "git_blob": "41000a96041c2fd4e43ed228666f66650e629719",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "scripts/gradle/lumo-maven-central-mirror.init.gradle",
+      "mode": "100644",
+      "bytes": 3574,
+      "git_blob": "2bc1e7655536e92a8d7ff2cccbc8026f932ea208",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "scripts/prepare_android.py",
+      "mode": "100644",
+      "bytes": 8826,
+      "git_blob": "83d6421d0fe26848962c8a2433b0b78182596261",
+      "decision": "unchanged_not_in_13_path_patch",
+      "sha256": "e80c31269ba8d15fc5db171dd46e1c45cb418f1ff799b03292e89e45b7e4dc6f"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "bytes": 17393,
+      "git_blob": "3b6eff95bb6e80094cca408624d49ef9191a8501",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "mode": "100644",
+      "bytes": 11403,
+      "git_blob": "bb496435fe24ecd34fd24809e12d51df6c2952be",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "bytes": 67003,
+      "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "mode": "100644",
+      "bytes": 10687,
+      "git_blob": "406a868b4c1bd896de214ca248a93c1e79bd91ec",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "scripts/voice/LumoOfflineSpeechEngineProbe.java",
+      "mode": "100644",
+      "bytes": 5482,
+      "git_blob": "e16b0a53e240bf4fffb536f0b698ea42560c8437",
+      "decision": "unchanged_not_in_13_path_patch",
+      "sha256": "34e29837463ee55953c6f518c1ee02137bc2fbacf3d37dbce72517ec0c42e516"
+    },
+    {
+      "path": "tools/android_qa/kart_android_race.py",
+      "mode": "100644",
+      "bytes": 39513,
+      "git_blob": "a0aad12a6162370e9c0e35849e213963c76c67d2",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "mode": "100644",
+      "bytes": 31013,
+      "git_blob": "b80f0d8f12fe86031a91cec39c26f9d1cfa65a94",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "mode": "100644",
+      "bytes": 12726,
+      "git_blob": "81e96786d30c223e9ba145b4f50cbae737946c08",
+      "decision": "unchanged_not_in_13_path_patch"
+    },
+    {
+      "path": "tools/auto_install/LumoSpeechEnvelope.kt",
+      "mode": "100644",
+      "bytes": 4697,
+      "git_blob": "5721274734e111e96d55762d86b3d3e830fc26e8",
+      "decision": "unchanged_not_in_13_path_patch",
+      "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "mode": "100644",
+      "bytes": 19294,
+      "git_blob": "872bb042acb09aaf309044882eef4b4446e4bd58",
+      "decision": "unchanged_not_in_13_path_patch"
+    }
+  ],
+  "exactly_equal_source_sections": [
+    {
+      "label": "Learning speed/state/WavSource/pulse/status/setActive",
+      "bytes": 1762,
+      "sha256": "9180b712133a604664daee18a3d0c7db29045c397582b1d5cb635e5b2c64a3da",
+      "git_blob": "855de69b3c01dcfbca45e34991d2ec50be9f8649"
+    },
+    {
+      "label": "Learning preparePlayback through measured publish",
+      "bytes": 3189,
+      "sha256": "97a51177f96912c4f6169cc65c4a8c919eb2f7a4e32a435c82177b709ade72f6",
+      "git_blob": "04b7a179c3ba949157c8224e014678d9f46ef858"
+    },
+    {
+      "label": "Learning destroy entire suffix",
+      "bytes": 248,
+      "sha256": "4cf383c93ad90f5c6eb178ea24c7b5c9d00cb9cb379347c9228a0514f0f574c2",
+      "git_blob": "6356fcfd4cc2097021b6bde46939d725ebb19f6f"
+    },
+    {
+      "label": "Bridge Flutter attach and all original setup",
+      "bytes": 2612,
+      "sha256": "23a4fffc5230438ff908f85772747776b02feee7216d69639393efcf85b7ae1b",
+      "git_blob": "87c8cfb5d0bcd0b4616e034eaa9b78656f070a1a"
+    },
+    {
+      "label": "Bridge cancellation/model-hash/install/release/destroy entire suffix",
+      "bytes": 3093,
+      "sha256": "cf674b4e9a4a037d6db364306c689102209835513fea64ae5d72d67b8d0b5b61",
+      "git_blob": "0e397d64e46eabe79f0611e9b82ba263759b4273"
+    },
+    {
+      "label": "Engine constants/construct/style/German normalization",
+      "bytes": 5695,
+      "sha256": "dff3fd58e2a0513630d32f1da3a8be948647c23c32b5d3f19e13a304027a10cf",
+      "git_blob": "3213da5a51b6300a46b8f804406eba2e0b31b1b8"
+    },
+    {
+      "label": "Engine id validation/style rates/native termination",
+      "bytes": 1165,
+      "sha256": "0f98e0671010f922a3610c3a656cf5e07a43eb202124be4f389efc485f904316",
+      "git_blob": "e7b60cf0ff2f24e3a40b954fd8ad2915e556975e"
+    },
+    {
+      "label": "Engine unchanged inference/tensors body",
+      "bytes": 4638,
+      "sha256": "65ce150199d03807174e06880cc95ff02c2dfde2924af43f56eb3503fb87da34",
+      "git_blob": "106d81d02bc5ddc617b25992a5dd6cdf794f49b5"
+    },
+    {
+      "label": "Engine cancellation/binary checks/real PCM/tensor close suffix",
+      "bytes": 2990,
+      "sha256": "85d05a129cfc5bd970692d411c47e8fdec65ae9b0f38e79c016cf55297e73816",
+      "git_blob": "0a5684fdec21d1065b75e3c6aeaf47ef71f64cea"
+    }
+  ],
+  "original_before_vs_common_learning_only_two_lines": true,
+  "direct_producer_end_blobs": 11,
+  "own_derived_end_blobs": 2,
+  "scope_exclusions": [
+    "No workflows",
+    "No Native pin/policy/history changes",
+    "No visual approval files",
+    "No new assets beyond original WAV regression fixture",
+    "No Writer/InkSurface/Journal/Math/Village/C4/Garage source modification"
+  ],
+  "production_constraints": [
+    "learning and build allowed condition and both consent booleans unchanged",
+    "Original F2/profile/index/rate/CPU/tensor ownership/German normalization unchanged",
+    "Original measured envelope and MediaPlayer lifecycle functions byte-identical",
+    "English word bound to unchanged 14-object Host descriptor; native payload cannot replace it",
+    "EN + exactly 250ms silence + unchanged DE explanation joins existing PCM; overall 30s duration retained",
+    "Existing Flutter speech channel remains German"
+  ],
+  "installer": "Existing scripts/prepare_android.py already installs all four speech products; no installer change needed",
+  "compile": "Only one LumoSpeechEnvelope name added to required class roster; all previous compile steps and class assertions remain byte-identical"
+}

@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "original_pack": "/tmp/host-c4-android-deadline-20261114",
+  "members": 16,
+  "complete_readback": true,
+  "original_bytes": 129697,
+  "archive_bytes": 29972,
+  "archive_sha256": "2a1c3823a619610255e54d558ea80143d64125e27c4afa0a1d2ff23362db896a",
+  "members_index": [
+    {
+      "bytes": 3616,
+      "path": "README.md",
+      "sha256": "c7b3412840bbac5a1b83e915018d7fbfd8d2155e039ddf03a0e25fe9131e18fc"
+    },
+    {
+      "bytes": 25274,
+      "path": "before/.github/probes/lumo_connect_four_android_probe.py",
+      "sha256": "4249de4352a32694f28bb45786b73437eb2d32f360fb754a4ab48c9d5212f77c"
+    },
+    {
+      "bytes": 13003,
+      "path": "deadline.patch",
+      "sha256": "67dd884f5092aa6c3f52b7c40cb1efd61474765bfec00d3c8cdcf7532c40278f"
+    },
+    {
+      "bytes": 746,
+      "path": "evidence/ast-preservation.json",
+      "sha256": "157d1b60e0787601abb59b0ce4a80a4338f5936a82a727f1a896776b648a3b22"
+    },
+    {
+      "bytes": 2533,
+      "path": "evidence/green/result.json",
+      "sha256": "abb0e46d1fd8dc010f79b41c542a3f7a89a722dca8f98dd1ea39e473e1fce8c1"
+    },
+    {
+      "bytes": 2242,
+      "path": "evidence/green/stdout.log",
+      "sha256": "6bcec03c9ef5ec94cf069841999c0fc729b1ef16c7d0bb478ffa39e7f7c0b539"
+    },
+    {
+      "bytes": 2040,
+      "path": "evidence/red/result.json",
+      "sha256": "a203e300fe11c4641b3dce0d15b2f9f22053202494582027937747d07bf29b88"
+    },
+    {
+      "bytes": 11589,
+      "path": "evidence/red/stdout.log",
+      "sha256": "d9d7ea956a0e9d07877c861538dd0f5f386ee31f93e3b9807c98a35d39b28701"
+    },
+    {
+      "bytes": 1667,
+      "path": "handoff.json",
+      "sha256": "48591c84914136c76291cd45ed2894cc82707670277f8f1d97403797cd45b537"
+    },
+    {
+      "bytes": 25726,
+      "path": "proposed/.github/probes/lumo_connect_four_android_probe.py",
+      "sha256": "6df9b6a7b3cc2253a2be78a7cec93b6f9ac30f14bcab4f127db6b9df065ed9ba"
+    },
+    {
+      "bytes": 10734,
+      "path": "proposed/tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "sha256": "0a9e75ff6694b2b023e345e7ca0da098b8f19ec7658ca78f9574875390e46831"
+    },
+    {
+      "bytes": 24813,
+      "path": "provenance/producer-original-file-objects.json",
+      "sha256": "6c3a596d5d8424615add41b045e20d4f1b781c1ecdb1aca5a0970b5ad390965d"
+    },
+    {
+      "bytes": 969,
+      "path": "provenance/source-binding.json",
+      "sha256": "7738a2b561f28f823cd072ced41abfc253aaf10356260eb0d9fa6999575c35ec"
+    },
+    {
+      "bytes": 921,
+      "path": "source-freeze.json",
+      "sha256": "484e5a69551edd00ac4d353b3ab8fb6c5840aec4d192724962717fd152ccc309"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 2367,
+      "sha256": "a16fd750c3fa050cd0e7e82f6e1a2900f279d4bd005598b4185b97a384639a34"
+    },
+    {
+      "path": "SHA256SUMS",
+      "bytes": 1457,
+      "sha256": "69f18fd578c77d08027f04f7f981050dd6c84fce355fa5ba0fa409e72dd11e11"
+    }
+  ]
+}

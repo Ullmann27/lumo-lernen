@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "host": "d826ce4e11879bc797f7d96c0a7e2c966e0773f7",
+  "tree": "7269a76137233bf16149e8fb89b612ba06a77668",
+  "root": "/tmp/lumo-root-recovery-1105/host-c4",
+  "test_command_invocations": 1,
+  "actionlint_invocations": 1,
+  "test_result": {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-m",
+      "unittest",
+      "scripts.tests.test_connect_four_delivery",
+      "scripts.tests.test_connect_four_pipeline",
+      "-v"
+    ],
+    "cwd": "/tmp/lumo-root-recovery-1105/host-c4",
+    "started_at_utc": "2026-11-14T11:13:55.404522+00:00",
+    "finished_at_utc": "2026-11-14T11:13:56.449664+00:00",
+    "elapsed_seconds": 1.0450626249948982,
+    "exit_code": 0,
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "GIT_OPTIONAL_LOCKS": "0",
+      "PATH_prefix": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin"
+    },
+    "stdout": {
+      "path": "unittest.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "unittest.stderr.log",
+      "bytes": 14561,
+      "sha256": "796521e4c573771a53b6ba991c6156b494b7fc141c9ca724342372d459f5f1f1"
+    }
+  },
+  "actionlint_result": {
+    "argv": [
+      "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+      ".github/workflows/lumo-connect-four-2020.yml"
+    ],
+    "cwd": "/tmp/lumo-root-recovery-1105/host-c4",
+    "started_at_utc": "2026-11-14T11:13:56.449986+00:00",
+    "finished_at_utc": "2026-11-14T11:13:56.454578+00:00",
+    "elapsed_seconds": 0.004584312991937622,
+    "exit_code": 0,
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "GIT_OPTIONAL_LOCKS": "0",
+      "PATH_prefix": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin"
+    },
+    "stdout": {
+      "path": "actionlint.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "actionlint.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "counts": {
+    "reported_run_summaries": [
+      {
+        "tests": 67,
+        "unittest_seconds": 0.884
+      }
+    ],
+    "individual_case_lines": 67,
+    "module_counts": {
+      "delivery": 56,
+      "pipeline": 11
+    },
+    "ok_cases": 67,
+    "skipped_cases": 0,
+    "failure_cases": 0,
+    "error_cases": 0,
+    "raw_failure_summaries": [],
+    "plain_ok_footer": true
+  },
+  "source_before_after_equal": true,
+  "source_binding": {
+    "head": "d826ce4e11879bc797f7d96c0a7e2c966e0773f7",
+    "tree": "7269a76137233bf16149e8fb89b612ba06a77668",
+    "status_bytes": 0,
+    "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status_hex": "",
+    "index_path": "/tmp/lumo-root-recovery-1105/host-c4/.git/index",
+    "index_bytes": 556286,
+    "index_sha256": "11984cc18a0b8dfc7e5cdf6f249af2a183c1d8025865360cc5dcc23abfef7903",
+    "index_entries": 4281,
+    "materialized_sources": 1843,
+    "skip_worktree_sources": 2438,
+    "source_inventory_bytes": 1338940,
+    "source_inventory_sha256": "69aa9dd8c5264a2602bb4878ab7ae62fc722a1d266e43ba2c13c78491e738db9"
+  },
+  "scope": "Local source and workflow contracts only; no engine, renderer, Android, APK or delivery acceptance",
+  "source_index_ref_mutations": 0
+}

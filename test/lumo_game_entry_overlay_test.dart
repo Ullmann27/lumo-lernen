@@ -9,6 +9,7 @@ void main() {
     const expected = <String, (String, String)>{
       'kart': ('Lumo Kart', 'assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp'),
       'build': ('Lumo Bauwelt', 'assets/lumo_design/gameplay/build.png'),
+      'settlement': ('Dorfwirtschaft', 'assets/lumo_design/spielwelt/portal_bauwelt.png'),
       'puzzle': ('Lumo Puzzle-Atelier', 'assets/lumo_design/gameplay/puzzle.png'),
       'rhythm': ('Lumo Rhythm Party', 'assets/lumo_design/gameplay/rhythm.png'),
       'treasure': ('Lumo Schatzsuche', 'assets/lumo_design/gameplay/treasure.png'),

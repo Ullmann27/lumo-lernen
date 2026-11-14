@@ -1,0 +1,108 @@
+{
+  "sources": {
+    "host": {
+      "directory": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration",
+      "sha": "06b3a1136cfe2a8a8b13e46ac9819e65b7130ea5",
+      "tree": "2e6ffb0a673251d4d09dfaa4c5fc916cbf898797",
+      "status": ""
+    },
+    "native": {
+      "directory": "/workspace/scratch/b3485b7bb989/lumo-native-connect-four-integration",
+      "sha": "27ae427029a5199699c95a79a84b0027d7571752",
+      "tree": "c389c0de01d9a6ca9fd6e9332fafdf2dedbc8153",
+      "status": ""
+    }
+  },
+  "files": [
+    {
+      "repository": "host",
+      "path": ".github/workflows/lumo-kart-graphics-2019.yml",
+      "bytes": 61366,
+      "sha256": "1356506d64a8777d7aeddeaf78de47f4aceb8aaa3c0fdd07d5166da2fb53f800"
+    },
+    {
+      "repository": "host",
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "bytes": 82165,
+      "sha256": "d3e214c74579f251fd65bce70348dfbcba919818032049d954d713c3dd4bb1f2"
+    },
+    {
+      "repository": "host",
+      "path": "scripts/build_unified_apk.sh",
+      "bytes": 4563,
+      "sha256": "fe3abd93e2b7c24403df25a41897588bedb2fdaf0ab83d9f1785ab83650094b5"
+    },
+    {
+      "repository": "host",
+      "path": "scripts/run_connect_four_runtime.py",
+      "bytes": 15683,
+      "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b"
+    },
+    {
+      "repository": "host",
+      "path": "scripts/compile_android_host.sh",
+      "bytes": 3231,
+      "sha256": "0cb7b2b2ef189e96d92fb3bf6b8e5d051b1a12013bbfc09331f539f02f929cb4"
+    },
+    {
+      "repository": "host",
+      "path": "scripts/verify_unified_apk.py",
+      "bytes": 12075,
+      "sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382"
+    },
+    {
+      "repository": "host",
+      "path": ".github/probes/lumo_2020_update_android_probe.py",
+      "bytes": 1894,
+      "sha256": "a95e27a02f3a021848d887f238fdd498f4d22c387beb5dbb0c0de60dfc44669c"
+    },
+    {
+      "repository": "host",
+      "path": "tools/auto_install/ConnectFourGameActivity.kt",
+      "bytes": 7355,
+      "sha256": "02ea7fb0f3909da8013e6a97b52901dd8e2981ae13e5c1a74ac1e03979364fe5"
+    },
+    {
+      "repository": "host",
+      "path": "tools/auto_install/ConnectFourBridge.kt",
+      "bytes": 7788,
+      "sha256": "02ce58b8863197c9d4395b192f238d52a4e2b049ce59d01e451a0189088433cd"
+    },
+    {
+      "repository": "host",
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "bytes": 9737,
+      "sha256": "3a4c99538f50f057c2951ef16bbc55f6275865d90cafce36517c16f0545e615e"
+    },
+    {
+      "repository": "host",
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "bytes": 12082,
+      "sha256": "dcc411d6687df70934d83253990248c4a0654b13a36ec54338ec43a257329754"
+    },
+    {
+      "repository": "host",
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 42692,
+      "sha256": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075"
+    },
+    {
+      "repository": "host",
+      "path": "config/godot-source.json",
+      "bytes": 145,
+      "sha256": "422478cc56f893c6bcd76462cd229b81f518c604fe591bdb6b59167e6121d37c"
+    },
+    {
+      "repository": "host",
+      "path": "pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5"
+    },
+    {
+      "repository": "native",
+      "path": "scripts/games/connect_four/connect_four_table.gd",
+      "bytes": 30031,
+      "sha256": "76ab128b835bffd41b87274566408b8baab4073fe6733b2f5e3e990e0e027a72"
+    }
+  ]
+}

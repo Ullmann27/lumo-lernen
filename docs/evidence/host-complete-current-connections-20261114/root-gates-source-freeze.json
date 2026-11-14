@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "status": "SOURCE_PREPARED_TESTS_NOT_RUN",
+  "base": "2b586530db4f2cb20c28f426e2549342316151bf",
+  "native_pin": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "files": [
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "before_blob": "72dc631c9e27885cb3ab38ce446a66416f818ebb",
+      "git_blob": "a07c0176806321daf8e7a0d6df5c8697f82ba3b2",
+      "bytes": 145,
+      "sha256": "bdd44f24660ab13cee297c65238238d6181fc60d7fad22ad456f1633955db767"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "mode": "100644",
+      "before_blob": "28f3aee40eb0028c5a4aa80196749f5867cbffc4",
+      "git_blob": "fc050358bce96db9e6cb1ffec77a4ea9e53c1cbb",
+      "bytes": 10697,
+      "sha256": "b5f98f3356887328946059945bd893e242fbca6fa5647bf44c1e3e65fc7a2984"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "before_blob": "6367ea2cb9b562f56056623ff289c3e71de28157",
+      "git_blob": "3f3a74806b29f07b18bcc3ecc88da982bb28f3c1",
+      "bytes": 17393,
+      "sha256": "1dfbd8cc20e203db0bf1338437d14ae36eb598fea36a235f092a191866a4c711"
+    },
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "before_blob": "83546f7e1fed0ce6943128167aada51a73ee0251",
+      "git_blob": "cda9b0f8ab09ea9f20d07e672ef2b99462e146af",
+      "bytes": 43922,
+      "sha256": "43112c519b6f3377474cec788ba08d022036f219c3dbd03136e57d7cfb7afeaa"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "before_blob": "528e70ec56a5d990faa7ce6d10e61345870c7aee",
+      "git_blob": "eb35329baf46efa5cdf17af1187e8c460d93c752",
+      "bytes": 51208,
+      "sha256": "b981836528b83c339e3e6fac16712786619905cb0159016f0a021ee447be6800"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "before_blob": "5760ec96f3002a782708b13c9b2f019a26109c33",
+      "git_blob": "c7b9461ed056521a5da1fb528afe614b7cdeecee",
+      "bytes": 54097,
+      "sha256": "bd7637f769064c3cf13dd910c04b917cc90ad5c04b7b761021a5e0128f826b8a"
+    }
+  ],
+  "existing_native_contract": {
+    "calls": 52,
+    "studio_images": 17,
+    "unchanged": true
+  },
+  "additional_gates": {
+    "acknowledged_exit_checks": 21,
+    "treasure_wisp_checks": 14
+  },
+  "changed_test_methods": 4,
+  "tests_executed": 0
+}

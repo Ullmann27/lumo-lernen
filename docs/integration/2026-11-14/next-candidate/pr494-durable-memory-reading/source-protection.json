@@ -1,0 +1,472 @@
+{
+  "schema": 1,
+  "baseline_host": "b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1",
+  "baseline_tree": "4ebddcbe209191714dc64cba2815e5a67b64513b",
+  "baseline_inventory": {
+    "path": "/tmp/host-b3c2bd-next-authorities-flutter-evidence-20261114/originals/artifact-members/source/host/source-inventory-before.json",
+    "bytes": 1913481,
+    "sha256": "0b7cb71a86e29d5d949afd72aff4ade2f7c268db6e6e2157800adac66c568ddb",
+    "git_blob": "c4e9a03749c53c40bc91682b01636c140c6b40d6",
+    "tracked_records": 4708,
+    "source_archive": "/tmp/host-b3c2bd-next-authorities-flutter-evidence-20261114/complete-original-pack.tar.gz",
+    "source_archive_sha256": "5b3d851aa8d6625b363608769a23c3badcfe206dd160b70e43fac89e4c9d4188"
+  },
+  "immutable_application_precondition": "Root must verify the two exact old blobs and two absent new paths at its actual publication parent. This pack neither moves nor names a new product ref.",
+  "all_other_paths_excluded_from_source_pack": true,
+  "protected_records": [
+    {
+      "path": ".github/probes/lumo_village_android_probe.py",
+      "git_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 11541,
+      "sha256": "b6a3ef510ffd29369896bedb57a6d870d000b36e46138c7e7b59be95efacb9ab",
+      "actual_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99",
+      "materialized": true
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "git_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 78635,
+      "sha256": "7d2034119f06846ede165ec039dfab54e31aafd02a5e05c7fef02d9a75f31bf1",
+      "actual_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff",
+      "materialized": true
+    },
+    {
+      "path": "config/godot-source.json",
+      "git_blob": "6a7480c482d27e36b76e4cd9accab7058dc74201",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 145,
+      "sha256": "468e061237ca974bd6ebe3bfb273c5f35672bc703062e9dd4800574db5d6cd04",
+      "actual_blob": "6a7480c482d27e36b76e4cd9accab7058dc74201",
+      "materialized": true
+    },
+    {
+      "path": "lib/core/math_task_templates.dart",
+      "git_blob": "85fbad4a0b09753a7f22663690a9660f98382f39",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 49784,
+      "sha256": "5db29aaa2d18a8b8eb3dc4f3dffd433b13ec364e7768fb27a90a7d16926854d2",
+      "actual_blob": "85fbad4a0b09753a7f22663690a9660f98382f39",
+      "materialized": true
+    },
+    {
+      "path": "lib/core/writing_progress_repository.dart",
+      "git_blob": "4bb609a76be4cc64a316798debc2bafa24274803",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 3785,
+      "sha256": "9cbea3120444ae0011719f42b341690b82a4568f1774345dc0ed7657a68a99a3",
+      "actual_blob": "4bb609a76be4cc64a316798debc2bafa24274803",
+      "materialized": true
+    },
+    {
+      "path": "lib/core/writing_target_parser.dart",
+      "git_blob": "a60657ce3b5bc9c7037bd3762c0e37fdb3e3fa13",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 2449,
+      "sha256": "8830cb2241bc46b7dc948795f8206c5664fd7c9a0a137594f5a18e3d7fde8121",
+      "actual_blob": "a60657ce3b5bc9c7037bd3762c0e37fdb3e3fa13",
+      "materialized": true
+    },
+    {
+      "path": "lib/domain/writing/expanded_writing_template_repository.dart",
+      "git_blob": "954cff344a9b8fa0fffcebd9ab1be57200400843",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 8968,
+      "sha256": "93c9010c923751900591c899cf0ca984c5af52a7d6ec4811353d2a40b05baa0b",
+      "actual_blob": "954cff344a9b8fa0fffcebd9ab1be57200400843",
+      "materialized": true
+    },
+    {
+      "path": "lib/domain/writing/letter_practice_rules.dart",
+      "git_blob": "1be43740ecd234d445019a9e9f8e59b9c2fc6be3",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 3041,
+      "sha256": "cf04686db75dec076bc9df4f918eab5a444aea2f8417194b90e01ca0de4ec0e3",
+      "actual_blob": "1be43740ecd234d445019a9e9f8e59b9c2fc6be3",
+      "materialized": true
+    },
+    {
+      "path": "lib/domain/writing/writing_domain.dart",
+      "git_blob": "c50256103236b804e2df46d00eb8f45abf74f75e",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 11011,
+      "sha256": "1263772507004fd3cbfd2613bafd96c65c123ca945d69c9493e29d396c7f82d5",
+      "actual_blob": "c50256103236b804e2df46d00eb8f45abf74f75e",
+      "materialized": true
+    },
+    {
+      "path": "lib/domain/writing/writing_path_geometry.dart",
+      "git_blob": "d04eb6fde5977b17a151133b53746ba3fce54445",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 3648,
+      "sha256": "4138e8389d0113734a0f8a8ee9b348ee8140f18400c609b4be45da00e047a929",
+      "actual_blob": "d04eb6fde5977b17a151133b53746ba3fce54445",
+      "materialized": true
+    },
+    {
+      "path": "lib/domain/writing/writing_progress.dart",
+      "git_blob": "503136fdba036be11deffea92acb45a1c8e6407d",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 5996,
+      "sha256": "4999aca194975399a4a9cbc746f6c38e338262823816a0aba227ca809db8f777",
+      "actual_blob": "503136fdba036be11deffea92acb45a1c8e6407d",
+      "materialized": true
+    },
+    {
+      "path": "lib/domain/writing/writing_word_bank.dart",
+      "git_blob": "0fa60c5611877092ddecc50f420ca6c4f5455971",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 9063,
+      "sha256": "0fd0870b20769e8d3e1b2a188751f0bc048ef864acc39e0ce00fac296a9f6295",
+      "actual_blob": "0fa60c5611877092ddecc50f420ca6c4f5455971",
+      "materialized": true
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "git_blob": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 3696,
+      "sha256": "9b6e404d8312ed9ffb874eac2fea06e0fdf45024b308392e1ef58b5a85e13753",
+      "actual_blob": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "materialized": true
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "git_blob": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 33174,
+      "sha256": "389270e2a26df93cbc76ec0e028efaa804210236c5d57647afb60023db054aa4",
+      "actual_blob": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "materialized": true
+    },
+    {
+      "path": "lib/features/learning/cross_grade_writing_screen.dart",
+      "git_blob": "47a7ba1ffd9dbe6e68dc7d6dbe08396815f2f10e",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 7001,
+      "sha256": "a66696803c600e74d58ca343a7e8f77d76e29157abb3fc45e9e9613104c36797",
+      "actual_blob": "47a7ba1ffd9dbe6e68dc7d6dbe08396815f2f10e",
+      "materialized": true
+    },
+    {
+      "path": "lib/features/learning/renderers/writing_task_renderer.dart",
+      "git_blob": "adfb91debd8af1b7077c2289fd913419afe23b7c",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 18198,
+      "sha256": "2ab4338e9b862292f35f50b95cfc4aa2cb719009a5f4e5f5f73b7e654cde4395",
+      "actual_blob": "adfb91debd8af1b7077c2289fd913419afe23b7c",
+      "materialized": true
+    },
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "git_blob": "625f7a73b71046225bbba395920d9d8a59d5775c",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 26157,
+      "sha256": "4998825fad2ffff107d16474e1c85cc4f600b898846e2bdae5321f1d72b7ed9e",
+      "actual_blob": "625f7a73b71046225bbba395920d9d8a59d5775c",
+      "materialized": true
+    },
+    {
+      "path": "lib/features/settings/writing_report_card.dart",
+      "git_blob": "85f0e6b333058eb1a8d288c6fd4b309295b03bbb",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 9690,
+      "sha256": "b89fe190afb2ba344d481f0ea6763c2648b9bb89fdc4ada529714af0c3693332",
+      "actual_blob": "85f0e6b333058eb1a8d288c6fd4b309295b03bbb",
+      "materialized": true
+    },
+    {
+      "path": "lib/features/teacher_mode/letter_writing_screen.dart",
+      "git_blob": "74d92c94837cb258e405d2bb04baf5e54ec8d477",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 28949,
+      "sha256": "22adb5f8b214f2203e9cd65a4af61a8db198a77089fbb7649a373a7be0d6cf36",
+      "actual_blob": "74d92c94837cb258e405d2bb04baf5e54ec8d477",
+      "materialized": true
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+      "git_blob": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 28091,
+      "sha256": "3365cae7a1137ce57a573971fa40e20b55f7f9434ee721d79f2fd0978b16ed10",
+      "actual_blob": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+      "materialized": true
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "git_blob": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 38878,
+      "sha256": "e08c2b8acd274eb201f1cd6dd164e9f22b569a1478cdff9295f0ea4fbe6c82bd",
+      "actual_blob": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+      "materialized": true
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "git_blob": "123c13786584c3f9c487ae1b71317841d2995420",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 2434,
+      "sha256": "659f2e062d7df7ee354d84ec94e0f598de6bddc1137d0042e7a67ea12509ddbd",
+      "actual_blob": "123c13786584c3f9c487ae1b71317841d2995420",
+      "materialized": true
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_letter_practice_board.dart",
+      "git_blob": "2b7f283d826ca09d85e7bec8cb7f51b0f562c466",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 39576,
+      "sha256": "d2c5308eb820799245975695a720173179d63144b89cc3feb0d9aabce5865dea",
+      "actual_blob": "2b7f283d826ca09d85e7bec8cb7f51b0f562c466",
+      "materialized": true
+    },
+    {
+      "path": "lib/features/writing/writing_engine.dart",
+      "git_blob": "a6df9ce87657681d776d5f46ff10a63acf74b6ba",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 57931,
+      "sha256": "d1df3e186a6189f4b05594b407ebee01578ca474669292440617d7ff1aad3274",
+      "actual_blob": "a6df9ce87657681d776d5f46ff10a63acf74b6ba",
+      "materialized": true
+    },
+    {
+      "path": "lib/features/writing/writing_feature_flags.dart",
+      "git_blob": "41000a96041c2fd4e43ed228666f66650e629719",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 1534,
+      "sha256": "7a42a9dfb693da76a53d6b25eede144acab75bce27a22f7fc446f6f9b7f1ac76",
+      "actual_blob": "41000a96041c2fd4e43ed228666f66650e629719",
+      "materialized": true
+    },
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "git_blob": "bb496435fe24ecd34fd24809e12d51df6c2952be",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 11403,
+      "sha256": "d4355d1f4ae56fa294fe6ba8c66b1bd145cb772ca9ceda0cc8ac2f803dea0cea",
+      "actual_blob": "bb496435fe24ecd34fd24809e12d51df6c2952be",
+      "materialized": true
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 67003,
+      "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18",
+      "actual_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871",
+      "materialized": true
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "git_blob": "406a868b4c1bd896de214ca248a93c1e79bd91ec",
+      "mode": "100644",
+      "skip_worktree": false,
+      "bytes": 10687,
+      "sha256": "6d79fb45a8ef7ba400289dc3d94f2d062131002aa19ebb441d73db28d38a7593",
+      "actual_blob": "406a868b4c1bd896de214ca248a93c1e79bd91ec",
+      "materialized": true
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "lib/core/progress_repository.dart",
+      "bytes": 13839,
+      "sha256": "69723b57640dc7c2ea7f14a45ffcc34995505b3b02dd061142e10d48651063fd",
+      "git_blob": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "mode": "100644",
+      "producer_blob": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "producer_identical": true
+    },
+    {
+      "path": "lib/core/reading_progress_repository.dart",
+      "bytes": 3408,
+      "sha256": "a940e16b271d04a6bf174f87b52182df8ac7c1cde7158f7daa66209b48dbd08f",
+      "git_blob": "ffd5b243633492fa5aae3b8648eb07af949a2e71",
+      "mode": "100644",
+      "producer_blob": "ffd5b243633492fa5aae3b8648eb07af949a2e71",
+      "producer_identical": true
+    },
+    {
+      "path": "lib/domain/analysis/lumo_analysis_domain.dart",
+      "bytes": 4324,
+      "sha256": "09befffdc16417e41fc96f8410952b34187a9439c1b33dd263bc1a81837643be",
+      "git_blob": "92b3639c7b2950dfe173bd2f9be7d4e45ac3bb84",
+      "mode": "100644",
+      "producer_blob": "92b3639c7b2950dfe173bd2f9be7d4e45ac3bb84",
+      "producer_identical": true
+    },
+    {
+      "path": "lib/domain/games/memory_board.dart",
+      "bytes": 5469,
+      "sha256": "d4780c694fec21967a1da0e4b6efacd4f2cd87f97be6fd65ee2d85e47b27d948",
+      "git_blob": "74435a040137742c1b02163f1d5f045aa5f11395",
+      "mode": "100644",
+      "producer_blob": "74435a040137742c1b02163f1d5f045aa5f11395",
+      "producer_identical": true
+    },
+    {
+      "path": "lib/domain/learning/independent_evidence.dart",
+      "bytes": 2855,
+      "sha256": "e85332677fa1a5acd4b3b5be7a8ba3fbcc6bba3974e68a4929c3847b0db9bb4d",
+      "git_blob": "6b19215fe6e410b5439467541453e2608537e041",
+      "mode": "100644",
+      "producer_blob": "6b19215fe6e410b5439467541453e2608537e041",
+      "producer_identical": true
+    },
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "bytes": 14257,
+      "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+      "git_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c",
+      "mode": "100644",
+      "producer_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c",
+      "producer_identical": true
+    },
+    {
+      "path": "lib/features/games/memory/memory_rules.dart",
+      "bytes": 14413,
+      "sha256": "0e8ccb76df51394d732ace433b1f15f295775aca7f34fefb81d5ece8d906dc90",
+      "git_blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce",
+      "mode": "100644",
+      "producer_blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce",
+      "producer_identical": true
+    },
+    {
+      "path": "pubspec.lock",
+      "bytes": 24469,
+      "sha256": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea",
+      "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1",
+      "mode": "100644",
+      "producer_blob": "7843602e3d858660dc52d95587983858803976a5",
+      "producer_identical": false
+    },
+    {
+      "path": "pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "mode": "100644",
+      "producer_blob": "7f504396071cf3af57164187a29ea74b74c62413",
+      "producer_identical": false
+    }
+  ],
+  "packages": [
+    {
+      "name": "shared_preferences",
+      "identical_locked_block": true,
+      "block": "  shared_preferences:\n    dependency: \"direct main\"\n    description:\n      name: shared_preferences\n      sha256: c3025c5534b01739267eb7d76959bbc25a6d10f6988e1c2a3036940133dd10bf\n      url: \"https://pub.dev\"\n    source: hosted\n    version: \"2.5.5\"\n"
+    },
+    {
+      "name": "shared_preferences_platform_interface",
+      "identical_locked_block": true,
+      "block": "  shared_preferences_platform_interface:\n    dependency: \"direct dev\"\n    description:\n      name: shared_preferences_platform_interface\n      sha256: \"649dc798a33931919ea356c4305c2d1f81619ea6e92244070b520187b5140ef9\"\n      url: \"https://pub.dev\"\n    source: hosted\n    version: \"2.4.2\"\n"
+    },
+    {
+      "name": "flutter_test",
+      "identical_locked_block": true,
+      "block": "  flutter_test:\n    dependency: \"direct dev\"\n    description: flutter\n    source: sdk\n    version: \"0.0.0\"\n"
+    }
+  ],
+  "pubspec_and_lock_not_changed": true,
+  "preserved_production_blocks": [
+    {
+      "name": "memory catalog, owner validation and storage keys",
+      "byte_identical": true,
+      "bytes": 1586,
+      "sha256": "97ff293e4500957b6cd45bb79e6f44342f142e34cfe9d7fc55132803dc6f1356",
+      "git_blob": "893b3a20d745639f41b946be39a652832070edf0"
+    },
+    {
+      "name": "memory write/exception functions",
+      "byte_identical": true,
+      "bytes": 390,
+      "sha256": "4ac318eb052f17f68e9338f9cb039eabd7b97b1704c4bc7ce250a56734d8b077",
+      "git_blob": "dc465dcbb6b2fb94ab29a3869a3cee31b467af3b"
+    },
+    {
+      "name": "parent report generic subject assessment",
+      "byte_identical": true,
+      "bytes": 1393,
+      "sha256": "81c696b1286ff82dec0e937d5d332866f52e28a8acebaf896e052bc76670610c",
+      "git_blob": "b22c99787a2f2c0fea30691dbdc4e8941de3e8e2"
+    },
+    {
+      "name": "public plan signature",
+      "byte_identical": true,
+      "bytes": 209,
+      "sha256": "ca202f313f23df3f2fb8c6e9aaee427fa55316276b4269d58ec614e48ec0b2ae",
+      "git_blob": "8af1363d28313dca0c0c62bb3bb0cb891554badd"
+    },
+    {
+      "name": "public report signature",
+      "byte_identical": true,
+      "bytes": 180,
+      "sha256": "800dc378c62c09ce7669173294acd8566351595f0a866701000b845da26ee950",
+      "git_blob": "e6e7a09a5790ba90a60d53e780788b1ba1278734"
+    }
+  ],
+  "original_hunk_reconstruction": [
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "original_hunks": 7,
+      "exact_reconstruction": true
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "original_hunks": 1,
+      "exact_reconstruction": true
+    },
+    {
+      "path": "test/games/memory_preferences_durability_test.dart",
+      "original_hunks": 1,
+      "exact_reconstruction": true
+    },
+    {
+      "path": "test/reading_asr_evidence_boundary_test.dart",
+      "original_hunks": 1,
+      "exact_reconstruction": true
+    }
+  ],
+  "merkle_tree_groups_verified": {
+    "root": 1,
+    "lib": 109,
+    "test": 18
+  },
+  "semantics": [
+    "Daily and parent competence text now uses the existing SkillRecord assessment getters; unconfirmed ASR summaries no longer become deficits, strengths, priorities or claimed reading accuracy.",
+    "ReadingAnalysisSummary, ReadingProgressRepository and persisted legacy summaries are unchanged; both public readingSummaries arguments remain compatible.",
+    "PreferencesMemoryStore awaits a fresh platform reload for every readRound/readStats; reload failures remain errors and cannot confirm optimistic-cache-only writes.",
+    "Owner validation, owner-specific round/stats keys, historical lumo_memory_v2 non-migration, dealer/rules/rewards and write failure handling are byte-identical.",
+    "The existing MemoryRoundController still serializes by owner and checks active profile before/after reads/writes; unchanged recovery compares actual reloaded bytes.",
+    "The new Memory tests replace only the platform boundary, retain the real Preferences cache and controller, and use an independent test backend. These are controlled test faults, not physical-device durability claims."
+  ],
+  "source_tests_executed_here": false
+}

@@ -1,0 +1,27 @@
+{
+  "artifact_id": 14104197360,
+  "zip_bytes": 210476,
+  "zip_sha256": "c09617c26df7e0ecb47c8f3aae10a2c371e417e5ea78ecafada389debfee5f6c",
+  "members": [
+    {
+      "path": "summary.json",
+      "bytes": 371,
+      "sha256": "018c376e1a7c9b047b0625f90cbb0c27528c2c80ccc4907bca678f107e6c5e67"
+    },
+    {
+      "path": "task-families.json",
+      "bytes": 34450,
+      "sha256": "27431f158ebb1a7bff323f989d4da9064f1ba20c5e7046c46537d805c574d703"
+    },
+    {
+      "path": "issues.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "task-samples.jsonl",
+      "bytes": 3174060,
+      "sha256": "271445137ea3a6e8f821cc31f49d876ec1d11aacac47be898638d04c2bcd3051"
+    }
+  ]
+}

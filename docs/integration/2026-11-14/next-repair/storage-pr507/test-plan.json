@@ -1,0 +1,305 @@
+{
+  "schema": 1,
+  "execution": "NOT_RUN; Root source checkpoint is required first.",
+  "files": [
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "source": {
+        "bytes": 10757,
+        "sha256": "082861273c381ffb946ac6b4205d41eb77065868bfc5d70c165cac7464c0753c",
+        "git_blob": "79d94286312aea5231b0906e8514be132aeee94b"
+      },
+      "declarations": [
+        {
+          "line": 120,
+          "declared_name_literal": "'An unused wallet constructed in another zone starts in its caller zone'"
+        },
+        {
+          "line": 142,
+          "declared_name_literal": "'A fully committed wallet tail releases its completed originating zone'"
+        },
+        {
+          "line": 180,
+          "declared_name_literal": "'A failed durable write releases its zone and the exact reward can retry'"
+        },
+        {
+          "line": 232,
+          "declared_name_literal": "'An older completion cannot release a younger pending durable write'"
+        }
+      ]
+    },
+    {
+      "path": "test/reward_wallet_transaction_test.dart",
+      "source": {
+        "bytes": 22807,
+        "sha256": "295a857b766a6ddf5107dd7f1bf8824eeec5d32f0772a3ebefe297f2a1269128",
+        "git_blob": "77862a23eb251266b319beb4d2fe24251e409dab"
+      },
+      "declarations": [
+        {
+          "line": 55,
+          "declared_name_literal": "'Old flat wallet JSON keeps balances, levels, streak and earned stars'"
+        },
+        {
+          "line": 85,
+          "declared_name_literal": "'A combined lesson reward ($failure) is all-or-nothing and safely retried'"
+        },
+        {
+          "line": 124,
+          "declared_name_literal": "'Combined lessons and a game share the queue without partial reward snapshots'"
+        },
+        {
+          "line": 152,
+          "declared_name_literal": "'Combined deductions clamp balances and do not increase earned-star totals'"
+        },
+        {
+          "line": 171,
+          "declared_name_literal": "'Failed game write ($failure) preserves concurrent learning and allows replay'"
+        },
+        {
+          "line": 239,
+          "declared_name_literal": "'Successful game write commits balance and identity together before queued changes'"
+        },
+        {
+          "line": 266,
+          "declared_name_literal": "'Concurrent duplicate awards and a fresh-process replay grant one reward'"
+        },
+        {
+          "line": 286,
+          "declared_name_literal": "'Reset waits for an in-flight award and does not restore its old snapshot'"
+        },
+        {
+          "line": 315,
+          "declared_name_literal": "'A failed reset reports failure and preserves the existing balance'"
+        },
+        {
+          "line": 339,
+          "declared_name_literal": "'A failed lesson mutation does not poison later XP or its explicit retry'"
+        },
+        {
+          "line": 359,
+          "declared_name_literal": "'Failed legacy migration keeps saved rewards for the next transaction'"
+        },
+        {
+          "line": 377,
+          "declared_name_literal": "'AppState exposes failed save and flush retries the complete lesson once'"
+        },
+        {
+          "line": 407,
+          "declared_name_literal": "'AppState keeps younger rewards queued after the oldest storage error'"
+        },
+        {
+          "line": 437,
+          "declared_name_literal": "'Flush includes a reward queued while saved state notifies its listeners'"
+        },
+        {
+          "line": 468,
+          "declared_name_literal": "'Cards win sequence, Stars and XP survive new AppState and settings hydration'"
+        },
+        {
+          "line": 494,
+          "declared_name_literal": "'Failed Cards persistence cannot advance its series or grant half a reward'"
+        },
+        {
+          "line": 532,
+          "declared_name_literal": "'Native import cannot acknowledge an event after a failed lesson flush'"
+        },
+        {
+          "line": 589,
+          "declared_name_literal": "'Invalid native rewards cannot write balances or poison the queue'"
+        }
+      ]
+    },
+    {
+      "path": "test/games/memory_profile_storage_test.dart",
+      "source": {
+        "bytes": 12801,
+        "sha256": "378a2c560ea344a7be832628e993244d4424c396ee55850cb97ed7ab01388388",
+        "git_blob": "cfc75adfea811babde60c96938ba79ee03036475"
+      },
+      "declarations": [
+        {
+          "line": 88,
+          "declared_name_literal": "'Old unowned record stays byte-identical and is assigned to no child'"
+        },
+        {
+          "line": 113,
+          "declared_name_literal": "'Real completed round restores only its child best and difficulty'"
+        },
+        {
+          "line": 159,
+          "declared_name_literal": "'Delayed old-child write cannot overwrite the newly selected child'"
+        },
+        {
+          "line": 221,
+          "declared_name_literal": "'Delayed identity load cannot expose old best after profile switch'"
+        },
+        {
+          "line": 246,
+          "declared_name_literal": "'Pending successive choices retain captured snapshots and final order'"
+        },
+        {
+          "line": 293,
+          "declared_name_literal": "'Unreadable existing child stats are preserved instead of reset'"
+        }
+      ]
+    },
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "source": {
+        "bytes": 10816,
+        "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+        "git_blob": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+      },
+      "declarations": [
+        {
+          "line": 118,
+          "declared_name_literal": "'Failed bot save retries once after the child resumes'"
+        },
+        {
+          "line": 142,
+          "declared_name_literal": "'Repeated bot save failure remains paused until explicit retry'"
+        },
+        {
+          "line": 166,
+          "declared_name_literal": "'Restart cancels the queued failed bot retry for the old round'"
+        },
+        {
+          "line": 181,
+          "declared_name_literal": "'Failed local Gold move never schedules an automatic bot'"
+        },
+        {
+          "line": 206,
+          "declared_name_literal": "'A saved winning move retries only its unconfirmed reward'"
+        },
+        {
+          "line": 243,
+          "declared_name_literal": "'Lifecycle pause during reward retry defers the settled result'"
+        }
+      ]
+    },
+    {
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "source": {
+        "bytes": 29908,
+        "sha256": "33331c4b0c804b803e22785e9f7a5e25fe3e3086913bc0e02beecf529f956c32",
+        "git_blob": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b"
+      },
+      "declarations": [
+        {
+          "line": 368,
+          "declared_name_literal": "'Initial '"
+        },
+        {
+          "line": 400,
+          "declared_name_literal": "'Flip '"
+        },
+        {
+          "line": 444,
+          "declared_name_literal": "'New controller cannot adopt an unsaved flip from shared native memory'"
+        },
+        {
+          "line": 469,
+          "declared_name_literal": "'Modeled native process restart reloads disk instead of the failed map'"
+        },
+        {
+          "line": 487,
+          "declared_name_literal": "'Lost reply after actual commit needs one positive identical retry'"
+        },
+        {
+          "line": 505,
+          "declared_name_literal": "'A committed value with no positive reply remains unconfirmed on failure'"
+        },
+        {
+          "line": 527,
+          "declared_name_literal": "'Initial statistics '"
+        },
+        {
+          "line": 543,
+          "declared_name_literal": "'Unconfirmed finish statistics blocks reopen instead of skipping stats'"
+        },
+        {
+          "line": 584,
+          "declared_name_literal": "'Corrupt historical statistics remain unchanged without a write barrier'"
+        },
+        {
+          "line": 596,
+          "declared_name_literal": "'Foreign round payload is rejected before any confirming write'"
+        },
+        {
+          "line": 611,
+          "declared_name_literal": "'Profile revocation during '"
+        },
+        {
+          "line": 635,
+          "declared_name_literal": "'Profile revoked during confirmation cannot expose its late ACK'"
+        },
+        {
+          "line": 660,
+          "declared_name_literal": "'Profile loss on uncertain recovery blocks its confirming retry'"
+        },
+        {
+          "line": 683,
+          "declared_name_literal": "'Uncertain recovery confirms the observed newer revision exactly'"
+        },
+        {
+          "line": 709,
+          "declared_name_literal": "'Real AppState reward stays once after unconfirmed '"
+        },
+        {
+          "line": 766,
+          "declared_name_literal": "'Real completed Memory cannot accept an unconfirmed duplicate wallet ID'"
+        }
+      ]
+    },
+    {
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "source": {
+        "bytes": 13409,
+        "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+        "git_blob": "4615f10622420d53dedb380ff4648e5692995861"
+      },
+      "declarations": [
+        {
+          "line": 227,
+          "declared_name_literal": "'${award.name}: known result waits for a positive duplicate commit'"
+        },
+        {
+          "line": 261,
+          "declared_name_literal": "'${award.name}: ${fault.name} stays unconfirmed in a new wallet'"
+        },
+        {
+          "line": 325,
+          "declared_name_literal": "'AppState ${fault.name}: fresh wallet cannot clear an unsaved result'"
+        }
+      ]
+    }
+  ],
+  "planned_groups": [
+    {
+      "scope": "Three existing regression files",
+      "historical_runtime_cases": 30,
+      "original_outcome_on_0d7e": "23 PASS /7 FAIL"
+    },
+    {
+      "scope": "Three new producer files",
+      "producer_declared_cases": 45,
+      "qualification": "Source inventory only; this CI attempt did not reach them."
+    }
+  ],
+  "command_after_root_authorization": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--machine",
+    "--concurrency=1",
+    "test/reward_wallet_queue_zone_test.dart",
+    "test/reward_wallet_transaction_test.dart",
+    "test/games/memory_profile_storage_test.dart",
+    "test/games/connect_four_bot_save_retry_test.dart",
+    "test/games/memory_native_commit_confirmation_test.dart",
+    "test/reward_wallet_dedup_confirmation_test.dart"
+  ],
+  "required_result": "All actual visible tests must finish successfully with no skips; verify machine stream and process exit. Do not substitute the planned count for actual execution.",
+  "next_boundary": "A new complete APK/C4 acceptance must use the later combined checkpoint. Current 7ac remains publication-blocked; no device or release success is claimed."
+}

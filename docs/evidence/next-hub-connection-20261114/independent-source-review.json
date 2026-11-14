@@ -1,0 +1,193 @@
+{
+  "schema": 1,
+  "status": "FROZEN_READ_ONLY_PEER_REVIEW",
+  "created_utc": "2026-11-14T15:12:43.068889+00:00",
+  "base": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "native": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-next-hub-connection-20261114/source-freeze.json",
+    "bytes": 2974,
+    "sha256": "e6dc123a1e0e6dcdc434320ca838d28ae86e8dc9ef016fce219372a727acea6f",
+    "git_blob": "2f6c880bc1410ace3009809e3d69bb1b03e6ffc5"
+  },
+  "decision": "No concrete wiring or workflow blocker found in the five frozen sources. The combined source still requires its own focused execution; this review is not a test or Android acceptance.",
+  "blockers": [],
+  "source_files": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-next-hub-connection-20261114/proposed/.github/workflows/lumo-native-3d-hub-entry-qa.yml",
+      "bytes": 5339,
+      "sha256": "859971ac0ef9d3af08476b16d26027eb82f18b4d5d55e73dd29c686d90b8f9d2",
+      "git_blob": "b3b97d4bdde3607677ffe00cb6f16b36481150c0"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-next-hub-connection-20261114/proposed/lib/features/games/games_content.dart",
+      "bytes": 60394,
+      "sha256": "7349825672c6d3e7a43e5398fd644ed70cdc65c057385f5ad2c3a8beff2d2ad1",
+      "git_blob": "dceef2af05226ba4310df1546f96282e9600c4c4"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-next-hub-connection-20261114/proposed/lib/features/games/spielwelt/spielwelt_hub.dart",
+      "bytes": 31543,
+      "sha256": "0af6e0ae729f6465f9d8116755b4c005dd5226d693ccdef3e6e595d73598bfa9",
+      "git_blob": "41202eac77fb0b77d83cb417cb8cd2f4ef4d1bb7"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-next-hub-connection-20261114/proposed/test/games/native_3d_hub_entry_test.dart",
+      "bytes": 2568,
+      "sha256": "acb5236fdbce38cd312d8cd454a1e68a91709165118a30ff9bc4ccb1b18221e0",
+      "git_blob": "9911c1c472a4a06248f10fa11ed7fbb9fd4baab6"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-next-hub-connection-20261114/proposed/tools/auto_install/MainActivity.kt",
+      "bytes": 18365,
+      "sha256": "a2d805e0e7d749c01a4ed8bb2cbbb0613bcb78fa45668e6aa05614ab01313f8c",
+      "git_blob": "57764e62e8db623395f0d2c93a840920805b267f"
+    }
+  ],
+  "producer_identity": {
+    "compare_member": "producer-originals/pr504-vs-base.original.json",
+    "compare": {
+      "bytes": 24051,
+      "sha256": "1a25ae7fc98de6e6835ad72efb7fab8743ab95a1aefef2f3897252895b75c017",
+      "git_blob": "94bf537e74c2ca6120eda0b8fc9e713cdc33a5b9"
+    },
+    "producer_head": "5259bfe08ff637a907a50411670fc4ee223dea00",
+    "exact_producer_files": {
+      "lib/features/games/games_content.dart": "dceef2af05226ba4310df1546f96282e9600c4c4",
+      "lib/features/games/spielwelt/spielwelt_hub.dart": "41202eac77fb0b77d83cb417cb8cd2f4ef4d1bb7",
+      "test/games/native_3d_hub_entry_test.dart": "9911c1c472a4a06248f10fa11ed7fbb9fd4baab6"
+    }
+  },
+  "product_findings": [
+    {
+      "path": "lib/features/games/games_content.dart",
+      "line": 510,
+      "finding": "Only adds the optional entry callback. It awaits the existing profile-generation/daily-mission launch guard, checks mounted and calls existing _launch3D(games). The existing exclusive launch/child/return/reload path remains unchanged."
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "line": 358,
+      "finding": "Callback is optional for legacy callers; a separate56px entry is added after the existing portal grid. Existing route callbacks and portal contents remain. Caption may ellipsize by design; no complete-text-visibility claim."
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "line": 188,
+      "finding": "Independent byte comparison confirms exactly the added games allowlist string and no other change. MethodChannel scene becomes native game=games; existing Village/child/session/PCM/Cards/C4/input and return machinery remain byte-identical."
+    },
+    {
+      "path": "test/games/native_3d_hub_entry_test.dart",
+      "line": 13,
+      "finding": "Genuine widget entry test with mocked MethodChannel asserts one launch, exact games scene, grade/child and at least48px button height, with cleanup. This test does not claim actual Android/native scene execution."
+    }
+  ],
+  "workflow_findings": [
+    {
+      "path": ".github/workflows/lumo-native-3d-hub-entry-qa.yml",
+      "lines": [
+        3,
+        8,
+        16,
+        24,
+        25,
+        79,
+        87,
+        88
+      ],
+      "finding": "Only the exact isolated integration/lumo-next-hub-20261114 push branch in Ullmann27/lumo-lernen; contents read; both jobs checkout github.sha and disable persisted credentials. No publisher/ref/API mutation step."
+    },
+    {
+      "lines": [
+        19,
+        29,
+        49,
+        74,
+        82,
+        92,
+        111,
+        129
+      ],
+      "finding": "Job env holds only a literal folder name. RUNNER_TEMP is evaluated in shell, runner.temp only in valid step inputs. Both output paths consistently match artifact paths."
+    },
+    {
+      "lines": [
+        28,
+        33,
+        43,
+        54,
+        58,
+        69,
+        109,
+        124
+      ],
+      "finding": "Strict shell/pipefail preserves test, analyze and compiler exit failures. Before/after exact HEAD/tree and tracked diff checks remain. Failed steps still reach source-evidence and artifact steps via always."
+    },
+    {
+      "lines": [
+        45,
+        48,
+        107,
+        111
+      ],
+      "finding": "Three intended test files exist in the proposed/base sources. Existing compile_android_host.sh performs its own enforced-lockfile pub get, genuine Android scaffold/preparation/Gradle compilation and required class-magic/hash evidence; setup Java17/Flutter3.44.9 is present."
+    },
+    {
+      "lines": [
+        70,
+        76,
+        125,
+        131
+      ],
+      "finding": "Both jobs always upload original reports/logs with if-no-files-found=error and30-day retention. Artifact generation failure cannot make a passing test claim."
+    }
+  ],
+  "native_pairing": {
+    "review": "/workspace/scratch/b3485b7bb989/native-baf-game-hub-return-readonly-20261114/review.json",
+    "sha256": "b855fbf092403c5cc5619855153e06885c83d21be61e7ad617746687194a9d01",
+    "finding": "Existing native games allowlist, boot, scene mapping and explicit on-screen Back-to-Flutter chain support this Host hook. game precedence matches the MainActivity construction."
+  },
+  "dependencies": [
+    {
+      "path": "scripts/compile_android_host.sh",
+      "mode": "100644",
+      "bytes": 3231,
+      "sha256": "0cb7b2b2ef189e96d92fb3bf6b8e5d051b1a12013bbfc09331f539f02f929cb4",
+      "git_blob": "58eb1fe98d31155aceda49721092122b85fd4e6b"
+    },
+    {
+      "path": "test/games/dorfwirtschaft_portal_test.dart",
+      "mode": "100644",
+      "bytes": 3074,
+      "sha256": "bc036e23a30432e83fb8946adf6a997ebf0173ea360ec7697866f96221ddd321",
+      "git_blob": "bbc01f1341ba6f6dce42c907cd52d45ffe21108f"
+    },
+    {
+      "path": "test/games/spielwelt_routing_test.dart",
+      "mode": "100644",
+      "bytes": 5470,
+      "sha256": "70766c77e6fef0827832c542a43310f031debd3f422a0dcb615e77ff96c0979e",
+      "git_blob": "e5cfc3a8bfff14d5f2d7f7870c33c01e3cc6fafb"
+    },
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50",
+      "git_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "mode": "100644",
+      "bytes": 10640,
+      "sha256": "14b5cc7147fe001faf3c299d6bfa787b3eed1da07a6f848e688f3a947258407b",
+      "git_blob": "f34753575463af153ac72efaf93dd485ba3f30e1"
+    }
+  ],
+  "limits": [
+    "No tests, imports, Actionlint, compile, engine or device execution by this review. Root existing Actionlint exit0 remains a separately owned observation.",
+    "Producer504 six tests/compile are not transferred to this combined0b7 followup.",
+    "Analyzer warning/info policy intentionally nonfatal as existing source workflow; no warning-free claim.",
+    "No current C4 branch, Native pin, release workflow or PR505 opt-in change is included.",
+    "No independent full artifact re-audit was requested; exact producer compare member and relevant source bytes were checked."
+  ],
+  "source_readback_unchanged": true
+}

@@ -1,0 +1,31 @@
+{
+  "schema": 2,
+  "scope": "Observation plan only; no workflow or source behavior change.",
+  "identity": [
+    "Accept the next Root-supplied immutable Host SHA, Tree, Run, Attempt and Native pairing only.",
+    "Rebind each selected source blob to that actual activated tree before interpreting results. If the pending PR508 or cleanup files change, issue a distinct catalog revision.",
+    "Use only terminal original job metadata/logs and the original artifact from that exact run/attempt/head. Pipeline remains exclusive central status owner."
+  ],
+  "flutter": [
+    "Read the one complete original machine stream exported by Pipeline; do not download it twice or rerun Flutter.",
+    "Preserve raw bytes, non-JSON lines, JSON arrays, stderr, process result and any original summary.",
+    "Resolve suite IDs to exact repository paths and testStart IDs to exact case names; require one successful, non-skipped, non-hidden testDone for every roster case. Loading/setup/teardown records do not satisfy a case.",
+    "Reject missing/duplicate/failed/skipped roster cases, error events, a missing or unsuccessful final done, or a nonzero/unknown child exit.",
+    "Count the complete visible suite from the actual stream and report hidden records separately. Compare any original acceptance-summary against the stream. Do not infer the full suite count by adding this roster to historical totals.",
+    "Separately retain the exact outcome of all 45 new cases, all 30 corrected old cases and the seven selected PR508 cases. Both newly added navigation sizes are explicitly included; any further test-file change requires another addendum."
+  ],
+  "host_compile": [
+    "Obtain the terminal host-compile full job log and its artifact once after Pipeline supplies identities.",
+    "Check exact run/attempt/head and original artifact ID/name/size/digest; verify the entire ZIP, CRC and every member byte/hash.",
+    "Bind the actual compile invocation, process result, required class reports and source identities to the unchanged committed compile helper. A successful class report is not an Android runtime or audible-audio result.",
+    "Keep host-compile success separate from later build-contract execution and the full workflow conclusion."
+  ],
+  "speech_build_contracts": [
+    "In the original complete build log, require actual successful completion of all three unchanged Python unittest methods. setUpClass failure, skips or absent methods cannot be converted into a pass.",
+    "Require each exact 23/17/30 marker from the corresponding real JVM process output, preserving stdout/stderr, original exit/failure data and the complete build result.",
+    "Do not accept a marker merely because it occurs in a printed command or source excerpt. A build error elsewhere remains an overall failure even if these three contracts pass.",
+    "Synthetic JVM German PCM/lifecycle/build guards are not English synthesis, Android playback or device acceptance."
+  ],
+  "release_boundary": "This catalog creates no publication or release approval.",
+  "catalog_revision": 2
+}

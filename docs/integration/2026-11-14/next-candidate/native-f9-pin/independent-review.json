@@ -1,0 +1,287 @@
+{
+  "schema": 1,
+  "status": "READ_ONLY_REVIEW_COMPLETE_NO_CONCRETE_BLOCKER",
+  "reviewer": "godot_integration",
+  "created_utc": "2026-11-14T19:30:13.734935+00:00",
+  "scope": "Only three current-2020 pin substitutions on the frozen e536 preimages. Static hash, JSON, source and AST inspection; no module imports, test runs, refs, network requests or CI actions.",
+  "source_freeze": {
+    "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/source-freeze.json",
+    "bytes": 2840,
+    "sha256": "de9a397e970618dc70513ce40cd4fb856c0d48fabe34e87613a08307baaf8fe4",
+    "git_blob": "c4e96b8411954c5f5b5e50128186b04be3a0f5f8"
+  },
+  "base_host": "e53669a2e06d1832cc6844dbe1077d652551fdb8",
+  "base_tree": "5cf2f3bc7d062d44b12c0b5370c827a07c3002c1",
+  "current_application_context": {
+    "host": "c070b7773e0c92906061d2ec623c2a66f737596d",
+    "preimages_unchanged_from_e536": "Confirmed by Root; this review independently binds the preserved e536 API tree and source bytes."
+  },
+  "native_commit": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+  "native_original_git_commit": {
+    "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/originals/native-commit.original.json",
+    "bytes": 1209,
+    "sha256": "3e736ec70da74aec14fc33e1d64da4de48415256de87bce8ce1085257c0d4fd0",
+    "git_blob": "ce4319eca0e04dbe688dfef56598bb336f03e5e6"
+  },
+  "files": [
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "before": {
+        "bytes": 145,
+        "sha256": "468e061237ca974bd6ebe3bfb273c5f35672bc703062e9dd4800574db5d6cd04",
+        "git_blob": "6a7480c482d27e36b76e4cd9accab7058dc74201"
+      },
+      "after": {
+        "bytes": 145,
+        "sha256": "d79a0dcbb52632b8a06d73a92e8070bbc368cfcb188743bc281199b0fb333e42",
+        "git_blob": "ba1d6097de66ab0b38cbe8ae2915bf36525bf264"
+      },
+      "exactly_one_current_revision_replacement": true,
+      "inverse_substitution_restores_all_original_bytes": true,
+      "original_host_tree_preimage_matches": true
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 10687,
+        "sha256": "6d79fb45a8ef7ba400289dc3d94f2d062131002aa19ebb441d73db28d38a7593",
+        "git_blob": "406a868b4c1bd896de214ca248a93c1e79bd91ec"
+      },
+      "after": {
+        "bytes": 10687,
+        "sha256": "b5525232dc8649fe43687f1e5982585b98bdd1b224716e7b62e9041f1e2ff861",
+        "git_blob": "505ec1d0b4602a4b9493b279396cffb4d678217d"
+      },
+      "exactly_one_current_revision_replacement": true,
+      "inverse_substitution_restores_all_original_bytes": true,
+      "original_host_tree_preimage_matches": true
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 17393,
+        "sha256": "2350a6482b4f00c92ec9d94bda91c30924a9c4496356f98c8cf93887809c2ce9",
+        "git_blob": "3b6eff95bb6e80094cca408624d49ef9191a8501"
+      },
+      "after": {
+        "bytes": 17393,
+        "sha256": "2f4160f0484834f63c2df73b04278a7850df409d0a9bf39bc582c74012f2491c",
+        "git_blob": "b3a8bd28c80dcb750f969daeb948480ac564a569"
+      },
+      "exactly_one_current_revision_replacement": true,
+      "inverse_substitution_restores_all_original_bytes": true,
+      "original_host_tree_preimage_matches": true
+    }
+  ],
+  "preserved": {
+    "version": "0.13.8+2020",
+    "pubspec": {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/reference-source/pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+    },
+    "engine": "4.6.3",
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "historical_pin_count": 50,
+    "historical_pins": {
+      "1950": "268c9b327a8f81ba08c55e1b4bccd3664ce12f88",
+      "1951": "268c9b327a8f81ba08c55e1b4bccd3664ce12f88",
+      "1952": "268c9b327a8f81ba08c55e1b4bccd3664ce12f88",
+      "1968": "61f51b942b2521b506e6b203b89a1b3ec2bd284f",
+      "1969": "6b3945583a361c4ea974e4b6846ae0d616b1727a",
+      "1970": "3453a43a8bbdcb0495718e1eced2a40837d6e3ab",
+      "1971": "3453a43a8bbdcb0495718e1eced2a40837d6e3ab",
+      "1972": "b8f464d946f73d9b88458bf223f1b83db3975a1a",
+      "1973": "7bdb7ca91691396399abf3b16f09a54259538df7",
+      "1974": "42b011dc23abffc24a5df2e13171fa5ada22d6eb",
+      "1975": "a17b06c4719cc94c94bdf97afb3b6862cd049323",
+      "1976": "6518a13fb8eb30c81c8a2115d14791cbe7ddd24a",
+      "1977": "efa1f69b4128a047e6196ee85762447e412db266",
+      "1978": "efa1f69b4128a047e6196ee85762447e412db266",
+      "1979": "20652880eda687c67cfa72301dad5a173b1fe6c5",
+      "1980": "20652880eda687c67cfa72301dad5a173b1fe6c5",
+      "1981": "20652880eda687c67cfa72301dad5a173b1fe6c5",
+      "1982": "20652880eda687c67cfa72301dad5a173b1fe6c5",
+      "1983": "20652880eda687c67cfa72301dad5a173b1fe6c5",
+      "1984": "20652880eda687c67cfa72301dad5a173b1fe6c5",
+      "1985": "ffd2955ca9222daf02e6b602b3f213fd9383204a",
+      "1986": "ffd2955ca9222daf02e6b602b3f213fd9383204a",
+      "1987": "ffd2955ca9222daf02e6b602b3f213fd9383204a",
+      "1988": "ffd2955ca9222daf02e6b602b3f213fd9383204a",
+      "1989": "ffd2955ca9222daf02e6b602b3f213fd9383204a",
+      "1990": "ffd2955ca9222daf02e6b602b3f213fd9383204a",
+      "1991": "63cecf09fa89dd504cc468ebd121b4ec71a0f36c",
+      "1992": "63cecf09fa89dd504cc468ebd121b4ec71a0f36c",
+      "1993": "8342a2f10b2ecb8cf9cf1cb9566093fbc4d0b07c",
+      "1994": "928fed3c7f0b39357e0f06463ce13c8d5677d6e1",
+      "1995": "700baf49828eda693ecce15b415847818b1b56d3",
+      "1996": "700baf49828eda693ecce15b415847818b1b56d3",
+      "1997": "3a3142608f6b150ee251373ba81e6face2eed4b3",
+      "1998": "3a3142608f6b150ee251373ba81e6face2eed4b3",
+      "1999": "4d0fd40fdf188be6ca86057596c7b51f41701fa3",
+      "2000": "adcce3093caa42bf3da47262f70bdf03cdefa347",
+      "2001": "adcce3093caa42bf3da47262f70bdf03cdefa347",
+      "2002": "adcce3093caa42bf3da47262f70bdf03cdefa347",
+      "2003": "adcce3093caa42bf3da47262f70bdf03cdefa347",
+      "2004": "3689307a6392fd5756bc87ba0e36f3bef9df71e3",
+      "2005": "91b8cdba48d539ba48836bfac5f6b62c0d6cfa41",
+      "2011": "a81ddf12d594cc252caef7503162e89c6b26e1c7",
+      "2012": "9947346ecc526512904adecec1815312020beb62",
+      "2013": "47bef06db45d61d50ecd06d0b0cd0a69b9a25917",
+      "2014": "207bfbc5377c0f3e8be800854c83ddf2110ac3f6",
+      "2015": "b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1",
+      "2016": "b4ccf593d7833e8c259ff0f963494b00d245d03d",
+      "2017": "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57",
+      "2018": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+      "2019": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845"
+    },
+    "historical_map_sha256": "440be144a47260a5c34c19ca244461379172ea81c3cb1c8a13874cb0ae3aa1cd",
+    "all_non2020_policy_entries_equal": true,
+    "verify_function_ast_equal": true,
+    "all_candidate_functions_ast_equal": true,
+    "candidate_test_methods_unchanged": 24,
+    "other_candidate_constants_equal": true
+  },
+  "ci_identity_crosscheck": {
+    "run_id": 43629637557,
+    "attempt": 1,
+    "native_tracked_entries": 3757,
+    "all_before_after_tracked_records_equal": true,
+    "qualification_status": "PASS",
+    "originals": [
+      {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/source/native/source-inventory-before.json",
+        "bytes": 1559426,
+        "sha256": "b03d19d3d753aa113c59443bcba3935b79756e736d4324cdbb8c6d8c86a23284",
+        "git_blob": "ee71884cfc59de9591ac4a54c7a07c272daa5d34"
+      },
+      {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/source/native/source-inventory-after.json",
+        "bytes": 1949697,
+        "sha256": "27210ba21fbc1ce34c62ea3549eb104add70f7ab056aa7544c737cc1490230cd",
+        "git_blob": "99b9772ac8df9f3ac272522a5250e8c280da4d4b"
+      },
+      {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/qualification-result.json",
+        "bytes": 397,
+        "sha256": "5b81b40da7ca359aa5e84de1dc1c9bc6ef5d8ad7c0d0ff37394125c4572d9840",
+        "git_blob": "99e388f1750e925358eaac54adf42d30190e714b"
+      }
+    ],
+    "scope": "Existing actual renderer CI provenance only; not a new execution or an APK/device/release approval."
+  },
+  "findings": [
+    "Exactly one 2281-to-f9d9772 replacement occurs in each of the three files. Inverse replacement restores every original byte.",
+    "Only APPROVED[2020] changes; all fifty historical build identities and the strict verifier body remain unchanged.",
+    "The candidate test changes only CONNECT_FOUR_2020_REVISION. All test/helper function ASTs, the historical digest and all other constants remain identical.",
+    "pubspec is the exact original base-tree blob and remains version 0.13.8+2020. Godot engine 4.6.3 and repository identity are unchanged.",
+    "The original native Git API commit and the current successful CI source inventories independently agree on f9d9772 / tree4036a20a.",
+    "The three-file scope does not rewrite historical Village original-fixture provenance. No additional broad source scan or test run was repeated."
+  ],
+  "blockers": [],
+  "inputs": [
+    {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/source-freeze.json",
+      "bytes": 2840,
+      "sha256": "de9a397e970618dc70513ce40cd4fb856c0d48fabe34e87613a08307baaf8fe4",
+      "git_blob": "c4e96b8411954c5f5b5e50128186b04be3a0f5f8"
+    },
+    {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/pin.patch",
+      "bytes": 1394,
+      "sha256": "419adc08070ff1a4f1ad308479628ff866ff7ff72f35f43da1a1d42a7f33d818",
+      "git_blob": "83667cc377b165df8834d8977dc5dd7137e5991b"
+    },
+    {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/raw-manifest.json",
+      "bytes": 4687,
+      "sha256": "dc63f9dd39e28045e84e32155bb12be3ede1766004729811f5fa2c933b6a9789",
+      "git_blob": "7419871bf0ba6c1bb41a9217cc3682bf3bf7f04f"
+    },
+    {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/originals/host-commit.original.json",
+      "bytes": 1229,
+      "sha256": "b47efb5dd0825b0ef6fa9c5251111b4d8f6219d6fcd85dbe05d3674bb6407a2e",
+      "git_blob": "5ce4d7e48759984949b3853c4eb2f3c938e67871"
+    },
+    {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/originals/native-commit.original.json",
+      "bytes": 1209,
+      "sha256": "3e736ec70da74aec14fc33e1d64da4de48415256de87bce8ce1085257c0d4fd0",
+      "git_blob": "ce4319eca0e04dbe688dfef56598bb336f03e5e6"
+    },
+    {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/originals/tree.original.json",
+      "bytes": 1490339,
+      "sha256": "4ebc8a61c19cefcb2dd5e549bd3ab28fd2ec049df050331d78672fa9651b928d",
+      "git_blob": "1026138180a760ada0e491997e06ee295b8a8952"
+    },
+    {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/reference-source/pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+    },
+    {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/before-source/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "468e061237ca974bd6ebe3bfb273c5f35672bc703062e9dd4800574db5d6cd04",
+      "git_blob": "6a7480c482d27e36b76e4cd9accab7058dc74201"
+    },
+    {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/final-source/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "d79a0dcbb52632b8a06d73a92e8070bbc368cfcb188743bc281199b0fb333e42",
+      "git_blob": "ba1d6097de66ab0b38cbe8ae2915bf36525bf264"
+    },
+    {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/before-source/scripts/verify_legacy_release_pin.py",
+      "bytes": 10687,
+      "sha256": "6d79fb45a8ef7ba400289dc3d94f2d062131002aa19ebb441d73db28d38a7593",
+      "git_blob": "406a868b4c1bd896de214ca248a93c1e79bd91ec"
+    },
+    {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/final-source/scripts/verify_legacy_release_pin.py",
+      "bytes": 10687,
+      "sha256": "b5525232dc8649fe43687f1e5982585b98bdd1b224716e7b62e9041f1e2ff861",
+      "git_blob": "505ec1d0b4602a4b9493b279396cffb4d678217d"
+    },
+    {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/before-source/scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 17393,
+      "sha256": "2350a6482b4f00c92ec9d94bda91c30924a9c4496356f98c8cf93887809c2ce9",
+      "git_blob": "3b6eff95bb6e80094cca408624d49ef9191a8501"
+    },
+    {
+      "path": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/final-source/scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 17393,
+      "sha256": "2f4160f0484834f63c2df73b04278a7850df409d0a9bf39bc582c74012f2491c",
+      "git_blob": "b3a8bd28c80dcb750f969daeb948480ac564a569"
+    },
+    {
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/source/native/source-inventory-before.json",
+      "bytes": 1559426,
+      "sha256": "b03d19d3d753aa113c59443bcba3935b79756e736d4324cdbb8c6d8c86a23284",
+      "git_blob": "ee71884cfc59de9591ac4a54c7a07c272daa5d34"
+    },
+    {
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/source/native/source-inventory-after.json",
+      "bytes": 1949697,
+      "sha256": "27210ba21fbc1ce34c62ea3549eb104add70f7ab056aa7544c737cc1490230cd",
+      "git_blob": "99b9772ac8df9f3ac272522a5250e8c280da4d4b"
+    },
+    {
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/qualification-result.json",
+      "bytes": 397,
+      "sha256": "5b81b40da7ca359aa5e84de1dc1c9bc6ef5d8ad7c0d0ff37394125c4572d9840",
+      "git_blob": "99e388f1750e925358eaac54adf42d30190e714b"
+    }
+  ],
+  "input_bytes_unchanged_at_close": true,
+  "test_execution_by_reviewer": false
+}

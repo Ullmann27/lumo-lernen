@@ -1,0 +1,32 @@
+{
+  "qa_source": "61c94cfb78bda8dfbe191331eca0fd0382deb151",
+  "apk_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "run_id": 43551424080,
+  "scope": "Unchanged original failed-job bytes. Synthetic protocol tests do not convert either failure into Android acceptance.",
+  "files": [
+    {
+      "file": "host-gms-events-anr.stdout",
+      "original_member": "runtime-anr/commands/0005-events-anr.stdout",
+      "artifact_id": 14096004123,
+      "artifact_digest": "sha256:29eae3364927c91522d3771b63b56ce97c6d3400566deb6b037c1a86059f60a2",
+      "bytes": 321,
+      "sha256": "cdea9d527ca2d3ef09ebdbf26ff496f2dda5f4af0aedfbbb3e0bf4eb3e1e8d31"
+    },
+    {
+      "file": "host-monitor-finished.json",
+      "original_member": "framework-start/monitor-finished.json",
+      "artifact_id": 14096004123,
+      "artifact_digest": "sha256:29eae3364927c91522d3771b63b56ce97c6d3400566deb6b037c1a86059f60a2",
+      "bytes": 1074,
+      "sha256": "8af85369c2b34f0de7e26a49fef151ccb69bdab9195446c8076b3dab7f1c3cf1"
+    },
+    {
+      "file": "swiftshader-monitor-finished.json",
+      "original_member": "framework-start/monitor-finished.json",
+      "artifact_id": 14096976074,
+      "artifact_digest": "sha256:9aaa2850bc96b39833a3e5893f020a5ecf19d7038fc326f18affed7448e37055",
+      "bytes": 1074,
+      "sha256": "be9d7574f67d4cb37a6755ca7f923b468653cb05b9a07cda240b9258bc7f46ed"
+    }
+  ]
+}

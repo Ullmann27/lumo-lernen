@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T04:28:44.297807+00:00",
+  "status": "ROOT_ROUTING_SOURCE_REVIEW_ACCEPTED_WORKFLOW_PAIR_PENDING",
+  "scope": "Read-only comparison and inspection of existing test logs. No tests, source edits, jobs, index, commit or ref changes.",
+  "freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-preparation/root-source-freeze.json",
+    "bytes": 1348,
+    "sha256": "95d3596b75d3231f6b4b3a03478cf5df404bf7ec3ffcd344c54449911e37114e",
+    "git_blob_sha1": "d92237f8cb2f05896f9096400c9cadd2ea066d5a"
+  },
+  "base_commit": "de66f7fc219852388a65e047ce9b2a2fc8926b42",
+  "base_tree": "db1dc6f956b0e75f60a8ed382b5e10a55649bcf5",
+  "sources": [
+    {
+      "final": {
+        "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-preparation/final-source/scripts/verify_unchanged_apk_diagnostic.py",
+        "bytes": 19885,
+        "sha256": "3747027cf3a6b4d91e8d0e8ab59fca07f63ff59b8c189373dbe098bda34d67d4",
+        "git_blob_sha1": "11749337af0aff31d7541702890459126675fd08"
+      },
+      "baseline_commit": "de66f7fc219852388a65e047ce9b2a2fc8926b42",
+      "baseline_tree": "db1dc6f956b0e75f60a8ed382b5e10a55649bcf5",
+      "baseline_exists": true,
+      "baseline": {
+        "bytes": 19392,
+        "sha256": "0be6f50c409ce620ca98594850a2cdc7b661e8f059229cb9fca41bf53fcbb10a",
+        "git_blob_sha1": "6b302d3b23d50ea7fc09b381f5eff69de96d31c2"
+      }
+    },
+    {
+      "final": {
+        "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-preparation/final-source/.github/workflows/lumo-unified-integration-2026.yml",
+        "bytes": 82165,
+        "sha256": "d3e214c74579f251fd65bce70348dfbcba919818032049d954d713c3dd4bb1f2",
+        "git_blob_sha1": "7fb028eda997c4576eb1d4611bbef6de751b1862"
+      },
+      "baseline_commit": "de66f7fc219852388a65e047ce9b2a2fc8926b42",
+      "baseline_tree": "db1dc6f956b0e75f60a8ed382b5e10a55649bcf5",
+      "baseline_exists": true,
+      "baseline": {
+        "bytes": 82017,
+        "sha256": "e998a8d58d33d3b5364695bca7f9c3eae7090ed73707b83f0c0250be8f2dd52e",
+        "git_blob_sha1": "c6fd93d93c18c4fc23b08bdc1face30fc3a63642"
+      }
+    },
+    {
+      "final": {
+        "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-preparation/final-source/scripts/tests/test_unchanged_apk_followup.py",
+        "bytes": 4548,
+        "sha256": "20556ec0f706e4901775bf79bfe5aa48317065b43666168a8e29cccca5d88673",
+        "git_blob_sha1": "5de9cb453f9b79e6a1ceb5b084fcc13fb4afdde1"
+      },
+      "baseline_commit": "de66f7fc219852388a65e047ce9b2a2fc8926b42",
+      "baseline_tree": "db1dc6f956b0e75f60a8ed382b5e10a55649bcf5",
+      "baseline_exists": false
+    }
+  ],
+  "unchanged_verification_functions_ast": [
+    "require",
+    "regular",
+    "file_digest",
+    "unique_object",
+    "read_json",
+    "complete_rows",
+    "load_module",
+    "verify_candidate",
+    "verify_qa",
+    "git",
+    "source_identity",
+    "committed_file",
+    "verify_apk",
+    "bind",
+    "write_report",
+    "main"
+  ],
+  "findings": [
+    "The binder adds exactly five distinct job names mapped to the fixed followup workflow and branch; original four runtime jobs and the Creative job retain their existing literal mappings.",
+    "All sixteen prior verification functions are AST-identical to the clean Creative checkpoint. Candidate APK/PCK/build source, run/attempt, metadata completeness, Git cleanliness and exact QA-source checks are preserved.",
+    "Unified workflow changes only the additional exact head_ref/ref_name exclusion for the new followup QA branch. Other build, publisher and security logic is unchanged.",
+    "The four new synthetic metadata contracts cover five positive routes and wrong workflow/branch/run/source, duplicate or missing jobs, wrong job names and attempts. Existing test log reports four PASS; reviewer did not rerun them."
+  ],
+  "existing_test_log": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-preparation/runtime-followup-route-contracts.log",
+    "bytes": 906,
+    "sha256": "e5dd40fe93276de0d8bbbfbf589bea29d44bc000eb92d0abed1e355605a2efbe",
+    "git_blob_sha1": "46de6086deb2dee7045a0a2ef65607b11220c556"
+  },
+  "concrete_root_scope_blockers": [],
+  "pending": [
+    "Pair the actual five workflow matrix names, case arguments and branch guard after Pipeline freezes its followup workflow and runner.",
+    "Inspect the SWANGLE path against its actual configured GPU and observed renderer guard; no emulator/backend availability is inferred from these metadata tests.",
+    "Clean final-source binding and genuine subsequent device outcomes remain separate gates."
+  ]
+}

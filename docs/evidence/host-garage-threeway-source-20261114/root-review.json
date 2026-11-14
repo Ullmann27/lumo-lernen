@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T15:59:04.411257+00:00",
+  "source_freeze_sha256": "c6890e5009cba9840991e914bfc77ad03413f9280f44e3b57b1ff32011048485",
+  "root_parent": "9aacbca14ccf994e8202fc3b6bf2a32df5a793a5",
+  "verified_source_paths": 14,
+  "original_producer_fixtures_byte_identical": 9,
+  "existing_functions_preserved": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "explicit_changed_existing_functions": [
+        "_select_stage_kart",
+        "_stage_kart_scroll_recovery"
+      ],
+      "byte_identical_original_functions": [
+        "diagnostic_logcat_context",
+        "logcat_fatal",
+        "alive",
+        "godot_alive",
+        "try_tap",
+        "labels",
+        "_atelier_roundtrip",
+        "_simplify",
+        "_screencap",
+        "_shot",
+        "verify_apk_identity",
+        "_read_garage_footer",
+        "_select_stage_driver",
+        "_stage_cup_text",
+        "_return_stage_kart_menu",
+        "_inspect_spatial_kart_menu",
+        "_previous_kart_race_id",
+        "_confirm_stage_selection",
+        "_start_actual_embedded_race",
+        "RaceSession",
+        "wait_race_running",
+        "_pause_actual_race",
+        "_continue_actual_race",
+        "wait_race_hud",
+        "find_gas",
+        "drive_with_gas",
+        "log_images",
+        "main"
+      ]
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "explicit_changed_existing_functions": [
+        "stage_garage_scroll_observation"
+      ],
+      "byte_identical_original_functions": [
+        "demand",
+        "require_selected_race",
+        "selected_race_readiness",
+        "require_resumed_progress",
+        "normalize",
+        "stage_cup_target_observation",
+        "stage_driver_word_observations",
+        "stage_driver_target_observation",
+        "stage_garage_word_observations"
+      ]
+    }
+  ],
+  "root_viewed_original_images": [
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png",
+      "bytes": 787513,
+      "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc",
+      "git_blob": "a229f80913e5657d5f4a29c568cbdaf41d4503ed",
+      "root_directly_viewed": true,
+      "image_dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png",
+      "bytes": 784333,
+      "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a",
+      "git_blob": "7f36ef4670b1a2b5770835ccb26bd290cde4b666",
+      "root_directly_viewed": true,
+      "image_dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png",
+      "bytes": 766810,
+      "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf",
+      "git_blob": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6",
+      "root_directly_viewed": true,
+      "image_dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png",
+      "bytes": 761351,
+      "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff",
+      "git_blob": "7785a71aca44a5dd567c6fab62251d7f0cefb887",
+      "root_directly_viewed": true,
+      "image_dimensions": [
+        2400,
+        1080
+      ]
+    }
+  ],
+  "visual_observations": [
+    "All four actual historical2400x1080 originals were opened directly by Root.",
+    "Frame0 in both main/update shows the fully visible Comet card in a short list between the tab row and separate workshop control.",
+    "Frame2 shows clipped cards; the main Gecko title touches the upper clip, while the update Gecko title is above it and Boru is visible near the lower clip.",
+    "The update layout has a visible left system inset; the proposed region reader derives bounds from each actual PNG instead of carrying over the main coordinates."
+  ],
+  "source_review": [
+    "The pixel reader binds current PNG name, exact whole-file bytes and SHA256, dimensions and actual PNG format.",
+    "The workshop outline plus scrollbar track/thumb bounds define the visible region; the target requires a complete unambiguous interior title.",
+    "The original whole-word TSV parser remains byte-identical. Word recovery guides only a gesture; it does not authorize a vehicle tap.",
+    "Two distinct observed frame paths and their original SHA256 values, small interior gestures, five-gesture limit and actual150-second default remain present.",
+    "The original driver/cup/save/continue functions, including standalone_caption=True, remain byte-identical."
+  ],
+  "tests_run": 0,
+  "limits": [
+    "Original images and old6f42/bebf diagnostic are not current Root Android acceptance.",
+    "The combined source still requires its own actual103-method invocation after checkpoint.",
+    "The full new source APK/native/Android/update workflow remains mandatory."
+  ]
+}

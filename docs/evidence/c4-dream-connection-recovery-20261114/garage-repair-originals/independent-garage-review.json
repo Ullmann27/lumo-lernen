@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T10:48:15.273202+00:00",
+  "reviewer": "/root/pipeline_repair",
+  "scope": "Independent read-only review of the one-line exact mock expectation. No tests or product execution.",
+  "verdict": "NO_CONCRETE_SOURCE_BLOCKER",
+  "input_pack": "/tmp/host-32e7-garage-caption-fixture-repair-20261114",
+  "input_manifest_sha256": "4328c7ac6f9a603983ff9c2f059e83d95c71b7e88ba1950c212d1affce1ee770",
+  "input_source_freeze_sha256": "f77eee9b24c5b385babc436eca0846f698956f50ee5f51df30bce9ec75ee54f6",
+  "manifest_objects_independently_hash_verified": 23,
+  "source": {
+    "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+    "before_blob": "9b1413a39e327258cb3ebc583ea7a17070a9cf34",
+    "before_sha256": "cc7913d2137909628235d6e558e1be33180ca950cef4fe6dcfaa6d9458b0c5a1",
+    "after_blob": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d",
+    "after_sha256": "3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae",
+    "base_host": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+    "qa_reuse_source": "1cc5cf4fb7da382fb9833b9d52cf53540306b405"
+  },
+  "findings": [
+    {
+      "id": "exact-delta",
+      "result": "The complete final file is byte-identical to the original after precisely one literal replacement: the expected kwargs dictionary now also requires standalone_caption=True. No permissive kwargs comparison or removed assertion was introduced."
+    },
+    {
+      "id": "production-pairing",
+      "result": "The separately preserved actual _continue_actual_race calls native_text with tap=True, exact=True, standalone_caption=True. The updated strict equality matches this existing production contract. Production Continue, native OCR selector, freshness, source, bounds, touch journal, real HUD, GAS input, current race identity and subsequent native save are unchanged."
+    },
+    {
+      "id": "preservation",
+      "result": "Independent AST comparison found exactly one changed direct method; 34 other direct definitions are unchanged. All eight existing assertions in the affected method remain, including touch-before-physical-drive ordering, scoped output folder, exact paused race, result_id, original first-drive bytes and later save existence."
+    },
+    {
+      "id": "original-evidence",
+      "result": "Read the complete existing single-case RED and GREEN logs: the original failure is precisely the additional production keyword; the proposed existing case passes. These are Flutter-agent executions, not tests run by this reviewer. Their stdout and execution metadata are hash-bound."
+    },
+    {
+      "id": "source-boundary",
+      "result": "The pack source-before and source-after are byte-identical. Nine Host inputs were independently matched to the preserved original source copies. Both bound bases use the same original test blob and Continue function; applying the same test-only hunk to QA is a source identity conclusion, not a QA test result."
+    }
+  ],
+  "evidence": {
+    "original_red_sha256": "45a5ba7467520f886bac626b5c9ce24573661f4a4bb5e9685db388abdd6369bc",
+    "proposed_green_sha256": "c5574c19c79727bc3f7aac200b5ab8f098e5ccbe51e6b0c2349d0d5d762ecfa2",
+    "patch_sha256": "ce748c4cb8f6fd402412e704a53c8825a2cb097e619e90ae863adf002598b588",
+    "production_modernization_sha256": "d98eeb982344bb09762a783aeb71bef2c93cc8ed30d5e932a96712fe382673db",
+    "source_state_sha256": "b97098cd5b69705c8c918dc12f1b6c14521b3a4e3b399137cd14ebb81f83b74f"
+  },
+  "limits": [
+    "No test, Android/device, source mutation, Git/index/ref change or CI action by this reviewer.",
+    "The full CI job and its 845/937/938 counts were supplied as a parent reference and were not re-fetched for this review. The complete independently preserved local single-case RED/GREEN was directly read.",
+    "QA1cc5 reuse has not been executed by this reviewer or by the supplied test-only pack."
+  ]
+}

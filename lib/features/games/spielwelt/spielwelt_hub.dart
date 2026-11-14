@@ -35,6 +35,14 @@ class SpielweltPortal {
         semanticTitle = 'Lumo 4 Gewinnt',
         specialId = 'connectFour';
 
+  /// Direct economic village; independent of the classic Bauwelt's unlocks.
+  /// The native Android bridge must still validate the child's actual launch.
+  const SpielweltPortal.village({required this.onOpen})
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Dorf & Wirtschaft',
+        specialId = 'village';
+
   final GameDefinition? game;
   final GameUnlockState state;
   final VoidCallback onOpen;
@@ -49,6 +57,8 @@ class SpielweltPortal {
         return 'Quizshow';
       case 'connectFour':
         return '4 Gewinnt';
+      case 'village':
+        return 'Dorfwirtschaft';
       case 'rhythm':
         return 'Rhythm';
       default:
@@ -63,6 +73,7 @@ class SpielweltPortal {
 
   String get tagline => switch (specialId) {
         'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
+        'village' => 'Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn!',
         'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
         _ => game?.tagline ?? '',
       };
@@ -73,6 +84,17 @@ class SpielweltPortal {
   final String? semanticTitle;
 }
 
+const _gameTileTitleStyle = TextStyle(
+  fontFamily: 'Nunito',
+  fontSize: 17,
+  height: 1.08,
+  fontWeight: FontWeight.w900,
+  color: Colors.white,
+);
+
+double _gameTileHorizontalInset(SpielweltPortal portal) =>
+    portal.identity == 'village' ? 5 : 9;
+
 /// The familiar game grid, presented as one calm blue stage. Each tile opens
 /// its original game directly; neither artwork nor layout owns save state.
 class SpielweltHub extends StatefulWidget {
@@ -80,6 +102,7 @@ class SpielweltHub extends StatefulWidget {
     super.key,
     required this.portals,
     required this.onAdventure,
+    this.onEnterNative3D,
     required this.onHome,
     required this.onLearn,
     required this.onTests,
@@ -92,6 +115,8 @@ class SpielweltHub extends StatefulWidget {
 
   final List<SpielweltPortal> portals;
   final VoidCallback onAdventure;
+  /// Entry to the existing native Godot game hub. Null in legacy callers.
+  final VoidCallback? onEnterNative3D;
   final VoidCallback onHome;
   final VoidCallback onLearn;
   final VoidCallback onTests;
@@ -110,6 +135,7 @@ class _SpielweltHubState extends State<SpielweltHub> {
 
   static const _featuredOrder = [
     'kart',
+    'village',
     'cards',
     'build',
     'puzzle',
@@ -135,8 +161,29 @@ class _SpielweltHubState extends State<SpielweltHub> {
 
   Widget _grid(List<SpielweltPortal> portals, double width, int columns) {
     const gap = 12.0;
-    final tileWidth = (width - gap * (columns - 1)) / columns;
-    final textScale = MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0);
+    // The tile's Material supplies bodyMedium, including letter spacing.
+    final titleStyle =
+        Theme.of(context).textTheme.bodyMedium!.merge(_gameTileTitleStyle);
+    final textScaler = MediaQuery.textScalerOf(context);
+    var fittedColumns = columns;
+    for (final portal in portals.where((portal) => portal.identity == 'village')) {
+      final title = TextPainter(
+        text: TextSpan(text: portal.title, style: titleStyle),
+        textDirection: Directionality.of(context),
+        textScaler: textScaler,
+        locale: Localizations.maybeLocaleOf(context),
+      )..layout();
+      // Reserve the focused 2 dp border as well as the real text inset.
+      final minimumWidth =
+          title.minIntrinsicWidth + 2 * (_gameTileHorizontalInset(portal) + 2);
+      title.dispose();
+      final availableColumns =
+          math.max(1, ((width + gap) / (minimumWidth + gap)).floor());
+      fittedColumns = math.min(fittedColumns, availableColumns);
+    }
+    final tileWidth =
+        (width - gap * (fittedColumns - 1)) / fittedColumns;
+    final textScale = textScaler.scale(1).clamp(1.0, 2.0);
     final iconHeight = (tileWidth * .67).clamp(76.0, 139.0);
     final tileHeight = iconHeight + 54 * textScale;
     return Wrap(
@@ -150,6 +197,7 @@ class _SpielweltHubState extends State<SpielweltHub> {
             child: _GameTile(
               key: ValueKey('spielwelt-portal-${portal.identity}'),
               portal: portal,
+              titleStyle: titleStyle,
               reduceMotion: widget.reduceMotion,
               onTap: () {
                 if (portal.state.unlocked && portal.playable) _lumo.cheer();
@@ -308,6 +356,35 @@ class _SpielweltHubState extends State<SpielweltHub> {
                               ? math.min(4, _other.length)
                               : SpielweltLayout.tileColumns(width)),
                     ],
+                    if (widget.onEnterNative3D != null) ...[
+                      const SizedBox(height: 12),
+                      SizedBox(
+                        height: 56,
+                        child: OutlinedButton.icon(
+                          key: const ValueKey('spielwelt-native-3d-hub'),
+                          onPressed: widget.onEnterNative3D,
+                          icon: const Icon(Icons.view_in_ar),
+                          label: const Text(
+                            'Magische 3D-Spielewelt betreten',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                            ),
+                          ),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: const Color(0xFFFFE7A0),
+                            backgroundColor: const Color(0xFF123354),
+                            side: const BorderSide(color: Color(0xFF53DDFD), width: 1.5),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                     const SizedBox(height: 19),
                     _HubActions(
                       onParents: widget.onParents,
@@ -438,10 +515,12 @@ class _GameTile extends StatefulWidget {
   const _GameTile({
     super.key,
     required this.portal,
+    required this.titleStyle,
     required this.onTap,
     required this.reduceMotion,
   });
   final SpielweltPortal portal;
+  final TextStyle titleStyle;
   final VoidCallback onTap;
   final bool reduceMotion;
 
@@ -549,7 +628,12 @@ class _GameTileState extends State<_GameTile> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(9, 9, 9, 11),
+                    padding: EdgeInsets.fromLTRB(
+                      _gameTileHorizontalInset(portal),
+                      9,
+                      _gameTileHorizontalInset(portal),
+                      11,
+                    ),
                     child: Column(
                       children: [
                         Expanded(
@@ -561,13 +645,7 @@ class _GameTileState extends State<_GameTile> {
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 17,
-                            height: 1.08,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.white,
-                          ),
+                          style: widget.titleStyle,
                         ),
                       ],
                     ),

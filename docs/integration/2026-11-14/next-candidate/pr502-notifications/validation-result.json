@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_embedded_android.EmbeddedAndroidTest"
+  ],
+  "cwd": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source",
+  "started_utc": "2026-11-14T19:21:53.338420+00:00",
+  "ended_utc": "2026-11-14T19:21:53.479791+00:00",
+  "wall_seconds": 0.14137283000309253,
+  "exit_code": 0,
+  "sources_unchanged": true,
+  "source_freeze": {
+    "path": "/tmp/host-pr502-notification-manifest-repair-20261114/source-freeze.json",
+    "bytes": 6947,
+    "sha256": "49b31b28da7e0ef9051cba7d2b90277a26bd193c67683db7b98dfb8e81765698",
+    "git_blob": "6716630485e01550c9d03eadcd63603c0d5ec1cf"
+  },
+  "stdout": {
+    "path": "/tmp/host-pr502-notification-manifest-repair-20261114/validation.stdout",
+    "bytes": 162,
+    "sha256": "25677916f5ec9f4a49a844d0bb644561a00bcc3c5826d99a612458b20582e7ff",
+    "git_blob": "f2079eee669376aa609be369789c62bfc9deb933"
+  },
+  "stderr": {
+    "path": "/tmp/host-pr502-notification-manifest-repair-20261114/validation.stderr",
+    "bytes": 274,
+    "sha256": "84f2fc7e58e553f4619b5a3c0c61dbecf0f53e6e1c2e155626172179dce1970d",
+    "git_blob": "6f7b83ddec32b8f9135cb81cf3290bf7c3500675"
+  },
+  "scope": "Existing actual manifest preparation/idempotence contract, including private Cards/C4/Table services and complete Table templates; unchanged JVM test class not invoked."
+}

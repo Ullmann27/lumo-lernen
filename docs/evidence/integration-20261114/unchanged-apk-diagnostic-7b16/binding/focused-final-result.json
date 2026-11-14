@@ -1,0 +1,26 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_verify_unchanged_apk_diagnostic.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "seconds": 0.281,
+  "sources_before": {
+    "scripts/verify_unchanged_apk_diagnostic.py": "cf9a078532093362e3c4c3fe0442697115bbc277b3c2cff1abb7a3103f0c437c",
+    "scripts/tests/test_verify_unchanged_apk_diagnostic.py": "adb095bbedb9f3b4922493648e86f389b5a042d432ab59b6e5a7d2496e7f40da"
+  },
+  "sources_after": {
+    "scripts/verify_unchanged_apk_diagnostic.py": "cf9a078532093362e3c4c3fe0442697115bbc277b3c2cff1abb7a3103f0c437c",
+    "scripts/tests/test_verify_unchanged_apk_diagnostic.py": "adb095bbedb9f3b4922493648e86f389b5a042d432ab59b6e5a7d2496e7f40da"
+  },
+  "sources_unchanged": true,
+  "log_sha256": "0ad6c976591e67fa8d3ac7024900171b8eccf2f31ed461d93290760e540097e2",
+  "scope": "18 offline methods; synthetic source/API/small APK fixtures, unchanged real identity helper; no candidate APK download, device, Android execution or release acceptance"
+}

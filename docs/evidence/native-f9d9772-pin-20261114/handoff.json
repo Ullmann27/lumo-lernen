@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "status": "64_EXISTING_PIN_CONTRACTS_PASS",
+  "root": "/tmp/host-e536-native-f9d9772-pin-integration-20261114",
+  "source_count": 3,
+  "source_freeze": {
+    "bytes": 2840,
+    "sha256": "de9a397e970618dc70513ce40cd4fb856c0d48fabe34e87613a08307baaf8fe4",
+    "git_blob": "c4e96b8411954c5f5b5e50128186b04be3a0f5f8"
+  },
+  "base_host": "e53669a2e06d1832cc6844dbe1077d652551fdb8",
+  "base_tree": "5cf2f3bc7d062d44b12c0b5370c827a07c3002c1",
+  "new_native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "new_native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+  "version": "0.13.8+2020",
+  "historical_pins_unchanged": 50,
+  "source_only_overlay_tree_on_e536": "a512fa4cc153b84edcce91f06638d700f0eab41f",
+  "actual_validation": {
+    "schema": 1,
+    "status": "PASS",
+    "actual_invocations": 1,
+    "tests": 64,
+    "candidate_methods": 24,
+    "legacy_methods": 40,
+    "exit_code": 0,
+    "timed_out": false,
+    "exact_OK_summary": true,
+    "unittest_seconds": 0.019,
+    "process_seconds": 0.16439677300149924,
+    "sources_unchanged": true,
+    "stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "stderr": {
+      "bytes": 12267,
+      "sha256": "856bf81fa60db7c7c087f6b4f2fd388553a6bc8ea4fd0ee76d4d8c031f953e44",
+      "git_blob": "632e16db0e05a59f4effd6e2302b1cf8ea16dac8"
+    },
+    "scope": "Existing source identity contracts on the three frozen proposed pin replacements. No APK, engine, Android, CI, release or active-ref acceptance."
+  },
+  "workflow_trigger_review": {
+    "bytes": 7365,
+    "sha256": "56c0f272bdcb6611ba195e0ac12014ece4c097bd19760722f6095a201fe94bd1",
+    "git_blob": "cb2b7e2e378cd5114372b56c90c5e65ea7f090af"
+  },
+  "additional_current_pin_dependency": false,
+  "dependency_text_files_bound": 1120,
+  "root_followup_parent_reported": "c874abe3e26ace4d0282b2e3254e8c8bcbebc9df",
+  "publication_condition": "Root must verify these three complete preimages on its latest parent, then use exactly the three final blobs. No workflow/version/historical pin edits are required.",
+  "no_remote_mutation_or_ci_action": true,
+  "acceptance_limit": "Local source identity contracts only; no new APK, renderer, Android, update or release acceptance."
+}

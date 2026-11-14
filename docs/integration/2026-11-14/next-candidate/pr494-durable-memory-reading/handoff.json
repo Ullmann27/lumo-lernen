@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "status": "READY_FOR_ROOT_SOURCE_CHECKPOINT",
+  "pack": "/tmp/host-pr494-28462-integration-b3c2bd-20261114",
+  "files": [
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "mode": "100644",
+      "before": {
+        "mode": "100644",
+        "bytes": 10182,
+        "sha256": "c61b38d70fa7aed9f34d1945e8715d8ab8b520c43d744ea6c0e3799788229553",
+        "git_blob": "457aed1dcc82e9c0f4462daa045b249bc735df7e"
+      },
+      "after": {
+        "bytes": 8298,
+        "sha256": "e21e566b2f54b895598d6a04c329c83604f27c60e9ea2680be575fd9f320ab2c",
+        "git_blob": "f0159983be551133bf9a3ce83e6c42de8b0d7a9b"
+      },
+      "producer_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "producer_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+      "origin": "exact published producer blob; no local merge or edit"
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "mode": "100644",
+      "before": {
+        "mode": "100644",
+        "bytes": 2146,
+        "sha256": "cb233ad8d2e04fe896bc6ea9eed1bcc2ded1fce453cdaca1bc23b3bac7ba2a8b",
+        "git_blob": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a"
+      },
+      "after": {
+        "bytes": 2632,
+        "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+        "git_blob": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14"
+      },
+      "producer_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "producer_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+      "origin": "exact published producer blob; no local merge or edit"
+    },
+    {
+      "path": "test/games/memory_preferences_durability_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 15378,
+        "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+        "git_blob": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758"
+      },
+      "producer_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "producer_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+      "origin": "exact published producer blob; no local merge or edit"
+    },
+    {
+      "path": "test/reading_asr_evidence_boundary_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 12601,
+        "sha256": "668784b41f260386721b7365e3a7ee1cc1491ec59259622f3950fc31177d8908",
+        "git_blob": "fd5e624055383e935bfd5fab074d62cb746f396c"
+      },
+      "producer_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "producer_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+      "origin": "exact published producer blob; no local merge or edit"
+    }
+  ],
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "bytes": 3337,
+    "sha256": "babda3083f2a8af4ff9053504f6a10c74dd816b0d75ae9f2ff3b1f3180e007ad",
+    "git_blob": "632f02a60d7b03891186d90f89d20aa23d15a273"
+  },
+  "review": {
+    "path": "review.json",
+    "bytes": 2695,
+    "sha256": "5dc4cd5248745b3e30baaa43c73d271bae6d1316f3fd46906739cbb5a2ab7af8",
+    "git_blob": "65076e057b3de97ef7303255d9b183e4b311373c"
+  },
+  "producer_test_review": {
+    "path": "producer-24-original-review.json",
+    "bytes": 20637,
+    "sha256": "1cacae6003e847bae0e047fbdbe93a9b006ab11dc0d00adc910b88f8548d87d7",
+    "git_blob": "dbd2469712ca650ef035db62347c827477daf852"
+  },
+  "source_protection": {
+    "path": "source-protection.json",
+    "bytes": 19409,
+    "sha256": "8e73f911d99ae8653b4180b0db274037528daa3e74c303b3fffac1d9421c6831",
+    "git_blob": "528e3003234fe05b272120bc439931a8c838ce57"
+  },
+  "integration_patch": {
+    "path": "integration.patch",
+    "bytes": 38174,
+    "sha256": "ec0ed9677df610c1554d30d2618d08f1d05ab4c05b9415ca6a986f5d3d288750",
+    "git_blob": "7ffcd9f65e02e3fd9429f0e370ea8e64d7799dd2"
+  },
+  "actual_tests_on_target": {
+    "status": "NOT_RUN",
+    "reason": "No execution authorized or necessary before Root checkpoint; next integrated full suite will discover both added test files."
+  },
+  "producer_evidence_commit_is_not_execution_commit": true,
+  "inspection_errors": [
+    "initial-jsonl-read-error.json was an analysis-only assumption error before any writes/test execution; all original lines were subsequently classified explicitly.",
+    "binary-range-fetch-original-response.json preserves the UTF-8-only reader rejection. The full machine/log bytes were independently read by their published text blobs."
+  ],
+  "preserved_current_host_evidence": "Both b3 Flutter53 and Android compile/19+11+8 evidence packs were frozen separately; no new four-file combination success is inferred."
+}

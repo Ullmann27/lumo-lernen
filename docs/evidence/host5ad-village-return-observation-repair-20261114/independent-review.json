@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "status": "NO_CONCRETE_SOURCE_BLOCKER_IN_SCOPED_READ_ONLY_REVIEW",
+  "reviewer": "flutter_integration",
+  "source_pack": "/tmp/host5ad-village-return-observation-repair-20261114",
+  "scope": "The actual Village observer, exact production delta and unchanged verifier/call chain; no test or Android execution.",
+  "binding": {
+    "freeze": {
+      "bytes": 11841,
+      "sha256": "a448c4f8655cb99672b5825e5be5b6a18e4bfa3c61d0d6330d9cd8bb47fe4096",
+      "git_blob": "96954f378abdb6a9f0e5d11482f55beca4fbe66e"
+    },
+    "source_count": 35,
+    "all_source_bytes_verified": true,
+    "before": {
+      "bytes": 11541,
+      "sha256": "b6a3ef510ffd29369896bedb57a6d870d000b36e46138c7e7b59be95efacb9ab",
+      "git_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99"
+    },
+    "after": {
+      "bytes": 17710,
+      "sha256": "09a3712108c0cbfec778c196d4845c6e67deda5729639918aa601d910652951c",
+      "git_blob": "a7a8593de39191b8acc0aa687e9eaffdd6353fc8"
+    },
+    "reference_sources": [
+      {
+        "path": ".github/probes/lumo_village_android_probe.py",
+        "pack_file": "/tmp/host5ad-village-return-observation-repair-20261114/before-source/.github/probes/lumo_village_android_probe.py",
+        "bytes": 11541,
+        "sha256": "b6a3ef510ffd29369896bedb57a6d870d000b36e46138c7e7b59be95efacb9ab",
+        "git_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99"
+      },
+      {
+        "path": ".github/probes/lumo_connect_four_android_probe.py",
+        "pack_file": "/tmp/host5ad-village-return-observation-repair-20261114/reference-source/.github/probes/lumo_connect_four_android_probe.py",
+        "bytes": 28798,
+        "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19",
+        "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+      },
+      {
+        "path": ".github/probes/creative_android_probe.py",
+        "pack_file": "/tmp/host5ad-village-return-observation-repair-20261114/reference-source/.github/probes/creative_android_probe.py",
+        "bytes": 65137,
+        "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+        "git_blob": "c996a022d388632ed13965b392181aef773d9025"
+      },
+      {
+        "path": ".github/probes/flutter_surface_readiness.py",
+        "pack_file": "/tmp/host5ad-village-return-observation-repair-20261114/reference-source/.github/probes/flutter_surface_readiness.py",
+        "bytes": 4078,
+        "sha256": "26219bb28b51e599bf220d639eb0ec38fd41881a07c6d4fa4503e1b0e3a1d6dc",
+        "git_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950"
+      },
+      {
+        "path": "scripts/probes/pr207_android_ui_probe.py",
+        "pack_file": "/tmp/host5ad-village-return-observation-repair-20261114/reference-source/scripts/probes/pr207_android_ui_probe.py",
+        "bytes": 2032,
+        "sha256": "b94dc20910a27f88613b520674d8594793621d238578da4f3918be73b7c36cb4",
+        "git_blob": "2966b08fab11ff05f67a587a3a564e6fdc1e6cfe"
+      },
+      {
+        "path": "tools/android_qa/android_ui.py",
+        "pack_file": "/tmp/host5ad-village-return-observation-repair-20261114/reference-source/tools/android_qa/android_ui.py",
+        "bytes": 15599,
+        "sha256": "edb5352c5045a496b77911530e0ee0c93d58914607007458f16c7cce1cb49d14",
+        "git_blob": "dbf40dab0b0fdd29ebaecb3013ce7d642be3b771"
+      },
+      {
+        "path": "tools/android_qa/village_android_evidence.py",
+        "pack_file": "/tmp/host5ad-village-return-observation-repair-20261114/reference-source/tools/android_qa/village_android_evidence.py",
+        "bytes": 20967,
+        "sha256": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32",
+        "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3"
+      },
+      {
+        "path": "tools/android_qa/tests/test_village_android_evidence.py",
+        "pack_file": "/tmp/host5ad-village-return-observation-repair-20261114/reference-source/tools/android_qa/tests/test_village_android_evidence.py",
+        "bytes": 24849,
+        "sha256": "fde59828ffd27ac7ccad9d50f0678ddd3f28d34b5ff1e6e31c2e7e20718251d1",
+        "git_blob": "f515e404428edc8003f1191c77df214384f0eac7"
+      }
+    ],
+    "changed": [
+      "remaining",
+      "visible_return"
+    ],
+    "added": [
+      "observe_flutter_return",
+      "read_return_ui"
+    ],
+    "unchanged": [
+      "await_processes",
+      "main",
+      "observe_village",
+      "observed_touch",
+      "processes",
+      "run"
+    ],
+    "visible_touch_prefix_byte_equal": true,
+    "patch": {
+      "bytes": 25985,
+      "sha256": "d090943f1b10b50421effa697820cad45a96667fffd480edca02fab13ca381a6",
+      "git_blob": "44d0c240d75fae3b30abffa597ad483069788a9c"
+    },
+    "preservation": {
+      "bytes": 1519,
+      "sha256": "c91ef1a1c3eb443734936919e8e09c1382f4e3d3477d5ffc77109484e4474d77",
+      "git_blob": "998f716174bc10fafe49a3a1dd5d34b64d81b515"
+    }
+  },
+  "findings": [
+    {
+      "location": ".github/probes/lumo_village_android_probe.py:205–229",
+      "finding": "The complete visible Return-touch prefix is byte-identical, including native PID check, exact Spiele label, responsive original-image targeting, captured command and exactly-one-input assertion. The observer follows this one touch and contains no further navigation or launch input."
+    },
+    {
+      "location": ".github/probes/lumo_village_android_probe.py:22–32, 141–203",
+      "finding": "The existing global 900-second budget remains strict. A single local deadline is min(remaining global time,60 seconds), begins after the observed Return touch, and bounds inherited ADB reads, each capture/OCR and the accessibility child. The current monotonic time is checked again before accepting successful observations; exact-deadline and late arrivals fail. The local deadline is removed in finally and the full attempt journal is written."
+    },
+    {
+      "location": ".github/probes/lumo_village_android_probe.py:159–181",
+      "finding": "Each attempt obtains new actual process/foreground-activity reads, verifies the same host PID, reads preferences, captures a uniquely named original PNG, checks unchanged render readiness, and verifies exact Spielen OCR against that same original PNG and TSV. It then requires fresh enabled same-package UI evidence. No old successful screenshot or row is reused by production."
+    },
+    {
+      "location": ".github/probes/lumo_village_android_probe.py:92–139",
+      "finding": "The separate Python child imports the unchanged pr207_android_ui_probe from the explicit current ROOT/scripts/probes path and calls its real live_nodes method. The helper only connects/configures the UI reader and dumps the hierarchy. Actual exit code, complete stdout/stderr, timeout and partial streams are preserved; malformed/foreign/disabled UI cannot be accepted. Its successful exit is followed by the current deadline check."
+    },
+    {
+      "location": ".github/probes/lumo_village_android_probe.py:182–203",
+      "finding": "Rejected observations retain their own frame, OCR/TSV/command/UI output and journal error. The common derivative OCR scratch image is renamed to an unused per-attempt path without overwrite. ValueError/RuntimeError/XML parse failures may cause another fresh observation only inside the same deadline. Timeout and other failures remain fatal."
+    },
+    {
+      "location": "tools/android_qa/village_android_evidence.py:319–365",
+      "finding": "The complete pure verifier remains original blob013fe059. It still independently verifies API35/current APK/source binding, original command receipts, the same host/native process chain, profile/learning preservation, actual entry and Return touches, native ready/HUD, exact Spielen TSV/PNG, live enabled same-package hierarchy, save/return acknowledgement and absence of actual runtime errors."
+    },
+    {
+      "location": "reference-source/.github/probes/lumo_connect_four_android_probe.py:60–92",
+      "finding": "Inherited original ADB execution uses self.remaining(45) before and self.remaining() after each actual command, so the subclass local return deadline really applies. Preference reads remain the original exec-out cat flow."
+    },
+    {
+      "location": "tools/android_qa/tests/test_village_flutter_return_observation.py",
+      "finding": "Twelve new methods are present as separate additive cases: actual archived wrong Village frame; earlier valid main-frame provenance; controlled wrong→right observation sequence; persistent wrong frame; invalid UI; exact deadline; late successful UI; shrinking global budget; inherited ADB timeout; partial child streams; changed host; unique per-attempt derivative names. These cases were read, not run by this reviewer. Their earlier main frame is explicitly controlled input, not proof that the historical Village returned later."
+    }
+  ],
+  "preservation": {
+    "old_function_asts_unchanged": [
+      "await_processes",
+      "main",
+      "observe_village",
+      "observed_touch",
+      "processes",
+      "run"
+    ],
+    "existing_function_asts_changed_only": [
+      "remaining",
+      "visible_return"
+    ],
+    "new_functions": [
+      "observe_flutter_return",
+      "read_return_ui"
+    ],
+    "old_existing_test_module_byte_binding": {
+      "path": "tools/android_qa/tests/test_village_android_evidence.py",
+      "pack_file": "/tmp/host5ad-village-return-observation-repair-20261114/reference-source/tools/android_qa/tests/test_village_android_evidence.py",
+      "bytes": 24849,
+      "sha256": "fde59828ffd27ac7ccad9d50f0678ddd3f28d34b5ff1e6e31c2e7e20718251d1",
+      "git_blob": "f515e404428edc8003f1191c77df214384f0eac7"
+    },
+    "current_active_candidates_edited": false
+  },
+  "inspection_record": {
+    "first_binding_read": "Stopped before AST comparison because it looked for the preimage under before/; rg then identified the real before-source/ path. No product import, test, ADB or source mutation occurred.",
+    "original_first_tool_result_file": "inspection-path-discovery-result.json",
+    "corrected_full_readback": "All35 final files and eight exact preimages/reference files passed full byte/SHA/Gitblob checks."
+  },
+  "limitations": [
+    "Historical Village Android failure remains failure.",
+    "No independent test, engine, ADB, lint, package or CI execution occurred.",
+    "No image was newly interpreted visually in this scoped source review.",
+    "The upcoming real Android roundtrip on the checkpointed source remains necessary."
+  ]
+}

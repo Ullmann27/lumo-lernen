@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T09:54:45.106081+00:00",
+  "reviewer": "pipeline_repair",
+  "status": "NO_CONCRETE_SOURCE_BLOCKER",
+  "scope": "Independent read-only review of one published test-fixture delta; no test or device execution by reviewer.",
+  "base_source": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+  "base_tree": "e70dccc439c99a1bc2e8546f552a7886b8838225",
+  "producer_source": "26a127bb897c9dd0832512d2ae3b80a6495f7f7e",
+  "producer_tree": "d58fd7f8353f05bb3f327b08ec1fa37e1ccb1264",
+  "reviewed_file": {
+    "path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+    "mode": "exact published test blob; no production delta",
+    "before": {
+      "bytes": 21760,
+      "sha256": "adb095bbedb9f3b4922493648e86f389b5a042d432ab59b6e5a7d2496e7f40da",
+      "git_blob": "4716d1f8beb20bc349b3a97b347136cd7d8d6664"
+    },
+    "final": {
+      "bytes": 24110,
+      "sha256": "7bc35982ad31c91a7d96f890e2521e5f775618b31c273175f0005dbb8379e7e5",
+      "git_blob": "90a58f5aab7c2b462bad377bd5fbfd03b218e14d"
+    }
+  },
+  "pack_bindings": {
+    "path": "/tmp/host-79c-qa-fixture-repair-20261114",
+    "source_freeze_sha256": "6ea3be9cb817ae233c46ce3ce08f1ed916ed8f3510a18e9ca7fb7151e5c3f083",
+    "manifest_sha256": "aff1b30d00ffefc79d5ddc0c7446928072475b0fbb9f4a3242c17034457f48fc",
+    "handoff_sha256": "66dd31ca0687f79c0e7088ff303937a8b8e5b71c60fbc774c45b07db198c6db6",
+    "patch_sha256": "ce4e1a3b7a5d59cf291eaf06f139e77823cb7c14f55695747ab37622c892f54a",
+    "all_manifest_entries_verified": 18,
+    "two_compressed_producer_originals_roundtrip_verified": true
+  },
+  "findings": [
+    {
+      "topic": "Actual failure and historical source fixture",
+      "assessment": "The original case supplies qa_source=ROOT from current Host79c, whose native pin is f052. The unchanged production verifier intentionally requires historical17f5 in both QA and candidate source checkouts. The original recorded failure at bind line293 is therefore consistent with the source, not a false failure to suppress."
+    },
+    {
+      "topic": "Minimal isolation",
+      "assessment": "The proposed case creates qa-source inside its existing TemporaryDirectory, copies the five exact current helper/verifier source files, and copies the already historical2019/17f5 candidate config and pubspec into that separate fixture. The live2020/f052 configuration is not modified."
+    },
+    {
+      "topic": "Actual committed_helper boundary",
+      "assessment": "The new fixture initializes and commits only its own disposable Git directory. The actual creative.committed_helper remains unpatched: it requires the imported module path to equal the bound relative path and compares its exact bytes with git show HEAD:<path>. The four module __file__ values are temporarily rebound through ExitStack to the exact copied files so those checks operate on the intended fixture. Git identity/metadata and diagnostic.committed_file remain explicitly synthetic as before; this is not proof of a real published checkout."
+    },
+    {
+      "topic": "Preserved assertions and production guards",
+      "assessment": "Only ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate changes among25 direct function/method definitions;24 others remain AST-identical. All existing final result assertions remain and two explicit QA/candidate path assertions are added. The production verifier, helpers, live pin and version have no patch delta; seven protected production/config inputs match immutable79c Git blobs. APK/PCK size/hash, provenance, candidate CWD, source recheck and immutable-helper requirements remain production code. No ANR or readiness condition is changed."
+    },
+    {
+      "topic": "Git and runtime scope",
+      "assessment": "The test creates its own synthetic commit using only the temporary QA path and command-local author/signing options. The recorded actual79c source/index/HEAD/tree/status fingerprints before and after are byte-identical. Existing synthetic APK/PCK fixture bytes and their real ZIP/hash reads remain the test boundary; no Android execution or release acceptance follows."
+    }
+  ],
+  "preservation": {
+    "direct_definitions": 25,
+    "unchanged_direct_definitions": 24,
+    "changed_direct_definitions": [
+      "ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate"
+    ],
+    "source_before_after_bytes_identical": true,
+    "protected_production_files": [
+      {
+        "path": "scripts/verify_unchanged_apk_diagnostic.py",
+        "bytes": 19885,
+        "sha256": "3747027cf3a6b4d91e8d0e8ab59fca07f63ff59b8c189373dbe098bda34d67d4",
+        "git_blob": "11749337af0aff31d7541702890459126675fd08"
+      },
+      {
+        "path": ".github/probes/studio_creative_android_probe.py",
+        "bytes": 79294,
+        "sha256": "4eac8342846bf42561e45d132450ebf90648283f75c7f4333d77b6fd43739e28",
+        "git_blob": "cd3a11c2206ab31c4933df7388f2a62a07e6399f"
+      },
+      {
+        "path": ".github/probes/modernization_android_tour.py",
+        "bytes": 71930,
+        "sha256": "d98eeb982344bb09762a783aeb71bef2c93cc8ed30d5e932a96712fe382673db",
+        "git_blob": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc"
+      },
+      {
+        "path": ".github/probes/creative_android_probe.py",
+        "bytes": 65137,
+        "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+        "git_blob": "c996a022d388632ed13965b392181aef773d9025"
+      },
+      {
+        "path": "scripts/probes/pr207_android_smoke.py",
+        "bytes": 14884,
+        "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e",
+        "git_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8"
+      },
+      {
+        "path": "config/godot-source.json",
+        "bytes": 145,
+        "sha256": "bdd44f24660ab13cee297c65238238d6181fc60d7fad22ad456f1633955db767",
+        "git_blob": "a07c0176806321daf8e7a0d6df5c8697f82ba3b2"
+      },
+      {
+        "path": "pubspec.yaml",
+        "bytes": 2675,
+        "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+        "git_blob": "7f504396071cf3af57164187a29ea74b74c62413"
+      }
+    ]
+  },
+  "original_execution_evidence": {
+    "origin": "Flutter agent original execution logs, read and hash-verified; not rerun by reviewer",
+    "red": {
+      "tests": 1,
+      "errors": 1,
+      "exit_code": 1,
+      "message": "Source checkout native pin differs",
+      "sha256": "641c43b6456acb912085069e589fb7d23f92c5a21c72572e654df6f26259df39"
+    },
+    "green": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0,
+      "sha256": "44bc531e2c08f6c3856e3efb9a313f8edc6e337b6fa475f440aad9efe30fab46"
+    }
+  },
+  "remaining_boundaries": [
+    "This accepts the narrow historical QA test-fixture repair, not the overall current CI run.",
+    "Real APK, Android return, ANR and shader failures are independent of this synthetic preflight case."
+  ],
+  "reviewer_tests": 0,
+  "reviewer_device_runs": 0,
+  "reviewer_downloads": 0,
+  "reviewer_git_or_source_mutations": false
+}

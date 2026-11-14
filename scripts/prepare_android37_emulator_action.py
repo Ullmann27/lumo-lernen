@@ -29,6 +29,8 @@ ORIGINAL_HASHES = {
 }
 MODIFIED_PATHS = ("src/emulator-manager.ts", "lib/emulator-manager.js")
 GUARD_LINES = (
+    "// LUMO modification: the private init-console channel must already exist on this exact runner before the observed readiness guard.",
+    "await exec.exec('python3', [`${process.env.GITHUB_WORKSPACE}/scripts/android_console_transport.py`, 'check', '--socket', process.env.LUMO_ANDROID_CONSOLE_SOCKET]);",
     "// LUMO modification: require observed unlocked focus without ANR; the bounded guard owns any nonsecure keyguard request, so no redundant MENU82 follows.",
     "await exec.exec('python3', [`${process.env.GITHUB_WORKSPACE}/scripts/android_framework_ready.py`, 'wait', '--serial', `emulator-${port}`, '--out', `${process.env.GITHUB_WORKSPACE}/tour/framework-start`, '--timeout', '120', '--stable-seconds', '10', '--minimum-samples', '3', '--cli22-proof', `${process.env.GITHUB_WORKSPACE}/tour/framework-start/cli22`]);",
 )
@@ -106,6 +108,7 @@ def prepare(action_dir: Path, out: Path, probe_root: Path, probe_source: str, wo
     runtime_files = (
         workflow,
         "scripts/android_framework_ready.py",
+        "scripts/android_console_transport.py",
         "scripts/prepare_android37_emulator_action.py",
         "scripts/tests/test_android_framework_ready.py",
         "scripts/tests/fixtures/android37_system_anr_848/manifest.json",

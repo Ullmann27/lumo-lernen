@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "qa-fixture/complete-originals.tar.gz",
+      "bytes": 74477,
+      "sha256": "a6070683d7af2c0d93378f15de716156754880ba30c5b1e834afb93d40e719fd",
+      "source": "/tmp/host-79c-qa-fixture-repair-20261114/compact-originals.tar.gz"
+    },
+    {
+      "path": "qa-fixture/source-freeze.json",
+      "bytes": 2807,
+      "sha256": "6ea3be9cb817ae233c46ce3ce08f1ed916ed8f3510a18e9ca7fb7151e5c3f083",
+      "source": "/tmp/host-79c-qa-fixture-repair-20261114/source-freeze.json"
+    },
+    {
+      "path": "qa-fixture/manifest.json",
+      "bytes": 4028,
+      "sha256": "aff1b30d00ffefc79d5ddc0c7446928072475b0fbb9f4a3242c17034457f48fc",
+      "source": "/tmp/host-79c-qa-fixture-repair-20261114/manifest.json"
+    },
+    {
+      "path": "qa-fixture/result.json",
+      "bytes": 2627,
+      "sha256": "b3fab5a5371d22e9a478a630c97edb0e8da3c23adfa25a00eac1221f1485156f",
+      "source": "/tmp/host-79c-qa-fixture-repair-20261114/result.json"
+    },
+    {
+      "path": "qa-fixture/fixture.patch",
+      "bytes": 5444,
+      "sha256": "ce4e1a3b7a5d59cf291eaf06f139e77823cb7c14f55695747ab37622c892f54a",
+      "source": "/tmp/host-79c-qa-fixture-repair-20261114/fixture.patch"
+    },
+    {
+      "path": "qa-fixture/handoff.json",
+      "bytes": 959,
+      "sha256": "66dd31ca0687f79c0e7088ff303937a8b8e5b71c60fbc774c45b07db198c6db6",
+      "source": "/tmp/host-79c-qa-fixture-repair-20261114/handoff.json"
+    },
+    {
+      "path": "c4-visible-targets/complete-originals.tar.gz",
+      "bytes": 8813,
+      "sha256": "ba60d02a2391a90be7502471abd99d298b472a9deb4847f4b168b11e5743fd20",
+      "source": "/tmp/host-c4-visibility-tests-followup-79c-20261114/compact-originals.tar.gz"
+    },
+    {
+      "path": "c4-visible-targets/source-freeze.json",
+      "bytes": 2864,
+      "sha256": "f1da92337b7c5cb9ccc3500fb9f4eb217e53593309f507b8442cb21ef4034c2b",
+      "source": "/tmp/host-c4-visibility-tests-followup-79c-20261114/source-freeze.json"
+    },
+    {
+      "path": "c4-visible-targets/manifest.json",
+      "bytes": 2381,
+      "sha256": "64423f356cf0cb6cf6f6ceefa911e7852eef6308c077870bf85350e69026b5e0",
+      "source": "/tmp/host-c4-visibility-tests-followup-79c-20261114/manifest.json"
+    },
+    {
+      "path": "c4-visible-targets/tests-only.patch",
+      "bytes": 3608,
+      "sha256": "e91657b166121c4b39c2fa62d29a3adf7dec1d3b1510d9b602a18a6c6aded5aa",
+      "source": "/tmp/host-c4-visibility-tests-followup-79c-20261114/tests-only.patch"
+    },
+    {
+      "path": "producer/complete-comparison.tar.gz",
+      "bytes": 93693,
+      "sha256": "e3357a977acd24cfd8194a30a1e9c7f325584ca08e6e316a27bbd40e72644d8a",
+      "source": "/tmp/host-producer-incremental-20261114-094438/compact-originals.tar.gz"
+    },
+    {
+      "path": "producer/review.json",
+      "bytes": 6041,
+      "sha256": "f076d27b90430a972716c78c83f88ea7fcb9792f930c715efa2f67fe8437272e",
+      "source": "/tmp/host-producer-incremental-20261114-094438/review.json"
+    },
+    {
+      "path": "producer/manifest.json",
+      "bytes": 2830,
+      "sha256": "571201e8b2d7adcef255d7cb66fd442fed99a917414a58c8ed818a0793da2d78",
+      "source": "/tmp/host-producer-incremental-20261114-094438/manifest.json"
+    },
+    {
+      "path": "actual-compile-curriculum/complete-originals.tar.gz",
+      "bytes": 530851,
+      "sha256": "c16fbe1766936320396412b405ce1693dde77945cc13503b34ae70a98ad5e424",
+      "source": "/tmp/host-c4-79c0ec86-compile-curriculum-evidence-20261114/compact-checkpoint.tar.gz"
+    },
+    {
+      "path": "actual-compile-curriculum/manifest.json",
+      "bytes": 6912,
+      "sha256": "79c7e41a0dfac597ae6cca09b9a554cd9472019f2a7d71cc8a12e0aee0e5d120",
+      "source": "/tmp/host-c4-79c0ec86-compile-curriculum-evidence-20261114/checkpoint/manifest.json"
+    },
+    {
+      "path": "actual-compile-curriculum/handoff.json",
+      "bytes": 1390,
+      "sha256": "3f6542a1638110c4f3dcf275a687bf65f0ae39ea3ae2276ef3a6d98402c91abd",
+      "source": "/tmp/host-c4-79c0ec86-compile-curriculum-evidence-20261114/checkpoint/handoff.json"
+    },
+    {
+      "path": "actual-compile-curriculum/verification.json",
+      "bytes": 6388,
+      "sha256": "5d80aee476f01996c954423ce28e7c4f5905bf43272873145f3dba86127ccc2c",
+      "source": "/tmp/host-c4-79c0ec86-compile-curriculum-evidence-20261114/checkpoint/verification.json"
+    },
+    {
+      "path": "independent-fixture-review/review.json",
+      "bytes": 7085,
+      "sha256": "bb90f407f8184c733b20b0d92ccc90809929032af1d80c9123a67b163c77ab6c",
+      "source": "/workspace/scratch/b3485b7bb989/host-79c-qa-fixture-independent-review-20261114/review.json"
+    },
+    {
+      "path": "independent-fixture-review/manifest.json",
+      "bytes": 360,
+      "sha256": "1aa47c2a12fd7da78d1c91598227fb7f1016c67cbb93751d4e57756e4b9b3e12",
+      "source": "/workspace/scratch/b3485b7bb989/host-79c-qa-fixture-independent-review-20261114/manifest.json"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "catalog.json",
+      "bytes": 39986,
+      "sha256": "4a4bd535610d1f82ba59ce5f6bbb70ba370fc097b5aef030036bd7d6e092af3a",
+      "git_blob": "19ffb1b3118828b1bd01937c9c24410dfe12a4b9"
+    },
+    {
+      "path": "selected-source-binding.json",
+      "bytes": 5561,
+      "sha256": "7776d892eaec9bf14e482bc94b8f16bfe485edb9d1a293f8c121d8e08ab0ad15",
+      "git_blob": "166b3f793ed2c8aa81fb4f73ff4e030efaa82f4e"
+    },
+    {
+      "path": "actual-run-observation-contract.json",
+      "bytes": 3077,
+      "sha256": "a848d788588024118cbd2c9f90377b228624f9e683f375c0725e9dd10bedb700",
+      "git_blob": "49915ab3ccc7e755d4f0c100fdfb5816d63545ef"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1077,
+      "sha256": "8f6990bc6c05e921e67efd388d346837fd442ebeefb92d9afb795f600019b40d",
+      "git_blob": "f05b6ee4df08b9298f78e8c911ada1c7472f2832"
+    }
+  ]
+}

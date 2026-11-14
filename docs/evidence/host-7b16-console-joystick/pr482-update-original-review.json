@@ -1,0 +1,894 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T05:14:29.782226+00:00",
+  "scope": "Independent read-only verification of actual PR482 update originals; no new tests or APK rebuild",
+  "status": "PASS_FOR_RECORDED_2017_TO_2019_UPDATE_SCOPE",
+  "github_job": {
+    "id": 132336853164,
+    "run_id": 43558497857,
+    "workflow_name": "LUMO unchanged 7b16 APK Android runtime follow-up",
+    "head_branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+    "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43558497857",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOSNzcp88AAAAez-QgrA",
+    "head_sha": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132336853164",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43558497857/job/132336853164",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T04:49:48Z",
+    "started_at": "2026-11-14T04:49:49Z",
+    "completed_at": "2026-11-14T05:07:06Z",
+    "name": "unchanged-apk-followup-update2017",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T04:49:50Z",
+        "completed_at": "2026-11-14T04:49:51Z"
+      },
+      {
+        "name": "Checkout the actual repaired probe source",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T04:49:51Z",
+        "completed_at": "2026-11-14T04:50:12Z"
+      },
+      {
+        "name": "Checkout the unchanged APK source independently",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T04:50:12Z",
+        "completed_at": "2026-11-14T04:50:13Z"
+      },
+      {
+        "name": "Checkout the exact upstream Android17 action",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 4,
+        "started_at": "2026-11-14T04:50:13Z",
+        "completed_at": "2026-11-14T04:50:13Z"
+      },
+      {
+        "name": "Download the original successful build artifact without rebuilding",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T04:50:13Z",
+        "completed_at": "2026-11-14T04:50:20Z"
+      },
+      {
+        "name": "Download the original 2017 baseline only for the update",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T04:50:20Z",
+        "completed_at": "2026-11-14T04:50:26Z"
+      },
+      {
+        "name": "Install the unchanged live UI reader dependencies",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T04:50:26Z",
+        "completed_at": "2026-11-14T04:50:45Z"
+      },
+      {
+        "name": "Save authentic candidate and diagnostic API metadata separately",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T04:50:45Z",
+        "completed_at": "2026-11-14T04:50:47Z"
+      },
+      {
+        "name": "Bind both sources, exact build job, artifact, APK and actual embedded PCK",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-14T04:50:47Z",
+        "completed_at": "2026-11-14T04:50:50Z"
+      },
+      {
+        "name": "Enable the same disposable KVM emulator",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-14T04:50:50Z",
+        "completed_at": "2026-11-14T04:50:50Z"
+      },
+      {
+        "name": "Start the same software display for both renderer cases",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-14T04:50:50Z",
+        "completed_at": "2026-11-14T04:50:50Z"
+      },
+      {
+        "name": "Preserve the original tools and install the same verified official CLI22",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 12,
+        "started_at": "2026-11-14T04:50:50Z",
+        "completed_at": "2026-11-14T04:50:50Z"
+      },
+      {
+        "name": "Bind the actual new observer and the unchanged original APK separately",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 13,
+        "started_at": "2026-11-14T04:50:50Z",
+        "completed_at": "2026-11-14T04:50:50Z"
+      },
+      {
+        "name": "Run the actual API35 tour or complete update with the repaired driver observation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-11-14T04:50:50Z",
+        "completed_at": "2026-11-14T05:07:00Z"
+      },
+      {
+        "name": "Run the Android17 renderer comparison with continuous ANR observation",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 15,
+        "started_at": "2026-11-14T05:07:00Z",
+        "completed_at": "2026-11-14T05:07:00Z"
+      },
+      {
+        "name": "Preserve generated Android17 hardware even after a failed guard or tour",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 16,
+        "started_at": "2026-11-14T05:07:00Z",
+        "completed_at": "2026-11-14T05:07:00Z"
+      },
+      {
+        "name": "Close any remaining startup monitor after action cleanup",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 17,
+        "started_at": "2026-11-14T05:07:00Z",
+        "completed_at": "2026-11-14T05:07:00Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18,
+        "started_at": "2026-11-14T05:07:00Z",
+        "completed_at": "2026-11-14T05:07:05Z"
+      },
+      {
+        "name": "Post Checkout the unchanged APK source independently",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 35,
+        "started_at": "2026-11-14T05:07:05Z",
+        "completed_at": "2026-11-14T05:07:05Z"
+      },
+      {
+        "name": "Post Checkout the actual repaired probe source",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 36,
+        "started_at": "2026-11-14T05:07:05Z",
+        "completed_at": "2026-11-14T05:07:05Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 37,
+        "started_at": "2026-11-14T05:07:05Z",
+        "completed_at": "2026-11-14T05:07:05Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132336853164",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000017227,
+    "runner_name": "GitHub Actions 1000017227",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "qa": {
+    "branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+    "job_conclusion": null,
+    "job_id": 132336853164,
+    "job_name": "unchanged-apk-followup-update2017",
+    "job_status": "in_progress",
+    "run_attempt": 1,
+    "run_conclusion": null,
+    "run_id": 43558497857,
+    "run_status": "in_progress",
+    "source": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+    "tree": "09776392ac3133c992a73809dc0f31e9def555a7",
+    "workflow_path": ".github/workflows/lumo-android-runtime-7b16-followup.yml"
+  },
+  "candidate_build": {
+    "archive_validation": "Original API digest/size bound; complete artifact ZIP is not read by this preflight",
+    "artifact_bytes": 648186489,
+    "artifact_digest": "sha256:3f613c64c78c2b20dd0a91741627ab93a418a66bfc6df6292b041f06c36c2e30",
+    "artifact_id": 14093773196,
+    "artifact_name": "lumo-kart-graphics-2019-candidate",
+    "build_conclusion": "success",
+    "build_job_id": 132278438809,
+    "host_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+    "native_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+    "run_attempt": 1,
+    "run_conclusion": "failure",
+    "run_id": 43540111465,
+    "run_status": "completed",
+    "tree": "fe430b86449e4f4e221cadfc802f42db639f3133",
+    "workflow_path": ".github/workflows/lumo-kart-graphics-2019.yml"
+  },
+  "apk": {
+    "apk_bytes": 325657350,
+    "apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+    "certificate_scope": "Original signer provenance bound by unchanged APK SHA; no new apksigner invocation",
+    "existing_apk_identity": {
+      "apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+      "checks": {
+        "flutter_source_is_this_commit": true,
+        "godot_revision_is_pinned": true,
+        "sha256_matches_build_sums": true,
+        "sha256_matches_provenance": true,
+        "signing_certificate": true,
+        "tracked_source_clean": true,
+        "version_matches_pubspec": true,
+        "x86_64_native_code": true
+      },
+      "flutter_source_commit": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+      "godot_pck_sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d",
+      "godot_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "versionCode": 2019,
+      "versionName": "0.13.7"
+    },
+    "pck_bytes": 66595192,
+    "pck_member": "assets/lumo_game.pck",
+    "pck_sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d"
+  },
+  "baseline": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2017,
+    "versionName": "0.13.5",
+    "abis": [
+      "x86_64"
+    ],
+    "bytes": 321904250,
+    "sha256": "03063cdc0956b3c1df00f604de504841e1a5fed4cabf31c9418a9167a11140e8",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57",
+      "engine": "4.6.3",
+      "pck_sha256": "30b11b2f691294672038eafd53ddfc1c861db26def632fdb670893d5b508d65a",
+      "bytes": 62921032
+    },
+    "flutter_source_commit": "47889f74a651b073965def70743417cf320b1eb9"
+  },
+  "original_job_log": {
+    "path": "jobs/update2017-132336853164.log",
+    "bytes": 308566,
+    "sha256": "bb5ced90622d3b95bf2fa961c6cba2ea17c4f610d83451b520b61b9a05af10b9"
+  },
+  "original_pass_lines": [
+    {
+      "line": 3311,
+      "text": "2026-11-14T05:06:59.2232940Z [LumoUpdate] PASS "
+    }
+  ],
+  "original_baseline_download_lines": [
+    {
+      "line": 296,
+      "text": "2026-11-14T04:50:20.4888033Z   artifact-ids: 13948686178"
+    },
+    {
+      "line": 298,
+      "text": "2026-11-14T04:50:20.4888621Z   run-id: 43220602252"
+    },
+    {
+      "line": 309,
+      "text": "2026-11-14T04:50:20.6190350Z Fetching artifact list for workflow run 43220602252 in repository Ullmann27/lumo-lernen"
+    },
+    {
+      "line": 315,
+      "text": "2026-11-14T04:50:20.8461266Z - lumo-lernen-kart-unified-2026-candidate (ID: 13948686178, Size: 640684233, Expected Digest: sha256:4b4fa4e7de52d75f385fc4d7e398f571d86363ad17cc22ac41ef95aab61d08ff)"
+    },
+    {
+      "line": 316,
+      "text": "2026-11-14T04:50:20.8488277Z Downloading artifact '13948686178' from 'Ullmann27/lumo-lernen'"
+    }
+  ],
+  "source_review": {
+    "local_tree_equivalent_revision": "cf0ed7f",
+    "tree": "09776392ac3133c992a73809dc0f31e9def555a7",
+    "files": [
+      {
+        "path": ".github/probes/lumo_2019_update_android_probe.py",
+        "git_blob": "7a59bf3842b49737115005c452e36565582b6410",
+        "bytes": 1894,
+        "sha256": "11ce5f349887a5d57544ea71abccb03d8ca1aa7a52293e574d622d2e3bd7e7f0"
+      },
+      {
+        "path": ".github/probes/lumo_2003_update_android_probe.py",
+        "git_blob": "f8afca6f798fd4c309ee97737a2fcb983081d65a",
+        "bytes": 10588,
+        "sha256": "3b36098d2a3f2b897c0b0bc582e83e08ff913a0509efcd1bd33ec3ffed5f61f7"
+      },
+      {
+        "path": "tools/android_qa/update_preservation.py",
+        "git_blob": "3ddcc5e17b21e48408e6cd854f7e40eeadbddce2",
+        "bytes": 10258,
+        "sha256": "73ea7f8155c65e4bd648ab99dd2baaa6261db2c380bcb435c0cb0761730f990a"
+      },
+      {
+        "path": "scripts/run_unchanged_apk_diagnostic.sh",
+        "git_blob": "b413b6b605d387e3ebbb3c29d79f4245c08ece02",
+        "bytes": 7218,
+        "sha256": "e8d724d5a6da0d12d193cfb1de851d520eac68ead0f8777b2965c0469da3ae50"
+      }
+    ]
+  },
+  "installation": {
+    "before_version": 2017,
+    "after_version": 2019,
+    "userId": "10209",
+    "firstInstallTime": "2026-11-14 04:53:05"
+  },
+  "same_package_uid_and_firstInstallTime_independently_confirmed": true,
+  "baseline_learning": {
+    "status": "PASS",
+    "scope": "Profil (1. Klasse) > Lernen > Mathe > Plus bis 10 > Antwort > Rückmeldung > Belohnung > Speichern > App-Neustart > Wiederherstellen",
+    "task": {
+      "prompt": "5 + 5 = ?",
+      "answer": 10
+    },
+    "reward_delta": {
+      "stars": 1,
+      "xp": 5
+    },
+    "saved_correct_answers": 1,
+    "restart_restore": "PASS",
+    "not_tested": [
+      "physisches Gerät oder Fold-Scharnier",
+      "Bildrate",
+      "Sprachausgabe",
+      "falsche Antworten und Tipps auf Android (nur Flutter-Test)",
+      "andere Fächer und Klassen"
+    ]
+  },
+  "baseline_optional_navigation_observations": {
+    "t1-deutsch": "FAIL: Kein Bedienelement beginnt mit: Deutsch. ",
+    "t2-englisch": "FAIL: Kein Bedienelement beginnt mit: Englisch. ",
+    "t3-spiele": "PASS",
+    "t4-tests": "PASS",
+    "t5-belohnungen": "PASS",
+    "t6-lumo-agent": "PASS",
+    "t7-elternbereich": "PASS",
+    "t8-start": "PASS",
+    "t9-fold-cover-start": "PASS",
+    "t9-fold-cover-lernen": "PASS",
+    "t9-fold-inner-start": "PASS",
+    "t9-fold-inner-lernen": "PASS"
+  },
+  "preservation": {
+    "before_keys": 15,
+    "post_update_keys": 15,
+    "old_keys_removed": [],
+    "changed_existing_keys": [
+      "flutter.lumo_daily_mission_v1::local-b897d2334c83d48e2e0158d755bb0c91",
+      "flutter.lumo_progress_skills::local-b897d2334c83d48e2e0158d755bb0c91"
+    ],
+    "daily_change_only_lastSeenAt": true,
+    "all_previous_skill_fields_preserved": true,
+    "reviewed_independent_evidence_added": {
+      "mathematik::plus bis 10": {
+        "version": 1,
+        "correct": 1,
+        "wrong": 0,
+        "correctStreak": 1,
+        "wrongStreak": 0
+      }
+    },
+    "active_profile_unchanged_all_stages": true,
+    "snapshots": [
+      {
+        "snapshot": {
+          "path": "artifacts/14099497429/selected-originals/originals/after-kart-preferences.xml",
+          "bytes": 4881,
+          "sha256": "3adbd35e5ba54f18a0731b515a21dc3bb428d9edac0ec3c296459e00d8d75ba6"
+        },
+        "all_existing_post_update_keys_preserved_except_observed_daily_lastSeenAt": true,
+        "unchanged_existing_values": 15,
+        "additional_native_profile_keys": [
+          "flutter.lumo_3d_profile_keys_v1",
+          "flutter.lumo_3d_save_salt_v1"
+        ]
+      },
+      {
+        "snapshot": {
+          "path": "artifacts/14099497429/selected-originals/originals/after-restart-preferences.xml",
+          "bytes": 4881,
+          "sha256": "b2427a87c465fc584cf2ea174bb541074812bed8425b87f094d08f13e329aec9"
+        },
+        "all_existing_post_update_keys_preserved_except_observed_daily_lastSeenAt": true,
+        "unchanged_existing_values": 14,
+        "additional_native_profile_keys": [
+          "flutter.lumo_3d_profile_keys_v1",
+          "flutter.lumo_3d_save_salt_v1"
+        ]
+      },
+      {
+        "snapshot": {
+          "path": "artifacts/14099497429/selected-originals/originals/fold-cover-preferences.xml",
+          "bytes": 4881,
+          "sha256": "b2427a87c465fc584cf2ea174bb541074812bed8425b87f094d08f13e329aec9"
+        },
+        "all_existing_post_update_keys_preserved_except_observed_daily_lastSeenAt": true,
+        "unchanged_existing_values": 14,
+        "additional_native_profile_keys": [
+          "flutter.lumo_3d_profile_keys_v1",
+          "flutter.lumo_3d_save_salt_v1"
+        ]
+      },
+      {
+        "snapshot": {
+          "path": "artifacts/14099497429/selected-originals/originals/fold-open-preferences.xml",
+          "bytes": 4881,
+          "sha256": "b2427a87c465fc584cf2ea174bb541074812bed8425b87f094d08f13e329aec9"
+        },
+        "all_existing_post_update_keys_preserved_except_observed_daily_lastSeenAt": true,
+        "unchanged_existing_values": 14,
+        "additional_native_profile_keys": [
+          "flutter.lumo_3d_profile_keys_v1",
+          "flutter.lumo_3d_save_salt_v1"
+        ]
+      },
+      {
+        "snapshot": {
+          "path": "artifacts/14099497429/selected-originals/originals/fold-landscape-preferences.xml",
+          "bytes": 4881,
+          "sha256": "b2427a87c465fc584cf2ea174bb541074812bed8425b87f094d08f13e329aec9"
+        },
+        "all_existing_post_update_keys_preserved_except_observed_daily_lastSeenAt": true,
+        "unchanged_existing_values": 14,
+        "additional_native_profile_keys": [
+          "flutter.lumo_3d_profile_keys_v1",
+          "flutter.lumo_3d_save_salt_v1"
+        ]
+      }
+    ],
+    "native_profile_key_additions_scope": "Two new native ownership/salt preferences after first Kart launch; no old preference removed. One synthetic test profile observed."
+  },
+  "actual_native_tour": {
+    "race": {
+      "touches": [
+        {
+          "step": "premium-start",
+          "button": "START",
+          "tap": [
+            1593,
+            885
+          ]
+        }
+      ],
+      "expected_mode": "cup",
+      "expected_track": "sonnenhafen",
+      "garage_replaced": {
+        "changed_fraction": 0.894,
+        "mean_channel_delta": 89.93
+      },
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "detail": [
+          {
+            "colour_bins": 725,
+            "bright_fraction": 0.913
+          },
+          {
+            "colour_bins": 551,
+            "bright_fraction": 0.978
+          },
+          {
+            "colour_bins": 1060,
+            "bright_fraction": 0.795
+          }
+        ]
+      },
+      "spatial_menu_navigation": {
+        "status": "PASS",
+        "selected_mode": "cup",
+        "sections": [
+          {
+            "section": "garage",
+            "visible_label": "Garage",
+            "return_caption": "Kart-Menü",
+            "return_touch": [
+              718,
+              916
+            ],
+            "return_evidence": "21_stage_garage-return-readiness.json",
+            "landing_caption": "Grand Prix",
+            "touch_evidence": "21_stage_garage-open-surface-readiness.json"
+          },
+          {
+            "section": "driver",
+            "visible_label": "Fahrer",
+            "return_caption": "Kart-Menü",
+            "return_touch": [
+              718,
+              916
+            ],
+            "return_evidence": "21_stage_driver-return-readiness.json",
+            "landing_caption": "Grand Prix",
+            "touch_evidence": "21_stage_driver-open-surface-readiness.json"
+          }
+        ],
+        "selection_touches": [
+          {
+            "kart": "comet",
+            "caption": "Comet",
+            "touch": [
+              510,
+              486
+            ],
+            "readiness": "21_stage_select_comet-surface-readiness.json",
+            "scope": "Touch only; actual new race selection is checked separately"
+          },
+          {
+            "kart": "gecko_velo",
+            "caption": "Gecko Velo",
+            "touch": [
+              554,
+              480
+            ],
+            "readiness": "21_stage_select_gecko_velo-surface-readiness.json",
+            "scope": "Touch only; actual new race selection is checked separately"
+          },
+          {
+            "driver": "fox",
+            "caption": "Lumo",
+            "touch": [
+              358,
+              504
+            ],
+            "readiness": "21_stage_driver-select-original-lumo-surface-readiness.json",
+            "scope": "Observed driver-card touch; actual new race selection is checked separately"
+          }
+        ],
+        "expected_kart": "gecko_velo",
+        "mode_caption": "Grand Prix",
+        "mode_touch_evidence": "21_stage_mode_cup-surface-readiness.json",
+        "scope": "Live Android OCR touches; no injected Godot selection or coordinates"
+      },
+      "confirmed_selection": {
+        "result_id": "02ba3084-8419-46c8-a2e0-82a47511d75c-1794632517660-333344295",
+        "selected_kart": "gecko_velo",
+        "selected_driver": "fox",
+        "mode": "cup",
+        "track_id": "sonnenhafen",
+        "countdown": 0.0,
+        "elapsed": 1.0000000000000013,
+        "distance": 3.9689185e-06,
+        "previous_result_id": null
+      }
+    },
+    "hud": {
+      "capture": "21_race_hud_0",
+      "race_state": null,
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1.0,
+          0.999,
+          1.0
+        ],
+        "detail": [
+          {
+            "colour_bins": 917,
+            "bright_fraction": 0.827
+          },
+          {
+            "colour_bins": 1136,
+            "bright_fraction": 0.896
+          },
+          {
+            "colour_bins": 1247,
+            "bright_fraction": 0.68
+          }
+        ]
+      },
+      "hud_lines": [],
+      "focused_hud": {
+        "ocr": "| RUNDE 1/2 PLATZ5/6 0O km/h",
+        "three_hud_indicators": true,
+        "not_paused_or_finished": true
+      }
+    },
+    "drive": {
+      "gas_touch": [
+        2242,
+        936
+      ],
+      "hold_ms": 9000,
+      "gas_pulses": 3,
+      "world_moved": {
+        "changed_fraction": 0.689,
+        "mean_channel_delta": 64.03
+      },
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1.0,
+          0.995,
+          1.0
+        ],
+        "detail": [
+          {
+            "colour_bins": 923,
+            "bright_fraction": 0.888
+          },
+          {
+            "colour_bins": 1130,
+            "bright_fraction": 0.893
+          },
+          {
+            "colour_bins": 1297,
+            "bright_fraction": 0.725
+          }
+        ]
+      },
+      "native_progress": {
+        "result_id": "02ba3084-8419-46c8-a2e0-82a47511d75c-1794632517660-333344295",
+        "distance_gain": 112.77,
+        "elapsed_gain": 5.02,
+        "checkpoint_index": 0
+      }
+    },
+    "pause": {
+      "result_id": "02ba3084-8419-46c8-a2e0-82a47511d75c-1794632517660-333344295",
+      "distance": 117.31106317910599,
+      "elapsed": 6.966666666666647,
+      "checkpoint_index": 0,
+      "finished": false
+    },
+    "return": {
+      "file": "23_zurueck_in_flutter.png",
+      "width": 1080,
+      "height": 2400,
+      "sha256": "1e32f1205178c92b65398a000247b1dd67362b8b38cdb714bb179159e5cdde19"
+    }
+  },
+  "independent_navigation": [
+    {
+      "proof": {
+        "path": "artifacts/14099497429/selected-originals/originals/21_stage_garage-return-readiness.json",
+        "bytes": 7642,
+        "sha256": "3b31a9726a3875856fa80f3bbac62aaa3e5ca534b46c40e131dcbea71c3ccd57"
+      },
+      "touches": [
+        {
+          "status": "TOUCH_SENT",
+          "caption": "Kart-Menü",
+          "point": [
+            718,
+            916
+          ],
+          "bounds": [
+            573.0,
+            899.0,
+            862.0,
+            933.0
+          ],
+          "source_sha256": "8de100cfc9347a1c1f5e3113b0f070dcff7383f463f5b0b3670d714009a4f217",
+          "frame_index": 1,
+          "duration_ms": 120
+        }
+      ],
+      "landing_caption": "Grand Prix",
+      "states": [
+        "section",
+        "section",
+        "section",
+        "landing",
+        "landing"
+      ],
+      "landing_stable": true,
+      "elapsed_seconds": 59.346426
+    },
+    {
+      "proof": {
+        "path": "artifacts/14099497429/selected-originals/originals/21_stage_driver-return-readiness.json",
+        "bytes": 7642,
+        "sha256": "8f32cafc5dc7350b778f1570ec805c9b52c3a641feee7b001e56f4c1d702fdaf"
+      },
+      "touches": [
+        {
+          "status": "TOUCH_SENT",
+          "caption": "Kart-Menü",
+          "point": [
+            718,
+            916
+          ],
+          "bounds": [
+            573.0,
+            899.0,
+            862.0,
+            933.0
+          ],
+          "source_sha256": "e539ee43c9e5fdf713fc8c90ff1d1719b885f237a4a1cdff760d70841322db43",
+          "frame_index": 1,
+          "duration_ms": 120
+        }
+      ],
+      "landing_caption": "Grand Prix",
+      "states": [
+        "section",
+        "section",
+        "section",
+        "landing",
+        "landing"
+      ],
+      "landing_stable": true,
+      "elapsed_seconds": 58.939877
+    }
+  ],
+  "pause_cfg_exactly_equal": true,
+  "flutter_return_original": {
+    "status": "PASS",
+    "foreground": "    topResumedActivity=ActivityRecord{3f37093 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t10}",
+    "exact_visible_caption": "Spielen",
+    "capture": {
+      "file": "23_zurueck_in_flutter.png",
+      "width": 1080,
+      "height": 2400,
+      "sha256": "1e32f1205178c92b65398a000247b1dd67362b8b38cdb714bb179159e5cdde19"
+    },
+    "scope": "Observed current Flutter frame after private game exit"
+  },
+  "original_log_review": {
+    "logcat": {
+      "path": "artifacts/14099497429/additional-originals/originals/logcat.txt",
+      "bytes": 9861639,
+      "sha256": "b6f1b2c464319c228200d35988e7cb8030e02dccd83ecc5e778f9d8492075562"
+    },
+    "baseline_learning_logcat": {
+      "path": "artifacts/14099497429/selected-originals/originals/baseline-learning/learning-journey-logcat.txt",
+      "bytes": 418790,
+      "sha256": "c5c1ba6d6c20c2ba917fe773871c148c9f37cd5de5344a913dad844d01cc01cd"
+    },
+    "fatal_logcat": {
+      "path": "artifacts/14099497429/selected-originals/originals/fatal-logcat.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "additional_patterns": "FATAL EXCEPTION|Fatal signal|ANR in|am_anr|Application Not Responding",
+    "matched_lines": [],
+    "scope": "Only the recorded captured log windows; no claim of continuous API37 startup-monitor coverage."
+  },
+  "transport": {
+    "combined_materialization": {
+      "path": "artifacts/14099497429/combined-materialization.json",
+      "bytes": 181895,
+      "sha256": "8c7d6ec203ab54700f142fd92f1f68551179fb9aa2775564f4cd23a577eb0d56"
+    },
+    "pass_provenance": {
+      "path": "artifacts/14099497429/ram-pass-provenance.json",
+      "bytes": 861,
+      "sha256": "80272174bb3a55ac8d021fa1a7bc0ecaf400a8160bdebebe0fd6e62413bd06f8"
+    },
+    "inventory": {
+      "path": "artifacts/14099497429/verified-memory-inventory.json",
+      "bytes": 192968,
+      "sha256": "b7f124726f5cc29e638a555be2135ceef31df320cdfff008440b6ebd19fda602"
+    },
+    "archive_sha256": "f515f4e8cfcc582eed83e7208705914e352ecad296130121b55c704ece5ceb7c",
+    "all737_members_crc_sha256_verified": true,
+    "local_original_members": 525,
+    "local_original_bytes": 18813831,
+    "full_zip_local": false
+  },
+  "key_originals": [
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/update-result.json",
+      "bytes": 41696,
+      "sha256": "803a288945d471489498ebc82a7af9818c140959133f9b967cfd44a093afd5dc"
+    },
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/candidate-and-probe-binding.json",
+      "bytes": 7457,
+      "sha256": "a3a4056f18d6b7df890165c62bbd4868af6c88694557d0402d7273d0988a606e"
+    },
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/before-update-preferences.xml",
+      "bytes": 4364,
+      "sha256": "ffe563930a53ba4d7da6f87052e9bb718fad6cbacdb1dad4de7e2a74b02ec9f6"
+    },
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/after-update-preferences.xml",
+      "bytes": 4516,
+      "sha256": "fa6232a5a03a7ea9953be7fb872d312a49fa40a1532c81d2999cbd41488aacf1"
+    },
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/after-kart-preferences.xml",
+      "bytes": 4881,
+      "sha256": "3adbd35e5ba54f18a0731b515a21dc3bb428d9edac0ec3c296459e00d8d75ba6"
+    },
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/after-restart-preferences.xml",
+      "bytes": 4881,
+      "sha256": "b2427a87c465fc584cf2ea174bb541074812bed8425b87f094d08f13e329aec9"
+    },
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/fold-cover-preferences.xml",
+      "bytes": 4881,
+      "sha256": "b2427a87c465fc584cf2ea174bb541074812bed8425b87f094d08f13e329aec9"
+    },
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/fold-open-preferences.xml",
+      "bytes": 4881,
+      "sha256": "b2427a87c465fc584cf2ea174bb541074812bed8425b87f094d08f13e329aec9"
+    },
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/fold-landscape-preferences.xml",
+      "bytes": 4881,
+      "sha256": "b2427a87c465fc584cf2ea174bb541074812bed8425b87f094d08f13e329aec9"
+    },
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/21_race_hud_0.png",
+      "bytes": 2003600,
+      "sha256": "26761ffe9d664fec2a714ec8f4c8fbf6eca800e72efafec2881d12da35f102cc"
+    },
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/23_zurueck_in_flutter.png",
+      "bytes": 1929228,
+      "sha256": "1e32f1205178c92b65398a000247b1dd67362b8b38cdb714bb179159e5cdde19"
+    },
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/21_pause_first-session.cfg",
+      "bytes": 2115,
+      "sha256": "fe21801f30e0e8775334d138d63d4a670fc22775e6cf74e0d7a0f1b0052727aa"
+    },
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/21_pause_second-session.cfg",
+      "bytes": 2115,
+      "sha256": "fe21801f30e0e8775334d138d63d4a670fc22775e6cf74e0d7a0f1b0052727aa"
+    },
+    {
+      "path": "artifacts/14099497429/selected-originals/originals/21_race_drive_telemetry.json",
+      "bytes": 820,
+      "sha256": "1409ee32dd4c25c9e037e770264484369c0b1190a841b4095025c9735cb976e4"
+    }
+  ],
+  "not_tested": [
+    "physical ARM64 device",
+    "GPU frame times / 60 FPS",
+    "audio output",
+    "complete two-lap race reward"
+  ],
+  "separation": "This is current QAe6a940 on unchanged APK7b16/native17f5. No transfer of older failed run results; API37 failures and still-running API35 remain separate."
+}

@@ -192,7 +192,7 @@ class LumoGameActivity : GodotActivity() {
         cardsEdgeToEdge = options.optString("game") == "cards"
         if (cardsEdgeToEdge) enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        if (options.optString("game") in setOf("learning", "build")) {
+        if (options.optString("game") in setOf("learning", "build", "settlement")) {
             learningSpeech = LumoLearningSpeech(applicationContext, options)
         }
     }

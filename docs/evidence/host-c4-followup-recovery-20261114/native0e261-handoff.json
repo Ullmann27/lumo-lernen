@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "state": "FROZEN",
+  "source": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "tree": "5b5992487e60ae805d708965f1500954c6b0556d",
+  "source_commit_object_sha_verified": true,
+  "result": "42 PASS; 0 failures, 0 errors, 0 skips",
+  "test_counts": {
+    "test_nextgen_runner": 23,
+    "test_studio_2020_rasters": 19
+  },
+  "original_log": {
+    "path": "logs/contracts-42.log",
+    "bytes": 8095,
+    "sha256": "3c9c29b2e95a166d622b81cc75c79a9dfae070d7a16638b088d35d560e1faa9b"
+  },
+  "result_file": "result.json",
+  "invocation_file": "invocation.json",
+  "source_freeze": "source-freeze-original.json",
+  "source_freeze_sha256": "b816b4cc0d6938115278910acc4370e88a0d2d4dc652e536693d1512ed2cefb5",
+  "source_before": "before/source-manifest.json",
+  "source_after": "after/source-manifest.json",
+  "source_manifest_sha256": "e89e7997808fe206c2c63e5ac464f001182234d181412902802c745332991fed",
+  "materialized_tracked_files": 1435,
+  "tracked_entries": 3563,
+  "absent_sparse_entries": 2128,
+  "materialized_sources_match_all_recorded_git_blobs_before_after": true,
+  "git_clean_before_after": true,
+  "only_one_test_run": true,
+  "scope": "Actual52-runner and raster verifier contracts exercised with original report shapes and declared synthetic engine/movie/pixel fixtures. This is not an actual52-mode engine run, renderer evidence, Android acceptance, video playback or device FPS measurement.",
+  "failure_handling": "No failed attempt or additional rerun occurred. Existing intentional negative testcases are included in the original42-method log.",
+  "independent_review_reference": {
+    "path": "/workspace/scratch/b3485b7bb989/native785-helper-independent-review-20261114/review.json",
+    "previously_reported_sha256": "4e150747b7514381440958c9a44b8a5e7d2912b21bfb42dc4a4c105575b9c265",
+    "scope": "Separately completed read-only peer source review; not re-executed here."
+  }
+}

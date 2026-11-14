@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "files": {
+    "README.md": {
+      "bytes": 4297,
+      "sha256": "cc3d1bfc26559ca4b145b6e8f98e24f5794bc72b12ed2de942b8b7beead2db0f"
+    },
+    "after/.github/probes/lumo_studio_surfaces_android_probe.py": {
+      "bytes": 50962,
+      "sha256": "6b572feb22830651f99f5b01678bcb0532b433c861d040f04916ae8a1b0466ec"
+    },
+    "after/.github/probes/modernization_android_tour.py": {
+      "bytes": 71882,
+      "sha256": "dcf7ba4c315efe600ac5001de0935a5597e1ac25f63711e9f8732fd92de9257f"
+    },
+    "after/scripts/android_framework_ready.py": {
+      "bytes": 47400,
+      "sha256": "9d26d8141dd9aeacf6a57be29959b4dc442ed9c5db09e452dc4cf92b7653396a"
+    },
+    "after/scripts/run_unchanged_apk_diagnostic.sh": {
+      "bytes": 6960,
+      "sha256": "02d369163de84cb80bf63ef55ecb6397f9df2a2c2c0356fd13efdf399a4f12a5"
+    },
+    "after/scripts/tests/fixtures/android37_root_monitor_61c/host-gms-events-anr.stdout": {
+      "bytes": 321,
+      "sha256": "cdea9d527ca2d3ef09ebdbf26ff496f2dda5f4af0aedfbbb3e0bf4eb3e1e8d31"
+    },
+    "after/scripts/tests/fixtures/android37_root_monitor_61c/host-monitor-finished.json": {
+      "bytes": 1074,
+      "sha256": "8af85369c2b34f0de7e26a49fef151ccb69bdab9195446c8076b3dab7f1c3cf1"
+    },
+    "after/scripts/tests/fixtures/android37_root_monitor_61c/swiftshader-monitor-finished.json": {
+      "bytes": 1074,
+      "sha256": "be9d7574f67d4cb37a6755ca7f923b468653cb05b9a07cda240b9258bc7f46ed"
+    },
+    "after/scripts/tests/test_android_runtime_device_logger.py": {
+      "bytes": 16836,
+      "sha256": "bf6b1e4f547f844287f9e0e1afa860427a3838d0384b5527488875cd48df6ae2"
+    },
+    "after/scripts/tests/test_runtime_logcat_sections.py": {
+      "bytes": 12513,
+      "sha256": "745703233623614da345102745322a49b9aa75bcfba1849ee6ac71201023de58"
+    },
+    "after/scripts/verify_android_runtime_anr.py": {
+      "bytes": 37662,
+      "sha256": "96e17dad46b487ec3215d917e525d09a0be3515b4c9f7a025971cf7a4e137a57"
+    },
+    "before/scripts/android_framework_ready.py": {
+      "bytes": 29916,
+      "sha256": "0b501e19f4aaa56c69c593a3fdbcacce508ef55dd255671e059651b1e8e0b190"
+    },
+    "before/scripts/run_unchanged_apk_diagnostic.sh": {
+      "bytes": 6772,
+      "sha256": "c94033c7d3568ca7e432891d72dfe1a00be982166301815bb4b15f335891239d"
+    },
+    "before/scripts/tests/test_android_framework_ready.py": {
+      "bytes": 19723,
+      "sha256": "b44b891fbedb5bd8e34b1507e069017c1350f1e7232aa43d0c2207df22247e5d"
+    },
+    "before/scripts/tests/test_android_framework_ready_android17.py": {
+      "bytes": 10171,
+      "sha256": "944ac3c8940b0deccc7d0258903f732c61362f5925e8aea8d441407d6a1a7ce6"
+    },
+    "before/scripts/tests/test_verify_android_runtime_anr.py": {
+      "bytes": 24164,
+      "sha256": "afe8e382f58a4a579ac2b25fb49fdf22f7297db0b0d1ceb88264841ee3703046"
+    },
+    "before/scripts/verify_android_runtime_anr.py": {
+      "bytes": 20361,
+      "sha256": "c71acb91a77285699b8bb70a8e4846f41363e378171707e2c06eae9367b55e60"
+    },
+    "before-clear-speech/.github/probes/lumo_studio_surfaces_android_probe.py": {
+      "bytes": 48262,
+      "sha256": "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34"
+    },
+    "before-clear-speech/.github/probes/modernization_android_tour.py": {
+      "bytes": 69612,
+      "sha256": "3b5ffbd29d6a4c8ccb9bd2850cef55310f52841ab31a82912bea59bbc96278ba"
+    },
+    "before-source.json": {
+      "bytes": 1371,
+      "sha256": "4f26c00717607058f0666fc99824681ab0f36fc6c1b3102d06b7fd735b74d7d3"
+    },
+    "clear-speech-original-sources.json": {
+      "bytes": 327,
+      "sha256": "0906b5a1d15e2ff1b1465cdb40dd2b9c047613cda62e2b04c0d8dd2390a2102d"
+    },
+    "clear-speech-preservation.json": {
+      "bytes": 1549,
+      "sha256": "464aa18ba4fc13947528051f66cca488c20ea2e5dd150d5e9839b9a776052f4d"
+    },
+    "clear-speech.patch": {
+      "bytes": 9201,
+      "sha256": "b035936cab662306f0b1a208208bd83df3468047a0a54a805543f236edb945d9"
+    },
+    "development-first.json": {
+      "bytes": 490,
+      "sha256": "da4e2672280a41714aa415589e00543a316945e37cd042aa206eeb666828599c"
+    },
+    "development-first.log": {
+      "bytes": 2994,
+      "sha256": "eeb6062ee4e0693fff5f5add5a7099c875573f95dab92dd604d3985b8d0c4b46"
+    },
+    "focused-green-after.json": {
+      "bytes": 3044,
+      "sha256": "7a5ab9176e0f72aba7ff3cd4bb4401dd082fdfa7ee78a01f713cbf428e9ae2b7"
+    },
+    "focused-green-before.json": {
+      "bytes": 3044,
+      "sha256": "7a5ab9176e0f72aba7ff3cd4bb4401dd082fdfa7ee78a01f713cbf428e9ae2b7"
+    },
+    "focused-green-result.json": {
+      "bytes": 1285,
+      "sha256": "56c957fa421e9ca853efbebf98e11b26029ba4672f8bf6e2ca1787a6f789e113"
+    },
+    "focused-green.log": {
+      "bytes": 18082,
+      "sha256": "3fe9549bfc9df36c252a4a7bb0136b43e76c743758b9dab8ceffc36be5bed33a"
+    },
+    "handoff.json": {
+      "bytes": 1110,
+      "sha256": "533b90b6e992820a12f5b9a235f4e3aa06d4408538734cf95542b69d12f357c2"
+    },
+    "original-ci-binding.json": {
+      "bytes": 4202,
+      "sha256": "c12c28f7708db0960a9c1121ef9fa47588fc48ef98dc35c3e6d7242209de232a"
+    },
+    "original-source-red.json": {
+      "bytes": 808,
+      "sha256": "88875982ae19cda0a1f443ad4052f086491fd44a555d8038304b003efc1b6ea7"
+    },
+    "original-source-red.log": {
+      "bytes": 1643,
+      "sha256": "e7ebc7bfb0408eb7d4481e036847b52d42698e70b556648af691a47455d3d9a4"
+    },
+    "repair.patch": {
+      "bytes": 90955,
+      "sha256": "f418526bde34e552f891bf9cc2cae8bd2cb02a3deca99efdab9f94898281e7a8"
+    },
+    "source-checks.json": {
+      "bytes": 774,
+      "sha256": "770de382b98e9e48f0215751543587e76e3be59478e413041490e3c7cda732b1"
+    },
+    "source-freeze.json": {
+      "bytes": 3342,
+      "sha256": "7dbfd55ec64708b7740bda5e6018765e2ec99ea4c049e268d2f1ffa4fac8a11f"
+    },
+    "speech-old-source-red.json": {
+      "bytes": 950,
+      "sha256": "6b8d9fd808aa9a55ae30ed227f65d749777197ba1be2ff4dc063f88260417481"
+    },
+    "speech-old-source-red.log": {
+      "bytes": 1912,
+      "sha256": "b3dbbe537b0811a8ac46b636c66c57bdee2736d1e28893bcadcaf0392c16e353"
+    }
+  },
+  "count": 38,
+  "bytes": 627045,
+  "source_freeze": {
+    "bytes": 3342,
+    "sha256": "7dbfd55ec64708b7740bda5e6018765e2ec99ea4c049e268d2f1ffa4fac8a11f"
+  },
+  "scope": "All exact source, patch, full test log and provenance bytes in this directory. No payload ZIP or image copies."
+}

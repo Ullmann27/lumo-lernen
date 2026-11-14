@@ -1,0 +1,6 @@
+{
+  "originalAction": "Create native source-publication chunk directory under /workspace",
+  "outcome": "OSError errno28 before blob/tree/ref mutation",
+  "diagnosis": "/workspace overlay full; inodes available; /tmp separate tmpfs has 4.9 GiB free",
+  "action": "Use new /tmp publication chunk directory; preserve all originals"
+}

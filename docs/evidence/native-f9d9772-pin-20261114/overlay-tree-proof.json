@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "base_host": "e53669a2e06d1832cc6844dbe1077d652551fdb8",
+  "base_tree": "5cf2f3bc7d062d44b12c0b5370c827a07c3002c1",
+  "complete_recursive_tree_reconstructed": true,
+  "proposed_source_only_tree_on_e536": "a512fa4cc153b84edcce91f06638d700f0eab41f",
+  "modified_leaf_paths": [
+    "config/godot-source.json",
+    "scripts/verify_legacy_release_pin.py",
+    "scripts/tests/test_candidate_2011_pin.py"
+  ],
+  "note": "Computed in memory from actual complete Git tree entries; no Git objects, tree, commit, index or ref was written. Root will apply the three exact preimages onto its newer checkpoint, whose whole tree will differ."
+}

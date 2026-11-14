@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "status": "PUBLICATION_BLOCKED_UNTIL_CONFIRMED_PERSISTENCE_REPAIR",
+  "current_candidate": "7ac736fdbd042769592e88de0f9849632242316d",
+  "current_run": 43632790204,
+  "current_run_policy": "Observe unchanged, retain actual results. No publication merely because this run succeeds.",
+  "finding": "The current Memory failure-recovery read and three wallet dedup paths can acknowledge a native preferences cache value without a positive persistence response after a failed commit. Pinned plugin and official Android source were checked by Flutter; source-bound report follows.",
+  "claim_limit": "A code-level release-relevant failure surface under a failed storage commit; no observed current user data loss is claimed.",
+  "repaired_producer": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "producer_initial_failed_attempt": "e2db / run43632642356 failed before45 new cases",
+  "next_gate": "Exact corrected source integration, actual45 producer cases and a fresh complete APK acceptance on the integrated successor. Preserve active source until the coherent repaired checkpoint is ready.",
+  "public_release_mutations": 0
+}

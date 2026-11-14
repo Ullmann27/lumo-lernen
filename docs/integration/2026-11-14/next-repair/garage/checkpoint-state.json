@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "state": "ISOLATED_SOURCE_CHECKPOINT_NOT_ACCEPTED",
+  "base_host": "7ac736fdbd042769592e88de0f9849632242316d",
+  "base_tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2",
+  "active_c4_unchanged": true,
+  "production_changes": "Hash-bound reuse of the caller's current Garage list analysis; retain original Boru whole-word fallback, stable pair, exact captions and 150-second deadline.",
+  "actual_local_validation": {
+    "planned_methods": 109,
+    "confirmed_ok_lines": 51,
+    "all_six_new_methods_confirmed": true,
+    "full_run": false,
+    "actual_start_utc": "2026-11-14T19:49:01.517570Z",
+    "actual_timeout_utc": "2026-11-14T19:53:01.909500Z",
+    "outer_timeout_seconds": 240,
+    "child_exit_unknown": true,
+    "wrapper_exit": 1,
+    "source_files_unchanged": 75,
+    "claim": "Partial original results only, no Ran109/OK and no Android or speed acceptance."
+  },
+  "checkpoint_timing": "The immutable source freeze preceded execution. This remote checkpoint follows the timed-out local run and does not claim to have preceded it.",
+  "next": "Integrate the separately reviewed storage and C4-entry repairs; fresh integrated CI must complete all required suites before any release. No automatic retry of this local run."
+}

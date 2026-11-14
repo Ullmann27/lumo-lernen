@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "scope": "Read-only immutable Git objects; no source changes, test runs or ref operations. Local twins have the exact already verified published trees.",
+  "sources": [
+    {
+      "role": "native",
+      "repository_path": "/workspace/scratch/b3485b7bb989/lumo-native-archive-guard-ee97",
+      "read_from_immutable_local_commit": "dd545c03f0c209fa67f56e61a0da09ed06cb5470",
+      "published_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "tree": "b8ea9b1777e8d0b6302156330d4d1b298a316aea",
+      "file_bindings": [
+        {
+          "path": "project.godot",
+          "bytes": 1944,
+          "sha256": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280",
+          "git_blob": "296b8b1752ebfd526aedd019907ac88efbfd0c02"
+        },
+        {
+          "path": "scripts/app/app_boot.gd",
+          "bytes": 18658,
+          "sha256": "991d189afa1af113a4791883da8c669bc1404ee384c07699c8e1bda87b4340c8",
+          "git_blob": "8456b1933098f0bc852bfb6c227d7a5f7f59756c"
+        },
+        {
+          "path": "scripts/app/mobile_runtime.gd",
+          "bytes": 7146,
+          "sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+          "git_blob": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f"
+        },
+        {
+          "path": "scripts/app/android_safe_area.gd",
+          "bytes": 5708,
+          "sha256": "28077c1eca89e7e915fc346973c6397d2c1b545fca9592f16394b2d9d2b04564",
+          "git_blob": "9658440b3effad06358fe7cfe62f04a95ccbe279"
+        },
+        {
+          "path": "scripts/app/scene_router.gd",
+          "bytes": 4394,
+          "sha256": "f584c0a1dd894819ab9301478bf95356a4207dfa89719a0419a81c12967c67d8",
+          "git_blob": "9cfea6e6d7f0ab5322a1e0d0b140a7109f9a6307"
+        }
+      ]
+    },
+    {
+      "role": "apk_host",
+      "repository_path": "/workspace/scratch/b3485b7bb989/lumo-host-studio-runtime-preparation-848",
+      "read_from_immutable_local_commit": "2cac2543ba6f6eca77034dc095c7abf66cf49d57",
+      "published_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+      "tree": "fe430b86449e4f4e221cadfc802f42db639f3133",
+      "file_bindings": [
+        {
+          "path": "tools/auto_install/LumoGameActivity.kt",
+          "bytes": 12712,
+          "sha256": "6808e0ab858907aec1b1e149b53184aa3ad72d1a214ce4d252a8ddc91c01f5e2",
+          "git_blob": "0621cafe29b703d29f7b067991a90c8ceac84ba6"
+        },
+        {
+          "path": "scripts/prepare_embedded_games.py",
+          "bytes": 9425,
+          "sha256": "3d1bcbe466e1b74ae8edd0b8d06a56b274ddde36bead7ba6b18d3b5ef7c4a7ad",
+          "git_blob": "a8f747e77ba24cc74a19b509541bab2146607938"
+        }
+      ]
+    },
+    {
+      "role": "qa",
+      "repository_path": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16",
+      "read_from_immutable_local_commit": "76443d3969856bfbba0e5b19231917f1743cf2a6",
+      "published_source": "61c94cfb78bda8dfbe191331eca0fd0382deb151",
+      "tree": "a648b206aba761fc96d0d0c95085981f6da53568",
+      "file_bindings": [
+        {
+          "path": ".github/probes/modernization_android_tour.py",
+          "bytes": 69612,
+          "sha256": "3b5ffbd29d6a4c8ccb9bd2850cef55310f52841ab31a82912bea59bbc96278ba",
+          "git_blob": "4af46a7ea3478ee64798fbae1290e69444444833"
+        }
+      ]
+    }
+  ],
+  "external_equivalence_record": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/local-source-equivalence.json",
+    "bytes": 2631,
+    "sha256": "58437f4f9a6eecb91c5b17073b0f1f9a7465b9511421ac24ea84136e72789be4"
+  },
+  "external_initial_binding": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/initial-binding.json",
+    "bytes": 3680,
+    "sha256": "a6a0db1211fc41b1ad136d9d7f4247096bd04fe01f5ac68fa58d42eef5f499a7"
+  }
+}

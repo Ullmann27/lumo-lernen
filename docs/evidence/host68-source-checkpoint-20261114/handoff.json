@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_COMPLETE_EXTERNAL_PROPOSAL_NOT_TESTED",
+  "base_host": "9f2f3690caacadbe7ced363f0e810f0cc0b5eb9b",
+  "base_tree": "4159e7ab2212aca6e3347aa5f08544bdfdb30c26",
+  "producer_host": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "producer_tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+  "source_freeze": {
+    "bytes": 51244,
+    "sha256": "771c0f8c87f2caf07342d796c0b2ebfdf26b940661f69eabbde26ff50d998507",
+    "git_blob": "4f466e4374e3927124bf6cd5d587c03f8503faa7"
+  },
+  "source_count": 66,
+  "integration_patch": {
+    "bytes": 825985,
+    "sha256": "633cfb03edd8936bcbd7e435cd58f5d92bcbd8a0e7f0a606f5c69c3d285befd5",
+    "git_blob": "f646c408d415ca98c970ea1c18a952b12117cbba"
+  },
+  "combined_source_map": {
+    "bytes": 36001,
+    "sha256": "cb3f17b9d2efbec78a2969fe30fa0e598cd148f0cb039bd9f4b51eedae2a0fe5",
+    "git_blob": "b4dde3005bcccdd1c2f5c2480fa32a867c52a33d"
+  },
+  "mandatory_adapter": {
+    "pack": "host-pr503-table-probe-adapter-9f2f-20261114",
+    "source_freeze": {
+      "bytes": 2756,
+      "sha256": "739e09c60bb22a24d131fe43ce1c508dad7d67248f2a9990fb6a990203e7491d",
+      "git_blob": "3b017d4381eae24a7b799881ea0d40d50ef7123e"
+    },
+    "handoff": {
+      "bytes": 1848,
+      "sha256": "78da6f62291d7e665ba0f2822dfe2914c4908cdd763eedd7b8343404be3de9ff",
+      "git_blob": "e9ad6715ae89e7f4b57b550a6713fd6ada68ecd3"
+    },
+    "manifest": {
+      "bytes": 5793,
+      "sha256": "0d2e3cdec4e4c922eecb1687dc67292bef91a508147734ffe1ae9bbdaf3da2c4",
+      "git_blob": "3653e9625fedbb11022ae9c6a0594bc04c44d646"
+    },
+    "archive": {
+      "bytes": 128864,
+      "sha256": "e4240ab6e7a6dcb65e7843c46e7a4a2dac73dd63e30e6db2d4f846800e5b1afa",
+      "git_blob": "1a5bde8e830ae21f2b237d195d7915f10f79803e"
+    },
+    "members": 24
+  },
+  "native_dependency": {
+    "pack": "native182-29080-integration-2281-20261114",
+    "source_freeze_sha256": "cbc83726bba47e862adbb9d1adab6d3fda4f487b75900b69b54f5978f112374a",
+    "paths": 34,
+    "not_copied_into_host_source_scope": true
+  },
+  "guard_preservation": {
+    "explicit_content_bound_paths": 55,
+    "unselected_current_tree_entries_bound": 4533,
+    "four_exact_hunk_inverse_or_suffix_proofs": "merge-preservation.json",
+    "protected_C4_Garage_Village_Writer_Journal_Hub_Diktat_Math_Pins": true
+  },
+  "actual_producer_results": "producer-ci-scope.json binds source2e:2608 Flutter PASS,599 scripts PASS,compile/source SUCCESS. Historical failures remain separate. No merged result inferred.",
+  "remaining_work": "ci-and-android-connection-plan.json: combined tests and real paired authorities, exact Native checkout in API35, same APK inputs/ACK/preservation/return, additive candidate/Delivery consumption. No workflow or verifier changed here.",
+  "tests_executed": 0,
+  "product_imports_executed": 0,
+  "active_source_or_ref_changes": 0,
+  "archive": "compact-originals.tar.gz",
+  "archive_binding": "archive-binding.json",
+  "readback": "archive-roundtrip.json",
+  "large_originals": "No APKs, complete machine artifacts or redundant screenshots copied. Existing original CI job logs and complete API JSONs are included unchanged. Old history packs remain separately preserved; their review/hash references are included.",
+  "constructor_files": "materialize_sources.py and prepare_shared_adapter.py are preserved preparation intermediates; not installed sources, not tests, and not a promise to regenerate finalized overlay bytes."
+}

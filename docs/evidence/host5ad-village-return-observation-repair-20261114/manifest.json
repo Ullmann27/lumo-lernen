@@ -1,0 +1,434 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "before-source/.github/probes/lumo_village_android_probe.py",
+      "bytes": 11541,
+      "sha256": "b6a3ef510ffd29369896bedb57a6d870d000b36e46138c7e7b59be95efacb9ab",
+      "git_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99"
+    },
+    {
+      "path": "final-source/.github/probes/lumo_village_android_probe.py",
+      "bytes": 17710,
+      "sha256": "09a3712108c0cbfec778c196d4845c6e67deda5729639918aa601d910652951c",
+      "git_blob": "a7a8593de39191b8acc0aa687e9eaffdd6353fc8"
+    },
+    {
+      "path": "final-source/raw-manifest.json",
+      "bytes": 540,
+      "sha256": "76065391fbbf7d6282f0151bcc20cecfe15ee42857d5c57cf54ed3923f78c0c0",
+      "git_blob": "cc4662da682c83f78cd062969f16d93a1df98803"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/main/23_zurueck_in_flutter-flutter-visible-0-ocr-contrast.tsv",
+      "bytes": 7038,
+      "sha256": "68f3b21c2806253f3edb34c2d0a1a6c9de42fc8d5bf614f55c38262d27fb09be",
+      "git_blob": "bf70ccf4fd909f32fdd4470972dd9213f77e5fda"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/main/23_zurueck_in_flutter-flutter-visible-0-ocr.json",
+      "bytes": 5653,
+      "sha256": "4eb079ed2b636dc9bede8b1c5e968ee3799239c470e8f90c1812d470fa4175d4",
+      "git_blob": "1a7646cc92171c36392e49d8a8ebc6fc7cb4f5c1"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/main/23_zurueck_in_flutter-flutter-visible-0.png",
+      "bytes": 1947988,
+      "sha256": "e7cf2316cc3d11af1fdf4b06b5b79510fd425bcc0f27438d63e53a9ed1c5a5fa",
+      "git_blob": "75e958435011602d506491a56995f6d10b36da17"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/provenance.json",
+      "bytes": 11227,
+      "sha256": "d516348545f4508c1f19d3021dd77b47936dae879e1c68a12ec6dee2eef5747a",
+      "git_blob": "b1ef9d704c021b4d011608ba7999abfaa181facf"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0064-village-before-return-host_pid.json",
+      "bytes": 384,
+      "sha256": "371a9f0d1f0519f64680bba09ed8b1b851144a8b5523e19209c63a5f2d84ed48",
+      "git_blob": "93a91e55eec917a7d2205240ec4ad31839b1c4a5"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0064-village-before-return-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0064-village-before-return-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "ddd9e37e81c1a9624376c33d18ba21efde880df1bb0ccc9d17b007229f70ab82",
+      "git_blob": "725bb9700b2e6a87878ffadbe396fd4d99510089"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0065-village-before-return-native_pid.json",
+      "bytes": 395,
+      "sha256": "8b65f5e754feaf9d1ae97fbf34de30ecabaec90800b1513c41818379ae411adc",
+      "git_blob": "90d1d5ee07ca98d05ea067f80f8177212aeb5e33"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0065-village-before-return-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0065-village-before-return-native_pid.stdout",
+      "bytes": 5,
+      "sha256": "96e4e47ba041bba7fb7702bc018b0479cfd4d2a2853cfe92bb160b77fc1e1424",
+      "git_blob": "ae7ad4aca8490c43f06226ef78b20ba3c2a3cb9c"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0066-village-before-return-activity.json",
+      "bytes": 376,
+      "sha256": "4cfa299e3df8b8a319720b73c306b932c9668ea06fb3509cbf8ad16f64ec6812",
+      "git_blob": "a85161e56f363a1500c44666c769c3f80d2e4775"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0066-village-before-return-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0066-village-before-return-activity.stdout",
+      "bytes": 41071,
+      "sha256": "099226f3ae8632ad4fe7cb3dad718eaf374d2d47a5ff0b3e675e8c4a0fa33e61",
+      "git_blob": "ed49e65f490953202c24faf2a8813cb8df6a0e2e"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0067-village-visible-return-touch.json",
+      "bytes": 404,
+      "sha256": "a13ecc62af860e5cd21c1c023661b018c9e103147530b4ca1415d10c0c511d40",
+      "git_blob": "a9761d810acc0788d05665d972e8984793929839"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0067-village-visible-return-touch.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0067-village-visible-return-touch.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0068-returned-flutter-0-host_pid.json",
+      "bytes": 385,
+      "sha256": "59dccc364b500bb704f3ff34f685d8c8a95ebbe5d541fb2a600ecc62dfa5a4af",
+      "git_blob": "d32a2d1181a16a6462cbb577c6daf608bd83eb9a"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0068-returned-flutter-0-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0068-returned-flutter-0-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "ddd9e37e81c1a9624376c33d18ba21efde880df1bb0ccc9d17b007229f70ab82",
+      "git_blob": "725bb9700b2e6a87878ffadbe396fd4d99510089"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0069-returned-flutter-0-native_pid.json",
+      "bytes": 395,
+      "sha256": "e658ec805a53938add6b8be93a46d22a59c6d218584c032ab833a2de57d47654",
+      "git_blob": "2dab11d029292649ca6fbb3acd6297ab516e17ac"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0069-returned-flutter-0-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0069-returned-flutter-0-native_pid.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0070-returned-flutter-0-activity.json",
+      "bytes": 376,
+      "sha256": "264d39f750b24e3b8a62b5fd64440e1aebc97efd22ec343e4b1a3f8e25062f27",
+      "git_blob": "9e8ed6535c0dbc658b9839a1d7da4d0709242e02"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0070-returned-flutter-0-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0070-returned-flutter-0-activity.stdout",
+      "bytes": 41963,
+      "sha256": "2cd2ac1ea71937368a3db37065378091c8ad291736d5858fd58c1bbc88de17ba",
+      "git_blob": "719f12dd08bf01b72d61c937ba868163a7652f62"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0071-returned-flutter-preferences.json",
+      "bytes": 445,
+      "sha256": "bcb7cf564991c64671aeff7f69db0d680f9cf2493188613dab8b7fbbd148af69",
+      "git_blob": "ff0daad40683550a06fa6ea0cc9c1ea2a3b6c871"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0071-returned-flutter-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/commands/0071-returned-flutter-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "a31f21c34b87b5ca65c596b6cb0adaec44bbfbe493cb6683cd82d1fe3f98eeae",
+      "git_blob": "54cc44be94a75d5e9fdbb6f7fa4ce0e702d15a4c"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/open-village-01.xml",
+      "bytes": 28165,
+      "sha256": "9b7d2942e5b5b839532ba740544b8ee6a0a47b6e334c2b13b7271b4d05b484a6",
+      "git_blob": "afeba1108928174fb1b2f9f415d17cd9ff2e0ea3"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/returned-flutter-frame-render-readiness.json",
+      "bytes": 554,
+      "sha256": "b2681c41b7ce2228e2f369cfab50b88c30c1660f734275bd5fcb3bc06b1b2889",
+      "git_blob": "cd57ef1719679fd89c672b8f4b9574b5e7285c8b"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/returned-flutter-frame.png",
+      "bytes": 1438731,
+      "sha256": "129cf8adb3414b35490f40578d48013afe93742a883ca1a86cb7eafde8a00c03",
+      "git_blob": "4a1ae358b941a8e2f2880592b4cdd3c6815446d3"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/returned-flutter-visible-ocr.json",
+      "bytes": 28038,
+      "sha256": "25ca0eb22eb8f366fadd47dede41da8bda6fefcc2391a6275c7e7622cb0221c1",
+      "git_blob": "4a92511b5bf4d39d5a6a92b4930fba431f0e4f03"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/village-return-5ad/village/village-return-surface-readiness.json",
+      "bytes": 2738,
+      "sha256": "9602fecab695f5baa6d61d1043330ebe2b0f0f112d7362f75663cd617bb1a731",
+      "git_blob": "68c58c8dbcef6790b236654b6a80cc2c48a91c73"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/test_village_flutter_return_observation.py",
+      "bytes": 16408,
+      "sha256": "c8f8f73c7df72cc770963a642e441a29c7bc83dfe6fb8db14fb009a7a8c62bec",
+      "git_blob": "38245b231b19018c6e28306c8867d928aef88449"
+    },
+    {
+      "path": "handoff-source.json",
+      "bytes": 4434,
+      "sha256": "cb2c8bde858565296884f21542c825e1baa8fe53c609162ec0407962ed89fd8f",
+      "git_blob": "1583ef24393eba6a9f21a6a566f7ce815ccfcfa8"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 2166,
+      "sha256": "bb9264c8501aea274cf2510713bbf91187cb5520b17ceda093be95367224e5ae",
+      "git_blob": "ccedaddd1225550d2a9194b9dd8697e2b9b9763b"
+    },
+    {
+      "path": "independent-contract-review.json",
+      "bytes": 11465,
+      "sha256": "9a5a0330d93deb576a2e158f1f5aad24208de7579de6b14dc8e35bd6c3cb6d8f",
+      "git_blob": "594ef35386ae45e24499df8e9f525f1729558cd0"
+    },
+    {
+      "path": "raw-manifest.json",
+      "bytes": 2311,
+      "sha256": "271fc2858dc59f2db52900f1b01b1be72303630bc910b65faf29971d06892db5",
+      "git_blob": "c4c1a19ec8de8be58f26144617e057c04497d360"
+    },
+    {
+      "path": "reference-source/.github/probes/creative_android_probe.py",
+      "bytes": 65137,
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+      "git_blob": "c996a022d388632ed13965b392181aef773d9025"
+    },
+    {
+      "path": "reference-source/.github/probes/flutter_surface_readiness.py",
+      "bytes": 4078,
+      "sha256": "26219bb28b51e599bf220d639eb0ec38fd41881a07c6d4fa4503e1b0e3a1d6dc",
+      "git_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950"
+    },
+    {
+      "path": "reference-source/.github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 28798,
+      "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19",
+      "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+    },
+    {
+      "path": "reference-source/scripts/probes/pr207_android_ui_probe.py",
+      "bytes": 2032,
+      "sha256": "b94dc20910a27f88613b520674d8594793621d238578da4f3918be73b7c36cb4",
+      "git_blob": "2966b08fab11ff05f67a587a3a564e6fdc1e6cfe"
+    },
+    {
+      "path": "reference-source/tools/android_qa/android_ui.py",
+      "bytes": 15599,
+      "sha256": "edb5352c5045a496b77911530e0ee0c93d58914607007458f16c7cce1cb49d14",
+      "git_blob": "dbf40dab0b0fdd29ebaecb3013ce7d642be3b771"
+    },
+    {
+      "path": "reference-source/tools/android_qa/tests/test_village_android_evidence.py",
+      "bytes": 24849,
+      "sha256": "fde59828ffd27ac7ccad9d50f0678ddd3f28d34b5ff1e6e31c2e7e20718251d1",
+      "git_blob": "f515e404428edc8003f1191c77df214384f0eac7"
+    },
+    {
+      "path": "reference-source/tools/android_qa/village_android_evidence.py",
+      "bytes": 20967,
+      "sha256": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32",
+      "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3"
+    },
+    {
+      "path": "repair.patch",
+      "bytes": 25985,
+      "sha256": "d090943f1b10b50421effa697820cad45a96667fffd480edca02fab13ca381a6",
+      "git_blob": "44d0c240d75fae3b30abffa597ad483069788a9c"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 2634,
+      "sha256": "c42999f14092eb02bc886e3b1ec39e5886ce7d83cc66a36ab59f4a8867adf1ea",
+      "git_blob": "d9cd8a2304542ed84cde1b3915f9f3d04dd6da3e"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 11841,
+      "sha256": "a448c4f8655cb99672b5825e5be5b6a18e4bfa3c61d0d6330d9cd8bb47fe4096",
+      "git_blob": "96954f378abdb6a9f0e5d11482f55beca4fbe66e"
+    },
+    {
+      "path": "source-preservation.json",
+      "bytes": 1519,
+      "sha256": "c91ef1a1c3eb443734936919e8e09c1382f4e3d3477d5ffc77109484e4474d77",
+      "git_blob": "998f716174bc10fafe49a3a1dd5d34b64d81b515"
+    },
+    {
+      "path": "test-view/.github/probes/flutter_surface_readiness.py",
+      "bytes": 4078,
+      "sha256": "26219bb28b51e599bf220d639eb0ec38fd41881a07c6d4fa4503e1b0e3a1d6dc",
+      "git_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950"
+    },
+    {
+      "path": "test-view/.github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 28798,
+      "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19",
+      "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+    },
+    {
+      "path": "test-view/raw-manifest.json",
+      "bytes": 1996,
+      "sha256": "e720e256cb3b2c47596bdf6a1fd0a3764b77a82cdabb9772ddb5084ef7d3bb51",
+      "git_blob": "9389dfdb8a21aca22af193be7a78176f8531ff98"
+    },
+    {
+      "path": "test-view/tools/android_qa/connect_four_android_evidence.py",
+      "bytes": 36130,
+      "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7",
+      "git_blob": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa"
+    },
+    {
+      "path": "test-view/tools/android_qa/native_ocr_tiles.py",
+      "bytes": 8243,
+      "sha256": "0365c7f57551c3f2b5efb2c4d5f7d16886cd93638f7e4be7a75c6d0fc6838704",
+      "git_blob": "f5aecc82db6bac1420ab1622f240cf4fa59faadd"
+    },
+    {
+      "path": "test-view/tools/android_qa/native_surface_readiness.py",
+      "bytes": 4401,
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+      "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+    },
+    {
+      "path": "test-view/tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "bytes": 23974,
+      "sha256": "091d4640f277486998dc47fded5820d1986d9036244bc92d2f8c4ccf6afa794f",
+      "git_blob": "701d1dab0a7224803fe2780c6a0674400b081795"
+    },
+    {
+      "path": "test-view/tools/android_qa/tests/test_village_android_evidence.py",
+      "bytes": 24849,
+      "sha256": "fde59828ffd27ac7ccad9d50f0678ddd3f28d34b5ff1e6e31c2e7e20718251d1",
+      "git_blob": "f515e404428edc8003f1191c77df214384f0eac7"
+    },
+    {
+      "path": "test-view/tools/android_qa/village_android_evidence.py",
+      "bytes": 20967,
+      "sha256": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32",
+      "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3"
+    },
+    {
+      "path": "validation/environment.json",
+      "bytes": 439,
+      "sha256": "6652beff221967f290d855614e66a98a5a44f128430506e2327b9821c504ab38",
+      "git_blob": "229be255c35f31295daa384b4e14716249b8f947"
+    },
+    {
+      "path": "validation/process.json",
+      "bytes": 560,
+      "sha256": "b4a2efb89ba886a2590ee6b9652bef383c19c3e11c8081a6eab3ddc1b2079d59",
+      "git_blob": "7266bcd64612829b7cce9df080afe7a8383882f8"
+    },
+    {
+      "path": "validation/source-comparison.json",
+      "bytes": 56,
+      "sha256": "4f684f4dfe5daeaed6c61bcdbe7dffd9c36e3c53a64673b8c581107ff0ae6748",
+      "git_blob": "2b15403edd5807dcef2d8ac1cf795074527d9b7e"
+    },
+    {
+      "path": "validation/sources-after.json",
+      "bytes": 15887,
+      "sha256": "42e3d96346e2da29475a953a0e337888147514ca03b6d2c88578155329db124b",
+      "git_blob": "b59dec8d6df215cd49967e413337e62f99f91b4e"
+    },
+    {
+      "path": "validation/sources-before.json",
+      "bytes": 15887,
+      "sha256": "42e3d96346e2da29475a953a0e337888147514ca03b6d2c88578155329db124b",
+      "git_blob": "b59dec8d6df215cd49967e413337e62f99f91b4e"
+    },
+    {
+      "path": "validation/stderr.original.log",
+      "bytes": 9111,
+      "sha256": "ba74672b494791524a22262067ac03c48ab9576f2f23c84d255c227d0e57100b",
+      "git_blob": "6911cc7c650ed05c26ce7ca91e6fda3cafac7ef3"
+    },
+    {
+      "path": "validation/stdout.original.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "validation-result.json",
+      "bytes": 1776,
+      "sha256": "8e2f5f528f3610d5d1679e0059b72aaffadb806cf9af971561ca4001d82df646",
+      "git_blob": "c150b57cf91f2e7dc800766647272e0773f1e3d0"
+    },
+    {
+      "path": "validation-tools/raw-manifest.json",
+      "bytes": 249,
+      "sha256": "504138332ac5c5f3c42326cefaade5c4bf4b1fb91ca6888fcb588e5971522bd9",
+      "git_blob": "745026bc787acbb52d03efed51bc0d37078a6166"
+    },
+    {
+      "path": "validation-tools/run_validation.py",
+      "bytes": 2966,
+      "sha256": "2e106f4e195de07aac5f6fd225a563a69a82f5306702510e223dcde9fc9a9945",
+      "git_blob": "a551933b591c28920a7bdef1605b78752a8fae06"
+    }
+  ],
+  "file_count": 71,
+  "total_bytes": 4028734,
+  "scope": "Frozen v1 plus one actual 46-method validation; no new device or retroactive actual-return PASS."
+}

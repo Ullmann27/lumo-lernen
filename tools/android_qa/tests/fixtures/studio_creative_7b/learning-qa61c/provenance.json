@@ -1,0 +1,270 @@
+{
+  "schema": 1,
+  "run_id": 43551424080,
+  "job_id": 132314688451,
+  "artifact_id": 14097450952,
+  "apk_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "native_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "scope": "Exact new failed QA61c/API35 original + separately labelled local OCR; no new device success",
+  "files": [
+    {
+      "path": "learning-move-1-0.png",
+      "origin": "original Android artifact",
+      "bytes": 554441,
+      "sha256": "4362e3030fb3a040e76ce90c6520eca15dba3617397ee497ca5054c1e7b45663",
+      "source_path": "host-pr480-61c94cfb-android35-update-evidence/artifacts/14097450952/memory-originals/originals/nextgen/learning-move-1-0.png"
+    },
+    {
+      "path": "learning-move-1-0-ocr.json",
+      "origin": "original Android artifact",
+      "bytes": 9937,
+      "sha256": "d74c0ef513346292647f1037adbbd01b93585127968301057bc4c670194fe8bb",
+      "source_path": "host-pr480-61c94cfb-android35-update-evidence/artifacts/14097450952/memory-originals/originals/nextgen/learning-move-1-0-ocr.json"
+    },
+    {
+      "path": "learning-move-1-surface-readiness.json",
+      "origin": "original Android artifact",
+      "bytes": 5851,
+      "sha256": "50bad08d6b5b3c66a8a3f85b659e66fdeea4a244073888eca387ea68a3602608",
+      "source_path": "host-pr480-61c94cfb-android35-update-evidence/artifacts/14097450952/memory-originals/originals/nextgen/learning-move-1-surface-readiness.json"
+    },
+    {
+      "path": "native-surfaces-result.json",
+      "origin": "original Android artifact",
+      "bytes": 4509,
+      "sha256": "2e33c87c9c4c6ec85a69ba0f0fbd65b64a852d402c3f78e3581a76f3c120b721",
+      "source_path": "host-pr480-61c94cfb-android35-update-evidence/artifacts/14097450952/memory-originals/originals/nextgen/native-surfaces-result.json"
+    },
+    {
+      "path": "learning-move-1-0-ocr-contrast.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 2909,
+      "sha256": "eebdc23cb5147e976d75930e876b10fc29e3182ec2a3229dac5d4e0aeca6a57e",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-contrast.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-0.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 322,
+      "sha256": "e528cb6d8305209d6ed45d8d569b29d4558a33f512fb4998ec79837c4b007916",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-0.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-1.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 227,
+      "sha256": "23a6810e5bb3a206e8fde7b29d257b9232c12f8a021007dce5fbac4e4f825689",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-1.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-10.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 226,
+      "sha256": "af5b73b77e41d931a80dddccd8de42a982802d7a0588b3532edc2dc3cfbaf756",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-10.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-11.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 226,
+      "sha256": "56d1950a89a40ea421c0f561de02cb6950117fc5d034fb4066e7ef4f6610de8d",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-11.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-12.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 226,
+      "sha256": "19af41061063063c902e7e8021cb75401a909c221abcf624d79022770735704a",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-12.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-13.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 226,
+      "sha256": "03431adbe9480c9cae5cfd239a3732c5f98ad184797af80554278422e096b7bd",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-13.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-14.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 226,
+      "sha256": "526dfaa2ccc33fc0c27d8b521f23d48b35dae6a3311a3d28bd4ba92f54d1017b",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-14.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-15.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 226,
+      "sha256": "af364c3142b61051de114b5c71671ca41a0413c298b16ae3683cd0fd8c62cd99",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-15.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-16.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 226,
+      "sha256": "499a7b7f204512ea6e3cf9d9bfedc0397766857aa0728f2954030c139b6ada61",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-16.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-17.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 226,
+      "sha256": "77da37f850917f6699c05e078b3dfce6c6c0e2ac4bf166c7e1d321fe802ecd29",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-17.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-18.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 226,
+      "sha256": "4c973855b23f1bc412f00dcde436088a45b154e71afb77a813c86d12921fa00a",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-18.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-19.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 226,
+      "sha256": "e7aff8d6a889a9b4df20f0a86f2aaed1555f20df786228c150be945d82f422e9",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-19.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-2.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 111,
+      "sha256": "b7c8a95dedaf98dbc225a3772981fe10c52ba0eaf218a43b059635fa73410842",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-2.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-20.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 226,
+      "sha256": "011a0b52f05503c037d92c8c4960023685b60693dad98bb7e1ef3c7d2a0c176d",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-20.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-21.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 110,
+      "sha256": "da2713f36dc7ccf32b99181b97ef9cb1d1aa6861215be92cc9ead9b3f87be059",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-21.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-22.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 235,
+      "sha256": "796f64274821dc15b47d420a14a44a1de6ac6d59e539f0016c4868c6cc9bac1f",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-22.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-23.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 221,
+      "sha256": "be9cf335fd69c95c208137f913f2d07c1de649899c0994d271e2510000d0876e",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-23.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-24.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 221,
+      "sha256": "96094d7f750d9240d75ae3324c591178fa6c60cbca06f4c5dd5568f3586ae88f",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-24.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-25.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 222,
+      "sha256": "be397053e53d61ef88f4e1f6350156b1fc0d12b53b3063607d72a7483e5a6789",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-25.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-3.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 227,
+      "sha256": "3950cd80c541a318144f414c660185b8e19ebf15f6d2aa1bc1c31568d93aca6a",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-3.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-4.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 263,
+      "sha256": "af56219a14b99b92ce4d14b1239507cea323c0c17f456c4e48aa5ac9e0632cfc",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-4.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-5.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 110,
+      "sha256": "315bb0a45af5cfcc720a57c85d60cc5cd675145aec7bb38963275993a30340ca",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-5.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-6.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 227,
+      "sha256": "442dd14948471b468baff3ee2038e6ea3fe7c03e082990363ebe14daa43a23f9",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-6.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-7.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 230,
+      "sha256": "7e6c71624d7c368fb95c575c10160ff8a36131cd9ba189634c1b8d51d7b779ac",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-7.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-8.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 228,
+      "sha256": "14e98cf058c01afc1ab5a3edfebf6bfee0f4f73e978684c4081c78b2d48bedd3",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-8.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-gold-component-9.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 226,
+      "sha256": "bac2e68d79acc1b47c6b9d00ace661474267237c367c35726a616fc69816e21f",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-gold-component-9.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-navy-latin-1x.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-navy-latin-1x.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-navy-latin.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 361,
+      "sha256": "55f9e7ec3e39137620519a0747c1c45b5dc7e43ee10508b0334e0654aeab4a49",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-navy-latin.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-raw.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 3224,
+      "sha256": "f0b48fb7c3d89814a3b386f8634b3dd42310c53952f492880368b2c4aee33891",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-raw.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-teal-text-1x.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 4249,
+      "sha256": "510626ed396b2a4c8aaaff7c0c3284f912ab5451ea8c48fddb96afcc00669922",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-teal-text-1x.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-white-latin.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 2609,
+      "sha256": "556019296b4df665f3d9912d09e3a999aed96777d625e6856afd256d86634659",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-white-latin.tsv"
+    },
+    {
+      "path": "learning-move-1-0-ocr-white-text.tsv",
+      "origin": "local real Tesseract replay",
+      "bytes": 2729,
+      "sha256": "ca4d75bfb3b0be88db2042d7fa5d653a2a5cde0a6882fb9ac5bf88621cbbb8d2",
+      "source_path": "host-7b16-creative-followup-repair/current-learning-61c-replay/learning-move-1-0-ocr-white-text.tsv"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T08:05:07.130089+00:00",
+  "status": "NO_CONCRETE_SOURCE_BLOCKER",
+  "scope": "Independent read-only review of the new Treasure sidecar parser and its actual GDScript observation/capture contract. Seven frozen source identities verified; no blanket review of all seven product deltas.",
+  "source_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/native-pr167-785413-integration-20261114-recovered/source-freeze.json",
+    "bytes": 4381,
+    "sha256": "b816b4cc0d6938115278910acc4370e88a0d2d4dc652e536693d1512ed2cefb5"
+  },
+  "pack_manifest": {
+    "path": "/workspace/scratch/b3485b7bb989/native-pr167-785413-integration-20261114-recovered/manifest.json",
+    "bytes": 5982,
+    "sha256": "e619f64f82a4c7bad1abdb5afc15c1ffa8aced6a4f8cf0f2f229017ee30145cd"
+  },
+  "base_native": "504c8ba70d02702cbccc370d0d96c36a292c5d27",
+  "base_tree": "05ba53c02321da069007d5c4b045622f06cc9175",
+  "producer_native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "producer_tree": "635cf3d68631ed62ba3b3ce6f2c1fc5448768787",
+  "bound_sources": [
+    {
+      "repo_path": "scripts/creative/build_settlement_world.gd",
+      "path": "/workspace/scratch/b3485b7bb989/native-pr167-785413-integration-20261114-recovered/final-source/scripts/creative/build_settlement_world.gd",
+      "bytes": 45485,
+      "sha256": "50938300e4d40c7ded1be66af6384359fc4d9d83fefff52c25ca1670be3661ec",
+      "git_blob": "dd1e7b0662f2d4325a6fa562e3a111ecbb31fd50"
+    },
+    {
+      "repo_path": "scripts/creative/treasure_world.gd",
+      "path": "/workspace/scratch/b3485b7bb989/native-pr167-785413-integration-20261114-recovered/final-source/scripts/creative/treasure_world.gd",
+      "bytes": 26887,
+      "sha256": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+      "git_blob": "aae80484834823c8cf063df6bfb2607313f39ef7"
+    },
+    {
+      "repo_path": "scripts/tests/treasure_title_contrast_regression.gd",
+      "path": "/workspace/scratch/b3485b7bb989/native-pr167-785413-integration-20261114-recovered/final-source/scripts/tests/treasure_title_contrast_regression.gd",
+      "bytes": 15261,
+      "sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "git_blob": "73939c37e38bdbaca77220f79227e3dcde26e59c"
+    },
+    {
+      "repo_path": "tools/tests/test_nextgen_runner.py",
+      "path": "/workspace/scratch/b3485b7bb989/native-pr167-785413-integration-20261114-recovered/final-source/tools/tests/test_nextgen_runner.py",
+      "bytes": 40588,
+      "sha256": "b258ce4d1a83b4bd56c6ce4227d7e393e1fa233a1372a2027f45d0b16315902a",
+      "git_blob": "6abee84f4df65fd2e379d013b7068552a962ce15"
+    },
+    {
+      "repo_path": "tools/tests/test_studio_2020_rasters.py",
+      "path": "/workspace/scratch/b3485b7bb989/native-pr167-785413-integration-20261114-recovered/final-source/tools/tests/test_studio_2020_rasters.py",
+      "bytes": 41130,
+      "sha256": "a6de009cd8d8c7e55b0a0273125346ee8c0bc715259f10618d70985b23ba6fde",
+      "git_blob": "8f8310c66e6477680996a5fabd407e53ec0d9e2b"
+    },
+    {
+      "repo_path": "tools/validate_nextgen.sh",
+      "path": "/workspace/scratch/b3485b7bb989/native-pr167-785413-integration-20261114-recovered/final-source/tools/validate_nextgen.sh",
+      "bytes": 9791,
+      "sha256": "fbb95e0ab5d3f60a915fdd63ff95b6e01ad3776bb67f6227df1c394b5bd64a7f",
+      "git_blob": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946"
+    },
+    {
+      "repo_path": "tools/verify_studio_2020_rasters.py",
+      "path": "/workspace/scratch/b3485b7bb989/native-pr167-785413-integration-20261114-recovered/final-source/tools/verify_studio_2020_rasters.py",
+      "bytes": 26625,
+      "sha256": "8e8f597f8cd41fe203b9a491f14b5927c85601178e6589afe326a94d7c6f80f3",
+      "git_blob": "b60c3360730f0db73f91324cbaed3a8806fd141e"
+    }
+  ],
+  "preserved_ast_blocks": {
+    "file_record": true,
+    "read_json": true,
+    "collect_face_movie": true,
+    "identity": true,
+    "verify_file": true,
+    "face_report": true,
+    "c4_report": true,
+    "write_manifest_block": true
+  },
+  "findings": [
+    {
+      "subject": "All ten actual declarations",
+      "finding": "The observation list must contain exactly the Cartesian product of the five fixed profiles and the two fixed start fixtures. Length 10 and exact key-pair set prevent missing or duplicate profile/state combinations. Both captured and uncaptured states pass the same geometry and contrast checks."
+    },
+    {
+      "subject": "Exact five captured states",
+      "finding": "Only the four original restored-position profiles and the fresh landscape-cutout state may provide image/image_px/image_sha256. The other five states must omit all three fields. Five exact image paths and dimensions are passed to the existing full raster decoder; each reported SHA is compared with the actual corresponding PNG."
+    },
+    {
+      "subject": "Measured geometry",
+      "finding": "Each title, avatar and HUD rectangle must be a finite list with positive extent. Actual profile dimensions/density/insets are fixed. Safe bounds are recomputed, actual avatar/HUD intersections are rejected independently of overlap_px, all six semantic HUD roles are required, touch controls require at least 47.99 dp, and toast overlap with interactive controls is rejected."
+    },
+    {
+      "subject": "Producer-side observation",
+      "finding": "The GDScript projects every corner of actual visible fox mesh AABBs through the real scene camera and measures physical control rectangles. It records both start states per profile and the same five designated captures. Real hint/inventory/pause touches and unchanged quest progress remain assertions; capture explicitly requires a real renderer."
+    },
+    {
+      "subject": "Read-only replay and neighbors",
+      "finding": "write=False remains passed into verify_fixed_rasters and suppresses the unchanged final manifest-write block. Existing source/file/symlink/hash checks, face/C4 report parsers and movie collection are AST-identical. The 52-mode roster is not expanded by this image-count change; this review does not execute the roster."
+    }
+  ],
+  "execution": {
+    "tests_run": 0,
+    "engine_runs": 0,
+    "device_runs": 0,
+    "source_writes": 0,
+    "git_mutations": 0,
+    "review_output_only": "/workspace/scratch/b3485b7bb989/native785-helper-independent-review-20261114"
+  },
+  "limits": [
+    "The recovered source bytes are identical to frozen b816b4cc. This review is newly recorded in the workspace and is not an invented reconstruction of an older report.",
+    "No original renderer result, Android inset reading, device touch behavior or visual acceptance follows from this source-only review. Root owns the exact published checkpoint and subsequent targeted or real CI tests.",
+    "The broader Settlement/production/runner changes are hash-bound here, not independently re-tested or exhaustively re-reviewed."
+  ]
+}

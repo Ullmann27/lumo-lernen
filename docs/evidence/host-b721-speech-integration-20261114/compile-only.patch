@@ -1,0 +1,11 @@
+--- before/scripts/compile_android_host.sh
++++ final-source/scripts/compile_android_host.sh
+@@ -45,7 +45,7 @@
+ 
+ required = ('MainActivity', 'LumoGameActivity', 'LumoHostPlugin', 'CardsTableBridge', 'CardsAuthorityService',
+             'CardsAuthorityRegistry',
+-            'LumoLearningSpeech', 'LumoOfflineSpeechBridge', 'LumoOfflineSpeechEngine',
++            'LumoLearningSpeech', 'LumoOfflineSpeechBridge', 'LumoOfflineSpeechEngine', 'LumoSpeechEnvelope',
+             'TableGameActivity', 'TableGamesHostPlugin', 'TableGamesBridge',
+             'TableAuthorityService', 'TableGameIntent')
+ classes = {}

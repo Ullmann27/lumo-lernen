@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "status": "FAIL",
+  "result": "ANDROID_RUNTIME_ANR_REJECTED",
+  "serial": "emulator-5554",
+  "errors": [
+    "device_continuity_unverified:Unrecognized wait notification from the device logger shell",
+    "tour_command_failed_or_missing",
+    "monitor_ended_without_requested_stop_or_budget_exhausted",
+    "logcat_terminated_early_or_abnormally",
+    "recording_does_not_cover_full_interval"
+  ],
+  "logcat": {
+    "anr_record_count": 0,
+    "findings": [],
+    "findings_truncated": false,
+    "threadtime_records": 32291,
+    "ends_with_newline": true,
+    "original": {
+      "bytes": 4830576,
+      "sha256": "bc7cf9271c5d0517e1fcf2909b7f3f23e465dee664ee0e43113dd85b8839f142"
+    }
+  },
+  "device_recording": null,
+  "endpoint": {
+    "ready": true,
+    "errors": [],
+    "keyguard": {
+      "showing": "false",
+      "inputRestricted": "false",
+      "occluded": "false",
+      "trusted": "false",
+      "simSecure": "false",
+      "dreaming": "false",
+      "systemReady": "true",
+      "deviceHasKeyguard": "true",
+      "enabled": "true",
+      "userId": "0",
+      "bootCompleted": "true",
+      "screenState": "SCREEN_STATE_ON",
+      "interactiveState": "INTERACTIVE_STATE_AWAKE"
+    },
+    "credential_secure": null,
+    "input_dispatch": {
+      "ready": true,
+      "enabled": "true",
+      "frozen": "false",
+      "current_section_count": 1,
+      "anr_state_present": false
+    },
+    "focused_window": "Window{7527906 u0 com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}",
+    "focused_application": "ActivityRecord{125806745 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}",
+    "surface_ready": true,
+    "anr_observed": false,
+    "anr_events": [],
+    "window_last_anr_clear": true,
+    "unlock_eligible": false
+  },
+  "adb_start": {
+    "original": {
+      "bytes": 77,
+      "sha256": "d84aaa3222b49c6dfc6c07666347890c6ad2ff255b911fa83525c5814e54963c"
+    },
+    "classification": "exact_observed_successful_daemon_start"
+  },
+  "inputs": {
+    "framework/logcat-all.stdout": {
+      "bytes": 4830576,
+      "sha256": "bc7cf9271c5d0517e1fcf2909b7f3f23e465dee664ee0e43113dd85b8839f142"
+    },
+    "framework/monitor-process.json": {
+      "bytes": 509,
+      "sha256": "6423d54407cce7b6a002e4613e1291b1c71b19334a195161bd97a4f24e6733b2"
+    },
+    "framework/monitor-finished.json": {
+      "bytes": 1074,
+      "sha256": "34a2c0897170d8e605edd01e0c7b0ddc36ea5d0d295bf1f83b3676b22ef69767"
+    },
+    "framework/monitor-commands.json": {
+      "bytes": 965,
+      "sha256": "d058f56e1a3200a4760fae28d112425a5fabae6556d9426977d7e981323676a2"
+    },
+    "framework/monitor-stop.json": {
+      "bytes": 36764,
+      "sha256": "da636706b200a7b53cd509dcdf528d54d4030e6bc7736800082ce60d1134b838"
+    },
+    "framework/framework-readiness.json": {
+      "bytes": 34730,
+      "sha256": "b6b75dac3e7e5a46903620cd6ce10ce5f2bb1ca90d7484dcc4fea67122942e84"
+    },
+    "runtime/runtime-start.json": {
+      "bytes": 1239,
+      "sha256": "63d789cc1609e882dbb592d0199542a26519f8db250e0241041b25db7d35f3eb"
+    },
+    "runtime/runtime-end.json": {
+      "bytes": 5206,
+      "sha256": "2f0a882019200f457851b6a066da9d68445fcf34376bc8b2fa6ae08d4bbbc358"
+    },
+    "framework/wait-for-device.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "framework/wait-for-device.stderr": {
+      "bytes": 77,
+      "sha256": "d84aaa3222b49c6dfc6c07666347890c6ad2ff255b911fa83525c5814e54963c"
+    },
+    "framework/logcat-all.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "framework/monitor.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "framework/monitor.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "observer_sources": {
+    "verify_android_runtime_anr.py": {
+      "bytes": 39331,
+      "sha256": "3e3cde21409f1ee8e64a4124a1842df75b6a72eab0ac65576442fb5072308bf2"
+    },
+    "android_framework_ready.py": {
+      "bytes": 60327,
+      "sha256": "d1dcf55c0a4c64a1eb1b2ea51abdb6ce87da71e17a82716c562f2c14fd80e102"
+    },
+    "android_console_transport.py": {
+      "bytes": 21029,
+      "sha256": "6e7c6572f2482f232880facb2b9b28cac5cf281eb98643fcf818812700557785"
+    }
+  },
+  "scope": "Bounded recorded Android ANR and observation-completeness check. No APK functionality, visual quality, FPS, physical-device performance, future stability or retroactive framework-readiness approval.",
+  "verified_at": "2026-11-14T08:10:33.444836+00:00"
+}

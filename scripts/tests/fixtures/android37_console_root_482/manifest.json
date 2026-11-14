@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "run_id": 43558497857,
+  "run_attempt": 1,
+  "qa_head": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+  "scope": "Unmodified PR482 original failure inputs; each missing session remains a failure. Child lifetime was not observed after the failed session stat. No console or cgroup observation is fabricated.",
+  "files": [
+    {
+      "file": "host-0006-before-root.stdout",
+      "artifact_id": 14099605898,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0006-before-root.stdout",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0006-before-root.stdout",
+      "bytes": 1421,
+      "sha256": "c375d980e392ade3173dd2f1e7e56485f486ed148841f439def53800e7fc3829"
+    },
+    {
+      "file": "host-0008-root-request.json",
+      "artifact_id": 14099605898,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0008-root-request.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0008-root-request.json",
+      "bytes": 372,
+      "sha256": "998bf4f324317fa20dec5802c57e4b6b80832da48f428b5c8ea55c3f4f5b42bf"
+    },
+    {
+      "file": "host-0010-root-after-uid.stdout",
+      "artifact_id": 14099605898,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0010-root-after-uid.stdout",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0010-root-after-uid.stdout",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "host-0011-root-boot.stdout",
+      "artifact_id": 14099605898,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0011-root-boot.stdout",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0011-root-boot.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "file": "host-0012-after-root.json",
+      "artifact_id": 14099605898,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0012-after-root.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.json",
+      "bytes": 1901,
+      "sha256": "dd5f311a64726c804a536a1a9aa2e80c81ffa3d0f1afbfb5e19182bf0b79f63b"
+    },
+    {
+      "file": "host-0012-after-root.stdout",
+      "artifact_id": 14099605898,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0012-after-root.stdout",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stdout",
+      "bytes": 17,
+      "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4"
+    },
+    {
+      "file": "host-0012-after-root.stderr",
+      "artifact_id": 14099605898,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0012-after-root.stderr",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stderr",
+      "bytes": 48,
+      "sha256": "3f38ab20e70604000892987cdd42fe47498abeb9eaf80a33f20e5a08c21f3415"
+    },
+    {
+      "file": "swiftshader-0006-before-root.stdout",
+      "artifact_id": 14099222913,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0006-before-root.stdout",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0006-before-root.stdout",
+      "bytes": 1416,
+      "sha256": "eec37ca6aed7a2319efd144f4a8477e512bfe6b5fca11c6fb4110f3ea79c64c2"
+    },
+    {
+      "file": "swiftshader-0008-root-request.json",
+      "artifact_id": 14099222913,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0008-root-request.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0008-root-request.json",
+      "bytes": 372,
+      "sha256": "d5192a2ef99a9e4620412df9ed233474d814a02cc35d74d10e3dce29e0615ba6"
+    },
+    {
+      "file": "swiftshader-0010-root-after-uid.stdout",
+      "artifact_id": 14099222913,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0010-root-after-uid.stdout",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0010-root-after-uid.stdout",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "swiftshader-0011-root-boot.stdout",
+      "artifact_id": 14099222913,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0011-root-boot.stdout",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0011-root-boot.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "file": "swiftshader-0012-after-root.json",
+      "artifact_id": 14099222913,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0012-after-root.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.json",
+      "bytes": 1901,
+      "sha256": "06a524d5a2fdd442aeaaef6be5c351119874e82303d466349aac7874bd0ca0ad"
+    },
+    {
+      "file": "swiftshader-0012-after-root.stdout",
+      "artifact_id": 14099222913,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0012-after-root.stdout",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stdout",
+      "bytes": 17,
+      "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4"
+    },
+    {
+      "file": "swiftshader-0012-after-root.stderr",
+      "artifact_id": 14099222913,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0012-after-root.stderr",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stderr",
+      "bytes": 48,
+      "sha256": "c95c24165c0f7bee0ac6b01634e6e5ca911bc614b6cafaa6c59d435dc324730c"
+    },
+    {
+      "file": "swangle-0006-before-root.stdout",
+      "artifact_id": 14099915399,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0006-before-root.stdout",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0006-before-root.stdout",
+      "bytes": 1416,
+      "sha256": "a99129d256708928f990411d1cd606a772089a6a0d14f221c762ee3c34e6ee14"
+    },
+    {
+      "file": "swangle-0008-root-request.json",
+      "artifact_id": 14099915399,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0008-root-request.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0008-root-request.json",
+      "bytes": 372,
+      "sha256": "c2a4c29a602034ecece4db7bb1f5f410a168ae099898476e84c354b532fbf95e"
+    },
+    {
+      "file": "swangle-0010-root-after-uid.stdout",
+      "artifact_id": 14099915399,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0010-root-after-uid.stdout",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0010-root-after-uid.stdout",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "swangle-0011-root-boot.stdout",
+      "artifact_id": 14099915399,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0011-root-boot.stdout",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0011-root-boot.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "file": "swangle-0012-after-root.json",
+      "artifact_id": 14099915399,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0012-after-root.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.json",
+      "bytes": 1901,
+      "sha256": "daef88511900cb4fc709371957a305779a260be46847f89f211403afc6d76db3"
+    },
+    {
+      "file": "swangle-0012-after-root.stdout",
+      "artifact_id": 14099915399,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0012-after-root.stdout",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stdout",
+      "bytes": 17,
+      "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4"
+    },
+    {
+      "file": "swangle-0012-after-root.stderr",
+      "artifact_id": 14099915399,
+      "artifact_member": "originals/runtime-anr/device-logger/start/commands/0012-after-root.stderr",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr482-e6a940-runtime-evidence/artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stderr",
+      "bytes": 48,
+      "sha256": "42f216cb88b8a9ff51d0372c47767a59fb6990ce29a128744b929ab5d620b2dc"
+    }
+  ]
+}

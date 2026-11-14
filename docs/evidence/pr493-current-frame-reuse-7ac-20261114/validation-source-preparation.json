@@ -1,0 +1,692 @@
+{
+  "schema": 1,
+  "kind": "Plain private source view; not a Git checkout, no index or HEAD claimed",
+  "host": "7ac736fdbd042769592e88de0f9849632242316d",
+  "tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2",
+  "modules": [
+    "test_kart_garage_evidence",
+    "test_kart_garage_scroll_recovery",
+    "test_kart_scroll_word_evidence",
+    "test_kart_driver_word_evidence",
+    "test_kart_continue_caption",
+    "test_native_surface_readiness"
+  ],
+  "files": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/.github/probes/creative_android_probe.py",
+      "bytes": 65137,
+      "git_blob": "c996a022d388632ed13965b392181aef773d9025",
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+      "candidate_blob": "c996a022d388632ed13965b392181aef773d9025",
+      "proposed": false
+    },
+    {
+      "path": ".github/probes/flutter_surface_readiness.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/.github/probes/flutter_surface_readiness.py",
+      "bytes": 4078,
+      "git_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950",
+      "sha256": "26219bb28b51e599bf220d639eb0ec38fd41881a07c6d4fa4503e1b0e3a1d6dc",
+      "candidate_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950",
+      "proposed": false
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "origin": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/final-source/.github/probes/modernization_android_tour.py",
+      "bytes": 79210,
+      "git_blob": "c89d9284c76b25b20eb50d1dcb260d0b91d3007f",
+      "sha256": "e52e39270f976e8d9e90c6fbf7a64133474dd1fa12115c2c9aef26e2b69ebe5a",
+      "candidate_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff",
+      "proposed": true
+    },
+    {
+      "path": ".github/probes/kart_complete_android_probe.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/.github/probes/kart_complete_android_probe.py",
+      "bytes": 59785,
+      "git_blob": "98163d522970675f977260df84bb445e864ad9d1",
+      "sha256": "74f85c19dcd85e79a4c994172c4e6e971bb9755549594e29b6c277a5c789c57b",
+      "candidate_blob": "98163d522970675f977260df84bb445e864ad9d1",
+      "proposed": false
+    },
+    {
+      "path": "config/godot-source.json",
+      "origin": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/final-source/config/godot-source.json",
+      "bytes": 145,
+      "git_blob": "ba1d6097de66ab0b38cbe8ae2915bf36525bf264",
+      "sha256": "d79a0dcbb52632b8a06d73a92e8070bbc368cfcb188743bc281199b0fb333e42",
+      "candidate_blob": "ba1d6097de66ab0b38cbe8ae2915bf36525bf264",
+      "proposed": false
+    },
+    {
+      "path": "pubspec.yaml",
+      "origin": "/tmp/host-e536-native-f9d9772-pin-integration-20261114/reference-source/pubspec.yaml",
+      "bytes": 2718,
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "candidate_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "proposed": false
+    },
+    {
+      "path": "scripts/probes/pr207_android_smoke.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/scripts/probes/pr207_android_smoke.py",
+      "bytes": 14884,
+      "git_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8",
+      "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e",
+      "candidate_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8",
+      "proposed": false
+    },
+    {
+      "path": "scripts/probes/pr207_android_ui_probe.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/scripts/probes/pr207_android_ui_probe.py",
+      "bytes": 2032,
+      "git_blob": "2966b08fab11ff05f67a587a3a564e6fdc1e6cfe",
+      "sha256": "b94dc20910a27f88613b520674d8594793621d238578da4f3918be73b7c36cb4",
+      "candidate_blob": "2966b08fab11ff05f67a587a3a564e6fdc1e6cfe",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/caption_scroll_recovery.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/caption_scroll_recovery.py",
+      "bytes": 4972,
+      "git_blob": "aef9c9a8a84d82f19ae050ec829576084e231d1f",
+      "sha256": "c241ad03df9639b060e4b87fd8ff695e6fe836dff2b8ba9a2634045c335bfe34",
+      "candidate_blob": "aef9c9a8a84d82f19ae050ec829576084e231d1f",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/flutter_return_readiness.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/flutter_return_readiness.py",
+      "bytes": 10257,
+      "git_blob": "5ffa079db10fbaf178071ec1a932a4b26ea21407",
+      "sha256": "ce32e5f08e393f9289f7541a2351d6b8a23644c232c1f8dbb62c89590c1ebe73",
+      "candidate_blob": "5ffa079db10fbaf178071ec1a932a4b26ea21407",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/kart_android_race.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/kart_android_race.py",
+      "bytes": 39513,
+      "git_blob": "a0aad12a6162370e9c0e35849e213963c76c67d2",
+      "sha256": "9777542758deae314531c4da7bccd4168eb4c730dacc0844f84bab6f6ec3b81a",
+      "candidate_blob": "a0aad12a6162370e9c0e35849e213963c76c67d2",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/android_ui.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/android_ui.py",
+      "bytes": 15599,
+      "git_blob": "dbf40dab0b0fdd29ebaecb3013ce7d642be3b771",
+      "sha256": "edb5352c5045a496b77911530e0ee0c93d58914607007458f16c7cce1cb49d14",
+      "candidate_blob": "dbf40dab0b0fdd29ebaecb3013ce7d642be3b771",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/fresh_ui_hierarchy.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/fresh_ui_hierarchy.py",
+      "bytes": 4244,
+      "git_blob": "ad3c87375c5490a8d5674fe0cd49d2a41a4de95e",
+      "sha256": "2f86e99a4f3c772974ef195d94481e99348ada02ea1ee1115d2ba1a28e7b4178",
+      "candidate_blob": "ad3c87375c5490a8d5674fe0cd49d2a41a4de95e",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/final-source/tools/android_qa/kart_garage_evidence.py",
+      "bytes": 31013,
+      "git_blob": "b80f0d8f12fe86031a91cec39c26f9d1cfa65a94",
+      "sha256": "287d12f156ec7839b3d8bb2999fca825f7e2b1775b93fcd801a3c4087578dd8f",
+      "candidate_blob": "b80f0d8f12fe86031a91cec39c26f9d1cfa65a94",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/kart_tour_evidence.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/kart_tour_evidence.py",
+      "bytes": 9299,
+      "git_blob": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+      "sha256": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+      "candidate_blob": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/native_ocr_tiles.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/native_ocr_tiles.py",
+      "bytes": 8243,
+      "git_blob": "f5aecc82db6bac1420ab1622f240cf4fa59faadd",
+      "sha256": "0365c7f57551c3f2b5efb2c4d5f7d16886cd93638f7e4be7a75c6d0fc6838704",
+      "candidate_blob": "f5aecc82db6bac1420ab1622f240cf4fa59faadd",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/native_surface_readiness.py",
+      "bytes": 4401,
+      "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4",
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+      "candidate_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/rooted_emulator.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/rooted_emulator.py",
+      "bytes": 12111,
+      "git_blob": "862bcc834e0092a25e339f2bf3a074e50477b16b",
+      "sha256": "93131a46afe4f1a4987ab36323541007ff15f5cb3579f2cd677f049091b7444b",
+      "candidate_blob": "862bcc834e0092a25e339f2bf3a074e50477b16b",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/runtime_resource_evidence.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/runtime_resource_evidence.py",
+      "bytes": 5371,
+      "git_blob": "caf093f18059272d7c3a5c9ceada574747519212",
+      "sha256": "c2cc08ca11c0d1539c7322255de34b5b12754e24f43fcf5498e213f6ca9f84f0",
+      "candidate_blob": "caf093f18059272d7c3a5c9ceada574747519212",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0-ocr.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0-ocr.json",
+      "bytes": 1682,
+      "git_blob": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623",
+      "sha256": "63e651f95bfaf92ad84a611115e3f497fb883459fc9a0131391b302920ec4a04",
+      "candidate_blob": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0.png",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0.png",
+      "bytes": 857960,
+      "git_blob": "f4050401ac73ada62cb3517ec7204f33916517b8",
+      "sha256": "472138fabf87a063f46a97e772c1118c8751d180f930a85c27fabd3c86967236",
+      "candidate_blob": "f4050401ac73ada62cb3517ec7204f33916517b8",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1-ocr.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1-ocr.json",
+      "bytes": 1682,
+      "git_blob": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623",
+      "sha256": "63e651f95bfaf92ad84a611115e3f497fb883459fc9a0131391b302920ec4a04",
+      "candidate_blob": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1.png",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1.png",
+      "bytes": 858521,
+      "git_blob": "7c4702094de7317487568ccdd875b874d243a0bd",
+      "sha256": "4d4d4e52bf2d5f2b536b4cf3049db6783097ea94ea90e50acf3dc25f41b1e7fd",
+      "candidate_blob": "7c4702094de7317487568ccdd875b874d243a0bd",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-surface-readiness.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-surface-readiness.json",
+      "bytes": 2747,
+      "git_blob": "35b5cdb2d5e6c55d2083bbb41aafc34611d5ebfe",
+      "sha256": "1147bae3acb44a1eec0e323599c07f9f5c8c5cf9092fffec9bfae1bfa127a9ce",
+      "candidate_blob": "35b5cdb2d5e6c55d2083bbb41aafc34611d5ebfe",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/provenance.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-continue-08e/provenance.json",
+      "bytes": 1776,
+      "git_blob": "f63d6917ba8b5404d4deb1209a75486c33e90caf",
+      "sha256": "5e53c5c9a62d0ee732acf5df20fc9e558ae596fa8df80a847ca1a4ec69c26a8b",
+      "candidate_blob": "f63d6917ba8b5404d4deb1209a75486c33e90caf",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "bytes": 4356,
+      "git_blob": "af252cc88dc95bd4a37234b225dec6c86d91f5b1",
+      "sha256": "70d79f7852eb55cd6ce2cbd279f4c06eb73370a50aefde38ecef594d8a2df61d",
+      "candidate_blob": "af252cc88dc95bd4a37234b225dec6c86d91f5b1",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "bytes": 3557,
+      "git_blob": "2921c810c6dd46ffac1386cd8a94f1504a8b8c0b",
+      "sha256": "91270588c5986fd3831b7017f940b0d1a6d0248b36733c78ea9c850014884a96",
+      "candidate_blob": "2921c810c6dd46ffac1386cd8a94f1504a8b8c0b",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "bytes": 3202,
+      "git_blob": "5ddf712b91506f07d97095faa728823fcf222929",
+      "sha256": "b3a7f353f9c5bf4d71bff28e79528cd83d8f07d910b3fe65bfbd052b1d822762",
+      "candidate_blob": "5ddf712b91506f07d97095faa728823fcf222929",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "bytes": 3753,
+      "git_blob": "02904427cbddc8159d16e0a6f9fc8c9c9d5fc74a",
+      "sha256": "3fc1f0d5faad762a9827eae480e303081eef7d0cdea35a7819945be3101e7acc",
+      "candidate_blob": "02904427cbddc8159d16e0a6f9fc8c9c9d5fc74a",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "bytes": 5124,
+      "git_blob": "cf836c4d8b8ca0362ff72d19a44a6d961a68b12b",
+      "sha256": "489fa667ddc409445c51cd42728c1a05241a98d9fdfd190c738efd33e0ce8762",
+      "candidate_blob": "cf836c4d8b8ca0362ff72d19a44a6d961a68b12b",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "bytes": 3527,
+      "git_blob": "1527db533fb57a4c727c4aafb2df7fde07cc992f",
+      "sha256": "b9102ea73357d877ef63b3786b8660eacd6e45a7dfa4b8be131998631bf9432e",
+      "candidate_blob": "1527db533fb57a4c727c4aafb2df7fde07cc992f",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "bytes": 3567,
+      "git_blob": "e830d558853fbf8f511d1a9c3edec5328da7970e",
+      "sha256": "56dfbaaa5acb1a5b3b008cb09b190a6b8e867ca064decdcc023d94d8b933876d",
+      "candidate_blob": "e830d558853fbf8f511d1a9c3edec5328da7970e",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr.json",
+      "bytes": 24660,
+      "git_blob": "08570b2e858ecc7e9ca396e5ef5a64d48f367de2",
+      "sha256": "096c79591f31a71d16731cc1f901702a52bae76e29ee115805a8f5e39baba2ea",
+      "candidate_blob": "08570b2e858ecc7e9ca396e5ef5a64d48f367de2",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0.png",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0.png",
+      "bytes": 785894,
+      "git_blob": "abc348f5a479c2aedf4493d69df08fa09b801fa2",
+      "sha256": "50b2ffdd9db0c970505b479b4497b1fe212cde38db6158081149d407b2e94772",
+      "candidate_blob": "abc348f5a479c2aedf4493d69df08fa09b801fa2",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "bytes": 1011,
+      "git_blob": "777b661caf575d680330f179bd7101b71a361c62",
+      "sha256": "f04f75a520b4a33e910a908a38d0c4320c8524af382cb77a0bafaed53f4d5ea5",
+      "candidate_blob": "777b661caf575d680330f179bd7101b71a361c62",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/provenance.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/provenance.json",
+      "bytes": 6626,
+      "git_blob": "58cf9abba377e361ef85fef47f1ce23ec06d2cbd",
+      "sha256": "730143a2d7df6d0be5affd070cf4bae106bb8bdd303d9b431265750c0c25b7a2",
+      "candidate_blob": "58cf9abba377e361ef85fef47f1ce23ec06d2cbd",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "bytes": 4859,
+      "git_blob": "d9075247fd68c11834d38e734c54d1209cd54ddb",
+      "sha256": "81bbbb9636cf57310c1cbfec7ac808e9cb7bd6bdf81827d8fbba4224068254f9",
+      "candidate_blob": "d9075247fd68c11834d38e734c54d1209cd54ddb",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "bytes": 1997,
+      "git_blob": "1636c358380c690d4b8867bf8b2ae7e33b29b5ba",
+      "sha256": "eacb315051094ae1eb5d76790ce1534fc2fef10ef75968b212219b8efb8d49b8",
+      "candidate_blob": "1636c358380c690d4b8867bf8b2ae7e33b29b5ba",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "bytes": 4113,
+      "git_blob": "720e63eff51c361550cb61f0f75403ba02526f62",
+      "sha256": "be22c59625621e7aedcf9e023d745414be8440d54a2ec2a544c4e48846c66da8",
+      "candidate_blob": "720e63eff51c361550cb61f0f75403ba02526f62",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "bytes": 2997,
+      "git_blob": "c393c4090b2045ea7fae707258385915e928cbe8",
+      "sha256": "adf8769eada6aee36af01cd91176b4b71336ccc4d2350f0b135ea4a34f5db2d9",
+      "candidate_blob": "c393c4090b2045ea7fae707258385915e928cbe8",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "bytes": 6020,
+      "git_blob": "936b6774912f092c0bcb5fb97efbad283a1ded8c",
+      "sha256": "61fca29d6364cc6f0f14c82fec950dc0d334eea0a67b58144cfbea2dd2f93cb1",
+      "candidate_blob": "936b6774912f092c0bcb5fb97efbad283a1ded8c",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "bytes": 3518,
+      "git_blob": "859043002f90c214d7a9f7014eb0539178b4b4e5",
+      "sha256": "8fa662dd8af4517ac22031cda5dee1a5ebf261169156902aaa6be4540d01cada",
+      "candidate_blob": "859043002f90c214d7a9f7014eb0539178b4b4e5",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "bytes": 3523,
+      "git_blob": "9253ca958a73d3e9aa83c8dbff047b68b034a615",
+      "sha256": "7e7e7e08094ec0a156a62c0f1b4963a9b5eb07ac681fd29547f7951438055dba",
+      "candidate_blob": "9253ca958a73d3e9aa83c8dbff047b68b034a615",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr.json",
+      "bytes": 26195,
+      "git_blob": "1dd30e56e59d16464f90986c51fe943737761f52",
+      "sha256": "b48cafe000c235d88ffea09906432bd9db4d70a8b2ceee6625a63988d09add0e",
+      "candidate_blob": "1dd30e56e59d16464f90986c51fe943737761f52",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0.png",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0.png",
+      "bytes": 761058,
+      "git_blob": "524493b5b1bffb8342eb2a32b3faaccf5529f414",
+      "sha256": "b17314a87af1ed0d2d840c1fddbfc396b79e612fd0c80c60fc83cf18e53b19be",
+      "candidate_blob": "524493b5b1bffb8342eb2a32b3faaccf5529f414",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "bytes": 1003,
+      "git_blob": "0b35c40db72a8d34ff120996f316fa33314fcebe",
+      "sha256": "a02d9015fb22d4a5368999d28cb590d2fccd2fdaef76d2dd7ee0d1f178f9da0a",
+      "candidate_blob": "0b35c40db72a8d34ff120996f316fa33314fcebe",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0-ocr.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0-ocr.json",
+      "bytes": 22111,
+      "git_blob": "c783718ec55bbb43bf35fce9567e1cb22e800015",
+      "sha256": "6138480ca5d08eed03917918641dc66b85dc3cb2c835ec57b51dbb9a0574cc33",
+      "candidate_blob": "c783718ec55bbb43bf35fce9567e1cb22e800015",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0.png",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0.png",
+      "bytes": 790695,
+      "git_blob": "c52ea1af7b3e177f5e187ffa287164d38ec465b9",
+      "sha256": "59a150123c6c06ef63c078230ca51dcf09bc6c74d6fb08b2386ce02380d4772c",
+      "candidate_blob": "c52ea1af7b3e177f5e187ffa287164d38ec465b9",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "bytes": 5014,
+      "git_blob": "977cbeaeafc73f20e7da8ba77e03c542cfdf75f7",
+      "sha256": "50e39063fbf0b94b94e7ff6a0bc7175d89cee20f3566b69e457ff1335b9606d3",
+      "candidate_blob": "977cbeaeafc73f20e7da8ba77e03c542cfdf75f7",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "bytes": 2502,
+      "git_blob": "ac54992d61917291b0eb7542799ce61e15bbc2e9",
+      "sha256": "1b947a31e2c8ba8b42828b2c77f18bb65ca640453f3682d01b3e1c16b51407a8",
+      "candidate_blob": "ac54992d61917291b0eb7542799ce61e15bbc2e9",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "bytes": 4156,
+      "git_blob": "bab0f2f4cb226f3a9aa6062e45447524c3f2994b",
+      "sha256": "add2cf19c1dfaca6fc0ab11875df56dfc0559caebbd18a866f4a3c848dd5e199",
+      "candidate_blob": "bab0f2f4cb226f3a9aa6062e45447524c3f2994b",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "bytes": 4794,
+      "git_blob": "1d62d918dfbebb35d9f9549b33400201e25d3ee6",
+      "sha256": "23af4eb6e08d9e9666633e2bec70ec641b692efa5a2a0bf870f9136d46b9409f",
+      "candidate_blob": "1d62d918dfbebb35d9f9549b33400201e25d3ee6",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "bytes": 6552,
+      "git_blob": "7ea4c2c1821623a84bff2443ea5987ba673ee085",
+      "sha256": "751383c2c156608ac81b7fa507d5a68bc4180e614db1cfa3237b46ae070e4849",
+      "candidate_blob": "7ea4c2c1821623a84bff2443ea5987ba673ee085",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "bytes": 2974,
+      "git_blob": "7416b5452293e5664ea2c8a2d1714fc81072b9fe",
+      "sha256": "a6ca440b761dda8d31dba3592496adc6e355c572b0e8d480196988f6c3bab81d",
+      "candidate_blob": "7416b5452293e5664ea2c8a2d1714fc81072b9fe",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "bytes": 2972,
+      "git_blob": "df99f3456b8de4e939b09fd2f84dd2dbac20c2a2",
+      "sha256": "7062e17daaf890122f81a4bea7a5055ced14c4478126b5b43ae3b0d5a43b0bee",
+      "candidate_blob": "df99f3456b8de4e939b09fd2f84dd2dbac20c2a2",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr.json",
+      "bytes": 21249,
+      "git_blob": "c204245477c52956f864ebafccc41fd2cb445bda",
+      "sha256": "926590e14d10afc157be939593ebc2fbc38b6c587cf7cd7d59453433161f26eb",
+      "candidate_blob": "c204245477c52956f864ebafccc41fd2cb445bda",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2.png",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2.png",
+      "bytes": 787362,
+      "git_blob": "928e78cac6aa289fac70f4fdc318cc1e8d908436",
+      "sha256": "06b0a39e612271df34b4a8522ba609234ad4890b3dda7b7de4a16d33d6ac355c",
+      "candidate_blob": "928e78cac6aa289fac70f4fdc318cc1e8d908436",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-surface-readiness.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-surface-readiness.json",
+      "bytes": 3842,
+      "git_blob": "58a2ee61e1936b3d6d661fce57f8fd451ea661ab",
+      "sha256": "8fd5ce1630d0b63e4711d7f95fd61fbcae70599da3e8e1344567703ea2b00424",
+      "candidate_blob": "58a2ee61e1936b3d6d661fce57f8fd451ea661ab",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/provenance.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/fixtures/kart-scroll-3d91/provenance.json",
+      "bytes": 3992,
+      "git_blob": "9a1e0b10ed23daa546b9fe183dcbceb5234713f3",
+      "sha256": "04a79233773209b939dd13edd0be78cb9a03b4211f7aceba9484650a6015c7af",
+      "candidate_blob": "9a1e0b10ed23daa546b9fe183dcbceb5234713f3",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/final-source/tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json",
+      "bytes": 22706,
+      "git_blob": "eda8fe14e9a75356edcf459056b4087b432d4f94",
+      "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9",
+      "candidate_blob": "eda8fe14e9a75356edcf459056b4087b432d4f94",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png",
+      "origin": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/final-source/tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png",
+      "bytes": 787513,
+      "git_blob": "a229f80913e5657d5f4a29c568cbdaf41d4503ed",
+      "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc",
+      "candidate_blob": "a229f80913e5657d5f4a29c568cbdaf41d4503ed",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/final-source/tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json",
+      "bytes": 20831,
+      "git_blob": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b",
+      "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7",
+      "candidate_blob": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png",
+      "origin": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/final-source/tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png",
+      "bytes": 784333,
+      "git_blob": "7f36ef4670b1a2b5770835ccb26bd290cde4b666",
+      "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a",
+      "candidate_blob": "7f36ef4670b1a2b5770835ccb26bd290cde4b666",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/final-source/tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json",
+      "bytes": 9872,
+      "git_blob": "14ca066b61781ebca9657fcd30267d75c3724a6c",
+      "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10",
+      "candidate_blob": "14ca066b61781ebca9657fcd30267d75c3724a6c",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/final-source/tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json",
+      "bytes": 19788,
+      "git_blob": "bdbbb2901f426444c34544ee13ddc30ec202cc40",
+      "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60",
+      "candidate_blob": "bdbbb2901f426444c34544ee13ddc30ec202cc40",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png",
+      "origin": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/final-source/tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png",
+      "bytes": 766810,
+      "git_blob": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6",
+      "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf",
+      "candidate_blob": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json",
+      "origin": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/final-source/tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json",
+      "bytes": 20551,
+      "git_blob": "392ad9a7b10eea7363ddfbf966592641aa6f2ade",
+      "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc",
+      "candidate_blob": "392ad9a7b10eea7363ddfbf966592641aa6f2ade",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png",
+      "origin": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/final-source/tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png",
+      "bytes": 761351,
+      "git_blob": "7785a71aca44a5dd567c6fab62251d7f0cefb887",
+      "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff",
+      "candidate_blob": "7785a71aca44a5dd567c6fab62251d7f0cefb887",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_continue_caption.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/test_kart_continue_caption.py",
+      "bytes": 8453,
+      "git_blob": "1d02ca8663998dcbddb6c02107148672c5882b52",
+      "sha256": "fb7ff4ed94b61bd266b9eb2ec6dd2d1fb9de6c08891a909cf875af40165101e9",
+      "candidate_blob": "1d02ca8663998dcbddb6c02107148672c5882b52",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_driver_word_evidence.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/test_kart_driver_word_evidence.py",
+      "bytes": 8461,
+      "git_blob": "b5bb8e3c5f53d79d7a64b5723698292b427c7cf8",
+      "sha256": "b80b3aa4eb38b289319e32dae9fa6476aa1b3badb77c497246314953230928fd",
+      "candidate_blob": "b5bb8e3c5f53d79d7a64b5723698292b427c7cf8",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "origin": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/final-source/tools/android_qa/tests/test_kart_garage_evidence.py",
+      "bytes": 31394,
+      "git_blob": "a2257b5bbe4e61e4c560441a570410c56baf517c",
+      "sha256": "03a5508a572c2446e1a8c1c96889ec1e7cbcb47787dc9205bd416b17edbc213d",
+      "candidate_blob": "84469b5d3ba41c68b4d193396a444fe2192b55f1",
+      "proposed": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "origin": "/tmp/host-pr493-current-frame-reuse-7ac-20261114/final-source/tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "bytes": 38164,
+      "git_blob": "f4a1f3b262ebced3ebd823d07748ecaee7834cac",
+      "sha256": "1e5e629efd384cb2addc05c973317b94a25198da947501bb4b76949bf34d9e27",
+      "candidate_blob": "4abc7df8a9ebef448c85a9cfb1789e5bcaf638bf",
+      "proposed": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/final-source/tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+      "bytes": 17208,
+      "git_blob": "ea3da4bb07f125df63ab4a88d011999beeef4827",
+      "sha256": "44c2b05f9099eaf13dd8e9811bacb946be58c58c849e76d6d1e042dd2d888206",
+      "candidate_blob": "ea3da4bb07f125df63ab4a88d011999beeef4827",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_modernization_tour_identity.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/test_modernization_tour_identity.py",
+      "bytes": 17607,
+      "git_blob": "fc5dfc4d656462c8e98821589ecc1fcda690e56f",
+      "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939",
+      "candidate_blob": "fc5dfc4d656462c8e98821589ecc1fcda690e56f",
+      "proposed": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_native_surface_readiness.py",
+      "origin": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/tools/android_qa/tests/test_native_surface_readiness.py",
+      "bytes": 21041,
+      "git_blob": "cd60568580760dc90034154e630ff42bcc442e77",
+      "sha256": "d02654b8318ba1df095c4622ab204b1f07e725c3f53e144bd705b4e4e749e2ff",
+      "candidate_blob": "cd60568580760dc90034154e630ff42bcc442e77",
+      "proposed": false
+    }
+  ],
+  "missing": []
+}

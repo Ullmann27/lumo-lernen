@@ -1,0 +1,8 @@
+{
+  "exit_code": 1,
+  "observed_errors": 2,
+  "finding": "runner.temp is not available in a job-level env expression; both job env declarations were rejected.",
+  "repair": "Keep the two job env directory names literal and resolve them against RUNNER_TEMP inside each run block.",
+  "original_tool_stdout_saved": false,
+  "before_source": "originals/root-workflow-before-actionlint-fix.yml"
+}

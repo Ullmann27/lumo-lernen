@@ -1,0 +1,7904 @@
+--- a/.github/probes/modernization_android_tour.py
++++ b/.github/probes/modernization_android_tour.py
+@@ -374,54 +374,138 @@
+     return None
+ 
+ 
+-def _stage_kart_scroll_recovery():
+-    """Reuse the observed two-frame list scroll from supplemental Garage QA."""
++def _stage_kart_scroll_recovery(kart: str = 'gecko_velo'):
++    """Scroll only within a twice observed current list, including clipped gaps."""
+     previous, swipes = None, 0
+ 
+     def recovery(frame, lines, source, *, deadline, previous_missing_frame):
+         nonlocal previous, swipes
+-        try:
+-            current = garage_evidence.stage_garage_scroll_observation(frame, lines)
+-        except RuntimeError as error:
+-            if str(error) != 'No currently visible vehicle card in the actual left list':
+-                raise
+-            words = garage_evidence.stage_garage_word_observations(
+-                source.parent, source.stem, lines)
+-            current = garage_evidence.stage_garage_scroll_observation(
+-                frame, lines, caption_words=words['captions'])
+-            current['caption_source'] = 'original_tsv_word_sequences'
+-            current['ocr_sources'] = words['sources']
+-        stable = (previous is not None and previous_missing_frame is not None and
++        current = garage_evidence.stage_garage_scroll_observation(frame, lines, source=source, kart=kart)
++        if not current['visible_cards']:
++            # Preserve the original whole-word Boru recovery. Component OCR
++            # has a different coordinate/source contract and is never passed
++            # off as one of these original full-frame TSV variants.
++            full_frame = [row for row in lines if row.get('variant') in
++                          ('contrast', 'raw', 'white-text', 'white-latin',
++                           'navy-latin', 'navy-latin-1x', 'teal-text-1x')]
++            words = garage_evidence.stage_garage_word_observations(source.parent, source.stem, full_frame)
++            if words['captions']:
++                current = garage_evidence.stage_garage_scroll_observation(
++                    frame, lines, source=source, kart=kart, caption_words=words['captions'])
++            current.update(caption_source='original_tsv_word_sequences' if words['captions']
++                           else 'original_tsv_no_complete_card', ocr_sources=words['sources'])
++        words_stable = True
++        if previous is not None and ('caption_source' in current or 'caption_source' in previous):
++            words_stable = current.get('caption_source') == previous.get('caption_source')
++            if current.get('caption_source') == 'original_tsv_word_sequences':
++                old_card, new_card = previous.get('card'), current.get('card')
++                words_stable = (words_stable and old_card is not None and new_card is not None and
++                                garage_evidence.normalize(old_card['text']) == garage_evidence.normalize(new_card['text']) and
++                                max(abs(a - b) for a, b in zip(old_card['bounds'], new_card['bounds'])) <= 3)
++        stable = (previous is not None and previous_missing_frame is not None and words_stable and
+                   previous_missing_frame.get('pixels') == frame['pixels'] and
+-                  max(abs(a - b) for a, b in zip(current['gesture'], previous['gesture'])) <= 12)
++                  previous_missing_frame.get('source') != frame.get('source') and
++                  current['direction'] == previous['direction'] and
++                  all(max(abs(a - b) for a, b in zip(current[key], previous[key])) <= 3
++                      for key in ('viewport_bounds', 'gesture')) and
++                  all(max(abs(a - b) for a, b in zip(current['scrollbar'][key], previous['scrollbar'][key])) <= 3
++                      for key in ('track_bounds', 'thumb_bounds')))
+         previous = current
+         if not stable:
+             return {'status': 'WAITING_FOR_SECOND_LIST_FRAME', **current}
+         garage_evidence.demand(swipes < 5, 'Vehicle card remained offscreen after five observed list gestures')
+         garage_evidence.demand(probe.digest(source) == frame['source_sha256'],
+                                'Observed vehicle-list screenshot changed before gesture')
++        prior_source = Path(source).parent / previous_missing_frame['source']
++        garage_evidence.demand(probe.digest(prior_source) == previous_missing_frame['source_sha256'],
++                               'Previous observed vehicle-list screenshot changed before gesture')
+         remaining = deadline - time.monotonic()
+         garage_evidence.demand(remaining > 0, 'Vehicle list scrolling exceeded its bounded deadline')
+         base.adb('shell', 'input', 'swipe', *map(str, current['gesture']), '650',
+                  timeout=min(15, remaining))
+         swipes += 1
+         previous = None
++        garage_evidence.demand(time.monotonic() < deadline,
++                               'Vehicle list gesture completed beyond its bounded deadline')
+         return {'status': 'SWIPE_SENT', 'swipe_number': swipes, **current}
+ 
+     return recovery
+ 
+ 
+-def _select_stage_kart(out: Path, kart: str) -> dict:
++def _select_stage_kart(out: Path, kart: str, timeout: float = 150) -> dict:
++    """Require two complete current card names inside the real list before a tap."""
+     label = garage_evidence.KARTS[kart]
+     tag = '21_stage_select_' + kart
+-    probe.native_tap(out, label, tag, exact=True, timeout=150,
+-                     missing_caption=_stage_kart_scroll_recovery())
+     journal = out / (tag + '-surface-readiness.json')
+-    touch = json.loads(journal.read_text())
+-    garage_evidence.demand(touch.get('status') == 'TOUCH_SENT',
+-                           'No observed native kart-selection touch was sent')
+-    return {'kart': kart, 'caption': label, 'touch': touch['touch'],
+-            'readiness': journal.name, 'scope': 'Touch only; actual new race selection is checked separately'}
++    started = time.monotonic()
++    deadline = started + timeout
++    touch = {'status': 'WAITING', 'label': label, 'timeout_seconds': timeout,
++             'exact_caption_required': True, 'orientation_policy': 'landscape',
++             'scope': 'Current complete card touch; actual new race selection is checked separately',
++             'frames': []}
++    previous, previous_viewport, previous_missing_frame = None, None, None
++    recovery = _stage_kart_scroll_recovery(kart)
++    try:
++        while time.monotonic() < deadline:
++            name = f'{tag}-{len(touch["frames"])}'
++            snapshot = probe.capture(out, name, timeout=deadline - time.monotonic())
++            source = out / snapshot['file']
++            frame = probe.inspect_surface(source, orientation='landscape')
++            frame['captured_after_seconds'] = round(time.monotonic() - started, 6)
++            touch['frames'].append(frame)
++            if not frame['acceptable_for_target_sampling']:
++                previous, previous_viewport, previous_missing_frame = None, None, None
++            else:
++                remaining = deadline - time.monotonic()
++                if remaining <= 0:
++                    break
++                lines = probe.image_lines(out, name, probe.normalized(label), source_path=source,
++                                          timeout=remaining, exact=True, all_caption_regions=True)
++                current = garage_evidence.stage_garage_scroll_observation(frame, lines, source=source, kart=kart)
++                frame['kart_list'] = current
++                choice = garage_evidence.stage_kart_target_observation(frame, lines, kart, current['viewport_bounds'])
++                if choice is None:
++                    previous, previous_viewport = None, None
++                    frame['reasons'].append('complete requested caption not observed inside the current card clip')
++                    if time.monotonic() >= deadline:
++                        break
++                    report = recovery(frame, lines, source, deadline=deadline,
++                                      previous_missing_frame=previous_missing_frame)
++                    frame['missing_caption_recovery'] = report
++                    previous_missing_frame = None if report['status'] == 'SWIPE_SENT' else frame
++                else:
++                    previous_missing_frame = None
++                    if (previous_viewport is None or
++                            max(abs(a - b) for a, b in zip(current['viewport_bounds'], previous_viewport)) > 3):
++                        previous = None
++                    observed = probe.target_observation(frame, choice['target']['bounds'], previous)
++                    frame['target'] = observed
++                    previous, previous_viewport = observed, current['viewport_bounds']
++                    if observed['stable_observed_target']:
++                        garage_evidence.demand(probe.digest(source) == frame['source_sha256'],
++                                               'Observed kart screenshot changed before touch')
++                        remaining = deadline - time.monotonic()
++                        if remaining <= 0:
++                            break
++                        x0, y0, x1, y1 = observed['bounds']
++                        x, y = round((x0 + x1) / 2), round((y0 + y1) / 2)
++                        touch.update(touch=[x, y], final_observed_bounds=observed['bounds'])
++                        base.adb('shell', 'input', 'swipe', str(x), str(y), str(x), str(y), '120',
++                                 timeout=min(15, remaining))
++                        garage_evidence.demand(time.monotonic() < deadline,
++                                               'Kart selection completed beyond its bounded deadline')
++                        touch['status'] = 'TOUCH_SENT'
++                        time.sleep(min(1.5, max(0, deadline - time.monotonic())))
++                        return {'kart': kart, 'caption': label, 'touch': touch['touch'],
++                                'readiness': journal.name, 'scope': touch['scope']}
++            time.sleep(min(1.5, max(0, deadline - time.monotonic())))
++        raise TimeoutError('Current complete kart caption was not observed twice inside the list: ' + label)
++    except Exception as error:
++        touch.update(status='FAIL', error=str(error))
++        raise
++    finally:
++        touch['elapsed_seconds'] = round(time.monotonic() - started, 6)
++        journal.write_text(json.dumps(touch, indent=2, ensure_ascii=False) + '\n')
+ 
+ 
+ def _select_stage_driver(out: Path, timeout: float = 150) -> dict:
+--- a/tools/android_qa/kart_garage_evidence.py
++++ b/tools/android_qa/kart_garage_evidence.py
+@@ -12,8 +12,15 @@
+ from pathlib import Path
+ import unicodedata
+ 
++from PIL import Image
++
+ 
+ KARTS = {'comet': 'Comet', 'gecko_velo': 'Gecko Velo'}
++SPATIAL_KART_CAPTIONS = (
++    'Comet', 'Gecko Velo', 'Boru Rally', 'Glider', 'Nala Comet', 'Noa Tide',
++    'Iva Aurora', 'Aurora GT', 'Zuri Volt', 'Blitz', 'Terra', 'Koloss',
++    'Phantom', 'Stella',
++)
+ 
+ 
+ def demand(condition: bool, message: str) -> None:
+@@ -300,57 +307,226 @@
+     return {'captions': observed, 'sources': sources}
+ 
+ 
+-def stage_garage_scroll_observation(frame: dict, lines: list[dict], *,
++def _observed_caption(lines: list[dict], caption: str, width: int, height: int) -> dict:
++    matches = [row for row in lines if normalize(row['text']) == normalize(caption)]
++    demand(matches, f'Current {caption} caption is required for the vehicle list')
++    for row in matches:
++        bounds = row.get('bounds')
++        demand(isinstance(bounds, (tuple, list)) and len(bounds) == 4 and
++               all(isinstance(value, (int, float)) and not isinstance(value, bool) and
++                   math.isfinite(value) for value in bounds), 'Invalid current list anchor bounds')
++        x0, y0, x1, y1 = bounds
++        demand(0 <= x0 < x1 <= width and 0 <= y0 < y1 <= height,
++               'Current list anchor exceeds the screenshot')
++    chosen = matches[0]
++    x0, y0, x1, y1 = chosen['bounds']
++    for row in matches[1:]:
++        a0, b0, a1, b1 = row['bounds']
++        intersection = max(0, min(x1, a1) - max(x0, a0)) * max(0, min(y1, b1) - max(y0, b0))
++        union = (x1 - x0) * (y1 - y0) + (a1 - a0) * (b1 - b0) - intersection
++        demand(intersection / union >= .6, f'Ambiguous current {caption} regions')
++    return chosen
++
++def _workshop_outline(image: Image.Image, caption: dict, top: int, bottom: int) -> list[int]:
++    """Read the connected cyan outline enclosing the current workshop caption."""
++    pixels, points = image.load(), set()
++    for y in range(top, bottom):
++        for x in range(image.width // 2):
++            red, green, blue = pixels[x, y]
++            if green >= 100 and blue >= 100 and green - red >= 35 and blue - red >= 35 and abs(green - blue) <= 55:
++                points.add((x, y))
++    cx0, cy0, cx1, cy1 = caption['bounds']
++    candidates = []
++    while points:
++        first = points.pop()
++        pending, x0, y0, x1, y1, count = [first], first[0], first[1], first[0], first[1], 0
++        while pending:
++            x, y = pending.pop()
++            x0, y0, x1, y1 = min(x0, x), min(y0, y), max(x1, x), max(y1, y)
++            count += 1
++            for point in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
++                if point in points:
++                    points.remove(point)
++                    pending.append(point)
++        x1, y1 = x1 + 1, y1 + 1
++        if (x0 < cx0 < cx1 < x1 and y0 < cy0 < cy1 < y1 and
++                1.8 * (cy1 - cy0) <= y1 - y0 <= 6 * (cy1 - cy0) and
++                x1 - x0 >= 1.2 * (cx1 - cx0) and x1 - x0 >= 2 * (y1 - y0) and
++                count >= x1 - x0 + y1 - y0):
++            candidates.append([x0, y0, x1, y1])
++    demand(len(candidates) == 1, 'A unique current workshop outline is required for the vehicle list')
++    return candidates[0]
++
++def _observed_scrollbar(image: Image.Image, workshop: list[int], header_bottom: int) -> dict:
++    """Locate the current narrow track and its contiguous grey thumb in pixels."""
++    left, top, right, bottom = workshop
++    pixels, columns = image.load(), []
++    for x in range(round(right - (right - left) * .22), min(image.width // 2, round(right + image.width * .01))):
++        start, thumb_rows = None, []
++        for y in range(header_bottom + 1, top + 1):
++            red, green, blue = pixels[x, y]
++            track = 8 <= red <= 42 and 0 <= green - red <= 8 and 2 <= blue - green <= 12
++            # Include the thumb's antialiased boundary, which lies between
++            # its grey fill and the dark track in these original PNGs.
++            thumb = 43 <= red <= 180 and abs(green - red) <= 10 and 0 <= blue - green <= 12
++            if y < top and (track or thumb):
++                if start is None:
++                    start, thumb_rows = y, []
++                if thumb:
++                    thumb_rows.append(y)
++            elif start is not None:
++                length = y - start
++                if (length >= max(40, (top - header_bottom) * .35) and
++                        max(6, length * .03) <= len(thumb_rows) <= length * .4 and
++                        max(thumb_rows) - min(thumb_rows) + 1 == len(thumb_rows) and
++                        top - y <= max(10, (bottom - top) * .35)):
++                    columns.append([x, start, y, min(thumb_rows), max(thumb_rows) + 1])
++                start = None
++    demand(columns, 'No current vehicle-list scrollbar track and thumb observed')
++    longest = max(row[2] - row[1] for row in columns)
++    columns = [row for row in columns if row[2] - row[1] >= longest * .98]
++    groups = []
++    for row in columns:
++        if (not groups or row[0] - groups[-1][-1][0] > 3 or
++                any(abs(row[index] - groups[-1][-1][index]) > 3 for index in (1, 2, 3, 4))):
++            groups.append([])
++        groups[-1].append(row)
++    groups = [group for group in groups if len(group) >= 3 and
++              group[-1][0] - group[0][0] + 1 <= max(6, longest * .08)]
++    demand(len(groups) == 1, 'Ambiguous or incomplete current vehicle-list scrollbar')
++    group = groups[0]
++    track_bounds = [group[0][0], max(row[1] for row in group), group[-1][0] + 1, min(row[2] for row in group)]
++    thumb_bounds = [track_bounds[0], max(row[3] for row in group), track_bounds[2], min(row[4] for row in group)]
++    demand(track_bounds[1] <= thumb_bounds[1] < thumb_bounds[3] <= track_bounds[3],
++           'Current scrollbar thumb is outside its track')
++    return {'track_bounds': track_bounds, 'thumb_bounds': thumb_bounds,
++            'sampled_columns': len(group)}
++
++def stage_kart_target_observation(frame: dict, lines: list[dict], kart: str,
++                                  viewport_bounds: list[int]) -> dict | None:
++    """Only a complete, unambiguous current name inside the clip permits a tap."""
++    demand(kart in KARTS and frame.get('acceptable_for_target_sampling') is True,
++           'A complete current vehicle surface and known kart are required')
++    left, top, right, bottom = viewport_bounds
++    width, height = frame['pixels']
++    demand(0 <= left < right <= width and 0 <= top < bottom <= height,
++           'Current vehicle viewport is outside the screenshot')
++    matches = [row for row in lines if normalize(row['text']) == normalize(KARTS[kart])]
++    inside = []
++    for row in matches:
++        bounds = row.get('bounds')
++        demand(isinstance(bounds, (list, tuple)) and len(bounds) == 4 and
++               all(isinstance(value, (int, float)) and not isinstance(value, bool) and
++                   math.isfinite(value) for value in bounds), 'Invalid current kart caption bounds')
++        x0, y0, x1, y1 = bounds
++        # A clipped glyph's OCR rectangle can touch the clip edge while still
++        # spelling the requested name. Keep a real interior margin there.
++        margin = max(2, (y1 - y0) * .15)
++        if left + margin < x0 < x1 < right - margin and top + margin < y0 < y1 < bottom - margin:
++            inside.append(row)
++    if not inside:
++        return None
++    selected = _observed_caption(inside, KARTS[kart], width, height)
++    return {'target': selected, 'matching_observations': len(inside),
++            'viewport_bounds': viewport_bounds,
++            'scope': 'Complete current caption inside the observed card clip; race save still mandatory'}
++
++
++def stage_garage_scroll_observation(frame: dict, lines: list[dict], *, source: Path,
++                                    kart: str = 'gecko_velo',
+                                     caption_words: list[dict] | None = None) -> dict:
+-    """Adapt PR #456's observed list drag to the current spatial menu anchors.
+-
+-    The title is intentionally hidden on short screens. The actual Karts tab,
+-    current footer and a visible vehicle card bound the left-hand list instead.
+-    This determines a scroll gesture only; the target still needs a real touch.
++    """Observe the real short list even when no complete card name is visible.
++
++    The scrollbar's current pixels bound the vertical clip; the separately
++    observed aligned workshop outline bounds its horizontal interior. Neither
++    the tab/footer gap nor a remembered caption is a scrolling rectangle.
+     """
+     demand(frame.get('acceptable_for_target_sampling') is True,
+            'Cannot scroll an incomplete native surface')
+     width, height = frame['pixels']
+     demand(width > height > 0, 'Expected the actual landscape Garage')
+-    headers = [row for row in lines if normalize(row['text']) == 'karts']
+-    footers = [row for row in lines if normalize(row['text']) in
+-               ('kartmenu', 'menu', 'start', 'rennenstarten')]
+-    demand(headers and footers, 'Actual Karts tab and menu/start footer required before list scrolling')
+-    header_bottom = min(row['bounds'][3] for row in headers)
+-    footer_top = min(row['bounds'][1] for row in footers)
++    demand(kart in KARTS, 'Unknown requested spatial kart')
++    source = Path(source)
++    raw = source.read_bytes()
++    demand(source.name == frame.get('source') and len(raw) == frame.get('source_bytes') and
++           hashlib.sha256(raw).hexdigest() == frame.get('source_sha256'),
++           'Current vehicle-list screenshot identity changed')
++    with Image.open(io.BytesIO(raw)) as opened:
++        demand(opened.format == 'PNG' and opened.size == (width, height),
++               'Current vehicle-list screenshot dimensions or format differ')
++        image = opened.convert('RGB')
++    header = _observed_caption(lines, 'Karts', width, height)
++    workshop_caption = _observed_caption(lines, 'Lack, Teile & Effekte', width, height)
++    footer = _observed_caption(lines, 'Rennen starten', width, height)
++    header_bottom, footer_top = math.ceil(header['bounds'][3]), math.floor(footer['bounds'][1])
++    demand(header_bottom < workshop_caption['bounds'][1] < workshop_caption['bounds'][3] < footer_top and
++           workshop_caption['bounds'][2] < width * .5,
++           'Current workshop does not separate the left list from the race footer')
++    workshop = _workshop_outline(image, workshop_caption, header_bottom + 1, footer_top)
++    scrollbar = _observed_scrollbar(image, workshop, header_bottom)
++    rail, thumb = scrollbar['track_bounds'], scrollbar['thumb_bounds']
++    margin = max(3, math.ceil((workshop[2] - workshop[0]) * .02))
++    viewport = [workshop[0] + margin, rail[1], rail[0] - margin, rail[3]]
++    left, top, right, bottom = viewport
++    demand(0 <= left < right < width * .5 and header_bottom < top < bottom < workshop[1] < footer_top and
++           right - left >= 4 * margin and bottom - top >= 60,
++           'Current card viewport is too small or conflicts with the workshop')
++    order = {normalize(caption): index for index, caption in enumerate(SPATIAL_KART_CAPTIONS)}
+     candidates = lines if caption_words is None else caption_words
++    # Retain the stricter current-frame word-evidence contract. Words may
++    # guide scrolling inside the observed clip; they never authorize a tap.
++    for row in candidates:
++        if caption_words is None and normalize(row['text']) not in order:
++            continue
++        bounds = row.get('bounds')
++        demand(isinstance(bounds, (list, tuple)) and len(bounds) == 4 and
++               all(isinstance(value, (int, float)) and not isinstance(value, bool) and
++                   math.isfinite(value) for value in bounds),
++               'Invalid observed vehicle/menu bounds')
++        x0, y0, x1, y1 = bounds
++        demand(0 <= x0 < x1 <= width and 0 <= y0 < y1 <= height,
++               'Observed vehicle/menu bounds exceed the current screenshot')
++    cards = [row for row in candidates if normalize(row['text']) in order and
++             left < row['bounds'][0] < row['bounds'][2] < right and
++             top + 2 < row['bounds'][1] < row['bounds'][3] < bottom - 2]
+     if caption_words is not None:
+-        for row in headers + footers + candidates:
+-            bounds = row.get('bounds')
+-            demand(isinstance(bounds, (list, tuple)) and len(bounds) == 4 and
+-                   all(isinstance(value, (int, float)) and not isinstance(value, bool) and
+-                       math.isfinite(value) for value in bounds),
+-                   'Invalid observed vehicle/menu bounds')
+-            x0, y0, x1, y1 = bounds
+-            demand(0 <= x0 < x1 <= width and 0 <= y0 < y1 <= height,
+-                   'Observed vehicle/menu bounds exceed the current screenshot')
+-    cards = [row for row in candidates if normalize(row['text']) in
+-             ('comet', 'geckovelo', 'borurally', 'glider', 'nalacomet', 'noatide') and
+-             0 < row['bounds'][0] < row['bounds'][2] < width * .50 and
+-             header_bottom < row['bounds'][1] < row['bounds'][3] < footer_top]
+-    demand(cards, 'No currently visible vehicle card in the actual left list')
+-    if caption_words is not None:
+-        for index, left in enumerate(cards):
+-            x0, y0, x1, y1 = left['bounds']
+-            for right in cards[index + 1:]:
+-                a0, b0, a1, b1 = right['bounds']
++        demand(cards, 'No currently visible vehicle card in the actual left list')
++        for index, first in enumerate(cards):
++            x0, y0, x1, y1 = first['bounds']
++            for second in cards[index + 1:]:
++                a0, b0, a1, b1 = second['bounds']
+                 overlap = max(0, min(x1, a1) - max(x0, a0)) * max(0, min(y1, b1) - max(y0, b0))
+                 union = (x1 - x0) * (y1 - y0) + (a1 - a0) * (b1 - b0) - overlap
+-                if normalize(left['text']) == normalize(right['text']):
++                if normalize(first['text']) == normalize(second['text']):
+                     demand(overlap / union >= .6, 'Ambiguous repeated vehicle caption regions')
+                 else:
+                     demand(overlap == 0, 'Conflicting vehicle captions in one observed region')
+-    card = min(cards, key=lambda row: row['bounds'][1])
+-    x0, y0, x1, y1 = card['bounds']
+-    x, start = round((x0 + x1) / 2), round((y0 + y1) / 2)
+-    end = round(max(header_bottom + 8, start - max(40, (y1 - y0) * 5)))
+-    demand(0 <= x < width and header_bottom < end < start < footer_top < height and
+-           start - end >= 15, 'Observed vehicle-list span is too small for a controlled drag')
+-    return {'gesture': [x, start, x, end], 'card': card,
++    target_index = order[normalize(KARTS[kart])]
++    visible_indices = {order[normalize(row['text'])] for row in cards}
++    travel = (rail[3] - rail[1]) - (thumb[3] - thumb[1])
++    demand(travel > 0, 'Current scrollbar has no observed travel')
++    fraction = (thumb[1] - rail[1]) / travel
++    if visible_indices and max(visible_indices) < target_index:
++        direction, basis = 'forward', 'complete current cards precede the requested kart'
++    elif visible_indices and min(visible_indices) > target_index:
++        direction, basis = 'backward', 'complete current cards follow the requested kart'
++    else:
++        # The fixed, checked native order guides direction through a clipped
++        # gap only. No inferred card position can authorize a selection tap.
++        direction = 'backward' if fraction >= target_index / (len(order) - 1) else 'forward'
++        basis = 'current scrollbar position and pinned native order; direction only'
++    distance = max(15, round((bottom - top) * .1))
++    center = (top + bottom) / 2
++    start, end = round(center + distance / 2), round(center - distance / 2)
++    if direction == 'backward':
++        start, end = end, start
++    x = round((left + right) / 2)
++    demand(left < x < right and top + margin < min(start, end) < max(start, end) < bottom - margin,
++           'Current vehicle-list gesture exceeds the observed interior')
++    return {'gesture': [x, start, x, end], 'direction': direction, 'direction_basis': basis,
++            'viewport_bounds': viewport, 'workshop_bounds': workshop, 'scrollbar': scrollbar,
++            'scroll_fraction': fraction, 'visible_cards': cards,
++            'card': min(cards, key=lambda row: row['bounds'][1]) if cards else None,
+             'header_bottom': header_bottom, 'footer_top': footer_top,
+-            'scope': 'Scroll gesture only; target caption and actual saved selection remain mandatory'}
++            'source_sha256': frame['source_sha256'],
++            'scope': 'Observed conservative card interior for scrolling only; exact target and actual race remain mandatory'}
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json
+@@ -0,0 +1,1722 @@
++[
++  {
++    "text": "1:34 U",
++    "bounds": [
++      96.0,
++      17.0,
++      212.5,
++      57.5
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Lumo",
++    "bounds": [
++      98.0,
++      107.0,
++      267.0,
++      153.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "% 0 Sterne",
++    "bounds": [
++      1850.0,
++      143.0,
++      2076.0,
++      184.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Spielewelt",
++    "bounds": [
++      2138.0,
++      147.0,
++      2321.0,
++      180.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Rennen",
++    "bounds": [
++      195.0,
++      295.0,
++      326.0,
++      323.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      674.0,
++      295.0,
++      787.0,
++      323.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Karts",
++    "bounds": [
++      1153.0,
++      295.0,
++      1246.0,
++      323.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Strecken",
++    "bounds": [
++      1591.0,
++      295.0,
++      1744.0,
++      323.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2078.0,
++      295.0,
++      2199.0,
++      331.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "DEIN KART. DEIN",
++    "bounds": [
++      993.0,
++      371.0,
++      1176.0,
++      401.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1907.0,
++      454.0,
++      2203.0,
++      481.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Comet",
++    "bounds": [
++      314.0,
++      472.0,
++      434.0,
++      499.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "N",
++    "bounds": [
++      767.0,
++      383.0,
++      794.0,
++      504.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "G",
++    "bounds": [
++      272.0,
++      521.0,
++      287.0,
++      540.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "eo",
++    "bounds": [
++      210.0,
++      543.0,
++      233.0,
++      566.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "rs",
++    "bounds": [
++      312.0,
++      577.0,
++      514.0,
++      584.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "rs",
++    "bounds": [
++      312.0,
++      595.0,
++      514.0,
++      602.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "- =-",
++    "bounds": [
++      1322.0,
++      602.5,
++      1359.0,
++      616.5
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "’",
++    "bounds": [
++      1512.0,
++      626.0,
++      1548.0,
++      659.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1180.0,
++      694.0,
++      1197.0,
++      755.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "1",
++    "bounds": [
++      1495.0,
++      689.0,
++      1526.0,
++      734.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "a id",
++    "bounds": [
++      1112.0,
++      752.0,
++      1178.0,
++      760.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "N",
++    "bounds": [
++      1445.0,
++      763.0,
++      1579.0,
++      786.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "- \\",
++    "bounds": [
++      1519.0,
++      740.0,
++      1556.0,
++      756.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "UN.",
++    "bounds": [
++      1092.0,
++      779.0,
++      1163.0,
++      798.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": ".—_",
++    "bounds": [
++      1096.0,
++      801.0,
++      1160.0,
++      816.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "vw",
++    "bounds": [
++      1427.0,
++      786.0,
++      1468.0,
++      793.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "— Kart-Menu",
++    "bounds": [
++      469.0,
++      899.0,
++      758.0,
++      933.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1614.0,
++      899.0,
++      1967.0,
++      934.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "1:34 U",
++    "bounds": [
++      96.0,
++      18.0,
++      210.5,
++      51.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "An",
++    "bounds": [
++      2211.0,
++      17.0,
++      2325.0,
++      51.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Lumo",
++    "bounds": [
++      98.0,
++      106.0,
++      267.5,
++      157.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Rennen",
++    "bounds": [
++      195.0,
++      295.0,
++      326.5,
++      323.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      673.0,
++      295.0,
++      788.0,
++      323.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2077.0,
++      295.0,
++      2199.0,
++      331.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "DEIN KAR",
++    "bounds": [
++      993.0,
++      375.0,
++      1094.5,
++      395.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": ".",
++    "bounds": [
++      1131.0,
++      375.5,
++      1137.5,
++      387.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Gr",
++    "bounds": [
++      1209.5,
++      243.0,
++      1945.0,
++      374.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1243.0,
++      386.0,
++      1249.0,
++      440.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      849.0,
++      372.0,
++      860.5,
++      465.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1330.5,
++      382.0,
++      1337.0,
++      463.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Comet",
++    "bounds": [
++      313.5,
++      471.0,
++      434.0,
++      500.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1906.0,
++      454.0,
++      2203.5,
++      481.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "==",
++    "bounds": [
++      142.0,
++      508.0,
++      203.0,
++      539.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "U ar",
++    "bounds": [
++      152.0,
++      472.5,
++      274.0,
++      530.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "—",
++    "bounds": [
++      1663.5,
++      526.5,
++      1677.5,
++      528.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": ".",
++    "bounds": [
++      99.0,
++      511.5,
++      124.0,
++      551.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "3",
++    "bounds": [
++      136.0,
++      552.0,
++      139.0,
++      554.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "-",
++    "bounds": [
++      143.0,
++      555.5,
++      148.5,
++      557.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      1590.5,
++      546.5,
++      1679.0,
++      565.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": ">",
++    "bounds": [
++      1539.0,
++      606.0,
++      1541.5,
++      607.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Cc",
++    "bounds": [
++      1540.0,
++      572.5,
++      1562.0,
++      591.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "a — 7",
++    "bounds": [
++      869.5,
++      570.0,
++      1408.5,
++      632.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "«",
++    "bounds": [
++      1511.5,
++      624.0,
++      1531.0,
++      644.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "zy",
++    "bounds": [
++      1521.0,
++      607.5,
++      1549.0,
++      624.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "4",
++    "bounds": [
++      1544.0,
++      596.0,
++      1570.0,
++      640.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "= 7",
++    "bounds": [
++      1584.0,
++      556.5,
++      1758.0,
++      632.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1549.5,
++      642.0,
++      1552.5,
++      659.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "=",
++    "bounds": [
++      1571.0,
++      608.0,
++      1603.0,
++      663.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": ",",
++    "bounds": [
++      1525.5,
++      630.5,
++      1552.0,
++      707.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Denn",
++    "bounds": [
++      1595.0,
++      683.5,
++      1629.0,
++      700.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Car =",
++    "bounds": [
++      1120.0,
++      738.5,
++      1533.0,
++      822.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "— Kart-Menu",
++    "bounds": [
++      469.0,
++      899.0,
++      758.5,
++      933.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1614.0,
++      899.0,
++      1966.0,
++      933.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "1:34 U",
++    "bounds": [
++      96.0,
++      16.0,
++      211.5,
++      53.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "van",
++    "bounds": [
++      2211.0,
++      17.0,
++      2325.0,
++      51.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "O Sterne",
++    "bounds": [
++      1915.0,
++      144.0,
++      2076.0,
++      174.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      251.0,
++      169.0,
++      286.0,
++      202.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Spielewelt",
++    "bounds": [
++      2138.0,
++      147.0,
++      2321.0,
++      180.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "TE",
++    "bounds": [
++      207.0,
++      205.0,
++      216.0,
++      211.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Rennen",
++    "bounds": [
++      195.0,
++      295.0,
++      326.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      674.0,
++      295.0,
++      787.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Karts",
++    "bounds": [
++      1154.0,
++      296.0,
++      1245.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Strecken",
++    "bounds": [
++      1591.0,
++      295.0,
++      1744.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2078.0,
++      295.0,
++      2199.0,
++      331.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Comet",
++    "bounds": [
++      314.0,
++      472.0,
++      434.0,
++      499.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1906.0,
++      454.0,
++      2203.0,
++      481.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "- =",
++    "bounds": [
++      1321.0,
++      609.0,
++      1359.0,
++      612.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "*\\",
++    "bounds": [
++      1512.0,
++      627.0,
++      1550.0,
++      663.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Lack, Teile & Effekte",
++    "bounds": [
++      213.0,
++      727.0,
++      594.0,
++      762.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "— Kart-Menu",
++    "bounds": [
++      469.0,
++      899.0,
++      758.0,
++      933.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "NK",
++    "bounds": [
++      1199.0,
++      941.0,
++      1654.0,
++      1003.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "1:34 UO",
++    "bounds": [
++      96.0,
++      16.0,
++      211.5,
++      53.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "VA0",
++    "bounds": [
++      2211.0,
++      17.0,
++      2325.0,
++      51.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "O Sterne",
++    "bounds": [
++      1915.0,
++      144.0,
++      2076.0,
++      174.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      251.0,
++      169.0,
++      286.0,
++      202.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Spielewelt",
++    "bounds": [
++      2138.0,
++      147.0,
++      2321.0,
++      180.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "TE",
++    "bounds": [
++      207.0,
++      205.0,
++      216.0,
++      211.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Rennen",
++    "bounds": [
++      195.0,
++      295.0,
++      326.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      674.0,
++      295.0,
++      787.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Karts",
++    "bounds": [
++      1154.0,
++      296.0,
++      1245.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Strecken",
++    "bounds": [
++      1591.0,
++      295.0,
++      1744.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2078.0,
++      295.0,
++      2199.0,
++      331.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Comet",
++    "bounds": [
++      314.0,
++      472.0,
++      434.0,
++      499.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1906.0,
++      454.0,
++      2203.0,
++      481.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "—_ =",
++    "bounds": [
++      1321.0,
++      602.5,
++      1359.0,
++      616.5
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "*\\",
++    "bounds": [
++      1512.0,
++      627.0,
++      1550.0,
++      663.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Lack, Teile & Effekte",
++    "bounds": [
++      213.0,
++      727.0,
++      594.0,
++      762.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "— Kart-Menu",
++    "bounds": [
++      469.0,
++      899.0,
++      758.0,
++      933.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "NK",
++    "bounds": [
++      1199.0,
++      941.0,
++      1654.0,
++      1003.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "I",
++    "bounds": [
++      774.0,
++      305.0,
++      781.0,
++      321.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "a ee",
++    "bounds": [
++      565.0,
++      374.0,
++      765.0,
++      415.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      2156.0,
++      469.0,
++      2157.0,
++      480.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      2169.0,
++      467.0,
++      2178.0,
++      470.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "I",
++    "bounds": [
++      2190.0,
++      469.0,
++      2199.0,
++      481.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "||",
++    "bounds": [
++      806.0,
++      465.0,
++      815.0,
++      483.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "Te",
++    "bounds": [
++      189.0,
++      531.0,
++      209.0,
++      537.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "of.",
++    "bounds": [
++      1529.0,
++      556.0,
++      1555.0,
++      568.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "| pee",
++    "bounds": [
++      1272.0,
++      582.0,
++      1363.5,
++      639.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "Ss",
++    "bounds": [
++      1538.0,
++      654.0,
++      1553.0,
++      668.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "Ayes",
++    "bounds": [
++      1435.0,
++      668.0,
++      1486.0,
++      695.5
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "oe",
++    "bounds": [
++      1182.0,
++      645.0,
++      1299.0,
++      722.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "‘=",
++    "bounds": [
++      1288.0,
++      660.0,
++      1337.0,
++      713.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "_",
++    "bounds": [
++      944.0,
++      714.0,
++      1004.0,
++      748.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "venue 17’",
++    "bounds": [
++      606.0,
++      802.0,
++      768.0,
++      855.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "| \\",
++    "bounds": [
++      523.0,
++      902.0,
++      545.0,
++      932.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "poll",
++    "bounds": [
++      575.0,
++      914.0,
++      610.0,
++      931.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1614.0,
++      899.0,
++      1965.0,
++      933.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "oe",
++    "bounds": [
++      756.0,
++      983.0,
++      785.0,
++      1026.5
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "— ——___",
++    "bounds": [
++      2000.0,
++      1003.0,
++      2068.0,
++      1004.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "—",
++    "bounds": [
++      805.0,
++      231.0,
++      830.0,
++      232.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "lh",
++    "bounds": [
++      774.0,
++      305.0,
++      781.0,
++      321.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "q",
++    "bounds": [
++      1052.0,
++      393.0,
++      1056.0,
++      413.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "= : J",
++    "bounds": [
++      420.0,
++      346.0,
++      958.0,
++      480.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "| Jt",
++    "bounds": [
++      2156.0,
++      469.0,
++      2199.0,
++      481.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "us",
++    "bounds": [
++      2169.0,
++      467.0,
++      2178.0,
++      470.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1053.0,
++      444.0,
++      1058.0,
++      506.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "—|",
++    "bounds": [
++      1022.0,
++      598.0,
++      1061.0,
++      638.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": ". vy 8,",
++    "bounds": [
++      1509.0,
++      594.0,
++      1591.0,
++      645.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "‘=",
++    "bounds": [
++      1288.0,
++      660.0,
++      1337.0,
++      713.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "~ aa",
++    "bounds": [
++      1412.0,
++      663.0,
++      1507.0,
++      701.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "ates",
++    "bounds": [
++      1182.0,
++      645.0,
++      1299.0,
++      722.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "<<",
++    "bounds": [
++      1271.0,
++      710.0,
++      1355.0,
++      738.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      606.0,
++      818.0,
++      731.0,
++      849.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "wi",
++    "bounds": [
++      734.0,
++      804.0,
++      768.0,
++      839.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "eu,",
++    "bounds": [
++      575.0,
++      903.0,
++      618.0,
++      933.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1614.0,
++      899.0,
++      1965.0,
++      933.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      642.0,
++      985.0,
++      926.0,
++      1017.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "1:5 IC",
++    "bounds": [
++      101.0,
++      18.0,
++      211.0,
++      52.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "IN",
++    "bounds": [
++      1856.0,
++      167.0,
++      1886.0,
++      186.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Veal",
++    "bounds": [
++      1985.0,
++      155.0,
++      2017.0,
++      172.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "rel",
++    "bounds": [
++      2190.0,
++      150.0,
++      2222.0,
++      170.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "7 —__——",
++    "bounds": [
++      769.0,
++      223.0,
++      961.0,
++      260.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      1613.0,
++      307.0,
++      1663.0,
++      318.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "I",
++    "bounds": [
++      1463.0,
++      249.0,
++      1499.0,
++      346.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "i",
++    "bounds": [
++      1731.0,
++      308.0,
++      1745.0,
++      322.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Learn",
++    "bounds": [
++      2079.0,
++      300.0,
++      2146.0,
++      322.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "i |",
++    "bounds": [
++      714.0,
++      249.0,
++      857.0,
++      371.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "BEN",
++    "bounds": [
++      992.0,
++      375.0,
++      1048.0,
++      397.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "REAL. ZINES",
++    "bounds": [
++      1058.0,
++      374.0,
++      1212.0,
++      392.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "ro",
++    "bounds": [
++      276.0,
++      269.0,
++      489.0,
++      405.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1461.0,
++      376.0,
++      1497.0,
++      429.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "od",
++    "bounds": [
++      1512.0,
++      390.0,
++      1551.0,
++      422.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "v",
++    "bounds": [
++      2346.0,
++      463.0,
++      2362.0,
++      473.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "[",
++    "bounds": [
++      1522.0,
++      453.0,
++      1532.0,
++      487.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "simselen:",
++    "bounds": [
++      2062.0,
++      454.0,
++      2204.0,
++      481.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "—",
++    "bounds": [
++      1255.0,
++      570.0,
++      1301.0,
++      582.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "DN",
++    "bounds": [
++      1486.0,
++      574.0,
++      1528.0,
++      599.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "| I",
++    "bounds": [
++      801.0,
++      547.0,
++      812.0,
++      603.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Ka",
++    "bounds": [
++      1344.0,
++      623.0,
++      1391.0,
++      637.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "m",
++    "bounds": [
++      1408.0,
++      620.0,
++      1440.0,
++      633.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "= ra",
++    "bounds": [
++      1529.0,
++      581.0,
++      1631.0,
++      626.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "rw)",
++    "bounds": [
++      1509.0,
++      633.0,
++      1538.0,
++      646.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "u.‘ LA (sh \\-",
++    "bounds": [
++      1343.0,
++      642.0,
++      1605.0,
++      705.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "wee",
++    "bounds": [
++      1256.0,
++      707.0,
++      1413.0,
++      747.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "‘cy i",
++    "bounds": [
++      1512.0,
++      739.0,
++      1554.0,
++      766.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "—",
++    "bounds": [
++      1232.0,
++      820.0,
++      1297.0,
++      822.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      1566.0,
++      744.0,
++      1739.0,
++      849.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Kart |",
++    "bounds": [
++      529.0,
++      899.0,
++      649.0,
++      933.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "st",
++    "bounds": [
++      692.0,
++      899.0,
++      759.0,
++      933.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "5",
++    "bounds": [
++      1186.0,
++      873.0,
++      1210.0,
++      944.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1614.0,
++      899.0,
++      1966.0,
++      933.0
++    ],
++    "variant": "teal-text-1x"
++  }
++]Binary addition: tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png SHA256 49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json
+@@ -0,0 +1,1572 @@
++[
++  {
++    "text": "1:34 U",
++    "bounds": [
++      96.0,
++      17.0,
++      212.0,
++      58.5
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Lumo",
++    "bounds": [
++      98.0,
++      107.0,
++      267.0,
++      153.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "% 0 Sterne",
++    "bounds": [
++      1850.0,
++      143.0,
++      2076.0,
++      184.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Spielewelt",
++    "bounds": [
++      2138.0,
++      147.0,
++      2321.0,
++      180.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      674.0,
++      295.0,
++      787.0,
++      323.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Karts",
++    "bounds": [
++      1153.0,
++      295.0,
++      1246.0,
++      323.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Strecken",
++    "bounds": [
++      1591.0,
++      295.0,
++      1744.0,
++      323.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2078.0,
++      295.0,
++      2199.0,
++      331.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "DEIN KART. DEIN",
++    "bounds": [
++      993.0,
++      371.0,
++      1176.0,
++      399.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "vu.",
++    "bounds": [
++      447.0,
++      416.0,
++      521.0,
++      423.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "rn",
++    "bounds": [
++      447.5,
++      445.0,
++      549.0,
++      452.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "G",
++    "bounds": [
++      271.0,
++      446.0,
++      287.0,
++      464.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Tr",
++    "bounds": [
++      356.5,
++      482.0,
++      481.0,
++      489.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "rn",
++    "bounds": [
++      441.0,
++      463.0,
++      549.0,
++      471.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1907.0,
++      454.0,
++      2203.0,
++      481.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "U |l |",
++    "bounds": [
++      339.0,
++      516.0,
++      483.0,
++      531.5
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Met",
++    "bounds": [
++      1526.0,
++      531.0,
++      1596.0,
++      564.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "_- =",
++    "bounds": [
++      1326.0,
++      601.5,
++      1363.0,
++      615.5
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "— ta",
++    "bounds": [
++      1292.0,
++      669.0,
++      1444.0,
++      725.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "\\",
++    "bounds": [
++      1502.0,
++      687.0,
++      1526.0,
++      734.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "i ed",
++    "bounds": [
++      1112.0,
++      752.0,
++      1178.0,
++      760.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "N",
++    "bounds": [
++      1519.0,
++      740.0,
++      1556.0,
++      756.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "UN",
++    "bounds": [
++      1123.0,
++      779.0,
++      1163.0,
++      793.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "m",
++    "bounds": [
++      1110.0,
++      801.0,
++      1160.0,
++      813.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "— Kart-Menü",
++    "bounds": [
++      469.0,
++      899.0,
++      758.0,
++      933.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1614.0,
++      899.0,
++      1967.0,
++      934.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "1:34 U",
++    "bounds": [
++      96.0,
++      18.0,
++      210.5,
++      51.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "An",
++    "bounds": [
++      2211.0,
++      17.0,
++      2325.0,
++      51.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Lumo",
++    "bounds": [
++      98.0,
++      106.0,
++      267.5,
++      157.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      673.0,
++      295.0,
++      788.0,
++      323.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2077.0,
++      295.0,
++      2199.0,
++      331.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Gr",
++    "bounds": [
++      1209.5,
++      243.0,
++      1945.0,
++      374.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "DEIN KAR",
++    "bounds": [
++      993.0,
++      375.0,
++      1094.5,
++      395.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": ".",
++    "bounds": [
++      1131.0,
++      375.5,
++      1137.5,
++      387.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "ww vwwuw",
++    "bounds": [
++      315.5,
++      416.0,
++      521.5,
++      423.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1243.0,
++      386.0,
++      1249.0,
++      440.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "anne",
++    "bounds": [
++      1487.0,
++      387.0,
++      1596.0,
++      422.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "| |",
++    "bounds": [
++      752.5,
++      372.0,
++      860.5,
++      466.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1330.5,
++      382.0,
++      1337.0,
++      463.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1906.0,
++      454.0,
++      2203.5,
++      481.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "eg —",
++    "bounds": [
++      1579.0,
++      544.5,
++      1635.0,
++      565.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "zy",
++    "bounds": [
++      1521.0,
++      607.0,
++      1549.0,
++      624.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      869.5,
++      568.0,
++      956.5,
++      634.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "4",
++    "bounds": [
++      1544.0,
++      596.0,
++      1570.0,
++      640.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "= 7",
++    "bounds": [
++      1584.0,
++      556.5,
++      1758.0,
++      632.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Ge |",
++    "bounds": [
++      42.0,
++      623.5,
++      885.5,
++      927.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "- Kart-Menu",
++    "bounds": [
++      469.0,
++      899.0,
++      758.5,
++      933.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1614.0,
++      899.0,
++      1966.0,
++      933.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "1:34 U",
++    "bounds": [
++      96.0,
++      16.0,
++      211.5,
++      53.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "van",
++    "bounds": [
++      2211.0,
++      17.0,
++      2325.0,
++      51.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "O Sterne",
++    "bounds": [
++      1915.0,
++      144.0,
++      2076.0,
++      174.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Spielewelt",
++    "bounds": [
++      2138.0,
++      147.0,
++      2321.0,
++      180.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "TE",
++    "bounds": [
++      207.0,
++      205.0,
++      216.0,
++      211.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      251.0,
++      169.0,
++      286.0,
++      202.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Rennen",
++    "bounds": [
++      195.0,
++      296.0,
++      326.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      674.0,
++      295.0,
++      787.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Karts",
++    "bounds": [
++      1154.0,
++      296.0,
++      1245.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Strecken",
++    "bounds": [
++      1591.0,
++      295.0,
++      1744.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2078.0,
++      295.0,
++      2199.0,
++      331.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "a we Wee",
++    "bounds": [
++      316.0,
++      413.5,
++      425.0,
++      427.5
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "4:",
++    "bounds": [
++      124.0,
++      445.0,
++      147.0,
++      463.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1906.0,
++      454.0,
++      2203.0,
++      481.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "cs ‘ |",
++    "bounds": [
++      1542.0,
++      531.0,
++      1599.0,
++      577.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "_ —-",
++    "bounds": [
++      1326.0,
++      602.5,
++      1363.0,
++      616.5
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "*\\",
++    "bounds": [
++      1512.0,
++      627.0,
++      1550.0,
++      663.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Lack, Teile & Effekte",
++    "bounds": [
++      213.0,
++      727.0,
++      594.0,
++      762.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "- Kart-Menu",
++    "bounds": [
++      469.0,
++      899.0,
++      758.0,
++      933.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "NK",
++    "bounds": [
++      1199.0,
++      941.0,
++      1654.0,
++      1003.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "1:34 UO",
++    "bounds": [
++      96.0,
++      16.0,
++      211.5,
++      53.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "VA0",
++    "bounds": [
++      2211.0,
++      17.0,
++      2325.0,
++      51.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "O Sterne",
++    "bounds": [
++      1915.0,
++      144.0,
++      2076.0,
++      174.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Spielewelt",
++    "bounds": [
++      2138.0,
++      147.0,
++      2321.0,
++      180.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "TE",
++    "bounds": [
++      207.0,
++      205.0,
++      216.0,
++      211.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      251.0,
++      169.0,
++      286.0,
++      202.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Rennen",
++    "bounds": [
++      195.0,
++      296.0,
++      326.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      674.0,
++      295.0,
++      787.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Karts",
++    "bounds": [
++      1154.0,
++      296.0,
++      1245.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Strecken",
++    "bounds": [
++      1591.0,
++      295.0,
++      1744.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2078.0,
++      295.0,
++      2199.0,
++      331.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "a we Wee",
++    "bounds": [
++      316.0,
++      413.5,
++      425.0,
++      427.5
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "4:",
++    "bounds": [
++      124.0,
++      445.0,
++      147.0,
++      463.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1906.0,
++      454.0,
++      2203.0,
++      481.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "cs ‘ |",
++    "bounds": [
++      1542.0,
++      531.0,
++      1599.0,
++      577.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "*\\",
++    "bounds": [
++      1512.0,
++      627.0,
++      1550.0,
++      663.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Lack, Teile & Effekte",
++    "bounds": [
++      213.0,
++      727.0,
++      594.0,
++      762.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "— Kart-Menu",
++    "bounds": [
++      469.0,
++      899.0,
++      758.0,
++      933.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "NK",
++    "bounds": [
++      1199.0,
++      941.0,
++      1654.0,
++      1003.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "I",
++    "bounds": [
++      774.0,
++      305.0,
++      781.0,
++      321.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "a ee",
++    "bounds": [
++      565.0,
++      374.0,
++      765.0,
++      415.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "||",
++    "bounds": [
++      806.0,
++      465.0,
++      815.0,
++      483.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      2156.0,
++      469.0,
++      2157.0,
++      480.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      2169.0,
++      467.0,
++      2178.0,
++      470.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "I",
++    "bounds": [
++      2190.0,
++      469.0,
++      2199.0,
++      481.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "a?",
++    "bounds": [
++      1529.0,
++      556.0,
++      1568.0,
++      568.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "4",
++    "bounds": [
++      1532.0,
++      610.0,
++      1557.0,
++      629.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "re Be",
++    "bounds": [
++      1265.0,
++      579.0,
++      1360.5,
++      665.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "treat”",
++    "bounds": [
++      1438.0,
++      663.0,
++      1505.0,
++      685.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "Sy",
++    "bounds": [
++      1538.0,
++      654.0,
++      1553.0,
++      668.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "= ee",
++    "bounds": [
++      1229.0,
++      686.0,
++      1327.0,
++      703.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "_",
++    "bounds": [
++      944.0,
++      714.0,
++      1004.0,
++      748.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "venue 17’",
++    "bounds": [
++      606.0,
++      802.0,
++      768.0,
++      855.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "| \\",
++    "bounds": [
++      523.0,
++      902.0,
++      545.0,
++      932.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "poll",
++    "bounds": [
++      575.0,
++      914.0,
++      610.0,
++      931.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1614.0,
++      899.0,
++      1965.0,
++      933.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "oe",
++    "bounds": [
++      756.0,
++      983.0,
++      785.0,
++      1026.5
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "— ——___",
++    "bounds": [
++      2000.0,
++      1003.0,
++      2068.0,
++      1004.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "oul",
++    "bounds": [
++      420.0,
++      371.0,
++      485.0,
++      405.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "ta",
++    "bounds": [
++      595.0,
++      374.0,
++      765.0,
++      415.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "q",
++    "bounds": [
++      1052.0,
++      393.0,
++      1056.0,
++      413.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1053.0,
++      444.0,
++      1058.0,
++      506.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "van",
++    "bounds": [
++      2156.0,
++      462.0,
++      2199.0,
++      481.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "ae",
++    "bounds": [
++      1529.0,
++      556.0,
++      1555.0,
++      568.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1275.0,
++      591.0,
++      1277.0,
++      621.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "ao",
++    "bounds": [
++      1295.0,
++      597.0,
++      1356.0,
++      610.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "—|",
++    "bounds": [
++      1022.0,
++      598.0,
++      1061.0,
++      638.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "=",
++    "bounds": [
++      1193.0,
++      625.0,
++      1230.0,
++      653.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "eS Se",
++    "bounds": [
++      1277.0,
++      602.0,
++      1363.0,
++      643.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "~ trend",
++    "bounds": [
++      1415.0,
++      668.0,
++      1492.0,
++      685.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "-",
++    "bounds": [
++      1491.0,
++      663.0,
++      1505.0,
++      675.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "=",
++    "bounds": [
++      1339.0,
++      736.0,
++      1364.0,
++      738.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "eu,",
++    "bounds": [
++      575.0,
++      903.0,
++      618.0,
++      933.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1614.0,
++      899.0,
++      1965.0,
++      933.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      642.0,
++      985.0,
++      926.0,
++      1017.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "1:5 IC",
++    "bounds": [
++      101.0,
++      18.0,
++      211.0,
++      52.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Veal",
++    "bounds": [
++      1985.0,
++      155.0,
++      2017.0,
++      172.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "IN",
++    "bounds": [
++      1856.0,
++      167.0,
++      1886.0,
++      186.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "7 —__——",
++    "bounds": [
++      769.0,
++      223.0,
++      961.0,
++      260.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      1613.0,
++      307.0,
++      1663.0,
++      318.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "i",
++    "bounds": [
++      1731.0,
++      308.0,
++      1745.0,
++      322.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Te",
++    "bounds": [
++      2079.0,
++      296.0,
++      2161.0,
++      332.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "1",
++    "bounds": [
++      693.0,
++      249.0,
++      791.0,
++      371.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "I",
++    "bounds": [
++      1463.0,
++      249.0,
++      1499.0,
++      346.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "DEW",
++    "bounds": [
++      992.0,
++      375.0,
++      1048.0,
++      397.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "REAL. ZINES",
++    "bounds": [
++      1058.0,
++      374.0,
++      1212.0,
++      392.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1461.0,
++      376.0,
++      1497.0,
++      429.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "od",
++    "bounds": [
++      1512.0,
++      390.0,
++      1551.0,
++      422.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "=F",
++    "bounds": [
++      152.0,
++      454.0,
++      210.0,
++      489.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "[",
++    "bounds": [
++      1522.0,
++      453.0,
++      1532.0,
++      487.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "ainselren",
++    "bounds": [
++      2062.0,
++      454.0,
++      2204.0,
++      481.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "v",
++    "bounds": [
++      2346.0,
++      463.0,
++      2362.0,
++      473.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Va",
++    "bounds": [
++      1513.0,
++      544.0,
++      1596.0,
++      569.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Mo",
++    "bounds": [
++      1534.0,
++      531.0,
++      1563.0,
++      540.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "J",
++    "bounds": [
++      724.0,
++      416.0,
++      756.0,
++      574.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "| I",
++    "bounds": [
++      801.0,
++      547.0,
++      812.0,
++      603.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "IN",
++    "bounds": [
++      1486.0,
++      574.0,
++      1528.0,
++      599.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      1114.0,
++      595.0,
++      1271.0,
++      624.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Gree",
++    "bounds": [
++      1324.0,
++      598.0,
++      1427.0,
++      626.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "afr",
++    "bounds": [
++      1347.0,
++      617.0,
++      1383.0,
++      641.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "eed",
++    "bounds": [
++      1540.0,
++      600.0,
++      1580.0,
++      622.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "| we",
++    "bounds": [
++      1182.0,
++      642.0,
++      1342.0,
++      705.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "cy",
++    "bounds": [
++      1523.0,
++      645.0,
++      1587.0,
++      704.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "De:",
++    "bounds": [
++      1307.0,
++      704.0,
++      1436.0,
++      731.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": ">",
++    "bounds": [
++      1570.0,
++      728.0,
++      1739.0,
++      849.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Kart |",
++    "bounds": [
++      529.0,
++      899.0,
++      649.0,
++      933.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "st",
++    "bounds": [
++      692.0,
++      899.0,
++      759.0,
++      933.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "5",
++    "bounds": [
++      1186.0,
++      873.0,
++      1213.0,
++      944.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1614.0,
++      899.0,
++      1966.0,
++      933.0
++    ],
++    "variant": "teal-text-1x"
++  }
++]Binary addition: tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png SHA256 a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json
+@@ -0,0 +1,290 @@
++{
++  "source_commit": "6f42fa8c0f18ea27dac90d7799ca06a1f9f0614a",
++  "native_commit": "bebf7bba48f09afc834469db0ea3c5541a184f55",
++  "run_id": 43594006354,
++  "run_attempt": 1,
++  "source_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43594006354",
++  "scope": "Unmodified original screenshot PNGs and original OCR JSON from failed real MainTour/Update runs; test inputs, not acceptance evidence for a patched APK.",
++  "cases": [
++    {
++      "name": "main",
++      "job_id": 132461961288,
++      "artifact_verification": {
++        "artifact_id": 14115707472,
++        "bytes": 54344625,
++        "sha256": "8dbda85d5fc9b1af49632b3a42618310de0f86aea0a0b3cf99b72e4230ab28a1",
++        "verified_full_archive": true,
++        "extracted_count": 250
++      },
++      "original_journal_sha256": "25ccd9dc6a0af492fb3668779718907825aba7551ca2cec69dc2fce8ad6c9843",
++      "original_result": {
++        "status": "FAIL",
++        "error": "No currently visible vehicle card in the actual left list",
++        "elapsed_seconds": 41.465846,
++        "timeout_seconds": 150
++      },
++      "snapshots": [
++        {
++          "frame_index": 0,
++          "original_frame": {
++            "source": "21_stage_select_gecko_velo-0.png",
++            "source_sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc",
++            "source_bytes": 787513,
++            "pixels": [
++              2400,
++              1080
++            ],
++            "orientation_policy": "landscape",
++            "sample_rows": [
++              130,
++              238,
++              346,
++              454,
++              562,
++              670,
++              778,
++              886
++            ],
++            "blank_edge_columns": {
++              "left": 0,
++              "right": 0
++            },
++            "blank_threshold_rgb_max": 8,
++            "blank_required_rows": 7,
++            "acceptable_for_target_sampling": true,
++            "reasons": [
++              "actual requested caption not observed"
++            ],
++            "scope": "Reject observed partial surface; no scene/gameplay PASS",
++            "captured_after_seconds": 1.320702,
++            "missing_caption_recovery": {
++              "status": "WAITING_FOR_SECOND_LIST_FRAME",
++              "gesture": [
++                374,
++                486,
++                374,
++                341
++              ],
++              "card": {
++                "text": "Comet",
++                "bounds": [
++                  313.5,
++                  471.0,
++                  434.0,
++                  500.0
++                ],
++                "variant": "raw"
++              },
++              "header_bottom": 323.0,
++              "footer_top": 899.0,
++              "scope": "Scroll gesture only; target caption and actual saved selection remain mandatory"
++            }
++          },
++          "files": [
++            {
++              "path": "main/21_stage_select_gecko_velo-0.png",
++              "original_archive_member": "main/21_stage_select_gecko_velo-0.png",
++              "bytes": 787513,
++              "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc"
++            },
++            {
++              "path": "main/21_stage_select_gecko_velo-0-ocr.json",
++              "original_archive_member": "main/21_stage_select_gecko_velo-0-ocr.json",
++              "bytes": 22706,
++              "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9"
++            }
++          ]
++        },
++        {
++          "frame_index": 2,
++          "original_frame": {
++            "source": "21_stage_select_gecko_velo-2.png",
++            "source_sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a",
++            "source_bytes": 784333,
++            "pixels": [
++              2400,
++              1080
++            ],
++            "orientation_policy": "landscape",
++            "sample_rows": [
++              130,
++              238,
++              346,
++              454,
++              562,
++              670,
++              778,
++              886
++            ],
++            "blank_edge_columns": {
++              "left": 0,
++              "right": 0
++            },
++            "blank_threshold_rgb_max": 8,
++            "blank_required_rows": 7,
++            "acceptable_for_target_sampling": true,
++            "reasons": [
++              "actual requested caption not observed"
++            ],
++            "scope": "Reject observed partial surface; no scene/gameplay PASS",
++            "captured_after_seconds": 30.201124
++          },
++          "files": [
++            {
++              "path": "main/21_stage_select_gecko_velo-2.png",
++              "original_archive_member": "main/21_stage_select_gecko_velo-2.png",
++              "bytes": 784333,
++              "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a"
++            },
++            {
++              "path": "main/21_stage_select_gecko_velo-2-ocr.json",
++              "original_archive_member": "main/21_stage_select_gecko_velo-2-ocr.json",
++              "bytes": 20831,
++              "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7"
++            }
++          ]
++        }
++      ]
++    },
++    {
++      "name": "update",
++      "job_id": 132461961273,
++      "artifact_verification": {
++        "artifact_id": 14115699177,
++        "bytes": 58550925,
++        "sha256": "4aa4de78a950b69f17fdf49b60b297b55bb56680a4e3b17f7403ca014f21ce71",
++        "verified_full_archive": true,
++        "extracted_count": 149
++      },
++      "original_journal_sha256": "ead3c9332fb223b2e8bb4edf6a6f9b0cacbce98d2e22617232ea7dadf5682fe5",
++      "original_result": {
++        "status": "FAIL",
++        "error": "No currently visible vehicle card in the actual left list",
++        "elapsed_seconds": 50.282959,
++        "timeout_seconds": 150
++      },
++      "snapshots": [
++        {
++          "frame_index": 0,
++          "original_frame": {
++            "source": "21_stage_select_gecko_velo-0.png",
++            "source_sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf",
++            "source_bytes": 766810,
++            "pixels": [
++              2400,
++              1080
++            ],
++            "orientation_policy": "landscape",
++            "sample_rows": [
++              130,
++              238,
++              346,
++              454,
++              562,
++              670,
++              778,
++              886
++            ],
++            "blank_edge_columns": {
++              "left": 0,
++              "right": 0
++            },
++            "blank_threshold_rgb_max": 8,
++            "blank_required_rows": 7,
++            "acceptable_for_target_sampling": true,
++            "reasons": [
++              "actual requested caption not observed"
++            ],
++            "scope": "Reject observed partial surface; no scene/gameplay PASS",
++            "captured_after_seconds": 1.352177,
++            "missing_caption_recovery": {
++              "status": "WAITING_FOR_SECOND_LIST_FRAME",
++              "gesture": [
++                510,
++                486,
++                510,
++                351
++              ],
++              "card": {
++                "text": "Comet",
++                "bounds": [
++                  450.0,
++                  472.0,
++                  570.0,
++                  499.0
++                ],
++                "variant": "contrast"
++              },
++              "header_bottom": 323.0,
++              "footer_top": 899.0,
++              "scope": "Scroll gesture only; target caption and actual saved selection remain mandatory"
++            }
++          },
++          "files": [
++            {
++              "path": "update/21_stage_select_gecko_velo-0.png",
++              "original_archive_member": "21_stage_select_gecko_velo-0.png",
++              "bytes": 766810,
++              "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf"
++            },
++            {
++              "path": "update/21_stage_select_gecko_velo-0-ocr.json",
++              "original_archive_member": "21_stage_select_gecko_velo-0-ocr.json",
++              "bytes": 19788,
++              "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60"
++            }
++          ]
++        },
++        {
++          "frame_index": 2,
++          "original_frame": {
++            "source": "21_stage_select_gecko_velo-2.png",
++            "source_sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff",
++            "source_bytes": 761351,
++            "pixels": [
++              2400,
++              1080
++            ],
++            "orientation_policy": "landscape",
++            "sample_rows": [
++              130,
++              238,
++              346,
++              454,
++              562,
++              670,
++              778,
++              886
++            ],
++            "blank_edge_columns": {
++              "left": 0,
++              "right": 0
++            },
++            "blank_threshold_rgb_max": 8,
++            "blank_required_rows": 7,
++            "acceptable_for_target_sampling": true,
++            "reasons": [
++              "actual requested caption not observed"
++            ],
++            "scope": "Reject observed partial surface; no scene/gameplay PASS",
++            "captured_after_seconds": 35.388922
++          },
++          "files": [
++            {
++              "path": "update/21_stage_select_gecko_velo-2.png",
++              "original_archive_member": "21_stage_select_gecko_velo-2.png",
++              "bytes": 761351,
++              "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff"
++            },
++            {
++              "path": "update/21_stage_select_gecko_velo-2-ocr.json",
++              "original_archive_member": "21_stage_select_gecko_velo-2-ocr.json",
++              "bytes": 20551,
++              "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc"
++            }
++          ]
++        }
++      ]
++    }
++  ]
++}
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json
+@@ -0,0 +1,1492 @@
++[
++  {
++    "text": "1:36 U",
++    "bounds": [
++      182.0,
++      17.0,
++      297.0,
++      53.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "+0",
++    "bounds": [
++      2249.0,
++      17.0,
++      2325.0,
++      51.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "pP.",
++    "bounds": [
++      178.0,
++      96.0,
++      187.0,
++      101.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Lumo",
++    "bounds": [
++      235.0,
++      107.0,
++      404.0,
++      153.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "% 1 Sterne",
++    "bounds": [
++      1850.0,
++      143.0,
++      2076.0,
++      184.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Spielewelt",
++    "bounds": [
++      2138.0,
++      147.0,
++      2321.0,
++      180.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "8",
++    "bounds": [
++      172.0,
++      166.0,
++      256.0,
++      225.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Kart",
++    "bounds": [
++      263.0,
++      158.0,
++      426.0,
++      205.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "KLEINE SCAR TTE",
++    "bounds": [
++      284.0,
++      205.0,
++      352.0,
++      211.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Russe ZICLC",
++    "bounds": [
++      291.0,
++      205.0,
++      345.0,
++      219.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Rennen",
++    "bounds": [
++      318.0,
++      295.0,
++      449.0,
++      323.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      770.0,
++      295.0,
++      883.0,
++      323.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Strecken",
++    "bounds": [
++      1633.0,
++      295.0,
++      1786.0,
++      323.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2091.0,
++      295.0,
++      2212.0,
++      331.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "DEIN KART. DEIN",
++    "bounds": [
++      1045.0,
++      373.0,
++      1229.0,
++      395.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1907.0,
++      454.0,
++      2203.0,
++      481.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Comet",
++    "bounds": [
++      450.0,
++      472.0,
++      570.0,
++      499.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "—",
++    "bounds": [
++      273.0,
++      534.0,
++      304.0,
++      538.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "G",
++    "bounds": [
++      409.0,
++      521.0,
++      424.0,
++      540.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Le",
++    "bounds": [
++      347.0,
++      543.0,
++      370.0,
++      567.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      448.0,
++      577.0,
++      630.0,
++      584.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      448.0,
++      595.0,
++      630.0,
++      602.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "- =-",
++    "bounds": [
++      1370.0,
++      602.5,
++      1407.0,
++      616.5
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "*\\",
++    "bounds": [
++      1561.0,
++      628.0,
++      1596.0,
++      659.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      1330.0,
++      671.0,
++      1376.0,
++      726.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "\\y",
++    "bounds": [
++      1544.0,
++      688.0,
++      1575.0,
++      736.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "as",
++    "bounds": [
++      1144.0,
++      753.0,
++      1227.0,
++      772.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      1196.0,
++      814.0,
++      1223.0,
++      819.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "me.",
++    "bounds": [
++      1214.0,
++      805.0,
++      1238.0,
++      810.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "ae",
++    "bounds": [
++      1249.0,
++      800.0,
++      1269.0,
++      804.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      1472.0,
++      791.0,
++      1545.0,
++      806.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "— Kart-Menu",
++    "bounds": [
++      573.0,
++      899.0,
++      862.0,
++      933.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1648.0,
++      899.0,
++      2001.0,
++      934.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "1:36 U",
++    "bounds": [
++      182.0,
++      16.0,
++      299.0,
++      58.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "+0",
++    "bounds": [
++      2248.5,
++      17.0,
++      2325.0,
++      51.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Lumo",
++    "bounds": [
++      235.0,
++      106.0,
++      404.0,
++      157.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Rennen",
++    "bounds": [
++      318.0,
++      295.0,
++      450.0,
++      323.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      769.0,
++      295.0,
++      884.0,
++      323.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "DEIN KA",
++    "bounds": [
++      1044.5,
++      374.5,
++      1138.0,
++      395.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      1519.0,
++      368.5,
++      1606.5,
++      374.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "een Tem",
++    "bounds": [
++      1685.5,
++      295.0,
++      2213.0,
++      331.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      900.5,
++      372.0,
++      912.0,
++      466.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1906.0,
++      454.0,
++      2203.5,
++      481.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "En",
++    "bounds": [
++      236.0,
++      492.5,
++      348.5,
++      557.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "SA Um Comet",
++    "bounds": [
++      295.0,
++      471.0,
++      571.0,
++      513.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "4)‘",
++    "bounds": [
++      1768.0,
++      558.0,
++      1805.5,
++      590.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "——",
++    "bounds": [
++      1045.0,
++      584.0,
++      1263.5,
++      620.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "\\L",
++    "bounds": [
++      1592.0,
++      623.0,
++      1638.0,
++      644.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "= |",
++    "bounds": [
++      1624.0,
++      568.5,
++      1738.5,
++      651.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "ya",
++    "bounds": [
++      1465.0,
++      678.0,
++      1529.0,
++      711.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "GE",
++    "bounds": [
++      1167.0,
++      738.0,
++      1578.0,
++      823.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "— Kart-Menu",
++    "bounds": [
++      572.5,
++      899.0,
++      862.0,
++      933.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1649.0,
++      899.0,
++      2000.5,
++      933.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "1:36 U",
++    "bounds": [
++      182.0,
++      16.0,
++      297.5,
++      53.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "+0",
++    "bounds": [
++      2249.0,
++      17.0,
++      2325.0,
++      51.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "1 Sterne",
++    "bounds": [
++      1917.0,
++      144.0,
++      2076.0,
++      174.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Spielewelt",
++    "bounds": [
++      2138.0,
++      147.0,
++      2321.0,
++      180.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "KLEINE SCR TTE",
++    "bounds": [
++      284.0,
++      205.0,
++      352.0,
++      211.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Rennen",
++    "bounds": [
++      318.0,
++      295.0,
++      449.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      770.0,
++      295.0,
++      883.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Karts",
++    "bounds": [
++      1223.0,
++      296.0,
++      1314.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Strecken",
++    "bounds": [
++      1633.0,
++      295.0,
++      1786.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2091.0,
++      295.0,
++      2212.0,
++      331.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1906.0,
++      454.0,
++      2203.0,
++      481.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Comet",
++    "bounds": [
++      450.0,
++      472.0,
++      570.0,
++      499.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Re",
++    "bounds": [
++      1567.0,
++      530.0,
++      1647.0,
++      564.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "- —",
++    "bounds": [
++      1370.0,
++      609.0,
++      1408.0,
++      612.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Lack, Teile & Effekte",
++    "bounds": [
++      328.0,
++      727.0,
++      709.0,
++      762.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "— Kart-Menu",
++    "bounds": [
++      573.0,
++      899.0,
++      862.0,
++      933.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "KO",
++    "bounds": [
++      1268.0,
++      937.0,
++      1703.0,
++      1003.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "1:36",
++    "bounds": [
++      182.0,
++      18.0,
++      296.0,
++      51.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "+ Q",
++    "bounds": [
++      2249.0,
++      17.0,
++      2324.0,
++      51.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "1 Sterne",
++    "bounds": [
++      1917.0,
++      144.0,
++      2076.0,
++      174.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Spielewelt",
++    "bounds": [
++      2138.0,
++      147.0,
++      2321.0,
++      180.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "KLEINE SCR TTE",
++    "bounds": [
++      284.0,
++      205.0,
++      352.0,
++      211.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Rennen",
++    "bounds": [
++      318.0,
++      295.0,
++      449.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      770.0,
++      295.0,
++      883.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Karts",
++    "bounds": [
++      1223.0,
++      296.0,
++      1314.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Strecken",
++    "bounds": [
++      1633.0,
++      295.0,
++      1786.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2091.0,
++      295.0,
++      2212.0,
++      331.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1906.0,
++      454.0,
++      2203.0,
++      481.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Comet",
++    "bounds": [
++      450.0,
++      472.0,
++      570.0,
++      499.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Re",
++    "bounds": [
++      1567.0,
++      530.0,
++      1647.0,
++      564.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "- —",
++    "bounds": [
++      1370.0,
++      609.0,
++      1408.0,
++      612.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Lack, Teile & Effekte",
++    "bounds": [
++      328.0,
++      727.0,
++      709.0,
++      762.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "— Kart-Menu",
++    "bounds": [
++      573.0,
++      899.0,
++      862.0,
++      933.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "KO",
++    "bounds": [
++      1268.0,
++      937.0,
++      1703.0,
++      1003.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      823.0,
++      305.0,
++      835.0,
++      321.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "= <4",
++    "bounds": [
++      465.0,
++      358.0,
++      841.0,
++      405.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "aw",
++    "bounds": [
++      1569.0,
++      549.0,
++      1619.0,
++      571.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "=",
++    "bounds": [
++      1247.0,
++      623.0,
++      1280.0,
++      651.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "<6",
++    "bounds": [
++      1368.0,
++      592.0,
++      1410.0,
++      635.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "7 Nee",
++    "bounds": [
++      1310.0,
++      724.0,
++      1359.0,
++      739.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "————",
++    "bounds": [
++      1375.0,
++      733.0,
++      1432.0,
++      738.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "en",
++    "bounds": [
++      655.0,
++      818.0,
++      809.0,
++      849.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1649.0,
++      899.0,
++      2000.0,
++      933.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "6",
++    "bounds": [
++      799.5,
++      986.0,
++      887.5,
++      1017.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "— ——__",
++    "bounds": [
++      2040.0,
++      1003.0,
++      2108.0,
++      1004.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "—_",
++    "bounds": [
++      908.0,
++      229.0,
++      1025.0,
++      231.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "uil",
++    "bounds": [
++      823.0,
++      305.0,
++      835.0,
++      321.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "és ae ©",
++    "bounds": [
++      616.0,
++      354.0,
++      846.0,
++      415.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "y",
++    "bounds": [
++      969.0,
++      376.0,
++      1006.0,
++      480.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1292.0,
++      505.0,
++      1295.0,
++      584.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "res",
++    "bounds": [
++      1248.0,
++      623.0,
++      1278.0,
++      632.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "i",
++    "bounds": [
++      1318.0,
++      582.0,
++      1340.0,
++      636.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "re",
++    "bounds": [
++      1345.0,
++      608.0,
++      1373.0,
++      639.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "4,",
++    "bounds": [
++      1368.0,
++      592.0,
++      1411.0,
++      635.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "4 te",
++    "bounds": [
++      1227.0,
++      647.0,
++      1386.0,
++      701.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "ma",
++    "bounds": [
++      994.0,
++      715.0,
++      1053.0,
++      747.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "SS:",
++    "bounds": [
++      1375.0,
++      730.0,
++      1439.0,
++      742.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "re",
++    "bounds": [
++      655.0,
++      818.0,
++      809.0,
++      849.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1649.0,
++      899.0,
++      2000.0,
++      933.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      684.0,
++      982.0,
++      756.0,
++      1027.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "I iC",
++    "bounds": [
++      187.0,
++      18.0,
++      297.0,
++      52.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      2250.0,
++      20.0,
++      2281.0,
++      41.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "= mo",
++    "bounds": [
++      234.0,
++      110.0,
++      405.0,
++      159.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "IN",
++    "bounds": [
++      1856.0,
++      167.0,
++      1886.0,
++      186.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Veal",
++    "bounds": [
++      1985.0,
++      155.0,
++      2017.0,
++      172.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "rel",
++    "bounds": [
++      2190.0,
++      150.0,
++      2222.0,
++      170.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "ree",
++    "bounds": [
++      330.0,
++      162.0,
++      427.0,
++      206.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "=e",
++    "bounds": [
++      647.0,
++      227.0,
++      808.0,
++      248.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "==",
++    "bounds": [
++      943.0,
++      246.0,
++      1008.0,
++      248.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "eee",
++    "bounds": [
++      1654.0,
++      307.0,
++      1705.0,
++      318.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "=",
++    "bounds": [
++      2119.0,
++      314.0,
++      2132.0,
++      315.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      598.0,
++      284.0,
++      611.0,
++      337.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "fi",
++    "bounds": [
++      870.0,
++      303.0,
++      877.0,
++      322.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "I",
++    "bounds": [
++      1512.0,
++      249.0,
++      1553.0,
++      425.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "i",
++    "bounds": [
++      1773.0,
++      308.0,
++      1787.0,
++      322.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "@",
++    "bounds": [
++      162.0,
++      242.0,
++      271.0,
++      369.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "N",
++    "bounds": [
++      807.0,
++      249.0,
++      842.0,
++      371.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Dan Rare &",
++    "bounds": [
++      1044.0,
++      374.0,
++      1189.0,
++      395.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "—",
++    "bounds": [
++      2004.0,
++      373.0,
++      2163.0,
++      374.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "GE |",
++    "bounds": [
++      582.0,
++      348.0,
++      858.0,
++      416.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "m",
++    "bounds": [
++      858.0,
++      373.0,
++      903.0,
++      420.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Baur",
++    "bounds": [
++      1539.0,
++      373.0,
++      1657.0,
++      424.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "v",
++    "bounds": [
++      2346.0,
++      463.0,
++      2362.0,
++      473.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "I u",
++    "bounds": [
++      1576.0,
++      451.0,
++      1705.0,
++      509.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "¥",
++    "bounds": [
++      223.0,
++      511.0,
++      250.0,
++      538.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "\"= _",
++    "bounds": [
++      1595.0,
++      507.0,
++      1735.0,
++      540.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "(gS ee",
++    "bounds": [
++      1560.0,
++      537.0,
++      1737.0,
++      572.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "co",
++    "bounds": [
++      1425.0,
++      623.0,
++      1436.0,
++      634.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "=",
++    "bounds": [
++      1286.0,
++      627.0,
++      1307.0,
++      637.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      1597.0,
++      649.0,
++      1654.0,
++      710.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "N",
++    "bounds": [
++      1236.0,
++      694.0,
++      1249.0,
++      726.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "=,",
++    "bounds": [
++      1467.0,
++      652.0,
++      1573.0,
++      754.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Self",
++    "bounds": [
++      640.0,
++      915.0,
++      691.0,
++      931.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "I.",
++    "bounds": [
++      818.0,
++      917.0,
++      835.0,
++      930.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "i",
++    "bounds": [
++      1256.0,
++      878.0,
++      1279.0,
++      938.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1649.0,
++      899.0,
++      2001.0,
++      933.0
++    ],
++    "variant": "teal-text-1x"
++  }
++]Binary addition: tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png SHA256 e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf
+--- /dev/null
++++ b/tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json
+@@ -0,0 +1,1552 @@
++[
++  {
++    "text": "1:36 U",
++    "bounds": [
++      182.0,
++      17.0,
++      297.0,
++      53.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "+0",
++    "bounds": [
++      2249.0,
++      17.0,
++      2325.0,
++      51.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "pP.",
++    "bounds": [
++      178.0,
++      96.0,
++      187.0,
++      101.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Lumo",
++    "bounds": [
++      235.0,
++      107.0,
++      404.0,
++      153.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "% 1 Sterne",
++    "bounds": [
++      1850.0,
++      143.0,
++      2076.0,
++      184.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Spielewelt",
++    "bounds": [
++      2138.0,
++      147.0,
++      2321.0,
++      180.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "8",
++    "bounds": [
++      172.0,
++      166.0,
++      256.0,
++      225.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Kart",
++    "bounds": [
++      263.0,
++      158.0,
++      426.0,
++      205.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "KLEINE SCAR TTE",
++    "bounds": [
++      284.0,
++      205.0,
++      352.0,
++      211.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Russe ZICLC",
++    "bounds": [
++      291.0,
++      205.0,
++      345.0,
++      219.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      770.0,
++      295.0,
++      883.0,
++      323.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Strecken",
++    "bounds": [
++      1633.0,
++      295.0,
++      1786.0,
++      323.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2091.0,
++      295.0,
++      2212.0,
++      331.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "DEIN KART. DEIN",
++    "bounds": [
++      1045.0,
++      373.0,
++      1229.0,
++      395.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "EO a’",
++    "bounds": [
++      448.0,
++      409.5,
++      663.0,
++      423.5
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Si",
++    "bounds": [
++      244.0,
++      416.0,
++      379.0,
++      437.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "14",
++    "bounds": [
++      344.0,
++      435.0,
++      367.0,
++      459.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "K",
++    "bounds": [
++      406.0,
++      416.0,
++      424.0,
++      438.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "£",
++    "bounds": [
++      408.0,
++      436.0,
++      415.0,
++      445.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "| U]",
++    "bounds": [
++      446.0,
++      446.5,
++      600.0,
++      460.5
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "ee ee",
++    "bounds": [
++      448.0,
++      428.0,
++      662.5,
++      443.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "fv",
++    "bounds": [
++      345.0,
++      463.0,
++      365.0,
++      475.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      448.0,
++      485.0,
++      600.0,
++      493.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "rr es |",
++    "bounds": [
++      448.0,
++      465.0,
++      692.5,
++      480.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1907.0,
++      454.0,
++      2203.0,
++      481.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "_ —-",
++    "bounds": [
++      1370.0,
++      602.5,
++      1408.0,
++      616.5
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "*\\",
++    "bounds": [
++      1561.0,
++      627.0,
++      1596.0,
++      659.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "as",
++    "bounds": [
++      1144.0,
++      753.0,
++      1227.0,
++      772.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "—",
++    "bounds": [
++      1192.0,
++      696.0,
++      1248.0,
++      757.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      1562.0,
++      759.0,
++      1624.0,
++      781.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      1196.0,
++      814.0,
++      1223.0,
++      819.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "me.",
++    "bounds": [
++      1214.0,
++      805.0,
++      1238.0,
++      810.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "ae",
++    "bounds": [
++      1249.0,
++      800.0,
++      1269.0,
++      804.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      1472.0,
++      791.0,
++      1545.0,
++      806.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "— Kart-Menu",
++    "bounds": [
++      573.0,
++      899.0,
++      862.0,
++      933.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1648.0,
++      899.0,
++      2001.0,
++      934.0
++    ],
++    "variant": "contrast"
++  },
++  {
++    "text": "1:36 U",
++    "bounds": [
++      182.0,
++      16.0,
++      299.0,
++      58.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "+0",
++    "bounds": [
++      2248.5,
++      17.0,
++      2325.0,
++      51.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Lumo",
++    "bounds": [
++      235.0,
++      106.0,
++      404.0,
++      157.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      769.0,
++      295.0,
++      884.0,
++      323.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "DEIN K",
++    "bounds": [
++      1044.5,
++      374.5,
++      1121.0,
++      395.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "U",
++    "bounds": [
++      1182.5,
++      375.5,
++      1190.0,
++      387.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "_ Uf Tome",
++    "bounds": [
++      1261.0,
++      241.5,
++      2213.0,
++      426.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      846.5,
++      372.0,
++      912.0,
++      468.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1296.0,
++      386.0,
++      1302.0,
++      444.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1906.0,
++      454.0,
++      2203.5,
++      481.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "—",
++    "bounds": [
++      1650.5,
++      526.5,
++      1730.5,
++      534.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "4)‘",
++    "bounds": [
++      1768.0,
++      558.0,
++      1805.5,
++      590.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Tr thy",
++    "bounds": [
++      316.5,
++      597.0,
++      412.0,
++      664.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "——",
++    "bounds": [
++      1022.0,
++      584.0,
++      1266.0,
++      620.5
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "\\L>",
++    "bounds": [
++      1591.5,
++      622.5,
++      1638.0,
++      643.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Boru",
++    "bounds": [
++      451.0,
++      629.0,
++      537.5,
++      657.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "» =",
++    "bounds": [
++      1466.0,
++      678.0,
++      1530.5,
++      710.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "=",
++    "bounds": [
++      1470.0,
++      711.5,
++      1491.0,
++      725.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Ri",
++    "bounds": [
++      1169.0,
++      737.5,
++      1583.0,
++      825.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "— Kart-Menu",
++    "bounds": [
++      572.5,
++      899.0,
++      862.0,
++      933.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1649.0,
++      899.0,
++      2000.5,
++      933.0
++    ],
++    "variant": "raw"
++  },
++  {
++    "text": "1:36 U",
++    "bounds": [
++      182.0,
++      16.0,
++      297.5,
++      53.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "+0",
++    "bounds": [
++      2249.0,
++      17.0,
++      2325.0,
++      51.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "1 Sterne",
++    "bounds": [
++      1917.0,
++      144.0,
++      2076.0,
++      174.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Spielewelt",
++    "bounds": [
++      2138.0,
++      147.0,
++      2321.0,
++      180.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "KLEINE SCR TTE",
++    "bounds": [
++      284.0,
++      205.0,
++      352.0,
++      211.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Rennen",
++    "bounds": [
++      318.0,
++      296.0,
++      449.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      770.0,
++      295.0,
++      883.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Karts",
++    "bounds": [
++      1223.0,
++      296.0,
++      1314.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Strecken",
++    "bounds": [
++      1633.0,
++      295.0,
++      1786.0,
++      323.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2091.0,
++      295.0,
++      2212.0,
++      331.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "-",
++    "bounds": [
++      344.0,
++      416.0,
++      358.0,
++      420.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Fass",
++    "bounds": [
++      261.0,
++      416.0,
++      284.0,
++      430.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1906.0,
++      454.0,
++      2203.0,
++      481.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "EN",
++    "bounds": [
++      1588.0,
++      530.0,
++      1647.0,
++      564.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "_ —",
++    "bounds": [
++      1370.0,
++      609.0,
++      1408.0,
++      612.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "Lack, Teile & Effekte",
++    "bounds": [
++      328.0,
++      727.0,
++      709.0,
++      762.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "— Kart-Menu",
++    "bounds": [
++      573.0,
++      899.0,
++      862.0,
++      933.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "KO",
++    "bounds": [
++      1268.0,
++      937.0,
++      1703.0,
++      1003.0
++    ],
++    "variant": "white-text"
++  },
++  {
++    "text": "1:36",
++    "bounds": [
++      182.0,
++      18.0,
++      296.0,
++      51.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "+ Q",
++    "bounds": [
++      2249.0,
++      17.0,
++      2324.0,
++      51.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "1 Sterne",
++    "bounds": [
++      1917.0,
++      144.0,
++      2076.0,
++      174.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Spielewelt",
++    "bounds": [
++      2138.0,
++      147.0,
++      2321.0,
++      180.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "KLEINE SCR TTE",
++    "bounds": [
++      284.0,
++      205.0,
++      352.0,
++      211.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Rennen",
++    "bounds": [
++      318.0,
++      296.0,
++      449.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Fahrer",
++    "bounds": [
++      770.0,
++      295.0,
++      883.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Karts",
++    "bounds": [
++      1223.0,
++      296.0,
++      1314.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Strecken",
++    "bounds": [
++      1633.0,
++      295.0,
++      1786.0,
++      323.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Tempo",
++    "bounds": [
++      2091.0,
++      295.0,
++      2212.0,
++      331.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "-",
++    "bounds": [
++      344.0,
++      416.0,
++      358.0,
++      420.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Rundum ansehen",
++    "bounds": [
++      1906.0,
++      454.0,
++      2203.0,
++      481.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Ge",
++    "bounds": [
++      1588.0,
++      530.0,
++      1647.0,
++      564.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "_",
++    "bounds": [
++      1370.0,
++      609.0,
++      1383.0,
++      612.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "Lack, Teile & Effekte",
++    "bounds": [
++      328.0,
++      727.0,
++      709.0,
++      762.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "— Kart-Menu",
++    "bounds": [
++      573.0,
++      899.0,
++      862.0,
++      933.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "KO",
++    "bounds": [
++      1268.0,
++      937.0,
++      1703.0,
++      1003.0
++    ],
++    "variant": "white-latin"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      823.0,
++      305.0,
++      835.0,
++      321.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "7",
++    "bounds": [
++      465.0,
++      382.0,
++      535.0,
++      405.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "és a",
++    "bounds": [
++      616.0,
++      373.0,
++      815.5,
++      405.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "ied",
++    "bounds": [
++      1576.0,
++      561.0,
++      1605.0,
++      568.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "oF",
++    "bounds": [
++      1580.0,
++      611.0,
++      1605.0,
++      630.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "Us",
++    "bounds": [
++      1272.0,
++      578.0,
++      1410.0,
++      679.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "tem",
++    "bounds": [
++      1483.0,
++      671.0,
++      1533.0,
++      688.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      655.0,
++      818.0,
++      777.0,
++      849.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1649.0,
++      899.0,
++      2000.0,
++      933.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "6",
++    "bounds": [
++      799.5,
++      986.0,
++      887.5,
++      1017.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "— ——__",
++    "bounds": [
++      2040.0,
++      1003.0,
++      2108.0,
++      1004.0
++    ],
++    "variant": "navy-latin"
++  },
++  {
++    "text": "ul",
++    "bounds": [
++      823.0,
++      305.0,
++      835.0,
++      321.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "és ae ©",
++    "bounds": [
++      616.0,
++      354.0,
++      846.0,
++      415.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "y",
++    "bounds": [
++      969.0,
++      376.0,
++      1006.0,
++      480.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "af",
++    "bounds": [
++      1576.0,
++      607.0,
++      1588.0,
++      641.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "= 1B",
++    "bounds": [
++      1245.0,
++      582.0,
++      1411.0,
++      663.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "ym",
++    "bounds": [
++      1483.0,
++      671.0,
++      1531.0,
++      688.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "Ts) os",
++    "bounds": [
++      1263.0,
++      682.0,
++      1374.0,
++      710.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "ma",
++    "bounds": [
++      994.0,
++      715.0,
++      1053.0,
++      747.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "re",
++    "bounds": [
++      655.0,
++      818.0,
++      821.0,
++      849.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1649.0,
++      899.0,
++      2000.0,
++      933.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      684.0,
++      982.0,
++      756.0,
++      1027.0
++    ],
++    "variant": "navy-latin-1x"
++  },
++  {
++    "text": "I iC",
++    "bounds": [
++      187.0,
++      18.0,
++      297.0,
++      52.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "a",
++    "bounds": [
++      2250.0,
++      20.0,
++      2281.0,
++      41.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "= mo",
++    "bounds": [
++      234.0,
++      110.0,
++      405.0,
++      159.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "IN",
++    "bounds": [
++      1856.0,
++      167.0,
++      1886.0,
++      186.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Veal",
++    "bounds": [
++      1985.0,
++      155.0,
++      2017.0,
++      172.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "rel",
++    "bounds": [
++      2190.0,
++      150.0,
++      2222.0,
++      170.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "ree",
++    "bounds": [
++      330.0,
++      162.0,
++      427.0,
++      206.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "==",
++    "bounds": [
++      943.0,
++      246.0,
++      1008.0,
++      248.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "eee",
++    "bounds": [
++      1654.0,
++      307.0,
++      1705.0,
++      318.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "=",
++    "bounds": [
++      2119.0,
++      314.0,
++      2132.0,
++      315.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "sii",
++    "bounds": [
++      855.0,
++      303.0,
++      877.0,
++      322.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "I",
++    "bounds": [
++      1512.0,
++      249.0,
++      1553.0,
++      425.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "i",
++    "bounds": [
++      1773.0,
++      308.0,
++      1787.0,
++      322.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "N",
++    "bounds": [
++      807.0,
++      249.0,
++      842.0,
++      371.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Dan Rare &",
++    "bounds": [
++      1044.0,
++      374.0,
++      1189.0,
++      395.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "—",
++    "bounds": [
++      2004.0,
++      373.0,
++      2163.0,
++      374.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "= GE |",
++    "bounds": [
++      465.0,
++      348.0,
++      858.0,
++      416.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "m",
++    "bounds": [
++      858.0,
++      373.0,
++      903.0,
++      420.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Baur",
++    "bounds": [
++      1539.0,
++      373.0,
++      1657.0,
++      424.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "v",
++    "bounds": [
++      2346.0,
++      463.0,
++      2362.0,
++      473.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "I u",
++    "bounds": [
++      1576.0,
++      451.0,
++      1705.0,
++      509.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "_—",
++    "bounds": [
++      179.0,
++      416.0,
++      408.0,
++      541.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "SE \"=",
++    "bounds": [
++      1578.0,
++      507.0,
++      1735.0,
++      540.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "A:",
++    "bounds": [
++      1625.0,
++      544.0,
++      1705.0,
++      558.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "NE",
++    "bounds": [
++      1574.0,
++      549.0,
++      1733.0,
++      569.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "m,",
++    "bounds": [
++      1255.0,
++      627.0,
++      1306.0,
++      638.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "] \\",
++    "bounds": [
++      1501.0,
++      574.0,
++      1568.0,
++      611.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "ee",
++    "bounds": [
++      1574.0,
++      585.0,
++      1674.0,
++      624.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "an hr ea",
++    "bounds": [
++      230.0,
++      646.0,
++      421.0,
++      675.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      545.0,
++      631.0,
++      553.0,
++      655.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "N:",
++    "bounds": [
++      814.0,
++      549.0,
++      886.0,
++      665.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "|",
++    "bounds": [
++      1339.0,
++      593.0,
++      1353.0,
++      649.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Not",
++    "bounds": [
++      1560.0,
++      633.0,
++      1586.0,
++      647.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "| ek",
++    "bounds": [
++      1233.0,
++      640.0,
++      1384.0,
++      705.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "ay",
++    "bounds": [
++      1591.0,
++      649.0,
++      1654.0,
++      708.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "N",
++    "bounds": [
++      1236.0,
++      699.0,
++      1251.0,
++      765.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "un",
++    "bounds": [
++      1514.0,
++      719.0,
++      1786.0,
++      835.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Self",
++    "bounds": [
++      640.0,
++      915.0,
++      691.0,
++      931.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "I.",
++    "bounds": [
++      818.0,
++      917.0,
++      835.0,
++      930.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "i",
++    "bounds": [
++      1256.0,
++      878.0,
++      1279.0,
++      938.0
++    ],
++    "variant": "teal-text-1x"
++  },
++  {
++    "text": "Rennen starten",
++    "bounds": [
++      1649.0,
++      899.0,
++      2001.0,
++      933.0
++    ],
++    "variant": "teal-text-1x"
++  }
++]Binary addition: tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png SHA256 0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff
+--- a/tools/android_qa/tests/test_kart_garage_evidence.py
++++ b/tools/android_qa/tests/test_kart_garage_evidence.py
+@@ -94,37 +94,53 @@
+ 
+ 
+ class GarageObservedScrollTests(unittest.TestCase):
+-    def test_current_hidden_title_layout_uses_only_the_tab_footer_and_left_card(self):
+-        proof = evidence.stage_garage_scroll_observation(list_frame(), list_lines())
+-        self.assertEqual(proof['gesture'], [175, 320, 175, 208])
+-
+-    def test_missing_anchors_incomplete_frames_and_right_preview_are_rejected(self):
+-        bad_preview = copy.deepcopy(list_lines())
+-        bad_preview[1]['bounds'] = [1500, 300, 1650, 340]
+-        for frame, lines in ((dict(list_frame(), acceptable_for_target_sampling=False), list_lines()),
+-                             (list_frame(), list_lines()[1:]),
+-                             (list_frame(), list_lines()[:2]),
+-                             (list_frame(), bad_preview)):
+-            with self.subTest(frame=frame, lines=lines), self.assertRaises(RuntimeError):
+-                evidence.stage_garage_scroll_observation(frame, lines)
++    def test_current_hidden_title_layout_uses_the_observed_clip_not_only_tab_and_footer(self):
++        from test_kart_garage_scroll_recovery import (
++            VISIBLE_LIST, gesture_is_inside, original_observation)
++        frame, lines, source = original_observation('main', 0)
++        proof = evidence.stage_garage_scroll_observation(frame, lines, source=source)
++        self.assertTrue(gesture_is_inside(proof['gesture'], VISIBLE_LIST['main']))
++        self.assertFalse(gesture_is_inside([374, 486, 374, 351], VISIBLE_LIST['main']))
++
++    def test_missing_current_context_and_incomplete_frames_are_rejected(self):
++        from test_kart_garage_scroll_recovery import original_observation
++        frame, lines, source = original_observation('main', 0)
++        without_tab = [row for row in lines if evidence.normalize(row['text']) != 'karts']
++        without_footer = [row for row in lines if evidence.normalize(row['text']) not in
++                          ('kartmenu', 'menu', 'start', 'rennenstarten')]
++        for current, observed in (
++                (dict(frame, acceptable_for_target_sampling=False), lines),
++                (frame, without_tab), (frame, without_footer)):
++            with self.subTest(frame=current), self.assertRaises(RuntimeError):
++                evidence.stage_garage_scroll_observation(current, observed, source=source)
+ 
+     def test_actual_scroll_needs_two_stable_frames_and_unchanged_screenshot(self):
++        from test_kart_garage_scroll_recovery import (
++            VISIBLE_LIST, gesture_is_inside, original_observation)
++        frame, lines, original_source = original_observation('main', 0)
+         with tempfile.TemporaryDirectory() as folder:
+-            source = Path(folder) / 'synthetic-observation.png'
+-            source.write_bytes(b'synthetic screenshot observation')
+-            frame = dict(list_frame(), source_sha256=hashlib.sha256(source.read_bytes()).hexdigest())
++            def observation(index):
++                source = Path(folder) / f'current-{index}.png'
++                source.write_bytes(original_source.read_bytes())
++                return dict(frame, source=source.name), source
++            first_frame, first_source = observation(0)
++            second_frame, second_source = observation(1)
++            third_frame, third_source = observation(2)
++            fourth_frame, fourth_source = observation(3)
+             callback = tour._stage_kart_scroll_recovery()
+             with patch.object(tour.base, 'adb') as adb, patch.object(tour.time, 'monotonic', return_value=0):
+-                first = callback(frame, list_lines(), source, deadline=10, previous_missing_frame=None)
++                first = callback(first_frame, lines, first_source, deadline=10, previous_missing_frame=None)
+                 self.assertEqual(first['status'], 'WAITING_FOR_SECOND_LIST_FRAME')
+                 adb.assert_not_called()
+-                second = callback(frame, list_lines(), source, deadline=10, previous_missing_frame=frame)
++                second = callback(second_frame, lines, second_source, deadline=10, previous_missing_frame=first_frame)
+                 self.assertEqual(second['status'], 'SWIPE_SENT')
+-                self.assertEqual(adb.call_args.args, ('shell', 'input', 'swipe', '175', '320', '175', '208', '650'))
+-                callback(frame, list_lines(), source, deadline=10, previous_missing_frame=None)
+-                source.write_bytes(b'changed after sampling')
+-                with self.assertRaisesRegex(RuntimeError, 'screenshot changed'):
+-                    callback(frame, list_lines(), source, deadline=10, previous_missing_frame=frame)
++                self.assertTrue(gesture_is_inside(
++                    list(map(int, adb.call_args.args[3:7])), VISIBLE_LIST['main']))
++                self.assertNotEqual(adb.call_args.args[3:5], adb.call_args.args[5:7])
++                callback(third_frame, lines, third_source, deadline=10, previous_missing_frame=None)
++                third_source.write_bytes(b'changed after sampling')
++                with self.assertRaises(RuntimeError):
++                    callback(fourth_frame, lines, fourth_source, deadline=10, previous_missing_frame=third_frame)
+                 self.assertEqual(adb.call_count, 1)
+ 
+ 
+@@ -400,21 +416,23 @@
+         with self.assertRaisesRegex(RuntimeError, 'No physical progress'):
+             scope['pause']()
+ 
+-    def test_selection_needs_a_successful_observed_native_touch_receipt(self):
++    def test_selection_reports_success_only_after_the_observed_input_succeeds(self):
++        from test_kart_garage_scroll_recovery import GarageObservationReplay
+         with tempfile.TemporaryDirectory() as folder:
+             out = Path(folder)
+-            def tap(path, label, tag, **kwargs):
+-                self.assertEqual(label, 'Gecko Velo')
+-                self.assertTrue(kwargs['exact'])
+-                self.assertTrue(callable(kwargs['missing_caption']))
+-                (path / (tag + '-surface-readiness.json')).write_text(json.dumps(
+-                    {'status': 'TOUCH_SENT', 'touch': [101, 202]}))
+-            with patch.object(tour.probe, 'native_tap', side_effect=tap):
+-                report = tour._select_stage_kart(out, 'gecko_velo')
+-            self.assertEqual(report['touch'], [101, 202])
+-            (out / '21_stage_select_gecko_velo-surface-readiness.json').write_text('{"status":"FAIL"}')
+-            with patch.object(tour.probe, 'native_tap'), self.assertRaisesRegex(RuntimeError, 'No observed'):
+-                tour._select_stage_kart(out, 'gecko_velo')
++            replay = GarageObservationReplay(out, [('main', 0), ('main', 0)])
++            with replay.installed():
++                report = tour._select_stage_kart(out, 'comet')
++            self.assertEqual(report['touch'], [374, 486])
++            self.assertEqual(replay.capture_count, 2)
++            self.assertEqual(len(replay.inputs), 1)
++            replay = GarageObservationReplay(out, [('main', 0), ('main', 0)])
++            with replay.installed(), \
++                    patch.object(tour.base, 'adb', side_effect=RuntimeError('Observed ADB input failed')), \
++                    self.assertRaisesRegex(RuntimeError, 'Observed ADB input failed'):
++                tour._select_stage_kart(out, 'comet')
++            receipt = json.loads((out / '21_stage_select_comet-surface-readiness.json').read_text())
++            self.assertEqual(receipt['status'], 'FAIL')
+ 
+     def test_selection_wait_reads_old_and_new_snapshots_without_accepting_wrong_new_car(self):
+         states = iter([race(result_id='old', selected_kart='comet', mode='race'),
+--- /dev/null
++++ b/tools/android_qa/tests/test_kart_garage_scroll_recovery.py
+@@ -0,0 +1,507 @@
++"""Real failed Android frames must permit a safe scroll, never a guessed tap.
++
++The PNGs and OCR JSON are unchanged observations from run43594006354, attempt1.
++Main and Update have different horizontal insets. Main's post-scroll frame
++clips both nearby captions; Update visibly shows Boru Rally but its original
++OCR read only Boru. Neither observation authorizes a vehicle-selection tap.
++These regressions exercise probe decisions, not Android/device acceptance.
++"""
++from __future__ import annotations
++
++import copy
++from contextlib import ExitStack, contextmanager
++import hashlib
++import json
++from pathlib import Path
++import shutil
++import sys
++import tempfile
++import unittest
++from unittest.mock import patch
++
++from PIL import Image
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++import kart_garage_evidence as evidence
++from native_surface_readiness import inspect_surface
++from test_modernization_tour_identity import TOUR_MODULE as tour
++
++
++FIXTURES = Path(__file__).parent / 'fixtures/kart-scroll-6f42'
++# Independently annotated from the original full-resolution PNGs: content
++# begins below the top clip and ends above the fixed workshop button. These
++# are assertions about these four archived frames, never production inputs.
++VISIBLE_LIST = {'main': (42, 416, 750, 665),
++                'update': (178, 416, 845, 665)}
++# Frame1 in each original readiness journal records SWIPE_SENT at these
++# coordinates. Frame0 records the first (slightly different in Main) proposal.
++ORIGINAL_SENT_DRAG = {'main': (374, 486, 374, 351),
++                      'update': (510, 486, 510, 351)}
++VEHICLE_NAMES = {'comet', 'geckovelo', 'borurally', 'glider', 'nalacomet', 'noatide'}
++
++
++def original_observation(layout: str, index: int):
++    manifest = json.loads((FIXTURES / 'source.json').read_text())
++    case = next(item for item in manifest['cases'] if item['name'] == layout)
++    snapshot = next(item for item in case['snapshots'] if item['frame_index'] == index)
++    for item in snapshot['files']:
++        raw = (FIXTURES / item['path']).read_bytes()
++        if len(raw) != item['bytes'] or hashlib.sha256(raw).hexdigest() != item['sha256']:
++            raise AssertionError('Original regression evidence changed: ' + item['path'])
++    frame = copy.deepcopy(snapshot['original_frame'])
++    source = FIXTURES / layout / frame['source']
++    lines = json.loads((source.with_name(source.stem + '-ocr.json')).read_text())
++    return frame, lines, source
++
++
++def gesture_is_inside(gesture, rectangle):
++    left, top, right, bottom = rectangle
++    x0, y0, x1, y1 = gesture
++    return left < x0 < right and left < x1 < right and top < y0 < bottom and top < y1 < bottom
++
++
++def empty_word_observation(out, tag, lines):
++    """Explicit synthetic empty TSVs for the pixel-only replay branch.
++
++    The PNGs and line JSON remain original. These header-only word streams
++    deliberately contain no inferred words; the separate 3d91 suite replays
++    actual Boru TSV bytes through the unchanged word parser.
++    """
++    fields = ['level', 'page_num', 'block_num', 'par_num', 'line_num', 'word_num',
++              'left', 'top', 'width', 'height', 'conf', 'text']
++    for variant in dict.fromkeys(row['variant'] for row in lines):
++        (out / f'{tag}-ocr-{variant}.tsv').write_text('\t'.join(fields) + '\n')
++
++
++class OriginalGarageViewportTests(unittest.TestCase):
++    def assert_safe_scroll(self, proof, layout):
++        gesture = proof['gesture']
++        self.assertTrue(gesture_is_inside(gesture, VISIBLE_LIST[layout]),
++                        f'{layout}: {gesture} leaves the actual clipped list')
++        self.assertTrue(gesture_is_inside(gesture, proof['viewport_bounds']))
++        self.assertEqual(gesture[0], gesture[2])
++        self.assertNotEqual(gesture[1], gesture[3])
++        self.assertLess(abs(gesture[1] - gesture[3]),
++                        (VISIBLE_LIST[layout][3] - VISIBLE_LIST[layout][1]) / 2)
++
++    def test_both_original_layouts_keep_every_scroll_point_inside_the_real_clip(self):
++        for layout in VISIBLE_LIST:
++            for index in (0, 2):
++                with self.subTest(layout=layout, original_frame=index):
++                    frame, lines, source = original_observation(layout, index)
++                    proof = evidence.stage_garage_scroll_observation(frame, lines, source=source)
++                    self.assert_safe_scroll(proof, layout)
++
++    def test_actual_old_drag_crosses_the_clip_even_though_tabs_and_footer_enclose_it(self):
++        manifest = json.loads((FIXTURES / 'source.json').read_text())
++        for case in manifest['cases']:
++            frame = case['snapshots'][0]['original_frame']
++            old = frame['missing_caption_recovery']
++            with self.subTest(layout=case['name']):
++                sent = ORIGINAL_SENT_DRAG[case['name']]
++                self.assertLess(old['header_bottom'], sent[3])
++                self.assertLess(sent[1], old['footer_top'])
++                self.assertFalse(gesture_is_inside(sent, VISIBLE_LIST[case['name']]))
++                current, lines, source = original_observation(case['name'], 0)
++                proof = evidence.stage_garage_scroll_observation(current, lines, source=source)
++                self.assert_safe_scroll(proof, case['name'])
++
++    def test_both_actual_anchorless_frames_produce_scroll_evidence_without_a_card_tap(self):
++        for layout in VISIBLE_LIST:
++            frame, lines, source = original_observation(layout, 2)
++            with self.subTest(layout=layout), patch.object(tour.base, 'adb') as adb:
++                self.assertFalse([line for line in lines
++                                  if evidence.normalize(line['text']) in VEHICLE_NAMES])
++                proof = evidence.stage_garage_scroll_observation(frame, lines, source=source)
++                self.assert_safe_scroll(proof, layout)
++                adb.assert_not_called()
++                self.assertNotEqual(proof.get('status'), 'TOUCH_SENT')
++
++    def test_missing_or_foreign_surface_binding_cannot_authorize_scroll(self):
++        frame, lines, source = original_observation('main', 0)
++        _, _, foreign = original_observation('update', 0)
++        cases = [
++            (dict(frame, acceptable_for_target_sampling=False), source),
++            (dict(frame, pixels=[1080, 2400]), source),
++            (dict(frame, pixels=[2399, 1080]), source),
++            (dict(frame, source_sha256='0' * 64), source),
++            (dict(frame, source_bytes=frame['source_bytes'] + 1), source),
++            (frame, foreign),
++        ]
++        for current, path in cases:
++            with self.subTest(frame=current, source=path), self.assertRaises((RuntimeError, ValueError)):
++                evidence.stage_garage_scroll_observation(current, lines, source=path)
++
++    def test_actual_current_menu_context_is_required_even_when_scroll_pixels_exist(self):
++        frame, lines, source = original_observation('main', 2)
++        required = ({'karts'}, {'lackteileeffekte'}, {'kartmenu', 'menu', 'start', 'rennenstarten'})
++        for missing in required:
++            filtered = [line for line in lines if evidence.normalize(line['text']) not in missing]
++            with self.subTest(missing=missing), self.assertRaises((RuntimeError, ValueError)):
++                evidence.stage_garage_scroll_observation(frame, filtered, source=source)
++
++    def test_missing_or_two_current_scrollbar_tracks_do_not_authorize_a_drag(self):
++        _, lines, original = original_observation('main', 0)
++        with tempfile.TemporaryDirectory() as folder:
++            for change in ('erase', 'duplicate'):
++                with self.subTest(pixel_change=change), Image.open(original) as image:
++                    changed = image.convert('RGB')
++                    # This is the visible rail strip in the original image,
++                    # not a call to the detector being tested. The original
++                    # fixture remains untouched; these are negative inputs.
++                    strip = (749, 407, 766, 668)
++                    if change == 'erase':
++                        changed.paste((0, 0, 0), strip)
++                    else:
++                        changed.paste(changed.crop(strip), (709, 407))
++                    source = Path(folder) / (change + '.png')
++                    changed.save(source)
++                    frame = inspect_surface(source)
++                    self.assertTrue(frame['acceptable_for_target_sampling'])
++                    with self.assertRaises(RuntimeError):
++                        evidence.stage_garage_scroll_observation(frame, lines, source=source)
++
++    def test_correct_dimensions_and_file_hash_do_not_make_a_jpeg_a_capture_png(self):
++        _, lines, original = original_observation('main', 0)
++        with tempfile.TemporaryDirectory() as folder, Image.open(original) as image:
++            source = Path(folder) / 'non-png-capture.png'
++            image.convert('RGB').save(source, format='JPEG')
++            frame = inspect_surface(source)
++            with self.assertRaises(RuntimeError):
++                evidence.stage_garage_scroll_observation(frame, lines, source=source)
++
++
++class ObservedGarageScrollBoundaryTests(unittest.TestCase):
++    def setUp(self):
++        directory = tempfile.TemporaryDirectory()
++        self.addCleanup(directory.cleanup)
++        self.out = Path(directory.name)
++
++    def observation(self, layout, index, name):
++        frame, lines, original = original_observation(layout, index)
++        source = self.out / (name + '.png')
++        shutil.copyfile(original, source)
++        frame['source'] = source.name
++        empty_word_observation(self.out, source.stem, lines)
++        return frame, lines, source
++
++    def test_a_new_horizontal_layout_requires_its_own_second_current_observation(self):
++        main, main_lines, main_source = self.observation('main', 2, 'old-layout')
++        updated, updated_lines, updated_source = self.observation('update', 2, 'new-layout-first')
++        current, current_lines, current_source = self.observation('update', 2, 'new-layout-second')
++        callback = tour._stage_kart_scroll_recovery()
++        with patch.object(tour.base, 'adb') as adb, \
++                patch.object(tour.time, 'monotonic', return_value=0):
++            first = callback(main, main_lines, main_source, deadline=10,
++                             previous_missing_frame=None)
++            self.assertEqual(first['status'], 'WAITING_FOR_SECOND_LIST_FRAME')
++            changed = callback(updated, updated_lines, updated_source, deadline=10,
++                               previous_missing_frame=main)
++            self.assertEqual(changed['status'], 'WAITING_FOR_SECOND_LIST_FRAME')
++            adb.assert_not_called()
++            current = callback(current, current_lines, current_source, deadline=10,
++                               previous_missing_frame=updated)
++        self.assertEqual(current['status'], 'SWIPE_SENT')
++        adb.assert_called_once()
++        gesture = list(map(int, adb.call_args.args[3:7]))
++        self.assertTrue(gesture_is_inside(gesture, VISIBLE_LIST['update']))
++
++    def test_a_missing_intervening_frame_cannot_reuse_the_prior_scroll_observation(self):
++        frame, lines, source = self.observation('main', 2, 'before-gap')
++        after, after_lines, after_source = self.observation('main', 2, 'after-gap')
++        last, last_lines, last_source = self.observation('main', 2, 'current-pair')
++        callback = tour._stage_kart_scroll_recovery()
++        with patch.object(tour.base, 'adb') as adb, \
++                patch.object(tour.time, 'monotonic', return_value=0):
++            callback(frame, lines, source, deadline=10, previous_missing_frame=None)
++            after_gap = callback(after, after_lines, after_source, deadline=10, previous_missing_frame=None)
++            self.assertEqual(after_gap['status'], 'WAITING_FOR_SECOND_LIST_FRAME')
++            adb.assert_not_called()
++            ready = callback(last, last_lines, last_source, deadline=10, previous_missing_frame=after)
++        self.assertEqual(ready['status'], 'SWIPE_SENT')
++        adb.assert_called_once()
++
++    def test_replaced_previous_png_invalidates_the_pair_even_when_current_png_is_unchanged(self):
++        frame, lines, original = original_observation('main', 2)
++        with tempfile.TemporaryDirectory() as folder:
++            previous = Path(folder) / original.name
++            current = Path(folder) / 'current.png'
++            previous.write_bytes(original.read_bytes())
++            current.write_bytes(original.read_bytes())
++            current_frame = dict(frame, source=current.name)
++            empty_word_observation(Path(folder), previous.stem, lines)
++            empty_word_observation(Path(folder), current.stem, lines)
++            callback = tour._stage_kart_scroll_recovery()
++            with patch.object(tour.base, 'adb') as adb, \
++                    patch.object(tour.time, 'monotonic', return_value=0):
++                callback(frame, lines, previous, deadline=10, previous_missing_frame=None)
++                previous.write_bytes(b'replaced previous observation')
++                with self.assertRaises(RuntimeError):
++                    callback(current_frame, lines, current, deadline=10, previous_missing_frame=frame)
++            adb.assert_not_called()
++
++    def test_expired_deadline_refuses_an_otherwise_stable_real_scroll(self):
++        frame, lines, source = self.observation('main', 2, 'first')
++        current, current_lines, current_source = self.observation('main', 2, 'second')
++        callback = tour._stage_kart_scroll_recovery()
++        with patch.object(tour.base, 'adb') as adb, \
++                patch.object(tour.time, 'monotonic', return_value=0):
++            callback(frame, lines, source, deadline=10, previous_missing_frame=None)
++            with self.assertRaises((RuntimeError, TimeoutError)):
++                callback(current, current_lines, current_source, deadline=0, previous_missing_frame=frame)
++        adb.assert_not_called()
++
++    def test_deadline_expiring_during_real_pixel_analysis_prevents_input(self):
++        frame, lines, source = self.observation('main', 2, 'first')
++        current, current_lines, current_source = self.observation('main', 2, 'second')
++        callback = tour._stage_kart_scroll_recovery()
++        clock = [0.0]
++        original = tour.garage_evidence.stage_garage_scroll_observation
++
++        def analyze_then_expire(*args, **kwargs):
++            result = original(*args, **kwargs)
++            clock[0] = 11.0
++            return result
++
++        with patch.object(tour.base, 'adb') as adb, \
++                patch.object(tour.time, 'monotonic', side_effect=lambda: clock[0]):
++            callback(frame, lines, source, deadline=10, previous_missing_frame=None)
++            with patch.object(tour.garage_evidence, 'stage_garage_scroll_observation', side_effect=analyze_then_expire), \
++                    self.assertRaises((RuntimeError, TimeoutError)):
++                callback(current, current_lines, current_source, deadline=10, previous_missing_frame=frame)
++        adb.assert_not_called()
++
++
++class GarageExactTargetTests(unittest.TestCase):
++    def current(self, layout='main', index=0):
++        _, lines, source = original_observation(layout, index)
++        frame = inspect_surface(source)
++        region = evidence.stage_garage_scroll_observation(frame, lines, source=source, kart='comet')
++        return frame, lines, region['viewport_bounds']
++
++    def test_multiple_original_ocr_variants_of_one_complete_card_are_one_target(self):
++        for layout in VISIBLE_LIST:
++            with self.subTest(layout=layout):
++                frame, lines, viewport = self.current(layout)
++                target = evidence.stage_kart_target_observation(frame, lines, 'comet', viewport)
++                self.assertIsNotNone(target)
++                self.assertEqual(evidence.normalize(target['target']['text']), 'comet')
++                left, top, right, bottom = target['target']['bounds']
++                self.assertTrue(gesture_is_inside((left, top, right, bottom), VISIBLE_LIST[layout]))
++
++    def test_actual_anchorless_and_partial_ocr_never_name_the_selected_vehicle(self):
++        for layout in VISIBLE_LIST:
++            with self.subTest(layout=layout):
++                frame, lines, viewport = self.current(layout, 2)
++                for kart in ('comet', 'gecko_velo'):
++                    self.assertIsNone(evidence.stage_kart_target_observation(frame, lines, kart, viewport))
++
++    def test_a_caption_outside_or_straddling_the_actual_clip_is_not_a_target(self):
++        frame, lines, viewport = self.current()
++        for bounds in ([314, 400, 434, 428], [314, 650, 434, 678],
++                       [1400, 472, 1520, 499], [20, 472, 50, 499]):
++            observed = copy.deepcopy(lines)
++            for row in observed:
++                if evidence.normalize(row['text']) == 'comet':
++                    row['bounds'] = bounds
++            with self.subTest(bounds=bounds):
++                self.assertIsNone(evidence.stage_kart_target_observation(frame, observed, 'comet', viewport))
++
++    def test_two_distinct_exact_card_regions_are_not_reduced_to_the_first_match(self):
++        frame, lines, viewport = self.current()
++        second = {'text': 'Comet', 'bounds': [314, 572, 434, 599], 'variant': 'raw'}
++        with self.assertRaises(RuntimeError):
++            evidence.stage_kart_target_observation(frame, lines + [second], 'comet', viewport)
++
++    def test_prefix_suffix_and_partial_captions_do_not_authorize_a_selection(self):
++        frame, lines, viewport = self.current()
++        for text in ('Come', 'Comet Plus', 'Gecko', 'Gecko Velo Extra'):
++            observed = copy.deepcopy(lines)
++            for row in observed:
++                if evidence.normalize(row['text']) == 'comet':
++                    row['text'] = text
++            with self.subTest(text=text):
++                self.assertIsNone(evidence.stage_kart_target_observation(frame, observed, 'comet', viewport))
++                self.assertIsNone(evidence.stage_kart_target_observation(frame, observed, 'gecko_velo', viewport))
++
++
++class GarageObservationReplay:
++    """Feed original observations through the real caller and record its inputs.
++
++    The supplied sequence tests how fresh observations authorize an input. It
++    does not predict Android inertia or claim a newly captured successful race.
++    Only capture, OCR, ADB and elapsed wall time are replaced; pixel analysis,
++    viewport guards, target stability and the real selection caller run.
++    """
++    def __init__(self, out, observations, *, capture_seconds=.25, ocr_seconds=.5):
++        self.out = out
++        self.observations = observations
++        self.capture_seconds = capture_seconds
++        self.ocr_seconds = ocr_seconds
++        self.now = 0.0
++        self.capture_count = 0
++        self.ocr_count = 0
++        self.inputs = []
++        self.lines = []
++        self.after_ocr = None
++        self.ocr_calls = []
++
++    def capture(self, _out, name, **_kwargs):
++        position = min(self.capture_count, len(self.observations) - 1)
++        layout, index = self.observations[position]
++        _, self.lines, source = original_observation(layout, index)
++        path = self.out / (name + '.png')
++        shutil.copyfile(source, path)
++        self.capture_count += 1
++        self.now += self.capture_seconds
++        if self.capture_count > 20:
++            raise AssertionError('Probe failed to respect its bounded observation loop')
++        return {'file': path.name}
++
++    def ocr(self, *_args, source_path, **_kwargs):
++        self.ocr_count += 1
++        self.now += self.ocr_seconds
++        self.ocr_calls.append({'args': _args, 'kwargs': dict(_kwargs)})
++        if self.after_ocr is not None:
++            self.after_ocr(source_path)
++        observed = copy.deepcopy(self.lines)
++        empty_word_observation(self.out, source_path.stem, observed)
++        wanted = _args[2] if len(_args) > 2 else ''
++        if wanted and not _kwargs.get('all_caption_regions'):
++            # Model the real reader's early exit with the original rows:
++            # Comet appears in contrast, while the workshop is read later.
++            seen = []
++            for variant in dict.fromkeys(row['variant'] for row in observed):
++                seen.extend(row for row in observed if row['variant'] == variant)
++                if any(tour.probe.normalized(row['text']) == wanted for row in seen):
++                    return seen
++        return observed
++
++    def adb(self, *args, **kwargs):
++        self.inputs.append({'args': args, 'kwargs': kwargs, 'after_capture': self.capture_count})
++        return ''
++
++    def sleep(self, seconds):
++        self.now += seconds
++
++    @contextmanager
++    def installed(self):
++        with ExitStack() as stack:
++            stack.enter_context(patch.object(tour.probe, 'capture', side_effect=self.capture))
++            stack.enter_context(patch.object(tour.probe, 'image_lines', side_effect=self.ocr))
++            stack.enter_context(patch.object(tour.base, 'adb', side_effect=self.adb))
++            stack.enter_context(patch.object(tour.time, 'monotonic', side_effect=lambda: self.now))
++            stack.enter_context(patch.object(tour.time, 'sleep', side_effect=self.sleep))
++            yield
++
++
++class GarageSelectionObservationTests(unittest.TestCase):
++    def setUp(self):
++        directory = tempfile.TemporaryDirectory()
++        self.addCleanup(directory.cleanup)
++        self.out = Path(directory.name)
++
++    def test_comet_selection_reads_later_original_variants_that_contain_the_workshop(self):
++        for layout in VISIBLE_LIST:
++            with self.subTest(layout=layout):
++                _, lines, _ = original_observation(layout, 0)
++                contrast = [row for row in lines if row['variant'] == 'contrast']
++                self.assertTrue(any(evidence.normalize(row['text']) == 'comet' for row in contrast))
++                self.assertFalse(any(evidence.normalize(row['text']) == 'lackteileeffekte'
++                                     for row in contrast))
++                self.assertTrue(any(evidence.normalize(row['text']) == 'lackteileeffekte'
++                                    for row in lines))
++                replay = GarageObservationReplay(self.out, [(layout, 0), (layout, 0)])
++                with replay.installed():
++                    tour._select_stage_kart(self.out, 'comet')
++                self.assertEqual(replay.capture_count, 2)
++                self.assertEqual(len(replay.inputs), 1)
++                self.assertTrue(all(call['kwargs'].get('all_caption_regions') is True
++                                    and call['kwargs'].get('exact') is True
++                                    for call in replay.ocr_calls))
++
++    def test_anchorless_view_can_scroll_but_only_two_new_complete_frames_allow_the_tap(self):
++        for layout in VISIBLE_LIST:
++            with self.subTest(layout=layout):
++                replay = GarageObservationReplay(self.out, [(layout, 2), (layout, 2),
++                                                            (layout, 0), (layout, 0)])
++                with replay.installed():
++                    result = tour._select_stage_kart(self.out, 'comet')
++                self.assertEqual(replay.capture_count, 4)
++                self.assertEqual(len(replay.inputs), 2)
++                scroll, tap = replay.inputs
++                self.assertEqual([scroll['after_capture'], tap['after_capture']], [2, 4])
++                self.assertTrue(gesture_is_inside(list(map(int, scroll['args'][3:7])),
++                                                 VISIBLE_LIST[layout]))
++                self.assertEqual(tap['args'][:3], ('shell', 'input', 'swipe'))
++                self.assertEqual(tap['args'][3:5], tap['args'][5:7])
++                self.assertEqual(tap['args'][7], '120')
++                journal = json.loads((self.out / result['readiness']).read_text())
++                self.assertEqual(journal['status'], 'TOUCH_SENT')
++                self.assertEqual([frame['target']['stable_observed_target']
++                                  for frame in journal['frames'] if 'target' in frame], [False, True])
++
++    def test_one_old_complete_frame_and_one_new_frame_do_not_form_a_stable_target_pair(self):
++        replay = GarageObservationReplay(self.out, [('main', 0), ('main', 2),
++                                                    ('main', 0), ('main', 0)])
++        with replay.installed():
++            tour._select_stage_kart(self.out, 'comet')
++        self.assertEqual(replay.capture_count, 4)
++        self.assertEqual(len(replay.inputs), 1)
++        self.assertEqual(replay.inputs[0]['after_capture'], 4)
++
++    def test_actual_missing_and_partial_captions_never_become_a_vehicle_tap(self):
++        for layout in VISIBLE_LIST:
++            with self.subTest(layout=layout):
++                replay = GarageObservationReplay(self.out, [(layout, 2)],
++                                                 capture_seconds=20, ocr_seconds=10)
++                with replay.installed(), self.assertRaises((RuntimeError, TimeoutError)):
++                    tour._select_stage_kart(self.out, 'gecko_velo')
++                for event in replay.inputs:
++                    self.assertNotEqual(event['args'][3:5], event['args'][5:7],
++                                        'A partial/missing actual caption authorized a tap')
++                journal = json.loads((self.out / '21_stage_select_gecko_velo-surface-readiness.json').read_text())
++                self.assertEqual(journal['status'], 'FAIL')
++                self.assertNotIn('touch', journal)
++
++    def test_current_png_replacement_after_ocr_cannot_authorize_scroll_or_tap(self):
++        _, _, replacement = original_observation('update', 0)
++        for index, label in ((2, 'gecko_velo'), (0, 'comet')):
++            with self.subTest(original_frame=index):
++                replay = GarageObservationReplay(self.out, [('main', index)])
++
++                def replace(path):
++                    if replay.capture_count == 2:
++                        shutil.copyfile(replacement, path)
++
++                replay.after_ocr = replace
++                with replay.installed(), self.assertRaises((RuntimeError, ValueError)):
++                    tour._select_stage_kart(self.out, label)
++                self.assertFalse(replay.inputs)
++
++    def test_capture_or_ocr_crossing_the_selection_deadline_cannot_send_a_tap(self):
++        for capture_seconds, ocr_seconds in ((80, .5), (.25, 80)):
++            with self.subTest(capture_seconds=capture_seconds, ocr_seconds=ocr_seconds):
++                replay = GarageObservationReplay(self.out, [('main', 0)],
++                                                 capture_seconds=capture_seconds,
++                                                 ocr_seconds=ocr_seconds)
++                with replay.installed(), self.assertRaises((RuntimeError, TimeoutError)):
++                    tour._select_stage_kart(self.out, 'comet')
++                self.assertFalse(replay.inputs)
++
++    def test_ambiguous_complete_targets_fail_in_the_real_selection_caller(self):
++        replay = GarageObservationReplay(self.out, [('main', 0)])
++
++        def duplicate_target(_path):
++            replay.lines.append({'text': 'Comet', 'bounds': [314, 572, 434, 599], 'variant': 'raw'})
++
++        replay.after_ocr = duplicate_target
++        with replay.installed(), self.assertRaises(RuntimeError):
++            tour._select_stage_kart(self.out, 'comet')
++        self.assertFalse(replay.inputs)
++        journal = json.loads((self.out / '21_stage_select_comet-surface-readiness.json').read_text())
++        self.assertEqual(journal['status'], 'FAIL')
++
++
++if __name__ == '__main__':
++    unittest.main()
+--- a/tools/android_qa/tests/test_kart_scroll_word_evidence.py
++++ b/tools/android_qa/tests/test_kart_scroll_word_evidence.py
+@@ -58,7 +58,7 @@
+         function = next(node for node in module.body if isinstance(node, ast.FunctionDef)
+                         and node.name == '_stage_kart_scroll_recovery')
+         scope = {'garage_evidence': evidence, 'probe': SimpleNamespace(digest=digest),
+-                 'base': SimpleNamespace(adb=self.adb), 'time': self.clock}
++                 'base': SimpleNamespace(adb=self.adb), 'time': self.clock, 'Path': Path}
+         exec(compile(ast.Module(body=[function], type_ignores=[]), str(TOUR), 'exec'), scope)
+         return scope['_stage_kart_scroll_recovery']()
+ 
+@@ -67,7 +67,18 @@
+ 
+     def observe(self):
+         return evidence.stage_garage_scroll_observation(
+-            self.frame, self.lines, caption_words=self.recovered()['captions'])
++            self.frame, self.lines, source=self.source,
++            caption_words=self.recovered()['captions'])
++
++    def fresh_observation(self, number):
++        # Distinct replay paths model two captures of the unchanged original.
++        # They are controlled observations, never a second claimed Android PNG.
++        tag = f'current-word-observation-{number}'
++        for source in list(self.out.glob(TAG + '*')):
++            destination = self.out / (tag + source.name[len(TAG):])
++            shutil.copyfile(source, destination)
++        source = self.out / (tag + '.png')
++        return dict(self.frame, source=source.name), source
+ 
+     def tsv_rows(self):
+         source = self.out / (TAG + '-ocr-raw.tsv')
+@@ -94,25 +105,32 @@
+         return rows
+ 
+     def test_original_boru_frame_recovers_only_scroll_after_two_bound_frames(self):
+-        # Replaying the same original as two controlled observations tests the
+-        # production callback. It does not invent a second Android capture.
+         callback = self.controller()
+-        first = callback(self.frame, self.lines, self.source, deadline=10,
++        first_frame, first_source = self.fresh_observation(1)
++        second_frame, second_source = self.fresh_observation(2)
++        first = callback(first_frame, self.lines, first_source, deadline=10,
+                          previous_missing_frame=None)
+         self.assertEqual(first['status'], 'WAITING_FOR_SECOND_LIST_FRAME')
+         self.adb.assert_not_called()
+-        second = callback(self.frame, self.lines, self.source, deadline=10,
+-                          previous_missing_frame=copy.deepcopy(self.frame))
++        second = callback(second_frame, self.lines, second_source, deadline=10,
++                          previous_missing_frame=first_frame)
+         self.assertEqual(second['status'], 'SWIPE_SENT')
+         self.assertEqual(second['card']['text'], 'Boru Rally')
+         self.assertEqual(second['card']['bounds'], [314.5, 593.0, 511.0, 629.0])
+-        self.assertEqual(second['gesture'], [413, 611, 413, 431])
++        self.assertEqual(second['direction'], 'backward')
++        x0, y0, x1, y1 = second['gesture']
++        self.assertEqual(x0, x1)
++        self.assertLess(y0, y1)
++        self.assertGreaterEqual(y1 - y0, 15)
++        self.assertLess(y1 - y0, 40)
++        # The unchanged original has its clipped list between y416 and665.
++        self.assertTrue(42 < x0 < 750 and 416 < y0 < y1 < 665)
+         self.assertEqual(second['caption_source'], 'original_tsv_word_sequences')
+         self.assertEqual(len(second['ocr_sources']), 7)
+         for source in second['ocr_sources']:
+             self.assertEqual(source['sha256'], digest(self.out / source['file']))
+-        self.adb.assert_called_once_with('shell', 'input', 'swipe', '413', '611',
+-                                         '413', '431', '650', timeout=10)
++        self.adb.assert_called_once_with('shell', 'input', 'swipe',
++                                         *map(str, second['gesture']), '650', timeout=10)
+ 
+     def test_all_original_fixture_bytes_and_pixels_are_bound_to_the_failed_job(self):
+         provenance = json.loads((FIXTURES / 'provenance.json').read_text())
+@@ -132,13 +150,23 @@
+                     self.assertEqual(image.size, (2400, 1080))
+                     image.verify()
+ 
+-    def test_original_line_failure_and_existing_exact_comet_path_are_preserved(self):
+-        with self.assertRaisesRegex(RuntimeError, 'No currently visible vehicle card'):
+-            evidence.stage_garage_scroll_observation(self.frame, self.lines)
++    def test_original_line_gap_and_exact_comet_path_use_the_current_clip(self):
++        current = evidence.stage_garage_scroll_observation(
++            self.frame, self.lines, source=self.source)
++        self.assertEqual(current['visible_cards'], [])
++        self.assertIsNone(current['card'])
++        self.assertIsNone(evidence.stage_kart_target_observation(
++            self.frame, self.lines, 'gecko_velo', current['viewport_bounds']))
++        # Exact Comet lines remain useful for direction, but the old long
++        # gesture is no longer accepted as the geometry of this actual list.
+         lines = json.loads((FIXTURES / '21_stage_select_gecko_velo-0-ocr.json').read_text())
+-        current = evidence.stage_garage_scroll_observation(self.frame, lines)
++        readiness = json.loads((FIXTURES / '21_stage_select_gecko_velo-surface-readiness.json').read_text())
++        current = evidence.stage_garage_scroll_observation(
++            readiness['frames'][0], lines, source=FIXTURES / '21_stage_select_gecko_velo-0.png')
+         self.assertEqual(current['card']['text'], 'Comet')
+-        self.assertEqual(current['gesture'], [374, 486, 374, 351])
++        self.assertEqual(current['direction'], 'forward')
++        self.assertNotEqual(current['gesture'], [374, 486, 374, 351])
++        self.assertLess(351, current['viewport_bounds'][1])
+ 
+     def test_known_complete_names_keep_case_whitespace_and_longest_caption(self):
+         for caption in ('Comet', 'Gecko Velo', 'Boru Rally', 'Glider', 'Nala Comet', 'Noa Tide'):
+@@ -217,7 +245,7 @@
+ 
+     def test_duplicate_real_regions_and_conflicting_names_are_ambiguous(self):
+         original = self.tsv_rows()
+-        duplicate = [dict(row, block_num='999', top=str(int(row['top']) + 200))
++        duplicate = [dict(row, block_num='999', top=str(int(row['top']) - 160))
+                      for row in original if row['level'] == '5' and row['text'] in ('Boru', 'Rally')]
+         self.write_rows(original + duplicate)
+         with self.assertRaisesRegex(RuntimeError, 'Ambiguous repeated vehicle caption'):
+@@ -231,49 +259,56 @@
+         self.assertEqual(len(captions), 1)
+         second = dict(captions[0], variant='contrast', bounds=[315.0, 593.0, 511.0, 629.0])
+         proof = evidence.stage_garage_scroll_observation(
+-            self.frame, self.lines, caption_words=captions + [second])
++            self.frame, self.lines, source=self.source, caption_words=captions + [second])
+         self.assertEqual(proof['card']['text'], 'Boru Rally')
+         comet = {'text': 'Comet', 'bounds': [314.0, 472.0, 434.0, 499.0], 'variant': 'contrast'}
+         proof = evidence.stage_garage_scroll_observation(
+-            self.frame, self.lines, caption_words=captions + [comet])
++            self.frame, self.lines, source=self.source, caption_words=captions + [comet])
+         self.assertEqual(proof['card'], comet)
+ 
+     def test_unstable_words_need_a_new_pair_and_changed_png_or_deadline_never_swipe(self):
+         callback = self.controller()
+-        callback(self.frame, self.lines, self.source, deadline=10, previous_missing_frame=None)
++        first_frame, first_source = self.fresh_observation(1)
++        callback(first_frame, self.lines, first_source, deadline=10, previous_missing_frame=None)
+         rows = self.tsv_rows()
+         for row in rows:
+             if row['level'] == '5' and row['text'] in ('Boru', 'Rally'):
+                 row['left'] = str(int(row['left']) + 40)
+         self.write_rows(rows)
+-        observed = callback(self.frame, self.lines, self.source, deadline=10,
+-                            previous_missing_frame=self.frame)
++        second_frame, second_source = self.fresh_observation(2)
++        observed = callback(second_frame, self.lines, second_source, deadline=10,
++                            previous_missing_frame=first_frame)
+         self.assertEqual(observed['status'], 'WAITING_FOR_SECOND_LIST_FRAME')
+         self.adb.assert_not_called()
+-        self.source.write_bytes(b'changed after observation')
+-        with self.assertRaisesRegex(RuntimeError, 'screenshot changed'):
+-            callback(self.frame, self.lines, self.source, deadline=10,
+-                     previous_missing_frame=self.frame)
+-        self.adb.assert_not_called()
+-        shutil.copyfile(FIXTURES / (TAG + '.png'), self.source)
++        third_frame, third_source = self.fresh_observation(3)
++        third_source.write_bytes(b'changed after observation')
++        with self.assertRaisesRegex(RuntimeError, 'screenshot.*changed'):
++            callback(third_frame, self.lines, third_source, deadline=10,
++                     previous_missing_frame=second_frame)
++        self.adb.assert_not_called()
++        fourth_frame, fourth_source = self.fresh_observation(4)
+         self.clock.monotonic = lambda: 10.0
+         with self.assertRaisesRegex(RuntimeError, 'bounded deadline'):
+-            callback(self.frame, self.lines, self.source, deadline=10,
+-                     previous_missing_frame=self.frame)
++            callback(fourth_frame, self.lines, fourth_source, deadline=10,
++                     previous_missing_frame=second_frame)
+         self.adb.assert_not_called()
+ 
+     def test_five_gesture_limit_remains_hard_after_word_recovery(self):
+         callback = self.controller()
+         for number in range(1, 6):
+-            callback(self.frame, self.lines, self.source, deadline=10,
++            first_frame, first_source = self.fresh_observation(number * 2)
++            second_frame, second_source = self.fresh_observation(number * 2 + 1)
++            callback(first_frame, self.lines, first_source, deadline=10,
+                      previous_missing_frame=None)
+-            result = callback(self.frame, self.lines, self.source, deadline=10,
+-                              previous_missing_frame=self.frame)
++            result = callback(second_frame, self.lines, second_source, deadline=10,
++                              previous_missing_frame=first_frame)
+             self.assertEqual(result['swipe_number'], number)
+-        callback(self.frame, self.lines, self.source, deadline=10, previous_missing_frame=None)
++        first_frame, first_source = self.fresh_observation(12)
++        second_frame, second_source = self.fresh_observation(13)
++        callback(first_frame, self.lines, first_source, deadline=10, previous_missing_frame=None)
+         with self.assertRaisesRegex(RuntimeError, 'after five observed list gestures'):
+-            callback(self.frame, self.lines, self.source, deadline=10,
+-                     previous_missing_frame=self.frame)
++            callback(second_frame, self.lines, second_source, deadline=10,
++                     previous_missing_frame=first_frame)
+         self.assertEqual(self.adb.call_count, 5)
+ 
+     def test_missing_anchors_or_incomplete_surface_never_activate_word_recovery(self):

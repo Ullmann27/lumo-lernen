@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "status": "BOUND_TO_A5AC_SOURCE_CHECKPOINT_AWAITING_NEW_ACTUAL_RUN",
+  "host": "a5ac4cbefb2ddb548043e133efc6a385a34ec9ae",
+  "tree": "337c4ac533cc3f6c9d079e397f7d78facb2ab0bb",
+  "catalog": {
+    "bytes": 42277,
+    "sha256": "df36b6b7fb0ef6ea9d58f0ac75088247eb266187048da714d64885582b35d903",
+    "git_blob": "e8622f4ec883badb09db6483ff62f245b3b3b2d8"
+  },
+  "binding": {
+    "bytes": 5811,
+    "sha256": "32a25edbf74a7055e9e2e606fb18b16ca06aa8ecd66985e423d1d8552465dcdc",
+    "git_blob": "968a4db9d628686ba782916e7d69fb9970252980"
+  },
+  "actual_target_cases": 82,
+  "source_blobs": 16,
+  "changed_source_blobs": 1,
+  "runtime_result": "NOT_RUN_ON_NEW_TEST_BLOB",
+  "next_step": "Root supplies actual activation/run; bind all16 bytes anew without changing the historical V2/0cda evidence."
+}

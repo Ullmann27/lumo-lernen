@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "review.json",
+      "bytes": 7313,
+      "sha256": "bf0e00282564ccf55d96321456926e0db183592ef2962e7ea55f9b157d5e7a25",
+      "git_blob": "2ff9f6942dac61728e0d031101a7ca3d0dafd73f"
+    },
+    {
+      "path": "source-bindings.json",
+      "bytes": 4958,
+      "sha256": "117cbbc13b187ba49fd23f2569eb25041476d9b94572b0bf3961f1775e28f940",
+      "git_blob": "cd993bed397db754b22cf631ab523daa4ab58f3a"
+    },
+    {
+      "path": "read_only_binding.py",
+      "bytes": 4700,
+      "sha256": "564391a50b762a296d90e6e5ddddf8da09cec274ef10552baa2b687fda2fc2e6",
+      "git_blob": "2ae068566468a6b66a1d5449a353ee11425f6a67"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "status": "EXACT_REVIEWED_SOURCE_RECOVERED_AFTER_EXECUTOR_OUTAGE",
+  "parent": "e168f6ae96c4a1a50fb7c4313963425d0b15a1eb",
+  "base_tree": "522b84e760dd8526429c0ba031628236457cb4e0",
+  "source_files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "bytes": 49103,
+      "sha": "2110d672ede7c80819fe3ff365339936b5406d8c",
+      "sha256": "72224aca469231aaeb6f3db0b5e5ec7fea9bb32e8d5804ea8cd46509003d879e"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "bytes": 86764,
+      "sha": "2b3650bda8e2ba92545e2566c534c1ec664c5c16",
+      "sha256": "eab724190785e4714a6b9766d10a7ad0d68177513bcd425e8708d66065999f88"
+    }
+  ],
+  "original_frozen_source_record": {
+    "bytes": 1972,
+    "sha256": "96755d13547f75c95a0543609d6c7ef2d391c6e88b2eca3a4b4e38f0fe8919d6",
+    "git_blob": "76472ccd4f2ab33af956ff992835a6880aae1fa9"
+  },
+  "original_patch_sha256": "5f5c74d93e68489721b88aa778e7a847884bac12cd10c9b3252c47facc51aec2",
+  "independent_reviews_commit": "458e0b13c639c2acbd9199c7d9f00de207070841",
+  "recovery": "Published parent blobs were re-read through GitHub, original bounded edits reapplied in memory, and every final byte length, Git SHA and SHA256 matched the already reviewed pre-outage freeze. No tests are inferred from reconstruction.",
+  "actual_completed_ancestor_tests": {
+    "host4f5": {
+      "delivery": 69,
+      "pipeline": 11,
+      "actionlint": "PASS",
+      "evidence_in": "f44ec248fc73be1fc0032f35bf41199400e7a5b5"
+    },
+    "hostAd623": {
+      "village": 34,
+      "skips": 0,
+      "immutable_original_control_methods": 3,
+      "expected_original_failing_subtests": 4,
+      "evidence_in": "e168f6ae96c4a1a50fb7c4313963425d0b15a1eb"
+    }
+  },
+  "new_combined_88_cases": "NOT_RUN",
+  "native_pin_unchanged": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "active_c4_branch_unchanged": true,
+  "local_executor_status": "unavailable",
+  "source_recovered_exactly": true,
+  "tests_are_next_gate": true
+}

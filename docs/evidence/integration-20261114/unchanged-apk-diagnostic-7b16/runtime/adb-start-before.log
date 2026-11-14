@@ -1,0 +1,17 @@
+test_exact_original_successful_adb_start_stderr_is_accepted (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_exact_original_successful_adb_start_stderr_is_accepted) ... FAIL
+
+======================================================================
+FAIL: test_exact_original_successful_adb_start_stderr_is_accepted (scripts.tests.test_verify_android_runtime_anr.RuntimeAnrTests.test_exact_original_successful_adb_start_stderr_is_accepted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/scripts/tests/test_verify_android_runtime_anr.py", line 150, in test_exact_original_successful_adb_start_stderr_is_accepted
+    self.assertEqual(result["status"], "PASS", result["errors"])
+AssertionError: 'FAIL' != 'PASS'
+- FAIL
++ PASS
+ : ['recording_stderr_not_empty:wait-for-device.stderr']
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+FAILED (failures=1)

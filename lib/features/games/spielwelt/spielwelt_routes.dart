@@ -57,7 +57,7 @@ class SpielweltLayout {
   }
 }
 
-/// Canonical ten-game Spielwelt. Order is the phone-grid hierarchy and
+/// Canonical game worlds. Each portal identifies a real destination.
 /// matches Heinz's 2013 list.
 class SpielweltRoutes {
   SpielweltRoutes._();
@@ -141,6 +141,16 @@ class SpielweltRoutes {
       gameId: GameId.build,
     ),
     SpielweltRoute(
+      identity: 'village',
+      title: 'Dorfwirtschaft',
+      semanticTitle: 'Dorf & Wirtschaft',
+      tagline: 'Versorge deine Freunde und baue ein lebendiges Dorf!',
+      coverAsset: 'assets/lumo_design/spielwelt/portal_bauwelt.png',
+      kind: SpielweltTargetKind.nativeScene,
+      target: 'settlement',
+      targetDescription: 'Godot living village economy (launch3D scene=settlement)',
+    ),
+    SpielweltRoute(
       identity: 'kart',
       title: 'Lumo Kart',
       semanticTitle: 'Lumo Kart',
@@ -181,6 +191,7 @@ class SpielweltRoutes {
     'rhythm',
     'treasure',
     'build',
+    'village',
     'kart',
     'connectFour',
     'quizShow',

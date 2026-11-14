@@ -41,6 +41,10 @@ class LeftNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final active = appState.state.section;
+    final settings = appState.state.settings;
+    final reduceMotion = settings.reduceAnimations ||
+        settings.calmMode ||
+        (MediaQuery.maybeDisableAnimationsOf(context) ?? false);
     final childName = appState.state.childName.trim().isEmpty ? 'Kind' : appState.state.childName.trim();
     final iconOnly = width < 110;
     return Container(
@@ -96,6 +100,7 @@ class LeftNavigation extends StatelessWidget {
                         item: item,
                         isActive: item.section == active,
                         iconOnly: iconOnly,
+                        reduceMotion: reduceMotion,
                         onTap: () => onSelect(item.section),
                       )),
                   // All 14 destinations remain in one continuous scroll
@@ -105,6 +110,7 @@ class LeftNavigation extends StatelessWidget {
                         item: item,
                         isActive: item.section == active,
                         iconOnly: iconOnly,
+                        reduceMotion: reduceMotion,
                         onTap: () => onSelect(item.section),
                       )),
                   _NavGroupTitle('Meine Erfolge', iconOnly: iconOnly),
@@ -112,6 +118,7 @@ class LeftNavigation extends StatelessWidget {
                         item: item,
                         isActive: item.section == active,
                         iconOnly: iconOnly,
+                        reduceMotion: reduceMotion,
                         onTap: () => onSelect(item.section),
                       )),
                   _NavGroupTitle('Lumo & Eltern', iconOnly: iconOnly),
@@ -119,6 +126,7 @@ class LeftNavigation extends StatelessWidget {
                         item: item,
                         isActive: item.section == active,
                         iconOnly: iconOnly,
+                        reduceMotion: reduceMotion,
                         onTap: () => onSelect(item.section),
                       )),
                 ],
@@ -166,10 +174,11 @@ class _NavGroupTitle extends StatelessWidget {
 }
 
 class _NavPill extends StatefulWidget {
-  const _NavPill({required this.item, required this.isActive, required this.iconOnly, required this.onTap});
+  const _NavPill({required this.item, required this.isActive, required this.iconOnly, required this.reduceMotion, required this.onTap});
   final _NavItem item;
   final bool isActive;
   final bool iconOnly;
+  final bool reduceMotion;
   final VoidCallback onTap;
 
   @override
@@ -187,19 +196,26 @@ class _NavPillState extends State<_NavPill>
       vsync: this,
       duration: const Duration(milliseconds: 2200),
     );
-    if (widget.isActive) _glowCtrl.repeat(reverse: true);
+    _syncGlow();
   }
 
   @override
   void didUpdateWidget(covariant _NavPill oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // Inactive navigation pills must not consume animation frames.
-    if (oldWidget.isActive != widget.isActive) {
-      if (widget.isActive) {
-        _glowCtrl.repeat(reverse: true);
-      } else {
-        _glowCtrl.stop();
-      }
+    if (oldWidget.isActive != widget.isActive ||
+        oldWidget.reduceMotion != widget.reduceMotion) {
+      _syncGlow();
+    }
+  }
+
+  void _syncGlow() {
+    // Explicit calm/reduced-motion preferences stop the ticker itself,
+    // including when changed while this same sidebar remains on screen.
+    if (widget.isActive && !widget.reduceMotion) {
+      if (!_glowCtrl.isAnimating) _glowCtrl.repeat(reverse: true);
+    } else {
+      _glowCtrl.stop();
+      if (widget.reduceMotion) _glowCtrl.value = 0;
     }
   }
 
@@ -232,7 +248,9 @@ class _NavPillState extends State<_NavPill>
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 48),
                 child: AnimatedContainer(
-              duration: const Duration(milliseconds: 220),
+              duration: widget.reduceMotion
+                  ? Duration.zero
+                  : const Duration(milliseconds: 220),
               curve: Curves.easeInOut,
               padding: EdgeInsets.symmetric(
                   horizontal: isUltraCompact ? 6 : 13,
@@ -342,7 +360,9 @@ class _NavPillState extends State<_NavPill>
 
   Widget _iconBox(double size) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 220),
+      duration: widget.reduceMotion
+          ? Duration.zero
+          : const Duration(milliseconds: 220),
       width: size,
       height: size,
       decoration: BoxDecoration(

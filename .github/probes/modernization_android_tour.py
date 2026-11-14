@@ -67,6 +67,44 @@ LOG_IMAGES = (
 )
 
 
+def diagnostic_logcat_context(out: Path) -> dict | None:
+    """Preserve logd only for this tour's positively bound API37 recorder."""
+    import hashlib
+
+    requested = os.environ.get('LUMO_RUNTIME_ANR_START')
+    if requested is None:
+        return None
+    path = Path(requested)
+    expected = out / 'runtime-anr/runtime-start.json'
+    if (not requested or not path.is_absolute() or path.is_symlink()
+            or path.resolve(strict=True) != expected.resolve(strict=True)):
+        raise RuntimeError('Diagnostic log preservation requires this exact runtime interval')
+    raw = path.read_bytes()
+    start = json.loads(raw)
+    device_path = path.parent / 'device-logger/start.json'
+    if device_path.is_symlink() or not device_path.is_file():
+        raise RuntimeError('Diagnostic device recorder start is unavailable')
+    device_raw = device_path.read_bytes()
+    device = json.loads(device_raw)
+    identity = {'bytes': len(device_raw), 'sha256': hashlib.sha256(device_raw).hexdigest()}
+    if (start.get('recording_protocol') != 'init-console-device-session-v2'
+            or start.get('root_prepared_before_installation') is not True
+            or start.get('device_start') != identity or start.get('serial') != device.get('serial')
+            or device.get('status') != 'PASS' or device.get('errors')
+            or device.get('root', {}).get('uid_after') != '0'
+            or device.get('root', {}).get('boot_completed') != '1'
+            or not re.fullmatch(r'[0-9a-f]{32}', device.get('token', ''))
+            or any((path.parent / name).exists() for name in
+                   ('runtime-end.json', 'device-logger/finish.json', 'device-logger/stop-error.json'))):
+        raise RuntimeError('Diagnostic device recorder is not a bound active interval')
+    if (base.adb('get-serialno').strip() != start['serial']
+            or base.adb('shell', 'getprop', 'ro.build.version.sdk').strip() != '37'):
+        raise RuntimeError('Diagnostic log preservation requires the same actual API37 emulator')
+    return {'runtime_start_sha256': hashlib.sha256(raw).hexdigest(),
+            'device_start_sha256': identity['sha256'], 'serial': start['serial'],
+            'token': device['token']}
+
+
 def logcat_fatal() -> list[str]:
     text = base.adb('logcat', '-d', '-v', 'brief', timeout=60, check=False)
     lines = text.splitlines()
@@ -336,44 +374,146 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
     return None
 
 
-def _stage_kart_scroll_recovery():
-    """Reuse the observed two-frame list scroll from supplemental Garage QA."""
+def _stage_kart_scroll_recovery(kart: str = 'gecko_velo'):
+    """Reuse a hash-bound current list, retaining the original word recovery."""
     previous, swipes = None, 0
 
-    def recovery(frame, lines, source, *, deadline, previous_missing_frame):
+    def recovery(frame, lines, source, *, deadline, previous_missing_frame, current=None):
         nonlocal previous, swipes
-        current = garage_evidence.stage_garage_scroll_observation(frame, lines)
-        stable = (previous is not None and previous_missing_frame is not None and
+        if current is None:
+            current = garage_evidence.stage_garage_scroll_observation(frame, lines, source=source, kart=kart)
+        garage_evidence.demand(current['source_sha256'] == frame['source_sha256'],
+                               'Observed vehicle-list proof belongs to a different current screenshot')
+        # Keep the caller's proof intact when the original TSV fallback adds
+        # its separate word-source provenance to the scrolling observation.
+        current = dict(current)
+        if not current['visible_cards']:
+            # Preserve the original whole-word Boru recovery. Component OCR
+            # has a different coordinate/source contract and is never passed
+            # off as one of these original full-frame TSV variants.
+            full_frame = [row for row in lines if row.get('variant') in
+                          ('contrast', 'raw', 'white-text', 'white-latin',
+                           'navy-latin', 'navy-latin-1x', 'teal-text-1x')]
+            words = garage_evidence.stage_garage_word_observations(source.parent, source.stem, full_frame)
+            if words['captions']:
+                current = garage_evidence.stage_garage_scroll_observation(
+                    frame, lines, source=source, kart=kart, caption_words=words['captions'])
+            current.update(caption_source='original_tsv_word_sequences' if words['captions']
+                           else 'original_tsv_no_complete_card', ocr_sources=words['sources'])
+        words_stable = True
+        if previous is not None and ('caption_source' in current or 'caption_source' in previous):
+            words_stable = current.get('caption_source') == previous.get('caption_source')
+            if current.get('caption_source') == 'original_tsv_word_sequences':
+                old_card, new_card = previous.get('card'), current.get('card')
+                words_stable = (words_stable and old_card is not None and new_card is not None and
+                                garage_evidence.normalize(old_card['text']) == garage_evidence.normalize(new_card['text']) and
+                                max(abs(a - b) for a, b in zip(old_card['bounds'], new_card['bounds'])) <= 3)
+        stable = (previous is not None and previous_missing_frame is not None and words_stable and
                   previous_missing_frame.get('pixels') == frame['pixels'] and
-                  max(abs(a - b) for a, b in zip(current['gesture'], previous['gesture'])) <= 12)
+                  previous_missing_frame.get('source') != frame.get('source') and
+                  current['direction'] == previous['direction'] and
+                  all(max(abs(a - b) for a, b in zip(current[key], previous[key])) <= 3
+                      for key in ('viewport_bounds', 'gesture')) and
+                  all(max(abs(a - b) for a, b in zip(current['scrollbar'][key], previous['scrollbar'][key])) <= 3
+                      for key in ('track_bounds', 'thumb_bounds')))
         previous = current
         if not stable:
             return {'status': 'WAITING_FOR_SECOND_LIST_FRAME', **current}
         garage_evidence.demand(swipes < 5, 'Vehicle card remained offscreen after five observed list gestures')
         garage_evidence.demand(probe.digest(source) == frame['source_sha256'],
                                'Observed vehicle-list screenshot changed before gesture')
+        prior_source = Path(source).parent / previous_missing_frame['source']
+        garage_evidence.demand(probe.digest(prior_source) == previous_missing_frame['source_sha256'],
+                               'Previous observed vehicle-list screenshot changed before gesture')
         remaining = deadline - time.monotonic()
         garage_evidence.demand(remaining > 0, 'Vehicle list scrolling exceeded its bounded deadline')
         base.adb('shell', 'input', 'swipe', *map(str, current['gesture']), '650',
                  timeout=min(15, remaining))
         swipes += 1
         previous = None
+        garage_evidence.demand(time.monotonic() < deadline,
+                               'Vehicle list gesture completed beyond its bounded deadline')
         return {'status': 'SWIPE_SENT', 'swipe_number': swipes, **current}
 
     return recovery
 
 
-def _select_stage_kart(out: Path, kart: str) -> dict:
+def _select_stage_kart(out: Path, kart: str, timeout: float = 150) -> dict:
+    """Require two complete current card names inside the real list before a tap."""
     label = garage_evidence.KARTS[kart]
     tag = '21_stage_select_' + kart
-    probe.native_tap(out, label, tag, exact=True, timeout=150,
-                     missing_caption=_stage_kart_scroll_recovery())
     journal = out / (tag + '-surface-readiness.json')
-    touch = json.loads(journal.read_text())
-    garage_evidence.demand(touch.get('status') == 'TOUCH_SENT',
-                           'No observed native kart-selection touch was sent')
-    return {'kart': kart, 'caption': label, 'touch': touch['touch'],
-            'readiness': journal.name, 'scope': 'Touch only; actual new race selection is checked separately'}
+    started = time.monotonic()
+    deadline = started + timeout
+    touch = {'status': 'WAITING', 'label': label, 'timeout_seconds': timeout,
+             'exact_caption_required': True, 'orientation_policy': 'landscape',
+             'scope': 'Current complete card touch; actual new race selection is checked separately',
+             'frames': []}
+    previous, previous_viewport, previous_missing_frame = None, None, None
+    recovery = _stage_kart_scroll_recovery(kart)
+    try:
+        while time.monotonic() < deadline:
+            name = f'{tag}-{len(touch["frames"])}'
+            snapshot = probe.capture(out, name, timeout=deadline - time.monotonic())
+            source = out / snapshot['file']
+            frame = probe.inspect_surface(source, orientation='landscape')
+            frame['captured_after_seconds'] = round(time.monotonic() - started, 6)
+            touch['frames'].append(frame)
+            if not frame['acceptable_for_target_sampling']:
+                previous, previous_viewport, previous_missing_frame = None, None, None
+                time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+            else:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    break
+                lines = probe.image_lines(out, name, probe.normalized(label), source_path=source,
+                                          timeout=remaining, exact=True, all_caption_regions=True)
+                current = garage_evidence.stage_garage_scroll_observation(frame, lines, source=source, kart=kart)
+                frame['kart_list'] = current
+                choice = garage_evidence.stage_kart_target_observation(frame, lines, kart, current['viewport_bounds'])
+                if choice is None:
+                    previous, previous_viewport = None, None
+                    frame['reasons'].append('complete requested caption not observed inside the current card clip')
+                    if time.monotonic() >= deadline:
+                        break
+                    report = recovery(frame, lines, source, deadline=deadline,
+                                      previous_missing_frame=previous_missing_frame, current=current)
+                    frame['missing_caption_recovery'] = report
+                    previous_missing_frame = None if report['status'] == 'SWIPE_SENT' else frame
+                    if report['status'] == 'SWIPE_SENT':
+                        time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+                else:
+                    previous_missing_frame = None
+                    if (previous_viewport is None or
+                            max(abs(a - b) for a, b in zip(current['viewport_bounds'], previous_viewport)) > 3):
+                        previous = None
+                    observed = probe.target_observation(frame, choice['target']['bounds'], previous)
+                    frame['target'] = observed
+                    previous, previous_viewport = observed, current['viewport_bounds']
+                    if observed['stable_observed_target']:
+                        garage_evidence.demand(probe.digest(source) == frame['source_sha256'],
+                                               'Observed kart screenshot changed before touch')
+                        remaining = deadline - time.monotonic()
+                        if remaining <= 0:
+                            break
+                        x0, y0, x1, y1 = observed['bounds']
+                        x, y = round((x0 + x1) / 2), round((y0 + y1) / 2)
+                        touch.update(touch=[x, y], final_observed_bounds=observed['bounds'])
+                        base.adb('shell', 'input', 'swipe', str(x), str(y), str(x), str(y), '120',
+                                 timeout=min(15, remaining))
+                        garage_evidence.demand(time.monotonic() < deadline,
+                                               'Kart selection completed beyond its bounded deadline')
+                        touch['status'] = 'TOUCH_SENT'
+                        time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+                        return {'kart': kart, 'caption': label, 'touch': touch['touch'],
+                                'readiness': journal.name, 'scope': touch['scope']}
+        raise TimeoutError('Current complete kart caption was not observed twice inside the list: ' + label)
+    except Exception as error:
+        touch.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        touch['elapsed_seconds'] = round(time.monotonic() - started, 6)
+        journal.write_text(json.dumps(touch, indent=2, ensure_ascii=False) + '\n')
 
 
 def _select_stage_driver(out: Path, timeout: float = 150) -> dict:
@@ -402,7 +542,20 @@ def _select_stage_driver(out: Path, timeout: float = 150) -> dict:
                 # Read every full-frame variant. Stopping at the first exact
                 # Lumo could find only the logo and miss the actual card.
                 lines = probe.image_lines(out, name, source_path=source, timeout=remaining)
-                scoped = garage_evidence.stage_driver_target_observation(frame, lines)
+                try:
+                    scoped = garage_evidence.stage_driver_target_observation(frame, lines)
+                except RuntimeError as error:
+                    if str(error) not in (
+                            'No exact Lumo driver caption in the observed left-hand list',
+                            'Ambiguous Lumo driver captions in the observed list'):
+                        raise
+                    # The existing TSV retains the exact word when OCR joined
+                    # the adjacent fox icon into a larger text-line rectangle.
+                    words = garage_evidence.stage_driver_word_observations(out, name, lines)
+                    scoped = garage_evidence.stage_driver_target_observation(
+                        frame, lines, caption_words=words['words'])
+                    scoped.update(caption_source='original_tsv_words',
+                                  line_ocr_error=str(error), ocr_sources=words['sources'])
                 frame['driver_region'] = scoped
                 observed = probe.target_observation(frame, scoped['target']['bounds'], previous)
                 frame['target'] = observed
@@ -862,7 +1015,8 @@ def _continue_actual_race(out: Path, session: RaceSession, paused: dict) -> dict
     kart = scoped.expected_kart
     garage_evidence.require_selected_race(paused, kart,
                                           mode=scoped.expected_mode, track=scoped.expected_track)
-    probe.native_text(out, 'Weiterfahren', '21_continue_touch', tap=True, exact=True)
+    probe.native_text(out, 'Weiterfahren', '21_continue_touch', tap=True, exact=True,
+                      standalone_caption=True)
     journal = out / '21_continue_touch-surface-readiness.json'
     touch = json.loads(journal.read_text())
     garage_evidence.demand(touch.get('status') == 'TOUCH_SENT',
@@ -1095,7 +1249,8 @@ def main() -> int:
             raise RuntimeError('Refusing to tour an APK that is not the verified build')
         result['emulator_root_readiness'] = probe.ensure_rooted_emulator(base.adb, out)
         result['android_sdk'] = base.adb('shell', 'getprop', 'ro.build.version.sdk').strip()
-        base.adb('logcat', '-c', check=False)
+        if diagnostic_logcat_context(out) is None:
+            base.adb('logcat', '-c', check=False)
         base.display(1080, 2400, 420)
         install = base.adb('install', '-r', '--no-streaming', str(args.apk), timeout=300)
         (out / 'install.txt').write_text(install)

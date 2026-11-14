@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "scope": "This diagnosis directory only; all original selection bytes preserved. No source mutation, test run, renderer acceptance or restored continuity claimed.",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4380,
+      "sha256": "47bfd8f46ffb060613b08996027068bb9a3f3ad8579b3cf0208f40ad9134d125"
+    },
+    {
+      "path": "artifact.json",
+      "bytes": 826,
+      "sha256": "3189c558d4cf42960ea8d5e26a35014bf53285b4014c6c7fbaba0cfd130dc7ac"
+    },
+    {
+      "path": "diagnosis.json",
+      "bytes": 13694,
+      "sha256": "dbbf5f1bbf8536dd8d562178b882be05c0037f9bf30dfc31e16edb162128bed2"
+    },
+    {
+      "path": "external-originals.json",
+      "bytes": 14279,
+      "sha256": "35fc893037f1c62971b0b6bfd6fbb7b9f20e2a9c29fa8d768f05495e3b2d9da1"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 958,
+      "sha256": "bef6a026b944127f853ed8b136aa4653f81944fb3e9f887cc5f466a18df471f0"
+    },
+    {
+      "path": "memory-originals/originals/cold-start-launch.txt",
+      "bytes": 545,
+      "sha256": "8a9ced31a7581211c3d3c1b0a0fc10785140269b56839895974934f51a296400"
+    },
+    {
+      "path": "memory-originals/originals/fatal-logcat.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "memory-originals/originals/install.txt",
+      "bytes": 181,
+      "sha256": "5b7ce26d651a3229c86f35d1ee5b5c6a33c9571b957c869df222655faeda87a2"
+    },
+    {
+      "path": "memory-originals/originals/logcat.txt",
+      "bytes": 2000006,
+      "sha256": "9572cfa583f279cb8ba2d17fab64e366052652ab79736767fd5212563be9f122"
+    },
+    {
+      "path": "memory-originals/originals/open-kart-47-1-0.xml",
+      "bytes": 29546,
+      "sha256": "59db2a2e8ee42629d6c4db4a677f4036ef6a8962a8fac1164b3f0c9c0ccb4584"
+    },
+    {
+      "path": "memory-originals/originals/restart-after-kart-launch.txt",
+      "bytes": 545,
+      "sha256": "8ab899eb83c064e3e602061a83ffc979521a4a6511f7ef30a60f1a77fb5d4b38"
+    },
+    {
+      "path": "memory-originals/report.json",
+      "bytes": 120188,
+      "sha256": "c3fe727d0c988e590019601cf79a7c3d74dc30865100a395199b1794f4e2c6dc"
+    },
+    {
+      "path": "primary-sources.json",
+      "bytes": 2509,
+      "sha256": "c5239a0622cb7ebfc74d79510cde3d6a433b0b2e7570870cddbc8e51b6b0d786"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 3836,
+      "sha256": "023fec68285d5533fcb5a7d0d3bb8acaeb9b4358d4a7638457e8d87a64305ce0"
+    },
+    {
+      "path": "transport-verification.json",
+      "bytes": 2878,
+      "sha256": "12709cb5604ef1a99675be5737b418b3412e08869fd3ff8c747498fa80d89632"
+    }
+  ],
+  "payload_bytes": 2194371,
+  "external_complete_zip_excluded": true
+}

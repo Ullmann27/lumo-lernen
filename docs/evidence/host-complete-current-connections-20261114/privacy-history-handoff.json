@@ -1,0 +1,40 @@
+{
+  "status": "EXACT_PUBLISHED_SOURCES_FROZEN_NOT_TESTED_ON_COMBINED_BASE",
+  "base": "2b586530db4f2cb20c28f426e2549342316151bf",
+  "source_freeze_sha256": "409e2b3afa7c66c852550641497ea97599bddd9a03bd92427895fbe744fa944a",
+  "paths": [
+    "lib/core/lumo_image_generator.dart",
+    "test/core/lumo_image_generator_test.dart",
+    "tools/android_qa/tests/test_update_2019_preservation.py"
+  ],
+  "producer": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "producer_tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+  "published_observations": [
+    "Privacy exact-source synthetic harness:2 real red failures, then7PASS",
+    "Historical 2019 wrapper execution:3PASS; actual policy and identity validators execute, device boundary deliberately fails",
+    "Current producer Astra raw job132397973718:872PASS; actual PR mergeca15ae2 has same744986 tree as803a"
+  ],
+  "limits": [
+    "No local tests",
+    "No network image request",
+    "No Android or update acceptance",
+    "No production version/pin/policy/wrapper or Play/installer change",
+    "No producer PASS transferred to2b combination"
+  ],
+  "commands_after_root_checkpoint": [
+    [
+      "flutter",
+      "test",
+      "--no-pub",
+      "--reporter=expanded",
+      "test/core/lumo_image_generator_test.dart"
+    ],
+    [
+      "python",
+      "-m",
+      "unittest",
+      "tools.android_qa.tests.test_update_2019_preservation.StudioUpdateWrapperExecutionTests",
+      "-v"
+    ]
+  ]
+}

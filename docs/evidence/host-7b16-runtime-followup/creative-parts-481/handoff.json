@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "status": "READY_FOR_PR481_CREATIVE_PARTS_TRANSPORT_VERIFICATION",
+  "script": {
+    "path": "verify_creative_parts.py",
+    "bytes": 19476,
+    "sha256": "0146cb4132dfca9cdb6c764e2d6e738083e3b590abebc8cee610c7676d668537",
+    "git_blob_sha1": "51864e5d25a28a6673ad79a9b08b161510ef19b4"
+  },
+  "test": {
+    "path": "test_verify_creative_parts.py",
+    "bytes": 15784,
+    "sha256": "97ce8e21e3d9ca223cc9a689965dc211461cf654d441705dcb3b660ed5116ddb",
+    "git_blob_sha1": "e42477542104e3cefc38024a7b60629a5ce812ea"
+  },
+  "cli": "python3 -B verify_creative_parts.py --run RUN_JSON --part API_JSON REPORT_JSON EXPORT_INDEX_JSON PART_JSON [repeat for all declared parts] [--output NEW_REPORT_JSON]",
+  "fixed_binding": {
+    "repository": "Ullmann27/lumo-lernen",
+    "probe_source_sha": "f89b77bbc9caacfb677a8f0b7922f27fcbbd546f",
+    "probe_source_tree": "5c42a92ae49e73d4739cacaaf35f2102561d841a",
+    "run_id": 43556708653,
+    "run_attempt": 1,
+    "branch": "qa/lumo-creative-7b16-20261114",
+    "workflow_path": ".github/workflows/lumo-creative-7b16-diagnostic.yml",
+    "artifact_prefix": "lumo-creative-7b16-diagnostic-creative-part-",
+    "index_schema": 2,
+    "part_manifest_schema": 1
+  },
+  "test_count": 14,
+  "test_errors": 0,
+  "test_skips": 0,
+  "test_result": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-B",
+      "-m",
+      "unittest",
+      "-v",
+      "test_verify_creative_parts"
+    ],
+    "cwd": "/workspace/scratch/b3485b7bb989/host-pr481-creative-parts-collector",
+    "started_at": "2026-11-14T04:33:34.123387+00:00",
+    "elapsed_seconds": 0.392471,
+    "exit_code": 0,
+    "log_bytes": 2367,
+    "log_sha256": "62d786b3ce99b9f5ed2fead709a92ef88cf407bdf0664ffb2d17187317f23a05",
+    "source_paths": 6,
+    "source_hashes_unchanged": true,
+    "legacy_pack_files": 16,
+    "legacy_pack_unchanged": true,
+    "scope": "Tiny explicitly synthetic exports through exact published exporter, unchanged checked memory collector and actual local verifier CLI. No downloads, actual new artifact, device, product or visual acceptance."
+  },
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "bytes": 2487,
+    "sha256": "bfc66ed6ff9bebda1639e5f9351e1bb4376afab072c51fb8727bfe6949487c5a",
+    "git_blob_sha1": "294a876613a1b0c7c2fe3f0f1ba5ef0d2bfe043c"
+  },
+  "actual_creative_export_evaluated": false,
+  "downloads": 0,
+  "product_acceptance": false,
+  "earlier_full_zip_equality_claimed": false,
+  "no_git_actions": true,
+  "legacy_pack_unchanged": true,
+  "missing_actual_inputs": "The current CI artifacts do not exist in this preparation pack. Authentic final API metadata and each complete checked part inventory/index/manifest remain required.",
+  "scope": "Declared snapshot transport integrity only; no APK/product/device/visual/FPS acceptance. Metadata external authenticity is an input precondition."
+}

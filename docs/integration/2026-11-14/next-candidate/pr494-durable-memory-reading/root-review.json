@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "base_host": "c070b7773e0c92906061d2ec623c2a66f737596d",
+  "base_tree": "05aede10bb355d4a2c9a87a6a0ea197a14c98117",
+  "producer": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "source_rows": [
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "before": "457aed1dcc82e9c0f4462daa045b249bc735df7e",
+      "after": "f0159983be551133bf9a3ce83e6c42de8b0d7a9b",
+      "sha256": "e21e566b2f54b895598d6a04c329c83604f27c60e9ea2680be575fd9f320ab2c"
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "before": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a",
+      "after": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14",
+      "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654"
+    },
+    {
+      "path": "test/games/memory_preferences_durability_test.dart",
+      "before": null,
+      "after": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758",
+      "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7"
+    },
+    {
+      "path": "test/reading_asr_evidence_boundary_test.dart",
+      "before": null,
+      "after": "fd5e624055383e935bfd5fab074d62cb746f396c",
+      "sha256": "668784b41f260386721b7365e3a7ee1cc1491ec59259622f3950fc31177d8908"
+    }
+  ],
+  "root_checks": {
+    "preimages_exact_on_current_candidate": true,
+    "two_new_test_paths_absent": true,
+    "production_diff_read_in_full": true,
+    "archive_all_53_original_members_byte_equal": true,
+    "source_files_all_git_blob_and_sha256_equal": true
+  },
+  "behavior": [
+    "Reload the platform preference snapshot before reading durable Memory round/statistics, so optimistic cache writes cannot impersonate committed saves.",
+    "Keep reading summaries and their public API intact while deriving competence reports from learning SkillRecords; ASR alignment observations do not establish mastery or current-profile evidence."
+  ],
+  "preservation": "Only these two existing Dart sources change. Writing, journal, profile repositories, wallet rules, package lock and all other producer paths remain untouched.",
+  "producer_validation": {
+    "run": 43624674585,
+    "attempt": 1,
+    "job": 132537752822,
+    "source": "28462a7547048b75fa114e6f5832248e54c94faa",
+    "full_visible_pass": 2632,
+    "new_memory": 14,
+    "new_reading": 10,
+    "failed": 0,
+    "skipped": 0,
+    "exit": 0,
+    "transport_scope": "Full published machine stream and job log plus selected bound artifact members; no claim that the entire 343 MB producer ZIP was verified here."
+  },
+  "current_integrated_validation": {
+    "status": "NOT_RUN",
+    "next_gate": "Complete integrated APK Flutter suite and real Android/update gates; producer success is not transferred to this descendant."
+  }
+}

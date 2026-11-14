@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "status": "SEPARATE_STORE_RECOVERY_OF_CONFIRMED_REVIEW_FACTS_NOT_ORIGINAL_REPORT_BYTES",
+  "created_utc": "2026-11-14T17:20:23.587Z",
+  "original_review": {
+    "path": "/workspace/scratch/b3485b7bb989/host-next-authorities-workflow-v2-independent-review-20261114/review.json",
+    "bytes": 5042,
+    "sha256": "b4794ac41e95ddc073fe777331b95ee22ba5a2fd0f8506e6bedddd8102ddeb3b",
+    "git_blob": "90266ad09bdbb8ff81983ecad7f38770a604a47a",
+    "full_text_currently_unavailable_due_to_executor_outage": true,
+    "original_not_recreated": true
+  },
+  "original_manifest": {
+    "sha256": "52e547514e14bde3988c8da551c490580c72986a736197ed4109c3c69f23a942"
+  },
+  "workflow": {
+    "sha256": "536bc3224df90bd9fd7838912e0847d55ea96d5edbce06b70ef371e2872495e5",
+    "git_blob": "f798a0a5090a326fb9718bc427b9887ff15e9be1",
+    "bytes": 56951
+  },
+  "source_freeze_sha256": "703d612e4b0a4e33da962046e0d671d57608353217d0b3af911a0da787f94f74",
+  "checked_manifest_files": 55,
+  "verdict": "NO_CONCRETE_SOURCE_BLOCKER_IN_SCOPED_V2_REVIEW",
+  "findings_closed": {
+    "F1": "Actual package_config and optional graph plus committed lock original bytes are bound before/after. Own lumo_lernen must resolve exactly to current host-source and host-source/lib; real third-party roots required, third-party lib optional.",
+    "F2": "Actual suite/testStart/testDone identities require a visible successful unskipped completion in each of the exact seven authorized file suites. Existing whole-stream error/skip/exit/final-done guards remain.",
+    "F3": "always upload requires Prepare success and explicit RUNNER_TEMP/run/attempt/group evidence path; no empty-env filesystem-root expansion."
+  },
+  "preserved": "Original V1 and local compiler/Native failure evidence remain separate. No original test result was replaced or inferred.",
+  "pub_evidence": {
+    "config_sha256": "253d12511ab82c11bf3b71ef0f66d17aabdf2edff7d7f56434069676fc6675f7",
+    "graph_sha256": "979410dc4465cc6fe6f536adf519d6daa74bd830d373f209e7e57c9ff78aa39b",
+    "actual_format_has_no_generated_timestamp_field": true,
+    "repeated_pub_not_executed": true
+  },
+  "tests": 0,
+  "lints": 0,
+  "source_imports": 0,
+  "downloads": 0,
+  "git_mutations": 0,
+  "limit": "Read-only source review, no actual qualification CI/device/runtime result."
+}

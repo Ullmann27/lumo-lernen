@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "status": "INCREMENTAL_SOURCE_REVIEW",
+  "created_at": "2026-11-14T04:11:03.095605+00:00",
+  "observed_refs": [
+    {
+      "record": "host-graphics-host-ref.json",
+      "sha": "bc58a16f1f03bf928cbe56264ec7bd76a9fff7f1",
+      "sha256": "822bd481f486c54e707de5280ad03f582d0f99667200183441226000d024dbb4"
+    },
+    {
+      "record": "host-village-host-ref.json",
+      "sha": "fe66edf97ae1cf8b680fd1b596ea06425352b379",
+      "sha256": "1d4e933cd0c3045c4fd13c5447560d3618112086094581b92218f89506c123be"
+    },
+    {
+      "record": "native-ref-collector.json",
+      "sha": "dc478230e0819a05f42de2fd59b93abebfb08406",
+      "sha256": "49497b31389c3681174aa4df34e1a3ef5e346af548766b1d189214e89ba7fd3f"
+    },
+    {
+      "record": "native-ref-graphics.json",
+      "sha": "25e3a1187234860414fa69822e7b301e75880c82",
+      "sha256": "4bd7b89a6c1ce7e82cc6ade8b3095f98d9af464b856d0a699fbc8e198832f366"
+    },
+    {
+      "record": "native-ref-loop.json",
+      "sha": "bd4f59caf767f45dbca288ad5d8b90011e061f2d",
+      "sha256": "e0c80d00633aa3f2f8626857e383facdfc568ede2c30e6d809c4e25ff8cfee29"
+    },
+    {
+      "record": "native-ref-nextgen.json",
+      "sha": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+      "sha256": "ee43fea60a4437eae73473f91d6411ef377981e1eeff22039bee477d5c2e0dab"
+    },
+    {
+      "record": "native-ref-puzzle.json",
+      "sha": "ab9237025e5e5a30a168c4d1fbbd0a24a82690b6",
+      "sha256": "7d1149e6f4976164a829a5285a9e929e3ba8249c804d516a814a017830c25d8e"
+    },
+    {
+      "record": "native-ref-studio.json",
+      "sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "sha256": "805f1d5bbce195a2cb08b12d6676b426e47526a2896229f6ae1e33e39e944434"
+    },
+    {
+      "record": "native-ref-village.json",
+      "sha": "027c2535d2d69fc56fc19d8d96490f7de5be9c37",
+      "sha256": "0e929e0ac73c62db06a67ae9d81ca39f40f198f31c98fe46921ad070bf74c367"
+    }
+  ],
+  "decisions": [
+    {
+      "pr": 477,
+      "head": "608add99f207582316184905123fb73a7a1f6132",
+      "finding": "Only docs differs in complete top-level Git trees; code bytes match base4ab. Contents of archive not re-certified.",
+      "proof": "pr477-root-tree-comparison.json"
+    },
+    {
+      "pr": 478,
+      "head": "7d7b703f18100b82ce59591ce48fe2d90852ec5e",
+      "finding": "Gold OCR and Cards-readiness line already integrated; new observed-loading-frame negative guard is being connected with separate freeze.",
+      "status": "REPAIR_IN_PROGRESS"
+    },
+    {
+      "pr": 479,
+      "head": "995e5eebf789f667920a5027919db27ea1d2dcfc",
+      "finding": "Dedicated archive workflow and docs for an older failed Creative run; no new product implementation in complete13-file compare.",
+      "adoption": "No whole archive workflow imported into current QA."
+    }
+  ],
+  "limits": [
+    "No Android result or artifact correctness follows from an incremental source comparison.",
+    "Producer development branches are unchanged by this review."
+  ]
+}

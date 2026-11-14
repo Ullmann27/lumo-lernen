@@ -1,0 +1,110 @@
+test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation) ... 
+  test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation) (window='0014') ... FAIL
+  test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation) (window='0028') ... FAIL
+  test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation) (window='0042') ... FAIL
+  test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation) (window='0056') ... FAIL
+
+======================================================================
+FAIL: test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation) (window='0014')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/scripts/tests/test_android_framework_ready_android17.py", line 63, in test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation
+    self.assertEqual(result["errors"], ["display_dispatch_not_observed_unfrozen"])
+AssertionError: Lists differ: ['keyguard_state_not_observed', 'keyguard_f[57 chars]zen'] != ['display_dispatch_not_observed_unfrozen']
+
+First differing element 0:
+'keyguard_state_not_observed'
+'display_dispatch_not_observed_unfrozen'
+
+First list contains 2 additional elements.
+First extra element 1:
+'keyguard_framework_not_ready'
+
+- ['keyguard_state_not_observed',
+-  'keyguard_framework_not_ready',
+-  'display_dispatch_not_observed_unfrozen']
+? ^
+
++ ['display_dispatch_not_observed_unfrozen']
+? ^
+
+
+======================================================================
+FAIL: test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation) (window='0028')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/scripts/tests/test_android_framework_ready_android17.py", line 63, in test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation
+    self.assertEqual(result["errors"], ["display_dispatch_not_observed_unfrozen"])
+AssertionError: Lists differ: ['keyguard_state_not_observed', 'keyguard_f[57 chars]zen'] != ['display_dispatch_not_observed_unfrozen']
+
+First differing element 0:
+'keyguard_state_not_observed'
+'display_dispatch_not_observed_unfrozen'
+
+First list contains 2 additional elements.
+First extra element 1:
+'keyguard_framework_not_ready'
+
+- ['keyguard_state_not_observed',
+-  'keyguard_framework_not_ready',
+-  'display_dispatch_not_observed_unfrozen']
+? ^
+
++ ['display_dispatch_not_observed_unfrozen']
+? ^
+
+
+======================================================================
+FAIL: test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation) (window='0042')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/scripts/tests/test_android_framework_ready_android17.py", line 63, in test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation
+    self.assertEqual(result["errors"], ["display_dispatch_not_observed_unfrozen"])
+AssertionError: Lists differ: ['keyguard_state_not_observed', 'keyguard_f[57 chars]zen'] != ['display_dispatch_not_observed_unfrozen']
+
+First differing element 0:
+'keyguard_state_not_observed'
+'display_dispatch_not_observed_unfrozen'
+
+First list contains 2 additional elements.
+First extra element 1:
+'keyguard_framework_not_ready'
+
+- ['keyguard_state_not_observed',
+-  'keyguard_framework_not_ready',
+-  'display_dispatch_not_observed_unfrozen']
+? ^
+
++ ['display_dispatch_not_observed_unfrozen']
+? ^
+
+
+======================================================================
+FAIL: test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation (scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation) (window='0056')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/scripts/tests/test_android_framework_ready_android17.py", line 63, in test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation
+    self.assertEqual(result["errors"], ["display_dispatch_not_observed_unfrozen"])
+AssertionError: Lists differ: ['keyguard_state_not_observed', 'keyguard_f[57 chars]zen'] != ['display_dispatch_not_observed_unfrozen']
+
+First differing element 0:
+'keyguard_state_not_observed'
+'display_dispatch_not_observed_unfrozen'
+
+First list contains 2 additional elements.
+First extra element 1:
+'keyguard_framework_not_ready'
+
+- ['keyguard_state_not_observed',
+-  'keyguard_framework_not_ready',
+-  'display_dispatch_not_observed_unfrozen']
+? ^
+
++ ['display_dispatch_not_observed_unfrozen']
+? ^
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.010s
+
+FAILED (failures=4)

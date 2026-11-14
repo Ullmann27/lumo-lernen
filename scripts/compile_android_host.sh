@@ -45,7 +45,9 @@ import subprocess
 
 required = ('MainActivity', 'LumoGameActivity', 'LumoHostPlugin', 'CardsTableBridge', 'CardsAuthorityService',
             'CardsAuthorityRegistry',
-            'LumoLearningSpeech', 'LumoOfflineSpeechBridge', 'LumoOfflineSpeechEngine')
+            'LumoLearningSpeech', 'LumoOfflineSpeechBridge', 'LumoOfflineSpeechEngine', 'LumoSpeechEnvelope',
+            'TableGameActivity', 'TableGamesHostPlugin', 'TableGamesBridge',
+            'TableAuthorityService', 'TableGameIntent')
 classes = {}
 for name in required:
     paths = list(Path('build/app').rglob(name + '.class'))

@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/tmp/lumo-root-recovery-1242/py/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_kart_garage_evidence",
+    "test_kart_garage_scroll_recovery",
+    "test_kart_scroll_word_evidence",
+    "test_kart_driver_word_evidence",
+    "test_kart_continue_caption",
+    "test_native_surface_readiness"
+  ],
+  "cwd": "/tmp/lumo-root-recovery-1242/host",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "host_sha": "9f2f3690caacadbe7ced363f0e810f0cc0b5eb9b",
+  "host_tree": "4159e7ab2212aca6e3347aa5f08544bdfdb30c26",
+  "native_sha": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+  "additional_environment": {
+    "PYTHONPATH": "tools/android_qa/tests",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "started_at": "2026-11-14T16:01:58.422432+00:00"
+}

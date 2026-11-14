@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T20:20:33.391538+00:00",
+  "status": "NO_CONCRETE_SOURCE_COMPATIBILITY_BLOCKER_NOT_RUN",
+  "reviewer": "flutter_integration",
+  "scope": "The complete new navigation widget test and its actual imported APIs; unchanged case names in the adjacent flow test. This is not an independent review of every Android-evidence or Hub change in the nine-file pack.",
+  "freeze": {
+    "path": "/tmp/host-pr508-c4-optin-followup-v2-20261114/source-freeze.json",
+    "bytes": 6594,
+    "sha256": "496d06277b19412d73491b862e88aaf769bcdcd6bb591bc6ae567126854f8906",
+    "git_blob": "163797c98656d2177225fe5211864a81033a3726"
+  },
+  "new_test": {
+    "path": "test/games/connect_four_navigation_test.dart",
+    "bytes": 5291,
+    "sha256": "15904ba2dff28e5afbef5d4f23febfca8f2a70066a6e081c873dad57da219f08",
+    "git_blob": "5607de8ddeeb54b1cbb77372c0ee3926f57ff374",
+    "producer_original_byte_equal": true,
+    "absent_from_37414": true,
+    "expected_visible_case_names": [
+      "Connect Four pushes, leaves and restores its real route at Size(320.0, 740.0)",
+      "Connect Four pushes, leaves and restores its real route at Size(640.0, 360.0)"
+    ]
+  },
+  "findings": [
+    {
+      "area": "imports",
+      "finding": "All four lumo_lernen imports exist. LumoAppState accepts walletRepository; hydrateFromWallet/state/dispose are present; LumoVoice.isEnabled is writable; RewardWalletRepository has the current constructor; LumoConnectFourScreen accepts appState and seed."
+    },
+    {
+      "area": "Flutter test initialization",
+      "finding": "The locally installed Flutter testWidgets implementation calls TestWidgetsFlutterBinding.ensureInitialized before executing its callback. The messenger access inside the callback does not require a separate main-level initialization in this file."
+    },
+    {
+      "area": "native channel fixture",
+      "finding": "The exact current transport channel is lumo_lernen/connect_four. The fixture records open calls and throws MissingPluginException, with teardown removing the handler. It supplies no fake successful native or persistence acknowledgment; zero attempted native opens are asserted for first and second Flutter entry."
+    },
+    {
+      "area": "widgets and routing",
+      "finding": "Mode true, column 6/0 and cell 5-6/5-0 keys match current widgets. Cell Semantics labels use actual engine piece names. The pause tooltip and pause-leave-games key match the preserved pause scope whose onLeave pops the actual Navigator route."
+    },
+    {
+      "area": "behavioral expectations",
+      "finding": "The test asserts hit-testability, both column dimensions at least48, a saved child move, leaving to the original route with no remaining pop, zero stars, and reopening the identical board with the other player next. No direct callback invokes the behavior in place of taps."
+    },
+    {
+      "area": "SDK API signatures",
+      "finding": "The installed WidgetController supports hitTestWarningShouldBeFatal and ensureVisible; the test messenger accepts the asynchronous MethodCall handler and null cleanup. Size.toString explicitly formats both dimensions to one decimal, binding the two expected case names."
+    },
+    {
+      "area": "adjacent flow source",
+      "finding": "The four existing flow case names remain exact. V2 adds the producer pump after the explicit native-button tap; this report makes no executed scheduling-success claim."
+    }
+  ],
+  "limits": {
+    "tests_run": false,
+    "imports_executed": false,
+    "source_edits": false,
+    "api_calls": false,
+    "git_or_ci_mutation": false,
+    "android_or_render_result": false
+  },
+  "remaining": "The final integrated full Flutter stream must actually complete both new cases without skips/errors; source compatibility is not execution acceptance."
+}

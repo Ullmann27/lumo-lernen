@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1528,
+      "sha256": "a890d658ed8ba4f42d519dc7ee722cd04acbe2a977127e9873ba69d8cd566362",
+      "git_blob": "bd51bd0122cd2495f140cb178fff425b9c6a4e97"
+    },
+    {
+      "path": "ci-failure-reference.json",
+      "bytes": 754,
+      "sha256": "2162da429daf6292576b57c06a0a17362b40c10d7671c00cac7d283f4ae34227",
+      "git_blob": "6f85d48f7df451f789105bd6f3ea5cc1efc2553e"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/test_kart_garage_evidence.py",
+      "bytes": 30218,
+      "sha256": "3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae",
+      "git_blob": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d"
+    },
+    {
+      "path": "fixture.patch",
+      "bytes": 682,
+      "sha256": "ce748c4cb8f6fd402412e704a53c8825a2cb097e619e90ae863adf002598b588",
+      "git_blob": "c093fa8f4f7b0db0380c9085d3f87416530545bf"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1195,
+      "sha256": "89b4b98050b70d86baaff5ba15e570469388b1a969b22afa640e726aa439a670",
+      "git_blob": "984e299e13e1ad803337511d52d240f8518ffd57"
+    },
+    {
+      "path": "original-red-execution.json",
+      "bytes": 913,
+      "sha256": "fc0caf4908d2f85390b4d59ed7613cf92e7b6355cb0db92fbc2c83a971a509dd",
+      "git_blob": "853ef3cf0390b6ebf808df83cafae128d56e6b9e"
+    },
+    {
+      "path": "original-red.log",
+      "bytes": 2619,
+      "sha256": "45a5ba7467520f886bac626b5c9ce24573661f4a4bb5e9685db388abdd6369bc",
+      "git_blob": "dedeca34336d42fe741a0b8e95b05d0e8488ca09"
+    },
+    {
+      "path": "original-source/.github/probes/creative_android_probe.py",
+      "bytes": 65137,
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+      "git_blob": "c996a022d388632ed13965b392181aef773d9025"
+    },
+    {
+      "path": "original-source/.github/probes/modernization_android_tour.py",
+      "bytes": 71930,
+      "sha256": "d98eeb982344bb09762a783aeb71bef2c93cc8ed30d5e932a96712fe382673db",
+      "git_blob": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc"
+    },
+    {
+      "path": "original-source/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "bdd44f24660ab13cee297c65238238d6181fc60d7fad22ad456f1633955db767",
+      "git_blob": "a07c0176806321daf8e7a0d6df5c8697f82ba3b2"
+    },
+    {
+      "path": "original-source/pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+      "git_blob": "7f504396071cf3af57164187a29ea74b74c62413"
+    },
+    {
+      "path": "original-source/scripts/probes/pr207_android_smoke.py",
+      "bytes": 14884,
+      "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e",
+      "git_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8"
+    },
+    {
+      "path": "original-source/tools/android_qa/kart_android_race.py",
+      "bytes": 39513,
+      "sha256": "9777542758deae314531c4da7bccd4168eb4c730dacc0844f84bab6f6ec3b81a",
+      "git_blob": "a0aad12a6162370e9c0e35849e213963c76c67d2"
+    },
+    {
+      "path": "original-source/tools/android_qa/kart_garage_evidence.py",
+      "bytes": 14145,
+      "sha256": "c8c167ce1b59023248b0aba18ba80c96c4c781e55cb0806eddf5252a2e8336bf",
+      "git_blob": "c5103456e98baa696ec6cac8b6bb8af863d19f5b"
+    },
+    {
+      "path": "original-source/tools/android_qa/tests/test_kart_garage_evidence.py",
+      "bytes": 30190,
+      "sha256": "cc7913d2137909628235d6e558e1be33180ca950cef4fe6dcfaa6d9458b0c5a1",
+      "git_blob": "9b1413a39e327258cb3ebc583ea7a17070a9cf34"
+    },
+    {
+      "path": "original-source/tools/android_qa/tests/test_modernization_tour_identity.py",
+      "bytes": 17607,
+      "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939",
+      "git_blob": "fc5dfc4d656462c8e98821589ecc1fcda690e56f"
+    },
+    {
+      "path": "proposed-green-execution.json",
+      "bytes": 1104,
+      "sha256": "5ea0dde7e7d0223b02a38beaab1a0598fa1a3fb7b58dc397a4e0493a4bf3e0c9",
+      "git_blob": "d8f14e3851dc9815e0f394aab5a925fa779982fc"
+    },
+    {
+      "path": "proposed-green.log",
+      "bytes": 320,
+      "sha256": "c5574c19c79727bc3f7aac200b5ab8f098e5ccbe51e6b0c2349d0d5d762ecfa2",
+      "git_blob": "1bedb0689053fb5ab9b673740662ea3ef62ec31c"
+    },
+    {
+      "path": "qa-reuse-binding.json",
+      "bytes": 915,
+      "sha256": "9a41e8153ce33c92026d0ad6c12aac8c1b77bc3251e8a205eae3d65df14300d7",
+      "git_blob": "5c75dc8ec4a6e94083e261da5c35a22859a40610"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 5539,
+      "sha256": "b97098cd5b69705c8c918dc12f1b6c14521b3a4e3b399137cd14ebb81f83b74f",
+      "git_blob": "6f7fe20e78a723f8348fc8acfc9191a96d45e2bd"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 5539,
+      "sha256": "b97098cd5b69705c8c918dc12f1b6c14521b3a4e3b399137cd14ebb81f83b74f",
+      "git_blob": "6f7fe20e78a723f8348fc8acfc9191a96d45e2bd"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 2258,
+      "sha256": "f77eee9b24c5b385babc436eca0846f698956f50ee5f51df30bce9ec75ee54f6",
+      "git_blob": "a1f4246df69bfb94f6ef506a5ac197921bc6c216"
+    },
+    {
+      "path": "test-view-binding.json",
+      "bytes": 31183,
+      "sha256": "c0938a3dbaef49156fbb794547e1fa99d07f476d12466c4d3bc2026fe5e86f9f",
+      "git_blob": "fa6defdae32879733bebb8c3c1bdde275d7d8d62"
+    }
+  ],
+  "excluded_disposable_directories": [
+    "test-view",
+    "runtime-tmp"
+  ]
+}

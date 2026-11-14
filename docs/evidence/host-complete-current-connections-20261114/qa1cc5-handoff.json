@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "status": "PASS_9_WITH_SEPARATE_EXPECTED_ORIGINAL_RED",
+  "source": "1cc5cf4fb7da382fb9833b9d52cf53540306b405",
+  "tree": "14a111981a80b629b533a22ad519a858fdadc989",
+  "source_count": 2173,
+  "source_and_git_unchanged": true,
+  "current_pause_methods": {
+    "count": 9,
+    "passed": 9,
+    "errors": 0,
+    "failures": 0,
+    "skips": 0,
+    "reported_seconds": 4.735,
+    "exit_code": 0,
+    "raw_log": {
+      "path": "/tmp/host-qa-1cc5cf4f-pause-nine-validation-20261114/pause-nine.log",
+      "bytes": 1990,
+      "sha256": "efa04f13534dba6167fba51dec7d925b206020440799f0e554b1afeb500d09ea"
+    }
+  },
+  "original_red": {
+    "count": 1,
+    "failures": 1,
+    "errors": 0,
+    "skips": 0,
+    "exit_code": 1,
+    "source": "0d7ea79cd02b921ed685abc79b27df8a5f6b4ccb",
+    "method": "KartContinueCaptionTests.test_actual_two_frame_continue_targets_the_independent_caption",
+    "same_original_png_ocr_fixtures": true,
+    "two_production_modules_verified_against_immutable_git_blobs": true,
+    "observed_old_target": [
+      1694,
+      282
+    ],
+    "required_standalone_button": [
+      1262,
+      408
+    ],
+    "raw_log": {
+      "path": "/tmp/host-qa-1cc5cf4f-pause-nine-validation-20261114/original-caption-red.log",
+      "bytes": 1177,
+      "sha256": "52475dcbc0f3c1c524c3fe3b2d66308918e113c6b67bdeabb10690ea95ea8a48"
+    }
+  },
+  "scope": "Existing actual production methods with mocked ADB/capture delivery and real source-bound PNG/OCR decoding. No new Android, resume, race or overall acceptance is claimed.",
+  "historical_failure": {
+    "source": "7fe0b85dd3b51384efed5c94af0618951574b857",
+    "count": 20,
+    "passed": 19,
+    "errors": 1,
+    "skips": 0,
+    "raw_log_sha256": "019c33dd4598d7bbf9a8ca9ddd9e1fc0ffd7a38f1ae9ca03622eac696b2394de",
+    "handoff_sha256": "4d51df52db344a95c7a3937a69543caa58338e1cca0576d92d1f8d306e70b849",
+    "preserved_unchanged": true
+  },
+  "test_harness_delta": {
+    "path": "tools/android_qa/tests/test_kart_continue_caption.py",
+    "sha256": "fb7ff4ed94b61bd266b9eb2ec6dd2d1fb9de6c08891a909cf875af40165101e9",
+    "git_blob": "1d02ca8663998dcbddb6c02107148672c5882b52",
+    "production_changed": false,
+    "all9_existing_methods_unchanged": true,
+    "effect": "PIL.Image and verified original PNG decoder registration now precede patch.dict(sys.modules)."
+  },
+  "environment": {
+    "created_at": "2026-11-14T09:28:14.523071+00:00",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "python_path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "python_version": "Python 3.12.14",
+    "pillow_version": "13.0.0",
+    "base_environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "REQUIRE_ALL_TESTS": "true",
+      "GIT_OPTIONAL_LOCKS": "0",
+      "PYTHONPATH": "/tmp/lumo-root-recovery-0900/host-qa/tools/android_qa/tests"
+    },
+    "scope": "Only nine Pause contracts and the one separately bound original Red. No actionlint, passed neighbors, sockets, installation, device, Git mutation or CI action."
+  },
+  "passed11_neighbors_repeated": false,
+  "actionlint_repeated": false,
+  "AF_UNIX_cases_repeated": false,
+  "Git_or_CI_mutation": false
+}

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "all_function_definitions_including_nested": 19,
+  "unchanged_including_nested": [
+    "write",
+    "Probe.__init__",
+    "Probe.remaining",
+    "Probe.bounded_command",
+    "Probe.original",
+    "Probe.read_json",
+    "Probe.read_preferences",
+    "Probe.density",
+    "Probe.locate",
+    "Probe.observation",
+    "Probe.wait_observation",
+    "Probe.native_touch",
+    "Probe.transition",
+    "Probe.transition.arrived",
+    "Probe.wait_for_flutter_control",
+    "Probe.flutter_touch",
+    "Probe.run",
+    "main"
+  ],
+  "changed": [
+    "Probe.return_to_flutter"
+  ],
+  "note": "The frozen source-preservation.json roster counts module-level and direct class methods. This supplemental read-only AST check also counts the nested observed_touch function; no source bytes changed."
+}

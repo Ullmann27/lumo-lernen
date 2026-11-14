@@ -1,0 +1,94 @@
+{
+  "status": "NOT_RUN_PENDING_ROOT_SOURCE_CHECKPOINT",
+  "base_source": "729585db3f49ecff7f0632439f90edb882f09454",
+  "flutter_sdk": "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+  "test_files": [
+    {
+      "path": "test/shape_trace_input_regression_test.dart",
+      "expected_tests": 3
+    },
+    {
+      "path": "test/shape_trace_input_test.dart",
+      "expected_tests": 5
+    },
+    {
+      "path": "test/shape_trace_retry_test.dart",
+      "expected_tests": 2,
+      "unchanged_neighbor": true
+    },
+    {
+      "path": "test/lumo_ink_surface_regression_test.dart",
+      "expected_tests": 2,
+      "unchanged_neighbor": true
+    },
+    {
+      "path": "test/learning/learning_exact_selection_test.dart",
+      "expected_tests": 7
+    },
+    {
+      "path": "test/learning_selection_integration_test.dart",
+      "expected_tests": 7
+    },
+    {
+      "path": "test/lumo_left_navigation_motion_test.dart",
+      "expected_tests": 5
+    },
+    {
+      "path": "test/games/connect_four_scroll_alignment_test.dart",
+      "expected_tests": 3
+    },
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "expected_tests": 5
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "expected_tests": 3
+    },
+    {
+      "path": "test/lumo_scene_atmosphere_test.dart",
+      "expected_tests": 7
+    }
+  ],
+  "expected_total": 49,
+  "cardinality_basis": "Read source declarations and fixed loops, not an executed result.",
+  "required_inputs": [
+    "Exact committed final-source17 on729-based snapshot",
+    "Existing locked Flutter dependencies and pubspec assets including fonts and game art; production-selection test must not use --no-test-assets",
+    "Original unmodified LumoInkSurface and two existing neighbor tests",
+    "Existing tools/audit_learning_tasks_all_grades.dart from f536"
+  ],
+  "audit_command": [
+    "dart",
+    "run",
+    "tools/audit_learning_tasks_all_grades.dart",
+    "/workspace/scratch/b3485b7bb989/host-product-491-493-validation-20261114/audit"
+  ],
+  "audit_expected_prior_roster": {
+    "familyCount": 236,
+    "generatedSamples": 7552,
+    "issues": 0
+  },
+  "audit_limits": "New output must be obtained on new combined source. Sampled core contract is not review of every exercise or official curriculum approval.",
+  "unchanged_gate_notes": [
+    "No workflow changed, so no new actionlint required by this product pack.",
+    "Python delivery, native, Android, pin and receipt contracts were not edited. Root determines later whole-build gates."
+  ],
+  "flutter_command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter=expanded",
+    "test/shape_trace_input_regression_test.dart",
+    "test/shape_trace_input_test.dart",
+    "test/shape_trace_retry_test.dart",
+    "test/lumo_ink_surface_regression_test.dart",
+    "test/learning/learning_exact_selection_test.dart",
+    "test/learning_selection_integration_test.dart",
+    "test/lumo_left_navigation_motion_test.dart",
+    "test/games/connect_four_scroll_alignment_test.dart",
+    "test/design/connect_four_visual_test.dart",
+    "test/games/games_screen_flow_test.dart",
+    "test/lumo_scene_atmosphere_test.dart"
+  ]
+}

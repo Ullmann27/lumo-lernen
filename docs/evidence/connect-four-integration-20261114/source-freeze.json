@@ -1,0 +1,651 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_BEFORE_CHECKPOINT_AND_TESTS",
+  "created_at": "2026-11-14T05:10:48.321939+00:00",
+  "scope": "Exactly the 21 Host and 6 Native files authorized by Root; no test execution, Git-index or ref changes",
+  "producer_source_manifest": {
+    "path": "../producer-incremental-20261114-045550/originals/pr477-c4-source-upload-manifest.json",
+    "sha256": "ab5686602c40335fbc381ff42c1e66085f2244dcdefc27eca189a8c2bf179683"
+  },
+  "worktrees": {
+    "host": {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration",
+      "head": "cf0ed7fe743cd8ba067ae7a9adf26745fa7bc628",
+      "tree": "09776392ac3133c992a73809dc0f31e9def555a7",
+      "parents": [
+        "204493e8428d0164a417d2e467a56cbc49536d5d"
+      ]
+    },
+    "native": {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-native-connect-four-integration",
+      "head": "dd545c03f0c209fa67f56e61a0da09ed06cb5470",
+      "tree": "b8ea9b1777e8d0b6302156330d4d1b298a316aea",
+      "parents": [
+        "2a6f0457ab4a99f5e74922c9084525d84932b501"
+      ]
+    }
+  },
+  "count": 27,
+  "byte_identical_producer_files": 24,
+  "three_way_integrations": [
+    "scripts/tests/test_embedded_android.py",
+    "tools/auto_install/MainActivity.kt",
+    "lib/features/lumo3d/lumo3d_launcher.dart"
+  ],
+  "files": [
+    {
+      "scope": "host",
+      "path": "scripts/prepare_embedded_games.py",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/scripts/prepare_embedded_games.py",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 10377,
+        "sha256": "694c115184bd6464ff8e7a3e0bd078e58f5f37d47739ac1d7675827c2f21e129",
+        "git_blob": "a1615455b5ea6251926d5037900e025d46971c18"
+      },
+      "before": {
+        "bytes": 9425,
+        "sha256": "3d1bcbe466e1b74ae8edd0b8d06a56b274ddde36bead7ba6b18d3b5ef7c4a7ad",
+        "git_blob": "a8f747e77ba24cc74a19b509541bab2146607938"
+      },
+      "after": {
+        "bytes": 10377,
+        "sha256": "694c115184bd6464ff8e7a3e0bd078e58f5f37d47739ac1d7675827c2f21e129",
+        "git_blob": "a1615455b5ea6251926d5037900e025d46971c18"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/scripts/prepare_embedded_games.py"
+    },
+    {
+      "scope": "host",
+      "path": "scripts/tests/test_game_return_contract.py",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/scripts/tests/test_game_return_contract.py",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 17104,
+        "sha256": "1e61af9b6e1b69a0271b13c07f77ceb75f8a879f4a589da29dceb9d0ff56f5b7",
+        "git_blob": "186cecdca050b1e16e24996480ccb005b580ec57"
+      },
+      "before": {
+        "bytes": 16957,
+        "sha256": "6425258d84f8d87011ed2f3017429765ff02cbf138e525f239eb38d021cc944b",
+        "git_blob": "1bcf0a3af9ebf2f0cd8a244fc4dd2c2596067fdc"
+      },
+      "after": {
+        "bytes": 17104,
+        "sha256": "1e61af9b6e1b69a0271b13c07f77ceb75f8a879f4a589da29dceb9d0ff56f5b7",
+        "git_blob": "186cecdca050b1e16e24996480ccb005b580ec57"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/scripts/tests/test_game_return_contract.py"
+    },
+    {
+      "scope": "host",
+      "path": "scripts/tests/test_embedded_android.py",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/scripts/tests/test_embedded_android.py",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 6750,
+        "sha256": "3dd23569d8c75422dbfe42f69c30aa9538b481db42b3be0dd33eb85804da9f1a",
+        "git_blob": "6ad0e520940b6e576324fff7615c2cf5c400bf8f"
+      },
+      "before": {
+        "bytes": 21178,
+        "sha256": "bdd486fdc64c9b56d300da25e9d688b44d5d82af7a40176b52307dc0cf80c4b7",
+        "git_blob": "b9864c66ae8825f73d2f1503b7e3c582d5431438"
+      },
+      "after": {
+        "bytes": 21985,
+        "sha256": "81aedfe4a6316ffdabe409f90c1272a7ff78c6584271348c5207d353cedea5f4",
+        "git_blob": "7639755789f4e5abbfa0743173532cd2b2b29f49"
+      },
+      "producer_exact": false,
+      "preserved": [
+        {
+          "current_cards_window_block_and_test_main": {
+            "bytes": 15284,
+            "sha256": "70c3628d71bff8e12ee1d9f1876b1c23f1596e4c4d42fc21769a9b38e7646477",
+            "git_blob": "b53f17114e673e14d88fc6e3bb71cc99aae066dc"
+          },
+          "byte_identical": true
+        }
+      ],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/scripts/tests/test_embedded_android.py"
+    },
+    {
+      "scope": "host",
+      "path": "scripts/tests/test_connect_four_native_contract.py",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/scripts/tests/test_connect_four_native_contract.py",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 17557,
+        "sha256": "2ce7e21eb9be9a4e98211538e9cef5e219f3b9fc4d08aabd22d72e0489665b73",
+        "git_blob": "e167e11d44f5525c07ef65bf8fc0d1be3e7711bf"
+      },
+      "before": null,
+      "after": {
+        "bytes": 17557,
+        "sha256": "2ce7e21eb9be9a4e98211538e9cef5e219f3b9fc4d08aabd22d72e0489665b73",
+        "git_blob": "e167e11d44f5525c07ef65bf8fc0d1be3e7711bf"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/scripts/tests/test_connect_four_native_contract.py"
+    },
+    {
+      "scope": "host",
+      "path": "tools/auto_install/ConnectFourBridge.kt",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/tools/auto_install/ConnectFourBridge.kt",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 7788,
+        "sha256": "02ce58b8863197c9d4395b192f238d52a4e2b049ce59d01e451a0189088433cd",
+        "git_blob": "f6e41ada005cc01f3b75d05370e5098048188d37"
+      },
+      "before": null,
+      "after": {
+        "bytes": 7788,
+        "sha256": "02ce58b8863197c9d4395b192f238d52a4e2b049ce59d01e451a0189088433cd",
+        "git_blob": "f6e41ada005cc01f3b75d05370e5098048188d37"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/tools/auto_install/ConnectFourBridge.kt"
+    },
+    {
+      "scope": "host",
+      "path": "tools/auto_install/ConnectFourGameActivity.kt",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/tools/auto_install/ConnectFourGameActivity.kt",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 7355,
+        "sha256": "02ea7fb0f3909da8013e6a97b52901dd8e2981ae13e5c1a74ac1e03979364fe5",
+        "git_blob": "d49a93cf8588b3fdad7ce1bb693843febc7e7984"
+      },
+      "before": null,
+      "after": {
+        "bytes": 7355,
+        "sha256": "02ea7fb0f3909da8013e6a97b52901dd8e2981ae13e5c1a74ac1e03979364fe5",
+        "git_blob": "d49a93cf8588b3fdad7ce1bb693843febc7e7984"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/tools/auto_install/ConnectFourGameActivity.kt"
+    },
+    {
+      "scope": "host",
+      "path": "tools/auto_install/MainActivity.kt",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/tools/auto_install/MainActivity.kt",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 17568,
+        "sha256": "79e7b8f58cb841c9a3a120429860d0c329656300164b67416c7a38ab8e51f758",
+        "git_blob": "ed589d9bbc5a99e7b37e606bc45cf932b5ce9257"
+      },
+      "before": {
+        "bytes": 16913,
+        "sha256": "86afe2815cff5109b000e39bd754f6c665e2a9677da03618307c26bcf0dffa9b",
+        "git_blob": "3fdc3a7665743b0bff64825c502c16347023fd2a"
+      },
+      "after": {
+        "bytes": 17671,
+        "sha256": "831fa3580a3330583d3f4a92e0cf9882a703224e3d0f3a65f666e67f52c4c946",
+        "git_blob": "9027d1106287c1c295a94ebcf3828e5dcac35b7b"
+      },
+      "producer_exact": false,
+      "preserved": [
+        "Current learning+build voice flags, rate bounds and offlineSpeech release predicate"
+      ],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/tools/auto_install/MainActivity.kt"
+    },
+    {
+      "scope": "host",
+      "path": "tools/auto_install/ConnectFourAuthorityService.kt",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/tools/auto_install/ConnectFourAuthorityService.kt",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 1708,
+        "sha256": "7fb5ecdfd6e0b8c64f678258d3722483220d3e1574cc300916da6da50ccd2289",
+        "git_blob": "0b687707c7a1a0627eab8fa8bf47b06ba72aead3"
+      },
+      "before": null,
+      "after": {
+        "bytes": 1708,
+        "sha256": "7fb5ecdfd6e0b8c64f678258d3722483220d3e1574cc300916da6da50ccd2289",
+        "git_blob": "0b687707c7a1a0627eab8fa8bf47b06ba72aead3"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/tools/auto_install/ConnectFourAuthorityService.kt"
+    },
+    {
+      "scope": "host",
+      "path": "test/games/connect_four_native_route_test.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 4803,
+        "sha256": "0d6636896a01653e006862cdbcce5f673182f66996b71c44710ca8351b31b9ed",
+        "git_blob": "d5178ab675bbc83b8fcb6dd0f6a3b7d675b1f3d0"
+      },
+      "before": null,
+      "after": {
+        "bytes": 4803,
+        "sha256": "0d6636896a01653e006862cdbcce5f673182f66996b71c44710ca8351b31b9ed",
+        "git_blob": "d5178ab675bbc83b8fcb6dd0f6a3b7d675b1f3d0"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_route_test.dart"
+    },
+    {
+      "scope": "host",
+      "path": "test/games/connect_four_lumo_level_test.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_lumo_level_test.dart",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 3831,
+        "sha256": "792d6bd0552f890ac50f74d0c4d02e480400cf85ad933a2138b0a403ad6d7098",
+        "git_blob": "229a531e9fe61337e05f92cb50409eef409bd57f"
+      },
+      "before": {
+        "bytes": 3390,
+        "sha256": "14bcdc79fc058c9cd2f59ecce66dcba70224376bc2ea4581e99f93c0386a38f5",
+        "git_blob": "260f7298a10cb87a0899b5dd6c3bde4bbfdc3bd4"
+      },
+      "after": {
+        "bytes": 3831,
+        "sha256": "792d6bd0552f890ac50f74d0c4d02e480400cf85ad933a2138b0a403ad6d7098",
+        "git_blob": "229a531e9fe61337e05f92cb50409eef409bd57f"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_lumo_level_test.dart"
+    },
+    {
+      "scope": "host",
+      "path": "test/games/connect_four_native_session_test.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 19735,
+        "sha256": "0ea59f0986842361b1422cf8e2d2b4cc47efb6d6eb9982ab234cfa676d289576",
+        "git_blob": "a540779dc16fe894493e1b13b4de720a33765c7d"
+      },
+      "before": null,
+      "after": {
+        "bytes": 19735,
+        "sha256": "0ea59f0986842361b1422cf8e2d2b4cc47efb6d6eb9982ab234cfa676d289576",
+        "git_blob": "a540779dc16fe894493e1b13b4de720a33765c7d"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_native_session_test.dart"
+    },
+    {
+      "scope": "host",
+      "path": "test/games/connect_four_runtime_bridge.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_runtime_bridge.dart",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 4838,
+        "sha256": "f74b56bc14994b9f9a987ec0719fa85f9d2427012c83ae18b8740a98c18fed65",
+        "git_blob": "6ae4695d06f955d5c9501bdce22ed9a83a0a26d0"
+      },
+      "before": null,
+      "after": {
+        "bytes": 4838,
+        "sha256": "f74b56bc14994b9f9a987ec0719fa85f9d2427012c83ae18b8740a98c18fed65",
+        "git_blob": "6ae4695d06f955d5c9501bdce22ed9a83a0a26d0"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_runtime_bridge.dart"
+    },
+    {
+      "scope": "host",
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_fold_controls_test.dart",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 2650,
+        "sha256": "1d2196fd362c11f03df9cec6fbc36a557df542ac90277cd7d13f65010938fcdd",
+        "git_blob": "92956444dee338921853aea037ca32033bcd3b2e"
+      },
+      "before": {
+        "bytes": 1944,
+        "sha256": "fdf9c638aae5069aefe69c4c817d27694b51e0cb235b2b18aa1ee5f0b740e62e",
+        "git_blob": "303543302be116219ffa0f88a6932904c379a311"
+      },
+      "after": {
+        "bytes": 2650,
+        "sha256": "1d2196fd362c11f03df9cec6fbc36a557df542ac90277cd7d13f65010938fcdd",
+        "git_blob": "92956444dee338921853aea037ca32033bcd3b2e"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_fold_controls_test.dart"
+    },
+    {
+      "scope": "host",
+      "path": "test/games/connect_four_interaction_test.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 5768,
+        "sha256": "9fe8e5ed4b94e024c6b1d35c968c8ee4434ec921e07334ff8a5c360eaf363305",
+        "git_blob": "379c1dee8358507493ba60dbd683ca7f4a3821a6"
+      },
+      "before": {
+        "bytes": 5162,
+        "sha256": "64c5f9952784c064d5b51cdab8305c36da1d56716819caa67b33f79e044ae93c",
+        "git_blob": "3846e56b2400b24fdb1c505625d802a0cb8bbacb"
+      },
+      "after": {
+        "bytes": 5768,
+        "sha256": "9fe8e5ed4b94e024c6b1d35c968c8ee4434ec921e07334ff8a5c360eaf363305",
+        "git_blob": "379c1dee8358507493ba60dbd683ca7f4a3821a6"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/test/games/connect_four_interaction_test.dart"
+    },
+    {
+      "scope": "host",
+      "path": "lib/app/app_state.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/lib/app/app_state.dart",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 54663,
+        "sha256": "50b9d9e4c7ecaf2a5e9cc24d99f1b2ee49e0bf50318a0c6c28cabacda2028efd",
+        "git_blob": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045"
+      },
+      "before": {
+        "bytes": 53380,
+        "sha256": "2afbe473e96ba798181be8b8e89722738f3ee65be9f020f51da1633f9e98940f",
+        "git_blob": "b8de55e3037e1b224e5c9ab4e563a19f4260006a"
+      },
+      "after": {
+        "bytes": 54663,
+        "sha256": "50b9d9e4c7ecaf2a5e9cc24d99f1b2ee49e0bf50318a0c6c28cabacda2028efd",
+        "git_blob": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/lib/app/app_state.dart"
+    },
+    {
+      "scope": "host",
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/lib/features/lumo3d/lumo3d_launcher.dart",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 10316,
+        "sha256": "a385e88006fba6a4f6126e0eceb57dc2185ebf0c34149746d369ae0c790ea732",
+        "git_blob": "b9eff2d23c35d01e6df674cad909c5c495a87bde"
+      },
+      "before": {
+        "bytes": 10055,
+        "sha256": "846b99af1e424646b051610e37867319371e81ee0f09f73e0fe4b3fbc9ea0cdb",
+        "git_blob": "9e76be4522a1f27ca56da0b9d2989984a14b4701"
+      },
+      "after": {
+        "bytes": 10336,
+        "sha256": "900e533784109cecc11e0da27cb7ae1e6909de74e58a9119c030b91e8956085f",
+        "git_blob": "dd95361b132c7a73b372a3225c75e645be07e1b7"
+      },
+      "producer_exact": false,
+      "preserved": [
+        "Current learning+build voice option predicate"
+      ],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/lib/features/lumo3d/lumo3d_launcher.dart"
+    },
+    {
+      "scope": "host",
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/lib/features/games/connect_four/connect_four_round.dart",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 12082,
+        "sha256": "dcc411d6687df70934d83253990248c4a0654b13a36ec54338ec43a257329754",
+        "git_blob": "853d9e4a59475725a44db8f6c252e691f0bcdad8"
+      },
+      "before": null,
+      "after": {
+        "bytes": 12082,
+        "sha256": "dcc411d6687df70934d83253990248c4a0654b13a36ec54338ec43a257329754",
+        "git_blob": "853d9e4a59475725a44db8f6c252e691f0bcdad8"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/lib/features/games/connect_four/connect_four_round.dart"
+    },
+    {
+      "scope": "host",
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 42692,
+        "sha256": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075",
+        "git_blob": "1275d6616c6cb850ad55633e51a9450d5887dd34"
+      },
+      "before": {
+        "bytes": 36066,
+        "sha256": "1d213441a1f9cf597ae4f4c2d645068f4094409e836aef7b3e1733770577d3c4",
+        "git_blob": "7211b1d17a289b6935348d2bb66c7f05243a732d"
+      },
+      "after": {
+        "bytes": 42692,
+        "sha256": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075",
+        "git_blob": "1275d6616c6cb850ad55633e51a9450d5887dd34"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/lib/features/games/connect_four/lumo_connect_four_game.dart"
+    },
+    {
+      "scope": "host",
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/lib/features/games/connect_four/connect_four_table_session.dart",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 9737,
+        "sha256": "3a4c99538f50f057c2951ef16bbc55f6275865d90cafce36517c16f0545e615e",
+        "git_blob": "fd8efe8e114de656b6802e097b96910535d83c39"
+      },
+      "before": null,
+      "after": {
+        "bytes": 9737,
+        "sha256": "3a4c99538f50f057c2951ef16bbc55f6275865d90cafce36517c16f0545e615e",
+        "git_blob": "fd8efe8e114de656b6802e097b96910535d83c39"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/lib/features/games/connect_four/connect_four_table_session.dart"
+    },
+    {
+      "scope": "native",
+      "path": "scripts/systems/host_bridge.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/systems/host_bridge.gd",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 5193,
+        "sha256": "56ecb470319ea047aa5d8c3aad92d55c99355ee07c533a6543fcf167f098abb7",
+        "git_blob": "dab96a1b918dc754568c0eda14cdda05175c89fb"
+      },
+      "before": {
+        "bytes": 5177,
+        "sha256": "11abed8d8bb15a048ff3934b958c5aa39c1de233146f8bc9b47c8be0854099bc",
+        "git_blob": "7d0c4e67ace04af02f91738368648380d573bcd3"
+      },
+      "after": {
+        "bytes": 5193,
+        "sha256": "56ecb470319ea047aa5d8c3aad92d55c99355ee07c533a6543fcf167f098abb7",
+        "git_blob": "dab96a1b918dc754568c0eda14cdda05175c89fb"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-native-connect-four-integration/scripts/systems/host_bridge.gd"
+    },
+    {
+      "scope": "native",
+      "path": "scripts/app/scene_router.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/app/scene_router.gd",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 4457,
+        "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06",
+        "git_blob": "0e28e5c797af076d2a2410143e42605982e8d1d5"
+      },
+      "before": {
+        "bytes": 4394,
+        "sha256": "f584c0a1dd894819ab9301478bf95356a4207dfa89719a0419a81c12967c67d8",
+        "git_blob": "9cfea6e6d7f0ab5322a1e0d0b140a7109f9a6307"
+      },
+      "after": {
+        "bytes": 4457,
+        "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06",
+        "git_blob": "0e28e5c797af076d2a2410143e42605982e8d1d5"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-native-connect-four-integration/scripts/app/scene_router.gd"
+    },
+    {
+      "scope": "native",
+      "path": "scripts/app/app_boot.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/app/app_boot.gd",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 18707,
+        "sha256": "4ed973120d62f1942842c43f3fe1f1b6b7390997d39e8cef7c1cefdd6ffebaf0",
+        "git_blob": "2fc3b5ea4fac7440733ae5a77a8289bcd57557f6"
+      },
+      "before": {
+        "bytes": 18658,
+        "sha256": "991d189afa1af113a4791883da8c669bc1404ee384c07699c8e1bda87b4340c8",
+        "git_blob": "8456b1933098f0bc852bfb6c227d7a5f7f59756c"
+      },
+      "after": {
+        "bytes": 18707,
+        "sha256": "4ed973120d62f1942842c43f3fe1f1b6b7390997d39e8cef7c1cefdd6ffebaf0",
+        "git_blob": "2fc3b5ea4fac7440733ae5a77a8289bcd57557f6"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-native-connect-four-integration/scripts/app/app_boot.gd"
+    },
+    {
+      "scope": "native",
+      "path": "scripts/tests/connect_four_runtime_regression.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/tests/connect_four_runtime_regression.gd",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 14782,
+        "sha256": "83852fdd2e19cd32b20ec6de62179ee3f9e7712e574f723773bcc40cc35dd0a7",
+        "git_blob": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99"
+      },
+      "before": null,
+      "after": {
+        "bytes": 14782,
+        "sha256": "83852fdd2e19cd32b20ec6de62179ee3f9e7712e574f723773bcc40cc35dd0a7",
+        "git_blob": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-native-connect-four-integration/scripts/tests/connect_four_runtime_regression.gd"
+    },
+    {
+      "scope": "native",
+      "path": "scripts/games/connect_four/connect_four_table.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/games/connect_four/connect_four_table.gd",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 30031,
+        "sha256": "76ab128b835bffd41b87274566408b8baab4073fe6733b2f5e3e990e0e027a72",
+        "git_blob": "cdeb31fc6cfe30c18fc6c96afb2b1d749532c37f"
+      },
+      "before": null,
+      "after": {
+        "bytes": 30031,
+        "sha256": "76ab128b835bffd41b87274566408b8baab4073fe6733b2f5e3e990e0e027a72",
+        "git_blob": "cdeb31fc6cfe30c18fc6c96afb2b1d749532c37f"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-native-connect-four-integration/scripts/games/connect_four/connect_four_table.gd"
+    },
+    {
+      "scope": "native",
+      "path": "scenes/games/connect_four_table.tscn",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scenes/games/connect_four_table.tscn",
+      "published_source_binding": "PR477 e423df58117c8f49bcd03c634e438392dc79c3ef / source-upload-manifest.json",
+      "source_identity": {
+        "bytes": 204,
+        "sha256": "49d116bd0436200d01b1e03eac3601854b33bf75142969b69d2c588418dd3af2",
+        "git_blob": "e1c14734e2bde85fd9852db3d8ef20f4cd0ca24d"
+      },
+      "before": null,
+      "after": {
+        "bytes": 204,
+        "sha256": "49d116bd0436200d01b1e03eac3601854b33bf75142969b69d2c588418dd3af2",
+        "git_blob": "e1c14734e2bde85fd9852db3d8ef20f4cd0ca24d"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-native-connect-four-integration/scenes/games/connect_four_table.tscn"
+    },
+    {
+      "scope": "host",
+      "path": "scripts/run_connect_four_runtime.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/run_connect_four_runtime.py",
+      "published_source_binding": "producer-incremental-20261114-045550/originals/pr477-c4-runner-closure-review.json",
+      "published_binding_sha256": "89b15a8a9c10394ba590af81ac1c787fdfb3f4967cf3347e8d48e4e28b6ebf50",
+      "source_identity": {
+        "bytes": 15683,
+        "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b",
+        "git_blob": "36d93ed0908705e339346bf5ef451cf047b641b5"
+      },
+      "before": null,
+      "after": {
+        "bytes": 15683,
+        "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b",
+        "git_blob": "36d93ed0908705e339346bf5ef451cf047b641b5"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/scripts/run_connect_four_runtime.py"
+    },
+    {
+      "scope": "host",
+      "path": "scripts/tests/test_connect_four_runtime_gate.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py",
+      "published_source_binding": "producer-incremental-20261114-045550/originals/pr477-c4-runner-closure-review.json",
+      "published_binding_sha256": "89b15a8a9c10394ba590af81ac1c787fdfb3f4967cf3347e8d48e4e28b6ebf50",
+      "source_identity": {
+        "bytes": 10033,
+        "sha256": "53be3d0d582f72709b00437a8f91386a7bfa245a3c35be85a5f320686b3a2d55",
+        "git_blob": "5a0d3123167ab26c882a049e7e90dbdd8f0a73de"
+      },
+      "before": null,
+      "after": {
+        "bytes": 10033,
+        "sha256": "53be3d0d582f72709b00437a8f91386a7bfa245a3c35be85a5f320686b3a2d55",
+        "git_blob": "5a0d3123167ab26c882a049e7e90dbdd8f0a73de"
+      },
+      "producer_exact": true,
+      "preserved": [],
+      "destination": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/scripts/tests/test_connect_four_runtime_gate.py"
+    }
+  ],
+  "patch": {
+    "path": "integration.patch",
+    "bytes": 202324,
+    "sha256": "b7b2ad01bd8d6fd227592a203e7ac0e3a780158afe7e6f662dbc31448731799d",
+    "git_blob": "fb5a7cf69b453c140fe7b5f73f414320749a0468"
+  },
+  "tests": "Not run. Root requested an immutable checkpoint before tests."
+}

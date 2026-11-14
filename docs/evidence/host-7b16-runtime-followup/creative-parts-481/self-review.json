@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T04:35:59.963679+00:00",
+  "unchanged_after_source_role_identifier_renaming": [
+    "Rejected",
+    "require",
+    "integer",
+    "digest",
+    "sha256_value",
+    "unique_object",
+    "invalid_number",
+    "read_json",
+    "safe_path",
+    "verify_inventory",
+    "load_part",
+    "SafeParser",
+    "main"
+  ],
+  "changed_functions": {
+    "verify_run": "New exact PR481 identities plus exact branch check; original repository/head/tree/event/attempt checks retained.",
+    "verify_index": "Exactly integer schema2 replaces schema1; strict binding requires probe_source_sha. All index inventory/limits/parts logic unchanged.",
+    "verify_parts": "Validation body unchanged; result fields identify QA source tree/branch and index2/part1 without relabelling APK source."
+  },
+  "actual_exporter_blob": "4c113e5b73e9f6eb3c02ab48b25f0aa3331f79c9",
+  "checked_collector_sha256": "9d7b07d27657b9c9a62c7027393419006480bc3d28848cfabe6811be21a6204e",
+  "legacy_pack_unchanged": true,
+  "existing_guard_cases_retained": 9,
+  "total_targeted_tests": 14,
+  "downloads": 0,
+  "git_operations": 0,
+  "actual_artifact_evaluated": false,
+  "scope": "Source comparison/self-review, exact existing dependencies and tiny synthetic CLI/ZIP contracts only; independent peer review is separate."
+}

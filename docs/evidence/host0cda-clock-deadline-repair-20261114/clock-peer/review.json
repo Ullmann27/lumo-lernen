@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "kind": "independent_static_fixture_review",
+  "created_at_utc": "2026-11-14T20:51:35.036Z",
+  "reviewer": "/root/pipeline_repair",
+  "outcome": "Kein konkreter statischer Quellenblocker im Ein-Datei-Fixturenachtrag.",
+  "pack": "/tmp/host0cda-c4-reward-clock-fixture-repair-20261114",
+  "source_freeze": {
+    "bytes": 1163,
+    "sha256": "f44ecdbb7e73155d309ab147748b612f619010b4229007b05577bc969d05ef0b",
+    "git_blob": "3a34c3d415e6c71986e54eb00cdd27918c99d638"
+  },
+  "source": {
+    "path": "test/games/connect_four_bot_save_retry_test.dart",
+    "before": {
+      "bytes": 10816,
+      "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+      "git_blob": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+    },
+    "after": {
+      "bytes": 11449,
+      "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+      "git_blob": "830b3f661c2a289f5ae76ed545cfed60fe27b36a"
+    }
+  },
+  "baseline": {
+    "host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+    "tree": "a97942c991cbb38d22c8b97f06a3e5bb162ab942",
+    "provenance": "Aktivierungsbindung aus vorhandenen Originalen, Preimage exakt c4b90bc7. Endquelle ist der bereits vorhandene vorbereitete Blob 830b3f66; kein ungesicherter neuer Producercommit wird behauptet."
+  },
+  "findings": [
+    {
+      "subject": "Tatsächliche Fehlerstelle",
+      "finding": "Die fünf ausgewählten aktuellen Suite-/Start-/Framework-/Error-/Done-Ereignisse wurden direkt gegen dieselben Zeilen des vollständig erhaltenen 0cda-Maschinenoriginals bytegebunden und objektgleich geprüft. Test56/Suite27 scheitert bei held.entered.isCompleted in Zeile261, noch vor inactive und vor der Freigabe des gehaltenen Plattform-ACK. Das aktuelle FAIL bleibt erhalten."
+    },
+    {
+      "subject": "Timer-/Pump-Vertrag",
+      "finding": "Die gebundenen Produktquellen planen den terminalen Reward-Retry über _clock.schedule(Duration.zero, ...). LumoGameTurnClock hält die Aktion bei Pause und startet beim expliziten Resume Timer(_remaining). Die exakte Flutter-3.44.9-Bindingquelle ruft _currentFakeAsync.elapse nur bei nicht-null pump-Duration auf; der bloße alte pump-Aufruf löst diesen Zeitfortschritt nicht aus. Der ersetzende 1-ms-pump ist ein enger Testablaufanschluss an diese tatsächliche Uhr."
+    },
+    {
+      "subject": "Echte ACK-Vorbedingung",
+      "finding": "Die weiterhin unveränderte echte Plattformfixture setzt held.entered erst im Wallet-setValue-Pfad, wartet dann auf held.release.future und führt erst anschließend die echte InMemory-Persistenz aus. Der Nachtrag setzt kein Erfolgssignal künstlich. Die ursprüngliche entered-Assertion bleibt; neu kommen geschlossenes Releasegate, noch null Sterne und kein Ergebnisdialog vor inactive hinzu."
+    },
+    {
+      "subject": "Erhaltene Ergebnisprüfungen",
+      "finding": "Alle sechs Testnamen bleiben gleich. Die ersten fünf vollständigen Fälle und sämtliche Helfer stehen im exakt unveränderten 9.054-Byte-Präfix. Alle elf ursprünglichen Assertions des sechsten Falls bleiben wortgleich und in derselben Reihenfolge; es kommen genau drei strengere Vor-ACK-Assertions hinzu. Gleicher Vier-/Drei-Steine-Stand, fünf Sterne genau nach Bestätigung, verborgenes Ergebnis während Pause und explizite Fortsetzung vor Ergebnisdialog bleiben geprüft."
+    },
+    {
+      "subject": "Cleanup",
+      "finding": "try/finally umfasst den veränderten Testablauf nach erfolgreichem _open. finally vervollständigt das Releasegate nur, wenn es noch nicht fertig ist, stellt resumed wieder her, führt idle aus, ruft den unveränderten _close-Helfer zum Unmount/Dispose/Reset auf und führt erneut idle aus. Kein catch, return oder Assertion-Ersatz kann einen fehlgeschlagenen Test zu PASS machen. Die Test-Öffnung selbst bleibt wie vorher außerhalb dieses neuen finally."
+    },
+    {
+      "subject": "Änderungsgrenze",
+      "finding": "Der vollständig neu berechnete Ein-Datei-Diff entspricht exakt integration.patch. Keine Produkt-, Wallet-, Controller-, Workflow-, Pin- oder Deadlinequelle wird verändert."
+    }
+  ],
+  "evidence": {
+    "references": [
+      {
+        "path": "reference-source/lib/features/games/connect_four/lumo_connect_four_game.dart",
+        "bytes": 45094,
+        "sha256": "5ea73c94211bb0286aba1167da845d4ccc08ae31d3888dc6b6789b8df86b2772",
+        "git_blob": "6c9ee29c314bf999349c73da6faf9226ac0f8916"
+      },
+      {
+        "path": "reference-source/lib/features/games/shared/lumo_game_pause_scope.dart",
+        "bytes": 12273,
+        "sha256": "2098bb9090936ab041905054beaced3133edeb941880757a654d303d51e039e6",
+        "git_blob": "9ffc5f25494bb03c64a68cd704d5069aae41013e"
+      },
+      {
+        "path": "reference-source/flutter-3.44.9/packages/flutter_test/lib/src/binding.dart",
+        "bytes": 118336,
+        "sha256": "3841b362c87d7dfd9fb07272338a20a0dd6bdd09ed916dd096b5dce4a99b162f",
+        "git_blob": "44b74b7d6be7726228605cce77c04231c6070bd6"
+      }
+    ],
+    "machine": {
+      "path": "/tmp/host0cda-c4-flutter-compile-evidence-20261114/full-flutter/inspection/originals/flutter-machine.jsonl",
+      "bytes": 1713662,
+      "sha256": "c692c44eafd4d2e26a5f4d9f66611ac7f5a7df749860398ffed5c4a5ecde3ec2",
+      "git_blob": "b010023bac9e83aed86f4af6467a953a72acc24e"
+    },
+    "selection": {
+      "bytes": 6214,
+      "sha256": "38836054ebfb75444c376ac6f66bf085aee2f7e64c12097e227c6f6c9a393fa2",
+      "git_blob": "d6661662e3046c1669b6468002053191b97f2519"
+    },
+    "current_activation_binding": {
+      "bytes": 7947,
+      "sha256": "08dea040864a59a8288888ea3d15a01aa5c0ee7fce7ceb33cc281e733e4e770c",
+      "git_blob": "b8f12b32a28b3cd99aff61d179f908438a30eaf2"
+    },
+    "first_five_and_helpers_prefix": {
+      "bytes": 9054,
+      "sha256": "fbe1473b772d6366520db8bfec7cbe5a3fdc4ffd08695d890cdd58301df09dfd",
+      "git_blob": "e9c71c50024f536feb4a1f2f1a3ba8231027ace8"
+    },
+    "all_old_sixth_assertions": [
+      "expect(find.text('Spiel pausiert'), findsOneWidget)",
+      "expect(held.entered.isCompleted, isTrue)",
+      "expect(find.text('Spiel pausiert'), findsOneWidget)",
+      "expect(fixture.app.state.stars, 5)",
+      "expect(find.byType(AlertDialog), findsNothing)",
+      "expect(_pieces(tester, 'child'), 4)",
+      "expect(_pieces(tester, 'lumo'), 3)",
+      "expect(find.text('Spiel pausiert'), findsOneWidget)",
+      "expect(find.byType(AlertDialog), findsOneWidget)",
+      "expect(fixture.app.state.stars, 5)",
+      "expect(tester.takeException(), isNull)"
+    ],
+    "extra_assertions": [
+      "expect(held.release.isCompleted, isFalse)",
+      "expect(fixture.app.state.stars, 0)",
+      "expect(find.byType(AlertDialog), findsNothing)"
+    ]
+  },
+  "limitations": [
+    "Reine Quellensicht und Originalnachrechnung; keine Dart-/Flutterausführung, keine neuen Tests, kein Timer-Replay und kein CI-Start durch den Reviewer.",
+    "Der statisch begründete Testablaufanschluss ist noch kein PASS. Der erneute konkrete Test beziehungsweise der nächste vollständige Lauf muss die erhaltenen Assertions tatsächlich erfüllen.",
+    "Der 0cda-Gesamtlauf ist FAILURE mit vier übersprungenen Folgejobs; dieser Review deutet ihn nicht um."
+  ],
+  "review_artifacts": [
+    "source-bindings.json",
+    "read_only_binding.py"
+  ]
+}

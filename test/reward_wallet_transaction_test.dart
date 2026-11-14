@@ -206,7 +206,32 @@ void main() {
       expect(savedAward['gameResultIds'], ['race-1']);
       await wallet.awardGameResult(resultId: 'race-1', stars: 6, xp: 20);
       expect(wallet.snapshot.stars, 9);
-      expect(store.writtenSnapshots, hasLength(4));
+      await Future<void>.delayed(Duration.zero);
+      // The duplicate is a confirmed same-value write, never another award.
+      expect(store.writtenSnapshots, hasLength(5));
+      expect(store.writtenSnapshots[3], savedAward);
+      expect(store.writtenSnapshots[4], savedAward);
+      expect(await store.persistedWallet(), savedAward);
+      expect(
+        store.writtenSnapshots
+            .map((value) => [value['stars'], value['xp'], value['gameResultIds']])
+            .toList(),
+        [
+          [6, 20, ['race-1']],
+          [3, 0, <String>[]],
+          [3, 5, <String>[]],
+          [9, 25, ['race-1']],
+          [9, 25, ['race-1']],
+        ],
+      );
+      expect(
+        emitted.map((value) => [value.stars, value.xp, value.gameResultIds]).toList(),
+        [
+          [3, 0, <String>[]],
+          [3, 5, <String>[]],
+          [9, 25, ['race-1']],
+        ],
+      );
       await subscription.cancel();
     });
   }

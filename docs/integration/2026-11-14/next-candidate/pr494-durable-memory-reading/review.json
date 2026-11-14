@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "result": "NO_CONCRETE_SOURCE_BLOCKER_IN_FOUR_FILE_SCOPE",
+  "base_host": "b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1",
+  "producer": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "complete_four_files_read": true,
+  "exact_current_preimages_equal_producer_parent": true,
+  "exact_source_dependencies_equal_producer": 7,
+  "lockfile_change_needed": false,
+  "reasoning": [
+    "Daily and parent competence text now uses the existing SkillRecord assessment getters; unconfirmed ASR summaries no longer become deficits, strengths, priorities or claimed reading accuracy.",
+    "ReadingAnalysisSummary, ReadingProgressRepository and persisted legacy summaries are unchanged; both public readingSummaries arguments remain compatible.",
+    "PreferencesMemoryStore awaits a fresh platform reload for every readRound/readStats; reload failures remain errors and cannot confirm optimistic-cache-only writes.",
+    "Owner validation, owner-specific round/stats keys, historical lumo_memory_v2 non-migration, dealer/rules/rewards and write failure handling are byte-identical.",
+    "The existing MemoryRoundController still serializes by owner and checks active profile before/after reads/writes; unchanged recovery compares actual reloaded bytes.",
+    "The new Memory tests replace only the platform boundary, retain the real Preferences cache and controller, and use an independent test backend. These are controlled test faults, not physical-device durability claims."
+  ],
+  "protected_modules": "No Writer, InkSurface, Journal, Diktat, Math, Village, C4, Garage, speech or pin source is included in final-source; full baseline dependency records retained separately.",
+  "actual_producer_evidence": "14 Memory + 10 ASR cases independently traced by suite/test IDs to successful visible completions and source lines in the complete original stream on 28462. Full producer suite 2632/0/0; this is not a b3 combination result.",
+  "remaining_acceptance": "Root will include these two test files in the next complete integrated APK/Flutter build. No additional local Flutter run or workflow is proposed.",
+  "limitations": [
+    "Preferences durability fault cases use the real Dart cache/controller with an isolated platform backend; no Android physical-storage proof.",
+    "ASR summary storage/history is preserved; no speech-recognition accuracy or reading-assessment model claim.",
+    "Full 343185779-byte producer artifact was not downloaded or hashed here. Four complete published member bytes and their CRC/hash bindings were checked.",
+    "This source pack contains no new test execution, imports of product code, active checkout writes, Git mutations or CI actions."
+  ]
+}

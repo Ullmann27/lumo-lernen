@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "status": "POST_FREEZE_REMOTE_READBACK_AND_ROOT_BASE_ADDENDUM",
+  "created_utc": "2026-11-14T17:37:13.723Z",
+  "frozen_v3_source": {
+    "bytes": 64401,
+    "sha256": "9dbda2369930ed77275cb3adc401fedc58538ebe21736f7e29b68dad23ab6f9e",
+    "git_blob": "6a08dfb852cbec128db96aaa84add2bc69a7194b"
+  },
+  "original_freeze": {
+    "bytes": 3629,
+    "sha256": "9c1e7f5005d094e31f452c352e88a116ba02b859eac8dbea838e9fe7ba26d5af",
+    "git_blob": "9a7644957b87a7b1f9b25a34281086e3abee9a1e"
+  },
+  "frozen_pack_unchanged": true,
+  "remote_readback": {
+    "repository": "Ullmann27/lumo-lernen",
+    "created_utc": "2026-11-14T17:35:19.715Z",
+    "rows": [
+      {
+        "name": "workflow",
+        "bytes": 64401,
+        "sha256": "9dbda2369930ed77275cb3adc401fedc58538ebe21736f7e29b68dad23ab6f9e",
+        "git_blob": "6a08dfb852cbec128db96aaa84add2bc69a7194b",
+        "readback_complete": true,
+        "string_and_all_byte_identities_equal": true
+      },
+      {
+        "name": "complete-source-pack.json",
+        "bytes": 231503,
+        "sha256": "d3c9e5f9fecba6f2b7303a7f95635b00a1242793afd7237959f3285f96fc6dca",
+        "git_blob": "26dfc81412126388d10530ce4f7dd5d18c822ebc",
+        "readback_complete": true,
+        "string_and_all_byte_identities_equal": true
+      },
+      {
+        "name": "source-freeze.json",
+        "bytes": 3629,
+        "sha256": "9c1e7f5005d094e31f452c352e88a116ba02b859eac8dbea838e9fe7ba26d5af",
+        "git_blob": "9a7644957b87a7b1f9b25a34281086e3abee9a1e",
+        "readback_complete": true,
+        "string_and_all_byte_identities_equal": true
+      },
+      {
+        "name": "integration.patch",
+        "bytes": 8869,
+        "sha256": "d419f7d7299d975e56f65e0b984f36b642466d5f46ca4b672518aee08dfe01fc",
+        "git_blob": "d6b50cf6746f19b172e1cd5be86e8e00bab9dd86",
+        "readback_complete": true,
+        "string_and_all_byte_identities_equal": true
+      },
+      {
+        "name": "manifest.json",
+        "bytes": 4401,
+        "sha256": "fa68de4fefd55ee7332b75a7905ec688eb6bbe8b35a25849fd8c05dce8f47d68",
+        "git_blob": "bf91452b94cabfdf4f7a024ca6e828749582f948",
+        "readback_complete": true,
+        "string_and_all_byte_identities_equal": true
+      },
+      {
+        "name": "handoff.json",
+        "bytes": 1414,
+        "sha256": "5d012ed08e8fcb7566e0baa5447b36a466d0e60f2894ea3d5e49b9001c240a75",
+        "git_blob": "9beecafcd3d6e4164d847c484aa37f86de9b7b83",
+        "readback_complete": true,
+        "string_and_all_byte_identities_equal": true
+      }
+    ],
+    "full_portable_member_count": 18,
+    "all_portable_members_roundtrip_equal": true,
+    "trees_created": 0,
+    "refs_updated": 0,
+    "commits_created": 0,
+    "ci_started": 0,
+    "execution": false
+  },
+  "root_reported_source_base": {
+    "head": "3a5b2241b7a329a8b36ee655bceedd874ae50268",
+    "tree": "de979455e4bd490c8cf69241f4dc77a0ca0408e2",
+    "parent": "e664ba4732222a64af58d44a6bab768846f47ccb",
+    "branch": "integration/lumo-next-table-authorities-20261114",
+    "provenance": "Root supplied actual leased/readback-verified checkpoint; this report does not claim a separate complete commit/tree traversal.",
+    "contains": "Final 13 Speech sources and documentation; skip-ci checkpoint, no newly claimed tests."
+  },
+  "own_exact_path_reads_on_new_base": [
+    {
+      "path": ".github/workflows/lumo-next-table-authorities.yml",
+      "bytes": 56951,
+      "sha256": "536bc3224df90bd9fd7838912e0847d55ea96d5edbce06b70ef371e2872495e5",
+      "git_blob": "f798a0a5090a326fb9718bc427b9887ff15e9be1",
+      "ref": "3a5b2241b7a329a8b36ee655bceedd874ae50268",
+      "actual_full_file_read": true,
+      "exact_expected_bytes_equal": true
+    },
+    {
+      "path": "scripts/compile_android_host.sh",
+      "bytes": 3386,
+      "sha256": "eaa36179179a172f1dff6bc49cf1917813e0143f6beed8a04b2c1a49071618f8",
+      "git_blob": "48893609d274834c58f7b6eceb63b0b5ec86951f",
+      "ref": "3a5b2241b7a329a8b36ee655bceedd874ae50268",
+      "actual_full_file_read": true,
+      "exact_expected_bytes_equal": true
+    }
+  ],
+  "connection": "The actual workflow on 3a5b remains byte-identical to the V3 patch preimage. Its compile helper is the final approved 48893609 blob. Therefore the already frozen V3 patch needs no adaptation to this source successor. Execution will bind actual future github.sha.",
+  "mutation_scope": "Only the six authorized unattached content blobs were created and fully read back. No tree, commit, ref, CI, runtime or tests were created/executed.",
+  "limitation": "No local filesystem materialization. Local executor unavailable. No lint, Python syntax execution, imports, test or product qualification inferred."
+}

@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "at": "2026-11-14T02:56:20.021794+00:00",
+  "status": "LOCAL_QA_REPAIR_VERIFIED_NO_ANDROID_PASS",
+  "worktree": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16",
+  "source_freeze_sha256": "b7c8bd2391e0467318ae0f208389d73f54e4f1d69ba8518184b311648fb5ad20",
+  "owned_file_count": 24,
+  "tests": {
+    "new": 9,
+    "unchanged_existing": 25,
+    "total": 34,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "original_ci_evidence": "../host-pr465-7b16f2f5-android35-update-evidence/handoff.json",
+  "original_ci_handoff_sha256": "120f750ece9452cbe755295603297301bf845b31d799fc87b8f75615daa24813",
+  "independent_review_path": "/workspace/scratch/b3485b7bb989/host-7b16-driver-word-independent-review/review.json",
+  "independent_review_sha256": "d10b63928d02f1e82ac13f376094e110f717623bb3790cffc4183be80a4c68bb",
+  "source_writes_frozen": true,
+  "staging_commit_ref_owned_by": "Root",
+  "new_actual_android_acceptance": "Not performed; required after publication."
+}

@@ -1,0 +1,58 @@
+{
+  "files": [
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 48183,
+      "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed",
+      "git_blob": "77f96e02602277c8c1f82c72bfe3b49672fe8aad"
+    },
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "bytes": 81901,
+      "sha256": "a650923379b3bbdd710f85fb30ea6b7c4f23892d116d28483f1896b5ed57a555",
+      "git_blob": "fabe3a085b877f40656295032955aed428b2edeb"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_game_controller.dart",
+      "bytes": 17240,
+      "sha256": "f1b6469e120de3f62a39b280b28604cc9a800a0ef2548376dda607a61b742245",
+      "git_blob": "52beeb4f154045e54cf8f6a8e35a3bcb7255eda3"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/cards-before-original.png",
+      "bytes": 1163505,
+      "sha256": "952586b28ef93fd26bedd29d406e49ab98347af6b534d9bef147ac61dd8609c9",
+      "git_blob": "9c20cac7b42fb285cac1d476bbdf840662a68e2b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/face-evidence-original.json",
+      "bytes": 33358,
+      "sha256": "b36efd207308604078e9ead899796fda1b2197b7d8ec19157027ff2d1378c6ef",
+      "git_blob": "befd8c7c5147beb3754bde89ca4ea18a10b44a7c"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/layout-original.json",
+      "bytes": 1329,
+      "sha256": "626a29902fbb78b9a6d45ba8f380a5273ee3e10206f932f1bbf739d354cc91a1",
+      "git_blob": "e24a002fcefa4e000ad2336880b639b636131af8"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/manifest.json",
+      "bytes": 1567,
+      "sha256": "3a2345f16439c7dba61fb19aecb611c7a230b8c9e90150543338ec00c5009dca",
+      "git_blob": "e2040ad2c440daafd36972f98462f052a19bd6f9"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/missing-layout-original.txt",
+      "bytes": 113,
+      "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679",
+      "git_blob": "8c5735507c17ecfe1d516e044a0587fd8266ba5e"
+    },
+    {
+      "path": "tools/android_qa/tests/test_cards_layout_readiness.py",
+      "bytes": 9037,
+      "sha256": "e4e1617794a3026a947d135e0883f82664f220a6c430ce0721e611f7b0bd1dc0",
+      "git_blob": "9d2b4a75bc3353dd579f261c1c99229af30c07c1"
+    }
+  ]
+}

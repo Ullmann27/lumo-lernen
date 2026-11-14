@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+    "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/.github/workflows/lumo-connect-four-2020.yml",
+    "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/.github/workflows/lumo-unified-integration-2026.yml"
+  ],
+  "exit_code": 0,
+  "duration_seconds": 0.025514675988233648,
+  "before": {
+    "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/.github/workflows/lumo-connect-four-2020.yml": "6b6f3bccbfd69fd41911b177a3492a613f9f03cda9d096e33bf295166408ac93",
+    "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/.github/workflows/lumo-unified-integration-2026.yml": "2dc3e1506b1abb0784fb246a32135a76fedf43284bee7df346232e0eba68b096"
+  },
+  "after": {
+    "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/.github/workflows/lumo-connect-four-2020.yml": "6b6f3bccbfd69fd41911b177a3492a613f9f03cda9d096e33bf295166408ac93",
+    "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/.github/workflows/lumo-unified-integration-2026.yml": "2dc3e1506b1abb0784fb246a32135a76fedf43284bee7df346232e0eba68b096"
+  },
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

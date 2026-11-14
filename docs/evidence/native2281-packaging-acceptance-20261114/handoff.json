@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "status": "FROZEN_PACKAGING_QUALIFICATION",
+  "created_utc": "2026-11-14T15:47:27.045203+00:00",
+  "before_head": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "before_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+  "after_head": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+  "after_tree": "d7e0128afbda641cb92e29c41a8839d901ef5b43",
+  "before_present_notice_count": 0,
+  "after_present_originalbyteequal_notice_count": 3,
+  "all_six_engine_commands_exit_zero": true,
+  "all_six_stderr_empty": true,
+  "both_full_source_and_index_invariants": true,
+  "new_engine_or_gameplay_tests": false,
+  "remote_mutations": false,
+  "archive": {
+    "path": "/workspace/scratch/b3485b7bb989/native2281-packaging-export-20261114/native2281-packaging-technical-originals.tar.gz",
+    "bytes": 4470581,
+    "sha256": "903f68016cbf7cbb0b1f2484f1cbdc9258ba461a55dc17527f257fe9fa645152",
+    "git_blob": "ac77061b2d79e71d968634bf2b00eb5607d8f4da",
+    "member_count": 127
+  },
+  "report": {
+    "path": "/workspace/scratch/b3485b7bb989/native2281-packaging-export-20261114/technical-proof/report.json",
+    "bytes": 5712,
+    "sha256": "72bb7cb5f995ca0af0caef12649b354e5d4dd495f7c6e6893da51ffd0ec04e07",
+    "git_blob": "145c524558f706a0dcbbc3770b762d0cb7d2aba6"
+  },
+  "manifest": {
+    "path": "/workspace/scratch/b3485b7bb989/native2281-packaging-export-20261114/technical-proof/manifest.json",
+    "bytes": 32149,
+    "sha256": "45f23963d31193de0f084d29fcb48b4cfafd4b72fe0b93cd412afcd620011e88",
+    "git_blob": "2ca4142222ba9f7c97eaeac7c96544d21f203553"
+  },
+  "checksums": {
+    "path": "/workspace/scratch/b3485b7bb989/native2281-packaging-export-20261114/technical-proof/SHA256SUMS",
+    "bytes": 12650,
+    "sha256": "f686641dc1ade3c2ed528fd270304567dceec43c7fa45e8a88ac19b162bab6de",
+    "git_blob": "77de2e40c81ed746a782c2ed0de82133391336c2"
+  },
+  "roundtrip": {
+    "path": "/workspace/scratch/b3485b7bb989/native2281-packaging-export-20261114/technical-roundtrip.json",
+    "bytes": 26651,
+    "sha256": "a0c2e61fa13643ad62b852a8160e0232d55f5a355242882d76857a02033b818a",
+    "git_blob": "cf734204b3f25487b34db167ae4d08527a68f821"
+  },
+  "pck_retention_index": {
+    "path": "/workspace/scratch/b3485b7bb989/native2281-packaging-export-20261114/technical-proof/excluded-pck-originals.json",
+    "bytes": 1099,
+    "sha256": "a0775fe5ae4e11bc6b7aa176711861b8658141bb8edd18ad4c4c1b7e553dd913",
+    "git_blob": "092fd100b9ca111b72451df78b1ac8bccbe76436"
+  },
+  "git_publication_scope": "Technical archive + handoff/roundtrip only; complete PCK payloads are explicitly not prepared for Git."
+}
