@@ -1,0 +1,61 @@
+{
+  "host_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "host_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+  "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "run_id": 43616038272,
+  "run_attempt": 1,
+  "job_id": 132512734271,
+  "artifact_id": 14125561696,
+  "artifact_bytes": 331381619,
+  "artifact_sha256": "4019515f9c9a6dadfdc00b2f504f68f559d5b1855e5bf8676675c9e4a9219de6",
+  "zip_crc_pass": true,
+  "apk_crc_pass": true,
+  "apk_sha256": "822aec63fa23c6ab57980932a5d6b5465c7e78b1c6f774a790dfe1b272ea6d6d",
+  "apk_bytes": 331367098,
+  "abis": [
+    "arm64-v8a"
+  ],
+  "embedded_pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+  "embedded_pck_bytes": 75401304,
+  "original_ci_verification_matches_log": true,
+  "original_provenance_matches_exact_host_and_facts": true,
+  "fresh_local_apksigner_aapt": "NOT_RUN_TOOLS_NOT_INSTALLED",
+  "original_members": [
+    {
+      "path": "Lumo-Lernen-Neu.apk",
+      "bytes": 331367098,
+      "sha256": "822aec63fa23c6ab57980932a5d6b5465c7e78b1c6f774a790dfe1b272ea6d6d",
+      "zip_crc32": "91b8c968"
+    },
+    {
+      "path": "APK-VERIFICATION.json",
+      "bytes": 3833,
+      "sha256": "9fb104337fa1b3f279aabc7300b0e2142212035fc4f5beb73ab98fd0c580e682",
+      "zip_crc32": "f61f35aa"
+    },
+    {
+      "path": "APK-SHA256.txt",
+      "bytes": 91,
+      "sha256": "25b0b8cbf5df64816d0ff6148ed7282e3b181aeff40ed08698a8cec70740a47b",
+      "zip_crc32": "08c31f3b"
+    },
+    {
+      "path": "BUILD-PROVENANCE.json",
+      "bytes": 9643,
+      "sha256": "95a8f183df63db063eb6110c32a99a2818ab8f90154078fa9469e52f20272edd",
+      "zip_crc32": "132acdbe"
+    },
+    {
+      "path": "GODOT-SOURCE.json",
+      "bytes": 145,
+      "sha256": "dbeaddce16edd1d77f31a3e40ba5d8426b03a61a057928fee2ebb6c020cdb495",
+      "zip_crc32": "505101e1"
+    },
+    {
+      "path": "APP-VERSION.txt",
+      "bytes": 21,
+      "sha256": "c013ca7f211e5bc15f7449705ab8c325c7e41164828301f8b0f2c51174ac8f68",
+      "zip_crc32": "0d27d171"
+    }
+  ]
+}
