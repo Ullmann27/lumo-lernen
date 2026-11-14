@@ -17,6 +17,7 @@ import subprocess
 import sys
 import time
 import traceback
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'tools/android_qa'))
@@ -89,7 +90,10 @@ class Probe:
     def read_preferences(self, tag: str) -> tuple[dict, str]:
         raw, source = self.original(tag + '-preferences', 'exec-out', 'cat',
             f'/data/user/0/{contract.PACKAGE}/shared_prefs/FlutterSharedPreferences.xml')
-        return contract.preferences(raw), source
+        try:
+            return contract.preferences(raw), source
+        except ET.ParseError as error:
+            raise ValueError('Original SharedPreferences are not valid XML: ' + source) from error
 
     def density(self) -> tuple[float, str]:
         text, source = self.original('density', 'shell', 'wm', 'density')

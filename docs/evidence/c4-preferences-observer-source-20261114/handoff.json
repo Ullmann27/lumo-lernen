@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_NOT_RUN",
+  "root": "/workspace/scratch/b3485b7bb989/host-pr493-preferences-read-repair-3fac-20261114",
+  "source_freeze": {
+    "bytes": 4754,
+    "sha256": "ba77676bce3f2fecd97aa62e6c8514462635dc0255843b544b98ac23e47e45f1",
+    "git_blob": "2a36221f057de7cc18614be6acbeaaaac715314b"
+  },
+  "base_commit": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+  "base_tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+  "source_count": 9,
+  "test_methods": 9,
+  "final_production": {
+    "bytes": 28988,
+    "sha256": "e57bec15a0c8e7f57085a33ecfa661fda882af89a92bee906b016d152de54bc2",
+    "git_blob": "f8d4ae7cdd3c38f0240a2bc20c4d78b6108f9f5d"
+  },
+  "producer_commit": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+  "active_5ad_unchanged": true,
+  "original_failure_scope": "51ec/bebf actual Android FAIL; same observer bytes on 5ad and 3fac. No 5ad device verdict from these originals.",
+  "full_original_zip_retained": "/workspace/scratch/b3485b7bb989/host-pr493-preferences-read-51ec-originals-20261114/artifact-14121596843/14121596843-original.zip",
+  "full_original_zip_sha256": "6b55e5424b4177b8daa5b342d8ac5c64e3b7b802bfdd84805cec3974b1f0506c",
+  "requested_next_step": "Root source checkpoint; no test performed yet."
+}

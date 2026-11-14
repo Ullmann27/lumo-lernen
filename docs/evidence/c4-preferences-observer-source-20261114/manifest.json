@@ -1,0 +1,302 @@
+{
+  "schema": 1,
+  "source_freeze_sha256": "ba77676bce3f2fecd97aa62e6c8514462635dc0255843b544b98ac23e47e45f1",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1827,
+      "sha256": "9e4cf3cbe42b8551597f4b50fa82191eb3978e2551a3205b601e69c5c143d0e0",
+      "git_blob": "1f2c226b28f6f6c6b95422192876c0cbdd865edc"
+    },
+    {
+      "path": "audit-code/freeze_sources.py",
+      "bytes": 14697,
+      "sha256": "b333779273d7f69158dca0c3e2c2517124fcdc5eae3dec13f2fa03c4f20e2b0b",
+      "git_blob": "a4dbf7df9f90b3966792368934abdd7adab36a2f"
+    },
+    {
+      "path": "audit-code/raw-manifest.json",
+      "bytes": 250,
+      "sha256": "4df910aa1fde0ff8e2c812cad4ddccff8f35f0b99decdf6118b933be1ef42bca",
+      "git_blob": "8e2a6283f0db959c4cf97a6d539cb146b0053a1d"
+    },
+    {
+      "path": "before-source/.github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 28798,
+      "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19",
+      "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+    },
+    {
+      "path": "diagnosis.json",
+      "bytes": 7450,
+      "sha256": "4f2368bf81f951fa69174fecbbc43f26270f5c6315281338db4b422f867d7640",
+      "git_blob": "04aa0328bd9c64a8b2acf3192a22d3110b633f74"
+    },
+    {
+      "path": "final-source/.github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 28988,
+      "sha256": "e57bec15a0c8e7f57085a33ecfa661fda882af89a92bee906b016d152de54bc2",
+      "git_blob": "f8d4ae7cdd3c38f0240a2bc20c4d78b6108f9f5d"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.json",
+      "bytes": 444,
+      "sha256": "71ca8b275ea85cbe8ad9a01d36c7877aee24cf132c1933cc6b487a766c7d6c7d",
+      "git_blob": "102e1107edd589541b59870036a91c57af0c3677"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.stdout",
+      "bytes": 2485,
+      "sha256": "c1f6883e8047900e28981cd7d6bde7b379bd18edd80693b51ff4fd5d88f8811e",
+      "git_blob": "dacc36247689ea598cf75d228428d72a5b581317"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.json",
+      "bytes": 444,
+      "sha256": "7f990fc9ded4487e15e04e21a44c14ecd9b7d2524c5a554d60b98ed68fa85c42",
+      "git_blob": "94fdb4fc2ad03ced6e1474053efac74e447070dc"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.stdout",
+      "bytes": 129,
+      "sha256": "18cc4a1f125474c5c4f1f3bf5f414a2e05095b766b5254c2cab20a0db7a4f4ac",
+      "git_blob": "5c20e833439163d483d0424511d19d577b601e61"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/source.json",
+      "bytes": 3189,
+      "sha256": "4c181f977cccd874e4b13d39bc6796c11e2c9f859bf6480818c503b31ea70023",
+      "git_blob": "61f4b00fbbabb4240ba3204ac5425bd14766ce20"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/test_connect_four_preferences_observation.py",
+      "bytes": 17147,
+      "sha256": "6b493f9f5239a546abef96e273d1a28a8a4712a51a519c760555c79193353118",
+      "git_blob": "ba828cee6be0fd740dbef412afa9e1a263871227"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1265,
+      "sha256": "8979ab5eb99c115233730b427921e3566e57b7289b0f753b69b2bb117ab92914",
+      "git_blob": "53ad5da92c2854fc05a1495aa2575d8e66545949"
+    },
+    {
+      "path": "integration-git.patch",
+      "bytes": 28749,
+      "sha256": "eef4e48baa2b2252241ef84457664ebbe87344d5a0a231b2177e391f9f212188",
+      "git_blob": "e865bb2be44b22e276f13691c66206ebb05ad8b4"
+    },
+    {
+      "path": "integration.patch",
+      "bytes": 26006,
+      "sha256": "c51b3e5e73c5a5488a25c8022587c00bed81669abf885ad4c0806d555d038dfd",
+      "git_blob": "94c63a49902095f2d78a8b7a7313e974f85cb624"
+    },
+    {
+      "path": "original-api/base-3fac-commit.original.json",
+      "bytes": 1125731,
+      "sha256": "ceb7ae804c18f5ef17db7341264e1e0a2b609c918e6991d142890adba60ac97f",
+      "git_blob": "72b2537c018c25c9436317a65619d91657fdcf0a"
+    },
+    {
+      "path": "original-api/base-ls-tree.json",
+      "bytes": 553,
+      "sha256": "35a60dce7af41652912cce93f286be8e3c83315a87e2608f9866d571f6632446",
+      "git_blob": "933a88650ecfe3fac9604c3613c98bb87a3706f6"
+    },
+    {
+      "path": "original-api/failed-artifacts-43605863655.original.json",
+      "bytes": 9753,
+      "sha256": "ae3c11b4faf5db8544bf40c25e6a577cb5c6a96df94b73aad5259a3393f7593b",
+      "git_blob": "5228b525997673c3d28bd048916866033ab0173d"
+    },
+    {
+      "path": "original-api/failed-jobs-43605863655.original.json",
+      "bytes": 23487,
+      "sha256": "18f6675dbb5ccbf77ec5109557bdfcd7637a0ae5fd9a2806c1eac97ca02fa88c",
+      "git_blob": "b737ebb7b6eae73924ec59f37a893d53e30960a0"
+    },
+    {
+      "path": "original-api/failed-run-43605863655.original.json",
+      "bytes": 12964,
+      "sha256": "38d27c0d375b7ba53bfb6286a73ffd507b402fa9517f29887a4f75b2a5944bb0",
+      "git_blob": "10dea5dd27ca4f589c2748beacd598a84f11a2bd"
+    },
+    {
+      "path": "original-api/job-132499595540.original.log",
+      "bytes": 1534525,
+      "sha256": "8248955e3fc44f7652f6d41fafff0153541d852221b63f5d976ba7614e938ae1",
+      "git_blob": "db5a5676367c6fb7bff4d61c63575486e514ed6a"
+    },
+    {
+      "path": "original-api/producer-7c5bef-commit.original.json",
+      "bytes": 37415,
+      "sha256": "0fc8ce9fd8150342ac91ac152e00acfa040705aaaab2cfa091a9429e72176cc7",
+      "git_blob": "c9adccf21ce1a8af59a529d79b943cf6ad48c842"
+    },
+    {
+      "path": "original-evidence/archive-index.json",
+      "bytes": 290445,
+      "sha256": "e843128d5c27f28af2fb977576486c2637217fd9e415855a0d28ed7d2a00109c",
+      "git_blob": "410f897dc18511b890175d0702582cb0d492fb91"
+    },
+    {
+      "path": "original-evidence/c4/c4-result.json",
+      "bytes": 55449,
+      "sha256": "2b8dc1cc8d6b1018d07cef426ceb61fd1fc82ee5696431ffac10f9563f2c1988",
+      "git_blob": "21b0f15c545319518d11ed05f58f8f1192c9eca8"
+    },
+    {
+      "path": "original-evidence/c4/child-first-touch.json",
+      "bytes": 493,
+      "sha256": "ea0f9daeb443efeb42065666f49c47631815d1ef0a68ef61476bddd8a4af4349",
+      "git_blob": "11f8027e9005d44632fe7fb21143f8d37a86f25f"
+    },
+    {
+      "path": "original-evidence/c4/commands/0074-child-first-second-000-preferences.json",
+      "bytes": 444,
+      "sha256": "71ca8b275ea85cbe8ad9a01d36c7877aee24cf132c1933cc6b487a766c7d6c7d",
+      "git_blob": "102e1107edd589541b59870036a91c57af0c3677"
+    },
+    {
+      "path": "original-evidence/c4/commands/0074-child-first-second-000-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "original-evidence/c4/commands/0074-child-first-second-000-preferences.stdout",
+      "bytes": 2485,
+      "sha256": "c1f6883e8047900e28981cd7d6bde7b379bd18edd80693b51ff4fd5d88f8811e",
+      "git_blob": "dacc36247689ea598cf75d228428d72a5b581317"
+    },
+    {
+      "path": "original-evidence/c4/commands/0078-child-first-touch.json",
+      "bytes": 406,
+      "sha256": "80323a1e44aec524b56865049282d34c3065156a4068c93eed6869ba790b5d37",
+      "git_blob": "76a5f0bb756d0428fef6360a6611002f9296d644"
+    },
+    {
+      "path": "original-evidence/c4/commands/0078-child-first-touch.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "original-evidence/c4/commands/0078-child-first-touch.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "original-evidence/c4/commands/0079-child-first-confirmed-000-state.json",
+      "bytes": 481,
+      "sha256": "772c24a9a4485193dd3b8e42f630628bdac7a69afa919ab89ef2629325b4420c",
+      "git_blob": "1d68fd44893b2cc1b3c4dc17eb7c445ddf0bdf8f"
+    },
+    {
+      "path": "original-evidence/c4/commands/0079-child-first-confirmed-000-state.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "original-evidence/c4/commands/0079-child-first-confirmed-000-state.stdout",
+      "bytes": 561,
+      "sha256": "b646b67b025188733552817134b37da7f73594beb30d5fe6aa2e432701688743",
+      "git_blob": "0f9cdec89f7f73633426444dece29248413cbed7"
+    },
+    {
+      "path": "original-evidence/c4/commands/0087-child-first-confirmed-000-preferences.json",
+      "bytes": 444,
+      "sha256": "7f990fc9ded4487e15e04e21a44c14ecd9b7d2524c5a554d60b98ed68fa85c42",
+      "git_blob": "94fdb4fc2ad03ced6e1474053efac74e447070dc"
+    },
+    {
+      "path": "original-evidence/c4/commands/0087-child-first-confirmed-000-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "original-evidence/c4/commands/0087-child-first-confirmed-000-preferences.stdout",
+      "bytes": 129,
+      "sha256": "18cc4a1f125474c5c4f1f3bf5f414a2e05095b766b5254c2cab20a0db7a4f4ac",
+      "git_blob": "5c20e833439163d483d0424511d19d577b601e61"
+    },
+    {
+      "path": "patch-completeness.json",
+      "bytes": 576,
+      "sha256": "dd226cfea9b266cc4c45825f38f31bf938bebc0bdc2f1efd7bc4dd9fa6f963ca",
+      "git_blob": "3a477e97c32c23beba8afe17f3b38fb3a4fb4737"
+    },
+    {
+      "path": "raw-manifest.json",
+      "bytes": 5777,
+      "sha256": "738417d6f40db80e24d859c21a22773977ee8e4867d630e6cf4e35cb3c849ce4",
+      "git_blob": "af1d0aa03df2d4c658b9ae31f9ff5dfd3b01920d"
+    },
+    {
+      "path": "reference-source/active-5ad/.github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 28798,
+      "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19",
+      "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+    },
+    {
+      "path": "reference-source/failed-51ec/.github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 28798,
+      "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19",
+      "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+    },
+    {
+      "path": "reference-source/tools/android_qa/connect_four_android_evidence.py",
+      "bytes": 36130,
+      "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7",
+      "git_blob": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa"
+    },
+    {
+      "path": "reference-source/tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "bytes": 23974,
+      "sha256": "091d4640f277486998dc47fded5820d1986d9036244bc92d2f8c4ccf6afa794f",
+      "git_blob": "701d1dab0a7224803fe2780c6a0674400b081795"
+    },
+    {
+      "path": "retrieval-limitations.json",
+      "bytes": 798,
+      "sha256": "a1c6c7a1bb5b7f8c59a5353c7847e85f9a5a7ebfb265896b7d16b1b3c3e0b6d1",
+      "git_blob": "1c6d859cf35d6c467b6bc7ec0f4981aec0fcb6e9"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 4754,
+      "sha256": "ba77676bce3f2fecd97aa62e6c8514462635dc0255843b544b98ac23e47e45f1",
+      "git_blob": "2a36221f057de7cc18614be6acbeaaaac715314b"
+    },
+    {
+      "path": "source-preservation.json",
+      "bytes": 2406,
+      "sha256": "3e48b28ca401110101eba4150993e639893a119523db84d471f81ba87f461654",
+      "git_blob": "0d349ababf5e3eefcb64d823a98cb6cd7f146d3c"
+    },
+    {
+      "path": "upload-plan.json",
+      "bytes": 2654,
+      "sha256": "9b2a3ac3a362757aeff6ac5845628fba94d638a81fd3ed8a16d3db68ac3af6ec",
+      "git_blob": "f2f9e302198d288c44fa40613af011799d6859bd"
+    }
+  ],
+  "scope": "Complete compact source/original/review evidence; separately retained 128234694-byte ZIP is referenced, not duplicated.",
+  "tests_executed": false
+}
