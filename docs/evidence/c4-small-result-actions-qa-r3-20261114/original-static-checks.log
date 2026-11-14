@@ -1,0 +1,83 @@
+STATIC SYNTAX RECORD: every STEP below was passed as stdin to /usr/bin/bash -n; no workflow shell block was executed.
+Each block retains the original stdin and captured stdout/stderr/exit code. Production/game/runtime commands shown in stdin were not run by this check.
+Python 3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]
+COMPILE PASS (no execution)
+GNU bash, version 5.2.37(1)-release (x86_64-pc-linux-gnu)
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+
+This is free software; you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+STEP Bind the four QA additions and both unchanged products before preparation
+STDIN
+set -euo pipefail
+test "$(git -C qa-source rev-parse HEAD)" = "$QA_SHA"
+python3 qa-source/scripts/run_connect_four_small_result_actions_qa.py \
+  --qa "$GITHUB_WORKSPACE/qa-source" \
+  --host "$GITHUB_WORKSPACE/frozen-host" \
+  --native "$GITHUB_WORKSPACE/frozen-native" \
+  --output "$GITHUB_WORKSPACE/qa-evidence/preflight" --preflight
+
+STDOUT
+
+STDERR
+
+EXIT 0
+STEP Prepare the same proven desktop dependencies
+STDIN
+set -euo pipefail
+sudo apt-get -o Acquire::Retries=2 update -qq
+sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0 fonts-noto-color-emoji
+python3 -m venv .qa-python
+.qa-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+(cd frozen-host && flutter pub get --enforce-lockfile)
+command -v xvfb-run
+
+STDOUT
+
+STDERR
+
+EXIT 0
+STEP Install the unchanged host's pinned Godot engine
+STDIN
+bash scripts/install_godot_for_build.sh
+STDOUT
+
+STDERR
+
+EXIT 0
+STEP Import only the exact native product required by the two actions
+STDIN
+set -euo pipefail
+test "$(git -C frozen-native rev-parse HEAD)" = e2d15dbc5f3709306decb139eeb70a1cf30c0b73
+export XDG_DATA_HOME="$RUNNER_TEMP/c4-small-import/data"
+export XDG_CONFIG_HOME="$RUNNER_TEMP/c4-small-import/config"
+export XDG_CACHE_HOME="$RUNNER_TEMP/c4-small-import/cache"
+mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
+(cd frozen-native && timeout 300s godot --headless --audio-driver Dummy --editor --import) 2>&1 | tee qa-evidence/original-import.log
+if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:|Assertion failed' qa-evidence/original-import.log; then
+  echo 'The original native import reported an error' >&2
+  exit 1
+fi
+
+STDOUT
+
+STDERR
+
+EXIT 0
+STEP Scroll to and activate both lower actions in the actual winning dialog
+STDIN
+set -euo pipefail
+.qa-python/bin/python qa-source/scripts/run_connect_four_small_result_actions_qa.py \
+  --qa "$GITHUB_WORKSPACE/qa-source" \
+  --host "$GITHUB_WORKSPACE/frozen-host" \
+  --native "$GITHUB_WORKSPACE/frozen-native" \
+  --output "$GITHUB_WORKSPACE/qa-evidence/runtime"
+
+STDOUT
+
+STDERR
+
+EXIT 0
+SOURCE BYTES UNCHANGED

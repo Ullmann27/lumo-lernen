@@ -1,0 +1,36 @@
+--- r2/.github/workflows/lumo-c4-small-result-actions-qa.yml
++++ r3/.github/workflows/lumo-c4-small-result-actions-qa.yml
+@@ -3,7 +3,7 @@
+ on:
+   push:
+     branches:
+-      - qa/lumo-c4-small-result-actions-20261114-2708-r2
++      - qa/lumo-c4-small-result-actions-20261114-2708-r3
+     paths:
+       - .github/workflows/lumo-c4-small-result-actions-qa.yml
+       - scripts/run_connect_four_small_result_actions_qa.py
+@@ -22,7 +22,7 @@
+     if: >-
+       github.repository == 'Ullmann27/lumo-lernen' &&
+       github.event_name == 'push' &&
+-      github.ref == 'refs/heads/qa/lumo-c4-small-result-actions-20261114-2708-r2'
++      github.ref == 'refs/heads/qa/lumo-c4-small-result-actions-20261114-2708-r3'
+     runs-on: ubuntu-latest
+     timeout-minutes: 25
+     steps:
+--- r2/tools/qa/connect_four_small_result_actions_qa.gd
++++ r3/tools/qa/connect_four_small_result_actions_qa.gd
+@@ -125,10 +125,10 @@
+ 		and value.get("twoPlayers") == table._state.twoPlayers
+ 		and value.get("rewarded") == table._state.rewarded
+ 		and value.get("columns") == table._state.columns
+-		and value.get("window_px") == [640, 360]
+-		and value.get("viewport_px") == [640, 360]
++		and value.get("window_px") == [640.0, 360.0]
++		and value.get("viewport_px") == [640.0, 360.0]
+ 		and absf(float(value.get("density", 0.0)) - 1.0) < 0.0001
+-		and value.get("safe_rect") == [0, 24, 640, 312]
++		and value.get("safe_rect") == [0.0, 24.0, 640.0, 312.0]
+ 	)
+ 
+ 

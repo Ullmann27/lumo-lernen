@@ -1,0 +1,42 @@
+[
+  {
+    "path": ".github/workflows/lumo-c4-small-result-actions-qa.yml",
+    "mode": "100644",
+    "type": "blob",
+    "old_sha": "b480b4664efa0d2d9dcd04c09d50a74848b9d9ca",
+    "sha": "5c02a9274bf91b428e1080ff58884af9e89d46a8",
+    "bytes": 4486,
+    "sha256": "5b1234d2ca77f4158597dea7b92aabc4d79070fc9c9cc69fcf8aa6b9fb40f326",
+    "unchanged": false
+  },
+  {
+    "path": "scripts/run_connect_four_small_result_actions_qa.py",
+    "mode": "100644",
+    "type": "blob",
+    "old_sha": "3ad5492989e2dcdee4303699e0fbbd2f04f3bbe3",
+    "sha": "3ad5492989e2dcdee4303699e0fbbd2f04f3bbe3",
+    "bytes": 21346,
+    "sha256": "6ac05e59737a8ffb342a20024a25de08308278721550b4b106d0e54c66c57183",
+    "unchanged": true
+  },
+  {
+    "path": "test/games/connect_four_small_result_actions_qa.dart",
+    "mode": "100644",
+    "type": "blob",
+    "old_sha": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e",
+    "sha": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e",
+    "bytes": 9498,
+    "sha256": "427d21556c3597ca363ed16c2799bd9f933a0b3583ddead7b32464ce63c75b4b",
+    "unchanged": true
+  },
+  {
+    "path": "tools/qa/connect_four_small_result_actions_qa.gd",
+    "mode": "100644",
+    "type": "blob",
+    "old_sha": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f",
+    "sha": "1b474002b3b93db9cae53a19c90fe75cb80c0604",
+    "bytes": 16823,
+    "sha256": "6a6370bc3a28da849d67cfaaf46768e2bf02298306972b0c6e716b0c7765dbf3",
+    "unchanged": false
+  }
+]
