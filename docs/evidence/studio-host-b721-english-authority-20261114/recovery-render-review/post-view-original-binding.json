@@ -1,0 +1,386 @@
+{
+  "schema": 1,
+  "archive_sha256_after_review": "78f930c157798be8c117a81dd0f76112b7d890fa15af8f8bf7c462b871dbb2cd",
+  "entry_count": 63,
+  "all_original_files_byte_equal_after_review": true,
+  "files": [
+    {
+      "artifact_entry": "HOST-TREE.txt",
+      "bytes": 41,
+      "sha256": "22076030a35f43e84d339726d2166c686bbf16659570d530d661780bc302a085",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "NATIVE-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "cc7d7df4f9a8560292f59c1c310864e279a589a464a57d216c4425caddb3703d",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "d2eb08849fc1e67c5546e8c94cd35c7485354cc48336de67d88beb5285d7a718",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "NATIVE-TREE.txt",
+      "bytes": 41,
+      "sha256": "2026c5958af62e253bd00d24d4c3f3b285bfeb69f5ac4fe3355b2b6a3219d13b",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "dart-version.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-activity.json",
+      "bytes": 16731,
+      "sha256": "75ef38eda89ae1d57dff0ac61ea5ef192cf322f7101c7ad0fcd0bffeea150dac",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-authority.log",
+      "bytes": 755,
+      "sha256": "8ab8432130b9df6535b0b2f8261dd50abca61b4dfaf1ac9ca0884362a0955573",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.json",
+      "bytes": 2837,
+      "sha256": "9157f15dd9ebbc7fd5631a5dc4a6f7370abae4656b7b45b07ec04fab7917715e",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.layout.json",
+      "bytes": 24186,
+      "sha256": "27254add247d4618903ba2bf418e5afb1dcde32678ccd48a58e5810a272470d7",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.png",
+      "bytes": 168701,
+      "sha256": "a19fbed956150e481cceb7be752180e15569f6dc07ce101fb97a12d363f6ca28",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-bag-960x540-start.json",
+      "bytes": 2829,
+      "sha256": "8bc2ae96825aff8d71c44a62ea10a330d61934e5ed3cf7678cdbcdb54ec6078a",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-bag-960x540-start.layout.json",
+      "bytes": 28967,
+      "sha256": "7bcbe35ec28b1eb9c989827d28260d7938bdf712ad6608db9e536bb3f56da122",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-bag-960x540-start.png",
+      "bytes": 163335,
+      "sha256": "bf4db2327300a1c534f99bb4429a34aec7f0995a0f97c4fd60d608ed0dcb966d",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.json",
+      "bytes": 2832,
+      "sha256": "f17cd3bc61cf70c8f1e8381caf35349a8e5f1ced6dae08e7cba6e79fa3d81f13",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.layout.json",
+      "bytes": 35121,
+      "sha256": "f1ea0094c53bc6c43aa4934c05fb949546ec9944aae87849eb5992953846b76b",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.png",
+      "bytes": 168681,
+      "sha256": "093be19e851b43512b1fd269c54e69ffad51a99812afb4ecaefa761321692f9f",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.json",
+      "bytes": 2829,
+      "sha256": "70c647da1d08d0a3d9549fd6ab818978899152332d7765720750fa880cb1bf5b",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.layout.json",
+      "bytes": 35122,
+      "sha256": "9afa47df0c3120cc31b6885df4044b17e18f99fe0b2d3f153b682396d0f756b1",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.png",
+      "bytes": 169038,
+      "sha256": "e7db38405eb1e016ca5e72292fe69af97046c28a19ddf5ea04f3063c2a03deef",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.json",
+      "bytes": 2827,
+      "sha256": "e8f79164b120519b920889308da5dd486059bf57be5dc0597965c6a5ac1500c1",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.png",
+      "bytes": 168828,
+      "sha256": "11147ab0a3bbb105452a14fc9e7e04be484ad947be201122cd8e51379a6bc0ce",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.layout.json",
+      "bytes": 34314,
+      "sha256": "328ddb59dc49a0e269e3547e3d7af03e5235015590723064386fc7761b9ee136",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.json",
+      "bytes": 2854,
+      "sha256": "12cc1dbdd504821e4d2abdca07dfcca6971619f2ca0692937fa96f27d5a95e82",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.layout.json",
+      "bytes": 48238,
+      "sha256": "a99ab66de50ee61900cc3cbdcd9a326fb3ab0a262ecce2213b6965680f948534",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.png",
+      "bytes": 119520,
+      "sha256": "f0195b404bce03c7a7337a31ed527f27c80a98145eff6fb2624beee59d2fb951",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.json",
+      "bytes": 2848,
+      "sha256": "f8e234d773d72d04087a865bb5e3576a7891e05c737f96e995086a1ef2d55935",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.layout.json",
+      "bytes": 47497,
+      "sha256": "0e887e254217dc467c5cffee900290d886ac037c93c8691d159872545bcee1b0",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.png",
+      "bytes": 119833,
+      "sha256": "039d1991fe08e76d4b4417dfee3c004b1d7106e6e0b806e4e9922b99c6fc9a43",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.json",
+      "bytes": 3074,
+      "sha256": "0e54eaa4966684b72fd63040dfc885b9a9580135b3c33272e1a999efb69b5fff",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.layout.json",
+      "bytes": 42944,
+      "sha256": "3a99d4b2837f0ec0a2ce41d2961fb9084578a99657a00291041fc7cb1e35a28f",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.png",
+      "bytes": 694432,
+      "sha256": "e62f66bcabd08fcebd811b0254c0e1bc2dc3f26cfa52055ea5224b7a1d3bb02e",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-chair-640x360-start.json",
+      "bytes": 2840,
+      "sha256": "88c9b71ebc64e4d168428127f488e52f5f2a504937faf04047149c32f2455a08",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-chair-640x360-start.layout.json",
+      "bytes": 42509,
+      "sha256": "e21b319f130ba0fc239f2e748fddbf307f071a6bd496ba6c7bfb0e12b275b4c3",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-chair-640x360-start.png",
+      "bytes": 95632,
+      "sha256": "6903e1b9d301f8f1fd6eacdb6584143d7c58fd545270f2085a1b9a7c92a8fc2c",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-desk-960x540-start.json",
+      "bytes": 2832,
+      "sha256": "81e3e4edd9ed6f1d7c1626a260699a43250bbd1ae7ad1c38b09ec398d30ca354",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-desk-960x540-start.layout.json",
+      "bytes": 41571,
+      "sha256": "867b7c218785674712491096482d5aae0dea0d8b65c55b68df6f2912fc1764f1",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-desk-960x540-start.png",
+      "bytes": 162734,
+      "sha256": "4baa2446b3a8e4da7090d603638ad48a7e83b88a8baa9dc90fd0ed932ff4992f",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-paper-2400x1080-start.json",
+      "bytes": 3098,
+      "sha256": "c72b6c834278a748c03bdf0055c51e2519351c6b15b53daefd5650194891b57d",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-paper-2400x1080-start.layout.json",
+      "bytes": 44121,
+      "sha256": "53d03cb8c3e0e8bb916540ee6621d2a45d2643e00add17c19f8ad3b09754a253",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-paper-2400x1080-start.png",
+      "bytes": 695126,
+      "sha256": "6b5ca63fc26e4f599f1035f661352286826dbe4fa90d2a1f3b070a6f4705e3a7",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.json",
+      "bytes": 2957,
+      "sha256": "8820754744eec9399b597f29a753fba1f62d0d55aeef87ab6b73bee5ea22e9b0",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.layout.json",
+      "bytes": 36971,
+      "sha256": "3fc603b1667a7fb9a1460ae44fb78c261e0339f2932b17b6287b757aeacb4286",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.png",
+      "bytes": 587509,
+      "sha256": "21ccb7abad6d6761f6e9a164aa3ffdf408852028126b8cbebcf9a5e3ea011228",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.json",
+      "bytes": 3134,
+      "sha256": "6e797e6f62c7e3d6b5c2f022711984313664bc054db89147d71780af1677fee8",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.layout.json",
+      "bytes": 52492,
+      "sha256": "15975b3b5bfda6163e7cf4dc9f6682c0140d32b71edd7dd66d0c8c1d1c60cc97",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.png",
+      "bytes": 611583,
+      "sha256": "0fb40334f333a3f143aea481bfb791e17c8405ca6b9965a7b82d3d8f69ec7565",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-rubber-640x360-start.json",
+      "bytes": 2844,
+      "sha256": "0884162a70c7299910a465a960bb3519791ca99b2f3c49cab1e94a61c794df7c",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-rubber-640x360-start.layout.json",
+      "bytes": 36026,
+      "sha256": "8ff451ef0a22afb3ddbbc04fe926ca5f9a74d97fe613a7989c32a43812add05b",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-rubber-640x360-start.png",
+      "bytes": 95377,
+      "sha256": "201b292ff3681448e9c7470e56f92d925d8d5ae56ef87e184d1906f8e347369c",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.json",
+      "bytes": 2841,
+      "sha256": "bb7d5091d9a09384a1babe1f9d48f86c3959652b9e2cb5d9d2214a79f08c497b",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.layout.json",
+      "bytes": 50805,
+      "sha256": "2aa21f3e5a1ab223b11eb89710355f24fb6f6fb9399ecebc1c7e0a97fd3ebc96",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.png",
+      "bytes": 95173,
+      "sha256": "189e6a575287b2b8284e94a35b753200084ca030c3ea793ce3686c6124c30afe",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-school-bag-412x915-start.json",
+      "bytes": 2864,
+      "sha256": "8789e8ae15b932e97a1b5726ea100f3a135a8d649ab17fc46048ab17521dd1eb",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-school-bag-412x915-start.layout.json",
+      "bytes": 33315,
+      "sha256": "e8f87cc861f2af58ce8e25cbd3ff4bc26d9c2a961f8e617c16a81a91b12935f1",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-school-bag-412x915-start.png",
+      "bytes": 117152,
+      "sha256": "06e9e497af0d353cb39c379b64f48289941e8c37df03ae64f36c5526ff846d64",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.json",
+      "bytes": 2828,
+      "sha256": "8e6684ab63fcd25f2693eecbe0e0b69fceea31961e12306528efe1470ff79941",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.layout.json",
+      "bytes": 32296,
+      "sha256": "83bf92823ee6e207815d854297766ac87ad82f98ab6a72f647d514de6bc73327",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.png",
+      "bytes": 164600,
+      "sha256": "d494453f50878fdfb100fca1b9a332f7d96a999cc6eabac9df3dc51b1c2fb6be",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-native/learning-english-report.json",
+      "bytes": 138947,
+      "sha256": "a297f9067f8afb0ee670c74443880897b8389223e8b3b9a7fdf4d42325c53bd7",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "english-render.log",
+      "bytes": 6829,
+      "sha256": "649e65724b5ec848ca863f246eb614196978e67a4cf9cd9ec69c51e7d0a93ccf",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "godot-version.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "import.log",
+      "bytes": 165491,
+      "sha256": "cff81bc64e99888a3eca0e1ef611ce7e275ed363467f391617fa4ee22c1380cf",
+      "byte_equal_to_original_zip_member_after_views": true
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "bytes": 6140,
+      "sha256": "188d0950424b0d1f9b965ecadfd28e80ac6d176122df6912851af65f9df016d9",
+      "byte_equal_to_original_zip_member_after_views": true
+    }
+  ]
+}

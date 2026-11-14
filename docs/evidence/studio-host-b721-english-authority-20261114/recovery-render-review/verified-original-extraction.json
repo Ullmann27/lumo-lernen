@@ -1,0 +1,638 @@
+{
+  "schema": 1,
+  "downloaded_after_environment_recovery": true,
+  "host_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+  "native_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "run_id": 43619285124,
+  "run_attempt": 1,
+  "job_id": 132521067410,
+  "artifact_id": 14123388980,
+  "archive_bytes": 4559425,
+  "archive_sha256": "78f930c157798be8c117a81dd0f76112b7d890fa15af8f8bf7c462b871dbb2cd",
+  "entry_count": 63,
+  "file_count": 63,
+  "all_entries_fully_read_crc_verified": true,
+  "all_pngs_fully_decoded": true,
+  "png_count": 17,
+  "visual_review_completed": false,
+  "entries": [
+    {
+      "artifact_entry": "HOST-TREE.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/HOST-TREE.txt",
+      "bytes": 41,
+      "sha256": "22076030a35f43e84d339726d2166c686bbf16659570d530d661780bc302a085",
+      "git_blob_sha": "6bf0e396dbd900bb24b96b6a47fef3e224ad9c2b",
+      "crc32": "68974394",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "NATIVE-SOURCE.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/NATIVE-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "cc7d7df4f9a8560292f59c1c310864e279a589a464a57d216c4425caddb3703d",
+      "git_blob_sha": "51bde130837ae501b8aff7afefeffc1fe9b862cc",
+      "crc32": "ef9bd6f1",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "HOST-SOURCE.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "d2eb08849fc1e67c5546e8c94cd35c7485354cc48336de67d88beb5285d7a718",
+      "git_blob_sha": "736c55be82243a7ebe0c7a7c4c2ecb4d3e73c570",
+      "crc32": "da760fe6",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "NATIVE-TREE.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/NATIVE-TREE.txt",
+      "bytes": 41,
+      "sha256": "2026c5958af62e253bd00d24d4c3f3b285bfeb69f5ac4fe3355b2b6a3219d13b",
+      "git_blob_sha": "89867577a6119431a41ddebd6b51dde0b70054c9",
+      "crc32": "d5f0cbc7",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "dart-version.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/dart-version.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "git_blob_sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b",
+      "crc32": "a9679d22",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-activity.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-activity.json",
+      "bytes": 16731,
+      "sha256": "75ef38eda89ae1d57dff0ac61ea5ef192cf322f7101c7ad0fcd0bffeea150dac",
+      "git_blob_sha": "5ab8fec4fd3854f71f5fea542817813d476881df",
+      "crc32": "5060bf42",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-authority.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-authority.log",
+      "bytes": 755,
+      "sha256": "8ab8432130b9df6535b0b2f8261dd50abca61b4dfaf1ac9ca0884362a0955573",
+      "git_blob_sha": "af4b4460735d0885ce513cbd066dd64dc476f8bc",
+      "crc32": "ffcadeea",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-apple-960x540-start.json",
+      "bytes": 2837,
+      "sha256": "9157f15dd9ebbc7fd5631a5dc4a6f7370abae4656b7b45b07ec04fab7917715e",
+      "git_blob_sha": "680e44c422f63cac4dba59585737b2046aea940d",
+      "crc32": "6224a3bd",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-apple-960x540-start.layout.json",
+      "bytes": 24186,
+      "sha256": "27254add247d4618903ba2bf418e5afb1dcde32678ccd48a58e5810a272470d7",
+      "git_blob_sha": "de569976a4e75b7e7c26f04304b8db41b81f2202",
+      "crc32": "a3828433",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-apple-960x540-start.png",
+      "bytes": 168701,
+      "sha256": "a19fbed956150e481cceb7be752180e15569f6dc07ce101fb97a12d363f6ca28",
+      "git_blob_sha": "ed7ca7092f2d4a43517071a447ebcfbc0544ad1b",
+      "crc32": "d89bd150",
+      "full_read_crc_verified": true,
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-bag-960x540-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-bag-960x540-start.json",
+      "bytes": 2829,
+      "sha256": "8bc2ae96825aff8d71c44a62ea10a330d61934e5ed3cf7678cdbcdb54ec6078a",
+      "git_blob_sha": "85718826dc8df13313c7f77efa1d7ad0a59787b0",
+      "crc32": "b2218c8c",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-bag-960x540-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-bag-960x540-start.layout.json",
+      "bytes": 28967,
+      "sha256": "7bcbe35ec28b1eb9c989827d28260d7938bdf712ad6608db9e536bb3f56da122",
+      "git_blob_sha": "d90e558fc8f1419d0b702ce9cfb8e66a72c95faa",
+      "crc32": "83aa7099",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-bag-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-bag-960x540-start.png",
+      "bytes": 163335,
+      "sha256": "bf4db2327300a1c534f99bb4429a34aec7f0995a0f97c4fd60d608ed0dcb966d",
+      "git_blob_sha": "85939e00b8c7d8c04c9944af58e7bc037ab6e559",
+      "crc32": "f1cbdb6f",
+      "full_read_crc_verified": true,
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ball-960x540-complete.json",
+      "bytes": 2832,
+      "sha256": "f17cd3bc61cf70c8f1e8381caf35349a8e5f1ced6dae08e7cba6e79fa3d81f13",
+      "git_blob_sha": "5193d144a249568cdb81378065a9a3f9e6958b63",
+      "crc32": "ae7f972c",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ball-960x540-complete.layout.json",
+      "bytes": 35121,
+      "sha256": "f1ea0094c53bc6c43aa4934c05fb949546ec9944aae87849eb5992953846b76b",
+      "git_blob_sha": "2c515142080e1f1efd015db6c5992b73c308772e",
+      "crc32": "3afc003f",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ball-960x540-complete.png",
+      "bytes": 168681,
+      "sha256": "093be19e851b43512b1fd269c54e69ffad51a99812afb4ecaefa761321692f9f",
+      "git_blob_sha": "9f758cbe57c8df5b353f0f271aa4922bb882c102",
+      "crc32": "ec19eac9",
+      "full_read_crc_verified": true,
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ball-960x540-hint.json",
+      "bytes": 2829,
+      "sha256": "70c647da1d08d0a3d9549fd6ab818978899152332d7765720750fa880cb1bf5b",
+      "git_blob_sha": "745581bc7502f7bb0e0e79d13cd762321d3ab4f5",
+      "crc32": "96fdb2a3",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ball-960x540-hint.layout.json",
+      "bytes": 35122,
+      "sha256": "9afa47df0c3120cc31b6885df4044b17e18f99fe0b2d3f153b682396d0f756b1",
+      "git_blob_sha": "093373efaa728055bb681615fbb6790033f979af",
+      "crc32": "803f90a9",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ball-960x540-hint.png",
+      "bytes": 169038,
+      "sha256": "e7db38405eb1e016ca5e72292fe69af97046c28a19ddf5ea04f3063c2a03deef",
+      "git_blob_sha": "d53384d82206c1889237aab41d48fc1ada68ceef",
+      "crc32": "0d7ee2b4",
+      "full_read_crc_verified": true,
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ball-960x540-start.json",
+      "bytes": 2827,
+      "sha256": "e8f79164b120519b920889308da5dd486059bf57be5dc0597965c6a5ac1500c1",
+      "git_blob_sha": "c12e6d91fad32ebe5a1323b22740cbebc91880c3",
+      "crc32": "7cfaf5af",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ball-960x540-start.png",
+      "bytes": 168828,
+      "sha256": "11147ab0a3bbb105452a14fc9e7e04be484ad947be201122cd8e51379a6bc0ce",
+      "git_blob_sha": "479c6bb868ac547bc8e5f327b627319aeb7cc6bb",
+      "crc32": "5b7df5f8",
+      "full_read_crc_verified": true,
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ball-960x540-start.layout.json",
+      "bytes": 34314,
+      "sha256": "328ddb59dc49a0e269e3547e3d7af03e5235015590723064386fc7761b9ee136",
+      "git_blob_sha": "f32253e3cc69a2dd22ded2b25d07c12471d27397",
+      "crc32": "f192faac",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-book-412x915-complete.json",
+      "bytes": 2854,
+      "sha256": "12cc1dbdd504821e4d2abdca07dfcca6971619f2ca0692937fa96f27d5a95e82",
+      "git_blob_sha": "7eecaabab90944851c747789397bfddc7ad862bd",
+      "crc32": "b694770b",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-book-412x915-complete.layout.json",
+      "bytes": 48238,
+      "sha256": "a99ab66de50ee61900cc3cbdcd9a326fb3ab0a262ecce2213b6965680f948534",
+      "git_blob_sha": "2442e24b3ab12b2b10ec3e68eadf58ef42b0aca3",
+      "crc32": "4cec00cb",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-book-412x915-complete.png",
+      "bytes": 119520,
+      "sha256": "f0195b404bce03c7a7337a31ed527f27c80a98145eff6fb2624beee59d2fb951",
+      "git_blob_sha": "c79c35c0522cf075405f9732935d783774629b53",
+      "crc32": "648127d8",
+      "full_read_crc_verified": true,
+      "width": 412,
+      "height": 915,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-book-412x915-start.json",
+      "bytes": 2848,
+      "sha256": "f8e234d773d72d04087a865bb5e3576a7891e05c737f96e995086a1ef2d55935",
+      "git_blob_sha": "4c11ec9958e5a205145680c908dea88f8414bda4",
+      "crc32": "fbb3e57f",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-book-412x915-start.layout.json",
+      "bytes": 47497,
+      "sha256": "0e887e254217dc467c5cffee900290d886ac037c93c8691d159872545bcee1b0",
+      "git_blob_sha": "f26f3899fa871fa4179d652d5fb869a5618eb5b9",
+      "crc32": "67daae80",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-book-412x915-start.png",
+      "bytes": 119833,
+      "sha256": "039d1991fe08e76d4b4417dfee3c004b1d7106e6e0b806e4e9922b99c6fc9a43",
+      "git_blob_sha": "adfd279383e31c98cda918eceba9b31982a744a0",
+      "crc32": "e38bb197",
+      "full_read_crc_verified": true,
+      "width": 412,
+      "height": 915,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-car-2400x1080-start.json",
+      "bytes": 3074,
+      "sha256": "0e54eaa4966684b72fd63040dfc885b9a9580135b3c33272e1a999efb69b5fff",
+      "git_blob_sha": "244acb8d5eec80d99d93ffd06a715a3a4ba35933",
+      "crc32": "41e8596b",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-car-2400x1080-start.layout.json",
+      "bytes": 42944,
+      "sha256": "3a99d4b2837f0ec0a2ce41d2961fb9084578a99657a00291041fc7cb1e35a28f",
+      "git_blob_sha": "0822da5d78c6bd152fa400b12b4056d13d708024",
+      "crc32": "d539cae4",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-car-2400x1080-start.png",
+      "bytes": 694432,
+      "sha256": "e62f66bcabd08fcebd811b0254c0e1bc2dc3f26cfa52055ea5224b7a1d3bb02e",
+      "git_blob_sha": "16b189c737f2c938baf90b3d1be9edfaf12d0473",
+      "crc32": "f6b786ba",
+      "full_read_crc_verified": true,
+      "width": 2400,
+      "height": 1080,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-chair-640x360-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-chair-640x360-start.json",
+      "bytes": 2840,
+      "sha256": "88c9b71ebc64e4d168428127f488e52f5f2a504937faf04047149c32f2455a08",
+      "git_blob_sha": "e59864b81c3dd0417ef80fb45ad63ba0ac66abfd",
+      "crc32": "888810bc",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-chair-640x360-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-chair-640x360-start.layout.json",
+      "bytes": 42509,
+      "sha256": "e21b319f130ba0fc239f2e748fddbf307f071a6bd496ba6c7bfb0e12b275b4c3",
+      "git_blob_sha": "4c617ebd4dbcfb40816e7d9c09bf6f80229a375c",
+      "crc32": "7578ebec",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-chair-640x360-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-chair-640x360-start.png",
+      "bytes": 95632,
+      "sha256": "6903e1b9d301f8f1fd6eacdb6584143d7c58fd545270f2085a1b9a7c92a8fc2c",
+      "git_blob_sha": "71735c7d73dc38fbbdd4d06a29e8009589078504",
+      "crc32": "40a6829a",
+      "full_read_crc_verified": true,
+      "width": 640,
+      "height": 360,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-desk-960x540-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-desk-960x540-start.json",
+      "bytes": 2832,
+      "sha256": "81e3e4edd9ed6f1d7c1626a260699a43250bbd1ae7ad1c38b09ec398d30ca354",
+      "git_blob_sha": "a0041eb94076b969998ae46e534caa23d299a6b6",
+      "crc32": "eff4887a",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-desk-960x540-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-desk-960x540-start.layout.json",
+      "bytes": 41571,
+      "sha256": "867b7c218785674712491096482d5aae0dea0d8b65c55b68df6f2912fc1764f1",
+      "git_blob_sha": "5854ed441d071c8d6790cdf5e697fdaa7f6ea08d",
+      "crc32": "b9e515b6",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-desk-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-desk-960x540-start.png",
+      "bytes": 162734,
+      "sha256": "4baa2446b3a8e4da7090d603638ad48a7e83b88a8baa9dc90fd0ed932ff4992f",
+      "git_blob_sha": "5a1646f8bc5b6d95689921311112a6a70ad82323",
+      "crc32": "768d39ab",
+      "full_read_crc_verified": true,
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-paper-2400x1080-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-paper-2400x1080-start.json",
+      "bytes": 3098,
+      "sha256": "c72b6c834278a748c03bdf0055c51e2519351c6b15b53daefd5650194891b57d",
+      "git_blob_sha": "9636b04f474229d72425fbf1dbff6569780dd5bb",
+      "crc32": "18746af4",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-paper-2400x1080-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-paper-2400x1080-start.layout.json",
+      "bytes": 44121,
+      "sha256": "53d03cb8c3e0e8bb916540ee6621d2a45d2643e00add17c19f8ad3b09754a253",
+      "git_blob_sha": "d5297983cc14ebcd84649d4e1938b8e28bca15dd",
+      "crc32": "e3561654",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-paper-2400x1080-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-paper-2400x1080-start.png",
+      "bytes": 695126,
+      "sha256": "6b5ca63fc26e4f599f1035f661352286826dbe4fa90d2a1f3b070a6f4705e3a7",
+      "git_blob_sha": "bab6a9abda0832629da231664fafc20feeb90fb2",
+      "crc32": "8c16e657",
+      "full_read_crc_verified": true,
+      "width": 2400,
+      "height": 1080,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-pen-1080x2400-start.json",
+      "bytes": 2957,
+      "sha256": "8820754744eec9399b597f29a753fba1f62d0d55aeef87ab6b73bee5ea22e9b0",
+      "git_blob_sha": "13f81057578f6eb95b56a8ef577426231caa4c11",
+      "crc32": "0d2a322d",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-pen-1080x2400-start.layout.json",
+      "bytes": 36971,
+      "sha256": "3fc603b1667a7fb9a1460ae44fb78c261e0339f2932b17b6287b757aeacb4286",
+      "git_blob_sha": "13ebea1b27e65cce2241454cbd6df2dcf02b55ef",
+      "crc32": "837ee599",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-pen-1080x2400-start.png",
+      "bytes": 587509,
+      "sha256": "21ccb7abad6d6761f6e9a164aa3ffdf408852028126b8cbebcf9a5e3ea011228",
+      "git_blob_sha": "4c7fed63173f439623e143809c1b2501b84c9b9a",
+      "crc32": "3f2efce3",
+      "full_read_crc_verified": true,
+      "width": 1080,
+      "height": 2400,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-pencil-case-1080x2400-start.json",
+      "bytes": 3134,
+      "sha256": "6e797e6f62c7e3d6b5c2f022711984313664bc054db89147d71780af1677fee8",
+      "git_blob_sha": "79b018c269e4f6248c5048579b6cc10f71777482",
+      "crc32": "56749709",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-pencil-case-1080x2400-start.layout.json",
+      "bytes": 52492,
+      "sha256": "15975b3b5bfda6163e7cf4dc9f6682c0140d32b71edd7dd66d0c8c1d1c60cc97",
+      "git_blob_sha": "c4ffb734e6c51897cacdb954a98ac288dfd8d0ef",
+      "crc32": "5447855f",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-pencil-case-1080x2400-start.png",
+      "bytes": 611583,
+      "sha256": "0fb40334f333a3f143aea481bfb791e17c8405ca6b9965a7b82d3d8f69ec7565",
+      "git_blob_sha": "eea7c9345e310ac2760d95be06dbe34c74c7f2d5",
+      "crc32": "8faf7fd6",
+      "full_read_crc_verified": true,
+      "width": 1080,
+      "height": 2400,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-rubber-640x360-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-rubber-640x360-start.json",
+      "bytes": 2844,
+      "sha256": "0884162a70c7299910a465a960bb3519791ca99b2f3c49cab1e94a61c794df7c",
+      "git_blob_sha": "c75533a88fc25373a3b4d0e8ec018bdca6a18430",
+      "crc32": "bbbc665b",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-rubber-640x360-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-rubber-640x360-start.layout.json",
+      "bytes": 36026,
+      "sha256": "8ff451ef0a22afb3ddbbc04fe926ca5f9a74d97fe613a7989c32a43812add05b",
+      "git_blob_sha": "6ae6fc9512aa55abc5f4701fd3970323c368a02f",
+      "crc32": "adf51a83",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-rubber-640x360-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-rubber-640x360-start.png",
+      "bytes": 95377,
+      "sha256": "201b292ff3681448e9c7470e56f92d925d8d5ae56ef87e184d1906f8e347369c",
+      "git_blob_sha": "0e1bf8dae81bc64c38c824181526e9476ec14634",
+      "crc32": "d38e5986",
+      "full_read_crc_verified": true,
+      "width": 640,
+      "height": 360,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ruler-640x360-start.json",
+      "bytes": 2841,
+      "sha256": "bb7d5091d9a09384a1babe1f9d48f86c3959652b9e2cb5d9d2214a79f08c497b",
+      "git_blob_sha": "2bc49c204d9d545869af12e523daa0e86af95d72",
+      "crc32": "a9febcbd",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ruler-640x360-start.layout.json",
+      "bytes": 50805,
+      "sha256": "2aa21f3e5a1ab223b11eb89710355f24fb6f6fb9399ecebc1c7e0a97fd3ebc96",
+      "git_blob_sha": "e635ce742ad476a5186eeaf0f7789923b5df0615",
+      "crc32": "2e77f029",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ruler-640x360-start.png",
+      "bytes": 95173,
+      "sha256": "189e6a575287b2b8284e94a35b753200084ca030c3ea793ce3686c6124c30afe",
+      "git_blob_sha": "600c8407da5183dc72ec8afa3217f93107643590",
+      "crc32": "06496fb1",
+      "full_read_crc_verified": true,
+      "width": 640,
+      "height": 360,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-school-bag-412x915-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-school-bag-412x915-start.json",
+      "bytes": 2864,
+      "sha256": "8789e8ae15b932e97a1b5726ea100f3a135a8d649ab17fc46048ab17521dd1eb",
+      "git_blob_sha": "5d56b9d05b9547581ad2902bc2b32853174fbb45",
+      "crc32": "d0a0bd0f",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-school-bag-412x915-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-school-bag-412x915-start.layout.json",
+      "bytes": 33315,
+      "sha256": "e8f87cc861f2af58ce8e25cbd3ff4bc26d9c2a961f8e617c16a81a91b12935f1",
+      "git_blob_sha": "2cf9a7f61a3a6a24472812b918fc3cacb2a2ac19",
+      "crc32": "ba86ec8e",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-school-bag-412x915-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-school-bag-412x915-start.png",
+      "bytes": 117152,
+      "sha256": "06e9e497af0d353cb39c379b64f48289941e8c37df03ae64f36c5526ff846d64",
+      "git_blob_sha": "0f5298bf2f07dd86525d8ff2c3988407d3e03c6e",
+      "crc32": "584221ff",
+      "full_read_crc_verified": true,
+      "width": 412,
+      "height": 915,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-sun-960x540-start.json",
+      "bytes": 2828,
+      "sha256": "8e6684ab63fcd25f2693eecbe0e0b69fceea31961e12306528efe1470ff79941",
+      "git_blob_sha": "7538c716155cdafa71ca0c8a4b22eb04a120c7f6",
+      "crc32": "0057c08a",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-sun-960x540-start.layout.json",
+      "bytes": 32296,
+      "sha256": "83bf92823ee6e207815d854297766ac87ad82f98ab6a72f647d514de6bc73327",
+      "git_blob_sha": "e80946208047813d32dc6054864f4eba1c47b714",
+      "crc32": "1625aeef",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-sun-960x540-start.png",
+      "bytes": 164600,
+      "sha256": "d494453f50878fdfb100fca1b9a332f7d96a999cc6eabac9df3dc51b1c2fb6be",
+      "git_blob_sha": "1aa0dc6913b78cddafb58a2e91ff4d4e0290c9d7",
+      "crc32": "898c3c58",
+      "full_read_crc_verified": true,
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA"
+    },
+    {
+      "artifact_entry": "english-native/learning-english-report.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/learning-english-report.json",
+      "bytes": 138947,
+      "sha256": "a297f9067f8afb0ee670c74443880897b8389223e8b3b9a7fdf4d42325c53bd7",
+      "git_blob_sha": "6f148f0225396b742b4a1fcff9cb29d836f271dc",
+      "crc32": "6e4e60e7",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "english-render.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-render.log",
+      "bytes": 6829,
+      "sha256": "649e65724b5ec848ca863f246eb614196978e67a4cf9cd9ec69c51e7d0a93ccf",
+      "git_blob_sha": "f9a73b1b27dac11d454568137324426b3b1acb9b",
+      "crc32": "fe387f20",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "godot-version.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/godot-version.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob_sha": "24277fd09e8cc7154517b66aab4e8bef52babb7e",
+      "crc32": "12281f13",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "import.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/import.log",
+      "bytes": 165491,
+      "sha256": "cff81bc64e99888a3eca0e1ef611ce7e275ed363467f391617fa4ee22c1380cf",
+      "git_blob_sha": "4008a0ebbce83501a005b2b9d183a7c9b2b9f25e",
+      "crc32": "be47ea4b",
+      "full_read_crc_verified": true
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/project-validation.log",
+      "bytes": 6140,
+      "sha256": "188d0950424b0d1f9b965ecadfd28e80ac6d176122df6912851af65f9df016d9",
+      "git_blob_sha": "9340046407c29eb35faacccb11d03f91ca7885fb",
+      "crc32": "463ad83b",
+      "full_read_crc_verified": true
+    }
+  ]
+}

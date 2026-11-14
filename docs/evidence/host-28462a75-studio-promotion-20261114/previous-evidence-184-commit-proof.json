@@ -1,0 +1,19 @@
+{
+  "commit": "69bca20831bd951bab5d0cf123823fb55008c53e",
+  "parent": "ba05c1c088239fbecb03bba64726c83769840531",
+  "tree": "765282541a474761da45f5c9de5351b673b932d5",
+  "old_leaves": 8201,
+  "added": 184,
+  "modified": 0,
+  "deleted": 0,
+  "new_leaves": 8385,
+  "force": false,
+  "postref_verified": true,
+  "groups": {
+    "b721_originals": 61,
+    "b721_memory_recovery": 76,
+    "reviewed_corrections": 24,
+    "feature284_compile_source": 23
+  },
+  "initial_batch_timeout": "184-entry tree request timed out with GitHub422; six smaller immutable tree operations succeeded; only final fully compared tree was committed."
+}

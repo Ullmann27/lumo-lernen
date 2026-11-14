@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-11-14 18:30:04 UTC",
+  "repository": "Ullmann27/lumo-lernen",
+  "branch": "chatgpt/lumo-studio-2020-20261114",
+  "previous_head": "b7210db3f53361987fd33592de438fd7984d991a",
+  "new_head": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "new_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+  "fast_forward_only": true,
+  "expected_sha_lease": true,
+  "force": false,
+  "postref_verified": true,
+  "feature_run": 43624674585,
+  "feature_jobs": [
+    {
+      "id": 132537752431,
+      "name": "android-host-compile",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 132537752710,
+      "name": "memory-source-contracts",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 132537752822,
+      "name": "flutter-contracts",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "root_new_case_verification": {
+    "root_original_line_comparison": true,
+    "host": "28462a7547048b75fa114e6f5832248e54c94faa",
+    "new_cases": {
+      "ASR": 10,
+      "Memory": 14
+    },
+    "full_suite": {
+      "passed": 2632,
+      "failed": 0,
+      "skipped": 0
+    },
+    "machine_sha256": "273c38c24fa7694f15f21ed9d2aba05a6f39e6be6591620f1a34b3c1977be939",
+    "review_sha256": "e19ac869dcfbf300c1eaf0d6b8ab6df22678dbd8acf52a3dca652d07e53a42d6",
+    "scope": "Original result verification only; no new test execution."
+  },
+  "new_studio_run": 43626348519,
+  "new_studio_status": "in_progress",
+  "old_studio_run": 43619285124,
+  "old_studio_conclusion": "cancelled",
+  "old_run_cancellation_observed": true,
+  "feature_pr": {
+    "number": 506,
+    "state": "closed",
+    "merged": true,
+    "target": "development Studio, not Main"
+  },
+  "studio_pr": {
+    "number": 494,
+    "state": "open",
+    "draft": true
+  },
+  "main_refs": {
+    "host": "b24474875fe6eb02d4de01030eab9fa4a4aa6007",
+    "native": "aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4",
+    "modified": false
+  },
+  "native_pin": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "apk_approval": false,
+  "physical_device_approval": false
+}

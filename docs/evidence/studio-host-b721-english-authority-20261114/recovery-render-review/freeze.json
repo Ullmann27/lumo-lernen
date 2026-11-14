@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "kind": "current-original-English-desktop-recovery-review",
+  "source": {
+    "host": "b7210db3f53361987fd33592de438fd7984d991a",
+    "native": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "run_id": 43619285124,
+    "attempt": 1,
+    "job_id": 132521067410,
+    "job_name": "Nextgen english actual authority",
+    "job_status": "completed",
+    "job_conclusion": "success",
+    "artifact_id": 14123388980,
+    "artifact_bytes": 4559425,
+    "artifact_sha256": "78f930c157798be8c117a81dd0f76112b7d890fa15af8f8bf7c462b871dbb2cd"
+  },
+  "frozen_at_utc": "2026-11-14T18:16:21.743956+00:00",
+  "source_edits": false,
+  "local_tests_or_render_runs": false,
+  "personally_opened_distinct_original_pngs": 17,
+  "blocking_visibility_findings": 0,
+  "original_job_log_refetched": false,
+  "binary_upload_readback_claim": false,
+  "review_sha256": "1ea0483ddea4ef2529b0b788ca07772e4e2e8a5afdaed470232ac5f845fd13ed",
+  "image_review_sha256": "967be91a8961262d90b9725e0e7003233678f0ce1be688d33b5057a22f09ccaf",
+  "post_view_binding_sha256": "a30787b168d1615c886458ce97fd11774860ecde859c5605c4f29c856ddd3da5",
+  "archive_excluded_from_git_upload": true,
+  "older_terminal_only_report_unchanged": true
+}

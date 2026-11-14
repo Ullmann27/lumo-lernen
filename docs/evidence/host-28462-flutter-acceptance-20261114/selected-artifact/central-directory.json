@@ -1,0 +1,5339 @@
+[
+  {
+    "name": "feature-evidence/english-activity.json",
+    "crc32": "24b5358f",
+    "compressed_bytes": 1589,
+    "bytes": 16732,
+    "header_offset": 0,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/english-authority.log",
+    "crc32": "ffcadeea",
+    "compressed_bytes": 405,
+    "bytes": 755,
+    "header_offset": 1673,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/HOST-SOURCE.txt",
+    "crc32": "a54d4a95",
+    "compressed_bytes": 41,
+    "bytes": 41,
+    "header_offset": 2162,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/flutter-analyze.log",
+    "crc32": "08408b78",
+    "compressed_bytes": 3727,
+    "bytes": 47243,
+    "header_offset": 2281,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/flutter-version.txt",
+    "crc32": "ef6cb86f",
+    "compressed_bytes": 219,
+    "bytes": 321,
+    "header_offset": 6090,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/acceptance-summary.json",
+    "crc32": "04c41350",
+    "compressed_bytes": 661,
+    "bytes": 2118,
+    "header_offset": 6391,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/assisted-learning/independent-review.png",
+    "crc32": "d3903b75",
+    "compressed_bytes": 73304,
+    "bytes": 77980,
+    "header_offset": 7151,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/assisted-learning/independent-strength.png",
+    "crc32": "fefbc0d4",
+    "compressed_bytes": 74833,
+    "bytes": 78693,
+    "header_offset": 80571,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_0.png",
+    "crc32": "3e4bce18",
+    "compressed_bytes": 37441,
+    "bytes": 38892,
+    "header_offset": 155522,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_1.png",
+    "crc32": "070b45f7",
+    "compressed_bytes": 36020,
+    "bytes": 37529,
+    "header_offset": 193096,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_2.png",
+    "crc32": "8cc916e4",
+    "compressed_bytes": 37343,
+    "bytes": 38817,
+    "header_offset": 229249,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_3.png",
+    "crc32": "7c977cf6",
+    "compressed_bytes": 37955,
+    "bytes": 39400,
+    "header_offset": 266725,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_4.png",
+    "crc32": "05ecde1e",
+    "compressed_bytes": 36864,
+    "bytes": 38307,
+    "header_offset": 304813,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_6.png",
+    "crc32": "4d5bf644",
+    "compressed_bytes": 38083,
+    "bytes": 39534,
+    "header_offset": 341810,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_5.png",
+    "crc32": "f035aa1f",
+    "compressed_bytes": 37648,
+    "bytes": 39117,
+    "header_offset": 380026,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_7.png",
+    "crc32": "518dc798",
+    "compressed_bytes": 36850,
+    "bytes": 38327,
+    "header_offset": 417807,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_8.png",
+    "crc32": "84859977",
+    "compressed_bytes": 38155,
+    "bytes": 39519,
+    "header_offset": 454790,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_9.png",
+    "crc32": "b8a62805",
+    "compressed_bytes": 38071,
+    "bytes": 39539,
+    "header_offset": 493078,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_draw_two.png",
+    "crc32": "8decc92a",
+    "compressed_bytes": 37691,
+    "bytes": 39114,
+    "header_offset": 531282,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_reverse.png",
+    "crc32": "119bada4",
+    "compressed_bytes": 42215,
+    "bytes": 43624,
+    "header_offset": 569113,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_skip.png",
+    "crc32": "c52ee790",
+    "compressed_bytes": 38711,
+    "bytes": 40076,
+    "header_offset": 611467,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/blue/blue_think_pause.png",
+    "crc32": "a759e72c",
+    "compressed_bytes": 39134,
+    "bytes": 40543,
+    "header_offset": 650314,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_0.png",
+    "crc32": "d6aba6b3",
+    "compressed_bytes": 34666,
+    "bytes": 35970,
+    "header_offset": 689591,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_1.png",
+    "crc32": "b63b82e3",
+    "compressed_bytes": 33419,
+    "bytes": 34715,
+    "header_offset": 724392,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_2.png",
+    "crc32": "0ab1da42",
+    "compressed_bytes": 34604,
+    "bytes": 35818,
+    "header_offset": 757946,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_3.png",
+    "crc32": "8dee759a",
+    "compressed_bytes": 34882,
+    "bytes": 36306,
+    "header_offset": 792685,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_4.png",
+    "crc32": "a871c1f0",
+    "compressed_bytes": 33989,
+    "bytes": 35244,
+    "header_offset": 827702,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_5.png",
+    "crc32": "e6408be1",
+    "compressed_bytes": 34855,
+    "bytes": 36083,
+    "header_offset": 861826,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_6.png",
+    "crc32": "f78b4661",
+    "compressed_bytes": 35190,
+    "bytes": 36526,
+    "header_offset": 896816,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_7.png",
+    "crc32": "8a588cd0",
+    "compressed_bytes": 33918,
+    "bytes": 35332,
+    "header_offset": 932141,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_8.png",
+    "crc32": "55c974ec",
+    "compressed_bytes": 35258,
+    "bytes": 36503,
+    "header_offset": 966194,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_9.png",
+    "crc32": "f45b9430",
+    "compressed_bytes": 35270,
+    "bytes": 36475,
+    "header_offset": 1001587,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_draw_two.png",
+    "crc32": "0da7b089",
+    "compressed_bytes": 35486,
+    "bytes": 36647,
+    "header_offset": 1036992,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_reverse.png",
+    "crc32": "28352eda",
+    "compressed_bytes": 39451,
+    "bytes": 40949,
+    "header_offset": 1072620,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_skip.png",
+    "crc32": "14d2cbb9",
+    "compressed_bytes": 36241,
+    "bytes": 37459,
+    "header_offset": 1112212,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/green/green_think_pause.png",
+    "crc32": "4a3259ef",
+    "compressed_bytes": 36443,
+    "bytes": 37686,
+    "header_offset": 1148591,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_0.png",
+    "crc32": "c3f2eac7",
+    "compressed_bytes": 33127,
+    "bytes": 34036,
+    "header_offset": 1185179,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_1.png",
+    "crc32": "c6f8178b",
+    "compressed_bytes": 31541,
+    "bytes": 32487,
+    "header_offset": 1218437,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_2.png",
+    "crc32": "9488d183",
+    "compressed_bytes": 32724,
+    "bytes": 33782,
+    "header_offset": 1250109,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_4.png",
+    "crc32": "69274fbd",
+    "compressed_bytes": 32344,
+    "bytes": 33285,
+    "header_offset": 1282964,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_5.png",
+    "crc32": "2fb925ee",
+    "compressed_bytes": 33018,
+    "bytes": 34022,
+    "header_offset": 1315439,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_3.png",
+    "crc32": "9194e4c9",
+    "compressed_bytes": 33408,
+    "bytes": 34445,
+    "header_offset": 1348588,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_6.png",
+    "crc32": "f7a08dcb",
+    "compressed_bytes": 33611,
+    "bytes": 34579,
+    "header_offset": 1382127,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_7.png",
+    "crc32": "f3435205",
+    "compressed_bytes": 32233,
+    "bytes": 33216,
+    "header_offset": 1415869,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_8.png",
+    "crc32": "c9b746fa",
+    "compressed_bytes": 33534,
+    "bytes": 34624,
+    "header_offset": 1448233,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_9.png",
+    "crc32": "31938399",
+    "compressed_bytes": 33666,
+    "bytes": 34627,
+    "header_offset": 1481898,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_draw_two.png",
+    "crc32": "486b16c2",
+    "compressed_bytes": 32897,
+    "bytes": 33899,
+    "header_offset": 1515695,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_reverse.png",
+    "crc32": "7360ffa3",
+    "compressed_bytes": 37743,
+    "bytes": 38717,
+    "header_offset": 1548730,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_skip.png",
+    "crc32": "85e2e41d",
+    "compressed_bytes": 34343,
+    "bytes": 35357,
+    "header_offset": 1586610,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/red/red_think_pause.png",
+    "crc32": "4c372be0",
+    "compressed_bytes": 34224,
+    "bytes": 35207,
+    "header_offset": 1621087,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_0.png",
+    "crc32": "a763a7a4",
+    "compressed_bytes": 36292,
+    "bytes": 37677,
+    "header_offset": 1655452,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_2.png",
+    "crc32": "ae92dbca",
+    "compressed_bytes": 36223,
+    "bytes": 37438,
+    "header_offset": 1691881,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_1.png",
+    "crc32": "377805e6",
+    "compressed_bytes": 34884,
+    "bytes": 36146,
+    "header_offset": 1728241,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_3.png",
+    "crc32": "5a5013f3",
+    "compressed_bytes": 36776,
+    "bytes": 38071,
+    "header_offset": 1763262,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_4.png",
+    "crc32": "301e4223",
+    "compressed_bytes": 35435,
+    "bytes": 36809,
+    "header_offset": 1800175,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_5.png",
+    "crc32": "e2e050d4",
+    "compressed_bytes": 36463,
+    "bytes": 37779,
+    "header_offset": 1835747,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_6.png",
+    "crc32": "e09cd997",
+    "compressed_bytes": 36872,
+    "bytes": 38220,
+    "header_offset": 1872347,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_7.png",
+    "crc32": "5e3c3e6d",
+    "compressed_bytes": 35477,
+    "bytes": 36888,
+    "header_offset": 1909356,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_8.png",
+    "crc32": "79b83d50",
+    "compressed_bytes": 36992,
+    "bytes": 38238,
+    "header_offset": 1944970,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_9.png",
+    "crc32": "c31857ce",
+    "compressed_bytes": 37028,
+    "bytes": 38205,
+    "header_offset": 1982099,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_draw_two.png",
+    "crc32": "632be07b",
+    "compressed_bytes": 37024,
+    "bytes": 38290,
+    "header_offset": 2019264,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_reverse.png",
+    "crc32": "de1d3223",
+    "compressed_bytes": 41539,
+    "bytes": 42791,
+    "header_offset": 2056432,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_skip.png",
+    "crc32": "bbe07caf",
+    "compressed_bytes": 38182,
+    "bytes": 39288,
+    "header_offset": 2098114,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/card-face-exports/assets/lumo_cards/cards/yellow/yellow_think_pause.png",
+    "crc32": "2ed2ead0",
+    "compressed_bytes": 38627,
+    "bytes": 39963,
+    "header_offset": 2136436,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/cards-cup/trophy.png",
+    "crc32": "02e04c61",
+    "compressed_bytes": 108229,
+    "bytes": 114224,
+    "header_offset": 2175210,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/cards-memory/cards_overview_fold.png",
+    "crc32": "d6d178da",
+    "compressed_bytes": 756656,
+    "bytes": 757954,
+    "header_offset": 2283535,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/cards-memory/cards_overview_landscape.png",
+    "crc32": "fdbf707a",
+    "compressed_bytes": 545308,
+    "bytes": 545610,
+    "header_offset": 3040303,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/cards-memory/cards_overview_phone.png",
+    "crc32": "8a6d1ec2",
+    "compressed_bytes": 574756,
+    "bytes": 575162,
+    "header_offset": 3585728,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/cards-memory/memory_flipped_phone.png",
+    "crc32": "4efa7b3d",
+    "compressed_bytes": 597039,
+    "bytes": 596968,
+    "header_offset": 4160597,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/cards-memory/memory_matched_phone.png",
+    "crc32": "dffed2b4",
+    "compressed_bytes": 583358,
+    "bytes": 583339,
+    "header_offset": 4757749,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/cards-memory/memory_overview_fold.png",
+    "crc32": "bed5471d",
+    "compressed_bytes": 702993,
+    "bytes": 704006,
+    "header_offset": 5341220,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/cards-memory/memory_overview_leicht.png",
+    "crc32": "8d70254c",
+    "compressed_bytes": 571858,
+    "bytes": 571834,
+    "header_offset": 6044326,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/cards-memory/memory_overview_phone.png",
+    "crc32": "ce1a7c3c",
+    "compressed_bytes": 610111,
+    "bytes": 610082,
+    "header_offset": 6616299,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/cards-opponents/cards_board_fold.png",
+    "crc32": "d6d178da",
+    "compressed_bytes": 756656,
+    "bytes": 757954,
+    "header_offset": 7226524,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/cards-opponents/cards_opponent_fold.png",
+    "crc32": "f55c4b22",
+    "compressed_bytes": 163079,
+    "bytes": 167225,
+    "header_offset": 7983292,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/cards-opponents/cards_board_phone.png",
+    "crc32": "8a6d1ec2",
+    "compressed_bytes": 574756,
+    "bytes": 575162,
+    "header_offset": 8146486,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/cards-opponents/cards_opponent_phone.png",
+    "crc32": "1728e7ef",
+    "compressed_bytes": 145021,
+    "bytes": 147429,
+    "header_offset": 8721355,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/companion/fold-target-actual-help.png",
+    "crc32": "039f6a04",
+    "compressed_bytes": 784530,
+    "bytes": 784460,
+    "header_offset": 8866492,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/companion/fold-target-alternative-help.png",
+    "crc32": "fc41eef4",
+    "compressed_bytes": 782801,
+    "bytes": 782729,
+    "header_offset": 9651135,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/companion/fold-target-task.png",
+    "crc32": "8fc5fbc3",
+    "compressed_bytes": 795031,
+    "bytes": 794929,
+    "header_offset": 10434054,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/companion/phone-360x800-actual-help.png",
+    "crc32": "a72e781a",
+    "compressed_bytes": 332891,
+    "bytes": 332806,
+    "header_offset": 11229191,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/companion/phone-360x800-alternative-help.png",
+    "crc32": "0950cff7",
+    "compressed_bytes": 284879,
+    "bytes": 284820,
+    "header_offset": 11562197,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/companion/phone-360x800-task.png",
+    "crc32": "d1b7f81e",
+    "compressed_bytes": 334347,
+    "bytes": 334244,
+    "header_offset": 11847196,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/flutter-machine.jsonl",
+    "crc32": "54aff428",
+    "compressed_bytes": 167593,
+    "bytes": 1767777,
+    "header_offset": 12181651,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/cards_jump_fold.png",
+    "crc32": "e2f7a2d6",
+    "compressed_bytes": 51363,
+    "bytes": 58188,
+    "header_offset": 12349341,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/cards_jump_phone.png",
+    "crc32": "68ce1e12",
+    "compressed_bytes": 50012,
+    "bytes": 56243,
+    "header_offset": 12400805,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/cards_overview_fold.png",
+    "crc32": "af30d9d4",
+    "compressed_bytes": 756721,
+    "bytes": 758009,
+    "header_offset": 12450919,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/cards_overview_phone.png",
+    "crc32": "980ed9a4",
+    "compressed_bytes": 574881,
+    "bytes": 575305,
+    "header_offset": 13207745,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/cards_summary_fold.png",
+    "crc32": "3068e122",
+    "compressed_bytes": 265969,
+    "bytes": 273111,
+    "header_offset": 13782732,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/cards_summary_phone.png",
+    "crc32": "47e11cf9",
+    "compressed_bytes": 218293,
+    "bytes": 223771,
+    "header_offset": 14048805,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/connect_overview_fold.png",
+    "crc32": "3541208d",
+    "compressed_bytes": 310604,
+    "bytes": 312269,
+    "header_offset": 14267203,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/connect_overview_phone.png",
+    "crc32": "2de236c0",
+    "compressed_bytes": 539426,
+    "bytes": 540678,
+    "header_offset": 14577914,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/connect_winglow_fold.png",
+    "crc32": "3541208d",
+    "compressed_bytes": 310604,
+    "bytes": 312269,
+    "header_offset": 15117448,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/connect_winglow_phone.png",
+    "crc32": "97cc94e4",
+    "compressed_bytes": 270912,
+    "bytes": 272283,
+    "header_offset": 15428158,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/memory_combo_fold.png",
+    "crc32": "4579850b",
+    "compressed_bytes": 761037,
+    "bytes": 762130,
+    "header_offset": 15699177,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/memory_combo_phone.png",
+    "crc32": "fff4f0f4",
+    "compressed_bytes": 565889,
+    "bytes": 565894,
+    "header_offset": 16460317,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/memory_overview_fold.png",
+    "crc32": "bed5471d",
+    "compressed_bytes": 702993,
+    "bytes": 704006,
+    "header_offset": 17026310,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/memory_overview_phone.png",
+    "crc32": "ce1a7c3c",
+    "compressed_bytes": 610111,
+    "bytes": 610082,
+    "header_offset": 17729409,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/quiz_overview_fold.png",
+    "crc32": "4d9fb493",
+    "compressed_bytes": 912859,
+    "bytes": 914567,
+    "header_offset": 18339627,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/games/quiz_overview_phone.png",
+    "crc32": "174f1e67",
+    "compressed_bytes": 715778,
+    "bytes": 716377,
+    "header_offset": 19252590,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0000.png",
+    "crc32": "67faae89",
+    "compressed_bytes": 679602,
+    "bytes": 680227,
+    "header_offset": 19968473,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0001.png",
+    "crc32": "7eb3a315",
+    "compressed_bytes": 680931,
+    "bytes": 681481,
+    "header_offset": 20648195,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0002.png",
+    "crc32": "2c4c0a4e",
+    "compressed_bytes": 687536,
+    "bytes": 688038,
+    "header_offset": 21329246,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0003.png",
+    "crc32": "334352a6",
+    "compressed_bytes": 681604,
+    "bytes": 682196,
+    "header_offset": 22016902,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0004.png",
+    "crc32": "17e39544",
+    "compressed_bytes": 680187,
+    "bytes": 680790,
+    "header_offset": 22698626,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0005.png",
+    "crc32": "27435b46",
+    "compressed_bytes": 678940,
+    "bytes": 679546,
+    "header_offset": 23378933,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0006.png",
+    "crc32": "bda6db2a",
+    "compressed_bytes": 679049,
+    "bytes": 679657,
+    "header_offset": 24057993,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0007.png",
+    "crc32": "89ea89f4",
+    "compressed_bytes": 679397,
+    "bytes": 680010,
+    "header_offset": 24737162,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0008.png",
+    "crc32": "1aa8131b",
+    "compressed_bytes": 679472,
+    "bytes": 680108,
+    "header_offset": 25416679,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0009.png",
+    "crc32": "c0f6c58c",
+    "compressed_bytes": 679250,
+    "bytes": 679804,
+    "header_offset": 26096271,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0010.png",
+    "crc32": "1a8b0c49",
+    "compressed_bytes": 679571,
+    "bytes": 680075,
+    "header_offset": 26775641,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0011.png",
+    "crc32": "95d2d658",
+    "compressed_bytes": 680109,
+    "bytes": 680627,
+    "header_offset": 27455332,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0013.png",
+    "crc32": "82a39881",
+    "compressed_bytes": 679759,
+    "bytes": 680355,
+    "header_offset": 28135561,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0014.png",
+    "crc32": "98c22632",
+    "compressed_bytes": 679645,
+    "bytes": 680255,
+    "header_offset": 28815440,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0015.png",
+    "crc32": "fd56cee6",
+    "compressed_bytes": 679117,
+    "bytes": 679705,
+    "header_offset": 29495205,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0012.png",
+    "crc32": "24aa4476",
+    "compressed_bytes": 679416,
+    "bytes": 680015,
+    "header_offset": 30174442,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0017.png",
+    "crc32": "97cbfc1f",
+    "compressed_bytes": 679697,
+    "bytes": 680279,
+    "header_offset": 30853978,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0016.png",
+    "crc32": "22f05960",
+    "compressed_bytes": 679716,
+    "bytes": 680273,
+    "header_offset": 31533795,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0019.png",
+    "crc32": "507935c0",
+    "compressed_bytes": 679229,
+    "bytes": 679814,
+    "header_offset": 32213631,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0018.png",
+    "crc32": "314fa87a",
+    "compressed_bytes": 679405,
+    "bytes": 679994,
+    "header_offset": 32892980,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0021.png",
+    "crc32": "26c57225",
+    "compressed_bytes": 679065,
+    "bytes": 679648,
+    "header_offset": 33572505,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0020.png",
+    "crc32": "ac031aff",
+    "compressed_bytes": 679391,
+    "bytes": 679884,
+    "header_offset": 34251690,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0022.png",
+    "crc32": "a8b37f58",
+    "compressed_bytes": 678639,
+    "bytes": 679261,
+    "header_offset": 34931201,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0023.png",
+    "crc32": "7bc51e28",
+    "compressed_bytes": 679182,
+    "bytes": 679761,
+    "header_offset": 35609960,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0024.png",
+    "crc32": "1162702e",
+    "compressed_bytes": 679347,
+    "bytes": 679924,
+    "header_offset": 36289262,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0025.png",
+    "crc32": "368c9bd9",
+    "compressed_bytes": 679254,
+    "bytes": 679799,
+    "header_offset": 36968729,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0026.png",
+    "crc32": "01e37b79",
+    "compressed_bytes": 679222,
+    "bytes": 679779,
+    "header_offset": 37648103,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0028.png",
+    "crc32": "22a51830",
+    "compressed_bytes": 678850,
+    "bytes": 679416,
+    "header_offset": 38327445,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0027.png",
+    "crc32": "eb8611eb",
+    "compressed_bytes": 679060,
+    "bytes": 679609,
+    "header_offset": 39006415,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0029.png",
+    "crc32": "84288362",
+    "compressed_bytes": 678409,
+    "bytes": 679034,
+    "header_offset": 39685595,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0030.png",
+    "crc32": "39d46a25",
+    "compressed_bytes": 678227,
+    "bytes": 678857,
+    "header_offset": 40364124,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0031.png",
+    "crc32": "0134eaac",
+    "compressed_bytes": 678379,
+    "bytes": 678970,
+    "header_offset": 41042471,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0032.png",
+    "crc32": "a5c4e922",
+    "compressed_bytes": 678573,
+    "bytes": 679181,
+    "header_offset": 41720970,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0033.png",
+    "crc32": "84efa52c",
+    "compressed_bytes": 678943,
+    "bytes": 679502,
+    "header_offset": 42399663,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0034.png",
+    "crc32": "d312ac90",
+    "compressed_bytes": 679200,
+    "bytes": 679778,
+    "header_offset": 43078726,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0035.png",
+    "crc32": "41c42df2",
+    "compressed_bytes": 678508,
+    "bytes": 679130,
+    "header_offset": 43758046,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0036.png",
+    "crc32": "9472dc6b",
+    "compressed_bytes": 678938,
+    "bytes": 679512,
+    "header_offset": 44436674,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0037.png",
+    "crc32": "b44387d6",
+    "compressed_bytes": 678797,
+    "bytes": 679393,
+    "header_offset": 45115732,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0038.png",
+    "crc32": "1c3f1e02",
+    "compressed_bytes": 678847,
+    "bytes": 679425,
+    "header_offset": 45794649,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0039.png",
+    "crc32": "6b109ebb",
+    "compressed_bytes": 679078,
+    "bytes": 679653,
+    "header_offset": 46473616,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0040.png",
+    "crc32": "5e4c6a0d",
+    "compressed_bytes": 678862,
+    "bytes": 679493,
+    "header_offset": 47152814,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0041.png",
+    "crc32": "6d5f3b3d",
+    "compressed_bytes": 678573,
+    "bytes": 679179,
+    "header_offset": 47831796,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0042.png",
+    "crc32": "ec22cce3",
+    "compressed_bytes": 678563,
+    "bytes": 679199,
+    "header_offset": 48510489,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0043.png",
+    "crc32": "953848cf",
+    "compressed_bytes": 678400,
+    "bytes": 679002,
+    "header_offset": 49189172,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0044.png",
+    "crc32": "0a078509",
+    "compressed_bytes": 678884,
+    "bytes": 679468,
+    "header_offset": 49867692,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0045.png",
+    "crc32": "11c1ba09",
+    "compressed_bytes": 678364,
+    "bytes": 679057,
+    "header_offset": 50546696,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0046.png",
+    "crc32": "d25fd5bc",
+    "compressed_bytes": 678371,
+    "bytes": 679014,
+    "header_offset": 51225180,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0047.png",
+    "crc32": "a90c8c62",
+    "compressed_bytes": 678898,
+    "bytes": 679502,
+    "header_offset": 51903671,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0048.png",
+    "crc32": "036d6f48",
+    "compressed_bytes": 679065,
+    "bytes": 679707,
+    "header_offset": 52582689,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0049.png",
+    "crc32": "d53b9ddb",
+    "compressed_bytes": 679089,
+    "bytes": 679697,
+    "header_offset": 53261874,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0050.png",
+    "crc32": "e9193e5f",
+    "compressed_bytes": 678827,
+    "bytes": 679483,
+    "header_offset": 53941083,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0051.png",
+    "crc32": "decfafc8",
+    "compressed_bytes": 679013,
+    "bytes": 679679,
+    "header_offset": 54620030,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0052.png",
+    "crc32": "eb0e87fc",
+    "compressed_bytes": 678785,
+    "bytes": 679438,
+    "header_offset": 55299163,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0053.png",
+    "crc32": "4be67ebf",
+    "compressed_bytes": 678663,
+    "bytes": 679339,
+    "header_offset": 55978068,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0054.png",
+    "crc32": "f14c1544",
+    "compressed_bytes": 679008,
+    "bytes": 679655,
+    "header_offset": 56656851,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0055.png",
+    "crc32": "a0e6db39",
+    "compressed_bytes": 678583,
+    "bytes": 679226,
+    "header_offset": 57335979,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0056.png",
+    "crc32": "de765c97",
+    "compressed_bytes": 678489,
+    "bytes": 679146,
+    "header_offset": 58014682,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0057.png",
+    "crc32": "91a76464",
+    "compressed_bytes": 678723,
+    "bytes": 679355,
+    "header_offset": 58693291,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0058.png",
+    "crc32": "4e2f17f2",
+    "compressed_bytes": 680713,
+    "bytes": 681330,
+    "header_offset": 59372134,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0059.png",
+    "crc32": "2395003b",
+    "compressed_bytes": 680646,
+    "bytes": 681220,
+    "header_offset": 60052967,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0060.png",
+    "crc32": "dbab3874",
+    "compressed_bytes": 680687,
+    "bytes": 681313,
+    "header_offset": 60733733,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0061.png",
+    "crc32": "a335eb4b",
+    "compressed_bytes": 680698,
+    "bytes": 681303,
+    "header_offset": 61414540,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0062.png",
+    "crc32": "152afe8a",
+    "compressed_bytes": 681026,
+    "bytes": 681636,
+    "header_offset": 62095358,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0063.png",
+    "crc32": "1f1146da",
+    "compressed_bytes": 681137,
+    "bytes": 681705,
+    "header_offset": 62776504,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0064.png",
+    "crc32": "7188283a",
+    "compressed_bytes": 680847,
+    "bytes": 681455,
+    "header_offset": 63457761,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0065.png",
+    "crc32": "788bd4f3",
+    "compressed_bytes": 681607,
+    "bytes": 682195,
+    "header_offset": 64138728,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0066.png",
+    "crc32": "941106c8",
+    "compressed_bytes": 680726,
+    "bytes": 681344,
+    "header_offset": 64820455,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0067.png",
+    "crc32": "7aca4fe7",
+    "compressed_bytes": 680408,
+    "bytes": 681003,
+    "header_offset": 65501301,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0068.png",
+    "crc32": "a961e456",
+    "compressed_bytes": 680930,
+    "bytes": 681536,
+    "header_offset": 66181829,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0069.png",
+    "crc32": "12a8113b",
+    "compressed_bytes": 681195,
+    "bytes": 681743,
+    "header_offset": 66862879,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0070.png",
+    "crc32": "2ed82fbc",
+    "compressed_bytes": 680946,
+    "bytes": 681538,
+    "header_offset": 67544194,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0071.png",
+    "crc32": "6843280d",
+    "compressed_bytes": 680944,
+    "bytes": 681546,
+    "header_offset": 68225260,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0072.png",
+    "crc32": "ef35e562",
+    "compressed_bytes": 681264,
+    "bytes": 681833,
+    "header_offset": 68906324,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0073.png",
+    "crc32": "163957cd",
+    "compressed_bytes": 681864,
+    "bytes": 682417,
+    "header_offset": 69587708,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0074.png",
+    "crc32": "8f1cc35f",
+    "compressed_bytes": 681694,
+    "bytes": 682256,
+    "header_offset": 70269692,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0075.png",
+    "crc32": "28eaf500",
+    "compressed_bytes": 681529,
+    "bytes": 682088,
+    "header_offset": 70951506,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0076.png",
+    "crc32": "aab8b3ab",
+    "compressed_bytes": 681611,
+    "bytes": 682199,
+    "header_offset": 71633155,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0077.png",
+    "crc32": "0a8f2e09",
+    "compressed_bytes": 680985,
+    "bytes": 681530,
+    "header_offset": 72314886,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0078.png",
+    "crc32": "d0644eb1",
+    "compressed_bytes": 681506,
+    "bytes": 682064,
+    "header_offset": 72995991,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0079.png",
+    "crc32": "5c40cb46",
+    "compressed_bytes": 681616,
+    "bytes": 682190,
+    "header_offset": 73677617,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0080.png",
+    "crc32": "0cfa72e2",
+    "compressed_bytes": 680069,
+    "bytes": 680583,
+    "header_offset": 74359353,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0081.png",
+    "crc32": "970f2ca1",
+    "compressed_bytes": 680543,
+    "bytes": 681156,
+    "header_offset": 75039542,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0082.png",
+    "crc32": "afd1b333",
+    "compressed_bytes": 681227,
+    "bytes": 681790,
+    "header_offset": 75720205,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0083.png",
+    "crc32": "a850c369",
+    "compressed_bytes": 680957,
+    "bytes": 681567,
+    "header_offset": 76401552,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0084.png",
+    "crc32": "c216c69c",
+    "compressed_bytes": 680569,
+    "bytes": 681141,
+    "header_offset": 77082629,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0086.png",
+    "crc32": "bc165872",
+    "compressed_bytes": 681220,
+    "bytes": 681797,
+    "header_offset": 77763318,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0085.png",
+    "crc32": "c2333445",
+    "compressed_bytes": 680728,
+    "bytes": 681367,
+    "header_offset": 78444658,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0087.png",
+    "crc32": "2328817c",
+    "compressed_bytes": 680605,
+    "bytes": 681210,
+    "header_offset": 79125506,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0088.png",
+    "crc32": "12d92aaa",
+    "compressed_bytes": 680544,
+    "bytes": 681114,
+    "header_offset": 79806231,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0090.png",
+    "crc32": "0c9a1a57",
+    "compressed_bytes": 680710,
+    "bytes": 681301,
+    "header_offset": 80486895,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0089.png",
+    "crc32": "09a7af50",
+    "compressed_bytes": 680773,
+    "bytes": 681346,
+    "header_offset": 81167725,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0091.png",
+    "crc32": "a5e3e239",
+    "compressed_bytes": 680958,
+    "bytes": 681502,
+    "header_offset": 81848618,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0092.png",
+    "crc32": "2ce2c1e5",
+    "compressed_bytes": 680548,
+    "bytes": 681150,
+    "header_offset": 82529696,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0094.png",
+    "crc32": "9ea58abe",
+    "compressed_bytes": 680485,
+    "bytes": 681096,
+    "header_offset": 83210364,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0093.png",
+    "crc32": "9be90823",
+    "compressed_bytes": 680427,
+    "bytes": 680989,
+    "header_offset": 83890969,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0095.png",
+    "crc32": "f4041068",
+    "compressed_bytes": 680464,
+    "bytes": 680996,
+    "header_offset": 84571516,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0096.png",
+    "crc32": "a9dfd378",
+    "compressed_bytes": 681263,
+    "bytes": 681828,
+    "header_offset": 85252100,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0097.png",
+    "crc32": "10e2f127",
+    "compressed_bytes": 681330,
+    "bytes": 681975,
+    "header_offset": 85933483,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0099.png",
+    "crc32": "dfa753ef",
+    "compressed_bytes": 681287,
+    "bytes": 681846,
+    "header_offset": 86614933,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0098.png",
+    "crc32": "807faa5d",
+    "compressed_bytes": 681156,
+    "bytes": 681748,
+    "header_offset": 87296340,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0100.png",
+    "crc32": "c4807655",
+    "compressed_bytes": 681330,
+    "bytes": 681886,
+    "header_offset": 87977616,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0101.png",
+    "crc32": "7a2c55d5",
+    "compressed_bytes": 681120,
+    "bytes": 681758,
+    "header_offset": 88659066,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0102.png",
+    "crc32": "e94a2ae5",
+    "compressed_bytes": 681115,
+    "bytes": 681680,
+    "header_offset": 89340306,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0103.png",
+    "crc32": "c6f47f97",
+    "compressed_bytes": 680657,
+    "bytes": 681243,
+    "header_offset": 90021541,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0104.png",
+    "crc32": "6d4c2282",
+    "compressed_bytes": 680781,
+    "bytes": 681383,
+    "header_offset": 90702318,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0105.png",
+    "crc32": "5d42c876",
+    "compressed_bytes": 680712,
+    "bytes": 681282,
+    "header_offset": 91383219,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0106.png",
+    "crc32": "2a83ec71",
+    "compressed_bytes": 680778,
+    "bytes": 681356,
+    "header_offset": 92064051,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0107.png",
+    "crc32": "ef7ec13a",
+    "compressed_bytes": 680692,
+    "bytes": 681222,
+    "header_offset": 92744949,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0108.png",
+    "crc32": "c1368d62",
+    "compressed_bytes": 680680,
+    "bytes": 681162,
+    "header_offset": 93425761,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0109.png",
+    "crc32": "09e767d7",
+    "compressed_bytes": 680566,
+    "bytes": 681079,
+    "header_offset": 94106561,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0110.png",
+    "crc32": "7e784700",
+    "compressed_bytes": 681039,
+    "bytes": 681556,
+    "header_offset": 94787247,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0111.png",
+    "crc32": "b6dd5866",
+    "compressed_bytes": 680870,
+    "bytes": 681443,
+    "header_offset": 95468406,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0112.png",
+    "crc32": "f48e8b1f",
+    "compressed_bytes": 680885,
+    "bytes": 681467,
+    "header_offset": 96149396,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0113.png",
+    "crc32": "3193b81d",
+    "compressed_bytes": 680618,
+    "bytes": 681127,
+    "header_offset": 96830401,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0114.png",
+    "crc32": "580a0761",
+    "compressed_bytes": 680475,
+    "bytes": 681068,
+    "header_offset": 97511139,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0115.png",
+    "crc32": "d2a557f4",
+    "compressed_bytes": 680119,
+    "bytes": 680636,
+    "header_offset": 98191734,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0116.png",
+    "crc32": "83ec98fd",
+    "compressed_bytes": 680387,
+    "bytes": 680976,
+    "header_offset": 98871973,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0117.png",
+    "crc32": "33dc2da9",
+    "compressed_bytes": 680902,
+    "bytes": 681487,
+    "header_offset": 99552480,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0118.png",
+    "crc32": "fc602b4b",
+    "compressed_bytes": 680906,
+    "bytes": 681432,
+    "header_offset": 100233502,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0119.png",
+    "crc32": "84a79913",
+    "compressed_bytes": 680000,
+    "bytes": 680549,
+    "header_offset": 100914528,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0120.png",
+    "crc32": "714dc709",
+    "compressed_bytes": 680560,
+    "bytes": 681133,
+    "header_offset": 101594648,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0121.png",
+    "crc32": "8dc0ef1f",
+    "compressed_bytes": 680804,
+    "bytes": 681404,
+    "header_offset": 102275328,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0122.png",
+    "crc32": "1d00470e",
+    "compressed_bytes": 680493,
+    "bytes": 681077,
+    "header_offset": 102956252,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0123.png",
+    "crc32": "91d5c23a",
+    "compressed_bytes": 680873,
+    "bytes": 681416,
+    "header_offset": 103636865,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0124.png",
+    "crc32": "f0200c83",
+    "compressed_bytes": 681121,
+    "bytes": 681757,
+    "header_offset": 104317858,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0125.png",
+    "crc32": "84854145",
+    "compressed_bytes": 681228,
+    "bytes": 681833,
+    "header_offset": 104999099,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0126.png",
+    "crc32": "341cd722",
+    "compressed_bytes": 680959,
+    "bytes": 681536,
+    "header_offset": 105680447,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0127.png",
+    "crc32": "dfb0578f",
+    "compressed_bytes": 680871,
+    "bytes": 681387,
+    "header_offset": 106361526,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0128.png",
+    "crc32": "80625859",
+    "compressed_bytes": 680275,
+    "bytes": 680807,
+    "header_offset": 107042517,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0129.png",
+    "crc32": "0d81b257",
+    "compressed_bytes": 680516,
+    "bytes": 681071,
+    "header_offset": 107722912,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0130.png",
+    "crc32": "29e9ed39",
+    "compressed_bytes": 680764,
+    "bytes": 681340,
+    "header_offset": 108403548,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0132.png",
+    "crc32": "c0a85ceb",
+    "compressed_bytes": 680580,
+    "bytes": 681129,
+    "header_offset": 109084432,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0131.png",
+    "crc32": "c55fe2e7",
+    "compressed_bytes": 679247,
+    "bytes": 679819,
+    "header_offset": 109765132,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0133.png",
+    "crc32": "880ff2c8",
+    "compressed_bytes": 680351,
+    "bytes": 680880,
+    "header_offset": 110444499,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0134.png",
+    "crc32": "601df2da",
+    "compressed_bytes": 680828,
+    "bytes": 681392,
+    "header_offset": 111124970,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0135.png",
+    "crc32": "7a7a5230",
+    "compressed_bytes": 681104,
+    "bytes": 681710,
+    "header_offset": 111805918,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0136.png",
+    "crc32": "ac1b3aed",
+    "compressed_bytes": 680638,
+    "bytes": 681188,
+    "header_offset": 112487142,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0137.png",
+    "crc32": "d8381fb3",
+    "compressed_bytes": 680560,
+    "bytes": 681097,
+    "header_offset": 113167900,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0138.png",
+    "crc32": "5befdc14",
+    "compressed_bytes": 680588,
+    "bytes": 681087,
+    "header_offset": 113848580,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0139.png",
+    "crc32": "a8b16695",
+    "compressed_bytes": 681098,
+    "bytes": 681638,
+    "header_offset": 114529288,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0140.png",
+    "crc32": "5d01d8a1",
+    "compressed_bytes": 680916,
+    "bytes": 681406,
+    "header_offset": 115210506,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0141.png",
+    "crc32": "1a6e8d0f",
+    "compressed_bytes": 680529,
+    "bytes": 681056,
+    "header_offset": 115891542,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0142.png",
+    "crc32": "af654a01",
+    "compressed_bytes": 680615,
+    "bytes": 681124,
+    "header_offset": 116572191,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0143.png",
+    "crc32": "fe60763b",
+    "compressed_bytes": 680701,
+    "bytes": 681227,
+    "header_offset": 117252926,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0144.png",
+    "crc32": "20ab9466",
+    "compressed_bytes": 680864,
+    "bytes": 681442,
+    "header_offset": 117933747,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0145.png",
+    "crc32": "f25be618",
+    "compressed_bytes": 680547,
+    "bytes": 681079,
+    "header_offset": 118614731,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0146.png",
+    "crc32": "c54a812d",
+    "compressed_bytes": 680294,
+    "bytes": 680802,
+    "header_offset": 119295398,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0147.png",
+    "crc32": "d537c6d8",
+    "compressed_bytes": 680740,
+    "bytes": 681264,
+    "header_offset": 119975812,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0148.png",
+    "crc32": "1eb38413",
+    "compressed_bytes": 680751,
+    "bytes": 681256,
+    "header_offset": 120656672,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0149.png",
+    "crc32": "d745d4e5",
+    "compressed_bytes": 680259,
+    "bytes": 680843,
+    "header_offset": 121337543,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0150.png",
+    "crc32": "080b67e1",
+    "compressed_bytes": 680275,
+    "bytes": 680795,
+    "header_offset": 122017922,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0151.png",
+    "crc32": "9fad3e10",
+    "compressed_bytes": 680489,
+    "bytes": 681038,
+    "header_offset": 122698317,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0152.png",
+    "crc32": "1a23ad27",
+    "compressed_bytes": 680339,
+    "bytes": 680860,
+    "header_offset": 123378926,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0153.png",
+    "crc32": "d4749620",
+    "compressed_bytes": 680533,
+    "bytes": 681051,
+    "header_offset": 124059385,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0154.png",
+    "crc32": "7c93da97",
+    "compressed_bytes": 681035,
+    "bytes": 681572,
+    "header_offset": 124740038,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0155.png",
+    "crc32": "5e9d15c7",
+    "compressed_bytes": 680619,
+    "bytes": 681159,
+    "header_offset": 125421193,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0156.png",
+    "crc32": "909b8e99",
+    "compressed_bytes": 680757,
+    "bytes": 681273,
+    "header_offset": 126101932,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0157.png",
+    "crc32": "63dc8035",
+    "compressed_bytes": 681085,
+    "bytes": 681672,
+    "header_offset": 126782809,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0158.png",
+    "crc32": "7c5ac580",
+    "compressed_bytes": 680568,
+    "bytes": 681107,
+    "header_offset": 127464014,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0159.png",
+    "crc32": "422f882f",
+    "compressed_bytes": 680866,
+    "bytes": 681413,
+    "header_offset": 128144702,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/bridge-frames/frame-0160.png",
+    "crc32": "9648a2c3",
+    "compressed_bytes": 679176,
+    "bytes": 679801,
+    "header_offset": 128825688,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/fold-target-actual-bridge_ten-example.png",
+    "crc32": "c001050b",
+    "compressed_bytes": 707349,
+    "bytes": 707695,
+    "header_offset": 129504984,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/fold-target-actual-equal_groups-example.png",
+    "crc32": "c171690a",
+    "compressed_bytes": 677941,
+    "bytes": 678756,
+    "header_offset": 130212466,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/fold-target-actual-subtract_ten-example.png",
+    "crc32": "207836ab",
+    "compressed_bytes": 700558,
+    "bytes": 700909,
+    "header_offset": 130890542,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/phone-360x800-actual-adult-confirmation.png",
+    "crc32": "b4949348",
+    "compressed_bytes": 146183,
+    "bytes": 147016,
+    "header_offset": 131591235,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/phone-360x800-actual-bridge_ten-example.png",
+    "crc32": "036d7583",
+    "compressed_bytes": 310157,
+    "bytes": 310283,
+    "header_offset": 131737553,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/phone-360x800-actual-discovery-hub.png",
+    "crc32": "5e8eb1ec",
+    "compressed_bytes": 380293,
+    "bytes": 380691,
+    "header_offset": 132047845,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/phone-360x800-actual-equal_groups-example.png",
+    "crc32": "2181a098",
+    "compressed_bytes": 287535,
+    "bytes": 287602,
+    "header_offset": 132428268,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/phone-360x800-actual-parent-permission.png",
+    "crc32": "d3e0bbf6",
+    "compressed_bytes": 286807,
+    "bytes": 287086,
+    "header_offset": 132715940,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/guided-learning/phone-360x800-actual-subtract_ten-example.png",
+    "crc32": "b18b0eb5",
+    "compressed_bytes": 309772,
+    "bytes": 309976,
+    "header_offset": 133002881,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/artikel-fold-2176x1812-density-225.png",
+    "crc32": "492ce448",
+    "compressed_bytes": 677964,
+    "bytes": 678434,
+    "header_offset": 133312790,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/artikel-landscape-640x360.png",
+    "crc32": "2df889b1",
+    "compressed_bytes": 211196,
+    "bytes": 211164,
+    "header_offset": 133990887,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/artikel-phone-360x800.png",
+    "crc32": "2ba50a95",
+    "compressed_bytes": 291660,
+    "bytes": 291813,
+    "header_offset": 134202207,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/artikel-wide-1280x720.png",
+    "crc32": "13871531",
+    "compressed_bytes": 768567,
+    "bytes": 769198,
+    "header_offset": 134493987,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/brueche-fold-2176x1812-density-225.png",
+    "crc32": "803f9c76",
+    "compressed_bytes": 689209,
+    "bytes": 689696,
+    "header_offset": 135262674,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/brueche-landscape-640x360.png",
+    "crc32": "5f84f3bb",
+    "compressed_bytes": 227172,
+    "bytes": 227107,
+    "header_offset": 135952016,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/brueche-phone-360x800.png",
+    "crc32": "bb3f1fde",
+    "compressed_bytes": 309515,
+    "bytes": 309611,
+    "header_offset": 136179312,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/brueche-wide-1280x720.png",
+    "crc32": "9a5e1140",
+    "compressed_bytes": 791949,
+    "bytes": 792573,
+    "header_offset": 136488947,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/einmaleins-fold-2176x1812-density-225.png",
+    "crc32": "7edb2e39",
+    "compressed_bytes": 745247,
+    "bytes": 745260,
+    "header_offset": 137281016,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/einmaleins-landscape-640x360.png",
+    "crc32": "0db231f8",
+    "compressed_bytes": 240606,
+    "bytes": 240561,
+    "header_offset": 138026399,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/einmaleins-phone-360x800.png",
+    "crc32": "6492baab",
+    "compressed_bytes": 325825,
+    "bytes": 325798,
+    "header_offset": 138267132,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/einmaleins-wide-1280x720.png",
+    "crc32": "bb3f4da2",
+    "compressed_bytes": 844517,
+    "bytes": 844576,
+    "header_offset": 138593080,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/farben-fold-2176x1812-density-225.png",
+    "crc32": "091199f8",
+    "compressed_bytes": 681719,
+    "bytes": 682433,
+    "header_offset": 139437720,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/farben-landscape-640x360.png",
+    "crc32": "635e7a06",
+    "compressed_bytes": 210146,
+    "bytes": 210310,
+    "header_offset": 140119571,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/farben-phone-360x800.png",
+    "crc32": "e3982e7f",
+    "compressed_bytes": 295872,
+    "bytes": 296183,
+    "header_offset": 140329840,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/formen-fold-2176x1812-density-225.png",
+    "crc32": "f518f3a5",
+    "compressed_bytes": 683478,
+    "bytes": 683999,
+    "header_offset": 140625831,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/farben-wide-1280x720.png",
+    "crc32": "9ac030ff",
+    "compressed_bytes": 775708,
+    "bytes": 780142,
+    "header_offset": 141309441,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/formen-landscape-640x360.png",
+    "crc32": "931f7e05",
+    "compressed_bytes": 242341,
+    "bytes": 242266,
+    "header_offset": 142085268,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/formen-phone-360x800.png",
+    "crc32": "284070c2",
+    "compressed_bytes": 304261,
+    "bytes": 304381,
+    "header_offset": 142327732,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/geld-fold-2176x1812-density-225.png",
+    "crc32": "b413b80c",
+    "compressed_bytes": 727733,
+    "bytes": 727808,
+    "header_offset": 142632112,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/formen-wide-1280x720.png",
+    "crc32": "5ccc4bde",
+    "compressed_bytes": 782729,
+    "bytes": 783359,
+    "header_offset": 143359975,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/geld-landscape-640x360.png",
+    "crc32": "4c7636b0",
+    "compressed_bytes": 234211,
+    "bytes": 234155,
+    "header_offset": 144142823,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/geld-phone-360x800.png",
+    "crc32": "089f8259",
+    "compressed_bytes": 317736,
+    "bytes": 317822,
+    "header_offset": 144377155,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/geld-wide-1280x720.png",
+    "crc32": "9678f8ae",
+    "compressed_bytes": 864815,
+    "bytes": 864992,
+    "header_offset": 144695008,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/grosses-einmaleins-fold-2176x1812-density-225.png",
+    "crc32": "8db8c4bf",
+    "compressed_bytes": 764155,
+    "bytes": 764146,
+    "header_offset": 145559940,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/grosses-einmaleins-landscape-640x360.png",
+    "crc32": "ff626c04",
+    "compressed_bytes": 241424,
+    "bytes": 241349,
+    "header_offset": 146324239,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/grosses-einmaleins-phone-360x800.png",
+    "crc32": "b40baa5f",
+    "compressed_bytes": 329041,
+    "bytes": 328978,
+    "header_offset": 146565798,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/grosses-einmaleins-wide-1280x720.png",
+    "crc32": "44ea4d55",
+    "compressed_bytes": 844486,
+    "bytes": 844601,
+    "header_offset": 146894970,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/jahreszeiten-fold-2176x1812-density-225.png",
+    "crc32": "ab773fff",
+    "compressed_bytes": 700569,
+    "bytes": 700927,
+    "header_offset": 147739587,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/jahreszeiten-landscape-640x360.png",
+    "crc32": "08e3b2d9",
+    "compressed_bytes": 229971,
+    "bytes": 229992,
+    "header_offset": 148440294,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/jahreszeiten-wide-1280x720.png",
+    "crc32": "32bb5983",
+    "compressed_bytes": 804874,
+    "bytes": 805402,
+    "header_offset": 148670394,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/mehrzahl-fold-2176x1812-density-225.png",
+    "crc32": "247e8abb",
+    "compressed_bytes": 691445,
+    "bytes": 691757,
+    "header_offset": 149475393,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/jahreszeiten-phone-360x800.png",
+    "crc32": "77e2f0a3",
+    "compressed_bytes": 318903,
+    "bytes": 318932,
+    "header_offset": 150166972,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/mehrzahl-landscape-640x360.png",
+    "crc32": "5552086b",
+    "compressed_bytes": 211635,
+    "bytes": 211599,
+    "header_offset": 150486000,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/mehrzahl-phone-360x800.png",
+    "crc32": "7be99b80",
+    "compressed_bytes": 300696,
+    "bytes": 300927,
+    "header_offset": 150697760,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/mehrzahl-wide-1280x720.png",
+    "crc32": "d4cd6cf6",
+    "compressed_bytes": 782147,
+    "bytes": 782728,
+    "header_offset": 150998577,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/minus-bis-10-fold-2176x1812-density-225.png",
+    "crc32": "95e5d4a7",
+    "compressed_bytes": 804361,
+    "bytes": 804324,
+    "header_offset": 151780845,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/minus-bis-10-landscape-640x360.png",
+    "crc32": "1e190cf1",
+    "compressed_bytes": 279294,
+    "bytes": 279204,
+    "header_offset": 152585344,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/minus-bis-10-phone-360x800.png",
+    "crc32": "37f901cd",
+    "compressed_bytes": 345005,
+    "bytes": 344915,
+    "header_offset": 152864767,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/minus-bis-10-wide-1280x720.png",
+    "crc32": "3562843c",
+    "compressed_bytes": 864144,
+    "bytes": 864220,
+    "header_offset": 153209897,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/plus-bis-10-reference-fold-2176x1812-density-225.png",
+    "crc32": "ecec376b",
+    "compressed_bytes": 795762,
+    "bytes": 795655,
+    "header_offset": 154074166,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/plus-bis-10-reference-phone-360x800.png",
+    "crc32": "d2959ed9",
+    "compressed_bytes": 333024,
+    "bytes": 332919,
+    "header_offset": 154870075,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/plus-bis-10-reference-landscape-640x360.png",
+    "crc32": "504ef119",
+    "compressed_bytes": 276590,
+    "bytes": 276505,
+    "header_offset": 155203233,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/plus-bis-10-reference-wide-1280x720.png",
+    "crc32": "634ed019",
+    "compressed_bytes": 840072,
+    "bytes": 840087,
+    "header_offset": 155479961,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/tiere-fold-2176x1812-density-225.png",
+    "crc32": "7103ecc9",
+    "compressed_bytes": 698150,
+    "bytes": 698355,
+    "header_offset": 156320167,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/tiere-landscape-640x360.png",
+    "crc32": "4b39bbe2",
+    "compressed_bytes": 232202,
+    "bytes": 232136,
+    "header_offset": 157018448,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/tiere-phone-360x800.png",
+    "crc32": "8e593fec",
+    "compressed_bytes": 319396,
+    "bytes": 319316,
+    "header_offset": 157250772,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/tiere-wide-1280x720.png",
+    "crc32": "012ba294",
+    "compressed_bytes": 800826,
+    "bytes": 801293,
+    "header_offset": 157570286,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/uhr-fold-2176x1812-density-225.png",
+    "crc32": "df52424b",
+    "compressed_bytes": 682453,
+    "bytes": 683057,
+    "header_offset": 158371230,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/uhr-landscape-640x360.png",
+    "crc32": "2f4ad0f1",
+    "compressed_bytes": 248191,
+    "bytes": 248111,
+    "header_offset": 159053812,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/uhr-phone-360x800.png",
+    "crc32": "987c8a24",
+    "compressed_bytes": 309077,
+    "bytes": 309155,
+    "header_offset": 159302123,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/uhr-wide-1280x720.png",
+    "crc32": "21da60d1",
+    "compressed_bytes": 788033,
+    "bytes": 788728,
+    "header_offset": 159611316,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/verkehr-fold-2176x1812-density-225.png",
+    "crc32": "1d3cddc6",
+    "compressed_bytes": 749270,
+    "bytes": 749297,
+    "header_offset": 160399465,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/verkehr-landscape-640x360.png",
+    "crc32": "5cf5ea9e",
+    "compressed_bytes": 227865,
+    "bytes": 227809,
+    "header_offset": 161148868,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/verkehr-phone-360x800.png",
+    "crc32": "ab705124",
+    "compressed_bytes": 315498,
+    "bytes": 315447,
+    "header_offset": 161376857,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/verkehr-wide-1280x720.png",
+    "crc32": "950c783d",
+    "compressed_bytes": 796084,
+    "bytes": 796278,
+    "header_offset": 161692475,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/wetter-fold-2176x1812-density-225.png",
+    "crc32": "6414c65d",
+    "compressed_bytes": 718670,
+    "bytes": 718722,
+    "header_offset": 162488679,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/wetter-landscape-640x360.png",
+    "crc32": "fa63a2ec",
+    "compressed_bytes": 216923,
+    "bytes": 216853,
+    "header_offset": 163207481,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/wetter-phone-360x800.png",
+    "crc32": "bf22fd23",
+    "compressed_bytes": 303720,
+    "bytes": 303670,
+    "header_offset": 163424527,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/wetter-wide-1280x720.png",
+    "crc32": "2e1345fb",
+    "compressed_bytes": 805816,
+    "bytes": 806238,
+    "header_offset": 163728366,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/wort-diktat-fold-2176x1812-density-225.png",
+    "crc32": "62ba5fdc",
+    "compressed_bytes": 609522,
+    "bytes": 611404,
+    "header_offset": 164534301,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/wort-diktat-landscape-640x360.png",
+    "crc32": "20e5be19",
+    "compressed_bytes": 183510,
+    "bytes": 183965,
+    "header_offset": 165143960,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/wort-diktat-phone-360x800.png",
+    "crc32": "e32060bb",
+    "compressed_bytes": 203884,
+    "bytes": 204317,
+    "header_offset": 165327598,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/wort-diktat-wide-1280x720.png",
+    "crc32": "ff493029",
+    "compressed_bytes": 711854,
+    "bytes": 713952,
+    "header_offset": 165531606,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/wortarten-landscape-640x360.png",
+    "crc32": "63b20607",
+    "compressed_bytes": 246623,
+    "bytes": 246543,
+    "header_offset": 166243584,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/wortarten-fold-2176x1812-density-225.png",
+    "crc32": "7fac4c5c",
+    "compressed_bytes": 710343,
+    "bytes": 710506,
+    "header_offset": 166490333,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/wortarten-wide-1280x720.png",
+    "crc32": "d7531ee8",
+    "compressed_bytes": 842407,
+    "bytes": 842672,
+    "header_offset": 167200811,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/wortarten-phone-360x800.png",
+    "crc32": "b91269c9",
+    "compressed_bytes": 302527,
+    "bytes": 302507,
+    "header_offset": 168043340,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/zahlen-bis-10-fold-2176x1812-density-225.png",
+    "crc32": "7ee01b97",
+    "compressed_bytes": 798110,
+    "bytes": 797979,
+    "header_offset": 168345989,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/zahlen-bis-10-landscape-640x360.png",
+    "crc32": "f6f29a55",
+    "compressed_bytes": 290729,
+    "bytes": 290639,
+    "header_offset": 169144238,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/zahlen-bis-10-wide-1280x720.png",
+    "crc32": "b5ca3e61",
+    "compressed_bytes": 860542,
+    "bytes": 860645,
+    "header_offset": 169435097,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/zahlen-bis-100-fold-2176x1812-density-225.png",
+    "crc32": "24337d8a",
+    "compressed_bytes": 881442,
+    "bytes": 881413,
+    "header_offset": 170295765,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/zahlen-bis-10-phone-360x800.png",
+    "crc32": "dab98ce5",
+    "compressed_bytes": 330054,
+    "bytes": 329987,
+    "header_offset": 171177347,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/zahlen-bis-100-landscape-640x360.png",
+    "crc32": "1d1b6aa0",
+    "compressed_bytes": 270475,
+    "bytes": 270452,
+    "header_offset": 171507527,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/zahlen-bis-100-phone-360x800.png",
+    "crc32": "fc7bbdd2",
+    "compressed_bytes": 325681,
+    "bytes": 325642,
+    "header_offset": 171778133,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/zahlen-bis-100-wide-1280x720.png",
+    "crc32": "9196e17b",
+    "compressed_bytes": 955965,
+    "bytes": 955839,
+    "header_offset": 172103941,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/zeitformen-fold-2176x1812-density-225.png",
+    "crc32": "884dcc57",
+    "compressed_bytes": 767730,
+    "bytes": 767809,
+    "header_offset": 173060033,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/zeitformen-landscape-640x360.png",
+    "crc32": "e2754798",
+    "compressed_bytes": 233681,
+    "bytes": 233622,
+    "header_offset": 173827899,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/zeitformen-phone-360x800.png",
+    "crc32": "b48da6b0",
+    "compressed_bytes": 305462,
+    "bytes": 305457,
+    "header_offset": 174061707,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/learning-adventure/zeitformen-wide-1280x720.png",
+    "crc32": "82f9d579",
+    "compressed_bytes": 821834,
+    "bytes": 821983,
+    "header_offset": 174367292,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/achievements_fold-cover.png",
+    "crc32": "2a17dca0",
+    "compressed_bytes": 690820,
+    "bytes": 692042,
+    "header_offset": 175189249,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/achievements_fold-open.png",
+    "crc32": "a4d40b24",
+    "compressed_bytes": 978539,
+    "bytes": 986908,
+    "header_offset": 175880186,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/achievements_phone.png",
+    "crc32": "62e48ee5",
+    "compressed_bytes": 819511,
+    "bytes": 822071,
+    "header_offset": 176858841,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/foto_lektion_fold-cover.png",
+    "crc32": "2fa7b220",
+    "compressed_bytes": 1229320,
+    "bytes": 1229380,
+    "header_offset": 177678464,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/foto_lektion_fold-open.png",
+    "crc32": "c82379a6",
+    "compressed_bytes": 2169330,
+    "bytes": 2169731,
+    "header_offset": 178907901,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/foto_lektion_phone.png",
+    "crc32": "03601d76",
+    "compressed_bytes": 1505931,
+    "bytes": 1506221,
+    "header_offset": 181077347,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/journal_fold-cover.png",
+    "crc32": "e977a693",
+    "compressed_bytes": 1313309,
+    "bytes": 1313410,
+    "header_offset": 182583390,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/journal_fold-open.png",
+    "crc32": "dddf9bdb",
+    "compressed_bytes": 2349171,
+    "bytes": 2348916,
+    "header_offset": 183896811,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/lumo_magic_fold-cover.png",
+    "crc32": "e6b2696b",
+    "compressed_bytes": 1172177,
+    "bytes": 1177195,
+    "header_offset": 186246093,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/journal_phone.png",
+    "crc32": "70296fd5",
+    "compressed_bytes": 1624110,
+    "bytes": 1623870,
+    "header_offset": 187418385,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/lumo_magic_fold-open.png",
+    "crc32": "14fcd622",
+    "compressed_bytes": 2030335,
+    "bytes": 2040917,
+    "header_offset": 189042602,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/lumo_magic_phone.png",
+    "crc32": "689d4f69",
+    "compressed_bytes": 1458272,
+    "bytes": 1461731,
+    "header_offset": 191073051,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/lumo_quest_fold-cover.png",
+    "crc32": "f31b3b1a",
+    "compressed_bytes": 855384,
+    "bytes": 855842,
+    "header_offset": 192531433,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/lumo_quest_fold-open.png",
+    "crc32": "33f5de1c",
+    "compressed_bytes": 1536321,
+    "bytes": 1538204,
+    "header_offset": 193386932,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/lumo_quest_phone.png",
+    "crc32": "631d1c86",
+    "compressed_bytes": 1181145,
+    "bytes": 1181846,
+    "header_offset": 194923367,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/lumo_welt_fold-cover.png",
+    "crc32": "f94aae69",
+    "compressed_bytes": 771273,
+    "bytes": 774121,
+    "header_offset": 196104622,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/lumo_welt_fold-open.png",
+    "crc32": "1650d3a6",
+    "compressed_bytes": 1125963,
+    "bytes": 1135928,
+    "header_offset": 196876009,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/lumo_welt_phone.png",
+    "crc32": "6dc3a1d1",
+    "compressed_bytes": 877645,
+    "bytes": 881813,
+    "header_offset": 198002085,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/reading_buddy_fold-cover.png",
+    "crc32": "94b2b8a5",
+    "compressed_bytes": 697487,
+    "bytes": 700926,
+    "header_offset": 198879839,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/reading_buddy_fold-open.png",
+    "crc32": "4402e47b",
+    "compressed_bytes": 1046437,
+    "bytes": 1056781,
+    "header_offset": 199577444,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/reading_buddy_phone.png",
+    "crc32": "33033850",
+    "compressed_bytes": 818692,
+    "bytes": 824343,
+    "header_offset": 200623998,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/rechentricks_fold-open.png",
+    "crc32": "ef4efd94",
+    "compressed_bytes": 1529879,
+    "bytes": 1533696,
+    "header_offset": 201442803,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/rechentricks_fold-cover.png",
+    "crc32": "afef038d",
+    "compressed_bytes": 956305,
+    "bytes": 957403,
+    "header_offset": 202972798,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/rechentricks_phone.png",
+    "crc32": "101abce7",
+    "compressed_bytes": 1182048,
+    "bytes": 1184203,
+    "header_offset": 203929220,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/schreibaufgabe_fold-cover.png",
+    "crc32": "d7038058",
+    "compressed_bytes": 325604,
+    "bytes": 331307,
+    "header_offset": 205111380,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/schreibaufgabe_fold-open.png",
+    "crc32": "2a75d109",
+    "compressed_bytes": 484293,
+    "bytes": 495048,
+    "header_offset": 205437103,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/schreibaufgabe_phone.png",
+    "crc32": "395409a0",
+    "compressed_bytes": 365987,
+    "bytes": 372820,
+    "header_offset": 205921514,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/schreibcoach_fold-cover.png",
+    "crc32": "481860a2",
+    "compressed_bytes": 108251,
+    "bytes": 118039,
+    "header_offset": 206287615,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/schreibcoach_fold-open.png",
+    "crc32": "eeac2d44",
+    "compressed_bytes": 160240,
+    "bytes": 175408,
+    "header_offset": 206395983,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/schreibcoach_phone.png",
+    "crc32": "f13485ad",
+    "compressed_bytes": 121596,
+    "bytes": 131666,
+    "header_offset": 206556339,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/trainer_B_fold-cover_geuebt.png",
+    "crc32": "54d54261",
+    "compressed_bytes": 441022,
+    "bytes": 448685,
+    "header_offset": 206678047,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/trainer_B_fold-cover_leer.png",
+    "crc32": "75f63f59",
+    "compressed_bytes": 376468,
+    "bytes": 384350,
+    "header_offset": 207119190,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/trainer_B_fold-open_geuebt.png",
+    "crc32": "644d1beb",
+    "compressed_bytes": 648842,
+    "bytes": 667884,
+    "header_offset": 207495777,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/trainer_B_fold-open_leer.png",
+    "crc32": "8c1397b1",
+    "compressed_bytes": 621527,
+    "bytes": 643243,
+    "header_offset": 208144739,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/trainer_B_phone_geuebt.png",
+    "crc32": "026c99f7",
+    "compressed_bytes": 545365,
+    "bytes": 558344,
+    "header_offset": 208766384,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/trainer_B_phone_leer.png",
+    "crc32": "13617975",
+    "compressed_bytes": 476975,
+    "bytes": 489085,
+    "header_offset": 209311865,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/trainer_klein_a_fold-cover_geuebt.png",
+    "crc32": "c5bee71f",
+    "compressed_bytes": 405350,
+    "bytes": 429285,
+    "header_offset": 209788954,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/trainer_klein_a_fold-cover_leer.png",
+    "crc32": "c3806654",
+    "compressed_bytes": 332151,
+    "bytes": 358743,
+    "header_offset": 210194431,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/trainer_klein_a_fold-open_geuebt.png",
+    "crc32": "a412c19a",
+    "compressed_bytes": 597452,
+    "bytes": 635561,
+    "header_offset": 210526707,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/trainer_klein_a_fold-open_leer.png",
+    "crc32": "a237cb5e",
+    "compressed_bytes": 554367,
+    "bytes": 599242,
+    "header_offset": 211124285,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/trainer_klein_a_phone_geuebt.png",
+    "crc32": "c1a52ac1",
+    "compressed_bytes": 496490,
+    "bytes": 533225,
+    "header_offset": 211678776,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/native-profiles/native_profiles_adult_confirmation.png",
+    "crc32": "a6e20eb9",
+    "compressed_bytes": 80870,
+    "bytes": 84459,
+    "header_offset": 212175388,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/modernization/trainer_klein_a_phone_leer.png",
+    "crc32": "a76c0a8d",
+    "compressed_bytes": 422484,
+    "bytes": 457713,
+    "header_offset": 212256388,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/native-profiles/native_profiles_fold.png",
+    "crc32": "ad60c435",
+    "compressed_bytes": 83315,
+    "bytes": 87637,
+    "header_offset": 212678992,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/native-profiles/native_profiles_parent_entry.png",
+    "crc32": "47ac5bd4",
+    "compressed_bytes": 398904,
+    "bytes": 398788,
+    "header_offset": 212762423,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/native-profiles/native_profiles_phone.png",
+    "crc32": "d58faed7",
+    "compressed_bytes": 86845,
+    "bytes": 89923,
+    "header_offset": 213161451,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/english-task-fold.png",
+    "crc32": "89003375",
+    "compressed_bytes": 1515733,
+    "bytes": 1516919,
+    "header_offset": 213248413,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/english-task-phone.png",
+    "crc32": "3c082f87",
+    "compressed_bytes": 1185678,
+    "bytes": 1186085,
+    "header_offset": 214764254,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/english-topics-fold.png",
+    "crc32": "30f6e5f7",
+    "compressed_bytes": 1095209,
+    "bytes": 1099050,
+    "header_offset": 215950041,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/english-topics-phone.png",
+    "crc32": "d6820e3e",
+    "compressed_bytes": 868199,
+    "bytes": 870470,
+    "header_offset": 217045360,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/games-fold.png",
+    "crc32": "cf67b519",
+    "compressed_bytes": 1142892,
+    "bytes": 1146716,
+    "header_offset": 217913670,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/games-phone.png",
+    "crc32": "b72b0e18",
+    "compressed_bytes": 852481,
+    "bytes": 853856,
+    "header_offset": 219056663,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/german-task-fold.png",
+    "crc32": "fdb1dc03",
+    "compressed_bytes": 1520068,
+    "bytes": 1521184,
+    "header_offset": 219909246,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/german-topics-phone.png",
+    "crc32": "09b7ba41",
+    "compressed_bytes": 872010,
+    "bytes": 874057,
+    "header_offset": 221429421,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/home-fold.png",
+    "crc32": "ab641cd3",
+    "compressed_bytes": 1641014,
+    "bytes": 1644368,
+    "header_offset": 222301541,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/german-task-phone.png",
+    "crc32": "36482c76",
+    "compressed_bytes": 1185599,
+    "bytes": 1186128,
+    "header_offset": 223942655,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/german-topics-fold.png",
+    "crc32": "0d26d6e2",
+    "compressed_bytes": 1096341,
+    "bytes": 1100443,
+    "header_offset": 225128362,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/home-phone.png",
+    "crc32": "5206b18c",
+    "compressed_bytes": 1537921,
+    "bytes": 1538153,
+    "header_offset": 226224812,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/learning-entry-fold.png",
+    "crc32": "7dd42b1c",
+    "compressed_bytes": 1014567,
+    "bytes": 1019130,
+    "header_offset": 227762834,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/learning-entry-phone.png",
+    "crc32": "1e3813f9",
+    "compressed_bytes": 935572,
+    "bytes": 937007,
+    "header_offset": 228777511,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/math-task-fold.png",
+    "crc32": "346c656f",
+    "compressed_bytes": 1521084,
+    "bytes": 1522392,
+    "header_offset": 229713194,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/math-task-phone.png",
+    "crc32": "611dcb6d",
+    "compressed_bytes": 1206950,
+    "bytes": 1207281,
+    "header_offset": 231234383,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/math-topics-fold.png",
+    "crc32": "bbe9a8fd",
+    "compressed_bytes": 1099476,
+    "bytes": 1103503,
+    "header_offset": 232441439,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/math-topics-phone.png",
+    "crc32": "3afe8dd4",
+    "compressed_bytes": 871979,
+    "bytes": 874073,
+    "header_offset": 233541022,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/modern-grade-4-fold.png",
+    "crc32": "101ef310",
+    "compressed_bytes": 1012899,
+    "bytes": 1017969,
+    "header_offset": 234413109,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/modern-grade-4-phone.png",
+    "crc32": "e4ea4cfe",
+    "compressed_bytes": 940339,
+    "bytes": 944831,
+    "header_offset": 235426118,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/modern-tools-fold.png",
+    "crc32": "df8f495b",
+    "compressed_bytes": 1172962,
+    "bytes": 1176159,
+    "header_offset": 236366568,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/modern-tools-phone.png",
+    "crc32": "a4ebda41",
+    "compressed_bytes": 1049711,
+    "bytes": 1049825,
+    "header_offset": 237539638,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/science-task-fold.png",
+    "crc32": "3a89764b",
+    "compressed_bytes": 1520306,
+    "bytes": 1521648,
+    "header_offset": 238589458,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/science-task-phone.png",
+    "crc32": "c4c2da14",
+    "compressed_bytes": 1186677,
+    "bytes": 1187057,
+    "header_offset": 240109872,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/science-topics-fold.png",
+    "crc32": "c2cd006d",
+    "compressed_bytes": 1100306,
+    "bytes": 1104576,
+    "header_offset": 241296658,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/navigation/science-topics-phone.png",
+    "crc32": "6f153d87",
+    "compressed_bytes": 870554,
+    "bytes": 872886,
+    "header_offset": 242397074,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/nextgen-reading/cover-large-text-explanation.png",
+    "crc32": "cce78b1a",
+    "compressed_bytes": 250774,
+    "bytes": 269660,
+    "header_offset": 243267739,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/nextgen-reading/cover-large-text-question.png",
+    "crc32": "1b0a4e01",
+    "compressed_bytes": 299938,
+    "bytes": 316142,
+    "header_offset": 243518637,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/nextgen-reading/fold-open-explanation.png",
+    "crc32": "82dd527d",
+    "compressed_bytes": 305279,
+    "bytes": 323541,
+    "header_offset": 243818696,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/nextgen-reading/fold-open-question.png",
+    "crc32": "fa038bfe",
+    "compressed_bytes": 292200,
+    "bytes": 310020,
+    "header_offset": 244124092,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/nextgen-reading/phone-explanation.png",
+    "crc32": "c983d87d",
+    "compressed_bytes": 241251,
+    "bytes": 250544,
+    "header_offset": 244416406,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/nextgen-reading/phone-question.png",
+    "crc32": "e514548f",
+    "compressed_bytes": 225953,
+    "bytes": 236105,
+    "header_offset": 244657770,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading/home-fold-cover.png",
+    "crc32": "ba36df8f",
+    "compressed_bytes": 957874,
+    "bytes": 957764,
+    "header_offset": 244883833,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading/home-fold-open.png",
+    "crc32": "8b0576b0",
+    "compressed_bytes": 1792955,
+    "bytes": 1792712,
+    "header_offset": 245841810,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading/home-phone.png",
+    "crc32": "b27e7363",
+    "compressed_bytes": 1140156,
+    "bytes": 1140153,
+    "header_offset": 247634867,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading/reading-fold-cover.png",
+    "crc32": "8de78e13",
+    "compressed_bytes": 895547,
+    "bytes": 895473,
+    "header_offset": 248775121,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading/reading-fold-open.png",
+    "crc32": "606705ef",
+    "compressed_bytes": 1483342,
+    "bytes": 1483640,
+    "header_offset": 249670774,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading/reading-phone.png",
+    "crc32": "c10fc9d3",
+    "compressed_bytes": 1094161,
+    "bytes": 1094115,
+    "header_offset": 251154221,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading/retry-fold-cover.png",
+    "crc32": "9bd610b8",
+    "compressed_bytes": 658542,
+    "bytes": 658882,
+    "header_offset": 252248483,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading/retry-fold-open.png",
+    "crc32": "f6bb46bb",
+    "compressed_bytes": 1056547,
+    "bytes": 1058515,
+    "header_offset": 252907129,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading/retry-phone.png",
+    "crc32": "b9e59049",
+    "compressed_bytes": 797879,
+    "bytes": 798473,
+    "header_offset": 253963779,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading/subjects-fold-cover.png",
+    "crc32": "db6d23a5",
+    "compressed_bytes": 953874,
+    "bytes": 953766,
+    "header_offset": 254761757,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading/subjects-fold-open.png",
+    "crc32": "9ff5612b",
+    "compressed_bytes": 1328848,
+    "bytes": 1330229,
+    "header_offset": 255715738,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading/subjects-phone.png",
+    "crc32": "d0517f11",
+    "compressed_bytes": 1132966,
+    "bytes": 1133008,
+    "header_offset": 257044692,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading-passages/reading-fold.png",
+    "crc32": "909b910b",
+    "compressed_bytes": 562165,
+    "bytes": 570542,
+    "header_offset": 258177760,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading-passages/reading-landscape.png",
+    "crc32": "c2e8e22b",
+    "compressed_bytes": 242344,
+    "bytes": 244975,
+    "header_offset": 258740034,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reading-passages/reading-phone.png",
+    "crc32": "d2623617",
+    "compressed_bytes": 287289,
+    "bytes": 289963,
+    "header_offset": 258982492,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/fold-cover-344x882/denkprofil-01-oeffnen.png",
+    "crc32": "a9715c54",
+    "compressed_bytes": 786527,
+    "bytes": 786548,
+    "header_offset": 259269891,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/fold-cover-344x882/denkprofil-02-erste-frage.png",
+    "crc32": "310d1eec",
+    "compressed_bytes": 491349,
+    "bytes": 491494,
+    "header_offset": 260056548,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/fold-cover-344x882/knobel-01-start.png",
+    "crc32": "8e4b65ae",
+    "compressed_bytes": 767547,
+    "bytes": 767770,
+    "header_offset": 260548031,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/fold-cover-344x882/knobel-03-raetsel.png",
+    "crc32": "defe0583",
+    "compressed_bytes": 667567,
+    "bytes": 667616,
+    "header_offset": 261315702,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/fold-cover-344x882/knobel-02-bereich.png",
+    "crc32": "2244f564",
+    "compressed_bytes": 705937,
+    "bytes": 705987,
+    "header_offset": 261983395,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/fold-open-690x829/denkprofil-01-oeffnen.png",
+    "crc32": "ed99c68a",
+    "compressed_bytes": 1387036,
+    "bytes": 1387610,
+    "header_offset": 262689458,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/fold-open-690x829/denkprofil-02-erste-frage.png",
+    "crc32": "3a43d1e3",
+    "compressed_bytes": 772061,
+    "bytes": 773429,
+    "header_offset": 264076623,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/fold-open-690x829/knobel-01-start.png",
+    "crc32": "d559d42d",
+    "compressed_bytes": 1372605,
+    "bytes": 1373671,
+    "header_offset": 264848817,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/fold-open-690x829/knobel-02-bereich.png",
+    "crc32": "642ee663",
+    "compressed_bytes": 1217255,
+    "bytes": 1217783,
+    "header_offset": 266221545,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/fold-open-690x829/knobel-03-raetsel.png",
+    "crc32": "d0d7be67",
+    "compressed_bytes": 1248423,
+    "bytes": 1248771,
+    "header_offset": 267438925,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/phone-412x915/denkprofil-01-oeffnen.png",
+    "crc32": "434b4050",
+    "compressed_bytes": 955551,
+    "bytes": 955653,
+    "header_offset": 268687473,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/phone-412x915/denkprofil-02-erste-frage.png",
+    "crc32": "fd9f41ee",
+    "compressed_bytes": 580548,
+    "bytes": 580784,
+    "header_offset": 269643149,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/phone-412x915/knobel-01-start.png",
+    "crc32": "997b22b1",
+    "compressed_bytes": 937946,
+    "bytes": 938448,
+    "header_offset": 270223826,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/phone-412x915/knobel-02-bereich.png",
+    "crc32": "f72dde32",
+    "compressed_bytes": 843885,
+    "bytes": 843920,
+    "header_offset": 271161891,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/reasoning/phone-412x915/knobel-03-raetsel.png",
+    "crc32": "871559fd",
+    "compressed_bytes": 786848,
+    "bytes": 786960,
+    "header_offset": 272005897,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_arms_open-rest.png",
+    "crc32": "9a5f5023",
+    "compressed_bytes": 163923,
+    "bytes": 163873,
+    "header_offset": 272792866,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_arms_open-stress-a.png",
+    "crc32": "1f44b755",
+    "compressed_bytes": 165318,
+    "bytes": 165295,
+    "header_offset": 272956898,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_arms_open-stress-b.png",
+    "crc32": "e2ad51a8",
+    "compressed_bytes": 164448,
+    "bytes": 164402,
+    "header_offset": 273122329,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_book_point-rest.png",
+    "crc32": "087d695f",
+    "compressed_bytes": 181347,
+    "bytes": 181287,
+    "header_offset": 273286890,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_book_point-stress-a.png",
+    "crc32": "a0c6573c",
+    "compressed_bytes": 183576,
+    "bytes": 183525,
+    "header_offset": 273468347,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_book_point-stress-b.png",
+    "crc32": "0b873b60",
+    "compressed_bytes": 181641,
+    "bytes": 181586,
+    "header_offset": 273652037,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_book_welcome-rest.png",
+    "crc32": "f7cb4750",
+    "compressed_bytes": 212826,
+    "bytes": 212818,
+    "header_offset": 273833792,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_book_welcome-stress-a.png",
+    "crc32": "86e1fdf8",
+    "compressed_bytes": 213399,
+    "bytes": 213462,
+    "header_offset": 274046730,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_book_welcome-stress-b.png",
+    "crc32": "d54988c8",
+    "compressed_bytes": 213899,
+    "bytes": 213902,
+    "header_offset": 274260245,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_cheer-rest.png",
+    "crc32": "2b27c5c9",
+    "compressed_bytes": 149953,
+    "bytes": 149909,
+    "header_offset": 274474260,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_cheer-stress-a.png",
+    "crc32": "ab4a536b",
+    "compressed_bytes": 150635,
+    "bytes": 150608,
+    "header_offset": 274624318,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_point_side-rest.png",
+    "crc32": "70aa9c89",
+    "compressed_bytes": 160749,
+    "bytes": 160699,
+    "header_offset": 274775062,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_cheer-stress-b.png",
+    "crc32": "0a297d71",
+    "compressed_bytes": 150886,
+    "bytes": 150852,
+    "header_offset": 274935921,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_point_side-stress-a.png",
+    "crc32": "ec8c8f2d",
+    "compressed_bytes": 162844,
+    "bytes": 162817,
+    "header_offset": 275086916,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_point_side-stress-b.png",
+    "crc32": "9f2c5f71",
+    "compressed_bytes": 160656,
+    "bytes": 160606,
+    "header_offset": 275249874,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_tablet_thumb-rest.png",
+    "crc32": "0e81e65e",
+    "compressed_bytes": 156482,
+    "bytes": 156432,
+    "header_offset": 275410644,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_tablet_thumb-stress-a.png",
+    "crc32": "b7f6b8a1",
+    "compressed_bytes": 158795,
+    "bytes": 158778,
+    "header_offset": 275567238,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_tablet_thumb-stress-b.png",
+    "crc32": "66aa6560",
+    "compressed_bytes": 155756,
+    "bytes": 155706,
+    "header_offset": 275726149,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_teacher_stick-rest.png",
+    "crc32": "5796d170",
+    "compressed_bytes": 152925,
+    "bytes": 152875,
+    "header_offset": 275882021,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_teacher_stick-stress-a.png",
+    "crc32": "3930d94b",
+    "compressed_bytes": 154021,
+    "bytes": 153993,
+    "header_offset": 276035059,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_teacher_stick-stress-b.png",
+    "crc32": "703b6b95",
+    "compressed_bytes": 153548,
+    "bytes": 153498,
+    "header_offset": 276189197,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_thumb_wink-rest.png",
+    "crc32": "178a9a64",
+    "compressed_bytes": 157160,
+    "bytes": 157113,
+    "header_offset": 276342862,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_thumb_wink-stress-b.png",
+    "crc32": "08dfe9ad",
+    "compressed_bytes": 158805,
+    "bytes": 158763,
+    "header_offset": 276500132,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_trophy_wink-rest.png",
+    "crc32": "80bc3fc8",
+    "compressed_bytes": 170779,
+    "bytes": 170727,
+    "header_offset": 276659051,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_thumb_wink-stress-a.png",
+    "crc32": "91bffd09",
+    "compressed_bytes": 157335,
+    "bytes": 157377,
+    "header_offset": 276829941,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_trophy_wink-stress-b.png",
+    "crc32": "4cf4fb45",
+    "compressed_bytes": 172332,
+    "bytes": 172277,
+    "header_offset": 276987390,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/rig-stress/fox_trophy_wink-stress-a.png",
+    "crc32": "3b46f480",
+    "compressed_bytes": 171802,
+    "bytes": 171788,
+    "header_offset": 277159837,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_01_start.png",
+    "crc32": "f27d7dd3",
+    "compressed_bytes": 1417220,
+    "bytes": 1417762,
+    "header_offset": 277331754,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_02_anleitung_matrix.png",
+    "crc32": "642ee663",
+    "compressed_bytes": 1217255,
+    "bytes": 1217783,
+    "header_offset": 278749072,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_02_anleitung_memory.png",
+    "crc32": "cecc0f6a",
+    "compressed_bytes": 1135895,
+    "bytes": 1136486,
+    "header_offset": 279966436,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_02_anleitung_numbers.png",
+    "crc32": "855ee734",
+    "compressed_bytes": 1271643,
+    "bytes": 1272046,
+    "header_offset": 281102440,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_02_anleitung_oddone.png",
+    "crc32": "3242a5c5",
+    "compressed_bytes": 1261349,
+    "bytes": 1261683,
+    "header_offset": 282374193,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_02_anleitung_rotation.png",
+    "crc32": "1d347cd4",
+    "compressed_bytes": 1236923,
+    "bytes": 1237242,
+    "header_offset": 283635651,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_02_anleitung_series.png",
+    "crc32": "a5dd3c1c",
+    "compressed_bytes": 1251601,
+    "bytes": 1252078,
+    "header_offset": 284872685,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_03_raetsel_matrix.png",
+    "crc32": "9681903b",
+    "compressed_bytes": 1228091,
+    "bytes": 1228404,
+    "header_offset": 286124395,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_03_raetsel_memory.png",
+    "crc32": "715bec98",
+    "compressed_bytes": 1230788,
+    "bytes": 1231083,
+    "header_offset": 287352593,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_03_raetsel_memory_zeigen.png",
+    "crc32": "429064fa",
+    "compressed_bytes": 1229263,
+    "bytes": 1229542,
+    "header_offset": 288583488,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_03_raetsel_numbers.png",
+    "crc32": "17dbdf93",
+    "compressed_bytes": 1259651,
+    "bytes": 1259822,
+    "header_offset": 289812865,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_03_raetsel_oddone.png",
+    "crc32": "1f1b18bc",
+    "compressed_bytes": 1327099,
+    "bytes": 1327305,
+    "header_offset": 291072624,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_03_raetsel_rotation.png",
+    "crc32": "cd037697",
+    "compressed_bytes": 1234722,
+    "bytes": 1235090,
+    "header_offset": 292399830,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_03_raetsel_series.png",
+    "crc32": "ce220feb",
+    "compressed_bytes": 1260488,
+    "bytes": 1260651,
+    "header_offset": 293634661,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_04_ergebnis.png",
+    "crc32": "c90dcc3d",
+    "compressed_bytes": 1101992,
+    "bytes": 1102222,
+    "header_offset": 294895256,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_04_ergebnis_komplett.png",
+    "crc32": "cc0c3bdb",
+    "compressed_bytes": 1086142,
+    "bytes": 1085922,
+    "header_offset": 295997349,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_05_rueckblick.png",
+    "crc32": "88b0f7e5",
+    "compressed_bytes": 1095916,
+    "bytes": 1095885,
+    "header_offset": 297083601,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_05_rueckblick_drehen.png",
+    "crc32": "9ea2ae3f",
+    "compressed_bytes": 1042122,
+    "bytes": 1042440,
+    "header_offset": 298179620,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_05_rueckblick_loesung.png",
+    "crc32": "34842e1a",
+    "compressed_bytes": 1082900,
+    "bytes": 1082883,
+    "header_offset": 299221852,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_06_tests_seite.png",
+    "crc32": "c26283a0",
+    "compressed_bytes": 1059200,
+    "bytes": 1059453,
+    "header_offset": 300304863,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_games.png",
+    "crc32": "95baeea3",
+    "compressed_bytes": 519831,
+    "bytes": 519816,
+    "header_offset": 301364167,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_home.png",
+    "crc32": "7894dc0d",
+    "compressed_bytes": 850589,
+    "bytes": 850481,
+    "header_offset": 301884093,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_rewards.png",
+    "crc32": "09e5c893",
+    "compressed_bytes": 517085,
+    "bytes": 517157,
+    "header_offset": 302734776,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_learn.png",
+    "crc32": "ebb157d2",
+    "compressed_bytes": 463030,
+    "bytes": 463066,
+    "header_offset": 303251958,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_profile.png",
+    "crc32": "eb846e65",
+    "compressed_bytes": 669040,
+    "bytes": 668928,
+    "header_offset": 303715083,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/fold_tests.png",
+    "crc32": "b5f55097",
+    "compressed_bytes": 633348,
+    "bytes": 633186,
+    "header_offset": 304384220,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_01_start.png",
+    "crc32": "a5e03ad9",
+    "compressed_bytes": 962538,
+    "bytes": 962676,
+    "header_offset": 305017663,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_02_anleitung_matrix.png",
+    "crc32": "f72dde32",
+    "compressed_bytes": 843885,
+    "bytes": 843920,
+    "header_offset": 305980300,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_02_anleitung_memory.png",
+    "crc32": "ace95795",
+    "compressed_bytes": 770949,
+    "bytes": 771065,
+    "header_offset": 306824295,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_02_anleitung_numbers.png",
+    "crc32": "34d6c9f0",
+    "compressed_bytes": 870671,
+    "bytes": 870762,
+    "header_offset": 307595354,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_02_anleitung_oddone.png",
+    "crc32": "389a62c7",
+    "compressed_bytes": 856476,
+    "bytes": 856534,
+    "header_offset": 308466136,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_02_anleitung_rotation.png",
+    "crc32": "4fb3c182",
+    "compressed_bytes": 839183,
+    "bytes": 839306,
+    "header_offset": 309322722,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_02_anleitung_series.png",
+    "crc32": "fa695ff7",
+    "compressed_bytes": 853682,
+    "bytes": 853804,
+    "header_offset": 310162017,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_03_raetsel_matrix.png",
+    "crc32": "b38e7655",
+    "compressed_bytes": 776866,
+    "bytes": 776876,
+    "header_offset": 311015809,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_03_raetsel_memory.png",
+    "crc32": "bcf1df52",
+    "compressed_bytes": 805697,
+    "bytes": 805998,
+    "header_offset": 311792783,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_03_raetsel_numbers.png",
+    "crc32": "693ccad4",
+    "compressed_bytes": 842573,
+    "bytes": 842666,
+    "header_offset": 312598588,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_03_raetsel_memory_zeigen.png",
+    "crc32": "f42cc91c",
+    "compressed_bytes": 800769,
+    "bytes": 801173,
+    "header_offset": 313441270,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_03_raetsel_oddone.png",
+    "crc32": "74df6f3a",
+    "compressed_bytes": 890861,
+    "bytes": 890956,
+    "header_offset": 314242154,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_03_raetsel_rotation.png",
+    "crc32": "1571b47e",
+    "compressed_bytes": 862738,
+    "bytes": 862829,
+    "header_offset": 315133123,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_03_raetsel_series.png",
+    "crc32": "a2d4024b",
+    "compressed_bytes": 803226,
+    "bytes": 803309,
+    "header_offset": 315995971,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_04_ergebnis.png",
+    "crc32": "e28be97f",
+    "compressed_bytes": 814137,
+    "bytes": 813934,
+    "header_offset": 316799305,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_05_rueckblick_drehen.png",
+    "crc32": "7a82ba37",
+    "compressed_bytes": 798761,
+    "bytes": 798646,
+    "header_offset": 317613544,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_05_rueckblick_loesung.png",
+    "crc32": "730d45a9",
+    "compressed_bytes": 822004,
+    "bytes": 821758,
+    "header_offset": 318412416,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_04_ergebnis_komplett.png",
+    "crc32": "757b4aaa",
+    "compressed_bytes": 737298,
+    "bytes": 737080,
+    "header_offset": 319234532,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_05_rueckblick.png",
+    "crc32": "1bb2c175",
+    "compressed_bytes": 853530,
+    "bytes": 853307,
+    "header_offset": 319971941,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_06_tests_seite.png",
+    "crc32": "c1562ae7",
+    "compressed_bytes": 827928,
+    "bytes": 827850,
+    "header_offset": 320825575,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_games.png",
+    "crc32": "237141ad",
+    "compressed_bytes": 344517,
+    "bytes": 344456,
+    "header_offset": 321653608,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_home.png",
+    "crc32": "c5135e5b",
+    "compressed_bytes": 569487,
+    "bytes": 569390,
+    "header_offset": 321998221,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_learn.png",
+    "crc32": "a3905d1d",
+    "compressed_bytes": 388432,
+    "bytes": 388358,
+    "header_offset": 322567803,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_rewards.png",
+    "crc32": "e80ccf4d",
+    "compressed_bytes": 421603,
+    "bytes": 421569,
+    "header_offset": 322956331,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_profile.png",
+    "crc32": "0d48cae3",
+    "compressed_bytes": 489029,
+    "bytes": 488879,
+    "header_offset": 323378032,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/phone_tests.png",
+    "crc32": "4420bdcb",
+    "compressed_bytes": 478631,
+    "bytes": 478481,
+    "header_offset": 323867159,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/quer_01_start.png",
+    "crc32": "a74d9579",
+    "compressed_bytes": 784333,
+    "bytes": 784968,
+    "header_offset": 324345886,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/quer_03_raetsel_matrix.png",
+    "crc32": "c867001e",
+    "compressed_bytes": 686947,
+    "bytes": 687610,
+    "header_offset": 325130317,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/quer_04_ergebnis.png",
+    "crc32": "eee1210a",
+    "compressed_bytes": 665930,
+    "bytes": 666482,
+    "header_offset": 325817371,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/reference-phone_games.png",
+    "crc32": "52a71d6a",
+    "compressed_bytes": 284111,
+    "bytes": 284058,
+    "header_offset": 326483402,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/quer_03_raetsel_rotation.png",
+    "crc32": "5ca642d8",
+    "compressed_bytes": 668238,
+    "bytes": 668905,
+    "header_offset": 326767619,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/reference-phone_home.png",
+    "crc32": "cc906ff0",
+    "compressed_bytes": 464490,
+    "bytes": 464345,
+    "header_offset": 327435966,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/reference-phone_learn.png",
+    "crc32": "671ca9f1",
+    "compressed_bytes": 298625,
+    "bytes": 298656,
+    "header_offset": 327900561,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/reference-phone_rewards.png",
+    "crc32": "5acd58df",
+    "compressed_bytes": 342529,
+    "bytes": 342499,
+    "header_offset": 328199292,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/reference-phone_profile.png",
+    "crc32": "193dcf70",
+    "compressed_bytes": 381282,
+    "bytes": 381162,
+    "header_offset": 328541929,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tour/reference-phone_tests.png",
+    "crc32": "52926570",
+    "compressed_bytes": 351018,
+    "bytes": 350908,
+    "header_offset": 328923319,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tutoring/fold-target-actual-opened-course.png",
+    "crc32": "b1012150",
+    "compressed_bytes": 777418,
+    "bytes": 777596,
+    "header_offset": 329274443,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tutoring/fold-target-actual-tutoring-card.png",
+    "crc32": "00436df3",
+    "compressed_bytes": 734541,
+    "bytes": 734968,
+    "header_offset": 330051982,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tutoring/phone-360x800-actual-opened-course.png",
+    "crc32": "1cf1e8e3",
+    "compressed_bytes": 313716,
+    "bytes": 313838,
+    "header_offset": 330786644,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tutoring/phone-360x800-actual-tutoring-card.png",
+    "crc32": "dc4a426e",
+    "compressed_bytes": 264004,
+    "bytes": 264129,
+    "header_offset": 331100483,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tutoring/fold-target-actual-tutoring-reason.png",
+    "crc32": "16e65ff1",
+    "compressed_bytes": 771409,
+    "bytes": 771806,
+    "header_offset": 331364610,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/full-flutter/tutoring/phone-360x800-actual-tutoring-reason.png",
+    "crc32": "ddfab298",
+    "compressed_bytes": 373165,
+    "bytes": 373236,
+    "header_offset": 332136142,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/quiz-observed-regressions.log",
+    "crc32": "ede36ab5",
+    "compressed_bytes": 1310,
+    "bytes": 7520,
+    "header_offset": 332509432,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/quiz-authority.log",
+    "crc32": "eb6a6e25",
+    "compressed_bytes": 846,
+    "bytes": 1829,
+    "header_offset": 332510834,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/memory-ui-regression.log",
+    "crc32": "335078b9",
+    "compressed_bytes": 1135,
+    "bytes": 5828,
+    "header_offset": 332511761,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": "feature-evidence/wallet-zone-profile-regression.log",
+    "crc32": "c921f64a",
+    "compressed_bytes": 1238,
+    "bytes": 5389,
+    "header_offset": 332512983,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/1024px-scale-1.0-initial.png",
+    "crc32": "4160edd6",
+    "compressed_bytes": 932262,
+    "bytes": 934266,
+    "header_offset": 332514318,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/1024px-scale-1.0-initial.json",
+    "crc32": "33abc2bc",
+    "compressed_bytes": 230,
+    "bytes": 373,
+    "header_offset": 333446685,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/1024px-scale-1.0-locking.json",
+    "crc32": "d9320a00",
+    "compressed_bytes": 228,
+    "bytes": 373,
+    "header_offset": 333447021,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/1024px-scale-1.0-revealed.png",
+    "crc32": "6c2e380f",
+    "compressed_bytes": 904145,
+    "bytes": 905744,
+    "header_offset": 333447355,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/1024px-scale-1.0-locking.png",
+    "crc32": "2444e8d5",
+    "compressed_bytes": 934904,
+    "bytes": 937169,
+    "header_offset": 334351606,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/1024px-scale-1.5-initial.json",
+    "crc32": "4d2e180b",
+    "compressed_bytes": 231,
+    "bytes": 373,
+    "header_offset": 335286615,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/1024px-scale-1.0-revealed.json",
+    "crc32": "b62780e4",
+    "compressed_bytes": 230,
+    "bytes": 374,
+    "header_offset": 335286952,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/1024px-scale-1.5-initial.png",
+    "crc32": "ca157ca1",
+    "compressed_bytes": 982898,
+    "bytes": 984269,
+    "header_offset": 335287289,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/1024px-scale-1.5-locking.json",
+    "crc32": "08828146",
+    "compressed_bytes": 230,
+    "bytes": 373,
+    "header_offset": 336270292,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/1024px-scale-1.5-locking.png",
+    "crc32": "6cefe969",
+    "compressed_bytes": 948940,
+    "bytes": 953896,
+    "header_offset": 336270628,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/1024px-scale-1.5-revealed.json",
+    "crc32": "03e26d96",
+    "compressed_bytes": 232,
+    "bytes": 374,
+    "header_offset": 337219673,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/1024px-scale-1.5-revealed.png",
+    "crc32": "571b29f5",
+    "compressed_bytes": 925477,
+    "bytes": 929809,
+    "header_offset": 337220012,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/320px-scale-1.0-initial.json",
+    "crc32": "63e208b3",
+    "compressed_bytes": 228,
+    "bytes": 371,
+    "header_offset": 338145595,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/320px-scale-1.0-locking.json",
+    "crc32": "e1353d99",
+    "compressed_bytes": 227,
+    "bytes": 371,
+    "header_offset": 338145928,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/320px-scale-1.0-initial.png",
+    "crc32": "4c47aa43",
+    "compressed_bytes": 356968,
+    "bytes": 357455,
+    "header_offset": 338146260,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/320px-scale-1.0-locking.png",
+    "crc32": "8166ab9d",
+    "compressed_bytes": 355565,
+    "bytes": 355977,
+    "header_offset": 338503332,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/320px-scale-1.0-revealed.json",
+    "crc32": "f2108dff",
+    "compressed_bytes": 228,
+    "bytes": 372,
+    "header_offset": 338859001,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/320px-scale-1.0-revealed.png",
+    "crc32": "9ce66471",
+    "compressed_bytes": 349283,
+    "bytes": 349712,
+    "header_offset": 338859335,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/320px-scale-1.5-initial.json",
+    "crc32": "eb46e7c1",
+    "compressed_bytes": 229,
+    "bytes": 371,
+    "header_offset": 339208723,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/320px-scale-1.5-initial.png",
+    "crc32": "d931cc8c",
+    "compressed_bytes": 366075,
+    "bytes": 366234,
+    "header_offset": 339209057,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/320px-scale-1.5-locking.json",
+    "crc32": "95cd3ab9",
+    "compressed_bytes": 228,
+    "bytes": 371,
+    "header_offset": 339575236,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/320px-scale-1.5-locking.png",
+    "crc32": "abce1c21",
+    "compressed_bytes": 362786,
+    "bytes": 363377,
+    "header_offset": 339575569,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/320px-scale-1.5-revealed.json",
+    "crc32": "6541834d",
+    "compressed_bytes": 230,
+    "bytes": 372,
+    "header_offset": 339938459,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/320px-scale-1.5-revealed.png",
+    "crc32": "88c8ea6f",
+    "compressed_bytes": 356078,
+    "bytes": 356281,
+    "header_offset": 339938795,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/420px-scale-1.0-initial.json",
+    "crc32": "cb5d7f8c",
+    "compressed_bytes": 227,
+    "bytes": 371,
+    "header_offset": 340294978,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/420px-scale-1.0-initial.png",
+    "crc32": "372ea215",
+    "compressed_bytes": 470922,
+    "bytes": 471186,
+    "header_offset": 340295310,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/420px-scale-1.0-locking.json",
+    "crc32": "ecc2e86a",
+    "compressed_bytes": 226,
+    "bytes": 371,
+    "header_offset": 340766336,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/420px-scale-1.0-revealed.json",
+    "crc32": "7479ac50",
+    "compressed_bytes": 227,
+    "bytes": 372,
+    "header_offset": 340766667,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/420px-scale-1.0-locking.png",
+    "crc32": "df222bd0",
+    "compressed_bytes": 471506,
+    "bytes": 471543,
+    "header_offset": 340767000,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/420px-scale-1.0-revealed.png",
+    "crc32": "a2e3759c",
+    "compressed_bytes": 461915,
+    "bytes": 462000,
+    "header_offset": 341238610,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/420px-scale-1.5-initial.json",
+    "crc32": "cf57cb7c",
+    "compressed_bytes": 229,
+    "bytes": 371,
+    "header_offset": 341700630,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/420px-scale-1.5-initial.png",
+    "crc32": "5856f6cd",
+    "compressed_bytes": 474608,
+    "bytes": 475287,
+    "header_offset": 341700964,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/420px-scale-1.5-locking.json",
+    "crc32": "7be2bf79",
+    "compressed_bytes": 228,
+    "bytes": 371,
+    "header_offset": 342175676,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/420px-scale-1.5-locking.png",
+    "crc32": "d9601455",
+    "compressed_bytes": 474960,
+    "bytes": 476168,
+    "header_offset": 342176009,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/420px-scale-1.5-revealed.json",
+    "crc32": "fd18b67b",
+    "compressed_bytes": 229,
+    "bytes": 372,
+    "header_offset": 342651073,
+    "compression": 8,
+    "flag_bits": 8
+  },
+  {
+    "name": ".ci-results/quiz-premium-stage/420px-scale-1.5-revealed.png",
+    "crc32": "e855980e",
+    "compressed_bytes": 464529,
+    "bytes": 465328,
+    "header_offset": 342651408,
+    "compression": 8,
+    "flag_bits": 8
+  }
+]
