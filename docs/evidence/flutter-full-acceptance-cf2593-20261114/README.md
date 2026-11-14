@@ -61,3 +61,9 @@ The separately documented Home capture-state repair requires a real visible
 expansion and first subject card for every named learning-cards image.
 The cf2593 Home images precede that repair and remain original before evidence.
 See ../home-subject-capture-20261114 for exact hashes and observed limitations.
+
+QA pull request: https://github.com/Ullmann27/lumo-lernen/pull/501
+QA branch: repair/lumo-capture-state-20261114. Its first source checkpoint is
+c54d9aa3a4dccab6c1cf677c9857abf77df66174. This documentation-only follow-up
+creates the branch push needed to invoke the existing Direct-Village workflow.
+The Home and Village test source blobs remain identical to that checkpoint.
