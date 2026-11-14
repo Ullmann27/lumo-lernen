@@ -1,0 +1,68 @@
+{
+  "schema": "lumo-village-flutter-return-observation",
+  "version": 1,
+  "status": "PASS",
+  "timeout_seconds": 90,
+  "attempts": [
+    {
+      "status": "REJECTED",
+      "started_after_seconds": 0.0015119769998364063,
+      "process_before": {
+        "host_pid": "commands/0072-returned-flutter-visible-1-before-host_pid.stdout",
+        "native_pid": "commands/0073-returned-flutter-visible-1-before-native_pid.stdout",
+        "activity": "commands/0074-returned-flutter-visible-1-before-activity.stdout"
+      },
+      "frame": {
+        "file": "returned-flutter-observations/attempt-1/returned-flutter-frame.png",
+        "width": 2400,
+        "height": 1080,
+        "sha256": "bf79878c91e05a000b4a17fa0a0357faeb6f4c8a2b81e7effd742e711dfaaaa0"
+      },
+      "render_readiness": {
+        "width": 2400,
+        "height": 1080,
+        "content_entropy_bits": 4.971,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      },
+      "visible_ocr": "returned-flutter-visible-1",
+      "error": "ValueError: Actual original TSV/PNG does not establish caption: Spielen",
+      "completed_after_seconds": 20.215728753999883
+    },
+    {
+      "status": "PASS",
+      "started_after_seconds": 20.71609771699991,
+      "process_before": {
+        "host_pid": "commands/0075-returned-flutter-visible-2-before-host_pid.stdout",
+        "native_pid": "commands/0076-returned-flutter-visible-2-before-native_pid.stdout",
+        "activity": "commands/0077-returned-flutter-visible-2-before-activity.stdout"
+      },
+      "frame": {
+        "file": "returned-flutter-observations/attempt-2/returned-flutter-frame.png",
+        "width": 1080,
+        "height": 2400,
+        "sha256": "43ec359af33f96bd47299bb6c933c45c7269c7aa5f6cfb3fb4d2c033dff90d8b"
+      },
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 7.039,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      },
+      "visible_ocr": "returned-flutter-visible-2",
+      "ui": "returned-flutter-ui-2.xml",
+      "process_after": {
+        "host_pid": "commands/0078-returned-flutter-visible-2-after-host_pid.stdout",
+        "native_pid": "commands/0079-returned-flutter-visible-2-after-native_pid.stdout",
+        "activity": "commands/0080-returned-flutter-visible-2-after-activity.stdout",
+        "preferences": "commands/0081-returned-flutter-visible-2-preferences.stdout"
+      },
+      "completed_after_seconds": 23.346157047999895
+    }
+  ],
+  "scope": "Fresh PNG/TSV and live Flutter semantics after the single visible return touch",
+  "elapsed_seconds": 23.34616621500004
+}

@@ -1,0 +1,41 @@
+{
+  "before": "return-first-second-000",
+  "frame": {
+    "file": "return-first-flutter.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "ba51f3f5b757acc8975983beee9c8fede197e10c53649c2f2045ddb392f3fb4e",
+    "render_readiness": {
+      "width": 1080,
+      "height": 2400,
+      "content_entropy_bits": 3.263,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  },
+  "preferences": "commands/0332-return-first-after-return-preferences.stdout",
+  "native_exit": "commands/0329-return-first-native-exit.stdout",
+  "activity": "commands/0330-return-first-return-activity.stdout",
+  "closed_mailbox": "commands/0331-return-first-closed-mailbox.stdout",
+  "round": {
+    "schema": 1,
+    "owner": "0de0a398b2cd1c1cf25038a54a5b230bf8bd9c8314a51f3e7f1753c7eb8d10b8",
+    "id": "9e8cbfb7d1dcab2c0e2f6e094548104b",
+    "seed": 1818099587,
+    "revision": 5,
+    "twoPlayers": false,
+    "level": "mittel",
+    "columns": [
+      3,
+      3,
+      2,
+      3
+    ],
+    "rewarded": false
+  },
+  "returned_ui": "return-first-returned-ui.xml",
+  "touch": "return-first-touch.json",
+  "to_games_touch": "return-first-to-games-flutter-touch.json",
+  "games_ready": "return-first-games-flutter-ready.json"
+}

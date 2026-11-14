@@ -1,0 +1,19 @@
+{
+  "schema": "lumo-flutter-render-readiness",
+  "version": 1,
+  "name": "return-final-games-000-frame",
+  "status": "PASS",
+  "attempts": [
+    {
+      "capture": "return-final-games-000-frame-render-candidate-1.png",
+      "sha256": "330dbae606aa6ce1d4cc11ac131766f84ac07ccefdfbdd73e52bcb4e71cc440c",
+      "width": 1080,
+      "height": 2400,
+      "content_entropy_bits": 6.365,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  ],
+  "elapsed_seconds": 1.121
+}

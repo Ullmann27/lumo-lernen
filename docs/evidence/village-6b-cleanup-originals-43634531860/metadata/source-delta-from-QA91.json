@@ -1,0 +1,75 @@
+{
+  "from": "b3fecc83c5e58471fb2be25dc1d1015937505961",
+  "to": "16dbaa5024c0bba79c9ab8a9d23b9025a0c2f5d7",
+  "changed": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "before": "681e25d4654ce9827db8f208da5a608b458fa958",
+      "after": "836cf90f170545ce6d6393d5034dc149f5f6cf8c",
+      "old_mode": "100644",
+      "new_mode": "100644"
+    },
+    {
+      "path": ".github/workflows/lumo-village-return-6b-diagnostic.yml",
+      "before": "33e0483133c8eab58b121ee532d78d7a75930c4b",
+      "after": "2d40651abd44b2b13f58e202ff4b747cd7e084ee",
+      "old_mode": "100644",
+      "new_mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "before": "c7e8bf69d8dc07980d4a84ad1fd31222beb5e147",
+      "after": "da877b93d3ae61c54b1743f8aba006bac614cdea",
+      "old_mode": "100644",
+      "new_mode": "100644"
+    }
+  ],
+  "added": [
+    {
+      "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/actionlint.original.log",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/contracts.execution.json",
+      "sha": "06ea2ffc31b12bed1683d0a7d9f0cc1be61c341d",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/contracts.original.log",
+      "sha": "2c9170a3e1ad000ed5c219954fce21dbe1f25834",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/manifest.json",
+      "sha": "ea3275eb71aab40c0e16ed51e526afe7a51e1d8a",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/preflight.py",
+      "sha": "80282226b7952788631e0ef5c0b10f871d278c1c",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/qa91-source-context.json",
+      "sha": "2e5335821456ed89cb384a654b0e57d23a6c82bb",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/root-activation-review.json",
+      "sha": "11f61fc0d66e2079812ccd840e4a36a11567206e",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/syntax-and-preservation.json",
+      "sha": "2ab4874cf9992da4c61abb61360852bddc138452",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/c4-cleanup-diagnostic-6b-preparation/workflow.diff",
+      "sha": "80b716de5276190d9e2419e932730fb78f997685",
+      "mode": "100644"
+    }
+  ],
+  "removed": []
+}

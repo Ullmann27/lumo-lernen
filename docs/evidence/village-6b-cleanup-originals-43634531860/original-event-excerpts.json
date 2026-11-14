@@ -1,0 +1,45 @@
+{
+  "events": [
+    {
+      "line": 91380,
+      "original_path": "village/commands/0082-village-final-all-buffer-logcat.stdout",
+      "text": "11-14 20:17:16.482  6686  6723 I godot   : [VillageHostReady] {\"host_entry\":true,\"initialized_plot_nodes\":9,\"living_village\":true,\"mode\":\"settlement\",\"plots\":9,\"population\":2,\"return_scene\":\"games\",\"save_blocked\":false,\"save_path\":\"user://lumo_settlement_f89423f887c29f8dc3d91cab3984651515f53449c4296cc241dce9393530d79e_1_village.json\",\"scene\":\"res://scenes/creative/build_settlement_world.tscn\",\"slot\":1,\"visible_residents\":2}"
+    },
+    {
+      "line": 94333,
+      "original_path": "village/commands/0082-village-final-all-buffer-logcat.stdout",
+      "text": "11-14 20:18:53.941  6686  6723 I godot   : [LumoHost] return: games"
+    },
+    {
+      "line": 95421,
+      "original_path": "c4/commands/0462-final-all-buffer-logcat.stdout",
+      "text": "11-14 20:19:49.052  7129  7160 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(wmsSync-VRI[ConnectFourGameActivity]#1) as ready"
+    },
+    {
+      "line": 95427,
+      "original_path": "c4/commands/0462-final-all-buffer-logcat.stdout",
+      "text": "11-14 20:19:49.059  7129  7160 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(VRI[ConnectFourGameActivity]#2) as ready"
+    },
+    {
+      "line": 95428,
+      "original_path": "c4/commands/0462-final-all-buffer-logcat.stdout",
+      "text": "11-14 20:19:49.060  7129  7160 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(SurfaceView[dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity]#0) as ready"
+    },
+    {
+      "line": 97720,
+      "original_path": "c4/commands/0462-final-all-buffer-logcat.stdout",
+      "text": "11-14 20:21:16.752  8289  8317 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(wmsSync-VRI[ConnectFourGameActivity]#1) as ready"
+    },
+    {
+      "line": 97722,
+      "original_path": "c4/commands/0462-final-all-buffer-logcat.stdout",
+      "text": "11-14 20:21:16.753  8289  8317 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(VRI[ConnectFourGameActivity]#2) as ready"
+    },
+    {
+      "line": 97723,
+      "original_path": "c4/commands/0462-final-all-buffer-logcat.stdout",
+      "text": "11-14 20:21:16.753  8289  8317 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(SurfaceView[dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity]#0) as ready"
+    }
+  ],
+  "scope": "Exact selected original lines. Surface synchronization warnings are preserved; no warning-free claim."
+}

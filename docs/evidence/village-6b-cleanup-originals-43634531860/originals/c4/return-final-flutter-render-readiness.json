@@ -1,0 +1,19 @@
+{
+  "schema": "lumo-flutter-render-readiness",
+  "version": 1,
+  "name": "return-final-flutter",
+  "status": "PASS",
+  "attempts": [
+    {
+      "capture": "return-final-flutter-render-candidate-1.png",
+      "sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1",
+      "width": 1080,
+      "height": 2400,
+      "content_entropy_bits": 6.365,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  ],
+  "elapsed_seconds": 0.773
+}

@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "versionCode": 2020,
+  "binding": {
+    "host_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "versionCode": 2020,
+    "versionName": "0.13.8",
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "run_id": 43616038272,
+    "run_attempt": 1,
+    "candidate_artifact_id": 14125990109,
+    "candidate_artifact_digest": "sha256:1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6"
+  },
+  "actual_child_drops": 2,
+  "actual_bot_responses": 2,
+  "same_round_reopened": true,
+  "native_returns": 2,
+  "api": 35,
+  "original_files": 1515,
+  "observations": 25,
+  "scope": "C4 candidate device test only; no release, physical ARM64, API37 or FPS acceptance"
+}

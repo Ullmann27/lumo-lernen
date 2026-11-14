@@ -1,0 +1,1850 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "scope": "Diagnostic actual 6b APK Village roundtrip with separately bound QA; no seven-job acceptance",
+  "diagnostic_binding": {
+    "qa_source": "3cae9c407a6eef1970e24bc9a61516b13fe0af52",
+    "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "apk_sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+    "binding_sha256": "b49fdd4c927825ccd540b7995598402768be34b7606270a77341899a938d9d89",
+    "seven_job_acceptance": false,
+    "scope": "Actual unchanged-APK diagnostic, separate QA source; no publication approval"
+  },
+  "identity": {
+    "apk_sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+    "flutter_source_commit": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "godot_revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "godot_pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+    "versionName": "0.13.8",
+    "versionCode": 2020,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "binding": {
+    "host_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "versionCode": 2020,
+    "versionName": "0.13.8",
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "run_id": 43616038272,
+    "run_attempt": 1,
+    "candidate_artifact_id": 14125990109,
+    "candidate_artifact_digest": "sha256:1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6"
+  },
+  "prior_tour": {
+    "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/main/tour-result.json",
+    "sha256": "62b26e586f74fae900da953c4fed937b57d1785900072b741f70af517cf1ef78"
+  },
+  "root_readiness": {
+    "status": "PASS",
+    "attempts": [
+      {
+        "arguments": [
+          "get-serialno"
+        ],
+        "elapsed_seconds": 0.0,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "emulator-5554"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "root"
+        ],
+        "elapsed_seconds": 0.003,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "adbd is already running as root"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "wait-for-device"
+        ],
+        "elapsed_seconds": 0.006,
+        "status": "PASS",
+        "return_code": 0,
+        "output": ""
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "id",
+          "-u"
+        ],
+        "elapsed_seconds": 0.009,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "0"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "getprop",
+          "sys.boot_completed"
+        ],
+        "elapsed_seconds": 0.023,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "1"
+      }
+    ],
+    "root_transport_recovered": false,
+    "initial_offline_recovered": false,
+    "initial_missing_recovered": false,
+    "verification": "actual shell id -u == 0 and sys.boot_completed == 1",
+    "scope": "disposable emulator setup; this does not pass installation or gameplay",
+    "serial": "emulator-5554",
+    "last_shell_uid": "0",
+    "last_boot_completed": "1",
+    "shell_uid": 0,
+    "boot_completed": true,
+    "elapsed_seconds": 0.035
+  },
+  "android_sdk_original": "commands/0001-village-sdk.stdout",
+  "before": {
+    "host_pid": "commands/0005-before-village-0-host_pid.stdout",
+    "native_pid": "commands/0006-before-village-0-native_pid.stdout",
+    "activity": "commands/0007-before-village-0-activity.stdout",
+    "preferences": "commands/0008-before-village-preferences.stdout"
+  },
+  "entry_touch": "open-village-flutter-touch.json",
+  "native": {
+    "host_pid": "commands/0059-village-ready-10-host_pid.stdout",
+    "native_pid": "commands/0060-village-ready-10-native_pid.stdout",
+    "activity": "commands/0061-village-ready-10-activity.stdout",
+    "preferences": "commands/0062-village-ready-10-preferences.stdout",
+    "logcat": "commands/0063-village-ready-10-logcat.stdout",
+    "marker": {
+      "host_entry": true,
+      "initialized_plot_nodes": 9,
+      "living_village": true,
+      "mode": "settlement",
+      "plots": 9,
+      "population": 2,
+      "return_scene": "games",
+      "save_blocked": false,
+      "save_path": "user://lumo_settlement_f89423f887c29f8dc3d91cab3984651515f53449c4296cc241dce9393530d79e_1_village.json",
+      "scene": "res://scenes/creative/build_settlement_world.tscn",
+      "slot": 1,
+      "visible_residents": 2
+    },
+    "frame": {
+      "file": "village-ready-10.png",
+      "width": 2400,
+      "height": 1080,
+      "sha256": "377a4a0ba5075308cefa0aa8c278b0e5dad995bc27bc513298fcfd7d568916e8"
+    },
+    "hud_ocr": [
+      "village-ready-10-hud-0",
+      "village-ready-10-hud-1"
+    ]
+  },
+  "returned": {
+    "host_pid": "commands/0078-returned-flutter-visible-2-after-host_pid.stdout",
+    "native_pid": "commands/0079-returned-flutter-visible-2-after-native_pid.stdout",
+    "activity": "commands/0080-returned-flutter-visible-2-after-activity.stdout",
+    "touch_journal": "village-return-surface-readiness.json",
+    "command_original": "commands/0067-village-visible-return-touch.stdout",
+    "native_before_return": {
+      "host_pid": "commands/0064-village-before-return-host_pid.stdout",
+      "native_pid": "commands/0065-village-before-return-native_pid.stdout",
+      "activity": "commands/0066-village-before-return-activity.stdout"
+    },
+    "preferences": "commands/0081-returned-flutter-visible-2-preferences.stdout",
+    "frame": {
+      "file": "returned-flutter-frame.png",
+      "width": 1080,
+      "height": 2400,
+      "sha256": "43ec359af33f96bd47299bb6c933c45c7269c7aa5f6cfb3fb4d2c033dff90d8b"
+    },
+    "visible_ocr": "returned-flutter-visible-2",
+    "ui": "returned-flutter-ui-2.xml",
+    "observation_journal": "returned-flutter-observation.json"
+  },
+  "original_logcat": "commands/0082-village-final-all-buffer-logcat.stdout",
+  "fatal_entries": [],
+  "originals": [
+    {
+      "path": "commands/0001-village-sdk.json",
+      "bytes": 366,
+      "sha256": "8c92ea94466964dba3c371a7df67851436692522c9b267857e964f3b1cbe8609"
+    },
+    {
+      "path": "commands/0001-village-sdk.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0001-village-sdk.stdout",
+      "bytes": 3,
+      "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5"
+    },
+    {
+      "path": "commands/0002-initial-flutter-0-host_pid.json",
+      "bytes": 386,
+      "sha256": "ea7073a4175de471b04587e5150525ee6944a15ef0957847ad2e92bc0ca1c59f"
+    },
+    {
+      "path": "commands/0002-initial-flutter-0-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0002-initial-flutter-0-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0003-initial-flutter-0-native_pid.json",
+      "bytes": 396,
+      "sha256": "3c1b9a3fe8ba7538b7be8e216b12eeaa771538e620cb7f9624c69bebf3cb56ff"
+    },
+    {
+      "path": "commands/0003-initial-flutter-0-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0003-initial-flutter-0-native_pid.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0004-initial-flutter-0-activity.json",
+      "bytes": 377,
+      "sha256": "b171b7d9f4357cfb1c901fe0158bf9ba70914c8b57b537013ad37aaf5220b233"
+    },
+    {
+      "path": "commands/0004-initial-flutter-0-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0004-initial-flutter-0-activity.stdout",
+      "bytes": 33957,
+      "sha256": "4449747d8d41a22af5641761343a2cb224eb6009472b6171bd12bab265e0557e"
+    },
+    {
+      "path": "commands/0005-before-village-0-host_pid.json",
+      "bytes": 385,
+      "sha256": "4073df162f53a83a0ee1365641a14ef1a6548ea491de2e21869355fb82237ee7"
+    },
+    {
+      "path": "commands/0005-before-village-0-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0005-before-village-0-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0006-before-village-0-native_pid.json",
+      "bytes": 396,
+      "sha256": "ce787791f6c162bde9bf23e1f442c2f2583cbeaa2f36f4b7c1c8eec9c0b14562"
+    },
+    {
+      "path": "commands/0006-before-village-0-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0006-before-village-0-native_pid.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0007-before-village-0-activity.json",
+      "bytes": 377,
+      "sha256": "cc09019b128f48782c24a267064fab2e48dcb8314764a76f4e335cbc7386e0b2"
+    },
+    {
+      "path": "commands/0007-before-village-0-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0007-before-village-0-activity.stdout",
+      "bytes": 34076,
+      "sha256": "a823072c162026f7d37d345511048159d0a0e2e13a89be042cf652a16a325363"
+    },
+    {
+      "path": "commands/0008-before-village-preferences.json",
+      "bytes": 445,
+      "sha256": "db908605e741193583e53f93fe1eb4c24b7d302cb4c696342e3338fc2cc36bab"
+    },
+    {
+      "path": "commands/0008-before-village-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0008-before-village-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "e92108e534227bb3e68f223c037a7e21da5714dd394c6b352f445a653832197f"
+    },
+    {
+      "path": "commands/0009-density.json",
+      "bytes": 349,
+      "sha256": "17ccc69978b10e661fd710bc9e48720ff16460829682bae7bde96dffae246571"
+    },
+    {
+      "path": "commands/0009-density.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0009-density.stdout",
+      "bytes": 44,
+      "sha256": "0a17eaf0deeb48603ff4903c4da16fb9fe0c3b0f702657f6f07621fd98886eee"
+    },
+    {
+      "path": "commands/0010-density.json",
+      "bytes": 350,
+      "sha256": "926b8b83ca9bc420478a6fc3b156c744f1151dc761d7db5c3acf721df2a75f3e"
+    },
+    {
+      "path": "commands/0010-density.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0010-density.stdout",
+      "bytes": 44,
+      "sha256": "0a17eaf0deeb48603ff4903c4da16fb9fe0c3b0f702657f6f07621fd98886eee"
+    },
+    {
+      "path": "commands/0011-open-village-touch.json",
+      "bytes": 404,
+      "sha256": "1190d14b0cbc0fc35a60b4e2fab2e17aa6e6c0734cc4a27fe4a9416ceccc6c57"
+    },
+    {
+      "path": "commands/0011-open-village-touch.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0011-open-village-touch.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0012-village-ready-0-host_pid.json",
+      "bytes": 385,
+      "sha256": "14e363385fc2b95574613ef7e79793e59335fc8520adf3abff09c4c8279cf4f6"
+    },
+    {
+      "path": "commands/0012-village-ready-0-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0012-village-ready-0-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0013-village-ready-0-native_pid.json",
+      "bytes": 395,
+      "sha256": "042c188514500cde4a88f03c22e7a480e00dc5ff69e65bffe8c1d180f0d9c998"
+    },
+    {
+      "path": "commands/0013-village-ready-0-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0013-village-ready-0-native_pid.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0014-village-ready-1-host_pid.json",
+      "bytes": 386,
+      "sha256": "e0c851d6823d075ce3cbfefe4e01402e58ef716c1ed1de1c11f44dd1f005c1e2"
+    },
+    {
+      "path": "commands/0014-village-ready-1-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0014-village-ready-1-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0015-village-ready-1-native_pid.json",
+      "bytes": 395,
+      "sha256": "23103452bca609f62e2f0ebc2d22e91bf7c31b0e165cbd3649b6c04c6ae4a4e2"
+    },
+    {
+      "path": "commands/0015-village-ready-1-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0015-village-ready-1-native_pid.stdout",
+      "bytes": 5,
+      "sha256": "629146e2e24a17e36eb03a185676e0dacb0ca960ba829f89bdaa293d3ec1b86c"
+    },
+    {
+      "path": "commands/0016-village-ready-1-activity.json",
+      "bytes": 375,
+      "sha256": "1d38ba1f9a0f2cbc52d0eb731947e39e5ddee3dbed728d8fb1616311f5d6028d"
+    },
+    {
+      "path": "commands/0016-village-ready-1-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0016-village-ready-1-activity.stdout",
+      "bytes": 40857,
+      "sha256": "44b95f98ef63fb64ac4b797505b8557ab23d36a908fe9cab70c506e04304b6a9"
+    },
+    {
+      "path": "commands/0017-village-ready-1-preferences.json",
+      "bytes": 444,
+      "sha256": "213554eaf0c6f80840723fb7fabde6ae67a517fe3f6c9ef85f2232d45833b8d0"
+    },
+    {
+      "path": "commands/0017-village-ready-1-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0017-village-ready-1-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "e92108e534227bb3e68f223c037a7e21da5714dd394c6b352f445a653832197f"
+    },
+    {
+      "path": "commands/0018-village-ready-1-logcat.json",
+      "bytes": 411,
+      "sha256": "1ad4725248ae84aca24aad566f0e81a185fce44fdc54b35388d7cd8abceb9456"
+    },
+    {
+      "path": "commands/0018-village-ready-1-logcat.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0018-village-ready-1-logcat.stdout",
+      "bytes": 3389,
+      "sha256": "336d5440341aecf49ad3d2f02b3384e3c31d54895efbafd26b557047aa8c3bb0"
+    },
+    {
+      "path": "commands/0019-village-ready-2-host_pid.json",
+      "bytes": 385,
+      "sha256": "44164b6f3612a83c1485d46b4c585e011fe4ad0d5b4eb6ea22a44e95294748d2"
+    },
+    {
+      "path": "commands/0019-village-ready-2-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0019-village-ready-2-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0020-village-ready-2-native_pid.json",
+      "bytes": 394,
+      "sha256": "953525f1754959e768391d1d4c6d39994cfec7adf3c05d7f4b88ca16d7bb2822"
+    },
+    {
+      "path": "commands/0020-village-ready-2-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0020-village-ready-2-native_pid.stdout",
+      "bytes": 5,
+      "sha256": "629146e2e24a17e36eb03a185676e0dacb0ca960ba829f89bdaa293d3ec1b86c"
+    },
+    {
+      "path": "commands/0021-village-ready-2-activity.json",
+      "bytes": 376,
+      "sha256": "126beda0fe383e0f86d94fe70e502601a3dc3ef709c731f209c8f68f66e5e181"
+    },
+    {
+      "path": "commands/0021-village-ready-2-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0021-village-ready-2-activity.stdout",
+      "bytes": 40981,
+      "sha256": "b14a32e6177fc46627e2c08fab04ee4cdca9efb0d9114660961bf5cacc33e155"
+    },
+    {
+      "path": "commands/0022-village-ready-2-preferences.json",
+      "bytes": 445,
+      "sha256": "1f4e4ed445f231ad0845fc01e1f88c3316bfbb9753f3ee9bd88aeb07471ed56f"
+    },
+    {
+      "path": "commands/0022-village-ready-2-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0022-village-ready-2-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "e92108e534227bb3e68f223c037a7e21da5714dd394c6b352f445a653832197f"
+    },
+    {
+      "path": "commands/0023-village-ready-2-logcat.json",
+      "bytes": 409,
+      "sha256": "fc40e3863ff427d2649b0a5c4f69cbf30ee58751a7fde480606a205b6e743932"
+    },
+    {
+      "path": "commands/0023-village-ready-2-logcat.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0023-village-ready-2-logcat.stdout",
+      "bytes": 5700,
+      "sha256": "235c87953c3a863ca545eeec7b06dae3a23d5a6c9d90ed34b6a13ad5b53eecca"
+    },
+    {
+      "path": "commands/0024-village-ready-3-host_pid.json",
+      "bytes": 386,
+      "sha256": "b69c6a3df25aeb5181e8cd16273243e6ec5120ef25bd77e25b0d632f9545d61f"
+    },
+    {
+      "path": "commands/0024-village-ready-3-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0024-village-ready-3-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0025-village-ready-3-native_pid.json",
+      "bytes": 396,
+      "sha256": "26f54e0d194fab05fd8cb3f5fb91f3d9d0ed29dfd18b98c770566e0b9e54399f"
+    },
+    {
+      "path": "commands/0025-village-ready-3-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0025-village-ready-3-native_pid.stdout",
+      "bytes": 5,
+      "sha256": "629146e2e24a17e36eb03a185676e0dacb0ca960ba829f89bdaa293d3ec1b86c"
+    },
+    {
+      "path": "commands/0026-village-ready-3-activity.json",
+      "bytes": 376,
+      "sha256": "7c1c82169405c6d7ae5085be37dc1859735bc6b425d611bd75504b836bcdf9c0"
+    },
+    {
+      "path": "commands/0026-village-ready-3-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0026-village-ready-3-activity.stdout",
+      "bytes": 40400,
+      "sha256": "f5baec69705133a31f230647881a758272fe92138bcd9f0df3dacdc97557f445"
+    },
+    {
+      "path": "commands/0027-village-ready-3-preferences.json",
+      "bytes": 445,
+      "sha256": "e6378477f52eca9f63b050ea0aba8a3c668f148bc05c497bf5622576c186d993"
+    },
+    {
+      "path": "commands/0027-village-ready-3-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0027-village-ready-3-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "e92108e534227bb3e68f223c037a7e21da5714dd394c6b352f445a653832197f"
+    },
+    {
+      "path": "commands/0028-village-ready-3-logcat.json",
+      "bytes": 412,
+      "sha256": "97ef8758d64d519e860bf622c642bd7547144167f9451b82a61e2c874b69e974"
+    },
+    {
+      "path": "commands/0028-village-ready-3-logcat.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0028-village-ready-3-logcat.stdout",
+      "bytes": 7225,
+      "sha256": "87db12cb86419e5ceeb1b9cf1a612517c66a0cbd71c9b09db3bc0a16f46a0c75"
+    },
+    {
+      "path": "commands/0029-village-ready-4-host_pid.json",
+      "bytes": 386,
+      "sha256": "396b0c47dc9fbcb3cba4aaa75a5d078661571ef11bb0fd76e0e7f9e00bafa96d"
+    },
+    {
+      "path": "commands/0029-village-ready-4-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0029-village-ready-4-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0030-village-ready-4-native_pid.json",
+      "bytes": 396,
+      "sha256": "52925f6b8659a304154539d7f3f88210d324b34eb1d9a5ba1265e1745017fda2"
+    },
+    {
+      "path": "commands/0030-village-ready-4-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0030-village-ready-4-native_pid.stdout",
+      "bytes": 5,
+      "sha256": "629146e2e24a17e36eb03a185676e0dacb0ca960ba829f89bdaa293d3ec1b86c"
+    },
+    {
+      "path": "commands/0031-village-ready-4-activity.json",
+      "bytes": 376,
+      "sha256": "c701d880afee31a9969bac96ed048d608e1c16c346bf10443c7f3d157fa5d791"
+    },
+    {
+      "path": "commands/0031-village-ready-4-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0031-village-ready-4-activity.stdout",
+      "bytes": 40403,
+      "sha256": "a06239caefc19dcd08a2c2f8b2ccd8471366e644ef487531b697744fbc06467a"
+    },
+    {
+      "path": "commands/0032-village-ready-4-preferences.json",
+      "bytes": 444,
+      "sha256": "d2767c59798b0102564252fc70678cdc9f86aac804122f937e22920bb9f417d6"
+    },
+    {
+      "path": "commands/0032-village-ready-4-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0032-village-ready-4-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "e92108e534227bb3e68f223c037a7e21da5714dd394c6b352f445a653832197f"
+    },
+    {
+      "path": "commands/0033-village-ready-4-logcat.json",
+      "bytes": 412,
+      "sha256": "acc188dbfb854aa5c0c722c4e8ae31a1f1b14c369b6e7b27d6b38125d4c29f1a"
+    },
+    {
+      "path": "commands/0033-village-ready-4-logcat.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0033-village-ready-4-logcat.stdout",
+      "bytes": 9494,
+      "sha256": "fd6e487a3278e57c389faf4bcfba8a913f5808598c0c1653f116694bdab640ad"
+    },
+    {
+      "path": "commands/0034-village-ready-5-host_pid.json",
+      "bytes": 385,
+      "sha256": "e837cc85e4800f36d9bc3550608a2fc661bd58cbb6028f57df24d0cea8ab801a"
+    },
+    {
+      "path": "commands/0034-village-ready-5-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0034-village-ready-5-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0035-village-ready-5-native_pid.json",
+      "bytes": 395,
+      "sha256": "7a0af925603915fba941d68d553d7aadd4e22c7e9bc7d00e14307cf9954763bd"
+    },
+    {
+      "path": "commands/0035-village-ready-5-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0035-village-ready-5-native_pid.stdout",
+      "bytes": 5,
+      "sha256": "629146e2e24a17e36eb03a185676e0dacb0ca960ba829f89bdaa293d3ec1b86c"
+    },
+    {
+      "path": "commands/0036-village-ready-5-activity.json",
+      "bytes": 376,
+      "sha256": "854d7f99673c902a84d47c3b34fe09658af47becf6ddde712d9653b87a94ca46"
+    },
+    {
+      "path": "commands/0036-village-ready-5-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0036-village-ready-5-activity.stdout",
+      "bytes": 41274,
+      "sha256": "092a5e3c051595dc69390714a77a26e12ac977dddbb1e0ced730a7e0f49d88af"
+    },
+    {
+      "path": "commands/0037-village-ready-5-preferences.json",
+      "bytes": 445,
+      "sha256": "240e6f1500b902dcd7da1a6fc14f8cebb16a231ef0f03f96ba894c3dc2bfb2a8"
+    },
+    {
+      "path": "commands/0037-village-ready-5-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0037-village-ready-5-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "e92108e534227bb3e68f223c037a7e21da5714dd394c6b352f445a653832197f"
+    },
+    {
+      "path": "commands/0038-village-ready-5-logcat.json",
+      "bytes": 411,
+      "sha256": "246eddfd66d82d0b2005968c3aaabdf7189cde1f26601851df9bd5b8a5036b50"
+    },
+    {
+      "path": "commands/0038-village-ready-5-logcat.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0038-village-ready-5-logcat.stdout",
+      "bytes": 9494,
+      "sha256": "fd6e487a3278e57c389faf4bcfba8a913f5808598c0c1653f116694bdab640ad"
+    },
+    {
+      "path": "commands/0039-village-ready-6-host_pid.json",
+      "bytes": 386,
+      "sha256": "66615f1d3fc133c6c3ee89052708082a7a1b093a92e87a127d657607cdb9d065"
+    },
+    {
+      "path": "commands/0039-village-ready-6-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0039-village-ready-6-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0040-village-ready-6-native_pid.json",
+      "bytes": 396,
+      "sha256": "623f4572c30ef0898438b0ac9206b6274e8b321058067a9b79fc5afd09907cef"
+    },
+    {
+      "path": "commands/0040-village-ready-6-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0040-village-ready-6-native_pid.stdout",
+      "bytes": 5,
+      "sha256": "629146e2e24a17e36eb03a185676e0dacb0ca960ba829f89bdaa293d3ec1b86c"
+    },
+    {
+      "path": "commands/0041-village-ready-6-activity.json",
+      "bytes": 376,
+      "sha256": "fea842435fcd2138d2e39879f7cd5e843ab248d6b51602a98ca4e7e0931394fe"
+    },
+    {
+      "path": "commands/0041-village-ready-6-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0041-village-ready-6-activity.stdout",
+      "bytes": 41073,
+      "sha256": "a90201fee7a60b9134a72949c32ae4a80d4b820e018c4ac7fdd30ddd212de782"
+    },
+    {
+      "path": "commands/0042-village-ready-6-preferences.json",
+      "bytes": 445,
+      "sha256": "0fea5309ca5a59b796faa75611ea016f962a5544b2624d8554960ab844185d98"
+    },
+    {
+      "path": "commands/0042-village-ready-6-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0042-village-ready-6-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "e92108e534227bb3e68f223c037a7e21da5714dd394c6b352f445a653832197f"
+    },
+    {
+      "path": "commands/0043-village-ready-6-logcat.json",
+      "bytes": 412,
+      "sha256": "578541285b4722635559d4dd2d0b119850bc5fd6043cc2d2b33b4edda0db076c"
+    },
+    {
+      "path": "commands/0043-village-ready-6-logcat.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0043-village-ready-6-logcat.stdout",
+      "bytes": 10235,
+      "sha256": "95b7dd88b12cd3994158fa5f616927ff094f64a1e613fc8c32bdaae69879dbe6"
+    },
+    {
+      "path": "commands/0044-village-ready-7-host_pid.json",
+      "bytes": 386,
+      "sha256": "2a533e5006409ad39ca2e1b6a9e48a03ccf650ac3c408d79db4dd4c50d55cf19"
+    },
+    {
+      "path": "commands/0044-village-ready-7-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0044-village-ready-7-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0045-village-ready-7-native_pid.json",
+      "bytes": 396,
+      "sha256": "af4a0e79406a8db219a00d4bcf1c68adb40db36fb51fedf15e766e0f46832072"
+    },
+    {
+      "path": "commands/0045-village-ready-7-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0045-village-ready-7-native_pid.stdout",
+      "bytes": 5,
+      "sha256": "629146e2e24a17e36eb03a185676e0dacb0ca960ba829f89bdaa293d3ec1b86c"
+    },
+    {
+      "path": "commands/0046-village-ready-7-activity.json",
+      "bytes": 376,
+      "sha256": "2f624f213cc0e68b83be6dda31d91e55c246479a1350c911831809e50f3506cb"
+    },
+    {
+      "path": "commands/0046-village-ready-7-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0046-village-ready-7-activity.stdout",
+      "bytes": 40929,
+      "sha256": "de74653faaf7e477d5f8b5e18bedfd51fbfa0ea8e7ec6768f82c4200fe5739a2"
+    },
+    {
+      "path": "commands/0047-village-ready-7-preferences.json",
+      "bytes": 444,
+      "sha256": "74b55f79df7d4a782b9fb66e1738ce94027762b7a8a4b669f27751f97e75fd25"
+    },
+    {
+      "path": "commands/0047-village-ready-7-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0047-village-ready-7-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "e92108e534227bb3e68f223c037a7e21da5714dd394c6b352f445a653832197f"
+    },
+    {
+      "path": "commands/0048-village-ready-7-logcat.json",
+      "bytes": 413,
+      "sha256": "557df109f35253870d6f121742a9c6f677df9167e27f568a96b0babf4cbf4524"
+    },
+    {
+      "path": "commands/0048-village-ready-7-logcat.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0048-village-ready-7-logcat.stdout",
+      "bytes": 10898,
+      "sha256": "1737fc78b7014283ae2f6b2ad85f9a3638bc4981c0c4ebc8010f4af3ef9cdb08"
+    },
+    {
+      "path": "commands/0049-village-ready-8-host_pid.json",
+      "bytes": 384,
+      "sha256": "29e891c5a75d9312e96690356e86aefaecc08036608b09e7a98b75dcc7d93b1e"
+    },
+    {
+      "path": "commands/0049-village-ready-8-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0049-village-ready-8-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0050-village-ready-8-native_pid.json",
+      "bytes": 394,
+      "sha256": "866412d356cb108e788a3d26e08f8f395f12931744c54b4674d59fba8b8a159a"
+    },
+    {
+      "path": "commands/0050-village-ready-8-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0050-village-ready-8-native_pid.stdout",
+      "bytes": 5,
+      "sha256": "629146e2e24a17e36eb03a185676e0dacb0ca960ba829f89bdaa293d3ec1b86c"
+    },
+    {
+      "path": "commands/0051-village-ready-8-activity.json",
+      "bytes": 376,
+      "sha256": "9d8f20d434a866046a0a4a19ea01885169748a321578cc3241e72107263898fc"
+    },
+    {
+      "path": "commands/0051-village-ready-8-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0051-village-ready-8-activity.stdout",
+      "bytes": 40929,
+      "sha256": "143b06265aeb04c46f229634ead73284afc651cd24872f40475f00de1508ab9b"
+    },
+    {
+      "path": "commands/0052-village-ready-8-preferences.json",
+      "bytes": 445,
+      "sha256": "db3c5c568ff800a9cdd5c46a97cff1c531a0a683f95677622330ce488a50c583"
+    },
+    {
+      "path": "commands/0052-village-ready-8-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0052-village-ready-8-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "e92108e534227bb3e68f223c037a7e21da5714dd394c6b352f445a653832197f"
+    },
+    {
+      "path": "commands/0053-village-ready-8-logcat.json",
+      "bytes": 412,
+      "sha256": "91fc30ab1cb992bafa5bcdc23e26c706daf0db279bed0256ce003ec4939fd3c9"
+    },
+    {
+      "path": "commands/0053-village-ready-8-logcat.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0053-village-ready-8-logcat.stdout",
+      "bytes": 10898,
+      "sha256": "1737fc78b7014283ae2f6b2ad85f9a3638bc4981c0c4ebc8010f4af3ef9cdb08"
+    },
+    {
+      "path": "commands/0054-village-ready-9-host_pid.json",
+      "bytes": 385,
+      "sha256": "f34f3918db7aa362d532ba53118942f98efe28ad168d0e1c635ca8bb13e6dad5"
+    },
+    {
+      "path": "commands/0054-village-ready-9-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0054-village-ready-9-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0055-village-ready-9-native_pid.json",
+      "bytes": 396,
+      "sha256": "35e2c6286e51f283241211c6e64f997edd7c4155a4c5ed71339b8a841ee67f71"
+    },
+    {
+      "path": "commands/0055-village-ready-9-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0055-village-ready-9-native_pid.stdout",
+      "bytes": 5,
+      "sha256": "629146e2e24a17e36eb03a185676e0dacb0ca960ba829f89bdaa293d3ec1b86c"
+    },
+    {
+      "path": "commands/0056-village-ready-9-activity.json",
+      "bytes": 376,
+      "sha256": "baab4d99284f4b1bfe02020dd332240aa26da47e6b1563d6003f36174845b87e"
+    },
+    {
+      "path": "commands/0056-village-ready-9-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0056-village-ready-9-activity.stdout",
+      "bytes": 40929,
+      "sha256": "3a8a05cdaeb06916045c7ec39f7e673a2d8ed21b56e8cb7340e3db171b74bba6"
+    },
+    {
+      "path": "commands/0057-village-ready-9-preferences.json",
+      "bytes": 445,
+      "sha256": "e217ee832810b58e7b6b55fde76db27f4dae83cd636aadf85f5e7b48cb61e143"
+    },
+    {
+      "path": "commands/0057-village-ready-9-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0057-village-ready-9-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "e92108e534227bb3e68f223c037a7e21da5714dd394c6b352f445a653832197f"
+    },
+    {
+      "path": "commands/0058-village-ready-9-logcat.json",
+      "bytes": 412,
+      "sha256": "4bb9fdae264f79c0743ff03a3616905a548b626957f425addfc653e82fa3873c"
+    },
+    {
+      "path": "commands/0058-village-ready-9-logcat.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0058-village-ready-9-logcat.stdout",
+      "bytes": 11336,
+      "sha256": "8a72ad8345a865fc37b72f84d2023ae98767298ce07720d61046e62901381db8"
+    },
+    {
+      "path": "commands/0059-village-ready-10-host_pid.json",
+      "bytes": 384,
+      "sha256": "248045727dc840d1a439d5301e0a3d41c869fb90cd83ab276ab114d355840811"
+    },
+    {
+      "path": "commands/0059-village-ready-10-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0059-village-ready-10-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0060-village-ready-10-native_pid.json",
+      "bytes": 396,
+      "sha256": "044b0f7151f4cd366caf873cca66c3f6f8598cc2b4d9767a5b74931fc19fb4e8"
+    },
+    {
+      "path": "commands/0060-village-ready-10-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0060-village-ready-10-native_pid.stdout",
+      "bytes": 5,
+      "sha256": "629146e2e24a17e36eb03a185676e0dacb0ca960ba829f89bdaa293d3ec1b86c"
+    },
+    {
+      "path": "commands/0061-village-ready-10-activity.json",
+      "bytes": 377,
+      "sha256": "4ba9094a144b598667b16b4ede7a30fa1f680c29851fa06a4c7d92501462a747"
+    },
+    {
+      "path": "commands/0061-village-ready-10-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0061-village-ready-10-activity.stdout",
+      "bytes": 40932,
+      "sha256": "979e17d1684ff541a8c62558fa56149d8276a51246d4b6240a1ec20a7f2bed68"
+    },
+    {
+      "path": "commands/0062-village-ready-10-preferences.json",
+      "bytes": 444,
+      "sha256": "534ac8a9e77ad618f513c8b72e7bf02736e17cb4c10994acb89363ec315cd1fa"
+    },
+    {
+      "path": "commands/0062-village-ready-10-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0062-village-ready-10-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "e92108e534227bb3e68f223c037a7e21da5714dd394c6b352f445a653832197f"
+    },
+    {
+      "path": "commands/0063-village-ready-10-logcat.json",
+      "bytes": 412,
+      "sha256": "50171f3fd46ef2162bc43e2385ee82bcfa8c2a797c654ee23a808450b9b29b8b"
+    },
+    {
+      "path": "commands/0063-village-ready-10-logcat.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0063-village-ready-10-logcat.stdout",
+      "bytes": 11790,
+      "sha256": "db962789b8b175944660ac1e2a0b1ffa711210c2884b94daf90178e07aad3e79"
+    },
+    {
+      "path": "commands/0064-village-before-return-host_pid.json",
+      "bytes": 385,
+      "sha256": "7a69af4201f7f665155e709116f4c003bdc2df96b9e99e26ac4984e566813a32"
+    },
+    {
+      "path": "commands/0064-village-before-return-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0064-village-before-return-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0065-village-before-return-native_pid.json",
+      "bytes": 396,
+      "sha256": "18a9c7877ae2c992870440541c9f1785be5135b00362793597db38e1a3236ebc"
+    },
+    {
+      "path": "commands/0065-village-before-return-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0065-village-before-return-native_pid.stdout",
+      "bytes": 5,
+      "sha256": "629146e2e24a17e36eb03a185676e0dacb0ca960ba829f89bdaa293d3ec1b86c"
+    },
+    {
+      "path": "commands/0066-village-before-return-activity.json",
+      "bytes": 375,
+      "sha256": "a4cb1a49cb0578ab600fb7b438c75f272a9d102c1460b16a08d9c1a5b95f5ddf"
+    },
+    {
+      "path": "commands/0066-village-before-return-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0066-village-before-return-activity.stdout",
+      "bytes": 40935,
+      "sha256": "a5ebbcc11e5912a20fbbfa49cc0175012e3a22451203f2daf5142e713393beb0"
+    },
+    {
+      "path": "commands/0067-village-visible-return-touch.json",
+      "bytes": 404,
+      "sha256": "1028e98eac8641731c6c66cc05459318551c820e9201b43233a518786eec3342"
+    },
+    {
+      "path": "commands/0067-village-visible-return-touch.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0067-village-visible-return-touch.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0068-returned-flutter-0-host_pid.json",
+      "bytes": 384,
+      "sha256": "97cb21893d9581f8e249621e9976a7e45cc53492dc226032a69835d002ef60f6"
+    },
+    {
+      "path": "commands/0068-returned-flutter-0-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0068-returned-flutter-0-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0069-returned-flutter-0-native_pid.json",
+      "bytes": 395,
+      "sha256": "2338f4f77e93ab877a4c9b1f8a30c6d3ccea210f24604296c69a6fe9d9258aca"
+    },
+    {
+      "path": "commands/0069-returned-flutter-0-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0069-returned-flutter-0-native_pid.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0070-returned-flutter-0-activity.json",
+      "bytes": 377,
+      "sha256": "efb5d026f75554fa9a9bbe536d9a94ab6dbb204469819409cb9315b89559e5c9"
+    },
+    {
+      "path": "commands/0070-returned-flutter-0-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0070-returned-flutter-0-activity.stdout",
+      "bytes": 41832,
+      "sha256": "5958c46cf1e8057758df6a7ef59c36d9e049a4222348b6a453563967595622c3"
+    },
+    {
+      "path": "commands/0071-returned-flutter-preferences.json",
+      "bytes": 445,
+      "sha256": "074bc38c1622e3ddd7802d7a4780588536d4ef18f1921be3f1533b410cb57984"
+    },
+    {
+      "path": "commands/0071-returned-flutter-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0071-returned-flutter-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "e92108e534227bb3e68f223c037a7e21da5714dd394c6b352f445a653832197f"
+    },
+    {
+      "path": "commands/0072-returned-flutter-visible-1-before-host_pid.json",
+      "bytes": 385,
+      "sha256": "16219b51899960ad9158ef35940e48ddd543ec7a4b556f4e9b3982058eaae8c5"
+    },
+    {
+      "path": "commands/0072-returned-flutter-visible-1-before-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0072-returned-flutter-visible-1-before-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0073-returned-flutter-visible-1-before-native_pid.json",
+      "bytes": 396,
+      "sha256": "92a60e9f32b283b03a1ac863fddf16a2920e1b774cea334378334377e3e85d62"
+    },
+    {
+      "path": "commands/0073-returned-flutter-visible-1-before-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0073-returned-flutter-visible-1-before-native_pid.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0074-returned-flutter-visible-1-before-activity.json",
+      "bytes": 376,
+      "sha256": "ce3fbcedf35e36a02cb68618de76a395fa31f44e4ca77684e4eb7b0152c234e9"
+    },
+    {
+      "path": "commands/0074-returned-flutter-visible-1-before-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0074-returned-flutter-visible-1-before-activity.stdout",
+      "bytes": 41832,
+      "sha256": "5ee90e96b65a618df3227a2179ed12d823228744a740cddeb4683a8dcba0fe8e"
+    },
+    {
+      "path": "commands/0075-returned-flutter-visible-2-before-host_pid.json",
+      "bytes": 385,
+      "sha256": "78e39f5566eb76af857634e2afce17d21a0e1cdf78ad809bbd325055970cb5b2"
+    },
+    {
+      "path": "commands/0075-returned-flutter-visible-2-before-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0075-returned-flutter-visible-2-before-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0076-returned-flutter-visible-2-before-native_pid.json",
+      "bytes": 395,
+      "sha256": "204a49ad9dbd6d859d1f9b1fd05a28506a91452e08e756d9ec58600d68eef5fa"
+    },
+    {
+      "path": "commands/0076-returned-flutter-visible-2-before-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0076-returned-flutter-visible-2-before-native_pid.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0077-returned-flutter-visible-2-before-activity.json",
+      "bytes": 376,
+      "sha256": "c466bb3185b820492205f7ab0b8a510220ff8e108fcfe233223b1b670fc603c0"
+    },
+    {
+      "path": "commands/0077-returned-flutter-visible-2-before-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0077-returned-flutter-visible-2-before-activity.stdout",
+      "bytes": 36347,
+      "sha256": "c202fa0c9fe1a56223ee8d335c1ef39b7f6a53f4c0e3ba8174ba93b85946253b"
+    },
+    {
+      "path": "commands/0078-returned-flutter-visible-2-after-host_pid.json",
+      "bytes": 386,
+      "sha256": "76f533332b7d8b25c768a86170cc95a607f8894b605dbbfb11b7323053ef3e03"
+    },
+    {
+      "path": "commands/0078-returned-flutter-visible-2-after-host_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0078-returned-flutter-visible-2-after-host_pid.stdout",
+      "bytes": 5,
+      "sha256": "3be17987a5ba5935b2c1bd017de8380b96ec44ed2f75d6215f21418aebfeaec8"
+    },
+    {
+      "path": "commands/0079-returned-flutter-visible-2-after-native_pid.json",
+      "bytes": 396,
+      "sha256": "aecea6ef65d926beeaad5ebfc312ddd2e3420580d9e6ddc41078f74bf64c9b1f"
+    },
+    {
+      "path": "commands/0079-returned-flutter-visible-2-after-native_pid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0079-returned-flutter-visible-2-after-native_pid.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0080-returned-flutter-visible-2-after-activity.json",
+      "bytes": 375,
+      "sha256": "f546ce9245ae07fb6ee34dae8bfb794566249fe87a7b5d00f1d40b043d1bd603"
+    },
+    {
+      "path": "commands/0080-returned-flutter-visible-2-after-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0080-returned-flutter-visible-2-after-activity.stdout",
+      "bytes": 36347,
+      "sha256": "ac4a0e45e97a2de89f6bb084f64059817ce0242b5d14e2ce21eb7c2f90bf7fa6"
+    },
+    {
+      "path": "commands/0081-returned-flutter-visible-2-preferences.json",
+      "bytes": 444,
+      "sha256": "ef3bfe0b9b4258715cbe26defebcc477b12d71dbe71bcd061980148c0d0e8cc2"
+    },
+    {
+      "path": "commands/0081-returned-flutter-visible-2-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0081-returned-flutter-visible-2-preferences.stdout",
+      "bytes": 2012,
+      "sha256": "e92108e534227bb3e68f223c037a7e21da5714dd394c6b352f445a653832197f"
+    },
+    {
+      "path": "commands/0082-village-final-all-buffer-logcat.json",
+      "bytes": 389,
+      "sha256": "41505572ff64ee836d608c8bd74d15eba82a93d9a27ec105583ac2372ec7b82b"
+    },
+    {
+      "path": "commands/0082-village-final-all-buffer-logcat.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0082-village-final-all-buffer-logcat.stdout",
+      "bytes": 14099256,
+      "sha256": "f98ac90194869b421ffbfae5eae759d844e93abbe761c962c2342b88ee2922ba"
+    },
+    {
+      "path": "ocr-work.png",
+      "bytes": 200141,
+      "sha256": "56b080a08f00dbfc7732d71dbdd7be338bf014fa334a5bf070a74e0926c2cf41"
+    },
+    {
+      "path": "open-village-00-frame-render-readiness.json",
+      "bytes": 552,
+      "sha256": "84bff4c9ea0b1065a95aa4c71f79c4ec240689cdfa215c0ebe872f1b774a8ec2"
+    },
+    {
+      "path": "open-village-00-frame.png",
+      "bytes": 1926532,
+      "sha256": "883ce90b3d244670c348cd7764b11d24abf66685918819c45a8fb784e49cc6fd"
+    },
+    {
+      "path": "open-village-00.xml",
+      "bytes": 28164,
+      "sha256": "e6b6730db29f8367ce1db5fa8b182c1e8edf64231e6b5c8659fdf9e1a7018015"
+    },
+    {
+      "path": "open-village-01-frame-render-readiness.json",
+      "bytes": 552,
+      "sha256": "d9285fa0ac4cedaec9b5506305c509ee399f7eb33d781065c137777c81a81f44"
+    },
+    {
+      "path": "open-village-01-frame.png",
+      "bytes": 1926532,
+      "sha256": "883ce90b3d244670c348cd7764b11d24abf66685918819c45a8fb784e49cc6fd"
+    },
+    {
+      "path": "open-village-01.xml",
+      "bytes": 28164,
+      "sha256": "e6b6730db29f8367ce1db5fa8b182c1e8edf64231e6b5c8659fdf9e1a7018015"
+    },
+    {
+      "path": "open-village-flutter-touch.json",
+      "bytes": 1508,
+      "sha256": "a962674dc560a8fe8b2519144cd98195537dce74da08b566f58822305790d9ae"
+    },
+    {
+      "path": "returned-flutter-frame.png",
+      "bytes": 1927330,
+      "sha256": "43ec359af33f96bd47299bb6c933c45c7269c7aa5f6cfb3fb4d2c033dff90d8b"
+    },
+    {
+      "path": "returned-flutter-observation.json",
+      "bytes": 2802,
+      "sha256": "6622b0cbb17713e2767be315236a56b21713f36804ebe90894ccfab15793fd2e"
+    },
+    {
+      "path": "returned-flutter-observations/attempt-1/returned-flutter-frame.png",
+      "bytes": 1438629,
+      "sha256": "bf79878c91e05a000b4a17fa0a0357faeb6f4c8a2b81e7effd742e711dfaaaa0"
+    },
+    {
+      "path": "returned-flutter-observations/attempt-2/returned-flutter-frame.png",
+      "bytes": 1927330,
+      "sha256": "43ec359af33f96bd47299bb6c933c45c7269c7aa5f6cfb3fb4d2c033dff90d8b"
+    },
+    {
+      "path": "returned-flutter-ui-2.xml",
+      "bytes": 28165,
+      "sha256": "58c24e2bbc62e72098f47f0bc63d180343d2f4123d419dae53ac67a86d147f31"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-components.json",
+      "bytes": 451,
+      "sha256": "a891e82013fc2a3af38fb0808c7978976cb4d4c8d35e9f9d9a83fc99518e9352"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-contrast.tsv",
+      "bytes": 8643,
+      "sha256": "c68e12bc9c64d523899bf12d923284bad5bdeb2b630504b15baca7a0e9f83994"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "09ebb57f2513225863b664271376ba2d5aed980079d00e6908e3acbe7556dccd"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "83f87dcbdb395f3151d7e7aab36505d652b7408b771350fd979161eb64bbc327"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-raw.tsv",
+      "bytes": 10350,
+      "sha256": "1fb943d03bf255e98d5a0c6d2fe86d042d8a262d5950f89f6b37a6b297634387"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-teal-text-1x.tsv",
+      "bytes": 8910,
+      "sha256": "3e94bf4b4192fb52b75740fa7119725db7baeb5f4727e3f813916537b26db0cd"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-tiles.json",
+      "bytes": 5093,
+      "sha256": "c1ecacf747f5d6d69615f707798736f9d873d488fe45510780443abe8b50c157"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-dim-tile-0.png",
+      "bytes": 105204,
+      "sha256": "36fcbe871b3758f35b0680a89a28feaa9b3530674303d01a39507fc256d0dbb0"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 4295,
+      "sha256": "106f538177ea0805b561d2cfea4d6b7ea8835fc217d476f5ca515e5b79a1a00a"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-dim-tile-1.png",
+      "bytes": 74025,
+      "sha256": "98005d706d4abd42c1fc7c2eab9cadc1fb01a98d7aa8c6c72ced279d47f68771"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 2395,
+      "sha256": "2cca67d23126defe0e21dc8feda15704461df2a08318217f845b70da0289c8cb"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-dim-tile-2.png",
+      "bytes": 54406,
+      "sha256": "2cbf5473a41788045dc5ac0e74c0f03e150a8fa6f42c25dbd0ea47793713c558"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 3253,
+      "sha256": "49f6497d04dfa7a55fb9789b80d6f573426c55492ba95c55b9b9f8cb709ff798"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-dim-tile-3.png",
+      "bytes": 61702,
+      "sha256": "3ada943c7ca8002b7f5c5f56373a9d723a40ec89e35da21662f5f9431df5633c"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 2190,
+      "sha256": "79d3ad6290570974a404ba02f0e6278e5b93e32a53416f14a8f65cb69278d6cf"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-dim-tile-4.png",
+      "bytes": 37742,
+      "sha256": "cd97173d066da1c1452222cbca8788fc599994de3d9e31260d6ec1884fe11b96"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 2724,
+      "sha256": "6a23152d14fc1718d192430bc95ec168ac2bcb4ac431f5257430aaaeb75b6758"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-dim-tile-5.png",
+      "bytes": 49545,
+      "sha256": "6bc17388336852b91c7ce26aca55cb25430410ee8f396609173d46e73a80cf31"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 1366,
+      "sha256": "d87eb21cf5e1f1c8308264fb6cfadb7801370aab3b435ac01052afaa71a44470"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-tile-0.png",
+      "bytes": 102824,
+      "sha256": "685ff7a80c9803c15e2a80289ab8aafc4ad07af09c901506b476269dd4540562"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-tile-0.tsv",
+      "bytes": 4032,
+      "sha256": "34d31e392cb7bace0c28549c880c69967f05aaea20e47975d08b20bee0df06df"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-tile-1.png",
+      "bytes": 73317,
+      "sha256": "e7c172f5331f963de4705cdad3e6b0bfc6ace8f1fb124e8df47c00a1873b549d"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-tile-1.tsv",
+      "bytes": 2889,
+      "sha256": "8c09195e33b3840b557fecead42744937f11bcb95c95487f6101387ba5ad28ee"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-tile-2.png",
+      "bytes": 54319,
+      "sha256": "ee0e75c60934c8c4e71e93ddefc70a1b68c40f60aeceb0a35be67eebd16b1ada"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-tile-2.tsv",
+      "bytes": 3254,
+      "sha256": "8a4001590b7ddd9ec7415c3190213722671802309d3064d246fd906f6aeb39f5"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-tile-3.png",
+      "bytes": 60913,
+      "sha256": "b9e228a608db3f906228aebbde7a6ec3babc5dc545ec91c7b2aeff8259caac23"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-tile-3.tsv",
+      "bytes": 2385,
+      "sha256": "4cc9d2b00e44c9c00ed97182733901bde4f56ee71ea39fd1f4da6ea03b1fd27b"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-tile-4.png",
+      "bytes": 34577,
+      "sha256": "bd234f452950ba2f5dddda1f39e4d9ef0b98b19f792fa064dbe61de05409d0ec"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-tile-4.tsv",
+      "bytes": 2282,
+      "sha256": "73551e8ffda837051e77dc8b8008b2b5eca8d0515b0e0e49c169e163c0eb43e3"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-tile-5.png",
+      "bytes": 48772,
+      "sha256": "6f87bae4acf2c96a1dd6dc66f0721d7ba21d0886ff21221123d472879aa04ef8"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin-tile-5.tsv",
+      "bytes": 1416,
+      "sha256": "1a0a855f96588620d0347977032af5fdf2ad8eefa3b1c1b9a4d4c62b1c3331b5"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-latin.tsv",
+      "bytes": 9624,
+      "sha256": "b9fce61595c50b4712e68b4cd0ed13929fa2e6903d3803ce207ce676197fc8c1"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr-white-text.tsv",
+      "bytes": 9703,
+      "sha256": "007d84d234e12164900905f71f7af23403fc7387aa525e3d72f3a4130be75574"
+    },
+    {
+      "path": "returned-flutter-visible-1-ocr.json",
+      "bytes": 28037,
+      "sha256": "b68c176442a705467c29a911b3ab434926eafa0a84bb47398c42d3fd6fe38a48"
+    },
+    {
+      "path": "returned-flutter-visible-2-ocr-contrast.tsv",
+      "bytes": 6603,
+      "sha256": "659df9ddd3db742276a77c7c5b6d260e9b6d0f20f58378920640819af15a9cae"
+    },
+    {
+      "path": "returned-flutter-visible-2-ocr.json",
+      "bytes": 5260,
+      "sha256": "4937ff11b0ec4cbfcb757273cea5b8b768f96ed49bebdd7d8f001ed4228270fb"
+    },
+    {
+      "path": "rooted-emulator.json",
+      "bytes": 1553,
+      "sha256": "d59accbc6f44302ce845b7a1313e1759dcc771a26dc1012c64ce5e7bb30f99c3"
+    },
+    {
+      "path": "uiautomator-config.json",
+      "bytes": 189,
+      "sha256": "3c2b165df27700f6d282f2c90f42d6f86de01328eed362defbc1f950e04ab8fe"
+    },
+    {
+      "path": "village-games-7--1-0.xml",
+      "bytes": 31795,
+      "sha256": "29a7e8c89fd3eb826e1e0d3f2934df9bddc01d8740c2ab4ffe30314275c8a877"
+    },
+    {
+      "path": "village-ready-10-hud-0-ocr-contrast.tsv",
+      "bytes": 10482,
+      "sha256": "e71e9160129d4edf8d2574bf6763df1d144edc9d2b19235073c764611743400e"
+    },
+    {
+      "path": "village-ready-10-hud-0-ocr.json",
+      "bytes": 6269,
+      "sha256": "3a8b794e3aa5be3ebfda85713c16a168cd08fdb868f8ab219038394109bddad3"
+    },
+    {
+      "path": "village-ready-10-hud-1-ocr-contrast.tsv",
+      "bytes": 10482,
+      "sha256": "e71e9160129d4edf8d2574bf6763df1d144edc9d2b19235073c764611743400e"
+    },
+    {
+      "path": "village-ready-10-hud-1-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "09ebb57f2513225863b664271376ba2d5aed980079d00e6908e3acbe7556dccd"
+    },
+    {
+      "path": "village-ready-10-hud-1-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "83f87dcbdb395f3151d7e7aab36505d652b7408b771350fd979161eb64bbc327"
+    },
+    {
+      "path": "village-ready-10-hud-1-ocr-raw.tsv",
+      "bytes": 10548,
+      "sha256": "ef356893e2715f54e6f73da9055b1e3e8f4ed62685ba75a9b93a1ada76c585f7"
+    },
+    {
+      "path": "village-ready-10-hud-1-ocr-teal-text-1x.tsv",
+      "bytes": 9087,
+      "sha256": "cf9898dad0ae402e9356da655a53d5f39b767363c5e616053b2e671c3c8ab108"
+    },
+    {
+      "path": "village-ready-10-hud-1-ocr-white-latin.tsv",
+      "bytes": 9696,
+      "sha256": "83ba5f72e2b9021710e96fffb1593276ca775d4bb1e92c86589f44fe8ab6a12d"
+    },
+    {
+      "path": "village-ready-10-hud-1-ocr-white-text.tsv",
+      "bytes": 9801,
+      "sha256": "c6b8ceece681757199819f641ee29226e84e28beb37ff234278feee3a9fe83eb"
+    },
+    {
+      "path": "village-ready-10-hud-1-ocr.json",
+      "bytes": 29796,
+      "sha256": "c1f651fe195e8df7b4e1fc57581737aed7dfff84e0d180ba66472f390d93be0d"
+    },
+    {
+      "path": "village-ready-10.png",
+      "bytes": 1448269,
+      "sha256": "377a4a0ba5075308cefa0aa8c278b0e5dad995bc27bc513298fcfd7d568916e8"
+    },
+    {
+      "path": "village-ready-6.png",
+      "bytes": 948538,
+      "sha256": "504cfdc4f133ec09c07ab303df06f78bf688282b0bb20c3bad01034b0b8507fd"
+    },
+    {
+      "path": "village-ready-7.png",
+      "bytes": 948538,
+      "sha256": "504cfdc4f133ec09c07ab303df06f78bf688282b0bb20c3bad01034b0b8507fd"
+    },
+    {
+      "path": "village-ready-8.png",
+      "bytes": 948538,
+      "sha256": "504cfdc4f133ec09c07ab303df06f78bf688282b0bb20c3bad01034b0b8507fd"
+    },
+    {
+      "path": "village-ready-9.png",
+      "bytes": 953858,
+      "sha256": "12f3f1382be5066156c8de539aca7e06fff8470eaa2ddb1e000823859d3c9187"
+    },
+    {
+      "path": "village-responsive-portrait-device-rotation.json",
+      "bytes": 165,
+      "sha256": "27976e45c1d7b4ec8aa8a2e172b0367d90d311d198e48ac6836055e6821b05e9"
+    },
+    {
+      "path": "village-return-0-ocr-contrast.tsv",
+      "bytes": 10521,
+      "sha256": "983904af92b3367e871e47f938262202310cc365b92db5cb6fc36b7b5465c36a"
+    },
+    {
+      "path": "village-return-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "09ebb57f2513225863b664271376ba2d5aed980079d00e6908e3acbe7556dccd"
+    },
+    {
+      "path": "village-return-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "83f87dcbdb395f3151d7e7aab36505d652b7408b771350fd979161eb64bbc327"
+    },
+    {
+      "path": "village-return-0-ocr-raw.tsv",
+      "bytes": 10549,
+      "sha256": "18eaf629d39ad7b8e73ef0c87157d391e41e7f507e92b306bc63c8b50f1a64d5"
+    },
+    {
+      "path": "village-return-0-ocr-teal-text-1x.tsv",
+      "bytes": 9087,
+      "sha256": "cf9898dad0ae402e9356da655a53d5f39b767363c5e616053b2e671c3c8ab108"
+    },
+    {
+      "path": "village-return-0-ocr-white-latin.tsv",
+      "bytes": 10756,
+      "sha256": "98e673dad0670f52d345163329563f2a7635b67d196198c4f0575d7785c05fe4"
+    },
+    {
+      "path": "village-return-0-ocr-white-text.tsv",
+      "bytes": 10938,
+      "sha256": "d6f0040acdea7839ba784b5498f755c205304dd1bbcbe10b8060b2a90125d84f"
+    },
+    {
+      "path": "village-return-0-ocr.json",
+      "bytes": 31615,
+      "sha256": "ca74be6ff76f31adaf4726d2c277be60014db44c3a4fc618f47e25a6645e6a79"
+    },
+    {
+      "path": "village-return-0.png",
+      "bytes": 1448027,
+      "sha256": "b1f1f4906c2028f1778009a4e5b066019fb2758527731cee55f68a2d1da552e8"
+    },
+    {
+      "path": "village-return-1-ocr-contrast.tsv",
+      "bytes": 10346,
+      "sha256": "d00ab4b87d5dc930edac35d63bc446a5b3cb502fba1bec22af690162753f2b4d"
+    },
+    {
+      "path": "village-return-1-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "09ebb57f2513225863b664271376ba2d5aed980079d00e6908e3acbe7556dccd"
+    },
+    {
+      "path": "village-return-1-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "83f87dcbdb395f3151d7e7aab36505d652b7408b771350fd979161eb64bbc327"
+    },
+    {
+      "path": "village-return-1-ocr-raw.tsv",
+      "bytes": 12090,
+      "sha256": "8329f438ea2a07c1cd2dd7438430d32ee529adf05c89ed347ea7e4acbfc2902c"
+    },
+    {
+      "path": "village-return-1-ocr-teal-text-1x.tsv",
+      "bytes": 9087,
+      "sha256": "cf9898dad0ae402e9356da655a53d5f39b767363c5e616053b2e671c3c8ab108"
+    },
+    {
+      "path": "village-return-1-ocr-white-latin.tsv",
+      "bytes": 10310,
+      "sha256": "e47244de28817b273c7fbdd265089e7fe49dba39246291fb3938f05478f00374"
+    },
+    {
+      "path": "village-return-1-ocr-white-text.tsv",
+      "bytes": 10470,
+      "sha256": "164b2751488b91809b1bde99aed7874f57e3e235d45c0adf6d094a462f6c504d"
+    },
+    {
+      "path": "village-return-1-ocr.json",
+      "bytes": 32296,
+      "sha256": "1d52321f2342107f33b518156eef7c5afc7d22d0eafebe96dd6619be5cb727f6"
+    },
+    {
+      "path": "village-return-1.png",
+      "bytes": 1446449,
+      "sha256": "5eb87ff1ccbdbe8a906cf457076e847859c8c818d2901e4b273f2e0d09c0d1ae"
+    },
+    {
+      "path": "village-return-surface-readiness.json",
+      "bytes": 2738,
+      "sha256": "37dc346491093b2240c0021a22447393d1a9fce464e6a36e320c0d420606e833"
+    }
+  ]
+}

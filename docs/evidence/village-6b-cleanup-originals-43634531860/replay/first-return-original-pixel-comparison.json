@@ -1,0 +1,54 @@
+{
+  "scope": "Read-only exact pixel comparison of unmodified originals; no image file created or edited. Corrects an earlier provisional visual misclassification of the later first-return target frames.",
+  "comparisons": [
+    {
+      "first": "return-first-to-games-00-frame.png",
+      "second": "return-first-to-games-01-frame.png",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "different_pixels": 0,
+      "difference_bbox": null,
+      "body_below_y100_identical": true,
+      "first_sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+      "second_sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb"
+    },
+    {
+      "first": "return-first-to-games-00-frame.png",
+      "second": "return-final-flutter.png",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "different_pixels": 221,
+      "difference_bbox": [
+        933,
+        53,
+        966,
+        86
+      ],
+      "body_below_y100_identical": true,
+      "first_sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+      "second_sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1"
+    },
+    {
+      "first": "return-first-flutter.png",
+      "second": "return-first-to-games-00-frame.png",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "different_pixels": 2590166,
+      "difference_bbox": [
+        0,
+        0,
+        1080,
+        2400
+      ],
+      "body_below_y100_identical": false,
+      "first_sha256": "ba51f3f5b757acc8975983beee9c8fede197e10c53649c2f2045ddb392f3fb4e",
+      "second_sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb"
+    }
+  ]
+}

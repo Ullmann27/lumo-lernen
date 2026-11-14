@@ -1,0 +1,19 @@
+{
+  "schema": "lumo-flutter-render-readiness",
+  "version": 1,
+  "name": "return-first-games-001-frame",
+  "status": "PASS",
+  "attempts": [
+    {
+      "capture": "return-first-games-001-frame-render-candidate-1.png",
+      "sha256": "5310fb1aaa50702f9fe321e642b4b6b9e92dd35c95562cfcd7127b18339189c9",
+      "width": 1080,
+      "height": 2400,
+      "content_entropy_bits": 6.441,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  ],
+  "elapsed_seconds": 1.085
+}

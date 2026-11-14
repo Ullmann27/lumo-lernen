@@ -1,0 +1,376 @@
+{
+  "archival": {
+    "base_blob_files_preserved": 5170,
+    "branch": "evidence/lumo-village-6b-diagnostic-originals-20261114",
+    "non_png_archive": {
+      "all_member_crc_and_original_bytes_verified": true,
+      "bytes": 6220150,
+      "expanded_bytes": 42116578,
+      "file_count": 2482,
+      "git_blob": "6f0b2bc28de6cdcb3b1db84ae2803abc42b949d0",
+      "sha256": "273bf2b93211e693534a95b9a0c0c56e6137438ea07399da29c9872af8815c67"
+    },
+    "parent": "8a45f0028cb46be3d050c7d9cad5d4513423ce25",
+    "parent_owned_joblog": {
+      "commit": "ac9f524f6b446559943281a5c927f2bd0884eaf8",
+      "mode": "100644",
+      "path": "docs/evidence/current-hostec-review-20261114/c4-cleanup-diagnostic-132568698911.original.log",
+      "sha": "ea8be56e6a94462d2fb86ef0360fed70a5b5adf2",
+      "size": 1642405,
+      "tree": "7bbec34920bcbd36d49f75ff79bfa05680261de2",
+      "type": "blob",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/ea8be56e6a94462d2fb86ef0360fed70a5b5adf2"
+    },
+    "prefix": "docs/evidence/village-6b-cleanup-originals-43634531860",
+    "selected_png_paths": 40,
+    "selected_unique_png_blobs": 19
+  },
+  "artifact": {
+    "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "archive": {
+      "bytes": 173452037,
+      "sha256": "4177ce50b507c715d0fe4285859e6380aa8a1380ce68f263964e0587f4c210e8"
+    },
+    "artifact_id": 14130249406,
+    "attempt": 1,
+    "crc_all_members_pass": true,
+    "expanded_bytes": 210962413,
+    "member_count": 2875,
+    "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "qa_source": "3cae9c407a6eef1970e24bc9a61516b13fe0af52",
+    "qa_tree": "16dbaa5024c0bba79c9ab8a9d23b9025a0c2f5d7",
+    "run": 43634531860,
+    "safe_paths_and_types": true
+  },
+  "c4": {
+    "cleanup_rounds": [
+      {
+        "final_mailbox_empty": true,
+        "final_native_process_gone": true,
+        "host_pid": 6350,
+        "native_pid": 7129,
+        "nonempty_mailbox_polls": 1,
+        "pid_absent_but_mailbox_present_polls": 0,
+        "polls": [
+          {
+            "accepted": false,
+            "activity_original": "commands/0327-return-first-return-activity.stdout",
+            "actual_resumed_activity": [
+              "topResumedActivity=ActivityRecord{dffe43 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9}"
+            ],
+            "all_conditions_met": false,
+            "correct_main_activity": false,
+            "find_original": "commands/0328-return-first-closed-mailbox.stdout",
+            "find_record": {
+              "bytes": 134,
+              "git_blob": "386e9be3fdbbe59a339fe9f8f5c993430c7b6bfb",
+              "sha256": "545097dbefc6191233e6df31a00a395b634cfccf2dd42e86db968a0ca0fad4f7"
+            },
+            "find_returncode": 0,
+            "find_stdout": "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1/01ce59e6bc6ae65f8f6745ff70e55e41/state.json\n",
+            "native_gone": false,
+            "native_pid_stdout": "7129\n",
+            "pid_original": "commands/0326-return-first-native-exit.stdout"
+          },
+          {
+            "accepted": true,
+            "activity_original": "commands/0330-return-first-return-activity.stdout",
+            "actual_resumed_activity": [
+              "topResumedActivity=ActivityRecord{70ff1ae u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}"
+            ],
+            "all_conditions_met": true,
+            "correct_main_activity": true,
+            "find_original": "commands/0331-return-first-closed-mailbox.stdout",
+            "find_record": {
+              "bytes": 0,
+              "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "find_returncode": 0,
+            "find_stdout": "",
+            "native_gone": true,
+            "native_pid_stdout": "",
+            "pid_original": "commands/0329-return-first-native-exit.stdout"
+          }
+        ],
+        "returned_frame": {
+          "file": "return-first-flutter.png",
+          "height": 2400,
+          "render_readiness": {
+            "content_entropy_bits": 3.263,
+            "height": 2400,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check",
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "width": 1080
+          },
+          "sha256": "ba51f3f5b757acc8975983beee9c8fede197e10c53649c2f2045ddb392f3fb4e",
+          "width": 1080
+        },
+        "returned_ui": "return-first-returned-ui.xml",
+        "session_token": "01ce59e6bc6ae65f8f6745ff70e55e41",
+        "tag": "return-first"
+      },
+      {
+        "final_mailbox_empty": true,
+        "final_native_process_gone": true,
+        "host_pid": 6350,
+        "native_pid": 8289,
+        "nonempty_mailbox_polls": 2,
+        "pid_absent_but_mailbox_present_polls": 0,
+        "polls": [
+          {
+            "accepted": false,
+            "activity_original": "commands/0447-return-final-return-activity.stdout",
+            "actual_resumed_activity": [
+              "topResumedActivity=ActivityRecord{9952254 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9}"
+            ],
+            "all_conditions_met": false,
+            "correct_main_activity": false,
+            "find_original": "commands/0448-return-final-closed-mailbox.stdout",
+            "find_record": {
+              "bytes": 134,
+              "git_blob": "ee445a1817b86528bf2e78d9d1c7369a3c74ad8a",
+              "sha256": "31996453152fb3c080e25a18a11061e20fa7e4f034718ae181d74ce3aceec995"
+            },
+            "find_returncode": 0,
+            "find_stdout": "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1/c7a34925a1a7164b6ee0cbf5d97d2ff9/state.json\n",
+            "native_gone": false,
+            "native_pid_stdout": "8289\n",
+            "pid_original": "commands/0446-return-final-native-exit.stdout"
+          },
+          {
+            "accepted": false,
+            "activity_original": "commands/0450-return-final-return-activity.stdout",
+            "actual_resumed_activity": [
+              "topResumedActivity=ActivityRecord{70ff1ae u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}"
+            ],
+            "all_conditions_met": false,
+            "correct_main_activity": true,
+            "find_original": "commands/0451-return-final-closed-mailbox.stdout",
+            "find_record": {
+              "bytes": 134,
+              "git_blob": "ee445a1817b86528bf2e78d9d1c7369a3c74ad8a",
+              "sha256": "31996453152fb3c080e25a18a11061e20fa7e4f034718ae181d74ce3aceec995"
+            },
+            "find_returncode": 0,
+            "find_stdout": "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1/c7a34925a1a7164b6ee0cbf5d97d2ff9/state.json\n",
+            "native_gone": false,
+            "native_pid_stdout": "8289\n",
+            "pid_original": "commands/0449-return-final-native-exit.stdout"
+          },
+          {
+            "accepted": true,
+            "activity_original": "commands/0453-return-final-return-activity.stdout",
+            "actual_resumed_activity": [
+              "topResumedActivity=ActivityRecord{70ff1ae u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}"
+            ],
+            "all_conditions_met": true,
+            "correct_main_activity": true,
+            "find_original": "commands/0454-return-final-closed-mailbox.stdout",
+            "find_record": {
+              "bytes": 0,
+              "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "find_returncode": 0,
+            "find_stdout": "",
+            "native_gone": true,
+            "native_pid_stdout": "",
+            "pid_original": "commands/0452-return-final-native-exit.stdout"
+          }
+        ],
+        "returned_frame": {
+          "file": "return-final-flutter.png",
+          "height": 2400,
+          "render_readiness": {
+            "content_entropy_bits": 6.365,
+            "height": 2400,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check",
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "width": 1080
+          },
+          "sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1",
+          "width": 1080
+        },
+        "returned_ui": "return-final-returned-ui.xml",
+        "session_token": "c7a34925a1a7164b6ee0cbf5d97d2ff9",
+        "tag": "return-final"
+      }
+    ],
+    "original_reader": {
+      "actual_bot_responses": 2,
+      "actual_child_drops": 2,
+      "api": 35,
+      "binding": {
+        "candidate_artifact_digest": "sha256:1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6",
+        "candidate_artifact_id": 14125990109,
+        "host_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+        "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "run_attempt": 1,
+        "run_id": 43616038272,
+        "versionCode": 2020,
+        "versionName": "0.13.8",
+        "workflow": ".github/workflows/lumo-connect-four-2020.yml"
+      },
+      "native_returns": 2,
+      "observations": 25,
+      "original_files": 1515,
+      "same_round_reopened": true,
+      "scope": "C4 candidate device test only; no release, physical ARM64, API37 or FPS acceptance",
+      "status": "PASS",
+      "versionCode": 2020
+    },
+    "reopen": {
+      "closed_observation": "return-first-second-000",
+      "closed_pid": 7129,
+      "closed_state": {
+        "ack": 5,
+        "columns": [
+          3,
+          3,
+          2,
+          3
+        ],
+        "owner": "0de0a398b2cd1c1cf25038a54a5b230bf8bd9c8314a51f3e7f1753c7eb8d10b8",
+        "paused": true,
+        "recordRevision": 5,
+        "revision": 9,
+        "rewarded": false,
+        "roundId": "9e8cbfb7d1dcab2c0e2f6e094548104b",
+        "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+      },
+      "host_pid": 6350,
+      "new_pid": true,
+      "new_token": true,
+      "opened_observation": "reopened-009",
+      "opened_pid": 8289,
+      "opened_state": {
+        "ack": 0,
+        "columns": [
+          3,
+          3,
+          2,
+          3
+        ],
+        "owner": "0de0a398b2cd1c1cf25038a54a5b230bf8bd9c8314a51f3e7f1753c7eb8d10b8",
+        "paused": false,
+        "recordRevision": 5,
+        "revision": 2,
+        "rewarded": false,
+        "roundId": "9e8cbfb7d1dcab2c0e2f6e094548104b",
+        "token": "c7a34925a1a7164b6ee0cbf5d97d2ff9"
+      },
+      "same_board": true,
+      "same_round_and_owner": true
+    },
+    "visual_qualification": "See visual-review.json: stale early first-return PNG, followed by true Flutter pause and Spielewelt originals; both returns complete."
+  },
+  "diagnostic": {
+    "android_job": 132568698911,
+    "attempt": 1,
+    "contract_job": 132568308161,
+    "qa_blob_files": 5010,
+    "qa_source": "3cae9c407a6eef1970e24bc9a61516b13fe0af52",
+    "qa_tree": "16dbaa5024c0bba79c9ab8a9d23b9025a0c2f5d7",
+    "run": 43634531860
+  },
+  "limits": [
+    "Separate old6b APK diagnostic, not acceptance of current central Hostec or seven jobs.",
+    "No newly downloaded APK or fresh local apksigner run; exact original APK/PCK receipts are independently cross-bound.",
+    "Small source materialization contains exact Git blobs; it is not a Git checkout and has no Git-index claim.",
+    "Two actual child/bot pairs, pause/resume, reopen and two returns; no completed win, reward, physical-device or FPS claim.",
+    "Complete original ZIP remains locally and under the source GitHub artifact; this Git checkpoint stores its complete hash inventory, every non-PNG original in a verified compact container, and selected original PNGs, not all 393 PNGs.",
+    "A fresh APK download or local signature verification was not performed. Original diagnostic identity and before/after source/APK receipts are cross-bound to exact QA3cae and APK6b.",
+    "The snapshot source area is a small exact-blob materialization, not a Git checkout. No raw Git-index-preservation result is claimed.",
+    "No observed nonempty mailbox poll in this successful run had an already-absent native PID. Therefore this run does not reproduce the old timing window or prove a particular causal explanation for it.",
+    "First early C4 return PNG is stale native; later target and games originals supply the visual Flutter-return proof. The provisional misclassification of those later frames is transparently corrected."
+  ],
+  "local_replay": {
+    "elapsed_seconds": 15.115754067002854,
+    "full_readers_unchanged": true,
+    "new_device_engine_or_capture_runs": 0,
+    "original_c4_result_exactly_reproduced": true,
+    "runtime": {
+      "ci_pillow": "12.3.0",
+      "pillow": "13.0.0",
+      "python": "3.12.14"
+    }
+  },
+  "main_original": {
+    "all_steps_true": true,
+    "fatal_crashes": 0,
+    "mandatory_steps_independently_checked": 18,
+    "not_tested": [
+      "physical Samsung Fold",
+      "device GPU frame times / 60 FPS",
+      "audio output",
+      "complete two-lap race and reward (kart_complete_android_probe)"
+    ],
+    "status": "PASS",
+    "steps": 21
+  },
+  "observer_sources": {
+    "before_after_equal": true,
+    "expected_count": 79,
+    "independently_matched_to_full_untruncated_qa_tree": true,
+    "local_exact_qa_files": 12,
+    "separate_unchanged_zip_utility_files": 1
+  },
+  "preservation": {
+    "all_original_bytes_and_modes_unchanged_after_replay_and_views": true,
+    "all_reader_bytes_and_modes_unchanged": true,
+    "original_files": 2875,
+    "reader_files": 13
+  },
+  "product": {
+    "apk_sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+    "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+    "version_code": 2020,
+    "version_name": "0.13.8"
+  },
+  "publication_approval": false,
+  "schema": 1,
+  "seven_job_acceptance": false,
+  "status": "PASS_SEPARATE_UNCHANGED_APK_DIAGNOSTIC_WITH_EXPLICIT_VISUAL_QUALIFICATIONS",
+  "village": {
+    "actual_accepted_return_sha256": "43ec359af33f96bd47299bb6c933c45c7269c7aa5f6cfb3fb4d2c033dff90d8b",
+    "native_ready_marker": {
+      "host_entry": true,
+      "initialized_plot_nodes": 9,
+      "living_village": true,
+      "mode": "settlement",
+      "plots": 9,
+      "population": 2,
+      "return_scene": "games",
+      "save_blocked": false,
+      "save_path": "user://lumo_settlement_f89423f887c29f8dc3d91cab3984651515f53449c4296cc241dce9393530d79e_1_village.json",
+      "scene": "res://scenes/creative/build_settlement_world.tscn",
+      "slot": 1,
+      "visible_residents": 2
+    },
+    "native_return_ack_in_original_log": {
+      "line": 94333,
+      "original_path": "village/commands/0082-village-final-all-buffer-logcat.stdout",
+      "text": "11-14 20:18:53.941  6686  6723 I godot   : [LumoHost] return: games"
+    },
+    "original_reader": {
+      "android_api": 35,
+      "frame_sha256": "377a4a0ba5075308cefa0aa8c278b0e5dad995bc27bc513298fcfd7d568916e8",
+      "host_pid": 6350,
+      "native_pid": 6686,
+      "native_process_ended": true,
+      "profile_and_learning_unchanged": true,
+      "raw_report_sha256": "4e2cb2b6237c4c642a9ffb8b43ef5407d268b03afd26db1984104a921f0af191",
+      "return_scene": "games",
+      "save_path": "user://lumo_settlement_f89423f887c29f8dc3d91cab3984651515f53449c4296cc241dce9393530d79e_1_village.json",
+      "scene": "res://scenes/creative/build_settlement_world.tscn",
+      "status": "PASS"
+    },
+    "rejected_return_observations": 1,
+    "return_observation_count": 2
+  }
+}

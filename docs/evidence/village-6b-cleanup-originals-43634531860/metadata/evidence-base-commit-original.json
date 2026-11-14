@@ -1,0 +1,35 @@
+{
+  "sha": "8a45f0028cb46be3d050c7d9cad5d4513423ce25",
+  "node_id": "C_kwDOSNzcp9oAKDhhNDVmMDAyOGNiNDZiZTNkMDUwYzdkOWNhZDVkNDUxMzQyM2NlMjU",
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/8a45f0028cb46be3d050c7d9cad5d4513423ce25",
+  "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/8a45f0028cb46be3d050c7d9cad5d4513423ce25",
+  "author": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T19:49:27Z"
+  },
+  "committer": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T19:49:27Z"
+  },
+  "tree": {
+    "sha": "5ab6c0811d43b16eed166b3a651f3134aa34050e",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/5ab6c0811d43b16eed166b3a651f3134aa34050e"
+  },
+  "message": "evidence: preserve unchanged 6b diagnostic originals and C4 failure [skip ci]\n\nSeparate QA91 diagnostic 43629575654/1 on unchanged Host6b / Native847.\nMain and Village passed; complete C4 failed with Closed C4 mailbox still exists.\nUnchanged Village reader passes; full C4 reader rejects; 19 reached observations and five transitions replayed.\n\nFull untruncated remote tree readback: 5ab6c0811d43b16eed166b3a651f3134aa34050e\nVerified all 5001 base blobs/modes unchanged, 169 added evidence paths, 5170 total files, 0 removals, 0 source changes.\nAll 169 evidence blobs/modes match their verified upload plan.\nBase parent: 91b5aece4060cd625b27e4cfa967122b5d4b5b92. No central ref or product mutation.\n\nOriginal artifact 14128089386: 156330306 bytes.\nSHA256: 2d8a5cae6ebe67d5cce2c488d6304bd1b9e3a36618eff66a541e3335f25b1614.\nAll 2262 original files indexed; all 1921 non-PNG originals losslessly archived.\nFour actually viewed PNGs are preserved individually.\nOriginal/readers/parent-source and raw index snapshots unchanged. No new device/engine run.\nC4 observer checkpoint d04ac259 was independently reviewed at source level.\nActual later cleanup still needs new device evidence.",
+  "parents": [
+    {
+      "sha": "91b5aece4060cd625b27e4cfa967122b5d4b5b92",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/91b5aece4060cd625b27e4cfa967122b5d4b5b92",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/91b5aece4060cd625b27e4cfa967122b5d4b5b92"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

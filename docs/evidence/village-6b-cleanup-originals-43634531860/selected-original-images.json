@@ -1,0 +1,562 @@
+[
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 225776,
+    "git_blob": "ee665f3d10351af7637c56677a6e0c62d401a0e4",
+    "mode": 292,
+    "path": "c4/child-first-confirmed-004.png",
+    "personally_viewed": true,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "cdf325fa9f7e3bfbad78984f8938e4f543c8097bcde0c669a85c4940bd81ee59",
+    "visual_finding": "First child and bot pair visible in column 4; zero-based columns [3,3]."
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 222057,
+    "git_blob": "6888823c996f8387818c23d629a28359af804a9f",
+    "mode": 292,
+    "path": "c4/child-first-first-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "46771e1db115af9d91af42c09bce817dea9309954736baa3b1ad1ecab33b3252",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 222057,
+    "git_blob": "6888823c996f8387818c23d629a28359af804a9f",
+    "mode": 292,
+    "path": "c4/child-first-second-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "46771e1db115af9d91af42c09bce817dea9309954736baa3b1ad1ecab33b3252",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 229412,
+    "git_blob": "0e6cc356d46b0820da3fd71af3c2ffad21dc08d0",
+    "mode": 292,
+    "path": "c4/child-second-confirmed-003.png",
+    "personally_viewed": true,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "a11112802703e11045ac4a73af6cd92f7c75e358489b6b43b4c48ddd6c216741",
+    "visual_finding": "Two cyan child counters and two yellow bot counters visible; zero-based columns [3,3,2,3]."
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 225402,
+    "git_blob": "1ea03dff98e909d152bfa84b15cefa729a38ec56",
+    "mode": 292,
+    "path": "c4/child-second-first-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "9f49d012d5e9b41c0d242e7236a9bd5b566926d4b2ee1d634d7c226ae5d75f95",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 225402,
+    "git_blob": "1ea03dff98e909d152bfa84b15cefa729a38ec56",
+    "mode": 292,
+    "path": "c4/child-second-second-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "9f49d012d5e9b41c0d242e7236a9bd5b566926d4b2ee1d634d7c226ae5d75f95",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 221838,
+    "git_blob": "4ac443d47eb1482a1c371577e8dd2c5df669e591",
+    "mode": 292,
+    "path": "c4/initial-015.png",
+    "personally_viewed": true,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "602d741dbc500cb4b3bc4bf5201f9335cfb58346636134d2584a908313a0f914",
+    "visual_finding": "Empty native 7 by 6 board; Back, Pause and seven column controls visible."
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 191373,
+    "git_blob": "2b76d5ace44694816fd6e6414bdb956ad9a4fc6d",
+    "mode": 292,
+    "path": "c4/pause-after-reopen-confirmed-001.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "e3ddbe4b75328a66eea9d942ebed27e454e74de751bfa0b8938882098d70382c",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 228563,
+    "git_blob": "9d8275b40c93daf9f85f8c346a82fb3e3d275d92",
+    "mode": 292,
+    "path": "c4/pause-after-reopen-first-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "910005902420fc6df1d3627d127daa2d491068e2717972b6ecdaa7ff4438b68d",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 228563,
+    "git_blob": "9d8275b40c93daf9f85f8c346a82fb3e3d275d92",
+    "mode": 292,
+    "path": "c4/pause-after-reopen-second-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "910005902420fc6df1d3627d127daa2d491068e2717972b6ecdaa7ff4438b68d",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 191979,
+    "git_blob": "396bd10fd789dc72b15a603bd16228e8607aee72",
+    "mode": 292,
+    "path": "c4/pause-before-return-confirmed-001.png",
+    "personally_viewed": true,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "fdce7dbee517a9135439b76c076d8448e5ac0c05f1809542910499af34c8b455",
+    "visual_finding": "Native pause with the same four counters behind the overlay."
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 229412,
+    "git_blob": "0e6cc356d46b0820da3fd71af3c2ffad21dc08d0",
+    "mode": 292,
+    "path": "c4/pause-before-return-first-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "a11112802703e11045ac4a73af6cd92f7c75e358489b6b43b4c48ddd6c216741",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 229412,
+    "git_blob": "0e6cc356d46b0820da3fd71af3c2ffad21dc08d0",
+    "mode": 292,
+    "path": "c4/pause-before-return-second-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "a11112802703e11045ac4a73af6cd92f7c75e358489b6b43b4c48ddd6c216741",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 190840,
+    "git_blob": "10cd4aa2fa730c7d3755e041bed4cf06461c9cc1",
+    "mode": 292,
+    "path": "c4/pause-first-confirmed-001.png",
+    "personally_viewed": true,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "f7d3141feb128b18d4054728fcbfb09aaa5ee5cf7df0b2faf7ac74329abf5de1",
+    "visual_finding": "Native pause controls visible; the same two counters remain behind the overlay."
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 225776,
+    "git_blob": "ee665f3d10351af7637c56677a6e0c62d401a0e4",
+    "mode": 292,
+    "path": "c4/pause-first-first-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "cdf325fa9f7e3bfbad78984f8938e4f543c8097bcde0c669a85c4940bd81ee59",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 225776,
+    "git_blob": "ee665f3d10351af7637c56677a6e0c62d401a0e4",
+    "mode": 292,
+    "path": "c4/pause-first-second-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "cdf325fa9f7e3bfbad78984f8938e4f543c8097bcde0c669a85c4940bd81ee59",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 190840,
+    "git_blob": "10cd4aa2fa730c7d3755e041bed4cf06461c9cc1",
+    "mode": 292,
+    "path": "c4/pause-held-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "f7d3141feb128b18d4054728fcbfb09aaa5ee5cf7df0b2faf7ac74329abf5de1",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 228563,
+    "git_blob": "9d8275b40c93daf9f85f8c346a82fb3e3d275d92",
+    "mode": 292,
+    "path": "c4/reopened-009.png",
+    "personally_viewed": true,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "910005902420fc6df1d3627d127daa2d491068e2717972b6ecdaa7ff4438b68d",
+    "visual_finding": "Reopened native board shows the same four counters and seven column controls; new PID and token are established by original state/process files."
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 225402,
+    "git_blob": "1ea03dff98e909d152bfa84b15cefa729a38ec56",
+    "mode": 292,
+    "path": "c4/resume-first-confirmed-001.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "9f49d012d5e9b41c0d242e7236a9bd5b566926d4b2ee1d634d7c226ae5d75f95",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 190840,
+    "git_blob": "10cd4aa2fa730c7d3755e041bed4cf06461c9cc1",
+    "mode": 292,
+    "path": "c4/resume-first-first-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "f7d3141feb128b18d4054728fcbfb09aaa5ee5cf7df0b2faf7ac74329abf5de1",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 190840,
+    "git_blob": "10cd4aa2fa730c7d3755e041bed4cf06461c9cc1",
+    "mode": 292,
+    "path": "c4/resume-first-second-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "f7d3141feb128b18d4054728fcbfb09aaa5ee5cf7df0b2faf7ac74329abf5de1",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 191373,
+    "git_blob": "2b76d5ace44694816fd6e6414bdb956ad9a4fc6d",
+    "mode": 292,
+    "path": "c4/return-final-first-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "e3ddbe4b75328a66eea9d942ebed27e454e74de751bfa0b8938882098d70382c",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 514039,
+    "git_blob": "2ed3983c2942d6ce7fbc6cb86849b2baf98a7a45",
+    "mode": 292,
+    "path": "c4/return-final-flutter.png",
+    "personally_viewed": true,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1",
+    "visual_finding": "Actual Flutter pause card after the second native return."
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 514428,
+    "git_blob": "5959bc16fcd86226cbd59b79fce8a6bcee1a8f07",
+    "mode": 292,
+    "path": "c4/return-final-games-000-frame.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "330dbae606aa6ce1d4cc11ac131766f84ac07ccefdfbdd73e52bcb4e71cc440c",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 1918700,
+    "git_blob": "c5b242c12f71c41d5d73f43bb57977ee7696f064",
+    "mode": 292,
+    "path": "c4/return-final-games-001-frame.png",
+    "personally_viewed": true,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "6de164fb0ea730b2eb43427ed0a8654ead36ce484a361e4df04ea0c654431da8",
+    "visual_finding": "Actual Flutter games screen after the final Zur Spieleauswahl touch; 4. Gewinnt portal and Spielen tab visible."
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 191373,
+    "git_blob": "2b76d5ace44694816fd6e6414bdb956ad9a4fc6d",
+    "mode": 292,
+    "path": "c4/return-final-second-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "e3ddbe4b75328a66eea9d942ebed27e454e74de751bfa0b8938882098d70382c",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 514039,
+    "git_blob": "2ed3983c2942d6ce7fbc6cb86849b2baf98a7a45",
+    "mode": 292,
+    "path": "c4/return-final-to-games-00-frame.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 514039,
+    "git_blob": "2ed3983c2942d6ce7fbc6cb86849b2baf98a7a45",
+    "mode": 292,
+    "path": "c4/return-final-to-games-01-frame.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 191979,
+    "git_blob": "396bd10fd789dc72b15a603bd16228e8607aee72",
+    "mode": 292,
+    "path": "c4/return-first-first-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "fdce7dbee517a9135439b76c076d8448e5ac0c05f1809542910499af34c8b455",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 177008,
+    "git_blob": "0d757105e8d689c32a11fe22bb7461b2eda4cfa8",
+    "mode": 292,
+    "path": "c4/return-first-flutter.png",
+    "personally_viewed": true,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "ba51f3f5b757acc8975983beee9c8fede197e10c53649c2f2045ddb392f3fb4e",
+    "visual_finding": "Early stale native pause frame with Bitte kurz warten; this is not visual proof of Flutter, despite the original filename."
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 514101,
+    "git_blob": "15b7c6b458a03abcf2e1813ba394b6378d5e8ffd",
+    "mode": 292,
+    "path": "c4/return-first-games-000-frame.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 1918601,
+    "git_blob": "b865628b3ef0d457bbf8ff1c5913a0363b234432",
+    "mode": 292,
+    "path": "c4/return-first-games-001-frame.png",
+    "personally_viewed": true,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "5310fb1aaa50702f9fe321e642b4b6b9e92dd35c95562cfcd7127b18339189c9",
+    "visual_finding": "Actual Flutter games screen with the 4. Gewinnt portal and selected Spielen tab visible after the target touch."
+  },
+  {
+    "also_checked_by_original_board_reader": true,
+    "bytes": 191979,
+    "git_blob": "396bd10fd789dc72b15a603bd16228e8607aee72",
+    "mode": 292,
+    "path": "c4/return-first-second-000.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "fdce7dbee517a9135439b76c076d8448e5ac0c05f1809542910499af34c8b455",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 514101,
+    "git_blob": "15b7c6b458a03abcf2e1813ba394b6378d5e8ffd",
+    "mode": 292,
+    "path": "c4/return-first-to-games-00-frame.png",
+    "personally_viewed": true,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+    "visual_finding": "Later true Flutter pause: Spiel pausiert, Fortsetzen, Zur Spieleauswahl and Neu starten are visible."
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 514101,
+    "git_blob": "15b7c6b458a03abcf2e1813ba394b6378d5e8ffd",
+    "mode": 292,
+    "path": "c4/return-first-to-games-01-frame.png",
+    "personally_viewed": true,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+    "visual_finding": "Second original target frame is byte-identical to the first target frame; the actual subsequent touch is journaled separately."
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 1910368,
+    "git_blob": "1cb85184cff91abfdaac4ba41fd956c58805b734",
+    "mode": 292,
+    "path": "main/21_race_driving_late_2.png",
+    "personally_viewed": true,
+    "pixels": [
+      2400,
+      1080
+    ],
+    "sha256": "1ba459f7979678d0351b1c73c9789f177436bad4f917cb142408feb0013e9c24",
+    "visual_finding": "Actual API35 kart frame: green kart with fox, road, minimap and driving controls; HUD shows lap 1/2, position 6/6 and 177 km/h. This static frame proves no real-world speed, completed race or FPS."
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 1927330,
+    "git_blob": "639904b8c857ce010850f9133f7660824ff269ad",
+    "mode": 292,
+    "path": "village/returned-flutter-frame.png",
+    "personally_viewed": true,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "43ec359af33f96bd47299bb6c933c45c7269c7aa5f6cfb3fb4d2c033dff90d8b",
+    "visual_finding": "Accepted later actual Flutter Spielewelt with Dorfwirtschaft tile and selected Spielen tab."
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 1438629,
+    "git_blob": "67fff80977c9cfe8509d87d62494780cf60b2db5",
+    "mode": 292,
+    "path": "village/returned-flutter-observations/attempt-1/returned-flutter-frame.png",
+    "personally_viewed": true,
+    "pixels": [
+      2400,
+      1080
+    ],
+    "sha256": "bf79878c91e05a000b4a17fa0a0357faeb6f4c8a2b81e7effd742e711dfaaaa0",
+    "visual_finding": "Rejected first village return capture still shows the native village HUD; retained unchanged."
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 1927330,
+    "git_blob": "639904b8c857ce010850f9133f7660824ff269ad",
+    "mode": 292,
+    "path": "village/returned-flutter-observations/attempt-2/returned-flutter-frame.png",
+    "personally_viewed": false,
+    "pixels": [
+      1080,
+      2400
+    ],
+    "sha256": "43ec359af33f96bd47299bb6c933c45c7269c7aa5f6cfb3fb4d2c033dff90d8b",
+    "visual_finding": null
+  },
+  {
+    "also_checked_by_original_board_reader": false,
+    "bytes": 1448269,
+    "git_blob": "30ea82d2bd2c4e2dfc400d3c5988d5b17a61a19b",
+    "mode": 292,
+    "path": "village/village-ready-10.png",
+    "personally_viewed": true,
+    "pixels": [
+      2400,
+      1080
+    ],
+    "sha256": "377a4a0ba5075308cefa0aa8c278b0e5dad995bc27bc513298fcfd7d568916e8",
+    "visual_finding": "Actual landscape village HUD with Spiele, LUMO DORFWELT, two residents, nine plots and Nächster Tag. The large HUD occupies most of this original frame; this is not a whole-village visual-composition acceptance."
+  }
+]

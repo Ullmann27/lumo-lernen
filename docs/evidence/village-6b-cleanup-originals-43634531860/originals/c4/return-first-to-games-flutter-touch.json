@@ -1,0 +1,54 @@
+{
+  "target": {
+    "label": "Zur Spieleauswahl",
+    "bounds": [
+      116,
+      1377,
+      964,
+      1503
+    ],
+    "point": [
+      540,
+      1440
+    ]
+  },
+  "first": {
+    "capture": {
+      "file": "return-first-to-games-00-frame.png",
+      "width": 1080,
+      "height": 2400,
+      "sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 6.365,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    "ui": "return-first-to-games-00.xml",
+    "density": "commands/0333-density.stdout",
+    "observed_monotonic": 1648.19152293
+  },
+  "second": {
+    "capture": {
+      "file": "return-first-to-games-01-frame.png",
+      "width": 1080,
+      "height": 2400,
+      "sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 6.365,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    "ui": "return-first-to-games-01.xml",
+    "density": "commands/0334-density.stdout",
+    "observed_monotonic": 1649.359171192
+  },
+  "command_original": "commands/0335-return-first-to-games-touch.stdout"
+}

@@ -1,0 +1,971 @@
+{
+  "final_return_order": {
+    "actual_target_touch": {
+      "command": [
+        "adb",
+        "shell",
+        "input",
+        "swipe",
+        "540",
+        "1440",
+        "540",
+        "1440",
+        "120"
+      ],
+      "elapsed_seconds": 0.14895421799997166,
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "flutter_pause_target_frames": {
+      "command_original": "commands/0458-return-final-to-games-touch.stdout",
+      "first": {
+        "capture": {
+          "file": "return-final-to-games-00-frame.png",
+          "height": 2400,
+          "render_readiness": {
+            "content_entropy_bits": 6.365,
+            "height": 2400,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check",
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "width": 1080
+          },
+          "sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1",
+          "width": 1080
+        },
+        "density": "commands/0456-density.stdout",
+        "observed_monotonic": 1689.255845069,
+        "ui": "return-final-to-games-00.xml"
+      },
+      "second": {
+        "capture": {
+          "file": "return-final-to-games-01-frame.png",
+          "height": 2400,
+          "render_readiness": {
+            "content_entropy_bits": 6.365,
+            "height": 2400,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check",
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "width": 1080
+          },
+          "sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1",
+          "width": 1080
+        },
+        "density": "commands/0457-density.stdout",
+        "observed_monotonic": 1690.451534742,
+        "ui": "return-final-to-games-01.xml"
+      },
+      "target": {
+        "bounds": [
+          116,
+          1377,
+          964,
+          1503
+        ],
+        "label": "Zur Spieleauswahl",
+        "point": [
+          540,
+          1440
+        ]
+      }
+    },
+    "subsequent_games_frames": {
+      "label": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+      "observations": [
+        {
+          "capture": {
+            "file": "return-final-games-000-frame.png",
+            "height": 2400,
+            "render_readiness": {
+              "content_entropy_bits": 6.365,
+              "height": 2400,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check",
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "width": 1080
+            },
+            "sha256": "330dbae606aa6ce1d4cc11ac131766f84ac07ccefdfbdd73e52bcb4e71cc440c",
+            "width": 1080
+          },
+          "density": "commands/0459-density.stdout",
+          "observed_monotonic": 1691.862852147,
+          "reason": "The previous Flutter pause is still visible",
+          "ui": "return-final-games-000.xml"
+        },
+        {
+          "capture": {
+            "file": "return-final-games-001-frame.png",
+            "height": 2400,
+            "render_readiness": {
+              "content_entropy_bits": 6.441,
+              "height": 2400,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check",
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "width": 1080
+            },
+            "sha256": "6de164fb0ea730b2eb43427ed0a8654ead36ce484a361e4df04ea0c654431da8",
+            "width": 1080
+          },
+          "density": "commands/0460-density.stdout",
+          "observed_monotonic": 1693.649282004,
+          "target": {
+            "bounds": [
+              42,
+              1385,
+              524,
+              1849
+            ],
+            "label": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+            "point": [
+              283,
+              1617
+            ]
+          },
+          "ui": "return-final-games-001.xml"
+        }
+      ]
+    }
+  },
+  "first_return_order": {
+    "actual_target_touch": {
+      "command": [
+        "adb",
+        "shell",
+        "input",
+        "swipe",
+        "540",
+        "1440",
+        "540",
+        "1440",
+        "120"
+      ],
+      "elapsed_seconds": 0.14381662100004178,
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "early_stale_frame": {
+      "bytes": 177008,
+      "git_blob": "0d757105e8d689c32a11fe22bb7461b2eda4cfa8",
+      "mode": 292,
+      "path": "c4/return-first-flutter.png",
+      "sha256": "ba51f3f5b757acc8975983beee9c8fede197e10c53649c2f2045ddb392f3fb4e"
+    },
+    "later_flutter_pause_target_frames": {
+      "command_original": "commands/0335-return-first-to-games-touch.stdout",
+      "first": {
+        "capture": {
+          "file": "return-first-to-games-00-frame.png",
+          "height": 2400,
+          "render_readiness": {
+            "content_entropy_bits": 6.365,
+            "height": 2400,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check",
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "width": 1080
+          },
+          "sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+          "width": 1080
+        },
+        "density": "commands/0333-density.stdout",
+        "observed_monotonic": 1648.19152293,
+        "ui": "return-first-to-games-00.xml"
+      },
+      "second": {
+        "capture": {
+          "file": "return-first-to-games-01-frame.png",
+          "height": 2400,
+          "render_readiness": {
+            "content_entropy_bits": 6.365,
+            "height": 2400,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check",
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "width": 1080
+          },
+          "sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+          "width": 1080
+        },
+        "density": "commands/0334-density.stdout",
+        "observed_monotonic": 1649.359171192,
+        "ui": "return-first-to-games-01.xml"
+      },
+      "target": {
+        "bounds": [
+          116,
+          1377,
+          964,
+          1503
+        ],
+        "label": "Zur Spieleauswahl",
+        "point": [
+          540,
+          1440
+        ]
+      }
+    },
+    "monotonic_clock_scope": "Values are original probe monotonic timestamps, not fabricated UTC event times.",
+    "subsequent_games_frames": {
+      "label": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+      "observations": [
+        {
+          "capture": {
+            "file": "return-first-games-000-frame.png",
+            "height": 2400,
+            "render_readiness": {
+              "content_entropy_bits": 6.365,
+              "height": 2400,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check",
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "width": 1080
+            },
+            "sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+            "width": 1080
+          },
+          "density": "commands/0336-density.stdout",
+          "observed_monotonic": 1652.492745978,
+          "reason": "The previous Flutter pause is still visible",
+          "ui": "return-first-games-000.xml"
+        },
+        {
+          "capture": {
+            "file": "return-first-games-001-frame.png",
+            "height": 2400,
+            "render_readiness": {
+              "content_entropy_bits": 6.441,
+              "height": 2400,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check",
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "width": 1080
+            },
+            "sha256": "5310fb1aaa50702f9fe321e642b4b6b9e92dd35c95562cfcd7127b18339189c9",
+            "width": 1080
+          },
+          "density": "commands/0337-density.stdout",
+          "observed_monotonic": 1654.264608993,
+          "target": {
+            "bounds": [
+              42,
+              1385,
+              524,
+              1849
+            ],
+            "label": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+            "point": [
+              283,
+              1617
+            ]
+          },
+          "ui": "return-first-games-001.xml"
+        }
+      ]
+    }
+  },
+  "images": [
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 225776,
+      "git_blob": "ee665f3d10351af7637c56677a6e0c62d401a0e4",
+      "mode": 292,
+      "path": "c4/child-first-confirmed-004.png",
+      "personally_viewed": true,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "cdf325fa9f7e3bfbad78984f8938e4f543c8097bcde0c669a85c4940bd81ee59",
+      "visual_finding": "First child and bot pair visible in column 4; zero-based columns [3,3]."
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 222057,
+      "git_blob": "6888823c996f8387818c23d629a28359af804a9f",
+      "mode": 292,
+      "path": "c4/child-first-first-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "46771e1db115af9d91af42c09bce817dea9309954736baa3b1ad1ecab33b3252",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 222057,
+      "git_blob": "6888823c996f8387818c23d629a28359af804a9f",
+      "mode": 292,
+      "path": "c4/child-first-second-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "46771e1db115af9d91af42c09bce817dea9309954736baa3b1ad1ecab33b3252",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 229412,
+      "git_blob": "0e6cc356d46b0820da3fd71af3c2ffad21dc08d0",
+      "mode": 292,
+      "path": "c4/child-second-confirmed-003.png",
+      "personally_viewed": true,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "a11112802703e11045ac4a73af6cd92f7c75e358489b6b43b4c48ddd6c216741",
+      "visual_finding": "Two cyan child counters and two yellow bot counters visible; zero-based columns [3,3,2,3]."
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 225402,
+      "git_blob": "1ea03dff98e909d152bfa84b15cefa729a38ec56",
+      "mode": 292,
+      "path": "c4/child-second-first-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "9f49d012d5e9b41c0d242e7236a9bd5b566926d4b2ee1d634d7c226ae5d75f95",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 225402,
+      "git_blob": "1ea03dff98e909d152bfa84b15cefa729a38ec56",
+      "mode": 292,
+      "path": "c4/child-second-second-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "9f49d012d5e9b41c0d242e7236a9bd5b566926d4b2ee1d634d7c226ae5d75f95",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 221838,
+      "git_blob": "4ac443d47eb1482a1c371577e8dd2c5df669e591",
+      "mode": 292,
+      "path": "c4/initial-015.png",
+      "personally_viewed": true,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "602d741dbc500cb4b3bc4bf5201f9335cfb58346636134d2584a908313a0f914",
+      "visual_finding": "Empty native 7 by 6 board; Back, Pause and seven column controls visible."
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 191373,
+      "git_blob": "2b76d5ace44694816fd6e6414bdb956ad9a4fc6d",
+      "mode": 292,
+      "path": "c4/pause-after-reopen-confirmed-001.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "e3ddbe4b75328a66eea9d942ebed27e454e74de751bfa0b8938882098d70382c",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 228563,
+      "git_blob": "9d8275b40c93daf9f85f8c346a82fb3e3d275d92",
+      "mode": 292,
+      "path": "c4/pause-after-reopen-first-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "910005902420fc6df1d3627d127daa2d491068e2717972b6ecdaa7ff4438b68d",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 228563,
+      "git_blob": "9d8275b40c93daf9f85f8c346a82fb3e3d275d92",
+      "mode": 292,
+      "path": "c4/pause-after-reopen-second-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "910005902420fc6df1d3627d127daa2d491068e2717972b6ecdaa7ff4438b68d",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 191979,
+      "git_blob": "396bd10fd789dc72b15a603bd16228e8607aee72",
+      "mode": 292,
+      "path": "c4/pause-before-return-confirmed-001.png",
+      "personally_viewed": true,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "fdce7dbee517a9135439b76c076d8448e5ac0c05f1809542910499af34c8b455",
+      "visual_finding": "Native pause with the same four counters behind the overlay."
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 229412,
+      "git_blob": "0e6cc356d46b0820da3fd71af3c2ffad21dc08d0",
+      "mode": 292,
+      "path": "c4/pause-before-return-first-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "a11112802703e11045ac4a73af6cd92f7c75e358489b6b43b4c48ddd6c216741",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 229412,
+      "git_blob": "0e6cc356d46b0820da3fd71af3c2ffad21dc08d0",
+      "mode": 292,
+      "path": "c4/pause-before-return-second-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "a11112802703e11045ac4a73af6cd92f7c75e358489b6b43b4c48ddd6c216741",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 190840,
+      "git_blob": "10cd4aa2fa730c7d3755e041bed4cf06461c9cc1",
+      "mode": 292,
+      "path": "c4/pause-first-confirmed-001.png",
+      "personally_viewed": true,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "f7d3141feb128b18d4054728fcbfb09aaa5ee5cf7df0b2faf7ac74329abf5de1",
+      "visual_finding": "Native pause controls visible; the same two counters remain behind the overlay."
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 225776,
+      "git_blob": "ee665f3d10351af7637c56677a6e0c62d401a0e4",
+      "mode": 292,
+      "path": "c4/pause-first-first-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "cdf325fa9f7e3bfbad78984f8938e4f543c8097bcde0c669a85c4940bd81ee59",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 225776,
+      "git_blob": "ee665f3d10351af7637c56677a6e0c62d401a0e4",
+      "mode": 292,
+      "path": "c4/pause-first-second-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "cdf325fa9f7e3bfbad78984f8938e4f543c8097bcde0c669a85c4940bd81ee59",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 190840,
+      "git_blob": "10cd4aa2fa730c7d3755e041bed4cf06461c9cc1",
+      "mode": 292,
+      "path": "c4/pause-held-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "f7d3141feb128b18d4054728fcbfb09aaa5ee5cf7df0b2faf7ac74329abf5de1",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 228563,
+      "git_blob": "9d8275b40c93daf9f85f8c346a82fb3e3d275d92",
+      "mode": 292,
+      "path": "c4/reopened-009.png",
+      "personally_viewed": true,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "910005902420fc6df1d3627d127daa2d491068e2717972b6ecdaa7ff4438b68d",
+      "visual_finding": "Reopened native board shows the same four counters and seven column controls; new PID and token are established by original state/process files."
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 225402,
+      "git_blob": "1ea03dff98e909d152bfa84b15cefa729a38ec56",
+      "mode": 292,
+      "path": "c4/resume-first-confirmed-001.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "9f49d012d5e9b41c0d242e7236a9bd5b566926d4b2ee1d634d7c226ae5d75f95",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 190840,
+      "git_blob": "10cd4aa2fa730c7d3755e041bed4cf06461c9cc1",
+      "mode": 292,
+      "path": "c4/resume-first-first-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "f7d3141feb128b18d4054728fcbfb09aaa5ee5cf7df0b2faf7ac74329abf5de1",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 190840,
+      "git_blob": "10cd4aa2fa730c7d3755e041bed4cf06461c9cc1",
+      "mode": 292,
+      "path": "c4/resume-first-second-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "f7d3141feb128b18d4054728fcbfb09aaa5ee5cf7df0b2faf7ac74329abf5de1",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 191373,
+      "git_blob": "2b76d5ace44694816fd6e6414bdb956ad9a4fc6d",
+      "mode": 292,
+      "path": "c4/return-final-first-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "e3ddbe4b75328a66eea9d942ebed27e454e74de751bfa0b8938882098d70382c",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 514039,
+      "git_blob": "2ed3983c2942d6ce7fbc6cb86849b2baf98a7a45",
+      "mode": 292,
+      "path": "c4/return-final-flutter.png",
+      "personally_viewed": true,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1",
+      "visual_finding": "Actual Flutter pause card after the second native return."
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 514428,
+      "git_blob": "5959bc16fcd86226cbd59b79fce8a6bcee1a8f07",
+      "mode": 292,
+      "path": "c4/return-final-games-000-frame.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "330dbae606aa6ce1d4cc11ac131766f84ac07ccefdfbdd73e52bcb4e71cc440c",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 1918700,
+      "git_blob": "c5b242c12f71c41d5d73f43bb57977ee7696f064",
+      "mode": 292,
+      "path": "c4/return-final-games-001-frame.png",
+      "personally_viewed": true,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "6de164fb0ea730b2eb43427ed0a8654ead36ce484a361e4df04ea0c654431da8",
+      "visual_finding": "Actual Flutter games screen after the final Zur Spieleauswahl touch; 4. Gewinnt portal and Spielen tab visible."
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 191373,
+      "git_blob": "2b76d5ace44694816fd6e6414bdb956ad9a4fc6d",
+      "mode": 292,
+      "path": "c4/return-final-second-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "e3ddbe4b75328a66eea9d942ebed27e454e74de751bfa0b8938882098d70382c",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 514039,
+      "git_blob": "2ed3983c2942d6ce7fbc6cb86849b2baf98a7a45",
+      "mode": 292,
+      "path": "c4/return-final-to-games-00-frame.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 514039,
+      "git_blob": "2ed3983c2942d6ce7fbc6cb86849b2baf98a7a45",
+      "mode": 292,
+      "path": "c4/return-final-to-games-01-frame.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 191979,
+      "git_blob": "396bd10fd789dc72b15a603bd16228e8607aee72",
+      "mode": 292,
+      "path": "c4/return-first-first-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "fdce7dbee517a9135439b76c076d8448e5ac0c05f1809542910499af34c8b455",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 177008,
+      "git_blob": "0d757105e8d689c32a11fe22bb7461b2eda4cfa8",
+      "mode": 292,
+      "path": "c4/return-first-flutter.png",
+      "personally_viewed": true,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "ba51f3f5b757acc8975983beee9c8fede197e10c53649c2f2045ddb392f3fb4e",
+      "visual_finding": "Early stale native pause frame with Bitte kurz warten; this is not visual proof of Flutter, despite the original filename."
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 514101,
+      "git_blob": "15b7c6b458a03abcf2e1813ba394b6378d5e8ffd",
+      "mode": 292,
+      "path": "c4/return-first-games-000-frame.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 1918601,
+      "git_blob": "b865628b3ef0d457bbf8ff1c5913a0363b234432",
+      "mode": 292,
+      "path": "c4/return-first-games-001-frame.png",
+      "personally_viewed": true,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "5310fb1aaa50702f9fe321e642b4b6b9e92dd35c95562cfcd7127b18339189c9",
+      "visual_finding": "Actual Flutter games screen with the 4. Gewinnt portal and selected Spielen tab visible after the target touch."
+    },
+    {
+      "also_checked_by_original_board_reader": true,
+      "bytes": 191979,
+      "git_blob": "396bd10fd789dc72b15a603bd16228e8607aee72",
+      "mode": 292,
+      "path": "c4/return-first-second-000.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "fdce7dbee517a9135439b76c076d8448e5ac0c05f1809542910499af34c8b455",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 514101,
+      "git_blob": "15b7c6b458a03abcf2e1813ba394b6378d5e8ffd",
+      "mode": 292,
+      "path": "c4/return-first-to-games-00-frame.png",
+      "personally_viewed": true,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+      "visual_finding": "Later true Flutter pause: Spiel pausiert, Fortsetzen, Zur Spieleauswahl and Neu starten are visible."
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 514101,
+      "git_blob": "15b7c6b458a03abcf2e1813ba394b6378d5e8ffd",
+      "mode": 292,
+      "path": "c4/return-first-to-games-01-frame.png",
+      "personally_viewed": true,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+      "visual_finding": "Second original target frame is byte-identical to the first target frame; the actual subsequent touch is journaled separately."
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 1910368,
+      "git_blob": "1cb85184cff91abfdaac4ba41fd956c58805b734",
+      "mode": 292,
+      "path": "main/21_race_driving_late_2.png",
+      "personally_viewed": true,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "sha256": "1ba459f7979678d0351b1c73c9789f177436bad4f917cb142408feb0013e9c24",
+      "visual_finding": "Actual API35 kart frame: green kart with fox, road, minimap and driving controls; HUD shows lap 1/2, position 6/6 and 177 km/h. This static frame proves no real-world speed, completed race or FPS."
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 1927330,
+      "git_blob": "639904b8c857ce010850f9133f7660824ff269ad",
+      "mode": 292,
+      "path": "village/returned-flutter-frame.png",
+      "personally_viewed": true,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "43ec359af33f96bd47299bb6c933c45c7269c7aa5f6cfb3fb4d2c033dff90d8b",
+      "visual_finding": "Accepted later actual Flutter Spielewelt with Dorfwirtschaft tile and selected Spielen tab."
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 1438629,
+      "git_blob": "67fff80977c9cfe8509d87d62494780cf60b2db5",
+      "mode": 292,
+      "path": "village/returned-flutter-observations/attempt-1/returned-flutter-frame.png",
+      "personally_viewed": true,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "sha256": "bf79878c91e05a000b4a17fa0a0357faeb6f4c8a2b81e7effd742e711dfaaaa0",
+      "visual_finding": "Rejected first village return capture still shows the native village HUD; retained unchanged."
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 1927330,
+      "git_blob": "639904b8c857ce010850f9133f7660824ff269ad",
+      "mode": 292,
+      "path": "village/returned-flutter-observations/attempt-2/returned-flutter-frame.png",
+      "personally_viewed": false,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "sha256": "43ec359af33f96bd47299bb6c933c45c7269c7aa5f6cfb3fb4d2c033dff90d8b",
+      "visual_finding": null
+    },
+    {
+      "also_checked_by_original_board_reader": false,
+      "bytes": 1448269,
+      "git_blob": "30ea82d2bd2c4e2dfc400d3c5988d5b17a61a19b",
+      "mode": 292,
+      "path": "village/village-ready-10.png",
+      "personally_viewed": true,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "sha256": "377a4a0ba5075308cefa0aa8c278b0e5dad995bc27bc513298fcfd7d568916e8",
+      "visual_finding": "Actual landscape village HUD with Spiele, LUMO DORFWELT, two residents, nine plots and Nächster Tag. The large HUD occupies most of this original frame; this is not a whole-village visual-composition acceptance."
+    }
+  ],
+  "limits": [
+    "An original reader PASS is not by itself a manual visual finding.",
+    "Only selected existing images were personally viewed; remaining board observations were checked by the unchanged full reader.",
+    "The rejected/early stale originals are preserved with their actual ordering.",
+    "No C4 win or reward occurred; no complete two-lap race, physical-device, API37 or FPS claim."
+  ],
+  "provisional_review_correction": {
+    "communication": "The provisional additional blocker was explicitly withdrawn to Root and Android QA before any source change. Root independently opened ba51, b90 and 5310 originals and confirmed the pixel relationship.",
+    "corrected_finding": "The later b90d1e9c target originals show a true Flutter pause card and are followed by the actual Spielewelt frame 5310fb1a. The earlier ba51f3f5 frame alone is stale.",
+    "evidence": {
+      "comparisons": [
+        {
+          "body_below_y100_identical": true,
+          "difference_bbox": null,
+          "different_pixels": 0,
+          "first": "return-first-to-games-00-frame.png",
+          "first_sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+          "pixels": [
+            1080,
+            2400
+          ],
+          "second": "return-first-to-games-01-frame.png",
+          "second_sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb"
+        },
+        {
+          "body_below_y100_identical": true,
+          "difference_bbox": [
+            933,
+            53,
+            966,
+            86
+          ],
+          "different_pixels": 221,
+          "first": "return-first-to-games-00-frame.png",
+          "first_sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+          "pixels": [
+            1080,
+            2400
+          ],
+          "second": "return-final-flutter.png",
+          "second_sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1"
+        },
+        {
+          "body_below_y100_identical": false,
+          "difference_bbox": [
+            0,
+            0,
+            1080,
+            2400
+          ],
+          "different_pixels": 2590166,
+          "first": "return-first-flutter.png",
+          "first_sha256": "ba51f3f5b757acc8975983beee9c8fede197e10c53649c2f2045ddb392f3fb4e",
+          "pixels": [
+            1080,
+            2400
+          ],
+          "second": "return-first-to-games-00-frame.png",
+          "second_sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb"
+        }
+      ],
+      "scope": "Read-only exact pixel comparison of unmodified originals; no image file created or edited. Corrects an earlier provisional visual misclassification of the later first-return target frames."
+    },
+    "initial_error": "The reviewer provisionally misclassified the later first-return target frames as native while assessing the genuine early stale frame.",
+    "no_image_replacement_or_source_patch": true
+  },
+  "scope": "Independent visual review of existing unmodified PNG originals; no generated or replacement images and no new device, engine or test run.",
+  "village_return_order": {
+    "attempts": [
+      {
+        "completed_after_seconds": 20.215728753999883,
+        "error": "ValueError: Actual original TSV/PNG does not establish caption: Spielen",
+        "frame": {
+          "file": "returned-flutter-observations/attempt-1/returned-flutter-frame.png",
+          "height": 1080,
+          "sha256": "bf79878c91e05a000b4a17fa0a0357faeb6f4c8a2b81e7effd742e711dfaaaa0",
+          "width": 2400
+        },
+        "process_before": {
+          "activity": "commands/0074-returned-flutter-visible-1-before-activity.stdout",
+          "host_pid": "commands/0072-returned-flutter-visible-1-before-host_pid.stdout",
+          "native_pid": "commands/0073-returned-flutter-visible-1-before-native_pid.stdout"
+        },
+        "render_readiness": {
+          "content_entropy_bits": 4.971,
+          "height": 1080,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check",
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "width": 2400
+        },
+        "started_after_seconds": 0.0015119769998364063,
+        "status": "REJECTED",
+        "visible_ocr": "returned-flutter-visible-1"
+      },
+      {
+        "completed_after_seconds": 23.346157047999895,
+        "frame": {
+          "file": "returned-flutter-observations/attempt-2/returned-flutter-frame.png",
+          "height": 2400,
+          "sha256": "43ec359af33f96bd47299bb6c933c45c7269c7aa5f6cfb3fb4d2c033dff90d8b",
+          "width": 1080
+        },
+        "process_after": {
+          "activity": "commands/0080-returned-flutter-visible-2-after-activity.stdout",
+          "host_pid": "commands/0078-returned-flutter-visible-2-after-host_pid.stdout",
+          "native_pid": "commands/0079-returned-flutter-visible-2-after-native_pid.stdout",
+          "preferences": "commands/0081-returned-flutter-visible-2-preferences.stdout"
+        },
+        "process_before": {
+          "activity": "commands/0077-returned-flutter-visible-2-before-activity.stdout",
+          "host_pid": "commands/0075-returned-flutter-visible-2-before-host_pid.stdout",
+          "native_pid": "commands/0076-returned-flutter-visible-2-before-native_pid.stdout"
+        },
+        "render_readiness": {
+          "content_entropy_bits": 7.039,
+          "height": 2400,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check",
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "width": 1080
+        },
+        "started_after_seconds": 20.71609771699991,
+        "status": "PASS",
+        "ui": "returned-flutter-ui-2.xml",
+        "visible_ocr": "returned-flutter-visible-2"
+      }
+    ],
+    "elapsed_seconds": 23.34616621500004,
+    "schema": "lumo-village-flutter-return-observation",
+    "scope": "Fresh PNG/TSV and live Flutter semantics after the single visible return touch",
+    "status": "PASS",
+    "timeout_seconds": 90,
+    "version": 1
+  }
+}

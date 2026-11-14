@@ -1,0 +1,703 @@
+{
+  "actual_cleanup_rounds": [
+    {
+      "final_mailbox_empty": true,
+      "final_native_process_gone": true,
+      "host_pid": 6350,
+      "native_pid": 7129,
+      "nonempty_mailbox_polls": 1,
+      "pid_absent_but_mailbox_present_polls": 0,
+      "polls": [
+        {
+          "accepted": false,
+          "activity_original": "commands/0327-return-first-return-activity.stdout",
+          "actual_resumed_activity": [
+            "topResumedActivity=ActivityRecord{dffe43 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9}"
+          ],
+          "all_conditions_met": false,
+          "correct_main_activity": false,
+          "find_original": "commands/0328-return-first-closed-mailbox.stdout",
+          "find_record": {
+            "bytes": 134,
+            "git_blob": "386e9be3fdbbe59a339fe9f8f5c993430c7b6bfb",
+            "sha256": "545097dbefc6191233e6df31a00a395b634cfccf2dd42e86db968a0ca0fad4f7"
+          },
+          "find_returncode": 0,
+          "find_stdout": "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1/01ce59e6bc6ae65f8f6745ff70e55e41/state.json\n",
+          "native_gone": false,
+          "native_pid_stdout": "7129\n",
+          "pid_original": "commands/0326-return-first-native-exit.stdout"
+        },
+        {
+          "accepted": true,
+          "activity_original": "commands/0330-return-first-return-activity.stdout",
+          "actual_resumed_activity": [
+            "topResumedActivity=ActivityRecord{70ff1ae u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}"
+          ],
+          "all_conditions_met": true,
+          "correct_main_activity": true,
+          "find_original": "commands/0331-return-first-closed-mailbox.stdout",
+          "find_record": {
+            "bytes": 0,
+            "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "find_returncode": 0,
+          "find_stdout": "",
+          "native_gone": true,
+          "native_pid_stdout": "",
+          "pid_original": "commands/0329-return-first-native-exit.stdout"
+        }
+      ],
+      "returned_frame": {
+        "file": "return-first-flutter.png",
+        "height": 2400,
+        "render_readiness": {
+          "content_entropy_bits": 3.263,
+          "height": 2400,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check",
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "width": 1080
+        },
+        "sha256": "ba51f3f5b757acc8975983beee9c8fede197e10c53649c2f2045ddb392f3fb4e",
+        "width": 1080
+      },
+      "returned_ui": "return-first-returned-ui.xml",
+      "session_token": "01ce59e6bc6ae65f8f6745ff70e55e41",
+      "tag": "return-first"
+    },
+    {
+      "final_mailbox_empty": true,
+      "final_native_process_gone": true,
+      "host_pid": 6350,
+      "native_pid": 8289,
+      "nonempty_mailbox_polls": 2,
+      "pid_absent_but_mailbox_present_polls": 0,
+      "polls": [
+        {
+          "accepted": false,
+          "activity_original": "commands/0447-return-final-return-activity.stdout",
+          "actual_resumed_activity": [
+            "topResumedActivity=ActivityRecord{9952254 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity t9}"
+          ],
+          "all_conditions_met": false,
+          "correct_main_activity": false,
+          "find_original": "commands/0448-return-final-closed-mailbox.stdout",
+          "find_record": {
+            "bytes": 134,
+            "git_blob": "ee445a1817b86528bf2e78d9d1c7369a3c74ad8a",
+            "sha256": "31996453152fb3c080e25a18a11061e20fa7e4f034718ae181d74ce3aceec995"
+          },
+          "find_returncode": 0,
+          "find_stdout": "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1/c7a34925a1a7164b6ee0cbf5d97d2ff9/state.json\n",
+          "native_gone": false,
+          "native_pid_stdout": "8289\n",
+          "pid_original": "commands/0446-return-final-native-exit.stdout"
+        },
+        {
+          "accepted": false,
+          "activity_original": "commands/0450-return-final-return-activity.stdout",
+          "actual_resumed_activity": [
+            "topResumedActivity=ActivityRecord{70ff1ae u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}"
+          ],
+          "all_conditions_met": false,
+          "correct_main_activity": true,
+          "find_original": "commands/0451-return-final-closed-mailbox.stdout",
+          "find_record": {
+            "bytes": 134,
+            "git_blob": "ee445a1817b86528bf2e78d9d1c7369a3c74ad8a",
+            "sha256": "31996453152fb3c080e25a18a11061e20fa7e4f034718ae181d74ce3aceec995"
+          },
+          "find_returncode": 0,
+          "find_stdout": "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1/c7a34925a1a7164b6ee0cbf5d97d2ff9/state.json\n",
+          "native_gone": false,
+          "native_pid_stdout": "8289\n",
+          "pid_original": "commands/0449-return-final-native-exit.stdout"
+        },
+        {
+          "accepted": true,
+          "activity_original": "commands/0453-return-final-return-activity.stdout",
+          "actual_resumed_activity": [
+            "topResumedActivity=ActivityRecord{70ff1ae u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}"
+          ],
+          "all_conditions_met": true,
+          "correct_main_activity": true,
+          "find_original": "commands/0454-return-final-closed-mailbox.stdout",
+          "find_record": {
+            "bytes": 0,
+            "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "find_returncode": 0,
+          "find_stdout": "",
+          "native_gone": true,
+          "native_pid_stdout": "",
+          "pid_original": "commands/0452-return-final-native-exit.stdout"
+        }
+      ],
+      "returned_frame": {
+        "file": "return-final-flutter.png",
+        "height": 2400,
+        "render_readiness": {
+          "content_entropy_bits": 6.365,
+          "height": 2400,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check",
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "width": 1080
+        },
+        "sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1",
+        "width": 1080
+      },
+      "returned_ui": "return-final-returned-ui.xml",
+      "session_token": "c7a34925a1a7164b6ee0cbf5d97d2ff9",
+      "tag": "return-final"
+    }
+  ],
+  "actual_reopen": {
+    "closed_observation": "return-first-second-000",
+    "closed_pid": 7129,
+    "closed_state": {
+      "ack": 5,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "owner": "0de0a398b2cd1c1cf25038a54a5b230bf8bd9c8314a51f3e7f1753c7eb8d10b8",
+      "paused": true,
+      "recordRevision": 5,
+      "revision": 9,
+      "rewarded": false,
+      "roundId": "9e8cbfb7d1dcab2c0e2f6e094548104b",
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    "host_pid": 6350,
+    "new_pid": true,
+    "new_token": true,
+    "opened_observation": "reopened-009",
+    "opened_pid": 8289,
+    "opened_state": {
+      "ack": 0,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "owner": "0de0a398b2cd1c1cf25038a54a5b230bf8bd9c8314a51f3e7f1753c7eb8d10b8",
+      "paused": false,
+      "recordRevision": 5,
+      "revision": 2,
+      "rewarded": false,
+      "roundId": "9e8cbfb7d1dcab2c0e2f6e094548104b",
+      "token": "c7a34925a1a7164b6ee0cbf5d97d2ff9"
+    },
+    "same_board": true,
+    "same_round_and_owner": true
+  },
+  "all_board_observations": [
+    {
+      "ack": 0,
+      "columns": [],
+      "frame": "initial-015.png",
+      "frame_sha256": "602d741dbc500cb4b3bc4bf5201f9335cfb58346636134d2584a908313a0f914",
+      "id": "initial-015",
+      "paused": false,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 0,
+      "columns": [],
+      "frame": "child-first-first-000.png",
+      "frame_sha256": "46771e1db115af9d91af42c09bce817dea9309954736baa3b1ad1ecab33b3252",
+      "id": "child-first-first-000",
+      "paused": false,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 0,
+      "columns": [],
+      "frame": "child-first-second-000.png",
+      "frame_sha256": "46771e1db115af9d91af42c09bce817dea9309954736baa3b1ad1ecab33b3252",
+      "id": "child-first-second-000",
+      "paused": false,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 1,
+      "columns": [
+        3,
+        3
+      ],
+      "frame": "child-first-confirmed-004.png",
+      "frame_sha256": "cdf325fa9f7e3bfbad78984f8938e4f543c8097bcde0c669a85c4940bd81ee59",
+      "id": "child-first-confirmed-004",
+      "paused": false,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 1,
+      "columns": [
+        3,
+        3
+      ],
+      "frame": "pause-first-first-000.png",
+      "frame_sha256": "cdf325fa9f7e3bfbad78984f8938e4f543c8097bcde0c669a85c4940bd81ee59",
+      "id": "pause-first-first-000",
+      "paused": false,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 1,
+      "columns": [
+        3,
+        3
+      ],
+      "frame": "pause-first-second-000.png",
+      "frame_sha256": "cdf325fa9f7e3bfbad78984f8938e4f543c8097bcde0c669a85c4940bd81ee59",
+      "id": "pause-first-second-000",
+      "paused": false,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 2,
+      "columns": [
+        3,
+        3
+      ],
+      "frame": "pause-first-confirmed-001.png",
+      "frame_sha256": "f7d3141feb128b18d4054728fcbfb09aaa5ee5cf7df0b2faf7ac74329abf5de1",
+      "id": "pause-first-confirmed-001",
+      "paused": true,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 2,
+      "columns": [
+        3,
+        3
+      ],
+      "frame": "pause-held-000.png",
+      "frame_sha256": "f7d3141feb128b18d4054728fcbfb09aaa5ee5cf7df0b2faf7ac74329abf5de1",
+      "id": "pause-held-000",
+      "paused": true,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 2,
+      "columns": [
+        3,
+        3
+      ],
+      "frame": "resume-first-first-000.png",
+      "frame_sha256": "f7d3141feb128b18d4054728fcbfb09aaa5ee5cf7df0b2faf7ac74329abf5de1",
+      "id": "resume-first-first-000",
+      "paused": true,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 2,
+      "columns": [
+        3,
+        3
+      ],
+      "frame": "resume-first-second-000.png",
+      "frame_sha256": "f7d3141feb128b18d4054728fcbfb09aaa5ee5cf7df0b2faf7ac74329abf5de1",
+      "id": "resume-first-second-000",
+      "paused": true,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 3,
+      "columns": [
+        3,
+        3
+      ],
+      "frame": "resume-first-confirmed-001.png",
+      "frame_sha256": "9f49d012d5e9b41c0d242e7236a9bd5b566926d4b2ee1d634d7c226ae5d75f95",
+      "id": "resume-first-confirmed-001",
+      "paused": false,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 3,
+      "columns": [
+        3,
+        3
+      ],
+      "frame": "child-second-first-000.png",
+      "frame_sha256": "9f49d012d5e9b41c0d242e7236a9bd5b566926d4b2ee1d634d7c226ae5d75f95",
+      "id": "child-second-first-000",
+      "paused": false,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 3,
+      "columns": [
+        3,
+        3
+      ],
+      "frame": "child-second-second-000.png",
+      "frame_sha256": "9f49d012d5e9b41c0d242e7236a9bd5b566926d4b2ee1d634d7c226ae5d75f95",
+      "id": "child-second-second-000",
+      "paused": false,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 4,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame": "child-second-confirmed-003.png",
+      "frame_sha256": "a11112802703e11045ac4a73af6cd92f7c75e358489b6b43b4c48ddd6c216741",
+      "id": "child-second-confirmed-003",
+      "paused": false,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 4,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame": "pause-before-return-first-000.png",
+      "frame_sha256": "a11112802703e11045ac4a73af6cd92f7c75e358489b6b43b4c48ddd6c216741",
+      "id": "pause-before-return-first-000",
+      "paused": false,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 4,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame": "pause-before-return-second-000.png",
+      "frame_sha256": "a11112802703e11045ac4a73af6cd92f7c75e358489b6b43b4c48ddd6c216741",
+      "id": "pause-before-return-second-000",
+      "paused": false,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 5,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame": "pause-before-return-confirmed-001.png",
+      "frame_sha256": "fdce7dbee517a9135439b76c076d8448e5ac0c05f1809542910499af34c8b455",
+      "id": "pause-before-return-confirmed-001",
+      "paused": true,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 5,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame": "return-first-first-000.png",
+      "frame_sha256": "fdce7dbee517a9135439b76c076d8448e5ac0c05f1809542910499af34c8b455",
+      "id": "return-first-first-000",
+      "paused": true,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 5,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame": "return-first-second-000.png",
+      "frame_sha256": "fdce7dbee517a9135439b76c076d8448e5ac0c05f1809542910499af34c8b455",
+      "id": "return-first-second-000",
+      "paused": true,
+      "pid": 7129,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "01ce59e6bc6ae65f8f6745ff70e55e41"
+    },
+    {
+      "ack": 0,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame": "reopened-009.png",
+      "frame_sha256": "910005902420fc6df1d3627d127daa2d491068e2717972b6ecdaa7ff4438b68d",
+      "id": "reopened-009",
+      "paused": false,
+      "pid": 8289,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "c7a34925a1a7164b6ee0cbf5d97d2ff9"
+    },
+    {
+      "ack": 0,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame": "pause-after-reopen-first-000.png",
+      "frame_sha256": "910005902420fc6df1d3627d127daa2d491068e2717972b6ecdaa7ff4438b68d",
+      "id": "pause-after-reopen-first-000",
+      "paused": false,
+      "pid": 8289,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "c7a34925a1a7164b6ee0cbf5d97d2ff9"
+    },
+    {
+      "ack": 0,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame": "pause-after-reopen-second-000.png",
+      "frame_sha256": "910005902420fc6df1d3627d127daa2d491068e2717972b6ecdaa7ff4438b68d",
+      "id": "pause-after-reopen-second-000",
+      "paused": false,
+      "pid": 8289,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "c7a34925a1a7164b6ee0cbf5d97d2ff9"
+    },
+    {
+      "ack": 1,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame": "pause-after-reopen-confirmed-001.png",
+      "frame_sha256": "e3ddbe4b75328a66eea9d942ebed27e454e74de751bfa0b8938882098d70382c",
+      "id": "pause-after-reopen-confirmed-001",
+      "paused": true,
+      "pid": 8289,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "c7a34925a1a7164b6ee0cbf5d97d2ff9"
+    },
+    {
+      "ack": 1,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame": "return-final-first-000.png",
+      "frame_sha256": "e3ddbe4b75328a66eea9d942ebed27e454e74de751bfa0b8938882098d70382c",
+      "id": "return-final-first-000",
+      "paused": true,
+      "pid": 8289,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "c7a34925a1a7164b6ee0cbf5d97d2ff9"
+    },
+    {
+      "ack": 1,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame": "return-final-second-000.png",
+      "frame_sha256": "e3ddbe4b75328a66eea9d942ebed27e454e74de751bfa0b8938882098d70382c",
+      "id": "return-final-second-000",
+      "paused": true,
+      "pid": 8289,
+      "pixels_verified_by_unchanged_reader": true,
+      "token": "c7a34925a1a7164b6ee0cbf5d97d2ff9"
+    }
+  ],
+  "android_job": 132568698911,
+  "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "artifact_id": 14130249406,
+  "attempt": 1,
+  "binding_review": {
+    "candidate": {
+      "archive_validation": "Original API digest/size bound; complete artifact ZIP is not read by this preflight",
+      "artifact_bytes": 665918783,
+      "artifact_digest": "sha256:1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6",
+      "artifact_id": 14125990109,
+      "artifact_name": "lumo-connect-four-2020-candidate",
+      "build_conclusion": "success",
+      "build_job_id": 132512734271,
+      "existing_c4_binding": {
+        "candidate_artifact_digest": "sha256:1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6",
+        "candidate_artifact_id": 14125990109,
+        "host_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+        "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "run_attempt": 1,
+        "run_id": 43616038272,
+        "versionCode": 2020,
+        "versionName": "0.13.8",
+        "workflow": ".github/workflows/lumo-connect-four-2020.yml"
+      },
+      "host_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+      "run_attempt": 1,
+      "run_conclusion": "failure",
+      "run_id": 43616038272,
+      "run_status": "completed",
+      "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+      "workflow_path": ".github/workflows/lumo-connect-four-2020.yml"
+    },
+    "exact_local_qa_files": 12,
+    "identity": {
+      "apk_sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+      "checks": {
+        "flutter_source_is_this_commit": true,
+        "godot_revision_is_pinned": true,
+        "sha256_matches_build_sums": true,
+        "sha256_matches_provenance": true,
+        "signing_certificate": true,
+        "tracked_source_clean": true,
+        "version_matches_pubspec": true,
+        "x86_64_native_code": true
+      },
+      "flutter_source_commit": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "godot_pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+      "godot_revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "versionCode": 2020,
+      "versionName": "0.13.8"
+    },
+    "main_required_steps_passed": 18,
+    "main_total_steps_passed": 21,
+    "observer_inventory": 79,
+    "pre_post_receipts_identical": true,
+    "qa": {
+      "branch": "qa/lumo-village-return-6b-20261114",
+      "job_conclusion": null,
+      "job_id": 132568698911,
+      "job_name": "unchanged-6b-main-api35",
+      "job_status": "in_progress",
+      "run_attempt": 1,
+      "run_conclusion": null,
+      "run_id": 43634531860,
+      "run_status": "in_progress",
+      "source": "3cae9c407a6eef1970e24bc9a61516b13fe0af52",
+      "tree": "16dbaa5024c0bba79c9ab8a9d23b9025a0c2f5d7",
+      "workflow_path": ".github/workflows/lumo-village-return-6b-diagnostic.yml"
+    },
+    "status": "PASS"
+  },
+  "c4_original_reader": {
+    "actual_bot_responses": 2,
+    "actual_child_drops": 2,
+    "api": 35,
+    "binding": {
+      "candidate_artifact_digest": "sha256:1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6",
+      "candidate_artifact_id": 14125990109,
+      "host_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+      "run_attempt": 1,
+      "run_id": 43616038272,
+      "versionCode": 2020,
+      "versionName": "0.13.8",
+      "workflow": ".github/workflows/lumo-connect-four-2020.yml"
+    },
+    "native_returns": 2,
+    "observations": 25,
+    "original_files": 1515,
+    "same_round_reopened": true,
+    "scope": "C4 candidate device test only; no release, physical ARM64, API37 or FPS acceptance",
+    "status": "PASS",
+    "versionCode": 2020
+  },
+  "diagnostic_run": 43634531860,
+  "elapsed_seconds": 15.115754067002854,
+  "limits": [
+    "Separate old6b APK diagnostic, not acceptance of current central Hostec or seven jobs.",
+    "No newly downloaded APK or fresh local apksigner run; exact original APK/PCK receipts are independently cross-bound.",
+    "Small source materialization contains exact Git blobs; it is not a Git checkout and has no Git-index claim.",
+    "Two actual child/bot pairs, pause/resume, reopen and two returns; no completed win, reward, physical-device or FPS claim."
+  ],
+  "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "new_device_engine_or_capture_runs": 0,
+  "preservation": {
+    "all_original_bytes_and_modes_unchanged": true,
+    "all_reader_bytes_and_modes_unchanged": true,
+    "original_files": 2875
+  },
+  "qa_source": "3cae9c407a6eef1970e24bc9a61516b13fe0af52",
+  "qa_tree": "16dbaa5024c0bba79c9ab8a9d23b9025a0c2f5d7",
+  "review_status": "PASS_SEPARATE_UNCHANGED_APK_DIAGNOSTIC",
+  "runtime": {
+    "ci_pillow": "12.3.0",
+    "pillow": "13.0.0",
+    "python": "3.12.14"
+  },
+  "schema": 1,
+  "scope": "Independent original replay of the separate QA3cae diagnostic on unchanged APK6b.",
+  "seven_job_acceptance": false,
+  "village_original_reader": {
+    "android_api": 35,
+    "frame_sha256": "377a4a0ba5075308cefa0aa8c278b0e5dad995bc27bc513298fcfd7d568916e8",
+    "host_pid": 6350,
+    "native_pid": 6686,
+    "native_process_ended": true,
+    "profile_and_learning_unchanged": true,
+    "raw_report_sha256": "4e2cb2b6237c4c642a9ffb8b43ef5407d268b03afd26db1984104a921f0af191",
+    "return_scene": "games",
+    "save_path": "user://lumo_settlement_f89423f887c29f8dc3d91cab3984651515f53449c4296cc241dce9393530d79e_1_village.json",
+    "scene": "res://scenes/creative/build_settlement_world.tscn",
+    "status": "PASS"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "case": "main",
+  "original_result": {
+    "bytes": 15552,
+    "path": "main/tour-result.json",
+    "sha256": "62b26e586f74fae900da953c4fed937b57d1785900072b741f70af517cf1ef78",
+    "status": "PASS"
+  },
+  "postflight_binding_exit_code": 0,
+  "probe_exit_code": 0,
+  "roundtrip_results": {
+    "c4-diagnostic-replay.json": {
+      "bytes": 778,
+      "sha256": "2eeb687f822e5e2b134fe6b53fc82e64f244ed2d0779ad2ad197e49bd06f194f",
+      "status": "PASS"
+    },
+    "c4/c4-result.json": {
+      "bytes": 285200,
+      "sha256": "40a18ace01faa0027e5c0a59495d5f0a72998860be62257d3e06e47fb07587e7",
+      "status": "PASS"
+    },
+    "village/village-result.json": {
+      "bytes": 66161,
+      "sha256": "4e2cb2b6237c4c642a9ffb8b43ef5407d268b03afd26db1984104a921f0af191",
+      "status": "PASS"
+    }
+  },
+  "schema": 1,
+  "scope": "Isolated unchanged-APK diagnostic only; original run remains unchanged and no release is approved.",
+  "seven_job_acceptance": false,
+  "status": "PASS"
+}
