@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/tmp/lumo-drawing-flutter-20261114/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "expanded",
+    "test/core/lumo_image_generator_test.dart"
+  ],
+  "working_directory": "/home/agent/lumo-play-image-2708/.audit-harness",
+  "exit_code": 1,
+  "seconds": 7.3,
+  "production": "exact 01575aafc3f5b9032900bb57520ee65e98d7546c",
+  "tests": "new regression plus unchanged two original tests",
+  "scope": "synthetic inputs, real pure production URL-builder; no HTTP requests; minimal Flutter test harness"
+}

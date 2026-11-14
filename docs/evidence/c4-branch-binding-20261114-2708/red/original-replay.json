@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "scope": "Actual Python artifact_binding with unchanged original CI metadata; no Android, APK, engine, performance or final-delivery rerun",
+  "source_checkout_head": "f4df466ed004879fc56284b024475a0ab0661259",
+  "executed_working_tree_sources": {
+    "connect_four_android_evidence.py": {
+      "bytes": 36130,
+      "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7",
+      "git_blob": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa"
+    },
+    "native_surface_readiness.py": {
+      "bytes": 4401,
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+      "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+    }
+  },
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "expected": {
+    "source": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "native": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+    "run_id": 43578509499,
+    "attempt": 1,
+    "artifact_id": 14109755854,
+    "digest": "87e668220083f6a4dbf5f6ab13827529027db12fc4957e8486f2f58cd154447b",
+    "version_name": "0.13.8"
+  },
+  "originals_before": {
+    "run.json": {
+      "bytes": 13448,
+      "sha256": "8480ba970b217123bebe9167a803a40c19f26c97a1e0f3769fdf58d757eb8f88",
+      "git_blob": "0211dc95dfd401650f80fcdc8055dc9d1de82ec4"
+    },
+    "artifacts.json": {
+      "bytes": 8144,
+      "sha256": "05850b4cebd4be31dd594b4b27ed2eb07efcdaa19cebefb105b800811a2e9a19",
+      "git_blob": "5f79d280270e11d3013a7908bd6acbdd3f5fdeb2"
+    },
+    "jobs.json": {
+      "bytes": 20090,
+      "sha256": "ba59afefb85509399fed958506e705cfbb72b853a3d3a5967ca96776d604c2ac",
+      "git_blob": "8b22b2c32382d3852dd6c76e0042db7f51317b57"
+    },
+    "c4-result.json": {
+      "bytes": 2453,
+      "sha256": "131569701fffc061340102af7bc4a52eb2f82c81bfbb6471004fd0e4f123155d",
+      "git_blob": "04944e28351e80331095913b286e95fe258904d7"
+    }
+  },
+  "original_failure": "ValueError: Candidate source/event/workflow differs",
+  "phase": "artifact_binding",
+  "status": "FAIL",
+  "error": "ValueError: Candidate source/event/workflow differs",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/agent/lumo-c4-branch-binding-evidence-2708/replay_original_metadata.py\", line 85, in main\n    result['binding'] = contract.artifact_binding(\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/agent/lumo-c4-branch-binding-sparse-2708/tools/android_qa/connect_four_android_evidence.py\", line 66, in artifact_binding\n    demand(run.get('head_sha') == source and run.get('head_branch') == BRANCH\n  File \"/home/agent/lumo-c4-branch-binding-sparse-2708/tools/android_qa/connect_four_android_evidence.py\", line 40, in demand\n    raise ValueError(message)\nValueError: Candidate source/event/workflow differs\n",
+  "returncode": 1,
+  "originals_after": {
+    "run.json": {
+      "bytes": 13448,
+      "sha256": "8480ba970b217123bebe9167a803a40c19f26c97a1e0f3769fdf58d757eb8f88",
+      "git_blob": "0211dc95dfd401650f80fcdc8055dc9d1de82ec4"
+    },
+    "artifacts.json": {
+      "bytes": 8144,
+      "sha256": "05850b4cebd4be31dd594b4b27ed2eb07efcdaa19cebefb105b800811a2e9a19",
+      "git_blob": "5f79d280270e11d3013a7908bd6acbdd3f5fdeb2"
+    },
+    "jobs.json": {
+      "bytes": 20090,
+      "sha256": "ba59afefb85509399fed958506e705cfbb72b853a3d3a5967ca96776d604c2ac",
+      "git_blob": "8b22b2c32382d3852dd6c76e0042db7f51317b57"
+    },
+    "c4-result.json": {
+      "bytes": 2453,
+      "sha256": "131569701fffc061340102af7bc4a52eb2f82c81bfbb6471004fd0e4f123155d",
+      "git_blob": "04944e28351e80331095913b286e95fe258904d7"
+    }
+  },
+  "sources_after": {
+    "connect_four_android_evidence.py": {
+      "bytes": 36130,
+      "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7",
+      "git_blob": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa"
+    },
+    "native_surface_readiness.py": {
+      "bytes": 4401,
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+      "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+    }
+  },
+  "originals_unchanged": true,
+  "sources_unchanged_during_call": true
+}

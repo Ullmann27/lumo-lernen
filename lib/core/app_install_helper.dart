@@ -25,10 +25,28 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+enum AppDistribution { family, play, unavailable }
+
 class AppInstallHelper {
   const AppInstallHelper();
 
   static const _channel = MethodChannel('lumo_lernen/installer');
+
+  /// The native manifest selects the channel; Dart build flags cannot enable
+  /// APK self-updates in a Play host. Unknown Android hosts fail closed.
+  Future<AppDistribution> distribution() async {
+    if (!_isAndroid()) return AppDistribution.family;
+    try {
+      final channel = await _channel.invokeMethod<String>('distribution');
+      return switch (channel) {
+        'family' => AppDistribution.family,
+        'play' => AppDistribution.play,
+        _ => AppDistribution.unavailable,
+      };
+    } catch (_) {
+      return AppDistribution.unavailable;
+    }
+  }
 
   /// Liefert true, wenn die App das Recht hat, externe APKs zu installieren.
   /// Auf Android 8+ braucht die App das REQUEST_INSTALL_PACKAGES-Recht plus

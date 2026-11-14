@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "scope": "Independent read-only source review; no Python/Flutter/Android execution, no source/ref changes.",
+  "combined_historical_test": {
+    "path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+    "parents": {
+      "host_182": "4d707757b07622b7caa74a9094309fb2052a82a6",
+      "incoming_32e": "90a58f5aab7c2b462bad377bd5fbfd03b218e14d"
+    },
+    "proposed_blob": "da5da117923e5522ec5d3a17e0cd3353d760d7b3",
+    "test_body_comparison": {
+      "original_test_methods": 19,
+      "combined_test_methods": 19,
+      "removed": [],
+      "changed": [
+        "test_full_preflight_keeps_qa_run_and_apk_source_separate"
+      ],
+      "negative_pin_method_byte_equal": true
+    },
+    "preserved": [
+      "All 19 original test methods; 18 exact bodies after trimEnd.",
+      "Both revision and repository negative variants for independently corrupted QA and candidate source.",
+      "Incoming real committed helper fixture and actual committed_helper path/byte guard.",
+      "Incoming result path assertions for separate QA and candidate sources."
+    ],
+    "fixture_change": "A fresh tempfile.mkdtemp under the owned temporary root per bind_full_preflight; separate self.qa_pin copied into that fresh QA checkout.",
+    "explicit_synthetic_boundary": "source_identity and committed_file remain explicit test mocks. The temporary commit does not represent the historic production SHA. load_module returns the already imported real modules while their __file__ attributes are temporarily bound to exact copied fixture paths. This is not a real APK/Android acceptance.",
+    "real_guard": {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "blob": "cd3a11c2206ab31c4933df7388f2a62a07e6399f",
+      "lines": [
+        230,
+        237
+      ],
+      "behavior": "Unpatched committed_helper checks bound module path and actual git show HEAD bytes."
+    },
+    "production_pin_guard": {
+      "path": "scripts/verify_unchanged_apk_diagnostic.py",
+      "blob": "11749337af0aff31d7541702890459126675fd08",
+      "lines": [
+        289,
+        295
+      ],
+      "behavior": "Both sources must match the real expected native revision and repository; negative fixtures still reach this actual guard."
+    },
+    "verdict": "No static blocker; preserve combined fixture and all negative cases."
+  },
+  "garage_test": {
+    "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+    "old_blob": "9b1413a39e327258cb3ebc583ea7a17070a9cf34",
+    "new_blob": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d",
+    "exact_single_replacement": true,
+    "assertion": "Exact tuple/dict equality retained and strengthened with standalone_caption=True.",
+    "production_file": ".github/probes/modernization_android_tour.py",
+    "production_blob": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc",
+    "production_lines": [
+      916,
+      917
+    ],
+    "new_test_line": 468,
+    "verdict": "One exact expectation update; full label/kwargs equality is retained and now additionally requires standalone_caption=True. No assertion weakening."
+  },
+  "execution": {
+    "performed": false,
+    "reason": "Runtime unavailable. Actual candidate CI remains necessary."
+  },
+  "original_failure_context": {
+    "source": "Root supplied the original CI failure and is archiving its full log.",
+    "run_id": 43583493817,
+    "job_id": 132414225517,
+    "reported_total_tests": 938,
+    "reported_errors": 1,
+    "scope": "Failure context not independently re-executed here."
+  }
+}

@@ -20,7 +20,7 @@ DENSITIES = {'mdpi': 1.0, 'hdpi': 1.5, 'xhdpi': 2.0, 'xxhdpi': 3.0, 'xxxhdpi': 4
 BACKGROUND = (8, 27, 67, 255)
 
 
-def prepare(root: Path) -> dict:
+def prepare(root: Path, report_dir: Path | None = None) -> dict:
     # Lazy import lets existing Android preparation tests remain SDK-independent.
     from PIL import Image, ImageDraw, __version__
 
@@ -105,8 +105,8 @@ def prepare(root: Path) -> dict:
               'pillow_version': __version__, 'canvas_dp': 108, 'artwork_dp': 60,
               'background': '#081B43', 'files': generated,
               'scope': 'Generated resources only; APK and installed launcher must be checked separately'}
-    dist = root / 'dist'
-    dist.mkdir(exist_ok=True)
+    dist = report_dir.resolve() if report_dir is not None else root / 'dist'
+    dist.mkdir(parents=True, exist_ok=True)
     (dist / 'LAUNCHER-RESOURCES.json').write_text(json.dumps(report, indent=2) + '\n')
     print('[LumoLauncher] prepared 5 densities, legacy/round/adaptive/monochrome; source=' + digest)
     return report
@@ -115,4 +115,7 @@ def prepare(root: Path) -> dict:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
-    prepare(parser.parse_args().root)
+    parser.add_argument('--report-dir', type=Path,
+                        help='Write resource provenance into this build result directory')
+    args = parser.parse_args()
+    prepare(args.root, report_dir=args.report_dir)

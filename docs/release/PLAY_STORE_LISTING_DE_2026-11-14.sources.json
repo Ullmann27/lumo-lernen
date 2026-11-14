@@ -1,0 +1,548 @@
+{
+  "schema_version": 1,
+  "purpose": "Source-bound German Google Play store text draft; no publication and no release certification",
+  "checked_date": "2026-11-14",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_commit": "dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f",
+  "host_tree": "01b3eaddc6b58a0c7f741b039a87f0e26e8af61e",
+  "draft_path": "docs/release/PLAY_STORE_LISTING_DE_2026-11-14.md",
+  "source_manifest_path": "docs/release/PLAY_STORE_LISTING_DE_2026-11-14.sources.json",
+  "predecessor": {
+    "path": "docs/marktstart/2026-10-11/05_STORE_MATERIAL_TEXTE.md",
+    "git_blob": "9a761207d439fd248b436ef436f658b22440f823",
+    "lines": [
+      [
+        5,
+        27
+      ],
+      [
+        29,
+        35
+      ]
+    ],
+    "note": "Existing title retained exactly; short description retains wording without final period. Speculative price/subscription/advertising/roadmap claims excluded.",
+    "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/docs/marktstart/2026-10-11/05_STORE_MATERIAL_TEXTE.md"
+  },
+  "inventory": {
+    "docs_release_tree": "4c02862cf84b3c770db2d914e36079cae7152d9e",
+    "lib_recursive_tree": "659b4f26852dea7911c1a6b820299ed3c38a8a88",
+    "remote_source": "exact commit tree; existing docs/release plus docs/marktstart examined before creating successor",
+    "local_search": "rg --files and rg text search in the existing persistent sparse checkout; remote exact tree supplied the current inventory"
+  },
+  "character_count_method": "Unicode code points, with identical UTF-16 code-unit counts for this BMP-only text. Include spaces and internal LF; exclude Markdown fences and the final separator LF.",
+  "public_fields": {
+    "title": {
+      "unicode_code_points": 25,
+      "utf16_code_units": 25,
+      "limit": 30,
+      "within_limit": true,
+      "utf8_sha256": "c7451b403725903189c259e71207a2892c2763fb39b868b7f38da8e1414169da"
+    },
+    "short_description": {
+      "unicode_code_points": 60,
+      "utf16_code_units": 60,
+      "limit": 80,
+      "within_limit": true,
+      "utf8_sha256": "e3d62d84429e4c89dc73e62f4b8bc2f9f6de79b153be0fdb9bf4344caeaa7c69"
+    },
+    "full_description": {
+      "unicode_code_points": 1306,
+      "utf16_code_units": 1306,
+      "limit": 4000,
+      "within_limit": true,
+      "utf8_sha256": "0ca35cc8dd6fb48bce784eaa6bf71724607e4c9d8d7a8347192b1628327826a4"
+    }
+  },
+  "claims": [
+    {
+      "id": "lumo_fox_identity",
+      "public_claim": "Lumo is the app's fox learning companion.",
+      "sources": [
+        {
+          "path": "README.md",
+          "git_blob": "ef5f6322febde4bea0f5df5a9b750fede17bca40",
+          "lines": [
+            [
+              1,
+              12
+            ]
+          ],
+          "note": "Existing app description identifies Lumo as a fox.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/README.md"
+        }
+      ],
+      "scope": "Describes the existing original character; no third-party affiliation."
+    },
+    {
+      "id": "grade_and_topic_selection",
+      "public_claim": "Classes 1–4; choose topics and repeat earlier content.",
+      "sources": [
+        {
+          "path": "lib/core/school_exercise_generator.dart",
+          "git_blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+          "lines": [
+            [
+              75,
+              86
+            ],
+            [
+              163,
+              186
+            ]
+          ],
+          "note": "Grade clamp 1..4, exercise subjects and cumulative earlier-grade math topic pool.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/core/school_exercise_generator.dart"
+        },
+        {
+          "path": "lib/features/learning/learning_content.dart",
+          "git_blob": "5e62d675606d5e9b0024fa1476c0459343b5da7a",
+          "lines": [
+            [
+              793,
+              823
+            ],
+            [
+              943,
+              957
+            ]
+          ],
+          "note": "Actual selected grade/subject/unit reach the production factory; existing exact topic takes precedence over legacy shortcuts.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/features/learning/learning_content.dart"
+        }
+      ],
+      "scope": "No claim of full curriculum coverage or curricular accreditation."
+    },
+    {
+      "id": "math_examples",
+      "public_claim": "Arithmetic, money and geometric shapes.",
+      "sources": [
+        {
+          "path": "lib/core/math_task_templates.dart",
+          "git_blob": "85fbad4a0b09753a7f22663690a9660f98382f39",
+          "lines": [
+            [
+              9,
+              55
+            ],
+            [
+              80,
+              112
+            ]
+          ],
+          "note": "Compiled math templates contain these actual task families.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/core/math_task_templates.dart"
+        },
+        {
+          "path": "lib/core/school_exercise_generator.dart",
+          "git_blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+          "lines": [
+            [
+              577,
+              591
+            ]
+          ],
+          "note": "Factory calls real math templates and supplies prompt, choices, answer and explanation.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/core/school_exercise_generator.dart"
+        }
+      ],
+      "scope": "Examples across supported grades, not every topic at every grade."
+    },
+    {
+      "id": "german_examples",
+      "public_claim": "Words, sentences and spelling.",
+      "sources": [
+        {
+          "path": "lib/core/school_exercise_generator.dart",
+          "git_blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+          "lines": [
+            [
+              122,
+              144
+            ],
+            [
+              594,
+              610
+            ]
+          ],
+          "note": "Subject/topic inventory and actual German template call.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/core/school_exercise_generator.dart"
+        },
+        {
+          "path": "lib/core/german_task_templates.dart",
+          "git_blob": "47843a70ed106d25001481c995b339fc31894f5d",
+          "lines": [
+            [
+              5,
+              38
+            ]
+          ],
+          "note": "Actual compiled German template class and initial word/sound tasks.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/core/german_task_templates.dart"
+        }
+      ],
+      "scope": "No exhaustive curriculum or learning outcome claim."
+    },
+    {
+      "id": "reading_questions",
+      "public_claim": "Short texts and questions about their content.",
+      "sources": [
+        {
+          "path": "lib/core/school_exercise_generator.dart",
+          "git_blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+          "lines": [
+            [
+              1104,
+              1116
+            ]
+          ],
+          "note": "Chooses a bundled passage and its comprehension question, correct answer and distractors.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/core/school_exercise_generator.dart"
+        },
+        {
+          "path": "lib/core/reading_comprehension_data.dart",
+          "git_blob": "25e9a13d147ed023a4e4615f58bb490b40f41f4d",
+          "lines": null,
+          "note": "Bundled reading passages imported by the production factory.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/core/reading_comprehension_data.dart"
+        }
+      ],
+      "scope": "No microphone accuracy or automatic reading assessment claim."
+    },
+    {
+      "id": "writing_coach",
+      "public_claim": "Write letters with a finger and repeat.",
+      "sources": [
+        {
+          "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+          "git_blob": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+          "lines": [
+            [
+              158,
+              171
+            ],
+            [
+              489,
+              508
+            ]
+          ],
+          "note": "Letter progression/repetition and actual finger-writing prompt/mode selection.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/features/writing/lumo_writing_coach_screen.dart"
+        }
+      ],
+      "scope": "No handwriting-recognition quality or guaranteed skill improvement claim."
+    },
+    {
+      "id": "journal",
+      "public_claim": "Write own texts and stories in Lumo Journal.",
+      "sources": [
+        {
+          "path": "lib/features/journal/lumo_journal_screen.dart",
+          "git_blob": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+          "lines": [
+            [
+              43,
+              75
+            ],
+            [
+              119,
+              191
+            ]
+          ],
+          "note": "Loads entries, saves title/text and displays the journal and editor.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/features/journal/lumo_journal_screen.dart"
+        }
+      ],
+      "scope": "No cloud sync, multi-device or secrecy guarantee."
+    },
+    {
+      "id": "parent_report",
+      "public_claim": "Parent report summarises in-app learning and reading results.",
+      "sources": [
+        {
+          "path": "lib/features/settings/parent_report_card.dart",
+          "git_blob": "f88ef6349851f4bcbaebe3620914faa035ebdbba",
+          "lines": [
+            [
+              74,
+              87
+            ],
+            [
+              199,
+              213
+            ]
+          ],
+          "note": "Report is built from stored learning skills and reading summaries, then rendered.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/features/settings/parent_report_card.dart"
+        },
+        {
+          "path": "lib/core/progress_repository.dart",
+          "git_blob": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+          "lines": [
+            [
+              138,
+              171
+            ]
+          ],
+          "note": "Actual loading/saving of learning skill records.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/core/progress_repository.dart"
+        }
+      ],
+      "scope": "No percent-of-curriculum, diagnosis or guaranteed progress claim."
+    },
+    {
+      "id": "games",
+      "public_claim": "Game area includes Memory, Lumo Cards and Connect Four.",
+      "sources": [
+        {
+          "path": "lib/features/games/games_content.dart",
+          "git_blob": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+          "lines": [
+            [
+              203,
+              222
+            ],
+            [
+              255,
+              289
+            ],
+            [
+              429,
+              435
+            ]
+          ],
+          "note": "Actual launchers/routes for all three named games.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/features/games/games_content.dart"
+        }
+      ],
+      "scope": "No price, perpetual availability, frame rate, multiplayer-over-internet or third-party affiliation claim."
+    },
+    {
+      "id": "offline_exercises",
+      "public_claim": "Built-in math and German tasks can be worked on without Internet.",
+      "sources": [
+        {
+          "path": "lib/core/school_exercise_generator.dart",
+          "git_blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+          "lines": [
+            [
+              1,
+              11
+            ],
+            [
+              577,
+              610
+            ]
+          ],
+          "note": "Production task creation is local Dart using compiled templates/data.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/core/school_exercise_generator.dart"
+        },
+        {
+          "path": "lib/features/learning/learning_content.dart",
+          "git_blob": "5e62d675606d5e9b0024fa1476c0459343b5da7a",
+          "lines": [
+            [
+              801,
+              823
+            ],
+            [
+              825,
+              853
+            ]
+          ],
+          "note": "Built-in task factory is present independently of optional AI task cache.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/features/learning/learning_content.dart"
+        },
+        {
+          "path": "lib/core/app_settings.dart",
+          "git_blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+          "lines": [
+            [
+              13,
+              25
+            ]
+          ],
+          "note": "Online AI is disabled in fresh settings.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/core/app_settings.dart"
+        }
+      ],
+      "scope": "Source-based claim for these built-in exercises only; no whole-app/offline-flight-mode execution or zero-data-processing claim."
+    },
+    {
+      "id": "optional_online_features",
+      "public_claim": "Optional online AI help and online images need Internet and their in-app enablement; built-in exercises do not require enabling them.",
+      "sources": [
+        {
+          "path": "lib/core/lumo_ai_proxy_client.dart",
+          "git_blob": "c9f3cb2da48fdd07f308c9b72465314943947bc4",
+          "lines": [
+            [
+              61,
+              78
+            ],
+            [
+              109,
+              128
+            ]
+          ],
+          "note": "Checks actual access and configured endpoint before HTTP request.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/core/lumo_ai_proxy_client.dart"
+        },
+        {
+          "path": "lib/core/lumo_image_generator.dart",
+          "git_blob": "d8f14f1c344e7c3721f6f337b733fded012db897",
+          "lines": [
+            [
+              214,
+              223
+            ]
+          ],
+          "note": "Online image URL requires explicit allowOnline; default returns null.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/core/lumo_image_generator.dart"
+        },
+        {
+          "path": "lib/core/app_settings.dart",
+          "git_blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+          "lines": [
+            [
+              13,
+              25
+            ]
+          ],
+          "note": "Default online AI flag is false.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/core/app_settings.dart"
+        },
+        {
+          "path": "lib/features/parents/widgets/lumo_ai_policy_selector.dart",
+          "git_blob": "f9dc145c3f45e55a951a96507fdbdbd9c6d3155f",
+          "lines": [
+            [
+              18,
+              43
+            ],
+            [
+              54,
+              68
+            ]
+          ],
+          "note": "The visible settings distinguish chat, task, reading and broader assistance.",
+          "url": "https://github.com/Ullmann27/lumo-lernen/blob/dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f/lib/features/parents/widgets/lumo_ai_policy_selector.dart"
+        }
+      ],
+      "scope": "No server was contacted for this task, no availability/answer-quality/fully protected parent-gate promise. Local assistance is excluded from the term online AI help."
+    }
+  ],
+  "official_sources": [
+    {
+      "url": "https://support.google.com/googleplay/android-developer/answer/9859152?hl=de",
+      "title": "App erstellen und einrichten",
+      "retrieved_on": "2026-11-14",
+      "relevant_lines": [
+        [
+          97,
+          102
+        ],
+        [
+          129,
+          137
+        ]
+      ],
+      "findings": [
+        "App title max 30 characters",
+        "Short description max 80 characters",
+        "Full description max 4000 characters",
+        "Public support email required; support website recommended"
+      ],
+      "source_type": "official Google Play Console Help"
+    },
+    {
+      "url": "https://support.google.com/googleplay/android-developer/answer/9898842?hl=de",
+      "title": "Metadaten",
+      "retrieved_on": "2026-11-14",
+      "relevant_lines": [
+        [
+          29,
+          33
+        ],
+        [
+          69,
+          80
+        ]
+      ],
+      "findings": [
+        "Metadata should accurately describe app functionality and avoid misleading claims"
+      ],
+      "source_type": "official Google Play policy"
+    },
+    {
+      "url": "https://support.google.com/googleplay/android-developer/answer/10144311?hl=de",
+      "title": "Nutzerdaten – Datenschutzerklärung",
+      "retrieved_on": "2026-11-14",
+      "relevant_lines": [
+        [
+          165,
+          180
+        ]
+      ],
+      "findings": [
+        "Privacy policy link required in Console and policy link or text in app",
+        "Developer information, privacy contact, data handling, retention and deletion must be covered",
+        "Policy must identify the app title or the entity in the store listing and use an active public non-PDF URL"
+      ],
+      "source_type": "official Google Play policy"
+    }
+  ],
+  "independent_source_review": {
+    "reviewer": "/root/lumo_release_lead/learning_ux_lead/touch_worker",
+    "mode": "read-only, exact dfc3 source; no tests",
+    "confirmed_in_message": [
+      "Writing surface and repetitions",
+      "Journal text fields and persistence",
+      "Memory/Cards/Connect Four actual launchers",
+      "Local task generation",
+      "Narrow parent-report wording"
+    ],
+    "correction_applied": "Changed 'Optionale KI-Hilfen' to 'Optionale Online-KI-Hilfen' so local help is not described as Internet-dependent.",
+    "status": "Reported source observations support the limited wording; no release or runtime pass inferred."
+  },
+  "validation": {
+    "performed": [
+      "Existing-draft inventory and reuse decision",
+      "Exact commit/tree/blob source reading",
+      "Official Google limits/contact/privacy pages read",
+      "Independent narrow source review",
+      "Character count of exact public fields",
+      "Actual Python extraction of three public text blocks; exact equality, NFC, codepoint/UTF-16 limits and SHA-256 checked"
+    ],
+    "not_performed": [
+      "Store publication",
+      "Play Console account verification",
+      "AAB/APK build for this copy task",
+      "Flutter/widget/Android/airplane-mode execution for this copy task",
+      "Requests to optional online AI/image providers",
+      "Measurement of SDK/backend data traffic"
+    ],
+    "reference_changes": false,
+    "product_changes": false
+  },
+  "pending_external_values": [
+    "Approved developer/operator identity",
+    "Approved public support email",
+    "Actual public privacy-policy URL",
+    "Actual privacy contact and data handling/retention/deletion details"
+  ],
+  "excluded_claims": [
+    "Complete curriculum",
+    "Guaranteed learning success or grades",
+    "60 FPS",
+    "Nintendo quality or affiliation",
+    "Guaranteed absence of data processing",
+    "Advertising-free status",
+    "Unverified pricing, purchases, subscriptions",
+    "Guaranteed service availability"
+  ],
+  "draft_identity": {
+    "bytes": 6566,
+    "sha256": "8ebf6d55dc47ea9d0f226ff30ce1f4fff606ace244178a003c701302e6e7def9",
+    "git_blob": "4b13aee3f26bbcd51c7190d1ab2ea04d8c4f9fd1"
+  }
+}

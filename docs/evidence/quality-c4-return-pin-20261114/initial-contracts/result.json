@@ -1,0 +1,42 @@
+{
+  "checked_at_utc": "2026-11-14T10:12:13.596382+00:00",
+  "source": "1f7b5d2bbbd63690f6511432fa893e8876818eb8",
+  "native": "f0c19f9eb69ea330ac5d2b8f9948cb029ca218aa",
+  "index_unchanged": true,
+  "tracked_source_clean": true,
+  "results": [
+    {
+      "label": "pin-and-c4-contracts",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "scripts.tests.test_legacy_release_pin",
+        "scripts.tests.test_candidate_2011_pin",
+        "scripts.tests.test_connect_four_pipeline",
+        "scripts.tests.test_connect_four_delivery",
+        "-v"
+      ],
+      "exit_code": 1,
+      "seconds": 1.0382775330072036,
+      "log_bytes": 25252,
+      "log_sha256": "3437c267d12b4b26d5bbee6299abd340cb83a8a81f0f956af2a0f4ef739e46d1"
+    },
+    {
+      "label": "actionlint",
+      "argv": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        ".github/workflows/lumo-connect-four-2020.yml"
+      ],
+      "exit_code": 0,
+      "seconds": 0.005911186002776958,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "actual-native-step-bash-n",
+      "exit_code": 0
+    }
+  ],
+  "scope": "Focused host pin/workflow/delivery contracts and syntax; no Flutter, complete native suite, APK, Android or publication claim."
+}

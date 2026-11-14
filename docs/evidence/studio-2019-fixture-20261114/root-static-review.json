@@ -1,0 +1,19 @@
+{
+  "blob": "b9c667de8d9d9fd3ec158141d17d09d899aea2b6",
+  "checks": [
+    {
+      "name": "test_actual_2019_wrapper_validates_both_artifacts_before_device_boundary",
+      "unchanged": true
+    },
+    {
+      "name": "test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity",
+      "unchanged": true
+    },
+    {
+      "name": "run_wrapper changes only temporary entry path",
+      "unchanged": true
+    }
+  ],
+  "executed": false,
+  "reason": "Local execution environment unavailable; actual CI required."
+}

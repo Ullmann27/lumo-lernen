@@ -346,6 +346,16 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         _updateInfo = info;
         _updateError = info.error;
       });
+      if (info.managedByPlay) {
+        final opened = await service.openUpdate(info);
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(opened
+              ? 'Du kannst Lumo jetzt über Google Play aktualisieren.'
+              : 'Öffne Google Play und suche dort nach Lumo Lernen.')),
+        );
+        return;
+      }
       // Direkt weiter zum Auto-Install wenn ein Update verfuegbar ist.
       // 2026-06-06 Heinz: 'einfach Update-Button druecken, alles automatisch'.
       // Statt Browser-Launch jetzt: APK direkt in den App-Cache laden, dann
@@ -1648,6 +1658,7 @@ class _AppUpdateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasUpdate = info?.available == true;
+    final playManaged = info?.managedByPlay == true;
     const familyPreview = AppUpdateService.isFamilyPreview;
     // Wenn Update verfuegbar: gruener Akzent. Sonst: orange wie der Rest.
     final accent = hasUpdate ? const Color(0xFF22C55E) : LumoColors.orange;
@@ -1706,7 +1717,9 @@ class _AppUpdateCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      hasUpdate
+                      playManaged
+                          ? 'Aktualisierungen über Google Play'
+                          : hasUpdate
                           ? 'Neue Version verfügbar'
                           : familyPreview ? 'Lumo Familien-Testversion' : 'App-Version',
                       style: const TextStyle(
@@ -1720,7 +1733,11 @@ class _AppUpdateCard extends StatelessWidget {
                     Text(
                       info == null
                           ? 'Aktuell: Build ${AppUpdateService.currentBuildNumber} (${AppUpdateService.currentVersionName})'
-                          : hasUpdate
+                          : playManaged
+                              ? 'Google Play prüft, ob ein Update verfügbar ist.'
+                              : info!.error != null
+                                  ? 'Die Updateprüfung wurde nicht abgeschlossen.'
+                                  : hasUpdate
                               ? 'Build ${info!.latestBuildNumber} ist neuer als deine Build ${info!.currentBuildNumber}.'
                               : familyPreview
                                   ? 'Kein neuer freigegebener Familien-Build. Installiert: ${info!.currentBuildNumber}.'
@@ -1796,7 +1813,9 @@ class _AppUpdateCard extends StatelessWidget {
               label: Text(
                 checking
                     ? progress != null ? 'Lade Update…' : 'Prüfe…'
-                    : hasUpdate
+                    : playManaged
+                        ? 'Google Play öffnen'
+                        : hasUpdate
                         ? 'Jetzt aktualisieren'
                         : 'Auf Update prüfen',
                 style: const TextStyle(

@@ -8,6 +8,8 @@ import shutil
 import struct
 import subprocess
 
+from package_notices import bundle_notices
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -167,6 +169,7 @@ def export(repo: Path, binary: str):
     remaining = subprocess.check_output(['git', 'status', '--porcelain'], cwd=repo, text=True).strip()
     if remaining:
         raise RuntimeError('Godot import changed sources; refuse exported candidate:\n' + remaining)
+    bundle_notices(ROOT, repo)
 
 
 if __name__ == '__main__':

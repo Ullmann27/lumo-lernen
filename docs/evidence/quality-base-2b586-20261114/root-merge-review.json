@@ -1,0 +1,359 @@
+{
+  "schema": 1,
+  "status": "RESOLVED_SOURCE_DIAGNOSTIC_TESTS_PASS_FLUTTER_NOT_STARTED",
+  "checked_at_utc": "2026-11-14T09:29:48Z",
+  "candidate": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "new_integration_base": "2b586530db4f2cb20c28f426e2549342316151bf",
+  "common_base": "729585db3f49ecff7f0632439f90edb882f09454",
+  "git_merge_tree": {
+    "exit_code": 1,
+    "temporary_conflicted_tree": "03ea3e8d28da8b0403f4fc389ed25e093bb63543",
+    "conflicted_paths": [
+      "lib/features/learning/widgets/lumo_shape_trace_canvas.dart"
+    ]
+  },
+  "resolution": {
+    "path": "lib/features/learning/widgets/lumo_shape_trace_canvas.dart",
+    "selected_blob": "7972da58499ec771414eaeacfcd83155997b510c",
+    "previous_candidate_blob": "58dabfde2972afcd085ee9a685f15c4d23cfce08",
+    "exact_difference": "Adds only a stable ink-surface ValueKey and a shallow unmodifiable snapshot of the completed stroke list for CustomPainter; existing ink routing, primary pointer handling, cancellation and clamping stay byte-identical.",
+    "reason": "Preserves the candidate fix while allowing painter comparison to observe undo changes instead of sharing a mutable list."
+  },
+  "changed_entries_from_candidate": [
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/android-evidence-branch-scope-review.json",
+      "base": null,
+      "ours": null,
+      "theirs": "ff9e5c744608c4bde79f64b84be3efc57caf0196",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/complete-host729-validation.tar.gz",
+      "base": null,
+      "ours": null,
+      "theirs": "2349efd6efd5e2c44a5509a5481c87fe9246ab94",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/complete-product17-originals.tar.gz",
+      "base": null,
+      "ours": null,
+      "theirs": "c6294c7fe7b011982780c88b3ce5d0f60d7cd7b7",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/host729-handoff.json",
+      "base": null,
+      "ours": null,
+      "theirs": "00bfecf2bc58997dab68f3bb0dadccabe61ac282",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/host729-manifest.json",
+      "base": null,
+      "ours": null,
+      "theirs": "457600909a8d369ae8c00b018e0e8f8792508f77",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/native-f0c19-return21-complete-originals.tar.gz",
+      "base": null,
+      "ours": null,
+      "theirs": "4ddd219ea1ac334bd5cd78e98aea1982b32a3272",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/native-f0c19-return21-handoff.json",
+      "base": null,
+      "ours": null,
+      "theirs": "3a5e87bc2dacd23c5ed97f77b28ccd41345b5a4f",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/native-f0c19-return21-manifest.json",
+      "base": null,
+      "ours": null,
+      "theirs": "f9a976f9928ade8a9a7f803063849ddbba27c2a6",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/product-README.md",
+      "base": null,
+      "ours": null,
+      "theirs": "5b5b645c120498c00688bc5f5b2adcedd77a901e",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/product-handoff.json",
+      "base": null,
+      "ours": null,
+      "theirs": "ceea83edf4d26bcad19222b89a6169f7da559713",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/product-manifest.json",
+      "base": null,
+      "ours": null,
+      "theirs": "ea8e2d5c36615d433b4793b6febd55688ea9b4e5",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/product-protected-dependencies.json",
+      "base": null,
+      "ours": null,
+      "theirs": "13359a0a905b8af4266c9ebfa0a65d59226204af",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/product-source-freeze.json",
+      "base": null,
+      "ours": null,
+      "theirs": "25e40d9646e401dad63f9dce97ae87426a1c0710",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/product-validation-plan.json",
+      "base": null,
+      "ours": null,
+      "theirs": "c9689cd296259e8f3fbfa27c6c900d33038454c2",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/qa0d-swangle10-complete-originals.tar.gz",
+      "base": null,
+      "ours": null,
+      "theirs": "aa81b524e77d078b8e1be554a321e3cbc799792c",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/qa0d-swangle10-handoff.json",
+      "base": null,
+      "ours": null,
+      "theirs": "0e53033734dc93032a0fefc8abff0ee27d62374c",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/qa0d-swangle10-manifest.json",
+      "base": null,
+      "ours": null,
+      "theirs": "695c44cb8d2ed9705bc2dca06bf8d9486ccb3ccd",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/qa0d-targeted104-complete-originals.tar.gz",
+      "base": null,
+      "ours": null,
+      "theirs": "7ff3722948f07d4d2be2394d938079a8d1e14220",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/qa0d-targeted104-handoff.json",
+      "base": null,
+      "ours": null,
+      "theirs": "fa76b0ea4c3b3a8609ce65d4ba8af6c16bd697a6",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/qa0d-targeted104-manifest.json",
+      "base": null,
+      "ours": null,
+      "theirs": "9dbc1aaffaf7c66d8292c7fb29d579aa7b8f0f7e",
+      "both_changed": false
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/root-connection.json",
+      "base": null,
+      "ours": null,
+      "theirs": "03587f96398770e6f24ff28a65df4c030989f047",
+      "both_changed": false
+    },
+    {
+      "path": "lib/core/school_exercise_generator.dart",
+      "base": "fd577a04dd677bdfa41d3e61763cfc3f2cb39430",
+      "ours": "fd577a04dd677bdfa41d3e61763cfc3f2cb39430",
+      "theirs": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+      "both_changed": false
+    },
+    {
+      "path": "lib/features/home/widgets/lumo_home_hero.dart",
+      "base": "75305c7ff374fa9ee4da224f27c19fb4a4862955",
+      "ours": "75305c7ff374fa9ee4da224f27c19fb4a4862955",
+      "theirs": "963a7840b964cd82954c784247aa2a244b9b44af",
+      "both_changed": false
+    },
+    {
+      "path": "lib/features/learning/learning_content.dart",
+      "base": "652bb8de1ad15ed348fbece1ffce1faf5b82b6f6",
+      "ours": "652bb8de1ad15ed348fbece1ffce1faf5b82b6f6",
+      "theirs": "5e62d675606d5e9b0024fa1476c0459343b5da7a",
+      "both_changed": false
+    },
+    {
+      "path": "lib/features/learning/widgets/lumo_shape_trace_canvas.dart",
+      "base": "e14b6a085d06c2b688d8b234816c01b38219f8db",
+      "ours": "58dabfde2972afcd085ee9a685f15c4d23cfce08",
+      "theirs": "7972da58499ec771414eaeacfcd83155997b510c",
+      "both_changed": true
+    },
+    {
+      "path": "lib/widgets/design/lumo_adventure_card.dart",
+      "base": "8b5094784ede6969422e1db58de0fad9cb47828d",
+      "ours": "8b5094784ede6969422e1db58de0fad9cb47828d",
+      "theirs": "94b9f5eece1570631a6bf7428b8d8cc5d83e3360",
+      "both_changed": false
+    },
+    {
+      "path": "lib/widgets/design/lumo_scene_atmosphere.dart",
+      "base": "33f100820f35b2a6fda79c1594cf49d00896cb6b",
+      "ours": "33f100820f35b2a6fda79c1594cf49d00896cb6b",
+      "theirs": "2a5ba8203a9777a28820ab36f7c2a979709c8620",
+      "both_changed": false
+    },
+    {
+      "path": "scripts/run_unchanged_apk_diagnostic.sh",
+      "base": "b413b6b605d387e3ebbb3c29d79f4245c08ece02",
+      "ours": "b413b6b605d387e3ebbb3c29d79f4245c08ece02",
+      "theirs": "2700d4e1c454eaab5144836d78223b6f6e02d803",
+      "both_changed": false
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/manifest.json",
+      "base": null,
+      "ours": null,
+      "theirs": "8761da4157a16d33b86b649b7ff3a8e365044906",
+      "both_changed": false
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-exit.stdout",
+      "base": null,
+      "ours": null,
+      "theirs": "fba7ed526e434d8e4d615d8c9eca14f252c8a0f4",
+      "both_changed": false
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-runtime-anr-verification.json",
+      "base": null,
+      "ours": null,
+      "theirs": "c2b616edb135cb9f03d3019b85e3877a15b85c39",
+      "both_changed": false
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-stop.json",
+      "base": null,
+      "ours": null,
+      "theirs": "5278dfb25362d6ffb2f69c13c1c74816fa627df9",
+      "both_changed": false
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-wait.stderr",
+      "base": null,
+      "ours": null,
+      "theirs": "3f967a59acdf78450291005ce5960581f839ac15",
+      "both_changed": false
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swiftshader-events-anr.stdout",
+      "base": null,
+      "ours": null,
+      "theirs": "bc2bb7332ea653890806225c08617fbbbe75b9a3",
+      "both_changed": false
+    },
+    {
+      "path": "scripts/tests/fixtures/api37-swangle-08e63bd3-renderer.json.gz",
+      "base": null,
+      "ours": null,
+      "theirs": "9b9ecb3de5b891df9c6d51b29c3447df333d6b0a",
+      "both_changed": false
+    },
+    {
+      "path": "scripts/tests/test_android_runtime_wait_notification.py",
+      "base": null,
+      "ours": null,
+      "theirs": "a85f64bfbe7d374be64437dfd76709e92fffd0e3",
+      "both_changed": false
+    },
+    {
+      "path": "scripts/tests/test_runtime_followup_workflow.py",
+      "base": "5ef3ff33506e7525928024dce73fd8bfc2fe709c",
+      "ours": "5ef3ff33506e7525928024dce73fd8bfc2fe709c",
+      "theirs": "b6bc8e67649ec6d7808a7d37cddb93cb0f931b19",
+      "both_changed": false
+    },
+    {
+      "path": "scripts/verify_android_runtime_anr.py",
+      "base": "d2ed8be4315a3ff1872ad40698276eafb21ddc58",
+      "ours": "d2ed8be4315a3ff1872ad40698276eafb21ddc58",
+      "theirs": "0bb9f91493a07100935bdb88e796676ae1ee20f5",
+      "both_changed": false
+    },
+    {
+      "path": "test/learning_selection_integration_test.dart",
+      "base": null,
+      "ours": null,
+      "theirs": "892960ede7c2594dc7e15d631b3e511c7c526011",
+      "both_changed": false
+    },
+    {
+      "path": "test/lumo_scene_atmosphere_test.dart",
+      "base": "f3fced58732115572c5f99ed72cba1fbfbaa458d",
+      "ours": "f3fced58732115572c5f99ed72cba1fbfbaa458d",
+      "theirs": "0617368d95256961681109537d641a1708e82e1f",
+      "both_changed": false
+    },
+    {
+      "path": "test/shape_trace_input_test.dart",
+      "base": null,
+      "ours": null,
+      "theirs": "7441d9d07ac6f34432b36bfd711f8c3581c8c9f9",
+      "both_changed": false
+    }
+  ],
+  "already_identical": [
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "sha": "4d2bb14a89f0988e8d61567225403ee9416cf681"
+    },
+    {
+      "path": "lib/widgets/shell/left_navigation.dart",
+      "sha": "5fbc8f28250bb7baf340bec6a75f01ce9eeed086"
+    },
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "sha": "8ea60303632a0ff1f25c240244deb1c95a1e4621"
+    },
+    {
+      "path": "test/games/connect_four_scroll_alignment_test.dart",
+      "sha": "29cd071778aae6d5b643e48df7c6a67a4d993db6"
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "sha": "59d99f0568a122742abaa0d07fa8a91b0e2af041"
+    },
+    {
+      "path": "test/learning/learning_exact_selection_test.dart",
+      "sha": "0813b3fce46cd6773815dbfd9d958bef2a0df12f"
+    },
+    {
+      "path": "test/lumo_left_navigation_motion_test.dart",
+      "sha": "ef34770b743c3d4ce3ac9d6efb0163a988e8fbc0"
+    },
+    {
+      "path": "test/shape_trace_input_regression_test.dart",
+      "sha": "422072266d892b8a1b124663db2cd7a3d09f3a31"
+    }
+  ],
+  "scope": "Source review and real Git merge conflict determination only. No inherited 803a test result is claimed for this new merged tree. Running 803a candidate branch and CI remain unchanged.",
+  "followup_source": "d14924407f7d63339693eb8a53ecddef0a64d602",
+  "followup": {
+    "checked_at_utc": "2026-11-14T09:33:00.688495+00:00",
+    "head": "d14924407f7d63339693eb8a53ecddef0a64d602",
+    "original_index_equals_current": true,
+    "tracked_source_clean": true,
+    "status_porcelain": "",
+    "shell_syntax_exit_code": 0,
+    "flutter_targeted_execution": "NOT_STARTED",
+    "flutter_preflight": "99 cached dependency directories referenced by the existing package config are absent after the home-directory reset; no Flutter test was counted or claimed. Flutter SDK itself is present.",
+    "native_android_claim": false,
+    "android_diagnostic_tests": "19 test methods passed in 1.224s; original fixture protocol and genuine original ANR-negative retained; no device run."
+  }
+}

@@ -10,6 +10,7 @@ import subprocess
 import zipfile
 
 from verify_android_apk import verify_apk, find_apksigner
+from package_notices import POLICY_PATH, validate_packaged_notices
 
 ROOT = Path(__file__).resolve().parents[1]
 SUPPORTED_ABIS = {'arm64-v8a', 'x86_64'}
@@ -25,7 +26,8 @@ EXPECTATION_PATHS = (
 def load_expectations(repository: Path | None, revision: str | None) -> tuple[dict, dict | None]:
     """Keep current verification code while binding historical inputs to Git bytes."""
     if repository is None and revision is None:
-        return {name: (ROOT / name).read_bytes() for name in EXPECTATION_PATHS}, None
+        return {name: (ROOT / name).read_bytes()
+                for name in (*EXPECTATION_PATHS, POLICY_PATH)}, None
     if repository is None or revision is None:
         raise RuntimeError('Expectation repository and revision must be supplied together')
     if not re.fullmatch(r'[0-9a-f]{40}', revision):
@@ -36,6 +38,18 @@ def load_expectations(repository: Path | None, revision: str | None) -> tuple[di
         raise RuntimeError('Expectation revision does not identify the exact commit')
     files = {name: subprocess.check_output(git + ['show', f'{revision}:{name}'])
              for name in EXPECTATION_PATHS}
+    # Only an explicitly selected immutable historical tree may predate this
+    # policy. A malformed entry or any failed Git read must still fail closed.
+    entry = subprocess.check_output(git + ['ls-tree', '--full-tree', '-z', revision, '--', POLICY_PATH])
+    if entry:
+        records = entry.split(b'\0')
+        if (len(records) != 2 or records[1] or b'\t' not in records[0]):
+            raise RuntimeError('Malformed historical packaged-notice policy tree entry')
+        metadata, path = records[0].split(b'\t', 1)
+        if (path.decode('utf-8') != POLICY_PATH
+                or not re.fullmatch(rb'100644 blob [0-9a-f]{40}', metadata)):
+            raise RuntimeError('Historical packaged-notice policy must be a regular tracked file')
+        files[POLICY_PATH] = subprocess.check_output(git + ['show', f'{revision}:{POLICY_PATH}'])
     return files, {'revision': revision, 'files': {
         name: hashlib.sha256(content).hexdigest() for name, content in files.items()}}
 
@@ -148,6 +162,17 @@ def verify(path: Path, expected_abis: set[str] | None = None, *,
             json.loads(expectations['config/lumo-offline-voice.json']),
             json.loads(expectations['assets/audio/voice/lumo_free/catalog.json']),
         )
+        if POLICY_PATH in expectations:
+            notices = validate_packaged_notices(archive, expectations[POLICY_PATH], source)
+        elif expectations_source is not None:
+            notices = {
+                'status': 'not_verified_for_historical_source',
+                'expectationRevision': expectations_source['revision'],
+                'scope': 'The explicitly selected historical Git tree has no notice policy; '
+                         'no packaged-notice or rights approval is claimed',
+            }
+        else:
+            raise RuntimeError('Current APK verification requires the committed notice policy')
         info = archive.getinfo('resources.arsc')
         if info.compress_type != zipfile.ZIP_STORED:
             raise RuntimeError('Android 11 requires uncompressed resources.arsc')
@@ -191,7 +216,7 @@ def verify(path: Path, expected_abis: set[str] | None = None, *,
               'elf16KiBAligned': True, 'resourcesArscAligned': True, 'bytes': path.stat().st_size,
               'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
               'signingCertificateSha256': certificate, 'godot': provenance,
-              'offlineVoice': offline_voice}
+              'offlineVoice': offline_voice, 'notices': notices}
     if expectations_source is not None:
         result['expectationsSource'] = expectations_source
     print(json.dumps(result, indent=2))

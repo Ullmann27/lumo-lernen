@@ -1,0 +1,24 @@
+00:00 +0: loading /home/agent/lumo-c4-ci-2708/source/test/games/games_screen_flow_test.dart
+00:00 +0: /home/agent/lumo-c4-ci-2708/source/test/games/games_screen_flow_test.dart: Four in a row completes a full touch game and restart cancels old bot
+00:01 +1: loading /home/agent/lumo-c4-ci-2708/source/test/design/connect_four_visual_test.dart
+00:02 +1: /home/agent/lumo-c4-ci-2708/source/test/design/connect_four_visual_test.dart: (setUpAll)
+00:02 +1: /home/agent/lumo-c4-ci-2708/source/test/design/connect_four_visual_test.dart: Connect Four layout 360.0x800.0
+00:03 +2: /home/agent/lumo-c4-ci-2708/source/test/design/connect_four_visual_test.dart: Connect Four layout 640.0x360.0
+00:03 +3: /home/agent/lumo-c4-ci-2708/source/test/design/connect_four_visual_test.dart: Connect Four layout 1280.0x720.0
+00:04 +4: /home/agent/lumo-c4-ci-2708/source/test/design/connect_four_visual_test.dart: Connect Four layout 740.0x840.0
+00:04 +5: /home/agent/lumo-c4-ci-2708/source/test/design/connect_four_visual_test.dart: Connect Four layout 1200.0x896.0
+00:04 +6: /home/agent/lumo-c4-ci-2708/source/test/design/connect_four_visual_test.dart: (tearDownAll)
+00:04 +6: loading /home/agent/lumo-c4-ci-2708/source/test/games/connect_four_fold_controls_test.dart
+00:05 +6: /home/agent/lumo-c4-ci-2708/source/test/games/connect_four_fold_controls_test.dart: Fold outer-screen at 320dp: all seven real 48dp column buttons remain reachable
+00:06 +7: loading /home/agent/lumo-c4-ci-2708/source/test/games/connect_four_scroll_alignment_test.dart
+00:06 +7: /home/agent/lumo-c4-ci-2708/source/test/games/connect_four_scroll_alignment_test.dart: 48dp columns stay aligned and playable while scrolling at Size(320.0, 740.0)
+00:08 +8: /home/agent/lumo-c4-ci-2708/source/test/games/connect_four_scroll_alignment_test.dart: 48dp columns stay aligned and playable while scrolling at Size(360.0, 800.0)
+00:09 +9: /home/agent/lumo-c4-ci-2708/source/test/games/connect_four_scroll_alignment_test.dart: 48dp columns stay aligned and playable while scrolling at Size(640.0, 360.0)
+00:09 +10: loading /home/agent/lumo-c4-ci-2708/source/test/games/connect_four_native_route_test.dart
+00:09 +10: /home/agent/lumo-c4-ci-2708/source/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:10 +11: loading /home/agent/lumo-c4-ci-2708/source/test/games/connect_four_interaction_test.dart
+00:11 +11: /home/agent/lumo-c4-ci-2708/source/test/games/connect_four_interaction_test.dart: tapping the board selects its column and locks repeated taps
+00:12 +12: /home/agent/lumo-c4-ci-2708/source/test/games/connect_four_interaction_test.dart: double taps are locked and paused bot never advances
+00:12 +13: /home/agent/lumo-c4-ci-2708/source/test/games/connect_four_interaction_test.dart: local two-player win rewards once and replay preserves wallet
+00:13 +14: /home/agent/lumo-c4-ci-2708/source/test/games/connect_four_interaction_test.dart: restart mid-fall invalidates old animation and bot callbacks
+00:13 +15: All tests passed!

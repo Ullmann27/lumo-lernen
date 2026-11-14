@@ -1,0 +1,46 @@
+{
+  "checked_at_utc": "2026-11-14T10:22:41.805339+00:00",
+  "source": "968e59d947efae8bfb36d86f0ecf48475d741714",
+  "native": "f0c19f9eb69ea330ac5d2b8f9948cb029ca218aa",
+  "index_unchanged": true,
+  "tracked_source_clean": true,
+  "results": [
+    {
+      "label": "pin-and-c4-contracts",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "scripts.tests.test_legacy_release_pin",
+        "scripts.tests.test_candidate_2011_pin",
+        "scripts.tests.test_connect_four_pipeline",
+        "scripts.tests.test_connect_four_delivery",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.9035253159963759,
+      "log_bytes": 23939,
+      "log_sha256": "46539d3ca082f3927d3830403f967ddcf65063e8817f11c6ad6886e6c147ad69"
+    },
+    {
+      "label": "actionlint",
+      "argv": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        ".github/workflows/lumo-connect-four-2020.yml"
+      ],
+      "exit_code": 0,
+      "seconds": 0.011605086998315528,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "Require actual gameplay gates on the exact pinned native source",
+      "bash_syntax_exit_code": 0
+    },
+    {
+      "label": "Require acknowledged Connect Four return retry",
+      "bash_syntax_exit_code": 0
+    }
+  ],
+  "scope": "Focused unchanged historical policy/workflow/delivery contracts, plus one old-pin negative; child separately tests actual new shell gate with fake engine boundary. No full Flutter/native/Android approval."
+}

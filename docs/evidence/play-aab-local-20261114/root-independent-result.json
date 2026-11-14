@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "base_source": "4564ad40c4d000b764e67719d19bd2445c04c870",
+  "local_review_base": "50d538e5fa10ca2f81da109ed4ab00a8a595892b",
+  "reviewed_blobs": {
+    "scripts/prepare_android.py": "054324b3f9ba8b7dc269e42a20b9c91a8717b27a",
+    "scripts/verify_play_bundle.py": "d6078bf64dde4fb25cce78635d81e7f4e0114b60",
+    "scripts/LumoPlayBundleVerifier.java": "da1aa45e530e6dfa32886df740095c3eea3c1ae2",
+    "scripts/tests/test_verify_play_bundle.py": "6db74c257d67f193a96f4b759e09550100e081ff",
+    "scripts/build_play_bundle.sh": "213c95f80ea4473bae5e1d8dd97e553dfd7d86c4",
+    "scripts/tests/test_build_play_bundle.py": "b8fdb17b6128766348dd43971f7e80d406c1f49b",
+    "scripts/prepare_launcher_icons.py": "ebd6cb5586fd721d8e321a4ba68db26efe1a8845",
+    "scripts/icon_tests/test_launcher_icons.py": "5c70341705e2db311ef4b9ead5afa5be003df1c9",
+    "assets/lumo_design/fox/fox_avatar.png": "2528db26b4288d89e905c03ec1015ac7b8798538",
+    "lib/widgets/scan_screen.dart": "bc8dd3881a234c6d21be1dc3aa229dad2cffa5fb"
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "tests": {
+    "passed": 52,
+    "failed": 0,
+    "skipped": 0,
+    "command": "python3 -m unittest scripts.tests.test_verify_play_bundle scripts.tests.test_play_distribution_prepare scripts.tests.test_prepare_android scripts.tests.test_build_play_bundle scripts.icon_tests.test_launcher_icons -v",
+    "log": "root-independent-52-tests.log"
+  },
+  "prior_environment_failure": {
+    "errors": 9,
+    "cause": "Sparse checkout omitted the original tracked fox avatar. Restored exact HEAD bytes; no code/test change.",
+    "log": "root-independent-missing-source-asset.log"
+  },
+  "scope": "Verifier contracts, four real Java rejection executions, synthetic bundle payload and mocked shell orchestration, real original icon source. No real Play-signed AAB, upload, per-device download-size or 16KiB runtime acceptance."
+}

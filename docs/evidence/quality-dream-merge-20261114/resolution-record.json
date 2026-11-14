@@ -1,0 +1,93 @@
+{
+  "recorded_at_utc": "2026-11-14T11:32:35.369247+00:00",
+  "base": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+  "parents": [
+    "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+    "3d91bd8355a539c3c2413760959684cd3fee985a"
+  ],
+  "native_revision": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "resolved_files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "strategy": "Preserve both independent additions, return first and Dream second.",
+      "bytes": 47632,
+      "blob": "a0bf885564ec322b3d830bcc661d0417926fbb2d",
+      "sha256": "5b53838ce50eafa9f4cae38f1a69acb227edb15d1b36c99201dcde60314d01e4"
+    },
+    {
+      "path": "config/godot-source.json",
+      "strategy": "Bind only the current 2020 identity to the actual preserving Native merge.",
+      "bytes": 145,
+      "blob": "3ce3b0d1f53f5d9b9f7ff0dcb7c3bd519c250788",
+      "sha256": "1b7c5f504dd2de26b0ae889f32f16971d960e18374b169c5862c3b1bd9a0b20f"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "strategy": "Bind only the current 2020 identity to the actual preserving Native merge.",
+      "bytes": 17696,
+      "blob": "acc41e8b9f664441eca1f49eb984adefda2fa65a",
+      "sha256": "ac8b6033ed884a7d5bb14dda97bfc04aef9ac1e8139ac784bad241c7bb954d74"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "strategy": "Actual conflict-free git merge-file output; preserve all parent changes.",
+      "bytes": 67475,
+      "blob": "cbc7d6c5f1544bd29af56226c93a8f1b53e049eb",
+      "sha256": "d7bcf66b0b95802004c2f63d8487035d569386909e3bb7afb56a8b71739a4c36"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "strategy": "Preserve both independent additions, return first and Dream second.",
+      "bytes": 57147,
+      "blob": "18fdff098115570b69fc43ccfe6a3d573605e55b",
+      "sha256": "f1237d9f4e48ed0cf3253b67768d1d4aad947be32da2158be7df6b1f8cb6dc2a"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "strategy": "Bind the actual Native merge and clarify the unchanged source-only approval scope.",
+      "bytes": 10712,
+      "blob": "58dc14602f6f0333170d3bcc6c6271fb349153fc",
+      "sha256": "6753f5c90d72f4e70885451320dc10616b05f02418253e98306e7f52d19630a1"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "strategy": "Actual conflict-free git merge-file output; preserve all parent changes.",
+      "bytes": 30218,
+      "blob": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d",
+      "sha256": "3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae"
+    }
+  ],
+  "unchanged_workflow_steps": [
+    {
+      "name": "Retry the acknowledged native exit after a transient Android refusal",
+      "unchanged_from": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca"
+    },
+    {
+      "name": "Require the additional pinned native Treasure wisp regression",
+      "unchanged_from": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca"
+    },
+    {
+      "name": "Require actual gameplay gates on the exact pinned native source",
+      "unchanged_from": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca"
+    },
+    {
+      "name": "Require acknowledged Connect Four return retry",
+      "unchanged_from": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca"
+    },
+    {
+      "name": "Require actual Dream gates on the exact pinned native source",
+      "unchanged_from": "3d91bd8355a539c3c2413760959684cd3fee985a"
+    }
+  ],
+  "original_native_artifact_upload_unchanged": true,
+  "delivery_test_methods_unchanged_from_each_parent": {
+    "ours_unchanged": 47,
+    "incoming_additions_or_changes_unchanged": 11,
+    "incoming_total": 56,
+    "common_base_total": 45
+  },
+  "merged_delivery_test_methods": 58,
+  "all_pre_2020_native_policies_unchanged": true,
+  "delivery_functions_unchanged_except_additional_dream_collection_and_release_text": true,
+  "scope": "Actual source merge and static identity assertions; no execution or new APK approval is implied."
+}

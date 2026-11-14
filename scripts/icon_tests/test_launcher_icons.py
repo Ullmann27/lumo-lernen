@@ -1,5 +1,6 @@
 import hashlib
 import importlib.util
+import json
 from pathlib import Path
 import shutil
 import tempfile
@@ -81,6 +82,19 @@ class LauncherTests(unittest.TestCase):
         for entry in one['files']:
             data = (self.manifest.parent/'res'/entry['path']).read_bytes()
             self.assertEqual(hashlib.sha256(data).hexdigest(),entry['sha256'])
+
+    def test_separate_play_report_preserves_existing_family_provenance(self):
+        family_report = self.root / 'dist/LAUNCHER-RESOURCES.json'
+        family_report.parent.mkdir()
+        previous = b'{"scope":"existing family build evidence"}\n'
+        family_report.write_bytes(previous)
+        play_directory = self.root / 'dist/play-fixture'
+        report = icons.prepare(self.root, report_dir=play_directory)
+        self.assertEqual(family_report.read_bytes(), previous)
+        self.assertEqual(
+            json.loads((play_directory / 'LAUNCHER-RESOURCES.json').read_text()),
+            report,
+        )
 
     def test_wrong_source_fails_before_manifest_change(self):
         before = self.manifest.read_bytes()

@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-godot",
+  "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+  "parents": [
+    "bd0712259bb64908a5649ee1999638826c9eb597",
+    "6ecc560ea16202b935c4f1d32b08b93cda358e02"
+  ],
+  "common_base": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "reachable_branch": "checkpoint/lumo-dream-minimap-verified-20261114-2708",
+  "reviewed_host_parents": [
+    "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+    "3d91bd8355a539c3c2413760959684cd3fee985a"
+  ],
+  "actual_manifest": {
+    "schema": 1,
+    "repository": "Ullmann27/lumo-godot",
+    "scope": "exact two-parent Native integration with bounded SafeArea runtime verification",
+    "common_base": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+    "parents": [
+      "bd0712259bb64908a5649ee1999638826c9eb597",
+      "6ecc560ea16202b935c4f1d32b08b93cda358e02"
+    ],
+    "source_union_tree": "71a6ca75c3c21de70ae857d2d5c3b259c7db7f1a",
+    "production_blob": "83b3b6b548cffa2790c582e061a74e37bbfcf356",
+    "test_blob": "6c58c08b8c47a7bf7c957c448b88474a984b9509",
+    "integration": {
+      "engine": "4.6.3.stable.official.7d41c59c4",
+      "started_utc": "2026-11-14T11:29:03.473121+00:00",
+      "seconds": 14.646,
+      "exit_code": 0,
+      "checks": 380,
+      "failures": [],
+      "source_inventory": "6dc7aa3125e04caa6d9cc19b108ce9ca22de3bafd54d30b7b4a141307edbf0fe",
+      "materialized_files": 1454,
+      "sources_unchanged": true,
+      "log_sha256": "89cfe73badf95e3e653d948c0445feaa6d3eb269652c069c290380445d439924",
+      "report_sha256": "ae5dfc3621efa1cb2225b3e444bf1ce1d2b6d85dc7eeb0a09319b03038b9175b"
+    },
+    "original_minimap_red_green_retained": true,
+    "old_52_runner_unchanged": true,
+    "dream_gate_unchanged": true,
+    "new_rendered_images": 0,
+    "android_run": false,
+    "full_native_gate_run": false,
+    "dream_gate_run": false,
+    "remote_refs_updated": false,
+    "host_pins_updated": false,
+    "files": [
+      {
+        "path": "preflight.json",
+        "bytes": 463,
+        "sha256": "29f2e9c113b639532fd94e82a3ab0c408b23b00c5816232f1dd9e8416b861253",
+        "git_blob": "b8e84be38e28d4bfb6ab1eb5ffda72fc15f34e56"
+      },
+      {
+        "path": "source-prepare.log",
+        "bytes": 1007,
+        "sha256": "028bab9d1828c64cc9255601737f319565b56451a2b34b395f24ec94e40149bf",
+        "git_blob": "35966e7d173c586aac6256fcc84ec4cd7ae0ed74"
+      },
+      {
+        "path": "import/run.json",
+        "bytes": 9240,
+        "sha256": "69043ac2dd58e4ef783500f117858a900b881e1da177e93d5e74583878bec8fb",
+        "git_blob": "f470f88e1576cab009f649e4b5190cad113c1652"
+      },
+      {
+        "path": "import/run.log",
+        "bytes": 70604,
+        "sha256": "51f2f90657f24ada6bca8c01b7659d830604bdc6df139952baa8eda07a65463f",
+        "git_blob": "f9ef5c42157f7518622330df9e97bc588f3af9b8"
+      },
+      {
+        "path": "integration/run.json",
+        "bytes": 9438,
+        "sha256": "eb79cd3e49c3e630c5f47da5b5fb969dd25dedce020c8d932ed7ab0d929d0478",
+        "git_blob": "50d1ab378e1399c1b01ab8c86c19b97d27d93ec6"
+      },
+      {
+        "path": "integration/run.log",
+        "bytes": 10571,
+        "sha256": "89cfe73badf95e3e653d948c0445feaa6d3eb269652c069c290380445d439924",
+        "git_blob": "87eef50f2b112ae226f3e99c45741402e9f47f96"
+      },
+      {
+        "path": "integration/mobile-safe-area.json",
+        "bytes": 55440,
+        "sha256": "ae5dfc3621efa1cb2225b3e444bf1ce1d2b6d85dc7eeb0a09319b03038b9175b",
+        "git_blob": "880c0da5fa06fa53cffdb18601c5d0c2ed6830ca"
+      },
+      {
+        "path": "run_integration.py",
+        "bytes": 5795,
+        "sha256": "611654970e84d4517e9552a13f67bb42676737323bd3b37e1d6e8d0436357ad4",
+        "git_blob": "8017b4dc13ab21bb71878ce333162cde056c80da"
+      },
+      {
+        "path": "source-preservation.json",
+        "bytes": 27776,
+        "sha256": "ad0dc438c33b334791e41f64353794d12566ca8b74dc0ea1c96eea65c9e8cbf0",
+        "git_blob": "ab379090c441d7834620bf58dfa264f68e141b10"
+      },
+      {
+        "path": "dependency-review.json",
+        "bytes": 5545,
+        "sha256": "65d7fe0a20a6bb543f20a612c8ccd11e46fad83322aa1736f19bbe10d920f5a2",
+        "git_blob": "eb8e1e4d85b805cf04207ee406e41c21c29675ed"
+      },
+      {
+        "path": "README.md",
+        "bytes": 3187,
+        "sha256": "cd33032a17a534a8dd736adee61a6d122079127b91c0e68b4ed6c8ac57c06120",
+        "git_blob": "d88bbbecddee7f3269bbaf69080b62ba127219a5"
+      }
+    ]
+  },
+  "integration_log_blob": "87eef50f2b112ae226f3e99c45741402e9f47f96",
+  "integration_log_sha256": "89cfe73badf95e3e653d948c0445feaa6d3eb269652c069c290380445d439924",
+  "root_original_log_read": true,
+  "production_blob": "83b3b6b548cffa2790c582e061a74e37bbfcf356",
+  "safe_area_test_blob": "6c58c08b8c47a7bf7c957c448b88474a984b9509",
+  "scope": "Combined source identity and actual headless 380-check integration proof. Full frozen Host/native renderer/APK/Android/upgrade/delivery remain required."
+}

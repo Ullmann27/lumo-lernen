@@ -1,0 +1,212 @@
+2026-11-14T08:50:52.0493457Z ERROR: test_actual_2019_wrapper_validates_both_artifacts_before_device_boundary (test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_2019_wrapper_validates_both_artifacts_before_device_boundary)
+2026-11-14T08:50:52.0494163Z ----------------------------------------------------------------------
+2026-11-14T08:50:52.0494454Z Traceback (most recent call last):
+2026-11-14T08:50:52.0495022Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 152, in test_actual_2019_wrapper_validates_both_artifacts_before_device_boundary
+2026-11-14T08:50:52.0495590Z     report, boundary = self.run_wrapper()
+2026-11-14T08:50:52.0495830Z                        ^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0496257Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 142, in run_wrapper
+2026-11-14T08:50:52.0496795Z     runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+2026-11-14T08:50:52.0497262Z   File "<frozen runpy>", line 286, in run_path
+2026-11-14T08:50:52.0497541Z   File "<frozen runpy>", line 98, in _run_module_code
+2026-11-14T08:50:52.0497814Z   File "<frozen runpy>", line 88, in _run_code
+2026-11-14T08:50:52.0498409Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 34, in <module>
+2026-11-14T08:50:52.0498838Z     native_source = reviewed_candidate_native(
+2026-11-14T08:50:52.0499083Z                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0499572Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 27, in reviewed_candidate_native
+2026-11-14T08:50:52.0500086Z     raise ValueError('This update proof requires candidate version 2019')
+2026-11-14T08:50:52.0500450Z ValueError: This update proof requires candidate version 2019
+2026-11-14T08:50:52.0500656Z 
+2026-11-14T08:50:52.0500766Z ======================================================================
+2026-11-14T08:50:52.0501520Z ERROR: test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity (test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity) (label='baseline', changes={'versionCode': 2016})
+2026-11-14T08:50:52.0502287Z ----------------------------------------------------------------------
+2026-11-14T08:50:52.0502566Z Traceback (most recent call last):
+2026-11-14T08:50:52.0503122Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 178, in test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity
+2026-11-14T08:50:52.0503676Z     report, boundary = self.run_wrapper()
+2026-11-14T08:50:52.0503911Z                        ^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0504338Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 142, in run_wrapper
+2026-11-14T08:50:52.0504846Z     runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+2026-11-14T08:50:52.0505181Z   File "<frozen runpy>", line 286, in run_path
+2026-11-14T08:50:52.0505456Z   File "<frozen runpy>", line 98, in _run_module_code
+2026-11-14T08:50:52.0505725Z   File "<frozen runpy>", line 88, in _run_code
+2026-11-14T08:50:52.0506144Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 34, in <module>
+2026-11-14T08:50:52.0506569Z     native_source = reviewed_candidate_native(
+2026-11-14T08:50:52.0506818Z                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0507256Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 27, in reviewed_candidate_native
+2026-11-14T08:50:52.0507769Z     raise ValueError('This update proof requires candidate version 2019')
+2026-11-14T08:50:52.0508268Z ValueError: This update proof requires candidate version 2019
+2026-11-14T08:50:52.0508474Z 
+2026-11-14T08:50:52.0508582Z ======================================================================
+2026-11-14T08:50:52.0509446Z ERROR: test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity (test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity) (label='baseline', changes={'flutter_source_commit': 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'})
+2026-11-14T08:50:52.0510325Z ----------------------------------------------------------------------
+2026-11-14T08:50:52.0510700Z Traceback (most recent call last):
+2026-11-14T08:50:52.0511258Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 178, in test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity
+2026-11-14T08:50:52.0511823Z     report, boundary = self.run_wrapper()
+2026-11-14T08:50:52.0512058Z                        ^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0512474Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 142, in run_wrapper
+2026-11-14T08:50:52.0513114Z     runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+2026-11-14T08:50:52.0513468Z   File "<frozen runpy>", line 286, in run_path
+2026-11-14T08:50:52.0513767Z   File "<frozen runpy>", line 98, in _run_module_code
+2026-11-14T08:50:52.0514066Z   File "<frozen runpy>", line 88, in _run_code
+2026-11-14T08:50:52.0514509Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 34, in <module>
+2026-11-14T08:50:52.0514993Z     native_source = reviewed_candidate_native(
+2026-11-14T08:50:52.0515269Z                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0515720Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 27, in reviewed_candidate_native
+2026-11-14T08:50:52.0516249Z     raise ValueError('This update proof requires candidate version 2019')
+2026-11-14T08:50:52.0516634Z ValueError: This update proof requires candidate version 2019
+2026-11-14T08:50:52.0516846Z 
+2026-11-14T08:50:52.0516966Z ======================================================================
+2026-11-14T08:50:52.0517732Z ERROR: test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity (test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity) (label='candidate', changes={'versionCode': 2018})
+2026-11-14T08:50:52.0518701Z ----------------------------------------------------------------------
+2026-11-14T08:50:52.0519029Z Traceback (most recent call last):
+2026-11-14T08:50:52.0519605Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 178, in test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity
+2026-11-14T08:50:52.0520183Z     report, boundary = self.run_wrapper()
+2026-11-14T08:50:52.0520440Z                        ^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0520887Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 142, in run_wrapper
+2026-11-14T08:50:52.0521420Z     runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+2026-11-14T08:50:52.0521785Z   File "<frozen runpy>", line 286, in run_path
+2026-11-14T08:50:52.0522081Z   File "<frozen runpy>", line 98, in _run_module_code
+2026-11-14T08:50:52.0522380Z   File "<frozen runpy>", line 88, in _run_code
+2026-11-14T08:50:52.0522835Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 34, in <module>
+2026-11-14T08:50:52.0523282Z     native_source = reviewed_candidate_native(
+2026-11-14T08:50:52.0523551Z                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0524010Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 27, in reviewed_candidate_native
+2026-11-14T08:50:52.0524542Z     raise ValueError('This update proof requires candidate version 2019')
+2026-11-14T08:50:52.0524923Z ValueError: This update proof requires candidate version 2019
+2026-11-14T08:50:52.0525138Z 
+2026-11-14T08:50:52.0525259Z ======================================================================
+2026-11-14T08:50:52.0526052Z ERROR: test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity (test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity) (label='candidate', changes={'tracked_source_clean': False})
+2026-11-14T08:50:52.0526872Z ----------------------------------------------------------------------
+2026-11-14T08:50:52.0527178Z Traceback (most recent call last):
+2026-11-14T08:50:52.0527747Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 178, in test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity
+2026-11-14T08:50:52.0528459Z     report, boundary = self.run_wrapper()
+2026-11-14T08:50:52.0528811Z                        ^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0529258Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 142, in run_wrapper
+2026-11-14T08:50:52.0529793Z     runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+2026-11-14T08:50:52.0530149Z   File "<frozen runpy>", line 286, in run_path
+2026-11-14T08:50:52.0530456Z   File "<frozen runpy>", line 98, in _run_module_code
+2026-11-14T08:50:52.0530753Z   File "<frozen runpy>", line 88, in _run_code
+2026-11-14T08:50:52.0531239Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 34, in <module>
+2026-11-14T08:50:52.0531690Z     native_source = reviewed_candidate_native(
+2026-11-14T08:50:52.0531963Z                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0532426Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 27, in reviewed_candidate_native
+2026-11-14T08:50:52.0532958Z     raise ValueError('This update proof requires candidate version 2019')
+2026-11-14T08:50:52.0533335Z ValueError: This update proof requires candidate version 2019
+2026-11-14T08:50:52.0533548Z 
+2026-11-14T08:50:52.0533668Z ======================================================================
+2026-11-14T08:50:52.0534588Z ERROR: test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity (test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity) (label='candidate', changes={'flutter_source_commit': 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'})
+2026-11-14T08:50:52.0535492Z ----------------------------------------------------------------------
+2026-11-14T08:50:52.0535791Z Traceback (most recent call last):
+2026-11-14T08:50:52.0536360Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 178, in test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity
+2026-11-14T08:50:52.0536938Z     report, boundary = self.run_wrapper()
+2026-11-14T08:50:52.0537197Z                        ^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0537644Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 142, in run_wrapper
+2026-11-14T08:50:52.0538311Z     runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+2026-11-14T08:50:52.0538670Z   File "<frozen runpy>", line 286, in run_path
+2026-11-14T08:50:52.0538976Z   File "<frozen runpy>", line 98, in _run_module_code
+2026-11-14T08:50:52.0539271Z   File "<frozen runpy>", line 88, in _run_code
+2026-11-14T08:50:52.0539715Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 34, in <module>
+2026-11-14T08:50:52.0540161Z     native_source = reviewed_candidate_native(
+2026-11-14T08:50:52.0540428Z                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0540889Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 27, in reviewed_candidate_native
+2026-11-14T08:50:52.0541423Z     raise ValueError('This update proof requires candidate version 2019')
+2026-11-14T08:50:52.0541820Z ValueError: This update proof requires candidate version 2019
+2026-11-14T08:50:52.0542032Z 
+2026-11-14T08:50:52.0542152Z ======================================================================
+2026-11-14T08:50:52.0542965Z ERROR: test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity (test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity) (label='candidate', changes={'signingCertificateSha256': 'untrusted'})
+2026-11-14T08:50:52.0543802Z ----------------------------------------------------------------------
+2026-11-14T08:50:52.0544108Z Traceback (most recent call last):
+2026-11-14T08:50:52.0544679Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 178, in test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity
+2026-11-14T08:50:52.0545313Z     report, boundary = self.run_wrapper()
+2026-11-14T08:50:52.0545581Z                        ^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0546024Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 142, in run_wrapper
+2026-11-14T08:50:52.0546554Z     runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+2026-11-14T08:50:52.0546951Z   File "<frozen runpy>", line 286, in run_path
+2026-11-14T08:50:52.0547251Z   File "<frozen runpy>", line 98, in _run_module_code
+2026-11-14T08:50:52.0547544Z   File "<frozen runpy>", line 88, in _run_code
+2026-11-14T08:50:52.0548086Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 34, in <module>
+2026-11-14T08:50:52.0548547Z     native_source = reviewed_candidate_native(
+2026-11-14T08:50:52.0548823Z                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0549301Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 27, in reviewed_candidate_native
+2026-11-14T08:50:52.0549832Z     raise ValueError('This update proof requires candidate version 2019')
+2026-11-14T08:50:52.0550208Z ValueError: This update proof requires candidate version 2019
+2026-11-14T08:50:52.0550422Z 
+2026-11-14T08:50:52.0550602Z ======================================================================
+2026-11-14T08:50:52.0551404Z ERROR: test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity (test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity) (label='candidate', changes={'package': 'another.app'})
+2026-11-14T08:50:52.0552205Z ----------------------------------------------------------------------
+2026-11-14T08:50:52.0552507Z Traceback (most recent call last):
+2026-11-14T08:50:52.0553076Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 178, in test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity
+2026-11-14T08:50:52.0553659Z     report, boundary = self.run_wrapper()
+2026-11-14T08:50:52.0553923Z                        ^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0554369Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 142, in run_wrapper
+2026-11-14T08:50:52.0554907Z     runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+2026-11-14T08:50:52.0555261Z   File "<frozen runpy>", line 286, in run_path
+2026-11-14T08:50:52.0555554Z   File "<frozen runpy>", line 98, in _run_module_code
+2026-11-14T08:50:52.0555844Z   File "<frozen runpy>", line 88, in _run_code
+2026-11-14T08:50:52.0556281Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 34, in <module>
+2026-11-14T08:50:52.0556740Z     native_source = reviewed_candidate_native(
+2026-11-14T08:50:52.0557010Z                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0557468Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 27, in reviewed_candidate_native
+2026-11-14T08:50:52.0558099Z     raise ValueError('This update proof requires candidate version 2019')
+2026-11-14T08:50:52.0558488Z ValueError: This update proof requires candidate version 2019
+2026-11-14T08:50:52.0558699Z 
+2026-11-14T08:50:52.0558822Z ======================================================================
+2026-11-14T08:50:52.0559697Z ERROR: test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity (test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity) (label='candidate', changes={'sha256': '0000000000000000000000000000000000000000000000000000000000000000'})
+2026-11-14T08:50:52.0560591Z ----------------------------------------------------------------------
+2026-11-14T08:50:52.0560951Z Traceback (most recent call last):
+2026-11-14T08:50:52.0561515Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 178, in test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity
+2026-11-14T08:50:52.0562086Z     report, boundary = self.run_wrapper()
+2026-11-14T08:50:52.0562343Z                        ^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0562824Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 142, in run_wrapper
+2026-11-14T08:50:52.0563357Z     runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+2026-11-14T08:50:52.0563710Z   File "<frozen runpy>", line 286, in run_path
+2026-11-14T08:50:52.0564000Z   File "<frozen runpy>", line 98, in _run_module_code
+2026-11-14T08:50:52.0564283Z   File "<frozen runpy>", line 88, in _run_code
+2026-11-14T08:50:52.0564728Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 34, in <module>
+2026-11-14T08:50:52.0565174Z     native_source = reviewed_candidate_native(
+2026-11-14T08:50:52.0565443Z                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0565901Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 27, in reviewed_candidate_native
+2026-11-14T08:50:52.0566427Z     raise ValueError('This update proof requires candidate version 2019')
+2026-11-14T08:50:52.0566809Z ValueError: This update proof requires candidate version 2019
+2026-11-14T08:50:52.0567020Z 
+2026-11-14T08:50:52.0567139Z ======================================================================
+2026-11-14T08:50:52.0567928Z ERROR: test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity (test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity) (label='candidate', changes={'abis': ['arm64-v8a']})
+2026-11-14T08:50:52.0568866Z ----------------------------------------------------------------------
+2026-11-14T08:50:52.0569175Z Traceback (most recent call last):
+2026-11-14T08:50:52.0569747Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 178, in test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity
+2026-11-14T08:50:52.0570323Z     report, boundary = self.run_wrapper()
+2026-11-14T08:50:52.0570583Z                        ^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0571027Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 142, in run_wrapper
+2026-11-14T08:50:52.0571558Z     runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+2026-11-14T08:50:52.0571925Z   File "<frozen runpy>", line 286, in run_path
+2026-11-14T08:50:52.0572221Z   File "<frozen runpy>", line 98, in _run_module_code
+2026-11-14T08:50:52.0572516Z   File "<frozen runpy>", line 88, in _run_code
+2026-11-14T08:50:52.0572950Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 34, in <module>
+2026-11-14T08:50:52.0573396Z     native_source = reviewed_candidate_native(
+2026-11-14T08:50:52.0573666Z                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0574120Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 27, in reviewed_candidate_native
+2026-11-14T08:50:52.0574639Z     raise ValueError('This update proof requires candidate version 2019')
+2026-11-14T08:50:52.0575023Z ValueError: This update proof requires candidate version 2019
+2026-11-14T08:50:52.0575237Z 
+2026-11-14T08:50:52.0575367Z ======================================================================
+2026-11-14T08:50:52.0576228Z ERROR: test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity (test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity) (label='candidate', changes={'godot': {'revision': '1d5c5cb45a323228f627ec529e6ff1ddd86f1c57'}})
+2026-11-14T08:50:52.0577169Z ----------------------------------------------------------------------
+2026-11-14T08:50:52.0577473Z Traceback (most recent call last):
+2026-11-14T08:50:52.0578145Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 178, in test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity
+2026-11-14T08:50:52.0578732Z     report, boundary = self.run_wrapper()
+2026-11-14T08:50:52.0579042Z                        ^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0579504Z   File "/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_update_2019_preservation.py", line 142, in run_wrapper
+2026-11-14T08:50:52.0580036Z     runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+2026-11-14T08:50:52.0580388Z   File "<frozen runpy>", line 286, in run_path
+2026-11-14T08:50:52.0580686Z   File "<frozen runpy>", line 98, in _run_module_code
+2026-11-14T08:50:52.0580978Z   File "<frozen runpy>", line 88, in _run_code
+2026-11-14T08:50:52.0581417Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 34, in <module>
+2026-11-14T08:50:52.0581853Z     native_source = reviewed_candidate_native(
+2026-11-14T08:50:52.0582118Z                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T08:50:52.0582583Z   File "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_2019_update_android_probe.py", line 27, in reviewed_candidate_native
+2026-11-14T08:50:52.0583117Z     raise ValueError('This update proof requires candidate version 2019')
+2026-11-14T08:50:52.0583484Z ValueError: This update proof requires candidate version 2019
+2026-11-14T08:50:52.0583685Z 
+2026-11-14T08:50:52.0583824Z ----------------------------------------------------------------------
+2026-11-14T08:50:52.0584104Z Ran 928 tests in 73.704s
+2026-11-14T08:50:52.0584248Z 
+2026-11-14T08:50:52.0584343Z FAILED (errors=11)

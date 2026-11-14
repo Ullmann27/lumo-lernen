@@ -1,0 +1,56 @@
+test_duplicate_success_marker_is_rejected (test_connect_four_return_gate.ConnectFourReturnGateTests.test_duplicate_success_marker_is_rejected) ... ok
+test_engine_error_after_success_on_stderr_is_rejected (test_connect_four_return_gate.ConnectFourReturnGateTests.test_engine_error_after_success_on_stderr_is_rejected) ... ok
+test_missing_marker_cannot_reuse_an_old_successful_log (test_connect_four_return_gate.ConnectFourReturnGateTests.test_missing_marker_cannot_reuse_an_old_successful_log) ... ok
+test_new_clean_commit_during_engine_is_not_the_pinned_source (test_connect_four_return_gate.ConnectFourReturnGateTests.test_new_clean_commit_during_engine_is_not_the_pinned_source) ... FAIL
+test_nonzero_engine_exit_is_rejected_despite_success_marker (test_connect_four_return_gate.ConnectFourReturnGateTests.test_nonzero_engine_exit_is_rejected_despite_success_marker) ... ok
+test_staged_and_unstaged_changes_during_engine_are_rejected (test_connect_four_return_gate.ConnectFourReturnGateTests.test_staged_and_unstaged_changes_during_engine_are_rejected) ... ok
+test_staged_and_unstaged_source_changes_stop_before_engine (test_connect_four_return_gate.ConnectFourReturnGateTests.test_staged_and_unstaged_source_changes_stop_before_engine) ... ok
+test_success_cannot_hide_a_contradictory_return_marker (test_connect_four_return_gate.ConnectFourReturnGateTests.test_success_cannot_hide_a_contradictory_return_marker) ... 
+  test_success_cannot_hide_a_contradictory_return_marker (test_connect_four_return_gate.ConnectFourReturnGateTests.test_success_cannot_hide_a_contradictory_return_marker) (contradictory='CONNECT_FOUR_RETURN_FAIL checks=21') ... FAIL
+  test_success_cannot_hide_a_contradictory_return_marker (test_connect_four_return_gate.ConnectFourReturnGateTests.test_success_cannot_hide_a_contradictory_return_marker) (contradictory='CONNECT_FOUR_RETURN_PASS checks=20') ... FAIL
+test_success_runs_exact_script_with_isolated_data_paths (test_connect_four_return_gate.ConnectFourReturnGateTests.test_success_runs_exact_script_with_isolated_data_paths) ... ok
+test_wrong_marker_is_rejected (test_connect_four_return_gate.ConnectFourReturnGateTests.test_wrong_marker_is_rejected) ... ok
+test_wrong_pin_or_wrong_head_stops_before_engine (test_connect_four_return_gate.ConnectFourReturnGateTests.test_wrong_pin_or_wrong_head_stops_before_engine) ... ok
+
+======================================================================
+FAIL: test_new_clean_commit_during_engine_is_not_the_pinned_source (test_connect_four_return_gate.ConnectFourReturnGateTests.test_new_clean_commit_during_engine_is_not_the_pinned_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/agent/lumo-return-gate-968e-2708/scripts/tests/test_connect_four_return_gate.py", line 280, in test_new_clean_commit_during_engine_is_not_the_pinned_source
+    self.assert_rejected(result)
+  File "/home/agent/lumo-return-gate-968e-2708/scripts/tests/test_connect_four_return_gate.py", line 180, in assert_rejected
+    self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 0 == 0 : FAKE_GODOT: host shell contract; no engine executed
+CONNECT_FOUR_RETURN_PASS checks=21
+
+
+======================================================================
+FAIL: test_success_cannot_hide_a_contradictory_return_marker (test_connect_four_return_gate.ConnectFourReturnGateTests.test_success_cannot_hide_a_contradictory_return_marker) (contradictory='CONNECT_FOUR_RETURN_FAIL checks=21')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/agent/lumo-return-gate-968e-2708/scripts/tests/test_connect_four_return_gate.py", line 291, in test_success_cannot_hide_a_contradictory_return_marker
+    self.assert_rejected(result)
+  File "/home/agent/lumo-return-gate-968e-2708/scripts/tests/test_connect_four_return_gate.py", line 180, in assert_rejected
+    self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 0 == 0 : FAKE_GODOT: host shell contract; no engine executed
+CONNECT_FOUR_RETURN_PASS checks=21
+CONNECT_FOUR_RETURN_FAIL checks=21
+
+
+======================================================================
+FAIL: test_success_cannot_hide_a_contradictory_return_marker (test_connect_four_return_gate.ConnectFourReturnGateTests.test_success_cannot_hide_a_contradictory_return_marker) (contradictory='CONNECT_FOUR_RETURN_PASS checks=20')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/agent/lumo-return-gate-968e-2708/scripts/tests/test_connect_four_return_gate.py", line 291, in test_success_cannot_hide_a_contradictory_return_marker
+    self.assert_rejected(result)
+  File "/home/agent/lumo-return-gate-968e-2708/scripts/tests/test_connect_four_return_gate.py", line 180, in assert_rejected
+    self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 0 == 0 : FAKE_GODOT: host shell contract; no engine executed
+CONNECT_FOUR_RETURN_PASS checks=21
+CONNECT_FOUR_RETURN_PASS checks=20
+
+
+----------------------------------------------------------------------
+Ran 11 tests in 1.499s
+
+FAILED (failures=3)

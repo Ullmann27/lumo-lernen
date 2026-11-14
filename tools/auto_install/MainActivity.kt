@@ -22,6 +22,13 @@ import android.util.Log
 class MainActivity : FlutterActivity() {
     private var offlineSpeech: LumoOfflineSpeechBridge? = null
     private val installerChannel = "lumo_lernen/installer"
+    private val distributionChannel: String by lazy {
+        try {
+            @Suppress("DEPRECATION")
+            val info = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
+            info.metaData?.getString("dev.ullmann.lumo.DISTRIBUTION") ?: "unavailable"
+        } catch (_: Exception) { "unavailable" }
+    }
     private var pendingGame: MethodChannel.Result? = null
     private var pendingCallerReturnSession: String? = null
     private val gameRequest = 8201
@@ -76,6 +83,15 @@ class MainActivity : FlutterActivity() {
             flutterEngine.dartExecutor.binaryMessenger,
             installerChannel
         ).setMethodCallHandler { call, result ->
+            if (call.method == "distribution") {
+                result.success(distributionChannel)
+                return@setMethodCallHandler
+            }
+            // The manifest is authoritative even if a caller bypasses the Dart UI.
+            if (distributionChannel != "family") {
+                result.success(false)
+                return@setMethodCallHandler
+            }
             when (call.method) {
                 "canInstall" -> {
                     val allowed = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

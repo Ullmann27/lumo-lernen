@@ -1,0 +1,127 @@
+{
+  "base_commit": "4564ad40c4d000b764e67719d19bd2445c04c870",
+  "verification_date": "2026-11-14",
+  "flutter": "3.44.9",
+  "flutter_revision": "6b182d2c7585eba26d4edce0f97630effd256c33",
+  "dart": "3.12.2",
+  "baseline": {
+    "passed": 4,
+    "failed": 6,
+    "exit_code": 1
+  },
+  "final": {
+    "passed": 15,
+    "failed": 0,
+    "exit_code": 0
+  },
+  "analyzer": {
+    "exit_code": 0,
+    "errors": 0,
+    "warnings": 0,
+    "preexisting_info_diagnostics": 10,
+    "new_info_diagnostics": 0
+  },
+  "sources": {
+    "lib/features/games/connect_four/lumo_connect_four_game.dart": {
+      "bytes": 43189,
+      "sha256": "ecf483b9f5d10b58b87487220a34d6e7333f155aa8f4389acf1264ace9555057",
+      "git_blob_sha": "4d2bb14a89f0988e8d61567225403ee9416cf681"
+    },
+    "test/games/games_screen_flow_test.dart": {
+      "bytes": 10554,
+      "sha256": "10d83437c6758e2010ee03a34d4f1618154db8d5f9577a070b4818a434b0c0b5",
+      "git_blob_sha": "59d99f0568a122742abaa0d07fa8a91b0e2af041"
+    },
+    "test/design/connect_four_visual_test.dart": {
+      "bytes": 4403,
+      "sha256": "13c2a1ad9ce5d83edbcef20055728126b24ac374d7f3fa2d6bfa87bdc6f78b10",
+      "git_blob_sha": "8ea60303632a0ff1f25c240244deb1c95a1e4621"
+    },
+    "test/games/connect_four_scroll_alignment_test.dart": {
+      "bytes": 3776,
+      "sha256": "420c0bfb92c9dfabc828c7188a30608fcb957180f26f5d6b3f1f86f2090646ff",
+      "git_blob_sha": "29cd071778aae6d5b643e48df7c6a67a4d993db6"
+    }
+  },
+  "captures": {
+    "1200x896.png": {
+      "bytes": 705453,
+      "sha256": "c66127562f47462d913f3cccb69e4619288f37f1748ba75f5d3920e98eb9e4bb",
+      "git_blob_sha": "d9b4b44689553a58ee2859ca47e707b849a9e07b"
+    },
+    "1280x720.png": {
+      "bytes": 636015,
+      "sha256": "ab9e707852735a100ebe8daf987367bcd1afce80b2c1b5edb2374c97384a2ad2",
+      "git_blob_sha": "d4fb4b997d00630728bdce769ca2c7a8eb61cdca"
+    },
+    "360x800.png": {
+      "bytes": 209255,
+      "sha256": "ed8ccb2bd35234188350d1a93eccb3bf0df3a3eb5bf821c2eb4c58f4585995a4",
+      "git_blob_sha": "27cf03fb2e95e508975deb6a3ba6fae9a9aba247"
+    },
+    "640x360.png": {
+      "bytes": 151234,
+      "sha256": "08a46fc1c39e8e071f0596fb83ae17fe5e582b65b9773e3a5677ef9c377e6388",
+      "git_blob_sha": "33658f6feb76a7ca34de1869e245f1e8d7cbc85c"
+    },
+    "740x840.png": {
+      "bytes": 403207,
+      "sha256": "208ffc441cf0a30e065026cf14e53a5946999ad0c99c44be46d627bbfe18153f",
+      "git_blob_sha": "d7dd537d4ec98abbd25682d00f4c8e7879ba79ce"
+    }
+  },
+  "logs": {
+    "baseline.log": {
+      "bytes": 93612,
+      "sha256": "cb3c0c890a9d000730ff09b7b660550111fa67ecb1c94de7df8e3d4ec01847d4",
+      "git_blob_sha": "178ad1741f1cf02684e5a1637fde52508c37f401"
+    },
+    "after.log": {
+      "bytes": 3069,
+      "sha256": "abb192e1c4eb7ea7a74b2e80893fabf96c287635083b426eb9489cf63256754a",
+      "git_blob_sha": "20f6e862fe1dc1a5751b265cb279050c178d9f61"
+    },
+    "analyze-before.log": {
+      "bytes": 2082,
+      "sha256": "3e47ec4b241da38431dbceefdf76345b50ac94635cbd09691170abc4b8e8610c",
+      "git_blob_sha": "58493f1e49cc5c415e850da5979b59b850bc2011"
+    },
+    "analyze-after.log": {
+      "bytes": 2305,
+      "sha256": "f71668c09d77bc36f026fc950f634c2b079290d6fd1967c3c714115f7a022dd3",
+      "git_blob_sha": "33012f630c48bef3f2e80a7ae73c11ca35d1e20f"
+    }
+  },
+  "reused_asset_checks": [
+    {
+      "path": "assets/fonts/Nunito-Regular.ttf",
+      "sha256": "0f050be91a610576ef9d06abb68f7c21d22df2d20ece6edb8818630af9b59793",
+      "matches_reused_bundle": true
+    },
+    {
+      "path": "assets/fonts/Nunito-Black.ttf",
+      "sha256": "3a373c4d17cffecdc9f3c351e2ce9ec83edb0622925a59d802be24fd442346f8",
+      "matches_reused_bundle": true
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_thumb_wink.png",
+      "sha256": "5060005ee8c64ab82fa09ed3a4687b29cd1391925e409e1696b8045b4472a191",
+      "matches_reused_bundle": true
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_cheer.png",
+      "sha256": "3f25231a54a84ebb6d4c3fcd79fadbdeec458bac41130219f32b902da08440f9",
+      "matches_reused_bundle": true
+    },
+    {
+      "path": "assets/lumo_design/bg/bg_glass_islands.png",
+      "sha256": "8d8126541c815d5b28c021fa9bc426890a18df7767632f9a4dddec68c861e74f",
+      "matches_reused_bundle": true
+    }
+  ],
+  "limits": [
+    "Flutter widget tests, native route uses existing mocked platform channels",
+    "Compact-landscape scroll mask clips some decorative board-edge pixels",
+    "No physical Android, emulator, APK/AAB build, frame-rate measurement or Play submission"
+  ]
+}

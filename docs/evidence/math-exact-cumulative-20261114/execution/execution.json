@@ -1,0 +1,454 @@
+{
+  "schema": 1,
+  "scope": "Actual identical pure Dart contract; no Flutter, widget, Android, or full repository test run.",
+  "source_context": {
+    "baseline_host": "f4df466ed004879fc56284b024475a0ab0661259",
+    "later_host_checkpoint_reported_by_root": "dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f",
+    "staging": "Isolated exact 13-file production dependency closure plus test helper and unexecuted Flutter wrapper; not a full host checkout."
+  },
+  "started_at_utc": "2026-11-14T11:12:05.841863+00:00",
+  "finished_at_utc": "2026-11-14T11:12:07.120507+00:00",
+  "dart_version": {
+    "exit_code": 0,
+    "stdout": "Dart SDK version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"linux_x64\"\n",
+    "stderr": ""
+  },
+  "source_differences": [
+    "lib/core/math_task_templates.dart"
+  ],
+  "source_before": {
+    "original": {
+      "lib/core/school_exercise_generator.dart": {
+        "bytes": 83871,
+        "sha256": "cf7dfba7e5d587be0eef4cbec853f016211ee0715b460f1c365064142165c778",
+        "git_blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65"
+      },
+      "lib/core/math_task_templates.dart": {
+        "bytes": 49668,
+        "sha256": "65469d7e9095ad597271204e5c1953848ee2e98533ec095e8e7a530372d06cae",
+        "git_blob": "f5febd9c1e65516eef23b3d1ba40d670f62a2f89"
+      },
+      "lib/core/german_task_templates.dart": {
+        "bytes": 46860,
+        "sha256": "744e55d8551aecb8d1cea7f6f6fb3eb43991d432285e8ea0fb443b86e0a32361",
+        "git_blob": "47843a70ed106d25001481c995b339fc31894f5d"
+      },
+      "lib/core/shape_question_data.dart": {
+        "bytes": 4836,
+        "sha256": "c2f48349423a08237cc43ebfd6833cf340d93377792448fd53c991765085ec97",
+        "git_blob": "1234048061f3b187aeaf59cbb3b4a07324045395"
+      },
+      "lib/core/adventure/lumo_adventure_tasks.dart": {
+        "bytes": 32429,
+        "sha256": "0a1727e6c9782086d9b2140498d1548394dda83fe5ba4714667ef3d2663177df",
+        "git_blob": "cd28cf0f81903bbd0a68a462782c853feadc27e7"
+      },
+      "lib/core/english_vocabulary_extensions.dart": {
+        "bytes": 9182,
+        "sha256": "64c326e8fb27eab9adeacc778e1ff9d95e27901de55da902a0b46041d70d5e16",
+        "git_blob": "13f29bd61dc325bd351cd98dc4bf619abf8f292f"
+      },
+      "lib/core/primary_school_word_data.dart": {
+        "bytes": 27170,
+        "sha256": "e43b7352c2051ee32d50b9c60ddf0c7bc9adfc18df0afc087805a016e92aa723",
+        "git_blob": "1288d888554349b5d84ea9b96cf63e98b4965f0e"
+      },
+      "lib/core/reading_comprehension_data.dart": {
+        "bytes": 23019,
+        "sha256": "a0f97c7baaef85605cd7513a7836f4e0310391038b700b051d64f10660ebfa9b",
+        "git_blob": "25e9a13d147ed023a4e4615f58bb490b40f41f4d"
+      },
+      "lib/core/science_task_data.dart": {
+        "bytes": 27687,
+        "sha256": "aad041f03b6ac34020cdbef054ce7bb2753a08a605574d140bffb17d9c1237f8",
+        "git_blob": "41f7f14751d328d54de28b122f67fe53cd9427fa"
+      },
+      "lib/core/science_quality_extension.dart": {
+        "bytes": 8398,
+        "sha256": "a0ef18562143b18230014f913745d32d312d3697251d3feed18de3451c691a01",
+        "git_blob": "952999462e8424e1cb33bd2c31633884b39f1d8a"
+      },
+      "lib/core/spelling_context_data.dart": {
+        "bytes": 15724,
+        "sha256": "b5f605d79ba1aced1f1be030bb33f49c1428fc1f2ab6835b1b99d88741d40099",
+        "git_blob": "061ccc33862ef610e1589ee54cd2628755105265"
+      },
+      "lib/core/german_curriculum_extensions.dart": {
+        "bytes": 36835,
+        "sha256": "3da15e9c4fcd114517f8a98b791977934b9f3f5c481433db4d56937ce680faaf",
+        "git_blob": "2d0cc7d168606dd82e7e808d6fcf9bfcbb0cd732"
+      },
+      "lib/core/adventure/adventure_word_data.dart": {
+        "bytes": 17913,
+        "sha256": "0838dc64899879d9e95dbbb7d5e6a130f94610ad018fc2c6b632979af72bd5a8",
+        "git_blob": "b98029abd17aed104d4c79fe948c18d96bb4811f"
+      },
+      "test/support/math_exact_topic_selection_contract.dart": {
+        "bytes": 7699,
+        "sha256": "645b5522f49de05500da645a0961f8c00c5a8b628e2a81fb9a4759a0c434668b",
+        "git_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2"
+      },
+      "test/math_exact_topic_selection_test.dart": {
+        "bytes": 402,
+        "sha256": "bde1d7a8e48f9ebaa97fb043d9a27ae5a00f31e13189f52d73c05bca168463cc",
+        "git_blob": "f82604a4239bd8982ac666b97aa478b65a8fa2e8"
+      }
+    },
+    "patched": {
+      "lib/core/school_exercise_generator.dart": {
+        "bytes": 83871,
+        "sha256": "cf7dfba7e5d587be0eef4cbec853f016211ee0715b460f1c365064142165c778",
+        "git_blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65"
+      },
+      "lib/core/math_task_templates.dart": {
+        "bytes": 49784,
+        "sha256": "5db29aaa2d18a8b8eb3dc4f3dffd433b13ec364e7768fb27a90a7d16926854d2",
+        "git_blob": "85fbad4a0b09753a7f22663690a9660f98382f39"
+      },
+      "lib/core/german_task_templates.dart": {
+        "bytes": 46860,
+        "sha256": "744e55d8551aecb8d1cea7f6f6fb3eb43991d432285e8ea0fb443b86e0a32361",
+        "git_blob": "47843a70ed106d25001481c995b339fc31894f5d"
+      },
+      "lib/core/shape_question_data.dart": {
+        "bytes": 4836,
+        "sha256": "c2f48349423a08237cc43ebfd6833cf340d93377792448fd53c991765085ec97",
+        "git_blob": "1234048061f3b187aeaf59cbb3b4a07324045395"
+      },
+      "lib/core/adventure/lumo_adventure_tasks.dart": {
+        "bytes": 32429,
+        "sha256": "0a1727e6c9782086d9b2140498d1548394dda83fe5ba4714667ef3d2663177df",
+        "git_blob": "cd28cf0f81903bbd0a68a462782c853feadc27e7"
+      },
+      "lib/core/english_vocabulary_extensions.dart": {
+        "bytes": 9182,
+        "sha256": "64c326e8fb27eab9adeacc778e1ff9d95e27901de55da902a0b46041d70d5e16",
+        "git_blob": "13f29bd61dc325bd351cd98dc4bf619abf8f292f"
+      },
+      "lib/core/primary_school_word_data.dart": {
+        "bytes": 27170,
+        "sha256": "e43b7352c2051ee32d50b9c60ddf0c7bc9adfc18df0afc087805a016e92aa723",
+        "git_blob": "1288d888554349b5d84ea9b96cf63e98b4965f0e"
+      },
+      "lib/core/reading_comprehension_data.dart": {
+        "bytes": 23019,
+        "sha256": "a0f97c7baaef85605cd7513a7836f4e0310391038b700b051d64f10660ebfa9b",
+        "git_blob": "25e9a13d147ed023a4e4615f58bb490b40f41f4d"
+      },
+      "lib/core/science_task_data.dart": {
+        "bytes": 27687,
+        "sha256": "aad041f03b6ac34020cdbef054ce7bb2753a08a605574d140bffb17d9c1237f8",
+        "git_blob": "41f7f14751d328d54de28b122f67fe53cd9427fa"
+      },
+      "lib/core/science_quality_extension.dart": {
+        "bytes": 8398,
+        "sha256": "a0ef18562143b18230014f913745d32d312d3697251d3feed18de3451c691a01",
+        "git_blob": "952999462e8424e1cb33bd2c31633884b39f1d8a"
+      },
+      "lib/core/spelling_context_data.dart": {
+        "bytes": 15724,
+        "sha256": "b5f605d79ba1aced1f1be030bb33f49c1428fc1f2ab6835b1b99d88741d40099",
+        "git_blob": "061ccc33862ef610e1589ee54cd2628755105265"
+      },
+      "lib/core/german_curriculum_extensions.dart": {
+        "bytes": 36835,
+        "sha256": "3da15e9c4fcd114517f8a98b791977934b9f3f5c481433db4d56937ce680faaf",
+        "git_blob": "2d0cc7d168606dd82e7e808d6fcf9bfcbb0cd732"
+      },
+      "lib/core/adventure/adventure_word_data.dart": {
+        "bytes": 17913,
+        "sha256": "0838dc64899879d9e95dbbb7d5e6a130f94610ad018fc2c6b632979af72bd5a8",
+        "git_blob": "b98029abd17aed104d4c79fe948c18d96bb4811f"
+      },
+      "test/support/math_exact_topic_selection_contract.dart": {
+        "bytes": 7699,
+        "sha256": "645b5522f49de05500da645a0961f8c00c5a8b628e2a81fb9a4759a0c434668b",
+        "git_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2"
+      },
+      "test/math_exact_topic_selection_test.dart": {
+        "bytes": 402,
+        "sha256": "bde1d7a8e48f9ebaa97fb043d9a27ae5a00f31e13189f52d73c05bca168463cc",
+        "git_blob": "f82604a4239bd8982ac666b97aa478b65a8fa2e8"
+      }
+    }
+  },
+  "source_after": {
+    "original": {
+      "lib/core/school_exercise_generator.dart": {
+        "bytes": 83871,
+        "sha256": "cf7dfba7e5d587be0eef4cbec853f016211ee0715b460f1c365064142165c778",
+        "git_blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65"
+      },
+      "lib/core/math_task_templates.dart": {
+        "bytes": 49668,
+        "sha256": "65469d7e9095ad597271204e5c1953848ee2e98533ec095e8e7a530372d06cae",
+        "git_blob": "f5febd9c1e65516eef23b3d1ba40d670f62a2f89"
+      },
+      "lib/core/german_task_templates.dart": {
+        "bytes": 46860,
+        "sha256": "744e55d8551aecb8d1cea7f6f6fb3eb43991d432285e8ea0fb443b86e0a32361",
+        "git_blob": "47843a70ed106d25001481c995b339fc31894f5d"
+      },
+      "lib/core/shape_question_data.dart": {
+        "bytes": 4836,
+        "sha256": "c2f48349423a08237cc43ebfd6833cf340d93377792448fd53c991765085ec97",
+        "git_blob": "1234048061f3b187aeaf59cbb3b4a07324045395"
+      },
+      "lib/core/adventure/lumo_adventure_tasks.dart": {
+        "bytes": 32429,
+        "sha256": "0a1727e6c9782086d9b2140498d1548394dda83fe5ba4714667ef3d2663177df",
+        "git_blob": "cd28cf0f81903bbd0a68a462782c853feadc27e7"
+      },
+      "lib/core/english_vocabulary_extensions.dart": {
+        "bytes": 9182,
+        "sha256": "64c326e8fb27eab9adeacc778e1ff9d95e27901de55da902a0b46041d70d5e16",
+        "git_blob": "13f29bd61dc325bd351cd98dc4bf619abf8f292f"
+      },
+      "lib/core/primary_school_word_data.dart": {
+        "bytes": 27170,
+        "sha256": "e43b7352c2051ee32d50b9c60ddf0c7bc9adfc18df0afc087805a016e92aa723",
+        "git_blob": "1288d888554349b5d84ea9b96cf63e98b4965f0e"
+      },
+      "lib/core/reading_comprehension_data.dart": {
+        "bytes": 23019,
+        "sha256": "a0f97c7baaef85605cd7513a7836f4e0310391038b700b051d64f10660ebfa9b",
+        "git_blob": "25e9a13d147ed023a4e4615f58bb490b40f41f4d"
+      },
+      "lib/core/science_task_data.dart": {
+        "bytes": 27687,
+        "sha256": "aad041f03b6ac34020cdbef054ce7bb2753a08a605574d140bffb17d9c1237f8",
+        "git_blob": "41f7f14751d328d54de28b122f67fe53cd9427fa"
+      },
+      "lib/core/science_quality_extension.dart": {
+        "bytes": 8398,
+        "sha256": "a0ef18562143b18230014f913745d32d312d3697251d3feed18de3451c691a01",
+        "git_blob": "952999462e8424e1cb33bd2c31633884b39f1d8a"
+      },
+      "lib/core/spelling_context_data.dart": {
+        "bytes": 15724,
+        "sha256": "b5f605d79ba1aced1f1be030bb33f49c1428fc1f2ab6835b1b99d88741d40099",
+        "git_blob": "061ccc33862ef610e1589ee54cd2628755105265"
+      },
+      "lib/core/german_curriculum_extensions.dart": {
+        "bytes": 36835,
+        "sha256": "3da15e9c4fcd114517f8a98b791977934b9f3f5c481433db4d56937ce680faaf",
+        "git_blob": "2d0cc7d168606dd82e7e808d6fcf9bfcbb0cd732"
+      },
+      "lib/core/adventure/adventure_word_data.dart": {
+        "bytes": 17913,
+        "sha256": "0838dc64899879d9e95dbbb7d5e6a130f94610ad018fc2c6b632979af72bd5a8",
+        "git_blob": "b98029abd17aed104d4c79fe948c18d96bb4811f"
+      },
+      "test/support/math_exact_topic_selection_contract.dart": {
+        "bytes": 7699,
+        "sha256": "645b5522f49de05500da645a0961f8c00c5a8b628e2a81fb9a4759a0c434668b",
+        "git_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2"
+      },
+      "test/math_exact_topic_selection_test.dart": {
+        "bytes": 402,
+        "sha256": "bde1d7a8e48f9ebaa97fb043d9a27ae5a00f31e13189f52d73c05bca168463cc",
+        "git_blob": "f82604a4239bd8982ac666b97aa478b65a8fa2e8"
+      }
+    },
+    "patched": {
+      "lib/core/school_exercise_generator.dart": {
+        "bytes": 83871,
+        "sha256": "cf7dfba7e5d587be0eef4cbec853f016211ee0715b460f1c365064142165c778",
+        "git_blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65"
+      },
+      "lib/core/math_task_templates.dart": {
+        "bytes": 49784,
+        "sha256": "5db29aaa2d18a8b8eb3dc4f3dffd433b13ec364e7768fb27a90a7d16926854d2",
+        "git_blob": "85fbad4a0b09753a7f22663690a9660f98382f39"
+      },
+      "lib/core/german_task_templates.dart": {
+        "bytes": 46860,
+        "sha256": "744e55d8551aecb8d1cea7f6f6fb3eb43991d432285e8ea0fb443b86e0a32361",
+        "git_blob": "47843a70ed106d25001481c995b339fc31894f5d"
+      },
+      "lib/core/shape_question_data.dart": {
+        "bytes": 4836,
+        "sha256": "c2f48349423a08237cc43ebfd6833cf340d93377792448fd53c991765085ec97",
+        "git_blob": "1234048061f3b187aeaf59cbb3b4a07324045395"
+      },
+      "lib/core/adventure/lumo_adventure_tasks.dart": {
+        "bytes": 32429,
+        "sha256": "0a1727e6c9782086d9b2140498d1548394dda83fe5ba4714667ef3d2663177df",
+        "git_blob": "cd28cf0f81903bbd0a68a462782c853feadc27e7"
+      },
+      "lib/core/english_vocabulary_extensions.dart": {
+        "bytes": 9182,
+        "sha256": "64c326e8fb27eab9adeacc778e1ff9d95e27901de55da902a0b46041d70d5e16",
+        "git_blob": "13f29bd61dc325bd351cd98dc4bf619abf8f292f"
+      },
+      "lib/core/primary_school_word_data.dart": {
+        "bytes": 27170,
+        "sha256": "e43b7352c2051ee32d50b9c60ddf0c7bc9adfc18df0afc087805a016e92aa723",
+        "git_blob": "1288d888554349b5d84ea9b96cf63e98b4965f0e"
+      },
+      "lib/core/reading_comprehension_data.dart": {
+        "bytes": 23019,
+        "sha256": "a0f97c7baaef85605cd7513a7836f4e0310391038b700b051d64f10660ebfa9b",
+        "git_blob": "25e9a13d147ed023a4e4615f58bb490b40f41f4d"
+      },
+      "lib/core/science_task_data.dart": {
+        "bytes": 27687,
+        "sha256": "aad041f03b6ac34020cdbef054ce7bb2753a08a605574d140bffb17d9c1237f8",
+        "git_blob": "41f7f14751d328d54de28b122f67fe53cd9427fa"
+      },
+      "lib/core/science_quality_extension.dart": {
+        "bytes": 8398,
+        "sha256": "a0ef18562143b18230014f913745d32d312d3697251d3feed18de3451c691a01",
+        "git_blob": "952999462e8424e1cb33bd2c31633884b39f1d8a"
+      },
+      "lib/core/spelling_context_data.dart": {
+        "bytes": 15724,
+        "sha256": "b5f605d79ba1aced1f1be030bb33f49c1428fc1f2ab6835b1b99d88741d40099",
+        "git_blob": "061ccc33862ef610e1589ee54cd2628755105265"
+      },
+      "lib/core/german_curriculum_extensions.dart": {
+        "bytes": 36835,
+        "sha256": "3da15e9c4fcd114517f8a98b791977934b9f3f5c481433db4d56937ce680faaf",
+        "git_blob": "2d0cc7d168606dd82e7e808d6fcf9bfcbb0cd732"
+      },
+      "lib/core/adventure/adventure_word_data.dart": {
+        "bytes": 17913,
+        "sha256": "0838dc64899879d9e95dbbb7d5e6a130f94610ad018fc2c6b632979af72bd5a8",
+        "git_blob": "b98029abd17aed104d4c79fe948c18d96bb4811f"
+      },
+      "test/support/math_exact_topic_selection_contract.dart": {
+        "bytes": 7699,
+        "sha256": "645b5522f49de05500da645a0961f8c00c5a8b628e2a81fb9a4759a0c434668b",
+        "git_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2"
+      },
+      "test/math_exact_topic_selection_test.dart": {
+        "bytes": 402,
+        "sha256": "bde1d7a8e48f9ebaa97fb043d9a27ae5a00f31e13189f52d73c05bca168463cc",
+        "git_blob": "f82604a4239bd8982ac666b97aa478b65a8fa2e8"
+      }
+    }
+  },
+  "all_source_bytes_unchanged": true,
+  "same_contract_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2",
+  "runs": [
+    {
+      "stage": "original",
+      "started_at_utc": "2026-11-14T11:12:05.851166+00:00",
+      "finished_at_utc": "2026-11-14T11:12:06.601782+00:00",
+      "duration_seconds": 0.7500191410072148,
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "test/support/math_exact_topic_selection_contract.dart"
+      ],
+      "cwd": "/home/agent/lumo-math-red-green-2708/original",
+      "exit_code": 1,
+      "stdout": {
+        "bytes": 124124,
+        "sha256": "629685dad5f0205255df6f9eac9a69ed2894dc2a50add37368779f3d080b95e6",
+        "git_blob": "9b202e2e136adb6f52a9fde5fe0684eac84b57ca"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "checks": 29565,
+      "template_calls": 3955,
+      "factory_calls": 4640,
+      "cumulative_topic_count": 145,
+      "seeds_per_cumulative_topic": 32,
+      "failure_count": 386,
+      "fixed_cases": [
+        {
+          "grade": 2,
+          "requested_unit": "Geld",
+          "seed": 1,
+          "actual_unit": "Geld wechseln",
+          "actual_difficulty": 2,
+          "actual_pattern": "geld-wechseln"
+        },
+        {
+          "grade": 3,
+          "requested_unit": "Geometrie Formen",
+          "seed": 1,
+          "actual_unit": "Umfang",
+          "actual_difficulty": 3,
+          "actual_pattern": "umfang-rechteck"
+        },
+        {
+          "grade": 4,
+          "requested_unit": "Geometrie Formen",
+          "seed": 1,
+          "actual_unit": "Fl\u00e4cheninhalt",
+          "actual_difficulty": 4,
+          "actual_pattern": "flaeche-rechteck"
+        }
+      ],
+      "same_topic_observed_grades": [
+        1,
+        2
+      ],
+      "scope": "pure Dart production generator contract; no widget or Android assertions"
+    },
+    {
+      "stage": "patched",
+      "started_at_utc": "2026-11-14T11:12:06.602053+00:00",
+      "finished_at_utc": "2026-11-14T11:12:07.118683+00:00",
+      "duration_seconds": 0.516408997005783,
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "test/support/math_exact_topic_selection_contract.dart"
+      ],
+      "cwd": "/home/agent/lumo-math-red-green-2708/patched",
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 4596,
+        "sha256": "9a5ac35d65ee52d5b605dba8e3e8c696e2bba3e6a728eb9fecdda28a5eac3af8",
+        "git_blob": "7e2700db5020ad87cc18ca88ecbdcf9cc2d97a8c"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "checks": 29845,
+      "template_calls": 3955,
+      "factory_calls": 4640,
+      "cumulative_topic_count": 145,
+      "seeds_per_cumulative_topic": 32,
+      "failure_count": 0,
+      "fixed_cases": [
+        {
+          "grade": 2,
+          "requested_unit": "Geld",
+          "seed": 1,
+          "actual_unit": "Geld",
+          "actual_difficulty": 1,
+          "actual_pattern": "geld-mehr"
+        },
+        {
+          "grade": 3,
+          "requested_unit": "Geometrie Formen",
+          "seed": 1,
+          "actual_unit": "Geometrie Formen",
+          "actual_difficulty": 1,
+          "actual_pattern": "formen-erkennen"
+        },
+        {
+          "grade": 4,
+          "requested_unit": "Geometrie Formen",
+          "seed": 1,
+          "actual_unit": "Geometrie Formen",
+          "actual_difficulty": 1,
+          "actual_pattern": "formen-erkennen"
+        }
+      ],
+      "same_topic_observed_grades": [
+        1,
+        2
+      ],
+      "scope": "pure Dart production generator contract; no widget or Android assertions"
+    }
+  ],
+  "expected_red_green_observed": true
+}

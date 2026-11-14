@@ -1,0 +1,204 @@
+{
+  "base_host": "682f5991feb49d3a73ab7e2b42e23af725857ea9",
+  "native_pin": "504c8ba70d02702cbccc370d0d96c36a292c5d27",
+  "agent_hierarchy": [
+    "root",
+    "release_lead",
+    "learning_ux_lead",
+    "touch_worker"
+  ],
+  "individual_flutter_tests": {
+    "touch": 7,
+    "learning_navigation": 14,
+    "updates": 17
+  },
+  "combined_python_tests": {
+    "passed": 51,
+    "failed": 0,
+    "skipped": 0
+  },
+  "evidence_analyzer_before": {
+    "errors": 127,
+    "exit": 3
+  },
+  "evidence_analyzer_after": {
+    "errors": 0,
+    "exit": 0
+  },
+  "negative_controls": {
+    "lib": {
+      "errors": 1,
+      "exit": 3
+    },
+    "test": {
+      "errors": 1,
+      "exit": 3
+    }
+  },
+  "combined_flutter": {
+    "status": "BLOCKED",
+    "reason": "Dart compiler exited unexpectedly after first file; stopped stalled command with Ctrl-C (exit 130). No assertion-failure-free combined pass claimed."
+  },
+  "full_local_analysis": {
+    "status": "BLOCKED",
+    "reason": "Analysis server crashed unexpectedly; cause not established."
+  },
+  "workflow_lint": {
+    "exit": 0,
+    "shellcheck_enabled": false
+  },
+  "native_or_android_or_apk_acceptance": false,
+  "independent_review": {
+    "play_distribution": "No blocking defect found in read-only nested-agent review; actual native compilation and AAB inspection still required.",
+    "pipeline": "Exact matching run/PR branch and all six prerequisite jobs retained; no production imports from docs/evidence found."
+  },
+  "logs": [
+    {
+      "path": "evidence-analysis-before-materialized.log",
+      "bytes": 40506,
+      "sha256": "c036641eb6764cf4f720c52cc97340334ff01558c528a25b953798a7f5595bc0"
+    },
+    {
+      "path": "evidence-analysis-after-materialized.log",
+      "bytes": 39,
+      "sha256": "47a961dc0f316fdb293bd081696a185c3463328948eb8b5b7f6e2f2f958b54ad"
+    },
+    {
+      "path": "lib-analysis-negative-control.log",
+      "bytes": 294,
+      "sha256": "953b2d1a2d24043d791fb208279a09dcc61196deddbe60a6cdc32d489333e7ae"
+    },
+    {
+      "path": "test-analysis-negative-control.log",
+      "bytes": 294,
+      "sha256": "953b2d1a2d24043d791fb208279a09dcc61196deddbe60a6cdc32d489333e7ae"
+    },
+    {
+      "path": "analyzer-before.log",
+      "bytes": 157,
+      "sha256": "8f0c939f6d9608ac3267d320ea32a02884b8254f6344a302dba7c338a592deac"
+    },
+    {
+      "path": "analyzer-after.log",
+      "bytes": 157,
+      "sha256": "8f0c939f6d9608ac3267d320ea32a02884b8254f6344a302dba7c338a592deac"
+    },
+    {
+      "path": "combined-flutter.log",
+      "bytes": 449,
+      "sha256": "2b0a0df7fc553e2bb4cccf8eb053802ab71827d1bed234aafc2167ad9dd028a0"
+    },
+    {
+      "path": "combined-flutter-resolved.log",
+      "bytes": 2055,
+      "sha256": "041f614e6e02c6bed7104ddb2e09260c6986202d490410395a203fc7a41474bc"
+    },
+    {
+      "path": "offline-packages.log",
+      "bytes": 295,
+      "sha256": "4c89089a6ffa6ed9df0cec8929e4fca921ad81d31276fb5e98bd350d2b2d1c7d"
+    },
+    {
+      "path": "quality-routing-before.log",
+      "bytes": 2722,
+      "sha256": "eecccd16bb9a3c6ba87a2d097c5d2387883acf375cd71fdbe2005ef146a0ee5b"
+    },
+    {
+      "path": "quality-python-after.log",
+      "bytes": 13188,
+      "sha256": "b56bf1622a001edbb7b6cb2932f444e3359eefc74d3df0d1b2ad647dd1caa263"
+    },
+    {
+      "path": "actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence-analysis-results.json",
+      "bytes": 429,
+      "sha256": "a469bac4018fb23a2f8adb6ea81042708a921fe115f7f58d53161c574aebd244"
+    }
+  ],
+  "sources": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "sha256": "d2e077adafb52e0ff5e720c52c093c5f6c1bc00a62a896088a3e47a0e73fe702"
+    },
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "sha256": "5b311b304e81f797bb5bb417d988d04cf11425cbb5a97429adf6cb159657293d"
+    },
+    {
+      "path": "analysis_options.yaml",
+      "sha256": "ae3422201564197ef07e4bfcbbeea13a7ae53f0fae5f7e1e4119560771ff3d36"
+    },
+    {
+      "path": "lib/core/app_install_helper.dart",
+      "sha256": "891c229719c4a983664a3b0d30fb209de8adfb7d917e6a49b31fba76bdd1ddfc"
+    },
+    {
+      "path": "lib/core/app_update_service.dart",
+      "sha256": "4d643c4b2204fe7952e724f535368ac6a798bc6f112b076e5beb7a6036b2c75c"
+    },
+    {
+      "path": "lib/core/school_exercise_generator.dart",
+      "sha256": "8e9bc1c05ca8d5293abb3fd694dcfb2048f3700be21c46fd829b98985ce1d400"
+    },
+    {
+      "path": "lib/features/learning/widgets/lumo_shape_trace_canvas.dart",
+      "sha256": "9be076ab596ed252dc7bf7e7831f36a0de3c6afd357cf808b3e63b96ce96b231"
+    },
+    {
+      "path": "lib/features/settings/settings_content.dart",
+      "sha256": "8f1467dca55ba455cd168da3ad8e8a584175cb9b76228afcaa0c6065100df75a"
+    },
+    {
+      "path": "lib/widgets/shell/left_navigation.dart",
+      "sha256": "ab1c0adfffa3092fb135bf8466f387608c6be3a24ca86f7b81dd25b9800a7580"
+    },
+    {
+      "path": "scripts/prepare_android.py",
+      "sha256": "44dfeed1fd65bdbccefd06126357ddef4b52d8e53651b1d49f5344b60f768fe5"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "sha256": "4090a2844ecf3d9f309c1b2a4bf81a71e4cda0cb5de4b0e20b6681b7b08e42e3"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_pipeline.py",
+      "sha256": "e2152e947ef3421492ad4ea76fd320624bf9ad408722b3c3e9f137c8d02b3e9b"
+    },
+    {
+      "path": "scripts/tests/test_play_distribution_prepare.py",
+      "sha256": "28f0e4daf8772337e04f593b456b8b55ebcdbb1db468ef50109e3ebb42202aeb"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "sha256": "4ded2858dc9c336879e8e748fd78fe25cc99723d67cc1aa579b61dfab5e04d47"
+    },
+    {
+      "path": "test/app_update_distribution_test.dart",
+      "sha256": "bf9856f6d830d4802a1301cae69441c92eb13efd1439fc2feafcdeaba00d13eb"
+    },
+    {
+      "path": "test/learning/learning_exact_selection_test.dart",
+      "sha256": "c7c29db55aa5121ae6f9d23bde48e5a6f220ed5218efa22fcb1803d0352755e7"
+    },
+    {
+      "path": "test/lumo_left_navigation_motion_test.dart",
+      "sha256": "9198f99d40d2fdc144e4dda85362cbead4e8b95fee720db841ce55aa63427bd5"
+    },
+    {
+      "path": "test/shape_trace_input_regression_test.dart",
+      "sha256": "caf2693cd78a800055c2eeed24722202387dfd0abef3d410b9582675fa4da921"
+    },
+    {
+      "path": "tools/audit_learning_tasks_all_grades.dart",
+      "sha256": "93c551fee28609a4cb7348d843938020f292e88a1af7649970c1a80b795b4a75"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "sha256": "d9aaa29f9b082dcdd4514a21a2eef17700c24d06b4b7a1950fb1e863311bc53c"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "recorded_at_utc": "2026-11-14T11:13:48.674860+00:00",
+  "scope": "Actual focused Python contracts and actual merged workflow syntax. No new full Flutter, native, APK, Android or device acceptance.",
+  "before": {
+    "head": "dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f",
+    "tree": "01b3eaddc6b58a0c7f741b039a87f0e26e8af61e",
+    "tracked_status": "",
+    "index_sha256": "055d48ebae38ee3b30417bfc3a2d07a0ebed80a3772df89e87aeeffae7e74b44"
+  },
+  "after": {
+    "head": "dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f",
+    "tree": "01b3eaddc6b58a0c7f741b039a87f0e26e8af61e",
+    "tracked_status": "",
+    "index_sha256": "055d48ebae38ee3b30417bfc3a2d07a0ebed80a3772df89e87aeeffae7e74b44"
+  },
+  "source_and_index_unchanged": true,
+  "results": [
+    {
+      "label": "combined-contracts",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "scripts.tests.test_legacy_release_pin",
+        "scripts.tests.test_candidate_2011_pin",
+        "scripts.tests.test_connect_four_pipeline",
+        "scripts.tests.test_connect_four_delivery",
+        "scripts.tests.test_verify_unchanged_apk_diagnostic",
+        "scripts.tests.test_connect_four_return_gate",
+        "tools.android_qa.tests.test_connect_four_android_evidence",
+        "tools.android_qa.tests.test_kart_continue_caption",
+        "tools.android_qa.tests.test_kart_garage_evidence",
+        "tools.android_qa.tests.test_update_2019_preservation",
+        "-v"
+      ],
+      "exit_code": 1,
+      "seconds": 24.329301106990897,
+      "log_bytes": 42030,
+      "log_sha256": "8617383f66f61afae81cb8b27a6541fd19a9ecd0610a4ad25adbdbdcc48180d4",
+      "reported_test_totals": [
+        [
+          "202",
+          "24.082"
+        ]
+      ]
+    },
+    {
+      "label": "actionlint",
+      "argv": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        ".github/workflows/lumo-connect-four-2020.yml"
+      ],
+      "exit_code": 0,
+      "seconds": 0.01602724799886346,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    },
+    {
+      "label": "step-0-bash-n",
+      "argv": [
+        "bash",
+        "-n",
+        "/home/agent/lumo-host-merged-check-2708/actual-step-0.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.003756817997782491,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    },
+    {
+      "label": "step-1-bash-n",
+      "argv": [
+        "bash",
+        "-n",
+        "/home/agent/lumo-host-merged-check-2708/actual-step-1.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0036350519949337468,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    },
+    {
+      "label": "step-2-bash-n",
+      "argv": [
+        "bash",
+        "-n",
+        "/home/agent/lumo-host-merged-check-2708/actual-step-2.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0035559039970394224,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    },
+    {
+      "label": "step-3-bash-n",
+      "argv": [
+        "bash",
+        "-n",
+        "/home/agent/lumo-host-merged-check-2708/actual-step-3.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0015201990026980639,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    }
+  ]
+}

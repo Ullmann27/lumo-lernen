@@ -1,0 +1,48 @@
+{
+  "baseCommit": "682f5991feb49d3a73ab7e2b42e23af725857ea9",
+  "createdAtUtc": "2026-11-14T07:35:57.391682+00:00",
+  "importedWork": {
+    "pullRequest": "https://github.com/Ullmann27/lumo-lernen/pull/484",
+    "sourceCommit": "f536ecf86bfece11786a9a76ac0d3fdb16123093",
+    "scope": "ExerciseFactory.nextExact, tests and all-grade audit; existing branch-specific CI workflow not duplicated",
+    "additionalReview": "Removed unused audit variable; strengthened rejection of previous-grade-only explicit unit."
+  },
+  "navigationBefore": {
+    "command": "flutter test --no-pub --no-test-assets --reporter expanded test/lumo_left_navigation_motion_test.dart",
+    "expectedBehavioralFailures": 4,
+    "normalBehaviorPassed": 1,
+    "additionalCompilerProcessError": true,
+    "exitCode": 1,
+    "rawLog": "navigation-before.log"
+  },
+  "flutterAfter": {
+    "command": "flutter test --no-pub --no-test-assets --reporter expanded --concurrency=1 test/lumo_left_navigation_motion_test.dart test/lumo_child_navigation_cluster_test.dart test/learning/learning_exact_selection_test.dart",
+    "passed": 14,
+    "failed": 0,
+    "exitCode": 0,
+    "rawLog": "flutter-after.log"
+  },
+  "curriculumAudit": {
+    "command": "dart tools/audit_learning_tasks_all_grades.dart <output-directory>",
+    "families": 236,
+    "samples": 7552,
+    "structuralIssues": 0,
+    "exitCode": 0,
+    "rawLog": "curriculum-audit.log",
+    "sampleFile": "task-samples.jsonl.gz",
+    "uncompressedSampleSha256": "271445137ea3a6e8f821cc31f49d876ec1d11aacac47be898638d04c2bcd3051"
+  },
+  "sourceSha256": {
+    "lib/core/school_exercise_generator.dart": "8e9bc1c05ca8d5293abb3fd694dcfb2048f3700be21c46fd829b98985ce1d400",
+    "lib/widgets/shell/left_navigation.dart": "ab1c0adfffa3092fb135bf8466f387608c6be3a24ca86f7b81dd25b9800a7580",
+    "test/lumo_left_navigation_motion_test.dart": "9198f99d40d2fdc144e4dda85362cbead4e8b95fee720db841ce55aa63427bd5",
+    "test/lumo_child_navigation_cluster_test.dart": "a4ebc6ebb377b97dd5bf62b466e144c28ee891919f12b911345e19f401038859",
+    "test/learning/learning_exact_selection_test.dart": "c7c29db55aa5121ae6f9d23bde48e5a6f220ed5218efa22fcb1803d0352755e7",
+    "tools/audit_learning_tasks_all_grades.dart": "93c551fee28609a4cb7348d843938020f292e88a1af7649970c1a80b795b4a75"
+  },
+  "limitations": [
+    "Flutter widget tests used --no-test-assets: known missing image fallback messages are preserved and do not establish raster acceptance.",
+    "Task sample checks cover structural generation contracts only, not educational accuracy, all possible variants, 3D presentation, or teacher approval.",
+    "No new APK, physical-device test, Play approval or runtime frame-rate claim from these checks."
+  ]
+}

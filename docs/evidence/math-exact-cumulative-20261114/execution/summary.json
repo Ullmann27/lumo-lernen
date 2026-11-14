@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "execution_manifest_blob": "ca9687a0b6dbcf6010009b503062ddad3242e609",
+  "contract_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2",
+  "original_math_blob": "f5febd9c1e65516eef23b3d1ba40d670f62a2f89",
+  "patched_math_blob": "85fbad4a0b09753a7f22663690a9660f98382f39",
+  "grade_topic_counts": {
+    "1": 19,
+    "2": 30,
+    "3": 40,
+    "4": 56
+  },
+  "red_failure_types": {
+    "template preserves exact topic": 123,
+    "pattern and difficulty belong to the selected allowed topic": 123,
+    "nextExact accepts every allowed cumulative topic": 140
+  },
+  "red_failure_grade_topics": {
+    "2|Geld": 78,
+    "3|Geometrie Formen": 78,
+    "4|Geometrie Formen": 78,
+    "3|Textaufgaben": 76,
+    "4|Textaufgaben": 76
+  },
+  "red_exception_types": {
+    "StateError": 140
+  },
+  "runs": [
+    {
+      "stage": "original",
+      "started_at_utc": "2026-11-14T11:12:05.851166+00:00",
+      "finished_at_utc": "2026-11-14T11:12:06.601782+00:00",
+      "duration_seconds": 0.7500191410072148,
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "test/support/math_exact_topic_selection_contract.dart"
+      ],
+      "cwd": "/home/agent/lumo-math-red-green-2708/original",
+      "exit_code": 1,
+      "stdout": {
+        "bytes": 124124,
+        "sha256": "629685dad5f0205255df6f9eac9a69ed2894dc2a50add37368779f3d080b95e6",
+        "git_blob": "9b202e2e136adb6f52a9fde5fe0684eac84b57ca"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "checks": 29565,
+      "template_calls": 3955,
+      "factory_calls": 4640,
+      "cumulative_topic_count": 145,
+      "seeds_per_cumulative_topic": 32,
+      "failure_count": 386,
+      "fixed_cases": [
+        {
+          "grade": 2,
+          "requested_unit": "Geld",
+          "seed": 1,
+          "actual_unit": "Geld wechseln",
+          "actual_difficulty": 2,
+          "actual_pattern": "geld-wechseln"
+        },
+        {
+          "grade": 3,
+          "requested_unit": "Geometrie Formen",
+          "seed": 1,
+          "actual_unit": "Umfang",
+          "actual_difficulty": 3,
+          "actual_pattern": "umfang-rechteck"
+        },
+        {
+          "grade": 4,
+          "requested_unit": "Geometrie Formen",
+          "seed": 1,
+          "actual_unit": "Flächeninhalt",
+          "actual_difficulty": 4,
+          "actual_pattern": "flaeche-rechteck"
+        }
+      ],
+      "same_topic_observed_grades": [
+        1,
+        2
+      ],
+      "scope": "pure Dart production generator contract; no widget or Android assertions"
+    },
+    {
+      "stage": "patched",
+      "started_at_utc": "2026-11-14T11:12:06.602053+00:00",
+      "finished_at_utc": "2026-11-14T11:12:07.118683+00:00",
+      "duration_seconds": 0.516408997005783,
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "test/support/math_exact_topic_selection_contract.dart"
+      ],
+      "cwd": "/home/agent/lumo-math-red-green-2708/patched",
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 4596,
+        "sha256": "9a5ac35d65ee52d5b605dba8e3e8c696e2bba3e6a728eb9fecdda28a5eac3af8",
+        "git_blob": "7e2700db5020ad87cc18ca88ecbdcf9cc2d97a8c"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "checks": 29845,
+      "template_calls": 3955,
+      "factory_calls": 4640,
+      "cumulative_topic_count": 145,
+      "seeds_per_cumulative_topic": 32,
+      "failure_count": 0,
+      "fixed_cases": [
+        {
+          "grade": 2,
+          "requested_unit": "Geld",
+          "seed": 1,
+          "actual_unit": "Geld",
+          "actual_difficulty": 1,
+          "actual_pattern": "geld-mehr"
+        },
+        {
+          "grade": 3,
+          "requested_unit": "Geometrie Formen",
+          "seed": 1,
+          "actual_unit": "Geometrie Formen",
+          "actual_difficulty": 1,
+          "actual_pattern": "formen-erkennen"
+        },
+        {
+          "grade": 4,
+          "requested_unit": "Geometrie Formen",
+          "seed": 1,
+          "actual_unit": "Geometrie Formen",
+          "actual_difficulty": 1,
+          "actual_pattern": "formen-erkennen"
+        }
+      ],
+      "same_topic_observed_grades": [
+        1,
+        2
+      ],
+      "scope": "pure Dart production generator contract; no widget or Android assertions"
+    }
+  ],
+  "source_unchanged": true,
+  "host_source_readback_all_match": true,
+  "tests_edited_between_runs": false,
+  "flutter_executed": false,
+  "android_executed": false
+}

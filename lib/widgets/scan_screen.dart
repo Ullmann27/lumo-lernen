@@ -3,19 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 
-/// Aufgaben-Scanner.
+/// Aufgaben-Scanner mit Texterkennung auf dem Gerät.
 ///
-/// **Privacy / Play Store:**
-/// - Verwendet `image_picker` → öffnet die SYSTEM-Kamera-UI.
-///   Damit gilt das Standard-System-Permission-Dialog;
-///   keine eigene Custom-UI, weniger Angriffsfläche.
-/// - Verwendet `google_mlkit_text_recognition` → ON-DEVICE OCR
-///   (TensorFlow Lite Modell läuft lokal).
-///   Es werden KEINE Bilder oder Texte an externe Server gesendet.
-///   Bilder werden nur temporär gespeichert (Image-Picker-Cache des OS).
-/// - Kein Hochladen, kein Cloud-Upload, kein Tracking.
-///
-/// Geeignet für die "Designed for Families"-Kategorie im Play Store.
+/// `image_picker` liefert das lokale Bild an ML Kits Latin-Erkennung.
+/// Der erkannte Text wird über `onTextDetected` weitergereicht.
+/// ML Kit beschreibt separat SDK-Kontakte und Nutzungsmetriken:
+/// https://developers.google.com/ml-kit/terms
 class ScanScreen extends StatefulWidget {
   const ScanScreen({
     super.key,
@@ -219,7 +212,7 @@ class _ScanScreenState extends State<ScanScreen> {
           ),
           const SizedBox(height: 10),
           const Text(
-            '🛡️ Dein Foto bleibt auf deinem Gerät. Es wird nichts ins Internet gesendet.',
+            '🛡️ Die Texterkennung läuft direkt auf deinem Gerät.',
             style: TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.w800,

@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-14",
+  "source_blobs": {
+    "lib/features/games/connect_four/lumo_connect_four_game.dart": {
+      "bytes": 43189,
+      "sha256": "ecf483b9f5d10b58b87487220a34d6e7333f155aa8f4389acf1264ace9555057",
+      "git_blob_sha": "4d2bb14a89f0988e8d61567225403ee9416cf681"
+    },
+    "test/games/games_screen_flow_test.dart": {
+      "bytes": 10554,
+      "sha256": "10d83437c6758e2010ee03a34d4f1618154db8d5f9577a070b4818a434b0c0b5",
+      "git_blob_sha": "59d99f0568a122742abaa0d07fa8a91b0e2af041"
+    },
+    "test/design/connect_four_visual_test.dart": {
+      "bytes": 4403,
+      "sha256": "13c2a1ad9ce5d83edbcef20055728126b24ac374d7f3fa2d6bfa87bdc6f78b10",
+      "git_blob_sha": "8ea60303632a0ff1f25c240244deb1c95a1e4621"
+    },
+    "test/games/connect_four_scroll_alignment_test.dart": {
+      "bytes": 3776,
+      "sha256": "420c0bfb92c9dfabc828c7188a30608fcb957180f26f5d6b3f1f86f2090646ff",
+      "git_blob_sha": "29cd071778aae6d5b643e48df7c6a67a4d993db6"
+    }
+  },
+  "captures": {
+    "1200x896.png": {
+      "bytes": 705453,
+      "sha256": "c66127562f47462d913f3cccb69e4619288f37f1748ba75f5d3920e98eb9e4bb",
+      "git_blob_sha": "d9b4b44689553a58ee2859ca47e707b849a9e07b"
+    },
+    "1280x720.png": {
+      "bytes": 636015,
+      "sha256": "ab9e707852735a100ebe8daf987367bcd1afce80b2c1b5edb2374c97384a2ad2",
+      "git_blob_sha": "d4fb4b997d00630728bdce769ca2c7a8eb61cdca"
+    },
+    "360x800.png": {
+      "bytes": 209255,
+      "sha256": "ed8ccb2bd35234188350d1a93eccb3bf0df3a3eb5bf821c2eb4c58f4585995a4",
+      "git_blob_sha": "27cf03fb2e95e508975deb6a3ba6fae9a9aba247"
+    },
+    "640x360.png": {
+      "bytes": 151234,
+      "sha256": "08a46fc1c39e8e071f0596fb83ae17fe5e582b65b9773e3a5677ef9c377e6388",
+      "git_blob_sha": "33658f6feb76a7ca34de1869e245f1e8d7cbc85c"
+    },
+    "740x840.png": {
+      "bytes": 403207,
+      "sha256": "208ffc441cf0a30e065026cf14e53a5946999ad0c99c44be46d627bbfe18153f",
+      "git_blob_sha": "d7dd537d4ec98abbd25682d00f4c8e7879ba79ce"
+    }
+  },
+  "reviewer": "root",
+  "method": "Opened all five actual final PNGs with view_image and inspected geometry, labels, cells and controls.",
+  "findings": [
+    "All seven columns and matching arrow controls are visible in the five reviewed captures.",
+    "360x800 first-column clipping is resolved; original Lumo art remains.",
+    "Mode and turn text is readable and no functional overlap was observed.",
+    "At 640x360 the horizontal scroll mask clips some decorative board-edge pixels; actual cells and buttons remain visible."
+  ],
+  "limits": [
+    "Flutter captures are not Android/device/frame-rate evidence.",
+    "This targeted acceptance is not full app or Play release approval."
+  ]
+}

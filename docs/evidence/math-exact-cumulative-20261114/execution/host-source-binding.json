@@ -1,0 +1,111 @@
+{
+  "ref": "dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f",
+  "files": [
+    {
+      "path": "lib/core/school_exercise_generator.dart",
+      "expected_blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+      "actual_blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "lib/core/math_task_templates.dart",
+      "expected_blob": "85fbad4a0b09753a7f22663690a9660f98382f39",
+      "actual_blob": "85fbad4a0b09753a7f22663690a9660f98382f39",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "lib/core/german_task_templates.dart",
+      "expected_blob": "47843a70ed106d25001481c995b339fc31894f5d",
+      "actual_blob": "47843a70ed106d25001481c995b339fc31894f5d",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "lib/core/shape_question_data.dart",
+      "expected_blob": "1234048061f3b187aeaf59cbb3b4a07324045395",
+      "actual_blob": "1234048061f3b187aeaf59cbb3b4a07324045395",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "lib/core/adventure/lumo_adventure_tasks.dart",
+      "expected_blob": "cd28cf0f81903bbd0a68a462782c853feadc27e7",
+      "actual_blob": "cd28cf0f81903bbd0a68a462782c853feadc27e7",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "lib/core/english_vocabulary_extensions.dart",
+      "expected_blob": "13f29bd61dc325bd351cd98dc4bf619abf8f292f",
+      "actual_blob": "13f29bd61dc325bd351cd98dc4bf619abf8f292f",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "lib/core/primary_school_word_data.dart",
+      "expected_blob": "1288d888554349b5d84ea9b96cf63e98b4965f0e",
+      "actual_blob": "1288d888554349b5d84ea9b96cf63e98b4965f0e",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "lib/core/reading_comprehension_data.dart",
+      "expected_blob": "25e9a13d147ed023a4e4615f58bb490b40f41f4d",
+      "actual_blob": "25e9a13d147ed023a4e4615f58bb490b40f41f4d",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "lib/core/science_task_data.dart",
+      "expected_blob": "41f7f14751d328d54de28b122f67fe53cd9427fa",
+      "actual_blob": "41f7f14751d328d54de28b122f67fe53cd9427fa",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "lib/core/science_quality_extension.dart",
+      "expected_blob": "952999462e8424e1cb33bd2c31633884b39f1d8a",
+      "actual_blob": "952999462e8424e1cb33bd2c31633884b39f1d8a",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "lib/core/spelling_context_data.dart",
+      "expected_blob": "061ccc33862ef610e1589ee54cd2628755105265",
+      "actual_blob": "061ccc33862ef610e1589ee54cd2628755105265",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "lib/core/german_curriculum_extensions.dart",
+      "expected_blob": "2d0cc7d168606dd82e7e808d6fcf9bfcbb0cd732",
+      "actual_blob": "2d0cc7d168606dd82e7e808d6fcf9bfcbb0cd732",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "lib/core/adventure/adventure_word_data.dart",
+      "expected_blob": "b98029abd17aed104d4c79fe948c18d96bb4811f",
+      "actual_blob": "b98029abd17aed104d4c79fe948c18d96bb4811f",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "test/support/math_exact_topic_selection_contract.dart",
+      "expected_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2",
+      "actual_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2",
+      "match": true,
+      "isError": false
+    },
+    {
+      "path": "test/math_exact_topic_selection_test.dart",
+      "expected_blob": "f82604a4239bd8982ac666b97aa478b65a8fa2e8",
+      "actual_blob": "f82604a4239bd8982ac666b97aa478b65a8fa2e8",
+      "match": true,
+      "isError": false
+    }
+  ],
+  "all_match": true
+}

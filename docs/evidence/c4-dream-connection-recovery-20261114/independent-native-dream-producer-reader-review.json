@@ -1,0 +1,209 @@
+{
+  "schema": 1,
+  "kind": "Independent read-only Native Dream producer/reader compatibility review",
+  "reviewed_on": "2026-11-14",
+  "reviewer": "/root/lumo_release_lead/learning_ux_lead",
+  "target_path": "docs/evidence/c4-dream-connection-recovery-20261114/independent-native-dream-producer-reader-review.json",
+  "verdict": "No static producer/reader compatibility blocker found within the reviewed scope.",
+  "native": {
+    "repository": "Ullmann27/lumo-godot",
+    "commit": "bd0712259bb64908a5649ee1999638826c9eb597",
+    "tree": "2eb628d3e3a327ee8985385130c96168db7aa852",
+    "commit_identity_source": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/bd0712259bb64908a5649ee1999638826c9eb597",
+    "fully_read_sources": [
+      {
+        "path": "tools/validate_dream_connections.sh",
+        "git_blob": "834ea912003f5e27a271139646a857601baea905"
+      },
+      {
+        "path": "tools/verify_dream_rasters.py",
+        "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+      },
+      {
+        "path": "scripts/tests/lumo_dream_ambience_regression.gd",
+        "git_blob": "d96ad6f332b93e3e28d563d72b3c10d208c7be13"
+      },
+      {
+        "path": "scripts/tests/dream_garden_props_regression.gd",
+        "git_blob": "361eed7ed25b46bff8173087eb7df1eaaac96b56"
+      },
+      {
+        "path": "scripts/tests/lumo_dream_ambience_capture.gd",
+        "git_blob": "75085479ed587335533651adece30b579b8fe11f"
+      },
+      {
+        "path": "scripts/tests/dream_garden_capture.gd",
+        "git_blob": "8b514d3f6bf9095e6908765cd3d59bc5ebdb67a4"
+      }
+    ]
+  },
+  "host": {
+    "repository": "Ullmann27/lumo-lernen",
+    "commit": "3d91bd8355a539c3c2413760959684cd3fee985a",
+    "tree": "d5bef399ddf3e6a87d9305253ee8042ec1eb0820",
+    "workflow": {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "git_blob": "d56118529b7493e819262e61427d627c01ee0753",
+      "reviewed_lines": [
+        414,
+        458
+      ]
+    },
+    "synthetic_boundary_tests": {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "git_blob": "a91e25120489d21fc409930d893f52b31448aea3",
+      "reviewed_lines": [
+        564,
+        635
+      ],
+      "finding": "Fixtures explicitly identify synthetic transport bytes and mock native_module/verify. The fixture asserts verify(root, write=False). It is not evidence of actual renderer execution."
+    }
+  },
+  "reader_identity": {
+    "bytes": 20254,
+    "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+    "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+    "method": "Actual pure Python hashlib computation of the UTF-8 bytes returned by exact-commit GitHub file retrieval; no reader execution.",
+    "command_exit_code": 0,
+    "expected_blob_and_sha256_match": true
+  },
+  "producer_reader_contract": {
+    "exact_probe_modes": [
+      {
+        "probe": "lumo_dream_ambience_regression",
+        "mode": "headless",
+        "marker": "[DreamAmbience] 170 checks, 0 failures"
+      },
+      {
+        "probe": "dream_garden_props_regression",
+        "mode": "headless",
+        "marker": "[DreamGarden] checks=544 failures=0"
+      },
+      {
+        "probe": "lumo_dream_ambience_capture",
+        "mode": "rendered-treasure",
+        "marker": "Exact capture-root-bound Treasure success marker"
+      },
+      {
+        "probe": "lumo_dream_ambience_capture",
+        "mode": "rendered-learning",
+        "marker": "Exact capture-root-bound Learning success marker"
+      },
+      {
+        "probe": "dream_garden_capture",
+        "mode": "rendered",
+        "marker": "[DreamGardenCapture] failures=0"
+      }
+    ],
+    "pngs": {
+      "count": 7,
+      "ambience": "Two actual Viewport frames each for Treasure and Learning",
+      "garden_dimensions": [
+        [
+          1280,
+          720
+        ],
+        [
+          412,
+          915
+        ],
+        [
+          2400,
+          1080
+        ]
+      ]
+    },
+    "reports": {
+      "count": 2,
+      "names": [
+        "captures/treasure/treasure.json",
+        "captures/learning/learning.json"
+      ]
+    },
+    "renderer_generation": "Production scenes are loaded; headless captures are rejected; PNGs are saved from root.get_texture().get_image() after RenderingServer.frame_post_draw.",
+    "reader_checks": [
+      "Exactly the five successful probe/mode rows in fixed order.",
+      "One full success marker and one exact engine invocation per original log; engine errors and resource leaks rejected.",
+      "Exact capture-file roster; symlink evidence and unsafe paths rejected.",
+      "PNG decoding, dimensions, non-uniform RGB pixels and non-fully-transparent output.",
+      "Scene/renderer/display identity, actual ambience preset/tier/counts and reduced-motion context.",
+      "Finite positive animation clocks advance and paired decoded pixels differ.",
+      "Before/after HEAD and Tree equality; tracked dirty stamps empty.",
+      "Materialized tracked bytes/modes match Git index; full tracked inventory and index digest unchanged.",
+      "Generated and other untracked files inventoried separately; no claim that every untracked entry is absent."
+    ],
+    "host_binding": "The reviewed Host step checks the exact Native pin, committed Reader blob and on-disk SHA-256 before preserving the Reader bytes and invoking the producer in a new Dream evidence directory.",
+    "runtime_result_transfer": false
+  },
+  "actually_read_saved_metadata": [
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/native-dream-bd071225/originals/api/jobs.original.json",
+      "git_blob": "5edba5f171d38dd7225334aebc1c9c37b7076445",
+      "finding": {
+        "run_id": 43585768986,
+        "run_attempt": 1,
+        "job_id": 132419791499,
+        "head_sha": "bd0712259bb64908a5649ee1999638826c9eb597",
+        "status": "completed",
+        "conclusion": "success",
+        "dream_step": {
+          "number": 8,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T10:33:36Z",
+          "completed_at": "2026-11-14T10:34:22Z"
+        }
+      }
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/native-dream-bd071225/originals/api/artifacts.original.json",
+      "git_blob": "d76be1fbb49ac1eb5c64e76b6dc80aa20b44ced2",
+      "finding": {
+        "artifact_id": 14110197975,
+        "run_id": 43585768986,
+        "head_sha": "bd0712259bb64908a5649ee1999638826c9eb597",
+        "size_in_bytes": 12781948,
+        "digest": "sha256:25ffd1c39416ff05feb87a3d7d502f7c67106590d22224f8a1355c0a509c5e30"
+      },
+      "boundary": "Saved original API metadata read; archive bytes not downloaded or rehashed in this review."
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/host-dream-frozen-originals/gate-contract.json",
+      "git_blob": "50d1f91f36d5d1b4707c5612fc8a0833d65131eb",
+      "finding": "Contract explicitly separates additional Dream 5/7/2 evidence from existing 52/17 and identifies simulated Host decoder fixtures."
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/root-connection.json",
+      "git_blob": "58faa22c4096fadf7bb028af17b892f162e9e4ef",
+      "finding": "Recorded checkpoint distinguishes completed separate Native validation from pending new full Host CI and unavailable local execution."
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/root-original-dream-visual-receipt-recovered.json",
+      "git_blob": "28cb03d9a197c3248fe7292299be533cf1e1fd2c",
+      "finding": "Root's recorded prior visual review and exact seven-image identities read; receipt explicitly does not reconstruct lost image bytes.",
+      "boundary": "This reviewer did not independently open or re-download those images during this task."
+    }
+  ],
+  "scope": {
+    "performed": [
+      "Exact immutable GitHub source reads",
+      "Saved API/evidence metadata reads",
+      "Pure Reader-byte hash calculation"
+    ],
+    "not_performed": [
+      "Tests",
+      "Execution of the producer or reader",
+      "Engine/render workloads",
+      "APK/AAB builds",
+      "New original-image or archive downloads",
+      "Independent fresh visual inspection",
+      "Android device acceptance",
+      "FPS measurement",
+      "Broad audit of existing 52/17 gates"
+    ],
+    "file_changes": false,
+    "ref_changes": false,
+    "only_authorized_write": "Persist this already completed review as a Git blob; no commit or ref update.",
+    "attribution_limit": "The existing bd071 native CI result is not transferred to a new merged Native/Host candidate."
+  }
+}

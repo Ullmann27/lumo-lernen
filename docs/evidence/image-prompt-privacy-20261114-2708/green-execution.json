@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/tmp/lumo-drawing-flutter-20261114/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "expanded",
+    "test/core/lumo_image_generator_test.dart"
+  ],
+  "working_directory": "/home/agent/lumo-play-image-2708/.audit-harness",
+  "exit_code": 0,
+  "seconds": 1.851,
+  "scope": "synthetic inputs; exact production and test files copied unchanged into a minimal Flutter harness; no HTTP requests",
+  "files": {
+    "lib/core/lumo_image_generator.dart": "0ef4a90b39fe41a6e28f2e3348a3e3e4fabd73ebf32c3c77e11e3f00787178c6",
+    "test/core/lumo_image_generator_test.dart": "5657def9a23642db265916ea3fa22c8ab577f466ab7b800980404b1f541be55f"
+  }
+}

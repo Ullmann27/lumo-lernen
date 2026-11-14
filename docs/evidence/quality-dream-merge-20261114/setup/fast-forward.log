@@ -1,0 +1,124 @@
+Updating 38c2fe8..dc966e8
+Fast-forward
+ .github/workflows/lumo-connect-four-2020.yml       |   22 +
+ CONTINUE.md                                        |   51 +-
+ STATUS.md                                          |   51 +-
+ config/godot-source.json                           |    2 +-
+ .../c4-delivery-access-review-20261114/review.json |  283 ++
+ .../garage-repair-originals/handoff.json           |   16 +
+ .../independent-garage-review.json                 |   54 +
+ .../garage-repair-originals/manifest.json          |  147 +
+ .../single-case-originals.tar.gz                   |  Bin 0 -> 82667 bytes
+ .../manifest.json                                  |   12 +
+ .../review.json                                    |  105 +
+ .../host-dream-frozen-originals/gate-contract.json |   74 +
+ .../host-dream-frozen-originals/handoff.json       |   31 +
+ .../host-dream-frozen-originals/manifest.json      |   88 +
+ .../host-dream-frozen-originals/source-freeze.json |   65 +
+ .../static-source-review.json                      |   41 +
+ .../host32-terminal-verification-recovered.json    |   53 +
+ .../independent-host-dream-merge-review.json       |  138 +
+ ...endent-native-dream-producer-reader-review.json |  209 ++
+ .../independent-restored-source-endcheck.json      |   37 +
+ .../originals/api/artifacts.original.json          |    1 +
+ .../originals/api/commit.original.json             |    1 +
+ .../originals/api/jobs.original.json               |    1 +
+ .../originals/api/run.original.json                |    1 +
+ .../jobs/dream-native-acceptance-132419791499.log  | 3252 ++++++++++++++++
+ .../original-host32-artifacts.json                 |    1 +
+ .../original-host32-failed-job.log                 | 3960 ++++++++++++++++++++
+ .../original-host32-flutter-result.json            |   94 +
+ .../original-host32-jobs.json                      |    1 +
+ .../original-host32-run.json                       |    1 +
+ .../root-connection.json                           |  116 +
+ ...ot-original-dream-visual-receipt-recovered.json |   75 +
+ .../root-pin-independent-recovery-review.json      |   95 +
+ ...root-pin-recovery-and-release-precondition.json |   76 +
+ .../runtime-recovery-observation.json              |   13 +
+ .../dream-gates-handoff.json                       |  102 +
+ .../dream-gates-manifest.json                      |  113 +
+ .../dream-gates-originals.tar.gz                   |  Bin 0 -> 901169 bytes
+ .../root-activation.json                           |   47 +
+ .../root-pin-manifest.json                         |   47 +
+ .../root-pin-originals.tar.gz                      |  Bin 0 -> 5750 bytes
+ .../root-pin-summary.json                          |   22 +
+ .../host-format-review.json                        |   79 +
+ .../local-execution/pin-6ecc/autosave.log          |    1 +
+ .../local-execution/pin-6ecc/fast-forward.log      |   86 +
+ .../local-execution/pin-6ecc/pin-contracts.log     |   70 +
+ .../local-execution/pin-6ecc/result.json           |   27 +
+ .../quality-dream-merge-20261114/README.md         |   13 +
+ .../native-binding.json                            |  125 +
+ .../prepare_dream_merge.py                         |   60 +
+ .../resolution-record.json                         |   93 +
+ .../resolve_dream_merge.py                         |  145 +
+ .../source-records.json                            |  191 +
+ .../static-review-iterations.json                  |   28 +
+ docs/release/PLAY_STORE_LISTING_DE_2026-11-14.md   |   79 +
+ .../PLAY_STORE_LISTING_DE_2026-11-14.sources.json  |  548 +++
+ scripts/tests/test_candidate_2011_pin.py           |    2 +-
+ scripts/tests/test_connect_four_delivery.py        |  203 +
+ scripts/verify_connect_four_delivery.py            |   92 +-
+ scripts/verify_legacy_release_pin.py               |    9 +-
+ 60 files changed, 11293 insertions(+), 56 deletions(-)
+ create mode 100644 docs/evidence/c4-delivery-access-review-20261114/review.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/garage-repair-originals/handoff.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/garage-repair-originals/independent-garage-review.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/garage-repair-originals/manifest.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/garage-repair-originals/single-case-originals.tar.gz
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/host-dream-and-garage-independent-review/manifest.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/host-dream-and-garage-independent-review/review.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/host-dream-frozen-originals/gate-contract.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/host-dream-frozen-originals/handoff.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/host-dream-frozen-originals/manifest.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/host-dream-frozen-originals/source-freeze.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/host-dream-frozen-originals/static-source-review.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/host32-terminal-verification-recovered.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/independent-host-dream-merge-review.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/independent-native-dream-producer-reader-review.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/independent-restored-source-endcheck.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/native-dream-bd071225/originals/api/artifacts.original.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/native-dream-bd071225/originals/api/commit.original.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/native-dream-bd071225/originals/api/jobs.original.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/native-dream-bd071225/originals/api/run.original.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/native-dream-bd071225/originals/jobs/dream-native-acceptance-132419791499.log
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/original-host32-artifacts.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/original-host32-failed-job.log
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/original-host32-flutter-result.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/original-host32-jobs.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/original-host32-run.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/root-connection.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/root-original-dream-visual-receipt-recovered.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/root-pin-independent-recovery-review.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/root-pin-recovery-and-release-precondition.json
+ create mode 100644 docs/evidence/c4-dream-connection-recovery-20261114/runtime-recovery-observation.json
+ create mode 100644 docs/evidence/c4-dream-d826-targeted-validation-20261114/dream-gates-handoff.json
+ create mode 100644 docs/evidence/c4-dream-d826-targeted-validation-20261114/dream-gates-manifest.json
+ create mode 100644 docs/evidence/c4-dream-d826-targeted-validation-20261114/dream-gates-originals.tar.gz
+ create mode 100644 docs/evidence/c4-dream-d826-targeted-validation-20261114/root-activation.json
+ create mode 100644 docs/evidence/c4-dream-d826-targeted-validation-20261114/root-pin-manifest.json
+ create mode 100644 docs/evidence/c4-dream-d826-targeted-validation-20261114/root-pin-originals.tar.gz
+ create mode 100644 docs/evidence/c4-dream-d826-targeted-validation-20261114/root-pin-summary.json
+ create mode 100644 docs/evidence/kart-minimap-safe-area-20261114/host-format-review.json
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/pin-6ecc/autosave.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/pin-6ecc/fast-forward.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/pin-6ecc/pin-contracts.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/pin-6ecc/result.json
+ create mode 100644 docs/evidence/quality-dream-merge-20261114/README.md
+ create mode 100644 docs/evidence/quality-dream-merge-20261114/native-binding.json
+ create mode 100644 docs/evidence/quality-dream-merge-20261114/prepare_dream_merge.py
+ create mode 100644 docs/evidence/quality-dream-merge-20261114/resolution-record.json
+ create mode 100644 docs/evidence/quality-dream-merge-20261114/resolve_dream_merge.py
+ create mode 100644 docs/evidence/quality-dream-merge-20261114/source-records.json
+ create mode 100644 docs/evidence/quality-dream-merge-20261114/static-review-iterations.json
+ create mode 100644 docs/release/PLAY_STORE_LISTING_DE_2026-11-14.md
+ create mode 100644 docs/release/PLAY_STORE_LISTING_DE_2026-11-14.sources.json
+Updating files:  12% (1/8)
+Updating files:  25% (2/8)
+Updating files:  37% (3/8)
+Updating files:  50% (4/8)
+Updating files:  62% (5/8)
+Updating files:  75% (6/8)
+Updating files:  87% (7/8)
+Updating files: 100% (8/8)
+Updating files: 100% (8/8), done.

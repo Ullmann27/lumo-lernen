@@ -19,6 +19,8 @@ from native_surface_readiness import inspect_surface
 
 WORKFLOW = '.github/workflows/lumo-connect-four-2020.yml'
 BRANCH = 'integration/lumo-c4-connections-20261114'
+QUALITY_BRANCH = 'work/lumo-play-quality-20261114'
+ACCEPTED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH))
 CANDIDATE = 'lumo-connect-four-2020-candidate'
 PACKAGE = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
 CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
@@ -63,7 +65,7 @@ def artifact_binding(run: dict, artifacts: dict, jobs: dict, *, source: str,
     demand(bool(re.fullmatch('sha256:[a-f0-9]{64}', digest)), 'Missing original upload digest')
     demand(run.get('id') == run_id and run.get('run_attempt') == attempt,
            'Candidate run or attempt differs')
-    demand(run.get('head_sha') == source and run.get('head_branch') == BRANCH
+    demand(run.get('head_sha') == source and run.get('head_branch') in ACCEPTED_BRANCHES
            and run.get('event') == 'pull_request' and run.get('path') == WORKFLOW,
            'Candidate source/event/workflow differs')
     demand(run.get('repository', {}).get('full_name') == 'Ullmann27/lumo-lernen',

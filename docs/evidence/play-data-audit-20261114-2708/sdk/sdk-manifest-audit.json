@@ -1,0 +1,683 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-14",
+  "repository": "Ullmann27/lumo-lernen",
+  "baseline": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+  "method": "Independent read-only source review via git show/git grep at exact baseline. Only isolated manifest/evidence fixtures written. No production source, SDK package, branch/ref, or key changed.",
+  "limits": [
+    "No final merged-manifest or signed-AAB evidence.",
+    "No Gradle dependency resolution; native versions below are declared POM versions.",
+    "No device, emulator, microphone, scanner, network capture, Play Console, or backend operation.",
+    "No image-service request. No additional Flutter or Android test run."
+  ],
+  "fixture": {
+    "evidence_directory": "/home/agent/lumo-sdk-manifest-audit-2708/evidence",
+    "preparation_stdout": "Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=play; 3D bridge connected\nEmbedded Godot host prepared; same APK, private activity, durable reward events.\n",
+    "output_sha256": {
+      "input-flutter-template-manifest.xml": "43c8cf3ff1f524c0ab94b926251ec4ed578db25cb0e53f1fb87a6130430f8c3c",
+      "prepare-manifest.log": "10befe474309e9b8dd50cd04d8b2f74e54a96e023d23e2657c24533e8e2d5545",
+      "prepare-play-embedded-manifest.xml": "013757e7adcc1e5dc2d59b3988ade7e8f773892d888224f14acaab7e156e1d10",
+      "prepare-play-manifest.xml": "c3f9395f080354fe88e84c33fe2922cfb37066873c4643c51d287cd60ade63e9"
+    },
+    "provenance_sha256": "2865dd98395b69795456cd80dbe854ca91657ad8de522d6127a2593213475b0b",
+    "method": "Unmodified exact-baseline prepare_android.prepare(distribution=play), then prepare_embedded_games.prepare, executed on isolated fixture rendered from installed Flutter 3.44.9 main manifest and Kotlin Gradle templates (framework 6b182d2c7585eba26d4edce0f97630effd256c33).",
+    "signing": "Inert external text file and dummy fixture-only environment values satisfy preparation existence checks. Not a keystore, signing proof, or AAB verification. No key generated.",
+    "notRun": [
+      "Flutter create/build",
+      "Gradle merge",
+      "AAB verification",
+      "prepare_offline_voice.py",
+      "prepare_launcher_icons.py"
+    ],
+    "notRunEffect": "Reviewed exact icon preparation changes application icon/roundIcon only; offline-voice preparation checks manifest existence and bundles assets, not backup policy.",
+    "observedManifest": {
+      "permissions": [
+        {
+          "tag": "uses-permission",
+          "name": "android.permission.REQUEST_INSTALL_PACKAGES",
+          "tools_node": "remove"
+        },
+        {
+          "tag": "uses-permission-sdk-23",
+          "name": "android.permission.REQUEST_INSTALL_PACKAGES",
+          "tools_node": "remove"
+        },
+        {
+          "tag": "uses-permission",
+          "name": "android.permission.INTERNET",
+          "tools_node": null
+        },
+        {
+          "tag": "uses-permission",
+          "name": "android.permission.CAMERA",
+          "tools_node": null
+        },
+        {
+          "tag": "uses-permission",
+          "name": "android.permission.RECORD_AUDIO",
+          "tools_node": null
+        }
+      ],
+      "application_backup_attributes": {
+        "allowBackup": null,
+        "dataExtractionRules": null,
+        "fullBackupContent": null,
+        "backupAgent": null,
+        "fullBackupOnly": null
+      },
+      "activities": [
+        {
+          "name": ".MainActivity",
+          "exported": "true",
+          "process": null
+        },
+        {
+          "name": "dev.ullmann.lumo.lumo_lernen.LumoGameActivity",
+          "exported": "false",
+          "process": ":lumo_game"
+        },
+        {
+          "name": "dev.ullmann.lumo.lumo_lernen.ConnectFourGameActivity",
+          "exported": "false",
+          "process": ":lumo_game"
+        }
+      ],
+      "services": [
+        {
+          "name": "dev.ullmann.lumo.lumo_lernen.CardsAuthorityService",
+          "exported": "false",
+          "process": null
+        },
+        {
+          "name": "dev.ullmann.lumo.lumo_lernen.ConnectFourAuthorityService",
+          "exported": "false",
+          "process": null
+        }
+      ],
+      "queries": "<queries xmlns:ns0=\"http://schemas.android.com/apk/res/android\">\n    <intent>\n      <action ns0:name=\"android.intent.action.PROCESS_TEXT\" />\n      <data ns0:mimeType=\"text/plain\" />\n    </intent>\n    <intent>\n      <action ns0:name=\"android.speech.RecognitionService\" />\n    </intent>\n  </queries>\n  "
+    },
+    "recovery": "Manifest preparation completed successfully before environment loss. Original manifest-generation.json SHA256 is recorded, but its full bytes were not recovered. Do not recreate it under the old hash. These recovered reports are composed from completed tool outputs."
+  },
+  "exactLockedPackages": {
+    "google_mlkit_commons": {
+      "version": "0.8.1",
+      "archive_sha256": "9990a65f407a3ef6bae646bf10143faa93fec126683771465bc6c0b43fb0e6e9"
+    },
+    "google_mlkit_text_recognition": {
+      "version": "0.13.1",
+      "archive_sha256": "179349417066fa2c275d7a6ed6cbceeb7fa265d73aacdb2d732f1a2991face0a"
+    },
+    "http": {
+      "version": "1.6.0",
+      "archive_sha256": "87721a4a50b19c7f1d49001e51409bddc46303966ce89a65af4f4e6004896412"
+    },
+    "image_picker": {
+      "version": "1.2.3",
+      "archive_sha256": "d8402284df184bc05f4a2210c6c23983b0720f4cd87cbd05c5390a78af602667"
+    },
+    "image_picker_android": {
+      "version": "0.8.13+25",
+      "archive_sha256": "8a7823d5d3e884f7780829d85d92110d072bdcd9ed48e2be158d2abe91a912d4"
+    },
+    "shared_preferences": {
+      "version": "2.5.5",
+      "archive_sha256": "c3025c5534b01739267eb7d76959bbc25a6d10f6988e1c2a3036940133dd10bf"
+    },
+    "shared_preferences_android": {
+      "version": "2.4.28",
+      "archive_sha256": "1e12aafe408aa50da80edfd679a2a6bf63ba7ab37c7fa98286da459a757b3399"
+    },
+    "speech_to_text": {
+      "version": "7.5.0",
+      "archive_sha256": "f2fabd017b5cb07f4e06d496b2d4b957e39534bc848f92b1e6acac80a10f4967"
+    },
+    "speech_to_text_platform_interface": {
+      "version": "2.5.0",
+      "archive_sha256": "7e447356be3074c471223c9d179ef3f822475350b67ca923ec71ab3bf2ede214"
+    },
+    "url_launcher": {
+      "version": "6.3.3",
+      "archive_sha256": "e8cc955c97e06df9879140a1fe301f3d493f01b7c62dec7f46834be31d7e9fda"
+    },
+    "url_launcher_android": {
+      "version": "6.3.33",
+      "archive_sha256": "611e87fb320b70d1dd721dc46af89c98aceccea9b31fde49e084591414e0c610"
+    }
+  },
+  "verifiedPackageArchives": {
+    "speechToText": {
+      "package": "speech_to_text",
+      "version": "7.5.0",
+      "archive_sha256": "f2fabd017b5cb07f4e06d496b2d4b957e39534bc848f92b1e6acac80a10f4967",
+      "lock_sha256": "f2fabd017b5cb07f4e06d496b2d4b957e39534bc848f92b1e6acac80a10f4967",
+      "matches_lockfile": true,
+      "native_file_matches_archive": true,
+      "native_sha256": "2cd94b5a09917965784f7128fe0fd2e9642eb8e7f5a2abd2ae92450ea63b577f"
+    },
+    "otherSelectedPackages": [
+      {
+        "package": "google_mlkit_text_recognition",
+        "version": "0.13.1",
+        "url": "https://pub.dev/api/archives/google_mlkit_text_recognition-0.13.1.tar.gz",
+        "archive_sha256": "179349417066fa2c275d7a6ed6cbceeb7fa265d73aacdb2d732f1a2991face0a",
+        "matches_lockfile": true,
+        "files": {
+          "android/build.gradle": {
+            "matches_archive": true,
+            "sha256": "fa71c68b92dcfbe52357a3d75cd4e40a8721e19fc7077f0ea6592302b3d851de"
+          },
+          "android/src/main/AndroidManifest.xml": {
+            "matches_archive": true,
+            "sha256": "8b6f112189523d2f84ae4890f8b650ca3faab59866c64a8b0dbac0c370313a78"
+          },
+          "android/src/main/java/com/google_mlkit_text_recognition/TextRecognizer.java": {
+            "matches_archive": true,
+            "sha256": "b4e39a485a5f73035a62afe080391570b5704bcfe1eb3ce02fe399f9b94bc5ca"
+          }
+        }
+      },
+      {
+        "package": "google_mlkit_commons",
+        "version": "0.8.1",
+        "url": "https://pub.dev/api/archives/google_mlkit_commons-0.8.1.tar.gz",
+        "archive_sha256": "9990a65f407a3ef6bae646bf10143faa93fec126683771465bc6c0b43fb0e6e9",
+        "matches_lockfile": true,
+        "files": {
+          "android/build.gradle": {
+            "matches_archive": true,
+            "sha256": "8ab706b3e52e7cb3963adafa3036c77cc40684068c1888f80a86e6a399338092"
+          },
+          "android/src/main/AndroidManifest.xml": {
+            "matches_archive": true,
+            "sha256": "cdcb96c9ab3cb34c35a14b86d293923879bbf7fc6bf5c6da9178836a359ea951"
+          },
+          "android/src/main/java/com/google_mlkit_commons/InputImageConverter.java": {
+            "matches_archive": true,
+            "sha256": "32dfbb6e46548b8e561e2fbd5c2a1b50f2299e20410fd0cfdb61aea8eb18e263"
+          }
+        }
+      },
+      {
+        "package": "image_picker_android",
+        "version": "0.8.13+25",
+        "url": "https://pub.dev/api/archives/image_picker_android-0.8.13+25.tar.gz",
+        "archive_sha256": "8a7823d5d3e884f7780829d85d92110d072bdcd9ed48e2be158d2abe91a912d4",
+        "matches_lockfile": true,
+        "files": {
+          "android/src/main/AndroidManifest.xml": {
+            "matches_archive": true,
+            "sha256": "61349e6a391f437624fbbda8c3a1d97d206295d3f3a54edf364393af14b677c6"
+          }
+        }
+      }
+    ]
+  },
+  "cachedLockedWrapperManifests": [
+    {
+      "package": "audioplayers_android",
+      "version": "5.3.0",
+      "manifest_sha256": "e7ca32429fd6e9ae85a8f782492673df2c387e0118c844061326fa5bd0655430",
+      "permissions": [],
+      "application_attributes": {},
+      "components": []
+    },
+    {
+      "package": "flutter_plugin_android_lifecycle",
+      "version": "2.0.35",
+      "manifest_sha256": "9fc3806a78cd2abc3c5f8403c26c91c46856a202395be51c7913f06fff379324",
+      "permissions": [],
+      "application_attributes": {},
+      "components": []
+    },
+    {
+      "package": "google_mlkit_commons",
+      "version": "0.8.1",
+      "manifest_sha256": "cdcb96c9ab3cb34c35a14b86d293923879bbf7fc6bf5c6da9178836a359ea951",
+      "permissions": [],
+      "application_attributes": {},
+      "components": []
+    },
+    {
+      "package": "google_mlkit_text_recognition",
+      "version": "0.13.1",
+      "manifest_sha256": "8b6f112189523d2f84ae4890f8b650ca3faab59866c64a8b0dbac0c370313a78",
+      "permissions": [],
+      "application_attributes": {},
+      "components": []
+    },
+    {
+      "package": "image_picker_android",
+      "version": "0.8.13+25",
+      "manifest_sha256": "61349e6a391f437624fbbda8c3a1d97d206295d3f3a54edf364393af14b677c6",
+      "permissions": [],
+      "application_attributes": {},
+      "components": [
+        {
+          "tag": "provider",
+          "attributes": {
+            "name": "io.flutter.plugins.imagepicker.ImagePickerFileProvider",
+            "authorities": "${applicationId}.flutter.image_provider",
+            "exported": "false",
+            "grantUriPermissions": "true"
+          },
+          "metadata": [
+            {
+              "name": "android.support.FILE_PROVIDER_PATHS",
+              "resource": "@xml/flutter_image_picker_file_paths"
+            }
+          ]
+        },
+        {
+          "tag": "service",
+          "attributes": {
+            "name": "com.google.android.gms.metadata.ModuleDependencies",
+            "enabled": "false",
+            "exported": "false",
+            "ignore": "MissingClass"
+          },
+          "metadata": [
+            {
+              "name": "photopicker_activity:0:required",
+              "value": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": "jni",
+      "version": "1.1.0",
+      "manifest_sha256": "f18b3e31c35986ff748a772116ca2017a84bf5f3880ad7401989a34ce88140ef",
+      "permissions": [],
+      "application_attributes": {},
+      "components": []
+    },
+    {
+      "package": "jni_flutter",
+      "version": "1.0.3",
+      "manifest_sha256": "73019387ce4ec37ed9c136edbc601128efd0d29b82d45f7a9d14dbf51a5a9aa0",
+      "permissions": [],
+      "application_attributes": {},
+      "components": []
+    },
+    {
+      "package": "shared_preferences_android",
+      "version": "2.4.28",
+      "manifest_sha256": "40c4f0d01fe04626ece76e3470ad233060bec2de9adc4c53071a51e2e39acd5b",
+      "permissions": [],
+      "application_attributes": {},
+      "components": []
+    },
+    {
+      "package": "speech_to_text",
+      "version": "7.5.0",
+      "manifest_sha256": "12bf7eb261bdb9ac37f6082fe37c1c458efbe34560d1013c5dbe280c0bdef2c2",
+      "permissions": [],
+      "application_attributes": {},
+      "components": []
+    },
+    {
+      "package": "url_launcher_android",
+      "version": "6.3.33",
+      "manifest_sha256": "9480478876ea1108d083b7dfbe88b78b9c1b6d25e553dca52d76da2d5a39ad0c",
+      "permissions": [],
+      "application_attributes": {},
+      "components": [
+        {
+          "tag": "activity",
+          "attributes": {
+            "name": "io.flutter.plugins.urllauncher.WebViewActivity",
+            "theme": "@android:style/Theme.NoTitleBar.Fullscreen",
+            "exported": "false"
+          },
+          "metadata": []
+        }
+      ]
+    }
+  ],
+  "nativeDependencies": {
+    "directPoms": [
+      {
+        "url": "https://dl.google.com/android/maven2/com/google/mlkit/text-recognition/16.0.1/text-recognition-16.0.1.pom",
+        "dependencies": [
+          {
+            "groupId": "com.google.android.gms",
+            "artifactId": "play-services-base",
+            "version": "18.5.0",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.gms",
+            "artifactId": "play-services-basement",
+            "version": "18.4.0",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.gms",
+            "artifactId": "play-services-mlkit-text-recognition",
+            "version": "19.0.1",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.mlkit",
+            "artifactId": "common",
+            "version": "18.11.0",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.mlkit",
+            "artifactId": "text-recognition-bundled-common",
+            "version": "17.0.0",
+            "scope": "compile",
+            "type": "aar"
+          }
+        ]
+      },
+      {
+        "url": "https://dl.google.com/android/maven2/com/google/mlkit/vision-common/17.3.0/vision-common-17.3.0.pom",
+        "dependencies": [
+          {
+            "groupId": "androidx.exifinterface",
+            "artifactId": "exifinterface",
+            "version": "1.0.0",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.datatransport",
+            "artifactId": "transport-api",
+            "version": "2.2.1",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.datatransport",
+            "artifactId": "transport-backend-cct",
+            "version": "2.3.3",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.datatransport",
+            "artifactId": "transport-runtime",
+            "version": "2.2.6",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.gms",
+            "artifactId": "play-services-base",
+            "version": "18.1.0",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.gms",
+            "artifactId": "play-services-basement",
+            "version": "18.1.0",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.gms",
+            "artifactId": "play-services-tasks",
+            "version": "18.0.2",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.odml",
+            "artifactId": "image",
+            "version": "1.0.0-beta1",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.firebase",
+            "artifactId": "firebase-components",
+            "version": "16.1.0",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.firebase",
+            "artifactId": "firebase-encoders",
+            "version": "16.1.0",
+            "scope": "compile",
+            "type": "jar"
+          },
+          {
+            "groupId": "com.google.firebase",
+            "artifactId": "firebase-encoders-json",
+            "version": "17.1.0",
+            "scope": "compile",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.mlkit",
+            "artifactId": "common",
+            "version": "18.6.0",
+            "scope": "compile",
+            "type": "aar"
+          }
+        ]
+      }
+    ],
+    "inspected": [
+      {
+        "artifact": "com.google.mlkit:common:18.11.0",
+        "url": "https://dl.google.com/android/maven2/com/google/mlkit/common/18.11.0/common-18.11.0.aar",
+        "sha256": "66408a08dbb2465687ff5dd0c8f6410b56549ce3ecf449d9096f3712282131d0",
+        "size": 434066,
+        "pomUrl": "https://dl.google.com/android/maven2/com/google/mlkit/common/18.11.0/common-18.11.0.pom",
+        "pomSha256": "e50ec6f1d7c77025cdc4853b835ca4e8b1394966c5029543a699baf252aea057",
+        "declaredDependencies": [
+          {
+            "groupId": "androidx.appcompat",
+            "artifactId": "appcompat",
+            "version": "1.6.1",
+            "type": "aar"
+          },
+          {
+            "groupId": "androidx.core",
+            "artifactId": "core",
+            "version": "1.0.0",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.datatransport",
+            "artifactId": "transport-api",
+            "version": "2.2.1",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.datatransport",
+            "artifactId": "transport-backend-cct",
+            "version": "2.3.3",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.datatransport",
+            "artifactId": "transport-runtime",
+            "version": "2.2.6",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.gms",
+            "artifactId": "play-services-base",
+            "version": "18.5.0",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.gms",
+            "artifactId": "play-services-basement",
+            "version": "18.4.0",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.android.gms",
+            "artifactId": "play-services-tasks",
+            "version": "18.2.0",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.firebase",
+            "artifactId": "firebase-components",
+            "version": "16.1.0",
+            "type": "aar"
+          },
+          {
+            "groupId": "com.google.firebase",
+            "artifactId": "firebase-encoders",
+            "version": "16.1.0",
+            "type": "jar"
+          },
+          {
+            "groupId": "com.google.firebase",
+            "artifactId": "firebase-encoders-json",
+            "version": "17.1.0",
+            "type": "aar"
+          }
+        ],
+        "manifestFacts": {
+          "permissions": [],
+          "privateProvider": "com.google.mlkit.common.internal.MlKitInitProvider; initOrder=99",
+          "privateService": "com.google.mlkit.common.internal.MlKitComponentDiscoveryService; directBootAware=true",
+          "registrar": "com.google.mlkit.common.internal.CommonComponentRegistrar"
+        }
+      },
+      {
+        "artifact": "com.google.android.datatransport:transport-runtime:2.2.6",
+        "url": "https://dl.google.com/android/maven2/com/google/android/datatransport/transport-runtime/2.2.6/transport-runtime-2.2.6.aar",
+        "sha256": "d83ad23c134429691161c92476a3c83df236cd1f8badbfd4f00723b4eccd741c",
+        "size": 97859,
+        "manifestFacts": {
+          "permissions": [
+            "android.permission.ACCESS_NETWORK_STATE"
+          ],
+          "privateComponents": [
+            "JobInfoSchedulerService with BIND_JOB_SERVICE",
+            "AlarmManagerSchedulerBroadcastReceiver",
+            "TransportBackendDiscovery"
+          ]
+        }
+      },
+      {
+        "artifact": "com.google.android.datatransport:transport-backend-cct:2.3.3",
+        "url": "https://dl.google.com/android/maven2/com/google/android/datatransport/transport-backend-cct/2.3.3/transport-backend-cct-2.3.3.aar",
+        "sha256": "b22a14d560a590dc875e902424b29a13a02d1faf297b7c39a9007967ffadccbd",
+        "size": 35697,
+        "manifestFacts": {
+          "permissions": [
+            "android.permission.ACCESS_NETWORK_STATE",
+            "android.permission.INTERNET"
+          ],
+          "privateService": "TransportBackendDiscovery",
+          "backend": "com.google.android.datatransport.cct.CctBackendFactory"
+        }
+      }
+    ],
+    "limit": "Selected declared dependencies were retrieved from official Google Maven. Final resolved versions and merged permissions remain unverified. Wrapper manifests alone are not the complete permission inventory."
+  },
+  "findings": [
+    {
+      "id": "SDK-SPEECH-01",
+      "status": "Conditional static residual; no audio upload observed",
+      "normalPath": "Dart diagnostics check requires Android API31+ and local availability; Dart listen sets onDevice:true; native plugin creates createOnDeviceSpeechRecognizer when available.",
+      "hostSources": [
+        "lib/core/lumo_speech_listener.dart:33-48,113-139",
+        "tools/auto_install/MainActivity.kt:49-54"
+      ],
+      "pluginSource": "speech_to_text 7.5.0 android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt",
+      "nativeLines": [
+        "115: intentLookup defaults false; Lumo does not enable it",
+        "198-220: locale normalization and listen arguments",
+        "283-303: creation, intent setup, listening",
+        "603-637: local factory and default fallback",
+        "650: initial intent setup with onDevice=false",
+        "654-688: cache comparison omits onDevice; optional offline extra"
+      ],
+      "fallbackCondition": "Dart initially observes local availability true; a fresh native recognizer is constructed later when local availability is false, so the plugin chooses default createSpeechRecognizer. Dart initialize caches its result. Reusing an existing on-device recognizer is not this fallback; an exception from the local factory is not the demonstrated condition.",
+      "offlineExtra": "createRecognizer first calls setupRecognizerIntent(defaultLanguageTag,true,listenMode,false,pauseFor). The second setup call receives onDevice:true, but if requested language equals device language and partial/mode/pause are unchanged, its cache comparison skips reconstruction. The first intent then has no EXTRA_PREFER_OFFLINE. If present, Android documents that a recognizer may ignore the extra.",
+      "noPatch": "No speech_to_text override/patch found in reviewed exact-baseline prepare/build scripts.",
+      "unknown": "No actual service choice, availability transition, network/audio transfer, or device behavior measured. This limits an unconditional local-only claim, not proof of cloud recording."
+    },
+    {
+      "id": "SDK-BACKUP-01",
+      "status": "Prepared-source policy gap; no merged artifact",
+      "source": "No tracked android/ at exact baseline. Relevant scripts/tools/lib/.github have no allowBackup/dataExtractionRules/fullBackupContent/backupInForeground setting. Input Flutter template and both executed outputs omit backup attributes; bundle verifier does not assert backup policy.",
+      "documentedInference": "Android allowBackup defaults true; SharedPreferences/internal files ordinarily qualify for Auto Backup. Local storage is not by itself device-only residency proof.",
+      "unknown": "Final merged attributes, actual backup settings/transport/OEM behavior, backed-up data and actual transfers unverified. No observed upload claimed."
+    },
+    {
+      "id": "SDK-MLKIT-01",
+      "status": "Local OCR with separate documented SDK behavior",
+      "source": "google_mlkit_text_recognition 0.13.1 declares com.google.mlkit:text-recognition:16.0.1 bundled Latin; google_mlkit_commons 0.8.1 declares vision-common:17.3.0. Reviewed native wrapper uses local file to InputImage then textRecognizer.process.",
+      "docs": "ML Kit documents on-device input/output processing and separately update/compatibility contacts plus performance/utilization metrics to Google.",
+      "versionCaveat": "Data-disclosure page expressly covers latest SDKs only; its detailed taxonomy is not exact historical wire-data proof for version16.0.1.",
+      "providerCaveat": "MlKitInitProvider declaration in inspected common AAR does not prove a network request on startup.",
+      "decision": "Do not equate local OCR or disabled Dart scanner flag with a global network/metrics kill switch."
+    },
+    {
+      "id": "SDK-PICKER-01",
+      "status": "Platform module-delivery declaration, not photo-upload evidence",
+      "source": "Hash-verified image_picker_android 0.8.13+25 manifest declares private FileProvider and disabled ModuleDependencies service with photopicker_activity:0:required.",
+      "docs": "Android documents this entry enables automatic Play-services installation of the backported picker on supported devices.",
+      "unknown": "No actual module download, photo transmission, or runtime behavior observed."
+    }
+  ],
+  "defaults": "Exact AppSettings constructor/deserialization defaults cloudVoiceEnabled, microphoneEnabled, scannerEnabled and aiProxyEnabled to false. These are app feature gates, not proven third-party/OS network isolation.",
+  "orange": {
+    "commit": "7c1d1bbf10a3ea7006fa86ead5469ebb329ac555",
+    "parent": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+    "separateReview": true,
+    "result": "No blocker in bounded whitelist/null fallback correction.",
+    "tests": "Existing red5pass/2fail and green7/7 reviewed, no rerun. One red failure is free-text disclosure; second is fruit-rendering mismatch, not a second leak."
+  },
+  "primaryDocumentation": [
+    {
+      "id": "D1",
+      "url": "https://developer.android.com/reference/android/speech/SpeechRecognizer",
+      "accessed": "2026-11-14"
+    },
+    {
+      "id": "D2",
+      "url": "https://developer.android.com/reference/android/speech/RecognizerIntent#EXTRA_PREFER_OFFLINE",
+      "accessed": "2026-11-14"
+    },
+    {
+      "id": "D3",
+      "url": "https://developer.android.com/guide/topics/manifest/application-element#allowbackup",
+      "accessed": "2026-11-14"
+    },
+    {
+      "id": "D4",
+      "url": "https://developer.android.com/identity/data/autobackup",
+      "accessed": "2026-11-14"
+    },
+    {
+      "id": "D5",
+      "url": "https://developers.google.com/ml-kit/terms",
+      "accessed": "2026-11-14"
+    },
+    {
+      "id": "D6",
+      "url": "https://developers.google.com/ml-kit/android-data-disclosure",
+      "accessed": "2026-11-14"
+    },
+    {
+      "id": "D7",
+      "url": "https://developers.google.com/ml-kit/vision/text-recognition/v2/android",
+      "accessed": "2026-11-14"
+    },
+    {
+      "id": "D8",
+      "url": "https://developer.android.com/training/data-storage/shared/photo-picker",
+      "accessed": "2026-11-14"
+    }
+  ]
+}

@@ -207,6 +207,8 @@ class ApkContracts(unittest.TestCase):
         (self.candidate / 'config/godot-source.json').write_text(json.dumps({
             'repository': 'https://github.com/Ullmann27/lumo-godot.git', 'revision': diagnostic.NATIVE}))
         (self.candidate / 'pubspec.yaml').write_text('version: 0.13.7+2019\n')
+        self.qa_pin = self.root / 'synthetic-qa-godot-source.json'
+        self.qa_pin.write_bytes((self.candidate / 'config/godot-source.json').read_bytes())
         self.apk = self.root / 'synthetic.apk'
         self.pck = b'Explicitly synthetic PCK bytes, not a native render or APK build.'
         with zipfile.ZipFile(self.apk, 'w', compression=zipfile.ZIP_STORED) as archive:
@@ -318,10 +320,10 @@ class ApkContracts(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'Actual embedded PCK bytes differ'):
                 self.verify()
 
-    def test_full_preflight_keeps_qa_run_and_apk_source_separate(self):
+    def bind_full_preflight(self):
         candidate_metadata_dir, qa_metadata_dir = self.root / 'build-meta', self.root / 'qa-meta'
-        candidate_metadata_dir.mkdir()
-        qa_metadata_dir.mkdir()
+        candidate_metadata_dir.mkdir(exist_ok=True)
+        qa_metadata_dir.mkdir(exist_ok=True)
         for name, value in zip(('run.json', 'jobs.json', 'artifacts.json'), candidate_metadata()):
             (candidate_metadata_dir / name).write_text(json.dumps(value))
         for name, value in zip(('run.json', 'jobs.json'), qa_metadata()):
@@ -329,7 +331,7 @@ class ApkContracts(unittest.TestCase):
 
         # This verifier is intentionally bound to the unchanged 2019 APK.
         # A later app checkout may advance its native pin independently.
-        qa_source = self.root / 'qa-source'
+        qa_source = Path(tempfile.mkdtemp(prefix='qa-source-', dir=self.root))
         helpers = (
             (creative, '.github/probes/studio_creative_android_probe.py'),
             (tour, '.github/probes/modernization_android_tour.py'),
@@ -342,8 +344,8 @@ class ApkContracts(unittest.TestCase):
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes((ROOT / relative).read_bytes())
         (qa_source / 'config').mkdir()
-        for relative in ('config/godot-source.json', 'pubspec.yaml'):
-            (qa_source / relative).write_bytes((self.candidate / relative).read_bytes())
+        (qa_source / 'config/godot-source.json').write_bytes(self.qa_pin.read_bytes())
+        (qa_source / 'pubspec.yaml').write_bytes((self.candidate / 'pubspec.yaml').read_bytes())
         # Keep committed_helper's actual path and immutable-byte checks active.
         subprocess.run(['git', 'init', '--quiet', str(qa_source)],
                        check=True, capture_output=True)
@@ -384,6 +386,10 @@ class ApkContracts(unittest.TestCase):
             for module, relative in helpers:
                 fixture.enter_context(patch.object(module, '__file__', str(qa_source / relative)))
             result = diagnostic.bind(args)
+        return result, qa_source
+
+    def test_full_preflight_keeps_qa_run_and_apk_source_separate(self):
+        result, qa_source = self.bind_full_preflight()
         self.assertEqual(result['diagnostic_qa']['source'], QA_SOURCE)
         self.assertEqual(result['candidate_build']['host_source'], diagnostic.HOST)
         self.assertEqual(result['candidate_build']['run_conclusion'], 'failure')
@@ -395,6 +401,21 @@ class ApkContracts(unittest.TestCase):
         self.assertEqual(result['status'], 'BOUND')
         self.assertIn('no Android or release acceptance', result['scope'])
 
+
+    def test_full_preflight_rejects_wrong_native_pin_in_either_checkout(self):
+        for path in (self.qa_pin, self.candidate / 'config/godot-source.json'):
+            original = path.read_text()
+            for key, wrong in (('revision', 'f' * 40),
+                               ('repository', 'https://github.com/example/wrong-native.git')):
+                with self.subTest(checkout=path.parent.name, field=key):
+                    changed = json.loads(original)
+                    changed[key] = wrong
+                    path.write_text(json.dumps(changed))
+                    try:
+                        with self.assertRaisesRegex(RuntimeError, 'Source checkout native pin differs'):
+                            self.bind_full_preflight()
+                    finally:
+                        path.write_text(original)
 
 class OutputContracts(unittest.TestCase):
     def test_atomic_report_never_overwrites_existing_bytes(self):

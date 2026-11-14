@@ -1,0 +1,5 @@
+Analyzing lumo_analysis_boundary_sentinel.dart...
+
+  error - lumo_analysis_boundary_sentinel.dart:1:28 - A value of type 'String' can't be assigned to a variable of type 'int'. Try changing the type of the variable, or casting the right-hand type to 'int'. - invalid_assignment
+
+1 issue found.

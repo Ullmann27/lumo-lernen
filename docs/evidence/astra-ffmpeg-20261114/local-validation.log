@@ -1,0 +1,65 @@
+$ /workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint .github/workflows/lumo-astra-script-recovery.yml
+exit 0 (no diagnostics)
+
+$ actionlint -version
+1.7.12
+installed by downloading from release page
+built with go1.26.1 compiler for linux/amd64
+
+
+$ bash -n < each actual workflow run block
+Install the real prerequisites used by the app-script suite bash -n exit 0
+Record source and installed compiler availability bash -n exit 0
+Reproduce the whole Astra app-script test inventory bash -n exit 0
+
+
+$ python3 -m unittest scripts.tests.test_connect_four_pipeline.WorkflowTests -v
+Initial isolated sparse-checkout invocation (config/ absent):
+test_actual_original_jump_decode_dependencies_precede_unskipped_script_discovery (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_actual_original_jump_decode_dependencies_precede_unskipped_script_discovery) ... ok
+test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload) ... ok
+test_dedicated_2020_delivery_keeps_every_gate_and_no_2019_receipt_path (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_dedicated_2020_delivery_keeps_every_gate_and_no_2019_receipt_path) ... ok
+test_exact_learning_audit_runs_in_build_and_its_originals_reach_delivery (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_exact_learning_audit_runs_in_build_and_its_originals_reach_delivery) ... ok
+test_only_c4_branch_is_added_to_existing_unified_exclusions (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_only_c4_branch_is_added_to_existing_unified_exclusions) ... ok
+test_only_exact_same_repository_c4_pull_request_starts (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_only_exact_same_repository_c4_pull_request_starts) ... ok
+test_real_runtime_compile_and_existing_build_gates_remain_mandatory (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_real_runtime_compile_and_existing_build_gates_remain_mandatory) ... ok
+test_source_pin_guard_executes_real_existing_policy (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_source_pin_guard_executes_real_existing_policy) ... ERROR
+
+======================================================================
+ERROR: test_source_pin_guard_executes_real_existing_policy (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_source_pin_guard_executes_real_existing_policy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/agent/lumo-astra-ffmpeg-2708/scripts/tests/test_connect_four_pipeline.py", line 66, in test_source_pin_guard_executes_real_existing_policy
+    current=json.loads((REFERENCE/'config/godot-source.json').read_text())
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/agent/lumo-astra-ffmpeg-2708/config/godot-source.json'
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.005s
+
+FAILED (errors=1)
+
+
+After including unchanged baseline config/ in the isolated sparse checkout:
+test_actual_original_jump_decode_dependencies_precede_unskipped_script_discovery (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_actual_original_jump_decode_dependencies_precede_unskipped_script_discovery) ... ok
+test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload) ... ok
+test_dedicated_2020_delivery_keeps_every_gate_and_no_2019_receipt_path (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_dedicated_2020_delivery_keeps_every_gate_and_no_2019_receipt_path) ... ok
+test_exact_learning_audit_runs_in_build_and_its_originals_reach_delivery (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_exact_learning_audit_runs_in_build_and_its_originals_reach_delivery) ... ok
+test_only_c4_branch_is_added_to_existing_unified_exclusions (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_only_c4_branch_is_added_to_existing_unified_exclusions) ... ok
+test_only_exact_same_repository_c4_pull_request_starts (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_only_exact_same_repository_c4_pull_request_starts) ... ok
+test_real_runtime_compile_and_existing_build_gates_remain_mandatory (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_real_runtime_compile_and_existing_build_gates_remain_mandatory) ... ok
+test_source_pin_guard_executes_real_existing_policy (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_source_pin_guard_executes_real_existing_policy) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.079s
+
+OK
+
+
+$ git diff --check
+exit 0 (no diagnostics)

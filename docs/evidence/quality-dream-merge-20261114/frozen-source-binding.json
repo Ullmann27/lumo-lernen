@@ -1,0 +1,183 @@
+{
+  "schema": 1,
+  "host_tested_commit": "dc966e8e4e4f69c5cb19e53822625025bb0fe766",
+  "host_tested_tree": "883461f7827d92eb4175b191bb66202a98251f60",
+  "host_parents": [
+    "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+    "3d91bd8355a539c3c2413760959684cd3fee985a"
+  ],
+  "native_commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+  "checked_source_files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "blob": "a0bf885564ec322b3d830bcc661d0417926fbb2d",
+      "bytes": 47632,
+      "sha256": "5b53838ce50eafa9f4cae38f1a69acb227edb15d1b36c99201dcde60314d01e4"
+    },
+    {
+      "path": "config/godot-source.json",
+      "blob": "3ce3b0d1f53f5d9b9f7ff0dcb7c3bd519c250788",
+      "bytes": 145,
+      "sha256": "1b7c5f504dd2de26b0ae889f32f16971d960e18374b169c5862c3b1bd9a0b20f"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "blob": "acc41e8b9f664441eca1f49eb984adefda2fa65a",
+      "bytes": 17696,
+      "sha256": "ac8b6033ed884a7d5bb14dda97bfc04aef9ac1e8139ac784bad241c7bb954d74"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "blob": "cbc7d6c5f1544bd29af56226c93a8f1b53e049eb",
+      "bytes": 67475,
+      "sha256": "d7bcf66b0b95802004c2f63d8487035d569386909e3bb7afb56a8b71739a4c36"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "blob": "18fdff098115570b69fc43ccfe6a3d573605e55b",
+      "bytes": 57147,
+      "sha256": "f1237d9f4e48ed0cf3253b67768d1d4aad947be32da2158be7df6b1f8cb6dc2a"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "blob": "58dc14602f6f0333170d3bcc6c6271fb349153fc",
+      "bytes": 10712,
+      "sha256": "6753f5c90d72f4e70885451320dc10616b05f02418253e98306e7f52d19630a1"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "blob": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d",
+      "bytes": 30218,
+      "sha256": "3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae"
+    }
+  ],
+  "actual_targeted_execution": {
+    "recorded_at_utc": "2026-11-14T11:35:47.746835+00:00",
+    "scope": "Actual focused Python contracts with the Android test sibling directory on the module path, matching discovery availability; actual merged workflow syntax. No new full Flutter, native, APK, Android or device acceptance.",
+    "before": {
+      "head": "dc966e8e4e4f69c5cb19e53822625025bb0fe766",
+      "tree": "883461f7827d92eb4175b191bb66202a98251f60",
+      "tracked_status": "",
+      "index_sha256": "9ef9b689dfd85e8c2137b3befd42f3db5dea1c283ca24af64de264423f5bb7bc"
+    },
+    "after": {
+      "head": "dc966e8e4e4f69c5cb19e53822625025bb0fe766",
+      "tree": "883461f7827d92eb4175b191bb66202a98251f60",
+      "tracked_status": "",
+      "index_sha256": "9ef9b689dfd85e8c2137b3befd42f3db5dea1c283ca24af64de264423f5bb7bc"
+    },
+    "source_and_index_unchanged": true,
+    "results": [
+      {
+        "label": "combined-contracts",
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "scripts.tests.test_legacy_release_pin",
+          "scripts.tests.test_candidate_2011_pin",
+          "scripts.tests.test_connect_four_pipeline",
+          "scripts.tests.test_connect_four_delivery",
+          "scripts.tests.test_verify_unchanged_apk_diagnostic",
+          "scripts.tests.test_connect_four_return_gate",
+          "tools.android_qa.tests.test_connect_four_android_evidence",
+          "tools.android_qa.tests.test_kart_continue_caption",
+          "tools.android_qa.tests.test_kart_garage_evidence",
+          "tools.android_qa.tests.test_update_2019_preservation",
+          "-v"
+        ],
+        "exit_code": 0,
+        "seconds": 27.05317676399136,
+        "log_bytes": 49160,
+        "log_sha256": "f2e2f2f530e0b2eae293c2fdaea9ba8432c21a1dea11d516814defd1364f2ec4",
+        "reported_test_totals": [
+          [
+            "237",
+            "26.816"
+          ]
+        ]
+      },
+      {
+        "label": "actionlint",
+        "argv": [
+          "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+          ".github/workflows/lumo-connect-four-2020.yml"
+        ],
+        "exit_code": 0,
+        "seconds": 0.01623539200227242,
+        "log_bytes": 0,
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reported_test_totals": []
+      },
+      {
+        "label": "step-0-bash-n",
+        "argv": [
+          "bash",
+          "-n",
+          "/home/agent/lumo-host-dream-merge-2708/execution/actual-step-0.sh"
+        ],
+        "exit_code": 0,
+        "seconds": 0.0038676330004818738,
+        "log_bytes": 0,
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reported_test_totals": []
+      },
+      {
+        "label": "step-1-bash-n",
+        "argv": [
+          "bash",
+          "-n",
+          "/home/agent/lumo-host-dream-merge-2708/execution/actual-step-1.sh"
+        ],
+        "exit_code": 0,
+        "seconds": 0.0036422120028873906,
+        "log_bytes": 0,
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reported_test_totals": []
+      },
+      {
+        "label": "step-2-bash-n",
+        "argv": [
+          "bash",
+          "-n",
+          "/home/agent/lumo-host-dream-merge-2708/execution/actual-step-2.sh"
+        ],
+        "exit_code": 0,
+        "seconds": 0.0016130570002133027,
+        "log_bytes": 0,
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reported_test_totals": []
+      },
+      {
+        "label": "step-3-bash-n",
+        "argv": [
+          "bash",
+          "-n",
+          "/home/agent/lumo-host-dream-merge-2708/execution/actual-step-3.sh"
+        ],
+        "exit_code": 0,
+        "seconds": 0.0014692529948661104,
+        "log_bytes": 0,
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reported_test_totals": []
+      },
+      {
+        "label": "step-4-bash-n",
+        "argv": [
+          "bash",
+          "-n",
+          "/home/agent/lumo-host-dream-merge-2708/execution/actual-step-4.sh"
+        ],
+        "exit_code": 0,
+        "seconds": 0.003610254992963746,
+        "log_bytes": 0,
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reported_test_totals": []
+      }
+    ]
+  },
+  "activation_changes_only": "docs/**, CONTINUE.md, STATUS.md",
+  "complete_candidate_ci": "Required on the activation commit; no completion is asserted by this record.",
+  "public_release": "Not published; connected upload capability absent in the recorded access review."
+}

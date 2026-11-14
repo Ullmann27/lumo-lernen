@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "status": "FAIL",
+  "scope": "Actual API35 C4 candidate test; no release/FPS/API37 claim",
+  "observations": [],
+  "transitions": [],
+  "returns": [],
+  "identity": {
+    "apk_sha256": "fc66e87274173c6c8440bc0dcdcb6e4b7f838dfa168a07e392ec305c15ee566a",
+    "flutter_source_commit": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "godot_revision": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+    "godot_pck_sha256": "a135c86522c2b11f4a891f97752551d8c854f11db6d7222936b67861208b7420",
+    "versionName": "0.13.8",
+    "versionCode": 2020,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "error": "ValueError: Candidate source/event/workflow differs",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_connect_four_android_probe.py\", line 327, in run\n    result['binding'] = contract.artifact_binding(*meta, source=source,\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/connect_four_android_evidence.py\", line 66, in artifact_binding\n    demand(run.get('head_sha') == source and run.get('head_branch') == BRANCH\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/connect_four_android_evidence.py\", line 40, in demand\n    raise ValueError(message)\nValueError: Candidate source/event/workflow differs\n",
+  "original_logcat": "commands/0001-final-all-buffer-logcat.stdout",
+  "fatal_entries": [],
+  "originals": [
+    {
+      "path": "commands/0001-final-all-buffer-logcat.json",
+      "bytes": 388,
+      "sha256": "a1e863d6b2d1b7afd9a8ccb1cb583b432c605e1d5ad71fea08080bf223b05a0a"
+    },
+    {
+      "path": "commands/0001-final-all-buffer-logcat.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/0001-final-all-buffer-logcat.stdout",
+      "bytes": 12287138,
+      "sha256": "a9380b91af048b2f2e664caddbab67198e88b7d726c5411be353426313428b51"
+    }
+  ]
+}
