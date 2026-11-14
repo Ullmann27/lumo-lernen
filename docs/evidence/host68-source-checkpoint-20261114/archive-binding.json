@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "archive": {
+    "path": "compact-originals.tar.gz",
+    "bytes": 2599458,
+    "sha256": "5f9405c7f4e960ffa7f825e8432ca4ddccd7689785d55ec84d1abbb10e5f0af6",
+    "git_blob": "79f8ee5060858888de750210ffc3a5cb47cbf545"
+  },
+  "manifest": {
+    "bytes": 63168,
+    "sha256": "9aed59b7a108a5a84f29131cd55a52351f3c42178fff3f1adb609ec53d5dc514",
+    "git_blob": "cbd6ffff564d7e2264f52ecdbdefd5613110d2c1"
+  },
+  "handoff": {
+    "bytes": 3458,
+    "sha256": "492e53631edb699a7e299b684eeda59fe17a210b5cc4208ecd1954b50bcf36a0",
+    "git_blob": "7eb5eb75459794edc575ef2d936c76771419cb87"
+  },
+  "roundtrip": {
+    "bytes": 63413,
+    "sha256": "d1e1efeaada5f3b1463032a859b5b1a4e22404fd335053e83f598280a74fdc2f",
+    "git_blob": "b9146a1f83d83609b0730ef6652ca3074f5d9d70"
+  },
+  "members": 247,
+  "original_payload_bytes": 11625669,
+  "scope": "Transport integrity only; no product/test/runtime PASS."
+}

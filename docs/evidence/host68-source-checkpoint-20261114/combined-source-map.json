@@ -1,0 +1,883 @@
+{
+  "schema": 1,
+  "base_host": "9f2f3690caacadbe7ced363f0e810f0cc0b5eb9b",
+  "base_tree": "4159e7ab2212aca6e3347aa5f08544bdfdb30c26",
+  "base_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+  "base_source_count": 66,
+  "adapter_pack": "host-pr503-table-probe-adapter-9f2f-20261114",
+  "adapter_freeze_sha256": "739e09c60bb22a24d131fe43ce1c508dad7d67248f2a9990fb6a990203e7491d",
+  "adapter_file_count": 5,
+  "overlay_replaces": [
+    ".github/probes/lumo_memory_android_probe.py",
+    ".github/probes/lumo_quiz_android_probe.py",
+    "tools/android_qa/tests/test_quiz_android_probe.py"
+  ],
+  "unique_final_path_count": 68,
+  "files": [
+    {
+      "path": ".github/probes/lumo_english_objects_android_probe.py",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/.github/probes/lumo_english_objects_android_probe.py",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 55089,
+        "sha256": "9df986992f759b10a6fb4a09565092e3c692718e427dec152f7039db58e368dd",
+        "git_blob": "ee4e1d59c43a6e27c464208e26eedc694a516df9"
+      }
+    },
+    {
+      "path": ".github/probes/lumo_memory_android_probe.py",
+      "source_pack": "host-pr503-table-probe-adapter-9f2f-20261114",
+      "source_path": "final-source/.github/probes/lumo_memory_android_probe.py",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 49752,
+        "sha256": "f2aa53592298b3b2465740310db7b2c455ae12d6c7c0431cf22b0db3ec4a05b6",
+        "git_blob": "a794544795f504c43bc38db2de23cef91e75e843"
+      }
+    },
+    {
+      "path": ".github/probes/lumo_quiz_android_probe.py",
+      "source_pack": "host-pr503-table-probe-adapter-9f2f-20261114",
+      "source_path": "final-source/.github/probes/lumo_quiz_android_probe.py",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 56893,
+        "sha256": "1c0bcc3fba463fde2c377eb7fe0bee2a97f66724f6a7a99524e7ee6d8a19f4a4",
+        "git_blob": "90d91a9ee40b6fe59e91158bfa5afe199cd6b764"
+      }
+    },
+    {
+      "path": ".github/probes/lumo_table_authority_android_shared.py",
+      "source_pack": "host-pr503-table-probe-adapter-9f2f-20261114",
+      "source_path": "final-source/.github/probes/lumo_table_authority_android_shared.py",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 14624,
+        "sha256": "7bc2a18d4e5c7071f95e053246d0719ef22c8750e02f9aa226050a78a2fc381a",
+        "git_blob": "9d069accc96991080a5e79e394b06a81c2c498df"
+      }
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/app/app_state.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 54663,
+        "sha256": "50b9d9e4c7ecaf2a5e9cc24d99f1b2ee49e0bf50318a0c6c28cabacda2028efd",
+        "git_blob": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045"
+      },
+      "after": {
+        "bytes": 57118,
+        "sha256": "e1c23a42f29bd7dc65df0eedf7b1e4611381484bff258c9be60a76d6f8715f54",
+        "git_blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+      }
+    },
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/core/reward_wallet_repository.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 13187,
+        "sha256": "b9a89763484ef701cb68b8b306cc946a82e412bc6f588a8bd1c97c87b370f01f",
+        "git_blob": "63a3d4c4fe6c5c9249f3531e685cc541646747ee"
+      },
+      "after": {
+        "bytes": 14366,
+        "sha256": "9a3b669a055b3764d42e58c0511ecfb7c03cd99ea42aa757ab2f77be9fd91045",
+        "git_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+      }
+    },
+    {
+      "path": "lib/domain/quiz/quiz_show.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/domain/quiz/quiz_show.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 8767,
+        "sha256": "e950665c9386204c1f6f4bb9e4b7a9ac9f239304d9b42c3fea8d06d842ea8c4b",
+        "git_blob": "ce3fda0842c32b242b25acac51e716acdcaeae87"
+      },
+      "after": {
+        "bytes": 8874,
+        "sha256": "912736e2264178ac24f274651699602cd5d34bd185c2acf6eb50dbbd5464d0da",
+        "git_blob": "a1246a1602c27961e5a705f523e14f409900f8db"
+      }
+    },
+    {
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/domain/tutoring/native_english_vocabulary.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 3323,
+        "sha256": "375ecb52b84b59f34be006e2f9768e98cb8c6839e1a794e08a87760d68b7486f",
+        "git_blob": "4469849b204f91fab3e645604e11922e29cb594c"
+      }
+    },
+    {
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/domain/tutoring/native_learning_activity.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 7307,
+        "sha256": "eafc477d639b59a1d5215a8934c1088e4563d84aaffc2795e57b7299085632ed",
+        "git_blob": "83463a26665cd0b58aa776c28f6dec1600552e3d"
+      },
+      "after": {
+        "bytes": 7587,
+        "sha256": "1c067ad052a5cabaeeadb6730d15a7618cbeafe1b5c8b83eed9af770c94035d2",
+        "git_blob": "f8bfc0af97806255ec8b72d89963c2831e250089"
+      }
+    },
+    {
+      "path": "lib/features/games/memory/lumo_memory_game.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/features/games/memory/lumo_memory_game.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 52550,
+        "sha256": "28c5f0d7348354bb55f6c1ad8cb1d712360fbbe27fcf7cc36424003568c846f4",
+        "git_blob": "033e3a70bd7fff21506bea014cc16a8ee1558c06"
+      },
+      "after": {
+        "bytes": 52654,
+        "sha256": "b90ab76e89a1f8d2258e1085e96ab8b032651b75b650dd7c497807a74882c380",
+        "git_blob": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43"
+      }
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/features/games/memory/memory_flutter_adapter.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 2146,
+        "sha256": "cb233ad8d2e04fe896bc6ea9eed1bcc2ded1fce453cdaca1bc23b3bac7ba2a8b",
+        "git_blob": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a"
+      }
+    },
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/features/games/memory/memory_round.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 14257,
+        "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+        "git_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+      }
+    },
+    {
+      "path": "lib/features/games/memory/memory_rules.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/features/games/memory/memory_rules.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 14413,
+        "sha256": "0e8ccb76df51394d732ace433b1f15f295775aca7f34fefb81d5ece8d906dc90",
+        "git_blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce"
+      }
+    },
+    {
+      "path": "lib/features/games/memory/memory_table_session.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/features/games/memory/memory_table_session.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 9373,
+        "sha256": "08fb0ae23a3ed5c532072e411102dd9ef9f2a5f430d1de954d1de42da5328b64",
+        "git_blob": "1ea0737097ab024d4e91fbbf645a241af9001f9c"
+      }
+    },
+    {
+      "path": "lib/features/games/memory/memory_turn_scheduler.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/features/games/memory/memory_turn_scheduler.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1675,
+        "sha256": "eb59de38e44f1ad434d5a52b2cb873c53eceda596a8b5dba7b5efe8a2cbc195d",
+        "git_blob": "d3b3f41227594f6a78723a344ab7eec110190de1"
+      }
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/features/lumo3d/lumo3d_launcher.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 10640,
+        "sha256": "14b5cc7147fe001faf3c299d6bfa787b3eed1da07a6f848e688f3a947258407b",
+        "git_blob": "f34753575463af153ac72efaf93dd485ba3f30e1"
+      },
+      "after": {
+        "bytes": 10958,
+        "sha256": "4bd60a737fad08ace2a7484113bbca0446cdf9e0c5eb9752d4ca0f329ea35ed3",
+        "git_blob": "f41e6d7351304deb9635116b0635845abac8932c"
+      }
+    },
+    {
+      "path": "lib/features/lumo3d/native_method_table_transport.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/features/lumo3d/native_method_table_transport.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1677,
+        "sha256": "5edeffb1f9748d4739ac92bdb89a3683ffbfd1386caaa7a39249343e0d15eee5",
+        "git_blob": "6c160054a74531b22e817bb284b7860421d2a7f1"
+      }
+    },
+    {
+      "path": "lib/features/lumo3d/native_table_transport.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/features/lumo3d/native_table_transport.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 502,
+        "sha256": "dcd4826bb7903e575220537dd0b477d32d8fee810bf5523eb3c33c51df324ae1",
+        "git_blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2"
+      }
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_content.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/features/quiz/quiz_show_content.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 52217,
+        "sha256": "1c95ed40a9bd31ced69f40e298c7b771d183d9a37519bfbce2f397872871d393",
+        "git_blob": "ca4fa2aa5c8b4328b58cd0a56ddde9f7c43446de"
+      },
+      "after": {
+        "bytes": 62121,
+        "sha256": "9ae4b83ee78bd13c85b033921826d7813da6a54277faa62787c785f3a24eac45",
+        "git_blob": "98d7d59c6053785eddb3db48b2673a41e2b8c407"
+      }
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_repository.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/features/quiz/quiz_show_repository.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1371,
+        "sha256": "509973ae13ac25a0010578832b170dd52ccafd317d2f2805a194892fe78b381b",
+        "git_blob": "0c2b7dc207809bbcabed4180e7423b8cd8080117"
+      }
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_round.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/features/quiz/quiz_show_round.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 14125,
+        "sha256": "ed036809b409b44d72cfbd6be275ff64a949a8701f31891c46131034fa758676",
+        "git_blob": "6606300c19972195b4cf7fcee4810835a3c5ddcc"
+      }
+    },
+    {
+      "path": "lib/features/quiz/quiz_table_session.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/lib/features/quiz/quiz_table_session.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 8689,
+        "sha256": "94711cbc566b3863b0660569ddb68f9b728b3705a4c0e2fa67b84a19fba38ea5",
+        "git_blob": "a5e23633de431c9b4777dad39df4a7758badefb7"
+      }
+    },
+    {
+      "path": "scripts/compile_android_host.sh",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/scripts/compile_android_host.sh",
+      "mode": "100644",
+      "before": {
+        "bytes": 3231,
+        "sha256": "0cb7b2b2ef189e96d92fb3bf6b8e5d051b1a12013bbfc09331f539f02f929cb4",
+        "git_blob": "58eb1fe98d31155aceda49721092122b85fd4e6b"
+      },
+      "after": {
+        "bytes": 3364,
+        "sha256": "fb7c338e9c551fdbb5711ed30bb19c7b799ecf75f87176757eede9cac7e7bb03",
+        "git_blob": "73d0c0d8726e6352f0bf89c25cf17bdf1270ad2f"
+      }
+    },
+    {
+      "path": "scripts/prepare_embedded_games.py",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/scripts/prepare_embedded_games.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 10377,
+        "sha256": "694c115184bd6464ff8e7a3e0bd078e58f5f37d47739ac1d7675827c2f21e129",
+        "git_blob": "a1615455b5ea6251926d5037900e025d46971c18"
+      },
+      "after": {
+        "bytes": 11694,
+        "sha256": "e31d0aadd76633b98182a4d2093d838adf9603c46c8ad191561d045d4a0d333e",
+        "git_blob": "e8fb95d785e5f5dea6ba3d0dd7718bb9ca6fc20b"
+      }
+    },
+    {
+      "path": "scripts/tests/test_embedded_android.py",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/scripts/tests/test_embedded_android.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 21985,
+        "sha256": "81aedfe4a6316ffdabe409f90c1272a7ff78c6584271348c5207d353cedea5f4",
+        "git_blob": "7639755789f4e5abbfa0743173532cd2b2b29f49"
+      },
+      "after": {
+        "bytes": 23636,
+        "sha256": "12668cc3df6ebfc3a424849dfa6360f16f222bfc755652594000eb348b29963c",
+        "git_blob": "df44794c5bc75837a11a6cec1272655db168e535"
+      }
+    },
+    {
+      "path": "scripts/tests/test_game_return_contract.py",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/scripts/tests/test_game_return_contract.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 17104,
+        "sha256": "1e61af9b6e1b69a0271b13c07f77ceb75f8a879f4a589da29dceb9d0ff56f5b7",
+        "git_blob": "186cecdca050b1e16e24996480ccb005b580ec57"
+      },
+      "after": {
+        "bytes": 17234,
+        "sha256": "69549f16163550e60aa10e4a3ef97aed00803d820a3ccfe4befa4bee0d0599fe",
+        "git_blob": "8b42456eb737d0e0e6aceb8b460e0a5182c73f7d"
+      }
+    },
+    {
+      "path": "scripts/tests/test_table_games_native_contract.py",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/scripts/tests/test_table_games_native_contract.py",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 15542,
+        "sha256": "a789650b477ded58f3dad9611e6ba187b04f368b488d588902958cefad1478b5",
+        "git_blob": "1379b936394dba8f70137657e9f91f68b5a9bee2"
+      }
+    },
+    {
+      "path": "test/games/memory_native_entry_test.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/test/games/memory_native_entry_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 15014,
+        "sha256": "7bdc82668c385d1b99a68ee1e5e471d25c778500b09fd4a7f769a4c76b46eee5",
+        "git_blob": "eeb25b267ac05f8256b677428c364d97b5ae1648"
+      }
+    },
+    {
+      "path": "test/games/memory_result_frame_test.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/test/games/memory_result_frame_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 6098,
+        "sha256": "7212a9483853a37bc0e3cc533ae77552db4424a2fadccc8868f0d2ca7605696d",
+        "git_blob": "15ded52fc7465206672a85ad09e287b5393e8e4a"
+      }
+    },
+    {
+      "path": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/test/quiz_native_roundtrip_lifecycle_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 14514,
+        "sha256": "3436faf0dfdc0ba386f2881c057b265b2419aacaff53892d106dac70270b57de",
+        "git_blob": "92e220331786a78b21bf800e98a3d927c9b2711a"
+      }
+    },
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/test/reward_wallet_queue_zone_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 9797,
+        "sha256": "7062af9ecdcb3ecdccd428adadfb72a67e529e81cb670735b2b3f73042acf347",
+        "git_blob": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3"
+      }
+    },
+    {
+      "path": "test/table_games_launcher_binding_test.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/test/table_games_launcher_binding_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 10384,
+        "sha256": "ccc6299e38586ffcc86e787a8c194b85218118e2dc637bb4dda7b57a59c16ef1",
+        "git_blob": "705e90212916b784136a33088a4dbedaf7f0f8e2"
+      }
+    },
+    {
+      "path": "test/table_games_wallet_profile_test.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/test/table_games_wallet_profile_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 12489,
+        "sha256": "1d15b4610b84c3432cac20446be22f47884af749472fae45570c273a0aab9f3b",
+        "git_blob": "2646c037d575b068a697e99c574ace047aaa57a3"
+      }
+    },
+    {
+      "path": "test/tutoring/native_english_activity_test.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/test/tutoring/native_english_activity_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 7686,
+        "sha256": "3f0f0c9c331c23fd1f8372349a941976657c10d450c629092d86ec59dacc396c",
+        "git_blob": "e12cadfa4bdc33be932fc1e570f5ce51d17f0c39"
+      }
+    },
+    {
+      "path": "tool/check_native_english_activity.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tool/check_native_english_activity.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 12610,
+        "sha256": "59c89f50faf62be0f06c3d7c35f4c7d517ec67c73f059779a57767951569997a",
+        "git_blob": "2d304dfbf89e7be2cd123808b8a3352d7622e87b"
+      }
+    },
+    {
+      "path": "tools/android_qa/jvm/TableGameIntentContract.java",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/jvm/TableGameIntentContract.java",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 5526,
+        "sha256": "0323a6a6301c649c57f50921dba94c5dc8e45bcf55f7207d24848c930199cf84",
+        "git_blob": "194fdaa97578ef6ca0d434cd9ec0066f20be6818"
+      }
+    },
+    {
+      "path": "tools/android_qa/memory_native_authority.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/memory_native_authority.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 15449,
+        "sha256": "e3de35b76215e65923d7f45787f2b1351e9bc08c791741c016d8cc9ed4fecf9b",
+        "git_blob": "1126cbb3c26c7f4f4b48eb58910cdb30d73d1f0d"
+      }
+    },
+    {
+      "path": "tools/android_qa/memory_original_board_fixture.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/memory_original_board_fixture.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 5487,
+        "sha256": "a8e682e1d45aff51f01a9814fecc5c899dd796f87307067e198e85770f800e41",
+        "git_blob": "8ff63ccb88f3352967de9c64d4d007facf16c06f"
+      }
+    },
+    {
+      "path": "tools/android_qa/memory_original_opponent_fixture.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/memory_original_opponent_fixture.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 2170,
+        "sha256": "773f51601c329d7cbc13cd00d60a9c49360d0846b530b216a101c2e2c0edea99",
+        "git_blob": "65c8e0d24f28043b0bcfbb71c4c61cc8c1ba708e"
+      }
+    },
+    {
+      "path": "tools/android_qa/memory_round_contract.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/memory_round_contract.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 31437,
+        "sha256": "c09c429647aec943fe5934013fef594a5b2bb4f31b7241d8beef32d0983003f2",
+        "git_blob": "6a06883ce1f8a03205b914d30a2dfd55acb96597"
+      }
+    },
+    {
+      "path": "tools/android_qa/memory_turn_scheduler_contract.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/memory_turn_scheduler_contract.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 4580,
+        "sha256": "0126d1fa8e6e4bbd053bb5fd4ca752e4c41f5fca17cce4e0b925ea8013db253e",
+        "git_blob": "6414c553eec694508363d8bff55affee5489827f"
+      }
+    },
+    {
+      "path": "tools/android_qa/quiz_native_authority.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/quiz_native_authority.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 5561,
+        "sha256": "c17053575ab585f637806927c433ad7b82db3d6782321d09d6b475e8d3b65a34",
+        "git_blob": "7ded270bb685306e74faa024043ec9638f0cc8d1"
+      }
+    },
+    {
+      "path": "tools/android_qa/quiz_round_contract.dart",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/quiz_round_contract.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 20965,
+        "sha256": "4792c6067ea30588c77c2f3e423d4457fc93f64f93d43a14302d7eeec098239b",
+        "git_blob": "cc25a01bba32ffab5eef37483e4697927db70081"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-complete.layout.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-complete.layout.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 43004,
+        "sha256": "a9d4da5aa6a1666edc1a15324ce9412be42c2ac420e2bda98cb7035fbd1a9a4d",
+        "git_blob": "17c5648abd3b3ba5ef5b8d884093e1e1445e62df"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-hint.layout.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-hint.layout.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 43005,
+        "sha256": "d0059e9bf1351b32364747dbbb3214c2cda7dc153b2d04689b503efe015f5682",
+        "git_blob": "935b65a28f105301176a9aacf659582ba630b7d5"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-start.layout.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-start.layout.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 42195,
+        "sha256": "e1e79909c444444ac45e467d6abfd9f792f999fe1f37bf9e28425dd17885e6e8",
+        "git_blob": "a32884e7ed90cfe888aeb50e86f9ed9ba57d2391"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/english_objects/english-pen-1080x2400-start.layout.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/english_objects/english-pen-1080x2400-start.layout.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 37009,
+        "sha256": "91c4a6d3ce55a918b9854fd692869bb1b97fcacaa05dfc76c3dbbf711a27166f",
+        "git_blob": "1bf23985d82681f5a152790ae39cbbdbd31fe431"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/README.md",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/memory_android/README.md",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1344,
+        "sha256": "add7d901e8bc222b129a0f2f6bcf8d5b55733212fc3e6910eb095c9fd0fa1b45",
+        "git_blob": "f6f25af85d8f6fad7d5054260f2bc4f720c04da6"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/layout-face.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/memory_android/layout-face.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 7968,
+        "sha256": "be99db932904d356d89feb0ef0a6b33759b0ef18c89fd88cf7c2bca69fac1e2b",
+        "git_blob": "e19cb837ccd3993e5525728cb2e5bdc8a8bc9b7a"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/layout-hidden.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/memory_android/layout-hidden.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 7965,
+        "sha256": "653dfbb1d6fda80316f1fa2e880a3706dd3c64a952ba9ace671169faa0ad7073",
+        "git_blob": "603e9c704ab4405fc9352741e0998efdfb583755"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/public-states.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/memory_android/public-states.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 7551,
+        "sha256": "7b60a5e26c71f137217a3c180d25025a1eac7aa7bd10a96bfb5654d52ea546b6",
+        "git_blob": "7ce5d33f487b9d99607f0c1aaeff1f0b3367913c"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/saved-paused.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/memory_android/saved-paused.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 698,
+        "sha256": "a3e37dba067f76daa1d4104f51ef6d98cccee04fbd6421fbc0cdd60905d095d6",
+        "git_blob": "dc84852768ae863204844b3d0988c561856ab810"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/original-9f2e-durable-round.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/quiz_native_layout/original-9f2e-durable-round.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 4378,
+        "sha256": "9af91c87d473807a6c7e915668ad3e3876b830d437c5a751c7526784db143a9d",
+        "git_blob": "7624036f7e342a6d5b0c3430019c98ab13f13baf"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/original-9f2e-public-state.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/quiz_native_layout/original-9f2e-public-state.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 845,
+        "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9",
+        "git_blob": "0d6438f6706d875c87f82e694b22a8d0a5f96352"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/provenance.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/quiz_native_layout/provenance.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 2504,
+        "sha256": "e67199d5fe2ecbd443b6c42a0265fa9673b1476be3372521aa376b043ac615e2",
+        "git_blob": "e489800971843ad30c71eefdb64fb1b0306c2da6"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/quiz-paused-portrait.layout.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/quiz_native_layout/quiz-paused-portrait.layout.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 4601,
+        "sha256": "c6623c62e4f5aa267dc2f611a3f30ddcb5bfaad20c2b645bcb0b2e990651fafd",
+        "git_blob": "dd5451092403f703409550852e615d4d93e7eceb"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/quiz-question-cutout.layout.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/quiz_native_layout/quiz-question-cutout.layout.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 5752,
+        "sha256": "df8084e06e263a9f6af572a30842fc41bc2a4a6d2077cfe2be18e85511717abc",
+        "git_blob": "45a197e42c276d4eb7260b041d6687a62ff9d5dd"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/quiz-question-landscape.layout.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/quiz_native_layout/quiz-question-landscape.layout.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 4450,
+        "sha256": "d4ccd7c0d8cf2059b884c1683dd1d0df27f18f832420196800a861d3a0604ed0",
+        "git_blob": "13974d28777e29dc8b9b76d8f97ddf9750145e5f"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/quiz-selected-phone.layout.json",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/fixtures/quiz_native_layout/quiz-selected-phone.layout.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 4433,
+        "sha256": "8023ddaefc2c337e40c6ebf36bc719e75ed3da1578837ea052a5c0a8cd9f745e",
+        "git_blob": "6ea5200a487001f48ab18c55f3f899fed9da9f0a"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/test_english_objects_android_probe.py",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/test_english_objects_android_probe.py",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 20503,
+        "sha256": "ecd76b3da990e5477cadd77223782ca7af853a0f8e4753b67a9008c83c460d8c",
+        "git_blob": "19f640b0f534837eb53be1e401f471a6a9e280d5"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/test_memory_android_probe.py",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/android_qa/tests/test_memory_android_probe.py",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 16780,
+        "sha256": "f869d05d1e93f81de083ff8582163945eab288ae27b2797aab8e8c4fdd88b397",
+        "git_blob": "b9c247134d8027f03369f0d43b10732488fef30b"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/test_quiz_android_probe.py",
+      "source_pack": "host-pr503-table-probe-adapter-9f2f-20261114",
+      "source_path": "final-source/tools/android_qa/tests/test_quiz_android_probe.py",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 27652,
+        "sha256": "56f84ac160ca42507dfc9ad4a0c4fb60992ec70751c12fc6141d79ba191d07a1",
+        "git_blob": "0ac81ff1611d7aac6f103da8de5ae9a2fb0df3dd"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/test_table_authority_android_shared.py",
+      "source_pack": "host-pr503-table-probe-adapter-9f2f-20261114",
+      "source_path": "final-source/tools/android_qa/tests/test_table_authority_android_shared.py",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 11513,
+        "sha256": "46ab8a40253282b43d13af2339fe38896e72c9dca6fb0f751f4a802aacde0e21",
+        "git_blob": "c3881e31ac8d530bcd83bf4064ed77391ad30fbc"
+      }
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/auto_install/MainActivity.kt",
+      "mode": "100644",
+      "before": {
+        "bytes": 18365,
+        "sha256": "a2d805e0e7d749c01a4ed8bb2cbbb0613bcb78fa45668e6aa05614ab01313f8c",
+        "git_blob": "57764e62e8db623395f0d2c93a840920805b267f"
+      },
+      "after": {
+        "bytes": 19294,
+        "sha256": "a3d6d63ab865b6881d77439f4548ee024b3e8c4a9579382a1730eebe78a1e2cd",
+        "git_blob": "872bb042acb09aaf309044882eef4b4446e4bd58"
+      }
+    },
+    {
+      "path": "tools/auto_install/TableAuthorityService.kt",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/auto_install/TableAuthorityService.kt",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1945,
+        "sha256": "06a8b6323a6f76820e452b276649d262f245102d041c4b9207eaf0c2b0695ea0",
+        "git_blob": "7db61b3117a52a9ac93daad2de7d7c1b3ac21e08"
+      }
+    },
+    {
+      "path": "tools/auto_install/TableGameActivity.kt",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/auto_install/TableGameActivity.kt",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 6633,
+        "sha256": "e15923d2f0878733b41a4eae32eb5ea56cc5f067fa481c503bfee72c77440b2e",
+        "git_blob": "74e9f7476cb192e016f5bf42421c89a30f58ee28"
+      }
+    },
+    {
+      "path": "tools/auto_install/TableGameIntent.java",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/auto_install/TableGameIntent.java",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 3205,
+        "sha256": "6d2af8dd20002c93311f0a823ea24eec3113bac13c10857e6bc3d2b701f3c77f",
+        "git_blob": "d14b09e3438164aea359d478d7af11f8c0fb5433"
+      }
+    },
+    {
+      "path": "tools/auto_install/TableGamesBridge.kt",
+      "source_pack": "host-pr503-2e20-selective-integration-9f2f-20261114",
+      "source_path": "proposed/tools/auto_install/TableGamesBridge.kt",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 8236,
+        "sha256": "40ec31c127830d948fd847a88518a07cb30329273ff4b8ff2cfdee97e00e2a60",
+        "git_blob": "4b25e208043ac9cd939e98eb955ef6a850315461"
+      }
+    }
+  ],
+  "not_authorized_to_apply_to_active_candidate": true
+}

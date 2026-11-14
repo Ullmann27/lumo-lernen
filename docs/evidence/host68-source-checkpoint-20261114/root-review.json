@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "status": "ROOT_SOURCE_REVIEW_BEFORE_CHECKPOINT",
+  "source_base": "9f2f3690caacadbe7ced363f0e810f0cc0b5eb9b",
+  "checkpoint_parent": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+  "checkpoint_parent_tree": "54a12aee5b76ea289e23546bee7ffc462e0dabdb",
+  "parent_delta": "18 documentation-only paths from 9f2f; all selected source preimages are exact and all 18 current activation documents will be retained.",
+  "paths": 68,
+  "source_archive_members_fully_byte_compared": 247,
+  "source_archive_sha256": "5f9405c7f4e960ffa7f825e8432ca4ddccd7689785d55ec84d1abbb10e5f0af6",
+  "source_files_rehashed": 68,
+  "four_complete_hunk_diffs_read": true,
+  "shared_adapter_complete_318_lines_read": true,
+  "adapter_independent_review_sha256": "bf600cfe739d1ff9f9f2593ea79b313d803ad439533433d70659aa595e507961",
+  "pair_native_source_checkpoint": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+  "configured_native_unchanged": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+  "qualification": "NOT_RUN. Separate explicit source-pair tests next. The current version, pin, seven-job workflow and candidate/delivery acceptance are unchanged and do not yet consume these three future Android authority probes.",
+  "active_candidate_changed": false,
+  "full_product_static_review": "Delegated to Flutter with Native/Host contract review by Godot; this Root review does not claim every line of the 825985-byte product diff was independently read."
+}

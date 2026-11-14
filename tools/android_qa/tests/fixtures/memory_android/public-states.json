@@ -1,0 +1,355 @@
+{
+  "provenance": {
+    "artifact_id": 14117292610,
+    "artifact_sha256": "4b812683569e29cb00e5f019ed4ebd579459decf8db4f658c46a1355bd677505",
+    "native": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+    "host": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+    "source_entry": "memory-pair/authority/authority-result.json",
+    "source_sha256": "6e6b92301a8afff3ee349b5b667c9f0f766a663e158e83f19a8694a5db4b79ed",
+    "scope": "Derived selection of exact state objects from actual local IPC CI; not Android",
+    "additional_state_indices": {
+      "paused": 7,
+      "bot": 12
+    }
+  },
+  "hidden": {
+    "schema": 1,
+    "game": "memory",
+    "token": "c0752c76fa010d1dca5767cb4745db34",
+    "owner": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "roundId": "e43feb5380551b159536556b0b9cc719",
+    "revision": 2,
+    "recordRevision": 1,
+    "ack": 0,
+    "rejected": 0,
+    "paused": false,
+    "exit": false,
+    "reduceMotion": false,
+    "rewarded": false,
+    "difficulty": "leicht",
+    "pack": "alle",
+    "count": 8,
+    "cards": [
+      {
+        "index": 0,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 1,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 2,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 3,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 4,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 5,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 6,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 7,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      }
+    ],
+    "turn": "kind",
+    "phase": "select",
+    "kindPairs": 0,
+    "lumoPairs": 0,
+    "kindMoves": 0,
+    "kindStreak": 0,
+    "line": "Lass uns Memory spielen! Du fängst an.",
+    "remainingMs": 0,
+    "complete": false,
+    "stars": 0,
+    "canFlip": true,
+    "best": {
+      "schwer": 17
+    },
+    "error": null
+  },
+  "face": {
+    "schema": 1,
+    "game": "memory",
+    "token": "c0752c76fa010d1dca5767cb4745db34",
+    "owner": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "roundId": "e43feb5380551b159536556b0b9cc719",
+    "revision": 3,
+    "recordRevision": 2,
+    "ack": 1,
+    "rejected": 0,
+    "paused": false,
+    "exit": false,
+    "reduceMotion": false,
+    "rewarded": false,
+    "difficulty": "leicht",
+    "pack": "alle",
+    "count": 8,
+    "cards": [
+      {
+        "index": 0,
+        "faceUp": true,
+        "matched": false,
+        "motif": "truhe"
+      },
+      {
+        "index": 1,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 2,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 3,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 4,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 5,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 6,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 7,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      }
+    ],
+    "turn": "kind",
+    "phase": "select",
+    "kindPairs": 0,
+    "lumoPairs": 0,
+    "kindMoves": 0,
+    "kindStreak": 0,
+    "line": "Lass uns Memory spielen! Du fängst an.",
+    "remainingMs": 0,
+    "complete": false,
+    "stars": 0,
+    "canFlip": true,
+    "best": {
+      "schwer": 17
+    },
+    "error": null
+  },
+  "flip_request": {
+    "action": "flip",
+    "index": 0,
+    "revision": 2,
+    "roundId": "e43feb5380551b159536556b0b9cc719",
+    "sequence": 1,
+    "token": "c0752c76fa010d1dca5767cb4745db34"
+  },
+  "paused": {
+    "schema": 1,
+    "game": "memory",
+    "token": "c0752c76fa010d1dca5767cb4745db34",
+    "owner": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "roundId": "e43feb5380551b159536556b0b9cc719",
+    "revision": 7,
+    "recordRevision": 6,
+    "ack": 5,
+    "rejected": 0,
+    "paused": true,
+    "exit": false,
+    "reduceMotion": false,
+    "rewarded": false,
+    "difficulty": "leicht",
+    "pack": "alle",
+    "count": 8,
+    "cards": [
+      {
+        "index": 0,
+        "faceUp": true,
+        "matched": false,
+        "motif": "truhe"
+      },
+      {
+        "index": 1,
+        "faceUp": true,
+        "matched": false,
+        "motif": "giraffe"
+      },
+      {
+        "index": 2,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 3,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 4,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 5,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 6,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 7,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      }
+    ],
+    "turn": "kind",
+    "phase": "resolve",
+    "kindPairs": 0,
+    "lumoPairs": 0,
+    "kindMoves": 1,
+    "kindStreak": 0,
+    "line": "Lass uns Memory spielen! Du fängst an.",
+    "remainingMs": 550,
+    "complete": false,
+    "stars": 0,
+    "canFlip": false,
+    "best": {
+      "schwer": 17
+    },
+    "error": null
+  },
+  "bot": {
+    "schema": 1,
+    "game": "memory",
+    "token": "aa6feb7cc805038b4284c87d2bb9498a",
+    "owner": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "roundId": "e43feb5380551b159536556b0b9cc719",
+    "revision": 4,
+    "recordRevision": 9,
+    "ack": 1,
+    "rejected": 0,
+    "paused": false,
+    "exit": false,
+    "reduceMotion": false,
+    "rewarded": false,
+    "difficulty": "leicht",
+    "pack": "alle",
+    "count": 8,
+    "cards": [
+      {
+        "index": 0,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 1,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 2,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 3,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 4,
+        "faceUp": true,
+        "matched": false,
+        "motif": "stein"
+      },
+      {
+        "index": 5,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 6,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      },
+      {
+        "index": 7,
+        "faceUp": false,
+        "matched": false,
+        "motif": null
+      }
+    ],
+    "turn": "lumo",
+    "phase": "botSecond",
+    "kindPairs": 0,
+    "lumoPairs": 0,
+    "kindMoves": 1,
+    "kindStreak": 0,
+    "line": "Mein Zug! Ich denke nach...",
+    "remainingMs": 900,
+    "complete": false,
+    "stars": 0,
+    "canFlip": false,
+    "best": {
+      "schwer": 17
+    },
+    "error": null
+  }
+}
