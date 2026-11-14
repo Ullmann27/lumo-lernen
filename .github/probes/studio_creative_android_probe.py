@@ -685,7 +685,8 @@ class Tour:
                 remaining = deadline - time.monotonic()
                 require(remaining > 0, 'Treasure playable-frame deadline exhausted')
                 lines = self.probe.image_lines(self.out, tag, source_path=path,
-                                               timeout=min(20, remaining))
+                                               timeout=min(20, remaining),
+                                               parallel_inventory=True)
                 playing = treasure_playing_captions(lines)
                 row = {'capture': shot, 'captions': lines, 'visible_playing_hud': playing}
                 observations.append(row)

@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "run_id": 43626348519,
+  "job_id": 132563694518,
+  "host_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "native_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "artifact_id": 14130101135,
+  "archive_api_bytes": 196404454,
+  "archive_api_sha256": "bfddd9c10504e2271a8b785bd3a46aef4ec76c3fab80bdd2dadea6162ea58e0b",
+  "full_archive_sha256_locally_verified": false,
+  "whole_archive_crc_verified": false,
+  "transfer": "Existing Root-owned 206 Range extraction; each complete selected XML member CRC verified",
+  "screen_pixels": [
+    1080,
+    2400
+  ],
+  "density": 2.625,
+  "scope": "Original Android XML; unit navigation transport and screen-size reads are explicitly doubled, not a new Android execution",
+  "files": [
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-hub-top.xml",
+      "artifact_entry": "connect-four/0003-actual-flutter-navigation-confirmed.xml",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0003-actual-flutter-navigation-confirmed.xml",
+      "bytes": 25229,
+      "sha256": "9f965db4c05303926a2173c43fafa7ae07ffa9f94aaa8524a18b068d33c7dfda",
+      "git_blob_sha": "0e3ea3a4002c8421176e85e36b75b710309ecdab",
+      "crc32": "c81485db",
+      "selected_member_crc_verified": true
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-c4-visible.xml",
+      "artifact_entry": "connect-four/0006-actual-c4-hub.xml",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0006-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "git_blob_sha": "80469d00bd6b11600840ae116b48408928a54349",
+      "crc32": "ed9876f5",
+      "selected_member_crc_verified": true
+    }
+  ]
+}

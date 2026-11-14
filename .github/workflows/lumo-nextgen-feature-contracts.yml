@@ -39,10 +39,11 @@ jobs:
         run: |
           set -euo pipefail
           flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee feature-evidence/flutter-analyze.log
-      - name: Recheck durable wallet queues across caller zones and actual Memory profiles
+      - name: Recheck persisted wallet queues, Memory profiles and Connect Four retries
         run: |
           set -euo pipefail
           flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+            test/games/connect_four_bot_save_retry_test.dart \
             test/reward_wallet_queue_zone_test.dart \
             test/reward_wallet_transaction_test.dart \
             test/games/memory_profile_storage_test.dart \
@@ -168,5 +169,56 @@ jobs:
         with:
           name: lumo-nextgen-memory-source-evidence
           path: memory-feature-evidence/
+          if-no-files-found: error
+          retention-days: 30
+
+  android-probe-contracts:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref_name == 'chatgpt/lumo-nextgen-feature-20261114'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - name: Install the actual Studio OCR version and preserve environment identity
+        run: |
+          set -euo pipefail
+          mkdir -p probe-source-evidence
+          git rev-parse HEAD > probe-source-evidence/HOST-SOURCE.txt
+          cat /etc/os-release > probe-source-evidence/ubuntu-release.txt
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y python3-pil tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          export PATH="/usr/bin:/bin:$PATH"
+          command -v tesseract > probe-source-evidence/tesseract-binary.txt
+          test "$(command -v tesseract)" = /usr/bin/tesseract
+          tesseract --version > probe-source-evidence/tesseract-version.txt 2>&1
+          tesseract --list-langs > probe-source-evidence/tesseract-languages.txt 2>&1
+          /usr/bin/python3 -c 'import sys; from pathlib import Path; import PIL; v=Path("probe-source-evidence/tesseract-version.txt").read_text().splitlines()[0].strip(); langs=set(Path("probe-source-evidence/tesseract-languages.txt").read_text().splitlines()); print("Pillow", PIL.__version__); sys.exit(0 if v == "tesseract 5.3.4" and {"deu", "eng"} <= langs else "Required Studio OCR version or languages differ")' > probe-source-evidence/pillow-version.txt
+      - name: Replay the original Connect Four navigation and unchanged Kart cue contracts
+        run: |
+          set -euo pipefail
+          export PATH="/usr/bin:/bin:$PATH"
+          command -v tesseract > probe-source-evidence/contract-tesseract-binary.txt
+          test "$(command -v tesseract)" = /usr/bin/tesseract
+          /usr/bin/python3 -B scripts/run_android_probe_acceptance.py --group c4-navigation --output probe-source-evidence/results 2>&1 | tee probe-source-evidence/connect-four-navigation.log
+          /usr/bin/python3 -B scripts/run_android_probe_acceptance.py --group kart-preview --output probe-source-evidence/results 2>&1 | tee probe-source-evidence/kart-preview-contracts.log
+      - name: Read unchanged original Jump and Treasure pixels with real Studio OCR
+        env:
+          LUMO_CREATIVE_REPLAY_OUT: probe-source-evidence/original-pixel-replay
+        run: |
+          set -euo pipefail
+          export PATH="/usr/bin:/bin:$PATH"
+          command -v tesseract > probe-source-evidence/replay-tesseract-binary.txt
+          test "$(command -v tesseract)" = /usr/bin/tesseract
+          /usr/bin/python3 -B scripts/run_android_probe_acceptance.py --group creative-originals --output probe-source-evidence/results 2>&1 | tee probe-source-evidence/creative-original-pixel-replay.log
+      - name: Verify all tracked source and original fixtures remain exact
+        if: always()
+        run: git diff --exit-code HEAD --
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-android-probe-source-evidence
+          path: probe-source-evidence/
           if-no-files-found: error
           retention-days: 30

@@ -28,6 +28,7 @@ LAYOUT = FILES + '/connect_four_layout_v1.json'
 SESSION = FILES + '/lumo_connect_four_session_v1/'
 SELF = '.github/probes/lumo_connect_four_android_probe.py'
 PCK_PATH = 'assets/lumo_game.pck'
+C4_HUB_TITLE = 'Lumo 4 Gewinnt'
 SOURCE_FILES = (SELF, '.github/probes/creative_android_probe.py',
                 '.github/probes/modernization_android_tour.py',
                 '.github/probes/lumo_studio_surfaces_android_probe.py',
@@ -488,22 +489,39 @@ class AndroidProbe:
         require(ready,'Actual Flutter game hub was not reached before its deadline')
         for direction in (1,-1):
             for attempt in range(11):
+                require('MainActivity' in self.surfaces.resumed_activity(),'Flutter hub activity changed before observation')
                 tag=self.tag('actual-c4-hub');nodes=self.live.live_nodes(self.out,tag)
                 shot=self.probe.capture(self.out,tag)
                 from PIL import Image
                 with Image.open(self.out/shot['file']) as im:size=im.size
-                target=self.creative.hub_choice(nodes,'Vier gewinnt',size,48*self.density)
+                target=self.creative.hub_choice(nodes,C4_HUB_TITLE,size,48*self.density)
+                confirmed=self.live.live_nodes(self.out,tag+'-confirmed')
+                if target!=self.creative.hub_choice(confirmed,C4_HUB_TITLE,size,48*self.density):
+                    continue
+                require('MainActivity' in self.surfaces.resumed_activity(),'Flutter hub activity changed during observation')
                 if target:
                     r=target['bounds'];point=[round((r[0]+r[2])/2),round((r[1]+r[3])/2)]
-                    self.events.append({'kind':'actual_hub_touch','target':target,'capture':shot,'point':point});write(self.out/'input-events.json',self.events)
+                    self.events.append({'kind':'actual_hub_touch','target':target,'capture':shot,
+                                        'confirmed_xml':tag+'-confirmed.xml','point':point})
+                    write(self.out/'input-events.json',self.events)
                     self.adb('shell','input','tap',*[str(v) for v in point]);return
                 if attempt==10:break
                 rects=[self.creative.bounds(n.get('bounds','')) for n in nodes if n.get('package')==PACKAGE and n.get('scrollable')=='true']
                 rects=[r for r in rects if r and 0<=r[0]<r[2]<=size[0] and 0<=r[1]<r[3]<=size[1]]
+                confirmed_rects=[self.creative.bounds(n.get('bounds','')) for n in confirmed if n.get('package')==PACKAGE and n.get('scrollable')=='true']
+                confirmed_rects=[r for r in confirmed_rects if r and 0<=r[0]<r[2]<=size[0] and 0<=r[1]<r[3]<=size[1]]
+                if sorted(rects)!=sorted(confirmed_rects):
+                    continue
                 require(rects,'No actual scroll viewport for C4 hub')
                 r=max(rects,key=lambda q:(q[2]-q[0])*(q[3]-q[1]));x=round((r[0]+r[2])/2);low=round(r[1]+.25*(r[3]-r[1]));high=round(r[1]+.75*(r[3]-r[1]))
                 start,end=(high,low) if direction==1 else (low,high)
-                self.adb('shell','input','swipe',str(x),str(start),str(x),str(end),'450');time.sleep(.6)
+                event={'kind':'actual_hub_scroll','capture':shot,'confirmed_xml':tag+'-confirmed.xml',
+                       'viewport_bounds':r,'start':[x,start],'end':[x,end],'duration_ms':450,
+                       'adb_completed':False}
+                self.events.append(event);write(self.out/'input-events.json',self.events)
+                self.adb('shell','input','swipe',str(x),str(start),str(x),str(end),'450')
+                event['adb_completed']=True;write(self.out/'input-events.json',self.events)
+                time.sleep(.6)
         raise RuntimeError('Actual C4 hub tile never appeared')
 
     def lease(self,token,active):
