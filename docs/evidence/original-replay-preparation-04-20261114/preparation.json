@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "at_utc": "2026-11-14 19:02:29 UTC",
+  "status": "PREPARED_SOURCE_REBIND_SELFTEST_NOT_YET_RUN",
+  "source": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "source_tree": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+  "main_run": 43628840534,
+  "main_attempt": 1,
+  "feature_run": 43628830465,
+  "feature_attempt": 1,
+  "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "native_discovery_run": 43613299144,
+  "previous_reviewed_reader_checkpoint": "3049c835ab3e15fb4cee2f94b1935b0f01a27357",
+  "driver_changes_only": [
+    "exact Host SHA",
+    "exact Host tree",
+    "actual acceptance run ID",
+    "04 descriptive docstring"
+  ],
+  "all_driver_tests_unchanged": true,
+  "png_exporter_and_all_three_tests_unchanged": true,
+  "old_selftest_passed": 27,
+  "new_selftest_result": null,
+  "publisher_rebindings": [
+    [
+      "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "04a8e850d4c198e16ff758df614ce6e53eab4524"
+    ],
+    [
+      "43616038272",
+      "43628840534"
+    ],
+    [
+      "43616035099",
+      "43628830465"
+    ],
+    [
+      "132511176199",
+      "132550661600"
+    ],
+    [
+      "14122252221",
+      "14126808268"
+    ],
+    [
+      "1167242",
+      "1169894"
+    ],
+    [
+      "aa3acbb92e89b5e8c3723d35ffb0ea8e07f6405b8dbe7821a6a3ce9b085b9075",
+      "a6ae2c6ae9e4b0e8b600bdd54687288ec6d229ae2cf20b28df128c28658de805"
+    ]
+  ],
+  "new_additional_bindings": {
+    "native": {
+      "repository": "Ullmann27/lumo-godot",
+      "repository_id": 1251414584,
+      "run": 43613299144,
+      "attempt": 1,
+      "source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+      "branch": "integration/lumo-live-connections-20261114",
+      "event": "push",
+      "workflow": ".github/workflows/lumo-discovery-connections.yml",
+      "job_id": 132502826135,
+      "job_name": "discovery-native-acceptance",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job"
+        },
+        {
+          "number": 2,
+          "name": "Check out the exact internal Discovery push"
+        },
+        {
+          "number": 3,
+          "name": "Bind the original source and external evidence directories"
+        },
+        {
+          "number": 4,
+          "name": "Install the verified engine and external Pillow environment"
+        },
+        {
+          "number": 5,
+          "name": "Bind the unchanged helpers before any import or test"
+        },
+        {
+          "number": 6,
+          "name": "Require the separate Dream raster counterexamples"
+        },
+        {
+          "number": 7,
+          "name": "Require the strict Discovery counterexamples and original reader tests"
+        },
+        {
+          "number": 8,
+          "name": "Import the exact production project with a strict error guard"
+        },
+        {
+          "number": 9,
+          "name": "Preserve the four existing exact headless acceptance gates"
+        },
+        {
+          "number": 10,
+          "name": "Collect all five new Dream gates and seven original renderer images"
+        },
+        {
+          "number": 11,
+          "name": "Require ten source-bound Discovery probes and all original 38 PNGs and two reports"
+        },
+        {
+          "number": 12,
+          "name": "Require exact village save schema and bounded original renderer evidence"
+        },
+        {
+          "number": 13,
+          "name": "Render the exact MobileSafeArea and live minimap observations"
+        },
+        {
+          "number": 14,
+          "name": "Always preserve final source and index identities"
+        },
+        {
+          "number": 15,
+          "name": "Preserve all separate Discovery and Dream originals even after failure"
+        },
+        {
+          "number": 30,
+          "name": "Post Check out the exact internal Discovery push"
+        },
+        {
+          "number": 31,
+          "name": "Complete job"
+        }
+      ],
+      "artifact": {
+        "id": 14122180486,
+        "name": "lumo-discovery-connections-native-evidence-43613299144-1",
+        "bytes": 66954397,
+        "digest": "sha256:af8a7b6f08d59f52dd25c2b061b4119b369f3793845132bb39ef9fca6b0446f0"
+      }
+    },
+    "feature": {
+      "repository": "Ullmann27/lumo-lernen",
+      "repository_id": 1222433959,
+      "run": 43628830465,
+      "attempt": 1,
+      "source": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+      "branch": "integration/lumo-live-connections-20261114",
+      "event": "push",
+      "workflow": ".github/workflows/lumo-feature-connections.yml",
+      "job_id": 132550661600,
+      "job_name": "feature-widget-contracts",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job"
+        },
+        {
+          "number": 2,
+          "name": "Checkout the exact feature push"
+        },
+        {
+          "number": 3,
+          "name": "Bind original source and lock bytes before setup"
+        },
+        {
+          "number": 4,
+          "name": "Install the repository Flutter version"
+        },
+        {
+          "number": 5,
+          "name": "Prepare fonts, Pillow and the immutable locked packages"
+        },
+        {
+          "number": 6,
+          "name": "Bind the six original test assets"
+        },
+        {
+          "number": 7,
+          "name": "Execute exactly the 30 feature cases"
+        },
+        {
+          "number": 8,
+          "name": "Require completed tests, zero skips and the exact case count"
+        },
+        {
+          "number": 9,
+          "name": "Require identical source and lock bytes after the attempt"
+        },
+        {
+          "number": 10,
+          "name": "Preserve complete original logs and source stamps"
+        },
+        {
+          "number": 19,
+          "name": "Post Install the repository Flutter version"
+        },
+        {
+          "number": 20,
+          "name": "Post Checkout the exact feature push"
+        },
+        {
+          "number": 21,
+          "name": "Complete job"
+        }
+      ],
+      "artifact": {
+        "id": 14126808268,
+        "name": "lumo-feature-connections-04a8e850d4c198e16ff758df614ce6e53eab4524-attempt-1",
+        "bytes": 1169894,
+        "digest": "sha256:a6ae2c6ae9e4b0e8b600bdd54687288ec6d229ae2cf20b28df128c28658de805"
+      }
+    }
+  },
+  "independently_reconstructed_publisher_blob": "712529847807e1d0a7135654703a13b7a63a1e1e",
+  "source_entries": [
+    {
+      "path": ".github/workflows/lumo-original-replay-04.yml",
+      "sha": "7779c3d5f90269104be3f289865d744b3e788d11",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": ".github/workflows/lumo-original-replay-selftest-04.yml",
+      "sha": "79a5f04c18f7dd909d6c9af7706a578938a7fd7c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/original-replay-preparation-04-20261114/original_replay.py",
+      "sha": "0028aac49374245c85da27a69d1ae4113e87c1a9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/original-replay-preparation-04-20261114/test_original_replay.py",
+      "sha": "11c5ad2de2ce556a66273c776da2947ad23de8cd",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/original-replay-preparation-04-20261114/original_png_transport.py",
+      "sha": "88388945e5e31eaefb2dad69f400b93f65a6b94a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/original-replay-preparation-04-20261114/test_original_png_transport.py",
+      "sha": "313fdb2c57f018cf251be00b6171fccb3c2bfa67",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/original-replay-preparation-04-20261114/original-reviewed-publisher-04.yml",
+      "sha": "712529847807e1d0a7135654703a13b7a63a1e1e",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "scope": "A pure read-only original-archive replayer and existing 27-case selftest are prepared. The actual original replayer remains blocked until all seven new exact-source jobs succeed. No real archive replay or release claimed."
+}
