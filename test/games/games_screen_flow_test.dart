@@ -300,6 +300,9 @@ void main() {
     final nativeButton = find.byKey(const ValueKey('connect-open-native'));
     expect(nativeButton, findsOneWidget);
     await tester.tap(nativeButton);
+    // A direct tap sends input immediately; a frame is required to rebuild
+    // the disabled column buttons before checking their visible state.
+    await tester.pump();
     for (var frame = 0; frame < 50 && openCalls == 0; frame++) {
       await tester.pump(const Duration(milliseconds: 100));
     }
