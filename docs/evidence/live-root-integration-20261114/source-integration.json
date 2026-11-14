@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "host_base": "7fd9e91683ecf703c00f100e314aced9191f7847",
+  "host_base": "cf2593cb6dec51b66461c8e5984dfbfdd5091c22",
   "original_host_base": "4564ad40c4d000b764e67719d19bd2445c04c870",
-  "native": "7d53f29e68269c21d1d5a66bdf3d488f8e886970",
+  "native": "71a4c1e2304b52005950b12490d070c286c45438",
   "sources": {
     "drawing_learning_and_atmosphere_checkpoint": "69cadb6cad90c653cc044e8d073b06e5906ee97d",
     "historical_android_c4_and_pipeline_checkpoint": "2d8ff889dcd172bfd694309a064a40e3e6a749a6",
@@ -22,10 +22,14 @@
     "village_responsive_title": "e55b2ddde0296ed2d05ed5823743a837400dcf5a",
     "native_final_basis_reconciliation": "7d53f29e68269c21d1d5a66bdf3d488f8e886970",
     "native_actual_latest_base": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
-    "final_native_delivery_checks": "157e6349a253c108c007340e1fae7b4e2df377fa"
+    "final_native_delivery_checks": "157e6349a253c108c007340e1fae7b4e2df377fa",
+    "native_original_hub_and_direct_village_return": "71a4c1e2304b52005950b12490d070c286c45438",
+    "home_actual_subject_capture": "b5b7f6d9c2c33fd43234fc28fefd1f84f933dcea",
+    "village_platform_variant_fixture": "c54d9aa3a4dccab6c1cf677c9857abf77df66174",
+    "home_independent_visual_review": "f39e393a177201c05f3f7d9af41cf1791dbed39f"
   },
   "preservation": "The complete 01575aaf tree is the base; its AAB tools, actual Android fixtures, source-bound curriculum audit and original evidence archives are retained. Only explicitly listed feature or conflict-resolution paths are overlaid. The complete six-commit follow-up through 803a4e9 is also retained; its stronger FFmpeg prerequisite checks supersede the identical install-only change.",
-  "limits": "The first combined source passed native C4 runtime, Android host compilation and 877 script tests; full Flutter acceptance failed three obsolete Diktat test finders. Their helper is repaired to draw through the actual shared ink surface without weakening persistence or reward assertions. The expanded final union requires its own complete current-source Flutter/native/APK/Android/update/delivery acceptance. No prior or producer pass is presented as that final result.",
+  "limits": "The two predecessor combined runs are preserved with their actual failures. Three Diktat cases now passed individually; all six Village cases passed in the focused SDK-platform-variant run. New Home captures require real opened and visible subject cards. This preparation still requires the additive actual Android Village probe/verifier integration and the complete new combined Flutter/native/APK/API35/update/delivery acceptance. No predecessor or focused pass certifies the final signed APK.",
   "first_combined_run": {
     "host": "7fd9e91683ecf703c00f100e314aced9191f7847",
     "run": 43579007561,
@@ -36,11 +40,52 @@
     "apk_built": false
   },
   "native_local_acceptance": {
+    "source": "71a4c1e2304b52005950b12490d070c286c45438",
+    "scope": "Focused actual original-Hub identity/framing and embedded-Village return checks; final current-source 52/Live/Discovery acceptance remains required.",
+    "original_hub_pngs": 2,
+    "original_rig_checks": 21,
+    "village_scene_checks": 222,
+    "village_economy_checks": 337,
+    "discovery_helper_tests": 11,
+    "negative_cases": 57,
+    "complete_38_image_readonly_replay": true,
+    "all_38_images_newly_rendered_on_this_commit": false,
+    "physical_android_fps_measured": false,
+    "evidence": "https://github.com/Ullmann27/lumo-godot/blob/71a4c1e2304b52005950b12490d070c286c45438/docs/integration/2026-11-14/HUB_ORIGINAL_AND_VILLAGE_RETURN.md"
+  },
+  "previous_native_local_acceptance": {
     "probes": 10,
     "original_pngs": 38,
     "passed": true,
     "runtime_assets_scenes_scripts_unchanged_from_tested_union": true,
     "physical_android_fps_measured": false,
     "evidence": "https://github.com/Ullmann27/lumo-godot/blob/7d53f29e68269c21d1d5a66bdf3d488f8e886970/docs/integration/2026-11-14/DISCOVERY_FINAL_VERIFICATION.md"
+  },
+  "second_combined_run": {
+    "host": "cf2593cb6dec51b66461c8e5984dfbfdd5091c22",
+    "run": 43582160954,
+    "passed": 2619,
+    "failed": 6,
+    "skipped": 0,
+    "rendered_pngs": 566,
+    "diktat_original_three_passed": true,
+    "apk_built": false,
+    "failure": "Six Village test cleanup invariants, after successful layout and native-launch assertions; fixed with SDK TargetPlatformVariant."
+  },
+  "focused_followup": {
+    "home": {
+      "source": "b5b7f6d9c2c33fd43234fc28fefd1f84f933dcea",
+      "run": 43584516810,
+      "home_navigation_tests": 13,
+      "world_tests": 8,
+      "status": "success"
+    },
+    "village": {
+      "source": "c54d9aa3a4dccab6c1cf677c9857abf77df66174",
+      "run": 43583899148,
+      "flutter_tests": 27,
+      "actual_android_host_compile": true,
+      "status": "success"
+    }
   }
 }
