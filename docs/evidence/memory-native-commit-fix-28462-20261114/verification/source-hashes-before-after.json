@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-11-14T19:30:00.810123+00:00",
+  "prepared_sources": [
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "bytes": 16091,
+      "sha256": "9238bc5a7966db2dccd39b819ade6925fef7270a44ae4308294769a75b178216",
+      "git_blob_sha": "6d691fffc24c70faf3a78d176cbba6b73b66c6a1",
+      "post_upload_local_match": true,
+      "full_utf8_readback_equal": true
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 3275,
+      "sha256": "dd00f01aabc503869540e396e757cb86538523dc6146a0ee54357235bbaca260",
+      "git_blob_sha": "ddbafa79864878446bc3efa064b71c81e252fc63",
+      "post_upload_local_match": true,
+      "full_utf8_readback_equal": true
+    },
+    {
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "bytes": 29908,
+      "sha256": "33331c4b0c804b803e22785e9f7a5e25fe3e3086913bc0e02beecf529f956c32",
+      "git_blob_sha": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b",
+      "post_upload_local_match": true,
+      "full_utf8_readback_equal": true
+    }
+  ],
+  "original_14_test": {
+    "path": "test/games/memory_preferences_durability_test.dart",
+    "bytes": 15378,
+    "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+    "git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758",
+    "unchanged": true
+  },
+  "product_files_outside_prepared_changed": false,
+  "dart_flutter_or_android_run": false
+}

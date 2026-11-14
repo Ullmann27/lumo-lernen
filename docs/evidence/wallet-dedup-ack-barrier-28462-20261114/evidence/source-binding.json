@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "source_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "source_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+  "tree_truncated": false,
+  "mode": "Exact immutable GitHub source text, independently recomputed UTF-8 byte count, SHA256 and Git blob identity; local originals are read-only copies.",
+  "sources": [
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 2632,
+      "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+      "git_blob_sha": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/lib/features/games/memory/memory_flutter_adapter.dart"
+    },
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "bytes": 14257,
+      "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+      "git_blob_sha": "472ab584531a4db5aebe3de91f8b87faa859e05c",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/lib/features/games/memory/memory_round.dart"
+    },
+    {
+      "path": "lib/features/games/memory/lumo_memory_game.dart",
+      "bytes": 52654,
+      "sha256": "b90ab76e89a1f8d2258e1085e96ab8b032651b75b650dd7c497807a74882c380",
+      "git_blob_sha": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/lib/features/games/memory/lumo_memory_game.dart"
+    },
+    {
+      "path": "lib/features/games/memory/memory_table_session.dart",
+      "bytes": 9373,
+      "sha256": "08fb0ae23a3ed5c532072e411102dd9ef9f2a5f430d1de954d1de42da5328b64",
+      "git_blob_sha": "1ea0737097ab024d4e91fbbf645a241af9001f9c",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/lib/features/games/memory/memory_table_session.dart"
+    },
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "bytes": 14366,
+      "sha256": "9a3b669a055b3764d42e58c0511ecfb7c03cd99ea42aa757ab2f77be9fd91045",
+      "git_blob_sha": "27e912f89e96905d40cebd98be1cc6632a0e4fe5",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/lib/core/reward_wallet_repository.dart"
+    },
+    {
+      "path": "test/games/memory_preferences_durability_test.dart",
+      "bytes": 15378,
+      "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+      "git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/test/games/memory_preferences_durability_test.dart"
+    },
+    {
+      "path": "test/games/memory_profile_storage_test.dart",
+      "bytes": 10767,
+      "sha256": "19f2c236ebcd24d64866d90d98567f18e498da1063211b0f0f8e2a7e6839f869",
+      "git_blob_sha": "5fa7cf5b882a20b85c31a2693e9fcff8cec21508",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/test/games/memory_profile_storage_test.dart"
+    },
+    {
+      "path": "test/table_games_wallet_profile_test.dart",
+      "bytes": 12489,
+      "sha256": "1d15b4610b84c3432cac20446be22f47884af749472fae45570c273a0aab9f3b",
+      "git_blob_sha": "2646c037d575b068a697e99c574ace047aaa57a3",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/test/table_games_wallet_profile_test.dart"
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "bytes": 57118,
+      "sha256": "e1c23a42f29bd7dc65df0eedf7b1e4611381484bff258c9be60a76d6f8715f54",
+      "git_blob_sha": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/lib/app/app_state.dart"
+    },
+    {
+      "path": "pubspec.lock",
+      "bytes": 24467,
+      "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97",
+      "git_blob_sha": "7843602e3d858660dc52d95587983858803976a5",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/pubspec.lock"
+    },
+    {
+      "path": "test/reward_wallet_transaction_test.dart",
+      "bytes": 21962,
+      "sha256": "fbb6759879533037d8d1044cb8232c711b50aa784d149f40c7170cdd63c19a27",
+      "git_blob_sha": "2419030446ada34710594160fc7f732669d97649",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/test/reward_wallet_transaction_test.dart"
+    },
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "bytes": 9797,
+      "sha256": "7062af9ecdcb3ecdccd428adadfb72a67e529e81cb670735b2b3f73042acf347",
+      "git_blob_sha": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/test/reward_wallet_queue_zone_test.dart"
+    },
+    {
+      "path": "lib/core/school_repository.dart",
+      "bytes": 8279,
+      "sha256": "c7fb332684b64339b70428d84d3e1485534e5029dafec8fabec5517e789756e5",
+      "git_blob_sha": "91e2bd74c742eddd877b111740a54550f05fe511",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/lib/core/school_repository.dart"
+    }
+  ],
+  "new_test_absent_in_source_tree": true,
+  "new_test_path": "test/reward_wallet_dedup_confirmation_test.dart"
+}

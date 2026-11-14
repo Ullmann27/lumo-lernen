@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "counts": {
+    "error": 0,
+    "warning": 5,
+    "info": 236
+  },
+  "total": 241,
+  "reported_seconds": 17.7,
+  "warnings": [
+    {
+      "line": 146,
+      "text": "warning • The declaration '_capturePhoto' isn't referenced. Try removing the declaration of '_capturePhoto' • lib/features/live/lumo_live_pro_screen.dart:343:16 • unused_element"
+    },
+    {
+      "line": 148,
+      "text": "warning • Unused import: '../../widgets/premium/lumo_magic_background.dart'. Try removing the import directive • lib/features/magic_hub/lumo_magic_hub_screen.dart:16:8 • unused_import"
+    },
+    {
+      "line": 177,
+      "text": "warning • The value of the field '_ink' isn't used. Try removing the field, or using it • lib/features/story/widgets/lumo_story_scene.dart:150:16 • unused_field"
+    },
+    {
+      "line": 186,
+      "text": "warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/design/denkprofil_knobel_before_after_capture_test.dart:11:8 • unused_import"
+    },
+    {
+      "line": 226,
+      "text": "warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/iq/iq_extended_adventure_test.dart:5:8 • unused_import"
+    }
+  ],
+  "scope": "The existing --no-fatal-infos --no-fatal-warnings policy remains unchanged. No error is present in this original analyzer output; warnings and infos are not treated as fixed."
+}

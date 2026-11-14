@@ -1,0 +1,41 @@
+{
+  "run_id": 43632642356,
+  "job_id": 132562421738,
+  "artifact_id": 14128956585,
+  "host": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "artifact_bytes": 2237,
+  "artifact_sha256": "49cf6579a25088d0dcad8d184ef30cb058843e2b11f665d12f5c39a51a750961",
+  "all_crcs_valid": true,
+  "members": [
+    {
+      "path": "HOST-SOURCE.txt",
+      "bytes": 41,
+      "crc32": "d92736b0",
+      "sha256": "7bc92089af826898a9c74d717f0da199b43d69f0c47f7436eb32d59ad3f5889b"
+    },
+    {
+      "path": "memory-round.log",
+      "bytes": 834,
+      "crc32": "fbe40361",
+      "sha256": "da4737e379cefeba29194af16da4cf5d00f2e862d560dbf54f8cd52f83ccea3b"
+    },
+    {
+      "path": "dart-version.txt",
+      "bytes": 81,
+      "crc32": "a9679d22",
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495"
+    },
+    {
+      "path": "memory-scheduler.log",
+      "bytes": 689,
+      "crc32": "8082ae07",
+      "sha256": "bd79138720f22b33bcdcbf10e0eb70bda5729a11e1922a783bc73fa22bc5a0a1"
+    },
+    {
+      "path": "quiz-round.log",
+      "bytes": 1785,
+      "crc32": "ab423993",
+      "sha256": "7429cc464b0ce54672578ea38c427db97e5539cf358495d57b1aa2865ee08981"
+    }
+  ]
+}

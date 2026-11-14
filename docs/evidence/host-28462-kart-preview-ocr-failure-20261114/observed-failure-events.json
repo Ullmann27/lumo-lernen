@@ -1,0 +1,22 @@
+[
+  "2026-11-14T18:46:43.5663063Z [TourEvidence] {\"step\": \"apk-identity\", \"ok\": true, \"apk_sha256\": \"6b04248ed099f652c4c305b6850637f785768dceb09bf6e34c04b0a10b5a4391\", \"flutter_source_commit\": \"28462a7547048b75fa114e6f5832248e54c94faa\", \"godot_revision\": \"29080ef8cd1a5b385eeeec97976fbefd31280427\", \"godot_pck_sha256\": \"bc90568560f428eb33c595891c82e5d0e6faba8f07b442ad2eb9f4ac679e8623\", \"versionName\": \"0.13.8\", \"versionCode\": 2020, \"signingCertificateSha256\": \"a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702\", \"checks\": {\"sha256_matches_provenance\": true, \"sha256_matches_build_sums\": true, \"flutter_source_is_this_commit\": true, \"tracked_source_clean\": true, \"godot_revision_is_pinned\": true, \"signing_certificate\": true, \"version_matches_pubspec\": true, \"x86_64_native_code\": true}}",
+  "2026-11-14T18:47:28.3140303Z [TourEvidence] {\"step\": \"launch\", \"ok\": true}",
+  "2026-11-14T18:48:13.3262722Z [TourEvidence] {\"step\": \"onboarding\", \"ok\": true}",
+  "2026-11-14T18:48:21.1336565Z [TourEvidence] {\"step\": \"navigate-start\", \"ok\": true, \"label\": \"Start\"}",
+  "2026-11-14T18:48:59.6612170Z [TourEvidence] {\"step\": \"atelier-roundtrip\", \"ok\": true, \"screen\": \"Real native-Android Flutter Zehnerbrücke\", \"observed\": [\"Hub\", \"Worked example\", \"Interactive ten-frame\", \"Model check\", \"Flutter return\"], \"screenshots\": [\"11_atelier_hub.png\", \"12_atelier_beispiel.png\", \"13_atelier_zehnerbruecke.png\"]}",
+  "2026-11-14T18:49:05.1105922Z [TourEvidence] {\"step\": \"navigate-lernen\", \"ok\": true, \"label\": \"Lernen\", \"visible_labels\": 50}",
+  "2026-11-14T18:49:10.4251441Z [TourEvidence] {\"step\": \"navigate-spiele\", \"ok\": true, \"label\": \"Spielen\"}",
+  "2026-11-14T18:49:49.4672040Z [TourEvidence] {\"step\": \"open-kart\", \"ok\": true, \"label\": \"Lumo Kart. Fahre mit Lumo um die Wette! Spielen\"}",
+  "2026-11-14T18:50:55.2135847Z [TourEvidence] {\"step\": \"start-kart-race\", \"ok\": false, \"error\": \"TimeoutExpired: Command '('tesseract', 'tour/ocr-work.png', 'tour/21_kart_preview_skip_touch-1-ocr-raw', '--psm', '11', '-l', 'deu+eng', 'tsv')' timed out after 1.7815502269999683 seconds\"}",
+  "2026-11-14T18:51:09.2511836Z [TourEvidence] {\"step\": \"return-from-kart\", \"ok\": true, \"capture\": \"23_zurueck_in_flutter.png\", \"foreground_is_flutter\": true}",
+  "2026-11-14T18:51:09.2655805Z [TourEvidence] {\"step\": \"learning-state-after-kart\", \"ok\": true, \"profile\": {\"id\": \"1794682076659401\", \"name\": \"LumoTest\", \"age\": 7, \"grade\": 1, \"createdAt\": \"2026-11-14T18:47:56.659401\"}, \"learning_keys_compared\": 2, \"learning_keys_added\": []}",
+  "2026-11-14T18:51:14.5050924Z [TourEvidence] {\"step\": \"lernen-usable-after-kart\", \"ok\": true, \"labels_before\": 39, \"labels_after\": 39, \"kept_fraction\": 1.0}",
+  "2026-11-14T18:51:26.2668998Z [TourEvidence] {\"step\": \"profile-after-kart\", \"ok\": true, \"profile_name_visible\": \"LumoTest\", \"observed_after_scrolls\": 4, \"source\": \"live Android accessibility tree\"}",
+  "2026-11-14T18:51:37.2062027Z [TourEvidence] {\"step\": \"restart-keeps-learning-state\", \"ok\": true, \"profile\": {\"id\": \"1794682076659401\", \"name\": \"LumoTest\", \"age\": 7, \"grade\": 1, \"createdAt\": \"2026-11-14T18:47:56.659401\"}, \"learning_keys_compared\": 2, \"learning_keys_added\": []}",
+  "2026-11-14T18:51:46.7258924Z [TourEvidence] {\"step\": \"display-fold_offen\", \"ok\": true, \"size\": \"1812x2176@420\"}",
+  "2026-11-14T18:51:55.1300764Z [TourEvidence] {\"step\": \"display-fold_aussen\", \"ok\": true, \"size\": \"904x2316@420\"}",
+  "2026-11-14T18:52:04.5001323Z [TourEvidence] {\"step\": \"display-quer\", \"ok\": true, \"size\": \"2400x1080@420\"}",
+  "2026-11-14T18:52:09.9051911Z   \"error\": \"RuntimeError: Hard failure: crashes=0 failed=['start-kart-race'] not_reached=['race-running', 'race-hud', 'race-drive', 'pause-menu'] alive=True\",",
+  "2026-11-14T18:52:09.9076059Z       \"error\": \"TimeoutExpired: Command '('tesseract', 'tour/ocr-work.png', 'tour/21_kart_preview_skip_touch-1-ocr-raw', '--psm', '11', '-l', 'deu+eng', 'tsv')' timed out after 1.7815502269999683 seconds\"",
+  "2026-11-14T18:52:15.2231915Z Artifact lumo-unified-android-tour.zip successfully finalized. Artifact ID 14127109230"
+]

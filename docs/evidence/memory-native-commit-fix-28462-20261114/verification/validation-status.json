@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "status": "STATIC_REVIEW_AND_BYTE_BINDING_COMPLETE_RUNTIME_PENDING",
+  "new_defined_test_cases": 25,
+  "old_test_cases_changed": 0,
+  "local_dart_executions": 0,
+  "local_flutter_executions": 0,
+  "android_executions": 0,
+  "package_installations": 0,
+  "source_blob_creates": 3,
+  "full_utf8_source_readbacks": 3,
+  "refs_changed": 0,
+  "trees_created": 0,
+  "commits_created": 0,
+  "no_new_test_pass_claim": true,
+  "joint_wallet_dependency": {
+    "owner": "learning_worlds",
+    "path": "lib/core/reward_wallet_repository.dart",
+    "sha256": "737ba4778054657f5cb7d3efc109ff48175f6551486e7f4040f3add057ab13d9",
+    "purpose": "The final new Memory/AppState integration case requires the separately owned positive duplicate-result acknowledgement. Not included or modified by this package."
+  },
+  "tool_note": "A too-large command for unrelated tag-commit patches was rejected before process creation. Only explicit tag-resolution metadata and the needed original source files were saved; no original runtime/test log was produced or lost."
+}

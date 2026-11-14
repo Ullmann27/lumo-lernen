@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "checks": [
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "bytes": 14543,
+      "sha256": "737ba4778054657f5cb7d3efc109ff48175f6551486e7f4040f3add057ab13d9",
+      "git_blob_sha": "a0aa9a9bc0865c74b02d1284188df8e5c9c76a3c",
+      "unchanged_after_upload_and_full_utf8_readback": true
+    },
+    {
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "bytes": 13409,
+      "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+      "git_blob_sha": "4615f10622420d53dedb380ff4648e5692995861",
+      "unchanged_after_upload_and_full_utf8_readback": true
+    }
+  ],
+  "execution": "Only exact file hashing; no Dart or Flutter process."
+}

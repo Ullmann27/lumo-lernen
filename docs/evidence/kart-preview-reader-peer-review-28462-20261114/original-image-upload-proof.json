@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "completed_at_utc": "2026-11-14 19:30:29 UTC",
+  "operation": "Two serial immutable create_blob calls only",
+  "artifact": {
+    "run_id": 43626348513,
+    "job_id": 132548884489,
+    "artifact_id": 14127109230,
+    "archive_bytes": 49066838,
+    "archive_sha256": "f3a4f2272c4af921e4831a8b34b733ddaa4794175a3bc9c8bc4f0cd6c7c0c8bf",
+    "root_original_crc_binding": "qa/host-28462-kart-preview-ocr-failure-20261114/artifact-byte-binding.json"
+  },
+  "files": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/host-28462-kart-preview-ocr-failure-20261114/originals/21_kart_preview_skip_touch-0.png",
+      "artifact_entry": "21_kart_preview_skip_touch-0.png",
+      "bytes": 1914141,
+      "sha256": "fe92106b1a762a3ae7f90334f85e42a1d1572a6d90277829c5e4d65134d37486",
+      "git_blob_sha": "48c3210b0aa5190cdcc1eeeda25ac5360272ba18",
+      "target": "docs/evidence/host-28462-kart-preview-ocr-failure-20261114/originals/21_kart_preview_skip_touch-0.png",
+      "before_sha256": "fe92106b1a762a3ae7f90334f85e42a1d1572a6d90277829c5e4d65134d37486",
+      "after_sha256": "fe92106b1a762a3ae7f90334f85e42a1d1572a6d90277829c5e4d65134d37486",
+      "locally_computed_git_blob": "48c3210b0aa5190cdcc1eeeda25ac5360272ba18",
+      "confirmed_create_blob_sha": "48c3210b0aa5190cdcc1eeeda25ac5360272ba18",
+      "bytes_unchanged": true,
+      "encoding": "base64",
+      "personally_viewed_individually": true,
+      "binary_readback_performed": false
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/host-28462-kart-preview-ocr-failure-20261114/originals/21_kart_preview_skip_touch-1.png",
+      "artifact_entry": "21_kart_preview_skip_touch-1.png",
+      "bytes": 2231905,
+      "sha256": "8a83089eabacb1551f75d54ee2abe492ee41b5754653cf544f3d9d28a4051058",
+      "git_blob_sha": "826543d2190082d4c5ae8059c2097c7961ded89c",
+      "target": "docs/evidence/host-28462-kart-preview-ocr-failure-20261114/originals/21_kart_preview_skip_touch-1.png",
+      "before_sha256": "8a83089eabacb1551f75d54ee2abe492ee41b5754653cf544f3d9d28a4051058",
+      "after_sha256": "8a83089eabacb1551f75d54ee2abe492ee41b5754653cf544f3d9d28a4051058",
+      "locally_computed_git_blob": "826543d2190082d4c5ae8059c2097c7961ded89c",
+      "confirmed_create_blob_sha": "826543d2190082d4c5ae8059c2097c7961ded89c",
+      "bytes_unchanged": true,
+      "encoding": "base64",
+      "personally_viewed_individually": true,
+      "binary_readback_performed": false
+    }
+  ],
+  "count": 2,
+  "source_changes": false,
+  "tree_commit_ref_mutations": false,
+  "scope": "Unmodified original Android failure frames used by the exact OCR replay. No new Android run, touch or acceptance. Proposed docs destinations only; Root owns collision checking and atomic integration."
+}

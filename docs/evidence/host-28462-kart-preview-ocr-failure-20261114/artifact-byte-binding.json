@@ -1,0 +1,1037 @@
+{
+  "run_id": 43626348513,
+  "job_id": 132548884489,
+  "artifact_id": 14127109230,
+  "bytes": 49066838,
+  "sha256": "f3a4f2272c4af921e4831a8b34b733ddaa4794175a3bc9c8bc4f0cd6c7c0c8bf",
+  "all_crc_verified": true,
+  "member_count": 171,
+  "members": [
+    {
+      "path": "01_erster_start.png",
+      "bytes": 56156,
+      "crc32": "32b58e61",
+      "sha256": "c07583c66ea7bfeec2c44a56cc72366180d0ef083d223f70578c8b943ae756b7"
+    },
+    {
+      "path": "07_home_after_onboarding-render-candidate-1.png",
+      "bytes": 20720,
+      "crc32": "974de76d",
+      "sha256": "fe650749f655225d446e6274aaeff57d96aedcea5f25f0d696ae37335d450410"
+    },
+    {
+      "path": "07_home_after_onboarding-render-candidate-2.png",
+      "bytes": 21249,
+      "crc32": "71453add",
+      "sha256": "a1907de53d1737c2f98a491854e9238dbb3e550e673a32c493bca6d1e4a3e7fd"
+    },
+    {
+      "path": "07_home_after_onboarding-render-readiness.json",
+      "bytes": 1335,
+      "crc32": "9077bf58",
+      "sha256": "f06243c19ac3f87988e1e13739f3e1c7ac32ca91af6450b695e28be189994909"
+    },
+    {
+      "path": "07_home_after_onboarding.png",
+      "bytes": 3102222,
+      "crc32": "c0f0c33e",
+      "sha256": "1f85564f4b8c9520e58df530c21389e428a57f511c6b0c7a9a15539b5ab2254e"
+    },
+    {
+      "path": "08_games_after_navigation.png",
+      "bytes": 870369,
+      "crc32": "589f6800",
+      "sha256": "7e7d9b03e60067e59038e2a0be5a36ba3ef8e461d67fc935ddd588d4b096eb4f"
+    },
+    {
+      "path": "10_lernen-render-readiness.json",
+      "bytes": 528,
+      "crc32": "39b6b6f4",
+      "sha256": "992431b9f5ca507cb4fcc446f539dc7d1f61751fc9f4a5988753a81754e51221"
+    },
+    {
+      "path": "10_lernen.png",
+      "bytes": 1893769,
+      "crc32": "d14544e1",
+      "sha256": "bd107a5c3504d772a534148ddffb7dc12ce6bef2935960c58a2e7174824d4768"
+    },
+    {
+      "path": "10_start-render-readiness.json",
+      "bytes": 526,
+      "crc32": "9502d4d2",
+      "sha256": "e746bd04a09b41b85008fea493e70fe77cf592c6c8224a649da6df16446e45bc"
+    },
+    {
+      "path": "10_start.png",
+      "bytes": 3102230,
+      "crc32": "0af3dbf2",
+      "sha256": "1f0b0e889112dbd2911f8e6ba29dcca382a620ff7ca5b7600c2843533bf9f74e"
+    },
+    {
+      "path": "11_atelier_hub-render-readiness.json",
+      "bytes": 538,
+      "crc32": "62645f2a",
+      "sha256": "085b859b46d6d95040b860c126cb3f0a7d238370f38f53fb16fdef65b2e364bd"
+    },
+    {
+      "path": "11_atelier_hub.png",
+      "bytes": 469154,
+      "crc32": "fc992fd9",
+      "sha256": "3d08177f247ed35b1d03a471834dddfe40b0205ef5ced8a628826753db41d311"
+    },
+    {
+      "path": "12_atelier_beispiel-render-readiness.json",
+      "bytes": 547,
+      "crc32": "a153b806",
+      "sha256": "97576448edc8297ab74e1bfd3e983ffa0b66349e16c837905df8c7ec3950b8ff"
+    },
+    {
+      "path": "12_atelier_beispiel.png",
+      "bytes": 347944,
+      "crc32": "c2eb1ed5",
+      "sha256": "4d483e00e74263d1b5b5196471292183ca5631ccbf998367c9842f3b7a8b81e4"
+    },
+    {
+      "path": "13_atelier_zehnerbruecke-render-readiness.json",
+      "bytes": 558,
+      "crc32": "1e6860d9",
+      "sha256": "f346544d0aa821ff5d158511ac5f6c50b4c9d8e15d8bbfc34f75039b4a214bcd"
+    },
+    {
+      "path": "13_atelier_zehnerbruecke.png",
+      "bytes": 679901,
+      "crc32": "1a55dd81",
+      "sha256": "11f4a057c489a8a4a8c29193dd895cec3b6ad1e1e1cea93bba2878f4061303f6"
+    },
+    {
+      "path": "20_spiele-render-readiness.json",
+      "bytes": 526,
+      "crc32": "bb0f0d94",
+      "sha256": "3a79daf8777c349b22e1b39f1fc03876def812ab854f27a9dca0f471ab95ad02"
+    },
+    {
+      "path": "20_spiele.png",
+      "bytes": 1936189,
+      "crc32": "dcfe0edc",
+      "sha256": "1d3eefe9cc98676aebe4b3de4997b4be9339c556afa96a9da4cdf65db1b0b634"
+    },
+    {
+      "path": "21_kart_premium_start.png",
+      "bytes": 887427,
+      "crc32": "1146ca49",
+      "sha256": "51e7a1a957c3abb356553b9e18571e04727cb5e69e8ff1d621234a37ba4b36f8"
+    },
+    {
+      "path": "21_kart_preview_skip.json",
+      "bytes": 3118,
+      "crc32": "2ccf5315",
+      "sha256": "9ed7f0994f7becbf5bf67779df4ac927342fa777544f581fe2f0356a757c481c"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-components.json",
+      "bytes": 2769,
+      "crc32": "645b80eb",
+      "sha256": "6b918ff01f5d0dd80a3f5502f876f7d54940fdcbd170cf829fdb5a9c4d9b1652"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-contrast.tsv",
+      "bytes": 5529,
+      "crc32": "7e08d649",
+      "sha256": "db649528729f0782b251552cb02cc78785be67c2689f4fa5a58262c1abda1f5a"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-gold-component-0.png",
+      "bytes": 26083,
+      "crc32": "a962d0f8",
+      "sha256": "62f83751afb62b48e659a4ad38104d17497990ee84058a63c607e413e669e337"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-gold-component-0.tsv",
+      "bytes": 234,
+      "crc32": "4f2d886f",
+      "sha256": "f3f2282cdf00314aec67d5ac63ac7f9f7c4c1210a67d86060c2549aa1c5cd6f7"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-gold-component-1.png",
+      "bytes": 20682,
+      "crc32": "9188aeee",
+      "sha256": "4a11a49f62b274dce24ae1cec675804a9d713c043e9bdc755d9057117ce14432"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-gold-component-1.tsv",
+      "bytes": 232,
+      "crc32": "466b412f",
+      "sha256": "9a23e11bef22ce437f557ca5a0d96f458608a313cdc64b50e2f799807ed4802e"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-gold-component-2.png",
+      "bytes": 4060,
+      "crc32": "b7aa68d3",
+      "sha256": "7759499089b499593966bb0a20de8a9c41a5569a5b01f134d8e4f1a8d33d87ec"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-gold-component-2.tsv",
+      "bytes": 228,
+      "crc32": "e8f68ddc",
+      "sha256": "c9543c22613b1e4c4dce1be4cc8365095bbba04651548fd7303c93a0c1eaeb02"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-gold-component-3.png",
+      "bytes": 7553,
+      "crc32": "e07555c1",
+      "sha256": "e13c196fcfcb1698f7f2b6961aa3e96487b8b99b7c723d8ed9ce6b26c4c80eb1"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-gold-component-3.tsv",
+      "bytes": 222,
+      "crc32": "382ab16f",
+      "sha256": "09b6420798633487c21432de5038de8ab03013b23dcc35e1f7417b1a9e573437"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-gold-component-4.png",
+      "bytes": 2588,
+      "crc32": "35f022fc",
+      "sha256": "10d2227d7e966795b1165631705443d2aaa92c2d3f1aa2785ee2aca283200bc7"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-gold-component-4.tsv",
+      "bytes": 287,
+      "crc32": "2289f556",
+      "sha256": "e6fa89ffcbca008b0af91ec1ff8fbc2f62e30d69a99a04e85da0bb60c5bb9cf5"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-gold-component-5.png",
+      "bytes": 7600,
+      "crc32": "9628c4c6",
+      "sha256": "834354843b24ca8e768cf04e085afe0ef5a9358cbf2616a7b1c92de1bf273d48"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-gold-component-5.tsv",
+      "bytes": 225,
+      "crc32": "8cbcf1ed",
+      "sha256": "bf3766cc6e9f5d106d0d3b8c7c78308836249361271805982f632788de501e9c"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-navy-latin-1x.tsv",
+      "bytes": 2078,
+      "crc32": "27bd8086",
+      "sha256": "ddbc9287645650a918fbf6c1147b4aa12e75ec46f72624545dddb722cd592daf"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-navy-latin.tsv",
+      "bytes": 1356,
+      "crc32": "b9628933",
+      "sha256": "e324cc5fcf9827467eeebd9ae6212430eb88fa320c2e6e38333daea5f73a5ace"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-teal-text-1x.tsv",
+      "bytes": 3277,
+      "crc32": "5ebe0790",
+      "sha256": "d2ef59abb5e26a4685dd8bc74932cbeb8c424fccbd2a9352bef6b0f62d71e289"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-raw.tsv",
+      "bytes": 8044,
+      "crc32": "e3101306",
+      "sha256": "b0323dbee952f78a81583f219cd5f2a63c0667ebe7d96bedc8b3af3c1e259ba1"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-tiles.json",
+      "bytes": 5153,
+      "crc32": "4061ba2b",
+      "sha256": "f065e89232063bfba5acc68cd2cd3cacecdcc8b0562177c34a927c59b170e93f"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 42554,
+      "crc32": "da92ce82",
+      "sha256": "3e221c50062d04b9b616e95357dbc0156fa82f997c03cae3bc5067693f920ad2"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 579,
+      "crc32": "c0183062",
+      "sha256": "ec6f5e3159cf634652d03bb65fcf7fc54bc4104c16e7679ee12f536989acf1ec"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1750,
+      "crc32": "05b7b5ab",
+      "sha256": "275afc75384b6ab5f03c437d23ade0f3b65721a482e51cbaaa82aa8c00a16569"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 69372,
+      "crc32": "6fcd4521",
+      "sha256": "423c003cb34a1a6f4751afc2604d52cf2c3f80ded65a4124ce3a0565698cac28"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 128328,
+      "crc32": "c78f0d83",
+      "sha256": "af1f56db86b0a785a682efbd4a1eab47d164af1a552a04756179de664da9fbee"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 4006,
+      "crc32": "17cdf142",
+      "sha256": "dfd185dac2a12c95fcce3824082eece0ac820f9e479383ffce0b6f4d2bc58139"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 171251,
+      "crc32": "9e08a302",
+      "sha256": "e93cf3ea72a63ed1295d11f3cda1aa2f53466386e7c29d3bb4cf936dc5c5356d"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 5852,
+      "crc32": "9273bd82",
+      "sha256": "7e2835489e3a5afd5eff8be1ba22574ff57de0cee191721f7813e828bda2ca50"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 35432,
+      "crc32": "d8a0df22",
+      "sha256": "0554e3dd23e53661fa46d186a3b1aeba2c1a97d1ec45328d0dec8017bb1df504"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 565,
+      "crc32": "74fe077d",
+      "sha256": "a480ecf0b693d80f860d7b2532e88291c2a0fb9c368217f4c7c82777fc433530"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 107811,
+      "crc32": "d0f970eb",
+      "sha256": "98b2309ff650ca2a0d9e21e51104eee5ef1d184f8e7728a4c9f534ee31ca4ca0"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 3832,
+      "crc32": "1aaa70f0",
+      "sha256": "4c01635de9de4a23ebf6dc351354ccb64318a06280bcd96bd73e95ce6af9e7d7"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-tile-0.png",
+      "bytes": 42002,
+      "crc32": "3001cdab",
+      "sha256": "73af69c93077c2f75b36801919e12340c6b609ec9bce8ac54b3a5f249c533b90"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 996,
+      "crc32": "d83859e5",
+      "sha256": "49839a8c5986698d8b057463cacaad66446b2ce508a7e342a99024c7a2457c1e"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-tile-1.png",
+      "bytes": 56483,
+      "crc32": "424a5066",
+      "sha256": "d41024d1b5f1a68d51889fea5e3601e1fcdb796c4c66f012b505265c42c4db42"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 1120,
+      "crc32": "b466b2b4",
+      "sha256": "c05bc05cb490d62f2f99896ca4165dfa8afa9c2b710faadbaf58da9983e886ef"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-tile-2.png",
+      "bytes": 102223,
+      "crc32": "d42bfb16",
+      "sha256": "c61fdfccc8fce5ae0fde57491f3064e507439607823fde9b92cbdb1797961e48"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 3112,
+      "crc32": "6db1611f",
+      "sha256": "826b835b3bbba6e15764432391d01f5b615a43ed30d512363e9e0600c0fcae19"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-tile-3.png",
+      "bytes": 133163,
+      "crc32": "7012d318",
+      "sha256": "252cb5b1721ab484e44fce8acd2e299dce53d0eab65196815a3747b044000e1e"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 2734,
+      "crc32": "0bcd173f",
+      "sha256": "67d5785beb90085cd0a0925231a3500dff7162ecd2984fea2815388485ba4987"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-tile-4.png",
+      "bytes": 34975,
+      "crc32": "46f446d0",
+      "sha256": "4288c164bdb1686ef105d518a546e5f954da88bc54d87d760ebb2e27c62bf495"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 428,
+      "crc32": "ed44ecc9",
+      "sha256": "c51016f4590bfae6aa5d9cfd18238cfc60cc351fc7b18dc3fc9fae03beafa8b4"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 4187,
+      "crc32": "60690a72",
+      "sha256": "2c2eee5143259609ba7a58727677e18b90c98a213de99fe321404dee1e20a4e6"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin-tile-5.png",
+      "bytes": 98571,
+      "crc32": "2d5442c7",
+      "sha256": "1715fd4048da4b637b355690de8bd0873a3c153a376ce5254975a095a1135b3a"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-latin.tsv",
+      "bytes": 7108,
+      "crc32": "4f1d28c8",
+      "sha256": "9f08b90e0f766aa1ca2ae59cb4eda2134902e713ce79c04cfb1e185f697829cb"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-white-text.tsv",
+      "bytes": 7070,
+      "crc32": "000a028b",
+      "sha256": "e4d728745c8bbfee250e524d0a93d32e88b2a3d6872488e8174136ef221c2183"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr.json",
+      "bytes": 26042,
+      "crc32": "f9d6496b",
+      "sha256": "34e98174e3749e9d36ac464b9c6001b82da22ed39e122adbf5dd7452e7ed046e"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0.png",
+      "bytes": 1914141,
+      "crc32": "ed191fb8",
+      "sha256": "fe92106b1a762a3ae7f90334f85e42a1d1572a6d90277829c5e4d65134d37486"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-1-ocr-contrast.tsv",
+      "bytes": 8267,
+      "crc32": "59c138aa",
+      "sha256": "239bc106bb6bc66a4c93377f938d88071b20fbf332564519cd35fc1513b6a0ca"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-1-ocr-raw.tsv",
+      "bytes": 83,
+      "crc32": "55755e10",
+      "sha256": "4e2c6c2dfca00003e4b505ad08bd3bc9e53a70aa34ba9f06d98d3e444af7c9e8"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-1.png",
+      "bytes": 2231905,
+      "crc32": "ec1c14c9",
+      "sha256": "8a83089eabacb1551f75d54ee2abe492ee41b5754653cf544f3d9d28a4051058"
+    },
+    {
+      "path": "21_kart_preview_skip_touch-surface-readiness.json",
+      "bytes": 2036,
+      "crc32": "dfa898f0",
+      "sha256": "b9d6aa9e6e1ba7a68b62bc5ca0b038ce146f1849f0ec53c3ba78ebeda7d48697"
+    },
+    {
+      "path": "21_kart_real_touches.json",
+      "bytes": 104,
+      "crc32": "f42bfe32",
+      "sha256": "e533dd4a00b7fe4db7f7b77a9a9e64fbeafb850c62dd52cb15d5b901d4a9c6c2"
+    },
+    {
+      "path": "21_lumo_kart_12s.png",
+      "bytes": 2655051,
+      "crc32": "0e35a5bd",
+      "sha256": "834e2d35f38789dd27ed4be4b2f6d8dcb9838d16191eb2b6dcb9c85b0efbaeec"
+    },
+    {
+      "path": "21_lumo_kart_20s.png",
+      "bytes": 886769,
+      "crc32": "4151a2be",
+      "sha256": "3b208304f8a936a57236294b26dbd5bca4d060421bf6edadedabe6fadd5dd6bb"
+    },
+    {
+      "path": "21_lumo_kart_real_race.png",
+      "bytes": 1935959,
+      "crc32": "b68059a1",
+      "sha256": "f75b42aa55da23464f614d441d7e239495efec06ec301bd990fadbbb1cba85c5"
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-return.json",
+      "bytes": 466,
+      "crc32": "d6cae435",
+      "sha256": "32da005a95aef9766a3ed5c1e3e6005b4c6296b16a871c0d584c2f2c7c4ab539"
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-visible-0-ocr-contrast.tsv",
+      "bytes": 6344,
+      "crc32": "7340f483",
+      "sha256": "5745c04f5f614d6edc81fc86f80a5087857360eb3cf5a0b99488887a6c6c9d4a"
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-visible-0-ocr.json",
+      "bytes": 4992,
+      "crc32": "50a9403b",
+      "sha256": "2cad05bf9ca6ac34fa16e0512d6b54d9e8325b0113ea4a7ef5c8e69da149d070"
+    },
+    {
+      "path": "23_zurueck_in_flutter.png",
+      "bytes": 1928793,
+      "crc32": "4c92baec",
+      "sha256": "e8b3a1080cfcb32c0fd4f80b74f42217647cac5a3cc18155815252263751a41d"
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-visible-0.png",
+      "bytes": 1928793,
+      "crc32": "4c92baec",
+      "sha256": "e8b3a1080cfcb32c0fd4f80b74f42217647cac5a3cc18155815252263751a41d"
+    },
+    {
+      "path": "24_lernen_nach_kart.png",
+      "bytes": 1893482,
+      "crc32": "de9c774a",
+      "sha256": "f11becf619c86ffc07e75dd0b378a6f2ed465f5acab0c22a0300d33c5c817cc1"
+    },
+    {
+      "path": "25_start_nach_kart.png",
+      "bytes": 3098868,
+      "crc32": "371b4a0b",
+      "sha256": "bfc842695ad3c1b453fb7f4bfb821c7d24bcda9421c0c755e98b3b369069be30"
+    },
+    {
+      "path": "26_neustart.png",
+      "bytes": 3101602,
+      "crc32": "96a054fe",
+      "sha256": "c4f3fee8edbebe19696e796b27b50c75cb8831f7075bc6e196f31e36aba67344"
+    },
+    {
+      "path": "30_fold_aussen.png",
+      "bytes": 2562811,
+      "crc32": "aec0ef45",
+      "sha256": "2956afb12c8253666692ca5f5cd88d0b35da3bcc9e1807eeeb4f1518d56538d5"
+    },
+    {
+      "path": "30_fold_offen.png",
+      "bytes": 4267128,
+      "crc32": "e605a27a",
+      "sha256": "38378309c7c3017e35d3d419aa0762039e4e3b7e894b1b87f8fd00c08d8ab485"
+    },
+    {
+      "path": "30_quer.png",
+      "bytes": 1826771,
+      "crc32": "e614e3dc",
+      "sha256": "e934e4ca392bdfc03e3d432a40d368ed4259fb2a852a9a3f8e122757de955203"
+    },
+    {
+      "path": "99_fehler.png",
+      "bytes": 3101680,
+      "crc32": "1aff70d1",
+      "sha256": "df44dee2521e7bebe04783f5eb0d86147253cf49941623d8941187fd1c6eb790"
+    },
+    {
+      "path": "after-kart-preferences.xml",
+      "bytes": 2011,
+      "crc32": "c919c58d",
+      "sha256": "5b3f4fdc0542c5934329569429fd19d9b76c34c1b3733e29d2877f66a354ca36"
+    },
+    {
+      "path": "after-restart-preferences.xml",
+      "bytes": 2011,
+      "crc32": "b23afbf8",
+      "sha256": "ac9ca0f2f82f3271c020a922ae03b9c4eee0cb5f435644f7e0e639321258c10f"
+    },
+    {
+      "path": "atelier-after-return.xml",
+      "bytes": 33089,
+      "crc32": "bc2db445",
+      "sha256": "33bde4f535c340a240d0e833c3c25ffc1e7efaaf13c57111810c6cb751bc0552"
+    },
+    {
+      "path": "atelier-build--1-0.xml",
+      "bytes": 21301,
+      "crc32": "44c8e390",
+      "sha256": "7530c93c54c78b9ebf2a312a9b27f8c84d7b57b1fdc9c5a6d0b6e03ae7cd64fc"
+    },
+    {
+      "path": "atelier-enter-bridge--1-0.xml",
+      "bytes": 23566,
+      "crc32": "fbdfe87d",
+      "sha256": "90ab6f730ddc1f0e1e24bd598525fa5f7246d44eff9fe7fbc32797eea91b82a0"
+    },
+    {
+      "path": "atelier-home-entry--1-0.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry--1-1.xml",
+      "bytes": 31799,
+      "crc32": "afd16702",
+      "sha256": "86cd14b6089454a17b0e757a3ca7831de0856c701f5adc0cf3420fec72683be7"
+    },
+    {
+      "path": "atelier-home-entry--1-10.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry--1-11.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry--1-12.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry--1-13.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry--1-14.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry--1-15.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry--1-16.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry--1-17.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry--1-18.xml",
+      "bytes": 31792,
+      "crc32": "ae52b5cd",
+      "sha256": "2db12fe76730e7c1a4e097715aa23b416692e1fcc0053647645ba0afa5623970"
+    },
+    {
+      "path": "atelier-home-entry--1-2.xml",
+      "bytes": 31799,
+      "crc32": "afd16702",
+      "sha256": "86cd14b6089454a17b0e757a3ca7831de0856c701f5adc0cf3420fec72683be7"
+    },
+    {
+      "path": "atelier-home-entry--1-3.xml",
+      "bytes": 31799,
+      "crc32": "afd16702",
+      "sha256": "86cd14b6089454a17b0e757a3ca7831de0856c701f5adc0cf3420fec72683be7"
+    },
+    {
+      "path": "atelier-home-entry--1-4.xml",
+      "bytes": 31799,
+      "crc32": "afd16702",
+      "sha256": "86cd14b6089454a17b0e757a3ca7831de0856c701f5adc0cf3420fec72683be7"
+    },
+    {
+      "path": "atelier-home-entry--1-5.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry--1-6.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry--1-7.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry--1-8.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry--1-9.xml",
+      "bytes": 31792,
+      "crc32": "ae52b5cd",
+      "sha256": "2db12fe76730e7c1a4e097715aa23b416692e1fcc0053647645ba0afa5623970"
+    },
+    {
+      "path": "atelier-home-entry-1-0.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "atelier-home-entry-1-1.xml",
+      "bytes": 35338,
+      "crc32": "7032eba6",
+      "sha256": "7222ec61b14473779f7583359c3601dca845d14e8dd5c2f6cb8b3a2c4361856e"
+    },
+    {
+      "path": "atelier-home-entry-1-2.xml",
+      "bytes": 33103,
+      "crc32": "dfa62137",
+      "sha256": "c55acf30b1f51050a02e80de3b74eb08449f529fa2932e5a7cdd082d6aa1a332"
+    },
+    {
+      "path": "atelier-home-entry-1-3.xml",
+      "bytes": 33139,
+      "crc32": "4f5545df",
+      "sha256": "0c16a4f991c869f607a4b3bf929f478c132e17ab6cf3443f83db5270577bf42b"
+    },
+    {
+      "path": "atelier-home-entry-1-4.xml",
+      "bytes": 33089,
+      "crc32": "bc2db445",
+      "sha256": "33bde4f535c340a240d0e833c3c25ffc1e7efaaf13c57111810c6cb751bc0552"
+    },
+    {
+      "path": "atelier-hub-0.xml",
+      "bytes": 23566,
+      "crc32": "fbdfe87d",
+      "sha256": "90ab6f730ddc1f0e1e24bd598525fa5f7246d44eff9fe7fbc32797eea91b82a0"
+    },
+    {
+      "path": "atelier-model-check-0.xml",
+      "bytes": 24439,
+      "crc32": "b6392068",
+      "sha256": "9786f3f7cc89866cf606550a6874d68bb591f2e0a7218352c8339b22d591cefd"
+    },
+    {
+      "path": "atelier-real-ten-frame-0.xml",
+      "bytes": 24439,
+      "crc32": "b6392068",
+      "sha256": "9786f3f7cc89866cf606550a6874d68bb591f2e0a7218352c8339b22d591cefd"
+    },
+    {
+      "path": "atelier-topic-list-0.xml",
+      "bytes": 23566,
+      "crc32": "fbdfe87d",
+      "sha256": "90ab6f730ddc1f0e1e24bd598525fa5f7246d44eff9fe7fbc32797eea91b82a0"
+    },
+    {
+      "path": "atelier-worked-example-0.xml",
+      "bytes": 21301,
+      "crc32": "44c8e390",
+      "sha256": "7530c93c54c78b9ebf2a312a9b27f8c84d7b57b1fdc9c5a6d0b6e03ae7cd64fc"
+    },
+    {
+      "path": "before-kart-preferences.xml",
+      "bytes": 1646,
+      "crc32": "fd72d70b",
+      "sha256": "70810a12bbf637a9bb0f371020efd8cbd0c103088a544af4197a5528bf35ee1b"
+    },
+    {
+      "path": "cold-start-launch.txt",
+      "bytes": 547,
+      "crc32": "197aadb2",
+      "sha256": "46008361c5b03a55c4a60d33d2ee2b48e32579a24146ec542d316989b2ef7635"
+    },
+    {
+      "path": "fatal-logcat.txt",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "home-to-games-0.xml",
+      "bytes": 31792,
+      "crc32": "5ee6171c",
+      "sha256": "74e9f3c951db30cd0bf81e5b8d44413f238f03481b7e4c3d00b3f1d448388856"
+    },
+    {
+      "path": "install.txt",
+      "bytes": 139,
+      "crc32": "edd78f25",
+      "sha256": "202799a6161c25edf64098173159684bb86aca0392295f0e05a267633092c02e"
+    },
+    {
+      "path": "installed-package-uid.txt",
+      "bytes": 59,
+      "crc32": "efd16759",
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a"
+    },
+    {
+      "path": "installed-package.txt",
+      "bytes": 8742,
+      "crc32": "251284b1",
+      "sha256": "31920867dc99cb4af1daa8be6f2dcfe44c32ed948bf117536f65a55fa211d4a2"
+    },
+    {
+      "path": "launcher-recovery.json",
+      "bytes": 225,
+      "crc32": "e1f91f87",
+      "sha256": "968ae96c2e8ef4f31057c8fd1f63c181e1cb4dc56e720c8bb67b32120cb96f57"
+    },
+    {
+      "path": "lernen-after-kart.xml",
+      "bytes": 31333,
+      "crc32": "7a58c1bc",
+      "sha256": "df7240f95206e62adbaf5e95145d2deed0031da2119e7acf12022f1a364dfff7"
+    },
+    {
+      "path": "lernen-before-kart.xml",
+      "bytes": 31335,
+      "crc32": "c1964c9c",
+      "sha256": "a6c27d008aa72c2279364ec3457253f4f045bd01e0d2c7f5eca37468bbaf6d2a"
+    },
+    {
+      "path": "logcat.txt",
+      "bytes": 2000026,
+      "crc32": "112ecc28",
+      "sha256": "221b0df59a7a76ef2cb604228ce400d6266947fcc3324ce01ee2f63cef441271"
+    },
+    {
+      "path": "mesa-renderer.txt",
+      "bytes": 1745,
+      "crc32": "e6c444b0",
+      "sha256": "6c0e2c4827301557837f696c6fbba615ac53791f2bf1132ae5d830143611396c"
+    },
+    {
+      "path": "nav-lernen-6--1-0.xml",
+      "bytes": 33089,
+      "crc32": "bc2db445",
+      "sha256": "33bde4f535c340a240d0e833c3c25ffc1e7efaaf13c57111810c6cb751bc0552"
+    },
+    {
+      "path": "nav-lernen-after-kart-6--1-0.xml",
+      "bytes": 28122,
+      "crc32": "d69a6cfc",
+      "sha256": "19d1904f4fb2c0f3ef7904c3395629de0700b958df63df817a07f8e6da089ae5"
+    },
+    {
+      "path": "nav-spiele-7--1-0.xml",
+      "bytes": 31335,
+      "crc32": "c1964c9c",
+      "sha256": "a6c27d008aa72c2279364ec3457253f4f045bd01e0d2c7f5eca37468bbaf6d2a"
+    },
+    {
+      "path": "nav-start-5--1-0.xml",
+      "bytes": 28121,
+      "crc32": "45e39e6d",
+      "sha256": "f6dce75820d8c9a8cba574961e58078384e8232760a74506e8ecd92c1fc4b121"
+    },
+    {
+      "path": "nav-start-after-kart-5--1-0.xml",
+      "bytes": 31333,
+      "crc32": "7a58c1bc",
+      "sha256": "df7240f95206e62adbaf5e95145d2deed0031da2119e7acf12022f1a364dfff7"
+    },
+    {
+      "path": "ocr-work.png",
+      "bytes": 199813,
+      "crc32": "3c4c6532",
+      "sha256": "5a174c1d0571f4ddee76755375cc9963933563802741446fd32a86e266bc1750"
+    },
+    {
+      "path": "onboard-age-next-0.xml",
+      "bytes": 24077,
+      "crc32": "09874ec3",
+      "sha256": "152989422805696bf5cfa0484c9d8fb5873411815e4f1150c12bbb02f063dbd8"
+    },
+    {
+      "path": "onboard-games-Spiele-0.xml",
+      "bytes": 28121,
+      "crc32": "45e39e6d",
+      "sha256": "f6dce75820d8c9a8cba574961e58078384e8232760a74506e8ecd92c1fc4b121"
+    },
+    {
+      "path": "onboard-grade-save-0.xml",
+      "bytes": 23271,
+      "crc32": "3cb65cdb",
+      "sha256": "b278ab027d923db835372307472d6817c57f087a6de2e4f653b9c75ffef923ec"
+    },
+    {
+      "path": "onboard-home-0.xml",
+      "bytes": 31794,
+      "crc32": "ccf93fec",
+      "sha256": "2e30370f75007e8d4f580e02c9b1fad20ba6fc5b55f4efc808b3a3a242c9fc9f"
+    },
+    {
+      "path": "onboard-ime-before-dismiss.xml",
+      "bytes": 95939,
+      "crc32": "7507d04d",
+      "sha256": "486592fa4cd628e18652fb11ff3482620cfd918b3379d2df40d35bbee93068d6"
+    },
+    {
+      "path": "onboard-name-next-0.xml",
+      "bytes": 22771,
+      "crc32": "f80ee1c1",
+      "sha256": "ec8470f357c486b976dfa7a51f763fc029abe667243a618bf4ed038ec0d01282"
+    },
+    {
+      "path": "onboard-name-written-1-0.xml",
+      "bytes": 95978,
+      "crc32": "9e4a7677",
+      "sha256": "727aef29030bddeef2156caa72a8316333443c6d45a5054883313d2d66927aad"
+    },
+    {
+      "path": "onboard-name-written-2-0.xml",
+      "bytes": 95915,
+      "crc32": "c9bfc88f",
+      "sha256": "e52eb976419bba49e197e31be0c68fca65914ff54b4003bad264b4cdc8b5d80a"
+    },
+    {
+      "path": "onboard-name-written-3-0.xml",
+      "bytes": 95919,
+      "crc32": "c9eac624",
+      "sha256": "9c70616dce0597a91694ac6e73ce55f7d6effadf7edd2a1c6bcbdb0624eb2001"
+    },
+    {
+      "path": "onboard-name-written-4-0.xml",
+      "bytes": 95922,
+      "crc32": "e4ebad8a",
+      "sha256": "633299653282242c4a43fe73f4a24f0adb4ab043d5e7f2c77d6e104a8718cb8f"
+    },
+    {
+      "path": "onboard-name-written-5-0.xml",
+      "bytes": 95925,
+      "crc32": "1d2aa47e",
+      "sha256": "3e704a1325807b7ce88295cac10d1169573802bbc3905ae39beb40d765235e63"
+    },
+    {
+      "path": "onboard-name-written-6-0.xml",
+      "bytes": 95926,
+      "crc32": "0bc9893d",
+      "sha256": "c4e97a41a059a69f66770de4e954b000a0ea5b3d803e3ada5c1b99d504a435d4"
+    },
+    {
+      "path": "onboard-name-written-7-0.xml",
+      "bytes": 95932,
+      "crc32": "ba86e21e",
+      "sha256": "b1ba4cb645c552daa6446c7eb30765ea7b6bcee42cfb74bf27b18b78bb8f6780"
+    },
+    {
+      "path": "onboard-name-written-8-0.xml",
+      "bytes": 95933,
+      "crc32": "14336dfd",
+      "sha256": "b238f55cd18471a350a094f6328c2183126538c1c528635ca8e655d471bd3e28"
+    },
+    {
+      "path": "onboard-name.xml",
+      "bytes": 22785,
+      "crc32": "318afa4f",
+      "sha256": "3a88966593392f761ac07d0c918acb0942123188e8447e7d21165463fd78f8e9"
+    },
+    {
+      "path": "onboard-welcome--1-0.xml",
+      "bytes": 17188,
+      "crc32": "82288aac",
+      "sha256": "8b5d13b70534f1467cf0c346932b8263c8e8ac810937f682487931f6d1064c38"
+    },
+    {
+      "path": "onboard-welcome--1-1.xml",
+      "bytes": 22445,
+      "crc32": "0e322687",
+      "sha256": "e449fd9b50be09b514023c0ce44b379609cbfd57adab2ec0235f6146b639d47d"
+    },
+    {
+      "path": "onboard-welcome-emulator-system-dialog.png",
+      "bytes": 806890,
+      "crc32": "3c04beb2",
+      "sha256": "9f0de9f4859c499ced7f96e993dd76efe853c9b1d4f311ed4b48e1ebb4a01556"
+    },
+    {
+      "path": "open-kart-47-1-0.xml",
+      "bytes": 28124,
+      "crc32": "87e84741",
+      "sha256": "bb83ae5401558b46ffccf40e2788173625703c435d39d1acd88a56301cf4fe5b"
+    },
+    {
+      "path": "restart-0.xml",
+      "bytes": 31793,
+      "crc32": "135babb9",
+      "sha256": "0825a624219f5b3bd63b5b40741cd6b88c5aed2475f887bbd2a6ecf4701b583e"
+    },
+    {
+      "path": "restart-after-kart-launch.txt",
+      "bytes": 545,
+      "crc32": "637bf5a6",
+      "sha256": "9c4287a66b1d283f5f599b85a70f22bc36a6e93dc71bbcec267b6a191d06dad9"
+    },
+    {
+      "path": "rooted-emulator.json",
+      "bytes": 1519,
+      "crc32": "4bd8d073",
+      "sha256": "f55ad19d3951643254691f6ceaf7cdc5e189b0f218c7b3bdaa6e3419f5601eb9"
+    },
+    {
+      "path": "start-after-kart-0.xml",
+      "bytes": 33087,
+      "crc32": "09470a87",
+      "sha256": "edf9087e2ce7d5b21814f5b1d7bfaa44c92d1f06c197d808ac53ecf83810a6f0"
+    },
+    {
+      "path": "start-after-kart-1.xml",
+      "bytes": 31349,
+      "crc32": "8deacafa",
+      "sha256": "c89a1ebb0fd6b845cb4bc4a333b11262de6ce947217c02465bc07a62dfe8133c"
+    },
+    {
+      "path": "start-after-kart-2.xml",
+      "bytes": 33571,
+      "crc32": "11db98e8",
+      "sha256": "85aed5b4762b976ad04db1580e33ea9480fb1a9e1092aaf878da5e1d96f2241c"
+    },
+    {
+      "path": "start-after-kart-3.xml",
+      "bytes": 34477,
+      "crc32": "bf831948",
+      "sha256": "7b5fcaef62271816a40a0feeda3b9e309635ed79f11c41b005f90fa0278d854c"
+    },
+    {
+      "path": "start-after-kart-4.xml",
+      "bytes": 31793,
+      "crc32": "3def7d71",
+      "sha256": "d5b034053a4be7fcaa7fd00ab15b9d357d33337dc5f5550bf3e2dd88a39d98cd"
+    },
+    {
+      "path": "tesseract-installed-languages.txt",
+      "bytes": 87,
+      "crc32": "d3854710",
+      "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850"
+    },
+    {
+      "path": "tested-apk-sha256.txt",
+      "bytes": 108,
+      "crc32": "c6793185",
+      "sha256": "c52ff09b594d4a6b2e91195ba526bba276a9b9ff14ac2528444c757311101d1e"
+    },
+    {
+      "path": "tour-result.json",
+      "bytes": 6352,
+      "crc32": "5ac30b99",
+      "sha256": "662d03f40a3035bf5e7f7b01a6cadc21c4073f3532dbbe099cb2d9797e3e7583"
+    },
+    {
+      "path": "uiautomator-config.json",
+      "bytes": 189,
+      "crc32": "bc079679",
+      "sha256": "3c2b165df27700f6d282f2c90f42d6f86de01328eed362defbc1f950e04ab8fe"
+    },
+    {
+      "path": "xvfb.log",
+      "bytes": 4696,
+      "crc32": "ef9e06c9",
+      "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+    }
+  ]
+}

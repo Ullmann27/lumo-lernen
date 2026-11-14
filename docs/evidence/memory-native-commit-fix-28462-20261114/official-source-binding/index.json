@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/host/pubspec.lock",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "path": "pubspec.lock",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/pubspec.lock",
+      "bytes": 24467,
+      "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97",
+      "git_blob_sha": "7843602e3d858660dc52d95587983858803976a5"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/host/memory_round.dart",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "path": "lib/features/games/memory/memory_round.dart",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/lib/features/games/memory/memory_round.dart",
+      "bytes": 14257,
+      "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+      "git_blob_sha": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/host/memory_flutter_adapter.dart",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 2632,
+      "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+      "git_blob_sha": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/host/memory_preferences_durability_test.dart",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "path": "test/games/memory_preferences_durability_test.dart",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/test/games/memory_preferences_durability_test.dart",
+      "bytes": 15378,
+      "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+      "git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/shared_preferences_android.pubspec.yaml",
+      "repository": "flutter/packages",
+      "commit": "9854cd5607da4001f2dd3cbdcd6903202d28958c",
+      "path": "packages/shared_preferences/shared_preferences_android/pubspec.yaml",
+      "url": "https://github.com/flutter/packages/blob/9854cd5607da4001f2dd3cbdcd6903202d28958c/packages/shared_preferences/shared_preferences_android/pubspec.yaml",
+      "bytes": 871,
+      "sha256": "dc1e3a3c64434412c0ddb32cca52ee94945feca76b2631ad185bf1c29da012b8",
+      "git_blob_sha": "36f60994a66478026cfc67f21f1cbf97602e678d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/shared_preferences_android.dart",
+      "repository": "flutter/packages",
+      "commit": "9854cd5607da4001f2dd3cbdcd6903202d28958c",
+      "path": "packages/shared_preferences/shared_preferences_android/lib/src/shared_preferences_android.dart",
+      "url": "https://github.com/flutter/packages/blob/9854cd5607da4001f2dd3cbdcd6903202d28958c/packages/shared_preferences/shared_preferences_android/lib/src/shared_preferences_android.dart",
+      "bytes": 3719,
+      "sha256": "d1eb332c709003363d07d6171eada10df9c0e66cfb8b354f9c156e8388ea6d78",
+      "git_blob_sha": "48f57ee6b9d35430efad88ee6a112aac2ac8cfbf"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/LegacySharedPreferencesPlugin.kt",
+      "repository": "flutter/packages",
+      "commit": "9854cd5607da4001f2dd3cbdcd6903202d28958c",
+      "path": "packages/shared_preferences/shared_preferences_android/android/src/main/kotlin/io/flutter/plugins/sharedpreferences/LegacySharedPreferencesPlugin.kt",
+      "url": "https://github.com/flutter/packages/blob/9854cd5607da4001f2dd3cbdcd6903202d28958c/packages/shared_preferences/shared_preferences_android/android/src/main/kotlin/io/flutter/plugins/sharedpreferences/LegacySharedPreferencesPlugin.kt",
+      "bytes": 6824,
+      "sha256": "864b788b5491fc3b00f4ef1b2d8f629f1f5d24af4df13baf50d3b42d27cb9841",
+      "git_blob_sha": "bbdb3ecbadb51f6f1454e987be78285146751b89"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/SharedPreferencesPlugin.kt",
+      "repository": "flutter/packages",
+      "commit": "9854cd5607da4001f2dd3cbdcd6903202d28958c",
+      "path": "packages/shared_preferences/shared_preferences_android/android/src/main/kotlin/io/flutter/plugins/sharedpreferences/SharedPreferencesPlugin.kt",
+      "url": "https://github.com/flutter/packages/blob/9854cd5607da4001f2dd3cbdcd6903202d28958c/packages/shared_preferences/shared_preferences_android/android/src/main/kotlin/io/flutter/plugins/sharedpreferences/SharedPreferencesPlugin.kt",
+      "bytes": 18965,
+      "sha256": "e637bce801bddbe3193f723be621712691265a851523e275f8fc293ea5b1cd3f",
+      "git_blob_sha": "31e9f236f4ac563c13f462a10ae5979fba77205b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/shared_preferences_legacy.dart",
+      "repository": "flutter/packages",
+      "commit": "371106fe7d9864a157fc9366f57d0b0e64fab932",
+      "path": "packages/shared_preferences/shared_preferences/lib/src/shared_preferences_legacy.dart",
+      "url": "https://github.com/flutter/packages/blob/371106fe7d9864a157fc9366f57d0b0e64fab932/packages/shared_preferences/shared_preferences/lib/src/shared_preferences_legacy.dart",
+      "bytes": 10990,
+      "sha256": "7ccdf3738704630a3d5d947ac73989403b167f3c6aa114b475e8e106f5de1045",
+      "git_blob_sha": "06d89f0010c86f640d19501c2a2a5183523b8039"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/aosp/SharedPreferencesImpl.java",
+      "repository": "aosp-mirror/platform_frameworks_base",
+      "commit": "4e43ad12e1b211f15152e9c5b16b0fe88e6b93f3",
+      "path": "core/java/android/app/SharedPreferencesImpl.java",
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/4e43ad12e1b211f15152e9c5b16b0fe88e6b93f3/core/java/android/app/SharedPreferencesImpl.java",
+      "bytes": 30970,
+      "sha256": "a1daeb52d3211428131f08ae236709059b3c46ab8d050a59d09a935e5ca6f8cd",
+      "git_blob_sha": "a87187b8affb4a8e36bfc28191a575502e78604f"
+    }
+  ],
+  "official_tag_resolution": "tag-resolutions.json",
+  "pub_archive_downloaded": false,
+  "installed_package_modified": false
+}

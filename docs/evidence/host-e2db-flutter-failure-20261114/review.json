@@ -1,0 +1,208 @@
+{
+  "schema": 1,
+  "status": "FAILED_BEFORE_TEST_EXECUTION",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_sha": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "host_tree": "944a412a34a09ef24c3fb65c118e8a678809758f",
+  "baseline_host_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "run_id": 43632642356,
+  "run_attempt": 1,
+  "job_id": 132562421770,
+  "job_name": "flutter-contracts",
+  "job_status": "completed",
+  "job_conclusion": "failure",
+  "job_started_at": "2026-11-14T19:32:28Z",
+  "job_completed_at": "2026-11-14T19:33:32Z",
+  "status_source": "metadata/jobs-initial-original.json (original REST attempt-1 job list; terminal state of this job, not a PASS string)",
+  "failed_step": {
+    "number": 6,
+    "name": "Analyze all Flutter sources",
+    "conclusion": "failure",
+    "command": "flutter analyze --no-fatal-infos --no-fatal-warnings",
+    "reported_elapsed_seconds": 18.2,
+    "exit_code": 1
+  },
+  "causes": [
+    {
+      "file": "lib/features/games/memory/memory_round.dart",
+      "line": 268,
+      "column": 26,
+      "code": "undefined_method",
+      "method": "confirmRoundReadback",
+      "reported_static_type": "MemoryStore",
+      "original_job_log_line": 459,
+      "original_artifact_analyzer_line": 117
+    },
+    {
+      "file": "lib/features/games/memory/memory_round.dart",
+      "line": 277,
+      "column": 26,
+      "code": "undefined_method",
+      "method": "confirmStatsReadback",
+      "reported_static_type": "MemoryStore",
+      "original_job_log_line": 460,
+      "original_artifact_analyzer_line": 118
+    }
+  ],
+  "analyzer": {
+    "errors": 2,
+    "warnings": 5,
+    "infos": 236,
+    "total_issues": 243,
+    "details_file": "analyzer-diagnostics.json",
+    "warnings_treated_as": "Existing command explicitly uses --no-fatal-warnings; no cleanup, suppression or fix performed by this review.",
+    "new_test_files_analyzer_errors": 0,
+    "new_test_files_execution": "Not reached; an absence of analyzer errors is not a testcase PASS."
+  },
+  "not_executed_steps": [
+    {
+      "number": 7,
+      "name": "Recheck durable wallet queues across caller zones and actual Memory profiles",
+      "conclusion": "skipped"
+    },
+    {
+      "number": 8,
+      "name": "Run actual Dart learning and table authorities",
+      "conclusion": "skipped"
+    },
+    {
+      "number": 9,
+      "name": "Recheck the observed Quiz UI and reward failures",
+      "conclusion": "skipped"
+    },
+    {
+      "number": 10,
+      "name": "Recheck actual Memory UI and unchanged profile/statistics behavior",
+      "conclusion": "skipped"
+    },
+    {
+      "number": 11,
+      "name": "Run the complete Flutter suite and every enabled capture",
+      "conclusion": "skipped"
+    },
+    {
+      "number": 12,
+      "name": "Verify tracked source remains exact",
+      "conclusion": "skipped"
+    }
+  ],
+  "new_test_scope": [
+    {
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "expected_cases": 25,
+      "status": "NOT_RUN",
+      "testStart_events": 0,
+      "testDone_events": 0
+    },
+    {
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "expected_cases": 14,
+      "status": "NOT_RUN",
+      "testStart_events": 0,
+      "testDone_events": 0
+    },
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "expected_cases": 6,
+      "status": "NOT_RUN",
+      "testStart_events": 0,
+      "testDone_events": 0
+    }
+  ],
+  "framework_test_summary": {
+    "passed": null,
+    "failed": null,
+    "skipped": null,
+    "reason": "The test command never ran. No machine JSONL or testStart/testDone stream exists in the complete 3-member failure artifact. Workflow-step skipped is not a framework testcase skipped count."
+  },
+  "historical_scope": "Prior 28462 FullFlutter and its ASR10/Memory14 individual results remain separate; none is transferred to this failed e2db run.",
+  "original_log": {
+    "bytes": 91649,
+    "sha256": "049df35c0b103f01009f3190fd26498e36ea2e1014c9da53dc5784319e2fbfac",
+    "git_blob_sha": "a482bbc42818bbb2166f7bc8877e9aea1f6f06d5",
+    "lines": 675,
+    "path": "original-flutter-job.log",
+    "fetch_count": 1,
+    "preservation": "Complete decoded UTF-8 GitHub job-log response, including the original BOM. No second log retrieval."
+  },
+  "artifact": {
+    "schema": 1,
+    "host_sha": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+    "run_id": 43632642356,
+    "job_id": 132562421770,
+    "artifact_id": 14128393124,
+    "archive_bytes": 4776,
+    "archive_sha256": "31f1c98d5c12cd07132a86aa5444318824f4d5722aef806f27e07c31bb5dde44",
+    "complete_archive_sha256_verified": true,
+    "all_entry_crc_verified": true,
+    "full_archive_entry_count": 3,
+    "files": [
+      {
+        "artifact_entry": "feature-evidence/HOST-SOURCE.txt",
+        "bytes": 41,
+        "sha256": "7bc92089af826898a9c74d717f0da199b43d69f0c47f7436eb32d59ad3f5889b",
+        "git_blob_sha": "0dfe1605bfc84d748e79a12408fae92f14b1c4c6",
+        "crc32": "d92736b0",
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/originals/feature-evidence/HOST-SOURCE.txt"
+      },
+      {
+        "artifact_entry": "feature-evidence/flutter-analyze.log",
+        "bytes": 52874,
+        "sha256": "bf27b1c7883e6e9ad74108b0cb4d6a35444a265023a17d27352819336cb0c787",
+        "git_blob_sha": "59cdc7d4617197b8c393a5eed9f7e5fbdd004a87",
+        "crc32": "21a1bc08",
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/originals/feature-evidence/flutter-analyze.log"
+      },
+      {
+        "artifact_entry": "feature-evidence/flutter-version.txt",
+        "bytes": 321,
+        "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+        "git_blob_sha": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b",
+        "crc32": "ef6cb86f",
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/originals/feature-evidence/flutter-version.txt"
+      }
+    ],
+    "download_count_from_github_connector": 1,
+    "machine_stream_present": false,
+    "limits": "Full small failure artifact verified. No large capture ZIP or range download was needed; test execution was skipped by the workflow."
+  },
+  "source_bindings": [
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "bytes": 16091,
+      "sha256": "9238bc5a7966db2dccd39b819ade6925fef7270a44ae4308294769a75b178216",
+      "git_blob_sha": "6d691fffc24c70faf3a78d176cbba6b73b66c6a1"
+    },
+    {
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "bytes": 29908,
+      "sha256": "33331c4b0c804b803e22785e9f7a5e25fe3e3086913bc0e02beecf529f956c32",
+      "git_blob_sha": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b"
+    },
+    {
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "bytes": 13409,
+      "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+      "git_blob_sha": "4615f10622420d53dedb380ff4648e5692995861"
+    },
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "bytes": 10816,
+      "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+      "git_blob_sha": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "bytes": 7651,
+      "sha256": "b4c04ffd59a131a0535ddfcd53f99887adfe77dfc73de6516d3126da787edcef",
+      "git_blob_sha": "829b819945d980e2082f478c1ddccea9463e3fa5"
+    }
+  ],
+  "scope_limits": [
+    "No product/test/workflow edit, local Dart/Flutter invocation, rerun or Git ref mutation.",
+    "No current 45-case PASS or full-suite total inferred from source additions.",
+    "No large capture archive or unnecessary range request; this complete failure ZIP is only 4776 bytes.",
+    "C owns the actual Memory correction and Root owns the other jobs; no concurrent modification or duplicate job-log download."
+  ],
+  "required_followup": "Use the corrected immutable host commit's next actual CI run to evaluate all 45 cases from real testStart/testDone pairs; this failure report stays unchanged."
+}

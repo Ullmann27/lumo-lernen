@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "baseline_source_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "baseline_source_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+  "scope": "Three existing result-ID duplicate acknowledgements require a positive identical-wallet persistence response; one new focused regression file. No load/fallback/queue/storage-schema changes.",
+  "validation_status": "Static source inspection and exact inverse-byte proof only. Fourteen parameterized cases prepared, not executed locally. Real Flutter CI required.",
+  "files": [
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-dedup-ack-barrier-28462-20261114/prepared/host/lib/core/reward_wallet_repository.dart",
+      "bytes": 14543,
+      "sha256": "737ba4778054657f5cb7d3efc109ff48175f6551486e7f4040f3add057ab13d9",
+      "git_blob_sha": "a0aa9a9bc0865c74b02d1284188df8e5c9c76a3c",
+      "baseline_git_blob_sha": "27e912f89e96905d40cebd98be1cc6632a0e4fe5",
+      "inverse_exact": true,
+      "changed_duplicate_guards": 3,
+      "mode": "100644"
+    },
+    {
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-dedup-ack-barrier-28462-20261114/prepared/host/test/reward_wallet_dedup_confirmation_test.dart",
+      "mode": "100644",
+      "bytes": 13409,
+      "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+      "git_blob_sha": "4615f10622420d53dedb380ff4648e5692995861",
+      "baseline_git_blob_sha": null
+    }
+  ]
+}

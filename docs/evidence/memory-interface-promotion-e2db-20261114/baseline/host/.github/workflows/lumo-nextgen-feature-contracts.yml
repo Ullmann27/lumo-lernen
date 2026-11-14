@@ -1,0 +1,172 @@
+name: LUMO Nextgen feature source acceptance
+on:
+  push:
+    branches: [chatgpt/lumo-nextgen-feature-20261114]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-nextgen-feature-source-${{ github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  flutter-contracts:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref_name == 'chatgpt/lumo-nextgen-feature-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Capture exact source and install the existing capture font
+        run: |
+          set -euo pipefail
+          mkdir -p feature-evidence .ci-results
+          git rev-parse HEAD > feature-evidence/HOST-SOURCE.txt
+          git rev-parse HEAD > .ci-results/source-sha.txt
+          flutter --version > feature-evidence/flutter-version.txt
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          test -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
+      - name: Resolve locked Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Analyze all Flutter sources
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee feature-evidence/flutter-analyze.log
+      - name: Recheck durable wallet queues across caller zones and actual Memory profiles
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+            test/reward_wallet_queue_zone_test.dart \
+            test/reward_wallet_transaction_test.dart \
+            test/games/memory_profile_storage_test.dart \
+            2>&1 | tee feature-evidence/wallet-zone-profile-regression.log
+      - name: Run actual Dart learning and table authorities
+        run: |
+          set -euo pipefail
+          dart run tool/check_native_english_activity.dart --out feature-evidence/english-activity.json 2>&1 | tee feature-evidence/english-authority.log
+          dart run tools/android_qa/quiz_round_contract.dart 2>&1 | tee feature-evidence/quiz-authority.log
+      - name: Recheck the observed Quiz UI and reward failures
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+            test/table_games_wallet_profile_test.dart \
+            test/quiz_native_roundtrip_lifecycle_test.dart \
+            test/quiz_play_extensions_test.dart \
+            test/quiz_category_lock_lifetime_test.dart \
+            test/quiz_show_live_ladder_lockin_test.dart \
+            test/quiz_premium_stage_layout_test.dart \
+            test/quiz_premium_stage_visual_capture_test.dart \
+            2>&1 | tee feature-evidence/quiz-observed-regressions.log
+      - name: Recheck actual Memory UI and unchanged profile/statistics behavior
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+            test/games/memory_result_frame_test.dart \
+            test/games/game_round_regression_test.dart \
+            test/games/memory_native_entry_test.dart \
+            test/games/memory_screen_test.dart \
+            test/games/memory_theme_pack_test.dart \
+            test/games/memory_2027_stage_test.dart \
+            test/games/memory_match_feedback_test.dart \
+            test/games/memory_controls_hittest_test.dart \
+            test/games/memory_profile_storage_test.dart \
+            2>&1 | tee feature-evidence/memory-ui-regression.log
+      - name: Run the complete Flutter suite and every enabled capture
+        run: python3 scripts/run_full_flutter_acceptance.py --output feature-evidence/full-flutter
+      - name: Verify tracked source remains exact
+        run: git diff --exit-code HEAD --
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-feature-flutter-evidence
+          path: |
+            feature-evidence/
+            .ci-results/quiz-premium-stage/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+  android-host-compile:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref_name == 'chatgpt/lumo-nextgen-feature-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
+        with:
+          packages: platform-tools
+      - name: Compile the actual Android classes including Memory and Quiz
+        run: bash scripts/compile_android_host.sh
+      - name: Verify local speech composition and cancellation with the compiled JVM toolchain
+        run: python3 -B scripts/run_speech_jvm_contracts.py --output host-compile-evidence/speech
+      - name: Exercise the private table transport using the compiled JVM toolchain
+        run: |
+          set -euo pipefail
+          python3 -B -m unittest discover -s scripts/tests -p test_table_games_native_contract.py -v 2>&1 | tee host-compile-evidence/table-native-contracts.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-feature-android-host-evidence
+          path: host-compile-evidence/
+          if-no-files-found: error
+          retention-days: 30
+
+  memory-source-contracts:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref_name == 'chatgpt/lumo-nextgen-feature-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Run real Quiz and Memory persistence, lifecycle and timing contracts
+        run: |
+          set -euo pipefail
+          mkdir -p memory-feature-evidence
+          git rev-parse HEAD > memory-feature-evidence/HOST-SOURCE.txt
+          dart --version > memory-feature-evidence/dart-version.txt 2>&1
+          memory_exit=0
+          if ! dart tools/android_qa/memory_round_contract.dart 2>&1 | tee memory-feature-evidence/memory-round.log; then
+            memory_exit=1
+          fi
+          if ! dart tools/android_qa/memory_turn_scheduler_contract.dart 2>&1 | tee memory-feature-evidence/memory-scheduler.log; then
+            memory_exit=1
+          fi
+          if ! dart tools/android_qa/quiz_round_contract.dart 2>&1 | tee memory-feature-evidence/quiz-round.log; then
+            memory_exit=1
+          fi
+          exit "$memory_exit"
+      - name: Verify original dealer and all tracked sources remain exact
+        if: always()
+        run: git diff --exit-code HEAD --
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-memory-source-evidence
+          path: memory-feature-evidence/
+          if-no-files-found: error
+          retention-days: 30

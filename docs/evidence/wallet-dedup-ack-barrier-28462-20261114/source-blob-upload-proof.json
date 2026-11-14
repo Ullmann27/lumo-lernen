@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "source_manifest_sha256": "cc62850fe02af6fc4f3551568eb6dfa0f329e6000e9019ea6558a3f4c27f0cf5",
+  "baseline_source_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "prepared_files": 2,
+  "phase": "IMMUTABLE_BLOBS_COMPLETE_FULL_UTF8_READBACK",
+  "checks": [
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "bytes": 14543,
+      "sha256": "737ba4778054657f5cb7d3efc109ff48175f6551486e7f4040f3add057ab13d9",
+      "git_blob_sha": "a0aa9a9bc0865c74b02d1284188df8e5c9c76a3c",
+      "create_response_sha": "a0aa9a9bc0865c74b02d1284188df8e5c9c76a3c",
+      "full_utf8_readback": true,
+      "complete_readback_matches_local_source_cache": true
+    },
+    {
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "bytes": 13409,
+      "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+      "git_blob_sha": "4615f10622420d53dedb380ff4648e5692995861",
+      "create_response_sha": "4615f10622420d53dedb380ff4648e5692995861",
+      "full_utf8_readback": true,
+      "complete_readback_matches_local_source_cache": true
+    }
+  ],
+  "mutation_scope": "Only create_blob; no Tree/Commit/Ref/PR created or changed. Product/test files remain identical to their manifest.",
+  "runtime_validation": "NOT_RUN; mandatory real Flutter CI pending."
+}

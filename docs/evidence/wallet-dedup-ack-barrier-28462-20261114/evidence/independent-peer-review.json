@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "observed_at_utc": "2026-11-14 19:27:35 UTC",
+  "host_baseline": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "status": "NO_ADDITIONAL_STATIC_BLOCKER_FOUND_EXECUTION_PENDING",
+  "reviewer_test_executions": 0,
+  "source_mutations_by_reviewer": false,
+  "scope": "Independent read-only review of the three duplicate-ID return branches, the complete new 14-case regression source, and the real AppState reward-drain/profile call chain.",
+  "sources": [
+    {
+      "path": "qa/wallet-dedup-ack-barrier-28462-20261114/baseline/host/lib/core/reward_wallet_repository.dart",
+      "bytes": 14366,
+      "sha256": "9a3b669a055b3764d42e58c0511ecfb7c03cd99ea42aa757ab2f77be9fd91045",
+      "git_blob_sha": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "path": "qa/wallet-dedup-ack-barrier-28462-20261114/prepared/host/lib/core/reward_wallet_repository.dart",
+      "bytes": 14543,
+      "sha256": "737ba4778054657f5cb7d3efc109ff48175f6551486e7f4040f3add057ab13d9",
+      "git_blob_sha": "a0aa9a9bc0865c74b02d1284188df8e5c9c76a3c"
+    },
+    {
+      "path": "qa/wallet-dedup-ack-barrier-28462-20261114/prepared/host/test/reward_wallet_dedup_confirmation_test.dart",
+      "bytes": 13409,
+      "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+      "git_blob_sha": "4615f10622420d53dedb380ff4648e5692995861"
+    }
+  ],
+  "exact_inverse": {
+    "matched": true,
+    "replacements": 3,
+    "statement": "Replacing only the three new _persist(current) blocks with their previous one-line returns reconstructs the freshly fetched exact28462 complete baseline."
+  },
+  "integration_sources_read": [
+    {
+      "path": "qa/memory-native-cache-adversarial-28462-20261114/originals/lib/app/app_state.dart",
+      "bytes": 57118,
+      "sha256": "e1c23a42f29bd7dc65df0eedf7b1e4611381484bff258c9be60a76d6f8715f54",
+      "git_blob_sha": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "path": "qa/memory-native-cache-adversarial-28462-20261114/originals/lib/core/school_repository.dart",
+      "bytes": 8279,
+      "sha256": "c7fb332684b64339b70428d84d3e1485534e5029dafec8fabec5517e789756e5",
+      "git_blob_sha": "91e2bd74c742eddd877b111740a54550f05fe511"
+    }
+  ],
+  "findings": [
+    "awardGameResult, awardQuizResult and the non-null-ID branch of awardLumoCardsResult validate their original input before the duplicate branch. A duplicate now awaits the existing _persist(current) and returns the same snapshot only after success.",
+    "No second credit, XP update, streak update, result-ID insertion or stream emission is performed by a duplicate. Normal non-duplicate _commit behavior, queue, load/fallback and generic reward caps are byte-identical.",
+    "The existing _persist fails on false and propagates exceptions. A newly loaded optimistic native snapshot can no longer clear a pending duplicate result merely because its ID is already present.",
+    "The 14 declared cases cover all three APIs waiting on an actual held platform write, each of false-after-memory, throw-after-memory and throw-after-commit through a fresh Dart cache/repository, and two real AppState-new-instance cases.",
+    "Tests preserve separate nativeMemory and durableDisk, generation tracking and whole-file commit semantics. They require an explicit positive retry, unchanged amounts and singleton result ID, no duplicate stream event, and a cold modeled disk reload after success.",
+    "The AppState tests deliberately avoid another profile-selection write after failure; otherwise that unrelated successful commit could flush the outstanding wallet and hide the missing-ACK defect.",
+    "SharedPreferences.resetStatic exists in the pinned2.5.5 source; test reset APIs and actual AppState captureLearningProfile/recordMemoryResult/hasPendingRewards/retryRewards signatures match the read source.",
+    "C's three Memory-to-AppState regression cases were also read and are compatible with this Wallet737ba477 source."
+  ],
+  "limits": [
+    "No local Dart/Flutter execution or formatting was performed; the14 declared cases and combined25Memory cases require actual CI.",
+    "This narrowly confirms a duplicate result's existing snapshot. It does not redesign Wallet.load, fallback, multiple repository instances, cross-engine writers or physical persistence guarantees.",
+    "Existing comments that speak generally about disk/crash safety are not newly substantiated by this source review."
+  ]
+}

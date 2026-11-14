@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "scope": "Only documentation of the exact two-line compiler correction; prepared source is independently confirmed. No new tests or runtime PASS.",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/README.md",
+      "path": "docs/evidence/memory-interface-promotion-e2db-20261114/README.md",
+      "bytes": 2805,
+      "sha256": "867d8782ab6f9fccf3dd6c0c01adf2e8aae7ecf647df4a8e475e7867875e8035",
+      "git_blob_sha": "8d0ae18cdab37018cd00465ecdb3809e9816a3a3"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/source-upload-manifest.json",
+      "path": "docs/evidence/memory-interface-promotion-e2db-20261114/source-upload-manifest.json",
+      "bytes": 1025,
+      "sha256": "c4d00cd830b8c1eea7788a8ceefac74e64e8fe054223f32c1ec1df2cb655397b",
+      "git_blob_sha": "83bc44b2a4c8c273ccf3acf77a24df91120c8487"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/source-confirmed-tree-inputs.json",
+      "path": "docs/evidence/memory-interface-promotion-e2db-20261114/source-confirmed-tree-inputs.json",
+      "bytes": 167,
+      "sha256": "e6073b7761fb904e53d5f764cb845ba407a6bea2cbcb6447df9904642ce0e40b",
+      "git_blob_sha": "5f98fd8804ea6ae6f2d4ad971a61c7379599bb3d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/source-blob-upload-proof.json",
+      "path": "docs/evidence/memory-interface-promotion-e2db-20261114/source-blob-upload-proof.json",
+      "bytes": 591,
+      "sha256": "3ec43550084f23057fb0e0b7b6e274d7aaf69e73ba9c1f69ed16960d07443c38",
+      "git_blob_sha": "e5ebd6cd1489ee8acf25e1615f67b109d12b653e"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/implementation-against-exact-e2db.patch",
+      "path": "docs/evidence/memory-interface-promotion-e2db-20261114/implementation-against-exact-e2db.patch",
+      "bytes": 688,
+      "sha256": "26d0c9eb73605f6f6edbdc33c7b2d7c75a910646752290bcb825ad4072f53108",
+      "git_blob_sha": "bc3159f6255dc0999cad2e1bfee155580a18007d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/evidence/source-and-compiler-binding.json",
+      "path": "docs/evidence/memory-interface-promotion-e2db-20261114/evidence/source-and-compiler-binding.json",
+      "bytes": 3001,
+      "sha256": "b2373ed0c2b05c0e53cbdbfda467a45288c15a991a6df9dfc345701454221e6f",
+      "git_blob_sha": "726ee5ab4cfdd832a7afc06f92c0d545bcfb16e2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/evidence/dart-version-original.txt",
+      "path": "docs/evidence/memory-interface-promotion-e2db-20261114/evidence/dart-version-original.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "git_blob_sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/evidence/flutter-version-original.txt",
+      "path": "docs/evidence/memory-interface-promotion-e2db-20261114/evidence/flutter-version-original.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob_sha": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/evidence/original-memory-round-compile.log",
+      "path": "docs/evidence/memory-interface-promotion-e2db-20261114/evidence/original-memory-round-compile.log",
+      "bytes": 834,
+      "sha256": "da4737e379cefeba29194af16da4cf5d00f2e862d560dbf54f8cd52f83ccea3b",
+      "git_blob_sha": "63f62f1559aa489e41b8f37b443a6216e47e37ba"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/evidence/peer-review-reference.json",
+      "path": "docs/evidence/memory-interface-promotion-e2db-20261114/evidence/peer-review-reference.json",
+      "bytes": 467,
+      "sha256": "256fce2602e8cd26c4998f633624968e02a8b170683ae73816ae909f796a638a",
+      "git_blob_sha": "4f9bb54a24e6d62e679edc06d10154b9ab02eaa0"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/baseline/host/lib/features/games/memory/memory_round.dart",
+      "path": "docs/evidence/memory-interface-promotion-e2db-20261114/baseline/host/lib/features/games/memory/memory_round.dart",
+      "bytes": 16091,
+      "sha256": "9238bc5a7966db2dccd39b819ade6925fef7270a44ae4308294769a75b178216",
+      "git_blob_sha": "6d691fffc24c70faf3a78d176cbba6b73b66c6a1"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/baseline/host/.github/workflows/lumo-nextgen-feature-contracts.yml",
+      "path": "docs/evidence/memory-interface-promotion-e2db-20261114/baseline/host/.github/workflows/lumo-nextgen-feature-contracts.yml",
+      "bytes": 7651,
+      "sha256": "b4c04ffd59a131a0535ddfcd53f99887adfe77dfc73de6516d3126da787edcef",
+      "git_blob_sha": "829b819945d980e2082f478c1ddccea9463e3fa5"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/baseline/host/pubspec.yaml",
+      "path": "docs/evidence/memory-interface-promotion-e2db-20261114/baseline/host/pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+      "git_blob_sha": "7f504396071cf3af57164187a29ea74b74c62413"
+    }
+  ],
+  "file_count": 13,
+  "total_bytes": 36397,
+  "manifest_self_target": "docs/evidence/memory-interface-promotion-e2db-20261114/evidence-upload-manifest.json",
+  "peer_review_owner_package": "qa/memory-interface-promotion-peer-review-e2db-20261114/upload-manifest.json",
+  "source_installation_targets": 0
+}

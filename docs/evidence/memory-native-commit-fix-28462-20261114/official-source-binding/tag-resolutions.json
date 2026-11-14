@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "source": "Fresh official GitHub tag resolution responses; large unrelated commit patches excluded.",
+  "resolutions": [
+    {
+      "tag": "shared_preferences_android-v2.4.28",
+      "commit": "9854cd5607da4001f2dd3cbdcd6903202d28958c",
+      "tree": "b14763f07d912f942ac41dc1ef3ce40d3f9793ab",
+      "html_url": "https://github.com/flutter/packages/commit/9854cd5607da4001f2dd3cbdcd6903202d28958c",
+      "original_response_bytes": 892533,
+      "original_response_sha256": "f8da08fd285e4700a65bf65df9323ee494def06779c913ac56508082e968e496",
+      "metadata_selection": true,
+      "full_response_file_persisted": false
+    },
+    {
+      "tag": "shared_preferences-v2.5.5",
+      "commit": "371106fe7d9864a157fc9366f57d0b0e64fab932",
+      "tree": "171c7185708bd34a2e209b08f491425d2f6f9de9",
+      "html_url": "https://github.com/flutter/packages/commit/371106fe7d9864a157fc9366f57d0b0e64fab932",
+      "original_response_bytes": 62824,
+      "original_response_sha256": "399aa6fa3bfd92c382547b9bc87fe425968bde7c84af9fe22fbca4b7c6ab970f",
+      "metadata_selection": true,
+      "full_response_file_persisted": false
+    },
+    {
+      "tag": "android-15.0.0_r1",
+      "commit": "4e43ad12e1b211f15152e9c5b16b0fe88e6b93f3",
+      "tree": "9583c6d9586b84169697623a44af09e8ac3d79b9",
+      "html_url": "https://github.com/aosp-mirror/platform_frameworks_base/commit/4e43ad12e1b211f15152e9c5b16b0fe88e6b93f3",
+      "original_response_bytes": 14415,
+      "original_response_sha256": "770aaecbeba86ca58f7930c358a5d3e84bc6bc83d554e3e80bc6193c5550eca7",
+      "metadata_selection": true,
+      "full_response_file_persisted": false
+    }
+  ]
+}

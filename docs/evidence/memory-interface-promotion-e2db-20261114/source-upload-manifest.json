@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "files": [
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/prepared/host/lib/features/games/memory/memory_round.dart",
+      "bytes": 16155,
+      "sha256": "e1911d59e58d92b92dbb56a1447702656dff491ae1a61edec051b976ce74af1d",
+      "git_blob_sha": "4844cabaa5ed881d8f29dbd7c9758f03ef510df4",
+      "baseline": {
+        "bytes": 16091,
+        "sha256": "9238bc5a7966db2dccd39b819ade6925fef7270a44ae4308294769a75b178216",
+        "git_blob_sha": "6d691fffc24c70faf3a78d176cbba6b73b66c6a1"
+      },
+      "mode": "100644",
+      "type": "blob",
+      "create_confirmed": true,
+      "full_utf8_readback_equal": true
+    }
+  ],
+  "changed_source_files": 1,
+  "changed_source_lines": 2,
+  "tests_changed": 0,
+  "interfaces_changed": 0,
+  "rules_changed": 0,
+  "new_execution": "PENDING_CI"
+}

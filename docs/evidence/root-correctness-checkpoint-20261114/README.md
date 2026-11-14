@@ -1,0 +1,15 @@
+# Speicherbestätigung, Fortsetzung und tatsächliche Negativläufe
+
+Stand: 14. November 2026, nach dem Featurelauf für 0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304. Dieses Paket bewahrt den Entwicklungsweg; es ist keine Android-Freigabe.
+
+Der gemeinsame Commit e2db0d60af51266caa9b54ffd08eb0947ae99ac6 ergänzt eine positive Plattformbestätigung für zuvor nur aus dem nativen Preferences-Cache wieder gelesene Memory-Daten und deduplizierte Wallet-Ergebnisse. Er enthält außerdem die bewachte Wiederholung fehlgeschlagener Vier-gewinnt-Botzüge bzw. Endbelohnungen und die enge OCR-Leserkorrektur für die tatsächliche Kart-Vorschau. Die neun Quelländerungen und ihre vollständigen Blob-Readbacks sind in den beigefügten Integrationsnachweisen gebunden.
+
+Der erste Featurelauf 43632642356 scheiterte vor den Fluttertests an zwei echten Dart-Typfehlern. Der nachfolgende Commit 0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304 ändert ausschließlich zwei explizite Interface-Casts innerhalb der bestehenden Typwächter. Im Nachfolgerlauf 43633267932 sind die Android-Host-Kompilierung und die separaten Memory-/Scheduler-/Quiz-Quellverträge erfolgreich. Der Flutter-Analyzer hat keine Fehler gemeldet; der fokussierte Regressionsschritt meldet jedoch 23 erfolgreiche und sieben fehlgeschlagene Fälle. Die vollständige Flutter-Suite und die 45 neu vorbereiteten Fälle wurden in diesen beiden Läufen noch nicht ausgeführt. Die vollständigen negativen Originalprotokolle bleiben erhalten.
+
+Vier aktuelle Wallet-Fehler betreffen bisherige Schlusszählungen zusätzlicher identischer Dedup-Bestätigungen. Beim Memory-Profiltest wird die neue Bestätigung beim Laden ebenfalls mitgezählt; eine vorzeitige Testassertion lässt dessen künstlichen Schreibgate offen. Zwei nachfolgende Fälle erreichen ihre Auswahloberfläche nicht. Eine getrennte Korrektur dieser Testverträge wird geprüft; dieses Paket behauptet ihren Erfolg nicht.
+
+Der separate Unified-Androidlauf 43626348513 auf Host28462/native29080 ist an der Texterkennung des Vorschauhinweises fehlgeschlagen. Seine zwei unveränderten Emulatorbilder, das Originalprotokoll und die vollständige ZIP-Mitgliedsbindung werden erhalten. Die 25 lokal ausgeführten Pythonfälle und die reale OCR-Wiederholung prüfen den Leser, ersetzen aber keinen Androidlauf.
+
+Der ältere Studio-Lauf 43626348519 hat seinen Builder erfolgreich beendet und ein APK-Artefakt erzeugt. Das beigefügte Builderprotokoll gehört ausdrücklich zu Host28462a7547048b75fa114e6f5832248e54c94faa. Die nachfolgenden Android-/Updateprüfungen waren bei diesem Checkpoint noch nicht abgeschlossen. Dieser ältere Build enthält die nachfolgenden Speicherkorrekturen nicht. Es wird weder eine Gesamtfreigabe noch ein APK-Ergebnis für 0d7e behauptet.
+
+Produktions-Main wurde durch diese Arbeiten nicht bewegt. Der Native-Pin bleibt 29080ef8cd1a5b385eeeec97976fbefd31280427. Plattform-API-Bestätigungen sind keine unmittelbaren fsync-, Mehrprozess- oder physischen Datenträgergarantien. Emulator- und Desktopprüfungen belegen keine 60 FPS, Temperatur- oder Eingabelatenzwerte auf einem physischen Galaxy Z Fold7.

@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "observed_at_utc": "2026-11-14T19:24:15.671488+00:00",
+  "status": "NO_ADDITIONAL_STATIC_BLOCKER_FOUND",
+  "scope": "Read-only review of Root-owned exact-caption OCR reader and two added Python cases; no test execution by reviewer, no Android run or new input.",
+  "host_baseline": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "original_failure": {
+    "run_id": 43626348513,
+    "job_id": 132548884489,
+    "artifact_id": 14127109230,
+    "archive_bytes": 49066838,
+    "archive_sha256": "f3a4f2272c4af921e4831a8b34b733ddaa4794175a3bc9c8bc4f0cd6c7c0c8bf",
+    "archive_validation": "Root original binding records all 171 CRCs checked; reviewer did not download the archive.",
+    "initial_remaining_seconds": 30.736421164000035,
+    "native_tap_timeout_seconds": 30.660388256000033,
+    "first_frame_captured_after_seconds": 2.748411,
+    "second_frame_captured_after_seconds": 26.714402,
+    "second_tesseract_timeout_seconds": 1.7815502269999683,
+    "original_status": "FAIL / NOT_ISOLATED"
+  },
+  "sources": [
+    {
+      "path": "qa/host-28462-kart-preview-ocr-failure-20261114/baseline/.github/probes/creative_android_probe.py",
+      "bytes": 60697,
+      "sha256": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+      "git_blob_sha": "45ff0d24400ee21673c707b4b6448f914c85ee87"
+    },
+    {
+      "path": "qa/host-28462-kart-preview-ocr-failure-20261114/prepared/.github/probes/creative_android_probe.py",
+      "bytes": 61949,
+      "sha256": "f14dc189b1cb6e45ed64bc3ec8a29e56772687323d46c8bea0154d79592d3afb",
+      "git_blob_sha": "8b977b3d2406cdc321655f61e1f34cbd673d4aa2"
+    },
+    {
+      "path": "qa/host-28462-kart-preview-ocr-failure-20261114/baseline/tools/android_qa/tests/test_kart_preview_skip.py",
+      "bytes": 26899,
+      "sha256": "4e7bc4dc1b0af3430009705840e3ee52b1cec987cb2a5c802b6c74ccef358a1a",
+      "git_blob_sha": "ca2477afc4708385e705645613d45e3374f829f7"
+    },
+    {
+      "path": "qa/host-28462-kart-preview-ocr-failure-20261114/prepared/tools/android_qa/tests/test_kart_preview_skip.py",
+      "bytes": 28548,
+      "sha256": "c9a9800b67d4dcc26fc9cd8b0963b0a727e3a819cc1fec6fd2c57d3e7c16de38",
+      "git_blob_sha": "55b7142cf0bb59cb7e75479a4c77abd7b6b42ba9"
+    }
+  ],
+  "structural_review": {
+    "fresh_github_baselines": "Both baseline files match independently fetched complete UTF-8 sources at exact Host28462.",
+    "changed_helper_definitions": [
+      "image_lines"
+    ],
+    "unchanged_helper_definitions": 22,
+    "unchanged_existing_test_and_fixture_definitions": 35,
+    "added_test_methods": [
+      "test_faded_preview_yields_to_fresh_frames_without_general_ocr_fallbacks",
+      "test_other_exact_captions_keep_the_existing_general_reader"
+    ],
+    "existing_test_cases_preserved": 23
+  },
+  "findings": [
+    "The branch is entered only for exact=True and the existing normalized full skip caption; unrelated exact or substring reads keep their prior generic behavior.",
+    "Both variants process the full current screenshot. The muted-blue mask uses only measured color ranges; OCR still supplies the actual words and measured TSV bounds. No fixed button location, inserted glyph, fabricated target text, or saved-state change is introduced.",
+    "The two generic fallback branches are bypassed only for this exact cue. A missing caption returns the actual OCR result and permits the unchanged native_tap loop to capture a fresh frame.",
+    "The absolute OCR deadline and native_tap deadline checks remain; native_tap, target_observation, capture source-hash verification and actual ADB action are unchanged. Original race-ready55s and subsequent race gates are not modified.",
+    "The final native_tap condition still needs two independently captured stable target observations. Two duplicate phrase entries from one TSV/frame are not two frame witnesses.",
+    "All 23 existing test cases remain, with two additions. The saved 25-case raw log was read, not repeated."
+  ],
+  "actual_replay_read": {
+    "report_sha256": "53cfd7f284410d35a042c3b40add6e28aee7e1beee7c0835ee050fa6c671179d",
+    "frame0_seconds": 3.20368,
+    "frame0_exact_matches": 0,
+    "frame1_seconds": 1.963594,
+    "frame1_observed_text": "Tippen zum Uberspringen",
+    "frame1_bounds": [
+      1123.0,
+      409.0,
+      1411.0,
+      431.0
+    ],
+    "frame1_variant": "preview-muted-blue",
+    "frame1_duplicate_entries": 2,
+    "independent_positive_original_frames": 1,
+    "actual_tesseract_invocations": 3,
+    "all_recorded_exits": 0,
+    "language_arguments": "deu+eng",
+    "new_touch_sent": false
+  },
+  "existing_test_log_read": {
+    "cases": 25,
+    "seconds": 2.114,
+    "result": "OK",
+    "reviewer_executed": false
+  },
+  "images": [
+    {
+      "path": "qa/host-28462-kart-preview-ocr-failure-20261114/originals/21_kart_preview_skip_touch-0.png",
+      "bytes": 1914141,
+      "sha256": "fe92106b1a762a3ae7f90334f85e42a1d1572a6d90277829c5e4d65134d37486",
+      "git_blob_sha": "48c3210b0aa5190cdcc1eeeda25ac5360272ba18",
+      "artifact_entry": "21_kart_preview_skip_touch-0.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "personally_opened": true,
+      "findings": "The full Sonnenhafen preview overlay and exact skip caption are visually present but noticeably translucent/dim; road scenery shows through the panel."
+    },
+    {
+      "path": "qa/host-28462-kart-preview-ocr-failure-20261114/originals/21_kart_preview_skip_touch-1.png",
+      "bytes": 2231905,
+      "sha256": "8a83089eabacb1551f75d54ee2abe492ee41b5754653cf544f3d9d28a4051058",
+      "git_blob_sha": "826543d2190082d4c5ae8059c2097c7961ded89c",
+      "artifact_entry": "21_kart_preview_skip_touch-1.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "personally_opened": true,
+      "findings": "The same skip caption is distinctly readable within the preview panel; the scene behind the panel has advanced. No tap or running-state conclusion follows from this still image."
+    }
+  ],
+  "evidence": [
+    {
+      "path": "qa/host-28462-kart-preview-ocr-failure-20261114/artifact-byte-binding.json",
+      "bytes": 33787,
+      "sha256": "a741693023a7a20ae02d16349e3366df3c8247585a5e1ed22d9ef05dbee922e0",
+      "git_blob_sha": "716f9bf0034a581321d6ac63e33b9ff2009dd966"
+    },
+    {
+      "path": "qa/host-28462-kart-preview-ocr-failure-20261114/actual-reader-replay/review.json",
+      "bytes": 2577,
+      "sha256": "53cfd7f284410d35a042c3b40add6e28aee7e1beee7c0835ee050fa6c671179d",
+      "git_blob_sha": "35e63af2a45b41c49b15c55e381f7f02d6603905"
+    },
+    {
+      "path": "qa/host-28462-kart-preview-ocr-failure-20261114/actual-preview-reader-unit.log",
+      "bytes": 4079,
+      "sha256": "2fe87c8eb776bdaa2655cfaf00ff46ed48048c5ff9d829181a761cb1907b68d1",
+      "git_blob_sha": "cf95ee4d56114564fed303725f6e99ff59585afd"
+    },
+    {
+      "path": "qa/host-28462-kart-preview-ocr-failure-20261114/originals/21_kart_preview_skip_touch-surface-readiness.json",
+      "bytes": 2036,
+      "sha256": "b9d6aa9e6e1ba7a68b62bc5ca0b038ce146f1849f0ec53c3ba78ebeda7d48697",
+      "git_blob_sha": "ddafbdb20e718045a5ce9d7407299e9c58447cc7"
+    },
+    {
+      "path": "qa/host-28462-kart-preview-ocr-failure-20261114/originals/21_kart_preview_skip.json",
+      "bytes": 3118,
+      "sha256": "9ed7f0994f7becbf5bf67779df4ac927342fa777544f581fe2f0356a757c481c",
+      "git_blob_sha": "8acead40ad77cc8f89dd8b76a3c8af79b12a1fd8"
+    }
+  ],
+  "limits": [
+    "No new Android acceptance, race-running success, timing guarantee on another runner, or physical-device FPS claim.",
+    "The actual original-image replay contains one negative frame and one positive frame; the new two-positive-frame interaction remains to be observed in Android CI.",
+    "The original failure remains preserved. No product, workflow, branch, ref or receipt was changed by the reviewer."
+  ]
+}

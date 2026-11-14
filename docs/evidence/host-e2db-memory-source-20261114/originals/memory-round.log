@@ -1,0 +1,10 @@
+lib/features/games/memory/memory_round.dart:268:26: Error: The method 'confirmRoundReadback' isn't defined for the type 'MemoryStore'.
+ - 'MemoryStore' is from 'lib/features/games/memory/memory_round.dart'.
+Try correcting the name to the name of an existing method, or defining a method named 'confirmRoundReadback'.
+      await confirmation.confirmRoundReadback(value);
+                         ^^^^^^^^^^^^^^^^^^^^
+lib/features/games/memory/memory_round.dart:277:26: Error: The method 'confirmStatsReadback' isn't defined for the type 'MemoryStore'.
+ - 'MemoryStore' is from 'lib/features/games/memory/memory_round.dart'.
+Try correcting the name to the name of an existing method, or defining a method named 'confirmStatsReadback'.
+      await confirmation.confirmStatsReadback(value);
+                         ^^^^^^^^^^^^^^^^^^^^

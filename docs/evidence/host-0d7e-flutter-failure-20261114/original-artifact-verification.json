@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "run_id": 43633267932,
+  "job_id": 132564402577,
+  "head_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "artifact_id": 14128997674,
+  "archive": {
+    "bytes": 7443,
+    "sha256": "874d49ace00e066c12e45c328c57e94a8fcc58b774b7f0d7a7bb44e8d597aa92",
+    "all_file_members_fully_read_crc_validated": true
+  },
+  "entries": [
+    {
+      "artifact_entry": "feature-evidence/HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "27679d136ba5b6ac231d406783c56b1ad5885aebda6f3cfff113bd83d5a75376",
+      "crc32": "6bec123d",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/originals/feature-evidence/HOST-SOURCE.txt"
+    },
+    {
+      "artifact_entry": "feature-evidence/flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "crc32": "ef6cb86f",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/originals/feature-evidence/flutter-version.txt"
+    },
+    {
+      "artifact_entry": "feature-evidence/flutter-analyze.log",
+      "bytes": 52328,
+      "sha256": "1a24e3e1f653318489065ff1bfde6ef6bcad33dab4727c8b9a0eca068835b7f2",
+      "crc32": "d08c0603",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/originals/feature-evidence/flutter-analyze.log"
+    },
+    {
+      "artifact_entry": "feature-evidence/wallet-zone-profile-regression.log",
+      "bytes": 19279,
+      "sha256": "7da11aa3d96c7b269e72c8b77df8dc3102ee44a853f1cc20987b72af6a6ec0b9",
+      "crc32": "86907d45",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/originals/feature-evidence/wallet-zone-profile-regression.log"
+    }
+  ]
+}

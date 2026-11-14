@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "status": "STATIC_REVIEW_AND_PREPARED_PATCH_NO_RUNTIME_VERIFICATION",
+  "source_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "source_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+  "observed_source_path": [
+    {
+      "path": "lib/features/games/memory/lumo_memory_game.dart",
+      "lines": "119–146",
+      "finding": "Production owner lease and controller award callback call LumoAppState.recordMemoryResult."
+    },
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "lines": "323–342",
+      "finding": "Completed round awards the real wallet before saving statistics and the rewarded receipt; the same owner+round result ID must remain retryable."
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "lines": "1307–1364; 490–518",
+      "finding": "Validates current profile and Memory amounts, queues the wallet call, removes the pending entry only on normal completion, preserves it and exposes an error on failure."
+    },
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "lines": "128–139; 168; 212; 234; 252; 321–327; 352–356",
+      "finding": "Original instance does not advance its wallet after false/exception. A new repository can load an optimistic preferences value, then previously returned an already-present result ID without another positive platform acknowledgement."
+    },
+    {
+      "path": "lib/core/school_repository.dart",
+      "lines": "94–126",
+      "finding": "Existing selection can be recaptured read-only. Calling setActiveStudent after the simulated wallet error would perform another commit and could legitimately flush the whole dirty preferences file."
+    }
+  ],
+  "implemented_scope": "Only the three duplicate result-ID early returns now await _persist(current). The already calculated wallet is neither credited again nor emitted again. Load/fallback/queue/schema remain exactly unchanged.",
+  "additional_memory_tests_owned_by_c": {
+    "path": "qa/memory-native-commit-fix-28462-20261114/prepared/host/test/games/memory_native_commit_confirmation_test.dart",
+    "review_scope": "Read only the account/ownedController/oneRealReward helpers and final three real Memory→AppState cases. Those cases cover confirmed wallet followed by failed stats/receipt and unconfirmed duplicate wallet after real Memory completion. No mutation or test execution by A.",
+    "limits": "The C file is not included as an A-owned source and its final hash belongs to C's own freeze."
+  },
+  "existing_regression_scope": {
+    "path": "test/games/memory_preferences_durability_test.dart",
+    "finding": "Its before-commit faults occur before platform-map mutation and its persisted() reads the same in-memory backend. The previously observed 14 PASS results remain valid for that two-layer model; they did not prove the newly identified native mMap/durable-file separation."
+  },
+  "api_limits": [
+    "Positive duplicate acknowledgement is the existing platform setString Boolean contract; not an independent disk reread or power-loss/fsync guarantee.",
+    "load()/snapshot may still expose an optimistic preferences snapshot. This patch only blocks treating an existing result ID as a confirmed award without a fresh positive persistence reply.",
+    "The queue remains per RewardWalletRepository instance; no new cross-instance/cross-engine compare-and-swap or stale-writer guarantee is introduced.",
+    "Existing legacy load fallback, amounts, daily streaks, Cards streak, result-ID JSON and profile APIs remain byte-identical.",
+    "No local Dart/Flutter invocation, dependency download, product-device test or Git Tree/Commit/Ref/PR mutation was performed."
+  ],
+  "new_cases_prepared": 14,
+  "new_cases_executed": 0,
+  "independent_peer_review": {
+    "local_original": "qa/wallet-dedup-ack-peer-review-28462-20261114/review.json",
+    "sha256": "1e10c907d37ef2ee7e8604762cc6618699aad9829ead94d4d829015f9ed74a1e",
+    "result": "No additional concrete static blocker; B independently read both final sources. No tests executed.",
+    "exact_copy": "evidence/independent-peer-review.json"
+  }
+}

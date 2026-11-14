@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "kind": "independent_narrow_compiler_followup_review",
+  "reviewer": "character_animation",
+  "reviewed_utc": "2026-11-14 19:39:23 UTC",
+  "source_baseline": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "ci_run": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43632642356",
+  "scope": "Only the two guarded MemoryReadbackConfirmation call-site casts; read-only source comparison and already downloaded original compiler diagnostics.",
+  "verdict": "No additional concrete static blocker found in this two-line correction. Compilation and the new Flutter tests still require a fresh CI result.",
+  "previous_review": {
+    "local_path": "qa/memory-native-commit-peer-review-28462-20261114/final-review.json",
+    "sha256": "46d0b063584e0c6c842a7dbbf73e35a7cfa56b57f811ff9616ad14da8ca4c7fa",
+    "status": "Unchanged historical static review. It did not execute Dart and missed this compile-time promotion limitation; it is not retroactively a successful compilation."
+  },
+  "source_files": [
+    {
+      "path": "qa/memory-interface-promotion-e2db-20261114/baseline/host/lib/features/games/memory/memory_round.dart",
+      "bytes": 16091,
+      "sha256": "9238bc5a7966db2dccd39b819ade6925fef7270a44ae4308294769a75b178216",
+      "git_blob_sha": "6d691fffc24c70faf3a78d176cbba6b73b66c6a1"
+    },
+    {
+      "path": "qa/memory-interface-promotion-e2db-20261114/prepared/host/lib/features/games/memory/memory_round.dart",
+      "bytes": 16155,
+      "sha256": "e1911d59e58d92b92dbb56a1447702656dff491ae1a61edec051b976ce74af1d",
+      "git_blob_sha": "4844cabaa5ed881d8f29dbd7c9758f03ef510df4"
+    },
+    {
+      "path": "qa/memory-interface-promotion-e2db-20261114/implementation-against-exact-e2db.patch",
+      "bytes": 688,
+      "sha256": "26d0c9eb73605f6f6edbdc33c7b2d7c75a910646752290bcb825ad4072f53108",
+      "git_blob_sha": "bc3159f6255dc0999cad2e1bfee155580a18007d"
+    }
+  ],
+  "original_failure": {
+    "dart_version": "Dart SDK version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"linux_x64\"",
+    "artifact_analyzer": {
+      "path": "qa/host-e2db-flutter-acceptance-20261114/originals/feature-evidence/flutter-analyze.log",
+      "bytes": 52874,
+      "sha256": "bf27b1c7883e6e9ad74108b0cb4d6a35444a265023a17d27352819336cb0c787",
+      "git_blob_sha": "59cdc7d4617197b8c393a5eed9f7e5fbdd004a87",
+      "error_excerpts": [
+        {
+          "line": 117,
+          "text": "  error • The method 'confirmRoundReadback' isn't defined for the type 'MemoryStore'. Try correcting the name to the name of an existing method, or defining a method named 'confirmRoundReadback' • lib/features/games/memory/memory_round.dart:268:26 • undefined_method"
+        },
+        {
+          "line": 118,
+          "text": "  error • The method 'confirmStatsReadback' isn't defined for the type 'MemoryStore'. Try correcting the name to the name of an existing method, or defining a method named 'confirmStatsReadback' • lib/features/games/memory/memory_round.dart:277:26 • undefined_method"
+        }
+      ],
+      "errors": 2
+    },
+    "original_flutter_job_log": {
+      "path": "qa/host-e2db-flutter-acceptance-20261114/original-flutter-job.log",
+      "bytes": 91649,
+      "sha256": "049df35c0b103f01009f3190fd26498e36ea2e1014c9da53dc5784319e2fbfac",
+      "git_blob_sha": "a482bbc42818bbb2166f7bc8877e9aea1f6f06d5",
+      "error_excerpts": [
+        {
+          "line": 459,
+          "text": "2026-11-14T19:33:30.3459403Z   error • The method 'confirmRoundReadback' isn't defined for the type 'MemoryStore'. Try correcting the name to the name of an existing method, or defining a method named 'confirmRoundReadback' • lib/features/games/memory/memory_round.dart:268:26 • undefined_method"
+        },
+        {
+          "line": 460,
+          "text": "2026-11-14T19:33:30.3463170Z   error • The method 'confirmStatsReadback' isn't defined for the type 'MemoryStore'. Try correcting the name to the name of an existing method, or defining a method named 'confirmStatsReadback' • lib/features/games/memory/memory_round.dart:277:26 • undefined_method"
+        },
+        {
+          "line": 624,
+          "text": "2026-11-14T19:33:30.3846367Z ##[error]Process completed with exit code 1."
+        }
+      ]
+    },
+    "original_memory_compile_log": {
+      "path": "qa/host-e2db-memory-source-20261114/originals/memory-round.log",
+      "bytes": 834,
+      "sha256": "da4737e379cefeba29194af16da4cf5d00f2e862d560dbf54f8cd52f83ccea3b",
+      "git_blob_sha": "63f62f1559aa489e41b8f37b443a6216e47e37ba",
+      "error_excerpts": [
+        {
+          "line": 1,
+          "text": "lib/features/games/memory/memory_round.dart:268:26: Error: The method 'confirmRoundReadback' isn't defined for the type 'MemoryStore'."
+        },
+        {
+          "line": 2,
+          "text": " - 'MemoryStore' is from 'lib/features/games/memory/memory_round.dart'."
+        },
+        {
+          "line": 3,
+          "text": "Try correcting the name to the name of an existing method, or defining a method named 'confirmRoundReadback'."
+        },
+        {
+          "line": 4,
+          "text": "      await confirmation.confirmRoundReadback(value);"
+        },
+        {
+          "line": 6,
+          "text": "lib/features/games/memory/memory_round.dart:277:26: Error: The method 'confirmStatsReadback' isn't defined for the type 'MemoryStore'."
+        },
+        {
+          "line": 7,
+          "text": " - 'MemoryStore' is from 'lib/features/games/memory/memory_round.dart'."
+        },
+        {
+          "line": 8,
+          "text": "Try correcting the name to the name of an existing method, or defining a method named 'confirmStatsReadback'."
+        },
+        {
+          "line": 9,
+          "text": "      await confirmation.confirmStatsReadback(value);"
+        }
+      ]
+    },
+    "cause": "The local variable is inferred as MemoryStore. MemoryReadbackConfirmation is a separate interface, not a subtype of MemoryStore; the original is-check did not promote the variable to the additional interface. The real compiler rejected both direct method calls.",
+    "new_flutter_cases_started": false,
+    "failed_execution_is_not_a_test_assertion_result": true
+  },
+  "checks": [
+    "Local before/after bytes and SHA256/Gitblob were recomputed.",
+    "Undoing exactly the two inserted casts reconstructs the complete 16,091-byte baseline and Gitblob 6d691fffc24c70faf3a78d176cbba6b73b66c6a1.",
+    "Each cast is inside the existing is MemoryReadbackConfirmation branch on the same final local reference; there is no await or reassignment between the guard and cast.",
+    "The existing _guard() checks before dispatch and after the awaited confirmation remain byte-identical.",
+    "No interfaces, persistence rules, retry paths, tests, ownership or reward logic changed in this delta."
+  ],
+  "language_reference": {
+    "url": "https://dart.dev/tools/non-promotion-reasons#subtype-mismatch",
+    "accessed_utc": "2026-11-14 19:39:23 UTC",
+    "section": "Subtype mismatch",
+    "finding": "Official Dart documentation describes unrelated-interface promotion failure and explicitly shows an as-cast inside the existing type-check as a solution."
+  },
+  "limits": {
+    "local_dart_flutter_runs": 0,
+    "local_installs": 0,
+    "new_ci_pass_claim": false,
+    "product_edits_by_reviewer": 0,
+    "additional_audit_scope": false
+  }
+}

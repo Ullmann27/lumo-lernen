@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "status": "PREPARED_SOURCE_WITH_ACTUAL_LOCAL_READER_VERIFICATION",
+  "baseline_host": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "native": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "original_run": 43626348513,
+  "original_job": 132548884489,
+  "original_conclusion": "failure",
+  "sources": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "bytes": 61949,
+      "sha256": "f14dc189b1cb6e45ed64bc3ec8a29e56772687323d46c8bea0154d79592d3afb",
+      "git_blob_sha": "8b977b3d2406cdc321655f61e1f34cbd673d4aa2",
+      "base_sha": "45ff0d24400ee21673c707b4b6448f914c85ee87"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_preview_skip.py",
+      "bytes": 28548,
+      "sha256": "c9a9800b67d4dcc26fc9cd8b0963b0a727e3a819cc1fec6fd2c57d3e7c16de38",
+      "git_blob_sha": "55b7142cf0bb59cb7e75479a4c77abd7b6b42ba9",
+      "base_sha": "ca2477afc4708385e705645613d45e3374f829f7"
+    }
+  ],
+  "python_cases": 25,
+  "python_new_cases": 2,
+  "python_log_sha256": "2fe87c8eb776bdaa2655cfaf00ff46ed48048c5ff9d829181a761cb1907b68d1",
+  "actual_ocr_replay": {
+    "source_sha256": "f14dc189b1cb6e45ed64bc3ec8a29e56772687323d46c8bea0154d79592d3afb",
+    "scope": "Actual Tesseract on unchanged Android artifact PNGs; no new Android run or touch",
+    "frames": [
+      {
+        "source": "21_kart_preview_skip_touch-0.png",
+        "sha256_before_after": "fe92106b1a762a3ae7f90334f85e42a1d1572a6d90277829c5e4d65134d37486",
+        "bytes": 1914141,
+        "seconds": 3.20368,
+        "exact_matches": [],
+        "new_touch_sent": false
+      },
+      {
+        "source": "21_kart_preview_skip_touch-1.png",
+        "sha256_before_after": "8a83089eabacb1551f75d54ee2abe492ee41b5754653cf544f3d9d28a4051058",
+        "bytes": 2231905,
+        "seconds": 1.963594,
+        "exact_matches": [
+          {
+            "text": "Tippen zum Uberspringen",
+            "bounds": [
+              1123.0,
+              409.0,
+              1411.0,
+              431.0
+            ],
+            "variant": "preview-muted-blue"
+          },
+          {
+            "text": "Tippen zum Uberspringen",
+            "bounds": [
+              1123.0,
+              409.0,
+              1411.0,
+              431.0
+            ],
+            "variant": "preview-muted-blue"
+          }
+        ],
+        "new_touch_sent": false
+      }
+    ],
+    "commands": [
+      {
+        "args": [
+          "tesseract",
+          "/workspace/scratch/5987865ae883/qa/host-28462-kart-preview-ocr-failure-20261114/actual-reader-replay/ocr-work.png",
+          "/workspace/scratch/5987865ae883/qa/host-28462-kart-preview-ocr-failure-20261114/actual-reader-replay/original-0-ocr-preview-muted-blue",
+          "--psm",
+          "11",
+          "-l",
+          "deu+eng",
+          "tsv"
+        ],
+        "exit": 0,
+        "seconds": 1.243091
+      },
+      {
+        "args": [
+          "tesseract",
+          "/workspace/scratch/5987865ae883/qa/host-28462-kart-preview-ocr-failure-20261114/actual-reader-replay/ocr-work.png",
+          "/workspace/scratch/5987865ae883/qa/host-28462-kart-preview-ocr-failure-20261114/actual-reader-replay/original-0-ocr-preview-raw-1x",
+          "--psm",
+          "11",
+          "-l",
+          "deu+eng",
+          "tsv"
+        ],
+        "exit": 0,
+        "seconds": 0.921712
+      },
+      {
+        "args": [
+          "tesseract",
+          "/workspace/scratch/5987865ae883/qa/host-28462-kart-preview-ocr-failure-20261114/actual-reader-replay/ocr-work.png",
+          "/workspace/scratch/5987865ae883/qa/host-28462-kart-preview-ocr-failure-20261114/actual-reader-replay/original-1-ocr-preview-muted-blue",
+          "--psm",
+          "11",
+          "-l",
+          "deu+eng",
+          "tsv"
+        ],
+        "exit": 0,
+        "seconds": 1.317365
+      }
+    ],
+    "status": "PASS"
+  },
+  "new_android_run": false,
+  "product_sources_changed": false,
+  "apk_approval": false
+}
