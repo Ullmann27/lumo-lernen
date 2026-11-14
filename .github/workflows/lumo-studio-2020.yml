@@ -11,6 +11,197 @@ concurrency:
   group: lumo-studio-2020-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 jobs:
+  nextgen-authorities:
+    name: Nextgen ${{ matrix.activity }} actual authority
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      ((github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.head_ref == 'chatgpt/lumo-studio-2020-20261114') ||
+      (github.event_name == 'workflow_dispatch' &&
+      github.ref_name == 'chatgpt/lumo-studio-2020-20261114'))
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+    strategy:
+      fail-fast: false
+      matrix:
+        activity: [english, quiz, memory]
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: host-source
+      - name: Resolve the exact candidate Host and configured Native commits
+        id: sources
+        env:
+          EXPECTED_HOST: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY_SOURCES'
+          import json, os, re, subprocess
+          from pathlib import Path
+          host = subprocess.check_output(['git', '-C', 'host-source', 'rev-parse', 'HEAD'], text=True).strip()
+          assert host == os.environ['EXPECTED_HOST'] and re.fullmatch('[a-f0-9]{40}', host)
+          pin = json.loads(Path('host-source/config/godot-source.json').read_text())
+          assert pin['repository'] == 'https://github.com/Ullmann27/lumo-godot.git'
+          assert pin['engine'] == '4.6.3' and re.fullmatch('[a-f0-9]{40}', pin['revision'])
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('native=' + pin['revision'] + '\n')
+          with open(os.environ['GITHUB_ENV'], 'a') as output:
+              output.write('HOST_SOURCE=' + host + '\n')
+          PY_SOURCES
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          repository: Ullmann27/lumo-godot
+          ref: ${{ steps.sources.outputs.native }}
+          path: native-source
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Install the exact verified Godot and actual software renderer
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0
+          curl -fL --retry 3 -o "$RUNNER_TEMP/godot.zip" https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip
+          printf '%s  %s\n' d0bc2113065e481c9c2c2b2c37daa4e8be3fe9e27f0ab9ab0b6096e9a37907f3 "$RUNNER_TEMP/godot.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot-bin"
+          ln -s "$RUNNER_TEMP/godot-bin/Godot_v4.6.3-stable_linux.x86_64" "$RUNNER_TEMP/godot-bin/godot"
+          echo "$RUNNER_TEMP/godot-bin" >> "$GITHUB_PATH"
+      - name: Record exact sources and import the complete original native project
+        id: import_source
+        env:
+          EXPECTED_NATIVE: ${{ steps.sources.outputs.native }}
+        run: |
+          set -euo pipefail
+          mkdir -p authority-evidence
+          test "$(git -C native-source rev-parse HEAD)" = "$EXPECTED_NATIVE"
+          test "$(git -C host-source rev-parse HEAD)" = "$HOST_SOURCE"
+          git -C native-source rev-parse HEAD > authority-evidence/NATIVE-SOURCE.txt
+          git -C native-source rev-parse 'HEAD^{tree}' > authority-evidence/NATIVE-TREE.txt
+          git -C host-source rev-parse HEAD > authority-evidence/HOST-SOURCE.txt
+          git -C host-source rev-parse 'HEAD^{tree}' > authority-evidence/HOST-TREE.txt
+          godot --version > authority-evidence/godot-version.txt
+          dart --version > authority-evidence/dart-version.txt 2>&1
+          python3 native-source/tools/validate_project.py 2>&1 | tee authority-evidence/project-validation.log
+          godot --headless --path native-source --editor --import --quit 2>&1 | tee authority-evidence/import.log
+          if grep -qE 'SCRIPT ERROR|Parse Error|ERROR:' authority-evidence/import.log; then exit 1; fi
+      - name: Resolve the pinned existing host dependencies
+        id: host_dependencies
+        working-directory: host-source
+        run: flutter pub get --enforce-lockfile
+      - name: Exercise the actual authority for this activity
+        working-directory: host-source
+        env:
+          ACTIVITY: ${{ matrix.activity }}
+        run: |
+          set -euo pipefail
+          case "$ACTIVITY" in
+            english)
+              dart run tool/check_native_english_activity.dart --out ../authority-evidence/english-activity.json 2>&1 | tee ../authority-evidence/english-authority.log
+              ;;
+            quiz)
+              dart run tools/android_qa/quiz_round_contract.dart 2>&1 | tee ../authority-evidence/quiz-authority-contract.log
+              ;;
+            memory)
+              dart tools/android_qa/memory_round_contract.dart 2>&1 | tee ../authority-evidence/memory-authority-contract.log
+              dart tools/android_qa/memory_turn_scheduler_contract.dart 2>&1 | tee ../authority-evidence/memory-scheduler-contract.log
+              ;;
+            *) exit 1 ;;
+          esac
+      - name: Exercise English meshes with actual host producer output
+        if: ${{ matrix.activity == 'english' }}
+        run: |
+          set -euo pipefail
+          export XDG_DATA_HOME="$RUNNER_TEMP/lumo-english-data"
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/lumo-english-config"
+          export XDG_CACHE_HOME="$RUNNER_TEMP/lumo-english-cache"
+          mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
+          python3 native-source/tools/run_godot_probe.py \
+            --log authority-evidence/english-render.log --timeout 900 --required LEARNING_ENGLISH_PASS -- \
+            xvfb-run -a -s '-screen 0 2560x2560x24' godot --path native-source \
+            --rendering-method gl_compatibility --audio-driver Dummy --disable-vsync \
+            --script res://scripts/tests/learning_english_regression.gd -- --capture \
+            --output="$GITHUB_WORKSPACE/authority-evidence/english-native" \
+            --task-fixtures="$GITHUB_WORKSPACE/authority-evidence/english-activity.json"
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          folder = Path('authority-evidence')
+          report = json.loads((folder / 'english-native/learning-english-report.json').read_text())
+          assert report['fixture_kind'] == 'actual_dart_producer_report'
+          assert report['task_fixture_sha256'] == hashlib.sha256((folder / 'english-activity.json').read_bytes()).hexdigest()
+          assert report['failures'] == [] and report['renderer'] != 'headless'
+          assert len(list((folder / 'english-native').glob('*.png'))) == 17
+          PY
+      - name: Play all twenty Quiz questions through the real Dart and Godot processes
+        if: ${{ !cancelled() && matrix.activity == 'quiz' && steps.import_source.outcome == 'success' && steps.host_dependencies.outcome == 'success' }}
+        env:
+          EXPECTED_NATIVE: ${{ steps.sources.outputs.native }}
+        run: |
+          set -euo pipefail
+          xvfb-run -a -s '-screen 0 2560x2560x24' python3 native-source/tools/run_quiz_native_authority.py \
+            --native native-source --host host-source \
+            --expected-native "$EXPECTED_NATIVE" --expected-host "$HOST_SOURCE" \
+            --output authority-evidence/quiz-pair --capture
+      - name: Reject inconsistent Memory pair evidence
+        if: ${{ matrix.activity == 'memory' }}
+        run: python3 -m unittest discover -s native-source/tools/tests -p test_memory_native_pair_evidence.py -v
+      - name: Render the actual Memory geometry and touch layouts
+        if: ${{ matrix.activity == 'memory' }}
+        run: |
+          set -euo pipefail
+          export XDG_DATA_HOME="$RUNNER_TEMP/lumo-memory-view-data"
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/lumo-memory-view-config"
+          export XDG_CACHE_HOME="$RUNNER_TEMP/lumo-memory-view-cache"
+          export LUMO_MEMORY_CAPTURE_DIR="$GITHUB_WORKSPACE/authority-evidence/memory-view"
+          mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
+          python3 native-source/tools/run_godot_probe.py \
+            --log authority-evidence/memory-view.log --timeout 900 --required MEMORY_VIEW_PASS -- \
+            xvfb-run -a -s '-screen 0 2560x2560x24' godot --path native-source \
+            --rendering-method gl_compatibility --audio-driver Dummy --fixed-fps 60 --disable-vsync \
+            --script res://scripts/tests/memory_table_regression.gd -- --capture
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          folder = Path('authority-evidence/memory-view')
+          report = json.loads((folder / 'memory-view-result.json').read_text())
+          assert report['status'] == 'PASS' and report['errors'] == [] and report['capture'] is True
+          assert len(report['captures']) == 8 and len(list(folder.glob('*.png'))) == 8
+          PY
+      - name: Play Memory through the actual Dart and Godot processes
+        if: ${{ !cancelled() && matrix.activity == 'memory' && steps.import_source.outcome == 'success' && steps.host_dependencies.outcome == 'success' }}
+        env:
+          EXPECTED_NATIVE: ${{ steps.sources.outputs.native }}
+        run: |
+          set -euo pipefail
+          xvfb-run -a -s '-screen 0 2560x2560x24' python3 native-source/tools/run_memory_native_authority.py \
+            --native native-source --host host-source \
+            --expected-native "$EXPECTED_NATIVE" --expected-host "$HOST_SOURCE" \
+            --output authority-evidence/memory-pair --capture
+      - name: Verify both tracked source trees remain unchanged
+        if: always()
+        run: |
+          set -euo pipefail
+          git -C native-source diff --exit-code HEAD --
+          git -C host-source diff --exit-code HEAD --
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-studio-2020-nextgen-authority-${{ matrix.activity }}
+          path: |
+            authority-evidence/
+            !authority-evidence/**/user/**
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+
   android-host-compile:
     if: >-
       github.repository == 'Ullmann27/lumo-lernen' &&
@@ -406,7 +597,7 @@ jobs:
           retention-days: 30
           compression-level: 0
   android-tour:
-    needs: [verify-and-build, android-host-compile]
+    needs: [verify-and-build, android-host-compile, nextgen-authorities]
     name: Android API ${{ matrix.api }} live application tour
     strategy:
       fail-fast: false
@@ -442,6 +633,7 @@ jobs:
           sparse-checkout: |
             scripts
             scenes/games
+            scenes/learning
       - name: Checkout exact upstream action only for Android 17
         if: matrix.api == 37
         uses: actions/checkout@v4
@@ -475,11 +667,14 @@ jobs:
           grep -Fxq 'eng' tour/tesseract-installed-languages.txt
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
-          python3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_studio_surfaces_android_probe.py .github/probes/lumo_connect_four_android_probe.py
+          python3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_studio_surfaces_android_probe.py .github/probes/lumo_connect_four_android_probe.py .github/probes/lumo_quiz_android_probe.py .github/probes/lumo_memory_android_probe.py .github/probes/lumo_english_objects_android_probe.py
           .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen*.py' -v
           .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_studio*.py' -v
           .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_connect_four_android_probe.py' -v
           .probe-venv/bin/python -m unittest discover -s scripts/tests -p test_studio_c4_navigation.py -v
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p test_quiz_android_probe.py -v
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p test_memory_android_probe.py -v
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p test_english_objects_android_probe.py -v
           sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
       - name: Enable accelerated disposable emulator
         run: |
@@ -548,6 +743,9 @@ jobs:
             .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --skip-observed-kart-preview --out tour
             .probe-venv/bin/python .github/probes/lumo_studio_surfaces_android_probe.py --studio-version 2020 --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/tour-result.json --expected-api ${{ matrix.api }} --out tour/nextgen
             .probe-venv/bin/python .github/probes/lumo_connect_four_android_probe.py --candidate-source . --native-source c4-native-source --expected-source "${{ github.event.pull_request.head.sha || github.sha }}" --expected-native "${{ steps.c4-native-pin.outputs.revision }}" --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --tour-result tour/tour-result.json --expected-api ${{ matrix.api }} --serial emulator-5554 --out tour/connect-four
+            .probe-venv/bin/python .github/probes/lumo_quiz_android_probe.py --candidate-source . --native-source c4-native-source --expected-source "${{ github.event.pull_request.head.sha || github.sha }}" --expected-native "${{ steps.c4-native-pin.outputs.revision }}" --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --tour-result tour/tour-result.json --expected-api ${{ matrix.api }} --serial emulator-5554 --out tour/quiz
+            .probe-venv/bin/python .github/probes/lumo_memory_android_probe.py --candidate-source . --native-source c4-native-source --expected-source "${{ github.event.pull_request.head.sha || github.sha }}" --expected-native "${{ steps.c4-native-pin.outputs.revision }}" --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --tour-result tour/tour-result.json --expected-api ${{ matrix.api }} --serial emulator-5554 --out tour/memory
+            .probe-venv/bin/python .github/probes/lumo_english_objects_android_probe.py --candidate-source . --native-source c4-native-source --expected-source "${{ github.event.pull_request.head.sha || github.sha }}" --expected-native "${{ steps.c4-native-pin.outputs.revision }}" --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --tour-result tour/tour-result.json --expected-api ${{ matrix.api }} --serial emulator-5554 --out tour/english
       - name: Install and tour the exact APK after Android 17 framework readiness
         if: matrix.api == 37
         uses: ./runner-actions/android-emulator-runner
@@ -580,6 +778,9 @@ jobs:
             .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --skip-observed-kart-preview --out tour
             .probe-venv/bin/python .github/probes/lumo_studio_surfaces_android_probe.py --studio-version 2020 --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/tour-result.json --expected-api ${{ matrix.api }} --out tour/nextgen
             .probe-venv/bin/python .github/probes/lumo_connect_four_android_probe.py --candidate-source . --native-source c4-native-source --expected-source "${{ github.event.pull_request.head.sha || github.sha }}" --expected-native "${{ steps.c4-native-pin.outputs.revision }}" --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --tour-result tour/tour-result.json --expected-api ${{ matrix.api }} --serial emulator-5554 --out tour/connect-four
+            .probe-venv/bin/python .github/probes/lumo_quiz_android_probe.py --candidate-source . --native-source c4-native-source --expected-source "${{ github.event.pull_request.head.sha || github.sha }}" --expected-native "${{ steps.c4-native-pin.outputs.revision }}" --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --tour-result tour/tour-result.json --expected-api ${{ matrix.api }} --serial emulator-5554 --out tour/quiz
+            .probe-venv/bin/python .github/probes/lumo_memory_android_probe.py --candidate-source . --native-source c4-native-source --expected-source "${{ github.event.pull_request.head.sha || github.sha }}" --expected-native "${{ steps.c4-native-pin.outputs.revision }}" --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --tour-result tour/tour-result.json --expected-api ${{ matrix.api }} --serial emulator-5554 --out tour/memory
+            .probe-venv/bin/python .github/probes/lumo_english_objects_android_probe.py --candidate-source . --native-source c4-native-source --expected-source "${{ github.event.pull_request.head.sha || github.sha }}" --expected-native "${{ steps.c4-native-pin.outputs.revision }}" --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --tour-result tour/tour-result.json --expected-api ${{ matrix.api }} --serial emulator-5554 --out tour/english
       - name: Preserve actual Android 17 generated hardware and disk configuration
         if: always() && matrix.api == 37
         run: |
@@ -812,7 +1013,7 @@ jobs:
 
   publish-reviewed-2020:
     name: Publish visually reviewed Build 2020 ARM64 APK for direct Chrome download
-    needs: [verify-and-build, android-host-compile, android-tour, update-2020-from-2017, creative-android]
+    needs: [verify-and-build, android-host-compile, android-tour, update-2020-from-2017, creative-android, nextgen-authorities]
     # Exact reviewed native images and all independent live proofs remain mandatory.
     if: >-
       github.event_name == 'pull_request' &&
@@ -823,7 +1024,8 @@ jobs:
       needs.android-tour.result == 'success' &&
       needs.android-host-compile.result == 'success' &&
       needs.update-2020-from-2017.result == 'success' &&
-      needs.creative-android.result == 'success'
+      needs.creative-android.result == 'success' &&
+      needs.nextgen-authorities.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
