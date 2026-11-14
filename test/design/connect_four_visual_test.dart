@@ -12,6 +12,16 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/features/games/connect_four/lumo_connect_four_game.dart';
 
 void main() {
+  const channel = MethodChannel('lumo_lernen/connect_four');
+  setUp(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel,
+            (_) async => throw MissingPluginException('Flutter fallback fixture'));
+  });
+  tearDown(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, null);
+  });
   setUpAll(() async {
     await (FontLoader('Nunito')
           ..addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'))
@@ -36,6 +46,7 @@ void main() {
       addTearDown(() => tester.binding.setSurfaceSize(null));
       final app = LumoAppState();
       await app.hydrateFromWallet();
+      LumoVoice.instance.isEnabled = false;
       const key = ValueKey('connect-capture');
       await tester.pumpWidget(MaterialApp(
         theme: LumoAppTheme.light(),
@@ -44,8 +55,7 @@ void main() {
           child: LumoConnectFourScreen(appState: app, seed: 1),
         ),
       ));
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 100));
+      await tester.pumpAndSettle();
       await tester.runAsync(() async {
         final context = tester.element(find.byType(LumoConnectFourScreen));
         for (final asset in [
@@ -56,13 +66,35 @@ void main() {
         }
       });
       await tester.pump();
-      // Capture actual gameplay, not an empty concept board.
-      await tester.tap(find.byKey(const ValueKey('connect-mode-true')));
+      // The compact landscape companion panel and narrow column strip are
+      // intentionally scrollable. Reach the real controls before touching them.
+      final twoPlayers = find.byKey(const ValueKey('connect-mode-true'));
+      await tester.ensureVisible(twoPlayers);
       await tester.pump();
-      for (final column in [3, 2, 3, 2, 4, 5]) {
-        await tester.tap(find.byKey(ValueKey('connect-column-$column')));
+      expect(twoPlayers.hitTestable(), findsOneWidget);
+      await tester.tap(twoPlayers);
+      await tester.pumpAndSettle();
+      expect(find.byKey(const ValueKey('connect-level-mittel')), findsNothing);
+
+      // Exercise every actual column once. The alternating bottom row cannot
+      // finish the game, and proves that each visible target maps to its column.
+      for (var column = 0; column < 7; column++) {
+        final control = find.byKey(ValueKey('connect-column-$column'));
+        final targetSize = tester.getSize(control);
+        expect(targetSize.width, greaterThanOrEqualTo(48));
+        expect(targetSize.height, greaterThanOrEqualTo(48));
+        await tester.ensureVisible(control);
+        await tester.pump();
+        expect(control.hitTestable(), findsOneWidget);
+        expect(tester.widget<IconButton>(control).onPressed, isNotNull);
+        await tester.tap(control);
+        await tester.pump();
         await tester.pump(const Duration(milliseconds: 400));
         await tester.pump();
+        final cell =
+            tester.widget<Semantics>(find.byKey(ValueKey('connect-cell-5-$column')));
+        expect(cell.properties.label,
+            endsWith(column.isEven ? ': child' : ': lumo'));
       }
       if (size.width > size.height) {
         final fox =
@@ -73,13 +105,22 @@ void main() {
         expect(fox.bottom, lessThanOrEqualTo(controls.top),
             reason: 'The complete mascot must fit above the game controls.');
       }
-      for (var column = 0; column < 7; column++) {
-        final cell =
-            tester.getRect(find.byKey(ValueKey('connect-cell-5-$column')));
-        final control =
-            tester.getRect(find.byKey(ValueKey('connect-column-$column')));
-        expect(control.center.dx, closeTo(cell.center.dx, 1),
-            reason: 'Each drop button must align with its board column.');
+      final columnViewport =
+          find.byKey(const ValueKey('connect-column-scroll'));
+      final scrollState = tester.state<ScrollableState>(find.descendant(
+          of: columnViewport, matching: find.byType(Scrollable)));
+      if (scrollState.position.maxScrollExtent <= 0) {
+        for (var column = 0; column < 7; column++) {
+          final cell =
+              tester.getRect(find.byKey(ValueKey('connect-cell-5-$column')));
+          final control =
+              tester.getRect(find.byKey(ValueKey('connect-column-$column')));
+          expect(control.center.dx, closeTo(cell.center.dx, 1),
+              reason: 'When all 48dp targets fit, each must align with its column.');
+        }
+      } else {
+        expect(tester.getSize(columnViewport).width, lessThan(7 * 48 + 24),
+            reason: 'Scrolling is only needed when seven full touch targets do not fit.');
       }
       final folder = Platform.environment['LUMO_CONNECT_CAPTURES'];
       if (folder != null) {
