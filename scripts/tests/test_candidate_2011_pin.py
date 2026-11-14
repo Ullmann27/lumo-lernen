@@ -53,6 +53,13 @@ class Candidate2011PinTests(unittest.TestCase):
         self.assertGreater(build, 2019)
         self.assertIn("version: 0.13.8+2020\n", pubspec)
 
+    def test_2020_rejects_the_source_before_acknowledged_return_retry(self):
+        with self.assertRaisesRegex(ValueError, "revision mismatch for build 2020"):
+            POLICY.verify(
+                version(2020),
+                config("0e26153f0e58cc05739e72923b4c563a4cf380b8"),
+            )
+
     def test_new_candidate_has_exact_reviewed_native_identity(self):
         self.assertEqual(
             POLICY.verify(version(2011), config()), (2011, CANDIDATE_REVISION)
