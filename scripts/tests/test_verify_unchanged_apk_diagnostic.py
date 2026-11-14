@@ -8,6 +8,7 @@ import importlib.util
 import io
 import json
 from pathlib import Path
+import subprocess
 import sys
 from types import SimpleNamespace
 import tempfile
@@ -208,8 +209,6 @@ class ApkContracts(unittest.TestCase):
         (self.candidate / 'pubspec.yaml').write_text('version: 0.13.7+2019\n')
         self.qa_pin = self.root / 'synthetic-qa-godot-source.json'
         self.qa_pin.write_bytes((self.candidate / 'config/godot-source.json').read_bytes())
-        self.qa_pubspec = self.root / 'synthetic-qa-pubspec.yaml'
-        self.qa_pubspec.write_bytes((self.candidate / 'pubspec.yaml').read_bytes())
         self.apk = self.root / 'synthetic.apk'
         self.pck = b'Explicitly synthetic PCK bytes, not a native render or APK build.'
         with zipfile.ZipFile(self.apk, 'w', compression=zipfile.ZIP_STORED) as archive:
@@ -330,42 +329,74 @@ class ApkContracts(unittest.TestCase):
         for name, value in zip(('run.json', 'jobs.json'), qa_metadata()):
             (qa_metadata_dir / name).write_text(json.dumps(value))
 
+        # This verifier is intentionally bound to the unchanged 2019 APK.
+        # A later app checkout may advance its native pin independently.
+        qa_source = Path(tempfile.mkdtemp(prefix='qa-source-', dir=self.root))
+        helpers = (
+            (creative, '.github/probes/studio_creative_android_probe.py'),
+            (tour, '.github/probes/modernization_android_tour.py'),
+            (tour.probe, '.github/probes/creative_android_probe.py'),
+            (tour.base, 'scripts/probes/pr207_android_smoke.py'),
+        )
+        for relative in ('scripts/verify_unchanged_apk_diagnostic.py',
+                         *(relative for _, relative in helpers)):
+            target = qa_source / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes((ROOT / relative).read_bytes())
+        (qa_source / 'config').mkdir()
+        (qa_source / 'config/godot-source.json').write_bytes(self.qa_pin.read_bytes())
+        (qa_source / 'pubspec.yaml').write_bytes((self.candidate / 'pubspec.yaml').read_bytes())
+        # Keep committed_helper's actual path and immutable-byte checks active.
+        subprocess.run(['git', 'init', '--quiet', str(qa_source)],
+                       check=True, capture_output=True)
+        subprocess.run(['git', '-C', str(qa_source), 'add', '--', '.'],
+                       check=True, capture_output=True)
+        subprocess.run(['git', '-C', str(qa_source),
+                        '-c', 'user.name=Diagnostic fixture',
+                        '-c', 'user.email=fixture@example.invalid',
+                        '-c', 'commit.gpgsign=false',
+                        'commit', '--quiet', '-m', 'Synthetic historical QA fixture'],
+                       check=True, capture_output=True)
+
         def synthetic_checkout(path, source, tree):
-            # Git identity and historical QA source inputs are explicit fixtures.
-            # Original helper bytes, APK verification and ZIP reads remain real.
-            expected = (QA_SOURCE, QA_TREE) if path == ROOT else (diagnostic.HOST, diagnostic.HOST_TREE)
+            # Git identity is synthetic; helper and APK/PCK bytes remain real.
+            self.assertIn(path, (qa_source, self.candidate))
+            expected = (QA_SOURCE, QA_TREE) if path == qa_source else (diagnostic.HOST, diagnostic.HOST_TREE)
             self.assertEqual((source, tree), expected)
             return {'path': str(path), 'commit': source, 'tree': tree, 'tracked_source_clean': True}
 
-        def fixture_path(path):
-            # Keep this fixed historical APK independent of today's pin/version.
-            return {ROOT / 'config/godot-source.json': self.qa_pin,
-                    ROOT / 'pubspec.yaml': self.qa_pubspec}.get(path, path)
-
         def synthetic_committed_file(path, relative):
-            data = fixture_path(path / relative).read_bytes()
+            data = (path / relative).read_bytes()
             return {'path': relative, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(),
                     'git_blob': hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()}
 
-        args = SimpleNamespace(qa_source=ROOT, candidate_source=self.candidate,
+        args = SimpleNamespace(qa_source=qa_source, candidate_source=self.candidate,
             candidate_metadata_dir=candidate_metadata_dir, qa_metadata_dir=qa_metadata_dir,
             expected_qa_source=QA_SOURCE, expected_qa_run=QA_RUN, expected_qa_attempt=1,
             qa_job_name=diagnostic.QA_JOBS[0], apk=self.apk,
             provenance=self.provenance_path, sums=self.sums_path)
-        read_json = diagnostic.read_json
-        with patch.object(diagnostic, 'source_identity', side_effect=synthetic_checkout), \
-                patch.object(diagnostic, 'committed_file', side_effect=synthetic_committed_file), \
-                patch.object(diagnostic, 'read_json', side_effect=lambda path: read_json(fixture_path(path))), \
-                patch.object(diagnostic, 'load_module', side_effect=[creative, tour]):
-            return diagnostic.bind(args)
+        with ExitStack() as fixture:
+            fixture.enter_context(patch.object(diagnostic, 'ROOT', qa_source))
+            fixture.enter_context(patch.object(diagnostic, 'source_identity',
+                                               side_effect=synthetic_checkout))
+            fixture.enter_context(patch.object(diagnostic, 'committed_file',
+                                               side_effect=synthetic_committed_file))
+            fixture.enter_context(patch.object(diagnostic, 'load_module',
+                                               side_effect=[creative, tour]))
+            for module, relative in helpers:
+                fixture.enter_context(patch.object(module, '__file__', str(qa_source / relative)))
+            result = diagnostic.bind(args)
+        return result, qa_source
 
     def test_full_preflight_keeps_qa_run_and_apk_source_separate(self):
-        result = self.bind_full_preflight()
+        result, qa_source = self.bind_full_preflight()
         self.assertEqual(result['diagnostic_qa']['source'], QA_SOURCE)
         self.assertEqual(result['candidate_build']['host_source'], diagnostic.HOST)
         self.assertEqual(result['candidate_build']['run_conclusion'], 'failure')
         self.assertEqual(result['required_probe_cwd'], str(self.candidate))
         self.assertEqual(result['required_update_source_env'], diagnostic.HOST)
+        self.assertEqual(result['git_sources']['qa']['path'], str(qa_source))
+        self.assertEqual(result['git_sources']['candidate']['path'], str(self.candidate))
         self.assertEqual(len(result['input_hashes']), 7)
         for relative in ('config/godot-source.json', 'pubspec.yaml'):
             source_file = next(entry for entry in result['source_files']['qa']
@@ -374,6 +405,7 @@ class ApkContracts(unittest.TestCase):
                 self.candidate / relative))
         self.assertEqual(result['status'], 'BOUND')
         self.assertIn('no Android or release acceptance', result['scope'])
+
 
     def test_full_preflight_rejects_wrong_native_pin_in_either_checkout(self):
         for path in (self.qa_pin, self.candidate / 'config/godot-source.json'):
@@ -389,7 +421,6 @@ class ApkContracts(unittest.TestCase):
                             self.bind_full_preflight()
                     finally:
                         path.write_text(original)
-
 
 class OutputContracts(unittest.TestCase):
     def test_atomic_report_never_overwrites_existing_bytes(self):

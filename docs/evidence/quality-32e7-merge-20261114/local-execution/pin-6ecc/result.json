@@ -1,0 +1,27 @@
+{
+  "scope": "Actual focused current-pin and historical-policy contracts after pinning the tested minimap descendant. No full candidate acceptance.",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_legacy_release_pin",
+    "scripts.tests.test_candidate_2011_pin",
+    "-v"
+  ],
+  "exit_code": 0,
+  "seconds": 0.12359994399594143,
+  "log_sha256": "5b1260eb94b47f60d2e752ffb5fa405f018c319f0ccf51121ded7f48bdcb0964",
+  "before": {
+    "head": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+    "tree": "3d007b2c54703879cdaae850557934456a927a35",
+    "tracked_status": "",
+    "index_sha256": "4fdec964222bd5d2e6eb395e1212dd5157cc69cdbad7b24b83ff03196a4f8f3c"
+  },
+  "after": {
+    "head": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+    "tree": "3d007b2c54703879cdaae850557934456a927a35",
+    "tracked_status": "",
+    "index_sha256": "4fdec964222bd5d2e6eb395e1212dd5157cc69cdbad7b24b83ff03196a4f8f3c"
+  },
+  "source_and_index_unchanged": true
+}

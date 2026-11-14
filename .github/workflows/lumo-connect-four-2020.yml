@@ -83,12 +83,25 @@ jobs:
       - name: Retry the acknowledged native exit after a transient Android refusal
         run: |
           set -euo pipefail
+          export XDG_DATA_HOME="$RUNNER_TEMP/c4-return/data"
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/c4-return/config"
+          export XDG_CACHE_HOME="$RUNNER_TEMP/c4-return/cache"
+          mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
           timeout 60s godot --headless --audio-driver Dummy --path native-source --script res://scripts/tests/connect_four_return_regression.gd 2>&1 | tee c4-runtime/return-recovery.log
-          if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:' c4-runtime/return-recovery.log; then
+          if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:|Assertion failed' c4-runtime/return-recovery.log; then
             echo 'The actual native return regression reported an engine or script failure' >&2
             exit 1
           fi
-          grep -Fx 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log
+          test "$(grep -Fxc 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log)" = 1
+      - name: Require the additional pinned native Treasure wisp regression
+        run: |
+          set -euo pipefail
+          export XDG_DATA_HOME="$RUNNER_TEMP/c4-wisps/data"
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/c4-wisps/config"
+          export XDG_CACHE_HOME="$RUNNER_TEMP/c4-wisps/cache"
+          mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
+          (cd native-source && python3 tools/run_godot_probe.py --log "$GITHUB_WORKSPACE/c4-runtime/wisps.log" --timeout 180 --required '[TreasureWisp] PASS' -- godot --headless --path . --audio-driver Dummy --script scripts/tests/treasure_wisp_regression.gd)
+          test "$(grep -Fxc '[TreasureWisp] PASS checks=14' c4-runtime/wisps.log)" = 1
       - name: Require the actual production Dart and rendered Godot two-process gate
         run: |
           set -euo pipefail
@@ -430,6 +443,50 @@ jobs:
             LUMO_ACTION_LOG_DIR="$native_logs/action-stage" bash tools/validate_action_stage.sh
           fi
           LUMO_NEXTGEN_LOG_DIR="$native_logs/nextgen" bash tools/validate_nextgen.sh 2>&1 | tee "$native_logs/nextgen-runner.log"
+      - name: Require acknowledged Connect Four return retry
+        run: |
+          set -euo pipefail
+          native_revision="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          native_source="$RUNNER_TEMP/lumo-native-acceptance"
+          native_logs="$GITHUB_WORKSPACE/acceptance-native"
+          test "$(git -C "$native_source" rev-parse HEAD)" = "$native_revision"
+          git -C "$native_source" diff --exit-code HEAD -- scripts/games/connect_four/connect_four_table.gd scripts/tests/connect_four_return_regression.gd
+          mkdir -p "$native_logs/connect-four-return-user-data" "$native_logs/connect-four-return-user-config" "$native_logs/connect-four-return-user-cache"
+          XDG_DATA_HOME="$native_logs/connect-four-return-user-data" \
+          XDG_CONFIG_HOME="$native_logs/connect-four-return-user-config" \
+          XDG_CACHE_HOME="$native_logs/connect-four-return-user-cache" \
+            timeout --signal=TERM --kill-after=10s 180s godot --headless --path "$native_source" \
+              --script scripts/tests/connect_four_return_regression.gd 2>&1 | tee "$native_logs/connect-four-return.log"
+          test "$(grep -Fxc 'CONNECT_FOUR_RETURN_PASS checks=21' "$native_logs/connect-four-return.log")" -eq 1
+          test "$(grep -Ec '^CONNECT_FOUR_RETURN_' "$native_logs/connect-four-return.log")" -eq 1
+          if grep -En "ERROR:|SCRIPT ERROR:|Parse Error:" "$native_logs/connect-four-return.log"; then
+            echo "Connect Four return regression emitted an engine error" >&2
+            exit 1
+          fi
+          test "$(git -C "$native_source" rev-parse HEAD)" = "$native_revision"
+          git -C "$native_source" diff --exit-code HEAD -- scripts/games/connect_four/connect_four_table.gd scripts/tests/connect_four_return_regression.gd
+      - name: Require actual Dream gates on the exact pinned native source
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          GIT_OPTIONAL_LOCKS: '0'
+        run: |
+          set -euo pipefail
+          export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"
+          native_revision="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          native_source="$RUNNER_TEMP/lumo-native-acceptance"
+          native_logs="$GITHUB_WORKSPACE/acceptance-native"
+          dream_logs="$native_logs/dream"
+          test "$(git -C "$native_source" rev-parse HEAD)" = "$native_revision"
+          test "$(git -C "$native_source" rev-parse HEAD:tools/verify_dream_rasters.py)" = da8eed7d6383fcbc82a03596518a5fcc3b9a00c5
+          printf '%s  %s\n' f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d "$native_source/tools/verify_dream_rasters.py" | sha256sum -c -
+          test ! -e "$dream_logs" && test ! -L "$dream_logs"
+          test ! -e "$native_logs/dream-verifier-original.py" && test ! -L "$native_logs/dream-verifier-original.py"
+          cp "$native_source/tools/verify_dream_rasters.py" "$native_logs/dream-verifier-original.py"
+          cmp "$native_source/tools/verify_dream_rasters.py" "$native_logs/dream-verifier-original.py"
+          cd "$native_source"
+          python3 -c 'from PIL import Image; print("Pinned-native Dream raster verification ready")'
+          LUMO_DREAM_LOG_DIR="$dream_logs" LUMO_EXPECTED_NATIVE_SHA="$native_revision" \
+            bash tools/validate_dream_connections.sh 2>&1 | tee "$native_logs/dream-runner.log"
       - name: Verify connected dream ambience and garden on exact native source
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'

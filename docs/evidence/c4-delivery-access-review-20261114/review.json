@@ -1,0 +1,283 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14 11:19:29 UTC",
+  "reviewer": "/root/lumo_release_lead",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_source": "dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f",
+  "scope": "Read-only assessment of the existing 2020 APK publication path and currently exposed GitHub capabilities. No workflow, credential, release, tag or candidate ref was changed.",
+  "conclusion": "The exact 2020 verification/delivery-bundle path exists. No usable authenticated GitHub Release creation/asset-upload/publication executor is available in this session. A passing build will not itself publish 2020.",
+  "current_candidate_path": {
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "blob": "c7d2ce90ffb9f502cb0c69ae97c75e1a01d606a8",
+    "trigger": "pull_request from the same repository",
+    "allowed_head_branches": [
+      "integration/lumo-c4-connections-20261114",
+      "work/lumo-play-quality-20261114"
+    ],
+    "publication_permissions": "contents: read; delivery also actions: read",
+    "job": "prepare-c4-delivery",
+    "required_successes": [
+      "verify-and-build",
+      "android-host-compile",
+      "connect-four-runtime",
+      "android-c4",
+      "update-2020-from-2017",
+      "verify-c4-candidate"
+    ],
+    "artifact": "lumo-connect-four-2020-delivery-bundle",
+    "output": "Verified artifact bundle with actual ARM64 APK, hashes/provenance, publication-plan.json and audit metadata; not a public GitHub Release.",
+    "pointers": [
+      "workflow lines 773-805: branches, dependencies, permissions and source",
+      "workflow lines 862-896: paginated catalog, tag checks, current re-verification and artifact-only upload"
+    ]
+  },
+  "existing_publication_contract": {
+    "path": "scripts/verify_connect_four_delivery.py",
+    "blob": "5f64dfd544c24cbae04e79092bf44fd22f259065",
+    "facts": [
+      "Exact run/attempt/head SHA, current PR head SHA/branch and same repository are required.",
+      "The publication-phase check requires the complete current workflow to be completed successfully, including the delivery job; original artifact identities and bundle bytes must still match.",
+      "Preparation requires a vacant coachpreview-build-2020 tag/release, and a version newer than the published family catalog.",
+      "The script prepares create/publish JSON inputs and validates tag/release/asset responses and an unauthenticated downloaded APK. It does not execute the Release POST, asset upload or publication PATCH.",
+      "The intended new asset is Lumo-Lernen-Neu.apk under the new coachpreview-build-2020 release. That is a plan, not an existing public download.",
+      "Existing tags/releases/assets may never be replaced or resumed. GitHub's immutable flag is recorded, not required to be true; server-enforced immutability is therefore not established by this contract."
+    ],
+    "pointers": [
+      "checked_jobs lines 152-209",
+      "checked_release_catalog lines 360-375",
+      "checked_release lines 385-423",
+      "prepare lines 589-695",
+      "checked_current lines 773-795",
+      "verify-public lines 858-867"
+    ]
+  },
+  "family_and_historical_workflows": [
+    {
+      "path": ".github/workflows/lumo-family-draft-release.yml",
+      "blob": "d05e35bd852830775e7af0fc045c481d3a5706ab",
+      "facts": "PR path filter runs verification only. workflow_dispatch mode build-only builds; mode draft-release uploads the same-run verified artifact as a DRAFT. Neither is a public release.",
+      "pointers": "lines 3-23, 86-89, 173-203"
+    },
+    {
+      "path": "scripts/prepare_family_draft_release.sh",
+      "blob": "a533f8a44757b076c9977283f6d87ca7fed390fc",
+      "facts": "Default dry run; --create-draft uses gh release create --draft --prerelease. It never publishes the draft.",
+      "pointers": "lines 114-144"
+    },
+    {
+      "path": ".github/workflows/lumo-family-2012-publish.yml",
+      "blob": "c7fb5e51ba4737ab40cc110d0bd901130f01f878",
+      "facts": "Push limited to lumo-next/integration-20261110 and this workflow path. Hard-bound to run42798760270, version2012, exact APK hash/native source and coachpreview-build-2012; refuses overwrite.",
+      "pointers": "lines 3-8, 29, 37-69"
+    },
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "blob": "99a18f4d28a41e46a75deae966ed9255bcd5fb14",
+      "facts": "Both current 2020 branches are excluded from its old build job. Its newest publisher is expressly bound to chatgpt/lumo-spielewelt-stage-20261112 and version2017, not 2020.",
+      "pointers": "lines 62-67,1280-1295,1343-1357,1460"
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-2018.yml",
+      "blob": "ee198feddbf2ddf4f31e9c201ba09d2d7ae5fda1",
+      "facts": "Publisher bound to chatgpt/lumo-nextgen-20261113 and coachpreview-build-2018.",
+      "pointers": "lines 495-511,635"
+    },
+    {
+      "path": ".github/workflows/lumo-kart-graphics-2019.yml",
+      "blob": "42c9b5c129c77c2f0107fba04cb6b59b8fa6e159",
+      "facts": "Publisher bound to chatgpt/lumo-kart-graphics-apk-20261113 and verified2019, not either2020 branch.",
+      "pointers": "lines 982-1000,1030,1105"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "blob": "7c09753896c31f3ae984463d7367301c7a6e8cf3",
+      "facts": "Publisher bound to chatgpt/lumo-studio-20261113 and2019.",
+      "pointers": "lines 809-827,965"
+    },
+    {
+      "path": ".github/workflows/release-apk.yml",
+      "blob": "7db04919bdc8777389a8538c32202b9b77a4d4db",
+      "facts": "Its publication step requires PR head chatgpt/lumo-test-apk-2026-10-05 and a fixed October tag; existing assets may be clobbered there. It is not an eligible immutable2020 path.",
+      "pointers": "lines 196-220"
+    },
+    {
+      "path": ".github/workflows/publish-kart-1928-technical-test.yml",
+      "blob": "a47ab6c3127bf3ab8a2efa525673b9a290bd54be",
+      "facts": "Only the exact1928 branch is allowed. tools/android_qa/publish_authorized_1928.py hard-binds release409396093, source, APK hash and1928 tag; no2020 path.",
+      "pointers": "workflow lines3-31; helper lines11-24,139-167"
+    }
+  ],
+  "capability_observations": {
+    "github_tools_in_registry": 89,
+    "available": "GitData and PR operations; GET repository/release reads; workflow artifact downloads; existing-job reruns.",
+    "unavailable_in_current_registry": [
+      "Release creation",
+      "Release editing/publication",
+      "Release asset upload",
+      "workflow_dispatch"
+    ],
+    "github_fetch": "Its declared schema accepts only a URL for approved GET resources. It is not an arbitrary authenticated HTTP POST/PATCH capability.",
+    "local_gh": {
+      "binary": "/usr/bin/gh",
+      "command": "gh auth status --hostname github.com",
+      "exit_code": 1,
+      "reports_not_logged_in": true,
+      "reports_logged_in": false,
+      "raw_auth_output_printed": false,
+      "token_values_read_or_printed": false
+    },
+    "limitation": "This is a capability/access finding, not a claimed server-side denial of every possible GitHub permission. No external hosting or browser-authentication route was assessed."
+  },
+  "release_snapshot": {
+    "page_sizes": [
+      100,
+      100,
+      28
+    ],
+    "total": 228,
+    "release2020_count": 0,
+    "matching_version_labels": [],
+    "highest_published_family": {
+      "id": 443025290,
+      "tag": "coachpreview-build-2017",
+      "published_at": "2026-11-12T14:00:58Z"
+    },
+    "exact_release_tag_endpoint": "https://api.github.com/repos/Ullmann27/lumo-lernen/releases/tags/coachpreview-build-2020",
+    "exact_release_tag_result": 404,
+    "matching_refs_endpoint": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/matching-refs/tags/coachpreview-build-2020",
+    "matching_refs_result": [],
+    "catalog_endpoint": "https://api.github.com/repos/Ullmann27/lumo-lernen/releases?per_page=100",
+    "caveat": "This is an observed paginated snapshot. Recheck after the eventual full candidate succeeds and immediately before any later publication."
+  },
+  "scope_guards": [
+    "No publication performed",
+    "No workflow dispatch or rerun performed",
+    "No alternative trigger/branch trick",
+    "No key/token values retrieved",
+    "No main/source/ref changes",
+    "Existing old releases left untouched"
+  ],
+  "publisher_scan": [
+    {
+      "path": ".github/workflows/lumo-1925-apk.yml",
+      "blob": "642ab34ee9b96adcfcb4740747173afbcaafcb50",
+      "release_call_lines": [
+        131
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-1926-sulafat-apk.yml",
+      "blob": "c122bed6b962af0fc1e7307c3c0ac27e667c8c0a",
+      "release_call_lines": [
+        139
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-1980-mobile-apk-download.yml",
+      "blob": "7f427ac132c185a3343c4ba18dbe27eaa78ac306",
+      "release_call_lines": [
+        57,
+        59
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-1980-publish-phone-prerelease.yml",
+      "blob": "ccb9f2d94774eb929d46e5be0c25e562afc6f197",
+      "release_call_lines": [
+        44
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-1999-chrome-direct-release.yml",
+      "blob": "d03599f390ecd17c777620ffc2c9d0a75d8ebd71",
+      "release_call_lines": [
+        84
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-2000-direct-release.yml",
+      "blob": "cd4df49c2e5bf8ff4905532546207bd5fba14773",
+      "release_call_lines": [
+        115
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-2001-direct-release.yml",
+      "blob": "a1b200a0d774488e17612562ba9282345aaa4c24",
+      "release_call_lines": [
+        115
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-2002-direct-release.yml",
+      "blob": "729330d3061bf85b55afafcfaf458f16790bca9e",
+      "release_call_lines": [
+        116
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-2003-direct-release.yml",
+      "blob": "d9bab62572cbe8df4872a52bcebddca8fbd149d6",
+      "release_call_lines": [
+        117
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-2003-family-button-release.yml",
+      "blob": "d3b46d9a545ae37f7f9dee8b017c061486547968",
+      "release_call_lines": [
+        158
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-family-2012-publish.yml",
+      "blob": "c7fb5e51ba4737ab40cc110d0bd901130f01f878",
+      "release_call_lines": [
+        69
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-kart-graphics-2019.yml",
+      "blob": "42c9b5c129c77c2f0107fba04cb6b59b8fa6e159",
+      "release_call_lines": [
+        1105
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-2018.yml",
+      "blob": "ee198feddbf2ddf4f31e9c201ba09d2d7ae5fda1",
+      "release_call_lines": [
+        635
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "blob": "7c09753896c31f3ae984463d7367301c7a6e8cf3",
+      "release_call_lines": [
+        965
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "blob": "99a18f4d28a41e46a75deae966ed9255bcd5fb14",
+      "release_call_lines": [
+        807,
+        879,
+        961,
+        1054,
+        1148,
+        1267,
+        1460
+      ]
+    },
+    {
+      "path": ".github/workflows/release-apk.yml",
+      "blob": "7db04919bdc8777389a8538c32202b9b77a4d4db",
+      "release_call_lines": [
+        204,
+        212
+      ]
+    }
+  ],
+  "publisher_scan_note": "All110 current workflow files were inventoried; all16 files containing gh release create/upload/edit matched the remote dfc3 blob inventory. The separately scripted1928 publisher was also inspected. Historical bindings are not reusable authorization for2020."
+}

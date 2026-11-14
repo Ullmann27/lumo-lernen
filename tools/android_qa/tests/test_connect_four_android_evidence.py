@@ -303,6 +303,60 @@ class BindingTests(unittest.TestCase):
         self.assertEqual(result['run_id'],RUN)
         self.assertEqual(result['native_source'],NATIVE)
 
+    def test_both_explicit_candidate_branches_bind_the_same_exact_evidence(self):
+        expected=bind()
+        for branch in ('integration/lumo-c4-connections-20261114',
+                       'work/lumo-play-quality-20261114'):
+            data=original_metadata()
+            data[0]['head_branch']=branch
+            with self.subTest(branch=branch):
+                self.assertEqual(bind(data),expected)
+
+    def test_unapproved_branch_cannot_reuse_valid_source_artifact_and_jobs(self):
+        for branch in ('main','work/unapproved',
+                       'work/lumo-play-quality-20261114-extra',
+                       'integration/lumo-c4-connections-20261114-extra',
+                       'refs/heads/work/lumo-play-quality-20261114','',None):
+            data=original_metadata()
+            data[0]['head_branch']=branch
+            with self.subTest(branch=branch),self.assertRaises(ValueError):
+                bind(data)
+
+    def test_quality_branch_keeps_source_artifact_and_required_job_checks(self):
+        alterations=(
+            ('source',lambda x:x[0].update(head_sha='f'*40)),
+            ('run',lambda x:x[0].update(id=RUN+1)),
+            ('attempt',lambda x:x[0].update(run_attempt=2)),
+            ('workflow',lambda x:x[0].update(path='.github/workflows/other.yml')),
+            ('event',lambda x:x[0].update(event='workflow_dispatch')),
+            ('repository',lambda x:x[0].update(repository={'full_name':'outside/fork'})),
+            ('artifact',lambda x:x[1]['artifacts'][0].update(id=ARTIFACT+1)),
+            ('digest',lambda x:x[1]['artifacts'][0].update(digest='sha256:'+'e'*64)),
+            ('expired',lambda x:x[1]['artifacts'][0].update(expired=True)),
+            ('size',lambda x:x[1]['artifacts'][0].update(size_in_bytes=0)),
+            ('artifact source',lambda x:x[1]['artifacts'][0]['workflow_run'].update(head_sha='f'*40)),
+            ('artifact run',lambda x:x[1]['artifacts'][0]['workflow_run'].update(id=RUN+1)),
+            ('missing artifact',lambda x:x[1].update(artifacts=[])),
+            ('duplicate artifact',lambda x:x[1]['artifacts'].append(copy.deepcopy(x[1]['artifacts'][0]))),
+            ('missing job',lambda x:x[2]['jobs'].pop()),
+            ('duplicate job',lambda x:x[2]['jobs'].append(copy.deepcopy(x[2]['jobs'][0]))),
+        )
+        for name,alter in alterations:
+            data=original_metadata()
+            data[0]['head_branch']='work/lumo-play-quality-20261114'
+            alter(data)
+            with self.subTest(alteration=name),self.assertRaises(ValueError):
+                bind(data)
+        for index in range(3):
+            for field,value in (('run_id',RUN+1),('run_attempt',2),
+                                ('head_sha','f'*40),('conclusion','failure'),
+                                ('conclusion','skipped'),('conclusion','cancelled')):
+                data=original_metadata()
+                data[0]['head_branch']='work/lumo-play-quality-20261114'
+                data[2]['jobs'][index][field]=value
+                with self.subTest(job=index,field=field,value=value),self.assertRaises(ValueError):
+                    bind(data)
+
     def test_actual_upload_digest_is_canonicalized_against_rest_metadata(self):
         actual=c4.artifact_binding(*original_metadata(),source=HOST,run_id=RUN,
             attempt=1,artifact_id=ARTIFACT,digest=DIGEST.removeprefix('sha256:'),

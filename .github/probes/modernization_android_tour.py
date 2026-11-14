@@ -913,7 +913,8 @@ def _continue_actual_race(out: Path, session: RaceSession, paused: dict) -> dict
     kart = scoped.expected_kart
     garage_evidence.require_selected_race(paused, kart,
                                           mode=scoped.expected_mode, track=scoped.expected_track)
-    probe.native_text(out, 'Weiterfahren', '21_continue_touch', tap=True, exact=True)
+    probe.native_text(out, 'Weiterfahren', '21_continue_touch', tap=True, exact=True,
+                      standalone_caption=True)
     journal = out / '21_continue_touch-surface-readiness.json'
     touch = json.loads(journal.read_text())
     garage_evidence.demand(touch.get('status') == 'TOUCH_SENT',

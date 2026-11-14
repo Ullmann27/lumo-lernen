@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-14 11:04:28 UTC",
+  "boot_id": "baf3dfeb-0fc8-4ab9-9e0c-b64449da59fc",
+  "shell_python_available": true,
+  "previous_tmp_checkouts_and_packs_present": false,
+  "persistent_workspace_and_original_git_stores_present": true,
+  "pillow_available": true,
+  "actionlint_available": true,
+  "previous_git_refs_untouched_by_recovery": true,
+  "targeted_validation": "NOT_RUN_BEFORE_SOURCE_CHECKPOINT",
+  "next_action": "Create a fresh isolated checkout at the reviewed committed source and execute the narrowly scoped tests before CI activation."
+}

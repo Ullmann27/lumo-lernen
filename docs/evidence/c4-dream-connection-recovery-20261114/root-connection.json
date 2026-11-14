@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "status": "REVIEWED_SOURCE_CHECKPOINT_BEFORE_NEW_HOST_CI",
+  "recorded_at_utc": "2026-11-14T11:04:13.588Z",
+  "parent_host": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+  "parent_tree": "10234debe8d5f2f9577ac28aa05ae99322d9190f",
+  "native": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "native_tree": "2eb628d3e3a327ee8985385130c96168db7aa852",
+  "source_changes": [
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9dcf0ce0e38caa676777c02eb71aa09c1b425fad",
+      "sha256": "9190ff1a60b61ce8cb40d44daea300315a359a5ff1d7d47b4623a4c4ae9bb240"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b10d2ba20c93d17f723b9c190652060968505b53",
+      "sha256": "14f363f836072e194b0a188af43bc76c9133adcc8a5c04157f25fc7a1217ca2c"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0373f0f8efb8bda20faf49fbde9d7cb7c54cc06",
+      "sha256": "512094ced303fdffb955eee93fce5ce71a8de757a9510940b8f6cac3da0ac931"
+    },
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d56118529b7493e819262e61427d627c01ee0753",
+      "bytes": 45539,
+      "sha256": "543d0415098a18007aa0f863cc4dbbbada7dc82cc30dc77c13446a8f2b5399b6"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cbd999a042b4c7e5ea15b1bb90ab2bc9f72233ff",
+      "bytes": 56951,
+      "sha256": "332d059e2b7a3da338cb9cc27dd41830020a0cfda1fb19a5fedd789feaccfb82"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a91e25120489d21fc409930d893f52b31448aea3",
+      "bytes": 66711,
+      "sha256": "9ce1031bf12a677fe346188fdb7f5edcbc77bd12245ecea642adc065735f8f0b"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d",
+      "bytes": 30218,
+      "sha256": "3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae"
+    }
+  ],
+  "reason": "Attach the completed and separately verified Dream source through additional mandatory Host gates and strict original-evidence replay; repair one stale strict garage mock expectation.",
+  "actual_native_validation": {
+    "run": 43585768986,
+    "attempt": 1,
+    "job": 132419791499,
+    "conclusion": "success",
+    "python_tests": 12,
+    "existing_headless_counts": {
+      "return": 21,
+      "wisp": 14,
+      "treasure": 92,
+      "learning": 5347
+    },
+    "new_dream_gates": 5,
+    "original_pngs": 7,
+    "original_reports": 2
+  },
+  "preserved": {
+    "historical_approved_pins": 50,
+    "existing_native_modes": 52,
+    "studio2020_images": 17,
+    "return_checks": 21,
+    "wisp_checks": 14,
+    "host_job_timeout_minutes": 90,
+    "old_delivery_test_methods": 45,
+    "new_delivery_test_methods": 11,
+    "production_caption_guards": "unchanged"
+  },
+  "garage_validation": {
+    "actual_single_case_original": "FAIL",
+    "actual_single_case_proposed": "PASS",
+    "qa_checkpoint": "0ac948f633c0310e3a220c9ac5d81891e724bb67",
+    "production_source_unchanged": true
+  },
+  "recovery": {
+    "executor_status": "unavailable",
+    "error": "exec-server transport disconnected; recovery timed out",
+    "three_root_pin_sources_recovered_exact_git_blob_and_sha256": true,
+    "three_host_dream_sources_recovered_exact_git_blob_and_sha256": true,
+    "garage_source_already_durable_in_qa_checkpoint": true,
+    "local_targeted_suites_and_actionlint_after_checkpoint": "NOT_RUN_EXECUTOR_UNAVAILABLE",
+    "native_bd_local_object_import_attempt": "NOT_CONFIRMED_EXECUTOR_FAILURE",
+    "new_full_host_ci": "not yet started at this checkpoint"
+  },
+  "release_scope": {
+    "main_unchanged": true,
+    "public_apk_release_created": false,
+    "android_acceptance": false,
+    "fps_measurement": false,
+    "existing_2020_release_or_tag_found": false
+  },
+  "evidence_note": "Original successful Native and failed Host APIs/logs are preserved. Complete local packs that were not yet published became inaccessible when the executor failed; their recorded identities are retained without claiming their bytes were recovered."
+}

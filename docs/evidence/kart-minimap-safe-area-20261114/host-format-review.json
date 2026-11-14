@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "date_utc": "2026-11-14",
+  "reviewer": "/root/lumo_release_lead",
+  "native_commit": "6ecc560ea16202b935c4f1d32b08b93cda358e02",
+  "native_tree": "2fa788fed751a2b526a6f69d648d57eb6e181953",
+  "parent": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "host_verifier_source": "dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f",
+  "scope": "Read-only report/marker/roster compatibility check. No new engine, renderer or full-suite run.",
+  "final_commit_readback": "GitHub commit readback confirms exactly two source changes and20 evidence additions. All runner/raster verifier files are unchanged from f052.",
+  "observed_headless_report": {
+    "path": "docs/evidence/kart-minimap-safe-area-20261114/green/mobile-safe-area.json",
+    "blob": "ee2b818b2cb2fe1f44f436efd9b02b42d601960c",
+    "bytes": 55440,
+    "checks": 380,
+    "failures": [],
+    "targets": 15,
+    "images": 0,
+    "minimap_layouts": 7,
+    "minimap_transitions": 2,
+    "minimap_images": 0
+  },
+  "observed_log": {
+    "blob": "8c8d0acedfaa337f87250ba3dfe9add54f273538",
+    "marker": "MOBILE_SAFE_AREA_PASS checks=380 failures=0 controls=15 images=0 scope=platform_boundary_fixture",
+    "engine_error_or_fail_marker_found": false
+  },
+  "conclusions": [
+    "The unchanged52-mode runner passes only MOBILE_SAFE_AREA_PASS as this probe's required substring. run_godot_probe.py also requires clean exit/no engine errors; neither fixes the former check count.",
+    "Native verify_safe_area_rasters.py and Host verify_studio_delivery.py require integer checks>0 and failures=[], not a fixed check count or exact top-level key set.",
+    "The original15 controls remain in targets; extra Kart controls/layouts are separate. Native/Host target geometry and exact15-name contracts remain unchanged.",
+    "The original four rendered Mobile PNG names remain jump/build/puzzle/treasure-landscape-cutout.png, each2400x1080. The original producer functions are byte-identical.",
+    "The unchanged fixed-raster verifier still requires exactly those four PNGs. Optional Kart captures have a distinct explicit destination and separate report list; the existing runner does not enable that optional destination.",
+    "The combined safe-area manifest still contains seven images and the same two original report paths. Host replay compares the regenerated manifest including current report hashes.",
+    "The380-check headless report is55440bytes, below the existing1MiB bound. It retains the exact fixture scope, surface,density and system-inset fields.",
+    "The separate17-image Studio2020 extension validates its own Face/C4/Treasure sidecars and has no fixed Mobile SafeArea check/key assumption.",
+    "The live hint assertions add no probe/mode rows, so the exact52-row result roster is preserved."
+  ],
+  "sources": [
+    {
+      "path": "tools/validate_nextgen.sh",
+      "blob": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946",
+      "lines": "71-76,122,141"
+    },
+    {
+      "path": "tools/run_godot_probe.py",
+      "blob": "c23859ece2d62101d000d7a89556fda5d3fe4105",
+      "lines": "65-79"
+    },
+    {
+      "path": "tools/verify_safe_area_rasters.py",
+      "blob": "34fb3c4f31e476a5f29f98abc9a2ecc0337e6863",
+      "lines": "20-23,60-62,113-144"
+    },
+    {
+      "path": "tools/verify_village_rasters.py",
+      "blob": "7c9522903db13f9bd0917ef2768ddbc08e624b1d",
+      "lines": "22-62"
+    },
+    {
+      "path": "tools/verify_studio_2020_rasters.py",
+      "blob": "b60c3360730f0db73f91324cbaed3a8806fd141e"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "blob": "5f64dfd544c24cbae04e79092bf44fd22f259065",
+      "repository": "Ullmann27/lumo-lernen",
+      "lines": "436-465,504-546"
+    },
+    {
+      "path": "scripts/verify_studio_delivery.py",
+      "blob": "ceeb0a5123acb229f7ff0329ee8730aff63cecb0",
+      "repository": "Ullmann27/lumo-lernen",
+      "lines": "525-529,591-633,679-691"
+    }
+  ],
+  "decision": "No source-visible format incompatibility found.",
+  "remaining": "The current report is headless and has zero images. It is not accepted as the complete rendered raster proof. The existing genuine rendered mode and full52-mode gate remain required."
+}
