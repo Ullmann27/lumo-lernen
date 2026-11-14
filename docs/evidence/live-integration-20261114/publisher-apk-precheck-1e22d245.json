@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "status": "PREPARED_INACTIVE_AWAITING_CURRENT_SEVEN_JOB_SUCCESS",
+  "source_commit": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "host_tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "acceptance_identity": {
+    "SOURCE_SHA": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "ACCEPTANCE_RUN": "43596913210",
+    "ACCEPTANCE_ATTEMPT": "1",
+    "ACCEPTANCE_PR": "497",
+    "VERSION_TAG": "coachpreview-build-2020"
+  },
+  "acceptance_branch": "integration/lumo-live-connections-20261114",
+  "acceptance_workflow": ".github/workflows/lumo-connect-four-2020.yml",
+  "observed_acceptance": {
+    "id": 43596913210,
+    "run_attempt": 1,
+    "event": "pull_request",
+    "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "head_branch": "integration/lumo-live-connections-20261114",
+    "status": "in_progress",
+    "conclusion": null,
+    "run_started_at": "2026-11-14T12:52:14Z"
+  },
+  "checkpoint_branch": "checkpoint/lumo-live-publisher-1e22-20261114",
+  "activation_branch": "delivery/lumo-live-2020-20261114",
+  "workflow_path": ".github/workflows/lumo-live-2020-publish.yml",
+  "workflow_sha256": "c090b8631be7f43215fc3b4472bb710348f869eb0ff397b60abbd37a27cc141d",
+  "reviewed_original": {
+    "workflow_blob": "04247c39f61e138bcca767447b1b0bec5aeac611",
+    "workflow_sha256": "78c923eda6436ebffa073c519b226e7e3f33c973b34b792429340e9277bf55ab",
+    "manifest_blob": "dca19fddb8dbddc2fc25a3f24e8cd0353f40f501",
+    "previous_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+    "previous_run": 43586101225,
+    "superseded_do_not_activate": true
+  },
+  "binding_changes": [
+    {
+      "line": 26,
+      "before": "      SOURCE_SHA: 07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": "      SOURCE_SHA: 1e22d2455937e2640d1e44e153d290746f3afe49"
+    },
+    {
+      "line": 27,
+      "before": "      ACCEPTANCE_RUN: '43586101225'",
+      "after": "      ACCEPTANCE_RUN: '43596913210'"
+    },
+    {
+      "line": 35,
+      "before": "          ref: 07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": "          ref: 1e22d2455937e2640d1e44e153d290746f3afe49"
+    }
+  ],
+  "only_literal_source_checkout_and_run_changed": true,
+  "reverse_binding_is_byte_identical_to_reviewed_original": true,
+  "required_acceptance_jobs": 7,
+  "required_delivery_assets": 11,
+  "all_fresh_apk_source_run_cert_and_public_byte_guards_unchanged": true,
+  "activation_pending_complete_seven_job_success": true,
+  "activation_pending_original_delivery_verification": true,
+  "github_publication_writes_performed": false,
+  "activation_ref_created": false,
+  "signing_scope": "Existing ARM64 test certificate, not Play production signing",
+  "expected_test_certificate_sha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+  "actual_apk_verified_by_prepared_publisher": false,
+  "local_binding_verification": {
+    "status": "PASS_LITERAL_BINDING_AND_YAML",
+    "workflow_sha256": "c090b8631be7f43215fc3b4472bb710348f869eb0ff397b60abbd37a27cc141d",
+    "workflow_bytes": 16753,
+    "yaml_parse": "PASS",
+    "all_seven_run_blocks_byte_identical_to_actual_syntax_preflight": true,
+    "run_block_comparison": [
+      {
+        "step": "Read the complete current acceptance and download its original bundle",
+        "sha256": "c70db1c26023d429f3c44e8e813e15e50cd375906a7b05d477f308ea1e67af1c",
+        "unchanged_from_actually_checked_original": true,
+        "original_bash_exit": 0
+      },
+      {
+        "step": "Verify and safely unpack every original delivery byte",
+        "sha256": "8a74c5261391ff514a46912d5bfce12710455995ada33fdd2de78f1d47ab56b7",
+        "unchanged_from_actually_checked_original": true,
+        "original_bash_exit": 0
+      },
+      {
+        "step": "Reverify original ARM64 APK signature package and source before creating a release",
+        "sha256": "1e0defb8c648ff92e4d439aeb9826f1a976a34142263b8ccfcff18a6f3c994ec",
+        "unchanged_from_actually_checked_original": true,
+        "original_bash_exit": 0
+      },
+      {
+        "step": "Require a genuinely new version before creating its tag and draft",
+        "sha256": "12bc067a447e0ec41e2df199842f61c90054a378c00409a5470cf3bdf226a659",
+        "unchanged_from_actually_checked_original": true,
+        "original_bash_exit": 0
+      },
+      {
+        "step": "Upload the exact verified original assets without replacing files",
+        "sha256": "15735dec6e701da052b3a7e4b084ef3f1c127c7e60dfff345da54e55e41476ca",
+        "unchanged_from_actually_checked_original": true,
+        "original_bash_exit": 0
+      },
+      {
+        "step": "Recheck current acceptance and publish only the checked new draft",
+        "sha256": "b70758d76e49b913414c8dfec0377c25b8512ea9d5a260846afe546a0adb44fb",
+        "unchanged_from_actually_checked_original": true,
+        "original_bash_exit": 0
+      },
+      {
+        "step": "Download the public APK without authentication and verify its exact bytes",
+        "sha256": "847959ecab4e7861816bf7b44410bd7c77b24fb2f10c975921d7e72c8add9389",
+        "unchanged_from_actually_checked_original": true,
+        "original_bash_exit": 0
+      }
+    ],
+    "original_syntax_preflight": {
+      "source_blob": "04247c39f61e138bcca767447b1b0bec5aeac611",
+      "source_sha256": "78c923eda6436ebffa073c519b226e7e3f33c973b34b792429340e9277bf55ab",
+      "started_at": "2026-11-14T12:47:09.224811+00:00",
+      "completed_at": "2026-11-14T12:47:09.266133+00:00",
+      "yaml_parse": "PASS",
+      "bash_blocks_checked": 7,
+      "python_heredocs_checked": 3,
+      "result_sha256": "e39d1682b7c2b3d45f76416f22a8a8183dc82ef217d1829fa2bdaea2e2521f03"
+    },
+    "no_workflow_commands_executed": true,
+    "actionlint_rerun": false
+  }
+}
