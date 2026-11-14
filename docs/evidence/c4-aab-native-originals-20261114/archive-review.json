@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "kind": "actual_native_original_archive_and_runner_records",
+  "recorded_utc": "2026-11-14T13:21:41.014Z",
+  "artifact_id": 14114314120,
+  "run_id": 43590864772,
+  "run_attempt": 1,
+  "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "original_archive": {
+    "bytes": 192077445,
+    "sha256": "d57188fcd09673444f3670c41378b444d6295e9934a4d9a1b760c5945027510c",
+    "official_download_count": 1,
+    "actual_local_size_and_sha256_match": true,
+    "complete_member_reads_crc_and_canonical_path_checks_passed": true,
+    "regular_members": 5035,
+    "uncompressed_bytes": 511840479
+  },
+  "index": {
+    "compressed_path": "archive-index.json.gz",
+    "compressed_bytes": 325844,
+    "compressed_sha256": "dac930c00c64accb565ed1b504a09f970ca297d5cf39334c772e0b0262fc8d71",
+    "original_json_bytes": 1180861,
+    "original_json_sha256": "78c4d485ea92b5ed0b2c274af2d78c6fc8fc3e46a8f93bdcf6fc0e0c88d33d5a",
+    "scope": "Lossless generated inventory of all5035 actual unmodified archive members, each with size and SHA256; not a new renderer report."
+  },
+  "actual_original_results": {
+    "core_rows_excluding_header": 52,
+    "all_core_result_rows_pass": true,
+    "dream_rows_excluding_header": 5,
+    "all_dream_result_rows_pass": true,
+    "return_marker": [
+      "CONNECT_FOUR_RETURN_PASS checks=21"
+    ],
+    "native_source_stamp": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+  },
+  "original_file_identities": {
+    "nextgen-runner.log": {
+      "bytes": 122431,
+      "sha256": "9b07374dc3d51f951d6c7e4540b5368daaf47cb0db81d4c50e514fa92209623f",
+      "git_blob": "0ff7099e25259c7e01ec0c59cfab652225bee791"
+    },
+    "dream-runner.log": {
+      "bytes": 5511,
+      "sha256": "7361129b935aa0bac5fd5dcfdaa9502cd3d56d54047fdfdc45d4a90ea34e9a30",
+      "git_blob": "a07b0c16f8b0c4b86f83ec28d7170dc3909f49b7"
+    },
+    "connect-four-return.log": {
+      "bytes": 504,
+      "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2",
+      "git_blob": "186e8fa528a9138ea17a0a1395010f440192a280"
+    },
+    "source-sha.txt": {
+      "bytes": 41,
+      "sha256": "f689dbf8f03a0e1f79b127e96dfa3261abe28f8c50918feecfad5aad5d6da38a",
+      "git_blob": "f5010efa40eff1e722991b5118da28b62623e51b"
+    },
+    "nextgen/results.tsv": {
+      "bytes": 2259,
+      "sha256": "e055b2d3ac43199e50b37b824bbcc84c75dc9aa683389478e898637f7c0b16d4",
+      "git_blob": "db0de72ce9ada78bbe039dc96745928e0b5fd30a"
+    },
+    "dream/results.tsv": {
+      "bytes": 244,
+      "sha256": "e13332961fe89a044b7b25aff2408199425dbf9935be79ffca222f214442a169",
+      "git_blob": "03d9d027d45a2fc1610e35db1c1186bd8f39c943"
+    }
+  },
+  "independent_visual_and_reader_review": "Performed separately by the existing LearningLead/TouchWorker on this shared copy; their handoff contains their actual outcomes. This archive/runner record does not claim a new visual review by ReleaseLead.",
+  "preservation_boundary": "Complete original ZIP is available locally and in original GitHub Actions artifact14114314120. It is not embedded in this Git handoff. This handoff permanently preserves the complete member hash inventory and the listed unmodified original logs/result tables/source stamp.",
+  "current_candidate_boundary": "The parent main job was subsequently cancelled by its90-minute total time limit during APK build. Native success does not imply a produced APK, Android/update acceptance or publication.",
+  "local_root": "/workspace/scratch/2708c7907f28/aab-native-evidence-14114314120",
+  "mutations": {
+    "product": 0,
+    "source_refs": 0,
+    "engine_or_renderer_runs": 0,
+    "original_members": 0
+  }
+}

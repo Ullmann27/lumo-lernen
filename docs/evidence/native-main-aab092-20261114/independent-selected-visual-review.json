@@ -1,0 +1,249 @@
+{
+  "schema": 1,
+  "kind": "independent-selected-native-original-visual-review",
+  "date_utc": "2026-11-14",
+  "execution_scope": "Read-only review of exactly seven selected original PNGs from the already downloaded shared CI artifact. No additional download, renderer, engine, test, product mutation, commit or ref update.",
+  "source": {
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+    "run_id": 43590864772,
+    "run_attempt": 1,
+    "run_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772",
+    "artifact_id": 14114314120,
+    "artifact_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772/artifacts/14114314120",
+    "archive": {
+      "bytes": 192077445,
+      "sha256": "d57188fcd09673444f3670c41378b444d6295e9934a4d9a1b760c5945027510c"
+    },
+    "source_binding": "Run/host/artifact identity and the completed archive CRC/path review were supplied by the release lead. This reviewer read the shared archive-review.json, independently recomputed all seven selected PNG hashes and sizes, and compared the applicable Studio/Dream manifest entries. Both read manifests name the exact native commit/tree above.",
+    "reported_archive_file_count": 5035,
+    "local_original_root": "/workspace/scratch/2708c7907f28/aab-native-evidence-14114314120/original"
+  },
+  "evidence_manifests": [
+    {
+      "path": "nextgen/studio-2020-images.json",
+      "bytes": 13986,
+      "sha256": "c008857b03355af795d51a8c2c6f94cb4195cc462eba479bc64bd9f96263a70e"
+    },
+    {
+      "path": "dream/dream-images.json",
+      "bytes": 6414,
+      "sha256": "6985e1af23afc276b94ecb5c30eeac8e91765b0df0c3a43345902259f0674c86"
+    }
+  ],
+  "images": [
+    {
+      "path": "nextgen/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "bytes": 2103186,
+      "sha256": "fde669ad1aabacf790e678d203e4470bf10bd926528a843402d43a7b988da268",
+      "git_blob": "2970afcba5d2d5dc7e8bdb3cefac30d19ee429e3",
+      "width": 1080,
+      "height": 2400,
+      "archive_index_match": true,
+      "manifest_bindings": [
+        {
+          "manifest": "nextgen/studio-2020-images.json",
+          "entry_path": "captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+          "bytes_match": true,
+          "sha256_match": true,
+          "width_match": true,
+          "height_match": true
+        }
+      ],
+      "visually_opened_original": true,
+      "visible": [
+        "Die dunklen Header- und Hinweisflächen heben die helle Schrift klar vom gezeigten Hintergrund ab.",
+        "Spiele, Rucksack und Pause sind vollständig sichtbar; der mittlere Titel wird als „LUMOS STER…“ dargestellt.",
+        "Der Hinweise-Zähler und die Wasserfall-Anweisung sind trotz Zeilenumbrüchen vollständig lesbar.",
+        "Lumo ist unterhalb der Hinweisfläche vollständig zu sehen; Springen, Joystick und ANSEHEN liegen sichtbar innerhalb des Bildes."
+      ],
+      "limits": [
+        "Der vollständige Titel ist in dieser schmalen Ansicht nicht ausgeschrieben.",
+        "Kein Nachweis einer gemessenen Kontrastrate, von 48-dp-Zielen oder tatsächlicher Bedienung allein aus diesem PNG."
+      ]
+    },
+    {
+      "path": "nextgen/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "bytes": 2623692,
+      "sha256": "e190887e7f86443c671ad1803689232b5547031bc05a3b50b8cdc4c1e639514a",
+      "git_blob": "f66079038cc40becc69dd99ef3379ef1f0a4a8f4",
+      "width": 2400,
+      "height": 1080,
+      "archive_index_match": true,
+      "manifest_bindings": [
+        {
+          "manifest": "nextgen/studio-2020-images.json",
+          "entry_path": "captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+          "bytes_match": true,
+          "sha256_match": true,
+          "width_match": true,
+          "height_match": true
+        }
+      ],
+      "visually_opened_original": true,
+      "visible": [
+        "Der Titel „LUMOS STERNENSCHATZ“ ist vollständig sichtbar.",
+        "Spiele, Rucksack, Pause und Hinweis sind klar getrennt; der Erkundungshinweis bleibt lesbar.",
+        "Lumo steht sichtbar zwischen den oberen Hinweisflächen und den unteren Steuerflächen; Springen, Joystick und ANSEHEN sind innerhalb des Bildes."
+      ],
+      "limits": [
+        "Die Detail-Hinweisfläche ist hier geschlossen; daraus folgt keine Aussage über ihren geöffneten Zustand.",
+        "Die Dateibezeichnung cutout ersetzt keine Prüfung eines echten Android-Ausschnitts."
+      ]
+    },
+    {
+      "path": "action-stage/action-captures/ramp-1544-speed-70.png",
+      "bytes": 625481,
+      "sha256": "0bae78ab390a43103624addb8afa6c319cb0341167c3377a0e6710fb22a87ee2",
+      "git_blob": "f33209c7cfddd755e9804e4a81e7b9e62da18ba8",
+      "width": 1280,
+      "height": 720,
+      "archive_index_match": true,
+      "manifest_bindings": [],
+      "visually_opened_original": true,
+      "visible": [
+        "Die Minimap samt Streckenlinie liegt vollständig innerhalb des rechten Bildrandes.",
+        "Zwischen Minimap und SPEED-Artwork ist ein sichtbarer freier Abstand; die Map überdeckt weder den sichtbaren Header noch die mittige Schanze!-Hinweiszeile.",
+        "Die sichtbaren Flächen für Joystick, DRIFT, SPEED, TAKTIK und BREMSE sind voneinander unterscheidbar und im Bild enthalten.",
+        "Lumo und Kart sind auf der Strecke sichtbar."
+      ],
+      "limits": [
+        "Dies ist ein 1280×720-Standbild aus dem Action-Stage-Rampenfall; es belegt keine anderen Viewportgrößen, Resize-/Hint-Wechsel oder Touch-Betätigung.",
+        "Der angezeigte km/h-Wert ist Spielinhalt und keine Messung von Renderleistung.",
+        "Dieses Bild ist durch den Archivindex gebunden, gehört aber nicht zu den ausgewählten Studio-17- oder Dream-7-Manifesteinträgen."
+      ]
+    },
+    {
+      "path": "nextgen/captures/lumo_facial_capture/neutral.png",
+      "bytes": 283369,
+      "sha256": "1a567ec18d7e17d136734ada25d49197892ea4300a12b7a4159956db89e7ad8b",
+      "git_blob": "db72ba4c0a959a8d3dd9ad338746a602f3edb899",
+      "width": 640,
+      "height": 640,
+      "archive_index_match": true,
+      "manifest_bindings": [
+        {
+          "manifest": "nextgen/studio-2020-images.json",
+          "entry_path": "captures/lumo_facial_capture/neutral.png",
+          "bytes_match": true,
+          "sha256_match": true,
+          "width_match": true,
+          "height_match": true
+        }
+      ],
+      "visually_opened_original": true,
+      "visible": [
+        "Das Original-Lumo-Gesicht, beide Augen, Ohren, Brille und geschlossener Mund sind im Nahbild zu sehen.",
+        "Die Einblendung „Original-Lumo · Pause / geschlossen“ ist sichtbar."
+      ],
+      "limits": [
+        "Nur der gezeigte neutrale Nahbildzustand wurde visuell geprüft; keine Aussage über das vollständige Facial-Video, Animation, Lip-Sync oder Audio."
+      ]
+    },
+    {
+      "path": "nextgen/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "bytes": 83696,
+      "sha256": "38ffd2a8ef0577119558386f793c7d126c65d762afc7876795324d6bcb098038",
+      "git_blob": "0a3338eb7a0a09ca74cf56a8a167c3d60a8c41b2",
+      "width": 960,
+      "height": 540,
+      "archive_index_match": true,
+      "manifest_bindings": [
+        {
+          "manifest": "nextgen/studio-2020-images.json",
+          "entry_path": "captures/connect_four_visual_capture/c4-win-landscape.png",
+          "bytes_match": true,
+          "sha256_match": true,
+          "width_match": true,
+          "height_match": true
+        }
+      ],
+      "visually_opened_original": true,
+      "visible": [
+        "Das Brett mit sieben Spalten und sechs Reihen ist vollständig sichtbar.",
+        "Vier nebeneinanderliegende cyanfarbene Steine am unteren linken Rand sind hervorgehoben; die Anzeige lautet „Cyan gewinnt!“.",
+        "Zurück, Menü und alle sieben beschrifteten Spaltenflächen sind innerhalb des Bildes; Lumo ist rechts neben dem Brett sichtbar."
+      ],
+      "limits": [
+        "Der gezeigte Gewinnerzustand enthält keinen geöffneten Ergebnisdialog; die getrennte Small-Result-QA ist hier nicht erneut geprüft.",
+        "Aus diesem Standbild folgt kein neuer Regel-, ACK-, Eingabe- oder Scrollnachweis."
+      ]
+    },
+    {
+      "path": "dream/captures/garden/learning-dream-412x915.png",
+      "bytes": 129176,
+      "sha256": "c990d1733c2a3ec168e5d5aeec6eccb57a14e60ac7c769991c2154ed2035015b",
+      "git_blob": "a5b4022a648d1adcb0ce90e4c46089284418cd79",
+      "width": 412,
+      "height": 915,
+      "archive_index_match": true,
+      "manifest_bindings": [
+        {
+          "manifest": "dream/dream-images.json",
+          "entry_path": "captures/garden/learning-dream-412x915.png",
+          "bytes_match": true,
+          "sha256_match": true,
+          "width_match": true,
+          "height_match": true
+        }
+      ],
+      "visually_opened_original": true,
+      "visible": [
+        "Der Aufgabentitel „Zahlen zum Anfassen · 8 + 5“ und die Anweisung, die freien Plätze bis zehn zu füllen, sind vollständig lesbar.",
+        "Acht cyanfarbene Objekte, die freie Zehnerfeldstruktur und fünf gelbe Objekte sind sichtbar.",
+        "Die Statuszeile „0 / 5 bewegt · Ziehen oder antippen“ sowie Ein Objekt zeigen, Noch einmal und Zur Aufgabe sind vollständig sichtbar.",
+        "Lumo ist oberhalb bzw. links neben dem Aufgabenbrett sichtbar; keine relevante Aufgabenfläche wird durch ihn verdeckt."
+      ],
+      "cosmetic_observations": [
+        "Der äußere dekorative rechte Brettrahmen liegt am Bildrand und wird dort angeschnitten; die für diese Aufgabe sichtbaren Felder, Objekte und Schaltflächen bleiben erkennbar."
+      ],
+      "limits": [
+        "Das PNG belegt weder Drag-Erfolg noch Lernfortschritt, Unterrichtswirkung oder Zielgrößen in dp."
+      ]
+    },
+    {
+      "path": "dream/captures/treasure/treasure_01.png",
+      "bytes": 1137661,
+      "sha256": "5a0f9a6a5df1f3732024fe8a431c37a5909db6238b0bf6571a3e0927662bd77f",
+      "git_blob": "7a14c7b44f80f9746dcbcb1ce3fd83b5b21e69db",
+      "width": 720,
+      "height": 1280,
+      "archive_index_match": true,
+      "manifest_bindings": [
+        {
+          "manifest": "dream/dream-images.json",
+          "entry_path": "captures/treasure/treasure_01.png",
+          "bytes_match": true,
+          "sha256_match": true,
+          "width_match": true,
+          "height_match": true
+        }
+      ],
+      "visually_opened_original": true,
+      "visible": [
+        "Der vollständige Treasure-Titel sowie Spiele, Rucksack und Pause sind sichtbar.",
+        "Der Zähler und die Anweisung „Suche den großen Baum links vom Lager.“ sind vollständig lesbar, der Entdeckungszähler bricht vor der 3 um.",
+        "Lumo steht frei sichtbar im mittleren Bildbereich; der Erkundungshinweis und Springen, Joystick und ANSEHEN sind innerhalb des Bildes."
+      ],
+      "limits": [
+        "Nur dieser gezeigte Dream-Treasure-Zustand ist visuell geprüft; spätere Hinweise, modale Ansichten und tatsächliche Interaktionen bleiben außerhalb dieses Bildbefunds."
+      ]
+    }
+  ],
+  "conclusion": {
+    "selected_image_count": 7,
+    "visible_functional_blocker_found": false,
+    "statement": "In den sieben tatsächlich geöffneten Standbildern wurde keine sichtbare funktionale Überdeckung der jeweils beschriebenen wesentlichen Inhalte und Steuerflächen gefunden. Die aktuelle Kart-Aufnahme zeigt eine vollständig im Bild liegende Minimap mit Abstand zum SPEED-Knopf.",
+    "bounded_cosmetic_observations": [
+      "Der Treasure-Portrait-Titel ist mit Auslassungspunkten verkürzt; der vollständige Titel erscheint in der geprüften Querformat-Ansicht.",
+      "Im schmalen Dream-Garden-PNG wird der äußere dekorative rechte Brettrand angeschnitten; die beschriebenen Aufgabeninhalte und Schaltflächen bleiben sichtbar."
+    ],
+    "exclusions": [
+      "Keine vollständige visuelle Prüfung aller 5.035 Archivdateien, aller 17 Studio-PNGs oder aller sieben Dream-PNGs.",
+      "Keine eigene Wiederholung oder Freigabe der 52 Gameplay-, 17 Raster- oder Dream-5/7/2-Gates; diese technischen Nachweise prüft der Parent getrennt.",
+      "Keine Android-Geräte-, APK-, Play-Store-, FPS-, Audio-, dynamische Layout-, Touch-, Scroll-, ACK- oder Lernwirksamkeitsfreigabe aus diesen Standbildern.",
+      "Die erfolgreiche Bildbindung ersetzt keine Aussage zum abschließenden Status des gesamten Main-Workflows."
+    ]
+  }
+}

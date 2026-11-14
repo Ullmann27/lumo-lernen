@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14 13:13:26 UTC",
+  "recorded_at_utc": "2026-11-14 13:26:15 UTC",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -12,765 +12,33 @@
   "candidate": {
     "repository": "Ullmann27/lumo-lernen",
     "branch": "work/lumo-play-quality-20261114",
-    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
-    "host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "host": "1375da193af0152af64f91d86577aa9768cd50db",
+    "host_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
     "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
     "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
     "version": "0.13.8+2020",
     "pull_request": 491,
     "frozen": true,
-    "main_not_modified_by_team": true
+    "main_not_modified_by_team": true,
+    "previous_host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "change_scope": "Only outer verify-and-build budget90-to150 and the same existing contract expectation; all app/native code and all other test/workflow bytes unchanged"
   },
   "main_run": {
-    "id": 43590864772,
+    "id": 43599456596,
     "attempt": 1,
-    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772",
-    "status_at_last_read": "completed",
-    "last_read_utc": "2026-11-14T13:12:00Z",
-    "job": 132436033818,
-    "job_started_utc": "2026-11-14T11:40:59Z",
-    "current_step_at_last_read": null,
-    "step_started_utc": null,
-    "old_comparable_step_seconds": 2639,
-    "old_timing_is_not_current_success_or_eta": true,
-    "last_observed_at_utc": "2026-11-14T13:12:00Z",
-    "jobs_snapshot": [
-      {
-        "id": 132435073772,
-        "name": "connect-four-runtime",
-        "status": "completed",
-        "conclusion": "success",
-        "started_at": "2026-11-14T11:36:53Z",
-        "completed_at": "2026-11-14T11:39:19Z",
-        "active_steps": []
-      },
-      {
-        "id": 132435074028,
-        "name": "android-host-compile",
-        "status": "completed",
-        "conclusion": "success",
-        "started_at": "2026-11-14T11:36:53Z",
-        "completed_at": "2026-11-14T11:40:58Z",
-        "active_steps": []
-      },
-      {
-        "id": 132436033818,
-        "name": "verify-and-build",
-        "status": "completed",
-        "conclusion": "cancelled",
-        "started_at": "2026-11-14T11:40:59Z",
-        "completed_at": "2026-11-14T13:11:15Z",
-        "active_steps": []
-      },
-      {
-        "id": 132457986535,
-        "name": "update-2020-from-2017",
-        "status": "completed",
-        "conclusion": "skipped",
-        "started_at": "2026-11-14T13:11:15Z",
-        "completed_at": "2026-11-14T13:11:15Z",
-        "active_steps": []
-      },
-      {
-        "id": 132457986998,
-        "name": "verify-c4-candidate",
-        "status": "completed",
-        "conclusion": "skipped",
-        "started_at": "2026-11-14T13:11:15Z",
-        "completed_at": "2026-11-14T13:11:15Z",
-        "active_steps": []
-      },
-      {
-        "id": 132457987163,
-        "name": "android-c4",
-        "status": "completed",
-        "conclusion": "skipped",
-        "started_at": "2026-11-14T13:11:15Z",
-        "completed_at": "2026-11-14T13:11:15Z",
-        "active_steps": []
-      },
-      {
-        "id": 132457987742,
-        "name": "prepare-c4-delivery",
-        "status": "completed",
-        "conclusion": "skipped",
-        "started_at": "2026-11-14T13:11:16Z",
-        "completed_at": "2026-11-14T13:11:15Z",
-        "active_steps": []
-      }
-    ],
-    "active_log_read": {
-      "time": "2026-11-14T12:57:29Z",
-      "result": "404 BlobNotFound from official job-log endpoint; not a job failure conclusion"
-    },
-    "step31_success": {
-      "completed_at": "2026-11-14T13:07:12Z",
-      "conclusion": "success",
-      "originals_not_yet_reviewed": true
-    },
-    "step32_success": {
-      "completed_at": "2026-11-14T13:07:12Z",
-      "conclusion": "success",
-      "originals_not_yet_reviewed": true
-    },
-    "conclusion": "cancelled",
-    "completed_at": "2026-11-14T13:11:15Z",
-    "explicit_timeout_observation": {
-      "schema": 1,
-      "recorded_at_utc": "2026-11-14 13:13:26 UTC",
-      "source": "GitHub public job annotation expanded in actual CUA browser; no authentication or mutation",
-      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772/job/132436033818",
-      "run_id": 43590864772,
-      "job_id": 132436033818,
-      "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
-      "job_annotation_exact": "The job has exceeded the maximum execution time of 1h30m0s",
-      "step_annotation_exact": "The operation was canceled.",
-      "step": "Build unified real Android APK",
-      "observed_ui_duration": "1h 30m 16s",
-      "joblog_blob": "1798b7ad1bfff2c01da0c6a800029c84b6b2ee66",
-      "interpretation": "The displayed service annotation explicitly identifies the job-wide 90-minute limit. Native and Dream steps completed success. APK build was interrupted; dependent Android/update/final/delivery jobs were skipped. No new APK success is claimed.",
-      "changes_allowed_for_next_attempt": "Only increase the verify-and-build job budget after exact-byte, existing-contract and independent review; retain all tests, source pins, signatures, downstream checks and permissions."
-    },
-    "original_job_log_blob": "1798b7ad1bfff2c01da0c6a800029c84b6b2ee66",
-    "native_steps": [
-      {
-        "name": "Require actual gameplay gates on the exact pinned native source",
-        "status": "completed",
-        "conclusion": "success",
-        "number": 31,
-        "started_at": "2026-11-14T12:03:05Z",
-        "completed_at": "2026-11-14T13:07:12Z"
-      },
-      {
-        "name": "Require acknowledged Connect Four return retry",
-        "status": "completed",
-        "conclusion": "success",
-        "number": 32,
-        "started_at": "2026-11-14T13:07:12Z",
-        "completed_at": "2026-11-14T13:07:12Z"
-      },
-      {
-        "name": "Require actual Dream gates on the exact pinned native source",
-        "status": "completed",
-        "conclusion": "success",
-        "number": 33,
-        "started_at": "2026-11-14T13:07:12Z",
-        "completed_at": "2026-11-14T13:08:29Z"
-      },
-      {
-        "name": "Run actions/upload-artifact@v4",
-        "status": "completed",
-        "conclusion": "success",
-        "number": 34,
-        "started_at": "2026-11-14T13:08:29Z",
-        "completed_at": "2026-11-14T13:08:45Z"
-      },
-      {
-        "name": "Build unified real Android APK",
-        "status": "completed",
-        "conclusion": "cancelled",
-        "number": 35,
-        "started_at": "2026-11-14T13:08:45Z",
-        "completed_at": "2026-11-14T13:11:12Z"
-      }
-    ]
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43599456596",
+    "status_at_last_read": "in_progress",
+    "head": "1375da193af0152af64f91d86577aa9768cd50db",
+    "created_at": "2026-11-14T13:22:40Z",
+    "trigger": "pull_request from reviewed quality-branch fast-forward",
+    "job_budget_minutes": 150,
+    "last_read_utc": "2026-11-14 13:22:36 UTC"
   },
-  "completed_original_evidence": {
-    "desktop_runtime": {
-      "artifact": 14112302039,
-      "checks": 170,
-      "errors": 0,
-      "return_checks": 21,
-      "wisp_checks": 14,
-      "source_bound_to_candidate": true,
-      "backend": "production Dart with test SharedPreferences and file transport; not Android Binder"
-    },
-    "android_host_compile": {
-      "job": 132435074028,
-      "status": "success",
-      "actual_jvm_bytecode_bound": true
-    },
-    "flutter": {
-      "artifact": 14112921501,
-      "passed": 2586,
-      "failed": 0,
-      "skipped": 0,
-      "pngs": 546,
-      "actually_visually_reviewed": 4,
-      "new_math_exact_topic_test": 603,
-      "original_machine_parser_replayed": true
-    },
-    "learning_audit": {
-      "artifact": 14112501631,
-      "families": 236,
-      "samples": 7552,
-      "structural_issues": 0,
-      "exact_current_verifier_replayed": true,
-      "semantic_curriculum_approval": false
-    },
-    "build_contracts": {
-      "artifact": 14112728895,
-      "tests": 911,
-      "seconds": 358.962,
-      "skips": 0,
-      "original_current_verifier_replayed": true,
-      "synthetic_pcm_boundary_assertions": 70,
-      "android_audio_claim": false
-    },
-    "extra_flutter": {
-      "artifact": 14113540275,
-      "archive_bytes": 38297988,
-      "archive_sha256": "c8842754cd3fe54f2f6fe04a913d98e8646c9cbca9d4902bf6d5fca9b6027c99",
-      "members_checked": 54,
-      "pngs_visually_reviewed": 6,
-      "full_archive_recommitted": false,
-      "android_claim": false
-    }
-  },
-  "additional_qa": {
-    "purpose": "Actually scroll and activate restart and mode(false) after two 640x360 winning rounds",
-    "qa1": {
-      "head": "dc2e1b50ebeadb895aa691d809f2c457e0142633",
-      "run": 43594135818,
-      "attempt": 1,
-      "job": 132444932236,
-      "status": "completed",
-      "conclusion": "failure",
-      "preflight": "success",
-      "import": "success",
-      "failure": "Runner rejects 334 generated sidecars (329 .gd.uid, 5 .gdshader.uid) before either test process starts",
-      "dart_exit": null,
-      "godot_exit": null,
-      "artifact": 14113587571,
-      "artifact_sha256": "38bdeb870ce8c681d7663038decbfb4f29ca35986659ed248fde487e32014481",
-      "runtime_result_sha256": "3f68fdeb6494d53cb62af6bd296505e001dbe8b8eef5fcf3e0438d860413a447",
-      "product_bug_claim": false
-    },
-    "qa2": {
-      "head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
-      "tree": "767d74b03ea977547c83aa412bb0a96da9253b4f",
-      "branch": "qa/lumo-c4-small-result-actions-20261114-2708-r2",
-      "run": 43595002861,
-      "attempt": 1,
-      "job": 132447521284,
-      "status": "completed",
-      "conclusion": "failure",
-      "last_read_utc": "2026-11-14 12:31:59 UTC",
-      "changes": "Only workflow branch and strict generated Godot UID sidecar guard; Dart/native QA assertions byte-identical",
-      "runtime_result_not_yet_independently_read": true
-    },
-    "r2_terminal": {
-      "schema": 1,
-      "source": {
-        "qa_head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
-        "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
-        "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
-      },
-      "ci": {
-        "run_id": 43595002861,
-        "attempt": 1,
-        "job_id": 132447521284,
-        "event": "push",
-        "conclusion": "failure",
-        "original_log_message": "RuntimeError: C4 process failed: Dart=1, Godot=1",
-        "source_after_error": null
-      },
-      "artifact": {
-        "id": 14113299183,
-        "bytes_from_api": 1507887,
-        "sha256_from_api": "f769c7ae1db1b19b39d8e2944e4d2c21b341669897978bfcfcfe06c97f0b9922",
-        "download_performed": false,
-        "independent_hash_or_archive_member_review_performed": false
-      },
-      "findings": {
-        "source_preflight": "success",
-        "dependency_preparation": "success",
-        "native_import": "success",
-        "both_runtime_processes_started": true,
-        "actual_runtime_process_exits": {
-          "dart": 1,
-          "godot": 1
-        },
-        "handshake_inference": "The bound runner starts Godot only after wait_for_session has observed and validated the fresh Dart session file. Thus the observed pair failure implies the compiled Dart harness reached that initialization boundary, not that its test passed.",
-        "root_failure": "Unknown until original-godot.log and original-dart.log inside the artifact can be read",
-        "images_reviewed": false
-      },
-      "limitations": [
-        "Local environment is explicitly unavailable; no local paths are claimed to remain present.",
-        "The completed full job log and final API metadata are durably preserved as Git blobs.",
-        "No further product/QA-source mutation, rerun or ref update has been performed."
-      ],
-      "evidence_entries": [
-        {
-          "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/original-complete-job.log",
-          "mode": "100644",
-          "type": "blob",
-          "sha": "bf4f0e6571ab0d4e5a6f01e263f0cb81bf691fde",
-          "characters": 296862
-        },
-        {
-          "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-run.json",
-          "mode": "100644",
-          "type": "blob",
-          "sha": "e86d0bb00c6d609743afc8944fcc11df0d346307",
-          "characters": 13792
-        },
-        {
-          "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-jobs.json",
-          "mode": "100644",
-          "type": "blob",
-          "sha": "0dd4719ca45c6757e8f240a67374bbad3daa129b",
-          "characters": 3074
-        },
-        {
-          "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-artifacts.json",
-          "mode": "100644",
-          "type": "blob",
-          "sha": "56577b1e2b799b9b531003bbb384bf9e862137e2",
-          "characters": 885
-        }
-      ],
-      "tree_entries": [
-        {
-          "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/original-complete-job.log",
-          "mode": "100644",
-          "type": "blob",
-          "sha": "bf4f0e6571ab0d4e5a6f01e263f0cb81bf691fde"
-        },
-        {
-          "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-run.json",
-          "mode": "100644",
-          "type": "blob",
-          "sha": "e86d0bb00c6d609743afc8944fcc11df0d346307"
-        },
-        {
-          "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-jobs.json",
-          "mode": "100644",
-          "type": "blob",
-          "sha": "0dd4719ca45c6757e8f240a67374bbad3daa129b"
-        },
-        {
-          "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-artifacts.json",
-          "mode": "100644",
-          "type": "blob",
-          "sha": "56577b1e2b799b9b531003bbb384bf9e862137e2"
-        }
-      ]
-    },
-    "r2_original_read": {
-      "local_path": "/workspace/scratch/2708c7907f28/r2-original-43595002861/original-artifact.zip",
-      "bytes": 1507887,
-      "sha256": "f769c7ae1db1b19b39d8e2944e4d2c21b341669897978bfcfcfe06c97f0b9922",
-      "archive_members": 95,
-      "pngs": 0,
-      "native_checks": 123,
-      "target_actions": 0,
-      "actual_error": "small_result_restart_before waits for the matching fresh settled layout",
-      "last_ack": 10,
-      "last_revision": 18,
-      "product_failure_proven": false,
-      "root_read_original_logs": true,
-      "root_read_original_native_and_dart_results": true,
-      "r3_preparation": "Only three expected geometry arrays become FLOAT literals plus branch identity strings; exact miniature engine reproduction and independent review pending."
-    },
-    "r2_original_review": {
-      "schema": "lumo.c4.small-result-actions.r2-original-review.v1",
-      "run": {
-        "id": 43595002861,
-        "attempt": 1,
-        "job_id": 132447521284,
-        "qa_head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
-        "qa_tree": "767d74b03ea977547c83aa412bb0a96da9253b4f",
-        "conclusion": "failure"
-      },
-      "product": {
-        "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
-        "host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
-        "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
-        "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e"
-      },
-      "artifact": {
-        "id": 14113299183,
-        "name": "lumo-c4-small-result-actions-aab092",
-        "bytes": 1507887,
-        "sha256": "f769c7ae1db1b19b39d8e2944e4d2c21b341669897978bfcfcfe06c97f0b9922",
-        "git_blob": "5ffcca7542bfd0c990e82630a6688a9764fc877c",
-        "official_download_count": 1,
-        "zip_crc_valid": true,
-        "canonical_unique_regular_paths": true,
-        "files": 95,
-        "png_files": 0,
-        "archive_code_executed": false
-      },
-      "runtime": {
-        "dart_exit_code": 1,
-        "godot_exit_code": 1,
-        "native_checks": 123,
-        "completed_target_actions": 0,
-        "native_error": "small_result_restart_before waits for the matching fresh settled layout",
-        "dart_failure": "test/games/connect_four_small_result_actions_qa.dart:90:7 expected native['passed'] true, received false",
-        "last_state": {
-          "revision": 18,
-          "ack": 10,
-          "phase": "won",
-          "paused": true,
-          "twoPlayers": true,
-          "rewarded": true
-        },
-        "observed_requests": 10,
-        "first_round_stars": 5,
-        "first_round_xp": 40,
-        "restart_requested": false,
-        "target_solo_mode_requested": false
-      },
-      "cause": {
-        "classification": "QA-only impossible geometry comparisons",
-        "qa_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f",
-        "function": "_layout_matches",
-        "lines": [
-          128,
-          129,
-          131
-        ],
-        "reason": "Godot 4.6.3 JSON arrays contain FLOAT elements; the three expected literal arrays contain INT elements. Array equality uses type-sensitive Variant::hash_compare. Thus these predicates reject even numerically correct JSON geometry.",
-        "independent_review_blob": "653f6be25398506e27565bbaa32dfafaea6878af"
-      },
-      "source_review": {
-        "before_after_byte_identical": true,
-        "source_snapshot_blob": "6d2c38683631976dfa41a057da9059c50853b3cf",
-        "source_snapshot_sha256": "798649037b014221bc168aea241b0e77dccae9716cb4aefcc558cd37657313ae",
-        "host_entries_matched": 447,
-        "native_entries_matched": 1256,
-        "qa_entries_matched": 4,
-        "generated_uid_entries": 334,
-        "uid_source_blobs_and_reconstructed_uid_hashes_verified": true
-      },
-      "limitations": [
-        "No completed target result-dialog action, no PNG and no passed gameplay gate.",
-        "The original transient layout observation is absent: production _exit_tree deletes it. Exact observed geometry cannot be reconstructed from this archive.",
-        "Other _layout_matches predicates have not all been shown true; fixing the demonstrated impossible comparisons does not imply a successful future runtime.",
-        "This review executes no archive code, production tests, engine, rendering, Android tour or APK build. The separate later minimal QA reproduction must not be conflated with the failed R2 gameplay run."
-      ],
-      "supersedes_availability_only": "The earlier cb336ebb4fa867f21692d22dd6a95f3e526763c1 checkpoint correctly recorded unavailable local artifact access at its creation; original ZIP access and the failure diagnosis are now completed."
-    },
-    "r3_reproduction": {
-      "manifest_blob": "fff0b599f31e82141b091429024682381457d766",
-      "root_independent_review": {
-        "source_predicate_exact": true,
-        "full_reproduction_only_three_literal_changes": true,
-        "actual_inputs_and_expectations_identical": true,
-        "red": {
-          "checks": 15,
-          "failures": 1,
-          "failed_cases": [
-            "exact_geometry"
-          ]
-        },
-        "green": {
-          "checks": 15,
-          "failures": 0
-        },
-        "negative_cases": [
-          {
-            "name": "window_width_wrong",
-            "accepted": false
-          },
-          {
-            "name": "window_height_wrong",
-            "accepted": false
-          },
-          {
-            "name": "viewport_width_wrong",
-            "accepted": false
-          },
-          {
-            "name": "viewport_height_wrong",
-            "accepted": false
-          },
-          {
-            "name": "safe_left_wrong",
-            "accepted": false
-          },
-          {
-            "name": "safe_top_wrong",
-            "accepted": false
-          },
-          {
-            "name": "safe_width_wrong",
-            "accepted": false
-          },
-          {
-            "name": "safe_height_wrong",
-            "accepted": false
-          },
-          {
-            "name": "fractional_window",
-            "accepted": false
-          },
-          {
-            "name": "fractional_viewport",
-            "accepted": false
-          },
-          {
-            "name": "fractional_safe_rect",
-            "accepted": false
-          },
-          {
-            "name": "window_extra_element",
-            "accepted": false
-          },
-          {
-            "name": "safe_string_element",
-            "accepted": false
-          },
-          {
-            "name": "viewport_missing",
-            "accepted": false
-          }
-        ],
-        "gameplay_success_not_inferred": true
-      },
-      "runtime_status": "R3 completed success; original artifacts read and all four pictures visually reviewed"
-    },
-    "r3": {
-      "branch": "qa/lumo-c4-small-result-actions-20261114-2708-r3",
-      "head": "51d05896aec9bced8c789504161f2255441cd07f",
-      "tree": "1c95ba11ba980ed01bd3e76c91a66fdfcb23b8a4",
-      "run_id": 43596764202,
-      "attempt": 1,
-      "status": "completed",
-      "event": "push",
-      "first_api_total_runs": 1,
-      "root_decision": {
-        "schema": 1,
-        "decision": "Proceed with one isolated real R3 two-action QA run after exact source/negative-case review",
-        "qa_head": "51d05896aec9bced8c789504161f2255441cd07f",
-        "qa_tree": "1c95ba11ba980ed01bd3e76c91a66fdfcb23b8a4",
-        "parent": "aab09275ec6b5808de9be539ca4e1a7e70921249",
-        "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
-        "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
-        "files": {
-          ".github/workflows/lumo-c4-small-result-actions-qa.yml": "5c02a9274bf91b428e1080ff58884af9e89d46a8",
-          "scripts/run_connect_four_small_result_actions_qa.py": "3ad5492989e2dcdee4303699e0fbbd2f04f3bbe3",
-          "test/games/connect_four_small_result_actions_qa.dart": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e",
-          "tools/qa/connect_four_small_result_actions_qa.gd": "1b474002b3b93db9cae53a19c90fe75cb80c0604"
-        },
-        "root_exact_comparison": {
-          "workflow": "only two r2 to r3 branch strings",
-          "native": "only three numerically identical FLOAT array expectations",
-          "runner": "byte-identical",
-          "dart": "byte-identical"
-        },
-        "root_original_reproduction_review": {
-          "source_predicate_exact": true,
-          "full_reproduction_only_three_literal_changes": true,
-          "actual_inputs_and_expectations_identical": true,
-          "red": {
-            "checks": 15,
-            "failures": 1,
-            "failed_cases": [
-              "exact_geometry"
-            ]
-          },
-          "green": {
-            "checks": 15,
-            "failures": 0
-          },
-          "negative_cases": [
-            {
-              "name": "window_width_wrong",
-              "accepted": false
-            },
-            {
-              "name": "window_height_wrong",
-              "accepted": false
-            },
-            {
-              "name": "viewport_width_wrong",
-              "accepted": false
-            },
-            {
-              "name": "viewport_height_wrong",
-              "accepted": false
-            },
-            {
-              "name": "safe_left_wrong",
-              "accepted": false
-            },
-            {
-              "name": "safe_top_wrong",
-              "accepted": false
-            },
-            {
-              "name": "safe_width_wrong",
-              "accepted": false
-            },
-            {
-              "name": "safe_height_wrong",
-              "accepted": false
-            },
-            {
-              "name": "fractional_window",
-              "accepted": false
-            },
-            {
-              "name": "fractional_viewport",
-              "accepted": false
-            },
-            {
-              "name": "fractional_safe_rect",
-              "accepted": false
-            },
-            {
-              "name": "window_extra_element",
-              "accepted": false
-            },
-            {
-              "name": "safe_string_element",
-              "accepted": false
-            },
-            {
-              "name": "viewport_missing",
-              "accepted": false
-            }
-          ],
-          "gameplay_success_not_inferred": true
-        },
-        "independent_source_review_blob": "b165df108db085a5c2ff00fce2e0b2b2f2fc0199",
-        "original_failure_preserved_in": "7526c6d189989ddd88817905a0034183f654c70b",
-        "actual_gameplay_result": "pending; synthetic predicate acceptance is not gameplay acceptance",
-        "permissions": "existing read-only contents permission; no release or APK build"
-      },
-      "conclusion": "success",
-      "artifact": {
-        "id": 14114498334,
-        "bytes": 1619461,
-        "sha256": "415ce3b5f51d510983c0184d37e479dc00844fa50f9dcd70c4f0493454228f64",
-        "git_blob": "5c6f90d0fb881f881d70faea5b84d2cfb974b977",
-        "path": "/workspace/scratch/2708c7907f28/r3-original-43596764202/original-artifact.zip",
-        "members": 103
-      },
-      "root_original_review": {
-        "schema": 1,
-        "run_id": 43596764202,
-        "attempt": 1,
-        "qa_head": "51d05896aec9bced8c789504161f2255441cd07f",
-        "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
-        "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
-        "root_read_only_original_replay": {
-          "native_checks": 283,
-          "errors": [],
-          "both_processes_exit_zero": true,
-          "native_dart_all_requests_equal": 21,
-          "actions_matched_to_original_dart_events_and_layouts": [
-            {
-              "action": "restart",
-              "ack": [
-                10,
-                11
-              ],
-              "revision": [
-                18,
-                19
-              ],
-              "new_round": "d14950fcfa6dea8004ed186de8036654",
-              "two_players_after": true,
-              "target_dp": [
-                588,
-                52
-              ],
-              "drag_events": 8
-            },
-            {
-              "action": "mode",
-              "ack": [
-                19,
-                20
-              ],
-              "revision": [
-                33,
-                34
-              ],
-              "new_round": "9729b63cc7402806d9c46124770f4f5c",
-              "two_players_after": false,
-              "target_dp": [
-                588,
-                52
-              ],
-              "drag_events": 16
-            }
-          ],
-          "awards": {
-            "unique": 2,
-            "stars": 10,
-            "xp": 80
-          },
-          "same_process_reopen": true,
-          "source_snapshots_byte_identical": true,
-          "source_snapshot_sha256": "009c0dd5b9cfde08e3a977249a4db64a0db935a48fde71f819271e5ca9a0490d"
-        },
-        "images": [
-          {
-            "path": "small_result_mode_after.png",
-            "bytes": 29157,
-            "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
-            "dimensions": [
-              640,
-              360
-            ]
-          },
-          {
-            "path": "small_result_mode_before.png",
-            "bytes": 22337,
-            "sha256": "b76ce45ea178deaaa994821fccd6341793d08c64e859489a0d868220b38dbc6d",
-            "dimensions": [
-              640,
-              360
-            ]
-          },
-          {
-            "path": "small_result_restart_after.png",
-            "bytes": 29157,
-            "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
-            "dimensions": [
-              640,
-              360
-            ]
-          },
-          {
-            "path": "small_result_restart_before.png",
-            "bytes": 21030,
-            "sha256": "1172ea356ab844f357ed0c3eb678a4e07b2c79dcb757077f0a43b6880dbe2352",
-            "dimensions": [
-              640,
-              360
-            ]
-          }
-        ],
-        "root_visual_review": {
-          "four_original_pngs_opened": true,
-          "restart_target": "Neue Runde fully visible in its own scrolled viewport; target not clipped",
-          "mode_target": "Gegen Lumo spielen fully visible in its own scrolled viewport; target not clipped",
-          "after_images": "Both show the same empty board and available drop buttons. Byte-identical after-images do not visually distinguish the mode; mode is proved by matching original Dart and layout states.",
-          "adjacent_control": "The preceding control is partly clipped by the scroll viewport; the targeted control is fully visible."
-        },
-        "limitations": [
-          "Actual desktop rendering and two-process local file transport only.",
-          "SharedPreferences test backend with same-process reopen; no Android Binder or disk durability claim.",
-          "No measured FPS or physical Android acceptance.",
-          "No game, renderer, or production tests rerun for this original-file review."
-        ]
-      },
-      "parent_full_remote_source_hash_handoff": "11feb336cdfbfdf26939a1d06f58aa80ab7a2e94",
-      "originals_and_review_complete": true,
-      "proof_scope": "Two actual desktop 640x360 scrolled result actions; Android/physical FPS outside scope"
-    },
-    "current_attempt": "r3"
-  },
+  "completed_original_evidence": {},
   "remaining": [
-    "Read and preserve the actual successful Native52/Return21/Dream5/7/2 originals; native original archive is now downloaded once by ReleaseLead",
+    "Complete fresh exact1375 main/native/Flutter/contracts and source-bound acceptance",
     "Fresh signed ARM64 candidate identity/provenance and signature evidence",
-    "Real API35 C4 tour and 2017-to-2020 preservation results",
+    "Real API35 C4 tour and2017-to2020 preservation results",
     "Final candidate and delivery gates",
     "Public immutable single-APK publication access",
     "Actual Play upload key/AAB/Console, operator/privacy facts and physical Android performance"
@@ -799,7 +67,7 @@
   },
   "evidence": {
     "branch": "checkpoint/lumo-aab-ci-20261114-2708",
-    "prior_head": "3efb29ceac12ab7e4b82c5928ba8c250f2f63aae",
+    "prior_head": "3774c6c54f8220331bd88bf8be934a3aa4452aff",
     "original_803_evidence": "6a5ae5327570fc60434672074f246c95e1c59283",
     "old_803_apk_is_not_current_candidate": true
   },
@@ -809,8 +77,8 @@
     "explicit_workdir": "/workspace/scratch/2708c7907f28",
     "old_paths": "not present after recovery; actually checked /home and old scratch",
     "host_checkout": "/workspace/scratch/2708c7907f28/lumo-host-current",
-    "host_head": "aab09275ec6b5808de9be539ca4e1a7e70921249",
-    "host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "host_head": "1375da193af0152af64f91d86577aa9768cd50db",
+    "host_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
     "tracked_changes": "none",
     "autosave_check_exit": 0,
     "autosave_once_exit": 0,
@@ -834,6 +102,859 @@
     "scope": "Only verify-and-build timeout-minutes90 to150, preparation only",
     "reason": "Actual public job annotation explicitly says maximum1h30m0s exceeded",
     "all_existing_gates_preserved": true,
-    "activated": false
+    "activated": true,
+    "new_head": "1375da193af0152af64f91d86577aa9768cd50db",
+    "triggered_run": 43599456596
+  },
+  "previous_candidates": [
+    {
+      "candidate": {
+        "repository": "Ullmann27/lumo-lernen",
+        "branch": "work/lumo-play-quality-20261114",
+        "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+        "host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+        "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+        "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+        "version": "0.13.8+2020",
+        "pull_request": 491,
+        "frozen": true,
+        "main_not_modified_by_team": true
+      },
+      "main_run": {
+        "id": 43590864772,
+        "attempt": 1,
+        "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772",
+        "status_at_last_read": "completed",
+        "last_read_utc": "2026-11-14T13:12:00Z",
+        "job": 132436033818,
+        "job_started_utc": "2026-11-14T11:40:59Z",
+        "current_step_at_last_read": null,
+        "step_started_utc": null,
+        "old_comparable_step_seconds": 2639,
+        "old_timing_is_not_current_success_or_eta": true,
+        "last_observed_at_utc": "2026-11-14T13:12:00Z",
+        "jobs_snapshot": [
+          {
+            "id": 132435073772,
+            "name": "connect-four-runtime",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-11-14T11:36:53Z",
+            "completed_at": "2026-11-14T11:39:19Z",
+            "active_steps": []
+          },
+          {
+            "id": 132435074028,
+            "name": "android-host-compile",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-11-14T11:36:53Z",
+            "completed_at": "2026-11-14T11:40:58Z",
+            "active_steps": []
+          },
+          {
+            "id": 132436033818,
+            "name": "verify-and-build",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "started_at": "2026-11-14T11:40:59Z",
+            "completed_at": "2026-11-14T13:11:15Z",
+            "active_steps": []
+          },
+          {
+            "id": 132457986535,
+            "name": "update-2020-from-2017",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-11-14T13:11:15Z",
+            "completed_at": "2026-11-14T13:11:15Z",
+            "active_steps": []
+          },
+          {
+            "id": 132457986998,
+            "name": "verify-c4-candidate",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-11-14T13:11:15Z",
+            "completed_at": "2026-11-14T13:11:15Z",
+            "active_steps": []
+          },
+          {
+            "id": 132457987163,
+            "name": "android-c4",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-11-14T13:11:15Z",
+            "completed_at": "2026-11-14T13:11:15Z",
+            "active_steps": []
+          },
+          {
+            "id": 132457987742,
+            "name": "prepare-c4-delivery",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-11-14T13:11:16Z",
+            "completed_at": "2026-11-14T13:11:15Z",
+            "active_steps": []
+          }
+        ],
+        "active_log_read": {
+          "time": "2026-11-14T12:57:29Z",
+          "result": "404 BlobNotFound from official job-log endpoint; not a job failure conclusion"
+        },
+        "step31_success": {
+          "completed_at": "2026-11-14T13:07:12Z",
+          "conclusion": "success",
+          "originals_not_yet_reviewed": true
+        },
+        "step32_success": {
+          "completed_at": "2026-11-14T13:07:12Z",
+          "conclusion": "success",
+          "originals_not_yet_reviewed": true
+        },
+        "conclusion": "cancelled",
+        "completed_at": "2026-11-14T13:11:15Z",
+        "explicit_timeout_observation": {
+          "schema": 1,
+          "recorded_at_utc": "2026-11-14 13:13:26 UTC",
+          "source": "GitHub public job annotation expanded in actual CUA browser; no authentication or mutation",
+          "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772/job/132436033818",
+          "run_id": 43590864772,
+          "job_id": 132436033818,
+          "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+          "job_annotation_exact": "The job has exceeded the maximum execution time of 1h30m0s",
+          "step_annotation_exact": "The operation was canceled.",
+          "step": "Build unified real Android APK",
+          "observed_ui_duration": "1h 30m 16s",
+          "joblog_blob": "1798b7ad1bfff2c01da0c6a800029c84b6b2ee66",
+          "interpretation": "The displayed service annotation explicitly identifies the job-wide 90-minute limit. Native and Dream steps completed success. APK build was interrupted; dependent Android/update/final/delivery jobs were skipped. No new APK success is claimed.",
+          "changes_allowed_for_next_attempt": "Only increase the verify-and-build job budget after exact-byte, existing-contract and independent review; retain all tests, source pins, signatures, downstream checks and permissions."
+        },
+        "original_job_log_blob": "1798b7ad1bfff2c01da0c6a800029c84b6b2ee66",
+        "native_steps": [
+          {
+            "name": "Require actual gameplay gates on the exact pinned native source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 31,
+            "started_at": "2026-11-14T12:03:05Z",
+            "completed_at": "2026-11-14T13:07:12Z"
+          },
+          {
+            "name": "Require acknowledged Connect Four return retry",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 32,
+            "started_at": "2026-11-14T13:07:12Z",
+            "completed_at": "2026-11-14T13:07:12Z"
+          },
+          {
+            "name": "Require actual Dream gates on the exact pinned native source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 33,
+            "started_at": "2026-11-14T13:07:12Z",
+            "completed_at": "2026-11-14T13:08:29Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 34,
+            "started_at": "2026-11-14T13:08:29Z",
+            "completed_at": "2026-11-14T13:08:45Z"
+          },
+          {
+            "name": "Build unified real Android APK",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "number": 35,
+            "started_at": "2026-11-14T13:08:45Z",
+            "completed_at": "2026-11-14T13:11:12Z"
+          }
+        ]
+      },
+      "completed_original_evidence": {
+        "desktop_runtime": {
+          "artifact": 14112302039,
+          "checks": 170,
+          "errors": 0,
+          "return_checks": 21,
+          "wisp_checks": 14,
+          "source_bound_to_candidate": true,
+          "backend": "production Dart with test SharedPreferences and file transport; not Android Binder"
+        },
+        "android_host_compile": {
+          "job": 132435074028,
+          "status": "success",
+          "actual_jvm_bytecode_bound": true
+        },
+        "flutter": {
+          "artifact": 14112921501,
+          "passed": 2586,
+          "failed": 0,
+          "skipped": 0,
+          "pngs": 546,
+          "actually_visually_reviewed": 4,
+          "new_math_exact_topic_test": 603,
+          "original_machine_parser_replayed": true
+        },
+        "learning_audit": {
+          "artifact": 14112501631,
+          "families": 236,
+          "samples": 7552,
+          "structural_issues": 0,
+          "exact_current_verifier_replayed": true,
+          "semantic_curriculum_approval": false
+        },
+        "build_contracts": {
+          "artifact": 14112728895,
+          "tests": 911,
+          "seconds": 358.962,
+          "skips": 0,
+          "original_current_verifier_replayed": true,
+          "synthetic_pcm_boundary_assertions": 70,
+          "android_audio_claim": false
+        },
+        "extra_flutter": {
+          "artifact": 14113540275,
+          "archive_bytes": 38297988,
+          "archive_sha256": "c8842754cd3fe54f2f6fe04a913d98e8646c9cbca9d4902bf6d5fca9b6027c99",
+          "members_checked": 54,
+          "pngs_visually_reviewed": 6,
+          "full_archive_recommitted": false,
+          "android_claim": false
+        },
+        "native_archive": {
+          "schema": 1,
+          "kind": "actual_native_original_archive_and_runner_records",
+          "recorded_utc": "2026-11-14T13:21:41.014Z",
+          "artifact_id": 14114314120,
+          "run_id": 43590864772,
+          "run_attempt": 1,
+          "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+          "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+          "original_archive": {
+            "bytes": 192077445,
+            "sha256": "d57188fcd09673444f3670c41378b444d6295e9934a4d9a1b760c5945027510c",
+            "official_download_count": 1,
+            "actual_local_size_and_sha256_match": true,
+            "complete_member_reads_crc_and_canonical_path_checks_passed": true,
+            "regular_members": 5035,
+            "uncompressed_bytes": 511840479
+          },
+          "index": {
+            "compressed_path": "archive-index.json.gz",
+            "compressed_bytes": 325844,
+            "compressed_sha256": "dac930c00c64accb565ed1b504a09f970ca297d5cf39334c772e0b0262fc8d71",
+            "original_json_bytes": 1180861,
+            "original_json_sha256": "78c4d485ea92b5ed0b2c274af2d78c6fc8fc3e46a8f93bdcf6fc0e0c88d33d5a",
+            "scope": "Lossless generated inventory of all5035 actual unmodified archive members, each with size and SHA256; not a new renderer report."
+          },
+          "actual_original_results": {
+            "core_rows_excluding_header": 52,
+            "all_core_result_rows_pass": true,
+            "dream_rows_excluding_header": 5,
+            "all_dream_result_rows_pass": true,
+            "return_marker": [
+              "CONNECT_FOUR_RETURN_PASS checks=21"
+            ],
+            "native_source_stamp": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+          },
+          "original_file_identities": {
+            "nextgen-runner.log": {
+              "bytes": 122431,
+              "sha256": "9b07374dc3d51f951d6c7e4540b5368daaf47cb0db81d4c50e514fa92209623f",
+              "git_blob": "0ff7099e25259c7e01ec0c59cfab652225bee791"
+            },
+            "dream-runner.log": {
+              "bytes": 5511,
+              "sha256": "7361129b935aa0bac5fd5dcfdaa9502cd3d56d54047fdfdc45d4a90ea34e9a30",
+              "git_blob": "a07b0c16f8b0c4b86f83ec28d7170dc3909f49b7"
+            },
+            "connect-four-return.log": {
+              "bytes": 504,
+              "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2",
+              "git_blob": "186e8fa528a9138ea17a0a1395010f440192a280"
+            },
+            "source-sha.txt": {
+              "bytes": 41,
+              "sha256": "f689dbf8f03a0e1f79b127e96dfa3261abe28f8c50918feecfad5aad5d6da38a",
+              "git_blob": "f5010efa40eff1e722991b5118da28b62623e51b"
+            },
+            "nextgen/results.tsv": {
+              "bytes": 2259,
+              "sha256": "e055b2d3ac43199e50b37b824bbcc84c75dc9aa683389478e898637f7c0b16d4",
+              "git_blob": "db0de72ce9ada78bbe039dc96745928e0b5fd30a"
+            },
+            "dream/results.tsv": {
+              "bytes": 244,
+              "sha256": "e13332961fe89a044b7b25aff2408199425dbf9935be79ffca222f214442a169",
+              "git_blob": "03d9d027d45a2fc1610e35db1c1186bd8f39c943"
+            }
+          },
+          "independent_visual_and_reader_review": "Performed separately by the existing LearningLead/TouchWorker on this shared copy; their handoff contains their actual outcomes. This archive/runner record does not claim a new visual review by ReleaseLead.",
+          "preservation_boundary": "Complete original ZIP is available locally and in original GitHub Actions artifact14114314120. It is not embedded in this Git handoff. This handoff permanently preserves the complete member hash inventory and the listed unmodified original logs/result tables/source stamp.",
+          "current_candidate_boundary": "The parent main job was subsequently cancelled by its90-minute total time limit during APK build. Native success does not imply a produced APK, Android/update acceptance or publication.",
+          "local_root": "/workspace/scratch/2708c7907f28/aab-native-evidence-14114314120",
+          "mutations": {
+            "product": 0,
+            "source_refs": 0,
+            "engine_or_renderer_runs": 0,
+            "original_members": 0
+          },
+          "technical_reader_review_pending": true
+        }
+      },
+      "additional_qa": {
+        "purpose": "Actually scroll and activate restart and mode(false) after two 640x360 winning rounds",
+        "qa1": {
+          "head": "dc2e1b50ebeadb895aa691d809f2c457e0142633",
+          "run": 43594135818,
+          "attempt": 1,
+          "job": 132444932236,
+          "status": "completed",
+          "conclusion": "failure",
+          "preflight": "success",
+          "import": "success",
+          "failure": "Runner rejects 334 generated sidecars (329 .gd.uid, 5 .gdshader.uid) before either test process starts",
+          "dart_exit": null,
+          "godot_exit": null,
+          "artifact": 14113587571,
+          "artifact_sha256": "38bdeb870ce8c681d7663038decbfb4f29ca35986659ed248fde487e32014481",
+          "runtime_result_sha256": "3f68fdeb6494d53cb62af6bd296505e001dbe8b8eef5fcf3e0438d860413a447",
+          "product_bug_claim": false
+        },
+        "qa2": {
+          "head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
+          "tree": "767d74b03ea977547c83aa412bb0a96da9253b4f",
+          "branch": "qa/lumo-c4-small-result-actions-20261114-2708-r2",
+          "run": 43595002861,
+          "attempt": 1,
+          "job": 132447521284,
+          "status": "completed",
+          "conclusion": "failure",
+          "last_read_utc": "2026-11-14 12:31:59 UTC",
+          "changes": "Only workflow branch and strict generated Godot UID sidecar guard; Dart/native QA assertions byte-identical",
+          "runtime_result_not_yet_independently_read": true
+        },
+        "r2_terminal": {
+          "schema": 1,
+          "source": {
+            "qa_head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
+            "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+            "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+          },
+          "ci": {
+            "run_id": 43595002861,
+            "attempt": 1,
+            "job_id": 132447521284,
+            "event": "push",
+            "conclusion": "failure",
+            "original_log_message": "RuntimeError: C4 process failed: Dart=1, Godot=1",
+            "source_after_error": null
+          },
+          "artifact": {
+            "id": 14113299183,
+            "bytes_from_api": 1507887,
+            "sha256_from_api": "f769c7ae1db1b19b39d8e2944e4d2c21b341669897978bfcfcfe06c97f0b9922",
+            "download_performed": false,
+            "independent_hash_or_archive_member_review_performed": false
+          },
+          "findings": {
+            "source_preflight": "success",
+            "dependency_preparation": "success",
+            "native_import": "success",
+            "both_runtime_processes_started": true,
+            "actual_runtime_process_exits": {
+              "dart": 1,
+              "godot": 1
+            },
+            "handshake_inference": "The bound runner starts Godot only after wait_for_session has observed and validated the fresh Dart session file. Thus the observed pair failure implies the compiled Dart harness reached that initialization boundary, not that its test passed.",
+            "root_failure": "Unknown until original-godot.log and original-dart.log inside the artifact can be read",
+            "images_reviewed": false
+          },
+          "limitations": [
+            "Local environment is explicitly unavailable; no local paths are claimed to remain present.",
+            "The completed full job log and final API metadata are durably preserved as Git blobs.",
+            "No further product/QA-source mutation, rerun or ref update has been performed."
+          ],
+          "evidence_entries": [
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/original-complete-job.log",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "bf4f0e6571ab0d4e5a6f01e263f0cb81bf691fde",
+              "characters": 296862
+            },
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-run.json",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "e86d0bb00c6d609743afc8944fcc11df0d346307",
+              "characters": 13792
+            },
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-jobs.json",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "0dd4719ca45c6757e8f240a67374bbad3daa129b",
+              "characters": 3074
+            },
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-artifacts.json",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "56577b1e2b799b9b531003bbb384bf9e862137e2",
+              "characters": 885
+            }
+          ],
+          "tree_entries": [
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/original-complete-job.log",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "bf4f0e6571ab0d4e5a6f01e263f0cb81bf691fde"
+            },
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-run.json",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "e86d0bb00c6d609743afc8944fcc11df0d346307"
+            },
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-jobs.json",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "0dd4719ca45c6757e8f240a67374bbad3daa129b"
+            },
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-artifacts.json",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "56577b1e2b799b9b531003bbb384bf9e862137e2"
+            }
+          ]
+        },
+        "r2_original_read": {
+          "local_path": "/workspace/scratch/2708c7907f28/r2-original-43595002861/original-artifact.zip",
+          "bytes": 1507887,
+          "sha256": "f769c7ae1db1b19b39d8e2944e4d2c21b341669897978bfcfcfe06c97f0b9922",
+          "archive_members": 95,
+          "pngs": 0,
+          "native_checks": 123,
+          "target_actions": 0,
+          "actual_error": "small_result_restart_before waits for the matching fresh settled layout",
+          "last_ack": 10,
+          "last_revision": 18,
+          "product_failure_proven": false,
+          "root_read_original_logs": true,
+          "root_read_original_native_and_dart_results": true,
+          "r3_preparation": "Only three expected geometry arrays become FLOAT literals plus branch identity strings; exact miniature engine reproduction and independent review pending."
+        },
+        "r2_original_review": {
+          "schema": "lumo.c4.small-result-actions.r2-original-review.v1",
+          "run": {
+            "id": 43595002861,
+            "attempt": 1,
+            "job_id": 132447521284,
+            "qa_head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
+            "qa_tree": "767d74b03ea977547c83aa412bb0a96da9253b4f",
+            "conclusion": "failure"
+          },
+          "product": {
+            "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+            "host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+            "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+            "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e"
+          },
+          "artifact": {
+            "id": 14113299183,
+            "name": "lumo-c4-small-result-actions-aab092",
+            "bytes": 1507887,
+            "sha256": "f769c7ae1db1b19b39d8e2944e4d2c21b341669897978bfcfcfe06c97f0b9922",
+            "git_blob": "5ffcca7542bfd0c990e82630a6688a9764fc877c",
+            "official_download_count": 1,
+            "zip_crc_valid": true,
+            "canonical_unique_regular_paths": true,
+            "files": 95,
+            "png_files": 0,
+            "archive_code_executed": false
+          },
+          "runtime": {
+            "dart_exit_code": 1,
+            "godot_exit_code": 1,
+            "native_checks": 123,
+            "completed_target_actions": 0,
+            "native_error": "small_result_restart_before waits for the matching fresh settled layout",
+            "dart_failure": "test/games/connect_four_small_result_actions_qa.dart:90:7 expected native['passed'] true, received false",
+            "last_state": {
+              "revision": 18,
+              "ack": 10,
+              "phase": "won",
+              "paused": true,
+              "twoPlayers": true,
+              "rewarded": true
+            },
+            "observed_requests": 10,
+            "first_round_stars": 5,
+            "first_round_xp": 40,
+            "restart_requested": false,
+            "target_solo_mode_requested": false
+          },
+          "cause": {
+            "classification": "QA-only impossible geometry comparisons",
+            "qa_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f",
+            "function": "_layout_matches",
+            "lines": [
+              128,
+              129,
+              131
+            ],
+            "reason": "Godot 4.6.3 JSON arrays contain FLOAT elements; the three expected literal arrays contain INT elements. Array equality uses type-sensitive Variant::hash_compare. Thus these predicates reject even numerically correct JSON geometry.",
+            "independent_review_blob": "653f6be25398506e27565bbaa32dfafaea6878af"
+          },
+          "source_review": {
+            "before_after_byte_identical": true,
+            "source_snapshot_blob": "6d2c38683631976dfa41a057da9059c50853b3cf",
+            "source_snapshot_sha256": "798649037b014221bc168aea241b0e77dccae9716cb4aefcc558cd37657313ae",
+            "host_entries_matched": 447,
+            "native_entries_matched": 1256,
+            "qa_entries_matched": 4,
+            "generated_uid_entries": 334,
+            "uid_source_blobs_and_reconstructed_uid_hashes_verified": true
+          },
+          "limitations": [
+            "No completed target result-dialog action, no PNG and no passed gameplay gate.",
+            "The original transient layout observation is absent: production _exit_tree deletes it. Exact observed geometry cannot be reconstructed from this archive.",
+            "Other _layout_matches predicates have not all been shown true; fixing the demonstrated impossible comparisons does not imply a successful future runtime.",
+            "This review executes no archive code, production tests, engine, rendering, Android tour or APK build. The separate later minimal QA reproduction must not be conflated with the failed R2 gameplay run."
+          ],
+          "supersedes_availability_only": "The earlier cb336ebb4fa867f21692d22dd6a95f3e526763c1 checkpoint correctly recorded unavailable local artifact access at its creation; original ZIP access and the failure diagnosis are now completed."
+        },
+        "r3_reproduction": {
+          "manifest_blob": "fff0b599f31e82141b091429024682381457d766",
+          "root_independent_review": {
+            "source_predicate_exact": true,
+            "full_reproduction_only_three_literal_changes": true,
+            "actual_inputs_and_expectations_identical": true,
+            "red": {
+              "checks": 15,
+              "failures": 1,
+              "failed_cases": [
+                "exact_geometry"
+              ]
+            },
+            "green": {
+              "checks": 15,
+              "failures": 0
+            },
+            "negative_cases": [
+              {
+                "name": "window_width_wrong",
+                "accepted": false
+              },
+              {
+                "name": "window_height_wrong",
+                "accepted": false
+              },
+              {
+                "name": "viewport_width_wrong",
+                "accepted": false
+              },
+              {
+                "name": "viewport_height_wrong",
+                "accepted": false
+              },
+              {
+                "name": "safe_left_wrong",
+                "accepted": false
+              },
+              {
+                "name": "safe_top_wrong",
+                "accepted": false
+              },
+              {
+                "name": "safe_width_wrong",
+                "accepted": false
+              },
+              {
+                "name": "safe_height_wrong",
+                "accepted": false
+              },
+              {
+                "name": "fractional_window",
+                "accepted": false
+              },
+              {
+                "name": "fractional_viewport",
+                "accepted": false
+              },
+              {
+                "name": "fractional_safe_rect",
+                "accepted": false
+              },
+              {
+                "name": "window_extra_element",
+                "accepted": false
+              },
+              {
+                "name": "safe_string_element",
+                "accepted": false
+              },
+              {
+                "name": "viewport_missing",
+                "accepted": false
+              }
+            ],
+            "gameplay_success_not_inferred": true
+          },
+          "runtime_status": "R3 completed success; original artifacts read and all four pictures visually reviewed"
+        },
+        "r3": {
+          "branch": "qa/lumo-c4-small-result-actions-20261114-2708-r3",
+          "head": "51d05896aec9bced8c789504161f2255441cd07f",
+          "tree": "1c95ba11ba980ed01bd3e76c91a66fdfcb23b8a4",
+          "run_id": 43596764202,
+          "attempt": 1,
+          "status": "completed",
+          "event": "push",
+          "first_api_total_runs": 1,
+          "root_decision": {
+            "schema": 1,
+            "decision": "Proceed with one isolated real R3 two-action QA run after exact source/negative-case review",
+            "qa_head": "51d05896aec9bced8c789504161f2255441cd07f",
+            "qa_tree": "1c95ba11ba980ed01bd3e76c91a66fdfcb23b8a4",
+            "parent": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+            "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+            "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+            "files": {
+              ".github/workflows/lumo-c4-small-result-actions-qa.yml": "5c02a9274bf91b428e1080ff58884af9e89d46a8",
+              "scripts/run_connect_four_small_result_actions_qa.py": "3ad5492989e2dcdee4303699e0fbbd2f04f3bbe3",
+              "test/games/connect_four_small_result_actions_qa.dart": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e",
+              "tools/qa/connect_four_small_result_actions_qa.gd": "1b474002b3b93db9cae53a19c90fe75cb80c0604"
+            },
+            "root_exact_comparison": {
+              "workflow": "only two r2 to r3 branch strings",
+              "native": "only three numerically identical FLOAT array expectations",
+              "runner": "byte-identical",
+              "dart": "byte-identical"
+            },
+            "root_original_reproduction_review": {
+              "source_predicate_exact": true,
+              "full_reproduction_only_three_literal_changes": true,
+              "actual_inputs_and_expectations_identical": true,
+              "red": {
+                "checks": 15,
+                "failures": 1,
+                "failed_cases": [
+                  "exact_geometry"
+                ]
+              },
+              "green": {
+                "checks": 15,
+                "failures": 0
+              },
+              "negative_cases": [
+                {
+                  "name": "window_width_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "window_height_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "viewport_width_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "viewport_height_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "safe_left_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "safe_top_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "safe_width_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "safe_height_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "fractional_window",
+                  "accepted": false
+                },
+                {
+                  "name": "fractional_viewport",
+                  "accepted": false
+                },
+                {
+                  "name": "fractional_safe_rect",
+                  "accepted": false
+                },
+                {
+                  "name": "window_extra_element",
+                  "accepted": false
+                },
+                {
+                  "name": "safe_string_element",
+                  "accepted": false
+                },
+                {
+                  "name": "viewport_missing",
+                  "accepted": false
+                }
+              ],
+              "gameplay_success_not_inferred": true
+            },
+            "independent_source_review_blob": "b165df108db085a5c2ff00fce2e0b2b2f2fc0199",
+            "original_failure_preserved_in": "7526c6d189989ddd88817905a0034183f654c70b",
+            "actual_gameplay_result": "pending; synthetic predicate acceptance is not gameplay acceptance",
+            "permissions": "existing read-only contents permission; no release or APK build"
+          },
+          "conclusion": "success",
+          "artifact": {
+            "id": 14114498334,
+            "bytes": 1619461,
+            "sha256": "415ce3b5f51d510983c0184d37e479dc00844fa50f9dcd70c4f0493454228f64",
+            "git_blob": "5c6f90d0fb881f881d70faea5b84d2cfb974b977",
+            "path": "/workspace/scratch/2708c7907f28/r3-original-43596764202/original-artifact.zip",
+            "members": 103
+          },
+          "root_original_review": {
+            "schema": 1,
+            "run_id": 43596764202,
+            "attempt": 1,
+            "qa_head": "51d05896aec9bced8c789504161f2255441cd07f",
+            "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+            "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+            "root_read_only_original_replay": {
+              "native_checks": 283,
+              "errors": [],
+              "both_processes_exit_zero": true,
+              "native_dart_all_requests_equal": 21,
+              "actions_matched_to_original_dart_events_and_layouts": [
+                {
+                  "action": "restart",
+                  "ack": [
+                    10,
+                    11
+                  ],
+                  "revision": [
+                    18,
+                    19
+                  ],
+                  "new_round": "d14950fcfa6dea8004ed186de8036654",
+                  "two_players_after": true,
+                  "target_dp": [
+                    588,
+                    52
+                  ],
+                  "drag_events": 8
+                },
+                {
+                  "action": "mode",
+                  "ack": [
+                    19,
+                    20
+                  ],
+                  "revision": [
+                    33,
+                    34
+                  ],
+                  "new_round": "9729b63cc7402806d9c46124770f4f5c",
+                  "two_players_after": false,
+                  "target_dp": [
+                    588,
+                    52
+                  ],
+                  "drag_events": 16
+                }
+              ],
+              "awards": {
+                "unique": 2,
+                "stars": 10,
+                "xp": 80
+              },
+              "same_process_reopen": true,
+              "source_snapshots_byte_identical": true,
+              "source_snapshot_sha256": "009c0dd5b9cfde08e3a977249a4db64a0db935a48fde71f819271e5ca9a0490d"
+            },
+            "images": [
+              {
+                "path": "small_result_mode_after.png",
+                "bytes": 29157,
+                "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+                "dimensions": [
+                  640,
+                  360
+                ]
+              },
+              {
+                "path": "small_result_mode_before.png",
+                "bytes": 22337,
+                "sha256": "b76ce45ea178deaaa994821fccd6341793d08c64e859489a0d868220b38dbc6d",
+                "dimensions": [
+                  640,
+                  360
+                ]
+              },
+              {
+                "path": "small_result_restart_after.png",
+                "bytes": 29157,
+                "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+                "dimensions": [
+                  640,
+                  360
+                ]
+              },
+              {
+                "path": "small_result_restart_before.png",
+                "bytes": 21030,
+                "sha256": "1172ea356ab844f357ed0c3eb678a4e07b2c79dcb757077f0a43b6880dbe2352",
+                "dimensions": [
+                  640,
+                  360
+                ]
+              }
+            ],
+            "root_visual_review": {
+              "four_original_pngs_opened": true,
+              "restart_target": "Neue Runde fully visible in its own scrolled viewport; target not clipped",
+              "mode_target": "Gegen Lumo spielen fully visible in its own scrolled viewport; target not clipped",
+              "after_images": "Both show the same empty board and available drop buttons. Byte-identical after-images do not visually distinguish the mode; mode is proved by matching original Dart and layout states.",
+              "adjacent_control": "The preceding control is partly clipped by the scroll viewport; the targeted control is fully visible."
+            },
+            "limitations": [
+              "Actual desktop rendering and two-process local file transport only.",
+              "SharedPreferences test backend with same-process reopen; no Android Binder or disk durability claim.",
+              "No measured FPS or physical Android acceptance.",
+              "No game, renderer, or production tests rerun for this original-file review."
+            ]
+          },
+          "parent_full_remote_source_hash_handoff": "11feb336cdfbfdf26939a1d06f58aa80ab7a2e94",
+          "originals_and_review_complete": true,
+          "proof_scope": "Two actual desktop 640x360 scrolled result actions; Android/physical FPS outside scope"
+        },
+        "current_attempt": "r3"
+      }
+    }
+  ],
+  "prior_proof_scope": {
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "application_bytes_identical": true,
+    "workflow_and_one_contract_literal_differ": true,
+    "new_run_artifact_results_must_be_verified_separately": true,
+    "additional_c4_r3_run": 43596764202,
+    "no_previous_apk_can_be_substituted": true
   }
 }
