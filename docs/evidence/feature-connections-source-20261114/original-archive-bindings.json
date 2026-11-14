@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "v1-source-originals.tar.gz",
+      "bytes": 140944,
+      "sha256": "5d018e972a805e0cd0f1b5873b14fdc7e532fa20ad04525e55d5a4bff0f09ff4",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-32e7-20261114/compact-originals.tar.gz"
+    },
+    {
+      "path": "v1-archive-binding.json",
+      "bytes": 9688,
+      "sha256": "45daac6e98b317ce78db85fbca167b72ed9c42b95c801b94d15aa75a24aeb708",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-32e7-20261114/archive-binding.json"
+    },
+    {
+      "path": "v2-source-originals.tar.gz",
+      "bytes": 53702,
+      "sha256": "cafe1df51596cfbaf64b3c0ffcba3f00b0af819ef1779c90c0e969b77f93b647",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-v2-20261114/compact-originals.tar.gz"
+    },
+    {
+      "path": "v2-archive-binding.json",
+      "bytes": 5053,
+      "sha256": "8b5cf1da0e3eceb4c7835ea97945f7aa253949c8bfee4880d724c963b2a16d83",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-v2-20261114/archive-binding.json"
+    },
+    {
+      "path": "v2-source-freeze.json",
+      "bytes": 14307,
+      "sha256": "d7c589bd86b20a9af277fd3b31f619ab072003461900ec74b8a6ce8a37c1a92b",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-v2-20261114/source-freeze.json"
+    },
+    {
+      "path": "v2-handoff.json",
+      "bytes": 5925,
+      "sha256": "c300b794bf0987b835391a3c7e7c94a7e43b4b3e3873d23723762241658b9544",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-v2-20261114/handoff.json"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 18016,
+      "sha256": "d11ea76231aead14608315a43b18f67baedd53559ab78490423e839c294fdc22",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-independent-review-20261114/review.json"
+    },
+    {
+      "path": "independent-review-manifest.json",
+      "bytes": 269,
+      "sha256": "18aafea5ad276c58f685ea9d9b6676541546a46e82ec7c25278a862551061d38",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-independent-review-20261114/manifest.json"
+    },
+    {
+      "path": "local-flutter-preflight.json",
+      "bytes": 52907,
+      "sha256": "305b261a216a5cbfdff0842fd3d1c0a79a171d7bc0e9603039d5e1ec8a9ac72c",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-flutter-preflight-20261114/preflight.json"
+    },
+    {
+      "path": "root-parent-binding.json",
+      "bytes": 4081,
+      "sha256": "a3d644ae689891b9d389be1ebf9df111eb97527e50742ab22c86f9b8311bfaa5",
+      "source": "/tmp/lumo-root-recovery-1105/host502-v2-parent-binding.json"
+    }
+  ]
+}

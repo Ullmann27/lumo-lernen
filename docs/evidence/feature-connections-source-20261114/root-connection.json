@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "status": "SOURCE_CHECKPOINT_WIDGET_TESTS_NOT_RUN",
+  "parent": "3d91bd8355a539c3c2413760959684cd3fee985a",
+  "producer": {
+    "pr": 502,
+    "head": "c3f44ea7acdfe2ee8be68e8c37ad5fa25f2a1e23",
+    "tree": "7341eecf3d036c1cfba660f5a38f38500bd56f84",
+    "parent": "ac9c2d4d9717e9930e5f0ac1930dbb0f5fdb6a46",
+    "compare_base": "cf2593cb6dec51b66461c8e5984dfbfdd5091c22"
+  },
+  "combined_source_paths": 8,
+  "local_repair_paths": 4,
+  "static_test_cases": 22,
+  "actual_widget_tests": "NOT_RUN",
+  "independent_review": "Exact V1/V2 source review found no remaining concrete blocker within the two reported edge cases; no runtime PASS inferred.",
+  "root_review": "Read the complete bounded V1-to-V2 production and test diff. Independently read all55 archived original members back byte-for-byte. Reconciled eight base product paths and21 protected dependencies/assets against exact active3d tree.",
+  "local_environment": "Read-only preflight found99 missing package directories; no futile Flutter/Pub attempt was made. A separate source-bound22-case workflow is being prepared.",
+  "active_host_branch_changed": false,
+  "native_pin_changed": false,
+  "main_changed": false,
+  "next_required": "Run all22 scoped widget cases on the exact source checkpoint before active Host promotion."
+}

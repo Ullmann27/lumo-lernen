@@ -4,7 +4,7 @@
 // Premium-Wert fuer 10 Euro/Monat Abo.
 //
 // 3 MODI:
-//   1. WORT-MAGIE: Kind sagt Wort -> Lumo malt + erklaert
+//   1. WORT-MAGIE: Kind sagt Wort -> Lumo erklaert
 //   2. FOTO-QUIZ:  Kind macht Foto -> Lumo stellt 3 Fragen drum
 //   3. SAFARI:     Lumo zeigt Tier -> Kind muss raten und sprechen
 // ════════════════════════════════════════════════════════════════════════
@@ -29,7 +29,7 @@ import '../../widgets/premium/lumo_premium_card.dart';
 import '../../widgets/premium/lumo_reward_burst.dart';
 
 enum LiveMode {
-  wordMagic, // Sprich ein Wort -> Bild + Erklaerung
+  wordMagic, // Sprich ein Wort -> Erklaerung
   photoQuiz, // Foto -> 3 Fragen
   safari, // Lumo zeigt Tier -> Kind raet
 }
@@ -49,7 +49,7 @@ extension LiveModeMeta on LiveMode {
   String get subtitle {
     switch (this) {
       case LiveMode.wordMagic:
-        return 'Sag ein Wort - ich male es!';
+        return 'Sag ein Wort - ich erkläre es!';
       case LiveMode.photoQuiz:
         return 'Mach ein Foto - ich frage dich!';
       case LiveMode.safari:
@@ -86,8 +86,10 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   LiveMode _mode = LiveMode.wordMagic;
   bool _sttReady = false;
   bool _listening = false;
+  Object? _photoCaptureOperation;
+  bool get _capturingPhoto => _photoCaptureOperation != null;
+  int _modeRevision = 0;
   String _recognized = '';
-  String? _generatedImageUrl;
   String? _capturedImagePath;
   String? _lumoMessage;
   LumoMirrorMood _mood = LumoMirrorMood.idle;
@@ -185,11 +187,18 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     if (mounted) setState(() => _listening = _stt.listening);
   }
 
+  bool _isCurrentInteraction(int revision, LearningProfileLease owner) =>
+      mounted &&
+      revision == _modeRevision &&
+      widget.appState.isCurrentLearningLease(owner);
+
   void _switchMode(LiveMode m) {
+    _modeRevision++;
+    _stt.cancel();
     setState(() {
       _mode = m;
+      _listening = false;
       _recognized = '';
-      _generatedImageUrl = null;
       _capturedImagePath = null;
       _lumoMessage = null;
       _safariAnimal = null;
@@ -203,19 +212,24 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     if (m == LiveMode.safari) {
       _nextSafariAnimal();
     } else if (m == LiveMode.wordMagic) {
-      _speak('Sag mir ein Wort und ich male es fuer dich!');
+      _speak('Sag mir ein Wort und ich erkläre es dir!');
     } else if (m == LiveMode.photoQuiz) {
       _speak('Mach ein Foto und ich stelle dir kluge Fragen!');
     }
   }
 
-  Future<void> _speak(String text) async {
-    if (!mounted) return;
+  Future<void> _speak(String text, {LearningProfileLease? owner}) async {
+    if (!mounted ||
+        (owner != null && !widget.appState.isCurrentLearningLease(owner))) return;
+    final revision = _modeRevision;
     setState(() {
       _lumoMessage = text;
     });
     await widget.appState.ensureSettingsLoaded();
-    if (!mounted || !widget.appState.state.settings.voiceEnabled) return;
+    if (!mounted ||
+        revision != _modeRevision ||
+        (owner != null && !widget.appState.isCurrentLearningLease(owner)) ||
+        !widget.appState.state.settings.voiceEnabled) return;
     try {
       LumoVoice.instance.speak(text);
     } catch (_) {}
@@ -249,7 +263,10 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   }
 
   Future<void> _startListening() async {
-    if (_listening) return;
+    if (_listening ||
+        _capturingPhoto ||
+        (_mode == LiveMode.photoQuiz && _capturedImagePath == null)) return;
+    final revision = _modeRevision;
     final source = widget.appState.captureLearningProfile();
     LearningProfileLease owner;
     try {
@@ -258,13 +275,13 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     } catch (_) {
       return;
     }
-    if (!mounted || !widget.appState.isCurrentLearningLease(owner)) return;
+    if (!_isCurrentInteraction(revision, owner)) return;
     if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
-        !mounted) {
+        !_isCurrentInteraction(revision, owner)) {
       return;
     }
     if (!_sttReady) await _initStt();
-    if (!mounted || !widget.appState.isCurrentLearningLease(owner)) return;
+    if (!_isCurrentInteraction(revision, owner)) return;
     if (!_sttReady) {
       _speak('Ich brauch dein Mikrofon - bitte erlauben!');
       return;
@@ -279,14 +296,18 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     try {
       await _stt.startListening(
         onResult: (words) {
-          if (mounted && widget.appState.isCurrentLearningLease(owner)) {
+          if (_isCurrentInteraction(revision, owner)) {
             setState(() => _recognized = words);
           }
         },
-        onFinalResult: (_) => _onSpeechDone(owner),
+        onFinalResult: (_) {
+          if (_isCurrentInteraction(revision, owner)) _onSpeechDone(owner);
+        },
       );
     } catch (e) {
-      if (mounted) setState(() => _listening = false);
+      if (_isCurrentInteraction(revision, owner)) {
+        setState(() => _listening = false);
+      }
     }
   }
 
@@ -323,7 +344,6 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     final reply =
         LumoBrain.instance.ask('Was ist ein $word?', topicId: 's1_tiere');
     setState(() {
-      _generatedImageUrl = null;
       _mood = LumoMirrorMood.happy;
     });
     widget.appState.addStars(1);
@@ -341,29 +361,48 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   // MODE 2: FOTO-QUIZ
   // ────────────────────────────────────────────────────────────────
   Future<void> _capturePhoto() async {
-    if (!await LumoFeaturePermissions.camera(context, widget.appState) ||
-        !mounted) {
-      return;
-    }
+    if (_capturingPhoto || _mode != LiveMode.photoQuiz) return;
+    final revision = _modeRevision;
+    final operation = Object();
+    LearningProfileLease? captureOwner;
+    setState(() => _photoCaptureOperation = operation);
     try {
+      final owner = await widget.appState.captureLearningProfile();
+      captureOwner = owner;
+      await widget.appState.prepareLearningLease(owner);
+      if (!_isCurrentInteraction(revision, owner)) return;
+      if (!await LumoFeaturePermissions.camera(context, widget.appState) ||
+          !_isCurrentInteraction(revision, owner)) return;
       final photo = await _picker.pickImage(
         source: ImageSource.camera,
         imageQuality: 60,
         maxWidth: 800,
       );
-      if (photo == null || !mounted) return;
+      if (photo == null || !_isCurrentInteraction(revision, owner)) return;
       setState(() {
         _capturedImagePath = photo.path;
         _photoQuizQuestionIdx = 0;
         _mood = LumoMirrorMood.curious;
       });
-      _speak(_extendedPhotoQuestions[0]);
+      _speak(_extendedPhotoQuestions[0], owner: owner);
     } catch (e) {
-      _speak('Das Foto hat nicht geklappt. Probier nochmal!');
+      final owner = captureOwner;
+      if (identical(_photoCaptureOperation, operation) &&
+          owner != null &&
+          _isCurrentInteraction(revision, owner)) {
+        _speak('Das Foto hat nicht geklappt. Probier nochmal!', owner: owner);
+      }
+    } finally {
+      // A late completion can release only the capture it started.
+      if (mounted && identical(_photoCaptureOperation, operation)) {
+        setState(() => _photoCaptureOperation = null);
+      }
     }
   }
 
   Future<void> _handlePhotoQuiz(LearningProfileLease owner) async {
+    if (_mode != LiveMode.photoQuiz || _capturedImagePath == null) return;
+    final revision = _modeRevision;
     // Nach jeder Antwort: naechste Frage oder Ende
     setState(() {});
     widget.appState.addStars(1);
@@ -378,7 +417,8 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
       _photoQuizQuestionIdx++;
       setState(() => _mood = LumoMirrorMood.happy);
       await Future.delayed(const Duration(milliseconds: 1500));
-      if (!mounted || !widget.appState.isCurrentLearningLease(owner)) return;
+      if (!_isCurrentInteraction(revision, owner) ||
+          _capturedImagePath == null) return;
       _speak(_extendedPhotoQuestions[_photoQuizQuestionIdx]);
     } else {
       setState(() => _mood = LumoMirrorMood.cheer);
@@ -400,7 +440,6 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     final animal = animals[_rng.nextInt(animals.length)];
     setState(() {
       _safariAnimal = animal;
-      _generatedImageUrl = null;
       _recognized = '';
       _mood = LumoMirrorMood.curious;
     });
@@ -573,9 +612,9 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
                       // Safari-Score
                       if (_mode == LiveMode.safari && _safariRound > 0)
                         _buildSafariScore(),
-                      // Generiertes / Captured Bild
-                      if (_generatedImageUrl != null ||
-                          _capturedImagePath != null)
+                      // Aufgenommenes Foto oder vorhandenes Safari-Tier
+                      if (_capturedImagePath != null ||
+                          (_mode == LiveMode.safari && _safariAnimal != null))
                         _buildImagePane(),
                     ],
                   ),
@@ -685,7 +724,6 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   }
 
   Widget _buildImagePane() {
-    final url = _generatedImageUrl;
     final path = _capturedImagePath;
     if (_mode == LiveMode.safari && _safariAnimal != null) {
       return AspectRatio(
@@ -703,59 +741,21 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
         padding: EdgeInsets.zero,
         child: ClipRRect(
           borderRadius: LumoTokens.brLarge,
-          child: url != null
-              ? Image.network(
-                  url,
-                  fit: BoxFit.cover,
-                  loadingBuilder: (_, child, p) {
-                    if (p == null) return child;
-                    return Container(
-                      decoration:
-                          BoxDecoration(gradient: LumoTokens.colors.bgMagic),
-                      alignment: Alignment.center,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Text('🎨', style: TextStyle(fontSize: 56)),
-                          const SizedBox(height: 12),
-                          Text('Lumo malt...',
-                              style: LumoTokens.typo.titleMedium
-                                  .copyWith(color: Colors.white)),
-                          const SizedBox(height: 12),
-                          const CircularProgressIndicator(color: Colors.white),
-                        ],
-                      ),
-                    );
-                  },
-                  errorBuilder: (_, __, ___) => Container(
-                    decoration:
-                        BoxDecoration(gradient: LumoTokens.colors.bgMagic),
-                    alignment: Alignment.center,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text('🎨', style: TextStyle(fontSize: 64)),
-                        const SizedBox(height: 8),
-                        Text('Bild konnte nicht laden',
-                            style: LumoTokens.typo.bodyMedium
-                                .copyWith(color: Colors.white)),
-                      ],
-                    ),
-                  ),
-                )
-              : path != null
-                  ? Image.file(File(path), fit: BoxFit.cover)
-                  : Container(
-                      color: LumoTokens.colors.cremeDeep,
-                      alignment: Alignment.center,
-                      child: const Text('📷', style: TextStyle(fontSize: 80)),
-                    ),
+          child: path != null
+              ? Image.file(File(path), fit: BoxFit.cover)
+              : Container(
+                  color: LumoTokens.colors.cremeDeep,
+                  alignment: Alignment.center,
+                  child: const Text('📷', style: TextStyle(fontSize: 80)),
+                ),
         ),
       ),
     );
   }
 
   Widget _buildActionBar() {
+    final needsPhoto =
+        _mode == LiveMode.photoQuiz && _capturedImagePath == null;
     return Container(
       padding: const EdgeInsets.all(LumoTokens.space16),
       decoration: BoxDecoration(
@@ -770,15 +770,23 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
               child: SizedBox(
                 height: 64,
                 child: ElevatedButton.icon(
-                  onPressed: _listening || _lumoCurrentlySpeaking
+                  onPressed: _capturingPhoto || _listening || _lumoCurrentlySpeaking
                       ? null
-                      : _startListening,
+                      : (needsPhoto ? _capturePhoto : _startListening),
                   icon: Icon(
-                      _mode == LiveMode.photoQuiz ? Icons.camera_alt_rounded
-                           : (_listening ? Icons.hearing_rounded : Icons.mic_rounded),
+                      needsPhoto
+                          ? Icons.camera_alt_rounded
+                          : (_listening
+                              ? Icons.hearing_rounded
+                              : Icons.mic_rounded),
                       size: 28),
-                  label: Text(_mode == LiveMode.photoQuiz
-                       ? 'Foto machen' : (_listening ? 'Hoere...' : 'Sprechen')),
+                  label: Text(needsPhoto
+                      ? 'Foto machen'
+                      : (_listening
+                          ? 'Hoere...'
+                          : (_mode == LiveMode.photoQuiz
+                              ? 'Antwort sprechen'
+                              : 'Sprechen'))),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: LumoTokens.colors.lumoOrange,
                     foregroundColor: Colors.white,

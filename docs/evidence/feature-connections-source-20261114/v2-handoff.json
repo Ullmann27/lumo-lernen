@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "status": "FOUR_SOURCE_V2_FROZEN_PENDING_ROOT_CHECKPOINT_AND_TESTS",
+  "base_product_source": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+  "upstream_producer": "c3f44ea7acdfe2ee8be68e8c37ad5fa25f2a1e23",
+  "v1_path": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-32e7-20261114",
+  "v1_freeze_sha256": "5850bd374da9bcdf74507e8929af8741d55b6a40caea54b2cb65af496d08d24b",
+  "v1_archive_sha256": "5d018e972a805e0cd0f1b5873b14fdc7e532fa20ad04525e55d5a4bff0f09ff4",
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "bytes": 14307,
+    "sha256": "d7c589bd86b20a9af277fd3b31f619ab072003461900ec74b8a6ce8a37c1a92b",
+    "git_blob": "d253afcc257eabd89ee13cacc7bb17c6910974b3"
+  },
+  "source_count": 4,
+  "source_changes": [
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "mode": "100644",
+      "original_32e7": {
+        "bytes": 24729,
+        "sha256": "2adba6d041e46a6c2643b4d752dfbec836ea2fe0f680d9838ac2d2d1717d3d5d",
+        "git_blob": "814fc2191015e6c9f6c1f6e96232405a26cc9027"
+      },
+      "before_v1": {
+        "bytes": 26048,
+        "sha256": "dfed43007709824f7043093e02feaa923e680d12bc4fed7c760d3061d1046f12",
+        "git_blob": "429580f71de6b5d60a7378140d5f6db469fd0a2a"
+      },
+      "after_v2": {
+        "bytes": 26157,
+        "sha256": "4998825fad2ffff107d16474e1c85cc4f600b898846e2bdae5321f1d72b7ed9e",
+        "git_blob": "625f7a73b71046225bbba395920d9d8a59d5775c"
+      },
+      "added_lines": 2,
+      "removed_lines": 0,
+      "origin": "Local bounded repair of frozen published PR502 source; not a Producer-identical endblob."
+    },
+    {
+      "path": "lib/features/live/lumo_live_pro_screen.dart",
+      "mode": "100644",
+      "original_32e7": {
+        "bytes": 29312,
+        "sha256": "1bb632d590782bcf0014831fb92332a083cc8da65a45b709d7cd0fc3a58e13a5",
+        "git_blob": "6ed89441742e6ca2603d128dfbee3f7b3b161707"
+      },
+      "before_v1": {
+        "bytes": 28962,
+        "sha256": "4013c9fa36615c9618b51670a1a11c30ea37341431f084ce8776d148420e6893",
+        "git_blob": "27e0ecdb93ac5eff674c73fc7dadcb5262a60d7d"
+      },
+      "after_v2": {
+        "bytes": 29612,
+        "sha256": "47a5142a9e9957bda0160dfa51c5bf5bf1b0b2f15ff14d5c566d0fa99003fa8f",
+        "git_blob": "f592b2459a6b79a1b2fe685c15671df908c5ad15"
+      },
+      "added_lines": 20,
+      "removed_lines": 8,
+      "origin": "Local bounded repair of frozen published PR502 source; not a Producer-identical endblob."
+    },
+    {
+      "path": "test/feature_permission_regression_test.dart",
+      "mode": "100644",
+      "original_32e7": {
+        "bytes": 3727,
+        "sha256": "7a6f30d70747ecce49cd5fe80cb277ca0dc1eaa7adc27f967f375ad1826cdcbb",
+        "git_blob": "b5d5a14cfe3513afd4e911358506cb666e452140"
+      },
+      "before_v1": {
+        "bytes": 13917,
+        "sha256": "3ea97057bd0ada76f48b8aebdc7742a7680f94483fb7507603ccada0db65ad21",
+        "git_blob": "55bc542d4bc7d230aaf74b3baab021740d5a914d"
+      },
+      "after_v2": {
+        "bytes": 18339,
+        "sha256": "7747fa4e0cc1bac081ffced3e28daad51d8613ff0e6cc49f24a4419876894064",
+        "git_blob": "613aad5272caacc668908baa9b899469e7caec17"
+      },
+      "added_lines": 106,
+      "removed_lines": 0,
+      "origin": "Local bounded repair of frozen published PR502 source; not a Producer-identical endblob."
+    },
+    {
+      "path": "test/wort_diktat_gesture_regression_test.dart",
+      "mode": "100644",
+      "original_32e7": null,
+      "before_v1": {
+        "bytes": 9507,
+        "sha256": "b7aa00464087f453497bba8575a8bcbba7f7a538cb8b0b18e94140c4579f31fa",
+        "git_blob": "1747317cf3e7004464140e0c78f53b247c7e4cd0"
+      },
+      "after_v2": {
+        "bytes": 12858,
+        "sha256": "0e34bcbdbcd3cfcd2a690c49935753bda9cb7b5c2b283507f2caf722841671e6",
+        "git_blob": "d8507944cb1ac781ab2ccb3eb428152549a0df17"
+      },
+      "added_lines": 85,
+      "removed_lines": 0,
+      "origin": "Local bounded repair of frozen published PR502 source; not a Producer-identical endblob."
+    }
+  ],
+  "patch": {
+    "path": "v1-to-v2.patch",
+    "bytes": 12465,
+    "sha256": "e84d49b9089fd15b605d395839b64e465a5c50b8c8fb480b3c7ba1ebf7cab89b",
+    "git_blob": "1f362eca0dcc7219a462c41e44b26ac6e15bd328"
+  },
+  "preservation": {
+    "path": "preservation.json",
+    "bytes": 1708,
+    "sha256": "3b3ee162d86511408d09f77d0546749fb87290f52e583b083502b6f9de84255b",
+    "git_blob": "9b5e5afc0ca8529ce6107f640babb21df87bfe82"
+  },
+  "new_cases": 5,
+  "expected_combined_cases": 22,
+  "actual_discovery": "NOT_RUN",
+  "actual_tests": "NOT_RUN",
+  "bounded_causes": [
+    {
+      "source": "v1 WortDiktat _startStroke",
+      "observation": "A second row's onStart replaces the shared active row/stroke even though each surface protects its own pointer.",
+      "evidence_type": "read-only control flow"
+    },
+    {
+      "source": "v1 LumoLivePro _capturePhoto catch",
+      "observation": "mounted/mode checks do not bind a late picker error to the captured learning profile.",
+      "evidence_type": "read-only control flow"
+    }
+  ],
+  "readiness": "Source proposal is reviewable. No runtime repair success is claimed.",
+  "independent_review": {
+    "agent": "/root/pipeline_repair",
+    "requested": true,
+    "result": "PENDING_AT_PACKAGE_FREEZE"
+  },
+  "integration": "Apply eight V1 sources, then replace exactly four by final-source in this V2 package. Check combined_eight_source_mapping against the intended checkpoint. No new workflow or pin included.",
+  "excluded_writes": [
+    "Original V1 pack",
+    "all worktrees",
+    "shared LumoInkSurface",
+    "handwriting trainer",
+    "journal",
+    "permissions/AppState/SchoolRepository",
+    "Git/index/refs",
+    "workflows",
+    "source pins"
+  ],
+  "archive_path": "compact-originals.tar.gz",
+  "archive_binding_path": "archive-binding.json",
+  "manifest_path": "manifest.json"
+}
