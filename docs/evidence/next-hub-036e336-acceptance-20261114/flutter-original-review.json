@@ -1,0 +1,116 @@
+{
+  "recorded_at": "2026-11-14T15:19:58.890636+00:00",
+  "source": "036e33603e50774bd328d1dff71ddff1d468db6f",
+  "tree": "9f3d845a2997faa5f4a16dc28fdaac4b65eeb0f1",
+  "native": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "run_id": 43609106020,
+  "run_attempt": 1,
+  "job_id": 132490009614,
+  "artifact_id": 14119696250,
+  "archive_bytes": 5537,
+  "archive_sha256": "a9655fa9fbef778b1cc7fa6979baefb2b41ec1154933efdb268aab76fcce442c",
+  "all_member_crc_sha_verified": true,
+  "members": [
+    {
+      "path": "analyze-original.log",
+      "bytes": 32995,
+      "sha256": "8e9e8776b824d73c27a2edbff5093eed776aaa1502af02ff4674d9d4ba7fd0a5",
+      "crc32": "6753bf0e"
+    },
+    {
+      "path": "flutter-exit-code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "crc32": "7e4acd12"
+    },
+    {
+      "path": "flutter-machine.jsonl",
+      "bytes": 4902,
+      "sha256": "461f85e298c9b57b232ec6c84334d6be213dbf7a073dcf7a451f7a1fb0ca248f",
+      "crc32": "f32ca488"
+    },
+    {
+      "path": "flutter-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "godot-source.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50",
+      "crc32": "16b385e8"
+    },
+    {
+      "path": "source-after.txt",
+      "bytes": 41,
+      "sha256": "597ae19b4046ec3d14bbe4332019c33cfa028c831512a0af3b9629ae2dc364a8",
+      "crc32": "4dc03791"
+    },
+    {
+      "path": "source-before.txt",
+      "bytes": 41,
+      "sha256": "597ae19b4046ec3d14bbe4332019c33cfa028c831512a0af3b9629ae2dc364a8",
+      "crc32": "4dc03791"
+    },
+    {
+      "path": "tree-after.txt",
+      "bytes": 41,
+      "sha256": "85b8ad2744869e9d6dc69c7a5d07337b8cd54ba2851cc3729baa6ff4e20c7082",
+      "crc32": "f9e8d55a"
+    },
+    {
+      "path": "tree-before.txt",
+      "bytes": 41,
+      "sha256": "85b8ad2744869e9d6dc69c7a5d07337b8cd54ba2851cc3729baa6ff4e20c7082",
+      "crc32": "f9e8d55a"
+    }
+  ],
+  "visible_tests": [
+    {
+      "name": "Village economy has its own real native scene and unique identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "real native 3D games hub is visibly enterable from Flutter",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "Dorfwirtschaft tile launches true village, not Kart or the classic settlement",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "routing table lists eleven unique portals and unique covers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "every viewport uses the image-tile hub with extra columns when wide",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "every visible portal opens its own target scene",
+      "result": "success",
+      "skipped": false
+    }
+  ],
+  "visible_pass": 6,
+  "visible_fail": 0,
+  "visible_skip": 0,
+  "runner_done": {
+    "success": true,
+    "type": "done",
+    "time": 14107
+  },
+  "flutter_exit": 0,
+  "stderr_bytes": 0,
+  "analysis_terminal": [
+    "151 issues found. (ran in 12.9s)"
+  ],
+  "source_before_after_equal": true,
+  "scope": "Actual combined-source focused Flutter tests and analysis. Android compilation and device/APK acceptance are separate."
+}

@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "original_root": "/workspace/scratch/b3485b7bb989/native-pr182-47ca64-addendum-review-20261114",
+  "all_bytes_unchanged": true,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1349,
+      "sha256": "248d2836733734c764269263a7ca6db877f437215f19a7fdb6177544bfe561ff",
+      "git_blob": "0248cdbd1def5d0f4a742da275db074e8f3e92bb"
+    },
+    {
+      "path": "SHA256SUMS",
+      "bytes": 3221,
+      "sha256": "9cf0ff213889b401d207ab4775646b1f72cc9971823a4add1657e4f83c80b56d",
+      "git_blob": "b392f7bc4ed27ddbb8b70e0db77057b668eb83ee"
+    },
+    {
+      "path": "ci-binding.json",
+      "bytes": 5277,
+      "sha256": "84307a53616eae6f87e74951db4cbc361334ac7dbbd852dd69c426a941554f14",
+      "git_blob": "48fbd12808ab3bc22aa1f40c2a3dc0f9f9e2f174"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 897,
+      "sha256": "6e505a89187e0b08c92215ced1ad5cefed40500089b9550cff0b6b7a38189ba1",
+      "git_blob": "56f44437061aa046579221c92e598daaeb31a09c"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 6625,
+      "sha256": "fd8cafeaa166ab3f9efa06956124871411e249d81d53a9f5a028ae01285ebde0",
+      "git_blob": "6a1b82b45ea1a4c7162d2b6bd895c1b8175818e0"
+    },
+    {
+      "path": "original-patches/scripts__games__quiz__quiz_studio.gd.patch",
+      "bytes": 2800,
+      "sha256": "6d5d7558e7016b0affcd62f2fdc415302cdb2696860f1dacf1ee497ea9ca3c51",
+      "git_blob": "4db588adbba3954e1e724d5faf7cfb53e4e28297"
+    },
+    {
+      "path": "original-patches/scripts__learning__english_object_gallery.gd.patch",
+      "bytes": 5201,
+      "sha256": "9f63a20cd3c95b8a2217f287c3c1fb5a01d3ab27743aa7eaf1f7f2a1063593ee",
+      "git_blob": "24675a22f42c480ca2357a672da4572262ba2ebc"
+    },
+    {
+      "path": "original-patches/scripts__learning__english_vocabulary.gd.patch",
+      "bytes": 1175,
+      "sha256": "c0e25f1de687a45ba348f32fe59cec0ddcc413e62c218cf09aa0429daa11a29b",
+      "git_blob": "92673fb572104b3395c96cc7b1cac829d31eec1a"
+    },
+    {
+      "path": "original-patches/scripts__learning__learning_world.gd.patch",
+      "bytes": 937,
+      "sha256": "2580e5cbfd084830a91cba93de886db9eeace75ad46fb014c31e8c516b99ca56",
+      "git_blob": "cd375e5ed4c5afa862e6e4f1630fc9758fc14a56"
+    },
+    {
+      "path": "original-patches/scripts__tests__fixtures__quiz_9f2e__durable-round.json.patch",
+      "bytes": 4422,
+      "sha256": "2d7df6ef785c2a868d2e5291dc7ef4a70cafb74b742c571108f1eefce7773257",
+      "git_blob": "0c96e68fdaa4a9bdae0ac0c6d05186f5068103ed"
+    },
+    {
+      "path": "original-patches/scripts__tests__fixtures__quiz_9f2e__jokers-layout.json.patch",
+      "bytes": 4762,
+      "sha256": "d97476a89f224a4cb83c64fb6c26b72695f72a68dc070b968169a18adf28e689",
+      "git_blob": "5bf9d91d740b04fc334232108b4da5119e24c333"
+    },
+    {
+      "path": "original-patches/scripts__tests__fixtures__quiz_9f2e__public-state.json.patch",
+      "bytes": 889,
+      "sha256": "0f2a7ba199e537115a8a2cf64a2a9d3c1df32d8e9b501cdc4c5c262a08c439ba",
+      "git_blob": "604c0c70b75e3b217e8a90259ddc9b9d1014fb74"
+    },
+    {
+      "path": "original-patches/scripts__tests__fixtures__quiz_9f2e__selected-phone-layout.json.patch",
+      "bytes": 4736,
+      "sha256": "8f8666f39f7fd23767f3ce0fce85f6ca4f42faa0b54cae1c7d4eca5aa6e5ca93",
+      "git_blob": "74bddc31e62188c3b810c95da61587a4b057021d"
+    },
+    {
+      "path": "original-patches/scripts__tests__learning_english_regression.gd.patch",
+      "bytes": 8522,
+      "sha256": "93b6417ad56de12208eedbb6800a7fc5ea5973ab18da205af9fe0888a619b59b",
+      "git_blob": "184b2bea6044a56b729a1c15d19d40ac67cf177e"
+    },
+    {
+      "path": "original-patches/scripts__tests__quiz_studio_runtime.gd.patch",
+      "bytes": 10443,
+      "sha256": "999773255d53526e9cbf52dd6a9410eed6b4049c09838f1f129b526523895be4",
+      "git_blob": "e0a273b98cc03fd15144a3e9173a2708f9eae28d"
+    },
+    {
+      "path": "published-source/scripts/games/quiz/quiz_studio.gd",
+      "bytes": 32524,
+      "sha256": "943b85847225529f5b9b52566c748682c2b8225a7051a3443fa49f54b776b32d",
+      "git_blob": "aa3e4d91f0e64cd466fb087356fbf29264d697a3"
+    },
+    {
+      "path": "published-source/scripts/learning/english_object_gallery.gd",
+      "bytes": 13988,
+      "sha256": "9e18d9139748a5aa40e938e9800dd491b3909d69aa057080a1c2a4022445a093",
+      "git_blob": "1bc459bc88d10f48aa918014eedbb91071cd98a7"
+    },
+    {
+      "path": "published-source/scripts/learning/english_vocabulary.gd",
+      "bytes": 2849,
+      "sha256": "86c2bbab28b130ba4ae9f74f265cbb9f95c81e2a4d78fa7dd4716a1d51ef7f20",
+      "git_blob": "fa8debed147eceea108acc98ac318ac1362cf8eb"
+    },
+    {
+      "path": "published-source/scripts/learning/learning_world.gd",
+      "bytes": 62477,
+      "sha256": "a6e03b3040c498a92c6475ab4bd5a85da07344ac901b0c368fd2f616224b2218",
+      "git_blob": "f5a296f1e0394ef3ac1dd518bdf1b60912793ee9"
+    },
+    {
+      "path": "published-source/scripts/tests/fixtures/quiz_9f2e/durable-round.json",
+      "bytes": 4378,
+      "sha256": "9af91c87d473807a6c7e915668ad3e3876b830d437c5a751c7526784db143a9d",
+      "git_blob": "7624036f7e342a6d5b0c3430019c98ab13f13baf"
+    },
+    {
+      "path": "published-source/scripts/tests/fixtures/quiz_9f2e/jokers-layout.json",
+      "bytes": 4718,
+      "sha256": "30e5a562f1f3ae0bcfcf1ae4db27a482c3079f727f335e0d1848861fecfd16b6",
+      "git_blob": "4a8de3fd5d5e97da52afa3188cf63b32a0d6fe6b"
+    },
+    {
+      "path": "published-source/scripts/tests/fixtures/quiz_9f2e/public-state.json",
+      "bytes": 845,
+      "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9",
+      "git_blob": "0d6438f6706d875c87f82e694b22a8d0a5f96352"
+    },
+    {
+      "path": "published-source/scripts/tests/fixtures/quiz_9f2e/selected-phone-layout.json",
+      "bytes": 4692,
+      "sha256": "d861f870c8117a2bc64aec8ac642ee42c70a9426fb54f6f79538f1f8d0cb9f42",
+      "git_blob": "b1e09d14f6c1b01caf6c30b89d2e12d818146031"
+    },
+    {
+      "path": "published-source/scripts/tests/learning_english_regression.gd",
+      "bytes": 33455,
+      "sha256": "c6ce712d4b8539c6cb08e0accbd94853cc7c53aa87f43c16342055073f5578e9",
+      "git_blob": "0a86b01f2f1de7058f50f185e60746fb7d7564e1"
+    },
+    {
+      "path": "published-source/scripts/tests/quiz_studio_runtime.gd",
+      "bytes": 40358,
+      "sha256": "bacb40d4b7a585c838920c423ae03a24c7b8b13c3eba79df93d91bf3d498e948",
+      "git_blob": "623e76afd47d1cd96fcaebdebacac0a684f38f7b"
+    },
+    {
+      "path": "review.json",
+      "bytes": 6267,
+      "sha256": "a322b0708a3b59224789e8bfa4ed9d77f4d4a274aaf1ff449ea65ee354efa04f",
+      "git_blob": "86c9c0b45cf7d91a520a2ba69cf6ffe7e521fbcb"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 8966,
+      "sha256": "c14aef1b2fae1263463115de703ade4deee5fb51710cf838ef7c88cd60407a97",
+      "git_blob": "4043baa454e7c8c550a6e4c092d7c6d502c58416"
+    },
+    {
+      "path": "static-followup-binding.json",
+      "bytes": 3518,
+      "sha256": "d09114905f8551aa2fa93b66deb013d479e6378427098e2b1594a20cb40145c5",
+      "git_blob": "1ef4a354e037bf551e1a51545b33e83e32260d89"
+    }
+  ],
+  "temporal_boundary": "The independent review used the15:04:33 snapshot with English still active. Later15:10:27 original run/jobs and English log are separately bound in ci-observations.json; independent historical text is not rewritten."
+}

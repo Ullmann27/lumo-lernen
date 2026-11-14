@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "readback_utc": "2026-11-14T15:00:05.739843+00:00",
+  "complete_original_utf8_readback": true,
+  "all_json_parsed": true,
+  "files": [
+    {
+      "path": "originals/host-astra-jobs.json",
+      "bytes": 2775,
+      "sha256": "8d24336b4beec5e3ed97794456655f20a0dd9914733076514c4f02aab8b150dd"
+    },
+    {
+      "path": "originals/host-feature-jobs.json",
+      "bytes": 9488,
+      "sha256": "ee1eddc938caf0f1db00c801f3f3d4e4f03ca9d767044ef4fb82c9bb70355b6f"
+    },
+    {
+      "path": "originals/host-head-commit.json",
+      "bytes": 557640,
+      "sha256": "076600f1d86272d427c6c47d900d8901b96f2b0ffd43ad3e0761a17116146c28"
+    },
+    {
+      "path": "originals/host-living-jobs.json",
+      "bytes": 3078,
+      "sha256": "bf0b6eec389df5d057466f34c5702c06d86bbaf213abc9da68b4a70797a6eb21"
+    },
+    {
+      "path": "originals/host-new-delta.json",
+      "bytes": 569170,
+      "sha256": "15072f32ba87563a61035904e99a3aa4ec5005c452b71266e8b24204b1f757a4"
+    },
+    {
+      "path": "originals/host-runs.json",
+      "bytes": 79662,
+      "sha256": "49f3efd4c085642b92bcd582af7860c70192ae6898c94d5cec1c825f0aa62c65"
+    },
+    {
+      "path": "originals/jobs/host-astra-log.log",
+      "bytes": 171038,
+      "sha256": "3cbcb10e8af2e6c6dce7a5aaf32da8ab8e53414a6d55fc13adb6ebf469668151"
+    },
+    {
+      "path": "originals/jobs/host-feature-log.log",
+      "bytes": 116975,
+      "sha256": "25e9c54a00fa696e4419dd499829f9d7408229a4fe473ca008e9faf490bdc495"
+    },
+    {
+      "path": "originals/jobs/host-living-log.log",
+      "bytes": 666961,
+      "sha256": "bf8649047babbed951509a8696d3b9f6434737756f614dbdd751a6c7891f36e9"
+    },
+    {
+      "path": "originals/jobs/native-quiz-log.log",
+      "bytes": 300699,
+      "sha256": "075733da70b935151b190ab31a692712b065b5f1a9fe70abb5f99acd005c006d"
+    },
+    {
+      "path": "originals/native-authority-jobs.json",
+      "bytes": 12309,
+      "sha256": "4f5ba97cf0bd1a7ac51c161511b64ae7a4f22cb589dd3f84ce1897c5b4200c47"
+    },
+    {
+      "path": "originals/native-head-commit.json",
+      "bytes": 72599,
+      "sha256": "fb085ac8950522724d572024a139be34c03b533801274089b9726e623f66fb58"
+    },
+    {
+      "path": "originals/native-new-delta.json",
+      "bytes": 80471,
+      "sha256": "948c8e85a4aa594ca59b235b509db2614e82f2cf698e029ec665fbc4fbca994c"
+    },
+    {
+      "path": "originals/native-runs.json",
+      "bytes": 53647,
+      "sha256": "161968781769f7dfe9952af38b158c5baac946b3b107a43e2bd933a28a947922"
+    },
+    {
+      "path": "originals/native-studio-jobs.json",
+      "bytes": 11950,
+      "sha256": "128c4edda5b813b7c7fd9771de56e13debac3c169df29ddc87f7528d8bfe9a07"
+    }
+  ]
+}

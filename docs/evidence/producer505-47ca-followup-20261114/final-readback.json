@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T15:14:02.426660+00:00",
+  "all_saved_originals": [
+    {
+      "path": "originals/host-astra-jobs.json",
+      "bytes": 2775,
+      "sha256": "8d24336b4beec5e3ed97794456655f20a0dd9914733076514c4f02aab8b150dd",
+      "git_blob": "1da85a006813ea76881e1d26432f395f75777954"
+    },
+    {
+      "path": "originals/host-feature-jobs.json",
+      "bytes": 9488,
+      "sha256": "ee1eddc938caf0f1db00c801f3f3d4e4f03ca9d767044ef4fb82c9bb70355b6f",
+      "git_blob": "26dcb3d156baae0255a3b06f4beb2ff2336b1851"
+    },
+    {
+      "path": "originals/host-head-commit.json",
+      "bytes": 557640,
+      "sha256": "076600f1d86272d427c6c47d900d8901b96f2b0ffd43ad3e0761a17116146c28",
+      "git_blob": "980a3448a52019f883e28c394d487ed89e9d2786"
+    },
+    {
+      "path": "originals/host-living-jobs.json",
+      "bytes": 3078,
+      "sha256": "bf0b6eec389df5d057466f34c5702c06d86bbaf213abc9da68b4a70797a6eb21",
+      "git_blob": "7f9e8c5bc217cf124a4c6d504a98f777e0b3605b"
+    },
+    {
+      "path": "originals/host-new-delta.json",
+      "bytes": 569170,
+      "sha256": "15072f32ba87563a61035904e99a3aa4ec5005c452b71266e8b24204b1f757a4",
+      "git_blob": "89934f8606b24d5220a60c28f4a70a9c4f494f23"
+    },
+    {
+      "path": "originals/host-runs.json",
+      "bytes": 79662,
+      "sha256": "49f3efd4c085642b92bcd582af7860c70192ae6898c94d5cec1c825f0aa62c65",
+      "git_blob": "c6fed29deb1024a8540e22a90043b1178cfa867a"
+    },
+    {
+      "path": "originals/jobs/host-astra-log.log",
+      "bytes": 171038,
+      "sha256": "3cbcb10e8af2e6c6dce7a5aaf32da8ab8e53414a6d55fc13adb6ebf469668151",
+      "git_blob": "027f79c83b526db3dc5d2430bad6679804029a0a"
+    },
+    {
+      "path": "originals/jobs/host-feature-log.log",
+      "bytes": 116975,
+      "sha256": "25e9c54a00fa696e4419dd499829f9d7408229a4fe473ca008e9faf490bdc495",
+      "git_blob": "e4420117ff622bc9f224f328830df42ca7772677"
+    },
+    {
+      "path": "originals/jobs/host-living-log.log",
+      "bytes": 666961,
+      "sha256": "bf8649047babbed951509a8696d3b9f6434737756f614dbdd751a6c7891f36e9",
+      "git_blob": "f1f3a34c39aff227928c5341fb494e16b7e01842"
+    },
+    {
+      "path": "originals/jobs/native-english-log.log",
+      "bytes": 307623,
+      "sha256": "b33b49301919d893c4166e83ba87a5ec29b62e12cdc601c9a27a7fb46bb2bd99",
+      "git_blob": "b895c21efa8072f1c29385c4a30256a8007fd13c"
+    },
+    {
+      "path": "originals/jobs/native-memory-log.log",
+      "bytes": 308932,
+      "sha256": "45c8521b5c1a470d30c26a4e173e0bca028f942ed5aa9a60731b45da2a731f8b",
+      "git_blob": "f968cfad669cdae8e0a8281b6df4584850e1b456"
+    },
+    {
+      "path": "originals/jobs/native-quiz-log.log",
+      "bytes": 300699,
+      "sha256": "075733da70b935151b190ab31a692712b065b5f1a9fe70abb5f99acd005c006d",
+      "git_blob": "f361f571dabf8214cfb096461c70648552c4db47"
+    },
+    {
+      "path": "originals/native-authority-jobs-20261114T150433Z.json",
+      "bytes": 12720,
+      "sha256": "46d9be6fbe8b9228550f77a98bdba1d000da8e6231e850694ef58c214dc750ea",
+      "git_blob": "2773fc75005608228b55976efc31a0bd52922363"
+    },
+    {
+      "path": "originals/native-authority-jobs-20261114T151027Z.json",
+      "bytes": 13303,
+      "sha256": "b4baf9333e8caf4375def01db9a2a7a02e57fbc5a67079260310859c0039f450",
+      "git_blob": "fef4da6159eed80b0567c167b16e036630a9a335"
+    },
+    {
+      "path": "originals/native-authority-jobs.json",
+      "bytes": 12309,
+      "sha256": "4f5ba97cf0bd1a7ac51c161511b64ae7a4f22cb589dd3f84ce1897c5b4200c47",
+      "git_blob": "e7ba32422c9b5c3cf21a1d810194b5824a83887b"
+    },
+    {
+      "path": "originals/native-authority-run-20261114T151027Z.json",
+      "bytes": 13413,
+      "sha256": "d130979e0c086b22197473dce603aa37374fb985497f598040b089675b2b7417",
+      "git_blob": "4a2a82413d9161445652328090c96ae195eb4ef8"
+    },
+    {
+      "path": "originals/native-head-commit.json",
+      "bytes": 72599,
+      "sha256": "fb085ac8950522724d572024a139be34c03b533801274089b9726e623f66fb58",
+      "git_blob": "9d12f1ac8bca1c554d5d48e52a0b49f41b0d9e3a"
+    },
+    {
+      "path": "originals/native-new-delta.json",
+      "bytes": 80471,
+      "sha256": "948c8e85a4aa594ca59b235b509db2614e82f2cf698e029ec665fbc4fbca994c",
+      "git_blob": "ab8545c0a585824cfb6920a69540c2dff1e3d80a"
+    },
+    {
+      "path": "originals/native-runs.json",
+      "bytes": 53647,
+      "sha256": "161968781769f7dfe9952af38b158c5baac946b3b107a43e2bd933a28a947922",
+      "git_blob": "88cb97e884a82ae65fae520c0cf9d30f13f56c1c"
+    },
+    {
+      "path": "originals/native-studio-jobs-20261114T150433Z.json",
+      "bytes": 11993,
+      "sha256": "d2f5b42d9a3570b840f9a98a34cf3f7c3f807e91a05e8fe684bcd218aba574a3",
+      "git_blob": "22153d518a04f122e4bd8377930ea4a425e82cd4"
+    },
+    {
+      "path": "originals/native-studio-jobs.json",
+      "bytes": 11950,
+      "sha256": "128c4edda5b813b7c7fd9771de56e13debac3c169df29ddc87f7528d8bfe9a07",
+      "git_blob": "e40e151d3ba61cd6392dd013870ded25cef7d4f9"
+    }
+  ],
+  "original_count": 21,
+  "complete_utf8_and_json_verified": true,
+  "published_source_blob_count": 28,
+  "binary_downloaded": 0,
+  "limited_secret_scan_hits": [],
+  "artifact_materialization_script_note": "An initial standalone analysis-script syntax typo stopped before execution; corrected script materialized exact immutable sources only after published Gitblob validation. No product tests or source execution occurred."
+}

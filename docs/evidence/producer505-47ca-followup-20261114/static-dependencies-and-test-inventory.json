@@ -1,0 +1,503 @@
+{
+  "schema": 1,
+  "english_closed_catalog": {
+    "book": [
+      "Buch"
+    ],
+    "pen": [
+      "Kugelschreiber",
+      "Stift"
+    ],
+    "ruler": [
+      "Lineal"
+    ],
+    "ball": [
+      "Ball"
+    ],
+    "car": [
+      "Auto"
+    ],
+    "sun": [
+      "Sonne"
+    ],
+    "apple": [
+      "Apfel"
+    ],
+    "bag": [
+      "Tasche"
+    ],
+    "rubber": [
+      "Radiergummi"
+    ],
+    "school bag": [
+      "Schultasche"
+    ],
+    "desk": [
+      "Schreibtisch"
+    ],
+    "chair": [
+      "Sessel"
+    ],
+    "pencil case": [
+      "Federpennal"
+    ],
+    "paper": [
+      "Papier"
+    ]
+  },
+  "english_word_count": 14,
+  "school_words": [
+    "book",
+    "pen",
+    "ruler",
+    "bag",
+    "rubber",
+    "school bag",
+    "desk",
+    "chair",
+    "pencil case",
+    "paper"
+  ],
+  "mandatory_english_source_paths": [
+    {
+      "side": "host",
+      "path": ".github/probes/lumo_english_objects_android_probe.py",
+      "current_target_blob": null,
+      "missing_current_target": true
+    },
+    {
+      "side": "host",
+      "path": ".github/probes/modernization_android_tour.py",
+      "current_target_blob": "10d5caa657552a0168e5d90cf5bac2ec94b90521",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": ".github/probes/creative_android_probe.py",
+      "current_target_blob": "c996a022d388632ed13965b392181aef773d9025",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": ".github/probes/lumo_nextgen_surfaces_android_probe.py",
+      "current_target_blob": "7f2407c168a87af5e351b58f64141e1a18d78be1",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": ".github/probes/lumo_education_android_probe.py",
+      "current_target_blob": "a19c7f4062a568569562699dfd19ee32ce866533",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": ".github/probes/lumo_learning_journey_probe.py",
+      "current_target_blob": "6b222823529c83146528159ab15ed88a0dfa0130",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": ".github/probes/lumo_free_voice_android_probe.py",
+      "current_target_blob": "351c96cec03cdbf79fbfcfe78e52a9a9c0870a1f",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "scripts/probes/pr207_android_smoke.py",
+      "current_target_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "scripts/probes/pr207_android_ui_probe.py",
+      "current_target_blob": "2966b08fab11ff05f67a587a3a564e6fdc1e6cfe",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "tools/android_qa/kart_tour_evidence.py",
+      "current_target_blob": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "tools/android_qa/nextgen_evidence.py",
+      "current_target_blob": "c1105e64bce4c13300f0fbf41e103e4f53194419",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": ".github/probes/flutter_surface_readiness.py",
+      "current_target_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "current_target_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "tools/android_qa/native_ocr_tiles.py",
+      "current_target_blob": "f5aecc82db6bac1420ab1622f240cf4fa59faadd",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "current_target_blob": "83463a26665cd0b58aa776c28f6dec1600552e3d",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "current_target_blob": null,
+      "missing_current_target": true
+    },
+    {
+      "side": "host",
+      "path": "lib/features/learning/learning_content.dart",
+      "current_target_blob": "5e62d675606d5e9b0024fa1476c0459343b5da7a",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "current_target_blob": "f34753575463af153ac72efaf93dd485ba3f30e1",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "lib/core/native_profile_key_repository.dart",
+      "current_target_blob": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "lib/app/app_state.dart",
+      "current_target_blob": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "lib/core/legacy_learning_data.dart",
+      "current_target_blob": "6de6467fe67ae52e1ac08393c438a4c63311feb1",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "tools/auto_install/MainActivity.kt",
+      "current_target_blob": "0d78214087b9f1b7115a1f090aa4c05bdc1a87fe",
+      "missing_current_target": false
+    },
+    {
+      "side": "host",
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "current_target_blob": "81e96786d30c223e9ba145b4f50cbae737946c08",
+      "missing_current_target": false
+    },
+    {
+      "side": "native",
+      "path": "scripts/learning/learning_world.gd",
+      "current_target_blob": "c3b1bc8c73cd764724464d8d2fe0413bdba62a96",
+      "missing_current_target": false
+    },
+    {
+      "side": "native",
+      "path": "scripts/learning/english_object_gallery.gd",
+      "current_target_blob": null,
+      "missing_current_target": true
+    },
+    {
+      "side": "native",
+      "path": "scripts/learning/learning_activity.gd",
+      "current_target_blob": "c1eed0eefb4017ac4db3cb3d1d4551e2d9c601fe",
+      "missing_current_target": false
+    },
+    {
+      "side": "native",
+      "path": "scripts/learning/english_vocabulary.gd",
+      "current_target_blob": null,
+      "missing_current_target": true
+    },
+    {
+      "side": "native",
+      "path": "scenes/learning/learning_world.tscn",
+      "current_target_blob": "34591fe19b6141c769a8d09a14dcd5b85ea05f2b",
+      "missing_current_target": false
+    },
+    {
+      "side": "native",
+      "path": "scripts/app/mobile_runtime.gd",
+      "current_target_blob": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f",
+      "missing_current_target": false
+    },
+    {
+      "side": "native",
+      "path": "scripts/app/android_safe_area.gd",
+      "current_target_blob": "9658440b3effad06358fe7cfe62f04a95ccbe279",
+      "missing_current_target": false
+    },
+    {
+      "side": "native",
+      "path": "scripts/app/scene_router.gd",
+      "current_target_blob": "0e28e5c797af076d2a2410143e42605982e8d1d5",
+      "missing_current_target": false
+    },
+    {
+      "side": "native",
+      "path": "scripts/systems/host_bridge.gd",
+      "current_target_blob": "1845617ed2659dd377f433209799b12ddf310deb",
+      "missing_current_target": false
+    }
+  ],
+  "current_prior_tour_hard_steps": 18,
+  "additional_display_steps": 3,
+  "prior_total": 21,
+  "python_tests_source_inventory": [
+    {
+      "path": "scripts/tests/test_studio_creative_clock_calibration.py",
+      "methods": [
+        {
+          "method": "test_original_fixture_bytes_and_distinct_source_timestamps",
+          "line": 37
+        },
+        {
+          "method": "test_full_original_video_decodes_without_rewriting_and_truncation_still_fails",
+          "line": 59
+        },
+        {
+          "method": "test_original_small_first_step_only_requests_a_bounded_calibration_followup",
+          "line": 76
+        },
+        {
+          "method": "test_repeated_small_zero_or_away_readback_cannot_be_accepted_progress",
+          "line": 95
+        },
+        {
+          "method": "test_first_zero_away_and_changed_identity_still_stop_before_a_second_touch",
+          "line": 115
+        },
+        {
+          "method": "test_original_playing_and_paused_caption_reads_are_distinguished",
+          "line": 132
+        },
+        {
+          "method": "test_frame_guard_requires_two_current_playable_frames_after_the_modal",
+          "line": 171
+        },
+        {
+          "method": "test_foreign_activity_and_a_persistent_modal_never_allow_stick_input",
+          "line": 184
+        }
+      ],
+      "count": 8,
+      "executed_by_us": false
+    },
+    {
+      "path": "scripts/tests/test_studio_treasure_movement.py",
+      "methods": [
+        {
+          "method": "test_measured_slow_response_reaches_actual_clue_without_assumed_six_units_per_second",
+          "line": 114
+        },
+        {
+          "method": "test_target_reached_by_twelfth_allowed_segment_is_observed_before_failure",
+          "line": 128
+        },
+        {
+          "method": "test_original_failure_is_never_relabelled_as_a_success",
+          "line": 137
+        },
+        {
+          "method": "test_no_progress_and_movement_away_stop_before_another_input",
+          "line": 149
+        },
+        {
+          "method": "test_round_and_clue_state_cannot_change_during_motion",
+          "line": 157
+        },
+        {
+          "method": "test_nonfinite_readback_is_rejected_before_further_touch",
+          "line": 165
+        },
+        {
+          "method": "test_total_held_input_budget_stops_even_with_small_positive_progress",
+          "line": 172
+        },
+        {
+          "method": "test_wallclock_deadline_interrupts_a_stalled_checkpoint_and_restores_signal",
+          "line": 181
+        },
+        {
+          "method": "test_no_pending_external_alarm_is_silently_replaced",
+          "line": 198
+        },
+        {
+          "method": "test_touch_uses_fresh_observed_ring_and_bounded_hold",
+          "line": 212
+        },
+        {
+          "method": "test_original_fixture_bytes_and_observed_progress_remain_exact",
+          "line": 229
+        }
+      ],
+      "count": 11,
+      "executed_by_us": false
+    },
+    {
+      "path": "scripts/tests/test_studio_c4_navigation.py",
+      "methods": [
+        {
+          "method": "test_both_original_paused_cards_pages_require_their_visible_exit",
+          "line": 25
+        },
+        {
+          "method": "test_both_actual_failure_pages_require_showcase_back_instead_of_hidden_tabs",
+          "line": 32
+        },
+        {
+          "method": "test_original_home_and_hub_are_distinct_current_routes",
+          "line": 40
+        },
+        {
+          "method": "test_hidden_disabled_foreign_and_undersized_back_controls_cannot_pass",
+          "line": 44
+        },
+        {
+          "method": "test_ambiguous_target_and_unknown_page_are_rejected",
+          "line": 57
+        }
+      ],
+      "count": 5,
+      "executed_by_us": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_english_objects_android_probe.py",
+      "methods": [
+        {
+          "method": "test_four_original_desktop_observations_pass_only_explicit_fixture_mode",
+          "line": 48
+        },
+        {
+          "method": "test_actual_camera_matrix_independently_matches_all_original_corners",
+          "line": 56
+        },
+        {
+          "method": "test_foreign_task_owner_or_session_is_rejected",
+          "line": 67
+        },
+        {
+          "method": "test_duplicate_unknown_or_missing_objects_fail_closed",
+          "line": 80
+        },
+        {
+          "method": "test_private_free_text_and_unlicensed_voice_are_rejected",
+          "line": 87
+        },
+        {
+          "method": "test_unsettled_hidden_wrong_pid_and_non_finite_values_are_rejected",
+          "line": 97
+        },
+        {
+          "method": "test_screenshot_and_real_insets_must_match",
+          "line": 109
+        },
+        {
+          "method": "test_already_padded_view_maps_to_decor_without_duplicate_insets",
+          "line": 122
+        },
+        {
+          "method": "test_clipped_or_under48dp_actual_controls_are_rejected",
+          "line": 132
+        },
+        {
+          "method": "test_wrong_completed_state_and_hint_ring_cannot_pass",
+          "line": 142
+        },
+        {
+          "method": "test_tampered_projection_and_missing_recognizable_geometry_are_rejected",
+          "line": 152
+        },
+        {
+          "method": "test_real_collision_volume_is_required_for_spatial_touch",
+          "line": 163
+        },
+        {
+          "method": "test_geometry_projected_outside_stage_is_rejected",
+          "line": 177
+        },
+        {
+          "method": "test_blank_object_pixels_are_not_visual_evidence",
+          "line": 183
+        },
+        {
+          "method": "test_caption_needs_real_current_bounded_exact_text",
+          "line": 191
+        },
+        {
+          "method": "test_prior_tour_uses_actual_text_sdk_schema_for_both_apis",
+          "line": 215
+        },
+        {
+          "method": "test_prior_tour_wrong_apk_runtime_or_status_fails",
+          "line": 220
+        },
+        {
+          "method": "test_prior_tour_cannot_pass_with_missing_duplicate_or_failed_steps",
+          "line": 229
+        },
+        {
+          "method": "test_actual_supported_question_and_existing_alias_are_bound",
+          "line": 243
+        },
+        {
+          "method": "test_unsupported_actual_task_is_not_silently_replaced",
+          "line": 249
+        },
+        {
+          "method": "test_all_actual_first_and_second_grade_school_words_keep_exact_meanings",
+          "line": 261
+        },
+        {
+          "method": "test_multiword_labels_cannot_alias_bags_or_accept_unobserved_phrases",
+          "line": 281
+        },
+        {
+          "method": "test_hint_and_choice_transitions_preserve_real_session",
+          "line": 291
+        },
+        {
+          "method": "test_old_sequence_foreign_session_or_home_progress_cannot_pass",
+          "line": 303
+        },
+        {
+          "method": "test_actual_owner_registry_and_present_save_keys_are_preserved",
+          "line": 317
+        },
+        {
+          "method": "test_duplicate_and_nonfinite_json_are_rejected",
+          "line": 333
+        },
+        {
+          "method": "test_slow_successful_wait_observation_cannot_pass_after45_seconds",
+          "line": 340
+        },
+        {
+          "method": "test_slow_post_capture_reads_cannot_turn_into_snapshot_pass",
+          "line": 355
+        }
+      ],
+      "count": 28,
+      "executed_by_us": false
+    }
+  ],
+  "dart_new_result_case": {
+    "path": "test/games/memory_result_frame_test.dart",
+    "test_count": 1,
+    "line": 73,
+    "failed_line": 134
+  },
+  "not_run": "No test/import/device invocation; inventories and original-log reviews only."
+}
