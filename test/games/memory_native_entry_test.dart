@@ -80,7 +80,7 @@ Future<void> _tapAndSave(WidgetTester tester, LumoAppState app, int index) async
     await tester.pump(const Duration(milliseconds: 10));
     if (((await _round(app))['revision'] as int) > before) return;
   }
-  fail('Real card touch did not produce a durable owner round');
+  fail('Real card touch did not produce a durable owner round: ${jsonEncode(await _round(app))}');
 }
 
 void main() {
@@ -280,6 +280,52 @@ void main() {
     expect((await _round(app))['owner'], isNot((jsonDecode(oldRaw!) as Map)['owner']));
     expect(prefs.getString(oldKey), oldRaw);
     expect(((await _round(app))['rules'] as Map)['faceUp'], everyElement(false));
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('A delayed optional haptic reply cannot block the second card or durable Pause',
+      (tester) async {
+    final gate = Completer<void>();
+    var hapticCalls = 0;
+    final messenger = TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(SystemChannels.platform, (call) async {
+      if (call.method == 'HapticFeedback.vibrate') {
+        hapticCalls++;
+        await gate.future;
+      }
+      return null;
+    });
+    addTearDown(() {
+      if (!gate.isCompleted) gate.complete();
+      messenger.setMockMethodCallHandler(SystemChannels.platform, null);
+    });
+    final app = await _app();
+    addTearDown(app.dispose);
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await _open(tester, app, _Unavailable());
+    final cards = ((await _round(app))['rules'] as Map)['cards'] as List;
+    final other = cards.indexWhere((motif) => motif != cards[0]);
+    expect(other,greaterThan(0));
+    await _tapAndSave(tester,app,0);
+    await _tapAndSave(tester,app,other);
+    await _until(tester,() => hapticCalls == 2,'both actual optional platform requests');
+    expect(gate.isCompleted,false);
+    expect(hapticCalls,2);
+    final selected = await _round(app);
+    expect((selected['rules'] as Map)['phase'],'resolve');
+    await tester.tap(find.byKey(const ValueKey('memory-close')));
+    for (var i = 0; i < 50 && (await _round(app))['paused'] != true; i++) {
+      await tester.pump(const Duration(milliseconds:10));
+    }
+    final paused = await _round(app);
+    expect(paused['paused'],true);
+    expect((paused['rules'] as Map)['kindMoves'],1);
+    expect((paused['rules'] as Map)['phase'],'resolve');
+    expect(gate.isCompleted,false,reason:'neither saved action may await optional feedback');
+    gate.complete();
+    await tester.pump(const Duration(seconds:2));
+    expect(await _round(app),paused,reason:'late feedback cannot resume or advance a paused game');
+    expect(tester.takeException(),isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });
 }

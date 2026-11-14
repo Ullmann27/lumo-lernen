@@ -10,9 +10,15 @@ Quiz retains the existing rules, question bank and milestone rewards. Its shared
 
 The actual Memory screen now uses the shared persistent controller and attempts the real Android table entry. Optional Native preparation keeps Flutter cards usable; a real Flutter turn cancels a delayed automatic launch. Original visual widget sections, motif dealer, opponent behavior, reward formulas and per-child statistics keys are preserved. Unfinished rounds resume under their original identifier; confirmed completed and rewarded rounds start a fresh round with the same settings when reopened. An unsettled completed round is retained until its reward acknowledgement succeeds.
 
-The Memory scheduler uses a monotonic Stopwatch in production, so a gap between Flutter frames cannot extend a visible-card delay. Tests can supply an explicit clock. Seven new widget scenarios cover absent Native support, delayed availability, unfinished-round resume, lifecycle pause, profile isolation and elapsed time without an intermediate frame, and two immediate real card taps. These new scenarios have not executed before this source checkpoint.
+The Memory scheduler uses a monotonic Stopwatch in production, so a gap between Flutter frames cannot extend a visible-card delay. Tests can supply an explicit clock. Eight new widget scenarios cover absent Native support, delayed availability, unfinished-round resume, lifecycle pause, profile isolation and elapsed time without an intermediate frame, two immediate real card taps, and a delayed optional haptic reply. These new scenarios have not executed before this source checkpoint.
 
 The private Android table channel binds game, token, child, round, revision and intent sequence. The renderer cannot supply rewards or choose the authoritative answer. Both new table sessions now invalidate pending setup on close, reject a parallel open, recheck ownership after asynchronous setup and clean up only their own token if native acceptance arrives late. Three additional real Completer-controlled cases per authority cover those close/open races. The 2,500 ms lease and persistence acknowledgement requirements are unchanged.
+
+## Optional haptic reply correction
+
+Host34386895dcc2d2d21f5d9223b7e8edb8753a6c0d passed the actual 30-case/1,694-check Memory authority contract, seven scheduler cases and Android compilation in run43602349929. The focused Memory widget group still failed: 20 passes and eight failures; the full suite did not run. The new board-loading and queue cases are not a full UI acceptance.
+
+After a durably acknowledged card flip, optional haptic feedback is now detached from the action queue. A missing or delayed platform response cannot hold the next card or Pause; a later platform error is contained. The new eighth widget scenario deliberately leaves both actual HapticFeedback channel replies pending, requires two saved card selections and a saved pause, and then checks that completing the feedback cannot resume the game. This new delta still requires actual CI. No game timing, difficulty rule, assertion or existing test was weakened.
 
 ## Correction after the first actual Memory screen run
 

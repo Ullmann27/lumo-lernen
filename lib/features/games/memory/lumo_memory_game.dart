@@ -330,7 +330,10 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
       // Keep at most the two real card choices. The authority validates them
       // in order after each durable save; stale round/pause input is refused.
       if (_clock.value || _game.round.id != round) return;
-      if (await _game.flip(index)) await HapticFeedback.lightImpact();
+      if (await _game.flip(index)) {
+        // Optional platform feedback cannot hold the durable turn/pause queue.
+        unawaited(HapticFeedback.lightImpact().catchError((Object _, StackTrace __) {}));
+      }
     }).whenComplete(() => _queuedFlips--));
   }
 
