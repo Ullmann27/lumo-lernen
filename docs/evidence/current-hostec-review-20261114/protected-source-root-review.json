@@ -1,0 +1,44 @@
+{
+  "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "producer": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "verified_by": "Root actual git rev-parse and workspace git hash-object; all assertions passed",
+  "files": [
+    {
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+      "blob": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+      "source_producer_workspace_identical": true
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "blob": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+      "source_producer_workspace_identical": true
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "blob": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "source_producer_workspace_identical": true
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "blob": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "source_producer_workspace_identical": true
+    },
+    {
+      "path": "lib/core/writing_progress_repository.dart",
+      "blob": "4bb609a76be4cc64a316798debc2bafa24274803",
+      "source_producer_workspace_identical": true
+    },
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "blob": "63a3d4c4fe6c5c9249f3531e685cc541646747ee",
+      "source_producer_workspace_identical": true
+    }
+  ],
+  "practice_board": {
+    "path": "lib/features/writing/widgets/lumo_letter_practice_board.dart",
+    "lines": 1236,
+    "blob": "2b7f283d826ca09d85e7bec8cb7f51b0f562c466",
+    "source_producer_identical": true
+  },
+  "limits": "Source byte preservation only, not a populated writing/journal in-place update test. Shared Ink and Teacher Letter files include intentional earlier integration changes with their own regressions."
+}

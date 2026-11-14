@@ -1,0 +1,47 @@
+{
+  "run": 43634531860,
+  "attempt": 1,
+  "artifact": 14130249406,
+  "qa_source": "3cae9c407a6eef1970e24bc9a61516b13fe0af52",
+  "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "read_by_root": [
+    "c4/c4-result.json",
+    "c4/observations/return-first-second-000.json",
+    "c4/observations/reopened-009.json"
+  ],
+  "identical_saved_fields": [
+    "roundId",
+    "owner",
+    "recordRevision",
+    "board",
+    "columns",
+    "twoPlayers",
+    "level",
+    "rewarded"
+  ],
+  "new_session_token": true,
+  "actual_columns": [
+    3,
+    3,
+    2,
+    3
+  ],
+  "winning_line": [],
+  "rewarded": false,
+  "images_personally_opened_by_root": [
+    {
+      "path": "c4/child-second-confirmed-003.png",
+      "bytes": 229412,
+      "sha256": "a11112802703e11045ac4a73af6cd92f7c75e358489b6b43b4c48ddd6c216741",
+      "git_blob": "0e6cc356d46b0820da3fd71af3c2ffad21dc08d0"
+    },
+    {
+      "path": "c4/reopened-009.png",
+      "bytes": 228563,
+      "sha256": "910005902420fc6df1d3627d127daa2d491068e2717972b6ecdaa7ff4438b68d",
+      "git_blob": "9d8275b40c93daf9f85f8c346a82fb3e3d275d92"
+    }
+  ],
+  "no_new_runtime_executed": true,
+  "scope": "Separate existing 6b APK diagnosis; same saved board after reopening, not a C4 win or ec APK acceptance."
+}
