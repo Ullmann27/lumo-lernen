@@ -70,6 +70,10 @@ jobs:
             2>&1 | tee printf-contracts.log
           grep -Eq '^Ran 6 tests in ' printf-contracts.log
           grep -Fx 'OK' printf-contracts.log
+          .probe-venv/bin/python -B -m unittest -v scripts.tests.test_android_runtime_wait_notification \
+            2>&1 | tee wait-notification-contracts.log
+          grep -Eq '^Ran 9 tests in ' wait-notification-contracts.log
+          grep -Fx 'OK' wait-notification-contracts.log
           .probe-venv/bin/python -B -m unittest -v \
             scripts.tests.test_android_framework_ready_android17 \
             scripts.tests.test_android37_cli22 \
@@ -83,6 +87,8 @@ jobs:
             tools.android_qa.tests.test_kart_garage_evidence \
             tools.android_qa.tests.test_kart_driver_word_evidence \
             2>&1 | tee diagnostic-contracts.log
+          grep -Eq '^Ran 121 tests in ' diagnostic-contracts.log
+          grep -Fx 'OK' diagnostic-contracts.log
           if grep -Eq '^OK \(skipped=|^FAILED.*skipped=' diagnostic-contracts.log; then
             echo 'The diagnostic contract gate does not accept skipped tests.' >&2
             exit 1
@@ -97,6 +103,7 @@ jobs:
             parser-contracts.log
             launch-diagnostic-contracts.log
             printf-contracts.log
+            wait-notification-contracts.log
           if-no-files-found: error
           retention-days: 30
 

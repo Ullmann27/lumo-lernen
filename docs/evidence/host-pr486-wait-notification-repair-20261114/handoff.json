@@ -1,0 +1,12 @@
+{
+  "pack": "/workspace/scratch/b3485b7bb989/host-pr486-wait-notification-repair-20261114",
+  "source_freeze_sha256": "49fff8acdc1a1adcbbd3ac21e068fca8e94a44eb32fff951365f602cedbbd1da",
+  "production_sha256": "79a46ccfccc1e0a5da8af85a21a8c8bc893bdc9bf68d2def91b19b0797a45c58",
+  "test_sha256": "dcac38c995f9faaeeb2db9ec24b9d1b2a564ac6cecd6d466ff0e7425f99d3e54",
+  "patch_sha256": "bace0f57cb8776c1b9a7e54c78ca2505553e4439eed83a5e9abfee2dfc9136a1",
+  "source_paths": 8,
+  "targeted_methods_prepared": 9,
+  "test_execution": "none; awaiting Root source checkpoint and approval",
+  "original_runs_remain_failure": true,
+  "root_ownership": "All staging/commits/refs/worktrees/CI; this pack is external only."
+}

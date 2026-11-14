@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_ONLY_AWAITING_ROOT_CHECKPOINT",
+  "base_source": "08e63bd32917a6672ae99b66a17c3fa57c83977a",
+  "base_tree": "04859a04ad84d14120109bdc1bb27684f534a5f3",
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "bytes": 3125,
+    "sha256": "2ea77b280905bb6482ebf93a11fccdcc771fab1fda220e1b12070ab067a5e9fe"
+  },
+  "diagnosis": {
+    "path": "diagnosis.json",
+    "bytes": 2160,
+    "sha256": "ffc7ced305f13ed8bba020cb83fd507b4b5c657a54ad1f9ed05a396a3f408bd7"
+  },
+  "fixture_provenance": {
+    "path": "fixture-provenance.json",
+    "bytes": 2960,
+    "sha256": "8c175b990e7ab62dc19a3b1b3e489379fb27916a43d771b2efcb1db781697f32"
+  },
+  "source_paths": [
+    "scripts/run_unchanged_apk_diagnostic.sh",
+    "scripts/tests/test_runtime_followup_workflow.py",
+    "scripts/tests/fixtures/api37-swangle-08e63bd3-renderer.json.gz"
+  ],
+  "machine_application": {
+    "step_1": "Verify both modified base files against base SHA256/Git blobs in source-freeze.json.",
+    "step_2": "Apply integration.patch to those two files only.",
+    "step_3": "Copy the exact new fixture from final-source/scripts/tests/fixtures/api37-swangle-08e63bd3-renderer.json.gz to the same relative repository path, mode100644.",
+    "step_4": "Verify all three final hashes and Git blobs before checkpoint."
+  },
+  "planned_after_checkpoint": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest -v scripts.tests.test_runtime_followup_workflow",
+    "test_methods": 10,
+    "existing_methods": 7,
+    "new_methods": 3,
+    "additional_negative_cases": "missing/wrong/duplicate/inline/legacy GPU requests, malformed argc/executable, absent input file, wrong exact backend; existing wrong GLES/hardware cases retained",
+    "dependencies": [
+      "scripts/run_unchanged_apk_diagnostic.sh",
+      ".github/workflows/lumo-unchanged-apk-diagnostic.yml",
+      ".github/workflows/lumo-android-runtime-7b16-followup.yml",
+      "config/diagnostic-baselines/android37-7b16.json",
+      "scripts/tests/fixtures/api37-swangle-08e63bd3-renderer.json.gz"
+    ],
+    "device_or_engine_required": false
+  },
+  "tests_executed": false,
+  "parent_approval_required_for_next_phase": "Root publishes source checkpoint first; no CI retries, source/worktree/index/refs or devices were changed by this pack."
+}

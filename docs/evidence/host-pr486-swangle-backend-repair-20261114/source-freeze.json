@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_ONLY",
+  "created_at_utc": "2026-11-14T08:28:26.051569+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "base_source": "08e63bd32917a6672ae99b66a17c3fa57c83977a",
+  "base_tree": "04859a04ad84d14120109bdc1bb27684f534a5f3",
+  "files": [
+    {
+      "path": "scripts/run_unchanged_apk_diagnostic.sh",
+      "file": "final-source/scripts/run_unchanged_apk_diagnostic.sh",
+      "bytes": 8714,
+      "sha256": "50d7c687e85ca3058a91749dd3b86eb96fdc76ac9c9758cb087d476ff2f89e7f",
+      "git_blob": "2700d4e1c454eaab5144836d78223b6f6e02d803",
+      "mode": "100644",
+      "action": "modify",
+      "base": {
+        "file": "before-source/scripts/run_unchanged_apk_diagnostic.sh",
+        "bytes": 7218,
+        "sha256": "e8d724d5a6da0d12d193cfb1de851d520eac68ead0f8777b2965c0469da3ae50",
+        "git_blob": "b413b6b605d387e3ebbb3c29d79f4245c08ece02",
+        "mode": "100644"
+      }
+    },
+    {
+      "path": "scripts/tests/test_runtime_followup_workflow.py",
+      "file": "final-source/scripts/tests/test_runtime_followup_workflow.py",
+      "bytes": 17494,
+      "sha256": "feb63ccda4fb641de3a648c7e1ad6db920a3403a0021bf7da431a20c7796a9ff",
+      "git_blob": "b6bc8e67649ec6d7808a7d37cddb93cb0f931b19",
+      "mode": "100644",
+      "action": "modify",
+      "base": {
+        "file": "before-source/scripts/tests/test_runtime_followup_workflow.py",
+        "bytes": 10381,
+        "sha256": "15d0d7aa8a37aff6ff6d419135d73674a9a5ea236d03174238a14eb325adad83",
+        "git_blob": "5ef3ff33506e7525928024dce73fd8bfc2fe709c",
+        "mode": "100644"
+      }
+    },
+    {
+      "path": "scripts/tests/fixtures/api37-swangle-08e63bd3-renderer.json.gz",
+      "file": "final-source/scripts/tests/fixtures/api37-swangle-08e63bd3-renderer.json.gz",
+      "bytes": 40795,
+      "sha256": "1b0889542bafcfa73f9d63e1c83253d0122c18dff45ee9c8a1e10c8f04d0e0eb",
+      "git_blob": "9b9ecb3de5b891df9c6d51b29c3447df333d6b0a",
+      "mode": "100644",
+      "action": "add"
+    }
+  ],
+  "text_patch": {
+    "path": "integration.patch",
+    "bytes": 13918,
+    "sha256": "ec4e4fb4a24253889a5aec814b791363d18009e076dba286fb37d26dc6f7c6d2"
+  },
+  "binary_addition": {
+    "path": "scripts/tests/fixtures/api37-swangle-08e63bd3-renderer.json.gz",
+    "file": "final-source/scripts/tests/fixtures/api37-swangle-08e63bd3-renderer.json.gz",
+    "bytes": 40795,
+    "sha256": "1b0889542bafcfa73f9d63e1c83253d0122c18dff45ee9c8a1e10c8f04d0e0eb",
+    "git_blob": "9b9ecb3de5b891df9c6d51b29c3447df333d6b0a",
+    "mode": "100644",
+    "action": "add"
+  },
+  "preserved_references": [
+    "before-source/.github/workflows/lumo-console-start-7b16.yml",
+    "before-source/config/diagnostic-baselines/android37-7b16.json"
+  ],
+  "validation": {
+    "tests_executed": false,
+    "engine_or_device_runs": false,
+    "status": "NOT_RUN_AWAITING_ROOT_CHECKPOINT",
+    "static_integrity_file": "static-source-review.json"
+  },
+  "ownership": "Only three final-source paths are candidate repository changes; originals and reference snapshots are evidence. Root owns publication and checkpoint before repair tests."
+}

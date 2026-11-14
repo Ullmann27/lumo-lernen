@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T08:30:10.900467+00:00",
+  "result": "NO_CONCRETE_SOURCE_BLOCKER",
+  "scope": "Independent read-only source and original-byte review; no tests, emulator, ADB, downloads, Git, CI or source edits",
+  "freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr486-swangle-backend-repair-20261114/source-freeze.json",
+    "bytes": 3125,
+    "sha256": "2ea77b280905bb6482ebf93a11fccdcc771fab1fda220e1b12070ab067a5e9fe",
+    "git_blob": "91f9e6440cf642d2d04382c3a26e7bae7acac731"
+  },
+  "sources": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr486-swangle-backend-repair-20261114/final-source/scripts/run_unchanged_apk_diagnostic.sh",
+      "bytes": 8714,
+      "sha256": "50d7c687e85ca3058a91749dd3b86eb96fdc76ac9c9758cb087d476ff2f89e7f",
+      "git_blob": "2700d4e1c454eaab5144836d78223b6f6e02d803"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr486-swangle-backend-repair-20261114/final-source/scripts/tests/test_runtime_followup_workflow.py",
+      "bytes": 17494,
+      "sha256": "feb63ccda4fb641de3a648c7e1ad6db920a3403a0021bf7da431a20c7796a9ff",
+      "git_blob": "b6bc8e67649ec6d7808a7d37cddb93cb0f931b19"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr486-swangle-backend-repair-20261114/final-source/scripts/tests/fixtures/api37-swangle-08e63bd3-renderer.json.gz",
+      "bytes": 40795,
+      "sha256": "1b0889542bafcfa73f9d63e1c83253d0122c18dff45ee9c8a1e10c8f04d0e0eb",
+      "git_blob": "9b9ecb3de5b891df9c6d51b29c3447df333d6b0a"
+    }
+  ],
+  "source_preservation": {
+    "shell_prefix_byte_identical": true,
+    "shell_suffix_byte_identical": true,
+    "unchanged_check_expressions": [
+      "same_original_package_descriptor_and_properties",
+      "same_observed_android_fingerprint",
+      "same_effective_non_graphics_hardware",
+      "one_actual_gles_renderer_matches_case",
+      "actual_framework_guard_passed"
+    ],
+    "only_new_check": "recorded_emulator_launch_matches_requested_case",
+    "unchanged_gpu_and_renderer_expressions": true
+  },
+  "exact_fixture_originals": [
+    {
+      "path": "framework-start/cli22/avd-guard/configuration/emu-launch-params.txt",
+      "bytes": 359,
+      "sha256": "5d9b5165961a7ef50601271281825181721b166e013bc49a68ba0c27aea98058",
+      "original_archive": "/workspace/scratch/b3485b7bb989/host-pr486-08e63bd3-console-evidence/artifacts/14105941453/original.zip",
+      "crc32": "755ad658"
+    },
+    {
+      "path": "framework-start/cli22/avd-guard/configuration/hardware-qemu.ini",
+      "bytes": 4155,
+      "sha256": "f58d879911724638f32f1099d6389ef2dbafe75a7fc96271b009f3fc53a9aaf5",
+      "original_archive": "/workspace/scratch/b3485b7bb989/host-pr486-08e63bd3-console-evidence/artifacts/14105941453/original.zip",
+      "crc32": "c76f3a1c"
+    },
+    {
+      "path": "framework-start/cli22/packages-guard/emulator/package.xml",
+      "bytes": 18320,
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a",
+      "original_archive": "/workspace/scratch/b3485b7bb989/host-pr486-08e63bd3-console-evidence/artifacts/14105941453/original.zip",
+      "crc32": "19cde792"
+    },
+    {
+      "path": "framework-start/cli22/packages-guard/emulator/source.properties",
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7",
+      "original_archive": "/workspace/scratch/b3485b7bb989/host-pr486-08e63bd3-console-evidence/artifacts/14105941453/original.zip",
+      "crc32": "bff29e7c"
+    },
+    {
+      "path": "framework-start/cli22/packages-guard/image/package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062",
+      "original_archive": "/workspace/scratch/b3485b7bb989/host-pr486-08e63bd3-console-evidence/artifacts/14105941453/original.zip",
+      "crc32": "ce5c94b0"
+    },
+    {
+      "path": "framework-start/cli22/packages-guard/image/source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e",
+      "original_archive": "/workspace/scratch/b3485b7bb989/host-pr486-08e63bd3-console-evidence/artifacts/14105941453/original.zip",
+      "crc32": "bf42f894"
+    },
+    {
+      "path": "framework-start/framework-readiness.json",
+      "bytes": 34730,
+      "sha256": "b6b75dac3e7e5a46903620cd6ce10ce5f2bb1ca90d7484dcc4fea67122942e84",
+      "original_archive": "/workspace/scratch/b3485b7bb989/host-pr486-08e63bd3-console-evidence/artifacts/14105941453/original.zip",
+      "crc32": "0329e74e"
+    },
+    {
+      "path": "renderer-comparison-binding.json",
+      "bytes": 2469,
+      "sha256": "ce5fa6343967476e8e1e7de91267dfd9118dd85827b8084b17c0391767003b9a",
+      "original_archive": "/workspace/scratch/b3485b7bb989/host-pr486-08e63bd3-console-evidence/artifacts/14105941453/original.zip",
+      "crc32": "a4836d2c"
+    },
+    {
+      "path": "surfaceflinger-start.stdout",
+      "bytes": 54076,
+      "sha256": "82cd178b21dc7d6ee92c2bc8b684b4ca450a1dc0be26e0e315047b345264dab7",
+      "original_archive": "/workspace/scratch/b3485b7bb989/host-pr486-08e63bd3-console-evidence/artifacts/14105941453/original.zip",
+      "crc32": "db4f0282"
+    }
+  ],
+  "original_archive": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr486-08e63bd3-console-evidence/artifacts/14105941453/original.zip",
+    "bytes": 2667674,
+    "sha256": "18346b2b68cf72ab0d5423365dfef7ca66f998b7a8f215feddbdb75f9505f3e1",
+    "git_blob": "e2bec6b966616d33db8e9fc1b4152baa09b6778d"
+  },
+  "historical_source": "08e63bd32917a6672ae99b66a17c3fa57c83977a",
+  "historical_tree": "04859a04ad84d14120109bdc1bb27684f534a5f3",
+  "run": 43574161418,
+  "attempt": 1,
+  "job": 132384862707,
+  "artifact": {
+    "id": 14105941453,
+    "sha256": "18346b2b68cf72ab0d5423365dfef7ca66f998b7a8f215feddbdb75f9505f3e1"
+  },
+  "actual_observation": {
+    "argv_count": 19,
+    "requested_gpu": "swangle",
+    "effective_gpu_mode": "swiftshader",
+    "emulator_source_properties": "Pkg.UserSrc=false\nPkg.Revision=37.2.13\nPkg.Path=emulator\nPkg.Desc=Android Emulator\nPkg.BuildId=16740729",
+    "gles": [
+      "GLES: Google (Google Inc. (Google)), Android Emulator OpenGL ES Translator (ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)), OpenGL ES 3.1 (OpenGL ES 3.1.0 (ANGLE 2.1.17841 git hash: 5fa2e61da947))"
+    ],
+    "original_renderer_result": "FAIL"
+  },
+  "findings": [
+    "The pinned actual emulator37.2.13 records effective hw.gpu.mode=swiftshader for an original -gpu swangle launch; the retained GLES line independently includes both ANGLE and SwiftShader.",
+    "The fix uses one exact pinned backend expectation, not a permissive alias set; the existing package-descriptor, Android fingerprint, non-graphics hardware and framework guards remain unchanged.",
+    "Recorded launch input must have a matching nonempty executable header, exact integer argc, exactly one separate -gpu swangle argument and no -gpu= override; missing input fails.",
+    "ANGLE plus SwiftShader and exactly one GLES line remain mandatory for SWANGLE. Existing host and swiftshader renderer expressions are preserved.",
+    "The entire wrapper before and after the embedded renderer program is byte-identical; Console begin/finish, trap/exit propagation, same APK/source, runtime ANR and both tours are preserved.",
+    "The new regression embeds nine exact current original members and asserts the original failed report is still FAIL; local repaired-report replay is explicitly distinct from a successful Android run."
+  ],
+  "limits": [
+    "Prepared ten contract methods were reviewed but not executed here",
+    "The effective-backend rule is intentionally pinned to exact package descriptors; another emulator revision requires new evidence",
+    "Original08e and any ANR/tour errors remain historical FAIL; this narrow renderer-report repair grants no device, FPS or application acceptance"
+  ]
+}

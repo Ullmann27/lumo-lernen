@@ -320,7 +320,7 @@ def verify_device_recording(framework_out: Path, out: Path, start: dict, end: di
     # Some POSIX shells print this exact notification from the wait builtin
     # after its positively recorded child is deliberately sent TERM. Keep the
     # raw bytes in their own file; no logger/session stderr is ignored.
-    if loaded["finish"]["original-wait-stderr"][0] not in (b"", b"Terminated\n"):
+    if loaded["finish"]["original-wait-stderr"][0] not in (b"", b"Terminated\n", b"Terminated \n"):
         raise ValueError("Unrecognized wait notification from the device logger shell")
     if loaded["finish"]["original-run-sh"] != [FRAMEWORK.device_logger_script(remote).encode()]:
         raise ValueError("Retrieved device script differs from the fixed source")
