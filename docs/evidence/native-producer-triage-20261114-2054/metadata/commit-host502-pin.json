@@ -1,0 +1,40 @@
+{
+  "sha": "570bcde335e064fe96d8ef90c3ef403c0a08ae3f",
+  "node_id": "C_kwDOSpcSONoAKDU3MGJjZGUzMzVlMDY0ZmU5NmQ4ZWY5MGMzZWY0MDNjMGEwOGFlM2Y",
+  "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/570bcde335e064fe96d8ef90c3ef403c0a08ae3f",
+  "html_url": "https://github.com/Ullmann27/lumo-godot/commit/570bcde335e064fe96d8ef90c3ef403c0a08ae3f",
+  "author": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T09:58:12Z"
+  },
+  "committer": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T09:58:12Z"
+  },
+  "tree": {
+    "sha": "b75d3df24f21b5242a77fa1071de4c4140ff9ede",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/b75d3df24f21b5242a77fa1071de4c4140ff9ede"
+  },
+  "message": "fix(village): retain current native acceptance with the four reviewed repairs\n\nReconcile exact current7d53 ancestry and prior41c29 repair by an explicitly constructed tree, not an unreviewed branch merge. The tree equals a clean cherry-pick of the four unchanged repair blobs onto7d53. All thirteen bound village dependencies are unchanged. Preserve the newer original evidence and the existing900-second LearningCapture allowance; no additional product changes or third-party dependencies.\n\nFull exact-source Host/Android acceptance remains mandatory before APK delivery.",
+  "parents": [
+    {
+      "sha": "7d53f29e68269c21d1d5a66bdf3d488f8e886970",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/7d53f29e68269c21d1d5a66bdf3d488f8e886970",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/commit/7d53f29e68269c21d1d5a66bdf3d488f8e886970"
+    },
+    {
+      "sha": "41c29e72fb3fc39712e38016fc8c43d3346ffb26",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/41c29e72fb3fc39712e38016fc8c43d3346ffb26",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/commit/41c29e72fb3fc39712e38016fc8c43d3346ffb26"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

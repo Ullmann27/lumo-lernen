@@ -1,0 +1,35 @@
+{
+  "sha": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "node_id": "C_kwDOSpcSONoAKDg0Nzg5ZDBjMmM2ZmI0YjZlY2QyODk3Y2UxOTUxYjg5Zjk1OGI2MDQ",
+  "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "html_url": "https://github.com/Ullmann27/lumo-godot/commit/84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "author": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T16:00:20Z"
+  },
+  "committer": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T16:00:20Z"
+  },
+  "tree": {
+    "sha": "91cc8fc1c6f8a36336b7ac9a12585284a983a6f6",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/91cc8fc1c6f8a36336b7ac9a12585284a983a6f6"
+  },
+  "message": "ci: run native discovery acceptance on the integrated source\n\nAdmit integration/lumo-live-connections-20261114 alongside the existing producer push branch and match both exact refs in the job condition. Scope concurrency by ref, retaining cancel-in-progress=false.\n\nAll twelve original run blocks, the 130-minute bound, uploads, runtime, assets, and helper bytes remain unchanged. Actionlint 1.7.12, Bash syntax, and twelve branch/event/repository contract cases pass. The parent union retains the genuine e9a9 and a69f merge ancestry; focused original runtime checks and the two rendered Village Scaling originals were executed on that unchanged parent runtime.\n\nNo Android or performance acceptance is asserted by this trigger-only change.",
+  "parents": [
+    {
+      "sha": "fe861bd09296ef0051887dc21f48ca38215fc76b",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/fe861bd09296ef0051887dc21f48ca38215fc76b",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/commit/fe861bd09296ef0051887dc21f48ca38215fc76b"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "sha": "3213d2aca377476cf4959f380701d87177cec959",
+  "node_id": "C_kwDOSpcSONoAKDMyMTNkMmFjYTM3NzQ3NmNmNDk1OWYzODA3MDFkODcxNzdjZWM5NTk",
+  "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/3213d2aca377476cf4959f380701d87177cec959",
+  "html_url": "https://github.com/Ullmann27/lumo-godot/commit/3213d2aca377476cf4959f380701d87177cec959",
+  "author": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T14:07:02Z"
+  },
+  "committer": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T14:07:02Z"
+  },
+  "tree": {
+    "sha": "c48a59897b13afdf67e4b45675579cfac4d5fec6",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/c48a59897b13afdf67e4b45675579cfac4d5fec6"
+  },
+  "message": "fix: include existing shader MIT notice in Android export\n\nAdd THIRD_PARTY_NOTICES.md to the Android PCK include filter alongside the existing Lumo attribution files. Preserve the original notice text and every other export setting.\n\nThe existing Kart directional-tint adaptation records GDQuest godot-shaders as its MIT-licensed source; package the full existing notice with the shader.",
+  "parents": [
+    {
+      "sha": "90cbadc1369efdd89e7d3974ce3113fdde604511",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/90cbadc1369efdd89e7d3974ce3113fdde604511",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/commit/90cbadc1369efdd89e7d3974ce3113fdde604511"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

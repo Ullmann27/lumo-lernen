@@ -1,0 +1,137 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 132583042859,
+      "run_id": 43639314835,
+      "workflow_name": "Lumo premium rail first-track validation",
+      "head_branch": "chatgpt/lumo-kart-modular-parts-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43639314835",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSpcSOM8AAAAe3pCvKw",
+      "head_sha": "b875e1e58f9c0c101ddabc74c98d4498e2215fbf",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132583042859",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43639314835/job/132583042859",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-14T20:47:05Z",
+      "started_at": "2026-11-14T20:47:06Z",
+      "completed_at": "2026-11-14T20:48:23Z",
+      "name": "godot-rail-regression",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T20:47:07Z",
+          "completed_at": "2026-11-14T20:47:09Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T20:47:09Z",
+          "completed_at": "2026-11-14T20:47:15Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T20:47:15Z",
+          "completed_at": "2026-11-14T20:47:15Z"
+        },
+        {
+          "name": "Install Godot 4.6.3",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T20:47:15Z",
+          "completed_at": "2026-11-14T20:47:17Z"
+        },
+        {
+          "name": "Import assets and check scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T20:47:17Z",
+          "completed_at": "2026-11-14T20:47:48Z"
+        },
+        {
+          "name": "Validate first-track rail geometry with actual Godot runtime",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T20:47:48Z",
+          "completed_at": "2026-11-14T20:47:50Z"
+        },
+        {
+          "name": "Check unmodified physics unit regressions",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 7,
+          "started_at": "2026-11-14T20:47:50Z",
+          "completed_at": "2026-11-14T20:48:22Z"
+        },
+        {
+          "name": "Install software OpenGL framebuffer",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-11-14T20:48:22Z",
+          "completed_at": "2026-11-14T20:48:22Z"
+        },
+        {
+          "name": "Capture actual rail in Sonnenhafen world",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9,
+          "started_at": "2026-11-14T20:48:22Z",
+          "completed_at": "2026-11-14T20:48:22Z"
+        },
+        {
+          "name": "Upload real Godot screenshot",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T20:48:22Z",
+          "completed_at": "2026-11-14T20:48:22Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 19,
+          "started_at": "2026-11-14T20:48:22Z",
+          "completed_at": "2026-11-14T20:48:22Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-14T20:48:22Z",
+          "completed_at": "2026-11-14T20:48:22Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-14T20:48:22Z",
+          "completed_at": "2026-11-14T20:48:22Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/check-runs/132583042859",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000019300,
+      "runner_name": "GitHub Actions 1000019300",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

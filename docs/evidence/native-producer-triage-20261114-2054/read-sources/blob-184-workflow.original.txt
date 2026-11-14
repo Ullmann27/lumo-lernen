@@ -1,0 +1,70 @@
+name: LUMO Kart – Modular 3D parts real engine acceptance
+
+on:
+  push:
+    branches: [chatgpt/lumo-kart-modular-parts-20261114]
+    paths:
+      - scripts/games/kart_modular_route_props.gd
+      - scripts/games/kart_modular_aero_kit.gd
+      - scripts/games/kart_world.gd
+      - scripts/games/kart_vehicle.gd
+      - scripts/tests/kart_modular_parts_regression.gd
+      - .github/workflows/lumo-kart-modular-parts.yml
+  pull_request:
+    paths:
+      - scripts/games/kart_modular_route_props.gd
+      - scripts/games/kart_modular_aero_kit.gd
+      - scripts/games/kart_world.gd
+      - scripts/games/kart_vehicle.gd
+      - scripts/tests/kart_modular_parts_regression.gd
+      - .github/workflows/lumo-kart-modular-parts.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  modular-kart-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      LUMO_PROOF: ${{ github.workspace }}/modular-kart-evidence
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install pinned Godot 4.6.3
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --retry-all-errors -o "$RUNNER_TEMP/godot.zip" https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip
+          printf '%s  %s\n' d0bc2113065e481c9c2c2b2c37daa4e8be3fe9e27f0ab9ab0b6096e9a37907f3 "$RUNNER_TEMP/godot.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot-bin"
+          ln -s "$RUNNER_TEMP/godot-bin/Godot_v4.6.3-stable_linux.x86_64" "$RUNNER_TEMP/godot-bin/godot"
+          echo "$RUNNER_TEMP/godot-bin" >> "$GITHUB_PATH"
+      - name: Import full original project; reject any parse errors
+        run: |
+          set -euo pipefail
+          mkdir -p "$LUMO_PROOF"
+          git rev-parse HEAD > "$LUMO_PROOF/source-sha.txt"
+          godot --version | tee "$LUMO_PROOF/engine.txt"
+          python3 tools/validate_project.py 2>&1 | tee "$LUMO_PROOF/source-validation.log"
+          godot --headless --editor --import --path . 2>&1 | tee "$LUMO_PROOF/real-import.log"
+          if grep -qE 'SCRIPT ERROR|Parse Error|ERROR:' "$LUMO_PROOF/real-import.log"; then
+            exit 1
+          fi
+          git diff --exit-code HEAD --
+      - name: Verify new pieces in the actual runtime worlds and four real chassis
+        run: |
+          set -euo pipefail
+          python3 tools/run_godot_probe.py --log "$LUMO_PROOF/runtime.log" --timeout 900 \
+            --required '[KartModularParts] PASS' -- \
+            godot --headless --audio-driver Dummy --path . \
+            --script res://scripts/tests/kart_modular_parts_regression.gd
+      - name: Record complete source-bound diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-kart-modular-parts-real-engine
+          path: modular-kart-evidence/
+          retention-days: 30
+          if-no-files-found: warn

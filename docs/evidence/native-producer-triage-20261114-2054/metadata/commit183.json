@@ -1,0 +1,35 @@
+{
+  "sha": "c84926650363c2faab8a83ee592ebd7aa8486a6d",
+  "node_id": "C_kwDOSpcSONoAKGM4NDkyNjY1MDM2M2MyZmFhYjhhODNlZTU5MmViZDdhYTg0ODZhNmQ",
+  "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/c84926650363c2faab8a83ee592ebd7aa8486a6d",
+  "html_url": "https://github.com/Ullmann27/lumo-godot/commit/c84926650363c2faab8a83ee592ebd7aa8486a6d",
+  "author": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T20:42:10Z"
+  },
+  "committer": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T20:42:10Z"
+  },
+  "tree": {
+    "sha": "e5efa4d8b0cb10c9ec9dafdddd498095cb7909e5",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/e5efa4d8b0cb10c9ec9dafdddd498095cb7909e5"
+  },
+  "message": "Preserve LUMO tunnel instance geometry and materials in Blender reviews [skip ci]\n\nExport bounded production tunnel geometry through a real rendering backend, retain every road ribbon and verify copied MultiMesh transforms and materials. Cache identical tint materials and preserve authored colors. Match the reviewed banked camera and document reproducible studio lighting and the albedo-guided CPU noise filter.\n\nLocal validation: final nine GLBs re-imported; all 576 theme instances match runtime transforms and material values; eight accepted vehicle/item render inputs remain byte-identical. No runtime gameplay source changes in this commit.",
+  "parents": [
+    {
+      "sha": "670058d31e9807918e1150e85ec2fac53be627b0",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/670058d31e9807918e1150e85ec2fac53be627b0",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/commit/670058d31e9807918e1150e85ec2fac53be627b0"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

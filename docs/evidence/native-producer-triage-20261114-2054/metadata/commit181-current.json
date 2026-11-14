@@ -1,0 +1,35 @@
+{
+  "sha": "2cea87a45a10c92cf46e752b759452925bc2f2ea",
+  "node_id": "C_kwDOSpcSONoAKDJjZWE4N2E0NWExMGM5MmNmNDZlNzUyYjc1OTQ1MjkyNWJjMmYyZWE",
+  "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/2cea87a45a10c92cf46e752b759452925bc2f2ea",
+  "html_url": "https://github.com/Ullmann27/lumo-godot/commit/2cea87a45a10c92cf46e752b759452925bc2f2ea",
+  "author": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T20:51:41Z"
+  },
+  "committer": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T20:51:41Z"
+  },
+  "tree": {
+    "sha": "909e2ec907fbd094aa33d6792b4f09c396b931c3",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/909e2ec907fbd094aa33d6792b4f09c396b931c3"
+  },
+  "message": "Fix village HUD and plot selection on dense landscape displays\n\nReproduce the village overlap in Android run 43625797556 at 2400x1080, density 2.625 and view insets 136/63/0/63. The unchanged World149a replay had 58 failing checks and none of nine actual plot touches selected a plot.\n\nReflow existing village labels and scroll controls on short landscape surfaces, retain their callbacks and 48 dp controls, and restore their original order when returning to portrait. Fit the planning view to the unobscured world area while preserving the chosen pan and zoom. End picking at the actual camera far plane so the allowed radius94/tilt1.1 view remains selectable.\n\nAdd default safe-area regression coverage for actual ScreenTouch selection of all nine plots, unchanged model/save state, live landscape/portrait/landscape controls and callbacks, and the steep maximum-zoom counterexample. Existing default cases and capture roster remain.\n\nIndependent local Godot 4.6.3 execution: complete MobileSafeArea 619 checks, VillageScene 222 checks, zero failures. The 508 targeted village checks are included in the 619 total. Source and runtime bytes were bound before and after. This is headless local evidence; fresh complete CI, Android rendering and APK acceptance remain mandatory.\n\nOrigin: narrowly adapted existing lumo-godot source at 3213d2aca377476cf4959f380701d87177cec959; no imported technology, dependency, data-format or asset changes.",
+  "parents": [
+    {
+      "sha": "3213d2aca377476cf4959f380701d87177cec959",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/3213d2aca377476cf4959f380701d87177cec959",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/commit/3213d2aca377476cf4959f380701d87177cec959"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

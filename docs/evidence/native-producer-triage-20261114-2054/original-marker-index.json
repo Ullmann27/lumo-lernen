@@ -1,0 +1,100 @@
+[
+  {
+    "job": 132583042859,
+    "key": "184-fail",
+    "path": "original-logs/job-132583042859.original.log",
+    "markers": [
+      {
+        "line": 2868,
+        "text": "2026-11-14T20:48:19.3499922Z SCRIPT ERROR: Assertion failed: A ring uses only one opaque draw surface"
+      },
+      {
+        "line": 2878,
+        "text": "2026-11-14T20:48:22.3836368Z [KartPhysics] FAIL: 22 of 23 checks completed"
+      }
+    ]
+  },
+  {
+    "job": 132583042906,
+    "key": "184-modular",
+    "path": "original-logs/job-132583042906.original.log",
+    "markers": [
+      {
+        "line": 2920,
+        "text": "2026-11-14T20:48:02.7117558Z [KartModularParts] PASS: 12 mobile tracks + 2 high-detail scenes; four live chassis; no racing/LOD authority changed"
+      }
+    ]
+  },
+  {
+    "job": 132583042835,
+    "key": "184-b5",
+    "path": "original-logs/job-132583042835.original.log",
+    "markers": [
+      {
+        "line": 2785,
+        "text": "2026-11-14T20:48:01.6813900Z [DynamicCoastalFoam] PASS: exact island shader extents, long 1.85km coast and legacy renderer profiles"
+      },
+      {
+        "line": 2810,
+        "text": "2026-11-14T20:48:07.9847896Z [SonnenhafenWater] PASS: full/low foam, other-track isolation, real waterfall, shared sea height"
+      },
+      {
+        "line": 2820,
+        "text": "2026-11-14T20:48:09.3216486Z [KartTerrainExtent] PASS: immutable 17-point 1972 track, approved 23-point route, tidal inlet, adaptive terrain"
+      }
+    ]
+  },
+  {
+    "job": 132498257149,
+    "key": "182-quiz",
+    "path": "original-logs/job-132498257149.original.log",
+    "markers": [
+      {
+        "line": 3164,
+        "text": "2026-11-14T15:46:12.4650714Z [QuizRoundContract] PASS cases=28 failed=0 checks=1786 skips=0"
+      },
+      {
+        "line": 3196,
+        "text": "2026-11-14T15:47:04.8301832Z [GodotQuiz] [QuizStudioRuntime] PASS checks=381 captures=6"
+      }
+    ]
+  },
+  {
+    "job": 132498257329,
+    "key": "182-memory",
+    "path": "original-logs/job-132498257329.original.log",
+    "markers": [
+      {
+        "line": 3173,
+        "text": "2026-11-14T15:46:29.2301808Z MEMORY_ROUND_CONTRACT {\"status\":\"PASS\",\"cases\":30,\"passed\":30,\"failed\":[],\"checks\":1694,\"skipped\":0,\"scope\":\"Production Dart authorities; original dealer and original opponent fixture; synthetic storage and lifecycle transport; no Android claim.\"}"
+      },
+      {
+        "line": 3181,
+        "text": "2026-11-14T15:46:29.4859602Z MEMORY_TURN_SCHEDULER {\"status\":\"PASS\",\"cases\":7,\"passed\":7,\"failed\":[],\"checks\":13,\"skipped\":0,\"scope\":\"Actual production scheduler; one real Dart event-loop Timer plus deterministic delayed-callback and clock boundaries; no Android claim.\"}"
+      },
+      {
+        "line": 3246,
+        "text": "2026-11-14T15:48:01.4415244Z MEMORY_VIEW_PASS checks=7020 captures=8"
+      },
+      {
+        "line": 3280,
+        "text": "2026-11-14T15:49:54.3847984Z [GodotMemory] [MemoryTableRuntime] PASS checks=244 inputs=57"
+      }
+    ]
+  },
+  {
+    "job": 132498257372,
+    "key": "182-english",
+    "path": "original-logs/job-132498257372.original.log",
+    "markers": [
+      {
+        "line": 3141,
+        "text": "2026-11-14T15:46:04.8031632Z NATIVE_ENGLISH_DART_PASS cases=10 checks=2955"
+      },
+      {
+        "line": 3245,
+        "text": "2026-11-14T15:54:18.1512986Z LEARNING_ENGLISH_PASS checks=7633 captures=17 input_events=196 fixture=actual_dart_producer_report"
+      }
+    ]
+  }
+]

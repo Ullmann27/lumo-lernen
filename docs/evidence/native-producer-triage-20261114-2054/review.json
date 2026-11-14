@@ -1,0 +1,910 @@
+{
+  "basis": {
+    "commit": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "tree": "91cc8fc1c6f8a36336b7ac9a12585284a983a6f6",
+    "files": 3770
+  },
+  "read_only": true,
+  "new_tests": 0,
+  "prs": [
+    {
+      "number": 182,
+      "head": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+      "pr_delta": [
+        {
+          "path": ".github/workflows/lumo-nextgen-authority-check.yml",
+          "status": "new_to_847",
+          "theirs": "b8698b092e7f46bcd319f31479f75e0d5e2536e0"
+        },
+        {
+          "path": ".github/workflows/lumo-studio-2020.yml",
+          "status": "new_to_847",
+          "theirs": "dc8ccfd0cbb5175f3ac952abb8a4aaf519602c4b"
+        },
+        {
+          "path": "assets/games/memory/face_bunny.png",
+          "status": "new_to_847",
+          "theirs": "2140631f2cc9d10491f0a4616719f25c36049998"
+        },
+        {
+          "path": "assets/games/memory/face_giraffe.png",
+          "status": "new_to_847",
+          "theirs": "7432d7a2c53feb86d431b8edcae90df4bc071947"
+        },
+        {
+          "path": "assets/games/memory/face_panda.png",
+          "status": "new_to_847",
+          "theirs": "e9177d1e5ffb5e232f486ba115a798575c10636e"
+        },
+        {
+          "path": "assets/games/memory/face_penguin.png",
+          "status": "new_to_847",
+          "theirs": "318ffc63727522827ad171b93df68442354140da"
+        },
+        {
+          "path": "assets/games/memory/fox_avatar.png",
+          "status": "new_to_847",
+          "theirs": "2528db26b4288d89e905c03ec1015ac7b8798538"
+        },
+        {
+          "path": "assets/games/memory/logo_memory.png",
+          "status": "new_to_847",
+          "theirs": "38a3672792aa20e590f81e8161b2dc631e13b05b"
+        },
+        {
+          "path": "assets/games/memory/sticker_chest.png",
+          "status": "new_to_847",
+          "theirs": "507a33d7b443d6523331f74a144649999f16d38b"
+        },
+        {
+          "path": "assets/games/memory/sticker_flag.png",
+          "status": "new_to_847",
+          "theirs": "c37bb7269c79e04104f2fe6af3898d169fe60027"
+        },
+        {
+          "path": "assets/games/memory/sticker_lantern.png",
+          "status": "new_to_847",
+          "theirs": "3894c3e8a8025e4fc53902b8c0ddf54934c05ccc"
+        },
+        {
+          "path": "assets/games/memory/sticker_mushroom.png",
+          "status": "new_to_847",
+          "theirs": "368b2495abb9832164669e925a3d0bba9f1fc3c0"
+        },
+        {
+          "path": "assets/games/memory/sticker_note.png",
+          "status": "new_to_847",
+          "theirs": "465ab7c46a206b6dd3b5f6dc0f7bdd09ec649c8b"
+        },
+        {
+          "path": "assets/games/memory/sticker_rock.png",
+          "status": "new_to_847",
+          "theirs": "0e9f6c3fd4bbc008d5ed37b1d9df5ad783dadf82"
+        },
+        {
+          "path": "assets/games/memory/sticker_star.png",
+          "status": "new_to_847",
+          "theirs": "01f9e8984090e85420db84cf69da3d0d0fe27aeb"
+        },
+        {
+          "path": "docs/nextgen-english-quiz-source-20261114.md",
+          "status": "new_to_847",
+          "theirs": "93c6cfc756e8e62fca413dc7f256c32871baa09a"
+        },
+        {
+          "path": "scenes/games/memory_table.tscn",
+          "status": "new_to_847",
+          "theirs": "95a6a9f9055b3df6dc31e6c36e7cc38e10fb04c8"
+        },
+        {
+          "path": "scenes/games/quiz_studio.tscn",
+          "status": "new_to_847",
+          "theirs": "7b674ff774f5cd05120472949dffc1b5c37cea8a"
+        },
+        {
+          "path": "scripts/app/scene_router.gd",
+          "status": "different_from_847",
+          "ours": "0e28e5c797af076d2a2410143e42605982e8d1d5",
+          "theirs": "09b5b8119729e0a5556a18acf9497f31962cb343"
+        },
+        {
+          "path": "scripts/games/memory/memory_table.gd",
+          "status": "new_to_847",
+          "theirs": "9c998e33aee127453a67d25a6e020638472b8387"
+        },
+        {
+          "path": "scripts/games/quiz/quiz_studio.gd",
+          "status": "new_to_847",
+          "theirs": "aa3e4d91f0e64cd466fb087356fbf29264d697a3"
+        },
+        {
+          "path": "scripts/learning/english_object_gallery.gd",
+          "status": "new_to_847",
+          "theirs": "1bc459bc88d10f48aa918014eedbb91071cd98a7"
+        },
+        {
+          "path": "scripts/learning/english_vocabulary.gd",
+          "status": "new_to_847",
+          "theirs": "fa8debed147eceea108acc98ac318ac1362cf8eb"
+        },
+        {
+          "path": "scripts/learning/learning_activity.gd",
+          "status": "different_from_847",
+          "ours": "c1eed0eefb4017ac4db3cb3d1d4551e2d9c601fe",
+          "theirs": "245a966e00259c2d0189c932c40374d855a4b0bc"
+        },
+        {
+          "path": "scripts/learning/learning_world.gd",
+          "status": "different_from_847",
+          "ours": "c3b1bc8c73cd764724464d8d2fe0413bdba62a96",
+          "theirs": "f5a296f1e0394ef3ac1dd518bdf1b60912793ee9"
+        },
+        {
+          "path": "scripts/systems/host_bridge.gd",
+          "status": "different_from_847",
+          "ours": "1845617ed2659dd377f433209799b12ddf310deb",
+          "theirs": "00a30115ce7669e57e8ceec1251047773f3da1f4"
+        },
+        {
+          "path": "scripts/tests/fixtures/quiz_9f2e/durable-round.json",
+          "status": "new_to_847",
+          "theirs": "7624036f7e342a6d5b0c3430019c98ab13f13baf"
+        },
+        {
+          "path": "scripts/tests/fixtures/quiz_9f2e/jokers-layout.json",
+          "status": "new_to_847",
+          "theirs": "4a8de3fd5d5e97da52afa3188cf63b32a0d6fe6b"
+        },
+        {
+          "path": "scripts/tests/fixtures/quiz_9f2e/public-state.json",
+          "status": "new_to_847",
+          "theirs": "0d6438f6706d875c87f82e694b22a8d0a5f96352"
+        },
+        {
+          "path": "scripts/tests/fixtures/quiz_9f2e/selected-phone-layout.json",
+          "status": "new_to_847",
+          "theirs": "b1e09d14f6c1b01caf6c30b89d2e12d818146031"
+        },
+        {
+          "path": "scripts/tests/learning_english_regression.gd",
+          "status": "new_to_847",
+          "theirs": "0a86b01f2f1de7058f50f185e60746fb7d7564e1"
+        },
+        {
+          "path": "scripts/tests/memory_table_regression.gd",
+          "status": "new_to_847",
+          "theirs": "b9122337e25e9a529e4e8602a0c5e8e3e680f831"
+        },
+        {
+          "path": "scripts/tests/memory_table_runtime.gd",
+          "status": "new_to_847",
+          "theirs": "f4fc0d96b5b67e91969dac610bdc5c550f590640"
+        },
+        {
+          "path": "scripts/tests/quiz_studio_runtime.gd",
+          "status": "new_to_847",
+          "theirs": "623e76afd47d1cd96fcaebdebacac0a684f38f7b"
+        },
+        {
+          "path": "tools/run_memory_native_authority.py",
+          "status": "new_to_847",
+          "theirs": "54103c9ee0cd4070b808273dca48a169883a1ec5"
+        },
+        {
+          "path": "tools/run_quiz_native_authority.py",
+          "status": "new_to_847",
+          "theirs": "5f02cec5a8eb9f2d0addd43fcfa1cd5717ff63b8"
+        },
+        {
+          "path": "tools/tests/test_memory_native_pair_evidence.py",
+          "status": "new_to_847",
+          "theirs": "f61c72a6691b186d6682c7407c50394a7b132091"
+        },
+        {
+          "path": "tools/tests/test_nextgen_runner.py",
+          "status": "different_from_847",
+          "ours": "6abee84f4df65fd2e379d013b7068552a962ce15",
+          "theirs": "799a068b20f446e14f6bafe42cffb186fc3e8189"
+        }
+      ],
+      "comparison": "diverged",
+      "merge_base": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+    },
+    {
+      "number": 183,
+      "head": "c84926650363c2faab8a83ee592ebd7aa8486a6d",
+      "tree": "e5efa4d8b0cb10c9ec9dafdddd498095cb7909e5",
+      "pr_delta": [
+        {
+          "path": "docs/design/2026-11-14-kart-adventure/README.md",
+          "status": "new_to_847",
+          "theirs": "a8ce2cdabf3ca110b7099ac7f61fffbb0db60acf"
+        },
+        {
+          "path": "docs/design/2026-11-14-kart-adventure/RIVAL_ASSET_HANDOFF.md",
+          "status": "new_to_847",
+          "theirs": "44ec93ac597346c204cf54c797c3d0ab49d7041d"
+        },
+        {
+          "path": "docs/design/2026-11-14-kart-adventure/TRACKS.md",
+          "status": "new_to_847",
+          "theirs": "96f9cfe5255747cce446a611ccd9c0856f1110f5"
+        },
+        {
+          "path": "docs/design/2026-11-14-kart-adventure/evidence/track-adventure-report.json",
+          "status": "new_to_847",
+          "theirs": "12cd574743ac3862f7e997df164c76b5c303d84b"
+        },
+        {
+          "path": "docs/design/2026-11-14-kart-adventure/evidence/track-driving-evidence.json",
+          "status": "new_to_847",
+          "theirs": "9c3b0c12da15f3c1159d711b621ccd9b76092e57"
+        },
+        {
+          "path": "scripts/games/kart_action_course.gd",
+          "status": "different_from_847",
+          "ours": "90dedefcd79cfb471031cc4ae8c0962e56844889",
+          "theirs": "2d421b9fd1ec449ca21198b61223c2483ea1f8d3"
+        },
+        {
+          "path": "scripts/games/kart_adventure_routes.gd",
+          "status": "new_to_847",
+          "theirs": "df05f9020bc5d466271d6230645a6e7df6257ce5"
+        },
+        {
+          "path": "scripts/games/kart_adventure_tunnels.gd",
+          "status": "new_to_847",
+          "theirs": "e5f80a32068cabf5f14d0d3b22899f02e1df402e"
+        },
+        {
+          "path": "scripts/games/kart_coachwork_finish.gd",
+          "status": "new_to_847",
+          "theirs": "1d8ebc55111dd713f10132ea7f42e4112541b57c"
+        },
+        {
+          "path": "scripts/games/kart_expansion_tracks.gd",
+          "status": "different_from_847",
+          "ours": "ce5e5bf1da9ba47f444e7156cb539abf9d41802d",
+          "theirs": "93310e5488ae23a5e6d4d463bca5b5be2393de41"
+        },
+        {
+          "path": "scripts/games/kart_expansion_world.gd",
+          "status": "different_from_847",
+          "ours": "c2ccd30219e7d0779e2951faabc99bde1710f0d5",
+          "theirs": "34e9c4c6de7fa501414f8a31873ae423b65d1fb0"
+        },
+        {
+          "path": "scripts/games/kart_fleet_dressing.gd",
+          "status": "different_from_847",
+          "ours": "5d22bdd8151e0b1de70eb22f7e29320583517a33",
+          "theirs": "7d6cc82d984919fe328dd8f54f6f396d23bdc00d"
+        },
+        {
+          "path": "scripts/games/kart_island.gd",
+          "status": "different_from_847",
+          "ours": "83b3b6b548cffa2790c582e061a74e37bbfcf356",
+          "theirs": "b15ca2fda77f2e5d5c95efa5acd6ead8f29f4a21"
+        },
+        {
+          "path": "scripts/games/kart_item_symbols.gd",
+          "status": "new_to_847",
+          "theirs": "18b5bd7551c2af8fc982a455561662ebb7c1a6e6"
+        },
+        {
+          "path": "scripts/games/kart_resonance_system.gd",
+          "status": "different_from_847",
+          "ours": "e88f639b7f20319b8076335833e43f88a1bdd45c",
+          "theirs": "4ee7b58ce3987f1e08bc1f5e80abf5405477f145"
+        },
+        {
+          "path": "scripts/games/kart_rival_character_finish.gd",
+          "status": "new_to_847",
+          "theirs": "415a5d06d829a90c8994e5d134322358e368b41a"
+        },
+        {
+          "path": "scripts/games/kart_rival_item_fx.gd",
+          "status": "different_from_847",
+          "ours": "d36eacf62a0eb1183c517befc628ed0235cfa2c5",
+          "theirs": "3ebc2a8ac377333f51ede33dde1e6d35a8be542d"
+        },
+        {
+          "path": "scripts/games/kart_rival_model_contract.gd",
+          "status": "new_to_847",
+          "theirs": "568d0b98343b1029c595eb9f914b46c563e4a6f3"
+        },
+        {
+          "path": "scripts/games/kart_rival_visual_adapter.gd",
+          "status": "new_to_847",
+          "theirs": "ec4020ae99cb88958c29c4df9213f3ed07f874a1"
+        },
+        {
+          "path": "scripts/games/kart_track_detail.gd",
+          "status": "different_from_847",
+          "ours": "3ca6d121b32143834e87d852a65b66fee15ef884",
+          "theirs": "1df7c64abf93d1ceac942344a9157ef4f21f667b"
+        },
+        {
+          "path": "scripts/games/kart_tracks.gd",
+          "status": "different_from_847",
+          "ours": "92e91f78c9afcf958b98e8b3ddcdb245ea031441",
+          "theirs": "90b8a2ec898f9547a0e7956fc319f9ad69f6f28c"
+        },
+        {
+          "path": "scripts/games/kart_vehicle.gd",
+          "status": "different_from_847",
+          "ours": "9fa9dd899d3d1f70a4db53218546282d76a041db",
+          "theirs": "91abb48e17f9bdda4883b9e13db1c196e1ee2df4"
+        },
+        {
+          "path": "scripts/games/kart_world.gd",
+          "status": "different_from_847",
+          "ours": "a782cf44677b08917cc0af77f4cbe7317ac25e43",
+          "theirs": "83fcbc8f726dfd254e07922065e9120fce96c8ce"
+        },
+        {
+          "path": "scripts/games/lumo_opponent_roster.gd",
+          "status": "different_from_847",
+          "ours": "8ab68fb34fa7ee52f918957ab036d3f368d4c91b",
+          "theirs": "ef3481b7d9d4f444bf380d44895b5de9e0d13fae"
+        },
+        {
+          "path": "scripts/tests/kart_action_course_regression.gd",
+          "status": "different_from_847",
+          "ours": "9875443e3850cf129440dd9f7e45eb1578b366b0",
+          "theirs": "743f3db111284196c0aced7ea33c6ba7522fcc00"
+        },
+        {
+          "path": "scripts/tests/kart_adventure_asset_export.gd",
+          "status": "new_to_847",
+          "theirs": "1ffd679a79d3454cc3bdd4d85e76123a7958902a"
+        },
+        {
+          "path": "scripts/tests/kart_adventure_regression.gd",
+          "status": "new_to_847",
+          "theirs": "8417ef61fab0539363bdadf27d4783e53a6bf79c"
+        },
+        {
+          "path": "scripts/tests/kart_adventure_tunnel_showcase.gd",
+          "status": "new_to_847",
+          "theirs": "98e751922b2e724eee116df45873a0943c5bf13f"
+        },
+        {
+          "path": "scripts/tests/kart_adventure_visual_capture.gd",
+          "status": "new_to_847",
+          "theirs": "8b33922fba5c07affc8fffd15df08dacd8d3a948"
+        },
+        {
+          "path": "scripts/tests/kart_adventure_winding_render_regression.gd",
+          "status": "new_to_847",
+          "theirs": "2a0102951cab0c72c8cd8c6ae88ec65dee4870f0"
+        },
+        {
+          "path": "scripts/tests/kart_courses_driving_regression.gd",
+          "status": "different_from_847",
+          "ours": "b186f6c3249124200d9197255bce6e3a233e7c08",
+          "theirs": "5bef8b1e0eebd26dbd5e64e00c9772299909caee"
+        },
+        {
+          "path": "scripts/tests/kart_fox_eye_proportions_regression.gd",
+          "status": "different_from_847",
+          "ours": "b5465507223be6a066b9b9e89bacbc88c49f1672",
+          "theirs": "49ef378045e7ee283de6965b0b83104b88494056"
+        },
+        {
+          "path": "scripts/tests/kart_item_attachment_regression.gd",
+          "status": "new_to_847",
+          "theirs": "76c86691713d9311e5cfe3ce71c2296c3ccf500a"
+        },
+        {
+          "path": "scripts/tests/kart_item_symbols_capture.gd",
+          "status": "new_to_847",
+          "theirs": "08e9056854e6dd2efb983835c6c12e4ceddaddfa"
+        },
+        {
+          "path": "scripts/tests/kart_item_symbols_regression.gd",
+          "status": "new_to_847",
+          "theirs": "fbb12f2aad48322dd2beb12ce02340dd01d1666f"
+        },
+        {
+          "path": "scripts/tests/kart_resonance_gate_regression.gd",
+          "status": "different_from_847",
+          "ours": "45963f7578277d04c9acbd52a8b0ea08a92ba8f5",
+          "theirs": "b29b0974981008cd7c6e16096449fabe91abb545"
+        },
+        {
+          "path": "scripts/tests/kart_rival_finish_regression.gd",
+          "status": "new_to_847",
+          "theirs": "02da56ee96d3d2d385c548ab4b53e33b760a0ff6"
+        },
+        {
+          "path": "scripts/tests/kart_rival_visual_adapter_regression.gd",
+          "status": "new_to_847",
+          "theirs": "e1804e0d10ae6809757557f482cb9b50d6ab4714"
+        },
+        {
+          "path": "scripts/tests/kart_track_pack_48_view_capture.gd",
+          "status": "different_from_847",
+          "ours": "2ecca1656f7b3ece883bec8d8a7cf9a5dc3d3231",
+          "theirs": "c1bbaa4e74d63cf2f399d122d813ff418aa0f226"
+        },
+        {
+          "path": "scripts/tests/kart_track_pack_geometry_export.gd",
+          "status": "different_from_847",
+          "ours": "0b741d29d0c88ac0b603fd511d850c5d13efc0af",
+          "theirs": "5837aaa51ff928e90f8e50c19e465b38c3286bb4"
+        },
+        {
+          "path": "scripts/tests/kart_zauberwald_library_regression.gd",
+          "status": "different_from_847",
+          "ours": "516eb636b71aa3552af714996e8e9a4f90d32da3",
+          "theirs": "9c8958cc724c4e9eaad06901a8111880ffca7265"
+        },
+        {
+          "path": "tools/art/render_kart_adventure.py",
+          "status": "new_to_847",
+          "theirs": "32740d0ebd264d74f87719b8f4b07a12a29ce84d"
+        }
+      ],
+      "comparison": "diverged",
+      "merge_base": "baf148b03a7a32c6ad9f737d731f900eb9113ea1"
+    },
+    {
+      "number": 184,
+      "head": "b875e1e58f9c0c101ddabc74c98d4498e2215fbf",
+      "tree": "504abfcb6d7bd4ecc6352c061615d52ba292fdeb",
+      "pr_delta": [
+        {
+          "path": ".github/workflows/kart-vehicle-regression.yml",
+          "status": "different_from_847",
+          "ours": "a98af5784e5f51b70cf291dc0d6e5203c2c5a103",
+          "theirs": "9ab720907730733a88e6c2e772c16c8787c831c0"
+        },
+        {
+          "path": ".github/workflows/lumo-kart-modular-parts.yml",
+          "status": "new_to_847",
+          "theirs": "e57fd4c47c17ea2dd18f9ded5b77dc40a83dad45"
+        },
+        {
+          "path": "docs/design/2026-11-14-kart-modular-parts/README.md",
+          "status": "new_to_847",
+          "theirs": "d82b1e5b8d8299b145219e8878e2c81e7df7fc8f"
+        },
+        {
+          "path": "scripts/games/kart_modular_aero_kit.gd",
+          "status": "new_to_847",
+          "theirs": "59c8ddaeeb8c91e98d93d6df760e41575b205964"
+        },
+        {
+          "path": "scripts/games/kart_modular_route_props.gd",
+          "status": "new_to_847",
+          "theirs": "c5fec8cf6e1837d32c8a1d70de826de1bb2fdef2"
+        },
+        {
+          "path": "scripts/games/kart_vehicle.gd",
+          "status": "different_from_847",
+          "ours": "9fa9dd899d3d1f70a4db53218546282d76a041db",
+          "theirs": "c6681fde3a7ad38f764a4f0b22fa4bf6c239fb34"
+        },
+        {
+          "path": "scripts/games/kart_world.gd",
+          "status": "different_from_847",
+          "ours": "a782cf44677b08917cc0af77f4cbe7317ac25e43",
+          "theirs": "2063cc4241f162911ef510444f18311e340c709f"
+        },
+        {
+          "path": "scripts/tests/kart_dynamic_coastal_foam_regression.gd",
+          "status": "different_from_847",
+          "ours": "08c6a47957cd263946b5dbced8091d283b33a062",
+          "theirs": "8a44cdf7b40c0c86ea30d12e29a892f771e5ab6f"
+        },
+        {
+          "path": "scripts/tests/kart_modular_parts_regression.gd",
+          "status": "new_to_847",
+          "theirs": "abaf71ccad455cdfa7224a96fbeb6768c08678bd"
+        }
+      ],
+      "comparison": "diverged",
+      "merge_base": "baf148b03a7a32c6ad9f737d731f900eb9113ea1"
+    }
+  ],
+  "old_village_equivalence": [
+    {
+      "path": "scripts/creative/build_settlement_state.gd",
+      "base847": {
+        "sha": "625a8db46195d034cbe7ae2dd84d6b208abff645",
+        "mode": "100644"
+      },
+      "specified181": {
+        "sha": "625a8db46195d034cbe7ae2dd84d6b208abff645",
+        "mode": "100644"
+      },
+      "host502pin": {
+        "sha": "625a8db46195d034cbe7ae2dd84d6b208abff645",
+        "mode": "100644"
+      }
+    },
+    {
+      "path": "scripts/creative/build_settlement_world.gd",
+      "base847": {
+        "sha": "149a4386225812592917b1bcac0b85294413f1b4",
+        "mode": "100644"
+      },
+      "specified181": {
+        "sha": "149a4386225812592917b1bcac0b85294413f1b4",
+        "mode": "100644"
+      },
+      "host502pin": {
+        "sha": "99da8235ca08ebfee8ee1cfb4d8bebbdf4866764",
+        "mode": "100644"
+      }
+    },
+    {
+      "path": "scripts/tests/build_village_economy_regression.gd",
+      "base847": {
+        "sha": "9dd8ff269e266dd73ad5207febd87aab367a4986",
+        "mode": "100644"
+      },
+      "specified181": {
+        "sha": "9dd8ff269e266dd73ad5207febd87aab367a4986",
+        "mode": "100644"
+      },
+      "host502pin": {
+        "sha": "9dd8ff269e266dd73ad5207febd87aab367a4986",
+        "mode": "100644"
+      }
+    },
+    {
+      "path": "scripts/tests/build_village_scaling_regression.gd",
+      "base847": {
+        "sha": "c6abdb5f9576c0b48db7bd59716da52ea5fac036",
+        "mode": "100644"
+      },
+      "specified181": {
+        "sha": "c6abdb5f9576c0b48db7bd59716da52ea5fac036",
+        "mode": "100644"
+      },
+      "host502pin": {
+        "sha": "c6abdb5f9576c0b48db7bd59716da52ea5fac036",
+        "mode": "100644"
+      }
+    }
+  ],
+  "new_village_head": "2cea87a45a10c92cf46e752b759452925bc2f2ea",
+  "blocking_failure": {
+    "job": 132583042859,
+    "run": 43639314835,
+    "source": "124cd70d1bfc11c160a87b88ac5a6df902330ee8",
+    "tree": "ff28b46bdb556c16b6ccdcf428af4a0709b60da8",
+    "test": {
+      "path": "scripts/tests/kart_physics_regression.gd",
+      "blob": "da9e5186a46316996cc44a44b1f2c6c4a83f7d61",
+      "identical_in_847_183_184": true
+    },
+    "assertion": "A ring uses only one opaque draw surface",
+    "actual_marker": "[KartPhysics] FAIL: 22 of 23 checks completed"
+  },
+  "limits": [
+    "No new engine, test, renderer or emulator run.",
+    "Only completed producer job logs were read; no ongoing log or current main job log fetched.",
+    "No producer image/archive download or new visual approval.",
+    "No product, central ref, pull request, workflow activation or publication changed. Only this own evidence branch is updated.",
+    "No latest-state claim for mutable producer branches beyond the recorded snapshot.",
+    "The three additional failing PR184 runs are metadata-only findings; their causes were not fetched or inferred."
+  ],
+  "schema_version": 1,
+  "snapshot_at_utc": "2026-11-14T20:54:51Z",
+  "scope": "Frozen read-only source triage, not integration acceptance or a claim about later branch heads.",
+  "product_mutations": 0,
+  "evidence_only_archive_authorized": true,
+  "current_host": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "current_host_run": {
+    "id": 43633922088,
+    "attempt": 1,
+    "job": 132568119078,
+    "not_polled_by_this_triage": true
+  },
+  "priority": [
+    {
+      "pr": 182,
+      "classification": "new feature; conditional integration, Host/boot dependencies remain",
+      "actual_pr_files": 38,
+      "new_to_847": 33,
+      "different_from_847": 5,
+      "exactly_already_present": 0,
+      "product_files": 23,
+      "test_files": 10,
+      "tools": 2,
+      "workflows": 2,
+      "docs": 1,
+      "head_actions_success": 4,
+      "authority_pair": {
+        "native": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "host": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+        "run": 43611803404,
+        "jobs": [
+          132498257149,
+          132498257329,
+          132498257372
+        ]
+      },
+      "boot_gap": {
+        "path": "scripts/app/app_boot.gd",
+        "blob": "2fc3b5ea4fac7440733ae5a77a8289bcd57557f6",
+        "finding": "Allowlist lacks memory and quiz; unsupported initial route falls back to games."
+      },
+      "current_host_gap": "ec MainActivity does not allow memory, quiz, Englisch or english_objects.",
+      "existing_integrator_fix": {
+        "commit": "9f8341494ea316c9e36ed6722915ab34b22e67bd",
+        "app_boot_blob": "d1a4a5fabdf099ec70c807662e1b2f6915602acd",
+        "learning_world_blob": "9b03487d7da91534130ba33a14fbc7fb8aece6b7",
+        "scope": "Already present in PR183/184 base. Its reported local boot/layout tests were not separately replayed or raw-log-reviewed here."
+      }
+    },
+    {
+      "pr": 183,
+      "classification": "new runtime code and local producer evidence; blocked for immediate acceptance",
+      "actual_pr_files": 42,
+      "new_to_847": 23,
+      "different_from_847": 19,
+      "exactly_already_present": 0,
+      "product_files": 19,
+      "test_files": 17,
+      "tools": 1,
+      "docs": 5,
+      "exact_head_actions_runs": 0,
+      "local_report_scope": "Twelve route assertions split across two processes. single_process_suite_completed=false; the referenced raw driving logs were not in the committed report tree inspected here. No new external rival models delivered; pending models disabled.",
+      "inherited_failure": "New resonance-root hierarchy is incompatible with unchanged kart_physics_regression.gd, seen failing in the PR184 checkout with identical runtime/test bytes."
+    },
+    {
+      "pr": 184,
+      "classification": "modular subset passed its bounded test; depends on PR183; combined source not green",
+      "actual_pr_files": 9,
+      "new_to_847": 5,
+      "different_from_847": 4,
+      "exactly_already_present": 0,
+      "product_files": 4,
+      "test_files": 2,
+      "workflows": 2,
+      "docs": 1,
+      "exact_head_run_catalog": {
+        "total": 20,
+        "success": 16,
+        "failure": 4,
+        "all_completed": true
+      },
+      "diagnosed_failure_run": 43639314835,
+      "metadata_only_failed_runs": [
+        43639314931,
+        43639315027,
+        43639314916
+      ],
+      "source_checkout_for_three_read_logs": {
+        "commit": "124cd70d1bfc11c160a87b88ac5a6df902330ee8",
+        "tree": "ff28b46bdb556c16b6ccdcf428af4a0709b60da8",
+        "parents": [
+          "c84926650363c2faab8a83ee592ebd7aa8486a6d",
+          "b875e1e58f9c0c101ddabc74c98d4498e2215fbf"
+        ],
+        "difference_from_pr_head": "Only adventure README and two export/Blender tools; runtime unchanged."
+      },
+      "dependencies": [
+        "kart_adventure_tunnels.gd",
+        "kart_coachwork_finish.gd"
+      ]
+    }
+  ],
+  "tree_comparison": [
+    {
+      "pr": 182,
+      "files": 2269,
+      "identical": 2086,
+      "changed": 66,
+      "added": 117,
+      "accepted_files_absent": 1618,
+      "ahead_by": 11,
+      "behind_by": 87,
+      "merge_base": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+    },
+    {
+      "pr": 183,
+      "files": 3760,
+      "identical": 3658,
+      "changed": 31,
+      "added": 71,
+      "accepted_files_absent": 81,
+      "ahead_by": 15,
+      "behind_by": 15,
+      "merge_base": "baf148b03a7a32c6ad9f737d731f900eb9113ea1"
+    },
+    {
+      "pr": 184,
+      "files": 3765,
+      "identical": 3656,
+      "changed": 33,
+      "added": 76,
+      "accepted_files_absent": 81,
+      "ahead_by": 27,
+      "behind_by": 15,
+      "merge_base": "baf148b03a7a32c6ad9f737d731f900eb9113ea1"
+    }
+  ],
+  "preserved_key_sources_in_183_184": [
+    {
+      "path": "scripts/games/game_hub.gd",
+      "all_same": true,
+      "entries": [
+        {
+          "source": 847,
+          "sha": "5a4fd789dcfb3dcd1bc1fcc2f7b0fd7f64ade1f6",
+          "mode": "100644"
+        },
+        {
+          "source": 183,
+          "sha": "5a4fd789dcfb3dcd1bc1fcc2f7b0fd7f64ade1f6",
+          "mode": "100644"
+        },
+        {
+          "source": 184,
+          "sha": "5a4fd789dcfb3dcd1bc1fcc2f7b0fd7f64ade1f6",
+          "mode": "100644"
+        }
+      ]
+    },
+    {
+      "path": "scripts/creative/build_settlement_world.gd",
+      "all_same": true,
+      "entries": [
+        {
+          "source": 847,
+          "sha": "149a4386225812592917b1bcac0b85294413f1b4",
+          "mode": "100644"
+        },
+        {
+          "source": 183,
+          "sha": "149a4386225812592917b1bcac0b85294413f1b4",
+          "mode": "100644"
+        },
+        {
+          "source": 184,
+          "sha": "149a4386225812592917b1bcac0b85294413f1b4",
+          "mode": "100644"
+        }
+      ]
+    },
+    {
+      "path": "tools/verify_dream_rasters.py",
+      "all_same": true,
+      "entries": [
+        {
+          "source": 847,
+          "sha": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+          "mode": "100755"
+        },
+        {
+          "source": 183,
+          "sha": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+          "mode": "100755"
+        },
+        {
+          "source": 184,
+          "sha": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+          "mode": "100755"
+        }
+      ]
+    },
+    {
+      "path": "tools/verify_discovery_connections.py",
+      "all_same": true,
+      "entries": [
+        {
+          "source": 847,
+          "sha": "c00ca9873106c974d66282cddfdcfaf5eb3bbebc",
+          "mode": "100644"
+        },
+        {
+          "source": 183,
+          "sha": "c00ca9873106c974d66282cddfdcfaf5eb3bbebc",
+          "mode": "100644"
+        },
+        {
+          "source": 184,
+          "sha": "c00ca9873106c974d66282cddfdcfaf5eb3bbebc",
+          "mode": "100644"
+        }
+      ]
+    },
+    {
+      "path": "tools/collect_discovery_connections.py",
+      "all_same": true,
+      "entries": [
+        {
+          "source": 847,
+          "sha": "1ebdec66300dfb87bf9287d194525d3c374c8aee",
+          "mode": "100644"
+        },
+        {
+          "source": 183,
+          "sha": "1ebdec66300dfb87bf9287d194525d3c374c8aee",
+          "mode": "100644"
+        },
+        {
+          "source": 184,
+          "sha": "1ebdec66300dfb87bf9287d194525d3c374c8aee",
+          "mode": "100644"
+        }
+      ]
+    },
+    {
+      "path": "tools/verify_discovery_rasters.py",
+      "all_same": true,
+      "entries": [
+        {
+          "source": 847,
+          "sha": "219e691fc8aa119cc80221b3db6c77e63caf8bfe",
+          "mode": "100644"
+        },
+        {
+          "source": 183,
+          "sha": "219e691fc8aa119cc80221b3db6c77e63caf8bfe",
+          "mode": "100644"
+        },
+        {
+          "source": 184,
+          "sha": "219e691fc8aa119cc80221b3db6c77e63caf8bfe",
+          "mode": "100644"
+        }
+      ]
+    },
+    {
+      "path": "tools/validate_discovery_connections.sh",
+      "all_same": true,
+      "entries": [
+        {
+          "source": 847,
+          "sha": "07975f12c1f9b07d586cbeb85270329955198f04",
+          "mode": "100755"
+        },
+        {
+          "source": 183,
+          "sha": "07975f12c1f9b07d586cbeb85270329955198f04",
+          "mode": "100755"
+        },
+        {
+          "source": 184,
+          "sha": "07975f12c1f9b07d586cbeb85270329955198f04",
+          "mode": "100755"
+        }
+      ]
+    }
+  ],
+  "whole_branch_import_risk": {
+    "missing_live_runner": "tools/validate_live_connections.sh",
+    "missing_existing_workflows": [
+      "lumo-learning-wonder-details.yml",
+      "lumo-magic-game-hub.yml",
+      "lumo-magic-learning.yml",
+      "lumo-magical-wisps.yml",
+      "lumo-village-native-host.yml"
+    ],
+    "discovery_trigger": {
+      "accepted_blob": "02940ea1a3698d14b8fabaed4d5ee7af5b24907b",
+      "incoming_blob": "a806855cf51ab7f63b14163596488fc1d3746dc1",
+      "finding": "Incoming workflow lacks accepted live branch trigger and per-ref concurrency."
+    },
+    "recommendation": "Use a targeted reviewed union only after exact failures/dependencies are resolved; do not replace the accepted tree."
+  },
+  "village": {
+    "specified_head": "3213d2aca377476cf4959f380701d87177cec959",
+    "all_four_blobs_and_modes_identical_to_847": true,
+    "host502_pin": "570bcde335e064fe96d8ef90c3ef403c0a08ae3f",
+    "host502_world_older": "99da8235ca08ebfee8ee1cfb4d8bebbdf4866764",
+    "new_successor": {
+      "head": "2cea87a45a10c92cf46e752b759452925bc2f2ea",
+      "parent": "3213d2aca377476cf4959f380701d87177cec959",
+      "tree": "909e2ec907fbd094aa33d6792b4f09c396b931c3",
+      "classification": "new unreviewed successor, excluded from old-four-file equivalence",
+      "observed_message_scope": "Dense Android landscape HUD/touch fixes. Reported counts in commit message are not independently verified test evidence here."
+    }
+  }
+}

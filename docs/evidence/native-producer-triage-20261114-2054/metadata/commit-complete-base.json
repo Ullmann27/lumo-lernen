@@ -1,0 +1,40 @@
+{
+  "sha": "9f8341494ea316c9e36ed6722915ab34b22e67bd",
+  "node_id": "C_kwDOSpcSONoAKDlmODM0MTQ5NGVhMzE2YzllMzZlZDY3MjI5MTVhYjM0YjIyZTY3YmQ",
+  "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/9f8341494ea316c9e36ed6722915ab34b22e67bd",
+  "html_url": "https://github.com/Ullmann27/lumo-godot/commit/9f8341494ea316c9e36ed6722915ab34b22e67bd",
+  "author": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T15:46:53Z"
+  },
+  "committer": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T15:46:53Z"
+  },
+  "tree": {
+    "sha": "c9359ef75d2d71b6510ef79556afc0180d5eb1b2",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/c9359ef75d2d71b6510ef79556afc0180d5eb1b2"
+  },
+  "message": "checkpoint(native): join complete worlds with English Memory and Quiz entry fixes [skip ci]\n\nPreserve all existing Discovery, Dream, Village, Kart, C4 return and notice sources. Integrate the original PR182 product delta against its actual Studio344 base. Repair production Memory/Quiz boot routing and keep the fitted English object camera when the Dream garden layout runs.\n\nActual boot regression reproduced six route/title/resource failures before repair and passes26 checks after repair. Combined English initially exposed a <48dp object projection at640x360; the bounded layout correction requires its current full validation. This checkpoint is not an APK or final renderer/Android acceptance.",
+  "parents": [
+    {
+      "sha": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/2281d990fb584db6f2cf786da8fec3badc2d9585",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/commit/2281d990fb584db6f2cf786da8fec3badc2d9585"
+    },
+    {
+      "sha": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/commit/47ca642aad9290c9ba274b08e7dadfc953854d4f"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

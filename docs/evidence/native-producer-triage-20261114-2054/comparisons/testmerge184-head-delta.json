@@ -1,0 +1,25 @@
+{
+  "tree": "ff28b46bdb556c16b6ccdcf428af4a0709b60da8",
+  "files": 3765,
+  "changed": [
+    {
+      "path": "docs/design/2026-11-14-kart-adventure/README.md",
+      "head": "9f556db6eebe128cbfa870b481d4439f882a05a2",
+      "merge": "a8ce2cdabf3ca110b7099ac7f61fffbb0db60acf",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/kart_adventure_asset_export.gd",
+      "head": "f2bbebc43a6949b03485b59babc088e6319f11ff",
+      "merge": "1ffd679a79d3454cc3bdd4d85e76123a7958902a",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/art/render_kart_adventure.py",
+      "head": "345768628cdaee2bd4a1b5d8bfe03ab12e662044",
+      "merge": "32740d0ebd264d74f87719b8f4b07a12a29ce84d",
+      "mode": "100644"
+    }
+  ],
+  "deleted": []
+}

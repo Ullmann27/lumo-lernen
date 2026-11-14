@@ -1,0 +1,507 @@
+name: Lumo Discovery connections separate native acceptance
+
+on:
+  push:
+    branches: [integration/lumo-discovery-bd-20261114]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-discovery-connections-integration-lumo-discovery-bd-20261114
+  cancel-in-progress: false
+
+jobs:
+  discovery-native-acceptance:
+    if: >-
+      github.repository == 'Ullmann27/lumo-godot' &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/integration/lumo-discovery-bd-20261114'
+    runs-on: ubuntu-latest
+    # Existing four headless probes: 1,080s; five Dream probes: 780s.
+    # Discovery ten probes: 3,630s (old learning headless 420s, capture 900s).
+    # Import: 420s. Additional Village gates: 420s economy + 180s/300s scaling.
+    # Additional original MobileSafeArea renderer: 420s, retaining its existing mode limit.
+    # Total explicit probe/import bounds: 7,230s; 570s remain for setup/replay/upload.
+    # This isolated Native job does not change any Host budget or Native52/17 contract.
+    timeout-minutes: 130
+    defaults:
+      run:
+        shell: bash
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      GODOT_SILENCE_ROOT_WARNING: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      GIT_OPTIONAL_LOCKS: '0'
+    steps:
+      - name: Check out the exact internal Discovery push
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Bind the original source and external evidence directories
+        run: |
+          set -euo pipefail
+          LUMO_DISCOVERY_ROOT="$RUNNER_TEMP/lumo-discovery-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          LUMO_DISCOVERY_EVIDENCE_DIR="$LUMO_DISCOVERY_ROOT/evidence"
+          mkdir "$LUMO_DISCOVERY_ROOT"
+          mkdir -p "$LUMO_DISCOVERY_EVIDENCE_DIR/source" \
+            "$LUMO_DISCOVERY_EVIDENCE_DIR/tests" "$LUMO_DISCOVERY_EVIDENCE_DIR/headless" \
+            "$LUMO_DISCOVERY_ROOT/engine" "$LUMO_DISCOVERY_ROOT/tmp" \
+            "$LUMO_DISCOVERY_ROOT/xdg/data" "$LUMO_DISCOVERY_ROOT/xdg/config" "$LUMO_DISCOVERY_ROOT/xdg/cache"
+          {
+            printf 'LUMO_DISCOVERY_ROOT=%s\n' "$LUMO_DISCOVERY_ROOT"
+            printf 'LUMO_DISCOVERY_EVIDENCE_DIR=%s\n' "$LUMO_DISCOVERY_EVIDENCE_DIR"
+            printf 'GODOT_BIN=%s/engine/bin/godot\n' "$LUMO_DISCOVERY_ROOT"
+            printf 'LUMO_DISCOVERY_PYTHON=%s/venv/bin/python\n' "$LUMO_DISCOVERY_ROOT"
+            printf 'LUMO_DREAM_LOG_DIR=%s/dream\n' "$LUMO_DISCOVERY_EVIDENCE_DIR"
+            printf 'LUMO_EXPECTED_NATIVE_SHA=%s\n' "$GITHUB_SHA"
+            printf 'LUMO_EXPECTED_NATIVE_TREE=%s\n' "$(git rev-parse 'HEAD^{tree}')"
+            printf 'TMPDIR=%s/tmp\n' "$LUMO_DISCOVERY_ROOT"
+            printf 'XDG_DATA_HOME=%s/xdg/data\n' "$LUMO_DISCOVERY_ROOT"
+            printf 'XDG_CONFIG_HOME=%s/xdg/config\n' "$LUMO_DISCOVERY_ROOT"
+            printf 'XDG_CACHE_HOME=%s/xdg/cache\n' "$LUMO_DISCOVERY_ROOT"
+          } >> "$GITHUB_ENV"
+          git rev-parse HEAD > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/sha-before.txt"
+          git rev-parse 'HEAD^{tree}' > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/tree-before.txt"
+          git status --porcelain --untracked-files=no > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/status-before.txt"
+          git status --porcelain --untracked-files=all > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/all-status-before.txt"
+          git ls-files --stage > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/index-before.txt"
+          sha256sum "$(git rev-parse --git-path index)" | cut -d ' ' -f 1 \
+            > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/index-sha256-before.txt"
+          printf 'repository=%s\nref=%s\nsource=%s\nrun=%s\nattempt=%s\njob=%s\n' \
+            "$GITHUB_REPOSITORY" "$GITHUB_REF" "$GITHUB_SHA" "$GITHUB_RUN_ID" \
+            "$GITHUB_RUN_ATTEMPT" "$GITHUB_JOB" > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/workflow-context.txt"
+          test "$(cat "$LUMO_DISCOVERY_EVIDENCE_DIR/source/sha-before.txt")" = "$GITHUB_SHA"
+          test ! -s "$LUMO_DISCOVERY_EVIDENCE_DIR/source/status-before.txt"
+
+      - name: Install the verified engine and external Pillow environment
+        run: |
+          set -euo pipefail
+          {
+            sudo apt-get -o Acquire::Retries=2 update -qq &&
+            sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0 python3-venv &&
+            curl -fL --retry 3 -o "$LUMO_DISCOVERY_ROOT/engine/godot.zip" \
+              https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip &&
+            printf '%s  %s\n' d0bc2113065e481c9c2c2b2c37daa4e8be3fe9e27f0ab9ab0b6096e9a37907f3 \
+              "$LUMO_DISCOVERY_ROOT/engine/godot.zip" | sha256sum -c - &&
+            unzip -q "$LUMO_DISCOVERY_ROOT/engine/godot.zip" -d "$LUMO_DISCOVERY_ROOT/engine/bin" &&
+            ln -s "$LUMO_DISCOVERY_ROOT/engine/bin/Godot_v4.6.3-stable_linux.x86_64" "$GODOT_BIN" &&
+            "$GODOT_BIN" --version > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/engine.txt" &&
+            cat "$LUMO_DISCOVERY_EVIDENCE_DIR/source/engine.txt" &&
+            test "$(cat "$LUMO_DISCOVERY_EVIDENCE_DIR/source/engine.txt")" = 4.6.3.stable.official.7d41c59c4 &&
+            python3 -m venv "$LUMO_DISCOVERY_ROOT/venv" &&
+            "$LUMO_DISCOVERY_PYTHON" -m pip install --disable-pip-version-check --no-cache-dir Pillow==12.3.0 &&
+            "$LUMO_DISCOVERY_PYTHON" --version &&
+            "$LUMO_DISCOVERY_PYTHON" -c 'import PIL; print("Pillow " + PIL.__version__); assert PIL.__version__ == "12.3.0"' &&
+            command -v xvfb-run &&
+            printf '%s\n' "$LUMO_DISCOVERY_ROOT/engine/bin" "$LUMO_DISCOVERY_ROOT/venv/bin" >> "$GITHUB_PATH"
+          } 2>&1 | tee "$LUMO_DISCOVERY_EVIDENCE_DIR/setup.log"
+
+      - name: Bind the unchanged helpers before any import or test
+        run: |
+          set -euo pipefail
+          printf '%s  %s\n' \
+            55591b4478d2074135ea4950fb00200d68a3f9bede286b39642d7fc17aa586da tools/verify_discovery_rasters.py \
+            f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d tools/verify_dream_rasters.py \
+            e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13 tools/run_godot_probe.py \
+            | sha256sum -c - | tee "$LUMO_DISCOVERY_EVIDENCE_DIR/source/helper-sha256.log"
+          test "$(git hash-object tools/verify_discovery_rasters.py)" = 219e691fc8aa119cc80221b3db6c77e63caf8bfe
+          test "$(git hash-object tools/verify_dream_rasters.py)" = da8eed7d6383fcbc82a03596518a5fcc3b9a00c5
+          test "$(git hash-object tools/run_godot_probe.py)" = c23859ece2d62101d000d7a89556fda5d3fe4105
+          "$LUMO_DISCOVERY_PYTHON" tools/verify_dream_rasters.py "$LUMO_DISCOVERY_EVIDENCE_DIR/source" \
+            --snapshot-source "$GITHUB_WORKSPACE" --snapshot-phase before
+
+      - name: Require the separate Dream raster counterexamples
+        run: |
+          set -euo pipefail
+          "$LUMO_DISCOVERY_PYTHON" -m unittest tools.tests.test_dream_rasters -v \
+            2>&1 | tee "$LUMO_DISCOVERY_EVIDENCE_DIR/tests/dream-raster-tests.log"
+          test "$(grep -Ec '^Ran 12 tests in [0-9.]+s$' "$LUMO_DISCOVERY_EVIDENCE_DIR/tests/dream-raster-tests.log")" = 1
+          test "$(grep -Fxc 'OK' "$LUMO_DISCOVERY_EVIDENCE_DIR/tests/dream-raster-tests.log")" = 1
+
+      - name: Require the strict Discovery counterexamples and original reader tests
+        run: |
+          set -euo pipefail
+          "$LUMO_DISCOVERY_PYTHON" -m unittest tools.tests.test_discovery_connections -v \
+            2>&1 | tee "$LUMO_DISCOVERY_EVIDENCE_DIR/tests/discovery-originals-tests.log"
+          test "$(grep -Ec '^Ran 24 tests in [0-9.]+s$' "$LUMO_DISCOVERY_EVIDENCE_DIR/tests/discovery-originals-tests.log")" = 1
+          test "$(grep -Fxc 'OK' "$LUMO_DISCOVERY_EVIDENCE_DIR/tests/discovery-originals-tests.log")" = 1
+          PYTHONPATH=tools:tools/tests "$LUMO_DISCOVERY_PYTHON" -m unittest test_discovery_rasters -v \
+            2>&1 | tee "$LUMO_DISCOVERY_EVIDENCE_DIR/tests/discovery-producer-reader-tests.log"
+          test "$(grep -Ec '^Ran 11 tests in [0-9.]+s$' "$LUMO_DISCOVERY_EVIDENCE_DIR/tests/discovery-producer-reader-tests.log")" = 1
+          test "$(grep -Fxc 'OK' "$LUMO_DISCOVERY_EVIDENCE_DIR/tests/discovery-producer-reader-tests.log")" = 1
+
+      - name: Import the exact production project with a strict error guard
+        run: |
+          set -euo pipefail
+          timeout --signal=TERM --kill-after=5s 420s "$GODOT_BIN" \
+            --headless --audio-driver Dummy --path "$GITHUB_WORKSPACE" --editor --import --quit \
+            2>&1 | tee "$LUMO_DISCOVERY_EVIDENCE_DIR/import.log"
+          if grep -En 'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|ObjectDB instances leaked|resources still in use at exit' \
+            "$LUMO_DISCOVERY_EVIDENCE_DIR/import.log"; then
+            exit 1
+          fi
+
+      - name: Preserve the four existing exact headless acceptance gates
+        run: |
+          set -euo pipefail
+          check_headless() {
+            local name="$1" seconds="$2" marker="$3"
+            local proof="$LUMO_DISCOVERY_EVIDENCE_DIR/headless/$name.log"
+            local state="$LUMO_DISCOVERY_ROOT/xdg/$name"
+            mkdir -p "$state/data" "$state/config" "$state/cache" || return 1
+            XDG_DATA_HOME="$state/data" XDG_CONFIG_HOME="$state/config" XDG_CACHE_HOME="$state/cache" \
+              "$LUMO_DISCOVERY_PYTHON" tools/run_godot_probe.py \
+              --log "$proof" --timeout "$seconds" --required "$marker" -- \
+              "$GODOT_BIN" --headless --audio-driver Dummy --path "$GITHUB_WORKSPACE" \
+              --script "res://scripts/tests/$name.gd" || return $?
+            if grep -En 'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|ObjectDB instances leaked|resources still in use at exit' "$proof"; then
+              return 1
+            fi
+            local count
+            if ! count="$(grep -Fxc -- "$marker" "$proof")"; then
+              return 1
+            fi
+            test "$count" = 1
+          }
+          {
+            check_headless connect_four_return_regression 60 'CONNECT_FOUR_RETURN_PASS checks=21' || exit 1
+            check_headless treasure_wisp_regression 180 '[TreasureWisp] PASS checks=14' || exit 1
+            check_headless treasure_exploration_regression 420 \
+              '[TreasureExploration] PASS 92 checks: branching, actual location questions, movement, legacy saves and original rewards' || exit 1
+            check_headless learning_world_regression 420 '[LearningWorld] PASS checks=5347' || exit 1
+          } 2>&1 | tee "$LUMO_DISCOVERY_EVIDENCE_DIR/headless/runner.log"
+
+      - name: Collect all five new Dream gates and seven original renderer images
+        run: |
+          set -euo pipefail
+          test ! -e "$LUMO_DREAM_LOG_DIR"
+          test ! -L "$LUMO_DREAM_LOG_DIR"
+          test "$LUMO_EXPECTED_NATIVE_SHA" = "$GITHUB_SHA"
+          bash tools/validate_dream_connections.sh 2>&1 | tee "$LUMO_DISCOVERY_EVIDENCE_DIR/dream-runner.log"
+          test "$(grep -Fxc '[LumoDreamConnections] PASS 5 original probes and 7 verified renderer PNGs' \
+            "$LUMO_DISCOVERY_EVIDENCE_DIR/dream-runner.log")" = 1
+
+      - name: Require ten source-bound Discovery probes and all original 38 PNGs and two reports
+        run: |
+          set -euo pipefail
+          "$LUMO_DISCOVERY_PYTHON" tools/collect_discovery_connections.py \
+            --project "$GITHUB_WORKSPACE" --output "$LUMO_DISCOVERY_EVIDENCE_DIR/discovery" \
+            --expected-native-sha "$GITHUB_SHA" --expected-native-tree "$LUMO_EXPECTED_NATIVE_TREE" \
+            --godot "$GODOT_BIN" 2>&1 | tee "$LUMO_DISCOVERY_EVIDENCE_DIR/discovery-collector.log"
+          test "$(grep -Fxc '[DiscoveryOriginals] PASS 10 exact probes, 38 decoded PNGs and 2 original reports' \
+            "$LUMO_DISCOVERY_EVIDENCE_DIR/discovery-collector.log")" = 1
+          "$LUMO_DISCOVERY_PYTHON" tools/verify_discovery_connections.py "$LUMO_DISCOVERY_EVIDENCE_DIR/discovery" \
+            --expected-native-sha "$GITHUB_SHA" --expected-native-tree "$LUMO_EXPECTED_NATIVE_TREE" \
+            > "$LUMO_DISCOVERY_EVIDENCE_DIR/discovery-read-only-replay.log"
+          test "$(grep -Fxc '[DiscoveryOriginals] PASS 10 exact probes, 38 decoded PNGs and 2 original reports' \
+            "$LUMO_DISCOVERY_EVIDENCE_DIR/discovery-read-only-replay.log")" = 1
+
+      - name: Require exact village save schema and bounded original renderer evidence
+        run: |
+          set -euo pipefail
+          export LUMO_VILLAGE_OUTPUT="$LUMO_DISCOVERY_EVIDENCE_DIR/village-scaling"
+          test ! -e "$LUMO_VILLAGE_OUTPUT"
+          test ! -L "$LUMO_VILLAGE_OUTPUT"
+          test "$(git rev-parse HEAD)" = "$LUMO_EXPECTED_NATIVE_SHA"
+          test "$(git rev-parse 'HEAD^{tree}')" = "$LUMO_EXPECTED_NATIVE_TREE"
+          printf '%s  %s\n' \
+            f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d tools/verify_dream_rasters.py \
+            e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13 tools/run_godot_probe.py \
+            | sha256sum -c -
+          test "$(git hash-object tools/verify_dream_rasters.py)" = da8eed7d6383fcbc82a03596518a5fcc3b9a00c5
+          test "$(git hash-object tools/run_godot_probe.py)" = c23859ece2d62101d000d7a89556fda5d3fe4105
+          test "$(git hash-object scripts/tests/build_village_economy_regression.gd)" = 9dd8ff269e266dd73ad5207febd87aab367a4986
+          test "$(git hash-object scripts/tests/build_village_scaling_regression.gd)" = c6abdb5f9576c0b48db7bd59716da52ea5fac036
+          mkdir "$LUMO_VILLAGE_OUTPUT"
+          mkdir "$LUMO_VILLAGE_OUTPUT/logs" "$LUMO_VILLAGE_OUTPUT/captures" "$LUMO_VILLAGE_OUTPUT/source"
+          "$LUMO_DISCOVERY_PYTHON" tools/verify_dream_rasters.py "$LUMO_VILLAGE_OUTPUT/source" \
+            --snapshot-source "$GITHUB_WORKSPACE" --snapshot-phase before
+          check_village() {
+            local name="$1" script="$2" mode="$3" seconds="$4" marker="$5"
+            local proof="$LUMO_VILLAGE_OUTPUT/logs/$name.log"
+            local runner="$LUMO_VILLAGE_OUTPUT/logs/$name.runner.log"
+            local state="$LUMO_DISCOVERY_ROOT/xdg/village-$name"
+            mkdir "$state" || return 1
+            mkdir "$state/data" "$state/config" "$state/cache" || return 1
+            if [[ "$mode" == headless ]]; then
+              XDG_DATA_HOME="$state/data" XDG_CONFIG_HOME="$state/config" XDG_CACHE_HOME="$state/cache" \
+                "$LUMO_DISCOVERY_PYTHON" tools/run_godot_probe.py \
+                --log "$proof" --timeout "$seconds" --required "$marker" -- \
+                "$GODOT_BIN" --headless --audio-driver Dummy --path "$GITHUB_WORKSPACE" \
+                --script "res://scripts/tests/$script.gd" 2>&1 | tee "$runner" || return $?
+            elif [[ "$mode" == rendered ]]; then
+              XDG_DATA_HOME="$state/data" XDG_CONFIG_HOME="$state/config" XDG_CACHE_HOME="$state/cache" \
+                LUMO_CAPTURE_DIR="$LUMO_VILLAGE_OUTPUT/captures" \
+                "$LUMO_DISCOVERY_PYTHON" tools/run_godot_probe.py \
+                --log "$proof" --timeout "$seconds" --required "$marker" -- \
+                xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT_BIN" \
+                --audio-driver Dummy --path "$GITHUB_WORKSPACE" --rendering-method gl_compatibility \
+                --resolution 1280x720 --script "res://scripts/tests/$script.gd" -- --capture \
+                2>&1 | tee "$runner" || return $?
+            else
+              return 1
+            fi
+            cmp "$proof" "$runner" || return 1
+            test "$(grep -Fxc -- "$marker" "$proof")" = 1 || return 1
+            if grep -En 'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|ObjectDB instances leaked|resources still in use at exit|\[ProbeRunner\] (FAIL|timeout)' "$proof"; then
+              return 1
+            fi
+          }
+          {
+            check_village 01-economy-headless build_village_economy_regression headless 420 \
+              '[VillageEconomy] PASS 339 checks' || exit 1
+            # New bounded-workload budgets: 2178 saved houses, five view states, two PNGs.
+            # These 180s/300s bounds are not an asserted original Producer timeout.
+            check_village 02-scaling-headless build_village_scaling_regression headless 180 \
+              '[VillageScaling] PASS 42 checks: full 2178-house model, camera and explorer' || exit 1
+            check_village 03-scaling-rendered build_village_scaling_regression rendered 300 \
+              '[VillageScaling] PASS 46 checks: full 2178-house model, camera and explorer' || exit 1
+          } 2>&1 | tee "$LUMO_VILLAGE_OUTPUT/runner.log"
+          "$LUMO_DISCOVERY_PYTHON" tools/verify_dream_rasters.py "$LUMO_VILLAGE_OUTPUT/source" \
+            --snapshot-source "$GITHUB_WORKSPACE" --snapshot-phase after
+          "$LUMO_DISCOVERY_PYTHON" - <<'PY'
+          import hashlib, importlib.util, json, os, pathlib, subprocess
+          root = pathlib.Path(os.environ["LUMO_VILLAGE_OUTPUT"])
+          project = pathlib.Path(os.environ["GITHUB_WORKSPACE"])
+          helper = project / "tools/verify_dream_rasters.py"
+          raw = helper.read_bytes()
+          if hashlib.sha256(raw).hexdigest() != "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d":
+              raise SystemExit("Village evidence reader SHA256 changed")
+          if hashlib.sha1(b"blob " + str(len(raw)).encode() + bytes([0]) + raw).hexdigest() != "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5":
+              raise SystemExit("Village evidence reader Git blob changed")
+          spec = importlib.util.spec_from_file_location("village_original_reader", helper)
+          reader = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(reader)
+          before, before_record = reader.original_json(root, "source/source-inventory-before.json")
+          after, after_record = reader.original_json(root, "source/source-inventory-after.json")
+          expected = (os.environ["LUMO_EXPECTED_NATIVE_SHA"], os.environ["LUMO_EXPECTED_NATIVE_TREE"])
+          for value in (before, after):
+              reader.require((value["head"], value["tree"]) == expected, "Foreign Village source")
+              reader.require(all(row["materialized"] is True for row in value["tracked"]), "Incomplete Village source checkout")
+          for key in ("head", "tree", "index_sha256", "tracked"):
+              reader.require(before[key] == after[key], "Village tracked source/index changed: " + key)
+          probes = (
+              ("01-economy-headless", "build_village_economy_regression", "headless", 420, "[VillageEconomy] PASS 339 checks"),
+              ("02-scaling-headless", "build_village_scaling_regression", "headless", 180, "[VillageScaling] PASS 42 checks: full 2178-house model, camera and explorer"),
+              ("03-scaling-rendered", "build_village_scaling_regression", "rendered", 300, "[VillageScaling] PASS 46 checks: full 2178-house model, camera and explorer"),
+          )
+          originals = []
+          banner = "Godot Engine v" + reader.ENGINE + " - https://godotengine.org"
+          for name, script, mode, timeout, marker in probes:
+              text, log_record = reader.original_text(root, "logs/" + name + ".log")
+              runner, runner_record = reader.original_text(root, "logs/" + name + ".runner.log")
+              reader.require(text == runner, "Village original/runner bytes differ: " + name)
+              reader.require(text.splitlines().count(banner) == 1, "Village requires one real engine invocation: " + name)
+              reader.require(text.splitlines().count(marker) == 1, "Village exact original marker missing/duplicated: " + name)
+              reader.require(reader.ERRORS.search(text) is None, "Village original contains a runtime failure: " + name)
+              originals.append({"probe": script, "mode": mode, "timeout_seconds": timeout, "required_marker": marker, "log": log_record, "runner": runner_record})
+          names = ("01-home-region.png", "02-river-boundary.png")
+          reader.require(sorted(path.name for path in (root / "captures").iterdir()) == sorted(names), "Unexpected or missing Village renderer originals")
+          images = []
+          for name in names:
+              record, pixels = reader.png(root, "captures/" + name, (1280, 720))
+              images.append({**record, "decoded_rgb_sha256": hashlib.sha256(pixels.tobytes()).hexdigest()})
+          report = {"schema": 1, "status": "PASS", "native_sha": expected[0], "native_tree": expected[1],
+                    "source_inventories": [before_record, after_record], "probes": originals, "images": images,
+                    "scope": "Three additional Village probes and two actual renderer PNGs; no complete52/17, Android or device-FPS acceptance"}
+          destination = root / "village-scaling-acceptance.json"
+          reader.require(not destination.exists() and not destination.is_symlink(), "Village acceptance output must be fresh")
+          with destination.open("x", encoding="utf-8") as stream:
+              stream.write(json.dumps(report, indent=2) + "\n")
+          print("[VillageScalingOriginals] PASS 3 exact probes and 2 decoded 1280x720 PNGs")
+          PY
+
+      - name: Render the exact MobileSafeArea and live minimap observations
+        run: |
+          set -euo pipefail
+          export LUMO_MINIMAP_OUTPUT="$LUMO_DISCOVERY_EVIDENCE_DIR/mobile-minimap"
+          test ! -e "$LUMO_MINIMAP_OUTPUT"
+          test ! -L "$LUMO_MINIMAP_OUTPUT"
+          test "$(git rev-parse HEAD)" = "$LUMO_EXPECTED_NATIVE_SHA"
+          test "$(git rev-parse 'HEAD^{tree}')" = "$LUMO_EXPECTED_NATIVE_TREE"
+          printf '%s  %s\n' \
+            f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d tools/verify_dream_rasters.py \
+            e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13 tools/run_godot_probe.py \
+            | sha256sum -c -
+          test "$(git hash-object tools/verify_dream_rasters.py)" = da8eed7d6383fcbc82a03596518a5fcc3b9a00c5
+          test "$(git hash-object tools/run_godot_probe.py)" = c23859ece2d62101d000d7a89556fda5d3fe4105
+          test "$(git hash-object scripts/games/kart_island.gd)" = 83b3b6b548cffa2790c582e061a74e37bbfcf356
+          test "$(git hash-object scripts/tests/mobile_safe_area_regression.gd)" = 6c58c08b8c47a7bf7c957c448b88474a984b9509
+          mkdir "$LUMO_MINIMAP_OUTPUT"
+          mkdir -p "$LUMO_MINIMAP_OUTPUT/logs" "$LUMO_MINIMAP_OUTPUT/source" \
+            "$LUMO_MINIMAP_OUTPUT/captures/mobile" "$LUMO_MINIMAP_OUTPUT/captures/minimap"
+          "$LUMO_DISCOVERY_PYTHON" tools/verify_dream_rasters.py "$LUMO_MINIMAP_OUTPUT/source" \
+            --snapshot-source "$GITHUB_WORKSPACE" --snapshot-phase before
+          state="$LUMO_DISCOVERY_ROOT/xdg/mobile-minimap"
+          mkdir "$state"
+          mkdir "$state/data" "$state/config" "$state/cache"
+          # Preserve the existing Native52 rendered MobileSafeArea limit of 420s.
+          XDG_DATA_HOME="$state/data" XDG_CONFIG_HOME="$state/config" XDG_CACHE_HOME="$state/cache" \
+            LUMO_CAPTURE_DIR="$LUMO_MINIMAP_OUTPUT/captures/mobile" \
+            LUMO_KART_MINIMAP_CAPTURE_DIR="$LUMO_MINIMAP_OUTPUT/captures/minimap" \
+            "$LUMO_DISCOVERY_PYTHON" tools/run_godot_probe.py \
+            --log "$LUMO_MINIMAP_OUTPUT/logs/mobile-safe-area-rendered.log" --timeout 420 \
+            --required MOBILE_SAFE_AREA_PASS -- \
+            xvfb-run -a -s "-screen 0 2400x1080x24" "$GODOT_BIN" \
+            --audio-driver Dummy --path "$GITHUB_WORKSPACE" --rendering-method gl_compatibility \
+            --resolution 2400x1080 --script res://scripts/tests/mobile_safe_area_regression.gd -- --capture \
+            2>&1 | tee "$LUMO_MINIMAP_OUTPUT/logs/mobile-safe-area-rendered.runner.log"
+          "$LUMO_DISCOVERY_PYTHON" tools/verify_dream_rasters.py "$LUMO_MINIMAP_OUTPUT/source" \
+            --snapshot-source "$GITHUB_WORKSPACE" --snapshot-phase after
+          "$LUMO_DISCOVERY_PYTHON" - <<'PY'
+          import hashlib, importlib.util, json, math, os, pathlib, re
+          root = pathlib.Path(os.environ["LUMO_MINIMAP_OUTPUT"])
+          helper = pathlib.Path(os.environ["GITHUB_WORKSPACE"]) / "tools/verify_dream_rasters.py"
+          raw = helper.read_bytes()
+          if hashlib.sha256(raw).hexdigest() != "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d":
+              raise SystemExit("Mobile evidence reader SHA256 changed")
+          if hashlib.sha1(b"blob " + str(len(raw)).encode() + bytes([0]) + raw).hexdigest() != "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5":
+              raise SystemExit("Mobile evidence reader Git blob changed")
+          spec = importlib.util.spec_from_file_location("mobile_original_reader", helper)
+          reader = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(reader)
+          before, before_record = reader.original_json(root, "source/source-inventory-before.json")
+          after, after_record = reader.original_json(root, "source/source-inventory-after.json")
+          expected_source = (os.environ["LUMO_EXPECTED_NATIVE_SHA"], os.environ["LUMO_EXPECTED_NATIVE_TREE"])
+          for value in (before, after):
+              reader.require((value["head"], value["tree"]) == expected_source, "Foreign Mobile source")
+              reader.require(all(row["materialized"] is True for row in value["tracked"]), "Incomplete Mobile source")
+          for key in ("head", "tree", "index_sha256", "tracked"):
+              reader.require(before[key] == after[key], "Mobile tracked source/index changed: " + key)
+          log, log_record = reader.original_text(root, "logs/mobile-safe-area-rendered.log")
+          runner, runner_record = reader.original_text(root, "logs/mobile-safe-area-rendered.runner.log")
+          reader.require(log == runner, "Mobile original/runner bytes differ")
+          reader.require(log.splitlines().count("Godot Engine v" + reader.ENGINE + " - https://godotengine.org") == 1,
+                         "Mobile requires one real engine invocation")
+          reader.require(reader.ERRORS.search(log) is None, "Mobile original contains runtime failure")
+          report, report_record = reader.original_json(root, "captures/mobile/mobile-safe-area.json")
+          reader.require(type(report.get("checks")) is int and report["checks"] > 0 and report.get("failures") == [],
+                         "Mobile original report is incomplete or failed")
+          marker = re.compile(r"^MOBILE_SAFE_AREA_PASS checks=(\d+) failures=0 controls=15 images=4 scope=platform_boundary_fixture$")
+          matches = [marker.fullmatch(line) for line in log.splitlines() if marker.fullmatch(line)]
+          reader.require(len(matches) == 1 and int(matches[0].group(1)) == report["checks"],
+                         "Mobile complete PASS marker does not match the original report")
+          targets = report.get("targets")
+          reader.require(isinstance(targets, list) and len(targets) == 15 and all(
+              isinstance(row, dict) and row.get("fully_inside_true_safe_area") is True
+              and isinstance(row.get("exposed_dp"), list) and len(row["exposed_dp"]) == 2
+              and all(type(n) in (int, float) and math.isfinite(n) and n >= 47.95 for n in row["exposed_dp"])
+              for row in targets), "The original 15 targets must retain their SafeArea/48dp checks")
+          profiles = {
+              "dense-left-cutout": ([2400, 1080], 2.625, True),
+              "dense-right-cutout": ([2400, 1080], 2.625, True),
+              "same-pixels-density-one": ([2400, 1080], 1.0, True),
+              "expanded-inner-display": ([2176, 1812], 2.0, True),
+              "compact-portrait": ([360, 800], 1.0, False),
+              "short-landscape": ([1280, 640], 2.0, False),
+              "dense-restored": ([2400, 1080], 2.625, True),
+          }
+          transitions = {
+              "expanded-hint-visible": ([2176, 1812], 2.0, True),
+              "expanded-hint-hidden": ([2176, 1812], 2.0, True),
+          }
+          for field, expected in (("kart_minimap_layouts", profiles), ("kart_minimap_transitions", transitions)):
+              rows = report.get(field)
+              reader.require(isinstance(rows, list) and len(rows) == len(expected)
+                             and all(isinstance(row, dict) for row in rows)
+                             and [row.get("label") for row in rows] == list(expected), "Missing/duplicate/out-of-order " + field)
+              for row in rows:
+                  size, density, visible = expected[row["label"]]
+                  reader.require(row.get("surface") == size and type(row.get("density")) in (int, float)
+                                 and math.isfinite(row["density"]) and row["density"] == density
+                                 and row.get("visible") is visible, "Different observed profile: " + row["label"])
+          mobile_images = report.get("images")
+          modules = ("jump", "build", "puzzle", "treasure")
+          reader.require(isinstance(mobile_images, list) and len(mobile_images) == 4
+                         and all(isinstance(row, dict) for row in mobile_images)
+                         and {row.get("module") for row in mobile_images} == set(modules), "Original four SafeArea captures missing")
+          expected_mobile = {module + "-landscape-cutout.png" for module in modules}
+          reader.require({path.name for path in (root / "captures/mobile").iterdir()} == expected_mobile | {"mobile-safe-area.json"},
+                         "Unexpected/missing original SafeArea files")
+          checked_mobile = []
+          for row in mobile_images:
+              name = row["module"] + "-landscape-cutout.png"
+              reader.require(row.get("path") == name and (row.get("width"), row.get("height")) == (2400, 1080),
+                             "Different original SafeArea report path/dimensions")
+              record, pixels = reader.png(root, "captures/mobile/" + row["path"], (2400, 1080))
+              reader.require(row.get("sha256") == record["sha256"], "Original SafeArea PNG/report hash differs")
+              checked_mobile.append({**record, "decoded_rgb_sha256": hashlib.sha256(pixels.tobytes()).hexdigest()})
+          expected_views = {**profiles, **transitions}
+          minimap_images = report.get("kart_minimap_images")
+          reader.require(isinstance(minimap_images, list) and len(minimap_images) == 9
+                         and all(isinstance(row, dict) for row in minimap_images)
+                         and {row.get("label") for row in minimap_images} == set(expected_views),
+                         "Missing/duplicate nine original minimap captures")
+          reader.require({path.name for path in (root / "captures/minimap").iterdir()} ==
+                         {label + ".png" for label in expected_views}, "Unexpected/missing minimap original files")
+          checked_minimap = []
+          for row in minimap_images:
+              label = row["label"]
+              expected_path = root / "captures/minimap" / (label + ".png")
+              dimensions = expected_views[label][0]
+              reader.require(row.get("path") == expected_path.as_posix()
+                             and [row.get("width"), row.get("height")] == dimensions,
+                             "Minimap original report path/dimensions differ: " + label)
+              relative = pathlib.Path(row["path"]).relative_to(root).as_posix()
+              record, pixels = reader.png(root, relative, dimensions)
+              reader.require(row.get("sha256") == record["sha256"], "Minimap original PNG/report hash differs: " + label)
+              checked_minimap.append({**record, "label": label, "original_report_path": row["path"],
+                                      "decoded_rgb_sha256": hashlib.sha256(pixels.tobytes()).hexdigest()})
+          result = {"schema": 1, "status": "PASS", "native_sha": expected_source[0], "native_tree": expected_source[1],
+                    "source_inventories": [before_record, after_record], "log": log_record, "runner": runner_record,
+                    "report": report_record, "checks": report["checks"], "layouts": list(profiles),
+                    "hint_transitions": list(transitions), "safe_area_images": checked_mobile,
+                    "minimap_images": checked_minimap,
+                    "scope": "Actual desktop renderer with asynchronous Android boundary fixture; no Android/device/FPS claim"}
+          destination = root / "mobile-minimap-acceptance.json"
+          reader.require(not destination.exists() and not destination.is_symlink(), "Mobile acceptance output must be fresh")
+          with destination.open("x", encoding="utf-8") as stream:
+              stream.write(json.dumps(result, indent=2) + "\n")
+          print("[MobileMinimapOriginals] PASS 1 exact rendered probe, 4 preserved SafeArea PNGs and 9 minimap PNGs")
+          PY
+
+      - name: Always preserve final source and index identities
+        if: always()
+        run: |
+          set -euo pipefail
+          LUMO_DISCOVERY_EVIDENCE_DIR="$RUNNER_TEMP/lumo-discovery-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT/evidence"
+          mkdir -p "$LUMO_DISCOVERY_EVIDENCE_DIR/source"
+          git rev-parse HEAD > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/sha-after.txt"
+          git rev-parse 'HEAD^{tree}' > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/tree-after.txt"
+          git status --porcelain --untracked-files=no > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/status-after.txt"
+          git status --porcelain --untracked-files=all > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/all-status-after.txt"
+          git ls-files --stage > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/index-after.txt"
+          sha256sum "$(git rev-parse --git-path index)" | cut -d ' ' -f 1 \
+            > "$LUMO_DISCOVERY_EVIDENCE_DIR/source/index-sha256-after.txt"
+          cmp "$LUMO_DISCOVERY_EVIDENCE_DIR/source/sha-before.txt" "$LUMO_DISCOVERY_EVIDENCE_DIR/source/sha-after.txt"
+          cmp "$LUMO_DISCOVERY_EVIDENCE_DIR/source/tree-before.txt" "$LUMO_DISCOVERY_EVIDENCE_DIR/source/tree-after.txt"
+          cmp "$LUMO_DISCOVERY_EVIDENCE_DIR/source/index-before.txt" "$LUMO_DISCOVERY_EVIDENCE_DIR/source/index-after.txt"
+          cmp "$LUMO_DISCOVERY_EVIDENCE_DIR/source/index-sha256-before.txt" "$LUMO_DISCOVERY_EVIDENCE_DIR/source/index-sha256-after.txt"
+          test ! -s "$LUMO_DISCOVERY_EVIDENCE_DIR/source/status-after.txt"
+          "$LUMO_DISCOVERY_PYTHON" tools/verify_dream_rasters.py "$LUMO_DISCOVERY_EVIDENCE_DIR/source" \
+            --snapshot-source "$GITHUB_WORKSPACE" --snapshot-phase after
+          "$LUMO_DISCOVERY_PYTHON" - "$LUMO_DISCOVERY_EVIDENCE_DIR/source" <<'PY'
+          import json, pathlib, sys
+          root = pathlib.Path(sys.argv[1])
+          before = json.loads((root / "source-inventory-before.json").read_text())
+          after = json.loads((root / "source-inventory-after.json").read_text())
+          for key in ("head", "tree", "index_sha256", "tracked"):
+              if before[key] != after[key]:
+                  raise SystemExit("Tracked/index source changed: " + key)
+          if not all(row["materialized"] is True for row in after["tracked"]):
+              raise SystemExit("Full Discovery CI checkout has missing tracked source bytes")
+          print("Complete tracked source/index unchanged; generated imports inventoried separately")
+          PY
+
+      - name: Preserve all separate Discovery and Dream originals even after failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-discovery-connections-native-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/lumo-discovery-${{ github.run_id }}-${{ github.run_attempt }}/evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

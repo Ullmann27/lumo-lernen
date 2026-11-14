@@ -1,0 +1,40 @@
+{
+  "sha": "124cd70d1bfc11c160a87b88ac5a6df902330ee8",
+  "node_id": "C_kwDOSpcSONoAKDEyNGNkNzBkMWJmYzExYzE2MGE4N2I4OGFjNWE2ZGY5MDIzMzBlZTg",
+  "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/124cd70d1bfc11c160a87b88ac5a6df902330ee8",
+  "html_url": "https://github.com/Ullmann27/lumo-godot/commit/124cd70d1bfc11c160a87b88ac5a6df902330ee8",
+  "author": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T20:45:13Z"
+  },
+  "committer": {
+    "name": "GitHub",
+    "email": "noreply@github.com",
+    "date": "2026-11-14T20:45:13Z"
+  },
+  "tree": {
+    "sha": "ff28b46bdb556c16b6ccdcf428af4a0709b60da8",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/ff28b46bdb556c16b6ccdcf428af4a0709b60da8"
+  },
+  "message": "Merge b875e1e58f9c0c101ddabc74c98d4498e2215fbf into c84926650363c2faab8a83ee592ebd7aa8486a6d",
+  "parents": [
+    {
+      "sha": "c84926650363c2faab8a83ee592ebd7aa8486a6d",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/c84926650363c2faab8a83ee592ebd7aa8486a6d",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/commit/c84926650363c2faab8a83ee592ebd7aa8486a6d"
+    },
+    {
+      "sha": "b875e1e58f9c0c101ddabc74c98d4498e2215fbf",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/b875e1e58f9c0c101ddabc74c98d4498e2215fbf",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/commit/b875e1e58f9c0c101ddabc74c98d4498e2215fbf"
+    }
+  ],
+  "verification": {
+    "verified": true,
+    "reason": "valid",
+    "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJq+MhZCRC1aQ7uu5UhlAAAqYkQAHN4dK33wNVsLjSJBFLDX7jN\n+IXPXgOg+2kxVgYRXsa7t+a+bRdNgOOt5GN6TnvDvMOeQZ0jX2xKgwIoRyFHHdtt\n5REAyL6Rr6VnrWZm2wOl6BJv6QMOPUooWBTJrwny10stOm3nySGnzhROhcxheJCV\ndEhVB78KyE9FiXipROFk6ufAOCMTo0ZAIO2Ec68YSE0jri7Y9YXRpFvZgRfCG2mY\ndE/Au4ThVdLt7sRcQNVlv05a7/KPvDwBkEQ+/J3UAEherO4aP4bhRhstpgnPP/+7\nUit/JekaN85ZIVrLCwuGJ4MCfhZfdikznLnXK2psU3NL+ZDVInFnRgQsn71Vo8eT\nN0cqXaU9+iXaiNF7NghNMSBn9Bbsngm2tAuUefVGb66TJ9YfKTqBrs6+hghd0byO\nrJw0B0NMC1Q5u4uwI0eeg1ConlA1zkz77nd6nCzWfxcZHPJo1q5TOSPDOa9jBEcR\nv3WamKaI6rHoYbR1XxNCgzrwZ5uBq6mc3uoySpo4hcxJUurB7OcjEP8iIEJkyGml\nGMclkqHxXYdDuvVU2ILcAEggqESY2MdCTwoJDbchJ7nT6iwVvzNz4lyfYV4H/mUs\nwEVS3bGSMxreh7dY8IquxIrOtGOkMN6EMzESWKjHLLFi9gNffPY409H9pB79h56Q\nwe1vNjnxi3CoEQ6vuRwr\n=Q986\n-----END PGP SIGNATURE-----\n",
+    "payload": "tree ff28b46bdb556c16b6ccdcf428af4a0709b60da8\nparent c84926650363c2faab8a83ee592ebd7aa8486a6d\nparent b875e1e58f9c0c101ddabc74c98d4498e2215fbf\nauthor Ullmann27 <64243701+Ullmann27@users.noreply.github.com> 1794689113 +0000\ncommitter GitHub <noreply@github.com> 1794689113 +0000\n\nMerge b875e1e58f9c0c101ddabc74c98d4498e2215fbf into c84926650363c2faab8a83ee592ebd7aa8486a6d\n",
+    "verified_at": "2026-11-14T20:45:15Z"
+  }
+}

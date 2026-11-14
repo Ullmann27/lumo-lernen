@@ -1,0 +1,35 @@
+{
+  "sha": "b875e1e58f9c0c101ddabc74c98d4498e2215fbf",
+  "node_id": "C_kwDOSpcSONoAKGI4NzVlMWU1OGY5YzBjMTAxZGRhYmM3NGM5OGQ0NDk4ZTIyMTVmYmY",
+  "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/b875e1e58f9c0c101ddabc74c98d4498e2215fbf",
+  "html_url": "https://github.com/Ullmann27/lumo-godot/commit/b875e1e58f9c0c101ddabc74c98d4498e2215fbf",
+  "author": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T20:45:09Z"
+  },
+  "committer": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T20:45:09Z"
+  },
+  "tree": {
+    "sha": "504abfcb6d7bd4ecc6352c061615d52ba292fdeb",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/504abfcb6d7bd4ecc6352c061615d52ba292fdeb"
+  },
+  "message": "test(kart): verify Adventure-length coastal bounds against authored road samples",
+  "parents": [
+    {
+      "sha": "d3bfa6359003a7ebc1c34d5b0aef1c57904f2b5f",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/d3bfa6359003a7ebc1c34d5b0aef1c57904f2b5f",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/commit/d3bfa6359003a7ebc1c34d5b0aef1c57904f2b5f"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

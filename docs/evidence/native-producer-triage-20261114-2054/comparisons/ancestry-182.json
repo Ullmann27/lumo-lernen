@@ -1,0 +1,89 @@
+{
+  "url": "https://api.github.com/repos/Ullmann27/lumo-godot/compare/84789d0c2c6fb4b6ecd2897ce1951b89f958b604...29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "html_url": "https://github.com/Ullmann27/lumo-godot/compare/84789d0c2c6fb4b6ecd2897ce1951b89f958b604...29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "status": "diverged",
+  "ahead_by": 11,
+  "behind_by": 87,
+  "total_commits": 11,
+  "base_commit": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "merge_base_commit": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "commits": [
+    {
+      "sha": "20fd2880494c10f8f7d3a266956995e97f9011df",
+      "parents": [
+        "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+      ],
+      "message": "Fix measured Android safe areas across native Studio scenes\n\nShare one read-only UI-thread WindowInsets and RenderView observation cache, reject stale lifecycle results, and notify existing layouts. Keep Cards controls inside actual insets and publish atomic settled layout diagnostics for independent host pixel checks.\n\nPreserve gameplay and save formats. Add Android-boundary, Cards and shared-layout regression gates without removing any original gate. Freeze 21 explicit source changes and 24 original evidence/review files. Local shared checks pass 112 headless / 124 rendered with all 15 controls safe; two interrupted local completions remain explicitly pending. Full source-bound Native CI and subsequent Android gates are required."
+    },
+    {
+      "sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "parents": [
+        "20fd2880494c10f8f7d3a266956995e97f9011df"
+      ],
+      "message": "Update orchestration fixtures for 16 Studio gates and 37 renderer frames\n\nPreserve every previous probe, budget and image requirement. Extend synthetic fixtures for the three Cards layout sidecars and four named mobile captures with a hash-bound safe-target report. Add 24 targeted rejection cases.\n\nThe exact published 20fd contract reproduces two failures in six tests. The corrected full tools/tests suite passes 68 tests with zero skips. Product source, native harness and workflow remain unchanged. Preserve the failed 20fd workflow and all original red/green evidence; require a new complete Native acceptance run."
+    },
+    {
+      "sha": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+      "parents": [
+        "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+      ],
+      "message": "Integrate Studio 2020 native Connect Four, original Lumo facial motion and Treasure contrast\n\nKeep existing rules in the host, preserve original character geometry and animation clips, and require 20 Studio gates with 53 renderer images. Add a separate source-bound 2020 acceptance workflow; preserve Main and the prior Studio workflow."
+    },
+    {
+      "sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "parents": [
+        "8be3a95d5d948d457c4c39bc6694138d60b70027"
+      ],
+      "message": "Fix Studio 2020 import stability and original-model/movie acceptance\n\nRetain the original GLB guard alongside the explicit facial derivative. Canonicalize only Godot-generated eyelid import fields. Set capture-only MovieMaker dimensions before writer initialization and preserve the strict 640x640 roster with an additional negative fixture.\n\nThe failed 8be3 CI remains recorded. Targeted original red/green and actual new movie proofs are documented; a fresh complete native run remains required. Production project defaults, assets, old workflows and Main are unchanged."
+    },
+    {
+      "sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "parents": [
+        "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+      ],
+      "message": "fix: keep Treasure avatar visible and preserve accessible hints\n\nKeep compact hints in the existing scrollable dialog, give messages contrast and clearance from controls, and verify fresh and restored states in five renderer formats. Preserve prior Studio gates and require the additional cutout image. Correct the singular coin label without changing settlement rules."
+    },
+    {
+      "sha": "34421df83566dd4773420cc2a225887956459435",
+      "parents": [
+        "785413d395292a243eaa0a0748671eb15d3f80ff"
+      ],
+      "message": "fix(qa): allow measured software-renderer time for Treasure capture\n\nRaise only the complete Treasure contrast capture deadline from 600 to 900 seconds after the exact 785413 native run used 584.700 seconds and the Host run reached the final profile 16.061 seconds later. Keep all five profiles, ten states, 54 PNG/sidecar requirements, real inputs and success markers. Update the two existing harness contract expectations and document the original failures and unconfirmed interrupted local test.\n\nAll 2234 other existing source leaves remain identical; no product scene, save schema or Main ref is changed."
+    },
+    {
+      "sha": "e4e5ce03e644a2f23b01a96f1d340a882a1798c4",
+      "parents": [
+        "34421df83566dd4773420cc2a225887956459435"
+      ],
+      "message": "feat: connect real English objects and authoritative Quiz studio"
+    },
+    {
+      "sha": "d5b1ed3749e332e996fa21a41d88325fad266553",
+      "parents": [
+        "e4e5ce03e644a2f23b01a96f1d340a882a1798c4"
+      ],
+      "message": "Resume paused Quiz through visible input before paired authority play"
+    },
+    {
+      "sha": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "parents": [
+        "d5b1ed3749e332e996fa21a41d88325fad266553"
+      ],
+      "message": "Integrate real Memory table and parallel Dart-Godot authority checks\n\nPreserve original Memory artwork and route the live scene. Bind fresh English layout observations and settled Quiz startup to actual host source. Keep all legacy scenes unchanged."
+    },
+    {
+      "sha": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "parents": [
+        "9f2e865614262c7176f9fdd987766ff5e45f2551"
+      ],
+      "message": "Complete English school geometry and repair Quiz JSON authority presentation\n\nIntegrate four exact English sources and six reviewed Quiz files, pin actual Host50503 authority checks, and enable the unchanged full Native Studio gates on this development branch.\n\nAll13UTF8 blobs read back. Complete tree comparison:4added,9modified,2256unchanged. Full project validation and Godot4.6.3 import exit0 without engine errors. Local fixture and actual earlier CI evidence remain distinctly scoped; new exact-source matrix/Android acceptance is still required. Main untouched."
+    },
+    {
+      "sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "parents": [
+        "47ca642aad9290c9ba274b08e7dadfc953854d4f"
+      ],
+      "message": "test(ci): validate both authorized Studio acceptance branches\n\nPreserve the exact repository, source/run identity and all existing job/archive gates. The original 47ca run stopped at the obsolete single-branch assertion; the existing 16 runner contracts now pass locally. No product or workflow bytes change."
+    }
+  ]
+}

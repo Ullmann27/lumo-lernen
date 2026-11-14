@@ -1,0 +1,608 @@
+{
+  "schema_version": 1,
+  "snapshot_at_utc": "2026-11-14T20:54:51Z",
+  "repository": "Ullmann27/lumo-lernen",
+  "prefix": "docs/evidence/native-producer-triage-20261114-2054",
+  "evidence_parent": "0d5fc7e4b67474ddd9d70218edfc3ab376c69781",
+  "accepted_native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "new_test_runs": 0,
+  "product_changes": 0,
+  "central_ref_changes": 0,
+  "files": [
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/trees/accepted-847.json",
+      "mode": "100644",
+      "kind": "complete_tree_catalog_from_api",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/91cc8fc1c6f8a36336b7ac9a12585284a983a6f6?recursive=1",
+      "git_blob": "b714fb967efeb95cbc895915a4ca5952e897970f",
+      "bytes": 1048620,
+      "sha256": "608118ce226cb921c01b5776616a89ec09c30ac02b97f5fb78111d6cbd885114"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/trees/pr182-29080.json",
+      "mode": "100644",
+      "kind": "complete_tree_catalog_from_api",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/5ddbea2b1d5e76ed592a27c36079632d7f26cada?recursive=1",
+      "git_blob": "1c8b61e0fa5ba4043ce6d2a2cd1d1b7d0785715c",
+      "bytes": 517611,
+      "sha256": "33d028a5bb63738b3b0141b146464b7ddf39241ae4910a1350ddfed6501359e6"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/trees/pr183-c849.json",
+      "mode": "100644",
+      "kind": "complete_tree_catalog_from_api",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/e5efa4d8b0cb10c9ec9dafdddd498095cb7909e5?recursive=1",
+      "git_blob": "a4b52ce0c07ef062835b1862562e968f51177f27",
+      "bytes": 1045162,
+      "sha256": "f8db0fa2482332144c8d019ebbb7a1e7f5f7bb24fa47735c8d93450da5be41a7"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/trees/pr184-b875.json",
+      "mode": "100644",
+      "kind": "complete_tree_catalog_from_api",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/504abfcb6d7bd4ecc6352c061615d52ba292fdeb?recursive=1",
+      "git_blob": "4fea28ebfda2ce9d3ba69520b0be2a4e08eded7c",
+      "bytes": 1046322,
+      "sha256": "9110d24805ed3fc629899d09085a901e7be9b03470a623f08bb1591fed3dd2e8"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/trees/pr184-actual-checkout-124cd70.json",
+      "mode": "100644",
+      "kind": "complete_tree_catalog_from_api",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/ff28b46bdb556c16b6ccdcf428af4a0709b60da8?recursive=1",
+      "git_blob": "98bea9e81d2865eeb6fc4bbc4aa746a78b886eee",
+      "bytes": 1046322,
+      "sha256": "69a0b208e2aadc63ca788d8ddba97b3f1efc63e7d0d9f695a6331c691b61db9e"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/trees/pr181-specified-3213.json",
+      "mode": "100644",
+      "kind": "complete_tree_catalog_from_api",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/c48a59897b13afdf67e4b45675579cfac4d5fec6?recursive=1",
+      "git_blob": "5d9bb19e7366650ac07b956cbbbc4cd6d465fa68",
+      "bytes": 1018444,
+      "sha256": "9ec579709ce6ad6b20a1f041edd651717eab883b295cdc6f34d263c862fb1901"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/trees/host502-native-pin-570bc.json",
+      "mode": "100644",
+      "kind": "complete_tree_catalog_from_api",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/b75d3df24f21b5242a77fa1071de4c4140ff9ede?recursive=1",
+      "git_blob": "eaac199776d3b1a36935879d8491bd776c64eb00",
+      "bytes": 1017394,
+      "sha256": "fd300f44af4cd8cac986eb62f70688e96de50ce99ad59fc157b5dafa6cb70c7a"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/pr182.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "55a085a0270a4684f7e41ddac59fd9aedf5170dc",
+      "bytes": 23598,
+      "sha256": "dcb503bff29624c9cb8e47a44aaa5ebe643bc8e44b363371413377bb52e86fc2"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/pr183.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "bbe78780ae1da6f6256b297b81a2cf1f80e3c028",
+      "bytes": 21914,
+      "sha256": "72afa977127bbfc11d47b3ab67aecc354457ec5713f76cc753071c805dc9aaad"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/pr184.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "0c21ecaf92385ebbf252de1e936e0580a21d8e0f",
+      "bytes": 20450,
+      "sha256": "6ee79fae04b068395df8de17275b256f0495d172bcc3a86229438c94512778f4"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/pr181.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "81f246076b78c5a94b469be0129543ac91d8bb55",
+      "bytes": 20258,
+      "sha256": "c5a10bf693bc5ee7051abdb75f6790b0f3ee4e547755e11c8b6228405db9403c"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/base847.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "19c57d4710834761d5773d3b748769eba39b4ddf",
+      "bytes": 2051,
+      "sha256": "d93a016c0bbaaef9ff267654f65ed366b2911f2a0ed1724417e1182ef499ed54"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/commit182.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "0c23984aaa45dd31ecf1f847e60e4356ec9268ca",
+      "bytes": 1614,
+      "sha256": "ceb422319dcc1e06f2ee558372652f324a0ff6b6317f305450e70fba7d5c7600"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/commit183.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "01f733210d49d44e8c4903f6df49f5843adebdb5",
+      "bytes": 1955,
+      "sha256": "7dcf196c9844289b725a094943d79d336a56e5a544d8b61e7669fa528877115f"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/commit184.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "13f15b4ac077aa4f363ca1b13aa2215fe6c19624",
+      "bytes": 1384,
+      "sha256": "53b140ff9cc5a8aa9d0a305c44d5e453f5802cf981a35e503f865bc51140e11c"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/commit181.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "6befa684e6cd3b5f1cd134534a73a86e936ed559",
+      "bytes": 1695,
+      "sha256": "3b402e0b680b164b9eb094f19830ba3a9fcb9e8e4849764d46fbfd4a89f8b3c4"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/commit181-current.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "6eb3a108ef22df3a9f2bee543001aa6559af4dad",
+      "bytes": 2756,
+      "sha256": "7e869c10035950dec882f9faad856052176f3930ec4c1da84a0e5bdb1026c4bc"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/commit-host502-pin.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "2e212a3ec2b0816241b05788307f6feaaba91761",
+      "bytes": 2177,
+      "sha256": "0be3e991f37335ba45891074464fbed565b6b062d48bc74174ee0b44f06318c4"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/commit-complete-base.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "ed5ba3f6dc1bb0aef7886efc9bfd5d4a7396afe8",
+      "bytes": 2305,
+      "sha256": "bebc9f97eae84be0bb4b50bbe60f4f8bfecf3795bd99dd9f5e2d9157f6a4d262"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/commit-testmerge184.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "a8f85aeff68c04c34948c3f0bbe19919bf441365",
+      "bytes": 2870,
+      "sha256": "9051ec6522ccc2da1a64698f06b84f77ccfb995fcdd285b19a9c64177d676e95"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/actual-adventure-ref.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "84382b53b3a5dd9000417e0c0b6345f47e80a571",
+      "bytes": 503,
+      "sha256": "8aa1a415c60cecc46998234cefe89023603fe13f6e996be13bc0993686dbfbb1"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/runs182.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "2690f3d30fc817e1c4e07744189344c2a99248ec",
+      "bytes": 62750,
+      "sha256": "685943d3ed3612750bb520065af63fddb9383abdc3348647a9227f42093f0671"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/runs183.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "00b8fd6e0c19d8d55ac5e33bc3a8ead1af20738c",
+      "bytes": 46,
+      "sha256": "763f11efb3fd0695809422708bf5765dfad5d8438bfb9a7bad31f23ff74d3285"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/runs184-final.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "200fca5c47bdb5061decfcfdf63a2c7177a6878f",
+      "bytes": 309395,
+      "sha256": "11d566be7467f30f140bf466f97d66fef0aed4e4ab843ddc3566e3be3f49a593"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/jobs182-studio.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "e8ba73953af83079ee131e21b9cea64040326dd9",
+      "bytes": 27754,
+      "sha256": "ed1d55649efa03ff910d5c3c1bad58c38deaa04d1422ab87e984f3f5673bf155"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/jobs182-authority.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "0bc8f5f4658dde01d81268c912bbc203134b3274",
+      "bytes": 19097,
+      "sha256": "768baea168b967aa541c36bd5095bbf092b2e78d59ccdc1dd3817bd66aeb22fa"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/jobs184-fail.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "3e93f54fe139edf05ab924a7dbb413317241c008",
+      "bytes": 4602,
+      "sha256": "589eff9f2f44ef91e123a6c6c5859dbf8adfd394fbb1e307aca026a0a61c3406"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/jobs184-modular.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "be1bc854dc3d4a3380ad85715516781f54922a1a",
+      "bytes": 3345,
+      "sha256": "3fdd0a021ceac07a323e5ed99d915c3b741b2f03122d2aee2482d4a621b9f913"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/metadata/jobs184-b5.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "81cc8e26827fa73cfaf82a44c39d91dc0afa597e",
+      "bytes": 3590,
+      "sha256": "d083f946102c8cb9855f9c6160033cf288b592c66527a15b22fafb62846a0768"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/comparisons/prfiles182.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "a663a6ae491ec85ccb76b7bd15008cc76a58d16a",
+      "bytes": 325433,
+      "sha256": "f37f4737f155fda660b58a52fe0ae654a824cbe991f9aff81cc2628f473eb154"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/comparisons/prfiles183.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "4b401c8b0b10b3f0cc6233921bd9d87a3b12a078",
+      "bytes": 323544,
+      "sha256": "d839f6885d4e91a49bd9a7f2ac0b9e59f26b06b57dc2f846d8eb7313acbc20ef"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/comparisons/prfiles184.json",
+      "mode": "100644",
+      "kind": "canonical_api_snapshot",
+      "git_blob": "be8e4fdf0a19faea79729b869aec1dad0dc95677",
+      "bytes": 38498,
+      "sha256": "ab8ae91d92243733a302e9b04b22a4bb9f7784c19ed3ebb0b45702b134c65ca7"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/comparisons/diff182.json",
+      "mode": "100644",
+      "kind": "derived_from_complete_git_trees",
+      "git_blob": "cc8dd0d618bdac728269700c2239e026bfa49085",
+      "bytes": 376836,
+      "sha256": "d242abcc0253fffd4575f6c234e6f6ab33df4c327f8c7fa737d1dc120a2999d0"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/comparisons/diff183.json",
+      "mode": "100644",
+      "kind": "derived_from_complete_git_trees",
+      "git_blob": "072f198617dec3d6b8ae4ce0c96c5b316924b793",
+      "bytes": 39811,
+      "sha256": "8db2dd53ebdff1a0a2dee53d3c1c72ee1d74e8c6e278bf83bb7bf02941783fc3"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/comparisons/diff184.json",
+      "mode": "100644",
+      "kind": "derived_from_complete_git_trees",
+      "git_blob": "c54359a0f4223e0b6ec2aa01a5050f06700f8230",
+      "bytes": 34630,
+      "sha256": "9c9b5e317b7725adb83d1ac990f80f747fa82ca1d061cc01f251a649549048d4"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/comparisons/testmerge184-head-delta.json",
+      "mode": "100644",
+      "kind": "derived_from_complete_git_trees",
+      "git_blob": "105f3afc8610768347e4821fad27d54e23bdf4c8",
+      "bytes": 748,
+      "sha256": "a667b09bffea3846ce97125b0a55e31250b83f587d45a96445d10ac6c371a30d"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/comparisons/village181-four-paths.json",
+      "mode": "100644",
+      "kind": "derived_from_complete_git_trees",
+      "git_blob": "693f37aa5cb0b60b104c7e30d3f00f7078b6f07c",
+      "bytes": 1561,
+      "sha256": "6af2ea0a5b7c6403b25fd97cf64933588324d9b4c9a2befb2bbf6d711b99ac4c"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/comparisons/ancestry-182.json",
+      "mode": "100644",
+      "kind": "derived_ancestry_from_api",
+      "git_blob": "afb37fec0e74b6f9aae4cdf4e41f04700a2ff4fc",
+      "bytes": 6930,
+      "sha256": "7feb7d38f3eddf044716dadbe52241b2a01c423cdd254d190d87595f7a197416"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/comparisons/ancestry-183.json",
+      "mode": "100644",
+      "kind": "derived_ancestry_from_api",
+      "git_blob": "f7c38495405534ae26d6e7d83c980cdf506b6a1a",
+      "bytes": 9932,
+      "sha256": "bbf3500043769fde5a508bc5e7bcfad2a772d777d5ccc2c3c02af75758da303d"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/comparisons/ancestry-184.json",
+      "mode": "100644",
+      "kind": "derived_ancestry_from_api",
+      "git_blob": "2cc1408a35e9cf9653133dc3f8d31378dd0f083d",
+      "bytes": 12295,
+      "sha256": "7fda00d7642dc02f490acd92499987c9f24e77ff286c85f785b9044833158d87"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/original-logs/job-132583042859.original.log",
+      "mode": "100644",
+      "kind": "original_decoded_utf8_job_log",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132583042859/logs",
+      "git_blob": "5274f6276931a3e1f18bbdd7168bda3f67bc93f2",
+      "bytes": 272986,
+      "sha256": "c45189df24a7e8fc4404f1ac7cdc6d7fcdfda3c1b910a74106b9238ce7607a13"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/original-logs/job-132583042906.original.log",
+      "mode": "100644",
+      "kind": "original_decoded_utf8_job_log",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132583042906/logs",
+      "git_blob": "5dbe451d128a4b143ad857c3bd1d0a83ec3884fb",
+      "bytes": 275883,
+      "sha256": "608b5e5a49e58ad6df47cfb2d7469de056b4ee72c2bd5ca51a255f991d3670ee"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/original-logs/job-132583042835.original.log",
+      "mode": "100644",
+      "kind": "original_decoded_utf8_job_log",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132583042835/logs",
+      "git_blob": "db9534d40513f21b65c47b69e613b96fd80660cc",
+      "bytes": 268536,
+      "sha256": "6eedebdca20fc869f2374bf6648ae906af12d27f520f12b75fc06a71f8d47a11"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/original-logs/job-132498257149.original.log",
+      "mode": "100644",
+      "kind": "original_decoded_utf8_job_log",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132498257149/logs",
+      "git_blob": "fe2c562450726b8edd3686065377531eaade02fb",
+      "bytes": 300792,
+      "sha256": "afc82e7f365fc4b48fb27d13424118f037e60c4091eccaf8edcd36e05df10137"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/original-logs/job-132498257329.original.log",
+      "mode": "100644",
+      "kind": "original_decoded_utf8_job_log",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132498257329/logs",
+      "git_blob": "789e06b6b9c1157199e63618941b96e8f6d36d5e",
+      "bytes": 309112,
+      "sha256": "ae25ac352321e6d962a5c6baf368cf9228d57d21c31c0e43bf5934d59a9496eb"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/original-logs/job-132498257372.original.log",
+      "mode": "100644",
+      "kind": "original_decoded_utf8_job_log",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132498257372/logs",
+      "git_blob": "c00bd9333ab619dd5e738cc9430033930e614945",
+      "bytes": 307297,
+      "sha256": "c83c8274be2314cc8e53a92f2c8756d8d0b3ea7f809acaa7c96200bb8595e5dd"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/original-marker-index.json",
+      "mode": "100644",
+      "kind": "derived_original_line_index",
+      "git_blob": "0dbfff7841cdd9b548339bb481ff703ec7aa7456",
+      "bytes": 3484,
+      "sha256": "cb4fa271bfaec6d6fdba5a3e65007667e15bdc5a1615681a129585752bb0fe77"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/blob-182-workflow.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:b8698b092e7f46bcd319f31479f75e0d5e2536e0",
+      "git_blob": "b8698b092e7f46bcd319f31479f75e0d5e2536e0",
+      "bytes": 9280,
+      "sha256": "1c2402dd44a8f9abe13a5d1bdb72c655ef1bcada58e96bfb7f31cbbffc90fd6f"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/blob-182-doc.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:93c6cfc756e8e62fca413dc7f256c32871baa09a",
+      "git_blob": "93c6cfc756e8e62fca413dc7f256c32871baa09a",
+      "bytes": 5710,
+      "sha256": "1da7f1c6d76bfeae73163cfb098a2c6f7c379c96998b992ec896b947ff79f992"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/blob-183-doc.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:a8ce2cdabf3ca110b7099ac7f61fffbb0db60acf",
+      "git_blob": "a8ce2cdabf3ca110b7099ac7f61fffbb0db60acf",
+      "bytes": 8324,
+      "sha256": "4e8739785f19ba6f33bf6b79badfb8e4a853f80dcd795a8d8e14ace96b88415a"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/blob-183-rival.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:44ec93ac597346c204cf54c797c3d0ab49d7041d",
+      "git_blob": "44ec93ac597346c204cf54c797c3d0ab49d7041d",
+      "bytes": 9671,
+      "sha256": "cbd3ca0d5c85f5749d2d20c5183be2644657962177aea47f7962cc11130c5935"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/blob-183-track-report.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:12cd574743ac3862f7e997df164c76b5c303d84b",
+      "git_blob": "12cd574743ac3862f7e997df164c76b5c303d84b",
+      "bytes": 4750,
+      "sha256": "9ed38e6b4d7f39cdfeceb14c52f35806e4d0915c16db1582feb6009d1ae7a64a"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/blob-183-driving-report.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:9c3b0c12da15f3c1159d711b621ccd9b76092e57",
+      "git_blob": "9c3b0c12da15f3c1159d711b621ccd9b76092e57",
+      "bytes": 2410,
+      "sha256": "1221cfd60d7bdd7f72566120072bd0cb6504f6bbdb978748d78461a53361b3b1"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/blob-184-doc.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:d82b1e5b8d8299b145219e8878e2c81e7df7fc8f",
+      "git_blob": "d82b1e5b8d8299b145219e8878e2c81e7df7fc8f",
+      "bytes": 3273,
+      "sha256": "7f2318476bc66591396c573a82500cbb049338455f431225d9ac5f43ac70cefc"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/blob-184-workflow.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:e57fd4c47c17ea2dd18f9ded5b77dc40a83dad45",
+      "git_blob": "e57fd4c47c17ea2dd18f9ded5b77dc40a83dad45",
+      "bytes": 2967,
+      "sha256": "43d40ff059154c7518651b0e4f7f998b1bd366699f374658388659facb4c80b6"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/source-scripts__games__kart_resonance_system.gd.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:4ee7b58ce3987f1e08bc1f5e80abf5405477f145",
+      "git_blob": "4ee7b58ce3987f1e08bc1f5e80abf5405477f145",
+      "bytes": 5818,
+      "sha256": "d38a7deed9ef78a7ce319e3c841e6186daa457772ee1573e0a7eadd3a763d806"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/source-scripts__tests__kart_physics_regression.gd.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:da9e5186a46316996cc44a44b1f2c6c4a83f7d61",
+      "git_blob": "da9e5186a46316996cc44a44b1f2c6c4a83f7d61",
+      "bytes": 20821,
+      "sha256": "0b23b736822b00c175b85cc940c9110d26f7ab415daadea1343e304daa7e89b3"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/source-scripts__games__kart_modular_route_props.gd.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:c5fec8cf6e1837d32c8a1d70de826de1bb2fdef2",
+      "git_blob": "c5fec8cf6e1837d32c8a1d70de826de1bb2fdef2",
+      "bytes": 8989,
+      "sha256": "1af3e3295d1df9bf0cdfd0707df256a9dc12abd56f89a2f179344f43c56d5f97"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/source-scripts__games__kart_modular_aero_kit.gd.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:59c8ddaeeb8c91e98d93d6df760e41575b205964",
+      "git_blob": "59c8ddaeeb8c91e98d93d6df760e41575b205964",
+      "bytes": 4296,
+      "sha256": "de42e297af639a9a4a39e6be0d80dbdbcef4459c5307608f05e6a3fcdbac6529"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/source-scripts__tests__kart_modular_parts_regression.gd.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:abaf71ccad455cdfa7224a96fbeb6768c08678bd",
+      "git_blob": "abaf71ccad455cdfa7224a96fbeb6768c08678bd",
+      "bytes": 4036,
+      "sha256": "6530370e75278307735aa0058fbfddbaa5a381b5fb92351d23b81311d11c4bc5"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/source-182-scripts__app__app_boot.gd.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:2fc3b5ea4fac7440733ae5a77a8289bcd57557f6",
+      "git_blob": "2fc3b5ea4fac7440733ae5a77a8289bcd57557f6",
+      "bytes": 18707,
+      "sha256": "4ed973120d62f1942842c43f3fe1f1b6b7390997d39e8cef7c1cefdd6ffebaf0"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/source-183-scripts__app__app_boot.gd.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:d1a4a5fabdf099ec70c807662e1b2f6915602acd",
+      "git_blob": "d1a4a5fabdf099ec70c807662e1b2f6915602acd",
+      "bytes": 18913,
+      "sha256": "6ac7cb60ba94c10187ae64193956e3a3b932460bfff67c2318ddffebafa79f92"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/source-183-scripts__systems__host_bridge.gd.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:a9876cec58d075b7fc88d326eb6588d44aeaf4db",
+      "git_blob": "a9876cec58d075b7fc88d326eb6588d44aeaf4db",
+      "bytes": 5634,
+      "sha256": "7155c6bef2655499f72c4f32ce72a0feb0617ebad1b5e239bb5592a228c7cb8c"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/source-183-scripts__tests__native_table_boot_regression.gd.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:58208882249bf374173399e0b9051c3f2ea5b483",
+      "git_blob": "58208882249bf374173399e0b9051c3f2ea5b483",
+      "bytes": 3143,
+      "sha256": "0e7ee6808cae0f1bc21f88b6d3897cf5c7193d1f5f09fa7cf25539b767b33765"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/source-183-scripts__learning__learning_world.gd.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:9b03487d7da91534130ba33a14fbc7fb8aece6b7",
+      "git_blob": "9b03487d7da91534130ba33a14fbc7fb8aece6b7",
+      "bytes": 63050,
+      "sha256": "432837ab1b0cd9d73311433ff37258109cc0e0eb0bc60a252fe5050ef54e2588"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/source-183-.github__workflows__lumo-discovery-connections.yml.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:a806855cf51ab7f63b14163596488fc1d3746dc1",
+      "git_blob": "a806855cf51ab7f63b14163596488fc1d3746dc1",
+      "bytes": 35914,
+      "sha256": "7808349f14aa39259edaee1d5b832c8660f45a8c7065af65f8e285ff99104a0f"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/source-847-.github__workflows__lumo-discovery-connections.yml.original.txt",
+      "mode": "100644",
+      "kind": "original_git_blob",
+      "source": "Ullmann27/lumo-godot:02940ea1a3698d14b8fabaed4d5ee7af5b24907b",
+      "git_blob": "02940ea1a3698d14b8fabaed4d5ee7af5b24907b",
+      "bytes": 36019,
+      "sha256": "b405809453eb82bf670952ec4a242cb84f2d00a8da1746b3bc97d28e5ebcbe0f"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/read-sources/current-host-ec-MainActivity.kt.original.txt",
+      "mode": "100644",
+      "kind": "original_git_file",
+      "source": "Ullmann27/lumo-lernen:ec936873a45ffeb9ab347cc6bdb10951e38fac5e:tools/auto_install/MainActivity.kt",
+      "git_blob": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b",
+      "bytes": 19093,
+      "sha256": "b1b223b5e39cd4989505f83a9ecef9bd33bc21ee5a17fd377d6e41137fa8a5d7"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/review.json",
+      "mode": "100644",
+      "kind": "review",
+      "git_blob": "c9f799d376467f2cd9a04eb289e052cb57d357ca",
+      "bytes": 31759,
+      "sha256": "9aa8710f846b85592b128fbf9b37dce111e172ad35279d35c6c926c9959f20ee"
+    },
+    {
+      "path": "docs/evidence/native-producer-triage-20261114-2054/README.md",
+      "mode": "100644",
+      "kind": "review",
+      "git_blob": "36815c944d5b93c05d9fe6242d311ea9a8ffd327",
+      "bytes": 8487,
+      "sha256": "9811bb4e18485be5dccf9bb7687daf18b7c6567c8d75d60a0fc00e44f124699a"
+    }
+  ],
+  "note": "Canonical API snapshots are semantic serializations. Original log/source strings are kept byte-identical in UTF-8 to the retrieved content. Manifest omits its own self-reference."
+}
