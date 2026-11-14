@@ -1,8 +1,8 @@
 import 'dart:math' as math;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
+import '../../writing/widgets/lumo_ink_surface.dart';
 
 /// 2026-06-05 Iter 20: Form-Nachzeichnen-Canvas mit Demo + Trace Phase.
 ///
@@ -82,8 +82,7 @@ class _LumoShapeTraceCanvasState extends State<LumoShapeTraceCanvas>
 
   void _move(Offset p) {
     if (_active == null) return;
-    if (_active!.isNotEmpty &&
-        (_active!.last - p).distance < 1.5) {
+    if (_active!.isNotEmpty && (_active!.last - p).distance < 1.5) {
       return;
     }
     setState(() => _active = <Offset>[..._active!, p]);
@@ -95,6 +94,11 @@ class _LumoShapeTraceCanvasState extends State<LumoShapeTraceCanvas>
       if (_active!.length >= 2) _strokes.add(_active!);
       _active = null;
     });
+  }
+
+  void _cancel() {
+    if (_active == null) return;
+    setState(() => _active = null);
   }
 
   void _undo() {
@@ -144,7 +148,8 @@ class _LumoShapeTraceCanvasState extends State<LumoShapeTraceCanvas>
 
     // Form-spezifische Toleranzen.
     final ok = switch (widget.shape) {
-      'circle' => corners <= 2 && totalLen > 200 && (aspect > 0.7 && aspect < 1.4),
+      'circle' =>
+        corners <= 2 && totalLen > 200 && (aspect > 0.7 && aspect < 1.4),
       'square' => corners >= 3 && (aspect > 0.7 && aspect < 1.4),
       'rectangle' => corners >= 3,
       'triangle' => corners >= 2 && corners <= 4,
@@ -194,7 +199,8 @@ class _LumoShapeTraceCanvasState extends State<LumoShapeTraceCanvas>
     var corners = 0;
     // Sample alle ~6 Punkte zur Winkelberechnung
     const step = 6;
-    var lastDir = math.atan2(pts[step].dy - pts[0].dy, pts[step].dx - pts[0].dx);
+    var lastDir =
+        math.atan2(pts[step].dy - pts[0].dy, pts[step].dx - pts[0].dx);
     for (var i = step; i + step < pts.length; i += step) {
       final dir = math.atan2(
           pts[i + step].dy - pts[i].dy, pts[i + step].dx - pts[i].dx);
@@ -235,6 +241,7 @@ class _LumoShapeTraceCanvasState extends State<LumoShapeTraceCanvas>
                     onStart: _start,
                     onMove: _move,
                     onEnd: _end,
+                    onCancel: _cancel,
                     submitted: _submitted,
                   ),
           ),
@@ -282,14 +289,11 @@ class _PhaseHeader extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             decoration: BoxDecoration(
-              color: isDemo
-                  ? const Color(0xFFFFEDD5)
-                  : const Color(0xFFDCFCE7),
+              color: isDemo ? const Color(0xFFFFEDD5) : const Color(0xFFDCFCE7),
               borderRadius: BorderRadius.circular(LumoRadius.pill),
               border: Border.all(
-                color: isDemo
-                    ? const Color(0xFFFB923C)
-                    : const Color(0xFF22C55E),
+                color:
+                    isDemo ? const Color(0xFFFB923C) : const Color(0xFF22C55E),
                 width: 1.3,
               ),
             ),
@@ -299,9 +303,8 @@ class _PhaseHeader extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontSize: 12,
                 fontWeight: FontWeight.w900,
-                color: isDemo
-                    ? const Color(0xFF9A3412)
-                    : const Color(0xFF14532D),
+                color:
+                    isDemo ? const Color(0xFF9A3412) : const Color(0xFF14532D),
               ),
             ),
           ),
@@ -352,6 +355,7 @@ class _TraceStage extends StatelessWidget {
     required this.onStart,
     required this.onMove,
     required this.onEnd,
+    required this.onCancel,
     required this.submitted,
   });
   final List<List<Offset>> strokes;
@@ -359,6 +363,7 @@ class _TraceStage extends StatelessWidget {
   final ValueChanged<Offset> onStart;
   final ValueChanged<Offset> onMove;
   final VoidCallback onEnd;
+  final VoidCallback onCancel;
   final bool submitted;
 
   @override
@@ -368,34 +373,24 @@ class _TraceStage extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           final size = Size(constraints.maxWidth, constraints.maxHeight);
-          return RawGestureDetector(
-            gestures: <Type, GestureRecognizerFactory>{
-              EagerHorizontalDragRecognizer:
-                  GestureRecognizerFactoryWithHandlers<
-                      EagerHorizontalDragRecognizer>(
-                () => EagerHorizontalDragRecognizer(),
-                (instance) {},
+          return LumoInkSurface(
+            key: const ValueKey('lumo-shape-ink-surface'),
+            onStart: (position) => onStart(_clamp(position, size)),
+            onUpdate: (position) => onMove(_clamp(position, size)),
+            onEnd: onEnd,
+            onCancel: onCancel,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(LumoRadius.md),
+                border: Border.all(color: const Color(0xFFE5E7EB), width: 1.4),
               ),
-            },
-            child: Listener(
-              onPointerDown: (e) =>
-                  onStart(_clamp(e.localPosition, size)),
-              onPointerMove: (e) =>
-                  onMove(_clamp(e.localPosition, size)),
-              onPointerUp: (_) => onEnd(),
-              onPointerCancel: (_) => onEnd(),
-              behavior: HitTestBehavior.opaque,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(LumoRadius.md),
-                  border: Border.all(
-                      color: const Color(0xFFE5E7EB), width: 1.4),
+              child: CustomPaint(
+                painter: _TracePainter(
+                  strokes: List<List<Offset>>.unmodifiable(strokes),
+                  active: active,
                 ),
-                child: CustomPaint(
-                  painter: _TracePainter(strokes: strokes, active: active),
-                  size: Size.infinite,
-                ),
+                size: Size.infinite,
               ),
             ),
           );
@@ -409,15 +404,6 @@ class _TraceStage extends StatelessWidget {
       p.dx.clamp(0.0, s.width),
       p.dy.clamp(0.0, s.height),
     );
-  }
-}
-
-/// Eager-Drag-Recognizer um den Scrollable-Parent zu blockieren,
-/// damit das Trace-Canvas nicht mit dem Eltern-Scroll konkurriert.
-class EagerHorizontalDragRecognizer extends HorizontalDragGestureRecognizer {
-  @override
-  void rejectGesture(int pointer) {
-    acceptGesture(pointer);
   }
 }
 
@@ -606,11 +592,8 @@ class _ShapeDemoPainter extends CustomPainter {
           final tan = m.getTangentForOffset(headLen);
           if (tan != null) {
             canvas.drawCircle(
-                tan.position, 7,
-                Paint()..color = const Color(0xFFFB923C));
-            canvas.drawCircle(
-                tan.position, 3.5,
-                Paint()..color = Colors.white);
+                tan.position, 7, Paint()..color = const Color(0xFFFB923C));
+            canvas.drawCircle(tan.position, 3.5, Paint()..color = Colors.white);
           }
           break;
         }
@@ -682,8 +665,7 @@ class _ShapeDemoPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_ShapeDemoPainter old) =>
-      old.t != t || old.shape != shape;
+  bool shouldRepaint(_ShapeDemoPainter old) => old.t != t || old.shape != shape;
 }
 
 class _TracePainter extends CustomPainter {

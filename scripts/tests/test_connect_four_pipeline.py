@@ -50,12 +50,21 @@ class WorkflowTests(unittest.TestCase):
                 'github.head_ref':'integration/lumo-c4-connections-20261114'}
         for name in ('connect-four-runtime','android-host-compile','verify-and-build'):
             block=job(self.workflow,name)
-            self.assertTrue(condition(block,values))
+            for branch in ('integration/lumo-c4-connections-20261114',
+                           'integration/lumo-agent-execution-20261114'):
+                with self.subTest(job=name,branch=branch):
+                    self.assertTrue(condition(block,{**values,'github.head_ref':branch}))
             for key,value in (('github.event_name','push'),('github.event_name','workflow_dispatch'),
                               ('github.event.pull_request.head.repo.full_name','outside/fork'),
-                              ('github.head_ref','integration/lumo-connections-20261113')):
+                              ('github.head_ref','integration/lumo-connections-20261113'),
+                              ('github.head_ref','integration/lumo-agent-execution-20261114-copy'),
+                              ('github.repository','outside/fork')):
                 with self.subTest(job=name,key=key,value=value):
                     self.assertFalse(condition(block,{**values,key:value}))
+            with self.subTest(job=name,branch='new branch with fork'):
+                self.assertFalse(condition(block,{**values,
+                    'github.head_ref':'integration/lumo-agent-execution-20261114',
+                    'github.event.pull_request.head.repo.full_name':'outside/fork'}))
 
     def test_source_pin_guard_executes_real_existing_policy(self):
         block=step(job(self.workflow,'connect-four-runtime'),
@@ -155,12 +164,14 @@ class WorkflowTests(unittest.TestCase):
             self.assertNotIn(forbidden,self.workflow)
         self.assertNotIn('27ae4270',self.workflow)
 
-    def test_only_c4_branch_is_added_to_existing_unified_exclusions(self):
+    def test_both_c4_branches_are_excluded_from_duplicate_unified_builds(self):
         unified=(ROOT/'.github/workflows/lumo-unified-integration-2026.yml').read_text()
         block=job(unified,'verify-and-build')
-        c4='integration/lumo-c4-connections-20261114'
-        self.assertFalse(condition(block,{'github.head_ref':c4,'github.ref_name':'123/merge'}))
-        self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':c4}))
+        for c4 in ('integration/lumo-c4-connections-20261114',
+                   'integration/lumo-agent-execution-20261114'):
+            with self.subTest(branch=c4):
+                self.assertFalse(condition(block,{'github.head_ref':c4,'github.ref_name':'123/merge'}))
+                self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':c4}))
         self.assertTrue(condition(block,{'github.head_ref':'unrelated-existing-branch','github.ref_name':'123/merge'}))
         self.assertIn("assert int(version[1]) != 2018",block)
         self.assertIn("assert int(version[1]) != 2019",block)
