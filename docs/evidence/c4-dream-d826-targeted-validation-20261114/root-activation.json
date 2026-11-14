@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-11-14T11:15:59.473Z",
+  "source_checkpoint": "d826ce4e11879bc797f7d96c0a7e2c966e0773f7",
+  "source_tree": "7269a76137233bf16149e8fb89b612ba06a77668",
+  "native": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "validation": {
+    "delivery": 56,
+    "pipeline": 11,
+    "candidate_pin": 24,
+    "legacy_pin": 40,
+    "historical_wrapper": 3,
+    "garage_assertion": 1,
+    "total_passed": 135,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "actionlint_invocations": 1,
+    "actionlint_exit": 0
+  },
+  "original_archives": [
+    {
+      "path": "root-pin-originals.tar.gz",
+      "sha": "9f7c374acd3f21fc92f5740cf5ffc0a9029d889c",
+      "sha256": "0462e4bbe4edc7aa5abc8bff0f2fc6725a101c4b61e26a9c8a3d3adb8be56554",
+      "bytes": 5750
+    },
+    {
+      "path": "dream-gates-originals.tar.gz",
+      "sha": "97fb234d55bcfafddf5bfdd5ce2bf57b14ff017b",
+      "sha256": "22151d5e356d35a498404bbf439ce03ee61ea481500555f3ec79ce2a40b83d67",
+      "bytes": 901169
+    }
+  ],
+  "source_and_index_unchanged_during_both_runs": true,
+  "materialized_tracked_files_verified": 1843,
+  "explicit_skip_worktree_files": 2438,
+  "source_changes_in_this_activation_commit": 0,
+  "scope": "Actual local contract and workflow validation only. This evidence commit activates the existing full same-source C4 pipeline with all previous gates and the additional Dream requirement.",
+  "pending": [
+    "full Flutter and complete script/Android-QA suites on the new host commit",
+    "fresh pinned Native 52/17, Return21, Wisp14 and Dream5/7/2 acceptance in the same Host run",
+    "new APK build, Android acceptance and preserved update proof",
+    "delivery bundle verification"
+  ],
+  "new_apk_or_release_claim": false
+}

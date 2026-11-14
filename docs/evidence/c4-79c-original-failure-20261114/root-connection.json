@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "parent": "186283019a44a01897f5fac3ee6c471e94ad7297",
+  "active_branch_expected_head": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+  "native_unchanged": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "source_tree_changes": "Evidence only in this activation commit. Four selected test changes are in its parent. No workflow/production/pin change.",
+  "original_run": 43581113174,
+  "original_result": "FAIL, preserved complete original bytes",
+  "reason_for_activation": "The sole actual CI error is exactly the independently reviewed and targeted RED/GREEN fixture repair already committed in the parent.",
+  "new_run_status": "Not yet started at commit preparation; no inferred new outcome."
+}

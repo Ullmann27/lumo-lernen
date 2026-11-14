@@ -76,6 +76,23 @@ for relative in baseline['package_files']:
     package_files[relative] = {'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
 gpu = {'api37-host': 'host', 'api37-swiftshader': 'swiftshader',
        'api37-swangle': 'swangle'}[case]
+# The pinned 37.2.13 build records the SwiftShader backend for a SWANGLE
+# launch. Keep the requested GLES mode, recorded argv and actual renderer
+# separate: a backend name alone cannot prove that ANGLE is running.
+expected_effective_gpu = 'swiftshader' if gpu == 'swangle' else gpu
+launch_path = hardware_path.with_name('emu-launch-params.txt')
+launch_data = launch_path.read_bytes()
+launch_lines = launch_data.decode('utf-8').splitlines()
+launch_argv = launch_lines[3:]
+launch_header_matches = (len(launch_lines) >= 4
+    and bool(launch_lines[0]) and bool(launch_lines[1])
+    and re.fullmatch(r'[0-9]+', launch_lines[2]) is not None
+    and int(launch_lines[2]) == len(launch_argv)
+    and launch_lines[1] == launch_argv[0])
+launch_gpu_options = [launch_argv[index + 1] if index + 1 < len(launch_argv) else None
+                     for index, argument in enumerate(launch_argv) if argument == '-gpu']
+launch_matches = (launch_header_matches and launch_gpu_options == [gpu]
+                  and not any(argument.startswith('-gpu=') for argument in launch_argv))
 gles = [line.strip() for line in (out / 'surfaceflinger-start.stdout').read_text().splitlines()
         if line.strip().startswith('GLES:')]
 renderer_marker = 'swiftshader' if gpu == 'swiftshader' else 'llvmpipe'
@@ -89,13 +106,19 @@ checks = {
         sample['android_runtime'] == baseline['android_runtime'] for sample in readiness['samples']),
     'same_effective_non_graphics_hardware': all(
         hardware.get(key) == value for key, value in baseline['effective_hardware_unchanged'].items()),
-    'effective_gpu_mode_matches_requested_case': hardware.get('hw.gpu.mode') == gpu,
+    'recorded_emulator_launch_matches_requested_case': launch_matches,
+    'effective_gpu_mode_matches_requested_case': hardware.get('hw.gpu.mode') == expected_effective_gpu,
     'one_actual_gles_renderer_matches_case': renderer_matches,
     'actual_framework_guard_passed': readiness.get('status') == 'PASS',
 }
 report = {
     'schema': 1, 'status': 'PASS' if all(checks.values()) else 'FAIL',
     'case': case, 'requested_gpu': gpu, 'observed_gles': gles,
+    'expected_effective_gpu_mode': expected_effective_gpu,
+    'emulator_launch': {'path': str(launch_path.relative_to(out)),
+                        'bytes': len(launch_data),
+                        'sha256': hashlib.sha256(launch_data).hexdigest(),
+                        'argc': len(launch_argv), 'gpu_options': launch_gpu_options},
     'baseline_sha256': hashlib.sha256(baseline_path.read_bytes()).hexdigest(),
     'original': baseline['original'], 'checks': checks, 'package_files': package_files,
     'effective_hardware': {key: hardware.get(key) for key in

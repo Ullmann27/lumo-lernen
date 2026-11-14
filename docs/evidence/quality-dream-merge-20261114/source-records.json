@@ -1,0 +1,191 @@
+{
+  "recorded_at_utc": "2026-11-14T11:29:01.928866+00:00",
+  "base": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+  "ours": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+  "theirs": "3d91bd8355a539c3c2413760959684cd3fee985a",
+  "records": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "originals": {
+        "base": {
+          "commit": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+          "bytes": 43922,
+          "blob": "cda9b0f8ab09ea9f20d07e672ef2b99462e146af",
+          "sha256": "43112c519b6f3377474cec788ba08d022036f219c3dbd03136e57d7cfb7afeaa"
+        },
+        "ours": {
+          "commit": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+          "bytes": 46015,
+          "blob": "c7d2ce90ffb9f502cb0c69ae97c75e1a01d606a8",
+          "sha256": "f3c24ae2aef6ef79557f0904261832705b82e9029ee8af86b92503a35d09f799"
+        },
+        "theirs": {
+          "commit": "3d91bd8355a539c3c2413760959684cd3fee985a",
+          "bytes": 45539,
+          "blob": "d56118529b7493e819262e61427d627c01ee0753",
+          "sha256": "543d0415098a18007aa0f863cc4dbbbada7dc82cc30dc77c13446a8f2b5399b6"
+        }
+      },
+      "merge_file_exit_code": 1,
+      "automatic_sha256": "815868d9b5810a8efdc42d872b1dc5877410d450779e85c30f3eaa32ace6c817",
+      "automatic_bytes": 47836
+    },
+    {
+      "path": "config/godot-source.json",
+      "originals": {
+        "base": {
+          "commit": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+          "bytes": 145,
+          "blob": "a07c0176806321daf8e7a0d6df5c8697f82ba3b2",
+          "sha256": "bdd44f24660ab13cee297c65238238d6181fc60d7fad22ad456f1633955db767"
+        },
+        "ours": {
+          "commit": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+          "bytes": 145,
+          "blob": "e48dc853bb003d1d2d294d2be082468b1d7d861a",
+          "sha256": "c29333576026df9912bbf5873ac35b7cc815daf804655f4dbce0a1c9bbda35c7"
+        },
+        "theirs": {
+          "commit": "3d91bd8355a539c3c2413760959684cd3fee985a",
+          "bytes": 145,
+          "blob": "9dcf0ce0e38caa676777c02eb71aa09c1b425fad",
+          "sha256": "9190ff1a60b61ce8cb40d44daea300315a359a5ff1d7d47b4623a4c4ae9bb240"
+        }
+      },
+      "merge_file_exit_code": 1,
+      "automatic_sha256": "60fc3fe9d8695369b5219550d01c34471c1cf24b285051b9cd21e76a469fd891",
+      "automatic_bytes": 367
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "originals": {
+        "base": {
+          "commit": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+          "bytes": 17393,
+          "blob": "3f3a74806b29f07b18bcc3ecc88da982bb28f3c1",
+          "sha256": "1dfbd8cc20e203db0bf1338437d14ae36eb598fea36a235f092a191866a4c711"
+        },
+        "ours": {
+          "commit": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+          "bytes": 17696,
+          "blob": "90119ae81231819d30d6ae319838e75204d27fdc",
+          "sha256": "df559d0b85f94a958c4deb51f5a7d75e9c87b169a84d38ad75302a0f2bbb5109"
+        },
+        "theirs": {
+          "commit": "3d91bd8355a539c3c2413760959684cd3fee985a",
+          "bytes": 17393,
+          "blob": "b0373f0f8efb8bda20faf49fbde9d7cb7c54cc06",
+          "sha256": "512094ced303fdffb955eee93fce5ce71a8de757a9510940b8f6cac3da0ac931"
+        }
+      },
+      "merge_file_exit_code": 1,
+      "automatic_sha256": "a3b6fbc2980fe1b89caed45a99565d1148d64ff9553807928d868726dc683371",
+      "automatic_bytes": 17964
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "originals": {
+        "base": {
+          "commit": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+          "bytes": 54097,
+          "blob": "c7b9461ed056521a5da1fb528afe614b7cdeecee",
+          "sha256": "bd7637f769064c3cf13dd910c04b917cc90ad5c04b7b761021a5e0128f826b8a"
+        },
+        "ours": {
+          "commit": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+          "bytes": 54861,
+          "blob": "782210e49c47750265358e0ab39d6f1e54ccd98c",
+          "sha256": "730b332758be4648ea22cb393d5740c56eb9942838ac85ff71384946d476d0da"
+        },
+        "theirs": {
+          "commit": "3d91bd8355a539c3c2413760959684cd3fee985a",
+          "bytes": 66711,
+          "blob": "a91e25120489d21fc409930d893f52b31448aea3",
+          "sha256": "9ce1031bf12a677fe346188fdb7f5edcbc77bd12245ecea642adc065735f8f0b"
+        }
+      },
+      "merge_file_exit_code": 0,
+      "automatic_sha256": "d7bcf66b0b95802004c2f63d8487035d569386909e3bb7afb56a8b71739a4c36",
+      "automatic_bytes": 67475
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "originals": {
+        "base": {
+          "commit": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+          "bytes": 51208,
+          "blob": "eb35329baf46efa5cdf17af1187e8c460d93c752",
+          "sha256": "b981836528b83c339e3e6fac16712786619905cb0159016f0a021ee447be6800"
+        },
+        "ours": {
+          "commit": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+          "bytes": 51404,
+          "blob": "5f64dfd544c24cbae04e79092bf44fd22f259065",
+          "sha256": "8fa549a8d974fbe0f2d0c27647fb0e83a1756b2ce246c21d098b4071173f9e14"
+        },
+        "theirs": {
+          "commit": "3d91bd8355a539c3c2413760959684cd3fee985a",
+          "bytes": 56951,
+          "blob": "cbd999a042b4c7e5ea15b1bb90ab2bc9f72233ff",
+          "sha256": "332d059e2b7a3da338cb9cc27dd41830020a0cfda1fb19a5fedd789feaccfb82"
+        }
+      },
+      "merge_file_exit_code": 1,
+      "automatic_sha256": "6a42947773032243a99ccabd7c78bae8f47b96be80645e5b210af7502a194cf4",
+      "automatic_bytes": 57341
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "originals": {
+        "base": {
+          "commit": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+          "bytes": 10697,
+          "blob": "fc050358bce96db9e6cb1ffec77a4ea9e53c1cbb",
+          "sha256": "b5f98f3356887328946059945bd893e242fbca6fa5647bf44c1e3e65fc7a2984"
+        },
+        "ours": {
+          "commit": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+          "bytes": 10779,
+          "blob": "2905fc04905ce6b51a940dc76013caf8431091c8",
+          "sha256": "ecdbbbb08b6bfa20b4563936405cfd4562a107f60f3210b4d4a130afa743f13b"
+        },
+        "theirs": {
+          "commit": "3d91bd8355a539c3c2413760959684cd3fee985a",
+          "bytes": 10687,
+          "blob": "b10d2ba20c93d17f723b9c190652060968505b53",
+          "sha256": "14f363f836072e194b0a188af43bc76c9133adcc8a5c04157f25fc7a1217ca2c"
+        }
+      },
+      "merge_file_exit_code": 1,
+      "automatic_sha256": "8e4d2ab8525fb02be3ffa2e60a2309b1d35a767d3043e9f9503cfaefc8251e3e",
+      "automatic_bytes": 11239
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "originals": {
+        "base": {
+          "commit": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+          "bytes": 30190,
+          "blob": "9b1413a39e327258cb3ebc583ea7a17070a9cf34",
+          "sha256": "cc7913d2137909628235d6e558e1be33180ca950cef4fe6dcfaa6d9458b0c5a1"
+        },
+        "ours": {
+          "commit": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+          "bytes": 30218,
+          "blob": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d",
+          "sha256": "3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae"
+        },
+        "theirs": {
+          "commit": "3d91bd8355a539c3c2413760959684cd3fee985a",
+          "bytes": 30218,
+          "blob": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d",
+          "sha256": "3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae"
+        }
+      },
+      "merge_file_exit_code": 0,
+      "automatic_sha256": "3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae",
+      "automatic_bytes": 30218
+    }
+  ],
+  "scope": "Original source materialization and actual git merge-file output; no product source modified or test acceptance claimed."
+}

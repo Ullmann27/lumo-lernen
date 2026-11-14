@@ -1,0 +1,65 @@
+{
+  "status": "TARGETED_RED_GREEN",
+  "original": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-m",
+      "unittest",
+      "scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate",
+      "-v"
+    ],
+    "cwd": "/tmp/lumo-root-recovery-0900/host-c4",
+    "source": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+    "started_utc": "2026-11-14T09:47:45.754461+00:00",
+    "finished_utc": "2026-11-14T09:47:46.044907+00:00",
+    "elapsed_seconds": 0.2904694689932512,
+    "exit_code": 1,
+    "log": "original-red.log"
+  },
+  "proposed": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-m",
+      "unittest",
+      "scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate",
+      "-v"
+    ],
+    "cwd": "/tmp/host-79c-qa-fixture-repair-20261114/test-view",
+    "production_source": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+    "test_source": "26a127bb897c9dd0832512d2ae3b80a6495f7f7e",
+    "test_blob": "90a58f5aab7c2b462bad377bd5fbfd03b218e14d",
+    "started_utc": "2026-11-14T09:48:26.815382+00:00",
+    "finished_utc": "2026-11-14T09:48:27.032867+00:00",
+    "elapsed_seconds": 0.21750150600564666,
+    "exit_code": 0,
+    "log": "proposed-green.log"
+  },
+  "original_failure": "QA fixture uses current f052 source even though historical diagnostic requires exact17f5 for both source checkouts",
+  "fix": "Separate temporary historical QA source containing original current helper bytes plus exact2019/17f5 configuration; existing committed-helper checks run against a real temporary Git commit. Existing metadata/Git-identity mocks remain explicitly synthetic.",
+  "production_verifier_changed": false,
+  "production_native_pin_changed": false,
+  "worktree_source_head_tree_index_status_unchanged": true,
+  "unchanged_bound_paths": 8,
+  "tests_per_phase": 1,
+  "red_errors": 1,
+  "green_failures": 0,
+  "green_errors": 0,
+  "green_skips": 0,
+  "no_claims": [
+    "Android/device execution",
+    "APK upgrade acceptance",
+    "full current CI success"
+  ],
+  "logs": {
+    "original-red.log": {
+      "bytes": 1249,
+      "sha256": "641c43b6456acb912085069e589fb7d23f92c5a21c72572e654df6f26259df39",
+      "git_blob": "3d4ed0499bf8430f35bebaa6f68316c159f01eef"
+    },
+    "proposed-green.log": {
+      "bytes": 284,
+      "sha256": "44bc531e2c08f6c3856e3efb9a313f8edc6e337b6fa475f440aad9efe30fab46",
+      "git_blob": "08eb53e2612982a584accf7a14d5145e48739d96"
+    }
+  }
+}
