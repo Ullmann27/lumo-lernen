@@ -1,0 +1,198 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1837,
+      "sha256": "e8286d088cad251d6dfe9cd214761a78d871f0b75c6723417ffa06f1a7c4ab89",
+      "git_blob": "f19b53625b9cac9c8fe2a7018a806b14c410b2e4"
+    },
+    {
+      "path": "archive-roundtrip.json",
+      "bytes": 7254,
+      "sha256": "009058152bd26c87411d3c6f2bd82ae14f5ffd5682ca55e1d144d8c3a06f7a9e",
+      "git_blob": "394374b9134a64b6a728fa4dafda994d7625e2b2"
+    },
+    {
+      "path": "checkpoint-binding.json",
+      "bytes": 1530360,
+      "sha256": "7dba4e0522d947285f9c1ef70efc1acc4d50170219d1b83b44dcce57042ce7e8",
+      "git_blob": "1f9c5faccf34bcb9f0e63545916a1e82bead6a9b"
+    },
+    {
+      "path": "expected-methods.json",
+      "bytes": 7602,
+      "sha256": "9cb09fa4dc67720bcc02f89e0080ab20403880e521405943c018f1f0c3387761",
+      "git_blob": "ff97e90643d18aa062e173e310c63f230aaf5c3f"
+    },
+    {
+      "path": "freeze_result.py",
+      "bytes": 7016,
+      "sha256": "852e1e915b86a6fd8a9811b4a07121e117616efbeca39cfff4460d3961ccec7a",
+      "git_blob": "5ef7cd1b27b50ade94a6d1c462fa4b3e2b22bd2d"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 4213,
+      "sha256": "b02cabbd15cf9ce8accca755f58754559361b17aa75686800cb53f724a5db552",
+      "git_blob": "d9e95ed781c735893ba270cbcd38b1e4ce4412e5"
+    },
+    {
+      "path": "inventories/after.json",
+      "bytes": 2955,
+      "sha256": "3657b819d0ad2cf6d9cf949df4b469615e341b949e3d0c7daaf1d62d963e9e68",
+      "git_blob": "18d07c496ea90514f55eb671e779e98d9985b8db"
+    },
+    {
+      "path": "inventories/before.json",
+      "bytes": 2955,
+      "sha256": "3657b819d0ad2cf6d9cf949df4b469615e341b949e3d0c7daaf1d62d963e9e68",
+      "git_blob": "18d07c496ea90514f55eb671e779e98d9985b8db"
+    },
+    {
+      "path": "original-result-reconciliation.json",
+      "bytes": 30073,
+      "sha256": "ebac3d8431fbf12304f890c9e7d235ba5c13a2062067ca919fe7ee5354d52217",
+      "git_blob": "6bb683fd443cae1dc5b044b9dda07871629deff6"
+    },
+    {
+      "path": "originals/publication.json",
+      "bytes": 11117,
+      "sha256": "82dbd734611bc422e48b1a78ead6685dbe7ed0cc6a257025cd2d804aad530a66",
+      "git_blob": "deabee693e92982dfb2ecb3637ff63092fe29b27"
+    },
+    {
+      "path": "originals/source-freeze-v2.json",
+      "bytes": 6594,
+      "sha256": "496d06277b19412d73491b862e88aaf769bcdcd6bb591bc6ae567126854f8906",
+      "git_blob": "163797c98656d2177225fe5211864a81033a3726"
+    },
+    {
+      "path": "originals/test-plan.json",
+      "bytes": 1195,
+      "sha256": "2f4b41eba3ccb8f7b7795ff8319c13ec7689778ad8ca570157f9829ae605c442",
+      "git_blob": "1eccf36e97c00d1e953814c37887684f61c4b981"
+    },
+    {
+      "path": "originals/tree-leaves.json",
+      "bytes": 1453538,
+      "sha256": "49c21fcd8a641b38d27d81f01b530cde9e4e3a5f7342899a19e5305aec275d91",
+      "git_blob": "9962ff179cb5aea54271781fa5a68a8d10378b4f"
+    },
+    {
+      "path": "read_original_result.py",
+      "bytes": 4533,
+      "sha256": "38f1fa74369570cf79951921bb3f01bbe596953ad69327f7e28017b9494ac1c9",
+      "git_blob": "c299161ab18de599aa02a3ca9ec0c69703eb5f3b"
+    },
+    {
+      "path": "run_once.py",
+      "bytes": 5506,
+      "sha256": "9fab07b740a71bebefaed924d7053a50780c15a243a7c57018418ff8dfe94131",
+      "git_blob": "a693443e08a0c89fe5804c1bb85b5cab66333853"
+    },
+    {
+      "path": "runs/invocation.json",
+      "bytes": 1324,
+      "sha256": "044f9c94ddf9ffb98ace22c329533fcebbe4f9b9b1c88d35480c377795d27277",
+      "git_blob": "c38e5dfde006aed8a180fa1ef24c383a4a0e946d"
+    },
+    {
+      "path": "runs/outer-exec.original.json",
+      "bytes": 500,
+      "sha256": "e1ece1cb75f30187e8fdc09f9a96e7bc1dcc7a93afaf7a6fb8827dbbf3195320",
+      "git_blob": "e073b60dced0e20a54b45d24430b6dfa282ef94a"
+    },
+    {
+      "path": "runs/result.json",
+      "bytes": 8664,
+      "sha256": "417b37c5510afb3c0d0b6a85cf7d8a0e51fdfeecdf681436b914468cc10b7084",
+      "git_blob": "7419759d56e635e1259283d557099650dc88639c"
+    },
+    {
+      "path": "runs/stderr.original",
+      "bytes": 11442,
+      "sha256": "5ec291f1685f9f730c0c80835addb7e3fb876ab710ca31df651c40b03d1c0dab",
+      "git_blob": "91de81762dec999cc36df5bd86310be00beaa903"
+    },
+    {
+      "path": "runs/stdout.original",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "source/.github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 30044,
+      "sha256": "6623bcff15f2e3d1425c46fd044be2e0ffbe6018b1f4567634ae1429ae2c4658",
+      "git_blob": "dae27bce72a09d786fd5a96cb39d10cc716dc5e2"
+    },
+    {
+      "path": "source/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 45094,
+      "sha256": "5ea73c94211bb0286aba1167da845d4ccc08ae31d3888dc6b6789b8df86b2772",
+      "git_blob": "6c9ee29c314bf999349c73da6faf9226ac0f8916"
+    },
+    {
+      "path": "source/lib/features/games/spielwelt/spielwelt_hub.dart",
+      "bytes": 31775,
+      "sha256": "8a10bff946ecd4fd92964709d595bc7b3dde1912c12480dff60762a3fedf03a9",
+      "git_blob": "f9bfdef2f54343291a0c2bfa985fb1287302a7ed"
+    },
+    {
+      "path": "source/test/games/connect_four_native_route_test.dart",
+      "bytes": 5165,
+      "sha256": "7e4637c8c0a1330738723d2398a88e2e45ceb1d892e925f04c52ff58f93e99a6",
+      "git_blob": "8f9a3a275edec12141b88804ef36dc11dc12d524"
+    },
+    {
+      "path": "source/test/games/connect_four_navigation_test.dart",
+      "bytes": 5291,
+      "sha256": "15904ba2dff28e5afbef5d4f23febfca8f2a70066a6e081c873dad57da219f08",
+      "git_blob": "5607de8ddeeb54b1cbb77372c0ee3926f57ff374"
+    },
+    {
+      "path": "source/test/games/games_screen_flow_test.dart",
+      "bytes": 15945,
+      "sha256": "af22d37de998a52ac7c403f5531eea2287eb5b12b60fb1d491ee9921b2573566",
+      "git_blob": "6b47469525edf37135802be0b9546b22394b3e00"
+    },
+    {
+      "path": "source/tools/android_qa/connect_four_android_evidence.py",
+      "bytes": 40210,
+      "sha256": "0413fd322e16a68947e9f9a57abf957a90f43b404b0a9074e6559dc11907409c",
+      "git_blob": "6c9a4c24da94e485d47f453af9ac82f5d1994ad4"
+    },
+    {
+      "path": "source/tools/android_qa/native_surface_readiness.py",
+      "bytes": 4401,
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+      "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+    },
+    {
+      "path": "source/tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "bytes": 31507,
+      "sha256": "8b820e2b2e8b47066eea80a332d60ae0f03fd9c0adc989b14a275d3d4342a199",
+      "git_blob": "457e391524fd1c72d4c1d434e53c9518fbe89516"
+    },
+    {
+      "path": "source/tools/android_qa/tests/test_connect_four_flutter_navigation.py",
+      "bytes": 20349,
+      "sha256": "7999444bce601abcd067251c8230bb81512da60f99a08912e4100f4d932e5570",
+      "git_blob": "d3c2267437ef418e48ba2bfd85477a3a10f8015d"
+    },
+    {
+      "path": "source/tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "bytes": 11092,
+      "sha256": "eefb4dd4633a2aa113cb8d50e732b090d10ac804b01b876b42bb2b990e75e630",
+      "git_blob": "c7e8bf69d8dc07980d4a84ad1fd31222beb5e147"
+    },
+    {
+      "path": "technical-originals.tar.gz",
+      "bytes": 509926,
+      "sha256": "f1c623df7b75a85f1945ddd1d0c911bd6dd0004f9cf4ebebbd396331f8724c98",
+      "git_blob": "c03c0396d8369c1cb283daca7508a13219de52cc"
+    }
+  ]
+}

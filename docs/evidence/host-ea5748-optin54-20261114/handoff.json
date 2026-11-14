@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "host": "ea5748f42c82b8f0690ce32f42dc3a01342af392",
+  "tree": "65f2d0aa1fec45cd4c875154fe230a1f8c8e0aa9",
+  "native_unchanged": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "run_count": 1,
+  "actual_unittest_exit_code": 0,
+  "start_utc": "2026-11-14T20:24:02.318877+00:00",
+  "end_utc": "2026-11-14T20:30:08.357849+00:00",
+  "elapsed_seconds": 366.0387678249972,
+  "outer_timeout": false,
+  "original_outer_counter_status": "FAIL",
+  "outer_counter_diagnostic_preserved": true,
+  "reconciliation": {
+    "bytes": 30073,
+    "sha256": "ebac3d8431fbf12304f890c9e7d235ba5c13a2062067ca919fe7ee5354d52217",
+    "git_blob": "6bb683fd443cae1dc5b044b9dda07871629deff6"
+  },
+  "actual_methods": 54,
+  "counts": {
+    "tools.android_qa.tests.test_connect_four_flutter_navigation": 16,
+    "tools.android_qa.tests.test_connect_four_android_evidence": 27,
+    "tools.android_qa.tests.test_connect_four_probe_deadlines": 11
+  },
+  "source_files": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 30044,
+      "sha256": "6623bcff15f2e3d1425c46fd044be2e0ffbe6018b1f4567634ae1429ae2c4658",
+      "git_blob": "dae27bce72a09d786fd5a96cb39d10cc716dc5e2"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 45094,
+      "sha256": "5ea73c94211bb0286aba1167da845d4ccc08ae31d3888dc6b6789b8df86b2772",
+      "git_blob": "6c9ee29c314bf999349c73da6faf9226ac0f8916"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "bytes": 31775,
+      "sha256": "8a10bff946ecd4fd92964709d595bc7b3dde1912c12480dff60762a3fedf03a9",
+      "git_blob": "f9bfdef2f54343291a0c2bfa985fb1287302a7ed"
+    },
+    {
+      "path": "test/games/connect_four_native_route_test.dart",
+      "bytes": 5165,
+      "sha256": "7e4637c8c0a1330738723d2398a88e2e45ceb1d892e925f04c52ff58f93e99a6",
+      "git_blob": "8f9a3a275edec12141b88804ef36dc11dc12d524"
+    },
+    {
+      "path": "test/games/connect_four_navigation_test.dart",
+      "bytes": 5291,
+      "sha256": "15904ba2dff28e5afbef5d4f23febfca8f2a70066a6e081c873dad57da219f08",
+      "git_blob": "5607de8ddeeb54b1cbb77372c0ee3926f57ff374"
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "bytes": 15945,
+      "sha256": "af22d37de998a52ac7c403f5531eea2287eb5b12b60fb1d491ee9921b2573566",
+      "git_blob": "6b47469525edf37135802be0b9546b22394b3e00"
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "bytes": 40210,
+      "sha256": "0413fd322e16a68947e9f9a57abf957a90f43b404b0a9074e6559dc11907409c",
+      "git_blob": "6c9a4c24da94e485d47f453af9ac82f5d1994ad4"
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "bytes": 4401,
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+      "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "bytes": 31507,
+      "sha256": "8b820e2b2e8b47066eea80a332d60ae0f03fd9c0adc989b14a275d3d4342a199",
+      "git_blob": "457e391524fd1c72d4c1d434e53c9518fbe89516"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_flutter_navigation.py",
+      "bytes": 20349,
+      "sha256": "7999444bce601abcd067251c8230bb81512da60f99a08912e4100f4d932e5570",
+      "git_blob": "d3c2267437ef418e48ba2bfd85477a3a10f8015d"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "bytes": 11092,
+      "sha256": "eefb4dd4633a2aa113cb8d50e732b090d10ac804b01b876b42bb2b990e75e630",
+      "git_blob": "c7e8bf69d8dc07980d4a84ad1fd31222beb5e147"
+    }
+  ],
+  "all_materialized_source_bytes_and_modes_unchanged": true,
+  "exact_git_tree_reconstructed": true,
+  "tree_leaves": 4925,
+  "materialized_files": 11,
+  "explicitly_unmaterialized_paths": 4914,
+  "source_view": "source/; exact partial checkpoint view, not a full Git checkout or index check",
+  "environment": {
+    "python": "3.12.14",
+    "pillow": "13.0.0"
+  },
+  "scope": "Synthetic local Python navigation/evidence/deadline contracts only; no Widget, Android, Native engine, FPS, release, CI or ref action."
+}

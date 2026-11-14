@@ -1,0 +1,191 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T20:34:07.574170+00:00",
+  "status": "ACTIVATION_IDENTITY_BOUND_RESULTS_PENDING",
+  "repository": "Ullmann27/lumo-lernen",
+  "host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "tree": "a97942c991cbb38d22c8b97f06a3e5bb162ab942",
+  "leaves": 4941,
+  "tree_recomputed_exactly": true,
+  "run_id": 43637785992,
+  "attempt": 1,
+  "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+  "source_checkpoint": "ea5748f42c82b8f0690ce32f42dc3a01342af392",
+  "pr": 485,
+  "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+  "workflow_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064",
+  "compile_job_id": 132578338582,
+  "catalog": {
+    "path": "/tmp/host-next-repair-82-case-catalog-v2-20261114/catalog.json",
+    "bytes": 39986,
+    "sha256": "4a4bd535610d1f82ba59ce5f6bbb70ba370fc097b5aef030036bd7d6e092af3a",
+    "git_blob": "19ffb1b3118828b1bd01937c9c24410dfe12a4b9"
+  },
+  "selected_sources": [
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "mode": "100644",
+      "bytes": 10816,
+      "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+      "git_blob": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+    },
+    {
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "mode": "100644",
+      "bytes": 29908,
+      "sha256": "33331c4b0c804b803e22785e9f7a5e25fe3e3086913bc0e02beecf529f956c32",
+      "git_blob": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b"
+    },
+    {
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "mode": "100644",
+      "bytes": 13409,
+      "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+      "git_blob": "4615f10622420d53dedb380ff4648e5692995861"
+    },
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "mode": "100644",
+      "bytes": 10757,
+      "sha256": "082861273c381ffb946ac6b4205d41eb77065868bfc5d70c165cac7464c0753c",
+      "git_blob": "79d94286312aea5231b0906e8514be132aeee94b"
+    },
+    {
+      "path": "test/reward_wallet_transaction_test.dart",
+      "mode": "100644",
+      "bytes": 22807,
+      "sha256": "295a857b766a6ddf5107dd7f1bf8824eeec5d32f0772a3ebefe297f2a1269128",
+      "git_blob": "77862a23eb251266b319beb4d2fe24251e409dab"
+    },
+    {
+      "path": "test/games/memory_profile_storage_test.dart",
+      "mode": "100644",
+      "bytes": 12937,
+      "sha256": "33d2b6b63a139f0cd8b8ef75197d515e7c04a3cc9a043e0b07e5815de7dee20f",
+      "git_blob": "375812cb6b17b638a070dd9382249d2a3c5fef5a"
+    },
+    {
+      "path": "test/games/connect_four_native_route_test.dart",
+      "mode": "100644",
+      "bytes": 5165,
+      "sha256": "7e4637c8c0a1330738723d2398a88e2e45ceb1d892e925f04c52ff58f93e99a6",
+      "git_blob": "8f9a3a275edec12141b88804ef36dc11dc12d524"
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "mode": "100644",
+      "bytes": 15945,
+      "sha256": "af22d37de998a52ac7c403f5531eea2287eb5b12b60fb1d491ee9921b2573566",
+      "git_blob": "6b47469525edf37135802be0b9546b22394b3e00"
+    },
+    {
+      "path": "test/games/connect_four_navigation_test.dart",
+      "mode": "100644",
+      "bytes": 5291,
+      "sha256": "15904ba2dff28e5afbef5d4f23febfca8f2a70066a6e081c873dad57da219f08",
+      "git_blob": "5607de8ddeeb54b1cbb77372c0ee3926f57ff374"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/SpeechEnvelopeContract.kt",
+      "mode": "100644",
+      "bytes": 4381,
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+      "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechLifecycleContract.kt",
+      "mode": "100644",
+      "bytes": 4342,
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+      "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechBuildContract.kt",
+      "mode": "100644",
+      "bytes": 4948,
+      "sha256": "484d242949a9f96c315eb8a6853a303988200f4d5f45c20251d6aae94a5fabf8",
+      "git_blob": "a75173645c2f6cc67bc30956accc11793a1fc87a"
+    },
+    {
+      "mode": "100644",
+      "path": "scripts/tests/test_speech_envelope_contract.py",
+      "bytes": 3660,
+      "sha256": "30f75c17006c47c4410d0309a79193a0a97024d479d8b93e94e7d706b0632a3f",
+      "git_blob": "5037fd4078e5f73078cd28e4054992f12e07f317"
+    },
+    {
+      "mode": "100644",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt",
+      "bytes": 798,
+      "sha256": "d67fa4f5a281248ace0164b118be4fe705d5337116b1411a61afd9a3c1ce27b0",
+      "git_blob": "0869980e2111cd3f6f8dcf7f81054f0d286b078f"
+    },
+    {
+      "mode": "100644",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
+      "bytes": 1324,
+      "sha256": "1ad133a550ee517a5645b081da2f176f1298b95a332dc41bdaa49a5a7b7e9423",
+      "git_blob": "0b0a447556323ea0a0eadd03019157ea8ed9d1bb"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "mode": "100644",
+      "bytes": 45094,
+      "sha256": "5ea73c94211bb0286aba1167da845d4ccc08ae31d3888dc6b6789b8df86b2772",
+      "git_blob": "6c9ee29c314bf999349c73da6faf9226ac0f8916"
+    }
+  ],
+  "all_16_selected_sources_match_actual_activation_tree": true,
+  "originals": [
+    {
+      "path": "activation-originals/binding.json",
+      "bytes": 649,
+      "sha256": "e0e2c8907fdca1d7aa2f63ca10d0c56764c02f852b711082e5507eac7dd05395",
+      "git_blob": "a23aa78b474654ba0566a4967ac28ee0d359c815",
+      "copied_from": "/tmp/host-0cda410-activation-originals-20261114/binding.json"
+    },
+    {
+      "path": "activation-originals/run.original.json",
+      "bytes": 12988,
+      "sha256": "0d68e7248b27f87787902878748a678bfe08615e2b3d1a139283bf0375d8241a",
+      "git_blob": "eff620d2d4c6034e43194fbace8b3668108bfeeb",
+      "copied_from": "/tmp/host-0cda410-activation-originals-20261114/run.original.json"
+    },
+    {
+      "path": "activation-originals/jobs.original.json",
+      "bytes": 5923,
+      "sha256": "46aef6ce618abf4ee29fce874fd3f1cb86463072b3d067699ddbfa2d60372787",
+      "git_blob": "e81b34e3a26266ebb1e8b4d6c2d85d9c767746a4",
+      "copied_from": "/tmp/host-0cda410-activation-originals-20261114/jobs.original.json"
+    },
+    {
+      "path": "activation-originals/postflight-pr.original.json",
+      "bytes": 18472,
+      "sha256": "97d947af02e45f03bac62333186612555546b3416e757d001aec132414c705de",
+      "git_blob": "3beaac92e834d6dc959862f23e1e9ccacbafac57",
+      "copied_from": "/tmp/host-0cda410-activation-originals-20261114/postflight-pr.original.json"
+    },
+    {
+      "path": "activation-originals/postflight-ref.original.json",
+      "bytes": 463,
+      "sha256": "f539445e158b41cc20c5612bb621bcdcb8a40f42912727a0c77d5225499a109b",
+      "git_blob": "6672ec5411533af3a40ec99091314d714ca81e04",
+      "copied_from": "/tmp/host-0cda410-activation-originals-20261114/postflight-ref.original.json"
+    },
+    {
+      "path": "activation-originals/tree-leaves.json",
+      "bytes": 1456742,
+      "sha256": "0f5a094c03533bbb19dd58b17d32a20f56e434ca711a87ddd5149194f41c9d78",
+      "git_blob": "ede3a7b67531af9b08cdf341dc87b43707d176b8",
+      "copied_from": "/tmp/host-0cda410-activation-originals-20261114/tree-leaves.json"
+    }
+  ],
+  "observation_ownership": {
+    "status_metadata": "pipeline_repair exclusively",
+    "build_job_full_log": "pipeline_repair once",
+    "host_compile_full_log_and_artifact": "flutter_integration once after terminal metadata",
+    "flutter_artifact_export_and_machine_summary": "flutter_integration once after metadata"
+  },
+  "results": "No current compile or Flutter outcome is claimed. No test/CI/ref/API action was performed by this binding step."
+}
