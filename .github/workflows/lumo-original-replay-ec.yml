@@ -1,0 +1,472 @@
+name: Recheck exact LUMO ec original APK and gameplay archives
+
+on:
+  push:
+    branches:
+      - qa/lumo-original-replay-ec-20261114
+    paths:
+      - .github/workflows/lumo-original-replay-ec.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-original-replay-ec936873
+  cancel-in-progress: false
+
+jobs:
+  read-current-originals:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/qa/lumo-original-replay-ec-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      actions: read
+      contents: read
+    env:
+      SOURCE_SHA: ec936873a45ffeb9ab347cc6bdb10951e38fac5e
+      ACCEPTANCE_RUN: '43633922088'
+      ACCEPTANCE_ATTEMPT: '1'
+      ACCEPTANCE_PR: '497'
+      VERSION_TAG: coachpreview-build-2020
+      GIT_OPTIONAL_LOCKS: '0'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out the exact accepted source and its original verifier
+        uses: actions/checkout@v4
+        with:
+          ref: ec936873a45ffeb9ab347cc6bdb10951e38fac5e
+          persist-credentials: false
+
+      - name: Load immutable reviewed reader sources and exact image dependencies
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p publication/reader-replay/code
+          python3 -B - <<'PY'
+          import base64, hashlib, json, os, subprocess
+          from pathlib import Path
+          bindings = {
+              "original_replay.py": "72406f6f995b0c85414c8c8560ca563273071921",
+              "test_original_replay.py": "11c5ad2de2ce556a66273c776da2947ad23de8cd",
+              "original_png_transport.py": "88388945e5e31eaefb2dad69f400b93f65a6b94a",
+              "test_original_png_transport.py": "313fdb2c57f018cf251be00b6171fccb3c2bfa67",
+          }
+          root = Path("publication/reader-replay/code")
+          for name, expected in bindings.items():
+              raw = subprocess.check_output(["gh", "api", "repos/Ullmann27/lumo-lernen/git/blobs/" + expected])
+              item = json.loads(raw)
+              assert item["sha"] == expected and item["encoding"] == "base64"
+              content = base64.b64decode("".join(item["content"].split()), validate=True)
+              assert hashlib.sha1(b"blob " + str(len(content)).encode() + b"\0" + content).hexdigest() == expected
+              content.decode("utf-8")
+              with (root / name).open("xb") as handle:
+                  handle.write(content)
+              print("BOUND_READER_SOURCE " + json.dumps({"path": name, "git_blob": expected, "bytes": len(content), "sha256": hashlib.sha256(content).hexdigest()}, sort_keys=True))
+          PY
+          python3 -m venv "$RUNNER_TEMP/lumo-original-replay-python"
+          "$RUNNER_TEMP/lumo-original-replay-python/bin/python" -m pip install --disable-pip-version-check Pillow==12.3.0 PyYAML==6.0.3
+          printf '%s\n' "$RUNNER_TEMP/lumo-original-replay-python/bin" >> "$GITHUB_PATH"
+
+      - name: Check out the exact original Native source for its existing readers
+        uses: actions/checkout@v4
+        with:
+          repository: Ullmann27/lumo-godot
+          ref: 84789d0c2c6fb4b6ecd2897ce1951b89f958b604
+          path: native-source
+          persist-credentials: false
+
+      - name: Test the original archive and materialized source safeguards
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B publication/reader-replay/code/test_original_replay.py 2>&1 | tee publication/reader-replay/selftests.original.log
+          python3 -B publication/reader-replay/code/test_original_png_transport.py 2>&1 | tee publication/reader-replay/png-selftests.original.log
+
+      - name: Revalidate the exact additional Native and Feature acceptance
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p publication
+          cat > publication/verify-additional-acceptance.py <<'PY'
+          #!/usr/bin/env python3
+          """Revalidate exact additional gates against reviewed immutable run bindings.
+          
+          This verifies fresh GitHub metadata for the original Native and Feature artifacts.
+          It does not rerun a game, Flutter, or an image reader.
+          """
+          from __future__ import annotations
+          
+          import argparse
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import subprocess
+          
+          BINDINGS = json.loads("{\"native\":{\"repository\":\"Ullmann27/lumo-godot\",\"repository_id\":1251414584,\"run\":43613299144,\"attempt\":1,\"source\":\"84789d0c2c6fb4b6ecd2897ce1951b89f958b604\",\"branch\":\"integration/lumo-live-connections-20261114\",\"event\":\"push\",\"workflow\":\".github/workflows/lumo-discovery-connections.yml\",\"job_id\":132502826135,\"job_name\":\"discovery-native-acceptance\",\"steps\":[{\"number\":1,\"name\":\"Set up job\"},{\"number\":2,\"name\":\"Check out the exact internal Discovery push\"},{\"number\":3,\"name\":\"Bind the original source and external evidence directories\"},{\"number\":4,\"name\":\"Install the verified engine and external Pillow environment\"},{\"number\":5,\"name\":\"Bind the unchanged helpers before any import or test\"},{\"number\":6,\"name\":\"Require the separate Dream raster counterexamples\"},{\"number\":7,\"name\":\"Require the strict Discovery counterexamples and original reader tests\"},{\"number\":8,\"name\":\"Import the exact production project with a strict error guard\"},{\"number\":9,\"name\":\"Preserve the four existing exact headless acceptance gates\"},{\"number\":10,\"name\":\"Collect all five new Dream gates and seven original renderer images\"},{\"number\":11,\"name\":\"Require ten source-bound Discovery probes and all original 38 PNGs and two reports\"},{\"number\":12,\"name\":\"Require exact village save schema and bounded original renderer evidence\"},{\"number\":13,\"name\":\"Render the exact MobileSafeArea and live minimap observations\"},{\"number\":14,\"name\":\"Always preserve final source and index identities\"},{\"number\":15,\"name\":\"Preserve all separate Discovery and Dream originals even after failure\"},{\"number\":30,\"name\":\"Post Check out the exact internal Discovery push\"},{\"number\":31,\"name\":\"Complete job\"}],\"artifact\":{\"id\":14122180486,\"name\":\"lumo-discovery-connections-native-evidence-43613299144-1\",\"bytes\":66954397,\"digest\":\"sha256:af8a7b6f08d59f52dd25c2b061b4119b369f3793845132bb39ef9fca6b0446f0\"}},\"feature\":{\"repository\":\"Ullmann27/lumo-lernen\",\"repository_id\":1222433959,\"run\":43633918165,\"attempt\":1,\"source\":\"ec936873a45ffeb9ab347cc6bdb10951e38fac5e\",\"branch\":\"integration/lumo-live-connections-20261114\",\"event\":\"push\",\"workflow\":\".github/workflows/lumo-feature-connections.yml\",\"job_id\":132566422728,\"job_name\":\"feature-widget-contracts\",\"steps\":[{\"number\":1,\"name\":\"Set up job\"},{\"number\":2,\"name\":\"Checkout the exact feature push\"},{\"number\":3,\"name\":\"Bind original source and lock bytes before setup\"},{\"number\":4,\"name\":\"Install the repository Flutter version\"},{\"number\":5,\"name\":\"Prepare fonts, Pillow and the immutable locked packages\"},{\"number\":6,\"name\":\"Bind the six original test assets\"},{\"number\":7,\"name\":\"Execute exactly the 30 feature cases\"},{\"number\":8,\"name\":\"Require completed tests, zero skips and the exact case count\"},{\"number\":9,\"name\":\"Require identical source and lock bytes after the attempt\"},{\"number\":10,\"name\":\"Preserve complete original logs and source stamps\"},{\"number\":19,\"name\":\"Post Install the repository Flutter version\"},{\"number\":20,\"name\":\"Post Checkout the exact feature push\"},{\"number\":21,\"name\":\"Complete job\"}],\"artifact\":{\"id\":14129211522,\"name\":\"lumo-feature-connections-ec936873a45ffeb9ab347cc6bdb10951e38fac5e-attempt-1\",\"bytes\":1173118,\"digest\":\"sha256:b37096982a441331ff6ee43810e9a5b8fdb5a04d71e06a58884f007be8be0f50\"}}}")
+          
+          def equal(actual, expected, label):
+              if type(actual) is not type(expected) or actual != expected:
+                  raise ValueError(f"{label}: observed value differs from the reviewed binding")
+          
+          def object_value(value, label):
+              if type(value) is not dict:
+                  raise ValueError(f"{label}: expected a JSON object")
+              return value
+          
+          def catalog(value, key, label):
+              value = object_value(value, label)
+              rows = value.get(key)
+              if type(rows) is not list:
+                  raise ValueError(f"{label}: expected a complete list")
+              equal(value.get("total_count"), len(rows), label + " complete count")
+              equal(len(rows), 1, label + " exact one original")
+              return object_value(rows[0], label + " original")
+          
+          def unique_json(pairs):
+              result = {}
+              for key, value in pairs:
+                  if key in result:
+                      raise ValueError(f"Duplicate metadata key: {key}")
+                  result[key] = value
+              return result
+          
+          def read_json(path):
+              return json.loads(path.read_bytes(), object_pairs_hook=unique_json)
+          
+          def verify_payloads(binding, run, jobs, artifacts):
+              run = object_value(run, "run")
+              fields = {
+                  "id": binding["run"], "run_attempt": binding["attempt"],
+                  "head_sha": binding["source"], "head_branch": binding["branch"],
+                  "event": binding["event"], "path": binding["workflow"],
+                  "status": "completed", "conclusion": "success",
+              }
+              for key, expected in fields.items():
+                  equal(run.get(key), expected, "run." + key)
+              for key in ("repository", "head_repository"):
+                  repository = object_value(run.get(key), key)
+                  equal(repository.get("id"), binding["repository_id"], key + ".id")
+                  equal(repository.get("full_name"), binding["repository"], key + ".full_name")
+          
+              job = catalog(jobs, "jobs", "jobs")
+              fields = {
+                  "id": binding["job_id"], "run_id": binding["run"],
+                  "run_attempt": binding["attempt"], "head_sha": binding["source"],
+                  "name": binding["job_name"], "status": "completed", "conclusion": "success",
+              }
+              for key, expected in fields.items():
+                  equal(job.get(key), expected, "job." + key)
+              steps = job.get("steps")
+              if type(steps) is not list:
+                  raise ValueError("job.steps: expected the complete original steps")
+              equal(len(steps), len(binding["steps"]), "job.steps exact count")
+              for observed, original in zip(steps, binding["steps"], strict=True):
+                  observed = object_value(observed, "step")
+                  for key in ("number", "name"):
+                      equal(observed.get(key), original[key], "step." + key)
+                  equal(observed.get("status"), "completed", "step.status")
+                  equal(observed.get("conclusion"), "success", "step.conclusion")
+          
+              artifact = catalog(artifacts, "artifacts", "artifacts")
+              fields = {
+                  "id": binding["artifact"]["id"], "name": binding["artifact"]["name"],
+                  "size_in_bytes": binding["artifact"]["bytes"],
+                  "digest": binding["artifact"]["digest"], "expired": False,
+              }
+              for key, expected in fields.items():
+                  equal(artifact.get(key), expected, "artifact." + key)
+              owner = object_value(artifact.get("workflow_run"), "artifact.workflow_run")
+              fields = {
+                  "id": binding["run"], "head_sha": binding["source"],
+                  "head_branch": binding["branch"], "repository_id": binding["repository_id"],
+                  "head_repository_id": binding["repository_id"],
+              }
+              for key, expected in fields.items():
+                  equal(owner.get(key), expected, "artifact.workflow_run." + key)
+              return {
+                  "repository": binding["repository"], "source": binding["source"],
+                  "run": binding["run"], "attempt": binding["attempt"],
+                  "job": binding["job_id"], "artifact": binding["artifact"],
+                  "all_exact_original_steps_successful": True,
+              }
+          
+          def verify_directory(root):
+              receipts, digests = {}, {}
+              for name, binding in BINDINGS.items():
+                  values = []
+                  for kind in ("run", "jobs", "artifacts"):
+                      filename = f"{name}-{kind}.json"
+                      path = root / filename
+                      values.append(read_json(path))
+                      digests[filename] = hashlib.sha256(path.read_bytes()).hexdigest()
+                  receipts[name] = verify_payloads(binding, *values)
+              return {
+                  "schema": 1,
+                  "status": "FRESH_ADDITIONAL_METADATA_MATCHES_REVIEWED_ORIGINALS",
+                  "checks": receipts, "metadata_sha256": digests,
+                  "original_artifacts_replayed_here": False,
+              }
+          
+          def main():
+              parser = argparse.ArgumentParser(description=__doc__)
+              parser.add_argument("--metadata", type=Path, required=True)
+              parser.add_argument("--output", type=Path, required=True)
+              args = parser.parse_args()
+              source = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+              equal(source, BINDINGS["feature"]["source"], "checked-out Host source")
+              equal(os.environ["SOURCE_SHA"], source, "workflow Host source")
+              pin = read_json(Path("config/godot-source.json"))
+              equal(pin["revision"], BINDINGS["native"]["source"], "Host Native pin")
+              subprocess.run(["git", "diff", "--exit-code", "HEAD", "--"], check=True)
+              receipt = verify_directory(args.metadata)
+              receipt["host_source"] = source
+              receipt["native_source"] = pin["revision"]
+              with args.output.open("x", encoding="utf-8") as stream:
+                  stream.write(json.dumps(receipt, indent=2) + "\n")
+              print(receipt["status"])
+          
+          if __name__ == "__main__":
+              main()
+          PY
+          mkdir -p publication/additional/before
+          gh api "repos/Ullmann27/lumo-godot/actions/runs/43613299144" > publication/additional/before/native-run.json
+          gh api "repos/Ullmann27/lumo-godot/actions/runs/43613299144/jobs?per_page=100" > publication/additional/before/native-jobs.json
+          gh api "repos/Ullmann27/lumo-godot/actions/runs/43613299144/artifacts?per_page=100" > publication/additional/before/native-artifacts.json
+          gh api "repos/Ullmann27/lumo-lernen/actions/runs/43633918165" > publication/additional/before/feature-run.json
+          gh api "repos/Ullmann27/lumo-lernen/actions/runs/43633918165/jobs?per_page=100" > publication/additional/before/feature-jobs.json
+          gh api "repos/Ullmann27/lumo-lernen/actions/runs/43633918165/artifacts?per_page=100" > publication/additional/before/feature-artifacts.json
+          python3 publication/verify-additional-acceptance.py --metadata publication/additional/before --output publication/additional/before/verified-metadata.json
+
+      - name: Read the complete current acceptance and download its original bundle
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          mkdir -p publication/metadata
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ACCEPTANCE_RUN" > publication/metadata/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ACCEPTANCE_RUN/jobs?per_page=100" > publication/metadata/jobs.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ACCEPTANCE_RUN/artifacts?per_page=100" > publication/metadata/artifacts.json
+          gh api "repos/$GITHUB_REPOSITORY/pulls/$ACCEPTANCE_PR" > publication/metadata/pull.json
+          python3 - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          metadata = Path('publication/metadata')
+          run = json.loads((metadata/'run.json').read_text())
+          assert run['id'] == int(os.environ['ACCEPTANCE_RUN'])
+          assert run['run_attempt'] == int(os.environ['ACCEPTANCE_ATTEMPT'])
+          assert run['head_sha'] == os.environ['SOURCE_SHA']
+          assert run['head_branch'] == 'integration/lumo-live-connections-20261114'
+          assert run['event'] == 'pull_request'
+          assert run['path'] == '.github/workflows/lumo-connect-four-2020.yml'
+          assert run['status'] == 'completed' and run['conclusion'] == 'success'
+          catalog = json.loads((metadata/'artifacts.json').read_text())
+          assert catalog['total_count'] == len(catalog['artifacts'])
+          matches = [a for a in catalog['artifacts'] if a['name'] == 'lumo-connect-four-2020-delivery-bundle']
+          assert len(matches) == 1
+          artifact = matches[0]
+          assert artifact['expired'] is False
+          assert artifact['workflow_run']['id'] == run['id']
+          assert artifact['workflow_run']['head_sha'] == os.environ['SOURCE_SHA']
+          assert type(artifact['id']) is int and artifact['id'] > 0
+          assert re.fullmatch(r'sha256:[a-f0-9]{64}', artifact['digest'])
+          (metadata/'bundle.json').write_text(json.dumps(artifact, indent=2) + '\n')
+          with open(os.environ['GITHUB_ENV'], 'a') as handle:
+              handle.write('BUNDLE_ARTIFACT_ID=' + str(artifact['id']) + '\n')
+          PY
+          bundle_id="$(python3 -c 'import json; print(json.load(open("publication/metadata/bundle.json"))["id"])')"
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$bundle_id/zip" > publication/original-bundle.zip
+
+      - name: Verify and safely unpack every original delivery byte
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, stat, zipfile
+          from pathlib import Path, PurePosixPath
+          archive = Path('publication/original-bundle.zip')
+          artifact = json.loads(Path('publication/metadata/bundle.json').read_text())
+          assert archive.stat().st_size == artifact['size_in_bytes']
+          with archive.open('rb') as handle:
+              assert 'sha256:' + hashlib.file_digest(handle, 'sha256').hexdigest() == artifact['digest']
+          root = Path('publication/delivery')
+          root.mkdir()
+          with zipfile.ZipFile(archive) as zipped:
+              seen = set()
+              for member in zipped.infolist():
+                  path = PurePosixPath(member.filename)
+                  name = path.as_posix()
+                  assert not member.flag_bits & 1
+                  assert path.parts and not path.is_absolute() and '..' not in path.parts
+                  assert '\\' not in member.filename and name == member.filename.rstrip('/')
+                  assert name not in seen
+                  seen.add(name)
+                  kind = stat.S_IFMT(member.external_attr >> 16)
+                  assert kind in ((0, stat.S_IFDIR) if member.is_dir() else (0, stat.S_IFREG))
+              zipped.extractall(root)
+          PY
+          python3 scripts/verify_connect_four_delivery.py check-current \
+            --delivery publication/delivery --metadata publication/metadata \
+            --pull-request "$ACCEPTANCE_PR" --bundle-archive publication/original-bundle.zip \
+            --bundle-artifact-id "$BUNDLE_ARTIFACT_ID"
+
+      - name: Set up the existing APK certificate verifier Java runtime
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up the pinned Android toolchain for independent original APK verification
+        uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
+        with:
+          packages: platform-tools
+
+      - name: Reverify original ARM64 APK signature package and source before creating a release
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          git diff --exit-code HEAD --
+          mkdir -p publication/apk-verification
+          sdkmanager 'build-tools;36.0.0' 2>&1 | tee publication/apk-verification/sdkmanager.log
+          publisher_build_tools="$ANDROID_HOME/build-tools/36.0.0"
+          test -x "$publisher_build_tools/apksigner"
+          test -x "$publisher_build_tools/aapt"
+          export PATH="$publisher_build_tools:$PATH"
+          java -version 2>&1 | tee publication/apk-verification/java-version.log
+          "$publisher_build_tools/apksigner" version 2>&1 | tee publication/apk-verification/apksigner-version.log
+          "$publisher_build_tools/aapt" version 2>&1 | tee publication/apk-verification/aapt-version.log
+          cp "$publisher_build_tools/source.properties" publication/apk-verification/source.properties
+          sha256sum "$publisher_build_tools/apksigner" "$publisher_build_tools/lib/apksigner.jar" "$publisher_build_tools/aapt" > publication/apk-verification/tools.sha256
+          publisher_apk="publication/delivery/assets/Lumo-Lernen-Neu.apk"
+          "$publisher_build_tools/apksigner" verify --verbose --print-certs "$publisher_apk" 2>&1 | tee publication/apk-verification/apksigner-original.log
+          "$publisher_build_tools/aapt" dump badging "$publisher_apk" > publication/apk-verification/aapt-badging-original.txt 2> publication/apk-verification/aapt-badging.stderr.log
+          python3 scripts/verify_unified_apk.py "$publisher_apk" --abi arm64-v8a > publication/apk-verification/fresh-apk-verification.json 2> publication/apk-verification/verifier.stderr.log
+          python3 - <<'PY'
+          import hashlib, json, os, subprocess
+          from pathlib import Path
+          root = Path('publication')
+          assets = root/'delivery/assets'
+          fresh = json.loads((root/'apk-verification/fresh-apk-verification.json').read_text())
+          original = json.loads((assets/'PUBLISH-VERIFICATION.json').read_text())
+          provenance = json.loads((assets/'BUILD-PROVENANCE.json').read_text())
+          delivery = json.loads((assets/'C4-DELIVERY-FACTS.json').read_text())
+          plan = json.loads((root/'delivery/publication-plan.json').read_text())
+          pin = json.loads(Path('config/godot-source.json').read_text())
+          source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          assert source == os.environ['SOURCE_SHA'] == delivery['host_source'] == provenance['flutter_source_commit']
+          assert provenance['tracked_source_clean'] is True
+          assert fresh == original == delivery['apks']['arm64-v8a']
+          assert fresh['package'] == 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+          assert fresh['versionCode'] == 2020 and fresh['versionName'] == '0.13.8'
+          assert fresh['abis'] == ['arm64-v8a'] and fresh['minSdk'] == 24 and fresh['targetSdk'] == 36
+          assert fresh['signingCertificateSha256'] == 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+          assert fresh['godot']['revision'] == pin['revision'] == delivery['native_source']
+          assert all(provenance.get(key) == value for key, value in fresh.items())
+          apk = assets/'Lumo-Lernen-Neu.apk'
+          with apk.open('rb') as stream:
+              digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+          assert digest == fresh['sha256'] == plan['assets']['Lumo-Lernen-Neu.apk']['sha256']
+          assert apk.stat().st_size == fresh['bytes'] == plan['assets']['Lumo-Lernen-Neu.apk']['bytes']
+          subprocess.run(['git', 'diff', '--exit-code', 'HEAD', '--'], check=True)
+          paths = ('scripts/verify_unified_apk.py', 'scripts/verify_android_apk.py',
+                   'scripts/LumoApkCertificateVerifier.java', 'pubspec.yaml',
+                   'config/godot-source.json', 'config/lumo-offline-voice.json',
+                   'assets/audio/voice/lumo_free/catalog.json',
+                   'scripts/package_notices.py', 'config/lumo-notices.json')
+          receipt = {
+              'schema': 1, 'status': 'VERIFIED_ORIGINAL_TEST_APK_BEFORE_PUBLICATION',
+              'host_source': source, 'host_tree': subprocess.check_output(
+                  ['git', 'rev-parse', 'HEAD^{tree}'], text=True).strip(),
+              'native_source': pin['revision'], 'acceptance_run': int(os.environ['ACCEPTANCE_RUN']),
+              'acceptance_attempt': int(os.environ['ACCEPTANCE_ATTEMPT']),
+              'pull_request': int(os.environ['ACCEPTANCE_PR']), 'apk': fresh,
+              'verifier_sources': {name: hashlib.sha256(Path(name).read_bytes()).hexdigest() for name in paths},
+              'signing_scope': 'Existing stable LUMO test certificate; not a Google Play signing certificate',
+              'published': False, 'physical_arm64_tested': False,
+          }
+          with (root/'APK-PREPUBLISH-VERIFICATION.json').open('x') as stream:
+              stream.write(json.dumps(receipt, indent=2) + '\n')
+          PY
+
+      - name: Download and verify every exact original archive and ZIP member
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import json, shutil, sys
+          from pathlib import Path
+          sys.path.insert(0, str(Path("publication/reader-replay/code").resolve()))
+          import original_replay as reader
+          facts = reader.read(Path("publication/delivery/assets/C4-DELIVERY-FACTS.json"))
+          rows = facts["original_artifacts"]
+          reader.require(set(rows) == set(reader.DESTINATIONS), "Incomplete original archive budget roster")
+          reader.require(all(type(row["size_in_bytes"]) is int and 0 < row["size_in_bytes"] <= reader.MAX_ARCHIVE for row in rows.values()),
+                         "An API-declared original archive exceeds the per-archive download bound")
+          total = sum(row["size_in_bytes"] for row in rows.values())
+          free = shutil.disk_usage(".").free
+          reader.require(total <= 8 * 1024**3, "Cumulative original compressed download exceeds 8GiB")
+          reader.require(free > total + 1024**3, "Insufficient free space for the compressed original downloads")
+          result = {"status": "PASS_COMPRESSED_DOWNLOAD_BUDGET",
+                    "archives": len(rows), "compressed_original_bytes": total, "free_bytes_before_download": free,
+                    "scope": "Compressed download bound only. ZIP expansion/member bounds and exact original contents are checked separately during extraction."}
+          reader.write_new(reader.OUTPUT / "download-budget.json", result)
+          print("ORIGINAL_ARCHIVE_DOWNLOAD_BUDGET " + json.dumps(result, sort_keys=True))
+          PY
+          python3 -B publication/reader-replay/code/original_replay.py extract
+
+      - name: Replay both original APKs and all current mandatory original proofs
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PATH="$ANDROID_HOME/build-tools/36.0.0:$PATH"
+          python3 -B publication/reader-replay/code/original_replay.py replay
+
+      - name: Fetch fresh original acceptance after the full read-only replay
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p publication/metadata-after
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ACCEPTANCE_RUN" > publication/metadata-after/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ACCEPTANCE_RUN/jobs?per_page=100" > publication/metadata-after/jobs.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ACCEPTANCE_RUN/artifacts?per_page=100" > publication/metadata-after/artifacts.json
+          gh api "repos/$GITHUB_REPOSITORY/pulls/$ACCEPTANCE_PR" > publication/metadata-after/pull.json
+
+      - name: Finalize only the unchanged current source and complete original acceptance
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B publication/reader-replay/code/original_replay.py finalize
+
+      - name: Transport eight unchanged accepted original PNGs for independent review
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B publication/reader-replay/code/original_png_transport.py
+
+      - name: Preserve exact reader receipts and original failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-original-replay-ec936873-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            publication/reader-replay/
+            publication/metadata/
+            publication/metadata-after/
+            publication/additional/
+            publication/apk-verification/
+            publication/APK-PREPUBLISH-VERIFICATION.json
+          include-hidden-files: true
+          if-no-files-found: error
+          compression-level: 6
+          retention-days: 90
