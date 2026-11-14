@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "observed_at": "2026-11-14 16:20:48 UTC",
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43612493152,
+  "run_attempt": 1,
+  "event": "push",
+  "workflow": ".github/workflows/lumo-unchanged-2020-apk-diagnostic.yml",
+  "qa_source": "4017a94dd4a859f7b571e9b6a1f0208695e5e815",
+  "qa_tree": "7680b8ab9b32d526b365ad2376092da267f0063b",
+  "candidate_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "run_conclusion": "success",
+  "jobs": [
+    {
+      "id": 132500341700,
+      "name": "unchanged-2020-probe-contracts",
+      "conclusion": "success",
+      "started_at": "2026-11-14T15:52:22Z",
+      "completed_at": "2026-11-14T15:53:13Z"
+    },
+    {
+      "id": 132500583515,
+      "name": "unchanged-2020-update2017-api35",
+      "conclusion": "success",
+      "started_at": "2026-11-14T15:53:16Z",
+      "completed_at": "2026-11-14T16:12:13Z"
+    },
+    {
+      "id": 132500583554,
+      "name": "unchanged-2020-main-api35",
+      "conclusion": "success",
+      "started_at": "2026-11-14T15:53:15Z",
+      "completed_at": "2026-11-14T16:14:46Z"
+    }
+  ],
+  "original_logs": [
+    {
+      "job_id": 132500583554,
+      "git_blob": "a79c46b3b975ec0bf3cf8ca8efe2927d3299844b",
+      "utf8_bytes": 1616190,
+      "sha256": "8926bbacc19e0e1b1a144b66a3b5efaea9928f4d88238fabfa5f710ccf6ef21b",
+      "lines": 3802,
+      "retrievals": 1
+    },
+    {
+      "job_id": 132500583515,
+      "git_blob": "60370ccd872813544a5be349c63ff75466864b93",
+      "utf8_bytes": 323762,
+      "sha256": "37c303b881e9ac00d3688255ed14999d180829185843b92fc49abe7fed4c6727",
+      "lines": 3564,
+      "retrievals": 1
+    }
+  ],
+  "archive_originals": [
+    {
+      "id": 14121517959,
+      "name": "lumo-1e22-diagnostic-main-api35",
+      "size_in_bytes": 128368493,
+      "digest": "sha256:673b881f731ae7bb0fc1154b685274f7e06f8ee46ad2fabeaecbee853288bb78"
+    },
+    {
+      "id": 14121085647,
+      "name": "lumo-1e22-diagnostic-probe-contracts",
+      "size_in_bytes": 3601,
+      "digest": "sha256:f1a34293bd93cd8c84a77d21592d0bdb3d3d29808ff8732af2bf3153182bc0e4"
+    },
+    {
+      "id": 14120899896,
+      "name": "lumo-1e22-diagnostic-update2017-api35",
+      "size_in_bytes": 122506699,
+      "digest": "sha256:4f05de0dd69fb5d3e75cbac059ae18b72d5a0f89608b42eb7a4f409850b31cc4"
+    }
+  ],
+  "actual_device_evidence_review_sha256": "aa441b699e83016944a11a0dbfa12213206c16f07dbc6299b9d4fc8f77eebfd7",
+  "actual_observer_contracts": "101 PASS, 0 FAIL, 0 SKIP; terminal original log already preserved",
+  "seven_job_acceptance": false,
+  "release_approved": false,
+  "limits": [
+    "No separate Village/Connect Four probes executed in this diagnostic.",
+    "No new product/native union tested.",
+    "Original failed full run43596913210 remains failure.",
+    "Main and update diagnostic result hashes and original source bindings are verified independently in the adjacent review."
+  ]
+}

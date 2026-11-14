@@ -1,0 +1,660 @@
+{
+  "apk": {
+    "apk_bytes": 334507298,
+    "apk_sha256": "e65662ccc91366177a80bf6c6d43d364d9908836eb50bbe43625725d6010ab4b",
+    "certificate_scope": "Original signer provenance bound by unchanged APK SHA; no new apksigner invocation",
+    "existing_apk_identity": {
+      "apk_sha256": "e65662ccc91366177a80bf6c6d43d364d9908836eb50bbe43625725d6010ab4b",
+      "checks": {
+        "flutter_source_is_this_commit": true,
+        "godot_revision_is_pinned": true,
+        "sha256_matches_build_sums": true,
+        "sha256_matches_provenance": true,
+        "signing_certificate": true,
+        "tracked_source_clean": true,
+        "version_matches_pubspec": true,
+        "x86_64_native_code": true
+      },
+      "flutter_source_commit": "1e22d2455937e2640d1e44e153d290746f3afe49",
+      "godot_pck_sha256": "c4c6fb10d6a9492c7c34bcf330ff0dad18601cbcccaedcfe7468053c7328c6dc",
+      "godot_revision": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "versionCode": 2020,
+      "versionName": "0.13.8"
+    },
+    "pck_bytes": 75403096,
+    "pck_member": "assets/lumo_game.pck",
+    "pck_sha256": "c4c6fb10d6a9492c7c34bcf330ff0dad18601cbcccaedcfe7468053c7328c6dc"
+  },
+  "baseline": {
+    "apk_and_pck_bytes_verified": true,
+    "apk_bytes": 321904250,
+    "apk_sha256": "03063cdc0956b3c1df00f604de504841e1a5fed4cabf31c9418a9167a11140e8",
+    "artifact": 13948686178,
+    "artifact_bytes": 640684233,
+    "artifact_digest": "sha256:4b4fa4e7de52d75f385fc4d7e398f571d86363ad17cc22ac41ef95aab61d08ff",
+    "artifact_name": "lumo-lernen-kart-unified-2026-candidate",
+    "attempt": 1,
+    "build_conclusion": "success",
+    "host": "47889f74a651b073965def70743417cf320b1eb9",
+    "job": 131192088702,
+    "native": "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57",
+    "pck_bytes": 62921032,
+    "pck_sha256": "30b11b2f691294672038eafd53ddfc1c861db26def632fdb670893d5b508d65a",
+    "run": 43220602252,
+    "run_conclusion": "failure",
+    "tree": "5fad519864decd4700803b747cdff60ba7f3e02c",
+    "workflow": ".github/workflows/lumo-unified-integration-2026.yml"
+  },
+  "candidate_build": {
+    "archive_validation": "Original API digest/size bound; complete artifact ZIP is not read by this preflight",
+    "artifact_bytes": 665888449,
+    "artifact_digest": "sha256:3303cf5c34b96b9eefd08e3a64e5fcb4d6698ede4683810e9a2bb95311bc3210",
+    "artifact_id": 14119280540,
+    "artifact_name": "lumo-connect-four-2020-candidate",
+    "build_conclusion": "success",
+    "build_job_id": 132454178537,
+    "existing_c4_binding": {
+      "candidate_artifact_digest": "sha256:3303cf5c34b96b9eefd08e3a64e5fcb4d6698ede4683810e9a2bb95311bc3210",
+      "candidate_artifact_id": 14119280540,
+      "host_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+      "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+      "run_attempt": 1,
+      "run_id": 43596913210,
+      "versionCode": 2020,
+      "versionName": "0.13.8",
+      "workflow": ".github/workflows/lumo-connect-four-2020.yml"
+    },
+    "host_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "run_attempt": 1,
+    "run_conclusion": "failure",
+    "run_id": 43596913210,
+    "run_status": "completed",
+    "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+    "workflow_path": ".github/workflows/lumo-connect-four-2020.yml"
+  },
+  "diagnostic_qa": {
+    "branch": "qa/lumo-android-runtime-1e22-20261114",
+    "job_conclusion": null,
+    "job_id": 132500583515,
+    "job_name": "unchanged-2020-update2017-api35",
+    "job_status": "in_progress",
+    "run_attempt": 1,
+    "run_conclusion": null,
+    "run_id": 43612493152,
+    "run_status": "in_progress",
+    "source": "4017a94dd4a859f7b571e9b6a1f0208695e5e815",
+    "tree": "7680b8ab9b32d526b365ad2376092da267f0063b",
+    "workflow_path": ".github/workflows/lumo-unchanged-2020-apk-diagnostic.yml"
+  },
+  "git_sources": {
+    "candidate": {
+      "commit": "1e22d2455937e2640d1e44e153d290746f3afe49",
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+      "tracked_source_clean": true,
+      "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca"
+    },
+    "qa": {
+      "commit": "4017a94dd4a859f7b571e9b6a1f0208695e5e815",
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen",
+      "tracked_source_clean": true,
+      "tree": "7680b8ab9b32d526b365ad2376092da267f0063b"
+    }
+  },
+  "input_hashes": {
+    "baseline/artifacts.json": {
+      "bytes": 6700,
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/binding-inputs/baseline/artifacts.json",
+      "sha256": "182ba3475a5832115f95643d1edd3b9c822d87613c98682ede12a0ef5fcbd044"
+    },
+    "baseline/jobs.json": {
+      "bytes": 25842,
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/binding-inputs/baseline/jobs.json",
+      "sha256": "e77428656896a0f9bd70a213047b6e4cc95217844a90af618a94193d48e22888"
+    },
+    "baseline/provenance": {
+      "bytes": 7586,
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/baseline/dist/x86_64/BUILD-PROVENANCE.json",
+      "sha256": "65361164ddbec5c3914e22e9da5c94010c044b661f770c3100f2db7085fc6652"
+    },
+    "baseline/run.json": {
+      "bytes": 12980,
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/binding-inputs/baseline/run.json",
+      "sha256": "83816b1656d830fd4be8f11238312640376db71a0e5c6c0456674549e8f4382c"
+    },
+    "candidate/artifacts.json": {
+      "bytes": 9764,
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/binding-inputs/candidate/artifacts.json",
+      "sha256": "ac90ad8778db6bcfacb7e0a2c55f0f9300a7f2b0bf85ea4bf2fb557572469bdc"
+    },
+    "candidate/jobs.json": {
+      "bytes": 23681,
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/binding-inputs/candidate/jobs.json",
+      "sha256": "93bef86d55bf41369e10d27601634c461c183aef1d9e61dba0880b6293fc2ad8"
+    },
+    "candidate/run.json": {
+      "bytes": 13650,
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/binding-inputs/candidate/run.json",
+      "sha256": "54c9b47cded1601a2e458a5de55a1c1b67d2e6fd46ee92bb953a126a64b8b54c"
+    },
+    "provenance": {
+      "bytes": 7586,
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/BUILD-PROVENANCE.json",
+      "sha256": "3ed93bdc9015d74b964866fe86d7c8a6d294b8b34f549e042420ad2576813890"
+    },
+    "qa/jobs.json": {
+      "bytes": 8711,
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/binding-inputs/qa/jobs.json",
+      "sha256": "707a18355b5adc5be4037d1d4a30ceb235301eeaa3d3ab59ac673798c25b9db2"
+    },
+    "qa/run.json": {
+      "bytes": 12464,
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/binding-inputs/qa/run.json",
+      "sha256": "88e396a56fc19c0f0b645600544bf5a632cc740f6f4ac79b0f5111129701e96c"
+    },
+    "sums": {
+      "bytes": 98,
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt",
+      "sha256": "f75e163db497adc91371d705193f8922bc8790659dfbaa369c7df7644c095b6b"
+    }
+  },
+  "not_tested": [
+    "Android installation or input",
+    "completed 2017-to-2020 preservation",
+    "current device or emulator readiness",
+    "seven-job acceptance",
+    "release publication"
+  ],
+  "required_probe_cwd": "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+  "required_update_source_env": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "schema": 1,
+  "scope": "Source/metadata/APK/PCK preflight only; no Android or seven-job release acceptance",
+  "source_files": {
+    "candidate": [
+      {
+        "bytes": 145,
+        "git_blob": "86e473d75c810bdbfcadabef351adf7f931de08d",
+        "path": "config/godot-source.json",
+        "sha256": "65b166cfadfcc64160f8bf4648a87b29cefd538f08513fd6b896656fbcfba9ee"
+      },
+      {
+        "bytes": 2675,
+        "git_blob": "7f504396071cf3af57164187a29ea74b74c62413",
+        "path": "pubspec.yaml",
+        "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5"
+      }
+    ],
+    "qa": [
+      {
+        "bytes": 9666,
+        "git_blob": "7327e6da57261469efd069c303db2e1edaf07bbc",
+        "path": ".github/probes/candidate_update_android_probe.py",
+        "sha256": "38d6744b48424ac3a038e4d6a4fe6a42c5135cee6bec3315f1b7dbe3a80e8f9f"
+      },
+      {
+        "bytes": 65137,
+        "git_blob": "c996a022d388632ed13965b392181aef773d9025",
+        "path": ".github/probes/creative_android_probe.py",
+        "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced"
+      },
+      {
+        "bytes": 4078,
+        "git_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950",
+        "path": ".github/probes/flutter_surface_readiness.py",
+        "sha256": "26219bb28b51e599bf220d639eb0ec38fd41881a07c6d4fa4503e1b0e3a1d6dc"
+      },
+      {
+        "bytes": 59785,
+        "git_blob": "98163d522970675f977260df84bb445e864ad9d1",
+        "path": ".github/probes/kart_complete_android_probe.py",
+        "sha256": "74f85c19dcd85e79a4c994172c4e6e971bb9755549594e29b6c277a5c789c57b"
+      },
+      {
+        "bytes": 3122,
+        "git_blob": "2724b74bdd03f4eee73084a076f17043af658229",
+        "path": ".github/probes/lumo_1934_android_acceptance.py",
+        "sha256": "029d22646f18d6ec2e37876a6fba2e60787dbeae05ac5415c4ebb271f72a7a13"
+      },
+      {
+        "bytes": 3221,
+        "git_blob": "b61fadcf99683e9f2c4275735b916ed6a1fef764",
+        "path": ".github/probes/lumo_1939_flutter_navigation.py",
+        "sha256": "179d8c51f6678240f4479814778f0ecef74bc7d2fdf7f23e168e4ae6de9b78a4"
+      },
+      {
+        "bytes": 6008,
+        "git_blob": "51bca5f4ce224685bce0b0fc4f69268e576ef632",
+        "path": ".github/probes/lumo_1939_pause_navigation.py",
+        "sha256": "2397bb3eb16b78b60d34f4c7dd9dab308af29febde338b90dcf5f36c523a1201"
+      },
+      {
+        "bytes": 7794,
+        "git_blob": "719d28e37b68962519e61edff54ffb2d26da5880",
+        "path": ".github/probes/lumo_1939_visual_acceptance.py",
+        "sha256": "ea673feb022981a96bbbddec7a2e343664beb7c3dd3aaf883a428a7cd76c2805"
+      },
+      {
+        "bytes": 9705,
+        "git_blob": "ca94d11226f4fa84584faa116edc93913046f15f",
+        "path": ".github/probes/lumo_2000_update_android_probe.py",
+        "sha256": "dfee82a7eb6450af623495bce22f2114f73b44c00d1c1c3945f9180afe26f245"
+      },
+      {
+        "bytes": 9705,
+        "git_blob": "e344436205582e404d0d41d74929599cfe639a54",
+        "path": ".github/probes/lumo_2001_update_android_probe.py",
+        "sha256": "ce4afb8aadaf126ff4e03301a437baa30fa3609ae2776c27c092871342507ef5"
+      },
+      {
+        "bytes": 9184,
+        "git_blob": "bde3b8f10fcee8b7a14da7d73e025e66a06abb6b",
+        "path": ".github/probes/lumo_2002_update_android_probe.py",
+        "sha256": "eda05dddf2e110e1afa57796d8b0d8d7ff6ea9eb4e63eba99ad7a06a25e8d2d0"
+      },
+      {
+        "bytes": 10588,
+        "git_blob": "f8afca6f798fd4c309ee97737a2fcb983081d65a",
+        "path": ".github/probes/lumo_2003_update_android_probe.py",
+        "sha256": "3b36098d2a3f2b897c0b0bc582e83e08ff913a0509efcd1bd33ec3ffed5f61f7"
+      },
+      {
+        "bytes": 1104,
+        "git_blob": "8f5caddea46f6b0d336c9efd8c44a8f1147c1ef6",
+        "path": ".github/probes/lumo_2014_update_android_probe.py",
+        "sha256": "a9295d126063292a62e2a058e1397699523a590cdfe978ecd6d4084301f403c4"
+      },
+      {
+        "bytes": 1786,
+        "git_blob": "36779c61be7f5c4cf4562aad73c98cd4d9353cae",
+        "path": ".github/probes/lumo_2015_update_android_probe.py",
+        "sha256": "41b38c9a3c4497e1b5a4203abb9e8784a34805a4dbd444c98f1b1e4349e9108e"
+      },
+      {
+        "bytes": 1786,
+        "git_blob": "cf47b00eff2303cd1de1208c295d1c39d4fcec9d",
+        "path": ".github/probes/lumo_2016_update_android_probe.py",
+        "sha256": "182e99b68769ffebea725097c7e23ba161897c201f2ed53d8da6d8be79cfb946"
+      },
+      {
+        "bytes": 1843,
+        "git_blob": "091d9371444231d1e7c37161aa20a772f4ddd5a5",
+        "path": ".github/probes/lumo_2017_update_android_probe.py",
+        "sha256": "972ba0147815b139275ae3b219257ef3526b512ee6d153802a4aeb4bd90134ba"
+      },
+      {
+        "bytes": 1899,
+        "git_blob": "4ef289c84f6325cf5a348ca733c31cbe9630946e",
+        "path": ".github/probes/lumo_2018_update_android_probe.py",
+        "sha256": "658d12283075788e64fcb87fb64cd34323e8bb5ab88215f7b69d846a470b98e1"
+      },
+      {
+        "bytes": 236,
+        "git_blob": "759894d3580ad5dfd37c7b1a1818cdd12548aaff",
+        "path": ".github/probes/lumo_2019_surfaces_android_probe.py",
+        "sha256": "741b1408ceb2ae12ad5c6c701156c7be690a48aac14f4052a6bf70cda3c93252"
+      },
+      {
+        "bytes": 1894,
+        "git_blob": "7a59bf3842b49737115005c452e36565582b6410",
+        "path": ".github/probes/lumo_2019_update_android_probe.py",
+        "sha256": "11ce5f349887a5d57544ea71abccb03d8ca1aa7a52293e574d622d2e3bd7e7f0"
+      },
+      {
+        "bytes": 1894,
+        "git_blob": "5f770cd9efc0704c8659e34af46b2725a67ab5c8",
+        "path": ".github/probes/lumo_2020_update_android_probe.py",
+        "sha256": "a95e27a02f3a021848d887f238fdd498f4d22c387beb5dbb0c0de60dfc44669c"
+      },
+      {
+        "bytes": 25726,
+        "git_blob": "09ee796b4724644b433ada6257c31e2dd3f2da50",
+        "path": ".github/probes/lumo_connect_four_android_probe.py",
+        "sha256": "6df9b6a7b3cc2253a2be78a7cec93b6f9ac30f14bcab4f127db6b9df065ed9ba"
+      },
+      {
+        "bytes": 35294,
+        "git_blob": "a19c7f4062a568569562699dfd19ee32ce866533",
+        "path": ".github/probes/lumo_education_android_probe.py",
+        "sha256": "cda3312498917d61265dc7a019576063993f3d23a83494e9e61d087dd2981389"
+      },
+      {
+        "bytes": 18897,
+        "git_blob": "351c96cec03cdbf79fbfcfe78e52a9a9c0870a1f",
+        "path": ".github/probes/lumo_free_voice_android_probe.py",
+        "sha256": "c1450522e9f0144ee37824400bac551602e183d55c518dbd74559028ad115664"
+      },
+      {
+        "bytes": 1628,
+        "git_blob": "a93b71abe97646666528d876704600ae72dc2330",
+        "path": ".github/probes/lumo_games_android_controls.py",
+        "sha256": "e964a1e65afb68f336643eb8e04bdc26cdc278611824c69ef86e0a4079aeb5bf"
+      },
+      {
+        "bytes": 9752,
+        "git_blob": "b5229c36bc47350a47c4dda75c9f9ac58696a9b9",
+        "path": ".github/probes/lumo_games_android_probe.py",
+        "sha256": "1c85cf46a2e1bcda476a320b984ab642fb669eac2a465de7c878bceefce6a169"
+      },
+      {
+        "bytes": 16929,
+        "git_blob": "6b222823529c83146528159ab15ed88a0dfa0130",
+        "path": ".github/probes/lumo_learning_journey_probe.py",
+        "sha256": "695aa825f506c77a8d68e3d3063eb4eaad3e1678a03028f6081a344b1ba02e63"
+      },
+      {
+        "bytes": 36488,
+        "git_blob": "7f2407c168a87af5e351b58f64141e1a18d78be1",
+        "path": ".github/probes/lumo_nextgen_surfaces_android_probe.py",
+        "sha256": "3c35cde09c2d7d7ac9c82d1fc0201386a24cc7dd018d7a4f2ffebf977be0864b"
+      },
+      {
+        "bytes": 14682,
+        "git_blob": "51299db715f09cd697b2ac414896b43d222d150a",
+        "path": ".github/probes/lumo_speech_android_probe.py",
+        "sha256": "ef1dd23ad1d83258db4faa38ede3774cfe26c9f5fd947d530651f7b24e4d3e8f"
+      },
+      {
+        "bytes": 50962,
+        "git_blob": "f22376dbb33464ce6591fbcd7e2c9b95d8947159",
+        "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+        "sha256": "6b572feb22830651f99f5b01678bcb0532b433c861d040f04916ae8a1b0466ec"
+      },
+      {
+        "bytes": 11328,
+        "git_blob": "97434207488900ac8f9364d5120f163cbc3ff0d5",
+        "path": ".github/probes/lumo_village_android_probe.py",
+        "sha256": "941176f413db24b78471bb2e374f7366236615d1599745e35afbf3bd92d3d59d"
+      },
+      {
+        "bytes": 73307,
+        "git_blob": "f20bf864576f2474b563da29d2d718557702679c",
+        "path": ".github/probes/modernization_android_tour.py",
+        "sha256": "965b45ee66d0f88ac73411719ba47858bb34bb49d5ceb2b129dc370bccddf1ae"
+      },
+      {
+        "bytes": 5710,
+        "git_blob": "30c80321a67938ac8f6b2bfd368f5e94516d911a",
+        "path": ".github/probes/sonnenhafen_update_probe.py",
+        "sha256": "e2d952dd0d104f2a021b09eebc7ee95004b4125cdea7bbc2c544924db1158a47"
+      },
+      {
+        "bytes": 79294,
+        "git_blob": "cd3a11c2206ab31c4933df7388f2a62a07e6399f",
+        "path": ".github/probes/studio_creative_android_probe.py",
+        "sha256": "4eac8342846bf42561e45d132450ebf90648283f75c7f4333d77b6fd43739e28"
+      },
+      {
+        "bytes": 9523,
+        "git_blob": "bbe5664273280239fc3f2a509c21130dc4a179e2",
+        "path": ".github/workflows/lumo-unchanged-2020-apk-diagnostic.yml",
+        "sha256": "027ceb9243e076cfefaaedf17724901e08a7f695c8a8a410297c0660402fbc74"
+      },
+      {
+        "bytes": 18384,
+        "git_blob": "d96ed39a43316b4df3ab8cf6e856d1b659951314",
+        "path": "scripts/probes/parent_games_20261007_apply.py",
+        "sha256": "6a716407943d40adcc07d0a07039d6a9f72f729333f14d33377e15c2cbebfbe4"
+      },
+      {
+        "bytes": 14884,
+        "git_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8",
+        "path": "scripts/probes/pr207_android_smoke.py",
+        "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e"
+      },
+      {
+        "bytes": 2032,
+        "git_blob": "2966b08fab11ff05f67a587a3a564e6fdc1e6cfe",
+        "path": "scripts/probes/pr207_android_ui_probe.py",
+        "sha256": "b94dc20910a27f88613b520674d8594793621d238578da4f3918be73b7c36cb4"
+      },
+      {
+        "bytes": 4833,
+        "git_blob": "2d2d7dfe49a0baff9e08a60321eed38eca0f6682",
+        "path": "scripts/run_unchanged_2020_apk_diagnostic.sh",
+        "sha256": "bda63d63ae62e1d25b50c4206b4bb9021a7f115f73c996b65e1db77bfed165fa"
+      },
+      {
+        "bytes": 10709,
+        "git_blob": "2ea215d35ca4524f73fdd150d042984685cc5001",
+        "path": "scripts/verify_legacy_release_pin.py",
+        "sha256": "19602977f2fa4e24e06d6ec8c9ad5da125650ffef2e348122ce0d9bda90ca53a"
+      },
+      {
+        "bytes": 26879,
+        "git_blob": "a42688eedc6c3941f0646358c358f0d15b84eed0",
+        "path": "scripts/verify_unchanged_2020_apk_diagnostic.py",
+        "sha256": "3747c6b9848927e0046ba1fa327f5bdf4b67fee5cbc6f0b3438ff727ae376090"
+      },
+      {
+        "bytes": 15599,
+        "git_blob": "dbf40dab0b0fdd29ebaecb3013ce7d642be3b771",
+        "path": "tools/android_qa/android_ui.py",
+        "sha256": "edb5352c5045a496b77911530e0ee0c93d58914607007458f16c7cce1cb49d14"
+      },
+      {
+        "bytes": 2568,
+        "git_blob": "6c7bea63c28b80b94b29a61c2d207eb9ce1a9cb1",
+        "path": "tools/android_qa/cache_built_apk.py",
+        "sha256": "8d5d0e2619d2fc1390a472857a96e13cbca79c119442b8a7d9055ce42308a86b"
+      },
+      {
+        "bytes": 4972,
+        "git_blob": "aef9c9a8a84d82f19ae050ec829576084e231d1f",
+        "path": "tools/android_qa/caption_scroll_recovery.py",
+        "sha256": "c241ad03df9639b060e4b87fd8ff695e6fe836dff2b8ba9a2634045c335bfe34"
+      },
+      {
+        "bytes": 13548,
+        "git_blob": "9ea9ff5bc4eede9d6fbec6b1f78085cf4a1f00b1",
+        "path": "tools/android_qa/cards_android_round.py",
+        "sha256": "1ad0827965b4ed5e6b717c7986a375eb1e71a930565f41fb86142be6eee56ac9"
+      },
+      {
+        "bytes": 36432,
+        "git_blob": "091e250702b41c8ff0a1eef2eaa554a83c2cff68",
+        "path": "tools/android_qa/connect_four_android_evidence.py",
+        "sha256": "0f09d08607e51f19c2e0be9f35bf876d8606fd73644b96a2eb39c2ffff15a88f"
+      },
+      {
+        "bytes": 5943,
+        "git_blob": "36c1419ea48152c01a5577ab4c4eda329a95268d",
+        "path": "tools/android_qa/download_apk.py",
+        "sha256": "5bc6f6b4141707eda7e7db0d61d1182b75c95167ac72a19ba112cfbe34e7e9ca"
+      },
+      {
+        "bytes": 9254,
+        "git_blob": "460ed3a6fd9b49ca883de624568632c1cd3a81f0",
+        "path": "tools/android_qa/emulator_diagnostics.py",
+        "sha256": "5087ef4c98a456858b92f3e4a74b22dcd9ad6b4c5113cffcc0f42cac086b68a0"
+      },
+      {
+        "bytes": 5777,
+        "git_blob": "82d3365a5c85a95b2461862f96e958a0c69daba5",
+        "path": "tools/android_qa/export_delivery.py",
+        "sha256": "e79948eb6d05319b6ec650d9f74a22ad759ec93b2b082349e27daa3d14ac1693"
+      },
+      {
+        "bytes": 18698,
+        "git_blob": "c7307c38ec7c9a0b814eb497a4e464b73226c91c",
+        "path": "tools/android_qa/flutter_flows.py",
+        "sha256": "9f36200c38217c0e60e9540d68fef67012920f8425e2b35a60c73cf0889f2615"
+      },
+      {
+        "bytes": 10257,
+        "git_blob": "5ffa079db10fbaf178071ec1a932a4b26ea21407",
+        "path": "tools/android_qa/flutter_return_readiness.py",
+        "sha256": "ce32e5f08e393f9289f7541a2351d6b8a23644c232c1f8dbb62c89590c1ebe73"
+      },
+      {
+        "bytes": 23101,
+        "git_blob": "500c8728602593e3ff34be62cbc81d32f7cdfbe5",
+        "path": "tools/android_qa/fold_device_capture.py",
+        "sha256": "72ebc6fcb029b6bbae1a8d13162e61ccfb68f67d0216175268e1d5722dfbfd4c"
+      },
+      {
+        "bytes": 4244,
+        "git_blob": "ad3c87375c5490a8d5674fe0cd49d2a41a4de95e",
+        "path": "tools/android_qa/fresh_ui_hierarchy.py",
+        "sha256": "2f86e99a4f3c772974ef195d94481e99348ada02ea1ee1115d2ba1a28e7b4178"
+      },
+      {
+        "bytes": 39513,
+        "git_blob": "a0aad12a6162370e9c0e35849e213963c76c67d2",
+        "path": "tools/android_qa/kart_android_race.py",
+        "sha256": "9777542758deae314531c4da7bccd4168eb4c730dacc0844f84bab6f6ec3b81a"
+      },
+      {
+        "bytes": 27185,
+        "git_blob": "09da24805ad89446eacfe2593d8f0a1b34adcdf4",
+        "path": "tools/android_qa/kart_garage_evidence.py",
+        "sha256": "abb9df2ea6397a9634f0504073deb44de0d9c2b8d243eeae4b3a80142b3bdbbb"
+      },
+      {
+        "bytes": 9299,
+        "git_blob": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+        "path": "tools/android_qa/kart_tour_evidence.py",
+        "sha256": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca"
+      },
+      {
+        "bytes": 22165,
+        "git_blob": "a2d98da161e031d348a89e0f9a9fde3319ce0367",
+        "path": "tools/android_qa/memory_android_round.py",
+        "sha256": "d97ddafdefd20c4e659f315441afaf27d07550dd0fde707e4ecf9fe206d48bf9"
+      },
+      {
+        "bytes": 6552,
+        "git_blob": "0ea732262fdb80fc0cf2104fd555f31652ea0367",
+        "path": "tools/android_qa/native_handoff_evidence_recovery.py",
+        "sha256": "d28943915ee4efc6e8c50bd85230aecf3669f5b629a738eaa794dc03aeaef5fb"
+      },
+      {
+        "bytes": 37829,
+        "git_blob": "80b6aa75b7de86100590fdb949b017b85e6c0d58",
+        "path": "tools/android_qa/native_lap_evidence_recovery.py",
+        "sha256": "e025cb05fb526a938e6de4da6010bf63c169a6f64c5816b9657859d7b71a8588"
+      },
+      {
+        "bytes": 8243,
+        "git_blob": "f5aecc82db6bac1420ab1622f240cf4fa59faadd",
+        "path": "tools/android_qa/native_ocr_tiles.py",
+        "sha256": "0365c7f57551c3f2b5efb2c4d5f7d16886cd93638f7e4be7a75c6d0fc6838704"
+      },
+      {
+        "bytes": 4401,
+        "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4",
+        "path": "tools/android_qa/native_surface_readiness.py",
+        "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60"
+      },
+      {
+        "bytes": 28512,
+        "git_blob": "c1105e64bce4c13300f0fbf41e103e4f53194419",
+        "path": "tools/android_qa/nextgen_evidence.py",
+        "sha256": "0fdba9381b25cdc69e6a97bdc613f1b04aa8d792edae376a2883b4bb232f21e8"
+      },
+      {
+        "bytes": 3372,
+        "git_blob": "19f4804f17262a8bb05f278397060cbc519e6391",
+        "path": "tools/android_qa/prepare_built_apk.py",
+        "sha256": "799483ccfa2a592dcaf225228d487143cfe52c17a5feb320b4a3a43103748348"
+      },
+      {
+        "bytes": 16572,
+        "git_blob": "55b5c404b9ac6822213d966f274a047401c37b26",
+        "path": "tools/android_qa/prepare_system_image.py",
+        "sha256": "8925b7b41fada3c41fc80959c03fb71314f60530adbdc8e6614ea94e0c6a9c51"
+      },
+      {
+        "bytes": 5009,
+        "git_blob": "bd54bf518ede58aaaa32098cdf2cfe74fcd1e411",
+        "path": "tools/android_qa/prepare_ui_snapshot.py",
+        "sha256": "7a379328fb870bf9bb7d2ee80cec39b244300524e110e8343e3487c5b6f7c247"
+      },
+      {
+        "bytes": 11966,
+        "git_blob": "cc883433a2cbeaaff7d588165cd03d9d051ee183",
+        "path": "tools/android_qa/preserved_source_proof.py",
+        "sha256": "2612d45394dd5ff91339690d8a1ee861bdbaf3b35759057a9595ce54453e1e34"
+      },
+      {
+        "bytes": 9599,
+        "git_blob": "49f1622b4d1618029b59e77bde461ab22dd93899",
+        "path": "tools/android_qa/publish_authorized_1928.py",
+        "sha256": "950162050c2275ee5f4e1a06855124061d20ef507b720aa2023325fe883b2d91"
+      },
+      {
+        "bytes": 1948,
+        "git_blob": "5dea5c3333b38651252bdb36cec8fb0056ecaf39",
+        "path": "tools/android_qa/release_lookup.py",
+        "sha256": "5dc380dc9a254dcd80edb4399e2e91f2e87fb35a098634cb40e1736271a95cda"
+      },
+      {
+        "bytes": 12111,
+        "git_blob": "862bcc834e0092a25e339f2bf3a074e50477b16b",
+        "path": "tools/android_qa/rooted_emulator.py",
+        "sha256": "93131a46afe4f1a4987ab36323541007ff15f5cb3579f2cd677f049091b7444b"
+      },
+      {
+        "bytes": 19006,
+        "git_blob": "f8fb9d6fe255de38143262bde1a4e0daebd0884f",
+        "path": "tools/android_qa/run_ui_checks.py",
+        "sha256": "fee84cbf0597268d1e46915eba13df79f78f4301cb44ec6d2b9b19f4deaabd07"
+      },
+      {
+        "bytes": 5371,
+        "git_blob": "caf093f18059272d7c3a5c9ceada574747519212",
+        "path": "tools/android_qa/runtime_resource_evidence.py",
+        "sha256": "c2cc08ca11c0d1539c7322255de34b5b12754e24f43fcf5498e213f6ca9f84f0"
+      },
+      {
+        "bytes": 3854,
+        "git_blob": "5c57d0e932b75f3d80a55f73604297e710a7ad96",
+        "path": "tools/android_qa/system_ui.py",
+        "sha256": "feddc8945679605662931ab2d6a3200b5f4b9fcdf93be721ce2f30eed64ae512"
+      },
+      {
+        "bytes": 1105,
+        "git_blob": "2f039f067f809e830aa9ff1bef7f57a586f04366",
+        "path": "tools/android_qa/update_artifact_identity.py",
+        "sha256": "4a6bb7d2809f5551abcc07e0cae997d4b56180f962a19b0d9866a218c0d63dd4"
+      },
+      {
+        "bytes": 10258,
+        "git_blob": "3ddcc5e17b21e48408e6cd854f7e40eeadbddce2",
+        "path": "tools/android_qa/update_preservation.py",
+        "sha256": "73ea7f8155c65e4bd648ab99dd2baaa6261db2c380bcb435c0cb0761730f990a"
+      },
+      {
+        "bytes": 2172,
+        "git_blob": "fc0b507a4ecf85003707e89e660e5d553f017d62",
+        "path": "tools/android_qa/upload_proof.py",
+        "sha256": "7ad1fd9b2e5fee8072cb7dff8b802c95ad6c727310f21883d485d9058962dd95"
+      },
+      {
+        "bytes": 2871,
+        "git_blob": "652d452addb2eacbaf720aa3f1f5e927564c3991",
+        "path": "tools/android_qa/upload_tested_apk.py",
+        "sha256": "df6d7910326954f011eac9ca77f6e9dff1e664cb0d4486f615ef1fa4522d9cb9"
+      },
+      {
+        "bytes": 20967,
+        "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3",
+        "path": "tools/android_qa/village_android_evidence.py",
+        "sha256": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32"
+      },
+      {
+        "bytes": 145,
+        "git_blob": "86e473d75c810bdbfcadabef351adf7f931de08d",
+        "path": "config/godot-source.json",
+        "sha256": "65b166cfadfcc64160f8bf4648a87b29cefd538f08513fd6b896656fbcfba9ee"
+      },
+      {
+        "bytes": 2675,
+        "git_blob": "7f504396071cf3af57164187a29ea74b74c62413",
+        "path": "pubspec.yaml",
+        "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5"
+      }
+    ]
+  },
+  "status": "BOUND"
+}

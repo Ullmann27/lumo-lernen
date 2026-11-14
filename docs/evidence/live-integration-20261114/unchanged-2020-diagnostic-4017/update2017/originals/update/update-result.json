@@ -1,0 +1,1361 @@
+{
+  "status": "PASS",
+  "candidate_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "scope": "Actual 2017 learning -> install -r 2020 -> offline Kart -> restart/fold",
+  "not_tested": [
+    "physical ARM64 device",
+    "GPU frame times / 60 FPS",
+    "audio output",
+    "complete two-lap race reward"
+  ],
+  "baseline": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2017,
+    "versionName": "0.13.5",
+    "minSdk": 24,
+    "targetSdk": 36,
+    "abis": [
+      "x86_64"
+    ],
+    "elf16KiBAligned": true,
+    "resourcesArscAligned": true,
+    "bytes": 321904250,
+    "sha256": "03063cdc0956b3c1df00f604de504841e1a5fed4cabf31c9418a9167a11140e8",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57",
+      "engine": "4.6.3",
+      "pck_sha256": "30b11b2f691294672038eafd53ddfc1c861db26def632fdb670893d5b508d65a",
+      "bytes": 62921032
+    },
+    "offlineVoice": {
+      "profile": "lumo-free-supertonic-de-v1",
+      "preset": "F2",
+      "speakerId": 1,
+      "sampleRate": 44100,
+      "onnxruntimeVersion": "1.23.1",
+      "clipCount": 155,
+      "modelSha256": {
+        "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+        "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+        "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+        "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+        "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+        "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+        "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+      },
+      "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+      "scope": "Actual APK package validation, not audible playback acceptance"
+    },
+    "flutter_source_commit": "47889f74a651b073965def70743417cf320b1eb9",
+    "tracked_source_clean": true,
+    "launcher": {
+      "source": "assets/lumo_design/fox/fox_avatar.png",
+      "source_sha256": "8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f",
+      "source_size": [
+        512,
+        512
+      ],
+      "pillow_version": "12.3.0",
+      "canvas_dp": 108,
+      "artwork_dp": 60,
+      "background": "#081B43",
+      "files": [
+        {
+          "path": "mipmap-mdpi/ic_lumo.png",
+          "bytes": 3843,
+          "sha256": "5e95fafc9e809afb346e07b768058ed5a12928cc21c54910178479899eb14b2b",
+          "width": 48,
+          "height": 48
+        },
+        {
+          "path": "mipmap-mdpi/ic_lumo_round.png",
+          "bytes": 4113,
+          "sha256": "f3a92a3b8c533d71de1bd9257b5f8f5d69a008c8ae16d48781a9c592d8a25453",
+          "width": 48,
+          "height": 48
+        },
+        {
+          "path": "mipmap-mdpi/lumo_foreground.png",
+          "bytes": 9157,
+          "sha256": "398346110f8817cac9a9abda07dfb7d01201c1d3dc574ac4a88bc8f143d29f0e",
+          "width": 108,
+          "height": 108
+        },
+        {
+          "path": "mipmap-mdpi/lumo_monochrome.png",
+          "bytes": 2372,
+          "sha256": "26a2d463c1f77a69f92139ef855667aa6d8c34f43853bba4f808e8205decf94e",
+          "width": 108,
+          "height": 108
+        },
+        {
+          "path": "mipmap-hdpi/ic_lumo.png",
+          "bytes": 7803,
+          "sha256": "b89d700b144a1ac6144cdb62fb6104dea9d99fb91c4f4af323d307dc6db72281",
+          "width": 72,
+          "height": 72
+        },
+        {
+          "path": "mipmap-hdpi/ic_lumo_round.png",
+          "bytes": 7735,
+          "sha256": "eb52a5827cb86d8ea9b27259e62a17e2825145e7dc32522b45cd175d816f3ced",
+          "width": 72,
+          "height": 72
+        },
+        {
+          "path": "mipmap-hdpi/lumo_foreground.png",
+          "bytes": 18024,
+          "sha256": "7b4cd4abd7c13704d6bf8e4858613e1a415e340b94f0b71845a43dcbc23566fd",
+          "width": 162,
+          "height": 162
+        },
+        {
+          "path": "mipmap-hdpi/lumo_monochrome.png",
+          "bytes": 4123,
+          "sha256": "1ea519d2b0b21860d1ba8ea57908ca7d83248f08ae78828435816d8ce770745d",
+          "width": 162,
+          "height": 162
+        },
+        {
+          "path": "mipmap-xhdpi/ic_lumo.png",
+          "bytes": 12509,
+          "sha256": "b9f4baf7dd999ab517cab29e7744b4e789926997246d94e4b76e230827c7ef64",
+          "width": 96,
+          "height": 96
+        },
+        {
+          "path": "mipmap-xhdpi/ic_lumo_round.png",
+          "bytes": 12358,
+          "sha256": "83cb74d546e2188480d40dc729424f7bab6f1eec7facebb4f903bb62462ea147",
+          "width": 96,
+          "height": 96
+        },
+        {
+          "path": "mipmap-xhdpi/lumo_foreground.png",
+          "bytes": 29585,
+          "sha256": "85b40d37c65a150b5d49e0bbe136f947e0482b7aad2289324139e899769f4020",
+          "width": 216,
+          "height": 216
+        },
+        {
+          "path": "mipmap-xhdpi/lumo_monochrome.png",
+          "bytes": 6082,
+          "sha256": "9ed857cdefabb4f4196a9332189cbeace25031b4dac9a15dfaa079b240a68109",
+          "width": 216,
+          "height": 216
+        },
+        {
+          "path": "mipmap-xxhdpi/ic_lumo.png",
+          "bytes": 24975,
+          "sha256": "2c49f1c5940b6b25ad99bce838a0208a5c70354413c4a5b5a7c9c30b75e5aff6",
+          "width": 144,
+          "height": 144
+        },
+        {
+          "path": "mipmap-xxhdpi/ic_lumo_round.png",
+          "bytes": 24069,
+          "sha256": "d52e8b1ac7b2706182ddf29c7b589e4a98d68b2a6830bf7e1dbec51a6454b69f",
+          "width": 144,
+          "height": 144
+        },
+        {
+          "path": "mipmap-xxhdpi/lumo_foreground.png",
+          "bytes": 59699,
+          "sha256": "071284c29a0a21f1038b81d18b12d7a330a7c5caaa1c966b2e48922ca1118881",
+          "width": 324,
+          "height": 324
+        },
+        {
+          "path": "mipmap-xxhdpi/lumo_monochrome.png",
+          "bytes": 10525,
+          "sha256": "66a42f3aba32c0b3901be224fcb459110a552596749cf492d30e8e2c7a9e4baf",
+          "width": 324,
+          "height": 324
+        },
+        {
+          "path": "mipmap-xxxhdpi/ic_lumo.png",
+          "bytes": 41896,
+          "sha256": "1204f68ffbb0ac10e6e6d322458cf7ca94d2142fcdb699951163fc7077857974",
+          "width": 192,
+          "height": 192
+        },
+        {
+          "path": "mipmap-xxxhdpi/ic_lumo_round.png",
+          "bytes": 38614,
+          "sha256": "5a50dcd6bf1ca5a7507e9283e0e51704633e89ca30dacba5d3973a3b7abb5e25",
+          "width": 192,
+          "height": 192
+        },
+        {
+          "path": "mipmap-xxxhdpi/lumo_foreground.png",
+          "bytes": 99819,
+          "sha256": "7536c353c28cd61c272075c842282abab7501362ab397afeafbdc5144ab9bf7d",
+          "width": 432,
+          "height": 432
+        },
+        {
+          "path": "mipmap-xxxhdpi/lumo_monochrome.png",
+          "bytes": 15588,
+          "sha256": "7a611951973671e9974345c52536d8c3c532a358d9b55f38301ef7ff548408fb",
+          "width": 432,
+          "height": 432
+        },
+        {
+          "path": "values/lumo_launcher_colors.xml",
+          "bytes": 84,
+          "sha256": "acc76a73321417fc9d0b3dd06de352773cec1e1449573adf6d3aedde81ed5db4"
+        },
+        {
+          "path": "mipmap-anydpi-v26/ic_lumo.xml",
+          "bytes": 263,
+          "sha256": "3902fd806cabafb87a5fc89ee0e695a03b5c7be6d13721c7109fd484565aa843"
+        },
+        {
+          "path": "mipmap-anydpi-v26/ic_lumo_round.xml",
+          "bytes": 263,
+          "sha256": "3902fd806cabafb87a5fc89ee0e695a03b5c7be6d13721c7109fd484565aa843"
+        },
+        {
+          "path": "mipmap-anydpi-v33/ic_lumo.xml",
+          "bytes": 325,
+          "sha256": "8a8e7105b818d0aba31f160c01959ccf1fc929478d731a66aa3b22ac4475a152"
+        },
+        {
+          "path": "mipmap-anydpi-v33/ic_lumo_round.xml",
+          "bytes": 325,
+          "sha256": "8a8e7105b818d0aba31f160c01959ccf1fc929478d731a66aa3b22ac4475a152"
+        }
+      ],
+      "scope": "Generated resources only; APK and installed launcher must be checked separately"
+    }
+  },
+  "candidate": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2020,
+    "versionName": "0.13.8",
+    "minSdk": 24,
+    "targetSdk": 36,
+    "abis": [
+      "x86_64"
+    ],
+    "elf16KiBAligned": true,
+    "resourcesArscAligned": true,
+    "bytes": 334507298,
+    "sha256": "e65662ccc91366177a80bf6c6d43d364d9908836eb50bbe43625725d6010ab4b",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+      "engine": "4.6.3",
+      "pck_sha256": "c4c6fb10d6a9492c7c34bcf330ff0dad18601cbcccaedcfe7468053c7328c6dc",
+      "bytes": 75403096
+    },
+    "offlineVoice": {
+      "profile": "lumo-free-supertonic-de-v1",
+      "preset": "F2",
+      "speakerId": 1,
+      "sampleRate": 44100,
+      "onnxruntimeVersion": "1.23.1",
+      "clipCount": 155,
+      "modelSha256": {
+        "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+        "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+        "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+        "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+        "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+        "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+        "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+      },
+      "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+      "scope": "Actual APK package validation, not audible playback acceptance"
+    },
+    "flutter_source_commit": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "tracked_source_clean": true,
+    "launcher": {
+      "source": "assets/lumo_design/fox/fox_avatar.png",
+      "source_sha256": "8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f",
+      "source_size": [
+        512,
+        512
+      ],
+      "pillow_version": "12.3.0",
+      "canvas_dp": 108,
+      "artwork_dp": 60,
+      "background": "#081B43",
+      "files": [
+        {
+          "path": "mipmap-mdpi/ic_lumo.png",
+          "bytes": 3843,
+          "sha256": "5e95fafc9e809afb346e07b768058ed5a12928cc21c54910178479899eb14b2b",
+          "width": 48,
+          "height": 48
+        },
+        {
+          "path": "mipmap-mdpi/ic_lumo_round.png",
+          "bytes": 4113,
+          "sha256": "f3a92a3b8c533d71de1bd9257b5f8f5d69a008c8ae16d48781a9c592d8a25453",
+          "width": 48,
+          "height": 48
+        },
+        {
+          "path": "mipmap-mdpi/lumo_foreground.png",
+          "bytes": 9157,
+          "sha256": "398346110f8817cac9a9abda07dfb7d01201c1d3dc574ac4a88bc8f143d29f0e",
+          "width": 108,
+          "height": 108
+        },
+        {
+          "path": "mipmap-mdpi/lumo_monochrome.png",
+          "bytes": 2372,
+          "sha256": "26a2d463c1f77a69f92139ef855667aa6d8c34f43853bba4f808e8205decf94e",
+          "width": 108,
+          "height": 108
+        },
+        {
+          "path": "mipmap-hdpi/ic_lumo.png",
+          "bytes": 7803,
+          "sha256": "b89d700b144a1ac6144cdb62fb6104dea9d99fb91c4f4af323d307dc6db72281",
+          "width": 72,
+          "height": 72
+        },
+        {
+          "path": "mipmap-hdpi/ic_lumo_round.png",
+          "bytes": 7735,
+          "sha256": "eb52a5827cb86d8ea9b27259e62a17e2825145e7dc32522b45cd175d816f3ced",
+          "width": 72,
+          "height": 72
+        },
+        {
+          "path": "mipmap-hdpi/lumo_foreground.png",
+          "bytes": 18024,
+          "sha256": "7b4cd4abd7c13704d6bf8e4858613e1a415e340b94f0b71845a43dcbc23566fd",
+          "width": 162,
+          "height": 162
+        },
+        {
+          "path": "mipmap-hdpi/lumo_monochrome.png",
+          "bytes": 4123,
+          "sha256": "1ea519d2b0b21860d1ba8ea57908ca7d83248f08ae78828435816d8ce770745d",
+          "width": 162,
+          "height": 162
+        },
+        {
+          "path": "mipmap-xhdpi/ic_lumo.png",
+          "bytes": 12509,
+          "sha256": "b9f4baf7dd999ab517cab29e7744b4e789926997246d94e4b76e230827c7ef64",
+          "width": 96,
+          "height": 96
+        },
+        {
+          "path": "mipmap-xhdpi/ic_lumo_round.png",
+          "bytes": 12358,
+          "sha256": "83cb74d546e2188480d40dc729424f7bab6f1eec7facebb4f903bb62462ea147",
+          "width": 96,
+          "height": 96
+        },
+        {
+          "path": "mipmap-xhdpi/lumo_foreground.png",
+          "bytes": 29585,
+          "sha256": "85b40d37c65a150b5d49e0bbe136f947e0482b7aad2289324139e899769f4020",
+          "width": 216,
+          "height": 216
+        },
+        {
+          "path": "mipmap-xhdpi/lumo_monochrome.png",
+          "bytes": 6082,
+          "sha256": "9ed857cdefabb4f4196a9332189cbeace25031b4dac9a15dfaa079b240a68109",
+          "width": 216,
+          "height": 216
+        },
+        {
+          "path": "mipmap-xxhdpi/ic_lumo.png",
+          "bytes": 24975,
+          "sha256": "2c49f1c5940b6b25ad99bce838a0208a5c70354413c4a5b5a7c9c30b75e5aff6",
+          "width": 144,
+          "height": 144
+        },
+        {
+          "path": "mipmap-xxhdpi/ic_lumo_round.png",
+          "bytes": 24069,
+          "sha256": "d52e8b1ac7b2706182ddf29c7b589e4a98d68b2a6830bf7e1dbec51a6454b69f",
+          "width": 144,
+          "height": 144
+        },
+        {
+          "path": "mipmap-xxhdpi/lumo_foreground.png",
+          "bytes": 59699,
+          "sha256": "071284c29a0a21f1038b81d18b12d7a330a7c5caaa1c966b2e48922ca1118881",
+          "width": 324,
+          "height": 324
+        },
+        {
+          "path": "mipmap-xxhdpi/lumo_monochrome.png",
+          "bytes": 10525,
+          "sha256": "66a42f3aba32c0b3901be224fcb459110a552596749cf492d30e8e2c7a9e4baf",
+          "width": 324,
+          "height": 324
+        },
+        {
+          "path": "mipmap-xxxhdpi/ic_lumo.png",
+          "bytes": 41896,
+          "sha256": "1204f68ffbb0ac10e6e6d322458cf7ca94d2142fcdb699951163fc7077857974",
+          "width": 192,
+          "height": 192
+        },
+        {
+          "path": "mipmap-xxxhdpi/ic_lumo_round.png",
+          "bytes": 38614,
+          "sha256": "5a50dcd6bf1ca5a7507e9283e0e51704633e89ca30dacba5d3973a3b7abb5e25",
+          "width": 192,
+          "height": 192
+        },
+        {
+          "path": "mipmap-xxxhdpi/lumo_foreground.png",
+          "bytes": 99819,
+          "sha256": "7536c353c28cd61c272075c842282abab7501362ab397afeafbdc5144ab9bf7d",
+          "width": 432,
+          "height": 432
+        },
+        {
+          "path": "mipmap-xxxhdpi/lumo_monochrome.png",
+          "bytes": 15588,
+          "sha256": "7a611951973671e9974345c52536d8c3c532a358d9b55f38301ef7ff548408fb",
+          "width": 432,
+          "height": 432
+        },
+        {
+          "path": "values/lumo_launcher_colors.xml",
+          "bytes": 84,
+          "sha256": "acc76a73321417fc9d0b3dd06de352773cec1e1449573adf6d3aedde81ed5db4"
+        },
+        {
+          "path": "mipmap-anydpi-v26/ic_lumo.xml",
+          "bytes": 263,
+          "sha256": "3902fd806cabafb87a5fc89ee0e695a03b5c7be6d13721c7109fd484565aa843"
+        },
+        {
+          "path": "mipmap-anydpi-v26/ic_lumo_round.xml",
+          "bytes": 263,
+          "sha256": "3902fd806cabafb87a5fc89ee0e695a03b5c7be6d13721c7109fd484565aa843"
+        },
+        {
+          "path": "mipmap-anydpi-v33/ic_lumo.xml",
+          "bytes": 325,
+          "sha256": "8a8e7105b818d0aba31f160c01959ccf1fc929478d731a66aa3b22ac4475a152"
+        },
+        {
+          "path": "mipmap-anydpi-v33/ic_lumo_round.xml",
+          "bytes": 325,
+          "sha256": "8a8e7105b818d0aba31f160c01959ccf1fc929478d731a66aa3b22ac4475a152"
+        }
+      ],
+      "scope": "Generated resources only; APK and installed launcher must be checked separately"
+    }
+  },
+  "emulator": {
+    "status": "PASS",
+    "attempts": [
+      {
+        "arguments": [
+          "get-serialno"
+        ],
+        "elapsed_seconds": 0.0,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "emulator-5554"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "root"
+        ],
+        "elapsed_seconds": 0.004,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "restarting adbd as root"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "wait-for-device"
+        ],
+        "elapsed_seconds": 1.325,
+        "status": "PASS",
+        "return_code": 0,
+        "output": ""
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "id",
+          "-u"
+        ],
+        "elapsed_seconds": 1.328,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "0"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "getprop",
+          "sys.boot_completed"
+        ],
+        "elapsed_seconds": 1.366,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "1"
+      }
+    ],
+    "root_transport_recovered": false,
+    "initial_offline_recovered": false,
+    "initial_missing_recovered": false,
+    "verification": "actual shell id -u == 0 and sys.boot_completed == 1",
+    "scope": "disposable emulator setup; this does not pass installation or gameplay",
+    "serial": "emulator-5554",
+    "last_shell_uid": "0",
+    "last_boot_completed": "1",
+    "shell_uid": 0,
+    "boot_completed": true,
+    "elapsed_seconds": 1.382
+  },
+  "onboarding": {
+    "status": "PASS",
+    "profile_name": "LumoTest",
+    "captures": [
+      {
+        "file": "07_home_after_onboarding.png",
+        "width": 1080,
+        "height": 2400,
+        "sha256": "6fe49a21a400284140066f37e3100a60baff6fcfc43b477a9ea7555d07e072b4",
+        "render_readiness": {
+          "width": 1080,
+          "height": 2400,
+          "content_entropy_bits": 5.553,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      },
+      {
+        "file": "08_games_after_navigation.png",
+        "width": 1080,
+        "height": 2400,
+        "sha256": "8f0703eec5d3295becaf186d191340426a496cda7c4007231b41e2cf6cbbb432"
+      }
+    ],
+    "games_label": "Spiele"
+  },
+  "learning_journey": {
+    "status": "PASS",
+    "scope": "Profil (1. Klasse) > Lernen > Mathe > Plus bis 10 > Antwort > Rückmeldung > Belohnung > Speichern > App-Neustart > Wiederherstellen",
+    "not_tested": [
+      "physisches Gerät oder Fold-Scharnier",
+      "Bildrate",
+      "Sprachausgabe",
+      "falsche Antworten und Tipps auf Android (nur Flutter-Test)",
+      "andere Fächer und Klassen"
+    ],
+    "captures": [
+      {
+        "file": "02-learning-hub.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "d46a63357ecc222d6e9cf6553622f6edc7721b4e359534d06fa9193336be0641"
+      },
+      {
+        "file": "06-math-task.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "1569882394a656e422f5b008e5d6f2d741eb6a9149dc313b3f5761a07574ae53"
+      },
+      {
+        "file": "07-feedback.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "14fcfdc26ffbe1dc70f124a4c537f1a4d0852f558b523fb98b9b006252c71dd0"
+      },
+      {
+        "file": "09-after-lesson.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "ee3d53cda2d871b832734cf0fa3aa665b9ae52fb2f851795eaf2b4d8eaf93168"
+      },
+      {
+        "file": "12-restored-learning-menu.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "bdabaab67f7cfb04cf8fcbbc32b243688ea3899104ecdaaf8f58eca898dd064b"
+      },
+      {
+        "file": "t1-deutsch-missing.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "1458e6d88bab98aeca526493ac4333a5cf1da9b2a9657b55daaf125767d00093"
+      },
+      {
+        "file": "t2-englisch-missing.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "1458e6d88bab98aeca526493ac4333a5cf1da9b2a9657b55daaf125767d00093"
+      },
+      {
+        "file": "t3-spiele.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "cdc3f5aa4c6f28e60ae896e58c7ace34023816f00968c4064d36217393d0cc66"
+      },
+      {
+        "file": "t4-tests.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "4c3f998e5583d95529c0ae7342a8e42fc0e8f7663ca1b340ce647a6084cbba33"
+      },
+      {
+        "file": "t5-belohnungen.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "c941811f9463142c6afbe62d6621a52c76eb16099c3bd3d7e5b7d8d6702fb060"
+      },
+      {
+        "file": "t6-lumo-agent.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "d8e037ed0f2cbff8d13fd5050c18bf72a1442c0e13257b0a24ff0b65d415e105"
+      },
+      {
+        "file": "t7-elternbereich.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "50c3856689f418a07be39455ad84989cf501208c029bf8ad88bf620a239afc56"
+      },
+      {
+        "file": "t8-start.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "c61140694b7325093c40fe08ad2fb15d46cfe90001f647ba5e88de3252a6f43b"
+      },
+      {
+        "file": "t9-fold-cover-start.png",
+        "width": 904,
+        "height": 2316,
+        "sha256": "73a8c37ae7f25cb275f6847841e78735cf7804d6f2aeb4ec9a4c409df1538b50"
+      },
+      {
+        "file": "t9-fold-cover-lernen.png",
+        "width": 904,
+        "height": 2316,
+        "sha256": "d73f88b4b9c622fb33e0fa8eae5d97a5d3802629c21d82a6d403dcb636ec062f"
+      },
+      {
+        "file": "t9-fold-inner-start.png",
+        "width": 1812,
+        "height": 2176,
+        "sha256": "ba588081ceff83ed2100ff8f937dfdd6ceba1aec8dad490e2806760d792e4a95"
+      },
+      {
+        "file": "t9-fold-inner-lernen.png",
+        "width": 1812,
+        "height": 2176,
+        "sha256": "32f9a1dbbc8c26c9a70ebdf7128e110ec9788540b57c4144121242f7cb73a24d"
+      }
+    ],
+    "learning_hub": true,
+    "dedicated_math_task": true,
+    "task": {
+      "prompt": "1 + 2 = ?",
+      "answer": 3
+    },
+    "reward_delta": {
+      "stars": 1,
+      "xp": 5
+    },
+    "saved_correct_answers": 1,
+    "hub": {
+      "visible_after_restart": true,
+      "saved_correct_answers": 1,
+      "wallet_and_progress_after_restart": "UNCHANGED"
+    },
+    "restart_restore": "PASS",
+    "tour": {
+      "t1-deutsch": "FAIL: Kein Bedienelement beginnt mit: Deutsch. ",
+      "t2-englisch": "FAIL: Kein Bedienelement beginnt mit: Englisch. ",
+      "t3-spiele": "PASS",
+      "t4-tests": "PASS",
+      "t5-belohnungen": "PASS",
+      "t6-lumo-agent": "PASS",
+      "t7-elternbereich": "PASS",
+      "t8-start": "PASS",
+      "t9-fold-cover-start": "PASS",
+      "t9-fold-cover-lernen": "PASS",
+      "t9-fold-inner-start": "PASS",
+      "t9-fold-inner-lernen": "PASS"
+    }
+  },
+  "installation": {
+    "before_version": 2017,
+    "after_version": 2020,
+    "userId": "10209",
+    "firstInstallTime": "2026-11-14 15:57:10"
+  },
+  "after_update": {
+    "profile": {
+      "id": "1794671871969498",
+      "name": "LumoTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-14T15:57:51.969498"
+    },
+    "learning_keys_compared": 7,
+    "learning_keys_added": [],
+    "correct_answers_preserved": 1,
+    "earned_stars": 1,
+    "earned_xp": 5,
+    "approved_migration": {
+      "from_version": 2017,
+      "to_version": 2020,
+      "kind": "independentEvidence-v1",
+      "records": [
+        {
+          "preference_key": "flutter.lumo_progress_skills::local-193802967a0bfbea13c1d3fcf620dbc9",
+          "skill_id": "mathematik::plus bis 10",
+          "added_independent_evidence": {
+            "version": 1,
+            "correct": 1,
+            "wrong": 0,
+            "correctStreak": 1,
+            "wrongStreak": 0
+          }
+        }
+      ],
+      "existing_fields_preserved": true
+    }
+  },
+  "native_tour": {
+    "race": {
+      "touches": [
+        {
+          "step": "premium-start",
+          "button": "START",
+          "tap": [
+            1593,
+            885
+          ]
+        }
+      ],
+      "expected_mode": "cup",
+      "expected_track": "sonnenhafen",
+      "garage_replaced": {
+        "changed_fraction": 0.902,
+        "mean_channel_delta": 90.96
+      },
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "detail": [
+          {
+            "colour_bins": 721,
+            "bright_fraction": 0.913
+          },
+          {
+            "colour_bins": 548,
+            "bright_fraction": 0.978
+          },
+          {
+            "colour_bins": 1069,
+            "bright_fraction": 0.811
+          }
+        ]
+      },
+      "spatial_menu_navigation": {
+        "status": "PASS",
+        "selected_mode": "cup",
+        "sections": [
+          {
+            "section": "garage",
+            "visible_label": "Garage",
+            "return_caption": "Kart-Menü",
+            "return_touch": [
+              718,
+              916
+            ],
+            "return_evidence": "21_stage_garage-return-readiness.json",
+            "landing_caption": "Grand Prix",
+            "touch_evidence": "21_stage_garage-open-surface-readiness.json"
+          },
+          {
+            "section": "driver",
+            "visible_label": "Fahrer",
+            "return_caption": "Kart-Menü",
+            "return_touch": [
+              718,
+              916
+            ],
+            "return_evidence": "21_stage_driver-return-readiness.json",
+            "landing_caption": "Grand Prix",
+            "touch_evidence": "21_stage_driver-open-surface-readiness.json"
+          }
+        ],
+        "selection_touches": [
+          {
+            "kart": "comet",
+            "caption": "Comet",
+            "touch": [
+              510,
+              486
+            ],
+            "readiness": "21_stage_select_comet-surface-readiness.json",
+            "scope": "Touch only; actual new race selection is checked separately"
+          },
+          {
+            "kart": "gecko_velo",
+            "caption": "Gecko Velo",
+            "touch": [
+              554,
+              584
+            ],
+            "readiness": "21_stage_select_gecko_velo-surface-readiness.json",
+            "scope": "Touch only; actual new race selection is checked separately"
+          },
+          {
+            "driver": "fox",
+            "caption": "Lumo",
+            "touch": [
+              358,
+              504
+            ],
+            "readiness": "21_stage_driver-select-original-lumo-surface-readiness.json",
+            "scope": "Observed driver-card touch; actual new race selection is checked separately"
+          }
+        ],
+        "expected_kart": "gecko_velo",
+        "mode_caption": "Grand Prix",
+        "mode_touch_evidence": "21_stage_mode_cup-surface-readiness.json",
+        "scope": "Live Android OCR touches; no injected Godot selection or coordinates"
+      },
+      "confirmed_selection": {
+        "result_id": "a6e0ce2a-5c62-4b3b-8505-37156c384845-1794672438390-403980582",
+        "selected_kart": "gecko_velo",
+        "selected_driver": "fox",
+        "mode": "cup",
+        "track_id": "sonnenhafen",
+        "countdown": 0.0,
+        "elapsed": 1.0000000000000013,
+        "distance": 3.9689185e-06,
+        "previous_result_id": null
+      }
+    },
+    "hud": {
+      "capture": "21_race_hud_0",
+      "race_state": null,
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1.0,
+          0.999,
+          1.0
+        ],
+        "detail": [
+          {
+            "colour_bins": 926,
+            "bright_fraction": 0.827
+          },
+          {
+            "colour_bins": 1135,
+            "bright_fraction": 0.851
+          },
+          {
+            "colour_bins": 1228,
+            "bright_fraction": 0.688
+          }
+        ]
+      },
+      "hud_lines": [
+        "PLATZ"
+      ],
+      "focused_hud": {
+        "ocr": "| RUNDE 1/2 PLATZ5/6 0O km/h",
+        "three_hud_indicators": true,
+        "not_paused_or_finished": true
+      }
+    },
+    "drive": {
+      "gas_touch": [
+        2242,
+        936
+      ],
+      "hold_ms": 9000,
+      "gas_pulses": 3,
+      "world_moved": {
+        "changed_fraction": 0.621,
+        "mean_channel_delta": 62.08
+      },
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "detail": [
+          {
+            "colour_bins": 849,
+            "bright_fraction": 0.911
+          },
+          {
+            "colour_bins": 993,
+            "bright_fraction": 0.904
+          },
+          {
+            "colour_bins": 1192,
+            "bright_fraction": 0.796
+          }
+        ]
+      },
+      "native_progress": {
+        "result_id": "a6e0ce2a-5c62-4b3b-8505-37156c384845-1794672438390-403980582",
+        "distance_gain": 141.92,
+        "elapsed_gain": 5.02,
+        "checkpoint_index": 0
+      }
+    },
+    "pause": {
+      "result_id": "a6e0ce2a-5c62-4b3b-8505-37156c384845-1794672438390-403980582",
+      "distance": 143.93275387852918,
+      "elapsed": 6.16666666666665,
+      "checkpoint_index": 0,
+      "finished": false
+    },
+    "return": {
+      "file": "23_zurueck_in_flutter.png",
+      "width": 1080,
+      "height": 2400,
+      "sha256": "3ce4ff9bc72cfc7da3421c79bd5ec392acc242afebff0f13f11e9f3db8971528"
+    }
+  },
+  "after_kart": {
+    "profile": {
+      "id": "1794671871969498",
+      "name": "LumoTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-14T15:57:51.969498"
+    },
+    "learning_keys_compared": 7,
+    "learning_keys_added": [],
+    "correct_answers_preserved": 1,
+    "earned_stars": 1,
+    "earned_xp": 5,
+    "approved_migration": {
+      "from_version": 2017,
+      "to_version": 2020,
+      "kind": "independentEvidence-v1",
+      "records": [
+        {
+          "preference_key": "flutter.lumo_progress_skills::local-193802967a0bfbea13c1d3fcf620dbc9",
+          "skill_id": "mathematik::plus bis 10",
+          "added_independent_evidence": {
+            "version": 1,
+            "correct": 1,
+            "wrong": 0,
+            "correctStreak": 1,
+            "wrongStreak": 0
+          }
+        }
+      ],
+      "existing_fields_preserved": true
+    },
+    "after_update_exact": {
+      "profile": {
+        "id": "1794671871969498",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T15:57:51.969498"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5
+    },
+    "baseline_history": {
+      "profile": {
+        "id": "1794671871969498",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T15:57:51.969498"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-193802967a0bfbea13c1d3fcf620dbc9",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      }
+    }
+  },
+  "after_restart": {
+    "profile": {
+      "id": "1794671871969498",
+      "name": "LumoTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-14T15:57:51.969498"
+    },
+    "learning_keys_compared": 7,
+    "learning_keys_added": [],
+    "correct_answers_preserved": 1,
+    "earned_stars": 1,
+    "earned_xp": 5,
+    "approved_migration": {
+      "from_version": 2017,
+      "to_version": 2020,
+      "kind": "independentEvidence-v1",
+      "records": [
+        {
+          "preference_key": "flutter.lumo_progress_skills::local-193802967a0bfbea13c1d3fcf620dbc9",
+          "skill_id": "mathematik::plus bis 10",
+          "added_independent_evidence": {
+            "version": 1,
+            "correct": 1,
+            "wrong": 0,
+            "correctStreak": 1,
+            "wrongStreak": 0
+          }
+        }
+      ],
+      "existing_fields_preserved": true
+    },
+    "after_update_exact": {
+      "profile": {
+        "id": "1794671871969498",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T15:57:51.969498"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5
+    },
+    "baseline_history": {
+      "profile": {
+        "id": "1794671871969498",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T15:57:51.969498"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-193802967a0bfbea13c1d3fcf620dbc9",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      }
+    }
+  },
+  "fold": {
+    "cover": {
+      "profile": {
+        "id": "1794671871969498",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T15:57:51.969498"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-193802967a0bfbea13c1d3fcf620dbc9",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      },
+      "after_update_exact": {
+        "profile": {
+          "id": "1794671871969498",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T15:57:51.969498"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "baseline_history": {
+        "profile": {
+          "id": "1794671871969498",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T15:57:51.969498"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5,
+        "approved_migration": {
+          "from_version": 2017,
+          "to_version": 2020,
+          "kind": "independentEvidence-v1",
+          "records": [
+            {
+              "preference_key": "flutter.lumo_progress_skills::local-193802967a0bfbea13c1d3fcf620dbc9",
+              "skill_id": "mathematik::plus bis 10",
+              "added_independent_evidence": {
+                "version": 1,
+                "correct": 1,
+                "wrong": 0,
+                "correctStreak": 1,
+                "wrongStreak": 0
+              }
+            }
+          ],
+          "existing_fields_preserved": true
+        }
+      }
+    },
+    "open": {
+      "profile": {
+        "id": "1794671871969498",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T15:57:51.969498"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-193802967a0bfbea13c1d3fcf620dbc9",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      },
+      "after_update_exact": {
+        "profile": {
+          "id": "1794671871969498",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T15:57:51.969498"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "baseline_history": {
+        "profile": {
+          "id": "1794671871969498",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T15:57:51.969498"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5,
+        "approved_migration": {
+          "from_version": 2017,
+          "to_version": 2020,
+          "kind": "independentEvidence-v1",
+          "records": [
+            {
+              "preference_key": "flutter.lumo_progress_skills::local-193802967a0bfbea13c1d3fcf620dbc9",
+              "skill_id": "mathematik::plus bis 10",
+              "added_independent_evidence": {
+                "version": 1,
+                "correct": 1,
+                "wrong": 0,
+                "correctStreak": 1,
+                "wrongStreak": 0
+              }
+            }
+          ],
+          "existing_fields_preserved": true
+        }
+      }
+    },
+    "landscape": {
+      "profile": {
+        "id": "1794671871969498",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T15:57:51.969498"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-193802967a0bfbea13c1d3fcf620dbc9",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      },
+      "after_update_exact": {
+        "profile": {
+          "id": "1794671871969498",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T15:57:51.969498"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "baseline_history": {
+        "profile": {
+          "id": "1794671871969498",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T15:57:51.969498"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5,
+        "approved_migration": {
+          "from_version": 2017,
+          "to_version": 2020,
+          "kind": "independentEvidence-v1",
+          "records": [
+            {
+              "preference_key": "flutter.lumo_progress_skills::local-193802967a0bfbea13c1d3fcf620dbc9",
+              "skill_id": "mathematik::plus bis 10",
+              "added_independent_evidence": {
+                "version": 1,
+                "correct": 1,
+                "wrong": 0,
+                "correctStreak": 1,
+                "wrongStreak": 0
+              }
+            }
+          ],
+          "existing_fields_preserved": true
+        }
+      }
+    }
+  },
+  "offline": true,
+  "fatal_crashes": 0
+}

@@ -1,0 +1,341 @@
+{
+  "apk_sha256": "e65662ccc91366177a80bf6c6d43d364d9908836eb50bbe43625725d6010ab4b",
+  "apk_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "apk_source_tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "cases": {
+    "main": {
+      "before_after_binding_identical": true,
+      "confirmed_race_selection": {
+        "countdown": 0.0,
+        "distance": 3.9689185e-06,
+        "elapsed": 1.0000000000000013,
+        "mode": "cup",
+        "previous_result_id": null,
+        "result_id": "e81e9e70-b655-497e-bbfa-2ed6ccec32ff-1794672358730-476460514",
+        "selected_driver": "fox",
+        "selected_kart": "gecko_velo",
+        "track_id": "sonnenhafen"
+      },
+      "continue_distance_gain": 98.77154090255499,
+      "final_target_bounds": [
+        451.0,
+        638.0,
+        658.0,
+        665.0
+      ],
+      "garage_elapsed_seconds": 135.041254,
+      "learning_keys_compared": 2,
+      "observed_swipes": [
+        {
+          "anchor_kind": "current-caption",
+          "gesture": [
+            510,
+            498,
+            510,
+            473
+          ],
+          "swipe_number": 1
+        },
+        {
+          "anchor_kind": "current-caption",
+          "gesture": [
+            510,
+            474,
+            510,
+            449
+          ],
+          "swipe_number": 2
+        },
+        {
+          "anchor_kind": "current-caption",
+          "gesture": [
+            510,
+            449,
+            510,
+            423
+          ],
+          "swipe_number": 3
+        }
+      ],
+      "original_report": {
+        "bytes": 15552,
+        "path": "main/tour-result.json",
+        "sha256": "8962033806846a368307ad899b5b070515d6070b5783f2b944aeb4cf3942fd9e",
+        "status": "PASS"
+      },
+      "race_distance_gain": 81.71,
+      "receipt_pass": true,
+      "referenced_ocr_pixel_files_checked": 0,
+      "reviewed_original_images": [
+        {
+          "actually_viewed": true,
+          "bytes": 679683,
+          "path": "main/13_atelier_zehnerbruecke.png",
+          "pixels": [
+            1080,
+            2400
+          ],
+          "sha256": "6b0d9c5c20daee82829acb7b6d754de4cb3610a9128bac5d0352dcd33f8a4338"
+        },
+        {
+          "actually_viewed": true,
+          "bytes": 775109,
+          "path": "main/21_stage_select_gecko_velo-7.png",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "sha256": "5dc35ab076c6b7a3e16e28da29880b3de3f523fd79bfe51dd5d0564f2898853f"
+        },
+        {
+          "actually_viewed": true,
+          "bytes": 1948645,
+          "path": "main/21_lumo_kart_real_race.png",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "sha256": "5aeaf977e6c714c5aa3c045b643dc3c9f3f1fc21d407da2030bc958dcbcbf932"
+        },
+        {
+          "actually_viewed": true,
+          "bytes": 1929016,
+          "path": "main/21_continue/21_race_driving_late_2.png",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "sha256": "20d34754bf6be0d44369abeb3665c7ffb7872a095ed2b3b5707f7875e24a3c01"
+        },
+        {
+          "actually_viewed": true,
+          "bytes": 1927456,
+          "path": "main/23_zurueck_in_flutter.png",
+          "pixels": [
+            1080,
+            2400
+          ],
+          "sha256": "b005170f24649b8ccdc254f44fae93af7e9e8d5e5adc70be23632b16fcbf6b3d"
+        }
+      ],
+      "steps_passed": [
+        "apk-identity",
+        "launch",
+        "onboarding",
+        "navigate-start",
+        "atelier-roundtrip",
+        "navigate-lernen",
+        "navigate-spiele",
+        "open-kart",
+        "start-kart-race",
+        "race-running",
+        "race-hud",
+        "race-drive",
+        "pause-menu",
+        "return-from-kart",
+        "learning-state-after-kart",
+        "lernen-usable-after-kart",
+        "profile-after-kart",
+        "restart-keeps-learning-state",
+        "display-fold_offen",
+        "display-fold_aussen",
+        "display-quer"
+      ],
+      "target_touch": [
+        554,
+        652
+      ]
+    },
+    "update2017": {
+      "before_after_binding_identical": true,
+      "confirmed_race_selection": {
+        "countdown": 0.0,
+        "distance": 3.9689185e-06,
+        "elapsed": 1.0000000000000013,
+        "mode": "cup",
+        "previous_result_id": null,
+        "result_id": "a6e0ce2a-5c62-4b3b-8505-37156c384845-1794672438390-403980582",
+        "selected_driver": "fox",
+        "selected_kart": "gecko_velo",
+        "track_id": "sonnenhafen"
+      },
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "final_target_bounds": [
+        451.0,
+        571.0,
+        658.0,
+        598.0
+      ],
+      "garage_elapsed_seconds": 113.367403,
+      "installation": {
+        "after_version": 2020,
+        "before_version": 2017,
+        "firstInstallTime": "2026-11-14 15:57:10",
+        "userId": "10209"
+      },
+      "learning_keys_compared": 7,
+      "observed_swipes": [
+        {
+          "anchor_kind": "current-caption",
+          "gesture": [
+            510,
+            498,
+            510,
+            473
+          ],
+          "swipe_number": 1
+        },
+        {
+          "anchor_kind": "current-caption",
+          "gesture": [
+            510,
+            474,
+            510,
+            449
+          ],
+          "swipe_number": 2
+        },
+        {
+          "anchor_kind": "current-stat-bars",
+          "gesture": [
+            538,
+            527,
+            538,
+            454
+          ],
+          "swipe_number": 3
+        }
+      ],
+      "original_report": {
+        "bytes": 41715,
+        "path": "update/update-result.json",
+        "sha256": "fc486d9c6d6ff1e4934c083b9610acbf31bd66774a5a1e414d59ace133099f09",
+        "status": "PASS"
+      },
+      "populated_writing_or_journal_keys": [],
+      "preserved_phases": [
+        "after_update",
+        "after_kart",
+        "after_restart",
+        "fold_cover",
+        "fold_open",
+        "fold_landscape"
+      ],
+      "race_distance_gain": 141.92,
+      "receipt_pass": true,
+      "referenced_ocr_pixel_files_checked": 16,
+      "reviewed_original_images": [
+        {
+          "actually_viewed": true,
+          "bytes": 769905,
+          "path": "update/21_stage_select_gecko_velo-7.png",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "sha256": "486dfd4af9efb7198f838078c4b1c5baf624f3f288409e969748b0348017815b"
+        },
+        {
+          "actually_viewed": true,
+          "bytes": 1996785,
+          "path": "update/21_race_hud_0.png",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "sha256": "761598510125dbd1b2380746350085c120249b9d91747293918804fff9aa3148"
+        },
+        {
+          "actually_viewed": true,
+          "bytes": 1880629,
+          "path": "update/21_race_driving_late_2.png",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "sha256": "96c5161ad1f97ef89302a7379ca7d309214bf58571e223e995baaf474551b987"
+        },
+        {
+          "actually_viewed": true,
+          "bytes": 1926277,
+          "path": "update/23_zurueck_in_flutter.png",
+          "pixels": [
+            1080,
+            2400
+          ],
+          "sha256": "3ce4ff9bc72cfc7da3421c79bd5ec392acc242afebff0f13f11e9f3db8971528"
+        },
+        {
+          "actually_viewed": true,
+          "bytes": 3090823,
+          "path": "update/updated-profile-offline.png",
+          "pixels": [
+            1080,
+            2400
+          ],
+          "sha256": "efa3ee3e0653f593eb51d3049492bf66ddd0179dc663bfd0831d64c035c0b1b3"
+        },
+        {
+          "actually_viewed": true,
+          "bytes": 2579959,
+          "path": "update/fold-cover.png",
+          "pixels": [
+            904,
+            2316
+          ],
+          "sha256": "e65eb8d94cc934ecd1b948220a3ec30a667751c9f8510b2cd3c25ea394642900"
+        },
+        {
+          "actually_viewed": true,
+          "bytes": 4247955,
+          "path": "update/fold-open.png",
+          "pixels": [
+            1812,
+            2176
+          ],
+          "sha256": "d63ad2fad6b80ce84d8f6a45cdbd0183aec43e0d7079436f1052fdf84945e845"
+        },
+        {
+          "actually_viewed": true,
+          "bytes": 1764748,
+          "path": "update/fold-landscape.png",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "sha256": "8221a7b41f5994f9e4611092802fb84f0481c6ba3e6f5ed12f89482cecbf78db"
+        }
+      ],
+      "target_touch": [
+        554,
+        584
+      ]
+    }
+  },
+  "limitations": [
+    "Isolated observer diagnostic; not final seven-job release acceptance.",
+    "Separate direct Village and Connect Four probes are not part of these diagnostic cases and produced no evidence here.",
+    "No physical ARM64 device, audio output, GPU frame-time/60-FPS measurement, or completed two-lap race reward.",
+    "Update baseline contains no populated writing/journal preferences; their content preservation is not claimed."
+  ],
+  "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "qa_source": "4017a94dd4a859f7b571e9b6a1f0208695e5e815",
+  "qa_tree": "7680b8ab9b32d526b365ad2376092da267f0063b",
+  "run_attempt": 1,
+  "run_id": 43612493152,
+  "schema": 1,
+  "verification_scope": "Read-only validation of the already downloaded original evidence; no test rerun, emulator, APK rebuild, or new toolchain verification.",
+  "visual_findings": [
+    "Main original Atelier image shows the complete seven-plus-five ten-frame task with visible controls and model-check button.",
+    "Both original garage target frames show a complete Gecko Velo caption above the workshop overlay; actual saved new-race data confirms the selected kart independently.",
+    "Main continuation driving image shows the original fox and green Gecko kart, unobstructed roadway, lap 1/2, and a visible 177 km/h reading.",
+    "Update late driving image shows the original fox and green Gecko kart, unobstructed roadway, lap 1/2, and a visible 157 km/h reading.",
+    "Both return images show the Flutter games world. A visible Village portal does not prove that its native scene was entered.",
+    "Update profile and all three Fold-format images display one star and five of 400 XP; those figures are independently tied to the preserved original preferences.",
+    "Update initial race HUD frame contains a nearby grey opponent partly blocking the lower camera view; the later driving frame clears that obstruction. No all-frame occlusion-free claim is made.",
+    "Main file 21_lumo_kart_real_race.png is the track introduction, not an active-drive proof; the separate continuation driving image supplies that proof.",
+    "The Fold landscape image shows clipped off-screen central content and shortened sidebar profile text in its initial viewport; no all-controls-in-one-frame claim is made."
+  ]
+}
