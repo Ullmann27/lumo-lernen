@@ -4,8 +4,8 @@ package dev.ullmann.lumo;
 // https://github.com/supertone-oss-archive/supertonic/blob/main/java/Helper.java
 // Copyright (c) 2025 Supertone Inc. MIT notice is bundled with the application.
 // Model weights are separately governed by BigScience Open RAIL-M.
-// Changes: German-only bounded input, binary preset verification, deterministic
-// seed, cancellable inference, bounded output, closed tensors and CPU threads.
+// Changes: bounded German and host-bound English words, preset verification,
+// deterministic seed, cancellation, bounded output, closed tensors and CPU threads.
 
 import ai.onnxruntime.OnnxTensor;
 import ai.onnxruntime.OrtEnvironment;
@@ -26,7 +26,7 @@ import java.util.Random;
 import java.util.concurrent.CancellationException;
 import java.util.function.BooleanSupplier;
 
-/** CPU-only German speech. No network, microphone, system TTS or child store. */
+/** CPU-only local F2 speech. No network, microphone, system TTS or child store. */
 public final class LumoOfflineSpeechEngine implements AutoCloseable {
     public static final String PROFILE = "lumo-free-supertonic-de-v1";
     public static final String PRESET = "F2";
@@ -129,6 +129,15 @@ public final class LumoOfflineSpeechEngine implements AutoCloseable {
         return "<de>" + normalized + "</de>";
     }
 
+    /** Only a host-bound visible English object word; German normalization is unchanged. */
+    public static String prepareEnglishWord(String word) {
+        if (word == null || word.length() > 24 ||
+            !word.matches("[a-z]+(?: [a-z]+)*")) {
+            throw new IllegalArgumentException("Invalid English object word");
+        }
+        return "<en>" + word + ".</en>";
+    }
+
     private long[] ids(String prepared) {
         int[] characters = prepared.codePoints().toArray();
         long[] ids = new long[characters.length];
@@ -162,7 +171,27 @@ public final class LumoOfflineSpeechEngine implements AutoCloseable {
 
     public byte[] synthesize(String text, String style, BooleanSupplier cancelled)
         throws IOException, OrtException {
-        String prepared = prepareGerman(text);
+        return synthesizePrepared(prepareGerman(text), style, cancelled);
+    }
+
+    /** One cancellable request, one F2 voice and one bounded player WAV. No audio cache. */
+    public byte[] synthesizeEnglishLesson(String word, String explanation, String style,
+        BooleanSupplier cancelled) throws IOException, OrtException {
+        String english = prepareEnglishWord(word);
+        String german = prepareGerman(explanation);
+        checkCancelled(cancelled);
+        byte[] first = synthesizePrepared(english, style, cancelled);
+        checkCancelled(cancelled);
+        byte[] second = synthesizePrepared(german, style, cancelled);
+        checkCancelled(cancelled);
+        byte[] joined = joinLessonWaves(first, second);
+        checkCancelled(cancelled);
+        return joined;
+    }
+
+    private byte[] synthesizePrepared(String prepared, String style, BooleanSupplier cancelled)
+        throws IOException, OrtException {
+        checkCancelled(cancelled);
         long[] tokens = ids(prepared);
         float[] mask = new float[tokens.length];
         Arrays.fill(mask, 1);
@@ -247,6 +276,45 @@ public final class LumoOfflineSpeechEngine implements AutoCloseable {
                 run.close();
             }
         }
+    }
+
+    /** Join only the engine's exact mono PCM16 / 44100-Hz RIFF format.
+     * The complete EN + 250-ms silence + DE wave must fit the existing
+     * 30-second envelope/player bound, not merely each individual segment.
+     */
+    public static byte[] joinLessonWaves(byte[] english, byte[] german) throws IOException {
+        int englishBytes = lessonPcmBytes(english);
+        int germanBytes = lessonPcmBytes(german);
+        int gapBytes = (SAMPLE_RATE / 4) * 2;
+        long dataBytes = (long) englishBytes + gapBytes + germanBytes;
+        if (dataBytes > (long) SAMPLE_RATE * MAX_SECONDS * 2) {
+            throw new IOException("Combined lesson speech exceeds 30 seconds");
+        }
+        byte[] wave = Arrays.copyOf(english, 44 + (int) dataBytes);
+        ByteBuffer header = ByteBuffer.wrap(wave).order(ByteOrder.LITTLE_ENDIAN);
+        header.putInt(4, 36 + (int) dataBytes);
+        header.putInt(40, (int) dataBytes);
+        System.arraycopy(german, 44, wave, 44 + englishBytes + gapBytes, germanBytes);
+        return wave;
+    }
+
+    private static int lessonPcmBytes(byte[] wave) throws IOException {
+        if (wave == null || wave.length < 44 + SAMPLE_RATE / 10 * 2 ||
+            wave.length > 44 + SAMPLE_RATE * MAX_SECONDS * 2) {
+            throw new IOException("Invalid lesson WAV size");
+        }
+        ByteBuffer header = ByteBuffer.wrap(wave).order(ByteOrder.LITTLE_ENDIAN);
+        int bytes = wave.length - 44;
+        if (header.getInt(0) != 0x46464952 || header.getInt(8) != 0x45564157 ||
+            header.getInt(12) != 0x20746d66 || header.getInt(36) != 0x61746164 ||
+            header.getInt(4) != wave.length - 8 || header.getInt(16) != 16 ||
+            header.getShort(20) != 1 || header.getShort(22) != 1 ||
+            header.getInt(24) != SAMPLE_RATE || header.getInt(28) != SAMPLE_RATE * 2 ||
+            header.getShort(32) != 2 || header.getShort(34) != 16 ||
+            header.getInt(40) != bytes || bytes % 2 != 0) {
+            throw new IOException("Unsupported lesson WAV format");
+        }
+        return bytes;
     }
 
     private static void checkCancelled(BooleanSupplier cancelled) {

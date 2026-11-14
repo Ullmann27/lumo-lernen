@@ -1,0 +1,272 @@
+{
+  "schema": 1,
+  "status": "FROZEN_13_SOURCE_BLOBS_AND_ORIGINAL_METADATA_READY_FOR_ROOT_TREE_ONLY",
+  "created_utc": "2026-11-14T17:28:13.061Z",
+  "repository": "Ullmann27/lumo-lernen",
+  "proposed_parent": "e664ba4732222a64af58d44a6bab768846f47ccb",
+  "checked_product_basis": {
+    "head": "36274db2941963c59b1f819ad7bc2358470d3a76",
+    "tree": "39ee9cdf1567271599922d6b991399927affccae"
+  },
+  "producer": {
+    "head": "b7210db3f53361987fd33592de438fd7984d991a",
+    "parent": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+    "tree": "c65558a13e4dd2950eda7a685583e5484d9b9959"
+  },
+  "source_freeze": {
+    "bytes": 9728,
+    "sha256": "f76320fd641973128624523375c899a9910b86b9b14c692decf79bb4355da99d",
+    "git_blob": "b789addc1af8f5cc43439780513ebb9e9a889534"
+  },
+  "source_files": [
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4954dd792ba8b7ac9b66cbbe9a84752cbdab830",
+      "bytes": 11337,
+      "sha256": "415e137cf51e339d3dc3fdd283eebb246989605a95ab2bc41c3f1d05ba8d6d4d",
+      "before_git_blob": "95b57595d0cc788746c20fe5c26ef448c18121c2",
+      "producer_git_blob": "755077c4f1385f9b09464113aeaab3a20ec8a376"
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e034ca2a46e53adf8a3014c0e8868d33ba54a9c",
+      "bytes": 9663,
+      "sha256": "3e2ab56fe6c75cdfd04ef032dc20d07f38b1e8fc8f925a7753893482c623270c",
+      "before_git_blob": "b40217befd633a2a606a5cd8ae732f33068a1c22",
+      "producer_git_blob": "9e034ca2a46e53adf8a3014c0e8868d33ba54a9c"
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd",
+      "bytes": 19214,
+      "sha256": "6a8383795979c7bea9f89c44b5419a417edce249c92a93db63e896ce8a303ddc",
+      "before_git_blob": "7a986433953773678feb4c98226caafb47c6abd9",
+      "producer_git_blob": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd"
+    },
+    {
+      "path": "scripts/run_speech_jvm_contracts.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d17f343b16d80bddb861cf26cfeae9e38994f24",
+      "bytes": 19493,
+      "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+      "before_git_blob": null,
+      "producer_git_blob": "9d17f343b16d80bddb861cf26cfeae9e38994f24"
+    },
+    {
+      "path": "scripts/speech_contracts/test_english_lesson_speech.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93b4d63069533f160207e098ff6093c963ce3bfd",
+      "bytes": 18072,
+      "sha256": "96326b009847dfe0b4979dd80d247d6d343c97ed3778e0e1e5394df2590e9a81",
+      "before_git_blob": null,
+      "producer_git_blob": "93b4d63069533f160207e098ff6093c963ce3bfd"
+    },
+    {
+      "path": "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0fe0ebe291be6ba1f84ab6bda50ab34c987823a",
+      "bytes": 6350,
+      "sha256": "f2f49ce0928b18058beefa9539c776da4379c6470073976831388d7e993b3e89",
+      "before_git_blob": null,
+      "producer_git_blob": "b0fe0ebe291be6ba1f84ab6bda50ab34c987823a"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e22b98ad3938b6d0dafd4c1971d20faf09e337a",
+      "bytes": 9459,
+      "sha256": "78375595ea5456a6106933bc1f5463242b836e72f4a0c989ca275a9f1c9a1bd5",
+      "before_git_blob": null,
+      "producer_git_blob": "9e22b98ad3938b6d0dafd4c1971d20faf09e337a"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc50fad0bb37d59880a1ca6fd675ce523d314292",
+      "bytes": 4342,
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+      "before_git_blob": null,
+      "producer_git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a",
+      "bytes": 4381,
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+      "before_git_blob": null,
+      "producer_git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/apfel-original.wav",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905",
+      "bytes": 40970,
+      "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+      "before_git_blob": null,
+      "producer_git_blob": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905"
+    },
+    {
+      "path": "scripts/tests/fixtures/learning_english_speech/platform_fixture.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40897dc0e2a48cb0c054f19820557ffa7fc43579",
+      "bytes": 5481,
+      "sha256": "99203bbf7a00f908af1f0df57b97156894668f3b615f58ff56264a4dcbf1fa4d",
+      "before_git_blob": null,
+      "producer_git_blob": "40897dc0e2a48cb0c054f19820557ffa7fc43579"
+    },
+    {
+      "path": "scripts/tests/test_speech_jvm_runner.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4358a2540c65c19701b39d582465089672f884e5",
+      "bytes": 14569,
+      "sha256": "5b4161a58a3280fe0b70ae0cddca57e58411a04c1a475ad5c9c55ecbb63f2276",
+      "before_git_blob": null,
+      "producer_git_blob": "4358a2540c65c19701b39d582465089672f884e5"
+    },
+    {
+      "path": "scripts/compile_android_host.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48893609d274834c58f7b6eceb63b0b5ec86951f",
+      "bytes": 3386,
+      "sha256": "eaa36179179a172f1dff6bc49cf1917813e0143f6beed8a04b2c1a49071618f8",
+      "before_git_blob": "73d0c0d8726e6352f0bf89c25cf17bdf1270ad2f",
+      "producer_git_blob": null
+    }
+  ],
+  "documents": [
+    {
+      "path": "source-freeze.json",
+      "bytes": 9728,
+      "sha256": "f76320fd641973128624523375c899a9910b86b9b14c692decf79bb4355da99d",
+      "git_blob": "b789addc1af8f5cc43439780513ebb9e9a889534",
+      "full_original_readback": true,
+      "proposed_repo_path": "docs/evidence/host-b721-speech-integration-20261114/source-freeze.json"
+    },
+    {
+      "path": "protection-report.json",
+      "bytes": 11454,
+      "sha256": "86f5210c9dff4bafb84e5533638b0822092255913ad6956a3242b9f3d50d2e6b",
+      "git_blob": "39f7f18d9719f25dbe709484b64d13e7149e2b01",
+      "full_original_readback": true,
+      "proposed_repo_path": "docs/evidence/host-b721-speech-integration-20261114/protection-report.json"
+    },
+    {
+      "path": "integration.patch",
+      "bytes": 100582,
+      "sha256": "b0e98ce514d5263ccb41ee2ab9a54f1b9be17197ca2ee2158192ddde22511fb0",
+      "git_blob": "74d7fa0bccf5f72f79ed4f059cb994347a702d22",
+      "full_original_readback": true,
+      "proposed_repo_path": "docs/evidence/host-b721-speech-integration-20261114/integration.patch"
+    },
+    {
+      "path": "merged-vs-producer.patch",
+      "bytes": 2085,
+      "sha256": "4b6e87e65e5f16934032ada885a4c925c39a95315adccb1cede5bb014048f583",
+      "git_blob": "6cb2455dca24c9711d04b048a37fd86d0f019710",
+      "full_original_readback": true,
+      "proposed_repo_path": "docs/evidence/host-b721-speech-integration-20261114/merged-vs-producer.patch"
+    },
+    {
+      "path": "compile-only.patch",
+      "bytes": 612,
+      "sha256": "c18f549ca8930680974966b02ec49167b4de6326cb64980fe5011d9a14a3a43b",
+      "git_blob": "787eb8f7f6c6de1daac059ae15f8481ab54d3c85",
+      "full_original_readback": true,
+      "proposed_repo_path": "docs/evidence/host-b721-speech-integration-20261114/compile-only.patch"
+    },
+    {
+      "path": "source-index.json",
+      "bytes": 11145,
+      "sha256": "958c5f0541384d2ed1b1996216d5dbe3e77a5ca9885767270e024e0e9449bcc7",
+      "git_blob": "2dcc126aaf3cf35b1ffa639aa9a41e9cb2f6d4e6",
+      "full_original_readback": true,
+      "proposed_repo_path": "docs/evidence/host-b721-speech-integration-20261114/source-index.json"
+    },
+    {
+      "path": "test-contract.json",
+      "bytes": 3944,
+      "sha256": "5fc92e99093f9e7affb0d3f976b3a6c0610c44d666508f581c4b8e381fb3bd30",
+      "git_blob": "29ad22a2cf518e1bc84cf77a60a37f9882896eb8",
+      "full_original_readback": true,
+      "proposed_repo_path": "docs/evidence/host-b721-speech-integration-20261114/test-contract.json"
+    },
+    {
+      "path": "english-vocabulary-binding.json",
+      "bytes": 1388,
+      "sha256": "82484ba5116e43c90656822f211b4b55499590252a94bf6403919eca41b27dcc",
+      "git_blob": "1c828cd4fd2866a6556ff6ca299a03432c994c86",
+      "full_original_readback": true,
+      "proposed_repo_path": "docs/evidence/host-b721-speech-integration-20261114/english-vocabulary-binding.json"
+    },
+    {
+      "path": "original-producer-commit.json",
+      "bytes": 235908,
+      "sha256": "0dc68dc56176284ef8db4540790a05a6742769fef40a96d70ad675f2cebebda1",
+      "git_blob": "27e35d81217684156cde3e784d885317e93a28f4",
+      "full_original_readback": true,
+      "proposed_repo_path": "docs/evidence/host-b721-speech-integration-20261114/original-producer-commit.json"
+    },
+    {
+      "path": "workflow-v2-review-recovery.json",
+      "bytes": 2320,
+      "sha256": "f6063b88dbb072f166f526ab6a8a5ba338560580e7ec8de782430a3e0fbfde16",
+      "git_blob": "70026e955eddeffacd137e72baae26d950007e48",
+      "full_original_readback": true,
+      "proposed_repo_path": "docs/evidence/host-b721-speech-integration-20261114/workflow-v2-review-recovery.json"
+    }
+  ],
+  "narrow_merge": {
+    "learning": "Two existing Root lines retained verbatim: learning||build allowed expression and original comment. All b721 additions retained.",
+    "compile": "One additional mandatory real class LumoSpeechEnvelope, no change to compiler commands or preceding/following assertions.",
+    "other_eleven": "Exact published b721 blobs, including original WAV."
+  },
+  "validations_performed": [
+    "Complete official immutable source/API reads and UTF-8/Base64 byte checks",
+    "Root common-base/Producer/Final comparison",
+    "Actual Root and Producer tree path/mode/blob matching, all nine new paths absent in Root",
+    "28 protected Root paths and nine unchanged product byte sections",
+    "Exact 14-entry Kotlin versus existing Dart vocabulary equality",
+    "Both derived source blobs and all preceding documentation blobs fully read back and matched"
+  ],
+  "tests": "NOT_RUN. No product import, Java/Kotlin/Flutter/Engine/lint/CI execution.",
+  "future_qualification": {
+    "orchestrator_methods": 19,
+    "java_methods": 11,
+    "kotlin_methods": 8,
+    "historical_assertions": {
+      "lifecycle": 17,
+      "envelope": 23
+    },
+    "audio_scope": "Explicit synthetic ONNX/Android boundaries; no actual inference, audible voice or Android playback claim.",
+    "workflow_owner": "Godot prepares separate V3 on these immutable hashes; Root alone checkpoints and activates."
+  },
+  "runtime_limit": "Executor is unavailable. No new local source pack/archive is claimed; exact bytes and original responses remain in functions.store and listed immutable blobs.",
+  "v2_review_recovery": "workflow-v2-review-recovery.json is a newly identified recovery of confirmed facts, not the unavailable original b4794ac4 report.",
+  "preservation": "Active 5ad/2281/C4 run, current Source/Pin/Policy, Writer/InkSurface/Journal/Diktat/Math/Village/C4/Garage and all other paths are unchanged by this 13-path proposal.",
+  "mutations": {
+    "immutable_source_blob_creates": 2,
+    "immutable_document_blobs_before_handoff": 10,
+    "trees": 0,
+    "commits": 0,
+    "refs": 0,
+    "ci": 0,
+    "releases": 0
+  }
+}

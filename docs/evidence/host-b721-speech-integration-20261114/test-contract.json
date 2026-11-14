@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "status": "NOT_RUN_STATIC_ROSTER",
+  "groups": [
+    {
+      "path": "scripts/tests/test_speech_jvm_runner.py",
+      "methods": [
+        "test_missing_distribution_cannot_bootstrap_or_use_global_gradle",
+        "test_pull_request_binds_actual_head_instead_of_synthetic_merge",
+        "test_foreign_or_missing_pull_request_payload_cannot_supply_sources",
+        "test_ambiguous_cached_distribution_is_rejected",
+        "test_nonstandard_wrapper_cache_is_rejected",
+        "test_invalid_compiler_class_is_rejected",
+        "test_two_compiler_versions_are_rejected",
+        "test_offline_command_uses_observed_distribution_not_wrapper",
+        "test_missing_jdk_refuses_inherited_skip_policy",
+        "test_resolved_jdk_and_strict_policy_override_inherited_environment",
+        "test_complete_declared_rosters_have_positive_controls",
+        "test_partial_or_duplicate_test_roster_cannot_pass",
+        "test_skip_expected_failure_or_error_is_not_success",
+        "test_missing_duplicate_and_unexecuted_markers_fail_closed",
+        "test_compile_source_and_class_bytes_must_both_match",
+        "test_foreign_class_path_cannot_satisfy_compile_binding",
+        "test_deadline_retains_original_output_and_never_reports_success",
+        "test_child_records_skip_as_failure_without_claiming_jvm_execution",
+        "test_broad_discovery_does_not_collect_dedicated_jvm_modules"
+      ],
+      "execution": "NOT_RUN_SOURCE_ROSTER_ONLY"
+    },
+    {
+      "path": "scripts/speech_contracts/test_english_lesson_speech.py",
+      "methods": [
+        "test_existing_german_engine_contract",
+        "test_english_word_tags_and_input_bound",
+        "test_join_preserves_pcm_and_exact_gap",
+        "test_malformed_wave_formats_refused",
+        "test_total_envelope_duration_bound",
+        "test_language_order_identity_and_no_result_cache",
+        "test_cancel_before_first_inference",
+        "test_cancel_between_inferences",
+        "test_cancel_before_join",
+        "test_cancel_after_join_before_return",
+        "test_interrupted_worker_never_starts_inference"
+      ],
+      "execution": "NOT_RUN_SOURCE_ROSTER_ONLY"
+    },
+    {
+      "path": "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+      "methods": [
+        "test_original_seventeen_lifecycle_assertions",
+        "test_original_twenty_three_envelope_assertions",
+        "test_host_descriptor_owns_word_and_language",
+        "test_malformed_current_lesson_refused",
+        "test_parent_guards_and_old_german_signature",
+        "test_one_player_real_position_and_pcm_gap",
+        "test_late_results_after_pause_replace_and_destroy",
+        "test_wrong_result_word_locale_identity_refused"
+      ],
+      "execution": "NOT_RUN_SOURCE_ROSTER_ONLY"
+    }
+  ],
+  "preconditions": [
+    "Actual same-HEAD compile helper PASS with all four speech classes and verified class bytes",
+    "Exactly one already populated wrapper distribution matching actual wrapper properties",
+    "Observed real Gradle/JDK/Kotlin compiler libraries; no new compiler install or global Gradle fallback",
+    "REQUIRE_ALL_TESTS=true, all 11 Java and 8 Kotlin methods, all actual markers, zero failures/errors/skips/expected failures",
+    "Original stdout/stderr preserved by runner as joined original log with actual child exit and timeout outcome"
+  ],
+  "synthetic_boundaries": "Java ONNX doubles and Kotlin Android/player/synthesis doubles are explicitly labeled. This is not actual model inference, audible English/German audio, or Android playback.",
+  "dedicated_command": {
+    "shell": "bash",
+    "cwd": "actual committed Host checkout",
+    "command": "python3 -B scripts/run_speech_jvm_contracts.py --repo-root \"$PWD\" --output host-compile-evidence/speech-next-authorities",
+    "output_directory_must_not_exist_before_call": true,
+    "execute_after": "Actual successful compile_android_host.sh and before evidence relocation"
+  }
+}
