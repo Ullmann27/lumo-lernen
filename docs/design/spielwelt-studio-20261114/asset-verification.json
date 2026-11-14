@@ -1,0 +1,134 @@
+{
+  "status": "PASS",
+  "count": 10,
+  "runtime_total_bytes": 1184500,
+  "checks": [
+    "512x512 RGBA",
+    "transparent background",
+    "no cropped alpha",
+    "all receipt SHA256 match",
+    "PNG to WebP pixel-exact RGBA"
+  ],
+  "assets": [
+    {
+      "id": "kart",
+      "alpha_bounds": [
+        70,
+        143,
+        442,
+        453
+      ],
+      "lossless_rgba_match": true,
+      "bytes": 115680,
+      "sha256": "dcf3909e6a6a56a25785d45ba5da9f5320a617b764ae912063d3f3db295c427d"
+    },
+    {
+      "id": "cards",
+      "alpha_bounds": [
+        70,
+        102,
+        442,
+        453
+      ],
+      "lossless_rgba_match": true,
+      "bytes": 120896,
+      "sha256": "d2d9c4ff66dcb88b86a8736fbeb57bcc20773483b88d369e37537d8b57953724"
+    },
+    {
+      "id": "build",
+      "alpha_bounds": [
+        70,
+        111,
+        442,
+        453
+      ],
+      "lossless_rgba_match": true,
+      "bytes": 113382,
+      "sha256": "2b713efe8b1a72e5fa1b49691fc2772f001c210e576d161b00d2690a18a811c5"
+    },
+    {
+      "id": "puzzle",
+      "alpha_bounds": [
+        70,
+        211,
+        442,
+        453
+      ],
+      "lossless_rgba_match": true,
+      "bytes": 89560,
+      "sha256": "4fe0b1b5e46360a183094d5a916d8f367029f1752626972d423b32c8c79b38df"
+    },
+    {
+      "id": "memory",
+      "alpha_bounds": [
+        70,
+        118,
+        442,
+        453
+      ],
+      "lossless_rgba_match": true,
+      "bytes": 113712,
+      "sha256": "b27c4302740ff30f2cb1b6c7fa0c1c4be1741aa58e792560a0dd453a544222d4"
+    },
+    {
+      "id": "jumpRun",
+      "alpha_bounds": [
+        70,
+        58,
+        442,
+        453
+      ],
+      "lossless_rgba_match": true,
+      "bytes": 119812,
+      "sha256": "43ecaa662c4724a6e10ce838121ad0846872e13ee358c3d728de1e4ddca9e8c2"
+    },
+    {
+      "id": "rhythm",
+      "alpha_bounds": [
+        70,
+        77,
+        442,
+        453
+      ],
+      "lossless_rgba_match": true,
+      "bytes": 114184,
+      "sha256": "f0d451c6119b573ea0a82ced7f41cae978de737805805a1b2da833cfbd1d0931"
+    },
+    {
+      "id": "treasure",
+      "alpha_bounds": [
+        70,
+        79,
+        442,
+        453
+      ],
+      "lossless_rgba_match": true,
+      "bytes": 127424,
+      "sha256": "3cf18971ee33e28d2af784fe62bb7a77d2d5082f4b5dc15138e60058023ce72c"
+    },
+    {
+      "id": "connectFour",
+      "alpha_bounds": [
+        70,
+        71,
+        442,
+        453
+      ],
+      "lossless_rgba_match": true,
+      "bytes": 155676,
+      "sha256": "f3d31ca72a7ac5ba364fb06b18a06cfd3f66f5afa160f6f3d400ab405bc142f9"
+    },
+    {
+      "id": "quizShow",
+      "alpha_bounds": [
+        70,
+        73,
+        442,
+        453
+      ],
+      "lossless_rgba_match": true,
+      "bytes": 114174,
+      "sha256": "9dd5c9d1e16d9f36366bcacc4058bd941e2ef86df8913aada6992eba8633f4d6"
+    }
+  ]
+}

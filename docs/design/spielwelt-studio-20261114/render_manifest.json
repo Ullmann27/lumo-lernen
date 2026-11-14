@@ -1,0 +1,227 @@
+{
+  "schema": 1,
+  "source": "Original LUMO Blender geometry",
+  "renders": [
+    {
+      "id": "kart",
+      "tool": "Blender 4.3.2",
+      "renderer": "Cycles CPU",
+      "samples": 256,
+      "dimensions": [
+        512,
+        512
+      ],
+      "transparent_background": true,
+      "original_scripted_geometry": true,
+      "character_assets_used": false,
+      "file": "kart.webp",
+      "bytes": 115680,
+      "sha256": "dcf3909e6a6a56a25785d45ba5da9f5320a617b764ae912063d3f3db295c427d",
+      "png_sha256": "db99ad09a4a01ac3b9d42f620b286ff746212e7861f367f10fe6314d7b7c701d",
+      "blend_sha256": "3b48a6b59a935b26a4c3465f8ac394cc793b8b0f39df55f834c9709341359735",
+      "glb_sha256": "946f17a07c2a81666af7ff45f9fe34a9644ef2e10223745e8915ba6fbc29806f",
+      "mesh_nodes": 5,
+      "surfaces": 5,
+      "triangles": 11996
+    },
+    {
+      "id": "cards",
+      "tool": "Blender 4.3.2",
+      "renderer": "Cycles CPU",
+      "samples": 256,
+      "dimensions": [
+        512,
+        512
+      ],
+      "transparent_background": true,
+      "original_scripted_geometry": true,
+      "character_assets_used": false,
+      "file": "cards.webp",
+      "bytes": 120896,
+      "sha256": "d2d9c4ff66dcb88b86a8736fbeb57bcc20773483b88d369e37537d8b57953724",
+      "png_sha256": "c4e7ee47cb34baea48b5293279b3c527417becf79055b16b56fcbae38fe421a7",
+      "blend_sha256": "063087eb43631d66c43e342fdcdf6364c741af9fcc8e4510a83e995b2ff13078",
+      "glb_sha256": "6ff24938fdf8d2e555637e21e6c46bf6a31bd9e163f5555ace787a19efed68b1",
+      "mesh_nodes": 7,
+      "surfaces": 7,
+      "triangles": 8564
+    },
+    {
+      "id": "build",
+      "tool": "Blender 4.3.2",
+      "renderer": "Cycles CPU",
+      "samples": 256,
+      "dimensions": [
+        512,
+        512
+      ],
+      "transparent_background": true,
+      "original_scripted_geometry": true,
+      "character_assets_used": false,
+      "file": "build.webp",
+      "bytes": 113382,
+      "sha256": "2b713efe8b1a72e5fa1b49691fc2772f001c210e576d161b00d2690a18a811c5",
+      "png_sha256": "bc8521f7740227826dfb07f798519af0c84677746378e1b2409db1cdc5ab930f",
+      "blend_sha256": "278a55b1dc946ccf8bc6ecab2a466a152903c7f9f9fac0efe40425b3c9b97061",
+      "glb_sha256": "443f79b4bcbef139fa551901a80d99cc686cea0d9195de7ae4c8545661c1087d",
+      "mesh_nodes": 8,
+      "surfaces": 8,
+      "triangles": 11824
+    },
+    {
+      "id": "puzzle",
+      "tool": "Blender 4.3.2",
+      "renderer": "Cycles CPU",
+      "samples": 256,
+      "dimensions": [
+        512,
+        512
+      ],
+      "transparent_background": true,
+      "original_scripted_geometry": true,
+      "character_assets_used": false,
+      "file": "puzzle.webp",
+      "bytes": 89560,
+      "sha256": "4fe0b1b5e46360a183094d5a916d8f367029f1752626972d423b32c8c79b38df",
+      "png_sha256": "9a1f6b1e6f7633da73ba45720067ba92cdfe8635908823e723aff6990340a483",
+      "blend_sha256": "936bdb08882951da034abb585c75478d508cc39bcf4e4c39e1bdade69f75ce4c",
+      "glb_sha256": "f8cc1e2513fe20fa81635754619a93d7e2d2f8cdba5b801c3974e2c439b7a856",
+      "mesh_nodes": 7,
+      "surfaces": 7,
+      "triangles": 5768
+    },
+    {
+      "id": "memory",
+      "tool": "Blender 4.3.2",
+      "renderer": "Cycles CPU",
+      "samples": 256,
+      "dimensions": [
+        512,
+        512
+      ],
+      "transparent_background": true,
+      "original_scripted_geometry": true,
+      "character_assets_used": false,
+      "file": "memory.webp",
+      "bytes": 113712,
+      "sha256": "b27c4302740ff30f2cb1b6c7fa0c1c4be1741aa58e792560a0dd453a544222d4",
+      "png_sha256": "8f2f7fa699d594d768d15b2532186ba2ab7d1a094ca61f8bc12f8c37aadd2e28",
+      "blend_sha256": "6001ac19c429980c7c5f8ebe48dd24469caa70f9cb894783f8f482468e656600",
+      "glb_sha256": "be16f180f68ec5e039e1689e657fcf12cc7a7a46b0aebaa9b68317ce8cdc0873",
+      "mesh_nodes": 6,
+      "surfaces": 6,
+      "triangles": 7220
+    },
+    {
+      "id": "jumpRun",
+      "tool": "Blender 4.3.2",
+      "renderer": "Cycles CPU",
+      "samples": 256,
+      "dimensions": [
+        512,
+        512
+      ],
+      "transparent_background": true,
+      "original_scripted_geometry": true,
+      "character_assets_used": false,
+      "file": "jumpRun.webp",
+      "bytes": 119812,
+      "sha256": "43ecaa662c4724a6e10ce838121ad0846872e13ee358c3d728de1e4ddca9e8c2",
+      "png_sha256": "4a8996ed4a877367e1a9caa40991cd7090c84727b93b6490ca68262f115777d8",
+      "blend_sha256": "7288912f24b7e9102b1ff11618666505fa9e02306b4d53e45bc87b455a84b4e4",
+      "glb_sha256": "3b29f1d0ccf69cda8a878ba5af4acb0e32f629c9051c52479a78838e6b43a18d",
+      "mesh_nodes": 7,
+      "surfaces": 7,
+      "triangles": 15468
+    },
+    {
+      "id": "rhythm",
+      "tool": "Blender 4.3.2",
+      "renderer": "Cycles CPU",
+      "samples": 256,
+      "dimensions": [
+        512,
+        512
+      ],
+      "transparent_background": true,
+      "original_scripted_geometry": true,
+      "character_assets_used": false,
+      "file": "rhythm.webp",
+      "bytes": 114184,
+      "sha256": "f0d451c6119b573ea0a82ced7f41cae978de737805805a1b2da833cfbd1d0931",
+      "png_sha256": "1507e2f857c612fea9f72531e392756b3dfc155a406f630ea4dc559c7b86e090",
+      "blend_sha256": "e1b21db3d838f674aa0e33a2ac5def5b72820fdf3ec1fe5d082a60a746394e4f",
+      "glb_sha256": "1255613392ee2147dc0747798ff887110e019ffa1cbde899bf107bb59b82745e",
+      "mesh_nodes": 6,
+      "surfaces": 6,
+      "triangles": 12900
+    },
+    {
+      "id": "treasure",
+      "tool": "Blender 4.3.2",
+      "renderer": "Cycles CPU",
+      "samples": 256,
+      "dimensions": [
+        512,
+        512
+      ],
+      "transparent_background": true,
+      "original_scripted_geometry": true,
+      "character_assets_used": false,
+      "file": "treasure.webp",
+      "bytes": 127424,
+      "sha256": "3cf18971ee33e28d2af784fe62bb7a77d2d5082f4b5dc15138e60058023ce72c",
+      "png_sha256": "4038894332179746aba5eae2763a89fc7df6d45d8e850ad7481e800b88ec0fcd",
+      "blend_sha256": "1dac9499e65a7b94707ed23f179b61cd62656a5a8c12b37e5b55a45842651c76",
+      "glb_sha256": "9c38d0a7a056071bd845ae8f52aa21d6dd250edfb4bf138566500838869a2c34",
+      "mesh_nodes": 7,
+      "surfaces": 7,
+      "triangles": 12376
+    },
+    {
+      "id": "connectFour",
+      "tool": "Blender 4.3.2",
+      "renderer": "Cycles CPU",
+      "samples": 256,
+      "dimensions": [
+        512,
+        512
+      ],
+      "transparent_background": true,
+      "original_scripted_geometry": true,
+      "character_assets_used": false,
+      "file": "connectFour.webp",
+      "bytes": 155676,
+      "sha256": "f3d31ca72a7ac5ba364fb06b18a06cfd3f66f5afa160f6f3d400ab405bc142f9",
+      "png_sha256": "4a001931b15d0ec742dd96dbae93b770d8c8356af7959c3d9c179e50118be7f7",
+      "blend_sha256": "69b64c8863187b68e2fa7aae75fe663a57157693858e4331db6a1834f4c435ab",
+      "glb_sha256": "32419f7bca046e5e1fc4119c12ee668c68cea92cf2b8d0922e618601e4cfd203",
+      "mesh_nodes": 6,
+      "surfaces": 6,
+      "triangles": 18652
+    },
+    {
+      "id": "quizShow",
+      "tool": "Blender 4.3.2",
+      "renderer": "Cycles CPU",
+      "samples": 256,
+      "dimensions": [
+        512,
+        512
+      ],
+      "transparent_background": true,
+      "original_scripted_geometry": true,
+      "character_assets_used": false,
+      "file": "quizShow.webp",
+      "bytes": 114174,
+      "sha256": "9dd5c9d1e16d9f36366bcacc4058bd941e2ef86df8913aada6992eba8633f4d6",
+      "png_sha256": "df0ba27bdd2291ba9d360017ab1e2fdfc7b8224e564579852c3f2d43363d6e87",
+      "blend_sha256": "1335ec3e3ca1977c814da4faa133304e86d4033e5bc94544169d0d623e99060a",
+      "glb_sha256": "c14a73e1f7073df7bd8c8184421506b72dae95c983730dc7ed2606a9a71ab960",
+      "mesh_nodes": 5,
+      "surfaces": 5,
+      "triangles": 7940
+    }
+  ],
+  "evidence_scope": "Asset renders; physical Android performance is not measured"
+}
