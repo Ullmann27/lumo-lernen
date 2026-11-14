@@ -359,78 +359,94 @@ class _HubHeader extends StatelessWidget {
   const _HubHeader({required this.stars});
   final int stars;
 
+  Widget _logo() => ExcludeSemantics(
+        child: Image.asset(
+          'assets/lumo_design/logo/logo_lumo.png',
+          width: 91,
+          height: 54,
+          fit: BoxFit.contain,
+          filterQuality: FilterQuality.medium,
+        ),
+      );
+
+  Widget _title() => Semantics(
+        label: 'Lumo Spielewelt',
+        header: true,
+        excludeSemantics: true,
+        child: const Text(
+          'Spielewelt',
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 25,
+            height: 1.12,
+            fontWeight: FontWeight.w900,
+            color: Colors.white,
+          ),
+        ),
+      );
+
+  Widget _balance() => Semantics(
+        label: '$stars Sterne',
+        excludeSemantics: true,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 9),
+          decoration: BoxDecoration(
+            color: const Color(0xFF07182F),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: const Color(0xFF3B729F)),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                'assets/lumo_design/icons/star_gold.png',
+                width: 24,
+                height: 24,
+                fit: BoxFit.contain,
+              ),
+              const SizedBox(width: 5),
+              Text(
+                '$stars',
+                key: const ValueKey('spielwelt-stars'),
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 17,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFFFFE7A0),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
   @override
-  Widget build(BuildContext context) => Row(
-        children: [
-          Expanded(
-            child: Semantics(
-              label: 'Lumo Spielewelt',
-              header: true,
-              excludeSemantics: true,
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/lumo_design/logo/logo_lumo.png',
-                    width: 91,
-                    height: 54,
-                    fit: BoxFit.contain,
-                    filterQuality: FilterQuality.medium,
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      'Spielewelt',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize:
-                            MediaQuery.sizeOf(context).width < 380 ? 20 : 25,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(width: 10),
-          Semantics(
-            label: '$stars Sterne',
-            excludeSemantics: true,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 9),
-              decoration: BoxDecoration(
-                color: const Color(0xFF07182F),
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: const Color(0xFF3B729F)),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset(
-                    'assets/lumo_design/icons/star_gold.png',
-                    width: 24,
-                    height: 24,
-                    fit: BoxFit.contain,
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    '$stars',
-                    key: const ValueKey('spielwelt-stars'),
-                    style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 17,
-                      fontWeight: FontWeight.w900,
-                      color: Color(0xFFFFE7A0),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (context, constraints) {
+          // The title receives its own line before large text or a narrow
+          // display could truncate it between the logo and the real balance.
+          final stacked = constraints.maxWidth < 370 ||
+              MediaQuery.textScalerOf(context).scale(1) > 1.4;
+          if (stacked) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(children: [_logo(), const Spacer(), _balance()]),
+                const SizedBox(height: 3),
+                _title(),
+              ],
+            );
+          }
+          return Row(
+            children: [
+              _logo(),
+              const SizedBox(width: 10),
+              Expanded(child: _title()),
+              const SizedBox(width: 10),
+              _balance(),
+            ],
+          );
+        },
       );
 }
 
@@ -458,7 +474,19 @@ class _GameTileState extends State<_GameTile> {
     final portal = widget.portal;
     final featured = portal.identity == 'kart';
     final open = portal.state.unlocked && portal.playable;
-    final accent = featured ? const Color(0xFFFFCE50) : const Color(0xFF56D4FA);
+    final accent = switch (portal.identity) {
+      'kart' => const Color(0xFFFFCF60),
+      'cards' => const Color(0xFFC3A6FF),
+      'build' => const Color(0xFF78E7AD),
+      'puzzle' => const Color(0xFFFFA6BD),
+      'memory' => const Color(0xFF6DE3E0),
+      'jumpRun' => const Color(0xFF7ECEFF),
+      'rhythm' => const Color(0xFFF0A1FF),
+      'treasure' => const Color(0xFFFFC47A),
+      'connectFour' => const Color(0xFF90B4FF),
+      'quizShow' => const Color(0xFFFFDE8B),
+      _ => const Color(0xFF56D4FA),
+    };
     final status = !portal.playable
         ? 'Kommt bald'
         : portal.state.unlocked
@@ -484,18 +512,13 @@ class _GameTileState extends State<_GameTile> {
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: featured
-                  ? const [
-                      Color(0xFF385C7A),
-                      Color(0xFF152D4F),
-                      Color(0xFF131E34),
-                    ]
-                  : const [
-                      Color(0xFF245D91),
-                      Color(0xFF12365E),
-                      Color(0xFF0A2446),
-                    ],
-              stops: const [0, .4, 1],
+              colors: [
+                Color.alphaBlend(
+                    accent.withValues(alpha: .24), const Color(0xFF15365D)),
+                const Color(0xFF102A4D),
+                const Color(0xFF081B36),
+              ],
+              stops: const [0, .55, 1],
             ),
             border: Border.all(
               color: _highlighted
@@ -540,7 +563,7 @@ class _GameTileState extends State<_GameTile> {
                             center: const Alignment(-.35, -.55),
                             radius: 1.2,
                             colors: [
-                              accent.withOpacity(.14),
+                              accent.withValues(alpha: .25),
                               Colors.transparent,
                             ],
                           ),
@@ -548,8 +571,25 @@ class _GameTileState extends State<_GameTile> {
                       ),
                     ),
                   ),
+                  Positioned(
+                    left: 20,
+                    right: 20,
+                    top: 1,
+                    height: 1,
+                    child: IgnorePointer(
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            Colors.transparent,
+                            accent.withValues(alpha: .8),
+                            Colors.transparent,
+                          ]),
+                        ),
+                      ),
+                    ),
+                  ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(9, 9, 9, 11),
+                    padding: const EdgeInsets.fromLTRB(6, 6, 6, 11),
                     child: Column(
                       children: [
                         Expanded(
@@ -572,6 +612,25 @@ class _GameTileState extends State<_GameTile> {
                       ],
                     ),
                   ),
+                  if (open)
+                    Positioned(
+                      top: 9,
+                      right: 9,
+                      child: IgnorePointer(
+                        child: Container(
+                          width: 23,
+                          height: 23,
+                          decoration: BoxDecoration(
+                            color: const Color(0xD90A1B35),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                color: accent.withValues(alpha: .52)),
+                          ),
+                          child: Icon(Icons.play_arrow_rounded,
+                              size: 17, color: accent),
+                        ),
+                      ),
+                    ),
                   if (!open)
                     Positioned(
                       top: 8,

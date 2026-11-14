@@ -2,15 +2,31 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-/// Individual game symbols, not miniature screenshots with baked-in UI.
-/// Existing transparent Lumo artwork is combined with resolution-independent
-/// toy shapes. The icons stay readable when the Fold changes its width.
+/// Original Blender-built toy dioramas, rendered with transparent backgrounds.
+/// Decode sizes follow the actual portal size, so the ten visible worlds do not
+/// keep full-resolution textures in memory on a compact cover display.
 class SpielweltGameIcon extends StatelessWidget {
   const SpielweltGameIcon({super.key, required this.identity});
 
   final String identity;
 
-  static String? assetFor(String identity) => switch (identity) {
+  static const studioAssets = <String, String>{
+    'kart': 'assets/lumo_design/spielwelt/studio/kart.webp',
+    'cards': 'assets/lumo_design/spielwelt/studio/cards.webp',
+    'build': 'assets/lumo_design/spielwelt/studio/build.webp',
+    'puzzle': 'assets/lumo_design/spielwelt/studio/puzzle.webp',
+    'memory': 'assets/lumo_design/spielwelt/studio/memory.webp',
+    'jumpRun': 'assets/lumo_design/spielwelt/studio/jumpRun.webp',
+    'rhythm': 'assets/lumo_design/spielwelt/studio/rhythm.webp',
+    'treasure': 'assets/lumo_design/spielwelt/studio/treasure.webp',
+    'connectFour': 'assets/lumo_design/spielwelt/studio/connectFour.webp',
+    'quizShow': 'assets/lumo_design/spielwelt/studio/quizShow.webp',
+  };
+
+  static String? assetFor(String identity) =>
+      studioAssets[identity] ?? _originalAssetFor(identity);
+
+  static String? _originalAssetFor(String identity) => switch (identity) {
         'kart' => 'assets/lumo_design/characters/kart_side.webp',
         'treasure' => 'assets/lumo_design/icons/treasure_chest.png',
         'quizShow' => 'assets/lumo_design/icons/trophy_gold.png',
@@ -28,43 +44,56 @@ class SpielweltGameIcon extends StatelessWidget {
             final size = math.min(constraints.maxWidth, constraints.maxHeight);
             if (asset != null) {
               return Padding(
-                padding: EdgeInsets.all(size * .035),
+                padding: EdgeInsets.all(size * .015),
                 child: Image.asset(
                   asset,
                   fit: BoxFit.contain,
+                  cacheWidth: (size * MediaQuery.devicePixelRatioOf(context))
+                      .ceil()
+                      .clamp(96, 512),
                   filterQuality: FilterQuality.medium,
                   gaplessPlayback: true,
+                  errorBuilder: (context, error, stackTrace) => _fallback(size),
                 ),
               );
             }
-            return Center(
-              child: SizedBox(
-                width: size * 1.16,
-                height: size,
-                child: Stack(fit: StackFit.expand, children: [
-                  CustomPaint(painter: _ToyIconPainter(identity)),
-                  if (identity == 'memory')
-                    Positioned(
-                      left: size * 1.16 * .5,
-                      top: size * 38 / 140,
-                      width: size * 1.16 * 50 / 160,
-                      height: size * 74 / 140,
-                      child: Transform.rotate(
-                        angle: .16,
-                        child: Padding(
-                          padding: const EdgeInsets.all(2),
-                          child: Image.asset(
-                              'assets/lumo_design/fox/fox_avatar.png',
-                              fit: BoxFit.contain,
-                              filterQuality: FilterQuality.medium),
-                        ),
-                      ),
-                    ),
-                ]),
-              ),
-            );
+            return _fallback(size);
           },
         ),
+      ),
+    );
+  }
+
+  Widget _fallback(double size) {
+    final original = _originalAssetFor(identity);
+    if (original != null) {
+      return Image.asset(original,
+          fit: BoxFit.contain, filterQuality: FilterQuality.medium);
+    }
+    return Center(
+      child: SizedBox(
+        width: size * 1.16,
+        height: size,
+        child: Stack(fit: StackFit.expand, children: [
+          CustomPaint(painter: _ToyIconPainter(identity)),
+          if (identity == 'memory')
+            Positioned(
+              left: size * 1.16 * .5,
+              top: size * 38 / 140,
+              width: size * 1.16 * 50 / 160,
+              height: size * 74 / 140,
+              child: Transform.rotate(
+                angle: .16,
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Image.asset(
+                      'assets/lumo_design/fox/fox_avatar.png',
+                      fit: BoxFit.contain,
+                      filterQuality: FilterQuality.medium),
+                ),
+              ),
+            ),
+        ]),
       ),
     );
   }
