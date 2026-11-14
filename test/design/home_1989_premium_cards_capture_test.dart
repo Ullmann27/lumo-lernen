@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -56,6 +57,7 @@ void main() {
       await tester.binding.setSurfaceSize(size);
       addTearDown(() => tester.binding.setSurfaceSize(null));
       final state = LumoAppState();
+      final sections = <LumoSection>[];
       addTearDown(state.dispose);
       const captureKey = ValueKey('home-1989-boundary');
       await tester.pumpWidget(
@@ -69,13 +71,51 @@ void main() {
             child: Scaffold(
               body: RepaintBoundary(
                 key: captureKey,
-                child: HomeContent(appState: state, onSection: (_) {}),
+                child: HomeContent(appState: state, onSection: sections.add),
               ),
             ),
           ),
         ),
       );
       await tester.pump(const Duration(milliseconds: 700));
+      final testsCard = find.byKey(const ValueKey('home-secondary-tests'));
+      final rewardsCard = find.byKey(const ValueKey('home-secondary-rewards'));
+      for (final (card, title) in [
+        (testsCard, 'Tests'),
+        (rewardsCard, 'Belohnungen'),
+      ]) {
+        final cardRect = tester.getRect(card);
+        expect(cardRect.width, greaterThanOrEqualTo(48));
+        expect(cardRect.height, greaterThanOrEqualTo(48));
+        final titleFinder = find.descendant(
+          of: card,
+          matching: find.text(title),
+        );
+        final paragraph = tester.renderObject<RenderParagraph>(titleFinder);
+        final boxes = paragraph.getBoxesForSelection(
+          TextSelection(baseOffset: 0, extentOffset: title.length),
+        );
+        expect(paragraph.didExceedMaxLines, isFalse);
+        expect(boxes, hasLength(1),
+            reason: '$device must keep the complete $title label on one line');
+        final textRect = boxes.single.toRect().shift(
+          paragraph.localToGlobal(Offset.zero),
+        );
+        expect(textRect.left, greaterThanOrEqualTo(cardRect.left));
+        expect(textRect.right, lessThanOrEqualTo(cardRect.right));
+        expect(textRect.top, greaterThanOrEqualTo(cardRect.top));
+        expect(textRect.bottom, lessThanOrEqualTo(cardRect.bottom));
+      }
+      if (device == 'fold-cover') {
+        expect(testsCard.hitTestable(), findsOneWidget);
+        expect(rewardsCard.hitTestable(), findsOneWidget);
+        await tester.tap(testsCard);
+        await tester.pump();
+        await tester.tap(rewardsCard);
+        await tester.pump();
+        expect(sections, [LumoSection.tests, LumoSection.rewards]);
+        await tester.pump(const Duration(milliseconds: 500));
+      }
       final out = Platform.environment['LUMO_1989_CARD_CAPTURES'];
       if (out != null) {
         await captureLumoBoundary(
