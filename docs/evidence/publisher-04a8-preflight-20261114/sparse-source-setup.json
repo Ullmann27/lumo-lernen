@@ -1,0 +1,43 @@
+[
+  {
+    "argv": [
+      "git",
+      "clone",
+      "--shared",
+      "--no-checkout",
+      "--quiet",
+      "/workspace/scratch/909ddb52fe7b/lumo-accepted-source",
+      "/workspace/scratch/909ddb52fe7b/publisher-preparation-04a8/exact-source"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/workspace/scratch/909ddb52fe7b/publisher-preparation-04a8/exact-source",
+      "sparse-checkout",
+      "set",
+      "--no-cone",
+      "/config/godot-source.json"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/workspace/scratch/909ddb52fe7b/publisher-preparation-04a8/exact-source",
+      "checkout",
+      "--detach",
+      "04a8e850d4c198e16ff758df614ce6e53eab4524"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "Previous HEAD position was 1e22d245 Integrate the complete Lumo Live, Dream and current quality sources\nHEAD is now at 04a8e850 fix: verify visible Village return before full Android acceptance\n"
+  }
+]

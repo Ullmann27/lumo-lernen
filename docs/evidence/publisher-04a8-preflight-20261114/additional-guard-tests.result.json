@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "/workspace/scratch/909ddb52fe7b/publisher-preparation-04a8",
+    "-p",
+    "test_additional_acceptance.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "seconds": 0.20355528999789385,
+  "test_count": 51,
+  "skipped": 0,
+  "log_sha256": "ab56a1df39c7ecf0edad3db8f6998efb9bb6d5c79a10ef1687d53b70d62b434a",
+  "scope": "Original positive metadata and unchanged synthetic rejection contracts. No Android or release execution."
+}

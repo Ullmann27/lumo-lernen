@@ -1,0 +1,30 @@
+{
+  "before": {
+    "head": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+    "tree": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+    "status": "",
+    "pin": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+      "engine": "4.6.3"
+    },
+    "materialized_source_files": [
+      "config/godot-source.json"
+    ]
+  },
+  "after": {
+    "head": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+    "tree": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+    "status": "",
+    "pin": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+      "engine": "4.6.3"
+    },
+    "materialized_source_files": [
+      "config/godot-source.json"
+    ]
+  },
+  "identical": true,
+  "scope": "Single-config-file sparse checkout sharing immutable existing Git objects; no full checkout or network fetch."
+}

@@ -1,0 +1,59 @@
+{
+  "source_sha": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "source_tree": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+  "acceptance_run": 43628840534,
+  "acceptance_attempt": 1,
+  "publisher_reference_commit": "361f409f4bded479858e392aff8494863c4c0b1a",
+  "original_workflow_blob": "c4a901a649f49b80cd16e22ece3c40b1a3cbd12d",
+  "workflow_blob": "712529847807e1d0a7135654703a13b7a63a1e1e",
+  "replacement_counts": [
+    {
+      "old": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "new": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+      "workflow_occurrences": 4,
+      "helper_occurrences": 2
+    },
+    {
+      "old": "43616038272",
+      "new": "43628840534",
+      "workflow_occurrences": 1,
+      "helper_occurrences": 0
+    },
+    {
+      "old": "43616035099",
+      "new": "43628830465",
+      "workflow_occurrences": 7,
+      "helper_occurrences": 1
+    },
+    {
+      "old": "132511176199",
+      "new": "132550661600",
+      "workflow_occurrences": 1,
+      "helper_occurrences": 1
+    },
+    {
+      "old": "14122252221",
+      "new": "14126808268",
+      "workflow_occurrences": 1,
+      "helper_occurrences": 1
+    },
+    {
+      "old": "1167242",
+      "new": "1169894",
+      "workflow_occurrences": 1,
+      "helper_occurrences": 1
+    },
+    {
+      "old": "aa3acbb92e89b5e8c3723d35ffb0ea8e07f6405b8dbe7821a6a3ce9b085b9075",
+      "new": "a6ae2c6ae9e4b0e8b600bdd54687288ec6d229ae2cf20b28df128c28658de805",
+      "workflow_occurrences": 1,
+      "helper_occurrences": 1
+    }
+  ],
+  "workflow_byte_identical_after_binding_reversal": true,
+  "helper_byte_identical_after_binding_reversal": true,
+  "native_binding_byte_semantics_unchanged": true,
+  "test_source_byte_identical": true,
+  "test_source_blob": "5cac6f3b404554d3c7b04f07874c811525e5d270",
+  "publication_activated": false
+}

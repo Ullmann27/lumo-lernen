@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "scope": "Independent static immutable-source comparison only; no tests, archives or workflow commands executed here.",
+  "reader_checkpoint": "ee08fd14b38aae89120b5f6200ca16a97a7a2861",
+  "reader_tree": "ae8028d17967e75fe5ca2f750ae85beb3365652c",
+  "reader_workflow_blob": "7779c3d5f90269104be3f289865d744b3e788d11",
+  "publisher_workflow_blob": "712529847807e1d0a7135654703a13b7a63a1e1e",
+  "seven_publisher_read_steps_structurally_identical_in_reader": true,
+  "reader_step_positions": [
+    1,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "literal_first_seven_reader_steps_equal": false,
+  "reader_extra_setup_steps": [
+    "Load immutable reviewed reader sources and exact image dependencies",
+    "Check out the exact original Native source for its existing readers",
+    "Test the original archive and materialized source safeguards"
+  ],
+  "first_seven_step_names": [
+    "Check out the exact accepted source and its original verifier",
+    "Revalidate the exact additional Native and Feature acceptance",
+    "Read the complete current acceptance and download its original bundle",
+    "Verify and safely unpack every original delivery byte",
+    "Set up the existing APK certificate verifier Java runtime",
+    "Set up the pinned Android toolchain for independent original APK verification",
+    "Reverify original ARM64 APK signature package and source before creating a release"
+  ],
+  "source_and_main_run_env_identical": true,
+  "additional_bindings_structure_order_and_values_equal": true,
+  "old_driver_checkpoint": "3049c835ab3e15fb4cee2f94b1935b0f01a27357",
+  "old_driver_blob": "3c81457f029952ea4125bdb20da9e89a4f15d3b8",
+  "new_driver_blob": "0028aac49374245c85da27a69d1ae4113e87c1a9",
+  "driver_only_four_exact_substitutions": [
+    {
+      "old": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "new": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+      "occurrences": 1
+    },
+    {
+      "old": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+      "new": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+      "occurrences": 1
+    },
+    {
+      "old": "43616038272",
+      "new": "43628840534",
+      "occurrences": 1
+    },
+    {
+      "old": "exact accepted 6b original archives",
+      "new": "exact accepted 04 original archives",
+      "occurrences": 1
+    }
+  ],
+  "all_other_driver_bytes_unchanged": true,
+  "old_new_test_original_replay_blob": "11c5ad2de2ce556a66273c776da2947ad23de8cd",
+  "old_new_png_exporter_blob": "88388945e5e31eaefb2dad69f400b93f65a6b94a",
+  "old_new_png_test_blob": "313fdb2c57f018cf251be00b6171fccb3c2bfa67",
+  "test_blob_reference_comparison": "Old3049/newee08 commit metadata for PNG files and old exact test bytes; all three blob IDs are identical.",
+  "conclusion": "No source rebind or seven-step parity blocker found. Full current seven-job acceptance and original replay remain required.",
+  "reader_or_publisher_activated": false
+}
