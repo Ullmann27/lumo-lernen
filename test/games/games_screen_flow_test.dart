@@ -60,16 +60,6 @@ void main() {
     LumoSound.instance.muted = true;
     LumoMusic.instance.muted = true;
     LumoVoice.instance.isEnabled = false;
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(
-            const MethodChannel('lumo_lernen/connect_four'),
-            (_) async =>
-                throw MissingPluginException('Flutter fallback fixture'));
-  });
-  tearDown(() {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(
-            const MethodChannel('lumo_lernen/connect_four'), null);
   });
 
   testWidgets(
@@ -176,14 +166,24 @@ void main() {
       (tester) async {
     await tester.binding.setSurfaceSize(const Size(360, 780));
     addTearDown(() => tester.binding.setSurfaceSize(null));
+    const channel = MethodChannel('lumo_lernen/connect_four');
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(channel,
+        (_) async => throw MissingPluginException('Flutter fallback fixture'));
+    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
     final app = LumoAppState(walletRepository: RewardWalletRepository());
-    addTearDown(app.dispose);
+    addTearDown(() async {
+      await tester.pumpWidget(const SizedBox());
+      app.dispose();
+    });
     await app.hydrateFromWallet();
+    LumoVoice.instance.isEnabled = false;
     await tester.pumpWidget(
         MaterialApp(home: LumoConnectFourScreen(appState: app, seed: 1)));
+    // Loading the durable round and the explicit native-unavailable fallback
+    // both finish before the first real Flutter move can be accepted.
     await tester.pump();
-    // Loading the persisted round and declining the Android bridge are
-    // asynchronous. Require the real Flutter fallback to become playable.
     await _waitForConnectTurn(tester, 'Initial Flutter fallback');
     var turns = 0;
     while (find.byType(AlertDialog).evaluate().isEmpty && turns < 60) {
@@ -223,11 +223,19 @@ void main() {
     await tester.tap(find.text('Nochmal!'));
     await tester.pump();
     await _waitForConnectTurn(tester, 'Replay after the completed game');
-    await tester.ensureVisible(find.byKey(const ValueKey('connect-column-0')));
+    final firstColumn = find.byKey(const ValueKey('connect-column-0'));
+    await tester.ensureVisible(firstColumn);
     await tester.pump();
-    expect(find.byKey(const ValueKey('connect-column-0')).hitTestable(),
-        findsOneWidget);
-    await tester.tap(find.byKey(const ValueKey('connect-column-0')));
+    expect(firstColumn.hitTestable(), findsOneWidget);
+    await tester.tap(firstColumn);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(
+        tester
+            .widget<Semantics>(find.byKey(const ValueKey('connect-cell-5-0')))
+            .properties
+            .label,
+        endsWith(': child'));
     await tester.tap(find.byTooltip('Pausieren / Zurück'));
     await tester.pump();
     await tester.tap(find.text('Neu starten'));
@@ -237,7 +245,14 @@ void main() {
             .widget<IconButton>(find.byKey(const ValueKey('connect-column-0')))
             .onPressed,
         isNotNull);
-    expect(find.text('Lumo denkt... 🦊'), findsNothing);
+    expect(find.text('Lumo denkt nach …'), findsNothing);
+    expect(
+        find.byWidgetPredicate((widget) =>
+            widget is Semantics &&
+            (widget.properties.label?.startsWith('Reihe ') ?? false) &&
+            (widget.properties.label?.endsWith(': empty') ?? false)),
+        findsNWidgets(42),
+        reason: 'An old bot callback must not place a stone after restart.');
     for (final piece in ['child', 'lumo']) {
       expect(
           find.byWidgetPredicate((widget) =>
@@ -258,9 +273,11 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final nativeOpen = Completer<bool>();
     var openCalls = 0;
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(
-            const MethodChannel('lumo_lernen/connect_four'), (call) async {
+    const channel = MethodChannel('lumo_lernen/connect_four');
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
+    messenger.setMockMethodCallHandler(channel, (call) async {
       if (call.method == 'open') {
         openCalls++;
         return nativeOpen.future;
@@ -268,9 +285,10 @@ void main() {
       return true;
     });
     final app = LumoAppState(walletRepository: RewardWalletRepository());
-    addTearDown(app.dispose);
-    addTearDown(() {
+    addTearDown(() async {
       if (!nativeOpen.isCompleted) nativeOpen.complete(false);
+      await tester.pumpWidget(const SizedBox());
+      app.dispose();
     });
     await app.hydrateFromWallet();
     LumoVoice.instance.isEnabled = false;

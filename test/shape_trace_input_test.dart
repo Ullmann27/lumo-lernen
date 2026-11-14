@@ -173,10 +173,37 @@ void main() {
     await tester.tap(find.text('Zurück'));
     await tester.pump();
     expect(listEquals(await _raster(tester), firstStroke), isTrue,
-        reason: 'Undo erases the second stroke while keeping the first visible');
+        reason:
+            'Undo erases the second stroke while keeping the first visible');
     await tester.tap(find.text('Neu'));
     await tester.pump();
     expect(listEquals(await _raster(tester), empty), isTrue,
         reason: 'Clear must erase the visible ink as well as its data');
+  });
+
+  testWidgets('undo and clear invalidate ink without an ancestor repaint',
+      (tester) async {
+    await _openCanvas(tester);
+    CustomPainter painter() => tester
+        .widget<CustomPaint>(find.byWidgetPredicate((widget) =>
+            widget is CustomPaint &&
+            widget.painter?.runtimeType.toString() == '_TracePainter'))
+        .painter!;
+    final center = tester.getCenter(_drawingArea);
+    await tester.dragFrom(center, const Offset(90, 40));
+    await tester.dragFrom(center, const Offset(-90, -40));
+    await tester.pump();
+    final twoStrokes = painter();
+    await tester.tap(find.text('Zurück'));
+    await tester.pump();
+    final oneStroke = painter();
+    expect(oneStroke.shouldRepaint(twoStrokes), isTrue,
+        reason:
+            'Undo must invalidate ink even when the surrounding page is idle');
+    await tester.tap(find.text('Neu'));
+    await tester.pump();
+    expect(painter().shouldRepaint(oneStroke), isTrue,
+        reason:
+            'Clear must invalidate ink without relying on a parent animation');
   });
 }

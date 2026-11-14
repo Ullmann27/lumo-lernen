@@ -1,0 +1,19 @@
+test_return_waits_for_actual_private_cleanup_after_native_exit (tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_return_waits_for_actual_private_cleanup_after_native_exit) ... ERROR
+
+======================================================================
+ERROR: test_return_waits_for_actual_private_cleanup_after_native_exit (tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_return_waits_for_actual_private_cleanup_after_native_exit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/909ddb52fe7b/c4-return-observer-repair-04/tools/android_qa/tests/test_connect_four_probe_deadlines.py", line 255, in test_return_waits_for_actual_private_cleanup_after_native_exit
+    self.assertIs(value.return_to_flutter('delayed-cleanup'), before)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/909ddb52fe7b/c4-return-observer-repair-04/.github/probes/lumo_connect_four_android_probe.py", line 345, in return_to_flutter
+    contract.demand(not closed.strip(), 'Closed C4 mailbox still exists')
+  File "/workspace/scratch/909ddb52fe7b/c4-return-observer-repair-04/tools/android_qa/connect_four_android_evidence.py", line 45, in demand
+    raise ValueError(message)
+ValueError: Closed C4 mailbox still exists
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (errors=1)

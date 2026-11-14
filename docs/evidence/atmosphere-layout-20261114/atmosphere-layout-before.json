@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--no-test-assets",
+    "--concurrency=1",
+    "--reporter=expanded",
+    "test/lumo_scene_atmosphere_test.dart",
+    "--plain-name",
+    "layout changes refresh visibility at an unchanged scroll offset"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 3.399
+}

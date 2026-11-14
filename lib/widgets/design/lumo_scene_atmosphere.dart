@@ -106,8 +106,12 @@ class _LumoSceneAtmosphereState extends State<LumoSceneAtmosphere>
       if (_scroll == null) _visible = true;
       _scroll?.addListener(_checkVisibility);
     }
+    if (_scroll == null) {
+      _SceneVisibilityChecks.remove(this);
+    } else {
+      _SceneVisibilityChecks.add(this);
+    }
     _sync();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _checkVisibility());
   }
 
   @override
@@ -120,7 +124,7 @@ class _LumoSceneAtmosphereState extends State<LumoSceneAtmosphere>
   void _checkVisibility() {
     if (!mounted) return;
     final box = context.findRenderObject();
-    if (box is! RenderBox || !box.hasSize) return;
+    if (box is! RenderBox || !box.attached || !box.hasSize) return;
     final viewport = RenderAbstractViewport.maybeOf(box);
     if (viewport == null || _scroll == null) return;
     final start = viewport.getOffsetToReveal(box, 0).offset;
@@ -173,6 +177,7 @@ class _LumoSceneAtmosphereState extends State<LumoSceneAtmosphere>
 
   @override
   void dispose() {
+    _SceneVisibilityChecks.remove(this);
     _scroll?.removeListener(_checkVisibility);
     if (_sampling) SchedulerBinding.instance.removeTimingsCallback(_onTimings);
     WidgetsBinding.instance.removeObserver(this);
@@ -239,6 +244,38 @@ class _LumoSceneAtmosphereState extends State<LumoSceneAtmosphere>
         ],
       ),
     );
+  }
+}
+
+/// A cached/const scene can move when a sibling changes size without rebuilding
+/// or scrolling. Observe completed layouts through one shared dispatcher. It
+/// never requests a frame; invisible scenes therefore remain idle. The global
+/// callback captures no scene, and the live set releases every departing state.
+class _SceneVisibilityChecks {
+  static final _scenes = <_LumoSceneAtmosphereState>{};
+  static bool _installed = false;
+  static bool _pending = false;
+
+  static void add(_LumoSceneAtmosphereState scene) {
+    _scenes.add(scene);
+    if (!_installed) {
+      _installed = true;
+      WidgetsBinding.instance.addPersistentFrameCallback((_) => _queueCheck());
+    }
+    _queueCheck();
+  }
+
+  static void remove(_LumoSceneAtmosphereState scene) => _scenes.remove(scene);
+
+  static void _queueCheck() {
+    if (_pending || _scenes.isEmpty) return;
+    _pending = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _pending = false;
+      for (final scene in _scenes) {
+        scene._checkVisibility();
+      }
+    });
   }
 }
 

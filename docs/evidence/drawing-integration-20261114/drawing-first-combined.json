@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--no-test-assets",
+    "--concurrency=1",
+    "--reporter=expanded",
+    "test/lumo_ink_surface_motion_regression_test.dart",
+    "test/legacy_letter_repaint_regression_test.dart",
+    "test/shape_trace_gesture_regression_test.dart",
+    "test/wort_diktat_gesture_regression_test.dart",
+    "test/lumo_ink_surface_regression_test.dart",
+    "test/shape_trace_input_regression_test.dart"
+  ],
+  "status": "completed",
+  "exit_code": 1,
+  "elapsed_seconds": 17.1051426740014,
+  "drawing_checkpoint": "990503c72b60e0c509d52438f8858a03883110c6"
+}

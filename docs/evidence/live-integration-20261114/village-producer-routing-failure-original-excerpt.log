@@ -1,0 +1,33 @@
+2026-11-14T08:48:04.1864733Z 00:05 +15 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/games/spielwelt_routing_test.dart: routing table lists ten unique portals and unique covers [E]
+2026-11-14T08:48:04.1874356Z   Expected: [
+2026-11-14T08:48:04.1875411Z               'memory',
+2026-11-14T08:48:04.1876166Z               'cards',
+2026-11-14T08:48:04.1876800Z               'puzzle',
+2026-11-14T08:48:04.1877430Z               'jumpRun',
+2026-11-14T08:48:04.1878112Z               'rhythm',
+2026-11-14T08:48:04.1878629Z               'treasure',
+2026-11-14T08:48:04.1879096Z               'build',
+2026-11-14T08:48:04.1879507Z               'kart',
+2026-11-14T08:48:04.1879905Z               'village',
+2026-11-14T08:48:04.1880323Z               'connectFour',
+2026-11-14T08:48:04.1880746Z               'quizShow'
+2026-11-14T08:48:04.1881108Z             ]
+2026-11-14T08:48:04.1881586Z     Actual: MappedListIterable<SpielweltRoute, String>:[
+2026-11-14T08:48:04.1882140Z               'memory',
+2026-11-14T08:48:04.1882872Z               'cards',
+2026-11-14T08:48:04.1883262Z               'puzzle',
+2026-11-14T08:48:04.1883613Z               'jumpRun',
+2026-11-14T08:48:04.1883962Z               'rhythm',
+2026-11-14T08:48:04.1884311Z               'treasure',
+2026-11-14T08:48:04.1884678Z               'build',
+2026-11-14T08:48:04.1885018Z               'village',
+2026-11-14T08:48:04.1885394Z               'kart',
+2026-11-14T08:48:04.1885759Z               'connectFour',
+2026-11-14T08:48:04.1886145Z               'quizShow'
+2026-11-14T08:48:04.1886505Z             ]
+2026-11-14T08:48:04.1886958Z      Which: at location [7] is 'village' instead of 'kart'
+2026-11-14T08:48:04.1887486Z   
+2026-11-14T08:48:04.1887954Z   package:matcher                                     expect
+2026-11-14T08:48:04.1888585Z   package:flutter_test/src/widget_tester.dart 473:18  expect
+2026-11-14T08:48:04.1889030Z   test/games/spielwelt_routing_test.dart 34:5         main.<fn>
+2026-11-14T08:48:04.1889380Z   

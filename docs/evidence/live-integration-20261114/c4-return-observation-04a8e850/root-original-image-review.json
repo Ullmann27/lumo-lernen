@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14 19:46:00 UTC",
+  "scope": "Two unchanged originals personally opened by Root; PNGs fully decoded and SHA256 checked before opening.",
+  "identity": {
+    "run": 43629575654,
+    "attempt": 1,
+    "qa": "91b5aece4060cd625b27e4cfa967122b5d4b5b92",
+    "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "job": 132553315080,
+    "artifact": 14128089386,
+    "original_log_blob": "31463029aa9d3284c0ceec5a32393e7b83a85bed",
+    "village": "PASS from actual original marker, strict original reader and visible accepted image",
+    "c4": "FAIL: first post-return find still observed the same actual session token",
+    "limit": "No later post-return find exists in that original; persistent leak and eventual successful cleanup are both unproved."
+  },
+  "images": [
+    {
+      "path": "/workspace/scratch/909ddb52fe7b/village-6b-diagnostic-original-review-909ddb52fe7b/originals/village/returned-flutter-frame.png",
+      "bytes": 1926800,
+      "size": [
+        1080,
+        2400
+      ],
+      "sha256": "097d59942a9b4a4f8bca4f9c7f99f1258a2d14108be28a20bf441830888c23d7",
+      "observation": "Visible portrait Flutter Spielewelt with active Spielen tab, Lumo Kart, Dorfwirtschaft, Cards and Bauwelt."
+    },
+    {
+      "path": "/workspace/scratch/909ddb52fe7b/village-6b-diagnostic-original-review-909ddb52fe7b/originals/c4/child-second-confirmed-003.png",
+      "bytes": 229280,
+      "size": [
+        1080,
+        2400
+      ],
+      "sha256": "5aa3695f42e15fd68592bf838010119535b114085cf52fcf820856512d3c8941",
+      "observation": "Complete 7 by 6 C4 board; two cyan and two yellow discs, Back/Pause, all seven column controls visible. No victory or completed return inferred."
+    }
+  ]
+}

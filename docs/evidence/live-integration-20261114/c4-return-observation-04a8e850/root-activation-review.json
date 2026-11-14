@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14 19:46:00 UTC",
+  "base": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "base_tree": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+  "prepared_commit": "d04ac2596fdd383dc49b1a111d9f6d699bd7cb76",
+  "prepared_tree": "f8ba0328cc65a8bf22f5b935ada8891772d62aab",
+  "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "decision": "Integrate the narrowly corrected C4 observer and activate fresh acceptance; no product or APK release acceptance yet.",
+  "tree_proof": {
+    "base_files": 4986,
+    "prepared_files": 4995,
+    "changed": [
+      {
+        "path": ".github/probes/lumo_connect_four_android_probe.py",
+        "from": "681e25d4654ce9827db8f208da5a608b458fa958",
+        "to": "836cf90f170545ce6d6393d5034dc149f5f6cf8c",
+        "mode": "100644"
+      },
+      {
+        "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+        "from": "c7e8bf69d8dc07980d4a84ad1fd31222beb5e147",
+        "to": "da877b93d3ae61c54b1743f8aba006bac614cdea",
+        "mode": "100644"
+      }
+    ],
+    "added": [
+      {
+        "path": "docs/evidence/live-integration-20261114/final-04a8e850/c4-return-cleanup/green.execution.json",
+        "sha": "eec98256a575bd422f5652691939865d0ac372ee",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/final-04a8e850/c4-return-cleanup/green.original.log",
+        "sha": "65dbda24d56af85cac45ad1ef1311e405e45ef98",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/final-04a8e850/c4-return-cleanup/manifest.json",
+        "sha": "bb4656d1ac973cea3631f7cdb846ff5105200ce4",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/final-04a8e850/c4-return-cleanup/red.execution.json",
+        "sha": "e13e6fa8c0773ce765d3984269ac3170940c956b",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/final-04a8e850/c4-return-cleanup/red.original.log",
+        "sha": "f7ff5a97984ed1f2d6588574e2e7d6d0d90523e1",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/final-04a8e850/c4-return-cleanup/run_regression.py",
+        "sha": "e9b132336182395d5b1b1c27c9e861f4e142a4b9",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/final-04a8e850/c4-return-cleanup/source-baseline.json",
+        "sha": "44bd69200af4e5f3cd355bd36c2f8e93cb60e9e7",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/final-04a8e850/c4-return-cleanup/source-preservation.json",
+        "sha": "d09a503c44fdd4d9f6d0a496432a7d293ee8f4f5",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/final-04a8e850/c4-return-cleanup/source.diff",
+        "sha": "cda4990d302ac1eac30e09b00054207b9da6c99d",
+        "mode": "100644"
+      }
+    ],
+    "removed": [],
+    "all_other_entries_same": true
+  },
+  "source_review": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "git_blob": "836cf90f170545ce6d6393d5034dc149f5f6cf8c",
+      "bytes": 29336,
+      "sha256": "4818dff314e39ae993d19a054b33f83bb351e98c58a1d673cc3bc2b6ed16250a",
+      "changed_existing_methods": [
+        "original",
+        "return_to_flutter"
+      ],
+      "added_methods": [],
+      "removed_methods": []
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "git_blob": "da877b93d3ae61c54b1743f8aba006bac614cdea",
+      "bytes": 19927,
+      "sha256": "a575c5b0dad164e411f181ea89d38797ed448ff262431892df4674ad90672a78",
+      "changed_existing_methods": [],
+      "added_methods": [
+        "assert_return_not_accepted",
+        "cleanup_return_probe",
+        "test_return_cleanup_preserves_complete_probe_budget",
+        "test_return_empty_mailbox_never_excuses_live_pid_or_wrong_activity",
+        "test_return_failed_original_find_is_not_treated_as_empty_cleanup",
+        "test_return_mailbox_read_cannot_turn_exact_or_late_deadline_into_success",
+        "test_return_never_overwrites_previous_original_command",
+        "test_return_rejects_mailbox_that_never_closes_within_original_budget",
+        "test_return_requires_empty_mailbox_pid_exit_and_correct_activity_together",
+        "test_return_retries_share_remaining_budget_and_keep_late_empty_original",
+        "test_return_waits_for_actual_private_cleanup_after_native_exit"
+      ],
+      "removed_methods": []
+    }
+  ],
+  "original_test_logs": {
+    "red": {
+      "path": "docs/evidence/live-integration-20261114/final-04a8e850/c4-return-cleanup/red.original.log",
+      "blob": "f7ff5a97984ed1f2d6588574e2e7d6d0d90523e1",
+      "tests": 1,
+      "expected_failure": "ValueError: Closed C4 mailbox still exists",
+      "actual_original_probe": "681e25d4654ce9827db8f208da5a608b458fa958"
+    },
+    "green": {
+      "path": "docs/evidence/live-integration-20261114/final-04a8e850/c4-return-cleanup/green.original.log",
+      "blob": "65dbda24d56af85cac45ad1ef1311e405e45ef98",
+      "tests": 42,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "seconds": 137.145,
+      "independent_label_recount": {
+        "test_labels": 42,
+        "inline_ok": 41,
+        "standalone_ok": 1
+      }
+    },
+    "originals_read_by_root": true,
+    "tests_repeated_by_root": false,
+    "before_after_source_identities_unchanged": true
+  },
+  "observed_failure": {
+    "run": 43629575654,
+    "attempt": 1,
+    "qa": "91b5aece4060cd625b27e4cfa967122b5d4b5b92",
+    "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "job": 132553315080,
+    "artifact": 14128089386,
+    "original_log_blob": "31463029aa9d3284c0ceec5a32393e7b83a85bed",
+    "village": "PASS from actual original marker, strict original reader and visible accepted image",
+    "c4": "FAIL: first post-return find still observed the same actual session token",
+    "limit": "No later post-return find exists in that original; persistent leak and eventual successful cleanup are both unproved."
+  },
+  "preserved_contract": {
+    "single_back_touch": true,
+    "shared_return_seconds": 45,
+    "global_seconds": 900,
+    "original_journals": "Fresh PID, resumed Activity and complete C4-root state.json find each round; no overwritten originals",
+    "acceptance": "No native PID, actual app MainActivity, successful find with empty stdout, before the same shared deadline",
+    "strict_verifier_blob": "091e250702b41c8ff0a1eef2eaa554a83c2cff68",
+    "retained": "Unchanged persisted round/preferences, actual Flutter image/XML, games navigation, new-token reopen and second return"
+  },
+  "independent_review": {
+    "path": "independent-source-review.json",
+    "reviewer": "/root/godot_integration",
+    "result": "No concrete integration blocker",
+    "source_blobs": [
+      "836cf90f170545ce6d6393d5034dc149f5f6cf8c",
+      "da877b93d3ae61c54b1743f8aba006bac614cdea"
+    ]
+  },
+  "protected_refs": {
+    "host_main": "b24474875fe6eb02d4de01030eab9fa4a4aa6007",
+    "host_pr": 497,
+    "old_host_head": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+    "producer": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "native_pr": 173,
+    "native_head": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604"
+  },
+  "required_next": "Actual new-source Feature30, full Flutter, all seven main workflow jobs, real API35 main/Village/C4 and update, exact original replay, source/signature/hash checks, new immutable public APK and unauthenticated downloaded-byte verification.",
+  "prior_publisher_reader": "Prepared 04-bound checkpoints become historical and must not activate for the new source; rebind to actual new run/artifact identities.",
+  "release_created": false,
+  "main_modified": false
+}

@@ -1,0 +1,343 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "producer_comparison_base": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "producer_snapshot": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "host_base": "9516068cfb67938fc90d48ff45d56169f00941fc",
+  "host_base_tree": "3dc30b78041ba873ef72f2a99172586b3b88099c",
+  "checkpoint_scope": "Flutter source and test union only; root must combine the other scopes and retain aab as a real additional parent in the complete integration.",
+  "lib_and_test_delta_count": 17,
+  "already_identical": [
+    {
+      "path": "lib/core/school_exercise_generator.dart",
+      "old_sha": "fd577a04dd677bdfa41d3e61763cfc3f2cb39430",
+      "producer_sha": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+      "host_sha": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+      "producer_already_in_host": true
+    },
+    {
+      "path": "lib/features/home/widgets/lumo_home_hero.dart",
+      "old_sha": "75305c7ff374fa9ee4da224f27c19fb4a4862955",
+      "producer_sha": "963a7840b964cd82954c784247aa2a244b9b44af",
+      "host_sha": "963a7840b964cd82954c784247aa2a244b9b44af",
+      "producer_already_in_host": true
+    },
+    {
+      "path": "lib/features/learning/learning_content.dart",
+      "old_sha": "652bb8de1ad15ed348fbece1ffce1faf5b82b6f6",
+      "producer_sha": "5e62d675606d5e9b0024fa1476c0459343b5da7a",
+      "host_sha": "5e62d675606d5e9b0024fa1476c0459343b5da7a",
+      "producer_already_in_host": true
+    },
+    {
+      "path": "lib/features/learning/widgets/lumo_shape_trace_canvas.dart",
+      "old_sha": "58dabfde2972afcd085ee9a685f15c4d23cfce08",
+      "producer_sha": "7972da58499ec771414eaeacfcd83155997b510c",
+      "host_sha": "7972da58499ec771414eaeacfcd83155997b510c",
+      "producer_already_in_host": true
+    }
+  ],
+  "automatic_source_adoptions_reviewed": [
+    {
+      "path": "lib/core/math_task_templates.dart",
+      "selected_blob": "85fbad4a0b09753a7f22663690a9660f98382f39"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "selected_blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96"
+    },
+    {
+      "path": "test/math_exact_topic_selection_test.dart",
+      "selected_blob": "f82604a4239bd8982ac666b97aa478b65a8fa2e8"
+    },
+    {
+      "path": "test/support/math_exact_topic_selection_contract.dart",
+      "selected_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2"
+    },
+    {
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "selected_blob": "d5e847507275b67d6d3aa4bdbaf2991f01817bca"
+    },
+    {
+      "path": "test/games/connect_four_scroll_alignment_test.dart",
+      "selected_blob": "b05fa2ececfef096db3c4c6f7b116ac79e61d197"
+    }
+  ],
+  "seven_conflict_resolutions": [
+    {
+      "path": "lib/widgets/design/lumo_adventure_card.dart",
+      "base_blob": "8b5094784ede6969422e1db58de0fad9cb47828d",
+      "ours_blob": "4727557a16bc7428be6a156e830cc995f1997b0c",
+      "producer_blob": "94b9f5eece1570631a6bf7428b8d8cc5d83e3360",
+      "selected_blob": "4727557a16bc7428be6a156e830cc995f1997b0c",
+      "resolution": "retain_verified_host",
+      "reason": "Retain the verified compact title inset (8dp horizontal); upstream would restore12dp and the Belohnungen line-break regression."
+    },
+    {
+      "path": "lib/widgets/design/lumo_scene_atmosphere.dart",
+      "base_blob": "33f100820f35b2a6fda79c1594cf49d00896cb6b",
+      "ours_blob": "14bb982ab510a984652da920eae1729727a0bd8c",
+      "producer_blob": "2a5ba8203a9777a28820ab36f7c2a979709c8620",
+      "selected_blob": "14bb982ab510a984652da920eae1729727a0bd8c",
+      "resolution": "retain_verified_host",
+      "reason": "Retain shared passive frame visibility checks, detached RenderBox guard and live-instance cleanup; upstream lacks the real unchanged-offset relayout repair."
+    },
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "base_blob": "8ea60303632a0ff1f25c240244deb1c95a1e4621",
+      "ours_blob": "ccf777bf4826c221874e58b938d3ff45d3089234",
+      "producer_blob": "4169f06a21138d253ec3b4298720e97fa9854d95",
+      "selected_blob": "c20c32131517b6a3336d996cd8ce8a0b44c1e132",
+      "resolution": "semantic_union",
+      "reason": "Retain all seven real column moves and visible mode switching. Add isolated wallet cleanup, bounded actual-board readiness, seven-stone count and true48dp global/local geometry."
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "base_blob": "59d99f0568a122742abaa0d07fa8a91b0e2af041",
+      "ours_blob": "13cba5bd740b3b63f0af8c234e634473cfc1f123",
+      "producer_blob": "254267c9f84d5c8e507307178015d281db238e4f",
+      "selected_blob": "973e9143fa5a333858b77e25556fa54910026c24",
+      "resolution": "semantic_union",
+      "reason": "Retain the complete game, first replay stone,42 empty restart fields and the actual current thinking label. Add bounded readiness/diagnostics, explicit no-stone checks and a delayed native refusal case with local mock and cleanup."
+    },
+    {
+      "path": "test/learning_selection_integration_test.dart",
+      "base_blob": null,
+      "ours_blob": "d8f8f1c226658c691ffb9ad3f42f13087d1d5b91",
+      "producer_blob": "892960ede7c2594dc7e15d631b3e511c7c526011",
+      "selected_blob": "d8f8f1c226658c691ffb9ad3f42f13087d1d5b91",
+      "resolution": "retain_verified_host",
+      "reason": "Upstream differs only in line wrapping; retain the exact seven tested host cases."
+    },
+    {
+      "path": "test/lumo_scene_atmosphere_test.dart",
+      "base_blob": "f3fced58732115572c5f99ed72cba1fbfbaa458d",
+      "ours_blob": "2354619a9da176d060912d81be81edb2f7a56464",
+      "producer_blob": "0617368d95256961681109537d641a1708e82e1f",
+      "selected_blob": "2354619a9da176d060912d81be81edb2f7a56464",
+      "resolution": "retain_verified_host",
+      "reason": "Retain all ten host cases, including cached-child relayout, viewport/lifecycle changes and reparent/unmount cleanup; upstream has only the earlier seven."
+    },
+    {
+      "path": "test/shape_trace_input_test.dart",
+      "base_blob": null,
+      "ours_blob": "6b32fea6379a88cdfce5d590c6a195eb10d725ad",
+      "producer_blob": "7441d9d07ac6f34432b36bfd711f8c3581c8c9f9",
+      "selected_blob": "6b32fea6379a88cdfce5d590c6a195eb10d725ad",
+      "resolution": "retain_verified_host",
+      "reason": "Retain the added independent undo/clear shouldRepaint regression; upstream would remove it."
+    }
+  ],
+  "protected_host_files_unchanged": [
+    {
+      "path": "lib/features/games/games_content.dart",
+      "blob": "166ee19435146a9d42c69eeadd71754dac88d9d7"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "blob": "597defa53a3959a3b1fa95f1e495b91a9ce47af5"
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "blob": "69b5c528c8301f1782224f2a3af9f1c5b49a4567"
+    },
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "blob": "aab44260ac43b595dc1d8cd781a70f8953828d88"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "blob": "f34753575463af153ac72efaf93dd485ba3f30e1"
+    },
+    {
+      "path": "lib/features/teacher_mode/letter_writing_screen.dart",
+      "blob": "95a29b0385ed5ec235ca5a38e2b4c9ff2f240832"
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "blob": "dc8e5e7e1e254912cf69df6df0489db137d8935a"
+    },
+    {
+      "path": "test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "blob": "935ca225a6fa67df73f520494d61480943435595"
+    },
+    {
+      "path": "test/design/home_1989_premium_cards_capture_test.dart",
+      "blob": "4259e169976f458135618d2a831d86f917fdb688"
+    },
+    {
+      "path": "test/games/spielwelt_routing_test.dart",
+      "blob": "e5cfc3a8bfff14d5f2d7f7870c33c01e3cc6fafb"
+    },
+    {
+      "path": "test/games/spielwelt_stage_test.dart",
+      "blob": "f1d0bd02a835c579e38c9d85ed6480ce4928f9a5"
+    }
+  ],
+  "source_findings": [
+    "Math generation must prefer an exact cumulative topic before considering same-grade legacy aliases. No exact output relabelling is used; selected pattern/difficulty belong to the chosen unit.",
+    "C4 changes only pressedScale:1 on the seven drop controls. The existing LumoPressable API is unchanged; default.955 otherwise shrinks a pressed48dp visual/hit target.",
+    "Incoming visual six-move fixture and removed ensureVisible are not substituted for the host's seven actual touched columns.",
+    "Incoming flow's absent Lumo denkt...fox string is not adopted: both current runtimes really render Lumo denkt nach ….",
+    "Five conflict files deliberately preserve stronger already-tested host behavior rather than copying older producer snapshots."
+  ],
+  "existing_math_execution_evidence": {
+    "source": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "summary_path": "docs/evidence/math-exact-cumulative-20261114/execution/summary.json",
+    "summary_blob": "80291144964fc1102bd05411ccabfecfce600629",
+    "original_stdout_blob": "9b202e2e136adb6f52a9fde5fe0684eac84b57ca",
+    "patched_stdout_blob": "7e2700db5020ad87cc18ca88ecbdcf9cc2d97a8c",
+    "original_failures": 386,
+    "patched_checks": 29845,
+    "patched_failures": 0,
+    "template_calls": 3955,
+    "factory_calls": 4640,
+    "cumulative_grade_topic_pairs": 145,
+    "actual_producer_execution_scope": "pure Dart production generator contract; not a Flutter, widget or Android run",
+    "independent_readback": true,
+    "all15_contract_dependency_blobs_match_candidate": true,
+    "dependency_binding": [
+      {
+        "path": "lib/core/school_exercise_generator.dart",
+        "expected": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+        "candidate": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65"
+      },
+      {
+        "path": "lib/core/math_task_templates.dart",
+        "expected": "85fbad4a0b09753a7f22663690a9660f98382f39",
+        "candidate": "85fbad4a0b09753a7f22663690a9660f98382f39"
+      },
+      {
+        "path": "lib/core/german_task_templates.dart",
+        "expected": "47843a70ed106d25001481c995b339fc31894f5d",
+        "candidate": "47843a70ed106d25001481c995b339fc31894f5d"
+      },
+      {
+        "path": "lib/core/shape_question_data.dart",
+        "expected": "1234048061f3b187aeaf59cbb3b4a07324045395",
+        "candidate": "1234048061f3b187aeaf59cbb3b4a07324045395"
+      },
+      {
+        "path": "lib/core/adventure/lumo_adventure_tasks.dart",
+        "expected": "cd28cf0f81903bbd0a68a462782c853feadc27e7",
+        "candidate": "cd28cf0f81903bbd0a68a462782c853feadc27e7"
+      },
+      {
+        "path": "lib/core/english_vocabulary_extensions.dart",
+        "expected": "13f29bd61dc325bd351cd98dc4bf619abf8f292f",
+        "candidate": "13f29bd61dc325bd351cd98dc4bf619abf8f292f"
+      },
+      {
+        "path": "lib/core/primary_school_word_data.dart",
+        "expected": "1288d888554349b5d84ea9b96cf63e98b4965f0e",
+        "candidate": "1288d888554349b5d84ea9b96cf63e98b4965f0e"
+      },
+      {
+        "path": "lib/core/reading_comprehension_data.dart",
+        "expected": "25e9a13d147ed023a4e4615f58bb490b40f41f4d",
+        "candidate": "25e9a13d147ed023a4e4615f58bb490b40f41f4d"
+      },
+      {
+        "path": "lib/core/science_task_data.dart",
+        "expected": "41f7f14751d328d54de28b122f67fe53cd9427fa",
+        "candidate": "41f7f14751d328d54de28b122f67fe53cd9427fa"
+      },
+      {
+        "path": "lib/core/science_quality_extension.dart",
+        "expected": "952999462e8424e1cb33bd2c31633884b39f1d8a",
+        "candidate": "952999462e8424e1cb33bd2c31633884b39f1d8a"
+      },
+      {
+        "path": "lib/core/spelling_context_data.dart",
+        "expected": "061ccc33862ef610e1589ee54cd2628755105265",
+        "candidate": "061ccc33862ef610e1589ee54cd2628755105265"
+      },
+      {
+        "path": "lib/core/german_curriculum_extensions.dart",
+        "expected": "2d0cc7d168606dd82e7e808d6fcf9bfcbb0cd732",
+        "candidate": "2d0cc7d168606dd82e7e808d6fcf9bfcbb0cd732"
+      },
+      {
+        "path": "lib/core/adventure/adventure_word_data.dart",
+        "expected": "b98029abd17aed104d4c79fe948c18d96bb4811f",
+        "candidate": "b98029abd17aed104d4c79fe948c18d96bb4811f"
+      },
+      {
+        "path": "test/support/math_exact_topic_selection_contract.dart",
+        "expected": "becda7215230494989c04a71ee9f0b6a09c4fda2",
+        "candidate": "becda7215230494989c04a71ee9f0b6a09c4fda2"
+      },
+      {
+        "path": "test/math_exact_topic_selection_test.dart",
+        "expected": "f82604a4239bd8982ac666b97aa478b65a8fa2e8",
+        "candidate": "f82604a4239bd8982ac666b97aa478b65a8fa2e8"
+      }
+    ]
+  },
+  "validation_of_this_combined_checkpoint": {
+    "source_and_diff_review_completed": true,
+    "git_blob_readback_required": true,
+    "dart_analyzer_executed": false,
+    "flutter_tests_executed": false,
+    "android_execution": false,
+    "reason": "The managed environment remains unavailable. This new combined checkpoint must pass the actual complete CI after root integrates it.",
+    "retained_old_full_flutter_evidence": {
+      "source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "run": 43586101225,
+      "passed": 2625,
+      "pngs": 566,
+      "is_not_new_checkpoint_acceptance": true
+    }
+  },
+  "integration_instructions": {
+    "central_branch_owned_by_root": true,
+    "central_ref_updated": false,
+    "no_pr_comment_written": true,
+    "automatic_six_blobs_can_be_taken_from_aab": true,
+    "conflict_resolution_payload": [
+      {
+        "path": "lib/widgets/design/lumo_adventure_card.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4727557a16bc7428be6a156e830cc995f1997b0c"
+      },
+      {
+        "path": "lib/widgets/design/lumo_scene_atmosphere.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "14bb982ab510a984652da920eae1729727a0bd8c"
+      },
+      {
+        "path": "test/design/connect_four_visual_test.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c20c32131517b6a3336d996cd8ce8a0b44c1e132"
+      },
+      {
+        "path": "test/games/games_screen_flow_test.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "973e9143fa5a333858b77e25556fa54910026c24"
+      },
+      {
+        "path": "test/learning_selection_integration_test.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d8f8f1c226658c691ffb9ad3f42f13087d1d5b91"
+      },
+      {
+        "path": "test/lumo_scene_atmosphere_test.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2354619a9da176d060912d81be81edb2f7a56464"
+      },
+      {
+        "path": "test/shape_trace_input_test.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6b32fea6379a88cdfce5d590c6a195eb10d725ad"
+      }
+    ],
+    "preserve_all_other_951_flutter_paths": true
+  }
+}

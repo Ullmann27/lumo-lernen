@@ -18,6 +18,7 @@ import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_voice.dart';
+import '../writing/widgets/lumo_ink_surface.dart';
 import 'lumo_akademie_screen.dart';
 
 class LetterWritingScreen extends StatefulWidget {
@@ -414,12 +415,24 @@ class _LetterPracticeFullScreenState
     extends State<_LetterPracticeFullScreen> {
   final List<List<Offset>> _strokes = [];
   List<Offset>? _currentStroke;
+  int _inkRevision = 0;
 
   void _clear() {
     HapticFeedback.lightImpact();
     setState(() {
       _strokes.clear();
       _currentStroke = null;
+      _inkRevision++;
+    });
+  }
+
+  void _cancelStroke() {
+    final stroke = _currentStroke;
+    if (stroke == null) return;
+    setState(() {
+      _strokes.remove(stroke);
+      _currentStroke = null;
+      _inkRevision++;
     });
   }
 
@@ -581,6 +594,10 @@ class _LetterPracticeFullScreenState
         borderRadius: BorderRadius.circular(18),
         child: LayoutBuilder(builder: (_, c) {
           final h = c.maxHeight;
+          Offset boundedPoint(Offset point) => Offset(
+                point.dx.clamp(0.0, c.maxWidth).toDouble(),
+                point.dy.clamp(0.0, h).toDouble(),
+              );
           // ── PERFEKT AUSGERICHTETE LINIEN + BUCHSTABE ──
           // Heinz Feedback: A hing zwischen Linien. Loesung:
           // - Grundlinie bei 78% (Stand des Buchstabens)
@@ -621,26 +638,32 @@ class _LetterPracticeFullScreenState
                 ),
               ),
             ),
-            GestureDetector(
-              onPanStart: (d) {
+            LumoInkSurface(
+              key: const ValueKey('legacy-letter-ink-surface'),
+              onStart: (point) {
                 setState(() {
-                  _currentStroke = [d.localPosition];
+                  _currentStroke = [boundedPoint(point)];
                   _strokes.add(_currentStroke!);
+                  _inkRevision++;
                 });
               },
-              onPanUpdate: (d) {
+              onUpdate: (point) {
+                if (_currentStroke == null) return;
                 setState(() {
-                  _currentStroke?.add(d.localPosition);
+                  _currentStroke!.add(boundedPoint(point));
+                  _inkRevision++;
                 });
               },
-              onPanEnd: (_) {
+              onEnd: () {
                 _currentStroke = null;
               },
+              onCancel: _cancelStroke,
               child: CustomPaint(
                 size: Size.infinite,
                 painter: _StrokesPainter(
                   strokes: _strokes,
                   color: widget.gradient[0],
+                  revision: _inkRevision,
                 ),
               ),
             ),
@@ -679,14 +702,17 @@ class _LetterPracticeFullScreenState
                           : Colors.red.shade700,
                       size: 20),
                   const SizedBox(width: 6),
-                  Text('Löschen',
-                      style: TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 15,
-                          fontWeight: FontWeight.w900,
-                          color: _strokes.isEmpty
-                              ? Colors.grey.shade500
-                              : Colors.red.shade700)),
+                  Flexible(
+                    child: Text('Löschen',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 15,
+                            fontWeight: FontWeight.w900,
+                            color: _strokes.isEmpty
+                                ? Colors.grey.shade500
+                                : Colors.red.shade700)),
+                  ),
                 ],
               ),
             ),
@@ -715,12 +741,15 @@ class _LetterPracticeFullScreenState
                   Icon(Icons.check_circle_rounded,
                       color: Colors.white, size: 22),
                   SizedBox(width: 8),
-                  Text('Fertig & Weiter',
-                      style: TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white)),
+                  Flexible(
+                    child: Text('Fertig & Weiter',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white)),
+                  ),
                 ],
               ),
             ),
@@ -851,9 +880,15 @@ class _SchoolLinesPainter extends CustomPainter {
 }
 
 class _StrokesPainter extends CustomPainter {
-  _StrokesPainter({required this.strokes, required this.color});
+  _StrokesPainter({
+    required this.strokes,
+    required this.color,
+    required this.revision,
+  });
   final List<List<Offset>> strokes;
   final Color color;
+  // The stroke lists grow in place; a saved revision detects point changes.
+  final int revision;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -880,5 +915,5 @@ class _StrokesPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_StrokesPainter old) =>
-      old.strokes.length != strokes.length || old.color != color;
+      old.revision != revision || old.color != color;
 }

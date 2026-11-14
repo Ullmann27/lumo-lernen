@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--format=machine",
+    "lib/features/writing/widgets/lumo_ink_surface.dart",
+    "lib/features/teacher_mode/letter_writing_screen.dart",
+    "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+    "lib/core/school_exercise_generator.dart",
+    "lib/features/learning/learning_content.dart",
+    "lib/features/learning/widgets/lumo_shape_trace_canvas.dart",
+    "test/lumo_ink_surface_motion_regression_test.dart",
+    "test/legacy_letter_repaint_regression_test.dart",
+    "test/shape_trace_gesture_regression_test.dart",
+    "test/wort_diktat_gesture_regression_test.dart",
+    "test/learning_selection_integration_test.dart",
+    "test/shape_trace_input_test.dart"
+  ],
+  "exit_code": 0,
+  "errors": 0,
+  "warnings": 0,
+  "info_count": 4,
+  "elapsed_seconds": 5.899
+}

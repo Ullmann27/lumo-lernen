@@ -1,0 +1,72 @@
+test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery) ... 
+  test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery) (state='missing') ... FAIL
+  test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery) (state='skipped') ... FAIL
+test_exact_integration_branches_require_the_same_current_pull_branch (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_exact_integration_branches_require_the_same_current_pull_branch) ... 
+  test_exact_integration_branches_require_the_same_current_pull_branch (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_exact_integration_branches_require_the_same_current_pull_branch) (branch='integration/lumo-agent-execution-20261114') ... ERROR
+test_return_recovery_runs_between_import_and_the_two_process_gate (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_return_recovery_runs_between_import_and_the_two_process_gate) ... ERROR
+test_only_exact_same_repository_c4_pull_request_starts (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_only_exact_same_repository_c4_pull_request_starts) ... FAIL
+test_only_c4_branch_is_added_to_existing_unified_exclusions (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_only_c4_branch_is_added_to_existing_unified_exclusions) ... FAIL
+
+======================================================================
+ERROR: test_exact_integration_branches_require_the_same_current_pull_branch (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_exact_integration_branches_require_the_same_current_pull_branch) (branch='integration/lumo-agent-execution-20261114')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/scripts/tests/test_connect_four_delivery.py", line 77, in test_exact_integration_branches_require_the_same_current_pull_branch
+    self.assertEqual(set(self.check()), set(delivery.REQUIRED_STEPS))
+                         ^^^^^^^^^^^^
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/scripts/tests/test_connect_four_delivery.py", line 64, in check
+    return delivery.checked_jobs(self.run, self.jobs, self.pull, self.binding, 999)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/scripts/verify_connect_four_delivery.py", line 135, in checked_jobs
+    require(run.get('id') == run_id and run.get('run_attempt') == attempt
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/scripts/verify_connect_four_delivery.py", line 97, in require
+    raise ValueError(message)
+ValueError: Delivery requires the corresponding exact C4 workflow phase/attempt
+
+======================================================================
+ERROR: test_return_recovery_runs_between_import_and_the_two_process_gate (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_return_recovery_runs_between_import_and_the_two_process_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/scripts/tests/test_connect_four_pipeline.py", line 95, in test_return_recovery_runs_between_import_and_the_two_process_gate
+    positions=[runtime.index(name) for name in (
+               ^^^^^^^^^^^^^^^^^^^
+ValueError: substring not found
+
+======================================================================
+FAIL: test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery) (state='missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/scripts/tests/test_connect_four_delivery.py", line 119, in test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery
+    with self.subTest(state=state), self.assertRaisesRegex(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery) (state='skipped')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/scripts/tests/test_connect_four_delivery.py", line 119, in test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery
+    with self.subTest(state=state), self.assertRaisesRegex(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_only_exact_same_repository_c4_pull_request_starts (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_only_exact_same_repository_c4_pull_request_starts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/scripts/tests/test_connect_four_pipeline.py", line 56, in test_only_exact_same_repository_c4_pull_request_starts
+    self.assertTrue(condition(block,{**values,
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_only_c4_branch_is_added_to_existing_unified_exclusions (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_only_c4_branch_is_added_to_existing_unified_exclusions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/scripts/tests/test_connect_four_pipeline.py", line 191, in test_only_c4_branch_is_added_to_existing_unified_exclusions
+    self.assertFalse(condition(block,{'github.head_ref':agent,'github.ref_name':'123/merge'}))
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.003s
+
+FAILED (failures=4, errors=2)

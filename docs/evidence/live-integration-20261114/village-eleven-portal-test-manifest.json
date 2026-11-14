@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "kind": "additive_eleven_portal_test_checkpoint",
+  "base_source": "e72368bd5addd4b8a83a9d2bfc770fe7d2808972",
+  "scope": "Three Dart tests only; Root owns route-order fix and complete product/native integration",
+  "validation": {
+    "dart_parse_command": "DART_SUPPRESS_ANALYTICS=true /workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart format --output=none test/games/spielwelt_semantics_action_test.dart test/games/spielwelt_hub_capture_test.dart test/games/games_world_layout_test.dart",
+    "exit_code": 0,
+    "original_stdout": "Changed test/games/spielwelt_semantics_action_test.dart\nChanged test/games/spielwelt_hub_capture_test.dart\nChanged test/games/games_world_layout_test.dart\nFormatted 3 files (3 changed) in 0.04 seconds.\n",
+    "scope": "Syntax parse only. --output=none makes no formatter edits. No Flutter, screenshot, APK or Android acceptance run was executed for these three changed files."
+  },
+  "files": {
+    "test/games/spielwelt_semantics_action_test.dart": {
+      "base_blob": "b702778f7553fd1bbb3a40d87bfee1458a7ab0a4",
+      "sha256": "b86aed9f7381def7ad814a9f74eda2286fae51ad183ad668a9393b2f4df520a4"
+    },
+    "test/games/spielwelt_hub_capture_test.dart": {
+      "base_blob": "5b28919bc753727f6f6a35d01392fb42d6f86081",
+      "sha256": "540659d39bb47bc2027b37ec34549475ce65b31f6025c53b33a9172129c7c54e"
+    },
+    "test/games/games_world_layout_test.dart": {
+      "base_blob": "7bbd14eb377b54166146f6a5b36998cb70f1f744",
+      "sha256": "659bac62f8046bdb41be0708ebb12a601448b5fc3b295953b7ffd88f794162ba"
+    }
+  },
+  "preserved_contracts": [
+    "Every original semantics owner.performAction and physical tap remains",
+    "Exactly eleven portal fixtures and twenty-two actual callbacks are required",
+    "Fixture identity set must match the production route roster",
+    "All existing 48dp, Fold viewport, visible Kart, route and cover checks remain",
+    "Village and Dorfwirtschaft added to every existing fixed roster in the two layout/capture files"
+  ],
+  "original_failure": {
+    "repository": "Ullmann27/lumo-lernen",
+    "source": "99f04bff80f82a3ee4963aaf29f970a7f79ba0cc",
+    "workflow": ".github/workflows/lumo-unified-integration-2026.yml",
+    "run_id": 43577379716,
+    "run_attempt": 1,
+    "job_id": 132394488037,
+    "job_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43577379716/job/132394488037",
+    "full_original_decoded_log_sha256": "cd56aad792f97ad0f2c6a58cde083578543d5ce54f6c48688444c28ec903c457",
+    "full_original_decoded_log_characters": 741343,
+    "excerpt": {
+      "file": "village-producer-routing-failure-original-excerpt.log",
+      "start_line": 736,
+      "end_line": 768,
+      "sha256": "657445c112af1b4e2683e0eb13f4988784e46d2c939ae761bbc43012bf3c9c9b",
+      "unaltered_contiguous_lines": true
+    },
+    "reported_flutter_totals": {
+      "passed": 2363,
+      "skipped": 200,
+      "failed": 4
+    },
+    "failure": "Production identities list ordered kart,village while actual routes ordered village,kart; exact ordered equality rejected this at index7. Old fixed length10 guard also requires explicit11 after the roster correction."
+  },
+  "root_owned_companion_blobs": {
+    "routes": "a5ad13f364e40d19ab2b4c809dbb4ea3729f631d",
+    "routing_test": "e5cfc3a8bfff14d5f2d7f7870c33c01e3cc6fafb"
+  },
+  "complete_runtime_status": "PENDING_FINAL_ROOT_CI"
+}

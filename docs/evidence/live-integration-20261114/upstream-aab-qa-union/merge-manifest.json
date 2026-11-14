@@ -1,0 +1,345 @@
+{
+  "schema": "lumo-semantic-upstream-qa-union/v1",
+  "created_at": "2026-11-14 12:33:37 UTC",
+  "repository": "Ullmann27/lumo-lernen",
+  "base": {
+    "commit": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "tree": "744986f046f6ec65ebe314f62243187a8a0a64c0"
+  },
+  "current": {
+    "commit": "9516068cfb67938fc90d48ff45d56169f00941fc",
+    "tree": "3dc30b78041ba873ef72f2a99172586b3b88099c"
+  },
+  "upstream": {
+    "commit": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "new_commits": 17
+  },
+  "inventory": {
+    "recursive_trees_truncated": false,
+    "full_changed_file_count": 302,
+    "github_compare_file_count": 300,
+    "scope_paths": 28,
+    "byte_identical_upstream_adoptions": 22,
+    "semantic_conflicts": 6
+  },
+  "checkpoint_scope": "Only the 28 owned QA/probe/verifier/test/fixture paths plus this evidence file, on the full current 951 tree. Root integrates its separate workflow/native-pin/product union before acceptance.",
+  "resolutions": [
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "resolution": "Add immutable Dream five-probe/seven-PNG/two-report replay and additional return/wisp original logs alongside unchanged current Live9/7, Discovery10/38, direct Village result replay and exactly eleven release assets."
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "resolution": "Keep every current and added upstream test; change only the new Dream test's exact overall job-budget assertion from 90 to the already approved 150 minutes."
+    },
+    {
+      "path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "resolution": "Use upstream's real isolated temporary Git QA checkout and committed helper path checks; retain current explicit historical native-pin and pubspec hash assertions. No historical verifier relaxation."
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "resolution": "Keep the exact four current allowed branches; expose upstream QUALITY_BRANCH and ACCEPTED_BRANCHES names through the same immutable allowlist. No source/run/attempt/repository/artifact check changed."
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "resolution": "Preserve current four-branch cases and all additional upstream quality-branch source/artifact/job failure cases."
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "resolution": "Retain current 71a4 Native constant temporarily and add upstream rejection of the pre-acknowledged-return source. Root owns the final Native pin replacement."
+    }
+  ],
+  "retained_village_files": [
+    {
+      "path": ".github/probes/lumo_village_android_probe.py",
+      "sha": "97434207488900ac8f9364d5120f163cbc3ff0d5",
+      "unchanged": true
+    },
+    {
+      "path": "tools/android_qa/village_android_evidence.py",
+      "sha": "013fe059fdbe1dd49ded63b3378f302f10fface3",
+      "unchanged": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_village_android_evidence.py",
+      "sha": "55053f72145aec5d10a2d1669ff93618c36a7ee3",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "sha": "bb496435fe24ecd34fd24809e12d51df6c2952be",
+      "unchanged": true
+    }
+  ],
+  "approved_branches": [
+    "integration/lumo-c4-connections-20261114",
+    "work/lumo-play-quality-20261114",
+    "integration/lumo-agent-execution-20261114",
+    "integration/lumo-live-connections-20261114"
+  ],
+  "delivery_asset_count": 11,
+  "dream_reader": {
+    "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+    "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d"
+  },
+  "root_owned_pending": {
+    "workflow_blob": "4acbf17dd2635f75b8e7b8d8280d43364c8d08c6",
+    "native_final_pin": "PENDING_ROOT_NATIVE_UNION",
+    "verify_legacy_release_pin_modified_here": false
+  },
+  "resolved_entries": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c996a022d388632ed13965b392181aef773d9025"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc"
+    },
+    {
+      "path": "scripts/run_unchanged_apk_diagnostic.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2700d4e1c454eaab5144836d78223b6f6e02d803"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8761da4157a16d33b86b649b7ff3a8e365044906"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-exit.stdout",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fba7ed526e434d8e4d615d8c9eca14f252c8a0f4"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-runtime-anr-verification.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2b616edb135cb9f03d3019b85e3877a15b85c39"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-stop.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5278dfb25362d6ffb2f69c13c1c74816fa627df9"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-wait.stderr",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f967a59acdf78450291005ce5960581f839ac15"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swiftshader-events-anr.stdout",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc2bb7332ea653890806225c08617fbbbe75b9a3"
+    },
+    {
+      "path": "scripts/tests/fixtures/api37-swangle-08e63bd3-renderer.json.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b9ecb3de5b891df9c6d51b29c3447df333d6b0a"
+    },
+    {
+      "path": "scripts/tests/test_android_runtime_wait_notification.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a85f64bfbe7d374be64437dfd76709e92fffd0e3"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43314165618f5d7055baf06387aa60256b8eb5e2"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd95512077293e973699b343dc3575af7e2b0108"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_return_gate.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3a76bcc9949af22d9be8abdce2e30065b97dddc"
+    },
+    {
+      "path": "scripts/tests/test_runtime_followup_workflow.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6bc8e67649ec6d7808a7d37cddb93cb0f931b19"
+    },
+    {
+      "path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed889242499d4bbc16e7b19be1c3869162cb1d28"
+    },
+    {
+      "path": "scripts/verify_android_runtime_anr.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0bb9f91493a07100935bdb88e796676ae1ee20f5"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c64b8f5d81eddeadb49b99988006a834b0f5fee"
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "091e250702b41c8ff0a1eef2eaa554a83c2cff68"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0-ocr.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f4050401ac73ada62cb3517ec7204f33916517b8"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1-ocr.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c4702094de7317487568ccdd875b874d243a0bd"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-surface-readiness.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35b5cdb2d5e6c55d2083bbb41aafc34611d5ebfe"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/provenance.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f63d6917ba8b5404d4deb1209a75486c33e90caf"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "669bc2b1962208cf0bdc3cd2d845fc4c2d1fd2dc"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_continue_caption.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d02ca8663998dcbddb6c02107148672c5882b52"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d"
+    }
+  ],
+  "verification": {
+    "kind": "STATIC_SOURCE_REVIEW_ONLY",
+    "checks": [
+      "No merge markers: .github/probes/creative_android_probe.py",
+      "Final newline: .github/probes/creative_android_probe.py",
+      "No merge markers: .github/probes/modernization_android_tour.py",
+      "Final newline: .github/probes/modernization_android_tour.py",
+      "No merge markers: scripts/run_unchanged_apk_diagnostic.sh",
+      "Final newline: scripts/run_unchanged_apk_diagnostic.sh",
+      "No merge markers: scripts/tests/test_android_runtime_wait_notification.py",
+      "Final newline: scripts/tests/test_android_runtime_wait_notification.py",
+      "Unique class/test names: scripts/tests/test_android_runtime_wait_notification.py",
+      "All upstream-added test names retained: scripts/tests/test_android_runtime_wait_notification.py",
+      "No merge markers: scripts/tests/test_connect_four_return_gate.py",
+      "Final newline: scripts/tests/test_connect_four_return_gate.py",
+      "Unique class/test names: scripts/tests/test_connect_four_return_gate.py",
+      "All upstream-added test names retained: scripts/tests/test_connect_four_return_gate.py",
+      "No merge markers: scripts/tests/test_runtime_followup_workflow.py",
+      "Final newline: scripts/tests/test_runtime_followup_workflow.py",
+      "Unique class/test names: scripts/tests/test_runtime_followup_workflow.py",
+      "All upstream-added test names retained: scripts/tests/test_runtime_followup_workflow.py",
+      "No merge markers: scripts/verify_android_runtime_anr.py",
+      "Final newline: scripts/verify_android_runtime_anr.py",
+      "No merge markers: tools/android_qa/tests/test_kart_continue_caption.py",
+      "Final newline: tools/android_qa/tests/test_kart_continue_caption.py",
+      "Unique class/test names: tools/android_qa/tests/test_kart_continue_caption.py",
+      "All upstream-added test names retained: tools/android_qa/tests/test_kart_continue_caption.py",
+      "No merge markers: tools/android_qa/tests/test_kart_garage_evidence.py",
+      "Final newline: tools/android_qa/tests/test_kart_garage_evidence.py",
+      "Unique class/test names: tools/android_qa/tests/test_kart_garage_evidence.py",
+      "All upstream-added test names retained: tools/android_qa/tests/test_kart_garage_evidence.py",
+      "No merge markers: scripts/verify_connect_four_delivery.py",
+      "Final newline: scripts/verify_connect_four_delivery.py",
+      "No merge markers: scripts/tests/test_connect_four_delivery.py",
+      "Final newline: scripts/tests/test_connect_four_delivery.py",
+      "Unique class/test names: scripts/tests/test_connect_four_delivery.py",
+      "All current test names retained: scripts/tests/test_connect_four_delivery.py",
+      "All upstream-added test names retained: scripts/tests/test_connect_four_delivery.py",
+      "No merge markers: tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "Final newline: tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "Unique class/test names: tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "All current test names retained: tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "All upstream-added test names retained: tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "No merge markers: tools/android_qa/connect_four_android_evidence.py",
+      "Final newline: tools/android_qa/connect_four_android_evidence.py",
+      "No merge markers: scripts/tests/test_candidate_2011_pin.py",
+      "Final newline: scripts/tests/test_candidate_2011_pin.py",
+      "Unique class/test names: scripts/tests/test_candidate_2011_pin.py",
+      "All current test names retained: scripts/tests/test_candidate_2011_pin.py",
+      "All upstream-added test names retained: scripts/tests/test_candidate_2011_pin.py",
+      "No merge markers: scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "Final newline: scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "Unique class/test names: scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "All current test names retained: scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "All upstream-added test names retained: scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "Existing Live/Discovery function bytes preserved: checked_connection_logs",
+      "Existing Live/Discovery function bytes preserved: checked_native_connections",
+      "Upstream Dream/additional function bytes preserved: checked_native_dream",
+      "Upstream Dream/additional function bytes preserved: checked_additional_native_logs",
+      "Exact eleven delivery assets with Village original",
+      "Composite mandatory receipt preserved: 'connections': connections",
+      "Composite mandatory receipt preserved: 'dream': dream",
+      "Composite mandatory receipt preserved: 'additional_native_regressions': additional_native",
+      "Composite mandatory receipt preserved: Fresh candidate facts do not bind the original direct Village roundtrip",
+      "Mandatory step retained: Retry the acknowledged native exit after a transient Android refusal",
+      "Mandatory step retained: Require the additional pinned native Treasure wisp regression",
+      "Mandatory step retained: Require acknowledged Connect Four return retry",
+      "Mandatory step retained: Verify connected dream ambience and garden on exact native source",
+      "Exact Dream step name retained",
+      "Only new Dream budget assertion uses exact approved 150",
+      "Historical test has real isolated Git helper and both pin/version hash assertions",
+      "Current Native pin remains unchanged pending Root final binding",
+      "Both branch API names share exact existing four-branch allowlist"
+    ],
+    "python_tests": "NOT_RUN_EXECUTOR_UNAVAILABLE",
+    "actionlint": "NOT_RUN_EXECUTOR_UNAVAILABLE",
+    "emulator": "NOT_RUN",
+    "new_actual_acceptance": "NOT_STARTED",
+    "checkpoint_ci": "SKIPPED_BY_EXPLICIT_CHECKPOINT_COMMIT"
+  },
+  "fixtures": "Existing upstream Git blobs are reused byte-for-byte, including binary originals. No regenerated image or rewritten historical report.",
+  "central_ref_changed": false,
+  "publisher_bound": false,
+  "published": false
+}

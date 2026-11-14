@@ -1,0 +1,25 @@
+{
+  "source_base": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "source_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-m",
+    "unittest",
+    "test_village_android_evidence",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/909ddb52fe7b/village-return-repair-6b/tools/android_qa/tests",
+  "elapsed_seconds": 43.738,
+  "exit_code": 0,
+  "source_sha256_before": {
+    ".github/probes/lumo_village_android_probe.py": "351d9ee6560b5dc5694f61b07c8d75b1a71d3cb4201fdbc953731891d04c1351",
+    "tools/android_qa/tests/test_village_android_evidence.py": "a8ea017f8979e16ef44f15acd1d7044d88309f2d43c9abf78fb6f8eea2979c13"
+  },
+  "source_sha256_after": {
+    ".github/probes/lumo_village_android_probe.py": "351d9ee6560b5dc5694f61b07c8d75b1a71d3cb4201fdbc953731891d04c1351",
+    "tools/android_qa/tests/test_village_android_evidence.py": "a8ea017f8979e16ef44f15acd1d7044d88309f2d43c9abf78fb6f8eea2979c13"
+  },
+  "ast_parse": "PASS",
+  "run_and_main_bytes_unchanged": true,
+  "scope": "Synthetic offline contracts with original-file fixtures; no Android/emulator result"
+}

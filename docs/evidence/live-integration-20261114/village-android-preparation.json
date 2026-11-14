@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "status": "FOCUSED_CONTRACTS_PASS_ACTUAL_ANDROID_PENDING",
+  "base_host_source": "cf2593cb6dec51b66461c8e5984dfbfdd5091c22",
+  "base_host_tree": "014b2acc4cea5def174f7c51a12902c4aa2c22d6",
+  "coordinated_native_source": "71a4c1e2304b52005950b12490d070c286c45438",
+  "native_pin_changed_here": false,
+  "files": [
+    {
+      "path": ".github/probes/lumo_village_android_probe.py",
+      "bytes": 11328,
+      "git_blob_sha": "97434207488900ac8f9364d5120f163cbc3ff0d5",
+      "sha256": "941176f413db24b78471bb2e374f7366236615d1599745e35afbf3bd92d3d59d"
+    },
+    {
+      "path": "tools/android_qa/village_android_evidence.py",
+      "bytes": 20967,
+      "git_blob_sha": "013fe059fdbe1dd49ded63b3378f302f10fface3",
+      "sha256": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32"
+    },
+    {
+      "path": "tools/android_qa/tests/test_village_android_evidence.py",
+      "bytes": 22017,
+      "git_blob_sha": "55053f72145aec5d10a2d1669ff93618c36a7ee3",
+      "sha256": "ec6e3f4e507e6e6cb592b38da4324b6dc54b878138137c5be22c465691a5344b"
+    },
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 45609,
+      "git_blob_sha": "f585727503a73aadcec25414e60f47e44c9f29db",
+      "sha256": "9fb2644fbd8232dadd1fb45400021cb6b6470a00fa43b3dc5d085bb3d2bea78b"
+    },
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "bytes": 11403,
+      "git_blob_sha": "bb496435fe24ecd34fd24809e12d51df6c2952be",
+      "sha256": "d4355d1f4ae56fa294fe6ba8c66b1bd145cb772ca9ceda0cc8ac2f803dea0cea"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "bytes": 58612,
+      "git_blob_sha": "82326232f3ca29655acc1e095d148951230bfe25",
+      "sha256": "499057348ca72d27a298ac2c9efac3ddcebd0b28b5af602def94203719f59dbf"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "bytes": 66853,
+      "git_blob_sha": "2a30ca23536ae54408ef0e994a6acc3721c7da79",
+      "sha256": "5a648c4d5ebd3148c395d459d6f0411560f4df4265ff48b8b7c5e2e71bd04b6d"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_pipeline.py",
+      "bytes": 26138,
+      "git_blob_sha": "5064b793d12ed3742b94698e7e85edc69d2a7c24",
+      "sha256": "8d017fc570f172a12d42a2721342eb0a466cc0c8cdef7957f25435eee5912c38"
+    }
+  ],
+  "tests": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_*android_evidence.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 27.037,
+      "log": "village-android-contracts-original.log",
+      "sha256": "d59823a7427717abb97837d5d5d1a2eba9a3c95aece2bb4f9e30b7b31e392b64",
+      "tests": 50
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-p",
+        "test_connect_four*.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 3.39,
+      "log": "village-candidate-delivery-contracts-original.log",
+      "sha256": "c6eeb1af98500d785aefec042de91e11c8ece958081cdc8a7a51cf77a2c934b6",
+      "tests": 75
+    },
+    {
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        ".github/workflows/lumo-connect-four-2020.yml"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.007,
+      "log": "village-actionlint-original.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "total_tests": 125,
+  "skipped": 0,
+  "validation_scope": "Synthetic original-file negative contracts plus existing C4/delivery/pipeline contracts; no emulator or APK acceptance claimed",
+  "source_gate": "Exact candidate artifact/run/attempt/host/native; actual registry owner key and default slot1; existing main tour SHA; no force-stop return",
+  "return_gate": "Same native PID before visible Spiele touch, fresh successful [LumoHost] return: games ACK, ended native process, original Flutter PID/MainActivity/visible Spielen, unchanged profile and learning",
+  "negative_contracts": [
+    "missing/changed images or TSV",
+    "wrong source/native/run/API",
+    "wrong PID/scene/child/slot",
+    "missing or stale host ACK",
+    "duplicate/nonfinite JSON",
+    "force-stop substituted for touch",
+    "stale return screenshot",
+    "native still alive",
+    "profile/learning/new learning key changed",
+    "missing mandatory candidate/delivery Village result"
+  ],
+  "exact_delivery_asset_count": 11,
+  "publication_activated": false
+}

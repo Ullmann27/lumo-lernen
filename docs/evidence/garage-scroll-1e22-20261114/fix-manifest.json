@@ -1,0 +1,136 @@
+{
+  "base": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "producer": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "red_checkpoint": "60c40ff6bc84c27d61049182b0b4da36eae54bdc",
+  "source_root_override": null,
+  "tests": {
+    "garage_passed": 34,
+    "producer_word_passed": 14,
+    "failed": 0,
+    "skipped": 0,
+    "device_run": false
+  },
+  "files": [
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "bytes": 27185,
+      "sha256": "abb9df2ea6397a9634f0504073deb44de0d9c2b8d243eeae4b3a80142b3bdbbb",
+      "git_blob": "09da24805ad89446eacfe2593d8f0a1b34adcdf4"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 73307,
+      "sha256": "965b45ee66d0f88ac73411719ba47858bb34bb49d5ceb2b129dc370bccddf1ae",
+      "git_blob": "f20bf864576f2474b563da29d2d718557702679c"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "bytes": 30297,
+      "sha256": "33493dd6df5ad0c5b3ae2c52766f40007dca052ba0fad973bac3068742b98df2",
+      "git_blob": "b727e447caf8da1e0f0619b32bc0960e918b5226"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_observed_scroll.py",
+      "bytes": 10121,
+      "sha256": "9ac21f079f229f300b610515a3b35fe153be72505a7af5b20cdb8091c01a9c45",
+      "git_blob": "0efb0928d1c8575dc6134165f2f30182fcd5aa49"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+      "bytes": 15159,
+      "sha256": "f661323a267d62106beb18ff0c49373309f3a5faa00ef55a75eda649dea7920f",
+      "git_blob": "ced952881090f4c76e1c4229bf3669b75e31a41d"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/garage-regression-first.log",
+      "bytes": 6899,
+      "sha256": "e49d2da41ce1966e22d40943b868dc35a9119b50c1200f3e9549d62282d2a630",
+      "git_blob": "639f77d9b37d5948952c6d4722b7a960bbb50870"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/garage-regression-first-invocation.json",
+      "bytes": 491,
+      "sha256": "7be027518b23a537e4b8b87b8f3a336c524548a80b1cee3e4a142645e4b69870",
+      "git_blob": "5e108c4f7b17c008453a24dee375af13d99cd1fe"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/garage-union.log",
+      "bytes": 6899,
+      "sha256": "626bf1dd13748f8d96c682ba576f81618f2c7b5b2f745a3508370b91fcd659fb",
+      "git_blob": "7826ad670774a51c850b521412028e4e1d66ac20"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/garage-union-invocation.json",
+      "bytes": 505,
+      "sha256": "f9c73040330567785a11466456641f917109b6a969f9d7e065ea4611dff55151",
+      "git_blob": "0828676ef4cc57d8810bd04ca93f477dccedc24f"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/word-union.log",
+      "bytes": 3789,
+      "sha256": "f8ad4804d3a7928127f714e6b7b87d69488b4c61e11aa7b196436e2473b4c762",
+      "git_blob": "7c40a561f964db1f5ba5f48057b6f8c6c10a6b87"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/word-union-invocation.json",
+      "bytes": 518,
+      "sha256": "5ab7e4fe330f0562d393e1821ff3ca47cc8e3dc481aa0165b2245b2dd73ae6bb",
+      "git_blob": "b94e101fa6ee18dacd4c4d0f0a1389a6b2e91797"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/union-test-summary.json",
+      "bytes": 253,
+      "sha256": "7e8384aff1c471eb5048b2b6d6843a287f4f80521b94c59bb851a5d1eac669b7",
+      "git_blob": "c302cd71710d4ccc7cf0a17ec81d83edb4aa91ab"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/garage-union-final.log",
+      "bytes": 6900,
+      "sha256": "210161d4650a39bef535352aa5840ff9f0b1ceee75e322c6c40bda06329ce1be",
+      "git_blob": "d9668e033ac6ec8ff364cfe99175167b83e57ff2"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/garage-union-final-invocation.json",
+      "bytes": 505,
+      "sha256": "5a891745a0cdf3a888db78fe27be624a89f572887d0ef5e90ddc3b11d0b21a7d",
+      "git_blob": "718a6507ed760f5120450d569190a63ac3a2afb5"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/word-union-final.log",
+      "bytes": 2983,
+      "sha256": "afd09c9b312f2e0de73f493161ebb3112f5b08814ecfc999c77e7c1a6b9f7917",
+      "git_blob": "3c844df0bd4f89b9fd30bcfb5f33087ef4c5b70c"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/word-union-final-invocation.json",
+      "bytes": 518,
+      "sha256": "160ccb87d3287eb21e159f15ef94b5b548929d57ce7b60225e3fe4201e172924",
+      "git_blob": "597541efd3606dd64ddf89165e701ae2dc0756df"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/union-test-summary-final.json",
+      "bytes": 266,
+      "sha256": "eb1cadd27f2981907129fd8fceb8c8a7c5d82c9109092c399ffdd6d1782e3985",
+      "git_blob": "2d2eb2b271880c64454f1f7350625786ecb37a6c"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/source-preservation.json",
+      "bytes": 3980,
+      "sha256": "2b7c76aa6676995388e29365eafe62d3f80e58635da3a7776da4cec34284c4f3",
+      "git_blob": "481e331342a28c6cd9a1f06666ed1290f5ab810e"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/original-frame-replay.json",
+      "bytes": 8532,
+      "sha256": "bef7f862d0ba4bac7d9d5f0bb12904f5c973eb3f7ea5b3f3c9e5cd4d88cc0b43",
+      "git_blob": "fbfb78a48e0d97fcc7b7521ca7a88c6c1c713ecf"
+    },
+    {
+      "path": "docs/evidence/garage-scroll-1e22-20261114/README-fix.md",
+      "bytes": 4069,
+      "sha256": "bd63993fec22a4764fddf89c72f800bf323afb279b104260ecbae365bda83987",
+      "git_blob": "44cddcef07b3186650369049bc0ad82b49b6f691"
+    }
+  ],
+  "producer_original_fixtures": "tools/android_qa/tests/fixtures/kart-scroll-3d91: thirteen original producer blobs, unchanged"
+}

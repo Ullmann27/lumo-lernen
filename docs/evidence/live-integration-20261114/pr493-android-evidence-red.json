@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "tools.android_qa.tests.test_connect_four_android_evidence.BindingTests",
+    "-v"
+  ],
+  "exit_code": 1,
+  "seconds": 0.08573312099906616,
+  "log_sha256": "72a56d2e0c04eeb9ba664b7dbce49a43ff11e885f7546e7d8532447f42e70bd9",
+  "scope": "New exact-branch contract tested against original 491 helper; expected rejection of newly authorized integration branches."
+}

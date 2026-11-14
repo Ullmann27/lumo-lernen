@@ -1,0 +1,37 @@
+{
+  "source": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "tree": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+  "files": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 28798,
+      "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958",
+      "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "bytes": 11092,
+      "git_blob": "c7e8bf69d8dc07980d4a84ad1fd31222beb5e147",
+      "sha256": "eefb4dd4633a2aa113cb8d50e732b090d10ac804b01b876b42bb2b990e75e630"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "bytes": 28636,
+      "git_blob": "669bc2b1962208cf0bdc3cd2d845fc4c2d1fd2dc",
+      "sha256": "a305542998c70789cae6499f3e5c4c1507488ef360fa29ec5ea792b730bcd94c"
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "bytes": 36432,
+      "git_blob": "091e250702b41c8ff0a1eef2eaa554a83c2cff68",
+      "sha256": "0f09d08607e51f19c2e0be9f35bf876d8606fd73644b96a2eb39c2ffff15a88f"
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "bytes": 4401,
+      "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4",
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60"
+    }
+  ],
+  "scope": "Small byte-verified source copy; not a Git checkout or device proof"
+}

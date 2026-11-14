@@ -106,13 +106,13 @@ class GarageOriginalWordSequenceTests(unittest.TestCase):
         self.assertEqual(second['status'], 'SWIPE_SENT')
         self.assertEqual(second['card']['text'], 'Boru Rally')
         self.assertEqual(second['card']['bounds'], [314.5, 593.0, 511.0, 629.0])
-        self.assertEqual(second['gesture'], [413, 611, 413, 431])
+        self.assertEqual(second['gesture'], [413, 628, 413, 594])
         self.assertEqual(second['caption_source'], 'original_tsv_word_sequences')
         self.assertEqual(len(second['ocr_sources']), 7)
         for source in second['ocr_sources']:
             self.assertEqual(source['sha256'], digest(self.out / source['file']))
-        self.adb.assert_called_once_with('shell', 'input', 'swipe', '413', '611',
-                                         '413', '431', '650', timeout=10)
+        self.adb.assert_called_once_with('shell', 'input', 'swipe', '413', '628',
+                                         '413', '594', '650', timeout=10)
 
     def test_all_original_fixture_bytes_and_pixels_are_bound_to_the_failed_job(self):
         provenance = json.loads((FIXTURES / 'provenance.json').read_text())
@@ -138,7 +138,7 @@ class GarageOriginalWordSequenceTests(unittest.TestCase):
         lines = json.loads((FIXTURES / '21_stage_select_gecko_velo-0-ocr.json').read_text())
         current = evidence.stage_garage_scroll_observation(self.frame, lines)
         self.assertEqual(current['card']['text'], 'Comet')
-        self.assertEqual(current['gesture'], [374, 486, 374, 351])
+        self.assertEqual(current['gesture'], [374, 498, 374, 473])
 
     def test_known_complete_names_keep_case_whitespace_and_longest_caption(self):
         for caption in ('Comet', 'Gecko Velo', 'Boru Rally', 'Glider', 'Nala Comet', 'Noa Tide'):

@@ -28,7 +28,9 @@ REPOSITORY = 'Ullmann27/lumo-lernen'
 WORKFLOW = '.github/workflows/lumo-connect-four-2020.yml'
 BRANCH = 'integration/lumo-c4-connections-20261114'
 QUALITY_BRANCH = 'work/lumo-play-quality-20261114'
-ACCEPTED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH))
+AGENT_BRANCH = 'integration/lumo-agent-execution-20261114'
+LIVE_BRANCH = 'integration/lumo-live-connections-20261114'
+ACCEPTED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH, AGENT_BRANCH, LIVE_BRANCH))
 DELIVERY_JOB = 'prepare-c4-delivery'
 BUNDLE_ARTIFACT = 'lumo-connect-four-2020-delivery-bundle'
 LEARNING_AUDIT_ARTIFACT = 'lumo-connect-four-2020-learning-curriculum-audit'
@@ -95,6 +97,7 @@ REQUIRED_STEPS = {
         'Verify all build and preservation contracts',
         'Code-level Android probe regression with verified image dependencies',
         'Require actual gameplay gates on the exact pinned native source',
+        'Verify connected dream ambience and garden on exact native source',
         'Require acknowledged Connect Four return retry',
         DREAM_STEP,
         DISCOVERY_STEP,
@@ -552,11 +555,13 @@ def checked_native(logs: Path, source: Path, revision: str) -> dict:
             rosters[manifest] = record(root/manifest)
     before = checked_native_extension(root, source, revision, tree)
     rosters['studio-2020-images.json'] = before
+    connections = checked_native_connections(logs, source, revision, tree)
     dream = checked_native_dream(logs, source, revision, tree)
     discovery = checked_native_discovery(logs, source, revision, tree)
     return {'source': revision, 'tree': tree, 'core_modes': 52, 'mode_logs': proofs,
             'complete_runner_log': runner_record,
             'original_rosters': rosters, 'dream': dream, 'discovery': discovery,
+            'connections': connections,
             'scope': 'Actual pinned-source desktop engine and raster/movie proofs; no device FPS/audio claim'}
 
 
@@ -575,6 +580,134 @@ def checked_native_extension(root: Path, source: Path, revision: str, tree: str)
             and len(fresh.get('movies', [])) == 1,
             'The original new 2020 face/C4/treasure raster/movie evidence differs')
     return before
+
+
+def checked_connection_logs(logs: Path, kind: str, runner: str, count: int) -> dict:
+    root = logs/kind
+    runner_path = logs/(kind+'-runner.log')
+    complete = regular(runner_path).read_text()
+    require(not ERROR_LINE.search(complete), 'Original '+kind+' runner contains an engine error or leak')
+    final = ('[LumoLiveConnections] PASS 9 original probes and 7 verified renderer PNGs'
+             if kind == 'live' else
+             '[LumoDiscoveryConnections] PASS 10 original probes and 38 verified renderer PNGs')
+    require(final in complete.splitlines(), 'Original '+kind+' runner lacks its exact final PASS')
+    logical = runner.replace(chr(92)+chr(10), ' ')
+    rows = [shlex.split(line) for line in logical.splitlines() if line.startswith('probe ')]
+    index = 3 if kind == 'live' else 4
+    require(len(rows) == count and all(len(row) > index for row in rows)
+            and len({(row[1], row[2]) for row in rows}) == count,
+            'Pinned '+kind+' runner does not contain its complete unique probe roster')
+    proofs, original_directory = [], None
+    for row in rows:
+        name, mode, marker = row[1], row[2], row[index]
+        require(re.fullmatch(r'[a-z][a-z0-9_]*', name)
+                and re.fullmatch(r'(headless|rendered)(-[a-z]+)?', mode)
+                and marker and '\n' not in marker,
+                'Invalid original '+kind+' probe or marker')
+        path = root/(name+'-'+mode+'.log')
+        text = regular(path).read_text()
+        require(not ERROR_LINE.search(text), 'Original '+kind+' probe contains an engine error or leak')
+        if '$LOG_DIR' in marker:
+            require(marker.count('$LOG_DIR') == 1, 'Ambiguous original capture directory')
+            pattern = re.escape(marker).replace(re.escape('$LOG_DIR'), r'(?P<directory>/[^\r\n]+)')
+            matches = {match.group('directory') for line in text.splitlines()
+                       if (match := re.fullmatch(pattern, line))}
+            require(len(matches) == 1, 'Missing exact original capture-path PASS')
+            directory = matches.pop()
+            parsed = PurePosixPath(directory)
+            require(parsed.is_absolute() and '..' not in parsed.parts and '\\' not in directory
+                    and str(parsed) == directory
+                    and (original_directory is None or original_directory == directory),
+                    'Original live captures disagree about their actual output directory')
+            original_directory = directory
+            marker = marker.replace('$LOG_DIR', directory)
+        require(marker in text.splitlines() and marker in complete.splitlines(),
+                'Original '+kind+' probe/runner lacks its complete exact PASS: '+name)
+        proofs.append({'path': str(path.relative_to(logs)), 'marker': marker, **record(path)})
+    return {'runner': record(runner_path), 'probes': proofs,
+            'original_capture_directory': original_directory}
+
+
+def connection_capture_records(root: Path) -> dict:
+    captures = root/'captures'
+    require(captures.is_dir() and not captures.is_symlink(), 'Original connection captures required')
+    files = {}
+    for path in sorted(captures.rglob('*')):
+        require(not path.is_symlink(), 'Connection capture symlinks are not accepted')
+        if path.is_dir():
+            continue
+        require(path.resolve().is_relative_to(captures.resolve()), 'Connection capture escapes its root')
+        files[path.relative_to(root).as_posix()] = record(path)
+    return files
+
+
+def checked_connection_images(root: Path, rows, count: int, captures: dict) -> None:
+    from PIL import Image
+    require(type(rows) is list and len(rows) == count, 'Incomplete original connection image roster')
+    seen = set()
+    for row in rows:
+        require(type(row) is dict and type(row.get('path')) is str, 'Invalid original connection image')
+        name = row['path']
+        parsed = PurePosixPath(name)
+        require(parsed.parts and parsed.parts[0] == 'captures' and '..' not in parsed.parts
+                and not parsed.is_absolute() and '\\' not in name and str(parsed) == name
+                and name.endswith('.png') and name not in seen and name in captures,
+                'Unsafe, missing or duplicate original connection image')
+        seen.add(name)
+        require(type(row.get('width')) is int and row['width'] > 0
+                and type(row.get('height')) is int and row['height'] > 0
+                and row.get('sha256') == captures[name]['sha256'],
+                'Original connection image identity differs')
+        with Image.open(regular(root/name)) as image:
+            image.load()
+            require(image.format == 'PNG' and image.size == (row['width'], row['height']),
+                    'Original connection PNG dimensions differ')
+    require(seen == {name for name in captures if name.endswith('.png')},
+            'Unexpected or missing original connection PNG')
+
+
+def checked_native_connections(logs: Path, source: Path, revision: str, tree: str) -> dict:
+    # Discovery now has its own mandatory exact-source collector/reader below.
+    # Preserve the independent Live gate. Its heredoc writes a manifest, so
+    # replay only copied captures and never execute it over downloaded originals.
+    name = 'validate_live_connections.sh'
+    helper = regular(source/'tools'/name)
+    committed = subprocess.check_output(['git', 'show', revision+':tools/'+name], cwd=source)
+    require(helper.read_bytes() == committed, 'Connection verifier differs from committed Native source')
+    helpers = {name: record(helper)}
+    root = logs/'live'
+    require(root.is_dir() and not root.is_symlink(), 'Original live evidence directory required')
+    manifest = root/'live-connections.json'
+    before = record(manifest)
+    original = read(manifest)
+    require(type(original) is dict and type(original.get('schema')) is int and original['schema'] == 1
+            and original.get('native_source') == revision
+            and type(original.get('probes')) is int and original['probes'] == 9
+            and original.get('physical_android_fps_measured') is False,
+            'Original live source/count/FPS identity differs')
+    runner = helper.read_text()
+    proof = checked_connection_logs(logs, 'live', runner, 9)
+    captures = connection_capture_records(root)
+    checked_connection_images(root, original.get('original_pngs'), 7, captures)
+    bodies = re.findall(r'^python3 - "\$LOG_DIR" <<\'PY\'\n(.*?)^PY$', runner, re.M|re.S)
+    require(len(bodies) == 1, 'Exactly one original pinned Live Python verifier is required')
+    with tempfile.TemporaryDirectory(prefix='c4-live-replay-') as temporary:
+        replay = Path(temporary)
+        shutil.copytree(root/'captures', replay/'captures')
+        checked = subprocess.run([sys.executable, '-B', '-', str(replay)], input=bodies[0],
+                                 cwd=source, text=True, stdout=subprocess.PIPE,
+                                 stderr=subprocess.STDOUT, check=True, timeout=120)
+        require('[LumoLiveConnections] PASS 9 original probes and 7 verified renderer PNGs'
+                in checked.stdout.splitlines() and not ERROR_LINE.search(checked.stdout),
+                'Original Live verifier did not complete cleanly')
+        fresh = read(replay/'live-connections.json')
+    require(fresh == original and record(manifest) == before
+            and connection_capture_records(root) == captures,
+            'Original live raster/metadata replay differs or changed its inputs')
+    return {'live': {'source': revision, 'tree': tree, 'probe_count': 9, 'png_count': 7,
+                     'manifest': before, 'captures': captures, **proof},
+            'pinned_helpers': helpers}
+
 
 
 def checked_native_dream(logs: Path, source: Path, revision: str, tree: str) -> dict:
@@ -920,9 +1053,10 @@ def prepare(args) -> dict:
         'All current Flutter/build contracts, the current 236-family/7552-sample structural learning audit, '
         '52 native modes with 17 additional face/C4/treasure rasters and movie, '
         'five additional Dream modes with seven original renderer PNGs and two reports, '
+        'nine additional Live modes with seven original renderer PNGs, '
         'ten additional Discovery modes with 38 original renderer PNGs and two reports, '
-        'the real Dart/Godot C4 pair, actual API35 C4 touches/IPC/return, '
-        'direct Flutter→Village→Flutter and 2017→2020 preservation '
+        'the real Dart/Godot C4 pair, actual API35 C4 touches/IPC/return, the direct Flutter→Village→Flutter '
+        'roundtrip with native process exit and unchanged profile/learning, and 2017→2020 preservation '
         'passed and their originals were rechecked before this new version was published.\n'
         'The learning audit is not semantic or official curriculum approval. '
         'PCM contracts use a synthetic JVM boundary. No API37, physical ARM64, audible device PCM, '

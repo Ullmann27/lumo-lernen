@@ -1,0 +1,57 @@
+{
+  "base": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "checkpoint": "d04ac2596fdd383dc49b1a111d9f6d699bd7cb76",
+  "files": [
+    {
+      "bytes": 29336,
+      "git_blob": "836cf90f170545ce6d6393d5034dc149f5f6cf8c",
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "sha256": "4818dff314e39ae993d19a054b33f83bb351e98c58a1d673cc3bc2b6ed16250a"
+    },
+    {
+      "bytes": 19927,
+      "git_blob": "da877b93d3ae61c54b1743f8aba006bac614cdea",
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "sha256": "a575c5b0dad164e411f181ea89d38797ed448ff262431892df4674ad90672a78"
+    },
+    {
+      "bytes": 36432,
+      "git_blob": "091e250702b41c8ff0a1eef2eaa554a83c2cff68",
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "sha256": "0f09d08607e51f19c2e0be9f35bf876d8606fd73644b96a2eb39c2ffff15a88f"
+    }
+  ],
+  "limits": [
+    "A later successful real mailbox deletion remains unproved by the failed original diagnostic.",
+    "The explanatory cleanup comment describes the normal callback path; existing MainActivity has a bounded100x100ms wait, not an unconditional unlimited PID-end guarantee."
+  ],
+  "preservation": {
+    "additive_test_methods": 9,
+    "changed_probe_methods": [
+      "original",
+      "return_to_flutter"
+    ],
+    "unchanged_existing_test_methods": 11,
+    "verifier_blob_unchanged": "091e250702b41c8ff0a1eef2eaa554a83c2cff68"
+  },
+  "qa_original_test_log": {
+    "bytes": 8970,
+    "executed_by_this_reviewer": false,
+    "git_blob": "65dbda24d56af85cac45ad1ef1311e405e45ef98",
+    "path": "docs/evidence/live-integration-20261114/final-04a8e850/c4-return-cleanup/green.original.log",
+    "read_tail": "Ran 42 tests in 137.145s; OK",
+    "sha256": "5189b5ef0a2aaebf456686242d9f91381fa517df5eaf50ba4e2e15c5a6c465c5"
+  },
+  "review": "No concrete integration blocker in the narrowly changed observer.",
+  "scope": "Independent read-only source review, no duplicate test/device run and no product acceptance.",
+  "tree": "f8ba0328cc65a8bf22f5b935ada8891772d62aab",
+  "verified_contract": [
+    "Exactly one actual back touch; no force-stop/delete test action.",
+    "Fresh uniquely journaled PID/activity/find originals per observation round.",
+    "Same complete C4 session-root find path; no filtering away the current or other sessions.",
+    "Accept only absent native PID, actual MainActivity and an empty successful find in the same observation round.",
+    "Original 45-second return deadline and global900-second deadline retained; each subprocess bounded to remaining time.",
+    "Exact/late deadlines and failed find cannot pass; delayed empty output retained as original even when too late.",
+    "Existing preferences, visible Flutter frame/XML, preserved round, reopen and both actual returns remain required by unchanged verifier."
+  ]
+}

@@ -1,0 +1,14 @@
+test_actual_two_frame_continue_targets_the_independent_caption (test_kart_continue_caption.KartContinueCaptionTests.test_actual_two_frame_continue_targets_the_independent_caption) ... ok
+test_duplicate_same_control_and_ocr_order_do_not_change_the_target (test_kart_continue_caption.KartContinueCaptionTests.test_duplicate_same_control_and_ocr_order_do_not_change_the_target) ... ok
+test_existing_native_callers_keep_their_original_forwarded_contract (test_kart_continue_caption.KartContinueCaptionTests.test_existing_native_callers_keep_their_original_forwarded_contract) ... ok
+test_instruction_word_without_a_standalone_caption_never_taps (test_kart_continue_caption.KartContinueCaptionTests.test_instruction_word_without_a_standalone_caption_never_taps) ... ok
+test_invalid_or_offscreen_matching_region_cannot_be_discarded_silently (test_kart_continue_caption.KartContinueCaptionTests.test_invalid_or_offscreen_matching_region_cannot_be_discarded_silently) ... ok
+test_late_ocr_does_not_outlive_the_existing_touch_deadline (test_kart_continue_caption.KartContinueCaptionTests.test_late_ocr_does_not_outlive_the_existing_touch_deadline) ... ok
+test_original_png_change_after_ocr_still_prevents_dispatch (test_kart_continue_caption.KartContinueCaptionTests.test_original_png_change_after_ocr_still_prevents_dispatch) ... ok
+test_substrings_are_not_promoted_to_the_exact_continue_caption (test_kart_continue_caption.KartContinueCaptionTests.test_substrings_are_not_promoted_to_the_exact_continue_caption) ... ok
+test_two_distinct_independent_controls_remain_ambiguous (test_kart_continue_caption.KartContinueCaptionTests.test_two_distinct_independent_controls_remain_ambiguous) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 7.930s
+
+OK

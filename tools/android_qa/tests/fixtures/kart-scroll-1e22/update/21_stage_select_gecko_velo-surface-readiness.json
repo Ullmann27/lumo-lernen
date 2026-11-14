@@ -1,0 +1,153 @@
+{
+  "status": "FAIL",
+  "label": "Gecko Velo",
+  "timeout_seconds": 150,
+  "exact_caption_required": true,
+  "orientation_policy": "landscape",
+  "scope": "Observed touch prerequisites; post-action assertions still required",
+  "frames": [
+    {
+      "source": "21_stage_select_gecko_velo-0.png",
+      "source_sha256": "22b2311774c6fdd87c331c52eef39eb9bced9d99aab5723bf7ed4164fe42c0a4",
+      "source_bytes": 766876,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 1.45638,
+      "missing_caption_recovery": {
+        "status": "WAITING_FOR_SECOND_LIST_FRAME",
+        "gesture": [
+          510,
+          486,
+          510,
+          351
+        ],
+        "card": {
+          "text": "Comet",
+          "bounds": [
+            450.0,
+            472.0,
+            570.0,
+            499.0
+          ],
+          "variant": "contrast"
+        },
+        "header_bottom": 323.0,
+        "footer_top": 899.0,
+        "scope": "Scroll gesture only; target caption and actual saved selection remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-1.png",
+      "source_sha256": "04263acffae479dbb9f2d4238fa5a641388656b45ed6742411438f6aeb59c3ca",
+      "source_bytes": 769329,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 17.10267,
+      "missing_caption_recovery": {
+        "status": "SWIPE_SENT",
+        "swipe_number": 1,
+        "gesture": [
+          510,
+          486,
+          510,
+          351
+        ],
+        "card": {
+          "text": "Comet",
+          "bounds": [
+            450.0,
+            472.0,
+            570.0,
+            499.0
+          ],
+          "variant": "contrast"
+        },
+        "header_bottom": 323.0,
+        "footer_top": 899.0,
+        "scope": "Scroll gesture only; target caption and actual saved selection remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-2.png",
+      "source_sha256": "b3ce33bfffbca15d696adada0045f8edd52ff2db30c85f0b4f20fac084f3627f",
+      "source_bytes": 760982,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 33.026027
+    }
+  ],
+  "error": "No currently visible vehicle card in the actual left list",
+  "elapsed_seconds": 45.894001
+}

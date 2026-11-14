@@ -1,0 +1,14 @@
+{
+  "remote_base": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "remote_branch": "repair/lumo-garage-observed-scroll-20261114",
+  "local_mode": "isolated exact-source subset; GitData checkpoint uses actual 1e22 parent",
+  "checked_original_blobs": {
+    ".github/probes/modernization_android_tour.py": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc",
+    "tools/android_qa/kart_garage_evidence.py": "c5103456e98baa696ec6cac8b6bb8af863d19f5b",
+    "tools/android_qa/tests/test_kart_garage_evidence.py": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d",
+    ".github/probes/creative_android_probe.py": "c996a022d388632ed13965b392181aef773d9025"
+  },
+  "copied_support_from_local_head": "f36579a3a7e06045eaecea7c00e497ac06930100",
+  "root_status_before": "## checkpoint/lumo-live-combined-aab-20261114...origin/checkpoint/lumo-live-combined-aab-20261114\n",
+  "no_root_writes": true
+}

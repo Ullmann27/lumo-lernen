@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "host": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+    "tree": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604"
+  },
+  "scope": "Bounded C4 return observation only; no product, verifier, workflow, timeout increase or central-ref change.",
+  "changed_sources": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 29336,
+      "git_blob": "836cf90f170545ce6d6393d5034dc149f5f6cf8c",
+      "sha256": "4818dff314e39ae993d19a054b33f83bb351e98c58a1d673cc3bc2b6ed16250a"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "bytes": 19927,
+      "git_blob": "da877b93d3ae61c54b1743f8aba006bac614cdea",
+      "sha256": "a575c5b0dad164e411f181ea89d38797ed448ff262431892df4674ad90672a78"
+    }
+  ],
+  "source_cleanup_chain": {
+    "exact_source_identity_6b_and_04": [
+      {
+        "path": "tools/auto_install/ConnectFourBridge.kt",
+        "6b": "f6e41ada005cc01f3b75d05370e5098048188d37",
+        "04": "f6e41ada005cc01f3b75d05370e5098048188d37",
+        "identical": true
+      },
+      {
+        "path": "tools/auto_install/ConnectFourGameActivity.kt",
+        "6b": "d49a93cf8588b3fdad7ce1bb693843febc7e7984",
+        "04": "d49a93cf8588b3fdad7ce1bb693843febc7e7984",
+        "identical": true
+      },
+      {
+        "path": "tools/auto_install/MainActivity.kt",
+        "6b": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b",
+        "04": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b",
+        "identical": true
+      },
+      {
+        "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+        "6b": "f34753575463af153ac72efaf93dd485ba3f30e1",
+        "04": "f34753575463af153ac72efaf93dd485ba3f30e1",
+        "identical": true
+      },
+      {
+        "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+        "6b": "fd8efe8e114de656b6802e097b96910535d83c39",
+        "04": "fd8efe8e114de656b6802e097b96910535d83c39",
+        "identical": true
+      },
+      {
+        "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+        "6b": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+        "04": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+        "identical": true
+      },
+      {
+        "path": ".github/probes/lumo_connect_four_android_probe.py",
+        "6b": "681e25d4654ce9827db8f208da5a608b458fa958",
+        "04": "681e25d4654ce9827db8f208da5a608b458fa958",
+        "identical": true
+      }
+    ],
+    "paths": [
+      "ConnectFourGameActivity.returnToApp records caller return, sets Activity result, finishes and schedules native-process exit; it does not delete the private C4 session.",
+      "MainActivity.onActivityResult.completeWhenStopped normally waits for the native PID to stop, with its existing 100x100ms fallback, commits caller-owned return and sends the launch MethodChannel result.",
+      "launchLumo3D awaits that launch result and validates destination/profile; LumoConnectFourGame._openNative then awaits session.close in finally.",
+      "ConnectFourTableSession.close stops its timer and calls the separate Host channel; ConnectFourBridge.close synchronously deletes state/request/lifecycle and temporary files plus the token directory under the existing lock.",
+      "dispose launches close unawaited; session.close swallows transport exceptions. Source ordering establishes a possible early-observation window, not proof that a particular session eventually disappeared."
+    ]
+  },
+  "observer": {
+    "shared_return_seconds": 45,
+    "global_seconds": 900,
+    "unchanged_single_native_touch": true,
+    "observations": [
+      "fresh native PID command",
+      "fresh resumed activity command",
+      "fresh private C4 parent-directory find command"
+    ],
+    "acceptance": "All three conditions in one completed observation round: native PID absent, actual package MainActivity resumed, find stdout genuinely empty; strictly before the same deadline.",
+    "per_command_timeout": "Remaining shared return budget capped by unchanged global deadline.",
+    "retained_originals": "Every command retains distinct existing exclusive stdout/stderr/JSON journals. closed_mailbox points to the accepted original empty find stdout; no copied or rewritten command evidence.",
+    "subsequent_checks": "Unchanged persisted round/preferences, actual Flutter frame/UI, games navigation, reopen with new token/PID, second return and full offline replay."
+  },
+  "verification": {
+    "red": {
+      "tests": 1,
+      "exit_code": 1,
+      "expected_error": "ValueError: Closed C4 mailbox still exists",
+      "original_probe_blob": "681e25d4654ce9827db8f208da5a608b458fa958",
+      "log": "red.original.log",
+      "receipt": "red.execution.json"
+    },
+    "green": {
+      "tests": 42,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "unittest_seconds": 137.145,
+      "driver_seconds": 138.30912471000192,
+      "deadline_tests": 20,
+      "evidence_tests": 22,
+      "log": "green.original.log",
+      "receipt": "green.execution.json"
+    },
+    "preservation": {
+      "original_deadline_methods": 11,
+      "added_regressions": 9,
+      "original_methods_ast_identical": true,
+      "other_probe_methods_ast_identical": true,
+      "offline_verifier_blob": "091e250702b41c8ff0a1eef2eaa554a83c2cff68",
+      "offline_fixture_tests_blob": "669bc2b1962208cf0bdc3cd2d845fc4c2d1fd2dc",
+      "python_compile": "PASS",
+      "record": "source-preservation.json"
+    },
+    "independent_review": {
+      "agent": "/root/godot_integration",
+      "exact_probe_blob": "836cf90f170545ce6d6393d5034dc149f5f6cf8c",
+      "exact_tests_blob": "da877b93d3ae61c54b1743f8aba006bac614cdea",
+      "result": "No concrete integration blocker found",
+      "tests_repeated": false,
+      "limits": "Real eventual cleanup remains unproved until a new device observation. Existing MainActivity 10-second fallback is not an unconditional native-exit guarantee."
+    }
+  },
+  "original_failure_context": {
+    "diagnostic_run": 43629575654,
+    "attempt": 1,
+    "job": 132553315080,
+    "artifact": 14128089386,
+    "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "source": "Original result communicated by Root and independently inspected by the Native agent; not downloaded again by this author.",
+    "conclusion": "The first post-return find still listed the current observed token. No later find existed in that failed original; its later deletion is unknown."
+  },
+  "limitations": [
+    "Synthetic ADB/time boundary tests with actual journal writing; no local Android, Flutter, SDK, native renderer, new screenshot or device acceptance.",
+    "No release or central ref activated. Current Host04 main workflow remains separate from this inactive patch checkpoint.",
+    "The new device probe must still demonstrate actual completed cleanup and the entire remaining C4 roundtrip."
+  ]
+}

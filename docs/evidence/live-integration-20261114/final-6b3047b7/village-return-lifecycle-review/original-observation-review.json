@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-14T18:32:11.800272+00:00",
+  "scope": "Independent read-only product/lifecycle source review and actual original PNG inspection; no Android acceptance, rerun or source mutation.",
+  "source": {
+    "host_commit": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "host_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+    "native_commit": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604"
+  },
+  "actions": {
+    "run_id": 43616038272,
+    "attempt": 1,
+    "android_job_id": 132536740615,
+    "artifact_id": 14125719765,
+    "artifact_zip_sha256": "fb3733ea6b97851aa2def5adbf25b9f94438ea5e894de2a841df9c83f8f52afc",
+    "download_owner": "android_qa",
+    "duplicate_download": false
+  },
+  "original_files": [
+    {
+      "path": "village/returned-flutter-frame.png",
+      "bytes": 1438635,
+      "sha256": "51abb112ec1b8e54b909b23d735af39dfb10de27514a98cbb7d3861ab3815ee0",
+      "git_blob": "ef45e075fa936f398b484adfb02dd65a5310ae2a"
+    },
+    {
+      "path": "village/returned-flutter-frame-render-readiness.json",
+      "bytes": 554,
+      "sha256": "e2bcb5e1637b9f73ad76d169a4cd62e54cc1d32bda47ffd7f70c0e0366e32309",
+      "git_blob": "05ff4efadd721ec94f21116a9389233d53cf68df"
+    },
+    {
+      "path": "village/returned-flutter-visible-ocr.json",
+      "bytes": 28037,
+      "sha256": "b68c176442a705467c29a911b3ab434926eafa0a84bb47398c42d3fd6fe38a48",
+      "git_blob": "0c3d6f50108989ed91c08ce2e362030f57332d9d"
+    },
+    {
+      "path": "village/returned-flutter-visible-ocr-components.json",
+      "bytes": 451,
+      "sha256": "1feac8083b5bfde291027384d3a89020ce187afc733b645e53de724b957e071d",
+      "git_blob": "3b86f65e92e2233800a897822d259cf103e0d801"
+    },
+    {
+      "path": "village/returned-flutter-visible-ocr-tiles.json",
+      "bytes": 5043,
+      "sha256": "d0cdefdcbad18b9e4624d104f1a65ec97dead760faa085977abd0659b4d540db",
+      "git_blob": "d03e65c11097d972e23db5292f01cbb828e6f288"
+    }
+  ],
+  "actual_visual_inspection": {
+    "file": "village/returned-flutter-frame.png",
+    "opened_unchanged_original": true,
+    "width": 2400,
+    "height": 1080,
+    "visible": [
+      "LUMO DORFWELT",
+      "native back control: ‹ Spiele",
+      "settlement resources and building controls"
+    ],
+    "flutter_games_navigation_visible": false,
+    "claim": "This captured frame is native Village content, not a visible Flutter return. A temporary compositor/rotation snapshot or a persistent visual resumption failure cannot be distinguished from this one post-return capture."
+  },
+  "ocr": {
+    "rows": 202,
+    "exact_normalized_spielen_rows": [],
+    "exact_normalized_spiele_rows": [
+      {
+        "text": "«Spiele",
+        "bounds": [
+          231.0,
+          138.0,
+          364.0,
+          178.0
+        ],
+        "variant": "teal-text-1x"
+      }
+    ],
+    "caption_rejection_is_correct": true,
+    "matching_was_not_weakened": true
+  },
+  "original_readiness": {
+    "schema": "lumo-flutter-render-readiness",
+    "version": 1,
+    "name": "returned-flutter-frame",
+    "status": "PASS",
+    "attempts": [
+      {
+        "capture": "returned-flutter-frame-render-candidate-1.png",
+        "sha256": "51abb112ec1b8e54b909b23d735af39dfb10de27514a98cbb7d3861ab3815ee0",
+        "width": 2400,
+        "height": 1080,
+        "content_entropy_bits": 4.971,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    ],
+    "elapsed_seconds": 1.617
+  },
+  "source_findings": [
+    "Native settlement _leave targets games for embedded livingVillage; SceneRouter.goto intercepts embedded games and calls HostBridge.return_to_app instead of loading a native game hub.",
+    "HostBridge accepts durable Android acknowledgement, then emits its games return marker. Android records the return, queues RESULT_OK and finish on the UI thread, and kills only the native process after 500ms. This acknowledgement is not a Flutter paint-completion signal.",
+    "MainActivity waits for native process shutdown before completing the launch callback. Flutter launchLumo3D closes its entry overlay in finally. GamesContent synchronizes pending events; EmbeddedGameService maps games to LumoSection.games and AppShell navigation.",
+    "Generated LumoGameActivity requests sensorLandscape; MainActivity inherits FlutterActivity without an app-defined onResume/render/orientation override. This is consistent with a landscape-to-portrait return transition, but does not prove a later successful rendered Flutter frame.",
+    "capture_when_ready accepts the first PNG with central-content entropy >=3.0. It explicitly requires independent page identity checking. The original journal accepted one native frame, entropy4.971, elapsed1.617seconds.",
+    "visible_return performs its exact Spielen OCR/replay check once on that accepted PNG, before recording returned accessibility XML. The required original visible Flutter evidence was absent; no pass is warranted."
+  ],
+  "qa_timeline_context": {
+    "attribution": "Reported by android_qa from its exclusively downloaded original all-buffer log; not independently reparsed in this review.",
+    "ack_games": "18:21:26.686 UTC native PID6477",
+    "host_activity_result": "18:21:27.009 UTC host PID6150",
+    "host_resume": "18:21:27.021 UTC",
+    "native_process_death": "18:21:27.400 UTC",
+    "return_transition_complete": "18:21:28.495 UTC",
+    "rotation_transition_complete": "18:21:29.104 UTC",
+    "capture_end_log": "18:21:29.446 UTC",
+    "interpretation_limit": "Capture completion timestamp does not prove which intermediate display buffer was sampled. There is no later Flutter PNG in the failed probe."
+  },
+  "requirements_for_any_probe_repair": [
+    "No production bytes change without a concrete product defect.",
+    "Exactly one original visible Spiele return touch, using the existing two stable native-frame observations.",
+    "Same original host PID, absent native PID and resumed MainActivity remain required.",
+    "Observe fresh uniquely named PNGs and current original OCR/TSV; preserve their source hashes. Never reinterpret native Spiele as Flutter Spielen.",
+    "Retain strict original caption replay and enabled Flutter accessibility/portal validation; entropy alone is never page identity.",
+    "Retain the existing bounded waiting deadline and check it after every potentially blocking observation and before acceptance; a late match fails.",
+    "No additional tap, rotation, relaunch, injected app state, name tolerance or increased timeout.",
+    "Keep original preference preservation, ACK and fatal-log checks.",
+    "A new observer revision on the unchanged 6b APK is a separately bound diagnosis; it cannot retroactively turn this failed original run into a pass."
+  ],
+  "conclusion": "A missing bounded observation of genuinely rendered Flutter content is concretely established. No incorrect product return destination was found. A persistent rendering defect is not ruled out; a fresh real device diagnosis must decide."
+}

@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "source": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "main_run": 43628840534,
+  "attempt": 1,
+  "feature": {
+    "source": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+    "feature_run": 43628830465,
+    "feature_artifact": 14126808268,
+    "feature_passed": 30,
+    "full_run": 43628840534,
+    "full_job": 132551912578,
+    "full_artifact": 14127492329,
+    "full_passed": 2651,
+    "failed": 0,
+    "skipped": 0,
+    "pngs": 566,
+    "root_read_original_summaries_and_independent_recount_and_indices": true,
+    "evidence_commit": "ceb3807012b04606cfc468aad85abc3a5ef87b72",
+    "scope": "Flutter only; 30 focused cases overlap full suite and are not added to2651."
+  },
+  "build_contracts": {
+    "tests": 963,
+    "skips": 0,
+    "seconds": 237.179,
+    "artifact": 14127423338,
+    "original_log_blob": "a66ae26d694ec5c4158c0749969dbbc03a92f1c2",
+    "evidence_commit": "bca22d775fbc925e2d2b245f3fa425e04fece0f9"
+  },
+  "scope": "Historical partial results bound only to Host04. Do not substitute for new-source acceptance."
+}
