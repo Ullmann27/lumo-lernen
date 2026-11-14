@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "kind": "independent_read_only_source_review",
+  "reviewer": "pipeline_repair",
+  "reviewed_at": "2026-11-14T20:01:48.749Z",
+  "status": "NO_CONCRETE_SOURCE_BLOCKER_FOUND",
+  "pack": "/tmp/host-pr507-0d7e-integration-7ac-20261114",
+  "source_freeze": {
+    "sha256": "5b9643a26ec01005c634d0c190ac6ffdcd3fa3ac28a361a5ddf8b31261e03539",
+    "git_blob": "2356ea9426cb52412ac8621284c0a561cc1e230b"
+  },
+  "base": {
+    "host": "7ac736fdbd042769592e88de0f9849632242316d",
+    "tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2"
+  },
+  "producer": {
+    "head": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+    "tree": "380c3e4b864a1b5fb9bc396541758defa5012630",
+    "parent": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6"
+  },
+  "scope": "Ten final paths: four production files and six tests. Exact frozen source bytes, seven preimages, complete production/regression deltas, three new test files, relevant unchanged controllers and pause/ACK consumers read. No tests, product imports, builds, device actions, remote queries, Git or source mutations.",
+  "binding": {
+    "path": "source-bindings.json",
+    "bytes": 15784,
+    "sha256": "8db8bad53844e6a44745a1e9399266197099f7daf94b491046db131ab340c99a",
+    "git_blob": "dcd4bf0c69e652c6759334c049336856949d6e94"
+  },
+  "findings": [
+    {
+      "id": "wallet_same_value_positive_confirmation",
+      "result": "No concrete blocker",
+      "paths": [
+        "lib/core/reward_wallet_repository.dart"
+      ],
+      "detail": "Each of the three known-result branches now awaits the existing _persist(current) before returning that identical current object. No second reward amount, result ID, streak update or _emit is produced. False or thrown platform writes propagate. Exact reverse replacement of only these three additions reconstructs every original byte, including _transaction, its caller-zone tail release, _commit, _persist, migration, amounts and validation."
+    },
+    {
+      "id": "memory_read_is_not_ack",
+      "result": "No concrete blocker",
+      "paths": [
+        "lib/features/games/memory/memory_flutter_adapter.dart",
+        "lib/features/games/memory/memory_round.dart"
+      ],
+      "detail": "Platform reload remains read-only; failed reload and writes are distinguished as MemoryStorageUnconfirmed, with explicit false replies as its MemoryStorageRejected subtype. Only a true response from a same-value write completes confirmation. Production PreferencesMemoryStore opts into the new interface. Existing generic MemoryStore semantics remain available for implementations that do not have this optimistic-cache contract."
+    },
+    {
+      "id": "validated_state_and_profile_boundaries",
+      "result": "No concrete blocker",
+      "detail": "Existing round schema/owner/rules validation runs before confirmation on open. Statistics are parsed and best-value domains checked before their same-value write. A transport/confirmation failure is rethrown rather than being treated as corrupt legacy statistics. Each new confirmation is bracketed by current-profile checks; in-flight old-owner writes cannot install a late state or ACK for a new profile. The exact static owner queue and MemoryRound serialization/reward body remain unchanged."
+    },
+    {
+      "id": "bounded_recovery_same_payload",
+      "result": "No concrete blocker",
+      "detail": "Initial write, move commit, uncertain readback and statistics recovery require exact readback equality and one same-value confirmation at the existing recovery boundary. Uncertain recovery validates the same round ID and a nondecreasing observed revision before adopting its exact snapshot. It does not perform an additional flip or RNG draw. The original reward ID, award callback and saved rewarded receipt ordering remain unchanged."
+    },
+    {
+      "id": "native_ack_consumer",
+      "result": "No concrete blocker",
+      "paths": [
+        "reference-source/current/lib/features/games/memory/memory_table_session.dart",
+        "reference-source/native-f9/scripts/games/memory/memory_table.gd"
+      ],
+      "detail": "The unchanged Dart session awaits the real controller operation before advancing _ack, then rechecks open/profile ownership; finally records rejection when no ACK was accepted. Controller errors from the new confirmation therefore do not authorize the native request. The Native original was locally rehashed; its f9 provenance remains the explicitly recorded Godot binding, not a new remote read by this reviewer."
+    },
+    {
+      "id": "c4_pause_bound_retry",
+      "result": "No concrete blocker",
+      "paths": [
+        "lib/features/games/connect_four/lumo_connect_four_game.dart",
+        "reference-source/current/lib/features/games/connect_four/connect_four_round.dart",
+        "reference-source/current/lib/features/games/shared/lumo_game_pause_scope.dart"
+      ],
+      "detail": "Only the _place catch and new _retryFinishedRound change. The catch rechecks current owner/generation, then the existing _saveError pauses the clock. A nonterminal Lumo turn is rearmed only for one-player mode; a committed terminal board retries settleReward rather than dropping a new piece. Restart/dispose cancel or invalidate the pending generation. Success is delivered through the same pausable clock, so a lifecycle pause during the awaited reward prevents an immediate result dialog. All C4 bytes outside these regions, including native entry, layout, scroll geometry and touch sizing, are identical to the Root preimage."
+    },
+    {
+      "id": "existing_regression_updates",
+      "result": "No weakening found in the changed assertions",
+      "detail": "The four affected wallet count outcomes now require the additional same-value confirmation and additionally verify exact ordered snapshots, one reward/result identity and no duplicated change events. The two Memory profile cases require the validated opening write and the original per-child mutation sequence, then release only their own held gate in finally. Existing profile hiding, final bests, old unowned record and queued-write ordering remain asserted. The corrupt-statistics test body remains outside the changed hunks."
+    },
+    {
+      "id": "new_tests_read_only",
+      "result": "Source review only",
+      "detail": "The three exact published new files declare 45 cases after explicit loop expansion: 14 wallet, 25 Memory and 6 C4 widget cases. They exercise positive delayed replies, false/throw-before-disk/throw-after-commit distinctions, fresh Dart cache versus modeled native restart, profile revocation, stale ACK blocking, exactly one reward, paused retry and canceled/terminal bot actions. Platform/native-cache models are explicitly synthetic. No execution or Android disk-loss acceptance is inferred."
+    },
+    {
+      "id": "producer_original_failure",
+      "result": "Historical failure preserved",
+      "detail": "The 121892-byte original log SHA730624ed6be190ce6305d6b8c90e4d8eddb96c9a25ac22c5c4b4139c5e1b4ab2 is bound to producer run43633267932/attempt1/job132564402577. Seven exact failure lines were independently matched: four wallet count failures plus three Memory cases; final23/7 remains FAIL. Source/event ordering supports an unfinished fixture-owned queue after the first Memory assertion as the explanation for two later missing selectors; this is an inference from those originals, not an independently run replay."
+    },
+    {
+      "id": "scope_and_merge",
+      "result": "No protected replacement found",
+      "detail": "The proposal replaces no current OCR/Boru/standalone-caption helper, pin, workflow, Writer, InkSurface, Journal, Math, Village, Speech, PCM or native transport source. Twenty listed protected entries match the supplied full 7ac tree. PR508 is a separate merge; its final combined C4 source must be checked under its own identity and is not accepted by this report."
+    }
+  ],
+  "primary_source_scope": {
+    "supplied_sources": "Pinned shared_preferences2.5.5 Dart legacy implementation, shared_preferences_android2.4.28 plugin, Android15 SharedPreferencesImpl original texts are byte-bound and read at relevant methods.",
+    "conclusion": "The source distinguishes native in-memory visibility from a positive synchronous commit reply. The new same-value confirmation is consistent with that boundary.",
+    "limit": "No universal Android-version claim, power-loss experiment, real device persistence failure or data loss in the active 7ac APK was observed by this review."
+  },
+  "required_followup": [
+    "Root checkpoints the exact final combined source before the assigned focused test execution.",
+    "Retain the producer23/7 failure and separately report actual new test results; this review contains no test PASS.",
+    "Full integrated build/Android/update/delivery gates and the existing publication hold remain mandatory."
+  ],
+  "active_run_boundary": "Current7ac full Flutter succeeded with2686 visible cases, but its later SpeechEnvelopeContractTest setup failed; neither that partial success nor the producer's result qualifies this unexecuted source proposal."
+}

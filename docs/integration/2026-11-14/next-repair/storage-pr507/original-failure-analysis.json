@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "producer": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "run_id": 43633267932,
+  "attempt": 1,
+  "job_id": 132564402577,
+  "job_conclusion": "failure",
+  "step": "Recheck durable wallet queues across caller zones and actual Memory profiles",
+  "original_log": {
+    "path": "originals/corrected-ci-failure/job-132564402577.original.log",
+    "bytes": 121892,
+    "sha256": "730624ed6be190ce6305d6b8c90e4d8eddb96c9a25ac22c5c4b4139c5e1b4ab2",
+    "git_blob": "eec03570b1215ea2e479fc37a6753c2e16245b0c"
+  },
+  "actual_step_result": {
+    "passed": 23,
+    "failed": 7,
+    "exit": 1
+  },
+  "original_failures": [
+    {
+      "line": 650,
+      "original_line": "2026-11-14T19:40:53.5967186Z 00:00 +2 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_queue_zone_test.dart: A failed durable write releases its zone and the exact reward can retry [E]"
+    },
+    {
+      "line": 691,
+      "original_line": "2026-11-14T19:40:53.6171249Z 00:00 +2 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_queue_zone_test.dart: An older completion cannot release a younger pending durable write [E]"
+    },
+    {
+      "line": 747,
+      "original_line": "2026-11-14T19:40:53.8176987Z 00:00 +7 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Failed game write (_Outcome.falseResult) preserves concurrent learning and allows replay [E]"
+    },
+    {
+      "line": 808,
+      "original_line": "2026-11-14T19:40:53.8341041Z 00:00 +7 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Failed game write (_Outcome.exception) preserves concurrent learning and allows replay [E]"
+    },
+    {
+      "line": 913,
+      "original_line": "2026-11-14T19:40:57.0034990Z 00:03 +22 -5: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Delayed old-child write cannot overwrite the newly selected child [E]"
+    },
+    {
+      "line": 941,
+      "original_line": "2026-11-14T19:40:57.1777805Z 00:03 +23 -6: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Pending successive choices retain captured snapshots and final order [E]"
+    },
+    {
+      "line": 968,
+      "original_line": "2026-11-14T19:40:57.2176969Z 00:03 +23 -7: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Unreadable existing child stats are preserved instead of reset [E]"
+    }
+  ],
+  "wallet_primary": {
+    "actual": "Four exact write-count assertions failed: 2->3, 3->4, and twice 4->5.",
+    "repair": "Require the additional same-value positive commit, exact ordered snapshots, unchanged reward values/IDs, and no duplicate emitted events; existing caller-zone/queue barriers stay."
+  },
+  "memory_primary": {
+    "actual": "First failure at test line175: original stats opening-confirmation plus blocked profi snapshot produced two recorded writes before gate.complete().",
+    "repair": "Require the original same-value opening write, then ordered child-specific mutations. Original best/legacy bytes/profile hiding remain asserted. Always complete the fixture-owned gate in finally."
+  },
+  "two_later_memory_failures": {
+    "actual": "Later tests could not find their difficulty selectors; no separate product exception is present in the original trace.",
+    "source_inference": "The first assertion exits before completing its gate. The real controller retains an unfinished static _ownerWrites entry for the same owner; subsequent open() waits on it and has no controller/UI selectors. The intervening delayed-identity test switches to childB and passes.",
+    "limit": "This cause is traced from the exact original source and event order, not claimed as an independently executed replay. The corrupt-stats test remains byte-identical."
+  },
+  "new_45_cases": "NOT_EXECUTED in this failing CI attempt; no new result is inferred.",
+  "materialization": "Root preserved its first local log copy with one extra LF and the exact correction receipt; the API was fetched only once. Both copies are included with distinct hashes."
+}

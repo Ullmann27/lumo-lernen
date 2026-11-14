@@ -1,0 +1,503 @@
+{
+  "imports": [
+    {
+      "source": "lib/core/reward_wallet_repository.dart",
+      "import": "dart:async",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "lib/core/reward_wallet_repository.dart",
+      "import": "dart:convert",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "lib/core/reward_wallet_repository.dart",
+      "import": "package:shared_preferences/shared_preferences.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "import": "dart:math",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "import": "package:shared_preferences/shared_preferences.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "import": "../../../domain/games/memory_board.dart",
+      "repository_path": "lib/domain/games/memory_board.dart",
+      "base_blob": "74435a040137742c1b02163f1d5f045aa5f11395"
+    },
+    {
+      "source": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "import": "memory_round.dart",
+      "repository_path": "lib/features/games/memory/memory_round.dart",
+      "base_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+    },
+    {
+      "source": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "import": "memory_rules.dart",
+      "repository_path": "lib/features/games/memory/memory_rules.dart",
+      "base_blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce"
+    },
+    {
+      "source": "lib/features/games/memory/memory_round.dart",
+      "import": "dart:async",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "lib/features/games/memory/memory_round.dart",
+      "import": "dart:convert",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "lib/features/games/memory/memory_round.dart",
+      "import": "dart:math",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "lib/features/games/memory/memory_round.dart",
+      "import": "memory_rules.dart",
+      "repository_path": "lib/features/games/memory/memory_rules.dart",
+      "base_blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce"
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "dart:async",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "dart:math",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "package:flutter/material.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "package:flutter/foundation.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "package:flutter/services.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "../../../app/app_state.dart",
+      "repository_path": "lib/app/app_state.dart",
+      "base_blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "../../../core/lumo_voice.dart",
+      "repository_path": "lib/core/lumo_voice.dart",
+      "base_blob": "22e7ebaa40c270fe3d0a76d22294ad3667745b08"
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "../../../widgets/design/lumo_motion.dart",
+      "repository_path": "lib/widgets/design/lumo_motion.dart",
+      "base_blob": "2f92e6319cda41d73abbc677545e02f2d509eb53"
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "../shared/lumo_game_pause_scope.dart",
+      "repository_path": "lib/features/games/shared/lumo_game_pause_scope.dart",
+      "base_blob": "9ffc5f25494bb03c64a68cd704d5069aae41013e"
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "connect_four_engine.dart",
+      "repository_path": "lib/features/games/connect_four/connect_four_engine.dart",
+      "base_blob": "0ad49aeaab65ea34ceb387e73788cdb886a210db"
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "connect_four_round.dart",
+      "repository_path": "lib/features/games/connect_four/connect_four_round.dart",
+      "base_blob": "853d9e4a59475725a44db8f6c252e691f0bcdad8"
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "connect_four_table_session.dart",
+      "repository_path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "base_blob": "fd8efe8e114de656b6802e097b96910535d83c39"
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "../../lumo3d/lumo3d_launcher.dart",
+      "repository_path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "base_blob": "f41e6d7351304deb9635116b0635845abac8932c"
+    },
+    {
+      "source": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "import": "lumo_connect_four_stage.dart",
+      "repository_path": "lib/features/games/connect_four/lumo_connect_four_stage.dart",
+      "base_blob": "84c5ff9949a216331d228128f02415a47833396b"
+    },
+    {
+      "source": "test/games/connect_four_bot_save_retry_test.dart",
+      "import": "dart:async",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/connect_four_bot_save_retry_test.dart",
+      "import": "dart:convert",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/connect_four_bot_save_retry_test.dart",
+      "import": "package:flutter/material.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/connect_four_bot_save_retry_test.dart",
+      "import": "package:flutter/services.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/connect_four_bot_save_retry_test.dart",
+      "import": "package:flutter_test/flutter_test.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/connect_four_bot_save_retry_test.dart",
+      "import": "package:shared_preferences/shared_preferences.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/connect_four_bot_save_retry_test.dart",
+      "import": "package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/connect_four_bot_save_retry_test.dart",
+      "import": "package:lumo_lernen/app/app_state.dart",
+      "repository_path": "lib/app/app_state.dart",
+      "base_blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "source": "test/games/connect_four_bot_save_retry_test.dart",
+      "import": "package:lumo_lernen/core/lumo_voice.dart",
+      "repository_path": "lib/core/lumo_voice.dart",
+      "base_blob": "22e7ebaa40c270fe3d0a76d22294ad3667745b08"
+    },
+    {
+      "source": "test/games/connect_four_bot_save_retry_test.dart",
+      "import": "package:lumo_lernen/core/reward_wallet_repository.dart",
+      "repository_path": "lib/core/reward_wallet_repository.dart",
+      "base_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "source": "test/games/connect_four_bot_save_retry_test.dart",
+      "import": "package:lumo_lernen/features/games/connect_four/lumo_connect_four_game.dart",
+      "repository_path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "base_blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96"
+    },
+    {
+      "source": "test/games/memory_native_commit_confirmation_test.dart",
+      "import": "dart:async",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/memory_native_commit_confirmation_test.dart",
+      "import": "dart:convert",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/memory_native_commit_confirmation_test.dart",
+      "import": "package:crypto/crypto.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/memory_native_commit_confirmation_test.dart",
+      "import": "package:flutter_test/flutter_test.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/memory_native_commit_confirmation_test.dart",
+      "import": "package:shared_preferences/shared_preferences.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/memory_native_commit_confirmation_test.dart",
+      "import": "package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/memory_native_commit_confirmation_test.dart",
+      "import": "package:lumo_lernen/app/app_state.dart",
+      "repository_path": "lib/app/app_state.dart",
+      "base_blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "source": "test/games/memory_native_commit_confirmation_test.dart",
+      "import": "package:lumo_lernen/core/reward_wallet_repository.dart",
+      "repository_path": "lib/core/reward_wallet_repository.dart",
+      "base_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "source": "test/games/memory_native_commit_confirmation_test.dart",
+      "import": "package:lumo_lernen/features/games/memory/memory_flutter_adapter.dart",
+      "repository_path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "base_blob": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14"
+    },
+    {
+      "source": "test/games/memory_native_commit_confirmation_test.dart",
+      "import": "package:lumo_lernen/features/games/memory/memory_round.dart",
+      "repository_path": "lib/features/games/memory/memory_round.dart",
+      "base_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+    },
+    {
+      "source": "test/reward_wallet_dedup_confirmation_test.dart",
+      "import": "dart:async",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_dedup_confirmation_test.dart",
+      "import": "dart:convert",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_dedup_confirmation_test.dart",
+      "import": "package:crypto/crypto.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_dedup_confirmation_test.dart",
+      "import": "package:flutter_test/flutter_test.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_dedup_confirmation_test.dart",
+      "import": "package:shared_preferences/shared_preferences.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_dedup_confirmation_test.dart",
+      "import": "package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_dedup_confirmation_test.dart",
+      "import": "package:lumo_lernen/app/app_state.dart",
+      "repository_path": "lib/app/app_state.dart",
+      "base_blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "source": "test/reward_wallet_dedup_confirmation_test.dart",
+      "import": "package:lumo_lernen/core/reward_wallet_repository.dart",
+      "repository_path": "lib/core/reward_wallet_repository.dart",
+      "base_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "source": "test/reward_wallet_queue_zone_test.dart",
+      "import": "dart:async",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_queue_zone_test.dart",
+      "import": "dart:convert",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_queue_zone_test.dart",
+      "import": "package:flutter_test/flutter_test.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_queue_zone_test.dart",
+      "import": "package:shared_preferences/shared_preferences.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_queue_zone_test.dart",
+      "import": "package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_queue_zone_test.dart",
+      "import": "package:lumo_lernen/core/reward_wallet_repository.dart",
+      "repository_path": "lib/core/reward_wallet_repository.dart",
+      "base_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "source": "test/reward_wallet_transaction_test.dart",
+      "import": "dart:async",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_transaction_test.dart",
+      "import": "dart:convert",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_transaction_test.dart",
+      "import": "package:flutter_test/flutter_test.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_transaction_test.dart",
+      "import": "package:flutter/foundation.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_transaction_test.dart",
+      "import": "package:flutter/services.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_transaction_test.dart",
+      "import": "package:shared_preferences/shared_preferences.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_transaction_test.dart",
+      "import": "package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/reward_wallet_transaction_test.dart",
+      "import": "package:lumo_lernen/core/reward_wallet_repository.dart",
+      "repository_path": "lib/core/reward_wallet_repository.dart",
+      "base_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "source": "test/reward_wallet_transaction_test.dart",
+      "import": "package:lumo_lernen/app/app_state.dart",
+      "repository_path": "lib/app/app_state.dart",
+      "base_blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "source": "test/reward_wallet_transaction_test.dart",
+      "import": "package:lumo_lernen/core/embedded_game_service.dart",
+      "repository_path": "lib/core/embedded_game_service.dart",
+      "base_blob": "2cf39b896ab7121ec45384f9d2b65147f16b9156"
+    },
+    {
+      "source": "test/games/memory_profile_storage_test.dart",
+      "import": "dart:async",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/memory_profile_storage_test.dart",
+      "import": "dart:convert",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/memory_profile_storage_test.dart",
+      "import": "dart:math",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/memory_profile_storage_test.dart",
+      "import": "package:crypto/crypto.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/memory_profile_storage_test.dart",
+      "import": "package:flutter/material.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/memory_profile_storage_test.dart",
+      "import": "package:flutter_test/flutter_test.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/memory_profile_storage_test.dart",
+      "import": "package:lumo_lernen/app/app_state.dart",
+      "repository_path": "lib/app/app_state.dart",
+      "base_blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "source": "test/games/memory_profile_storage_test.dart",
+      "import": "package:lumo_lernen/core/app_settings.dart",
+      "repository_path": "lib/core/app_settings.dart",
+      "base_blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3"
+    },
+    {
+      "source": "test/games/memory_profile_storage_test.dart",
+      "import": "package:lumo_lernen/domain/games/memory_board.dart",
+      "repository_path": "lib/domain/games/memory_board.dart",
+      "base_blob": "74435a040137742c1b02163f1d5f045aa5f11395"
+    },
+    {
+      "source": "test/games/memory_profile_storage_test.dart",
+      "import": "package:lumo_lernen/features/games/memory/lumo_memory_game.dart",
+      "repository_path": "lib/features/games/memory/lumo_memory_game.dart",
+      "base_blob": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43"
+    },
+    {
+      "source": "test/games/memory_profile_storage_test.dart",
+      "import": "package:shared_preferences/shared_preferences.dart",
+      "repository_path": null,
+      "base_blob": null
+    },
+    {
+      "source": "test/games/memory_profile_storage_test.dart",
+      "import": "package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart",
+      "repository_path": null,
+      "base_blob": null
+    }
+  ],
+  "product_import_execution": "NONE"
+}

@@ -28,7 +28,8 @@ class FlutterMemoryCatalog implements MemoryCatalog {
 
 /// The private new round key is independent of the existing statistics key.
 /// Never reads, migrates or overwrites the historical unowned lumo_memory_v2.
-class PreferencesMemoryStore implements MemoryStore {
+class PreferencesMemoryStore
+    implements MemoryStore, MemoryReadbackConfirmation {
   PreferencesMemoryStore(this.preferences, String owner)
       : roundKey = 'lumo.memory.round.v1.' + owner,
         statsKey = 'lumo.memory.stats.v1.' + owner {
@@ -41,33 +42,49 @@ class PreferencesMemoryStore implements MemoryStore {
   final String roundKey;
   final String statsKey;
 
-  // The legacy Preferences API changes its cache before the platform replies.
-  // A failed write can therefore leave the requested value in that cache.
-  // Every read, including a new adapter's first read, must successfully reload
-  // the platform snapshot. A failed reload throws; it never authorizes a later
-  // cached read as the controller's write-recovery acknowledgement.
-  Future<String?> _readConfirmed(String key) async {
-    await preferences.reload();
+  // Reload refreshes Dart's cache from the platform snapshot. Android's native
+  // SharedPreferences cache can itself contain a failed commit's value, so this
+  // read is not a storage acknowledgement and has no write side effect.
+  Future<String?> _readPlatform(String key) async {
+    try {
+      await preferences.reload();
+    } catch (error) {
+      throw MemoryStorageUnconfirmed(
+          'Memory-Speicher konnte nicht gelesen werden', cause: error);
+    }
     return preferences.getString(key);
   }
 
   @override
-  Future<String?> readRound() => _readConfirmed(roundKey);
+  Future<String?> readRound() => _readPlatform(roundKey);
 
   @override
-  Future<String?> readStats() => _readConfirmed(statsKey);
+  Future<String?> readStats() => _readPlatform(statsKey);
 
-  @override
-  Future<void> writeRound(String value) async {
-    if (!await preferences.setString(roundKey, value)) {
-      throw StateError('Memory-Runde wurde nicht gespeichert');
+  Future<void> _writeConfirmed(String key, String value, String message) async {
+    final bool confirmed;
+    try {
+      confirmed = await preferences.setString(key, value);
+    } catch (error) {
+      throw MemoryStorageUnconfirmed(message, cause: error);
     }
+    if (!confirmed) throw MemoryStorageRejected(message);
   }
 
   @override
-  Future<void> writeStats(String value) async {
-    if (!await preferences.setString(statsKey, value)) {
-      throw StateError('Memory-Bestwerte wurden nicht gespeichert');
-    }
-  }
+  Future<void> writeRound(String value) => _writeConfirmed(
+      roundKey, value, 'Memory-Runde wurde nicht bestätigt');
+
+  @override
+  Future<void> writeStats(String value) => _writeConfirmed(
+      statsKey, value, 'Memory-Bestwerte wurden nicht bestätigt');
+
+  // The controller validates the exact snapshot and checks its profile lease
+  // immediately before and after this bounded, same-value write. Only a true
+  // platform reply succeeds; read equality never replaces that reply.
+  @override
+  Future<void> confirmRoundReadback(String value) => writeRound(value);
+
+  @override
+  Future<void> confirmStatsReadback(String value) => writeStats(value);
 }

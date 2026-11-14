@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T20:07:21.535012+00:00",
+  "status": "SOURCE_FROZEN_NOT_RUN",
+  "base_host": "7ac736fdbd042769592e88de0f9849632242316d",
+  "base_tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2",
+  "failed_run": 43632790204,
+  "failed_job": 132564123163,
+  "files": [
+    {
+      "repository_path": "scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt",
+      "mode": "100644",
+      "before": {
+        "local_path": "/tmp/host7ac-speech-envelope-fixture-repair-v2-20261114/originals/scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt",
+        "bytes": 462,
+        "sha256": "86c558d488458ecb25dec947fd0935114cfbe9c69b35c08b45ce592536c930c6",
+        "git_blob": "3560fa5b3537dcd6b881dc9090ef4f0099b20e50"
+      },
+      "after": {
+        "local_path": "/tmp/host7ac-speech-envelope-fixture-repair-v2-20261114/final-source/scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt",
+        "bytes": 798,
+        "sha256": "d67fa4f5a281248ace0164b118be4fe705d5337116b1411a61afd9a3c1ce27b0",
+        "git_blob": "0869980e2111cd3f6f8dcf7f81054f0d286b078f"
+      }
+    },
+    {
+      "repository_path": "scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
+      "mode": "100644",
+      "before": {
+        "local_path": "/tmp/host7ac-speech-envelope-fixture-repair-v2-20261114/originals/scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
+        "bytes": 964,
+        "sha256": "457539a65101608c93b64b1fab0705406814d4fc7c7da64ed0914c94f815d1b9",
+        "git_blob": "8bf77f00b631df5027e17d6eb84dd29f5594f462"
+      },
+      "after": {
+        "local_path": "/tmp/host7ac-speech-envelope-fixture-repair-v2-20261114/final-source/scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
+        "bytes": 1324,
+        "sha256": "1ad133a550ee517a5645b081da2f176f1298b95a332dc41bdaa49a5a7b7e9423",
+        "git_blob": "0b0a447556323ea0a0eadd03019157ea8ed9d1bb"
+      }
+    }
+  ],
+  "unchanged_bound_sources": [
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechBuildContract.kt",
+      "git_blob": "a75173645c2f6cc67bc30956accc11793a1fc87a"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechLifecycleContract.kt",
+      "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Channel.kt",
+      "git_blob": "56fe64be87d4489133e83855df5a612b6225a174"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Context.kt",
+      "git_blob": "0685bbdf9b4cf3efe20bbb4d0e646e94e647c33c"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Handler.kt",
+      "git_blob": "855d09cd8dbc4af5bd91b29fa1db1e52488dbd9e"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt",
+      "git_blob": "c060a6b11c5e44f72ea3b0204b49d69995ec0e04"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Media.kt",
+      "git_blob": "6857f886fada7cdba117053b559024ef2c0386bd"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/SpeechEnvelopeContract.kt",
+      "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+    },
+    {
+      "path": "scripts/tests/test_speech_envelope_contract.py",
+      "git_blob": "5037fd4078e5f73078cd28e4054992f12e07f317"
+    },
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "git_blob": "e4954dd792ba8b7ac9b66cbbe9a84752cbdab830"
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "git_blob": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd"
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "git_blob": "9e034ca2a46e53adf8a3014c0e8868d33ba54a9c"
+    }
+  ],
+  "test_scope": "Existing SpeechEnvelopeContractTest: unchanged original23 PCM,17 lifecycle and30 build consent/rate checks. No English synthesis model or audio/device acceptance is added.",
+  "compiler_failure": "Actual production speech API additions are absent from two synthetic JVM fixtures; the actual Android compile succeeded on the same source.",
+  "local_execution": "NOT_RUN: no configured JDK/Gradle Kotlin compiler library directory. Java runtime exists; no compiler download or skip conversion. The existing complete CI must compile and execute all three unchanged contracts.",
+  "revision": 2,
+  "supersedes": {
+    "local_path": "/tmp/host7ac-speech-envelope-fixture-repair-20261114/source-freeze.json",
+    "bytes": 4446,
+    "sha256": "8ac1f1a9a49e2ee0b196f1609f8f9ca04083d3c9cbd567b84f0a6d848469956f",
+    "git_blob": "bfc94e99aa4a87aae2094fd2a69f0073f54b760f"
+  },
+  "v1_review": {
+    "local_path": "/tmp/host7ac-speech-envelope-fixture-repair-v2-20261114/v1-blocked-review.original.json",
+    "bytes": 4975,
+    "sha256": "23901d19a88fd99ad8564b5d3d6165ec75e5be134a512cee72617fec470de1e0",
+    "git_blob": "be7d2d1b2bad7b04d98536e72f6498c9ca94726e"
+  },
+  "v1_correction": "The now-typed optional object exposes the additional production optJSONArray, length and opt calls. Add these fixture API members; keep the original scalar parser and German assertions unchanged."
+}

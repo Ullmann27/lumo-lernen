@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T20:05:33.261599+00:00",
+  "reviewer": "flutter_integration",
+  "status": "BLOCKED_SOURCE_REVIEW_ONLY",
+  "source_freeze_sha256": "8ac1f1a9a49e2ee0b196f1609f8f9ca04083d3c9cbd567b84f0a6d848469956f",
+  "base_host": "7ac736fdbd042769592e88de0f9849632242316d",
+  "base_tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2",
+  "original_failure": {
+    "run_id": 43632790204,
+    "job_id": 132564123163,
+    "path": "/tmp/host7ac-c4-run43632790204-evidence-20261114/terminal-20261114T195750Z/job-132564123163.original.log",
+    "bytes": 408052,
+    "sha256": "1cba4f6f36e86a4f3b6576ded5b283c23dfd8188200902fa020aa995997caa42",
+    "git_blob": "8170f522af474be7bd40a3f347ca864a0a51ab34",
+    "error_lines": [
+      2725,
+      2732,
+      2735,
+      2738,
+      2741,
+      2744,
+      2747,
+      2750
+    ],
+    "interpretation": "Actual Kotlin compilation stopped in SpeechEnvelopeContractTest.setUpClass. This read-only review does not execute the compiler or contracts."
+  },
+  "blockers": [
+    {
+      "id": "missing-json-array-fixture-api",
+      "severity": "compile_blocker",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
+      "source_callsite": {
+        "path": "tools/auto_install/LumoLearningSpeech.kt",
+        "line": 237,
+        "text": "val objects = lesson.optJSONArray(\"objects\") ?: return null"
+      },
+      "dependent_calls": [
+        {
+          "line": 238,
+          "text": "if (objects.length() != 3) return null"
+        },
+        {
+          "line": 240,
+          "text": "for (index in 0 until objects.length()) {"
+        },
+        {
+          "line": 241,
+          "text": "val item = objects.opt(index) as? String ?: return null"
+        }
+      ],
+      "finding": "The new optJSONObject resolves lesson as JSONObject, but the complete compiled fixture set contains neither optJSONArray nor a JSONArray type implementing length() and opt(index). The previous unresolved optJSONObject prevented reliable diagnostics for this subsequent receiver API. The supplied V1 remains incomplete at the source-interface level.",
+      "required_correction": "Add a type-safe optional array getter and a minimal bounds-safe array value surface required by the current production source, while retaining existing German fixture parsing/runtime behavior and the explicit unsupported English synthesis. No production or existing assertion change is needed."
+    }
+  ],
+  "accepted_parts": [
+    "Bridge.synthesizeEnglishLesson has the positional parameter types used by the actual production call, including nullable text; it throws UnsupportedOperationException and never fabricates English audio or a successful callback.",
+    "F2 and 44100 match the bound production engine constants. The existing synthetic PROFILE remains unchanged and is not represented as a device engine identity.",
+    "Removing only the added English method/constants and restoring the previous object formatting reproduces Bridge.kt byte for byte; removing only optJSONObject reproduces Json.kt byte for byte.",
+    "All twelve unchanged references, including three Kotlin contracts, Python runner and three production speech sources, were fully hashed against the actual 7ac tree.",
+    "The old German lifecycle/build fixtures have no nested learning descriptor; their English binding remains null. Existing synthesize calls/pending state, consent/activity/rate checks, callbacks and expected markers are untouched."
+  ],
+  "diagnostic_mapping": {
+    "optJSONObject_31_and_224": "The new nullable typed method addresses these two reported missing-member sites.",
+    "PRESET_103_SAMPLE_RATE_104": "Exact production values added.",
+    "synthesizeEnglishLesson_138": "Matching positional callable surface added; execution remains unsupported in this German fixture.",
+    "takeIf_244_type_inference": "The previously unresolved lesson type explains a cascading type-inference failure; a fully compilable dependency chain still requires the missing array API above. No compiler success is inferred."
+  },
+  "unchanged_gates": [
+    {
+      "checks": 23,
+      "marker": "LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47"
+    },
+    {
+      "checks": 17,
+      "marker": "LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+    },
+    {
+      "checks": 30,
+      "marker": "LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+    }
+  ],
+  "scope_limits": {
+    "tests_run": false,
+    "compiler_run": false,
+    "imports_run": false,
+    "source_edits": false,
+    "git_or_ci_mutation": false,
+    "new_audio_or_device_claim": false,
+    "wav": "Not reread in this two-file review; no WAV path occurs in the exact patch.",
+    "runtime_status": "NOT_RUN. A corrected source set still requires all three unchanged contracts to compile and execute in the subsequent CI."
+  }
+}

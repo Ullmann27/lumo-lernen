@@ -1,0 +1,16 @@
+{
+  "archive": {
+    "path": "complete-source-pack.tar.gz",
+    "bytes": 569574,
+    "sha256": "492411a4ac0e0b1d58a6ea7820d7fa94d4d63307a24a8e88d5a0cb2a9585e5d9",
+    "git_blob": "1315adb607a20f7c2db7d8fc10e8f2664e9abfbd"
+  },
+  "members": 80,
+  "roundtrip": "all member bytes fully compared",
+  "manifest": {
+    "path": "manifest.json",
+    "bytes": 19788,
+    "sha256": "4ceaf85964ba8dedcce355e24276b40727a7f02d96f8de33319169c6e2d1b826",
+    "git_blob": "7f6452fbe3a717d4d8baaf6fe7b4c42cb52225fa"
+  }
+}

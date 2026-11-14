@@ -1,0 +1,479 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "before/lib/core/reward_wallet_repository.dart",
+      "bytes": 14366,
+      "sha256": "9a3b669a055b3764d42e58c0511ecfb7c03cd99ea42aa757ab2f77be9fd91045",
+      "git_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "path": "before/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 43222,
+      "sha256": "c2de19c0f7d628434a9af9f04e391a5df4d234b59659a3e709288ba90ec58d9b",
+      "git_blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96"
+    },
+    {
+      "path": "before/lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 2632,
+      "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+      "git_blob": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14"
+    },
+    {
+      "path": "before/lib/features/games/memory/memory_round.dart",
+      "bytes": 14257,
+      "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+      "git_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+    },
+    {
+      "path": "before/test/games/memory_profile_storage_test.dart",
+      "bytes": 10767,
+      "sha256": "19f2c236ebcd24d64866d90d98567f18e498da1063211b0f0f8e2a7e6839f869",
+      "git_blob": "5fa7cf5b882a20b85c31a2693e9fcff8cec21508"
+    },
+    {
+      "path": "before/test/reward_wallet_queue_zone_test.dart",
+      "bytes": 9797,
+      "sha256": "7062af9ecdcb3ecdccd428adadfb72a67e529e81cb670735b2b3f73042acf347",
+      "git_blob": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3"
+    },
+    {
+      "path": "before/test/reward_wallet_transaction_test.dart",
+      "bytes": 21962,
+      "sha256": "fbb6759879533037d8d1044cb8232c711b50aa784d149f40c7170cdd63c19a27",
+      "git_blob": "2419030446ada34710594160fc7f732669d97649"
+    },
+    {
+      "path": "build_source_pack.py",
+      "bytes": 15911,
+      "sha256": "e851a563f12d9f419d3b88bc492a5fc844d37938c2eea87808f3c041e4012bcc",
+      "git_blob": "4ff7773dc453cd771d2cb2659fdcf7055f84a056"
+    },
+    {
+      "path": "common-base/lib/core/reward_wallet_repository.dart",
+      "bytes": 14366,
+      "sha256": "9a3b669a055b3764d42e58c0511ecfb7c03cd99ea42aa757ab2f77be9fd91045",
+      "git_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "path": "common-base/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 44247,
+      "sha256": "6cf0e3e402090ebfa61539b98403ba82c5381f68ded4b722d683d440cb737569",
+      "git_blob": "4a68c5b8d4634a6830c7f6122c574734c42a0270"
+    },
+    {
+      "path": "common-base/lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 2632,
+      "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+      "git_blob": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14"
+    },
+    {
+      "path": "common-base/lib/features/games/memory/memory_round.dart",
+      "bytes": 14257,
+      "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+      "git_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+    },
+    {
+      "path": "final-source/lib/core/reward_wallet_repository.dart",
+      "bytes": 14543,
+      "sha256": "737ba4778054657f5cb7d3efc109ff48175f6551486e7f4040f3add057ab13d9",
+      "git_blob": "a0aa9a9bc0865c74b02d1284188df8e5c9c76a3c"
+    },
+    {
+      "path": "final-source/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 44948,
+      "sha256": "3d6d5d669307170728f62cc221bc840c48e57b22c13b9c64a081db7dfa606971",
+      "git_blob": "0927a3b853e168325e00ebaacc2156a49356ac1e"
+    },
+    {
+      "path": "final-source/lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 3275,
+      "sha256": "dd00f01aabc503869540e396e757cb86538523dc6146a0ee54357235bbaca260",
+      "git_blob": "ddbafa79864878446bc3efa064b71c81e252fc63"
+    },
+    {
+      "path": "final-source/lib/features/games/memory/memory_round.dart",
+      "bytes": 16155,
+      "sha256": "e1911d59e58d92b92dbb56a1447702656dff491ae1a61edec051b976ce74af1d",
+      "git_blob": "4844cabaa5ed881d8f29dbd7c9758f03ef510df4"
+    },
+    {
+      "path": "final-source/test/games/connect_four_bot_save_retry_test.dart",
+      "bytes": 10816,
+      "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+      "git_blob": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+    },
+    {
+      "path": "final-source/test/games/memory_native_commit_confirmation_test.dart",
+      "bytes": 29908,
+      "sha256": "33331c4b0c804b803e22785e9f7a5e25fe3e3086913bc0e02beecf529f956c32",
+      "git_blob": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b"
+    },
+    {
+      "path": "final-source/test/games/memory_profile_storage_test.dart",
+      "bytes": 12801,
+      "sha256": "378a2c560ea344a7be832628e993244d4424c396ee55850cb97ed7ab01388388",
+      "git_blob": "cfc75adfea811babde60c96938ba79ee03036475"
+    },
+    {
+      "path": "final-source/test/reward_wallet_dedup_confirmation_test.dart",
+      "bytes": 13409,
+      "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+      "git_blob": "4615f10622420d53dedb380ff4648e5692995861"
+    },
+    {
+      "path": "final-source/test/reward_wallet_queue_zone_test.dart",
+      "bytes": 10757,
+      "sha256": "082861273c381ffb946ac6b4205d41eb77065868bfc5d70c165cac7464c0753c",
+      "git_blob": "79d94286312aea5231b0906e8514be132aeee94b"
+    },
+    {
+      "path": "final-source/test/reward_wallet_transaction_test.dart",
+      "bytes": 22807,
+      "sha256": "295a857b766a6ddf5107dd7f1bf8824eeec5d32f0772a3ebefe297f2a1269128",
+      "git_blob": "77862a23eb251266b319beb4d2fe24251e409dab"
+    },
+    {
+      "path": "finalize_source_pack.py",
+      "bytes": 19914,
+      "sha256": "cfe83f2a4105d7d32f0d06672e72076940425104f596a1f671aa41cc09638711",
+      "git_blob": "cdd5a5831e8459a6f993c9edb0fcfe7743124ee7"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 8198,
+      "sha256": "4fed55e8d12260cd78db2afce5fecb6ceba48920b52966af759e7414cd4c2ff7",
+      "git_blob": "96ceb2f7dbe83f10320f14949776d05a5610fa0a"
+    },
+    {
+      "path": "import-binding.json",
+      "bytes": 18264,
+      "sha256": "cb9906d0d48fde59508a7afce3b5efdf78c18d37e41fe2e078c8c9a53713e4ae",
+      "git_blob": "345b8cfaa6efb93354e075a60e9e3cf4087aebf4"
+    },
+    {
+      "path": "integration.patch",
+      "bytes": 76578,
+      "sha256": "132e8019731c309053ca6479adeccd6ebc7e5dd52c0679147e185e68b08d5719",
+      "git_blob": "c558d5078abf56ffb332898994c9771464ca3dfc"
+    },
+    {
+      "path": "newly-read-originals/lib/features/games/memory/memory_round.dart",
+      "bytes": 16155,
+      "sha256": "e1911d59e58d92b92dbb56a1447702656dff491ae1a61edec051b976ce74af1d",
+      "git_blob": "4844cabaa5ed881d8f29dbd7c9758f03ef510df4"
+    },
+    {
+      "path": "newly-read-originals/reference-memory-screen.dart",
+      "bytes": 52654,
+      "sha256": "b90ab76e89a1f8d2258e1085e96ab8b032651b75b650dd7c497807a74882c380",
+      "git_blob": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43"
+    },
+    {
+      "path": "newly-read-originals/test/games/memory_profile_storage_test.dart",
+      "bytes": 10767,
+      "sha256": "19f2c236ebcd24d64866d90d98567f18e498da1063211b0f0f8e2a7e6839f869",
+      "git_blob": "5fa7cf5b882a20b85c31a2693e9fcff8cec21508"
+    },
+    {
+      "path": "newly-read-originals/test/reward_wallet_queue_zone_test.dart",
+      "bytes": 9797,
+      "sha256": "7062af9ecdcb3ecdccd428adadfb72a67e529e81cb670735b2b3f73042acf347",
+      "git_blob": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3"
+    },
+    {
+      "path": "newly-read-originals/test/reward_wallet_transaction_test.dart",
+      "bytes": 21962,
+      "sha256": "fbb6759879533037d8d1044cb8232c711b50aa784d149f40c7170cdd63c19a27",
+      "git_blob": "2419030446ada34710594160fc7f732669d97649"
+    },
+    {
+      "path": "official-storage-source-binding.json",
+      "bytes": 3005,
+      "sha256": "536e7b93dd3ff045414834b47c6de6c3401aaead52c24b845e985d55bb5e8563",
+      "git_blob": "559b6368040776e2c3159f7784b0b571db8f2048"
+    },
+    {
+      "path": "original-failure-analysis.json",
+      "bytes": 4123,
+      "sha256": "c4d983e311f23870d7d6cb0b3f30c878bcbd2378b2c7f223efcafb59a13419b3",
+      "git_blob": "f16c900b61205ee6ceee42f682523580ad417e2d"
+    },
+    {
+      "path": "original-source/0d7e/lib/core/reward_wallet_repository.dart",
+      "bytes": 14543,
+      "sha256": "737ba4778054657f5cb7d3efc109ff48175f6551486e7f4040f3add057ab13d9",
+      "git_blob": "a0aa9a9bc0865c74b02d1284188df8e5c9c76a3c"
+    },
+    {
+      "path": "original-source/0d7e/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 45973,
+      "sha256": "1a968ed55fa15d47124158b70fb50f88e77aae60661ce38ef916cb0e4e50bba0",
+      "git_blob": "7e0dfc297090d5d3e558367107a28ff5986de786"
+    },
+    {
+      "path": "original-source/0d7e/lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 3275,
+      "sha256": "dd00f01aabc503869540e396e757cb86538523dc6146a0ee54357235bbaca260",
+      "git_blob": "ddbafa79864878446bc3efa064b71c81e252fc63"
+    },
+    {
+      "path": "original-source/0d7e/lib/features/games/memory/memory_round.dart",
+      "bytes": 16155,
+      "sha256": "e1911d59e58d92b92dbb56a1447702656dff491ae1a61edec051b976ce74af1d",
+      "git_blob": "4844cabaa5ed881d8f29dbd7c9758f03ef510df4"
+    },
+    {
+      "path": "original-source/0d7e/test/games/connect_four_bot_save_retry_test.dart",
+      "bytes": 10816,
+      "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+      "git_blob": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+    },
+    {
+      "path": "original-source/0d7e/test/games/memory_native_commit_confirmation_test.dart",
+      "bytes": 29908,
+      "sha256": "33331c4b0c804b803e22785e9f7a5e25fe3e3086913bc0e02beecf529f956c32",
+      "git_blob": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b"
+    },
+    {
+      "path": "original-source/0d7e/test/games/memory_profile_storage_test.dart",
+      "bytes": 10767,
+      "sha256": "19f2c236ebcd24d64866d90d98567f18e498da1063211b0f0f8e2a7e6839f869",
+      "git_blob": "5fa7cf5b882a20b85c31a2693e9fcff8cec21508"
+    },
+    {
+      "path": "original-source/0d7e/test/reward_wallet_dedup_confirmation_test.dart",
+      "bytes": 13409,
+      "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+      "git_blob": "4615f10622420d53dedb380ff4648e5692995861"
+    },
+    {
+      "path": "original-source/0d7e/test/reward_wallet_queue_zone_test.dart",
+      "bytes": 9797,
+      "sha256": "7062af9ecdcb3ecdccd428adadfb72a67e529e81cb670735b2b3f73042acf347",
+      "git_blob": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3"
+    },
+    {
+      "path": "original-source/0d7e/test/reward_wallet_transaction_test.dart",
+      "bytes": 21962,
+      "sha256": "fbb6759879533037d8d1044cb8232c711b50aa784d149f40c7170cdd63c19a27",
+      "git_blob": "2419030446ada34710594160fc7f732669d97649"
+    },
+    {
+      "path": "original-source/e2db/lib/core/reward_wallet_repository.dart",
+      "bytes": 14543,
+      "sha256": "737ba4778054657f5cb7d3efc109ff48175f6551486e7f4040f3add057ab13d9",
+      "git_blob": "a0aa9a9bc0865c74b02d1284188df8e5c9c76a3c"
+    },
+    {
+      "path": "original-source/e2db/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 45973,
+      "sha256": "1a968ed55fa15d47124158b70fb50f88e77aae60661ce38ef916cb0e4e50bba0",
+      "git_blob": "7e0dfc297090d5d3e558367107a28ff5986de786"
+    },
+    {
+      "path": "original-source/e2db/lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 3275,
+      "sha256": "dd00f01aabc503869540e396e757cb86538523dc6146a0ee54357235bbaca260",
+      "git_blob": "ddbafa79864878446bc3efa064b71c81e252fc63"
+    },
+    {
+      "path": "original-source/e2db/lib/features/games/memory/memory_round.dart",
+      "bytes": 16091,
+      "sha256": "9238bc5a7966db2dccd39b819ade6925fef7270a44ae4308294769a75b178216",
+      "git_blob": "6d691fffc24c70faf3a78d176cbba6b73b66c6a1"
+    },
+    {
+      "path": "originals/api/active7ac-tree-entries.json",
+      "bytes": 1247322,
+      "sha256": "1919ec3e6fdfefd8ce0489a90e580a7b29da2d2f275d372164488a2ecd7d8043",
+      "git_blob": "0a936171c1bdaf22c094f32ef9812e28a29310c7"
+    },
+    {
+      "path": "originals/api/e2db-git-commit.original.json",
+      "bytes": 1521,
+      "sha256": "9ac10195cfffad357f0e6b3aafdaef8e7f4603988712e84f4a1da41fc2defa71",
+      "git_blob": "69a653bdaa62a507ebf3446f158f582654b33179"
+    },
+    {
+      "path": "originals/api/files507.json",
+      "bytes": 80419,
+      "sha256": "dda46cc1ebf68ae28d5476be9e0ebad7c25e0f73d77d1f89bb8814bec2aff27d",
+      "git_blob": "a6febf28945f1e78ad5932ade952efead2758414"
+    },
+    {
+      "path": "originals/api/pr507-compiler-correction.json",
+      "bytes": 15357,
+      "sha256": "c3241db7c3e6ac7842d4b53477aae25228a6c2467285b07f95f42cce98f2290e",
+      "git_blob": "6b6b4e0066d90ab7d40db1761249dead1810b764"
+    },
+    {
+      "path": "originals/api/pr507-corrected-feature-jobs.json",
+      "bytes": 13793,
+      "sha256": "7a8a0c43d48211da564112224bb9841989c17fac90fe574d7eee1ae2c44e9a97",
+      "git_blob": "173f3a8c86cb7fe9dbbc96953d2547476d5b2367"
+    },
+    {
+      "path": "originals/api/pr507.json",
+      "bytes": 21994,
+      "sha256": "6014c5e7cf411589eec16b05732e3bf29d6ad011c3fb6aa26589ce108b9916a0",
+      "git_blob": "445b86fa9e286d95848314d65245c916a83c54df"
+    },
+    {
+      "path": "originals/corrected-ci-failure/binding.json",
+      "bytes": 400,
+      "sha256": "480c2c9387e33f83b61ac27565e83f9e6702bcc03ad67d138f79c57d13904de4",
+      "git_blob": "92fcf619fc2ac26aed6478210d38f7540926b493"
+    },
+    {
+      "path": "originals/corrected-ci-failure/initial-line-materialization.log",
+      "bytes": 121893,
+      "sha256": "201865b6c5a45b3b0112f9ace97b8b2097110c5898c44ddf6e695c5a436c68ad",
+      "git_blob": "46eeaa2e0fe4a94054da6413ba2f811cd13cdc63"
+    },
+    {
+      "path": "originals/corrected-ci-failure/job-132564402577.original.log",
+      "bytes": 121892,
+      "sha256": "730624ed6be190ce6305d6b8c90e4d8eddb96c9a25ac22c5c4b4139c5e1b4ab2",
+      "git_blob": "eec03570b1215ea2e479fc37a6753c2e16245b0c"
+    },
+    {
+      "path": "originals/corrected-ci-failure/materialization-correction.json",
+      "bytes": 467,
+      "sha256": "284a8a5b5f7dd8e218b7891025a4d510890675d9811e77106cbdc0bc2eb2344a",
+      "git_blob": "ec2b689d0519e6bc0251f3de8eab548938db1c29"
+    },
+    {
+      "path": "originals/corrected-ci-failure/original-log-content.json",
+      "bytes": 123552,
+      "sha256": "d3cd2b4ef2851056b4b419796fbdb281308cdd9c09fd9f575e041ee34652f9c6",
+      "git_blob": "0f316766d69ca2c649c17fcfadfdd255c6fedfd7"
+    },
+    {
+      "path": "preservation.json",
+      "bytes": 9506,
+      "sha256": "a80080f3674fd4ac9c65796fdfac4e6582264b3653311b9085247a96830ae50c",
+      "git_blob": "bdfd104071ca8c26870672a5546a12a540b03ab3"
+    },
+    {
+      "path": "production.patch",
+      "bytes": 10982,
+      "sha256": "76158e1cbe1e0d9e38c1515448f7185bc271149cf3d6df3d7d2f5a952758f8c4",
+      "git_blob": "448b5313110efb9350e1f78cd90178e6b598f6b0"
+    },
+    {
+      "path": "reference-source/current/.github/probes/modernization_android_tour.py",
+      "bytes": 78635,
+      "sha256": "7d2034119f06846ede165ec039dfab54e31aafd02a5e05c7fef02d9a75f31bf1",
+      "git_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff"
+    },
+    {
+      "path": "reference-source/current/lib/features/games/connect_four/connect_four_round.dart",
+      "bytes": 12082,
+      "sha256": "dcc411d6687df70934d83253990248c4a0654b13a36ec54338ec43a257329754",
+      "git_blob": "853d9e4a59475725a44db8f6c252e691f0bcdad8"
+    },
+    {
+      "path": "reference-source/current/lib/features/games/memory/lumo_memory_game.dart",
+      "bytes": 52654,
+      "sha256": "b90ab76e89a1f8d2258e1085e96ab8b032651b75b650dd7c497807a74882c380",
+      "git_blob": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43"
+    },
+    {
+      "path": "reference-source/current/lib/features/games/memory/memory_table_session.dart",
+      "bytes": 9373,
+      "sha256": "08fb0ae23a3ed5c532072e411102dd9ef9f2a5f430d1de954d1de42da5328b64",
+      "git_blob": "1ea0737097ab024d4e91fbbf645a241af9001f9c"
+    },
+    {
+      "path": "reference-source/current/lib/features/games/shared/lumo_game_pause_scope.dart",
+      "bytes": 12273,
+      "sha256": "2098bb9090936ab041905054beaced3133edeb941880757a654d303d51e039e6",
+      "git_blob": "9ffc5f25494bb03c64a68cd704d5069aae41013e"
+    },
+    {
+      "path": "reference-source/current/pubspec.lock",
+      "bytes": 24469,
+      "sha256": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea",
+      "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1"
+    },
+    {
+      "path": "reference-source/current/pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+    },
+    {
+      "path": "reference-source/native-f9/scripts/games/memory/memory_table.gd",
+      "bytes": 31443,
+      "sha256": "929d4a32e9dd0528e4941208dfaf949ef286e584685924af28bbe8e403be8c33",
+      "git_blob": "9c998e33aee127453a67d25a6e020638472b8387"
+    },
+    {
+      "path": "reference-source/upstream/LegacySharedPreferencesPlugin_2.4.28.kt",
+      "bytes": 6824,
+      "sha256": "864b788b5491fc3b00f4ef1b2d8f629f1f5d24af4df13baf50d3b42d27cb9841",
+      "git_blob": "bbdb3ecbadb51f6f1454e987be78285146751b89"
+    },
+    {
+      "path": "reference-source/upstream/SharedPreferencesImpl_android15.java",
+      "bytes": 30970,
+      "sha256": "a1daeb52d3211428131f08ae236709059b3c46ab8d050a59d09a935e5ca6f8cd",
+      "git_blob": "a87187b8affb4a8e36bfc28191a575502e78604f"
+    },
+    {
+      "path": "reference-source/upstream/android-kotlin-tree.original.json",
+      "bytes": 2654,
+      "sha256": "a91d21182b35060be42d0820617b532fec63a59a1e02e41e47ad76fdc6adf689",
+      "git_blob": "5fa3d8e9d2e325bd38aada9019c3762e0e56f7a7"
+    },
+    {
+      "path": "reference-source/upstream/android-main-directory.original.json",
+      "bytes": 2545,
+      "sha256": "7362cc313f2089ff854f044db8a85a9adc098f09e5b41a0cfe19370b3d2ed0b2",
+      "git_blob": "8938f443ea412c416eaf46cc37dc3eaa71a36c6a"
+    },
+    {
+      "path": "reference-source/upstream/android2.4.28-tag.original.json",
+      "bytes": 433,
+      "sha256": "50aa453ee7e3103b2536229db5177dbb6e203c2060ce0dc8cd264366cd61a3ff",
+      "git_blob": "9386149f48db7feba011ea7bf1b6e683426c24b3"
+    },
+    {
+      "path": "reference-source/upstream/shared_preferences_2.5.5_legacy.dart",
+      "bytes": 10990,
+      "sha256": "7ccdf3738704630a3d5d947ac73989403b167f3c6aa114b475e8e106f5de1045",
+      "git_blob": "06d89f0010c86f640d19501c2a2a5183523b8039"
+    },
+    {
+      "path": "regression-adjustments.patch",
+      "bytes": 9704,
+      "sha256": "46c09c7d3c627c36853ceec3f24bf2a02dd8cd82b5107291dd0039aa7f6dd3bc",
+      "git_blob": "946a02fbf206d70c95a5e6b80995c9541acb6b03"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 6700,
+      "sha256": "5b9643a26ec01005c634d0c190ac6ffdcd3fa3ac28a361a5ddf8b31261e03539",
+      "git_blob": "2356ea9426cb52412ac8621284c0a561cc1e230b"
+    },
+    {
+      "path": "source-index.json",
+      "bytes": 2575,
+      "sha256": "40ce5428033c522216ac93f1ea9b97078f713ddf3707a0efd57364081019fbcd",
+      "git_blob": "b520d12d0e34df423aea9f557df71418f372b4fe"
+    },
+    {
+      "path": "source-mapping.preliminary.json",
+      "bytes": 6604,
+      "sha256": "2a0d00b11a506d388cfd05aae74f375e87701b1461022196c27a85137e3a675a",
+      "git_blob": "8d674fa15f9b5a4f23bcdb47f6b3c6ce0a162889"
+    },
+    {
+      "path": "test-plan.json",
+      "bytes": 10893,
+      "sha256": "cf277057628d3a32cbf51a4926f940342a252f6be9aca3e245b092dd18bb1aba",
+      "git_blob": "13bf02c5e2fc1a089a26d41992ba8714b7c91ef9"
+    }
+  ]
+}

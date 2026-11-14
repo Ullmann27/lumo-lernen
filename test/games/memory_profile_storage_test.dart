@@ -168,28 +168,54 @@ void main() {
     addTearDown(app.dispose);
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await _open(tester, app);
+    expect(store.writes, [
+      (key: 'flutter.${_key(_a)}',
+       value: '{"difficulty":"leicht","best":{"leicht":7}}'),
+    ], reason: 'Opening confirms the unchanged, validated child snapshot.');
     final gate = Completer<void>();
     store.blockedKey = 'flutter.${_key(_a)}';
     store.gate = gate;
-    await _choose(tester, MemoryDifficulty.profi);
-    expect(store.writes, hasLength(1));
-    await app.school.setActiveStudent(_b);
-    await tester.pump();
-    expect(_backs(), findsNothing);
-    expect(find.textContaining('Dein Rekord:'), findsNothing);
-    await _open(tester, app);
-    expect(find.text('Dein Rekord: 11 Züge'), findsOneWidget);
-    await _choose(tester, MemoryDifficulty.knifflig);
-    gate.complete();
-    await tester.pump();
-    await tester.pump();
-    final disk = await store.disk();
-    expect(jsonDecode(disk['flutter.${_key(_a)}']! as String),
-        {'difficulty': 'profi', 'best': {'leicht': 7}});
-    expect(jsonDecode(disk['flutter.${_key(_b)}']! as String),
-        {'difficulty': 'knifflig', 'best': {'mittel': 11}});
-    expect(disk['flutter.lumo_memory_v2'], _legacy);
-    await tester.pumpWidget(const SizedBox.shrink());
+    try {
+      await _choose(tester, MemoryDifficulty.profi);
+      expect(store.writes, hasLength(2));
+      expect(store.writes.last,
+          (key: 'flutter.${_key(_a)}',
+           value: '{"difficulty":"profi","best":{"leicht":7}}'));
+      expect((await store.disk())['flutter.${_key(_a)}'],
+          '{"difficulty":"leicht","best":{"leicht":7}}');
+      await app.school.setActiveStudent(_b);
+      await tester.pump();
+      expect(_backs(), findsNothing);
+      expect(find.textContaining('Dein Rekord:'), findsNothing);
+      await _open(tester, app);
+      expect(find.text('Dein Rekord: 11 Züge'), findsOneWidget);
+      await _choose(tester, MemoryDifficulty.knifflig);
+      gate.complete();
+      await tester.pump();
+      await tester.pump();
+      final disk = await store.disk();
+      expect(jsonDecode(disk['flutter.${_key(_a)}']! as String),
+          {'difficulty': 'profi', 'best': {'leicht': 7}});
+      expect(jsonDecode(disk['flutter.${_key(_b)}']! as String),
+          {'difficulty': 'knifflig', 'best': {'mittel': 11}});
+      expect(disk['flutter.lumo_memory_v2'], _legacy);
+      expect(store.writes, [
+        (key: 'flutter.${_key(_a)}',
+         value: '{"difficulty":"leicht","best":{"leicht":7}}'),
+        (key: 'flutter.${_key(_a)}',
+         value: '{"difficulty":"profi","best":{"leicht":7}}'),
+        (key: 'flutter.${_key(_b)}',
+         value: '{"difficulty":"mittel","best":{"mittel":11}}'),
+        (key: 'flutter.${_key(_b)}',
+         value: '{"difficulty":"knifflig","best":{"mittel":11}}'),
+      ]);
+    } finally {
+      // A failed assertion must not retain this child's static owner queue.
+      if (!gate.isCompleted) gate.complete();
+      await tester.pump();
+      await tester.pump();
+      await tester.pumpWidget(const SizedBox.shrink());
+    }
   });
 
   testWidgets('Delayed identity load cannot expose old best after profile switch',
@@ -227,21 +253,41 @@ void main() {
     addTearDown(app.dispose);
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await _open(tester, app);
+    expect(store.writes, [
+      (key: 'flutter.${_key(_a)}',
+       value: '{"difficulty":"leicht","best":{"leicht":7}}'),
+    ], reason: 'Opening confirms the unchanged, validated child snapshot.');
     final gate = Completer<void>();
     store.blockedKey = 'flutter.${_key(_a)}';
     store.gate = gate;
-    await _choose(tester, MemoryDifficulty.mittel);
-    await _choose(tester, MemoryDifficulty.profi);
-    expect(store.writes, hasLength(1), reason: 'Second write waits for the first');
-    expect(jsonDecode(store.writes.single.value)['difficulty'], 'mittel');
-    gate.complete();
-    await tester.pump();
-    await tester.pump();
-    expect(store.writes, hasLength(2));
-    expect(jsonDecode(store.writes.last.value)['difficulty'], 'profi');
-    expect(jsonDecode((await store.disk())['flutter.${_key(_a)}']! as String),
-        {'difficulty': 'profi', 'best': {'leicht': 7}});
-    await tester.pumpWidget(const SizedBox.shrink());
+    try {
+      await _choose(tester, MemoryDifficulty.mittel);
+      await _choose(tester, MemoryDifficulty.profi);
+      expect(store.writes, hasLength(2),
+          reason: 'After the opening confirmation, the second choice waits for the first.');
+      expect(jsonDecode(store.writes[1].value)['difficulty'], 'mittel');
+      expect((await store.disk())['flutter.${_key(_a)}'],
+          '{"difficulty":"leicht","best":{"leicht":7}}');
+      gate.complete();
+      await tester.pump();
+      await tester.pump();
+      expect(store.writes, hasLength(3));
+      expect(store.writes.map((entry) => entry.key).toList(),
+          List.filled(3, 'flutter.${_key(_a)}'));
+      expect(store.writes.map((entry) => jsonDecode(entry.value)).toList(), [
+        {'difficulty': 'leicht', 'best': {'leicht': 7}},
+        {'difficulty': 'mittel', 'best': {'leicht': 7}},
+        {'difficulty': 'profi', 'best': {'leicht': 7}},
+      ]);
+      expect(jsonDecode(store.writes.last.value)['difficulty'], 'profi');
+      expect(jsonDecode((await store.disk())['flutter.${_key(_a)}']! as String),
+          {'difficulty': 'profi', 'best': {'leicht': 7}});
+    } finally {
+      if (!gate.isCompleted) gate.complete();
+      await tester.pump();
+      await tester.pump();
+      await tester.pumpWidget(const SizedBox.shrink());
+    }
   });
 
   testWidgets('Unreadable existing child stats are preserved instead of reset',

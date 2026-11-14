@@ -209,7 +209,10 @@ class RewardWalletRepository {
             xp > 1000) {
           throw ArgumentError('Ungültiges Spielergebnis');
         }
-        if (current.gameResultIds.contains(resultId)) return current;
+        if (current.gameResultIds.contains(resultId)) {
+          await _persist(current);
+          return current;
+        }
         final nextXp = (current.xp + xp).clamp(0, 9999999);
         return _commit(current.copyWith(
           stars: (current.stars + stars).clamp(0, 999999),
@@ -231,7 +234,10 @@ class RewardWalletRepository {
             !const {50, 200, 800, 5000}.contains(stars)) {
           throw ArgumentError('Ungültiges Quizergebnis');
         }
-        if (current.gameResultIds.contains(resultId)) return current;
+        if (current.gameResultIds.contains(resultId)) {
+          await _persist(current);
+          return current;
+        }
         return _commit(current.copyWith(
           stars: (current.stars + stars).clamp(0, 999999),
           totalEarnedStars: current.totalEarnedStars + stars,
@@ -249,7 +255,10 @@ class RewardWalletRepository {
           if (resultId.isEmpty || resultId.length > 160) {
             throw ArgumentError('Ungültiges Kartenergebnis');
           }
-          if (current.gameResultIds.contains(resultId)) return current;
+          if (current.gameResultIds.contains(resultId)) {
+            await _persist(current);
+            return current;
+          }
         }
         final nextStreak =
             won ? (current.lumoCardsWinStreak + 1).clamp(0, 999999) : 0;

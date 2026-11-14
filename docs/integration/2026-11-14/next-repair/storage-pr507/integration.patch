@@ -1,0 +1,2020 @@
+--- a/lib/core/reward_wallet_repository.dart
++++ b/lib/core/reward_wallet_repository.dart
+@@ -209,7 +209,10 @@
+             xp > 1000) {
+           throw ArgumentError('Ungültiges Spielergebnis');
+         }
+-        if (current.gameResultIds.contains(resultId)) return current;
++        if (current.gameResultIds.contains(resultId)) {
++          await _persist(current);
++          return current;
++        }
+         final nextXp = (current.xp + xp).clamp(0, 9999999);
+         return _commit(current.copyWith(
+           stars: (current.stars + stars).clamp(0, 999999),
+@@ -231,7 +234,10 @@
+             !const {50, 200, 800, 5000}.contains(stars)) {
+           throw ArgumentError('Ungültiges Quizergebnis');
+         }
+-        if (current.gameResultIds.contains(resultId)) return current;
++        if (current.gameResultIds.contains(resultId)) {
++          await _persist(current);
++          return current;
++        }
+         return _commit(current.copyWith(
+           stars: (current.stars + stars).clamp(0, 999999),
+           totalEarnedStars: current.totalEarnedStars + stars,
+@@ -249,7 +255,10 @@
+           if (resultId.isEmpty || resultId.length > 160) {
+             throw ArgumentError('Ungültiges Kartenergebnis');
+           }
+-          if (current.gameResultIds.contains(resultId)) return current;
++          if (current.gameResultIds.contains(resultId)) {
++            await _persist(current);
++            return current;
++          }
+         }
+         final nextStreak =
+             won ? (current.lumoCardsWinStreak + 1).clamp(0, 999999) : 0;
+--- a/lib/features/games/memory/memory_flutter_adapter.dart
++++ b/lib/features/games/memory/memory_flutter_adapter.dart
+@@ -28,7 +28,8 @@
+ 
+ /// The private new round key is independent of the existing statistics key.
+ /// Never reads, migrates or overwrites the historical unowned lumo_memory_v2.
+-class PreferencesMemoryStore implements MemoryStore {
++class PreferencesMemoryStore
++    implements MemoryStore, MemoryReadbackConfirmation {
+   PreferencesMemoryStore(this.preferences, String owner)
+       : roundKey = 'lumo.memory.round.v1.' + owner,
+         statsKey = 'lumo.memory.stats.v1.' + owner {
+@@ -41,33 +42,49 @@
+   final String roundKey;
+   final String statsKey;
+ 
+-  // The legacy Preferences API changes its cache before the platform replies.
+-  // A failed write can therefore leave the requested value in that cache.
+-  // Every read, including a new adapter's first read, must successfully reload
+-  // the platform snapshot. A failed reload throws; it never authorizes a later
+-  // cached read as the controller's write-recovery acknowledgement.
+-  Future<String?> _readConfirmed(String key) async {
+-    await preferences.reload();
++  // Reload refreshes Dart's cache from the platform snapshot. Android's native
++  // SharedPreferences cache can itself contain a failed commit's value, so this
++  // read is not a storage acknowledgement and has no write side effect.
++  Future<String?> _readPlatform(String key) async {
++    try {
++      await preferences.reload();
++    } catch (error) {
++      throw MemoryStorageUnconfirmed(
++          'Memory-Speicher konnte nicht gelesen werden', cause: error);
++    }
+     return preferences.getString(key);
+   }
+ 
+   @override
+-  Future<String?> readRound() => _readConfirmed(roundKey);
++  Future<String?> readRound() => _readPlatform(roundKey);
+ 
+   @override
+-  Future<String?> readStats() => _readConfirmed(statsKey);
++  Future<String?> readStats() => _readPlatform(statsKey);
+ 
+-  @override
+-  Future<void> writeRound(String value) async {
+-    if (!await preferences.setString(roundKey, value)) {
+-      throw StateError('Memory-Runde wurde nicht gespeichert');
++  Future<void> _writeConfirmed(String key, String value, String message) async {
++    final bool confirmed;
++    try {
++      confirmed = await preferences.setString(key, value);
++    } catch (error) {
++      throw MemoryStorageUnconfirmed(message, cause: error);
+     }
++    if (!confirmed) throw MemoryStorageRejected(message);
+   }
+ 
+   @override
+-  Future<void> writeStats(String value) async {
+-    if (!await preferences.setString(statsKey, value)) {
+-      throw StateError('Memory-Bestwerte wurden nicht gespeichert');
+-    }
+-  }
++  Future<void> writeRound(String value) => _writeConfirmed(
++      roundKey, value, 'Memory-Runde wurde nicht bestätigt');
++
++  @override
++  Future<void> writeStats(String value) => _writeConfirmed(
++      statsKey, value, 'Memory-Bestwerte wurden nicht bestätigt');
++
++  // The controller validates the exact snapshot and checks its profile lease
++  // immediately before and after this bounded, same-value write. Only a true
++  // platform reply succeeds; read equality never replaces that reply.
++  @override
++  Future<void> confirmRoundReadback(String value) => writeRound(value);
++
++  @override
++  Future<void> confirmStatsReadback(String value) => writeStats(value);
+ }
+--- a/lib/features/games/memory/memory_round.dart
++++ b/lib/features/games/memory/memory_round.dart
+@@ -9,6 +9,26 @@
+   Future<void> writeRound(String value);
+   Future<String?> readStats();
+   Future<void> writeStats(String value);
++}
++
++/// A platform snapshot alone is not a successful write acknowledgement.
++/// Stores with an optimistic native cache opt into this explicit barrier.
++abstract interface class MemoryReadbackConfirmation {
++  Future<void> confirmRoundReadback(String value);
++  Future<void> confirmStatsReadback(String value);
++}
++
++/// The storage operation has no positive platform acknowledgement. In
++/// particular, a transport error does not prove whether a write committed.
++class MemoryStorageUnconfirmed extends StateError {
++  MemoryStorageUnconfirmed(super.message, {this.cause});
++
++  final Object? cause;
++}
++
++/// The platform explicitly returned false for this write attempt.
++class MemoryStorageRejected extends MemoryStorageUnconfirmed {
++  MemoryStorageRejected(super.message);
+ }
+ 
+ typedef MemoryAward = Future<void> Function(
+@@ -136,7 +156,10 @@
+       controller._guard();
+       if (raw != null) {
+         // Corrupt/private foreign rounds are never replaced with defaults.
+-        controller._round = MemoryRound.read(raw, catalog, owner);
++        final restored = MemoryRound.read(raw, catalog, owner);
++        await controller._confirmRoundReadback(raw);
++        controller._guard();
++        controller._round = restored;
+         controller.restored = true;
+         final rules = controller._round.rules;
+         final unplayed = rules.phase == 'select' && rules.turn == 'kind' &&
+@@ -222,12 +245,37 @@
+         }
+         values[entry.key as String] = entry.value as int;
+       }
++      await _confirmStatsReadback(raw);
++      _guard();
+       _stats = Map<String, dynamic>.from(document);
+       _best = values;
++    } on MemoryStorageUnconfirmed {
++      _guard();
++      // An unavailable or unconfirmed platform is not corrupt legacy data.
++      // Never skip its statistics and mark an unsettled finish as rewarded.
++      rethrow;
+     } catch (_) {
+       _guard();
+       // Existing unreadable statistics remain byte-for-byte untouched.
+       _statsWritable = false;
++    }
++  }
++
++  Future<void> _confirmRoundReadback(String value) async {
++    _guard();
++    final confirmation = store;
++    if (confirmation is MemoryReadbackConfirmation) {
++      await (confirmation as MemoryReadbackConfirmation).confirmRoundReadback(value);
++      _guard();
++    }
++  }
++
++  Future<void> _confirmStatsReadback(String value) async {
++    _guard();
++    final confirmation = store;
++    if (confirmation is MemoryReadbackConfirmation) {
++      await (confirmation as MemoryReadbackConfirmation).confirmStatsReadback(value);
++      _guard();
+     }
+   }
+ 
+@@ -243,6 +291,7 @@
+     } catch (_) {
+       _guard();
+       if (await store.readRound() != text) rethrow;
++      await _confirmRoundReadback(text);
+     }
+     _guard();
+     _round = next;
+@@ -258,6 +307,8 @@
+       if (disk.id != _round.id || disk.revision < _round.revision) {
+         throw StateError('Memory-Spielstand wurde anderweitig ersetzt');
+       }
++      await _confirmRoundReadback(raw);
++      _guard();
+       _round = disk;
+       _uncertain = false;
+     } else if (jsonEncode(disk.toJson()) != jsonEncode(_round.toJson())) {
+@@ -281,6 +332,8 @@
+       final observed = await store.readRound();
+       _guard();
+       if (observed != text) rethrow;
++      await _confirmRoundReadback(text);
++      _guard();
+       _uncertain = false;
+     }
+     _guard();
+@@ -352,6 +405,7 @@
+     } catch (_) {
+       _guard();
+       if (await store.readStats() != encoded) rethrow;
++      await _confirmStatsReadback(encoded);
+     }
+     _guard();
+     _stats = next;
+--- a/lib/features/games/connect_four/lumo_connect_four_game.dart
++++ b/lib/features/games/connect_four/lumo_connect_four_game.dart
+@@ -305,7 +305,20 @@
+       position = await _controller!
+           .play(column, bot: !_twoPlayers && piece == ConnectPiece.lumo);
+     } catch (_) {
++      if (!_currentOwner() || generation != _round) return;
+       _saveError();
++      // The failed bot action has already left the pausable clock. Re-arm it
++      // for this same live round so Fortsetzen can retry instead of leaving
++      // the child permanently waiting for Lumo. A committed terminal result
++      // or a local second player must never receive an extra bot move.
++      if (!_twoPlayers &&
++          _game.turn == ConnectPiece.lumo &&
++          _game.phase == ConnectPhase.playing) {
++        _resumeBot();
++      } else if (_game.phase != ConnectPhase.playing) {
++        _clock.schedule(Duration.zero,
++            () => unawaited(_retryFinishedRound(generation)));
++      }
+       return;
+     }
+     if (!_currentOwner() || generation != _round) return;
+@@ -373,6 +386,33 @@
+     } else {
+       _clock.schedule(duration, land);
+     }
++  }
++
++  Future<void> _retryFinishedRound(int generation) async {
++    if (!_currentOwner() ||
++        generation != _round ||
++        _controller == null ||
++        _nativeOpening ||
++        _game.phase == ConnectPhase.playing) return;
++    setState(() => _busy = true);
++    try {
++      // The final move is already saved. Retry only its existing idempotent
++      // reward and receipt; never drop another piece or invent an award.
++      await _controller!.settleReward();
++    } catch (_) {
++      if (!_currentOwner() || generation != _round) return;
++      _saveError();
++      _clock.schedule(Duration.zero,
++          () => unawaited(_retryFinishedRound(generation)));
++      return;
++    }
++    if (!_currentOwner() || generation != _round || _nativeOpening) return;
++    // Home/Pause may have arrived while the wallet was being confirmed.
++    // Deliver the already settled result only when the same clock resumes.
++    _clock.schedule(Duration.zero, () {
++      if (!_currentOwner() || generation != _round || _nativeOpening) return;
++      _finish();
++    });
+   }
+ 
+   void _finish() {
+--- /dev/null
++++ b/test/games/connect_four_bot_save_retry_test.dart
+@@ -0,0 +1,285 @@
++import 'dart:async';
++import 'dart:convert';
++
++import 'package:flutter/material.dart';
++import 'package:flutter/services.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:shared_preferences/shared_preferences.dart';
++import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
++
++import 'package:lumo_lernen/app/app_state.dart';
++import 'package:lumo_lernen/core/lumo_voice.dart';
++import 'package:lumo_lernen/core/reward_wallet_repository.dart';
++import 'package:lumo_lernen/features/games/connect_four/lumo_connect_four_game.dart';
++
++/// The production widget, controller and preferences repository stay real.
++/// Only a platform write is rejected before persistence. Native optimistic
++/// cache durability is a separate contract, not claimed by these UI tests.
++class _HeldReward {
++  final entered = Completer<void>();
++  final release = Completer<void>();
++}
++
++class _RejectedMovePlatform extends InMemorySharedPreferencesStore {
++  _RejectedMovePlatform() : super.withData({});
++
++  bool rejectSecondMove = true;
++  int rejectedMoves = 0;
++  bool rejectRewards = false;
++  int rejectedRewards = 0;
++  _HeldReward? nextRewardGate;
++
++  @override
++  Future<bool> setValue(String valueType, String key, Object value) async {
++    if (rejectSecondMove &&
++        key.startsWith('flutter.lumo.connect_four.round.v1.') &&
++        value is String) {
++      final document = jsonDecode(value) as Map<String, dynamic>;
++      if ((document['columns'] as List).length == 2) {
++        rejectedMoves++;
++        return false;
++      }
++    }
++    if (key == 'flutter.lumo_reward_wallet_v1' && value is String) {
++      final document = jsonDecode(value) as Map<String, dynamic>;
++      final ids = document['gameResultIds'] as List? ?? const [];
++      if (ids.any((id) => id is String && id.startsWith('c4:'))) {
++        if (rejectRewards) {
++          rejectedRewards++;
++          return false;
++        }
++        final gate = nextRewardGate;
++        nextRewardGate = null;
++        if (gate != null) {
++          gate.entered.complete();
++          await gate.release.future;
++        }
++      }
++    }
++    return super.setValue(valueType, key, value);
++  }
++}
++
++int _pieces(WidgetTester tester, String player) => find
++    .byWidgetPredicate((widget) =>
++        widget is Semantics &&
++        (widget.properties.label?.startsWith('Reihe ') ?? false) &&
++        (widget.properties.label?.endsWith(': $player') ?? false))
++    .evaluate()
++    .length;
++
++Future<({LumoAppState app, _RejectedMovePlatform platform})> _open(
++    WidgetTester tester) async {
++  SharedPreferences.setMockInitialValues({});
++  final platform = _RejectedMovePlatform();
++  SharedPreferencesStorePlatform.instance = platform;
++  LumoVoice.instance.isEnabled = false;
++  await tester.binding.setSurfaceSize(const Size(360, 800));
++  final app = LumoAppState(walletRepository: RewardWalletRepository());
++  await app.hydrateFromWallet();
++  LumoVoice.instance.isEnabled = false;
++  await tester.pumpWidget(MaterialApp(
++    builder: (context, child) => MediaQuery(
++      data: MediaQuery.of(context).copyWith(disableAnimations: true),
++      child: child!,
++    ),
++    home: LumoConnectFourScreen(appState: app, seed: 1),
++  ));
++  await tester.pumpAndSettle();
++  return (app: app, platform: platform);
++}
++
++Future<void> _failedBotMove(WidgetTester tester) async {
++  await tester.tap(find.byKey(const ValueKey('connect-column-0')));
++  await tester.pump();
++  await tester.pump(const Duration(milliseconds: 600));
++  await tester.pump();
++  expect(find.text('Spiel pausiert'), findsOneWidget);
++  expect(_pieces(tester, 'child'), 1);
++  expect(_pieces(tester, 'lumo'), 0);
++}
++
++Future<void> _close(WidgetTester tester, LumoAppState app) async {
++  await tester.pumpWidget(const SizedBox());
++  app.dispose();
++  await tester.binding.setSurfaceSize(null);
++  SharedPreferences.setMockInitialValues({});
++}
++
++void main() {
++  setUp(() {
++    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
++        .setMockMethodCallHandler(
++      const MethodChannel('lumo_lernen/connect_four'),
++      (_) async => throw MissingPluginException('Real Flutter fallback fixture'),
++    );
++  });
++
++  testWidgets('Failed bot save retries once after the child resumes',
++      (tester) async {
++    final fixture = await _open(tester);
++    await _failedBotMove(tester);
++    expect(fixture.platform.rejectedMoves, 1);
++    await tester.pump(const Duration(seconds: 5));
++    expect(_pieces(tester, 'lumo'), 0);
++    expect(fixture.platform.rejectedMoves, 1);
++
++    fixture.platform.rejectSecondMove = false;
++    await tester.tap(find.text('Fortsetzen'));
++    await tester.pump();
++    await tester.pump(const Duration(milliseconds: 600));
++    await tester.pump();
++    expect(_pieces(tester, 'child'), 1);
++    expect(_pieces(tester, 'lumo'), 1);
++    expect(find.text('Spiel pausiert'), findsNothing);
++    await tester.pump(const Duration(seconds: 5));
++    expect(_pieces(tester, 'lumo'), 1);
++    expect(fixture.app.state.stars, 0);
++    expect(tester.takeException(), isNull);
++    await _close(tester, fixture.app);
++  });
++
++  testWidgets('Repeated bot save failure remains paused until explicit retry',
++      (tester) async {
++    final fixture = await _open(tester);
++    await _failedBotMove(tester);
++    await tester.tap(find.text('Fortsetzen'));
++    await tester.pump();
++    await tester.pump(const Duration(milliseconds: 600));
++    await tester.pump();
++    expect(fixture.platform.rejectedMoves, 2);
++    expect(find.text('Spiel pausiert'), findsOneWidget);
++    expect(_pieces(tester, 'lumo'), 0);
++    await tester.pump(const Duration(seconds: 5));
++    expect(fixture.platform.rejectedMoves, 2);
++
++    fixture.platform.rejectSecondMove = false;
++    await tester.tap(find.text('Fortsetzen'));
++    await tester.pump();
++    await tester.pump(const Duration(milliseconds: 600));
++    await tester.pump();
++    expect(_pieces(tester, 'lumo'), 1);
++    expect(tester.takeException(), isNull);
++    await _close(tester, fixture.app);
++  });
++
++  testWidgets('Restart cancels the queued failed bot retry for the old round',
++      (tester) async {
++    final fixture = await _open(tester);
++    await _failedBotMove(tester);
++    fixture.platform.rejectSecondMove = false;
++    await tester.tap(find.text('Neu starten'));
++    await tester.pump();
++    await tester.pump(const Duration(seconds: 5));
++    expect(_pieces(tester, 'child'), 0);
++    expect(_pieces(tester, 'lumo'), 0);
++    expect(fixture.app.state.stars, 0);
++    expect(tester.takeException(), isNull);
++    await _close(tester, fixture.app);
++  });
++
++  testWidgets('Failed local Gold move never schedules an automatic bot',
++      (tester) async {
++    final fixture = await _open(tester);
++    await tester.tap(find.byKey(const ValueKey('connect-mode-true')));
++    await tester.pump();
++    await tester.tap(find.byKey(const ValueKey('connect-column-0')));
++    await tester.pump();
++    await tester.tap(find.byKey(const ValueKey('connect-column-1')));
++    await tester.pump();
++    expect(fixture.platform.rejectedMoves, 1);
++    expect(find.text('Spiel pausiert'), findsOneWidget);
++    fixture.platform.rejectSecondMove = false;
++    await tester.tap(find.text('Fortsetzen'));
++    await tester.pump();
++    await tester.pump(const Duration(seconds: 5));
++    expect(_pieces(tester, 'child'), 1);
++    expect(_pieces(tester, 'lumo'), 0);
++
++    await tester.tap(find.byKey(const ValueKey('connect-column-1')));
++    await tester.pump();
++    expect(_pieces(tester, 'lumo'), 1);
++    expect(tester.takeException(), isNull);
++    await _close(tester, fixture.app);
++  });
++
++  testWidgets('A saved winning move retries only its unconfirmed reward',
++      (tester) async {
++    final fixture = await _open(tester);
++    fixture.platform.rejectSecondMove = false;
++    fixture.platform.rejectRewards = true;
++    await tester.tap(find.byKey(const ValueKey('connect-mode-true')));
++    await tester.pump();
++    for (final column in [0, 6, 1, 6, 2, 5, 3]) {
++      await tester.tap(find.byKey(ValueKey('connect-column-$column')));
++      await tester.pump(const Duration(milliseconds: 1));
++      await tester.pump();
++    }
++    expect(find.text('Spiel pausiert'), findsOneWidget);
++    expect(_pieces(tester, 'child'), 4);
++    expect(_pieces(tester, 'lumo'), 3);
++    expect(fixture.app.state.stars, 0);
++    expect(fixture.platform.rejectedRewards, 1);
++    expect(find.byType(AlertDialog), findsNothing);
++    await tester.pump(const Duration(seconds: 5));
++    expect(fixture.platform.rejectedRewards, 1);
++
++    fixture.platform.rejectRewards = false;
++    await tester.tap(find.text('Fortsetzen'));
++    await tester.pump();
++    await tester.pump(const Duration(milliseconds: 1));
++    await tester.pump();
++    await tester.pump(const Duration(milliseconds: 2500));
++    expect(find.byType(AlertDialog), findsOneWidget);
++    expect(fixture.app.state.stars, 5);
++    expect(_pieces(tester, 'child'), 4);
++    expect(_pieces(tester, 'lumo'), 3);
++    await tester.pump(const Duration(seconds: 5));
++    expect(fixture.app.state.stars, 5);
++    expect(tester.takeException(), isNull);
++    await _close(tester, fixture.app);
++  });
++
++  testWidgets('Lifecycle pause during reward retry defers the settled result',
++      (tester) async {
++    final fixture = await _open(tester);
++    fixture.platform.rejectSecondMove = false;
++    fixture.platform.rejectRewards = true;
++    await tester.tap(find.byKey(const ValueKey('connect-mode-true')));
++    await tester.pump();
++    for (final column in [0, 6, 1, 6, 2, 5, 3]) {
++      await tester.tap(find.byKey(ValueKey('connect-column-$column')));
++      await tester.pump(const Duration(milliseconds: 1));
++      await tester.pump();
++    }
++    expect(find.text('Spiel pausiert'), findsOneWidget);
++    fixture.platform.rejectRewards = false;
++    final held = _HeldReward();
++    fixture.platform.nextRewardGate = held;
++    await tester.tap(find.text('Fortsetzen'));
++    await tester.pump();
++    expect(held.entered.isCompleted, isTrue);
++
++    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
++    await tester.pump();
++    expect(find.text('Spiel pausiert'), findsOneWidget);
++    held.release.complete();
++    await tester.pump();
++    await tester.pump(const Duration(milliseconds: 2500));
++    expect(fixture.app.state.stars, 5);
++    expect(find.byType(AlertDialog), findsNothing);
++    expect(_pieces(tester, 'child'), 4);
++    expect(_pieces(tester, 'lumo'), 3);
++
++    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
++    await tester.pump();
++    expect(find.text('Spiel pausiert'), findsOneWidget);
++    await tester.tap(find.text('Fortsetzen'));
++    await tester.pump();
++    await tester.pump(const Duration(milliseconds: 2500));
++    expect(find.byType(AlertDialog), findsOneWidget);
++    expect(fixture.app.state.stars, 5);
++    expect(tester.takeException(), isNull);
++    await _close(tester, fixture.app);
++  });
++}
+--- /dev/null
++++ b/test/games/memory_native_commit_confirmation_test.dart
+@@ -0,0 +1,814 @@
++import 'dart:async';
++import 'dart:convert';
++
++import 'package:crypto/crypto.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:shared_preferences/shared_preferences.dart';
++import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
++
++import 'package:lumo_lernen/app/app_state.dart';
++import 'package:lumo_lernen/core/reward_wallet_repository.dart';
++import 'package:lumo_lernen/features/games/memory/memory_flutter_adapter.dart';
++import 'package:lumo_lernen/features/games/memory/memory_round.dart';
++
++const _owner =
++    'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
++const _otherOwner =
++    'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb';
++const _legacy = '{"difficulty":"profi","best":{"profi":41}}';
++const _otherRound = '{"other-child":"untouched"}';
++const _walletKey = 'lumo_reward_wallet_v1';
++const _initialWallet = RewardWallet(
++  stars: 7,
++  xp: 40,
++  totalEarnedStars: 19,
++  streak: 3,
++  lumoCardsWinStreak: 2,
++);
++
++class _Account {
++  _Account(this.app, this.wallet, this.lease);
++  final LumoAppState app;
++  final RewardWalletRepository wallet;
++  final LearningProfileLease lease;
++
++  String get owner => sha256.convert(utf8.encode(lease.studentId)).toString();
++  bool get current => app.canUseLearningLease(lease) &&
++      app.profileGeneration == lease.generation &&
++      app.school.cachedActiveStudentId == lease.studentId;
++
++  Future<void> award(String id, String difficulty, int kind, int lumo) =>
++      app.recordMemoryResult(
++        lease: lease,
++        resultId: id,
++        difficulty: difficulty,
++        kindPairs: kind,
++        lumoPairs: lumo,
++      );
++}
++
++enum _Reply { success, falseAfterMemory, throwAfterMemory, throwAfterCommit }
++
++class _Gate {
++  final entered = Completer<void>();
++  final release = Completer<void>();
++
++  Future<void> wait() async {
++    entered.complete();
++    await release.future;
++  }
++
++  void complete() {
++    if (!release.isCompleted) release.complete();
++  }
++}
++
++/// Models the relevant AOSP SharedPreferencesImpl boundary, not Android itself:
++/// commitToMemory precedes the disk attempt, getAll reads native memory, and a
++/// successful synchronous retry writes an outstanding generation even when the
++/// identical value does not advance that generation. The real Dart preferences,
++/// production adapter, controller, rules and profile checks remain in use.
++class _NativeCachePlatform extends InMemorySharedPreferencesStore {
++  _NativeCachePlatform() : super.withData({}) {
++    seed('lumo_memory_v2', _legacy);
++    seed('lumo.memory.round.v1.' + _otherOwner, _otherRound);
++  }
++
++  final nativeMemory = <String, Object>{};
++  final durableDisk = <String, Object>{};
++  final writes = <Map<String, Object?>>[];
++  final _persistentReplies = <String, _Reply>{};
++  final _onceReplies = <String, List<_Reply>>{};
++  final _writeGates = <String, _Gate>{};
++  final _gates = <_Gate>[];
++  _Gate? _readGate;
++  int? _readGateAt;
++  bool rejectReads = false;
++  int reads = 0;
++  int memoryGeneration = 0;
++  int diskGeneration = 0;
++  int diskWrites = 0;
++  _Reply Function(String key, Object value)? replyFor;
++
++  void seed(String key, Object value) {
++    nativeMemory['flutter.' + key] = value;
++    durableDisk['flutter.' + key] = value;
++    memoryGeneration++;
++    diskGeneration = memoryGeneration;
++  }
++
++  void fail(String key, _Reply reply) {
++    _persistentReplies['flutter.' + key] = reply;
++  }
++
++  void once(String key, _Reply reply) {
++    _onceReplies.putIfAbsent('flutter.' + key, () => []).add(reply);
++  }
++
++  void accept(String key) {
++    _persistentReplies.remove('flutter.' + key);
++  }
++
++  String? memory(String key) => nativeMemory['flutter.' + key] as String?;
++  String? disk(String key) => durableDisk['flutter.' + key] as String?;
++
++  List<Map<String, Object?>> writesFor(String key) => writes
++      .where((row) => row['key'] == 'flutter.' + key)
++      .toList();
++
++  _Gate holdRead({int after = 1}) {
++    final gate = _Gate();
++    _gates.add(gate);
++    _readGate = gate;
++    _readGateAt = reads + after;
++    return gate;
++  }
++
++  _Gate holdWrite(String key) {
++    final gate = _Gate();
++    _gates.add(gate);
++    _writeGates['flutter.' + key] = gate;
++    return gate;
++  }
++
++  @override
++  Future<Map<String, Object>> getAll() async {
++    reads++;
++    if (reads == _readGateAt) {
++      final gate = _readGate!;
++      _readGate = null;
++      _readGateAt = null;
++      await gate.wait();
++    }
++    if (rejectReads) throw StateError('Native snapshot unavailable');
++    return Map<String, Object>.from(nativeMemory);
++  }
++
++  @override
++  Future<bool> setValue(String valueType, String key, Object value) async {
++    final gate = _writeGates.remove(key);
++    if (gate != null) await gate.wait();
++    final sequence = _onceReplies[key];
++    final reply = sequence != null && sequence.isNotEmpty
++        ? sequence.removeAt(0)
++        : replyFor?.call(key, value) ??
++            _persistentReplies[key] ??
++            _Reply.success;
++    final changed = nativeMemory[key] != value;
++    if (changed) {
++      nativeMemory[key] = value;
++      memoryGeneration++;
++    }
++    final behind = diskGeneration < memoryGeneration;
++    final commits = reply == _Reply.success || reply == _Reply.throwAfterCommit;
++    if (commits && behind) {
++      durableDisk
++        ..clear()
++        ..addAll(nativeMemory);
++      diskGeneration = memoryGeneration;
++      diskWrites++;
++    }
++    writes.add({
++      'key': key,
++      'value': value,
++      'reply': reply.name,
++      'memory_changed': changed,
++      'disk_was_behind': behind,
++      'disk_committed': commits && behind,
++      'memory_generation': memoryGeneration,
++      'disk_generation': diskGeneration,
++    });
++    switch (reply) {
++      case _Reply.success:
++        return true;
++      case _Reply.falseAfterMemory:
++        return false;
++      case _Reply.throwAfterMemory:
++        throw StateError('Native memory changed; commit was not acknowledged');
++      case _Reply.throwAfterCommit:
++        throw StateError('Native commit completed; its reply was lost');
++    }
++  }
++
++  @override
++  Future<bool> remove(String key) async {
++    nativeMemory.remove(key);
++    memoryGeneration++;
++    durableDisk
++      ..clear()
++      ..addAll(nativeMemory);
++    diskGeneration = memoryGeneration;
++    return true;
++  }
++
++  @override
++  Future<bool> clear() async {
++    nativeMemory.clear();
++    durableDisk.clear();
++    memoryGeneration++;
++    diskGeneration = memoryGeneration;
++    return true;
++  }
++
++  void restartNativeProcess() {
++    nativeMemory
++      ..clear()
++      ..addAll(durableDisk);
++    memoryGeneration = diskGeneration;
++  }
++
++  void releaseGates() {
++    for (final gate in _gates) {
++      gate.complete();
++    }
++  }
++}
++
++Future<Object?> _outcome(Future<Object?> operation) =>
++    operation.then<Object?>((value) => value,
++        onError: (Object error, StackTrace _) => error);
++
++Future<void> _finish(MemoryRoundController controller) async {
++  final cards = List<String>.from(controller.state.cards);
++  for (final motif in cards.toSet()) {
++    final first = cards.indexOf(motif);
++    final second = cards.lastIndexOf(motif);
++    if (controller.state.matched[first]) continue;
++    expect(await controller.flip(first), isTrue);
++    expect(await controller.flip(second), isTrue);
++    expect(await controller.advance(850), isTrue);
++  }
++}
++
++void main() {
++  TestWidgetsFlutterBinding.ensureInitialized();
++
++  late _NativeCachePlatform platform;
++  late SharedPreferences preferences;
++  late PreferencesMemoryStore adapter;
++  late List<MemoryRoundController> controllers;
++
++  Future<void> newDartPreferences() async {
++    // Only the Dart singleton is replaced. Native memory and disk stay distinct.
++    SharedPreferences.setMockInitialValues({});
++    SharedPreferencesStorePlatform.instance = platform;
++    preferences = await SharedPreferences.getInstance();
++    adapter = PreferencesMemoryStore(preferences, _owner);
++  }
++
++  setUp(() async {
++    platform = _NativeCachePlatform();
++    controllers = [];
++    await newDartPreferences();
++  });
++
++  tearDown(() {
++    for (final controller in controllers) {
++      controller.dispose();
++    }
++    platform.releaseGates();
++    SharedPreferences.setMockInitialValues({});
++  });
++
++  Future<MemoryRoundController> open({
++    bool Function()? current,
++    MemoryAward? award,
++  }) async {
++    final controller = await MemoryRoundController.open(
++      owner: _owner,
++      catalog: const FlutterMemoryCatalog(),
++      store: PreferencesMemoryStore(preferences, _owner),
++      canUseProfile: current ?? () => true,
++      award: award ?? (_, __, ___, ____) async {},
++      difficulty: 'leicht',
++      pack: 'alle',
++      seed: 73,
++    );
++    controllers.add(controller);
++    return controller;
++  }
++
++  void untouchedKeys() {
++    expect(platform.disk('lumo_memory_v2'), _legacy);
++    expect(platform.memory('lumo_memory_v2'), _legacy);
++    expect(platform.disk('lumo.memory.round.v1.' + _otherOwner), _otherRound);
++    expect(platform.memory('lumo.memory.round.v1.' + _otherOwner), _otherRound);
++  }
++
++  Future<_Account> account({bool selectProfile = true}) async {
++    final wallet = RewardWalletRepository();
++    await wallet.load();
++    final app = LumoAppState(walletRepository: wallet);
++    addTearDown(app.dispose);
++    if (selectProfile) {
++      await app.school.setActiveStudent('memory-commit-child-a');
++    }
++    return _Account(app, wallet, await app.captureLearningProfile());
++  }
++
++  Future<MemoryRoundController> ownedController(
++      _Account owner, {MemoryAward? award}) async {
++    final controller = await MemoryRoundController.open(
++      owner: owner.owner,
++      catalog: const FlutterMemoryCatalog(),
++      store: PreferencesMemoryStore(preferences, owner.owner),
++      canUseProfile: () => owner.current,
++      award: award ?? owner.award,
++      difficulty: 'leicht',
++      pack: 'alle',
++      seed: 73,
++    );
++    controllers.add(controller);
++    return controller;
++  }
++
++  RewardWallet durableWallet() => RewardWallet.fromJson(
++      jsonDecode(platform.disk(_walletKey)!) as Map<String, dynamic>);
++
++  void oneRealReward(String id) {
++    final saved = durableWallet();
++    expect(saved.stars, 9);
++    expect(saved.xp, 56);
++    expect(saved.totalEarnedStars, 21);
++    expect(saved.streak, 3);
++    expect(saved.lumoCardsWinStreak, 2);
++    expect(saved.gameResultIds, [id]);
++  }
++
++  for (final reply in [_Reply.falseAfterMemory, _Reply.throwAfterMemory]) {
++    for (final target in ['round', 'stats']) {
++      test(target + ' ' + reply.name +
++          ' is unconfirmed while reload remains a read-only native snapshot',
++          () async {
++        final key = target == 'round' ? adapter.roundKey : adapter.statsKey;
++        platform.seed(key, 'old');
++        platform.fail(key, reply);
++        final result = await _outcome(target == 'round'
++            ? adapter.writeRound('attempted')
++            : adapter.writeStats('attempted'));
++        expect(result, isA<MemoryStorageUnconfirmed>());
++        if (reply == _Reply.falseAfterMemory) {
++          expect(result, isA<MemoryStorageRejected>());
++        } else {
++          expect(result, isNot(isA<MemoryStorageRejected>()));
++        }
++        expect(platform.memory(key), 'attempted');
++        expect(platform.disk(key), 'old');
++        final count = platform.writes.length;
++        expect(await (target == 'round'
++            ? adapter.readRound()
++            : adapter.readStats()), 'attempted');
++        expect(platform.writes.length, count,
++            reason: 'Reading may expose a snapshot, never manufacture an ACK.');
++        expect(platform.disk(key), 'old');
++        untouchedKeys();
++      });
++    }
++
++    test('Initial ' + reply.name +
++        ' requires a positive barrier even after a new Dart store',
++        () async {
++      platform.fail(adapter.roundKey, reply);
++      await expectLater(open(), throwsA(isA<MemoryStorageUnconfirmed>()));
++      final candidate = platform.memory(adapter.roundKey)!;
++      final parsed = MemoryRound.read(
++          candidate, const FlutterMemoryCatalog(), _owner);
++      expect(platform.disk(adapter.roundKey), isNull);
++      expect(platform.writesFor(adapter.roundKey).length, 2,
++          reason: 'One initial write and one bounded recovery barrier.');
++
++      await newDartPreferences();
++      final before = platform.writes.length;
++      await expectLater(open(), throwsA(isA<MemoryStorageUnconfirmed>()));
++      expect(platform.writes.length - before, 1);
++      expect(platform.disk(adapter.roundKey), isNull);
++      expect(platform.memory(adapter.roundKey), candidate);
++
++      platform.accept(adapter.roundKey);
++      final recovered = await open();
++      expect(recovered.round.id, parsed.id);
++      expect(jsonEncode(recovered.round.toJson()), candidate);
++      expect(platform.disk(adapter.roundKey), candidate);
++      final confirmation = platform.writesFor(adapter.roundKey).last;
++      expect(confirmation['value'], candidate);
++      expect(confirmation['memory_changed'], isFalse);
++      expect(confirmation['disk_was_behind'], isTrue);
++      expect(confirmation['disk_committed'], isTrue);
++      untouchedKeys();
++    });
++
++    test('Flip ' + reply.name +
++        ' and uncertain follow-up cannot expose native cache without ACK',
++        () async {
++      var awards = 0;
++      final controller = await open(award: (_, __, ___, ____) async {
++        awards++;
++      });
++      final previous = controller.round;
++      final previousText = platform.disk(adapter.roundKey);
++      platform.fail(adapter.roundKey, reply);
++      final before = platform.writesFor(adapter.roundKey).length;
++      await expectLater(
++          controller.flip(0), throwsA(isA<MemoryStorageUnconfirmed>()));
++      final candidate = platform.memory(adapter.roundKey)!;
++      final parsed = MemoryRound.read(
++          candidate, const FlutterMemoryCatalog(), _owner);
++      expect(parsed.rules.faceUp[0], isTrue);
++      expect(parsed.revision, previous.revision + 1);
++      expect(identical(controller.round, previous), isTrue);
++      expect(platform.disk(adapter.roundKey), previousText);
++      expect(platform.writesFor(adapter.roundKey).length - before, 2);
++
++      final retryBefore = platform.writes.length;
++      await expectLater(
++          controller.flush(), throwsA(isA<MemoryStorageUnconfirmed>()));
++      expect(platform.writes.length - retryBefore, 1);
++      expect(identical(controller.round, previous), isTrue);
++      expect(platform.disk(adapter.roundKey), previousText);
++
++      platform.accept(adapter.roundKey);
++      await controller.flush();
++      expect(controller.round.id, previous.id);
++      expect(jsonEncode(controller.round.toJson()), candidate,
++          reason: 'Retry confirms the original action, not another flip or RNG draw.');
++      expect(platform.disk(adapter.roundKey), candidate);
++      expect(awards, 0);
++      final confirmation = platform.writesFor(adapter.roundKey).last;
++      expect(confirmation['value'], candidate);
++      expect(confirmation['memory_changed'], isFalse);
++      expect(confirmation['disk_committed'], isTrue);
++      untouchedKeys();
++    });
++  }
++
++  test('New controller cannot adopt an unsaved flip from shared native memory',
++      () async {
++    final first = await open();
++    final originalText = platform.disk(adapter.roundKey);
++    platform.fail(adapter.roundKey, _Reply.falseAfterMemory);
++    await expectLater(
++        first.flip(0), throwsA(isA<MemoryStorageUnconfirmed>()));
++    final pending = MemoryRound.read(
++        platform.memory(adapter.roundKey)!,
++        const FlutterMemoryCatalog(), _owner);
++    first.dispose();
++    await newDartPreferences();
++    await expectLater(open(), throwsA(isA<MemoryStorageUnconfirmed>()));
++    expect(platform.disk(adapter.roundKey), originalText);
++
++    platform.accept(adapter.roundKey);
++    final resumed = await open();
++    expect(resumed.round.id, pending.id);
++    expect(resumed.state.faceUp[0], isTrue);
++    expect(resumed.round.paused, isTrue);
++    expect(resumed.state.toJson(), pending.rules.toJson());
++    expect(platform.disk(adapter.roundKey), jsonEncode(resumed.round.toJson()));
++    untouchedKeys();
++  });
++
++  test('Modeled native process restart reloads disk instead of the failed map',
++      () async {
++    final first = await open();
++    final original = platform.disk(adapter.roundKey);
++    platform.fail(adapter.roundKey, _Reply.falseAfterMemory);
++    await expectLater(
++        first.flip(0), throwsA(isA<MemoryStorageUnconfirmed>()));
++    first.dispose();
++    platform.restartNativeProcess();
++    platform.accept(adapter.roundKey);
++    await newDartPreferences();
++    final reopened = await open();
++    expect(reopened.round.id, first.round.id);
++    expect(reopened.state.faceUp.every((value) => !value), isTrue);
++    expect(platform.disk(adapter.roundKey), original);
++    untouchedKeys();
++  });
++
++  test('Lost reply after actual commit needs one positive identical retry',
++      () async {
++    final controller = await open();
++    platform.once(adapter.roundKey, _Reply.throwAfterCommit);
++    final before = platform.writesFor(adapter.roundKey).length;
++    expect(await controller.flip(0), isTrue);
++    final attempts = platform.writesFor(adapter.roundKey).skip(before).toList();
++    expect(attempts.length, 2);
++    expect(attempts[0]['reply'], _Reply.throwAfterCommit.name);
++    expect(attempts[1]['reply'], _Reply.success.name);
++    expect(attempts[1]['value'], attempts[0]['value']);
++    expect(attempts[1]['memory_changed'], isFalse);
++    expect(attempts[1]['disk_was_behind'], isFalse);
++    expect(controller.state.faceUp.where((value) => value).length, 1);
++    expect(platform.disk(adapter.roundKey), jsonEncode(controller.round.toJson()));
++    untouchedKeys();
++  });
++
++  test('A committed value with no positive reply remains unconfirmed on failure',
++      () async {
++    final controller = await open();
++    final before = controller.round;
++    platform.once(adapter.roundKey, _Reply.throwAfterCommit);
++    platform.fail(adapter.roundKey, _Reply.falseAfterMemory);
++    await expectLater(
++        controller.flip(0), throwsA(isA<MemoryStorageUnconfirmed>()));
++    final actualCommit = platform.disk(adapter.roundKey)!;
++    expect(MemoryRound.read(actualCommit, const FlutterMemoryCatalog(), _owner)
++        .rules.faceUp[0], isTrue);
++    expect(identical(controller.round, before), isTrue);
++    await expectLater(
++        controller.flush(), throwsA(isA<MemoryStorageUnconfirmed>()));
++    expect(identical(controller.round, before), isTrue);
++    platform.accept(adapter.roundKey);
++    await controller.flush();
++    expect(jsonEncode(controller.round.toJson()), actualCommit);
++    untouchedKeys();
++  });
++
++  for (final reply in [_Reply.falseAfterMemory, _Reply.throwAfterMemory]) {
++    test('Initial statistics ' + reply.name +
++        ' is not swallowed as corrupt legacy data', () async {
++      final stats = jsonEncode({
++        'difficulty': 'leicht',
++        'best': {'leicht': 7},
++      });
++      platform.seed(adapter.statsKey, stats);
++      platform.fail(adapter.statsKey, reply);
++      await expectLater(open(), throwsA(isA<MemoryStorageUnconfirmed>()));
++      expect(platform.writesFor(adapter.statsKey).length, 1);
++      expect(platform.writesFor(adapter.roundKey), isEmpty);
++      expect(platform.disk(adapter.statsKey), stats);
++      untouchedKeys();
++    });
++  }
++
++  test('Unconfirmed finish statistics blocks reopen instead of skipping stats',
++      () async {
++    final ids = <String>[];
++    final controller = await open(award: (id, _, __, ___) async {
++      ids.add(id);
++    });
++    platform.fail(adapter.statsKey, _Reply.falseAfterMemory);
++    await expectLater(
++        _finish(controller), throwsA(isA<MemoryStorageUnconfirmed>()));
++    expect(controller.state.complete, isTrue);
++    expect(controller.round.rewarded, isFalse);
++    expect(controller.best, isEmpty);
++    expect(platform.disk(adapter.statsKey), isNull);
++    expect(platform.memory(adapter.statsKey), isNotNull);
++    final roundId = controller.round.id;
++    final resultId = controller.round.resultId;
++    controller.dispose();
++    await newDartPreferences();
++    await expectLater(open(award: (id, _, __, ___) async {
++      ids.add(id);
++    }), throwsA(isA<MemoryStorageUnconfirmed>()));
++    expect(ids, [resultId]);
++    final stored = MemoryRound.read(
++        platform.disk(adapter.roundKey)!,
++        const FlutterMemoryCatalog(), _owner);
++    expect(stored.rewarded, isFalse);
++
++    platform.accept(adapter.statsKey);
++    final resumed = await open(award: (id, _, __, ___) async {
++      ids.add(id);
++    });
++    expect(resumed.round.id, roundId);
++    expect(resumed.round.rewarded, isFalse);
++    await resumed.settleReward();
++    expect(resumed.round.rewarded, isTrue);
++    expect(resumed.best, {'leicht': 4});
++    expect(ids, [resultId, resultId],
++        reason: 'The actual wallet must deduplicate this same result identity.');
++    untouchedKeys();
++  });
++
++  test('Corrupt historical statistics remain unchanged without a write barrier',
++      () async {
++    const corrupt = '{"best":{"leicht":"invalid"}}';
++    platform.seed(adapter.statsKey, corrupt);
++    final controller = await open();
++    expect(controller.statsWritable, isFalse);
++    expect(platform.writesFor(adapter.statsKey), isEmpty);
++    expect(platform.memory(adapter.statsKey), corrupt);
++    expect(platform.disk(adapter.statsKey), corrupt);
++    untouchedKeys();
++  });
++
++  test('Foreign round payload is rejected before any confirming write',
++      () async {
++    final first = await open();
++    first.dispose();
++    final foreign = Map<String, Object?>.from(first.round.toJson())
++      ..['owner'] = _otherOwner;
++    platform.seed(adapter.roundKey, jsonEncode(foreign));
++    final before = platform.writes.length;
++    await expectLater(open(), throwsFormatException);
++    expect(platform.writes.length, before);
++    expect(platform.disk(adapter.roundKey), jsonEncode(foreign));
++    untouchedKeys();
++  });
++
++  for (final target in ['round', 'stats']) {
++    test('Profile revocation during ' + target +
++        ' snapshot prevents a new confirmation write', () async {
++      final first = await open();
++      first.dispose();
++      if (target == 'stats') {
++        platform.seed(adapter.statsKey,
++            '{"difficulty":"leicht","best":{"leicht":7}}');
++      }
++      var current = true;
++      final gate = platform.holdRead(after: target == 'stats' ? 1 : 2);
++      final before = platform.writes.length;
++      final result = _outcome(open(current: () => current));
++      try {
++        await gate.entered.future.timeout(const Duration(seconds: 2));
++        current = false;
++      } finally {
++        gate.complete();
++      }
++      expect(await result, isA<StateError>());
++      expect(platform.writes.length, before);
++      untouchedKeys();
++    });
++  }
++
++  test('Profile revoked during confirmation cannot expose its late ACK',
++      () async {
++    final first = await open();
++    first.dispose();
++    var current = true;
++    var awards = 0;
++    final gate = platform.holdWrite(adapter.roundKey);
++    final before = platform.writes.length;
++    final result = _outcome(open(
++      current: () => current,
++      award: (_, __, ___, ____) async { awards++; },
++    ));
++    try {
++      await gate.entered.future.timeout(const Duration(seconds: 2));
++      current = false;
++    } finally {
++      gate.complete();
++    }
++    expect(await result, isA<StateError>());
++    expect(platform.writes.length - before, 1,
++        reason: 'The already accepted old-owner write may complete only once.');
++    expect(awards, 0);
++    untouchedKeys();
++  });
++
++  test('Profile loss on uncertain recovery blocks its confirming retry',
++      () async {
++    var current = true;
++    final controller = await open(current: () => current);
++    platform.fail(adapter.roundKey, _Reply.falseAfterMemory);
++    await expectLater(
++        controller.flip(0), throwsA(isA<MemoryStorageUnconfirmed>()));
++    platform.accept(adapter.roundKey);
++    final gate = platform.holdRead();
++    final before = platform.writes.length;
++    final result = _outcome(controller.flush());
++    try {
++      await gate.entered.future.timeout(const Duration(seconds: 2));
++      current = false;
++    } finally {
++      gate.complete();
++    }
++    expect(await result, isA<StateError>());
++    expect(platform.writes.length, before);
++    expect(controller.state.faceUp[0], isFalse);
++    untouchedKeys();
++  });
++
++  test('Uncertain recovery confirms the observed newer revision exactly',
++      () async {
++    final controller = await open();
++    platform.fail(adapter.roundKey, _Reply.falseAfterMemory);
++    await expectLater(
++        controller.flip(0), throwsA(isA<MemoryStorageUnconfirmed>()));
++    final pending = MemoryRound.read(
++        platform.memory(adapter.roundKey)!,
++        const FlutterMemoryCatalog(), _owner);
++    final newer = pending.copy(const FlutterMemoryCatalog(), paused: true);
++    final text = jsonEncode(newer.toJson());
++    platform.accept(adapter.roundKey);
++    await adapter.writeRound(text);
++    final before = platform.writesFor(adapter.roundKey).length;
++    await controller.flush();
++    final confirmations =
++        platform.writesFor(adapter.roundKey).skip(before).toList();
++    expect(confirmations.length, 1);
++    expect(confirmations.single['value'], text);
++    expect(jsonEncode(controller.round.toJson()), text);
++    expect(controller.round.paused, isTrue);
++    expect(platform.disk(adapter.roundKey), text);
++    untouchedKeys();
++  });
++
++  for (final target in ['stats', 'rewarded receipt']) {
++    test('Real AppState reward stays once after unconfirmed ' + target,
++        () async {
++      platform.seed(_walletKey, jsonEncode(_initialWallet.toJson()));
++      await preferences.reload();
++      final owner = await account();
++      final controller = await ownedController(owner);
++      final store = PreferencesMemoryStore(preferences, owner.owner);
++      final id = controller.round.resultId;
++      final roundId = controller.round.id;
++      var block = true;
++      platform.replyFor = (key, value) {
++        if (!block) return _Reply.success;
++        if (target == 'stats' && key == 'flutter.' + store.statsKey) {
++          return _Reply.falseAfterMemory;
++        }
++        if (target == 'rewarded receipt' &&
++            key == 'flutter.' + store.roundKey &&
++            (jsonDecode(value as String) as Map)['rewarded'] == true) {
++          return _Reply.falseAfterMemory;
++        }
++        return _Reply.success;
++      };
++
++      await expectLater(
++          _finish(controller), throwsA(isA<MemoryStorageUnconfirmed>()));
++      expect(controller.state.complete, isTrue);
++      expect(controller.round.rewarded, isFalse);
++      expect(controller.round.id, roundId);
++      oneRealReward(id);
++      expect(owner.wallet.snapshot.gameResultIds, [id]);
++      final failedSnapshot = platform.memory(
++          target == 'stats' ? store.statsKey : store.roundKey);
++      expect(failedSnapshot, isNotNull);
++      // A newly constructed controller must not skip an unconfirmed statistic
++      // or accept a native-cache receipt without its own positive barrier.
++      await expectLater(
++          ownedController(owner), throwsA(isA<MemoryStorageUnconfirmed>()));
++      oneRealReward(id);
++      expect(controller.round.rewarded, isFalse);
++
++      block = false;
++      await controller.settleReward();
++      expect(controller.round.id, roundId);
++      expect(controller.round.rewarded, isTrue);
++      expect(controller.best, {'leicht': 4});
++      oneRealReward(id);
++      controller.dispose();
++      final next = await ownedController(owner);
++      expect(next.round.id, isNot(roundId));
++      expect(next.state.complete, isFalse);
++      expect(next.state.difficulty, 'leicht');
++      expect(next.best, {'leicht': 4});
++      oneRealReward(id);
++      untouchedKeys();
++    });
++  }
++
++  test('Real completed Memory cannot accept an unconfirmed duplicate wallet ID',
++      () async {
++    platform.seed(_walletKey, jsonEncode(_initialWallet.toJson()));
++    await preferences.reload();
++    final firstAccount = await account();
++    var deliveryAccount = firstAccount;
++    final controller = await ownedController(
++      firstAccount,
++      award: (id, difficulty, kind, lumo) =>
++          deliveryAccount.award(id, difficulty, kind, lumo),
++    );
++    final store = PreferencesMemoryStore(preferences, firstAccount.owner);
++    final id = controller.round.resultId;
++    platform.fail(_walletKey, _Reply.falseAfterMemory);
++    await expectLater(_finish(controller), throwsStateError);
++    expect(controller.state.complete, isTrue);
++    expect(controller.round.rewarded, isFalse);
++    expect(durableWallet().stars, 7);
++    expect(durableWallet().xp, 40);
++    expect(durableWallet().gameResultIds, isEmpty);
++    final optimistic = RewardWallet.fromJson(
++        jsonDecode(platform.memory(_walletKey)!) as Map<String, dynamic>);
++    expect(optimistic.gameResultIds, [id]);
++
++    // A fresh real AppState/Wallet may load the same native optimistic value.
++    // Keep the existing controller and selection; no successful preference
++    // write is allowed to incidentally persist the dirty whole-file snapshot.
++    final beforeNewAccount = platform.writes.length;
++    deliveryAccount = await account(selectProfile: false);
++    expect(deliveryAccount.owner, firstAccount.owner);
++    expect(platform.writes.length, beforeNewAccount);
++    expect(deliveryAccount.wallet.snapshot.gameResultIds, [id]);
++    final statsBefore = platform.writesFor(store.statsKey).length;
++    final roundBefore = platform.writesFor(store.roundKey).length;
++    await expectLater(controller.settleReward(), throwsStateError);
++    expect(platform.writesFor(store.statsKey).length, statsBefore);
++    expect(platform.writesFor(store.roundKey).length, roundBefore);
++    expect(controller.round.rewarded, isFalse);
++    expect(durableWallet().stars, 7);
++    expect(durableWallet().gameResultIds, isEmpty);
++
++    platform.accept(_walletKey);
++    await controller.settleReward();
++    expect(controller.round.rewarded, isTrue);
++    expect(controller.best, {'leicht': 4});
++    oneRealReward(id);
++    untouchedKeys();
++  });
++}
+--- /dev/null
++++ b/test/reward_wallet_dedup_confirmation_test.dart
+@@ -0,0 +1,394 @@
++import 'dart:async';
++import 'dart:convert';
++
++import 'package:crypto/crypto.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:shared_preferences/shared_preferences.dart';
++import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
++
++import 'package:lumo_lernen/app/app_state.dart';
++import 'package:lumo_lernen/core/reward_wallet_repository.dart';
++
++const _walletKey = 'lumo_reward_wallet_v1';
++const _platformWalletKey = 'flutter.$_walletKey';
++const _otherKey = 'flutter.lumo.memory.round.v1.other-owner-fixture';
++const _otherValue = '{"unchanged":"other-owner-fixture"}';
++const _owner =
++    'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
++const _round = '0123456789abcdef0123456789abcdef';
++const _initialWallet = RewardWallet(
++  stars: 7,
++  xp: 40,
++  totalEarnedStars: 19,
++  streak: 3,
++  lumoCardsWinStreak: 2,
++);
++
++enum _Reply { success, falseAfterMemory, throwAfterMemory, throwAfterCommit }
++
++enum _Award { game, quiz, cards }
++
++class _Gate {
++  final entered = Completer<void>();
++  final released = Completer<void>();
++
++  void release() {
++    if (!released.isCompleted) released.complete();
++  }
++}
++
++/// Synthetic platform boundary, not an Android disk-failure experiment.
++/// The real Dart SharedPreferences cache remains in use. Native memory changes
++/// before the disk result, getAll reads that memory, and a successful commit
++/// copies the entire preference file. An identical retry can commit an already
++/// outstanding generation without changing native memory again.
++class _NativeCachePlatform extends InMemorySharedPreferencesStore {
++  _NativeCachePlatform() : super.withData({}) {
++    nativeMemory[_otherKey] = _otherValue;
++    seedWallet(_initialWallet);
++  }
++
++  final nativeMemory = <String, Object>{};
++  final durableDisk = <String, Object>{};
++  final walletPayloads = <String>[];
++  final _gates = <_Gate>[];
++  _Gate? _nextWalletGate;
++  _Reply walletReply = _Reply.success;
++  int writes = 0;
++  int positiveWalletReplies = 0;
++  int memoryGeneration = 0;
++  int diskGeneration = 0;
++  int diskWrites = 0;
++
++  void seedWallet(RewardWallet wallet) {
++    nativeMemory[_platformWalletKey] = jsonEncode(wallet.toJson());
++    durableDisk
++      ..clear()
++      ..addAll(nativeMemory);
++    memoryGeneration = 0;
++    diskGeneration = 0;
++  }
++
++  _Gate holdNextWalletWrite() {
++    final gate = _Gate();
++    _gates.add(gate);
++    _nextWalletGate = gate;
++    return gate;
++  }
++
++  RewardWallet get memoryWallet => _decode(nativeMemory);
++  RewardWallet get diskWallet => _decode(durableDisk);
++
++  RewardWallet _decode(Map<String, Object> source) => RewardWallet.fromJson(
++        jsonDecode(source[_platformWalletKey] as String)
++            as Map<String, dynamic>,
++      );
++
++  void _commitFile() {
++    if (diskGeneration >= memoryGeneration) return;
++    durableDisk
++      ..clear()
++      ..addAll(nativeMemory);
++    diskGeneration = memoryGeneration;
++    diskWrites++;
++  }
++
++  @override
++  Future<Map<String, Object>> getAll() async =>
++      Map<String, Object>.from(nativeMemory);
++
++  @override
++  Future<bool> setValue(String valueType, String key, Object value) async {
++    writes++;
++    final isWallet = key == _platformWalletKey;
++    if (isWallet) {
++      walletPayloads.add(value as String);
++      final gate = _nextWalletGate;
++      _nextWalletGate = null;
++      if (gate != null) {
++        gate.entered.complete();
++        await gate.released.future;
++      }
++    }
++    if (nativeMemory[key] != value) {
++      nativeMemory[key] = value;
++      memoryGeneration++;
++    }
++    final reply = isWallet ? walletReply : _Reply.success;
++    if (reply == _Reply.success || reply == _Reply.throwAfterCommit) {
++      _commitFile();
++    }
++    switch (reply) {
++      case _Reply.success:
++        if (isWallet) positiveWalletReplies++;
++        return true;
++      case _Reply.falseAfterMemory:
++        return false;
++      case _Reply.throwAfterMemory:
++        throw StateError('Native memory changed; disk commit was not confirmed');
++      case _Reply.throwAfterCommit:
++        throw StateError('Disk commit completed; the positive reply was lost');
++    }
++  }
++
++  @override
++  Future<bool> remove(String key) async {
++    writes++;
++    if (nativeMemory.remove(key) != null) memoryGeneration++;
++    _commitFile();
++    return true;
++  }
++
++  @override
++  Future<bool> clear() async {
++    writes++;
++    if (nativeMemory.isNotEmpty) memoryGeneration++;
++    nativeMemory.clear();
++    _commitFile();
++    return true;
++  }
++
++  void restartFromDisk() {
++    nativeMemory
++      ..clear()
++      ..addAll(durableDisk);
++    memoryGeneration = diskGeneration;
++    SharedPreferences.resetStatic();
++  }
++
++  void releaseGates() {
++    for (final gate in _gates) {
++      gate.release();
++    }
++  }
++}
++
++String _id(_Award award) => '${switch (award) {
++      _Award.game => 'memory',
++      _Award.quiz => 'quiz',
++      _Award.cards => 'cards',
++    }}:$_owner:$_round';
++
++RewardWallet _awarded(_Award award, {String? id}) {
++  final resultId = id ?? _id(award);
++  return switch (award) {
++    _Award.game => RewardWallet(
++        stars: 9,
++        xp: 56,
++        totalEarnedStars: 21,
++        streak: 3,
++        lumoCardsWinStreak: 2,
++        gameResultIds: [resultId],
++      ),
++    _Award.quiz => RewardWallet(
++        stars: 57,
++        xp: 40,
++        totalEarnedStars: 69,
++        streak: 3,
++        lumoCardsWinStreak: 2,
++        gameResultIds: [resultId],
++      ),
++    _Award.cards => RewardWallet(
++        stars: 12,
++        xp: 70,
++        totalEarnedStars: 24,
++        streak: 3,
++        lumoCardsWinStreak: 3,
++        gameResultIds: [resultId],
++      ),
++  };
++}
++
++Future<RewardWallet> _deliver(RewardWalletRepository wallet, _Award award) =>
++    switch (award) {
++      _Award.game => wallet.awardGameResult(
++          resultId: _id(award), stars: 2, xp: 16),
++      _Award.quiz => wallet.awardQuizResult(resultId: _id(award), stars: 50),
++      _Award.cards =>
++        wallet.awardLumoCardsResult(resultId: _id(award), won: true),
++    };
++
++void main() {
++  TestWidgetsFlutterBinding.ensureInitialized();
++  late _NativeCachePlatform platform;
++
++  setUp(() {
++    SharedPreferences.setMockInitialValues({});
++    platform = _NativeCachePlatform();
++    SharedPreferencesStorePlatform.instance = platform;
++  });
++
++  tearDown(() {
++    platform.releaseGates();
++    SharedPreferences.setMockInitialValues({});
++  });
++
++  for (final award in _Award.values) {
++    test('${award.name}: known result waits for a positive duplicate commit',
++        () async {
++      final expected = _awarded(award);
++      platform.seedWallet(expected);
++      final wallet = RewardWalletRepository();
++      final before = await wallet.load();
++      final events = <RewardWallet>[];
++      final subscription = wallet.changes.listen(events.add);
++      addTearDown(subscription.cancel);
++      final gate = platform.holdNextWalletWrite();
++      var acknowledged = false;
++      final result = _deliver(wallet, award).then((value) {
++        acknowledged = true;
++        return value;
++      });
++      await gate.entered.future.timeout(const Duration(seconds: 2));
++      expect(acknowledged, isFalse);
++      expect(wallet.snapshot, same(before));
++      expect(platform.positiveWalletReplies, 0);
++      gate.release();
++      expect(await result, same(before));
++      await Future<void>.delayed(Duration.zero);
++      expect(platform.positiveWalletReplies, 1);
++      expect(platform.walletPayloads, [jsonEncode(expected.toJson())]);
++      expect(platform.diskWallet.toJson(), expected.toJson());
++      expect(events, isEmpty);
++      expect(platform.durableDisk[_otherKey], _otherValue);
++    });
++
++    for (final fault in [
++      _Reply.falseAfterMemory,
++      _Reply.throwAfterMemory,
++      _Reply.throwAfterCommit,
++    ]) {
++      test('${award.name}: ${fault.name} stays unconfirmed in a new wallet',
++          () async {
++        final first = RewardWalletRepository();
++        await first.load();
++        final expected = _awarded(award);
++        platform.walletReply = fault;
++        await expectLater(_deliver(first, award), throwsStateError);
++        expect(first.snapshot.toJson(), _initialWallet.toJson());
++        expect(platform.memoryWallet.toJson(), expected.toJson());
++        expect(
++          platform.diskWallet.toJson(),
++          fault == _Reply.throwAfterCommit
++              ? expected.toJson()
++              : _initialWallet.toJson(),
++        );
++        expect(platform.positiveWalletReplies, 0);
++
++        // Recreate Dart preferences and the repository, but retain native mMap.
++        // A successful reload still reads optimistic native memory, not disk.
++        SharedPreferences.resetStatic();
++        final preferences = await SharedPreferences.getInstance();
++        await preferences.reload();
++        expect(preferences.getString(_walletKey),
++            platform.nativeMemory[_platformWalletKey]);
++        final writesBeforeLoad = platform.writes;
++        final reopened = RewardWalletRepository();
++        final loaded = await reopened.load();
++        expect(loaded.toJson(), expected.toJson());
++        expect(platform.writes, writesBeforeLoad);
++        final events = <RewardWallet>[];
++        final subscription = reopened.changes.listen(events.add);
++        addTearDown(subscription.cancel);
++
++        await expectLater(_deliver(reopened, award), throwsStateError);
++        expect(platform.walletPayloads, hasLength(2));
++        expect(platform.positiveWalletReplies, 0);
++        expect(reopened.snapshot, same(loaded));
++        expect(
++          platform.diskWallet.toJson(),
++          fault == _Reply.throwAfterCommit
++              ? expected.toJson()
++              : _initialWallet.toJson(),
++        );
++
++        platform.walletReply = _Reply.success;
++        expect(await _deliver(reopened, award), same(loaded));
++        await Future<void>.delayed(Duration.zero);
++        expect(platform.walletPayloads, hasLength(3));
++        expect(platform.walletPayloads.toSet(), {jsonEncode(expected.toJson())});
++        expect(platform.positiveWalletReplies, 1);
++        expect(platform.diskWallet.toJson(), expected.toJson());
++        expect(platform.diskWallet.gameResultIds, [_id(award)]);
++        expect(events, isEmpty);
++        expect(platform.durableDisk[_otherKey], _otherValue);
++
++        platform.restartFromDisk();
++        final cold = await RewardWalletRepository().load();
++        expect(cold.toJson(), expected.toJson());
++        expect(platform.walletPayloads, hasLength(3));
++      });
++    }
++  }
++
++  for (final fault in [_Reply.falseAfterMemory, _Reply.throwAfterMemory]) {
++    test('AppState ${fault.name}: fresh wallet cannot clear an unsaved result',
++        () async {
++      final wallet = RewardWalletRepository();
++      await wallet.load();
++      final app = LumoAppState(walletRepository: wallet);
++      addTearDown(app.dispose);
++      await app.school.setActiveStudent('wallet-confirmation-child');
++      final lease = await app.captureLearningProfile();
++      final owner = sha256.convert(utf8.encode(lease.studentId)).toString();
++      final resultId = 'memory:$owner:$_round';
++      final expected = _awarded(_Award.game, id: resultId);
++      platform.walletReply = fault;
++      await expectLater(
++        app.recordMemoryResult(
++          lease: lease,
++          resultId: resultId,
++          difficulty: 'leicht',
++          kindPairs: 4,
++          lumoPairs: 0,
++        ),
++        throwsStateError,
++      );
++      expect(app.hasPendingRewards, isTrue);
++      expect(app.rewardSaveError, isNotNull);
++      expect(wallet.snapshot.toJson(), _initialWallet.toJson());
++      expect(platform.memoryWallet.toJson(), expected.toJson());
++      expect(platform.diskWallet.toJson(), _initialWallet.toJson());
++
++      // Do not set the profile again: any unrelated positive preference commit
++      // could legitimately flush the entire outstanding native-memory file.
++      final writesAfterFailure = platform.writes;
++      SharedPreferences.resetStatic();
++      final reopenedWallet = RewardWalletRepository();
++      final reopened = LumoAppState(walletRepository: reopenedWallet);
++      addTearDown(reopened.dispose);
++      final reopenedLease = await reopened.captureLearningProfile();
++      expect(reopenedLease.studentId, lease.studentId);
++      expect(platform.writes, writesAfterFailure);
++      await expectLater(
++        reopened.recordMemoryResult(
++          lease: reopenedLease,
++          resultId: resultId,
++          difficulty: 'leicht',
++          kindPairs: 4,
++          lumoPairs: 0,
++        ),
++        throwsStateError,
++      );
++      expect(platform.writes, writesAfterFailure + 1);
++      expect(reopened.hasPendingRewards, isTrue);
++      expect(reopened.rewardSaveError, isNotNull);
++      expect(platform.diskWallet.toJson(), _initialWallet.toJson());
++      expect(platform.positiveWalletReplies, 0);
++
++      platform.walletReply = _Reply.success;
++      await reopened.retryRewards();
++      expect(reopened.hasPendingRewards, isFalse);
++      expect(reopened.rewardSaveError, isNull);
++      expect(reopened.state.stars, 9);
++      expect(reopened.state.xp, 56);
++      expect(platform.diskWallet.toJson(), expected.toJson());
++      expect(platform.diskWallet.gameResultIds, [resultId]);
++      expect(platform.positiveWalletReplies, 1);
++      expect(platform.walletPayloads, hasLength(3));
++      expect(platform.durableDisk[_otherKey], _otherValue);
++      platform.restartFromDisk();
++      expect((await RewardWalletRepository().load()).toJson(), expected.toJson());
++    });
++  }
++}
+--- a/test/reward_wallet_queue_zone_test.dart
++++ b/test/reward_wallet_queue_zone_test.dart
+@@ -184,6 +184,9 @@
+     SharedPreferencesStorePlatform.instance = store;
+     final wallet = RewardWalletRepository();
+     await wallet.load();
++    final emitted = <RewardWallet>[];
++    final subscription = wallet.changes.listen(emitted.add);
++    addTearDown(subscription.cancel);
+     final originalZone = _HeldMicrotasks();
+     Object? failure;
+     var incorrectlySucceeded = false;
+@@ -199,6 +202,7 @@
+     expect(wallet.snapshot.stars, 0);
+     expect(wallet.snapshot.gameResultIds, isEmpty);
+     expect((await store.persisted())['stars'], 0);
++    expect(emitted, isEmpty);
+ 
+     final retried = await _fromCurrentZone(
+       originalZone,
+@@ -211,12 +215,17 @@
+     expect(retried.stars, 2);
+     expect(retried.xp, 16);
+     expect(retried.gameResultIds, ['retry-round']);
+-    await wallet.awardGameResult(
++    final replay = await wallet.awardGameResult(
+       resultId: 'retry-round',
+       stars: 2,
+       xp: 16,
+     );
+-    expect(store.writes, hasLength(2));
++    await Future<void>.delayed(Duration.zero);
++    // Rejection, successful retry, then the same-value durability confirmation.
++    expect(store.writes, hasLength(3));
++    expect(store.writes, List.filled(3, retried.toJson()));
++    expect(replay, same(retried));
++    expect(emitted.map((value) => value.toJson()).toList(), [retried.toJson()]);
+     expect(await store.persisted(), retried.toJson());
+   });
+ 
+@@ -283,6 +292,9 @@
+     expect(wallet.snapshot.xp, 80);
+     expect(await store.persisted(), wallet.snapshot.toJson());
+     final reopened = RewardWalletRepository();
++    final replayEvents = <RewardWallet>[];
++    final replaySubscription = reopened.changes.listen(replayEvents.add);
++    addTearDown(replaySubscription.cancel);
+     final replay = await reopened.awardGameResult(
+       resultId: 'second',
+       stars: 5,
+@@ -290,6 +302,12 @@
+     );
+     expect(replay.stars, 10);
+     expect(replay.gameResultIds, ['first', 'second', 'third']);
+-    expect(store.writes, hasLength(3));
++    await Future<void>.delayed(Duration.zero);
++    // Reopening confirms the final snapshot; it grants no fourth reward.
++    expect(store.writes, hasLength(4));
++    expect(store.writes.last, store.writes[2]);
++    expect(replay.toJson(), wallet.snapshot.toJson());
++    expect(await store.persisted(), replay.toJson());
++    expect(replayEvents, isEmpty);
+   });
+ }
+--- a/test/reward_wallet_transaction_test.dart
++++ b/test/reward_wallet_transaction_test.dart
+@@ -206,7 +206,32 @@
+       expect(savedAward['gameResultIds'], ['race-1']);
+       await wallet.awardGameResult(resultId: 'race-1', stars: 6, xp: 20);
+       expect(wallet.snapshot.stars, 9);
+-      expect(store.writtenSnapshots, hasLength(4));
++      await Future<void>.delayed(Duration.zero);
++      // The duplicate is a confirmed same-value write, never another award.
++      expect(store.writtenSnapshots, hasLength(5));
++      expect(store.writtenSnapshots[3], savedAward);
++      expect(store.writtenSnapshots[4], savedAward);
++      expect(await store.persistedWallet(), savedAward);
++      expect(
++        store.writtenSnapshots
++            .map((value) => [value['stars'], value['xp'], value['gameResultIds']])
++            .toList(),
++        [
++          [6, 20, ['race-1']],
++          [3, 0, <String>[]],
++          [3, 5, <String>[]],
++          [9, 25, ['race-1']],
++          [9, 25, ['race-1']],
++        ],
++      );
++      expect(
++        emitted.map((value) => [value.stars, value.xp, value.gameResultIds]).toList(),
++        [
++          [3, 0, <String>[]],
++          [3, 5, <String>[]],
++          [9, 25, ['race-1']],
++        ],
++      );
+       await subscription.cancel();
+     });
+   }
+--- a/test/games/memory_profile_storage_test.dart
++++ b/test/games/memory_profile_storage_test.dart
+@@ -168,28 +168,54 @@
+     addTearDown(app.dispose);
+     addTearDown(() => tester.binding.setSurfaceSize(null));
+     await _open(tester, app);
++    expect(store.writes, [
++      (key: 'flutter.${_key(_a)}',
++       value: '{"difficulty":"leicht","best":{"leicht":7}}'),
++    ], reason: 'Opening confirms the unchanged, validated child snapshot.');
+     final gate = Completer<void>();
+     store.blockedKey = 'flutter.${_key(_a)}';
+     store.gate = gate;
+-    await _choose(tester, MemoryDifficulty.profi);
+-    expect(store.writes, hasLength(1));
+-    await app.school.setActiveStudent(_b);
+-    await tester.pump();
+-    expect(_backs(), findsNothing);
+-    expect(find.textContaining('Dein Rekord:'), findsNothing);
+-    await _open(tester, app);
+-    expect(find.text('Dein Rekord: 11 Züge'), findsOneWidget);
+-    await _choose(tester, MemoryDifficulty.knifflig);
+-    gate.complete();
+-    await tester.pump();
+-    await tester.pump();
+-    final disk = await store.disk();
+-    expect(jsonDecode(disk['flutter.${_key(_a)}']! as String),
+-        {'difficulty': 'profi', 'best': {'leicht': 7}});
+-    expect(jsonDecode(disk['flutter.${_key(_b)}']! as String),
+-        {'difficulty': 'knifflig', 'best': {'mittel': 11}});
+-    expect(disk['flutter.lumo_memory_v2'], _legacy);
+-    await tester.pumpWidget(const SizedBox.shrink());
++    try {
++      await _choose(tester, MemoryDifficulty.profi);
++      expect(store.writes, hasLength(2));
++      expect(store.writes.last,
++          (key: 'flutter.${_key(_a)}',
++           value: '{"difficulty":"profi","best":{"leicht":7}}'));
++      expect((await store.disk())['flutter.${_key(_a)}'],
++          '{"difficulty":"leicht","best":{"leicht":7}}');
++      await app.school.setActiveStudent(_b);
++      await tester.pump();
++      expect(_backs(), findsNothing);
++      expect(find.textContaining('Dein Rekord:'), findsNothing);
++      await _open(tester, app);
++      expect(find.text('Dein Rekord: 11 Züge'), findsOneWidget);
++      await _choose(tester, MemoryDifficulty.knifflig);
++      gate.complete();
++      await tester.pump();
++      await tester.pump();
++      final disk = await store.disk();
++      expect(jsonDecode(disk['flutter.${_key(_a)}']! as String),
++          {'difficulty': 'profi', 'best': {'leicht': 7}});
++      expect(jsonDecode(disk['flutter.${_key(_b)}']! as String),
++          {'difficulty': 'knifflig', 'best': {'mittel': 11}});
++      expect(disk['flutter.lumo_memory_v2'], _legacy);
++      expect(store.writes, [
++        (key: 'flutter.${_key(_a)}',
++         value: '{"difficulty":"leicht","best":{"leicht":7}}'),
++        (key: 'flutter.${_key(_a)}',
++         value: '{"difficulty":"profi","best":{"leicht":7}}'),
++        (key: 'flutter.${_key(_b)}',
++         value: '{"difficulty":"mittel","best":{"mittel":11}}'),
++        (key: 'flutter.${_key(_b)}',
++         value: '{"difficulty":"knifflig","best":{"mittel":11}}'),
++      ]);
++    } finally {
++      // A failed assertion must not retain this child's static owner queue.
++      if (!gate.isCompleted) gate.complete();
++      await tester.pump();
++      await tester.pump();
++      await tester.pumpWidget(const SizedBox.shrink());
++    }
+   });
+ 
+   testWidgets('Delayed identity load cannot expose old best after profile switch',
+@@ -227,21 +253,41 @@
+     addTearDown(app.dispose);
+     addTearDown(() => tester.binding.setSurfaceSize(null));
+     await _open(tester, app);
++    expect(store.writes, [
++      (key: 'flutter.${_key(_a)}',
++       value: '{"difficulty":"leicht","best":{"leicht":7}}'),
++    ], reason: 'Opening confirms the unchanged, validated child snapshot.');
+     final gate = Completer<void>();
+     store.blockedKey = 'flutter.${_key(_a)}';
+     store.gate = gate;
+-    await _choose(tester, MemoryDifficulty.mittel);
+-    await _choose(tester, MemoryDifficulty.profi);
+-    expect(store.writes, hasLength(1), reason: 'Second write waits for the first');
+-    expect(jsonDecode(store.writes.single.value)['difficulty'], 'mittel');
+-    gate.complete();
+-    await tester.pump();
+-    await tester.pump();
+-    expect(store.writes, hasLength(2));
+-    expect(jsonDecode(store.writes.last.value)['difficulty'], 'profi');
+-    expect(jsonDecode((await store.disk())['flutter.${_key(_a)}']! as String),
+-        {'difficulty': 'profi', 'best': {'leicht': 7}});
+-    await tester.pumpWidget(const SizedBox.shrink());
++    try {
++      await _choose(tester, MemoryDifficulty.mittel);
++      await _choose(tester, MemoryDifficulty.profi);
++      expect(store.writes, hasLength(2),
++          reason: 'After the opening confirmation, the second choice waits for the first.');
++      expect(jsonDecode(store.writes[1].value)['difficulty'], 'mittel');
++      expect((await store.disk())['flutter.${_key(_a)}'],
++          '{"difficulty":"leicht","best":{"leicht":7}}');
++      gate.complete();
++      await tester.pump();
++      await tester.pump();
++      expect(store.writes, hasLength(3));
++      expect(store.writes.map((entry) => entry.key).toList(),
++          List.filled(3, 'flutter.${_key(_a)}'));
++      expect(store.writes.map((entry) => jsonDecode(entry.value)).toList(), [
++        {'difficulty': 'leicht', 'best': {'leicht': 7}},
++        {'difficulty': 'mittel', 'best': {'leicht': 7}},
++        {'difficulty': 'profi', 'best': {'leicht': 7}},
++      ]);
++      expect(jsonDecode(store.writes.last.value)['difficulty'], 'profi');
++      expect(jsonDecode((await store.disk())['flutter.${_key(_a)}']! as String),
++          {'difficulty': 'profi', 'best': {'leicht': 7}});
++    } finally {
++      if (!gate.isCompleted) gate.complete();
++      await tester.pump();
++      await tester.pump();
++      await tester.pumpWidget(const SizedBox.shrink());
++    }
+   });
+ 
+   testWidgets('Unreadable existing child stats are preserved instead of reset',

@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "base": "7ac736fdbd042769592e88de0f9849632242316d",
+  "base_tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2",
+  "scope": "10 paths; no active checkout or Git mutation; no tests/imports",
+  "protected_tree_entries": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "mode": "100644",
+      "git_blob": "c996a022d388632ed13965b392181aef773d9025",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "mode": "100644",
+      "git_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "git_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "git_blob": "ba1d6097de66ab0b38cbe8ae2915bf36525bf264",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "lib/core/embedded_game_service.dart",
+      "mode": "100644",
+      "git_blob": "2cf39b896ab7121ec45384f9d2b65147f16b9156",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "lib/core/math_task_templates.dart",
+      "mode": "100644",
+      "git_blob": "85fbad4a0b09753a7f22663690a9660f98382f39",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "mode": "100644",
+      "git_blob": "f0159983be551133bf9a3ce83e6c42de8b0d7a9b",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "mode": "100644",
+      "git_blob": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "lib/features/games/memory/memory_table_session.dart",
+      "mode": "100644",
+      "git_blob": "1ea0737097ab024d4e91fbbf645a241af9001f9c",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "mode": "100644",
+      "git_blob": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "mode": "100644",
+      "git_blob": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "mode": "100644",
+      "git_blob": "f41e6d7351304deb9635116b0635845abac8932c",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "lib/features/lumo3d/native_table_transport.dart",
+      "mode": "100644",
+      "git_blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "mode": "100644",
+      "git_blob": "123c13786584c3f9c487ae1b71317841d2995420",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "git_blob": "b3a8bd28c80dcb750f969daeb948480ac564a569",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "mode": "100644",
+      "git_blob": "505ec1d0b4602a4b9493b279396cffb4d678217d",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "test/games/connect_four_native_route_test.dart",
+      "mode": "100644",
+      "git_blob": "d5178ab675bbc83b8fcb6dd0f6a3b7d675b1f3d0",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "test/games/memory_preferences_durability_test.dart",
+      "mode": "100644",
+      "git_blob": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    },
+    {
+      "path": "test/reading_asr_evidence_boundary_test.dart",
+      "mode": "100644",
+      "git_blob": "fd5e624055383e935bfd5fab074d62cb746f396c",
+      "binding": "unchanged base-tree entry; no replacement in this proposal"
+    }
+  ],
+  "direct_dependency_bytes": [
+    {
+      "repository_path": "lib/features/games/shared/lumo_game_pause_scope.dart",
+      "mode": "100644",
+      "path": "reference-source/current/lib/features/games/shared/lumo_game_pause_scope.dart",
+      "bytes": 12273,
+      "sha256": "2098bb9090936ab041905054beaced3133edeb941880757a654d303d51e039e6",
+      "git_blob": "9ffc5f25494bb03c64a68cd704d5069aae41013e"
+    },
+    {
+      "repository_path": "lib/features/games/connect_four/connect_four_round.dart",
+      "mode": "100644",
+      "path": "reference-source/current/lib/features/games/connect_four/connect_four_round.dart",
+      "bytes": 12082,
+      "sha256": "dcc411d6687df70934d83253990248c4a0654b13a36ec54338ec43a257329754",
+      "git_blob": "853d9e4a59475725a44db8f6c252e691f0bcdad8"
+    },
+    {
+      "repository_path": "lib/features/games/memory/memory_table_session.dart",
+      "mode": "100644",
+      "path": "reference-source/current/lib/features/games/memory/memory_table_session.dart",
+      "bytes": 9373,
+      "sha256": "08fb0ae23a3ed5c532072e411102dd9ef9f2a5f430d1de954d1de42da5328b64",
+      "git_blob": "1ea0737097ab024d4e91fbbf645a241af9001f9c"
+    },
+    {
+      "repository_path": ".github/probes/modernization_android_tour.py",
+      "mode": "100644",
+      "path": "reference-source/current/.github/probes/modernization_android_tour.py",
+      "bytes": 78635,
+      "sha256": "7d2034119f06846ede165ec039dfab54e31aafd02a5e05c7fef02d9a75f31bf1",
+      "git_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff"
+    },
+    {
+      "repository_path": "pubspec.yaml",
+      "mode": "100644",
+      "path": "reference-source/current/pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+    },
+    {
+      "repository_path": "pubspec.lock",
+      "mode": "100644",
+      "path": "reference-source/current/pubspec.lock",
+      "bytes": 24469,
+      "sha256": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea",
+      "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1"
+    },
+    {
+      "repository_path": "lib/features/games/memory/lumo_memory_game.dart",
+      "mode": "100644",
+      "path": "reference-source/current/lib/features/games/memory/lumo_memory_game.dart",
+      "bytes": 52654,
+      "sha256": "b90ab76e89a1f8d2258e1085e96ab8b032651b75b650dd7c497807a74882c380",
+      "git_blob": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43"
+    }
+  ],
+  "native_memory_presenter_original": {
+    "path": "reference-source/native-f9/scripts/games/memory/memory_table.gd",
+    "bytes": 31443,
+    "sha256": "929d4a32e9dd0528e4941208dfaf949ef286e584685924af28bbe8e403be8c33",
+    "git_blob": "9c998e33aee127453a67d25a6e020638472b8387",
+    "binding_scope": "Local original bytes rehashed here; equality to f9 was read and reported by Godot. No duplicate Native API read."
+  },
+  "root_c4_layout": "Only the exact two producer patches apply to _place catch and the new _retryFinishedRound. Exact inverse yields all 43,222 original bytes; all UI/layout/scroll/48dp/native-entry code is preserved.",
+  "wallet": "Only the three already-known result-ID branches gain await _persist(current). _transaction, _commit, _persist, _emit, amounts, validation, queues and migration are unchanged.",
+  "memory": "Exact published corrected producer bytes on identical 7ac/28462 preimages. Keys, owner queue, rules, random state, result IDs and existing reward function remain; positive write confirmation is added.",
+  "pr508_collision_contract": {
+    "base_c4_blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+    "this_pack": [
+      "_place catch",
+      "new _retryFinishedRound"
+    ],
+    "godot_separate": [
+      "_initializeRound automatic native launch",
+      "_setMode/_setLevel native-opening guards",
+      "column UI native-opening guard",
+      "native-route and games-flow tests"
+    ],
+    "status": "Disjoint source regions reported to Godot; combined final C4 blob belongs to Root and is not claimed here."
+  },
+  "excluded_preview": {
+    "paths": [
+      ".github/probes/creative_android_probe.py",
+      "tools/android_qa/tests/test_kart_preview_skip.py"
+    ],
+    "reason": "7ac has no matching preview-skip caller/test; its current tour has no Tippen zum Überspringen/preview-skip call. Whole producer helper would drop current Boru/standalone-caption guards. Root owns separate OCR decision; Pipeline owns current-frame reuse."
+  }
+}
