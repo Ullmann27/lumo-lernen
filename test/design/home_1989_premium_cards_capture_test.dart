@@ -152,12 +152,21 @@ void main() {
       await tester.pump(const Duration(milliseconds: 250));
       expect(subjects.hitTestable(), findsOneWidget);
       await tester.tap(subjects);
+      // Start the expansion ticker before advancing it to its completed frame.
+      await tester.pump();
       await tester.pump(const Duration(milliseconds: 650));
       expect(
         find.descendant(of: expansion, matching: find.text('Deine Lernfächer')),
         findsOneWidget,
       );
       final first = find.byKey(const ValueKey('home-island-mathe'));
+      expect(first, findsOneWidget);
+      debugPrint(
+        '[HomeCaptureExpansion] device=$device '
+        'scroll=${tester.state<ScrollableState>(homeScroll).position.pixels} '
+        'firstSubject=${tester.getRect(first)} '
+        'hits=${first.hitTestable().evaluate().length}',
+      );
       await tester.scrollUntilVisible(
         first.hitTestable(),
         270,

@@ -64,6 +64,10 @@ See ../home-subject-capture-20261114 for exact hashes and observed limitations.
 
 QA pull request: https://github.com/Ullmann27/lumo-lernen/pull/501
 QA branch: repair/lumo-capture-state-20261114. Its first source checkpoint is
-c54d9aa3a4dccab6c1cf677c9857abf77df66174. This documentation-only follow-up
-creates the branch push needed to invoke the existing Direct-Village workflow.
-The Home and Village test source blobs remain identical to that checkpoint.
+c54d9aa3a4dccab6c1cf677c9857abf77df66174. The documentation-only follow-up
+857b91c4aab28bd0552194c7223216489bb6766c also generated a branch push. The direct
+push-run API subsequently confirmed that the initial checkpoint had already
+started Direct-Village run 43583899148; the commit-run convenience wrapper
+filters to pull_request events and did not show it. The follow-up started
+Direct-Village run 43583995673 and Home run 43583996815. The Home and Village
+test source blobs remain identical to the first checkpoint.
