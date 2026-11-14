@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T03:16:05.466568+00:00",
+  "reviewer": "pipeline_repair",
+  "scope": "Independent read-only review of the two new diagnostic-binding files and the called existing metadata/APK identity contracts. No tests, APK download, device execution, source edit or Git action by this reviewer.",
+  "result": "No concrete source-binding or fail-open blocker found in this frozen revision.",
+  "sources": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/scripts/verify_unchanged_apk_diagnostic.py",
+      "bytes": 19033,
+      "sha256": "cf9a078532093362e3c4c3fe0442697115bbc277b3c2cff1abb7a3103f0c437c"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "bytes": 21760,
+      "sha256": "adb095bbedb9f3b4922493648e86f389b5a042d432ab59b6e5a7d2496e7f40da"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/.github/probes/studio_creative_android_probe.py",
+      "bytes": 67197,
+      "sha256": "fac7b66296344b39ee99d858ee47d80503ee27027d56020cafb7eb2308e2cfd9"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/.github/probes/modernization_android_tour.py",
+      "bytes": 69612,
+      "sha256": "3b5ffbd29d6a4c8ccb9bd2850cef55310f52841ab31a82912bea59bbc96278ba"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/.github/probes/creative_android_probe.py",
+      "bytes": 52616,
+      "sha256": "112ddf4dad2ac5039b7203d8dcc2fa82ee91c517c6e393b5b5409211dcc50870"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/scripts/probes/pr207_android_smoke.py",
+      "bytes": 14884,
+      "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "dfcacccb96d5a4b730e3df7b834aa5e78a69a0cf48122ec8242dfcb377caf7cb"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613"
+    }
+  ],
+  "producer_source_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-unchanged-apk-diagnostic-contract/source-freeze.json",
+    "sha256": "879ad3ed9a822ad97a201f05ddfa0e51a39b6f98dd90a2bf1874c9094a057f36"
+  },
+  "observations": [
+    "Candidate is fixed to actual Host7b16/treefe430, Native17f5, original Run43540111465 attempt1, successful Build132278438809, original candidate Artifact14093773196/digest/648186489 bytes. Overall failed Android run is retained and is not treated as successful Android acceptance.",
+    "QA is a distinct actual committed clean checkout with explicit PR-head source, tree, run/attempt, fixed diagnostic workflow/branch and one of the four expected jobs. Both original metadata collections must be complete with unique IDs.",
+    "The existing real APK identity verifier is called inside candidate-source CWD and the original CWD is restored even on failure; the committed QA helper is not relabeled as APK source.",
+    "Actual whole APK digest is checked through the unchanged existing verifier; provenance, exact x86 ABI, version, signer, PCK identity and build sums are additionally constrained. Embedded PCK must be unique, regular, unencrypted and exact size, and its full read supplies ZIP CRC plus SHA256. Normal source/input/APK mutations are checked before/after.",
+    "Reports are newly created atomically via same-directory temporary file plus no-overwrite hardlink, and BOUND is only a preflight status. Missing/invalid conditions produce no acceptance report.",
+    "The complete candidate ZIP itself is deliberately not read by this preflight; its API identity is bound, while actual extracted APK/PCK bytes are independently checked. Original signer provenance is carried through the unchanged APK hash, with no claim of a new apksigner run."
+  ],
+  "preservation": {
+    "full_files_read": [
+      "scripts/verify_unchanged_apk_diagnostic.py",
+      "scripts/tests/test_verify_unchanged_apk_diagnostic.py"
+    ],
+    "existing_functions_read": [
+      "studio_creative_android_probe.verify_candidate_metadata",
+      "studio_creative_android_probe.committed_helper",
+      "modernization_android_tour.verify_apk_identity"
+    ],
+    "frozen_source_hashes_checked": 8,
+    "original_metadata_gzip_roundtrips_compared": 3
+  },
+  "tests": {
+    "performed_by_reviewer": false,
+    "owner_result_path": "/workspace/scratch/b3485b7bb989/host-7b16-unchanged-apk-diagnostic-contract/focused-final-result.json",
+    "owner_result_sha256": "b951a54f038c550b23e901c3bace328984530f317df855f13770655e0a5f72d2",
+    "owner_reported_tests": 18,
+    "owner_scope": "Offline synthetic source/API/small APK counterexamples; no actual APK/device run."
+  },
+  "limits": [
+    "No future diagnostic job or runtime success inferred.",
+    "No large candidate archive downloaded or new tests run by this reviewer.",
+    "Final diagnostic workflow and continuous ANR observation are separate review scopes."
+  ]
+}

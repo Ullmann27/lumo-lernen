@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """Additional real-input Android evidence for the unchanged Studio candidate.
 
-The original candidate supplies its APK identity verifier, live accessibility,
-OCR, touch-readiness and read-only save helpers. This separate probe never
-writes app preferences or game saves. Recorded motion needs human review;
-neither screenrecord timestamps nor saved checkpoints measure game FPS/physics.
+The committed candidate normally supplies its observation helpers. An explicit
+unchanged-APK diagnostic may instead bind a separate committed QA checkout;
+the APK, native source and original build identity remain independent inputs.
+This probe never writes app preferences or game saves. Recorded motion needs
+human review; screenrecord timestamps and saves do not measure game FPS/physics.
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
 import importlib
+import importlib.util
 import json
 import math
 import os
@@ -123,6 +125,49 @@ def jump_action_choice(lines: list[dict], pixels: list[int], normalize) -> dict:
     return full_caption_choice(choices, ('SPRINGEN',), normalize)
 
 
+def build_pause_observation(lines: list[dict], frame: dict, normalize) -> dict | None:
+    """Distinguish the real pause panel from the title and walk-mode caption."""
+    if not frame['acceptable_for_target_sampling']:
+        return None
+    width, height = frame['pixels']
+
+    def matches(caption):
+        return [line for line in lines if isinstance(line.get('text'), str)
+                and normalize(line['text']) == normalize(caption)]
+
+    headings = matches('Deine Welt wartet auf dich')
+    resume = matches('Weiterbauen')
+    # Weiterbauen also labels the top-right walk-mode switch. That occurrence
+    # alone is never evidence of the central pause panel.
+    central_resume = [line for line in resume if isinstance(line.get('bounds'), (list, tuple))
+                      and len(line['bounds']) == 4
+                      and all(type(value) in (int, float) and math.isfinite(value)
+                              for value in line['bounds'])
+                      and .35 < (line['bounds'][0] + line['bounds'][2]) / (2 * width) < .65]
+    if headings or central_resume:
+        if not headings or not central_resume:
+            return None
+        heading = full_caption_choice(headings, ('Deine Welt wartet auf dich',), normalize)
+        action = full_caption_choice(central_resume, ('Weiterbauen',), normalize)
+        hx0, hy0, hx1, hy1 = heading['bounds']
+        ax0, ay0, ax1, ay1 = action['bounds']
+        require(.30 < (hx0 + hx1) / (2 * width) < .70
+                and .20 * height < hy0 < hy1 < ay0 < ay1 < .85 * height,
+                'Build pause heading/action do not form the observed source panel')
+        return {'state': 'paused', 'target': action, 'heading': heading}
+    titles, modes = matches('LUMO BAUWELT'), matches('Mit Lumo laufen')
+    if not titles or not modes:
+        return None
+    title = full_caption_choice(titles, ('LUMO BAUWELT',), normalize)
+    action = full_caption_choice(modes, ('Mit Lumo laufen',), normalize)
+    tx0, ty0, tx1, ty1 = title['bounds']
+    ax0, ay0, ax1, ay1 = action['bounds']
+    require((tx0 + tx1) / (2 * width) < .45 and ty1 < .30 * height
+            and (ax0 + ax1) / (2 * width) > .70 and ay1 < .30 * height,
+            'Build editor anchors are outside their current header positions')
+    return {'state': 'active', 'target': action, 'heading': title}
+
+
 def verify_candidate_metadata(run: dict, artifacts: dict, jobs: dict, expected: dict) -> dict:
     host, native, run_id = (expected.get(key) for key in ('host_source', 'native_source', 'build_run'))
     workflow = expected.get('workflow_path')
@@ -185,11 +230,11 @@ def candidate_binding(args) -> dict:
 def committed_helper(source: Path, module, relative: str) -> None:
     path = source / relative
     require(Path(module.__file__).resolve() == path.resolve(),
-            'Imported helper did not come from the actual candidate checkout')
+            'Imported helper did not come from its bound committed checkout')
     original = subprocess.run(['git', '-C', str(source), 'show', 'HEAD:' + relative],
                               check=True, capture_output=True, timeout=30).stdout
     require(path.read_bytes() == original,
-            'Candidate helper differs from its immutable committed bytes: ' + relative)
+            'Observation helper differs from its immutable committed bytes: ' + relative)
 
 
 def bounds(value: str) -> list[int] | None:
@@ -400,34 +445,93 @@ def solve(matrix: list[list[float]], vector: list[float]) -> list[float]:
     return [row[-1] for row in rows]
 
 
-def puzzle_piece_target(image: Image.Image, saved: dict) -> dict:
-    require(image.width > image.height and saved.get('count') == 6
-            and saved.get('motif') == 1, 'This observed-board probe requires six-piece motif1 landscape')
+def puzzle_board_contour(image: Image.Image) -> dict:
+    """Require the observed empty felt trapezoid and its actual gold side rims."""
+    # The unshaded #1a2748 felt is tone-mapped in the actual 7b Android frame
+    # to roughly (45, 53, 87). Colour only proposes components: straight edges,
+    # perspective widening, a filled interior and both gold rims decide below.
     groups, scale = components(image,
-        lambda r, g, b: 8 <= r <= 36 and 20 <= g <= 55 and 55 <= b <= 115
-        and b > g * 1.5,
+        lambda r, g, b: 12 <= r <= 70 and 20 <= g <= 85 and 55 <= b <= 130
+        and b - g >= 24 and b - r >= 28 and abs(g - r) <= 25,
         (.15, .27, .85, .88))
     candidates = []
     for group in groups:
         x0, y0, x1, y1 = group['bounds']
-        w, h = x1 - x0, y1 - y0
-        if (w > image.width * scale * .22 and h > image.height * scale * .12
+        width, height = x1 - x0, y1 - y0
+        if not (width > image.width * scale * .22 and height > image.height * scale * .12
                 and .38 < (x0 + x1) / (2 * image.width * scale) < .62
-                and group['area'] > w * h * .65):
-            candidates.append(group)
-    require(len(candidates) == 1, 'Current screenshot has no unique empty navy puzzle board')
-    group = candidates[0]
-    row_map = {}
-    for x, y in group['points']:
-        row_map.setdefault(y, []).append(x)
-    widths = {y: max(xs) - min(xs) for y, xs in row_map.items()}
-    full_rows = sorted(y for y in widths if widths[y] > max(widths.values()) * .65)
-    require(len(full_rows) >= 20, 'Observed puzzle-board contour is incomplete')
-    top, bottom = full_rows[1], full_rows[-2]
-    corners = [(min(row_map[top]) / scale, top / scale),
-               (max(row_map[top]) / scale, top / scale),
-               (max(row_map[bottom]) / scale, bottom / scale),
-               (min(row_map[bottom]) / scale, bottom / scale)]
+                and group['area'] > width * height * .65):
+            continue
+        rows = {}
+        for x, y in group['points']:
+            rows.setdefault(y, []).append(x)
+        ys = sorted(rows)
+        if len(ys) < 28 or ys != list(range(ys[0], ys[-1] + 1)):
+            continue
+        # Ignore only the antialiased top/bottom edge, not missing interior
+        # pieces or a menu/hand occluding an otherwise plausible blue region.
+        core = ys[4:-4]
+        coverage = sum(len(rows[y]) for y in core) / sum(
+            max(rows[y]) - min(rows[y]) + 1 for y in core)
+        if coverage < .985:
+            continue
+        mean_y = sum(core) / len(core)
+        denominator = sum((y - mean_y) ** 2 for y in core)
+        edges = []
+        for choose in (min, max):
+            mean_x = sum(choose(rows[y]) for y in core) / len(core)
+            slope = sum((y - mean_y) * (choose(rows[y]) - mean_x)
+                        for y in core) / denominator
+            intercept = mean_x - slope * mean_y
+            residual = max(abs(choose(rows[y]) - (slope * y + intercept)) for y in core)
+            edges.append((slope, intercept, residual))
+        left, right = edges
+        top, bottom = ys[1], ys[-2]
+        lx0, lx1 = (left[0] * y + left[1] for y in (top, bottom))
+        rx0, rx1 = (right[0] * y + right[1] for y in (top, bottom))
+        if not (left[0] < 0 < right[0] and max(left[2], right[2]) <= 2
+                and 1.04 <= (rx1 - lx1) / (rx0 - lx0) <= 1.5
+                and abs((lx0 + rx0) - (lx1 + rx1)) <= max(4, width * .04)):
+            continue
+        rim_fractions = []
+        for edge, sign in ((left, -1), (right, 1)):
+            observed = []
+            for y in core[::max(1, len(core) // 24)]:
+                x = (edge[0] * y + edge[1]) / scale
+                gold = False
+                for distance in (4, 8, 12, 16):
+                    px, py = round(x + sign * distance), round(y / scale)
+                    if not (0 <= px < image.width and 0 <= py < image.height):
+                        continue
+                    red, green, blue = image.getpixel((px, py))[:3]
+                    gold |= red >= 70 and red - green >= 10 and green - blue >= 10
+                observed.append(gold)
+            rim_fractions.append(sum(observed) / len(observed))
+        if min(rim_fractions) < .70:
+            continue
+        candidates.append({'corners': [(lx0 / scale, top / scale), (rx0 / scale, top / scale),
+                                        (rx1 / scale, bottom / scale), (lx1 / scale, bottom / scale)],
+                           'interior_coverage': coverage, 'gold_side_rim_fractions': rim_fractions,
+                           'edge_residual_pixels': [left[2] / scale, right[2] / scale],
+                           'perspective_width_ratio': (rx1 - lx1) / (rx0 - lx0)})
+    require(len(candidates) == 1, 'Current screenshot has no unique complete empty puzzle-board contour')
+    return candidates[0]
+
+
+def puzzle_piece_target(image: Image.Image, saved: dict) -> dict:
+    require(image.width > image.height and saved.get('count') == 6
+            and saved.get('motif') == 1, 'This observed-board probe requires six-piece motif1 landscape')
+    original_pieces = saved.get('pieces')
+    require(isinstance(original_pieces, list) and len(original_pieces) == 6
+            and all(isinstance(piece, dict) and piece.get('tray') is True
+                    and piece.get('locked') is False for piece in original_pieces)
+            and {piece.get('id') for piece in original_pieces} == set(range(6)),
+            'The actual save does not describe an empty six-piece puzzle board')
+    first = next(piece for piece in original_pieces if piece['id'] == 0)
+    require(first.get('x') == -7.0 and first.get('z') == -2.2,
+            'The actual first tray piece has moved from the source-confirmed initial slot')
+    contour = puzzle_board_contour(image)
+    corners = contour['corners']
     # Source796b: unshaded board_base at y=.12; visible width9.7/depth5.5.
     world = [(-4.85, -2.75), (4.85, -2.75), (4.85, 2.75), (-4.85, 2.75)]
     matrix, vector = [], []
@@ -444,7 +548,8 @@ def puzzle_piece_target(image: Image.Image, saved: dict) -> dict:
     patch = image.crop((round(point[0] - 8), round(point[1] - 8),
                         round(point[0] + 8), round(point[1] + 8))).convert('L')
     require(patch.entropy() > 2, 'Projected tray center is blank; refusing an unobserved piece touch')
-    return {'point': point, 'board_corners': corners, 'world_tray_center': [x, .15, z],
+    return {'point': point, 'board_corners': corners, 'board_contour': contour,
+            'world_tray_center': [x, .15, z],
             'basis': 'Current screenshot board homography + source796b first tray center; save rotation must confirm hit'}
 
 
@@ -500,9 +605,23 @@ class Tour:
         self.args, self.out = args, args.out
         self.out.mkdir(parents=True, exist_ok=True)
         self.events, self.context, self.counter = [], {}, 0
-        for path in (args.candidate_source / '.github/probes',
-                     args.candidate_source / 'scripts/probes',
-                     args.candidate_source / 'tools/android_qa'):
+        self.helper_source = args.candidate_source
+        self.expected_probe_source = args.binding['host_source']
+        self.diagnostic_context = None
+        if hasattr(args, 'diagnostic_context'):
+            relative = 'scripts/run_unchanged_creative_diagnostic.py'
+            spec = importlib.util.spec_from_file_location(
+                'bound_creative_diagnostic_runner', args.probe_source / relative)
+            diagnostic = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(diagnostic)
+            committed_helper(args.probe_source, diagnostic, relative)
+            self.expected_probe_source = diagnostic.validate_tour_context(
+                args, args.diagnostic_context)
+            self.helper_source = args.probe_source
+            self.diagnostic_context = args.diagnostic_context
+        for path in (self.helper_source / '.github/probes',
+                     self.helper_source / 'scripts/probes',
+                     self.helper_source / 'tools/android_qa'):
             sys.path.insert(0, str(path))
         self.probe = importlib.import_module('creative_android_probe')
         self.original = importlib.import_module('modernization_android_tour')
@@ -515,9 +634,9 @@ class Tour:
         self.counter += 1
         return f'{self.counter:04d}-{label}'
 
-    def shot(self, label):
+    def shot(self, label, *, timeout=None):
         tag = self.tag(label)
-        snapshot = self.probe.capture(self.out, tag)
+        snapshot = self.probe.capture(self.out, tag, **({'timeout': timeout} if timeout is not None else {}))
         return self.out / snapshot['file'], snapshot
 
     def audit_adb(self, *args, **kwargs):
@@ -543,7 +662,8 @@ class Tour:
                     evidence = sorted((p for p in self.out.iterdir()
                                        if p.suffix in ('.xml', '.json')),
                                       key=lambda p: p.stat().st_mtime, reverse=True)[:4]
-                    event['context'] = {'basis': 'Unchanged candidate live UI/OCR helper',
+                    event['context'] = {'basis': 'Committed live UI/OCR observation helper',
+                                        'helper_source': self.expected_probe_source,
                                         'recent_original_journals': [p.name for p in evidence]}
             self.events.append(event)
             event['dispatch_status'] = 'REQUESTED'
@@ -597,7 +717,8 @@ class Tour:
         for _ in range(3):
             path, shot = self.shot('observe-' + self.probe.normalized(label))
             lines = self.probe.image_lines(self.out, path.stem,
-                self.probe.normalized(label), source_path=path, timeout=60, exact=exact)
+                self.probe.normalized(label), source_path=path, timeout=60, exact=exact,
+                **({'all_caption_regions': True} if control else {}))
             matches = [x for x in lines if
                        (self.probe.normalized(x['text']) == self.probe.normalized(label) if exact
                         else self.probe.normalized(label) in self.probe.normalized(x['text']))]
@@ -710,13 +831,80 @@ class Tour:
         return next(iter(values.values()))
 
     def pause_save(self, kind, resume=True):
-        self.base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK')
         caption = {'build': 'Weiterbauen', 'puzzle': 'Weiterpuzzeln', 'treasure': 'Weiter erkunden'}[kind]
-        self.native(caption)
+        if kind == 'build':
+            before = self.observe_build_pause()
+            if before['state'] == 'active':
+                remaining = before['deadline_monotonic'] - time.monotonic()
+                require(remaining > 0, 'Build pause prerequisite expired before Back')
+                # One real Back only after two current editor observations.
+                # A blank/reflowing entry frame or an already open pause menu
+                # must never trigger a speculative toggle or a second Back.
+                previous_context = getattr(self, 'context', {})
+                self.context = {'basis': 'Two fresh source-confirmed build editor observations',
+                                'capture': before['capture'], 'stable': before['stable'],
+                                'state': before['state'], 'journal': before['journal']}
+                try:
+                    self.base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK', timeout=min(15, remaining))
+                finally:
+                    self.context = previous_context
+                self.observe_build_pause(expected='paused')
+        else:
+            self.base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK')
+            self.native(caption)
         saved = self.saved(kind)
         if resume:
             self.native(caption, tap=True, exact=True)
         return saved
+
+    def observe_build_pause(self, *, expected='', timeout=60):
+        require(expected in ('', 'paused'), 'Unknown build pause-state prerequisite')
+        started = time.monotonic()
+        deadline = started + timeout
+        journal = self.out / (self.tag('build-pause-prerequisite') + '.json')
+        evidence = {'status': 'WAITING', 'expected': expected, 'timeout_seconds': timeout,
+                    'scope': 'Current observed editor/pause prerequisite; no input or gameplay PASS',
+                    'frames': []}
+        previous, previous_state = None, None
+        try:
+            while time.monotonic() < deadline:
+                path, shot = self.shot('build-current-state', timeout=deadline - time.monotonic())
+                frame = self.probe.inspect_surface(path, orientation='landscape')
+                row = {'capture': shot, 'surface': frame}
+                evidence['frames'].append(row)
+                state = None
+                if frame['acceptable_for_target_sampling']:
+                    remaining = deadline - time.monotonic()
+                    require(remaining > 0, 'Build pause observation deadline exceeded')
+                    lines = self.probe.image_lines(self.out, path.stem,
+                        self.probe.normalized('Mit Lumo laufen'), source_path=path,
+                        timeout=remaining, exact=True, all_caption_regions=True)
+                    state = build_pause_observation(lines, frame, self.probe.normalized)
+                    row['ocr'] = path.stem + '-ocr.json'
+                if state is None or (expected and state['state'] != expected):
+                    previous, previous_state = None, None
+                else:
+                    if previous_state != state['state']:
+                        previous = None
+                    observed = self.probe.target_observation(frame, state['target']['bounds'], previous,
+                        anchor='center-panel' if state['state'] == 'paused' else 'right-toolbar')
+                    row.update(state=state, target_observation=observed)
+                    require(sha(path) == frame['source_sha256'] == shot['sha256'],
+                            'Build screenshot changed during state observation')
+                    require(time.monotonic() < deadline, 'Build pause observation deadline exceeded')
+                    if observed['stable_observed_target']:
+                        evidence.update(status='OBSERVED', state=state['state'])
+                        return {**state, 'capture': shot, 'stable': observed,
+                                'deadline_monotonic': deadline, 'journal': journal.name}
+                    previous, previous_state = observed, state['state']
+                time.sleep(min(.5, max(0, deadline - time.monotonic())))
+            raise RuntimeError('No stable current build editor/pause state before deadline')
+        except Exception as error:
+            evidence.update(status='FAIL', error=str(error))
+            raise
+        finally:
+            evidence['elapsed_seconds'] = round(time.monotonic() - started, 6)
+            write(journal, evidence)
 
     def toolbar(self, label, anchors):
         for gestures in range(8):
@@ -1056,14 +1244,21 @@ class Tour:
                   'not_tested': ['Samsung Fold7 hardware', 'Android17', 'thermal/latency/FPS',
                                  'production child data', 'full game completion']}
         try:
+            if self.diagnostic_context is not None:
+                result['diagnostic_qa'] = self.diagnostic_context['diagnostic_qa']
+                result['diagnostic_binding'] = {
+                    'file': str(self.args.diagnostic_report),
+                    'sha256': sha(self.args.diagnostic_report),
+                    'scope': 'Separate QA observations of the unchanged original APK/PCK'}
             for source, expected in ((self.args.candidate_source, host),
-                                     (self.args.native_source, native), (self.args.probe_source, host)):
+                                     (self.args.native_source, native),
+                                     (self.args.probe_source, self.expected_probe_source)):
                 require(self.base.command('git', '-C', str(source), 'rev-parse', 'HEAD').strip() == expected,
                         'Immutable source checkout mismatch')
                 require(not self.base.command('git', '-C', str(source), 'status', '--porcelain', '--untracked-files=no').strip(),
-                        'Tracked candidate/native source is dirty')
-            committed_helper(self.args.candidate_source, self.probe, '.github/probes/creative_android_probe.py')
-            committed_helper(self.args.candidate_source, self.original, '.github/probes/modernization_android_tour.py')
+                        'Tracked candidate/native/probe source is dirty')
+            committed_helper(self.helper_source, self.probe, '.github/probes/creative_android_probe.py')
+            committed_helper(self.helper_source, self.original, '.github/probes/modernization_android_tour.py')
             os.chdir(self.args.candidate_source)
             result['apk_identity'] = self.original.verify_apk_identity(self.args.apk, self.args.provenance, self.args.sums)
             require(result['apk_identity']['flutter_source_commit'] == host
@@ -1092,11 +1287,15 @@ class Tour:
                            'scripts/creative/puzzle_state.gd', 'scripts/creative/treasure_world.gd',
                            'scripts/creative/treasure_state.gd'],
             }
+            actual_sources = [
+                ('candidate', self.args.candidate_source, source_files['candidate']),
+                ('native', self.args.native_source, source_files['native'])]
+            if self.diagnostic_context is not None:
+                actual_sources.append(('probe', self.helper_source, [
+                    entry['path'] for entry in self.diagnostic_context['source_files']['qa']]))
             write(self.out / 'actual-source-files.json', {
                 kind: [{'file': name, 'sha256': sha(root / name)} for name in names]
-                for kind, root, names in (
-                    ('candidate', self.args.candidate_source, source_files['candidate']),
-                    ('native', self.args.native_source, source_files['native']))})
+                for kind, root, names in actual_sources})
             result['root'] = self.probe.ensure_rooted_emulator(self.base.adb, self.out)
             result['runtime'] = {key: self.base.adb('shell', 'getprop', prop).strip() for key, prop in
                                  (('sdk', 'ro.build.version.sdk'), ('release', 'ro.build.version.release'),

@@ -1,0 +1,30 @@
+[
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "scripts/android_framework_ready.py",
+      "scripts/verify_android_runtime_anr.py",
+      "scripts/run_unchanged_apk_diagnostic.sh",
+      ".github/probes/modernization_android_tour.py",
+      ".github/probes/lumo_studio_surfaces_android_probe.py"
+    ],
+    "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16",
+    "exit_code": 0,
+    "stdout": "",
+    "scope": "Syntax/diff validation only"
+  },
+  {
+    "command": [
+      "bash",
+      "-n",
+      "scripts/run_unchanged_apk_diagnostic.sh"
+    ],
+    "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16",
+    "exit_code": 0,
+    "stdout": "",
+    "scope": "Syntax/diff validation only"
+  }
+]

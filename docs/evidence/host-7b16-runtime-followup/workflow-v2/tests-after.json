@@ -1,0 +1,37 @@
+{
+  "head": "76443d3969856bfbba0e5b19231917f1743cf2a6",
+  "files": {
+    ".github/workflows/lumo-android-runtime-7b16-followup.yml": {
+      "bytes": 13521,
+      "sha256": "a0f99f5bdf09a6f20e1800425497129f9ce9b3e68b19ca3d1a38feb9eab51a31"
+    },
+    ".github/workflows/lumo-unchanged-apk-diagnostic.yml": {
+      "bytes": 12962,
+      "sha256": "e186bc6ec6e3dd946d77213307ad7c3b5152e0431b820e0f4c60c399d6fe46fa"
+    },
+    "scripts/run_unchanged_apk_diagnostic.sh": {
+      "bytes": 7218,
+      "sha256": "e8d724d5a6da0d12d193cfb1de851d520eac68ead0f8777b2965c0469da3ae50"
+    },
+    "scripts/tests/test_runtime_followup_workflow.py": {
+      "bytes": 10381,
+      "sha256": "15d0d7aa8a37aff6ff6d419135d73674a9a5ea236d03174238a14eb325adad83"
+    },
+    "scripts/tests/test_unchanged_apk_followup.py": {
+      "bytes": 4548,
+      "sha256": "20556ec0f706e4901775bf79bfe5aa48317065b43666168a8e29cccca5d88673"
+    },
+    "scripts/verify_unchanged_apk_diagnostic.py": {
+      "bytes": 19885,
+      "sha256": "3747027cf3a6b4d91e8d0e8ab59fca07f63ff59b8c189373dbe098bda34d67d4"
+    },
+    "scripts/tests/test_verify_unchanged_apk_diagnostic.py": {
+      "bytes": 21760,
+      "sha256": "adb095bbedb9f3b4922493648e86f389b5a042d432ab59b6e5a7d2496e7f40da"
+    },
+    "config/diagnostic-baselines/android37-7b16.json": {
+      "bytes": 1953,
+      "sha256": "4bff2aad1a8420118be47cb0679c211c83b2b99b5526321f9b338fcb8645c32f"
+    }
+  }
+}

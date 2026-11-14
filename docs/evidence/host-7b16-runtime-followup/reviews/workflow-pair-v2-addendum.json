@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T04:36:37.763670+00:00",
+  "status": "READ_ONLY_V2_TWO_LINE_ADDENDUM_ACCEPTED",
+  "prior_pair_review": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-independent-review/workflow-pair-review.json",
+    "bytes": 8412,
+    "sha256": "2bffab150e3dcf07e6bd9eae6e78ab250b6ebe0d8185e158cb74cbcb0f60b05b"
+  },
+  "v2_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow-v2/source-freeze.json",
+    "bytes": 1210,
+    "sha256": "556776a6152f8c0e62ddf497ccdfc3ea7bbf8fb60656e5303793ad7a0b5f78df"
+  },
+  "v2_sources": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow-v2/after/.github/workflows/lumo-android-runtime-7b16-followup.yml",
+      "bytes": 13521,
+      "sha256": "a0f99f5bdf09a6f20e1800425497129f9ce9b3e68b19ca3d1a38feb9eab51a31"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow-v2/after/scripts/tests/test_runtime_followup_workflow.py",
+      "bytes": 10381,
+      "sha256": "15d0d7aa8a37aff6ff6d419135d73674a9a5ea236d03174238a14eb325adad83"
+    }
+  ],
+  "unchanged_wrapper": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/after/scripts/run_unchanged_apk_diagnostic.sh",
+    "bytes": 7218,
+    "sha256": "e8d724d5a6da0d12d193cfb1de851d520eac68ead0f8777b2965c0469da3ae50"
+  },
+  "findings": [
+    "The V2 workflow adds exactly the four-case Root routing test module to its existing mandatory pre-device contract job.",
+    "The corresponding existing workflow contract inventory adds exactly that same module; removing these two precise lines reproduces both V1 files byte-for-byte.",
+    "No matrix, job name, source binding, case argument, renderer, permission, failure propagation, artifact or logger behavior changed."
+  ],
+  "concrete_blockers": [],
+  "scope": "Two-line source comparison only; no tests, device or downloads, no new Android acceptance. Earlier V1/Root/Logger reports remain unchanged."
+}

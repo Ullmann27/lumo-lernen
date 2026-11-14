@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "scope": "Unmodified actual Android 17 window and ANR-command stdout. No input-dispatcher capture exists in this artifact. First four event samples are ANR-free; the fifth contains a real GMS broadcast ANR. These originals remain a failed setup, never runtime acceptance.",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_sha": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "host_tree": "fe430b86449e4f4e221cadfc802f42db639f3133",
+  "run_id": 43540111465,
+  "attempt": 1,
+  "job_id": 132298281316,
+  "artifact_id": 14093659058,
+  "artifact_bytes": 1128063,
+  "artifact_sha256": "d474905fe7024a95d6897e823e126f0ed817d06c4cbd80796853717f00c044a4",
+  "files": [
+    {
+      "path": "0014-window-state.stdout",
+      "artifact_member": "framework-start/commands/0014-window-state.stdout",
+      "sha256": "0b86a5079bf41b9efb6cf3c7822ea1d3163a1bf09a52de8a33c4e86aaa23703d",
+      "bytes": 65303,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/commands/0014-window-state.stdout"
+    },
+    {
+      "path": "0015-events-anr.stdout",
+      "artifact_member": "framework-start/commands/0015-events-anr.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/commands/0015-events-anr.stdout"
+    },
+    {
+      "path": "0028-window-state.stdout",
+      "artifact_member": "framework-start/commands/0028-window-state.stdout",
+      "sha256": "545f84f72288d6963859b62dda1fb4c35171d9d9bc60c08858433bcea6f4c304",
+      "bytes": 65905,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/commands/0028-window-state.stdout"
+    },
+    {
+      "path": "0029-events-anr.stdout",
+      "artifact_member": "framework-start/commands/0029-events-anr.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/commands/0029-events-anr.stdout"
+    },
+    {
+      "path": "0042-window-state.stdout",
+      "artifact_member": "framework-start/commands/0042-window-state.stdout",
+      "sha256": "61239cc72fa54650a73fa0116745d47774fe92f90c69e3f9c04f6743784189e6",
+      "bytes": 70847,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/commands/0042-window-state.stdout"
+    },
+    {
+      "path": "0043-events-anr.stdout",
+      "artifact_member": "framework-start/commands/0043-events-anr.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/commands/0043-events-anr.stdout"
+    },
+    {
+      "path": "0056-window-state.stdout",
+      "artifact_member": "framework-start/commands/0056-window-state.stdout",
+      "sha256": "09abd55916c001ea6ff8c5af2a2a9e099cc8fcaf4976ea572ca861cfcae3fc73",
+      "bytes": 70792,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/commands/0056-window-state.stdout"
+    },
+    {
+      "path": "0057-events-anr.stdout",
+      "artifact_member": "framework-start/commands/0057-events-anr.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/commands/0057-events-anr.stdout"
+    },
+    {
+      "path": "0070-window-state.stdout",
+      "artifact_member": "framework-start/commands/0070-window-state.stdout",
+      "sha256": "2911b4441eb668178c5cd5cb52e6002c453d4b035997de6910c59011e8fa49c9",
+      "bytes": 70850,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/commands/0070-window-state.stdout"
+    },
+    {
+      "path": "0071-events-anr.stdout",
+      "artifact_member": "framework-start/commands/0071-events-anr.stdout",
+      "sha256": "fbfd393693d76bbcb6bf776050fe6f08a7d80effa6f9925bc768cd1db6aff7eb",
+      "bytes": 321,
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/commands/0071-events-anr.stdout"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "run_id": 43540111465,
+  "attempt": 1,
+  "host": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "native": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "sources": [
+    {
+      "scope": "api35",
+      "artifact_id": 14094566042,
+      "job_id": 132298281143,
+      "files": [
+        {
+          "path": "api35/21_stage_driver-select-original-lumo-0.png",
+          "bytes": 785894,
+          "sha256": "50b2ffdd9db0c970505b479b4497b1fe212cde38db6158081149d407b2e94772",
+          "original_member": "21_stage_driver-select-original-lumo-0.png"
+        },
+        {
+          "path": "api35/21_stage_driver-select-original-lumo-0-ocr.json",
+          "bytes": 24660,
+          "sha256": "096c79591f31a71d16731cc1f901702a52bae76e29ee115805a8f5e39baba2ea",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr.json"
+        },
+        {
+          "path": "api35/21_stage_driver-select-original-lumo-surface-readiness.json",
+          "bytes": 1011,
+          "sha256": "f04f75a520b4a33e910a908a38d0c4320c8524af382cb77a0bafaed53f4d5ea5",
+          "original_member": "21_stage_driver-select-original-lumo-surface-readiness.json"
+        },
+        {
+          "path": "api35/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+          "bytes": 4356,
+          "sha256": "70d79f7852eb55cd6ce2cbd279f4c06eb73370a50aefde38ecef594d8a2df61d",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-contrast.tsv"
+        },
+        {
+          "path": "api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+          "bytes": 3557,
+          "sha256": "91270588c5986fd3831b7017f940b0d1a6d0248b36733c78ea9c850014884a96",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv"
+        },
+        {
+          "path": "api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+          "bytes": 3202,
+          "sha256": "b3a7f353f9c5bf4d71bff28e79528cd83d8f07d910b3fe65bfbd052b1d822762",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv"
+        },
+        {
+          "path": "api35/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+          "bytes": 3753,
+          "sha256": "3fc1f0d5faad762a9827eae480e303081eef7d0cdea35a7819945be3101e7acc",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-raw.tsv"
+        },
+        {
+          "path": "api35/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+          "bytes": 5124,
+          "sha256": "489fa667ddc409445c51cd42728c1a05241a98d9fdfd190c738efd33e0ce8762",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv"
+        },
+        {
+          "path": "api35/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+          "bytes": 3527,
+          "sha256": "b9102ea73357d877ef63b3786b8660eacd6e45a7dfa4b8be131998631bf9432e",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv"
+        },
+        {
+          "path": "api35/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+          "bytes": 3567,
+          "sha256": "56dfbaaa5acb1a5b3b008cb09b190a6b8e867ca064decdcc023d94d8b933876d",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-white-text.tsv"
+        }
+      ]
+    },
+    {
+      "scope": "update",
+      "artifact_id": 14093704788,
+      "job_id": 132298281120,
+      "files": [
+        {
+          "path": "update/21_stage_driver-select-original-lumo-0.png",
+          "bytes": 761058,
+          "sha256": "b17314a87af1ed0d2d840c1fddbfc396b79e612fd0c80c60fc83cf18e53b19be",
+          "original_member": "21_stage_driver-select-original-lumo-0.png"
+        },
+        {
+          "path": "update/21_stage_driver-select-original-lumo-0-ocr.json",
+          "bytes": 26195,
+          "sha256": "b48cafe000c235d88ffea09906432bd9db4d70a8b2ceee6625a63988d09add0e",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr.json"
+        },
+        {
+          "path": "update/21_stage_driver-select-original-lumo-surface-readiness.json",
+          "bytes": 1003,
+          "sha256": "a02d9015fb22d4a5368999d28cb590d2fccd2fdaef76d2dd7ee0d1f178f9da0a",
+          "original_member": "21_stage_driver-select-original-lumo-surface-readiness.json"
+        },
+        {
+          "path": "update/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+          "bytes": 4859,
+          "sha256": "81bbbb9636cf57310c1cbfec7ac808e9cb7bd6bdf81827d8fbba4224068254f9",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-contrast.tsv"
+        },
+        {
+          "path": "update/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+          "bytes": 1997,
+          "sha256": "eacb315051094ae1eb5d76790ce1534fc2fef10ef75968b212219b8efb8d49b8",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv"
+        },
+        {
+          "path": "update/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+          "bytes": 4113,
+          "sha256": "be22c59625621e7aedcf9e023d745414be8440d54a2ec2a544c4e48846c66da8",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv"
+        },
+        {
+          "path": "update/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+          "bytes": 2997,
+          "sha256": "adf8769eada6aee36af01cd91176b4b71336ccc4d2350f0b135ea4a34f5db2d9",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-raw.tsv"
+        },
+        {
+          "path": "update/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+          "bytes": 6020,
+          "sha256": "61fca29d6364cc6f0f14c82fec950dc0d334eea0a67b58144cfbea2dd2f93cb1",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv"
+        },
+        {
+          "path": "update/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+          "bytes": 3518,
+          "sha256": "8fa662dd8af4517ac22031cda5dee1a5ebf261169156902aaa6be4540d01cada",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv"
+        },
+        {
+          "path": "update/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+          "bytes": 3523,
+          "sha256": "7e7e7e08094ec0a156a62c0f1b4963a9b5eb07ac681fd29547f7951438055dba",
+          "original_member": "21_stage_driver-select-original-lumo-0-ocr-white-text.tsv"
+        }
+      ]
+    }
+  ],
+  "scope": "Byte-exact failed Android observations; tests replay captured frames and TSV, not a new Android run."
+}
