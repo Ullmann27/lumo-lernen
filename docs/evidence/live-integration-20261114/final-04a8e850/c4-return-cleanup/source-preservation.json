@@ -1,0 +1,41 @@
+{
+  "source": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "source_tree": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+  "changed_probe_methods": [
+    "original",
+    "return_to_flutter"
+  ],
+  "all_other_original_probe_methods_ast_identical": true,
+  "run_and_main_unchanged": true,
+  "original_test_methods_unchanged": [
+    "test_wait_rejects_successful_observation_completed_after_local_90_seconds",
+    "test_wait_rejects_condition_that_finishes_after_the_same_local_deadline",
+    "test_wait_keeps_exact_boundary_closed_and_timely_result_unchanged",
+    "test_wait_still_rejects_incomplete_state_and_expired_global_budget",
+    "test_observation_rejects_late_last_read_pixels_or_target_without_accepting_result",
+    "test_observation_rechecks_after_evidence_write_before_successful_return",
+    "test_timely_observation_preserves_state_target_and_original_record",
+    "test_incomplete_actual_surface_still_blocks_observation",
+    "test_return_rejects_slow_pid_or_activity_reads_before_accepting_local_45_second_result",
+    "test_return_exact_deadline_is_closed_and_timely_return_keeps_full_checks",
+    "test_return_still_requires_observed_pause"
+  ],
+  "new_test_methods": [
+    "test_return_waits_for_actual_private_cleanup_after_native_exit",
+    "test_return_rejects_mailbox_that_never_closes_within_original_budget",
+    "test_return_requires_empty_mailbox_pid_exit_and_correct_activity_together",
+    "test_return_empty_mailbox_never_excuses_live_pid_or_wrong_activity",
+    "test_return_mailbox_read_cannot_turn_exact_or_late_deadline_into_success",
+    "test_return_retries_share_remaining_budget_and_keep_late_empty_original",
+    "test_return_cleanup_preserves_complete_probe_budget",
+    "test_return_failed_original_find_is_not_treated_as_empty_cleanup",
+    "test_return_never_overwrites_previous_original_command"
+  ],
+  "unchanged_offline_verifier_and_fixtures": [
+    "tools/android_qa/tests/test_connect_four_android_evidence.py",
+    "tools/android_qa/connect_four_android_evidence.py",
+    "tools/android_qa/native_surface_readiness.py"
+  ],
+  "python_compile": "PASS",
+  "scope": "Read-only source/AST/compile verification; no SDK, Android or renderer"
+}

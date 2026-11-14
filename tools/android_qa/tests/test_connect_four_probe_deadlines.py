@@ -6,6 +6,7 @@ from __future__ import annotations
 
 from contextlib import ExitStack
 import importlib.util
+import json
 import os
 from pathlib import Path
 import sys
@@ -210,6 +211,160 @@ class DeadlineTests(unittest.TestCase):
         before['state']['paused'] = False
         with self.assertRaises(ValueError): value.return_to_flutter('not-paused')
         value.original.assert_not_called()
+
+    def cleanup_return_probe(self, observations):
+        """Keep real exclusive journals; replace only the synthetic ADB boundary."""
+        value, before = self.return_probe('', 0)
+        value.counter = 0
+        value.original = PROBE.Probe.original.__get__(value, PROBE.Probe)
+        calls = []
+        commands = ('pidof', 'dumpsys', 'find')
+
+        def command(arguments, **kwargs):
+            index = len(calls)
+            kind = commands[index % 3]
+            self.assertEqual(arguments[:2], ['adb', 'shell'])
+            self.assertEqual(arguments[2], kind)
+            current = observations[min(index // 3, len(observations) - 1)]
+            text = current.get(kind, '' if kind != 'dumpsys' else
+                               'mResumedActivity: '+PROBE.contract.PACKAGE+'/MainActivity\n')
+            if kind == 'find':
+                self.assertEqual(arguments[3:], [value.mailbox.rsplit('/', 1)[0],
+                    '-maxdepth', '2', '-type', 'f', '-name', 'state.json'])
+            calls.append({'command': arguments, 'timeout': kwargs['timeout'],
+                          'started': self.clock.value, 'stdout': text})
+            self.clock.value += current.get('elapsed', {}).get(kind, 0)
+            return SimpleNamespace(stdout=text.encode(),
+                stderr=current.get('stderr', {}).get(kind, '').encode(),
+                returncode=current.get('returncode', {}).get(kind,
+                    1 if kind == 'pidof' and not text else 0))
+
+        self.stack.enter_context(mock.patch.object(PROBE.subprocess, 'run', side_effect=command))
+        return value, before, calls
+
+    def assert_return_not_accepted(self, value):
+        value.read_preferences.assert_not_called()
+        value.flutter_touch.assert_not_called()
+        value.wait_for_flutter_control.assert_not_called()
+        value.native_touch.assert_called_once()
+        self.assertEqual(value.returns, [])
+
+    def test_return_waits_for_actual_private_cleanup_after_native_exit(self):
+        old_state = '/synthetic-private-mailbox/'+'a'*32+'/state.json\n'
+        value, before, calls = self.cleanup_return_probe([{'find': old_state}, {'find': ''}])
+        self.assertIs(value.return_to_flutter('delayed-cleanup'), before)
+        self.assertEqual([call['command'][2] for call in calls],
+                         ['pidof', 'dumpsys', 'find'] * 2)
+        value.native_touch.assert_called_once_with('delayed-cleanup', 'back')
+        value.flutter_touch.assert_called_once_with('Zur Spieleauswahl',
+                                                    'delayed-cleanup-to-games', scrolls=3)
+        value.read_preferences.assert_called_once()
+        value.wait_for_flutter_control.assert_called_once()
+        originals = sorted(self.out.glob('commands/*-closed-mailbox.stdout'))
+        self.assertEqual(len(originals), 2)
+        self.assertEqual(originals[0].read_text(), old_state)
+        self.assertEqual(originals[1].read_text(), '')
+        accepted = value.returns[0]
+        self.assertEqual(self.out/accepted['closed_mailbox'], originals[1])
+        self.assertIn('0004-', accepted['native_exit'])
+        self.assertIn('0005-', accepted['activity'])
+        for path in self.out.glob('commands/*.json'):
+            record = json.loads(path.read_text())
+            raw = Path(str(path)[:-5]+'.stdout').read_bytes()
+            self.assertEqual(record['stdout_sha256'], PROBE.hashlib.sha256(raw).hexdigest())
+        self.assertEqual(len(list(self.out.glob('commands/*.stdout'))), 6)
+
+    def test_return_rejects_mailbox_that_never_closes_within_original_budget(self):
+        value, _, calls = self.cleanup_return_probe([{
+            'find': '/synthetic-private-mailbox/'+'a'*32+'/state.json\n',
+            'elapsed': {'find': 4}}])
+        with self.assertRaises((TimeoutError, RuntimeError)):
+            value.return_to_flutter('permanent-mailbox')
+        self.assert_return_not_accepted(value)
+        self.assertGreater(sum(call['command'][2] == 'find' for call in calls), 1)
+        self.assertLessEqual(max(call['started'] for call in calls), 45)
+        self.assertFalse((self.out/'permanent-mailbox-return.json').exists())
+
+    def test_return_requires_empty_mailbox_pid_exit_and_correct_activity_together(self):
+        old_state = '/synthetic-private-mailbox/'+'a'*32+'/state.json\n'
+        value, before, calls = self.cleanup_return_probe([
+            {'pidof': '123\n'},
+            {'dumpsys': 'mResumedActivity: other.package/MainActivity\n'},
+            {'find': old_state},
+            {}])
+        self.assertIs(value.return_to_flutter('converging-return'), before)
+        self.assertEqual(len(calls), 12)
+        accepted = value.returns[0]
+        self.assertIn('0010-', accepted['native_exit'])
+        self.assertIn('0011-', accepted['activity'])
+        self.assertIn('0012-', accepted['closed_mailbox'])
+
+    def test_return_empty_mailbox_never_excuses_live_pid_or_wrong_activity(self):
+        base = self.out
+        for name, invalid in (
+                ('live-pid', {'pidof': '123\n'}),
+                ('wrong-activity', {'dumpsys': 'mResumedActivity: other.package/MainActivity\n'}),
+                ('no-activity', {'dumpsys': ''})):
+            with self.subTest(name=name):
+                self.out = base/name; self.out.mkdir(); self.clock.value = 0
+                value, _, calls = self.cleanup_return_probe([
+                    {**invalid, 'elapsed': {'find': 4}}])
+                with self.assertRaises((TimeoutError, RuntimeError)):
+                    value.return_to_flutter(name)
+                self.assert_return_not_accepted(value)
+                self.assertGreater(len(calls), 3)
+
+    def test_return_mailbox_read_cannot_turn_exact_or_late_deadline_into_success(self):
+        base = self.out
+        for elapsed, accepted in ((44.999, True), (45.0, False), (45.001, False)):
+            with self.subTest(elapsed=elapsed):
+                self.out = base/str(elapsed); self.out.mkdir(); self.clock.value = 0
+                value, before, _ = self.cleanup_return_probe([{'elapsed': {'find': elapsed}}])
+                if accepted:
+                    self.assertIs(value.return_to_flutter('mailbox-boundary'), before)
+                else:
+                    with self.assertRaises(TimeoutError): value.return_to_flutter('mailbox-boundary')
+                    self.assert_return_not_accepted(value)
+                self.assertEqual(len(list(self.out.glob('commands/*-closed-mailbox.stdout'))), 1)
+
+    def test_return_retries_share_remaining_budget_and_keep_late_empty_original(self):
+        old_state = '/synthetic-private-mailbox/'+'a'*32+'/state.json\n'
+        value, _, calls = self.cleanup_return_probe([
+            {'find': old_state, 'elapsed': {'find': 44.3}},
+            {'elapsed': {'pidof': .05, 'dumpsys': .05, 'find': .11}}])
+        with self.assertRaises(TimeoutError): value.return_to_flutter('late-second-find')
+        self.assert_return_not_accepted(value)
+        self.assertEqual(len(calls), 6)
+        for call in calls:
+            self.assertGreater(call['timeout'], 0)
+            self.assertLessEqual(call['timeout'], 45-call['started']+1e-9)
+        originals = sorted(self.out.glob('commands/*-closed-mailbox.stdout'))
+        self.assertEqual([p.read_text() for p in originals], [old_state, ''])
+
+    def test_return_cleanup_preserves_complete_probe_budget(self):
+        value, _, _ = self.cleanup_return_probe([{'elapsed': {'find': 1.001}}])
+        value.deadline = 1.0
+        with self.assertRaisesRegex(TimeoutError, '900 seconds'):
+            value.return_to_flutter('global-cleanup-deadline')
+        self.assert_return_not_accepted(value)
+        self.assertTrue((self.out/'commands/0003-global-cleanup-deadline-closed-mailbox.stdout').exists())
+
+    def test_return_failed_original_find_is_not_treated_as_empty_cleanup(self):
+        value, _, _ = self.cleanup_return_probe([{'returncode': {'find': 1},
+                                                 'stderr': {'find': 'permission denied\n'}}])
+        with self.assertRaisesRegex(ValueError, 'Original read failed'):
+            value.return_to_flutter('failed-find')
+        self.assert_return_not_accepted(value)
+        self.assertEqual((self.out/'commands/0003-failed-find-closed-mailbox.stderr').read_text(),
+                         'permission denied\n')
+
+    def test_return_never_overwrites_previous_original_command(self):
+        value, _, _ = self.cleanup_return_probe([{}])
+        path = self.out/'commands/0001-existing-native-exit.stdout'
+        path.parent.mkdir(); path.write_bytes(b'existing unique original\n')
+        with self.assertRaises(FileExistsError): value.return_to_flutter('existing')
+        self.assert_return_not_accepted(value)
+        self.assertEqual(path.read_bytes(), b'existing unique original\n')
 
 
 if __name__ == '__main__':

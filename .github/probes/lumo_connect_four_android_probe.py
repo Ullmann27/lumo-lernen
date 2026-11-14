@@ -57,14 +57,14 @@ class Probe:
     def bounded_command(self, *args, timeout=60, check=True):
         return self.old_command(*args, timeout=self.remaining(timeout), check=check)
 
-    def original(self, tag: str, *arguments: str, check=True, bound=1024*1024) -> tuple[str, str]:
+    def original(self, tag: str, *arguments: str, check=True, bound=1024*1024, timeout=45) -> tuple[str, str]:
         self.counter += 1
         prefix = f'commands/{self.counter:04d}-{tag}'
         stem = self.out / prefix
         stem.parent.mkdir(parents=True, exist_ok=True)
         started = time.monotonic()
         result = subprocess.run(['adb', *arguments], stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                timeout=self.remaining(45), check=False)
+                                timeout=self.remaining(timeout), check=False)
         for suffix, data in (('.stdout', result.stdout), ('.stderr', result.stderr)):
             with Path(str(stem) + suffix).open('xb') as stream:
                 stream.write(data)
@@ -328,20 +328,32 @@ class Probe:
         before = self.native_touch(tag, 'back')
         contract.demand(before['state']['paused'], 'Return must follow the proved actual pause')
         deadline = time.monotonic() + self.remaining(45)
+
+        def return_remaining() -> float:
+            self.remaining()
+            left = deadline - time.monotonic()
+            if left <= 0:
+                raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
+            return left
+
         while time.monotonic() < deadline:
-            native, pf = self.original(tag + '-native-exit', 'shell', 'pidof', contract.PACKAGE + ':lumo_game', check=False)
-            activity, af = self.original(tag + '-return-activity', 'shell', 'dumpsys', 'activity', 'activities')
+            native, pf = self.original(tag + '-native-exit', 'shell', 'pidof', contract.PACKAGE + ':lumo_game',
+                                       check=False, timeout=return_remaining())
+            activity, af = self.original(tag + '-return-activity', 'shell', 'dumpsys', 'activity', 'activities',
+                                        timeout=return_remaining())
+            # The launch result reaches Dart after native shutdown; its awaited
+            # session.close() performs the later Host-channel mailbox deletion.
+            closed, closed_file = self.original(tag + '-closed-mailbox', 'shell', 'find',
+                self.mailbox.rsplit('/',1)[0], '-maxdepth','2','-type','f','-name','state.json',
+                timeout=return_remaining())
             active = [line for line in activity.splitlines() if 'mResumedActivity' in line or 'topResumedActivity' in line]
-            if not native.strip() and active and all('MainActivity' in line and contract.PACKAGE in line for line in active):
-                self.remaining()
-                if time.monotonic() >= deadline:
-                    raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
+            return_remaining()
+            if (not native.strip() and not closed.strip() and active
+                    and all('MainActivity' in line and contract.PACKAGE in line for line in active)):
                 break
-            time.sleep(min(.5, max(0, deadline-time.monotonic())))
+            time.sleep(min(.5, return_remaining()))
         else:
-            raise RuntimeError('Native C4 did not return to the actual Flutter activity')
-        closed, closed_file = self.original(tag + '-closed-mailbox', 'shell', 'find',
-            self.mailbox.rsplit('/',1)[0], '-maxdepth','2','-type','f','-name','state.json')
+            raise RuntimeError('Native C4 did not return to the actual Flutter activity with a closed private mailbox')
         contract.demand(not closed.strip(), 'Closed C4 mailbox still exists')
         prefs, prefs_file = self.read_preferences(tag + '-after-return')
         record = contract.persisted_round(prefs, before['state'])
