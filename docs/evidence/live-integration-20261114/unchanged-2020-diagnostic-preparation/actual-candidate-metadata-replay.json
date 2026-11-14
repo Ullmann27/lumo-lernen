@@ -1,0 +1,28 @@
+{
+  "host_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "run_id": 43596913210,
+  "run_attempt": 1,
+  "build_job_id": 132454178537,
+  "workflow_path": ".github/workflows/lumo-connect-four-2020.yml",
+  "run_status": "completed",
+  "run_conclusion": "failure",
+  "build_conclusion": "success",
+  "artifact_id": 14119280540,
+  "artifact_name": "lumo-connect-four-2020-candidate",
+  "artifact_bytes": 665888449,
+  "artifact_digest": "sha256:3303cf5c34b96b9eefd08e3a64e5fcb4d6698ede4683810e9a2bb95311bc3210",
+  "existing_c4_binding": {
+    "host_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "versionCode": 2020,
+    "versionName": "0.13.8",
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "run_id": 43596913210,
+    "run_attempt": 1,
+    "candidate_artifact_id": 14119280540,
+    "candidate_artifact_digest": "sha256:3303cf5c34b96b9eefd08e3a64e5fcb4d6698ede4683810e9a2bb95311bc3210"
+  },
+  "archive_validation": "Original API digest/size bound; complete artifact ZIP is not read by this preflight"
+}
