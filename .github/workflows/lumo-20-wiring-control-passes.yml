@@ -33,7 +33,7 @@ jobs:
       - name: Kontrollgang 05 · Dorfwirtschaft und Kindkontext
         run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/dorfwirtschaft_portal_test.dart
       - name: Kontrollgang 06 · Vier Gewinnt – Native-Opt-in und Return
-        run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/connect_four_native_route_test.dart
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/connect_four_native_route_test.dart test/games/connect_four_navigation_test.dart
       - name: Kontrollgang 07 · Vier Gewinnt – vollständiger Spielablauf
         run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/games_screen_flow_test.dart
       - name: Kontrollgang 08 · Vier Gewinnt – Fold/Touchtasten
