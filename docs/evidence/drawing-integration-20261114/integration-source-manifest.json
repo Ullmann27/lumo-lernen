@@ -1,0 +1,91 @@
+{
+  "base_commit": "4564ad40c4d000b764e67719d19bd2445c04c870",
+  "previous_checkpoint": "990503c72b60e0c509d52438f8858a03883110c6",
+  "selective_source_commit": "b3f75f6fe3506321b7991f975cdc3854b341c596",
+  "runtime": {
+    "flutter": "3.44.9",
+    "dart": "3.12.2",
+    "framework_revision": "6b182d2c7585eba26d4edce0f97630effd256c33"
+  },
+  "selected_source_blobs": {
+    "lib/core/school_exercise_generator.dart": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+    "lib/features/learning/learning_content.dart": "5e62d675606d5e9b0024fa1476c0459343b5da7a",
+    "lib/features/learning/widgets/lumo_shape_trace_canvas.dart": "7972da58499ec771414eaeacfcd83155997b510c",
+    "test/learning/learning_exact_selection_test.dart": "44eed001b94046a1b674fe3505bf29df9b8c8e7b",
+    "test/learning_selection_integration_test.dart": "892960ede7c2594dc7e15d631b3e511c7c526011",
+    "test/shape_trace_input_test.dart": "7441d9d07ac6f34432b36bfd711f8c3581c8c9f9"
+  },
+  "files": {
+    "lib/features/writing/widgets/lumo_ink_surface.dart": {
+      "git_blob": "dc8e5e7e1e254912cf69df6df0489db137d8935a",
+      "sha256": "f748e40fb47bff603bc8de53ce59c1b398c1fed6765b7cdbb3a2a367abf24091"
+    },
+    "lib/features/teacher_mode/letter_writing_screen.dart": {
+      "git_blob": "95a29b0385ed5ec235ca5a38e2b4c9ff2f240832",
+      "sha256": "efec5a4398778e9306e7beadbdae15251ddca7b7ad27c7804ac244ff06925f4b"
+    },
+    "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart": {
+      "git_blob": "aab44260ac43b595dc1d8cd781a70f8953828d88",
+      "sha256": "25d2920eeb87b8a8130d02f7a6591fc29f85ee26a19c1994b410999fa2dc8a5e"
+    },
+    "lib/core/school_exercise_generator.dart": {
+      "git_blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+      "sha256": "cf7dfba7e5d587be0eef4cbec853f016211ee0715b460f1c365064142165c778"
+    },
+    "lib/features/learning/learning_content.dart": {
+      "git_blob": "5e62d675606d5e9b0024fa1476c0459343b5da7a",
+      "sha256": "956fb5791c388d2816ccb2f6ad4936fc192e5af5febb10f42cfd5a3b47d96703"
+    },
+    "lib/features/learning/widgets/lumo_shape_trace_canvas.dart": {
+      "git_blob": "7972da58499ec771414eaeacfcd83155997b510c",
+      "sha256": "ddb82957a8ef36da438b8a8e1c1496039a763903858a3869133eeee4fa568c32"
+    },
+    "test/lumo_ink_surface_motion_regression_test.dart": {
+      "git_blob": "509e2e5b2b153625d142be8c9df995abb2d70155",
+      "sha256": "df2021761622fe00ef698ee488b69d53e9bd524493242729838e079c2b93a51a"
+    },
+    "test/legacy_letter_repaint_regression_test.dart": {
+      "git_blob": "52ab725bc2ec4e3702568f88de2b59989ed26472",
+      "sha256": "6477f04c1827ac2d5f11c93bee8c73567371910b5c05a3733f91fe8596a7f978"
+    },
+    "test/shape_trace_gesture_regression_test.dart": {
+      "git_blob": "7a58f9173775213b5dc41f8f42cc52b8eb184abd",
+      "sha256": "fbaddce634c58257cc9c91d822f9166cea3537d70ef22acf804d8fb8221f6082"
+    },
+    "test/wort_diktat_gesture_regression_test.dart": {
+      "git_blob": "4f47e3b49979ab6f7b580196935ee2a701c3df36",
+      "sha256": "b85c52e600c19c77be874b22d9c9b3cb9240cef4b485288093b40507c7d7b477"
+    },
+    "test/learning_selection_integration_test.dart": {
+      "git_blob": "d8f8f1c226658c691ffb9ad3f42f13087d1d5b91",
+      "sha256": "00fcd5bac4a16fb6a10ff86473fb8b8e9ca179b7706de488c6f54dd17f49e698"
+    },
+    "test/shape_trace_input_test.dart": {
+      "git_blob": "6b32fea6379a88cdfce5d590c6a195eb10d725ad",
+      "sha256": "f444f604a71d298bb1420f9030c991905126260a85bb7a92242b2bd0d16d7961"
+    }
+  },
+  "verification": {
+    "first_combined": {
+      "passed": 25,
+      "failed": 5
+    },
+    "shape_painter_before": {
+      "passed": 0,
+      "failed": 1
+    },
+    "final_combined": {
+      "passed": 75,
+      "failed": 0,
+      "test_files": 12,
+      "exit_code": 0
+    },
+    "analyzer": {
+      "errors": 0,
+      "warnings": 0,
+      "info": 4,
+      "exit_code": 0
+    }
+  },
+  "selection_note": "PR491 exact-selection test retained unchanged; its current-grade-only rejection assertions are stronger than PR493."
+}

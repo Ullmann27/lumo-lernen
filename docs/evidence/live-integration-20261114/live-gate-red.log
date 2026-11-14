@@ -1,0 +1,36 @@
+test_reported_build_success_cannot_hide_missing_or_skipped_live_connections (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_reported_build_success_cannot_hide_missing_or_skipped_live_connections) ... 
+  test_reported_build_success_cannot_hide_missing_or_skipped_live_connections (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_reported_build_success_cannot_hide_missing_or_skipped_live_connections) (state='missing') ... FAIL
+  test_reported_build_success_cannot_hide_missing_or_skipped_live_connections (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_reported_build_success_cannot_hide_missing_or_skipped_live_connections) (state='skipped') ... FAIL
+test_live_connections_gate_reuses_exact_native_source_before_artifact_and_build (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_live_connections_gate_reuses_exact_native_source_before_artifact_and_build) ... ERROR
+
+======================================================================
+ERROR: test_live_connections_gate_reuses_exact_native_source_before_artifact_and_build (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_live_connections_gate_reuses_exact_native_source_before_artifact_and_build)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/scripts/tests/test_connect_four_pipeline.py", line 146, in test_live_connections_gate_reuses_exact_native_source_before_artifact_and_build
+    positions=[build.index(name) for name in (
+               ^^^^^^^^^^^^^^^^^
+ValueError: substring not found
+
+======================================================================
+FAIL: test_reported_build_success_cannot_hide_missing_or_skipped_live_connections (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_reported_build_success_cannot_hide_missing_or_skipped_live_connections) (state='missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/scripts/tests/test_connect_four_delivery.py", line 143, in test_reported_build_success_cannot_hide_missing_or_skipped_live_connections
+    with self.subTest(state=state), self.assertRaisesRegex(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_reported_build_success_cannot_hide_missing_or_skipped_live_connections (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_reported_build_success_cannot_hide_missing_or_skipped_live_connections) (state='skipped')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/scripts/tests/test_connect_four_delivery.py", line 143, in test_reported_build_success_cannot_hide_missing_or_skipped_live_connections
+    with self.subTest(state=state), self.assertRaisesRegex(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.003s
+
+FAILED (failures=2, errors=1)

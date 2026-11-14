@@ -1,0 +1,41 @@
+{
+  "parent_checkpoint": "69cadb6cad90c653cc044e8d073b06e5906ee97d",
+  "frozen_producer_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+  "tested_qa_commit": "2d8ff889dcd172bfd694309a064a40e3e6a749a6",
+  "files": {
+    "lib/features/games/connect_four/lumo_connect_four_game.dart": {
+      "sha256": "ecf483b9f5d10b58b87487220a34d6e7333f155aa8f4389acf1264ace9555057",
+      "producer_blob": "4d2bb14a89f0988e8d61567225403ee9416cf681",
+      "integration": "Exact frozen producer bytes"
+    },
+    "test/games/connect_four_scroll_alignment_test.dart": {
+      "sha256": "420c0bfb92c9dfabc828c7188a30608fcb957180f26f5d6b3f1f86f2090646ff",
+      "producer_blob": "29cd071778aae6d5b643e48df7c6a67a4d993db6",
+      "integration": "Exact frozen producer bytes"
+    },
+    "test/games/games_screen_flow_test.dart": {
+      "sha256": "f5785f46476b15a8f26c410705f81afb512012e593d15295b38f817ecd36e82d",
+      "producer_blob": "59d99f0568a122742abaa0d07fa8a91b0e2af041",
+      "qa_blob": "13cba5bd740b3b63f0af8c234e634473cfc1f123",
+      "integration": "Exact tested QA bytes retained"
+    },
+    "test/design/connect_four_visual_test.dart": {
+      "sha256": "078fa27fccab823d16063945b314a7a96b81140fd1f63f923497be29127e2d57",
+      "producer_blob": "8ea60303632a0ff1f25c240244deb1c95a1e4621",
+      "qa_blob": "8b685178fab49504a70cf0c63797d9fe7ce23d46",
+      "integration": "QA touch, ownership, fallback and screenshot checks retained; narrow-screen alignment exception replaced with unconditional alignment"
+    }
+  },
+  "validation": {
+    "previous_qa": {
+      "passed": 44,
+      "commit": "2d8ff889dcd172bfd694309a064a40e3e6a749a6",
+      "scope": "Earlier product on PR491 base4564; not this new four-file union"
+    },
+    "merged_union": {
+      "executed_locally": false,
+      "reason": "Managed execution environment became unavailable during preparation",
+      "required_gate": "Run original seven QA files and new three-case scroll alignment test on final combined source; keep CI required"
+    }
+  }
+}

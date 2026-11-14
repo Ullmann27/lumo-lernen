@@ -13,7 +13,9 @@ jobs:
       github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
-      github.head_ref == 'work/lumo-play-quality-20261114')
+      github.head_ref == 'work/lumo-play-quality-20261114' ||
+      github.head_ref == 'integration/lumo-agent-execution-20261114' ||
+      github.head_ref == 'integration/lumo-live-connections-20261114')
     runs-on: ubuntu-latest
     timeout-minutes: 35
     outputs:
@@ -78,6 +80,15 @@ jobs:
             echo 'Actual C4 source import failed' >&2
             exit 1
           fi
+      - name: Retry the acknowledged native exit after a transient Android refusal
+        run: |
+          set -euo pipefail
+          timeout 60s godot --headless --audio-driver Dummy --path native-source --script res://scripts/tests/connect_four_return_regression.gd 2>&1 | tee c4-runtime/return-recovery.log
+          if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:' c4-runtime/return-recovery.log; then
+            echo 'The actual native return regression reported an engine or script failure' >&2
+            exit 1
+          fi
+          grep -Fx 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log
       - name: Require the actual production Dart and rendered Godot two-process gate
         run: |
           set -euo pipefail
@@ -98,7 +109,9 @@ jobs:
       (github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
-      github.head_ref == 'work/lumo-play-quality-20261114'))
+      github.head_ref == 'work/lumo-play-quality-20261114' ||
+      github.head_ref == 'integration/lumo-agent-execution-20261114' ||
+      github.head_ref == 'integration/lumo-live-connections-20261114'))
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
@@ -154,7 +167,9 @@ jobs:
       (github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
-      github.head_ref == 'work/lumo-play-quality-20261114'))
+      github.head_ref == 'work/lumo-play-quality-20261114' ||
+      github.head_ref == 'integration/lumo-agent-execution-20261114' ||
+      github.head_ref == 'integration/lumo-live-connections-20261114'))
     runs-on: ubuntu-latest
     timeout-minutes: 90
     outputs:
@@ -415,6 +430,22 @@ jobs:
             LUMO_ACTION_LOG_DIR="$native_logs/action-stage" bash tools/validate_action_stage.sh
           fi
           LUMO_NEXTGEN_LOG_DIR="$native_logs/nextgen" bash tools/validate_nextgen.sh 2>&1 | tee "$native_logs/nextgen-runner.log"
+      - name: Verify connected dream ambience and garden on exact native source
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"
+          native_revision="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          native_source="$RUNNER_TEMP/lumo-native-acceptance"
+          native_logs="$GITHUB_WORKSPACE/acceptance-native"
+          test "$(git -C "$native_source" rev-parse HEAD)" = "$native_revision"
+          export XDG_DATA_HOME="$native_logs/user-data"
+          export XDG_CONFIG_HOME="$native_logs/user-config"
+          export XDG_CACHE_HOME="$native_logs/user-cache"
+          mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
+          cd "$native_source"
+          LUMO_LIVE_LOG_DIR="$GITHUB_WORKSPACE/acceptance-native/live" bash tools/validate_live_connections.sh 2>&1 | tee "$native_logs/live-runner.log"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -733,7 +764,9 @@ jobs:
       github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
-      github.head_ref == 'work/lumo-play-quality-20261114') &&
+      github.head_ref == 'work/lumo-play-quality-20261114' ||
+      github.head_ref == 'integration/lumo-agent-execution-20261114' ||
+      github.head_ref == 'integration/lumo-live-connections-20261114') &&
       needs.verify-and-build.result == 'success' &&
       needs.android-host-compile.result == 'success' &&
       needs.connect-four-runtime.result == 'success' &&

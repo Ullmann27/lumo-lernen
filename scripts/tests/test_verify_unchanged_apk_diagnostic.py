@@ -208,6 +208,8 @@ class ApkContracts(unittest.TestCase):
         (self.candidate / 'pubspec.yaml').write_text('version: 0.13.7+2019\n')
         self.qa_pin = self.root / 'synthetic-qa-godot-source.json'
         self.qa_pin.write_bytes((self.candidate / 'config/godot-source.json').read_bytes())
+        self.qa_pubspec = self.root / 'synthetic-qa-pubspec.yaml'
+        self.qa_pubspec.write_bytes((self.candidate / 'pubspec.yaml').read_bytes())
         self.apk = self.root / 'synthetic.apk'
         self.pck = b'Explicitly synthetic PCK bytes, not a native render or APK build.'
         with zipfile.ZipFile(self.apk, 'w', compression=zipfile.ZIP_STORED) as archive:
@@ -329,15 +331,16 @@ class ApkContracts(unittest.TestCase):
             (qa_metadata_dir / name).write_text(json.dumps(value))
 
         def synthetic_checkout(path, source, tree):
-            # Git identity and the historical QA pin are explicit fixtures.
+            # Git identity and historical QA source inputs are explicit fixtures.
             # Original helper bytes, APK verification and ZIP reads remain real.
             expected = (QA_SOURCE, QA_TREE) if path == ROOT else (diagnostic.HOST, diagnostic.HOST_TREE)
             self.assertEqual((source, tree), expected)
             return {'path': str(path), 'commit': source, 'tree': tree, 'tracked_source_clean': True}
 
         def fixture_path(path):
-            # Do not bind a fixed historical APK test to today's native pin.
-            return self.qa_pin if path == ROOT / 'config/godot-source.json' else path
+            # Keep this fixed historical APK independent of today's pin/version.
+            return {ROOT / 'config/godot-source.json': self.qa_pin,
+                    ROOT / 'pubspec.yaml': self.qa_pubspec}.get(path, path)
 
         def synthetic_committed_file(path, relative):
             data = fixture_path(path / relative).read_bytes()
@@ -364,6 +367,11 @@ class ApkContracts(unittest.TestCase):
         self.assertEqual(result['required_probe_cwd'], str(self.candidate))
         self.assertEqual(result['required_update_source_env'], diagnostic.HOST)
         self.assertEqual(len(result['input_hashes']), 7)
+        for relative in ('config/godot-source.json', 'pubspec.yaml'):
+            source_file = next(entry for entry in result['source_files']['qa']
+                               if entry['path'] == relative)
+            self.assertEqual(source_file['sha256'], diagnostic.file_digest(
+                self.candidate / relative))
         self.assertEqual(result['status'], 'BOUND')
         self.assertIn('no Android or release acceptance', result['scope'])
 

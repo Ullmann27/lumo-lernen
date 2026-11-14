@@ -24,11 +24,6 @@ void main() {
     LumoSound.instance.muted = true;
     LumoMusic.instance.muted = true;
     LumoVoice.instance.isEnabled = false;
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(
-            const MethodChannel('lumo_lernen/connect_four'),
-            (_) async =>
-                throw MissingPluginException('Flutter fallback fixture'));
   });
 
   testWidgets(
@@ -135,10 +130,19 @@ void main() {
       (tester) async {
     await tester.binding.setSurfaceSize(const Size(360, 780));
     addTearDown(() => tester.binding.setSurfaceSize(null));
+    const channel = MethodChannel('lumo_lernen/connect_four');
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(channel,
+        (_) async => throw MissingPluginException('Flutter fallback fixture'));
+    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
     final app = LumoAppState(walletRepository: RewardWalletRepository());
     await app.hydrateFromWallet();
+    LumoVoice.instance.isEnabled = false;
     await tester.pumpWidget(
         MaterialApp(home: LumoConnectFourScreen(appState: app, seed: 1)));
+    // Loading the durable round and the explicit native-unavailable fallback
+    // both finish before the first real Flutter move can be accepted.
     await tester.pumpAndSettle();
     var turns = 0;
     while (find.byType(AlertDialog).evaluate().isEmpty && turns < 60) {
@@ -149,6 +153,8 @@ void main() {
           buttons.where((f) => tester.widget<IconButton>(f).onPressed != null);
       expect(enabled, isNotEmpty);
       await tester.ensureVisible(enabled.first);
+      await tester.pump();
+      expect(enabled.first.hitTestable(), findsOneWidget);
       await tester.tap(enabled.first);
       await tester.pump(const Duration(milliseconds: 1000));
       await tester.pump(const Duration(milliseconds: 600));
@@ -172,8 +178,20 @@ void main() {
     await app.flushRewards();
     expect((await RewardWalletRepository().load()).stars, app.state.stars);
     await tester.tap(find.text('Nochmal!'));
+    await tester.pumpAndSettle();
+    final firstColumn = find.byKey(const ValueKey('connect-column-0'));
+    await tester.ensureVisible(firstColumn);
     await tester.pump();
-    await tester.tap(find.byKey(const ValueKey('connect-column-0')));
+    expect(firstColumn.hitTestable(), findsOneWidget);
+    await tester.tap(firstColumn);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(
+        tester
+            .widget<Semantics>(find.byKey(const ValueKey('connect-cell-5-0')))
+            .properties
+            .label,
+        endsWith(': child'));
     await tester.tap(find.byTooltip('Pausieren / Zurück'));
     await tester.pump();
     await tester.tap(find.text('Neu starten'));
@@ -183,7 +201,14 @@ void main() {
             .widget<IconButton>(find.byKey(const ValueKey('connect-column-0')))
             .onPressed,
         isNotNull);
-    expect(find.text('Lumo denkt... 🦊'), findsNothing);
+    expect(find.text('Lumo denkt nach …'), findsNothing);
+    expect(
+        find.byWidgetPredicate((widget) =>
+            widget is Semantics &&
+            (widget.properties.label?.startsWith('Reihe ') ?? false) &&
+            (widget.properties.label?.endsWith(': empty') ?? false)),
+        findsNWidgets(42),
+        reason: 'An old bot callback must not place a stone after restart.');
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
     app.dispose();

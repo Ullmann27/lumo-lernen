@@ -28,7 +28,9 @@ REPOSITORY = 'Ullmann27/lumo-lernen'
 WORKFLOW = '.github/workflows/lumo-connect-four-2020.yml'
 BRANCH = 'integration/lumo-c4-connections-20261114'
 QUALITY_BRANCH = 'work/lumo-play-quality-20261114'
-ACCEPTED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH))
+AGENT_BRANCH = 'integration/lumo-agent-execution-20261114'
+LIVE_BRANCH = 'integration/lumo-live-connections-20261114'
+ACCEPTED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH, AGENT_BRANCH, LIVE_BRANCH))
 DELIVERY_JOB = 'prepare-c4-delivery'
 BUNDLE_ARTIFACT = 'lumo-connect-four-2020-delivery-bundle'
 LEARNING_AUDIT_ARTIFACT = 'lumo-connect-four-2020-learning-curriculum-audit'
@@ -52,6 +54,7 @@ DELIVERY_ASSETS = {
 REQUIRED_STEPS = {
     'connect-four-runtime': (
         'Import the exact configured native source in its own directory',
+        'Retry the acknowledged native exit after a transient Android refusal',
         'Require the actual production Dart and rendered Godot two-process gate',
     ),
     'android-host-compile': (
@@ -64,6 +67,7 @@ REQUIRED_STEPS = {
         'Verify all build and preservation contracts',
         'Code-level Android probe regression with verified image dependencies',
         'Require actual gameplay gates on the exact pinned native source',
+        'Verify connected dream ambience and garden on exact native source',
         'Build unified real Android APK',
         'Verify APK archive and collect reproducible source hashes',
         'Upload exact candidate (no release or synthetic screenshots)',

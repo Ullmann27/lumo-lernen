@@ -1,0 +1,101 @@
+00:00 +0: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart
+00:00 +0: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: an outside contact already down cannot move a new stylus stroke
+00:00 +1: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: ink starts on the first contact while the page is coasting
+[InkMotion] coasting offset=112.4440588357454 after=112.4440588357454 starts=1 ends=1
+00:00 +2: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: a pen takes over from an already moving outside contact
+[InkMotion] existing drag offset=60.0 during=60.0 starts=1 ends=1
+00:00 +3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: another canvas cannot replace the active drawing owner
+00:00 +4: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: scroll hit testing follows the lifetime of all mounted canvases
+00:00 +5: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: disposing an active writing page releases its pointer owner
+00:00 +6: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: a second contact outside the canvas cannot scroll an ink stroke
+00:00 +7: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: a layout translation cancels ink before it joins stale points
+00:00 +8: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: a resize before pointer up cancels the incomplete stroke
+00:00 +9: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: ordinary parent rebuilds preserve the same active ink pointer
+00:00 +10: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart
+00:01 +10: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: (setUpAll)
+00:01 +10: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: actual legacy practice route has no scrollable ancestor
+00:02 +11: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: starting actual legacy ink requests a repaint
+00:02 +12: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: extending actual legacy ink requests a repaint
+00:02 +13: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: clearing actual legacy ink requests a repaint
+00:02 +14: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: cancel discards only active stylus ink and ignores a second touch
+00:02 +15: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: actual legacy canvas accepts primary mouse ink
+00:02 +16: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: stylus movement stays within the visible legacy canvas
+00:02 +17: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: leaving legacy canvas during ink safely ignores later move and up
+00:03 +18: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: leaving legacy canvas during ink safely ignores later cancel
+00:03 +19: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: resizing actual legacy canvas to Size(320.0, 740.0) cancels active ink
+00:03 +20: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: resizing actual legacy canvas to Size(690.0, 829.0) cancels active ink
+00:03 +21: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: resizing actual legacy canvas to Size(915.0, 412.0) cancels active ink
+00:03 +22: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: (tearDownAll)
+00:03 +22: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_gesture_regression_test.dart
+00:03 +22: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_gesture_regression_test.dart: shape vertical ink keeps its scrollable learning page stationary
+[ShapeGesture] beforeOffset=20.0 during=[20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0] beforeOrigin=Offset(17.4, 121.4) duringOrigins=[Offset(17.4, 121.4), Offset(17.4, 121.4), Offset(17.4, 121.4), Offset(17.4, 121.4), Offset(17.4, 121.4), Offset(17.4, 121.4), Offset(17.4, 121.4), Offset(17.4, 121.4)]
+00:04 +23: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_gesture_regression_test.dart: a second shape pointer cannot replace the first complete drawing
+[ShapeGesture] secondPointer results=true:Super gezeichnet!
+00:04 +24: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_gesture_regression_test.dart: a cancelled shape pointer is not committed or evaluated
+[ShapeGesture] cancel results=
+00:04 +25: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart
+00:05 +25: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart: (setUpAll)
+00:05 +25: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart: actual WortDiktat vertical stroke stays stationary at Size(430.0, 600.0)
+[DiktatGesture] size=Size(430.0, 600.0) canvas=Rect.fromLTRB(38.5, 190.5, 391.5, 243.0) travel=40.5 initial=[122.0] during=[[122.0], [122.0], [122.0], [122.0], [122.0], [122.0], [122.0], [122.0]] origins=[Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5)]
+00:05 +26: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart: actual WortDiktat vertical stroke stays stationary at Size(640.0, 360.0)
+[DiktatGesture] size=Size(640.0, 360.0) canvas=Rect.fromLTRB(214.5, 88.0, 593.5, 140.5) travel=40.5 initial=[228.5] during=[[228.5], [228.5], [228.5], [228.5], [228.5], [228.5], [228.5], [228.5]] origins=[Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0)]
+00:06 +27: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart: (tearDownAll)
+00:06 +27: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_regression_test.dart
+00:06 +27: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_regression_test.dart: vertical letter stroke does not scroll its learning page
+00:07 +28: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_regression_test.dart: a second finger never creates a second ink stroke
+00:07 +29: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_regression_test.dart
+00:07 +29: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_regression_test.dart: vertical shape strokes keep the lesson stationary
+00:07 +30: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_regression_test.dart: a second finger cannot replace or finish the active shape stroke
+00:07 +31: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_regression_test.dart: cancelling a pointer discards its unfinished shape stroke
+00:07 +32: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_test.dart
+00:08 +32: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_test.dart: shape strokes keep the lesson stationary in every direction
+00:08 +33: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_test.dart: lifting a second finger cannot finish the active shape stroke
+00:08 +34: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_test.dart: cancelled shape strokes are discarded and the next stroke works
+00:08 +35: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_test.dart: cancelling a later stroke preserves earlier completed work
+00:08 +36: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_test.dart: undo and clear actually erase the painted stroke pixels
+00:09 +37: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_test.dart: undo and clear invalidate ink without an ancestor repaint
+00:09 +38: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning/learning_exact_selection_test.dart
+00:09 +38: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning/learning_exact_selection_test.dart: Exact curriculum selection is never silently rerouted grade out of range is rejected rather than clamped
+00:09 +39: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning/learning_exact_selection_test.dart: Exact curriculum selection is never silently rerouted unknown subject does not become Mathematics
+00:09 +40: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning/learning_exact_selection_test.dart: Exact curriculum selection is never silently rerouted unknown topic does not become random question
+00:09 +41: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning/learning_exact_selection_test.dart: Exact curriculum selection is never silently rerouted all or mixed is invalid for explicit selection
+00:09 +42: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning/learning_exact_selection_test.dart: Exact curriculum selection is never silently rerouted explicit first-grade addition returns the selected lesson
+00:09 +43: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning/learning_exact_selection_test.dart: Exact curriculum selection is never silently rerouted mixed existing generation remains a separate API
+00:09 +44: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning/learning_exact_selection_test.dart: Exact curriculum selection is never silently rerouted current-grade filter excludes earlier subjects and units
+00:09 +45: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning_selection_integration_test.dart
+00:10 +45: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning_selection_integration_test.dart: exact adventure generation preserves the child name and selection
+00:10 +46: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning_selection_integration_test.dart: Woerter lesen stays a reading lesson after the finite bank repeats
+00:11 +47: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning_selection_integration_test.dart: Wörter lesen stays a reading lesson after the finite bank repeats
+00:11 +48: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning_selection_integration_test.dart: canonical Zahlenstrahl is not replaced by the old alias
+00:11 +49: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning_selection_integration_test.dart: test difficulty changes replace the task and companion context
+00:11 +50: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning_selection_integration_test.dart: Alle keeps its deliberate mixed-topic round
+00:12 +51: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/learning_selection_integration_test.dart: Mathematik keeps its deliberate mixed-topic round
+00:12 +52: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart
+00:12 +52: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: LetterPracticeRules a stray tap is not a real attempt, a visible stroke is
+00:12 +53: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: LetterPracticeRules words need a little more ink than one letter
+00:12 +54: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: LetterPracticeRules tips never contain a percentage or a grade
+00:12 +55: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: lowercase school print every lowercase letter and umlaut has its own bounded trace
+00:12 +56: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: lowercase school print lowercase bodies sit on the base line of the four school lines
+00:12 +57: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: trainer page letter trainer fits 320.0x740.0
+00:13 +58: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: trainer page letter trainer fits 412.0x915.0
+00:13 +59: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: trainer page letter trainer fits 690.0x829.0
+00:13 +60: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: trainer page letter trainer fits 915.0x412.0
+00:13 +61: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: trainer page a tiny tap does not unlock Weiter; Nochmals üben clears
+00:13 +62: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: trainer page Zeigen animates the guide without blocking input
+00:13 +63: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: lesson task a wrong typed spelling can be corrected and checked again
+00:13 +64: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: lesson task the start button sits fully visible on the Fold cover
+00:13 +65: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_practice_trainer_test.dart: full learning path letter appears, the finger writes, the attempt is accepted and the next task starts
+00:14 +66: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_word_progress_test.dart
+00:14 +66: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_word_progress_test.dart: (setUpAll)
+00:14 +66: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_word_progress_test.dart: mute shows the target word without TTS, voice keeps the dictation
+00:15 +67: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_word_progress_test.dart: traced letters persist XP, one whole word counts one Daily, double tap pays once
+00:17 +68: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_word_progress_test.dart: wrong traced letter records false with help, corrected word keeps accuracy bonus
+00:18 +69: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_word_progress_test.dart: failed letter wallet write blocks touch and back, Retry saves original XP once
+00:18 +70: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_word_progress_test.dart: word profile failure waits for Retry before finish without double Daily or wallet
+00:19 +71: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_word_progress_test.dart: unmount during final reward completes accepted word storage without session bonus
+00:19 +72: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_word_progress_test.dart: background pauses feedback and never advances the next letter offscreen
+00:19 +73: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/writing_word_progress_test.dart: (tearDownAll)
+00:19 +73: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_retry_test.dart
+00:20 +73: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_retry_test.dart: shape tracing honours allowRetry=true after a mistake
+00:20 +74: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_retry_test.dart: shape tracing honours allowRetry=false after a mistake
+00:20 +75: All tests passed!

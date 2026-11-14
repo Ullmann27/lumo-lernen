@@ -309,6 +309,34 @@ class BindingTests(unittest.TestCase):
             native=NATIVE,version_name='0.13.8')
         self.assertEqual(actual,bind())
 
+    def test_exact_integration_branches_accept_their_current_source(self):
+        for branch in ('integration/lumo-c4-connections-20261114',
+                       'work/lumo-play-quality-20261114',
+                       'integration/lumo-agent-execution-20261114',
+                       'integration/lumo-live-connections-20261114'):
+            metadata = original_metadata()
+            metadata[0]['head_branch'] = branch
+            with self.subTest(branch=branch):
+                self.assertEqual(bind(metadata)['host_source'], HOST)
+                metadata[0]['head_sha'] = 'f'*40
+                with self.assertRaises(ValueError):
+                    bind(metadata)
+
+    def test_branch_allowlist_does_not_accept_similar_names_or_foreign_repository(self):
+        for branch in ('main', 'integration/lumo-agent-execution-20261114-copy',
+                       'integration/lumo-agent-execution-20261115',
+                       'work/lumo-play-quality-20261114-copy',
+                       'integration/lumo-live-connections-20261114-copy', ''):
+            metadata = original_metadata()
+            metadata[0]['head_branch'] = branch
+            with self.subTest(branch=branch), self.assertRaises(ValueError):
+                bind(metadata)
+        metadata = original_metadata()
+        metadata[0]['head_branch'] = 'integration/lumo-agent-execution-20261114'
+        metadata[0]['repository']['full_name'] = 'outside/fork'
+        with self.assertRaises(ValueError):
+            bind(metadata)
+
     def test_rejects_wrong_source_workflow_attempt_artifact_and_job(self):
         alterations=(lambda x:x[0].update(head_sha='f'*40),
                      lambda x:x[0].update(path='.github/workflows/lumo-kart-graphics-2019.yml'),
