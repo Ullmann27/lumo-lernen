@@ -144,7 +144,7 @@ APPROVED = {
     # 2020: combined C4, original-Lumo Hub, Village return, Dream and minimap.
     # Source identity only. Fresh Native52, Live9, Discovery10 and Dream5 gates,
     # actual Android journeys and preserved-update acceptance remain mandatory.
-    2020: "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    2020: "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

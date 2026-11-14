@@ -3,8 +3,22 @@
 Der aktuelle Arbeitsstand führt Host `1e22d2455937e2640d1e44e153d290746f3afe49`
 und den neuen Entwicklungsstand `057a4e8d067872c4f3514b126aa04c3706d2e5b5`
 zusammen. Beide tatsächlichen Eltern und alle bestehenden Originalbelege bleiben
-im Git-Verlauf erhalten. Der neue Native-Pin und die Garagenkorrektur werden erst
-nach ihrem konkreten unabhängigen Review gebunden. Dies ist noch keine Abnahme.
+im Git-Verlauf erhalten. Die geprüfte Garagenkorrektur aus
+`d7b5289f5b17cc6adf65fe2511971371f289cb6a` ist mit beiden realen Eltern integriert.
+Die aktuelle Native-Quelle ist `84789d0c2c6fb4b6ecd2897ce1951b89f958b604`,
+Tree `91cc8fc1c6f8a36336b7ac9a12585284a983a6f6`. Sie vereinigt e9a9 und a69f535
+über fe861bd und aktiviert zusätzlich die vorhandene Discovery-/Village-/Minimap-
+Abnahme auf dem zentralen Entwicklungszweig. Sämtliche 3.769 anderen Dateien
+blieben bei dieser Triggerkorrektur unverändert; alle 50 historischen Pins bleiben.
+
+Native-Run [43613299144](https://github.com/Ullmann27/lumo-godot/actions/runs/43613299144)
+prüft exakt diesen neuen Pin. Die API35-Diagnose
+[43612493152](https://github.com/Ullmann27/lumo-lernen/actions/runs/43612493152)
+prüft bewusst die unveränderte frühere 1e22-APK mit getrennt gebundener QA-Quelle
+4017a94d. Ihre 101 Vorlaufverträge sind bestanden; beide Gerätetouren laufen.
+Die neue Hostunion bestand 177 gezielte Scriptverträge und danach 25 aktuelle
+Pinverträge. Die verzögerte Safari-Fortsetzung wird noch an den ursprünglichen
+Modus gebunden. Diese Teilnachweise sind keine abschließende neue APK-Abnahme.
 
 ## Tatsächlich abgeschlossener Lauf auf 1e22
 
