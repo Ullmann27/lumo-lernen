@@ -1,0 +1,607 @@
+{
+  "source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "published_tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+  "runtime_files_checked": 1175,
+  "source_changes": [],
+  "elapsed_seconds": 152.6181693289982,
+  "results": [
+    {
+      "track": "zauberwald",
+      "exit_code": 0,
+      "seconds": 15.641517081996426,
+      "command": [
+        "/usr/local/bin/godot",
+        "--path",
+        "/workspace/scratch/5987865ae883/lumo-godot",
+        "--display-driver",
+        "x11",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--script",
+        "res://scripts/tests/kart_track_theme_capture.gd",
+        "--",
+        "--track=zauberwald",
+        "--detail=full",
+        "--out=/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/zauberwald",
+        "--site=0"
+      ],
+      "capture_root": "/tmp/lumo-theme-capture.wfrzzjss",
+      "log": "zauberwald.log",
+      "frames": [
+        {
+          "path": "captures/zauberwald/01_chase.png",
+          "bytes": 887643,
+          "sha256": "c1b314ce2b3a5ab58d782c423ad9ea72ae380c5fd315f68b27b27ba02037f208"
+        },
+        {
+          "path": "captures/zauberwald/02_context.png",
+          "bytes": 795664,
+          "sha256": "3b568042fdcd60a9e0446959c6a073b0f9ba93345dd6fba9d32ca1cabe1cf94a"
+        },
+        {
+          "path": "captures/zauberwald/03_detail.png",
+          "bytes": 575541,
+          "sha256": "0eb03dd23fb6a7ce081e7f64a233b053a44b25b1da87e4043e6b71eced216b62"
+        }
+      ],
+      "capture_kind": "stationary production scene; no driving or device performance",
+      "capture_status": "captured",
+      "original_harness_git_provenance": {
+        "clean_tracked_source": false,
+        "engine": "4.6.3-stable (official)",
+        "physical_android_device": false,
+        "renderer": "gl_compatibility",
+        "source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+        "tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+        "visual_acceptance": "Manual reference review required; render success is not art approval"
+      },
+      "source_binding": "1175 published runtime/asset/scene/capture files exactly match Native803; older local Git HEAD and dirty stamp are preserved verbatim"
+    },
+    {
+      "track": "bergwelt",
+      "exit_code": 0,
+      "seconds": 15.791410361998715,
+      "command": [
+        "/usr/local/bin/godot",
+        "--path",
+        "/workspace/scratch/5987865ae883/lumo-godot",
+        "--display-driver",
+        "x11",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--script",
+        "res://scripts/tests/kart_track_theme_capture.gd",
+        "--",
+        "--track=bergwelt",
+        "--detail=full",
+        "--out=/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/bergwelt",
+        "--site=0"
+      ],
+      "capture_root": "/tmp/lumo-theme-capture.tc3rp42m",
+      "log": "bergwelt.log",
+      "frames": [
+        {
+          "path": "captures/bergwelt/01_chase.png",
+          "bytes": 931938,
+          "sha256": "4a163d1a1dd9d354b5dd54d505a69ce5630984a2c287941284b4c1deab0b58cc"
+        },
+        {
+          "path": "captures/bergwelt/02_context.png",
+          "bytes": 810165,
+          "sha256": "384b37a08f43e5c5c1fc569fd26ea926bead4b7d67d6b93247eec86aa83cc646"
+        },
+        {
+          "path": "captures/bergwelt/03_detail.png",
+          "bytes": 777413,
+          "sha256": "b5487a506778013a020849e54d9e0350cc0d5bbc62b493d087ca03c16088bd7b"
+        }
+      ],
+      "capture_kind": "stationary production scene; no driving or device performance",
+      "capture_status": "captured",
+      "original_harness_git_provenance": {
+        "clean_tracked_source": false,
+        "engine": "4.6.3-stable (official)",
+        "physical_android_device": false,
+        "renderer": "gl_compatibility",
+        "source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+        "tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+        "visual_acceptance": "Manual reference review required; render success is not art approval"
+      },
+      "source_binding": "1175 published runtime/asset/scene/capture files exactly match Native803; older local Git HEAD and dirty stamp are preserved verbatim"
+    },
+    {
+      "track": "holo_city",
+      "exit_code": 0,
+      "seconds": 13.625733473003493,
+      "command": [
+        "/usr/local/bin/godot",
+        "--path",
+        "/workspace/scratch/5987865ae883/lumo-godot",
+        "--display-driver",
+        "x11",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--script",
+        "res://scripts/tests/kart_track_theme_capture.gd",
+        "--",
+        "--track=holo_city",
+        "--detail=full",
+        "--out=/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/holo_city",
+        "--site=0"
+      ],
+      "capture_root": "/tmp/lumo-theme-capture.kb1iftaj",
+      "log": "holo_city.log",
+      "frames": [
+        {
+          "path": "captures/holo_city/01_chase.png",
+          "bytes": 971311,
+          "sha256": "8e2afae2317986c50e6030b0a557a0600d1683c8d10970c1d168fb90a042b2f4"
+        },
+        {
+          "path": "captures/holo_city/02_context.png",
+          "bytes": 875561,
+          "sha256": "4d7dd08f327b78376c7b2fde24ce3b6c816b4d93d4ef68a5005d5ad9bd2bfe43"
+        },
+        {
+          "path": "captures/holo_city/03_detail.png",
+          "bytes": 436480,
+          "sha256": "593ecd2f3ade062524bfc205ef57b377c37743982fbd25c6691d100d1a50bfe5"
+        }
+      ],
+      "capture_kind": "stationary production scene; no driving or device performance",
+      "capture_status": "captured",
+      "original_harness_git_provenance": {
+        "clean_tracked_source": false,
+        "engine": "4.6.3-stable (official)",
+        "physical_android_device": false,
+        "renderer": "gl_compatibility",
+        "source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+        "tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+        "visual_acceptance": "Manual reference review required; render success is not art approval"
+      },
+      "source_binding": "1175 published runtime/asset/scene/capture files exactly match Native803; older local Git HEAD and dirty stamp are preserved verbatim"
+    },
+    {
+      "track": "crystal_canyon",
+      "exit_code": 0,
+      "seconds": 13.566140096998424,
+      "command": [
+        "/usr/local/bin/godot",
+        "--path",
+        "/workspace/scratch/5987865ae883/lumo-godot",
+        "--display-driver",
+        "x11",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--script",
+        "res://scripts/tests/kart_track_theme_capture.gd",
+        "--",
+        "--track=crystal_canyon",
+        "--detail=full",
+        "--out=/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/crystal_canyon",
+        "--site=0"
+      ],
+      "capture_root": "/tmp/lumo-theme-capture.4qvis0y3",
+      "log": "crystal_canyon.log",
+      "frames": [
+        {
+          "path": "captures/crystal_canyon/01_chase.png",
+          "bytes": 918792,
+          "sha256": "e52da40b64a9228a8ea3d9756f90d63a26136689d06aaed0515b9e36de65fd82"
+        },
+        {
+          "path": "captures/crystal_canyon/02_context.png",
+          "bytes": 922725,
+          "sha256": "4858314340ed95c8af7e849efc3f47c3056a54d0d10202dd0054a6e507e17da6"
+        },
+        {
+          "path": "captures/crystal_canyon/03_detail.png",
+          "bytes": 526694,
+          "sha256": "b413de6a8a1a1dc2291bfdfc5780c0b28579ed3982af128b9aa7a68ef89f3337"
+        }
+      ],
+      "capture_kind": "stationary production scene; no driving or device performance",
+      "capture_status": "captured",
+      "original_harness_git_provenance": {
+        "clean_tracked_source": false,
+        "engine": "4.6.3-stable (official)",
+        "physical_android_device": false,
+        "renderer": "gl_compatibility",
+        "source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+        "tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+        "visual_acceptance": "Manual reference review required; render success is not art approval"
+      },
+      "source_binding": "1175 published runtime/asset/scene/capture files exactly match Native803; older local Git HEAD and dirty stamp are preserved verbatim"
+    },
+    {
+      "track": "jungle_temple",
+      "exit_code": 0,
+      "seconds": 12.05773052299628,
+      "command": [
+        "/usr/local/bin/godot",
+        "--path",
+        "/workspace/scratch/5987865ae883/lumo-godot",
+        "--display-driver",
+        "x11",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--script",
+        "res://scripts/tests/kart_track_theme_capture.gd",
+        "--",
+        "--track=jungle_temple",
+        "--detail=full",
+        "--out=/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/jungle_temple",
+        "--site=0"
+      ],
+      "capture_root": "/tmp/lumo-theme-capture.zrb5sngq",
+      "log": "jungle_temple.log",
+      "frames": [
+        {
+          "path": "captures/jungle_temple/01_chase.png",
+          "bytes": 987109,
+          "sha256": "ad88ab92e03a760cafb08d2e93aa45f105014e969fc7e7ee935f70d880740fc7"
+        },
+        {
+          "path": "captures/jungle_temple/02_context.png",
+          "bytes": 919362,
+          "sha256": "ff8e6d0ff6a99110fdcde7d9157daa5423ec5850d80d6d9ddf557140353e7132"
+        },
+        {
+          "path": "captures/jungle_temple/03_detail.png",
+          "bytes": 582847,
+          "sha256": "937e3592ed3036eae9a4aadca659606d13b4e841d3db08dbd898ab07b01e5bdc"
+        }
+      ],
+      "capture_kind": "stationary production scene; no driving or device performance",
+      "capture_status": "captured",
+      "original_harness_git_provenance": {
+        "clean_tracked_source": false,
+        "engine": "4.6.3-stable (official)",
+        "physical_android_device": false,
+        "renderer": "gl_compatibility",
+        "source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+        "tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+        "visual_acceptance": "Manual reference review required; render success is not art approval"
+      },
+      "source_binding": "1175 published runtime/asset/scene/capture files exactly match Native803; older local Git HEAD and dirty stamp are preserved verbatim"
+    },
+    {
+      "track": "candy_cloud",
+      "exit_code": 0,
+      "seconds": 15.595012347010197,
+      "command": [
+        "/usr/local/bin/godot",
+        "--path",
+        "/workspace/scratch/5987865ae883/lumo-godot",
+        "--display-driver",
+        "x11",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--script",
+        "res://scripts/tests/kart_track_theme_capture.gd",
+        "--",
+        "--track=candy_cloud",
+        "--detail=full",
+        "--out=/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/candy_cloud",
+        "--site=0"
+      ],
+      "capture_root": "/tmp/lumo-theme-capture.6hfzzlb_",
+      "log": "candy_cloud.log",
+      "frames": [
+        {
+          "path": "captures/candy_cloud/01_chase.png",
+          "bytes": 842986,
+          "sha256": "c118874a306379c0c0731027f4242d727885b3786d7468c1bb811b8f34bbc7c2"
+        },
+        {
+          "path": "captures/candy_cloud/02_context.png",
+          "bytes": 808771,
+          "sha256": "547e2a686a0e72f2e3cb1628c9a5401d3e24d75cb5f46ce98196f888643ebb69"
+        },
+        {
+          "path": "captures/candy_cloud/03_detail.png",
+          "bytes": 621663,
+          "sha256": "a349b8b3b33ceec4d201cfaa980024b2930d1a1cfedd7cb966be1ab002233a90"
+        }
+      ],
+      "capture_kind": "stationary production scene; no driving or device performance",
+      "capture_status": "captured",
+      "original_harness_git_provenance": {
+        "clean_tracked_source": false,
+        "engine": "4.6.3-stable (official)",
+        "physical_android_device": false,
+        "renderer": "gl_compatibility",
+        "source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+        "tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+        "visual_acceptance": "Manual reference review required; render success is not art approval"
+      },
+      "source_binding": "1175 published runtime/asset/scene/capture files exactly match Native803; older local Git HEAD and dirty stamp are preserved verbatim"
+    },
+    {
+      "track": "volcano_night",
+      "exit_code": 0,
+      "seconds": 13.820888568996452,
+      "command": [
+        "/usr/local/bin/godot",
+        "--path",
+        "/workspace/scratch/5987865ae883/lumo-godot",
+        "--display-driver",
+        "x11",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--script",
+        "res://scripts/tests/kart_track_theme_capture.gd",
+        "--",
+        "--track=volcano_night",
+        "--detail=full",
+        "--out=/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/volcano_night",
+        "--site=0"
+      ],
+      "capture_root": "/tmp/lumo-theme-capture.jiiardha",
+      "log": "volcano_night.log",
+      "frames": [
+        {
+          "path": "captures/volcano_night/01_chase.png",
+          "bytes": 823872,
+          "sha256": "b4ebc2af9e0c4eaa87415e0aedb2a639aa450d215c6a131cf815a631d7c57d3e"
+        },
+        {
+          "path": "captures/volcano_night/02_context.png",
+          "bytes": 850298,
+          "sha256": "7a5fd80df959fa01d6b2d138fe25fa5dba30a7e36e02447ddbb3480a84c16781"
+        },
+        {
+          "path": "captures/volcano_night/03_detail.png",
+          "bytes": 644170,
+          "sha256": "3a463724de853a71e32e540c6c3111e6dcf070acc5bee5a27f55ce3927b1e927"
+        }
+      ],
+      "capture_kind": "stationary production scene; no driving or device performance",
+      "capture_status": "captured",
+      "original_harness_git_provenance": {
+        "clean_tracked_source": false,
+        "engine": "4.6.3-stable (official)",
+        "physical_android_device": false,
+        "renderer": "gl_compatibility",
+        "source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+        "tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+        "visual_acceptance": "Manual reference review required; render success is not art approval"
+      },
+      "source_binding": "1175 published runtime/asset/scene/capture files exactly match Native803; older local Git HEAD and dirty stamp are preserved verbatim"
+    },
+    {
+      "track": "winter_sprint",
+      "exit_code": 0,
+      "seconds": 13.014049015007913,
+      "command": [
+        "/usr/local/bin/godot",
+        "--path",
+        "/workspace/scratch/5987865ae883/lumo-godot",
+        "--display-driver",
+        "x11",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--script",
+        "res://scripts/tests/kart_track_theme_capture.gd",
+        "--",
+        "--track=winter_sprint",
+        "--detail=full",
+        "--out=/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/winter_sprint",
+        "--site=0"
+      ],
+      "capture_root": "/tmp/lumo-theme-capture.rxy_msvx",
+      "log": "winter_sprint.log",
+      "frames": [
+        {
+          "path": "captures/winter_sprint/01_chase.png",
+          "bytes": 905317,
+          "sha256": "e371d7dbbbab76261b71e457a7bd9bfd1bf2eeb55d42ff83e807464f5ab004f3"
+        },
+        {
+          "path": "captures/winter_sprint/02_context.png",
+          "bytes": 746561,
+          "sha256": "a516e52d695cbc3a89ff9fea8ddee6ccc4e9ddaf3b766baf262a2584338f0041"
+        },
+        {
+          "path": "captures/winter_sprint/03_detail.png",
+          "bytes": 540751,
+          "sha256": "a82f5162aca9f287306a3703f4ac247bbbd6107e927683fde53cdfc9323ea108"
+        }
+      ],
+      "capture_kind": "stationary production scene; no driving or device performance",
+      "capture_status": "captured",
+      "original_harness_git_provenance": {
+        "clean_tracked_source": false,
+        "engine": "4.6.3-stable (official)",
+        "physical_android_device": false,
+        "renderer": "gl_compatibility",
+        "source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+        "tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+        "visual_acceptance": "Manual reference review required; render success is not art approval"
+      },
+      "source_binding": "1175 published runtime/asset/scene/capture files exactly match Native803; older local Git HEAD and dirty stamp are preserved verbatim"
+    },
+    {
+      "track": "galaxy_ringway",
+      "exit_code": 0,
+      "seconds": 12.262382504006382,
+      "command": [
+        "/usr/local/bin/godot",
+        "--path",
+        "/workspace/scratch/5987865ae883/lumo-godot",
+        "--display-driver",
+        "x11",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--script",
+        "res://scripts/tests/kart_track_theme_capture.gd",
+        "--",
+        "--track=galaxy_ringway",
+        "--detail=full",
+        "--out=/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/galaxy_ringway",
+        "--site=0"
+      ],
+      "capture_root": "/tmp/lumo-theme-capture.jvntzxo5",
+      "log": "galaxy_ringway.log",
+      "frames": [
+        {
+          "path": "captures/galaxy_ringway/01_chase.png",
+          "bytes": 841145,
+          "sha256": "0be20e58b76a747402daad6cd04822ac91c4fd9cf7f89751fb03fbd741b9f226"
+        },
+        {
+          "path": "captures/galaxy_ringway/02_context.png",
+          "bytes": 582831,
+          "sha256": "5451756f078757cfa3e22821af93da722da70b6e3cdd2536ad6d1bd86383046d"
+        },
+        {
+          "path": "captures/galaxy_ringway/03_detail.png",
+          "bytes": 496044,
+          "sha256": "de2a632d2be2431187b41ec0b78452b987487418878f3c14efef77e42d13fde8"
+        }
+      ],
+      "capture_kind": "stationary production scene; no driving or device performance",
+      "capture_status": "captured",
+      "original_harness_git_provenance": {
+        "clean_tracked_source": false,
+        "engine": "4.6.3-stable (official)",
+        "physical_android_device": false,
+        "renderer": "gl_compatibility",
+        "source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+        "tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+        "visual_acceptance": "Manual reference review required; render success is not art approval"
+      },
+      "source_binding": "1175 published runtime/asset/scene/capture files exactly match Native803; older local Git HEAD and dirty stamp are preserved verbatim"
+    },
+    {
+      "track": "desert_drift",
+      "exit_code": 0,
+      "seconds": 12.204950801999075,
+      "command": [
+        "/usr/local/bin/godot",
+        "--path",
+        "/workspace/scratch/5987865ae883/lumo-godot",
+        "--display-driver",
+        "x11",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--script",
+        "res://scripts/tests/kart_track_theme_capture.gd",
+        "--",
+        "--track=desert_drift",
+        "--detail=full",
+        "--out=/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/desert_drift",
+        "--site=0"
+      ],
+      "capture_root": "/tmp/lumo-theme-capture.d3g9e7ul",
+      "log": "desert_drift.log",
+      "frames": [
+        {
+          "path": "captures/desert_drift/01_chase.png",
+          "bytes": 1006114,
+          "sha256": "3cb64cc8bca59fdce9786c1e8bd6832343ad613fb53422ad8ed29306e65f4848"
+        },
+        {
+          "path": "captures/desert_drift/02_context.png",
+          "bytes": 802832,
+          "sha256": "a712aed9e5358f8eb7e04545387b45051653fe4d19e55f920a57e55736e7b607"
+        },
+        {
+          "path": "captures/desert_drift/03_detail.png",
+          "bytes": 381486,
+          "sha256": "32a785c473d6ebe24e74d599e31c8586315d13d2b973c41e89573fd68d1043d5"
+        }
+      ],
+      "capture_kind": "stationary production scene; no driving or device performance",
+      "capture_status": "captured",
+      "original_harness_git_provenance": {
+        "clean_tracked_source": false,
+        "engine": "4.6.3-stable (official)",
+        "physical_android_device": false,
+        "renderer": "gl_compatibility",
+        "source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+        "tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+        "visual_acceptance": "Manual reference review required; render success is not art approval"
+      },
+      "source_binding": "1175 published runtime/asset/scene/capture files exactly match Native803; older local Git HEAD and dirty stamp are preserved verbatim"
+    },
+    {
+      "track": "learning_lab",
+      "exit_code": 0,
+      "seconds": 13.163068633002695,
+      "command": [
+        "/usr/local/bin/godot",
+        "--path",
+        "/workspace/scratch/5987865ae883/lumo-godot",
+        "--display-driver",
+        "x11",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--script",
+        "res://scripts/tests/kart_track_theme_capture.gd",
+        "--",
+        "--track=learning_lab",
+        "--detail=full",
+        "--out=/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/learning_lab",
+        "--site=0"
+      ],
+      "capture_root": "/tmp/lumo-theme-capture.w0yn_b9_",
+      "log": "learning_lab.log",
+      "frames": [
+        {
+          "path": "captures/learning_lab/01_chase.png",
+          "bytes": 1055885,
+          "sha256": "6149614d8ce4ff5d19ae1e2425bbb55f5105e89896441aa5d0a287e3df13cc88"
+        },
+        {
+          "path": "captures/learning_lab/02_context.png",
+          "bytes": 971328,
+          "sha256": "94f5b496ea2443dda3410977125dca997b76fe07c1ebd973113743b7b913fe11"
+        },
+        {
+          "path": "captures/learning_lab/03_detail.png",
+          "bytes": 625476,
+          "sha256": "7a2d23430685bd213927f85323f66838d691226240f97c7c670b9bc7c0a63843"
+        }
+      ],
+      "capture_kind": "stationary production scene; no driving or device performance",
+      "capture_status": "captured",
+      "original_harness_git_provenance": {
+        "clean_tracked_source": false,
+        "engine": "4.6.3-stable (official)",
+        "physical_android_device": false,
+        "renderer": "gl_compatibility",
+        "source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+        "tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+        "visual_acceptance": "Manual reference review required; render success is not art approval"
+      },
+      "source_binding": "1175 published runtime/asset/scene/capture files exactly match Native803; older local Git HEAD and dirty stamp are preserved verbatim"
+    }
+  ],
+  "all_11_captured": true,
+  "physical_android": false,
+  "fps_claim": false,
+  "visual_review": "pending individual image inspection"
+}

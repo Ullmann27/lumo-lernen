@@ -1,0 +1,334 @@
+{
+	"accepted_sites": [
+		{
+			"distance": 24.2009982299805,
+			"position": [
+				29.4431533813477,
+				-2.0,
+				84.5332412719727
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 58.7738528442383,
+			"position": [
+				72.2063827514648,
+				-2.0,
+				96.1064453125
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 93.3467074584961,
+			"position": [
+				81.9820709228516,
+				-2.0,
+				57.025749206543
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 127.919562072754,
+			"position": [
+				115.12476348877,
+				-2.0,
+				31.5961837768555
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 162.492416687012,
+			"position": [
+				86.7319717407227,
+				-2.0,
+				-2.04238820075989
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 197.06527130127,
+			"position": [
+				115.419006347656,
+				-2.0,
+				-38.0936660766602
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 231.638125915527,
+			"position": [
+				79.7543487548828,
+				-2.0,
+				-67.2067031860352
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 266.210980529785,
+			"position": [
+				81.3173904418945,
+				-2.0,
+				-109.734588623047
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 300.783835144043,
+			"position": [
+				44.7559280395508,
+				-2.0,
+				-94.6993103027344
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 335.356689758301,
+			"position": [
+				4.21473979949951,
+				-2.0,
+				-107.815391540527
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 369.929544372559,
+			"position": [
+				-19.8746509552002,
+				-2.0,
+				-67.3097991943359
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 404.502398986816,
+			"position": [
+				-58.5932273864746,
+				-2.0,
+				-95.540412902832
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 439.075253601074,
+			"position": [
+				-82.2526321411133,
+				-2.0,
+				-60.6203994750977
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 473.648108215332,
+			"position": [
+				-119.397003173828,
+				-2.0,
+				-44.5122222900391
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 508.22096282959,
+			"position": [
+				-91.9349060058594,
+				-2.0,
+				-13.2611808776855
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 542.793817443848,
+			"position": [
+				-94.9644927978516,
+				-2.0,
+				33.6907043457031
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 577.366672058105,
+			"position": [
+				-52.5012435913086,
+				-2.0,
+				43.958667755127
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 611.939526672363,
+			"position": [
+				-64.8868560791016,
+				-2.0,
+				85.0315246582031
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 646.512381286621,
+			"position": [
+				-27.9156074523926,
+				-2.0,
+				94.9973373413086
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 681.085235900879,
+			"position": [
+				3.07168340682983,
+				-2.0,
+				120.324867248535
+			],
+			"radius": 1.8
+		}
+	],
+	"actual_detail": "full",
+	"actual_lightweight": false,
+	"capture_kind": "stationary production scene inspection; no driven race",
+	"capture_root": "/tmp/lumo-theme-capture.zrb5sngq",
+	"graphics_profile": "high",
+	"isolation_check": "single-use marker, exact XDG paths, user:// containment and no existing kart state checked before scene load",
+	"process_frozen": true,
+	"reduced_motion": true,
+	"reference_detail_count": 408,
+	"reference_detail_theme": "jungle_temple",
+	"requested_detail": "full",
+	"seed": 1923,
+	"selected_site_index": 0,
+	"source": {
+		"clean_tracked_source": false,
+		"engine": "4.6.3-stable (official)",
+		"physical_android_device": false,
+		"renderer": "gl_compatibility",
+		"source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+		"tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+		"visual_acceptance": "Manual reference review required; render success is not art approval"
+	},
+	"status": "captured",
+	"track_id": "jungle_temple",
+	"track_length": 691.457092285156,
+	"user_data_path": "/tmp/lumo-theme-capture.zrb5sngq/userdata/godot/app_userdata/Lumo 3D/",
+	"viewport": [
+		1280,
+		720
+	],
+	"views": [
+		{
+			"camera_basis_x": [
+				0.232796236872673,
+				0.0,
+				0.972525537014008
+			],
+			"camera_basis_y": [
+				0.195037171244621,
+				0.979684054851532,
+				-0.0466866083443165
+			],
+			"camera_basis_z": [
+				-0.952767789363861,
+				0.200547114014626,
+				0.228066772222519
+			],
+			"camera_position": [
+				18.6770439147949,
+				13.1757946014404,
+				104.899795532227
+			],
+			"camera_source": "production _update_camera; stationary player placed 12 m before accepted site",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "01_chase",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/jungle_temple/01_chase.png",
+			"player_distance": 12.2009982299805,
+			"player_position": [
+				22.9075298309326,
+				10.6557950973511,
+				103.887130737305
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.98976331949234,
+				0.0,
+				0.14271879196167
+			],
+			"camera_basis_y": [
+				0.0920370072126389,
+				0.764280796051025,
+				-0.638282120227814
+			],
+			"camera_basis_z": [
+				-0.109077222645283,
+				0.644883632659912,
+				0.756457030773163
+			],
+			"camera_position": [
+				26.7910823822021,
+				15.6795082092285,
+				102.925514221191
+			],
+			"camera_source": "manual road-context pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "02_context",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/jungle_temple/02_context.png",
+			"player_distance": 12.2009982299805,
+			"player_position": [
+				22.9075298309326,
+				10.6557950973511,
+				103.887130737305
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.954882085323334,
+				0.0,
+				-0.296985298395157
+			],
+			"camera_basis_y": [
+				-0.0748567506670952,
+				0.967712819576263,
+				-0.240683197975159
+			],
+			"camera_basis_z": [
+				0.287396460771561,
+				0.252055436372757,
+				0.924051642417908
+			],
+			"camera_position": [
+				32.6357460021973,
+				2.30000019073486,
+				94.798225402832
+			],
+			"camera_source": "manual road-facing detail pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "03_detail",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/jungle_temple/03_detail.png",
+			"player_distance": 12.2009982299805,
+			"player_position": [
+				22.9075298309326,
+				10.6557950973511,
+				103.887130737305
+			]
+		}
+	],
+	"visual_review": "pending original-reference review",
+	"xdg_cache_home": "/tmp/lumo-theme-capture.zrb5sngq/cache",
+	"xdg_config_home": "/tmp/lumo-theme-capture.zrb5sngq/config",
+	"xdg_data_home": "/tmp/lumo-theme-capture.zrb5sngq/userdata"
+}

@@ -1,0 +1,334 @@
+{
+	"accepted_sites": [
+		{
+			"distance": 27.1180209350586,
+			"position": [
+				31.056827545166,
+				-2.0,
+				92.5644378662109
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 65.8580508422852,
+			"position": [
+				77.2889251708984,
+				-2.0,
+				102.560493469238
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 104.598080749512,
+			"position": [
+				90.6966705322266,
+				-2.0,
+				60.3949928283691
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 143.338110656738,
+			"position": [
+				128.129547119141,
+				-2.0,
+				35.9888381958008
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 182.078140563965,
+			"position": [
+				104.209854125977,
+				-2.0,
+				-4.03195333480835
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 220.818170471191,
+			"position": [
+				131.222259521484,
+				-2.0,
+				-45.1539649963379
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 259.558200378418,
+			"position": [
+				92.2512588500977,
+				-2.0,
+				-74.6262359619141
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 298.298230285645,
+			"position": [
+				78.2507858276367,
+				-2.0,
+				-115.416526794434
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 337.038260192871,
+			"position": [
+				36.1394653320312,
+				-2.0,
+				-98.2227325439453
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 375.778290100098,
+			"position": [
+				-0.883333206176758,
+				-2.0,
+				-124.488815307617
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 414.518320007324,
+			"position": [
+				-38.349967956543,
+				-2.0,
+				-96.8913803100586
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 453.258349914551,
+			"position": [
+				-83.2597579956055,
+				-2.0,
+				-115.508575439453
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 491.998379821777,
+			"position": [
+				-99.6296234130859,
+				-2.0,
+				-73.8003463745117
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 530.738409729004,
+			"position": [
+				-133.207321166992,
+				-2.0,
+				-45.9347877502441
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 569.47843963623,
+			"position": [
+				-107.869857788086,
+				-2.0,
+				-10.1154403686523
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 608.218469543457,
+			"position": [
+				-124.962928771973,
+				-2.0,
+				33.5976753234863
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 646.958499450684,
+			"position": [
+				-88.0973281860352,
+				-2.0,
+				62.0116271972656
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 685.69852935791,
+			"position": [
+				-83.0285034179688,
+				-2.0,
+				107.726219177246
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 724.438559265137,
+			"position": [
+				-37.4267349243164,
+				-2.0,
+				103.192237854004
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 763.178589172363,
+			"position": [
+				-0.615042924880981,
+				-2.0,
+				128.143325805664
+			],
+			"radius": 1.8
+		}
+	],
+	"actual_detail": "full",
+	"actual_lightweight": false,
+	"capture_kind": "stationary production scene inspection; no driven race",
+	"capture_root": "/tmp/lumo-theme-capture.d3g9e7ul",
+	"graphics_profile": "high",
+	"isolation_check": "single-use marker, exact XDG paths, user:// containment and no existing kart state checked before scene load",
+	"process_frozen": true,
+	"reduced_motion": true,
+	"reference_detail_count": 372,
+	"reference_detail_theme": "desert_drift",
+	"requested_detail": "full",
+	"seed": 1923,
+	"selected_site_index": 0,
+	"source": {
+		"clean_tracked_source": false,
+		"engine": "4.6.3-stable (official)",
+		"physical_android_device": false,
+		"renderer": "gl_compatibility",
+		"source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+		"tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+		"visual_acceptance": "Manual reference review required; render success is not art approval"
+	},
+	"status": "captured",
+	"track_id": "desert_drift",
+	"track_length": 774.800598144531,
+	"user_data_path": "/tmp/lumo-theme-capture.d3g9e7ul/userdata/godot/app_userdata/Lumo 3D/",
+	"viewport": [
+		1280,
+		720
+	],
+	"views": [
+		{
+			"camera_basis_x": [
+				0.208129927515984,
+				0.0,
+				0.978101193904877
+			],
+			"camera_basis_y": [
+				0.196155324578285,
+				0.979684054851532,
+				-0.0417398437857628
+			],
+			"camera_basis_z": [
+				-0.958230137825012,
+				0.200547069311142,
+				0.203901574015617
+			],
+			"camera_position": [
+				19.8550510406494,
+				10.4246921539307,
+				112.657752990723
+			],
+			"camera_source": "production _update_camera; stationary player placed 12 m before accepted site",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "01_chase",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/desert_drift/01_chase.png",
+			"player_distance": 15.1180209350586,
+			"player_position": [
+				24.109790802002,
+				7.90469264984131,
+				111.752388000488
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.986501216888428,
+				0.0,
+				0.163753941655159
+			],
+			"camera_basis_y": [
+				0.0934979766607285,
+				0.820973575115204,
+				-0.563258945941925
+			],
+			"camera_basis_z": [
+				-0.134437650442123,
+				0.570966303348541,
+				0.809891402721405
+			],
+			"camera_position": [
+				28.0155391693115,
+				12.9165668487549,
+				110.886039733887
+			],
+			"camera_source": "manual road-context pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "02_context",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/desert_drift/02_context.png",
+			"player_distance": 15.1180209350586,
+			"player_position": [
+				24.109790802002,
+				7.90469264984131,
+				111.752388000488
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.960935294628143,
+				0.0,
+				-0.276773124933243
+			],
+			"camera_basis_y": [
+				-0.0697621628642082,
+				0.967712819576263,
+				-0.242208957672119
+			],
+			"camera_basis_z": [
+				0.267836898565292,
+				0.252055436372757,
+				0.929909408092499
+			],
+			"camera_position": [
+				34.0321388244629,
+				2.30000019073486,
+				102.894493103027
+			],
+			"camera_source": "manual road-facing detail pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "03_detail",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/desert_drift/03_detail.png",
+			"player_distance": 15.1180209350586,
+			"player_position": [
+				24.109790802002,
+				7.90469264984131,
+				111.752388000488
+			]
+		}
+	],
+	"visual_review": "pending original-reference review",
+	"xdg_cache_home": "/tmp/lumo-theme-capture.d3g9e7ul/cache",
+	"xdg_config_home": "/tmp/lumo-theme-capture.d3g9e7ul/config",
+	"xdg_data_home": "/tmp/lumo-theme-capture.d3g9e7ul/userdata"
+}
