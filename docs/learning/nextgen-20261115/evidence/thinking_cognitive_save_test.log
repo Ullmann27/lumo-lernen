@@ -1,0 +1,50 @@
+00:00 +0: loading /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: all 50 cognitive answers survive failed save and retry once
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'cognitive-choice-g2_pattern_9-◆'>]: [
+  _ChoiceTile-[<'cognitive-choice-g2_pattern_9-◆'>](dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(345.0, 717.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#44438 relayoutBoundary=up5
+The hit test result at that offset is: HitTestResult(RenderDecoratedBox#3ebdc@Offset(260.0, 6.0), RenderConstrainedBox#635f6@Offset(260.0, 6.0), RenderPointerListener#0f052@Offset(260.0, 6.0), RenderSemanticsGestureHandler#12ca8@Offset(260.0, 6.0), RenderDecoratedBox#c61e2@Offset(260.0, 6.0), RenderPointerListener#b3b20@Offset(260.0, 6.0), RenderMouseRegion#e77db@Offset(260.0, 6.0), RenderSemanticsAnnotations#821c2@Offset(260.0, 6.0), RenderConstrainedBox#45f8b@Offset(260.0, 6.0), RenderPositionedBox#328d0@Offset(329.0, 6.0), RenderPadding#f9de6@Offset(345.0, 16.0), RenderDecoratedBox#8916a@Offset(345.0, 16.0), RenderFlex#2e602@Offset(345.0, 717.0), RenderFlex#3f9ff@Offset(345.0, 717.0), RenderPadding#3e774@Offset(345.0, 717.0), RenderStack#1a922@Offset(345.0, 717.0), RenderCustomMultiChildLayoutBox#64e18@Offset(345.0, 717.0), _RenderInkFeatures#1b5d5@Offset(345.0, 717.0), RenderPhysicalModel#74016@Offset(345.0, 717.0), RenderSemanticsAnnotations#9e65d@Offset(345.0, 717.0), RenderRepaintBoundary#6a2ec@Offset(345.0, 717.0), RenderIgnorePointer#a24b0@Offset(345.0, 717.0), RenderAnimatedOpacity#26785@Offset(345.0, 717.0), RenderAnimatedOpacity#20e01@Offset(345.0, 717.0), _RenderColoredBox#d01a6@Offset(345.0, 717.0), RenderAnimatedOpacity#1f84b@Offset(345.0, 717.0), RenderIgnorePointer#0cfbd@Offset(345.0, 717.0), RenderAnimatedOpacity#a5348@Offset(345.0, 717.0), RenderRepaintBoundary#f6c18@Offset(345.0, 717.0), RenderSemanticsAnnotations#e7aa5@Offset(345.0, 717.0), RenderOffstage#1efe5@Offset(345.0, 717.0), RenderSemanticsAnnotations#7b8bd@Offset(345.0, 717.0), _RenderTheater#ac22f@Offset(345.0, 717.0), RenderAbsorbPointer#f2969@Offset(345.0, 717.0), RenderPointerListener#50a0a@Offset(345.0, 717.0), RenderSemanticsAnnotations#9c8b2@Offset(345.0, 717.0), RenderCustomPaint#d167f@Offset(345.0, 717.0), RenderSemanticsAnnotations#9241a@Offset(345.0, 717.0), RenderSemanticsAnnotations#02628@Offset(345.0, 717.0), RenderSemanticsAnnotations#625f0@Offset(345.0, 717.0), RenderTapRegionSurface#17cbf@Offset(345.0, 717.0), RenderSemanticsAnnotations#52747@Offset(345.0, 717.0), RenderSemanticsAnnotations#be822@Offset(345.0, 717.0), HitTestEntry<HitTestTarget>#dda1c(_ReusableRenderView#97978), HitTestEntry<HitTestTarget>#84343(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart:73:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following _TypeError was thrown running a test:
+Null check operator used on a null value
+
+When the exception was thrown, this was the stack:
+#0      main.<anonymous closure> (file:///workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart:77:21)
+<asynchronous suspension>
+#1      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#2      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  all 50 cognitive answers survive failed save and retry once
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +0 -1: all 50 cognitive answers survive failed save and retry once [E]
+  Test failed. See exception logs above.
+  The test description was: all 50 cognitive answers survive failed save and retry once
+  
+00:03 +0 -1: (tearDownAll)
+00:03 +0 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart: all 50 cognitive answers survive failed save and retry once

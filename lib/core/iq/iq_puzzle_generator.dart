@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import '../../domain/iq/iq_puzzle.dart';
+import 'iq_puzzle_quality.dart';
 
 /// Erzeugt IQ-Rätsel in acht Stufen je Bereich. Jedes Rätsel hat genau eine
 /// richtige Antwort; alle Antwortmöglichkeiten sehen verschieden aus.
@@ -56,14 +57,22 @@ class IqPuzzleGenerator {
       IqPolyomino(const [(0, 0), (0, 1), (1, 1), (1, 2), (1, 3), (2, 3)]),
     ],
     7: [
-      IqPolyomino(const [(0, 0), (0, 1), (1, 1), (2, 1), (1, 2), (1, 3), (2, 3)]),
-      IqPolyomino(const [(0, 0), (1, 0), (1, 1), (0, 2), (1, 2), (2, 2), (1, 3)]),
-      IqPolyomino(const [(0, 0), (1, 0), (0, 1), (1, 1), (2, 1), (1, 2), (1, 3)]),
-      IqPolyomino(const [(0, 0), (1, 0), (1, 1), (2, 1), (0, 2), (1, 2), (1, 3)]),
-      IqPolyomino(const [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (3, 2), (1, 3)]),
-      IqPolyomino(const [(0, 0), (0, 1), (1, 1), (0, 2), (1, 2), (2, 2), (0, 3)]),
-      IqPolyomino(const [(0, 0), (0, 1), (1, 1), (2, 1), (1, 2), (0, 3), (1, 3)]),
-      IqPolyomino(const [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (3, 2), (3, 3)]),
+      IqPolyomino(
+          const [(0, 0), (0, 1), (1, 1), (2, 1), (1, 2), (1, 3), (2, 3)]),
+      IqPolyomino(
+          const [(0, 0), (1, 0), (1, 1), (0, 2), (1, 2), (2, 2), (1, 3)]),
+      IqPolyomino(
+          const [(0, 0), (1, 0), (0, 1), (1, 1), (2, 1), (1, 2), (1, 3)]),
+      IqPolyomino(
+          const [(0, 0), (1, 0), (1, 1), (2, 1), (0, 2), (1, 2), (1, 3)]),
+      IqPolyomino(
+          const [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (3, 2), (1, 3)]),
+      IqPolyomino(
+          const [(0, 0), (0, 1), (1, 1), (0, 2), (1, 2), (2, 2), (0, 3)]),
+      IqPolyomino(
+          const [(0, 0), (0, 1), (1, 1), (2, 1), (1, 2), (0, 3), (1, 3)]),
+      IqPolyomino(
+          const [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (3, 2), (3, 3)]),
     ],
   };
 
@@ -78,15 +87,21 @@ class IqPuzzleGenerator {
 
   IqPuzzle generate(IqArea area, int level, String id) {
     final l = level.clamp(1, maxLevel);
-    return switch (area) {
-      IqArea.matrix => _matrix(l, id),
-      IqArea.series => _series(l, id),
-      IqArea.oddOneOut => _oddOne(l, id),
-      IqArea.rotation => _rotation(l, id),
-      IqArea.numbers => _numbers(l, id),
-      IqArea.memory => _memory(l, id),
-    };
+    for (var attempt = 0; attempt < 16; attempt++) {
+      final puzzle = _generateUnchecked(area, l, id);
+      if (IqPuzzleQuality.problems(puzzle).isEmpty) return puzzle;
+    }
+    throw StateError('No checked puzzle for ${area.name}/$l');
   }
+
+  IqPuzzle _generateUnchecked(IqArea area, int l, String id) => switch (area) {
+        IqArea.matrix => _matrix(l, id),
+        IqArea.series => _series(l, id),
+        IqArea.oddOneOut => _oddOne(l, id),
+        IqArea.rotation => _rotation(l, id),
+        IqArea.numbers => _numbers(l, id),
+        IqArea.memory => _memory(l, id),
+      };
 
   // ---------------------------------------------------------------- Matrix
 
@@ -112,27 +127,33 @@ class IqPuzzleGenerator {
       case 4:
         n = 3;
         cell = (r, c) => IqFigure(shapes[r], tint: tints[r], count: c + 1);
-        rule = 'Nach rechts kommt jedes Mal eine Form dazu. Jede Reihe hat ihre Form.';
+        rule =
+            'Nach rechts kommt jedes Mal eine Form dazu. Jede Reihe hat ihre Form.';
       case 5:
         n = 3;
         final shape = directionalShapes[_random.nextInt(2)];
         final starts = [for (var r = 0; r < 3; r++) _random.nextInt(8)];
-        cell = (r, c) => IqFigure(shape, tint: tints[r], turns: starts[r] + 2 * c);
-        rule = 'In jeder Reihe dreht sich die Figur nach rechts um eine Vierteldrehung weiter.';
+        cell =
+            (r, c) => IqFigure(shape, tint: tints[r], turns: starts[r] + 2 * c);
+        rule =
+            'In jeder Reihe dreht sich die Figur nach rechts um eine Vierteldrehung weiter.';
       case 6:
         n = 3;
         cell = (r, c) => IqFigure(shapes[(r + c) % 3], tint: tints[c]);
-        rule = 'Jede Form kommt in jeder Reihe und Spalte genau einmal vor. Jede Spalte hat ihre Farbe.';
+        rule =
+            'Jede Form kommt in jeder Reihe und Spalte genau einmal vor. Jede Spalte hat ihre Farbe.';
       case 7:
         n = 3;
         cell = (r, c) =>
             IqFigure(shapes[(r + c) % 3], tint: tints[(r + 2 * c) % 3]);
-        rule = 'Jede Form und jede Farbe kommt in jeder Reihe und Spalte genau einmal vor.';
+        rule =
+            'Jede Form und jede Farbe kommt in jeder Reihe und Spalte genau einmal vor.';
       default:
         n = 3;
         cell = (r, c) => IqFigure(shapes[(r + c) % 3],
             tint: tints[r], count: (r + 2 * c) % 3 + 1);
-        rule = 'Formen und Anzahlen kommen in jeder Reihe und Spalte genau einmal vor. Jede Reihe hat ihre Farbe.';
+        rule =
+            'Formen und Anzahlen kommen in jeder Reihe und Spalte genau einmal vor. Jede Reihe hat ihre Farbe.';
     }
     final cells = <IqFigure?>[
       for (var r = 0; r < n; r++)
@@ -188,27 +209,33 @@ class IqPuzzleGenerator {
         rule = 'Bei jedem Schritt kommt eine Form dazu.';
         mutateCount = true;
       case 4:
-        item = (i) => IqFigure(directional, tint: tints[0], turns: start + 2 * i);
-        rule = 'Die Figur dreht sich jedes Mal um eine Vierteldrehung nach rechts.';
+        item =
+            (i) => IqFigure(directional, tint: tints[0], turns: start + 2 * i);
+        rule =
+            'Die Figur dreht sich jedes Mal um eine Vierteldrehung nach rechts.';
         mutateTurns = true;
       case 5:
         item = (i) => IqFigure(shapes[i % 3], tint: tints[i % 2]);
-        rule = 'Drei Formen wiederholen sich, und zwei Farben wechseln sich ab.';
+        rule =
+            'Drei Formen wiederholen sich, und zwei Farben wechseln sich ab.';
         mutateShape = true;
       case 6:
         item = (i) => IqFigure(directional,
             tint: tints[0], turns: start + i, count: i % 2 + 1);
-        rule = 'Die Figur dreht sich jedes Mal um eine Achteldrehung nach rechts, und die Anzahl wechselt zwischen 1 und 2.';
+        rule =
+            'Die Figur dreht sich jedes Mal um eine Achteldrehung nach rechts, und die Anzahl wechselt zwischen 1 und 2.';
         mutateTurns = true;
         mutateCount = true;
       case 7:
         item = (i) => IqFigure(shapes[0], tint: tints[i % 3], count: 6 - i);
-        rule = 'Jedes Mal ist es eine Form weniger, und drei Farben wiederholen sich.';
+        rule =
+            'Jedes Mal ist es eine Form weniger, und drei Farben wiederholen sich.';
         mutateCount = true;
       default:
         item = (i) => IqFigure(directional,
             tint: tints[i % 3], turns: start + 3 * i, filled: i.isEven);
-        rule = 'Die Figur dreht sich um drei Achteldrehungen weiter, drei Farben wiederholen sich, und voll und leer wechseln sich ab.';
+        rule =
+            'Die Figur dreht sich um drei Achteldrehungen weiter, drei Farben wiederholen sich, und voll und leer wechseln sich ab.';
         mutateTurns = true;
         mutateFill = true;
     }
@@ -271,7 +298,8 @@ class IqPuzzleGenerator {
         ];
         rule = 'Die Farben sind egal: Alle anderen haben dieselbe Form.';
       case 4:
-        final other = _distinct(2, IqTint.values.where((t) => t != baseTint).toList())[0];
+        final other =
+            _distinct(2, IqTint.values.where((t) => t != baseTint).toList())[0];
         figures = [
           for (var i = 0; i < n; i++)
             IqFigure(shapes[i], tint: i == odd ? other : baseTint),
@@ -279,12 +307,15 @@ class IqPuzzleGenerator {
         rule = 'Die Formen sind egal: Alle anderen haben dieselbe Farbe.';
       case 5:
         final common = 1 + _random.nextInt(3);
-        final different = common == 1 ? 2 : (_random.nextBool() ? common - 1 : common + 1);
+        final different =
+            common == 1 ? 2 : (_random.nextBool() ? common - 1 : common + 1);
         figures = [
           for (var i = 0; i < n; i++)
-            IqFigure(shapes[i], tint: tints[i], count: i == odd ? different : common),
+            IqFigure(shapes[i],
+                tint: tints[i], count: i == odd ? different : common),
         ];
-        rule = 'Form und Farbe sind egal: Bei allen anderen ist die Anzahl gleich.';
+        rule =
+            'Form und Farbe sind egal: Bei allen anderen ist die Anzahl gleich.';
       case 6:
         final commonFilled = _random.nextBool();
         figures = [
@@ -308,7 +339,8 @@ class IqPuzzleGenerator {
                 count: counts[i],
                 turns: i == odd ? different : common),
         ];
-        rule = 'Farbe und Anzahl sind egal: Alle anderen zeigen in dieselbe Richtung.';
+        rule =
+            'Farbe und Anzahl sind egal: Alle anderen zeigen in dieselbe Richtung.';
       default:
         final common = _random.nextBool() ? 0 : 2;
         figures = [
@@ -344,7 +376,14 @@ class IqPuzzleGenerator {
     if (target.rotated(turn).key == target.key) turn = 1;
     final correct = target.rotated(turn);
     final mirror = target.mirrored();
-    final mirrorCount = switch (level) { 1 || 2 => 0, 3 => 1, 4 => 2, 5 || 6 => 3, 7 => 3, _ => 4 };
+    final mirrorCount = switch (level) {
+      1 || 2 => 0,
+      3 => 1,
+      4 => 2,
+      5 || 6 => 3,
+      7 => 3,
+      _ => 4
+    };
     final optionCount = level >= 7 ? 5 : 4;
     final used = <String>{correct.key};
     final distractors = <IqPolyomino>[];
@@ -453,7 +492,8 @@ class IqPuzzleGenerator {
           final starts = [(1, 1), (1, 2), (2, 3), (1, 3)][_random.nextInt(4)];
           sequence = [starts.$1, starts.$2];
           while (sequence.length < 7) {
-            sequence.add(sequence[sequence.length - 1] + sequence[sequence.length - 2]);
+            sequence.add(
+                sequence[sequence.length - 1] + sequence[sequence.length - 2]);
           }
           rule = 'Jede Zahl ist die Summe der beiden Zahlen davor.';
         } else {
@@ -507,7 +547,14 @@ class IqPuzzleGenerator {
 
   IqMemoryPuzzle _memory(int level, String id) {
     final grid = switch (level) { 1 || 2 || 4 => 3, _ => 4 };
-    final length = switch (level) { 1 => 2, 2 || 3 => 3, 4 || 5 => 4, 6 => 5, 7 => 6, _ => 7 };
+    final length = switch (level) {
+      1 => 2,
+      2 || 3 => 3,
+      4 || 5 => 4,
+      6 => 5,
+      7 => 6,
+      _ => 7
+    };
     final cells = _shuffled([for (var i = 0; i < grid * grid; i++) i]);
     return IqMemoryPuzzle(
       id: id,
@@ -562,7 +609,8 @@ class IqPuzzleGenerator {
       ],
       if (mutateCount) ...[
         () => correct.copyWith(count: (correct.count % 6) + 1),
-        () => correct.copyWith(count: correct.count > 1 ? correct.count - 1 : 3),
+        () =>
+            correct.copyWith(count: correct.count > 1 ? correct.count - 1 : 3),
       ],
       if (mutateFill) () => correct.copyWith(filled: !correct.filled),
     ];

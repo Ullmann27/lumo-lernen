@@ -1,0 +1,80 @@
+[
+  {
+    "viewport": "phone-small-320x780",
+    "logicalWidth": 320.0,
+    "logicalHeight": 780.0,
+    "pixelRatio": 1.5,
+    "route": "CurriculumActivitiesScreen / g1_art_notice / CrossGradePracticeScreen",
+    "taskId": "legacy_31e8d2a52565b8af",
+    "prompt": "Welche Form entsteht, wenn du einen Kreis in die Breite ziehst, ohne Ecken hineinzumachen?",
+    "objectIds": [
+      "cross-grade-question",
+      "cross-grade-choice-0",
+      "cross-grade-choice-1",
+      "cross-grade-choice-2",
+      "task-workspace",
+      "shape-0",
+      "shape-1",
+      "shape-2"
+    ],
+    "answerChoices": [
+      "Kreis",
+      "Dreieck",
+      "Oval"
+    ],
+    "profileSource": "fresh local QA fixture; no real child data",
+    "capture": "unaltered whole Flutter window with actual navigation"
+  },
+  {
+    "viewport": "fold-cover-logical-344x882",
+    "logicalWidth": 344.0,
+    "logicalHeight": 882.0,
+    "pixelRatio": 1.5,
+    "route": "CurriculumActivitiesScreen / g1_art_notice / CrossGradePracticeScreen",
+    "taskId": "legacy_5d531ada9228b698",
+    "prompt": "Welche Form passt zu einem Zifferblatt, dessen Rand überall gleich weit vom Mittelpunkt entfernt ist?",
+    "objectIds": [
+      "cross-grade-question",
+      "cross-grade-choice-0",
+      "cross-grade-choice-1",
+      "cross-grade-choice-2",
+      "task-workspace",
+      "shape-0",
+      "shape-1",
+      "shape-2"
+    ],
+    "answerChoices": [
+      "Kreis",
+      "Quadrat",
+      "Oval"
+    ],
+    "profileSource": "fresh local QA fixture; no real child data",
+    "capture": "unaltered whole Flutter window with actual navigation"
+  },
+  {
+    "viewport": "fold-open-logical-690x829",
+    "logicalWidth": 690.0,
+    "logicalHeight": 829.0,
+    "pixelRatio": 1.5,
+    "route": "CurriculumActivitiesScreen / g1_art_notice / CrossGradePracticeScreen",
+    "taskId": "legacy_5fefc8215a01ee1c",
+    "prompt": "Welche Form passt zu einem geschlossenen Rand, der rund und deutlich breiter als hoch ist?",
+    "objectIds": [
+      "cross-grade-question",
+      "cross-grade-choice-0",
+      "cross-grade-choice-1",
+      "cross-grade-choice-2",
+      "task-workspace",
+      "shape-0",
+      "shape-1",
+      "shape-2"
+    ],
+    "answerChoices": [
+      "Oval",
+      "Kreis",
+      "Rechteck"
+    ],
+    "profileSource": "fresh local QA fixture; no real child data",
+    "capture": "unaltered whole Flutter window with actual navigation"
+  }
+]

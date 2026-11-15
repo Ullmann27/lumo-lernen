@@ -37,6 +37,7 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
   bool _showFavOnly = false;
   String _searchQuery = '';
   _StorySort _sort = _StorySort.newest;
+  bool _openingStory = false;
 
   @override
   void initState() {
@@ -47,15 +48,17 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
   Future<void> _load() async {
     try {
       await LumoStoryLibrary.instance.load();
-      if (mounted) setState(() {
-        _loaded = true;
-        _loadFailed = false;
-      });
+      if (mounted)
+        setState(() {
+          _loaded = true;
+          _loadFailed = false;
+        });
     } catch (_) {
-      if (mounted) setState(() {
-        _loaded = false;
-        _loadFailed = true;
-      });
+      if (mounted)
+        setState(() {
+          _loaded = false;
+          _loadFailed = true;
+        });
     }
   }
 
@@ -68,23 +71,25 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
   }
 
   void _openStory(StoredStory stored) async {
+    if (_openingStory) return;
+    _openingStory = true;
     try {
-      await LumoStoryLibrary.instance.incrementRead(stored.id);
-    } catch (_) {
-      _showSaveError('Dein Lesezähler konnte nicht gespeichert werden. Das Buch bleibt lesbar.');
-    }
-    if (!mounted) return;
-    setState(() {});
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => LumoStoryReaderScreen(
-          story: stored.story,
-          appState: widget.appState,
-          storyId: stored.id,
+      // The reader records a read only after its actual successful completion.
+      // Opening, cancelling, or rapid repeated taps do not imply reading.
+      await Navigator.push<bool>(
+        context,
+        MaterialPageRoute(
+          builder: (_) => LumoStoryReaderScreen(
+            story: stored.story,
+            appState: widget.appState,
+            storyId: stored.id,
+          ),
         ),
-      ),
-    );
+      );
+    } finally {
+      _openingStory = false;
+      if (mounted) setState(() {});
+    }
   }
 
   void _createNew() {
@@ -121,13 +126,17 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
                     const SizedBox(height: 16),
                     const Text('Die Bücherei kann gerade nicht geladen werden.',
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white, fontSize: 20,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
                             fontWeight: FontWeight.w900)),
                     const SizedBox(height: 12),
-                    const Text('Deine gespeicherten Geschichten bleiben unverändert. '
+                    const Text(
+                        'Deine gespeicherten Geschichten bleiben unverändert. '
                         'Versuche es später erneut oder bitte einen Erwachsenen um Hilfe.',
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: LumoVisualTokens.muted, fontSize: 16)),
+                        style: TextStyle(
+                            color: LumoVisualTokens.muted, fontSize: 16)),
                     const SizedBox(height: 20),
                     FilledButton.icon(
                       key: const ValueKey('lumo-library-retry-load'),
@@ -205,7 +214,8 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
                     children: [
                       LumoSectionHeading(
                         title: 'Deine Bibliothek (${stories.length})',
-                        subtitle: 'Deine Geschichten, jederzeit wiederentdecken',
+                        subtitle:
+                            'Deine Geschichten, jederzeit wiederentdecken',
                         icon: Icons.auto_stories_rounded,
                         accent: LumoVisualTokens.gold,
                       ),
@@ -229,7 +239,8 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
                                     try {
                                       await lib.toggleFavorite(s.id);
                                     } catch (_) {
-                                      _showSaveError('Favorit konnte nicht gespeichert werden.');
+                                      _showSaveError(
+                                          'Favorit konnte nicht gespeichert werden.');
                                     }
                                     if (mounted) setState(() {});
                                   },
@@ -463,7 +474,8 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
               try {
                 await LumoStoryLibrary.instance.delete(s.id);
               } catch (_) {
-                _showSaveError('Das Buch konnte nicht gelöscht werden. Es bleibt erhalten.');
+                _showSaveError(
+                    'Das Buch konnte nicht gelöscht werden. Es bleibt erhalten.');
                 return;
               }
               if (ctx.mounted) Navigator.pop(ctx);
@@ -540,10 +552,12 @@ class _StoryCard extends StatelessWidget {
                                       color: const Color(0x5537D2FD),
                                       borderRadius: BorderRadius.circular(10),
                                       border: Border.all(
-                                        color: LumoVisualTokens.cyanBright.withValues(alpha: .30))),
+                                          color: LumoVisualTokens.cyanBright
+                                              .withValues(alpha: .30))),
                                   child: Text(word,
                                       style: const TextStyle(
-                                          color: Colors.white, fontSize: 12,
+                                          color: Colors.white,
+                                          fontSize: 12,
                                           fontWeight: FontWeight.w800)),
                                 )
                             ]),

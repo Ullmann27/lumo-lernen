@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/iq/iq_puzzle.dart';
+import 'test_history_queue.dart';
 
 /// Speichert die letzten zwölf IQ-Rätsel-Ergebnisse je Kind auf dem Gerät.
 class IqTestRepository {
@@ -13,20 +14,28 @@ class IqTestRepository {
 
   String _key(String studentId) => _prefix + studentId;
 
-  Future<List<IqTestResult>> loadAll(String studentId) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final raw = prefs.getString(_key(studentId));
-      if (raw == null || raw.isEmpty) return const <IqTestResult>[];
-      final decoded = jsonDecode(raw);
-      if (decoded is! List) return const <IqTestResult>[];
-      return decoded
-          .map(IqTestResult.fromJson)
-          .whereType<IqTestResult>()
-          .toList(growable: false);
-    } catch (_) {
-      return const <IqTestResult>[];
+  Future<List<IqTestResult>> loadAll(String studentId) =>
+      TestHistoryQueue.run(_key(studentId), () async {
+        try {
+          return await _read(studentId);
+        } catch (_) {
+          return const <IqTestResult>[];
+        }
+      });
+
+  Future<List<IqTestResult>> _read(String studentId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_key(studentId));
+    if (raw == null || raw.isEmpty) return const [];
+    final decoded = jsonDecode(raw);
+    if (decoded is! List) {
+      throw const FormatException('Invalid IQ puzzle history');
     }
+    final values = decoded.map(IqTestResult.fromJson).toList();
+    if (values.any((value) => value == null || value.studentId != studentId)) {
+      throw const FormatException('Invalid IQ puzzle result');
+    }
+    return values.cast<IqTestResult>();
   }
 
   Future<IqTestResult?> latest(String studentId) async {
@@ -35,18 +44,27 @@ class IqTestRepository {
     return all.reduce((a, b) => b.finishedAt.isAfter(a.finishedAt) ? b : a);
   }
 
-  Future<void> save(IqTestResult result) async {
-    final current = await loadAll(result.studentId);
-    final next = <IqTestResult>[
-      ...current.where((item) => item.id != result.id),
-      result,
-    ]..sort((a, b) => a.finishedAt.compareTo(b.finishedAt));
-    final kept = next.length > keep ? next.sublist(next.length - keep) : next;
-    final prefs = await SharedPreferences.getInstance();
-    final ok = await prefs.setString(
-      _key(result.studentId),
-      jsonEncode(kept.map((item) => item.toJson()).toList(growable: false)),
-    );
-    if (!ok) throw StateError('IQ-Rätsel-Ergebnis konnte nicht gespeichert werden');
-  }
+  Future<void> save(IqTestResult result) =>
+      TestHistoryQueue.run(_key(result.studentId), () async {
+        if (result.id.isEmpty || result.studentId.isEmpty) {
+          throw ArgumentError(
+              'A result must keep its test and student identity');
+        }
+        final current = await _read(result.studentId);
+        final next = <IqTestResult>[
+          ...current.where((item) => item.id != result.id),
+          result,
+        ]..sort((a, b) => a.finishedAt.compareTo(b.finishedAt));
+        final kept =
+            next.length > keep ? next.sublist(next.length - keep) : next;
+        final prefs = await SharedPreferences.getInstance();
+        final ok = await prefs.setString(
+          _key(result.studentId),
+          jsonEncode(kept.map((item) => item.toJson()).toList(growable: false)),
+        );
+        if (!ok) {
+          throw StateError(
+              'IQ-Rätsel-Ergebnis konnte nicht gespeichert werden');
+        }
+      });
 }

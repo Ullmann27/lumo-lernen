@@ -93,9 +93,10 @@ class LumoCompanionTaskContext {
     this.explanation,
     this.errorType,
     this.answerChoices = const [],
-    this.allowedActions = lumoDefaultLearningActions,
+    Set<LumoLearningAction>? allowedActions,
     this.isExplanation = false,
-  });
+  })  : allowedActions = allowedActions ?? lumoDefaultLearningActions,
+        hasExplicitAllowedActions = allowedActions != null;
 
   final String subject;
   final String unit;
@@ -118,6 +119,10 @@ class LumoCompanionTaskContext {
   final String? errorType;
   final List<String> answerChoices;
   final Set<LumoLearningAction> allowedActions;
+
+  /// Assessment readers must opt in; the ordinary lesson defaults do not
+  /// authorize reading, hints or answers in an assessment.
+  final bool hasExplicitAllowedActions;
   final bool isExplanation;
 
   String get conversationKey =>
@@ -125,10 +130,24 @@ class LumoCompanionTaskContext {
 
   /// Republishing an unchanged snapshot does not discard useful context.
   String get semanticKey => jsonEncode([
-        conversationKey, prompt, isExam, answering, attempts, helpLevel,
-        lastAnswer, lastCorrect, previousHelp, localHelp, activity, stepId,
-        objectIds, explanation, errorType, answerChoices,
+        conversationKey,
+        prompt,
+        isExam,
+        answering,
+        attempts,
+        helpLevel,
+        lastAnswer,
+        lastCorrect,
+        previousHelp,
+        localHelp,
+        activity,
+        stepId,
+        objectIds,
+        explanation,
+        errorType,
+        answerChoices,
         (allowedActions.map((action) => action.name).toList()..sort()),
+        hasExplicitAllowedActions,
         isExplanation,
       ]);
 
@@ -262,15 +281,28 @@ class LumoCompanionRequests {
       cancelLearningInteraction();
       return true;
     }
-    if (task.isExam || !task.allowedActions.contains(action)) return false;
+    if (!task.allowedActions.contains(action)) return false;
+    if (task.isExam &&
+        (!task.hasExplicitAllowedActions ||
+            (action != LumoLearningAction.repeat &&
+                action != LumoLearningAction.slower))) {
+      return false;
+    }
     if (objectId != null && !task.objectIds.contains(objectId)) return false;
-    if (const {LumoLearningAction.look, LumoLearningAction.point,
-            LumoLearningAction.highlight}.contains(action) && objectId == null) {
+    if (const {
+          LumoLearningAction.look,
+          LumoLearningAction.point,
+          LumoLearningAction.highlight
+        }.contains(action) &&
+        objectId == null) {
       return false;
     }
     final answer = candidate?.trim();
     if (action == LumoLearningAction.proposeAnswer &&
-        (!task.answering || answer == null || answer.isEmpty || answer.length > 160)) {
+        (!task.answering ||
+            answer == null ||
+            answer.isEmpty ||
+            answer.length > 160)) {
       return false;
     }
     learningAction.value = LumoLearningActionRequest(
@@ -373,7 +405,8 @@ class LumoCompanionRequests {
     taskContext.value = null;
     learningEvents.value = const [];
     recentInteractions.value = const [];
-    if (learningIdentity.value != null) cancelLearningInteraction(reason: 'scope_cleared');
+    if (learningIdentity.value != null)
+      cancelLearningInteraction(reason: 'scope_cleared');
   }
 
   void recordInteraction(LumoInteractionKind kind) {

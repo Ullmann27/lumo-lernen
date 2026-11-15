@@ -7,6 +7,137 @@ class CognitiveProfileGenerator {
   static const questionsPerDomain = 10;
   static const totalQuestions = questionsPerDomain * 5;
 
+  static final _verbalBanks = <int, List<List<String>>>{
+    1: <List<String>>[
+      ['Welpe', 'Kätzchen', 'Hund verhält sich zu Welpe wie Katze zu …'],
+      ['hell', 'dunkel', 'Tag ist meist hell. Nacht ist meist …'],
+      ['Obst', 'Gemüse', 'Apfel gehört zu Obst. Karotte gehört zu …'],
+      ['fliegt', 'schwimmt', 'Vogel fliegt. Fisch …'],
+      ['Fuß', 'Hand', 'Schuh gehört zum Fuß. Handschuh gehört zur …'],
+      [
+        'kalt',
+        'klein',
+        'Gegenteil von warm ist kalt. Gegenteil von groß ist …'
+      ],
+      [
+        'Mittwoch',
+        'Donnerstag',
+        'Montag, Dienstag, Mittwoch – welcher Tag folgt?'
+      ],
+      ['Farbe', 'Form', 'Rot ist eine Farbe. Kreis ist eine …'],
+      [
+        'essen',
+        'trinken',
+        'Bei Hunger können wir essen. Bei Durst können wir …'
+      ],
+      ['lesen', 'hören', 'Ein Buch kann man lesen. Ein Lied kann man …'],
+    ],
+    2: <List<String>>[
+      ['Honig', 'Milch', 'Biene passt zu Honig. Kuh passt zu …'],
+      ['Herbst', 'Winter', 'Frühling, Sommer, Herbst – was folgt?'],
+      ['Straße', 'Wasser', 'Auto fährt auf der Straße. Schiff fährt auf …'],
+      [
+        'laut',
+        'schnell',
+        'Leise ist das Gegenteil von laut. Langsam ist das Gegenteil von …'
+      ],
+      ['Brot', 'Möbel', 'Bäcker macht Brot. Tischler macht …'],
+      [
+        'Wald',
+        'Stadt',
+        'Viele Bäume bilden einen Wald. Viele Häuser bilden eine …'
+      ],
+      [
+        'Praxis',
+        'Schule',
+        'Arzt arbeitet in einer Praxis. Lehrer arbeitet in einer …'
+      ],
+      ['sehen', 'hören', 'Mit dem Auge sehen wir. Mit dem Ohr …'],
+      ['Zeit', 'Länge', 'Minute misst Zeit. Meter misst …'],
+      [
+        'Antwort',
+        'Lösung',
+        'Auf eine Frage folgt eine Antwort. Zu einem Problem suchen wir eine …'
+      ],
+    ],
+    3: <List<String>>[
+      ['Buch', 'Film', 'Kapitel gehört zum Buch. Szene gehört zum …'],
+      ['Temperatur', 'Gewicht', 'Thermometer misst Temperatur. Waage misst …'],
+      ['Folge', 'Antwort', 'Ursache führt zu Folge. Frage führt zu …'],
+      ['Richtung', 'Zeit', 'Kompass zeigt Richtung. Uhr zeigt …'],
+      ['blühen', 'sprechen', 'Pflanzen können blühen. Menschen können …'],
+      [
+        'ähnlich',
+        'entgegengesetzt',
+        'Synonyme bedeuten ähnlich. Gegenteile bedeuten …'
+      ],
+      [
+        'Buch',
+        'Musikstück',
+        'Autor schreibt ein Buch. Komponist schafft ein …'
+      ],
+      ['Raum', 'Zeit', 'Landkarte ordnet Raum. Zeitstrahl ordnet …'],
+      [
+        'Begründung',
+        'Beleg',
+        'Ein Argument braucht Begründung. Eine Behauptung braucht einen …'
+      ],
+      [
+        'Beobachtung',
+        'Ergebnis',
+        'Experiment liefert Beobachtung. Rechnung liefert …'
+      ],
+    ],
+    4: <List<String>>[
+      [
+        'Abstimmung',
+        'Experiment',
+        'Demokratie nutzt Abstimmungen. Wissenschaft nutzt …'
+      ],
+      [
+        'Herstellung',
+        'Verbrauch',
+        'Produktion bedeutet Herstellung. Konsum bedeutet …'
+      ],
+      [
+        'Begründung',
+        'Untersuchung',
+        'Eine These braucht Begründung. Eine Frage braucht oft eine …'
+      ],
+      [
+        'Umwandlung',
+        'Kreislauf',
+        'Energie kann umgewandelt werden. Wasser bewegt sich im …'
+      ],
+      [
+        'Karte',
+        'Geschichte',
+        'Maßstab hilft bei Karten. Zeitachse hilft bei …'
+      ],
+      [
+        'Absatz',
+        'Buch',
+        'Mehrere Sätze bilden einen Absatz. Mehrere Kapitel bilden ein …'
+      ],
+      ['Ursache', 'Wirkung', 'Regen ist die Ursache. Nasse Straßen sind die …'],
+      [
+        'nutzen',
+        'schützen',
+        'Ressourcen soll man bewusst nutzen. Umwelt soll man …'
+      ],
+      [
+        'Hypothese',
+        'Ergebnis',
+        'Aus Beobachtungen entsteht eine Hypothese. Durch Prüfung entsteht ein …'
+      ],
+      [
+        'Zufall',
+        'Standpunkt',
+        'Perspektive bedeutet Blickwinkel. Ein Argument unterstützt einen …'
+      ],
+    ],
+  };
+
   static List<CognitiveQuestion> forGrade(int grade) {
     final g = grade.clamp(1, 4);
     final out = <CognitiveQuestion>[];
@@ -17,7 +148,118 @@ class CognitiveProfileGenerator {
       out.add(_spatial(g, i));
       out.add(_memory(g, i));
     }
-    return out;
+    return List.unmodifiable(out);
+  }
+
+  /// Validates the visible problem, including its arithmetic or spatial rule.
+  /// Language analogies are checked against the reviewed finite word bank.
+  static List<String> problems(CognitiveQuestion q) {
+    final issues = <String>[];
+    final canonical = q.choices.map((s) => s.trim().toLowerCase()).toList();
+    if (q.id.isEmpty ||
+        q.grade < 1 ||
+        q.grade > 4 ||
+        q.difficulty < 1 ||
+        q.difficulty > 5 ||
+        q.prompt.trim().isEmpty ||
+        q.explanation.trim().isEmpty) {
+      issues.add('invalid_metadata');
+    }
+    if (canonical.length != 4 ||
+        canonical.toSet().length != 4 ||
+        canonical.any((s) => s.isEmpty) ||
+        q.choices.where((s) => s == q.correctAnswer).length != 1) {
+      issues.add('ambiguous_choices');
+    }
+    String? expected;
+    switch (q.domain) {
+      case CognitiveDomain.patternReasoning:
+        if (q.prompt.startsWith('Welche Zahl folgt?')) {
+          final values = RegExp(r'\d+')
+              .allMatches(q.prompt)
+              .map((m) => int.parse(m[0]!))
+              .toList();
+          if (values.length == 4) {
+            final step = values[1] - values[0];
+            if (step != 0 &&
+                values[2] - values[1] == step &&
+                values[3] - values[2] == step) {
+              expected = '${values.last + step}';
+            }
+          }
+        } else if (q.prompt.startsWith('Setze das Muster fort:')) {
+          final symbols = q.prompt.split(':').last.trim().split(RegExp(r'\s+'));
+          if (symbols.isNotEmpty && symbols.last == '?') {
+            final shown = symbols.sublist(0, symbols.length - 1);
+            for (var period = 1; period <= shown.length ~/ 2; period++) {
+              if ([
+                for (var i = 0; i < shown.length; i++)
+                  shown[i] == shown[i % period]
+              ].every((v) => v)) {
+                expected = shown[shown.length % period];
+                break;
+              }
+            }
+          }
+        }
+      case CognitiveDomain.quantitativeReasoning:
+        final patterns = <String>[
+          r'^Lumo hat (\d+) Sterne und bekommt (\d+) dazu\. Wie viele hat er\?$',
+          r'^(\d+) gleiche Gruppen haben je (\d+) Punkte\. Wie viele Punkte sind es\?$',
+          r'^Rechne im Kopf: \((\d+) \+ (\d+)\) × 2 = \?$',
+          r'^(\d+) gleiche Dinge kosten je (\d+) Euro\. Bezahlt werden (\d+) Euro\. Wie viel Wechselgeld bleibt\?$',
+        ];
+        if (q.grade >= 1 && q.grade <= 4) {
+          final match = RegExp(patterns[q.grade - 1]).firstMatch(q.prompt);
+          if (match != null) {
+            final a = int.parse(match[1]!), b = int.parse(match[2]!);
+            expected = '${switch (q.grade) {
+              1 => a + b,
+              2 => a * b,
+              3 => (a + b) * 2,
+              _ => int.parse(match[3]!) - a * b,
+            }}';
+          }
+        }
+      case CognitiveDomain.verbalReasoning:
+        final entries = _verbalBanks[q.grade] ?? const <List<String>>[];
+        final matching =
+            entries.where((entry) => entry[2] == q.prompt).toList();
+        if (matching.length == 1) expected = matching.single[1];
+      case CognitiveDomain.spatialReasoning:
+        const arrows = ['↑', '→', '↓', '←'];
+        final match = RegExp(
+                r'^Der Pfeil ([↑→↓←]) wird um (90|180|270)° nach (rechts|links) gedreht\. Wohin zeigt er danach\?$')
+            .firstMatch(q.prompt);
+        if (match != null) {
+          final steps = int.parse(match[2]!) ~/ 90;
+          expected = arrows[(arrows.indexOf(match[1]!) +
+                  (match[3] == 'rechts' ? steps : -steps)) %
+              arrows.length];
+        }
+      case CognitiveDomain.workingMemory:
+        final stimulus = q.stimulus;
+        if (stimulus == null ||
+            q.stimulusVisibleMs <= 0 ||
+            !RegExp(r'^\d(?:\s+\d)+$').hasMatch(stimulus)) {
+          issues.add('invalid_memory_stimulus');
+          break;
+        }
+        final digits = stimulus.trim().split(RegExp(r'\s+'));
+        final position = RegExp(r'^Welche Zahl stand an Position (\d+)\?$')
+            .firstMatch(q.prompt);
+        if (position != null) {
+          final index = int.parse(position[1]!) - 1;
+          if (index >= 0 && index < digits.length) expected = digits[index];
+        } else if (q.prompt ==
+            'Welche Antwort zeigt die gemerkte Folge rückwärts?') {
+          expected = digits.reversed.join(' – ');
+        }
+    }
+    if (expected == null || expected != q.correctAnswer) {
+      issues.add('answer_not_supported_by_givens');
+    }
+    return issues;
   }
 
   static CognitiveQuestion _pattern(int g, int i) {
@@ -35,7 +277,12 @@ class CognitiveProfileGenerator {
         domain: CognitiveDomain.patternReasoning,
         prompt: 'Welche Zahl folgt?  $a – $b – $c – $d – ?',
         answer: '$answer',
-        rawChoices: <String>['$answer', '${answer + step}', '${answer - 1}', '${answer + 1}'],
+        rawChoices: <String>[
+          '$answer',
+          '${answer + step}',
+          '${answer - 1}',
+          '${answer + 1}'
+        ],
         explanation: 'Der Abstand ist jedes Mal $step.',
         difficulty: 1 + i ~/ 2,
         rotate: i,
@@ -58,7 +305,9 @@ class CognitiveProfileGenerator {
       prompt: 'Setze das Muster fort:  $sequence',
       answer: answer,
       rawChoices: shapes,
-      explanation: useThree ? 'Drei Formen wiederholen sich.' : 'Zwei Formen wechseln sich ab.',
+      explanation: useThree
+          ? 'Drei Formen wiederholen sich.'
+          : 'Zwei Formen wechseln sich ab.',
       difficulty: 1 + i ~/ 2,
       rotate: i,
     );
@@ -73,9 +322,15 @@ class CognitiveProfileGenerator {
         id: 'g${g}_quant_$i',
         grade: g,
         domain: CognitiveDomain.quantitativeReasoning,
-        prompt: 'Lumo hat $base Sterne und bekommt $add dazu. Wie viele hat er?',
+        prompt:
+            'Lumo hat $base Sterne und bekommt $add dazu. Wie viele hat er?',
         answer: '$answer',
-        rawChoices: <String>['$answer', '${answer - 1}', '${answer + 1}', '${answer + 2}'],
+        rawChoices: <String>[
+          '$answer',
+          '${answer - 1}',
+          '${answer + 1}',
+          '${answer + 2}'
+        ],
         explanation: '$base + $add = $answer.',
         difficulty: 1 + i ~/ 2,
         rotate: i + 1,
@@ -89,7 +344,8 @@ class CognitiveProfileGenerator {
         id: 'g${g}_quant_$i',
         grade: g,
         domain: CognitiveDomain.quantitativeReasoning,
-        prompt: '$groups gleiche Gruppen haben je $each Punkte. Wie viele Punkte sind es?',
+        prompt:
+            '$groups gleiche Gruppen haben je $each Punkte. Wie viele Punkte sind es?',
         answer: '$answer',
         rawChoices: <String>[
           '$answer',
@@ -116,7 +372,12 @@ class CognitiveProfileGenerator {
         domain: CognitiveDomain.quantitativeReasoning,
         prompt: 'Rechne im Kopf: ($a + $b) × 2 = ?',
         answer: '$answer',
-        rawChoices: <String>['$answer', '${answer - 2}', '${answer + 2}', '${a + b}'],
+        rawChoices: <String>[
+          '$answer',
+          '${answer - 2}',
+          '${answer + 2}',
+          '${a + b}'
+        ],
         explanation: 'Zuerst addieren, dann verdoppeln.',
         difficulty: 1 + i ~/ 2,
         rotate: i + 1,
@@ -131,7 +392,8 @@ class CognitiveProfileGenerator {
       id: 'g${g}_quant_$i',
       grade: g,
       domain: CognitiveDomain.quantitativeReasoning,
-      prompt: '$count gleiche Dinge kosten je $price Euro. Bezahlt werden $paid Euro. Wie viel Wechselgeld bleibt?',
+      prompt:
+          '$count gleiche Dinge kosten je $price Euro. Bezahlt werden $paid Euro. Wie viel Wechselgeld bleibt?',
       answer: '$answer',
       // Typische Fehler: Gesamtpreis statt Wechselgeld, um eins verrechnet.
       rawChoices: <String>[
@@ -141,63 +403,15 @@ class CognitiveProfileGenerator {
         '${answer - 1}',
         '${answer + 2}',
       ],
-      explanation: '$count × $price = ${price * count}. Von $paid bleiben $answer Euro.',
+      explanation:
+          '$count × $price = ${price * count}. Von $paid bleiben $answer Euro.',
       difficulty: 1 + i ~/ 2,
       rotate: i + 1,
     );
   }
 
   static CognitiveQuestion _verbal(int g, int i) {
-    final banks = <int, List<List<String>>>{
-      1: <List<String>>[
-        ['Welpe', 'Kätzchen', 'Hund verhält sich zu Welpe wie Katze zu …'],
-        ['hell', 'dunkel', 'Tag ist meist hell. Nacht ist meist …'],
-        ['Obst', 'Gemüse', 'Apfel gehört zu Obst. Karotte gehört zu …'],
-        ['fliegt', 'schwimmt', 'Vogel fliegt. Fisch …'],
-        ['Fuß', 'Hand', 'Schuh gehört zum Fuß. Handschuh gehört zur …'],
-        ['kalt', 'klein', 'Gegenteil von warm ist kalt. Gegenteil von groß ist …'],
-        ['Mittwoch', 'Donnerstag', 'Montag, Dienstag, Mittwoch – welcher Tag folgt?'],
-        ['Farbe', 'Form', 'Rot ist eine Farbe. Kreis ist eine …'],
-        ['essen', 'trinken', 'Bei Hunger können wir essen. Bei Durst können wir …'],
-        ['lesen', 'hören', 'Ein Buch kann man lesen. Ein Lied kann man …'],
-      ],
-      2: <List<String>>[
-        ['Honig', 'Milch', 'Biene passt zu Honig. Kuh passt zu …'],
-        ['Herbst', 'Winter', 'Frühling, Sommer, Herbst – was folgt?'],
-        ['Straße', 'Wasser', 'Auto fährt auf der Straße. Schiff fährt auf …'],
-        ['laut', 'schnell', 'Leise ist das Gegenteil von laut. Langsam ist das Gegenteil von …'],
-        ['Brot', 'Möbel', 'Bäcker macht Brot. Tischler macht …'],
-        ['Wald', 'Stadt', 'Viele Bäume bilden einen Wald. Viele Häuser bilden eine …'],
-        ['Praxis', 'Schule', 'Arzt arbeitet in einer Praxis. Lehrer arbeitet in einer …'],
-        ['sehen', 'hören', 'Mit dem Auge sehen wir. Mit dem Ohr …'],
-        ['Zeit', 'Länge', 'Minute misst Zeit. Meter misst …'],
-        ['Antwort', 'Lösung', 'Auf eine Frage folgt eine Antwort. Zu einem Problem suchen wir eine …'],
-      ],
-      3: <List<String>>[
-        ['Buch', 'Film', 'Kapitel gehört zum Buch. Szene gehört zum …'],
-        ['Temperatur', 'Gewicht', 'Thermometer misst Temperatur. Waage misst …'],
-        ['Folge', 'Antwort', 'Ursache führt zu Folge. Frage führt zu …'],
-        ['Richtung', 'Zeit', 'Kompass zeigt Richtung. Uhr zeigt …'],
-        ['blühen', 'sprechen', 'Pflanzen können blühen. Menschen können …'],
-        ['ähnlich', 'entgegengesetzt', 'Synonyme bedeuten ähnlich. Gegenteile bedeuten …'],
-        ['Buch', 'Musikstück', 'Autor schreibt ein Buch. Komponist schafft ein …'],
-        ['Raum', 'Zeit', 'Landkarte ordnet Raum. Zeitstrahl ordnet …'],
-        ['Begründung', 'Beleg', 'Ein Argument braucht Begründung. Eine Behauptung braucht einen …'],
-        ['Beobachtung', 'Ergebnis', 'Experiment liefert Beobachtung. Rechnung liefert …'],
-      ],
-      4: <List<String>>[
-        ['Abstimmung', 'Experiment', 'Demokratie nutzt Abstimmungen. Wissenschaft nutzt …'],
-        ['Herstellung', 'Verbrauch', 'Produktion bedeutet Herstellung. Konsum bedeutet …'],
-        ['Begründung', 'Untersuchung', 'Eine These braucht Begründung. Eine Frage braucht oft eine …'],
-        ['Umwandlung', 'Kreislauf', 'Energie kann umgewandelt werden. Wasser bewegt sich im …'],
-        ['Karte', 'Geschichte', 'Maßstab hilft bei Karten. Zeitachse hilft bei …'],
-        ['Absatz', 'Buch', 'Mehrere Sätze bilden einen Absatz. Mehrere Kapitel bilden ein …'],
-        ['Ursache', 'Wirkung', 'Regen ist die Ursache. Nasse Straßen sind die …'],
-        ['nutzen', 'schützen', 'Ressourcen soll man bewusst nutzen. Umwelt soll man …'],
-        ['Hypothese', 'Ergebnis', 'Aus Beobachtungen entsteht eine Hypothese. Durch Prüfung entsteht ein …'],
-        ['Zufall', 'Standpunkt', 'Perspektive bedeutet Blickwinkel. Ein Argument unterstützt einen …'],
-      ],
-    };
+    final banks = _verbalBanks;
     final item = banks[g]![i];
     final answer = item[1];
     final distractorA = item[0];
@@ -239,10 +453,12 @@ class CognitiveProfileGenerator {
       id: 'g${g}_spatial_$i',
       grade: g,
       domain: CognitiveDomain.spatialReasoning,
-      prompt: 'Der Pfeil $start wird um $degrees° ${clockwise ? 'nach rechts' : 'nach links'} gedreht. Wohin zeigt er danach?',
+      prompt:
+          'Der Pfeil $start wird um $degrees° ${clockwise ? 'nach rechts' : 'nach links'} gedreht. Wohin zeigt er danach?',
       answer: answer,
       rawChoices: arrows,
-      explanation: 'Drehe den Pfeil gedanklich um $quarterTurns Vierteldrehung${quarterTurns == 1 ? '' : 'en'}.',
+      explanation:
+          'Drehe den Pfeil gedanklich um $quarterTurns Vierteldrehung${quarterTurns == 1 ? '' : 'en'}.',
       difficulty: 1 + i ~/ 2,
       rotate: i + 3,
     );
@@ -344,17 +560,22 @@ class CognitiveProfileGenerator {
       ...choices.skip(shift),
       ...choices.take(shift),
     ];
-    return CognitiveQuestion(
+    final question = CognitiveQuestion(
       id: id,
       grade: grade,
       domain: domain,
       prompt: prompt,
-      choices: rotated,
+      choices: List.unmodifiable(rotated),
       correctAnswer: answer,
       explanation: explanation,
       difficulty: difficulty.clamp(1, 5),
       stimulus: stimulus,
       stimulusVisibleMs: stimulusVisibleMs,
     );
+    final issues = problems(question);
+    if (issues.isNotEmpty) {
+      throw StateError("Unchecked cognitive question $id: $issues");
+    }
+    return question;
   }
 }

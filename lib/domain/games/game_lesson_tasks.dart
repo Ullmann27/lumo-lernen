@@ -13,12 +13,37 @@ class GameLessonTask {
   final int? hour;
   final int minute;
   final bool orderWords;
+
+  bool get isValid {
+    if (prompt.trim().isEmpty || answer.trim().isEmpty ||
+        explanation.trim().isEmpty || choices.length < 2 ||
+        choices.any((value) => value.trim().isEmpty) ||
+        choices.toSet().length != choices.length ||
+        numbers.any((value) => value < -1) ||
+        (hour != null && (hour! < 1 || hour! > 12 || minute < 0 || minute >= 60))) {
+      return false;
+    }
+    if (!orderWords) return choices.where((value) => value == answer).length == 1;
+    final words = answer.split(' ');
+    return words.length == choices.length &&
+        words.every((word) => choices.where((choice) => choice == word).length == 1);
+  }
+
+  GameLessonTask checked() {
+    if (!isValid) throw StateError('Die Lernspiel-Aufgabe wurde nicht freigegeben.');
+    return this;
+  }
 }
 
 /// Topic-specific learning tasks for the three formerly unavailable routes.
 /// All answers have explanations; listening prompts use spoken whole words.
 abstract final class GameLessonTasks {
   static GameLessonTask task(GameLevel level, int index) {
+    if (index < 0 || !const {
+      GameMiniType.numberPath, GameMiniType.wordForest, GameMiniType.mixedQuiz,
+    }.contains(level.miniType)) {
+      throw ArgumentError('Diese Stufe gehört nicht zum Lernpfad.');
+    }
     final i = index % 5;
     GameLessonTask make(String prompt, String answer, List<String> choices,
         String explanation, {String cue = '', String speech = '',
@@ -27,7 +52,7 @@ abstract final class GameLessonTasks {
       final options = List<String>.of(choices)..shuffle(Random(level.id * 131 + index));
       return GameLessonTask(prompt: prompt, answer: answer, choices: options,
         explanation: explanation, cue: cue, speech: speech, numbers: numbers,
-        hour: hour, minute: minute, orderWords: orderWords, picture: picture);
+        hour: hour, minute: minute, orderWords: orderWords, picture: picture).checked();
     }
     GameLessonTask number(String prompt, int answer, String explanation,
         {List<int> numbers = const []}) => make(prompt, '$answer',
@@ -187,7 +212,10 @@ abstract final class GameLessonTasks {
         if (i == 0) return number('2, 4, 6, 8 – welche Zahl folgt?', 10, 'Die Regel lautet: immer 2 dazu.', numbers: [2, 4, 6, 8]);
         if (i == 1) return number('Drei Kinder brauchen je zwei Stifte. Wie viele Stifte sind es?', 6, '2 + 2 + 2 = 6.');
         if (i == 2) return make('Was gehört nicht dazu?', 'Stein', ['Katze', 'Hund', 'Fuchs', 'Stein'], 'Ein Stein ist kein Tier.');
-        if (i == 3) return make('Rot, Blau, Rot, Blau – welche Farbe folgt?', 'Rot', ['Rot', 'Blau', 'Grün', 'Gelb'], 'Rot und Blau wechseln sich ab.');
+        if (i == 3) return make(
+          'Kreis – Dreieck – Kreis – Dreieck – Kreis. Welche Form folgt?',
+          'Dreieck', ['Kreis', 'Dreieck', 'Quadrat', 'Stern'],
+          'Die Gruppe Kreis – Dreieck wiederholt sich. Nach dem Kreis kommt ein Dreieck.');
         return number('Eine Woche hat 7 Tage. Wie viele Tage haben zwei Wochen?', 14, '7 + 7 = 14.');
       case 50:
         if (i == 0) return number('23 + 18 = ?', 41, '23 + 10 = 33, dann + 8 = 41.');

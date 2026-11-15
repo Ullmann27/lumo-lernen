@@ -6,6 +6,8 @@ import '../../app/app_state.dart';
 import '../../core/cognitive_profile_generator.dart';
 import '../../core/cognitive_profile_repository.dart';
 import '../../core/cognitive_profile_scorer.dart';
+import '../../core/iq/exam_session_owner.dart';
+import '../../core/learning_attempt_id.dart';
 import '../../domain/cognitive/cognitive_profile.dart';
 import '../../domain/school/attempt.dart';
 import '../../theme/lumo_visual_tokens.dart';
@@ -15,23 +17,30 @@ import 'cognitive_profile_start_view.dart';
 import 'cognitive_profile_visual_prompt.dart';
 import 'iq/iq_widgets.dart';
 import 'iq/iq_style.dart';
+import 'iq/exam_companion_scope.dart';
 
 class CognitiveProfileScreen extends StatefulWidget {
   const CognitiveProfileScreen({
     super.key,
     required this.appState,
     this.repository = const CognitiveProfileRepository(),
+    this.now = DateTime.now,
   });
 
   final LumoAppState appState;
   final CognitiveProfileRepository repository;
+  final DateTime Function() now;
 
   @override
   State<CognitiveProfileScreen> createState() => _CognitiveProfileScreenState();
 }
 
-class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
+class _CognitiveProfileScreenState extends State<CognitiveProfileScreen>
+    with WidgetsBindingObserver {
   late final List<CognitiveQuestion> _questions;
+  late final ExamSessionOwner _owner;
+  final String _sessionId = newLearningAttemptId();
+  final _questionScroll = ScrollController(keepScrollOffset: false);
   late DateTime _startedAt;
   final Map<String, String> _answers = <String, String>{};
   int _index = 0;
@@ -39,43 +48,91 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
   String? _selected;
   bool _stimulusVisible = false;
   Timer? _stimulusTimer;
+  DateTime? _stimulusDeadline;
+  Duration _stimulusRemaining = Duration.zero;
+  bool _lifecyclePaused = false;
   bool _saving = false;
   CognitiveProfileResult? _result;
+  CognitiveProfileResult? _pendingResult;
+  String? _saveError;
+  bool _resultSaved = false, _attemptsSaved = false;
 
   @override
   void initState() {
     super.initState();
-    _questions =
-        CognitiveProfileGenerator.forGrade(widget.appState.state.grade);
+    WidgetsBinding.instance.addObserver(this);
+    _owner = ExamSessionOwner(widget.appState)..addListener(_profileChanged);
+    _questions = CognitiveProfileGenerator.forGrade(_owner.grade);
     // The stopwatch and memory stimulus begin only after the child taps Start.
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _stimulusTimer?.cancel();
+    _questionScroll.dispose();
+    _owner.removeListener(_profileChanged);
+    _owner.dispose();
     super.dispose();
+  }
+
+  void _profileChanged() {
+    _stimulusTimer?.cancel();
+    if (mounted) setState(() {});
   }
 
   CognitiveQuestion get _question => _questions[_index];
 
+  void _scheduleStimulus(Duration remaining) {
+    _stimulusRemaining = remaining;
+    _stimulusDeadline = widget.now().add(remaining);
+    _stimulusTimer = Timer(remaining, () {
+      if (mounted && !_owner.retired && !_lifecyclePaused) {
+        setState(() => _stimulusVisible = false);
+      }
+    });
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (!mounted || _owner.retired) return;
+    if (state == AppLifecycleState.resumed) {
+      if (!_lifecyclePaused) return;
+      setState(() => _lifecyclePaused = false);
+      if (_stimulusVisible) _scheduleStimulus(_stimulusRemaining);
+    } else {
+      if (_lifecyclePaused) return;
+      _stimulusTimer?.cancel();
+      final remaining =
+          _stimulusDeadline?.difference(widget.now()) ?? Duration.zero;
+      _stimulusRemaining = remaining.isNegative ? Duration.zero : remaining;
+      setState(() => _lifecyclePaused = true);
+    }
+  }
+
   void _prepareQuestion() {
     _stimulusTimer?.cancel();
+    if (_questionScroll.hasClients) _questionScroll.jumpTo(0);
     final q = _questions[_index];
     _selected = _answers[q.id];
     _stimulusVisible = q.stimulus != null && q.stimulusVisibleMs > 0;
     if (_stimulusVisible) {
-      _stimulusTimer = Timer(
-        Duration(milliseconds: q.stimulusVisibleMs),
-        () {
-          if (mounted) setState(() => _stimulusVisible = false);
-        },
-      );
+      _scheduleStimulus(Duration(milliseconds: q.stimulusVisibleMs));
     }
   }
 
-  Future<void> _next() async {
+  Future<void> _next(String questionId) async {
     final selected = _selected;
-    if (selected == null || _stimulusVisible || _saving) return;
+    if (_owner.retired ||
+        _lifecyclePaused ||
+        questionId != _question.id ||
+        selected == null ||
+        !_question.choices.contains(selected) ||
+        _stimulusVisible ||
+        _saving ||
+        _result != null) {
+      return;
+    }
     _answers[_question.id] = selected;
     if (_index < _questions.length - 1) {
       setState(() {
@@ -87,54 +144,65 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
     await _finish();
   }
 
-  String _fallbackStudentId() {
-    final state = widget.appState.state;
-    final safeName = state.childName
-        .trim()
-        .toLowerCase()
-        .replaceAll(RegExp(r'[^a-z0-9äöüß]+'), '_');
-    return 'local_${safeName.isEmpty ? 'kind' : safeName}_${state.grade}';
-  }
-
   Future<void> _finish() async {
-    setState(() => _saving = true);
-    final finishedAt = DateTime.now();
-    final studentId =
-        await widget.appState.school.activeStudentId() ?? _fallbackStudentId();
-    final result = CognitiveProfileScorer.score(
-      id: 'cog-${finishedAt.microsecondsSinceEpoch}',
-      studentId: studentId,
-      grade: widget.appState.state.grade,
-      questions: _questions,
-      answers: _answers,
-      finishedAt: finishedAt,
-      durationMs: finishedAt.difference(_startedAt).inMilliseconds,
-    );
-    await widget.repository.save(result);
-
-    final attempts = <Attempt>[
-      for (final q in _questions)
-        Attempt(
-          id: '${result.id}-${q.id}',
-          studentId: studentId,
-          subject: 'Denkprofil',
-          unit: q.domain.label,
-          competency: q.domain.label,
-          correct: _answers[q.id] == q.correctAnswer,
-          at: finishedAt,
-          prompt: q.prompt,
-          given: _answers[q.id] ?? '',
-          expected: q.correctAnswer,
-          score: _answers[q.id] == q.correctAnswer ? 1 : 0,
-        ),
-    ];
-    await widget.appState.attemptLog.appendAll(attempts);
-
-    if (!mounted) return;
+    if (_saving || _owner.retired || _result != null) return;
     setState(() {
-      _result = result;
-      _saving = false;
+      _saving = true;
+      _saveError = null;
     });
+    try {
+      final studentId = await _owner.studentId();
+      if (!mounted || _owner.retired) return;
+      final finishedAt = _pendingResult?.finishedAt ?? widget.now();
+      final result = _pendingResult ??= CognitiveProfileScorer.score(
+        id: 'cog-${finishedAt.microsecondsSinceEpoch}',
+        studentId: studentId,
+        grade: _owner.grade,
+        questions: _questions,
+        answers: _answers,
+        finishedAt: finishedAt,
+        durationMs: finishedAt.difference(_startedAt).inMilliseconds,
+      );
+      if (!_resultSaved) {
+        await widget.repository.save(result);
+        _resultSaved = true;
+      }
+
+      final attempts = <Attempt>[
+        for (final q in _questions)
+          Attempt(
+            id: '${result.id}-${q.id}',
+            studentId: studentId,
+            subject: 'Denkprofil',
+            unit: q.domain.label,
+            competency: q.domain.label,
+            correct: _answers[q.id] == q.correctAnswer,
+            at: finishedAt,
+            prompt: q.prompt,
+            given: _answers[q.id] ?? '',
+            expected: q.correctAnswer,
+            score: _answers[q.id] == q.correctAnswer ? 1 : 0,
+          ),
+      ];
+      if (!_attemptsSaved) {
+        await widget.appState.attemptLog.appendAll(attempts);
+        _attemptsSaved = true;
+      }
+
+      if (!mounted || _owner.retired) return;
+      setState(() {
+        _result = result;
+        _saving = false;
+      });
+    } catch (_) {
+      if (mounted && !_owner.retired) {
+        setState(() {
+          _saving = false;
+          _saveError =
+              'Deine Antworten bleiben hier erhalten. Das Ergebnis ist noch nicht vollständig gespeichert. Bitte versuche es erneut.';
+        });
+      }
+    }
   }
 
   @override
@@ -146,19 +214,50 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
         scene: LumoScene.tests,
         dimmed: true,
         child: SafeArea(
-          child: result == null
-              ? (_started
-                  ? _testBody()
-                  : CognitiveProfileStartView(
-                      questionCount: _questions.length,
-                      onStart: () => setState(() {
-                        _startedAt = DateTime.now();
-                        _prepareQuestion();
-                        _started = true;
-                      }),
-                      onBack: () => Navigator.of(context).maybePop(),
-                    ))
-              : _resultBody(result),
+          child: _owner.retired
+              ? Center(
+                  child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(mainAxisSize: MainAxisSize.min, children: [
+                        const Text(
+                            'Das Kinderprofil wurde gewechselt. Öffne den Test für das ausgewählte Kind neu.',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 18)),
+                        const SizedBox(height: 16),
+                        FilledButton(
+                            onPressed: () => Navigator.of(context).maybePop(),
+                            style: FilledButton.styleFrom(
+                                minimumSize: const Size(140, 48)),
+                            child: const Text('Zurück')),
+                      ])))
+              : result == null
+                  ? (_started
+                      ? ExamCompanionScope(
+                          appState: widget.appState,
+                          generation: _owner.generation,
+                          taskId: '$_sessionId-${_question.id}',
+                          subject: 'Denkprofil',
+                          unit: _question.domain.label,
+                          prompt: _stimulusVisible
+                              ? 'Merke dir die Folge.'
+                              : _question.prompt,
+                          instruction: _stimulusVisible
+                              ? 'Schau dir die Folge an. Danach wählst du eine Antwort. Während des Tests gebe ich keine Lösungshinweise.'
+                              : 'Wähle genau eine Antwort. Du kannst die Auswahl vor Weiter ändern. Es gibt keinen Zeitdruck und keine Lösungshinweise während des Tests.',
+                          child: _testBody())
+                      : CognitiveProfileStartView(
+                          questionCount: _questions.length,
+                          onStart: () {
+                            if (_started || _owner.retired) return;
+                            setState(() {
+                              _startedAt = widget.now();
+                              _prepareQuestion();
+                              _started = true;
+                            });
+                          },
+                          onBack: () => Navigator.of(context).maybePop(),
+                        ))
+                  : _resultBody(result),
         ),
       ),
     );
@@ -215,12 +314,17 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
         ),
         Expanded(
           child: ListView(
+            controller: _questionScroll,
             padding: const EdgeInsets.fromLTRB(16, 14, 16, 24),
             children: [
               _DomainHeader(question: q),
               const SizedBox(height: 12),
               if (_stimulusVisible && q.stimulus != null)
-                _MemoryStimulus(text: q.stimulus!)
+                _lifecyclePaused
+                    ? const Text('Pause. Die Merkfolge wartet auf dich.',
+                        key: ValueKey('cognitive-memory-paused'),
+                        style: TextStyle(color: Colors.white, fontSize: 18))
+                    : _MemoryStimulus(text: q.stimulus!)
               else ...[
                 _QuestionCard(question: q),
                 const SizedBox(height: 12),
@@ -231,25 +335,47 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
                 const SizedBox(height: 12),
                 for (final choice in q.choices) ...[
                   _ChoiceTile(
+                    key: ValueKey('cognitive-choice-${q.id}-$choice'),
                     label: choice,
                     selected: _selected == choice,
-                    onTap: () => setState(() => _selected = choice),
+                    onTap: _saving || _pendingResult != null
+                        ? null
+                        : () {
+                            if (_owner.retired ||
+                                _question.id != q.id ||
+                                _saving ||
+                                _lifecyclePaused ||
+                                _pendingResult != null) {
+                              return;
+                            }
+                            setState(() => _selected = choice);
+                          },
                   ),
                   const SizedBox(height: 9),
                 ],
-
               ],
             ],
           ),
         ),
+        if (_saveError != null)
+          Padding(
+              padding: const EdgeInsets.all(12),
+              child: Text(_saveError!,
+                  key: const ValueKey('cognitive-save-error'),
+                  style: const TextStyle(color: Colors.white, fontSize: 15))),
         if (!_stimulusVisible)
           IqBottomBar(
             child: IqPrimaryButton(
               key: const ValueKey('cognitive-next'),
-              onPressed: _selected == null || _saving ? null : _next,
-              label: _index == _questions.length - 1
-                  ? 'Denkprofil auswerten'
-                  : 'Weiter',
+              onPressed:
+                  _selected == null || _saving ? null : () => _next(q.id),
+              label: _saveError != null
+                  ? 'Speichern erneut versuchen'
+                  : _saving
+                      ? 'Wird gespeichert …'
+                      : _index == _questions.length - 1
+                          ? 'Denkprofil auswerten'
+                          : 'Weiter',
               icon: _index == _questions.length - 1
                   ? Icons.flag_rounded
                   : Icons.arrow_forward_rounded,
@@ -339,8 +465,7 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
           decoration: BoxDecoration(
             color: const Color(0xD90A2B54),
             borderRadius: BorderRadius.circular(18),
-            border: Border.all(
-                color: LumoVisualTokens.cyan.withOpacity(.30)),
+            border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.30)),
           ),
           child: const Text(
             'Wichtig: Dieses Denkprofil ist ein schulstufenbezogener '
@@ -359,12 +484,55 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
         ),
         const SizedBox(height: 14),
         FilledButton.icon(
+          style: FilledButton.styleFrom(minimumSize: const Size(160, 48)),
+          onPressed: _showReview,
+          icon: const Icon(Icons.fact_check_outlined),
+          label: const Text('Aufgaben und Erklärungen ansehen'),
+        ),
+        const SizedBox(height: 10),
+        FilledButton.icon(
+          style: FilledButton.styleFrom(minimumSize: const Size(120, 48)),
           onPressed: () => Navigator.of(context).maybePop(),
           icon: const Icon(Icons.check_circle_rounded),
           label: const Text('Fertig'),
         ),
       ],
     );
+  }
+
+  void _showReview() {
+    if (_result == null || _owner.retired) return;
+    showModalBottomSheet<void>(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: LumoVisualTokens.night,
+        builder: (context) => SafeArea(
+                child: SizedBox(
+              height: MediaQuery.sizeOf(context).height * .8,
+              child: ListView(padding: const EdgeInsets.all(20), children: [
+                const Text('Deine Antworten nachvollziehen',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold)),
+                const Text(
+                    'Diese Ergebnisse beschreiben diesen Durchgang. Du kannst jede Regel in Ruhe nachprüfen.',
+                    style: TextStyle(color: Colors.white, fontSize: 16)),
+                for (final q in _questions)
+                  Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: Text(
+                          '${q.prompt}\n${q.stimulus == null ? '' : 'Gezeigte Folge: ${q.stimulus}\n'}'
+                          'Deine Auswahl: ${_answers[q.id]}\nPassende Antwort: ${q.correctAnswer}\n${q.explanation}',
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 16, height: 1.4))),
+                FilledButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    style: FilledButton.styleFrom(
+                        minimumSize: const Size(120, 48)),
+                    child: const Text('Zur Auswertung')),
+              ]),
+            )));
   }
 }
 
@@ -485,6 +653,7 @@ class _QuestionCard extends StatelessWidget {
 
 class _ChoiceTile extends StatelessWidget {
   const _ChoiceTile({
+    super.key,
     required this.label,
     required this.selected,
     required this.onTap,
@@ -492,11 +661,12 @@ class _ChoiceTile extends StatelessWidget {
 
   final String label;
   final bool selected;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) => Semantics(
         button: true,
+        enabled: onTap != null,
         selected: selected,
         label: label,
         excludeSemantics: true,
@@ -509,8 +679,7 @@ class _ChoiceTile extends StatelessWidget {
               highlighted: selected,
               accent: LumoVisualTokens.cyanBright,
               radius: 20,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16, vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 28),
                 child: Row(

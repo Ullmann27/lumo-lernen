@@ -1,0 +1,15 @@
+00:00 +0: loading /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_session_test.dart
+00:00 +0: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_session_test.dart: round trip preserves task identifiers and actual assisted attempts
+00:00 +1: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_session_test.dart: incorrect generator data and falsified accepted scores are rejected
+00:00 +2: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_session_test.dart: repeated completion and unknown task attempts cannot be restored
+00:00 +3: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_session_test.dart: false platform writes cannot masquerade as durable checkpoints
+00:00 +4: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_session_test.dart: profile namespaces and revision leases reject stale writes
+00:00 +5: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_session_test.dart: damaged or newer records are retained and cannot be overwritten
+00:00 +6: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_practice_test.dart: recognized math preserves the successful template seed schedule
+00:00 +7: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_practice_test.dart: Deutsch OCR generates five exercises in the recognized subject/topic
+00:00 +8: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_practice_test.dart: Englisch OCR generates five exercises in the recognized subject/topic
+00:00 +9: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_practice_test.dart: Sachunterricht OCR generates five exercises in the recognized subject/topic
+00:00 +10: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_practice_test.dart: unsupported science topic truthfully falls back within the same subject
+00:00 +11: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_practice_test.dart: unsupported English topic cannot become random math
+00:00 +12: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/photo_lesson_practice_test.dart: unclear OCR does not silently select another subject
+00:00 +13: All tests passed!

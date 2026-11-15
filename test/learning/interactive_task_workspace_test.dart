@@ -268,7 +268,46 @@ void main() {
     expect(events.last.isHelp, isTrue);
     expect(events.last.visibleState['groupVisible'], isTrue);
     expect(find.byKey(const ValueKey('pattern-group-hint')), findsOneWidget);
+    final group = find.byKey(const ValueKey('pattern-group'));
+    expect(group, findsOneWidget);
+    expect(
+        find.descendant(
+            of: group, matching: find.byKey(const ValueKey('pattern-0'))),
+        findsOneWidget);
+    expect(
+        find.descendant(
+            of: group, matching: find.byKey(const ValueKey('pattern-1'))),
+        findsOneWidget);
+    expect(
+        find.descendant(
+            of: group, matching: find.byKey(const ValueKey('pattern-2'))),
+        findsNothing);
     expect(events.last.explanation, isNot(contains('kommt Dreieck')));
+  });
+
+  testWidgets('queued token taps preserve earlier placements exactly once',
+      (tester) async {
+    final events = <TaskWorkspaceInteraction>[];
+    await showWorkspace(tester,
+        InteractiveTaskWorkspace(task: banana(), onInteraction: events.add));
+    await tap(tester, 'workspace-reveal-syllables');
+    await tap(tester, 'workspace-arrange-syllables');
+    final callbacks = [
+      for (final index in [1, 2, 0, 1])
+        tester
+            .widget<InkWell>(find.descendant(
+                of: find.byKey(ValueKey('token-bank-$index')),
+                matching: find.byType(InkWell)))
+            .onTap!
+    ];
+    for (final callback in callbacks) {
+      callback();
+    }
+    await tester.pumpAndSettle();
+    expect(events.last.visibleState['arranged'], [1, 2, 0]);
+    expect(events.last.visibleState['objectIds'],
+        containsAll(['syllable-workbench', 'token-0', 'token-1', 'token-2']));
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('unverified arithmetic never becomes a false quantity model',

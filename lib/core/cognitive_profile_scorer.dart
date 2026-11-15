@@ -13,13 +13,20 @@ class CognitiveProfileScorer {
     required DateTime finishedAt,
     required int durationMs,
   }) {
+    if (questions.map((q) => q.id).toSet().length != questions.length ||
+        questions.any((q) =>
+            q.grade != grade ||
+            CognitiveProfileGenerator.problems(q).isNotEmpty ||
+            !q.choices.contains(answers[q.id]))) {
+      throw ArgumentError(
+          'Only checked questions with confirmed choices can be scored');
+    }
     final domainScores = <CognitiveDomainScore>[];
     var totalCorrect = 0;
     for (final domain in CognitiveDomain.values) {
       final subset = questions.where((q) => q.domain == domain).toList();
-      final correct = subset
-          .where((q) => answers[q.id] == q.correctAnswer)
-          .length;
+      final correct =
+          subset.where((q) => answers[q.id] == q.correctAnswer).length;
       totalCorrect += correct;
       domainScores.add(
         CognitiveDomainScore(

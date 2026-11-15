@@ -20,6 +20,12 @@ void main() {
               currentGradeOnly: true))
             {'grade': grade, 'subject': subject, 'unit': unit},
     ],
+    'cumulative_unit_scopes': [
+      for (var grade = 1; grade <= 4; grade++)
+        for (final subject in Curriculum.exerciseSubjectsForGrade(grade))
+          for (final unit in Curriculum.unitsForGrade(subject, grade))
+            {'grade': grade, 'subject': subject, 'unit': unit},
+    ],
     'math_templates': [
       for (final template in MathTaskTemplates.templates)
         {

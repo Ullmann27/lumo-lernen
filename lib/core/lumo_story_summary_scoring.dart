@@ -1,10 +1,23 @@
 /// Conservative, explainable assessment for a child's written/recognized
 /// retelling. This is a keyword aid, not an AI assessment of understanding.
 class LumoStorySummaryScore {
-  const LumoStorySummaryScore({required this.hits, required this.stars});
+  const LumoStorySummaryScore({
+    required this.hits,
+    required this.stars,
+    this.matchedKeyPoints = const [],
+    this.keyPointCount = 0,
+    this.wordCount = 0,
+  });
 
   final int hits;
   final int stars;
+  final List<String> matchedKeyPoints;
+  final int keyPointCount;
+  final int wordCount;
+
+  /// Mentions do not establish relationships, chronology, negation, or meaning.
+  /// A paraphrase without these words may also be a sound retelling.
+  bool get assessesComprehension => false;
 }
 
 class LumoStorySummaryScorer {
@@ -12,7 +25,13 @@ class LumoStorySummaryScorer {
 
   static final RegExp _separators = RegExp(r'[^a-z0-9]+');
   static const List<String> _inflections = <String>[
-    'e', 'en', 'er', 'ern', 'es', 's', 'n',
+    'e',
+    'en',
+    'er',
+    'ern',
+    'es',
+    's',
+    'n',
   ];
 
   static List<String> _words(String text) {
@@ -22,7 +41,10 @@ class LumoStorySummaryScorer {
         .replaceAll('ö', 'oe')
         .replaceAll('ü', 'ue')
         .replaceAll('ß', 'ss');
-    return normalized.split(_separators).where((word) => word.isNotEmpty).toList();
+    return normalized
+        .split(_separators)
+        .where((word) => word.isNotEmpty)
+        .toList();
   }
 
   static bool _matchesWord(String expected, String observed) {
@@ -59,11 +81,21 @@ class LumoStorySummaryScorer {
     if (words.isEmpty) {
       return const LumoStorySummaryScore(hits: 0, stars: 0);
     }
-    var hits = 0;
+    final uniquePoints = <String, String>{};
     for (final point in keyPoints) {
-      if (_hasPhrase(words, _words(point))) hits++;
+      final normalized = _words(point).join(' ');
+      if (normalized.isNotEmpty)
+        uniquePoints.putIfAbsent(normalized, () => point.trim());
     }
-    final ratio = hits / keyPoints.length;
+    if (uniquePoints.isEmpty) {
+      return LumoStorySummaryScore(hits: 0, stars: 0, wordCount: words.length);
+    }
+    final matched = [
+      for (final point in uniquePoints.values)
+        if (_hasPhrase(words, _words(point))) point
+    ];
+    final hits = matched.length;
+    final ratio = hits / uniquePoints.length;
     final stars = ratio >= .7
         ? 5
         : ratio >= .5
@@ -71,6 +103,12 @@ class LumoStorySummaryScorer {
             : ratio >= .3
                 ? 3
                 : 2;
-    return LumoStorySummaryScore(hits: hits, stars: stars);
+    return LumoStorySummaryScore(
+      hits: hits,
+      stars: stars,
+      matchedKeyPoints: List.unmodifiable(matched),
+      keyPointCount: uniquePoints.length,
+      wordCount: words.length,
+    );
   }
 }

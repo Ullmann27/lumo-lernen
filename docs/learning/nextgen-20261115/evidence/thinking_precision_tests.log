@@ -1,0 +1,44 @@
+00:00 +0: loading /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_quality_test.dart
+00:00 +0: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_quality_test.dart: every cognitive answer is checked against the visible givens
+00:00 +1: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_quality_test.dart: IQ rules reject a different stored answer at every level
+00:00 +2: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_quality_test.dart: unconfirmed input and stale submissions never change IQ performance
+00:00 +3: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_quality_test.dart: a cognitive profile requires confirmed valid choices
+00:00 +4: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_quality_test.dart: concurrent cognitive saves, retries and clear keep separate histories
+00:00 +5: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_quality_test.dart: concurrent IQ saves are idempotent and do not overwrite another child
+00:00 +6: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_quality_test.dart: unreadable histories are retained instead of overwritten by a save
+00:00 +7: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart: (setUpAll)
+00:00 +7: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart: all 50 cognitive answers survive failed save and retry once
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.single (dart:core/iterable.dart:694:25)
+#1      WidgetController.element (package:flutter_test/src/controller.dart:888:30)
+#2      WidgetController.ensureVisible (package:flutter_test/src/controller.dart:2389:32)
+#3      main.<anonymous closure> (file:///workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart:70:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  all 50 cognitive answers survive failed save and retry once
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +7 -1: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart: all 50 cognitive answers survive failed save and retry once [E]
+  Test failed. See exception logs above.
+  The test description was: all 50 cognitive answers survive failed save and retry once
+  
+00:02 +7 -1: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart: IQ ignores outgoing submit callbacks and retires changed profiles
+00:03 +8 -1: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart: 36-item IQ finish retries the same result without duplicate rewards
+00:04 +9 -1: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart: exam LUMO repeats only the assignment and exposes no answer
+00:05 +10 -1: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart: left-turn cognitive cue shows the actual direction
+00:05 +11 -1: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart: a cramped memory grid retains 48 dp targets and ignores double taps
+00:05 +12 -1: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart: (tearDownAll)
+00:05 +12 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart: all 50 cognitive answers survive failed save and retry once

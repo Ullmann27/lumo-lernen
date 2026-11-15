@@ -47,7 +47,10 @@ class GameProgressRepository {
       }
       previous = level.id;
     }
-    await prefs.setString(key, jsonEncode(open.toList()..sort()));
+    if (!await prefs.setString(key, jsonEncode(open.toList()..sort()))) {
+      await _reloadAfterFailedWrite(prefs);
+      throw StateError('Freigaben konnten noch nicht gespeichert werden.');
+    }
   }
 
   Future<Set<int>> loadUnlocked(String childId) => _ordered(childId, () async {
@@ -84,7 +87,7 @@ class GameProgressRepository {
   Future<Map<int, int>> loadStars(String childId) =>
       _ordered(childId, () => _readStars(childId));
 
-  Future<Map<int, int>> _readStars(String childId) async {
+  Future<Map<int, int>> _readStars(String childId, {bool strict = false}) async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final raw = prefs.getString(_starsKey(childId));
@@ -93,7 +96,7 @@ class GameProgressRepository {
         return <int, int>{};
       }
       final decoded = jsonDecode(raw);
-      if (decoded is! Map) return <int, int>{};
+      if (decoded is! Map) throw const FormatException('Ungültiger Spielstand');
       final result = <int, int>{};
       decoded.forEach((k, v) {
         final id = int.tryParse('$k');
@@ -101,11 +104,14 @@ class GameProgressRepository {
         final level = id == null ? null : GameLevelCatalog.byId(id);
         if (level != null && stars != null) {
           result[id!] = stars.clamp(0, level.maxStars);
+        } else if (strict) {
+          throw const FormatException('Der vorhandene Spielstand bleibt erhalten.');
         }
       });
       await _migrateUnlocks(prefs, childId, result);
       return result;
     } catch (_) {
+      if (strict) rethrow;
       return <int, int>{};
     }
   }
@@ -116,15 +122,25 @@ class GameProgressRepository {
   }
 
   Future<void> _writeStars(String childId, Map<int, int> stars) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await _migrateUnlocks(prefs, childId, const {});
-      final mapped = stars.map((k, v) => MapEntry('$k', v));
-      await prefs.setString(_starsKey(childId), jsonEncode(mapped));
-    } catch (_) {
-      // Preserve the existing best-effort storage contract. Durable write-error
-      // reporting needs coordinated changes in the mini-game callers.
+    if (stars.entries.any((entry) {
+      final level = GameLevelCatalog.byId(entry.key);
+      return level == null || entry.value < 0 || entry.value > level.maxStars;
+    })) {
+      throw ArgumentError('Ungültiger Level-Sternwert');
     }
+    final prefs = await SharedPreferences.getInstance();
+    await _migrateUnlocks(prefs, childId, const {});
+    final mapped = stars.map((k, v) => MapEntry('$k', v));
+    if (!await prefs.setString(_starsKey(childId), jsonEncode(mapped))) {
+      await _reloadAfterFailedWrite(prefs);
+      throw StateError('Das Level-Ergebnis ist noch nicht gespeichert.');
+    }
+  }
+
+  static Future<void> _reloadAfterFailedWrite(SharedPreferences prefs) async {
+    // SharedPreferences may have updated its in-memory map before returning
+    // false. An unconfirmed cache entry must never be accepted as disk proof.
+    try { await prefs.reload(); } catch (_) {}
   }
 
   /// Speichert das Ergebnis eines Level-Durchgangs.
@@ -134,7 +150,7 @@ class GameProgressRepository {
     required int levelId,
     required int starsEarned,
   }) => _ordered(childId, () async {
-    final current = await _readStars(childId);
+    final current = await _readStars(childId, strict: true);
     final level = GameLevelCatalog.byId(levelId);
     if (level == null || !level.miniType.isPlayable) return current;
     final earned = starsEarned.clamp(0, level.maxStars);
@@ -178,10 +194,11 @@ class GameProgressRepository {
   }
 
   Future<void> reset(String childId) => _ordered(childId, () async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.remove(_starsKey(childId));
-      await prefs.remove(_unlocksKey(childId));
-    } catch (_) {}
+    final prefs = await SharedPreferences.getInstance();
+    if (!await prefs.remove(_starsKey(childId)) ||
+        !await prefs.remove(_unlocksKey(childId))) {
+      await _reloadAfterFailedWrite(prefs);
+      throw StateError('Der Spielstand wurde nicht vollständig zurückgesetzt.');
+    }
   });
 }
