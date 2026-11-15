@@ -93,7 +93,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 100));
     expect(calls.where((call) => call.method == 'listen'), isEmpty,
         reason: 'The microphone request belongs to the pre-pause context.');
-    expect(find.text('Hört zu · Mikrofon an'), findsNothing);
+    expect(find.text('Mikrofon wird geöffnet'), findsNothing);
 
     // Cancellation must not permanently disable the microphone. Only a new
     // explicit tap may start the actual on-device recognition path.
@@ -102,7 +102,7 @@ void main() {
     final listens = calls.where((call) => call.method == 'listen');
     expect(listens, hasLength(1));
     expect((listens.single.arguments as Map)['onDevice'], isTrue);
-    expect(find.text('Hört zu · Mikrofon an'), findsOneWidget);
+    expect(find.text('Mikrofon wird geöffnet'), findsOneWidget);
     expect((app.state.stars, app.state.xp), (0, 0));
     expect(app.state.solved, isEmpty);
     expect(tester.takeException(), isNull);
