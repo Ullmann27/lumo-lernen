@@ -1,0 +1,89 @@
+{
+  "flutter": "aea9f63e5ea7a85a2d0a67d3b0e8988b0b0eb1fa",
+  "godot": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "332307fafa2f68a1aa3667d81b7c90d3683c5c45",
+    "engine": "4.6.3"
+  },
+  "release": {
+    "schemaVersion": 1,
+    "versionName": "0.13.15",
+    "versionCode": 2027,
+    "releaseTag": "lumo-nextgen-learning-0.13.15-2027"
+  },
+  "protectedModules": [
+    {
+      "path": "lib/core/writing_progress_repository.dart",
+      "sha256": "9cbea3120444ae0011719f42b341690b82a4568f1774345dc0ed7657a68a99a3"
+    },
+    {
+      "path": "lib/core/writing_target_parser.dart",
+      "sha256": "8830cb2241bc46b7dc948795f8206c5664fd7c9a0a137594f5a18e3d7fde8121"
+    },
+    {
+      "path": "lib/domain/writing/expanded_writing_template_repository.dart",
+      "sha256": "93c9010c923751900591c899cf0ca984c5af52a7d6ec4811353d2a40b05baa0b"
+    },
+    {
+      "path": "lib/domain/writing/letter_practice_rules.dart",
+      "sha256": "cf04686db75dec076bc9df4f918eab5a444aea2f8417194b90e01ca0de4ec0e3"
+    },
+    {
+      "path": "lib/domain/writing/writing_domain.dart",
+      "sha256": "1263772507004fd3cbfd2613bafd96c65c123ca945d69c9493e29d396c7f82d5"
+    },
+    {
+      "path": "lib/domain/writing/writing_path_geometry.dart",
+      "sha256": "4138e8389d0113734a0f8a8ee9b348ee8140f18400c609b4be45da00e047a929"
+    },
+    {
+      "path": "lib/domain/writing/writing_progress.dart",
+      "sha256": "4999aca194975399a4a9cbc746f6c38e338262823816a0aba227ca809db8f777"
+    },
+    {
+      "path": "lib/domain/writing/writing_word_bank.dart",
+      "sha256": "0fd0870b20769e8d3e1b2a188751f0bc048ef864acc39e0ce00fac296a9f6295"
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "sha256": "9b6e404d8312ed9ffb874eac2fea06e0fdf45024b308392e1ef58b5a85e13753"
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "sha256": "389270e2a26df93cbc76ec0e028efaa804210236c5d57647afb60023db054aa4"
+    },
+    {
+      "path": "lib/features/learning/renderers/writing_task_renderer.dart",
+      "sha256": "2ab4338e9b862292f35f50b95cfc4aa2cb719009a5f4e5f5f73b7e654cde4395"
+    },
+    {
+      "path": "lib/features/teacher_mode/letter_writing_screen.dart",
+      "sha256": "efec5a4398778e9306e7beadbdae15251ddca7b7ad27c7804ac244ff06925f4b"
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+      "sha256": "3365cae7a1137ce57a573971fa40e20b55f7f9434ee721d79f2fd0978b16ed10"
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "sha256": "e08c2b8acd274eb201f1cd6dd164e9f22b569a1478cdff9295f0ea4fbe6c82bd"
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "sha256": "f748e40fb47bff603bc8de53ce59c1b398c1fed6765b7cdbb3a2a367abf24091"
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_letter_practice_board.dart",
+      "sha256": "d2c5308eb820799245975695a720173179d63144b89cc3feb0d9aabce5865dea"
+    },
+    {
+      "path": "lib/features/writing/writing_engine.dart",
+      "sha256": "d1df3e186a6189f4b05594b407ebee01578ca474669292440617d7ff1aad3274"
+    },
+    {
+      "path": "lib/features/writing/writing_feature_flags.dart",
+      "sha256": "7a42a9dfb693da76a53d6b25eede144acab75bce27a22f7fc446f6f9b7f1ac76"
+    }
+  ],
+  "coverageIsAcceptance": false
+}

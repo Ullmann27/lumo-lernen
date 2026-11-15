@@ -52,6 +52,9 @@ void main() {
       final data = dataFor(
         visual: 'clock',
         prompt: 'Welche Uhrzeit ist gemeint: Stunde 7 und Minute 30?',
+        answer: '07:30 Uhr',
+        choices: const ['07:00 Uhr', '07:30 Uhr', '08:30 Uhr'],
+        requireValidTask: true,
       );
       expect(data['hour'], equals(7));
       expect(data['minute'], equals(30));
@@ -88,14 +91,19 @@ void main() {
       expect(data['denominator'], equals(4));
     });
 
-    test('erkennt "Haelfte" als 1/2', () {
-      final data = dataFor(
-        visual: 'fraction_pizza',
-        prompt: 'Was ist die Hälfte von 8?',
-      );
-      expect(data['numerator'], equals(1));
-      expect(data['denominator'], equals(2));
-    });
+    for (final half in ['Hälfte', 'Haelfte']) {
+      test('erkennt "$half" als 1/2', () {
+        final data = dataFor(
+          visual: 'fraction_pizza',
+          prompt: 'Was ist die $half von 8?',
+          answer: '4',
+          choices: const ['2', '4', '8'],
+          requireValidTask: true,
+        );
+        expect(data['numerator'], equals(1));
+        expect(data['denominator'], equals(2));
+      });
+    }
 
     test('erkennt "Viertel" als 1/4', () {
       final data = dataFor(

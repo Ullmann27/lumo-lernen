@@ -28,8 +28,8 @@ Der bestehende Aufgabenkontext erhält `stepId`, `objectIds`, `explanation`,
 liefert `learningIdentity`, `learningAction`, `learningCancellation`,
 `learningPresentation`, `learningAudio`. `requestLearningAction` prüft
 Identität, erlaubte Aktion, Prüfungsgrenze und Objektkennung. Die folgenden
-Abschnitte beschreiben die Semantik; bei den ursprünglichen Namensvorschlägen
-gilt diese konkrete Zuordnung. Keine Namen stillschweigend parallel führen.
+Abschnitte verwenden ausschließlich diese implementierten Namen. Der erste
+Dokumententwurf ist ersetzt und kein zusätzlich unterstütztes Wire-Format.
 
 ## Verifizierte gemeinsame Basis
 
@@ -53,9 +53,16 @@ gilt diese konkrete Zuordnung. Keine Namen stillschweigend parallel führen.
 | Chat 3 | `art/lumo-nextgen-avatar-20261115-54fe` | `art/lumo_next`, `assets/lumo_next`, `scripts/lumo_next`, `tools/lumo_next`, `tests/lumo_next`, `docs/lumo_next`, additive `scripts/learning/learning_world.gd`; `54fec2798782` |
 | Chat 4 | `feature/lumo-nextgen-conversation-20261115-403a` | Sprache/Gespräch, native Sprachbridge, Kontextabbruch; `403a8e21ea7b` |
 
-Zusätzliche aktive Lernzweige in `c5a7dadab95f` und `ea41c7b116ac` wurden
-beobachtet. Ihre Rollen sind noch nicht bestätigt; keine Übernahme oder
-Zusammenarbeit ohne konkrete Übergabe behaupten.
+Weitere tatsächliche Übergaben sind inzwischen integriert: Der eingefrorene
+C5-Lernstand ist mit Dateihashes und seinem damaligen Arbeitsbaumstatus in
+`docs/nextgen/evidence/c5_final_candidate_20261115/source.json` belegt. EA lieferte
+den oben bezeichneten kanonischen Vertrag sowie Host-/Gesprächsadapter.
+Chat 4s lokale Spracherkennung wurde selektiv aus
+`818096d` übernommen. Chat 3s finale Assets und editierbare Blender-Quellen
+sind durch `docs/nextgen/evidence/avatar-authoring-snapshot-01.json` im
+Godot-Repository belegt. Die integrierte native Revision steht verbindlich in
+`config/godot-source.json`. Ein dokumentierter Arbeitsbaumsnapshot wird nicht
+nachträglich als sauberer ursprünglicher Produzentencommit ausgegeben.
 
 Änderungen an `learning_world.gd` werden mit Chat 3 abgestimmt; Änderungen
 an Sprachdateien mit Chat 4. Jeder liefert Commit/Dateiliste, tatsächlich
@@ -72,47 +79,59 @@ Deshalb darf eine optionale native Erklärung nicht als dauerhaft sichtbare
 Vorhandene Verträge `LearningSceneRequest`/`LearningSceneEvent`,
 `LumoCompanionTaskContext`, `NativeLearningActivity` und Android
 `speakLearning/getLearningSpeechStatus/stopLearningSpeech` bleiben gültig.
-Der folgende äußere Umschlag ergänzt sie. Keine zweite Aufgabenlogik
+Der folgende Identitätsvertrag ergänzt sie. Keine zweite Aufgabenlogik
 oder zweite Speicherung einführen.
 
-## Umschlag v1
+## Identität und Aktionen v1
 
-Alle neuen asynchronen Aktionen tragen:
+`LumoLearningIdentity.toJson()` liefert die folgende Identität. Dies ist
+kein vollständiger Aktions- oder Szenenpayload:
 
 ```json
 {
-  "schema": "lumo.learning.interaction",
-  "version": 1,
+  "protocolVersion": 1,
   "sessionId": "opaque-session",
   "taskId": "existing-task-id",
   "revision": 1,
-  "contextRevision": 1,
   "cancelEpoch": 0,
-  "turnId": "opaque-turn",
-  "type": "explain"
+  "stepId": "explanation-1"
 }
 ```
 
 `sessionId` ist ein flüchtiger Besitzertoken, keine Kinderidentität.
 `taskId` bleibt die vorhandene Aufgabenkennung. `revision` bezeichnet die
-aktuelle Aufgaben-/Szenenrevision, `contextRevision` den übergeordneten
-Gesprächskontext. `cancelEpoch` erhöht sich bei Stopp, Hintergrund,
-Aufgaben-/Profilwechsel. Ein Consumer akzeptiert nur exakt seine aktive
-Bindung; unbekannte Versionen und unzulässige Aktionen werden verworfen.
+semantische Aufgaben-/Kontextrevision. Ein unveränderter erneut veröffentlichter
+Kontext erhöht sie nicht. `stepId` ist optional und wird bei fehlendem Wert
+nicht serialisiert. Der native Adapter normalisiert fehlend/null zu derselben
+Identität. `cancelEpoch` wird beim semantischen Abbruch erhöht. Controller
+melden insbesondere Stopp, Hintergrund sowie Aufgaben-/Profilwechsel an die
+vorhandenen Abbruchwege. Ein Consumer akzeptiert ausschließlich seine aktive
+vollständige Bindung; unbekannte Protokollversionen werden nativ verworfen.
 
-Ein Aufgaben-Snapshot ergänzt `stepId`, `prompt`, `objects`, `allowedActions`,
-`nextHint`, `answerState`, `reduceMotion` und optional `domainFeedback`.
-Objekte besitzen stabile IDs, Typ und sichtbare Beschriftung. IDs werden
-von der aktuellen Szene registriert, nicht vom Sprachmodell erfunden.
-`domainFeedback` kann nur die vorhandene Fachlogik erzeugen und enthält
-geprüfte Richtigkeit, Fehlerart, Versuch und nächste erlaubte Hilfe.
+`LumoLearningActionRequest` enthält `identity`, ganzzahlige `requestId`,
+`action` sowie optional ganzzahlige `turnId`, `objectId` und `candidate`.
+`requestId` wird vom vorhandenen Bus vergeben. `turnId` und `utteranceId`
+gehören dem jeweiligen Gesprächs-/Wiedergabecontroller. Eine Aktion kann
+keine Sterne, XP, Fortschritt, Richtigkeit oder Aufgabenwechsel setzen.
 
-`allowedActions` ist eine vom Aufgabenbesitzer vorgegebene Teilmenge:
-`explain`, `why`, `hint`, `repeat`, `slower`, `proposeAnswer`,
-`correctCandidate`, `confirmAnswer`, `focusObject`, `stop`.
-Prüfungsaufgaben erlauben keine lösungsverratende Hilfe. KI-Ausgaben sind
-unverbindliche Aktionsvorschläge; es existiert keine Aktion für Sterne,
-XP, Fortschritt, richtige Antwort oder Aufgabenwechsel.
+`LumoCompanionTaskContext` enthält den vorhandenen fachlichen Snapshot:
+`subject`, `unit`, `prompt`, `isExam`, `answering`, `taskId`, `attempts`,
+`helpLevel`, `lastAnswer`, `lastCorrect`, `previousHelp`, `localHelp`,
+`activity`, `ownerSection`, `profileGeneration` sowie die additiven Felder
+`stepId`, `objectIds`, `explanation`, `errorType`, `answerChoices`,
+`allowedActions`, `isExplanation`. Der Aufgabenbesitzer erzeugt das geprüfte
+Ergebnis, die Fehlerart und die nächste fachlich zulässige Hilfestufe. Es gibt
+keine parallelen Felder `nextHint`, `answerState` oder `domainFeedback`.
+Der ruhige Modus stammt aus den vorhandenen Einstellungen/Präsentationsadaptern.
+
+`allowedActions` ist eine vom Aufgabenbesitzer vorgegebene Teilmenge der neun
+oben genannten Enum-Werte. Objektaktionen erfordern eine in `objectIds`
+freigegebene Kennung; die Szene muss sie zusätzlich tatsächlich auflösen
+können. `proposeAnswer` erfordert eine aktuell beantwortbare Aufgabe und einen
+nichtleeren, begrenzten Kandidaten. In Prüfungen sind nur ausdrücklich
+freigegebenes Wiederholen/Langsamerlesen sowie Stopp zulässig. Fehlender
+aktiver Kontext gibt keine inhaltliche Hilfe frei. KI-Ausgaben bleiben
+unverbindliche, durch diese Grenzen geprüfte Aktionsvorschläge.
 
 ## Fachliche Antwortgrenze
 
@@ -128,15 +147,26 @@ Fachlogik und schreiten nur innerhalb ihrer zulässigen Stufen fort.
 
 ## Figur und benannte Lernobjekte
 
-Chat-3-Registry bleibt lesson-scoped. Zuordnung:
-`lesson_id = sessionId + '/' + taskId`, `revision = revision`;
-`turn_id = turnId + '/' + cancelEpoch`.
+`LumoLearningPresentation` bindet `identity`, optional `turnId` und
+`utteranceId`, `gazeObjectId`, `pointObjectId`, `expression` und
+`animationState`. Der Bus prüft Identität und Objektfreigabe vor Veröffentlichung.
 
-Vereinbarte Ziele: `addend_a_00..`, `addend_b_00..`,
-`ten_frame_primary/slot_0..9`, `ten_frame_secondary/slot_0..9`,
-`syllable_0..2`, `pattern_item_00..`, `plant_root`, `plant_stem`,
-`plant_leaf`, `plant_flower`. Weitere IDs sind kompatibel ergänzbar,
-sofern die aktuelle Szene sie tatsächlich registriert.
+Chat 3s Registry bleibt an die konkrete Lektion gebunden.
+`LearningLumoActor.bind_interaction_context()` validiert zuerst die komplette
+kanonische Identität einschließlich `stepId` und erlaubter Aktionen. Erst dann
+wird intern `lesson_id = sessionId + '/' + taskId` mit `revision` gebunden.
+Interne Director-Turns enthalten einen lokalen Besitzerzähler und die jeweilige
+Interaktions-/Audiokennung. Ein Höchststand verwirft alte Gesprächsrunden;
+`cancelEpoch` ist Teil der geprüften Identität und kein angehängter String.
+Das interne Director-Format ist kein zweiter öffentlicher Gesprächsvertrag.
+
+Tatsächlich registrierte Ziele entstehen in `LearningWorldNext._bind_targets()`
+und `_sync_semantic_targets()`: unter anderem `addend_a_00..`, `addend_b_00..`,
+`ten_frame_primary/slot_0..9`, `ten_frame_secondary/slot_0..9`, `ten_frame`,
+`syllable_0..`, `syllable_destination_0..`, `pattern_item_00..`, `plant_` mit
+dem vorhandenen Teilnamen sowie `science_banana`. Eine Kennung ist nur in der
+passenden aktiven Szene verfügbar. Weitere IDs sind kompatibel ergänzbar,
+wenn Aufgabenfreigabe und tatsächliche Registrierung übereinstimmen.
 
 Der vorhandene Actor/Chat-3-Director erhält `listening`, `thinking`,
 `explain`, `point`, `focused_input`, `interrupt`, `encourage`,
@@ -146,16 +176,26 @@ reduziert dekorative Bewegung, erhält aber fachliche Hervorhebungen.
 
 ## Audio, Untertitel und Mund
 
-Eine Äußerung besitzt `utteranceId`, `turnId`, `text`, optional `cues`.
-Untertitel bleiben als vollständiger Text zugänglich. Wiedergabestatus
-enthält `state`, `positionMs`, `durationMs`, `audible`, `envelope`,
-`envelopeAvailable`; Quelle ist die reale Wiedergabe, nicht eine Textuhr.
-Das bisherige native `id` wird kompatibel auf die Äußerung abgebildet.
+`LumoLearningAudioFrame` enthält `identity`, ganzzahlige `turnId` und
+`utteranceId`, `state`, `subtitle`, `positionMs`, `durationMs`, `audible`,
+`envelopeAvailable` und `envelope`. Quelle ist die tatsächliche Wiedergabe,
+keine aus der Textlänge erfundene Uhr. `mouthTiming` ist abgeleitet
+`envelope` oder `none`; `wordTimingAvailable` und `phonemeTimingAvailable`
+sind in diesem Vertrag ausdrücklich `false`. Die native vorhandene
+Wiedergabe-ID bleibt in ihrem Adapter erhalten. Untertitel bleiben lesbar.
 
-Optionale Mund-Cues: `{start_ms,end_ms,shape,weight}` mit validierten
-Grenzen, auf die tatsächliche Audio-Abspielposition bezogen. Ohne
-verifizierte Phonemzeitdaten bleibt die vorhandene Audiohüllkurve der
-Fallback; daraus wird keine phonemgenaue Lippensynchronität behauptet.
+Der Actor/Director kann zusätzliche validierte Mund-Cues annehmen. Die
+integrierte freie Sprachquelle liefert derzeit keine geprüften Phonemzeiten.
+Deshalb wird nur hüllkurvengesteuerte Mundbewegung behauptet. Banane verwendet
+tatsächlich getrennte Wiedergaben für Wort und Silben; zugehörige Ziele werden
+an deren realen Wiedergabezustand gebunden.
+
+Die gemeinsame Flutter-Wiedergabe besitzt zusätzlich `LumoVoice.requestRevision`.
+Sie schützt den aktuellen Audioauftrag unabhängig von der semantischen
+Aufgabenidentität: eine alte Seite darf beim späteren Aufräumen keinen neueren
+Playerauftrag stoppen. Nach asynchronem Stop wird vor erneutem Start der
+Besitzer nochmals geprüft. Ein temporäres langsameres Erklären benutzt den
+jeweiligen `speedFactor`; es überschreibt keine globale Tempoeinstellung.
 
 Stopp/Pause/Wechsel verwirft Erkennung und offene Antwort, stoppt Audio,
 schließt den Mund und beendet zugehörige Geste gemeinsam. Aufnahme

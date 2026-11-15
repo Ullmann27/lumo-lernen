@@ -33,37 +33,45 @@ Future<void> captureVisual(WidgetTester tester, String name) async {
   });
 }
 
-SkillRecord skill(String unit, {
-  int correct = 0, int wrong = 0, int streak = 0, int misses = 0,
-}) => SkillRecord(
-  skillId: SkillRecord.makeId('Mathematik', unit),
-  subject: 'Mathematik', unit: unit,
-  correct: correct, wrong: wrong, currentStreak: streak,
-  currentMisses: misses,
-);
+SkillRecord skill(
+  String unit, {
+  int correct = 0,
+  int wrong = 0,
+  int streak = 0,
+  int misses = 0,
+}) =>
+    SkillRecord(
+      skillId: SkillRecord.makeId('Mathematik', unit),
+      subject: 'Mathematik',
+      unit: unit,
+      correct: correct,
+      wrong: wrong,
+      currentStreak: streak,
+      currentMisses: misses,
+    );
 
 TaskInstance exampleTask() => TaskInstance(
-  taskInstanceId: 'fold-visual-task',
-  templateId: 'fold-visual',
-  childId: 'visual-child',
-  seedHash: 'fold-test',
-  subject: LearningSubject.mathematik,
-  skillId: const SkillId('math.plus20'),
-  taskType: TaskType.multipleChoice,
-  difficulty: 1,
-  parameters: const {},
-  prompt: '7 + 5 = ?',
-  options: const [
-    AnswerOption(id: '10', label: '10', payload: '10'),
-    AnswerOption(id: '11', label: '11', payload: '11'),
-    AnswerOption(id: '12', label: '12', payload: '12'),
-    AnswerOption(id: '13', label: '13', payload: '13'),
-  ],
-  correctAnswer: '12',
-  visualPayload: const VisualPayload(type: VisualType.none),
-  helpPayload: const HelpPayload(shortHint: 'Zähle fünf zu sieben dazu.'),
-  generatedAt: DateTime(2026, 10, 9),
-);
+      taskInstanceId: 'fold-visual-task',
+      templateId: 'fold-visual',
+      childId: 'visual-child',
+      seedHash: 'fold-test',
+      subject: LearningSubject.mathematik,
+      skillId: const SkillId('math.plus20'),
+      taskType: TaskType.multipleChoice,
+      difficulty: 1,
+      parameters: const {},
+      prompt: '7 + 5 = ?',
+      options: const [
+        AnswerOption(id: '10', label: '10', payload: '10'),
+        AnswerOption(id: '11', label: '11', payload: '11'),
+        AnswerOption(id: '12', label: '12', payload: '12'),
+        AnswerOption(id: '13', label: '13', payload: '13'),
+      ],
+      correctAnswer: '12',
+      visualPayload: const VisualPayload(type: VisualType.none),
+      helpPayload: const HelpPayload(shortHint: 'Zähle fünf zu sieben dazu.'),
+      generatedAt: DateTime(2026, 10, 9),
+    );
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -100,32 +108,64 @@ void main() {
         taskType: TaskType.multipleChoice,
         difficulty: 3,
         parameters: const {},
-        prompt: '987654321 > 123456789',
-        options: const [],
+        prompt: 'Welches Zeichen passt? 987654321 ? 123456789',
+        options: const [
+          AnswerOption(id: 'less', label: '<', payload: '<'),
+          AnswerOption(id: 'equal', label: '=', payload: '='),
+          AnswerOption(id: 'greater', label: '>', payload: '>'),
+        ],
         correctAnswer: '>',
-        visualPayload: const VisualPayload(type: VisualType.none),
+        visualPayload: const VisualPayload(
+          type: VisualType.numberCompare,
+          data: {'left': 987654321, 'right': 123456789},
+        ),
         helpPayload: const HelpPayload(shortHint: 'Vergleiche von links.'),
         generatedAt: DateTime(2026, 10, 9),
       );
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: SizedBox(
-              width: target.$1 - 16,
-              child: RepaintBoundary(
-                key: captureKey,
-                child: NumberCompareVisual(task: task),
+      Widget comparison({String? evaluatedSymbol}) => MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: SizedBox(
+                  width: target.$1 - 16,
+                  child: RepaintBoundary(
+                    key: captureKey,
+                    child: NumberCompareVisual(
+                      task: task,
+                      evaluatedSymbol: evaluatedSymbol,
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      ));
+          );
+      await tester.pumpWidget(comparison());
+      await tester.pump();
+      expect(find.text('987654321'), findsOneWidget);
+      expect(find.text('123456789'), findsOneWidget);
+      expect(find.text('?'), findsOneWidget);
+      expect(find.text('>'), findsNothing,
+          reason:
+              'The hidden answer must not solve the visual before a choice.');
+      final bounds = tester.getRect(find.byKey(captureKey));
+      for (final number in ['987654321', '123456789']) {
+        final box = tester.renderObject<RenderBox>(find.text(number));
+        final painted = Rect.fromPoints(
+          box.localToGlobal(Offset.zero),
+          box.localToGlobal(box.size.bottomRight(Offset.zero)),
+        );
+        expect(painted.left, greaterThanOrEqualTo(bounds.left));
+        expect(painted.right, lessThanOrEqualTo(bounds.right));
+      }
+      expect(tester.takeException(), isNull);
+      await captureVisual(tester, 'number_compare_${target.$2}');
+      // Only the lesson's evaluated result may reveal the relation.
+      await tester.pumpWidget(comparison(evaluatedSymbol: '>'));
       await tester.pump();
       expect(find.text('987654321'), findsOneWidget);
       expect(find.text('123456789'), findsOneWidget);
       expect(find.text('>'), findsOneWidget);
+      expect(find.text('?'), findsNothing);
       expect(tester.takeException(), isNull);
-      await captureVisual(tester, 'number_compare_${target.$2}');
     });
   }
 
@@ -155,8 +195,7 @@ void main() {
     expect(early.stageIndex, 1);
     final advanced = LumoTreeProgress({
       for (var n = 0; n < 4; n++)
-        'mastered$n':
-            skill('Skill $n', correct: 5, streak: 5),
+        'mastered$n': skill('Skill $n', correct: 5, streak: 5),
     });
     expect(advanced.stageIndex, 3);
     expect(advanced.visibleSkills.length, 4);
@@ -184,8 +223,8 @@ void main() {
         AnswerOption(id: 'd', label: '3'),
       ],
       correctAnswer: '3000',
-      visualPayload:
-          const VisualPayload(type: VisualType.scaleMeasure, data: {'value': 3}),
+      visualPayload: const VisualPayload(
+          type: VisualType.scaleMeasure, data: {'value': 3}),
       helpPayload: const HelpPayload(),
       generatedAt: DateTime(2026, 10, 9),
     );
@@ -237,7 +276,12 @@ void main() {
       await tester.pump(const Duration(milliseconds: 750));
       expect(find.byType(LearningContent), findsOneWidget);
       expect(find.byType(AdaptiveTaskRenderer), findsOneWidget);
-      expect(find.byKey(const ValueKey('lumo-help-sparkle')), findsOneWidget);
+      final helpButton = find.widgetWithText(OutlinedButton, 'Hilf mir');
+      expect(helpButton, findsOneWidget);
+      expect(tester.widget<OutlinedButton>(helpButton).onPressed, isNotNull);
+      final helpSize = tester.getSize(helpButton);
+      expect(helpSize.width, greaterThanOrEqualTo(48));
+      expect(helpSize.height, greaterThanOrEqualTo(48));
       expect(find.byKey(const ValueKey('lesson-encouragement-sparkle')),
           findsOneWidget);
       expect(find.text('Du schaffst das!'), findsOneWidget);
@@ -269,7 +313,9 @@ void main() {
             child: RepaintBoundary(
               key: captureKey,
               child: LumoLearningTreeCard(
-                skills: skills, compact: false, onOpenWorld: () {},
+                skills: skills,
+                compact: false,
+                onOpenWorld: () {},
               ),
             ),
           ),
@@ -284,19 +330,21 @@ void main() {
         await precacheImage(
           const AssetImage(
             'assets/lumo_design/learning_world/learning_tree_stage_2.png',
-          ), treeContext,
+          ),
+          treeContext,
         );
       });
       await tester.pump();
       expect(find.byKey(const ValueKey('lumo-tree-3d-image')), findsOneWidget);
       expect(
-        tester.widgetList<RawImage>(find.byType(RawImage))
+        tester
+            .widgetList<RawImage>(find.byType(RawImage))
             .any((render) => render.image != null),
-        isTrue, reason: 'The screenshot must contain the decoded 3D scene',
+        isTrue,
+        reason: 'The screenshot must contain the decoded 3D scene',
       );
       for (var i = 0; i < 3; i++) {
-        expect(find.byKey(ValueKey('lumo-tree-skill-node-$i')),
-            findsOneWidget);
+        expect(find.byKey(ValueKey('lumo-tree-skill-node-$i')), findsOneWidget);
       }
       expect(find.text('Mein Lernbaum'), findsOneWidget);
       expect(find.byKey(const ValueKey('lumo-tree-mastered')), findsOneWidget);
@@ -319,7 +367,8 @@ void main() {
             child: RepaintBoundary(
               key: captureKey,
               child: AdaptiveTaskRenderer(
-                task: exampleTask(), onAnswered: answers.add,
+                task: exampleTask(),
+                onAnswered: answers.add,
               ),
             ),
           ),
@@ -339,7 +388,8 @@ void main() {
       expect((third.dy - fourth.dy).abs(), lessThan(1));
       expect(third.dy, greaterThan(first.dy + 12));
       await captureVisual(tester, 'math_task_${target.$2}');
-      await tester.ensureVisible(find.byKey(const ValueKey('lesson-hint-button')));
+      await tester
+          .ensureVisible(find.byKey(const ValueKey('lesson-hint-button')));
       await tester.tap(find.byKey(const ValueKey('lesson-hint-button')));
       await tester.pump();
       expect(find.textContaining('Tipp von Lumo'), findsWidgets);

@@ -25,11 +25,16 @@ import '../shared/lumo_game_pause_scope.dart';
 /// It only consumes the canonical LUMO contract; game logic owns every answer.
 class MiniGameLearningScreen extends StatefulWidget {
   const MiniGameLearningScreen(
-      {super.key, required this.appState, required this.level, this.onResult});
+      {super.key,
+      required this.appState,
+      required this.level,
+      this.onResult,
+      this.voice});
 
   final LumoAppState appState;
   final GameLevel level;
   final ValueChanged<int>? onResult;
+  final LumoVoice? voice;
 
   @override
   State<MiniGameLearningScreen> createState() => _MiniGameLearningScreenState();
@@ -55,11 +60,13 @@ class _MiniGameLearningScreenState extends State<MiniGameLearningScreen>
   bool _showHelp = false, _supportStopped = false, _hasProposal = false;
   bool _reading = false, _resultShown = false, _profileChanged = false;
   int _handledRequest = -1, _replay = 0, _step = 0, _voiceRevision = 0;
+  int? _voiceRequest;
   int _queuedHelp = 0;
   String? _error, _workspaceMessage, _activeObjectId, _subtitle;
   List<String> _workspaceIds = const [];
   final _marked = <int>{};
 
+  LumoVoice get _voice => widget.voice ?? LumoVoice.instance;
   MiniGameRound? get _round => _controller?.round;
   bool get _currentProfile {
     final lease = _lease;
@@ -540,25 +547,45 @@ class _MiniGameLearningScreenState extends State<MiniGameLearningScreen>
   }
 
   Future<void> _read(String text) async {
-    if (!_currentProfile ||
+    if (!_owns ||
+        !_foreground ||
+        _nativeOpen ||
         _clock.value ||
-        !widget.appState.state.settings.voiceEnabled) return;
+        !widget.appState.state.settings.voiceEnabled ||
+        text.trim().isEmpty) {
+      return;
+    }
     final revision = ++_voiceRevision;
     final taskId = _workspace?.taskInstanceId;
     _reading = true;
-    final voice = LumoVoice.instance;
+    final voice = _voice;
     try {
-      await voice.stop();
-      if (!mounted || !_currentProfile || revision != _voiceRevision) return;
-      await voice.configure(
-          rate: widget.appState.state.settings.voiceRate * (_slow ? .75 : 1));
-      if (!mounted ||
-          !_currentProfile ||
+      final stopping = voice.stop();
+      final preparingRequest = voice.requestRevision;
+      _voiceRequest = preparingRequest;
+      await stopping;
+      // A newer speaker also retires ownership while this stop is pending.
+      if (!_owns ||
+          !_foreground ||
+          _nativeOpen ||
+          _clock.value ||
           revision != _voiceRevision ||
-          taskId != _workspace?.taskInstanceId) return;
-      await voice.speakAndWait(text, style: VoiceStyle.explain);
+          taskId != _workspace?.taskInstanceId ||
+          voice.requestRevision != preparingRequest) {
+        return;
+      }
+      final speaking = voice.speakAndWait(text,
+          style: VoiceStyle.explain, speedFactor: _slow ? .75 : 1);
+      final request = voice.requestRevision == preparingRequest
+          ? null
+          : voice.requestRevision;
+      _voiceRequest = request;
+      await speaking;
       if (mounted &&
+          _owns &&
           revision == _voiceRevision &&
+          request != null &&
+          voice.requestRevision == request &&
           voice.status.value == VoiceStatus.error) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text(
@@ -569,18 +596,19 @@ class _MiniGameLearningScreenState extends State<MiniGameLearningScreen>
     } finally {
       if (revision == _voiceRevision) {
         _reading = false;
-        await voice.configure(rate: widget.appState.state.settings.voiceRate);
+        _voiceRequest = null;
       }
     }
   }
 
   void _stopLocalVoice() {
     ++_voiceRevision;
-    if (!_reading) return;
+    final request = _reading ? _voiceRequest : null;
+    _voiceRequest = null;
     _reading = false;
-    unawaited(LumoVoice.instance.stop());
-    unawaited(LumoVoice.instance
-        .configure(rate: widget.appState.state.settings.voiceRate));
+    if (request != null && _voice.requestRevision == request) {
+      unawaited(_voice.stop());
+    }
   }
 
   Future<void> _confirm([String? proposal]) async {

@@ -1,0 +1,25 @@
+{
+  "sourceBase": "aea9f63e5ea7a85a2d0a67d3b0e8988b0b0eb1fa",
+  "upstreamCiRun": 43750469368,
+  "recordedAt": "2026-11-15T19:26:44.723278+00:00",
+  "result": {
+    "passed": 43,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0
+  },
+  "priorDiagnosticRun": {
+    "passed": 41,
+    "failed": 1,
+    "exitCode": 1
+  },
+  "files": {
+    "lib/features/learning/learning_content.dart": "e699ab96f1c30b534e966ef14ac4fa5e69190828878036f62ba8c4ad15f882f8",
+    "test/design/shape_question_runtime_test.dart": "9a6143033fe5a18a605bb26612f868172f217b7dcc4b8c31449798ba98ef02fe",
+    "test/design/lumo_learning_tree_fold_visual_test.dart": "4701d78bd5af83cbb29dd9e81cff534828fff45092f39bb936057da6a2a39d17",
+    "test/task_help_integration_test.dart": "e3c7ff379b3f78da12efbd0e3f4da325827551b947b3c5e87e11a7238cdb4536",
+    "test/visual_payload_data_test.dart": "930ce1cb7a8037846d200181f41c81ef33e4b3ec7aefde9573155da141433499"
+  },
+  "testLogSha256": "6bc157aa6130caa9840c202dc091f39c87923ccf5b4cdd3c6033d250ee6a0fd2",
+  "scope": "Eleven assigned CI failures plus owner-cleanup successor regression; not a complete-suite or device certification"
+}

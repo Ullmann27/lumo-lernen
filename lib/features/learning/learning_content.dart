@@ -1684,12 +1684,11 @@ class _LearningContentState extends State<LearningContent>
     _answerCandidate.dispose();
     LumoCompanionRequests.instance.helpRequested
         .removeListener(_requestTaskHelp);
-    final published = _publishedTaskContext;
+    // A renderer callback can have queued a newer context which never reached
+    // the bus before disposal. Clear the binding's last actual publication,
+    // not that pending snapshot. Its owner check preserves a successor page.
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final requests = LumoCompanionRequests.instance;
-      if (identical(requests.taskContext.value, published)) {
-        requests.clearTask(published);
-      }
+      _coach.clear();
     });
     _autoAdvanceTimer?.cancel();
     _lumo.dispose();

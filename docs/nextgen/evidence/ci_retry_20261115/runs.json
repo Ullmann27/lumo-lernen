@@ -1,0 +1,84 @@
+{
+  "firstFullRun": {
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43750469368",
+    "source": "aea9f63e5ea7a85a2d0a67d3b0e8988b0b0eb1fa",
+    "passed": 2809,
+    "failed": 27,
+    "skipped": 202,
+    "apkProduced": false
+  },
+  "correctedGroups": [
+    {
+      "id": "mini_games",
+      "log": "mini-games-tests.log",
+      "passed": 27,
+      "failed": 0,
+      "sourceCheckpoint": "ea90447",
+      "unchangedChecks": [
+        "draft until explicit confirmation",
+        "readable contrast",
+        "48dp controls",
+        "quiet mode",
+        "failed wallet save retries exactly once"
+      ]
+    },
+    {
+      "id": "contracts",
+      "log": "contracts-tests.log",
+      "passed": 12,
+      "failed": 0,
+      "producerCommit": "e154764c0a17569367dc9b846427dd5c31a9190d",
+      "nativeDescriptorChecks": 2955,
+      "unchangedChecks": [
+        "permission revocation",
+        "profile separation",
+        "late result rejection",
+        "codec and JSON payload identity"
+      ]
+    },
+    {
+      "id": "learning",
+      "passed": 43,
+      "failed": 0,
+      "producerCommit": "16df94d2deb4d232795fa2ef9222da843e1d5a99",
+      "integratedCommit": "228fef25c98b4a62bbf438529fe0f1fc4f31248a",
+      "log": "../ci_learning_20261115/tests.log",
+      "productionFix": "Clear the actually published binding owner after disposal, without clearing a newer owner."
+    }
+  ],
+  "totalPassCountsMustNotBeAddedAcrossOverlappingRuns": true,
+  "newSkippedTestsAdded": 0,
+  "finalFullRun": "pending",
+  "additionalRegressionGroups": [
+    {
+      "id": "mini_audio_owner",
+      "passed": 12,
+      "failed": 0,
+      "newRegressionCases": 6,
+      "producerCommit": "de6f29f7c4d70fdb1c6b3fc94127fc136b347e95",
+      "integratedCommit": "04e74d9633531ef7ef20cf7e64bee7990a08e74c",
+      "log": "mini-audio-tests.log",
+      "analysis": "mini-audio-analysis.log"
+    },
+    {
+      "id": "story_audio_owner",
+      "passed": 35,
+      "failed": 0,
+      "newRegressionCases": 12,
+      "producerCommit": "bf28b9d0786b65d5f9165ee36bd59d7cad50dde4",
+      "integratedCommit": "e6622940285e681979aca0218d044ef90aa2d133",
+      "log": "story-audio-tests.log",
+      "analysis": "story-audio-analysis.log"
+    }
+  ],
+  "logHashes": {
+    "contracts-analysis.log": "932bbc0b645bc58e756c82b4503739443f375defee73a60b08bb0e5cb5b05512",
+    "contracts-tests.log": "9f3c638c94f3d249b1d3ab39f7943636400a8ac427a2ba4d62ff0b7e8a37a22b",
+    "first-full-tests.log": "6616e134d460db6e42456b52aa48a0ec24cc65c5053f5ffa8934ea4b541c2d9e",
+    "mini-audio-analysis.log": "eb95b9a18ccf64c267d6993a95c55241220b1b1d1f6d22e73d2b2907b58f6d33",
+    "mini-audio-tests.log": "aac95b665c59f87a096ce29f21bd755c80912278577bc1aaf1b2fc3e16b2edaa",
+    "mini-games-tests.log": "c9583b297985ac45fe7fa4237956fc501f8f74c7d43ecf209fcb9add6862579f",
+    "story-audio-analysis.log": "fc6be571fee69f243f8fb6438c7655fd99186045cef359b8e9e7e3b8bb72958f",
+    "story-audio-tests.log": "411c2e557bb623eb9c0e4347aedb3325eacfcc1dc18fc3a28c6fe5bc27f6de65"
+  }
+}

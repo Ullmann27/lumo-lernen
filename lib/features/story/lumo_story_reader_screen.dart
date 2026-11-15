@@ -36,6 +36,7 @@ class LumoStoryReaderScreen extends StatefulWidget {
     required this.appState,
     this.storyId,
     this.speechListener,
+    this.voice,
   });
 
   final LumoStory story;
@@ -47,6 +48,7 @@ class LumoStoryReaderScreen extends StatefulWidget {
 
   /// Optional dependency for the existing local recognition interface.
   final LumoSpeechListener? speechListener;
+  final LumoVoice? voice;
 
   @override
   State<LumoStoryReaderScreen> createState() => _LumoStoryReaderScreenState();
@@ -80,6 +82,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   int? _handledLearningRequest;
   int _speechRevision = 0;
   int _voiceRevision = 0;
+  int? _voiceRequest;
   int _helpLevel = 0;
   int _exerciseAttempts = 0;
   int _bookQuestionAttempts = 0;
@@ -104,6 +107,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
 
   bool get _ownsProfile =>
       _profileGeneration == widget.appState.profileGeneration;
+  LumoVoice get _voice => widget.voice ?? LumoVoice.instance;
 
   @override
   void initState() {
@@ -139,23 +143,55 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     requests.learningAction.removeListener(_learningAction);
     requests.clearTask(_publishedContext);
     WidgetsBinding.instance.removeObserver(this);
-    LumoVoice.instance.stop();
-    if (_slow) {
-      unawaited(LumoVoice.instance
-          .configure(rate: widget.appState.state.settings.voiceRate));
-    }
+    unawaited(_stopOwnedVoice());
     super.dispose();
   }
 
   Future<void> _speakText(String text) async {
-    if (!mounted || !_foreground || _nativeOpen || !_ownsProfile) return;
+    if (!_ownsCompanion ||
+        !_foreground ||
+        _nativeOpen ||
+        !widget.appState.state.settings.voiceEnabled ||
+        text.trim().isEmpty) {
+      return;
+    }
     final revision = ++_voiceRevision;
+    final taskId = _taskId;
+    final voice = _voice;
     try {
-      await LumoVoice.instance.configure(
-          rate: widget.appState.state.settings.voiceRate * (_slow ? .75 : 1));
-      if (!mounted || !_ownsProfile || revision != _voiceRevision) return;
-      await LumoVoice.instance.speak(text);
-    } catch (_) {}
+      final stopping = voice.stop();
+      final preparingRequest = voice.requestRevision;
+      _voiceRequest = preparingRequest;
+      await stopping;
+      if (!_ownsCompanion ||
+          !_foreground ||
+          _nativeOpen ||
+          taskId != _taskId ||
+          revision != _voiceRevision ||
+          voice.requestRevision != preparingRequest) {
+        return;
+      }
+      final speaking =
+          voice.speakAndWait(text, speedFactor: _slow ? .75 : 1);
+      _voiceRequest = voice.requestRevision == preparingRequest
+          ? null
+          : voice.requestRevision;
+      await speaking;
+    } catch (_) {
+      // Audio failures never change story answers, progress or rewards.
+    } finally {
+      if (revision == _voiceRevision) {
+        _voiceRequest = null;
+      }
+    }
+  }
+
+  Future<void> _stopOwnedVoice() async {
+    final request = _voiceRequest;
+    _voiceRequest = null;
+    if (request != null && _voice.requestRevision == request) {
+      await _voice.stop();
+    }
   }
 
   void _speak() => unawaited(_speakText(_spokenContent));
@@ -336,7 +372,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     _speechRevision++;
     _voiceRevision++;
     unawaited(_speech.cancel());
-    unawaited(LumoVoice.instance.stop());
+    unawaited(_stopOwnedVoice());
     LumoCompanionRequests.instance.clearTask(_publishedContext);
     setState(() {});
   }
@@ -379,7 +415,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     _speechRevision++;
     _voiceRevision++;
     unawaited(_speech.cancel());
-    unawaited(LumoVoice.instance.stop());
+    unawaited(_stopOwnedVoice());
     if (!mounted) return;
     setState(() {
       _helpVisible = false;
@@ -665,7 +701,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     _speechRevision++;
     _voiceRevision++;
     unawaited(_speech.cancel());
-    unawaited(LumoVoice.instance.stop());
+    unawaited(_stopOwnedVoice());
     _hasChoiceProposal = false;
     _inputMessage = null;
     _activeObjectId = null;
@@ -782,7 +818,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       // Letzte Seite fertig: wenn die Geschichte keyPoints hat, starten wir
       // die Zusammenfassungs-Phase. Sonst direkt zu Finish.
       if (widget.story.bookQuestions.isNotEmpty) {
-        LumoVoice.instance.stop();
+        unawaited(_stopOwnedVoice());
         setState(() => _inBookQuiz = true);
         _publishTask();
       } else {
