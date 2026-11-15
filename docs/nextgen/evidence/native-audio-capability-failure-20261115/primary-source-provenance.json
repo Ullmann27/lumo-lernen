@@ -1,0 +1,41 @@
+{
+  "repository": "godotengine/godot",
+  "tag": "4.6.3-stable",
+  "tagResolvedCommit": "35e80b3a8822a9df9be390814b62f44c0a9c69e8",
+  "retrievedFiles": [
+    {
+      "file": "upstream-godot-4.6.3-jni_singleton.h",
+      "repository": "godotengine/godot",
+      "ref": "4.6.3-stable",
+      "path": "platform/android/api/jni_singleton.h",
+      "gitBlobSha": "9f6b1cbc5fb1655d85b000445363bcb6b78da0cc",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/platform/android/api/jni_singleton.h",
+      "bytes": 4775,
+      "sha256": "309a30cdb3ecd6c748e868ffbcbd6ae464315221763e1e9819312b53915a3f9c"
+    },
+    {
+      "file": "upstream-godot-4.6.3-object.cpp",
+      "repository": "godotengine/godot",
+      "ref": "4.6.3-stable",
+      "path": "core/object/object.cpp",
+      "gitBlobSha": "af26407a73cac03fe42a40fcbfcf8b8bacab2192",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/core/object/object.cpp",
+      "bytes": 79475,
+      "sha256": "26ed56deaaf5d8f85729387437b80de99c3feb506b61ab934cf8f2a0eabbc719"
+    },
+    {
+      "file": "upstream-godot-4.6.3-godot_plugin_jni.cpp",
+      "repository": "godotengine/godot",
+      "ref": "4.6.3-stable",
+      "path": "platform/android/plugin/godot_plugin_jni.cpp",
+      "gitBlobSha": "c812eb8a074858740ed59f3579b393289c4cd77c",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/platform/android/plugin/godot_plugin_jni.cpp",
+      "bytes": 6225,
+      "sha256": "0b208a80136c9f6071a5a293bc272aba3747d57412f9d8c630cbe5ee3dae0e11"
+    }
+  ],
+  "reportedRuntimeVersion": "4.6.3.stable.official.7d41c59c4",
+  "runtimeShortCommitLookup": "GitHub commits/7d41c59c4 returned 422; no full runtime source SHA inferred from it.",
+  "maintainerExplanation": "https://github.com/godotengine/godot/issues/106436",
+  "specificMechanism": "JNISingleton binds has_java_method in ClassDB and looks up its separate method_map; Object.has_method does not consult that map."
+}

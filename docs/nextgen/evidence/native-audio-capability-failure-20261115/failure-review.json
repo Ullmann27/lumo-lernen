@@ -1,0 +1,64 @@
+{
+  "status": "DIAGNOSTIC_ONLY",
+  "diagnosticOutcome": "FAILED",
+  "original_probe_requirement_satisfied": false,
+  "release_eligible": false,
+  "runId": 43770887936,
+  "jobId": 132986319654,
+  "qaCommit": "e4b6f0734e718f781c591f933c534ef971b76b0e",
+  "apkSource": "72a7914059d10152604b877cfeaf8bd1d2155810",
+  "nativeSource": "ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb",
+  "observed": {
+    "candidateAndInstalledBytesVerified": true,
+    "packageAbsentBeforeInstall": true,
+    "onboardingViaUI": true,
+    "localVoiceSettingsVerified": true,
+    "actualNativePid": 5144,
+    "initialScene": "Wörter bauen · Banane",
+    "initialHint": "Baue Banane. Als Nächstes kommt die Silbe „Ba“.",
+    "voiceButtonVisible": false,
+    "currentMediaPlayerStartedEvents": 0,
+    "currentMediaPlayerCompletedEvents": 0,
+    "nativeBananaStepsExecuted": 0,
+    "nativePatternRouteExecuted": false,
+    "questionPanelOpened": false
+  },
+  "error": "No complete current native playback before the 150-second playback wait deadline.",
+  "lastSpeechLog": "original/diagnostic-android/0308-native-speech.txt",
+  "failureScreenshot": "original/diagnostic-android/0309-diagnostic-failure-current-screen.png",
+  "entryScreenshot": "original/diagnostic-android/0117-banana-native-entry.png",
+  "nativeStartObservations": [
+    "original/diagnostic-android/0113-banana-native-start-observation.json",
+    "original/diagnostic-android/0114-banana-native-start-observation.json",
+    "original/diagnostic-android/0115-banana-native-start-observation.json"
+  ],
+  "audioDiagnosis": {
+    "sourceConfirmedDefect": "Learning-world guards use Object.has_method for Android JNI plugin methods stored in a different method map.",
+    "supportedRuntimeInference": "The absent voice button is consistent with this guard defect; the complete cause of missing initial playback is not proven by filtered logs alone.",
+    "correctionCommit": "464e271167025185e48747c03310f23f6d79a092",
+    "correctionAndroidRuntimeVerified": false
+  },
+  "diagnosticTelemetry": {
+    "source": "last speech log only; repeated earlier logcat snapshots were not summed",
+    "uniqueWindows": 35,
+    "sampleCount": 239,
+    "sumWindowMs": 188857.508,
+    "sampleWeightedMeanFrameMs": 790.1987782426778,
+    "derivedSamplesPerSecond": 1.2655043610974683,
+    "speechPlayingSamples": 0,
+    "audibleSpeechSamples": 0,
+    "performanceGatePass": false,
+    "physicalDeviceClaim": false
+  },
+  "videoBoundary": {
+    "durationSeconds": 180.095211,
+    "blockElapsedSeconds": 223.81,
+    "wholeBlockWithinRecordingLimit": false
+  },
+  "fullJobLog": {
+    "file": "job-132986319654.log",
+    "bytes": 409808,
+    "sha256": "aebe07f7828c99be269fc91a71253769bcb0564c9abedd8e46919325dd736fdc"
+  }
+}
+

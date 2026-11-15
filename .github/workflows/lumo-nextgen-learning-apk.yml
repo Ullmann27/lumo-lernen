@@ -159,7 +159,7 @@ jobs:
         timeout-minutes: 20
         run: |
           set -euo pipefail
-          for script in learning_pattern_regression learning_world_regression learning_sharing_regression learning_host_payload_regression learning_generation_regression learning_companion_scope_regression learning_wonder_details_regression nextgen_avatar_contract_review nextgen_learning_route_review nextgen_learning_base_audio_regression; do
+          for script in learning_android_host_capability_regression learning_pattern_regression learning_world_regression learning_sharing_regression learning_host_payload_regression learning_generation_regression learning_companion_scope_regression learning_wonder_details_regression nextgen_avatar_contract_review nextgen_learning_route_review nextgen_learning_base_audio_regression; do
             printf 'Running native regression: %s\n' "$script"
             timeout --signal=TERM --kill-after=15s 3m godot --headless --path native-source --script "res://scripts/tests/$script.gd" 2>&1 | tee "evidence/validation/$script.log"
             if grep -F 'SCRIPT ERROR:' "evidence/validation/$script.log"; then exit 1; fi

@@ -235,7 +235,8 @@ Future<void> showLumoConversation(
       showDragHandle: true,
       builder: buildSheet,
     );
-    await LumoVoice.instance.stop();
+    // The agent releases only its own audio during disposal. A global stop
+    // after this await could cut a new page's already accepted speech request.
   } else {
     final navigator = Navigator.of(context);
     final localizations = MaterialLocalizations.of(context);

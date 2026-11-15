@@ -34,7 +34,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   late final LumoAiProxyClient _proxy = widget.proxy;
   late final LumoContextEngine _contextEngine;
   late final LumoConversationController _conversation;
-  final LumoSpeechListener _speech = LumoSpeechListener();
+  late final LumoSpeechListener _speech;
 
   bool _loading = false;
   bool _speechReady = false;
@@ -49,16 +49,25 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   bool _blocked = false;
   bool _verifiedCloudReply = false;
   bool _foreground = true;
+  bool _attached = true;
+  ModalRoute<dynamic>? _route;
   int _questionGeneration = 0;
+  int? _microphoneVoiceRevision;
   String _displayScope = '';
+
+  bool get _canInteract =>
+      mounted && _attached && _foreground && (_route?.isCurrent ?? true);
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    // The controller stops the speaker once, before microphone preparation.
+    // The listener checks that lease instead of issuing a later global stop.
+    _speech = LumoSpeechListener(stopPlayback: _checkListeningOwner);
     _contextEngine = LumoContextEngine(widget.appState);
     _conversation = LumoConversationController(_contextEngine,
-        proxy: _proxy, onInterrupt: () => unawaited(_speech.cancel()));
+        proxy: _proxy, onInterrupt: _cancelListening);
     _displayScope = _contextEngine.conversationScope;
     _contextEngine.addListener(_situationChanged);
     _speech.addListener(_speechChanged);
@@ -72,6 +81,27 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Cancellation can notify while the element is being deactivated. Keep
+    // the route reference without looking up ancestors from that callback.
+    _route = ModalRoute.of(context);
+  }
+
+  @override
+  void deactivate() {
+    _attached = false;
+    _questionGeneration++;
+    super.deactivate();
+  }
+
+  @override
+  void activate() {
+    super.activate();
+    _attached = true;
+  }
+
+  @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _questionGeneration++;
@@ -80,7 +110,6 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     _conversation.dispose();
     _contextEngine.dispose();
     _speech.dispose();
-    unawaited(LumoVoice.instance.stop());
     _controller.dispose();
     super.dispose();
   }
@@ -91,8 +120,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     if (!_foreground) {
       _questionGeneration++;
       _conversation.pause();
-      unawaited(_speech.cancel());
-      unawaited(LumoVoice.instance.stop());
+      _cancelListening();
       if (mounted) {
         setState(() {
           _speechListening = false;
@@ -109,7 +137,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     final changedTask = _displayScope != _contextEngine.conversationScope;
     _displayScope = _contextEngine.conversationScope;
     _questionGeneration++;
-    unawaited(_speech.cancel());
+    _cancelListening();
     if (changedTask) _controller.clear();
     if (mounted) {
       setState(() {
@@ -159,7 +187,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   }
 
   void _speechChanged() {
-    if (!mounted || !_foreground) return;
+    if (!_canInteract) return;
     _conversation.listening(_speech.listening);
     setState(() {
       _speechListening = _speech.listening;
@@ -168,12 +196,17 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   }
 
   Future<void> _startVoiceQuestion() async {
-    if (_speechListening || !_foreground) return;
+    if (_speechListening || !_canInteract) return;
     final generation = ++_questionGeneration;
+    final preparing = _conversation.prepareListening();
+    final voiceRevision = LumoVoice.instance.requestRevision;
+    _microphoneVoiceRevision = voiceRevision;
     // Preparation belongs to this tap, even if a pause is followed by resume.
     bool isCurrent() =>
-        mounted && _foreground && generation == _questionGeneration;
-    _conversation.interrupt(reason: 'listening_started');
+        _canInteract &&
+        generation == _questionGeneration &&
+        _microphoneVoiceRevision == voiceRevision &&
+        LumoVoice.instance.requestRevision == voiceRevision;
     setState(() => _loading = false);
     await widget.appState.ensureSettingsLoaded();
     if (!isCurrent()) return;
@@ -184,12 +217,13 @@ class _LumoAgentContentState extends State<LumoAgentContent>
       return;
     }
 
-    await LumoVoice.instance.stop();
-    if (!isCurrent()) return;
+    if (!await preparing || !isCurrent()) return;
     await _ensureSpeechReady();
     if (!isCurrent() ||
         !_speechReady ||
-        !widget.appState.state.settings.microphoneEnabled) return;
+        !widget.appState.state.settings.microphoneEnabled) {
+      return;
+    }
 
     setState(() {
       _liveSpeech = '';
@@ -220,19 +254,40 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     }
   }
 
+  void _cancelListening() {
+    _microphoneVoiceRevision = null;
+    unawaited(_speech.cancel());
+  }
+
+  Future<void> _checkListeningOwner() async {
+    if (!_canInteract ||
+        _microphoneVoiceRevision == null ||
+        _microphoneVoiceRevision != LumoVoice.instance.requestRevision) {
+      await _speech.cancel();
+    }
+  }
+
   Future<void> _finishVoiceQuestion(String words) async {
     final generation = _questionGeneration;
+    final voiceRevision = _microphoneVoiceRevision;
     await _speech.cancel();
-    if (!mounted || !_foreground || generation != _questionGeneration) return;
+    if (!_canInteract ||
+        generation != _questionGeneration ||
+        voiceRevision == null ||
+        _microphoneVoiceRevision != voiceRevision ||
+        LumoVoice.instance.requestRevision != voiceRevision) {
+      return;
+    }
     setState(() => _speechListening = false);
     await _ask(words);
   }
 
   Future<void> _stopVoiceQuestion() async {
+    final generation = _questionGeneration;
     try {
       await _speech.stopListening();
     } catch (_) {}
-    if (!mounted) return;
+    if (!_canInteract || generation != _questionGeneration) return;
     setState(() => _speechListening = false);
     // The recognizer's one final callback sends the recognized text. Sending
     // it again here could create two turns from a single microphone tap.
@@ -240,7 +295,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
 
   Future<void> _ask([String? raw]) async {
     final question = (raw ?? _controller.text).trim();
-    if (question.isEmpty || !_foreground) return;
+    if (question.isEmpty || !_canInteract) return;
     final generation = ++_questionGeneration;
     FocusManager.instance.primaryFocus?.unfocus();
 
@@ -251,7 +306,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     });
 
     final response = await _conversation.ask(question);
-    if (!mounted || !_foreground || generation != _questionGeneration) return;
+    if (!_canInteract || generation != _questionGeneration) return;
     if (response.source == 'cancelled') {
       setState(() => _loading = false);
       return;
@@ -283,6 +338,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   void _quickAsk(String text) => _ask(text);
 
   void _stopConversation() {
+    if (!_canInteract) return;
     _questionGeneration++;
     _conversation.interrupt();
     if (!mounted) return;

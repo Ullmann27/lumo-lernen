@@ -1,0 +1,65 @@
+00:00 +0: loading /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart
+00:00 +0: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart: task change has one bus invalidation, not a second old-owner stop
+00:00 +1: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart: old pause preserves the new task, gesture and audio request
+00:00 +2: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart: old dispose preserves the new task, gesture and audio request
+00:00 +3: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart: a replaced controller cannot cancel its successor on the same task
+00:00 +4: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart: explicit current Stop still cancels voice, mouth and figure together
+00:00 +5: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart: disposing the old Agent preserves a newer task and transport
+00:00 +6: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart: pending microphone initialization rejects foreign route
+00:01 +7: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart: pending microphone initialization rejects new audio owner
+00:01 +8: loading /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_context_conversation_test.dart
+00:01 +8: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_context_conversation_test.dart: local question uses the real task and never mutates progress
+00:01 +9: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_context_conversation_test.dart: parent chat-only consent never releases task details or answers
+00:01 +10: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_context_conversation_test.dart: rejected lesson commands never leak stored help or publish gestures
+00:01 +11: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_context_conversation_test.dart: assessment forbids cloud help even through a direct controller call
+00:01 +12: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_context_conversation_test.dart: unclassified task question cannot bypass unavailable help through proxy
+00:01 +13: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_context_conversation_test.dart: explicit assessment repeat and slower read only the visible prompt
+00:01 +14: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_context_conversation_test.dart: legacy assessment defaults do not grant instruction narration
+00:01 +15: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_context_conversation_test.dart: task change cancels a pending answer and discards its memory
+00:01 +16: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_context_conversation_test.dart: pause cancels a pending answer; resume never activates microphone
+00:01 +17: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_context_conversation_test.dart: memory is at most four exchanges and clears on real navigation
+00:01 +18: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_context_conversation_test.dart: private or oversized questions never enter conversation memory
+00:01 +19: loading /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_dialogue_contract_test.dart
+00:02 +19: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_dialogue_contract_test.dart: why two explains the active example instead of calling it completed
+00:02 +20: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_dialogue_contract_test.dart: wrong answer, misrecognition and correction only propose editable text
+00:02 +21: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_dialogue_contract_test.dart: same task retains conversation while changed snapshot invalidates old lease
+00:02 +22: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_dialogue_contract_test.dart: stop cancels pending inference and its figure lease; late reply stays silent
+00:02 +23: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_dialogue_contract_test.dart: new question replaces thinking; old reply cannot win the race
+00:02 +24: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_dialogue_contract_test.dart: owned help can publish its checked next step without losing the local reply
+00:02 +25: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_dialogue_contract_test.dart: Banane repeat and slower preserve the checked syllables
+00:02 +26: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_dialogue_contract_test.dart: pattern hint points to its group and does not submit an answer
+00:02 +27: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_dialogue_contract_test.dart: stale, foreign and disallowed commands cannot enter the active scene
+00:02 +28: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_dialogue_contract_test.dart: pause and resume do not resurrect an utterance or enable microphone
+00:02 +29: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_dialogue_contract_test.dart: negation and a question containing a number are not submitted answers
+00:02 +30: loading /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_events_test.dart
+00:03 +30: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_events_test.dart: one task starts once; changes retain actual local answer context
+00:03 +31: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_events_test.dart: semantic trace is bounded and immutable; no task transcript is stored
+00:03 +32: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_events_test.dart: the learning view supplies genuine task context without cloud consent
+00:03 +33: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_events_test.dart: screen and generation boundaries hide stale task context
+00:03 +34: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_events_test.dart: selecting another real profile clears transient task and event memory
+00:03 +35: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_events_test.dart: late disposal cannot clear the newly visible task
+00:03 +36: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_learning_events_test.dart: unsafe questions never become canonical child-question events
+00:03 +37: loading /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_agent_microphone_lifecycle_test.dart
+00:03 +37: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_agent_microphone_lifecycle_test.dart: a microphone start pending during pause cannot revive on resume
+00:04 +38: loading /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_agent_final_result_lifecycle_test.dart
+00:04 +38: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_agent_final_result_lifecycle_test.dart: stop wins over a final transcript awaiting native cancellation
+00:05 +39: loading /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/nextgen_lab_bus_integration_test.dart
+00:06 +39: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/nextgen_lab_bus_integration_test.dart: own lab conversation keeps the stopped task and explains why two
+00:07 +40: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/nextgen_lab_bus_integration_test.dart: own conversation completion preserves a newer voice request
+00:08 +41: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/nextgen_lab_bus_integration_test.dart: own lab conversation rejects late reply after foreign route
+00:08 +42: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/nextgen_lab_bus_integration_test.dart: own lab conversation rejects late reply after pause
+00:09 +43: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/nextgen_lab_bus_integration_test.dart: own lab conversation rejects late reply after profile
+00:09 +44: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/nextgen_lab_bus_integration_test.dart: own lab conversation rejects late reply after dispose
+00:10 +45: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/nextgen_lab_bus_integration_test.dart: lab retires hidden bindings and restores the same model
+00:10 +46: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/nextgen_lab_bus_integration_test.dart: lab proposal needs confirmation and stop discards its candidate
+00:10 +47: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/nextgen_lab_bus_integration_test.dart: reopening the lab restores its saved model without new rewards
+00:11 +48: loading /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/lab_native_entry_test.dart
+00:11 +48: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/lab_native_entry_test.dart: bridge: visible native entry preserves the exact task
+00:12 +49: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/lab_native_entry_test.dart: word: visible native entry preserves the exact task
+00:13 +50: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/lab_native_entry_test.dart: english: visible native entry preserves the exact task
+00:13 +51: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/lab_native_entry_test.dart: nature: visible native entry preserves the exact task
+00:13 +52: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/lab_native_entry_test.dart: fraction: visible native entry preserves the exact task
+00:13 +53: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/lab_native_entry_test.dart: pattern: visible native entry preserves the exact task
+00:14 +54: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/lab_native_entry_test.dart: native return before resume keeps an ungraded recall candidate
+00:15 +55: /workspace/scratch/4fa97167812c/agent-conversation-scope/test/learning/lab_native_entry_test.dart: native pattern proposal cannot move the hidden step or survive Stop
+00:15 +56: All tests passed!

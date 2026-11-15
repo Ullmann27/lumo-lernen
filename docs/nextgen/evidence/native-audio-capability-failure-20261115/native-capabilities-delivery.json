@@ -1,0 +1,34 @@
+{
+  "commit": "464e271167025185e48747c03310f23f6d79a092",
+  "parent": "ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb",
+  "tree": "ddcbd232e0a8a907b0cfbc1478336547cccba82e",
+  "files": [
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "gitBlobSha": "e44855ad68f3777b4bf41937cdb567d7ed7d53c5",
+      "sha256": "f625faf39bfee72d02e49ac315eb116258cbf4a8b713f6d453ffa60db165b4ff",
+      "bytes": 6263
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "gitBlobSha": "3fc1445a14764fd3442a2f3363a9acaac9ec9467",
+      "sha256": "c2855613e79f7fd233190eb56e1f7379e780c1979c629e536e49690bbc4608e3",
+      "bytes": 94407
+    },
+    {
+      "path": "scripts/tests/learning_android_host_capability_regression.gd",
+      "gitBlobSha": "1a35910c4c35f569c04f9fba18cfba27264c94e2",
+      "sha256": "5d280e43ddc3c429f472c6cf0c7b566d08732ccc9af27a02f2db804370bf206a",
+      "bytes": 3129
+    }
+  ],
+  "checks": {
+    "godotVersion": "4.6.3.stable.official.7d41c59c4",
+    "checksPassed": 32,
+    "fullAndroidPass": false,
+    "formatCheckPassed": true,
+    "gdlintPassed": true,
+    "fullAssetImportRunLocally": false,
+    "filesByteCopiedToIsolatedHarness": true
+  }
+}

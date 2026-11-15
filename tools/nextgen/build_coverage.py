@@ -21,7 +21,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE = "6f4a8c4753f4d06d0b392da0789b8162b2faa71b"
-NATIVE_PUBLISHED_PIN = "ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb"
+NATIVE_PUBLISHED_PIN = "f521fc5887e98562ba89fbfeca3bb466031fdea0"
 CATALOG_PATH = Path(sys.argv[1])
 CATALOG = json.loads(CATALOG_PATH.read_text())
 HEAD = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
