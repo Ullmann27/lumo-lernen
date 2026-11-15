@@ -30,7 +30,8 @@ BRANCH = 'integration/lumo-c4-connections-20261114'
 QUALITY_BRANCH = 'work/lumo-play-quality-20261114'
 AGENT_BRANCH = 'integration/lumo-agent-execution-20261114'
 LIVE_BRANCH = 'integration/lumo-live-connections-20261114'
-ACCEPTED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH, AGENT_BRANCH, LIVE_BRANCH))
+ACCEPTED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH, AGENT_BRANCH, LIVE_BRANCH,
+                               'repair/lumo-2020-exhaustive-wiring-20261114'))
 DELIVERY_JOB = 'prepare-c4-delivery'
 BUNDLE_ARTIFACT = 'lumo-connect-four-2020-delivery-bundle'
 LEARNING_AUDIT_ARTIFACT = 'lumo-connect-four-2020-learning-curriculum-audit'
