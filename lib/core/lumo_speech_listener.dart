@@ -55,7 +55,7 @@ class LumoSpeechRecognizer {
 
   final stt.SpeechToText _speech;
   Future<bool>? _initializing;
-  Future<void> _operations = Future<void>.value();
+  Future<void>? _operations;
   bool _available = false;
   _SpeechLease? _pending;
   _SpeechLease? _active;
@@ -116,8 +116,8 @@ class LumoSpeechRecognizer {
   }
 
   Future<void> _stop(_SpeechLease lease) => _serialize(() async {
-    if (identical(_active, lease)) await _speech.stop();
-  });
+        if (identical(_active, lease)) await _speech.stop();
+      });
 
   Future<void> _cancel(_SpeechLease lease) async {
     if (!identical(_active, lease) && !identical(_pending, lease)) return;
@@ -131,10 +131,11 @@ class LumoSpeechRecognizer {
     final finished = Completer<void>();
     _operations = finished.future;
     try {
-      await previous;
+      if (previous != null) await previous;
       await action();
     } finally {
       finished.complete();
+      if (identical(_operations, finished.future)) _operations = null;
     }
   }
 }
@@ -158,9 +159,9 @@ class LumoSpeechListener extends ChangeNotifier {
     bool? isAndroid,
     LumoSpeechRecognizer? recognizer,
     Future<void> Function()? stopPlayback,
-  }) : _isAndroid = isAndroid ?? Platform.isAndroid,
-       _recognizer = recognizer ?? LumoSpeechRecognizer.shared,
-       _stopPlayback = stopPlayback ?? LumoVoice.instance.stop;
+  })  : _isAndroid = isAndroid ?? Platform.isAndroid,
+        _recognizer = recognizer ?? LumoSpeechRecognizer.shared,
+        _stopPlayback = stopPlayback ?? LumoVoice.instance.stop;
 
   final bool _isAndroid;
   final LumoSpeechRecognizer _recognizer;
@@ -181,6 +182,7 @@ class LumoSpeechListener extends ChangeNotifier {
   LumoSpeechRecognition? _lastRecognition;
   Future<bool>? _initializing;
   _SpeechLease? _lease;
+  Timer? _startDeadline;
   Timer? _finalDeadline;
   ValueChanged<String>? _activeFinalCallback;
   VoidCallback? _activeNoMatchCallback;
@@ -246,7 +248,8 @@ class LumoSpeechListener extends ChangeNotifier {
       final german = locales.where((locale) {
         final id = locale.localeId.toLowerCase().replaceAll('_', '-');
         return id == 'de' || id.startsWith('de-');
-      }).toList()..sort((a, b) => _localeScore(b).compareTo(_localeScore(a)));
+      }).toList()
+        ..sort((a, b) => _localeScore(b).compareTo(_localeScore(a)));
       if (german.isEmpty) {
         _setError(
           LumoSpeechErrorKind.languageUnavailable,
@@ -322,11 +325,12 @@ class LumoSpeechListener extends ChangeNotifier {
       final lease = _SpeechLease(
         onResult: (result) {
           if (!_isCurrent(generation) || _terminal) return;
-          final rawConfidence = result.hasConfidenceRating
-              ? result.confidence
-              : null;
-          final confidence =
-              rawConfidence != null &&
+          _starting = false;
+          _startDeadline?.cancel();
+          _startDeadline = null;
+          final rawConfidence =
+              result.hasConfidenceRating ? result.confidence : null;
+          final confidence = rawConfidence != null &&
                   rawConfidence.isFinite &&
                   rawConfidence >= 0 &&
                   rawConfidence <= 1
@@ -368,6 +372,8 @@ class LumoSpeechListener extends ChangeNotifier {
           if (!_isCurrent(generation) || _terminal) return;
           final normalized = status.toLowerCase();
           if (normalized == 'listening') {
+            _startDeadline?.cancel();
+            _startDeadline = null;
             _starting = false;
             _listening = true;
             _awaitingFinalResult = false;
@@ -387,13 +393,12 @@ class LumoSpeechListener extends ChangeNotifier {
             _finishWithoutResult(generation);
             return;
           }
-          final kind =
-              normalized.contains('permission') ||
+          final kind = normalized.contains('permission') ||
                   normalized.contains('not_allowed')
               ? LumoSpeechErrorKind.permissionDenied
               : normalized.contains('language')
-              ? LumoSpeechErrorKind.languageUnavailable
-              : LumoSpeechErrorKind.unavailable;
+                  ? LumoSpeechErrorKind.languageUnavailable
+                  : LumoSpeechErrorKind.unavailable;
           final message = switch (kind) {
             LumoSpeechErrorKind.permissionDenied =>
               'Das Mikrofon ist nicht freigegeben. Du kannst tippen oder '
@@ -401,10 +406,9 @@ class LumoSpeechListener extends ChangeNotifier {
             LumoSpeechErrorKind.languageUnavailable =>
               'Die deutsche Sprache ist lokal noch nicht bereit. '
                   'Du kannst tippen. Es wird keine Cloud-Aufnahme gestartet.',
-            _ =>
-              'Die Spracheingabe wurde unterbrochen. Deine Lernantwort '
-                  'wurde dadurch nicht bewertet. Du kannst tippen oder es '
-                  'noch einmal versuchen.',
+            _ => 'Die Spracheingabe wurde unterbrochen. Deine Lernantwort '
+                'wurde dadurch nicht bewertet. Du kannst tippen oder es '
+                'noch einmal versuchen.',
           };
           final failed = _retire();
           _available = false;
@@ -424,6 +428,20 @@ class LumoSpeechListener extends ChangeNotifier {
         },
       );
       _lease = lease;
+      // The plugin's listen Future can complete without a successful native
+      // start. A missing callback must not leave the UI claiming it is ready.
+      _startDeadline = Timer(const Duration(seconds: 5), () {
+        _startDeadline = null;
+        if (!_isCurrent(generation) || _terminal || !_starting) return;
+        final failed = _retire();
+        _setError(
+          LumoSpeechErrorKind.unavailable,
+          'Das Mikrofon hat den Start nicht bestätigt. Du kannst tippen '
+          'oder die Spracheingabe noch einmal starten.',
+        );
+        if (failed != null) unawaited(_cancelQuietly(failed));
+        notifyListeners();
+      });
       await _recognizer._listen(lease, _bestLocaleId!);
     } catch (_) {
       if (!_isCurrent(generation)) return;
@@ -446,6 +464,8 @@ class LumoSpeechListener extends ChangeNotifier {
   }
 
   void _waitForFinal(int generation) {
+    _startDeadline?.cancel();
+    _startDeadline = null;
     _starting = false;
     _listening = false;
     _awaitingFinalResult = true;
@@ -464,9 +484,9 @@ class LumoSpeechListener extends ChangeNotifier {
       LumoSpeechErrorKind.noMatch,
       _lastWords.trim().isEmpty
           ? 'Ich habe keine vollständige Frage verstanden. Lass dir Zeit; '
-                'du kannst noch einmal sprechen oder tippen.'
+              'du kannst noch einmal sprechen oder tippen.'
           : 'Ich habe deinen Satz noch nicht sicher verstanden. '
-                'Bitte sprich ihn noch einmal oder ergänze den sichtbaren Text.',
+              'Bitte sprich ihn noch einmal oder ergänze den sichtbaren Text.',
     );
     if (ended != null) unawaited(_cancelQuietly(ended));
     callback?.call();
@@ -476,6 +496,8 @@ class LumoSpeechListener extends ChangeNotifier {
   _SpeechLease? _retire() {
     final previous = _lease;
     _lease = null;
+    _startDeadline?.cancel();
+    _startDeadline = null;
     _finalDeadline?.cancel();
     _finalDeadline = null;
     _starting = false;

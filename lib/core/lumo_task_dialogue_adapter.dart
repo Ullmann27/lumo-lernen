@@ -27,7 +27,10 @@ abstract final class LumoTaskDialogueAdapter {
     final explanations = <LumoReviewedTaskExplanation>[];
     final demonstration = step.type == TutoringStepType.showExample;
     final bridge = lesson.concept == GuidedLessonConcept.bridgeTen &&
-        step.a > 0 && step.a < 10 && step.b > 0 && step.a + step.b > 10;
+        step.a > 0 &&
+        step.a < 10 &&
+        step.b > 0 &&
+        step.a + step.b > 10;
 
     if (bridge) {
       for (var i = 0; i < 10; i++) {
@@ -45,12 +48,15 @@ abstract final class LumoTaskDialogueAdapter {
         ));
       }
       final gap = 10 - step.a;
-      final freeSlots = [for (var i = step.a; i < 10; i++) 'guided-ten-slot-$i'];
+      final freeSlots = [
+        for (var i = step.a; i < 10; i++) 'guided-ten-slot-$i'
+      ];
       final remaining = [
         for (var i = 10; i < step.a + step.b; i++) 'guided-bridge-apple-$i'
       ];
       // A task asking for the gap must not receive that answer as a hint.
-      final mayNameGap = demonstration || step.answerKind != GuidedAnswerKind.gapToTen;
+      final mayNameGap =
+          demonstration || step.answerKind != GuidedAnswerKind.gapToTen;
       if (demonstration) {
         explanations.add(LumoReviewedTaskExplanation(
           id: 'bridge-fill-ten',
@@ -92,7 +98,8 @@ abstract final class LumoTaskDialogueAdapter {
           text: step.help(level: helpLevel + 1),
           alternativeText: helpLevel > 0 ? step.help(level: 2) : null,
           objectIds: step.answerKind == GuidedAnswerKind.remainder
-              ? remaining : freeSlots,
+              ? remaining
+              : freeSlots,
           keywords: const ['zuerst', 'freie plätze', 'zehnerfeld'],
         ));
         if (mayNameGap) {
@@ -105,7 +112,8 @@ abstract final class LumoTaskDialogueAdapter {
             why: 'Von ${step.a} bis zehn fehlen $gap. '
                 'Darum verwenden wir zuerst genau diesen Teil '
                 'der ${step.b} neuen Äpfel.',
-            alternativeText: 'Gehe von ${step.a} in einzelnen Schritten bis zehn. '
+            alternativeText:
+                'Gehe von ${step.a} in einzelnen Schritten bis zehn. '
                 'Zähle nur diese Schritte; den Rest zählst du danach.',
             objectIds: freeSlots,
             keywords: const ['warum', 'wieso', 'weshalb'],
@@ -120,11 +128,13 @@ abstract final class LumoTaskDialogueAdapter {
               'Äpfel, der noch nicht im Zehner liegt. '
               'Zähle diese Äpfel dazu, ohne einen zweimal zu zählen.',
           objectIds: step.answerKind == GuidedAnswerKind.remainder
-              ? remaining : const [],
+              ? remaining
+              : const [],
           keywords: const ['rest', 'danach'],
         ));
       }
-    } else if (lesson.concept == GuidedLessonConcept.syllables && step.word.isNotEmpty) {
+    } else if (lesson.concept == GuidedLessonConcept.syllables &&
+        step.word.isNotEmpty) {
       final segmented = demonstration || !step.isQuestion;
       if (segmented) {
         for (var i = 0; i < step.syllables.length; i++) {
@@ -136,7 +146,9 @@ abstract final class LumoTaskDialogueAdapter {
         }
       } else {
         objects.add(LumoTaskDialogueObject(
-          id: 'guided-unsegmented-word', label: step.word, groupId: 'spoken-word'));
+            id: 'guided-unsegmented-word',
+            label: step.word,
+            groupId: 'spoken-word'));
       }
       explanations.add(LumoReviewedTaskExplanation(
         id: 'guided-syllables',
@@ -151,7 +163,9 @@ abstract final class LumoTaskDialogueAdapter {
         alternativeText: segmented
             ? 'Lege zu jedem Sprechstück einen Finger auf den Tisch: '
                 '${step.syllables.join(' – ')}.'
-            : helpLevel > 0 ? step.help(level: 2) : null,
+            : helpLevel > 0
+                ? step.help(level: 2)
+                : null,
         objectIds: objects.map((object) => object.id).toList(growable: false),
         speechParts: segmented ? step.syllables : [step.word],
         keywords: const ['silben', 'sprechen', 'wort', 'klatschen'],
@@ -160,15 +174,20 @@ abstract final class LumoTaskDialogueAdapter {
       if (step.a > 0 && step.b == 0 && lesson.subject == 'Mathematik') {
         for (var i = 0; i < step.a; i++) {
           objects.add(LumoTaskDialogueObject(
-            id: 'guided-count-apple-$i', label: 'Apfel ${i + 1}', groupId: 'count-apples'));
+              id: 'guided-count-apple-$i',
+              label: 'Apfel ${i + 1}',
+              groupId: 'count-apples'));
         }
       }
       explanations.add(LumoReviewedTaskExplanation(
         id: 'guided-hint',
         stepId: stepId,
         stepNumber: 1,
-        text: step.isQuestion ? step.help(level: helpLevel + 1) : step.instruction,
-        alternativeText: step.isQuestion && helpLevel > 0 ? step.help(level: 2) : null,
+        text: step.isQuestion
+            ? step.help(level: helpLevel + 1)
+            : step.instruction,
+        alternativeText:
+            step.isQuestion && helpLevel > 0 ? step.help(level: 2) : null,
         objectIds: objects.map((object) => object.id).toList(growable: false),
       ));
     }
@@ -183,8 +202,11 @@ abstract final class LumoTaskDialogueAdapter {
       objects: objects,
       selectedObjectIds: selectedObjectIds,
       explanations: explanations,
-      answerChoices: answerChoices ?? (step.isQuestion ? step.choices : const []),
-      answerFormat: step.isQuestion ? LumoTaskAnswerFormat.choice : LumoTaskAnswerFormat.none,
+      answerChoices:
+          answerChoices ?? (step.isQuestion ? step.choices : const []),
+      answerFormat: step.isQuestion
+          ? LumoTaskAnswerFormat.choice
+          : LumoTaskAnswerFormat.none,
       helpLevel: helpLevel,
       isAssessment: isAssessment,
       acceptingAnswer: acceptingAnswer ?? step.isQuestion,
@@ -214,7 +236,9 @@ abstract final class LumoTaskDialogueAdapter {
         stepId: stepId,
         stepNumber: 1,
         text: const TaskHintService().explain(task, level: helpLevel + 1),
-        alternativeText: helpLevel > 0 ? const TaskHintService().explain(task, level: 2) : null,
+        alternativeText: helpLevel > 0
+            ? const TaskHintService().explain(task, level: 2)
+            : null,
       ),
     ];
 
@@ -237,13 +261,18 @@ abstract final class LumoTaskDialogueAdapter {
           ];
           if (visibleObjects == null) objects.addAll(shapeObjects);
           final ids = objects.map((object) => object.id).toSet();
-          final targets = shapeObjects.take(period).map((object) => object.id).where(ids.contains).toList();
+          final targets = shapeObjects
+              .take(period)
+              .map((object) => object.id)
+              .where(ids.contains)
+              .toList();
           explanations.add(LumoReviewedTaskExplanation(
             id: 'pattern-repeating-group',
             stepId: stepId,
             stepNumber: 2,
             minimumHelpLevel: 1,
-            text: 'Die Gruppe „${shapes.take(period).join(' – ')}“ wiederholt sich. '
+            text:
+                'Die Gruppe „${shapes.take(period).join(' – ')}“ wiederholt sich. '
                 'Vergleiche diese Gruppe mit den nächsten Formen. '
                 'Überlege dann selbst, an welcher Stelle die Reihe weitergeht.',
             why: 'Nach jeweils $period Formen beginnt dieselbe Gruppe '
@@ -260,9 +289,12 @@ abstract final class LumoTaskDialogueAdapter {
     // Only explicit local word data is segmented. Guessing syllables from
     // arbitrary spelling would fabricate a learning explanation.
     if (task.unit.toLowerCase().contains('silb')) {
-      final word = RegExp(r'Silben\s+hat\s+([A-Za-zÄÖÜäöüß]+)', caseSensitive: false)
-          .firstMatch(task.prompt)?.group(1);
-      final parts = word == null ? null : PrimarySchoolWordData.syllablesFor(word);
+      final word =
+          RegExp(r'Silben\s+hat\s+([A-Za-zÄÖÜäöüß]+)', caseSensitive: false)
+              .firstMatch(task.prompt)
+              ?.group(1);
+      final parts =
+          word == null ? null : PrimarySchoolWordData.syllablesFor(word);
       if (parts != null && parts.isNotEmpty) {
         explanations.add(LumoReviewedTaskExplanation(
           id: 'task-spoken-syllables',

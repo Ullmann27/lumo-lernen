@@ -13,7 +13,8 @@ class LumoChildSpeechMatch {
   final double confidence;
   final bool needsConfirmation;
 
-  bool get hasMatch => matchedChoice != null && matchedChoice!.trim().isNotEmpty;
+  bool get hasMatch =>
+      matchedChoice != null && matchedChoice!.trim().isNotEmpty;
 }
 
 class LumoChildSpeechNormalizer {
@@ -70,8 +71,7 @@ class LumoChildSpeechNormalizer {
     if (!isFinal ||
         normalized.isEmpty ||
         (recognitionConfidence != null &&
-            (!recognitionConfidence.isFinite ||
-                recognitionConfidence < .65))) {
+            (!recognitionConfidence.isFinite || recognitionConfidence < .65))) {
       return uncertain();
     }
 
@@ -87,7 +87,9 @@ class LumoChildSpeechNormalizer {
       corrected = true;
     }
     candidate = candidate
-        .replaceFirst(RegExp(r'^(?:es ist|es sind|die antwort ist|meine antwort ist)\s+'), '')
+        .replaceFirst(
+            RegExp(r'^(?:es ist|es sind|die antwort ist|meine antwort ist)\s+'),
+            '')
         .trim();
     if (candidate.isEmpty ||
         RegExp(r'\b(?:nicht|kein|keine|keinen|keiner|niemals|oder)\b')
@@ -95,7 +97,11 @@ class LumoChildSpeechNormalizer {
         RegExp(r'\b(?:plus|minus|mal|geteilt)\b').hasMatch(candidate)) {
       return uncertain();
     }
-    if (!corrected && RegExp(r'[+×*/=]').hasMatch(raw)) return uncertain();
+    if (!corrected &&
+        (RegExp(r'[+×*/=]').hasMatch(raw) ||
+            RegExp(r'(?:^|\s)[−-]\s*\d').hasMatch(raw))) {
+      return uncertain();
+    }
 
     final cleanedChoices = choices
         .map((choice) => choice.trim())
@@ -224,32 +230,38 @@ class LumoChildSpeechNormalizer {
     // ist zwölf?', nicht eine Kette von Symbolen und Fragezeichen.
     s = s.replaceAllMapped(
       RegExp(r'(\d+)\s*\+\s*\?\s*=\s*(\d+)'),
-      (m) => '${_speakNumber(m.group(1)!)} plus wie viel ist ${_speakNumber(m.group(2)!)}?',
+      (m) =>
+          '${_speakNumber(m.group(1)!)} plus wie viel ist ${_speakNumber(m.group(2)!)}?',
     );
     s = s.replaceAllMapped(
       RegExp(r'(\d+)\s*[-−]\s*\?\s*=\s*(\d+)'),
-      (m) => '${_speakNumber(m.group(1)!)} minus wie viel ist ${_speakNumber(m.group(2)!)}?',
+      (m) =>
+          '${_speakNumber(m.group(1)!)} minus wie viel ist ${_speakNumber(m.group(2)!)}?',
     );
 
     // Frueher Spezialfall: '7+5=?' Plus-Aufgabe, kein Leerzeichen
     s = s.replaceAllMapped(
       RegExp(r'(\d+)\s*\+\s*(\d+)\s*=\s*\?'),
-      (m) => '${_speakNumber(m.group(1)!)} plus ${_speakNumber(m.group(2)!)}. Was kommt heraus?',
+      (m) =>
+          '${_speakNumber(m.group(1)!)} plus ${_speakNumber(m.group(2)!)}. Was kommt heraus?',
     );
     // Minus mit Frage
     s = s.replaceAllMapped(
       RegExp(r'(\d+)\s*-\s*(\d+)\s*=\s*\?'),
-      (m) => '${_speakNumber(m.group(1)!)} minus ${_speakNumber(m.group(2)!)}. Was bleibt?',
+      (m) =>
+          '${_speakNumber(m.group(1)!)} minus ${_speakNumber(m.group(2)!)}. Was bleibt?',
     );
     // Mal mit Frage
     s = s.replaceAllMapped(
       RegExp(r'(\d+)\s*[\*x×·]\s*(\d+)\s*=\s*\?'),
-      (m) => '${_speakNumber(m.group(1)!)} mal ${_speakNumber(m.group(2)!)}. Was kommt heraus?',
+      (m) =>
+          '${_speakNumber(m.group(1)!)} mal ${_speakNumber(m.group(2)!)}. Was kommt heraus?',
     );
     // Geteilt durch mit Frage
     s = s.replaceAllMapped(
       RegExp(r'(\d+)\s*[/:÷]\s*(\d+)\s*=\s*\?'),
-      (m) => '${_speakNumber(m.group(1)!)} geteilt durch ${_speakNumber(m.group(2)!)}. Was kommt heraus?',
+      (m) =>
+          '${_speakNumber(m.group(1)!)} geteilt durch ${_speakNumber(m.group(2)!)}. Was kommt heraus?',
     );
 
     // Brueche (1/2, 3/4 etc.) - vor Geld weil 5/10 sonst falsch
@@ -302,11 +314,27 @@ class LumoChildSpeechNormalizer {
     final n = int.tryParse(numStr);
     if (n == null) return numStr;
     const words = <int, String>{
-      0: 'null', 1: 'eins', 2: 'zwei', 3: 'drei', 4: 'vier',
-      5: 'fuenf', 6: 'sechs', 7: 'sieben', 8: 'acht', 9: 'neun',
-      10: 'zehn', 11: 'elf', 12: 'zwoelf', 13: 'dreizehn',
-      14: 'vierzehn', 15: 'fuenfzehn', 16: 'sechzehn',
-      17: 'siebzehn', 18: 'achtzehn', 19: 'neunzehn', 20: 'zwanzig',
+      0: 'null',
+      1: 'eins',
+      2: 'zwei',
+      3: 'drei',
+      4: 'vier',
+      5: 'fuenf',
+      6: 'sechs',
+      7: 'sieben',
+      8: 'acht',
+      9: 'neun',
+      10: 'zehn',
+      11: 'elf',
+      12: 'zwoelf',
+      13: 'dreizehn',
+      14: 'vierzehn',
+      15: 'fuenfzehn',
+      16: 'sechzehn',
+      17: 'siebzehn',
+      18: 'achtzehn',
+      19: 'neunzehn',
+      20: 'zwanzig',
     };
     return words[n] ?? numStr;
   }
@@ -339,7 +367,8 @@ class LumoChildSpeechNormalizer {
     return out;
   }
 
-  static String _replaceEmojiCount(String s, String emoji, String singular, String plural) {
+  static String _replaceEmojiCount(
+      String s, String emoji, String singular, String plural) {
     final regex = RegExp('($emoji)+');
     return s.replaceAllMapped(regex, (m) {
       final text = m.group(0)!;

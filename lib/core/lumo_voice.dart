@@ -113,7 +113,7 @@ class LumoVoice {
       // The device-specific TTS voice (and its pitch controls) is removed.
       _playbackRate = (rate / 0.35).clamp(0.70, 1.60).toDouble();
       try {
-      await _player?.setPlaybackRate(effectivePlaybackRate);
+        await _player?.setPlaybackRate(effectivePlaybackRate);
       } catch (_) {}
     }
     // Pitch is retained as a call parameter for older callers/settings.
@@ -425,8 +425,11 @@ class LumoVoice {
           {VoiceStyle style = VoiceStyle.warm,
           String? utteranceId,
           double tempo = 1}) =>
-      speak(text, style: style, waitForCompletion: true,
-          utteranceId: utteranceId, tempo: tempo);
+      speak(text,
+          style: style,
+          waitForCompletion: true,
+          utteranceId: utteranceId,
+          tempo: tempo);
 
   Future<void> _play(
     Source source,

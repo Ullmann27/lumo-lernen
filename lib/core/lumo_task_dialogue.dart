@@ -214,8 +214,10 @@ class LumoTaskDialogueEngine {
       'keine hilfe',
       'ohne hilfe',
     ])) {
-      return reply('Du kannst es in Ruhe allein versuchen. '
-          'Sag Bescheid, wenn du wieder Hilfe möchtest.', LumoTaskDialogueIntent.alone);
+      return reply(
+          'Du kannst es in Ruhe allein versuchen. '
+          'Sag Bescheid, wenn du wieder Hilfe möchtest.',
+          LumoTaskDialogueIntent.alone);
     }
     if (_contains(q, const [
       'jemand tut mir weh',
@@ -244,7 +246,8 @@ class LumoTaskDialogueEngine {
         needsConfirmation: true,
       );
     }
-    if (_contains(q, const ['bist du echt', 'bist du lebendig', 'bist du ein mensch'])) {
+    if (_contains(
+        q, const ['bist du echt', 'bist du lebendig', 'bist du ein mensch'])) {
       return reply(
         'Ich bin Lumo, eine digitale Figur in deiner Lern-App. '
         'Ich kann dir bei den Aufgaben helfen.',
@@ -263,13 +266,15 @@ class LumoTaskDialogueEngine {
     final available = snapshot.explanations
         .where((explanation) =>
             explanation.minimumHelpLevel <= snapshot.helpLevel &&
-            (explanation.stepId.isEmpty || explanation.stepId == snapshot.stepId) &&
+            (explanation.stepId.isEmpty ||
+                explanation.stepId == snapshot.stepId) &&
             explanation.objectIds.every(visibleIds.contains) &&
             explanation.text.trim().isNotEmpty)
         .toList(growable: false);
-    final previous = previousReply != null && snapshot.containsReply(previousReply)
-        ? previousReply
-        : null;
+    final previous =
+        previousReply != null && snapshot.containsReply(previousReply)
+            ? previousReply
+            : null;
 
     LumoReviewedTaskExplanation? currentExplanation() {
       if (previous?.explanationId != null) {
@@ -321,11 +326,14 @@ class LumoTaskDialogueEngine {
       );
     }
 
-    final slow = _contains(q, const ['langsamer', 'langsam', 'in ruhe sprechen']);
-    final repeat = _contains(q, const ['noch einmal', 'nochmal', 'wiederholen', 'wiederhole']);
+    final slow =
+        _contains(q, const ['langsamer', 'langsam', 'in ruhe sprechen']);
+    final repeat = _contains(
+        q, const ['noch einmal', 'nochmal', 'wiederholen', 'wiederhole']);
     if (slow || repeat) {
       final explanation = currentExplanation();
-      final sameExplanation = previous != null && explanation != null &&
+      final sameExplanation = previous != null &&
+          explanation != null &&
           previous.explanationId == explanation.id &&
           [explanation.text, explanation.why, explanation.alternativeText]
               .contains(previous.text);
@@ -353,12 +361,16 @@ class LumoTaskDialogueEngine {
       );
     }
 
-    if (_contains(q, const ['die 2 da', 'diese 2', 'die beiden da', 'das da', 'die da'])) {
+    if (_contains(q,
+        const ['die 2 da', 'diese 2', 'die beiden da', 'das da', 'die da'])) {
       final selectedIds = {
         ...snapshot.selectedObjectIds.where(visibleIds.contains),
-        ...snapshot.objects.where((object) => object.selected).map((object) => object.id),
+        ...snapshot.objects
+            .where((object) => object.selected)
+            .map((object) => object.id),
       };
-      final wantsTwo = _contains(q, const ['die 2 da', 'diese 2', 'die beiden da']);
+      final wantsTwo =
+          _contains(q, const ['die 2 da', 'diese 2', 'die beiden da']);
       final expectedCount = wantsTwo ? 2 : 1;
       if (selectedIds.length != expectedCount) {
         return reply(
@@ -381,14 +393,21 @@ class LumoTaskDialogueEngine {
       );
     }
 
-    if (_contains(q, const ['anders erklaeren', 'anders erklaer', 'andere erklaerung', 'anderes beispiel', 'anders zeigen'])) {
+    if (_contains(q, const [
+      'anders erklaeren',
+      'anders erklaer',
+      'andere erklaerung',
+      'anderes beispiel',
+      'anders zeigen'
+    ])) {
       final current = currentExplanation();
       if (current?.alternativeText?.trim().isNotEmpty == true) {
         return explain(current, LumoTaskDialogueIntent.alternative,
             text: current!.alternativeText);
       }
       for (final explanation in available) {
-        if (explanation.id != current?.id && explanation.text != current?.text) {
+        if (explanation.id != current?.id &&
+            explanation.text != current?.text) {
           return explain(explanation, LumoTaskDialogueIntent.alternative);
         }
       }
@@ -408,26 +427,53 @@ class LumoTaskDialogueEngine {
       return explain(explanation, LumoTaskDialogueIntent.why,
           text: explanation?.why ?? explanation?.text);
     }
-    if (_contains(q, const ['zeig mir', 'zeige mir', 'zeig das', 'zeigen', 'was wiederholt sich', 'welche gruppe'])) {
+    if (_contains(q, const [
+      'zeig mir',
+      'zeige mir',
+      'zeig das',
+      'zeigen',
+      'was wiederholt sich',
+      'welche gruppe'
+    ])) {
       return explain(matchingExplanation(), LumoTaskDialogueIntent.show);
     }
-    if (_contains(q, const ['erklaer', 'erklaere', 'erklaeren', 'hilfe', 'hilf mir', 'verstehe', 'weiss nicht', 'was soll ich', 'wie geht', 'naechster schritt'])) {
+    if (_contains(q, const [
+      'erklaer',
+      'erklaere',
+      'erklaeren',
+      'hilfe',
+      'hilf mir',
+      'verstehe',
+      'weiss nicht',
+      'was soll ich',
+      'wie geht',
+      'naechster schritt'
+    ])) {
       return explain(matchingExplanation(), LumoTaskDialogueIntent.help);
     }
 
-    if (snapshot.acceptingAnswer && snapshot.answerFormat != LumoTaskAnswerFormat.none) {
-      final correction = RegExp(r'\b(?:meinte|meine antwort|sondern|korrektur|nein)\b').hasMatch(q);
+    if (snapshot.acceptingAnswer &&
+        snapshot.answerFormat != LumoTaskAnswerFormat.none) {
+      final correction =
+          RegExp(r'\b(?:meinte|meine antwort|sondern|korrektur|nein)\b')
+              .hasMatch(q);
       final match = _normalizer.normalizeAnswer(
         spokenText: input,
         choices: snapshot.answerChoices,
         recognitionConfidence: recognitionConfidence,
       );
       var candidate = match.matchedChoice;
-      if (candidate == null && snapshot.answerFormat == LumoTaskAnswerFormat.integer) {
+      if (candidate == null &&
+          snapshot.answerFormat == LumoTaskAnswerFormat.integer &&
+          !RegExp(r'[+−×*/=]|(?:^|\s)-\s*\d').hasMatch(input)) {
         var numeric = q;
-        final explicit = RegExp(r'\b(?:ich meinte|ich meine|sondern|nein|die antwort ist|meine antwort ist)\b')
-            .allMatches(numeric).toList();
-        if (explicit.isNotEmpty) numeric = numeric.substring(explicit.last.end).trim();
+        final explicit = RegExp(
+                r'\b(?:ich meinte|ich meine|sondern|nein|die antwort ist|meine antwort ist)\b')
+            .allMatches(numeric)
+            .toList();
+        if (explicit.isNotEmpty) {
+          numeric = numeric.substring(explicit.last.end).trim();
+        }
         if (RegExp(r'^\d{1,7}$').hasMatch(numeric)) candidate = numeric;
       }
       if (candidate != null) {
@@ -437,7 +483,9 @@ class LumoTaskDialogueEngine {
                   'Stimmt das? Bestätige die Antwort erst, wenn sie passt.'
               : 'Ich habe „$candidate“ verstanden. Stimmt das? '
                   'Du kannst bestätigen oder die Antwort ändern.',
-          correction ? LumoTaskDialogueIntent.correction : LumoTaskDialogueIntent.answer,
+          correction
+              ? LumoTaskDialogueIntent.correction
+              : LumoTaskDialogueIntent.answer,
           needsConfirmation: true,
           draftAnswer: candidate,
         );
@@ -457,31 +505,68 @@ class LumoTaskDialogueEngine {
   static bool _relatedWhy(String query, LumoTaskDialogueSnapshot snapshot,
       List<LumoReviewedTaskExplanation> explanations) {
     if (const ['warum', 'wieso', 'weshalb'].contains(query) ||
-        _contains(query, const ['das', 'diese', 'diesen', 'zuerst', 'danach',
-          'aufgabe', 'schritt', 'zehnerfeld', 'freien plaetze'])) return true;
-    for (final explanation in explanations) {
-      if (explanation.keywords.any((word) =>
-          _contains(query, [_normalizer.normalizeText(word)]))) return true;
+        _contains(query, const [
+          'das',
+          'diese',
+          'diesen',
+          'zuerst',
+          'danach',
+          'aufgabe',
+          'schritt',
+          'zehnerfeld',
+          'freien plaetze'
+        ])) {
+      return true;
     }
-    final taskWords = _normalizer.normalizeText(snapshot.prompt).split(' ').toSet();
-    const stopWords = {'warum', 'wieso', 'weshalb', 'einen', 'einem', 'eine',
-      'einer', 'sind', 'nicht', 'habe', 'haben', 'wird', 'werden', 'kann', 'kannst',
-      'dann', 'aber', 'auch', 'bitte', 'noch', 'jetzt'};
+    for (final explanation in explanations) {
+      if (explanation.keywords
+          .any((word) => _contains(query, [_normalizer.normalizeText(word)]))) {
+        return true;
+      }
+    }
+    final taskWords =
+        _normalizer.normalizeText(snapshot.prompt).split(' ').toSet();
+    const stopWords = {
+      'warum',
+      'wieso',
+      'weshalb',
+      'einen',
+      'einem',
+      'eine',
+      'einer',
+      'sind',
+      'nicht',
+      'habe',
+      'haben',
+      'wird',
+      'werden',
+      'kann',
+      'kannst',
+      'dann',
+      'aber',
+      'auch',
+      'bitte',
+      'noch',
+      'jetzt'
+    };
     return query.split(' ').any((word) =>
         (word.length >= 4 || RegExp(r'^\d+$').hasMatch(word)) &&
-        !stopWords.contains(word) && taskWords.contains(word));
+        !stopWords.contains(word) &&
+        taskWords.contains(word));
   }
 
-  static bool _contains(String query, List<String> phrases) => phrases.any(
-      (phrase) => phrase.isNotEmpty && ' $query '.contains(' $phrase '));
+  static bool _contains(String query, List<String> phrases) => phrases
+      .any((phrase) => phrase.isNotEmpty && ' $query '.contains(' $phrase '));
 
   static bool _isStop(String query) => RegExp(
         r'^(?:(?:lumo|bitte)\s+)*(?:stopp?|halt|aufhoeren|hoer auf|abbrechen)(?:\s+(?:bitte|jetzt))?$',
       ).hasMatch(query);
 
   static int? _requestedStep(String query) {
-    final ordinal = RegExp(r'\b(?:den |der |beim |im )?(ersten|erste|zweiten|zweite|dritten|dritte|vierten|vierte|\d+)\s+schritt\b')
-        .firstMatch(query)?.group(1);
+    final ordinal = RegExp(
+            r'\b(?:den |der |beim |im )?(ersten|erste|zweiten|zweite|dritten|dritte|vierten|vierte|\d+)\s+schritt\b')
+        .firstMatch(query)
+        ?.group(1);
     final after = RegExp(r'\bschritt\s+(\d+)\b').firstMatch(query)?.group(1);
     return switch (ordinal ?? after) {
       'ersten' || 'erste' => 1,

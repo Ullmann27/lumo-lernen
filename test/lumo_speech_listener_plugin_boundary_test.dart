@@ -10,7 +10,8 @@ import 'package:speech_to_text/speech_to_text.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('locked plugin cannot manufacture a final from a partial timeout', (
+  testWidgets('locked plugin cannot manufacture a final from a partial timeout',
+      (
     tester,
   ) async {
     const channel = MethodChannel('plugin.csdcorp.com/speech_to_text');
@@ -45,10 +46,11 @@ void main() {
     }
 
     String result(String words, ResultType type) => jsonEncode(
-      SpeechRecognitionResult.init([
-        SpeechRecognitionWords(words, null, .8),
-      ], type).toJson(),
-    );
+          SpeechRecognitionResult.init([
+            SpeechRecognitionWords(words, null, .8),
+          ], type)
+              .toJson(),
+        );
 
     final finals = <String>[];
     await listener.startListening(onFinalResult: finals.add);

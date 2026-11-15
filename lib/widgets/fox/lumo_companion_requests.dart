@@ -103,6 +103,7 @@ class LumoCompanionTaskContext {
   final String activity;
   final String ownerSection;
   final int? profileGeneration;
+
   /// Optional local-only read view. Never included in provider extras.
   final LumoTaskDialogueSnapshot? dialogue;
 
@@ -139,6 +140,8 @@ class LumoCompanionRequests {
   final ValueNotifier<int> helpRequested = ValueNotifier<int>(0);
   final ValueNotifier<LumoCompanionTaskContext?> taskContext =
       ValueNotifier<LumoCompanionTaskContext?>(null);
+  final ValueNotifier<LumoTaskDialogueReply?> dialogueFocus =
+      ValueNotifier<LumoTaskDialogueReply?>(null);
 
   final ValueNotifier<int> appExplanationRequested = ValueNotifier<int>(0);
 
@@ -203,6 +206,7 @@ class LumoCompanionRequests {
   void clearTask(LumoCompanionTaskContext? owner) {
     if (owner != null && identical(taskContext.value, owner)) {
       taskContext.value = null;
+      dialogueFocus.value = null;
       tutor.clearTask();
     }
   }
@@ -210,6 +214,7 @@ class LumoCompanionRequests {
   void clearLearningScope() {
     tutor.clearTask();
     taskContext.value = null;
+    dialogueFocus.value = null;
     learningEvents.value = const [];
     recentInteractions.value = const [];
   }

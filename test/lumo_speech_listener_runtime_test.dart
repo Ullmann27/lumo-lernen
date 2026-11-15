@@ -131,6 +131,18 @@ void main() {
     expect(listener.supportsAcousticBargeIn, false);
   });
 
+  testWidgets('unconfirmed native startup ends with a text fallback',
+      (tester) async {
+    await listener.startListening();
+    expect(listener.starting, true);
+    expect(listener.listening, false);
+    await tester.pump(const Duration(seconds: 5));
+    expect(listener.starting, false);
+    expect(listener.listening, false);
+    expect(listener.errorKind, LumoSpeechErrorKind.unavailable);
+    expect(listener.error, contains('Start nicht bestätigt'));
+  });
+
   testWidgets('partial and status events never become a final answer', (
     tester,
   ) async {

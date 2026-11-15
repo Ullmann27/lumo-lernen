@@ -1,3 +1,4 @@
+import '../../widgets/fox/lumo_dialogue_focus.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -94,7 +95,9 @@ class GuidedMathIllustration extends StatelessWidget {
       GuidedLessonConcept.equalGroups => _groups(),
       GuidedLessonConcept.bridgeTen => step.type == TutoringStepType.showExample
           ? GuidedTenFrameAnimation(
-              left: step.a, right: step.b, reduceMotion: reduceMotion,
+              left: step.a,
+              right: step.b,
+              reduceMotion: reduceMotion,
               onNarratePhase: onNarratePhase,
               onStopNarration: onStopNarration,
               autoNarrate: autoNarrate)
@@ -152,15 +155,17 @@ class GuidedMathIllustration extends StatelessWidget {
                           top: (i ~/ 5) * cell,
                           width: cell - 3,
                           height: cell - 3,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF103966),
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                  color: LumoVisualTokens.cyan
-                                      .withValues(alpha: .55)),
-                            ),
-                          ),
+                          child: LumoDialogueFocusTarget(
+                              objectId: 'guided-ten-slot-$i',
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF103966),
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                      color: LumoVisualTokens.cyan
+                                          .withValues(alpha: .55)),
+                                ),
+                              )),
                         ),
                       for (var i = 0; i < step.a; i++)
                         _subtractionApple(i, cell, trayX, removal, fraction),
@@ -310,15 +315,17 @@ class GuidedMathIllustration extends StatelessWidget {
                           top: (i ~/ 5) * cell,
                           width: cell - 3,
                           height: cell - 3,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF103966),
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                  color: LumoVisualTokens.cyan
-                                      .withValues(alpha: .55)),
-                            ),
-                          ),
+                          child: LumoDialogueFocusTarget(
+                              objectId: 'guided-ten-slot-$i',
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF103966),
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                      color: LumoVisualTokens.cyan
+                                          .withValues(alpha: .55)),
+                                ),
+                              )),
                         ),
                       for (var i = 0; i < step.a + step.b; i++)
                         _apple(i, cell, sourceX, fraction),
