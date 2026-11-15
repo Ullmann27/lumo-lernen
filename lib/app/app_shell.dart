@@ -412,7 +412,9 @@ class _AppShellState extends State<AppShell>
     final st = _appState.state;
     final subject = st.subject.trim().toLowerCase();
     final unit = st.unit.trim().toLowerCase();
-    return subject == 'lesen' || unit == 'aktives lesen' || unit == 'vorlesen';
+    return unit == 'aktives lesen' ||
+        unit == 'vorlesen' ||
+        (subject == 'lesen' && (unit.isEmpty || unit == 'alle'));
   }
 
   Future<void> _navigateTo(LumoSection section) async {
