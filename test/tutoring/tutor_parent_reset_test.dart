@@ -58,6 +58,8 @@ bool _isTutorKey(String key) => [
       'lumo_progress_journey_v1',
       'lumo_learning_scenes_v1',
       'lumo_learning_scene_pending_v1',
+      'lumo_photo_lesson_session_v1',
+      'lumo_learning_lab_session_v1',
       'lumo_tutor_reset_pending_v1'
     ].any((prefix) =>
         key ==

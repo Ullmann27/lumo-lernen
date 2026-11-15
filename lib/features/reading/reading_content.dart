@@ -17,10 +17,14 @@ import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import 'widgets/reading_active_sentence_view.dart';
+import 'reading_lesson_companion.dart';
 import '../story/lumo_story_library_screen.dart';
 
 class ReadingContent extends StatefulWidget {
-  const ReadingContent({super.key, required this.appState, required this.onBack,
+  const ReadingContent(
+      {super.key,
+      required this.appState,
+      required this.onBack,
       this.speechListener});
 
   final LumoAppState appState;
@@ -31,7 +35,8 @@ class ReadingContent extends StatefulWidget {
   State<ReadingContent> createState() => _ReadingContentState();
 }
 
-class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObserver {
+class _ReadingContentState extends State<ReadingContent>
+    with WidgetsBindingObserver {
   final _storyEngine = const StoryEngine();
   final _textCleaner = const ReadingTextCleaner();
   final _monitor = ReadingMonitor(
@@ -61,7 +66,15 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   bool _loadingStory = true;
   bool _openingLibrary = false;
   Timer? _listenTimer;
-  LumoCompanionTaskContext? _visibleReadingContext;
+  late final int _scopeGeneration = widget.appState.profileGeneration;
+  int _readingEpoch = 0;
+  bool _foreground = true;
+  bool _readingHelpUsed = false;
+
+  bool get _currentOwner =>
+      mounted &&
+      !widget.appState.resetting &&
+      widget.appState.profileGeneration == _scopeGeneration;
 
   @override
   void initState() {
@@ -74,17 +87,20 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   Future<void> _prepareStorySession() async {
     final grade = widget.appState.state.grade;
     final childId = _childId;
-    final recentSignatures = await _storyMemoryRepo.loadRecent(childId: childId, grade: grade);
+    final recentSignatures =
+        await _storyMemoryRepo.loadRecent(childId: childId, grade: grade);
     final rawStory = _storyEngine.pickStory(
       grade: grade,
       weakWords: const <String>[],
       avoidSignatures: recentSignatures.toSet(),
     );
     final story = _textCleaner.cleanStory(rawStory);
-    await _storyMemoryRepo.remember(childId: childId, grade: grade, signature: story.signature);
-    if (!mounted) return;
+    await _storyMemoryRepo.remember(
+        childId: childId, grade: grade, signature: story.signature);
+    if (!_currentOwner) return;
 
-    _readingSessionId = 'reading_${story.id}_${DateTime.now().millisecondsSinceEpoch}';
+    _readingSessionId =
+        'reading_${story.id}_${DateTime.now().millisecondsSinceEpoch}';
     setState(() {
       _progress = ReadingSessionProgress(
         story: story,
@@ -97,17 +113,15 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
       _liveProblemWord = null;
       _loadingStory = false;
     });
-    _publishReadingContext();
 
-    await _speakOnly('Wir lesen jetzt ${story.title}. Wenn du bereit bist, drück auf das Mikrofon und lies den Satz vor.');
+    await _speakOnly(
+        'Wir lesen jetzt ${story.title}. Wenn du bereit bist, drück auf das Mikrofon und lies den Satz vor.');
     await _persistReadingProgress(latestScore: 0);
   }
 
   @override
   void dispose() {
-    if (identical(LumoCompanionRequests.instance.taskContext.value, _visibleReadingContext)) {
-      LumoCompanionRequests.instance.taskContext.value = null;
-    }
+    ++_readingEpoch;
     _listenTimer?.cancel();
     _speech.cancel();
     _speech.dispose();
@@ -116,42 +130,27 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     super.dispose();
   }
 
-  void _publishReadingContext() {
-    final progress = _progress;
-    if (progress == null) return;
-    final current = LumoCompanionTaskContext(
-      ownerSection: 'reading',
-      subject: 'Lesen',
-      unit: progress.story.title,
-      prompt: progress.currentSentence.text,
-      taskId: progress.currentSentence.id,
-      answering: !_finished,
-      attempts: (progress.attemptNumber - 1).clamp(0, 20),
-      previousHelp: _lumoLine,
-      localHelp: 'Lies den sichtbaren Satz langsam, Wort für Wort. '
-          'Tippe auf das Mikrofon, wenn du bereit bist.',
-      activity: 'reading',
-    );
-    _visibleReadingContext = current;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted && identical(_visibleReadingContext, current)) {
-        LumoCompanionRequests.instance.taskContext.value = current;
-      }
-    });
+  Future<void> _prepareCompanionInteraction() async {
+    ++_readingEpoch;
+    _listenTimer?.cancel();
+    _processing = false;
+    await Future.wait([_speech.cancel(), LumoVoice.instance.stop()]);
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state != AppLifecycleState.resumed) {
-      _listenTimer?.cancel();
-      _speech.cancel();
-      LumoVoice.instance.stop();
-    }
+    _foreground = state == AppLifecycleState.resumed;
+    if (!_foreground) unawaited(_prepareCompanionInteraction());
   }
 
   String get _childId {
     final st = widget.appState.state;
-    final safeName = st.childName.trim().isEmpty ? 'kind' : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+    final safeName = st.childName.trim().isEmpty
+        ? 'kind'
+        : st.childName
+            .trim()
+            .toLowerCase()
+            .replaceAll(RegExp(r'[^a-z0-9]+'), '_');
     return 'local_${safeName}_${st.grade}';
   }
 
@@ -165,7 +164,11 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
         level: 1,
         targetSkills: <String>['reading.loading'],
         sentences: <StorySentence>[
-          StorySentence(id: 'loading.s1', index: 0, text: 'Lumo sucht eine neue Geschichte', words: <WordToken>[]),
+          StorySentence(
+              id: 'loading.s1',
+              index: 0,
+              text: 'Lumo sucht eine neue Geschichte',
+              words: <WordToken>[]),
         ],
       );
       return ReadingSessionProgress(
@@ -180,7 +183,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   }
 
   Future<void> _speakOnly(String message) async {
-    if (_loadingStory) return;
+    if (_loadingStory || !_currentOwner || !_foreground) return;
     _listenTimer?.cancel();
     setState(() => _lumoLine = message);
     widget.appState.update(widget.appState.state.copyWith(
@@ -195,10 +198,8 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     final profileGeneration = widget.appState.profileGeneration;
     setState(() => _openingLibrary = true);
     try {
-      _listenTimer?.cancel();
       // Cancellation discards late transcripts instead of grading them.
-      await _speech.cancel();
-      await LumoVoice.instance.stop();
+      await _prepareCompanionInteraction();
       if (!mounted || profileGeneration != widget.appState.profileGeneration) {
         return;
       }
@@ -208,7 +209,6 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     } finally {
       if (mounted) {
         setState(() => _openingLibrary = false);
-        _publishReadingContext();
       }
     }
   }
@@ -225,21 +225,33 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
 
   Future<void> _startListening() async {
     final profileGeneration = widget.appState.profileGeneration;
-    if (_progress == null || _openingLibrary ||
+    final epoch = ++_readingEpoch;
+    final sentenceId = _progress?.currentSentence.id;
+    bool currentCapture() =>
+        _currentOwner &&
+        _foreground &&
+        epoch == _readingEpoch &&
+        !_openingLibrary &&
+        sentenceId == _progress?.currentSentence.id &&
+        ModalRoute.of(context)?.isCurrent == true;
+    if (!currentCapture() ||
+        _progress == null ||
+        _openingLibrary ||
         ModalRoute.of(context)?.isCurrent != true) return;
     await widget.appState.ensureSettingsLoaded();
-    if (!mounted || profileGeneration != widget.appState.profileGeneration || _openingLibrary ||
-        ModalRoute.of(context)?.isCurrent != true) return;
+    if (!currentCapture() ||
+        profileGeneration != widget.appState.profileGeneration) return;
     if (!widget.appState.state.settings.microphoneEnabled) {
-      setState(() => _lumoLine = 'Das Mikrofon ist im Elternbereich ausgeschaltet.');
+      setState(
+          () => _lumoLine = 'Das Mikrofon ist im Elternbereich ausgeschaltet.');
       return;
     }
     if (_finished || _processing || _speech.listening) return;
 
     _listenTimer?.cancel();
     await LumoVoice.instance.stop();
-    if (!mounted || profileGeneration != widget.appState.profileGeneration || _openingLibrary ||
-        ModalRoute.of(context)?.isCurrent != true) return;
+    if (!currentCapture() ||
+        profileGeneration != widget.appState.profileGeneration) return;
 
     setState(() {
       _lastTranscript = '';
@@ -250,12 +262,15 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     });
 
     _listenStartedAt ??= DateTime.now();
-    LumoCompanionRequests.instance.recordInteraction(LumoInteractionKind.readingStarted);
+    LumoCompanionRequests.instance
+        .recordInteraction(LumoInteractionKind.readingStarted);
     await _speech.startListening(
       onResult: (words) {
-        if (!mounted || profileGeneration != widget.appState.profileGeneration) return;
+        if (!currentCapture() ||
+            profileGeneration != widget.appState.profileGeneration) return;
         final sentence = _safeProgress.currentSentence;
-        final live = _liveReadingPosition(sentence: sentence, transcript: words);
+        final live =
+            _liveReadingPosition(sentence: sentence, transcript: words);
         setState(() {
           _lastTranscript = words;
           _activeWordIndex = live.activeIndex;
@@ -266,11 +281,13 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
         }
       },
       onFinalResult: (words) {
-        if (!mounted || profileGeneration != widget.appState.profileGeneration) return;
+        if (!currentCapture() ||
+            profileGeneration != widget.appState.profileGeneration) return;
         _processTranscript(words);
       },
       onNoMatch: () {
-        if (!mounted || profileGeneration != widget.appState.profileGeneration) return;
+        if (!currentCapture() ||
+            profileGeneration != widget.appState.profileGeneration) return;
         _handleNoMatch();
       },
     );
@@ -281,23 +298,31 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     final expected = _normalizeTokens(_safeProgress.currentSentence.text);
     if (spoken.isEmpty || expected.isEmpty) return false;
     final lastExpected = expected.last;
-    final containsLastWord = spoken.contains(lastExpected) || _similarTokenExists(lastExpected, spoken);
-    final enoughWords = spoken.length >= (expected.length - 1).clamp(1, expected.length);
+    final containsLastWord = spoken.contains(lastExpected) ||
+        _similarTokenExists(lastExpected, spoken);
+    final enoughWords =
+        spoken.length >= (expected.length - 1).clamp(1, expected.length);
     return containsLastWord && enoughWords;
   }
 
   bool _similarTokenExists(String expected, List<String> spoken) {
     return spoken.any((token) {
       if (token == expected) return true;
-      if (expected == 'lumo' && <String>{'limo', 'luna', 'luno', 'lumos', 'lu'}.contains(token)) return true;
-      return token.length > 3 && expected.length > 3 && token.substring(0, 2) == expected.substring(0, 2);
+      if (expected == 'lumo' &&
+          <String>{'limo', 'luna', 'luno', 'lumos', 'lu'}.contains(token))
+        return true;
+      return token.length > 3 &&
+          expected.length > 3 &&
+          token.substring(0, 2) == expected.substring(0, 2);
     });
   }
 
-  _LiveReadingPosition _liveReadingPosition({required StorySentence sentence, required String transcript}) {
+  _LiveReadingPosition _liveReadingPosition(
+      {required StorySentence sentence, required String transcript}) {
     final expected = _normalizeTokens(sentence.text);
     final spoken = _normalizeTokens(transcript);
-    if (expected.isEmpty || spoken.isEmpty) return const _LiveReadingPosition(activeIndex: 0);
+    if (expected.isEmpty || spoken.isEmpty)
+      return const _LiveReadingPosition(activeIndex: 0);
 
     var expectedIndex = 0;
     String? problemWord;
@@ -305,7 +330,9 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
       if (expectedIndex >= expected.length) break;
       final expectedToken = expected[expectedIndex];
       final score = _tokenSimilarity(expectedToken, spokenToken);
-      if (expectedToken == spokenToken || _isLumoVariant(expectedToken, spokenToken) || score >= .58) {
+      if (expectedToken == spokenToken ||
+          _isLumoVariant(expectedToken, spokenToken) ||
+          score >= .58) {
         expectedIndex++;
         continue;
       }
@@ -329,8 +356,20 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
 
   bool _isLumoVariant(String expected, String spoken) {
     if (expected != 'lumo') return false;
-    const variants = <String>{'lumo', 'limo', 'loma', 'luna', 'luno', 'loom', 'lumen', 'lumos', 'humo', 'lu'};
-    return variants.contains(spoken) || _tokenSimilarity(expected, spoken) >= .50;
+    const variants = <String>{
+      'lumo',
+      'limo',
+      'loma',
+      'luna',
+      'luno',
+      'loom',
+      'lumen',
+      'lumos',
+      'humo',
+      'lu'
+    };
+    return variants.contains(spoken) ||
+        _tokenSimilarity(expected, spoken) >= .50;
   }
 
   int _levenshtein(String a, String b) {
@@ -342,7 +381,8 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
         final insertCost = current[j] + 1;
         final deleteCost = previous[j + 1] + 1;
         final replaceCost = previous[j] + (a[i] == b[j] ? 0 : 1);
-        current[j + 1] = math.min(math.min(insertCost, deleteCost), replaceCost);
+        current[j + 1] =
+            math.min(math.min(insertCost, deleteCost), replaceCost);
       }
       for (var j = 0; j < previous.length; j++) {
         previous[j] = current[j];
@@ -365,10 +405,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   }
 
   void _handleNoMatch() {
-    if (_lastTranscript.trim().isNotEmpty) {
-      _processTranscript(_lastTranscript);
-      return;
-    }
+    // A partial recognition followed by no-match is not a final reading answer.
     const calm = _unclearReadingMessage;
     setState(() {
       _lastScore = null;
@@ -383,7 +420,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
 
   void _processTranscript(String transcript) {
     final progress = _progress;
-    if (progress == null) return;
+    if (progress == null || !_currentOwner || !_foreground) return;
     final text = transcript.trim();
     if (text.isEmpty) {
       _handleNoMatch();
@@ -393,7 +430,8 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     _processedTranscript = text;
     _processing = true;
 
-    final result = _monitor.processSentence(childId: _childId, progress: progress, transcript: text);
+    final result = _monitor.processSentence(
+        childId: _childId, progress: progress, transcript: text);
     final attemptDecision = _attemptLedger.recordAnalysis(
       sentence: progress.currentSentence,
       attemptNumber: progress.attemptNumber,
@@ -404,10 +442,10 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
       monitorProgress: result.nextProgress,
       decision: attemptDecision,
     );
-    final childMessage =
-        attemptDecision.outcome == ReadingAttemptOutcome.retryBecauseRecognitionWasUnclear
-            ? _unclearReadingMessage
-            : attemptDecision.childMessage;
+    final childMessage = attemptDecision.outcome ==
+            ReadingAttemptOutcome.retryBecauseRecognitionWasUnclear
+        ? _unclearReadingMessage
+        : attemptDecision.childMessage;
 
     if (attemptDecision.shouldCountAsIntervention) {
       _interventionCount++;
@@ -424,11 +462,15 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
       _showNotHeardHint = false;
       _progress = adjustedProgress;
       _lastScore = result.analysis.alignmentScore;
-      if (adjustedProgress.currentSentenceIndex != progress.currentSentenceIndex || adjustedProgress.isComplete) {
+      if (adjustedProgress.currentSentenceIndex !=
+              progress.currentSentenceIndex ||
+          adjustedProgress.isComplete) {
         _activeWordIndex = 0;
         _liveProblemWord = null;
+        _readingHelpUsed = false;
       } else {
-        final live = _liveReadingPosition(sentence: progress.currentSentence, transcript: text);
+        final live = _liveReadingPosition(
+            sentence: progress.currentSentence, transcript: text);
         _activeWordIndex = live.activeIndex;
         _liveProblemWord = result.analysis.problemWord ?? live.problemWord;
       }
@@ -439,20 +481,21 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     });
 
     _persistReadingProgress(latestScore: result.analysis.alignmentScore);
-    _publishReadingContext();
 
     widget.appState.update(widget.appState.state.copyWith(
       mood: adjustedProgress.isComplete
           ? LumoMood.celebrate
-          : attemptDecision.outcome == ReadingAttemptOutcome.retryBecauseRecognitionWasUnclear
+          : attemptDecision.outcome ==
+                  ReadingAttemptOutcome.retryBecauseRecognitionWasUnclear
               ? LumoMood.comfort
               : _moodFor(result.decision.primary.tone),
       lumoMessage: _lumoLine,
     ));
 
     final nextMessage = adjustedProgress.isComplete ? _lumoLine : childMessage;
+    final feedbackEpoch = _readingEpoch;
     LumoVoice.instance.speakAndWait(nextMessage).whenComplete(() {
-      _processing = false;
+      if (_currentOwner && feedbackEpoch == _readingEpoch) _processing = false;
     });
   }
 
@@ -465,7 +508,9 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     required bool correct,
     required double score,
   }) {
-    if (!correct || decision.outcome != ReadingAttemptOutcome.accepted) {
+    if (!_currentOwner ||
+        !correct ||
+        decision.outcome != ReadingAttemptOutcome.accepted) {
       return;
     }
     final started = _listenStartedAt;
@@ -474,12 +519,16 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
       subject: 'Lesen',
       unit: 'Sätze vorlesen',
       correct: correct,
-      hintUsed: progress.attemptNumber > 1,
+      hintUsed: progress.attemptNumber > 1 || _readingHelpUsed,
       prompt: progress.currentSentence.text,
       given: '',
       durationMs: started == null
           ? null
-          : DateTime.now().difference(started).inMilliseconds.clamp(0, 120000).toInt(),
+          : DateTime.now()
+              .difference(started)
+              .inMilliseconds
+              .clamp(0, 120000)
+              .toInt(),
       score: score,
     ));
   }
@@ -490,20 +539,28 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     required ReadingAttemptDecision decision,
   }) {
     if (decision.shouldKeepSameAttempt) {
-      return previous.copyWith(problemWords: _attemptLedger.persistentProblemWords);
+      return previous.copyWith(
+          problemWords: _attemptLedger.persistentProblemWords);
     }
     if (!decision.shouldAdvanceControlled) {
-      return monitorProgress.copyWith(problemWords: _attemptLedger.persistentProblemWords);
+      return monitorProgress.copyWith(
+          problemWords: _attemptLedger.persistentProblemWords);
     }
 
-    final completed = <String>{...previous.completedSentenceIds, previous.currentSentence.id};
+    final completed = <String>{
+      ...previous.completedSentenceIds,
+      previous.currentSentence.id
+    };
     final isComplete = completed.length >= previous.story.sentences.length;
     final nextIndex = isComplete
         ? previous.currentSentenceIndex
-        : (previous.currentSentenceIndex + 1).clamp(0, previous.story.sentences.length - 1).toInt();
+        : (previous.currentSentenceIndex + 1)
+            .clamp(0, previous.story.sentences.length - 1)
+            .toInt();
     final words = <String>{..._attemptLedger.persistentProblemWords};
     final confirmed = decision.confirmedProblemWord;
-    if (confirmed != null && confirmed.trim().isNotEmpty) words.add(confirmed.trim().toLowerCase());
+    if (confirmed != null && confirmed.trim().isNotEmpty)
+      words.add(confirmed.trim().toLowerCase());
 
     return previous.copyWith(
       currentSentenceIndex: nextIndex,
@@ -516,7 +573,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
 
   Future<void> _persistReadingProgress({required double latestScore}) async {
     final progress = _progress;
-    if (progress == null) return;
+    if (progress == null || !_currentOwner) return;
     await _readingRepo.updateLatest(
       id: _readingSessionId,
       childId: _childId,
@@ -551,8 +608,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
             child: Center(
               child: Padding(
                 padding: EdgeInsets.all(32),
-                child:
-                    CircularProgressIndicator(color: LumoVisualTokens.cyan),
+                child: CircularProgressIndicator(color: LumoVisualTokens.cyan),
               ),
             ),
           );
@@ -598,23 +654,40 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
                         problemWords: progress.problemWords,
                       ),
                       const SizedBox(height: 14),
-                      _ActiveSentenceCard(
-                        sentence: sentence,
-                        attemptNumber: progress.attemptNumber,
-                        lastScore: _lastScore,
-                        lumoLine: _lumoLine,
-                        activeWordIndex: _activeWordIndex,
-                        liveProblemWord: _liveProblemWord,
-                        listening: _speech.listening,
+                      ReadingLessonCompanion(
+                        appState: widget.appState,
+                        taskId: '$_readingSessionId:${sentence.id}',
+                        unit: story.title,
+                        prompt: sentence.text,
+                        answering: !_finished,
+                        attempts: progress.attemptNumber - 1,
+                        beforeInteraction: _prepareCompanionInteraction,
+                        onHelpUsed: () => _readingHelpUsed = true,
+                        helpSteps: const [
+                          'Lies den sichtbaren Satz ruhig, Wort für Wort. Am Satzende machst du eine kurze Pause.',
+                          'Suche das nächste Wort. Sprich es langsam und lies dann den ganzen Satz noch einmal.',
+                        ],
+                        child: _ActiveSentenceCard(
+                          sentence: sentence,
+                          attemptNumber: progress.attemptNumber,
+                          lastScore: _lastScore,
+                          lumoLine: _lumoLine,
+                          activeWordIndex: _activeWordIndex,
+                          liveProblemWord: _liveProblemWord,
+                          listening: _speech.listening,
+                        ),
                       ),
                       const SizedBox(height: 12),
                       _MicrophonePanel(
                         listening: _speech.listening,
-                        enabled: widget.appState.state.settings.microphoneEnabled,
+                        enabled:
+                            widget.appState.state.settings.microphoneEnabled,
                         lastTranscript: _lastTranscript,
                         error: _speech.error,
                         showNotHeardHint: _showNotHeardHint,
-                        onTap: _finished || _openingLibrary ? null : _toggleListening,
+                        onTap: _finished || _openingLibrary
+                            ? null
+                            : _toggleListening,
                       ),
                       if (progress.problemWords.isNotEmpty) ...[
                         const SizedBox(height: 12),
@@ -699,8 +772,8 @@ class _ReadingHeader extends StatelessWidget {
           ),
           IconButton(
             onPressed: onBack,
-            icon: const Icon(Icons.close_rounded,
-                color: LumoVisualTokens.white),
+            icon:
+                const Icon(Icons.close_rounded, color: LumoVisualTokens.white),
           ),
         ],
       ),
@@ -795,9 +868,8 @@ class _StoryTextCard extends StatelessWidget {
                   final isProblem = problemSet.contains(normalized) ||
                       normalized == liveProblem ||
                       entry.value.isProblemWord;
-                  final isCurrent =
-                      sentence.index == currentIndex &&
-                          entry.key == activeWordIndex;
+                  final isCurrent = sentence.index == currentIndex &&
+                      entry.key == activeWordIndex;
                   return _SyllableWord(
                     word: entry.value,
                     active: sentence.index == currentIndex,
@@ -841,16 +913,27 @@ class _SyllableWord extends StatelessWidget {
     final border = problem
         ? Border.all(color: LumoColors.gold.withOpacity(.48), width: 1.4)
         : highlight
-            ? Border.all(color: listening ? LumoColors.teal : LumoColors.orange, width: 2)
+            ? Border.all(
+                color: listening ? LumoColors.teal : LumoColors.orange,
+                width: 2)
             : null;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 120),
-      padding: EdgeInsets.symmetric(horizontal: highlight || problem ? 8 : 0, vertical: highlight || problem ? 5 : 2),
+      padding: EdgeInsets.symmetric(
+          horizontal: highlight || problem ? 8 : 0,
+          vertical: highlight || problem ? 5 : 2),
       decoration: BoxDecoration(
         color: bg,
         borderRadius: BorderRadius.circular(LumoRadius.sm),
         border: border,
-        boxShadow: highlight ? [BoxShadow(color: LumoColors.orange.withOpacity(.16), blurRadius: 10, offset: const Offset(0, 4))] : null,
+        boxShadow: highlight
+            ? [
+                BoxShadow(
+                    color: LumoColors.orange.withOpacity(.16),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4))
+              ]
+            : null,
       ),
       child: RichText(
         text: TextSpan(
@@ -859,16 +942,22 @@ class _SyllableWord extends StatelessWidget {
               text: entry.value,
               style: TextStyle(
                 fontFamily: 'Nunito',
-                fontSize: highlight ? 25 : active ? 22 : 18,
+                fontSize: highlight
+                    ? 25
+                    : active
+                        ? 22
+                        : 18,
                 fontWeight: FontWeight.w900,
                 color: problem
                     ? LumoColors.orange
                     : highlight
-                            ? LumoVisualTokens.night
+                        ? LumoVisualTokens.night
                         : entry.key.isEven
                             ? LumoVisualTokens.cyanBright
                             : LumoVisualTokens.white,
-                decoration: active && !highlight ? TextDecoration.underline : TextDecoration.none,
+                decoration: active && !highlight
+                    ? TextDecoration.underline
+                    : TextDecoration.none,
               ),
             );
           }).toList(),
@@ -976,7 +1065,8 @@ class _MicrophonePanel extends StatelessWidget {
       subline = 'Lies den Satz ruhig bis zum Ende. Tippe zum Stoppen.';
     } else if (showNotHeardHint) {
       headline = 'Ich habe dich nicht gut gehört.';
-      subline = 'Das war kein Fehler. Drück nochmal auf das Mikrofon, wenn du bereit bist.';
+      subline =
+          'Das war kein Fehler. Drück nochmal auf das Mikrofon, wenn du bereit bist.';
     } else {
       headline = 'Bereit zum Lesen';
       subline = 'Drück auf das Mikrofon, wenn du bereit bist.';

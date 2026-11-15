@@ -34,6 +34,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-36 build-tools;36.0.0'
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.44.9'
@@ -74,31 +84,73 @@ jobs:
                                  'version_name': release['versionName'], 'tag': release['releaseTag']}.items():
                   stream.write(f'{key}={value}\n')
           PY
+      - name: Prepare the exact native contract test dependencies
+        run: |
+          set -euo pipefail
+          flutter precache --android
+          mkdir -p "$RUNNER_TEMP/lumo-nextgen-test-tools"
+          curl --fail --location --retry 3 \
+            https://maven-central.storage-download.googleapis.com/maven2/org/json/json/20240303/json-20240303.jar \
+            --output "$RUNNER_TEMP/lumo-nextgen-test-tools/json-20240303.jar"
+          python3 - <<'PY'
+          import hashlib, json, os, shutil
+          from pathlib import Path
+          libraries = Path(shutil.which('gradle')).resolve().parents[1] / 'lib'
+          assert (libraries / 'kotlin-compiler-embeddable-2.0.20.jar').is_file()
+          dependency = Path(os.environ['RUNNER_TEMP']) / 'lumo-nextgen-test-tools/json-20240303.jar'
+          digest = hashlib.sha256(dependency.read_bytes()).hexdigest()
+          assert digest == '3cf6cd6892e32e2b4c1c39e0f52f5248a2f5b37646fdfbb79a66b46b618414ed'
+          sdk = Path(os.environ.get('ANDROID_SDK_ROOT') or os.environ['ANDROID_HOME'])
+          flutter = Path(shutil.which('flutter')).resolve().parents[1]
+          assert (sdk / 'platforms/android-36/android.jar').is_file()
+          assert (flutter / 'bin/cache/artifacts/engine/android-x64/flutter.jar').is_file()
+          values = {'LUMO_KOTLIN_LIB_DIR': str(libraries), 'LUMO_JSON_JAR': str(dependency),
+                    'LUMO_TEST_JSON_JAR': str(dependency), 'FLUTTER_ROOT': str(flutter)}
+          with open(os.environ['GITHUB_ENV'], 'a') as stream:
+              for key, value in values.items():
+                  stream.write(f'{key}={value}\n')
+          Path('evidence/validation/native-test-toolchain.json').write_text(
+              json.dumps({'gradle': '8.11.1', 'kotlin': '2.0.20', 'jsonSha256': digest,
+                          'androidApi': 36, 'paths': values}, indent=2) + '\n')
+          PY
       - name: Locked dependencies, analysis and complete Flutter tests
         run: |
           set -euo pipefail
           flutter pub get --enforce-lockfile
+          git diff --exit-code -- pubspec.yaml pubspec.lock
           flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee evidence/validation/analyze.log
           flutter test --no-pub --reporter=expanded --timeout=120s --concurrency=2 2>&1 | tee evidence/validation/flutter-tests.log
-          python3 -m unittest discover -s scripts/tests -p 'test_*contract*.py' -v 2>&1 | tee evidence/validation/host-contracts.log
-          python3 -m unittest discover -s scripts/tests -p 'test_learning_dialog_logic.py' -v 2>&1 | tee evidence/validation/native-dialogue.log
+          python3 -m unittest -v \
+            scripts.tests.test_learning_conversation_contract \
+            scripts.tests.test_learning_dialog_logic \
+            scripts.tests.test_local_recognition_contract \
+            scripts.tests.test_speech_envelope_contract \
+            scripts.tests.test_studio_learning_contract \
+            scripts.tests.test_game_return_contract \
+            scripts.tests.test_prepare_android \
+            tools.android_qa.tests.test_nextgen_learning_android_probe \
+            2>&1 | tee evidence/validation/host-contracts.log
       - uses: actions/checkout@v4
         with:
           repository: Ullmann27/lumo-godot
           ref: ${{ steps.source.outputs.native }}
           path: native-source
           persist-credentials: false
+      - name: Install the pinned Godot runtime for the next step
+        run: bash scripts/install_godot_for_build.sh
       - name: Actual Godot asset import and learning regressions
         run: |
           set -euo pipefail
-          bash scripts/install_godot_for_build.sh
           godot --version | tee evidence/validation/godot-version.txt
           grep -F '4.6.3.stable.official' evidence/validation/godot-version.txt
           godot --headless --path native-source --editor --import --quit > evidence/validation/godot-import.log 2>&1
           if grep -E 'SCRIPT ERROR:|ERROR:' evidence/validation/godot-import.log; then exit 1; fi
-          for script in learning_pattern_regression learning_world_regression learning_sharing_regression learning_host_payload_regression learning_english_regression learning_wonder_details_regression; do
+          for script in learning_pattern_regression learning_world_regression learning_sharing_regression learning_host_payload_regression learning_generation_regression learning_companion_scope_regression learning_wonder_details_regression; do
             godot --headless --path native-source --script "res://scripts/tests/$script.gd" 2>&1 | tee "evidence/validation/$script.log"
           done
+          godot --headless --path native-source --script res://scripts/tests/learning_english_regression.gd \
+            -- --output="$GITHUB_WORKSPACE/evidence/validation/learning-english" \
+            2>&1 | tee evidence/validation/learning_english_regression.log
           python3 native-source/tools/validate_project.py 2>&1 | tee evidence/validation/native-project.log
       - uses: actions/upload-artifact@v4
         if: always()
@@ -122,6 +174,9 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-36 build-tools;36.0.0'
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.44.9'
@@ -190,6 +245,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools build-tools;36.0.0'
       - uses: actions/download-artifact@v4
         with:
           name: lumo-nextgen-x86

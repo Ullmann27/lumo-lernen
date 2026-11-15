@@ -384,11 +384,21 @@ void main() {
         .map((match) => int.parse(match[0]!))
         .toList();
     expect(find.byType(LumoQuantityArt), findsNWidgets(amounts[0]));
+    expect(find.byIcon(Icons.close_rounded), findsNothing,
+        reason: 'The child has not removed any objects yet.');
+    for (var i = 0; i < amounts[1]; i++) {
+      final object = find.byKey(ValueKey('minus-quantity-$i'));
+      await tester.ensureVisible(object);
+      await _frames(tester, 3);
+      await tester.tap(object);
+      await _frames(tester, 3);
+    }
+    expect(find.byType(LumoQuantityArt), findsNWidgets(amounts[0]));
     expect(find.byIcon(Icons.close_rounded), findsNWidgets(amounts[1]));
     expect(
         tester
             .widgetList<Opacity>(find.byType(Opacity))
-            .where((widget) => widget.opacity == .28),
+            .where((widget) => widget.opacity == .25),
         hasLength(amounts[1]));
     await tester.pumpWidget(const SizedBox());
   });
@@ -413,6 +423,8 @@ void main() {
     final answer = find.descendant(
         of: find.byType(GridView),
         matching: find.text('${numbers[0] - numbers[1]}'));
+    await tester.ensureVisible(answer);
+    await _frames(tester, 3);
     await tester.tap(answer);
     await _frames(tester);
     expect(controller.serial, serial);

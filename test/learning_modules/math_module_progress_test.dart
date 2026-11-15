@@ -267,7 +267,8 @@ void main() {
     }
     await tester.binding.handlePopRoute();
     await _frames(tester);
-    await tester.tap(find.byType(IconButton), warnIfMissed: false);
+    await tester.tap(find.byKey(const ValueKey('learning-module-back')),
+        warnIfMissed: false);
     await _frames(tester);
     expect(find.byType(MinusBis10Screen), findsOneWidget);
     wallet.reject = false;

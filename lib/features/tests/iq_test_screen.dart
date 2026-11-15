@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/iq/iq_test_repository.dart';
 import '../../core/iq/iq_test_session.dart';
+import '../../core/iq/exam_session_owner.dart';
+import '../../core/learning_attempt_id.dart';
 import '../../domain/iq/iq_puzzle.dart';
 import '../../domain/school/attempt.dart';
 import '../../theme/lumo_visual_tokens.dart';
@@ -15,8 +19,9 @@ import 'iq/iq_puzzle_view.dart';
 import 'iq/iq_start_view.dart';
 import 'iq/iq_style.dart';
 import 'iq/iq_widgets.dart';
+import 'iq/exam_companion_scope.dart';
 
-enum _Phase { start, areaIntro, puzzle, saving, result, review }
+enum _Phase { start, areaIntro, puzzle, saving, saveError, result, review }
 
 /// Lumo Knobel-Test: spielerisches Denk-Abenteuer ohne normierten IQ-Wert.
 ///
@@ -48,13 +53,13 @@ class IqTestScreen extends StatefulWidget {
   /// Schulkind, sonst eine Ersatzkennung aus Name und Klasse (wie beim
   /// Denkprofil).
   static Future<String> studentIdFor(LumoAppState appState) async {
+    final state = appState.state;
     try {
       final id = await appState.school.activeStudentId();
       if (id != null) return id;
     } catch (_) {
       // Ohne lesbare Zuordnung gilt die Ersatzkennung.
     }
-    final state = appState.state;
     final safeName = state.childName
         .trim()
         .toLowerCase()
@@ -67,8 +72,10 @@ class IqTestScreen extends StatefulWidget {
 }
 
 class _IqTestScreenState extends State<IqTestScreen> {
-  late IqTestSession _session = widget.session ??
-      IqTestSession(grade: widget.appState.state.grade);
+  late final ExamSessionOwner _owner;
+  final String _sessionId = newLearningAttemptId();
+  late IqTestSession _session =
+      widget.session ?? IqTestSession(grade: widget.appState.state.grade);
   _Phase _phase = _Phase.start;
   IqTestResult? _previous;
   IqTestResult? _result;
@@ -76,18 +83,36 @@ class _IqTestScreenState extends State<IqTestScreen> {
   bool _alreadyRewarded = false;
   bool _saveFailed = false;
   DateTime? _startedAt;
+  IqTestResult? _pendingResult;
+  List<IqTestResult>? _earlier;
+  bool _savingInFlight = false, _resultSaved = false, _attemptsSaved = false;
+  bool _rewardEvaluated = false, _rewardQueued = false;
 
   @override
   void initState() {
     super.initState();
+    _owner = ExamSessionOwner(widget.appState)..addListener(_profileChanged);
     _loadPrevious();
+  }
+
+  void _profileChanged() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _owner.removeListener(_profileChanged);
+    _owner.dispose();
+    super.dispose();
   }
 
   Future<void> _loadPrevious() async {
     try {
-      final id = await IqTestScreen.studentIdFor(widget.appState);
+      final id = await _owner.studentId();
       final latest = await widget.repository.latest(id);
-      if (mounted && _result == null) setState(() => _previous = latest);
+      if (mounted && !_owner.retired && _result == null) {
+        setState(() => _previous = latest);
+      }
     } catch (_) {
       // Ohne frühere Ergebnisse startet die Seite eben ohne „Letztes Mal“.
     }
@@ -96,12 +121,14 @@ class _IqTestScreenState extends State<IqTestScreen> {
   // ------------------------------------------------------------- Ablauf
 
   void _start() {
+    if (_owner.retired || _phase != _Phase.start) return;
     _startedAt = widget.now();
-    setState(() =>
-        _phase = _session.atAreaStart ? _Phase.areaIntro : _Phase.puzzle);
+    setState(
+        () => _phase = _session.atAreaStart ? _Phase.areaIntro : _Phase.puzzle);
   }
 
   void _startExtended() {
+    if (_owner.retired || _phase != _Phase.start) return;
     // Keep injected test/recovery sessions unchanged. For the regular user,
     // build a separate, longer adaptive challenge with six puzzles per area.
     if (widget.session == null) {
@@ -113,81 +140,98 @@ class _IqTestScreenState extends State<IqTestScreen> {
     _start();
   }
 
-  void _onSubmit(List<int> response, int durationMs) {
-    _session.answer(response, durationMs: durationMs);
+  void _onSubmit(
+      String puzzleId, int index, List<int> response, int durationMs) {
+    if (_owner.retired ||
+        _phase != _Phase.puzzle ||
+        _session.finished ||
+        _session.index != index ||
+        _session.current.id != puzzleId) {
+      return;
+    }
+    try {
+      _session.answer(response,
+          durationMs: durationMs,
+          expectedPuzzleId: puzzleId,
+          expectedIndex: index);
+    } on ArgumentError {
+      return; // Incomplete recognition/input is not a scored wrong answer.
+    }
     if (_session.finished) {
       _finish();
       return;
     }
-    setState(() =>
-        _phase = _session.atAreaStart ? _Phase.areaIntro : _Phase.puzzle);
+    setState(
+        () => _phase = _session.atAreaStart ? _Phase.areaIntro : _Phase.puzzle);
   }
 
   Future<void> _finish() async {
+    if (_savingInFlight || _owner.retired || !_session.finished) return;
+    _savingInFlight = true;
     setState(() => _phase = _Phase.saving);
-    final finishedAt = widget.now();
-    final studentId = await IqTestScreen.studentIdFor(widget.appState);
-    final result = _session.result(
-      id: 'iq-${finishedAt.microsecondsSinceEpoch}',
-      studentId: studentId,
-      finishedAt: finishedAt,
-      durationMs: finishedAt.difference(_startedAt ?? finishedAt).inMilliseconds,
-    );
-
-    // Früher gespeicherte Ergebnisse (vor dem Speichern des neuen) für den
-    // Tagescheck der Belohnung und den Vergleich.
-    var earlier = const <IqTestResult>[];
     try {
-      earlier = await widget.repository.loadAll(studentId);
+      final studentId = _pendingResult?.studentId ?? await _owner.studentId();
+      if (!mounted || _owner.retired) return;
+      final finishedAt = _pendingResult?.finishedAt ?? widget.now();
+      final result = _pendingResult ??= _session.result(
+        id: 'iq-${finishedAt.microsecondsSinceEpoch}',
+        studentId: studentId,
+        finishedAt: finishedAt,
+        durationMs:
+            finishedAt.difference(_startedAt ?? finishedAt).inMilliseconds,
+      );
+      _earlier ??= await widget.repository.loadAll(studentId);
+      if (_owner.retired) return;
+      if (!_resultSaved) {
+        await widget.repository.save(result);
+        _resultSaved = true;
+      }
+      if (!_attemptsSaved) {
+        await widget.appState.attemptLog.appendAll(_attempts(result));
+        _attemptsSaved = true;
+      }
+      // Accepted history keeps its original child; a changed profile must
+      // never receive this session's reward or see the previous child's data.
+      if (_owner.retired) return;
+      if (!_rewardEvaluated) {
+        _alreadyRewarded = widget.rewards.alreadyDoneOn(_earlier!, finishedAt);
+        _reward =
+            _alreadyRewarded ? IqReward.none : widget.rewards.forResult(result);
+        _rewardEvaluated = true;
+      }
+      if (!_reward.isEmpty && !_rewardQueued) {
+        widget.appState.addRewards(stars: _reward.stars, xp: _reward.xp);
+        _rewardQueued = true;
+      }
+      if (_rewardQueued) await widget.appState.flushRewards();
+      _saveFailed = false;
     } catch (_) {
-      // Ohne lesbare Ergebnisse gibt es keinen Vergleich.
-    }
-    var saved = true;
-    try {
-      await widget.repository.save(result);
-    } catch (_) {
-      saved = false;
-    }
-    try {
-      await widget.appState.attemptLog.appendAll(_attempts(result));
-    } catch (_) {
-      // Das Protokoll darf das Ergebnis nie verhindern.
-    }
-
-    var reward = IqReward.none;
-    var already = false;
-    if (saved) {
-      already = widget.rewards.alreadyDoneOn(earlier, finishedAt);
-      if (!already) {
-        reward = widget.rewards.forResult(result);
-        if (!reward.isEmpty) {
-          widget.appState.addRewards(stars: reward.stars, xp: reward.xp);
-          try {
-            await widget.appState.flushRewards();
-          } catch (_) {
-            // Die Sterne bleiben vorgemerkt und werden später gespeichert.
+      _saveFailed = true;
+    } finally {
+      _savingInFlight = false;
+      if (mounted && !_owner.retired) {
+        final result = _pendingResult;
+        IqTestResult? previous;
+        if (result != null) {
+          for (final item in _earlier ?? const <IqTestResult>[]) {
+            if (item.version != result.version ||
+                item.items.length != result.items.length ||
+                item.id == result.id) {
+              continue;
+            }
+            if (previous == null ||
+                item.finishedAt.isAfter(previous.finishedAt)) {
+              previous = item;
+            }
           }
         }
+        setState(() {
+          _result = result;
+          _previous = previous;
+          _phase = result == null ? _Phase.saveError : _Phase.result;
+        });
       }
     }
-    IqTestResult? previous;
-    for (final item in earlier) {
-      // A 24-puzzle score must not be compared with the 36-puzzle variant.
-      if (item.version != result.version ||
-          item.items.length != result.items.length) continue;
-      if (previous == null || item.finishedAt.isAfter(previous.finishedAt)) {
-        previous = item;
-      }
-    }
-    if (!mounted) return;
-    setState(() {
-      _result = result;
-      _previous = previous;
-      _reward = reward;
-      _alreadyRewarded = already;
-      _saveFailed = !saved;
-      _phase = _Phase.result;
-    });
   }
 
   /// Ein Protokolleintrag je Rätsel, damit Lernbericht und Lehrerbereich den
@@ -220,12 +264,17 @@ class _IqTestScreenState extends State<IqTestScreen> {
 
   // ----------------------------------------------------------- Zurück
 
-  bool get _canPopDirectly => _phase == _Phase.start || _phase == _Phase.result;
+  bool get _canPopDirectly =>
+      _owner.retired ||
+      _phase == _Phase.start ||
+      _phase == _Phase.result ||
+      _phase == _Phase.saveError;
 
   Future<void> _handleBack() async {
     switch (_phase) {
       case _Phase.start:
       case _Phase.result:
+      case _Phase.saveError:
         Navigator.of(context).pop();
       case _Phase.review:
         setState(() => _phase = _Phase.result);
@@ -265,6 +314,8 @@ class _IqTestScreenState extends State<IqTestScreen> {
           onBack: _handleBack,
         );
       case _Phase.puzzle:
+        final index = _session.index;
+        final puzzleId = _session.current.id;
         return IqPuzzleView(
           key: ValueKey('iq-page-puzzle-${_session.index}'),
           puzzle: _session.current,
@@ -272,11 +323,24 @@ class _IqTestScreenState extends State<IqTestScreen> {
           total: _session.totalItems,
           areaNumber: _session.areaNumber,
           itemsPerArea: _session.itemsPerArea,
-          onSubmit: _onSubmit,
+          onSubmit: (response, durationMs) =>
+              _onSubmit(puzzleId, index, response, durationMs),
           onBack: _handleBack,
         );
       case _Phase.saving:
         return const _Saving(key: ValueKey('iq-page-saving'));
+      case _Phase.saveError:
+        return Center(
+            child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Text(
+                      'Deine Antworten bleiben erhalten. Das Kinderprofil konnte noch nicht zum Speichern geladen werden.',
+                      style: iqText(18)),
+                  const SizedBox(height: 16),
+                  IqPrimaryButton(
+                      label: 'Speichern erneut versuchen', onPressed: _finish),
+                ])));
       case _Phase.result:
         return IqResultView(
           key: const ValueKey('iq-page-result'),
@@ -285,6 +349,7 @@ class _IqTestScreenState extends State<IqTestScreen> {
           reward: _reward,
           alreadyRewardedToday: _alreadyRewarded,
           saveFailed: _saveFailed,
+          onRetry: _saveFailed ? () => unawaited(_finish()) : null,
           onReview: () => setState(() => _phase = _Phase.review),
           onDone: () => Navigator.of(context).pop(),
         );
@@ -306,6 +371,35 @@ class _IqTestScreenState extends State<IqTestScreen> {
       pageKey: _pageKey(),
       child: _page(),
     );
+    if (_owner.retired) {
+      content = Center(
+          child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                Text(
+                    'Das Kinderprofil wurde gewechselt. Öffne den Test für das ausgewählte Kind neu.',
+                    style: iqText(18)),
+                const SizedBox(height: 16),
+                IqPrimaryButton(
+                    label: 'Zurück',
+                    onPressed: () => Navigator.of(context).maybePop()),
+              ])));
+    } else if (_phase == _Phase.puzzle || _phase == _Phase.areaIntro) {
+      content = ExamCompanionScope(
+        appState: widget.appState,
+        generation: _owner.generation,
+        taskId: '$_sessionId-${_session.current.id}',
+        subject: 'IQ-Rätsel',
+        unit: _session.area.title,
+        prompt: _phase == _Phase.areaIntro
+            ? _session.area.instruction
+            : _session.current.question,
+        instruction: _session.current is IqMemoryPuzzle
+            ? 'Merke dir die gezeigte Reihenfolge. Tippe danach die Felder an und bestätige mit Weiter. Die Wiederholung des Auftrags zeigt die Folge nicht erneut.'
+            : 'Wähle eine Antwortkarte. Vor Weiter kannst du die Auswahl ändern. Während des Tests gibt Lumo keine Hinweise zur Lösung.',
+        child: content,
+      );
+    }
     if (reduce && !MediaQuery.disableAnimationsOf(context)) {
       content = MediaQuery(
         data: MediaQuery.of(context).copyWith(disableAnimations: true),
@@ -333,6 +427,7 @@ class _IqTestScreenState extends State<IqTestScreen> {
         _Phase.areaIntro => 'area-${_session.areaNumber}',
         _Phase.puzzle => 'puzzle-${_session.index}',
         _Phase.saving => 'saving',
+        _Phase.saveError => 'save-error',
         _Phase.result => 'result',
         _Phase.review => 'review',
       };

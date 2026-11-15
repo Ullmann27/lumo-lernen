@@ -20,6 +20,7 @@ import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
 import '../learning_module_progress.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 
 enum _ZahlAufgabenTyp { zaehlen, nachfolger, groesser }
 
@@ -255,6 +256,45 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
     );
   }
 
+  Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        appState: widget.appState,
+        progress: _progress,
+        moduleId: 'm1_zahlen10',
+        taskKey: _taskIdx,
+        prompt: switch (_typ) {
+          _ZahlAufgabenTyp.zaehlen => 'Wie viele Punkte siehst du?',
+          _ZahlAufgabenTyp.nachfolger => 'Welche Zahl kommt nach $_zahl1?',
+          _ZahlAufgabenTyp.groesser => 'Welche Zahl ist größer: $_zahl1 oder $_zahl2?',
+        },
+        objective: switch (_typ) {
+          _ZahlAufgabenTyp.zaehlen => 'Du zählst jeden Punkt genau einmal.',
+          _ZahlAufgabenTyp.nachfolger => 'Du findest den nächsten Schritt in der Zahlenreihe.',
+          _ZahlAufgabenTyp.groesser => 'Du vergleichst zwei Zahlen bis zehn.',
+        },
+        answerChoices: _answers.map((number) => '$number').toList(),
+        helpSteps: switch (_typ) {
+          _ZahlAufgabenTyp.zaehlen => [
+              'Beginne bei einem Punkt. Berühre beim Zählen jeden Punkt genau einmal.',
+              'Gehe in einer festen Reihenfolge, zum Beispiel von links nach rechts. So vergisst du keinen Punkt.',
+              'Die zuletzt gesprochene Zahl sagt, wie viele Punkte es insgesamt sind. Suche diese Zahl bei den Antworten.',
+            ],
+          _ZahlAufgabenTyp.nachfolger => [
+              'Starte bei $_zahl1 und zähle genau einen Schritt weiter.',
+              'Der Nachfolger ist eins mehr. Stell dir vor, zu $_zahl1 kommt noch ein Gegenstand dazu.',
+              'Prüfe die Antwort, indem du von ihr einen Schritt zurückzählst. Dann musst du wieder bei $_zahl1 sein.',
+            ],
+          _ZahlAufgabenTyp.groesser => [
+              'Vergleiche nur die beiden gezeigten Zahlen $_zahl1 und $_zahl2.',
+              'Sprich die Zahlenreihe. Welche der beiden Zahlen kommt später?',
+              'Stell dir zu jeder Zahl eine Reihe gleich großer Punkte vor. Die längere Reihe gehört zur größeren Zahl.',
+            ],
+        },
+        answering: !_answered,
+        lastAnswer: _selectedAnswer?.toString(),
+        lastCorrect: _answered ? _selectedAnswer == _correctAnswer : null,
+        child: child,
+      );
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -276,7 +316,8 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
         progressLabel: 'Aufgabe',
         hasMistake: _answered && _selectedAnswer != _correctAnswer,
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -293,7 +334,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
             ]),
             answers: _buildAnswerGrid(),
           ),
-        ),
+        )),
       ),
     );
   }

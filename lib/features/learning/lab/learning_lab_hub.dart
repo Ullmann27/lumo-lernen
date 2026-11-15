@@ -47,7 +47,9 @@ class _LearningLabHubState extends State<LearningLabHub> {
       await widget.appState.prepareLearningLease(owner);
       await owner.profile.loadJourney();
       if (!mounted || generation != widget.appState.profileGeneration ||
-          !widget.appState.isCurrentLearningLease(owner)) return;
+          !widget.appState.isCurrentLearningLease(owner)) {
+        return;
+      }
       setState(() {
         _records = owner.profile.journey.records;
         _loading = false;
@@ -158,6 +160,7 @@ class _LearningLabHubState extends State<LearningLabHub> {
                         LabMode.english => Icons.translate_rounded,
                         LabMode.nature => Icons.water_drop_rounded,
                         LabMode.fraction => Icons.pie_chart_rounded,
+                        LabMode.pattern => Icons.category_rounded,
                       };
                       final topicColor = switch (topic.mode) {
                         LabMode.bridge => const Color(0xFF41DCFB),
@@ -165,6 +168,7 @@ class _LearningLabHubState extends State<LearningLabHub> {
                         LabMode.english => const Color(0xFFFFAFD9),
                         LabMode.nature => const Color(0xFF8BE3BF),
                         LabMode.fraction => const Color(0xFFFFD182),
+                        LabMode.pattern => const Color(0xFFC7B5FF),
                       };
                       return Card(
                         color: const Color(0xFF123B68),
@@ -178,7 +182,7 @@ class _LearningLabHubState extends State<LearningLabHub> {
                             width: 1.4,
                           )),
                         child: InkWell(
-                          key: ValueKey('lab-topic-' + topic.id),
+                          key: ValueKey('lab-topic-${topic.id}'),
                           borderRadius: BorderRadius.circular(20),
                           onTap: () => _open(topic),
                           child: Padding(

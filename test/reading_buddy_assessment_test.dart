@@ -6,6 +6,7 @@ import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/lumo_speech_listener.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/lumo_learning_session_contract.dart';
 import 'package:lumo_lernen/core/reading_v2_pronunciation_analyzer.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/reading/lumo_reading_buddy_screen.dart';
@@ -17,6 +18,7 @@ import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 class _Speech extends LumoSpeechListener {
   ValueChanged<String>? result;
   ValueChanged<String>? finalResult;
+  VoidCallback? noMatch;
   int starts = 0;
   bool active = false;
   @override
@@ -34,6 +36,7 @@ class _Speech extends LumoSpeechListener {
     active = true;
     result = onResult;
     finalResult = onFinalResult;
+    noMatch = onNoMatch;
     notifyListeners();
   }
 
@@ -244,6 +247,98 @@ void main() {
     await _frames(tester);
     expect(app.learningSkills()[id]!.correct, 1);
     expect(app.learningSkills()[id]!.wrong, 0);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+      'reading dialogue proposes an editable answer and requires confirmation',
+      (tester) async {
+    final app = await _mount(tester, _Speech(), microphone: false);
+    await _tap(tester, find.byKey(const ValueKey('reading-finish')));
+    final bus = LumoCompanionRequests.instance;
+    final task = bus.taskContext.value!;
+    expect(task.prompt, 'Was backt Mama?');
+    expect(task.profileGeneration, app.profileGeneration);
+    expect(task.objectIds, ['reading-task']);
+    expect(task.allowedActions, contains(LumoLearningAction.proposeAnswer));
+    expect(
+        bus.requestLearningAction(LumoLearningAction.proposeAnswer,
+            identity: bus.learningIdentity.value!,
+            candidate: 'Ich bin nicht sicher'),
+        isTrue);
+    await _frames(tester);
+    expect(_record(app), isNull);
+    final correct = ReadingComprehension.forText(ReadingTextLibrary.all.first)!;
+    await tester.enterText(find.byKey(const ValueKey('reading-lumo-candidate')),
+        correct.answers[correct.correctIndex]);
+    await _tap(tester, find.byKey(const ValueKey('reading-lumo-confirm')));
+    expect(_record(app)!.correct, 1);
+    expect(_record(app)!.wrong, 0);
+    expect(app.state.stars, 0);
+    expect(find.byKey(const ValueKey('reading-lumo-candidate')), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+      'reading stop, background and resize preserve task and reject old proposals',
+      (tester) async {
+    final app = await _mount(tester, _Speech(), microphone: false);
+    await _tap(tester, find.byKey(const ValueKey('reading-finish')));
+    final bus = LumoCompanionRequests.instance;
+    final original = bus.learningIdentity.value!;
+    final prompt = bus.taskContext.value!.prompt;
+    expect(
+        bus.requestLearningAction(LumoLearningAction.proposeAnswer,
+            identity: original, candidate: 'Kuchen'),
+        isTrue);
+    await _frames(tester);
+    await _tap(tester, find.byKey(const ValueKey('reading-lumo-stop')));
+    expect(find.byKey(const ValueKey('reading-lumo-candidate')), findsNothing);
+    expect(
+        bus.requestLearningAction(LumoLearningAction.proposeAnswer,
+            identity: original, candidate: 'Kuchen'),
+        isFalse);
+    tester.binding
+        .handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    await _frames(tester);
+    expect(bus.taskContext.value, isNull);
+    tester.binding
+        .handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await _frames(tester);
+    for (final size in [const Size(344, 882), const Size(690, 829)]) {
+      await tester.binding.setSurfaceSize(size);
+      await _frames(tester);
+      expect(bus.taskContext.value!.prompt, prompt);
+      expect(bus.learningIdentity.value!.taskId, original.taskId);
+      expect(_record(app), isNull);
+      expect(tester.takeException(), isNull);
+    }
+  });
+
+  testWidgets(
+      'partial sentence followed by no-match never becomes an accepted answer',
+      (tester) async {
+    final speech = _Speech();
+    final app = await _mount(tester, _Speech());
+    LumoVoice.instance.isEnabled = false;
+    await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+            body: ReadingContent(
+                appState: app, onBack: () {}, speechListener: speech))));
+    await _frames(tester);
+    final bus = LumoCompanionRequests.instance;
+    final original = bus.learningIdentity.value!;
+    final sentence = bus.taskContext.value!.prompt;
+    await _tap(tester, find.byIcon(Icons.mic_rounded));
+    speech.emit(sentence);
+    speech.noMatch!();
+    await _frames(tester);
+    expect(bus.taskContext.value!.prompt, sentence);
+    expect(bus.learningIdentity.value!.taskId, original.taskId);
+    expect(app.learningSkills()[SkillRecord.makeId('Lesen', 'Sätze vorlesen')],
+        isNull);
+    expect(app.learningDailyDone(), 0);
+    expect(find.textContaining('Das war kein Fehler.'), findsWidgets);
     expect(tester.takeException(), isNull);
   });
 }

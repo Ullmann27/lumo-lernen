@@ -22,6 +22,7 @@ import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
 import '../learning_module_progress.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 
 enum _Zahl100FrageTyp { nachfolger, vorgaenger, vergleich, zehnerEiner }
 
@@ -281,6 +282,52 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
     );
   }
 
+  Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        appState: widget.appState,
+        progress: _progress,
+        moduleId: 'm2_zahlen100',
+        taskKey: _taskIdx,
+        prompt: switch (_typ) {
+          _Zahl100FrageTyp.nachfolger => 'Welche Zahl kommt nach $_zahl1?',
+          _Zahl100FrageTyp.vorgaenger => 'Welche Zahl kommt vor $_zahl1?',
+          _Zahl100FrageTyp.vergleich => 'Welche Zahl ist größer: $_zahl1 oder $_zahl2?',
+          _Zahl100FrageTyp.zehnerEiner => 'Wie viele Zehner hat die Zahl $_zahl1?',
+        },
+        objective: switch (_typ) {
+          _Zahl100FrageTyp.nachfolger => 'Du findest den Nachfolger einer Zahl bis hundert.',
+          _Zahl100FrageTyp.vorgaenger => 'Du findest den Vorgänger einer Zahl bis hundert.',
+          _Zahl100FrageTyp.vergleich => 'Du vergleichst zuerst die Zehner, dann die Einer.',
+          _Zahl100FrageTyp.zehnerEiner => 'Du unterscheidest Zehnerbündel und einzelne Einer.',
+        },
+        answerChoices: _answers.map((number) => '$number').toList(),
+        helpSteps: switch (_typ) {
+          _Zahl100FrageTyp.nachfolger => [
+              'Beginne bei $_zahl1 und zähle genau einen Schritt weiter.',
+              'Rechne $_zahl1 + 1. Bei neun Einern entsteht aus dem nächsten Einer ein neuer Zehner.',
+              'Prüfe deine Wahl: Ein Schritt zurück von deiner Antwort muss wieder $_zahl1 ergeben.',
+            ],
+          _Zahl100FrageTyp.vorgaenger => [
+              'Beginne bei $_zahl1 und zähle genau einen Schritt zurück.',
+              'Rechne $_zahl1 − 1. Hat die Zahl null Einer, wird ein Zehner in zehn Einer getauscht.',
+              'Prüfe deine Wahl: Ein Schritt weiter von deiner Antwort muss wieder $_zahl1 ergeben.',
+            ],
+          _Zahl100FrageTyp.vergleich => [
+              'Vergleiche zuerst die Zehnerstellen von $_zahl1 und $_zahl2.',
+              '$_zahl1 hat ${_zahl1 ~/ 10} Zehner; $_zahl2 hat ${_zahl2 ~/ 10} Zehner. Mehr Zehner bedeuten eine größere Zahl.',
+              'Sind die Zehner gleich, vergleiche die Einer: ${_zahl1 % 10} und ${_zahl2 % 10}. Wähle die größere der beiden gezeigten Zahlen.',
+            ],
+          _Zahl100FrageTyp.zehnerEiner => [
+              'Ein Zehnerbündel besteht aus zehn Einern. Gesucht ist die Anzahl ganzer Zehnerbündel.',
+              'Bei der zweistelligen Zahl $_zahl1 stehen die Zehner links und die Einer rechts.',
+              'Zähle nur die Zehnerbündel. Die ${_zahl1 % 10} einzelnen Einer bilden keinen weiteren ganzen Zehner.',
+            ],
+        },
+        answering: !_answered,
+        lastAnswer: _selectedAnswer?.toString(),
+        lastCorrect: _answered ? _selectedAnswer == _correctAnswer : null,
+        child: child,
+      );
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -298,7 +345,8 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -319,7 +367,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
             const SizedBox(height: 16),
             _buildAnswerGrid(),
           ]),
-        ),
+        )),
       ),
     );
   }

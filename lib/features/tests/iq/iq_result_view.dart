@@ -34,7 +34,8 @@ class IqRadarGeometry {
     return Offset(math.cos(angle), math.sin(angle));
   }
 
-  Offset point(int i, double fraction) => center + direction(i) * radius * fraction;
+  Offset point(int i, double fraction) =>
+      center + direction(i) * radius * fraction;
 
   Offset medallionCenter(int i) =>
       center + direction(i) * (radius + medallion * .5 + 6);
@@ -205,7 +206,9 @@ class IqRadarChart extends StatelessWidget {
               excludeSemantics: true,
               child: TweenAnimationBuilder<double>(
                 tween: Tween<double>(begin: reduced ? 1 : 0, end: 1),
-                duration: reduced ? Duration.zero : const Duration(milliseconds: 1100),
+                duration: reduced
+                    ? Duration.zero
+                    : const Duration(milliseconds: 1100),
                 curve: Curves.easeOutCubic,
                 builder: (context, progress, _) => Stack(
                   clipBehavior: Clip.none,
@@ -213,7 +216,8 @@ class IqRadarChart extends StatelessWidget {
                     Positioned.fill(
                       child: RepaintBoundary(
                         child: CustomPaint(
-                          painter: IqRadarPainter(levels: levels, progress: progress),
+                          painter: IqRadarPainter(
+                              levels: levels, progress: progress),
                         ),
                       ),
                     ),
@@ -221,7 +225,8 @@ class IqRadarChart extends StatelessWidget {
                       Positioned(
                         left: g.medallionCenter(i).dx - g.medallion / 2,
                         top: g.medallionCenter(i).dy - g.medallion / 2,
-                        child: IqAreaMedallion(scores[i].area, size: g.medallion),
+                        child:
+                            IqAreaMedallion(scores[i].area, size: g.medallion),
                       ),
                   ],
                 ),
@@ -247,7 +252,8 @@ class IqLevelMeter extends StatelessWidget {
   Widget build(BuildContext context) {
     final reduced = LumoMotion.reduced(context);
     return TweenAnimationBuilder<double>(
-      tween: Tween<double>(begin: reduced ? level.toDouble() : 0, end: level.toDouble()),
+      tween: Tween<double>(
+          begin: reduced ? level.toDouble() : 0, end: level.toDouble()),
       duration: reduced ? Duration.zero : const Duration(milliseconds: 900),
       curve: Curves.easeOutCubic,
       builder: (context, value, _) => Row(
@@ -330,6 +336,7 @@ class IqResultView extends StatefulWidget {
     this.reward = IqReward.none,
     this.alreadyRewardedToday = false,
     this.saveFailed = false,
+    this.onRetry,
   });
 
   final IqTestResult result;
@@ -339,6 +346,7 @@ class IqResultView extends StatefulWidget {
   final IqReward reward;
   final bool alreadyRewardedToday;
   final bool saveFailed;
+  final VoidCallback? onRetry;
   final VoidCallback onReview;
   final VoidCallback onDone;
 
@@ -420,7 +428,8 @@ class _IqResultViewState extends State<IqResultView> {
                       child: Text(
                         'Dein Denk-Profil',
                         textAlign: TextAlign.center,
-                        style: iqText(24, weight: FontWeight.w900, shadows: iqScrim),
+                        style: iqText(24,
+                            weight: FontWeight.w900, shadows: iqScrim),
                       ),
                     ),
                   ),
@@ -534,7 +543,8 @@ class _IqResultViewState extends State<IqResultView> {
                                   height: 1,
                                   shadows: [
                                     Shadow(
-                                      color: LumoVisualTokens.gold.withValues(alpha: .6),
+                                      color: LumoVisualTokens.gold
+                                          .withValues(alpha: .6),
                                       blurRadius: 18,
                                     ),
                                   ],
@@ -547,7 +557,9 @@ class _IqResultViewState extends State<IqResultView> {
                     ),
                     Text(
                       'Denkpunkte',
-                      style: iqText(15, weight: FontWeight.w900, color: LumoVisualTokens.gold),
+                      style: iqText(15,
+                          weight: FontWeight.w900,
+                          color: LumoVisualTokens.gold),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -570,7 +582,9 @@ class _IqResultViewState extends State<IqResultView> {
                             : diff == 0
                                 ? Icons.trending_flat_rounded
                                 : Icons.history_rounded,
-                        color: diff >= 0 ? const Color(0xFF5BE39A) : LumoVisualTokens.cyan,
+                        color: diff >= 0
+                            ? const Color(0xFF5BE39A)
+                            : LumoVisualTokens.cyan,
                         dense: true,
                       ),
                     ],
@@ -644,7 +658,8 @@ class _IqResultViewState extends State<IqResultView> {
         padding: const EdgeInsets.fromLTRB(10, 14, 10, 12),
         child: Column(
           children: [
-            Text('Deine sechs Stärken', style: iqText(17, weight: FontWeight.w900)),
+            Text('Deine sechs Stärken',
+                style: iqText(17, weight: FontWeight.w900)),
             const SizedBox(height: 2),
             Text(
               'Je weiter außen, desto höher die Stufe (1 bis 8).',
@@ -723,8 +738,11 @@ class _IqResultViewState extends State<IqResultView> {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  balanced ? 'Du bist überall ähnlich stark' : practice.area.title,
-                  style: iqText(14.5, weight: FontWeight.w900, color: style.color),
+                  balanced
+                      ? 'Du bist überall ähnlich stark'
+                      : practice.area.title,
+                  style:
+                      iqText(14.5, weight: FontWeight.w900, color: style.color),
                 ),
                 const SizedBox(height: 4),
                 Text(
@@ -746,11 +764,22 @@ class _IqResultViewState extends State<IqResultView> {
     final reward = widget.reward;
     final Widget content;
     if (widget.saveFailed) {
-      content = _message(
-        Icons.info_rounded,
-        'Dein Ergebnis konnte nicht gespeichert werden. '
-        'Du kannst den Test später noch einmal machen.',
-      );
+      content = Column(mainAxisSize: MainAxisSize.min, children: [
+        _message(
+          Icons.info_rounded,
+          'Ein Teil deines Ergebnisses konnte nicht gespeichert werden. '
+          'Deine Antworten bleiben hier erhalten.',
+        ),
+        if (widget.onRetry != null) ...[
+          const SizedBox(height: 12),
+          IqPrimaryButton(
+              key: const ValueKey('iq-save-retry'),
+              label: 'Speichern erneut versuchen',
+              onPressed: widget.onRetry,
+              icon: Icons.save_outlined,
+              fontSize: 15),
+        ]
+      ]);
     } else if (widget.alreadyRewardedToday) {
       content = _message(
         Icons.check_circle_rounded,
@@ -761,7 +790,7 @@ class _IqResultViewState extends State<IqResultView> {
       content = _message(
         Icons.favorite_rounded,
         'Diesmal gibt es keine Sterne. Probier es morgen noch einmal – '
-        'jedes Rätsel macht dich schlauer!',
+        'im Rückblick kannst du die Regeln in Ruhe üben.',
       );
     } else {
       content = Wrap(
@@ -771,7 +800,8 @@ class _IqResultViewState extends State<IqResultView> {
           if (reward.stars > 0)
             IqChip(
               key: const ValueKey('iq-reward-stars'),
-              label: '+${reward.stars} ${reward.stars == 1 ? 'Stern' : 'Sterne'}',
+              label:
+                  '+${reward.stars} ${reward.stars == 1 ? 'Stern' : 'Sterne'}',
               icon: Icons.star_rounded,
               color: LumoVisualTokens.gold,
             ),
@@ -809,7 +839,9 @@ class _IqResultViewState extends State<IqResultView> {
             child: Text(
               text,
               style: iqText(13.5,
-                  weight: FontWeight.w700, color: LumoVisualTokens.muted, height: 1.4),
+                  weight: FontWeight.w700,
+                  color: LumoVisualTokens.muted,
+                  height: 1.4),
             ),
           ),
         ],
@@ -830,7 +862,8 @@ class _AreaRow extends StatelessWidget {
         : 'Stufe ${score.bestLevel} von ${IqTestResult.maxLevel}';
     return Semantics(
       container: true,
-      label: '${score.area.title}: $level, ${score.solved} von ${score.total} gelöst'
+      label:
+          '${score.area.title}: $level, ${score.solved} von ${score.total} gelöst'
           '${delta == null ? '' : ', ${iqTrendLabel(delta!)}'}',
       excludeSemantics: true,
       child: Row(
@@ -866,7 +899,8 @@ class _AreaRow extends StatelessWidget {
           ),
           if (delta != null) ...[
             const SizedBox(width: 10),
-            IqTrend(key: ValueKey('iq-trend-${score.area.name}'), delta: delta!),
+            IqTrend(
+                key: ValueKey('iq-trend-${score.area.name}'), delta: delta!),
           ],
         ],
       ),

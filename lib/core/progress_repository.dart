@@ -24,10 +24,13 @@ class ProgressRepository {
   Future<void> _tutorTail = Future<void>.value();
 
   // Keep a confirmed deletion durable across a failed write or process exit.
-  // Only these three tutor fields are affected; real school answers remain.
+  // Clear tutor evidence and resumable lesson views; real school answers remain.
   Future<void> _finishTutorReset() async {
     if (await _namespace.read(_tutorResetKey) != '1') return;
     await _namespace.write('lumo_learning_scene_pending_v1', 'null');
+    await _namespace.write('lumo_photo_lesson_session_v1', 'null');
+    await _namespace.write('lumo_learning_lab_session_v1',
+        jsonEncode({'version': 1, 'sessions': <String, Object?>{}}));
     await _namespace.write(_journeyKey, jsonEncode(LearningJourney().toJson()));
     await _namespace.write(
         'lumo_learning_scenes_v1', jsonEncode(SceneMemory().toJson()));
@@ -239,6 +242,9 @@ class ProgressRepository {
     await saveJourney(LearningJourney());
     await saveSceneMemory(SceneMemory());
     await clearPendingSceneReceipt();
+    await _namespace.write('lumo_photo_lesson_session_v1', 'null');
+    await _namespace.write('lumo_learning_lab_session_v1',
+        jsonEncode({'version': 1, 'sessions': <String, Object?>{}}));
   }
 }
 

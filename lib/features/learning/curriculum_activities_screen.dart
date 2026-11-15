@@ -353,9 +353,13 @@ class _ActivityCard extends StatelessWidget {
   ({String subject, String unit})? get _linkedPractice {
     final (subject, terms) = switch (activity.subject) {
       'Verkehrs- und Mobilitätsbildung' => ('Sachunterricht', ['Verkehr']),
-      'Kunst und Gestaltung' => (
+      'Kunst und Gestaltung' when activity.id == 'g1_art_notice' => (
           'Mathematik',
-          ['Symmetrie', 'Geometrie Formen']
+          ['Geometrie Formen']
+        ),
+      'Kunst und Gestaltung' when activity.id == 'g4_art_redesign' => (
+          'Mathematik',
+          ['Symmetrieachsen']
         ),
       'Deutsch' => ('Lesen', ['Lesesinn', 'Reihenfolge']),
       'Englisch' => ('Englisch', ['Alltag', 'Begruessung', 'Hobbys']),

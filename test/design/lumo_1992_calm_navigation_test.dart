@@ -98,9 +98,20 @@ void main() {
     expect(tester.widget<ListTile>(readingEntry).onTap, isNotNull);
     await tester.tap(readingEntry);
     await tester.pump();
+    expect(reading, 0);
+    final activeReading = find.byKey(const ValueKey('learning-active-reading'));
+    await tester.ensureVisible(activeReading);
+    await tester.pumpAndSettle();
+    await tester.tap(activeReading);
+    await tester.pump();
     expect(reading, 1);
+    final allSubjects = find.byKey(const ValueKey('learning-back-to-subjects'));
+    await tester.ensureVisible(allSubjects);
+    await tester.tap(allSubjects);
+    await tester.pumpAndSettle();
     final music = find.byKey(const ValueKey('learning-extra-Musik'));
-    await tester.ensureVisible(music);
+    await tester.scrollUntilVisible(music.hitTestable(), 180,
+        scrollable: find.byType(Scrollable).first, maxScrolls: 30);
     await tester.pumpAndSettle();
     expect(tester.widget<ListTile>(music).onTap, isNotNull);
     await tester.tap(music);

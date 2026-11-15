@@ -17,6 +17,7 @@ import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
 import '../learning_module_progress.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 
 class UhrLernenScreen extends StatefulWidget {
   const UhrLernenScreen({super.key, required this.appState, this.taskRandom});
@@ -253,6 +254,30 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        appState: widget.appState,
+        progress: _progress,
+        moduleId: 'm2_uhr',
+        taskKey: _taskIdx,
+        prompt: 'Wie spät ist es auf der gezeigten Uhr?',
+        objective: 'Du liest die Uhr mit dem kurzen Stundenzeiger und dem langen Minutenzeiger.',
+        answerChoices: _answers,
+        helpSteps: [
+          'Finde zuerst den kurzen Zeiger für die Stunden. Der lange Zeiger zeigt die Minuten.',
+          'Der lange Zeiger steht auf ${_minute == 0 ? 12 : _minute ~/ 5}. Von 12 aus zählt jeder Schritt zur nächsten Zahl fünf Minuten.',
+          switch (_minute) {
+            0 => 'Der lange Zeiger steht auf 12: Es ist eine volle Stunde. Lies jetzt die Zahl am kurzen Zeiger.',
+            15 => 'Eine Viertelstunde ist vergangen. Wir sagen „Viertel nach“ der zuletzt erreichten vollen Stunde.',
+            30 => 'Eine halbe Stunde ist vergangen. „Halb“ nennt die kommende volle Stunde, auf die sich der kurze Zeiger zubewegt.',
+            _ => 'Es fehlen fünfzehn Minuten zur nächsten vollen Stunde. Wir sagen „Viertel vor“ dieser kommenden Stunde.',
+          },
+        ],
+        answering: !_answered,
+        lastAnswer: _selectedAnswer,
+        lastCorrect: _answered ? _selectedAnswer == _correctText : null,
+        child: child,
+      );
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -270,7 +295,8 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
         progressLabel: 'Uhrzeit',
         hasMistake: _answered && _selectedAnswer != _correctText,
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -294,7 +320,7 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
             ]),
             answers: _buildAnswerGrid(),
           ),
-        ),
+        )),
       ),
     );
   }

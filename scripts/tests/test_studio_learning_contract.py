@@ -35,7 +35,7 @@ class StudioLearningHostTest(unittest.TestCase):
             )
             templates = root / "tools/auto_install"
             templates.mkdir(parents=True)
-            for name in ("MainActivity.kt", "lumo_file_paths.xml"):
+            for name in ("MainActivity.kt", "LumoLocalRecognition.kt", "lumo_file_paths.xml"):
                 shutil.copyfile(ROOT / "tools/auto_install" / name, templates / name)
             (root / "tools/lumo-debug.keystore").write_bytes(b"synthetic-test-keystore")
             PREPARE.prepare(root, root / "keystore")
@@ -46,7 +46,9 @@ class StudioLearningHostTest(unittest.TestCase):
             self.assertTrue(descriptor_kinds.issubset(accepted_kinds),
                             f"Android rejects actual Flutter descriptors: {descriptor_kinds - accepted_kinds}")
             self.assertIn('result.error("invalid_learning"', prepared)
-            self.assertIn('options.put("learning", JSONObject(learning))', prepared)
+            self.assertIn('val descriptor = JSONObject(learning)', prepared)
+            self.assertIn('descriptor.put("scope", scope)', prepared)
+            self.assertIn('options.put("learning", descriptor)', prepared)
 
 
 if __name__ == "__main__":

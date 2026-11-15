@@ -1114,17 +1114,7 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
             ),
             if (_arranging) ...[
               const SizedBox(height: 10),
-              LearningTokenWorkbench(
-                tokens: _model.shuffledTokens,
-                selected: _tokenOrder,
-                enabled: widget.enabled,
-                reduceMotion: _quiet,
-                onChanged: (value) => _change(
-                  () => _tokenOrder = value,
-                  'arrangeTokens',
-                  'syllable-workbench',
-                ),
-              ),
+              _tokenWorkbench(_model.shuffledTokens, 'syllable-workbench'),
             ],
           ],
         ],
@@ -1134,6 +1124,28 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
 
   Widget _pattern() {
     final showGroup = _groupVisible || widget.helpLevel > 1;
+    Widget element(int index) => _tile(
+          key: 'pattern-$index',
+          label: 'Platz ${index + 1}: ${_model.tokens[index]}'
+              '${showGroup ? ', Stelle ${index % _model.period + 1} der Gruppe' : ''}',
+          selected: _focus == index,
+          accent: showGroup && index < _model.period ? _gold : _violet,
+          onTap: () => _change(
+            () => _focus = index,
+            'focusPatternElement',
+            'pattern-$index',
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _shapeGlyph(_model.tokens[index]),
+              if (showGroup) ...[
+                const SizedBox(height: 4),
+                Text('${index % _model.period + 1}', style: _bodyStyle),
+              ],
+            ],
+          ),
+        );
     return _surface(
       title: 'Die Musterwerkstatt',
       icon: Icons.category_outlined,
@@ -1145,29 +1157,26 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
             spacing: 8,
             runSpacing: 10,
             children: [
-              for (var i = 0; i < _model.tokens.length; i++)
-                _tile(
-                  key: 'pattern-$i',
-                  label: 'Platz ${i + 1}: ${_model.tokens[i]}'
-                      '${showGroup ? ', Stelle ${i % _model.period + 1} der Gruppe' : ''}',
-                  selected: _focus == i,
-                  accent: showGroup && i < _model.period ? _gold : _violet,
-                  onTap: () => _change(
-                    () => _focus = i,
-                    'focusPatternElement',
-                    'pattern-$i',
+              if (showGroup)
+                Container(
+                  key: const ValueKey('pattern-group'),
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: _ink, width: 2),
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
+                  child: Wrap(
+                    spacing: 8,
+                    runSpacing: 10,
                     children: [
-                      _shapeGlyph(_model.tokens[i]),
-                      if (showGroup) ...[
-                        const SizedBox(height: 4),
-                        Text('${i % _model.period + 1}', style: _bodyStyle),
-                      ],
+                      for (var i = 0; i < _model.period; i++) element(i)
                     ],
                   ),
                 ),
+              for (var i = showGroup ? _model.period : 0;
+                  i < _model.tokens.length;
+                  i++)
+                element(i),
               const SizedBox(
                 width: 52,
                 height: 52,
@@ -1206,14 +1215,31 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
     );
   }
 
-  Widget _tokens() => LearningTokenWorkbench(
-        tokens: _model.tokens,
-        selected: _tokenOrder,
-        enabled: widget.enabled,
-        reduceMotion: _quiet,
-        onChanged: (value) => _change(
-            () => _tokenOrder = value, 'arrangeTokens', 'token-workbench'),
-      );
+  Widget _tokens() => _tokenWorkbench(_model.tokens, 'token-workbench');
+
+  Widget _tokenWorkbench(List<String> tokens, String objectId) {
+    final displayed = List<int>.of(_tokenOrder);
+    return LearningTokenWorkbench(
+      tokens: tokens,
+      selected: displayed,
+      enabled: widget.enabled,
+      reduceMotion: _quiet,
+      onChanged: (value) {
+        final added = value.where((index) => !displayed.contains(index));
+        final removed = displayed.where((index) => !value.contains(index));
+        _change(() {
+          final next =
+              _tokenOrder.where((index) => !removed.contains(index)).toList();
+          for (final index in added) {
+            if (index >= 0 && index < tokens.length && !next.contains(index)) {
+              next.add(index);
+            }
+          }
+          _tokenOrder = next;
+        }, 'arrangeTokens', objectId);
+      },
+    );
+  }
 
   Widget _numberPattern() => _surface(
         title: 'Zahlenschritte entdecken',

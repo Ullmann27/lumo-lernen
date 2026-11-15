@@ -1,0 +1,57 @@
+00:00 +0: loading /workspace/scratch/4fa97167812c/agent-learning/test/learning/nextgen_lab_bus_integration_test.dart
+00:00 +0: lab retires hidden bindings and restores the same model
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: null
+  Actual: <Instance of 'LumoCompanionTaskContext'>
+A paused lab must release its command receiver.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/nextgen_lab_bus_integration_test.dart:30:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/nextgen_lab_bus_integration_test.dart line 30
+The test description was:
+  lab retires hidden bindings and restores the same model
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -1: lab retires hidden bindings and restores the same model [E]
+  Test failed. See exception logs above.
+  The test description was: lab retires hidden bindings and restores the same model
+
+00:01 +0 -1: lab proposal needs confirmation and stop discards its candidate
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: empty
+  Actual: '16'
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/nextgen_lab_bus_integration_test.dart:84:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/nextgen_lab_bus_integration_test.dart line 84
+The test description was:
+  lab proposal needs confirmation and stop discards its candidate
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +0 -2: lab proposal needs confirmation and stop discards its candidate [E]
+  Test failed. See exception logs above.
+  The test description was: lab proposal needs confirmation and stop discards its candidate
+
+00:03 +0 -2: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/4fa97167812c/agent-learning/test/learning/nextgen_lab_bus_integration_test.dart: lab proposal needs confirmation and stop discards its candidate
+  /workspace/scratch/4fa97167812c/agent-learning/test/learning/nextgen_lab_bus_integration_test.dart: lab retires hidden bindings and restores the same model

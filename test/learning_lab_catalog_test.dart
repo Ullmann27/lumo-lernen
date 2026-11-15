@@ -3,18 +3,19 @@ import 'package:lumo_lernen/features/learning/lab/learning_lab_catalog.dart';
 
 void main() {
   test(
-      'five local topic worlds preserve grade gates and four distinct problems',
+      'six local topic worlds preserve grade gates and four distinct problems',
       () {
-    expect(LabCatalog.topics.length, 5);
+    expect(LabCatalog.topics.length, 6);
     expect(
         LabCatalog.forGrade(1).any((t) => t.mode == LabMode.fraction), isFalse);
-    expect(LabCatalog.forGrade(4).length, 5);
+    expect(LabCatalog.forGrade(4).length, 6);
     for (final topic in LabCatalog.topics) {
       final problems = topic.problems;
       expect(problems.length, greaterThanOrEqualTo(4));
       expect(problems.map((p) => p.id).toSet().length, problems.length);
       expect(problems.map((p) => p.expected).toSet().length, greaterThan(1));
       for (final p in problems) {
+        expect(p.isValid, isTrue, reason: p.id);
         expect(p.accepts(p.expected), isTrue);
         expect(p.accepts(''), isFalse);
         expect(p.hints.length, 5);
@@ -56,7 +57,8 @@ void main() {
   test('token solution uses stable indices and distractors cannot solve it',
       () {
     for (final topic in LabCatalog.topics
-        .where((t) => t.mode != LabMode.bridge && t.mode != LabMode.fraction)) {
+        .where((t) => const [LabMode.word, LabMode.english, LabMode.nature]
+            .contains(t.mode))) {
       for (final p in topic.problems) {
         expect(p.tokenOrder.toSet().length, p.tokenOrder.length);
         expect(
@@ -65,6 +67,22 @@ void main() {
         expect(p.modelAccepts(p.tokenOrder), isTrue);
         expect(p.modelAccepts(p.tokenOrder.reversed.toList()), isFalse);
       }
+    }
+  });
+
+  test('pattern choices continue the visible repetition exactly once', () {
+    final topic = LabCatalog.topics.singleWhere((t) => t.mode == LabMode.pattern);
+    for (final problem in topic.problems) {
+      expect(problem.isValid, isTrue);
+      final expected = problem.pattern[problem.pattern.length % problem.repeatLength];
+      expect(problem.expected, expected);
+      final accepted = [
+        for (var i = 0; i < problem.tokens.length; i++)
+          if (problem.modelAccepts([i])) problem.tokens[i],
+      ];
+      expect(accepted, [expected]);
+      expect(problem.modelAccepts([]), isFalse);
+      expect(problem.modelAccepts([0, 1]), isFalse);
     }
   });
 

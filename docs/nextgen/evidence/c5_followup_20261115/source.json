@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "producerCommit": "e357b2a883d0982863126bf83508111df04bf47c",
+  "producerBase": "dd0eb439bf278a476b3669deb5b0316b19b66e1f",
+  "scope": "Selective finalized PhotoLesson and thinking-assessment paths, plus visual-truth followups. Story, game coach and unfinished MiniGames excluded from this checkpoint.",
+  "files": [
+    {
+      "path": "lib/core/cognitive_profile_generator.dart",
+      "sha256": "1a2d52215e64e029d0db057e3548424741ca30b46aee3440a68ed5d01c92a991"
+    },
+    {
+      "path": "lib/core/cognitive_profile_repository.dart",
+      "sha256": "d73c46b1bc6e61df56a6ebbf8db465955b9b2c1a4e8b45cfcd642124039ca2f5"
+    },
+    {
+      "path": "lib/core/cognitive_profile_scorer.dart",
+      "sha256": "cef38dc5dc5bd1939dbf6fe543fc346f5bec785e813f8137440cfd063e740793"
+    },
+    {
+      "path": "lib/core/iq/exam_session_owner.dart",
+      "sha256": "81483ccae3244e428a3d9037d679ae5e4b0e3a662e6c111ef129defe21dfa7ab"
+    },
+    {
+      "path": "lib/core/iq/iq_puzzle_generator.dart",
+      "sha256": "766963d31f9eb6b1cd73bc7191790fc4f65f7a6d64d9a240da64f3f1e4859974"
+    },
+    {
+      "path": "lib/core/iq/iq_puzzle_quality.dart",
+      "sha256": "4bad72709437722202e20ec54c14ef9694a977a72f6193d06afd5caa0ca471d9"
+    },
+    {
+      "path": "lib/core/iq/iq_test_repository.dart",
+      "sha256": "125a77d422cfc218fe2caff07be9099a2aa506e0d351a45ab28a32fcd9379961"
+    },
+    {
+      "path": "lib/core/iq/iq_test_session.dart",
+      "sha256": "3460e8f169e68ae6b0e3ba2b84345e455b504d488902c411eae792cf6f244bb0"
+    },
+    {
+      "path": "lib/core/iq/test_history_queue.dart",
+      "sha256": "5143e5dafda72c813171fb539dbc43c9874c5cf8c302d331973d2c6e3570970a"
+    },
+    {
+      "path": "lib/features/learning/curriculum_activities_screen.dart",
+      "sha256": "ec417bab98d6fda60ae686622b66ad3191aa8298df17f9fa7da88bbb43ddb2bd"
+    },
+    {
+      "path": "lib/features/learning/renderers/adaptive_task_renderer.dart",
+      "sha256": "30ca1b54887a10a015af77943136a872142ccd1f9927b1efbf996fbf4fbaab8f"
+    },
+    {
+      "path": "lib/features/learning/widgets/interactive_task_workspace.dart",
+      "sha256": "32fd1deb7b15c46757d3824894c38e5c37528c31cfb6154fb50acb286a0d56ac"
+    },
+    {
+      "path": "lib/features/photo_lesson/lumo_photo_lesson_screen.dart",
+      "sha256": "25d28c744d2a06fef828ba2ee92d94c8f8f126ac59ce9ae6e44319eafaa1aff7"
+    },
+    {
+      "path": "lib/features/photo_lesson/photo_lesson_practice.dart",
+      "sha256": "74e0ff5c44c2cb429133af3dc3c173bbf80438ff492fab87567d44506494d67a"
+    },
+    {
+      "path": "lib/features/photo_lesson/photo_lesson_practice_screen.dart",
+      "sha256": "5b32fcec677c27fec442a7803b73d2a9b0bbbf3d32fcb6e46774fbb904cbcfc4"
+    },
+    {
+      "path": "lib/features/photo_lesson/photo_lesson_session.dart",
+      "sha256": "672438f8e0e67cd0d7af72df5f696534fa38472e8d3920baa56582dc3b73ad3c"
+    },
+    {
+      "path": "lib/features/tests/cognitive_profile_screen.dart",
+      "sha256": "d80a8c2cd747ced1758cc2a91a5832c95b0359d65df2ee9e21c13e508d166635"
+    },
+    {
+      "path": "lib/features/tests/cognitive_profile_visual_prompt.dart",
+      "sha256": "9efc5500ddc7cf2a80ff136632b568279cde3c4088f4f984b64b4c1f65c18381"
+    },
+    {
+      "path": "lib/features/tests/iq/exam_companion_scope.dart",
+      "sha256": "47e72282d52dbad41f922c43ed64d79781565364c5805934e37a6fcde300291c"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_figure_painter.dart",
+      "sha256": "bebea35425045de03bb67bd56038f65dc27ef3e8d5aee4886f19b66f3c6cd6c7"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_memory.dart",
+      "sha256": "56254f68c373f5cb7a579b3946609fa23ddb4898513454ab7289a55e4337eaa6"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_result_view.dart",
+      "sha256": "5705a7df0629eac62bc3994b6a91bf094fe9cec334eec0011ffc1ca7ea8a896b"
+    },
+    {
+      "path": "lib/features/tests/iq_test_screen.dart",
+      "sha256": "86fc24e7dd1a4d1270e66dc18d63c477f25cf4eea960329c9c303501a265157e"
+    },
+    {
+      "path": "test/iq/nextgen_thinking_flow_test.dart",
+      "sha256": "5e763a3127d9d3d5f5b0a573d56d54be2205543e2a34502f743cd625405732f0"
+    },
+    {
+      "path": "test/iq/nextgen_thinking_quality_test.dart",
+      "sha256": "5f3b21155bf24b8758a8b4d9987292e8136fdd37058e20e8587b71202becc7d3"
+    },
+    {
+      "path": "test/learning/fallback_prompt_integrity_test.dart",
+      "sha256": "f8b6165f72923ca8506faa1265b40297b576732f430561ce5115e8878ffa1181"
+    },
+    {
+      "path": "test/learning/interactive_task_workspace_test.dart",
+      "sha256": "a5338f6c5673661835f4216e06e87cff70cc344f491ead637e32ab38d042f692"
+    },
+    {
+      "path": "test/learning/module_frame_practical_links_test.dart",
+      "sha256": "e511febd6207b1271ee5c2e50d56c674bee5fe50b7da464de7ca755563525ee2"
+    },
+    {
+      "path": "test/photo_lesson_learning_flow_test.dart",
+      "sha256": "42030e2da3262b89db550b6b272644667f66141762480d7abddf0f1544e19b10"
+    },
+    {
+      "path": "test/photo_lesson_session_test.dart",
+      "sha256": "61dbb7e3bfd6984def428f07d2a5deb3d1d506e4208557e7fdc74207aaf9916b"
+    },
+    {
+      "path": "test/photo_lesson_subject_flow_test.dart",
+      "sha256": "b366ab7cba1d4e9c11f037c8e34a0d04abec3724722b5eba9330db9d943f1252"
+    }
+  ],
+  "resolvedDifference": "Existing root renderer brace-formatting change is also present in the producer followup; no behavior was overwritten.",
+  "testEvidence": "Producer logs retained with exact source commit; integration rerun follows.",
+  "logFormatting": {
+    "photo_complete_tests.log": {
+      "producerSha256": "8ad7d7149823e5cc9b9911c75218910363d624fce4ac8aecc8dab378e8b50fa0",
+      "formatting": "Trailing whitespace normalized; output and results otherwise unchanged."
+    },
+    "thinking_complete_tests.log": {
+      "producerSha256": "6118115174833b4ee0fbfd099eb488c5a845e6e6b0a29e2898ff73c5c077dab6",
+      "formatting": "Trailing whitespace normalized; output and results otherwise unchanged."
+    },
+    "thinking_analysis.log": {
+      "producerSha256": "c51ebb77847cee6076b13a37d48acfcdc126a89d72ae0f7bfa24bc371d349f43",
+      "formatting": "Trailing whitespace normalized; output and results otherwise unchanged."
+    },
+    "photo_analysis.log": {
+      "producerSha256": "cb4d9942df3e0bad2f0016fe8607f5bc47e2f25ef891dd146051058d81b59521",
+      "formatting": "Trailing whitespace normalized; output and results otherwise unchanged."
+    }
+  }
+}

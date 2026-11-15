@@ -58,6 +58,8 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
   static const _other = <_Subject>[
     _Subject('Lesen', 'Texte verstehen', Icons.auto_stories_rounded,
         Color(0xFF86E8A1)),
+    _Subject('Rechtschreibung', 'Wörter sicher schreiben',
+        Icons.spellcheck_rounded, Color(0xFFF4B4DA)),
     _Subject(
         'Schreiben', 'Wörter gestalten', Icons.edit_rounded, Color(0xFFFF91BB)),
     _Subject('Logik', 'Rätsel lösen', Icons.psychology_alt_rounded,
@@ -122,9 +124,7 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
   }
 
   void _choose(_Subject subject) {
-    if (subject.name == 'Lesen') {
-      widget.onReading();
-    } else if (subject.name == 'Musik' ||
+    if (subject.name == 'Musik' ||
         subject.name == 'Kunst und Gestaltung' ||
         subject.name == 'Technik und Design' ||
         subject.name == 'Bewegung und Sport' ||
@@ -309,7 +309,7 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                       fontWeight: FontWeight.w900,
                       color: Colors.white)),
               subtitle: const Text(
-                  'Lesen, Schreiben, Logik, Musik, Kunst, Technik, Sport und Verkehr',
+                  'Lesen, Rechtschreibung, Schreiben, Logik und kreative Fächer',
                   style: TextStyle(color: Color(0xFFD4EAF5))),
               leading: const Icon(Icons.widgets_rounded,
                   color: LumoVisualTokens.cyanBright),
@@ -345,6 +345,17 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                 minimumSize: const Size.fromHeight(52)),
           ),
           const SizedBox(height: 14),
+          if (subject.name == 'Lesen') ...[
+            FilledButton.icon(
+              key: const ValueKey('learning-active-reading'),
+              onPressed: widget.onReading,
+              icon: const Icon(Icons.record_voice_over_rounded),
+              label: const Text('Mit Lumo laut lesen'),
+              style: FilledButton.styleFrom(
+                  minimumSize: const Size.fromHeight(52)),
+            ),
+            const SizedBox(height: 14),
+          ],
           Text('Themen · ${subject.name}',
               style: const TextStyle(
                   color: Colors.white,

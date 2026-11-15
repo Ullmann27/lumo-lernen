@@ -185,33 +185,52 @@ class ClockFaceVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
-    final hour = _readInt(data['hour']) ?? _hourFromPrompt(task.prompt);
-    final minute = _readInt(data['minute']) ?? _minuteFromPrompt(task.prompt);
+    final explicit = data.containsKey('hour') || data.containsKey('minute');
+    final time = RegExp(r'(?<![\d:])(\d{1,2}):([0-5]\d)(?!\d)')
+        .firstMatch(task.prompt);
+    final hour = explicit
+        ? _exactNonNegativeInt(data['hour'])
+        : int.tryParse(time?.group(1) ?? '');
+    final minute = explicit
+        ? _exactNonNegativeInt(data['minute'])
+        : int.tryParse(time?.group(2) ?? '');
+    if (hour == null || hour > 23 || minute == null || minute > 59) {
+      return Container(
+        padding: const EdgeInsets.all(20),
+        decoration: _stageDecoration(LumoColors.blue),
+        child: const Text('Schau auf die Zeitangaben in der Aufgabe.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
+      );
+    }
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: _stageDecoration(LumoColors.blue),
       child: Center(
-        child: SizedBox(
-          width: 180,
-          height: 180,
-          child:
-              CustomPaint(painter: _ClockPainter(hour: hour, minute: minute)),
+        child: Semantics(
+          key: const ValueKey('learning-clock-known'),
+          label: 'Uhr: Stunde $hour, Minute $minute',
+          image: true,
+          child: SizedBox(
+            width: 180,
+            height: 180,
+            child: CustomPaint(painter: _ClockPainter(hour: hour, minute: minute)),
+          ),
         ),
       ),
     );
   }
 
-  int _hourFromPrompt(String p) {
-    final m = RegExp(r'(\d{1,2}):(\d{2})').firstMatch(p);
-    if (m != null) return int.tryParse(m.group(1)!) ?? 12;
-    return 12;
-  }
+}
 
-  int _minuteFromPrompt(String p) {
-    final m = RegExp(r'(\d{1,2}):(\d{2})').firstMatch(p);
-    if (m != null) return int.tryParse(m.group(2)!) ?? 0;
-    return 0;
+int? _exactNonNegativeInt(Object? value) {
+  if (value is int) return value >= 0 ? value : null;
+  if (value is double && value.isFinite &&
+      value >= 0 && value == value.truncateToDouble()) {
+    return value.toInt();
   }
+  final text = value?.toString() ?? '';
+  return RegExp(r'^\d+$').hasMatch(text) ? int.tryParse(text) : null;
 }
 
 class _ClockPainter extends CustomPainter {
@@ -225,81 +244,42 @@ class _ClockPainter extends CustomPainter {
     final radius = math.min(size.width, size.height) / 2 - 4;
 
     // Schatten
-    canvas.drawCircle(center.translate(0, 6), radius,
-        Paint()..color = Colors.black.withOpacity(0.12));
+    canvas.drawCircle(center.translate(0, 6), radius, Paint()..color = Colors.black.withOpacity(0.12));
     // Zifferblatt
     canvas.drawCircle(center, radius, Paint()..color = Colors.white);
-    canvas.drawCircle(
-        center,
-        radius,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 4
-          ..color = const Color(0xFF60A5FA));
+    canvas.drawCircle(center, radius,
+        Paint()..style = PaintingStyle.stroke..strokeWidth = 4..color = const Color(0xFF60A5FA));
 
     // 12 Stundenmarken + Zahlen
     for (var i = 1; i <= 12; i++) {
       final angle = (i / 12) * 2 * math.pi - math.pi / 2;
-      final outer = center +
-          Offset(
-              math.cos(angle) * (radius - 6), math.sin(angle) * (radius - 6));
-      final inner = center +
-          Offset(
-              math.cos(angle) * (radius - 14), math.sin(angle) * (radius - 14));
-      canvas.drawLine(
-          outer,
-          inner,
-          Paint()
-            ..strokeWidth = 2.4
-            ..color = const Color(0xFF1E40AF)
-            ..strokeCap = StrokeCap.round);
+      final outer = center + Offset(math.cos(angle) * (radius - 6), math.sin(angle) * (radius - 6));
+      final inner = center + Offset(math.cos(angle) * (radius - 14), math.sin(angle) * (radius - 14));
+      canvas.drawLine(outer, inner,
+          Paint()..strokeWidth = 2.4..color = const Color(0xFF1E40AF)..strokeCap = StrokeCap.round);
       final tp = TextPainter(
-        text: TextSpan(
-            text: '$i',
-            style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 14,
-                fontWeight: FontWeight.w900,
-                color: Color(0xFF1E40AF))),
+        text: TextSpan(text: '$i', style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Color(0xFF1E40AF))),
         textDirection: TextDirection.ltr,
       )..layout();
-      final textPos = center +
-          Offset(
-              math.cos(angle) * (radius - 28), math.sin(angle) * (radius - 28));
+      final textPos = center + Offset(math.cos(angle) * (radius - 28), math.sin(angle) * (radius - 28));
       tp.paint(canvas, textPos.translate(-tp.width / 2, -tp.height / 2));
     }
 
     // Stundenzeiger
-    final hourAngle =
-        ((hour % 12) + minute / 60) / 12 * 2 * math.pi - math.pi / 2;
-    canvas.drawLine(
-        center,
-        center +
-            Offset(math.cos(hourAngle) * radius * 0.55,
-                math.sin(hourAngle) * radius * 0.55),
-        Paint()
-          ..strokeWidth = 6
-          ..strokeCap = StrokeCap.round
-          ..color = const Color(0xFF1E40AF));
+    final hourAngle = ((hour % 12) + minute / 60) / 12 * 2 * math.pi - math.pi / 2;
+    canvas.drawLine(center, center + Offset(math.cos(hourAngle) * radius * 0.55, math.sin(hourAngle) * radius * 0.55),
+        Paint()..strokeWidth = 6..strokeCap = StrokeCap.round..color = const Color(0xFF1E40AF));
     // Minutenzeiger
     final minuteAngle = (minute / 60) * 2 * math.pi - math.pi / 2;
-    canvas.drawLine(
-        center,
-        center +
-            Offset(math.cos(minuteAngle) * radius * 0.80,
-                math.sin(minuteAngle) * radius * 0.80),
-        Paint()
-          ..strokeWidth = 4
-          ..strokeCap = StrokeCap.round
-          ..color = const Color(0xFFFF7A2F));
+    canvas.drawLine(center, center + Offset(math.cos(minuteAngle) * radius * 0.80, math.sin(minuteAngle) * radius * 0.80),
+        Paint()..strokeWidth = 4..strokeCap = StrokeCap.round..color = const Color(0xFFFF7A2F));
     // Mittelpunkt
     canvas.drawCircle(center, 6, Paint()..color = const Color(0xFFFF7A2F));
     canvas.drawCircle(center, 3, Paint()..color = Colors.white);
   }
 
   @override
-  bool shouldRepaint(_ClockPainter old) =>
-      old.hour != hour || old.minute != minute;
+  bool shouldRepaint(_ClockPainter old) => old.hour != hour || old.minute != minute;
 }
 
 /// Geld-Visual: Münzen und Scheine als Layout
@@ -310,48 +290,57 @@ class MoneyCoinsVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
-    final amountCents = _readInt(data['cents']) ??
-        _readInt(data['amount']) ??
-        _amountFromPrompt(task.prompt);
-    final coins = _splitInCoins(amountCents);
+    final explicit = data.containsKey('cents') || data.containsKey('amount');
+    final amountCents = explicit
+        ? _exactNonNegativeInt(data['cents'] ?? data['amount'])
+        : _amountFromPrompt(task.prompt);
+    if (amountCents == null || amountCents > 100000000) {
+      return Container(
+        padding: const EdgeInsets.all(16),
+        decoration: _stageDecoration(LumoColors.gold),
+        child: const Text('Achte auf die Beträge und die Einheit: Euro oder Cent.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
+      );
+    }
+    final pieces = _splitMoney(amountCents);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: _stageDecoration(LumoColors.gold),
       child: Column(
         children: [
-          const Text(
-            '💰',
-            style: TextStyle(fontSize: 32),
-          ),
+          const Text('Geldbetrag',
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900)),
           const SizedBox(height: 8),
           Wrap(
             alignment: WrapAlignment.center,
             spacing: 8,
             runSpacing: 8,
-            children: coins.map((c) => _Coin(value: c)).toList(growable: false),
+            children: [
+              for (var index = 0; index < pieces.length; index++)
+                _MoneyPiece(
+                  key: ValueKey('money-piece-$index'),
+                  value: pieces[index].$1,
+                  count: pieces[index].$2,
+                ),
+              if (pieces.isEmpty)
+                const Text('Keine Münzen oder Scheine',
+                    style: TextStyle(fontSize: 15)),
+            ],
           ),
           const SizedBox(height: 10),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                  colors: [Color(0xFFFFE08A), Color(0xFFFFB800)]),
+              gradient: const LinearGradient(colors: [Color(0xFFFFE08A), Color(0xFFFFB800)]),
               borderRadius: BorderRadius.circular(LumoRadius.pill),
               boxShadow: [
-                BoxShadow(
-                    color: LumoColors.gold.withOpacity(0.30),
-                    blurRadius: 8,
-                    offset: const Offset(0, 3)),
+                BoxShadow(color: LumoColors.gold.withOpacity(0.30), blurRadius: 8, offset: const Offset(0, 3)),
               ],
             ),
             child: Text(
               _formatEuro(amountCents),
-              style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w900,
-                  color: Color(0xFF92400E),
-                  height: 1.0),
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: Color(0xFF92400E), height: 1.0),
             ),
           ),
         ],
@@ -359,25 +348,41 @@ class MoneyCoinsVisual extends StatelessWidget {
     );
   }
 
-  int _amountFromPrompt(String p) {
-    final euro = RegExp(r'(\d+)(?:[.,](\d{1,2}))?\s*€').firstMatch(p);
+  int? _amountFromPrompt(String p) {
+    final euro = RegExp(
+        r'(?<![\d.,-])(\d+)(?:[.,](\d{1,2}))?\s*(?:€|Euro\b|EUR\b)',
+        caseSensitive: false).firstMatch(p);
     if (euro != null) {
-      final e = int.tryParse(euro.group(1)!) ?? 0;
-      final c = int.tryParse(euro.group(2) ?? '0') ?? 0;
+      final e = int.tryParse(euro.group(1)!);
+      final c = int.tryParse((euro.group(2) ?? '').padRight(2, '0'));
+      if (e == null || c == null) return null;
       return e * 100 + c;
     }
-    return 100;
+    final cents = RegExp(r'(?<![\d.,-])(\d+)\s*(?:Cent\b|ct\b)',
+        caseSensitive: false).firstMatch(p);
+    return int.tryParse(cents?.group(1) ?? '');
   }
 
-  List<int> _splitInCoins(int cents) {
-    const denominations = <int>[200, 100, 50, 20, 10, 5, 2, 1];
-    final out = <int>[];
+  /// Every piece contributes its full value. Large counts use an explicit
+  /// multiplicity rather than silently dropping the remaining money.
+  List<(int, int)> _splitMoney(int cents) {
+    const denominations = <int>[
+      50000, 20000, 10000, 5000, 2000, 1000, 500,
+      200, 100, 50, 20, 10, 5, 2, 1,
+    ];
+    final out = <(int, int)>[];
     var remaining = cents;
     for (final d in denominations) {
-      while (remaining >= d && out.length < 12) {
-        out.add(d);
-        remaining -= d;
+      final count = remaining ~/ d;
+      if (count == 0) continue;
+      if (count > 4) {
+        out.add((d, count));
+      } else {
+        for (var i = 0; i < count; i++) {
+          out.add((d, 1));
+        }
       }
+      remaining %= d;
     }
     return out;
   }
@@ -390,41 +395,46 @@ class MoneyCoinsVisual extends StatelessWidget {
   }
 }
 
-class _Coin extends StatelessWidget {
-  const _Coin({required this.value});
-  final int value;
+class _MoneyPiece extends StatelessWidget {
+  const _MoneyPiece({super.key, required this.value, required this.count});
+  final int value, count;
 
   @override
   Widget build(BuildContext context) {
     final isEuro = value >= 100;
-    final label = isEuro ? '${value ~/ 100}€' : '${value}c';
+    final isNote = value >= 500;
+    final denomination = isEuro ? '${value ~/ 100}€' : '${value}c';
+    final label = count == 1 ? denomination : '$count × $denomination';
     final color = isEuro ? const Color(0xFFFFB800) : const Color(0xFFC0C0C0);
-    return Container(
-      width: 44,
-      height: 44,
+    return Semantics(
+      label: '$count ${isNote ? 'Geldscheine' : 'Münzen'} zu '
+          '${isEuro ? value ~/ 100 : value} ${isEuro ? 'Euro' : 'Cent'}',
+      excludeSemantics: true,
+      child: Container(
+      width: count > 1 ? 150 : isNote ? 86 : 48,
+      height: isNote ? 54 : 48,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         gradient: RadialGradient(
           colors: [Colors.white, color],
           radius: 0.85,
         ),
-        shape: BoxShape.circle,
+        shape: isNote || count > 1 ? BoxShape.rectangle : BoxShape.circle,
+        borderRadius: isNote || count > 1 ? BorderRadius.circular(9) : null,
         border: Border.all(color: color.withOpacity(0.55), width: 2),
         boxShadow: [
-          BoxShadow(
-              color: color.withOpacity(0.40),
-              blurRadius: 6,
-              offset: const Offset(0, 2)),
+          BoxShadow(color: color.withOpacity(0.40), blurRadius: 6, offset: const Offset(0, 2)),
         ],
       ),
       child: Text(
         label,
         style: TextStyle(
           fontFamily: 'Nunito',
-          fontSize: 12,
+          fontSize: 14,
           fontWeight: FontWeight.w900,
           color: isEuro ? const Color(0xFF78350F) : const Color(0xFF374151),
         ),
+      ),
       ),
     );
   }

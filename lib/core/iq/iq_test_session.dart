@@ -13,6 +13,10 @@ class IqTestSession {
     this.itemsPerArea = 4,
   })  : grade = grade.clamp(1, 4),
         seed = seed ?? DateTime.now().microsecondsSinceEpoch & 0x7fffffff {
+    if (itemsPerArea < 1 || itemsPerArea > 6) {
+      throw ArgumentError.value(
+          itemsPerArea, 'itemsPerArea', 'Use 1 to 6 items per area');
+    }
     _generator = IqPuzzleGenerator(Random(this.seed));
     for (final area in IqArea.values) {
       _levels[area] = startLevelFor(this.grade);
@@ -40,7 +44,8 @@ class IqTestSession {
   int get index => _index;
   bool get finished => _index >= totalItems;
   IqPuzzle get current => _current;
-  IqArea get area => IqArea.values[(_index ~/ itemsPerArea).clamp(0, IqArea.values.length - 1)];
+  IqArea get area => IqArea
+      .values[(_index ~/ itemsPerArea).clamp(0, IqArea.values.length - 1)];
   int get areaNumber => _index ~/ itemsPerArea + 1;
   int get itemInArea => _index % itemsPerArea + 1;
   bool get atAreaStart => !finished && _index % itemsPerArea == 0;
@@ -52,9 +57,25 @@ class IqTestSession {
       ];
 
   /// Speichert die Antwort, passt die Stufe an und stellt das nächste Rätsel.
-  bool answer(List<int> response, {required int durationMs}) {
+  bool answer(List<int> response,
+      {required int durationMs, String? expectedPuzzleId, int? expectedIndex}) {
     if (finished) throw StateError('Der Test ist schon fertig.');
     final puzzle = _current;
+    if ((expectedPuzzleId != null && expectedPuzzleId != puzzle.id) ||
+        (expectedIndex != null && expectedIndex != _index)) {
+      throw StateError('This answer belongs to an earlier puzzle');
+    }
+    final validInput = switch (puzzle) {
+      IqChoicePuzzle p => response.length == 1 &&
+          response.single >= 0 &&
+          response.single < p.optionCount,
+      IqMemoryPuzzle p => response.length == p.sequence.length &&
+          response.every((cell) => cell >= 0 && cell < p.gridSize * p.gridSize),
+    };
+    if (!validInput) {
+      throw ArgumentError.value(
+          response, 'response', 'Incomplete or invalid input');
+    }
     final correct = puzzle.isCorrect(response);
     _puzzles.add(puzzle);
     _responses.add(List.unmodifiable(response));

@@ -1058,17 +1058,19 @@ class LumoLessonTaskLayout extends StatelessWidget {
     required this.task,
     required this.answers,
     this.spacing = 16,
+    this.landscapeAlignment = CrossAxisAlignment.center,
   });
   final Widget task;
   final Widget answers;
   final double spacing;
+  final CrossAxisAlignment landscapeAlignment;
 
   @override
   Widget build(BuildContext context) {
     if (LumoLessonStyle.shortLandscape(context) &&
         MediaQuery.textScalerOf(context).scale(1) <= 1.35) {
       return Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: landscapeAlignment,
         children: [
           Expanded(child: task),
           const SizedBox(width: 12),

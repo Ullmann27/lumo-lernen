@@ -1054,6 +1054,16 @@ class _DotsVisual extends StatelessWidget {
     final right = _readInt(data['right']) ??
         _readInt(data['takeAway']) ??
         (numbers.length > 1 ? numbers[1] : 0);
+    final answer = _readInt(task.correctAnswer);
+    final expected = operation == 'subtraction' ? left - right : left + right;
+    if (left < 0 ||
+        right < 0 ||
+        left > 20 ||
+        right > 20 ||
+        expected < 0 ||
+        answer != expected) {
+      return const SizedBox.shrink();
+    }
     final emoji = _emojiForPrompt(task.prompt);
 
     if (operation == 'subtraction' && left > 10 && right > 0) {
@@ -1311,9 +1321,21 @@ class _TenOnesVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
-    final tens = (_readInt(data['tens']) ?? 0).clamp(0, 9).toInt();
-    final ones = (_readInt(data['ones']) ?? 0).clamp(0, 9).toInt();
+    final tens = _readInt(data['tens']);
+    final ones = _readInt(data['ones']);
+    if (tens == null || ones == null || tens < 0 || ones < 0 || ones > 9) {
+      return const SizedBox.shrink();
+    }
     final target = tens * 10 + ones;
+    if (tens > 20) {
+      return SchoolbookTaskCard(
+        title: 'Zehner und Einer',
+        subtitle: 'Ein Zehner besteht aus zehn Einern.',
+        ribbonLabel: '$target',
+        child: Text('$tens Zehner und $ones Einer',
+            style: LumoTextStyles.heading2),
+      );
+    }
     return SchoolbookTaskCard(
       title: 'Zehner und Einer',
       subtitle: 'Stangen sind Zehner, Punkte sind Einer.',
@@ -1663,11 +1685,14 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
     final data = task.visualPayload.data;
 
     if (visual == 'number_house') {
-      final target =
-          _readInt(data['target']) ?? _readInt(task.correctAnswer) ?? 10;
-      final left = _readInt(data['left']) ?? 0;
-      final right =
-          _readInt(data['right']) ?? _readInt(task.correctAnswer) ?? 0;
+      final given = RegExp(r'Rechenhaus\s+(\d+):\s*(\d+)\s*\+\s*\?')
+          .firstMatch(task.prompt);
+      final target = int.tryParse(given?[1] ?? '');
+      final left = int.tryParse(given?[2] ?? '');
+      if (target == null || left == null || target < left) {
+        return const SizedBox.shrink();
+      }
+      final right = target - left;
       return SchoolbookTaskCard(
         title: 'Rechenhaus',
         subtitle:
@@ -1699,17 +1724,15 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
     }
 
     if (visual == 'writing_line') {
-      final target = data['target']?.toString() ?? '${task.correctAnswer}';
-      final word = data['word']?.toString() ?? target;
+      final word = _givenWord(task);
+      if (word == null) return const SizedBox.shrink();
       return SchoolbookTaskCard(
-        title: 'Schreib wie im Heft',
-        subtitle: 'Lies genau und schreibe das passende Wort.',
+        title: 'Das gegebene Wort untersuchen',
+        subtitle:
+            'Lies das Wort. Welche Veränderung ist in der Aufgabe gefragt?',
         ribbonLabel: 'Wort',
         accentColor: LumoColors.purple,
-        child: WritingLineBox(
-          placeholder: word,
-          cells: target.length.clamp(3, 10).toInt(),
-        ),
+        child: WordCardRow(words: [word], accentColor: LumoColors.purple),
       );
     }
 
@@ -1741,9 +1764,8 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
     if (task.subject == LearningSubject.deutsch &&
         (unitFromParams.startsWith('Anfangslaut') ||
             unitFromParams.startsWith('Endlaut'))) {
-      final word = task.visualPayload.data['word']?.toString() ??
-          task.parameters['word']?.toString() ??
-          task.correctAnswer.toString();
+      final word = _givenWord(task);
+      if (word == null) return const SizedBox.shrink();
       final highlight = unitFromParams.startsWith('End') ? 'end' : 'start';
       return SchoolbookTaskCard(
         title: highlight == 'end' ? 'Endlaut hören' : 'Anfangslaut hören',
@@ -1780,9 +1802,50 @@ String? _simpleTwoNumberSum(TaskInstance task, List<int> numbers) {
   if (answer == null) return null;
   final a = numbers[0], b = numbers[1];
   if (a < 0 || b < 0 || a > 20 || b > 20) return null;
-  if (answer == a + b && answer <= 20) return 'addition';
-  if (answer == a - b) return 'subtraction';
+  final expression = RegExp(
+          r'^\s*(?:Rechne\s+)?(\d+)\s*([+−-])\s*(\d+)\s*(?:=\s*\?|[.!?])?\s*$')
+      .firstMatch(task.prompt);
+  String? operation;
+  if (expression != null) {
+    operation = expression[2] == '+' ? 'addition' : 'subtraction';
+  } else if (RegExp(
+          r'^\S+ hat \d+ [^.?!]+ und findet \d+ dazu\. Wie viele sind es\?$')
+      .hasMatch(task.prompt.trim())) {
+    operation = 'addition';
+  } else {
+    final data = task.visualPayload.data;
+    if (_readInt(data['left']) == a && _readInt(data['right']) == b) {
+      final declared = data['operation'];
+      if (declared == 'addition' || declared == 'subtraction') {
+        operation = declared as String;
+      }
+    }
+  }
+  if (operation == 'addition' && answer == a + b && answer <= 20) {
+    return operation;
+  }
+  if (operation == 'subtraction' && answer == a - b && answer >= 0) {
+    return operation;
+  }
   return null;
+}
+
+String? _givenWord(TaskInstance task) {
+  final candidate = task.visualPayload.data['word']?.toString() ??
+      task.parameters['word']?.toString();
+  if (candidate != null && candidate.trim().isNotEmpty) {
+    final word = candidate.trim();
+    final occurrence = RegExp(
+      '(^|[^A-Za-zÄÖÜäöüß])${RegExp.escape(word)}(\$|[^A-Za-zÄÖÜäöüß])',
+      caseSensitive: false,
+    );
+    if (occurrence.hasMatch(task.prompt)) return word;
+  }
+  final spoken = RegExp(r'Mit welchem Laut (?:beginnt|endet)\s+(.+?)\?')
+      .firstMatch(task.prompt);
+  if (spoken != null) return spoken[1]!.trim();
+  final plural = RegExp(r'Aus 1 mach 2:\s*(.+?)\s*->').firstMatch(task.prompt);
+  return plural?[1]?.trim();
 }
 
 String _operationFromTask(TaskInstance task) {
@@ -1843,9 +1906,8 @@ List<int> _allInts(String value) {
 }
 
 int? _readInt(Object? value) {
-  if (value == null) return null;
   if (value is int) return value;
-  final match = RegExp(r'-?\d+').firstMatch('$value');
-  if (match == null) return null;
-  return int.tryParse(match.group(0)!);
+  if (value is! String || !RegExp(r'^-?\d+$').hasMatch(value.trim()))
+    return null;
+  return int.tryParse(value.trim());
 }

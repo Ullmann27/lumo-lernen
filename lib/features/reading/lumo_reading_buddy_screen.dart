@@ -25,6 +25,7 @@ import '../../widgets/design/lumo_design_system.dart';
 import '../learning_modules/learning_module_progress.dart';
 import 'reading_comprehension.dart';
 import 'reading_text_library.dart';
+import 'reading_lesson_companion.dart';
 import 'voice_reading_evaluator.dart';
 
 class LumoReadingBuddyScreen extends StatefulWidget {
@@ -49,6 +50,7 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
   int? _answer;
   late int _profileGeneration;
   int _readingEpoch = 0;
+  bool _foreground = true;
 
   @override
   void initState() {
@@ -114,6 +116,7 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
     if (question == null ||
         _answer != null ||
         _learningProgress.hasPending ||
+        widget.appState.resetting ||
         _profileGeneration != widget.appState.profileGeneration ||
         index < 0 ||
         index >= question.answers.length) {
@@ -130,11 +133,13 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
   }
 
   Future<void> _startListening() async {
-    if (_selectedText == null) return;
+    if (_selectedText == null || !_foreground || widget.appState.resetting)
+      return;
     final epoch = ++_readingEpoch;
     if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
         !mounted ||
         epoch != _readingEpoch ||
+        !_foreground ||
         _selectedText == null) {
       return;
     }
@@ -181,12 +186,14 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
   }
 
   Future<void> _stopListening() async {
-    await _speech.stopListening();
+    ++_readingEpoch;
+    await _speech.cancel();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state != AppLifecycleState.resumed) _speech.cancel();
+    _foreground = state == AppLifecycleState.resumed;
+    if (!_foreground) unawaited(_stopListening());
   }
 
   void _resetAndPickText() {
@@ -206,7 +213,11 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
     if (_selectedText == null) {
       return _TextPicker(
         grade: widget.appState.state.grade,
-        onPick: (t) => setState(() => _selectedText = t),
+        onPick: (t) {
+          _learningProgress
+              .beginPresentedTask('reading:${t.id}:comprehension:v1');
+          setState(() => _selectedText = t);
+        },
       );
     }
     return LearningModuleProgressScope(
@@ -225,6 +236,47 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
           onFinish: _finishReading,
           answer: _answer,
           onAnswer: _answerQuestion,
+          decorateTask: (child) {
+            final text = _selectedText!;
+            final question =
+                _finished ? ReadingComprehension.forText(text) : null;
+            return ReadingLessonCompanion(
+              appState: widget.appState,
+              taskId:
+                  'reading:${text.id}:${question == null ? 'passage' : 'comprehension:v1'}',
+              unit: text.title,
+              prompt: question?.question ?? text.lines.join(' '),
+              choices: question?.answers ?? const [],
+              answering: question == null ? !_finished : _answer == null,
+              lastAnswer: question != null && _answer != null
+                  ? question.answers[_answer!]
+                  : null,
+              lastCorrect: question != null && _answer != null
+                  ? _answer == question.correctIndex
+                  : null,
+              beforeInteraction: _stopListening,
+              onHelpUsed: question == null
+                  ? null
+                  : () => _learningProgress.notePresentationHelp(),
+              onAnswerConfirmed: question == null
+                  ? null
+                  : (answer) {
+                      final index = question.answers.indexOf(answer);
+                      if (index >= 0) unawaited(_answerQuestion(index));
+                    },
+              helpSteps: question == null
+                  ? const [
+                      'Lies eine Zeile nach der anderen. Du kannst jederzeit anhalten und ohne Mikrofon weiterlesen.',
+                      'Achte auf die Satzzeichen. Ein Punkt ist eine kurze Pause, danach beginnt ein neuer Gedanke.',
+                    ]
+                  : [
+                      'Lies die Frage genau. Welche Person oder Sache wird gesucht?',
+                      'Suche die passende Stelle im Text. Vergleiche sie mit den drei Antworten.',
+                      'Lies diesen Satz noch einmal: ${question.evidenceLine}',
+                    ],
+              child: child,
+            );
+          },
         ));
   }
 }
@@ -467,6 +519,7 @@ class _ReadingArena extends StatelessWidget {
     required this.onFinish,
     required this.answer,
     required this.onAnswer,
+    required this.decorateTask,
   });
 
   final ReadingText text;
@@ -482,6 +535,7 @@ class _ReadingArena extends StatelessWidget {
   final VoidCallback onFinish;
   final int? answer;
   final ValueChanged<int> onAnswer;
+  final Widget Function(Widget) decorateTask;
 
   @override
   Widget build(BuildContext context) {
@@ -516,14 +570,21 @@ class _ReadingArena extends StatelessWidget {
               else
                 _ReadingHeader(progress: progress, isListening: isListening),
               const SizedBox(height: 14),
-              _TextDisplay(text: text, progress: progress, finished: finished),
-              if (finished && ReadingComprehension.forText(text) != null) ...[
-                const SizedBox(height: 16),
-                _ComprehensionCard(
-                    question: ReadingComprehension.forText(text)!,
-                    answer: answer,
-                    onAnswer: onAnswer),
-              ],
+              decorateTask(Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _TextDisplay(
+                      text: text, progress: progress, finished: finished),
+                  if (finished &&
+                      ReadingComprehension.forText(text) != null) ...[
+                    const SizedBox(height: 16),
+                    _ComprehensionCard(
+                        question: ReadingComprehension.forText(text)!,
+                        answer: answer,
+                        onAnswer: onAnswer),
+                  ],
+                ],
+              )),
               const SizedBox(height: 16),
               if (error != null)
                 Container(

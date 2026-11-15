@@ -8,7 +8,8 @@ import '../../../widgets/design/lumo_answer_crystal.dart';
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
-import '../../../widgets/design/lumo_quantity_art.dart';
+import '../../learning/widgets/lumo_quantity_workbenches.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
@@ -55,6 +56,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
   bool _showHint = false;
   bool _answered = false;
   int? _selectedAnswer;
+  Set<int> _removedBonbons = {};
 
   late int _a;
   late int _b;
@@ -123,6 +125,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     _selectedAnswer = null;
     _showHint = false;
     _wrongAttempts = 0;
+    _removedBonbons = {};
   }
 
   void _speakTask() {
@@ -283,28 +286,50 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
         progressLabel: 'Aufgabe',
         hasMistake: _answered && _selectedAnswer != _correct,
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
-          animation: _entryCtrl,
-          builder: (_, child) {
-            return Opacity(
-                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
-                    ? 1
-                    : _entryCtrl.value,
-                child: child);
-          },
-          child: LumoLessonTaskLayout(
-            task: Column(children: [
-              _buildTaskHeader(),
-              const SizedBox(height: 12),
-              _buildBonbonsVisualization(),
-            ]),
-            answers: Column(children: [
-              _buildAnswerGrid(),
-              if (_showHint) ...[
-                const SizedBox(height: 20),
-                _buildHintCard(),
-              ],
-            ]),
+        companionUnit: _progress.unit,
+        child: ModuleTaskScope(
+          appState: widget.appState,
+          progress: _progress,
+          moduleId: 'm1_minus10',
+          taskKey: _taskIdx,
+          prompt: '$_a − $_b = ?',
+          objective: 'Eine Menge verkleinern und den Rest bestimmen.',
+          answerChoices: _answers.map((answer) => '$answer').toList(),
+          helpSteps: [
+            'Bei Minus nimmst du etwas von der Startmenge weg.',
+            'Tippe $_b Bonbons an. Sie werden durchgestrichen. '
+                'Ein zweites Antippen legt einen Bonbon zurück.',
+            'Prüfe zuerst: Hast du genau $_b weggenommen? '
+                'Zähle dann nur die Bonbons ohne Kreuz.',
+          ],
+          answering: !_answered && !_progress.hasPending,
+          lastAnswer: _selectedAnswer?.toString(),
+          lastCorrect: _answered ? _selectedAnswer == _correct : null,
+          child: AnimatedBuilder(
+            animation: _entryCtrl,
+            builder: (_, child) {
+              return Opacity(
+                  opacity:
+                      LumoLessonStyle.reducedMotion(context, widget.appState)
+                          ? 1
+                          : _entryCtrl.value,
+                  child: child);
+            },
+            child: LumoLessonTaskLayout(
+              landscapeAlignment: CrossAxisAlignment.start,
+              task: Column(children: [
+                _buildTaskHeader(),
+                const SizedBox(height: 12),
+                _buildBonbonsVisualization(),
+              ]),
+              answers: Column(children: [
+                _buildAnswerGrid(),
+                if (_showHint) ...[
+                  const SizedBox(height: 20),
+                  _buildHintCard(),
+                ],
+              ]),
+            ),
           ),
         ),
       ),
@@ -344,50 +369,13 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     );
   }
 
-  // Visualisierung: a Bonbons, davon b durchgestrichen
-  Widget _buildBonbonsVisualization() {
-    return Semantics(
-      label: '$_a Bonbons, davon $_b weggenommen',
-      excludeSemantics: true,
-      child: LumoLessonSurface(
-        padding: const EdgeInsets.all(8),
-        child: Wrap(
-          alignment: WrapAlignment.center,
-          spacing: 6,
-          runSpacing: 6,
-          children: List.generate(_a, (i) {
-            final isRemoved = i < _b;
-            return Container(
-              key: ValueKey('minus-quantity-$i'),
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(
-                color: LumoVisualTokens.navigation.withValues(alpha: .55),
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: isRemoved
-                      ? LumoVisualTokens.muted.withValues(alpha: .3)
-                      : LumoVisualTokens.cyan.withValues(alpha: .65),
-                ),
-              ),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Opacity(
-                    opacity: isRemoved ? .28 : 1,
-                    child: const LumoQuantityArt.candy(),
-                  ),
-                  if (isRemoved)
-                    const Icon(Icons.close_rounded,
-                        color: LumoVisualTokens.gold, size: 24),
-                ],
-              ),
-            );
-          }),
-        ),
-      ),
-    );
-  }
+  Widget _buildBonbonsVisualization() => LumoSubtractionWorkbench(
+        start: _a,
+        takeAway: _b,
+        removed: _removedBonbons,
+        enabled: !_answered && !_progress.hasPending,
+        onChanged: (removed) => setState(() => _removedBonbons = removed),
+      );
 
   Widget _buildAnswerGrid() {
     // The compact lesson grid caps cells at 68–84 dp and flattens the body

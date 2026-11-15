@@ -15,6 +15,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
 class _PluralWort {
@@ -251,6 +252,25 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        appState: widget.appState,
+        progress: _progress,
+        moduleId: 'd2_mehrzahl',
+        taskKey: _taskIdx,
+        prompt: 'Wie heißt die Mehrzahl von „${_korrektWort.singular}“?',
+        objective: 'Du bildest aus einem Nomen die Form für mehrere.',
+        answerChoices: _options,
+        helpSteps: [
+          'Stell dir mehr als ein ${_korrektWort.singular} vor. Gesucht ist die Form für mehrere.',
+          'Probiere jede Antwort hinter „viele“. Achte auf die Endung und darauf, ob sich ein Vokal verändert.',
+          'Sprich beide Formen: ${_korrektWort.singular} – ${_korrektWort.plural}. Vergleiche die Buchstaben und wähle dann selbst.',
+        ],
+        answering: !_answered,
+        lastAnswer: _selectedIdx == null ? null : _options[_selectedIdx!],
+        lastCorrect: _answered ? _selectedIdx == _correctIdx : null,
+        child: child,
+      );
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -265,7 +285,8 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -281,7 +302,7 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
             const SizedBox(height: 12),
             _buildOptions(),
           ]),
-        ),
+        )),
       ),
     );
   }

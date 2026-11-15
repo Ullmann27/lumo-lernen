@@ -18,10 +18,10 @@ class CognitiveProfileVisualPrompt extends StatelessWidget {
     final prompt = question.prompt;
     final isNumberPattern =
         question.domain == CognitiveDomain.patternReasoning &&
-        prompt.startsWith('Welche Zahl folgt?');
+            prompt.startsWith('Welche Zahl folgt?');
     final isShapePattern =
         question.domain == CognitiveDomain.patternReasoning &&
-        prompt.startsWith('Setze das Muster fort:');
+            prompt.startsWith('Setze das Muster fort:');
     final isRotation = question.domain == CognitiveDomain.spatialReasoning &&
         prompt.contains('gedreht');
 
@@ -33,18 +33,25 @@ class CognitiveProfileVisualPrompt extends StatelessWidget {
       final arrow = RegExp(r'[↑→↓←]').firstMatch(prompt)?.group(0);
       final angle = RegExp(r'\d+°').firstMatch(prompt)?.group(0);
       if (arrow == null || angle == null) return const SizedBox.shrink();
+      final left = prompt.contains('nach links');
       return Semantics(
-        label: 'Gezeigter Ausgangspfeil $arrow, Drehung um $angle',
+        label:
+            'Gezeigter Ausgangspfeil $arrow, Drehung um $angle nach ${left ? 'links' : 'rechts'}',
         child: IqTile(
           radius: 22,
           padding: const EdgeInsets.all(14),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 6,
+            runSpacing: 8,
             children: [
               Text(arrow, style: iqText(52, weight: FontWeight.w900)),
               const SizedBox(width: 24),
-              const Icon(Icons.rotate_right_rounded,
-                  size: 36, color: LumoVisualTokens.cyanBright),
+              Icon(
+                  left ? Icons.rotate_left_rounded : Icons.rotate_right_rounded,
+                  size: 36,
+                  color: LumoVisualTokens.cyanBright),
               const SizedBox(width: 6),
               Text(angle, style: iqText(24, weight: FontWeight.w900)),
               const SizedBox(width: 24),
@@ -56,12 +63,8 @@ class CognitiveProfileVisualPrompt extends StatelessWidget {
     }
 
     final part = prompt.substring(
-        isShapePattern
-            ? prompt.indexOf(':') + 1
-            : prompt.indexOf('?') + 1);
-    final pattern = isShapePattern
-        ? RegExp(r'[●▲■◆?]')
-        : RegExp(r'\d+|\?');
+        isShapePattern ? prompt.indexOf(':') + 1 : prompt.indexOf('?') + 1);
+    final pattern = isShapePattern ? RegExp(r'[●▲■◆?]') : RegExp(r'\d+|\?');
     final symbols = pattern.allMatches(part).map((m) => m.group(0)!).toList();
     if (symbols.length < 3 || symbols.last != '?') {
       return const SizedBox.shrink();

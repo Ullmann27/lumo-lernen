@@ -1342,7 +1342,10 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     final landscape = LumoLessonStyle.shortLandscape(context);
     return LayoutBuilder(builder: (context, constraints) {
       final stackActions =
-          largeText || landscape || (_showHint && constraints.maxWidth < 560);
+          largeText ||
+          landscape ||
+          constraints.maxWidth < 400 ||
+          (_showHint && constraints.maxWidth < 560);
       return Column(children: [
         LumoLessonAnswerGrid(
           crossAxisCount: largeText || landscape ? 2 : 4,

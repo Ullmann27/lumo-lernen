@@ -985,6 +985,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                   t.isWriting ||
                   t.id == 'd1_schreibcoach' ||
                   t.id == 'd1_woerter' ||
+                  t.id == 'd2_artikel' ||
                   t.id == 'd4_aufsatz'))
                 ListTile(
                     key: ValueKey('academy-tool-${topic.id}'),

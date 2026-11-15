@@ -77,7 +77,7 @@ void main() {
       ),
     );
     expect(find.byKey(const ValueKey('quantity-bank-0')), findsNothing);
-    expect(find.text('Bis 10 fehlen 2.'), findsOneWidget);
+    expect(find.text('Das Zehnerfeld ist voll: 10.'), findsOneWidget);
     await tester.tap(find.byKey(const ValueKey('quantity-add')));
     await tester.pump();
     expect(changes, isEmpty);
