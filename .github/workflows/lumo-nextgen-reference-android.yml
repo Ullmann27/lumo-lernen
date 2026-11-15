@@ -1,0 +1,133 @@
+name: LUMO immutable APK Android replay and references
+
+on:
+  push:
+    branches: [qa/lumo-nextgen-reference-android-20261115]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-reference-android-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CI: 'true'
+  PYTHONDONTWRITEBYTECODE: '1'
+  LUMO_APK_SOURCE: 72a7914059d10152604b877cfeaf8bd1d2155810
+  LUMO_NATIVE_SOURCE: ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb
+  LUMO_APK_SHA256: 9f3166a4e071f3f0e4217b1aa7e2e100bbf9ee2cfeb41bdbc47d33827e768fc9
+  LUMO_CERTIFICATE: a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
+
+jobs:
+  android-replay:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/qa/lumo-nextgen-reference-android-20261115'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            .github/probes
+            scripts
+            tools/android_qa
+      - name: Download the exact existing source-bound APK without rebuilding
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 .github/probes/lumo_nextgen_reference_android_probe.py download
+          --candidate candidate/x86 --out evidence/origin --qa-commit "$GITHUB_SHA"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools build-tools;36.0.0'
+      - name: Prepare the same Android readers and software renderer
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/emulator
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 ffmpeg tesseract-ocr tesseract-ocr-deu
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Check the evidence readers without an emulator
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/checkers
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen_learning_android_probe.py' -v 2>&1 | tee evidence/checkers/original-gates.log
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen_reference_android_probe.py' -v 2>&1 | tee evidence/checkers/reference-gates.log
+      - name: Start the same real software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > evidence/emulator/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > evidence/emulator/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' evidence/emulator/mesa-renderer.txt
+      - name: Replay all original gates then the two additional visible reference routes
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -no-boot-anim -camera-back none -camera-front none
+          script: bash .github/probes/run_lumo_nextgen_reference_android.sh
+      - name: Require both independently retained Android results
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          original = json.loads(Path('evidence/original-android/learning-android-result.json').read_text())
+          reference = json.loads(Path('evidence/reference-android/reference-android-result.json').read_text())
+          assert original['status'] in ('PASS', 'PASS_WITH_LIMITATIONS')
+          assert reference['status'] in ('PASS', 'PASS_WITH_LIMITATIONS')
+          assert reference['qa_commit'] == os.environ['GITHUB_SHA']
+          assert original['candidate'] == reference['candidate']
+          assert reference['candidate']['sha256'] == os.environ['LUMO_APK_SHA256']
+          assert reference['candidate']['flutter_source_commit'] == os.environ['LUMO_APK_SOURCE']
+          assert reference['candidate']['godot']['revision'] == os.environ['LUMO_NATIVE_SOURCE']
+          assert reference['previous_complete_probe']['original_run_id'] == original['run_id']
+          assert reference['banana']['repeat_playback']['segments'] == 4
+          assert reference['pattern']['native_confirmation_performed'] is False
+          Path('evidence/replay-result.json').write_text(json.dumps({
+              'status': 'PASS_WITH_LIMITATIONS', 'qa_commit': os.environ['GITHUB_SHA'],
+              'apk_source': os.environ['LUMO_APK_SOURCE'], 'apk_sha256': os.environ['LUMO_APK_SHA256'],
+              'original_source_run': 43759362796, 'original_source_run_android': 'FAIL before installation: signer output parser',
+              'source_build': 'PASS; unchanged APK reused', 'apk_rebuilt': False,
+              'original_probe_result': 'original-android/learning-android-result.json',
+              'reference_probe_result': 'reference-android/reference-android-result.json',
+              'limitations': reference['limitations'] + original['limitations'],
+          }, indent=2) + '\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-immutable-android-replay
+          path: evidence/
+          retention-days: 30
+          if-no-files-found: error
