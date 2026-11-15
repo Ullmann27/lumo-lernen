@@ -205,12 +205,13 @@ class _IqMemoryPlayState extends State<IqMemoryPlay>
 
   @override
   Widget build(BuildContext context) {
-    if (_paused)
+    if (_paused) {
       return const Center(
           child: Text('Pause. Die Merkfolge wartet auf dich.',
               key: ValueKey('iq-memory-paused'),
               style: TextStyle(color: Colors.white, fontSize: 17),
               textAlign: TextAlign.center));
+    }
     final showing = _phase == IqMemoryPhase.showing;
     final total = _puzzle.sequence.length;
     final parts = IqMemoryParts(

@@ -21,6 +21,7 @@ import '../../domain/quiz/quiz_question_bank.dart';
 import '../../domain/quiz/quiz_show.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../learning/widgets/learning_question_coach.dart';
 
 class QuizShowContent extends StatefulWidget {
   const QuizShowContent({
@@ -134,8 +135,7 @@ class _QuizShowContentState extends State<QuizShowContent>
       if (mounted)
         setState(() {
           _loading = false;
-          _loadError =
-              'Deine Quizrunde konnte nicht sicher geladen werden. '
+          _loadError = 'Deine Quizrunde konnte nicht sicher geladen werden. '
               'Die vorhandenen Daten bleiben erhalten.';
         });
     }
@@ -241,23 +241,20 @@ class _QuizShowContentState extends State<QuizShowContent>
         _locking ||
         _state.revealed ||
         _state.gameOver ||
-        _state.selectedOption == null)
-      return;
+        _state.selectedOption == null) return;
     setState(() => _locking = true);
     _playEffect(SoundEffect.click);
     unawaited(_music.pauseForLockIn());
     _lockTimer?.cancel();
     final generation = _roundGeneration;
-    final reduced =
-        MediaQuery.disableAnimationsOf(context) ||
+    final reduced = MediaQuery.disableAnimationsOf(context) ||
         widget.appState.state.settings.reduceAnimations ||
         widget.appState.state.settings.calmMode;
     _lockTimer = Timer(Duration(milliseconds: reduced ? 750 : 1600), () {
       if (!mounted ||
           !_locking ||
           generation != _roundGeneration ||
-          !_currentOwner())
-        return;
+          !_currentOwner()) return;
       _lockTimer = null;
       setState(() => _locking = false);
       unawaited(_resolveAnswer());
@@ -327,8 +324,7 @@ class _QuizShowContentState extends State<QuizShowContent>
     final session = QuizTableSession(
       controller: _controller!,
       transport: const NativeMethodTableTransport(),
-      reduceMotion:
-          widget.appState.state.settings.reduceAnimations ||
+      reduceMotion: widget.appState.state.settings.reduceAnimations ||
           widget.appState.state.settings.calmMode ||
           MediaQuery.disableAnimationsOf(context),
     );
@@ -407,7 +403,7 @@ class _QuizShowContentState extends State<QuizShowContent>
                     _loading
                         ? 'Deine Quizrunde wird geladen …'
                         : (_loadError ??
-                              'Das Kinderprofil hat gewechselt. Bitte zur Spielewelt zurückkehren.'),
+                            'Das Kinderprofil hat gewechselt. Bitte zur Spielewelt zurückkehren.'),
                     textAlign: TextAlign.center,
                   ),
                   if (!_loading && _controller == null)
@@ -468,7 +464,6 @@ class _QuizShowContentState extends State<QuizShowContent>
               constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
               icon: const Icon(Icons.view_in_ar),
             ),
-
           Padding(
             padding: EdgeInsets.only(right: 13),
             child: Icon(Icons.star_rounded, color: Color(0xFFFFDA77), size: 27),
@@ -543,7 +538,7 @@ class _QuizShowContentState extends State<QuizShowContent>
               child: SafeArea(
                 child: LayoutBuilder(
                   builder: (context, constraints) {
-                    final card = _QuizCard(
+                    final questionCard = _QuizCard(
                       state: _state,
                       question: q,
                       onSelect: _select,
@@ -551,11 +546,57 @@ class _QuizShowContentState extends State<QuizShowContent>
                       onNext: _next,
                       onRestart: _restart,
                       onJoker: _joker,
-                      locking:
-                          _locking ||
+                      locking: _locking ||
                           _saving ||
                           _nativeOpening ||
                           _error != null,
+                    );
+                    final answering = _available &&
+                        !_locking &&
+                        !_state.revealed &&
+                        !_state.gameOver;
+                    final canAskHint = answering &&
+                        (_state.lumoHint != null ||
+                            !_state.usedJokers.contains(QuizJoker.callLumo));
+                    final card = LearningQuestionCoach(
+                      appState: widget.appState,
+                      taskId:
+                          'quiz:${_controller!.round.id}:${q.id}:${_state.currentQuestionIndex}',
+                      subject: q.subject,
+                      unit: 'Quizshow · Frage ${_state.displayQuestionNumber}',
+                      prompt: q.prompt,
+                      choices: {
+                        for (var i = 0; i < q.options.length; i++)
+                          if (!_state.fiftyFiftyHiddenOptions.contains(i))
+                            i: q.options[i],
+                      },
+                      active: !_nativeOpening && _currentOwner(),
+                      answering: answering,
+                      helpUsed: _state.lumoHint != null ||
+                          _state.fiftyFiftyHiddenOptions.isNotEmpty ||
+                          _state.audienceVotes != null,
+                      helpText: _state.lumoHint,
+                      lastAnswer:
+                          _state.revealed && _state.selectedOption != null
+                              ? q.options[_state.selectedOption!]
+                              : null,
+                      lastCorrect: _state.revealed
+                          ? _state.selectedOption == q.correctIndex
+                          : null,
+                      visibleExplanation:
+                          _state.revealed ? q.explanation ?? q.hint : null,
+                      // The existing controller owns the single Lumo joker.
+                      // Replaying this question's saved hint spends no new joker.
+                      onHint: canAskHint
+                          ? () {
+                              if (_state.lumoHint == null)
+                                _joker(QuizJoker.callLumo);
+                            }
+                          : null,
+                      // A confirmed spoken card selects only. The existing
+                      // "Antwort einloggen" action still owns evaluation.
+                      onConfirmedChoice: answering ? _select : null,
+                      child: questionCard,
                     );
                     return SingleChildScrollView(
                       padding: EdgeInsets.all(
@@ -596,9 +637,8 @@ class _QuizShowContentState extends State<QuizShowContent>
                       children: [
                         Text(_error!, textAlign: TextAlign.center),
                         TextButton(
-                          onPressed: _saving
-                              ? null
-                              : () => unawaited(_retrySave()),
+                          onPressed:
+                              _saving ? null : () => unawaited(_retrySave()),
                           style: TextButton.styleFrom(
                             minimumSize: const Size(48, 48),
                           ),
@@ -800,6 +840,17 @@ class _QuizCard extends StatelessWidget {
               securedStars: state.securedStars,
               awardedStars: state.awardedStars,
             ),
+            if ((question.explanation ?? question.hint)?.trim().isNotEmpty ??
+                false)
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Semantics(
+                  liveRegion: true,
+                  child: Text(question.explanation ?? question.hint!,
+                      style: const TextStyle(
+                          color: Colors.white, fontSize: 18, height: 1.4)),
+                ),
+              ),
           ],
         ],
       ),

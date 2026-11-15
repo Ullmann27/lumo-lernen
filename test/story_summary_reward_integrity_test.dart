@@ -32,14 +32,18 @@ void main() {
       keyPoints: const ['Mond-Palast'],
     );
     expect(compound.hits, 1);
-    expect(LumoStorySummaryScorer.evaluate(
-      summary: 'Wir sehen den Mond und den Palast.',
-      keyPoints: const ['Mond-Palast'],
-    ).hits, 0);
-    expect(LumoStorySummaryScorer.evaluate(
-      summary: 'Nur Wörter.',
-      keyPoints: const [],
-    ).stars, 0);
+    expect(
+        LumoStorySummaryScorer.evaluate(
+          summary: 'Wir sehen den Mond und den Palast.',
+          keyPoints: const ['Mond-Palast'],
+        ).hits,
+        0);
+    expect(
+        LumoStorySummaryScorer.evaluate(
+          summary: 'Nur Wörter.',
+          keyPoints: const [],
+        ).stars,
+        0);
   });
 
   testWidgets('Fast repeated summary evaluation awards stars and XP only once',
@@ -61,7 +65,8 @@ void main() {
       gradeLevel: 2,
       pages: [
         LumoStoryPage(
-          pageNum: 1, text: 'Lumo fand ein Buch im Wald.',
+          pageNum: 1,
+          text: 'Lumo fand ein Buch im Wald.',
           imagePrompt: '',
         ),
       ],
@@ -81,7 +86,7 @@ void main() {
     await tester.enterText(find.byType(TextField), 'Lumo hat etwas entdeckt.');
     await tester.pump();
 
-    final evaluate = find.text('Bewertung holen');
+    final evaluate = find.text('Rückmeldung holen');
     expect(evaluate, findsOneWidget);
     await tester.tap(evaluate);
     // Intentionally no pump between taps: the previous button callback could
@@ -91,7 +96,7 @@ void main() {
     expect(state.state.stars, initialStars + 2);
     expect(state.state.xp, initialXp + 20);
     expect(find.text('Fertig!'), findsOneWidget);
-    expect(find.text('Bewertung holen'), findsNothing);
+    expect(find.text('Rückmeldung holen'), findsNothing);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });

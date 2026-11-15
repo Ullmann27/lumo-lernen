@@ -8332,7 +8332,9 @@
     {
       "id": "G09",
       "owner": "Chat2 Inventory",
-      "item": "Final whole-screen viewport captures and practical/journal navigation tests after fixture repair"
+      "item": "Final whole-screen viewport captures and practical/journal navigation tests after fixture repair",
+      "status": "completed",
+      "remaining": "Frame/practical navigation 2/2 and full-window capture 1/1 passed; 6 screenshots with manifest."
     }
   ],
   "verification": [
@@ -8424,11 +8426,13 @@
     },
     {
       "id": "whole_screen_capture",
-      "status": "pending_final_run",
+      "status": "passed",
       "files": [
-        "test/cross_grade_visual_capture_test.dart"
+        "test/learning/cross_grade_navigation_capture_test.dart"
       ],
-      "note": "Offscreen actual Flutter frames with real fonts; logical viewports, no physical Fold7 claim."
+      "note": "6 unaltered full-window captures through actual practical activity navigation and current canonical TaskContext; logical 320x780, 344x882, 690x829 viewports, no physical device claim.",
+      "cases": 1,
+      "artifacts": "docs/learning/nextgen-20261115/evidence/cross-grade"
     }
   ],
   "asset_requirements": [

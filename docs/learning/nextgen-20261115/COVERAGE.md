@@ -559,26 +559,26 @@ Die Speicherbezeichnung ist absichtlich nicht mit jedem sichtbaren Titel identis
 | G06 | Chat4 via Chat1 | Live Safari must confirm ASR before factual wrong/correct feedback; preserve participation rewards semantics |
 | G07 | Chat1/Chat3 | Exact figures/audio/assets in integrated app; Godot native and standalone routes require runtime validation |
 | G08 | Chat1 | Structured teacher evidence for real physical/art activities remains separate from journal prose; no automatic success claim |
-| G09 | Chat2 Inventory | Final whole-screen viewport captures and practical/journal navigation tests after fixture repair |
+| G09 | Chat2 Inventory | Erledigt: praktische/Journal-Navigation 2/2, Capture 1/1; sechs ganze Fenster in `evidence/cross-grade/` mit Aufgabenmanifest |
 
 ## Ausgeführte Prüfungen / verbleibende Nachweise
 
 | Prüfung | Status | Umfang / Beleg |
 |---|---|---|
-| `cross_grade_storage` | `passed` | 6Fälle; `test/cross_grade_second_chance_test.dart`, `test/cross_grade_practice_storage_hardening_test.dart` |
-| `cross_grade_contract_and_scene` | `passed` | 5Fälle; `test/learning/cross_grade_contract_test.dart`, `test/cross_grade_scene_design_test.dart` |
-| `module_progress` | `passed` | 10Fälle; `test/learning_modules/learning_module_progress_test.dart` |
-| `module_layout` | `passed` | 82Fälle; `test/design/learning_adventure_layout_test.dart` |
+| `cross_grade_storage` | `passed` | 6 Fälle; `test/cross_grade_second_chance_test.dart`, `test/cross_grade_practice_storage_hardening_test.dart` |
+| `cross_grade_contract_and_scene` | `passed` | 5 Fälle; `test/learning/cross_grade_contract_test.dart`, `test/cross_grade_scene_design_test.dart` |
+| `module_progress` | `passed` | 10 Fälle; `test/learning_modules/learning_module_progress_test.dart` |
+| `module_layout` | `passed` | 82 Fälle; `test/design/learning_adventure_layout_test.dart` |
 | `practical_link_and_frame_help` | `passed` (2 Prüfungen) | `test/learning/module_frame_practical_links_test.dart` |
 | `academy_navigation` | `blocked_integration_compile` | `test/curriculum_cross_grade_navigation_test.dart` |
-| `whole_screen_capture` | `pending_final_run` | `test/cross_grade_visual_capture_test.dart` |
+| `whole_screen_capture` | `passed` | 1 Test, 6 ganze Ansichten; `test/learning/cross_grade_navigation_capture_test.dart` |
 
-Die zusätzliche Frame-Zeile wurde nach tatsächlich gefundenem Platzverlust wieder entfernt: Hilfe und ruhiger Modus liegen nun als48dp-Bedienung in der vorhandenen Kopfzeile; die bestehenden Layouttests wurden hierfür nicht gelockert. CrossGrade hält sein Lernobjekt beim Scrollen montiert, damit gelegte Mengen und Hinweise nicht durch List-Recycling verschwinden.
+Die zusätzliche Frame-Zeile wurde nach tatsächlich gefundenem Platzverlust wieder entfernt: Hilfe und ruhiger Modus liegen nun als 48 dp-Bedienung in der vorhandenen Kopfzeile; die bestehenden Layouttests wurden hierfür nicht gelockert. CrossGrade hält sein Lernobjekt beim Scrollen montiert, damit gelegte Mengen und Hinweise nicht durch List-Recycling verschwinden.
 
 Capture-Nachweise werden als echte gerenderte Flutter-Ansichten mit echten Fonts erstellt. Die Größen sind **logische Viewport-Simulationen**, keine behaupteten Tests auf einem physischen Fold7. Aufnahme von Komponenten ersetzt nicht die zusätzliche ganze Lernansicht.
 
 ## Reproduzierbarkeit und maschinenlesbare Datei
 
-`coverage.json` enthält alle236 aktuellen und447 kumulativen Einheitenscopes, sämtliche92Mathe-/Deutsch-Templates,20Topic-IDs,50Spiellevel,60praktischeAufträge,24Lesetexte sowie Lab-/Guided-IDs. `flow_ref` verweist jeweils auf Einstieg, Eingabe, Bewertung, Hilfe, Abschluss und Speicherung.
+`coverage.json` enthält alle 236 aktuellen und 447 kumulativen Einheitenscopes, sämtliche 92 Mathe-/Deutsch-Templates, 20 Topic-IDs, 50 Spiellevel, 60 praktische Aufträge, 24 Lesetexte sowie Lab-/Guided-IDs. `flow_ref` verweist jeweils auf Einstieg, Eingabe, Bewertung, Hilfe, Abschluss und Speicherung.
 
 Katalog erneut ausführen: `dart run tool/nextgen_learning_inventory.dart`. Flutter-Tests in diesem gemeinsamen Workspace immer über `flock --close /workspace/scratch/c5a7dadab95f/toolchain/lumo-flutter.lock /workspace/scratch/c5a7dadab95f/toolchain/flutter/bin/flutter test --no-pub ...`.

@@ -1,10 +1,12 @@
 00:00 +0: loading /workspace/scratch/c5a7dadab95f/lumo-lernen/test/iq/nextgen_thinking_flow_test.dart
 00:00 +0: (setUpAll)
 00:00 +0: all 50 cognitive answers survive failed save and retry once
-00:03 +1: IQ ignores outgoing submit callbacks and retires changed profiles
-00:04 +2: 36-item IQ finish retries the same result without duplicate rewards
-00:04 +3: exam LUMO repeats only the assignment and exposes no answer
-00:05 +4: left-turn cognitive cue shows the actual direction
-00:05 +5: a cramped memory grid retains 48 dp targets and ignores double taps
-00:05 +6: (tearDownAll)
-00:05 +6: All tests passed!
+00:06 +1: IQ ignores outgoing submit callbacks and retires changed profiles
+00:07 +2: 36-item IQ finish retries the same result without duplicate rewards
+00:09 +3: exam LUMO repeats only the assignment and exposes no answer
+00:11 +4: left-turn cognitive cue shows the actual direction
+00:11 +5: cognitive memory pauses its remaining exposure in the background
+00:11 +6: IQ memory resumes the current flash without replaying earlier fields
+00:11 +7: a cramped memory grid retains 48 dp targets and ignores double taps
+00:11 +8: (tearDownAll)
+00:11 +8: All tests passed!

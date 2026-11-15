@@ -9,6 +9,7 @@ import 'package:lumo_lernen/domain/cognitive/cognitive_profile.dart';
 import 'package:lumo_lernen/domain/iq/iq_puzzle.dart';
 import 'package:lumo_lernen/features/tests/cognitive_profile_screen.dart';
 import 'package:lumo_lernen/features/tests/cognitive_profile_visual_prompt.dart';
+import 'package:lumo_lernen/features/tests/iq/iq_boards.dart';
 import 'package:lumo_lernen/features/tests/iq/iq_memory.dart';
 import 'package:lumo_lernen/features/tests/iq/iq_puzzle_view.dart';
 import 'package:lumo_lernen/features/tests/iq/iq_widgets.dart';
@@ -310,11 +311,12 @@ void main() {
                 child: IqMemoryPlay(
                     puzzle: puzzle,
                     now: () => now,
-                    leadIn: Duration.zero,
+                    leadIn: const Duration(milliseconds: 1),
                     onInputStart: () => input = true,
                     onChanged: (_) {},
                     layout: (_, parts) => parts.grid)))));
-    await tester.pump();
+    now = now.add(const Duration(milliseconds: 1));
+    await tester.pump(const Duration(milliseconds: 1));
     bool lit(int cell) => tester
         .widget<IqMemoryTile>(find.descendant(
             of: find.byKey(ValueKey('iq-memory-tile-$cell')),

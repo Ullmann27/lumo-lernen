@@ -20,8 +20,10 @@ abstract class GameMathTasks {
   /// Independent arithmetic/quantity verification before a variant is shown.
   /// An unrelated fallback must never silently change the level's goal.
   static bool isValidStarsTask(GameLevel level, MathConcreteTask task) {
-    if (task.prompt.trim().isEmpty || task.explanation.trim().isEmpty ||
-        task.choices.length < 2 || task.choices.toSet().length != task.choices.length ||
+    if (task.prompt.trim().isEmpty ||
+        task.explanation.trim().isEmpty ||
+        task.choices.length < 2 ||
+        task.choices.toSet().length != task.choices.length ||
         task.choices.where((value) => value == task.answer).length != 1) {
       return false;
     }
@@ -30,14 +32,18 @@ abstract class GameMathTasks {
     if (level.id == 4) {
       return RegExp('●').allMatches(task.prompt).length == answer;
     }
-    final operands = RegExp(r'\d+').allMatches(task.prompt)
-        .map((match) => int.parse(match.group(0)!)).toList();
+    final operands = RegExp(r'\d+')
+        .allMatches(task.prompt)
+        .map((match) => int.parse(match.group(0)!))
+        .toList();
     if (operands.length != 2) return false;
     final a = operands[0], b = operands[1];
     if (level.id == 6) return a != b && answer == max(a, b);
     if (task.prompt.contains('+')) return answer == a + b;
-    if (task.prompt.contains('−') || task.prompt.contains('-')) return answer == a - b;
-    if (task.prompt.contains('×') || task.prompt.contains('·')) return answer == a * b;
+    if (task.prompt.contains('−') || task.prompt.contains('-'))
+      return answer == a - b;
+    if (task.prompt.contains('×') || task.prompt.contains('·'))
+      return answer == a * b;
     return false;
   }
 
@@ -197,9 +203,14 @@ class GameHouseTask {
   final bool missingLeft;
   final List<int> choices;
 
-  bool get isValid => roof >= 1 && roof <= 100 &&
-      visibleRoom >= 0 && answer >= 0 && visibleRoom + answer == roof &&
-      choices.length >= 2 && choices.toSet().length == choices.length &&
+  bool get isValid =>
+      roof >= 1 &&
+      roof <= 100 &&
+      visibleRoom >= 0 &&
+      answer >= 0 &&
+      visibleRoom + answer == roof &&
+      choices.length >= 2 &&
+      choices.toSet().length == choices.length &&
       choices.every((value) => value >= 0 && value <= roof) &&
       choices.where((value) => value == answer).length == 1;
 }

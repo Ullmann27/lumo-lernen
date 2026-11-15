@@ -1,0 +1,24 @@
+Analyzing 3 items...                                            
+
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/lumo_cards/widgets/lumo_learning_card_overlay.dart:62:46 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/lumo_cards/widgets/lumo_learning_card_overlay.dart:110:50 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/lumo_cards/widgets/lumo_learning_card_overlay.dart:117:7 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/learning_question_coach.dart:170:7 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/learning_question_coach.dart:183:60 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/learning_question_coach.dart:227:7 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/learning_question_coach.dart:269:54 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/learning_question_coach.dart:273:54 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/learning_question_coach.dart:298:7 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/quiz/quiz_show_content.dart:91:7 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/quiz/quiz_show_content.dart:136:9 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/quiz/quiz_show_content.dart:203:9 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/quiz/quiz_show_content.dart:215:7 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/quiz/quiz_show_content.dart:222:9 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/quiz/quiz_show_content.dart:244:40 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/quiz/quiz_show_content.dart:257:29 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/quiz/quiz_show_content.dart:305:7 • curly_braces_in_flow_control_structures
+   info • Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check • lib/features/quiz/quiz_show_content.dart:342:11 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check • lib/features/quiz/quiz_show_content.dart:351:11 • use_build_context_synchronously
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/quiz/quiz_show_content.dart:593:33 • curly_braces_in_flow_control_structures
+
+20 issues found. (ran in 1.1s)

@@ -230,6 +230,15 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       final page = widget.story.pages[_pageIdx];
       final summary = _inSummaryMode && !_fullBookView;
       final quiz = _inBookQuiz && !_fullBookView;
+      final canAnswer = !_finishing &&
+          !_fullBookView &&
+          (summary
+              ? !_summaryEvaluated
+              : quiz
+                  ? _bookQuizSelected !=
+                      widget
+                          .story.bookQuestions[_bookQuestionIndex].correctAnswer
+                  : !_exerciseDone && _answerChoices.isNotEmpty);
       final value = LumoCompanionTaskContext(
         subject: 'Deutsch',
         unit: summary
@@ -257,9 +266,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                 ? _bookQuestionAttempts
                 : _exerciseAttempts,
         helpLevel: _helpLevel,
-        answering: !_finishing &&
-            !_fullBookView &&
-            (summary ? !_summaryEvaluated : _answerChoices.isNotEmpty),
+        answering: canAnswer,
         lastAnswer: summary
             ? (_summaryEvaluated ? _summaryCtrl.text : null)
             : quiz
@@ -291,9 +298,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           LumoLearningAction.look,
           LumoLearningAction.point,
           LumoLearningAction.highlight,
-          if (!_fullBookView &&
-              (summary && !_summaryEvaluated || _answerChoices.isNotEmpty))
-            LumoLearningAction.proposeAnswer,
+          if (canAnswer) LumoLearningAction.proposeAnswer,
         },
         isExplanation: _helpVisible,
       );
@@ -354,7 +359,12 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     _publishTask();
   }
 
-  void _stopSupport() {
+  void _stopSupport({bool publishCancellation = true}) {
+    if (publishCancellation && _ownsCompanion) {
+      LumoCompanionRequests.instance
+          .cancelLearningInteraction(reason: 'story_stop');
+      return;
+    }
     _speechRevision++;
     _voiceRevision++;
     unawaited(_speech.cancel());
@@ -381,12 +391,12 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       case LumoLearningAction.explain:
         _requestStoryHelp();
       case LumoLearningAction.repeat:
-        _speak();
+        unawaited(_speakText(_helpVisible ? _helpText : _spokenContent));
       case LumoLearningAction.slower:
         setState(() => _slow = true);
-        _speak();
+        unawaited(_speakText(_helpVisible ? _helpText : _spokenContent));
       case LumoLearningAction.stop:
-        _stopSupport();
+        _stopSupport(publishCancellation: false);
       case LumoLearningAction.look:
       case LumoLearningAction.point:
       case LumoLearningAction.highlight:
@@ -562,6 +572,10 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   bool _beginPageTurn() {
     if (_pageTurnPending || _finishing || !_ownsProfile) return false;
     _pageTurnPending = true;
+    if (_ownsCompanion) {
+      LumoCompanionRequests.instance
+          .cancelLearningInteraction(reason: 'story_step_changed');
+    }
     WidgetsBinding.instance
         .addPostFrameCallback((_) => _pageTurnPending = false);
     _speechRevision++;
@@ -577,35 +591,14 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   }
 
   void _openClueNotebook() {
+    _stopSupport();
+    LumoCompanionRequests.instance.clearTask(_publishedContext);
+    if (_inBookQuiz) _bookQuestionHadHelp = true;
     final notes = <(String, String)>[
-      (
-        'Der erste Brief',
-        'Jemand hat eine Farbe beschrieben, die man bei klarem Wetter '
-            'oben am Himmel sehen kann.',
-      ),
-      if (_pageIdx >= 2)
+      for (final page in widget.story.pages.take(_pageIdx + 1))
         (
-          'Der Brunnen',
-          'Drei Fundstücke sind wichtig: eine Feder, ein Stein und ein Band. '
-              'Nur eine Sache ist an einem Zweig festgeknotet.',
-        ),
-      if (_pageIdx >= 3)
-        (
-          'Die Treppe',
-          'An der ersten Stufe wurden drei Gegenstände gezeichnet. '
-              'Vergleiche sie mit dem Brief und mit dem Fund am Brunnen.',
-        ),
-      if (_pageIdx >= 6)
-        (
-          'Die Karte',
-          'Kreis, Dreieck und Stern führen nicht zum gleichen Ort. '
-              'Ein Zeichen steht ausdrücklich beim letzten Weg.',
-        ),
-      if (_pageIdx >= 7)
-        (
-          'Die geheime Tür',
-          'Die Zeichen an der Tür gleichen denen der alten Karte. '
-              'Du brauchst kein Glück: Du brauchst deine Erinnerung.',
+          'Seite ${page.pageNum}',
+          page.text.trim().split(RegExp(r'(?<=[.!?])\s+')).first,
         ),
     ];
     showModalBottomSheet<void>(
@@ -642,8 +635,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                   ),
                 ]),
                 const Text(
-                    'Hier stehen nur Beobachtungen. Die Rätsel '
-                    'lösen wir nicht für dich.',
+                    'Hier stehen Auszüge aus deinen bisherigen Seiten. '
+                    'Lies bei Bedarf im Volltext weiter und suche selbst den passenden Hinweis.',
                     style: TextStyle(
                         color: LumoVisualTokens.muted,
                         height: 1.3,
@@ -688,7 +681,9 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           ),
         ),
       ),
-    );
+    ).whenComplete(() {
+      if (mounted) _publishTask();
+    });
   }
 
   void _nextPage() {
@@ -780,15 +775,15 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       return;
     setState(() => _speechStarting = true);
     final revision = ++_speechRevision;
-    if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
-        !mounted ||
-        !_ownsProfile ||
-        revision != _speechRevision) {
-      if (mounted) setState(() => _speechStarting = false);
-      return;
-    }
-    _speechDraftBefore = _summaryCtrl.text.trim();
     try {
+      if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
+          !mounted ||
+          !_ownsProfile ||
+          revision != _speechRevision) {
+        if (mounted) setState(() => _speechStarting = false);
+        return;
+      }
+      _speechDraftBefore = _summaryCtrl.text.trim();
       void accept(String text) {
         if (!mounted ||
             !_ownsProfile ||
@@ -834,6 +829,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     if (state != AppLifecycleState.resumed) {
       _speechRevision++;
       _voiceRevision++;
+      if (mounted) setState(() => _speechStarting = false);
       _speech.cancel();
       LumoVoice.instance.stop();
     } else {

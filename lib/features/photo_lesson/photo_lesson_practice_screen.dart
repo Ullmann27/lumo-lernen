@@ -580,8 +580,7 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
                             fontSize: 23,
                             fontWeight: FontWeight.w900)),
                     const SizedBox(height: 8),
-                    const Text(
-                        'Nutze die Lernobjekte und wähle deine Antwort. Nach einem Hinweis probierst du selbst weiter.',
+                    const Text('Nutze die Lernobjekte und wähle deine Antwort.',
                         style:
                             TextStyle(color: Color(0xFFDBE9F7), fontSize: 16)),
                     const SizedBox(height: 16),
@@ -597,17 +596,6 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
                             _editable ? () => unawaited(_hint()) : null),
                         _control('Noch einmal', Icons.replay,
                             _saving ? null : _repeat),
-                        _control('Langsamer', Icons.slow_motion_video,
-                            _saving ? null : _slower),
-                        _control('Anders erklären', Icons.swap_horiz,
-                            _editable ? () => unawaited(_hint()) : null),
-                        _control('Stopp', Icons.stop_circle_outlined, _stop),
-                        _control('Selbst versuchen', Icons.touch_app_outlined,
-                            _stop),
-                        _control(
-                            _quiet ? 'Ruhig: an' : 'Ruhiger Modus',
-                            Icons.spa_outlined,
-                            () => setState(() => _quiet = !_quiet)),
                       ]),
                       const SizedBox(height: 16),
                       if (_helpVisible)
@@ -645,6 +633,20 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
                               }
                             },
                           )),
+                      const SizedBox(height: 16),
+                      Wrap(spacing: 8, runSpacing: 8, children: [
+                        _control('Langsamer', Icons.slow_motion_video,
+                            _saving ? null : _slower),
+                        _control('Anders erklären', Icons.swap_horiz,
+                            _editable ? () => unawaited(_hint()) : null),
+                        _control('Stopp', Icons.stop_circle_outlined, _stop),
+                        _control('Selbst versuchen', Icons.touch_app_outlined,
+                            _stop),
+                        _control(
+                            _quiet ? 'Ruhig: an' : 'Ruhiger Modus',
+                            Icons.spa_outlined,
+                            () => setState(() => _quiet = !_quiet)),
+                      ]),
                       if (_showProposal) ...[
                         const SizedBox(height: 16),
                         const Text(

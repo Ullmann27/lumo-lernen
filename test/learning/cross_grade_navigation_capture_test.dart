@@ -79,8 +79,7 @@ void main() {
       await Scrollable.ensureVisible(tester.element(prompt), alignment: .05);
       await _frames(tester);
       expect(prompt.hitTestable(), findsOneWidget);
-      await captureLumoBoundary(
-          tester, window, '$output/${entry.key}-task.png',
+      await captureLumoBoundary(tester, window, '$output/${entry.key}-task.png',
           pixelRatio: 1.5);
       manifest.add({
         'viewport': entry.key,
