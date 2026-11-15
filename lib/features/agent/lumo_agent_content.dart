@@ -86,11 +86,12 @@ class _LumoAgentContentState extends State<LumoAgentContent>
       _conversation.pause();
       unawaited(_speech.cancel());
       unawaited(LumoVoice.instance.stop());
-      if (mounted)
+      if (mounted) {
         setState(() {
           _speechListening = false;
           _loading = false;
         });
+      }
     } else {
       _conversation.resume();
     }
@@ -154,9 +155,14 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   }
 
   Future<void> _startVoiceQuestion() async {
-    if (_loading || _speechListening) return;
+    if (_loading || _speechListening || !_foreground) return;
+    // Preparing the microphone may outlive a pause, task/profile change or
+    // another question. Returning to the foreground does not renew that tap.
+    final generation = _questionGeneration;
+    bool isCurrent() =>
+        mounted && _foreground && generation == _questionGeneration;
     await widget.appState.ensureSettingsLoaded();
-    if (!mounted || !_foreground) return;
+    if (!isCurrent()) return;
     final settings = widget.appState.state.settings;
     if (!settings.microphoneEnabled) {
       setState(
@@ -165,8 +171,9 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     }
 
     await LumoVoice.instance.stop();
+    if (!isCurrent()) return;
     await _ensureSpeechReady();
-    if (!mounted || !_speechReady) return;
+    if (!isCurrent() || !_speechReady) return;
 
     setState(() {
       _liveSpeech = '';
@@ -177,7 +184,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     try {
       await _speech.startListening(
         onResult: (recognized) {
-          if (!mounted || !_foreground) return;
+          if (!isCurrent()) return;
           final words = recognized.trim();
           setState(() {
             _liveSpeech = words;
@@ -185,11 +192,11 @@ class _LumoAgentContentState extends State<LumoAgentContent>
           });
         },
         onFinalResult: (words) {
-          if (mounted && _foreground) unawaited(_finishVoiceQuestion(words));
+          if (isCurrent()) unawaited(_finishVoiceQuestion(words));
         },
       );
     } catch (e) {
-      if (!mounted) return;
+      if (!isCurrent()) return;
       setState(() {
         _speechListening = false;
         _speechError = 'Sprachaufnahme konnte nicht starten: $e';

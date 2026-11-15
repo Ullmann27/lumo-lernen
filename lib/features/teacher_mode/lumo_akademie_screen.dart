@@ -942,6 +942,42 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                 title: const Text('Geschichten und Rätsel',
                     style: TextStyle(color: Colors.white)),
                 onTap: _openStories),
+            if (_selectedGrade == 1 &&
+                _selectedGrade == widget.appState.state.grade)
+              ListTile(
+                  key: const ValueKey('academy-tool-s1_farben'),
+                  leading: const Icon(Icons.palette_rounded,
+                      color: LumoVisualTokens.cyanBright),
+                  title: const Text('Farben entdecken',
+                      style: TextStyle(color: Colors.white)),
+                  subtitle: const Text('Farben erkennen und zuordnen',
+                      style: TextStyle(color: LumoVisualTokens.muted)),
+                  onTap: () => Navigator.of(context).push<void>(
+                      MaterialPageRoute(
+                          builder: (_) => LearningModuleRegistry.builderFor(
+                              's1_farben', widget.appState)!))),
+            for (final activity in const [
+              ('Deutsch', 'Deutsch gestalten', Icons.edit_note_rounded),
+              ('Englisch', 'Englisch ausprobieren', Icons.translate_rounded),
+              (
+                'Sachunterricht',
+                'Forschen und entdecken',
+                Icons.science_rounded
+              ),
+            ])
+              ListTile(
+                  key: ValueKey('academy-activity-${activity.$1}'),
+                  leading:
+                      Icon(activity.$3, color: LumoVisualTokens.cyanBright),
+                  title: Text(activity.$2,
+                      style: const TextStyle(color: Colors.white)),
+                  subtitle: Text(
+                      'Praktische Aufgaben · $_selectedGrade. Klasse',
+                      style: const TextStyle(color: LumoVisualTokens.muted)),
+                  onTap: () => Navigator.of(context).push<void>(
+                      MaterialPageRoute(
+                          builder: (_) => CurriculumActivitiesScreen(
+                              grade: _selectedGrade, subject: activity.$1)))),
             for (final subject in _currentGrade.subjects)
               for (final topic in subject.topics.where((t) =>
                   t.isWriting ||
