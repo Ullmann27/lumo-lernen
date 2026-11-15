@@ -1,0 +1,329 @@
+name: LUMO Next Generation – integrated learning APK
+
+on:
+  push:
+    branches: [integration/lumo-nextgen-learning-20261115]
+    paths: [config/nextgen-release.json]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-nextgen-learning-candidate
+  cancel-in-progress: false
+
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  LUMO_SPLIT_PER_ABI: '1'
+  LUMO_NDK_DISPOSABLE_RUNNER: '1'
+  LUMO_PACKAGE: dev.ullmann.lumo.lumo_lernen.coachpreview
+  LUMO_CERTIFICATE: a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    outputs:
+      native: ${{ steps.source.outputs.native }}
+      version: ${{ steps.source.outputs.version }}
+      version_name: ${{ steps.source.outputs.version_name }}
+      tag: ${{ steps.source.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Verify exact source identity and protected learning modules
+        id: source
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/validation
+          git fetch --no-tags --depth=1 origin 6f4a8c4753f4d06d0b392da0789b8162b2faa71b
+          python3 scripts/verify_legacy_release_pin.py
+          python3 - <<'PY'
+          import hashlib, json, os, re, subprocess
+          from pathlib import Path
+          release = json.loads(Path('config/nextgen-release.json').read_text())
+          native = json.loads(Path('config/godot-source.json').read_text())
+          version = re.search(r'^version: (\S+)\+(\d+)$', Path('pubspec.yaml').read_text(), re.M)
+          assert version and version.groups() == (release['versionName'], str(release['versionCode']))
+          assert release['schemaVersion'] == 1 and release['versionCode'] >= 2027
+          assert re.fullmatch(r'lumo-nextgen-learning-[0-9.]+-[0-9]+', release['releaseTag'])
+          assert native['engine'] == '4.6.3' and re.fullmatch(r'[0-9a-f]{40}', native['revision'])
+          coverage = json.loads(Path('docs/nextgen/COVERAGE.json').read_text())
+          base = '6f4a8c4753f4d06d0b392da0789b8162b2faa71b'
+          protected = []
+          for entry in coverage['protectedSourceHashes']:
+              path = entry['path']
+              original = subprocess.check_output(['git', 'show', base + ':' + path])
+              actual = Path(path).read_bytes()
+              assert original == actual, 'Protected module changed: ' + path
+              protected.append({'path': path, 'sha256': hashlib.sha256(actual).hexdigest()})
+          assert len(protected) >= 18
+          result = {'flutter': os.environ['GITHUB_SHA'], 'godot': native, 'release': release,
+                    'protectedModules': protected, 'coverageIsAcceptance': False}
+          Path('evidence/validation/source.json').write_text(json.dumps(result, indent=2) + '\n')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
+              for key, value in {'native': native['revision'], 'version': release['versionCode'],
+                                 'version_name': release['versionName'], 'tag': release['releaseTag']}.items():
+                  stream.write(f'{key}={value}\n')
+          PY
+      - name: Locked dependencies, analysis and complete Flutter tests
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee evidence/validation/analyze.log
+          flutter test --no-pub --reporter=expanded --timeout=120s --concurrency=2 2>&1 | tee evidence/validation/flutter-tests.log
+          python3 -m unittest discover -s scripts/tests -p 'test_*contract*.py' -v 2>&1 | tee evidence/validation/host-contracts.log
+          python3 -m unittest discover -s scripts/tests -p 'test_learning_dialog_logic.py' -v 2>&1 | tee evidence/validation/native-dialogue.log
+      - uses: actions/checkout@v4
+        with:
+          repository: Ullmann27/lumo-godot
+          ref: ${{ steps.source.outputs.native }}
+          path: native-source
+          persist-credentials: false
+      - name: Actual Godot asset import and learning regressions
+        run: |
+          set -euo pipefail
+          bash scripts/install_godot_for_build.sh
+          godot --version | tee evidence/validation/godot-version.txt
+          grep -F '4.6.3.stable.official' evidence/validation/godot-version.txt
+          godot --headless --path native-source --editor --import --quit > evidence/validation/godot-import.log 2>&1
+          if grep -E 'SCRIPT ERROR:|ERROR:' evidence/validation/godot-import.log; then exit 1; fi
+          for script in learning_pattern_regression learning_world_regression learning_sharing_regression learning_host_payload_regression learning_english_regression learning_wonder_details_regression; do
+            godot --headless --path native-source --script "res://scripts/tests/$script.gd" 2>&1 | tee "evidence/validation/$script.log"
+          done
+          python3 native-source/tools/validate_project.py 2>&1 | tee evidence/validation/native-project.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-validation
+          path: evidence/validation/
+          retention-days: 30
+
+  build:
+    needs: validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    outputs:
+      arm64_sha: ${{ steps.verify.outputs.arm64_sha }}
+      x86_sha: ${{ steps.verify.outputs.x86_sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Install the existing verified build toolchain
+        run: |
+          set -euo pipefail
+          mkdir -p build-proof
+          flutter pub get --enforce-lockfile
+          bash scripts/install_ndk_for_build.sh build-proof/ndk
+          bash scripts/install_godot_for_build.sh
+      - name: Build the integrated signed Android application
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh 2>&1 | tee build-proof/build.log
+      - name: Independently verify both produced artifacts
+        id: verify
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/VERIFY-arm64.json
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 > build-proof/VERIFY-x86.json
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
+              for name, directory in [('arm64', Path('dist')), ('x86', Path('dist/x86_64'))]:
+                  proof = json.loads((directory / 'BUILD-PROVENANCE.json').read_text())
+                  with (directory / 'Lumo-Lernen-Neu.apk').open('rb') as apk:
+                      digest = hashlib.file_digest(apk, 'sha256').hexdigest()
+                  assert digest == proof['sha256']
+                  assert proof['flutter_source_commit'] == os.environ['GITHUB_SHA']
+                  assert proof['tracked_source_clean'] is True
+                  assert proof['package'] == os.environ['LUMO_PACKAGE']
+                  assert proof['signingCertificateSha256'] == os.environ['LUMO_CERTIFICATE']
+                  stream.write(f'{name}_sha={digest}\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-nextgen-arm64
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/BUILD-PROVENANCE.json
+            dist/APK-VERIFICATION.json
+            dist/SHA256SUMS.txt
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-nextgen-x86
+          path: dist/x86_64/
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-build-proof
+          path: build-proof/
+          retention-days: 30
+
+  android:
+    needs: [validate, build]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-nextgen-x86
+          path: candidate/x86
+      - name: Prepare real Android UI capture
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/emulator
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 ffmpeg tesseract-ocr tesseract-ocr-deu
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/lumo_nextgen_learning_android_probe.py
+      - name: Enable the disposable accelerated emulator
+        run: |
+          set -euo pipefail
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start the software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > evidence/emulator/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > evidence/emulator/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' evidence/emulator/mesa-renderer.txt
+      - name: Exercise the current learning scenes and retain real evidence
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+          LUMO_EXPECTED_SOURCE: ${{ github.sha }}
+          LUMO_EXPECTED_NATIVE: ${{ needs.validate.outputs.native }}
+          LUMO_EXPECTED_VERSION: ${{ needs.validate.outputs.version }}
+          LUMO_EXPECTED_SHA256: ${{ needs.build.outputs.x86_sha }}
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_nextgen_learning_android_probe.py --apk candidate/x86/Lumo-Lernen-Neu.apk --provenance candidate/x86/BUILD-PROVENANCE.json --expected-sha256 "$LUMO_EXPECTED_SHA256" --expected-source "$LUMO_EXPECTED_SOURCE" --expected-native "$LUMO_EXPECTED_NATIVE" --expected-version "$LUMO_EXPECTED_VERSION" --expected-certificate "$LUMO_CERTIFICATE" --out evidence/android
+      - name: Attach the actual emulator renderer information
+        if: always()
+        run: |
+          mkdir -p evidence/android
+          cp evidence/emulator/*.log evidence/emulator/*.txt evidence/android/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-android-evidence
+          path: evidence/android/
+          retention-days: 30
+
+  publish:
+    needs: [validate, build, android]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-nextgen-arm64
+          path: release/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-nextgen-android-evidence
+          path: android-evidence/
+      - name: Publish a new source-bound immutable test download
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.validate.outputs.tag }}
+          VERSION_NAME: ${{ needs.validate.outputs.version_name }}
+          VERSION_CODE: ${{ needs.validate.outputs.version }}
+          ARM64_SHA: ${{ needs.build.outputs.arm64_sha }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          root = Path('release')
+          proof = json.loads((root / 'BUILD-PROVENANCE.json').read_text())
+          acceptance = json.loads(Path('android-evidence/learning-android-result.json').read_text())
+          assert acceptance['status'] in ('PASS', 'PASS_WITH_LIMITATIONS')
+          with (root / 'Lumo-Lernen-Neu.apk').open('rb') as stream:
+              assert hashlib.file_digest(stream, 'sha256').hexdigest() == os.environ['ARM64_SHA'] == proof['sha256']
+          assert proof['flutter_source_commit'] == os.environ['GITHUB_SHA']
+          name = f"Lumo-Lernen-Neu-{os.environ['VERSION_NAME']}-{os.environ['VERSION_CODE']}.apk"
+          (root / 'Lumo-Lernen-Neu.apk').rename(root / name)
+          Path('release-notes.md').write_text(
+              '# LUMO – integrierter Lernstand\n\n'
+              'Neue einzelne ARM64-Test-APK aus dem angegebenen integrierten Quellstand. '
+              'Paketkennung und bestehende Testsignatur sind erhalten; ältere Releases bleiben unverändert.\n\n'
+              f"Flutter: `{proof['flutter_source_commit']}`\n\n"
+              f"Godot: `{proof['godot']['revision']}`\n\n"
+              f"APK SHA-256: `{proof['sha256']}`\n\n"
+              f"Signatur: `{proof['signingCertificateSha256']}`\n\n"
+              'Die Laufzeitbelege stammen aus einem Android-35-x86_64-Emulator und der separat gebauten '
+              'x86_64-APK desselben Quellstands. Das ist kein physischer ARM64-/Fold7-Nachweis. '
+              'Echte Mikrofonerkennung, menschliche Klangprüfung und 60 FPS auf dem Zielgerät bleiben '
+              'ohne entsprechende Messung offen. Die Abdeckungsliste und der Abschlussbericht '
+              'unterscheiden integrierte Funktionen von noch offenen Anforderungen.\n'
+          )
+          PY
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo 'Refusing to overwrite an existing release.' >&2
+            exit 1
+          fi
+          tar -czf release/Android-Lernpruefung.tar.gz -C android-evidence .
+          cp docs/nextgen/COVERAGE.json release/COVERAGE.json
+          gh release create "$RELEASE_TAG" release/*.apk release/BUILD-PROVENANCE.json release/APK-VERIFICATION.json release/COVERAGE.json release/Android-Lernpruefung.tar.gz --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --prerelease --title "LUMO Lernwelt $VERSION_NAME ($VERSION_CODE)" --notes-file release-notes.md
+          gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json url,tagName,assets > release/PUBLIC-DOWNLOAD.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-public-download-proof
+          path: release/PUBLIC-DOWNLOAD.json
+          retention-days: 30
