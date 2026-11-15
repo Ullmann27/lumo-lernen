@@ -605,6 +605,7 @@ class _LearningContentState extends State<LearningContent> {
       return;
     }
     setState(() => _requestedHelpLevel = math.max(1, _requestedHelpLevel));
+    LumoCompanionRequests.instance.dialogueFocus.value = reply;
   }
 
   Future<bool> _confirmDialogueAnswer(LumoTaskDialogueReply reply) async {
