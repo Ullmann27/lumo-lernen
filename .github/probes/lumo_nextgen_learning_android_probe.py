@@ -147,6 +147,23 @@ def verify_installed_metadata(package_dump: str, installed_hash: str, identity: 
             "signature_binding": "installed base.apk hash equals independently signature-verified input APK"}
 
 
+def installed_base_apk_path(raw: str) -> str:
+    """Accept one monolithic Android APK path, including opaque ~~ directories.
+
+    The allowed filename alphabet follows the existing fold_device_capture
+    reader. Segments must be nonempty and may not be '.' or '..'; package,
+    version, signature and exact installed bytes are independently checked.
+    """
+    require(isinstance(raw, str), "Installed APK path response must be text")
+    lines = raw.splitlines()
+    require(len(lines) == 1, "Expected exactly one installed base APK")
+    match = re.fullmatch(r"package:(/data/app/(?:[A-Za-z0-9_~+=@.-]+/)+base\.apk)", lines[0])
+    require(match is not None, "Unsafe or unrecognized installed base APK path")
+    path = match[1]
+    require(not any(part in (".", "..") for part in path.split("/")), "Installed APK path contains traversal segments")
+    return path
+
+
 def node_labels(nodes) -> list[str]:
     return [value for node in nodes for key in ("text", "content-desc")
             if (value := node.get(key, "").strip())]
@@ -456,6 +473,12 @@ class LearningProbe:
     def preferences(self, tag):
         return self.reader.prefs(self.out, self.fresh(tag))
 
+    def read_installed_base_apk_path(self, tag):
+        raw = self.base.adb("shell", "pm", "path", PACKAGE)
+        # Preserve the original reader response even if path validation fails.
+        (self.out / (tag + "-pm-path.txt")).write_text(raw)
+        return installed_base_apk_path(raw)
+
     def checkpoint(self, topic, **expected):
         def observe():
             return checkpoint(self.preferences(topic + "-checkpoint"), topic)
@@ -564,11 +587,9 @@ class LearningProbe:
         output = self.base.adb("install", str(args.apk.resolve()), timeout=180)
         (self.out / "fresh-install.txt").write_text(output)
         require("Success" in output.splitlines(), "Fresh APK installation did not succeed")
-        paths = self.base.adb("shell", "pm", "path", PACKAGE).splitlines()
-        require(len(paths) == 1 and re.fullmatch(r"package:/data/app/[A-Za-z0-9_+/=.-]+/base\.apk", paths[0]),
-                "Expected exactly one installed base APK")
-        installed_path = paths[0].removeprefix("package:")
+        installed_path = self.read_installed_base_apk_path("installed")
         hashed = self.base.adb("shell", "sha256sum", installed_path)
+        (self.out / "installed-apk-sha256.txt").write_text(hashed)
         require(re.fullmatch(r"[0-9a-f]{64}\s+" + re.escape(installed_path), hashed) is not None,
                 "Installed APK hash could not be read")
         dump = self.base.adb("shell", "dumpsys", "package", PACKAGE)

@@ -5,6 +5,8 @@ import copy
 import importlib.util
 import json
 from pathlib import Path
+import tempfile
+from types import SimpleNamespace
 import unittest
 
 
@@ -110,6 +112,54 @@ class ArtifactIdentityTest(unittest.TestCase):
                        valid.replace("V2 Signer:", "Unknown signer:")):
             with self.subTest(signer=signer), self.assertRaises(RuntimeError):
                 probe.verify_manifest_and_signer(badging, signer, identity)
+
+
+class InstalledBaseApkPathTest(unittest.TestCase):
+    def test_real_recorded_android_opaque_path_is_accepted(self):
+        # An unchanged historical Android observation, not this failed run's
+        # missing pm-path output and not new runtime acceptance.
+        fixture = ROOT / "tools/android_qa/tests/fixtures/android_2018_cards_authority_recorded.txt"
+        lines = [line.strip().removeprefix("baseDir=") for line in fixture.read_text().splitlines()
+                 if line.strip().startswith("baseDir=")]
+        self.assertEqual(len(lines), 1)
+        self.assertIn("/data/app/~~", lines[0])
+        self.assertEqual(probe.installed_base_apk_path("package:" + lines[0] + "\n"), lines[0])
+
+    def test_supported_flat_and_nested_monolithic_paths(self):
+        for path in ("/data/app/dev.ullmann.lumo-1/base.apk",
+                     "/data/app/~~opaque_+=-/dev.ullmann.lumo-random==/base.apk"):
+            for ending in ("", "\n", "\r\n"):
+                with self.subTest(path=path, ending=ending):
+                    self.assertEqual(probe.installed_base_apk_path("package:" + path + ending), path)
+
+    def test_missing_multiple_split_and_unsafe_paths_fail(self):
+        valid = "package:/data/app/~~opaque==/dev.ullmann.lumo-random==/base.apk"
+        for raw in ("", valid + "\n" + valid, valid + "\n\n", valid + "\npackage:/data/app/app/split_config.en.apk",
+                    "package:/data/app/app/split_config.en.apk", "/data/app/app/base.apk",
+                    "package:/data/local/tmp/app/base.apk", "package:/data/application/app/base.apk",
+                    "package:/data/app/base.apk", "package:/data/app//app/base.apk",
+                    "package:/data/app/./app/base.apk", "package:/data/app/app/../base.apk",
+                    "package:/data/app/app/base.apk;id", "package:/data/app/$(id)/base.apk",
+                    "package:/data/app/app/base.apk ", " " + valid,
+                    "package:/data/app/a\\b/base.apk", "package:/data/app/a%2fb/base.apk",
+                    "package:/data/app/ä/base.apk", "package:/data/app/a\x00b/base.apk"):
+            with self.subTest(raw=raw), self.assertRaises(RuntimeError):
+                probe.installed_base_apk_path(raw)
+
+    def test_raw_pm_path_response_is_saved_before_validation_failure(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            instance = probe.LearningProbe.__new__(probe.LearningProbe)
+            instance.out = Path(temporary)
+            raw = "package:/data/app/~~opaque==/app/base.apk\npackage:/data/app/app/split.apk\n"
+            calls = []
+            def adb(*args):
+                calls.append(args)
+                return raw
+            instance.base = SimpleNamespace(adb=adb)
+            with self.assertRaises(RuntimeError):
+                instance.read_installed_base_apk_path("installed")
+            self.assertEqual((instance.out / "installed-pm-path.txt").read_text(), raw)
+            self.assertEqual(calls, [("shell", "pm", "path", probe.PACKAGE)])
 
 
 class ObservationTest(unittest.TestCase):

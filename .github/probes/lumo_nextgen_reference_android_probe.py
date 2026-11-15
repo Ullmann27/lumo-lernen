@@ -374,14 +374,14 @@ class ReferenceProbe(learning.LearningProbe):
                 "Original probe did not use this disposable API35 emulator")
         current = learning.learning_snapshot(self.preferences("completed-original-before-reset"))
         require(current["profile"] == original["final_profile"], "Original synthetic profile changed before reset")
-        paths = self.base.adb("shell", "pm", "path", learning.PACKAGE).splitlines()
-        require(len(paths) == 1 and re.fullmatch(r"package:/data/app/[A-Za-z0-9_+/=.-]+/base\.apk", paths[0]),
-                "Original package path missing or ambiguous")
-        path = paths[0].removeprefix("package:")
-        hashed = self.base.adb("shell", "sha256sum", path).split()
+        path = self.read_installed_base_apk_path("original-before-reset")
+        hash_raw = self.base.adb("shell", "sha256sum", path)
+        (self.out / "original-before-reset-apk-sha256.txt").write_text(hash_raw)
+        hashed = hash_raw.split()
         require(len(hashed) == 2 and hashed[1] == path, "Original installed APK hash unavailable")
-        installed = learning.verify_installed_metadata(self.base.adb("shell", "dumpsys", "package", learning.PACKAGE),
-                                                        hashed[0], identity)
+        package_dump = self.base.adb("shell", "dumpsys", "package", learning.PACKAGE)
+        (self.out / "original-before-reset-package.txt").write_text(package_dump)
+        installed = learning.verify_installed_metadata(package_dump, hashed[0], identity)
         record = {"original_result_sha256": digest(original_path), "original_result": str(original_path),
                   "original_status": original["status"], "original_run_id": original["run_id"],
                   "installed_before_reset": installed, "synthetic_profile_before_reset": current["profile"],

@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 import stat
 import tempfile
+from types import SimpleNamespace
 import unittest
 import zipfile
 
@@ -227,6 +228,20 @@ class OriginalAndCoreEvidenceTest(unittest.TestCase):
     def snapshot(self):
         return {"profile": {"id": "fictional", "name": probe.learning.PROFILE_NAME, "grade": 1},
                 "learning": {"flutter.lumo_attempt_log_v1": "[]"}}
+
+    def test_reference_reset_inherits_the_same_logged_strict_path_reader(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            instance = probe.ReferenceProbe.__new__(probe.ReferenceProbe)
+            instance.out = Path(temporary)
+            path = "/data/app/~~opaque==/dev.ullmann.lumo-random==/base.apk"
+            raw = "package:" + path + "\n"
+            instance.base = SimpleNamespace(adb=lambda *args: raw)
+            self.assertEqual(instance.read_installed_base_apk_path("original-before-reset"), path)
+            self.assertEqual((instance.out / "original-before-reset-pm-path.txt").read_text(), raw)
+            raw = "package:/data/app/app/../base.apk"
+            with self.assertRaises(RuntimeError):
+                instance.read_installed_base_apk_path("original-before-reset")
+            self.assertEqual((instance.out / "original-before-reset-pm-path.txt").read_text(), raw)
 
     def test_successful_original_and_performance_are_required_before_reset(self):
         identity = {"sha256": probe.APK_SHA256, "versionCode": 2027, "signingCertificateSha256": probe.CERTIFICATE}
