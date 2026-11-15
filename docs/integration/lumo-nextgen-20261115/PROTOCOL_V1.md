@@ -1,90 +1,48 @@
-# LUMO Nächste Generation – gemeinsamer Lern-/Figur-/Sprachvertrag v1
+# LUMO NextGen – gemeinsamer produktiver Lern-/Figuren-/Sprachvertrag v1
 
-Stand: 15.11.2026 · **Integrationsvertrag, keine Behauptung über fertige Laufzeitverdrahtung**.
+Stand: 15.11.2026 · Integrationszweig \`integration/lumo-learning-nextgen-20261115\`.
 
-## Verifizierte Ausgangsarchitektur
-- Flutter-Host: \`lib/features/learning/learning_content.dart\` → \`LegacyLumoTaskAdapter\` → \`TaskInstance\`; \`NativeLearningActivity.fromTask/fromLesson\` erzeugt bereits einen streng begrenzten Godot-Lernaufruf über \`launchLumo3D(scene: 'learning', learning: ...)\`.
-- Bestehender Godot-Pin der Ausgangsbasis: \`d38967f6d39bc20188afe525b0af122d80634029\`. Godot: \`scripts/learning/learning_world.gd\`, \`scripts/learning/learning_activity.gd\`, \`scripts/characters/lumo/lumo_rigged_actor.gd\`, \`scripts/systems/host_bridge.gd\`.
-- Flutter besitzt \`LumoConversationController\`, \`LumoSpeechListener\` und \`LumoVoice\`; Godot nutzt vorhandene \`LumoHost\`-Methoden \`speakLearning\`, \`stopLearningSpeech\`, \`getLearningSpeechStatus\`. **Ein voll-duplexer Live-Gesprächskanal Flutter ↔ Godot ist damit noch nicht belegt.** Es darf kein alternatives LLM-Belohnungssystem eingeführt werden.
-- Vorhandener \`LumoLearningScene\`-Serializer trägt \`version: 1\` und bleibt unverändert. Das folgende zusätzliche Nachrichtenprotokoll heißt unabhängig davon \`lumo.learning.round\` v1. Eine Umdeutung vorhandener Payloads ist verboten.
+**Kanonische API ist die tatsächlich im Flutter-Quellcode vorhandene \`LumoLearningIdentity\` mit \`protocolVersion: 1\` aus \`lib/core/lumo_learning_session_contract.dart\`.** Eine frühe, separate JSON-Idee \`lumo.learning.round\` ist **nicht** die produktive API. \`tools/learning_nextgen/contract_reference.py\` prüft diese eigenständige JSON-Sicherheitsreferenz; seine Python-Tests sind **keine** Flutter-/Godot-Interaktion und kein Android-Gerätebeleg. Keine zweite Live-Sitzungsverwaltung neben der bestehenden Flutter-/Godot-Architektur einführen.
 
-## Unveränderliche Verantwortung
-1. **Flutter-Aufgabenautorität:** ausgewählte Klasse/Fach/Unit, exakte Aufgaben-ID, richtige Antwort, Fehlerklasse, adaptiver Hinweis, Lernstand, Sterne/XP und persistente Quittung. Quelle sind die bisherigen Generator-, Aufgaben-, Lernprofil- und Wallet-Services. Native Illustrationen sind niemals selbst bewertete Leistungen.
-2. **Godot-Präsentation:** Objekt-IDs, Zehnerfeld, 3D-LUMO, Blick/Pfote/Mimik, visuelle Erklärschritte, ruhiger Modus. Godot darf Vorschläge senden; es darf weder Antworterfolg noch Lernstand oder Sterne selbst festlegen.
-3. **Sprache/Gespräch:** transkribiertes Kindersprechen, Kontext, sichere Hilfsabsicht, tatsächliche Audio-Wiedergabe und Untertitel. KI-Text ist **kein** Beleg für eine korrekte Antwort und darf ausschließlich eine gültige Aktion anfordern.
-4. **Host/Android:** vorhandener \`lumo_lernen/bridge\`-Start-/Rückkehrweg, Lebenszyklus, Audio-Lizenz/Geräteverfügbarkeit und Profileigentümer. Keine neue konkurrierende Engine und keine zweite App.
+## Die versionierten Felder und Verantwortlichkeiten
 
-## Nachrichtenumschlag
-Jede neue Nachricht trägt folgende Felder; unbekannte Pflichtfelder, ungültige Versionen oder veraltete Eigentümer werden verworfen. **JSON, keine Dart-Objekte oder Godot-Varianten über die Grenze**.
-
-\`\`\`json
-{
-  "protocol": "lumo.learning.round",
-  "version": 1,
-  "messageId": "unique-opaque-id",
-  "sessionId": "opaque-session-id",
-  "ownerGeneration": 7,
-  "taskId": "existing-task-instance-id",
-  "taskRevision": 12,
-  "turnId": "opaque-conversation-turn",
-  "sequence": 17,
-  "kind": "presentation.step",
-  "payload": {}
-}
-\`\`\`
-
-- \`sessionId\`: beim Lern-Start neu; nur innerhalb dieser laufenden Sitzung gültig. Kein Klarname oder unnötiger Kinderprofilinhalt.
-- \`ownerGeneration\`: aktueller Generation-/Lease-Schutz aus \`LumoAppState\`; der Host prüft vor jeder Änderung, dass Profil/Reset zugeordnet bleiben.
-- \`taskId\`: **exakte** ID der aktuell geprüften Aufgabe bzw. Lektion, keine allein aus Aufgabentext geratene ID.
-- \`taskRevision\`: monoton steigender Aufgabenkontext-Zähler; Wechsel, Retry mit neuem Aufgabenobjekt, Unterbrechung oder Reset invalidieren alte Antworten.
-- \`turnId\`: zugehöriger Sprach-/Erklärvorgang (bei reinem Rendering leer zulässig).
-- \`sequence\`: pro Sitzung streng steigende Ausgabesequenz; Duplikate werden idempotent behandelt, veraltete Sequenzen verworfen.
-- Antwortbezogene Nachrichten sind nur zulässig, wenn alle fünf Werte (session, ownerGeneration, taskId, taskRevision, turnId sofern Gespräch) zu einem live offenen Vorgang passen. Beim Wiederaufnehmen wird ein frischer Turn/Revision vergeben.
-
-## Nachrichtenarten und Payloads (v1)
-
-| Art | Pflichtdaten | Autorität |
+| Tatsächlicher Dart-Typ | Enthaltene v1-Felder | Wer entscheidet? |
 |---|---|---|
-| \`session.started\` | \`grade\`, \`subject\`, \`unit\`, \`calmMode\`, \`voiceAllowed\`, \`sceneVersion\` | Flutter |
-| \`task.activated\` | \`taskType\`, \`objectIds[]\`, \`stepId\`, \`checkedVisual\`, \`allowedHints[]\` | Flutter |
-| \`presentation.step\` | \`stepId\`, \`objectId\`, \`operation\`, \`durationMs\` | Flutter/validierter Szenenregisseur |
-| \`answer.proposed\` | \`inputId\`, \`inputKind\`, \`raw\` | Kind/Native UI |
-| \`answer.assessed\` | \`inputId\`, \`correct\`, \`errorKind\`, \`nextAllowedHint\`, \`receiptId\` optional | **Flutter-Fachlogik** |
-| \`hint.requested\` | \`level\`, \`objectId\`, \`reason\` | KI als Vorschlag, Flutter prüft |
-| \`speech.transcript\` | \`recognitionId\`, \`text\`, \`isFinal\`, \`locale\`, \`confidence\` optional | ASR mit Bestätigung |
-| \`conversation.reply\` | \`text\`, \`requestAction\` optional, \`contextRevision\` | validierter Gesprächsdienst |
-| \`avatar.cue\` | \`gazeObjectId\`, \`gesture\`, \`expression\`, \`animationState\` | validierter Regisseur |
-| \`audio.status\` | \`playbackId\`, \`state\`, \`audible\`, \`offsetMs\`, \`durationMs\`, \`subtitle\`, \`mouthFrames[]\` optional | **echter Playerstatus** |
-| \`turn.cancel\` | \`reason\` (\`stop|taskChange|profileChange|lifecycle|dispose\`) | Kind/Host |
-| \`turn.cancelled\` | \`playbackId\` optional, \`stopped\` | native Stimme/Fuchs bestätigt |
-| \`session.resumed\` | \`taskId\`, \`taskRevision\`, \`stepId\` | Flutter aus gespeichertem Zustand |
+| \`LumoLearningIdentity\` | \`sessionId, taskId, revision, cancelEpoch, stepId\` | Flutter-Host, aktueller Lernprofil-Owner |
+| \`LumoLearningActionRequest\` | \`identity, requestId, action, turnId, objectId, candidate\` | Kind/Agent schlägt vor; Flutter validiert |
+| \`LumoLearningCancellation\` | \`sequence,reason,identity\` | Flutter-Host/Abbruch |
+| \`LumoLearningPresentation\` | \`identity,turnId,utteranceId,gazeObjectId,pointObjectId,expression,animationState\` | abgesicherte visuelle Hinweise, Godot rendert |
+| \`LumoLearningAudioFrame\` | \`identity,turnId,utteranceId,state,subtitle,positionMs,durationMs,audible,envelopeAvailable,envelope\` | tatsächlicher Audio-Playerstatus, keine Text-Zeituhr |
+| \`LumoCompanionTaskContext\` | \`taskId,subject,unit,prompt,stepId,objectIds,allowedActions,dialogue\` | ausschließlich laufende Aufgabenquelle |
 
-Gültige \`requestAction\`-Namen: \`focusObject\`, \`showAllowedHint\`, \`repeatExplanation\`, \`slowExplanation\`, \`pause\`, \`stop\`. \`grantReward\`, \`markCorrect\`, \`changeGrade\`, \`changeTask\` und freie Tool-Namen sind **nicht erlaubt**. Jede Objekt-/Schritt-Referenz wird gegen \`task.activated.objectIds\` und den zugelassenen Schritt geprüft. Keine aus Text frei erzeugten IDs akzeptieren.
+Die \`taskId\` bleibt die **echte bestehende** ID, keine allein aus Text erzeugte ID. \`revision\` schützt vor Wechseln innerhalb einer Aufgabe, \`cancelEpoch\` invalidiert alte asynchrone Antworten nach Stopp/Hintergrund/Profilwechsel. \`turnId\` ist die Gesprächsrunde; \`utteranceId\` gehört zu genau einem tatsächlich gestarteten Ton. Der Request-Bus heißt \`LumoCompanionRequests\` mit \`learningIdentity\`, \`learningAction\`, \`learningCancellation\`, \`learningPresentation\`, \`learningAudio\` und \`dialogueFocus\`. Die \`dialogueFocus\`-Markierung wird bei Aufgabenwechsel, Abbruch oder Scope-Ende gelöscht.
 
-\`errorKind\`: \`none|placeValue|counting|numberTranscription|syllableOrder|patternRule|other\`. Eine verhörte Zahl wird zunächst nachgefragt, nicht als falsch bewertet. Freie Kinderfrage \`Warum zuerst zwei?\` löst eine **Erklärung zur aktiven Aufgabe**, keine Antwortbuchung aus.
+## Zulässige Aktionen und Grenzen
 
-\`avatar.cue.gesture\`: \`idle|look|point|count|think|encourage|celebrate|stop\`. \`expression\`: \`attentive|thoughtful|encouraging|joyful|neutral\`. Nur vorhandene reale Rig-/Animationszustände ausführen; fehlende Morphs dürfen einen ehrlichen Fallback haben. Ziel \`gazeObjectId\` muss existieren. Bei fehlendem Objekt neutral blicken, niemals in irrelevante Richtung zeigen.
+Der v1-Aktions-Enum ist exakt \`explain,repeat,slower,hint,highlight,point,look,stop,proposeAnswer\`. Keine \`grantReward\`-, \`markCorrect\`-, \`changeTask\`- oder sonstigen freien Modellaktionen. Die aktuelle Aufgabe gibt \`allowedActions\` vor; in Prüfungssituationen gilt die Hilfescheide. Zielobjekte müssen bei der aktuellen Aufgabe registriert sein, nicht von einem Modell erfunden werden. \`proposeAnswer\` erzeugt **nur einen editierbaren Kandidaten**. Fachliche Bewertung, Fehlertyp, Versuchsstand, XP/Sterne, Fortschritt und Speicherung bleiben bei \`TaskInstance\`/bestehendem Bewertungs-/Speichersystem. Zahlenverhörung und Korrektur ändern nicht eigenständig eine Bewertung.
 
-\`audio.status.state\`: \`preparing|playing|completed|stopped|error\`. \`audible=true\` **erst** nach bestätigtem Playerstart; \`mouthFrames\` sind Zeit-/Gewichtspaare relativ zum realen Audiostart, höchstens 30 fps. Fehlen echte Wort-/Phonemzeiten, verwenden wir gemessene Amplituden, nicht erfundene Zeitmarken. Untertitel folgen dem tatsächlich gewählten Text/Tempo. Nicht hörbar abgespielter Text darf keine aktive Mundbewegung auslösen.
+\`LumoTaskDialogueSnapshot\`/\`LumoTaskDialogueReply\` sind geprüfte, befristete Text-/Objekt-Informationen: Kinder fragen „Warum zuerst zwei?“, „langsamer“, „Stopp“ oder korrigieren eine Zahl; die Antwort darf nur an die aktive Aufgabe gebunden werden. Bei unklarer Spracherkennung muss das Kind den Vorschlag sehen/bestätigen, bevor ein vorhandener Bewertungscontroller aufgerufen wird.
 
-## Besitz-/Abbruchautomat
-- \`start\` → \`listening\` oder \`thinking\` → \`speaking\` → \`idle\`; \`pause\`, \`taskChange\`, \`appBackground\` und \`stop\` invalidieren **zuerst** Aufgabengeneration und Turn-ID.
-- Danach gemeinsam: ASR abbrechen, TTS stoppen, noch nicht gestartete Audiojobs verwerfen, \`audio.status: stopped\` senden, Mundgewicht auf null, Zeigegeste/Anlauftween stoppen und Fuchs auf neutralen Zustand. **Keine** verspätete \`completed\`-/\`answer.assessed\`-Nachricht darf danach den neuen Zustand verändern.
-- Bei Wiedereintritt: aus dem **bestehenden** Host-Speicher lesen, zuletzt bestätigte Aufgabe/Schritt aktivieren, neue \`taskRevision\` und frischen \`turnId\` vergeben. Keine doppelte Vergabe von XP/Sternen. Bindende Quittung nur über bisherigen Wallet-/Progress-Pfad.
-- Bei offline/nicht verfügbarer Sprache bleibt die Aufgabe vollständig tipp- und antippbar; \`voiceAllowed=false\` und ein verständlicher Statustext. Keinen kostenpflichtigen Cloud-Fallback hinzufügen.
+## Bild, Audio und Lebenszyklus
 
-## Drei erste gemeinsame Prüfszenen
-- \`math.bridgeTen.8plus5\`: 8 Zehnerfeldobjekte, rechts 5. Explizite Objektkennungen \`ten.slot.0..9\` und \`extra.0..4\`. Zuerst \`extra.0, extra.1\` in \`ten.slot.8, ten.slot.9\` bewegen; drei außen; geprüfte Lösung 13. Zur Frage \`Warum zuerst zwei?\` spricht LUMO: „Weil zur Zehn noch zwei fehlen. Danach bleiben drei übrig.“ Blick/Geste müssen auf genau die zwei umgesetzten Steine zeigen. Hilfen dürfen nicht als selbst gelöste Antwort zählen.
-- \`de.syllables.banane\`: geprüfte Segmente \`Ba\`, \`na\`, \`ne\` und \`word.syllable.0..2\`. Beim Wort \`langsam\` tatsächliche TTS-Rate reduzieren oder längere Pausen *aus echtem Audio*; gleichzeitige Anzeige nacheinander. Reine Wiederholung vergibt keine Leistung.
-- \`logic.pattern.repeat\`: ausdrücklich definierten wiederkehrenden Gruppenblock markieren, ein regelkonformes nächstes Objekt nur als erlaubten Hinweis vorschlagen; Bewertung ausschließlich mit vorhandener Aufgabenlogik. Muster ohne geprüfte Sollfolge dürfen nicht bewertet werden.
+Godot benutzt weiter die **bestehende** \`NativeLearningActivity.fromTask/fromLesson\`-Startfunktion über Flutter/Android und die bisherige Lernszene. Kein zweiter Generator/Engine und keine lose durch ein HTML-Prototypenfenster ersetzte Lernlogik.
 
-## Integrationsentscheidung
-**Kein zweiter Content-Generator.** Die Chat-2-Szenendaten werden über den vorhandenen \`TaskInstance\`-/\`NativeLearningActivity\`-Weg eingespeist. Chat 3 realisiert Godot-Darstellung im bisherigen \`learning_world.gd\`-Pfad und vorhandenen Fuchs-Rig; Chat 4 ergänzt den bestehenden Sprach-Host. Erst ein auf echter Android-Laufzeit bestätigter duplexer Kanal darf als „Kind spricht während der Godot-Aufgabe mit LUMO“ bezeichnet werden. Bis dahin bleibt der Vertrag ein prüfbarer Integrationsstandard, kein Funktionsclaim.
+\`LumoLearningPresentation\` richtet LUMOs Blick/Pfote auf \`gazeObjectId\`/\`pointObjectId\`; nicht registrierte IDs haben keine Aktion. \`LumoLearningAudioFrame\` liefert echte \`playing\`-/\`audible\`-Meldungen, \`positionMs\` und optional die gemessene PCM-Amplitudenhüllkurve. Vor dem echten Wiedergabestart bewegt sich der Mund **nicht**. \`mouthTiming == envelope\` bedeutet **keine** verifizierten Viseme-/Phonem-Zeitstempel. Untertitel zeigen exakt den gewählten gesprochenen Text.
 
-## Abwärtskompatibilität / Änderungen
-- v1 fügt einen Umschlag **neben** vorhandenen \`learning\`-Launch-/Return-Payloads hinzu. Verwendete Altversionen bleiben unverändert. Pflichtfelder/Enumwerte werden in v1 nicht rückwirkend geändert.
-- Erweiterungen sind optional und dokumentiert; Breaking Changes erfordern v2 und explizite Aushandlung der unterstützten Version. Bei inkompatiblen Peers sichere Legacy-Darstellung statt blindem Parsen.
-- Datenschutz: nur temporäre Turn-Daten im Gesprächskontext; keine Speicherung unbestätigter ASR als Lernkompetenz.
+Bei \`stop\`, Wechsel, Hintergrund oder Profiländerung zuerst \`cancelEpoch\` invalidieren, dann ASR/LLM/TTS stoppen, Ton/Player auf \`stopped\`, Mund auf neutral, Gesten/Tweens neutralisieren. Alte \`completed\`-/Ergebnis-Callbacks werden verworfen. Bei Wiederaufnahme bestehende Aufgabe und Fortschritt neu binden, keinen alten KI-/Ton-Job fortsetzen und keine Sterne doppelt buchen. Ein offline/nicht verfügbares Mikrofon verhindert **nicht** das Tippen.
 
-## Zwingende Nachweise vor „angeschlossen“
-Verknüpfte Aufgabe, aktiver Actor, echter Audiostart, korrekt bestätigte Antwort, Speichern, Abbruch und Neuaufgabe in **einer** Android-Lernszene. Danach Registry-/Generator-/Lesen-/Lab-Abdeckung, Falttests und 60-FPS-Profil mit Fuchs+Audio. Separate CI-Unit-/Godot-Checks ersetzen kein Fold7-Video.
+## Gemeinsame Mindestproben
+
+1. **8+5**: 8 belegte Zehnerfelder plus 5 andere Objekte; **genau zwei** in die freien Felder ziehen, **drei** übrig. „Warum zuerst zwei?“ erklärt die tatsächlichen freien Felder und zeigt darauf, ohne Antwort zu buchen.
+2. **Banane**: reale \`Ba–na–ne\`-Silben anzeigen, sprechen und auf „langsamer“ die echte Audiowiedergabe verlangsamen. Nur echte Audiotaktdaten bewegen Kiefer und Mund.
+3. **Muster**: kleinste sich wiederholende Formengruppe zeigen; Hilfestellung verändert den Fortschritt nicht.
+
+Außerdem: falsch, verhört, Korrektur, Stopp, Wechsel mitten in Audio/LLM, Fold-Verschluss/Öffnen, Unterbrechung/Resume, ruhiger Modus, mindestens 48×48 dp Bedienelemente, normale Smartphones und Fold7 außen/innen.
+
+## Quellenstatus, der nicht überschritten werden darf
+
+Ausgang Flutter \`6f4a8c4753f4d06d0b392da0789b8162b2faa71b\` in \`delivery/lumo-2023-complete-update-20261115\`, App \`0.13.11+2023\`. Native-Pin in \`config/godot-source.json\` bleibt zunächst \`d38967f6d39bc20188afe525b0af122d80634029\` (Godot 4.6.3), bis nativer Import + Android-Kopplung belegt sind. Quellinventar \`COVERAGE_BASELINE.json\`: 36 Akademie-Topics, 20 Module, **6** Lab-Bereiche, acht Generatorfamilien plus Spezialpfade; dynamische Generator-Aufgaben brauchen eigene Laufzeitabdeckung. Geschützte Schreibtrainer-/Journal-Interna, Kart und Dschungel bleiben unberührt.
+
+**Stand:** Dart-Verträge und Quellbausteine sind im Integrationszweig. Ein freies Duplexgespräch **innerhalb der laufenden Godot-Lernszene**, echter Audio-/Lipsync auf einem physischen Fold7, 60-FPS-Profil und eine signierte vollständig verbundene NextGen-APK sind **nicht** belegt. Python-Vertragstests und Desktop-Widgets dürfen nicht als solche Gerätebelege gemeldet werden.
+
+V1 bleibt abwärtskompatibel; Breaking Changes brauchen explizite V2 mit beidseitiger Versionserkennung. Kein Merge nach \`main\` ohne Freigabe.
