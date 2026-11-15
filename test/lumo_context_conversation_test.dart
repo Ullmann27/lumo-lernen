@@ -121,17 +121,18 @@ void main() {
     expect(proxy.entered.isCompleted, false);
   });
 
-  test('task change cancels a pending answer and discards its memory',
+  test('task opening cancels an in-flight general chat and its memory',
       () async {
-    task();
+    // Active tasks never go to a general model. The asynchronous stale
+    // response case therefore starts before an active lesson is published.
     app.updateSettings(const AppSettings(
         aiProxyEnabled: true, aiLearningMode: AiLearningMode.learningHelp));
     final proxy = ControlledProxy();
     conversation.dispose();
     conversation = LumoConversationController(context, proxy: proxy);
-    final pending = conversation.ask('Lumo, was muss ich hier machen?');
+    final pending = conversation.ask('Lumo, was ist eine Biene?');
     await proxy.entered.future;
-    expect(proxy.extras?['taskPrompt'], 'Rechne 4 + 3.');
+    expect(proxy.extras?['taskPrompt'], isNull);
     task(attempts: 2);
     expect(proxy.request?.cancelled, true);
     proxy.reply.complete(const LumoAiProxyResponse(
