@@ -1,7 +1,7 @@
 name: LUMO direct village Flutter Android bridge
 on:
   push:
-    branches: [chatgpt/lumo-direct-village-flutter-20261114]
+    branches: [chatgpt/lumo-direct-village-flutter-20261114, repair/lumo-capture-state-20261114]
   workflow_dispatch:
 permissions:
   contents: read
