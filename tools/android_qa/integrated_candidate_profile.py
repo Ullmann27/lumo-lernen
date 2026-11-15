@@ -36,6 +36,7 @@ def candidate_scope(*, delivery=False, complete=False):
     changes = [(c4, {
         'VERSION_CODE': VERSION_CODE, 'WORKFLOW': WORKFLOW,
         'BRANCH': BRANCH, 'ACCEPTED_BRANCHES': frozenset((BRANCH,)),
+        'ALLOWED_BRANCHES': frozenset((BRANCH,)),
         'CANDIDATE': PREFIX + '-candidate',
         'NATIVE_ENTRY_LABEL': 'In 3D weiterspielen',
     })]

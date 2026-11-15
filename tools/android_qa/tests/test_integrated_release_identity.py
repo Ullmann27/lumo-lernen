@@ -40,6 +40,7 @@ class IntegratedIdentityTests(unittest.TestCase):
 
     def test_old_artifacts_cannot_be_relabelled_as_the_integrated_release(self):
         old = self.metadata(False)
+        historical_branches = c4.ALLOWED_BRANCHES
         with candidate_scope():
             with self.assertRaises(ValueError):
                 self.bind(old)
@@ -50,10 +51,19 @@ class IntegratedIdentityTests(unittest.TestCase):
             current = self.bind(self.metadata(True))
             self.assertEqual(current['versionCode'], 2021)
             self.assertEqual(c4.NATIVE_ENTRY_LABEL, 'In 3D weiterspielen')
+            self.assertEqual(c4.ALLOWED_BRANCHES, frozenset((BRANCH,)))
+            self.assertEqual(c4.ACCEPTED_BRANCHES, c4.ALLOWED_BRANCHES)
+            for branch in historical_branches:
+                with self.subTest(historical_branch=branch):
+                    forged = self.metadata(True)
+                    forged[0]['head_branch'] = branch
+                    with self.assertRaisesRegex(ValueError, 'source/event/workflow'):
+                        self.bind(forged)
 
     def test_scope_restores_historical_contracts_even_after_an_error(self):
         import verify_connect_four_delivery as delivery
         before = (c4.VERSION_CODE, c4.WORKFLOW, c4.CANDIDATE,
+                  c4.ALLOWED_BRANCHES, c4.ACCEPTED_BRANCHES,
                   delivery.VERSION_CODE, delivery.REQUIRED_STEPS, delivery.ARTIFACT_NAMES)
         with self.assertRaisesRegex(RuntimeError, 'synthetic failure'):
             with candidate_scope(delivery=True):
@@ -64,6 +74,7 @@ class IntegratedIdentityTests(unittest.TestCase):
                 self.assertNotIn('UPDATE-2020-RESULT.json', delivery.DELIVERY_ASSETS)
                 raise RuntimeError('synthetic failure')
         self.assertEqual(before, (c4.VERSION_CODE, c4.WORKFLOW, c4.CANDIDATE,
+                                 c4.ALLOWED_BRANCHES, c4.ACCEPTED_BRANCHES,
                                  delivery.VERSION_CODE, delivery.REQUIRED_STEPS, delivery.ARTIFACT_NAMES))
 
     def test_2021_migration_cannot_use_any_previous_opt_in(self):
@@ -123,6 +134,20 @@ class IntegratedIdentityTests(unittest.TestCase):
                 actual = [step.get('name') for step in job['steps']]
                 for label in steps:
                     self.assertEqual(actual.count(label), 1, name+': '+label)
+        live_name = 'Verify connected dream ambience and garden on exact native source'
+        steps = jobs['verify-and-build']['steps']
+        live_step = next(step for step in steps if step.get('name') == live_name)
+        historical = yaml.safe_load(
+            (ROOT/'.github/workflows/lumo-connect-four-2020.yml').read_text())
+        original_live_step = next(step for step in historical['jobs']['verify-and-build']['steps']
+                                  if step.get('name') == live_name)
+        self.assertEqual(live_step, original_live_step,
+                         'The inherited live gate must execute its exact source-bound command')
+        names = [step.get('name') for step in steps]
+        self.assertLess(names.index('Require actual Dream gates on the exact pinned native source'),
+                        names.index(live_name))
+        self.assertLess(names.index(live_name),
+                        names.index('Require actual Discovery gates on the exact pinned native source'))
         runtime = next(step for step in jobs['android-c4']['steps']
                        if step.get('name') == 'Install and tour the exact APK')['with']['script']
         for activity in ('quiz', 'memory', 'english_objects'):
