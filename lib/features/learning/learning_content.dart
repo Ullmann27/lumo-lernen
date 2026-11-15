@@ -24,6 +24,9 @@ import '../../core/task_hint_service.dart';
 import '../../core/recent_task_repository.dart';
 import '../../core/session_variety_guard.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/lumo_task_dialogue.dart';
+import '../../core/lumo_task_dialogue_adapter.dart';
+import '../agent/lumo_agent_content.dart';
 import '../../core/lumo_voice_clips.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/error_detective.dart';
@@ -72,6 +75,10 @@ class _LearningContentState extends State<LearningContent> {
   var _feedbackEngine = LumoLearningFeedbackEngine();
   final _taskHints = const TaskHintService();
   LumoCompanionTaskContext? _publishedTaskContext;
+  int _dialogueRevision = 0;
+  static int _nextDialogueSession = 0;
+  final int _dialogueSession = ++_nextDialogueSession;
+  bool _conversationOpen = false;
   String? _activeSessionScope;
   final Map<String, SkillState> _skillStates = <String, SkillState>{};
   final List<String> _recentTaskKeys = <String>[];
@@ -506,6 +513,18 @@ class _LearningContentState extends State<LearningContent> {
           : null,
       activity: _task.visual.contains('writ') ? 'writing' : 'learning',
       profileGeneration: widget.appState.profileGeneration,
+      dialogue: LumoTaskDialogueAdapter.fromSchoolExercise(
+          task: _task,
+          sessionId:
+              'practice-${widget.appState.profileGeneration}-$_dialogueSession',
+          taskId: _taskInstance.taskInstanceId,
+          stepId: _taskInstance.taskInstanceId,
+          revision: ++_dialogueRevision,
+          helpLevel: _requestedHelpLevel,
+          isAssessment: !_allowHelp,
+          acceptingAnswer: !_answered && !_sessionFinished,
+          lastAnswer: _lastGivenAnswer,
+          lastCorrect: _lastCorrect),
     );
     _tutorCoordinator.enterTask(context.tutorScope);
     _publishedTaskContext = context;
@@ -576,6 +595,45 @@ class _LearningContentState extends State<LearningContent> {
     if (_cloudHelpAllowed) {
       unawaited(_askAiTutor());
     }
+  }
+
+  void _noteDialogueHelp(LumoTaskDialogueReply reply) {
+    if (!mounted ||
+        !_allowHelp ||
+        _answered ||
+        _publishedTaskContext?.dialogue?.containsReply(reply) != true) {
+      return;
+    }
+    setState(() => _requestedHelpLevel = math.max(1, _requestedHelpLevel));
+    LumoCompanionRequests.instance.dialogueFocus.value = reply;
+  }
+
+  Future<bool> _confirmDialogueAnswer(LumoTaskDialogueReply reply) async {
+    if (!mounted ||
+        !_allowHelp ||
+        _answered ||
+        _sessionFinished ||
+        _activeSessionScope != _sessionScope ||
+        _publishedTaskContext?.dialogue?.containsReply(reply) != true ||
+        reply.draftAnswer == null ||
+        _taskInstance.taskType == TaskType.writingCanvas ||
+        _taskInstance.taskType == TaskType.shapeTrace) {
+      return false;
+    }
+    // Same finite option payload and exact comparator as AdaptiveTaskRenderer.
+    // Free text, drawing and handwriting retain their own assessment routes.
+    final options = _taskInstance.options
+        .where((option) =>
+            option.label == reply.draftAnswer ||
+            '${option.payload ?? option.label}' == reply.draftAnswer)
+        .toList();
+    if (options.length != 1) return false;
+    final value = options.single.payload ?? options.single.label;
+    _answerAdaptive(AdaptiveTaskAnswer(
+        task: _taskInstance,
+        answer: value,
+        correct: '$value' == '${_taskInstance.correctAnswer}'));
+    return true;
   }
 
   Future<void> _openNativeLearning() async {
@@ -804,7 +862,8 @@ class _LearningContentState extends State<LearningContent> {
     final factorySubject = _factorySubjectFor(st.subject, st.unit);
     final factoryUnit = _factoryUnitFor(st.subject, st.unit);
     final exactSelection = factoryUnit != 'Alle' &&
-        Curriculum.unitsForGrade(factorySubject, taskGrade).contains(factoryUnit);
+        Curriculum.unitsForGrade(factorySubject, taskGrade)
+            .contains(factoryUnit);
     LumoTask generate(Set<String> avoidUnits) => exactSelection
         ? _factory.nextExact(
             grade: taskGrade,
@@ -944,8 +1003,8 @@ class _LearningContentState extends State<LearningContent> {
     final normalized = unit.trim().toLowerCase();
     if (normalized.isEmpty || normalized == 'alle themen') return 'Alle';
 
-    final available = Curriculum.unitsForGrade(
-        _factorySubjectFor(subject, unit), _taskGrade);
+    final available =
+        Curriculum.unitsForGrade(_factorySubjectFor(subject, unit), _taskGrade);
     // A real topic always wins over an old shortcut with the same label.
     // Display labels such as Wörter lesen resolve back to their stable key.
     if (available.contains(unit.trim())) return unit.trim();
@@ -1907,6 +1966,30 @@ class _LearningContentState extends State<LearningContent> {
                           feedback: _lastFeedback,
                           onNext: _nextQuestion,
                         ),
+                      ],
+                      if (_allowHelp) ...[
+                        const SizedBox(height: 14),
+                        OutlinedButton.icon(
+                          key: const ValueKey('learning-conversation-toggle'),
+                          onPressed: () => setState(
+                              () => _conversationOpen = !_conversationOpen),
+                          style: OutlinedButton.styleFrom(
+                              minimumSize: const Size(48, 48)),
+                          icon: const Icon(Icons.forum_outlined),
+                          label: Text(_conversationOpen
+                              ? 'Gespräch schließen'
+                              : 'Lumo zur Aufgabe fragen'),
+                        ),
+                        if (_conversationOpen)
+                          LumoAgentContent(
+                              key: const ValueKey('learning-task-conversation'),
+                              appState: widget.appState,
+                              compact: true,
+                              onSection: (section) => widget.appState.update(
+                                  widget.appState.state
+                                      .copyWith(section: section)),
+                              onReviewedHelp: _noteDialogueHelp,
+                              onConfirmedAnswer: _confirmDialogueAnswer),
                       ],
                     ],
                   ),

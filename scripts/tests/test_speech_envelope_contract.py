@@ -36,10 +36,16 @@ class SpeechEnvelopeContractTest(unittest.TestCase):
         classes.mkdir()
         stdlib = next(libraries.glob('kotlin-stdlib-*.jar'))
         cls.classpath = os.pathsep.join(map(str, (classes, stdlib)))
+        # Frozen producer fixtures remain byte-identical to provenance.json.
+        # The dialogue extension explicitly substitutes only the newly needed
+        # JSON metadata/audio-focus surfaces in this compile-time boundary.
+        platform = {path.name: path for path in (FIXTURES / 'platform').glob('*.kt')}
+        platform.update({path.name: path for path in
+                         (FIXTURES / 'dialogue_platform').glob('*.kt')})
         sources = [ROOT / 'tools/auto_install/LumoSpeechEnvelope.kt',
                    ROOT / 'tools/auto_install/LumoLearningSpeech.kt',
                    *sorted(FIXTURES.glob('*.kt')),
-                   *sorted((FIXTURES / 'platform').glob('*.kt'))]
+                   *sorted(platform.values())]
         cls.run_checked([
             cls.java, '-cp', os.pathsep.join(map(str, sorted(libraries.glob('*.jar')))),
             'org.jetbrains.kotlin.cli.jvm.K2JVMCompiler', '-no-stdlib', '-no-reflect',
@@ -79,6 +85,15 @@ class SpeechEnvelopeContractTest(unittest.TestCase):
             'LearningSpeechBuildContractKt',
             'LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true',
         )
+
+    def test_dialogue_scope_and_audio_focus_contract(self):
+        result = self.run_checked([
+            self.java, '-cp', self.classpath,
+            'dev.ullmann.lumo.LearningSpeechDialogueContractKt',
+            str(FIXTURES / 'apfel.wav'),
+        ])
+        self.assertIn('LUMO_DIALOGUE_SPEECH_PASS checks=27 ', result.stdout)
+        print(result.stdout, end='')
 
 
 if __name__ == '__main__':

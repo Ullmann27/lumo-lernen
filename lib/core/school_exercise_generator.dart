@@ -9,6 +9,7 @@ import 'reading_comprehension_data.dart';
 import 'science_task_data.dart';
 import 'science_quality_extension.dart';
 import 'spelling_context_data.dart';
+import 'task_quality_guard.dart';
 
 class LumoTask {
   const LumoTask({
@@ -454,6 +455,18 @@ class ExerciseFactory {
   }
 
   LumoTask _build({required int grade, required String subject, required String unit}) {
+    // Every entry point, including direct cross-grade practice, receives a
+    // checked task. Retry within the requested topic; changing subjects is
+    // not a repair for an invalid generated variant.
+    const quality = TaskQualityGuard();
+    for (var attempt = 0; attempt < 32; attempt++) {
+      final task = _buildUnchecked(grade: grade, subject: subject, unit: unit);
+      if (quality.validate(task)) return task;
+    }
+    throw StateError('No validated task available for $grade/$subject/$unit');
+  }
+
+  LumoTask _buildUnchecked({required int grade, required String subject, required String unit}) {
     _serial++;
     if (LumoAdventureTasks.handles(subject, unit)) return _adventure(grade, subject, unit);
     switch (subject) {
@@ -495,6 +508,7 @@ class ExerciseFactory {
           'Das Muster wiederholt sich immer gleich: ${shown.join(' – ')} – ? Welche Form folgt?',
           pattern.first,
           'Die Gruppe ${pattern.join(' – ')} wiederholt sich. Nach ${pattern.last} kommt wieder ${pattern.first}.',
+          visual: 'pattern',
           customChoices: symbols);
     }
     if (unit == 'Zahlenmuster') {

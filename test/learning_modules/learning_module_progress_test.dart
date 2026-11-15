@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/learning_profile_engine.dart';
+import 'package:lumo_lernen/core/learning_journey.dart';
 import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning_modules/learning_module_progress.dart';
@@ -87,6 +88,63 @@ Future<void> _stored(
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
+
+  test('method help remains assisted through retries and resets for a new task',
+      () async {
+    final app = await _app();
+    final progress = _progress(app);
+    progress.beginPresentedTask(('minus', 0));
+    progress.notePresentationHelp(level: 2);
+    expect(
+        await progress.saveAnswer(correct: false, prompt: '8 - 3 = ?'), isTrue);
+    progress.beginPresentedTask(('minus', 0));
+    expect(
+        await progress.saveAnswer(correct: true, prompt: '8 - 3 = ?'), isTrue);
+    progress.beginPresentedTask(('minus', 1));
+    expect(
+        await progress.saveAnswer(correct: true, prompt: '7 - 2 = ?'), isTrue);
+    await _stored(correct: 2, wrong: 1, hints: 2, stars: 0, xp: 0);
+    await app.loadTutorJourney();
+    final journey = app.learningJourney().values.single;
+    expect(journey.assistedCorrect, 1);
+    expect(journey.independentCorrect, 1);
+    progress.dispose();
+    app.dispose();
+  });
+
+  test('method help preserves existing evidence identity and pending retry',
+      () async {
+    final wallet = BlockedModuleWallet()..reject = true;
+    final app = await _app(wallet: wallet);
+    final progress = _progress(app);
+    progress.beginPresentedTask('original');
+    progress.notePresentationHelp(level: 3);
+    final accepted = progress.saveAnswer(
+        correct: true,
+        stars: 1,
+        xp: 5,
+        learningEvidence: const LearningEvidence(
+            taskId: 'module_attempt_1',
+            problemId: 'module_problem_1',
+            correct: true,
+            transferCheck: true));
+    await _turns();
+    progress.beginPresentedTask('accidental_rebuild');
+    progress.notePresentationHelp(level: 1);
+    expect(identical(accepted, progress.saveAnswer(correct: true)), isTrue);
+    wallet.reject = false;
+    progress.retry();
+    expect(await accepted, isTrue);
+    await app.loadTutorJourney();
+    final journey = app.learningJourney().values.single;
+    expect(journey.recentTaskIds, ['module_attempt_1']);
+    expect(journey.assistedCorrect, 1);
+    expect(journey.independentCorrect, 0);
+    expect(journey.transferCorrect, 0);
+    await _stored(correct: 1, hints: 1, stars: 1, xp: 5);
+    progress.dispose();
+    app.dispose();
+  });
 
   test(
       'wallet write failure retries its existing reward and records one accepted answer',

@@ -1,0 +1,752 @@
+{
+  "schema": "lumo.nextgen.coverage.v1",
+  "created": "2026-11-15",
+  "source": {
+    "hostRepository": "Ullmann27/lumo-lernen",
+    "hostRevision": "6f4a8c4753f4d06d0b392da0789b8162b2faa71b",
+    "godotRepository": "Ullmann27/lumo-godot",
+    "godotRevision": "d38967f6d39bc20188afe525b0af122d80634029",
+    "sources": [
+      "lib/features/teacher_mode/topic_curriculum.dart",
+      "lib/features/learning_modules/learning_module_registry.dart",
+      "lib/features/learning/lab/learning_lab_catalog.dart",
+      "lib/core/school_exercise_generator.dart"
+    ]
+  },
+  "status": "SOURCE_INVENTORY_NOT_RUNTIME_CERTIFIED",
+  "meaning": "modernized=false records UNVERIFIED; does not imply code absent; older isolated PRs do not count as this integrated run.",
+  "counts": {
+    "academyTopicIds": 36,
+    "dedicatedModuleIds": 20,
+    "labTopics": 6,
+    "generatorSubjectFamilies": 8,
+    "specialFlows": 6
+  },
+  "academyTopics": [
+    {
+      "id": "m1_zahlen10",
+      "grade": 1,
+      "subject": "Mathematik",
+      "title": "Zahlen 1-10",
+      "entry": "Akademie → Klasse 1 → Mathematik → Zahlen 1-10",
+      "route": "registry:ZahlenBis10Screen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "m1_plus10",
+      "grade": 1,
+      "subject": "Mathematik",
+      "title": "Plus bis 10",
+      "entry": "Akademie → Klasse 1 → Mathematik → Plus bis 10",
+      "route": "registry:PlusBis10Screen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "m1_minus10",
+      "grade": 1,
+      "subject": "Mathematik",
+      "title": "Minus bis 10",
+      "entry": "Akademie → Klasse 1 → Mathematik → Minus bis 10",
+      "route": "registry:MinusBis10Screen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "m1_formen",
+      "grade": 1,
+      "subject": "Mathematik",
+      "title": "Formen",
+      "entry": "Akademie → Klasse 1 → Mathematik → Formen",
+      "route": "registry:FormenScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "d1_buchstaben_aj",
+      "grade": 1,
+      "subject": "Deutsch",
+      "title": "Buchstaben A-J",
+      "entry": "Akademie → Klasse 1 → Deutsch → Buchstaben A-J",
+      "route": "letter_writing",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "d1_buchstaben_kt",
+      "grade": 1,
+      "subject": "Deutsch",
+      "title": "Buchstaben K-T",
+      "entry": "Akademie → Klasse 1 → Deutsch → Buchstaben K-T",
+      "route": "letter_writing",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "d1_buchstaben_uz",
+      "grade": 1,
+      "subject": "Deutsch",
+      "title": "Buchstaben U-Z",
+      "entry": "Akademie → Klasse 1 → Deutsch → Buchstaben U-Z",
+      "route": "letter_writing",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "d1_woerter",
+      "grade": 1,
+      "subject": "Deutsch",
+      "title": "Erste Wörter",
+      "entry": "Akademie → Klasse 1 → Deutsch → Erste Wörter",
+      "route": "registry:WortDiktatScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "s1_tiere",
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "title": "Tiere",
+      "entry": "Akademie → Klasse 1 → Sachunterricht → Tiere",
+      "route": "registry:TiereScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "s1_farben",
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "title": "Farben",
+      "entry": "Akademie → Klasse 1 → Sachunterricht → Farben",
+      "route": "registry:FarbenScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "s1_koerper",
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "title": "Mein Körper",
+      "entry": "Akademie → Klasse 1 → Sachunterricht → Mein Körper",
+      "route": "academy_special_or_generator",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "m2_zahlen100",
+      "grade": 2,
+      "subject": "Mathematik",
+      "title": "Zahlen bis 100",
+      "entry": "Akademie → Klasse 2 → Mathematik → Zahlen bis 100",
+      "route": "registry:ZahlenBis100Screen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "m2_einmaleins",
+      "grade": 2,
+      "subject": "Mathematik",
+      "title": "Kleines 1×1",
+      "entry": "Akademie → Klasse 2 → Mathematik → Kleines 1×1",
+      "route": "registry:EinmaleinsScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "m2_uhr",
+      "grade": 2,
+      "subject": "Mathematik",
+      "title": "Die Uhr",
+      "entry": "Akademie → Klasse 2 → Mathematik → Die Uhr",
+      "route": "registry:UhrLernenScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "m2_geld",
+      "grade": 2,
+      "subject": "Mathematik",
+      "title": "Geld",
+      "entry": "Akademie → Klasse 2 → Mathematik → Geld",
+      "route": "registry:GeldScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "d2_saetze",
+      "grade": 2,
+      "subject": "Deutsch",
+      "title": "Sätze bilden",
+      "entry": "Akademie → Klasse 2 → Deutsch → Sätze bilden",
+      "route": "academy_special_or_generator",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "d2_artikel",
+      "grade": 2,
+      "subject": "Deutsch",
+      "title": "Der/Die/Das",
+      "entry": "Akademie → Klasse 2 → Deutsch → Der/Die/Das",
+      "route": "registry:ArtikelLernenScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "d2_mehrzahl",
+      "grade": 2,
+      "subject": "Deutsch",
+      "title": "Mehrzahl",
+      "entry": "Akademie → Klasse 2 → Deutsch → Mehrzahl",
+      "route": "registry:MehrzahlScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "s2_jahreszeiten",
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "title": "Jahreszeiten",
+      "entry": "Akademie → Klasse 2 → Sachunterricht → Jahreszeiten",
+      "route": "registry:JahreszeitenScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "s2_wetter",
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "title": "Wetter",
+      "entry": "Akademie → Klasse 2 → Sachunterricht → Wetter",
+      "route": "registry:WetterScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "s2_verkehr",
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "title": "Verkehr",
+      "entry": "Akademie → Klasse 2 → Sachunterricht → Verkehr",
+      "route": "registry:VerkehrScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "m3_zahlen1000",
+      "grade": 3,
+      "subject": "Mathematik",
+      "title": "Zahlen bis 1000",
+      "entry": "Akademie → Klasse 3 → Mathematik → Zahlen bis 1000",
+      "route": "academy_special_or_generator",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "m3_einmaleins_voll",
+      "grade": 3,
+      "subject": "Mathematik",
+      "title": "Großes 1×1",
+      "entry": "Akademie → Klasse 3 → Mathematik → Großes 1×1",
+      "route": "registry:EinmaleinsScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "m3_geometrie",
+      "grade": 3,
+      "subject": "Mathematik",
+      "title": "Geometrie",
+      "entry": "Akademie → Klasse 3 → Mathematik → Geometrie",
+      "route": "academy_special_or_generator",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "d3_wortarten",
+      "grade": 3,
+      "subject": "Deutsch",
+      "title": "Wortarten",
+      "entry": "Akademie → Klasse 3 → Deutsch → Wortarten",
+      "route": "registry:WortartenScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "d3_zeitformen",
+      "grade": 3,
+      "subject": "Deutsch",
+      "title": "Zeitformen",
+      "entry": "Akademie → Klasse 3 → Deutsch → Zeitformen",
+      "route": "registry:ZeitformenScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "d3_geschichten",
+      "grade": 3,
+      "subject": "Deutsch",
+      "title": "Geschichten",
+      "entry": "Akademie → Klasse 3 → Deutsch → Geschichten",
+      "route": "story_library",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "s3_oesterreich",
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "title": "Österreich",
+      "entry": "Akademie → Klasse 3 → Sachunterricht → Österreich",
+      "route": "academy_special_or_generator",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "s3_natur",
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "title": "Natur",
+      "entry": "Akademie → Klasse 3 → Sachunterricht → Natur",
+      "route": "academy_special_or_generator",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "m4_million",
+      "grade": 4,
+      "subject": "Mathematik",
+      "title": "Zahlen bis 1 Million",
+      "entry": "Akademie → Klasse 4 → Mathematik → Zahlen bis 1 Million",
+      "route": "academy_special_or_generator",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "m4_bruch",
+      "grade": 4,
+      "subject": "Mathematik",
+      "title": "Bruchrechnen",
+      "entry": "Akademie → Klasse 4 → Mathematik → Bruchrechnen",
+      "route": "registry:BruchrechnenScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "m4_textaufgaben",
+      "grade": 4,
+      "subject": "Mathematik",
+      "title": "Textaufgaben",
+      "entry": "Akademie → Klasse 4 → Mathematik → Textaufgaben",
+      "route": "academy_special_or_generator",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "d4_grammatik",
+      "grade": 4,
+      "subject": "Deutsch",
+      "title": "Grammatik",
+      "entry": "Akademie → Klasse 4 → Deutsch → Grammatik",
+      "route": "academy_special_or_generator",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "d4_aufsatz",
+      "grade": 4,
+      "subject": "Deutsch",
+      "title": "Aufsätze",
+      "entry": "Akademie → Klasse 4 → Deutsch → Aufsätze",
+      "route": "academy_special_or_generator",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "s4_europa",
+      "grade": 4,
+      "subject": "Sachunterricht",
+      "title": "Europa",
+      "entry": "Akademie → Klasse 4 → Sachunterricht → Europa",
+      "route": "academy_special_or_generator",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "s4_geschichte",
+      "grade": 4,
+      "subject": "Sachunterricht",
+      "title": "Geschichte",
+      "entry": "Akademie → Klasse 4 → Sachunterricht → Geschichte",
+      "route": "academy_special_or_generator",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    }
+  ],
+  "dedicatedModules": [
+    {
+      "id": "m1_plus10",
+      "screen": "PlusBis10Screen",
+      "entry": "Akademie → Klasse 1 → Mathematik → Plus bis 10",
+      "modernized": false
+    },
+    {
+      "id": "m1_minus10",
+      "screen": "MinusBis10Screen",
+      "entry": "Akademie → Klasse 1 → Mathematik → Minus bis 10",
+      "modernized": false
+    },
+    {
+      "id": "m1_zahlen10",
+      "screen": "ZahlenBis10Screen",
+      "entry": "Akademie → Klasse 1 → Mathematik → Zahlen 1-10",
+      "modernized": false
+    },
+    {
+      "id": "m1_formen",
+      "screen": "FormenScreen",
+      "entry": "Akademie → Klasse 1 → Mathematik → Formen",
+      "modernized": false
+    },
+    {
+      "id": "s1_tiere",
+      "screen": "TiereScreen",
+      "entry": "Akademie → Klasse 1 → Sachunterricht → Tiere",
+      "modernized": false
+    },
+    {
+      "id": "s1_farben",
+      "screen": "FarbenScreen",
+      "entry": "Akademie → Klasse 1 → Sachunterricht → Farben",
+      "modernized": false
+    },
+    {
+      "id": "m2_uhr",
+      "screen": "UhrLernenScreen",
+      "entry": "Akademie → Klasse 2 → Mathematik → Die Uhr",
+      "modernized": false
+    },
+    {
+      "id": "m2_geld",
+      "screen": "GeldScreen",
+      "entry": "Akademie → Klasse 2 → Mathematik → Geld",
+      "modernized": false
+    },
+    {
+      "id": "m2_zahlen100",
+      "screen": "ZahlenBis100Screen",
+      "entry": "Akademie → Klasse 2 → Mathematik → Zahlen bis 100",
+      "modernized": false
+    },
+    {
+      "id": "d2_artikel",
+      "screen": "ArtikelLernenScreen",
+      "entry": "Akademie → Klasse 2 → Deutsch → Der/Die/Das",
+      "modernized": false
+    },
+    {
+      "id": "d2_mehrzahl",
+      "screen": "MehrzahlScreen",
+      "entry": "Akademie → Klasse 2 → Deutsch → Mehrzahl",
+      "modernized": false
+    },
+    {
+      "id": "s2_jahreszeiten",
+      "screen": "JahreszeitenScreen",
+      "entry": "Akademie → Klasse 2 → Sachunterricht → Jahreszeiten",
+      "modernized": false
+    },
+    {
+      "id": "s2_wetter",
+      "screen": "WetterScreen",
+      "entry": "Akademie → Klasse 2 → Sachunterricht → Wetter",
+      "modernized": false
+    },
+    {
+      "id": "s2_verkehr",
+      "screen": "VerkehrScreen",
+      "entry": "Akademie → Klasse 2 → Sachunterricht → Verkehr",
+      "modernized": false
+    },
+    {
+      "id": "d3_wortarten",
+      "screen": "WortartenScreen",
+      "entry": "Akademie → Klasse 3 → Deutsch → Wortarten",
+      "modernized": false
+    },
+    {
+      "id": "d3_zeitformen",
+      "screen": "ZeitformenScreen",
+      "entry": "Akademie → Klasse 3 → Deutsch → Zeitformen",
+      "modernized": false
+    },
+    {
+      "id": "d1_woerter",
+      "screen": "WortDiktatScreen",
+      "entry": "Akademie → Klasse 1 → Deutsch → Erste Wörter",
+      "modernized": false
+    },
+    {
+      "id": "m2_einmaleins",
+      "screen": "EinmaleinsScreen",
+      "entry": "Akademie → Klasse 2 → Mathematik → Kleines 1×1",
+      "modernized": false
+    },
+    {
+      "id": "m3_einmaleins_voll",
+      "screen": "EinmaleinsScreen",
+      "entry": "Akademie → Klasse 3 → Mathematik → Großes 1×1",
+      "modernized": false
+    },
+    {
+      "id": "m4_bruch",
+      "screen": "BruchrechnenScreen",
+      "entry": "Akademie → Klasse 4 → Mathematik → Bruchrechnen",
+      "modernized": false
+    }
+  ],
+  "labTopics": [
+    {
+      "id": "bridge",
+      "title": "Die Zehnerbrücke",
+      "subject": "Mathematik",
+      "unit": "Plus bis 20",
+      "entry": "Akademie → Lumos Lernatelier → Die Zehnerbrücke",
+      "route": "LearningLabHub → LearningLabScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "words",
+      "title": "Die Wortwerkstatt",
+      "subject": "Deutsch",
+      "unit": "Silben",
+      "entry": "Akademie → Lumos Lernatelier → Die Wortwerkstatt",
+      "route": "LearningLabHub → LearningLabScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "english",
+      "title": "Lumos kleine English-Welt",
+      "subject": "Englisch",
+      "unit": "Alltagswörter",
+      "entry": "Akademie → Lumos Lernatelier → Lumos kleine English-Welt",
+      "route": "LearningLabHub → LearningLabScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "nature",
+      "title": "Der Weg des Wassers",
+      "subject": "Sachunterricht",
+      "unit": "Pflanzen",
+      "entry": "Akademie → Lumos Lernatelier → Der Weg des Wassers",
+      "route": "LearningLabHub → LearningLabScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "fractions",
+      "title": "Das Bruchatelier",
+      "subject": "Mathematik",
+      "unit": "Brüche",
+      "entry": "Akademie → Lumos Lernatelier → Das Bruchatelier",
+      "route": "LearningLabHub → LearningLabScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "patterns",
+      "title": "Lumos Formenwerkstatt",
+      "subject": "Logik",
+      "unit": "Muster",
+      "entry": "Akademie → Lumos Lernatelier → Lumos Formenwerkstatt",
+      "route": "LearningLabHub → LearningLabScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    }
+  ],
+  "generatorFamilies": [
+    {
+      "id": "factory.mathematik",
+      "subject": "Mathematik",
+      "entry": "Lernen → Klasse/Fach/Einheit → Mathematik",
+      "unitsSource": "Curriculum.unitsForGrade(\"Mathematik\", grade) (runtime enumerated)",
+      "route": "ExerciseFactory.nextExact → LearningContent → LegacyLumoTaskAdapter → renderer",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "factory.deutsch",
+      "subject": "Deutsch",
+      "entry": "Lernen → Klasse/Fach/Einheit → Deutsch",
+      "unitsSource": "Curriculum.unitsForGrade(\"Deutsch\", grade) (runtime enumerated)",
+      "route": "ExerciseFactory.nextExact → LearningContent → LegacyLumoTaskAdapter → renderer",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "factory.lesen",
+      "subject": "Lesen",
+      "entry": "Lernen → Klasse/Fach/Einheit → Lesen",
+      "unitsSource": "Curriculum.unitsForGrade(\"Lesen\", grade) (runtime enumerated)",
+      "route": "ExerciseFactory.nextExact → LearningContent → LegacyLumoTaskAdapter → renderer",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "factory.rechtschreibung",
+      "subject": "Rechtschreibung",
+      "entry": "Lernen → Klasse/Fach/Einheit → Rechtschreibung",
+      "unitsSource": "Curriculum.unitsForGrade(\"Rechtschreibung\", grade) (runtime enumerated)",
+      "route": "ExerciseFactory.nextExact → LearningContent → LegacyLumoTaskAdapter → renderer",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "factory.schreiben",
+      "subject": "Schreiben",
+      "entry": "Lernen → Klasse/Fach/Einheit → Schreiben",
+      "unitsSource": "Curriculum.unitsForGrade(\"Schreiben\", grade) (runtime enumerated)",
+      "route": "ExerciseFactory.nextExact → LearningContent → LegacyLumoTaskAdapter → renderer",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "factory.sachunterricht",
+      "subject": "Sachunterricht",
+      "entry": "Lernen → Klasse/Fach/Einheit → Sachunterricht",
+      "unitsSource": "Curriculum.unitsForGrade(\"Sachunterricht\", grade) (runtime enumerated)",
+      "route": "ExerciseFactory.nextExact → LearningContent → LegacyLumoTaskAdapter → renderer",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "factory.englisch",
+      "subject": "Englisch",
+      "entry": "Lernen → Klasse/Fach/Einheit → Englisch",
+      "unitsSource": "Curriculum.unitsForGrade(\"Englisch\", grade) (runtime enumerated)",
+      "route": "ExerciseFactory.nextExact → LearningContent → LegacyLumoTaskAdapter → renderer",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    },
+    {
+      "id": "factory.logik",
+      "subject": "Logik",
+      "entry": "Lernen → Klasse/Fach/Einheit → Logik",
+      "unitsSource": "Curriculum.unitsForGrade(\"Logik\", grade) (runtime enumerated)",
+      "route": "ExerciseFactory.nextExact → LearningContent → LegacyLumoTaskAdapter → renderer",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
+    }
+  ],
+  "specialFlows": [
+    {
+      "id": "reading",
+      "entry": "Lesen → reading_content / lumo_reading_buddy_screen",
+      "route": "reading flow",
+      "modernized": false
+    },
+    {
+      "id": "guided_lessons",
+      "entry": "Akademie → Geführte Lektionen",
+      "route": "GuidedLearningHub",
+      "modernized": false
+    },
+    {
+      "id": "writing",
+      "entry": "Akademie → Schreiben / Wortdiktat",
+      "route": "protected writing via existing interfaces",
+      "modernized": false
+    },
+    {
+      "id": "cross_grade",
+      "entry": "Akademie → andere Klasse → CrossGradePracticeScreen",
+      "route": "cross-grade practice without profile grade mutation",
+      "modernized": false
+    },
+    {
+      "id": "test_schoolwork",
+      "entry": "Lernen → Test-/Schularbeitsmodus",
+      "route": "LearningContent sessionKind",
+      "modernized": false
+    },
+    {
+      "id": "photo_lesson",
+      "entry": "Foto-Lernhilfe",
+      "route": "photo_lesson (camera & tutoring)",
+      "modernized": false
+    }
+  ],
+  "nativePresentationKinds": [
+    "addition",
+    "subtract_ten",
+    "equal_groups",
+    "equal_sharing",
+    "bridge_hundred",
+    "fraction_parts",
+    "syllables",
+    "english_objects",
+    "bridge_ten",
+    "plant_parts"
+  ],
+  "notes": [
+    "AcademyTopic registration and LearningModuleRegistry are source reachability only; an on-device touch tour must prove execution.",
+    "ExerciseFactory content is dynamic per grade via Curriculum.unitsForGrade, not exhausted by this static list. A seeded generator audit must add the actual grade × subject × unit rows before any full coverage claim.",
+    "No family is certified nextgen integrated; do not check modernized until exercise scoring, actor/cue, speech and resume are proven together.",
+    "Protected writing/journal code is an interface-only integration boundary. Kart and Jungle are excluded.",
+    "Source update after nextgen task branch: LabCatalog has an added sixth workshop, Logik/Muster, with LearningPatternBoard. No Android runtime proof yet."
+  ]
+}
