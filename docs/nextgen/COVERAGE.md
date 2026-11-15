@@ -1,13 +1,13 @@
 # Lernabdeckung – belegter integrierter Quellstand
 
-**Produkt-Snapshot: `165e6bd8731a0c2c2df8dfefe06be6a79403157b`. `fullModernizationComplete` bleibt `false`.**
-Diese Matrix inventarisiert den ausgeführten Dart-Katalog, tatsächliche Einstiegsketten, fachliche Antwortgrenzen und vorhandene Testprotokolle. Sie ist keine Geräte- oder Releasefreigabe. [COVERAGE.json](COVERAGE.json) enthält alle IDs, Quellenhashes, Routen, Typen, Adapter, Fähigkeiten und offenen Grenzen.
+**Produkt-Snapshot: `31e5ba4fce462e7f38018cecfb351c932e3382b9`. `fullModernizationComplete` bleibt `false`.**
+Diese Matrix inventarisiert den ausgeführten Dart-Katalog, Einstiegsketten, fachliche Antwortgrenzen und vorhandene Testprotokolle. Ihre Einträge umfassen aktive und bedingte Lernwege, Navigation, Verträge, geschützte sowie inaktive Legacy-Pfade; ihre Gesamtzahl ist keine Zahl aktuell erreichbarer bewerteter Aufgaben. Sie ist keine Geräte- oder Releasefreigabe. [COVERAGE.json](COVERAGE.json) enthält IDs, Quellenhashes, klassifizierte Einträge, Typen, Adapter und Nachweisgrenzen.
 
 ## Tatsächlich erfasster Umfang
 
 | Bestand | Umfang |
 |---|---:|
-| Geprüfte Routeneinträge / Screen-Dateien | 61 / 55 |
+| Geprüfte Inventareinträge / Screen-Dateien | 61 / 55 |
 | Klassen-/Fach-/Einheitskombinationen | 236 |
 | Mathe- / Deutsch-Templates | 60 / 32 |
 | Akademie-Themen | 79 |
@@ -22,6 +22,8 @@ Diese Matrix inventarisiert den ausgeführten Dart-Katalog, tatsächliche Einsti
 
 Die sechs Labormodi sind **bridge, word, english, nature, fraction, pattern**. `d1_woerter` bleibt durch den geschützten Wort-Schreibcoach überlagert; die zwei Einmaleins-Einstiege teilen einen Screen. Level 50 öffnet gemäß `GamesContent` das Quiz und ist kein MiniGame-Level. Dynamische Aufgabenvarianten und gespeicherte Geschichten haben keine vollständige endliche ID-Liste; `routeRef` und `sourceIndex` sind Dokumentationsschlüssel.
 
+Die acht Fächer der 236 Katalogfamilien sind im aktuellen Hub vorhanden, einschließlich **Lesen und Rechtschreibung**. Themenkarten rufen die exakte Einheit über `_beginClearLearningTask` auf; passende Spezial-/Schreibmodule haben Vorrang, danach folgen Core oder freiwilliges CrossGrade. Aktives Vorlesen ist ein zusätzlicher Einstieg. Für eine im Core geladene Übungsaufgabe bestehen gemeinsamer Coach und sichtbarer Native-Einstieg, soweit Hilfe erlaubt ist. Daraus folgt weder eine fehlende Anbindung aller Familien noch eine vollständige spezialisierte 3D-/Geräteabnahme jeder Variante.
+
 ## Anschlüsse und ihre Grenzen
 
 | Lernfläche | Aktueller Quellstand und belegte Grenze |
@@ -34,11 +36,18 @@ Die sechs Labormodi sind **bridge, word, english, nature, fraction, pattern**. `
 | Foto-Lernheft | OCR führt in `PhotoLessonPracticeScreen`; echte Antworten, bestätigte Vorschläge und `PhotoLessonSession`. Anzeigen/Scannen allein vergibt keine richtige Antwort. Der direkte Native-Einstieg gehört zum aufgezeichneten gemeinsamen 35-Test-Lauf. |
 | Story / Quiz / Cards / 49 MiniGame-Level | Eigene Fach-/Controllergrenzen bleiben bestehen. Die direkten Story-/MiniGame-Native-Einstiege sind im 35-Test-Lauf enthalten. Der integrierte Quiz-/Cards-Coach hat einen sichtbaren nativen Aufgaben-Einstieg; Coach-Auswahl, bestehende Fachprüfung und Belohnungsgrenzen werden im separaten 56-Test-Lauf geprüft. |
 | IQ / kognitives Profil | `ExamCompanionScope`: begrenzte Wiederholen/Langsamer/Stopp-Aktionen; keine Lösungshilfe oder KI-Antwortvorgabe im Test. Keine diagnostische Standardisierung behauptet. |
-| Praxisaufträge | 60 vorhandene Aktivitäten erschlossen; weiterhin menschliche Beobachtung ohne automatische Fachwertung oder eigenen Abgabeabschluss. |
+| Praxisaufträge | 60 vorhandene Aktivitäten mit erreichbarem Einstieg „Beobachtung im Journal festhalten“, teilweise ergänzter digitaler Übung oder Werkstatt. Die menschliche Beobachtung wird bewusst nicht automatisch gewertet; ein eigener formaler Lehrer-Abgabeablauf wird nicht behauptet. |
 | Live / 2D Flame | Gelieferter gemeinsamer Coach mit nativer Aufgabenkarte und bestätigungspflichtigen Vorschlägen. Der 56-Test-Lauf umfasst echte Flame-Frage-/Truhen-Callbacks sowie Live-Finaltranskript, Stop, Modus-/Profilwechsel und Berechtigungsgrenzen. Teilnahme-/Safari-Bewertung bleibt von geprüfter Fachleistung getrennt; keine neue Physik- oder reale Mikrofontour behauptet. |
 
 Die **12 nativen Kinds** lauten: `addition`, `bridge_hundred`, `bridge_ten`, `english_objects`, `equal_groups`, `equal_sharing`, `fraction_parts`, `pattern`, `plant_parts`, `subtract_ten`, `syllables`, `task_card`.
 `pattern` verwendet den geprüften `period/sequence/choices`-Vertrag. Die generische `task_card` trägt begrenzten Prompt und Auswahlmöglichkeiten ohne Lösungs-/Belohnungsfeld. Eine Factory, eine importierte Klasse oder der eigene native Spieltisch beweist keinen erreichbaren Lernbutton. `capabilityMatrix` verlangt passende Verbraucher, sichtbare Steuerung und `scene: 'learning'`; eine getrennte optionale Activity beweist außerdem keine vollständige aufgabengebundene 3D-Modernisierung.
+
+## Bedeutung der klassifizierten Befunde
+
+- **Implementiert:** Der kanonische Bus prüft Aufgabenidentität, erlaubte Aktionen, Prüfungsgrenzen und Objektkennungen. Ein Sprachvorschlag bleibt bis zur Owner-Bestätigung ungewertet. Dass bestehende deterministische Vergleiche teilweise in Renderer-/Screen-Dateien stehen, bedeutet keine fehlende Autoritätsgrenze.
+- **Architektur und Spezialisierung:** Das alleinige `placeValue` im älteren Flutter-Director begrenzt nicht die zwölf aktuellen nativen Descriptor-Kinds. Exakte generische Karten, spezialisierte Manipulative und vollständige Gerätebelege sind getrennte Aussagen.
+- **Inaktiver Teacher-Restfallback:** Die einzige Konstruktion von `LumoTeacherScreen` steht am Ende von `_openTopic`. Der aktuelle Unit-Caller ruft ihn nur nach vorhandener Einheitszuordnung auf; die aktuellen Atelier-Werkzeuge werden vorher durch Schreibcoach, Buchstabenschreiben, Wortcoach/Registry, Artikel oder Aufsatz abgefangen. Dieser Themenchat besitzt keinen lokalen TaskResult-/Antwort-/Belohnungspfad und ist kein aktuell erreichbarer bewerteter Lernweg ohne kanonische Bindung.
+- **Schutz und Nachweisgrenzen:** Geschützte Schreib-/Journalinternas, eingeschränkte Prüfungshilfe sowie die Trennung von Live-Teilnahme und Fachleistung sind beabsichtigt. Noch nicht durchgespielte Varianten oder nicht physisch gemessene Geräteabläufe sind keine allein aus dem Inventar ableitbaren Funktionsfehler. JSON-Feld `gaps` bleibt aus Kompatibilität bestehen; `classification` und `status` bestimmen seine Bedeutung.
 
 ## Aufgezeichnete Prüfungen
 
@@ -60,6 +69,12 @@ Die folgenden Zahlen stammen aus den eingecheckten oder mit dieser Matrix neu er
 | `lab_native` | 24 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [tests.log](evidence/lab_native_20261115/tests.log) |
 | `remaining_native_joined` | 35 bestanden / 0 fehlgeschlagen | `root_targeted_integration_before_final_narrowing` | [remaining_native_joined.log](evidence/remaining_integration_20261115/remaining_native_joined.log) |
 | `game_question_coach` | 56 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [focused-tests.log](../evidence/lumo-nextgen-game-questions/focused-tests.log) |
+| `ci_mini_games` | 27 bestanden / 0 fehlgeschlagen | `targeted_full_suite_failure_correction` | [mini-games-tests.log](evidence/ci_retry_20261115/mini-games-tests.log) |
+| `ci_contracts` | 12 bestanden / 0 fehlgeschlagen | `targeted_full_suite_failure_correction` | [contracts-tests.log](evidence/ci_retry_20261115/contracts-tests.log) |
+| `ci_learning` | 43 bestanden / 0 fehlgeschlagen | `targeted_full_suite_failure_correction` | [tests.log](evidence/ci_learning_20261115/tests.log) |
+| `mini_audio_owner` | 12 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [mini-audio-tests.log](evidence/ci_retry_20261115/mini-audio-tests.log) |
+| `story_audio_owner` | 35 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [story-audio-tests.log](evidence/ci_retry_20261115/story-audio-tests.log) |
+| `core_guided_audio_owner` | 54 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [tests.log](evidence/learning_audio_owner_20261115/tests.log) |
 | `catalog_export` | 1 bestanden / 0 fehlgeschlagen | `current_inventory_snapshot` | [catalog_export.log](evidence/coverage_refresh_20261115/catalog_export.log) |
 | `sentence_privacy` | 3 bestanden / 0 fehlgeschlagen | `current_inventory_snapshot` | [sentence_privacy.log](evidence/coverage_refresh_20261115/sentence_privacy.log) |
 

@@ -1,0 +1,147 @@
+00:00 +0: loading /workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart
+00:00 +0: adaptive stop cannot stop a newer voice owner
+00:01 +1: adaptive pause cannot stop a newer voice owner
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: an object with length of <1>
+  Actual: []
+   Which: has length of <0>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart:203:9)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart line 203
+The test description was:
+  adaptive pause cannot stop a newer voice owner
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +1 -1: adaptive pause cannot stop a newer voice owner [E]
+  Test failed. See exception logs above.
+  The test description was: adaptive pause cannot stop a newer voice owner
+  
+00:02 +1 -1: adaptive dispose cannot stop a newer voice owner
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: an object with length of <1>
+  Actual: []
+   Which: has length of <0>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart:203:9)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart line 203
+The test description was:
+  adaptive dispose cannot stop a newer voice owner
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +1 -2: adaptive dispose cannot stop a newer voice owner [E]
+  Test failed. See exception logs above.
+  The test description was: adaptive dispose cannot stop a newer voice owner
+  
+00:02 +1 -2: adaptive stop cancels its own pending transport
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: an object with length of <1>
+  Actual: []
+   Which: has length of <0>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart:239:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart line 239
+The test description was:
+  adaptive stop cancels its own pending transport
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +1 -3: adaptive stop cancels its own pending transport [E]
+  Test failed. See exception logs above.
+  The test description was: adaptive stop cancels its own pending transport
+  
+00:03 +1 -3: guided stop cannot stop a newer voice owner
+00:03 +2 -3: guided pause cannot stop a newer voice owner
+00:03 +3 -3: guided dispose cannot stop a newer voice owner
+00:03 +4 -3: guided stop cancels its own pending transport
+00:04 +5 -3: guided delayed stop cannot restart speech over a newer owner
+00:04 +6 -3: guided delayed stop cannot restart syllables over a newer owner
+00:04 +7 -3: adaptive delayed preparation cannot replace a newer owner
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <1>
+  Actual: <0>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart:279:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart line 279
+The test description was:
+  adaptive delayed preparation cannot replace a newer owner
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:04 +7 -4: adaptive delayed preparation cannot replace a newer owner [E]
+  Test failed. See exception logs above.
+  The test description was: adaptive delayed preparation cannot replace a newer owner
+  
+00:04 +7 -4: adaptive delayed native handoff cannot stop or replace a newer owner
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: an object with length of <1>
+  Actual: []
+   Which: has length of <0>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart:308:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart line 308
+The test description was:
+  adaptive delayed native handoff cannot stop or replace a newer owner
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:05 +7 -5: adaptive delayed native handoff cannot stop or replace a newer owner [E]
+  Test failed. See exception logs above.
+  The test description was: adaptive delayed native handoff cannot stop or replace a newer owner
+  
+00:05 +7 -5: Banane keeps real segment events and a request-local slow rate
+00:05 +8 -5: Banane never advances on another owner audio or old completion
+00:06 +9 -5: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart: adaptive delayed native handoff cannot stop or replace a newer owner
+  /workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart: adaptive delayed preparation cannot replace a newer owner
+  /workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart: adaptive dispose cannot stop a newer voice owner
+  /workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart: adaptive pause cannot stop a newer voice owner
+  /workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart: adaptive stop cancels its own pending transport

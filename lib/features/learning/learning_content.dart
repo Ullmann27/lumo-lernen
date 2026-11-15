@@ -59,9 +59,11 @@ class LearningContent extends StatefulWidget {
     super.key,
     required this.appState,
     this.aiProxy = const LumoAiProxyClient(),
+    this.voice,
   });
   final LumoAppState appState;
   final LumoAiProxyClient aiProxy;
+  final LumoVoice? voice;
 
   @override
   State<LearningContent> createState() => _LearningContentState();
@@ -86,7 +88,8 @@ class _LearningContentState extends State<LearningContent>
   bool _slow = false;
   bool _foreground = true;
   bool _routeVisible = true;
-  bool _speaking = false;
+  late final LumoVoice _voice = widget.voice ?? LumoVoice.instance;
+  int? _voiceRequest;
   int _speechSerial = 0;
   String? _activeSessionScope;
   final Map<String, SkillState> _skillStates = <String, SkillState>{};
@@ -257,7 +260,7 @@ class _LearningContentState extends State<LearningContent>
       if (!settings.voiceEnabled || !settings.autoReadEnabled) return;
       // Always audible with the bundled warm German recording, even when
       // the optional license for synthesizing arbitrary text is not granted.
-      unawaited(LumoVoice.instance.speak(
+      unawaited(_playOwnedVoice(
         'Hallo! Schön, dass du da bist. Ich bin Lumo. '
         'Komm, wir entdecken zusammen etwas Neues!',
         style: VoiceStyle.greeting,
@@ -713,14 +716,10 @@ class _LearningContentState extends State<LearningContent>
     unawaited(_speakTutorHint(text, slower: slower));
   }
 
-  void _cancelCoachMedia({bool rebuild = true, bool discardCandidate = true}) {
+  Future<void> _cancelCoachMedia(
+      {bool rebuild = true, bool discardCandidate = true}) {
     ++_speechSerial;
-    if (_speaking) {
-      _speaking = false;
-      unawaited(LumoVoice.instance.stop());
-      unawaited(LumoVoice.instance
-          .configure(rate: widget.appState.state.settings.voiceRate));
-    }
+    final stopping = _stopOwnedVoice();
     void clear() {
       if (discardCandidate) {
         _candidateIdentity = null;
@@ -734,6 +733,30 @@ class _LearningContentState extends State<LearningContent>
       setState(clear);
     } else {
       clear();
+    }
+    return stopping;
+  }
+
+  Future<void> _stopOwnedVoice() async {
+    final request = _voiceRequest;
+    _voiceRequest = null;
+    if (request != null && _voice.requestRevision == request) {
+      await _voice.stop();
+    }
+  }
+
+  Future<void> _playOwnedVoice(String text,
+      {VoiceStyle style = VoiceStyle.warm, double speedFactor = 1}) async {
+    final before = _voice.requestRevision;
+    final playing =
+        _voice.speakAndWait(text, style: style, speedFactor: speedFactor);
+    final request =
+        _voice.requestRevision == before ? null : _voice.requestRevision;
+    _voiceRequest = request;
+    try {
+      await playing;
+    } finally {
+      if (_voiceRequest == request) _voiceRequest = null;
     }
   }
 
@@ -832,7 +855,8 @@ class _LearningContentState extends State<LearningContent>
     final activity = NativeLearningActivity.forTask(_taskInstance);
     final taskId = _taskInstance.taskInstanceId;
     final generation = widget.appState.profileGeneration;
-    _cancelCoachMedia();
+    final stopping = _cancelCoachMedia();
+    final stopRequest = _voice.requestRevision;
     setState(() {
       _nativeLearningOpen = true;
       // An explicitly requested 3D solution is assistance. The existing
@@ -844,8 +868,9 @@ class _LearningContentState extends State<LearningContent>
         LumoLearningEventKind.hintRequested,
         context: _publishedTaskContext);
     try {
-      await LumoVoice.instance.stop();
+      await stopping;
       if (!mounted ||
+          _voice.requestRevision != stopRequest ||
           widget.appState.profileGeneration != generation ||
           _taskInstance.taskInstanceId != taskId) {
         return;
@@ -877,6 +902,7 @@ class _LearningContentState extends State<LearningContent>
     final generation = widget.appState.profileGeneration;
     final taskId = _taskInstance.taskInstanceId;
     final serial = ++_speechSerial;
+    final transportBeforePreparation = _voice.requestRevision;
     bool isCurrent() =>
         mounted &&
         _foreground &&
@@ -888,7 +914,7 @@ class _LearningContentState extends State<LearningContent>
         taskId == _taskInstance.taskInstanceId;
     if (!isCurrent()) return;
     final settings = widget.appState.state.settings;
-    if (!settings.voiceEnabled || !LumoVoice.instance.isEnabled) {
+    if (!settings.voiceEnabled || !_voice.isEnabled) {
       if (explainAvailability && mounted) {
         _showTutorSpeechNotice(
           'Lumos Stimme ist ausgeschaltet. Bitte im Elternbereich '
@@ -899,16 +925,17 @@ class _LearningContentState extends State<LearningContent>
     }
 
     await LumoVoiceClips.ensureFreeLoaded();
-    if (!isCurrent()) return;
+    if (!isCurrent() ||
+        _voice.requestRevision != transportBeforePreparation) {
+      return;
+    }
     final recorded = LumoVoiceClips.freeLookup(text) != null;
     if (!recorded && !settings.localVoiceLicenseAccepted) {
       // This complete German phrase is in the signed local catalog. The
       // explanation stays readable instead of disappearing or using TTS.
-      _speaking = true;
-      await LumoVoice.instance.speakAndWait('Hier ist ein kleiner Tipp:',
+      await _playOwnedVoice('Hier ist ein kleiner Tipp:',
           style: VoiceStyle.explain);
-      if (serial == _speechSerial) _speaking = false;
-      if (explainAvailability) {
+      if (isCurrent() && explainAvailability) {
         _showTutorSpeechNotice(
           'Lumo kann die Einleitung sprechen. Für ganze neue Erklärungen '
           'bitte im Elternbereich unter Ton und Stimme '
@@ -917,7 +944,7 @@ class _LearningContentState extends State<LearningContent>
       }
       return;
     }
-    if (!recorded && !await LumoVoice.instance.localSpeechAvailable()) {
+    if (!recorded && !await _voice.localSpeechAvailable()) {
       if (isCurrent()) {
         _showTutorSpeechNotice(
           'Die lokale Lumo-Sprachausgabe ist auf diesem Gerät '
@@ -926,19 +953,12 @@ class _LearningContentState extends State<LearningContent>
       }
       return;
     }
-    if (!isCurrent()) return;
-    final voice = LumoVoice.instance;
-    _speaking = true;
-    try {
-      await voice.configure(rate: settings.voiceRate * (slower ? .7 : 1));
-      if (!isCurrent()) return;
-      await voice.speakAndWait(text, style: VoiceStyle.explain);
-    } finally {
-      if (serial == _speechSerial) {
-        _speaking = false;
-        await voice.configure(rate: widget.appState.state.settings.voiceRate);
-      }
+    if (!isCurrent() ||
+        _voice.requestRevision != transportBeforePreparation) {
+      return;
     }
+    await _playOwnedVoice(text,
+        style: VoiceStyle.explain, speedFactor: slower ? .7 : 1);
   }
 
   void _showTutorSpeechNotice(String message) {
@@ -1345,7 +1365,7 @@ class _LearningContentState extends State<LearningContent>
 
   void _speakWritingPraise(String text) {
     if (!widget.appState.state.settings.voiceEnabled) return;
-    LumoVoice.instance.speak(text);
+    _playOwnedVoice(text);
   }
 
   /// 2026-06-05 Iter 20: Form-Nachzeichnen-Aufgaben.
@@ -1572,7 +1592,7 @@ class _LearningContentState extends State<LearningContent>
         expected: '${_taskInstance.correctAnswer}',
         durationMs: responseTimeMs,
       );
-      LumoVoice.instance.speak(feedback.spokenText);
+      _playOwnedVoice(feedback.spokenText);
       _autoAdvanceTimer = Timer(
         Duration(milliseconds: feedback.autoAdvanceDelayMs),
         _nextQuestion,
@@ -1594,7 +1614,7 @@ class _LearningContentState extends State<LearningContent>
         expected: '${_taskInstance.correctAnswer}',
         durationMs: responseTimeMs,
       );
-      LumoVoice.instance.speak(feedback.spokenText);
+      _playOwnedVoice(feedback.spokenText);
     }
   }
 
@@ -2214,7 +2234,7 @@ class _LearningContentState extends State<LearningContent>
                           onSpeak: () {
                             _lumo.talk();
                             unawaited(
-                              LumoVoice.instance.speak(
+                              _playOwnedVoice(
                                 _aiHelpReply!,
                                 style: VoiceStyle.explain,
                               ),

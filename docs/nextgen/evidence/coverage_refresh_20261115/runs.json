@@ -2,8 +2,10 @@
   "runs": [
     {
       "id": "catalog_export",
-      "sourceHead": "165e6bd8731a0c2c2df8dfefe06be6a79403157b",
+      "sourceHead": "31e5ba4fce462e7f38018cecfb351c932e3382b9",
       "command": [
+        "timeout",
+        "120s",
         "flock",
         "--close",
         "/workspace/scratch/c5a7dadab95f/toolchain/lumo-flutter.lock",
@@ -23,8 +25,10 @@
     },
     {
       "id": "sentence_privacy",
-      "sourceHead": "165e6bd8731a0c2c2df8dfefe06be6a79403157b",
+      "sourceHead": "31e5ba4fce462e7f38018cecfb351c932e3382b9",
       "command": [
+        "timeout",
+        "120s",
         "flock",
         "--close",
         "/workspace/scratch/c5a7dadab95f/toolchain/lumo-flutter.lock",
@@ -42,5 +46,6 @@
       ]
     }
   ],
-  "note": "Only catalog and sentence privacy were re-run for this inventory. Native/channel tests elsewhere are mocked; no hardware proof."
+  "recordedAt": "2026-11-15T19:40:02.468183+00:00",
+  "note": "Catalog and sentence privacy re-run at this source snapshot. Other recorded runs retain their actual source revisions; no hardware proof."
 }

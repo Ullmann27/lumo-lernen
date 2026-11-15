@@ -1,3 +1,22 @@
+# LUMO Next Generation – integrierter Android-Kandidat 2027
+
+Stand: 15. November 2026. Aktive Arbeit auf `integration/lumo-nextgen-learning-20261115`; main bleibt geschützt. Die Kandidatenversion ist **0.13.15+2027**, Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`, bestehende Testsignatur. Der native Quellstand ist **332307fafa2f68a1aa3667d81b7c90d3683c5c45** aus `Ullmann27/lumo-godot`. Die folgenden archivierten 2023-/2020-Stände sind keine Angaben über diesen Kandidaten.
+
+Der tatsächliche Umfang und seine Grenzen stehen in `docs/nextgen/COVERAGE.json` und `COVERAGE.md`; der gemeinsame Vertrag in `docs/nextgen/INTEGRATION_V1.md`. Die Matrix kennzeichnet die Modernisierung weiterhin ausdrücklich als unvollständig. Eine native Erklärung wird über die bestehende separate Godot-Activity geöffnet, nicht als dauerhaft eingebettete 3D-Figur in jeder Flutter-Aufgabe. 18 geschützte Schreib-/Journalquellen bleiben unverändert gegenüber `6f4a8c4753f4d06d0b392da0789b8162b2faa71b`. Kart- und native Dschungel-Folgearbeiten wurden nicht übernommen.
+
+Der erste vollständige CI-Lauf [43750469368](https://github.com/Ullmann27/lumo-lernen/actions/runs/43750469368) auf `aea9f63e5ea7a85a2d0a67d3b0e8988b0b0eb1fa` bestand Analyse, Toolchain- und Quellschutzprüfung, scheiterte jedoch mit 2.809 bestandenen, 27 fehlgeschlagenen und 202 vorhandenen übersprungenen Flutter-Tests. Er erzeugte keine APK. Die gezielten Korrekturen, Originalprotokolle und zusätzlichen Audio-Owner-Regressionen sind in `docs/nextgen/evidence/ci_retry_20261115/` dokumentiert. Es wurden keine neuen Skips eingeführt.
+
+Der zweite vollständige Versuch benutzt `.github/workflows/lumo-nextgen-learning-apk.yml` und wird durch `buildAttempt: 2` ausgelöst. Ein endgültiger APK-/Android-/Downloadnachweis ist beim Schreiben dieses Vorlaufstatus noch offen. Der Publisher darf erst nach vollständiger Validierung, Build und tatsächlicher Androidtour einen neuen unveränderlichen Release anlegen. Weder frühere APKs noch gezielte Widget-/Desktopprüfungen gelten dafür als Ersatz.
+
+## Wiederaufnahme dieses Kandidaten
+
+1. Branch/HEAD/Arbeitsbaum prüfen und sichern, keine Reset-/Clean-/Force-Befehle. Der veröffentlichte Zwischenstand mit CI-Reparaturen und Mini-/Story-Audiobesitz ist `eebee303bc34b17ec5fdbad68067906877c9d18a`.
+2. Den tatsächlichen nächsten Run der Nextgen-Workflowdatei anhand seines `head_sha` verfolgen. Fehlschläge mit unveränderten Originalprotokollen sichern und an ihrer Ursache korrigieren; Qualitätsgates nicht umgehen.
+3. Nach grünem Build die ARM64-Test-APK, eingebetteten nativen Commit, Paket/Version, bestehende Testsignatur, Bytezahl und SHA-256 prüfen. Der Androidjob installiert die x86_64-Ausgabe desselben Buildstands und prüft reale Szenen/Audiostatus sowie emulierte Außen-/Innenmaße. Das ist kein physischer Fold7- oder Mikrofonbeleg.
+4. Erst nach grünem Androidjob den tatsächlichen neuen direkten öffentlichen `.apk`-Download prüfen, Screenshots/Video und Messwerte aus Originalartefakten auswerten und Abschlussnachweis aktualisieren. Frühere Releases unverändert lassen.
+
+## Archiv: frühere Entwicklungsstände
+
 # LUMO 2023 – gemeinsamer Host-Checkpoint, 15. November 2026
 
 Dieser isolierte Integrationszweig vereinigt die tatsächlichen Eltern

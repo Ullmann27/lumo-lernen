@@ -1,0 +1,26 @@
+{
+  "sourceBase": "16df94d2deb4d232795fa2ef9222da843e1d5a99",
+  "originalCiSource": "aea9f63e5ea7a85a2d0a67d3b0e8988b0b0eb1fa",
+  "recordedAt": "2026-11-15T19:38:43.996932+00:00",
+  "result": {
+    "passed": 54,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0
+  },
+  "newAudioOwnerCases": 14,
+  "analysis": {
+    "issues": 0,
+    "exitCode": 0
+  },
+  "files": {
+    "lib/features/learning/learning_content.dart": "90b2768678d916dd7a13f811ba8290a9759870fdbbf77f6943c105cb89aa0cb2",
+    "lib/features/tutoring/guided_lesson_screen.dart": "b05f803a4c8e7bf3019569f61378f3127c1baa1c8b51ff6acb7476a1cb8e1d91",
+    "test/learning/learning_voice_owner_test.dart": "e6044ed3bcc532a670fa26117392718fec672a97a6bd655d4c61bb7824ea10a3",
+    "test/learning/learning_content_commands_test.dart": "fd14e76020c90b24ec78e3951b7f173fb0f06695122abf4681e75b40bb54e727",
+    "test/tutoring/guided_lesson_runtime_test.dart": "5a89868f82e1aed3ecbb6de30d53f31a775b7567f6e9d076c8319f0d2267a16f",
+    "test/task_help_integration_test.dart": "e3c7ff379b3f78da12efbd0e3f4da325827551b947b3c5e87e11a7238cdb4536"
+  },
+  "testLogSha256": "c9fc30c9f0784d8f672770823ee88b5b844411faaa073a3989bc369192846222",
+  "scope": "Controlled audio transport and widget regressions; not physical audio, complete CI, or APK proof"
+}

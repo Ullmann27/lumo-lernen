@@ -30,11 +30,13 @@ class GuidedLessonScreen extends StatefulWidget {
     required this.appState,
     required this.lesson,
     required this.discovery,
+    this.voice,
   });
 
   final LumoAppState appState;
   final GuidedLesson lesson;
   final bool discovery;
+  final LumoVoice? voice;
 
   @override
   State<GuidedLessonScreen> createState() => _GuidedLessonScreenState();
@@ -70,7 +72,10 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen>
   bool _busy = false;
   bool _passed = false;
   bool _stale = false;
-  bool _ownsVoice = false;
+  late final LumoVoice _voice = widget.voice ?? LumoVoice.instance;
+  int? _voiceRequest;
+  bool get _ownsVoice =>
+      _voiceRequest != null && _voice.requestRevision == _voiceRequest;
   bool _completed = false;
   bool _showExplanation = false;
   bool _hideHelp = false;
@@ -151,7 +156,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen>
     _progress.addListener(_saveChanged);
     widget.appState.addListener(_profileChanged);
     LumoCompanionRequests.instance.helpRequested.addListener(_legacyHelp);
-    LumoVoice.instance.status.addListener(_voiceChanged);
+    _voice.status.addListener(_voiceChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) => unawaited(_load()));
   }
 
@@ -678,27 +683,26 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen>
       return;
     }
     final sequence = ++_voiceSequence;
-    _ownsVoice = true;
     _lastNarration = text;
     _pendingSyllable = null;
     _activeSyllable = null;
     try {
-      await LumoVoice.instance.stop();
-      if (!_current || sequence != _voiceSequence) return;
-      final rate = widget.appState.state.settings.voiceRate;
-      await LumoVoice.instance
-          .configure(rate: _slowNarration ? rate * .7 : rate);
-      if (!_current || sequence != _voiceSequence) return;
-      await LumoVoice.instance
-          .speak(text, style: style, waitForCompletion: true);
+      final stopping = _voice.stop();
+      final stopRequest = _voice.requestRevision;
+      _voiceRequest = stopRequest;
+      await stopping;
+      if (!_current ||
+          sequence != _voiceSequence ||
+          _voice.requestRevision != stopRequest) {
+        return;
+      }
+      await _playOwnedVoice(text, style: style);
     } catch (_) {
       // Voice owns its error status. The instruction remains readable and no
       // failed playback becomes a learning answer.
     } finally {
       if (sequence == _voiceSequence) {
-        _ownsVoice = false;
-        await LumoVoice.instance
-            .configure(rate: widget.appState.state.settings.voiceRate);
+        _voiceRequest = null;
       }
     }
   }
@@ -707,16 +711,31 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen>
     _voiceSequence++;
     _pendingSyllable = null;
     _activeSyllable = null;
-    if (!_ownsVoice) return;
-    _ownsVoice = false;
-    unawaited(LumoVoice.instance.stop());
-    unawaited(LumoVoice.instance
-        .configure(rate: widget.appState.state.settings.voiceRate));
+    final request = _voiceRequest;
+    _voiceRequest = null;
+    if (request != null && _voice.requestRevision == request) {
+      unawaited(_voice.stop());
+    }
+  }
+
+  Future<void> _playOwnedVoice(String text,
+      {VoiceStyle style = VoiceStyle.explain}) {
+    final before = _voice.requestRevision;
+    final playing = _voice.speakAndWait(text,
+        style: style, speedFactor: _slowNarration ? .7 : 1);
+    _voiceRequest =
+        _voice.requestRevision == before ? null : _voice.requestRevision;
+    _voiceChanged();
+    return playing;
   }
 
   void _voiceChanged() {
-    if (!_current || !_ownsVoice) return;
-    if (LumoVoice.instance.status.value == VoiceStatus.speaking) {
+    if (!_current) return;
+    if (!_ownsVoice) {
+      if (_activeSyllable != null) setState(() => _activeSyllable = null);
+      return;
+    }
+    if (_voice.status.value == VoiceStatus.speaking) {
       _lumo.talk();
       if (_activeSyllable != _pendingSyllable) {
         setState(() => _activeSyllable = _pendingSyllable);
@@ -727,7 +746,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen>
               state: 'speaking');
         }
       }
-    } else if (LumoVoice.instance.status.value == VoiceStatus.preparing) {
+    } else if (_voice.status.value == VoiceStatus.preparing) {
       _lumo.think();
       if (_activeSyllable != null) setState(() => _activeSyllable = null);
     } else if (_activeSyllable != null) {
@@ -753,6 +772,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen>
   Future<void> _readSyllables({int? only}) async {
     if (!_current ||
         !_foreground ||
+        _nativeLearningOpen ||
         !_ready ||
         _busy ||
         !widget.appState.state.settings.voiceEnabled ||
@@ -770,30 +790,29 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen>
     }
     final sequence = ++_voiceSequence;
     final serial = _serial;
-    _ownsVoice = true;
     bool current() =>
         _current &&
         _foreground &&
+        !_nativeLearningOpen &&
+        _ownsVoice &&
         sequence == _voiceSequence &&
         serial == _serial &&
         widget.appState.state.settings.voiceEnabled &&
         ModalRoute.of(context)?.isCurrent != false;
     try {
-      await LumoVoice.instance.stop();
+      final stopping = _voice.stop();
+      _voiceRequest = _voice.requestRevision;
+      await stopping;
       if (!current()) return;
-      final rate = widget.appState.state.settings.voiceRate;
-      await LumoVoice.instance
-          .configure(rate: _slowNarration ? rate * .7 : rate);
       for (final index in only == null
           ? List<int>.generate(parts.length, (i) => i)
           : <int>[only]) {
         if (!current()) return;
         _pendingSyllable = index;
-        final completedBefore = LumoVoice.instance.completedPlaybackCount;
-        await LumoVoice.instance
-            .speakAndWait(parts[index], style: VoiceStyle.explain);
+        final completedBefore = _voice.completedPlaybackCount;
+        await _playOwnedVoice(parts[index]);
         if (!current() ||
-            LumoVoice.instance.completedPlaybackCount <= completedBefore) {
+            _voice.completedPlaybackCount <= completedBefore) {
           break;
         }
       }
@@ -801,12 +820,10 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen>
       // Keep the word and all segments available when speech cannot play.
     } finally {
       if (sequence == _voiceSequence) {
-        _ownsVoice = false;
+        _voiceRequest = null;
         _pendingSyllable = null;
         _activeSyllable = null;
         if (mounted) setState(() {});
-        await LumoVoice.instance
-            .configure(rate: widget.appState.state.settings.voiceRate);
       }
     }
   }
@@ -1010,7 +1027,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen>
     WidgetsBinding.instance.removeObserver(this);
     widget.appState.removeListener(_profileChanged);
     LumoCompanionRequests.instance.helpRequested.removeListener(_legacyHelp);
-    LumoVoice.instance.status.removeListener(_voiceChanged);
+    _voice.status.removeListener(_voiceChanged);
     _stopOwnedVoice();
     final task = _published;
     WidgetsBinding.instance.addPostFrameCallback(
@@ -1308,7 +1325,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen>
                   'Du kannst die Erklärung hier lesen.',
                   style: _body),
             ValueListenableBuilder<String?>(
-              valueListenable: LumoVoice.instance.lastError,
+              valueListenable: _voice.lastError,
               builder: (_, error, __) => error == null
                   ? const SizedBox.shrink()
                   : Padding(

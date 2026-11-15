@@ -69,6 +69,16 @@
       "integratedCommit": "e6622940285e681979aca0218d044ef90aa2d133",
       "log": "story-audio-tests.log",
       "analysis": "story-audio-analysis.log"
+    },
+    {
+      "id": "core_guided_audio_owner",
+      "passed": 54,
+      "failed": 0,
+      "newRegressionCases": 14,
+      "producerCommit": "a7a7c4baf826822518b9b13fd51708b31393c55b",
+      "integratedCommit": "a72b8756d031703316bd6f52e3387d7f804c0e4e",
+      "log": "../learning_audio_owner_20261115/tests.log",
+      "analysis": "../learning_audio_owner_20261115/analyze.log"
     }
   ],
   "logHashes": {

@@ -1,0 +1,42 @@
+00:00 +0: loading /workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: adaptive stop cannot stop a newer voice owner
+00:02 +1: adaptive pause cannot stop a newer voice owner
+00:03 +2: adaptive dispose cannot stop a newer voice owner
+00:03 +3: adaptive stop cancels its own pending transport
+00:04 +4: guided stop cannot stop a newer voice owner
+00:04 +5: guided pause cannot stop a newer voice owner
+00:04 +6: guided dispose cannot stop a newer voice owner
+00:05 +7: guided stop cancels its own pending transport
+00:05 +8: guided delayed stop cannot restart speech over a newer owner
+00:05 +9: guided delayed stop cannot restart syllables over a newer owner
+00:06 +10: adaptive delayed preparation cannot replace a newer owner
+00:06 +11: adaptive delayed native handoff cannot stop or replace a newer owner
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+The value of a foundation debug variable was changed by the test.
+
+When the exception was thrown, this was the stack:
+#0      debugAssertAllFoundationVarsUnset.<anonymous closure> (package:flutter/src/foundation/debug.dart:45:7)
+#1      debugAssertAllFoundationVarsUnset (package:flutter/src/foundation/debug.dart:48:4)
+#2      TestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:1995:7)
+#3      AutomatedTestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:2524:11)
+#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1973:7)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  adaptive delayed native handoff cannot stop or replace a newer owner
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:07 +11 -1: adaptive delayed native handoff cannot stop or replace a newer owner [E]
+  Test failed. See exception logs above.
+  The test description was: adaptive delayed native handoff cannot stop or replace a newer owner
+  
+00:07 +11 -1: Banane keeps real segment events and a request-local slow rate
+00:07 +12 -1: Banane never advances on another owner audio or old completion
+00:08 +13 -1: (tearDownAll)
+00:08 +13 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/4fa97167812c/agent-learning/test/learning/learning_voice_owner_test.dart: adaptive delayed native handoff cannot stop or replace a newer owner
