@@ -64,6 +64,11 @@ class WorkflowTests(unittest.TestCase):
                    'Bind the approved 2020 host and exact native source')
         code=textwrap.dedent(re.search(r"python3 - <<'PYCODE'\n(.*?)^          PYCODE$",block,re.M|re.S)[1])
         current=json.loads((REFERENCE/'config/godot-source.json').read_text())
+        # This is the historical 2020 workflow, even after the current APK
+        # advances. Its positive fixture must retain that release's pin.
+        import runpy
+        current['revision'] = runpy.run_path(
+            str(REFERENCE/'scripts/verify_legacy_release_pin.py'))['APPROVED'][2020]
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);(root/'config').mkdir();(root/'scripts').mkdir()
             (root/'scripts/verify_legacy_release_pin.py').write_bytes((REFERENCE/'scripts/verify_legacy_release_pin.py').read_bytes())

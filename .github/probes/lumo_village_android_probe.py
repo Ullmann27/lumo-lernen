@@ -123,11 +123,11 @@ class VillageProbe(Probe):
             sys.path.insert(0, str(ROOT/'scripts'))
             from verify_legacy_release_pin import verify as verify_pin
             build, native = verify_pin((ROOT/'pubspec.yaml').read_text(), (ROOT/'config/godot-source.json').read_text())
-            c4.demand(build == 2020 and source == self.args.expected_source
+            c4.demand(build == c4.VERSION_CODE and source == self.args.expected_source
                       and native == self.args.expected_native, 'Actual Village QA source/native pin differs')
             subprocess.run(['git', 'diff', '--exit-code', 'HEAD', '--'], cwd=ROOT, check=True)
             identity = self.main.verify_apk_identity(self.args.apk, self.args.provenance, self.args.sums)
-            c4.demand(identity['versionCode'] == 2020 and identity['godot_revision'] == native
+            c4.demand(identity['versionCode'] == c4.VERSION_CODE and identity['godot_revision'] == native
                       and identity['flutter_source_commit'] == source,
                       'Wrong actual Village candidate identity')
             result['identity'] = identity

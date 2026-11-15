@@ -18,6 +18,8 @@ from native_surface_readiness import inspect_surface
 
 
 WORKFLOW = '.github/workflows/lumo-connect-four-2020.yml'
+VERSION_CODE = 2020
+NATIVE_ENTRY_LABEL = None
 BRANCH = 'integration/lumo-c4-connections-20261114'
 QUALITY_BRANCH = 'work/lumo-play-quality-20261114'
 ACCEPTED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH))
@@ -86,7 +88,7 @@ def artifact_binding(run: dict, artifacts: dict, jobs: dict, *, source: str,
                and found[0].get('run_attempt') == attempt
                and found[0].get('conclusion') == 'success',
                'Required current source job did not succeed: ' + name)
-    return {'host_source': source, 'native_source': native, 'versionCode': 2020,
+    return {'host_source': source, 'native_source': native, 'versionCode': VERSION_CODE,
             'versionName': version_name, 'workflow': WORKFLOW, 'run_id': run_id,
             'run_attempt': attempt, 'candidate_artifact_id': artifact_id,
             'candidate_artifact_digest': digest}
@@ -527,6 +529,8 @@ def verify_report(root: Path, binding: dict, identity: dict) -> dict:
     demand(initial['state']['columns'] == [] and initial['state']['twoPlayers'] is False,
            'No untouched actual initial single-player round')
     checked_flutter_touch(root, report['entry_touch'], PORTAL)
+    if NATIVE_ENTRY_LABEL is not None:
+        checked_flutter_touch(root, report['native_entry_touch'], NATIVE_ENTRY_LABEL)
     transitions = report['transitions']
     demand([step.get('action') for step in transitions] == ['drop','pause','resume','drop','pause','pause'],
            'Required child/bot/pause/resume sequence is incomplete')
@@ -557,6 +561,8 @@ def verify_report(root: Path, binding: dict, identity: dict) -> dict:
     demand(len(closed['state']['columns']) == 4 and opened['host_pid'] == initial['host_pid'],
            'Reopen did not preserve both actual child/bot pairs and the Flutter authority')
     checked_flutter_touch(root, route['touch'], PORTAL)
+    if NATIVE_ENTRY_LABEL is not None:
+        checked_flutter_touch(root, route['native_touch'], NATIVE_ENTRY_LABEL)
     demand(len(report['returns']) == 2, 'Both actual Flutter returns are mandatory')
     demand(report['returns'][0]['before'] == closed['id'], 'Reopen does not follow the actual first return')
     for index, returned in enumerate(report['returns']):
@@ -597,7 +603,7 @@ def verify_report(root: Path, binding: dict, identity: dict) -> dict:
     errors = runtime_errors(read_original(root, report['original_logcat']))
     demand(not errors and report.get('fatal_entries') == [], 'Original Android/engine failure remains')
     demand(read_original(root, report['android_sdk_original']).strip() == '35', 'Wrong actual Android API')
-    return {'status':'PASS','versionCode':2020,'binding':binding,
+    return {'status':'PASS','versionCode':VERSION_CODE,'binding':binding,
             'actual_child_drops':2, 'actual_bot_responses':2,
             'same_round_reopened':True,'native_returns':2,'api':35,
             'original_files':len(report['originals']), 'observations':len(observations),

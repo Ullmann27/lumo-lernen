@@ -25,6 +25,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = 'Ullmann27/lumo-lernen'
+VERSION_CODE = 2020
 WORKFLOW = '.github/workflows/lumo-connect-four-2020.yml'
 BRANCH = 'integration/lumo-c4-connections-20261114'
 QUALITY_BRANCH = 'work/lumo-play-quality-20261114'
@@ -227,7 +228,7 @@ def checked_jobs(run: dict, jobs: dict, pull: dict, binding: dict, pr_number: in
     if publication:
         for label in (
             'Reverify actual current APKs C4 update PCM and complete native originals',
-            'Preserve the complete verified 2020 ARM64 delivery bundle without publication',
+            f'Preserve the complete verified {VERSION_CODE} ARM64 delivery bundle without publication',
         ):
             matches = [step for step in delivery[0].get('steps', []) if step.get('name') == label]
             require(len(matches) == 1 and matches[0].get('status') == 'completed'
@@ -397,7 +398,7 @@ def checked_release_catalog(pages, refs, facts: dict) -> dict:
             'Version tag already exists; no replacement or verify-existing publication')
     result = evaluate_source(pubspec_text='version: '+facts['versionName']+'+'+str(facts['versionCode'])+'\n',
                              last_published=newest_published_family_build(releases))
-    require(result['versionCode'] == 2020, 'This separate delivery accepts only the actual 2020 version')
+    require(result['versionCode'] == VERSION_CODE, 'This separate delivery accepts only its exact candidate version')
     return result
 
 
@@ -866,6 +867,8 @@ def prepare(args) -> dict:
         'scope': 'Signed ARM64 test delivery; real API35 C4/Village/update and desktop gates only',
         'publication_policy': 'Only a newly created version tag and release; never replace or resume existing assets',
     }
+    if 'integrated_activities' in fresh:
+        facts['integrated_activities'] = fresh['integrated_activities']
     assets, audit = args.out/'assets', args.out/'audit'
     assets.mkdir(parents=True); audit.mkdir()
     originals = {
@@ -876,7 +879,7 @@ def prepare(args) -> dict:
         'C4-ANDROID-RESULT.json': args.android/'c4/c4-result.json',
         'VILLAGE-ANDROID-RESULT.json': args.android/'village/village-result.json',
         'C4-DESKTOP-RUNTIME.json': args.runtime/'runtime-gate.json',
-        'UPDATE-2020-RESULT.json': args.update/'update-result.json',
+        f'UPDATE-{VERSION_CODE}-RESULT.json': args.update/'update-result.json',
     }
     for name, source in originals.items():
         regular(source)
@@ -910,6 +913,22 @@ def prepare(args) -> dict:
         shutil.copyfile(regular(args.learning_audit/name), learning_originals/name)
         require(record(learning_originals/name) == record(args.learning_audit/name),
                 'Learning audit staging changed original bytes: '+name)
+    if 'integrated_activities' in fresh:
+        from integrated_candidate_profile import PREFIX
+        for activity in ('english', 'memory', 'quiz'):
+            original = args.android/activity
+            target = audit/'integrated-activities'/activity
+            target.mkdir(parents=True)
+            for name in ('result.json', 'binding-before.json', 'binding-after.json'):
+                shutil.copyfile(regular(original/name), target/name)
+                require(record(target/name) == record(original/name),
+                        'Activity staging changed original bytes: '+activity+'/'+name)
+            authority = args.authorities/(PREFIX+'-nextgen-authority-'+activity)
+            relative = ('english-native/learning-english-report.json' if activity == 'english'
+                        else activity+'-pair/pair-result.json')
+            shutil.copyfile(regular(authority/relative), target/'authority-result.json')
+            require(record(target/'authority-result.json') == record(authority/relative),
+                    'Authority staging changed original bytes: '+activity)
     write_new(audit/'create-tag.json', {'ref': 'refs/tags/'+plan['tag'], 'sha': args.source})
     body = (
         'Lumo Lernen C4 '+fresh['versionName']+'+'+str(fresh['versionCode'])+' — signed ARM64 TEST APK.\n\n'
@@ -922,7 +941,7 @@ def prepare(args) -> dict:
         'five additional Dream modes with seven original renderer PNGs and two reports, '
         'ten additional Discovery modes with 38 original renderer PNGs and two reports, '
         'the real Dart/Godot C4 pair, actual API35 C4 touches/IPC/return, '
-        'direct Flutter→Village→Flutter and 2017→2020 preservation '
+        f'direct Flutter→Village→Flutter and 2017→{VERSION_CODE} preservation '
         'passed and their originals were rechecked before this new version was published.\n'
         'The learning audit is not semantic or official curriculum approval. '
         'PCM contracts use a synthetic JVM boundary. No API37, physical ARM64, audible device PCM, '
@@ -942,8 +961,8 @@ def prepare(args) -> dict:
 
 def checked_plan(root: Path) -> dict:
     plan = read(root/'publication-plan.json')
-    require(plan.get('schema') == 1 and plan.get('versionCode') == 2020
-            and plan.get('tag') == 'coachpreview-build-2020'
+    require(plan.get('schema') == 1 and plan.get('versionCode') == VERSION_CODE
+            and plan.get('tag') == 'coachpreview-build-' + str(VERSION_CODE)
             and re.fullmatch('[a-f0-9]{40}', str(plan.get('host_source'))), 'Invalid current delivery plan')
     require(isinstance(plan.get('assets'), dict) and set(plan['assets']) == DELIVERY_ASSETS,
             'Complete APK/proof/checksum release input set missing')
@@ -1021,9 +1040,9 @@ def checked_current(delivery: Path, metadata: Path, archive: Path,
     require(facts.get('schema') == 1 and facts.get('status') == 'VERIFIED_TEST_BUNDLE_NOT_PUBLISHED'
             and facts.get('published') is False and facts.get('release_approved') is False
             and facts.get('host_source') == facts.get('binding', {}).get('host_source') == plan['host_source']
-            and facts.get('versionCode') == plan['versionCode'] == 2020
+            and facts.get('versionCode') == plan['versionCode'] == VERSION_CODE
             and facts.get('versionName') == plan['versionName'],
-            'Only the exact unmodified prepared 2020 test bundle can be considered for publication')
+            'Only the exact unmodified prepared candidate bundle can be considered for publication')
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
     tree = subprocess.check_output(['git', 'rev-parse', 'HEAD^{tree}'], cwd=ROOT, text=True).strip()
     require(head == plan['host_source'] and tree == facts['host_tree'],
@@ -1051,6 +1070,7 @@ def main() -> int:
         prepare_parser.add_argument('--'+name, required=True)
     for name in ('build-run', 'run-attempt', 'artifact-id', 'pull-request'):
         prepare_parser.add_argument('--'+name, type=int, required=True)
+    prepare_parser.add_argument('--authorities', type=Path)
     audit_parser = commands.add_parser('bind-learning-audit')
     audit_parser.add_argument('--directory', type=Path, required=True)
     audit_parser.add_argument('--source', required=True)

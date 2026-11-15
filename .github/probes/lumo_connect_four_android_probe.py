@@ -369,12 +369,12 @@ class Probe:
             sys.path.insert(0, str(ROOT / 'scripts'))
             from verify_legacy_release_pin import verify as verify_pin
             build, native = verify_pin((ROOT / 'pubspec.yaml').read_text(), (ROOT / 'config/godot-source.json').read_text())
-            contract.demand(build == 2020 and source == self.args.expected_source
+            contract.demand(build == contract.VERSION_CODE and source == self.args.expected_source
                             and self.args.expected_native == native == pin['revision'],
                             'Actual checked-out QA/APK/native identity differs')
             subprocess.run(['git','diff','--exit-code','HEAD','--'], cwd=ROOT, check=True)
             identity = self.main.verify_apk_identity(self.args.apk, self.args.provenance, self.args.sums)
-            contract.demand(identity['versionCode'] == 2020 and identity['godot_revision'] == native, 'Wrong 2020 candidate identity')
+            contract.demand(identity['versionCode'] == contract.VERSION_CODE and identity['godot_revision'] == native, 'Wrong candidate version or native identity')
             result['identity'] = identity
             meta = [json.loads((self.args.metadata_dir / (name+'.json')).read_text())
                     for name in ('run','artifacts','jobs')]
@@ -399,6 +399,8 @@ class Probe:
             before_prefs, before_file = self.read_preferences('before-c4')
             result['preferences_before'] = before_file
             result['entry_touch'] = self.flutter_touch(contract.PORTAL, 'open-c4')
+            if contract.NATIVE_ENTRY_LABEL is not None:
+                result['native_entry_touch'] = self.flutter_touch(contract.NATIVE_ENTRY_LABEL, 'open-c4-native')
             initial = self.wait_observation('initial', lambda o:not o['state']['paused'] and o['state']['canDrop'])
             contract.demand(initial['state']['columns'] == [] and not initial['state']['twoPlayers'],
                             'Initial actual C4 round is not the untouched single-player game')
@@ -417,11 +419,16 @@ class Probe:
             old_token = self.token
             self.mailbox, self.token = '', ''
             reopen_touch = self.flutter_touch(contract.PORTAL, 'reopen-c4')
+            native_reopen_touch = None
+            if contract.NATIVE_ENTRY_LABEL is not None:
+                native_reopen_touch = self.flutter_touch(contract.NATIVE_ENTRY_LABEL, 'reopen-c4-native')
             again = self.wait_observation('reopened', lambda o:not o['state']['paused'] and o['state']['canDrop'])
             contract.reopened(closed['state'], again['state'])
             contract.demand(again['state']['token'] != old_token and again['pid'] != closed['pid'],
                             'Reopen did not create a new real private native session/process')
             result['reopen'] = {'closed':closed['id'], 'opened':again['id'], 'touch':reopen_touch}
+            if native_reopen_touch is not None:
+                result['reopen']['native_touch'] = native_reopen_touch
             self.transition('pause-after-reopen', 'pause', 'pause')
             self.return_to_flutter('return-final')
             after_prefs, after_file = self.read_preferences('after-c4')

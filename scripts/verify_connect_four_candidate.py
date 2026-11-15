@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reverify the complete 2020 test candidate without granting a release receipt."""
+"""Reverify the complete version-bound test candidate without granting a release receipt."""
 from __future__ import annotations
 
 import argparse
@@ -19,6 +19,8 @@ from update_preservation import (require_learning_preserved,
 from verify_unified_apk import verify as verify_apk
 from verify_legacy_release_pin import verify as verify_pin
 
+ADDITIONAL_CHECK = None
+
 
 def read(path: Path) -> dict:
     value = json.loads(path.read_text())
@@ -37,13 +39,13 @@ def update_proof(root: Path, candidate: dict, source: str) -> dict:
     report = read(root / 'update-result.json')
     c4.demand(report.get('status') == 'PASS' and report.get('offline') is True
               and report.get('fatal_crashes') == 0 and report.get('candidate_source') == source,
-              'The complete original 2017 to 2020 update has not passed')
+              'The complete original update has not passed')
     old, new = report.get('baseline', {}), report.get('candidate', {})
     c4.demand(old.get('versionCode') == 2017
               and old.get('flutter_source_commit') == '47889f74a651b073965def70743417cf320b1eb9'
               and old.get('godot', {}).get('revision') == '1d5c5cb45a323228f627ec529e6ff1ddd86f1c57',
               'The actual baseline differs from the reviewed 2017 source')
-    c4.demand(new.get('sha256') == candidate['sha256'] and new.get('versionCode') == 2020
+    c4.demand(new.get('sha256') == candidate['sha256'] and new.get('versionCode') == c4.VERSION_CODE
               and new.get('flutter_source_commit') == source
               and new.get('godot') == candidate['godot']
               and new.get('signingCertificateSha256') == c4.CERT,
@@ -51,14 +53,14 @@ def update_proof(root: Path, candidate: dict, source: str) -> dict:
     def prefs(name):
         return c4.preferences((root / (name+'-preferences.xml')).read_text())
     before, after = prefs('before-update'), prefs('after-update')
-    c4.demand(require_learning_preserved(before, after, migration_versions=(2017,2020)) == report.get('after_update'),
+    c4.demand(require_learning_preserved(before, after, migration_versions=(2017,c4.VERSION_CODE)) == report.get('after_update'),
               'Original first update preservation replay differs')
     for name, field in (('after-kart','after_kart'),('after-restart','after_restart')):
-        c4.demand(require_post_update_learning_preserved(before, after, prefs(name), migration_versions=(2017,2020))
+        c4.demand(require_post_update_learning_preserved(before, after, prefs(name), migration_versions=(2017,c4.VERSION_CODE))
                   == report.get(field), 'Original post-update preservation replay differs: ' + name)
     c4.demand(set(report.get('fold', {})) == {'cover','open','landscape'}, 'Complete Fold preservation is missing')
     for name in ('cover','open','landscape'):
-        c4.demand(require_post_update_learning_preserved(before, after, prefs('fold-'+name), migration_versions=(2017,2020))
+        c4.demand(require_post_update_learning_preserved(before, after, prefs('fold-'+name), migration_versions=(2017,c4.VERSION_CODE))
                   == report['fold'][name], 'Original Fold preservation replay differs: ' + name)
     def package(name):
         import re
@@ -72,14 +74,14 @@ def update_proof(root: Path, candidate: dict, source: str) -> dict:
             c4.demand(len(set(matches)) == 1, 'Ambiguous original installed package field: ' + field)
             result[field] = matches[0].strip()
         return result
-    c4.demand(require_in_place_update(package('baseline'), package('updated'), 2020) == report.get('installation'),
+    c4.demand(require_in_place_update(package('baseline'), package('updated'), c4.VERSION_CODE) == report.get('installation'),
               'Actual in-place installation identity differs')
     c4.demand(set(report.get('native_tour', {})) == {'race','hud','drive','pause','return'}
               and report.get('learning_journey',{}).get('status') == 'PASS'
               and report.get('onboarding',{}).get('status') == 'PASS',
               'Actual baseline learning or post-update Kart sequence is incomplete')
     c4.demand(not (root / 'fatal-logcat.txt').read_text().strip(), 'The update left a fatal Android trace')
-    return {'status':'PASS','from_version':2017,'to_version':2020,
+    return {'status':'PASS','from_version':2017,'to_version':c4.VERSION_CODE,
             'candidate_apk_sha256':candidate['sha256'], 'raw_report_sha256':c4.sha256(root/'update-result.json')}
 
 
@@ -97,12 +99,12 @@ def verify(args) -> dict:
     build,native = verify_pin((ROOT/'pubspec.yaml').read_text(), (ROOT/'config/godot-source.json').read_text())
     from release_pipeline_gates import parse_pubspec_version
     version_name,version_code = parse_pubspec_version((ROOT/'pubspec.yaml').read_text())
-    c4.demand(build == version_code == 2020, 'Final version is not the dedicated 2020 candidate')
+    c4.demand(build == version_code == c4.VERSION_CODE, 'Final version is not the selected candidate')
     meta = [read(args.metadata/(name+'.json')) for name in ('run','artifacts','jobs')]
     binding = c4.artifact_binding(*meta,source=source,run_id=args.build_run,attempt=args.run_attempt,
                                  artifact_id=args.artifact_id,digest=args.artifact_digest,
                                  native=native,version_name=version_name)
-    for name in ('android-c4','update-2020-from-2017'):
+    for name in ('android-c4',f'update-{c4.VERSION_CODE}-from-2017'):
         jobs = [j for j in meta[2].get('jobs',[]) if j.get('name') == name]
         c4.demand(len(jobs) == 1 and jobs[0].get('head_sha') == source
                   and jobs[0].get('run_attempt') == args.run_attempt
@@ -116,7 +118,7 @@ def verify(args) -> dict:
                   and original.get('flutter_source_commit') == source
                   and original.get('tracked_source_clean') is True,
                   'Current signed APK differs from its original build provenance: ' + abi)
-        c4.demand(fresh['versionCode'] == 2020 and fresh['versionName'] == version_name
+        c4.demand(fresh['versionCode'] == c4.VERSION_CODE and fresh['versionName'] == version_name
                   and fresh['godot']['revision'] == native, 'Wrong candidate version/native revision')
         apks[abi] = fresh
     c4.demand(apks['arm64-v8a']['godot'] == apks['x86_64']['godot'], 'The two ABIs embed different native PCK bytes')
@@ -143,7 +145,7 @@ def verify(args) -> dict:
               and identity.get('flutter_source_commit') == source
               and identity.get('godot_revision') == native
               and identity.get('godot_pck_sha256') == x86['godot']['pck_sha256']
-              and identity.get('versionCode') == 2020 and identity.get('versionName') == version_name
+              and identity.get('versionCode') == c4.VERSION_CODE and identity.get('versionName') == version_name
               and identity.get('signingCertificateSha256') == c4.CERT
               and identity.get('checks') and all(v is True for v in identity['checks'].values()),
               'Actual C4 device observation belongs to another signed APK')
@@ -155,11 +157,14 @@ def verify(args) -> dict:
     device = c4.verify_report(args.android/'c4',binding,identity)
     village_device = village_proof(args.android/'village',binding,identity,args.android/'main/tour-result.json')
     update = update_proof(args.update,x86,source)
-    return {'schema':1,'status':'PASS','versionName':version_name,'versionCode':2020,
+    result = {'schema':1,'status':'PASS','versionName':version_name,'versionCode':c4.VERSION_CODE,
             'binding':binding,'apks':apks,'c4_android':device,'village_android':village_device,'update':update,
             'runtime_gate_sha256':c4.sha256(args.runtime/'runtime-gate.json'),
-            'scope':'Signed 2020 test candidate with real desktop/API35 C4, direct Village roundtrip and 2017 update evidence',
+            'scope':f'Signed {c4.VERSION_CODE} test candidate with real desktop/API35 C4, direct Village roundtrip and 2017 update evidence',
             'release_approved':False,'api37_approved':False,'physical_arm64_tested':False}
+    if ADDITIONAL_CHECK is not None:
+        result['integrated_activities'] = ADDITIONAL_CHECK(args, result, meta)
+    return result
 
 
 def main() -> int:
@@ -170,12 +175,13 @@ def main() -> int:
         parser.add_argument('--'+name,required=True)
     for name in ('build-run','run-attempt','artifact-id'):
         parser.add_argument('--'+name,type=int,required=True)
+    parser.add_argument('--authorities', type=Path)
     args=parser.parse_args()
     c4.demand(not args.out.exists(),'Refusing to overwrite previous candidate facts')
     result=verify(args)
     args.out.parent.mkdir(parents=True,exist_ok=True)
     args.out.write_text(json.dumps(result,indent=2)+'\n')
-    print('[ConnectFourCandidate] PASS: exact signed 2020 test artifacts and current real C4 evidence')
+    print(f'[ConnectFourCandidate] PASS: exact signed {c4.VERSION_CODE} test artifacts and current real C4 evidence')
     return 0
 
 

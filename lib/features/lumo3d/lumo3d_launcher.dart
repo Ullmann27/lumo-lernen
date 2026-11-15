@@ -26,6 +26,7 @@ Future<bool> launchLumo3D(
   NativeLearningActivity? learning,
   String? cardsToken,
   String? connectFourToken,
+  String? tableToken,
   String? legacyGameKey,
 }) async {
   if (!context.mounted || appState?.resetting == true) return false;
@@ -46,6 +47,12 @@ Future<bool> launchLumo3D(
   if ((scene == 'connect_four') != (connectFourToken != null) ||
       (connectFourToken != null &&
           !RegExp(r'^[a-f0-9]{32}$').hasMatch(connectFourToken))) return false;
+  final tableGame = const {'memory', 'quiz'}.contains(scene);
+  if (tableGame != (tableToken != null) ||
+      (tableGame && appState == null) ||
+      (tableToken != null && !RegExp(r'^[a-f0-9]{32}$').hasMatch(tableToken))) {
+    return false;
+  }
   if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) {
     _showLaunchMessage(
       context,
@@ -171,6 +178,7 @@ Future<bool> launchLumo3D(
       },
       if (scene == 'cards') 'cardsToken': cardsToken,
       if (scene == 'connect_four') 'connectFourToken': connectFourToken,
+      if (tableGame) 'tableToken': tableToken,
     });
     // MainActivity returns a destination map on actual Activity return.
     // Null/malformed replies must not masquerade as successful game returns.

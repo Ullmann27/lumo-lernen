@@ -20,9 +20,11 @@ _EVIDENCE_FIELDS = frozenset({
 def reviewed_migration_versions(baseline_version: int, candidate_version: int, *,
                                 allow_2018: bool = False,
                                 allow_2019: bool = False,
-                                allow_2020: bool = False) -> tuple[int, int] | None:
+                                allow_2020: bool = False,
+                                allow_2021: bool = False) -> tuple[int, int] | None:
     """Keep each release probe's opt-in bound to its actual installed pair."""
-    choices = ((allow_2018, 2018), (allow_2019, 2019), (allow_2020, 2020))
+    choices = ((allow_2018, 2018), (allow_2019, 2019), (allow_2020, 2020),
+               (allow_2021, 2021))
     if any(type(flag) is not bool for flag, _ in choices):
         raise RuntimeError('Choose exactly one reviewed migration opt-in')
     selected = [version for flag, version in choices if flag]
@@ -95,8 +97,8 @@ def _approved_migration_view(before: dict, after: dict,
     """
     if (type(versions) is not tuple or len(versions) != 2 or
             any(type(value) is not int for value in versions) or
-            versions not in ((2017, 2018), (2017, 2019), (2017, 2020))):
-        raise RuntimeError('Independent evidence migration is approved only for 2017 to 2018, 2019 or 2020')
+            versions not in ((2017, 2018), (2017, 2019), (2017, 2020), (2017, 2021))):
+        raise RuntimeError('Independent evidence migration is approved only for 2017 to 2018, 2019, 2020 or 2021')
     owner = before.get(_LOCAL_STUDENT_KEY)
     if (type(owner) is not str or not re.fullmatch(r'local-[a-f0-9]{32}', owner) or
             after.get(_LOCAL_STUDENT_KEY) != owner):

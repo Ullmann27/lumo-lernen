@@ -145,6 +145,8 @@ APPROVED = {
     # Discovery and minimap source. This binds source identity only; fresh
     # full native, Android and preserved-update gates remain mandatory.
     2020: "a69f53518b2510873d88f00ff2783d616ab53702",
+    # 2021: reviewed full native union; fresh runtime/APK/update gates remain mandatory.
+    2021: "6b124722f92c81b4352a222a3def701563399933",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

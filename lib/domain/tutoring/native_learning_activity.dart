@@ -1,4 +1,5 @@
 import 'guided_lesson_catalog.dart';
+import 'native_english_vocabulary.dart';
 import '../learning/lumo_learning_domain.dart';
 
 /// A bounded, local illustration of the current reviewed lesson. It cannot
@@ -12,6 +13,12 @@ class NativeLearningActivity {
   /// Only consume the checked renderer payload and verify its arithmetic
   /// against the actual answer. Complex or unknown tasks keep their renderer.
   static NativeLearningActivity? fromTask(TaskInstance task) {
+    if (task.subject == LearningSubject.englisch) {
+      final payload = NativeEnglishVocabulary.illustrationFor(task);
+      return payload == null
+          ? null
+          : NativeLearningActivity._('english_objects', payload);
+    }
     final data = task.visualPayload.data;
     if (task.subject == LearningSubject.mathematik) {
       if (data['operation'] == 'fraction_addition') {

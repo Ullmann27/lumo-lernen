@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "fixtures": [
+    {
+      "file": "quiz-question-landscape.layout.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-recovery-20261114/evidence/final-render/captures/quiz-question-landscape.layout.json",
+      "sha256": "d4ccd7c0d8cf2059b884c1683dd1d0df27f18f832420196800a861d3a0604ed0",
+      "scope": "Actual desktop renderer platform fixture; never accepted by Android CLI"
+    },
+    {
+      "file": "quiz-selected-phone.layout.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-recovery-20261114/evidence/final-render/captures/quiz-selected-phone.layout.json",
+      "sha256": "8023ddaefc2c337e40c6ebf36bc719e75ed3da1578837ea052a5c0a8cd9f745e",
+      "scope": "Actual desktop renderer platform fixture; never accepted by Android CLI"
+    },
+    {
+      "file": "quiz-paused-portrait.layout.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-recovery-20261114/evidence/final-render/captures/quiz-paused-portrait.layout.json",
+      "sha256": "c6623c62e4f5aa267dc2f611a3f30ddcb5bfaad20c2b645bcb0b2e990651fafd",
+      "scope": "Actual desktop renderer platform fixture; never accepted by Android CLI"
+    },
+    {
+      "file": "quiz-question-cutout.layout.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-recovery-20261114/evidence/final-render/captures/quiz-question-cutout.layout.json",
+      "sha256": "df8084e06e263a9f6af572a30842fc41bc2a4a6d2077cfe2be18e85511717abc",
+      "scope": "Actual desktop renderer platform fixture; never accepted by Android CLI"
+    },
+    {
+      "file": "original-9f2e-public-state.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/prepared/native/scripts/tests/fixtures/quiz_9f2e/public-state.json",
+      "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9",
+      "scope": "Unchanged original 9f2e Dart/Godot CI JSON; partial-trace tests derive explicitly synthetic states in memory"
+    },
+    {
+      "file": "original-9f2e-durable-round.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/prepared/native/scripts/tests/fixtures/quiz_9f2e/durable-round.json",
+      "sha256": "9af91c87d473807a6c7e915668ad3e3876b830d437c5a751c7526784db143a9d",
+      "scope": "Unchanged original 9f2e Dart/Godot CI JSON; partial-trace tests derive explicitly synthetic states in memory"
+    }
+  ],
+  "android_execution": false
+}

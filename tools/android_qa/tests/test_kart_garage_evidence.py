@@ -43,7 +43,8 @@ def list_lines():
     return [{'text': 'Karts', 'bounds': [700, 160, 800, 200]},
             {'text': 'Comet', 'bounds': [100, 300, 250, 340]},
             {'text': 'Rennen starten', 'bounds': [1300, 950, 1500, 990]},
-            {'text': 'Kart-Menü', 'bounds': [100, 950, 300, 990]}]
+            {'text': 'Kart-Menü', 'bounds': [100, 950, 300, 990]},
+            {'text': 'Lack, Teile & Effekte', 'bounds': [100, 800, 400, 840]}]
 
 
 def driver_lines():
@@ -96,7 +97,7 @@ class GarageSelectionEvidenceTests(unittest.TestCase):
 class GarageObservedScrollTests(unittest.TestCase):
     def test_current_hidden_title_layout_uses_only_the_tab_footer_and_left_card(self):
         proof = evidence.stage_garage_scroll_observation(list_frame(), list_lines())
-        self.assertEqual(proof['gesture'], [175, 320, 175, 208])
+        self.assertEqual(proof['gesture'], [175, 339, 175, 301])
 
     def test_missing_anchors_incomplete_frames_and_right_preview_are_rejected(self):
         bad_preview = copy.deepcopy(list_lines())
@@ -120,7 +121,7 @@ class GarageObservedScrollTests(unittest.TestCase):
                 adb.assert_not_called()
                 second = callback(frame, list_lines(), source, deadline=10, previous_missing_frame=frame)
                 self.assertEqual(second['status'], 'SWIPE_SENT')
-                self.assertEqual(adb.call_args.args, ('shell', 'input', 'swipe', '175', '320', '175', '208', '650'))
+                self.assertEqual(adb.call_args.args, ('shell', 'input', 'swipe', '175', '339', '175', '301', '650'))
                 callback(frame, list_lines(), source, deadline=10, previous_missing_frame=None)
                 source.write_bytes(b'changed after sampling')
                 with self.assertRaisesRegex(RuntimeError, 'screenshot changed'):
