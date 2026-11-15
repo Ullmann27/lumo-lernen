@@ -203,6 +203,10 @@ Future<void> showLumoConversation(
             ));
     return;
   }
+  // A lesson's previously queued sentence must not overlap the child's
+  // conversation microphone when the dialogue window opens.
+  await LumoVoice.instance.stop();
+  if (!context.mounted) return;
   await showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
