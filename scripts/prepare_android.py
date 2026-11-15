@@ -216,6 +216,8 @@ def prepare(root: Path, keystore_directory: Path, side_by_side: bool = False,
         ('LumoOfflineSpeechEngine.java', 'java'),
         ('LumoOfflineSpeechBridge.kt', 'kotlin'),
         ('LumoLearningSpeech.kt', 'kotlin'),
+        ('LumoLearningConversation.kt', 'kotlin'),
+        ('LumoLearningDialogLogic.java', 'java'),
         ('LumoSpeechEnvelope.kt', 'kotlin'),
     ):
         source = root / 'tools/auto_install' / filename

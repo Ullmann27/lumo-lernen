@@ -654,6 +654,32 @@ class LegacyLumoTaskAdapter {
   }
 
   Map<String, Object?> _visualData(LumoTask task) {
+    if (task.subject == 'Logik' && task.unit == 'Muster') {
+      const shapeIds = {
+        'Kreis': 'circle', 'Dreieck': 'triangle',
+        'Stern': 'star', 'Quadrat': 'square',
+      };
+      final match = RegExp(
+        r'^Das Muster wiederholt sich immer gleich: (.+) – \? Welche Form folgt\?$',
+      ).firstMatch(task.prompt);
+      final labels = match?[1]?.split(' – ') ?? const <String>[];
+      if (labels.length >= 4 && labels.length <= 8 && labels.length.isEven &&
+          labels.every(shapeIds.containsKey) &&
+          task.choices.every(shapeIds.containsKey)) {
+        final half = labels.length ~/ 2;
+        final repeated = List.generate(half, (i) => labels[i] == labels[i + half])
+            .every((value) => value);
+        if (repeated && task.answer == labels.first) {
+          return {
+            'patternUnit': labels.take(half).map((s) => shapeIds[s]!).toList(),
+            'patternSequence': labels.map((s) => shapeIds[s]!).toList(),
+            'patternChoices': task.choices.map((s) => shapeIds[s]!).toList(),
+            'verifiedAnswer': shapeIds[task.answer],
+          };
+        }
+      }
+      return const <String, Object?>{};
+    }
     if (task.handwriting) {
       return <String, Object?>{'symbol': WritingTargetParser.parse(task.prompt)};
     }
