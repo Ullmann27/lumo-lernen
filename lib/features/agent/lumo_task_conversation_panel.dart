@@ -104,12 +104,15 @@ class _LumoTaskConversationPanelState extends State<LumoTaskConversationPanel>
 
   Future<void> _listen({bool newSession = false}) async {
     if (!mounted || !_foreground || _listening || _processing) return;
+    // Loading parent settings can change the context revision. Resolve that
+    // before activating the new listening session so the first tap works.
+    await widget.appState.ensureSettingsLoaded();
+    if (!mounted || !_foreground) return;
     if (newSession) {
       _continuous = true;
       _silences = 0;
     }
     final token = _epoch;
-    await widget.appState.ensureSettingsLoaded();
     if (!_mayContinue || token != _epoch) {
       if (mounted && !widget.appState.state.settings.microphoneEnabled) {
         setState(() {
