@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/lumo_task_dialogue.dart';
+import '../../core/lumo_task_dialogue_adapter.dart';
+import '../agent/lumo_agent_content.dart';
 import '../../core/learning_attempt_id.dart';
 import '../../domain/tutoring/guided_lesson_catalog.dart';
 import '../../domain/tutoring/guided_lesson_evidence.dart';
@@ -65,6 +68,8 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
   bool _completed = false;
   bool _showExplanation = false;
   int _voiceSequence = 0;
+  int _dialogueRevision = 0;
+  bool _conversationOpen = false;
   String? _blocked;
   String? _lastAnswer;
   bool? _lastCorrect;
@@ -215,8 +220,11 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
 
   void _publish() {
     if (!_current || !_ready || _blocked != null) return;
+    final taskId = 'guided-$_session-$_serial';
+    final accepting =
+        _step.isQuestion && !_passed && !_busy && !_progress.hasPending;
     _published = LumoCompanionTaskContext(
-      taskId: 'guided-$_session-$_serial',
+      taskId: taskId,
       subject: widget.lesson.subject,
       unit: widget.lesson.schoolUnit,
       prompt: _step.instruction,
@@ -226,13 +234,54 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
       helpLevel: _lastCorrect == true ? _evidenceHelpLevel : _helpLevel,
       lastAnswer: _lastAnswer,
       lastCorrect: _lastCorrect,
-      localHelp: _step.isQuestion ? _step.help(level: _helpLevel + 1) : null,
+      localHelp: _step.isQuestion
+          ? _step.help(level: _helpLevel + 1)
+          : _step.instruction,
       previousHelp: _previousHelp,
       activity: widget.discovery ? 'discovery' : 'guided_lesson',
       ownerSection: 'learn',
       profileGeneration: _generation,
+      dialogue: LumoTaskDialogueAdapter.fromGuidedLesson(
+          lesson: widget.lesson,
+          step: _step,
+          sessionId: 'guided-$_generation-$_session',
+          taskId: taskId,
+          stepId: 'step-$_serial',
+          revision: ++_dialogueRevision,
+          helpLevel: _helpLevel,
+          acceptingAnswer: accepting,
+          answerChoices: _choices,
+          lastAnswer: _lastAnswer,
+          lastCorrect: _lastCorrect),
     );
     LumoCompanionRequests.instance.publishTask(_published!);
+  }
+
+  void _noteDialogueHelp(LumoTaskDialogueReply reply) {
+    if (!_current ||
+        _published?.dialogue?.containsReply(reply) != true ||
+        !_step.isQuestion ||
+        _passed) {
+      return;
+    }
+    // The existing evidence classifier sees this support on the next answer.
+    // Publishing here would cancel the very utterance that supplied the help.
+    setState(() => _accompaniedSteps.add(_index));
+  }
+
+  Future<bool> _confirmDialogueAnswer(LumoTaskDialogueReply reply) async {
+    if (!_current ||
+        _published?.dialogue?.containsReply(reply) != true ||
+        _busy ||
+        _passed ||
+        !_step.isQuestion ||
+        _progress.hasPending ||
+        reply.draftAnswer == null ||
+        !_choices.contains(reply.draftAnswer)) {
+      return false;
+    }
+    await _answer(reply.draftAnswer!);
+    return true;
   }
 
   Future<void> _answer(String answer) async {
@@ -780,6 +829,25 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
                   'Die Stimme ist ausgeschaltet. '
                   'Du kannst die Erklärung hier lesen.',
                   style: _body),
+            const SizedBox(height: 12),
+            OutlinedButton.icon(
+              key: const ValueKey('guided-conversation-toggle'),
+              onPressed: () =>
+                  setState(() => _conversationOpen = !_conversationOpen),
+              style: OutlinedButton.styleFrom(minimumSize: const Size(48, 48)),
+              icon: const Icon(Icons.forum_outlined),
+              label: Text(_conversationOpen
+                  ? 'Gespräch schließen'
+                  : 'Lumo zur Aufgabe fragen'),
+            ),
+            if (_conversationOpen)
+              LumoAgentContent(
+                  key: const ValueKey('guided-task-conversation'),
+                  appState: widget.appState,
+                  compact: true,
+                  onSection: (_) => Navigator.of(context).maybePop(),
+                  onReviewedHelp: _noteDialogueHelp,
+                  onConfirmedAnswer: _confirmDialogueAnswer),
             ValueListenableBuilder<String?>(
               valueListenable: LumoVoice.instance.lastError,
               builder: (_, error, __) => error == null
