@@ -205,7 +205,11 @@ class LumoSpeechListener extends ChangeNotifier {
 
   Future<bool> initialize() async {
     if (_disposed) return false;
-    if (_available) return true;
+    if (_available) {
+      final ready = await _checkLocalRecognizer();
+      if (!ready) notifyListeners();
+      return ready;
+    }
     final pending = _initializing;
     if (pending != null) return pending;
     final operation = _initialize();
@@ -219,20 +223,7 @@ class LumoSpeechListener extends ChangeNotifier {
 
   Future<bool> _initialize() async {
     try {
-      if (_isAndroid) {
-        final local = await const MethodChannel(
-          'lumo_lernen/diagnostics',
-        ).invokeMethod<bool>('onDeviceSpeechAvailable');
-        if (_disposed) return false;
-        if (local != true) {
-          _setError(
-            LumoSpeechErrorKind.unavailable,
-            'Lokale Spracherkennung ist auf diesem Gerät nicht bereit. '
-            'Du kannst deine Frage tippen. Es wird keine Cloud-Aufnahme gestartet.',
-          );
-          return false;
-        }
-      }
+      if (!await _checkLocalRecognizer()) return false;
       final ready = await _recognizer.initialize();
       if (_disposed) return false;
       if (!ready) {
@@ -243,7 +234,9 @@ class LumoSpeechListener extends ChangeNotifier {
         );
         return false;
       }
-      final locales = await _recognizer.locales();
+      final locales = await _recognizer.locales().timeout(
+            const Duration(seconds: 6),
+          );
       if (_disposed) return false;
       final german = locales.where((locale) {
         final id = locale.localeId.toLowerCase().replaceAll('_', '-');
@@ -281,6 +274,30 @@ class LumoSpeechListener extends ChangeNotifier {
         notifyListeners();
       }
     }
+  }
+
+  Future<bool> _checkLocalRecognizer() async {
+    if (_disposed) return false;
+    if (!_isAndroid) return true;
+    bool ready;
+    try {
+      ready = await const MethodChannel('lumo_lernen/diagnostics')
+              .invokeMethod<bool>('onDeviceSpeechAvailable')
+              .timeout(const Duration(seconds: 3)) ==
+          true;
+    } catch (_) {
+      ready = false;
+    }
+    if (_disposed) return false;
+    if (!ready) {
+      _available = false;
+      _setError(
+        LumoSpeechErrorKind.unavailable,
+        'Lokale Spracherkennung ist auf diesem Gerät nicht bereit. '
+        'Du kannst deine Frage tippen. Es wird keine Cloud-Aufnahme gestartet.',
+      );
+    }
+    return ready;
   }
 
   int _localeScore(stt.LocaleName locale) {

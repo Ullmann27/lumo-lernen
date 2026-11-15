@@ -77,7 +77,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     _starting = false;
     unawaited(_speech.cancel());
     _input.clear();
-    if (mounted)
+    if (mounted) {
       setState(() {
         _busy = false;
         _draft = null;
@@ -88,6 +88,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
           _source = 'local_ready';
         }
       });
+    }
   }
 
   @override
@@ -165,14 +166,16 @@ class _LumoAgentContentState extends State<LumoAgentContent>
               _finishCapture(words, recognition?.confidence, token, revision));
         },
         onNoMatch: () {
-          if (_currentCapture(token, revision))
+          if (_currentCapture(token, revision)) {
             unawaited(_noMatch(token, revision));
+          }
         },
       );
-      if (_currentCapture(token, revision))
+      if (_currentCapture(token, revision)) {
         setState(() {
           _starting = false;
         });
+      }
     } catch (_) {
       if (!_currentCapture(token, revision)) return;
       setState(() {
@@ -192,7 +195,9 @@ class _LumoAgentContentState extends State<LumoAgentContent>
         !_foreground ||
         ended != _capture ||
         turn != _turn ||
-        revision != _context.revision) return;
+        revision != _context.revision) {
+      return;
+    }
     _starting = false;
     _noMatchCount = 0;
     await _ask(words, confidence: confidence);
@@ -206,7 +211,9 @@ class _LumoAgentContentState extends State<LumoAgentContent>
         !_foreground ||
         ended != _capture ||
         turn != _turn ||
-        revision != _context.revision) return;
+        revision != _context.revision) {
+      return;
+    }
     setState(() {
       _starting = false;
       _notice = 'Ich habe noch keinen vollständigen Satz verstanden. '
@@ -235,7 +242,9 @@ class _LumoAgentContentState extends State<LumoAgentContent>
         !_foreground ||
         token != _capture ||
         turn != _turn ||
-        revision != _context.revision) return;
+        revision != _context.revision) {
+      return;
+    }
     setState(() {
       _busy = false;
       _notice = 'Gestoppt.';
@@ -259,7 +268,9 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     if (!mounted ||
         !_foreground ||
         turn != _turn ||
-        revision != _context.revision) return;
+        revision != _context.revision) {
+      return;
+    }
     FocusManager.instance.primaryFocus?.unfocus();
     setState(() {
       _busy = true;
@@ -272,7 +283,9 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     if (!mounted ||
         !_foreground ||
         turn != _turn ||
-        revision != _context.revision) return;
+        revision != _context.revision) {
+      return;
+    }
     if (response.source == 'cancelled') {
       setState(() {
         _busy = false;
@@ -293,6 +306,12 @@ class _LumoAgentContentState extends State<LumoAgentContent>
           LumoTaskDialogueIntent.slower,
         }.contains(dialogue.intent)) {
       widget.onReviewedHelp?.call(dialogue);
+    }
+    if (!mounted ||
+        !_foreground ||
+        turn != _turn ||
+        revision != _context.revision) {
+      return;
     }
     final stop = dialogue?.shouldStopSpeech == true ||
         response.source == 'local_stop' ||
@@ -320,7 +339,9 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     if (!mounted ||
         !_foreground ||
         turn != _turn ||
-        revision != _context.revision) return;
+        revision != _context.revision) {
+      return;
+    }
     if (_voiceMode) await _startVoice();
   }
 
@@ -330,11 +351,12 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     if (draft == null ||
         callback == null ||
         _context.task?.dialogue?.containsReply(draft) != true) {
-      if (mounted)
+      if (mounted) {
         setState(() {
           _draft = null;
           _notice = 'Wähle deine Antwort direkt in der Aufgabe.';
         });
+      }
       return;
     }
     _confirming = true;
@@ -348,22 +370,40 @@ class _LumoAgentContentState extends State<LumoAgentContent>
       _draft = null;
       _busy = true;
     });
-    final accepted = await callback(draft);
-    _confirming = false;
-    if (mounted)
+    final turn = _turn, revision = _context.revision;
+    try {
+      final accepted = await callback(draft);
+      if (!mounted ||
+          !_foreground ||
+          turn != _turn ||
+          revision != _context.revision) return;
       setState(() {
         _busy = false;
         _notice = accepted
             ? 'Deine bestätigte Antwort wurde an die Aufgabe übergeben.'
             : 'Die Aufgabe hat sich geändert. Bitte antworte dort noch einmal.';
       });
+    } catch (_) {
+      if (mounted &&
+          _foreground &&
+          turn == _turn &&
+          revision == _context.revision) {
+        setState(() {
+          _busy = false;
+          _notice = 'Die Übergabe konnte nicht bestätigt werden. '
+              'Schau bitte auf den Stand deiner Aufgabe.';
+        });
+      }
+    } finally {
+      _confirming = false;
+    }
   }
 
   Future<void> _clearHistory() async {
     await _interrupt();
     _conversation.clearMemory();
     _input.clear();
-    if (mounted)
+    if (mounted) {
       setState(() {
         _draft = null;
         _heard = '';
@@ -372,6 +412,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
             'Das Gespräch ist gelöscht. Deine Lernfortschritte bleiben erhalten.';
         _source = 'local_ready';
       });
+    }
   }
 
   String get _phaseLabel {
@@ -423,14 +464,18 @@ class _LumoAgentContentState extends State<LumoAgentContent>
                     reduceMotion:
                         settings.reduceAnimations || settings.calmMode),
                 const SizedBox(width: 12),
-                const Expanded(
-                    child: Text('Mit Lumo sprechen',
-                        key: ValueKey('lumo-agent-title'),
-                        style: TextStyle(
+                Expanded(
+                    child: Text(
+                        settings.aiProxyEnabled
+                            ? 'Mit Lumo sprechen'
+                            : 'Lumo hilft lokal',
+                        key: const ValueKey('lumo-agent-title'),
+                        style: const TextStyle(
                             color: LumoVisualTokens.white,
                             fontSize: 24,
                             fontWeight: FontWeight.w900))),
                 IconButton(
+                    key: const ValueKey('lumo-agent-parents'),
                     tooltip: 'Elternbereich',
                     onPressed: () => widget.onSection(LumoSection.settings),
                     icon: const Icon(Icons.lock_rounded,
@@ -449,6 +494,13 @@ class _LumoAgentContentState extends State<LumoAgentContent>
                           : LumoVisualTokens.cyanBright,
                       fontWeight: FontWeight.w900))),
           const SizedBox(height: 8),
+          if (!settings.microphoneEnabled)
+            const Padding(
+                padding: EdgeInsets.only(bottom: 8),
+                child: Text(
+                    'Mikrofon ist im Elternbereich ausgeschaltet. '
+                    'Du kannst deine Frage tippen.',
+                    style: TextStyle(color: LumoVisualTokens.gold))),
           Wrap(spacing: 8, runSpacing: 6, children: [
             _button(
                 _voiceMode ? 'Zuhören neu starten' : 'Gespräch starten',
@@ -471,18 +523,14 @@ class _LumoAgentContentState extends State<LumoAgentContent>
           if (targets.isNotEmpty && snapshot != null) ...[
             const SizedBox(height: 8),
             Text(
-                'Dazu gehören: ' +
-                    snapshot.objects
-                        .where((object) => targets.contains(object.id))
-                        .map((object) => object.label)
-                        .join(' · '),
+                'Dazu gehören: ${snapshot.objects.where((object) => targets.contains(object.id)).map((object) => object.label).join(' · ')}',
                 key: const ValueKey('lumo-dialogue-object-focus'),
                 style: const TextStyle(
                     color: LumoVisualTokens.gold, fontWeight: FontWeight.w800)),
           ],
           if (_draft != null) ...[
             const SizedBox(height: 10),
-            Text('Als Antwort verstanden: ' + _draft!.draftAnswer!,
+            Text('Als Antwort verstanden: ${_draft!.draftAnswer!}',
                 key: const ValueKey('lumo-answer-draft'),
                 style: const TextStyle(
                     color: LumoVisualTokens.gold, fontSize: 18)),
@@ -536,7 +584,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
                   style:
                       FilledButton.styleFrom(minimumSize: const Size(48, 48)))),
           if (_heard.isNotEmpty)
-            Text('Erkannt: ' + _heard,
+            Text('Erkannt: $_heard',
                 style: const TextStyle(color: LumoVisualTokens.muted)),
           if (_notice != null || _speech.error != null)
             Padding(

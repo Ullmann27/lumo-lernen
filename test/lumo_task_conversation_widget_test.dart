@@ -88,6 +88,7 @@ class _SpeechBoundary extends LumoSpeechListener {
 Future<void> _frames(WidgetTester tester) async {
   for (var i = 0; i < 6; i++) {
     await tester.pump(const Duration(milliseconds: 16));
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
   }
 }
 
@@ -136,6 +137,7 @@ Future<LumoAppState> _mount(
   bool microphoneEnabled = false,
   bool answerTask = false,
   LumoConfirmedTaskAnswer? onConfirmed,
+  ValueChanged<LumoTaskDialogueReply>? onReviewedHelp,
 }) async {
   await tester.binding.setSurfaceSize(const Size(420, 1100));
   final app = await nativeStorageFixture(
@@ -159,6 +161,7 @@ Future<LumoAppState> _mount(
       onSection: (_) {},
       compact: true,
       onConfirmedAnswer: onConfirmed,
+      onReviewedHelp: onReviewedHelp,
       speechForTesting: speech,
     )),
   )));
@@ -442,6 +445,41 @@ void main() {
         isNot(contains('2 Plätze')));
     expect(speech.starts, 1);
     expect(speech.listening, isFalse);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+      'a failing task callback releases confirmation for a fresh attempt',
+      (tester) async {
+    final speech = _SpeechBoundary();
+    var submissions = 0;
+    await _mount(tester, speech, answerTask: true, onConfirmed: (_) async {
+      submissions++;
+      if (submissions == 1) throw StateError('controlled storage failure');
+      return true;
+    });
+    await _ask(tester, 'dreizehn');
+    await _tap(tester, 'lumo-answer-confirm');
+    expect(tester.takeException(), isNull);
+    await _ask(tester, 'dreizehn');
+    await _tap(tester, 'lumo-answer-confirm');
+    expect(submissions, 2);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+      'task changed by the lesson help callback cannot receive the old subtitle',
+      (tester) async {
+    final speech = _SpeechBoundary();
+    late LumoAppState app;
+    app = await _mount(tester, speech, onReviewedHelp: (_) {
+      _publish(app, id: 'task-opened-by-lesson', revision: 2);
+    });
+    await _ask(tester, 'Warum zuerst zwei?');
+    expect(_text(tester, 'lumo-conversation-subtitle'),
+        isNot(contains('2 Plätze')));
+    expect(
+        find.byKey(const ValueKey('lumo-dialogue-object-focus')), findsNothing);
     expect(tester.takeException(), isNull);
   });
 }

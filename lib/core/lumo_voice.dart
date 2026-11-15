@@ -422,8 +422,13 @@ class LumoVoice {
   }
 
   Future<void> speakAndWait(String text,
+          {VoiceStyle style = VoiceStyle.warm}) =>
+      speak(text, style: style, waitForCompletion: true);
+
+  /// A scoped conversation playback keeps the existing narration API intact.
+  Future<void> speakConversationAndWait(String text,
           {VoiceStyle style = VoiceStyle.warm,
-          String? utteranceId,
+          required String utteranceId,
           double tempo = 1}) =>
       speak(text,
           style: style,

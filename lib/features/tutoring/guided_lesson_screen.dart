@@ -261,7 +261,9 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     if (!_current ||
         _published?.dialogue?.containsReply(reply) != true ||
         !_step.isQuestion ||
-        _passed) return;
+        _passed) {
+      return;
+    }
     // The existing evidence classifier sees this support on the next answer.
     // Publishing here would cancel the very utterance that supplied the help.
     setState(() => _accompaniedSteps.add(_index));

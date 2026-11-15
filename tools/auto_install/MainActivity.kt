@@ -16,11 +16,11 @@ import org.json.JSONObject
 import java.util.UUID
 import java.security.MessageDigest
 import android.content.pm.PackageManager
-import android.speech.SpeechRecognizer
 import android.util.Log
 
 class MainActivity : FlutterActivity() {
     private var offlineSpeech: LumoOfflineSpeechBridge? = null
+    private var localRecognition: LumoLocalRecognition? = null
     private val installerChannel = "lumo_lernen/installer"
     private val distributionChannel: String by lazy {
         try {
@@ -41,6 +41,9 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        // Replace speech_to_text's network-capable Android implementation only
+        // after automatic plugin registration. Dart keeps the same 7.5 API.
+        localRecognition = LumoLocalRecognition(this, flutterEngine.dartExecutor.binaryMessenger)
         CardsTableBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
         ConnectFourBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
         TableGamesBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
@@ -51,8 +54,7 @@ class MainActivity : FlutterActivity() {
             .setMethodCallHandler { call, result ->
                 when (call.method) {
                     "onDeviceSpeechAvailable" -> result.success(
-                        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
-                            SpeechRecognizer.isOnDeviceRecognitionAvailable(this))
+                        localRecognition?.onDeviceAvailable() == true)
                     "runtimeIdentity" -> {
                         try {
                             @Suppress("DEPRECATION")
@@ -324,6 +326,22 @@ class MainActivity : FlutterActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        localRecognition?.setForeground(true)
+    }
+
+    override fun onPause() {
+        localRecognition?.setForeground(false)
+        super.onPause()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int,
+        permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        localRecognition?.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
     override fun onTrimMemory(level: Int) {
         super.onTrimMemory(level)
         if (level >= android.content.ComponentCallbacks2.TRIM_MEMORY_BACKGROUND) {
@@ -339,6 +357,8 @@ class MainActivity : FlutterActivity() {
         CardsTableBridge.detach()
         ConnectFourBridge.detach()
         TableGamesBridge.detach()
+        localRecognition?.destroy()
+        localRecognition = null
         offlineSpeech?.destroy()
         offlineSpeech = null
         super.onDestroy()

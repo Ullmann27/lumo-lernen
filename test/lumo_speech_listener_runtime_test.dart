@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/lumo_speech_listener.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
@@ -129,6 +130,34 @@ void main() {
     expect(listener.listening, true);
     expect(listener.starting, false);
     expect(listener.supportsAcousticBargeIn, false);
+  });
+
+  test('Android capability is rechecked before every capture', () async {
+    const diagnostics = MethodChannel('lumo_lernen/diagnostics');
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    var localAvailable = true;
+    messenger.setMockMethodCallHandler(
+      diagnostics,
+      (_) async => localAvailable,
+    );
+    final android = LumoSpeechListener(
+      isAndroid: true,
+      recognizer: recognizer,
+      stopPlayback: () async {},
+    );
+    addTearDown(() {
+      android.dispose();
+      messenger.setMockMethodCallHandler(diagnostics, null);
+    });
+    await android.startListening();
+    engine.words('Warum zuerst zwei?', finalResult: true);
+    expect(engine.listens, 1);
+    localAvailable = false;
+    await android.startListening();
+    expect(engine.listens, 1);
+    expect(android.available, false);
+    expect(android.error, contains('keine Cloud-Aufnahme'));
   });
 
   testWidgets('unconfirmed native startup ends with a text fallback',

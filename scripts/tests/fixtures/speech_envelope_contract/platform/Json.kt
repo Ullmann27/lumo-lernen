@@ -6,8 +6,6 @@ class JSONObject(text:String="{}") {
  fun optInt(key:String,fallback:Int=0)=(data[key] as? Number)?.toInt()?:fallback
  fun optDouble(key:String,fallback:Double=0.0)=(data[key] as? Number)?.toDouble()?:fallback
  fun optBoolean(key:String,fallback:Boolean=false)=data[key] as? Boolean ?:fallback
- fun opt(key:String):Any?=data[key]
- fun has(key:String)=data.containsKey(key)
  fun put(key:String,value:Any?):JSONObject {data[key]=value;return this}
  override fun toString()=data.entries.joinToString(",","{","}"){"\"${it.key}\":"+if(it.value is String)"\"${it.value}\"" else it.value.toString()}
 }

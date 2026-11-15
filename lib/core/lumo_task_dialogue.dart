@@ -374,9 +374,7 @@ class LumoTaskDialogueEngine {
       final expectedCount = wantsTwo ? 2 : 1;
       if (selectedIds.length != expectedCount) {
         return reply(
-          wantsTwo
-              ? 'Welche zwei meinst du? Tippe die beiden Objekte bitte an, damit ich sie sicher zuordnen kann.'
-              : 'Welches Objekt meinst du? Tippe es bitte an, damit ich es sicher zuordnen kann.',
+          _referenceQuestion(snapshot, wantsTwo: wantsTwo),
           LumoTaskDialogueIntent.clarification,
           needsConfirmation: true,
         );
@@ -391,6 +389,25 @@ class LumoTaskDialogueEngine {
         targets: selected.map((object) => object.id).toList(growable: false),
         gesture: LumoTaskDialogueGesture.point,
       );
+    }
+
+    // A spoken clarification can name the labels that are actually available.
+    // It does not pretend that decorative objects have a touch selection API.
+    if (previous?.intent == LumoTaskDialogueIntent.clarification) {
+      final described = snapshot.objects
+          .where((object) =>
+              object.label.trim().isNotEmpty &&
+              _contains(q, [_normalizer.normalizeText(object.label)]))
+          .toList(growable: false);
+      if (described.isNotEmpty && described.length <= 4) {
+        return reply(
+          'Du meinst ${described.map((object) => object.label).join(' und ')}. '
+          'Was möchtest du dazu wissen?',
+          LumoTaskDialogueIntent.reference,
+          targets: described.map((object) => object.id).toList(growable: false),
+          gesture: LumoTaskDialogueGesture.point,
+        );
+      }
     }
 
     if (_contains(q, const [
@@ -553,6 +570,34 @@ class LumoTaskDialogueEngine {
         (word.length >= 4 || RegExp(r'^\d+$').hasMatch(word)) &&
         !stopWords.contains(word) &&
         taskWords.contains(word));
+  }
+
+  static String _referenceQuestion(LumoTaskDialogueSnapshot snapshot,
+      {required bool wantsTwo}) {
+    final question =
+        wantsTwo ? 'Welche zwei meinst du?' : 'Welches Objekt meinst du?';
+    final hasFrame =
+        snapshot.objects.any((object) => object.groupId == 'ten-frame');
+    final hasApples = snapshot.objects.any((object) => const [
+          'initial-apples',
+          'added-apples',
+          'count-apples'
+        ].contains(object.groupId));
+    if (hasFrame && hasApples) {
+      return '$question Plätze im Zehnerfeld oder Äpfel? '
+          'Nenne bitte ihre Bezeichnungen oder beschreibe ihre Stellen genauer.';
+    }
+    final labels = snapshot.objects
+        .map((object) => object.label.trim())
+        .where((label) => label.isNotEmpty)
+        .toSet()
+        .take(3)
+        .toList(growable: false);
+    if (labels.isEmpty) {
+      return '$question Beschreibe bitte genauer, worauf du dich beziehst.';
+    }
+    return '$question Zu dieser Aufgabe gehören zum Beispiel '
+        '${labels.join(', ')}. Nenne bitte die gemeinten Bezeichnungen.';
   }
 
   static bool _contains(String query, List<String> phrases) => phrases

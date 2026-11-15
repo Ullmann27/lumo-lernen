@@ -250,6 +250,8 @@ void main() {
           _engine.respond(input: 'Die zwei da', snapshot: _bridge());
       expect(ambiguous.intent, LumoTaskDialogueIntent.clarification);
       expect(ambiguous.targetObjectIds, isEmpty);
+      expect(ambiguous.text, contains('Plätze im Zehnerfeld oder Äpfel'));
+      expect(ambiguous.text.toLowerCase(), isNot(contains('tipp')));
       final selected = _engine.respond(
           input: 'Die zwei da',
           snapshot: _bridge(
@@ -259,6 +261,40 @@ void main() {
           contains('Platz 9 im Zehnerfeld und Platz 10 im Zehnerfeld'));
       expect(
           selected.targetObjectIds, ['guided-ten-slot-8', 'guided-ten-slot-9']);
+    });
+
+    test(
+        'spoken object labels resolve the reference clarification without taps',
+        () {
+      final snapshot = _bridge();
+      final clarification =
+          _engine.respond(input: 'Die zwei da', snapshot: snapshot);
+      final described = _engine.respond(
+          input: 'Platz neun im Zehnerfeld und Platz zehn im Zehnerfeld',
+          snapshot: snapshot,
+          previousReply: clarification);
+      expect(described.intent, LumoTaskDialogueIntent.reference);
+      expect(described.targetObjectIds,
+          ['guided-ten-slot-8', 'guided-ten-slot-9']);
+      expect(described.draftAnswer, isNull);
+    });
+
+    test(
+        'no object context never promises an object tap or invents its objects',
+        () {
+      final snapshot = LumoTaskDialogueSnapshot(
+          sessionId: 's',
+          taskId: 't',
+          stepId: 'step',
+          revision: 1,
+          learningGoal: 'Lesen',
+          prompt: 'Lies den Text');
+      final reply = _engine.respond(input: 'Die zwei da', snapshot: snapshot);
+      expect(reply.intent, LumoTaskDialogueIntent.clarification);
+      expect(reply.text.toLowerCase(), isNot(contains('tipp')));
+      expect(reply.text, isNot(contains('Zehnerfeld')));
+      expect(reply.text, isNot(contains('Äpfel')));
+      expect(reply.targetObjectIds, isEmpty);
     });
 
     test('an explanation for a missing object or wrong step is refused', () {

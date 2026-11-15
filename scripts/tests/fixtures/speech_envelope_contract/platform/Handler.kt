@@ -1,5 +1,4 @@
 package android.os
-class Build { class VERSION { companion object { var SDK_INT=36 } } }
 class Looper { companion object { private val main=Looper();fun getMainLooper()=main } }
 class Handler(looper:Looper) {
  fun post(task:Runnable):Boolean { synchronized(immediate){immediate.add(task)};return true }

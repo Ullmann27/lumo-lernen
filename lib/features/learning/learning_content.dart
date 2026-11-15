@@ -601,7 +601,9 @@ class _LearningContentState extends State<LearningContent> {
     if (!mounted ||
         !_allowHelp ||
         _answered ||
-        _publishedTaskContext?.dialogue?.containsReply(reply) != true) return;
+        _publishedTaskContext?.dialogue?.containsReply(reply) != true) {
+      return;
+    }
     setState(() => _requestedHelpLevel = math.max(1, _requestedHelpLevel));
   }
 
@@ -614,7 +616,9 @@ class _LearningContentState extends State<LearningContent> {
         _publishedTaskContext?.dialogue?.containsReply(reply) != true ||
         reply.draftAnswer == null ||
         _taskInstance.taskType == TaskType.writingCanvas ||
-        _taskInstance.taskType == TaskType.shapeTrace) return false;
+        _taskInstance.taskType == TaskType.shapeTrace) {
+      return false;
+    }
     // Same finite option payload and exact comparator as AdaptiveTaskRenderer.
     // Free text, drawing and handwriting retain their own assessment routes.
     final options = _taskInstance.options

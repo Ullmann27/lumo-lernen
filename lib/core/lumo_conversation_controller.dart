@@ -172,7 +172,8 @@ class LumoConversationController extends ChangeNotifier {
                 'Wenn du Hilfe möchtest, bin ich hier.',
             blocked: false,
             source: 'local_alone');
-      } else if ((q.contains('noch einmal') ||
+      } else if (task == null &&
+          (q.contains('noch einmal') ||
               q.contains('nochmal') ||
               q.contains('langsamer')) &&
           _lastResponse != null) {
@@ -234,7 +235,9 @@ class LumoConversationController extends ChangeNotifier {
     }
     if (response.source != 'local_stop' &&
         response.source != 'local_alone' &&
-        lastDialogue?.shouldStopSpeech != true) _lastResponse = response;
+        lastDialogue?.shouldStopSpeech != true) {
+      _lastResponse = response;
+    }
     _setPhase(lastDialogue?.shouldStopSpeech == true ||
             response.source == 'local_stop' ||
             response.source == 'local_alone'
@@ -251,12 +254,16 @@ class LumoConversationController extends ChangeNotifier {
         _speakingOwned ||
         phase == LumoConversationPhase.interrupted ||
         !context.appState.state.settings.voiceEnabled ||
-        lastDialogue?.shouldStopSpeech == true) return;
+        lastDialogue?.shouldStopSpeech == true) {
+      return;
+    }
     final current = utterance;
     if (current == null ||
         current.subtitle != text ||
         (expectedUtteranceId != null && current.id != expectedUtteranceId) ||
-        current.contextRevision != context.revision) return;
+        current.contextRevision != context.revision) {
+      return;
+    }
     final generation = _generation;
     final revision = context.revision;
     // speechParts identify visible syllables, not a replacement for the spoken
@@ -267,7 +274,7 @@ class LumoConversationController extends ChangeNotifier {
         (_lastResponse?.source == 'local_slower' ? .75 : 1.0);
     for (final fragment in fragments) {
       if (!_current(generation, revision) || !_speakingOwned) return;
-      await LumoVoice.instance.speakAndWait(fragment,
+      await LumoVoice.instance.speakConversationAndWait(fragment,
           style: style, utteranceId: current.id, tempo: tempo);
       if (!_current(generation, revision) || !_speakingOwned) return;
       if (LumoVoice.instance.lastError.value != null) break;
@@ -303,13 +310,14 @@ class LumoConversationController extends ChangeNotifier {
   }
 
   void interrupt() {
+    final stopOwned = _speakingOwned || _ownsPlayback;
     _clearFocus();
     _generation++;
     _request?.cancel();
     _request = null;
     _speakingOwned = false;
     utterance = null;
-    unawaited(LumoVoice.instance.stop());
+    if (stopOwned) unawaited(LumoVoice.instance.stop());
     _setPhase(_paused
         ? LumoConversationPhase.paused
         : LumoConversationPhase.interrupted);
@@ -377,6 +385,7 @@ class LumoConversationController extends ChangeNotifier {
 
   @override
   void dispose() {
+    final stopOwned = _speakingOwned || _ownsPlayback;
     _clearFocus();
     _disposed = true;
     context.removeListener(_contextChanged);
@@ -384,7 +393,7 @@ class LumoConversationController extends ChangeNotifier {
     LumoVoice.instance.clipMouth.removeListener(_playbackChanged);
     _request?.cancel();
     _history.clear();
-    unawaited(LumoVoice.instance.stop());
+    if (stopOwned) unawaited(LumoVoice.instance.stop());
     super.dispose();
   }
 }
