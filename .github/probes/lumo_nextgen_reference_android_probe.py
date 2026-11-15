@@ -315,14 +315,27 @@ def action_playback(log: str, pid: int, previous_ids=(), *, segments: int = 1) -
 
 
 def verify_original_success(result: dict, identity: dict) -> None:
+    # Historical replays keep their exact 2027 identity. New build candidates
+    # use the explicit current-candidate entry point, never this historical gate.
+    require(identity.get("sha256") == APK_SHA256 and identity.get("versionCode") == VERSION_CODE and
+            identity.get("signingCertificateSha256") == CERTIFICATE, "Wrong immutable original candidate")
+    verify_complete_original(result, identity)
+
+
+def verify_complete_original(result: dict, identity: dict) -> None:
+    """Require the full original tour on one independently verified candidate."""
+    require(learning.valid_hex(identity.get("sha256"), 64) and
+            type(identity.get("versionCode")) is int and identity["versionCode"] >= VERSION_CODE and
+            learning.valid_hex(identity.get("signingCertificateSha256"), 64), "Incomplete candidate identity")
     require(result.get("schema") == "lumo.nextgen.learning.android.probe" and
             result.get("status") in ("PASS", "PASS_WITH_LIMITATIONS") and
             result.get("candidate") == identity, "Original probe has not passed on these exact APK bytes")
     require(result.get("historical_tour_pass_used") is False and
             result.get("private_app_data_written_by_probe") is False, "Original probe evidence contract changed")
     installed = result.get("installed", {})
-    require(installed.get("sha256") == APK_SHA256 and installed.get("versionCode") == VERSION_CODE and
-            installed.get("signingCertificateSha256") == CERTIFICATE, "Original installation identity differs")
+    require(all(type(installed.get(key)) is type(identity[key]) and installed[key] == identity[key]
+                for key in ("sha256", "versionCode", "signingCertificateSha256")),
+            "Original installation identity differs")
     performance = result.get("native_learning", {}).get("performance", {})
     require(performance.get("capture_status") == "MEASURED" and
             10 <= performance.get("scene_observed_seconds", 0) <= 60 and
@@ -364,11 +377,17 @@ def verify_core_submission(before: dict, after: dict, task: dict) -> dict | None
 
 
 class ReferenceProbe(learning.LearningProbe):
+    def candidate_identity(self):
+        return verify_candidate(self.args.candidate)
+
+    def verify_previous_result(self, original, identity):
+        verify_original_success(original, identity)
+
     def reset_successful_original(self):
         original_path = self.args.previous_probe_out / "learning-android-result.json"
         original = read_json(original_path.read_text())
-        identity = verify_candidate(self.args.candidate)
-        verify_original_success(original, identity)
+        identity = self.candidate_identity()
+        self.verify_previous_result(original, identity)
         require(original.get("device", {}).get("serial") == self.base.adb("get-serialno") and
                 original["device"].get("physical_device") is False and original["device"].get("api") == 35,
                 "Original probe did not use this disposable API35 emulator")
@@ -426,13 +445,10 @@ class ReferenceProbe(learning.LearningProbe):
     def enter_native(self, tag, title):
         self.base.adb("logcat", "-c")
         self.tap(NATIVE_ENTRY, tag + "-visible-3d-entry")
-        self.wait("Native learning activity foreground", lambda: self.base.adb("shell", "dumpsys", "activity", "activities"),
-                  lambda text: any("LumoGameActivity" in line for line in text.splitlines() if "ResumedActivity" in line), timeout=60)
-        pids = self.base.adb("shell", "pidof", learning.PACKAGE + ":lumo_game").split()
-        require(len(pids) == 1 and pids[0].isdigit(), "Actual native process missing or ambiguous")
+        pid = self.wait_native_ready(tag)
         self.native_see(title, tag + "-native-title")
         self.capture(tag + "-native-entry", native=True)
-        return int(pids[0])
+        return pid
 
     def return_native(self, tag, title):
         self.native_tap("Zur Aufgabe", tag + "-return")

@@ -275,7 +275,8 @@ jobs:
           sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 ffmpeg tesseract-ocr tesseract-ocr-deu
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
-          python3 -m py_compile .github/probes/lumo_nextgen_learning_android_probe.py
+          python3 -m py_compile .github/probes/lumo_nextgen_learning_android_probe.py .github/probes/lumo_nextgen_reference_android_probe.py .github/probes/lumo_nextgen_current_reference_android_probe.py tools/nextgen/prepare_current_learning_release.py
+          .probe-venv/bin/python -m unittest -v tools.android_qa.tests.test_nextgen_learning_android_probe tools.android_qa.tests.test_nextgen_reference_android_probe tools.android_qa.tests.test_nextgen_current_candidate
       - name: Enable the disposable accelerated emulator
         run: |
           set -euo pipefail
@@ -307,6 +308,7 @@ jobs:
           LUMO_EXPECTED_SOURCE: ${{ github.sha }}
           LUMO_EXPECTED_NATIVE: ${{ needs.validate.outputs.native }}
           LUMO_EXPECTED_VERSION: ${{ needs.validate.outputs.version }}
+          LUMO_EXPECTED_VERSION_NAME: ${{ needs.validate.outputs.version_name }}
           LUMO_EXPECTED_SHA256: ${{ needs.build.outputs.x86_sha }}
         with:
           api-level: 35
@@ -319,7 +321,7 @@ jobs:
           disable-animations: true
           emulator-boot-timeout: 300
           emulator-options: -no-window -accel on -gpu host -no-snapshot -no-boot-anim -camera-back none -camera-front none
-          script: .probe-venv/bin/python .github/probes/lumo_nextgen_learning_android_probe.py --apk candidate/x86/Lumo-Lernen-Neu.apk --provenance candidate/x86/BUILD-PROVENANCE.json --expected-sha256 "$LUMO_EXPECTED_SHA256" --expected-source "$LUMO_EXPECTED_SOURCE" --expected-native "$LUMO_EXPECTED_NATIVE" --expected-version "$LUMO_EXPECTED_VERSION" --expected-certificate "$LUMO_CERTIFICATE" --out evidence/android
+          script: bash .github/probes/run_lumo_nextgen_current_android.sh
       - name: Attach the actual emulator renderer information
         if: always()
         run: |
@@ -357,49 +359,18 @@ jobs:
           VERSION_NAME: ${{ needs.validate.outputs.version_name }}
           VERSION_CODE: ${{ needs.validate.outputs.version }}
           ARM64_SHA: ${{ needs.build.outputs.arm64_sha }}
+          X86_SHA: ${{ needs.build.outputs.x86_sha }}
+          LUMO_EXPECTED_NATIVE: ${{ needs.validate.outputs.native }}
         run: |
           set -euo pipefail
-          python3 - <<'PY'
-          import hashlib, json, os
-          from pathlib import Path
-          root = Path('release')
-          proof = json.loads((root / 'BUILD-PROVENANCE.json').read_text())
-          acceptance = json.loads(Path('android-evidence/learning-android-result.json').read_text())
-          assert acceptance['status'] in ('PASS', 'PASS_WITH_LIMITATIONS')
-          performance = acceptance['native_learning']['performance']
-          assert performance['capture_status'] == 'MEASURED'
-          assert 10 <= performance['scene_observed_seconds'] <= 60
-          assert performance['window_count'] >= 2 and performance['sample_count'] > 0
-          assert performance['combined_audio_figure_effect_windows']
-          assert performance['current_step_replay_playback']['utterance_ids']
-          assert performance['video']['whole_block_within_recording_limit']
-          with (root / 'Lumo-Lernen-Neu.apk').open('rb') as stream:
-              assert hashlib.file_digest(stream, 'sha256').hexdigest() == os.environ['ARM64_SHA'] == proof['sha256']
-          assert proof['flutter_source_commit'] == os.environ['GITHUB_SHA']
-          name = f"Lumo-Lernen-Neu-{os.environ['VERSION_NAME']}-{os.environ['VERSION_CODE']}.apk"
-          (root / 'Lumo-Lernen-Neu.apk').rename(root / name)
-          Path('release-notes.md').write_text(
-              '# LUMO – integrierter Lernstand\n\n'
-              'Neue einzelne ARM64-Test-APK aus dem angegebenen integrierten Quellstand. '
-              'Paketkennung und bestehende Testsignatur sind erhalten; ältere Releases bleiben unverändert.\n\n'
-              f"Flutter: `{proof['flutter_source_commit']}`\n\n"
-              f"Godot: `{proof['godot']['revision']}`\n\n"
-              f"APK SHA-256: `{proof['sha256']}`\n\n"
-              f"Signatur: `{proof['signingCertificateSha256']}`\n\n"
-              'Die Laufzeitbelege stammen aus einem Android-35-x86_64-Emulator und der separat gebauten '
-              'x86_64-APK desselben Quellstands. Das ist kein physischer ARM64-/Fold7-Nachweis. '
-              'Echte Mikrofonerkennung, menschliche Klangprüfung und 60 FPS auf dem Zielgerät bleiben '
-              'ohne entsprechende Messung offen. Die Abdeckungsliste und der Abschlussbericht '
-              'unterscheiden integrierte Funktionen von noch offenen Anforderungen.\n'
-          )
-          PY
+          python3 tools/nextgen/prepare_current_learning_release.py
           if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             echo 'Refusing to overwrite an existing release.' >&2
             exit 1
           fi
           tar -czf release/Android-Lernpruefung.tar.gz -C android-evidence .
           cp docs/nextgen/COVERAGE.json release/COVERAGE.json
-          gh release create "$RELEASE_TAG" release/*.apk release/BUILD-PROVENANCE.json release/APK-VERIFICATION.json release/COVERAGE.json release/Android-Lernpruefung.tar.gz --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --prerelease --title "LUMO Lernwelt $VERSION_NAME ($VERSION_CODE)" --notes-file release-notes.md
+          gh release create "$RELEASE_TAG" release/*.apk release/BUILD-PROVENANCE.json release/APK-VERIFICATION.json release/DELIVERY.json release/COVERAGE.json release/Android-Lernpruefung.tar.gz --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --prerelease --title "LUMO Lernwelt $VERSION_NAME ($VERSION_CODE)" --notes-file release-notes.md
           gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json url,tagName,assets > release/PUBLIC-DOWNLOAD.json
       - uses: actions/upload-artifact@v4
         if: always()

@@ -1101,6 +1101,36 @@ class LearningProbe:
             time.sleep(.6)
         raise RuntimeError("No complete measured audio/figure/effects performance window within the 60-second current-scene budget")
 
+    def wait_native_ready(self, tag, *, timeout=60):
+        # Android may publish the resumed ActivityRecord before the isolated
+        # process is discoverable. Neither record alone proves scene readiness;
+        # retain both observations and keep the later OCR/audio gates unchanged.
+        component = re.compile(re.escape(PACKAGE) + r"/(?:[\w$.]*\.)?LumoGameActivity(?=[\s}])")
+
+        def observe():
+            activity = self.base.adb("shell", "dumpsys", "activity", "activities", timeout=15)
+            raw_pid = self.base.adb("shell", "pidof", PACKAGE + ":lumo_game", timeout=15, check=False)
+            self.save(self.fresh(tag + "-native-start-observation"), {
+                "expected_process": PACKAGE + ":lumo_game",
+                "activity_dump": activity, "pidof_output": raw_pid,
+            })
+            pids = raw_pid.split()
+            require(len(pids) <= 1 and (not pids or re.fullmatch(r"[1-9][0-9]*", pids[0])),
+                    "Actual native process is ambiguous or has an invalid PID")
+            foreground = any("ResumedActivity" in line and component.search(line)
+                             for line in activity.splitlines())
+            return int(pids[0]) if foreground and pids else None
+
+        try:
+            return self.wait("Current native Activity and isolated process", observe, timeout=timeout)
+        except Exception:
+            try:
+                raw_log = self.base.adb("logcat", "-d", "-v", "threadtime", timeout=15, check=False)
+                (self.out / (self.fresh(tag + "-native-start-failure") + ".log")).write_text(raw_log)
+            except Exception as log_error:
+                self.save(self.fresh(tag + "-native-start-log-error"), {"error": str(log_error)})
+            raise
+
     def native_roundtrip(self):
         self.guided_course()
         self.capture("native-entry-same-guided-task")
@@ -1108,11 +1138,7 @@ class LearningProbe:
         self.base.adb("logcat", "-c")
         with self.recording("native-three-dimensional-learning"):
             self.tap("Mit Lumo in 3D ausprobieren", "native-existing-entry")
-            self.wait("Actual native activity", lambda: self.base.adb("shell", "dumpsys", "activity", "activities"),
-                      lambda text: any("LumoGameActivity" in line for line in text.splitlines() if "ResumedActivity" in line), timeout=60)
-            pids = self.base.adb("shell", "pidof", PACKAGE + ":lumo_game").split()
-            require(len(pids) == 1 and pids[0].isdigit(), "Actual native process missing or ambiguous")
-            pid = int(pids[0])
+            pid = self.wait_native_ready("original-guided")
             self.reader.native_text(self.out, "Zahlen zum Anfassen", self.fresh("native-title"), orientation="responsive")
             self.capture("native-current-eight-plus-five", native=True)
             playback = self.native_playback(pid)

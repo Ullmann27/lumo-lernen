@@ -1,6 +1,6 @@
 # Android-Auslieferung 0.13.15 (2027)
 
-Stand: 15.11.2026, 22:26 UTC. **Noch keine öffentliche Auslieferung und keine bestandene Android-Lerntour behauptet.** Der vollständige Replay läuft unter [43769283861](https://github.com/Ullmann27/lumo-lernen/actions/runs/43769283861).
+Stand: 15.11.2026, nach Lauf [43769283861](https://github.com/Ullmann27/lumo-lernen/actions/runs/43769283861). **Version 2027 ist wegen eines tatsächlichen Appfehlers nicht zur Veröffentlichung geeignet.** Eine neue Produktkorrektur und APK-Version sind erforderlich; Ergebnisse dieser Datei dürfen nicht als Abnahme der Nachfolgeversion ausgegeben werden.
 
 ## Unveränderliche Produktidentität
 
@@ -29,9 +29,11 @@ Lauf `43768151118` hat anschließend auch alle Spracheinstellungen sowie den Lab
 
 Der QA-Zweig `qa/lumo-nextgen-reference-android-20261115` steht auf `c600e1e02745931cc1dd0a17e528a60f8ed4abf3`. Sein Tree ist `eb77fc2710e59bc09a8721eee719499059cc4b3b`. Dieser Stand verwendet die vorhandene x86-APK unverändert; er baut keine neue App. Die Korrekturen betreffen ausschließlich Prüfleser, beobachtete Navigation und Testbelege. Die anschließenden produktiven Lernrouten wurden gegen die APK-Quelle abgeglichen.
 
-Der laufende Job `132981333152` führt zuerst alle ursprünglichen Lern-, Erhaltungs- und Performancegates aus und anschließend die zusätzlichen nativen Banane-/Musterszenen. Eine erfolgreiche Installation allein ist kein bestandener Lerndurchlauf.
+Job `132981333152` ist fehlgeschlagen. Die Frage „Warum zuerst zwei?“ wurde über das sichtbare Eingabefeld tatsächlich eingegeben und abgesendet. Danach zeigte der Dialog keine aktuelle Aufgabenkarte und antwortete allgemein. Die Original-XMLs und das Fehlerbild bestätigen den fehlenden Aufgabenbezug. Die Lab-Seite löscht beim Öffnen ihrer eigenen Gesprächsmodalroute den Kontext, weil ihre darunterliegende Route nicht mehr aktuell ist. Das ist ein Produktfehler; der inhaltliche Prüfer wurde nicht abgeschwächt.
 
-`tools/nextgen/prepare_learning_replay_release.py` und `.github/workflows/lumo-nextgen-learning-replay-publish.yml` bereiten die spätere Veröffentlichung derselben ARM64-Bytes vor. Die Aktivierungskonfiguration ist noch nicht angelegt. Sie darf erst den tatsächlich erfolgreichen QA-Commit, Run und das größen-/digestgeprüfte Artefakt enthalten. Der Veröffentlicher prüft beide vollständigen Lernergebnisse und die ursprüngliche Produktidentität erneut; ein vorhandenes Release wird nicht überschrieben.
+Originalartefakt: `14184245907`, 10566016 Bytes, SHA-256 `98d7b62984915783f476520fbfadc309bf99ed1b070c8412ba48aac240de3342`. Die Prüffrage und der sichtbare falsche allgemeine Antwortweg bleiben als Fehlerbeleg erhalten. Die Nachfolgeversion muss diesen Ablauf mit neu gebauten Bytes erneut bestehen.
+
+`tools/nextgen/prepare_learning_replay_release.py` und `.github/workflows/lumo-nextgen-learning-replay-publish.yml` bleiben historische, inaktive Vorbereitungen. Die Aktivierungskonfiguration ist nicht angelegt und wird für diese fehlerhafte Version nicht angelegt. Der neue Buildpfad verwendet eine eigene Versionsnummer, neue APK-Hashes und beide vollständigen Androidtouren desselben neuen Quellstands. Ein vorhandenes Release wird nicht überschrieben.
 
 ## Verbindliche Grenzen
 
