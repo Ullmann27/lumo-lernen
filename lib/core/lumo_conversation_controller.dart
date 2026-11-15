@@ -7,6 +7,7 @@ import 'lumo_ai_proxy_client.dart';
 import 'lumo_companion_engine.dart';
 import 'lumo_context_engine.dart';
 import 'lumo_sulafat_client.dart';
+import 'lumo_task_dialogue_engine.dart';
 import 'lumo_voice.dart';
 
 enum LumoConversationPhase {
@@ -15,7 +16,28 @@ enum LumoConversationPhase {
   thinking,
   speaking,
   paused,
-  error
+  error,
+  waiting,
+  interrupted,
+}
+
+/// Spoken subtitle and semantic gaze target, bound to one task revision.
+/// Chat 3 can observe this together with LumoVoice.clipMouth. The envelope
+/// follows actual audio playback, it is not phoneme-level lip sync.
+class LumoConversationCue {
+  const LumoConversationCue({
+    required this.utteranceId,
+    required this.taskId,
+    required this.contextRevision,
+    required this.subtitle,
+    this.focus,
+  });
+
+  final String utteranceId;
+  final String taskId;
+  final int contextRevision;
+  final String subtitle;
+  final String? focus;
 }
 
 /// One short-lived conversation over actual context. History is RAM-only,
@@ -33,6 +55,12 @@ class LumoConversationController extends ChangeNotifier {
   final LumoContextEngine context;
   final LumoAiProxyClient _proxy;
   final List<LumoAiChatTurn> _history = [];
+  final String _sessionId = DateTime.now().microsecondsSinceEpoch.toString();
+  final ValueNotifier<LumoConversationCue?> activeCue =
+      ValueNotifier<LumoConversationCue?>(null);
+  LumoConversationCue? _preparedCue;
+  LumoTaskDialogueAction? lastTaskAction;
+  int _round = 0;
   List<LumoAiChatTurn> get history => List.unmodifiable(_history);
   LumoConversationPhase phase = LumoConversationPhase.idle;
   LumoSpeechCancellation? _request;
@@ -56,6 +84,8 @@ class LumoConversationController extends ChangeNotifier {
     }
     final generation = ++_generation;
     final revision = context.revision;
+    _preparedCue = null;
+    lastTaskAction = null;
     await LumoVoice.instance.stop();
     if (_disposed || _paused || generation != _generation) return cancelled;
     final request = LumoSpeechCancellation();
@@ -63,9 +93,22 @@ class LumoConversationController extends ChangeNotifier {
     _setPhase(LumoConversationPhase.thinking);
     final app = context.appState;
     final state = app.state;
-    final local = const LumoCompanionEngine()
-        .answer(input: question, state: state, task: context.task);
     final safeInput = LumoChildSafetyFilter.inspect(question).allowed;
+    final task = context.task;
+    final lastAnswer = _history.isNotEmpty &&
+            _history.last.role == 'assistant'
+        ? _history.last.content
+        : null;
+    final decision = safeInput
+        ? const LumoTaskDialogueEngine().respond(
+            input: question, task: task, previousReply: lastAnswer)
+        : null;
+    if (decision?.action == LumoTaskDialogueAction.stop) {
+      interrupt();
+      return cancelled;
+    }
+    final local = const LumoCompanionEngine()
+        .answer(input: question, state: state, task: task);
     if (safeInput && !context.isAssessment) {
       context.requests.recordLearningEvent(
           LumoLearningEventKind.childAskedQuestion,
@@ -74,10 +117,12 @@ class LumoConversationController extends ChangeNotifier {
     var response = LumoAiProxyResponse(
         reply: context.isAssessment
             ? 'Im Test löst du die Aufgabe selbst. Danach üben wir gemeinsam.'
-            : local.text,
+            : decision?.text ?? local.text,
         blocked: !safeInput,
-        source: 'local_companion');
-    if (!context.isAssessment &&
+        source: decision == null ? 'local_companion' : 'local_task_dialogue');
+    // A task-owner hint is authoritative; never let an open-model reply
+    // override the approved help level or claim a learning result.
+    if (task == null && decision == null && !context.isAssessment &&
         safeInput &&
         _proxy.isConfigured(state.settings)) {
       try {
@@ -102,6 +147,16 @@ class LumoConversationController extends ChangeNotifier {
       return cancelled;
     }
     _request = null;
+    lastTaskAction = decision?.action;
+    final utterance = ++_round;
+    _preparedCue = LumoConversationCue(
+      utteranceId: _sessionId + ':' + revision.toString() + ':' +
+          utterance.toString(),
+      taskId: task?.taskId ?? '',
+      contextRevision: revision,
+      subtitle: decision?.subtitle ?? response.reply,
+      focus: decision?.focus,
+    );
     if (!response.blocked) {
       _history.addAll([
         LumoAiChatTurn(role: 'user', content: question),
@@ -111,7 +166,7 @@ class LumoConversationController extends ChangeNotifier {
     while (_history.length > 8) {
       _history.removeAt(0);
     }
-    _setPhase(LumoConversationPhase.idle);
+    _setPhase(LumoConversationPhase.waiting);
     return response;
   }
 
@@ -120,13 +175,21 @@ class LumoConversationController extends ChangeNotifier {
     if (_disposed || _paused || !context.appState.state.settings.voiceEnabled) {
       return;
     }
-    await LumoVoice.instance.speakAndWait(text, style: style);
+    final cue = _preparedCue;
+    if (cue != null && cue.contextRevision == context.revision) {
+      activeCue.value = cue;
+    }
+    try {
+      await LumoVoice.instance.speakAndWait(text, style: style);
+    } finally {
+      if (identical(activeCue.value, cue)) activeCue.value = null;
+    }
   }
 
   void listening(bool value) {
     if (!_disposed && !_paused && _request == null) {
       _setPhase(
-          value ? LumoConversationPhase.listening : LumoConversationPhase.idle);
+          value ? LumoConversationPhase.listening : LumoConversationPhase.waiting);
     }
   }
 
@@ -142,11 +205,14 @@ class LumoConversationController extends ChangeNotifier {
 
   void interrupt() {
     _generation++;
+    _preparedCue = null;
+    lastTaskAction = null;
+    activeCue.value = null;
     _request?.cancel();
     _request = null;
     unawaited(LumoVoice.instance.stop());
     _setPhase(
-        _paused ? LumoConversationPhase.paused : LumoConversationPhase.idle);
+        _paused ? LumoConversationPhase.paused : LumoConversationPhase.interrupted);
   }
 
   void _contextChanged() {
@@ -158,7 +224,8 @@ class LumoConversationController extends ChangeNotifier {
     if (_disposed ||
         _paused ||
         _request != null ||
-        phase == LumoConversationPhase.listening) {
+        phase == LumoConversationPhase.listening ||
+        phase == LumoConversationPhase.interrupted) {
       return;
     }
     _setPhase(switch (LumoVoice.instance.status.value) {
@@ -166,7 +233,7 @@ class LumoConversationController extends ChangeNotifier {
       VoiceStatus.paused => LumoConversationPhase.paused,
       VoiceStatus.preparing => LumoConversationPhase.thinking,
       VoiceStatus.error => LumoConversationPhase.error,
-      VoiceStatus.idle => LumoConversationPhase.idle,
+      VoiceStatus.idle => LumoConversationPhase.waiting,
     });
   }
 
@@ -183,6 +250,7 @@ class LumoConversationController extends ChangeNotifier {
     LumoVoice.instance.status.removeListener(_voiceChanged);
     _request?.cancel();
     _history.clear();
+    activeCue.dispose();
     unawaited(LumoVoice.instance.stop());
     super.dispose();
   }

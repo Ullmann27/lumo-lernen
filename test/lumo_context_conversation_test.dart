@@ -181,4 +181,89 @@ void main() {
     expect(large.source, 'local_input_too_long');
     expect(conversation.history, isEmpty);
   });
+  test('Chat4 ties 8+5 to visible ten frame without scoring', () async {
+    LumoCompanionRequests.instance.taskContext.value =
+        const LumoCompanionTaskContext(
+      subject: 'Mathematik',
+      unit: 'Zehnerübergang',
+      prompt: 'Rechne 8 + 5.',
+      taskId: 'ten-frame-8-plus-5',
+      localHelp: 'Das Zehnerfeld zeigt acht besetzte Plätze.',
+      helpLevel: 1,
+    );
+    final beforeStars = app.state.stars;
+    final beforeXp = app.state.xp;
+    final response = await conversation.ask('Warum zuerst zwei?');
+    expect(response.source, 'local_task_dialogue');
+    expect(response.reply, contains('zwei Plätze frei'));
+    expect(response.reply, isNot(contains('dreizehn')));
+    expect(conversation.lastTaskAction, isNotNull);
+    expect(app.state.stars, beforeStars);
+    expect(app.state.xp, beforeXp);
+    expect(app.state.solved, isEmpty);
+  });
+
+  test('Chat4 ASR correction is not a scored error', () async {
+    LumoCompanionRequests.instance.taskContext.value =
+        const LumoCompanionTaskContext(
+      subject: 'Mathematik',
+      unit: 'Zehnerübergang',
+      prompt: 'Rechne 8 + 5.',
+      taskId: 'asr-correction-fixture',
+      attempts: 0,
+      helpLevel: 1,
+    );
+    final response = await conversation.ask('Nein, ich meinte dreizehn');
+    expect(response.source, 'local_task_dialogue');
+    expect(response.reply, contains('dreizehn'));
+    expect(app.state.solved, isEmpty);
+    expect(app.state.practiceErrors, 0);
+  });
+
+  test('Chat4 explicit stop cancels and stale task cue clears', () async {
+    LumoCompanionRequests.instance.taskContext.value =
+        const LumoCompanionTaskContext(
+      subject: 'Mathematik',
+      unit: 'Zehnerübergang',
+      prompt: 'Rechne 8 + 5.',
+      taskId: 'stop-fixture',
+      localHelp: 'Schau auf die freien Felder.',
+      helpLevel: 1,
+    );
+    final first = await conversation.ask('Warum zuerst zwei?');
+    expect(first.source, 'local_task_dialogue');
+    final interrupted = await conversation.ask('Stopp');
+    expect(interrupted.source, 'cancelled');
+    expect(conversation.phase, LumoConversationPhase.interrupted);
+    expect(conversation.activeCue.value, isNull);
+    LumoCompanionRequests.instance.taskContext.value =
+        const LumoCompanionTaskContext(
+      subject: 'Deutsch',
+      unit: 'Silben',
+      prompt: 'Wie viele Silben hat Banane?',
+      taskId: 'other-task',
+    );
+    expect(conversation.history, isEmpty);
+    expect(conversation.activeCue.value, isNull);
+  });
+
+  test('Chat4 unverified proxy cannot override an active task', () async {
+    LumoCompanionRequests.instance.taskContext.value =
+        const LumoCompanionTaskContext(
+      subject: 'Mathematik',
+      unit: 'Zehnerübergang',
+      prompt: 'Rechne 8 + 5.',
+      taskId: 'no-cloud-answer',
+      localHelp: 'Lege acht Punkte.',
+    );
+    app.updateSettings(const AppSettings(
+        aiProxyEnabled: true, aiLearningMode: AiLearningMode.learningHelp));
+    final proxy = ControlledProxy();
+    conversation.dispose();
+    conversation = LumoConversationController(context, proxy: proxy);
+    final answer = await conversation.ask('Sag mir die Lösung');
+    expect(answer.isCloudAnswer, isFalse);
+    expect(proxy.entered.isCompleted, false);
+  });
+
 }
