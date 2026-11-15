@@ -78,6 +78,11 @@ class LumoVoice {
 
   /// Only a native completion event increments this, never stop or a timeout.
   int get completedPlaybackCount => _completedPlaybackCount;
+
+  /// Synchronous transport ownership: capture immediately after speak, and
+  /// stop only while this value still matches. Another request (even one still
+  /// preparing) or stop retires the old page's right to cancel shared audio.
+  int get requestRevision => _requestRevision;
   String get selectedVoiceName =>
       _identity == LumoVoiceIdentity.freeOffline ? 'Lumo Frei' : 'Sulafat';
   bool get localVoiceLicenseAccepted => _localVoiceLicenseAccepted;

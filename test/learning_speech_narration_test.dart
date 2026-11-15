@@ -188,6 +188,57 @@ void main() {
     await narration.stop();
     expect(voice.playbacks, isEmpty);
   });
+
+  for (final action in ['pause', 'stop', 'dispose']) {
+    test('old owner $action preserves newer page audio and late completion',
+        () async {
+      final oldReading = narration.read('Dieser Satz gehört zur alten Seite.');
+      await _flush();
+      final oldAudio = voice.playbacks.single;
+      final newer = LumoLearningNarration(voice: voice);
+      final newReading = newer.read('Die aktuelle Seite erklärt weiter.');
+      await _flush();
+      final newAudio = voice.playbacks.last;
+      final stops = voice.stops;
+      switch (action) {
+        case 'pause':
+          await narration.pause();
+        case 'stop':
+          await narration.stop();
+        case 'dispose':
+          narration.dispose();
+      }
+      expect(voice.stops, stops);
+      expect(newAudio.stopped, isFalse);
+      expect(voice.activeCount, 1);
+      oldAudio.finished.complete();
+      await oldReading;
+      expect(voice.stops, stops);
+      expect(newer.isActive, isTrue);
+      voice.finishCurrent();
+      await newReading;
+      newer.dispose();
+    });
+  }
+
+  test('a slow stop cannot restart old speech after another owner takes over',
+      () async {
+    final gate = Completer<void>();
+    voice.nextStop = gate;
+    final oldReading = narration.read('Die alte Seite wartet auf native stop.');
+    final newer = LumoLearningNarration(voice: voice);
+    final newReading = newer.read('Die neue Seite hat die Ausgabe übernommen.');
+    await _flush();
+    expect(voice.playbacks, hasLength(1));
+    gate.complete();
+    await oldReading;
+    expect(voice.playbacks, hasLength(1));
+    expect(voice.playbacks.single.stopped, isFalse);
+    expect(newer.isActive, isTrue);
+    voice.finishCurrent();
+    await newReading;
+    newer.dispose();
+  });
 }
 
 Future<void> _flush() => Future<void>.delayed(Duration.zero);
@@ -202,6 +253,8 @@ class _NarrationVoice implements LumoVoice {
   final playbacks = <_Playback>[];
   Completer<void>? nextStop;
   int stops = 0;
+  @override
+  int requestRevision = 0;
 
   int get activeCount => playbacks
       .where((audio) => !audio.stopped && !audio.finished.isCompleted)
@@ -209,6 +262,7 @@ class _NarrationVoice implements LumoVoice {
 
   @override
   Future<void> stop() async {
+    requestRevision++;
     stops++;
     for (final audio in playbacks) {
       audio.stopped = true;
@@ -221,7 +275,8 @@ class _NarrationVoice implements LumoVoice {
 
   @override
   Future<void> speakAndWait(String text,
-      {VoiceStyle style = VoiceStyle.warm}) async {
+      {VoiceStyle style = VoiceStyle.warm, double speedFactor = 1}) async {
+    requestRevision++;
     final audio = _Playback(text, style);
     playbacks.add(audio);
     status.value = VoiceStatus.speaking;

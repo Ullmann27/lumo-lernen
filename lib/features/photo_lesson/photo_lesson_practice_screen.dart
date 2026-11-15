@@ -407,6 +407,7 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
     await _persist(
         _session.withHelp(_session.helpLevel < 1 ? 1 : _session.helpLevel));
     await _narration.stop();
+    await WidgetsBinding.instance.endOfFrame;
     final current = _bus.learningIdentity.value;
     if (!mounted ||
         !_foreground ||
@@ -449,6 +450,7 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
   }
 
   void _interaction(TaskWorkspaceInteraction interaction) {
+    if (_nativeOpen || !_foreground) return;
     if (!mounted ||
         interaction.taskId != _task.taskInstanceId ||
         !_ownsProfile) {

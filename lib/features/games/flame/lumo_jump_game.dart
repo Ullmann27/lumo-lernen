@@ -25,9 +25,11 @@ import '../../../app/app_state.dart';
 import '../../../app/app_theme.dart';
 import '../../../core/game_progress_repository.dart';
 import '../../../core/german_task_templates.dart';
+import '../../../core/learning_attempt_id.dart';
 import '../../../core/math_task_templates.dart';
 import '../../../domain/games/game_level_model.dart';
 import '../mini_games/fox_sprite.dart';
+import '../../learning/widgets/learning_question_coach.dart';
 
 // ── Enums ─────────────────────────────────────────────────────────────
 
@@ -2090,41 +2092,59 @@ class _LumoJumpFlameScreenState extends State<LumoJumpFlameScreen> {
 
   Future<bool> _showQuestion(String title, LumoLearningTask task) async {
     var solved = false;
+    final generation = widget.appState.profileGeneration;
+    final taskId = 'jump-question:${newLearningAttemptId()}';
     await showModalBottomSheet<void>(
-      context:         context,
+      context: context,
       backgroundColor: Colors.transparent,
-      isDismissible:   false,
-      enableDrag:      false,
+      isDismissible: false,
+      enableDrag: false,
+      isScrollControlled: true,
       builder: (ctx) => _QuestionSheet(
+        appState: widget.appState,
+        taskId: taskId,
+        subject: title.startsWith('Deutsch') ? 'Deutsch' : 'Mathematik',
         title: title,
-        task:  task,
+        task: task,
         onSolved: (ok) {
           solved = ok;
           Navigator.of(ctx).pop();
         },
       ),
     );
-    return solved;
+    return mounted &&
+        !widget.appState.resetting &&
+        widget.appState.profileGeneration == generation &&
+        solved;
   }
 
   // ── Boss-Truhen-Challenge ──────────────────────────────────────────────
 
   Future<bool> _showChestChallenge() async {
-    var    opened   = false;
-    var    streak   = 0;
-    var    seed     = DateTime.now().millisecondsSinceEpoch;
+    final generation = widget.appState.profileGeneration;
+    final challengeId = newLearningAttemptId();
+    var helpUsed = false;
+    var opened = false;
+    var streak = 0;
+    var seed = DateTime.now().millisecondsSinceEpoch;
     String feedback = 'Beantworte 3 Aufgaben hintereinander richtig.';
     LumoLearningTask task = _game.createMathTask(seed);
 
     await showDialog<void>(
-      context:           context,
+      context: context,
       barrierDismissible: false,
       builder: (ctx) {
         int? selected;
         return StatefulBuilder(
           builder: (ctx2, localSet) {
             Future<void> submit() async {
-              if (selected == null) return;
+              if (selected == null ||
+                  opened ||
+                  !ctx2.mounted ||
+                  widget.appState.resetting ||
+                  widget.appState.profileGeneration != generation) {
+                return;
+              }
               if (task.choices[selected!] == task.answer) {
                 streak++;
                 HapticFeedback.mediumImpact();
@@ -2137,85 +2157,134 @@ class _LumoJumpFlameScreenState extends State<LumoJumpFlameScreen> {
                 seed += 29;
                 task = _game.createMathTask(seed);
                 selected = null;
-                localSet(() => feedback =
-                    'Stark! Noch $rem ${rem == 1 ? "richtige Aufgabe" : "richtige Aufgaben"}.');
+                helpUsed = false;
+                localSet(
+                  () => feedback =
+                      'Stark! Noch $rem ${rem == 1 ? "richtige Aufgabe" : "richtige Aufgaben"}.',
+                );
               } else {
                 streak = 0;
                 seed += 41;
                 task = _game.createMathTask(seed);
                 selected = null;
+                helpUsed = false;
                 localSet(
-                    () => feedback = 'Fast! Wir starten die 3er-Serie neu.');
+                  () => feedback = 'Fast! Wir starten die 3er-Serie neu.',
+                );
               }
             }
 
             return AlertDialog(
+              scrollable: true,
               backgroundColor: const Color(0xFFFFF7E6),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              title: const Text('🔒 Boss-Truhe',
-                  style: TextStyle(fontWeight: FontWeight.w900)),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              title: const Text(
+                '🔒 Boss-Truhe',
+                style: TextStyle(fontWeight: FontWeight.w900),
+              ),
               content: SizedBox(
                 width: 520,
-                child: Column(
-                  mainAxisSize:      MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Serie: $streak / 3',
-                        style: const TextStyle(fontWeight: FontWeight.w800)),
-                    const SizedBox(height: 8),
-                    Text(task.prompt,
+                child: LearningQuestionCoach(
+                  appState: widget.appState,
+                  taskId: 'jump-chest:$challengeId:$seed',
+                  subject: 'Mathematik',
+                  unit: 'Boss-Truhe',
+                  prompt: task.prompt,
+                  choices: {
+                    for (var i = 0; i < task.choices.length; i++)
+                      i: task.choices[i],
+                  },
+                  active:
+                      !opened &&
+                      widget.appState.profileGeneration == generation,
+                  helpUsed: helpUsed,
+                  helpText: helpUsed
+                      ? 'Lies die Frage langsam. Vergleiche jede angebotene Antwort.'
+                      : null,
+                  onHint: () => localSet(() => helpUsed = true),
+                  onConfirmedChoice: (choice) =>
+                      localSet(() => selected = choice),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Serie: $streak / 3',
+                        style: const TextStyle(fontWeight: FontWeight.w800),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        task.prompt,
                         style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w900)),
-                    const SizedBox(height: 12),
-                    ...List.generate(task.choices.length, (i) {
-                      final sel = selected == i;
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(14),
-                          onTap: () => localSet(() => selected = i),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 11),
-                            decoration: BoxDecoration(
-                              color: sel ? LumoColors.orange : Colors.white,
-                              borderRadius: BorderRadius.circular(14),
-                              border: Border.all(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      ...List.generate(task.choices.length, (i) {
+                        final sel = selected == i;
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(14),
+                            key: ValueKey('jump-chest-answer-$i'),
+                            onTap: () => localSet(() => selected = i),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 11,
+                              ),
+                              decoration: BoxDecoration(
+                                color: sel ? LumoColors.orange : Colors.white,
+                                borderRadius: BorderRadius.circular(14),
+                                border: Border.all(
                                   color: sel
                                       ? const Color(0xFFD97706)
                                       : LumoColors.ink100,
-                                  width: 2),
-                            ),
-                            child: Text(task.choices[i],
+                                  width: 2,
+                                ),
+                              ),
+                              child: Text(
+                                task.choices[i],
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w800,
-                                    color: sel
-                                        ? Colors.white
-                                        : LumoColors.ink900)),
+                                  fontWeight: FontWeight.w800,
+                                  color: sel ? Colors.white : LumoColors.ink900,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      );
-                    }),
-                    const SizedBox(height: 8),
-                    Text(feedback,
+                        );
+                      }),
+                      const SizedBox(height: 8),
+                      Text(
+                        feedback,
                         style: const TextStyle(
-                            color:      LumoColors.ink600,
-                            fontWeight: FontWeight.w700)),
-                  ],
+                          color: LumoColors.ink600,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               actions: [
                 TextButton(
-                    onPressed: submit,
-                    child: const Text('Antwort prüfen')),
+                  key: const ValueKey('jump-chest-check'),
+                  onPressed: submit,
+                  child: const Text('Antwort prüfen'),
+                ),
               ],
             );
           },
         );
       },
     );
-    return opened;
+    return mounted &&
+        !widget.appState.resetting &&
+        widget.appState.profileGeneration == generation &&
+        opened;
   }
 
   // ── Level-Abschluss ────────────────────────────────────────────────────
@@ -2689,12 +2758,16 @@ class _CircularActionButtonState extends State<_CircularActionButton> {
 
 class _QuestionSheet extends StatefulWidget {
   const _QuestionSheet({
+    required this.appState,
+    required this.taskId,
+    required this.subject,
     required this.title,
     required this.task,
     required this.onSolved,
   });
 
-  final String           title;
+  final LumoAppState appState;
+  final String taskId, subject, title;
   final LumoLearningTask task;
   final void Function(bool) onSolved;
 
@@ -2703,16 +2776,33 @@ class _QuestionSheet extends StatefulWidget {
 }
 
 class _QuestionSheetState extends State<_QuestionSheet> {
-  int?   _selected;
+  late final int _generation = widget.appState.profileGeneration;
+  int? _selected;
+  int _attempt = 0;
+  bool _solved = false, _helpUsed = false;
+  String? _lastAnswer;
+  bool? _lastCorrect;
   String _feedback = 'Tippe auf die richtige Antwort.';
 
   void _submit() {
-    if (_selected == null) return;
-    if (widget.task.choices[_selected!] == widget.task.answer) {
+    if (_selected == null ||
+        _solved ||
+        widget.appState.resetting ||
+        widget.appState.profileGeneration != _generation) {
+      return;
+    }
+    final answer = widget.task.choices[_selected!];
+    // This is the existing game evaluator. Lumo only selects a confirmed card;
+    // the explicit check retains the original answer and retry rules.
+    if (answer == widget.task.answer) {
+      _solved = true;
       widget.onSolved(true);
     } else {
       HapticFeedback.heavyImpact();
       setState(() {
+        _attempt++;
+        _lastAnswer = answer;
+        _lastCorrect = false;
         _selected = null;
         _feedback = 'Noch nicht ganz – versuch es nochmal!';
       });
@@ -2720,87 +2810,137 @@ class _QuestionSheetState extends State<_QuestionSheet> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return SafeArea(
+  Widget build(BuildContext context) => SafeArea(
+    child: Padding(
+      padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
       child: Container(
-        margin:  const EdgeInsets.all(12),
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.sizeOf(context).height * .9,
+        ),
+        margin: const EdgeInsets.all(12),
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 18),
         decoration: BoxDecoration(
-          color:        const Color(0xFFFFF7E6),
+          color: const Color(0xFFFFF7E6),
           borderRadius: BorderRadius.circular(22),
           boxShadow: const [
             BoxShadow(
-                color:      Color(0x33000000),
-                blurRadius: 18,
-                offset:     Offset(0, 8))
-          ],
-        ),
-        child: Column(
-          mainAxisSize:       MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(widget.title,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w900, fontSize: 18)),
-            const SizedBox(height: 10),
-            Text(widget.task.prompt,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w900, fontSize: 22)),
-            const SizedBox(height: 12),
-            ...List.generate(widget.task.choices.length, (i) {
-              final sel = _selected == i;
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(14),
-                  onTap: () => setState(() => _selected = i),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 11),
-                    decoration: BoxDecoration(
-                      color: sel ? LumoColors.orange : Colors.white,
-                      borderRadius: BorderRadius.circular(14),
-                      border: Border.all(
-                          color: sel
-                              ? const Color(0xFFD97706)
-                              : LumoColors.ink100,
-                          width: 2),
-                    ),
-                    child: Text(widget.task.choices[i],
-                        style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            color:
-                                sel ? Colors.white : LumoColors.ink900)),
-                  ),
-                ),
-              );
-            }),
-            const SizedBox(height: 8),
-            Text(_feedback,
-                style: const TextStyle(
-                    color:      LumoColors.ink600,
-                    fontWeight: FontWeight.w700)),
-            const SizedBox(height: 12),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _submit,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: LumoColors.orange,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
-                ),
-                child: const Text('Antwort prüfen',
-                    style: TextStyle(fontWeight: FontWeight.w900)),
-              ),
+              color: Color(0x33000000),
+              blurRadius: 18,
+              offset: Offset(0, 8),
             ),
           ],
         ),
+        child: SingleChildScrollView(
+          child: LearningQuestionCoach(
+            appState: widget.appState,
+            taskId: widget.taskId,
+            subject: widget.subject,
+            unit: widget.title,
+            prompt: widget.task.prompt,
+            stepId: 'question-attempt-$_attempt',
+            answering: !_solved,
+            choices: {
+              for (var i = 0; i < widget.task.choices.length; i++)
+                i: widget.task.choices[i],
+            },
+            lastAnswer: _lastAnswer,
+            lastCorrect: _lastCorrect,
+            helpUsed: _helpUsed,
+            helpText: _helpUsed
+                ? 'Lies die Frage langsam. Vergleiche jede angebotene Antwort.'
+                : null,
+            onHint: () => setState(() => _helpUsed = true),
+            onConfirmedChoice: (choice) => setState(() => _selected = choice),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 18,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  widget.task.prompt,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 22,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                ...List.generate(widget.task.choices.length, (i) {
+                  final selected = _selected == i;
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: InkWell(
+                      key: ValueKey('jump-answer-$i'),
+                      borderRadius: BorderRadius.circular(14),
+                      onTap: () => setState(() => _selected = i),
+                      child: Container(
+                        constraints: const BoxConstraints(minHeight: 48),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 11,
+                        ),
+                        decoration: BoxDecoration(
+                          color: selected ? LumoColors.orange : Colors.white,
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(
+                            color: selected
+                                ? const Color(0xFFD97706)
+                                : LumoColors.ink100,
+                            width: 2,
+                          ),
+                        ),
+                        child: Text(
+                          widget.task.choices[i],
+                          style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: selected ? Colors.white : LumoColors.ink900,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+                const SizedBox(height: 8),
+                Text(
+                  _feedback,
+                  style: const TextStyle(
+                    color: LumoColors.ink600,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    key: const ValueKey('jump-check-answer'),
+                    onPressed: _submit,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: LumoColors.orange,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    child: const Text(
+                      'Antwort prüfen',
+                      style: TextStyle(fontWeight: FontWeight.w900),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
-    );
-  }
+    ),
+  );
 }
 
 // ── Level-Abschluss-Dialog ────────────────────────────────────────────

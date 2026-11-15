@@ -88,9 +88,10 @@ Future<LumoAppState> _mount(WidgetTester tester, String kind) async {
   LumoVoice.instance.isEnabled = false;
   LumoCompanionRequests.instance.clearLearningScope();
   await tester.binding.setSurfaceSize(const Size(412, 1000));
-  final app = LumoAppState();
+  late final LumoAppState app;
   late Widget child;
   await tester.runAsync(() async {
+    app = LumoAppState();
     await app.ensureSettingsLoaded();
     await app.loadLearningProfile();
     await app.hydrateFromWallet();
@@ -160,6 +161,10 @@ void main() {
         debugDefaultTargetPlatformOverride = null;
       });
       final app = await _mount(tester, kind);
+      addTearDown(() async {
+        if (!returned.isCompleted) returned.complete({'destination': 'learn'});
+        await _frames(tester);
+      });
       final taskId = bus.taskContext.value!.taskId;
       final native = find.widgetWithText(OutlinedButton, 'Mit Lumo in 3D');
       expect(tester.getSize(native).height, greaterThanOrEqualTo(48));
@@ -189,6 +194,7 @@ void main() {
       expect(bus.taskContext.value!.attempts, 0);
       expect(app.state.stars, 0);
       expect(tester.takeException(), isNull);
+      debugDefaultTargetPlatformOverride = null;
     });
 
     testWidgets(

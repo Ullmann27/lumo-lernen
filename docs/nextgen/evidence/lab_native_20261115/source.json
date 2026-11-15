@@ -1,0 +1,47 @@
+{
+  "baseCommit": "a16abb776649145016feed59d480bcb665e4d354",
+  "sourceSha256": {
+    "lib/features/learning/lab/learning_lab_screen.dart": "30e44b8f86c4251e462bdb076c4115ac4143f38f6be4814c68aea05c8afd5c4c",
+    "test/learning/lab_native_entry_test.dart": "3ffa23dbeb7784ad0fb75ed40ab78562518c233f8ae272aa16fa68a5de6f6906"
+  },
+  "runs": [
+    {
+      "id": "analyze",
+      "command": [
+        "flock",
+        "--close",
+        "/workspace/scratch/c5a7dadab95f/toolchain/lumo-flutter.lock",
+        "/workspace/scratch/c5a7dadab95f/toolchain/flutter/bin/flutter",
+        "analyze",
+        "--no-pub",
+        "lib/features/learning/lab/learning_lab_screen.dart",
+        "test/learning/lab_native_entry_test.dart"
+      ],
+      "exitCode": 0
+    },
+    {
+      "id": "tests",
+      "command": [
+        "flock",
+        "--close",
+        "/workspace/scratch/c5a7dadab95f/toolchain/lumo-flutter.lock",
+        "/workspace/scratch/c5a7dadab95f/toolchain/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "test/learning/lab_native_entry_test.dart",
+        "test/learning/nextgen_lab_bus_integration_test.dart",
+        "test/learning_lab_runtime_test.dart",
+        "test/learning_lab_catalog_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "nativeChannelMocked": true,
+  "physicalDeviceVerified": false,
+  "scope": "6 real native Lab entry buttons; exact task_card, pause/return-before-resume, stale and hidden callbacks, ungraded proposal/Stop, per-problem assistance. Existing catalog and persistence format unchanged.",
+  "baseProductSourceCommit": "a813ab577756e79ffcde8233e1969c727a4e8d25",
+  "testCount": 24,
+  "newNativeTestCount": 8
+}

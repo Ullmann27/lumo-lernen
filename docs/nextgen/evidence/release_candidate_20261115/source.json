@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "nativeCommit": "332307fafa2f68a1aa3667d81b7c90d3683c5c45",
+  "hostChecks": {
+    "pythonTestsPassed": 55,
+    "exitCode": 0,
+    "environment": "Linux x86_64, JDK 17, Kotlin 2.0.20, actual Android API 36 and Flutter Android jar",
+    "notAnAndroidRuntimeTest": true,
+    "log": "docs/nextgen/evidence/release_candidate_20261115/host-contracts.log",
+    "sourceHashes": [
+      {
+        "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+        "sha256": "b4583b962b35355b382fcad90312733cef14e4173919ce9c17ae720c9d0cebc8"
+      },
+      {
+        "path": "scripts/prepare_android.py",
+        "sha256": "fc3e7e0d40c71902ffefae70853c7cbd32c8a0bac7b8d675d505710b6f06df09"
+      },
+      {
+        "path": "scripts/tests/fixtures/local_recognition/Activity.kt",
+        "sha256": "6c0d5f7f4aaa4da67ca9730bd93f8a1f2104db379361892704c975e2ce0f09ba"
+      },
+      {
+        "path": "scripts/tests/fixtures/local_recognition/Channel.kt",
+        "sha256": "0ac630e1b4d8ea09fcfeb00e5739979876d25ccfbcc43f7b5486ed87da06c5c2"
+      },
+      {
+        "path": "scripts/tests/fixtures/local_recognition/Intent.kt",
+        "sha256": "5c594ea8965ef572e8ccbb1e59554b58d3eca5466df2e4a7e8057ba01d96e8f3"
+      },
+      {
+        "path": "scripts/tests/fixtures/local_recognition/LocalRecognitionContract.kt",
+        "sha256": "8c19d43822337767829fdbab7c24718bcd8903287c2f243174190c3115324d5a"
+      },
+      {
+        "path": "scripts/tests/fixtures/local_recognition/Manifest.kt",
+        "sha256": "3290f83d05529ba831fc6e443f8c10ae5a7a8756f541cc08ea2149caa23e907c"
+      },
+      {
+        "path": "scripts/tests/fixtures/local_recognition/Os.kt",
+        "sha256": "290219384d127060aaf5c001be25b3e8d942421d9e6bad2e83ef765382fcfac0"
+      },
+      {
+        "path": "scripts/tests/fixtures/local_recognition/PackageManager.kt",
+        "sha256": "8ea1de839ad2dc5035c6038c45bf3691dfc3e8c87c6d82397bb3030790370840"
+      },
+      {
+        "path": "scripts/tests/fixtures/local_recognition/Speech.kt",
+        "sha256": "b2c69894e56116bfd1eae2537475229c01e548389afe9d379ae07a6c3b689e96"
+      },
+      {
+        "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechBuildContract.kt",
+        "sha256": "484d242949a9f96c315eb8a6853a303988200f4d5f45c20251d6aae94a5fabf8"
+      },
+      {
+        "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechLifecycleContract.kt",
+        "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523"
+      },
+      {
+        "path": "scripts/tests/fixtures/speech_envelope_contract/SpeechEnvelopeContract.kt",
+        "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6"
+      },
+      {
+        "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt",
+        "sha256": "86c558d488458ecb25dec947fd0935114cfbe9c69b35c08b45ce592536c930c6"
+      },
+      {
+        "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Channel.kt",
+        "sha256": "c42bc41b86360bc28f84f59fbec760a633460ffab930439921c344cafc093950"
+      },
+      {
+        "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Context.kt",
+        "sha256": "bfadda67fce0bcfd940e6d275f0e4184c2a592febb7ab3c5639a40c1f6ec21ac"
+      },
+      {
+        "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Handler.kt",
+        "sha256": "2baa97b0f65a6a7cc59a26f5f80e823608d5e18f546236db7850d902c7963dce"
+      },
+      {
+        "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
+        "sha256": "457539a65101608c93b64b1fab0705406814d4fc7c7da64ed0914c94f815d1b9"
+      },
+      {
+        "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt",
+        "sha256": "d9bef1b203ec4e7cfe515061ee7cae2d333c7bce7fdee8e460e8554c00ec43e6"
+      },
+      {
+        "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Media.kt",
+        "sha256": "26dadd1a5347836a72d034e925f3098221a86055ede2c4e80906fb41893dd962"
+      }
+    ]
+  },
+  "unchangedGateAsset": {
+    "path": "assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb",
+    "bytes": 4444536,
+    "sha256": "8c8891062888eda5b553ae77390eda1a733368fc0bf73b86aefe2a7a666a565d",
+    "method": "git show exact published native commit, sha256 of full blob"
+  },
+  "apkBuildStatus": "pending_actual_ci",
+  "physicalFold7": "not_tested",
+  "realMicrophone": "not_tested",
+  "target60Fps": "not_demonstrated",
+  "releasePinRegression": {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "-v",
+      "scripts.tests.test_export_embedded_game",
+      "scripts.tests.test_legacy_release_pin"
+    ],
+    "testsPassed": 63,
+    "exitCode": 0,
+    "log": "docs/nextgen/evidence/release_candidate_20261115/release-pin-tests.log",
+    "sourceHashes": [
+      {
+        "path": "scripts/export_embedded_game.py",
+        "sha256": "353596431c0de90ff89fc5d2e19a035be5ee0c59452f6438917318e5205cac44"
+      },
+      {
+        "path": "scripts/verify_legacy_release_pin.py",
+        "sha256": "7188b831145517bb3e1d2ea413edc5380df92026b401172021cbb840d1233bd6"
+      }
+    ]
+  }
+}

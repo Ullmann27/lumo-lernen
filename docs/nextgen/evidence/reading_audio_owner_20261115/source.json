@@ -1,0 +1,26 @@
+{
+  "producerCommit": "88fcffdd91ea717a5080ad8d61b94fac81191758",
+  "integratedCommit": "165e6bd8731a0c2c2df8dfefe06be6a79403157b",
+  "testsPassed": 23,
+  "testPaths": [
+    "test/reading_audio_owner_regression_test.dart",
+    "test/reading_buddy_assessment_test.dart",
+    "test/story_entry_navigation_test.dart"
+  ],
+  "controlledAudioTransport": true,
+  "realAndroidAudio": false,
+  "sourceHashes": [
+    {
+      "path": "lib/features/reading/reading_content.dart",
+      "sha256": "d3e66bee722341a44465071a9516c4f2a5c5f9a35993626cd254e3b984329ec8"
+    },
+    {
+      "path": "lib/features/reading/reading_lesson_companion.dart",
+      "sha256": "11e908b4866cb16c41975787f49f401006c5710249d77f330a372b927fd3e43b"
+    },
+    {
+      "path": "test/reading_audio_owner_regression_test.dart",
+      "sha256": "334999cec1d723afea6dce36c36a7b707e076280bcc68b3d3841057c494f3b18"
+    }
+  ]
+}

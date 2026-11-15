@@ -1,0 +1,46 @@
+{
+  "runs": [
+    {
+      "id": "catalog_export",
+      "sourceHead": "165e6bd8731a0c2c2df8dfefe06be6a79403157b",
+      "command": [
+        "flock",
+        "--close",
+        "/workspace/scratch/c5a7dadab95f/toolchain/lumo-flutter.lock",
+        "/workspace/scratch/c5a7dadab95f/toolchain/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "tools/nextgen/export_learning_catalog_test.dart",
+        "--dart-define=LUMO_CATALOG_OUTPUT=/workspace/scratch/4fa97167812c/learning-catalog-final.json",
+        "--reporter",
+        "expanded"
+      ],
+      "exitCode": 0,
+      "log": "docs/nextgen/evidence/coverage_refresh_20261115/catalog_export.log",
+      "testPaths": [
+        "tools/nextgen/export_learning_catalog_test.dart"
+      ]
+    },
+    {
+      "id": "sentence_privacy",
+      "sourceHead": "165e6bd8731a0c2c2df8dfefe06be6a79403157b",
+      "command": [
+        "flock",
+        "--close",
+        "/workspace/scratch/c5a7dadab95f/toolchain/lumo-flutter.lock",
+        "/workspace/scratch/c5a7dadab95f/toolchain/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "test/learning/sentence_prompt_privacy_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "exitCode": 0,
+      "log": "docs/nextgen/evidence/coverage_refresh_20261115/sentence_privacy.log",
+      "testPaths": [
+        "test/learning/sentence_prompt_privacy_test.dart"
+      ]
+    }
+  ],
+  "note": "Only catalog and sentence privacy were re-run for this inventory. Native/channel tests elsewhere are mocked; no hardware proof."
+}

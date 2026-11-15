@@ -19,6 +19,7 @@ class LumoLearningNarration extends ChangeNotifier {
   bool _isActive = false;
   bool _disposed = false;
   int _revision = 0;
+  int? _voiceRequest;
 
   String? get currentText => _currentText;
   bool get isPaused => _isPaused;
@@ -59,12 +60,28 @@ class LumoLearningNarration extends ChangeNotifier {
     _isPaused = false;
     notifyListeners();
     try {
-      if (interrupt) await _voice.stop();
       if (!_isCurrent(revision) || identity != _voice.identity) return;
-      await _voice.speakAndWait(text, style: style);
+      if (interrupt) {
+        final stopping = _voice.stop();
+        final stopRequest = _voice.requestRevision;
+        _voiceRequest = stopRequest;
+        await stopping;
+        // A newer page can claim the shared player while native stop awaits.
+        // Completing our old stop never grants permission to replace it.
+        if (_voice.requestRevision != stopRequest) return;
+      } else if (_voiceBusy) {
+        return;
+      }
+      if (!_isCurrent(revision) || identity != _voice.identity) return;
+      final before = _voice.requestRevision;
+      final playing = _voice.speakAndWait(text, style: style);
+      _voiceRequest =
+          _voice.requestRevision == before ? null : _voice.requestRevision;
+      await playing;
     } finally {
       // stop, pause, disposal and a newer read retire this completion.
       if (_isCurrent(revision)) {
+        _voiceRequest = null;
         _isActive = false;
         notifyListeners();
       }
@@ -72,6 +89,14 @@ class LumoLearningNarration extends ChangeNotifier {
   }
 
   bool _isCurrent(int revision) => !_disposed && revision == _revision;
+
+  Future<void> _stopOwnedTransport() async {
+    final owned = _voiceRequest;
+    _voiceRequest = null;
+    // A stale page must still invalidate its own work, but must not cancel
+    // another owner's preparation or playback on the shared transport.
+    if (owned != null && _voice.requestRevision == owned) await _voice.stop();
+  }
 
   Future<void> repeat() async {
     final text = _currentText;
@@ -86,7 +111,7 @@ class LumoLearningNarration extends ChangeNotifier {
     _isActive = false;
     _isPaused = _currentText != null;
     notifyListeners();
-    await _voice.stop();
+    await _stopOwnedTransport();
   }
 
   /// Use for leaving a task or replacing its explanation.
@@ -97,7 +122,7 @@ class LumoLearningNarration extends ChangeNotifier {
     _isActive = false;
     _isPaused = false;
     notifyListeners();
-    await _voice.stop();
+    await _stopOwnedTransport();
   }
 
   @override
@@ -108,7 +133,7 @@ class LumoLearningNarration extends ChangeNotifier {
     _currentText = null;
     _isActive = false;
     _isPaused = false;
-    unawaited(_voice.stop());
+    unawaited(_stopOwnedTransport());
     super.dispose();
   }
 }

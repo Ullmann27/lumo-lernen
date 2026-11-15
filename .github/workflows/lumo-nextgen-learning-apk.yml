@@ -116,6 +116,9 @@ jobs:
       - name: Locked dependencies, analysis and complete Flutter tests
         run: |
           set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          test -f /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
           flutter pub get --enforce-lockfile
           git diff --exit-code -- pubspec.yaml pubspec.lock
           flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee evidence/validation/analyze.log

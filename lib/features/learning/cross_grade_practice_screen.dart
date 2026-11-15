@@ -529,10 +529,10 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen>
         !LumoCompanionRequests.instance.isCurrentLearningIdentity(identity))
       return null;
     final proposed = _proposalController.text.trim().toLowerCase();
-    for (final choice in _task.choices) {
-      if (choice.trim().toLowerCase() == proposed) return choice;
-    }
-    return null;
+    final matches = _task.choices
+        .where((choice) => choice.trim().toLowerCase() == proposed)
+        .toList();
+    return matches.length == 1 ? matches.single : null;
   }
 
   Future<void> _loadProgress() async {
@@ -905,6 +905,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen>
                           showSolution: _completed,
                           helpLevel: _showSupport ? _helpLevel : 0,
                           onInteraction: (event) {
+                            if (_nativeOpen || !_foreground) return;
                             if (_profileChanged ||
                                 _taskError != null ||
                                 event.taskId != _taskInstance.taskInstanceId) {
@@ -1122,6 +1123,10 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen>
     _hasProposal = false;
     _proposalIdentity = null;
     _requestHelp();
+    // The workspace announces its changed explanation after rendering. Its
+    // owner publishes that semantic step on the following frame; capture the
+    // launch only after both have reached the shared contract.
+    await WidgetsBinding.instance.endOfFrame;
     await WidgetsBinding.instance.endOfFrame;
     final current = bus.learningIdentity.value;
     if (!mounted ||

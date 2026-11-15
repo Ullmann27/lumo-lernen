@@ -11,11 +11,13 @@ import '../../../core/lumo_learning_narration.dart';
 import '../../../core/lumo_learning_session_contract.dart';
 import '../../../core/lumo_voice.dart';
 import '../../../core/progress_repository.dart';
+import '../../../domain/tutoring/native_learning_activity.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 import '../../../widgets/fox/lumo_character.dart';
 import '../../../widgets/fox/lumo_companion_requests.dart';
 import '../../learning_modules/learning_module_progress.dart';
+import '../../lumo3d/lumo3d_launcher.dart';
 import '../nextgen/learning_lab_resume.dart';
 import '../nextgen/learning_coach_binding.dart';
 import 'learning_lab_catalog.dart';
@@ -67,6 +69,9 @@ class _LearningLabScreenState extends State<LearningLabScreen>
   bool _resumeUnavailable = false;
   bool _slow = false;
   bool _speechCandidate = false;
+  bool _nativeLearningOpen = false;
+  bool _nativeReturnPending = false;
+  String? _nativeStepId;
   int _hint = 0;
   int _support = 0;
   int _moved = 0;
@@ -98,8 +103,14 @@ class _LearningLabScreenState extends State<LearningLabScreen>
       _lease != null &&
       widget.appState.isCurrentLearningLease(_lease!) &&
       widget.appState.state.grade >= widget.topic.minimumGrade;
-  bool get _editable =>
+  bool get _canAnswer =>
       _safe && !_busy && !_done && !_progress.hasPending && !_interruptedSave;
+  bool get _editable => _canAnswer && _foreground && !_nativeLearningOpen;
+  bool get _active =>
+      _safe &&
+      !_loading &&
+      (_foreground || _nativeLearningOpen) &&
+      _routeVisible;
   bool get _routeVisible =>
       mounted && ModalRoute.of(context)?.isCurrent != false;
   bool get _modelPhase => _phase == _Phase.example || _phase == _Phase.build;
@@ -129,7 +140,7 @@ class _LearningLabScreenState extends State<LearningLabScreen>
   void initState() {
     super.initState();
     _coach = LearningCoachBinding(
-      isActive: () => _safe && !_loading && _foreground && _routeVisible,
+      isActive: () => _active,
       onHint: _help,
       onExplain: () => _help(differently: true),
       onRepeat: _repeat,
@@ -314,11 +325,15 @@ class _LearningLabScreenState extends State<LearningLabScreen>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     _foreground = state == AppLifecycleState.resumed;
     if (!_foreground) {
-      _coach.interrupt('background');
-      setState(_discardSpeechCandidate);
       unawaited(_checkpoint());
       unawaited(_stopSpeech());
-      _focusObjectId = null;
+      if (!_nativeLearningOpen) {
+        _coach.interrupt('background');
+        setState(_discardSpeechCandidate);
+        _focusObjectId = null;
+      }
+    } else if (_nativeReturnPending) {
+      setState(_finishNativeReturn);
     }
     _publish();
   }
@@ -369,6 +384,11 @@ class _LearningLabScreenState extends State<LearningLabScreen>
         _modelPhase || (p.mode == LabMode.pattern) || (_hint >= 3 && !_selfTry);
     return [
       'task_prompt',
+      if (_nativeLearningOpen) ...[
+        'task_model',
+        if (p.mode == LabMode.pattern)
+          for (var i = 0; i < p.tokens.length; i++) 'answer_$i',
+      ],
       if (!_modelPhase && p.mode != LabMode.pattern) 'answer_field',
       if (visible)
         ...switch (p.mode) {
@@ -402,11 +422,11 @@ class _LearningLabScreenState extends State<LearningLabScreen>
   }
 
   void _proposeAnswer(String candidate) {
-    if (!_editable || _modelPhase || candidate.length > 80) return;
+    if (!_active || !_canAnswer || _modelPhase || candidate.length > 80) return;
     setState(() {
       _speechCandidate = true;
       _answer.text = candidate;
-      if (_current.mode == LabMode.pattern) {
+      if (_current.mode == LabMode.pattern && !_nativeLearningOpen) {
         final index = _current.tokens.indexWhere(
             (value) => value.toLowerCase() == candidate.trim().toLowerCase());
         _patternChoice = index < 0 ? null : index;
@@ -420,7 +440,7 @@ class _LearningLabScreenState extends State<LearningLabScreen>
 
   void _publish() {
     if (!mounted) return;
-    if (!_safe || _loading || !_foreground || !_routeVisible) {
+    if (!_active) {
       if (_speechCandidate) setState(_discardSpeechCandidate);
       LumoCompanionRequests.instance.clearTask(_published);
       return;
@@ -450,7 +470,9 @@ class _LearningLabScreenState extends State<LearningLabScreen>
       activity: 'guided_lesson',
       ownerSection: 'learn',
       profileGeneration: _lease!.generation,
-      stepId: '${_phase.name}:$_currentStep',
+      // The separate native Activity owns this exact step until its return.
+      // Hidden model callbacks or a proposed pattern choice cannot retarget it.
+      stepId: _nativeStepId ?? '${_phase.name}:$_currentStep',
       objectIds: _objectIds,
       explanation: _visibleExplanation,
       answerChoices: p.mode == LabMode.pattern ? p.tokens : const [],
@@ -498,6 +520,9 @@ class _LearningLabScreenState extends State<LearningLabScreen>
     if (!_editable) return;
     unawaited(_stopSpeech());
     setState(() {
+      if (_speechCandidate && _current.mode == LabMode.pattern) {
+        _discardSpeechCandidate();
+      }
       change();
       _focusObjectId = focus;
       _selfTry = false;
@@ -650,6 +675,9 @@ class _LearningLabScreenState extends State<LearningLabScreen>
 
   Future<void> _next({bool skipInterrupted = false}) async {
     if (!_safe ||
+        !_foreground ||
+        !_routeVisible ||
+        _nativeLearningOpen ||
         _busy ||
         _progress.hasPending ||
         (_phase != _Phase.example && !_done && !skipInterrupted) ||
@@ -658,7 +686,7 @@ class _LearningLabScreenState extends State<LearningLabScreen>
     }
     _coach.interrupt('step_changed');
     await _stopSpeech();
-    if (!_safe) return;
+    if (!_safe || !_foreground || !_routeVisible || _nativeLearningOpen) return;
     final keepExampleModel = _phase == _Phase.example;
     setState(() {
       _phase = _Phase.values[_phase.index + 1];
@@ -700,7 +728,7 @@ class _LearningLabScreenState extends State<LearningLabScreen>
   }
 
   void _help({bool differently = false}) {
-    if (!_editable || _phase == _Phase.reflection) return;
+    if (!_active || !_canAnswer || _phase == _Phase.reflection) return;
     setState(() {
       _hint = differently && _hint < 3 ? 3 : (_hint + 1).clamp(1, 5);
       _support = math.max(_support, _hint);
@@ -771,18 +799,98 @@ class _LearningLabScreenState extends State<LearningLabScreen>
   void _discardSpeechCandidate() {
     if (!_speechCandidate) return;
     _speechCandidate = false;
+    if (_current.mode == LabMode.pattern) _patternChoice = null;
     _answer.clear();
+  }
+
+  void _finishNativeReturn() {
+    _nativeLearningOpen = false;
+    _nativeReturnPending = false;
+    _nativeStepId = null;
+    if (_speechCandidate && _current.mode == LabMode.pattern) {
+      final index = _current.tokens.indexWhere(
+          (value) => value.toLowerCase() == _answer.text.trim().toLowerCase());
+      _patternChoice = index < 0 ? null : index;
+    }
+  }
+
+  Future<void> _openNativeLearning() async {
+    if (!_editable ||
+        !_routeVisible ||
+        !_coach.ownsCurrentTask ||
+        _phase == _Phase.reflection) {
+      return;
+    }
+    final problemId = _current.id;
+    final phase = _phase;
+    _discardSpeechCandidate();
+    unawaited(_stopSpeech());
+    // Assistance is marked synchronously, before checkpoint/platform I/O.
+    // The existing answer writer remains the only assessment authority.
+    _support = math.max(_support, 1);
+    setState(() {
+      _nativeLearningOpen = true;
+      _nativeReturnPending = false;
+      _nativeStepId = '${_phase.name}:$_currentStep';
+      _hint = math.max(_hint, 1);
+      _selfTry = false;
+      _feedback = _current.hints[_hint - 1];
+    });
+    _publish();
+    _event(LumoLearningEventKind.hintRequested);
+    _event(LumoLearningEventKind.hintAccepted);
+    final task = _published;
+    final activity =
+        task == null ? null : NativeLearningActivity.fromCompanionContext(task);
+    try {
+      if (activity == null || !await _checkpoint()) return;
+      if (!mounted ||
+          !_active ||
+          !_foreground ||
+          _current.id != problemId ||
+          _phase != phase ||
+          !_coach.ownsCurrentTask) {
+        return;
+      }
+      // All six Lab modes retain their exact current prompt/choices in the
+      // bounded task_card. No second evaluator or guessed subject model.
+      await launchLumo3D(context,
+          scene: 'learning',
+          appState: widget.appState,
+          subject: widget.topic.subject,
+          learning: activity);
+    } catch (_) {
+      if (_safe && _current.id == problemId && _phase == phase) {
+        setState(() => _feedback = 'Die 3D-Ansicht ist gerade nicht verfügbar. '
+            'Du kannst mit dieser Aufgabe weiterarbeiten.');
+      }
+    } finally {
+      if (mounted && _current.id == problemId && _phase == phase) {
+        setState(() {
+          if (_foreground) {
+            _finishNativeReturn();
+          } else {
+            // Android can complete the method call before Flutter resumes.
+            // Keep the binding and the ungraded candidate through that gap.
+            _nativeReturnPending = true;
+          }
+        });
+        _publish();
+        unawaited(_checkpoint());
+      }
+    }
   }
 
   bool _maySpeak(int serial) =>
       _safe &&
       _foreground &&
+      !_nativeLearningOpen &&
       _routeVisible &&
       widget.appState.state.settings.voiceEnabled &&
       serial == _voiceSerial;
 
   Future<void> _read(String text, {bool automatic = false, bool? slow}) async {
-    if (!_safe || !_foreground || !_routeVisible) return;
+    if (!_safe || !_foreground || !_routeVisible || _nativeLearningOpen) return;
     final settings = widget.appState.state.settings;
     if (!settings.voiceEnabled ||
         (automatic && (!settings.autoReadEnabled || settings.calmMode))) {
@@ -819,6 +927,7 @@ class _LearningLabScreenState extends State<LearningLabScreen>
     if (!_safe ||
         !_routeVisible ||
         !_foreground ||
+        _nativeLearningOpen ||
         _current.mode != LabMode.word) {
       return;
     }
@@ -900,84 +1009,91 @@ class _LearningLabScreenState extends State<LearningLabScreen>
         _modelChanged(update, focus);
       }
     }
+
     return switch (p.mode) {
-        LabMode.bridge => QuantityBridgeBoard(
-            start: p.start,
-            addend: p.addend,
-            moved: _moved,
-            maxMoved: p.modelTarget,
-            onChanged: (n) => change(
-                () => _moved = n, n == p.modelTarget ? 'addend' : 'ten_frame'),
-            enabled: enabled,
-            reduceMotion: _reduced,
-            reveal: !_selfTry && (_hint >= 3 || _moved == p.modelTarget),
-          ),
-        LabMode.fraction => FractionBuildBoard(
-            denominator: p.denominator,
-            selected: _pieces,
-            onChanged: (n) => change(() => _pieces = n, 'fraction-disc'),
-            enabled: enabled,
-            reduceMotion: _reduced,
-          ),
-        LabMode.pattern => PatternBuildBoard(
-            sequence: p.pattern,
-            options: p.tokens,
-            groupLength: p.repeatLength,
-            selected: _patternChoice,
-            onChanged: (n) =>
-                change(() => _patternChoice = n, 'pattern_next'),
-            enabled: enabled,
-            revealGroup: !_selfTry && _hint > 0,
-            reduceMotion: _reduced,
-          ),
-        LabMode.word => Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SyllableLearningBoard(
-                word: p.expected,
-                wordPlaybackLabel: 'Silben vorsprechen',
-                syllables: _syllables,
-                activeIndex: _activeSyllable,
-                onReadSegment: widget.appState.state.settings.voiceEnabled
-                    ? (i) {
-                        if (captured != null && _coach.matches(captured)) {
-                          unawaited(_readSyllables(slow: _slow, only: i));
-                        }
+      LabMode.bridge => QuantityBridgeBoard(
+          start: p.start,
+          addend: p.addend,
+          moved: _moved,
+          maxMoved: p.modelTarget,
+          onChanged: (n) => change(
+              () => _moved = n, n == p.modelTarget ? 'addend' : 'ten_frame'),
+          enabled: enabled,
+          reduceMotion: _reduced,
+          reveal: !_selfTry && (_hint >= 3 || _moved == p.modelTarget),
+        ),
+      LabMode.fraction => FractionBuildBoard(
+          denominator: p.denominator,
+          selected: _pieces,
+          onChanged: (n) => change(() => _pieces = n, 'fraction-disc'),
+          enabled: enabled,
+          reduceMotion: _reduced,
+        ),
+      LabMode.pattern => PatternBuildBoard(
+          sequence: p.pattern,
+          options: p.tokens,
+          groupLength: p.repeatLength,
+          selected: _patternChoice,
+          onChanged: (n) => change(() => _patternChoice = n, 'pattern_next'),
+          enabled: enabled,
+          revealGroup: !_selfTry && _hint > 0,
+          reduceMotion: _reduced,
+        ),
+      LabMode.word => Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SyllableLearningBoard(
+              word: p.expected,
+              wordPlaybackLabel: 'Silben vorsprechen',
+              syllables: _syllables,
+              activeIndex: _activeSyllable,
+              onReadSegment: widget.appState.state.settings.voiceEnabled
+                  ? (i) {
+                      if (captured != null && _coach.matches(captured)) {
+                        unawaited(_readSyllables(slow: _slow, only: i));
                       }
-                    : null,
-                onReadWord: widget.appState.state.settings.voiceEnabled
-                    ? _bound(() => unawaited(_readSyllables(slow: _slow)))
-                    : null,
-                enabled: enabled,
-                reduceMotion: _reduced,
-              ),
-              const SizedBox(height: 14),
-              LearningTokenWorkbench(
-                tokens: p.tokens,
-                selected: _tokens,
-                onChanged: (n) => change(
-                    () => _tokens = n, 'syllable_${n.length.clamp(0, 2)}'),
-                enabled: enabled,
-                reduceMotion: _reduced,
-              ),
-            ],
-          ),
-        LabMode.english || LabMode.nature => LearningTokenWorkbench(
-            tokens: p.tokens,
-            selected: _tokens,
-            onChanged: (n) => change(() => _tokens = n,
-                n.isEmpty ? 'task_prompt' : 'token-work-${n.last}'),
-            enabled: enabled,
-            reduceMotion: _reduced,
-          ),
-      };
+                    }
+                  : null,
+              onReadWord: widget.appState.state.settings.voiceEnabled
+                  ? _bound(() => unawaited(_readSyllables(slow: _slow)))
+                  : null,
+              enabled: enabled,
+              reduceMotion: _reduced,
+            ),
+            const SizedBox(height: 14),
+            LearningTokenWorkbench(
+              tokens: p.tokens,
+              selected: _tokens,
+              onChanged: (n) =>
+                  change(() => _tokens = n, 'syllable_${n.length.clamp(0, 2)}'),
+              enabled: enabled,
+              reduceMotion: _reduced,
+            ),
+          ],
+        ),
+      LabMode.english || LabMode.nature => LearningTokenWorkbench(
+          tokens: p.tokens,
+          selected: _tokens,
+          onChanged: (n) => change(() => _tokens = n,
+              n.isEmpty ? 'task_prompt' : 'token-work-${n.last}'),
+          enabled: enabled,
+          reduceMotion: _reduced,
+        ),
+    };
   }
 
   VoidCallback? _bound(VoidCallback? action) {
     final captured = _coach.identity;
-    if (action == null || captured == null) return null;
+    if (action == null ||
+        captured == null ||
+        !_foreground ||
+        _nativeLearningOpen) {
+      return null;
+    }
     return () {
-      if (_coach.matches(captured)) action();
+      if (_foreground && !_nativeLearningOpen && _coach.matches(captured)) {
+        action();
+      }
     };
   }
 
@@ -1016,6 +1132,8 @@ class _LearningLabScreenState extends State<LearningLabScreen>
   Widget _commands() {
     final voice = widget.appState.state.settings.voiceEnabled;
     return Wrap(spacing: 8, runSpacing: 8, children: [
+      _command('lab-open-3d', Icons.view_in_ar_rounded, 'Mit Lumo in 3D',
+          _editable ? () => unawaited(_openNativeLearning()) : null),
       _command('lab-help', Icons.lightbulb_outline, 'Hilf mir',
           _editable ? () => _coach.request(LumoLearningAction.hint) : null),
       _command(
@@ -1025,8 +1143,13 @@ class _LearningLabScreenState extends State<LearningLabScreen>
           _safe && !_busy
               ? () => _coach.request(LumoLearningAction.repeat)
               : null),
-      _command('lab-slower', Icons.slow_motion_video_rounded, 'Langsamer',
-          voice && _safe && !_busy ? () => _coach.request(LumoLearningAction.slower) : null),
+      _command(
+          'lab-slower',
+          Icons.slow_motion_video_rounded,
+          'Langsamer',
+          voice && _safe && !_busy
+              ? () => _coach.request(LumoLearningAction.slower)
+              : null),
       _command(
           'lab-explain-differently',
           Icons.swap_horiz_rounded,
@@ -1034,11 +1157,16 @@ class _LearningLabScreenState extends State<LearningLabScreen>
           _editable ? () => _coach.request(LumoLearningAction.explain) : null),
       _command('lab-stop', Icons.stop_circle_outlined, 'Stopp',
           _safe ? () => _coach.request(LumoLearningAction.stop) : null),
-      _command('lab-try-myself', Icons.touch_app_outlined, 'Selbst versuchen',
-          _editable ? () {
-            final current = _coach.identity;
-            if (current != null) _coach.tryMyself(current);
-          } : null),
+      _command(
+          'lab-try-myself',
+          Icons.touch_app_outlined,
+          'Selbst versuchen',
+          _editable
+              ? () {
+                  final current = _coach.identity;
+                  if (current != null) _coach.tryMyself(current);
+                }
+              : null),
       _command(
           'lab-ask-lumo',
           Icons.forum_outlined,

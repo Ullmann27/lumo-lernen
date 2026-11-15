@@ -25,11 +25,13 @@ class ReadingContent extends StatefulWidget {
       {super.key,
       required this.appState,
       required this.onBack,
-      this.speechListener});
+      this.speechListener,
+      this.voice});
 
   final LumoAppState appState;
   final VoidCallback onBack;
   final LumoSpeechListener? speechListener;
+  final LumoVoice? voice;
 
   @override
   State<ReadingContent> createState() => _ReadingContentState();
@@ -68,8 +70,11 @@ class _ReadingContentState extends State<ReadingContent>
   Timer? _listenTimer;
   late final int _scopeGeneration = widget.appState.profileGeneration;
   int _readingEpoch = 0;
+  int? _voiceRequest;
   bool _foreground = true;
   bool _readingHelpUsed = false;
+
+  LumoVoice get _voice => widget.voice ?? LumoVoice.instance;
 
   bool get _currentOwner =>
       mounted &&
@@ -126,7 +131,7 @@ class _ReadingContentState extends State<ReadingContent>
     _speech.cancel();
     _speech.dispose();
     WidgetsBinding.instance.removeObserver(this);
-    LumoVoice.instance.stop();
+    unawaited(_stopOwnedSpeech());
     super.dispose();
   }
 
@@ -134,7 +139,29 @@ class _ReadingContentState extends State<ReadingContent>
     ++_readingEpoch;
     _listenTimer?.cancel();
     _processing = false;
-    await Future.wait([_speech.cancel(), LumoVoice.instance.stop()]);
+    await Future.wait([_speech.cancel(), _stopOwnedSpeech()]);
+  }
+
+  Future<void> _stopOwnedSpeech() async {
+    final request = _voiceRequest;
+    _voiceRequest = null;
+    if (request != null && _voice.requestRevision == request) {
+      await _voice.stop();
+    }
+  }
+
+  Future<void> _playOwnedSpeech(String text) async {
+    final before = _voice.requestRevision;
+    final playing = _voice.speakAndWait(text);
+    final request =
+        _voice.requestRevision == before ? null : _voice.requestRevision;
+    _voiceRequest = request;
+    try {
+      await playing;
+    } finally {
+      // A completed older sentence cannot clear the next sentence's owner.
+      if (_voiceRequest == request) _voiceRequest = null;
+    }
   }
 
   @override
@@ -190,7 +217,7 @@ class _ReadingContentState extends State<ReadingContent>
       mood: LumoMood.point,
       lumoMessage: message,
     ));
-    await LumoVoice.instance.speakAndWait(message);
+    await _playOwnedSpeech(message);
   }
 
   Future<void> _openStoryLibrary() async {
@@ -249,7 +276,7 @@ class _ReadingContentState extends State<ReadingContent>
     if (_finished || _processing || _speech.listening) return;
 
     _listenTimer?.cancel();
-    await LumoVoice.instance.stop();
+    await _stopOwnedSpeech();
     if (!currentCapture() ||
         profileGeneration != widget.appState.profileGeneration) return;
 
@@ -494,7 +521,7 @@ class _ReadingContentState extends State<ReadingContent>
 
     final nextMessage = adjustedProgress.isComplete ? _lumoLine : childMessage;
     final feedbackEpoch = _readingEpoch;
-    LumoVoice.instance.speakAndWait(nextMessage).whenComplete(() {
+    _playOwnedSpeech(nextMessage).whenComplete(() {
       if (_currentOwner && feedbackEpoch == _readingEpoch) _processing = false;
     });
   }
@@ -656,6 +683,7 @@ class _ReadingContentState extends State<ReadingContent>
                       const SizedBox(height: 14),
                       ReadingLessonCompanion(
                         appState: widget.appState,
+                        voice: widget.voice,
                         taskId: '$_readingSessionId:${sentence.id}',
                         unit: story.title,
                         prompt: sentence.text,

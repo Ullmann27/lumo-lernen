@@ -33,7 +33,10 @@ void main() {
     expect(output, isNotEmpty,
         reason:
             'Choose an explicit inventory output; no student store is used.');
+    final revision = Process.runSync('git', ['rev-parse', 'HEAD']);
+    expect(revision.exitCode, 0);
     final result = <String, Object?>{
+      'sourceHead': revision.stdout.toString().trim(),
       'semantics':
           'Finite catalogs are enumerated; generated task variants are not.',
       'curriculumFamilies': [
@@ -139,6 +142,8 @@ void main() {
             'subject': level.subject,
             'miniType': level.miniType.name,
             'playable': level.miniType.isPlayable,
+            // GamesContent routes the final level to the existing Quizshow.
+            'effectiveRoute': level.id == 50 ? 'quiz' : 'mini_game',
           },
       ],
       'readingTexts': [

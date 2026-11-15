@@ -1,68 +1,87 @@
-# Lernabdeckung – tatsächlicher Quellstand
+# Lernabdeckung – belegter integrierter Quellstand
 
-**Diese Matrix ist ein Inventar und eine offene Prüfliste, keine Erklärung einer fertigen Gesamtmodernisierung.** Grundlage ist Flutter `6f4a8c4753f4d06d0b392da0789b8162b2faa71b` mit den lokalen Navigationskorrekturen `6923a89` und `dde93af`. Die konkreten Quellenhashes stehen in [COVERAGE.json](COVERAGE.json). Parallele Änderungen werden erst nach ausdrücklicher Integration und erneutem Export berücksichtigt.
+**Produkt-Snapshot: `165e6bd8731a0c2c2df8dfefe06be6a79403157b`. `fullModernizationComplete` bleibt `false`.**
+Diese Matrix inventarisiert den ausgeführten Dart-Katalog, tatsächliche Einstiegsketten, fachliche Antwortgrenzen und vorhandene Testprotokolle. Sie ist keine Geräte- oder Releasefreigabe. [COVERAGE.json](COVERAGE.json) enthält alle IDs, Quellenhashes, Routen, Typen, Adapter, Fähigkeiten und offenen Grenzen.
 
-## Umfang
+## Tatsächlich erfasster Umfang
 
-Der Export lädt die echten Dart-Kataloge. Die Matrix verknüpft **59 Routen und 53 Lernscreen-Dateien** mit Einstieg, Bedingungen, Fachautorität, Hilfen, Abschluss, vorhandenen Adaptern, Tests und Lücken.
-
-| Bestand | Enumerierter Umfang |
+| Bestand | Umfang |
 |---|---:|
-| Aktuelle Klassen-/Fach-/Einheitskombinationen | 236 (Klassen 1–4: 69 / 58 / 56 / 53) |
-| Mathe- / Deutsch-Templates | 60 / 32, mit unveränderten IDs |
+| Geprüfte Routeneinträge / Screen-Dateien | 61 / 55 |
+| Klassen-/Fach-/Einheitskombinationen | 236 |
+| Mathe- / Deutsch-Templates | 60 / 32 |
 | Akademie-Themen | 79 |
-| Fachmodul-Registry | 20 IDs, 19 verschiedene Screens |
-| Praktische Aufträge | 60 IDs |
-| Lernlabor | 5 Modi, 30 Problem-IDs |
-| Geführte Lektionen | 7 Lektionen, 16 Antwortarten |
-| Lernspiel-Level | 50 Level, 7 MiniGame-Typen auf 5 Screens |
-| Reading Buddy / vorgefertigte Quests | 24 Text-IDs / 4 Quest-IDs |
-| Kognitiver Aufgabenpool | 200 Frage-IDs, 5 Bereiche |
-| Quizshow / Karten-Denkpausen | 108 deklarierte Quiz-IDs / 4 Bundles mit zusammen 200 Einträgen |
-| Alte Deutsch-Lückensätze | 20 Bankeinträge, aktuell ohne App-Einstieg |
+| Registry / aktive Modul-Einstiege / aktive Modul-Screens | 20 / 19 / 18 |
+| Praktische Aktivitäten | 60 |
+| Lernlabor-Modi / feste Problem-IDs | 6 / 35 |
+| Geführte Lektionen | 7 |
+| Lernspielkatalog / MiniGame-Level / abschließendes Quiz-Level | 50 / 49 / 1 |
+| Reading-Buddy-Texte / feste Quests | 24 / 4 |
+| Kognitive Fragen / deklarierte Quiz-IDs / Kartenbank-Einträge | 200 / 108 / 200 |
+| Native Adapter-Kinds / bytegleiche geschützte Dateien | 12 / 18 |
 
-Die 10 `TaskType`- und 28 `VisualType`-Enumwerte sind getrennt erfasst. Ein Enumwert bedeutet keine eigene erreichbare Aufgabe. Der bestehende Legacy-Adapter erzeugt sechs der zehn TaskTypes; `imageWord`, `readingComprehension`, `dragDrop` und `trueFalse` sind darüber nicht eigenständig angebunden. Generierte Varianten und gespeicherte Geschichten haben dynamische Kennungen; diese Matrix erfindet dafür keine vollständige endliche ID-Liste. `routeRef` und `sourceIndex` sind ausschließlich Dokumentationsschlüssel.
+Die sechs Labormodi sind **bridge, word, english, nature, fraction, pattern**. `d1_woerter` bleibt durch den geschützten Wort-Schreibcoach überlagert; die zwei Einmaleins-Einstiege teilen einen Screen. Level 50 öffnet gemäß `GamesContent` das Quiz und ist kein MiniGame-Level. Dynamische Aufgabenvarianten und gespeicherte Geschichten haben keine vollständige endliche ID-Liste; `routeRef` und `sourceIndex` sind Dokumentationsschlüssel.
 
-## Bereits konkret geschlossen
+## Anschlüsse und ihre Grenzen
 
-- **Farben:** `s1_farben` war registriert, hatte aber keinen erreichbaren Akademie-Einstieg. Es öffnet jetzt über „Lernwerkzeuge & Geschichten“ für eingeschriebene und gewählte Klasse 1. Die Modul-ID und Fachlogik bleiben gleich.
-- **Praktische Sprach-/Sachaufträge:** Der Hub öffnete nur 40 der 60 vorhandenen Katalogeinträge. Drei Werkzeuge erschließen nun die übrigen 20 Deutsch-, Englisch- und Sachunterricht-Aufträge. Sie verwenden die angesehene Klassenstufe ohne Profilwechsel und ohne künstliche Punktevergabe.
-- **Gezielte Navigation:** Drei Widgettests sind auf 412 × 915 mit ruhigem Modus gelaufen und bestanden. Sie prüfen Öffnen/Zurück, mindestens 48 dp hohe Einstiege, unveränderte Klasse/Sterne/XP und die Trennung von angesehener und eingeschriebener Klasse.
+| Lernfläche | Aktueller Quellstand und belegte Grenze |
+|---|---|
+| Reguläre Aufgaben | Kanonischer Kontext, gestufte Hilfe, bearbeitbarer Sprachkandidat und explizite Prüfung; sichtbarer Native-Einstieg mit `forTask` und begrenzter `task_card`-Rückfallebene. Prüfungsmodi sperren Hilfe und Vorschläge. |
+| 18 Fachmodule / 19 Einstiege | 17 `ModuleTaskScope`-Screens plus Plus10; fachlicher bestehender Antwortcallback, Bestätigung der aktuellen Aufgabe, native `task_card`-Schaltfläche. Alle Screen-Hashes stimmen mit der 134-Test-Lieferung überein. Das ist kein eigener räumlicher Fachmodell-Nachweis für jedes Modul. |
+| Lernlabor | Alle sechs Modi besitzen `lab-open-3d` für die exakte aktuelle native `task_card`. 24 Tests prüfen unter anderem sechs Einstiege, Hilfe vor I/O, native Pause/Rückkehr, ungewerteten Kandidaten, Stop und unverdeckte Schrittbindung. Die vorhandenen Lab-Modelle bleiben die Fachautorität; kein eigener nativer Manipulativ-Renderer je Modus. |
+| Geführte Lektionen | Aktueller Schritt, gestufte Hilfe, bestätigungspflichtiger Kandidat, native spezielle Szene oder `task_card`. Native-Rückkehr, Pause und veraltete Bestätigungen sind im gezielten Lauf enthalten. |
+| Lesen / Reading Buddy | Gemeinsamer `ReadingLessonCompanion`, native Lernschaltfläche, getrennte Lese-/Verständnisbewertung; ein früherer 25-Test-Lauf und separat 23 Tests zum aktuellen Audio-Owner-Nachtrag. Überlappende Tests werden nicht addiert. Echtes Mikrofon und Gerät bleiben offen. |
+| Foto-Lernheft | OCR führt in `PhotoLessonPracticeScreen`; echte Antworten, bestätigte Vorschläge und `PhotoLessonSession`. Anzeigen/Scannen allein vergibt keine richtige Antwort. Der direkte Native-Einstieg gehört zum aufgezeichneten gemeinsamen 35-Test-Lauf. |
+| Story / Quiz / Cards / 49 MiniGame-Level | Eigene Fach-/Controllergrenzen bleiben bestehen. Die direkten Story-/MiniGame-Native-Einstiege sind im 35-Test-Lauf enthalten. Der integrierte Quiz-/Cards-Coach hat einen sichtbaren nativen Aufgaben-Einstieg; Coach-Auswahl, bestehende Fachprüfung und Belohnungsgrenzen werden im separaten 56-Test-Lauf geprüft. |
+| IQ / kognitives Profil | `ExamCompanionScope`: begrenzte Wiederholen/Langsamer/Stopp-Aktionen; keine Lösungshilfe oder KI-Antwortvorgabe im Test. Keine diagnostische Standardisierung behauptet. |
+| Praxisaufträge | 60 vorhandene Aktivitäten erschlossen; weiterhin menschliche Beobachtung ohne automatische Fachwertung oder eigenen Abgabeabschluss. |
+| Live / 2D Flame | Gelieferter gemeinsamer Coach mit nativer Aufgabenkarte und bestätigungspflichtigen Vorschlägen. Der 56-Test-Lauf umfasst echte Flame-Frage-/Truhen-Callbacks sowie Live-Finaltranskript, Stop, Modus-/Profilwechsel und Berechtigungsgrenzen. Teilnahme-/Safari-Bewertung bleibt von geprüfter Fachleistung getrennt; keine neue Physik- oder reale Mikrofontour behauptet. |
 
-## Fehlende echte räumliche Anschlüsse
+Die **12 nativen Kinds** lauten: `addition`, `bridge_hundred`, `bridge_ten`, `english_objects`, `equal_groups`, `equal_sharing`, `fraction_parts`, `pattern`, `plant_parts`, `subtract_ten`, `syllables`, `task_card`.
+`pattern` verwendet den geprüften `period/sequence/choices`-Vertrag. Die generische `task_card` trägt begrenzten Prompt und Auswahlmöglichkeiten ohne Lösungs-/Belohnungsfeld. Eine Factory, eine importierte Klasse oder der eigene native Spieltisch beweist keinen erreichbaren Lernbutton. `capabilityMatrix` verlangt passende Verbraucher, sichtbare Steuerung und `scene: 'learning'`; eine getrennte optionale Activity beweist außerdem keine vollständige aufgabengebundene 3D-Modernisierung.
 
-Jede Route besitzt ein eigenes `spatial3D`-Objekt. **Flutter-Karten mit Schatten, interaktive 2D-Materialien und ein optionaler nativer Aufruf erfüllen die vollständige aufgabengebundene 3D-Anforderung noch nicht.** Der vorhandene native Pfad öffnet eine getrennte Activity; eine eingebettete Godot-Ansicht im Flutter-Aufgabenbaum ist in diesem Stand nicht vorhanden.
+## Aufgezeichnete Prüfungen
 
-| Oberfläche | Tatsächlich vorhanden | Noch offen |
-|---|---|---|
-| Reguläre Aufgaben | 2D-Renderer, geprüfter Legacy-Adapter, optionale native Erklärung für passende Nutzdaten | Durchgängige Verbindung jeder Aufgabenfamilie mit sichtbaren benannten Objekten, Figur und fachlich geprüfter Eingabe |
-| Fachmodule | Eigene lokale Aufgabenlogik, gemeinsamer Rahmen; Plus10 mit eigenem Kontext | Die übrigen 18 Screens veröffentlichen in der Basis keinen aktuellen Companion-Aufgabenkontext; 16 Screens haben keine eigene gestufte Hilfe |
-| Lernlabor | Mengenbrücke, Bruchbau und Wort-/Begriffskarten zum Manipulieren | Vollständiger räumlicher Objekt-/Figuranschluss; eigener interaktiver Referenzfall „Muster fortsetzen“ |
-| Geführte Lektionen | Fachlich geprüfte Schritte, Illustrationen, kompatible native Erklärungen | Gleiche aktuelle Aufgabe, Objekte, Sprache und Rückmeldung über den gesamten Ablauf verbindlich koppeln |
-| Lesen, Geschichten, Foto, Praxis | Getrennte vorhandene Oberflächen und Bewertungsregeln | Eigene räumliche Anschlüsse; Foto-Karten prüfen derzeit keine Antwort, Praxisaufträge haben keinen Abgabe-/Beobachtungsabschluss |
-| Tests, kognitive Aufgaben, Lernspiele | Eigene Controller, ID-/Speicher-/Belohnungsregeln | Jede Oberfläche separat anschließen und prüfen; Änderungen am Standardrenderer erreichen sie nicht automatisch |
+Die folgenden Zahlen stammen aus den eingecheckten oder mit dieser Matrix neu erzeugten Protokollen. Unterschiedliche Quellstände und überlappende Suiten werden nicht zu einer vermeintlichen Gesamtsumme addiert. `logStorageCommit` ist getrennt vom ausdrücklich bekannten Ausführungsstand erfasst.
 
-Die zehn nativen Adapter-Kinds und ihre Grenzen stehen unter `nativeCompatibility`. Beispielsweise sind kleine Addition, kleine Multiplikationsgruppen, passende Brüche und geprüfte Silbenzahlen möglich; daraus folgt keine native Abdeckung sämtlicher Mathe-, Sprach- oder Sachthemen. Der Flutter-Szenenvertrag erklärt derzeit nur `placeValue` als Szenenart.
+| Lauf | Ergebnis | Ausführungsumfang | Protokoll |
+|---|---:|---|---|
+| `module_connections` | 134 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [module_tests.log](evidence/chat2_completion_20261115/module_tests.log) |
+| `core_guided` | 59 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [core_tests.log](evidence/chat2_completion_20261115/core_tests.log) |
+| `lab_core` | 198 bestanden / 0 fehlgeschlagen | `earlier_targeted_integration` | [core_tests.log](evidence/chat2_core_20261115/core_tests.log) |
+| `reading` | 25 bestanden / 0 fehlgeschlagen | `root_targeted_integration` | [tests.log](evidence/reading_integration_20261115/tests.log) |
+| `reading_audio_owner` | 23 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [tests.log](evidence/reading_audio_owner_20261115/tests.log) |
+| `photo_thinking` | 64 bestanden / 0 fehlgeschlagen | `root_targeted_integration` | [root-photo-thinking-integrated-tests.log](evidence/root_joined_20261115/root-photo-thinking-integrated-tests.log) |
+| `speech_boundary` | 19 bestanden / 0 fehlgeschlagen | `root_targeted_integration` | [root-integrated-stt-check.log](evidence/root_joined_20261115/root-integrated-stt-check.log) |
+| `native_boundary` | 25 bestanden / 0 fehlgeschlagen | `root_targeted_integration` | [joined-native-boundary-tests-final.log](evidence/root_joined_20261115/joined-native-boundary-tests-final.log) |
+| `assessment` | 11 bestanden / 0 fehlgeschlagen | `earlier_targeted_integration` | [flutter-tests.log](evidence/assessment-contract/flutter-tests.log) |
+| `pattern_navigation` | 4 bestanden / 0 fehlgeschlagen | `earlier_targeted_integration` | [integration_tests.log](evidence/c5_integration_20261115/integration_tests.log) |
+| `minigame_original_routes` | 6 bestanden / 0 fehlgeschlagen | `root_original_routes_before_native_followup` | [mini_game_routes_initial.log](evidence/remaining_integration_20261115/mini_game_routes_initial.log) |
+| `lab_native` | 24 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [tests.log](evidence/lab_native_20261115/tests.log) |
+| `remaining_native_joined` | 35 bestanden / 0 fehlgeschlagen | `root_targeted_integration_before_final_narrowing` | [remaining_native_joined.log](evidence/remaining_integration_20261115/remaining_native_joined.log) |
+| `game_question_coach` | 56 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [focused-tests.log](../evidence/lumo-nextgen-game-questions/focused-tests.log) |
+| `catalog_export` | 1 bestanden / 0 fehlgeschlagen | `current_inventory_snapshot` | [catalog_export.log](evidence/coverage_refresh_20261115/catalog_export.log) |
+| `sentence_privacy` | 3 bestanden / 0 fehlgeschlagen | `current_inventory_snapshot` | [sentence_privacy.log](evidence/coverage_refresh_20261115/sentence_privacy.log) |
 
-## Inhaltliche und technische Restlücken
+Die Satz-Privacy-Neuprüfung ersetzt die alte Behauptung eines offenen Lösungslecks. Unverknüpfte Testdateien tragen `present_no_recorded_run_matched`; verknüpfte Dateien `passed_in_recorded_targeted_run`. Beide Zustände sind von einem frischen vollständigen Root-Lauf getrennt.
 
-**Satz-bauen-Lösungsleck:** `_SchoolbookFallbackVisual` baut die ständig sichtbare Satzkarte aus `correctAnswer`. Die neue Regression hat dies für Übung, Prüfung und Änderung ausschließlich des verborgenen Lösungsschlüssels reproduziert: **0 von 3 bestanden auf diesem Rendererstand.** Die Rendererdatei gehört dem parallelen c5-Zweig und wurde in diesem Branch nicht geändert. Der Test wird erst zusammen mit dessen Korrektur grün erwartet.
+## Sichtbar offene Freigaben
 
-**Alte Lückensätze:** `LumoDeutschScreen` ist im Importgraph ab `main.dart` nicht erreichbar. Manche Aufgaben erlauben mehrere sinnvolle Antworten, etwa „im Haus/Garten“ und „auf dem Tisch/Ast“. Außerdem verwendet dieser alte Screen eine direkte Punkte-/Antwortbuchung. Er wurde deshalb nicht blind angeschlossen. Reguläre Satz-bauen- und Satzbaustelle-Aufgaben bleiben über den vorhandenen Generator erreichbar.
+- Der frühere C5-Lauf 44/5 und die abgebrochene erste native Fixture bleiben Fehlerhistorie. Der korrigierte gemeinsame Native-Lauf hat **35/35**, der gelieferte Frage-Coach **56/56**, der neue Lab-Anschluss **24/24** aufgezeichnete Erfolge. Sie ersetzen die alten Pending-Aussagen für diese gezielten Bereiche, ergeben zusammen aber keinen vollständigen aktuellen Root-Testlauf.
+- Die 35-Test-Lieferung `b193899565110e5c7a26f73520a943b261887e63` enthält nach diesem Lauf noch eine enge Ablehnung mehrdeutiger normalisierter Auswahlwerte. Die finale CI muss deshalb den exakten integrierten Quellstand einschließlich dieser Verschärfung prüfen. Live, 2D Flame und der Quiz-/Cards-Coach sind in `3123d3247775fcdc42a16c2bcc5c51e1ab98c4c9` integriert; ihre Producer-/Test-Provenienz ist im JSON getrennt erfasst.
+- Der veröffentlichte native Quell-Pin lautet **`332307fafa2f68a1aa3667d81b7c90d3683c5c45`**. Dieser Flutter-Bestand allein belegt nicht die finale Banane-/Kartenoptik auf einem Gerät. Die gemeldete Desktopmessung beträgt **8 FPS**; sie belegt keine 60 FPS. Physischer Fold, Rotation/Größenwechsel, reale Mikrofon-/Audioabläufe und die vollständige Android-Tour sind offen.
+- Die alten Deutsch-Lückensätze bleiben ohne App-Einstieg, weil mehrdeutiger Inhalt und direkte Belohnungsbuchung noch überprüft werden müssen. Exakte UI-Auswahl aller 236 Generatorfamilien und jede generierte Variante sind nicht durchgespielt.
+- **18 geschützte Schreib-/Journaldateien sind bytegleich** zu `6f4a8c4753f4d06d0b392da0789b8162b2faa71b`; Einzelhashes stehen in JSON. Kart und nativer Dschungel bleiben ausgeschlossen. Der eigenständige 2D-Flame-Lernpfad bleibt im Inventar.
+- Finaler Release-SHA, signierte APK-Provenienz, CI-Ergebnis und Download werden von Root nach Integration ergänzt. Aus dieser Bestandsaufnahme folgt keine neue APK-Freigabe.
 
-**Weitere offene Grenzen:** `d1_woerter` wird in der Akademie durch den aktivierten geschützten Wort-Schreibcoach überlagert. Lesen führt im Hub direkt zum aktiven Vorlesen, Rechtschreibung hat keine eigene Fachkachel; die exakte Auswahl jeder Generatorfamilie ist nicht durch einen UI-Durchlauf belegt. Live-Wort-/Foto-Teilnahmebelohnungen und heuristische Safari-Spracherkennung sind von überprüfter Fachleistung zu unterscheiden. Der 2D-Flame-Lernspielzweig hat eigene Aufgabenblöcke und eine feste Liste früher Einheiten; seine Klassenbindung benötigt gesonderte Prüfung.
-
-Schreibtrainer und Journal sind intern geschützt. Die Matrix enthält überprüfte Hashes ihrer Dateien sowie der angrenzenden Schreibspeicherung/-darstellung. Kart und nativer Dschungel sind ausgeschlossen. Der eigenständige 2D-Flame-Lernspielpfad ist im Inventar enthalten.
-
-## Reproduktion und Lesen der Prüfstände
+## Reproduktion
 
 ```bash
-flutter pub get --offline
-flutter test --no-pub tools/nextgen/export_learning_catalog_test.dart \
+flock --close /workspace/scratch/c5a7dadab95f/toolchain/lumo-flutter.lock \
+  /workspace/scratch/c5a7dadab95f/toolchain/flutter/bin/flutter test --no-pub \
+  tools/nextgen/export_learning_catalog_test.dart \
   --dart-define=LUMO_CATALOG_OUTPUT=/tmp/lumo-learning-catalog.json
 python3 tools/nextgen/build_coverage.py /tmp/lumo-learning-catalog.json
-flutter test --no-pub test/design/learning_registered_routes_test.dart
-flutter test --no-pub test/learning/sentence_prompt_privacy_test.dart
 ```
 
-Der letzte Befehl reproduziert auf der dokumentierten Basis den offenen Fehler. Export und Quellenprüfung sind von fachlicher Prüfung und Gerätetest getrennt. Bei allen anderen verlinkten Tests bedeutet `present_not_run_in_this_review` nur: Die Testdatei ist vorhanden. Es werden keine früheren PASS-Berichte als aktueller Beleg übernommen. Android/Fold-Hardware, Rotation, große Schrift, tatsächliche Audio-/Mikrofonabläufe und 60 FPS bleiben offen.
+Der Builder verweigert einen Katalog mit abweichendem HEAD, uncommittete Produktquellen und veränderte verifizierte Modul-Screen-Hashes. Der neue Produktstand muss daher zuerst integriert und erneut exportiert werden. Quellen, Testprotokolle und Teamberichte haben bewusst unterschiedliche Evidenzstufen.

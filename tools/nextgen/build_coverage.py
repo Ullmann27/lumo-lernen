@@ -13,6 +13,7 @@ import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+from os.path import relpath
 import re
 import subprocess
 import sys
@@ -20,13 +21,31 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE = "6f4a8c4753f4d06d0b392da0789b8162b2faa71b"
-CATALOG = json.loads(Path(sys.argv[1]).read_text())
+NATIVE_PUBLISHED_PIN = "332307fafa2f68a1aa3667d81b7c90d3683c5c45"
+CATALOG_PATH = Path(sys.argv[1])
+CATALOG = json.loads(CATALOG_PATH.read_text())
+HEAD = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
+if CATALOG.get('sourceHead') != HEAD:
+    raise SystemExit('Catalog is not exported at the current HEAD. Re-run export_learning_catalog_test.dart.')
 SOURCES: dict[str, dict] = {}
 
 
+def source_bytes(path: str) -> bytes:
+    """Read sparse evidence from its committed blob without materializing it."""
+    file = ROOT / path
+    if file.exists():
+        return file.read_bytes()
+    result = subprocess.run(["git", "show", f"{HEAD}:{path}"], cwd=ROOT,
+                            capture_output=True)
+    if result.returncode:
+        raise FileNotFoundError(path)
+    return result.stdout
+
+
 def source(path: str, symbol: str | None = None) -> dict:
-    data = (ROOT / path).read_bytes()
-    SOURCES[path] = {"path": path, "sha256": hashlib.sha256(data).hexdigest()}
+    data = source_bytes(path)
+    SOURCES[path] = {"path": path, "sha256": hashlib.sha256(data).hexdigest(),
+                     "readFrom": "worktree" if (ROOT / path).exists() else "committed_head_blob"}
     result = {"path": path}
     if symbol:
         content = data.decode()
@@ -40,7 +59,7 @@ def source(path: str, symbol: str | None = None) -> dict:
 def tests(*paths: str) -> list[dict]:
     for path in paths:
         source(path)
-    return [{"path": path, "status": "present_not_run_in_this_review"} for path in paths]
+    return [{"path": path, "status": "present_no_recorded_run_matched"} for path in paths]
 
 
 SHELL = "lib/app/app_shell.dart"
@@ -105,7 +124,9 @@ AUTHORITIES = {
     },
     "photo": {
         "source": source("lib/features/photo_lesson/photo_lesson_practice.dart"),
-        "description": "OCR analysis selects practice cards; the screen reveals a solution, not a graded child answer. No assessed progress from a reveal.",
+        "evaluation": source("lib/features/photo_lesson/photo_lesson_practice_screen.dart", "_accept("),
+        "persistence": source("lib/features/photo_lesson/photo_lesson_session.dart"),
+        "description": "OCR prepares checked tasks. PhotoLessonPracticeScreen accepts actual answers through the existing renderer/domain boundary and queues the profile-owned session/evidence. Revealing a solution or an unconfirmed speech proposal is not a correct answer.",
     },
     "iq": {
         "evaluation": source("lib/core/iq/iq_test_session.dart"),
@@ -209,7 +230,7 @@ route("guided_hub", "Auswahl geführter Lektionen", "lib/features/tutoring/guide
       ACADEMY, "GuidedLearningHub(", "none", ["guided_selection"], adapters=["GuidedLessonCatalog"])
 route("native_explanation", "Native Lernszene", "lib/domain/tutoring/native_learning_activity.dart",
       CORE, "_openNativeLearning(", "none", ["native_illustration"],
-      conditions="Only compatible checked tasks; optional separate native Activity, not an inline Flutter figure.",
+      conditions="Visible Core action when assistance is allowed; specialized checked payload or bounded task_card. Assessment screens suppress this assistance entry. Separate native Activity.",
       help_text="Marks assistance; same bound task after return.", completion="Cannot submit answers or award progress.",
       adapters=["NativeLearningActivity", "LearningSceneRequest"], gaps=["native_inline_absent", "async_binding_integration"],
       test_paths=["test/tutoring/native_learning_launch_test.dart", "test/tutoring/native_learning_serialized_contract_test.dart"])
@@ -245,10 +266,17 @@ route("quest", "Vier narrative Lernabenteuer", "lib/features/story/lumo_quest_hu
       conditions="Selected grade plus adjacent grades per existing quest filter.",
       adapters=["LumoQuestLibrary", "LumoStoryReaderScreen"], test_paths=["test/story_book_adventure_test.dart"])
 route("photo", "Foto-Lernheft", "lib/features/photo_lesson/lumo_photo_lesson_screen.dart",
-      HOME, "LumoPhotoLessonScreen(", "photo", ["ocr_practice_card", "answer_reveal"],
-      help_text="Existing scan analysis and explanation.", completion="Reveal is not a correct answer.",
-      adapters=["PhotoLessonPractice", "ScannedWorkAnalysisEngine"], gaps=["photo_interactive_answers"],
+      HOME, "LumoPhotoLessonScreen(", "photo", ["ocr_input", "checked_practice_launch"],
+      help_text="Scan analysis prepares checked tasks; the dedicated practice route handles answers and staged assistance.", completion="Scanning itself grants no assessed answer.",
+      adapters=["PhotoLessonPractice", "PhotoLessonSession", "ScannedWorkAnalysisEngine"], gaps=[],
       test_paths=["test/photo_lesson_practice_test.dart", "test/photo_lesson_subject_flow_test.dart"])
+route("photo_practice", "Foto-Lernheft: tatsächliche Übungen", "lib/features/photo_lesson/photo_lesson_practice_screen.dart",
+      "lib/features/photo_lesson/lumo_photo_lesson_screen.dart", "PhotoLessonPracticeScreen(", "photo",
+      ["checked_adaptive_answer", "writing_attempt", "editable_confirmed_proposal"],
+      help_text="Staged local hints and bound repeat/slower/stop; current-task editable proposals require confirmation.",
+      completion="Profile-owned resumable PhotoLessonSession; exact answer/assistance evidence and explicit continuation.",
+      adapters=["AdaptiveTaskRenderer", "PhotoLessonSession", "LumoCompanionTaskContext"],
+      test_paths=["test/photo_lesson_learning_flow_test.dart", "test/photo_lesson_session_test.dart"])
 route("tests", "Fachtests und gemischter Lerncheck", "lib/features/tests/lumo_tests_screen.dart",
       SHELL, "LumoTestsScreen(", "core", ["subject_test", "mixed_test"],
       help_text="Test mode disables hints and retries.", completion="10 questions and existing TestResultRepository.",
@@ -354,6 +382,13 @@ for slug, cls, modes in [
           completion="Existing five-question game round and level-result/reward policy.",
           gaps=["game_interaction_coverage"],
           test_paths=["test/games/mini_games_flow_test.dart", "test/games/game_round_regression_test.dart"])
+route("game:learning_round", "Gemeinsame Lernspiel-Aufgabenfläche", "lib/features/games/mini_games/mini_game_learning_screen.dart",
+      "lib/features/games/mini_games/stars_path_game.dart", "MiniGameLearningScreen(", "gameLevel",
+      CATALOG["enums"]["GameMiniType"], conditions="49 minigame levels; level 50 dispatches to Quizshow first.",
+      help_text="Per-task construction/choice input, scoped proposals, staged help and paused round checkpoints.",
+      completion="Existing MiniGameRound and GameProgressRepository plus owner-bound reward callback; original-route and joined native-boundary runs are recorded separately from final release QA.",
+      adapters=["MiniGameLearningTask", "MiniGameRound", "GameProgressRepository"],
+      gaps=["game_interaction_coverage"])
 route("cards_learning", "Lumo-Cards-Denkpausen", "lib/features/games/lumo_cards/widgets/lumo_learning_card_overlay.dart",
       "lib/features/games/lumo_cards/lumo_cards_screen.dart", "LumoLearningCardOverlay(", "cards", ["current_grade_choice"],
       help_text="Existing question hint.", adapters=["LearningQuestionRepository"],
@@ -364,26 +399,26 @@ route("quiz", "Lumo-Meister-Quizshow", "lib/features/quiz/quiz_show_content.dart
       gaps=["game_interaction_coverage"], test_paths=["test/quiz_question_bank_test.dart", "test/quiz_show_live_ladder_lockin_test.dart", "test/quiz_native_roundtrip_lifecycle_test.dart"])
 route("flame_learning", "2D-Flame-Lernblöcke und Truhenaufgaben", "lib/features/games/flame/lumo_jump_game.dart",
       GAMES, "LumoJumpFlameScreen(", "flame", ["math_question_block", "german_question_block", "three_answer_chest"],
-      help_text="Existing answer sheet retry; no staged subject hint engine.",
+      help_text="Current-question coach with local method hint, repeat/slower/stop and confirmed card selection. The original check button evaluates; the chest retains its three-consecutive-correct rule.",
       gaps=["flame_grade_scope", "game_interaction_coverage"],
       test_paths=["test/games/flame_adventure_flow_test.dart", "test/games/flame_adventure_round_test.dart"])
 
 GAPS = [
     ("spatial3d_task_integration", "open", "Chat1 + Chat2 + native scene owner", "No route in this snapshot has proof of the full requested task-bound 3D actor/object interaction. Flutter 2D cards, shadows, manipulative widgets and an optional native launch do not establish that completion criterion."),
     ("device_qa", "open", "All", "No current Android/Fold hardware, rotation, audio/mic, large text and 60 FPS sweep across all routes. Widget tests are not hardware proof."),
-    ("sentence_answer_leak", "reproduced_open", "c5 renderer owner", "SchoolbookFallbackVisual builds unassisted Satz bauen word cards from correctAnswer. Three new regressions fail on this source: practice, exam, hidden-answer perturbation."),
+    ("sentence_answer_leak", "reproduced_open", "c5 renderer owner", "The committed c5 renderer now derives neutral sentence cards from the prompt. The dedicated three-case privacy regression is recorded separately; old baseline failures are historical."),
     ("all_families_interaction", "open", "Chat2/c5", "236 registered curriculum families do not imply 236 modern interactive workspaces. Each actual interaction still needs coverage."),
     ("domain_boundary", "open", "Chat1 + Chat2", "Correctness is currently partly computed in UI renderers. New agent/native proposals must enter the existing checked owner callback, never a reward action."),
     ("direct_family_selection", "open", "navigation integration", "Reading hub opens active speech reading; Rechtschreibung has no standalone subject tile. Generator families can appear in mixed sessions; exact family selection was not exercised for all 236."),
-    ("module_context_help", "open", "specialist module owner", "Sixteen distinct module screens have no local staged help state. Shared frame help only works with a matching current companion task context, which cannot be inferred from the frame's presence."),
+    ("module_context_help", "open", "specialist module owner", "All 18 active specialist screens have current-task bindings, staged help and explicit candidate confirmation; 19 actual Academy entry routes were exercised. d1_woerter remains protected and shadowed."),
     ("activity_evidence_workflow", "open", "activities owner", "All 60 practical entries are reachable after local route fixes; no observation submission/teacher feedback completion flow exists in this screen."),
-    ("reference_pattern_scene", "open", "Chat2/c5", "Baseline lab has five modes and no separate pattern mode. Existing pattern questions do not prove the requested interactive periodic-group reference scene."),
+    ("reference_pattern_scene", "partially_closed", "Chat2/c5", "Six lab modes include the actual pattern workbench and a visible native entry for the exact current task_card. Supported core tasks can additionally use the checked period/sequence/choices pattern adapter; the Lab entry does not claim a specialized native pattern manipulative."),
     ("native_inline_absent", "known_architecture_limit", "Chat1", "Separate Godot activity exists; no inline native platform view in every Flutter task."),
-    ("async_binding_integration", "open", "Chat1 + conversation", "Shared v1 session/task/revision/context/cancel envelope is a contract; end-to-end callback ownership is not proven by this catalog."),
+    ("async_binding_integration", "partially_verified", "Chat1 + conversation", "Canonical bus requests are integrated across the reviewed learning surfaces, including the delivered Live/Flame/question coach and Lab native entry. Recorded targeted tests do not establish the final complete Root suite or real microphone lifecycle."),
     ("scene_kind_coverage", "open", "scene integration", "Presenter contract exposes only placeValue; all 28 visual enums must not be described as native task scenes."),
     ("microphone_runtime", "open", "conversation owner", "Recognition permission, mishearing/correction, stop/pause and actual audio playback require current runtime proof."),
     ("story_all_variants", "open", "story integration", "Stored/generated stories have dynamic IDs and content. Finite quest catalog does not enumerate every story variant."),
-    ("photo_interactive_answers", "open", "photo integration", "Practice cards reveal answers; they do not collect/check a child's response."),
+    ("photo_interactive_answers", "open", "photo integration", "Photo practice now collects and deterministically checks actual responses, stores resumable profile-owned evidence and requires confirmation of editable speech proposals."),
     ("conversation_domain_binding", "open", "conversation owner", "Conversation needs the active task snapshot and domain-owned feedback rather than independent correctness claims."),
     ("live_participation_vs_mastery", "open", "live integration", "Word/photo participation reward and safari fuzzy matching must remain distinguishable from verified learning evidence."),
     ("protected_internal_scope", "excluded_internal_changes", "outer adapters only", "Writing trainer and journal internals preserved; no claim of internal modernization."),
@@ -453,7 +488,9 @@ game_routes = {mode: "game:" + slug for slug, modes in {
     "lesson_trail": ["numberPath", "wordForest", "mixedQuiz"],
 }.items() for mode in modes}
 for row in CATALOG["gameLevels"]:
-    attach([row], game_routes[row["miniType"]], "lib/domain/games/game_level_catalog.dart", "gameLevel")
+    final_quiz = row["effectiveRoute"] == "quiz"
+    attach([row], "quiz" if final_quiz else game_routes[row["miniType"]],
+           "lib/domain/games/game_level_catalog.dart", "quiz" if final_quiz else "gameLevel")
 for row in CATALOG["academyTopics"]:
     task_route = "core"
     if row["id"] == "d3_geschichten": task_route = "story_library"
@@ -554,7 +591,10 @@ protected_paths.add(ROOT / "lib/features/learning/renderers/writing_task_rendere
 for path in sorted(protected_paths):
     relative = str(path.relative_to(ROOT))
     baseline = subprocess.check_output(["git", "show", f"{BASE}:{relative}"], cwd=ROOT)
-    protected.append({**source(relative), "unchangedFromBase": path.read_bytes() == baseline})
+    protected.append({**source(relative),
+                      "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                      "baselineSha256": hashlib.sha256(baseline).hexdigest(),
+                      "unchangedFromBase": path.read_bytes() == baseline})
 assert all(row["unchangedFromBase"] for row in protected)
 for path in [HUB, "lib/features/learning/learning_navigation.dart", ADAPTER, FRAME,
              "lib/domain/tutoring/native_learning_activity.dart",
@@ -567,24 +607,6 @@ assert all(set(route["gaps"]) <= known_gap_ids for route in ROUTES)
 route_ids = {row["id"] for row in ROUTES}
 assert len(route_ids) == len(ROUTES)
 assert all(row["routeRef"] in route_ids for key in ["curriculumFamilies", "gameLevels", "practicalActivities", "cognitiveQuestions"] for row in CATALOG[key])
-
-NAVIGATION_RUN_SOURCES = {
-    ACADEMY: "5ceab0a49d111211925a4f06cf0bf62f708936b5f675f00007627c8e3111f015",
-    FRAME: "d4be5baa82cc4c7982f3ca6d42d3a4a3448bb708b3ba89b350de7663ca824598",
-    "lib/features/learning_modules/farben/farben_screen.dart": "10d64f776d14ab589d103cb380249903ae6cccb67de2397c66ca19bc3d5d62b2",
-    "lib/features/learning/curriculum_activities_screen.dart": "461db0fb4451881971d28df29e59237ff359d75f3c7d242e7921a9c0c9879298",
-    "test/design/learning_registered_routes_test.dart": "eb279936476419ebd5348f09a032a8f91a9505980e81aeb2f90901628c359c5d",
-}
-PRIVACY_RUN_SOURCES = {
-    RENDERER: "c9f0c4a7dad865884216a03558bc5da9329c8ea4fc20a811c7230876cc5e1c22",
-    "test/learning/sentence_prompt_privacy_test.dart": "300cd10de14737d336208cac70a281ceccffaeb325f9d139bd2f91ec71891f4a",
-}
-
-
-def recorded_run_matches(expected):
-    return all(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() == checksum
-               for p, checksum in expected.items())
-
 
 comparisons = []
 for worktree in [
@@ -618,7 +640,7 @@ for worktree in [
                         "scope": "Current reviewed library-file corpus only; foreign worktrees may remain active. Not a merge or their QA result."})
 
 document = {
-    "schema": "lumo.nextgen.learning.coverage", "version": 1,
+    "schema": "lumo.nextgen.learning.coverage", "version": 2,
     "asOf": "2026-11-15",
     "exportedAtUtc": datetime.now(timezone.utc).isoformat(),
     "sourceBaseline": BASE,
@@ -629,7 +651,7 @@ document = {
         "excluded": ["Kart", "native Jungle/Dschungel"],
         "protected": "Writing trainer and journal internals; outer adapters only.",
         "nonCurriculumGames": "Memory, Connect Four, Dice Race and Star Trail retain game rules/rewards; no independent curriculum-answer task is claimed here.",
-        "parallelOwnership": "c5 owns AdaptiveTaskRenderer/interactive workspace/shared frame/mini-games; 2f owns LearningContent and 18 specialist modules. This inventory contains only this worktree's source until an explicit integrated regeneration.",
+        "parallelOwnership": "Integrated Root snapshot. Delivered owner and Root checkpoints are recorded separately from their test logs and final release/device gates. No foreign worktree WIP is silently treated as delivered source.",
         "persistedIds": "Existing catalog IDs are copied unchanged. Inventory route IDs/sourceIndex are documentation keys, not new storage identifiers.",
     },
     "counts": {key: len(value) for key, value in CATALOG.items() if isinstance(value, list)},
@@ -654,33 +676,543 @@ document = {
             {"kind": "syllables", "entry": "fromTask/fromLesson", "condition": "2..5 syllables join the actual word (<=24 characters); task route verifies syllable count."},
             {"kind": "plant_parts", "entry": "fromLesson", "condition": "Guided plantParts concept only; current plant part."},
         ],
-        "missingGeneralAttachments": ["specialist_modules_except_plus_context", "cross_grade_all_families", "reading_and_comprehension", "story_exercises_and_summary", "photo_practice", "practical_activities", "iq_and_cognitive", "cards_quiz_and_learning_minigames", "patterns_reference_scene"],
+        "missingGeneralAttachments": [],
     },
     "modernComponents": [
-        {"name": "LumoLearningModuleFrame", "source": FRAME, "capabilities": ["shared responsive chrome", "calm/reduced motion", "context-bound help"], "limit": "Frame presence does not establish a current task context or staged hint."},
-        {"name": "Learning manipulatives", "source": "lib/features/learning/lab/learning_manipulatives.dart", "capabilities": ["quantity bridge", "fraction construction", "token ordering", "48dp semantic actions"], "limit": "Baseline lab only; not all task families."},
-        {"name": "Schoolbook task widgets", "source": "lib/features/schoolbook/widgets/schoolbook_task_widgets.dart", "capabilities": ["word cards", "quantity/number models", "shared lesson cards"], "limit": "Mostly passive outside specific workspaces; neutral prompt privacy regression currently fails."},
+        {"name": "LumoLearningModuleFrame", "source": FRAME, "capabilities": ["shared responsive chrome", "calm/reduced motion", "context-bound help"], "limit": "Frame appearance is separate from ModuleTaskScope/Plus task ownership; the latter has an actual 19-route confirmation test."},
+        {"name": "Learning manipulatives", "source": "lib/features/learning/lab/learning_manipulatives.dart", "capabilities": ["quantity bridge", "fraction construction", "token ordering", "48dp semantic actions"], "limit": "Six-mode lab and specific task workspaces; not a specialized native model for every curriculum family."},
+        {"name": "Schoolbook task widgets", "source": "lib/features/schoolbook/widgets/schoolbook_task_widgets.dart", "capabilities": ["word cards", "quantity/number models", "shared lesson cards"], "limit": "Shared passive cards and actual interactive workspaces are distinct. Sentence-card privacy is fixed and separately rechecked."},
         {"name": "LearningSceneDirector", "source": "lib/features/learning/scenes/learning_scene_contract.dart", "capabilities": ["revision", "allowed inputs", "named objects"], "limit": "Only placeValue scene kind is declared."},
     ],
     "gaps": [{"id": i, "status": s, "owner": o, "description": d} for i, s, o, d in GAPS],
-    "verification": {
-        "catalogExport": {"status": "executed", "tool": "tools/nextgen/export_learning_catalog_test.dart", "meaning": "Actual finite source catalog enumeration; not UI/device approval."},
-        "localNavigation": {"recordedStatus": "passed", "recordedSourceHead": "dde93af23f84b7c5074c66cbc9a673b9bcf35a71", "recordedSourceHashes": NAVIGATION_RUN_SOURCES, "reviewedSourcesStillMatch": recorded_run_matches(NAVIGATION_RUN_SOURCES), "tests": 3, "path": "test/design/learning_registered_routes_test.dart", "conditions": ["412x915", "calm mode", "no navigation rewards", "enrolled/selected grade separation", "48dp entry rows"], "hardware": False},
-        "sentencePrivacy": {"recordedStatus": "failed_reproduced", "recordedSourceHashes": PRIVACY_RUN_SOURCES, "reviewedSourcesStillMatch": recorded_run_matches(PRIVACY_RUN_SOURCES), "tests": 3, "passed": 0, "path": "test/learning/sentence_prompt_privacy_test.dart", "source": RENDERER},
-        "otherTests": "Listed test paths exist; they have not been rerun by this coverage review.",
-        "nativeOrPhysicalDeviceRun": False,
-    },
+    "verification": {},
     "sourceScreenInventory": screen_inventory,
     "protectedSourceHashes": protected,
     "readOnlyBranchComparisons": comparisons,
     "sources": sorted(SOURCES.values(), key=lambda row: row["path"]),
 }
+
+# Evidence is read from actual logs. A stored passing run is deliberately not
+# promoted to a new run against HEAD, nor summed with overlapping test suites.
+EVIDENCE_ROOT = "docs/nextgen/evidence/"
+RUN_SPECS = [
+    ("module_connections", "chat2_completion_20261115/module_tests.log",
+     "owner_sources_integrated", "f23688e76904da9e373ba998843c0bbe41906542", [
+         "test/design/all_learning_module_routes_test.dart",
+         "test/learning/module_coach_confirmation_test.dart",
+         "test/design/learning_adventure_layout_test.dart",
+         "test/learning_modules/math_module_progress_test.dart",
+         "test/learning_modules/deutsch_sach_module_progress_test.dart",
+     ]),
+    ("core_guided", "chat2_completion_20261115/core_tests.log",
+     "owner_sources_integrated", "daa3e2d867a7de307c721c1f38faff2effe0845e", [
+         "test/learning/learning_content_commands_test.dart",
+         "test/tutoring/guided_coach_binding_test.dart",
+         "test/tutoring/native_learning_launch_test.dart",
+         "test/tutoring/guided_lesson_runtime_test.dart",
+         "test/tutoring/guided_ten_frame_playback_test.dart",
+     ]),
+    ("lab_core", "chat2_core_20261115/core_tests.log",
+     "earlier_targeted_integration", "24ef7e5d85d142c06ebdb5290bbc06efafa618b6", [
+         "test/learning/money_clock_truth_test.dart",
+         "test/learning/lumo_quantity_workbenches_test.dart",
+         "test/learning/nextgen_lab_boards_test.dart",
+         "test/learning_lab_manipulatives_test.dart",
+         "test/learning_lab_catalog_test.dart",
+         "test/learning_lab_progress_test.dart",
+         "test/learning_lab_runtime_test.dart",
+         "test/learning_modules/math_module_progress_test.dart",
+         "test/learning_modules/deutsch_sach_module_progress_test.dart",
+         "test/learning/resumable_lesson_reset_test.dart",
+         "test/tutoring/tutor_parent_reset_test.dart",
+         "test/design/learning_adventure_layout_test.dart",
+         "test/learning/nextgen_lab_bus_integration_test.dart",
+         "test/design/all_learning_module_routes_test.dart",
+     ]),
+    ("reading", "reading_integration_20261115/tests.log",
+     "root_targeted_integration", None, [
+         "test/reading_buddy_assessment_test.dart",
+         "test/reading_active_sentence_view_test.dart",
+         "test/reading_writing_content_test.dart",
+         "test/lumo_assessment_reading_contract_test.dart",
+     ]),
+    ("reading_audio_owner", "reading_audio_owner_20261115/tests.log",
+     "owner_sources_integrated", "88fcffdd91ea717a5080ad8d61b94fac81191758", [
+         "test/reading_audio_owner_regression_test.dart",
+         "test/reading_buddy_assessment_test.dart",
+         "test/story_entry_navigation_test.dart",
+     ]),
+    ("photo_thinking", "root_joined_20261115/root-photo-thinking-integrated-tests.log",
+     "root_targeted_integration", None, []),
+    ("speech_boundary", "root_joined_20261115/root-integrated-stt-check.log",
+     "root_targeted_integration", None, []),
+    ("native_boundary", "root_joined_20261115/joined-native-boundary-tests-final.log",
+     "root_targeted_integration", None, []),
+    ("assessment", "assessment-contract/flutter-tests.log",
+     "earlier_targeted_integration", None, []),
+    ("pattern_navigation", "c5_integration_20261115/integration_tests.log",
+     "earlier_targeted_integration", None, []),
+    ("minigame_original_routes", "remaining_integration_20261115/mini_game_routes_initial.log",
+     "root_original_routes_before_native_followup", None, ["test/games/mini_games_flow_test.dart"]),
+    ("lab_native", "lab_native_20261115/tests.log",
+     "owner_sources_integrated", "6757f8c2b0758519c44c3606215f2f4fae3fc5a5", [
+         "test/learning/lab_native_entry_test.dart",
+         "test/learning/nextgen_lab_bus_integration_test.dart",
+         "test/learning_lab_runtime_test.dart",
+         "test/learning_lab_catalog_test.dart",
+     ]),
+    ("remaining_native_joined", "remaining_integration_20261115/remaining_native_joined.log",
+     "root_targeted_integration_before_final_narrowing", "b193899565110e5c7a26f73520a943b261887e63", []),
+    ("game_question_coach", "docs/evidence/lumo-nextgen-game-questions/focused-tests.log",
+     "owner_sources_integrated", "ca3f48ef961b4a50e95c6dffca2785d818191842", []),
+    ("catalog_export", "coverage_refresh_20261115/catalog_export.log",
+     "current_inventory_snapshot", HEAD, ["tools/nextgen/export_learning_catalog_test.dart"]),
+    ("sentence_privacy", "coverage_refresh_20261115/sentence_privacy.log",
+     "current_inventory_snapshot", HEAD, ["test/learning/sentence_prompt_privacy_test.dart"]),
+]
+
+
+def commit_for_file(path: str) -> str | None:
+    value = subprocess.check_output(
+        ["git", "log", "-1", "--format=%H", "--", path], cwd=ROOT, text=True).strip()
+    return value or None
+
+
+def read_run(identifier, suffix, scope, tested_commit, explicit_tests):
+    path = suffix if suffix.startswith("docs/") else EVIDENCE_ROOT + suffix
+    try:
+        raw_log = source_bytes(path)
+    except FileNotFoundError:
+        return {"id": identifier, "status": "log_missing", "log": path,
+                "executionScope": scope, "tests": explicit_tests}
+    if scope == "current_inventory_snapshot":
+        manifest_path = EVIDENCE_ROOT + "coverage_refresh_20261115/runs.json"
+        if (ROOT / manifest_path).exists():
+            source(manifest_path)
+            recorded = next((run for run in json.loads((ROOT / manifest_path).read_text())["runs"]
+                             if run["id"] == identifier), None)
+            tested_commit = recorded["sourceHead"] if recorded else None
+        else:
+            tested_commit = None
+        if tested_commit != HEAD:
+            scope = "previous_inventory_snapshot"
+    content = raw_log.decode(errors="replace").replace("\r", "\n")
+    matches = re.findall(
+        r"\+(\d+)(?:\s+-(\d+))?:[^\n]*?(All tests passed!|Some tests failed\.)", content)
+    if not matches:
+        return {"id": identifier, "status": "no_completed_result", "log": source(path),
+                "executionScope": scope, "tests": explicit_tests}
+    passed, failed, verdict = matches[-1]
+    logged_tests = set(re.findall(r"(?<![\w])(?:test|tools)/[^\s:\x1b]+\.dart", content))
+    test_paths = sorted(set(explicit_tests) | {
+        path for path in logged_tests if (ROOT / path).exists()
+    })
+    for test_path in test_paths:
+        source(test_path)
+    return {"id": identifier, "status": "passed" if verdict == "All tests passed!" else "failed",
+            "passed": int(passed), "failed": int(failed or 0),
+            "log": source(path), "logSha256": SOURCES[path]["sha256"],
+            "logStorageCommit": commit_for_file(path),
+            "executionSourceCommit": tested_commit,
+            "executionSourceCommitMeaning": "Post-run source checkpoint, where explicitly known; null is not inferred from the log storage commit.",
+            "executionScope": scope, "tests": test_paths,
+            "testListCompleteFromRecordedCommand": bool(explicit_tests),
+            "androidDeviceRun": False, "realMicrophoneRun": False,
+            "currentHeadSuiteRerun": scope == "current_inventory_snapshot"}
+
+
+runs = [read_run(*spec) for spec in RUN_SPECS]
+run_by_id = {run["id"]: run for run in runs}
+run_by_id["lab_native"]["integratedAt"] = "a12c0376ba67872c75758fe340734810cb527456"
+run_by_id["remaining_native_joined"]["postRunSourceCaveat"] = (
+    "The 35-test log precedes one additional safe rejection of case-normalized duplicate choices "
+    "in the same delivery. Final CI must rerun the exact integrated source; the earlier interrupted fixture is superseded.")
+run_by_id["game_question_coach"].update({
+    "integratedAt": "3123d3247775fcdc42a16c2bcc5c51e1ab98c4c9",
+    "producerEvidenceCommit": "749de5603d86c45a60ff7e34ef9e69a03fb974d9",
+    "rootEvidenceCommit": "9a8aca5196100d6aabb8bc41d827f2ed0e3577e4",
+    "limits": "Controlled speech/native transports and logical Flutter viewports; no real microphone, Android FPS or physical Fold proof.",
+})
+
+# Use the reviewed module manifest as an assertion, not as stale prose. Every
+# current screen hash must still equal the delivered/134-test source snapshot.
+module_manifest_path = "docs/nextgen/MODULE_CONNECTIONS.json"
+source(module_manifest_path)
+module_manifest = json.loads((ROOT / module_manifest_path).read_text())
+module_by_route = {}
+for module in module_manifest["modules"]:
+    source(module["file"])
+    if SOURCES[module["file"]]["sha256"] != module["sha256"]:
+        raise ValueError(f"Module changed since verified manifest: {module['file']}")
+    for identifier in module["routeIds"]:
+        module_by_route["module:" + identifier] = module
+
+SCOPE = "lib/features/learning/nextgen/module_task_scope.dart"
+READING_COACH = "lib/features/reading/reading_lesson_companion.dart"
+QUESTION_COACH = "lib/features/learning/widgets/learning_question_coach.dart"
+MINI_GAME = "lib/features/games/mini_games/mini_game_learning_screen.dart"
+EXAM_SCOPE = "lib/features/tests/iq/exam_companion_scope.dart"
+COACH_BINDING = "lib/features/learning/nextgen/learning_coach_binding.dart"
+NATIVE = "lib/domain/tutoring/native_learning_activity.dart"
+BUS = "lib/widgets/fox/lumo_companion_requests.dart"
+CONTRACT = "lib/core/lumo_learning_session_contract.dart"
+for path in [SCOPE, READING_COACH, QUESTION_COACH, MINI_GAME, EXAM_SCOPE,
+             COACH_BINDING, BUS, CONTRACT]:
+    source(path)
+
+# These are reviewed adapter edges. The constructor must occur in the actual
+# consumer. An imported helper or factory by itself never becomes a UI entry.
+ADAPTER_EDGES = [
+    ("ModuleTaskScope(", SCOPE),
+    ("ReadingLessonCompanion(", READING_COACH),
+    ("LearningQuestionCoach(", QUESTION_COACH),
+    ("MiniGameLearningScreen(", MINI_GAME),
+    ("ExamCompanionScope(", EXAM_SCOPE),
+]
+
+# The explicit confirmation controls are inventoried independently of the bus.
+# Their presence is source evidence; the recorded tests retain their own scope.
+CONFIRM_CONTROLS = {
+    CORE: ("learning-answer-candidate", "learning-confirm-candidate"),
+    "lib/features/tutoring/guided_lesson_screen.dart": ("guided-candidate-edit", "guided-confirm-candidate"),
+    "lib/features/learning/lab/learning_lab_screen.dart": ("lab-answer", "lab-check-answer"),
+    SCOPE: ("$keyPrefix-answer-candidate", "$keyPrefix-confirm-candidate"),
+    "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart": ("LearningAnswerCandidateCard(", "_boundCandidateConfirmation("),
+    READING_COACH: ("reading-lumo-candidate", "reading-lumo-confirm"),
+    "lib/features/learning/cross_grade_practice_screen.dart": ("cross-grade-answer-proposal", "cross-grade-proposal-confirm"),
+    "lib/features/photo_lesson/photo_lesson_practice_screen.dart": ("photo-answer-proposal", "_confirmProposal"),
+    "lib/features/story/lumo_story_reader_screen.dart": ("story-answer-proposal-text", "story-confirm-answer-proposal"),
+    MINI_GAME: ("mini-game-answer-proposal", "mini-game-proposal-confirm"),
+    QUESTION_COACH: ("game-answer-proposal", "_confirm"),
+}
+
+CHILD_TASK_ROUTES = {
+    "photo": ["photo_practice"], "quest": ["story_reader"],
+    "tests": ["core"], "teacher_assignments": ["core"],
+}
+
+EXTRA_ROUTE_TESTS = {
+    "core": ["test/learning/learning_content_commands_test.dart"],
+    "guided": ["test/tutoring/guided_coach_binding_test.dart", "test/tutoring/guided_ten_frame_playback_test.dart"],
+    "lab": ["test/learning/nextgen_lab_bus_integration_test.dart", "test/learning/nextgen_lab_boards_test.dart", "test/learning/lab_native_entry_test.dart"],
+    "iq": ["test/iq/nextgen_thinking_flow_test.dart"],
+    "cognitive": ["test/iq/nextgen_thinking_flow_test.dart"],
+    "game:learning_round": ["test/games/mini_games_flow_test.dart"],
+    "cross_grade": ["test/learning/cross_grade_contract_test.dart", "test/learning/remaining_native_entry_test.dart"],
+    "photo_practice": ["test/learning/remaining_native_entry_test.dart"],
+    "story_reader": ["test/story_nextgen_flow_test.dart", "test/learning/remaining_native_entry_test.dart"],
+    "live": ["test/live_pro_question_coach_test.dart", "test/feature_permission_regression_test.dart", "test/games/learning_question_coach_lifecycle_test.dart"],
+    "flame_learning": ["test/games/flame_question_coach_test.dart", "test/games/learning_question_coach_lifecycle_test.dart"],
+    "cards_learning": ["test/games/learning_question_coach_flow_test.dart", "test/games/learning_question_coach_lifecycle_test.dart"],
+    "quiz": ["test/games/learning_question_coach_flow_test.dart", "test/games/learning_question_coach_lifecycle_test.dart"],
+}
+
+
+def effective_sources(row):
+    result = [row["target"]["path"]]
+    text = (ROOT / result[0]).read_text()
+    for constructor, path in ADAPTER_EDGES:
+        if path != result[0] and constructor in text:
+            result.append(path)
+            source(path)
+    return result
+
+
+def actual_native_entry(path):
+    text = (ROOT / path).read_text()
+    if not re.search(r"\bscene:\s*['\"]learning['\"]", text):
+        return None
+    if "launchLumo3D(" not in text or "NativeLearningActivity." not in text:
+        return None
+    keys = re.findall(r"['\"]([^'\"\n]*(?:open-3d|lumo-world)[^'\"\n]*)['\"]", text)
+    if not keys and "Mit Lumo in 3D" not in text:
+        return None
+    symbol = keys[0] if keys else "Mit Lumo in 3D"
+    factories = sorted(set(re.findall(r"NativeLearningActivity\.([a-zA-Z]+)\(", text)))
+    return {"status": "source_button_and_launch_connected", "source": source(path, symbol),
+            "buttonKeys": sorted(set(keys)), "factories": factories,
+            "scene": "learning", "inline": False,
+            "androidRuntimeVerified": False,
+            "doesNotProveAllFamiliesSpecialized3D": True}
+
+
+capabilities = []
+for row in ROUTES:
+    identifier = row["id"]
+    if identifier in module_by_route:
+        module = module_by_route[identifier]
+        row["help"] = "Current-task staged help; repeat does not advance the hint; hiding help retains assisted evidence."
+        row["adapters"].append("LearningCoachBinding" if identifier == "module:m1_plus10" else "ModuleTaskScope")
+        row["reachable"]["status"] = "source_reachable_and_recorded_widget_entry_pass"
+        row["reachable"]["recordedRunRefs"] = ["module_connections"]
+        row["tests"] += tests("test/design/all_learning_module_routes_test.dart",
+                              "test/learning/module_coach_confirmation_test.dart")
+        row["gaps"] = [gap for gap in row["gaps"] if gap != "module_context_help"]
+    row["tests"] += tests(*EXTRA_ROUTE_TESTS.get(identifier, []))
+    seen = set()
+    row["tests"] = [test for test in row["tests"] if not (test["path"] in seen or seen.add(test["path"]))]
+    for test in row["tests"]:
+        refs = [run["id"] for run in runs if run["status"] == "passed" and test["path"] in run["tests"]]
+        if refs:
+            test["status"] = "passed_in_recorded_targeted_run"
+            test["recordedRunRefs"] = refs
+            test["currentSnapshotRerun"] = any(run_by_id[ref]["currentHeadSuiteRerun"] for ref in refs)
+    paths = effective_sources(row)
+    texts = {path: (ROOT / path).read_text() for path in paths}
+    binding_paths = [path for path, text in texts.items()
+                     if "LearningCoachBinding(" in text or
+                     ("LumoCompanionRequests" in text and
+                      ("publishTask(" in text or "learningAction.addListener" in text))]
+    candidate_controls = []
+    for path in paths:
+        if path in CONFIRM_CONTROLS:
+            edit, confirm = CONFIRM_CONTROLS[path]
+            if edit in texts[path] and confirm in texts[path]:
+                candidate_controls.append({"editable": source(path, edit),
+                                           "confirm": source(path, confirm)})
+    native_entries = [entry for path in paths if (entry := actual_native_entry(path))]
+    is_exam = identifier in {"tests", "iq", "cognitive"}
+    not_task = row["authorityRef"] == "none" and identifier not in {"native_explanation", "deutsch_legacy_gap"}
+    protected_route = row["authorityRef"] == "protectedWriting" or identifier == "module:d1_woerter"
+    policy = "assessment_limited_repeat_slower_stop_no_hint_or_answer_proposal" if is_exam else (
+        "protected_internal_surface" if protected_route else
+        "not_a_separate_assessed_task" if not_task else "owner_checked_practice")
+    if identifier == "core":
+        policy = "practice_help_and_proposals_only; assessment_gates_remove_help_and_proposal"
+    cap = {
+        "routeRef": identifier, "effectiveSources": paths,
+        "childTaskRouteRefs": CHILD_TASK_ROUTES.get(identifier, []),
+        "canonicalTaskBinding": {"status": "source_connected" if binding_paths else "not_detected_in_reviewed_route_adapter",
+                                 "sources": [source(path) for path in binding_paths]},
+        "answerProposal": {"status": "visible_editable_explicit_confirmation_source" if candidate_controls else
+                           "disabled_by_assessment_policy" if is_exam else "not_detected_in_reviewed_route_adapter",
+                           "controls": candidate_controls, "authorityRef": row["authorityRef"],
+                           "unconfirmedProposalIsCorrectAnswer": False},
+        "policy": policy,
+        "stagedHelp": {"status": "source_level_bound" if any("helpLevel:" in text for text in texts.values()) and not is_exam else
+                       "disabled_by_assessment_policy" if is_exam else "see_route_help_and_authority",
+                       "doesNotProveEveryHintContentReviewed": True},
+        "actions": {"referencedCanonicalActions": sorted({action for text in texts.values()
+                    for action in re.findall(r"LumoLearningAction\.([a-zA-Z]+)", text)}),
+                    "taskDefinesAllowedActions": any("allowedActions:" in text for text in texts.values()),
+                    "stopHandlerSourcePresent": any("case LumoLearningAction.stop:" in text or "onStop:" in text for text in texts.values()),
+                    "referencesAreNotAnEffectivePermissionList": True},
+        "accessibility": {"minimum48dpEntry": "recorded_module_route_test" if identifier in module_by_route else "not_measured_for_every_control",
+                          "calmOrReducedMotionSourceTokens": sorted({token for text in texts.values()
+                              for token in ("reduceMotion", "reduceAnimations", "quietMode", "_quiet", "_calm") if token in text}),
+                          "completeAccessibilityAudit": False},
+        "nativeLearningEntry": {"status": "source_connected" if native_entries else
+                                "not_applicable_assessment_assistance" if is_exam else
+                                "protected_or_navigation" if protected_route or not_task else
+                                "no_learning_scene_button_in_snapshot",
+                                "entries": native_entries,
+                                "factoryAvailabilityAloneCountsAsReachable": False},
+        "lifecycle": {"sourceObserverPresent": any("didChangeAppLifecycleState(" in text for text in texts.values()),
+                      "nativePauseAndCandidateTests": "module_connections" if identifier in module_by_route else
+                      "core_guided" if identifier in {"core", "guided"} else "see_recorded_route_tests",
+                      "physicalFoldResizeProven": False},
+        "recordedTestRunRefs": sorted({ref for test in row["tests"] for ref in test.get("recordedRunRefs", [])}),
+        "completeTaskBound3DProven": False,
+    }
+    if identifier in module_by_route:
+        cap["verifiedModuleManifest"] = module_manifest_path
+        cap["verifiedModuleSourceHashMatches"] = True
+    if native_entries:
+        row["spatial3D"]["currentRendering"] = "flutter_surface_with_reachable_optional_native_learning_activity"
+    if identifier == "native_explanation":
+        cap["nativeLearningEntry"]["status"] = "descriptor_only_see_core_and_other_consuming_routes"
+    if identifier in CHILD_TASK_ROUTES and not is_exam:
+        cap["nativeLearningEntry"]["status"] = "see_child_task_route_not_a_direct_button_on_this_screen"
+        cap["nativeLearningEntry"]["childTaskRouteRefs"] = CHILD_TASK_ROUTES[identifier]
+    row["capabilityRef"] = identifier
+    row["spatial3D"]["requirementsNotYetFullyProvenEndToEnd"] = row["spatial3D"].pop("needed")
+    capabilities.append(cap)
+
+document["capabilityMatrix"] = capabilities
+document["capabilityMatrixMethod"] = (
+    "Reviewed source adapter edges, asserted constructor/control symbols and scene:'learning' launch. "
+    "Source-connected is not runtime proof. A game's own native table, a factory-only API, navigation, "
+    "or an imported helper is not counted as a native learning button. Recorded runs retain their own scope.")
+
+module_adapter_checks = []
+# Pin the delivered bytes, so a fresh remote checkout does not need the
+# producer's local-only resolver commit object to reproduce the comparison.
+module_adapter_hashes = {
+    SCOPE: "4f291593257e70468add023ba448ca8fe2ee071d9bc7feae421bff5c026eec3c",
+    COACH_BINDING: "15d92d3249953cfe3e5a062cb0372642eef11690b13da12eb36424bbab5fa8a8",
+}
+for path, delivered_hash in module_adapter_hashes.items():
+    module_adapter_checks.append({"source": source(path),
+                                  "recordedDeliveryCommit": "f23688e76904da9e373ba998843c0bbe41906542",
+                                  "deliveredSha256": delivered_hash,
+                                  "sameBytesAsRecordedDelivery": delivered_hash == SOURCES[path]["sha256"]})
+
+native_text = (ROOT / NATIVE).read_text()
+actual_kinds = sorted(set(re.findall(r"NativeLearningActivity\._\(\s*'([^']+)'", native_text)))
+document["nativeCompatibility"]["kinds"] += [
+    {"kind": "pattern", "entry": "fromTask/fromPattern", "condition": "Checked period/sequence/choices and expected continuation; c5 payload contract, not patternUnit."},
+    {"kind": "task_card", "entry": "forTask/fromCompanionContext", "condition": "Bounded exact task prompt, explanation and at most eight choices; no answer/reward field. Companion contexts refuse exams and empty task/prompt."},
+]
+assert {row["kind"] for row in document["nativeCompatibility"]["kinds"]} == set(actual_kinds)
+document["nativeCompatibility"].update({
+    "actualKindNames": actual_kinds,
+    "kindCount": len(actual_kinds),
+    "acceptance": "Specialized adapters verify local payloads; forTask falls back to bounded task_card. The caller must enforce assessment/help policy. A descriptor never awards progress and does not itself establish a visible route entry.",
+    "missingGeneralAttachments": [cap["routeRef"] for cap in capabilities
+                                  if cap["nativeLearningEntry"]["status"] == "no_learning_scene_button_in_snapshot"],
+    "genericTaskCardIsSpecializedSubjectManipulation": False,
+})
+
+gap_updates = {
+    "sentence_answer_leak": ("closed_recorded_regression" if run_by_id["sentence_privacy"]["status"] == "passed" else "verification_pending", "learning integration", "Neutral prompt-derived cards; the recorded three-case privacy regression covers assessment and hidden-solution mutation. Its executionSourceCommit remains separate from the newest export HEAD."),
+    "module_context_help": ("closed_source_and_recorded_widget_runs", "learning integration", "18 active specialist screens / 19 Academy routes: 17 ModuleTaskScope screens plus Plus10; current-task help, visible editable candidate, explicit confirmation and native task_card entry. All current screen hashes match the 134-test delivery manifest."),
+    "photo_interactive_answers": ("closed_source_and_recorded_targeted_run", "photo integration", "PhotoLessonPracticeScreen checks actual responses, supports confirmed proposals and profile-owned resumable sessions; scanning/reveal alone grants no correct answer. Its direct native entry is included in the recorded 35-test joined run; final exact-source/device verification remains separate."),
+    "reference_pattern_scene": ("partially_closed", "learning/native integration", "All six Lab modes, including the pattern workbench, now have a visible native button for their exact current task_card. The 24-test Lab run checks six entries, pause/return, ungraded candidates, Stop and per-problem assistance. This generic card is not a specialized native pattern manipulative; the separate checked pattern adapter uses period/sequence/choices."),
+    "async_binding_integration": ("partially_verified", "Root + conversation", "Recorded tests cover Core/Guided native return, all 19 module entries, Lab native lifecycle, Reading/Photo and the delivered Live/Flame/question coach. The added 24/35/56-test runs are targeted evidence, not a final full-Root or physical microphone result."),
+    "game_interaction_coverage": ("partially_verified", "Root + conversation", "49 MiniGame levels use the shared checked task/round surface; level 50 dispatches to Quiz. The 35-test joined run supersedes the interrupted native fixture. The integrated question coach, Cards/Quiz, real Flame callbacks and Live final-transcript confirmation have a separate 56-test passing run. All generated variants and final device behavior remain outside that claim."),
+    "flame_grade_scope": ("content_selection_review_open", "learning game integration", "The actual Flame question/chest callbacks and unchanged three-answer streak are tested. The generator still selects from fixed early-grade unit lists; the 56-test coach run does not establish every higher-grade/template fallback."),
+}
+for gap in document["gaps"]:
+    if gap["id"] in gap_updates:
+        status, owner, description = gap_updates[gap["id"]]
+        gap.update(status=status, owner=owner, description=description)
+document["gaps"] += [
+    {"id": "conversation_followup", "status": "closed_source_and_recorded_targeted_run", "owner": "conversation", "description": "Live, 2D Flame and the shared Cards/Quiz coach native entry are integrated in 3123d3247775fcdc42a16c2bcc5c51e1ab98c4c9. Producer ca3f48ef961b4a50e95c6dffca2785d818191842 and evidence 749de5603d86c45a60ff7e34ef9e69a03fb974d9 supply the recorded 56-test run; final current-Root/device QA is separate."},
+    {"id": "native_entry_followup", "status": "closed_source_and_recorded_targeted_runs", "owner": "Root", "description": "CrossGrade, Photo, Story and MiniGame direct native entries and scoped handoffs have a recorded 35-test joined run in b193899565110e5c7a26f73520a943b261887e63. Lab adds six exact task_card entries with 24 recorded tests in a12c0376ba67872c75758fe340734810cb527456. One safe duplicate-choice narrowing followed the 35-test run; final CI must check the exact integrated source."},
+    {"id": "avatar_reference_followup", "status": "pinned_native_visual_device_review", "owner": "avatar + Root", "description": f"Published native source is pinned to {NATIVE_PUBLISHED_PIN}. This Flutter inventory does not itself prove the final Banane/card-overlap appearance, physical Fold behavior or device performance; no outstanding source delivery is inferred from that missing runtime proof."},
+    {"id": "performance_device_gate", "status": "not_satisfied", "owner": "Root", "description": "Reported desktop measurement is 8 FPS, not evidence of 60 FPS. Physical Fold resize/rotation and real microphone operation are unproven."},
+]
+closed_ids = {gap["id"] for gap in document["gaps"] if gap["status"].startswith(("closed_", "fixed_"))}
+for row in ROUTES:
+    row["resolvedGapRefs"] = [gap for gap in row["gaps"] if gap in closed_ids]
+    row["gaps"] = [gap for gap in row["gaps"] if gap not in closed_ids]
+for row in TYPE_COVERAGE:
+    row["gaps"] = next(route["gaps"] for route in ROUTES if route["id"] == row["routeRef"])
+
+document["counts"].update({
+    "reviewedRoutes": len(ROUTES), "screenInventoryFiles": len(screen_inventory),
+    "activeSpecialistScreens": len(module_manifest["modules"]),
+    "activeSpecialistRoutes": len(module_by_route),
+    "protectedShadowedRegistryRoutes": 1,
+    "labModes": len(CATALOG["enums"]["LabMode"]),
+    "labProblemIds": sum(len(topic["problems"]) for topic in CATALOG["labTopics"]),
+    "miniGameLevels": sum(level["effectiveRoute"] == "mini_game" for level in CATALOG["gameLevels"]),
+    "quizFinalLevels": sum(level["effectiveRoute"] == "quiz" for level in CATALOG["gameLevels"]),
+    "nativeKinds": len(actual_kinds), "protectedByteIdenticalFiles": len(protected),
+    "quizDeclaredQuestionIds": len(quiz_ids),
+    "cardsBankItems": sum(bundle["count"] for bundle in bundles),
+})
+assert document["counts"]["miniGameLevels"] + document["counts"]["quizFinalLevels"] == len(CATALOG["gameLevels"])
+assert len(protected) == 18
+
+product_changes = subprocess.check_output(
+    ["git", "status", "--porcelain", "--", "lib", "assets", "android", "pubspec.yaml", "pubspec.lock"],
+    cwd=ROOT, text=True).strip()
+if product_changes:
+    raise SystemExit("Commit/review product source before inventory export; current product worktree is dirty:\n" + product_changes)
+document["sourceSnapshot"] = {
+    "committedProductHead": HEAD, "productWorkingTreeClean": True,
+    "catalogSourceHead": CATALOG["sourceHead"],
+    "rawCatalogSha256": hashlib.sha256(CATALOG_PATH.read_bytes()).hexdigest(),
+    "exporter": source("tools/nextgen/export_learning_catalog_test.dart"),
+    "builder": source("tools/nextgen/build_coverage.py"),
+    "publishedNativeSourcePin": NATIVE_PUBLISHED_PIN,
+    "finalReleaseSourceCommit": None,
+    "releaseStatus": "Root supplies final release SHA, APK provenance and CI/device results after integration.",
+}
+document["verification"] = {
+    "recordedRuns": runs,
+    "uniquePassedTestTotal": None,
+    "totalNotSummedReason": "Runs overlap and have different source scopes. The counts are separate evidence, not a unique full-suite total.",
+    "fullCurrentRootSuitePassed": False,
+    "protectedSourceCheck": {"baseline": BASE, "files": len(protected), "byteIdentical": True},
+    "moduleScreenManifestHashesMatch": True,
+    "moduleAdapterSourceChecks": module_adapter_checks,
+    "nativePlatformChannelTestsAreMocked": True,
+    "coordinationReports": [
+        {"id": "c5_joined_historical", "source": "Root coordination message and remaining-integration README", "status": "historical_failure_superseded_by_targeted_runs", "passed": 44, "failed": 5, "supersededBy": ["remaining_native_joined", "game_question_coach"], "detail": "Four obsolete MiniGame UI expectations plus one Coach compile failure. Preserve history without treating it as the latest test result."},
+        {"id": "minigame_ui_followup", "source": "Committed mini_game_routes_initial.log", "status": "recorded_pass", "recordedRunRef": "minigame_original_routes", "passed": 6, "failed": 0, "levelIds": [42, 7, 2, 25, 13], "detail": "Actual original-route task completion, wallet and reopen without duplicate reward. The subsequent native-entry run is recorded separately as remaining_native_joined."},
+        {"id": "native_entry_joined_fixture", "source": "Root coordination message and remaining-integration README", "status": "historical_interruption_superseded", "exitCode": 130, "reportedOtherCompletedTests": 27, "supersededBy": "remaining_native_joined", "detail": "The original fixture was intentionally stopped, then corrected; the later 35-test passing run is the targeted evidence. Neither is a full final Root suite."},
+        {"id": "desktop_performance", "source": "Root coordination message", "measuredFps": 8, "targetFps": 60, "targetProven": False, "isPhysicalAndroidDevice": False},
+    ],
+    "openReleaseGates": ["final_exact_source_post_run_narrowing_check",
+                         "pinned_native_visual_device_review", "joined_current_root_suite",
+                         "measured_60fps", "physical_fold_resize_rotation", "real_microphone_audio_lifecycle",
+                         "final_signed_apk_source_pin_and_ci"],
+    "hardware": {"physicalFoldVerified": False, "realMicrophoneVerified": False,
+                 "allRoutes60FpsVerified": False, "allRoutesAndroidTourVerified": False},
+}
+
+
+def markdown(doc):
+    counts = doc["counts"]
+    lines = [
+        "# Lernabdeckung – belegter integrierter Quellstand", "",
+        f"**Produkt-Snapshot: `{HEAD}`. `fullModernizationComplete` bleibt `false`.**",
+        "Diese Matrix inventarisiert den ausgeführten Dart-Katalog, tatsächliche Einstiegsketten, fachliche Antwortgrenzen und vorhandene Testprotokolle. Sie ist keine Geräte- oder Releasefreigabe. [COVERAGE.json](COVERAGE.json) enthält alle IDs, Quellenhashes, Routen, Typen, Adapter, Fähigkeiten und offenen Grenzen.", "",
+        "## Tatsächlich erfasster Umfang", "",
+        "| Bestand | Umfang |", "|---|---:|",
+        f"| Geprüfte Routeneinträge / Screen-Dateien | {len(ROUTES)} / {len(screen_inventory)} |",
+        f"| Klassen-/Fach-/Einheitskombinationen | {counts['curriculumFamilies']} |",
+        f"| Mathe- / Deutsch-Templates | {counts['mathTemplates']} / {counts['germanTemplates']} |",
+        f"| Akademie-Themen | {counts['academyTopics']} |",
+        f"| Registry / aktive Modul-Einstiege / aktive Modul-Screens | {counts['registeredModuleIds']} / {counts['activeSpecialistRoutes']} / {counts['activeSpecialistScreens']} |",
+        f"| Praktische Aktivitäten | {counts['practicalActivities']} |",
+        f"| Lernlabor-Modi / feste Problem-IDs | {counts['labModes']} / {counts['labProblemIds']} |",
+        f"| Geführte Lektionen | {counts['guidedLessons']} |",
+        f"| Lernspielkatalog / MiniGame-Level / abschließendes Quiz-Level | {counts['gameLevels']} / {counts['miniGameLevels']} / {counts['quizFinalLevels']} |",
+        f"| Reading-Buddy-Texte / feste Quests | {counts['readingTexts']} / {counts['quests']} |",
+        f"| Kognitive Fragen / deklarierte Quiz-IDs / Kartenbank-Einträge | {counts['cognitiveQuestions']} / {counts['quizDeclaredQuestionIds']} / {counts['cardsBankItems']} |",
+        f"| Native Adapter-Kinds / bytegleiche geschützte Dateien | {counts['nativeKinds']} / {counts['protectedByteIdenticalFiles']} |", "",
+        "Die sechs Labormodi sind **bridge, word, english, nature, fraction, pattern**. `d1_woerter` bleibt durch den geschützten Wort-Schreibcoach überlagert; die zwei Einmaleins-Einstiege teilen einen Screen. Level 50 öffnet gemäß `GamesContent` das Quiz und ist kein MiniGame-Level. Dynamische Aufgabenvarianten und gespeicherte Geschichten haben keine vollständige endliche ID-Liste; `routeRef` und `sourceIndex` sind Dokumentationsschlüssel.", "",
+        "## Anschlüsse und ihre Grenzen", "",
+        "| Lernfläche | Aktueller Quellstand und belegte Grenze |", "|---|---|",
+        "| Reguläre Aufgaben | Kanonischer Kontext, gestufte Hilfe, bearbeitbarer Sprachkandidat und explizite Prüfung; sichtbarer Native-Einstieg mit `forTask` und begrenzter `task_card`-Rückfallebene. Prüfungsmodi sperren Hilfe und Vorschläge. |",
+        "| 18 Fachmodule / 19 Einstiege | 17 `ModuleTaskScope`-Screens plus Plus10; fachlicher bestehender Antwortcallback, Bestätigung der aktuellen Aufgabe, native `task_card`-Schaltfläche. Alle Screen-Hashes stimmen mit der 134-Test-Lieferung überein. Das ist kein eigener räumlicher Fachmodell-Nachweis für jedes Modul. |",
+        "| Lernlabor | Alle sechs Modi besitzen `lab-open-3d` für die exakte aktuelle native `task_card`. 24 Tests prüfen unter anderem sechs Einstiege, Hilfe vor I/O, native Pause/Rückkehr, ungewerteten Kandidaten, Stop und unverdeckte Schrittbindung. Die vorhandenen Lab-Modelle bleiben die Fachautorität; kein eigener nativer Manipulativ-Renderer je Modus. |",
+        "| Geführte Lektionen | Aktueller Schritt, gestufte Hilfe, bestätigungspflichtiger Kandidat, native spezielle Szene oder `task_card`. Native-Rückkehr, Pause und veraltete Bestätigungen sind im gezielten Lauf enthalten. |",
+        "| Lesen / Reading Buddy | Gemeinsamer `ReadingLessonCompanion`, native Lernschaltfläche, getrennte Lese-/Verständnisbewertung; ein früherer 25-Test-Lauf und separat 23 Tests zum aktuellen Audio-Owner-Nachtrag. Überlappende Tests werden nicht addiert. Echtes Mikrofon und Gerät bleiben offen. |",
+        "| Foto-Lernheft | OCR führt in `PhotoLessonPracticeScreen`; echte Antworten, bestätigte Vorschläge und `PhotoLessonSession`. Anzeigen/Scannen allein vergibt keine richtige Antwort. Der direkte Native-Einstieg gehört zum aufgezeichneten gemeinsamen 35-Test-Lauf. |",
+        "| Story / Quiz / Cards / 49 MiniGame-Level | Eigene Fach-/Controllergrenzen bleiben bestehen. Die direkten Story-/MiniGame-Native-Einstiege sind im 35-Test-Lauf enthalten. Der integrierte Quiz-/Cards-Coach hat einen sichtbaren nativen Aufgaben-Einstieg; Coach-Auswahl, bestehende Fachprüfung und Belohnungsgrenzen werden im separaten 56-Test-Lauf geprüft. |",
+        "| IQ / kognitives Profil | `ExamCompanionScope`: begrenzte Wiederholen/Langsamer/Stopp-Aktionen; keine Lösungshilfe oder KI-Antwortvorgabe im Test. Keine diagnostische Standardisierung behauptet. |",
+        "| Praxisaufträge | 60 vorhandene Aktivitäten erschlossen; weiterhin menschliche Beobachtung ohne automatische Fachwertung oder eigenen Abgabeabschluss. |",
+        "| Live / 2D Flame | Gelieferter gemeinsamer Coach mit nativer Aufgabenkarte und bestätigungspflichtigen Vorschlägen. Der 56-Test-Lauf umfasst echte Flame-Frage-/Truhen-Callbacks sowie Live-Finaltranskript, Stop, Modus-/Profilwechsel und Berechtigungsgrenzen. Teilnahme-/Safari-Bewertung bleibt von geprüfter Fachleistung getrennt; keine neue Physik- oder reale Mikrofontour behauptet. |", "",
+        f"Die **{len(actual_kinds)} nativen Kinds** lauten: " + ", ".join(f"`{kind}`" for kind in actual_kinds) + ".",
+        "`pattern` verwendet den geprüften `period/sequence/choices`-Vertrag. Die generische `task_card` trägt begrenzten Prompt und Auswahlmöglichkeiten ohne Lösungs-/Belohnungsfeld. Eine Factory, eine importierte Klasse oder der eigene native Spieltisch beweist keinen erreichbaren Lernbutton. `capabilityMatrix` verlangt passende Verbraucher, sichtbare Steuerung und `scene: 'learning'`; eine getrennte optionale Activity beweist außerdem keine vollständige aufgabengebundene 3D-Modernisierung.", "",
+        "## Aufgezeichnete Prüfungen", "",
+        "Die folgenden Zahlen stammen aus den eingecheckten oder mit dieser Matrix neu erzeugten Protokollen. Unterschiedliche Quellstände und überlappende Suiten werden nicht zu einer vermeintlichen Gesamtsumme addiert. `logStorageCommit` ist getrennt vom ausdrücklich bekannten Ausführungsstand erfasst.", "",
+        "| Lauf | Ergebnis | Ausführungsumfang | Protokoll |", "|---|---:|---|---|",
+    ]
+    for run in runs:
+        log_path = run["log"]["path"] if isinstance(run["log"], dict) else run["log"]
+        result = f"{run.get('passed', '?')} bestanden / {run.get('failed', '?')} fehlgeschlagen" if run["status"] in {"passed", "failed"} else run["status"]
+        lines.append(f"| `{run['id']}` | {result} | `{run['executionScope']}` | [{Path(log_path).name}]({relpath(log_path, 'docs/nextgen')}) |")
+    lines += ["",
+        "Die Satz-Privacy-Neuprüfung ersetzt die alte Behauptung eines offenen Lösungslecks. Unverknüpfte Testdateien tragen `present_no_recorded_run_matched`; verknüpfte Dateien `passed_in_recorded_targeted_run`. Beide Zustände sind von einem frischen vollständigen Root-Lauf getrennt.", "",
+        "## Sichtbar offene Freigaben", "",
+        "- Der frühere C5-Lauf 44/5 und die abgebrochene erste native Fixture bleiben Fehlerhistorie. Der korrigierte gemeinsame Native-Lauf hat **35/35**, der gelieferte Frage-Coach **56/56**, der neue Lab-Anschluss **24/24** aufgezeichnete Erfolge. Sie ersetzen die alten Pending-Aussagen für diese gezielten Bereiche, ergeben zusammen aber keinen vollständigen aktuellen Root-Testlauf.",
+        "- Die 35-Test-Lieferung `b193899565110e5c7a26f73520a943b261887e63` enthält nach diesem Lauf noch eine enge Ablehnung mehrdeutiger normalisierter Auswahlwerte. Die finale CI muss deshalb den exakten integrierten Quellstand einschließlich dieser Verschärfung prüfen. Live, 2D Flame und der Quiz-/Cards-Coach sind in `3123d3247775fcdc42a16c2bcc5c51e1ab98c4c9` integriert; ihre Producer-/Test-Provenienz ist im JSON getrennt erfasst.",
+        f"- Der veröffentlichte native Quell-Pin lautet **`{NATIVE_PUBLISHED_PIN}`**. Dieser Flutter-Bestand allein belegt nicht die finale Banane-/Kartenoptik auf einem Gerät. Die gemeldete Desktopmessung beträgt **8 FPS**; sie belegt keine 60 FPS. Physischer Fold, Rotation/Größenwechsel, reale Mikrofon-/Audioabläufe und die vollständige Android-Tour sind offen.",
+        "- Die alten Deutsch-Lückensätze bleiben ohne App-Einstieg, weil mehrdeutiger Inhalt und direkte Belohnungsbuchung noch überprüft werden müssen. Exakte UI-Auswahl aller 236 Generatorfamilien und jede generierte Variante sind nicht durchgespielt.",
+        f"- **18 geschützte Schreib-/Journaldateien sind bytegleich** zu `{BASE}`; Einzelhashes stehen in JSON. Kart und nativer Dschungel bleiben ausgeschlossen. Der eigenständige 2D-Flame-Lernpfad bleibt im Inventar.",
+        "- Finaler Release-SHA, signierte APK-Provenienz, CI-Ergebnis und Download werden von Root nach Integration ergänzt. Aus dieser Bestandsaufnahme folgt keine neue APK-Freigabe.", "",
+        "## Reproduktion", "", "```bash",
+        "flock --close /workspace/scratch/c5a7dadab95f/toolchain/lumo-flutter.lock \\",
+        "  /workspace/scratch/c5a7dadab95f/toolchain/flutter/bin/flutter test --no-pub \\",
+        "  tools/nextgen/export_learning_catalog_test.dart \\",
+        "  --dart-define=LUMO_CATALOG_OUTPUT=/tmp/lumo-learning-catalog.json",
+        "python3 tools/nextgen/build_coverage.py /tmp/lumo-learning-catalog.json", "```", "",
+        "Der Builder verweigert einen Katalog mit abweichendem HEAD, uncommittete Produktquellen und veränderte verifizierte Modul-Screen-Hashes. Der neue Produktstand muss daher zuerst integriert und erneut exportiert werden. Quellen, Testprotokolle und Teamberichte haben bewusst unterschiedliche Evidenzstufen.", "",
+    ]
+    return "\n".join(lines)
+
 for component in document["modernComponents"]:
     source(component["source"])
 document["sources"] = sorted(SOURCES.values(), key=lambda row: row["path"])
 output = ROOT / "docs/nextgen/COVERAGE.json"
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n")
+(output.parent / "COVERAGE.md").write_text(markdown(document))
 print(json.dumps({"output": str(output), "routes": len(ROUTES),
                   "screenFiles": len(screen_inventory), "sources": len(SOURCES),
                   "counts": document["counts"], "modernizationComplete": False}, ensure_ascii=False))

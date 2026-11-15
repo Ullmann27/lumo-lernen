@@ -576,6 +576,13 @@ void main() {
         expect(listens, hasLength(1));
         expect((listens.single.arguments as Map)['onDevice'], isTrue);
         await deliverFinalSpeech(tester, correct ? name! : 'ein blaues Fahrrad');
+        await settleLocalOperations(tester);
+        expect((state.state.stars, state.state.xp), (0, 0),
+            reason: 'Final speech remains an unconfirmed candidate.');
+        final confirm = find.widgetWithText(OutlinedButton, 'Antwort bestätigen');
+        await tester.ensureVisible(confirm);
+        await tester.tap(confirm);
+        await settleLocalOperations(tester);
         final feedback = correct
             ? 'Richtig! Das ist ein $name!'
             : 'Hmm, nicht ganz. Es ist ein $name. Versuch noch eins!';
@@ -588,7 +595,7 @@ void main() {
 
         // A correct answer opens the real reward route. Dismiss that route
         // through its visible content before touching the underlying modes.
-        // These 500 ms remain below both the 2200 and 2500 ms continuations.
+        // These 550 ms remain below both the 2200 and 2500 ms continuations.
         await tester.pump(const Duration(milliseconds: 200));
         if (correct) {
           final reward = find.text('+10 XP');
@@ -596,7 +603,11 @@ void main() {
           await tester.tap(reward);
           await tester.pump();
         }
-        await tester.pump(const Duration(milliseconds: 300));
+        // Cross the default 300 ms reverse transition, not its exact boundary.
+        await tester.pump(const Duration(milliseconds: 350));
+        // Finish the route's post-animation removal before reading the
+        // underlying screen; this does not advance the Safari timer.
+        await tester.pump();
         expect(find.text('+10 XP'), findsNothing);
         expect(find.text('${correct ? 1 : 0} von 1'), findsOneWidget);
 

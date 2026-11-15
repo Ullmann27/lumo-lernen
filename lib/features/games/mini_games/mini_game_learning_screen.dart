@@ -205,12 +205,18 @@ class _MiniGameLearningScreenState extends State<MiniGameLearningScreen>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     _foreground = state == AppLifecycleState.resumed;
-    if (_foreground && _nativeReturnPending) {
-      setState(() {
-        _nativeOpen = false;
-        _nativeReturnPending = false;
-      });
+    if (_foreground) {
+      if (_nativeReturnPending) {
+        _clock.resume();
+        setState(() {
+          _nativeOpen = false;
+          _nativeReturnPending = false;
+        });
+      }
       _publish();
+    } else if (!_nativeOpen) {
+      _stopSupport();
+      _bus.clearTask(_published);
     }
   }
 
@@ -267,11 +273,13 @@ class _MiniGameLearningScreenState extends State<MiniGameLearningScreen>
   }
 
   void _publish() {
+    if (!_foreground && !_nativeOpen) return;
     final round = _round;
     if (round == null || _workspace == null) return;
     final id = _workspace!.taskInstanceId;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted ||
+          (!_foreground && !_nativeOpen) ||
           !_currentProfile ||
           _workspace?.taskInstanceId != id ||
           !(ModalRoute.of(context)?.isCurrent ?? true)) return;
@@ -513,6 +521,7 @@ class _MiniGameLearningScreenState extends State<MiniGameLearningScreen>
   }
 
   void _workspaceEvent(TaskWorkspaceInteraction event) {
+    if (_nativeOpen || !_foreground) return;
     if (!mounted ||
         !_currentProfile ||
         _workspace?.taskInstanceId != event.taskId) return;
@@ -1046,6 +1055,7 @@ class _MiniGameLearningScreenState extends State<MiniGameLearningScreen>
           learning: NativeLearningActivity.forTask(_workspace!));
     } finally {
       if (mounted && taskId == _workspace?.taskInstanceId) {
+        if (_foreground) _clock.resume();
         setState(() {
           _nativeReturnPending = !_foreground;
           _nativeOpen = !_foreground;

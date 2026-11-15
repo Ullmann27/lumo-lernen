@@ -30,6 +30,7 @@ class ReadingLessonCompanion extends StatefulWidget {
     this.lastCorrect,
     this.onHelpUsed,
     this.onAnswerConfirmed,
+    this.voice,
   }) : assert(helpSteps.length > 0 && helpSteps.length <= 5);
 
   final LumoAppState appState;
@@ -43,6 +44,7 @@ class ReadingLessonCompanion extends StatefulWidget {
   final bool? lastCorrect;
   final VoidCallback? onHelpUsed;
   final ValueChanged<String>? onAnswerConfirmed;
+  final LumoVoice? voice;
 
   @override
   State<ReadingLessonCompanion> createState() => _ReadingLessonCompanionState();
@@ -58,10 +60,13 @@ class _ReadingLessonCompanionState extends State<ReadingLessonCompanion>
   LumoCompanionTaskContext? _published;
   LumoLearningIdentity? _candidateIdentity;
   int _helpLevel = 0, _speechEpoch = 0, _publishEpoch = 0;
+  int? _voiceRequest;
   bool _foreground = true, _routeCurrent = true, _invalid = false;
   bool _talkOpen = false, _nativeOpen = false, _speaking = false;
   bool _showHelp = false, _focused = false;
   String? _candidateNotice;
+
+  LumoVoice get _voice => widget.voice ?? LumoVoice.instance;
 
   bool get _active =>
       mounted &&
@@ -204,24 +209,41 @@ class _ReadingLessonCompanionState extends State<ReadingLessonCompanion>
     final identity = _binding.identity;
     if (!_active || identity == null) return;
     final epoch = ++_speechEpoch;
-    await widget.beforeInteraction();
-    if (!_active || epoch != _speechEpoch || !_binding.matches(identity))
+    final preparing = widget.beforeInteraction();
+    final preparedRevision = _voice.requestRevision;
+    await preparing;
+    if (!_active ||
+        epoch != _speechEpoch ||
+        !_binding.matches(identity) ||
+        _voice.requestRevision != preparedRevision) {
       return;
+    }
     if (!widget.appState.state.settings.voiceEnabled) return;
     _speaking = true;
+    final before = _voice.requestRevision;
+    final playing = _voice.speakAndWait(text,
+        style: VoiceStyle.explain, speedFactor: slower ? .7 : 1);
+    _voiceRequest =
+        _voice.requestRevision == before ? null : _voice.requestRevision;
     try {
-      await LumoVoice.instance.speakAndWait(text,
-          style: VoiceStyle.explain, speedFactor: slower ? .7 : 1);
+      await playing;
     } finally {
-      if (epoch == _speechEpoch) _speaking = false;
+      if (epoch == _speechEpoch) {
+        _speaking = false;
+        _voiceRequest = null;
+      }
     }
   }
 
   void _cancelOwnedSpeech() {
     ++_speechEpoch;
-    if (_speaking) {
-      _speaking = false;
-      unawaited(LumoVoice.instance.stop());
+    final request = _speaking ? _voiceRequest : null;
+    _voiceRequest = null;
+    _speaking = false;
+    // Local cleanup always runs; an older page has no right to stop a newer
+    // shared-player request, including one that is still preparing.
+    if (request != null && _voice.requestRevision == request) {
+      unawaited(_voice.stop());
     }
     // Even a request not heard yet must lose its confirmation lease.
     _candidateIdentity = null;

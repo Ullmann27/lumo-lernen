@@ -13,6 +13,7 @@ import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_learning_card
 import 'package:lumo_lernen/features/learning/widgets/interactive_task_workspace.dart';
 import 'package:lumo_lernen/features/learning/widgets/learning_question_coach.dart';
 import 'package:lumo_lernen/features/quiz/quiz_show_content.dart';
+import 'package:lumo_lernen/features/quiz/quiz_show_repository.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 
 import '../helpers/lumo_capture.dart';
@@ -184,10 +185,10 @@ void main() {
             .byElementPredicate((candidate) => identical(candidate, element)));
         expect(size.height, greaterThanOrEqualTo(48));
       }
-      await captureLumoBoundary(tester,
-          boundaryKey: const ValueKey('cards-question-capture'),
-          path:
-              'docs/evidence/lumo-nextgen-game-questions/${display.$3}-cards.png');
+      await captureLumoBoundary(
+          tester,
+          const ValueKey('cards-question-capture'),
+          'docs/evidence/lumo-nextgen-game-questions/${display.$3}-cards.png');
       expect(tester.takeException(), isNull);
       await _close(tester, app);
     }
@@ -243,7 +244,9 @@ void main() {
         isTrue);
     await _frames(tester);
     final prefs = await SharedPreferences.getInstance();
-    final keys = prefs.getKeys().where((key) => key.contains('quiz_round'));
+    final keys = prefs
+        .getKeys()
+        .where((key) => key.startsWith(QuizRoundRepository.key('')));
     expect(keys, isNotEmpty);
     final before = {for (final key in keys) key: prefs.getString(key)};
     expect(

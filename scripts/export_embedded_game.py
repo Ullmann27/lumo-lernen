@@ -69,6 +69,9 @@ GROUNDED_GATE_ALLOWED_REVISIONS = frozenset((
     '4d0fd40fdf188be6ca86057596c7b51f41701fa3',
     # Combined 2022 chassis + Adventure art; GLB hash checks remain mandatory.
     'd38967f6d39bc20188afe525b0af122d80634029',
+    # 2027 learning integration: the existing gate GLB was independently read
+    # from this exact Git tree and retains GROUNDED_GATE_GLB_SHA256 unchanged.
+    '332307fafa2f68a1aa3667d81b7c90d3683c5c45',
 ))
 GROUNDED_GATE_GLB_SHA256 = '8c8891062888eda5b553ae77390eda1a733368fc0bf73b86aefe2a7a666a565d'
 GROUNDED_GATE_FILE = 'assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb'

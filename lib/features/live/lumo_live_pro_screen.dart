@@ -9,6 +9,7 @@
 //   3. SAFARI:     Lumo zeigt Tier -> Kind muss raten und sprechen
 // ════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
 import 'dart:io';
 import 'dart:math' as math;
 
@@ -21,6 +22,10 @@ import '../../app/app_state.dart';
 import '../../core/lumo_brain.dart';
 import '../../core/lumo_feature_permissions.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/learning_attempt_id.dart';
+import '../../core/lumo_learning_session_contract.dart';
+import '../../widgets/fox/lumo_companion_requests.dart';
+import '../learning/widgets/learning_question_coach.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../widgets/lumo_mirror.dart';
 import '../../widgets/design/lumo_design_system.dart';
@@ -70,8 +75,11 @@ extension LiveModeMeta on LiveMode {
 }
 
 class LumoLiveProScreen extends StatefulWidget {
-  const LumoLiveProScreen({super.key, required this.appState});
+  const LumoLiveProScreen(
+      {super.key, required this.appState, this.speechListener, this.voice});
   final LumoAppState appState;
+  final LumoSpeechListener? speechListener;
+  final LumoVoice? voice;
 
   @override
   State<LumoLiveProScreen> createState() => _LumoLiveProScreenState();
@@ -79,7 +87,11 @@ class LumoLiveProScreen extends StatefulWidget {
 
 class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     with WidgetsBindingObserver {
-  final LumoSpeechListener _stt = LumoSpeechListener();
+  late final LumoSpeechListener _stt =
+      widget.speechListener ?? LumoSpeechListener();
+  final _bus = LumoCompanionRequests.instance;
+  final _session = newLearningAttemptId();
+  LumoVoice get _voice => widget.voice ?? LumoVoice.instance;
   final ImagePicker _picker = ImagePicker();
   final _rng = math.Random();
 
@@ -88,7 +100,39 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   bool _listening = false;
   Object? _photoCaptureOperation;
   bool get _capturingPhoto => _photoCaptureOperation != null;
-  int _modeRevision = 0;
+  int _modeRevision = 0, _interactionEpoch = 0, _captureEpoch = 0;
+  late int _profileGeneration;
+  int? _voiceRequest;
+  bool _foreground = true, _routeCurrent = true, _rewardOpen = false;
+  bool _answered = false, _photoComplete = false, _helpUsed = false;
+  bool? _lastCorrect;
+  String? _lastAnswer;
+  Object? _listenOperation, _answerOperation;
+  LumoLearningIdentity? _listenIdentity;
+  Timer? _greeting, _advance;
+
+  bool get _active =>
+      mounted && _foreground && _routeCurrent && !widget.appState.resetting;
+  bool get _taskAnswering =>
+      !_answered &&
+      (_mode != LiveMode.photoQuiz || _capturedImagePath != null) &&
+      (_mode != LiveMode.safari || _safariAnimal != null);
+  String get _taskId => 'live:$_session:${_mode.name}:$_modeRevision';
+  String get _prompt => switch (_mode) {
+        LiveMode.wordMagic => 'Sag mir ein Wort und ich erkläre es dir!',
+        LiveMode.photoQuiz => _capturedImagePath == null
+            ? 'Mach ein Foto und ich stelle dir kluge Fragen!'
+            : _extendedPhotoQuestions[_photoQuizQuestionIdx],
+        LiveMode.safari => 'Welches Tier siehst du? Sag mir den Namen!',
+      };
+  String get _helpText => switch (_mode) {
+        LiveMode.wordMagic =>
+          'Wähle ein Wort, über das du mehr erfahren möchtest. Prüfe deinen Vorschlag vor dem Bestätigen.',
+        LiveMode.photoQuiz =>
+          'Schau auf dein eigenes Foto. Beschreibe, was du selbst erkennen kannst. Deine Beschreibung wird hier nicht als richtig oder falsch bewertet.',
+        LiveMode.safari =>
+          'Schau genau auf das gezeigte Tier. Welche Beine, Flügel oder besonderen Merkmale erkennst du?',
+      };
   String _recognized = '';
   String? _capturedImagePath;
   String? _lumoMessage;
@@ -162,206 +206,323 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   @override
   void initState() {
     super.initState();
+    _profileGeneration = widget.appState.profileGeneration;
+    _foreground = WidgetsBinding.instance.lifecycleState == null ||
+        WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
     WidgetsBinding.instance.addObserver(this);
-    LumoVoice.instance.status.addListener(_voiceStatusChanged);
+    widget.appState.addListener(_profileChanged);
+    _voice.status.addListener(_voiceStatusChanged);
     _stt.addListener(_speechStatusChanged);
-    // Mood Wechsel demo
-    Future.delayed(const Duration(milliseconds: 600), () {
-      if (mounted) {
+    _bus.learningCancellation.addListener(_learningCancelled);
+    final revision = _modeRevision;
+    _greeting = Timer(const Duration(milliseconds: 600), () {
+      if (_active && revision == _modeRevision) {
         setState(() => _mood = LumoMirrorMood.happy);
-        _speak('Hallo! Was sollen wir heute spielen?');
+        unawaited(_speak('Hallo! Was sollen wir heute spielen?'));
       }
     });
   }
 
-  Future<void> _initStt() async {
-    try {
-      final ok = await _stt.initialize();
-      if (mounted) setState(() => _sttReady = ok);
-    } catch (e) {
-      debugPrint('STT init error: $e');
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _routeCurrent = ModalRoute.isCurrentOf(context) ?? true;
+    if (!_routeCurrent && !_rewardOpen) _cancelInteraction();
+  }
+
+  void _profileChanged() {
+    if (_profileGeneration != widget.appState.profileGeneration ||
+        widget.appState.resetting) {
+      _profileGeneration = widget.appState.profileGeneration;
+      _modeRevision++;
+      _cancelInteraction();
+      if (mounted) {
+        setState(() {
+          _lastAnswer = null;
+          _lastCorrect = null;
+          _helpUsed = false;
+        });
+      }
     }
   }
 
   void _speechStatusChanged() {
-    if (mounted) setState(() => _listening = _stt.listening);
+    if (mounted) setState(() => _listening = _active && _stt.listening);
+  }
+
+  void _learningCancelled() {
+    final identity = _listenIdentity;
+    if (identity != null && !_bus.isCurrentLearningIdentity(identity)) {
+      _cancelListening();
+    }
   }
 
   bool _isCurrentInteraction(int revision, LearningProfileLease owner) =>
-      mounted &&
+      _active &&
       revision == _modeRevision &&
       widget.appState.isCurrentLearningLease(owner);
 
-  void _switchMode(LiveMode m) {
+  void _cancelListening() {
+    ++_captureEpoch;
+    _listenOperation = null;
+    _listenIdentity = null;
+    _listening = false;
+    unawaited(_stt.cancel());
+  }
+
+  void _cancelOwnedVoice() {
+    final request = _voiceRequest;
+    _voiceRequest = null;
+    if (request != null && _voice.requestRevision == request) {
+      unawaited(_voice.stop());
+    }
+  }
+
+  void _cancelInteraction() {
+    ++_interactionEpoch;
+    _greeting?.cancel();
+    _advance?.cancel();
+    _answerOperation = null;
+    _cancelListening();
+    _cancelOwnedVoice();
+  }
+
+  void _switchMode(LiveMode mode) {
+    if (!_active) return;
+    _cancelInteraction();
     _modeRevision++;
-    _stt.cancel();
     setState(() {
-      _mode = m;
-      _listening = false;
+      _mode = mode;
       _recognized = '';
       _capturedImagePath = null;
       _lumoMessage = null;
       _safariAnimal = null;
-      _safariScore = 0;
-      _safariRound = 0;
-      _safariTotal = 0;
+      _safariScore = _safariRound = _safariTotal = 0;
       _photoQuizQuestionIdx = 0;
+      _answered = _photoComplete = _helpUsed = false;
+      _lastAnswer = null;
+      _lastCorrect = null;
       _mood = LumoMirrorMood.curious;
     });
     HapticFeedback.lightImpact();
-    if (m == LiveMode.safari) {
+    if (mode == LiveMode.safari) {
       _nextSafariAnimal();
-    } else if (m == LiveMode.wordMagic) {
-      _speak('Sag mir ein Wort und ich erkläre es dir!');
-    } else if (m == LiveMode.photoQuiz) {
-      _speak('Mach ein Foto und ich stelle dir kluge Fragen!');
+    } else {
+      unawaited(_speak(_prompt));
     }
   }
 
   Future<void> _speak(String text, {LearningProfileLease? owner}) async {
-    if (!mounted ||
-        (owner != null && !widget.appState.isCurrentLearningLease(owner))) return;
-    final revision = _modeRevision;
-    setState(() {
-      _lumoMessage = text;
-    });
+    if (!_active ||
+        (owner != null && !widget.appState.isCurrentLearningLease(owner))) {
+      return;
+    }
+    final revision = _modeRevision, epoch = _interactionEpoch;
+    setState(() => _lumoMessage = text);
     await widget.appState.ensureSettingsLoaded();
-    if (!mounted ||
+    if (!_active ||
         revision != _modeRevision ||
+        epoch != _interactionEpoch ||
         (owner != null && !widget.appState.isCurrentLearningLease(owner)) ||
-        !widget.appState.state.settings.voiceEnabled) return;
+        !widget.appState.state.settings.voiceEnabled) {
+      return;
+    }
+    final voice = _voice;
+    final before = voice.requestRevision;
+    final playing = voice.speakAndWait(text);
+    final request =
+        voice.requestRevision == before ? null : voice.requestRevision;
+    _voiceRequest = request;
     try {
-      LumoVoice.instance.speak(text);
-    } catch (_) {}
+      await playing;
+    } catch (_) {
+      // Local visible feedback remains available when playback is unavailable.
+    } finally {
+      if (_voiceRequest == request) _voiceRequest = null;
+    }
   }
 
   void _voiceStatusChanged() {
     if (!mounted) return;
-    final speaking = LumoVoice.instance.status.value == VoiceStatus.speaking;
     setState(() {
-      _speaking = speaking;
-      _lumoCurrentlySpeaking = speaking;
+      _speaking = _active && _voice.status.value == VoiceStatus.speaking;
+      _lumoCurrentlySpeaking = _active &&
+          const {
+            VoiceStatus.preparing,
+            VoiceStatus.speaking,
+            VoiceStatus.paused,
+          }.contains(_voice.status.value);
     });
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state != AppLifecycleState.resumed) {
-      _stt.cancel();
-      LumoVoice.instance.stop();
-    }
+    _foreground = state == AppLifecycleState.resumed;
+    if (!_foreground) _cancelInteraction();
+    if (mounted) setState(() {});
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    LumoVoice.instance.status.removeListener(_voiceStatusChanged);
+    widget.appState.removeListener(_profileChanged);
+    _voice.status.removeListener(_voiceStatusChanged);
+    _bus.learningCancellation.removeListener(_learningCancelled);
     _stt.removeListener(_speechStatusChanged);
-    _stt.dispose();
-    LumoVoice.instance.stop();
+    _cancelInteraction();
+    if (widget.speechListener == null) _stt.dispose();
     super.dispose();
   }
 
   Future<void> _startListening() async {
-    if (_listening ||
+    if (!_active ||
+        !_taskAnswering ||
+        _listening ||
+        _listenOperation != null ||
         _capturingPhoto ||
-        (_mode == LiveMode.photoQuiz && _capturedImagePath == null)) return;
-    final revision = _modeRevision;
-    final source = widget.appState.captureLearningProfile();
-    LearningProfileLease owner;
+        _answerOperation != null) {
+      return;
+    }
+    final identity = _bus.learningIdentity.value;
+    if (identity == null || identity.taskId != _taskId) return;
+    final revision = _modeRevision, epoch = ++_captureEpoch;
+    final operation = Object();
+    _listenOperation = operation;
+    _listenIdentity = identity;
+    LearningProfileLease? owner;
+    bool current() =>
+        owner != null &&
+        _isCurrentInteraction(revision, owner) &&
+        epoch == _captureEpoch &&
+        identical(_listenOperation, operation) &&
+        _bus.isCurrentLearningIdentity(identity);
     try {
-      owner = await source;
+      owner = await widget.appState.captureLearningProfile();
       await widget.appState.prepareLearningLease(owner);
-    } catch (_) {
-      return;
-    }
-    if (!_isCurrentInteraction(revision, owner)) return;
-    if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
-        !_isCurrentInteraction(revision, owner)) {
-      return;
-    }
-    if (!_sttReady) await _initStt();
-    if (!_isCurrentInteraction(revision, owner)) return;
-    if (!_sttReady) {
-      _speak('Ich brauch dein Mikrofon - bitte erlauben!');
-      return;
-    }
-    if (_listening) return;
-    HapticFeedback.lightImpact();
-    setState(() {
-      _listening = true;
-      _recognized = '';
-      _mood = LumoMirrorMood.curious;
-    });
-    try {
+      if (!mounted || !current()) return;
+      if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
+          !current()) {
+        return;
+      }
+      if (!_sttReady) {
+        final ready = await _stt.initialize();
+        if (!current()) return;
+        _sttReady = ready;
+      }
+      if (!_sttReady) {
+        unawaited(_speak(_stt.error ??
+            'Die Spracheingabe ist nicht bereit. Du kannst deine Antwort tippen.'));
+        return;
+      }
+      _cancelOwnedVoice();
+      HapticFeedback.lightImpact();
+      setState(() {
+        _recognized = '';
+        _mood = LumoMirrorMood.curious;
+      });
+      var finished = false;
       await _stt.startListening(
         onResult: (words) {
-          if (_isCurrentInteraction(revision, owner)) {
-            setState(() => _recognized = words);
+          if (!finished && current()) setState(() => _recognized = words);
+        },
+        onFinalResult: (words) {
+          if (finished || !current()) return;
+          finished = true;
+          // The device final replaces any partial. It only proposes an answer;
+          // the existing evaluator runs after an explicit, scoped confirmation.
+          final finalWords = words.trim();
+          setState(() {
+            _recognized = finalWords;
+            _listening = false;
+            _mood = LumoMirrorMood.think;
+          });
+          _listenOperation = null;
+          _listenIdentity = null;
+          if (finalWords.isEmpty) {
+            unawaited(_speak('Hmm, ich hab nichts gehoert. Probier nochmal!'));
+          } else {
+            _bus.requestLearningAction(LumoLearningAction.proposeAnswer,
+                identity: identity, candidate: finalWords);
           }
         },
-        onFinalResult: (_) {
-          if (_isCurrentInteraction(revision, owner)) _onSpeechDone(owner);
+        onNoMatch: () {
+          if (finished || !current()) return;
+          finished = true;
+          _listenOperation = null;
+          _listenIdentity = null;
+          setState(() => _listening = false);
         },
       );
-    } catch (e) {
-      if (_isCurrentInteraction(revision, owner)) {
-        setState(() => _listening = false);
+    } catch (_) {
+      if (current()) setState(() => _listening = false);
+    } finally {
+      if (identical(_listenOperation, operation) &&
+          (!_stt.listening && !_stt.starting && !_stt.awaitingFinalResult)) {
+        _listenOperation = null;
+        _listenIdentity = null;
+        if (mounted) setState(() {});
       }
     }
   }
 
-  Future<void> _onSpeechDone(LearningProfileLease owner) async {
-    if (!mounted || !widget.appState.isCurrentLearningLease(owner)) return;
-    setState(() {
-      _listening = false;
-      _mood = LumoMirrorMood.think;
-    });
-    if (_recognized.isEmpty) {
-      _speak('Hmm, ich hab nichts gehoert. Probier nochmal!');
-      setState(() => _mood = LumoMirrorMood.sad);
-      return;
-    }
-    // Mode-spezifische Behandlung
-    switch (_mode) {
-      case LiveMode.wordMagic:
-        await _handleWordMagic(owner);
-        break;
-      case LiveMode.photoQuiz:
-        await _handlePhotoQuiz(owner);
-        break;
-      case LiveMode.safari:
-        await _handleSafariAnswer(owner);
-        break;
+  Future<void> _confirmAnswer(String text) async {
+    if (!_active || !_taskAnswering || _answerOperation != null) return;
+    final identity = _bus.learningIdentity.value;
+    if (identity == null || identity.taskId != _taskId) return;
+    final operation = Object();
+    final revision = _modeRevision, epoch = _interactionEpoch;
+    _answerOperation = operation;
+    _cancelListening();
+    try {
+      final owner = await widget.appState.captureLearningProfile();
+      await widget.appState.prepareLearningLease(owner);
+      if (!_isCurrentInteraction(revision, owner) ||
+          epoch != _interactionEpoch ||
+          !identical(_answerOperation, operation) ||
+          !_bus.isCurrentLearningIdentity(identity)) {
+        return;
+      }
+      setState(() {
+        _answered = true;
+        _recognized = text;
+        _lastAnswer = text;
+        _lastCorrect = null;
+      });
+      switch (_mode) {
+        case LiveMode.wordMagic:
+          _handleWordMagic(owner, text);
+        case LiveMode.photoQuiz:
+          _handlePhotoQuiz(owner);
+        case LiveMode.safari:
+          _handleSafariAnswer(owner, text);
+      }
+    } catch (_) {
+      // A failed or retired profile lease cannot submit or reward an answer.
+      if (_active && identical(_answerOperation, operation)) {
+        setState(() => _lumoMessage =
+            'Deine Antwort wurde noch nicht übernommen. Bitte versuche es erneut.');
+      }
+    } finally {
+      if (mounted && identical(_answerOperation, operation)) {
+        setState(() => _answerOperation = null);
+      }
     }
   }
 
-  // ────────────────────────────────────────────────────────────────
-  // MODE 1: WORT-MAGIE
-  // ────────────────────────────────────────────────────────────────
-  Future<void> _handleWordMagic(LearningProfileLease owner) async {
-    final word = _recognized.trim();
-    final reply =
-        LumoBrain.instance.ask('Was ist ein $word?', topicId: 's1_tiere');
-    setState(() {
-      _mood = LumoMirrorMood.happy;
-    });
+  void _handleWordMagic(LearningProfileLease owner, String word) {
+    final reply = LumoBrain.instance
+        .ask('Was ist ein ${word.trim()}?', topicId: 's1_tiere');
+    setState(() => _mood = LumoMirrorMood.happy);
+    // Existing participation reward; no correctness claim is inferred.
     widget.appState.addStars(1);
     widget.appState.addXp(5);
     widget.appState.grantCosmosReward(
-      lease: owner,
-      subjectId: 'live_word',
-      isMath: false,
-      isPerfect: false,
-    );
-    _speak(reply.text);
+        lease: owner, subjectId: 'live_word', isMath: false, isPerfect: false);
+    unawaited(_speak(reply.text, owner: owner));
   }
 
-  // ────────────────────────────────────────────────────────────────
-  // MODE 2: FOTO-QUIZ
-  // ────────────────────────────────────────────────────────────────
   Future<void> _capturePhoto() async {
-    if (_capturingPhoto || _mode != LiveMode.photoQuiz) return;
+    if (!_active || _capturingPhoto || _mode != LiveMode.photoQuiz) return;
     final revision = _modeRevision;
     final operation = Object();
     LearningProfileLease? captureOwner;
@@ -370,70 +531,118 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
       final owner = await widget.appState.captureLearningProfile();
       captureOwner = owner;
       await widget.appState.prepareLearningLease(owner);
-      if (!_isCurrentInteraction(revision, owner)) return;
+      if (!mounted || !_isCurrentInteraction(revision, owner)) return;
       if (!await LumoFeaturePermissions.camera(context, widget.appState) ||
-          !_isCurrentInteraction(revision, owner)) return;
+          !_isCurrentInteraction(revision, owner)) {
+        return;
+      }
       final photo = await _picker.pickImage(
-        source: ImageSource.camera,
-        imageQuality: 60,
-        maxWidth: 800,
-      );
+          source: ImageSource.camera, imageQuality: 60, maxWidth: 800);
       if (photo == null || !_isCurrentInteraction(revision, owner)) return;
+      _cancelInteraction();
+      _modeRevision++;
       setState(() {
         _capturedImagePath = photo.path;
         _photoQuizQuestionIdx = 0;
+        _answered = _photoComplete = _helpUsed = false;
+        _lastAnswer = null;
+        _lastCorrect = null;
         _mood = LumoMirrorMood.curious;
       });
-      _speak(_extendedPhotoQuestions[0], owner: owner);
-    } catch (e) {
+      unawaited(_speak(_prompt, owner: owner));
+    } catch (_) {
       final owner = captureOwner;
       if (identical(_photoCaptureOperation, operation) &&
           owner != null &&
           _isCurrentInteraction(revision, owner)) {
-        _speak('Das Foto hat nicht geklappt. Probier nochmal!', owner: owner);
+        unawaited(_speak('Das Foto hat nicht geklappt. Probier nochmal!',
+            owner: owner));
       }
     } finally {
-      // A late completion can release only the capture it started.
       if (mounted && identical(_photoCaptureOperation, operation)) {
         setState(() => _photoCaptureOperation = null);
       }
     }
   }
 
-  Future<void> _handlePhotoQuiz(LearningProfileLease owner) async {
+  void _scheduleAdvance(
+      Duration duration, LearningProfileLease owner, VoidCallback next) {
+    final revision = _modeRevision, epoch = _interactionEpoch;
+    _advance?.cancel();
+    _advance = Timer(duration, () {
+      if (_isCurrentInteraction(revision, owner) &&
+          epoch == _interactionEpoch) {
+        next();
+      }
+    });
+  }
+
+  void _showReward({required int stars, required int xp}) {
+    _rewardOpen = true;
+    unawaited(showLumoRewardBurst(context, stars: stars, xp: xp)
+        .whenComplete(() => _rewardOpen = false));
+  }
+
+  void _handlePhotoQuiz(LearningProfileLease owner) {
     if (_mode != LiveMode.photoQuiz || _capturedImagePath == null) return;
-    final revision = _modeRevision;
-    // Nach jeder Antwort: naechste Frage oder Ende
-    setState(() {});
+    // Preserve the existing participation reward without declaring the unseen
+    // content of a child's photograph correct or incorrect.
     widget.appState.addStars(1);
     widget.appState.addXp(5);
     widget.appState.grantCosmosReward(
-      lease: owner,
-      subjectId: 'live_photo',
-      isMath: false,
-      isPerfect: false,
-    );
+        lease: owner, subjectId: 'live_photo', isMath: false, isPerfect: false);
     if (_photoQuizQuestionIdx + 1 < _extendedPhotoQuestions.length) {
-      _photoQuizQuestionIdx++;
       setState(() => _mood = LumoMirrorMood.happy);
-      await Future.delayed(const Duration(milliseconds: 1500));
-      if (!_isCurrentInteraction(revision, owner) ||
-          _capturedImagePath == null) return;
-      _speak(_extendedPhotoQuestions[_photoQuizQuestionIdx]);
+      _scheduleAdvance(
+          const Duration(milliseconds: 1500), owner, _nextPhotoQuestion);
     } else {
-      setState(() => _mood = LumoMirrorMood.cheer);
-      _speak('Super! Du hast alle Fragen beantwortet! '
-          'Du hast 3 Sterne verdient!');
-      if (mounted) showLumoRewardBurst(context, stars: 3, xp: 15);
+      setState(() {
+        _photoComplete = true;
+        _mood = LumoMirrorMood.cheer;
+      });
+      unawaited(_speak('Du hast alle Foto-Fragen beantwortet!', owner: owner));
+      _showReward(stars: 3, xp: 15);
       widget.appState.addStars(2);
       widget.appState.addXp(10);
     }
   }
 
-  // ────────────────────────────────────────────────────────────────
-  // MODE 3: TIER-SAFARI
-  // ────────────────────────────────────────────────────────────────
+  void _nextPhotoQuestion() {
+    if (!_active ||
+        _mode != LiveMode.photoQuiz ||
+        !_answered ||
+        _photoQuizQuestionIdx + 1 >= _extendedPhotoQuestions.length) {
+      return;
+    }
+    _cancelInteraction();
+    _modeRevision++;
+    setState(() {
+      _photoQuizQuestionIdx++;
+      _answered = _helpUsed = false;
+      _recognized = '';
+      _lastAnswer = null;
+      _lastCorrect = null;
+    });
+    unawaited(_speak(_prompt));
+  }
+
+  void _newWord() {
+    if (!_active) return;
+    _cancelInteraction();
+    _modeRevision++;
+    setState(() {
+      _answered = _helpUsed = false;
+      _recognized = '';
+      _lastAnswer = null;
+      _lastCorrect = null;
+    });
+    unawaited(_speak(_prompt));
+  }
+
   void _nextSafariAnimal() {
+    if (!_active || _mode != LiveMode.safari) return;
+    _cancelInteraction();
+    _modeRevision++;
     _safariRound++;
     _safariTotal = _safariRound;
     final animals = _animalPictures.keys.toList(growable: false);
@@ -441,44 +650,46 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     setState(() {
       _safariAnimal = animal;
       _recognized = '';
+      _answered = _helpUsed = false;
+      _lastAnswer = null;
+      _lastCorrect = null;
       _mood = LumoMirrorMood.curious;
     });
-    _speak('Welches Tier siehst du? Sag mir den Namen!');
+    unawaited(_speak(_prompt));
   }
 
-  Future<void> _handleSafariAnswer(LearningProfileLease owner) async {
-    final revision = _modeRevision;
+  void _handleSafariAnswer(LearningProfileLease owner, String answer) {
     if (_safariAnimal == null) return;
-    final said = _recognized.toLowerCase().trim();
+    final said = answer.toLowerCase().trim();
     final correct = _safariAnimal!.toLowerCase();
-    // Levenshtein-Toleranz nach Wortlaenge: kurze Tiere ('Hai') haben
-    // Toleranz 1, lange ('Schildkroete') Toleranz 3 - statt fixer 2.
-    // Sonst sind 5-Jaehrige mit Schmetterling vs Schildkroete im Vorteil
-    // oder bei Bar/Baer ungerecht 'falsch'.
+    // Existing Safari evaluator and its length-dependent tolerance remain the
+    // sole correctness authority, reached only by confirmed final input.
     final tol = (correct.length / 4).floor().clamp(1, 3);
     final isRight = said.contains(correct) ||
         correct.contains(said) ||
         _levenshtein(said, correct) <= tol;
+    setState(() => _lastCorrect = isRight);
     if (isRight) {
       _safariScore++;
       setState(() => _mood = LumoMirrorMood.cheer);
-      _speak('Richtig! Das ist ein $_safariAnimal!');
+      unawaited(_speak('Richtig! Das ist ein $_safariAnimal!', owner: owner));
       widget.appState.addStars(2);
       widget.appState.addXp(10);
       widget.appState.grantCosmosReward(
-      lease: owner,
-        subjectId: 'live_safari',
-        isMath: false,
-        isPerfect: true,
-      );
-      if (mounted) showLumoRewardBurst(context, stars: 2, xp: 10);
-      await Future.delayed(const Duration(milliseconds: 2200));
-      if (_isCurrentInteraction(revision, owner)) _nextSafariAnimal();
+          lease: owner,
+          subjectId: 'live_safari',
+          isMath: false,
+          isPerfect: true);
+      _showReward(stars: 2, xp: 10);
+      _scheduleAdvance(
+          const Duration(milliseconds: 2200), owner, _nextSafariAnimal);
     } else {
       setState(() => _mood = LumoMirrorMood.sad);
-      _speak('Hmm, nicht ganz. Es ist ein $_safariAnimal. Versuch noch eins!');
-      await Future.delayed(const Duration(milliseconds: 2500));
-      if (_isCurrentInteraction(revision, owner)) _nextSafariAnimal();
+      unawaited(_speak(
+          'Hmm, nicht ganz. Es ist ein $_safariAnimal. Versuch noch eins!',
+          owner: owner));
+      _scheduleAdvance(
+          const Duration(milliseconds: 2500), owner, _nextSafariAnimal);
     }
   }
 
@@ -520,104 +731,142 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(LumoTokens.space16),
-                  child: Column(
-                    children: [
-                      // Original-Lumo remains the lead character; the expressive
-                      // mirror is a live reaction indicator, not the sole mascot.
-                      Center(
-                        child: SizedBox(
-                          height: 195,
-                          width: 260,
-                          child: Stack(alignment: Alignment.center, children: [
-                            const LumoFoxPose(
-                              pose: LumoDesignFoxPose.armsOpen, size: 178),
-                            Positioned(
-                              right: 0,
-                              bottom: 0,
-                              child: LumoMirror(
-                                mood: _mood, size: 105,
-                                isSpeaking: _speaking),
-                            ),
-                          ]),
+                  child: LearningQuestionCoach(
+                    key: ValueKey('live-coach:$_profileGeneration'),
+                    appState: widget.appState,
+                    taskId: _taskId,
+                    ownerSection: 'live',
+                    activity: 'live-${_mode.name}',
+                    subject:
+                        _mode == LiveMode.safari ? 'Sachunterricht' : 'Deutsch',
+                    unit: _mode.title,
+                    prompt: _prompt,
+                    choices: const {},
+                    answering: _taskAnswering,
+                    active: !widget.appState.resetting,
+                    lastAnswer: _lastAnswer,
+                    lastCorrect: _lastCorrect,
+                    helpUsed: _helpUsed,
+                    helpText: _helpUsed ? _helpText : null,
+                    visibleExplanation: _answered && _mode == LiveMode.wordMagic
+                        ? _lumoMessage
+                        : null,
+                    onHint: () => setState(() => _helpUsed = true),
+                    onConfirmedAnswer: _confirmAnswer,
+                    voice: widget.voice,
+                    beforeInteraction: _cancelInteraction,
+                    onStop: _cancelInteraction,
+                    child: Column(
+                      children: [
+                        // Original-Lumo remains the lead character; the expressive
+                        // mirror is a live reaction indicator, not the sole mascot.
+                        Center(
+                          child: SizedBox(
+                            height: 195,
+                            width: 260,
+                            child:
+                                Stack(alignment: Alignment.center, children: [
+                              const LumoFoxPose(
+                                  pose: LumoDesignFoxPose.armsOpen, size: 178),
+                              Positioned(
+                                right: 0,
+                                bottom: 0,
+                                child: LumoMirror(
+                                    mood: _mood,
+                                    size: 105,
+                                    isSpeaking: _speaking),
+                              ),
+                            ]),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 14),
-                      Container(
-                        key: const ValueKey('live-mode-instruction'),
-                        width: double.infinity,
-                        padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [Color(0xFF16395E), Color(0xFF4A3F87)]),
-                          border: Border.all(
-                            color: const Color(0xFF7FD9F1).withOpacity(.65)),
-                          borderRadius: BorderRadius.circular(22),
+                        const SizedBox(height: 14),
+                        Container(
+                          key: const ValueKey('live-mode-instruction'),
+                          width: double.infinity,
+                          padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                                colors: [Color(0xFF16395E), Color(0xFF4A3F87)]),
+                            border: Border.all(
+                                color:
+                                    const Color(0xFF7FD9F1).withOpacity(.65)),
+                            borderRadius: BorderRadius.circular(22),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(_mode.title,
+                                  style: const TextStyle(
+                                      fontFamily: 'Nunito',
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: 18,
+                                      color: Colors.white)),
+                              const SizedBox(height: 4),
+                              Text(_mode.subtitle,
+                                  style: const TextStyle(
+                                      fontFamily: 'Nunito',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14,
+                                      color: Color(0xFFE2F2FD))),
+                            ],
+                          ),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(_mode.title,
-                              style: const TextStyle(fontFamily: 'Nunito',
-                                fontWeight: FontWeight.w900, fontSize: 18,
-                                color: Colors.white)),
-                            const SizedBox(height: 4),
-                            Text(_mode.subtitle,
-                              style: const TextStyle(fontFamily: 'Nunito',
-                                fontWeight: FontWeight.w700, fontSize: 14,
-                                color: Color(0xFFE2F2FD))),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: LumoTokens.space12),
-                      // Lumo-Nachricht
-                      if (_lumoMessage != null)
-                        LumoPremiumCard(
-                          gradient: LumoTokens.colors.heroLila,
-                          child: Row(children: [
-                            const Text('🦊', style: TextStyle(fontSize: 28)),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Text(_lumoMessage!,
-                                  style: LumoTokens.typo.bodyLarge.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700)),
-                            ),
-                          ]),
-                        ),
-                      const SizedBox(height: LumoTokens.space12),
-                      // Erkanntes Wort
-                      if (_recognized.isNotEmpty)
-                        LumoPremiumCard(
-                          gradient: LumoTokens.colors.heroOrange,
-                          child: Column(children: [
-                            Text('Du hast gesagt:',
-                                style: LumoTokens.typo.bodyMedium.copyWith(
-                                    color: Colors.white.withOpacity(0.85))),
-                            Text('"$_recognized"',
-                                style: LumoTokens.typo.headlineMedium
-                                    .copyWith(color: Colors.white)),
-                          ]),
-                        ),
-                      if (_listening)
-                        Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Row(children: [
-                            Icon(Icons.mic_rounded,
-                                color: LumoTokens.colors.lumoOrange),
-                            const SizedBox(width: 8),
-                            Text('Ich hoere...',
-                                style: LumoTokens.typo.titleMedium),
-                          ]),
-                        ),
-                      const SizedBox(height: LumoTokens.space12),
-                      // Safari-Score
-                      if (_mode == LiveMode.safari && _safariRound > 0)
-                        _buildSafariScore(),
-                      // Aufgenommenes Foto oder vorhandenes Safari-Tier
-                      if (_capturedImagePath != null ||
-                          (_mode == LiveMode.safari && _safariAnimal != null))
-                        _buildImagePane(),
-                    ],
+                        const SizedBox(height: LumoTokens.space12),
+                        // Lumo-Nachricht
+                        if (_lumoMessage != null)
+                          LumoPremiumCard(
+                            gradient: LumoTokens.colors.heroLila,
+                            child: Row(children: [
+                              const Text('🦊', style: TextStyle(fontSize: 28)),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(_lumoMessage!,
+                                    style: LumoTokens.typo.bodyLarge.copyWith(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w700)),
+                              ),
+                            ]),
+                          ),
+                        const SizedBox(height: LumoTokens.space12),
+                        // Erkanntes Wort
+                        if (_recognized.isNotEmpty)
+                          LumoPremiumCard(
+                            gradient: LumoTokens.colors.heroOrange,
+                            child: Column(children: [
+                              Text(
+                                  _listening
+                                      ? 'Ich höre …'
+                                      : (_answered
+                                          ? 'Deine bestätigte Antwort:'
+                                          : 'Dein Antwortvorschlag:'),
+                                  style: LumoTokens.typo.bodyMedium.copyWith(
+                                      color: Colors.white.withOpacity(0.85))),
+                              Text('"$_recognized"',
+                                  style: LumoTokens.typo.headlineMedium
+                                      .copyWith(color: Colors.white)),
+                            ]),
+                          ),
+                        if (_listening)
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Row(children: [
+                              Icon(Icons.mic_rounded,
+                                  color: LumoTokens.colors.lumoOrange),
+                              const SizedBox(width: 8),
+                              Text('Ich hoere...',
+                                  style: LumoTokens.typo.titleMedium),
+                            ]),
+                          ),
+                        const SizedBox(height: LumoTokens.space12),
+                        // Safari-Score
+                        if (_mode == LiveMode.safari && _safariRound > 0)
+                          _buildSafariScore(),
+                        // Aufgenommenes Foto oder vorhandenes Safari-Tier
+                        if (_capturedImagePath != null ||
+                            (_mode == LiveMode.safari && _safariAnimal != null))
+                          _buildImagePane(),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -771,9 +1020,24 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
               child: SizedBox(
                 height: 64,
                 child: ElevatedButton.icon(
-                  onPressed: _capturingPhoto || _listening || _lumoCurrentlySpeaking
+                  onPressed: !_active ||
+                          _capturingPhoto ||
+                          _listening ||
+                          _listenOperation != null ||
+                          _answerOperation != null ||
+                          _lumoCurrentlySpeaking
                       ? null
-                      : (needsPhoto ? _capturePhoto : _startListening),
+                      : needsPhoto
+                          ? _capturePhoto
+                          : _answered
+                              ? (_mode == LiveMode.wordMagic
+                                  ? _newWord
+                                  : _mode == LiveMode.safari
+                                      ? _nextSafariAnimal
+                                      : _photoComplete
+                                          ? _capturePhoto
+                                          : _nextPhotoQuestion)
+                              : _startListening,
                   icon: Icon(
                       needsPhoto
                           ? Icons.camera_alt_rounded
@@ -783,11 +1047,19 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
                       size: 28),
                   label: Text(needsPhoto
                       ? 'Foto machen'
-                      : (_listening
-                          ? 'Hoere...'
-                          : (_mode == LiveMode.photoQuiz
-                              ? 'Antwort sprechen'
-                              : 'Sprechen'))),
+                      : _answered
+                          ? (_mode == LiveMode.wordMagic
+                              ? 'Neues Wort'
+                              : _mode == LiveMode.safari
+                                  ? 'Nächstes Tier'
+                                  : _photoComplete
+                                      ? 'Neues Foto'
+                                      : 'Nächste Frage')
+                          : (_listening
+                              ? 'Hoere...'
+                              : (_mode == LiveMode.photoQuiz
+                                  ? 'Antwort sprechen'
+                                  : 'Sprechen'))),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: LumoTokens.colors.lumoOrange,
                     foregroundColor: Colors.white,
@@ -806,7 +1078,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
                 width: 64,
                 height: 64,
                 child: ElevatedButton(
-                  onPressed: _nextSafariAnimal,
+                  onPressed: _active ? _nextSafariAnimal : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: LumoTokens.colors.gold,
                     foregroundColor: Colors.white,
