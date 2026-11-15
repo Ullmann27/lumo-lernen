@@ -212,7 +212,8 @@ Future<void> showLumoConversation(
       padding:
           EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(sheetContext).bottom),
       child: SizedBox(
-        height: MediaQuery.sizeOf(sheetContext).height * .82,
+        height: MediaQuery.sizeOf(sheetContext).height *
+            (taskIsCurrent ? .60 : .82),
         child: Column(children: [
           Row(children: [
             const SizedBox(width: 20),
