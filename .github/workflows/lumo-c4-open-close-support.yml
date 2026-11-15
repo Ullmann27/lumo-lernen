@@ -3,8 +3,13 @@ on:
   push:
     branches: [support/lumo-c4-open-close-20261115]
     paths:
-      - lib/features/games/connect_four/**
-      - test/games/connect_four_open_close_race_test.dart
+      - lib/**
+      - test/**
+      - tools/auto_install/**
+      - scripts/**
+      - config/**
+      - pubspec.yaml
+      - pubspec.lock
       - .github/workflows/lumo-c4-open-close-support.yml
 permissions:
   contents: read
