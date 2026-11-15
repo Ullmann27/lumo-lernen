@@ -367,7 +367,8 @@ class BindingTests(unittest.TestCase):
         for branch in ('integration/lumo-c4-connections-20261114',
                        'work/lumo-play-quality-20261114',
                        'integration/lumo-agent-execution-20261114',
-                       'integration/lumo-live-connections-20261114'):
+                       'integration/lumo-live-connections-20261114',
+                       'repair/lumo-2020-exhaustive-wiring-20261114'):
             metadata = original_metadata()
             metadata[0]['head_branch'] = branch
             with self.subTest(branch=branch):
