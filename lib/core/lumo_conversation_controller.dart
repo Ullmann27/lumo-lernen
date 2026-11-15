@@ -122,7 +122,7 @@ class LumoConversationController extends ChangeNotifier {
         source: decision == null ? 'local_companion' : 'local_task_dialogue');
     // A task-owner hint is authoritative; never let an open-model reply
     // override the approved help level or claim a learning result.
-    if (decision == null && !context.isAssessment &&
+    if (task == null && decision == null && !context.isAssessment &&
         safeInput &&
         _proxy.isConfigured(state.settings)) {
       try {
