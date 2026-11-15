@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: lumo-nextgen-learning-candidate
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 env:
   CI: 'true'
@@ -141,20 +141,28 @@ jobs:
           persist-credentials: false
       - name: Install the pinned Godot runtime for the next step
         run: bash scripts/install_godot_for_build.sh
-      - name: Actual Godot asset import and learning regressions
+      - name: Actual Godot asset import
+        timeout-minutes: 15
         run: |
           set -euo pipefail
           godot --version | tee evidence/validation/godot-version.txt
           grep -F '4.6.3.stable.official' evidence/validation/godot-version.txt
-          godot --headless --path native-source --editor --import --quit > evidence/validation/godot-import.log 2>&1
+          timeout --signal=TERM --kill-after=15s 12m godot --headless --path native-source --editor --import --quit 2>&1 | tee evidence/validation/godot-import.log
           if grep -E 'SCRIPT ERROR:|ERROR:' evidence/validation/godot-import.log; then exit 1; fi
+      - name: Run the native learning regression suite
+        timeout-minutes: 20
+        run: |
+          set -euo pipefail
           for script in learning_pattern_regression learning_world_regression learning_sharing_regression learning_host_payload_regression learning_generation_regression learning_companion_scope_regression learning_wonder_details_regression nextgen_avatar_contract_review nextgen_learning_route_review nextgen_learning_base_audio_regression; do
-            godot --headless --path native-source --script "res://scripts/tests/$script.gd" 2>&1 | tee "evidence/validation/$script.log"
+            printf 'Running native regression: %s\n' "$script"
+            timeout --signal=TERM --kill-after=15s 3m godot --headless --path native-source --script "res://scripts/tests/$script.gd" 2>&1 | tee "evidence/validation/$script.log"
+            if grep -F 'SCRIPT ERROR:' "evidence/validation/$script.log"; then exit 1; fi
           done
-          godot --headless --path native-source --script res://scripts/tests/learning_english_regression.gd \
+          timeout --signal=TERM --kill-after=15s 3m godot --headless --path native-source --script res://scripts/tests/learning_english_regression.gd \
             -- --output="$GITHUB_WORKSPACE/evidence/validation/learning-english" \
             2>&1 | tee evidence/validation/learning_english_regression.log
-          python3 native-source/tools/validate_project.py 2>&1 | tee evidence/validation/native-project.log
+          if grep -F 'SCRIPT ERROR:' evidence/validation/learning_english_regression.log; then exit 1; fi
+          timeout --signal=TERM --kill-after=15s 2m python3 native-source/tools/validate_project.py 2>&1 | tee evidence/validation/native-project.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
