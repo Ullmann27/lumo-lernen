@@ -248,5 +248,5 @@ class LumoTaskDialogueEngine {
   String _word(int number) => const [
     'null', 'eins', 'zwei', 'drei', 'vier', 'fünf', 'sechs',
     'sieben', 'acht', 'neun', 'zehn'
-  ][number.clamp(0, 10)];
+  ][number.clamp(0, 10).toInt()];
 }
