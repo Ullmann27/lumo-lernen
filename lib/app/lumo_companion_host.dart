@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/lumo_voice.dart';
 import '../core/progress_recommendation_service.dart';
 import '../features/agent/lumo_agent_content.dart';
+import '../features/agent/lumo_task_conversation_panel.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
 import '../widgets/fox/lumo_animated_fox.dart';
 import '../widgets/fox/lumo_free_companion.dart';
@@ -182,7 +183,12 @@ Future<void> showLumoConversation(
       (state.section == LumoSection.exercises &&
           (state.sessionKind == LumoSessionKind.test ||
               state.sessionKind == LumoSessionKind.schoolwork));
-  if (assessment) {
+  final activeTask = LumoCompanionRequests.instance.taskContext.value;
+  final taskIsCurrent = activeTask?.belongsTo(
+          section: state.section.name,
+          generation: appState.profileGeneration) ==
+      true;
+  if (assessment || activeTask?.isExam == true) {
     await showDialog<void>(
         context: context,
         builder: (dialogContext) => AlertDialog(
@@ -197,6 +203,10 @@ Future<void> showLumoConversation(
             ));
     return;
   }
+  // A lesson's previously queued sentence must not overlap the child's
+  // conversation microphone when the dialogue window opens.
+  await LumoVoice.instance.stop();
+  if (!context.mounted) return;
   await showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
@@ -206,7 +216,8 @@ Future<void> showLumoConversation(
       padding:
           EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(sheetContext).bottom),
       child: SizedBox(
-        height: MediaQuery.sizeOf(sheetContext).height * .82,
+        height: MediaQuery.sizeOf(sheetContext).height *
+            (taskIsCurrent ? .60 : .82),
         child: Column(children: [
           Row(children: [
             const SizedBox(width: 20),
@@ -221,13 +232,16 @@ Future<void> showLumoConversation(
             ),
           ]),
           Expanded(
-              child: LumoAgentContent(
-            appState: appState,
-            onSection: (section) {
-              Navigator.pop(sheetContext);
-              onSection(section);
-            },
-          )),
+            child: taskIsCurrent
+                ? LumoTaskConversationPanel(appState: appState)
+                : LumoAgentContent(
+                    appState: appState,
+                    onSection: (section) {
+                      Navigator.pop(sheetContext);
+                      onSection(section);
+                    },
+                  ),
+          ),
         ]),
       ),
     ),
