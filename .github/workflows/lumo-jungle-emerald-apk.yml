@@ -1,0 +1,319 @@
+name: Dschungelherz – verified native course and single family APK
+
+on:
+  push:
+    branches: [feature/lumo-jungle-emerald-3600-20261115-a298]
+    paths:
+      - config/godot-source.json
+      - pubspec.yaml
+      - scripts/verify_legacy_release_pin.py
+      - scripts/export_embedded_game.py
+      - .github/workflows/lumo-jungle-emerald-apk.yml
+      - .github/probes/jungle_android_tour.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-jungle-emerald-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  LUMO_SPLIT_PER_ABI: '1'
+  LUMO_NDK_DISPOSABLE_RUNNER: '1'
+
+jobs:
+  learning-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Verify new version and exact native source identity
+        run: |
+          set -euo pipefail
+          test "$(grep '^version:' pubspec.yaml)" = 'version: 0.13.14+2026'
+          python3 scripts/verify_legacy_release_pin.py
+          python3 -m py_compile .github/probes/jungle_android_tour.py
+      - name: Existing locked Flutter analysis and learning/profile regressions
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+          flutter test --no-pub --reporter=expanded --timeout=90s --concurrency=2 \
+            test/grade_1_to_4_subject_menu_integrity_test.dart \
+            test/grade_3_4_curriculum_menu_integrity_test.dart \
+            test/curriculum_cross_grade_navigation_test.dart \
+            test/home_subject_islands_premium_test.dart \
+            test/profile_repository_storage_hardening_test.dart \
+            test/parents/parent_school_grade_progression_test.dart \
+            test/learning_lab_runtime_test.dart
+
+  native-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install the project's pinned Godot 4.6.3 binary
+        run: bash scripts/install_godot_for_build.sh
+      - name: Fetch only the immutable native source recorded by this Host
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_legacy_release_pin.py
+          mkdir -p native native-proof
+          git init native
+          git -C native remote add origin https://github.com/Ullmann27/lumo-godot.git
+          native_sha="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          git -C native fetch --depth=1 origin "$native_sha"
+          git -C native checkout --detach "$native_sha"
+          git -C native rev-parse HEAD > native-proof/GODOT-SOURCE.txt
+          git rev-parse HEAD > native-proof/HOST-SOURCE.txt
+          godot --headless --path native --editor --import --quit > native-proof/import.log 2>&1
+          if grep -E 'SCRIPT ERROR:|^ERROR:' native-proof/import.log; then exit 1; fi
+      - name: Drive the actual new course and check menu, audio and retained game modes
+        run: |
+          set -euo pipefail
+          export XDG_DATA_HOME="$RUNNER_TEMP/jungle-native-userdata"
+          for test in kart_jungle_geometry_regression kart_jungle_audio_regression kart_jungle_ui_regression kart_jungle_integration_probe kart_modes_regression kart_audio_regression; do
+            timeout 360 godot --headless --path native --rendering-method gl_compatibility \
+              --script "scripts/tests/$test.gd" 2>&1 | tee "native-proof/$test.log"
+            if grep -E 'SCRIPT ERROR:|^ERROR:' "native-proof/$test.log"; then exit 1; fi
+          done
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          folder = Path('native/evidence/jungle_emerald_3600')
+          geometry = json.loads((folder / 'geometry_regression.json').read_text())
+          race = json.loads((folder / 'integration_regression.json').read_text())
+          assert geometry['status'] == 'passed'
+          assert abs(geometry['curve_length_m'] - 3600) <= 18
+          assert geometry['maximum_grade_fraction'] <= 0.08
+          assert race['status'] == 'PASS' and not race['failures']
+          assert race['ordered_checkpoints'] == 16 and race['resets_during_laps'] == 0
+          assert len(race['sections_visited']) == 12 and len(race['rival_distances']) == 5
+          for name in ('geometry_regression.json', 'integration_regression.json'):
+              Path('native-proof', name).write_bytes((folder / name).read_bytes())
+          print('PASS actual two-lap course, twelve sections and five rivals')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dschungelherz-native-proof
+          path: native-proof/
+          if-no-files-found: error
+          retention-days: 30
+
+  single-apk:
+    needs: [learning-validation, native-validation]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Use the existing verified Android and Godot build procedure
+        run: |
+          set -euo pipefail
+          mkdir -p build-proof build/godot-source
+          git rev-parse HEAD > build-proof/FLUTTER-SOURCE.txt
+          cp config/godot-source.json build-proof/GODOT-SOURCE.json
+          grep '^version:' pubspec.yaml > build-proof/APP-VERSION.txt
+          flutter pub get --enforce-lockfile
+          bash scripts/install_ndk_for_build.sh build-proof/ndk
+          bash scripts/install_godot_for_build.sh
+          native_sha="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          git -C build/godot-source init
+          git -C build/godot-source remote add origin https://github.com/Ullmann27/lumo-godot.git
+          git -C build/godot-source fetch --depth=1 origin "$native_sha"
+          git -C build/godot-source checkout --detach "$native_sha"
+          bash scripts/build_unified_apk.sh
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/VERIFY-arm64.json
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 > build-proof/VERIFY-x86.json
+          sha256sum dist/x86_64/Lumo-Lernen-Neu.apk > dist/ANDROID-TOUR-SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dschungelherz-source-bound-apk
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/BUILD-PROVENANCE.json
+            dist/APK-VERIFICATION.json
+            dist/SHA256SUMS.txt
+            dist/ANDROID-TOUR-SHA256SUMS.txt
+            dist/x86_64/Lumo-Lernen-Neu.apk
+            dist/x86_64/BUILD-PROVENANCE.json
+            dist/x86_64/APK-VERIFICATION.json
+            dist/x86_64/SHA256SUMS.txt
+            build-proof/
+          retention-days: 30
+          compression-level: 0
+          if-no-files-found: error
+
+  android-tour:
+    needs: single-apk
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: dschungelherz-source-bound-apk
+          path: candidate/
+      - name: Install the existing UI reader and software rendering dependencies
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+      - name: Enable the standard disposable accelerated emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start the software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      - name: Select Dschungelherz through the actual installed app and preserve learning data
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/jungle_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dschungelherz-android-tour
+          path: tour/
+          if-no-files-found: error
+          retention-days: 30
+
+  publish-verified-apk:
+    needs: android-tour
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: dschungelherz-source-bound-apk
+          path: candidate/
+      - uses: actions/download-artifact@v4
+        with:
+          name: dschungelherz-android-tour
+          path: tour/
+      - name: Recheck source-bound identity and publish one new family APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          proof = json.loads(Path('candidate/dist/BUILD-PROVENANCE.json').read_text())
+          tour = json.loads(Path('tour/tour-result.json').read_text())
+          entry = json.loads(Path('tour/jungle-android-entry.json').read_text())
+          assert proof['flutter_source_commit'] == os.environ['GITHUB_SHA']
+          assert proof['tracked_source_clean'] is True
+          assert proof['versionCode'] == 2026 and proof['versionName'] == '0.13.14'
+          assert tour['status'] == 'PASS'
+          assert entry['confirmed_selection']['track_id'] == 'jungle_emerald_3600'
+          actual = hashlib.file_digest(Path('candidate/dist/Lumo-Lernen-Neu.apk').open('rb'), 'sha256').hexdigest()
+          assert proof['sha256'] == actual
+          PY
+          gh api "repos/$GITHUB_REPOSITORY/releases?per_page=100" > candidate/family-releases.json
+          python3 scripts/release_pipeline_gates.py --pubspec pubspec.yaml \
+            --apk candidate/dist/Lumo-Lernen-Neu.apk \
+            --verification candidate/dist/APK-VERIFICATION.json \
+            --releases-json candidate/family-releases.json --source-sha "$GITHUB_SHA" \
+            --write-sha256 candidate/dist/Lumo-Lernen-Neu.apk.sha256 > candidate/FAMILY-GATE-REPORT.json
+          if gh release view coachpreview-build-2026 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo 'Refusing to replace an existing release or APK' >&2
+            exit 1
+          fi
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('candidate/dist/BUILD-PROVENANCE.json').read_text())
+          source=json.loads(Path('config/godot-source.json').read_text())
+          Path('candidate/release-notes.md').write_text(
+              '# Dschungelherz – Expedition Smaragd\n\n'
+              'Neue, durch das normale Kart-Menü erreichbare 3.600-m-Dschungelstrecke. '
+              'Die zwölf bisherigen Strecken bleiben erhalten. Eigene Blender-Geometrie, '
+              'drei originale Musikvarianten und räumliche Umgebungsgeräusche.\n\n'
+              'Geometrie, zwei echte simulierte Runden, Gegner, Items, Menü und Audio '
+              'wurden geprüft. Diese APK bestand zusätzlich die Android-Emulatortour. '
+              'Samsung Galaxy Z Fold7: physische Leistungsmessung offen.\n\n'
+              f'Host: `{p["flutter_source_commit"]}`\n\nNative: `{source["revision"]}`\n\n'
+              f'APK SHA-256: `{p["sha256"]}`\n', encoding='utf-8')
+          PY
+          gh release create coachpreview-build-2026 --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" --prerelease --title 'LUMO 2026 – Dschungelherz' \
+            --notes-file candidate/release-notes.md \
+            candidate/dist/Lumo-Lernen-Neu.apk candidate/dist/Lumo-Lernen-Neu.apk.sha256 \
+            candidate/dist/BUILD-PROVENANCE.json candidate/dist/APK-VERIFICATION.json
+          curl -fL --retry 3 https://github.com/Ullmann27/lumo-lernen/releases/download/coachpreview-build-2026/Lumo-Lernen-Neu.apk -o candidate/public-download.apk
+          cmp candidate/public-download.apk candidate/dist/Lumo-Lernen-Neu.apk
+          sha256sum candidate/public-download.apk > candidate/PUBLIC-DOWNLOAD-VERIFIED.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dschungelherz-public-download-proof
+          path: |
+            candidate/PUBLIC-DOWNLOAD-VERIFIED.txt
+            candidate/FAMILY-GATE-REPORT.json
+            candidate/release-notes.md
+          retention-days: 30
