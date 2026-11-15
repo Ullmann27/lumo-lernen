@@ -7,6 +7,13 @@ on:
       - docs/integration/lumo-nextgen-20261115/**
       - tools/learning_nextgen/**
       - .github/workflows/lumo-nextgen-contract.yml
+  pull_request:
+    branches:
+      - delivery/lumo-2023-complete-update-20261115
+    paths:
+      - docs/integration/lumo-nextgen-20261115/**
+      - tools/learning_nextgen/**
+      - .github/workflows/lumo-nextgen-contract.yml
   workflow_dispatch:
 permissions:
   contents: read
