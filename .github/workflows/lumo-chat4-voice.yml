@@ -1,0 +1,65 @@
+name: LUMO Chat4 voice and task dialogue acceptance
+on:
+  push:
+    branches:
+      - feature/lumo-nextgen-voice-20261115
+    paths:
+      - lib/core/lumo_conversation_controller.dart
+      - lib/core/lumo_task_dialogue_engine.dart
+      - lib/core/lumo_speech_listener.dart
+      - lib/features/agent/lumo_task_conversation_panel.dart
+      - lib/app/lumo_companion_host.dart
+      - test/lumo_task_dialogue_engine_test.dart
+      - test/lumo_context_conversation_test.dart
+      - test/design/lumo_task_conversation_panel_test.dart
+      - .github/workflows/lumo-chat4-voice.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-chat4-voice-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve Flutter packages
+        run: flutter pub get
+      - name: Record exact source and Dart toolchain
+        run: |
+          mkdir -p .chat4-proof
+          git rev-parse HEAD | tee .chat4-proof/sha.txt
+          flutter --version | tee .chat4-proof/flutter-version.txt
+      - name: Analyze Flutter source
+        run: |
+          set -o pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee .chat4-proof/analysis.log
+      - name: Exercise task dialogue and interruption
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter expanded --timeout 45s \
+            test/lumo_task_dialogue_engine_test.dart \
+            test/lumo_context_conversation_test.dart \
+            test/design/lumo_task_conversation_panel_test.dart \
+            2>&1 | tee .chat4-proof/voice-tests.log
+      - name: Keep real verification log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chat4-voice-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .chat4-proof/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
