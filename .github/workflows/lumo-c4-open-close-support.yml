@@ -1,0 +1,146 @@
+name: LUMO C4 support - cancelled native openings and actual Flutter suite
+on:
+  push:
+    branches: [support/lumo-c4-open-close-20261115]
+    paths:
+      - lib/features/games/connect_four/**
+      - test/games/connect_four_open_close_race_test.dart
+      - .github/workflows/lumo-c4-open-close-support.yml
+permissions:
+  contents: read
+concurrency:
+  group: lumo-c4-open-close-support-${{ github.ref }}
+  cancel-in-progress: false
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+jobs:
+  c4-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Bind exact source and dependencies
+        run: |
+          set -euo pipefail
+          mkdir -p proof/c4-open-close
+          git rev-parse HEAD > proof/c4-open-close/source-sha.txt
+          git rev-parse HEAD^{tree} > proof/c4-open-close/source-tree.txt
+          cp config/godot-source.json proof/c4-open-close/native-pin.json
+          flutter pub get --enforce-lockfile
+      - name: Reproduce asynchronous cancellation using real C4 controller
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=json --timeout=30s --concurrency=1 \
+            test/games/connect_four_open_close_race_test.dart \
+            2>&1 | tee proof/c4-open-close/race-tests.jsonl
+      - name: Existing C4 sessions, real widget inputs and explicit 3D entry
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=json --timeout=90s --concurrency=2 \
+            test/games/connect_four_native_session_test.dart \
+            test/games/connect_four_native_route_test.dart \
+            test/games/connect_four_interaction_test.dart \
+            test/games/games_screen_flow_test.dart \
+            2>&1 | tee proof/c4-open-close/existing-tests.jsonl
+      - name: Retain original passing or failing results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-c4-open-close-focused-${{ github.sha }}
+          path: proof/c4-open-close/
+          if-no-files-found: error
+          retention-days: 30
+  complete-flutter-suite:
+    needs: c4-regressions
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Locked dependencies and exact source
+        run: |
+          set -euo pipefail
+          mkdir -p proof/c4-full-suite
+          git rev-parse HEAD > proof/c4-full-suite/source-sha.txt
+          flutter pub get --enforce-lockfile
+      - name: Analyze entire app
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee proof/c4-full-suite/analyze.log
+      - name: Full suite without test exclusions
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=json --timeout=90s --concurrency=2 \
+            2>&1 | tee proof/c4-full-suite/all-tests.jsonl
+      - name: Retain full original results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-c4-open-close-full-${{ github.sha }}
+          path: proof/c4-full-suite/
+          if-no-files-found: error
+          retention-days: 30
+  signed-apk-attempt:
+    needs: complete-flutter-suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 85
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Install existing verified build toolchain
+        run: |
+          set -euo pipefail
+          mkdir -p proof/c4-apk
+          git rev-parse HEAD > proof/c4-apk/source-sha.txt
+          cp config/godot-source.json proof/c4-apk/native-pin.json
+          python3 scripts/verify_legacy_release_pin.py
+          flutter pub get --enforce-lockfile
+          bash scripts/install_ndk_for_build.sh proof/c4-apk/ndk
+          bash scripts/install_godot_for_build.sh
+      - name: Build and verify exact-source internal APK - not a release
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh 2>&1 | tee proof/c4-apk/build.log
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > proof/c4-apk/VERIFY-arm64.json
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 > proof/c4-apk/VERIFY-x86.json
+          sha256sum dist/Lumo-Lernen-Neu.apk dist/x86_64/Lumo-Lernen-Neu.apk > proof/c4-apk/SHA256SUMS.txt
+          cp dist/BUILD-PROVENANCE.json proof/c4-apk/BUILD-PROVENANCE.json
+      - name: Preserve internal candidate and errors without publishing
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-c4-support-internal-apk-${{ github.sha }}
+          path: |
+            proof/c4-apk/
+            dist/Lumo-Lernen-Neu.apk
+            dist/x86_64/Lumo-Lernen-Neu.apk
+          if-no-files-found: warn
+          retention-days: 30
+          compression-level: 0
