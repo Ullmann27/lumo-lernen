@@ -198,6 +198,40 @@ def observed_control(nodes, label: str, *, package: str = PACKAGE,
     return next(iter(matches), None)
 
 
+def observed_scroll_bounds(nodes) -> tuple | None:
+    boxes = {box for node in nodes if node.get("package") == PACKAGE and
+             node.get("enabled") == "true" and node.get("scrollable") == "true" and
+             (box := bounds(node, min_height=100))}
+    return max(boxes, key=lambda b: ((b[2] - b[0]) * (b[3] - b[1]), b)) if boxes else None
+
+
+def visible_scroll_signature(nodes) -> str:
+    """Track actual visible content/geometry, excluding fixed chrome outside it."""
+    viewport = observed_scroll_bounds(nodes)
+    rows = []
+    if viewport:
+        for node in nodes:
+            box = bounds(node)
+            if (node.get("package") == PACKAGE and box and
+                    box[0] < viewport[2] and box[2] > viewport[0] and
+                    box[1] < viewport[3] and box[3] > viewport[1] and node_labels([node])):
+                rows.append((node.get("text", ""), node.get("content-desc", ""), box,
+                             node.get("clickable", ""), node.get("enabled", ""), node.get("checked", "")))
+    return hashlib.sha256(json.dumps([viewport, sorted(rows)], ensure_ascii=False).encode()).hexdigest()
+
+
+def verify_voice_settings(before: dict, after: dict) -> dict:
+    expected = {"localVoiceLicenseAccepted": True, "voiceEnabled": True,
+                "autoReadEnabled": True, "microphoneEnabled": True, "calmMode": False}
+    for key, wanted in expected.items():
+        require(type(after.get(key)) is bool and after[key] is wanted, "Final saved voice setting mismatch: " + key)
+    for key in ("scannerEnabled", "aiProxyEnabled", "cloudVoiceEnabled"):
+        require(after.get(key, False) == before.get(key, False), "Unexpected unrelated permission change: " + key)
+    return {"license": after["localVoiceLicenseAccepted"], "voice": after["voiceEnabled"],
+            "auto_read": after["autoReadEnabled"], "microphone": after["microphoneEnabled"],
+            "calm_mode": after["calmMode"], "online_services_changed": False}
+
+
 def learning_snapshot(preferences: dict) -> dict:
     active = read_json(preferences.get("flutter.lumo_active_profile", "{}"))
     require(active.get("id") and active.get("name") == PROFILE_NAME, "Fictional active profile missing or changed")
@@ -423,44 +457,111 @@ class LearningProbe:
         time.sleep(.6)
 
     def scroll(self, nodes, direction):
-        boxes = [box for node in nodes if node.get("package") == PACKAGE and node.get("scrollable") == "true"
-                 and (box := bounds(node, min_height=100))]
-        if not boxes:
+        box = observed_scroll_bounds(nodes)
+        if box is None:
             return False
-        box = max(boxes, key=lambda b: (b[2] - b[0]) * (b[3] - b[1]))
         x, low, high = (box[0] + box[2]) // 2, box[1] + (box[3] - box[1]) // 5, box[3] - (box[3] - box[1]) // 5
         start, end = (low, high) if direction < 0 else (high, low)
         self.base.adb("shell", "input", "swipe", str(x), str(start), str(x), str(end), "400")
         time.sleep(.7)
         return True
 
-    def see(self, text, tag, *, scroll=False, exact=False):
-        for direction in ((-1, 1) if scroll else (0,)):
-            for _ in range(17 if scroll else 30):
-                nodes = self.nodes(tag)
-                labels = node_labels(nodes)
-                if any(text in label.splitlines() if exact else text in label for label in labels):
-                    return labels
-                if direction:
-                    self.scroll(nodes, direction)
+    def seek_scrolled(self, select, tag, *, max_scrolls=64, timeout=120, readiness_timeout=15):
+        """Search forward first and observe after every gesture, including last.
+
+        The former 17-up/17-down sequence could merely return to the starting
+        position on the long parent page. Reverse only after two unchanged
+        observed views; retain a bounded deadline and exact target validation.
+        """
+        deadline = time.monotonic() + timeout
+        journal = {"status": "NOT_FOUND", "strategy": "forward_then_observed_boundary_reverse",
+                   "non_scroll_observations": 0, "gestures": []}
+        try:
+            nodes = self.nodes(tag)
+            found = select(nodes)
+            if found is not None:
+                journal["status"] = "FOUND"
+                return found
+            for direction in (1, -1):
+                unchanged = 0
+                for _ in range(max_scrolls):
+                    if time.monotonic() >= deadline:
+                        journal["reason"] = "bounded search deadline"
+                        return None
+                    viewport = observed_scroll_bounds(nodes)
+                    # A newly entered Flutter page or ordinary dialog may have
+                    # no scrollable semantics yet. Keep observing for a bounded
+                    # time; never invent a gesture area while it is absent.
+                    readiness_deadline = min(deadline, time.monotonic() + readiness_timeout)
+                    while viewport is None:
+                        if time.monotonic() >= readiness_deadline:
+                            journal["reason"] = "bounded wait without target or scrollable viewport"
+                            return None
+                        time.sleep(.6)
+                        nodes = self.nodes(tag)
+                        journal["non_scroll_observations"] += 1
+                        found = select(nodes)
+                        if found is not None:
+                            journal["status"] = "FOUND"
+                            return found
+                        viewport = observed_scroll_bounds(nodes)
+                    before = visible_scroll_signature(nodes)
+                    if not self.scroll(nodes, direction):
+                        journal["reason"] = "no current enabled scrollable viewport"
+                        return None
+                    nodes = self.nodes(tag)
+                    after = visible_scroll_signature(nodes)
+                    journal["gestures"].append({"direction": direction, "observed_bounds": viewport,
+                                                  "before": before, "after": after, "content_changed": before != after})
+                    # Never perform a final gesture without observing its result.
+                    found = select(nodes)
+                    if found is not None:
+                        journal["status"] = "FOUND"
+                        return found
+                    unchanged = unchanged + 1 if before == after else 0
+                    if unchanged >= 2:
+                        break
                 else:
-                    time.sleep(.6)
+                    journal["reason"] = "bounded gesture limit before an observed boundary"
+                    return None
+            journal["reason"] = "target absent after both observed boundaries"
+            return None
+        finally:
+            self.save(self.fresh(tag + "-scroll-search"), journal)
+
+    def see(self, text, tag, *, scroll=False, exact=False):
+        def select(nodes):
+            labels = node_labels(nodes)
+            return labels if any(text in label.splitlines() if exact else text in label for label in labels) else None
+        if scroll:
+            found = self.seek_scrolled(select, tag)
+            if found is not None:
+                return found
+        else:
+            for _ in range(30):
+                found = select(self.nodes(tag))
+                if found is not None:
+                    return found
+                time.sleep(.6)
         raise RuntimeError("Current visible Flutter text missing: " + text)
 
     def tap(self, text, tag, *, scroll=True, equivalent_navigation=False):
         # Unlike a historical tap helper, only enabled, unique actionable nodes
         # are accepted. Every scrolling gesture also uses current live bounds.
-        for direction in ((-1, 1) if scroll else (0,)):
-            for _ in range(17 if scroll else 25):
-                nodes = self.nodes(tag)
-                box = observed_control(nodes, text, equivalent_navigation=equivalent_navigation)
-                if box:
+        def select(nodes):
+            return observed_control(nodes, text, equivalent_navigation=equivalent_navigation)
+        if scroll:
+            box = self.seek_scrolled(select, tag)
+            if box is not None:
+                self.touch(box, tag, text)
+                return
+        else:
+            for _ in range(25):
+                box = select(self.nodes(tag))
+                if box is not None:
                     self.touch(box, tag, text)
                     return
-                if direction:
-                    self.scroll(nodes, direction)
-                else:
-                    time.sleep(.6)
+                time.sleep(.6)
         raise RuntimeError("No unique enabled live Flutter control: " + text)
 
     def capture(self, tag, *, native=False):
@@ -634,8 +735,8 @@ class LearningProbe:
                       lambda s: s.get("localVoiceLicenseAccepted") is True)
         for label, key, wanted in (("Lumo-Stimme", "voiceEnabled", True),
                                     ("Automatisch vorlesen", "autoReadEnabled", True),
-                                    ("Ruhiger Modus", "calmMode", False),
-                                    ("Mikrofon erlauben", "microphoneEnabled", True)):
+                                    ("Mikrofon erlauben", "microphoneEnabled", True),
+                                    ("Ruhiger Modus", "calmMode", False)):
             current = self.settings("read-" + key)
             require(type(current.get(key)) is bool, "Missing actual setting: " + key)
             if current[key] != wanted:
@@ -643,10 +744,7 @@ class LearningProbe:
                 self.wait("Saved setting " + key, lambda: self.settings("saved-" + key),
                           lambda s: s.get(key) is wanted)
         after = self.settings("voice-after")
-        for key in ("scannerEnabled", "aiProxyEnabled", "cloudVoiceEnabled"):
-            require(after.get(key, False) == before.get(key, False), "Unexpected unrelated permission change: " + key)
-        self.result["local_voice_settings"] = {"license": True, "voice": True, "microphone": True,
-                                               "online_services_changed": False}
+        self.result["local_voice_settings"] = verify_voice_settings(before, after)
         self.capture("local-voice-ready")
 
     def academy(self):

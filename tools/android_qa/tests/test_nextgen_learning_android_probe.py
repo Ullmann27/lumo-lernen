@@ -2,12 +2,15 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
 import tempfile
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
+import xml.etree.ElementTree as ET
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -214,6 +217,127 @@ class ObservationTest(unittest.TestCase):
                        ["Deine Antwort ist noch nicht bestätigt."]):
             with self.subTest(labels=labels):
                 self.assertIsNone(probe.microphone_outcome(labels))
+
+
+class SettingsNavigationTest(unittest.TestCase):
+    """Original failed UI frames; only the reader transport is replayed here."""
+    fixtures = ROOT / "tools/android_qa/tests/fixtures/nextgen_settings_43766331070"
+
+    @classmethod
+    def setUpClass(cls):
+        manifest = json.loads((cls.fixtures / "manifest.json").read_text())
+        for member in manifest["files"]:
+            data = (cls.fixtures / member["file"]).read_bytes()
+            assert len(data) == member["bytes"]
+            assert hashlib.sha256(data).hexdigest() == member["sha256"]
+
+    def nodes(self, name):
+        return [node.attrib for node in ET.parse(self.fixtures / name).getroot().iter("node")]
+
+    def replay(self, frames):
+        instance = probe.LearningProbe.__new__(probe.LearningProbe)
+        instance.counter = 0
+        position, directions, journals = [0], [], []
+        instance.nodes = lambda tag: frames[position[0]]
+        def scroll(nodes, direction):
+            self.assertEqual(nodes, frames[position[0]])
+            directions.append(direction)
+            position[0] = min(position[0] + 1, len(frames) - 1)
+            return True
+        instance.scroll = scroll
+        instance.save = lambda name, value: journals.append(value)
+        return instance, directions, journals
+
+    def test_real_clipped_switch_is_not_tappable_until_next_observation(self):
+        clipped = self.nodes("0077-local-license.xml")
+        visible = self.nodes("0078-local-license.xml")
+        label = "Neue Sätze offline vorlesen"
+        self.assertIsNone(probe.observed_control(clipped, label))
+        self.assertEqual(probe.observed_control(visible, label), (91, 886, 989, 1359))
+        instance, directions, journals = self.replay([clipped, visible])
+        result = instance.seek_scrolled(lambda nodes: probe.observed_control(nodes, label), "last-gesture", max_scrolls=1)
+        self.assertEqual(result, (91, 886, 989, 1359))
+        self.assertEqual(directions, [1])
+        self.assertEqual(journals[-1]["status"], "FOUND")
+
+    def test_observed_viewport_drives_gesture_inside_settings_not_fixed_chrome(self):
+        nodes = self.nodes("0124-set-microphoneEnabled.xml")
+        viewport = probe.observed_scroll_bounds(nodes)
+        self.assertEqual(viewport, (0, 286, 1080, 1774))
+        calls = []
+        instance = probe.LearningProbe.__new__(probe.LearningProbe)
+        instance.base = SimpleNamespace(adb=lambda *args: calls.append(args))
+        with patch.object(probe.time, "sleep"):
+            self.assertTrue(instance.scroll(nodes, 1))
+        command = calls[0]
+        self.assertEqual(command[:3], ("shell", "input", "swipe"))
+        x0, y0, x1, y1 = map(int, command[3:7])
+        self.assertEqual(x0, x1)
+        self.assertTrue(viewport[0] < x0 < viewport[2])
+        self.assertTrue(viewport[1] < y1 < y0 < viewport[3])
+
+    def test_reverse_requires_two_observed_stationary_views(self):
+        lower = self.nodes("0078-local-license.xml")
+        upper = self.nodes("0077-local-license.xml")
+        instance, directions, journals = self.replay([lower, lower, lower, upper])
+        def title(nodes):
+            labels = probe.node_labels(nodes)
+            return labels if "Ton und Stimme" in labels else None
+        self.assertIsNotNone(instance.seek_scrolled(title, "observed-boundary", max_scrolls=3))
+        self.assertEqual(directions, [1, 1, -1])
+        self.assertEqual([event["content_changed"] for event in journals[-1]["gestures"]], [False, False, True])
+
+    def test_current_visible_target_does_not_scroll(self):
+        nodes = self.nodes("0078-local-license.xml")
+        instance, directions, _ = self.replay([nodes])
+        self.assertIsNotNone(instance.seek_scrolled(lambda ns: probe.observed_control(ns, "Neue Sätze offline vorlesen"), "already-visible"))
+        self.assertEqual(directions, [])
+
+    def test_missing_microphone_remains_a_failure_after_bounded_search(self):
+        for name in ("0091-set-microphoneEnabled.xml", "0124-set-microphoneEnabled.xml"):
+            with self.subTest(name=name):
+                nodes = self.nodes(name)
+                self.assertIsNone(probe.observed_control(nodes, "Mikrofon erlauben"))
+                instance, directions, journals = self.replay([nodes])
+                result = instance.seek_scrolled(lambda ns: probe.observed_control(ns, "Mikrofon erlauben"), "absent-microphone")
+                self.assertIsNone(result)
+                self.assertEqual(directions, [1, 1, -1, -1])
+                self.assertEqual(journals[-1]["status"], "NOT_FOUND")
+
+    def test_transient_missing_viewport_waits_for_observed_dialog_target_without_gesture(self):
+        # The real checkbox/control attributes are retained. Removing its
+        # enclosing scroll node simulates a non-scrolling transport surface,
+        # not a claimed new Android observation.
+        frame = [n for n in self.nodes("0078-local-license.xml") if n.get("scrollable") != "true"]
+        instance, directions, journals = self.replay([frame])
+        observations = iter([[], frame])
+        instance.nodes = lambda tag: next(observations)
+        with patch.object(probe.time, "sleep"):
+            result = instance.seek_scrolled(lambda ns: probe.observed_control(ns, "Neue Sätze offline vorlesen"), "loading-dialog")
+        self.assertEqual(result, (91, 886, 989, 1359))
+        self.assertEqual(directions, [])
+        self.assertEqual(journals[-1]["non_scroll_observations"], 1)
+
+    def test_missing_viewport_cannot_create_a_fallback_gesture(self):
+        instance, directions, journals = self.replay([[]])
+        self.assertIsNone(instance.seek_scrolled(lambda ns: None, "missing-viewport", readiness_timeout=0))
+        self.assertEqual(directions, [])
+        self.assertIn("bounded wait", journals[-1]["reason"])
+
+    def test_final_settings_gate_rejects_actual_ungranted_microphone_and_privacy_changes(self):
+        values = {node.get("name"): node.text for node in ET.parse(
+            self.fixtures / "0090-read-microphoneEnabled-preferences.xml").getroot()}
+        observed = json.loads(values["flutter.lumo_app_settings_v1"])
+        self.assertFalse(observed["microphoneEnabled"])
+        with self.assertRaisesRegex(RuntimeError, "microphoneEnabled"):
+            probe.verify_voice_settings(observed, observed)
+        expected = {**observed, "microphoneEnabled": True}
+        self.assertTrue(probe.verify_voice_settings(observed, expected)["microphone"])
+        for key, value in (("microphoneEnabled", "true"), ("localVoiceLicenseAccepted", False),
+                           ("voiceEnabled", False), ("autoReadEnabled", False), ("calmMode", True),
+                           ("scannerEnabled", True), ("aiProxyEnabled", True), ("cloudVoiceEnabled", True)):
+            with self.subTest(key=key), self.assertRaises(RuntimeError):
+                probe.verify_voice_settings(observed, {**expected, key: value})
 
 
 class PreservationTest(unittest.TestCase):
