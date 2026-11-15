@@ -1,6 +1,7 @@
 import 'guided_lesson_catalog.dart';
 import 'native_english_vocabulary.dart';
 import '../learning/lumo_learning_domain.dart';
+import '../../widgets/fox/lumo_companion_requests.dart';
 
 /// A bounded, local illustration of the current reviewed lesson. It cannot
 /// submit an answer, mutate a child profile or grant a reward.
@@ -9,6 +10,75 @@ class NativeLearningActivity {
 
   final String kind;
   final Map<String, Object> _payload;
+
+  /// Every reviewed task can use the existing native companion. Specialised
+  /// object scenes take precedence; other tasks retain their exact prompt and
+  /// choices. This descriptor deliberately has no answer or reward field.
+  static NativeLearningActivity forTask(TaskInstance task) =>
+      fromTask(task) ??
+      _taskCard(
+        taskId: task.taskInstanceId,
+        subject: task.subject.name,
+        unit: task.parameters['unit']?.toString() ?? '',
+        prompt: task.prompt,
+        explanation: task.helpPayload.shortHint ?? '',
+        choices: task.options.map((option) => option.label).toList(),
+      );
+
+  /// Adapts specialist, reading and guided screens without changing their
+  /// authoritative evaluators, storage keys or protected writing internals.
+  static NativeLearningActivity? fromCompanionContext(
+    LumoCompanionTaskContext context,
+  ) {
+    if (context.isExam ||
+        context.taskId.isEmpty ||
+        context.prompt.trim().isEmpty) {
+      return null;
+    }
+    return _taskCard(
+      taskId: context.taskId,
+      subject: context.subject,
+      unit: context.unit,
+      prompt: context.prompt,
+      explanation: context.explanation ?? context.localHelp ?? '',
+      choices: context.answerChoices,
+      stepId: context.stepId,
+    );
+  }
+
+  static NativeLearningActivity _taskCard({
+    required String taskId,
+    required String subject,
+    required String unit,
+    required String prompt,
+    required String explanation,
+    required List<String> choices,
+    String? stepId,
+  }) {
+    String bounded(String value, int length) => value.runes.length <= length
+        ? value
+        : String.fromCharCodes(value.runes.take(length));
+    final visibleChoices = choices
+        .where((choice) => choice.trim().isNotEmpty)
+        .take(8)
+        .map((choice) => bounded(choice, 120))
+        .toList(growable: false);
+    return NativeLearningActivity._('task_card', {
+      'kind': 'task_card',
+      'sourceTaskId': bounded(taskId, 180),
+      'subject': bounded(subject, 80),
+      'unit': bounded(unit, 80),
+      'prompt': bounded(prompt, 800),
+      'explanation': bounded(explanation, 1200),
+      'answerChoices': visibleChoices,
+      'objectIds': [
+        'task_prompt',
+        'task_model',
+        for (var i = 0; i < visibleChoices.length; i++) 'answer_$i',
+      ],
+      if (stepId != null) 'stepId': bounded(stepId, 120),
+    });
+  }
 
   /// Only consume the checked renderer payload and verify its arithmetic
   /// against the actual answer. Complex or unknown tasks keep their renderer.
@@ -19,7 +89,9 @@ class NativeLearningActivity {
           ? null
           : NativeLearningActivity._('english_objects', payload);
     }
-    final data = task.visualPayload.data;
+    final data = task.subject == LearningSubject.mathematik
+        ? _arithmeticPayload(task.prompt, task.visualPayload.data)
+        : task.visualPayload.data;
     if (task.subject == LearningSubject.logik && data['period'] is int) {
       return fromPattern(
         sequence: data['sequence'],
@@ -55,10 +127,12 @@ class NativeLearningActivity {
           'extra': extra,
         });
       }
-      final a =
-          data['operation'] == 'subtraction' ? data['start'] : data['left'];
-      final b =
-          data['operation'] == 'subtraction' ? data['takeAway'] : data['right'];
+      final a = data['operation'] == 'subtraction'
+          ? data['start'] ?? data['left']
+          : data['left'];
+      final b = data['operation'] == 'subtraction'
+          ? data['takeAway'] ?? data['right']
+          : data['right'];
       if (a is! int || b is! int || a < 0 || b < 1) return null;
       if (data['operation'] == 'multiplication' &&
           a >= 1 &&
@@ -140,6 +214,35 @@ class NativeLearningActivity {
       }
     }
     return null;
+  }
+
+  /// Preserve supported legacy arithmetic wording without inferring an
+  /// operation from two unrelated numbers in a word problem. The caller still
+  /// verifies these operands against the authoritative answer and scene range.
+  static Map<String, Object?> _arithmeticPayload(
+      String prompt, Map<String, Object?> data) {
+    if (data['operation'] != null) return data;
+    final match = RegExp(
+      r'^\s*(?:Wie viel ist\s+|Schriftlich:\s*)?(\d+)\s*([+−\-×·*:÷])\s*(\d+)\s*(?:=\s*)?\?\s*$',
+      caseSensitive: false,
+    ).firstMatch(prompt);
+    if (match == null) return data;
+    final left = int.tryParse(match[1]!);
+    final right = int.tryParse(match[3]!);
+    if (left == null || right == null) return data;
+    final operation = switch (match[2]) {
+      '+' => 'addition',
+      '-' || '−' => 'subtraction',
+      '×' || '·' || '*' => 'multiplication',
+      ':' || '÷' => 'division',
+      _ => null,
+    };
+    return {
+      ...data,
+      'operation': operation,
+      'left': left,
+      'right': right,
+    };
   }
 
   /// The same repeated group that the existing task evaluator has checked.

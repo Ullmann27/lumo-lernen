@@ -10,6 +10,7 @@ import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/core/error_breakdown_repository.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/lumo_learning_session_contract.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 import 'package:lumo_lernen/domain/learning/error_detective.dart';
@@ -37,6 +38,16 @@ class _LaunchState extends LumoAppState {
   bool get canPlayToday => false;
 }
 
+class _PendingLaunchState extends _LaunchState {
+  final saving = Completer<void>();
+  final saved = Completer<void>();
+  @override
+  Future<void> flushRewards() {
+    saving.complete();
+    return saved.future;
+  }
+}
+
 Future<BuildContext> _mount(WidgetTester tester) async {
   late BuildContext launchContext;
   await tester
@@ -61,6 +72,7 @@ void main() {
       GuidedLessonCatalog.bridgeTen, GuidedLessonCatalog.bridgeTen.steps[2])!;
 
   setUp(() {
+    LumoCompanionRequests.instance.clearLearningScope();
     SharedPreferences.setMockInitialValues(
         {'lumo_3d_save_salt_v1': 'learning-test-salt'});
     calls.clear();
@@ -244,7 +256,10 @@ void main() {
       expect(calls, hasLength(1));
       final options = calls.single.arguments as Map;
       expect(options['scene'], 'learning');
-      expect(options['learning'], math.toLaunchOptions());
+      expect(options['learning'], {
+        ...math.toLaunchOptions(),
+        'allowedActions': ['stop'],
+      });
       expect(options['childKey'], matches(r'^p_[a-f0-9]{32}$'));
       expect(state.state.stars, 0);
     } finally {
@@ -265,6 +280,52 @@ void main() {
       debugDefaultTargetPlatformOverride = null;
     }
   });
+
+  for (final cancel in [false, true]) {
+    testWidgets(
+        'pending native launch distinguishes help update from stop: $cancel',
+        (tester) async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      final state = _PendingLaunchState();
+      addTearDown(state.dispose);
+      final context = await _mount(tester);
+      final bus = LumoCompanionRequests.instance;
+      void task(int help) {
+        bus.taskContext.value = LumoCompanionTaskContext(
+          taskId: 'scoped-eight-plus-five',
+          stepId: 'bridge',
+          subject: 'Mathematik',
+          unit: 'Zehnerbrücke',
+          prompt: '8 + 5',
+          helpLevel: help,
+          allowedActions: const {
+            LumoLearningAction.repeat,
+            LumoLearningAction.stop,
+          },
+        );
+      }
+
+      task(0);
+      final opened = launchLumo3D(context,
+          scene: 'learning', appState: state, learning: math);
+      await _frames(tester);
+      expect(state.saving.isCompleted, isTrue);
+      task(1);
+      if (cancel) bus.cancelLearningInteraction();
+      state.saved.complete();
+      await _frames(tester, 40);
+      expect(await opened, !cancel);
+      expect(calls, hasLength(cancel ? 0 : 1));
+      if (!cancel) {
+        final options = (calls.single.arguments as Map)['learning'] as Map;
+        expect(options['allowedActions'], ['repeat', 'stop']);
+        expect((options['scope'] as Map)['revision'],
+            bus.learningIdentity.value!.revision);
+      }
+      expect(state.state.stars, 0);
+      debugDefaultTargetPlatformOverride = null;
+    });
+  }
 
   testWidgets('native return from another profile is rejected', (tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
@@ -331,8 +392,20 @@ void main() {
       await _frames(tester, 40);
       expect(calls.where((call) => call.method == 'launch3D'), hasLength(1));
       final launch = calls.firstWhere((call) => call.method == 'launch3D');
-      expect((launch.arguments as Map)['learning'],
-          {'kind': 'bridge_ten', 'a': step.a, 'b': step.b});
+      final joined =
+          Map<String, dynamic>.from((launch.arguments as Map)['learning']);
+      expect(
+          joined.remove('allowedActions'),
+          LumoCompanionRequests.instance.taskContext.value!.allowedActions
+              .map((action) => action.name)
+              .toList());
+      final scope = joined.remove('scope') as Map;
+      expect(scope['protocolVersion'], 1);
+      expect(scope['taskId'],
+          LumoCompanionRequests.instance.taskContext.value!.taskId);
+      expect(scope['revision'], isNonNegative);
+      expect(scope['cancelEpoch'], isNonNegative);
+      expect(joined, {'kind': 'bridge_ten', 'a': step.a, 'b': step.b});
       expect(LumoCompanionRequests.instance.taskContext.value!.helpLevel, 1);
       expect(find.byKey(const ValueKey('guided-step-title')), findsOneWidget);
       expect(app!.state.stars, 0,
@@ -392,8 +465,19 @@ void main() {
           await tester.tap(action);
           await _frames(tester, 40);
           expect(calls, hasLength(1));
-          expect((calls.single.arguments as Map)['learning'],
-              descriptor!.toLaunchOptions());
+          final joined = Map<String, dynamic>.from(
+              (calls.single.arguments as Map)['learning']);
+          expect(
+              joined.remove('allowedActions'),
+              LumoCompanionRequests.instance.taskContext.value!.allowedActions
+                  .map((action) => action.name)
+                  .toList());
+          final scope = joined.remove('scope') as Map;
+          expect(scope['protocolVersion'], 1);
+          expect(scope['taskId'],
+              LumoCompanionRequests.instance.taskContext.value!.taskId);
+          expect(scope['revision'], isNonNegative);
+          expect(joined, descriptor!.toLaunchOptions());
           expect(
               tester
                   .widget<AdaptiveTaskRenderer>(

@@ -159,14 +159,22 @@ class LumoAiProxyClient {
               'previousHelp': 200
             }.entries)
               if (extras[entry.key] is String &&
-                  LumoChildSafetyFilter.inspect(extras[entry.key] as String).allowed)
+                  LumoChildSafetyFilter.inspect(extras[entry.key] as String)
+                      .allowed)
                 entry.key: (extras[entry.key] as String).substring(0,
                     (extras[entry.key] as String).length.clamp(0, entry.value)),
-            if (const ['answering', 'completed', 'review']
+            if (const ['answering', 'explaining', 'completed', 'review']
                 .contains(extras['taskStatus']))
               'taskStatus': extras['taskStatus'],
-            if (const ['learning', 'writing', 'reading', 'playing']
-                .contains(extras['activity']))
+            if (const [
+              'learning',
+              'writing',
+              'reading',
+              'playing',
+              'guided_lesson',
+              'learning_module',
+              'discovery'
+            ].contains(extras['activity']))
               'activity': extras['activity'],
             if (extras['lastCorrect'] is bool)
               'lastCorrect': extras['lastCorrect'],

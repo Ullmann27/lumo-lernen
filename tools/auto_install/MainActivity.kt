@@ -2,6 +2,7 @@ package dev.ullmann.lumo
 
 import android.content.Intent
 import android.app.ActivityManager
+import android.media.AudioManager
 import android.net.Uri
 import android.os.Build
 import android.os.Handler
@@ -16,11 +17,11 @@ import org.json.JSONObject
 import java.util.UUID
 import java.security.MessageDigest
 import android.content.pm.PackageManager
-import android.speech.SpeechRecognizer
 import android.util.Log
 
 class MainActivity : FlutterActivity() {
     private var offlineSpeech: LumoOfflineSpeechBridge? = null
+    private var localRecognition: LumoLocalRecognition? = null
     private val installerChannel = "lumo_lernen/installer"
     private val distributionChannel: String by lazy {
         try {
@@ -41,6 +42,9 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        // Keep the pinned Dart API; replace its native recognition handler
+        // after registration so every capture either stays local or fails.
+        localRecognition = LumoLocalRecognition(this, flutterEngine.dartExecutor.binaryMessenger)
         CardsTableBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
         ConnectFourBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
         TableGamesBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
@@ -50,9 +54,13 @@ class MainActivity : FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "lumo_lernen/diagnostics")
             .setMethodCallHandler { call, result ->
                 when (call.method) {
+                    "mediaAudible" -> result.success(try {
+                        val manager = getSystemService(AUDIO_SERVICE) as? AudioManager
+                        manager != null && !manager.isStreamMute(AudioManager.STREAM_MUSIC) &&
+                            manager.getStreamVolume(AudioManager.STREAM_MUSIC) > 0
+                    } catch (_: Exception) { false })
                     "onDeviceSpeechAvailable" -> result.success(
-                        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
-                            SpeechRecognizer.isOnDeviceRecognitionAvailable(this))
+                        localRecognition?.onDeviceAvailable() == true)
                     "runtimeIdentity" -> {
                         try {
                             @Suppress("DEPRECATION")
@@ -216,11 +224,22 @@ class MainActivity : FlutterActivity() {
                         }
                         if (game == "learning") {
                             val learning = call.argument<Map<String, Any?>>("learning")
-                            if (learning == null || learning["kind"] !in setOf("bridge_ten", "addition", "subtract_ten", "equal_groups", "equal_sharing", "bridge_hundred", "fraction_parts", "syllables", "plant_parts", "english_objects", "pattern")) {
+                            if (learning == null || learning["kind"] !in setOf("bridge_ten", "addition", "subtract_ten", "equal_groups", "equal_sharing", "bridge_hundred", "fraction_parts", "syllables", "plant_parts", "english_objects", "pattern", "task_card")) {
                                 result.error("invalid_learning", "Die Lernansicht ist nicht verfügbar.", null)
                                 return@setMethodCallHandler
                             }
-                            options.put("learning", JSONObject(learning))
+                            val descriptor = JSONObject(learning)
+                            val scope = descriptor.optJSONObject("scope") ?: JSONObject()
+                            scope.put("protocolVersion", 1)
+                                .put("sessionId", options.getString("sessionId"))
+                                .put("taskId", scope.optString("taskId").ifBlank {
+                                    descriptor.optString("sourceTaskId").ifBlank { "native-" + options.getString("sessionId") }
+                                })
+                                .put("revision", scope.optLong("revision", 0).coerceAtLeast(0))
+                                .put("cancelEpoch", scope.optLong("cancelEpoch", 0).coerceAtLeast(0))
+                            descriptor.put("scope", scope)
+                            options.put("learning", descriptor)
+                                .put("learningMicrophoneEnabled", call.argument<Boolean>("learningMicrophoneEnabled") == true)
                         }
                         if (game in setOf("learning", "build", "settlement")) {
                             options.put("learningVoiceEnabled", call.argument<Boolean>("learningVoiceEnabled") == true)
@@ -324,6 +343,22 @@ class MainActivity : FlutterActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        localRecognition?.setForeground(true)
+    }
+
+    override fun onPause() {
+        localRecognition?.setForeground(false)
+        super.onPause()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int,
+        permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        localRecognition?.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
     override fun onTrimMemory(level: Int) {
         super.onTrimMemory(level)
         if (level >= android.content.ComponentCallbacks2.TRIM_MEMORY_BACKGROUND) {
@@ -339,6 +374,8 @@ class MainActivity : FlutterActivity() {
         CardsTableBridge.detach()
         ConnectFourBridge.detach()
         TableGamesBridge.detach()
+        localRecognition?.destroy()
+        localRecognition = null
         offlineSpeech?.destroy()
         offlineSpeech = null
         super.onDestroy()

@@ -71,6 +71,7 @@ class LumoGameActivity : GodotActivity() {
     private var cardsEdgeToEdge = false
     @Volatile private var launchOptions = "{}"
     @Volatile private var learningSpeech: LumoLearningSpeech? = null
+    @Volatile private var learningConversation: LumoLearningConversation? = null
     @Volatile private var cardsActive = false
     private fun cardsToken(): String = try { org.json.JSONObject(launchOptions).optString("cardsToken", "") } catch (_: Exception) { "" }
     @Volatile private var cardsAuthority: IBinder? = null
@@ -177,12 +178,14 @@ class LumoGameActivity : GodotActivity() {
         cardsActive = true
         if (cardsAuthority != null && !returning) cardsHeartbeat.start()
         learningSpeech?.setActive(true)
+        learningConversation?.setActive(true)
     }
 
     override fun onPause() {
         cardsActive = false
         cardsHeartbeat.stop()
         learningSpeech?.setActive(false)
+        learningConversation?.setActive(false)
         super.onPause()
     }
 
@@ -194,6 +197,9 @@ class LumoGameActivity : GodotActivity() {
         super.onCreate(savedInstanceState)
         if (options.optString("game") in setOf("learning", "build", "settlement")) {
             learningSpeech = LumoLearningSpeech(applicationContext, options)
+        }
+        if (options.optString("game") == "learning") {
+            learningConversation = LumoLearningConversation(this, options) { learningSpeech?.stop() }
         }
     }
 
@@ -219,12 +225,19 @@ class LumoGameActivity : GodotActivity() {
         releaseCardsAuthority()
         learningSpeech?.destroy()
         learningSpeech = null
+        learningConversation?.destroy()
+        learningConversation = null
         super.onDestroy()
     }
 
     fun speakLearning(payload: String): Boolean = learningSpeech?.speak(payload) ?: false
     fun learningSpeechStatus(): String = learningSpeech?.status() ?: "{}"
     fun stopLearningSpeech() { learningSpeech?.stop() }
+    fun updateLearningContext(payload: String): Boolean = learningConversation?.updateContext(payload) ?: false
+    fun requestLearningConversation(payload: String): Boolean = learningConversation?.request(payload) ?: false
+    fun startLearningListening(payload: String): Boolean = learningConversation?.startListening(payload) ?: false
+    fun getLearningConversationStatus(): String = learningConversation?.status() ?: "{}"
+    fun stopLearningConversation() { learningConversation?.stop() }
 
     override fun getCommandLine(): MutableList<String> = ArrayList(super.getCommandLine()).apply {
         addAll(listOf("--main-pack", "res://lumo_game.pck", "--rendering-method", "gl_compatibility"))
@@ -256,6 +269,7 @@ class LumoGameActivity : GodotActivity() {
         }
         returning = true
         learningSpeech?.stop()
+        learningConversation?.stop()
         runOnUiThread {
             cardsActive = false
             cardsHeartbeat.close()
@@ -293,6 +307,21 @@ class LumoHostPlugin(engine: Godot, private val host: LumoGameActivity) : GodotP
 
     @UsedByGodot
     fun stopLearningSpeech() { host.stopLearningSpeech() }
+
+    @UsedByGodot
+    fun updateLearningContext(payload: String): Boolean = host.updateLearningContext(payload)
+
+    @UsedByGodot
+    fun requestLearningConversation(payload: String): Boolean = host.requestLearningConversation(payload)
+
+    @UsedByGodot
+    fun startLearningListening(payload: String): Boolean = host.startLearningListening(payload)
+
+    @UsedByGodot
+    fun getLearningConversationStatus(): String = host.getLearningConversationStatus()
+
+    @UsedByGodot
+    fun stopLearningConversation() { host.stopLearningConversation() }
 
     @UsedByGodot
     fun getCardsState(): String {

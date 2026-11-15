@@ -898,6 +898,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
     if (_selectedGrade != widget.appState.state.grade) {
       Navigator.of(context).push<void>(MaterialPageRoute(
           builder: (_) => CrossGradePracticeScreen(
+              appState: widget.appState,
               profileName: widget.appState.state.childName,
               enrolledGrade: widget.appState.state.grade,
               lessonGrade: _selectedGrade,
@@ -977,6 +978,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                   onTap: () => Navigator.of(context).push<void>(
                       MaterialPageRoute(
                           builder: (_) => CurriculumActivitiesScreen(
+                              appState: widget.appState,
                               grade: _selectedGrade, subject: activity.$1)))),
             for (final subject in _currentGrade.subjects)
               for (final topic in subject.topics.where((t) =>
@@ -1043,6 +1045,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                     onPracticalSubject: (subject) => Navigator.of(context)
                         .push<void>(MaterialPageRoute(
                             builder: (_) => CurriculumActivitiesScreen(
+                                appState: widget.appState,
                                 grade: _selectedGrade, subject: subject))),
                     onAdvanced: () => setState(() => _showTools = !_showTools),
                     tools: _showTools ? _tools() : null))));
@@ -1108,6 +1111,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
       }
       Navigator.of(context).push<void>(MaterialPageRoute(
         builder: (_) => CrossGradePracticeScreen(
+          appState: widget.appState,
           profileName: widget.appState.state.childName,
           enrolledGrade: widget.appState.state.grade,
           lessonGrade: _selectedGrade,

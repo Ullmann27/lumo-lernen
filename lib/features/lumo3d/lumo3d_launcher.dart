@@ -8,6 +8,7 @@ import '../../core/native_profile_key_repository.dart';
 import '../../core/reward_wallet_repository.dart';
 import '../../core/lumo_voice.dart';
 import '../../domain/tutoring/native_learning_activity.dart';
+import '../../widgets/fox/lumo_companion_requests.dart';
 import 'lumo_game_entry_overlay.dart';
 
 // The native channel completes only when the game returns. Keep the guard
@@ -66,11 +67,28 @@ Future<bool> launchLumo3D(
   final generation = appState?.profileGeneration;
   final previousName = appState?.state.childName ?? '';
   final previousGrade = appState?.state.grade ?? 1;
+  final learningIdentity = learning == null
+      ? null
+      : LumoCompanionRequests.instance.learningIdentity.value;
+  bool sameLearningTask() {
+    if (learningIdentity == null) return true;
+    final current = LumoCompanionRequests.instance.learningIdentity.value;
+    // Recording this illustration as help can advance the snapshot while
+    // storage is awaited. Keep that same task; reject a different task/step.
+    return current != null &&
+        current.sessionId == learningIdentity.sessionId &&
+        current.taskId == learningIdentity.taskId &&
+        current.stepId == learningIdentity.stepId &&
+        current.cancelEpoch - learningIdentity.cancelEpoch ==
+            current.revision - learningIdentity.revision;
+  }
+
   LearningProfileLease? owner;
   bool currentOwner() =>
       context.mounted &&
       appState?.resetting != true &&
       appState?.profileGeneration == generation &&
+      sameLearningTask() &&
       (originRoute == null || originRoute.isCurrent) &&
       (appState == null ||
           (owner != null &&
@@ -147,6 +165,15 @@ Future<bool> launchLumo3D(
       return false;
     }
     entry?.setPhase(LumoGameEntryPhase.opening);
+    final launchLearningIdentity = learning == null
+        ? null
+        : LumoCompanionRequests.instance.learningIdentity.value;
+    final launchTask = LumoCompanionRequests.instance.taskContext.value;
+    final allowedLearningActions = launchLearningIdentity != null &&
+            launchTask != null &&
+            !launchTask.isExam
+        ? launchTask.allowedActions.map((action) => action.name).toList()
+        : const <String>['stop'];
     final response = await bridge.invokeMapMethod<String, dynamic>('launch3D', {
       'scene': scene,
       if (livingVillage) ...{
@@ -161,7 +188,16 @@ Future<bool> launchLumo3D(
       'reduceAnimations':
           (appState?.state.settings.reduceAnimations ?? false) ||
               (appState?.state.settings.calmMode ?? false),
-      if (learning != null) 'learning': learning.toLaunchOptions(),
+      if (learning != null) ...{
+        'learning': {
+          ...learning.toLaunchOptions(),
+          'allowedActions': allowedLearningActions,
+          if (launchLearningIdentity != null)
+            'scope': launchLearningIdentity.toJson(),
+        },
+        'learningMicrophoneEnabled':
+            appState?.state.settings.microphoneEnabled == true,
+      },
       if (learning != null || scene == 'build' || scene == 'settlement') ...{
         // Preserve the selected voice. Only the existing, licensed local
         // identity is available in the isolated engine; no silent fallback.

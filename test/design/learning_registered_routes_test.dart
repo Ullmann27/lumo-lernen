@@ -105,6 +105,8 @@ void main() {
           find.byType(CurriculumActivitiesScreen));
       expect(screen.grade, 4);
       expect(screen.subject, subject);
+      expect(screen.appState, same(app),
+          reason: 'The outer route must retain its live learning-session owner.');
       expect(
           find.text(
               PrimaryActivityCatalog.forGrade(4, subject: subject).first.title),

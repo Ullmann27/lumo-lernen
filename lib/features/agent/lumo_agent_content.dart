@@ -15,10 +15,14 @@ import '../../core/lumo_conversation_controller.dart';
 
 class LumoAgentContent extends StatefulWidget {
   const LumoAgentContent(
-      {super.key, required this.appState, required this.onSection});
+      {super.key,
+      required this.appState,
+      required this.onSection,
+      this.proxy = const LumoAiProxyClient()});
 
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
+  final LumoAiProxyClient proxy;
 
   @override
   State<LumoAgentContent> createState() => _LumoAgentContentState();
@@ -27,7 +31,7 @@ class LumoAgentContent extends StatefulWidget {
 class _LumoAgentContentState extends State<LumoAgentContent>
     with WidgetsBindingObserver {
   final TextEditingController _controller = TextEditingController();
-  final LumoAiProxyClient _proxy = const LumoAiProxyClient();
+  late final LumoAiProxyClient _proxy = widget.proxy;
   late final LumoContextEngine _contextEngine;
   late final LumoConversationController _conversation;
   final LumoSpeechListener _speech = LumoSpeechListener();
@@ -46,13 +50,16 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   bool _verifiedCloudReply = false;
   bool _foreground = true;
   int _questionGeneration = 0;
+  String _displayScope = '';
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _contextEngine = LumoContextEngine(widget.appState);
-    _conversation = LumoConversationController(_contextEngine);
+    _conversation = LumoConversationController(_contextEngine,
+        proxy: _proxy, onInterrupt: () => unawaited(_speech.cancel()));
+    _displayScope = _contextEngine.conversationScope;
     _contextEngine.addListener(_situationChanged);
     _speech.addListener(_speechChanged);
     // Render-Warmup: Wenn KI freigegeben ist, Server bereits beim
@@ -69,9 +76,9 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     WidgetsBinding.instance.removeObserver(this);
     _questionGeneration++;
     _contextEngine.removeListener(_situationChanged);
+    _speech.removeListener(_speechChanged);
     _conversation.dispose();
     _contextEngine.dispose();
-    _speech.removeListener(_speechChanged);
     _speech.dispose();
     unawaited(LumoVoice.instance.stop());
     _controller.dispose();
@@ -98,14 +105,20 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   }
 
   void _situationChanged() {
+    if (_conversation.handlingCurrentLessonAction) return;
+    final changedTask = _displayScope != _contextEngine.conversationScope;
+    _displayScope = _contextEngine.conversationScope;
     _questionGeneration++;
     unawaited(_speech.cancel());
-    _controller.clear();
+    if (changedTask) _controller.clear();
     if (mounted) {
       setState(() {
         _loading = false;
         _speechListening = false;
-        _answer = 'Die Situation hat sich geändert. Frag mich zur aktuellen Aufgabe.';
+        if (changedTask) {
+          _answer =
+              'Wir sind bei einer neuen Aufgabe. Was möchtest du dazu wissen?';
+        }
         _verifiedCloudReply = false;
       });
     }
@@ -155,12 +168,13 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   }
 
   Future<void> _startVoiceQuestion() async {
-    if (_loading || _speechListening || !_foreground) return;
-    // Preparing the microphone may outlive a pause, task/profile change or
-    // another question. Returning to the foreground does not renew that tap.
-    final generation = _questionGeneration;
+    if (_speechListening || !_foreground) return;
+    final generation = ++_questionGeneration;
+    // Preparation belongs to this tap, even if a pause is followed by resume.
     bool isCurrent() =>
         mounted && _foreground && generation == _questionGeneration;
+    _conversation.interrupt(reason: 'listening_started');
+    setState(() => _loading = false);
     await widget.appState.ensureSettingsLoaded();
     if (!isCurrent()) return;
     final settings = widget.appState.state.settings;
@@ -173,7 +187,9 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     await LumoVoice.instance.stop();
     if (!isCurrent()) return;
     await _ensureSpeechReady();
-    if (!isCurrent() || !_speechReady) return;
+    if (!isCurrent() ||
+        !_speechReady ||
+        !widget.appState.state.settings.microphoneEnabled) return;
 
     setState(() {
       _liveSpeech = '';
@@ -205,10 +221,9 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   }
 
   Future<void> _finishVoiceQuestion(String words) async {
-    try {
-      await _speech.stopListening();
-    } catch (_) {}
-    if (!mounted || !_foreground) return;
+    final generation = _questionGeneration;
+    await _speech.cancel();
+    if (!mounted || !_foreground || generation != _questionGeneration) return;
     setState(() => _speechListening = false);
     await _ask(words);
   }
@@ -218,18 +233,14 @@ class _LumoAgentContentState extends State<LumoAgentContent>
       await _speech.stopListening();
     } catch (_) {}
     if (!mounted) return;
-    final words = _liveSpeech.trim().isNotEmpty
-        ? _liveSpeech.trim()
-        : _controller.text.trim();
     setState(() => _speechListening = false);
-    if (words.isNotEmpty && !_loading) {
-      await _ask(words);
-    }
+    // The recognizer's one final callback sends the recognized text. Sending
+    // it again here could create two turns from a single microphone tap.
   }
 
   Future<void> _ask([String? raw]) async {
     final question = (raw ?? _controller.text).trim();
-    if (question.isEmpty || _loading || !_foreground) return;
+    if (question.isEmpty || !_foreground) return;
     final generation = ++_questionGeneration;
     FocusManager.instance.primaryFocus?.unfocus();
 
@@ -262,7 +273,8 @@ class _LumoAgentContentState extends State<LumoAgentContent>
       lumoMessage: reply,
       mood: blocked ? LumoMood.comfort : LumoMood.greet,
     ));
-    if (widget.appState.state.settings.voiceEnabled) {
+    if (_conversation.responseMaySpeak &&
+        widget.appState.state.settings.voiceEnabled) {
       unawaited(_conversation.speak(reply,
           style: blocked ? VoiceStyle.comfort : VoiceStyle.explain));
     }
@@ -270,90 +282,149 @@ class _LumoAgentContentState extends State<LumoAgentContent>
 
   void _quickAsk(String text) => _ask(text);
 
+  void _stopConversation() {
+    _questionGeneration++;
+    _conversation.interrupt();
+    if (!mounted) return;
+    setState(() {
+      _loading = false;
+      _speechListening = false;
+      _liveSpeech = '';
+      _answer = 'Ich habe aufgehört. Du kannst in Ruhe weitermachen.';
+      _source = 'local_stopped';
+      _verifiedCloudReply = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final settings = widget.appState.state.settings;
     final proxyReady = settings.aiProxyEnabled && _verifiedCloudReply;
     return LumoSceneBackground(
-      scene: LumoScene.learning,
-      dimmed: true,
-      child: SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 820),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            _AgentHeader(
-                proxyReady: proxyReady,
-                enabled: settings.aiProxyEnabled,
-                reduceMotion: settings.reduceAnimations || settings.calmMode,
-                onSettings: () => widget.onSection(LumoSection.settings)),
-            const SizedBox(height: 16),
-            _SafetyFrame(proxyReady: proxyReady),
-            const SizedBox(height: 16),
-            _AnswerBubble(
-              answer: _answer,
-              loading: _loading,
-              blocked: _blocked,
-              source: _source,
-              onSpeak: () => LumoVoice.instance.speak(_answer,
-                  style: _blocked ? VoiceStyle.comfort : VoiceStyle.explain),
-              onStop: LumoVoice.instance.stop,
+        scene: LumoScene.learning,
+        dimmed: true,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 820),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _AgentHeader(
+                        proxyReady: proxyReady,
+                        enabled: settings.aiProxyEnabled,
+                        reduceMotion:
+                            settings.reduceAnimations || settings.calmMode,
+                        onSettings: () =>
+                            widget.onSection(LumoSection.settings)),
+                    const SizedBox(height: 16),
+                    if (_contextEngine.task != null)
+                      LumoGlassCard(
+                        key: const ValueKey('lumo-conversation-current-task'),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Deine Aufgabe',
+                                  style: LumoTextStyles.heading3),
+                              const SizedBox(height: 8),
+                              Text(_contextEngine.task!.prompt,
+                                  style: LumoTextStyles.body
+                                      .copyWith(color: LumoVisualTokens.white)),
+                              const SizedBox(height: 6),
+                              const Text(
+                                  'Frag nach, wiederhole einen Schritt oder ändere '
+                                  'deinen Antwortvorschlag.',
+                                  style:
+                                      TextStyle(color: LumoVisualTokens.muted)),
+                            ]),
+                      )
+                    else
+                      _SafetyFrame(proxyReady: proxyReady),
+                    const SizedBox(height: 16),
+                    _AnswerBubble(
+                      answer: _answer,
+                      loading: _loading,
+                      blocked: _blocked,
+                      source: _source,
+                      canSpeak: _conversation.responseMaySpeak,
+                      onSpeak: () => _conversation.speak(_answer,
+                          style: _blocked
+                              ? VoiceStyle.comfort
+                              : VoiceStyle.explain),
+                      onStop: _stopConversation,
+                    ),
+                    const SizedBox(height: 16),
+                    _QuestionInput(
+                      controller: _controller,
+                      loading: _loading,
+                      microphoneEnabled: settings.microphoneEnabled,
+                      speechReady: _speechReady,
+                      listening: _speechListening,
+                      liveSpeech: _liveSpeech,
+                      speechLocale: _speechLocale,
+                      speechError: _speechError,
+                      onAsk: _ask,
+                      onMic: _startVoiceQuestion,
+                      onStopMic: _stopVoiceQuestion,
+                    ),
+                    const SizedBox(height: 14),
+                    if (_contextEngine.task != null)
+                      Wrap(spacing: 8, runSpacing: 8, children: [
+                        _QuickChip(
+                            label: 'Erklären',
+                            onTap: () =>
+                                _quickAsk('Erklär mir diesen Schritt.')),
+                        _QuickChip(
+                            label: 'Noch einmal',
+                            onTap: () => _quickAsk('Bitte wiederholen.')),
+                        _QuickChip(
+                            label: 'Langsamer',
+                            onTap: () =>
+                                _quickAsk('Bitte langsamer erklären.')),
+                        _QuickChip(
+                            label: 'Hinweis',
+                            onTap: () => _quickAsk('Gib mir einen Hinweis.')),
+                      ])
+                    else
+                      Wrap(spacing: 8, runSpacing: 8, children: [
+                        _QuickChip(
+                            label: '🧮 Mathehilfe',
+                            onTap: () => _quickAsk(
+                                'Erklär mir 7 plus 5 in kleinen Schritten, bitte mit Beispiel.')),
+                        _QuickChip(
+                            label: '📖 Deutschhilfe',
+                            onTap: () => _quickAsk(
+                                'Hilf mir bei einem deutschen Satz und erklär ihn kurz.')),
+                        _QuickChip(
+                            label: '🦊 Lies mit mir',
+                            onTap: () => _quickAsk(
+                                'Erzähl mir eine kurze Geschichte zum Lesen, mit drei Sätzen.')),
+                        _QuickChip(
+                            label: '🐝 Tiere',
+                            onTap: () => _quickAsk(
+                                'Erzähl mir etwas Kurzes über ein interessantes Tier, kindgerecht.')),
+                        _QuickChip(
+                            label: '🌍 Sachunterricht',
+                            onTap: () => _quickAsk(
+                                'Erzähl mir eine spannende Sache aus dem Sachunterricht.')),
+                        _QuickChip(
+                            label: '🎈 Englisch',
+                            onTap: () => _quickAsk(
+                                'Übe mit mir drei einfache englische Wörter und übersetze sie.')),
+                        _QuickChip(
+                            label: '😊 Witz erzählen',
+                            onTap: () => _quickAsk(
+                                'Erzähl mir bitte einen kindgerechten Witz.')),
+                        _QuickChip(
+                            label: '💡 Lerntipp',
+                            onTap: () => _quickAsk(
+                                'Gib mir einen kleinen Lerntipp für heute.')),
+                      ]),
+                  ]),
             ),
-            const SizedBox(height: 16),
-            _QuestionInput(
-              controller: _controller,
-              loading: _loading,
-              microphoneEnabled: settings.microphoneEnabled,
-              speechReady: _speechReady,
-              listening: _speechListening,
-              liveSpeech: _liveSpeech,
-              speechLocale: _speechLocale,
-              speechError: _speechError,
-              onAsk: _ask,
-              onMic: _startVoiceQuestion,
-              onStopMic: _stopVoiceQuestion,
-            ),
-            const SizedBox(height: 14),
-            Wrap(spacing: 8, runSpacing: 8, children: [
-              _QuickChip(
-                  label: '🧮 Mathehilfe',
-                  onTap: () => _quickAsk(
-                      'Erklär mir 7 plus 5 in kleinen Schritten, bitte mit Beispiel.')),
-              _QuickChip(
-                  label: '📖 Deutschhilfe',
-                  onTap: () => _quickAsk(
-                      'Hilf mir bei einem deutschen Satz und erklär ihn kurz.')),
-              _QuickChip(
-                  label: '🦊 Lies mit mir',
-                  onTap: () => _quickAsk(
-                      'Erzähl mir eine kurze Geschichte zum Lesen, mit drei Sätzen.')),
-              _QuickChip(
-                  label: '🐝 Tiere',
-                  onTap: () => _quickAsk(
-                      'Erzähl mir etwas Kurzes über ein interessantes Tier, kindgerecht.')),
-              _QuickChip(
-                  label: '🌍 Sachunterricht',
-                  onTap: () => _quickAsk(
-                      'Erzähl mir eine spannende Sache aus dem Sachunterricht.')),
-              _QuickChip(
-                  label: '🎈 Englisch',
-                  onTap: () => _quickAsk(
-                      'Übe mit mir drei einfache englische Wörter und übersetze sie.')),
-              _QuickChip(
-                  label: '😊 Witz erzählen',
-                  onTap: () =>
-                      _quickAsk('Erzähl mir bitte einen kindgerechten Witz.')),
-              _QuickChip(
-                  label: '💡 Lerntipp',
-                  onTap: () =>
-                      _quickAsk('Gib mir einen kleinen Lerntipp für heute.')),
-            ]),
-          ]),
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 }
 
@@ -396,16 +467,24 @@ class _AgentHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text('DEIN LERNBEGLEITER', style: TextStyle(
-                color: LumoVisualTokens.cyanBright, fontWeight: FontWeight.w900,
-                letterSpacing: 1.1, fontSize: 11)),
+            const Text('DEIN LERNBEGLEITER',
+                style: TextStyle(
+                    color: LumoVisualTokens.cyanBright,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1.1,
+                    fontSize: 11)),
             const SizedBox(height: 6),
-            Text(title, key: const ValueKey('lumo-agent-title'),
-                style: const TextStyle(color: LumoVisualTokens.white,
-                    fontSize: 22, fontWeight: FontWeight.w900, height: 1.13)),
+            Text(title,
+                key: const ValueKey('lumo-agent-title'),
+                style: const TextStyle(
+                    color: LumoVisualTokens.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w900,
+                    height: 1.13)),
             const SizedBox(height: 8),
-            Text(subtitle, style: const TextStyle(
-                color: LumoVisualTokens.muted, height: 1.38, fontSize: 14)),
+            Text(subtitle,
+                style: const TextStyle(
+                    color: LumoVisualTokens.muted, height: 1.38, fontSize: 14)),
           ],
         );
         final parents = OutlinedButton.icon(
@@ -419,7 +498,8 @@ class _AgentHeader extends StatelessWidget {
               minimumSize: const Size(90, 48)),
         );
         if (compact) {
-          return Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+          return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
                   SizedBox(width: 100, height: 120, child: fox),
@@ -476,6 +556,7 @@ class _AnswerBubble extends StatelessWidget {
     required this.source,
     required this.onSpeak,
     required this.onStop,
+    required this.canSpeak,
   });
 
   final String answer;
@@ -484,6 +565,7 @@ class _AnswerBubble extends StatelessWidget {
   final String source;
   final VoidCallback onSpeak;
   final VoidCallback onStop;
+  final bool canSpeak;
 
   String get _friendlySource {
     switch (source) {
@@ -525,11 +607,14 @@ class _AnswerBubble extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
           Icon(blocked ? Icons.front_hand_rounded : Icons.chat_bubble_rounded,
-              color: blocked ? LumoVisualTokens.gold : LumoVisualTokens.cyanBright),
+              color: blocked
+                  ? LumoVisualTokens.gold
+                  : LumoVisualTokens.cyanBright),
           const SizedBox(width: 8),
           Expanded(
               child: Text(loading ? 'Lumo denkt nach …' : 'Lumo antwortet',
-                  style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white))),
+                  style: LumoTextStyles.heading3
+                      .copyWith(color: LumoVisualTokens.white))),
           if (loading)
             const SizedBox(
                 width: 18,
@@ -554,12 +639,17 @@ class _AnswerBubble extends StatelessWidget {
                   style: LumoTextStyles.caption
                       .copyWith(color: LumoVisualTokens.muted)),
               OutlinedButton.icon(
-                onPressed: loading ? null : onSpeak,
+                onPressed: loading || !canSpeak ? null : onSpeak,
+                style:
+                    OutlinedButton.styleFrom(minimumSize: const Size(48, 48)),
                 icon: const Icon(Icons.volume_up_rounded, size: 18),
                 label: const Text('Vorlesen'),
               ),
               OutlinedButton.icon(
+                key: const ValueKey('lumo-conversation-stop'),
                 onPressed: onStop,
+                style:
+                    OutlinedButton.styleFrom(minimumSize: const Size(48, 48)),
                 icon: const Icon(Icons.stop_circle_rounded, size: 18),
                 label: const Text('Stopp'),
               ),
@@ -609,7 +699,11 @@ class _QuestionInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final micLabel = listening ? 'Zuhören …' : 'Sprechen';
+    final micLabel = listening
+        ? 'Zuhören …'
+        : loading
+            ? 'Unterbrechen'
+            : 'Sprechen';
     final micIcon = listening ? Icons.graphic_eq_rounded : Icons.mic_rounded;
     final statusText = listening
         ? (liveSpeech.trim().isEmpty
@@ -632,7 +726,7 @@ class _QuestionInput extends StatelessWidget {
             maxLines: 4,
             textInputAction: TextInputAction.send,
             style: const TextStyle(color: LumoVisualTokens.white),
-            onSubmitted: loading ? null : (value) => onAsk(value),
+            onSubmitted: (value) => onAsk(value),
             decoration: const InputDecoration(
               labelText: 'Frag Lumo',
               hintText: 'Zum Beispiel: Erklär mir 12 minus 5.',
@@ -645,19 +739,22 @@ class _QuestionInput extends StatelessWidget {
           );
           final send = FilledButton.icon(
             key: const ValueKey('lumo-agent-send'),
-            onPressed: loading ? null : () => onAsk(controller.text),
+            onPressed: () => onAsk(controller.text),
             icon: const Icon(Icons.send_rounded),
-            label: const Text('Senden'),
+            label: Text(loading ? 'Neu fragen' : 'Senden'),
             style: FilledButton.styleFrom(
-              backgroundColor: LumoVisualTokens.cyanBright,
-              foregroundColor: LumoVisualTokens.navigation,
-              minimumSize: const Size(116, 48)),
+                backgroundColor: LumoVisualTokens.cyanBright,
+                foregroundColor: LumoVisualTokens.navigation,
+                minimumSize: const Size(116, 48)),
           );
           return small
-              ? Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [field, const SizedBox(height: 10), send])
               : Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-                  Expanded(child: field), const SizedBox(width: 10), send,
+                  Expanded(child: field),
+                  const SizedBox(width: 10),
+                  send,
                 ]);
         }),
         const SizedBox(height: 10),
@@ -667,15 +764,18 @@ class _QuestionInput extends StatelessWidget {
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               FilledButton.icon(
-                onPressed: loading || !microphoneEnabled
-                    ? null
-                    : (listening ? onStopMic : onMic),
+                key: const ValueKey('lumo-conversation-microphone'),
+                onPressed:
+                    !microphoneEnabled ? null : (listening ? onStopMic : onMic),
                 icon: Icon(micIcon),
                 label: Text(micLabel),
+                style: FilledButton.styleFrom(minimumSize: const Size(48, 48)),
               ),
               Text(statusText,
                   style: LumoTextStyles.caption.copyWith(
-                      color: listening ? LumoVisualTokens.gold : LumoVisualTokens.muted,
+                      color: listening
+                          ? LumoVisualTokens.gold
+                          : LumoVisualTokens.muted,
                       fontWeight: FontWeight.w800)),
             ]),
         if (speechError != null) ...[
@@ -717,13 +817,17 @@ class _QuickChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ActionChip(
-      label: Text(label, style: const TextStyle(color: LumoVisualTokens.white)),
-      avatar: const Icon(Icons.auto_awesome_rounded, size: 18,
-          color: LumoVisualTokens.cyanBright),
-      backgroundColor: LumoVisualTokens.glassRow,
-      side: const BorderSide(color: LumoVisualTokens.cyan),
-      onPressed: onTap,
-    );
+    return ConstrainedBox(
+        constraints: const BoxConstraints(minHeight: 48, minWidth: 48),
+        child: ActionChip(
+          materialTapTargetSize: MaterialTapTargetSize.padded,
+          label: Text(label,
+              style: const TextStyle(color: LumoVisualTokens.white)),
+          avatar: const Icon(Icons.auto_awesome_rounded,
+              size: 18, color: LumoVisualTokens.cyanBright),
+          backgroundColor: LumoVisualTokens.glassRow,
+          side: const BorderSide(color: LumoVisualTokens.cyan),
+          onPressed: onTap,
+        ));
   }
 }

@@ -28,6 +28,7 @@ class AndroidHostTest(unittest.TestCase):
                 templates = root / 'tools/auto_install'
                 templates.mkdir(parents=True)
                 for name in ('MainActivity.kt', 'LumoOfflineSpeechBridge.kt', 'LumoLearningSpeech.kt',
+                             'LumoLocalRecognition.kt',
                              'LumoSpeechEnvelope.kt',
                              'LumoOfflineSpeechEngine.java', 'lumo_file_paths.xml'):
                     shutil.copyfile(source / name, templates / name)
@@ -40,6 +41,7 @@ class AndroidHostTest(unittest.TestCase):
                     for name, language in (
                         ('LumoOfflineSpeechEngine.java', 'java'),
                         ('LumoOfflineSpeechBridge.kt', 'kotlin'),
+                        ('LumoLocalRecognition.kt', 'kotlin'),
                         ('LumoLearningSpeech.kt', 'kotlin'),
                         ('LumoSpeechEnvelope.kt', 'kotlin'),
                         ('MainActivity.kt', 'kotlin'),

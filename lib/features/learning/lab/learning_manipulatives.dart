@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_motion.dart';
+import '../../../widgets/design/lumo_task_object_art.dart';
 
 const _ink = LumoVisualTokens.white;
 const _muted = LumoVisualTokens.muted;
@@ -45,6 +46,8 @@ class QuantityBridgeBoard extends StatelessWidget {
     this.enabled = true,
     this.reveal = false,
     this.reduceMotion = false,
+    this.onObjectFocus,
+    this.maxMoved,
   });
 
   final int start;
@@ -54,16 +57,28 @@ class QuantityBridgeBoard extends StatelessWidget {
   final bool enabled;
   final bool reveal;
   final bool reduceMotion;
+  final ValueChanged<String>? onObjectFocus;
+  final int? maxMoved;
 
   @override
   Widget build(BuildContext context) {
     final initial = start.clamp(0, 10);
     final supply = math.max(0, addend);
-    final placed = moved.clamp(0, supply);
+    final limit = (maxMoved ?? supply).clamp(0, supply);
+    final placed = moved.clamp(0, limit);
     final inFrame = math.min(placed, 10 - initial);
     final overflow = placed - inFrame;
 
-    void move(int delta) => onChanged((placed + delta).clamp(0, supply));
+    void move(int delta) {
+      onObjectFocus?.call(
+        delta > 0
+            ? 'reserve-$placed'
+            : overflow > 0
+                ? 'overflow-${overflow - 1}'
+                : 'ten-slot-${initial + inFrame - 1}',
+      );
+      onChanged((placed + delta).clamp(0, limit));
+    }
 
     Widget placedCounter(int index, {double? size}) => _CounterButton(
           key: ValueKey('quantity-placed-$index'),
@@ -87,61 +102,79 @@ class QuantityBridgeBoard extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           _InsetDeck(
-            child: LayoutBuilder(builder: (context, constraints) {
-              final cell = (constraints.maxWidth - 16) / 5;
-              return Column(
-                children: List.generate(2, (row) {
-                  return Padding(
-                    padding: EdgeInsets.only(bottom: row == 0 ? 4 : 0),
-                    child: Row(
-                      children: List.generate(5, (column) {
-                        final index = row * 5 + column;
-                        final isFixed = index < initial;
-                        final movedIndex = index - initial;
-                        final isMoved = movedIndex >= 0 && movedIndex < inFrame;
-                        return Padding(
-                          padding: EdgeInsets.only(right: column < 4 ? 4 : 0),
-                          child: SizedBox(
-                            width: cell,
-                            height: math.max(48, cell),
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF061B38),
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                  color: const Color(0xFF325578),
-                                ),
-                              ),
-                              child: isFixed
-                                  ? Semantics(
-                                      label:
-                                          'Stein ${index + 1}, liegt schon da',
-                                      child: ExcludeSemantics(
-                                        child: Center(
-                                          child: _Counter(
-                                            color: _gold,
-                                            diameter: math.min(34, cell - 6),
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  : isMoved
-                                      ? placedCounter(movedIndex, size: cell)
-                                      : Semantics(
-                                          label: 'Freier Platz ${index + 1}',
-                                          child: const Center(
-                                            child: _EmptySocket(),
-                                          ),
-                                        ),
+            key: const ValueKey('ten_frame'),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                // Keep every touch target at least 48 dp, including the Fold
+                // cover screen inside nested lesson cards. A narrow ten-frame
+                // rotates to five rows of two; it never clips or scales targets.
+                final columns = constraints.maxWidth >= 256 ? 5 : 2;
+                final rows = 10 ~/ columns;
+                final cell = math.max(
+                  48.0,
+                  (constraints.maxWidth - (columns - 1) * 4) / columns,
+                );
+                return Column(
+                  children: List.generate(rows, (row) {
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: row < rows - 1 ? 4 : 0),
+                      child: Row(
+                        children: List.generate(columns, (column) {
+                          final index = row * columns + column;
+                          final isFixed = index < initial;
+                          final movedIndex = index - initial;
+                          final isMoved =
+                              movedIndex >= 0 && movedIndex < inFrame;
+                          return Padding(
+                            padding: EdgeInsets.only(
+                              right: column < columns - 1 ? 4 : 0,
                             ),
-                          ),
-                        );
-                      }),
-                    ),
-                  );
-                }),
-              );
-            }),
+                            child: SizedBox(
+                              key: ValueKey('ten-slot-$index'),
+                              width: cell,
+                              height: math.max(48, cell),
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF061B38),
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(
+                                    color: reveal && index >= initial
+                                        ? _gold
+                                        : const Color(0xFF325578),
+                                    width: reveal && index >= initial ? 2 : 1,
+                                  ),
+                                ),
+                                child: isFixed
+                                    ? Semantics(
+                                        label:
+                                            'Stein ${index + 1}, liegt schon da',
+                                        child: ExcludeSemantics(
+                                          child: Center(
+                                            child: _Counter(
+                                              color: _gold,
+                                              diameter: math.min(34, cell - 6),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    : isMoved
+                                        ? placedCounter(movedIndex, size: cell)
+                                        : Semantics(
+                                            label: 'Freier Platz ${index + 1}',
+                                            child: const Center(
+                                              child: _EmptySocket(),
+                                            ),
+                                          ),
+                              ),
+                            ),
+                          );
+                        }),
+                      ),
+                    );
+                  }),
+                );
+              },
+            ),
           ),
           if (overflow > 0) ...[
             const SizedBox(height: 12),
@@ -160,14 +193,17 @@ class QuantityBridgeBoard extends StatelessWidget {
           const Text('Vorrat · antippen und verschieben', style: _labelStyle),
           const SizedBox(height: 8),
           _InsetDeck(
+            key: const ValueKey('addend'),
             padding: const EdgeInsets.all(8),
             child: Align(
               alignment: Alignment.centerLeft,
               child: supply == placed
                   ? const Padding(
                       padding: EdgeInsets.symmetric(vertical: 12),
-                      child: Text('Alle Steine liegen auf der Fläche.',
-                          style: _bodyStyle),
+                      child: Text(
+                        'Alle Steine liegen auf der Fläche.',
+                        style: _bodyStyle,
+                      ),
                     )
                   : Wrap(
                       spacing: 6,
@@ -179,7 +215,8 @@ class QuantityBridgeBoard extends StatelessWidget {
                           label:
                               'Vorratsstein ${index + 1}, ins Feld verschieben',
                           color: _cyan,
-                          onPressed: enabled ? () => move(1) : null,
+                          onPressed:
+                              enabled && placed < limit ? () => move(1) : null,
                           reduceMotion: reduceMotion,
                         );
                       }),
@@ -206,7 +243,7 @@ class QuantityBridgeBoard extends StatelessWidget {
                 reduceMotion: reduceMotion,
                 icon: Icons.add_rounded,
                 text: 'Verschieben',
-                onPressed: enabled && placed < supply ? () => move(1) : null,
+                onPressed: enabled && placed < limit ? () => move(1) : null,
               ),
             ],
           ),
@@ -214,15 +251,483 @@ class QuantityBridgeBoard extends StatelessWidget {
             const SizedBox(height: 12),
             Semantics(
               liveRegion: true,
-              child: Text('Bis 10 fehlen ${10 - initial}.',
-                  textAlign: TextAlign.center,
-                  style: _labelStyle.copyWith(color: _gold)),
+              child: Text(
+                inFrame == 0
+                    ? 'Bis 10 fehlen ${10 - initial}.'
+                    : inFrame < 10 - initial
+                        ? 'Jetzt fehlen noch ${10 - initial - inFrame} bis 10.'
+                        : 'Das Zehnerfeld ist voll: 10.',
+                textAlign: TextAlign.center,
+                style: _labelStyle.copyWith(color: _gold),
+              ),
             ),
           ],
         ],
       ),
     );
   }
+}
+
+/// The active syllable belongs to the real speech session. This widget never
+/// invents word timings; tapping a syllable requests playback from its owner.
+class SyllableLearningBoard extends StatelessWidget {
+  const SyllableLearningBoard({
+    super.key,
+    required this.word,
+    required this.syllables,
+    this.activeIndex,
+    this.onReadSegment,
+    this.onReadWord,
+    this.enabled = true,
+    this.reduceMotion = false,
+    this.segmentKeyPrefix = 'syllable_',
+    this.wordPlaybackLabel = 'Ganzes Wort hören',
+  });
+
+  final String word;
+  final List<String> syllables;
+  final int? activeIndex;
+  final ValueChanged<int>? onReadSegment;
+  final VoidCallback? onReadWord;
+  final bool enabled;
+  final bool reduceMotion;
+  final String segmentKeyPrefix;
+  final String wordPlaybackLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    final hasPicture = LumoTaskObjectArt.assetForName(word) != null;
+    final valid = syllables.isNotEmpty &&
+        syllables.every((part) => part.trim().isNotEmpty) &&
+        syllables.join().toLowerCase() == word.toLowerCase();
+    return _LabSurface(
+      accent: _violet,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const _BoardHeading(
+            icon: Icons.record_voice_over_rounded,
+            title: 'Wort und Sprechstücke',
+            subtitle: 'Jede Silbe hat ihren eigenen Platz.',
+            accent: _violet,
+          ),
+          const SizedBox(height: 14),
+          if (hasPicture)
+            Center(
+                child: LumoTaskObjectArt(
+                    key: const ValueKey('syllable-word-picture'),
+                    name: word,
+                    size: 128,
+                    semanticLabel: 'Bild: $word')),
+          Text(word,
+              key: const ValueKey('syllable-word'),
+              textAlign: TextAlign.center,
+              style: _labelStyle.copyWith(fontSize: 30, letterSpacing: .5)),
+          const SizedBox(height: 14),
+          if (valid)
+            LearningSyllableStrip(
+              syllables: syllables,
+              activeIndex: activeIndex ?? -1,
+              enabled: enabled && onReadSegment != null,
+              onSelected: onReadSegment ?? (_) {},
+              reduceMotion: reduceMotion,
+              segmentKeyPrefix: segmentKeyPrefix,
+            ),
+          if (onReadWord != null) ...[
+            const SizedBox(height: 16),
+            _ActionButton(
+              key: const ValueKey('syllable-read-word'),
+              label: '$wordPlaybackLabel: $word',
+              icon: Icons.volume_up_rounded,
+              text: wordPlaybackLabel,
+              onPressed: enabled ? onReadWord : null,
+              reduceMotion: reduceMotion,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+/// The strip API is shared with the parallel learning delivery. Playback
+/// ownership stays outside the widget, including every active-index update.
+class LearningSyllableStrip extends StatelessWidget {
+  const LearningSyllableStrip({
+    super.key,
+    required this.syllables,
+    required this.onSelected,
+    this.activeIndex = -1,
+    this.enabled = true,
+    this.reduceMotion = false,
+    this.segmentKeyPrefix = 'syllable_',
+  });
+  final List<String> syllables;
+  final ValueChanged<int> onSelected;
+  final int activeIndex;
+  final bool enabled;
+  final bool reduceMotion;
+  final String segmentKeyPrefix;
+
+  @override
+  Widget build(BuildContext context) => Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 10,
+        runSpacing: 12,
+        children: List.generate(syllables.length, (index) {
+          final active = activeIndex == index;
+          return KeyedSubtree(
+            key: ValueKey('$segmentKeyPrefix$index'),
+            child: _TileButton(
+              key: ValueKey('syllable-segment-$index'),
+              label:
+                  'Silbe ${index + 1}: ${syllables[index]}${active ? ', gerade aktiv' : ''}',
+              selected: active,
+              accent: _violet,
+              reduceMotion: reduceMotion,
+              onPressed: enabled ? () => onSelected(index) : null,
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                Text(syllables[index],
+                    style: _labelStyle.copyWith(fontSize: 25)),
+                const SizedBox(height: 5),
+                Container(
+                    height: 3,
+                    width: 28,
+                    decoration: BoxDecoration(
+                        color: active
+                            ? Colors.white
+                            : _violet.withValues(alpha: .4),
+                        borderRadius: BorderRadius.circular(3))),
+                if (active) ...[
+                  const SizedBox(height: 4),
+                  const Icon(Icons.volume_up_rounded,
+                      size: 18, color: Colors.white),
+                ],
+              ]),
+            ),
+          );
+        }),
+      );
+}
+
+/// A controlled form sequence. Selection is reported, never evaluated here.
+/// Group borders explain repetition without supplying the next element.
+class PatternBuildBoard extends StatelessWidget {
+  const PatternBuildBoard({
+    super.key,
+    required this.sequence,
+    required this.options,
+    required this.onChanged,
+    this.selected,
+    this.enabled = true,
+    this.revealGroup = false,
+    this.groupLength = 2,
+    this.reduceMotion = false,
+  });
+
+  final List<String> sequence;
+  final List<String> options;
+  final int? selected;
+  final ValueChanged<int> onChanged;
+  final bool enabled;
+  final bool revealGroup;
+  final int groupLength;
+  final bool reduceMotion;
+
+  @override
+  Widget build(BuildContext context) {
+    final grouping = groupLength.clamp(1, math.max(1, sequence.length)).toInt();
+    return _LabSurface(
+      accent: _gold,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const _BoardHeading(
+            icon: Icons.category_rounded,
+            title: 'Die Formenfolge',
+            subtitle: 'Schau auf die Formen. Welche folgt als Nächstes?',
+            accent: _gold,
+          ),
+          const SizedBox(height: 16),
+          KeyedSubtree(
+            key: const ValueKey('pattern_group'),
+            child: Wrap(
+              spacing: 10,
+              runSpacing: 12,
+              alignment: WrapAlignment.center,
+              children: [
+                if (revealGroup)
+                  for (var start = 0;
+                      start < sequence.length;
+                      start += grouping)
+                    Container(
+                      key: ValueKey('pattern-group-${start ~/ grouping}'),
+                      padding: const EdgeInsets.all(7),
+                      decoration: BoxDecoration(
+                        color: _gold.withValues(alpha: .07),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: _gold, width: 2),
+                      ),
+                      child: Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          for (var i = start;
+                              i < math.min(start + grouping, sequence.length);
+                              i++)
+                            _PatternTile(
+                              key: ValueKey('pattern-item-$i'),
+                              form: sequence[i],
+                              position: i + 1,
+                            ),
+                        ],
+                      ),
+                    )
+                else
+                  for (var i = 0; i < sequence.length; i++)
+                    _PatternTile(
+                      key: ValueKey('pattern-item-$i'),
+                      form: sequence[i],
+                      position: i + 1,
+                    ),
+                Semantics(
+                  label: 'Nächster Platz, noch offen',
+                  child: Container(
+                    key: const ValueKey('pattern_next'),
+                    width: 70,
+                    height: 88,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF071D35),
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(color: _muted, width: 1.5),
+                    ),
+                    child: Text('?', style: _labelStyle.copyWith(fontSize: 32)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (revealGroup) ...[
+            const SizedBox(height: 12),
+            const Text(
+              'Die umrahmten Gruppen beginnen immer gleich. '
+              'Vergleiche die letzte Gruppe mit der ersten.',
+              style: _bodyStyle,
+            ),
+          ],
+          const SizedBox(height: 18),
+          const Text('Deine Auswahl', style: _labelStyle),
+          const SizedBox(height: 10),
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 10,
+            runSpacing: 12,
+            children: List.generate(
+              options.length,
+              (index) => _TileButton(
+                key: ValueKey('pattern-option-$index'),
+                label:
+                    '${options[index]}${selected == index ? ', ausgewählt' : ', auswählen'}',
+                selected: selected == index,
+                accent: _gold,
+                reduceMotion: reduceMotion,
+                onPressed: enabled ? () => onChanged(index) : null,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    LumoLearningShape(form: options[index], size: 32),
+                    const SizedBox(height: 8),
+                    Text(options[index], style: _labelStyle),
+                    if (selected == index) ...[
+                      const SizedBox(height: 4),
+                      const Icon(
+                        Icons.check_rounded,
+                        size: 20,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Compatibility entry for the parallel catalogue/UI delivery. Both names
+/// use the same controlled renderer and therefore the same counting rules.
+class LearningPatternBoard extends StatelessWidget {
+  const LearningPatternBoard(
+      {super.key,
+      required this.sequence,
+      required this.choices,
+      required this.onSelected,
+      this.selected,
+      this.repeatLength = 2,
+      this.showGroups = false,
+      this.enabled = true});
+  final List<String> sequence, choices;
+  final ValueChanged<int> onSelected;
+  final int? selected;
+  final int repeatLength;
+  final bool showGroups, enabled;
+
+  @override
+  Widget build(BuildContext context) => PatternBuildBoard(
+      sequence: sequence,
+      options: choices,
+      onChanged: onSelected,
+      selected: selected,
+      groupLength: repeatLength,
+      revealGroup: showGroups,
+      enabled: enabled);
+}
+
+class _PatternTile extends StatelessWidget {
+  const _PatternTile({super.key, required this.form, required this.position});
+  final String form;
+  final int position;
+
+  @override
+  Widget build(BuildContext context) => Semantics(
+        label: 'Platz $position: $form',
+        child: Container(
+          constraints: const BoxConstraints(minWidth: 64, minHeight: 88),
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFF2B4D74), Color(0xFF173657)],
+            ),
+            border: Border.all(color: const Color(0xFF597494)),
+            borderRadius: BorderRadius.circular(14),
+            boxShadow: const [
+              BoxShadow(color: Color(0xFF04152C), offset: Offset(0, 4)),
+            ],
+          ),
+          child: ExcludeSemantics(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                LumoLearningShape(form: form, size: 34),
+                const SizedBox(height: 9),
+                Text(form, style: _labelStyle),
+              ],
+            ),
+          ),
+        ),
+      );
+}
+
+/// Vector geometry stays sharp in every lesson size. Shape names are also
+/// visible; neither recognition nor selection relies on hue alone.
+class LumoLearningShape extends StatelessWidget {
+  const LumoLearningShape({super.key, required this.form, this.size = 40});
+  final String form;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    const known = {
+      'kreis',
+      'circle',
+      'dreieck',
+      'triangle',
+      'stern',
+      'star',
+      'rechteck',
+      'rectangle',
+      'quadrat',
+      'square',
+    };
+    return SizedBox(
+      width: size,
+      height: size,
+      child: known.contains(form.toLowerCase())
+          ? CustomPaint(painter: _LearningShapePainter(form))
+          : const Icon(Icons.help_outline_rounded, color: _gold),
+    );
+  }
+}
+
+class _LearningShapePainter extends CustomPainter {
+  const _LearningShapePainter(this.form);
+  final String form;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Offset.zero & size;
+    final center = rect.center;
+    final radius = math.min(size.width, size.height) * .43;
+    final path = Path();
+    switch (form.toLowerCase()) {
+      case 'kreis':
+      case 'circle':
+        path.addOval(Rect.fromCircle(center: center, radius: radius));
+      case 'dreieck':
+      case 'triangle':
+        path.moveTo(center.dx, center.dy - radius);
+        path.lineTo(center.dx + radius, center.dy + radius);
+        path.lineTo(center.dx - radius, center.dy + radius);
+        path.close();
+      case 'stern':
+      case 'star':
+        for (var i = 0; i < 10; i++) {
+          final angle = -math.pi / 2 + i * math.pi / 5;
+          final r = i.isEven ? radius : radius * .46;
+          final point = center + Offset(math.cos(angle), math.sin(angle)) * r;
+          if (i == 0) {
+            path.moveTo(point.dx, point.dy);
+          } else {
+            path.lineTo(point.dx, point.dy);
+          }
+        }
+        path.close();
+      case 'rechteck':
+      case 'rectangle':
+        path.addRect(
+          Rect.fromCenter(
+            center: center,
+            width: radius * 2,
+            height: radius * 1.35,
+          ),
+        );
+      default:
+        path.addRect(
+          Rect.fromCenter(
+            center: center,
+            width: radius * 1.7,
+            height: radius * 1.7,
+          ),
+        );
+    }
+    canvas.drawShadow(path, const Color(0xFF020B20), 4, false);
+    canvas.drawPath(
+      path,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFFFFECB0), Color(0xFFFFBA4A), Color(0xFFDB7D28)],
+        ).createShader(rect),
+    );
+    canvas.drawPath(
+      path,
+      Paint()
+        ..color = const Color(0xFFFFF4D8)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.5,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_LearningShapePainter oldDelegate) =>
+      form != oldDelegate.form;
 }
 
 /// A controlled fraction model with equal, independently selectable pieces.
@@ -274,107 +779,120 @@ class FractionBuildBoard extends StatelessWidget {
                 constraints: const BoxConstraints(maxWidth: 264),
                 child: AspectRatio(
                   aspectRatio: 1,
-                  child: LayoutBuilder(builder: (context, constraints) {
-                    final diameter = constraints.maxWidth;
-                    return Stack(
-                      key: const ValueKey('fraction-disc'),
-                      children: [
-                        Positioned.fill(
-                          top: 7,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: const Color(0xFF071327),
-                              border: Border.all(
-                                  color: const Color(0xFF405474), width: 2),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final diameter = constraints.maxWidth;
+                      return Stack(
+                        key: const ValueKey('fraction-disc'),
+                        children: [
+                          Positioned.fill(
+                            top: 7,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: const Color(0xFF071327),
+                                border: Border.all(
+                                  color: const Color(0xFF405474),
+                                  width: 2,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                        for (var index = 0; index < denominator; index++)
-                          Positioned.fill(
-                            bottom: 7,
-                            child: ClipPath(
-                              clipper: _FractionClipper(index, denominator),
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  excludeFromSemantics: true,
-                                  canRequestFocus: false,
-                                  onTap: enabled ? () => toggle(index) : null,
-                                  splashColor: _gold.withValues(alpha: .16),
-                                  highlightColor: _gold.withValues(alpha: .1),
-                                  child: AnimatedContainer(
-                                    duration: _duration(context, reduceMotion),
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        colors: pieces.contains(index)
-                                            ? const [
-                                                Color(0xFFFFE8A4),
-                                                _gold,
-                                                Color(0xFFE49B21),
-                                              ]
-                                            : const [
-                                                Color(0xFF406183),
-                                                Color(0xFF244569),
-                                                Color(0xFF173353),
-                                              ],
+                          for (var index = 0; index < denominator; index++)
+                            Positioned.fill(
+                              bottom: 7,
+                              child: ClipPath(
+                                clipper: _FractionClipper(index, denominator),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    excludeFromSemantics: true,
+                                    canRequestFocus: false,
+                                    onTap: enabled ? () => toggle(index) : null,
+                                    splashColor: _gold.withValues(alpha: .16),
+                                    highlightColor: _gold.withValues(alpha: .1),
+                                    child: AnimatedContainer(
+                                      duration: _duration(
+                                        context,
+                                        reduceMotion,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          colors: pieces.contains(index)
+                                              ? const [
+                                                  Color(0xFFFFE8A4),
+                                                  _gold,
+                                                  Color(0xFFE49B21),
+                                                ]
+                                              : const [
+                                                  Color(0xFF406183),
+                                                  Color(0xFF244569),
+                                                  Color(0xFF173353),
+                                                ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        Positioned.fill(
-                          bottom: 7,
-                          child: IgnorePointer(
-                            child: CustomPaint(
-                              painter: _FractionRimPainter(denominator),
+                          Positioned.fill(
+                            bottom: 7,
+                            child: IgnorePointer(
+                              child: CustomPaint(
+                                painter: _FractionRimPainter(denominator),
+                              ),
                             ),
                           ),
-                        ),
-                        for (var index = 0; index < denominator; index++)
-                          Positioned(
-                            left: diameter / 2 +
-                                math.cos(-math.pi / 2 +
-                                        (index + .5) *
-                                            math.pi *
-                                            2 /
-                                            denominator) *
-                                    diameter *
-                                    .32 -
-                                24,
-                            top: (diameter - 7) / 2 +
-                                math.sin(-math.pi / 2 +
-                                        (index + .5) *
-                                            math.pi *
-                                            2 /
-                                            denominator) *
-                                    (diameter - 7) *
-                                    .32 -
-                                24,
-                            child: IgnorePointer(
-                              child: ExcludeSemantics(
-                                child: SizedBox.square(
-                                  dimension: 48,
-                                  child: Center(
-                                    child: Text('${index + 1}',
+                          for (var index = 0; index < denominator; index++)
+                            Positioned(
+                              left: diameter / 2 +
+                                  math.cos(
+                                        -math.pi / 2 +
+                                            (index + .5) *
+                                                math.pi *
+                                                2 /
+                                                denominator,
+                                      ) *
+                                      diameter *
+                                      .32 -
+                                  24,
+                              top: (diameter - 7) / 2 +
+                                  math.sin(
+                                        -math.pi / 2 +
+                                            (index + .5) *
+                                                math.pi *
+                                                2 /
+                                                denominator,
+                                      ) *
+                                      (diameter - 7) *
+                                      .32 -
+                                  24,
+                              child: IgnorePointer(
+                                child: ExcludeSemantics(
+                                  child: SizedBox.square(
+                                    dimension: 48,
+                                    child: Center(
+                                      child: Text(
+                                        '${index + 1}',
                                         style: _labelStyle.copyWith(
                                           fontSize: 16,
                                           color: pieces.contains(index)
                                               ? const Color(0xFF4F340A)
                                               : _ink,
-                                        )),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                      ],
-                    );
-                  }),
+                        ],
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
@@ -436,11 +954,13 @@ class LearningTokenWorkbench extends StatelessWidget {
     final seen = <int>{};
     final order = selected
         .where(
-            (index) => index >= 0 && index < tokens.length && seen.add(index))
+          (index) => index >= 0 && index < tokens.length && seen.add(index),
+        )
         .toList();
-    final available = List.generate(tokens.length, (index) => index)
-        .where((index) => !seen.contains(index))
-        .toList();
+    final available = List.generate(
+      tokens.length,
+      (index) => index,
+    ).where((index) => !seen.contains(index)).toList();
 
     Widget token(int index, {required bool inWork}) => _TileButton(
           key: ValueKey('token-${inWork ? 'work' : 'bank'}-$index'),
@@ -451,14 +971,18 @@ class LearningTokenWorkbench extends StatelessWidget {
           selected: inWork,
           reduceMotion: reduceMotion,
           onPressed: enabled
-              ? () => onChanged(inWork
-                  ? order.where((item) => item != index).toList()
-                  : [...order, index])
+              ? () => onChanged(
+                    inWork
+                        ? order.where((item) => item != index).toList()
+                        : [...order, index],
+                  )
               : null,
-          child: Text(tokens[index],
-              textAlign: TextAlign.center,
-              softWrap: true,
-              style: _labelStyle.copyWith(fontSize: 16)),
+          child: Text(
+            tokens[index],
+            textAlign: TextAlign.center,
+            softWrap: true,
+            style: _labelStyle.copyWith(fontSize: 16),
+          ),
         );
 
     return _LabSurface(
@@ -476,9 +1000,8 @@ class LearningTokenWorkbench extends StatelessWidget {
           const Text('Deine Reihe', style: _labelStyle),
           const SizedBox(height: 8),
           _InsetDeck(
-            child: AnimatedSize(
-              duration: _duration(context, reduceMotion),
-              alignment: Alignment.topLeft,
+            child: _WorkbenchSize(
+              reduceMotion: reduceMotion,
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 80),
                 child: Align(
@@ -486,15 +1009,22 @@ class LearningTokenWorkbench extends StatelessWidget {
                   child: order.isEmpty
                       ? const Padding(
                           padding: EdgeInsets.all(12),
-                          child: Row(children: [
-                            Icon(Icons.touch_app_rounded,
-                                size: 22, color: _violet),
-                            SizedBox(width: 10),
-                            Expanded(
-                              child: Text('Hier beginnt deine Reihe.',
-                                  style: _bodyStyle),
-                            ),
-                          ]),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.touch_app_rounded,
+                                size: 22,
+                                color: _violet,
+                              ),
+                              SizedBox(width: 10),
+                              Expanded(
+                                child: Text(
+                                  'Hier beginnt deine Reihe.',
+                                  style: _bodyStyle,
+                                ),
+                              ),
+                            ],
+                          ),
                         )
                       : Padding(
                           padding: const EdgeInsets.all(8),
@@ -521,8 +1051,10 @@ class LearningTokenWorkbench extends StatelessWidget {
               child: available.isEmpty
                   ? const Padding(
                       padding: EdgeInsets.symmetric(vertical: 12),
-                      child: Text('Alle Bausteine liegen in deiner Reihe.',
-                          style: _bodyStyle),
+                      child: Text(
+                        'Alle Bausteine liegen in deiner Reihe.',
+                        style: _bodyStyle,
+                      ),
                     )
                   : Wrap(
                       spacing: 8,
@@ -535,11 +1067,31 @@ class LearningTokenWorkbench extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          const Text('Tippe einen gelegten Baustein an, um ihn zurückzulegen.',
-              textAlign: TextAlign.center, style: _bodyStyle),
+          const Text(
+            'Tippe einen gelegten Baustein an, um ihn zurückzulegen.',
+            textAlign: TextAlign.center,
+            style: _bodyStyle,
+          ),
         ],
       ),
     );
+  }
+}
+
+/// A stopped size animation can retain an obsolete layout while tokens move.
+/// Reduced motion uses the live child directly, including accessibility mode.
+class _WorkbenchSize extends StatelessWidget {
+  const _WorkbenchSize({required this.reduceMotion, required this.child});
+  final bool reduceMotion;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final duration = _duration(context, reduceMotion);
+    return duration == Duration.zero
+        ? child
+        : AnimatedSize(
+            duration: duration, alignment: Alignment.topLeft, child: child);
   }
 }
 
@@ -562,7 +1114,10 @@ class _LabSurface extends StatelessWidget {
           boxShadow: const [
             BoxShadow(color: Color(0xFF020F28), offset: Offset(0, 6)),
             BoxShadow(
-                color: Color(0x33000000), offset: Offset(0, 8), blurRadius: 10),
+              color: Color(0x33000000),
+              offset: Offset(0, 8),
+              blurRadius: 10,
+            ),
           ],
         ),
         child: Padding(padding: const EdgeInsets.all(12), child: child),
@@ -600,8 +1155,11 @@ class _BoardHeading extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title,
-                    style: _labelStyle.copyWith(fontSize: 18), softWrap: true),
+                Text(
+                  title,
+                  style: _labelStyle.copyWith(fontSize: 18),
+                  softWrap: true,
+                ),
                 const SizedBox(height: 4),
                 Text(subtitle, style: _bodyStyle),
               ],
@@ -612,7 +1170,11 @@ class _BoardHeading extends StatelessWidget {
 }
 
 class _InsetDeck extends StatelessWidget {
-  const _InsetDeck({required this.child, this.padding = EdgeInsets.zero});
+  const _InsetDeck({
+    super.key,
+    required this.child,
+    this.padding = EdgeInsets.zero,
+  });
 
   final Widget child;
   final EdgeInsetsGeometry padding;
@@ -653,17 +1215,21 @@ class _Counter extends StatelessWidget {
             colors: [
               Color.lerp(color, Colors.white, .68)!,
               color,
-              Color.lerp(color, const Color(0xFF092445), .44)!
+              Color.lerp(color, const Color(0xFF092445), .44)!,
             ],
             stops: const [0, .45, 1],
           ),
           border: Border.all(color: color.withValues(alpha: .9)),
           boxShadow: [
             BoxShadow(
-                color: Color.lerp(color, const Color(0xFF04152C), .65)!,
-                offset: const Offset(0, 4)),
+              color: Color.lerp(color, const Color(0xFF04152C), .65)!,
+              offset: const Offset(0, 4),
+            ),
             const BoxShadow(
-                color: Color(0x66000000), offset: Offset(0, 6), blurRadius: 4),
+              color: Color(0x66000000),
+              offset: Offset(0, 6),
+              blurRadius: 4,
+            ),
           ],
         ),
         child: Center(
@@ -723,14 +1289,17 @@ class _CounterButton extends StatelessWidget {
               padding: EdgeInsets.zero,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
+                borderRadius: BorderRadius.circular(12),
+              ),
               animationDuration: _duration(context, reduceMotion),
             ),
             child: ExcludeSemantics(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 4),
                 child: _Counter(
-                    color: color, diameter: math.min(34, (size ?? 48) - 6)),
+                  color: color,
+                  diameter: math.min(34, (size ?? 48) - 6),
+                ),
               ),
             ),
           ),
@@ -829,14 +1398,16 @@ class _TileButton extends StatelessWidget {
                     : const [Color(0xFF2B4D74), Color(0xFF173657)],
               ),
               border: Border.all(
-                  color: selected ? accent : const Color(0xFF597494),
-                  width: 1.2),
+                color: selected ? accent : const Color(0xFF597494),
+                width: 1.2,
+              ),
               boxShadow: [
                 BoxShadow(
-                    color: selected
-                        ? Color.lerp(accent, const Color(0xFF04152C), .8)!
-                        : const Color(0xFF081931),
-                    offset: const Offset(0, 4)),
+                  color: selected
+                      ? Color.lerp(accent, const Color(0xFF04152C), .8)!
+                      : const Color(0xFF081931),
+                  offset: const Offset(0, 4),
+                ),
               ],
             ),
             child: TextButton(
@@ -849,7 +1420,8 @@ class _TileButton extends StatelessWidget {
                 animationDuration: _duration(context, reduceMotion),
                 foregroundColor: _ink,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14)),
+                  borderRadius: BorderRadius.circular(14),
+                ),
               ),
               child: ExcludeSemantics(child: child),
             ),
@@ -868,10 +1440,16 @@ Path _fractionPath(Size size, int index, int denominator) {
   final sweep = math.pi * 2 / denominator;
   return Path()
     ..moveTo(center.dx, center.dy)
-    ..lineTo(center.dx + math.cos(start) * radius,
-        center.dy + math.sin(start) * radius)
+    ..lineTo(
+      center.dx + math.cos(start) * radius,
+      center.dy + math.sin(start) * radius,
+    )
     ..arcTo(
-        Rect.fromCircle(center: center, radius: radius), start, sweep, false)
+      Rect.fromCircle(center: center, radius: radius),
+      start,
+      sweep,
+      false,
+    )
     ..close();
 }
 
@@ -906,7 +1484,9 @@ class _FractionRimPainter extends CustomPainter {
     final radius = math.min(size.width, size.height) / 2 - 2;
     canvas.drawArc(
       Rect.fromCircle(
-          center: Offset(size.width / 2, size.height / 2), radius: radius - 1),
+        center: Offset(size.width / 2, size.height / 2),
+        radius: radius - 1,
+      ),
       -math.pi * .95,
       math.pi * .8,
       false,

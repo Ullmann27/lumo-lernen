@@ -7,6 +7,7 @@ import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/lumo_ai_proxy_client.dart';
 import 'package:lumo_lernen/core/lumo_context_engine.dart';
 import 'package:lumo_lernen/core/lumo_conversation_controller.dart';
+import 'package:lumo_lernen/core/lumo_learning_session_contract.dart';
 import 'package:lumo_lernen/core/lumo_sulafat_client.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
@@ -108,6 +109,41 @@ void main() {
     expect(remote.keys, isNot(contains('touchCoordinates')));
   });
 
+  test('rejected lesson commands never leak stored help or publish gestures',
+      () async {
+    final requests = LumoCompanionRequests.instance;
+    requests.publishTask(const LumoCompanionTaskContext(
+      subject: 'Mathematik',
+      unit: 'Plus bis 10',
+      prompt: 'Rechne 4 + 3.',
+      taskId: 'current-help-is-locked',
+      localHelp: 'Vertraulicher naechster Hilfeschritt: vier und drei.',
+      explanation: 'Vertraulicher naechster Hilfeschritt: vier und drei.',
+      objectIds: ['bridge_two'],
+      allowedActions: {LumoLearningAction.stop},
+    ));
+    final stars = app.state.stars, xp = app.state.xp;
+    for (final question in [
+      'Warum zuerst zwei?',
+      'Hilf mir bitte',
+      'Noch einmal',
+      'Langsamer',
+    ]) {
+      final response = await conversation.ask(question);
+      expect(response.source, 'local_action_unavailable', reason: question);
+      expect(response.reply, contains('nicht freigegeben'), reason: question);
+      expect(response.reply, isNot(contains('vier und drei')),
+          reason: question);
+      expect(requests.learningPresentation.value, isNull, reason: question);
+      expect(requests.learningAudio.value, isNull, reason: question);
+      expect(requests.learningAction.value?.action, LumoLearningAction.stop,
+          reason: 'Only the interruption of the preceding turn is permitted.');
+    }
+    expect(app.state.stars, stars);
+    expect(app.state.xp, xp);
+    expect(app.state.solved, isEmpty);
+  });
+
   test('assessment forbids cloud help even through a direct controller call',
       () async {
     task(exam: true);
@@ -121,6 +157,78 @@ void main() {
     expect(proxy.entered.isCompleted, false);
   });
 
+  test(
+      'unclassified task question cannot bypass unavailable help through proxy',
+      () async {
+    app.updateSettings(const AppSettings(
+        aiProxyEnabled: true, aiLearningMode: AiLearningMode.fullCoach));
+    final proxy = ControlledProxy();
+    conversation.dispose();
+    conversation = LumoConversationController(context, proxy: proxy);
+    LumoCompanionRequests.instance.publishTask(const LumoCompanionTaskContext(
+      subject: 'Mathematik',
+      unit: 'Plus bis 10',
+      prompt: 'Rechne 4 + 3.',
+      taskId: 'no-open-help',
+      localHelp: 'Nicht freigegebener Lösungsschritt.',
+      allowedActions: {LumoLearningAction.stop, LumoLearningAction.repeat},
+    ));
+    final response = await conversation.ask('Welche Bedeutung hat Addition?');
+    expect(response.source, 'local_action_unavailable');
+    expect(response.reply, isNot(contains('Lösungsschritt')));
+    expect(proxy.entered.isCompleted, false);
+    expect(LumoCompanionRequests.instance.learningPresentation.value, isNull);
+  });
+
+  test('explicit assessment repeat and slower read only the visible prompt',
+      () async {
+    app.updateSettings(const AppSettings(
+        aiProxyEnabled: true, aiLearningMode: AiLearningMode.fullCoach));
+    final proxy = ControlledProxy();
+    conversation.dispose();
+    conversation = LumoConversationController(context, proxy: proxy);
+    final requests = LumoCompanionRequests.instance;
+    requests.publishTask(const LumoCompanionTaskContext(
+      subject: 'Mathematik',
+      unit: 'Plus bis 10',
+      prompt: 'Rechne 4 + 3.',
+      taskId: 'exam-read-instruction',
+      isExam: true,
+      localHelp: 'Gehe von vier drei Schritte weiter.',
+      explanation: 'Vier plus drei ist sieben.',
+      allowedActions: {
+        LumoLearningAction.stop,
+        LumoLearningAction.repeat,
+        LumoLearningAction.slower,
+      },
+    ));
+    for (final input in ['Noch einmal', 'Langsamer']) {
+      final response = await conversation.ask(input);
+      expect(response.source, 'local_assessment_instruction');
+      expect(response.reply, 'Rechne 4 + 3.');
+      expect(proxy.entered.isCompleted, false);
+      expect(requests.learningPresentation.value, isNull);
+      expect(app.state.solved, isEmpty);
+    }
+    for (final input in ['Warum?', 'Hilf mir', 'Die Antwort ist sieben']) {
+      final response = await conversation.ask(input);
+      expect(response.source, 'local_assessment_no_help');
+      expect(response.reply, isNot(contains('Schritte')));
+      expect(response.reply, isNot(contains('sieben')));
+    }
+    expect((await conversation.ask('Stopp')).source, 'local_stopped');
+  });
+
+  test('legacy assessment defaults do not grant instruction narration',
+      () async {
+    task(exam: true);
+    for (final input in ['Noch einmal', 'Langsamer']) {
+      final response = await conversation.ask(input);
+      expect(response.source, 'local_assessment_no_help');
+      expect(response.reply, isNot(contains('vier Punkte')));
+    }
+  });
+
   test('task change cancels a pending answer and discards its memory',
       () async {
     task();
@@ -129,7 +237,9 @@ void main() {
     final proxy = ControlledProxy();
     conversation.dispose();
     conversation = LumoConversationController(context, proxy: proxy);
-    final pending = conversation.ask('Lumo, was muss ich hier machen?');
+    // Explicit lesson commands are now handled locally. Use an open question
+    // to exercise the cancellable, parent-enabled proxy path.
+    final pending = conversation.ask('Welche Bedeutung hat Addition?');
     await proxy.entered.future;
     expect(proxy.extras?['taskPrompt'], 'Rechne 4 + 3.');
     task(attempts: 2);

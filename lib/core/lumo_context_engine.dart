@@ -5,6 +5,7 @@ import '../widgets/fox/lumo_companion_requests.dart';
 import 'lumo_ai_learning_access.dart';
 import 'lumo_ai_learning_policy_bridge.dart';
 import 'lumo_ai_proxy_client.dart';
+import 'lumo_learning_session_contract.dart';
 import 'lumo_voice.dart';
 
 /// Read-only adapter over the EXISTING application and task request bus.
@@ -13,6 +14,7 @@ class LumoContextEngine extends ChangeNotifier {
   LumoContextEngine(this.appState, {LumoCompanionRequests? requests})
       : requests = requests ?? LumoCompanionRequests.instance {
     _scope = _scopeKey;
+    _taskSnapshot = task?.semanticKey;
     appState.addListener(_changed);
     this.requests.taskContext.addListener(_taskChanged);
   }
@@ -20,7 +22,14 @@ class LumoContextEngine extends ChangeNotifier {
   final LumoAppState appState;
   final LumoCompanionRequests requests;
   String _scope = '';
+  String? _taskSnapshot;
   int revision = 0;
+
+  /// A new help/step snapshot invalidates pending work without erasing the
+  /// conversation about the same task. A profile/page/task change clears it.
+  String get conversationScope => '$_scope|${task?.conversationKey ?? ''}';
+  LumoLearningIdentity? get learningIdentity =>
+      task == null ? null : requests.learningIdentity.value;
 
   LumoCompanionTaskContext? get task {
     final current = requests.taskContext.value;
@@ -41,7 +50,8 @@ class LumoContextEngine extends ChangeNotifier {
         '${s.subject}|${s.unit}|${s.sessionKind.name}|'
         '${s.settings.aiProxyEnabled}|${s.settings.aiLearningMode.name}|'
         '${s.settings.aiProxyUrl}|${s.settings.cloudVoiceEnabled}|'
-        '${s.settings.microphoneEnabled}';
+        '${s.settings.microphoneEnabled}|${s.settings.voiceEnabled}|'
+        '${s.settings.localVoiceLicenseAccepted}';
   }
 
   bool get isAssessment {
@@ -83,7 +93,11 @@ class LumoContextEngine extends ChangeNotifier {
         'taskPrompt': t.prompt,
         'attempt': t.attempts,
         'helpLevel': t.helpLevel,
-        'taskStatus': t.answering ? 'answering' : 'completed',
+        'taskStatus': t.isExplanation
+            ? 'explaining'
+            : t.answering
+                ? 'answering'
+                : 'completed',
         'activity': t.activity,
         if (t.lastCorrect != null) 'lastCorrect': t.lastCorrect,
         if (t.lastAnswer != null) 'lastAnswer': t.lastAnswer,
@@ -97,16 +111,15 @@ class LumoContextEngine extends ChangeNotifier {
     final current = _scopeKey;
     if (_scope == current) return;
     _scope = current;
+    _taskSnapshot = task?.semanticKey;
     revision++;
     notifyListeners();
   }
 
   void _taskChanged() {
-    if (appState.state.section != LumoSection.learn &&
-        appState.state.section != LumoSection.exercises &&
-        appState.state.section != LumoSection.reading) {
-      return;
-    }
+    final snapshot = task?.semanticKey;
+    if (snapshot == _taskSnapshot) return;
+    _taskSnapshot = snapshot;
     revision++;
     notifyListeners();
   }

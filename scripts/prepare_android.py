@@ -211,11 +211,17 @@ def prepare(root: Path, keystore_directory: Path, side_by_side: bool = False,
     target = main / 'kotlin' / Path(*namespace.split('.')) / 'MainActivity.kt'
     target.parent.mkdir(parents=True, exist_ok=True)
     template = (root / 'tools/auto_install/MainActivity.kt').read_text()
+    if 'LumoLocalRecognition(' in template and not (
+            root / 'tools/auto_install/LumoLocalRecognition.kt').is_file():
+        raise ValueError('The local-only speech recognizer template is required by this Android host')
     target.write_text(re.sub(r'^package [^\n]+', f'package {namespace}', template, count=1))
     for filename, language in (
         ('LumoOfflineSpeechEngine.java', 'java'),
         ('LumoOfflineSpeechBridge.kt', 'kotlin'),
+        ('LumoLocalRecognition.kt', 'kotlin'),
         ('LumoLearningSpeech.kt', 'kotlin'),
+        ('LumoLearningConversation.kt', 'kotlin'),
+        ('LumoLearningDialogLogic.java', 'java'),
         ('LumoSpeechEnvelope.kt', 'kotlin'),
     ):
         source = root / 'tools/auto_install' / filename

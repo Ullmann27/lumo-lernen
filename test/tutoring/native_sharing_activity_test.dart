@@ -268,8 +268,18 @@ void main() {
       await tester.tap(help);
       await frames(tester, 40);
       expect(calls, hasLength(1));
-      expect((calls.single.arguments as Map)['learning'],
-          activity.toLaunchOptions());
+      final launch = Map<String, dynamic>.from(
+          (calls.single.arguments as Map)['learning'] as Map);
+      final scope = launch.remove('scope') as Map;
+      expect(scope['protocolVersion'], 1);
+      expect(scope['taskId'],
+          LumoCompanionRequests.instance.taskContext.value!.taskId);
+      expect(
+          launch.remove('allowedActions'),
+          LumoCompanionRequests.instance.taskContext.value!.allowedActions
+              .map((action) => action.name)
+              .toList());
+      expect(launch, activity.toLaunchOptions());
       expect(
           tester
               .widget<AdaptiveTaskRenderer>(find.byType(AdaptiveTaskRenderer))
@@ -354,7 +364,10 @@ void main() {
         expect(await launched, isTrue);
         final options = calls.last.arguments as Map;
         expect(options['scene'], 'learning');
-        expect(options['learning'], activity.toLaunchOptions());
+        expect(options['learning'], {
+          ...activity.toLaunchOptions(),
+          'allowedActions': ['stop'],
+        });
         expect(options['childKey'], matches(r'^p_[a-f0-9]{32}$'));
         expect(app.state.stars, 0);
       }

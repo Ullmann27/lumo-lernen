@@ -102,6 +102,17 @@ void main() {
     final listens = calls.where((call) => call.method == 'listen');
     expect(listens, hasLength(1));
     expect((listens.single.arguments as Map)['onDevice'], isTrue);
+    // The native listen acknowledgement does not mean the microphone is
+    // ready. Only the real plugin ready event enables the listening state.
+    final ready = Completer<void>();
+    messenger.handlePlatformMessage(
+      speech.name,
+      const StandardMethodCodec()
+          .encodeMethodCall(const MethodCall('notifyStatus', 'listening')),
+      (_) => ready.complete(),
+    );
+    await ready.future;
+    await tester.pump();
     expect(find.text('Zuhören …'), findsOneWidget);
     expect((app.state.stars, app.state.xp), (0, 0));
     expect(app.state.solved, isEmpty);
