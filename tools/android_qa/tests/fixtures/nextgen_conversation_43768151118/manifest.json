@@ -1,0 +1,23 @@
+{
+  "scope": "Byte-identical original failed Android UI observation. Unit tests exercise only hint reading and existing input gates; this is not a new Android conversation or speech acceptance.",
+  "run_id": 43768151118,
+  "job_id": 132977803483,
+  "qa_commit": "78f836728e3d4a5e067a774fa346933b067ea246",
+  "apk_source": "72a7914059d10152604b877cfeaf8bd1d2155810",
+  "artifact_id": 14183242987,
+  "artifact_bytes": 10717686,
+  "artifact_sha256": "444e46c6cfc8e4d8af4a2ca1995ee63477ee0ec6a4e565350944339762b07c50",
+  "observed_failure": "Current visible Flutter text missing: Frag Lumo",
+  "corroborating_screenshot": {
+    "original": "original-android/0130-failure-current-screen.png",
+    "sha256": "c5c0eb05ee4c3cfd03250eb25212292210c93fba3c83b1d3a1d86aeae95495d8"
+  },
+  "files": [
+    {
+      "file": "0119-current-conversation-input.xml",
+      "original": "original-android/0119-current-conversation-input.xml",
+      "bytes": 25715,
+      "sha256": "3a3b7d802667e52ddb984ab7391bbd5bccb5875b92091e38f77068e6e75b62ca"
+    }
+  ]
+}

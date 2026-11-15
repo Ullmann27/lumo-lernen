@@ -165,8 +165,19 @@ def installed_base_apk_path(raw: str) -> str:
 
 
 def node_labels(nodes) -> list[str]:
-    return [value for node in nodes for key in ("text", "content-desc")
-            if (value := node.get(key, "").strip())]
+    labels = []
+    for node in nodes:
+        labels.extend(value for key in ("text", "content-desc")
+                      if (value := node.get(key, "").strip()))
+        # API 35 exposes the empty EA question field's visible placeholder as
+        # hint, not text/content-desc (recorded run 43768151118). A hint is not
+        # entered text or an actionable control, and disappears once filled.
+        if (node.get("package") == PACKAGE and node.get("class") == "android.widget.EditText"
+                and node.get("enabled") == "true" and node.get("visible-to-user") == "true"
+                and node.get("text", "") == "" and bounds(node, min_height=30)):
+            if hint := node.get("hint", "").strip():
+                labels.append(hint)
+    return labels
 
 
 def bounds(node, *, min_height: int = 1) -> tuple[int, int, int, int] | None:
