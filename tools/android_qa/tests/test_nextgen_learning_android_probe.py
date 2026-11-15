@@ -79,6 +79,38 @@ class ArtifactIdentityTest(unittest.TestCase):
             with self.subTest(actual=actual, actual_hash=actual_hash), self.assertRaises(RuntimeError):
                 probe.verify_installed_metadata(actual, actual_hash, identity)
 
+    def test_observed_sdk_v2_signer_format_is_accepted(self):
+        # Original Android job 132959417938 / artifact 14180492732, preserved
+        # under docs/nextgen/evidence/android_signature_reader_20261115/.
+        signer = (
+            "V2 Signer: certificate DN: CN=Android Debug, O=Lumo Lernen, C=AT\n"
+            "V2 Signer: certificate SHA-256 digest: "
+            "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702\n"
+            "V2 Signer: certificate SHA-1 digest: 90c562e2465d2d9a3fec1de5fc185097bc2161d1\n"
+            "V2 Signer: certificate MD5 digest: 7dd2c8ddd337a881ac3d2662a98bf638\n"
+        )
+        identity = {**probe.verify_provenance(self.proof, **self.expected),
+                    "versionName": "0.13.15",
+                    "signingCertificateSha256":
+                    "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702"}
+        badging = f"package: name='{probe.PACKAGE}' versionCode='2027' versionName='0.13.15'\n"
+        probe.verify_manifest_and_signer(badging, signer, identity)
+
+    def test_v2_signer_rejects_wrong_partial_or_ambiguous_certificates(self):
+        identity = probe.verify_provenance(self.proof, **self.expected)
+        badging = f"package: name='{probe.PACKAGE}' versionCode='2027' versionName='2.0.27'\n"
+        valid = "V2 Signer: certificate SHA-256 digest: " + "d" * 64 + "\n"
+        numbered = "Signer #1 certificate SHA-256 digest: " + "d" * 64 + "\n"
+        for signer in (valid.replace("d" * 64, "e" * 64),
+                       valid.replace("d" * 64, "d" * 63),
+                       valid.replace("d" * 64, "d" * 65),
+                       valid + valid, valid + numbered,
+                       valid + valid.replace("V2 Signer:", "Unknown signer:"),
+                       "untrusted prefix " + valid,
+                       valid.replace("V2 Signer:", "Unknown signer:")):
+            with self.subTest(signer=signer), self.assertRaises(RuntimeError):
+                probe.verify_manifest_and_signer(badging, signer, identity)
+
 
 class ObservationTest(unittest.TestCase):
     def node(self, **changes):

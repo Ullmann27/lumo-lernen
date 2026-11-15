@@ -120,8 +120,16 @@ def verify_manifest_and_signer(badging: str, signer: str, identity: dict) -> Non
     require(len(package) == 1, "APK manifest identity missing or ambiguous")
     require(package[0] == (PACKAGE, str(identity["versionCode"]), identity["versionName"]),
             "Actual APK manifest differs from expected provenance")
-    certificates = re.findall(r"(?m)^Signer #\d+ certificate SHA-256 digest: ([0-9a-fA-F]{64})\s*$", signer)
-    require(len(certificates) == 1 and certificates[0].lower() == identity["signingCertificateSha256"],
+    # SDK output from run 43759362796 uses "V2 Signer:" for the same
+    # independently verified certificate. Accept that observed label and the
+    # existing numbered format; still require exactly one complete fingerprint.
+    certificates = re.findall(
+        r"(?m)^(?:Signer #\d+|V2 Signer:) certificate SHA-256 digest: ([0-9a-fA-F]{64})[ \t]*$",
+        signer,
+    )
+    fingerprint_lines = [line for line in signer.splitlines() if "certificate SHA-256 digest:" in line]
+    require(len(fingerprint_lines) == 1 and len(certificates) == 1 and
+            certificates[0].lower() == identity["signingCertificateSha256"],
             "Actual APK signing certificate differs from expected certificate")
 
 

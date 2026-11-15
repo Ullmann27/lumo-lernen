@@ -1,0 +1,7 @@
+# Android-Signaturleser: tatsächlicher erster Lauf
+
+Der Androidjob 132959417938 aus [Run 43759362796](https://github.com/Ullmann27/lumo-lernen/actions/runs/43759362796) scheiterte am 15.11.2026 vor Installation der neuen x86-APK. Der unveränderte Originalbefund und die unveränderte Signaturausgabe sind hier archiviert; die ZIP-Größe und SHA-256 wurden vor Extraktion gegen die GitHub-Metadaten geprüft.
+
+`candidate-signature.txt` enthält den exakt erwarteten Fingerabdruck mit dem Werkzeugpräfix `V2 Signer:`. Der Leser akzeptierte zuvor ausschließlich `Signer #1` beziehungsweise nummerierte Signer. Die enge Korrektur akzeptiert beide beobachteten Formate und verlangt weiterhin genau einen vollständigen passenden SHA-256-Fingerabdruck. Falsche, gekürzte, verlängerte, doppelte, gemischte oder unbekannt bezeichnete Signer bleiben abgelehnt. Das Signaturwerkzeug muss weiterhin mit Exit 0 kryptografisch verifizieren; alle Manifest-, Binärhash-, Quellen- und PCK-Gates bleiben bestehen.
+
+Die APK-Produktquelle bleibt `72a7914059d10152604b877cfeaf8bd1d2155810`, Godot bleibt `ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb`. Diese QA-Reparatur baut keine neue App und belegt selbst noch keinen erfolgreichen Androiddurchlauf. Das ursprüngliche Fehlerbild zeigt einen Emulator vor der App-Installation, keine Lernszene. Die vollständige ursprüngliche Tour muss mit korrigiertem Leser an denselben APK-Bytes erneut bestanden werden.
