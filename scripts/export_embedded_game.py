@@ -67,6 +67,8 @@ GROUNDED_GATE_ALLOWED_REVISIONS = frozenset((
     '3a3142608f6b150ee251373ba81e6face2eed4b3',
     # 1999 changes only the game-hub scroll flag and its regression.
     '4d0fd40fdf188be6ca86057596c7b51f41701fa3',
+    # Combined 2022 chassis + Adventure art; GLB hash checks remain mandatory.
+    'd38967f6d39bc20188afe525b0af122d80634029',
 ))
 GROUNDED_GATE_GLB_SHA256 = '8c8891062888eda5b553ae77390eda1a733368fc0bf73b86aefe2a7a666a565d'
 GROUNDED_GATE_FILE = 'assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb'
