@@ -447,6 +447,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   }
 
   Future<void> _handleSafariAnswer(LearningProfileLease owner) async {
+    final revision = _modeRevision;
     if (_safariAnimal == null) return;
     final said = _recognized.toLowerCase().trim();
     final correct = _safariAnimal!.toLowerCase();
@@ -472,12 +473,12 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
       );
       if (mounted) showLumoRewardBurst(context, stars: 2, xp: 10);
       await Future.delayed(const Duration(milliseconds: 2200));
-      if (mounted && widget.appState.isCurrentLearningLease(owner)) _nextSafariAnimal();
+      if (_isCurrentInteraction(revision, owner)) _nextSafariAnimal();
     } else {
       setState(() => _mood = LumoMirrorMood.sad);
       _speak('Hmm, nicht ganz. Es ist ein $_safariAnimal. Versuch noch eins!');
       await Future.delayed(const Duration(milliseconds: 2500));
-      if (mounted && widget.appState.isCurrentLearningLease(owner)) _nextSafariAnimal();
+      if (_isCurrentInteraction(revision, owner)) _nextSafariAnimal();
     }
   }
 

@@ -1,0 +1,44 @@
+test_actual_upload_digest_is_canonicalized_against_rest_metadata (tools.android_qa.tests.test_connect_four_android_evidence.BindingTests.test_actual_upload_digest_is_canonicalized_against_rest_metadata) ... ok
+test_branch_allowlist_does_not_accept_similar_names_or_foreign_repository (tools.android_qa.tests.test_connect_four_android_evidence.BindingTests.test_branch_allowlist_does_not_accept_similar_names_or_foreign_repository) ... ok
+test_exact_integration_branches_accept_their_current_source (tools.android_qa.tests.test_connect_four_android_evidence.BindingTests.test_exact_integration_branches_accept_their_current_source) ... 
+  test_exact_integration_branches_accept_their_current_source (tools.android_qa.tests.test_connect_four_android_evidence.BindingTests.test_exact_integration_branches_accept_their_current_source) (branch='integration/lumo-agent-execution-20261114') ... ERROR
+  test_exact_integration_branches_accept_their_current_source (tools.android_qa.tests.test_connect_four_android_evidence.BindingTests.test_exact_integration_branches_accept_their_current_source) (branch='integration/lumo-live-connections-20261114') ... ERROR
+test_real_size_identifiers_and_exact_source_contract (tools.android_qa.tests.test_connect_four_android_evidence.BindingTests.test_real_size_identifiers_and_exact_source_contract) ... ok
+test_rejects_wrong_source_workflow_attempt_artifact_and_job (tools.android_qa.tests.test_connect_four_android_evidence.BindingTests.test_rejects_wrong_source_workflow_attempt_artifact_and_job) ... ok
+
+======================================================================
+ERROR: test_exact_integration_branches_accept_their_current_source (tools.android_qa.tests.test_connect_four_android_evidence.BindingTests.test_exact_integration_branches_accept_their_current_source) (branch='integration/lumo-agent-execution-20261114')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/tools/android_qa/tests/test_connect_four_android_evidence.py", line 319, in test_exact_integration_branches_accept_their_current_source
+    self.assertEqual(bind(metadata)['host_source'], HOST)
+                     ^^^^^^^^^^^^^^
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/tools/android_qa/tests/test_connect_four_android_evidence.py", line 112, in bind
+    return c4.artifact_binding(*(metadata or original_metadata()),source=HOST,run_id=RUN,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/tools/android_qa/connect_four_android_evidence.py", line 66, in artifact_binding
+    demand(run.get('head_sha') == source and run.get('head_branch') == BRANCH
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/tools/android_qa/connect_four_android_evidence.py", line 40, in demand
+    raise ValueError(message)
+ValueError: Candidate source/event/workflow differs
+
+======================================================================
+ERROR: test_exact_integration_branches_accept_their_current_source (tools.android_qa.tests.test_connect_four_android_evidence.BindingTests.test_exact_integration_branches_accept_their_current_source) (branch='integration/lumo-live-connections-20261114')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/tools/android_qa/tests/test_connect_four_android_evidence.py", line 319, in test_exact_integration_branches_accept_their_current_source
+    self.assertEqual(bind(metadata)['host_source'], HOST)
+                     ^^^^^^^^^^^^^^
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/tools/android_qa/tests/test_connect_four_android_evidence.py", line 112, in bind
+    return c4.artifact_binding(*(metadata or original_metadata()),source=HOST,run_id=RUN,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/tools/android_qa/connect_four_android_evidence.py", line 66, in artifact_binding
+    demand(run.get('head_sha') == source and run.get('head_branch') == BRANCH
+  File "/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/tools/android_qa/connect_four_android_evidence.py", line 40, in demand
+    raise ValueError(message)
+ValueError: Candidate source/event/workflow differs
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (errors=2)

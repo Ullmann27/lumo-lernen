@@ -102,19 +102,27 @@ class OriginalAcceptanceTests(unittest.TestCase):
         self.assertEqual(set(self.check()), set(delivery.REQUIRED_STEPS))
         self.assertEqual(set(delivery.checked_artifacts(self.artifacts, self.binding)), set(delivery.ARTIFACT_NAMES))
 
-    def test_quality_branch_requires_the_same_current_pull_branch(self):
-        self.run['head_branch'] = 'work/lumo-play-quality-20261114'
-        self.pull['head']['ref'] = 'work/lumo-play-quality-20261114'
-        self.assertEqual(set(self.check()), set(delivery.REQUIRED_STEPS))
-        self.pull['head']['ref'] = delivery.BRANCH
-        with self.assertRaises(ValueError):
-            self.check()
+    def test_exact_integration_branches_require_the_same_current_pull_branch(self):
+        for branch in ('work/lumo-play-quality-20261114',
+                       'integration/lumo-agent-execution-20261114',
+                       'integration/lumo-live-connections-20261114'):
+            with self.subTest(branch=branch):
+                self.run['head_branch'] = branch
+                self.pull['head']['ref'] = branch
+                self.assertEqual(set(self.check()), set(delivery.REQUIRED_STEPS))
+                self.pull['head']['ref'] = delivery.BRANCH
+                with self.assertRaises(ValueError):
+                    self.check()
 
     def test_unapproved_branch_cannot_reuse_all_green_jobs(self):
-        self.run['head_branch'] = 'work/unapproved'
-        self.pull['head']['ref'] = 'work/unapproved'
-        with self.assertRaises(ValueError):
-            self.check()
+        for branch in ('work/unapproved', 'integration/lumo-c4-connections-20261114-copy',
+                       'work/lumo-play-quality-20261114-copy',
+                       'integration/lumo-agent-execution-20261114-copy',
+                       'integration/lumo-live-connections-20261114-copy'):
+            self.run['head_branch'] = branch
+            self.pull['head']['ref'] = branch
+            with self.subTest(branch=branch), self.assertRaises(ValueError):
+                self.check()
 
     def test_each_failure_skip_cancel_and_foreign_attempt_blocks_delivery(self):
         for row in self.jobs['jobs'][:-1]:
@@ -134,6 +142,18 @@ class OriginalAcceptanceTests(unittest.TestCase):
                     with self.subTest(step=step['name'], value=value), self.assertRaises(ValueError):
                         self.check()
                 step['conclusion'] = 'success'
+
+    def test_reported_runtime_success_cannot_hide_missing_or_skipped_return_recovery(self):
+        label = 'Retry the acknowledged native exit after a transient Android refusal'
+        runtime = next(row for row in self.jobs['jobs'] if row['name'] == 'connect-four-runtime')
+        original = copy.deepcopy(runtime['steps'])
+        for state in ('missing', 'skipped'):
+            runtime['steps'] = [step for step in original if step['name'] != label]
+            if state == 'skipped':
+                runtime['steps'].append({'name': label, 'status': 'completed', 'conclusion': 'skipped'})
+            with self.subTest(state=state), self.assertRaisesRegex(
+                    ValueError, 'Actual required step missing or skipped: ' + label):
+                self.check()
 
     def test_missing_or_duplicate_added_native_step_blocks_otherwise_successful_jobs(self):
         row = next(row for row in self.jobs['jobs'] if row['name'] == 'connect-four-runtime')
@@ -157,6 +177,18 @@ class OriginalAcceptanceTests(unittest.TestCase):
             with self.subTest(key=key, value=value), self.assertRaises(ValueError):
                 self.check()
             obj[key] = previous
+
+    def test_reported_build_success_cannot_hide_missing_or_skipped_live_connections(self):
+        label = 'Verify connected dream ambience and garden on exact native source'
+        build = next(row for row in self.jobs['jobs'] if row['name'] == 'verify-and-build')
+        original = copy.deepcopy(build['steps'])
+        for state in ('missing', 'skipped'):
+            build['steps'] = [step for step in original if step['name'] != label]
+            if state == 'skipped':
+                build['steps'].append({'name': label, 'status': 'completed', 'conclusion': 'skipped'})
+            with self.subTest(state=state), self.assertRaisesRegex(
+                    ValueError, 'Actual required step missing or skipped: ' + label):
+                self.check()
 
     def test_incomplete_duplicate_or_extra_jobs_cannot_hide_an_unchecked_gate(self):
         original = copy.deepcopy(self.jobs)
@@ -520,6 +552,205 @@ class NativeSeventeenRasterTests(unittest.TestCase):
                       text.replace('[LumoNextgen] PASS', ''), text+'ERROR: retained resource\n'):
             path.write_text(wrong)
             with self.subTest(text=wrong), self.assertRaises(ValueError): delivery.checked_native_runner_log(path)
+
+
+class NativeLiveConnectionEvidenceTests(unittest.TestCase):
+    """Synthetic PNG/log fixtures exercise Host transport and replay boundaries.
+
+    The tiny fixture helpers deliberately do not emulate engine rendering.
+    Production uses the committed Native helpers, whose exact bytes are checked.
+    """
+
+    def setUp(self):
+        from PIL import Image
+        self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.source = self.root/'source'
+        (self.source/'tools').mkdir(parents=True)
+        self.logs = self.root/'logs'; self.logs.mkdir()
+        self.markers = {}
+        self.finals = {
+            'live': '[LumoLiveConnections] PASS 9 original probes and 7 verified renderer PNGs',
+        }
+        for kind, count, images in (('live', 9, 7),):
+            directory = self.logs/kind
+            (directory/'captures').mkdir(parents=True)
+            commands, observed = [], []
+            for index in range(count):
+                name, mode = 'synthetic_'+str(index), 'headless'
+                marker = '['+kind+str(index)+'] complete synthetic PASS'
+                if kind == 'live' and index in (6, 7):
+                    world = 'treasure' if index == 6 else 'learning'
+                    mode = 'rendered-'+world
+                    marker = '[synthetic capture] PASS '+world+' original frames in $LOG_DIR/captures/'+world
+                prefix = 'probe '+name+' '+mode+' '
+                commands.append(prefix+json.dumps(marker))
+                actual = marker.replace('$LOG_DIR', '/original/acceptance-native/live')
+                path = directory/(name+'-'+mode+'.log')
+                path.write_text(actual+'\n')
+                observed.append(actual)
+                self.markers[(kind, index)] = (path, actual)
+            runner = '\n'.join(commands)+'\n'
+            if kind == 'live':
+                runner += '''python3 - "$LOG_DIR" <<'PY'
+import json
+from pathlib import Path
+import sys
+out = Path(sys.argv[1])
+original = json.loads((out/'captures/replay.json').read_text())
+(out/'live-connections.json').write_text(json.dumps(original)+'\\n')
+print('[LumoLiveConnections] PASS 9 original probes and 7 verified renderer PNGs')
+PY
+'''
+            (self.source/'tools'/('validate_'+kind+'_connections.sh')).write_text(runner)
+            (self.logs/(kind+'-runner.log')).write_text('\n'.join([*observed, self.finals[kind]])+'\n')
+            records = []
+            for index in range(images):
+                path = directory/'captures'/('synthetic-'+str(index)+'.png')
+                image = Image.new('RGB', (3, 2), (index, 20, 30))
+                image.putpixel((1, 1), (240, 220, 200))
+                image.save(path)
+                records.append({'path': str(path.relative_to(directory)), 'width': 3, 'height': 2,
+                                'sha256': delivery.digest(path)})
+            delivery.write_new(directory/'captures/replay.json',
+                               {})
+            setattr(self, kind+'_records', records)
+        # A real private Git repository makes helper-byte substitution checks real.
+        self.git('init', '-q')
+        self.git('add', 'tools')
+        self.git('-c', 'user.name=QA fixture', '-c', 'user.email=qa@example.invalid',
+                 '-c', 'commit.gpgsign=false', '-c', 'core.hooksPath=/dev/null',
+                 'commit', '-qm', 'Synthetic helper boundary fixture')
+        self.revision = self.git('rev-parse', 'HEAD').strip()
+        self.tree = self.git('rev-parse', 'HEAD^{tree}').strip()
+        for kind, count in (('live', 9),):
+            original = {'schema': 1, 'native_source': self.revision, 'probes': count,
+                        'original_pngs': getattr(self, kind+'_records'),
+                        'physical_android_fps_measured': False}
+            delivery.write_new(self.logs/kind/(kind+'-connections.json'), original)
+            if kind == 'live':
+                (self.logs/'live/captures/replay.json').write_text(json.dumps(original))
+
+    def git(self, *args):
+        return delivery.subprocess.check_output(['git', *args], cwd=self.source, text=True)
+
+    def check(self):
+        return delivery.checked_native_connections(self.logs, self.source, self.revision, self.tree)
+
+    def originals(self):
+        return {str(path.relative_to(self.logs)): path.read_bytes()
+                for path in self.logs.rglob('*') if path.is_file()}
+
+    def test_all_9_live_probes_and_7_pngs_require_real_git_bound_helper_and_preserve_inputs(self):
+        before = self.originals()
+        result = self.check()
+        self.assertEqual([(result[k]['probe_count'], result[k]['png_count'])
+                          for k in ('live',)], [(9, 7)])
+        self.assertEqual(len(result['pinned_helpers']), 1)
+        self.assertEqual(result['live']['original_capture_directory'], '/original/acceptance-native/live')
+        self.assertEqual(self.originals(), before)
+
+    def test_missing_or_changed_png_cannot_reuse_an_original_manifest(self):
+        for kind in ('live',):
+            path = self.logs/kind/'captures/synthetic-0.png'
+            before = path.read_bytes()
+            for mutation in ('missing', 'changed'):
+                with self.subTest(kind=kind, mutation=mutation):
+                    if mutation == 'missing':
+                        path.unlink()
+                    else:
+                        from PIL import Image
+                        Image.new('RGB', (3, 2), 'blue').save(path)
+                    with self.assertRaises(ValueError):
+                        self.check()
+                    path.write_bytes(before)
+
+    def test_extra_or_symlinked_png_is_rejected(self):
+        for kind in ('live',):
+            original = self.logs/kind/'captures/synthetic-0.png'
+            extra = self.logs/kind/'captures/extra.png'
+            extra.write_bytes(original.read_bytes())
+            with self.subTest(kind=kind, extra=True), self.assertRaises(ValueError): self.check()
+            extra.unlink()
+            held = original.with_suffix('.held')
+            original.rename(held); original.symlink_to(held)
+            with self.subTest(kind=kind, symlink=True), self.assertRaises(ValueError): self.check()
+            original.unlink(); held.rename(original)
+
+    def test_wrong_source_counts_fps_and_incomplete_image_records_fail(self):
+        for kind in ('live',):
+            path = self.logs/kind/(kind+'-connections.json')
+            before = path.read_bytes()
+            original = json.loads(before)
+            changes = [{'native_source': 'e'*40}, {'schema': True}, {'probes': original['probes']-1},
+                       {'physical_android_fps_measured': True},
+                       {'original_pngs': original['original_pngs'][:-1]}]
+            for change in changes:
+                path.write_text(json.dumps({**original, **change}))
+                with self.subTest(kind=kind, change=change), self.assertRaises(ValueError): self.check()
+            path.write_bytes(before)
+
+    def test_wrong_dimensions_path_and_duplicate_images_fail_even_with_matching_png_bytes(self):
+        for kind in ('live',):
+            path = self.logs/kind/(kind+'-connections.json')
+            before = path.read_bytes(); original = json.loads(before)
+            for change in ({'width': 4}, {'path': '../outside.png'},
+                           {'path': original['original_pngs'][1]['path']}):
+                value = copy.deepcopy(original); value['original_pngs'][0].update(change)
+                path.write_text(json.dumps(value))
+                with self.subTest(kind=kind, change=change), self.assertRaises(ValueError): self.check()
+            path.write_bytes(before)
+
+    def test_full_exact_probe_and_final_markers_are_required_in_originals_and_complete_logs(self):
+        for kind in ('live',):
+            probe, marker = self.markers[(kind, 0)]
+            runner = self.logs/(kind+'-runner.log')
+            for path, text in ((probe, marker+' altered\n'), (runner, 'no final PASS\n')):
+                before = path.read_bytes(); path.write_text(text)
+                with self.subTest(kind=kind, file=path.name), self.assertRaises(ValueError): self.check()
+                path.write_bytes(before)
+            before = runner.read_text(); runner.write_text(before.replace(marker, marker+' altered'))
+            with self.subTest(kind=kind, runner_probe=True), self.assertRaises(ValueError): self.check()
+            runner.write_text(before)
+
+    def test_post_pass_errors_and_leaks_never_count_as_success(self):
+        for kind in ('live',):
+            for path in (self.markers[(kind, 0)][0], self.logs/(kind+'-runner.log')):
+                before = path.read_bytes()
+                for error in ('SCRIPT ERROR: broken', 'Parse Error: broken', 'ERROR: failure',
+                              'Assertion failed', 'ObjectDB instances leaked', 'resources still in use at exit'):
+                    path.write_bytes(before+error.encode()+b'\n')
+                    with self.subTest(kind=kind, file=path.name, error=error), self.assertRaises(ValueError):
+                        self.check()
+                path.write_bytes(before)
+
+    def test_capture_pass_paths_must_agree_and_cannot_be_truncated(self):
+        path, marker = self.markers[('live', 7)]
+        before = path.read_bytes()
+        for changed in (marker.replace('/original/', '/another/'), marker.split(' original frames')[0]):
+            path.write_text(changed+'\n')
+            with self.subTest(changed=changed), self.assertRaises(ValueError): self.check()
+        path.write_bytes(before)
+
+    def test_helper_must_match_the_actual_git_blob(self):
+        for name in ('validate_live_connections.sh',):
+            path = self.source/'tools'/name
+            before = path.read_bytes(); path.write_bytes(before+b'\n# changed after checkout\n')
+            with self.subTest(name=name), self.assertRaises(ValueError): self.check()
+            path.write_bytes(before)
+
+    def test_each_actual_helper_result_must_equal_the_unchanged_original_manifest(self):
+        for kind in ('live',):
+            path = self.logs/kind/'captures/replay.json'
+            before = path.read_bytes(); changed = json.loads(before)
+            changed['native_source'] = 'e'*40
+            path.write_text(json.dumps(changed))
+            with self.subTest(kind=kind), self.assertRaises(ValueError): self.check()
+            path.write_bytes(before)
+
+    # Discovery input/helper/index immutability and original raster/log integrity
+    # are exercised below by DiscoveryOriginalBoundaryTests against the new,
+    # mandatory exact-source Discovery collector/reader contract.
 
 
 class DreamRequiredStepTests(unittest.TestCase):
@@ -1110,6 +1341,24 @@ class RealFilesAndCommandsTests(unittest.TestCase):
                     delivery.prepare(args)
                 self.assertFalse(args.out.exists())
 
+    def test_preparation_requires_exact_original_village_result_before_any_bundle_write(self):
+        for mode in ('missing-fact', 'failed-fact', 'other-report', 'missing-original'):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as temporary:
+                source, args, facts = self.preparation_fixture(Path(temporary))
+                if mode == 'missing-fact':
+                    facts.pop('village_android')
+                elif mode == 'failed-fact':
+                    facts['village_android']['status'] = 'FAIL'
+                elif mode == 'other-report':
+                    facts['village_android']['raw_report_sha256'] = 'f'*64
+                else:
+                    (args.android/'village/village-result.json').unlink()
+                args.facts.write_text(json.dumps(facts))
+                with mock.patch('verify_connect_four_candidate.verify', return_value=facts):
+                    with self.assertRaises((ValueError, FileNotFoundError)):
+                        delivery.prepare(args)
+                self.assertFalse(args.out.exists())
+
     def test_preparation_preserves_originals_and_writes_only_unpublished_bundle_inputs(self):
         with tempfile.TemporaryDirectory() as temporary:
             source, args, facts = self.preparation_fixture(Path(temporary))
@@ -1128,6 +1377,11 @@ class RealFilesAndCommandsTests(unittest.TestCase):
             self.assertEqual(delivery.read(args.out/'audit/publish-release.json'), {'draft': False, 'make_latest': 'false'})
             self.assertEqual(delivery.checked_plan(args.out), plan)
             self.assertEqual((args.out/'assets/C4-CANDIDATE-FACTS.json').read_bytes(), args.facts.read_bytes())
+            self.assertEqual((args.out/'assets/VILLAGE-ANDROID-RESULT.json').read_bytes(),
+                             (args.android/'village/village-result.json').read_bytes())
+            self.assertEqual(len(plan['assets']), 11)
+            self.assertIn('direct Flutter→Village→Flutter',
+                          delivery.read(args.out/'audit/create-release.json')['body'])
             self.assertEqual((args.out/'assets/Lumo-Lernen-Neu.apk').read_bytes(), (args.candidate/'Lumo-Lernen-Neu.apk').read_bytes())
             self.assertEqual((args.out/'audit/original-run.json').read_bytes(), (args.metadata/'run.json').read_bytes())
             self.assertFalse((args.out/'PUBLIC-DELIVERY-RECEIPT.json').exists())
@@ -1232,6 +1486,8 @@ class RealFilesAndCommandsTests(unittest.TestCase):
             return eval(code.strip(), {'__builtins__': {}}, {})
         self.assertTrue(allowed(values))
         self.assertTrue(allowed({**values, 'github.head_ref':'work/lumo-play-quality-20261114'}))
+        self.assertTrue(allowed({**values, 'github.head_ref':'integration/lumo-agent-execution-20261114'}))
+        self.assertTrue(allowed({**values, 'github.head_ref':'integration/lumo-live-connections-20261114'}))
         for key in values:
             with self.subTest(key=key): self.assertFalse(allowed({**values, key: 'different'}))
         self.assertNotIn('if: always()', head)

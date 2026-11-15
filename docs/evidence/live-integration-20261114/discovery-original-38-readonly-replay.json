@@ -1,0 +1,280 @@
+{
+  "status": "PASS",
+  "scope": "Actual pinned-source discovery verify(directory) on 38 original union PNGs; not main() Git/source-manifest execution and not Android approval",
+  "helper_source_commit": "a7bb5815009ea4ae9b8842026f4f3761ae99c98b",
+  "helper_sha256": "c23fb5f22824be358eed1322a2db68785b279f2fcf96b693db28fb2817359a8c",
+  "original_directory": "/tmp/lumo-native-union-909ddb52fe7b/union-renderer",
+  "originals_unchanged": true,
+  "elapsed_seconds": 1.1628908210113877,
+  "records": [
+    {
+      "path": "captures/hub/hub_portrait.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "c6a6bba86b320159825fcb058b1bb4533d66fc92eb5d0fdbe0d7ee15f49e4a09"
+    },
+    {
+      "path": "captures/hub/hub_fold_landscape.png",
+      "width": 2400,
+      "height": 1080,
+      "sha256": "9f45cfb3e25755c2c13e5aaa37f878526c5ae6658b35ab711eb69174d6b8b717"
+    },
+    {
+      "path": "captures/learning/math-start-1280x720.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "ae2aea3e664cb92354505de68457135409b7d7c35c46b0cb6dd641b85c1318e5"
+    },
+    {
+      "path": "captures/learning/math-ten-1280x720.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "c48d94aa57ec3412736754d6c9844ac2857a7f58a8eec2f2ecb779c230a204ec"
+    },
+    {
+      "path": "captures/learning/math-complete-1280x720.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "7b6c764e769aeef10d5395444871984a59bd228e0c61f7ac38956daaa6a397ab"
+    },
+    {
+      "path": "captures/learning/math-start-412x915.png",
+      "width": 412,
+      "height": 915,
+      "sha256": "cc267aea99c4152e6c300331a6527ef9b8fdaf9b867e5c6f32c20313d4f8db06"
+    },
+    {
+      "path": "captures/learning/math-ten-412x915.png",
+      "width": 412,
+      "height": 915,
+      "sha256": "f8146ddc462f3163b4754cd76866e1eb8cbb052c880c980b9daee2402a3e7cfb"
+    },
+    {
+      "path": "captures/learning/math-complete-412x915.png",
+      "width": 412,
+      "height": 915,
+      "sha256": "962634f012b10c172eead7c0302c2b57e8c9084ca41ace789c51e5280348c9e8"
+    },
+    {
+      "path": "captures/learning/math-start-2400x1080.png",
+      "width": 2400,
+      "height": 1080,
+      "sha256": "58de1dfada401700fda7edfdf160da1a2a64bfddc4dbe4f157c0078cde761ad3"
+    },
+    {
+      "path": "captures/learning/math-ten-2400x1080.png",
+      "width": 2400,
+      "height": 1080,
+      "sha256": "d65c5d10a2331cbf15c60e267ac3570f76f0de5c8c51b32bd2522cfd92abe496"
+    },
+    {
+      "path": "captures/learning/math-complete-2400x1080.png",
+      "width": 2400,
+      "height": 1080,
+      "sha256": "3dcbc484ed57bf999e20fcfe1c4b786db1a33300be0119755196f3b27da25b61"
+    },
+    {
+      "path": "captures/learning/syllables-start.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "9bd464681be73f59a089375ab95b05dc9203946666ae6e04b4f63741baa5e9ac"
+    },
+    {
+      "path": "captures/learning/syllables-complete.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "b8e3f46d48120761edf2fba71cf1f83dc9bba67f7e4e83edbe1f9cf807f11c27"
+    },
+    {
+      "path": "captures/learning/plant_parts-start.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "c1baef37292fdf9911377833c0de6561214d691d69d55651b31c7a43a6207326"
+    },
+    {
+      "path": "captures/learning/plant_parts-complete.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "48c1a8f9ff5971937a42f7049fb12fe6364c6cf20369e451aa64bbabf385f4aa"
+    },
+    {
+      "path": "captures/learning/subtract_ten-start.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "80b7c6dba3603378800c292d804179f7ff1a98d6f5bcbbae3ff995351a96c592"
+    },
+    {
+      "path": "captures/learning/subtract_ten-complete.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "186a15fd5fe718b2f00b924ac0730820e6e654956c1addfa61a7e9b57b8d00ba"
+    },
+    {
+      "path": "captures/learning/equal_groups-start.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "1ddfe04f7d05cb7b9a571abf0da3d92aa9fa158a65855bb60202bd0df6e42fee"
+    },
+    {
+      "path": "captures/learning/equal_groups-complete.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "4f2406682e33270c1bfba8c3c72c421699c1a4842574c57b1e40d236e5343e88"
+    },
+    {
+      "path": "captures/learning/bridge_hundred-start.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "7eb6e728babaa5209b2ec9f8960a52d509c8a100852e46eaa09f780662c5b206"
+    },
+    {
+      "path": "captures/learning/bridge_hundred-complete.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "335865b34d321ef5f4942a5a85c3be670bbf3e12f4999da16bd6188b914ef2b3"
+    },
+    {
+      "path": "captures/learning/fraction_parts-start.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "21f39f28efd623b9c3bb5bc99ac0a8b140b495404192a3b55a039e536100da4a"
+    },
+    {
+      "path": "captures/learning/fraction_parts-complete.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "defcd507a087d84dc7249cb7757bf1c15d58b9b2217f6666626666b14c0559e9"
+    },
+    {
+      "path": "captures/learning/bridge_hundred-start-412x915.png",
+      "width": 412,
+      "height": 915,
+      "sha256": "081d01c599541be88fee4b5082ec56c3b797369312c9af43797a2fa8d48eddcc"
+    },
+    {
+      "path": "captures/learning/bridge_hundred-complete-412x915.png",
+      "width": 412,
+      "height": 915,
+      "sha256": "d713a5780fde893a9c3c0c4eaefffa09b69739d63a23eb567cc9bf04765a8286"
+    },
+    {
+      "path": "captures/learning/bridge_hundred-start-2400x1080.png",
+      "width": 2400,
+      "height": 1080,
+      "sha256": "9b82faa6c8b2cfab5e789b047669d5a2b8bd5b1b7d32eb27cee24b55fd9cb372"
+    },
+    {
+      "path": "captures/learning/bridge_hundred-complete-2400x1080.png",
+      "width": 2400,
+      "height": 1080,
+      "sha256": "6a7306d126cf239c2377a5b045fbf9efae043e26761cd9c106f1a09bfc33830f"
+    },
+    {
+      "path": "captures/wonder/current-numbers-start-1280x720.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "ae2aea3e664cb92354505de68457135409b7d7c35c46b0cb6dd641b85c1318e5"
+    },
+    {
+      "path": "captures/wonder/current-numbers-complete-1280x720.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "7b6c764e769aeef10d5395444871984a59bd228e0c61f7ac38956daaa6a397ab"
+    },
+    {
+      "path": "captures/wonder/current-numbers-start-412x915.png",
+      "width": 412,
+      "height": 915,
+      "sha256": "cc267aea99c4152e6c300331a6527ef9b8fdaf9b867e5c6f32c20313d4f8db06"
+    },
+    {
+      "path": "captures/wonder/current-numbers-complete-412x915.png",
+      "width": 412,
+      "height": 915,
+      "sha256": "962634f012b10c172eead7c0302c2b57e8c9084ca41ace789c51e5280348c9e8"
+    },
+    {
+      "path": "captures/wonder/current-numbers-one-step-1280x720.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "cd9fe65a73149dc6cabc684b454b99ce2f94e1f70d0af60b9fbfed3806c0960b"
+    },
+    {
+      "path": "captures/wonder/current-syllables-start.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "29d040d47db0a127405be702fdb2486f88147b36c544c579a18e60fa1065661b"
+    },
+    {
+      "path": "captures/wonder/current-syllables-complete.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "c0dd74767241c0dac43e09d1e0b07ff049736e0ed7277b92692783126e6090e4"
+    },
+    {
+      "path": "captures/wonder/current-plant_parts-start.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "c1baef37292fdf9911377833c0de6561214d691d69d55651b31c7a43a6207326"
+    },
+    {
+      "path": "captures/wonder/current-plant_parts-complete.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "4a884534a30245646d04c30ace1f44dd12429ffc56bfe56cb9725c303b34745b"
+    },
+    {
+      "path": "captures/wonder/current-hundreds-phone-start.png",
+      "width": 412,
+      "height": 915,
+      "sha256": "081d01c599541be88fee4b5082ec56c3b797369312c9af43797a2fa8d48eddcc"
+    },
+    {
+      "path": "captures/wonder/current-hundreds-phone-complete.png",
+      "width": 412,
+      "height": 915,
+      "sha256": "d713a5780fde893a9c3c0c4eaefffa09b69739d63a23eb567cc9bf04765a8286"
+    }
+  ],
+  "capture_files": {
+    "captures/hub/hub_fold_landscape.png": "9f45cfb3e25755c2c13e5aaa37f878526c5ae6658b35ab711eb69174d6b8b717",
+    "captures/hub/hub_portrait.png": "c6a6bba86b320159825fcb058b1bb4533d66fc92eb5d0fdbe0d7ee15f49e4a09",
+    "captures/learning/bridge_hundred-complete-2400x1080.png": "6a7306d126cf239c2377a5b045fbf9efae043e26761cd9c106f1a09bfc33830f",
+    "captures/learning/bridge_hundred-complete-412x915.png": "d713a5780fde893a9c3c0c4eaefffa09b69739d63a23eb567cc9bf04765a8286",
+    "captures/learning/bridge_hundred-complete.png": "335865b34d321ef5f4942a5a85c3be670bbf3e12f4999da16bd6188b914ef2b3",
+    "captures/learning/bridge_hundred-start-2400x1080.png": "9b82faa6c8b2cfab5e789b047669d5a2b8bd5b1b7d32eb27cee24b55fd9cb372",
+    "captures/learning/bridge_hundred-start-412x915.png": "081d01c599541be88fee4b5082ec56c3b797369312c9af43797a2fa8d48eddcc",
+    "captures/learning/bridge_hundred-start.png": "7eb6e728babaa5209b2ec9f8960a52d509c8a100852e46eaa09f780662c5b206",
+    "captures/learning/equal_groups-complete.png": "4f2406682e33270c1bfba8c3c72c421699c1a4842574c57b1e40d236e5343e88",
+    "captures/learning/equal_groups-start.png": "1ddfe04f7d05cb7b9a571abf0da3d92aa9fa158a65855bb60202bd0df6e42fee",
+    "captures/learning/fraction_parts-complete.png": "defcd507a087d84dc7249cb7757bf1c15d58b9b2217f6666626666b14c0559e9",
+    "captures/learning/fraction_parts-start.png": "21f39f28efd623b9c3bb5bc99ac0a8b140b495404192a3b55a039e536100da4a",
+    "captures/learning/math-complete-1280x720.png": "7b6c764e769aeef10d5395444871984a59bd228e0c61f7ac38956daaa6a397ab",
+    "captures/learning/math-complete-2400x1080.png": "3dcbc484ed57bf999e20fcfe1c4b786db1a33300be0119755196f3b27da25b61",
+    "captures/learning/math-complete-412x915.png": "962634f012b10c172eead7c0302c2b57e8c9084ca41ace789c51e5280348c9e8",
+    "captures/learning/math-start-1280x720.png": "ae2aea3e664cb92354505de68457135409b7d7c35c46b0cb6dd641b85c1318e5",
+    "captures/learning/math-start-2400x1080.png": "58de1dfada401700fda7edfdf160da1a2a64bfddc4dbe4f157c0078cde761ad3",
+    "captures/learning/math-start-412x915.png": "cc267aea99c4152e6c300331a6527ef9b8fdaf9b867e5c6f32c20313d4f8db06",
+    "captures/learning/math-ten-1280x720.png": "c48d94aa57ec3412736754d6c9844ac2857a7f58a8eec2f2ecb779c230a204ec",
+    "captures/learning/math-ten-2400x1080.png": "d65c5d10a2331cbf15c60e267ac3570f76f0de5c8c51b32bd2522cfd92abe496",
+    "captures/learning/math-ten-412x915.png": "f8146ddc462f3163b4754cd76866e1eb8cbb052c880c980b9daee2402a3e7cfb",
+    "captures/learning/plant_parts-complete.png": "48c1a8f9ff5971937a42f7049fb12fe6364c6cf20369e451aa64bbabf385f4aa",
+    "captures/learning/plant_parts-start.png": "c1baef37292fdf9911377833c0de6561214d691d69d55651b31c7a43a6207326",
+    "captures/learning/subtract_ten-complete.png": "186a15fd5fe718b2f00b924ac0730820e6e654956c1addfa61a7e9b57b8d00ba",
+    "captures/learning/subtract_ten-start.png": "80b7c6dba3603378800c292d804179f7ff1a98d6f5bcbbae3ff995351a96c592",
+    "captures/learning/syllables-complete.png": "b8e3f46d48120761edf2fba71cf1f83dc9bba67f7e4e83edbe1f9cf807f11c27",
+    "captures/learning/syllables-start.png": "9bd464681be73f59a089375ab95b05dc9203946666ae6e04b4f63741baa5e9ac",
+    "captures/wonder/captures.json": "0d50806be4be8f72c691659e253768ae4932cad1aa3096e7f0027efbc153f7cf",
+    "captures/wonder/current-hundreds-phone-complete.png": "d713a5780fde893a9c3c0c4eaefffa09b69739d63a23eb567cc9bf04765a8286",
+    "captures/wonder/current-hundreds-phone-start.png": "081d01c599541be88fee4b5082ec56c3b797369312c9af43797a2fa8d48eddcc",
+    "captures/wonder/current-numbers-complete-1280x720.png": "7b6c764e769aeef10d5395444871984a59bd228e0c61f7ac38956daaa6a397ab",
+    "captures/wonder/current-numbers-complete-412x915.png": "962634f012b10c172eead7c0302c2b57e8c9084ca41ace789c51e5280348c9e8",
+    "captures/wonder/current-numbers-one-step-1280x720.png": "cd9fe65a73149dc6cabc684b454b99ce2f94e1f70d0af60b9fbfed3806c0960b",
+    "captures/wonder/current-numbers-start-1280x720.png": "ae2aea3e664cb92354505de68457135409b7d7c35c46b0cb6dd641b85c1318e5",
+    "captures/wonder/current-numbers-start-412x915.png": "cc267aea99c4152e6c300331a6527ef9b8fdaf9b867e5c6f32c20313d4f8db06",
+    "captures/wonder/current-plant_parts-complete.png": "4a884534a30245646d04c30ace1f44dd12429ffc56bfe56cb9725c303b34745b",
+    "captures/wonder/current-plant_parts-start.png": "c1baef37292fdf9911377833c0de6561214d691d69d55651b31c7a43a6207326",
+    "captures/wonder/current-syllables-complete.png": "c0dd74767241c0dac43e09d1e0b07ff049736e0ed7277b92692783126e6090e4",
+    "captures/wonder/current-syllables-start.png": "29d040d47db0a127405be702fdb2486f88147b36c544c579a18e60fa1065661b"
+  }
+}

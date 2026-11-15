@@ -1,0 +1,86 @@
+[
+  {
+    "test": {
+      "id": 3262,
+      "name": "d1_woerter real registry answer persists its exact subject and topic",
+      "suiteID": 3245,
+      "groupIDs": [
+        3248
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 289,
+      "root_column": 5,
+      "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart"
+    },
+    "done": {
+      "testID": 3262,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 556803
+    }
+  },
+  {
+    "test": {
+      "id": 3343,
+      "name": "actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+      "suiteID": 3245,
+      "groupIDs": [
+        3248
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 500,
+      "root_column": 3,
+      "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart"
+    },
+    "done": {
+      "testID": 3343,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 569276
+    }
+  },
+  {
+    "test": {
+      "id": 3355,
+      "name": "two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+      "suiteID": 3245,
+      "groupIDs": [
+        3248
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 537,
+      "root_column": 3,
+      "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart"
+    },
+    "done": {
+      "testID": 3355,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 581332
+    }
+  }
+]

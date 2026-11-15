@@ -23,7 +23,10 @@ GAMEPLAY_2016_REVISION = "b4ccf593d7833e8c259ff0f963494b00d245d03d"
 ACTION_STAGE_2017_REVISION = "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57"
 NEXTGEN_2018_REVISION = "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
 STUDIO_2019_REVISION = "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845"
-CONNECT_FOUR_2020_REVISION = "a69f53518b2510873d88f00ff2783d616ab53702"
+CONNECT_FOUR_2020_REVISION = "84789d0c2c6fb4b6ecd2897ce1951b89f958b604"
+INTEGRATED_2021_REVISION = "6b124722f92c81b4352a222a3def701563399933"
+BLENDER_2022_REVISION = "0e7be88791bf4ed5d556d535078471e05a02315d"
+COMBINED_2023_REVISION = "0e7be88791bf4ed5d556d535078471e05a02315d"
 SUPERSEDED_2017_CANDIDATES = {
     "460c94b10df6adae11def608068d72e99c0950db",
     "a16a4fc6791c3c7a594273f4544458382cc2c884",
@@ -49,9 +52,26 @@ class Candidate2011PinTests(unittest.TestCase):
         source = (ROOT / "config" / "godot-source.json").read_text(encoding="utf-8")
         # This is the actual failing build contract, not an invented mock.
         build, revision = POLICY.verify(pubspec, source)
-        self.assertEqual((build, revision), (2020, CONNECT_FOUR_2020_REVISION))
-        self.assertGreater(build, 2019)
-        self.assertIn("version: 0.13.8+2020\n", pubspec)
+        self.assertEqual((build, revision), (2023, COMBINED_2023_REVISION))
+        self.assertGreater(build, 2022)
+        self.assertIn("version: 0.13.11+2023\n", pubspec)
+
+    def test_integrated_and_blender_predecessors_keep_exact_native_identities(self):
+        for build, revision in (
+            (2020, CONNECT_FOUR_2020_REVISION),
+            (2021, INTEGRATED_2021_REVISION),
+            (2022, BLENDER_2022_REVISION),
+        ):
+            with self.subTest(build=build):
+                self.assertEqual(POLICY.verify(version(build), config(revision)),
+                                 (build, revision))
+
+    def test_combined_candidate_rejects_unapproved_native_substitution(self):
+        for revision in (CONNECT_FOUR_2020_REVISION, INTEGRATED_2021_REVISION,
+                         "0" * 40, COMBINED_2023_REVISION[:8]):
+            with self.subTest(revision=revision):
+                with self.assertRaisesRegex(ValueError, "revision mismatch for build 2023"):
+                    POLICY.verify(version(2023), config(revision))
 
     def test_2020_rejects_the_source_before_acknowledged_return_retry(self):
         with self.assertRaisesRegex(ValueError, "revision mismatch for build 2020"):
@@ -111,7 +131,7 @@ class Candidate2011PinTests(unittest.TestCase):
                     POLICY.verify(version(2014), json.dumps(data))
 
     def test_all_existing_native_identities_are_unchanged(self):
-        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020)}
+        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023)}
         digest = hashlib.sha256(
             json.dumps(old, sort_keys=True, separators=(",", ":")).encode()
         ).hexdigest()

@@ -1,0 +1,2504 @@
+{
+  "schema": 1,
+  "date_utc": "2026-11-14 12:40:18 UTC",
+  "repository": "Ullmann27/lumo-lernen",
+  "source_parents": [
+    "9516068cfb67938fc90d48ff45d56169f00941fc",
+    "aab09275ec6b5808de9be539ca4e1a7e70921249"
+  ],
+  "common_ancestor": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "source_trees": {
+    "base": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+    "ours": "3dc30b78041ba873ef72f2a99172586b3b88099c",
+    "upstream": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0"
+  },
+  "method": "Full non-truncated recursive Git tree path/mode/type/blob comparison; no 300-file compare truncation.",
+  "counts": {
+    "upstream_changed": 302,
+    "upstream_automatic": 280,
+    "conflicts": 18,
+    "already_identical": 4,
+    "ours_only": 151,
+    "ours_only_unchanged": 150,
+    "ours_only_strengthened_tests": 1,
+    "deletions": 0
+  },
+  "native": {
+    "commit": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "tree": "1c2b5da7a4485cb8b911adcac2b567481cf902b5",
+    "parents": [
+      "71a4c1e2304b52005950b12490d070c286c45438",
+      "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+    ],
+    "root_review": {
+      "source_checkpoint": "668d00ced33a725912a9e23dc231698b74dcd06d",
+      "tree": "1c2b5da7a4485cb8b911adcac2b567481cf902b5",
+      "non_tree_entries": 3712,
+      "overlay_originals": 63,
+      "provenance_files": 2,
+      "full_tree_mismatches": [],
+      "root_independent_original_tree_comparison": true,
+      "protected": [
+        {
+          "path": "scripts/games/game_hub.gd",
+          "match": true
+        },
+        {
+          "path": "scripts/creative/build_settlement_world.gd",
+          "match": true
+        },
+        {
+          "path": "scripts/tests/game_hub_magic_regression.gd",
+          "match": true
+        },
+        {
+          "path": "scripts/tests/game_hub_magic_capture.gd",
+          "match": true
+        },
+        {
+          "path": "scripts/tests/helpers/game_hub_original_identity.gd",
+          "match": true
+        },
+        {
+          "path": "scripts/tests/village_host_launch_regression.gd",
+          "match": true
+        },
+        {
+          "path": "tools/verify_discovery_rasters.py",
+          "match": true
+        },
+        {
+          "path": "tools/tests/test_discovery_rasters.py",
+          "match": true
+        },
+        {
+          "path": "tools/validate_nextgen.sh",
+          "match": true
+        },
+        {
+          "path": "tools/validate_live_connections.sh",
+          "match": true
+        },
+        {
+          "path": "tools/validate_discovery_connections.sh",
+          "match": true
+        },
+        {
+          "path": "tools/verify_studio_2020_rasters.py",
+          "match": true
+        },
+        {
+          "path": "scripts/tests/treasure_wisp_regression.gd",
+          "match": true
+        },
+        {
+          "path": "scripts/creative/treasure_world.gd",
+          "match": true
+        },
+        {
+          "path": "scripts/tests/connect_four_return_regression.gd",
+          "match": true
+        },
+        {
+          "path": "tools/verify_safe_area_rasters.py",
+          "match": true
+        }
+      ],
+      "new_execution": false
+    }
+  },
+  "workflow": {
+    "ours_blob": "2770b76c4267806d131d4facc5daa078b07047d7",
+    "upstream_blob": "a0bf885564ec322b3d830bcc661d0417926fbb2d",
+    "preserves_all_other_ours_bytes": true,
+    "exact_upstream_steps": [
+      "Retry the acknowledged native exit after a transient Android refusal",
+      "Require the additional pinned native Treasure wisp regression",
+      "Require acknowledged Connect Four return retry",
+      "Require actual Dream gates on the exact pinned native source"
+    ],
+    "old_retry_strengthened_not_dropped": true,
+    "preserves_150_budget": true,
+    "preserves_live_discovery_and_village": true
+  },
+  "pin": {
+    "native": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "historical_entries": [
+      {
+        "version": 1950,
+        "sha": "268c9b327a8f81ba08c55e1b4bccd3664ce12f88"
+      },
+      {
+        "version": 1951,
+        "sha": "268c9b327a8f81ba08c55e1b4bccd3664ce12f88"
+      },
+      {
+        "version": 1952,
+        "sha": "268c9b327a8f81ba08c55e1b4bccd3664ce12f88"
+      },
+      {
+        "version": 1968,
+        "sha": "61f51b942b2521b506e6b203b89a1b3ec2bd284f"
+      },
+      {
+        "version": 1969,
+        "sha": "6b3945583a361c4ea974e4b6846ae0d616b1727a"
+      },
+      {
+        "version": 1970,
+        "sha": "3453a43a8bbdcb0495718e1eced2a40837d6e3ab"
+      },
+      {
+        "version": 1971,
+        "sha": "3453a43a8bbdcb0495718e1eced2a40837d6e3ab"
+      },
+      {
+        "version": 1972,
+        "sha": "b8f464d946f73d9b88458bf223f1b83db3975a1a"
+      },
+      {
+        "version": 1973,
+        "sha": "7bdb7ca91691396399abf3b16f09a54259538df7"
+      },
+      {
+        "version": 1974,
+        "sha": "42b011dc23abffc24a5df2e13171fa5ada22d6eb"
+      },
+      {
+        "version": 1975,
+        "sha": "a17b06c4719cc94c94bdf97afb3b6862cd049323"
+      },
+      {
+        "version": 1976,
+        "sha": "6518a13fb8eb30c81c8a2115d14791cbe7ddd24a"
+      },
+      {
+        "version": 1977,
+        "sha": "efa1f69b4128a047e6196ee85762447e412db266"
+      },
+      {
+        "version": 1978,
+        "sha": "efa1f69b4128a047e6196ee85762447e412db266"
+      },
+      {
+        "version": 1979,
+        "sha": "20652880eda687c67cfa72301dad5a173b1fe6c5"
+      },
+      {
+        "version": 1980,
+        "sha": "20652880eda687c67cfa72301dad5a173b1fe6c5"
+      },
+      {
+        "version": 1981,
+        "sha": "20652880eda687c67cfa72301dad5a173b1fe6c5"
+      },
+      {
+        "version": 1982,
+        "sha": "20652880eda687c67cfa72301dad5a173b1fe6c5"
+      },
+      {
+        "version": 1983,
+        "sha": "20652880eda687c67cfa72301dad5a173b1fe6c5"
+      },
+      {
+        "version": 1984,
+        "sha": "20652880eda687c67cfa72301dad5a173b1fe6c5"
+      },
+      {
+        "version": 1985,
+        "sha": "ffd2955ca9222daf02e6b602b3f213fd9383204a"
+      },
+      {
+        "version": 1986,
+        "sha": "ffd2955ca9222daf02e6b602b3f213fd9383204a"
+      },
+      {
+        "version": 1987,
+        "sha": "ffd2955ca9222daf02e6b602b3f213fd9383204a"
+      },
+      {
+        "version": 1988,
+        "sha": "ffd2955ca9222daf02e6b602b3f213fd9383204a"
+      },
+      {
+        "version": 1989,
+        "sha": "ffd2955ca9222daf02e6b602b3f213fd9383204a"
+      },
+      {
+        "version": 1990,
+        "sha": "ffd2955ca9222daf02e6b602b3f213fd9383204a"
+      },
+      {
+        "version": 1991,
+        "sha": "63cecf09fa89dd504cc468ebd121b4ec71a0f36c"
+      },
+      {
+        "version": 1992,
+        "sha": "63cecf09fa89dd504cc468ebd121b4ec71a0f36c"
+      },
+      {
+        "version": 1993,
+        "sha": "8342a2f10b2ecb8cf9cf1cb9566093fbc4d0b07c"
+      },
+      {
+        "version": 1994,
+        "sha": "928fed3c7f0b39357e0f06463ce13c8d5677d6e1"
+      },
+      {
+        "version": 1995,
+        "sha": "700baf49828eda693ecce15b415847818b1b56d3"
+      },
+      {
+        "version": 1996,
+        "sha": "700baf49828eda693ecce15b415847818b1b56d3"
+      },
+      {
+        "version": 1997,
+        "sha": "3a3142608f6b150ee251373ba81e6face2eed4b3"
+      },
+      {
+        "version": 1998,
+        "sha": "3a3142608f6b150ee251373ba81e6face2eed4b3"
+      },
+      {
+        "version": 1999,
+        "sha": "4d0fd40fdf188be6ca86057596c7b51f41701fa3"
+      },
+      {
+        "version": 2000,
+        "sha": "adcce3093caa42bf3da47262f70bdf03cdefa347"
+      },
+      {
+        "version": 2001,
+        "sha": "adcce3093caa42bf3da47262f70bdf03cdefa347"
+      },
+      {
+        "version": 2002,
+        "sha": "adcce3093caa42bf3da47262f70bdf03cdefa347"
+      },
+      {
+        "version": 2003,
+        "sha": "adcce3093caa42bf3da47262f70bdf03cdefa347"
+      },
+      {
+        "version": 2004,
+        "sha": "3689307a6392fd5756bc87ba0e36f3bef9df71e3"
+      },
+      {
+        "version": 2005,
+        "sha": "91b8cdba48d539ba48836bfac5f6b62c0d6cfa41"
+      },
+      {
+        "version": 2011,
+        "sha": "a81ddf12d594cc252caef7503162e89c6b26e1c7"
+      },
+      {
+        "version": 2012,
+        "sha": "9947346ecc526512904adecec1815312020beb62"
+      },
+      {
+        "version": 2013,
+        "sha": "47bef06db45d61d50ecd06d0b0cd0a69b9a25917"
+      },
+      {
+        "version": 2014,
+        "sha": "207bfbc5377c0f3e8be800854c83ddf2110ac3f6"
+      },
+      {
+        "version": 2015,
+        "sha": "b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1"
+      },
+      {
+        "version": 2016,
+        "sha": "b4ccf593d7833e8c259ff0f963494b00d245d03d"
+      },
+      {
+        "version": 2017,
+        "sha": "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57"
+      },
+      {
+        "version": 2018,
+        "sha": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
+      },
+      {
+        "version": 2019,
+        "sha": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845"
+      }
+    ],
+    "historical_and_executable_code_byte_identical": true,
+    "test_only_changed": "CONNECT_FOUR_2020_REVISION",
+    "upstream_negative_retained": true,
+    "runtime_test_performed": false
+  },
+  "conflict_resolutions": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "base": "815773f5a759ffb99c970d0024bc4bd0c20ec3b9",
+      "ours": "2770b76c4267806d131d4facc5daa078b07047d7",
+      "theirs": "a0bf885564ec322b3d830bcc661d0417926fbb2d",
+      "resolution": "4acbf17dd2635f75b8e7b8d8280d43364c8d08c6"
+    },
+    {
+      "path": "CONTINUE.md",
+      "base": "cfbf0f065fac1a68cffdde854f0eaf0856be3614",
+      "ours": "0b931d8217764c1e64f12316ed8551b7accdc7f4",
+      "theirs": "b01a6422ffbd04178d55772089d6cc5c0a4bb3b8",
+      "resolution": "d0144384ce6c3e7567dc41cd1e8dffa39b0145b5"
+    },
+    {
+      "path": "STATUS.md",
+      "base": "18ce0afa37782c38a8386db6a49b0429e1a13087",
+      "ours": "b1619d9fafeb795064fd67cd78095a63a46b72c6",
+      "theirs": "290d2c2d239d65aa7aff77fbf93bb30b47bc7949",
+      "resolution": "ecd3a56056f3c796cb52a660c40840dcf78b25a9"
+    },
+    {
+      "path": "config/godot-source.json",
+      "base": "72dc631c9e27885cb3ab38ce446a66416f818ebb",
+      "ours": "cfae3f6f5bb7d8c74b620c62c40488d2e215a4fc",
+      "theirs": "3ce3b0d1f53f5d9b9f7ff0dcb7c3bd519c250788",
+      "resolution": "86e473d75c810bdbfcadabef351adf7f931de08d"
+    },
+    {
+      "path": "lib/widgets/design/lumo_adventure_card.dart",
+      "base": "8b5094784ede6969422e1db58de0fad9cb47828d",
+      "ours": "4727557a16bc7428be6a156e830cc995f1997b0c",
+      "theirs": "94b9f5eece1570631a6bf7428b8d8cc5d83e3360",
+      "resolution": "4727557a16bc7428be6a156e830cc995f1997b0c"
+    },
+    {
+      "path": "lib/widgets/design/lumo_scene_atmosphere.dart",
+      "base": "33f100820f35b2a6fda79c1594cf49d00896cb6b",
+      "ours": "14bb982ab510a984652da920eae1729727a0bd8c",
+      "theirs": "2a5ba8203a9777a28820ab36f7c2a979709c8620",
+      "resolution": "14bb982ab510a984652da920eae1729727a0bd8c"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "base": "6367ea2cb9b562f56056623ff289c3e71de28157",
+      "ours": "df0313b474f5280c11f4991c7f2308e4890d223d",
+      "theirs": "acc41e8b9f664441eca1f49eb984adefda2fa65a",
+      "resolution": "54ed0ed947d820edab29c612f1bbfad60aa39681"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "base": "11bea238317d8436a6babe35262f437039ce74d6",
+      "ours": "2a30ca23536ae54408ef0e994a6acc3721c7da79",
+      "theirs": "cbc7d6c5f1544bd29af56226c93a8f1b53e049eb",
+      "resolution": "cd95512077293e973699b343dc3575af7e2b0108"
+    },
+    {
+      "path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "base": "4d707757b07622b7caa74a9094309fb2052a82a6",
+      "ours": "5bbcb54a3bfa2a251befec2f5cce84b36b37bd7f",
+      "theirs": "da5da117923e5522ec5d3a17e0cd3353d760d7b3",
+      "resolution": "ed889242499d4bbc16e7b19be1c3869162cb1d28"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "base": "4eb75fded1c5aaaf84537c181e3f405b356799d8",
+      "ours": "82326232f3ca29655acc1e095d148951230bfe25",
+      "theirs": "18fdff098115570b69fc43ccfe6a3d573605e55b",
+      "resolution": "5c64b8f5d81eddeadb49b99988006a834b0f5fee"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "base": "28f3aee40eb0028c5a4aa80196749f5867cbffc4",
+      "ours": "67f29c2a9d56460149d085776088bf34128c18a7",
+      "theirs": "58dc14602f6f0333170d3bcc6c6271fb349153fc",
+      "resolution": "2ea215d35ca4524f73fdd150d042984685cc5001"
+    },
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "base": "8ea60303632a0ff1f25c240244deb1c95a1e4621",
+      "ours": "ccf777bf4826c221874e58b938d3ff45d3089234",
+      "theirs": "4169f06a21138d253ec3b4298720e97fa9854d95",
+      "resolution": "c20c32131517b6a3336d996cd8ce8a0b44c1e132"
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "base": "59d99f0568a122742abaa0d07fa8a91b0e2af041",
+      "ours": "13cba5bd740b3b63f0af8c234e634473cfc1f123",
+      "theirs": "254267c9f84d5c8e507307178015d281db238e4f",
+      "resolution": "973e9143fa5a333858b77e25556fa54910026c24"
+    },
+    {
+      "path": "test/learning_selection_integration_test.dart",
+      "base": null,
+      "ours": "d8f8f1c226658c691ffb9ad3f42f13087d1d5b91",
+      "theirs": "892960ede7c2594dc7e15d631b3e511c7c526011",
+      "resolution": "d8f8f1c226658c691ffb9ad3f42f13087d1d5b91"
+    },
+    {
+      "path": "test/lumo_scene_atmosphere_test.dart",
+      "base": "f3fced58732115572c5f99ed72cba1fbfbaa458d",
+      "ours": "2354619a9da176d060912d81be81edb2f7a56464",
+      "theirs": "0617368d95256961681109537d641a1708e82e1f",
+      "resolution": "2354619a9da176d060912d81be81edb2f7a56464"
+    },
+    {
+      "path": "test/shape_trace_input_test.dart",
+      "base": null,
+      "ours": "6b32fea6379a88cdfce5d590c6a195eb10d725ad",
+      "theirs": "7441d9d07ac6f34432b36bfd711f8c3581c8c9f9",
+      "resolution": "6b32fea6379a88cdfce5d590c6a195eb10d725ad"
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "base": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa",
+      "ours": "0666a912cb92d8530bba55ecde15c40ac80b0770",
+      "theirs": "9f39b85fb1559a6229f0b381afa5d85a081703bd",
+      "resolution": "091e250702b41c8ff0a1eef2eaa554a83c2cff68"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "base": "701d1dab0a7224803fe2780c6a0674400b081795",
+      "ours": "e84f81df5c2284599a6f55cdfb2b71d83df55d01",
+      "theirs": "b64071e3c99ebe6529a3fa9237192208e03a16ee",
+      "resolution": "669bc2b1962208cf0bdc3cd2d845fc4c2d1fd2dc"
+    }
+  ],
+  "automatic_original_entries": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c996a022d388632ed13965b392181aef773d9025"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc"
+    },
+    {
+      "path": "docs/evidence/c4-79c-original-failure-20261114/complete-original-failure.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81804c32c36497793d110f6397378007a140c1cd"
+    },
+    {
+      "path": "docs/evidence/c4-79c-original-failure-20261114/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6e435c93ac6bcb86de38f72fb2533539205d886"
+    },
+    {
+      "path": "docs/evidence/c4-79c-original-failure-20261114/original-archive-bindings.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c73815f64b09592de920b52b69026b4e89bf0615"
+    },
+    {
+      "path": "docs/evidence/c4-79c-original-failure-20261114/prepare-connection.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1fe6273fcecf9d4bd5e87a5d1b9edd424aadfff"
+    },
+    {
+      "path": "docs/evidence/c4-79c-original-failure-20261114/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a6f16fad26392b0f9305dd964082aac6900718b"
+    },
+    {
+      "path": "docs/evidence/c4-79c-original-failure-20261114/root-connection.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91c817bba254ef9940422e3a11c8203a895d4090"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a33a76ce0923fc03c96eaa9248081dd536695eca"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/blob-entries.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "15fea78539352045f44a8942a391345ad784b650"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/green/contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52da471fd16c9b364e73f5c157f881ab6f869768"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/green/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8cfab0a4416fcfdb03d4bbbd8624ef364b6f81e"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/green/original-metadata.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98fb26be841f2f4b0c3715c975f6a063ac9c3a4b"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/green/original-replay.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98fb26be841f2f4b0c3715c975f6a063ac9c3a4b"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/originals/artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f79d280270e11d3013a7908bd6acbdd3f5fdeb2"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/originals/c4-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04944e28351e80331095913b286e95fe258904d7"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/originals/jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b22b2c32382d3852dd6c76e0042db7f51317b57"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/originals/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0211dc95dfd401650f80fcdc8055dc9d1de82ec4"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/red/contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f60c0fec9d70fcb157b2e71bd5e5486cb1331ad"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/red/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d7f89581be6ebd5f0e18dd5066b73265b29c0c3"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/red/original-metadata.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec00c922df43ed0a7f6776f6280242a1d63bec7c"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/red/original-replay.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec00c922df43ed0a7f6776f6280242a1d63bec7c"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/replay_original_metadata.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fe626cb8c817a551a7615f028fa24a0dcd49ccc"
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/root-independent-source-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12582725aee68c3d811b71d116d3fc21e4f65dd7"
+    },
+    {
+      "path": "docs/evidence/c4-delivery-access-review-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d825e3de88656f504683de2076d99841a15ffdd8"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/garage-repair-originals/handoff.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "984e299e13e1ad803337511d52d240f8518ffd57"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/garage-repair-originals/independent-garage-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8f7c0e379b6bce28ded9c107b07a8a51e99f353"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/garage-repair-originals/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dcb819516b8de68457a2cf0a8fd0342675e682ea"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/garage-repair-originals/single-case-originals.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b6dd3c854baf2acba3beac7764059bfab51fdb9"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/host-dream-and-garage-independent-review/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b6025a578ce48185ecb5ca27d9e1bf66ddb9958"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/host-dream-and-garage-independent-review/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f74f6ff8c763840d8a7b6066123d9ebf90817634"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/host-dream-frozen-originals/gate-contract.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50d1f91f36d5d1b4707c5612fc8a0833d65131eb"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/host-dream-frozen-originals/handoff.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ceb72817bf30d1c5dada5141d96731622d7d314"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/host-dream-frozen-originals/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70b3d89a33c5b522a8368808078388e8c26eabc8"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/host-dream-frozen-originals/source-freeze.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13d242fe329b6f47b4dbc9370be20d79c253391c"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/host-dream-frozen-originals/static-source-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e4b384fb08109277d552c51cb19183ae269cbf0"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/host32-terminal-verification-recovered.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "acf9c2d60816679bf462aea19e89baea4e2fb55c"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/independent-host-dream-merge-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b48cd2af2e7dad06beab53a3be6998ea7edb0863"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/independent-native-dream-producer-reader-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e318b7198689d244954f0a355cbd03fbace3e87"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/independent-restored-source-endcheck.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d976ca80febb96994f898358968443ba1c16d707"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/native-dream-bd071225/originals/api/artifacts.original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d76be1fbb49ac1eb5c64e76b6dc80aa20b44ced2"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/native-dream-bd071225/originals/api/commit.original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a069649a235ce655637bd512e97e69ef8f330899"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/native-dream-bd071225/originals/api/jobs.original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5edba5f171d38dd7225334aebc1c9c37b7076445"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/native-dream-bd071225/originals/api/run.original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df1e65ee458182bd4a7de430f658cfd82f13b6ff"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/native-dream-bd071225/originals/jobs/dream-native-acceptance-132419791499.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f21011a1d57d4cb3a72770fc75c0449908105c3"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/original-host32-artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a1f3e90183d56e6419ee6f6041632fd2d9023da"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/original-host32-failed-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3131ce8197ea47fa14930d0f928e1e6f3beb279"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/original-host32-flutter-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb33a2e87f18c6f9230e50c97daec4239f46fb68"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/original-host32-jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d493d77ef02a6d2818d018324bff2320c1404322"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/original-host32-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "466790c348e822b496125f11486164d04ecd3051"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/root-connection.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58faa22c4096fadf7bb028af17b892f162e9e4ef"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/root-original-dream-visual-receipt-recovered.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28cb03d9a197c3248fe7292299be533cf1e1fd2c"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/root-pin-independent-recovery-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ba67adf4ebc27d8a1aa9e1e43b1eb1f307c5c66"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/root-pin-recovery-and-release-precondition.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c3582247d58275950ff201061124623cb84ad7f"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/runtime-recovery-observation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df5878a914f9b195f44498f334b7dbff8b30aef0"
+    },
+    {
+      "path": "docs/evidence/c4-dream-d826-targeted-validation-20261114/dream-gates-handoff.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5275e24ecdc06f487f00514e3ed84c4c3efa3ee4"
+    },
+    {
+      "path": "docs/evidence/c4-dream-d826-targeted-validation-20261114/dream-gates-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c1fbdf4984ba9ffc18f1d6d092be1336b933290"
+    },
+    {
+      "path": "docs/evidence/c4-dream-d826-targeted-validation-20261114/dream-gates-originals.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "97fb234d55bcfafddf5bfdd5ce2bf57b14ff017b"
+    },
+    {
+      "path": "docs/evidence/c4-dream-d826-targeted-validation-20261114/root-activation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b1b7f1d771c9742e06feff155d11a28f30e7491"
+    },
+    {
+      "path": "docs/evidence/c4-dream-d826-targeted-validation-20261114/root-pin-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77efed8149643ea217685e77ae9042f900aa9cb0"
+    },
+    {
+      "path": "docs/evidence/c4-dream-d826-targeted-validation-20261114/root-pin-originals.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f7c374acd3f21fc92f5740cf5ffc0a9029d889c"
+    },
+    {
+      "path": "docs/evidence/c4-dream-d826-targeted-validation-20261114/root-pin-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e1e02db9224be33f22f9147daa4cefae8389937"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/actual-compile-curriculum/complete-originals.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f02010479ee7f64fb191127c3910dc784d1925d"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/actual-compile-curriculum/handoff.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b2ebaf0004bf216931c629aad2cfd6dfc37bbe4"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/actual-compile-curriculum/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "728783c43d8c8069c81e294971e7eb60c956b124"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/actual-compile-curriculum/verification.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f378abdf020090983af2d03d89510a946b818b0a"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/c4-visible-targets/complete-originals.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41fbdd8f6de0080feb084f73feadf952ccc6ab35"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/c4-visible-targets/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b567eaa2132101e34a783a5863f7c38a86cdd46"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/c4-visible-targets/source-freeze.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1f371b51b736ebece1c2ce0459e7b2ac3ff63cf"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/c4-visible-targets/tests-only.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24196294da11bbd9b5094b952ef41aa1bff44e50"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/independent-fixture-review/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2ddf801e3f4c243ab848530cff4b116ba93d57b"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/independent-fixture-review/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6049ce484c15fd584107c4ef2daabe7cdb159010"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/original-archive-bindings.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb5ece8481eab0a5df07129d4e47b32902bb810f"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/prepare-connection.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1fe6273fcecf9d4bd5e87a5d1b9edd424aadfff"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/producer/complete-comparison.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0efd9f0fcba3e107a2eac3cdc4da76fa27ebb55"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/producer/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b297675db30f3b961ef13f43261b37a64de6afb2"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/producer/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e4afc51ded9b0bbc496ab37f4239da843199e37"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/qa-fixture/complete-originals.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25cc2f26f11c51c56e023f50226384cd0d4ef598"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/qa-fixture/fixture.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3efa9e582b9bcfc0e6766b0b8feb36a01a776f45"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/qa-fixture/handoff.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "658c84b85427babf445a8bc534a0c391cc5f427e"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/qa-fixture/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ab53390df445bd36531d1d2f70669855f15a6b7"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/qa-fixture/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1303c154e34bac60da75c2efaef70a98df5342d0"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/qa-fixture/source-freeze.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ba60c54d65b6d16e9ecd3efc6ec6a29cb7f9a85"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/root-connection.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b05f2d9330c51a4424b227326b7d50314d6e8e3c"
+    },
+    {
+      "path": "docs/evidence/c4-return-shell-contract-20261114/GREEN.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ad1cbf71ea86de3983edebb7d05ca7682848d9d"
+    },
+    {
+      "path": "docs/evidence/c4-return-shell-contract-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b07b4a7ae0242c39571a3d93e36577a18e4dcbc"
+    },
+    {
+      "path": "docs/evidence/c4-return-shell-contract-20261114/green-faaf/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9afead995d95315f04d700299c5d589d3a571ed"
+    },
+    {
+      "path": "docs/evidence/c4-return-shell-contract-20261114/green-faaf/unittest.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e23ffcda6d39501079ab808263ac984a36b9948d"
+    },
+    {
+      "path": "docs/evidence/c4-return-shell-contract-20261114/red-968e/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de55958f2befb4f565b54a5cfb85fdf2ec167073"
+    },
+    {
+      "path": "docs/evidence/c4-return-shell-contract-20261114/red-968e/unittest.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf5c2536c392daf5f7511d1994b9b876f80755c7"
+    },
+    {
+      "path": "docs/evidence/c4-return-shell-contract-20261114/run-targeted.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f99a3df4a486d9f72b68e4befe84ccc563c5aa3"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/c4-pressed-complete-originals.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36150dd6d7734b65e4e50ad8db19ff4fa05f242c"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/c4-pressed-handoff.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e43e13ba25c5b06c724dd8dcece878bb3aecc12"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/c4-pressed-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1482a7add0dc0fe52ffcae84ae708858c0cbd4d4"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/c4-pressed-source-freeze.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f4eaa30c659a7f6ca245f3b1a91d0154eb558bc"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/c4-pressed-source-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f64d00127559f18a749c035d9eb533a9588524ab"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/combined-source-freeze.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ab702b3726ea1b52d265fae4b7eb4cee0c1b64b"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/host2b-original-missing-cache-preflight.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54a23a18f611abe6709c2511ca1f51dcd8e3b201"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/host2b-preflight-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7fe0ceaa49becbe3d713a123dcb16c8cd66498c1"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/latest-producer-comparison.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c533a6eafbf26c552d90d2e3747eca863eba01a4"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/native-f052-complete-validation.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6581c7c27b61603b58871ac80e0a3018be6d391"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/native-f052-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d86311803b058427812672f90891ad9358dcd186"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/native-f052-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc518b552aa0650de8b34d5cea49e27448d36ba6"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/pause-caption-independent-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4039f0c7c266650152da25e85e0951d80f8207d2"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/prepare-root-gate-sources.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa01bf9b1dd692f7d78a197abacceb8c34fd50f7"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/privacy-history-complete-originals.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "062571f1ffcace87c3b3cb956d0a8fadf68ba52e"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/privacy-history-handoff.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d07d69a81c3fe06d021285adfe66b9cc9cff35ed"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/privacy-history-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8b9158b5e79881bbed6a7f6bd1bc795650894e4"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/privacy-history-source-freeze.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf8660204b1a61660922bd619d05d2e10ba16cae"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/privacy-history-source-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2fc40e231500e694b931f335997f87b279d312a5"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/qa1cc5-complete-nine-pass-and-original-red.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac0e3ea6add4a456182ca702916de2e199795b52"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/qa1cc5-handoff.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5bfcb74b54855a97ab764f33b2be5e7e241444da"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/qa1cc5-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee89fc48467db923419eca0e7bad6dd362765b7e"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/recover-sparse-objects.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b255538a7a464e5aefee0105c4bab5a4c22a18c"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/root-connection.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c402236aa7b1e0ae26f053a35ae9470ceec85d6"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/root-gates-complete-source-pack.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de5e8c49c2943e78edc26f5db3551ca537639340"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/root-gates-independent-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a28637b448a105247b38b0bd06d9bbdf4a1f6a52"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/root-gates-source-freeze.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c554466f7e5db54991c0854b4bedb5af4ef19e7"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/android-evidence-branch-scope-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff9e5c744608c4bde79f64b84be3efc57caf0196"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/complete-host729-validation.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2349efd6efd5e2c44a5509a5481c87fe9246ab94"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/complete-product17-originals.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6294c7fe7b011982780c88b3ce5d0f60d7cd7b7"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/host729-handoff.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00bfecf2bc58997dab68f3bb0dadccabe61ac282"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/host729-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "457600909a8d369ae8c00b018e0e8f8792508f77"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/native-f0c19-return21-complete-originals.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ddd219ea1ac334bd5cd78e98aea1982b32a3272"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/native-f0c19-return21-handoff.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a5e87bc2dacd23c5ed97f77b28ccd41345b5a4f"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/native-f0c19-return21-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9a976f9928ade8a9a7f803063849ddbba27c2a6"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/product-README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b5b645c120498c00688bc5f5b2adcedd77a901e"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/product-handoff.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ceea83edf4d26bcad19222b89a6169f7da559713"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/product-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea8e2d5c36615d433b4793b6febd55688ea9b4e5"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/product-protected-dependencies.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13359a0a905b8af4266c9ebfa0a65d59226204af"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/product-source-freeze.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25e40d9646e401dad63f9dce97ae87426a1c0710"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/product-validation-plan.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9689cd296259e8f3fbfa27c6c900d33038454c2"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/qa0d-swangle10-complete-originals.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa81b524e77d078b8e1be554a321e3cbc799792c"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/qa0d-swangle10-handoff.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e53033734dc93032a0fefc8abff0ee27d62374c"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/qa0d-swangle10-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "695c44cb8d2ed9705bc2dca06bf8d9486ccb3ccd"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/qa0d-targeted104-complete-originals.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7ff3722948f07d4d2be2394d938079a8d1e14220"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/qa0d-targeted104-handoff.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa76b0ea4c3b3a8609ce65d4ba8af6c16bd697a6"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/qa0d-targeted104-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9dbc1aaffaf7c66d8292c7fb29d579aa7b8f0f7e"
+    },
+    {
+      "path": "docs/evidence/host-product-diagnostic-connection-20261114/root-connection.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03587f96398770e6f24ff28a65df4c030989f047"
+    },
+    {
+      "path": "docs/evidence/incoming-32e-source-review-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46cac484edc3030089deb47271b34f9958d2f711"
+    },
+    {
+      "path": "docs/evidence/incoming-32e-source-review-20261114/combined-workflow-delivery-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "209a8f1325f3e3a252df0e5d5215a5cd4a1637e8"
+    },
+    {
+      "path": "docs/evidence/incoming-32e-source-review-20261114/qa-fixture-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2930de0272f240cf13aed8611bfc2529fcd4beb"
+    },
+    {
+      "path": "docs/evidence/incoming-32e-source-review-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02844283db0f7e8fcdbe764a876eb3fdfa4ebb7c"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/host-format-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3bc5c9c308892ff51f0cb0c2ea160d66d963244a"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/EXECUTION.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca6ffa1e31a3ca24a274a80238a9c778279692b2"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0508ec46043d54b68ac43c7145364fc33589b10c"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/execution/dart-version.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/execution/dart-version.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/execution/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca9687a0b6dbcf6010009b503062ddad3242e609"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/execution/host-source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e23ed9243382560aff386f1f9b78ad4999bece1"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/execution/original.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/execution/original.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b202e2e136adb6f52a9fde5fe0684eac84b57ca"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/execution/patched.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/execution/patched.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e2700db5020ad87cc18ca88ecbdcf9cc2d97a8c"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/execution/run_contract.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01b2bd05fef8837884123c0fd0ee1b95e4ebed22"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/execution/summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80291144964fc1102bd05411ccabfecfce600629"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a305efa221b9eeb7f3ec8996a5379696d39795a"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/original-diagnostic.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0c92c312c9fa6683ad3f67099156581de144ff6"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/original-probe.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1fab3136c7d683b2f7c59e86e8271197dddb3ba"
+    },
+    {
+      "path": "docs/evidence/math-exact-cumulative-20261114/root-source-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "112916b1295f1fb2e616d844e7b7725673c6aaf2"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/LOCAL_EXECUTION.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a82cedeaf19e6fe7f56bf3829b448c6def6d9074"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb877bd1d1a1be6aec604762f703e9fa0525c11a"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/actionlint.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/actual-step-0.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1273aaffcfa7ddd06782fe9c1bd792eae46a15dc"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/actual-step-1.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2cf7e2ff1f642b76da8f56a51237eda3511fa93"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/actual-step-2.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0e7a3b5566c77d9007e61841c3e2855b0b32acd"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/actual-step-3.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b11cb0a45c73b719e7b2e0adc8030eaa639ca72"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/combined-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ddeaa3d1dac1cee59ef387d6617cc4a2ca037d23"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/actionlint.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/actual-step-0.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1273aaffcfa7ddd06782fe9c1bd792eae46a15dc"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/actual-step-1.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2cf7e2ff1f642b76da8f56a51237eda3511fa93"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/actual-step-2.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0e7a3b5566c77d9007e61841c3e2855b0b32acd"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/actual-step-3.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b11cb0a45c73b719e7b2e0adc8030eaa639ca72"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/combined-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2f0a32a226bded39eaaa1305ba5d4f5a60d4f56"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d792f4099058e49dba7ce02b88c71dad81534fdc"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/step-0-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/step-1-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/step-2-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/step-3-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/pin-6ecc/autosave.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4ac58b049ed9ded702e8adb2feee442735b1b41"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/pin-6ecc/fast-forward.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "15c1cd87e0745dcf60131bee6eaa959ce1660042"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/pin-6ecc/pin-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1437bcab770332db4bfac6fd75a72ddedcc1fc1a"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/pin-6ecc/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ad3ca84a19f7648441d1a6228ee2e03d6e5c761"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "427f5df55a2281e6f4ce3d7a18fc45fbffef9f30"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/run_check.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6191ae4c5059417d7d33e0c1473ddf76f9f1f82e"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/run_check_path_corrected.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b24404b28eca470eaacb9eb96ed97db7ebf861fe"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/step-0-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/step-1-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/step-2-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/local-execution/step-3-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/native-minimap-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72cc79fed18f34d621e6043240607fc022ec648d"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/original-jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7cc3fcdba9bda7ed1b119aacbf32a005e188789"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/original-verify-and-build.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3131ce8197ea47fa14930d0f928e1e6f3beb279"
+    },
+    {
+      "path": "docs/evidence/quality-32e7-merge-20261114/root-merge-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f8e9857c6460f5fb5d22ef489bb0f350ef9a354"
+    },
+    {
+      "path": "docs/evidence/quality-base-2b586-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2acb01c7853d96a33cfd45420f538d772eb3ed90"
+    },
+    {
+      "path": "docs/evidence/quality-base-2b586-20261114/autosave-once.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d610a172debe7ee552f672612bdddb64d8ff3bf"
+    },
+    {
+      "path": "docs/evidence/quality-base-2b586-20261114/diagnostic-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-base-2b586-20261114/diagnostic-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a7bb60672e6b4febc83cf2d9e26f9e8b8f3d233"
+    },
+    {
+      "path": "docs/evidence/quality-base-2b586-20261114/diagnostic-tests.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c36f60539d0ca6e11ba20422eb044381e5634b83"
+    },
+    {
+      "path": "docs/evidence/quality-base-2b586-20261114/root-merge-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70ce65ee74e9e36a6f5866aa523df594587f4e6b"
+    },
+    {
+      "path": "docs/evidence/quality-base-2b586-20261114/validation-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c170fe36e4b81e536f668ba35cd62584e97f9d60"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "751b09d2b92527608b481f55c0d09457b1dde658"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/corrected-contracts-968e/actionlint.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/corrected-contracts-968e/actual-step-0.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0e7a3b5566c77d9007e61841c3e2855b0b32acd"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/corrected-contracts-968e/actual-step-1.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d5160c5224169d5915feeb4f4248476365837a3"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/corrected-contracts-968e/pin-and-c4-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "721eec27a6dec31ac5708662001878c7be33ccf9"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/corrected-contracts-968e/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5cfc80bf8b86a58b3a58cfb28a9102ccc9bbabd1"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/corrected-contracts-968e/step-0-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/corrected-contracts-968e/step-1-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/guarded-contracts-faaf/actionlint.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/guarded-contracts-faaf/actual-step-0.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0e7a3b5566c77d9007e61841c3e2855b0b32acd"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/guarded-contracts-faaf/actual-step-1.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b11cb0a45c73b719e7b2e0adc8030eaa639ca72"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/guarded-contracts-faaf/pin-and-c4-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b66ee58732714b77d1025418fb634414bc04c2c4"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/guarded-contracts-faaf/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b7c09f50f380a35d9e3e91bcd5181f219fe84b79"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/guarded-contracts-faaf/step-0-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/guarded-contracts-faaf/step-1-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/initial-contracts/actionlint.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/initial-contracts/actual-native-step.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87b40d188bcd057be95a5aaa41de1c03ca669892"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/initial-contracts/native-step-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/initial-contracts/pin-and-c4-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01893163fa2d2c1e2d6ec7aab08845b5a2d0a1df"
+    },
+    {
+      "path": "docs/evidence/quality-c4-return-pin-20261114/initial-contracts/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2cb4839e4fe86ebd608a336bd5dde06a46983667"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/LOCAL_EXECUTION.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c8ec6c75d300cd587c2bd07fd6cb6d96359e83f"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea8806048e818106c6499792783b0760ed3b81ed"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/execution/actionlint.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/execution/actual-step-0.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1273aaffcfa7ddd06782fe9c1bd792eae46a15dc"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/execution/actual-step-1.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2cf7e2ff1f642b76da8f56a51237eda3511fa93"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/execution/actual-step-2.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0e7a3b5566c77d9007e61841c3e2855b0b32acd"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/execution/actual-step-3.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b11cb0a45c73b719e7b2e0adc8030eaa639ca72"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/execution/actual-step-4.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "428beb8a0aef6486cd6693cfe4b7d698790802c1"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/execution/combined-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dac9fec3a7d024e95af5398a5f0fc150c2d854e3"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/execution/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4af4013422f873926a6d91182e36e69fa26a4d48"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/execution/step-0-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/execution/step-1-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/execution/step-2-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/execution/step-3-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/execution/step-4-bash-n.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/frozen-source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77f1823e40fbf78a81a5ad11a5997c77c19d130d"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/native-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc8a05996c5ebe5be8abf671e63b7fd4283d9cf0"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/prepare_dream_merge.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8683dddb5a333b421edc53096b7b366e9557705c"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/resolution-record.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "372fded4b34b51b23268928b521ff469798303e9"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/resolve_dream_merge.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b094c182cfe9c0f80e295b4264dd867647024141"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/run_committed_source_checks.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50eeff3bebae9dc4580389655c89252a8590e24e"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/setup/autosave.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4ac58b049ed9ded702e8adb2feee442735b1b41"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/setup/fast-forward.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e14dcf514488b1729b9c402fa70e64b7ab5ffe2e"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/setup/fetch.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5470476c46ee32ef870d92a325a946f2ce845eab"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/setup/fetched-head.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2969583293165af2bf06825c79b46af4ce3796a"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/setup/head-after.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2969583293165af2bf06825c79b46af4ce3796a"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/setup/head-before.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ff400aa88294a1612a267cc5912b66a4ca604ef"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/setup/status-before.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/setup/tree-after.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "08c5cbb8bcc06b551b9d40034a0e9a12b7262602"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/source-records.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2d7abb1b0c4eefe27106ea4cbe421b3a45e74a5"
+    },
+    {
+      "path": "docs/evidence/quality-dream-merge-20261114/static-review-iterations.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad24cfc8819c52f48161c01c98dfbf27ca017c64"
+    },
+    {
+      "path": "docs/release/PLAY_STORE_LISTING_DE_2026-11-14.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b13aee3f26bbcd51c7190d1ab2ea04d8c4f9fd1"
+    },
+    {
+      "path": "docs/release/PLAY_STORE_LISTING_DE_2026-11-14.sources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9c5794c34cb43e0f03db16d1be1ac6a742a950e"
+    },
+    {
+      "path": "lib/core/math_task_templates.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85fbad4a0b09753a7f22663690a9660f98382f39"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96"
+    },
+    {
+      "path": "scripts/run_unchanged_apk_diagnostic.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2700d4e1c454eaab5144836d78223b6f6e02d803"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8761da4157a16d33b86b649b7ff3a8e365044906"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-exit.stdout",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fba7ed526e434d8e4d615d8c9eca14f252c8a0f4"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-runtime-anr-verification.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2b616edb135cb9f03d3019b85e3877a15b85c39"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-stop.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5278dfb25362d6ffb2f69c13c1c74816fa627df9"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-wait.stderr",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f967a59acdf78450291005ce5960581f839ac15"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swiftshader-events-anr.stdout",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc2bb7332ea653890806225c08617fbbbe75b9a3"
+    },
+    {
+      "path": "scripts/tests/fixtures/api37-swangle-08e63bd3-renderer.json.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b9ecb3de5b891df9c6d51b29c3447df333d6b0a"
+    },
+    {
+      "path": "scripts/tests/test_android_runtime_wait_notification.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a85f64bfbe7d374be64437dfd76709e92fffd0e3"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_return_gate.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3a76bcc9949af22d9be8abdce2e30065b97dddc"
+    },
+    {
+      "path": "scripts/tests/test_runtime_followup_workflow.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6bc8e67649ec6d7808a7d37cddb93cb0f931b19"
+    },
+    {
+      "path": "scripts/verify_android_runtime_anr.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0bb9f91493a07100935bdb88e796676ae1ee20f5"
+    },
+    {
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5e847507275b67d6d3aa4bdbaf2991f01817bca"
+    },
+    {
+      "path": "test/games/connect_four_scroll_alignment_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b05fa2ececfef096db3c4c6f7b116ac79e61d197"
+    },
+    {
+      "path": "test/math_exact_topic_selection_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f82604a4239bd8982ac666b97aa478b65a8fa2e8"
+    },
+    {
+      "path": "test/support/math_exact_topic_selection_contract.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "becda7215230494989c04a71ee9f0b6a09c4fda2"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0-ocr.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f4050401ac73ada62cb3517ec7204f33916517b8"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1-ocr.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c4702094de7317487568ccdd875b874d243a0bd"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-surface-readiness.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35b5cdb2d5e6c55d2083bbb41aafc34611d5ebfe"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/provenance.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f63d6917ba8b5404d4deb1209a75486c33e90caf"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_continue_caption.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d02ca8663998dcbddb6c02107148672c5882b52"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d"
+    }
+  ],
+  "identical_changes": [
+    "lib/core/school_exercise_generator.dart",
+    "lib/features/home/widgets/lumo_home_hero.dart",
+    "lib/features/learning/learning_content.dart",
+    "lib/features/learning/widgets/lumo_shape_trace_canvas.dart"
+  ],
+  "ours_only_preserved": [
+    ".github/agents/lumo-3d-director.agent.md",
+    ".github/agents/lumo-learning-director.agent.md",
+    ".github/agents/lumo-orchestrator.agent.md",
+    ".github/agents/lumo-release-director.agent.md",
+    ".github/probes/lumo_village_android_probe.py",
+    ".github/workflows/lumo-agent-network.yml",
+    ".github/workflows/lumo-direct-village-flutter.yml",
+    ".github/workflows/lumo-learning-curriculum-audit.yml",
+    ".github/workflows/lumo-unified-integration-2026.yml",
+    "AGENTS.md",
+    "docs/agent-network/LUMO_PLAYSTORE_AGENT_TREE_20261114.md",
+    "docs/agent-network/agent_tree.json",
+    "docs/agent-network/execution-20261114.json",
+    "docs/evidence/atmosphere-layout-20261114/README.md",
+    "docs/evidence/atmosphere-layout-20261114/atmosphere-layout-analyze.json",
+    "docs/evidence/atmosphere-layout-20261114/atmosphere-layout-analyze.log",
+    "docs/evidence/atmosphere-layout-20261114/atmosphere-layout-before-sources.json",
+    "docs/evidence/atmosphere-layout-20261114/atmosphere-layout-before.json",
+    "docs/evidence/atmosphere-layout-20261114/atmosphere-layout-before.log",
+    "docs/evidence/atmosphere-layout-20261114/atmosphere-layout-final-sources.json",
+    "docs/evidence/atmosphere-layout-20261114/atmosphere-layout-final.json",
+    "docs/evidence/atmosphere-layout-20261114/atmosphere-layout-final.log",
+    "docs/evidence/capture-state-qa-20261114/README.md",
+    "docs/evidence/capture-state-qa-20261114/home-manifest.json",
+    "docs/evidence/capture-state-qa-20261114/original-home-job.log",
+    "docs/evidence/capture-state-qa-20261114/original-kotlin-job.log",
+    "docs/evidence/capture-state-qa-20261114/original-village-job.log",
+    "docs/evidence/capture-state-qa-20261114/source-map.json",
+    "docs/evidence/capture-state-qa-20261114/village-manifest.json",
+    "docs/evidence/connect-four-union-20261114/README.md",
+    "docs/evidence/connect-four-union-20261114/source-manifest.json",
+    "docs/evidence/drawing-integration-20261114/README.md",
+    "docs/evidence/drawing-integration-20261114/drawing-first-combined.json",
+    "docs/evidence/drawing-integration-20261114/drawing-first-combined.log",
+    "docs/evidence/drawing-integration-20261114/drawing-first-source-hashes.json",
+    "docs/evidence/drawing-integration-20261114/drawing-learning-analyze.json",
+    "docs/evidence/drawing-integration-20261114/drawing-learning-analyze.log",
+    "docs/evidence/drawing-integration-20261114/drawing-learning-integrated-source-hashes.json",
+    "docs/evidence/drawing-integration-20261114/drawing-learning-integrated.json",
+    "docs/evidence/drawing-integration-20261114/drawing-learning-integrated.log",
+    "docs/evidence/drawing-integration-20261114/integration-source-manifest.json",
+    "docs/evidence/drawing-integration-20261114/producer-sources.json",
+    "docs/evidence/drawing-integration-20261114/shape-painter-before-source-hashes.json",
+    "docs/evidence/drawing-integration-20261114/shape-painter-before.json",
+    "docs/evidence/drawing-integration-20261114/shape-painter-before.log",
+    "docs/evidence/flutter-full-acceptance-7fd9-20261114/README.md",
+    "docs/evidence/flutter-full-acceptance-7fd9-20261114/acceptance-summary.json",
+    "docs/evidence/flutter-full-acceptance-7fd9-20261114/failed-tests-original.json",
+    "docs/evidence/flutter-full-acceptance-cf2593-20261114/README.md",
+    "docs/evidence/flutter-full-acceptance-cf2593-20261114/acceptance-summary.json",
+    "docs/evidence/flutter-full-acceptance-cf2593-20261114/diktat-results-original.json",
+    "docs/evidence/flutter-full-acceptance-cf2593-20261114/failed-tests-original.json",
+    "docs/evidence/flutter-full-acceptance-cf2593-20261114/original-job.log",
+    "docs/evidence/flutter-full-acceptance-cf2593-20261114/selected-capture-manifest.json",
+    "docs/evidence/home-capture-integration-20261114/README.md",
+    "docs/evidence/home-capture-integration-20261114/capture-manifest.json",
+    "docs/evidence/home-capture-integration-20261114/home-cards.log",
+    "docs/evidence/home-capture-integration-20261114/observed-run.json",
+    "docs/evidence/home-cover-title-20261114/README.md",
+    "docs/evidence/home-subject-capture-20261114/README.md",
+    "docs/evidence/home-subject-capture-20261114/first-strict-run-original.log",
+    "docs/evidence/home-subject-capture-20261114/original-artifact-manifest.json",
+    "docs/evidence/live-integration-20261114/README.md",
+    "docs/evidence/live-integration-20261114/c4-captures-manifest.json",
+    "docs/evidence/live-integration-20261114/c4-widget-integration-run.json",
+    "docs/evidence/live-integration-20261114/c4-widget-integration-run.log",
+    "docs/evidence/live-integration-20261114/discovery-original-38-readonly-replay.json",
+    "docs/evidence/live-integration-20261114/evidence-manifest.json",
+    "docs/evidence/live-integration-20261114/home-cf2593-independent-visual-review.json",
+    "docs/evidence/live-integration-20261114/live-discovery-host-contracts-original.log",
+    "docs/evidence/live-integration-20261114/live-discovery-host-contracts.json",
+    "docs/evidence/live-integration-20261114/live-gate-actionlint.json",
+    "docs/evidence/live-integration-20261114/live-gate-actionlint.log",
+    "docs/evidence/live-integration-20261114/live-gate-green.json",
+    "docs/evidence/live-integration-20261114/live-gate-green.log",
+    "docs/evidence/live-integration-20261114/live-gate-red.json",
+    "docs/evidence/live-integration-20261114/live-gate-red.log",
+    "docs/evidence/live-integration-20261114/native-original-helpers-integration-fixture.json",
+    "docs/evidence/live-integration-20261114/native-original-helpers-integration-fixture.log",
+    "docs/evidence/live-integration-20261114/pr491-original-flutter-failures.json",
+    "docs/evidence/live-integration-20261114/pr493-android-evidence-red.json",
+    "docs/evidence/live-integration-20261114/pr493-android-evidence-red.log",
+    "docs/evidence/live-integration-20261114/pr493-four-branches-android-evidence-green.json",
+    "docs/evidence/live-integration-20261114/pr493-four-branches-android-evidence-green.log",
+    "docs/evidence/live-integration-20261114/root-445-discovery-actionlint.log",
+    "docs/evidence/live-integration-20261114/root-445-discovery-pipeline-original.log",
+    "docs/evidence/live-integration-20261114/root-445-discovery-validation.json",
+    "docs/evidence/live-integration-20261114/root-7fd9-focused-python-manifest.json",
+    "docs/evidence/live-integration-20261114/root-7fd9-focused-python-original.log",
+    "docs/evidence/live-integration-20261114/tested-source-files.json",
+    "docs/evidence/live-integration-20261114/unchanged-apk-fixture-recovered-green.json",
+    "docs/evidence/live-integration-20261114/unchanged-apk-fixture-recovered-green.log",
+    "docs/evidence/live-integration-20261114/unchanged-apk-fixture-recovered-red-source-bound.json",
+    "docs/evidence/live-integration-20261114/unchanged-apk-fixture-recovered-red-source-bound.log",
+    "docs/evidence/live-integration-20261114/village-actionlint-original.log",
+    "docs/evidence/live-integration-20261114/village-android-contracts-original.log",
+    "docs/evidence/live-integration-20261114/village-android-preparation.json",
+    "docs/evidence/live-integration-20261114/village-candidate-delivery-contracts-original.log",
+    "docs/evidence/live-integration-20261114/village-eleven-portal-test-manifest.json",
+    "docs/evidence/live-integration-20261114/village-home-independent-final-visual-review.json",
+    "docs/evidence/live-integration-20261114/village-producer-routing-failure-original-excerpt.log",
+    "docs/evidence/live-integration-20261114/workflow-actionlint.json",
+    "docs/evidence/live-integration-20261114/workflow-actionlint.log",
+    "docs/evidence/live-integration-20261114/workflow-delivery-green.json",
+    "docs/evidence/live-integration-20261114/workflow-delivery-green.log",
+    "docs/evidence/live-integration-20261114/workflow-delivery-red.json",
+    "docs/evidence/live-integration-20261114/workflow-delivery-red.log",
+    "docs/evidence/live-root-7fd9-ci-20261114/acceptance-result.json",
+    "docs/evidence/live-root-7fd9-ci-20261114/original-astra-job-132399496942.log",
+    "docs/evidence/live-root-7fd9-ci-20261114/original-build-job-132400677288.log",
+    "docs/evidence/live-root-cf2593-ci-20261114/acceptance-result.json",
+    "docs/evidence/live-root-cf2593-ci-20261114/original-astra-job-132408996489.log",
+    "docs/evidence/live-root-cf2593-ci-20261114/original-build-job-132410003806.log",
+    "docs/evidence/live-root-followup-20261114/acceptance-runner-original.log",
+    "docs/evidence/live-root-followup-20261114/source-union.json",
+    "docs/evidence/live-root-integration-20261114/ffmpeg-prerequisite-recovery.json",
+    "docs/evidence/live-root-integration-20261114/native-nine-observed-result.json",
+    "docs/evidence/live-root-integration-20261114/source-integration.json",
+    "docs/evidence/village-title-layout-20261114/README.md",
+    "docs/evidence/village-title-layout-20261114/original-artifact-manifest.json",
+    "lib/features/games/games_content.dart",
+    "lib/features/games/spielwelt/spielwelt_game_icon.dart",
+    "lib/features/games/spielwelt/spielwelt_hub.dart",
+    "lib/features/games/spielwelt/spielwelt_routes.dart",
+    "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+    "lib/features/lumo3d/lumo3d_launcher.dart",
+    "lib/features/lumo3d/lumo_game_entry_overlay.dart",
+    "lib/features/teacher_mode/letter_writing_screen.dart",
+    "lib/features/writing/widgets/lumo_ink_surface.dart",
+    "scripts/run_full_flutter_acceptance.py",
+    "scripts/verify_connect_four_candidate.py",
+    "test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+    "test/design/home_1989_premium_cards_capture_test.dart",
+    "test/games/connect_four_navigation_test.dart",
+    "test/games/dorfwirtschaft_portal_test.dart",
+    "test/games/games_world_layout_test.dart",
+    "test/games/spielwelt_hub_capture_test.dart",
+    "test/games/spielwelt_routing_test.dart",
+    "test/games/spielwelt_semantics_action_test.dart",
+    "test/learning_modules/deutsch_sach_module_progress_test.dart",
+    "test/legacy_letter_repaint_regression_test.dart",
+    "test/lumo_game_entry_overlay_test.dart",
+    "test/lumo_ink_surface_motion_regression_test.dart",
+    "test/shape_trace_gesture_regression_test.dart",
+    "test/wort_diktat_gesture_regression_test.dart",
+    "tools/android_qa/tests/test_village_android_evidence.py",
+    "tools/android_qa/village_android_evidence.py",
+    "tools/auto_install/LumoGameActivity.kt",
+    "tools/auto_install/MainActivity.kt",
+    "tools/check_lumo_agent_tree.py"
+  ],
+  "additional_pipeline_test": {
+    "path": "scripts/tests/test_connect_four_pipeline.py",
+    "blob": "0836ae775c3524c8b4a691fef934d52caa20cbc8",
+    "only_changes": [
+      {
+        "line": 141,
+        "before": "        self.assertIn(\"if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:' c4-runtime/return-recovery.log; then\",block)",
+        "after": "        self.assertIn(\"if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:|Assertion failed' c4-runtime/return-recovery.log; then\",block)"
+      },
+      {
+        "line": 143,
+        "before": "        self.assertIn(\"grep -Fx 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log\",block)",
+        "after": "        self.assertIn(\"test \\\"$(grep -Fxc 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log)\\\" = 1\",block)"
+      }
+    ],
+    "remaining_bytes_and_18_test_roster_unchanged": true
+  },
+  "peer_review": {
+    "flutter_checkpoint": "318dd189a17ca7bd21e243cdd97330c1c856bf1e",
+    "qa_checkpoint": "be9562717ee1ef0faaa09f74ef2283713a62faab",
+    "native_checkpoint": "668d00ced33a725912a9e23dc231698b74dcd06d",
+    "independent_delivery_review": "No concrete findings;29/31 prior functions exact,remaining2 preserve all original calls and add required Dream/Return/Wisp;20 required workflow steps exactly once;11 original deliveryassets retained"
+  },
+  "previous_actual_acceptance": {
+    "host": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+    "run": 43586101225,
+    "attempt": 1,
+    "full_flutter": {
+      "passed": 2625,
+      "failed": 0,
+      "skipped": 0,
+      "pngs": 566
+    },
+    "native": {
+      "nextgen_modes": 52,
+      "extension_pngs": 17,
+      "live_probes": 9,
+      "live_pngs": 7,
+      "discovery_complete": false,
+      "discovery_completed_probes": 8,
+      "learning_capture_pngs": 10,
+      "learning_capture_required": 25
+    },
+    "build_cancelled": true,
+    "apk_built": false,
+    "original_log_blob": "c246b7ddce9d1b66db659a93b0af8abec539ee0d",
+    "original_log_sha256": "fc687b374ca27e28632b11786ff26fb4eed916e4e9b0fe70d3bb72a064acbef1"
+  },
+  "current_execution": {
+    "local_preflight": "NOT_YET_RUN",
+    "combined_ci": "NOT_YET_STARTED",
+    "apk_built": false,
+    "published": false,
+    "environment": "New empty executor attached after remote merge reviews; original scratch was lost, source and originals persisted in Git. Read-only Git access now verified."
+  },
+  "publication": {
+    "older_07_objects": "SUPERSEDED_DO_NOT_ACTIVATE",
+    "rebind_after_new_actual_source_run": true,
+    "seven_current_successful_jobs_required": true,
+    "actual_public_bytes_verification_required": true
+  },
+  "root_resolution_entries": [
+    {
+      "path": "lib/widgets/design/lumo_adventure_card.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4727557a16bc7428be6a156e830cc995f1997b0c"
+    },
+    {
+      "path": "lib/widgets/design/lumo_scene_atmosphere.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14bb982ab510a984652da920eae1729727a0bd8c"
+    },
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c20c32131517b6a3336d996cd8ce8a0b44c1e132"
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "973e9143fa5a333858b77e25556fa54910026c24"
+    },
+    {
+      "path": "test/learning_selection_integration_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8f8f1c226658c691ffb9ad3f42f13087d1d5b91"
+    },
+    {
+      "path": "test/lumo_scene_atmosphere_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2354619a9da176d060912d81be81edb2f7a56464"
+    },
+    {
+      "path": "test/shape_trace_input_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b32fea6379a88cdfce5d590c6a195eb10d725ad"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54ed0ed947d820edab29c612f1bbfad60aa39681"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd95512077293e973699b343dc3575af7e2b0108"
+    },
+    {
+      "path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed889242499d4bbc16e7b19be1c3869162cb1d28"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c64b8f5d81eddeadb49b99988006a834b0f5fee"
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "091e250702b41c8ff0a1eef2eaa554a83c2cff68"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "669bc2b1962208cf0bdc3cd2d845fc4c2d1fd2dc"
+    },
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86e473d75c810bdbfcadabef351adf7f931de08d"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ea215d35ca4524f73fdd150d042984685cc5001"
+    },
+    {
+      "path": "STATUS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ecd3a56056f3c796cb52a660c40840dcf78b25a9"
+    },
+    {
+      "path": "CONTINUE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0144384ce6c3e7567dc41cd1e8dffa39b0145b5"
+    },
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4acbf17dd2635f75b8e7b8d8280d43364c8d08c6"
+    }
+  ],
+  "supplement_entries": [
+    {
+      "path": "scripts/tests/test_connect_four_pipeline.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0836ae775c3524c8b4a691fef934d52caa20cbc8"
+    },
+    {
+      "path": "docs/evidence/flutter-producer-aab-union-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca82ed9cc00bdbd929a4e6d9ddd171c156dc82e3"
+    },
+    {
+      "path": "docs/evidence/flutter-producer-aab-union-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1fccd6cf5346b1e6ddfbeadf6d5400e81adb552e"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/upstream-aab-qa-union/merge-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11a2ed48850177df0e950da77d8149cb9a5a1650"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/upstream-aab-qa-union/workflow-connection-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5581c88100c05c24f406d7edd8c030e5bd92d64"
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import sys
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest import mock
 import xml.etree.ElementTree as ET
@@ -71,7 +72,7 @@ class SyntheticVillage(SyntheticEvidence):
                 'save_path': 'user://lumo_settlement_'+hashlib.sha256(('p_'+'d'*32).encode()).hexdigest()+'_1_village.json',
                 'plots': 9, 'population': 2, 'visible_residents': 2, 'initialized_plot_nodes': 9}
 
-    def fallback(self, tag, image_name, *, tiled):
+    def fallback(self, tag, image_name, *, tiled, wanted='Spiele'):
         image = Image.open(self.root/image_name).convert('RGB')
         box = list(tile_boxes(*image.size)[0]) if tiled else [10, 20, 300, 140]
         scale = 3 if tiled else 1
@@ -89,15 +90,15 @@ class SyntheticVillage(SyntheticEvidence):
             pixels = image.crop(box)
         pixels.save(self.root/(prefix+'.png'))
         tsv = ('level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n'
-               f'5\t1\t1\t1\t1\t1\t{20*scale}\t{30*scale}\t{72*scale}\t{30*scale}\t95\tSpiele\n')
+               f'5\t1\t1\t1\t1\t1\t{20*scale}\t{30*scale}\t{72*scale}\t{30*scale}\t95\t{wanted}\n')
         self.write(prefix+'.tsv', tsv)
         matches = observed_matches(csv.DictReader(tsv.splitlines(), delimiter='\t', quoting=csv.QUOTE_NONE),
-                                   tuple(box), scale, image.size, 'spiele', village.normalized, variant)
+                                   tuple(box), scale, image.size, village.normalized(wanted), village.normalized, variant)
         entry = {'index': 0, 'bounds': box, 'image': prefix+'.png', 'tsv': prefix+'.tsv',
                  'scale': scale, 'psm': 6, 'status': 'READ', 'matches': matches}
-        journal = {'status': 'READ', 'matched': True, 'source': image_name,
+        journal = {'status': 'READ', 'matched': True, 'source': Path(image_name).name,
                    'source_sha256': c4.sha256(self.root/image_name), 'surface': list(image.size),
-                   'wanted': 'spiele', 'confidence_minimum': 15,
+                   'wanted': village.normalized(wanted), 'confidence_minimum': 15,
                    'components' if not tiled else 'tiles': [entry], 'matches': matches,
                    'observed_component_boxes': [box], 'tile_scale': 3}
         self.write(tag+('-ocr-tiles.json' if tiled else '-ocr-components.json'), journal)
@@ -428,6 +429,244 @@ class VillageProcessDeadlineTests(unittest.TestCase):
                     result = probe.await_processes('wait', native=native, timeout=timeout)
                 self.assertIs(result, observed)
                 probe.processes.assert_called_once_with('wait-0', native=native)
+
+
+class VillageVisibleReturnObservationTests(unittest.TestCase):
+    """Synthetic original files exercise the actual probe and unchanged verifier."""
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name)
+        self.fixture = SyntheticVillage(self.root)
+        self.fixture.build()
+        self.now = 0.0
+        self.frames = ['native', 'flutter']
+        self.ui_kind = 'flutter'
+        self.delays = {}
+        self.captures = []
+        self.inputs = []
+        self.ocr_calls = []
+        self.ui_calls = []
+        self.probe = village_probe.VillageProbe.__new__(village_probe.VillageProbe)
+        self.probe.out = self.root
+        self.probe.deadline = 900.0
+        self.probe.base = SimpleNamespace(adb=mock.Mock(side_effect=AssertionError('Unexpected ADB input')))
+        self.old_adb = self.probe.base.adb
+        self.probe.processes = self.processes
+        self.probe.read_preferences = self.preferences
+        self.probe.original = self.original
+        self.probe.ui = SimpleNamespace(
+            native_tap=self.native_tap, capture=self.capture,
+            capture_flutter_ready=self.capture, image_lines=self.ocr,
+            read_live_nodes=self.nodes)
+        self.clock = mock.patch.object(village_probe.time, 'monotonic', side_effect=lambda: self.now)
+        self.clock.start(); self.addCleanup(self.clock.stop)
+        self.sleep = mock.patch.object(village_probe.time, 'sleep', side_effect=self.wait)
+        self.sleep.start(); self.addCleanup(self.sleep.stop)
+
+    def wait(self, seconds):
+        self.now += seconds
+
+    def advance(self, phase):
+        self.now += self.delays.get(phase, 0.0)
+
+    def processes(self, tag, *, native):
+        self.advance('process-after' if tag.endswith('-after') else 'process')
+        return self.fixture.process(tag, native=native)
+
+    def preferences(self, tag):
+        self.advance('preferences-after' if 'visible' in tag else 'preferences')
+        return self.fixture.preferences(), self.fixture.preferences_original(tag+'-read')
+
+    def original(self, tag, *arguments, **kwargs):
+        self.inputs.append(arguments)
+        return '', self.fixture.original(tag, ['adb', *arguments], '')
+
+    def native_tap(self, out, label, tag, **kwargs):
+        self.assertEqual((label, tag), ('Spiele', 'village-return'))
+        self.assertTrue(kwargs['exact'])
+        self.assertEqual(kwargs['orientation'], 'responsive')
+        original = self.fixture.report['returned']['touch_journal']
+        self.fixture.write(tag+'-surface-readiness.json', (self.root/original).read_bytes())
+        x, y = map(str, json.loads((self.root/original).read_text())['touch'])
+        self.probe.base.adb('shell', 'input', 'swipe', x, y, x, y, '120')
+
+    def capture(self, out, name, *, timeout):
+        self.assertGreater(timeout, 0)
+        self.advance('capture')
+        index = len(self.captures)
+        kind = self.frames[min(index, len(self.frames)-1)]
+        path = out/(name+'.png')
+        self.assertFalse(path.exists(), 'A rejected original frame was overwritten')
+        path.parent.mkdir(parents=True, exist_ok=True)
+        # Painted fixture pixels with enough entropy to reproduce the old
+        # entropy-only acceptance, including an equally painted native frame.
+        image = Image.new('RGB', (360, 800))
+        image.putdata([((x*17+y*11+index)%256, (x*3+y*29)%256, (x*31+y*7)%256)
+                       for y in range(800) for x in range(360)])
+        image.save(path)
+        self.captures.append((path, path.read_bytes(), kind))
+        return {'file': path.name, 'width': 360, 'height': 800, 'sha256': c4.sha256(path)}
+
+    def ocr(self, out, tag, wanted, *, source_path, timeout, exact):
+        self.assertEqual((wanted, exact), ('spielen', True))
+        self.assertGreater(timeout, 0)
+        self.advance('ocr')
+        self.ocr_calls.append((tag, source_path, timeout))
+        kind = self.captures[-1][2]
+        self.fixture.ocr(tag, 'Spielen' if kind == 'flutter' else 'LUMO DORFWELT')
+        return json.loads((self.root/(tag+'-ocr.json')).read_text())
+
+    def nodes(self, out, tag):
+        self.advance('ui')
+        self.ui_calls.append(tag)
+        tree = ET.Element('hierarchy')
+        values = {'package': c4.PACKAGE, 'enabled': 'true', 'text': 'Spielen'}
+        if self.ui_kind == 'wrong-package':
+            values['package'] = 'other.application'
+        elif self.ui_kind == 'disabled':
+            values['enabled'] = 'false'
+        elif self.ui_kind == 'native':
+            values['text'] = 'Spiele'
+        ET.SubElement(tree, 'node', values)
+        self.fixture.write(tag+'.xml', ET.tostring(tree))
+        return list(tree.iter('node'))
+
+    def observe(self):
+        result = self.probe.visible_return(200)
+        self.assertIs(self.probe.base.adb, self.old_adb)
+        self.assertEqual(len(self.inputs), 1)
+        self.assertEqual(self.inputs[0][:3], ('shell', 'input', 'swipe'))
+        self.assertEqual(self.probe.deadline, 900.0)
+        return result
+
+    def test_native_transition_frame_is_preserved_before_current_flutter_passes(self):
+        result = self.observe()
+        self.assertEqual(len(self.captures), 2)
+        for file, content, _ in self.captures:
+            self.assertEqual(file.read_bytes(), content)
+        self.assertEqual(result['frame']['file'], 'returned-flutter-frame.png')
+        self.assertEqual((self.root/result['frame']['file']).read_bytes(), self.captures[-1][1])
+        self.assertNotEqual(self.captures[0][0], self.captures[1][0])
+        self.assertEqual(len({tag for tag, _, _ in self.ocr_calls}), 2)
+        journal = json.loads((self.root/result['observation_journal']).read_text())
+        self.assertEqual(journal['status'], 'PASS')
+        self.assertEqual([row['status'] for row in journal['attempts']], ['REJECTED', 'PASS'])
+        self.assertIn('does not establish caption: Spielen', journal['attempts'][0]['error'])
+        # Replay the result through the unchanged full source/process/ACK/
+        # profile/touch/PNG/TSV/XML/inventory verifier, not just a mocked guard.
+        self.fixture.report['returned'] = result
+        self.fixture.refresh()
+        self.assertEqual(village.verify_report(self.root, self.fixture.binding,
+                                              self.fixture.identity)['status'], 'PASS')
+
+    def test_timely_first_current_frame_does_not_need_an_extra_action(self):
+        self.frames = ['flutter']
+        result = self.observe()
+        self.assertEqual(len(self.captures), 1)
+        self.assertEqual(len(self.ui_calls), 1)
+        self.assertEqual(result['frame']['sha256'], c4.sha256(self.captures[0][0]))
+
+    def test_permanent_native_or_missing_caption_fails_with_original_frames(self):
+        self.frames = ['native']
+        self.delays['ocr'] = 20
+        with self.assertRaises(TimeoutError):
+            self.observe()
+        self.assertGreater(len(self.captures), 1)
+        self.assertFalse((self.root/'returned-flutter-frame.png').exists())
+        self.assertFalse(self.ui_calls)
+        self.assertEqual(len(self.inputs), 1)
+        for file, content, _ in self.captures:
+            self.assertEqual(file.read_bytes(), content)
+        journal = json.loads((self.root/'returned-flutter-observation.json').read_text())
+        self.assertEqual(journal['status'], 'FAIL')
+
+    def test_caption_alone_cannot_accept_wrong_disabled_or_native_accessibility(self):
+        for kind in ('wrong-package', 'disabled', 'native'):
+            with self.subTest(kind=kind):
+                case = type(self)('test_timely_first_current_frame_does_not_need_an_extra_action')
+                case.setUp()
+                try:
+                    case.frames = ['flutter']
+                    case.ui_kind = kind
+                    case.delays['ui'] = 20
+                    with self.assertRaises(TimeoutError):
+                        case.observe()
+                    self.assertGreater(len(case.ui_calls), 1)
+                    self.assertFalse((case.root/'returned-flutter-frame.png').exists())
+                    self.assertEqual(len(case.inputs), 1)
+                    journal = json.loads((case.root/'returned-flutter-observation.json').read_text())
+                    self.assertIn('Actual Flutter Spielewelt did not return', journal['attempts'][0]['error'])
+                finally:
+                    case.doCleanups()
+
+    def test_capture_ocr_ui_and_final_process_success_at_deadline_is_rejected(self):
+        for phase in ('capture', 'ocr', 'ui', 'process-after', 'preferences-after'):
+            with self.subTest(phase=phase):
+                case = type(self)('test_timely_first_current_frame_does_not_need_an_extra_action')
+                case.setUp()
+                try:
+                    case.frames = ['flutter']
+                    case.delays[phase] = 90.0
+                    with self.assertRaises(TimeoutError):
+                        case.observe()
+                    self.assertEqual(len(case.inputs), 1)
+                    journal = json.loads((case.root/'returned-flutter-observation.json').read_text())
+                    self.assertEqual(journal['status'], 'FAIL')
+                finally:
+                    case.doCleanups()
+
+    def test_time_spent_across_phases_is_one_shared_90_second_budget(self):
+        self.frames = ['flutter']
+        self.delays.update(capture=29, ocr=59, ui=2)
+        with self.assertRaises(TimeoutError):
+            self.observe()
+        self.assertEqual(self.now, 90.0)
+        self.assertEqual(len(self.inputs), 1)
+
+    def test_never_overwrites_an_existing_canonical_return_frame(self):
+        self.frames = ['flutter']
+        existing = self.root/'returned-flutter-frame.png'
+        existing.write_bytes(b'preexisting original evidence')
+        with self.assertRaises(FileExistsError):
+            self.observe()
+        self.assertEqual(existing.read_bytes(), b'preexisting original evidence')
+
+    def test_accepted_copy_preserves_actual_component_and_tile_source_binding(self):
+        for tiled in (False, True):
+            with self.subTest(tiled=tiled):
+                case = type(self)('test_timely_first_current_frame_does_not_need_an_extra_action')
+                case.setUp()
+                try:
+                    case.frames = ['flutter']
+                    def fallback(out, tag, wanted, *, source_path, **kwargs):
+                        case.fixture.fallback(tag, source_path.relative_to(case.root).as_posix(),
+                                              tiled=tiled, wanted='Spielen')
+                    case.probe.ui.image_lines = fallback
+                    result = case.observe()
+                    case.fixture.report['returned'] = result
+                    case.fixture.refresh()
+                    self.assertEqual(village.verify_report(case.root, case.fixture.binding,
+                                                          case.fixture.identity)['status'], 'PASS')
+                finally:
+                    case.doCleanups()
+
+    def test_success_that_reaches_deadline_while_copying_is_never_reported_pass(self):
+        self.frames = ['flutter']
+        copy_original = village_probe.shutil.copyfileobj
+        def delayed_copy(source, destination):
+            copy_original(source, destination)
+            self.now = 90.0
+        with mock.patch.object(village_probe.shutil, 'copyfileobj', side_effect=delayed_copy):
+            with self.assertRaises(TimeoutError):
+                self.observe()
+        journal = json.loads((self.root/'returned-flutter-observation.json').read_text())
+        self.assertEqual(journal['status'], 'FAIL')
+        self.assertTrue(all(row['status'] == 'REJECTED' for row in journal['attempts']))
+        self.assertEqual(len(self.inputs), 1)
+        self.assertEqual(self.probe.deadline, 900.0)
+        self.assertFalse(hasattr(self.probe, '_flutter_observation_deadline'))
 
 if __name__ == '__main__':
     unittest.main()

@@ -78,7 +78,7 @@ void main() {
       expect(condition(), isTrue);
     }
 
-    // The table must remain playable until a child explicitly selects 3D.
+    // Opening the Flutter round never silently launches a separate Activity.
     await until(() =>
         find.byKey(const ValueKey('connect-open-native')).evaluate().isNotEmpty);
     expect(launches, isEmpty);

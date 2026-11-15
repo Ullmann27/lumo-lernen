@@ -1,0 +1,13 @@
+set -euo pipefail
+export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"
+native_revision="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+native_source="$RUNNER_TEMP/lumo-native-acceptance"
+native_logs="$GITHUB_WORKSPACE/acceptance-native"
+test "$(git -C "$native_source" rev-parse HEAD)" = "$native_revision"
+export XDG_DATA_HOME="$native_logs/user-data"
+export XDG_CONFIG_HOME="$native_logs/user-config"
+export XDG_CACHE_HOME="$native_logs/user-cache"
+mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
+cd "$native_source"
+LUMO_LIVE_LOG_DIR="$GITHUB_WORKSPACE/acceptance-native/live" bash tools/validate_live_connections.sh 2>&1 | tee "$native_logs/live-runner.log"
+LUMO_DISCOVERY_LOG_DIR="$GITHUB_WORKSPACE/acceptance-native/discovery" bash tools/validate_discovery_connections.sh 2>&1 | tee "$native_logs/discovery-runner.log"

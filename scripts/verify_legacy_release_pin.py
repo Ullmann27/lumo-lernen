@@ -141,12 +141,18 @@ APPROVED = {
     # This approves source identity only. Fresh native renderer review, APK,
     # Android integration and preserved 2017 upgrade remain mandatory.
     2019: "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
-    # 2020: merged C4 return retry, facial, Treasure, Dream, Village,
-    # Discovery and minimap source. This binds source identity only; fresh
-    # full native, Android and preserved-update gates remain mandatory.
-    2020: "a69f53518b2510873d88f00ff2783d616ab53702",
-    # 2021: reviewed full native union; fresh runtime/APK/update gates remain mandatory.
+    # 2020: combined C4, original-Lumo Hub, Village return, Dream and minimap.
+    # Source identity only. Fresh Native52, Live9, Discovery10 and Dream5 gates,
+    # actual Android journeys and preserved-update acceptance remain mandatory.
+    2020: "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    # 2021: preserve the preceding integrated native candidate's exact identity.
     2021: "6b124722f92c81b4352a222a3def701563399933",
+    # 2022: immutable Blender kart APK source; identity is not Android acceptance.
+    2022: "0e7be88791bf4ed5d556d535078471e05a02315d",
+    # 2023: combined Host checkpoint retaining 2022's exact native source.
+    # Bind the final reviewed native union here and in config together before build.
+    # Runtime, APK, Android and preserved-update gates remain independent.
+    2023: "0e7be88791bf4ed5d556d535078471e05a02315d",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

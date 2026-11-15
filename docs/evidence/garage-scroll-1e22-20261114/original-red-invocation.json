@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_kart_garage_observed_scroll.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/909ddb52fe7b/garage-probe-repair-1e22",
+  "started_utc": "2026-11-14T15:21:17.670382+00:00",
+  "exit_code": 1,
+  "scope": "Offline replay of unchanged real fixture PNG/OCR; no Android, ADB, Flutter or network operation"
+}

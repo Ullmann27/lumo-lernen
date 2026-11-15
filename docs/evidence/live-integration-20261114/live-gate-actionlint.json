@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+    ".github/workflows/lumo-connect-four-2020.yml",
+    ".github/workflows/lumo-unified-integration-2026.yml"
+  ],
+  "version": "1.7.12\ninstalled by downloading from release page\nbuilt with go1.26.1 compiler for linux/amd64",
+  "binary_sha256": "c872d6db8c6bf83a8eaa704fc93999f027d55dffbc63b8a6abdccb47df5f4cd4",
+  "exit_code": 0,
+  "seconds": 0.022626078993198462,
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "files_sha256": {
+    ".github/workflows/lumo-connect-four-2020.yml": "2bbf0ecbdd287ae293c0d9923b13c41e049a635d4c76765e54f08f8452a9ce93",
+    ".github/workflows/lumo-unified-integration-2026.yml": "531357b8f1ac7b0208b227632ee1d43d056e8cd4a70358fd1e97936bb2337963"
+  },
+  "scope": "Actual actionlint on final additive-gate workflow and unified exclusions."
+}

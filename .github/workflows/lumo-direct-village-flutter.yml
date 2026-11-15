@@ -1,0 +1,107 @@
+name: LUMO direct village Flutter Android bridge
+on:
+  push:
+    branches: [chatgpt/lumo-direct-village-flutter-20261114]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-village-flutter-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  village-host-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve locked Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Execute real Dart/Flutter village game route and Android bridge tests
+        run: flutter test --no-pub test/games/dorfwirtschaft_portal_test.dart --reporter=expanded
+      - name: Preserve existing Spielewelt, Cards, Fold7 and Rhythm portal behavior
+        run: flutter test --no-pub test/games/games_world_layout_test.dart --reporter=expanded
+      - name: Preserve the existing native game lifecycle and child-profile guarding
+        run: flutter test --no-pub test/lumo3d_launcher_lifecycle_test.dart --reporter=expanded
+      - name: Static Flutter analysis of all modified production and UI code
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Capture the real Flutter Spielewelt including Dorfwirtschaft on phone and Fold
+        env:
+          LUMO_VILLAGE_CAPTURES: ${{ github.workspace }}/proof/village
+        run: |
+          set -euo pipefail
+          flutter test --no-pub test/design/dorfwirtschaft_spielewelt_capture_test.dart --reporter=expanded
+          python3 - <<'PY'
+          import os, struct
+          folder = "proof/village"
+          for name, dims in (
+              ("village-fold-cover.png", (344, 882)),
+              ("village-phone.png", (412, 915)),
+              ("village-fold-open.png", (690, 829)),
+              ("village-fold-landscape.png", (1200, 900)),
+          ):
+              file = os.path.join(folder, name)
+              with open(file, "rb") as stream:
+                  header = stream.read(24)
+              assert header[:8] == b"\x89PNG\r\n\x1a\n", name
+              assert struct.unpack(">II", header[16:24]) == dims, name
+              print("Verified original Flutter PNG", file, os.stat(file).st_size)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-village-visible-flutter-phone-fold
+          path: proof/village/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: lumo-dorfwirtschaft-flutter-regression-failure
+          path: test/
+          retention-days: 7
+  compile-android-bridge:
+    name: Compile actual generated Android MainActivity and private Godot host
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve checked Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Generate fresh Android host and install existing Godot/voice bridges
+        run: |
+          set -euo pipefail
+          if [ ! -d android ]; then
+            mkdir -p "$RUNNER_TEMP/lumo-android-test"
+            flutter create --no-pub --project-name lumo_lernen --platforms=android --org dev.ullmann.lumo "$RUNNER_TEMP/lumo-android-test/scaffold"
+            cp -a "$RUNNER_TEMP/lumo-android-test/scaffold/android" android
+          fi
+          python3 scripts/prepare_android.py --side-by-side
+          python3 scripts/prepare_embedded_games.py
+          python3 scripts/prepare_offline_voice.py
+          grep -R -n -E 'villageRequested|livingVillage|settlementMode' android/app/src/main/kotlin/
+      - name: Compile real Kotlin app plus native game bridge against Gradle and SDK
+        run: |
+          set -euo pipefail
+          (cd android && ./gradlew --no-daemon :app:compileDebugKotlin) 2>&1 | tee /tmp/village-kotlin-compile.log
+          test -s /tmp/village-kotlin-compile.log
+          grep -q 'BUILD SUCCESSFUL' /tmp/village-kotlin-compile.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-village-host-kotlin-compile
+          path: /tmp/village-kotlin-compile.log
+          if-no-files-found: warn
+          retention-days: 30

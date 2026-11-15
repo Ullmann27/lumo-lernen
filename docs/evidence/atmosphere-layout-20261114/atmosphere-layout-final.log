@@ -1,0 +1,12 @@
+00:00 +0: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_scene_atmosphere_test.dart
+00:00 +0: HIGH requires measured headroom; repeated slow frames stop effects
+00:00 +1: one isolated expensive frame does not downgrade a smooth window
+00:00 +2: reduced motion and hidden routes stop the scene clock
+00:00 +3: landscape moves while text and tap targets remain fixed
+00:00 +4: quiet scenery preserves functional child ticker mode
+00:00 +5: background and resume stop and restart decorative frames
+00:00 +6: scene pauses when scrolled out and resumes when visible
+00:00 +7: layout changes refresh visibility at an unchanged scroll offset
+00:00 +8: viewport relayout respects background state without idle frames
+00:00 +9: reparenting a scene releases its old scroll visibility source
+00:00 +10: All tests passed!

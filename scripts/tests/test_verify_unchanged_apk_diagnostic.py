@@ -398,6 +398,11 @@ class ApkContracts(unittest.TestCase):
         self.assertEqual(result['git_sources']['qa']['path'], str(qa_source))
         self.assertEqual(result['git_sources']['candidate']['path'], str(self.candidate))
         self.assertEqual(len(result['input_hashes']), 7)
+        for relative in ('config/godot-source.json', 'pubspec.yaml'):
+            source_file = next(entry for entry in result['source_files']['qa']
+                               if entry['path'] == relative)
+            self.assertEqual(source_file['sha256'], diagnostic.file_digest(
+                self.candidate / relative))
         self.assertEqual(result['status'], 'BOUND')
         self.assertIn('no Android or release acceptance', result['scope'])
 

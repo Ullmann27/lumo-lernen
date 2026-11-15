@@ -1,0 +1,21 @@
+{
+  "source": "4564ad40c4d000b764e67719d19bd2445c04c870",
+  "retrieval": "Original completed GitHub job logs retrieved through the GitHub connector, after the local environment restart.",
+  "files": [
+    {
+      "path": "pr491-c4-build-original.log",
+      "run_id": 43572640442,
+      "job_id": 132381031971,
+      "sha256": "cc9b772df9314dc8ab64df157c0c3d716c5c33c35ba47347594345f611e5ac31",
+      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43572640442/job/132381031971"
+    },
+    {
+      "path": "pr491-living-flutter-original.log",
+      "run_id": 43572640431,
+      "job_id": 132380123884,
+      "sha256": "388192c3d91628db2d6678a81c955f5611bd7af6530f801114d0588fadeb6a7e",
+      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43572640431/job/132380123884"
+    }
+  ],
+  "scope": "Evidence for the original three C4 Flutter failures; no pass claim for patched tests."
+}

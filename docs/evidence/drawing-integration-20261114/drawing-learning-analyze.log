@@ -1,0 +1,4 @@
+INFO|LINT|PREFER_INTERPOLATION_TO_COMPOSE_STRINGS|/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_gesture_regression_test.dart|132|16|120|Use interpolation to compose strings and values.
+INFO|LINT|PREFER_INTERPOLATION_TO_COMPOSE_STRINGS|/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_gesture_regression_test.dart|150|16|113|Use interpolation to compose strings and values.
+INFO|HINT|UNNECESSARY_IMPORT|/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_test.dart|1|8|17|The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/foundation.dart'.
+INFO|HINT|UNNECESSARY_IMPORT|/tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart|4|8|17|The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'.

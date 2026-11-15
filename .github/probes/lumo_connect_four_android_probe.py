@@ -399,8 +399,14 @@ class Probe:
             before_prefs, before_file = self.read_preferences('before-c4')
             result['preferences_before'] = before_file
             result['entry_touch'] = self.flutter_touch(contract.PORTAL, 'open-c4')
+            # The Flutter board is immediately playable. The child explicitly
+            # requests 3D; integrated candidates also bind the observed touch.
             if contract.NATIVE_ENTRY_LABEL is not None:
-                result['native_entry_touch'] = self.flutter_touch(contract.NATIVE_ENTRY_LABEL, 'open-c4-native')
+                result['native_entry_touch'] = self.flutter_touch(
+                    contract.NATIVE_ENTRY_LABEL, 'open-c4-native', scrolls=2)
+            else:
+                result['native_opt_in_touch'] = self.flutter_touch(
+                    'In 3D weiterspielen', 'open-c4-native', scrolls=2)
             initial = self.wait_observation('initial', lambda o:not o['state']['paused'] and o['state']['canDrop'])
             contract.demand(initial['state']['columns'] == [] and not initial['state']['twoPlayers'],
                             'Initial actual C4 round is not the untouched single-player game')

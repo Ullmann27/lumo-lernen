@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "tools.android_qa.tests.test_connect_four_android_evidence",
+    "tools.android_qa.tests.test_connect_four_probe_deadlines",
+    "tools.android_qa.tests.test_update_2020_preservation",
+    "-v"
+  ],
+  "exit_code": 0,
+  "seconds": 18.513864862994524,
+  "log_sha256": "0f83a230d8e5bbd371081543064be621351db3487be896ae9c419b1c1bb867db",
+  "files": {
+    "tools/android_qa/connect_four_android_evidence.py": "6fe3c9ace1a970a4efad00a37f95e4dad63f6483ee6ae590bc49689ddeb70fc5",
+    "tools/android_qa/tests/test_connect_four_android_evidence.py": "0bfe0b055c337ea4163be2bd535e2b8336f69ddd2896fd3be029bbd0a439f702"
+  },
+  "scope": "Four exact root-authorized branches: original C4, existing quality, 493 agent-execution and live integration; original SHA/attempt/repository/workflow/artifact/job contracts unchanged."
+}

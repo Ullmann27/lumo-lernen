@@ -125,8 +125,9 @@ void main() {
     expect(childTicking, isTrue,
         reason: 'A decorative budget must not freeze functional content');
     expect(tester.binding.transientCallbackCount, 0);
-    final transform = tester.widget<Transform>(
-        find.byKey(const ValueKey('lumo-scenery-drift'))).transform;
+    final transform = tester
+        .widget<Transform>(find.byKey(const ValueKey('lumo-scenery-drift')))
+        .transform;
     expect(transform.getTranslation().x, 0);
     expect(transform.getTranslation().y, 0);
     await tester.pumpWidget(const SizedBox.shrink());
@@ -172,6 +173,184 @@ void main() {
     await tester.pump();
     expect(tester.binding.transientCallbackCount, greaterThan(0));
     await tester.pumpWidget(const SizedBox.shrink());
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('layout changes refresh visibility at an unchanged scroll offset',
+      (tester) async {
+    final scroll = ScrollController();
+    addTearDown(scroll.dispose);
+    late StateSetter relayout;
+    var leadingSpace = 700.0;
+    bool? childTicking;
+    const contentKey = ValueKey('relayout-scene-content');
+    // Keep this exact widget instance: moving an existing const/cached child
+    // does not call its didUpdateWidget or change its own layout constraints.
+    final scene = LumoSceneAtmosphere(
+      child: Builder(builder: (context) {
+        childTicking = TickerMode.of(context);
+        return const SizedBox(key: contentKey, height: 180, width: 300);
+      }),
+    );
+    await tester.pumpWidget(MaterialApp(
+      home: Align(
+        alignment: Alignment.topLeft,
+        child: SizedBox(
+          height: 400,
+          child: StatefulBuilder(builder: (context, setState) {
+            relayout = setState;
+            return SingleChildScrollView(
+              controller: scroll,
+              child: Column(children: [
+                SizedBox(height: leadingSpace),
+                scene,
+                const SizedBox(height: 900),
+              ]),
+            );
+          }),
+        ),
+      ),
+    ));
+    await tester.pump();
+    expect(scroll.offset, 0);
+    expect(childTicking, isFalse);
+    expect(tester.binding.transientCallbackCount, 0);
+
+    relayout(() => leadingSpace = 80);
+    await tester.pump();
+    await tester.pump();
+    expect(scroll.offset, 0);
+    expect(tester.getTopLeft(find.byKey(contentKey)).dy, 80);
+    expect(childTicking, isTrue,
+        reason: 'Visible functional content must resume after a pure relayout');
+    expect(tester.binding.transientCallbackCount, greaterThan(0));
+
+    relayout(() => leadingSpace = 700);
+    await tester.pump();
+    await tester.pump();
+    expect(scroll.offset, 0);
+    expect(childTicking, isFalse);
+    expect(tester.binding.transientCallbackCount, 0);
+    expect(tester.binding.hasScheduledFrame, isFalse,
+        reason: 'An invisible scene must not drive frames to watch visibility');
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(seconds: 1));
+    expect(tester.binding.transientCallbackCount, 0);
+    expect(tester.binding.hasScheduledFrame, isFalse);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('viewport relayout respects background state without idle frames',
+      (tester) async {
+    final scroll = ScrollController();
+    addTearDown(scroll.dispose);
+    addTearDown(() => tester.binding
+        .handleAppLifecycleStateChanged(AppLifecycleState.resumed));
+    late StateSetter resize;
+    var viewportHeight = 200.0;
+    bool? childTicking;
+    final scene = LumoSceneAtmosphere(
+      child: Builder(builder: (context) {
+        childTicking = TickerMode.of(context);
+        return const SizedBox(height: 100, width: 300);
+      }),
+    );
+    await tester.pumpWidget(MaterialApp(
+      home: StatefulBuilder(builder: (context, setState) {
+        resize = setState;
+        return Align(
+          alignment: Alignment.topLeft,
+          child: SizedBox(
+            height: viewportHeight,
+            child: SingleChildScrollView(
+              controller: scroll,
+              child: Column(children: [
+                const SizedBox(height: 260),
+                scene,
+                const SizedBox(height: 900),
+              ]),
+            ),
+          ),
+        );
+      }),
+    ));
+    await tester.pump();
+    expect(childTicking, isFalse);
+    resize(() => viewportHeight = 400);
+    await tester.pump();
+    await tester.pump();
+    expect(scroll.offset, 0);
+    expect(childTicking, isTrue);
+
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    resize(() => viewportHeight = 200);
+    await tester.pump();
+    await tester.pump();
+    expect(childTicking, isFalse);
+    expect(tester.binding.transientCallbackCount, 0);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pump();
+    expect(childTicking, isFalse,
+        reason: 'Resuming the app must not animate a still hidden scene');
+    expect(tester.binding.hasScheduledFrame, isFalse);
+
+    resize(() => viewportHeight = 400);
+    await tester.pump();
+    await tester.pump();
+    expect(scroll.offset, 0);
+    expect(childTicking, isTrue);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump();
+    expect(tester.binding.transientCallbackCount, 0);
+    expect(tester.binding.hasScheduledFrame, isFalse);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('reparenting a scene releases its old scroll visibility source',
+      (tester) async {
+    final scroll = ScrollController();
+    addTearDown(scroll.dispose);
+    final sceneKey = GlobalKey();
+    late StateSetter reparent;
+    var insideScroll = true;
+    bool? childTicking;
+    final scene = LumoSceneAtmosphere(
+      key: sceneKey,
+      child: Builder(builder: (context) {
+        childTicking = TickerMode.of(context);
+        return const SizedBox(height: 180, width: 300);
+      }),
+    );
+    await tester.pumpWidget(MaterialApp(
+      home: StatefulBuilder(builder: (context, setState) {
+        reparent = setState;
+        return insideScroll
+            ? SingleChildScrollView(
+                controller: scroll,
+                child: Column(children: [
+                  const SizedBox(height: 900),
+                  scene,
+                  const SizedBox(height: 900),
+                ]),
+              )
+            : Center(child: SizedBox(height: 180, child: scene));
+      }),
+    ));
+    await tester.pump();
+    final originalState = sceneKey.currentState;
+    expect(childTicking, isFalse);
+    reparent(() => insideScroll = false);
+    await tester.pump();
+    await tester.pump();
+    expect(sceneKey.currentState, same(originalState));
+    expect(scroll.hasClients, isFalse);
+    expect(childTicking, isTrue);
+    expect(tester.binding.transientCallbackCount, greaterThan(0));
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(seconds: 1));
+    expect(tester.binding.transientCallbackCount, 0);
+    expect(tester.binding.hasScheduledFrame, isFalse);
     expect(tester.takeException(), isNull);
   });
 }

@@ -198,6 +198,7 @@ Future<void> _revealWrittenWord(WidgetTester tester) async {
   final canvas = rows.at(0);
   await tester.ensureVisible(canvas);
   await tester.pump();
+  expect(canvas.hitTestable(), findsOneWidget);
   await tester.drag(canvas, const Offset(70, 20));
   await tester.pump();
   await _tapText(tester, 'Fertig ✓', frames: 40);

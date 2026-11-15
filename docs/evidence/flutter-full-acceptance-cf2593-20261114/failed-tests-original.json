@@ -1,0 +1,272 @@
+[
+  {
+    "test": {
+      "id": 1261,
+      "name": "Actual games hub includes a direct village fold-cover",
+      "suiteID": 1257,
+      "groupIDs": [
+        1259
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 27,
+      "root_column": 5,
+      "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/design/dorfwirtschaft_spielewelt_capture_test.dart"
+    },
+    "done": {
+      "testID": 1261,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 221770
+    },
+    "events": [
+      {
+        "testID": 1261,
+        "messageType": "print",
+        "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following assertion was thrown running a test:\nThe value of a foundation debug variable was changed by the test.\n\nWhen the exception was thrown, this was the stack:\n#0      debugAssertAllFoundationVarsUnset.<anonymous closure> (package:flutter/src/foundation/debug.dart:45:7)\n#1      debugAssertAllFoundationVarsUnset (package:flutter/src/foundation/debug.dart:48:4)\n#2      TestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:1995:7)\n#3      AutomatedTestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:2524:11)\n#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1973:7)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThe test description was:\n  Actual games hub includes a direct village fold-cover\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+        "type": "print",
+        "time": 221762
+      },
+      {
+        "testID": 1261,
+        "error": "Test failed. See exception logs above.\nThe test description was: Actual games hub includes a direct village fold-cover",
+        "stackTrace": "",
+        "isFailure": false,
+        "type": "error",
+        "time": 221770
+      }
+    ]
+  },
+  {
+    "test": {
+      "id": 1262,
+      "name": "Actual games hub includes a direct village phone",
+      "suiteID": 1257,
+      "groupIDs": [
+        1259
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 27,
+      "root_column": 5,
+      "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/design/dorfwirtschaft_spielewelt_capture_test.dart"
+    },
+    "done": {
+      "testID": 1262,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 222761
+    },
+    "events": [
+      {
+        "testID": 1262,
+        "messageType": "print",
+        "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following assertion was thrown running a test:\nThe value of a foundation debug variable was changed by the test.\n\nWhen the exception was thrown, this was the stack:\n#0      debugAssertAllFoundationVarsUnset.<anonymous closure> (package:flutter/src/foundation/debug.dart:45:7)\n#1      debugAssertAllFoundationVarsUnset (package:flutter/src/foundation/debug.dart:48:4)\n#2      TestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:1995:7)\n#3      AutomatedTestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:2524:11)\n#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1973:7)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThe test description was:\n  Actual games hub includes a direct village phone\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+        "type": "print",
+        "time": 222759
+      },
+      {
+        "testID": 1262,
+        "error": "Test failed. See exception logs above.\nThe test description was: Actual games hub includes a direct village phone",
+        "stackTrace": "",
+        "isFailure": false,
+        "type": "error",
+        "time": 222760
+      }
+    ]
+  },
+  {
+    "test": {
+      "id": 1263,
+      "name": "Actual games hub includes a direct village fold-open",
+      "suiteID": 1257,
+      "groupIDs": [
+        1259
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 27,
+      "root_column": 5,
+      "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/design/dorfwirtschaft_spielewelt_capture_test.dart"
+    },
+    "done": {
+      "testID": 1263,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 223824
+    },
+    "events": [
+      {
+        "testID": 1263,
+        "messageType": "print",
+        "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following assertion was thrown running a test:\nThe value of a foundation debug variable was changed by the test.\n\nWhen the exception was thrown, this was the stack:\n#0      debugAssertAllFoundationVarsUnset.<anonymous closure> (package:flutter/src/foundation/debug.dart:45:7)\n#1      debugAssertAllFoundationVarsUnset (package:flutter/src/foundation/debug.dart:48:4)\n#2      TestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:1995:7)\n#3      AutomatedTestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:2524:11)\n#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1973:7)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThe test description was:\n  Actual games hub includes a direct village fold-open\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+        "type": "print",
+        "time": 223823
+      },
+      {
+        "testID": 1263,
+        "error": "Test failed. See exception logs above.\nThe test description was: Actual games hub includes a direct village fold-open",
+        "stackTrace": "",
+        "isFailure": false,
+        "type": "error",
+        "time": 223823
+      }
+    ]
+  },
+  {
+    "test": {
+      "id": 1264,
+      "name": "Actual games hub includes a direct village fold-landscape",
+      "suiteID": 1257,
+      "groupIDs": [
+        1259
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 27,
+      "root_column": 5,
+      "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/design/dorfwirtschaft_spielewelt_capture_test.dart"
+    },
+    "done": {
+      "testID": 1264,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 225102
+    },
+    "events": [
+      {
+        "testID": 1264,
+        "messageType": "print",
+        "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following assertion was thrown running a test:\nThe value of a foundation debug variable was changed by the test.\n\nWhen the exception was thrown, this was the stack:\n#0      debugAssertAllFoundationVarsUnset.<anonymous closure> (package:flutter/src/foundation/debug.dart:45:7)\n#1      debugAssertAllFoundationVarsUnset (package:flutter/src/foundation/debug.dart:48:4)\n#2      TestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:1995:7)\n#3      AutomatedTestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:2524:11)\n#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1973:7)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThe test description was:\n  Actual games hub includes a direct village fold-landscape\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+        "type": "print",
+        "time": 225100
+      },
+      {
+        "testID": 1264,
+        "error": "Test failed. See exception logs above.\nThe test description was: Actual games hub includes a direct village fold-landscape",
+        "stackTrace": "",
+        "isFailure": false,
+        "type": "error",
+        "time": 225101
+      }
+    ]
+  },
+  {
+    "test": {
+      "id": 1265,
+      "name": "Actual games hub includes a direct village fold-wide-min",
+      "suiteID": 1257,
+      "groupIDs": [
+        1259
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 27,
+      "root_column": 5,
+      "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/design/dorfwirtschaft_spielewelt_capture_test.dart"
+    },
+    "done": {
+      "testID": 1265,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 226144
+    },
+    "events": [
+      {
+        "testID": 1265,
+        "messageType": "print",
+        "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following assertion was thrown running a test:\nThe value of a foundation debug variable was changed by the test.\n\nWhen the exception was thrown, this was the stack:\n#0      debugAssertAllFoundationVarsUnset.<anonymous closure> (package:flutter/src/foundation/debug.dart:45:7)\n#1      debugAssertAllFoundationVarsUnset (package:flutter/src/foundation/debug.dart:48:4)\n#2      TestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:1995:7)\n#3      AutomatedTestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:2524:11)\n#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1973:7)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThe test description was:\n  Actual games hub includes a direct village fold-wide-min\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+        "type": "print",
+        "time": 226143
+      },
+      {
+        "testID": 1265,
+        "error": "Test failed. See exception logs above.\nThe test description was: Actual games hub includes a direct village fold-wide-min",
+        "stackTrace": "",
+        "isFailure": false,
+        "type": "error",
+        "time": 226143
+      }
+    ]
+  },
+  {
+    "test": {
+      "id": 1266,
+      "name": "Actual games hub includes a direct village fold-open-large-text",
+      "suiteID": 1257,
+      "groupIDs": [
+        1259
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 27,
+      "root_column": 5,
+      "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/design/dorfwirtschaft_spielewelt_capture_test.dart"
+    },
+    "done": {
+      "testID": 1266,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 227171
+    },
+    "events": [
+      {
+        "testID": 1266,
+        "messageType": "print",
+        "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following assertion was thrown running a test:\nThe value of a foundation debug variable was changed by the test.\n\nWhen the exception was thrown, this was the stack:\n#0      debugAssertAllFoundationVarsUnset.<anonymous closure> (package:flutter/src/foundation/debug.dart:45:7)\n#1      debugAssertAllFoundationVarsUnset (package:flutter/src/foundation/debug.dart:48:4)\n#2      TestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:1995:7)\n#3      AutomatedTestWidgetsFlutterBinding._verifyInvariants (package:flutter_test/src/binding.dart:2524:11)\n#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1973:7)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThe test description was:\n  Actual games hub includes a direct village fold-open-large-text\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+        "type": "print",
+        "time": 227169
+      },
+      {
+        "testID": 1266,
+        "error": "Test failed. See exception logs above.\nThe test description was: Actual games hub includes a direct village fold-open-large-text",
+        "stackTrace": "",
+        "isFailure": false,
+        "type": "error",
+        "time": 227169
+      }
+    ]
+  }
+]

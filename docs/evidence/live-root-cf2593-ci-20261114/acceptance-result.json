@@ -1,0 +1,53 @@
+{
+  "host": "cf2593cb6dec51b66461c8e5984dfbfdd5091c22",
+  "native": "7d53f29e68269c21d1d5a66bdf3d488f8e886970",
+  "astra": {
+    "run": 43582161003,
+    "job": 132408996489,
+    "tests": 888,
+    "failed": 0,
+    "seconds": 246.289
+  },
+  "learning": {
+    "run": 43582161082,
+    "artifact": 14109021466,
+    "sha256": "6dac94adf75c29a3a09be5f34d87bb4731ac776c5ddbe61438d816c1423d12a9",
+    "families": 236,
+    "samples": 7552,
+    "issues": 0,
+    "officialCurriculumApproval": false
+  },
+  "c4": {
+    "run": 43582160954,
+    "job": 132408996449,
+    "status": "success"
+  },
+  "android_compile": {
+    "job": 132408996709,
+    "status": "success"
+  },
+  "final_acceptance_pending": true,
+  "blocked_for_publication_by": "Original native Hub character integration and three Home capture-state corrections pending",
+  "full_flutter": {
+    "run": 43582160954,
+    "job": 132410003806,
+    "artifact": 14109586844,
+    "artifact_sha256": "786e4385cda296c59e54fdce9829bbec09017fa0650d9e58e3bd04aea7e66e1e",
+    "artifact_bytes": 368268066,
+    "passed": 2619,
+    "failed": [
+      "Actual games hub includes a direct village fold-cover",
+      "Actual games hub includes a direct village phone",
+      "Actual games hub includes a direct village fold-open",
+      "Actual games hub includes a direct village fold-landscape",
+      "Actual games hub includes a direct village fold-wide-min",
+      "Actual games hub includes a direct village fold-open-large-text"
+    ],
+    "skipped": 0,
+    "pngs": 566,
+    "capture_errors": 0,
+    "diktat_three_original_cases": "passed in individual original testDone events; IDs 3262, 3343, 3355",
+    "failure_cause": "All six new Village tests completed layout/launch assertions, then Flutter's foundation debug-variable cleanup invariant failed. Fix uses SDK-owned TargetPlatformVariant lifecycle."
+  },
+  "apk_built": false
+}

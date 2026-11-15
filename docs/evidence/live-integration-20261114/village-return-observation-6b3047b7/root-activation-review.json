@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-11-14 18:50:01 UTC",
+  "scope": "Root source, original regression log and independent review inspection before the next exact-source acceptance; no real Android pass claimed.",
+  "base_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "base_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+  "reviewed_checkpoint": "a7e06055f70929e918d48a1397bf656c1880adb4",
+  "corrected_tree": "1a40e5bdbb70536dc25cdac0e4ae69744f915452",
+  "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "previous_actual_acceptance": {
+    "run_id": 43616038272,
+    "attempt": 1,
+    "successful_jobs": [
+      "android-host-compile",
+      "connect-four-runtime",
+      "verify-and-build",
+      "update-2020-from-2017"
+    ],
+    "failed_job": "android-c4",
+    "skipped_jobs": [
+      "verify-c4-candidate",
+      "prepare-c4-delivery"
+    ],
+    "failure": "Actual original TSV/PNG does not establish caption: Spielen",
+    "original_frame_sha256": "51abb112ec1b8e54b909b23d735af39dfb10de27514a98cbb7d3861ab3815ee0",
+    "source_blocker_evidence_commit": "b3988eb70b98a4cda33cc80231c4b8a191bb8613",
+    "scope": "Original image remains native Village; no later visible Flutter image exists in that failed journey. C4 was not reached."
+  },
+  "original_offline_regressions": {
+    "red_blob": "393e4bb46e0a4178ae15d6c249a31a69773c14b2",
+    "green_blob": "fbe4d6a14a297a4740c8c7a779e80ae8a2ae6f36",
+    "actual_passed": 43,
+    "failed": 0,
+    "skipped": 0,
+    "reported_seconds": 43.153,
+    "root_read_full_original_logs": true,
+    "root_counted_individual_ok_lines": 43,
+    "scope": "Synthetic offline clock/process/image fixtures; no emulator result."
+  },
+  "complete_tree_proof": {
+    "base": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+    "corrected": "1a40e5bdbb70536dc25cdac0e4ae69744f915452",
+    "base_files": 4975,
+    "corrected_files": 4979,
+    "changed": [
+      {
+        "path": ".github/probes/lumo_village_android_probe.py",
+        "before": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99",
+        "after": "3e601644198f0b8c62fdaebcf783e3f631974bb1"
+      },
+      {
+        "path": "tools/android_qa/tests/test_village_android_evidence.py",
+        "before": "f515e404428edc8003f1191c77df214384f0eac7",
+        "after": "d21f941b2f5cff410f8e4cd7ae23fbbbf894743a"
+      }
+    ],
+    "added": [
+      {
+        "path": "docs/evidence/live-integration-20261114/village-return-observation-6b3047b7/original-regression-red.log",
+        "sha": "393e4bb46e0a4178ae15d6c249a31a69773c14b2",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/village-return-observation-6b3047b7/patch-validation.json",
+        "sha": "9e1f8768aa8660b19cc4df87790bb6780d9f3a44",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/village-return-observation-6b3047b7/preservation.json",
+        "sha": "9bbf51d8a61ff90f99a2ad6ad1c59a2870552c45",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/village-return-observation-6b3047b7/village-regression-final.log",
+        "sha": "fbe4d6a14a297a4740c8c7a779e80ae8a2ae6f36",
+        "mode": "100644"
+      }
+    ]
+  },
+  "independent_review": {
+    "commit": "ff6928999a2b425ea6c7446daef7b2d2dbd715bf",
+    "tree": "41cd9d8a36a83e352ef689d8dc31a1c38287fea7",
+    "review_blob": "8d00c858b0217d3b2b282f3418f30874d4d533a3",
+    "source_delta_blob": "6c6e60aaa5ed930e8d64584ba79f1380b509d4b1",
+    "root_read_full_both_json": true,
+    "conclusion": "No concrete blocker in exact two-file observer patch."
+  },
+  "preserved": {
+    "all_product_source_bytes": true,
+    "all_workflow_bytes": true,
+    "original_run_and_main_bytes": true,
+    "all_34_original_test_methods_ast": true,
+    "source_and_apk_identity_guards": true,
+    "single_visible_return_touch": true,
+    "strict_spielen_original_caption": true,
+    "strict_original_verifier": true,
+    "unchanged_900_second_roundtrip": true,
+    "combined_observation_budget_seconds": 90,
+    "no_automated_relaunch_or_extra_touch": true,
+    "existing_xml_call_can_block_after_deadline_but_late_result_rejected": true
+  },
+  "activation": {
+    "new_commit_will_only_add_this_record_and_independent_review_files_and_prepend_status_docs": true,
+    "central_branch": "integration/lumo-live-connections-20261114",
+    "pull_request": 497,
+    "expected_old_head": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "main_unchanged": "b24474875fe6eb02d4de01030eab9fa4a4aa6007",
+    "native_unchanged": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "required_new_gates": [
+      "Feature30 exact new source",
+      "full Flutter exact new source",
+      "all seven candidate jobs exact new source",
+      "actual API35 main then Village and C4",
+      "actual 2017-to-2020 in-place update",
+      "original read-only delivery replay",
+      "new exact-source publisher and real unauthenticated public APK download"
+    ],
+    "previous_6b_reader_and_publisher_still_blocked": true,
+    "release_created": false
+  }
+}

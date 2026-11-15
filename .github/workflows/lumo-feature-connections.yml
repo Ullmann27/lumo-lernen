@@ -2,13 +2,13 @@ name: Lumo feature connections focused Flutter contracts
 
 on:
   push:
-    branches: [integration/lumo-feature-connections-20261114]
+    branches: [integration/lumo-feature-connections-20261114, integration/lumo-live-connections-20261114]
 
 permissions:
   contents: read
 
 concurrency:
-  group: lumo-feature-connections-20261114
+  group: lumo-feature-connections-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -16,7 +16,8 @@ jobs:
     if: >-
       github.repository == 'Ullmann27/lumo-lernen' &&
       github.event_name == 'push' &&
-      github.ref == 'refs/heads/integration/lumo-feature-connections-20261114'
+      (github.ref == 'refs/heads/integration/lumo-feature-connections-20261114' ||
+       github.ref == 'refs/heads/integration/lumo-live-connections-20261114')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
@@ -178,7 +179,7 @@ jobs:
           print(json.dumps({"original_assets": observed}, indent=2))
           PY
 
-      - name: Execute exactly the 22 feature widget cases
+      - name: Execute exactly the 30 feature cases
         id: flutter
         shell: bash
         run: |
@@ -232,11 +233,11 @@ jobs:
               "scope": ["test/wort_diktat_gesture_regression_test.dart",
                         "test/feature_permission_regression_test.dart",
                         "test/profile_screen_test.dart"],
-              "expected_cases": 22, "event_errors": event_errors,
+              "expected_cases": 30, "event_errors": event_errors,
               "non_event_stdout_lines": non_event_lines,
               "raw_stdout": raw_path.name, "raw_stderr": "flutter.stderr.log",
           })
-          if report["passed"] != 22 or event_errors:
+          if report["passed"] != 30 or event_errors:
               report["status"] = "FAIL"
           (output / "feature-test-summary.json").write_text(
               json.dumps(report, ensure_ascii=False, indent=2) + "\n")
