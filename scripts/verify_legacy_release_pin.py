@@ -152,7 +152,8 @@ APPROVED = {
     # 2023: combined Host checkpoint retaining 2022's exact native source.
     # Bind the final reviewed native union here and in config together before build.
     # Runtime, APK, Android and preserved-update gates remain independent.
-    2023: "0e7be88791bf4ed5d556d535078471e05a02315d",
+    # Exact merged native source passed Godot 4.6.3 CI run 43701591061.
+    2023: "d38967f6d39bc20188afe525b0af122d80634029",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
