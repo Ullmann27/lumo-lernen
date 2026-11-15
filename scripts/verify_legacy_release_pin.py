@@ -152,6 +152,7 @@ APPROVED = {
     # 2023: combined Host checkpoint retaining 2022's exact native source.
     # Bind the final reviewed native union here and in config together before build.
     # Runtime, APK, Android and preserved-update gates remain independent.
+    # Exact merged native source passed Godot 4.6.3 CI run 43701591061.
     2023: "d38967f6d39bc20188afe525b0af122d80634029",
 }
 
