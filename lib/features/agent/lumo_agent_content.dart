@@ -418,7 +418,9 @@ class _LumoAgentContentState extends State<LumoAgentContent>
 
   String get _phaseLabel {
     if (_speech.listening) return 'Hört zu · Mikrofon an';
-    if (_starting) return 'Mikrofon wird geöffnet';
+    // The native recognizer must confirm "listening" before the UI says
+    // "Hört zu". A successful method call alone is still just starting.
+    if (_starting || _speech.starting) return 'Mikrofon wird geöffnet';
     if (_speech.awaitingFinalResult) return 'Erkennung wird abgeschlossen';
     return switch (_conversation.phase) {
       LumoConversationPhase.idle => 'Bereit · Mikrofon aus',

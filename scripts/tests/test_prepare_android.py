@@ -27,7 +27,9 @@ class AndroidHostTest(unittest.TestCase):
                     f' defaultConfig {{ applicationId = "{namespace}" }} }}')
                 templates = root / 'tools/auto_install'
                 templates.mkdir(parents=True)
-                for name in ('MainActivity.kt', 'LumoOfflineSpeechBridge.kt', 'LumoLearningSpeech.kt',
+                for name in ('MainActivity.kt', 'LumoGameActivity.kt',
+                             'LumoLearningConversation.kt', 'LumoLearningDialogLogic.java',
+                             'LumoOfflineSpeechBridge.kt', 'LumoLearningSpeech.kt',
                              'LumoLocalRecognition.kt',
                              'LumoSpeechEnvelope.kt',
                              'LumoOfflineSpeechEngine.java', 'lumo_file_paths.xml'):
@@ -39,6 +41,8 @@ class AndroidHostTest(unittest.TestCase):
                 for _ in range(2):
                     module.prepare(root, root / 'keystore', side_by_side=True)
                     for name, language in (
+                        ('LumoLearningConversation.kt', 'kotlin'),
+                        ('LumoLearningDialogLogic.java', 'java'),
                         ('LumoOfflineSpeechEngine.java', 'java'),
                         ('LumoOfflineSpeechBridge.kt', 'kotlin'),
                         ('LumoLocalRecognition.kt', 'kotlin'),
@@ -56,6 +60,9 @@ class AndroidHostTest(unittest.TestCase):
                                          original.partition('\n')[2])
                     self.assertEqual(untouched.read_bytes(),
                                      b'{"fixture":"not real child data","xp":17}')
+                (templates / 'LumoLearningConversation.kt').unlink()
+                with self.assertRaisesRegex(ValueError, 'LumoLearningConversation.kt'):
+                    module.prepare(root, root / 'keystore', side_by_side=True)
 
     def test_namespace_permissions_signing_and_idempotence(self):
         with tempfile.TemporaryDirectory() as tmp:

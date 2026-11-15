@@ -215,7 +215,14 @@ def prepare(root: Path, keystore_directory: Path, side_by_side: bool = False,
             root / 'tools/auto_install/LumoLocalRecognition.kt').is_file():
         raise ValueError('The local-only speech recognizer template is required by this Android host')
     target.write_text(re.sub(r'^package [^\n]+', f'package {namespace}', template, count=1))
+    native_template = root / 'tools/auto_install/LumoGameActivity.kt'
+    if native_template.is_file() and 'LumoLearningConversation' in native_template.read_text(encoding='utf-8'):
+        for required in ('LumoLearningConversation.kt', 'LumoLearningDialogLogic.java'):
+            if not (root / 'tools/auto_install' / required).is_file():
+                raise ValueError(f'Native learning dialogue host requires {required}')
     for filename, language in (
+        ('LumoLearningConversation.kt', 'kotlin'),
+        ('LumoLearningDialogLogic.java', 'java'),
         ('LumoOfflineSpeechEngine.java', 'java'),
         ('LumoOfflineSpeechBridge.kt', 'kotlin'),
         ('LumoLocalRecognition.kt', 'kotlin'),

@@ -79,73 +79,11 @@ class NativeLearningActivity {
     });
   }
 
-  /// Build a read-only, ungraded 3D pattern illustration from verified
-  /// domain labels. Reject ambiguous repetitions and any untrusted content.
-  static NativeLearningActivity? fromPattern({
-    required Object? sequence,
-    required Object? choices,
-    required Object? period,
-    required Object? expected,
-  }) {
-    if (period is! int || period < 1 || period > 4 ||
-        sequence is! List || choices is! List ||
-        sequence.length < period * 2 || sequence.length > 12 ||
-        choices.length < 2 || choices.length > 6) {
-      return null;
-    }
-    const labels = <String>{
-      'Kreis', 'Dreieck', 'Quadrat', 'Stern', 'Herz', 'Raute',
-      'Sechseck', 'Oval', 'Rechteck',
-    };
-    bool valid(Object? item) =>
-        item is String &&
-        item.length <= 24 &&
-        labels.contains(item) &&
-        item.trim() == item &&
-        !RegExp(r'[\x00-\x1f\x7f-\x9f]').hasMatch(item);
-    if (!sequence.every(valid) || !choices.every(valid) ||
-        choices.toSet().length != choices.length) {
-      return null;
-    }
-    final actual = List<String>.unmodifiable(sequence.cast<String>());
-    final options = List<String>.unmodifiable(choices.cast<String>());
-    for (var i = 0; i < actual.length; i++) {
-      if (actual[i] != actual[i % period]) return null;
-    }
-    // A repeated two-form group is never silently renamed as a four-form
-    // period; this keeps the explanation mathematically unambiguous.
-    for (var shorter = 1; shorter < period; shorter++) {
-      if (List.generate(actual.length, (i) => actual[i] == actual[i % shorter])
-          .every((same) => same)) {
-        return null;
-      }
-    }
-    final next = actual[actual.length % period];
-    if (expected is! String || expected != next ||
-        !options.contains(next)) {
-      return null;
-    }
-    return NativeLearningActivity._('pattern', {
-      'kind': 'pattern',
-      'sequence': actual,
-      'choices': options,
-      'period': period,
-    });
-  }
-
   /// Only consume the checked renderer payload and verify its arithmetic
   /// against the actual answer. Complex or unknown tasks keep their renderer.
   static NativeLearningActivity? fromTask(TaskInstance task) {
     if (task.subject == LearningSubject.logik) {
       final data = task.visualPayload.data;
-      if (data.containsKey('sequence') && data.containsKey('period')) {
-        return fromPattern(
-          sequence: data['sequence'],
-          choices: task.options.map((entry) => entry.label).toList(),
-          period: data['period'],
-          expected: task.correctAnswer,
-        );
-      }
       final unit = data['patternUnit'];
       final sequence = data['patternSequence'];
       final choices = data['patternChoices'];
@@ -192,6 +130,21 @@ class NativeLearningActivity {
           'patternChoices': List<String>.of(choices),
         });
       }
+    }
+    // Companion-generated patternUnit and domain-checked sequence/period
+    // formats are both accepted, but ONLY after their existing evaluator's
+    // expected next form agrees. Native receives no correctAnswer/childId.
+    if (task.subject == LearningSubject.logik &&
+        task.visualPayload.data.containsKey('sequence')) {
+      final data = task.visualPayload.data;
+      return fromPattern(
+        sequence: data['sequence'],
+        choices: task.options
+            .map((option) => option.payload ?? option.label)
+            .toList(growable: false),
+        period: data['period'],
+        expected: task.correctAnswer,
+      );
     }
     if (task.subject == LearningSubject.englisch) {
       final payload = NativeEnglishVocabulary.illustrationFor(task);
@@ -312,6 +265,76 @@ class NativeLearningActivity {
       }
     }
     return null;
+  }
+
+  /// Adapter for the legacy domain-rendered pattern format.
+  /// The smallest valid repeated group and the current task's correct next
+  /// value must agree. Result is a read-only illustration, never grading.
+  static NativeLearningActivity? fromPattern({
+    required Object? sequence,
+    required Object? choices,
+    required Object? period,
+    required Object? expected,
+  }) {
+    final values = _patternTokens(sequence, minimum: 4, maximum: 12);
+    final options = _patternTokens(choices, minimum: 2, maximum: 6);
+    if (values == null ||
+        options == null ||
+        period is! int ||
+        period < 1 ||
+        period > 4 ||
+        values.length < period * 2 ||
+        options.toSet().length != options.length ||
+        expected is! String) {
+      return null;
+    }
+    var smallest = 0;
+    for (var candidate = 1; candidate <= 4; candidate++) {
+      if (values.length < candidate * 2) break;
+      var repeats = true;
+      for (var index = candidate; index < values.length; index++) {
+        if (values[index] != values[index % candidate]) {
+          repeats = false;
+          break;
+        }
+      }
+      if (repeats) {
+        smallest = candidate;
+        break;
+      }
+    }
+    if (smallest != period) return null;
+    final next = values[values.length % period];
+    if (expected != next || !options.contains(next)) return null;
+    return NativeLearningActivity._('pattern', {
+      'kind': 'pattern',
+      'sequence': List<String>.unmodifiable(values),
+      'choices': List<String>.unmodifiable(options),
+      'period': period,
+    });
+  }
+
+  static List<String>? _patternTokens(Object? raw,
+      {required int minimum, required int maximum}) {
+    if (raw is! List || raw.length < minimum || raw.length > maximum) {
+      return null;
+    }
+    final tokens = <String>[];
+    for (final token in raw) {
+      if (token is! String ||
+          token.isEmpty ||
+          token.trim() != token ||
+          token.runes.length > 24 ||
+          token.runes.any((value) =>
+              value < 32 ||
+              (value >= 127 && value <= 159) ||
+              value == 0x2028 ||
+              value == 0x2029)) {
+        return null;
+      }
+      tokens.add(token);
+    }
+    return tokens;
   }
 
   static bool _matchesFraction(Object? answer, int numerator, int denominator) {

@@ -246,6 +246,7 @@ class LumoCompanionRequests {
     learningIdentity.value = current;
     learningPresentation.value = null;
     learningAudio.value = null;
+    dialogueFocus.value = null;
     learningAction.value = current == null
         ? null
         : LumoLearningActionRequest(

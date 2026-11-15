@@ -97,6 +97,11 @@ void main() {
     for (final subject in ['Deutsch', 'Englisch', 'Sachunterricht']) {
       final entry = find.byKey(ValueKey('academy-activity-$subject'));
       await tester.ensureVisible(entry);
+      // The expanded tools sit inside an animated ListView. Flush its new
+      // viewport geometry before hit testing, especially after Navigator.pop.
+      await tester.pump(const Duration(milliseconds: 160));
+      await tester.ensureVisible(entry);
+      await tester.pump();
       expect(tester.getSize(entry).height, greaterThanOrEqualTo(48));
       await tester.tap(entry);
       await tester.pump();
