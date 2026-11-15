@@ -1,0 +1,92 @@
+name: LUMO 2022 complete source union audit
+on:
+  push:
+    branches: [integration/lumo-2022-complete-20261115]
+    paths: [.github/workflows/lumo-2022-union-audit.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - area: host
+            repo: lumo-lernen
+            base: 3584bc54152a1aa48193eb4934ecd10bdbccf4c4
+            inputs: c9813fde66d36f8b44916a0d7c4898c30e6227e3 16442f286fd1b5cd8b40a5c6b402f54fe345391b
+          - area: native
+            repo: lumo-godot
+            base: 0e7be88791bf4ed5d556d535078471e05a02315d
+            inputs: ebf5a5c75d43164ea888e29b987ee9b163cdc72c 29080ef8cd1a5b385eeeec97976fbefd31280427 84789d0c2c6fb4b6ecd2897ce1951b89f958b604
+    env:
+      AREA: ${{ matrix.area }}
+      REPO: ${{ matrix.repo }}
+      BASE: ${{ matrix.base }}
+      INPUTS: ${{ matrix.inputs }}
+    steps:
+      - name: Inspect merges without changing any remote source branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none --no-checkout "https://github.com/Ullmann27/$REPO.git" source
+          mkdir proof
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,zipfile
+          source=pathlib.Path('source').resolve(); out=pathlib.Path('proof').resolve()
+          def git(*args,check=True):
+              p=subprocess.run(['git','-C',str(source),*args],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+              if check and p.returncode: raise RuntimeError(p.stderr.decode(errors='replace'))
+              return p
+          base=os.environ['BASE']; refs=os.environ['INPUTS'].split()
+          git('config','user.name','LUMO Integration Audit')
+          git('config','user.email','64243701+Ullmann27@users.noreply.github.com')
+          for ref in [base,*refs]: git('fetch','--filter=blob:none','origin',ref)
+          git('switch','--detach',base)
+          report={'area':os.environ['AREA'],'base':base,'inputs':refs,'merges':[],'remote_mutation':False}
+          if os.environ['AREA']=='native':
+              tracks=(source/'scripts/games/kart_tracks.gd').read_text()
+              report['baseline_missing_adventure']='kart_adventure_routes.gd' not in tracks
+          for index,ref in enumerate(refs):
+              prefix=f'{index+1}_{ref[:8]}'
+              merged=git('merge','--no-commit','--no-ff',ref,check=False)
+              (out/(prefix+'_merge.log')).write_bytes(merged.stdout+merged.stderr)
+              conflicts=git('diff','--name-only','--diff-filter=U').stdout.decode().splitlines()
+              changed=git('diff','--name-status','HEAD').stdout.decode()
+              (out/(prefix+'_changes.txt')).write_text(changed)
+              for name in conflicts:
+                  for stage in [1,2,3]:
+                      obj=git('show',f':{stage}:{name}',check=False)
+                      if obj.returncode==0:
+                          p=out/'conflicts'/prefix/str(stage)/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(obj.stdout)
+              report['merges'].append({'input':ref,'returncode':merged.returncode,'conflicts':conflicts})
+              if conflicts or merged.returncode: break
+              if git('rev-parse','-q','--verify','MERGE_HEAD',check=False).returncode==0:
+                  git('commit','-m',f'Local source union audit {ref}')
+          tracked=git('ls-files','-z').stdout.decode().split('\0')
+          wanted={'.dart','.gd','.gdshader','.py','.sh','.json','.yaml','.yml','.kt','.java','.kts','.xml','.toml','.tscn','.tres','.cfg','.godot','.gradle','.properties'}
+          with zipfile.ZipFile(out/'source-review.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(set(tracked)):
+                  p=source/name
+                  if not name or not p.is_file() or p.is_symlink():continue
+                  if name.startswith(('docs/evidence/','.ci-results/','exports/')):continue
+                  if p.suffix not in wanted and name not in ['pubspec.lock','CLAUDE.md','CODEX_START.md','CONTINUE.md','AGENTS.md']:continue
+                  if p.stat().st_size>4_000_000:continue
+                  z.write(p,name)
+          report['status']=git('status','--porcelain').stdout.decode()
+          report['head']=git('rev-parse','HEAD').stdout.decode().strip()
+          (out/'report.json').write_text(json.dumps(report,indent=2))
+          for ref in [base,*refs]:
+              (out/(ref[:8]+'_tree.txt')).write_bytes(git('ls-tree','-r',ref).stdout)
+          print(json.dumps(report,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-2022-union-${{ matrix.area }}
+          path: proof/
+          if-no-files-found: error
+          retention-days: 14
