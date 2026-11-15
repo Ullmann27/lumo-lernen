@@ -15,6 +15,7 @@ import 'package:lumo_lernen/features/games/shared/lumo_board_game_stage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../helpers/lumo_capture.dart';
+import '../helpers/mini_game_learning.dart';
 
 double _contrast(Color foreground, Color background) {
   final a = foreground.computeLuminance();
@@ -64,7 +65,7 @@ void main() {
         await tester.pumpWidget(MaterialApp(
             theme: LumoAppTheme.light(),
             home: RepaintBoundary(key: boundary, child: _game(game, app))));
-        await tester.pump();
+        await settleMiniGame(tester);
         final progress = tester.widget<LumoBoardRoundProgress>(
             find.byType(LumoBoardRoundProgress));
         expect(progress.currentIndex, 0);
@@ -85,15 +86,20 @@ void main() {
           final option = find.byKey(const ValueKey('math-option-0'));
           await tester.ensureVisible(option);
           await tester.tap(option);
-          await tester.pump();
-          final surface = tester.widget<AnimatedContainer>(find
-              .descendant(of: option, matching: find.byType(AnimatedContainer))
-              .first);
-          expect(surface.duration, Duration.zero);
-          final color = (surface.decoration! as BoxDecoration).color!;
-          final label = tester.widget<Text>(
-              find.descendant(of: option, matching: find.byType(Text)).first);
-          expect(_contrast(label.style!.color!, color), greaterThan(4.5));
+          await settleMiniGame(tester);
+          final button = tester.widget<OutlinedButton>(option);
+          expect(button.style!.animationDuration, Duration.zero,
+              reason: 'The actual new answer button respects reduced motion.');
+          final color = button.style!.backgroundColor!.resolve({})!;
+          final labelFinder =
+              find.descendant(of: option, matching: find.byType(Text)).first;
+          final label = tester.widget<Text>(labelFinder);
+          final ink = label.style?.color ??
+              DefaultTextStyle.of(tester.element(labelFinder)).style.color!;
+          expect(_contrast(ink, color), greaterThan(4.5));
+          expect(tester.getSize(option).height, greaterThanOrEqualTo(48));
+          expect(find.byKey(const ValueKey('mini-game-feedback')), findsNothing,
+              reason: 'A selected card is still an ungraded draft.');
         }
         final folder = Platform.environment['LUMO_BOARD_CAPTURES'];
         if (folder != null) {

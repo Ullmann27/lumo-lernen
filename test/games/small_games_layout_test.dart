@@ -10,6 +10,7 @@ import 'package:lumo_lernen/features/games/mini_games/stars_path_game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dice_race_runtime_test.dart' show boundary, capture;
 import '../helpers/lumo_capture.dart' show loadLumoCaptureFonts;
+import '../helpers/mini_game_learning.dart';
 
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
@@ -37,7 +38,7 @@ void main() {
                 data: MediaQueryData(
                     size: size, textScaler: TextScaler.linear(1.6)),
                 child: RepaintBoundary(key: boundary, child: screen))));
-        await tester.pump(const Duration(milliseconds: 400));
+        await settleMiniGame(tester);
         await capture(
             tester, '$game-${size.width.toInt()}x${size.height.toInt()}');
         expect(tester.takeException(), isNull);
@@ -46,7 +47,7 @@ void main() {
             : game == 'letters'
                 ? find
                     .byWidgetPredicate((widget) =>
-                        widget is GestureDetector &&
+                        widget is OutlinedButton &&
                         widget.key is ValueKey<String> &&
                         (widget.key! as ValueKey<String>)
                             .value
@@ -59,7 +60,8 @@ void main() {
         await capture(tester,
             '$game-answers-${size.width.toInt()}x${size.height.toInt()}');
         await tester.tap(control);
-        await tester.pump();
+        await settleMiniGame(tester);
+        expect(find.byKey(const ValueKey('mini-game-feedback')), findsNothing);
         expect(tester.takeException(), isNull);
         await tester.pumpWidget(const SizedBox());
         app.dispose();

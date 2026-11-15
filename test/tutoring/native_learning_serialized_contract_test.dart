@@ -16,6 +16,7 @@ import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/domain/tutoring/native_learning_activity.dart';
 import 'package:lumo_lernen/features/learning/adapters/legacy_lumo_task_adapter.dart';
 import 'package:lumo_lernen/features/lumo3d/lumo3d_launcher.dart';
+import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 
 const _hostRevision = 'a8e09123805b2bf30706c8dd1914b928ae6b24ca';
 const _sourceBlobs = <String, String>{
@@ -77,6 +78,7 @@ Future<void> _frames(WidgetTester tester) async {
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  setUp(() => LumoCompanionRequests.instance.clearLearningScope());
 
   testWidgets(
     'real launch payloads survive codec and JSON with saved caller identity',
@@ -168,6 +170,8 @@ void main() {
               ),
             );
             expect(app.dailyMission!.completedCount, 0);
+            expect(
+                LumoCompanionRequests.instance.learningIdentity.value, isNull);
             final launched = launchLumo3D(
               context,
               scene: 'learning',
@@ -185,10 +189,21 @@ void main() {
             final learning = Map<String, Object?>.from(
               arguments['learning'] as Map,
             );
-            expect(learning, scenario.expected);
+            final expectedWire = <String, Object?>{
+              ...scenario.expected,
+              'allowedActions': const ['stop'],
+            };
+            expect(learning, expectedWire,
+                reason: 'An unscoped illustration may authorize only stop.');
             final serialized = jsonEncode(learning);
             final decoded = jsonDecode(serialized) as Map<String, dynamic>;
-            expect(decoded, scenario.expected);
+            expect(decoded, expectedWire);
+            // Keep the frozen cross-runtime geometry/persistence fixture at
+            // its recorded source revision. Verify the complete current wire
+            // above before projecting out this one additive authority field.
+            final frozenDescriptor = Map<String, dynamic>.from(decoded);
+            expect(frozenDescriptor.remove('allowedActions'), const ['stop']);
+            expect(frozenDescriptor, scenario.expected);
             for (final key in [
               'a',
               'b',
@@ -254,7 +269,7 @@ void main() {
             expect(replayCount, 1);
             exported.add({
               'name': scenario.name,
-              'serialized_payload': serialized,
+              'serialized_payload': jsonEncode(frozenDescriptor),
               'expected': scenario.expected,
               'origin': origin,
               'persistence': {

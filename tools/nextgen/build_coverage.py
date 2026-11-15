@@ -97,7 +97,7 @@ AUTHORITIES = {
     "activity": {
         "evaluation": None,
         "source": source("lib/features/learning/curriculum_activities_screen.dart"),
-        "description": "Practical instructions only. No automatic correctness, school evidence, completion recording or rewards; observation remains a human task.",
+        "description": "Practical instructions with an existing manual Journal entry, plus linked digital practice/workshops where available. Observation is human; this screen deliberately has no automatic correctness, school-result submission or rewards.",
     },
     "lab": {
         "evaluation": source("lib/features/learning/lab/learning_lab_catalog.dart", "bool accepts("),
@@ -208,8 +208,8 @@ route("cross_grade", "Freiwilliges Üben anderer Klassen", "lib/features/learnin
 route("activities", "Praktische Fachaufträge", "lib/features/learning/curriculum_activities_screen.dart",
       ACADEMY, "CurriculumActivitiesScreen(", "activity", ["creative_observation", "oral_practice", "physical_activity"],
       conditions="Five practical subjects via hub; Deutsch/Englisch/Sachunterricht via tools in this branch.",
-      help_text="Instruction, competency and human evidence description.",
-      completion="No automated completion or rewards.", gaps=["activity_evidence_workflow"],
+      help_text="Instruction, competency and human observation; Journal, linked practice and workshop controls.",
+      completion="Manual Journal observation is reachable; no automated completion, grading or rewards for physical observation.", gaps=["activity_evidence_workflow"],
       test_paths=["test/design/learning_registered_routes_test.dart"])
 route("lab", "Lernlabor", "lib/features/learning/lab/learning_lab_screen.dart",
       "lib/features/learning/lab/learning_lab_hub.dart", "LearningLabScreen(", "lab",
@@ -236,6 +236,7 @@ route("native_explanation", "Native Lernszene", "lib/domain/tutoring/native_lear
       test_paths=["test/tutoring/native_learning_launch_test.dart", "test/tutoring/native_learning_serialized_contract_test.dart"])
 route("scene_place_value", "Stellenwert-Szenenvertrag", "lib/features/learning/scenes/learning_scene_contract.dart",
       CORE, "PlaceValue", "core", ["placeValue"],
+      status="contract_consumed_by_core_not_standalone_route",
       help_text="Explore/construct/explain/done under existing director.",
       adapters=["LearningSceneDirector", "LearningSceneRequest", "LearningSceneEvent"],
       gaps=["scene_kind_coverage", "async_binding_integration"],
@@ -295,8 +296,22 @@ route("teacher_assignments", "Zugewiesene Schulaufgaben", "lib/features/teacher/
       adapters=["LearningContent", "SchoolAttempt"], test_paths=["test/design/legacy_learning_assignment_test.dart"])
 route("teacher_conversation", "Themenbegleitung", "lib/features/teacher_mode/lumo_teacher_screen.dart",
       ACADEMY, "LumoTeacherScreen(", "none", ["conversation"],
-      conditions="Fallback after dedicated exact module/task routing; no teacher-model authority over correctness.",
+      status="legacy_fallback_not_reached_by_current_catalog_dispatch",
+      conditions="Only the final _openTopic fallback constructs this screen. Current unit-card and filtered-tool callers exit through specialist/protected/Core/CrossGrade paths; a constructor reference alone is not an active route.",
+      completion="Topic chat/answer generation only: no local TaskResult, accepted-answer storage or reward authority.",
       gaps=["conversation_domain_binding"])
+ROUTES[-1]["currentAssessedTaskRoute"] = False
+ROUTES[-1]["dispatchReview"] = {
+    "method": "Reviewed current callers and catalog branches; not a runtime tour.",
+    "unitCaller": source(ACADEMY, "void _beginClearLearningTask("),
+    "unitCallerCondition": "Calls _openTopic only after a non-null AcademyTopicUnits.exerciseUnit matches the selected unit. Current subjects then exit via their existing local/protected routes.",
+    "toolsCaller": source(ACADEMY, "Widget _tools()"),
+    "currentToolsTopicIds": ["d1_schreibcoach", "d1_buchstaben_alle", "d1_woerter", "d2_artikel", "d4_aufsatz"],
+    "toolsCondition": "Every current filtered tool has an earlier writing/module/cross-grade return. enableWordMode=true selects the protected word coach; false would select registered WortDiktat, not Teacher.",
+    "dispatcher": source(ACADEMY, "void _openTopic("),
+    "topicMapping": source("lib/core/curriculum/academy_topic_units.dart", "static String? exerciseUnit("),
+    "chatOnlyImplementation": source("lib/features/teacher_mode/lumo_teacher_screen.dart", "Future<void> _ask("),
+}
 route("live", "Live-Wortmagie, Foto-Quiz, Safari", "lib/features/live/lumo_live_pro_screen.dart",
       HOME, "LumoLiveProScreen(", "live", ["wordMagic", "photoQuiz", "safari"],
       gaps=["live_participation_vs_mastery", "microphone_runtime"])
@@ -404,23 +419,23 @@ route("flame_learning", "2D-Flame-Lernblöcke und Truhenaufgaben", "lib/features
       test_paths=["test/games/flame_adventure_flow_test.dart", "test/games/flame_adventure_round_test.dart"])
 
 GAPS = [
-    ("spatial3d_task_integration", "open", "Chat1 + Chat2 + native scene owner", "No route in this snapshot has proof of the full requested task-bound 3D actor/object interaction. Flutter 2D cards, shadows, manipulative widgets and an optional native launch do not establish that completion criterion."),
+    ("spatial3d_task_integration", "implemented_connections_specialization_and_device_limits", "learning + native scene owners", "Visible task-bound native entries and canonical handoffs are implemented. Many tasks use an exact generic task_card; dedicated spatial manipulatives are not supplied for every family. Targeted mocked-native tests are distinct from complete physical-device/actor interaction proof."),
     ("device_qa", "open", "All", "No current Android/Fold hardware, rotation, audio/mic, large text and 60 FPS sweep across all routes. Widget tests are not hardware proof."),
     ("sentence_answer_leak", "reproduced_open", "c5 renderer owner", "The committed c5 renderer now derives neutral sentence cards from the prompt. The dedicated three-case privacy regression is recorded separately; old baseline failures are historical."),
-    ("all_families_interaction", "open", "Chat2/c5", "236 registered curriculum families do not imply 236 modern interactive workspaces. Each actual interaction still needs coverage."),
-    ("domain_boundary", "open", "Chat1 + Chat2", "Correctness is currently partly computed in UI renderers. New agent/native proposals must enter the existing checked owner callback, never a reward action."),
-    ("direct_family_selection", "open", "navigation integration", "Reading hub opens active speech reading; Rechtschreibung has no standalone subject tile. Generator families can appear in mixed sessions; exact family selection was not exercised for all 236."),
+    ("all_families_interaction", "shared_workflow_implemented_variants_not_exhaustive", "learning integration", "All eight subjects of the 236 catalog families have hub definitions and current-grade unit cards. Loaded Core tasks use the common coach/native entry; specialist/protected dispatch takes precedence where mapped. This is shared workflow coverage, not 236 individually specialized and exhaustively exercised workspaces."),
+    ("domain_boundary", "closed_source_contract_implemented", "learning integration", "The canonical bus validates task identity, allowed actions, exam policy and named objects. Proposals remain ungraded until explicit owner confirmation. Existing deterministic checks partly reside in renderer/screen code; that file organization is not missing AI/native authority isolation or a reward API."),
+    ("direct_family_selection", "navigation_implemented_exhaustive_ui_run_pending", "navigation integration", "Lesen and Rechtschreibung have actual hub subject entries and normal unit cards. Active speech reading is an additional button. Exact unit dispatch exists; no claim that every one of the 236 family selections and generated variants has been executed in a UI tour."),
     ("module_context_help", "open", "specialist module owner", "All 18 active specialist screens have current-task bindings, staged help and explicit candidate confirmation; 19 actual Academy entry routes were exercised. d1_woerter remains protected and shadowed."),
-    ("activity_evidence_workflow", "open", "activities owner", "All 60 practical entries are reachable after local route fixes; no observation submission/teacher feedback completion flow exists in this screen."),
+    ("activity_evidence_workflow", "manual_observation_workflow_implemented", "activities owner", "All 60 practical entries include a reachable Journal observation link; some also link checked digital practice or a native workshop. Automatic physical-observation grading and a formal teacher-submission workflow are not implemented or claimed; manual observation is intentional."),
     ("reference_pattern_scene", "partially_closed", "Chat2/c5", "Six lab modes include the actual pattern workbench and a visible native entry for the exact current task_card. Supported core tasks can additionally use the checked period/sequence/choices pattern adapter; the Lab entry does not claim a specialized native pattern manipulative."),
     ("native_inline_absent", "known_architecture_limit", "Chat1", "Separate Godot activity exists; no inline native platform view in every Flutter task."),
     ("async_binding_integration", "partially_verified", "Chat1 + conversation", "Canonical bus requests are integrated across the reviewed learning surfaces, including the delivered Live/Flame/question coach and Lab native entry. Recorded targeted tests do not establish the final complete Root suite or real microphone lifecycle."),
-    ("scene_kind_coverage", "open", "scene integration", "Presenter contract exposes only placeValue; all 28 visual enums must not be described as native task scenes."),
+    ("scene_kind_coverage", "older_director_scope_not_global_native_limit", "scene integration", "Only the older Flutter LearningSceneDirector contract declares placeValue alone. The separate current NativeLearningActivity adapter has 12 descriptor kinds including task_card. The older enum is neither an unconnected current route nor a system-wide one-scene limit; visual enums still do not establish specialized native scenes."),
     ("microphone_runtime", "open", "conversation owner", "Recognition permission, mishearing/correction, stop/pause and actual audio playback require current runtime proof."),
-    ("story_all_variants", "open", "story integration", "Stored/generated stories have dynamic IDs and content. Finite quest catalog does not enumerate every story variant."),
+    ("story_all_variants", "dynamic_variant_verification_limit", "story integration", "Story reader, tasks and scoped coach are integrated. Dynamic stored/generated stories cannot be inferred exhaustively from the finite quest catalog; this is a verification boundary, not a missing story connection."),
     ("photo_interactive_answers", "open", "photo integration", "Photo practice now collects and deterministically checks actual responses, stores resumable profile-owned evidence and requires confirmation of editable speech proposals."),
-    ("conversation_domain_binding", "open", "conversation owner", "Conversation needs the active task snapshot and domain-owned feedback rather than independent correctness claims."),
-    ("live_participation_vs_mastery", "open", "live integration", "Word/photo participation reward and safari fuzzy matching must remain distinguishable from verified learning evidence."),
+    ("conversation_domain_binding", "closed_not_applicable_to_current_assessed_routes", "conversation owner", "Current learning coaches have canonical task bindings. This legacy inventory entry describes the final Teacher topic-chat fallback: current unit/tool callers do not reach it, and it has no local scored-task/result/reward path. It does not establish an active assessed task without a binding."),
+    ("live_participation_vs_mastery", "intentional_evidence_semantics", "live integration", "Delivered Live confirmation keeps the existing word/photo participation and safari matching policy. These records are intentionally distinct from independently verified curriculum mastery; the distinction is not an unimplemented coach connection."),
     ("protected_internal_scope", "excluded_internal_changes", "outer adapters only", "Writing trainer and journal internals preserved; no claim of internal modernization."),
     ("legacy_gap_ambiguity", "open", "content review", "Legacy gap bank has multiple sensible options: Hund spielt im Haus/Garten; Vogel sitzt auf dem Tisch/Ast. It was not reconnected."),
     ("legacy_gap_owner", "open", "learning owner", "Unreachable legacy gap screen directly records/rewards; profile-owner and assisted-evidence integration needs review before enabling it."),
@@ -433,7 +448,7 @@ GAPS = [
 
 for row in ROUTES:
     identifier = row["id"]
-    non_task = row["authorityRef"] == "none" and identifier not in {"native_explanation", "deutsch_legacy_gap"}
+    non_task = (row["authorityRef"] == "none" and identifier not in {"native_explanation", "deutsch_legacy_gap"}) or identifier == "scene_place_value"
     rendering = "flutter_2d_task_surface"
     if identifier == "native_explanation":
         rendering = "native_3d_optional_separate_activity"
@@ -452,7 +467,7 @@ for row in ROUTES:
     row["spatial3D"] = {
         "currentRendering": rendering,
         "fullTaskBound3DProven": False,
-        "proofStatus": "not_applicable_to_navigation" if non_task else "not_proven_in_this_snapshot",
+        "proofStatus": "not_an_independent_task_route" if non_task else "not_proven_in_this_snapshot",
         "inlineNativeView": False,
         "optionalLaunchCountsAsFullCoverage": False,
         "needed": [] if non_task else ["current_task_named_objects", "domain_checked_input_path", "actor_target_binding", "calm_and_accessible_spatial_controls", "runtime_proof"],
@@ -473,7 +488,9 @@ def attach(rows, route_ref, source_path, authority, adapters=()):
 attach(CATALOG["curriculumFamilies"], "core", GENERATOR, "core", ["LegacyLumoTaskAdapter", "AdaptiveTaskRenderer"])
 for row in CATALOG["curriculumFamilies"]:
     row["allGeneratedVariantsEnumerated"] = False
-    row["directUnitNavigation"] = "not_individually_verified" if row["subject"] in {"Lesen", "Rechtschreibung"} else "source_catalog_hub"
+    row["directUnitNavigation"] = "source_hub_unit_card_and_exact_dispatch"
+    row["dispatchCondition"] = "Matching specialist/protected route first; otherwise Core or voluntary CrossGrade practice. Active reading is an additional route, not the only Lesen entry."
+    row["individualFamilyUiTourProven"] = False
 attach(CATALOG["mathTemplates"], "core", "lib/core/math_task_templates.dart", "core")
 attach(CATALOG["germanTemplates"], "core", "lib/core/german_task_templates.dart", "core")
 attach(CATALOG["practicalActivities"], "activities", "lib/core/curriculum/primary_activity_catalog.dart", "activity")
@@ -648,6 +665,7 @@ document = {
     "scope": {
         "fullModernizationComplete": False, "allTaskVariantsReviewed": False,
         "inventoryMethod": "Executed finite Dart catalogs plus reviewed route dispatch, authority sources and import graph. File hashes fix the actual source snapshot.",
+        "inventoryEntrySemantics": "The compatibility field 'routes' contains reviewed inventory entries: active/conditional screens, navigation, contracts, protected routes, and inactive legacy paths. Its length is not a count of currently reachable assessed tasks.",
         "excluded": ["Kart", "native Jungle/Dschungel"],
         "protected": "Writing trainer and journal internals; outer adapters only.",
         "nonCurriculumGames": "Memory, Connect Four, Dice Race and Star Trail retain game rules/rewards; no independent curriculum-answer task is claimed here.",
@@ -1019,8 +1037,12 @@ for row in ROUTES:
         cap["verifiedModuleSourceHashMatches"] = True
     if native_entries:
         row["spatial3D"]["currentRendering"] = "flutter_surface_with_reachable_optional_native_learning_activity"
-    if identifier == "native_explanation":
+    if identifier in {"native_explanation", "scene_place_value"}:
         cap["nativeLearningEntry"]["status"] = "descriptor_only_see_core_and_other_consuming_routes"
+    if identifier == "teacher_conversation":
+        cap["canonicalTaskBinding"]["status"] = "not_applicable_inactive_legacy_topic_chat"
+        cap["answerProposal"]["status"] = "no_current_assessed_task_or_result_authority"
+        cap["nativeLearningEntry"]["status"] = "not_applicable_inactive_legacy_topic_chat"
     if identifier in CHILD_TASK_ROUTES and not is_exam:
         cap["nativeLearningEntry"]["status"] = "see_child_task_route_not_a_direct_button_on_this_screen"
         cap["nativeLearningEntry"]["childTaskRouteRefs"] = CHILD_TASK_ROUTES[identifier]
@@ -1033,6 +1055,18 @@ document["capabilityMatrixMethod"] = (
     "Reviewed source adapter edges, asserted constructor/control symbols and scene:'learning' launch. "
     "Source-connected is not runtime proof. A game's own native table, a factory-only API, navigation, "
     "or an imported helper is not counted as a native learning button. Recorded runs retain their own scope.")
+hub_subjects = sorted(set(re.findall(r"_Subject\(\s*'([^']+)'", source_bytes(HUB).decode())))
+family_subjects = sorted({row["subject"] for row in CATALOG["curriculumFamilies"]})
+document["familyNavigation"] = {
+    "catalogSubjectNames": family_subjects,
+    "hubSubjectNames": hub_subjects,
+    "missingHubSubjectNames": sorted(set(family_subjects) - set(hub_subjects)),
+    "unitCards": source(HUB, "Widget _unitCard("),
+    "exactDispatch": source(ACADEMY, "void _beginClearLearningTask("),
+    "semantics": "Current-grade catalog units have hub cards; mapped specialist/protected routes take precedence, then Core or voluntary CrossGrade. The extra active-reading button does not replace Lesen unit selection.",
+    "everyFamilyUiTourProven": False,
+    "everyFamilySpecializedNativeModelProven": False,
+}
 
 module_adapter_checks = []
 # Pin the delivered bytes, so a fresh remote checkout does not need the
@@ -1082,6 +1116,37 @@ document["gaps"] += [
     {"id": "avatar_reference_followup", "status": "pinned_native_visual_device_review", "owner": "avatar + Root", "description": f"Published native source is pinned to {NATIVE_PUBLISHED_PIN}. This Flutter inventory does not itself prove the final Banane/card-overlap appearance, physical Fold behavior or device performance; no outstanding source delivery is inferred from that missing runtime proof."},
     {"id": "performance_device_gate", "status": "not_satisfied", "owner": "Root", "description": "Reported desktop measurement is 8 FPS, not evidence of 60 FPS. Physical Fold resize/rotation and real microphone operation are unproven."},
 ]
+finding_classes = {
+    "spatial3d_task_integration": "implemented_connection_with_specialization_and_device_limits",
+    "all_families_interaction": "shared_workflow_and_variant_verification_limit",
+    "domain_boundary": "implemented_authority_contract",
+    "direct_family_selection": "implemented_navigation_ui_coverage_limit",
+    "activity_evidence_workflow": "intentional_manual_observation_workflow",
+    "reference_pattern_scene": "generic_native_entry_specialization_limit",
+    "native_inline_absent": "intentional_architecture_boundary",
+    "scene_kind_coverage": "older_contract_scope_not_global_native_gap",
+    "conversation_domain_binding": "inactive_non_assessed_legacy_fallback",
+    "live_participation_vs_mastery": "intentional_evidence_semantics",
+    "protected_internal_scope": "protected_or_excluded_scope",
+    "word_dictation_shadowed": "intentional_current_feature_dispatch",
+    "legacy_gap_ambiguity": "unreachable_legacy_content_needs_review_before_enablement",
+    "legacy_gap_owner": "unreachable_legacy_writer_needs_review_before_enablement",
+    "device_qa": "physical_runtime_evidence_pending",
+    "microphone_runtime": "physical_runtime_evidence_pending",
+    "performance_device_gate": "physical_runtime_evidence_pending",
+    "avatar_reference_followup": "pinned_native_visual_runtime_evidence_pending",
+    "story_all_variants": "dynamic_variant_verification_limit",
+    "flame_grade_scope": "content_selection_verification_limit_not_confirmed_failure",
+    "async_binding_integration": "implemented_targeted_tests_final_integration_evidence_pending",
+    "game_interaction_coverage": "implemented_targeted_tests_variants_and_device_evidence_pending",
+}
+for gap in document["gaps"]:
+    gap["classification"] = finding_classes.get(gap["id"],
+        "implemented_with_recorded_evidence" if gap["status"].startswith(("closed_", "fixed_")) else "review_specific_status")
+document["findingSemantics"] = (
+    "'gaps' is a compatibility name for classified findings, not a blanket list of missing functions. "
+    "Read classification/status to separate implemented connections, specialized-model limits, intentional "
+    "architecture/protection, inactive legacy code and unproven variant/device behavior.")
 closed_ids = {gap["id"] for gap in document["gaps"] if gap["status"].startswith(("closed_", "fixed_"))}
 for row in ROUTES:
     row["resolvedGapRefs"] = [gap for gap in row["gaps"] if gap in closed_ids]
@@ -1090,6 +1155,7 @@ for row in TYPE_COVERAGE:
     row["gaps"] = next(route["gaps"] for route in ROUTES if route["id"] == row["routeRef"])
 
 document["counts"].update({
+    "reviewedInventoryEntries": len(ROUTES),
     "reviewedRoutes": len(ROUTES), "screenInventoryFiles": len(screen_inventory),
     "activeSpecialistScreens": len(module_manifest["modules"]),
     "activeSpecialistRoutes": len(module_by_route),
@@ -1102,6 +1168,11 @@ document["counts"].update({
     "quizDeclaredQuestionIds": len(quiz_ids),
     "cardsBankItems": sum(bundle["count"] for bundle in bundles),
 })
+document["countSemantics"] = {
+    "reviewedInventoryEntries": "All reviewed entries, including contracts/navigation, protected, conditional and inactive legacy paths; not a live-task route total.",
+    "reviewedRoutes": "Compatibility alias of reviewedInventoryEntries; never all currently reachable assessed routes.",
+    "activeSpecialistRoutes": "Actual specialist Academy entries with recorded widget route checks; separate from the general inventory count.",
+}
 assert document["counts"]["miniGameLevels"] + document["counts"]["quizFinalLevels"] == len(CATALOG["gameLevels"])
 assert len(protected) == 18
 
@@ -1149,10 +1220,10 @@ def markdown(doc):
     lines = [
         "# Lernabdeckung – belegter integrierter Quellstand", "",
         f"**Produkt-Snapshot: `{HEAD}`. `fullModernizationComplete` bleibt `false`.**",
-        "Diese Matrix inventarisiert den ausgeführten Dart-Katalog, tatsächliche Einstiegsketten, fachliche Antwortgrenzen und vorhandene Testprotokolle. Sie ist keine Geräte- oder Releasefreigabe. [COVERAGE.json](COVERAGE.json) enthält alle IDs, Quellenhashes, Routen, Typen, Adapter, Fähigkeiten und offenen Grenzen.", "",
+        "Diese Matrix inventarisiert den ausgeführten Dart-Katalog, Einstiegsketten, fachliche Antwortgrenzen und vorhandene Testprotokolle. Ihre Einträge umfassen aktive und bedingte Lernwege, Navigation, Verträge, geschützte sowie inaktive Legacy-Pfade; ihre Gesamtzahl ist keine Zahl aktuell erreichbarer bewerteter Aufgaben. Sie ist keine Geräte- oder Releasefreigabe. [COVERAGE.json](COVERAGE.json) enthält IDs, Quellenhashes, klassifizierte Einträge, Typen, Adapter und Nachweisgrenzen.", "",
         "## Tatsächlich erfasster Umfang", "",
         "| Bestand | Umfang |", "|---|---:|",
-        f"| Geprüfte Routeneinträge / Screen-Dateien | {len(ROUTES)} / {len(screen_inventory)} |",
+        f"| Geprüfte Inventareinträge / Screen-Dateien | {len(ROUTES)} / {len(screen_inventory)} |",
         f"| Klassen-/Fach-/Einheitskombinationen | {counts['curriculumFamilies']} |",
         f"| Mathe- / Deutsch-Templates | {counts['mathTemplates']} / {counts['germanTemplates']} |",
         f"| Akademie-Themen | {counts['academyTopics']} |",
@@ -1165,6 +1236,7 @@ def markdown(doc):
         f"| Kognitive Fragen / deklarierte Quiz-IDs / Kartenbank-Einträge | {counts['cognitiveQuestions']} / {counts['quizDeclaredQuestionIds']} / {counts['cardsBankItems']} |",
         f"| Native Adapter-Kinds / bytegleiche geschützte Dateien | {counts['nativeKinds']} / {counts['protectedByteIdenticalFiles']} |", "",
         "Die sechs Labormodi sind **bridge, word, english, nature, fraction, pattern**. `d1_woerter` bleibt durch den geschützten Wort-Schreibcoach überlagert; die zwei Einmaleins-Einstiege teilen einen Screen. Level 50 öffnet gemäß `GamesContent` das Quiz und ist kein MiniGame-Level. Dynamische Aufgabenvarianten und gespeicherte Geschichten haben keine vollständige endliche ID-Liste; `routeRef` und `sourceIndex` sind Dokumentationsschlüssel.", "",
+        "Die acht Fächer der 236 Katalogfamilien sind im aktuellen Hub vorhanden, einschließlich **Lesen und Rechtschreibung**. Themenkarten rufen die exakte Einheit über `_beginClearLearningTask` auf; passende Spezial-/Schreibmodule haben Vorrang, danach folgen Core oder freiwilliges CrossGrade. Aktives Vorlesen ist ein zusätzlicher Einstieg. Für eine im Core geladene Übungsaufgabe bestehen gemeinsamer Coach und sichtbarer Native-Einstieg, soweit Hilfe erlaubt ist. Daraus folgt weder eine fehlende Anbindung aller Familien noch eine vollständige spezialisierte 3D-/Geräteabnahme jeder Variante.", "",
         "## Anschlüsse und ihre Grenzen", "",
         "| Lernfläche | Aktueller Quellstand und belegte Grenze |", "|---|---|",
         "| Reguläre Aufgaben | Kanonischer Kontext, gestufte Hilfe, bearbeitbarer Sprachkandidat und explizite Prüfung; sichtbarer Native-Einstieg mit `forTask` und begrenzter `task_card`-Rückfallebene. Prüfungsmodi sperren Hilfe und Vorschläge. |",
@@ -1175,10 +1247,15 @@ def markdown(doc):
         "| Foto-Lernheft | OCR führt in `PhotoLessonPracticeScreen`; echte Antworten, bestätigte Vorschläge und `PhotoLessonSession`. Anzeigen/Scannen allein vergibt keine richtige Antwort. Der direkte Native-Einstieg gehört zum aufgezeichneten gemeinsamen 35-Test-Lauf. |",
         "| Story / Quiz / Cards / 49 MiniGame-Level | Eigene Fach-/Controllergrenzen bleiben bestehen. Die direkten Story-/MiniGame-Native-Einstiege sind im 35-Test-Lauf enthalten. Der integrierte Quiz-/Cards-Coach hat einen sichtbaren nativen Aufgaben-Einstieg; Coach-Auswahl, bestehende Fachprüfung und Belohnungsgrenzen werden im separaten 56-Test-Lauf geprüft. |",
         "| IQ / kognitives Profil | `ExamCompanionScope`: begrenzte Wiederholen/Langsamer/Stopp-Aktionen; keine Lösungshilfe oder KI-Antwortvorgabe im Test. Keine diagnostische Standardisierung behauptet. |",
-        "| Praxisaufträge | 60 vorhandene Aktivitäten erschlossen; weiterhin menschliche Beobachtung ohne automatische Fachwertung oder eigenen Abgabeabschluss. |",
+        "| Praxisaufträge | 60 vorhandene Aktivitäten mit erreichbarem Einstieg „Beobachtung im Journal festhalten“, teilweise ergänzter digitaler Übung oder Werkstatt. Die menschliche Beobachtung wird bewusst nicht automatisch gewertet; ein eigener formaler Lehrer-Abgabeablauf wird nicht behauptet. |",
         "| Live / 2D Flame | Gelieferter gemeinsamer Coach mit nativer Aufgabenkarte und bestätigungspflichtigen Vorschlägen. Der 56-Test-Lauf umfasst echte Flame-Frage-/Truhen-Callbacks sowie Live-Finaltranskript, Stop, Modus-/Profilwechsel und Berechtigungsgrenzen. Teilnahme-/Safari-Bewertung bleibt von geprüfter Fachleistung getrennt; keine neue Physik- oder reale Mikrofontour behauptet. |", "",
         f"Die **{len(actual_kinds)} nativen Kinds** lauten: " + ", ".join(f"`{kind}`" for kind in actual_kinds) + ".",
         "`pattern` verwendet den geprüften `period/sequence/choices`-Vertrag. Die generische `task_card` trägt begrenzten Prompt und Auswahlmöglichkeiten ohne Lösungs-/Belohnungsfeld. Eine Factory, eine importierte Klasse oder der eigene native Spieltisch beweist keinen erreichbaren Lernbutton. `capabilityMatrix` verlangt passende Verbraucher, sichtbare Steuerung und `scene: 'learning'`; eine getrennte optionale Activity beweist außerdem keine vollständige aufgabengebundene 3D-Modernisierung.", "",
+        "## Bedeutung der klassifizierten Befunde", "",
+        "- **Implementiert:** Der kanonische Bus prüft Aufgabenidentität, erlaubte Aktionen, Prüfungsgrenzen und Objektkennungen. Ein Sprachvorschlag bleibt bis zur Owner-Bestätigung ungewertet. Dass bestehende deterministische Vergleiche teilweise in Renderer-/Screen-Dateien stehen, bedeutet keine fehlende Autoritätsgrenze.",
+        "- **Architektur und Spezialisierung:** Das alleinige `placeValue` im älteren Flutter-Director begrenzt nicht die zwölf aktuellen nativen Descriptor-Kinds. Exakte generische Karten, spezialisierte Manipulative und vollständige Gerätebelege sind getrennte Aussagen.",
+        "- **Inaktiver Teacher-Restfallback:** Die einzige Konstruktion von `LumoTeacherScreen` steht am Ende von `_openTopic`. Der aktuelle Unit-Caller ruft ihn nur nach vorhandener Einheitszuordnung auf; die aktuellen Atelier-Werkzeuge werden vorher durch Schreibcoach, Buchstabenschreiben, Wortcoach/Registry, Artikel oder Aufsatz abgefangen. Dieser Themenchat besitzt keinen lokalen TaskResult-/Antwort-/Belohnungspfad und ist kein aktuell erreichbarer bewerteter Lernweg ohne kanonische Bindung.",
+        "- **Schutz und Nachweisgrenzen:** Geschützte Schreib-/Journalinternas, eingeschränkte Prüfungshilfe sowie die Trennung von Live-Teilnahme und Fachleistung sind beabsichtigt. Noch nicht durchgespielte Varianten oder nicht physisch gemessene Geräteabläufe sind keine allein aus dem Inventar ableitbaren Funktionsfehler. JSON-Feld `gaps` bleibt aus Kompatibilität bestehen; `classification` und `status` bestimmen seine Bedeutung.", "",
         "## Aufgezeichnete Prüfungen", "",
         "Die folgenden Zahlen stammen aus den eingecheckten oder mit dieser Matrix neu erzeugten Protokollen. Unterschiedliche Quellstände und überlappende Suiten werden nicht zu einer vermeintlichen Gesamtsumme addiert. `logStorageCommit` ist getrennt vom ausdrücklich bekannten Ausführungsstand erfasst.", "",
         "| Lauf | Ergebnis | Ausführungsumfang | Protokoll |", "|---|---:|---|---|",
@@ -1213,6 +1290,6 @@ output = ROOT / "docs/nextgen/COVERAGE.json"
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n")
 (output.parent / "COVERAGE.md").write_text(markdown(document))
-print(json.dumps({"output": str(output), "routes": len(ROUTES),
+print(json.dumps({"output": str(output), "reviewedInventoryEntries": len(ROUTES),
                   "screenFiles": len(screen_inventory), "sources": len(SOURCES),
                   "counts": document["counts"], "modernizationComplete": False}, ensure_ascii=False))

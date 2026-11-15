@@ -9,10 +9,10 @@ import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 import 'package:lumo_lernen/domain/games/game_level_catalog.dart';
-import 'package:lumo_lernen/domain/games/game_lesson_tasks.dart';
 import 'package:lumo_lernen/domain/games/game_world.dart';
 import 'package:lumo_lernen/features/games/mini_games/lesson_trail_game.dart';
 import 'package:lumo_lernen/features/games/widgets/lumo_creative_game_shelf.dart';
+import '../helpers/mini_game_learning.dart';
 
 const boundary = ValueKey('creative-learning-capture');
 Future<void> capture(WidgetTester tester, String name) async {
@@ -63,29 +63,18 @@ void main() {
           home: RepaintBoundary(
               key: boundary,
               child: LessonTrailGame(appState: app, level: level))));
-      await tester.runAsync(
-          () => Future<void>.delayed(const Duration(milliseconds: 250)));
-      await tester.pump(const Duration(milliseconds: 500));
+      await settleMiniGame(tester);
       expect(tester.takeException(), isNull);
       await capture(tester, 'learning_level_$id');
-      final task = GameLessonTasks.task(level, 0);
-      if (!task.orderWords) {
-        await tester.ensureVisible(
-            find.byKey(ValueKey('lesson-answer-${task.answer}')));
-        await tester.tap(find.byKey(ValueKey('lesson-answer-${task.answer}')));
-        await tester.pump();
-        expect(find.text(task.explanation), findsOneWidget);
-      } else {
-        for (final word in task.answer.split(' ')) {
-          await tester.ensureVisible(find.widgetWithText(FilledButton, word));
-          await tester.tap(find.widgetWithText(FilledButton, word));
-          await tester.pump();
-        }
-        await tester.tap(find.text('Satz prüfen'));
-        await tester.pump();
-        expect(find.text(task.explanation), findsOneWidget);
-      }
-      await tester.tap(find.byTooltip('Pause'));
+      final round = await savedMiniGameRound(level);
+      expect(find.text(round.task.prompt), findsOneWidget);
+      expect(find.byKey(const ValueKey('mini-game-feedback')), findsNothing);
+      await selectMiniGameAnswer(tester, round);
+      await tapMiniGameKey(tester, 'mini-game-check');
+      expect((await savedMiniGameRound(level)).response.solved(round.task),
+          isTrue);
+      expect(find.text(round.task.explanation), findsOneWidget);
+      await tester.tap(find.byTooltip('Pausieren / Zurück'));
       await tester.pump();
       expect(find.text('Fortsetzen'), findsOneWidget);
       await tester.pumpWidget(const SizedBox());

@@ -1132,6 +1132,9 @@ class _MiniGameLearningScreenState extends State<MiniGameLearningScreen>
                           ? ValueKey('math-option-$i')
                           : ValueKey('lesson-answer-${task.choices[i]}'),
                   style: OutlinedButton.styleFrom(
+                      animationDuration: _reduced
+                          ? Duration.zero
+                          : const Duration(milliseconds: 180),
                       minimumSize: const Size(48, 58),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 14),

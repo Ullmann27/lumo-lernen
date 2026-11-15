@@ -14,6 +14,7 @@ import 'package:lumo_lernen/domain/tutoring/native_english_vocabulary.dart';
 import 'package:lumo_lernen/domain/tutoring/native_learning_activity.dart';
 import 'package:lumo_lernen/features/learning/adapters/legacy_lumo_task_adapter.dart';
 import 'package:lumo_lernen/features/lumo3d/lumo3d_launcher.dart';
+import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 
 import '../../tool/check_native_english_activity.dart' as contract;
 
@@ -99,6 +100,7 @@ void main() {
   final calls = <MethodCall>[];
 
   setUp(() {
+    LumoCompanionRequests.instance.clearLearningScope();
     SharedPreferences.setMockInitialValues({
       'lumo_3d_save_salt_v1': 'english-contract-salt',
     });
@@ -136,6 +138,7 @@ void main() {
         final originalId = current.taskInstanceId;
         final originalAnswer = current.correctAnswer;
         final activity = NativeLearningActivity.fromTask(current)!;
+        expect(LumoCompanionRequests.instance.learningIdentity.value, isNull);
         final launched = launchLumo3D(
           context,
           scene: 'learning',
@@ -148,7 +151,12 @@ void main() {
         final options = calls.last.arguments as Map;
         expect(options['scene'], 'learning');
         expect(options['subject'], 'Englisch');
-        expect(options['learning'], activity.toLaunchOptions());
+        // These descriptor-only launches have no active lesson authority.
+        // The host must fail closed instead of granting default help actions.
+        expect(options['learning'], {
+          ...activity.toLaunchOptions(),
+          'allowedActions': const ['stop'],
+        });
         expect(options['childKey'], matches(r'^p_[a-f0-9]{32}$'));
         expect(app.state.stars, 0);
         expect(current.taskInstanceId, originalId);

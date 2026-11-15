@@ -164,7 +164,9 @@ void main() {
       expect(app!.heldIdentity!.studentId, firstId);
       expect(app!.state.practiceErrors, 1);
       expect(app!.state.weakSkills['Plus bis 10'], 1);
-      final help = find.byKey(const ValueKey('lumo-help-hologlass-button'));
+      // Exercise the current visible coach action and its canonical request.
+      final help = find.widgetWithText(OutlinedButton, 'Hilf mir');
+      expect(help, findsOneWidget);
       await tester.ensureVisible(help);
       await tester.tap(help);
       await _frames(tester);
@@ -319,7 +321,8 @@ void main() {
       await _frames(tester, 40);
       final originalTask = _task(tester);
       final originalGeneration = app!.profileGeneration;
-      final help = find.byKey(const ValueKey('lumo-help-hologlass-button'));
+      final help = find.widgetWithText(OutlinedButton, 'Hilf mir');
+      expect(help, findsOneWidget);
       await tester.ensureVisible(help);
       await tester.tap(help);
       await _frames(tester);
