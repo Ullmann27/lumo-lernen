@@ -1,6 +1,7 @@
 import 'guided_lesson_catalog.dart';
 import 'native_english_vocabulary.dart';
 import '../learning/lumo_learning_domain.dart';
+import '../../widgets/fox/lumo_companion_requests.dart';
 
 /// A bounded, local illustration of the current reviewed lesson. It cannot
 /// submit an answer, mutate a child profile or grant a reward.
@@ -10,9 +11,126 @@ class NativeLearningActivity {
   final String kind;
   final Map<String, Object> _payload;
 
+  /// Every reviewed task can use the existing native companion. Specialised
+  /// object scenes take precedence; other tasks retain their exact prompt and
+  /// choices. This descriptor deliberately has no answer or reward field.
+  static NativeLearningActivity forTask(TaskInstance task) =>
+      fromTask(task) ??
+      _taskCard(
+        taskId: task.taskInstanceId,
+        subject: task.subject.name,
+        unit: task.parameters['unit']?.toString() ?? '',
+        prompt: task.prompt,
+        explanation: task.helpPayload.shortHint ?? '',
+        choices: task.options.map((option) => option.label).toList(),
+      );
+
+  /// Adapts specialist, reading and guided screens without changing their
+  /// authoritative evaluators, storage keys or protected writing internals.
+  static NativeLearningActivity? fromCompanionContext(
+    LumoCompanionTaskContext context,
+  ) {
+    if (context.isExam ||
+        context.taskId.isEmpty ||
+        context.prompt.trim().isEmpty) {
+      return null;
+    }
+    return _taskCard(
+      taskId: context.taskId,
+      subject: context.subject,
+      unit: context.unit,
+      prompt: context.prompt,
+      explanation: context.explanation ?? context.localHelp ?? '',
+      choices: context.answerChoices,
+      stepId: context.stepId,
+    );
+  }
+
+  static NativeLearningActivity _taskCard({
+    required String taskId,
+    required String subject,
+    required String unit,
+    required String prompt,
+    required String explanation,
+    required List<String> choices,
+    String? stepId,
+  }) {
+    String bounded(String value, int length) =>
+        value.length <= length ? value : value.substring(0, length);
+    final visibleChoices = choices
+        .where((choice) => choice.trim().isNotEmpty)
+        .take(8)
+        .map((choice) => bounded(choice, 120))
+        .toList(growable: false);
+    return NativeLearningActivity._('task_card', {
+      'kind': 'task_card',
+      'sourceTaskId': bounded(taskId, 180),
+      'subject': bounded(subject, 80),
+      'unit': bounded(unit, 80),
+      'prompt': bounded(prompt, 800),
+      'explanation': bounded(explanation, 1200),
+      'answerChoices': visibleChoices,
+      'objectIds': [
+        'task_prompt',
+        'task_model',
+        for (var i = 0; i < visibleChoices.length; i++) 'answer_$i',
+      ],
+      if (stepId != null) 'stepId': bounded(stepId, 120),
+    });
+  }
+
   /// Only consume the checked renderer payload and verify its arithmetic
   /// against the actual answer. Complex or unknown tasks keep their renderer.
   static NativeLearningActivity? fromTask(TaskInstance task) {
+    if (task.subject == LearningSubject.logik) {
+      final data = task.visualPayload.data;
+      final unit = data['patternUnit'];
+      final sequence = data['patternSequence'];
+      final choices = data['patternChoices'];
+      const shapes = {
+        'circle',
+        'triangle',
+        'star',
+        'square',
+        'heart',
+        'diamond'
+      };
+      const answerShapes = {
+        'Kreis': 'circle',
+        'Dreieck': 'triangle',
+        'Stern': 'star',
+        'Quadrat': 'square',
+        'Herz': 'heart',
+        'Raute': 'diamond',
+      };
+      if (unit is List<String> &&
+          sequence is List<String> &&
+          choices is List<String> &&
+          unit.length >= 2 &&
+          unit.length <= 4 &&
+          sequence.length >= unit.length * 2 &&
+          sequence.length <= 12 &&
+          sequence.length % unit.length == 0 &&
+          choices.length >= 2 &&
+          choices.length <= 6 &&
+          choices.toSet().length == choices.length &&
+          [...unit, ...sequence, ...choices].every(shapes.contains) &&
+          List.generate(sequence.length, (i) => unit[i % unit.length])
+              .asMap()
+              .entries
+              .every((entry) => sequence[entry.key] == entry.value) &&
+          choices.contains(unit.first) &&
+          (answerShapes[task.correctAnswer.toString()] ?? task.correctAnswer) ==
+              unit.first &&
+          data['verifiedAnswer'] == unit.first) {
+        return NativeLearningActivity._('pattern', {
+          'kind': 'pattern',
+          'patternUnit': List<String>.of(unit),
+          'patternSequence': List<String>.of(sequence),
+          'patternChoices': List<String>.of(choices),
+        });
+      }
+    }
     if (task.subject == LearningSubject.englisch) {
       final payload = NativeEnglishVocabulary.illustrationFor(task);
       return payload == null
@@ -47,12 +165,10 @@ class NativeLearningActivity {
           'extra': extra,
         });
       }
-      final a = data['operation'] == 'subtraction'
-          ? data['start']
-          : data['left'];
-      final b = data['operation'] == 'subtraction'
-          ? data['takeAway']
-          : data['right'];
+      final a =
+          data['operation'] == 'subtraction' ? data['start'] : data['left'];
+      final b =
+          data['operation'] == 'subtraction' ? data['takeAway'] : data['right'];
       if (a is! int || b is! int || a < 0 || b < 1) return null;
       if (data['operation'] == 'multiplication' &&
           a >= 1 &&

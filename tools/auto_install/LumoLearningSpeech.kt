@@ -31,6 +31,7 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
     private val speed = options.optDouble("learningVoiceRate", 1.0)
         .takeIf { it.isFinite() }?.coerceIn(0.70, 1.60)?.toFloat() ?: 1.0f
     private var player: MediaPlayer? = null
+    private var utteranceSpeed = speed
     private var audioSource: WavSource? = null
     private var generation = 0L
     private var utterance = 0
@@ -80,6 +81,8 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
         val text = request.optString("text", "")
         val id = request.optInt("id", 0)
         val style = request.optString("style", "explain")
+        val requestedSpeed = request.optDouble("rate", speed.toDouble())
+            .takeIf { it.isFinite() }?.coerceIn(0.70, 1.60)?.toFloat() ?: speed
         if (id <= 0 || text.isBlank() || text.length > 220 ||
             style !in setOf("warm", "greeting", "explain", "celebrate", "comfort", "question")) return false
         main.post {
@@ -87,6 +90,7 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
             stopOnMain()
             val token = generation
             utterance = id
+            utteranceSpeed = requestedSpeed
             state = "preparing"
             publish()
             bridge.synthesize(text, style, true, object : MethodChannel.Result {
@@ -136,7 +140,7 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
             playback.setOnPreparedListener {
                 if (token != generation || !active || destroyed) return@setOnPreparedListener
                 try {
-                    playback.playbackParams = playback.playbackParams.setSpeed(speed)
+                    playback.playbackParams = playback.playbackParams.setSpeed(utteranceSpeed)
                     playback.start()
                     state = "playing"
                     Log.i("LumoLearningSpeech", "started id=$id profile=${LumoOfflineSpeechEngine.PROFILE}")

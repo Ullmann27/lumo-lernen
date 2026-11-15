@@ -8,6 +8,7 @@ import '../../core/native_profile_key_repository.dart';
 import '../../core/reward_wallet_repository.dart';
 import '../../core/lumo_voice.dart';
 import '../../domain/tutoring/native_learning_activity.dart';
+import '../../widgets/fox/lumo_companion_requests.dart';
 import 'lumo_game_entry_overlay.dart';
 
 // The native channel completes only when the game returns. Keep the guard
@@ -66,11 +67,17 @@ Future<bool> launchLumo3D(
   final generation = appState?.profileGeneration;
   final previousName = appState?.state.childName ?? '';
   final previousGrade = appState?.state.grade ?? 1;
+  final learningIdentity = learning == null
+      ? null
+      : LumoCompanionRequests.instance.learningIdentity.value;
   LearningProfileLease? owner;
   bool currentOwner() =>
       context.mounted &&
       appState?.resetting != true &&
       appState?.profileGeneration == generation &&
+      (learningIdentity == null ||
+          LumoCompanionRequests.instance
+              .isCurrentLearningIdentity(learningIdentity)) &&
       (originRoute == null || originRoute.isCurrent) &&
       (appState == null ||
           (owner != null &&
@@ -161,7 +168,14 @@ Future<bool> launchLumo3D(
       'reduceAnimations':
           (appState?.state.settings.reduceAnimations ?? false) ||
               (appState?.state.settings.calmMode ?? false),
-      if (learning != null) 'learning': learning.toLaunchOptions(),
+      if (learning != null) ...{
+        'learning': {
+          ...learning.toLaunchOptions(),
+          if (learningIdentity != null) 'scope': learningIdentity.toJson(),
+        },
+        'learningMicrophoneEnabled':
+            appState?.state.settings.microphoneEnabled == true,
+      },
       if (learning != null || scene == 'build' || scene == 'settlement') ...{
         // Preserve the selected voice. Only the existing, licensed local
         // identity is available in the isolated engine; no silent fallback.
