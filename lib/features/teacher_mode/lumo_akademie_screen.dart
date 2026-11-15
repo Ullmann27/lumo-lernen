@@ -943,6 +943,24 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                 title: const Text('Geschichten und Rätsel',
                     style: TextStyle(color: Colors.white)),
                 onTap: _openStories),
+            if (_selectedGrade == 1 &&
+                widget.appState.state.grade == 1)
+              ListTile(
+                key: const ValueKey('academy-tool-s1_farben'),
+                leading: const Icon(Icons.palette_rounded,
+                    color: LumoVisualTokens.cyanBright),
+                title: const Text('Farben entdecken',
+                    style: TextStyle(color: Colors.white)),
+                subtitle: const Text('Interaktive Farbenübung',
+                    style: TextStyle(color: LumoVisualTokens.muted)),
+                onTap: () {
+                  final module = LearningModuleRegistry.builderFor(
+                      's1_farben', widget.appState);
+                  if (module != null) {
+                    Navigator.of(context).push<void>(
+                        MaterialPageRoute(builder: (_) => module));
+                  }
+                }),
             for (final subject in _currentGrade.subjects)
               for (final topic in subject.topics.where((t) =>
                   t.isWriting ||
