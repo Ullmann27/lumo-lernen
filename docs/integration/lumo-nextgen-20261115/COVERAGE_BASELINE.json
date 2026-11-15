@@ -18,7 +18,7 @@
   "counts": {
     "academyTopicIds": 36,
     "dedicatedModuleIds": 20,
-    "labTopics": 5,
+    "labTopics": 6,
     "generatorSubjectFamilies": 8,
     "specialFlows": 6
   },
@@ -597,6 +597,17 @@
       "modernized": false,
       "fold_verified": false,
       "avatar_conversation_verified": false
+    },
+    {
+      "id": "patterns",
+      "title": "Lumos Formenwerkstatt",
+      "subject": "Logik",
+      "unit": "Muster",
+      "entry": "Akademie → Lumos Lernatelier → Lumos Formenwerkstatt",
+      "route": "LearningLabHub → LearningLabScreen",
+      "modernized": false,
+      "fold_verified": false,
+      "avatar_conversation_verified": false
     }
   ],
   "generatorFamilies": [
@@ -735,6 +746,7 @@
     "AcademyTopic registration and LearningModuleRegistry are source reachability only; an on-device touch tour must prove execution.",
     "ExerciseFactory content is dynamic per grade via Curriculum.unitsForGrade, not exhausted by this static list. A seeded generator audit must add the actual grade × subject × unit rows before any full coverage claim.",
     "No family is certified nextgen integrated; do not check modernized until exercise scoring, actor/cue, speech and resume are proven together.",
-    "Protected writing/journal code is an interface-only integration boundary. Kart and Jungle are excluded."
+    "Protected writing/journal code is an interface-only integration boundary. Kart and Jungle are excluded.",
+    "Source update after nextgen task branch: LabCatalog has an added sixth workshop, Logik/Muster, with LearningPatternBoard. No Android runtime proof yet."
   ]
 }
