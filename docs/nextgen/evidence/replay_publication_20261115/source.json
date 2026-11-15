@@ -1,0 +1,17 @@
+{
+  "apkSource": "72a7914059d10152604b877cfeaf8bd1d2155810",
+  "nativeSource": "ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb",
+  "purpose": "Inactive publication preparation after exact full original Android replay and native reference scenes",
+  "runtimeOutcome": "NOT_RUN",
+  "configurationCreated": false,
+  "pureCheckerTests": {
+    "passed": 6,
+    "failed": 0,
+    "deviceEvidence": false
+  },
+  "files": {
+    "tools/nextgen/prepare_learning_replay_release.py": "7f9c6688cf4681e07b74d2aa71234d7e241f1e7bbf72c0fff8d5b8acecfab6b7",
+    "tools/nextgen/test_prepare_learning_replay_release.py": "aeda32e7cc5a1ce34dff98bcface1daa467203e5f24decf284a65676de9d0920",
+    ".github/workflows/lumo-nextgen-learning-replay-publish.yml": "04c444ffe255baf54538566be939cc9e142a9d142184c46c1d337299b60f7b88"
+  }
+}
