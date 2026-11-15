@@ -150,10 +150,13 @@ def check_repository(root: Path = ROOT) -> dict[str, Any]:
     protocol = (root / "docs/integration/lumo-nextgen-20261115/PROTOCOL_V1.md").read_text(
         encoding="utf-8"
     )
+    # Verify the actual shipped Dart v1 identity, not the independent
+    # Python/JSON transport experiment in contract_reference.py.
     for field in (
-        "sessionId", "ownerGeneration", "taskId", "taskRevision",
-        "turnId", "sequence", "turn.cancel", "answer.assessed",
-        "audio.status", "avatar.cue",
+        "LumoLearningIdentity", "sessionId", "taskId", "revision",
+        "cancelEpoch", "stepId", "turnId", "LumoLearningActionRequest",
+        "LumoLearningPresentation", "LumoLearningAudioFrame",
+        "LumoCompanionRequests",
     ):
         if field not in protocol:
             raise ValueError(f"v1 protocol lacks {field}")
