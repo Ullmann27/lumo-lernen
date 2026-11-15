@@ -114,7 +114,9 @@ class RoundReferenceGate:
             raise ContractViolation("unknown producer")
         if kind in FLUTTER_ONLY and origin != "flutter":
             raise ContractViolation("Flutter-only event from another producer")
-        if envelope["sessionId"] != self.session_id or envelope["ownerGeneration"] != self.owner_generation:
+        if (envelope["sessionId"] != self.session_id
+                or not _integer(envelope["ownerGeneration"])
+                or envelope["ownerGeneration"] != self.owner_generation):
             raise ContractViolation("wrong session or child owner")
         if not _integer(envelope["taskRevision"]):
             raise ContractViolation("invalid task revision")
@@ -129,8 +131,8 @@ class RoundReferenceGate:
         task_id = envelope["taskId"]
         turn = envelope["turnId"]
         if kind == "task.activated":
-            if not _nonempty(task_id) or revision <= self.task_revision:
-                raise ContractViolation("new task must increment revision")
+            if not _nonempty(task_id) or revision <= self.task_revision or turn == self.turn_id:
+                raise ContractViolation("new task must increment revision and change turn")
             payload = envelope["payload"]
             objects = payload.get("objectIds")
             if not isinstance(objects, list) or any(not _nonempty(obj) for obj in objects):
@@ -140,6 +142,9 @@ class RoundReferenceGate:
             allowed = payload.get("allowedHints", [])
             if not isinstance(allowed, list) or any(not _integer(i) or i > 5 for i in allowed):
                 raise ContractViolation("invalid allowed hint levels")
+        elif kind == "session.resumed":
+            if task_id != self.task_id or revision <= self.task_revision or turn == self.turn_id:
+                raise ContractViolation("resume requires current task and a fresh turn/revision")
         elif task_id != self.task_id or revision != self.task_revision:
             raise ContractViolation("stale/wrong task")
         if kind not in {"task.activated", "session.resumed"} and turn != self.turn_id:
