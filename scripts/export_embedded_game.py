@@ -72,6 +72,8 @@ GROUNDED_GATE_ALLOWED_REVISIONS = frozenset((
     # 2027 learning integration: the existing gate GLB was independently read
     # from this exact Git tree and retains GROUNDED_GATE_GLB_SHA256 unchanged.
     '332307fafa2f68a1aa3667d81b7c90d3683c5c45',
+    # Same independently verified gate bytes after bounded native QA/layout fixes.
+    'ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb',
 ))
 GROUNDED_GATE_GLB_SHA256 = '8c8891062888eda5b553ae77390eda1a733368fc0bf73b86aefe2a7a666a565d'
 GROUNDED_GATE_FILE = 'assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb'

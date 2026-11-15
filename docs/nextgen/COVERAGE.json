@@ -2,9 +2,9 @@
   "schema": "lumo.nextgen.learning.coverage",
   "version": 2,
   "asOf": "2026-11-15",
-  "exportedAtUtc": "2026-11-15T19:40:02.886253+00:00",
+  "exportedAtUtc": "2026-11-15T20:39:01.152687+00:00",
   "sourceBaseline": "6f4a8c4753f4d06d0b392da0789b8162b2faa71b",
-  "localSourceHead": "31e5ba4fce462e7f38018cecfb351c932e3382b9",
+  "localSourceHead": "0726187cf488cb1362dc00209d4fafa736c08993",
   "scope": {
     "fullModernizationComplete": false,
     "allTaskVariantsReviewed": false,
@@ -325,7 +325,7 @@
           "recordedRunRefs": [
             "sentence_privacy"
           ],
-          "currentSnapshotRerun": true
+          "currentSnapshotRerun": false
         },
         {
           "path": "test/learning/learning_content_commands_test.dart",
@@ -4329,7 +4329,7 @@
     }
   ],
   "catalogs": {
-    "sourceHead": "31e5ba4fce462e7f38018cecfb351c932e3382b9",
+    "sourceHead": "0726187cf488cb1362dc00209d4fafa736c08993",
     "semantics": "Finite catalogs are enumerated; generated task variants are not.",
     "curriculumFamilies": [
       {
@@ -21488,7 +21488,7 @@
       "id": "avatar_reference_followup",
       "status": "pinned_native_visual_device_review",
       "owner": "avatar + Root",
-      "description": "Published native source is pinned to 332307fafa2f68a1aa3667d81b7c90d3683c5c45. This Flutter inventory does not itself prove the final Banane/card-overlap appearance, physical Fold behavior or device performance; no outstanding source delivery is inferred from that missing runtime proof.",
+      "description": "Published native source is pinned to ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb. This Flutter inventory does not itself prove the final Banane/card-overlap appearance, physical Fold behavior or device performance; no outstanding source delivery is inferred from that missing runtime proof.",
       "classification": "pinned_native_visual_runtime_evidence_pending"
     },
     {
@@ -21975,7 +21975,7 @@
           "path": "docs/nextgen/evidence/learning_audio_owner_20261115/tests.log"
         },
         "logSha256": "c9fc30c9f0784d8f672770823ee88b5b844411faaa073a3989bc369192846222",
-        "logStorageCommit": "a72b8756d031703316bd6f52e3387d7f804c0e4e",
+        "logStorageCommit": "e3c0735cedd48adf625c23391d2818580712e7a9",
         "executionSourceCommit": "a7a7c4baf826822518b9b13fd51708b31393c55b",
         "executionSourceCommitMeaning": "Post-run source checkpoint, where explicitly known; null is not inferred from the log storage commit.",
         "executionScope": "owner_sources_integrated",
@@ -21999,7 +21999,7 @@
         },
         "logSha256": "61046bd4a371512f9e68fcb090d3a208059cb00589466cec75edfa0a31b68364",
         "logStorageCommit": "aea9f63e5ea7a85a2d0a67d3b0e8988b0b0eb1fa",
-        "executionSourceCommit": "31e5ba4fce462e7f38018cecfb351c932e3382b9",
+        "executionSourceCommit": "0726187cf488cb1362dc00209d4fafa736c08993",
         "executionSourceCommitMeaning": "Post-run source checkpoint, where explicitly known; null is not inferred from the log storage commit.",
         "executionScope": "current_inventory_snapshot",
         "tests": [
@@ -22019,17 +22019,17 @@
           "path": "docs/nextgen/evidence/coverage_refresh_20261115/sentence_privacy.log"
         },
         "logSha256": "4f4f0f11e56bbe832fdce6749bcc5f8c5c9f7022844a9a1232a673b588bbfb5f",
-        "logStorageCommit": "aea9f63e5ea7a85a2d0a67d3b0e8988b0b0eb1fa",
+        "logStorageCommit": "e3c0735cedd48adf625c23391d2818580712e7a9",
         "executionSourceCommit": "31e5ba4fce462e7f38018cecfb351c932e3382b9",
         "executionSourceCommitMeaning": "Post-run source checkpoint, where explicitly known; null is not inferred from the log storage commit.",
-        "executionScope": "current_inventory_snapshot",
+        "executionScope": "previous_inventory_snapshot",
         "tests": [
           "test/learning/sentence_prompt_privacy_test.dart"
         ],
         "testListCompleteFromRecordedCommand": true,
         "androidDeviceRun": false,
         "realMicrophoneRun": false,
-        "currentHeadSuiteRerun": true
+        "currentHeadSuiteRerun": false
       }
     ],
     "uniquePassedTestTotal": null,
@@ -23118,7 +23118,7 @@
     },
     {
       "path": "docs/nextgen/evidence/coverage_refresh_20261115/runs.json",
-      "sha256": "82234af940450226c84665fdd125cc569263149d20d2f32f1124925c0e4b5398",
+      "sha256": "7fac26ddd3fafcef5dc1a07405afbd139cf211657c67c644a17180cad554f495",
       "readFrom": "worktree"
     },
     {
@@ -24248,7 +24248,7 @@
     },
     {
       "path": "tools/nextgen/build_coverage.py",
-      "sha256": "be514768ad70e1d978b9dcf55516d363d5c80305959f1342cb9a49b231fcecf2",
+      "sha256": "adb5780a9b7437ff9a8d753bd130e7c00881dc183ddd36df51eb1f8d19876783",
       "readFrom": "worktree"
     },
     {
@@ -29036,17 +29036,17 @@
     "activeSpecialistRoutes": "Actual specialist Academy entries with recorded widget route checks; separate from the general inventory count."
   },
   "sourceSnapshot": {
-    "committedProductHead": "31e5ba4fce462e7f38018cecfb351c932e3382b9",
+    "committedProductHead": "0726187cf488cb1362dc00209d4fafa736c08993",
     "productWorkingTreeClean": true,
-    "catalogSourceHead": "31e5ba4fce462e7f38018cecfb351c932e3382b9",
-    "rawCatalogSha256": "7076be9d2f0df329b913e96cc3e5e5c584142720cad036e0db1b0fee88c6f8a1",
+    "catalogSourceHead": "0726187cf488cb1362dc00209d4fafa736c08993",
+    "rawCatalogSha256": "d7b652b18344de68bab06280f1e5672cd63840fed1758576c095f1b719ca5cd5",
     "exporter": {
       "path": "tools/nextgen/export_learning_catalog_test.dart"
     },
     "builder": {
       "path": "tools/nextgen/build_coverage.py"
     },
-    "publishedNativeSourcePin": "332307fafa2f68a1aa3667d81b7c90d3683c5c45",
+    "publishedNativeSourcePin": "ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb",
     "finalReleaseSourceCommit": null,
     "releaseStatus": "Root supplies final release SHA, APK provenance and CI/device results after integration."
   }

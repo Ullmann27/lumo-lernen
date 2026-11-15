@@ -157,7 +157,7 @@ APPROVED = {
     # 2027: integrated learning, original Lumo and scoped conversation source.
     # Identity only; the candidate must pass the actual native import, Android
     # build, artifact checks and emulator tour before its immutable publication.
-    2027: "332307fafa2f68a1aa3667d81b7c90d3683c5c45",
+    2027: "ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
