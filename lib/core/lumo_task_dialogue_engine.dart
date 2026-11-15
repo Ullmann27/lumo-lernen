@@ -67,9 +67,8 @@ class LumoTaskDialogueEngine {
         );
       }
       return LumoTaskDialogueDecision(
-        text: 'Du meinst ' + spoken + '. Danke für die Korrektur. '
-            'Die Spracherkennung wird nicht als falsche Lernantwort gewertet. '
-            'Du kannst deine Antwort jetzt bestätigen oder selbst eingeben.',
+        text: 'Du meinst ' + spoken + '. Danke, dass du mich korrigiert hast. '
+            'Du kannst das jetzt bestätigen oder selbst eingeben.',
         action: LumoTaskDialogueAction.correction,
       );
     }
@@ -133,6 +132,13 @@ class LumoTaskDialogueEngine {
       }
     }
 
+    if (q.contains('die zwei da') || q.contains('diese zwei')) {
+      return const LumoTaskDialogueDecision(
+        text: 'Welche zwei meinst du? Zeig sie mir bitte auf der Aufgabe.',
+        action: LumoTaskDialogueAction.clarify,
+      );
+    }
+
     final math = RegExp(r'(\d{1,2})\s*\+\s*(\d{1,2})').firstMatch(task.prompt);
     if (math != null) {
       final left = int.parse(math.group(1)!);
@@ -188,12 +194,6 @@ class LumoTaskDialogueEngine {
       );
     }
 
-    if (q.contains('die zwei da') || q.contains('diese zwei')) {
-      return const LumoTaskDialogueDecision(
-        text: 'Welche zwei meinst du? Zeig sie mir bitte auf der Aufgabe.',
-        action: LumoTaskDialogueAction.clarify,
-      );
-    }
     if (slower || replay) {
       final previous = previousReply?.trim();
       final hint = task.localHelp?.trim();
