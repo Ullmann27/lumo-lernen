@@ -3,6 +3,34 @@
 Stand 15.11.2026. Hauptchat 1, Arbeitsbereich `4fa97167812c`.
 Dies ist ein Implementierungsvertrag, keine Fertig- oder Gerätefreigabe.
 
+## Kompatible Konkretisierung nach erster Implementierung
+
+Der tatsächlich implementierte Vertrag von `ea41c7b116ac` aus Commit
+`421a0c3261a57dd15733531058cf2291d765d38d` wird als gemeinsame Dart-API
+übernommen: `lib/core/lumo_learning_session_contract.dart` und additive
+Erweiterungen des bestehenden `LumoCompanionRequests`-Bus. Es entsteht
+keine zweite Session- oder Aufgabenstruktur. Der erste Dokumententwurf
+`567666e` hatte noch keine abweichenden produktiven Wire-Consumer.
+
+Kanonische Versionskennung ist `protocolVersion: 1`. Die Bindung heißt
+`LumoLearningIdentity(sessionId, taskId, revision, cancelEpoch, stepId)`.
+Die semantische Revision enthält den Kontextstand; ein zusätzliches
+`contextRevision`-Feld ist daher nicht erforderlich. `turnId` und
+`utteranceId` sind die vom Besitzer erzeugten Ganzzahlkennungen.
+
+Kanonische Aktionen: `explain`, `repeat`, `slower`, `hint`, `highlight`,
+`point`, `look`, `stop`, `proposeAnswer`. „Warum“ benutzt `explain`/`hint`;
+Korrektur ändert den sichtbaren Kandidaten. Bestätigung bleibt beim
+bestehenden fachlichen Eingabeweg und ist keine KI-Aktion.
+
+Der bestehende Aufgabenkontext erhält `stepId`, `objectIds`, `explanation`,
+`errorType`, `answerChoices`, `allowedActions`, `isExplanation`. Der Bus
+liefert `learningIdentity`, `learningAction`, `learningCancellation`,
+`learningPresentation`, `learningAudio`. `requestLearningAction` prüft
+Identität, erlaubte Aktion, Prüfungsgrenze und Objektkennung. Die folgenden
+Abschnitte beschreiben die Semantik; bei den ursprünglichen Namensvorschlägen
+gilt diese konkrete Zuordnung. Keine Namen stillschweigend parallel führen.
+
 ## Verifizierte gemeinsame Basis
 
 - Flutter: `6f4a8c4753f4d06d0b392da0789b8162b2faa71b`,

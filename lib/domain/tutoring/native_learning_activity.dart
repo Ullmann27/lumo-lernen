@@ -20,6 +20,14 @@ class NativeLearningActivity {
           : NativeLearningActivity._('english_objects', payload);
     }
     final data = task.visualPayload.data;
+    if (task.subject == LearningSubject.logik && data['period'] is int) {
+      return fromPattern(
+        sequence: data['sequence'],
+        choices: task.options.map((option) => option.payload).toList(),
+        period: data['period'],
+        expected: task.correctAnswer,
+      );
+    }
     if (task.subject == LearningSubject.mathematik) {
       if (data['operation'] == 'fraction_addition') {
         final numerator = data['numerator'];
@@ -47,12 +55,10 @@ class NativeLearningActivity {
           'extra': extra,
         });
       }
-      final a = data['operation'] == 'subtraction'
-          ? data['start']
-          : data['left'];
-      final b = data['operation'] == 'subtraction'
-          ? data['takeAway']
-          : data['right'];
+      final a =
+          data['operation'] == 'subtraction' ? data['start'] : data['left'];
+      final b =
+          data['operation'] == 'subtraction' ? data['takeAway'] : data['right'];
       if (a is! int || b is! int || a < 0 || b < 1) return null;
       if (data['operation'] == 'multiplication' &&
           a >= 1 &&
@@ -134,6 +140,75 @@ class NativeLearningActivity {
       }
     }
     return null;
+  }
+
+  /// The same repeated group that the existing task evaluator has checked.
+  /// No answer or reward is serialized: the native activity is an illustration.
+  static NativeLearningActivity? fromPattern({
+    required Object? sequence,
+    required Object? choices,
+    required Object? period,
+    required Object? expected,
+  }) {
+    final values = _patternTokens(sequence, minimum: 4, maximum: 12);
+    final options = _patternTokens(choices, minimum: 2, maximum: 6);
+    if (values == null ||
+        options == null ||
+        period is! int ||
+        period < 1 ||
+        period > 4 ||
+        values.length < period * 2 ||
+        options.toSet().length != options.length ||
+        expected is! String) {
+      return null;
+    }
+    var smallestPeriod = 0;
+    for (var candidate = 1; candidate <= 4; candidate++) {
+      if (values.length < candidate * 2) break;
+      var repeats = true;
+      for (var index = candidate; index < values.length; index++) {
+        if (values[index] != values[index % candidate]) {
+          repeats = false;
+          break;
+        }
+      }
+      if (repeats) {
+        smallestPeriod = candidate;
+        break;
+      }
+    }
+    if (smallestPeriod != period) return null;
+    final next = values[values.length % period];
+    if (expected != next || !options.contains(next)) return null;
+    return NativeLearningActivity._('pattern', {
+      'kind': 'pattern',
+      'sequence': List<String>.unmodifiable(values),
+      'choices': List<String>.unmodifiable(options),
+      'period': period,
+    });
+  }
+
+  static List<String>? _patternTokens(Object? raw,
+      {required int minimum, required int maximum}) {
+    if (raw is! List || raw.length < minimum || raw.length > maximum) {
+      return null;
+    }
+    final tokens = <String>[];
+    for (final token in raw) {
+      if (token is! String ||
+          token.isEmpty ||
+          token.trim() != token ||
+          token.runes.length > 24 ||
+          token.runes.any((value) =>
+              value < 32 ||
+              (value >= 127 && value <= 159) ||
+              value == 0x2028 ||
+              value == 0x2029)) {
+        return null;
+      }
+      tokens.add(token);
+    }
+    return tokens;
   }
 
   static bool _matchesFraction(Object? answer, int numerator, int denominator) {
