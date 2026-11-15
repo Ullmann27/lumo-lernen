@@ -1,0 +1,55 @@
+name: LUMO NextGen – verified source inventory and v1 message guard
+on:
+  push:
+    branches:
+      - integration/lumo-learning-nextgen-20261115
+    paths:
+      - docs/integration/lumo-nextgen-20261115/**
+      - tools/learning_nextgen/**
+      - .github/workflows/lumo-nextgen-contract.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-nextgen-contract-20261115
+  cancel-in-progress: true
+jobs:
+  source-and-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Exact input source identity
+        run: |
+          set -euo pipefail
+          mkdir -p proof/learning-nextgen
+          git rev-parse HEAD | tee proof/learning-nextgen/HOST-SOURCE.txt
+          cat config/godot-source.json | tee proof/learning-nextgen/GODOT-PIN.json
+      - name: Syntax and ownership/action/inventory regression suite
+        run: |
+          set -euo pipefail
+          python3 -m compileall -q tools/learning_nextgen
+          python3 -m unittest discover \
+            -s tools/learning_nextgen -p 'test_*.py' -v \
+            2>&1 | tee proof/learning-nextgen/contract-test-log.txt
+      - name: Compare actual source registrations with the fixed coverage ledger
+        run: |
+          set -euo pipefail
+          python3 tools/learning_nextgen/verify_inventory.py \
+            --report proof/learning-nextgen/source-only-report.json
+          git diff --exit-code HEAD -- \
+            lib/ config/ pubspec.yaml scripts/ \
+            .github/workflows/lumo-2023-complete-family-apk.yml
+      - name: Preserve original exact-source test receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-nextgen-source-contract-evidence
+          path: proof/learning-nextgen/
+          if-no-files-found: warn
+          retention-days: 30
