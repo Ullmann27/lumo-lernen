@@ -310,10 +310,13 @@ class _LumoTaskConversationPanelState extends State<LumoTaskConversationPanel>
     final task = _context.task;
     final phase = _phase;
     final settings = widget.appState.state.settings;
-    return ListView(
+    return Column(
       key: const ValueKey('lumo-task-conversation-panel'),
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
       children: [
+        Expanded(
+          child: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+            children: [
         Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
           LumoCharacter(
             pose: _listening
@@ -390,13 +393,6 @@ class _LumoTaskConversationPanelState extends State<LumoTaskConversationPanel>
             icon: const Icon(Icons.mic_rounded),
             label: const Text('Gespräch starten'),
           ),
-          OutlinedButton.icon(
-            key: const ValueKey('lumo-task-stop'),
-            onPressed: () => unawaited(
-                _interrupt(continueListening: true)),
-            icon: const Icon(Icons.stop_circle_outlined),
-            label: const Text('Stopp'),
-          ),
           if (_continuous) OutlinedButton.icon(
             key: const ValueKey('lumo-task-end-mic'),
             onPressed: () => unawaited(
@@ -450,6 +446,33 @@ class _LumoTaskConversationPanelState extends State<LumoTaskConversationPanel>
           padding: EdgeInsets.only(top: 10),
           child: Text('Diese Antwort kann gerade nicht vorgelesen werden. '
               'Du kannst sie oben lesen.'),
+        ),
+            ],
+          ),
+        ),
+        SafeArea(
+          top: false,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 6, 16, 8),
+            child: Row(children: [
+              Icon(_listening ? Icons.mic_rounded : Icons.mic_off_rounded,
+                  color: _listening ? Colors.greenAccent : null),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text('Mikrofon: ' + phase,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    key: const ValueKey('lumo-task-voice-indicator')),
+              ),
+              OutlinedButton.icon(
+                key: const ValueKey('lumo-task-stop'),
+                onPressed: () => unawaited(
+                    _interrupt(continueListening: true)),
+                icon: const Icon(Icons.stop_circle_outlined),
+                label: const Text('Stopp'),
+              ),
+            ]),
+          ),
         ),
       ],
     );
