@@ -157,7 +157,7 @@ APPROVED = {
     # 2024: Blender fox, parent-gated native dialogue and restored Godot
     # startup resource loaders. Exact source passed real Godot 4.6.3 import,
     # 65-bone/viseme smoke and Android PCK export. APK/device gates separate.
-    2024: "7a64a3efa13b1945bf91c7cea8c41c6daeeeabe2",
+    2024: "b4513ac06be6b56905992aa868d65f7ae1887df3",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
