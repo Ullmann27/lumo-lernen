@@ -2,10 +2,12 @@ package dev.ullmann.lumo
 
 import android.content.Context
 import android.media.AudioAttributes
+import android.media.AudioFocusRequest
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.media.MediaDataSource
 import android.os.Handler
+import android.os.Build
 import android.os.Looper
 import android.util.Log
 import io.flutter.plugin.common.MethodChannel
@@ -20,6 +22,13 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
     private val main = Handler(Looper.getMainLooper())
     private val bridge = LumoOfflineSpeechBridge(context.applicationContext)
     private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
+    private val launchSession = options.optString("sessionId", "")
+    private val audioAttributes = AudioAttributes.Builder()
+        .setUsage(AudioAttributes.USAGE_MEDIA)
+        .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build()
+    private var focusRequest: AudioFocusRequest? = null
+    private var focusListener: AudioManager.OnAudioFocusChangeListener? = null
+    private var focusHeld = false
     private val envelopeWorker = Executors.newSingleThreadExecutor { job ->
         Thread(job, "LumoSpeechEnvelope").apply { isDaemon = true }
     }
@@ -35,9 +44,64 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
     private var generation = 0L
     private var utterance = 0
     private var state = "idle"
-    private var active = false
-    private var destroyed = false
-    @Volatile private var snapshot = "{\"state\":\"idle\",\"id\":0,\"positionMs\":0,\"durationMs\":0,\"envelope\":0,\"audible\":false}"
+    @Volatile private var active = false
+    @Volatile private var destroyed = false
+    private var speechScope: SpeechScope? = null
+    private var newestScope: SpeechScope? = null
+    private val acceptedUtterances = LinkedHashSet<String>()
+    @Volatile private var snapshot = "{\"scopeVersion\":1,\"state\":\"idle\",\"id\":0,\"positionMs\":0,\"durationMs\":0,\"envelope\":0,\"audible\":false}"
+
+    /** Optional correlation metadata only. No child identity or transcript is
+     * retained here; the actual native lesson still owns learning results. */
+    private data class SpeechScope(
+        val sessionId: String,
+        val taskId: String,
+        val turnId: String,
+        val utteranceId: String,
+        val contextRevision: Int,
+    ) {
+        val key: String get() = "$sessionId|$utteranceId"
+        fun appendTo(value: JSONObject) {
+            value.put("sessionId", sessionId).put("taskId", taskId)
+                .put("turnId", turnId).put("utteranceId", utteranceId)
+                .put("contextRevision", contextRevision)
+        }
+    }
+
+    private fun readScope(request: JSONObject): SpeechScope? {
+        fun identifier(key: String): String {
+            val value = request.opt(key) as? String ?: throw IllegalArgumentException()
+            require(value.length in 1..160 && value.all {
+                it.isLetterOrDigit() || it in ".:_-"
+            })
+            return value
+        }
+        val keys = arrayOf("sessionId", "taskId", "turnId", "utteranceId", "contextRevision")
+        if (keys.none { request.has(it) }) return null
+        require(keys.all { request.has(it) })
+        val number = request.opt("contextRevision") as? Number ?: throw IllegalArgumentException()
+        val revision = number.toDouble()
+        require(revision.isFinite() && revision >= 0 && revision <= Int.MAX_VALUE &&
+            revision == kotlin.math.floor(revision))
+        val scope = SpeechScope(identifier("sessionId"), identifier("taskId"),
+            identifier("turnId"), identifier("utteranceId"), revision.toInt())
+        require(launchSession.isEmpty() || scope.sessionId == launchSession)
+        return scope
+    }
+
+    private fun acceptScope(scope: SpeechScope?): Boolean {
+        if (scope == null) return true // Older learning/build callers stay supported.
+        val previous = newestScope
+        if (previous != null && (scope.sessionId != previous.sessionId ||
+            scope.contextRevision < previous.contextRevision ||
+            (scope.contextRevision == previous.contextRevision && scope.taskId != previous.taskId))) {
+            return false
+        }
+        if (!acceptedUtterances.add(scope.key)) return false
+        while (acceptedUtterances.size > 64) acceptedUtterances.remove(acceptedUtterances.first())
+        newestScope = scope
+        return true
+    }
 
     // Avoid blocking the UI/render thread on a temporary WAV write. Android
     // reads the completed local synthesis buffer directly; release drops it.
@@ -74,19 +138,23 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
         }
     }
 
+    @Synchronized
     fun speak(payload: String): Boolean {
-        if (!allowed || payload.length > 1400) return false
+        if (!allowed || !active || destroyed || payload.length > 1400) return false
         val request = try { JSONObject(payload) } catch (_: Exception) { return false }
         val text = request.optString("text", "")
         val id = request.optInt("id", 0)
         val style = request.optString("style", "explain")
+        val scope = try { readScope(request) } catch (_: IllegalArgumentException) { return false }
         if (id <= 0 || text.isBlank() || text.length > 220 ||
             style !in setOf("warm", "greeting", "explain", "celebrate", "comfort", "question")) return false
+        if (!acceptScope(scope)) return false
         main.post {
             if (!active || destroyed) return@post
             stopOnMain()
             val token = generation
             utterance = id
+            speechScope = scope
             state = "preparing"
             publish()
             bridge.synthesize(text, style, true, object : MethodChannel.Result {
@@ -129,13 +197,15 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
             audioSource = source
             val playback = MediaPlayer()
             player = playback
-            playback.setAudioAttributes(AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_MEDIA)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
+            playback.setAudioAttributes(audioAttributes)
             playback.setDataSource(source)
             playback.setOnPreparedListener {
                 if (token != generation || !active || destroyed) return@setOnPreparedListener
                 try {
+                    if (!requestPlaybackFocus(token)) {
+                        failed(token)
+                        return@setOnPreparedListener
+                    }
                     playback.playbackParams = playback.playbackParams.setSpeed(speed)
                     playback.start()
                     state = "playing"
@@ -157,11 +227,11 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
 
     fun stop() { main.post { if (!destroyed) stopOnMain() } }
 
-    private fun stopOnMain() {
+    private fun stopOnMain(nextState: String = "idle") {
         generation++
         bridge.cancel()
         releasePlayer()
-        state = "idle"
+        state = nextState
         publish()
     }
 
@@ -181,6 +251,55 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
         player = null
         audioSource?.close()
         audioSource = null
+        abandonPlaybackFocus()
+    }
+
+    @Suppress("DEPRECATION")
+    private fun requestPlaybackFocus(token: Long): Boolean {
+        val manager = audioManager ?: return false
+        val listener = AudioManager.OnAudioFocusChangeListener { change ->
+            main.post {
+                // Queued callbacks from a released utterance cannot stop its
+                // successor. An interruption never silently replays speech.
+                if (token == generation && focusHeld && !destroyed && change < 0) {
+                    stopOnMain("interrupted")
+                }
+            }
+        }
+        focusListener = listener
+        val result = if (Build.VERSION.SDK_INT >= 26) {
+            val request = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
+                .setAudioAttributes(audioAttributes)
+                .setWillPauseWhenDucked(true)
+                .setAcceptsDelayedFocusGain(false)
+                .setOnAudioFocusChangeListener(listener, main).build()
+            focusRequest = request
+            manager.requestAudioFocus(request)
+        } else {
+            manager.requestAudioFocus(listener, AudioManager.STREAM_MUSIC,
+                AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
+        }
+        focusHeld = result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED
+        if (!focusHeld) abandonPlaybackFocus()
+        return focusHeld
+    }
+
+    @Suppress("DEPRECATION")
+    private fun abandonPlaybackFocus() {
+        val request = focusRequest
+        val listener = focusListener
+        focusRequest = null
+        focusListener = null
+        focusHeld = false
+        try {
+            if (Build.VERSION.SDK_INT >= 26 && request != null) {
+                audioManager?.abandonAudioFocusRequest(request)
+            } else if (listener != null) {
+                audioManager?.abandonAudioFocus(listener)
+            }
+        } catch (_: Exception) {
+            // Playback is already released. No automatic focus retry.
+        }
     }
 
     private fun publish() {
@@ -193,10 +312,12 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
             audioManager != null && !audioManager.isStreamMute(AudioManager.STREAM_MUSIC) &&
                 audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) > 0
         } catch (_: Exception) { false }
-        snapshot = JSONObject().put("state", state).put("id", utterance)
+        val current = JSONObject().put("scopeVersion", 1).put("state", state).put("id", utterance)
             .put("positionMs", position).put("durationMs", duration)
             .put("audible", audible).put("envelopeAvailable", envelope.available)
-            .put("envelope", if (audible) envelope.amplitudeAt(position) else 0.0).toString()
+            .put("envelope", if (audible) envelope.amplitudeAt(position) else 0.0)
+        speechScope?.appendTo(current)
+        snapshot = current.toString()
     }
 
     fun destroy() {

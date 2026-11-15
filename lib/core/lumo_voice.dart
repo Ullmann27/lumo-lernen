@@ -28,6 +28,8 @@ class LumoVoice {
   String _serverUrl = 'https://lumo-ai-proxy.onrender.com';
   LumoParentSpeechAuthorization? _parentSpeechAuthorization;
   double _playbackRate = 1.0;
+  double _utteranceTempo = 1.0;
+  String? _activeUtteranceId;
   String? lastStartedAudioIdentity;
   int _startedPlaybackCount = 0;
   int _completedPlaybackCount = 0;
@@ -61,6 +63,10 @@ class LumoVoice {
 
   bool get isEnabled => _enabled;
   bool get cloudVoiceEnabled => _cloudVoiceEnabled;
+  String? get activeUtteranceId => _activeUtteranceId;
+  Duration get playbackPosition => _mediaPosition;
+  double get effectivePlaybackRate =>
+      (_playbackRate * _utteranceTempo).clamp(0.70, 1.60).toDouble();
 
   /// Counts confirmed native starts, not requests or historical source labels.
   int get startedPlaybackCount => _startedPlaybackCount;
@@ -107,7 +113,7 @@ class LumoVoice {
       // The device-specific TTS voice (and its pitch controls) is removed.
       _playbackRate = (rate / 0.35).clamp(0.70, 1.60).toDouble();
       try {
-        await _player?.setPlaybackRate(_playbackRate);
+      await _player?.setPlaybackRate(effectivePlaybackRate);
       } catch (_) {}
     }
     // Pitch is retained as a call parameter for older callers/settings.
@@ -188,6 +194,8 @@ class LumoVoice {
     VoiceStyle style = VoiceStyle.warm,
     bool waitForCompletion = false,
     bool freshLocalAudio = false,
+    String? utteranceId,
+    double tempo = 1,
   }) async {
     if (!_enabled || text.trim().isEmpty) return;
     // Preflight is independent of the playing generation. Missing offline
@@ -268,6 +276,8 @@ class LumoVoice {
       await _stopPlayback();
       if (!_enabled || generation != _speechGeneration) return;
       _playingStyle = effectiveStyle;
+      _activeUtteranceId = utteranceId;
+      _utteranceTempo = tempo.isFinite ? tempo.clamp(.70, 1.0).toDouble() : 1;
       lastError.value = null;
       status.value = VoiceStatus.preparing;
       if (original != null) {
@@ -412,8 +422,11 @@ class LumoVoice {
   }
 
   Future<void> speakAndWait(String text,
-          {VoiceStyle style = VoiceStyle.warm}) =>
-      speak(text, style: style, waitForCompletion: true);
+          {VoiceStyle style = VoiceStyle.warm,
+          String? utteranceId,
+          double tempo = 1}) =>
+      speak(text, style: style, waitForCompletion: true,
+          utteranceId: utteranceId, tempo: tempo);
 
   Future<void> _play(
     Source source,
@@ -500,7 +513,7 @@ class LumoVoice {
       return;
     }
     try {
-      await player.setPlaybackRate(_playbackRate);
+      await player.setPlaybackRate(effectivePlaybackRate);
     } catch (_) {}
     if (!_enabled || generation != _speechGeneration) {
       await player.stop();
@@ -662,6 +675,7 @@ class LumoVoice {
   }
 
   Future<void> stop() async {
+    _activeUtteranceId = null;
     ++_requestRevision;
     final generation = ++_speechGeneration;
     await _stopPlayback();

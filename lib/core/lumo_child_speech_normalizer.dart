@@ -51,46 +51,86 @@ class LumoChildSpeechNormalizer {
     'zwanzig': '20',
   };
 
+  /// Produces a candidate, never a checked learning answer. Ambiguous,
+  /// negated, partial and low-confidence speech must not be graded.
   LumoChildSpeechMatch normalizeAnswer({
     required String spokenText,
     required List<String> choices,
+    bool isFinal = true,
+    double? recognitionConfidence,
   }) {
     final raw = spokenText.trim();
     final normalized = normalizeText(raw);
-    if (normalized.isEmpty) {
+    LumoChildSpeechMatch uncertain() => LumoChildSpeechMatch(
+          rawText: raw,
+          normalizedText: normalized,
+          confidence: 0,
+          needsConfirmation: true,
+        );
+    if (!isFinal ||
+        normalized.isEmpty ||
+        (recognitionConfidence != null &&
+            (!recognitionConfidence.isFinite ||
+                recognitionConfidence < .65))) {
+      return uncertain();
+    }
+
+    // The final explicit correction wins; choice order is never meaningful.
+    // A correction still requires confirmation before a task accepts it.
+    var candidate = normalized;
+    var corrected = false;
+    final correction = RegExp(
+      r'\b(?:ich meinte|ich meine|ich mein|gemeint habe ich|sondern|nein|korrektur)\b',
+    ).allMatches(candidate).toList();
+    if (correction.isNotEmpty) {
+      candidate = candidate.substring(correction.last.end).trim();
+      corrected = true;
+    }
+    candidate = candidate
+        .replaceFirst(RegExp(r'^(?:es ist|es sind|die antwort ist|meine antwort ist)\s+'), '')
+        .trim();
+    if (candidate.isEmpty ||
+        RegExp(r'\b(?:nicht|kein|keine|keinen|keiner|niemals|oder)\b')
+            .hasMatch(candidate) ||
+        RegExp(r'\b(?:plus|minus|mal|geteilt)\b').hasMatch(candidate)) {
+      return uncertain();
+    }
+    if (!corrected && RegExp(r'[+×*/=]').hasMatch(raw)) return uncertain();
+
+    final cleanedChoices = choices
+        .map((choice) => choice.trim())
+        .where((choice) => choice.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    final exact = cleanedChoices
+        .where((choice) => normalizeText(choice) == candidate)
+        .toList(growable: false);
+    if (exact.length == 1) {
       return LumoChildSpeechMatch(
         rawText: raw,
         normalizedText: normalized,
-        confidence: 0,
+        matchedChoice: exact.single,
+        confidence: corrected ? .92 : 1,
+        needsConfirmation: corrected,
+      );
+    }
+    if (exact.length > 1) return uncertain();
+
+    final contained = cleanedChoices
+        .where((choice) => _containsToken(candidate, normalizeText(choice)))
+        .toList(growable: false);
+    if (contained.length == 1) {
+      return LumoChildSpeechMatch(
+        rawText: raw,
+        normalizedText: normalized,
+        matchedChoice: contained.single,
+        confidence: .86,
         needsConfirmation: true,
       );
     }
+    if (contained.length > 1) return uncertain();
 
-    final cleanedChoices = choices.map((choice) => choice.trim()).where((choice) => choice.isNotEmpty).toList();
-    for (final choice in cleanedChoices) {
-      if (normalizeText(choice) == normalized) {
-        return LumoChildSpeechMatch(
-          rawText: raw,
-          normalizedText: normalized,
-          matchedChoice: choice,
-          confidence: 1,
-        );
-      }
-    }
-
-    for (final choice in cleanedChoices) {
-      final normalizedChoice = normalizeText(choice);
-      if (_containsToken(normalized, normalizedChoice)) {
-        return LumoChildSpeechMatch(
-          rawText: raw,
-          normalizedText: normalized,
-          matchedChoice: choice,
-          confidence: .86,
-        );
-      }
-    }
-
-    final loose = _bestLooseChoice(normalized, cleanedChoices);
+    final loose = _bestLooseChoice(candidate, cleanedChoices);
     if (loose != null) {
       return LumoChildSpeechMatch(
         rawText: raw,
@@ -100,13 +140,7 @@ class LumoChildSpeechNormalizer {
         needsConfirmation: true,
       );
     }
-
-    return LumoChildSpeechMatch(
-      rawText: raw,
-      normalizedText: normalized,
-      confidence: .2,
-      needsConfirmation: true,
-    );
+    return uncertain();
   }
 
   String normalizeText(String value) {
@@ -125,25 +159,29 @@ class LumoChildSpeechNormalizer {
     return words.join(' ').trim();
   }
 
-  bool _containsToken(String text, String token) {
-    if (token.isEmpty) return false;
-    final parts = text.split(' ');
-    return parts.contains(token) || text == token;
-  }
+  bool _containsToken(String text, String token) =>
+      token.isNotEmpty && ' $text '.contains(' $token ');
 
   String? _bestLooseChoice(String normalized, List<String> choices) {
+    // A truncated word may suggest a choice but cannot select between equal
+    // candidates. Sentences must never be matched by their first letters.
+    if (normalized.contains(' ')) return null;
     String? best;
     var bestScore = 0;
+    var tied = false;
     for (final choice in choices) {
       final normalizedChoice = normalizeText(choice);
       if (normalizedChoice.length < 3) continue;
       final score = _sharedPrefixLength(normalized, normalizedChoice);
-      if (score > bestScore && score >= 3) {
+      if (score >= 3 && score > bestScore) {
         bestScore = score;
         best = choice;
+        tied = false;
+      } else if (score >= 3 && score == bestScore) {
+        tied = true;
       }
     }
-    return best;
+    return tied ? null : best;
   }
 
   int _sharedPrefixLength(String a, String b) {

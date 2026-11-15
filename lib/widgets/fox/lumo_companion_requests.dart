@@ -18,6 +18,7 @@
 import 'package:flutter/widgets.dart';
 import '../../core/tutor_coordination_engine.dart';
 import '../../core/learning_journey.dart';
+import '../../core/lumo_task_dialogue.dart';
 
 enum LumoInteractionKind {
   taskOpened,
@@ -84,6 +85,7 @@ class LumoCompanionTaskContext {
     this.activity = 'learning',
     this.ownerSection = 'exercises',
     this.profileGeneration,
+    this.dialogue,
   });
 
   final String subject;
@@ -101,6 +103,8 @@ class LumoCompanionTaskContext {
   final String activity;
   final String ownerSection;
   final int? profileGeneration;
+  /// Optional local-only read view. Never included in provider extras.
+  final LumoTaskDialogueSnapshot? dialogue;
 
   TutorTaskScope get tutorScope => TutorTaskScope(
       generation: profileGeneration ?? 0,

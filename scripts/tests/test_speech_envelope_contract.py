@@ -80,6 +80,15 @@ class SpeechEnvelopeContractTest(unittest.TestCase):
             'LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true',
         )
 
+    def test_dialogue_scope_and_audio_focus_contract(self):
+        result = self.run_checked([
+            self.java, '-cp', self.classpath,
+            'dev.ullmann.lumo.LearningSpeechDialogueContractKt',
+            str(FIXTURES / 'apfel.wav'),
+        ])
+        self.assertIn('LUMO_DIALOGUE_SPEECH_PASS checks=27 ', result.stdout)
+        print(result.stdout, end='')
+
 
 if __name__ == '__main__':
     unittest.main()
