@@ -1,0 +1,43 @@
+{
+  "scope": "Byte-identical original failed Android UI observations. Unit tests replay only reader/scroll transport decisions; this is not new Android navigation or microphone acceptance.",
+  "run_id": 43766331070,
+  "job_id": 132972139252,
+  "qa_commit": "8d105e7e34eb7375801711f45af7367db2f5a0f8",
+  "apk_source": "72a7914059d10152604b877cfeaf8bd1d2155810",
+  "artifact_id": 14182691635,
+  "artifact_bytes": 5098543,
+  "artifact_sha256": "dc7a5ddc867f7ea743bbb48c9b112d234c2436161c051f9b618e4e04323123b2",
+  "observed_failure": "No unique enabled live Flutter control: Mikrofon erlauben",
+  "files": [
+    {
+      "file": "0077-local-license.xml",
+      "original": "original-android/0077-local-license.xml",
+      "bytes": 30104,
+      "sha256": "b29aab2fb5173916cded3e63e148a0f9e16b2be2d7b417ddc2ce8ce146428fc6"
+    },
+    {
+      "file": "0078-local-license.xml",
+      "original": "original-android/0078-local-license.xml",
+      "bytes": 29103,
+      "sha256": "9e14b77ab2baa01241e1cba65a0ae999d57e415ff30be61f3afcc2e039e0e28a"
+    },
+    {
+      "file": "0091-set-microphoneEnabled.xml",
+      "original": "original-android/0091-set-microphoneEnabled.xml",
+      "bytes": 29526,
+      "sha256": "40fdf42a3acbd0824217ff163d643045c5901b6a7f69cae01db48ef7696f1d39"
+    },
+    {
+      "file": "0124-set-microphoneEnabled.xml",
+      "original": "original-android/0124-set-microphoneEnabled.xml",
+      "bytes": 28919,
+      "sha256": "2345cbcf053f4cc7cffe81e1c64ad73b8abe3737a9bc88ddd17c1bcbedab6c28"
+    },
+    {
+      "file": "0090-read-microphoneEnabled-preferences.xml",
+      "original": "original-android/0090-read-microphoneEnabled-preferences.xml",
+      "bytes": 2406,
+      "sha256": "6ca559db13d2a310b2523e02fdfb3b313c57e1975d335c156c0b4014046b54f4"
+    }
+  ]
+}
