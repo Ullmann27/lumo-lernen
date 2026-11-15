@@ -1,0 +1,48 @@
+name: LUMO existing native 3D hub entry repair QA
+
+on:
+  push:
+    branches: [repair/lumo-native-3d-games-hub-entry-20261114]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-host-entry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - run: flutter pub get --enforce-lockfile
+      - name: Verify actual 3D entry and all eleven existing Flutter game routes
+        run: |
+          flutter test --no-pub --reporter=expanded \
+            test/games/native_3d_hub_entry_test.dart \
+            test/games/dorfwirtschaft_portal_test.dart \
+            test/games/spielwelt_routing_test.dart
+      - name: Validate Flutter source without suppressing errors
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+
+  real-android-host:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - run: flutter pub get --enforce-lockfile
+      - name: Compile actual Kotlin host, including native games scene
+        run: bash scripts/compile_android_host.sh

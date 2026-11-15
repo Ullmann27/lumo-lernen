@@ -507,6 +507,10 @@ class _GamesContentState extends State<GamesContent> {
                         GameId.jumpRun,
                         () => _launch3D('jump'),
                       ),
+                      onEnterNative3D: () async {
+                        if (!await _allowLaunch() || !mounted) return;
+                        await _launch3D('games');
+                      },
                       onHome: () =>
                           widget.onSection?.call(LumoSection.home),
                       onLearn: () =>
