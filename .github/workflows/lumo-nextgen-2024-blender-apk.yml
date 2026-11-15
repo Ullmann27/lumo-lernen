@@ -4,6 +4,8 @@ on:
     branches: [chatgpt/lumo-nextgen-blender-flutter-apk-20261115]
     paths:
       - config/godot-source.json
+      - lib/**
+      - test/**
       - .github/workflows/lumo-nextgen-2024-blender-apk.yml
       - pubspec.yaml
       - scripts/verify_legacy_release_pin.py
