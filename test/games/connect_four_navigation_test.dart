@@ -71,7 +71,8 @@ void main() {
 
       await tester.tap(find.text('Spielauswahl'));
       await settle();
-      expect(nativeAttempts, 1);
+      expect(nativeAttempts, 0,
+          reason: 'Entering a Flutter round must not launch the native 3D view');
       expect(find.text('Spiel pausiert'), findsNothing);
       expect(find.byType(LumoConnectFourScreen), findsOneWidget);
       await tapVisible(find.byKey(const ValueKey('connect-mode-true')));
@@ -105,7 +106,8 @@ void main() {
 
       await tester.tap(find.text('Spielauswahl'));
       await settle();
-      expect(nativeAttempts, 2);
+      expect(nativeAttempts, 0,
+          reason: 'Reopening the saved Flutter round must remain native-free');
       expect(find.text('Spiel pausiert'), findsNothing);
       expect(
         tester

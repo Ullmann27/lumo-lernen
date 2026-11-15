@@ -102,6 +102,7 @@ class SpielweltHub extends StatefulWidget {
     super.key,
     required this.portals,
     required this.onAdventure,
+    this.onEnterNative3D,
     required this.onHome,
     required this.onLearn,
     required this.onTests,
@@ -114,6 +115,8 @@ class SpielweltHub extends StatefulWidget {
 
   final List<SpielweltPortal> portals;
   final VoidCallback onAdventure;
+  /// The existing native Godot game hub is a user-facing destination.
+  final VoidCallback? onEnterNative3D;
   final VoidCallback onHome;
   final VoidCallback onLearn;
   final VoidCallback onTests;
@@ -352,6 +355,35 @@ class _SpielweltHubState extends State<SpielweltHub> {
                           wide
                               ? math.min(4, _other.length)
                               : SpielweltLayout.tileColumns(width)),
+                    ],
+                    if (widget.onEnterNative3D != null) ...[
+                      const SizedBox(height: 12),
+                      SizedBox(
+                        height: 56,
+                        child: OutlinedButton.icon(
+                          key: const ValueKey('spielwelt-native-3d-hub'),
+                          onPressed: widget.onEnterNative3D,
+                          icon: const Icon(Icons.view_in_ar),
+                          label: const Text(
+                            'Magische 3D-Spielewelt betreten',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                            ),
+                          ),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: const Color(0xFFFFE7A0),
+                            backgroundColor: const Color(0xFF123354),
+                            side: const BorderSide(color: Color(0xFF53DDFD), width: 1.5),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                     const SizedBox(height: 19),
                     _HubActions(

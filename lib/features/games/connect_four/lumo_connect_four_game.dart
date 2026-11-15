@@ -82,9 +82,9 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
       });
       unawaited(LumoVoice.instance
           .speak(controller.announcement, style: VoiceStyle.greeting));
-      if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
-        await _openNative();
-      } else if (_game.phase == ConnectPhase.playing &&
+      // A child must be able to play a move before opting into 3D.
+      // The native process can fail to start; never force it on entering 4 Gewinnt.
+      if (_game.phase == ConnectPhase.playing &&
           !_twoPlayers &&
           _game.turn == ConnectPiece.lumo) {
         _resumeBot();
@@ -271,12 +271,12 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
   }
 
   void _setMode(bool twoPlayers) {
-    if (_twoPlayers != twoPlayers && !_busy)
+    if (_twoPlayers != twoPlayers && !_busy && !_nativeOpening)
       unawaited(_restartRound(twoPlayers: twoPlayers));
   }
 
   Future<void> _setLevel(ConnectLumoLevel level) async {
-    if (_controller == null || !_currentOwner() || _busy) return;
+    if (_controller == null || !_currentOwner() || _busy || _nativeOpening) return;
     try {
       await _controller!.setLevel(level);
       if (_currentOwner()) setState(_syncRound);
@@ -925,7 +925,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
           for (var c = 0; c < ConnectFourEngine.columns; c++)
             Expanded(
               child: LumoPressable(
-                enabled: !_busy && !_clock.value,
+                enabled: !_busy && !_nativeOpening && !_clock.value,
                 radius: 12,
                 pressedScale: 1,
                 child: IconButton(
@@ -940,6 +940,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                     ),
                   ),
                   onPressed: !_busy &&
+                          !_nativeOpening &&
                           !_clock.value &&
                           _game.phase == ConnectPhase.playing &&
                           _game.validColumns.contains(c)
