@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/lumo_learning_session_contract.dart';
 import '../../core/learning_attempt_id.dart';
 import '../../domain/tutoring/guided_lesson_catalog.dart';
 import '../../domain/tutoring/guided_lesson_evidence.dart';
@@ -15,7 +16,8 @@ import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/design/lumo_learning_module_frame.dart';
 import '../../widgets/fox/lumo_character.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
-import '../../widgets/lumo_speech_controls.dart';
+import '../learning/lab/learning_manipulatives.dart';
+import '../learning/nextgen/learning_coach_binding.dart';
 import '../learning_modules/learning_module_progress.dart';
 import '../lumo3d/lumo3d_launcher.dart';
 import 'guided_math_illustration.dart';
@@ -38,10 +40,17 @@ class GuidedLessonScreen extends StatefulWidget {
   State<GuidedLessonScreen> createState() => _GuidedLessonScreenState();
 }
 
-class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
+class _GuidedLessonScreenState extends State<GuidedLessonScreen>
+    with WidgetsBindingObserver {
   static int _nextSession = 0;
   final _session = ++_nextSession;
   final _lumo = LumoCharacterController();
+  final _stopSignal = ValueNotifier<int>(0);
+  final _candidateController = TextEditingController();
+  late final LearningCoachBinding _coach;
+  String? _candidate;
+  LumoLearningIdentity? _candidateIdentity;
+  String? _focusObjectId;
   late final int _generation;
   late final _progress = LearningModuleProgress(
     appState: widget.appState,
@@ -64,6 +73,16 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
   bool _ownsVoice = false;
   bool _completed = false;
   bool _showExplanation = false;
+  bool _hideHelp = false;
+  bool _foreground = true;
+  bool _routeVisible = true;
+  bool _nativeLearningOpen = false;
+  bool _nativeReturnPending = false;
+  bool _slowNarration = false;
+  bool _presentationStopped = false;
+  int? _pendingSyllable;
+  int? _activeSyllable;
+  String? _lastNarration;
   int _voiceSequence = 0;
   String? _blocked;
   String? _lastAnswer;
@@ -84,6 +103,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
   bool get _current =>
       mounted &&
       !_stale &&
+      !widget.appState.resetting &&
       widget.appState.profileGeneration == _generation &&
       (widget.discovery || widget.lesson.grade <= widget.appState.state.grade);
   bool get _quiet =>
@@ -101,12 +121,53 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
   @override
   void initState() {
     super.initState();
+    _coach = LearningCoachBinding(
+      isActive: () =>
+          _current &&
+          _ready &&
+          _blocked == null &&
+          _routeVisible &&
+          (_foreground || _nativeLearningOpen),
+      onHint: _requestHelp,
+      onExplain: () => _requestHelp(differently: true),
+      onRepeat: _repeatExplanation,
+      onSlower: _slowerExplanation,
+      onStop: _stopExplanation,
+      onCancel: _cancelPresentation,
+      onTryMyself: _tryMyself,
+      onProposeAnswer: _proposeAnswer,
+      onFocus: (id, action) {
+        _focusObjectId = id;
+        _coach.present(
+            objectId: id,
+            point: action == LumoLearningAction.point,
+            state: 'focused_input');
+      },
+    );
     _generation = widget.appState.profileGeneration;
+    WidgetsBinding.instance.addObserver(this);
+    _foreground = WidgetsBinding.instance.lifecycleState == null ||
+        WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
     _progress.addListener(_saveChanged);
     widget.appState.addListener(_profileChanged);
-    LumoCompanionRequests.instance.helpRequested.addListener(_help);
+    LumoCompanionRequests.instance.helpRequested.addListener(_legacyHelp);
     LumoVoice.instance.status.addListener(_voiceChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) => unawaited(_load()));
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _routeVisible = ModalRoute.isCurrentOf(context) ?? true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      if (_routeVisible) {
+        _publish();
+      } else {
+        _cancelPresentation();
+        _coach.clear();
+      }
+    });
   }
 
   Future<void> _load() async {
@@ -167,7 +228,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
       return;
     }
     _stale = true;
-    _stopOwnedVoice();
+    _cancelPresentation();
     final task = _published;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       LumoCompanionRequests.instance.clearTask(task);
@@ -187,13 +248,24 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
       _helpLevel = 0;
       _passed = !_step.isQuestion;
       _lastAnswer = null;
+      _candidate = null;
+      _candidateIdentity = null;
+      _candidateController.clear();
+      _focusObjectId = null;
       _lastCorrect = null;
       _feedback = null;
       _previousHelp = null;
       _showExplanation = false;
+      _hideHelp = false;
+      _lastNarration = null;
+      _activeSyllable = null;
+      _pendingSyllable = null;
       _replay++;
     });
     _publish();
+    // Publishing a new step cancels its predecessor synchronously. Only the
+    // fresh illustration may now start its own explicitly scoped playback.
+    _presentationStopped = false;
     if (_step.type == TutoringStepType.recap && !_completed) {
       _completed = true;
       LumoCompanionRequests.instance
@@ -213,15 +285,130 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
       widget.lesson.concept == GuidedLessonConcept.bridgeTen &&
       _step.type == TutoringStepType.showExample;
 
+  bool get _segmentedWord =>
+      widget.lesson.concept == GuidedLessonConcept.syllables &&
+      _step.word.isNotEmpty &&
+      (!_step.isQuestion || (_helpLevel >= 3 && !_hideHelp));
+
+  List<String> get _objectIds => [
+        'guided-step-title',
+        'guided-instruction',
+        'guided-illustration',
+        if (_segmentedWord) ...[
+          'syllable-word-picture',
+          'syllable-word',
+          for (var i = 0; i < _step.syllables.length; i++)
+            'guided-spoken-syllable-$i',
+        ] else if (widget.lesson.concept == GuidedLessonConcept.syllables &&
+            _step.word.isNotEmpty)
+          'guided-unsegmented-word',
+        if (widget.lesson.concept == GuidedLessonConcept.plantParts)
+          'guided-flowering-plant',
+        if (_step.isQuestion)
+          for (final choice in _choices) 'guided-answer-$choice',
+        if (_previousHelp != null && !_hideHelp) 'guided-actual-hint',
+      ];
+
+  VoidCallback? _bound(VoidCallback? callback) {
+    if (callback == null) return null;
+    final captured = _coach.identity;
+    return captured == null
+        ? null
+        : () {
+            if (_coach.matches(captured)) callback();
+          };
+  }
+
+  void _legacyHelp() {
+    if (_coach.ownsCurrentTask) _coach.request(LumoLearningAction.hint);
+  }
+
+  void _requestHelp({bool differently = false}) {
+    if (_step.isQuestion) {
+      _help(differently: differently);
+      return;
+    }
+    if (!_current ||
+        !_ready ||
+        (_busy && !_nativeLearningOpen) ||
+        _blocked != null) {
+      return;
+    }
+    setState(() {
+      _showExplanation = true;
+      _hideHelp = false;
+      _focusObjectId = _segmentedWord ? 'syllable-word' : 'guided-illustration';
+    });
+    _publish();
+    if (_segmentedWord) {
+      unawaited(_readSyllables());
+    } else {
+      unawaited(_read(_step.instruction));
+    }
+  }
+
+  void _cancelPresentation({bool discardCandidate = true}) {
+    _stopOwnedVoice();
+    _stopSignal.value++;
+    if (mounted) {
+      setState(() {
+        _presentationStopped = true;
+        if (discardCandidate) {
+          _candidate = null;
+          _candidateIdentity = null;
+          _candidateController.clear();
+        }
+        _focusObjectId = null;
+      });
+    }
+  }
+
+  void _proposeAnswer(String value) {
+    if (!_coach.ownsCurrentTask ||
+        !_current ||
+        !_ready ||
+        (_busy && !_nativeLearningOpen) ||
+        _passed ||
+        !_step.isQuestion ||
+        _progress.hasPending) {
+      return;
+    }
+    final candidate = value.trim();
+    if (candidate.isEmpty || candidate.length > 160) return;
+    _candidateController.text = candidate;
+    setState(() {
+      _candidate = candidate;
+      _candidateIdentity = _coach.identity;
+    });
+    // A transcript remains an editable proposal. Only the explicit confirmation
+    // below reaches the existing deterministic answer evaluator and writer.
+  }
+
+  void _confirmCandidate() {
+    final identity = _candidateIdentity;
+    if (identity == null || !_coach.matches(identity)) return;
+    final answer = _candidateController.text.trim();
+    if (answer.isNotEmpty) unawaited(_answer(answer));
+  }
+
   void _publish() {
-    if (!_current || !_ready || _blocked != null) return;
+    if (!_current ||
+        !_ready ||
+        _blocked != null ||
+        !_routeVisible ||
+        (!_foreground && !_nativeLearningOpen)) {
+      _coach.clear();
+      return;
+    }
     _published = LumoCompanionTaskContext(
       taskId: 'guided-$_session-$_serial',
       subject: widget.lesson.subject,
       unit: widget.lesson.schoolUnit,
       prompt: _step.instruction,
-      answering:
-          _step.isQuestion && !_passed && !_busy && !_progress.hasPending,
+      answering: _step.isQuestion &&
+          !_passed &&
+          (!_busy || _nativeLearningOpen) &&
+          !_progress.hasPending,
       attempts: _attempts,
       helpLevel: _lastCorrect == true ? _evidenceHelpLevel : _helpLevel,
       lastAnswer: _lastAnswer,
@@ -231,12 +418,41 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
       activity: widget.discovery ? 'discovery' : 'guided_lesson',
       ownerSection: 'learn',
       profileGeneration: _generation,
+      stepId:
+          '${widget.lesson.id}:$_index:${_step.type.name}:${_easier == null ? "task" : "prerequisite"}',
+      objectIds: _objectIds,
+      explanation: _previousHelp ??
+          (_step.isQuestion
+              ? _step.help(level: _helpLevel + 1)
+              : _step.instruction),
+      answerChoices: _choices,
+      isExplanation: !_step.isQuestion,
+      allowedActions: {
+        LumoLearningAction.stop,
+        LumoLearningAction.repeat,
+        LumoLearningAction.slower,
+        LumoLearningAction.look,
+        LumoLearningAction.point,
+        LumoLearningAction.highlight,
+        if ((!_busy || _nativeLearningOpen) &&
+            !_progress.hasPending &&
+            (!_step.isQuestion || !_passed)) ...{
+          LumoLearningAction.explain,
+          LumoLearningAction.hint,
+          if (_step.isQuestion) LumoLearningAction.proposeAnswer,
+        },
+      },
     );
-    LumoCompanionRequests.instance.publishTask(_published!);
+    _coach.publish(_published!);
+    if (_focusObjectId != null && _objectIds.contains(_focusObjectId)) {
+      _coach.present(objectId: _focusObjectId, point: true, state: 'explain');
+    }
   }
 
   Future<void> _answer(String answer) async {
     if (!_current ||
+        !_foreground ||
+        !_routeVisible ||
         _busy ||
         _passed ||
         !_step.isQuestion ||
@@ -250,6 +466,9 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
       _busy = true;
       _attempts++;
       _lastAnswer = answer;
+      _candidate = null;
+      _candidateIdentity = null;
+      _candidateController.clear();
     });
     _publish();
     LumoCompanionRequests.instance
@@ -326,11 +545,11 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     }
   }
 
-  void _help() {
+  void _help({bool differently = false}) {
     if (!_current ||
         !_ready ||
         _blocked != null ||
-        _busy ||
+        (_busy && !_nativeLearningOpen) ||
         _passed ||
         !_step.isQuestion) {
       return;
@@ -339,7 +558,10 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     requests.recordLearningEvent(LumoLearningEventKind.hintRequested);
     setState(() {
       _accompaniedSteps.add(_index);
-      _helpLevel = (_helpLevel + 1).clamp(1, 3);
+      _helpLevel = differently
+          ? math.max(2, _helpLevel + 1).clamp(1, 3)
+          : (_helpLevel + 1).clamp(1, 3);
+      _hideHelp = false;
       _previousHelp = (_helpLevel == 1
               ? GuidedLessonEvidence.hintForAnswer(
                   lesson: widget.lesson, step: _step, answer: _lastAnswer)
@@ -369,19 +591,27 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
 
   void _replayExample() {
     if (!_current || _busy || _progress.hasPending) return;
-    setState(() => _replay++);
+    _coach.interrupt('replay');
+    setState(() {
+      _presentationStopped = false;
+      _replay++;
+    });
     LumoCompanionRequests.instance
         .recordLearningEvent(LumoLearningEventKind.taskRepeated);
   }
 
   Future<void> _openLearningWorld() async {
     if (!_current || _busy || _progress.hasPending) return;
-    final activity = NativeLearningActivity.fromLesson(widget.lesson, _step);
+    final activity = NativeLearningActivity.fromLesson(widget.lesson, _step) ??
+        (_published == null
+            ? null
+            : NativeLearningActivity.fromCompanionContext(_published!));
     if (activity == null) return;
     final serial = _serial;
-    _stopOwnedVoice();
+    _cancelPresentation();
     setState(() {
       _busy = true;
+      _nativeLearningOpen = true;
       // Requested solution support remains assistance even when Android's
       // return acknowledgement is interrupted after the child saw the model.
       _accompaniedSteps.add(_index);
@@ -395,9 +625,18 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
           subject: widget.lesson.subject,
           appState: widget.appState,
           learning: activity);
+    } catch (_) {
+      if (_current && _serial == serial) {
+        setState(() => _feedback = 'Die 3D-Ansicht ist gerade nicht verfügbar. '
+            'Du kannst mit den Lernobjekten hier weiterarbeiten.');
+      }
     } finally {
       if (_current && _serial == serial) {
-        setState(() => _busy = false);
+        setState(() {
+          _busy = false;
+          _nativeReturnPending = !_foreground;
+          _nativeLearningOpen = !_foreground;
+        });
         _publish();
       }
     }
@@ -431,29 +670,243 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
 
   Future<void> _read(String text,
       {VoiceStyle style = VoiceStyle.explain}) async {
-    if (!_current || !widget.appState.state.settings.voiceEnabled) return;
+    if (!_current ||
+        !_foreground ||
+        _nativeLearningOpen ||
+        !widget.appState.state.settings.voiceEnabled ||
+        ModalRoute.of(context)?.isCurrent == false) {
+      return;
+    }
     final sequence = ++_voiceSequence;
     _ownsVoice = true;
-    await LumoVoice.instance.stop();
-    if (!_current || sequence != _voiceSequence) return;
-    await LumoVoice.instance.speak(text, style: style, waitForCompletion: true);
-    if (sequence == _voiceSequence) _ownsVoice = false;
+    _lastNarration = text;
+    _pendingSyllable = null;
+    _activeSyllable = null;
+    try {
+      await LumoVoice.instance.stop();
+      if (!_current || sequence != _voiceSequence) return;
+      final rate = widget.appState.state.settings.voiceRate;
+      await LumoVoice.instance
+          .configure(rate: _slowNarration ? rate * .7 : rate);
+      if (!_current || sequence != _voiceSequence) return;
+      await LumoVoice.instance
+          .speak(text, style: style, waitForCompletion: true);
+    } catch (_) {
+      // Voice owns its error status. The instruction remains readable and no
+      // failed playback becomes a learning answer.
+    } finally {
+      if (sequence == _voiceSequence) {
+        _ownsVoice = false;
+        await LumoVoice.instance
+            .configure(rate: widget.appState.state.settings.voiceRate);
+      }
+    }
   }
 
   void _stopOwnedVoice() {
     _voiceSequence++;
+    _pendingSyllable = null;
+    _activeSyllable = null;
     if (!_ownsVoice) return;
     _ownsVoice = false;
     unawaited(LumoVoice.instance.stop());
+    unawaited(LumoVoice.instance
+        .configure(rate: widget.appState.state.settings.voiceRate));
   }
 
   void _voiceChanged() {
     if (!_current || !_ownsVoice) return;
     if (LumoVoice.instance.status.value == VoiceStatus.speaking) {
       _lumo.talk();
+      if (_activeSyllable != _pendingSyllable) {
+        setState(() => _activeSyllable = _pendingSyllable);
+        if (_activeSyllable != null) {
+          _coach.present(
+              objectId: 'guided-spoken-syllable-$_activeSyllable',
+              point: true,
+              state: 'speaking');
+        }
+      }
     } else if (LumoVoice.instance.status.value == VoiceStatus.preparing) {
       _lumo.think();
+      if (_activeSyllable != null) setState(() => _activeSyllable = null);
+    } else if (_activeSyllable != null) {
+      setState(() => _activeSyllable = null);
     }
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    _foreground = state == AppLifecycleState.resumed;
+    if (!_foreground) {
+      _cancelPresentation(discardCandidate: !_nativeLearningOpen);
+      if (!_nativeLearningOpen) _coach.clear();
+    } else {
+      if (_nativeReturnPending) {
+        _nativeReturnPending = false;
+        _nativeLearningOpen = false;
+      }
+      _publish();
+    }
+  }
+
+  Future<void> _readSyllables({int? only}) async {
+    if (!_current ||
+        !_foreground ||
+        !_ready ||
+        _busy ||
+        !widget.appState.state.settings.voiceEnabled ||
+        ModalRoute.of(context)?.isCurrent == false) {
+      return;
+    }
+    final parts = _step.syllables;
+    if (parts.isEmpty || (only != null && (only < 0 || only >= parts.length))) {
+      return;
+    }
+    if (_step.isQuestion) {
+      _accompaniedSteps.add(_index);
+      _helpLevel = math.max(1, _helpLevel);
+      _publish();
+    }
+    final sequence = ++_voiceSequence;
+    final serial = _serial;
+    _ownsVoice = true;
+    bool current() =>
+        _current &&
+        _foreground &&
+        sequence == _voiceSequence &&
+        serial == _serial &&
+        widget.appState.state.settings.voiceEnabled &&
+        ModalRoute.of(context)?.isCurrent != false;
+    try {
+      await LumoVoice.instance.stop();
+      if (!current()) return;
+      final rate = widget.appState.state.settings.voiceRate;
+      await LumoVoice.instance
+          .configure(rate: _slowNarration ? rate * .7 : rate);
+      for (final index in only == null
+          ? List<int>.generate(parts.length, (i) => i)
+          : <int>[only]) {
+        if (!current()) return;
+        _pendingSyllable = index;
+        final completedBefore = LumoVoice.instance.completedPlaybackCount;
+        await LumoVoice.instance
+            .speakAndWait(parts[index], style: VoiceStyle.explain);
+        if (!current() ||
+            LumoVoice.instance.completedPlaybackCount <= completedBefore) {
+          break;
+        }
+      }
+    } catch (_) {
+      // Keep the word and all segments available when speech cannot play.
+    } finally {
+      if (sequence == _voiceSequence) {
+        _ownsVoice = false;
+        _pendingSyllable = null;
+        _activeSyllable = null;
+        if (mounted) setState(() {});
+        await LumoVoice.instance
+            .configure(rate: widget.appState.state.settings.voiceRate);
+      }
+    }
+  }
+
+  void _repeatExplanation() {
+    if (!_current || (_busy && !_nativeLearningOpen) || _progress.hasPending) {
+      return;
+    }
+    LumoCompanionRequests.instance
+        .recordLearningEvent(LumoLearningEventKind.taskRepeated);
+    if (widget.lesson.concept == GuidedLessonConcept.syllables &&
+        (!_step.isQuestion || _helpLevel >= 3)) {
+      unawaited(_readSyllables());
+    } else if (_tenFrameExample) {
+      _replayExample();
+    } else {
+      unawaited(_read(_lastNarration ?? _previousHelp ?? _step.instruction));
+    }
+  }
+
+  void _slowerExplanation() {
+    if (!_current || (_busy && !_nativeLearningOpen)) return;
+    _slowNarration = true;
+    _repeatExplanation();
+  }
+
+  void _tryMyself() {
+    if (!_current || _busy) return;
+    _coach.interrupt('child_requested_independence');
+    _cancelPresentation();
+    setState(() {
+      _hideHelp = true;
+      _feedback = 'Du bist dran. Ich warte, bis du wieder Hilfe möchtest.';
+    });
+    // Never erase help already used for the later independent/assisted check.
+    _publish();
+    LumoCompanionRequests.instance
+        .recordLearningEvent(LumoLearningEventKind.hintDeclined);
+  }
+
+  void _stopExplanation() {
+    if (!_current) return;
+    _cancelPresentation();
+    setState(() => _feedback =
+        'Die Erklärung ist angehalten. Deine Aufgabe bleibt erhalten.');
+    _publish();
+  }
+
+  Widget _coachControls() {
+    Widget control(
+            String key, IconData icon, String label, VoidCallback? onPressed) =>
+        OutlinedButton.icon(
+          key: ValueKey(key),
+          onPressed: _bound(onPressed),
+          style: OutlinedButton.styleFrom(minimumSize: const Size(48, 52)),
+          icon: Icon(icon, size: 21),
+          label: Text(label),
+        );
+    return Wrap(spacing: 8, runSpacing: 8, children: [
+      if (!_step.isQuestion)
+        control('guided-coach-help', Icons.lightbulb_outline, 'Hilf mir',
+            _busy ? null : () => _coach.request(LumoLearningAction.hint)),
+      control('guided-coach-repeat', Icons.replay_rounded, 'Noch einmal',
+          _busy ? null : () => _coach.request(LumoLearningAction.repeat)),
+      control(
+          'guided-coach-slower',
+          Icons.slow_motion_video_rounded,
+          'Langsamer',
+          _busy || !widget.appState.state.settings.voiceEnabled
+              ? null
+              : () => _coach.request(LumoLearningAction.slower)),
+      control(
+          'guided-coach-alternative',
+          Icons.swap_horiz_rounded,
+          'Anders erklären',
+          _busy || (_passed && _step.isQuestion)
+              ? null
+              : () => _coach.request(LumoLearningAction.explain)),
+      control('guided-coach-stop', Icons.stop_circle_outlined, 'Stopp',
+          () => _coach.request(LumoLearningAction.stop)),
+      control(
+          'guided-coach-myself',
+          Icons.touch_app_outlined,
+          'Selbst versuchen',
+          _busy
+              ? null
+              : () {
+                  final captured = _coach.identity;
+                  if (captured != null) _coach.tryMyself(captured);
+                }),
+      if (widget.appState.state.settings.voiceEnabled && !_tenFrameExample)
+        control(
+            'guided-coach-read',
+            Icons.volume_up_rounded,
+            'Vorlesen',
+            _busy
+                ? null
+                : () => unawaited(
+                    _read(_previousHelp ?? _feedback ?? _step.instruction))),
+    ]);
   }
 
   bool _canLeave() {
@@ -488,7 +941,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     return Semantics(
       button: true,
       enabled: !_busy && !_passed,
-      onTap: _busy || _passed ? null : () => unawaited(_answer(answer)),
+      onTap: _bound(_busy || _passed ? null : () => unawaited(_answer(answer))),
       selected: selected,
       label: selected
           ? '$answer, ${correct ? "richtig" : "noch einmal versuchen"}'
@@ -496,7 +949,8 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
       excludeSemantics: true,
       child: FilledButton(
         key: ValueKey('guided-answer-$answer'),
-        onPressed: _busy || _passed ? null : () => unawaited(_answer(answer)),
+        onPressed:
+            _bound(_busy || _passed ? null : () => unawaited(_answer(answer))),
         style: FilledButton.styleFrom(
           backgroundColor: color,
           foregroundColor: Colors.white,
@@ -528,7 +982,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
 
   Widget _continueButton() => FilledButton.icon(
         key: const ValueKey('guided-continue'),
-        onPressed: _busy ? null : () => unawaited(_next()),
+        onPressed: _bound(_busy ? null : () => unawaited(_next())),
         style: FilledButton.styleFrom(
             minimumSize: const Size(64, 56),
             backgroundColor: LumoVisualTokens.gold,
@@ -547,8 +1001,15 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
 
   @override
   void dispose() {
+    _coach.dispose();
+    if (identical(
+        LumoCompanionRequests.instance.taskContext.value, _published)) {
+      LumoCompanionRequests.instance
+          .cancelLearningInteraction(reason: 'page_exit');
+    }
+    WidgetsBinding.instance.removeObserver(this);
     widget.appState.removeListener(_profileChanged);
-    LumoCompanionRequests.instance.helpRequested.removeListener(_help);
+    LumoCompanionRequests.instance.helpRequested.removeListener(_legacyHelp);
     LumoVoice.instance.status.removeListener(_voiceChanged);
     _stopOwnedVoice();
     final task = _published;
@@ -557,6 +1018,8 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     _progress.removeListener(_saveChanged);
     _progress.dispose();
     _lumo.dispose();
+    _stopSignal.dispose();
+    _candidateController.dispose();
     super.dispose();
   }
 
@@ -656,35 +1119,59 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
                           'Zähle gleich große Teile zusammen. Die Teilgröße und die untere Zahl bleiben gleich.',
                       }
                     : step.instruction,
+                key: const ValueKey('guided-instruction'),
                 style: _body),
             const SizedBox(height: 16),
-            GuidedMathIllustration(
-                key: ValueKey('guided-illustration-$_serial-$_replay'),
-                lesson: widget.lesson,
-                step: step,
-                autoNarrate: settings.voiceEnabled &&
-                    settings.autoReadEnabled &&
-                    !settings.calmMode,
-                onNarratePhase: settings.voiceEnabled
-                    ? (text) async {
-                        if (_serial == illustrationSerial && _tenFrameExample) {
-                          await _read(text);
-                        }
-                      }
-                    : null,
-                onStopNarration: () {
-                  // Disposing the old example must not stop the next task.
-                  if (_serial == illustrationSerial) _stopOwnedVoice();
-                },
-                reduceMotion: _quiet),
-            if (NativeLearningActivity.fromLesson(widget.lesson, step) != null)
+            TickerMode(
+              key: const ValueKey('guided-illustration'),
+              enabled: !_presentationStopped && _foreground,
+              child: _segmentedWord
+                  ? SyllableLearningBoard(
+                      word: step.word,
+                      syllables: step.syllables,
+                      segmentKeyPrefix: 'guided-spoken-syllable-',
+                      wordPlaybackLabel: 'Silben vorsprechen',
+                      activeIndex: _activeSyllable,
+                      onReadSegment: settings.voiceEnabled
+                          ? (index) => _bound(
+                                  () => unawaited(_readSyllables(only: index)))
+                              ?.call()
+                          : null,
+                      onReadWord: settings.voiceEnabled
+                          ? _bound(() => unawaited(_readSyllables()))
+                          : null,
+                      reduceMotion: _quiet,
+                    )
+                  : GuidedMathIllustration(
+                      key: ValueKey('guided-illustration-$_serial-$_replay'),
+                      lesson: widget.lesson,
+                      step: step,
+                      stopSignal: _stopSignal,
+                      autoNarrate: settings.voiceEnabled &&
+                          settings.autoReadEnabled &&
+                          !settings.calmMode,
+                      onNarratePhase: settings.voiceEnabled
+                          ? (text) async {
+                              if (_serial == illustrationSerial &&
+                                  _tenFrameExample) {
+                                await _read(text);
+                              }
+                            }
+                          : null,
+                      onStopNarration: () {
+                        // Disposing the old example must not stop the next task.
+                        if (_serial == illustrationSerial) _stopOwnedVoice();
+                      },
+                      reduceMotion: _quiet),
+            ),
+            if (_published != null)
               Padding(
                 padding: const EdgeInsets.only(top: 12),
                 child: FilledButton.icon(
                   key: const ValueKey('guided-open-3d'),
-                  onPressed: _busy || _progress.hasPending
+                  onPressed: _bound(_busy || _progress.hasPending
                       ? null
-                      : () => unawaited(_openLearningWorld()),
+                      : () => unawaited(_openLearningWorld())),
                   style:
                       FilledButton.styleFrom(minimumSize: const Size(48, 56)),
                   icon: const Icon(Icons.view_in_ar_rounded),
@@ -696,13 +1183,13 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
               Wrap(spacing: 10, runSpacing: 8, children: [
                 if (widget.lesson.concept != GuidedLessonConcept.bridgeTen)
                   OutlinedButton.icon(
-                    onPressed: _replayExample,
+                    onPressed: _bound(_replayExample),
                     icon: const Icon(Icons.replay_rounded),
                     label: const Text('Beispiel noch einmal'),
                   ),
                 TextButton.icon(
-                    onPressed: () =>
-                        setState(() => _showExplanation = !_showExplanation),
+                    onPressed: _bound(() =>
+                        setState(() => _showExplanation = !_showExplanation)),
                     icon: Icon(_showExplanation
                         ? Icons.expand_less_rounded
                         : Icons.menu_book_rounded),
@@ -728,12 +1215,55 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
                 ],
               ),
             ],
+            if (_candidate != null) ...[
+              const SizedBox(height: 12),
+              LumoLessonSurface(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                      'Ich habe „$_candidate“ verstanden. Prüfe den Vorschlag. '
+                      'Du kannst auch eine Antwort oben antippen.',
+                      key: const ValueKey('guided-candidate'),
+                      style: _body),
+                  const SizedBox(height: 10),
+                  TextField(
+                    key: const ValueKey('guided-candidate-edit'),
+                    controller: _candidateController,
+                    enabled: !_busy && !_passed,
+                    maxLength: 160,
+                    decoration: const InputDecoration(
+                        labelText: 'Antwortvorschlag bearbeiten'),
+                  ),
+                  const SizedBox(height: 10),
+                  FilledButton(
+                    key: const ValueKey('guided-confirm-candidate'),
+                    onPressed:
+                        _busy || _passed ? null : _bound(_confirmCandidate),
+                    style:
+                        FilledButton.styleFrom(minimumSize: const Size(48, 52)),
+                    child: const Text('Diese Antwort bestätigen'),
+                  ),
+                  OutlinedButton(
+                    key: const ValueKey('guided-cancel-candidate'),
+                    onPressed: _bound(() => setState(() {
+                          _candidate = null;
+                          _candidateIdentity = null;
+                          _candidateController.clear();
+                        })),
+                    style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(48, 52)),
+                    child: const Text('Vorschlag verwerfen'),
+                  ),
+                ],
+              )),
+            ],
             if (_feedback != null) ...[
               const SizedBox(height: 12),
               Text(_feedback!,
                   key: const ValueKey('guided-feedback'), style: _body),
             ],
-            if (_previousHelp != null) ...[
+            if (_previousHelp != null && !_hideHelp) ...[
               const SizedBox(height: 12),
               LumoLessonSurface(
                 child: Text(_previousHelp!,
@@ -759,23 +1289,20 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
             if (step.isQuestion && !_passed)
               Wrap(spacing: 10, runSpacing: 10, children: [
                 OutlinedButton.icon(
-                    onPressed: _busy ? null : _help,
+                    onPressed: _bound(_busy
+                        ? null
+                        : () => _coach.request(LumoLearningAction.hint)),
                     icon: const Icon(Icons.lightbulb_rounded),
                     label: Text(_helpLevel == 0 ? 'Tipp' : 'Anderer Tipp')),
                 if (_easier == null)
                   OutlinedButton(
-                      onPressed: _busy ? null : _easierPractice,
+                      onPressed: _bound(_busy ? null : _easierPractice),
                       child: const Text('Leichter üben')),
               ]),
             if (_passed && !fixedContinue) _continueButton(),
             const SizedBox(height: 16),
-            if (settings.voiceEnabled && !_tenFrameExample)
-              LumoSpeechControls(
-                onRead: () => unawaited(
-                    _read(_previousHelp ?? _feedback ?? step.instruction)),
-                showStopWhenIdle: true,
-              )
-            else if (!settings.voiceEnabled)
+            _coachControls(),
+            if (!settings.voiceEnabled)
               const Text(
                   'Die Stimme ist ausgeschaltet. '
                   'Du kannst die Erklärung hier lesen.',

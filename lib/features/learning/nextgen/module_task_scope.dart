@@ -6,6 +6,8 @@ import '../../../app/app_state.dart';
 import '../../../core/learning_attempt_id.dart';
 import '../../../core/lumo_learning_session_contract.dart';
 import '../../../core/lumo_voice.dart';
+import '../../../domain/tutoring/native_learning_activity.dart';
+import '../../lumo3d/lumo3d_launcher.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/fox/lumo_companion_requests.dart';
 import '../../learning_modules/learning_module_progress.dart';
@@ -14,7 +16,8 @@ import '../../learning_modules/learning_module_progress.dart';
 ///
 /// Place this inside the learning module frame's child. The frame owns
 /// beginPresentedTask; this adapter never resets that assistance boundary.
-/// It neither accepts answers nor changes the module's rewards or task IDs.
+/// Proposals are presentation-only until explicit confirmation forwards an
+/// offered choice index to the module. Domain evaluation and saving stay there.
 class ModuleTaskScope extends StatefulWidget {
   const ModuleTaskScope({
     super.key,
@@ -30,6 +33,7 @@ class ModuleTaskScope extends StatefulWidget {
     this.answering = true,
     this.lastAnswer,
     this.lastCorrect,
+    this.onConfirmChoice,
   }) : assert(helpSteps.length > 0 && helpSteps.length <= 5);
 
   final LumoAppState appState;
@@ -43,6 +47,10 @@ class ModuleTaskScope extends StatefulWidget {
   final bool answering;
   final String? lastAnswer;
   final bool? lastCorrect;
+
+  /// Invoked only after the child confirms one uniquely matched visible choice.
+  /// The module still owns correctness, progress and the durable save.
+  final ValueChanged<int>? onConfirmChoice;
   final Widget child;
 
   /// This ID is backed by the actual visible exercise container below.
@@ -70,16 +78,27 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
   bool _foreground = true;
   bool _routeCurrent = true;
   bool _invalid = false;
+  bool _nativeLearningOpen = false;
+  bool _nativeReturnPending = false;
+  final _candidateController = TextEditingController();
+  final _candidateAnchor = GlobalKey();
+  LumoLearningIdentity? _candidateIdentity;
+  String? _candidateNotice;
+  String? _nativeNotice;
 
   bool get _safe =>
       mounted &&
       !_invalid &&
-      _foreground &&
+      (_foreground || _nativeLearningOpen) &&
       _routeCurrent &&
       !widget.appState.resetting &&
       widget.appState.profileGeneration == _profileGeneration;
 
   bool get _canHelp => _safe && widget.answering && !widget.progress.hasPending;
+  bool get _canPropose =>
+      _canHelp &&
+      widget.onConfirmChoice != null &&
+      widget.answerChoices.isNotEmpty;
   bool get _ownsTask =>
       _published != null && identical(_requests.taskContext.value, _published);
   String? get _explanation =>
@@ -94,6 +113,7 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
     widget.appState.addListener(_checkProfile);
     _requests.helpRequested.addListener(_requestedHelp);
     _requests.learningAction.addListener(_requestedAction);
+    _requests.learningCancellation.addListener(_cancelled);
   }
 
   @override
@@ -109,6 +129,8 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
     if (oldWidget.taskKey != widget.taskKey ||
         oldWidget.moduleId != widget.moduleId) {
       _taskRevision++;
+      _discardCandidate(rebuild: false);
+      _nativeNotice = null;
       _helpIndex = -1;
       _helpLevel = 0;
       _showHelp = false;
@@ -117,6 +139,7 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
       // Invalidate our pending work without stopping that newer narration.
       _cancelNarration(stopPlayer: false);
     } else if (oldWidget.answering && !widget.answering) {
+      _discardCandidate(rebuild: false);
       _focused = false;
       _cancelNarration(stopPlayer: false);
     }
@@ -137,8 +160,15 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
     _foreground = state == AppLifecycleState.resumed;
     if (!_foreground) {
       _cancelNarration();
-      _requests.clearTask(_published);
+      if (!_nativeLearningOpen) {
+        _discardCandidate();
+        _requests.clearTask(_published);
+      }
     } else {
+      if (_nativeReturnPending) {
+        _nativeReturnPending = false;
+        _nativeLearningOpen = false;
+      }
       _schedulePublish();
     }
   }
@@ -154,6 +184,7 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
   void _publish() {
     if (!_safe) {
       _cancelNarration();
+      _discardCandidate();
       _requests.clearTask(_published);
       return;
     }
@@ -176,8 +207,9 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
       objectIds: const [ModuleTaskScope.taskObjectId],
       explanation: _explanation,
       answerChoices: List.unmodifiable(widget.answerChoices),
-      allowedActions: const {
+      allowedActions: {
         ...lumoDefaultLearningActions,
+        if (_canPropose) LumoLearningAction.proposeAnswer,
         LumoLearningAction.look,
         LumoLearningAction.point,
         LumoLearningAction.highlight,
@@ -213,6 +245,9 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
         _repeat(slower: true);
       case LumoLearningAction.stop:
         _cancelNarration();
+        // The explicit task-owned stop also stops the module's own prompt.
+        unawaited(LumoVoice.instance.stop());
+        _discardCandidate();
         setState(() => _focused = false);
       case LumoLearningAction.look:
       case LumoLearningAction.point:
@@ -222,9 +257,140 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
           _pointAtTask();
         }
       case LumoLearningAction.proposeAnswer:
-        // These choice modules have no editable voice candidate field.
-        // The action is deliberately absent from allowedActions.
-        break;
+        final candidate = request.candidate;
+        if (candidate != null) _proposeAnswer(candidate, request.identity);
+    }
+  }
+
+  void _discardCandidate({bool rebuild = true}) {
+    if (_candidateIdentity == null &&
+        _candidateController.text.isEmpty &&
+        _candidateNotice == null) {
+      return;
+    }
+    void clear() {
+      _candidateIdentity = null;
+      _candidateController.clear();
+      _candidateNotice = null;
+    }
+
+    if (rebuild && mounted) {
+      setState(clear);
+    } else {
+      clear();
+    }
+  }
+
+  void _cancelled() {
+    if (_candidateIdentity != null &&
+        !_requests.isCurrentLearningIdentity(_candidateIdentity!)) {
+      _discardCandidate();
+    }
+    _cancelNarration();
+  }
+
+  void _proposeAnswer(String candidate, LumoLearningIdentity identity) {
+    if (!_canPropose ||
+        !_ownsTask ||
+        candidate.trim().isEmpty ||
+        candidate.length > 160) {
+      return;
+    }
+    setState(() {
+      _candidateIdentity = identity;
+      _candidateController.text = candidate.trim();
+      _candidateNotice = null;
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final anchor = _candidateAnchor.currentContext;
+      if (mounted &&
+          _foreground &&
+          !_nativeLearningOpen &&
+          _candidateIdentity != null &&
+          anchor != null) {
+        unawaited(Scrollable.ensureVisible(anchor, duration: Duration.zero));
+      }
+    });
+  }
+
+  VoidCallback? _boundCandidateConfirmation() {
+    final captured = _candidateIdentity;
+    if (captured == null) return null;
+    return () {
+      if (_candidateIdentity?.matches(captured) != true) return;
+      _confirmCandidate();
+    };
+  }
+
+  void _confirmCandidate() {
+    final identity = _candidateIdentity;
+    if (!_canPropose ||
+        !_foreground ||
+        _nativeLearningOpen ||
+        !_ownsTask ||
+        identity == null ||
+        !_requests.isCurrentLearningIdentity(identity)) {
+      return;
+    }
+    final candidate = _candidateController.text.trim().toLowerCase();
+    final indices = [
+      for (var i = 0; i < widget.answerChoices.length; i++)
+        if (widget.answerChoices[i].trim().toLowerCase() == candidate) i,
+    ];
+    if (indices.length != 1) {
+      setState(() =>
+          _candidateNotice = 'Das passt noch nicht eindeutig zu einer Antwort. '
+              'Ändere den Vorschlag oder tippe auf eine Antwortkarte.');
+      return;
+    }
+    final confirm = widget.onConfirmChoice!;
+    _discardCandidate();
+    _cancelNarration();
+    confirm(indices.single);
+  }
+
+  Future<void> _openNativeLearning() async {
+    if (!_canHelp || !_ownsTask || _nativeLearningOpen) return;
+    final revision = _taskRevision;
+    _discardCandidate();
+    _cancelNarration();
+    // The local hint is visible before I/O; the same attempt is already marked
+    // assisted if the Android explanation is closed or interrupted later.
+    final level = _helpLevel < 1 ? 1 : _helpLevel;
+    widget.progress.notePresentationHelp(level: level);
+    setState(() {
+      _nativeLearningOpen = true;
+      _nativeReturnPending = false;
+      _nativeNotice = null;
+      _helpIndex = _helpIndex < 0 ? 0 : _helpIndex;
+      _helpLevel = level;
+      _showHelp = true;
+    });
+    _publish();
+    final task = _published;
+    final activity =
+        task == null ? null : NativeLearningActivity.fromCompanionContext(task);
+    try {
+      if (activity == null) return;
+      await launchLumo3D(context,
+          scene: 'learning',
+          appState: widget.appState,
+          subject: widget.progress.subject,
+          learning: activity);
+    } catch (_) {
+      if (mounted && revision == _taskRevision) {
+        setState(
+            () => _nativeNotice = 'Die 3D-Ansicht ist gerade nicht verfügbar. '
+                'Du kannst mit dieser Aufgabe weiterarbeiten.');
+      }
+    } finally {
+      if (mounted && revision == _taskRevision) {
+        setState(() {
+          _nativeReturnPending = !_foreground;
+          _nativeLearningOpen = !_foreground;
+        });
+        _publish();
+      }
     }
   }
 
@@ -314,7 +480,11 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
     widget.appState.removeListener(_checkProfile);
     _requests.helpRequested.removeListener(_requestedHelp);
     _requests.learningAction.removeListener(_requestedAction);
-    _requests.clearTask(_published);
+    _requests.learningCancellation.removeListener(_cancelled);
+    _candidateController.dispose();
+    final owned = _published;
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => _requests.clearTask(owned));
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
@@ -356,6 +526,32 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
             child: widget.child,
           ),
         ),
+        if (_candidateIdentity != null) ...[
+          const SizedBox(height: 12),
+          LearningAnswerCandidateCard(
+            key: _candidateAnchor,
+            keyPrefix: 'module',
+            controller: _candidateController,
+            notice: _candidateNotice,
+            onConfirm: _canPropose ? _boundCandidateConfirmation() : null,
+            onDiscard: _discardCandidate,
+          ),
+        ],
+        const SizedBox(height: 12),
+        FilledButton.icon(
+          key: const ValueKey('module-open-3d'),
+          onPressed: _canHelp && !_nativeLearningOpen
+              ? () => unawaited(_openNativeLearning())
+              : null,
+          style: FilledButton.styleFrom(minimumSize: const Size(48, 52)),
+          icon: const Icon(Icons.view_in_ar_rounded),
+          label: const Text('Mit Lumo in 3D ausprobieren'),
+        ),
+        if (_nativeNotice != null)
+          Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(_nativeNotice!,
+                  style: const TextStyle(color: LumoVisualTokens.white))),
         const SizedBox(height: 12),
         Text(widget.objective,
             key: const ValueKey('module-learning-objective'),
@@ -429,4 +625,71 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
       ],
     );
   }
+}
+
+/// Shared visible confirmation surface; this widget never evaluates an answer.
+class LearningAnswerCandidateCard extends StatelessWidget {
+  const LearningAnswerCandidateCard(
+      {super.key,
+      required this.keyPrefix,
+      required this.controller,
+      required this.onConfirm,
+      required this.onDiscard,
+      this.notice});
+
+  final String keyPrefix;
+  final TextEditingController controller;
+  final VoidCallback? onConfirm;
+  final VoidCallback onDiscard;
+  final String? notice;
+
+  @override
+  Widget build(BuildContext context) => Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+            color: LumoVisualTokens.lessonPanel,
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(color: LumoVisualTokens.cyan, width: 2)),
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          const Text('Habe ich dich richtig verstanden?',
+              style: TextStyle(
+                  color: LumoVisualTokens.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800)),
+          const SizedBox(height: 8),
+          const Text(
+              'Du kannst den Vorschlag ändern. Erst dein Bestätigen zählt.',
+              style: TextStyle(color: LumoVisualTokens.white, height: 1.4)),
+          const SizedBox(height: 12),
+          TextField(
+              key: ValueKey('$keyPrefix-answer-candidate'),
+              controller: controller,
+              maxLength: 160,
+              style: const TextStyle(color: Color(0xFF12366A), fontSize: 20),
+              decoration: const InputDecoration(
+                  labelText: 'Deine Antwort',
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder())),
+          if (notice != null)
+            Text(notice!,
+                style: const TextStyle(color: LumoVisualTokens.white)),
+          Wrap(spacing: 8, runSpacing: 8, children: [
+            FilledButton.icon(
+                key: ValueKey('$keyPrefix-confirm-candidate'),
+                onPressed: onConfirm,
+                style: FilledButton.styleFrom(minimumSize: const Size(48, 52)),
+                icon: const Icon(Icons.check_rounded),
+                label: const Text('Diese Antwort bestätigen')),
+            OutlinedButton(
+                key: ValueKey('$keyPrefix-discard-candidate'),
+                onPressed: onDiscard,
+                style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(48, 52),
+                    foregroundColor: LumoVisualTokens.white),
+                child: const Text('Verwerfen')),
+          ]),
+        ]),
+      );
 }

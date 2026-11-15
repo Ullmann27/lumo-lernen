@@ -45,6 +45,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
   final _lumo = LumoCharacterController();
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
@@ -176,7 +177,8 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
     });
     final isCorrect = answer == _correctAnswer;
     final saved = await _progress.saveAnswer(
-      problemKey: '${_typ.name}:$_zahl1:${_typ == _Zahl100FrageTyp.vergleich ? _zahl2 : 0}',
+      problemKey:
+          '${_typ.name}:$_zahl1:${_typ == _Zahl100FrageTyp.vergleich ? _zahl2 : 0}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 6 : 0,
@@ -283,6 +285,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
   }
 
   Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        key: _taskScopeKey,
         appState: widget.appState,
         progress: _progress,
         moduleId: 'm2_zahlen100',
@@ -290,16 +293,23 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
         prompt: switch (_typ) {
           _Zahl100FrageTyp.nachfolger => 'Welche Zahl kommt nach $_zahl1?',
           _Zahl100FrageTyp.vorgaenger => 'Welche Zahl kommt vor $_zahl1?',
-          _Zahl100FrageTyp.vergleich => 'Welche Zahl ist größer: $_zahl1 oder $_zahl2?',
-          _Zahl100FrageTyp.zehnerEiner => 'Wie viele Zehner hat die Zahl $_zahl1?',
+          _Zahl100FrageTyp.vergleich =>
+            'Welche Zahl ist größer: $_zahl1 oder $_zahl2?',
+          _Zahl100FrageTyp.zehnerEiner =>
+            'Wie viele Zehner hat die Zahl $_zahl1?',
         },
         objective: switch (_typ) {
-          _Zahl100FrageTyp.nachfolger => 'Du findest den Nachfolger einer Zahl bis hundert.',
-          _Zahl100FrageTyp.vorgaenger => 'Du findest den Vorgänger einer Zahl bis hundert.',
-          _Zahl100FrageTyp.vergleich => 'Du vergleichst zuerst die Zehner, dann die Einer.',
-          _Zahl100FrageTyp.zehnerEiner => 'Du unterscheidest Zehnerbündel und einzelne Einer.',
+          _Zahl100FrageTyp.nachfolger =>
+            'Du findest den Nachfolger einer Zahl bis hundert.',
+          _Zahl100FrageTyp.vorgaenger =>
+            'Du findest den Vorgänger einer Zahl bis hundert.',
+          _Zahl100FrageTyp.vergleich =>
+            'Du vergleichst zuerst die Zehner, dann die Einer.',
+          _Zahl100FrageTyp.zehnerEiner =>
+            'Du unterscheidest Zehnerbündel und einzelne Einer.',
         },
         answerChoices: _answers.map((number) => '$number').toList(),
+        onConfirmChoice: (index) => _onAnswer(_answers[index]),
         helpSteps: switch (_typ) {
           _Zahl100FrageTyp.nachfolger => [
               'Beginne bei $_zahl1 und zähle genau einen Schritt weiter.',

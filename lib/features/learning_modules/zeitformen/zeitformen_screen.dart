@@ -105,6 +105,7 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
     _SatzItem('Papa wird auch da sein.', _Zeitform.zukunft),
   ];
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
 
   late final AnimationController _bounceCtrl;
@@ -129,8 +130,7 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
     super.initState();
     _round = [
       for (var kind = 0; kind < _ZeitformFrageTyp.values.length; kind++)
-        for (final sentence in _saetze)
-          (kind: kind, sentence: sentence),
+        for (final sentence in _saetze) (kind: kind, sentence: sentence),
     ]..shuffle(_rng);
     _progress = LearningModuleProgress(
       appState: widget.appState,
@@ -305,6 +305,7 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
         : _satzOptions.map((sentence) => sentence.satz).toList();
     final selected = _selectedIdx;
     return ModuleTaskScope(
+      key: _taskScopeKey,
       appState: widget.appState,
       progress: _progress,
       moduleId: 'd3_zeitformen',
@@ -312,8 +313,14 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
       prompt: categorize
           ? 'In welcher Zeit steht der Satz „${_korrektSatz.satz}“?'
           : 'Welcher Satz steht in der ${_gefragteZeit.label}?',
-      objective: 'Du erkennst Vergangenheit, Gegenwart und Zukunft an den Verbformen.',
+      objective:
+          'Du erkennst Vergangenheit, Gegenwart und Zukunft an den Verbformen.',
       answerChoices: choices,
+      onConfirmChoice: (index) => _onAnswer(
+          index,
+          categorize
+              ? _zeitOptions[index] == _korrektSatz.zeit
+              : _satzOptions[index].zeit == _gefragteZeit),
       helpSteps: [
         'Lies den ganzen Satz. Suche die Wörter, die sagen, was jemand tut oder was geschieht.',
         'Vergleiche: „ich spielte“ oder „ich habe gespielt“ ist Vergangenheit; „ich spiele“ ist Gegenwart; „ich werde spielen“ ist Zukunft.',

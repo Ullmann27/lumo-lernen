@@ -49,6 +49,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
   late final _rng = widget.taskRandom ?? math.Random();
 
@@ -155,7 +156,8 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
     });
     final isCorrect = answer == _correctAnswer;
     final saved = await _progress.saveAnswer(
-      problemKey: '${_typ.name}:$_zahl1:${_typ == _ZahlAufgabenTyp.groesser ? _zahl2 : 0}',
+      problemKey:
+          '${_typ.name}:$_zahl1:${_typ == _ZahlAufgabenTyp.groesser ? _zahl2 : 0}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 5 : 0,
@@ -257,6 +259,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
   }
 
   Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        key: _taskScopeKey,
         appState: widget.appState,
         progress: _progress,
         moduleId: 'm1_zahlen10',
@@ -264,14 +267,17 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
         prompt: switch (_typ) {
           _ZahlAufgabenTyp.zaehlen => 'Wie viele Punkte siehst du?',
           _ZahlAufgabenTyp.nachfolger => 'Welche Zahl kommt nach $_zahl1?',
-          _ZahlAufgabenTyp.groesser => 'Welche Zahl ist größer: $_zahl1 oder $_zahl2?',
+          _ZahlAufgabenTyp.groesser =>
+            'Welche Zahl ist größer: $_zahl1 oder $_zahl2?',
         },
         objective: switch (_typ) {
           _ZahlAufgabenTyp.zaehlen => 'Du zählst jeden Punkt genau einmal.',
-          _ZahlAufgabenTyp.nachfolger => 'Du findest den nächsten Schritt in der Zahlenreihe.',
+          _ZahlAufgabenTyp.nachfolger =>
+            'Du findest den nächsten Schritt in der Zahlenreihe.',
           _ZahlAufgabenTyp.groesser => 'Du vergleichst zwei Zahlen bis zehn.',
         },
         answerChoices: _answers.map((number) => '$number').toList(),
+        onConfirmChoice: (index) => _onAnswer(_answers[index]),
         helpSteps: switch (_typ) {
           _ZahlAufgabenTyp.zaehlen => [
               'Beginne bei einem Punkt. Berühre beim Zählen jeden Punkt genau einmal.',
@@ -479,9 +485,11 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
     return AnimatedBuilder(
       animation: _bounceCtrl,
       builder: (_, child) => Transform.scale(
-        scale: isSelected && isCorrect &&
+        scale: isSelected &&
+                isCorrect &&
                 !LumoLessonStyle.reducedMotion(context, widget.appState)
-            ? 1 + math.sin(_bounceCtrl.value * math.pi) * .1 : 1,
+            ? 1 + math.sin(_bounceCtrl.value * math.pi) * .1
+            : 1,
         child: child,
       ),
       child: LumoAnswerCrystal(
@@ -489,8 +497,9 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
         onPressed: _answered ? null : () => _onAnswer(value),
         state: _answered && isCorrect && (isSelected || false)
             ? LumoCrystalState.correct
-            : _answered && isSelected ? LumoCrystalState.retry
-            : LumoCrystalState.neutral,
+            : _answered && isSelected
+                ? LumoCrystalState.retry
+                : LumoCrystalState.neutral,
       ),
     );
   }

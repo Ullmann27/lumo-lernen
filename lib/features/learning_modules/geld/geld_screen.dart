@@ -83,6 +83,7 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
@@ -197,7 +198,9 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
-      problemKey: _typ == _GeldFrageTyp.zaehlen ? 'Münzen: ${(_muenzenAufTisch.map((m) => m.wert).toList()..sort()).join(",")}' : 'Münze finden: ${_gefragteMuenze.wert}' ,
+      problemKey: _typ == _GeldFrageTyp.zaehlen
+          ? 'Münzen: ${(_muenzenAufTisch.map((m) => m.wert).toList()..sort()).join(",")}'
+          : 'Münze finden: ${_gefragteMuenze.wert}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,
@@ -305,6 +308,7 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
         : _muenzenAufTisch.map((coin) => coin.label).toList();
     final selected = _selectedAnswer;
     return ModuleTaskScope(
+      key: _taskScopeKey,
       appState: widget.appState,
       progress: _progress,
       moduleId: 'm2_geld',
@@ -316,6 +320,11 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
           ? 'Du addierst die Werte der Münzen in Euro und Cent.'
           : 'Du erkennst eine Münze an ihrer Zahl und ihrer Einheit.',
       answerChoices: choices,
+      onConfirmChoice: (index) => _onAnswer(
+          index,
+          counting
+              ? _answers[index] == _gesamtWert
+              : _muenzenAufTisch[index] == _gefragteMuenze),
       helpSteps: counting
           ? [
               'Lies den Wert jeder Münze. Die Anzahl der Münzen allein sagt noch nicht, wie viel Geld es ist.',

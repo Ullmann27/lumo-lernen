@@ -17,13 +17,13 @@ import '../../../widgets/design/lumo_task_object_art.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
 enum _TierFrageTyp { bildZeigen, lautRaten, lebensraum }
@@ -77,6 +77,7 @@ class _TiereScreenState extends State<TiereScreen>
     _Tier(name: 'Affe', laut: 'Uh Uh', lebensraum: 'Zoo', emoji: '🐵'),
   ];
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
 
   late final AnimationController _bounceCtrl;
@@ -157,7 +158,8 @@ class _TiereScreenState extends State<TiereScreen>
         text = 'Welches Tier macht "${_correctTier.laut}"?';
         break;
       case _TierFrageTyp.lebensraum:
-        text = 'Wo kann man das Tier ${_correctTier.name} bei uns häufig sehen?';
+        text =
+            'Wo kann man das Tier ${_correctTier.name} bei uns häufig sehen?';
         break;
     }
     try {
@@ -282,6 +284,59 @@ class _TiereScreenState extends State<TiereScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) {
+    final places = _typ == _TierFrageTyp.lebensraum;
+    final choices = places
+        ? _buildLebensraumOptions()
+        : _answerOptions.map((animal) => animal.name).toList();
+    return ModuleTaskScope(
+      key: _taskScopeKey,
+      appState: widget.appState,
+      progress: _progress,
+      moduleId: 's1_tiere',
+      taskKey: _taskIdx,
+      prompt: switch (_typ) {
+        _TierFrageTyp.bildZeigen => 'Welches Tier zeigt das Bild?',
+        _TierFrageTyp.lautRaten => 'Welches Tier macht „${_correctTier.laut}“?',
+        _TierFrageTyp.lebensraum =>
+          'Wo kann man das Tier ${_correctTier.name} bei uns häufig sehen?',
+      },
+      objective: switch (_typ) {
+        _TierFrageTyp.bildZeigen =>
+          'Du verbindest ein Tierbild mit dem passenden Tiernamen.',
+        _TierFrageTyp.lautRaten =>
+          'Du verbindest einen dargestellten Tierlaut mit einem Tier.',
+        _TierFrageTyp.lebensraum =>
+          'Du ordnest Tiere typischen Begegnungsorten bei uns zu.',
+      },
+      answerChoices: choices,
+      onConfirmChoice: (index) => _onAnswer(choices[index]),
+      helpSteps: [
+        switch (_typ) {
+          _TierFrageTyp.bildZeigen =>
+            'Betrachte Kopf, Beine, Fell oder Federn. Welche Merkmale erkennst du am Tierbild?',
+          _TierFrageTyp.lautRaten =>
+            'Sprich den dargestellten Laut „${_correctTier.laut}“ langsam nach. An welches Tier erinnert er dich?',
+          _TierFrageTyp.lebensraum =>
+            'Denke an das Tier ${_correctTier.name}. Wo begegnet man diesem Tier bei uns häufig?',
+        },
+        places
+            ? 'Vergleiche Bauernhof, Zoo, See und Zuhause. Gesucht ist ein typischer Begegnungsort bei uns; Tiere können auch an anderen Orten leben.'
+            : 'Lies jeden angebotenen Tiernamen. Passt er zu den Merkmalen im Bild oder zum dargestellten Laut?',
+        places
+            ? 'Hier wird ${_correctTier.name} dem Begegnungsort ${_correctTier.lebensraum} zugeordnet. Das sagt nicht, dass es ausschließlich dort lebt.'
+            : 'Gemeint ist ${_correctTier.name}. Verbinde den Tiernamen noch einmal mit dem Bild oder dem Laut und wähle selbst.',
+      ],
+      answering: !_answered,
+      lastAnswer: _selectedAnswer,
+      lastCorrect: _answered
+          ? _selectedAnswer ==
+              (places ? _correctTier.lebensraum : _correctTier.name)
+          : null,
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -296,7 +351,8 @@ class _TiereScreenState extends State<TiereScreen>
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -312,7 +368,7 @@ class _TiereScreenState extends State<TiereScreen>
             const SizedBox(height: 20),
             _buildAnswerOptions(),
           ]),
-        ),
+        )),
       ),
     );
   }

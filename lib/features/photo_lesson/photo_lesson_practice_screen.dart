@@ -13,6 +13,8 @@ import '../../core/task_quality_guard.dart';
 import '../../core/tutor_coordination_engine.dart';
 import '../../core/writing_target_parser.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
+import '../../domain/tutoring/native_learning_activity.dart';
+import '../lumo3d/lumo3d_launcher.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../learning/adapters/legacy_lumo_task_adapter.dart';
@@ -60,6 +62,9 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
   String? _error, _workspaceText, _activeObjectId, _subtitle;
   List<String> _objectIds = const [];
   LumoCompanionTaskContext? _published;
+  LumoLearningIdentity? _proposalIdentity;
+  int _proposalToken = 0;
+  bool _foreground = true, _nativeOpen = false, _nativeReturnPending = false;
 
   LumoCompanionRequests get _bus => LumoCompanionRequests.instance;
   bool get _ownsProfile =>
@@ -67,6 +72,7 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
       widget.appState.profileGeneration == widget.lease.generation &&
       widget.appState.canUseLearningLease(widget.lease);
   bool get _editable =>
+      (_foreground || _nativeOpen) &&
       !_saving &&
       _pending == null &&
       !_profileChanged &&
@@ -86,6 +92,8 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    _foreground = WidgetsBinding.instance.lifecycleState == null ||
+        WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
     _session = widget.session;
     _prepareTask();
     widget.appState.addListener(_profileUpdated);
@@ -138,7 +146,22 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state != AppLifecycleState.resumed) _stop();
+    if (state != AppLifecycleState.resumed) {
+      if (!_nativeOpen) {
+        _stop();
+        _bus.clearTask(_published);
+      }
+      _foreground = false;
+    } else {
+      setState(() {
+        _foreground = true;
+        if (_nativeReturnPending) {
+          _nativeOpen = false;
+          _nativeReturnPending = false;
+        }
+      });
+      _publish();
+    }
   }
 
   void _identityChanged() {
@@ -210,7 +233,10 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
   }
 
   void _publish() {
-    if (!mounted || !_ownsProfile || _profileChanged) return;
+    if (!mounted ||
+        (!_foreground && !_nativeOpen) ||
+        !_ownsProfile ||
+        _profileChanged) return;
     final attempts = _session.attemptsFor(_session.task.id);
     final last = attempts.isEmpty ? null : attempts.last;
     final context = LumoCompanionTaskContext(
@@ -249,7 +275,9 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
   }
 
   bool get _ownsTask =>
-      _ownsProfile && identical(_bus.taskContext.value, _published);
+      (_foreground || _nativeOpen) &&
+      _ownsProfile &&
+      identical(_bus.taskContext.value, _published);
 
   void _legacyHelp() {
     if (_ownsTask) unawaited(_hint());
@@ -277,6 +305,8 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
       case LumoLearningAction.proposeAnswer:
         if (_editable && request.candidate != null) {
           setState(() {
+            _proposalToken++;
+            _proposalIdentity = request.identity;
             _proposal.text = request.candidate!;
             _showProposal = true;
           });
@@ -337,6 +367,9 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
     unawaited(LumoVoice.instance
         .configure(rate: widget.appState.state.settings.voiceRate));
     setState(() {
+      _showProposal = false;
+      _proposalIdentity = null;
+      _proposal.clear();
       _subtitle = null;
       _activeObjectId = null;
       _helpVisible = false;
@@ -357,6 +390,51 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
     if (!_ownsProfile || _saving) return;
     setState(() => _slow = true);
     _repeat();
+  }
+
+  Future<void> _openNativeLearning() async {
+    final before = _bus.learningIdentity.value;
+    if (!_editable || !_ownsTask || _nativeOpen || before == null) return;
+    final taskId = _task.taskInstanceId;
+    _speechSerial++;
+    _speechIdentity = null;
+    setState(() {
+      _helpVisible = true;
+      _showProposal = false;
+      _proposalIdentity = null;
+    });
+    // Persist assistance before the native illustration can reveal a step.
+    await _persist(
+        _session.withHelp(_session.helpLevel < 1 ? 1 : _session.helpLevel));
+    await _narration.stop();
+    final current = _bus.learningIdentity.value;
+    if (!mounted ||
+        !_foreground ||
+        !_editable ||
+        !_ownsTask ||
+        _error != null ||
+        taskId != _task.taskInstanceId ||
+        current == null ||
+        before.sessionId != current.sessionId ||
+        before.taskId != current.taskId ||
+        current.cancelEpoch - before.cancelEpoch !=
+            current.revision - before.revision) return;
+    setState(() => _nativeOpen = true);
+    try {
+      await launchLumo3D(context,
+          scene: 'learning',
+          appState: widget.appState,
+          subject: _session.task.subject,
+          learning: NativeLearningActivity.forTask(_task));
+    } finally {
+      if (mounted && taskId == _task.taskInstanceId) {
+        setState(() {
+          _nativeReturnPending = !_foreground;
+          _nativeOpen = !_foreground;
+        });
+        _publish();
+      }
+    }
   }
 
   Future<void> _hint() async {
@@ -392,6 +470,7 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
   }
 
   void _answer(AdaptiveTaskAnswer answer) {
+    if (!_foreground || _nativeOpen) return;
     if (!_editable || answer.task.taskInstanceId != _task.taskInstanceId) {
       return;
     }
@@ -433,8 +512,26 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
     await _persist(source.answer(value, correct: correct));
   }
 
+  VoidCallback? _proposalConfirmation() {
+    final identity = _proposalIdentity;
+    final token = _proposalToken;
+    if (!_editable || !_showProposal || identity == null) return null;
+    return () {
+      if (!_showProposal ||
+          token != _proposalToken ||
+          _proposalIdentity?.matches(identity) != true) return;
+      _confirmProposal();
+    };
+  }
+
   void _confirmProposal() {
-    if (!_editable) return;
+    final identity = _proposalIdentity;
+    if (!_foreground ||
+        _nativeOpen ||
+        !_editable ||
+        !_ownsTask ||
+        identity == null ||
+        !_bus.isCurrentLearningIdentity(identity)) return;
     final proposal = _proposal.text.trim();
     final matches = _session.task.choices
         .where((c) => c.toLowerCase() == proposal.toLowerCase());
@@ -592,6 +689,12 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
                       _completion()
                     else ...[
                       Wrap(spacing: 8, runSpacing: 8, children: [
+                        _control(
+                            'Mit Lumo in 3D',
+                            Icons.view_in_ar_rounded,
+                            _editable && !_nativeOpen
+                                ? () => unawaited(_openNativeLearning())
+                                : null),
                         _control('Hilf mir', Icons.lightbulb_outline,
                             _editable ? () => unawaited(_hint()) : null),
                         _control('Noch einmal', Icons.replay,
@@ -661,7 +764,7 @@ class _PhotoLessonPracticeScreenState extends State<PhotoLessonPracticeScreen>
                             decoration: const InputDecoration(
                                 labelText: 'Dein Antwortvorschlag')),
                         _control('Diese Antwort prüfen', Icons.check,
-                            _editable ? _confirmProposal : null),
+                            _proposalConfirmation()),
                         _control('Vorschlag verwerfen', Icons.close,
                             () => setState(() => _showProposal = false)),
                       ],

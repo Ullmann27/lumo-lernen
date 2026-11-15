@@ -100,6 +100,7 @@ class _WortartenScreenState extends State<WortartenScreen>
     _WortItem('schön', _Wortart.adjektiv),
   ];
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
 
   late final AnimationController _bounceCtrl;
@@ -124,8 +125,7 @@ class _WortartenScreenState extends State<WortartenScreen>
     super.initState();
     _round = [
       for (var kind = 0; kind < _WortartenFrageTyp.values.length; kind++)
-        for (final word in _woerter)
-          (kind: kind, item: word),
+        for (final word in _woerter) (kind: kind, item: word),
     ]..shuffle(_rng);
     _progress = LearningModuleProgress(
       appState: widget.appState,
@@ -299,6 +299,7 @@ class _WortartenScreenState extends State<WortartenScreen>
         : _woerterOptions.map((word) => word.wort).toList();
     final selected = _selectedIdx;
     return ModuleTaskScope(
+      key: _taskScopeKey,
       appState: widget.appState,
       progress: _progress,
       moduleId: 'd3_wortarten',
@@ -308,6 +309,11 @@ class _WortartenScreenState extends State<WortartenScreen>
           : 'Welches Wort ist ein ${_gefragteArt.label}?',
       objective: 'Du unterscheidest Nomen, Verben und Adjektive.',
       answerChoices: choices,
+      onConfirmChoice: (index) => _onAnswer(
+          index,
+          categorize
+              ? _wortartOptions[index] == _korrektWort.art
+              : _woerterOptions[index].art == _gefragteArt),
       helpSteps: [
         'Überlege, was das Wort ausdrückt: einen Namen für etwas, eine Tätigkeit oder eine Eigenschaft.',
         'Nomen benennen zum Beispiel Menschen, Tiere oder Dinge. Verben sagen, was geschieht. Adjektive beschreiben, wie etwas ist.',

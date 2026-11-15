@@ -135,6 +135,13 @@ class LearningCoachBinding {
     if (result is Future<void>) unawaited(result);
   }
 
+  /// Releases only this lesson's published task when its page becomes hidden.
+  /// The normal bus cancellation invalidates every pending proposal and audio.
+  void clear() {
+    requests.clearTask(_context);
+    _activeIdentity = null;
+  }
+
   void dispose() {
     if (_disposed) return;
     _disposed = true;

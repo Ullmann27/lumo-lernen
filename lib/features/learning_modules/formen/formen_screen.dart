@@ -60,6 +60,7 @@ class _FormenScreenState extends State<FormenScreen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
@@ -232,22 +233,32 @@ class _FormenScreenState extends State<FormenScreen>
   }
 
   Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        key: _taskScopeKey,
         appState: widget.appState,
         progress: _progress,
         moduleId: 'm1_formen',
         taskKey: _taskIdx,
-        prompt: 'Welche Form ist das? Vergleiche die gezeigte Umrissform mit den Namen.',
-        objective: 'Du erkennst Formen an ihrem Umriss, ihren Ecken und Seiten.',
+        prompt:
+            'Welche Form ist das? Vergleiche die gezeigte Umrissform mit den Namen.',
+        objective:
+            'Du erkennst Formen an ihrem Umriss, ihren Ecken und Seiten.',
         answerChoices: _answers.map((shape) => shape.displayName).toList(),
+        onConfirmChoice: (index) => _onAnswer(_answers[index]),
         helpSteps: [
           'Fahre den Umriss mit deinem Finger nach. Ist er rund oder hat er gerade Seiten und Ecken?',
           switch (_correctShape) {
-            _Shape.kreis => 'Der gezeigte Umriss ist ganz rund und hat keine Ecke.',
-            _Shape.quadrat => 'Die Form hat vier gleich lange Seiten und vier rechte Winkel.',
-            _Shape.dreieck => 'Zähle die Ecken: Die gezeigte Form hat drei Ecken und drei Seiten.',
-            _Shape.rechteck => 'Die gezeigte Form hat vier rechte Winkel. Zwei Seiten sind länger als die anderen zwei.',
-            _Shape.stern => 'Schau auf die Spitzen, die nach außen zeigen. Dazwischen geht der Umriss wieder nach innen.',
-            _Shape.herz => 'Oben siehst du zwei runde Bögen. Unten laufen sie in einer Spitze zusammen.',
+            _Shape.kreis =>
+              'Der gezeigte Umriss ist ganz rund und hat keine Ecke.',
+            _Shape.quadrat =>
+              'Die Form hat vier gleich lange Seiten und vier rechte Winkel.',
+            _Shape.dreieck =>
+              'Zähle die Ecken: Die gezeigte Form hat drei Ecken und drei Seiten.',
+            _Shape.rechteck =>
+              'Die gezeigte Form hat vier rechte Winkel. Zwei Seiten sind länger als die anderen zwei.',
+            _Shape.stern =>
+              'Schau auf die Spitzen, die nach außen zeigen. Dazwischen geht der Umriss wieder nach innen.',
+            _Shape.herz =>
+              'Oben siehst du zwei runde Bögen. Unten laufen sie in einer Spitze zusammen.',
           },
           'Vergleiche diese Merkmale mit jedem Formnamen. Die Farbe und die Größe ändern den Namen der Form nicht.',
         ],

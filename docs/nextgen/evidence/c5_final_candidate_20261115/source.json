@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "producerRoot": "/workspace/scratch/c5a7dadab95f/lumo-lernen",
+  "producerHead": "e357b2a883d0982863126bf83508111df04bf47c",
+  "producerBase": "dd0eb439bf278a476b3669deb5b0316b19b66e1f",
+  "sourceStatus": "Explicitly frozen producer files, including identified uncommitted final hooks. This root commit is a candidate for immediate integration testing, not a producer completion claim.",
+  "doubleReadStable": true,
+  "scope": "Story, five mini-games, existing cards/quiz learning questions, and owner-bound mini-game wallet API. No game-world, native table, protected writing, journal or shared-bus files.",
+  "files": [
+    {
+      "path": "assets/learning_questions/grade1_german.json",
+      "bytes": 10021,
+      "sha256": "196446c24c5b47beb95321c7152da6ef332e53ca3708f3142065b7789c515a7d",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "assets/learning_questions/grade2_german.json",
+      "bytes": 10128,
+      "sha256": "17e15e3448af2534b45a2eb0112a10a52236c67d38b88a40a57190c2ac163525",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "assets/learning_questions/grade2_math.json",
+      "bytes": 9142,
+      "sha256": "c5025f1d6c7db83ea4b8a74b16a0db36a5da8ac9730caafa92479d7641803f7b",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "bytes": 58711,
+      "sha256": "ddd16be7d4d43104fee3f0c476f1de4691d2afcc157f208646a8931c68b8a93f",
+      "committedAtProducerHead": false
+    },
+    {
+      "path": "lib/core/choice_question_quality.dart",
+      "bytes": 20577,
+      "sha256": "5585069db39803124425aee997eac4eb5f16bceb1a0dc456ae84d6bdc252a2cc",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/core/game_progress_repository.dart",
+      "bytes": 9590,
+      "sha256": "1838d8bdc9ee99c6b07a5e430c0d4b3bc7380f177a2e844a27e8376536cbcfd9",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/core/lumo_story_summary_scoring.dart",
+      "bytes": 3436,
+      "sha256": "441828ec5f59bc0ff77ac22619c4c2d8d8a33a4979daa91a85431d148e4b2717",
+      "committedAtProducerHead": false
+    },
+    {
+      "path": "lib/domain/games/game_lesson_tasks.dart",
+      "bytes": 16718,
+      "sha256": "4476f9f08c03a0b74846e5a4b277103117c677571595c0e8355b33e20b292916",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/domain/games/game_math_tasks.dart",
+      "bytes": 7726,
+      "sha256": "b485fad2b982a75d7cec6457a388c51003bbf1d544ecadf9e47031bf772bb915",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/domain/games/mini_game_learning_task.dart",
+      "bytes": 20695,
+      "sha256": "07f8580a28a9e3c74e917de9d5e8c81a8b4a4f06ca0e0182a9256377bd7b5751",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/domain/games/mini_game_round.dart",
+      "bytes": 18932,
+      "sha256": "3f3467eb7b4fd2828fb5b4d12760a1a938ed220f5595abd359e2097ddd5f0f58",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/domain/quiz/quiz_question_bank.dart",
+      "bytes": 40606,
+      "sha256": "58d33107d5768d7eabfe1bc7d3aeede7ecea9a01377b851ad01d422771eebbcd",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/features/games/lumo_cards/learning_question_repository.dart",
+      "bytes": 9783,
+      "sha256": "2d88123e96bb1bb52183ed90b5b8132b61d74f43541970029e59a22026f24942",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_screen.dart",
+      "bytes": 56525,
+      "sha256": "9ceba304ee6e66b323e5fee36cacbc267ab0b0ae621c9a738802745989482ec2",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_learning_card_overlay.dart",
+      "bytes": 13734,
+      "sha256": "f369c77b7418a5fafe0922df2792af312d78283554709f238d8cb585e8c63f7b",
+      "committedAtProducerHead": false
+    },
+    {
+      "path": "lib/features/games/mini_games/color_boxes_game.dart",
+      "bytes": 639,
+      "sha256": "ebb72f5defba9bddbbe69262e5f86f4eddc067e37729adc8aa20c0264906c080",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/features/games/mini_games/lesson_trail_game.dart",
+      "bytes": 714,
+      "sha256": "70cdfd3a815c442f1b13d1f0f165708fb0d307b1e3f8530286ddbd95da4364c0",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/features/games/mini_games/letter_fill_game.dart",
+      "bytes": 639,
+      "sha256": "656a7e5438631b3b0fd01e86d4758bb1718759d9d17cebbf39dd9a0ffc0662bf",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/features/games/mini_games/mini_game_learning_screen.dart",
+      "bytes": 72750,
+      "sha256": "186f43126ff04c3b65a7f9a44d694c4721b580e5b0636beca6b9064793da9dfe",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/features/games/mini_games/number_house_game.dart",
+      "bytes": 714,
+      "sha256": "f7ed3f1fddc9528c6a4be148a8188114685901b1a6e0009b2788b341af13515a",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/features/games/mini_games/stars_path_game.dart",
+      "bytes": 710,
+      "sha256": "4871b1f6c5a3d60c8c328e943fa963f753675734d226ddfa57ea87e809551ae8",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "lib/features/learning/widgets/learning_question_coach.dart",
+      "bytes": 13941,
+      "sha256": "820ec52d08b6c31fa062fcbd091dd37bb4d9331225dcad18d56284ee487e9595",
+      "committedAtProducerHead": false
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_content.dart",
+      "bytes": 65234,
+      "sha256": "a9736e917b2029c74cf7c8a77b2549d0353698a29bf2ae2a74a720acbd74f044",
+      "committedAtProducerHead": false
+    },
+    {
+      "path": "lib/features/story/lumo_story_library_screen.dart",
+      "bytes": 27583,
+      "sha256": "5cbcddd3d8e232b078bdb53275c7566f478937ce7c05d416c927da239690735f",
+      "committedAtProducerHead": false
+    },
+    {
+      "path": "lib/features/story/lumo_story_reader_screen.dart",
+      "bytes": 81353,
+      "sha256": "26468e63cd49a470a2665b53b0d5ed50a19ce28e7818f7fd953be85553a74729",
+      "committedAtProducerHead": false
+    },
+    {
+      "path": "test/games/learning_question_coach_flow_test.dart",
+      "bytes": 10263,
+      "sha256": "2ace0f0d6a39f806784f528e23103a3f9f7ab5d11945f3f99845876aa8b8db65",
+      "committedAtProducerHead": false
+    },
+    {
+      "path": "test/games/mini_game_round_test.dart",
+      "bytes": 12065,
+      "sha256": "e5ff3799b16f86c73fdcb3a6897b0becee062089b7377419e00d3cdfb72f974d",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "test/games/mini_game_wallet_profile_test.dart",
+      "bytes": 6655,
+      "sha256": "d249bb432847f97a05d34fc87ed002bea8e3818c77fd98955f771fb1dc1fb9d3",
+      "committedAtProducerHead": false
+    },
+    {
+      "path": "test/learning/nextgen_question_bank_quality_test.dart",
+      "bytes": 9140,
+      "sha256": "2f9c90e0e73c093ece8ef4ae4f16b6cac4c9d368625b060ecbe43b1363ee938b",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "test/learning/question_bank_release_probe.dart",
+      "bytes": 2603,
+      "sha256": "822225e2242dbab399f51080f30880eab56079cab1856da0c4d6fc3bf23c398a",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "test/story_completion_navigation_test.dart",
+      "bytes": 5851,
+      "sha256": "0c5918146f98e1c29fea283451583e2eb7403d7e8c37dbee8fca24e1636f1b50",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "test/story_completion_storage_test.dart",
+      "bytes": 9066,
+      "sha256": "459bdc73c2ff4b6a9fafdb9df5fa260375b840a09fdbf628888ea78733020bc4",
+      "committedAtProducerHead": true
+    },
+    {
+      "path": "test/story_nextgen_flow_test.dart",
+      "bytes": 22020,
+      "sha256": "86c93a4503d5c435a20f18c7ee1cad1472a703d1af232d3f08fe1299931a7c90",
+      "committedAtProducerHead": false
+    },
+    {
+      "path": "test/story_summary_reward_integrity_test.dart",
+      "bytes": 3729,
+      "sha256": "b9f114fd66a32b86934f5fcf21c22ab5d58be9d571a1639d4aca258ac0846fac",
+      "committedAtProducerHead": true
+    }
+  ]
+}

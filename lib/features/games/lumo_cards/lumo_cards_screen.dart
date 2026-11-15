@@ -1012,6 +1012,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                   (!widget.vsBot || s.currentPlayerIndex == 0) &&
                   s.pendingLearningQuestion != null)
                 LumoLearningCardOverlay(
+                  appState: widget.appState,
+                  roundId: _controller.roundId,
                   question: s.pendingLearningQuestion!,
                   onAnswer: _controller.answerLearningQuestion,
                 ),

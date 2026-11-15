@@ -28,9 +28,11 @@ from contextlib import contextmanager
 import hashlib
 import importlib
 import json
+import math
 import os
 from pathlib import Path
 import re
+import shlex
 import shutil
 import subprocess
 import sys
@@ -55,6 +57,12 @@ WORD_PROMPT = "Schreibe das Namenwort: Ba – na – ne."
 PATTERN_PROMPT = "Kreis – Dreieck – Kreis – Dreieck – Kreis. Welche Form kommt als Nächstes?"
 MODEL_ASSENT = ("Als erwachsene Person akzeptiere ich für die lokale Sprachfunktion die "
                 "obenstehenden Modellbedingungen einschließlich der Nutzungsbeschränkungen.")
+FOLD7_SPECIFICATION = "https://news.samsung.com/global/samsung-galaxy-z-fold7-raising-the-bar-for-smartphones"
+DISPLAY_LAYOUTS = (
+    ("compact", 720, 1600, 320), ("expanded", 1768, 2208, 360),
+    ("fold7-cover-emulated", 1080, 2520, 420),
+    ("fold7-inner-emulated", 1968, 2184, 420),
+)
 
 
 def require(condition: bool, message: str) -> None:
@@ -196,12 +204,15 @@ def require_preserved(before: dict, after: dict, before_task: dict | None = None
             "same_task_checkpoint": before_task is not None}
 
 
+def speech_events(log: str):
+    return re.findall(r"(?m)^I/LumoLearningSpeech\s*\(\s*(\d+)\):\s*"
+                      r"(started|completed) id=(\d+)(?: profile=([\w-]+))?\s*$", log)
+
+
 def speech_completion(log: str, pid: int, *, previous_ids=()) -> dict:
     """Correlate actual MediaPlayer events to this native process and this turn."""
-    events = re.findall(r"(?m)^I/LumoLearningSpeech\s*\(\s*(\d+)\):\s*"
-                        r"(started|completed) id=(\d+)(?: profile=([\w-]+))?\s*$", log)
     starts, complete = set(), set()
-    for observed_pid, state, raw_id, profile in events:
+    for observed_pid, state, raw_id, profile in speech_events(log):
         turn = int(raw_id)
         if int(observed_pid) != pid or turn <= 0 or turn in previous_ids:
             continue
@@ -225,6 +236,127 @@ def why_response(labels: list[str]) -> str | None:
                 and any(word in lowered for word in ("weil", "fehlen", "brauch", "bis zur", "bis zehn", "frei", "ergänze"))):
             return label
     return None
+
+
+def microphone_outcome(labels: list[str]) -> str | None:
+    """Recognize actual current UI states, without declaring spoken STT proof."""
+    joined = "\n".join(labels).lower()
+    if "sprich jetzt" in joined or re.search(r"\bhört (?:dir )?zu\b", joined):
+        return "listening_ui_observed"
+    if any(text in joined for text in (
+        "start nicht bestätigt", "spracherkennung ist auf diesem gerät noch nicht bestätigt",
+        "spracheingabe ist nicht bereit",
+        "spracherkennung ist auf diesem gerät nicht bereit", "spracherkennung ist nicht verfügbar",
+        "sprache ist lokal noch nicht bereit", "mikrofon ist nicht freigegeben",
+        "nicht starten", "nicht gestartet",
+    )):
+        return "explicit_device_limitation"
+    return None
+
+
+PERFORMANCE_COUNTERS = (
+    "fox_usable_samples", "speech_playing_samples", "speech_playing_audible_samples",
+    "effects_active_samples", "speech_fox_effects_samples",
+)
+
+
+def learning_performance_windows(log: str, pid: int) -> list[dict]:
+    """Validate the native producer's actual intervals for this one process."""
+    windows = []
+    expected = {"schema", "version", "kind", "platform", "renderer", "display_driver", "adapter",
+                "reduced_motion", "window_index", "window_ms", "sample_count",
+                "frame_ms", "process_ms", "render", *PERFORMANCE_COUNTERS}
+    metrics = {
+        "frame_ms": {"mean", "p50", "p95", "p99", "max", "over_16_7_count", "over_16_7_fraction"},
+        "process_ms": {"mean", "p95", "max"},
+        "render": {"draw_calls_mean", "primitives_mean", "render_objects_mean", "objects_mean", "nodes_mean"},
+    }
+
+    def number(value, label):
+        require(type(value) in (int, float) and math.isfinite(value) and value >= 0,
+                "Invalid native performance number: " + label)
+
+    for line in log.splitlines():
+        match = re.fullmatch(r"I/(?:godot|Godot)\s*\(\s*(\d+)\s*\):\s*LUMO_LEARNING_PERF (\{.*\})\s*", line)
+        if not match or int(match[1]) != pid:
+            continue
+        require(len(match[2]) <= 8000, "Oversized native performance record")
+        report = read_json(match[2])
+        require(set(report) == expected, "Unexpected native performance schema fields")
+        require(report["schema"] == "lumo.learning.perf" and type(report["version"]) is int and
+                report["version"] == 1, "Unknown native performance schema/version")
+        require(report["kind"] == "bridge_ten" and report["platform"] == "Android",
+                "Performance does not describe the actual Android 8+5 scene")
+        for key in ("renderer", "display_driver", "adapter"):
+            require(isinstance(report[key], str) and 0 < len(report[key]) <= 120,
+                    "Missing native rendering identity: " + key)
+        require(type(report["reduced_motion"]) is bool, "Invalid native reduced-motion observation")
+        index, count = report["window_index"], report["sample_count"]
+        require(type(index) is int and index >= 0 and
+                (not windows or index > windows[-1]["window_index"]),
+                "Repeated or stale native performance window")
+        require(type(count) is int and count > 0, "Native performance has no actual frame samples")
+        number(report["window_ms"], "window_ms")
+        require(5000 <= report["window_ms"] <= 60000,
+                "Native performance requires complete five-second measurement windows")
+        for group, keys in metrics.items():
+            require(isinstance(report[group], dict) and set(report[group]) == keys,
+                    "Missing native performance metrics: " + group)
+            for key in keys:
+                number(report[group][key], group + "." + key)
+        frame, process = report["frame_ms"], report["process_ms"]
+        require(0 < frame["mean"] <= frame["max"] + .000001 and
+                frame["p50"] <= frame["p95"] <= frame["p99"] <= frame["max"],
+                "Inconsistent measured native frame times")
+        require(abs(frame["mean"] * count - report["window_ms"]) <= 1,
+                "Measured native frame intervals do not match elapsed window time")
+        require(process["mean"] <= process["max"] + .000001 and process["p95"] <= process["max"],
+                "Inconsistent measured native process times")
+        over = frame["over_16_7_count"]
+        require(type(over) is int and 0 <= over <= count and
+                0 <= frame["over_16_7_fraction"] <= 1 and
+                abs(frame["over_16_7_fraction"] - over / count) <= .001,
+                "Inconsistent observed frame-budget count/fraction")
+        for key in PERFORMANCE_COUNTERS:
+            require(type(report[key]) is int and 0 <= report[key] <= count,
+                    "Invalid measured native co-occurrence counter: " + key)
+        require(report["speech_playing_audible_samples"] <= report["speech_playing_samples"] and
+                report["speech_fox_effects_samples"] <= min(
+                    report["speech_playing_audible_samples"], report["fox_usable_samples"],
+                    report["effects_active_samples"]), "Inconsistent audio/figure/effect observations")
+        require(not report["reduced_motion"] or report["effects_active_samples"] == 0,
+                "Reduced-motion scene claims moving effects")
+        windows.append(report)
+    return windows
+
+
+def learning_performance_summary(windows: list[dict], pid: int, seconds: float) -> dict:
+    require(10 <= seconds <= 60, "Native performance observation must last 10 to 60 seconds")
+    require(len(windows) >= 2, "Two actual native performance windows are required")
+    combined = [w["window_index"] for w in windows if w["speech_fox_effects_samples"] > 0]
+    require(combined, "No measured window contains audible speech, usable figure and moving effects together")
+    count = sum(w["sample_count"] for w in windows)
+    covered_ms = sum(w["window_ms"] for w in windows)
+    require(10000 <= covered_ms <= seconds * 1000 + 100,
+            "Native measurement windows exceed the current observation period")
+    mean = sum(w["frame_ms"]["mean"] * w["sample_count"] for w in windows) / count
+    over = sum(w["frame_ms"]["over_16_7_count"] for w in windows)
+    return {
+        "capture_status": "MEASURED", "native_pid": pid, "scene_observed_seconds": seconds,
+        "window_count": len(windows), "sample_count": count, "windows": windows,
+        "measured_window_seconds": covered_ms / 1000,
+        "combined_audio_figure_effect_windows": combined,
+        "mean_process_frame_interval_ms": mean, "mean_process_frame_rate_hz": 1000 / mean,
+        "process_frames_over_16_7_ms": over, "process_frames_over_16_7_fraction": over / count,
+        "worst_window_p95_ms": max(w["frame_ms"]["p95"] for w in windows),
+        "worst_window_p99_ms": max(w["frame_ms"]["p99"] for w in windows),
+        "minimum_samples_per_window": min(w["sample_count"] for w in windows),
+        "windows_with_fewer_than_100_samples": [w["window_index"] for w in windows if w["sample_count"] < 100],
+        "percentile_boundary": "Nearest-rank percentiles describe these samples only. With fewer than 100 samples, P99 selects the maximum; small windows do not establish a stable tail-latency estimate.",
+        "physical_device_60fps_verified": False,
+        "measurement_boundary": "Actual Godot _process intervals in the Android emulator; per-window percentiles are not global percentiles or display presentation timestamps.",
+        "audio_boundary": "Accepted native playing/audible status; no human listening or acoustic waveform capture.",
+    }
 
 
 class LearningProbe:
@@ -363,6 +495,7 @@ class LearningProbe:
             owned = pids[0]
             yield
         finally:
+            capture_block_seconds = time.monotonic() - began
             if owned and owned in self.base.adb("shell", "pidof", "screenrecord", check=False).split():
                 self.base.adb("shell", "kill", "-2", owned)
             try:
@@ -383,8 +516,8 @@ class LearningProbe:
                          "duration_seconds": float(metadata["format"]["duration"]),
                          "width": videos[0]["width"], "height": videos[0]["height"],
                          "audio_recorded": False, "maximum_seconds": 180,
-                         "block_elapsed_seconds": round(time.monotonic() - began, 2),
-                         "whole_block_within_recording_limit": time.monotonic() - began < 180}
+                         "block_elapsed_seconds": round(capture_block_seconds, 2),
+                         "whole_block_within_recording_limit": capture_block_seconds < 180}
                 self.recordings.append(entry)
                 self.save(name + "-video", entry)
                 self.result["videos"] = self.recordings
@@ -541,22 +674,41 @@ class LearningProbe:
         self.save("display-original", {"size": original_size, "density": original_density})
         states = []
         try:
-            for name, width, height, density in (("compact", 720, 1600, 320), ("expanded", 1768, 2208, 360)):
+            for name, width, height, density in DISPLAY_LAYOUTS:
                 self.base.display(width, height, density)
+                actual_size = self.base.adb("shell", "wm", "size")
+                actual_density = self.base.adb("shell", "wm", "density")
+                sizes = re.findall(r"(?m)^(?:Physical|Override) size:\s*(\d+)x(\d+)\s*$", actual_size)
+                densities = re.findall(r"(?m)^(?:Physical|Override) density:\s*(\d+)\s*$", actual_density)
+                require(sizes and tuple(map(int, sizes[-1])) == (width, height) and
+                        densities and int(densities[-1]) == density,
+                        "Actual Android display configuration differs from requested test layout")
+                display = {"layout": name, "width": width, "height": height,
+                           "android_test_density_dpi": density, "wm_size": actual_size,
+                           "wm_density": actual_density, "physical_ppi_claimed": False}
+                self.save(self.fresh(name + "-display"), display)
                 with self.recording("bridge-resize-" + name):
                     self.see(BRIDGE_PROMPT, "bridge-" + name + "-prompt", scroll=True, exact=True)
                     self.see("Verschobener Stein 1, zurück in den Vorrat", "bridge-" + name + "-model", scroll=True)
                     capture = self.capture("bridge-" + name)
                     require((capture["width"], capture["height"]) == (width, height), "Resize did not produce requested pixels")
-                    states.append(require_preserved(before, learning_snapshot(self.preferences(name + "-prefs")),
-                                                    before_task, self.checkpoint("bridge", moved=1)))
+                    states.append({**display, "screenshot": capture,
+                                   "preservation": require_preserved(
+                                       before, learning_snapshot(self.preferences(name + "-prefs")),
+                                       before_task, self.checkpoint("bridge", moved=1))})
         finally:
             for command, original in (("size", original_size), ("density", original_density)):
                 override = re.search(r"Override (?:size|density):\s*(\S+)", original)
                 self.base.adb("shell", "wm", command, override[1] if override else "reset")
             time.sleep(2)
-        return {"layouts": ["720x1600@320dpi", "1768x2208@360dpi"], "preservation": states,
-                "physical_fold_verified": False}
+        self.see(BRIDGE_PROMPT, "bridge-restored-display-prompt", scroll=True, exact=True)
+        restored = require_preserved(before, learning_snapshot(self.preferences("bridge-restored-display-prefs")),
+                                     before_task, self.checkpoint("bridge", moved=1))
+        return {"layouts": [f"{w}x{h}@{d}dpi" for _, w, h, d in DISPLAY_LAYOUTS],
+                "observations": states, "restored_display_preservation": restored,
+                "fold7_pixel_specification_source": FOLD7_SPECIFICATION,
+                "fold7_scope": "Emulated Galaxy Z Fold7 portrait resolutions with a chosen Android 420-dpi test density. This logical density is not the physical pixel density (PPI).",
+                "physical_fold_verified": False, "hinge_verified": False}
 
     def conversation(self):
         chat4 = self.args.conversation_ui == "chat4"
@@ -611,15 +763,14 @@ class LearningProbe:
                 require(len(allowed) == 1, "Observed microphone permission has no unambiguous allow control")
                 self.touch(allowed[0][1], "microphone-permission", allowed[0][0])
                 continue
-            joined = "\n".join(labels).lower()
-            if ("hört zu" in joined or "sprich jetzt" in joined or "spracheingabe ist nicht bereit" in joined or
-                    ("spracherkennung" in joined and ("nicht verfügbar" in joined or "nicht bereit" in joined)) or
-                    "nicht starten" in joined or "nicht gestartet" in joined):
+            observed_state = microphone_outcome(labels)
+            if observed_state is not None:
                 break
             time.sleep(.6)
         else:
             raise RuntimeError("Microphone request produced neither listening state nor explicit device limitation")
-        self.save("microphone-observation", {"labels": observed, "services": services})
+        self.save("microphone-observation", {"labels": observed, "services": services,
+                                             "observed_state": observed_state})
         self.capture("actual-microphone-outcome")
         self.tap("Stopp", "microphone-stop")
         self.see(stop_label, "microphone-stopped", scroll=True)
@@ -629,6 +780,7 @@ class LearningProbe:
         return {"ui_contract": self.args.conversation_ui, "typed_question": "Warum zuerst zwei?",
                 "visible_explanation": response, "task_grounding_label_observed": True,
                 "stop_visible": True, "microphone_request_observed": True,
+                "microphone_ui_outcome": observed_state,
                 "recognition": "NOT_VERIFIED", "recognition_observations": observed,
                 "limitation": "No real spoken utterance was supplied; emulator recognizer availability is recorded separately."}
 
@@ -705,12 +857,13 @@ class LearningProbe:
         self.tap("Weiter", "guided-example")
         self.see("Acht und fünf", "guided-eight-plus-five", scroll=True, exact=True)
 
-    def speech_log(self):
-        log = self.base.adb("logcat", "-d", "-v", "brief", "-s", "LumoLearningSpeech:I", "godot:I", "Godot:I", "*:S")
+    def speech_log(self, timeout=15):
+        log = self.base.adb("logcat", "-d", "-v", "brief", "-s", "LumoLearningSpeech:I", "godot:I", "Godot:I", "*:S",
+                            timeout=timeout)
         (self.out / self.fresh("native-speech.txt")).write_text(log)
         return log
 
-    def native_playback(self, pid, previous=()):
+    def native_playback(self, pid, previous=(), timeout=180):
         def observe():
             try:
                 return speech_completion(self.speech_log(), pid, previous_ids=previous)
@@ -718,7 +871,97 @@ class LearningProbe:
                 if str(error).startswith("No new actual local MediaPlayer"):
                     return None
                 raise
-        return self.wait("Current native MediaPlayer playback completion", observe, timeout=180)
+        return self.wait("Current native MediaPlayer playback completion", observe, timeout=timeout)
+
+    def native_render_diagnostics(self, pid, deadline):
+        """Supplement the interval probe with bounded, read-only system dumps."""
+        files = []
+
+        def capture(tag, *arguments):
+            filename = self.fresh(tag + ".txt")
+            path = self.out / filename
+            remaining = deadline - time.monotonic() - 2
+            if remaining < .5:
+                path.write_text("Not collected: remaining scene observation budget is exhausted.\n")
+                files.append({"file": filename, "status": "budget_exhausted"})
+                return ""
+            try:
+                text = self.base.adb("shell", "dumpsys", *arguments, check=False,
+                                     timeout=min(5, remaining - .25))
+                path.write_text(text)
+                files.append({"file": filename, "status": "raw_response_recorded"})
+                return text
+            except Exception as error:
+                path.write_text(str(error) + "\n")
+                files.append({"file": filename, "status": "unavailable"})
+                return ""
+
+        capture("gfxinfo-native", "gfxinfo", PACKAGE + ":lumo_game", "framestats")
+        capture("gfxinfo-package", "gfxinfo", PACKAGE, "framestats")
+        layers = capture("surfaceflinger-observed-layers", "SurfaceFlinger", "--list")
+        observed = sorted({line.strip() for line in layers.splitlines()
+                           if PACKAGE in line and "LumoGameActivity" in line},
+                          key=lambda label: ("SurfaceView" not in label, label))[:2]
+        for index, label in enumerate(observed):
+            # adb's remote shell needs the exact observed layer name quoted.
+            capture(f"surfaceflinger-native-{index}", "SurfaceFlinger", "--latency", shlex.quote(label))
+        result = {"native_pid": pid, "files": files, "observed_native_layers": observed,
+                  "interpretation": "Supplementary raw Android reports. HWUI gfxinfo can omit Godot SurfaceView rendering; SurfaceFlinger latency can be unsupported. Neither substitutes for the measured native frame windows."}
+        self.save("native-system-rendering-observation", result)
+        return result
+
+    def native_performance(self, pid, previous_playback_ids):
+        # The independently bounded measurement begins after native startup and
+        # the two spoken learning steps. Ignore the next producer window: it may
+        # contain intervals from before this measurement started.
+        initial = learning_performance_windows(self.speech_log(), pid)
+        previous_index = initial[-1]["window_index"] if initial else 0
+        scene_began = time.monotonic()
+        deadline = scene_began + 60
+        replayed, playback = False, None
+        while time.monotonic() < deadline - 2:
+            log = self.speech_log(timeout=min(5, deadline - time.monotonic() - 1))
+            observed = learning_performance_windows(log, pid)
+            windows = [w for w in observed if w["window_index"] > previous_index + 1]
+            elapsed = time.monotonic() - scene_began
+            combined = any(w["speech_fox_effects_samples"] > 0 for w in windows)
+            if replayed:
+                try:
+                    playback = speech_completion(log, pid, previous_ids=previous_playback_ids)
+                except RuntimeError as error:
+                    if not str(error).startswith("No new actual local MediaPlayer"):
+                        raise
+            if elapsed >= 10 and len(windows) >= 2 and combined and playback:
+                system = self.native_render_diagnostics(pid, deadline)
+                remaining = deadline - time.monotonic()
+                require(remaining > 0, "Native performance screenshot exceeded the observation budget")
+                screenshot = self.reader.capture(self.out, self.fresh("native-performance-observed-scene"),
+                                                 timeout=min(5, remaining))
+                self.result.setdefault("screenshots", []).append(screenshot)
+                report = learning_performance_summary(windows, pid, time.monotonic() - scene_began)
+                report["system_rendering_evidence"] = system
+                report["current_step_replay_requested"] = replayed
+                report["current_step_replay_playback"] = playback
+                report["premeasurement_windows"] = initial
+                report["premeasurement_windows_used_in_summary"] = False
+                report["discarded_partial_window_after_index"] = previous_index
+                report["capture_scope"] = "Visible 8+5 scene after initial startup; no task, model or progress reset."
+                self.save("native-learning-performance", report)
+                return report
+            crossed_boundary = any(w["window_index"] > previous_index for w in observed)
+            if crossed_boundary and not replayed and deadline - time.monotonic() >= 15:
+                # "Noch einmal" restarts the model. This existing button only
+                # replays the current checked step and preserves the two stones.
+                previous_playback_ids = set(previous_playback_ids) | {
+                    int(turn) for observed_pid, _, turn, _ in speech_events(log)
+                    if int(observed_pid) == pid
+                }
+                self.reader.native_tap(self.out, "Schritt anhören", self.fresh("performance-current-step-audio"),
+                                       timeout=min(20, deadline - time.monotonic() - 10),
+                                       exact=True, orientation="responsive")
+                replayed = True
+            time.sleep(.6)
+        raise RuntimeError("No complete measured audio/figure/effects performance window within the 60-second current-scene budget")
 
     def native_roundtrip(self):
         self.guided_course()
@@ -742,14 +985,24 @@ class LearningProbe:
             self.reader.native_text(self.out, "Zehn sind voll", self.fresh("native-ten-full"), orientation="responsive")
             self.capture("native-ten-and-three", native=True)
             second_playback = self.native_playback(pid, playback["utterance_ids"])
-            self.reader.native_text(self.out, "Zur Aufgabe", self.fresh("native-return"),
-                                    tap=True, exact=True, orientation="responsive")
-            self.wait("Native process exited after explicit return", lambda: self.base.adb("shell", "pidof", PACKAGE + ":lumo_game", check=False),
-                      lambda value: not value, timeout=45)
-            self.see("Acht und fünf", "same-guided-task-returned", scroll=True, exact=True)
-            self.capture("native-return-current-task")
+        # A separate real recording ensures the bounded measurement is covered
+        # even if the first local TTS model startup consumed the entry segment.
+        with self.recording("native-three-dimensional-performance"):
+            performance = self.native_performance(pid, playback["utterance_ids"] + second_playback["utterance_ids"])
+        performance["video"] = self.recordings[-1]
+        require(performance["video"]["whole_block_within_recording_limit"] and
+                performance["video"]["duration_seconds"] >= performance["scene_observed_seconds"] - 2,
+                "Actual native performance video does not cover the observed measurement interval")
+        self.save("native-learning-performance", performance)
+        self.reader.native_text(self.out, "Zur Aufgabe", self.fresh("native-return"),
+                                tap=True, exact=True, orientation="responsive")
+        self.wait("Native process exited after explicit return", lambda: self.base.adb("shell", "pidof", PACKAGE + ":lumo_game", check=False),
+                  lambda value: not value, timeout=45)
+        self.see("Acht und fünf", "same-guided-task-returned", scroll=True, exact=True)
+        self.capture("native-return-current-task")
         after = learning_snapshot(self.preferences("native-learning-after"))
         self.result["native_learning"] = {"first_playback": playback, "second_playback": second_playback,
+                                          "performance": performance,
                                           "preservation": require_preserved(before, after),
                                           "entry": "existing guided lesson button", "current_task": "Acht und fünf"}
 
@@ -765,6 +1018,7 @@ class LearningProbe:
         self.result["limitations"] = [
             "Real spoken recognition was not exercised; actual request, system availability and Stop were observed.",
             "Native MediaPlayer start/completion proves playback callbacks, not audible quality or phoneme lip sync.",
+            "Actual emulator frame intervals and render counters were collected with audio/figure/effect overlap; this is not a verified 60-FPS result on a physical device.",
             "Real emulator screenshots/video and resized displays do not replace physical Fold/phone acceptance.",
         ]
 

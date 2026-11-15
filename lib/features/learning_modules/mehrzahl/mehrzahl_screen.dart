@@ -76,6 +76,7 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
     _PluralWort('Lied', 'Lieder', ['Liedes', 'Lieds', 'Lieden']),
   ];
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
 
   late final AnimationController _bounceCtrl;
@@ -253,6 +254,7 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
   }
 
   Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        key: _taskScopeKey,
         appState: widget.appState,
         progress: _progress,
         moduleId: 'd2_mehrzahl',
@@ -260,8 +262,9 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
         prompt: 'Wie heißt die Mehrzahl von „${_korrektWort.singular}“?',
         objective: 'Du bildest aus einem Nomen die Form für mehrere.',
         answerChoices: _options,
+        onConfirmChoice: (index) => _onAnswer(index),
         helpSteps: [
-          'Stell dir mehr als ein ${_korrektWort.singular} vor. Gesucht ist die Form für mehrere.',
+          'Hier steht die Einzahl „${_korrektWort.singular}“. Gesucht ist die Form für mehrere.',
           'Probiere jede Antwort hinter „viele“. Achte auf die Endung und darauf, ob sich ein Vokal verändert.',
           'Sprich beide Formen: ${_korrektWort.singular} – ${_korrektWort.plural}. Vergleiche die Buchstaben und wähle dann selbst.',
         ],

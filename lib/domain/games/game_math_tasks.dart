@@ -7,6 +7,47 @@ import 'game_level_model.dart';
 /// older child revisits it. No fallback to an unrelated classroom topic.
 abstract class GameMathTasks {
   static MathConcreteTask starsPath(GameLevel level, int index) {
+    if (level.miniType != GameMiniType.starsPath || index < 0) {
+      throw ArgumentError('Diese Stufe gehört nicht zum Rechenpfad.');
+    }
+    final task = _starsPath(level, index);
+    if (!isValidStarsTask(level, task)) {
+      throw StateError('Die Rechenaufgabe wurde nicht freigegeben.');
+    }
+    return task;
+  }
+
+  /// Independent arithmetic/quantity verification before a variant is shown.
+  /// An unrelated fallback must never silently change the level's goal.
+  static bool isValidStarsTask(GameLevel level, MathConcreteTask task) {
+    if (task.prompt.trim().isEmpty ||
+        task.explanation.trim().isEmpty ||
+        task.choices.length < 2 ||
+        task.choices.toSet().length != task.choices.length ||
+        task.choices.where((value) => value == task.answer).length != 1) {
+      return false;
+    }
+    final answer = int.tryParse(task.answer);
+    if (answer == null || answer < 0) return false;
+    if (level.id == 4) {
+      return RegExp('●').allMatches(task.prompt).length == answer;
+    }
+    final operands = RegExp(r'\d+')
+        .allMatches(task.prompt)
+        .map((match) => int.parse(match.group(0)!))
+        .toList();
+    if (operands.length != 2) return false;
+    final a = operands[0], b = operands[1];
+    if (level.id == 6) return a != b && answer == max(a, b);
+    if (task.prompt.contains('+')) return answer == a + b;
+    if (task.prompt.contains('−') || task.prompt.contains('-'))
+      return answer == a - b;
+    if (task.prompt.contains('×') || task.prompt.contains('·'))
+      return answer == a * b;
+    return false;
+  }
+
+  static MathConcreteTask _starsPath(GameLevel level, int index) {
     final random = Random(level.id * 1000 + index * 17);
     final grade = level.gradeFloor;
     MathConcreteTask numeric(String prompt, int answer, String explanation,
@@ -112,6 +153,9 @@ abstract class GameMathTasks {
   }
 
   static GameHouseTask numberHouse(GameLevel level, int index) {
+    if (level.miniType != GameMiniType.numberHouse || index < 0) {
+      throw ArgumentError('Diese Stufe gehört nicht zum Rechenhaus.');
+    }
     final random = Random(level.id * 1000 + index * 31);
     final roof = switch (level.id) {
       7 => 7,
@@ -135,12 +179,14 @@ abstract class GameMathTasks {
       if (values.length == 4) break;
     }
     final choices = values.toList()..shuffle(random);
-    return GameHouseTask(
+    final task = GameHouseTask(
         roof: roof,
         visibleRoom: roof - answer,
         answer: answer,
         missingLeft: random.nextBool(),
         choices: choices);
+    if (!task.isValid) throw StateError('Das Rechenhaus ist nicht lösbar.');
+    return task;
   }
 }
 
@@ -156,4 +202,15 @@ class GameHouseTask {
   final int answer;
   final bool missingLeft;
   final List<int> choices;
+
+  bool get isValid =>
+      roof >= 1 &&
+      roof <= 100 &&
+      visibleRoom >= 0 &&
+      answer >= 0 &&
+      visibleRoom + answer == roof &&
+      choices.length >= 2 &&
+      choices.toSet().length == choices.length &&
+      choices.every((value) => value >= 0 && value <= roof) &&
+      choices.where((value) => value == answer).length == 1;
 }

@@ -13,6 +13,7 @@ import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_ai_learning_access.dart';
 import '../../core/lumo_ai_learning_policy_bridge.dart';
 import '../../core/lumo_tutor_contracts.dart';
+import '../../core/lumo_learning_session_contract.dart';
 import '../../core/lumo_tutor_engine.dart';
 import '../../core/tutor_coordination_engine.dart';
 import '../../core/math/lumo_rechentricks.dart';
@@ -43,6 +44,8 @@ import 'widgets/lumo_tutor_hint_card.dart';
 import 'widgets/lumo_tutor_offer_card.dart';
 import 'widgets/lumo_place_value_workshop.dart';
 import 'widgets/lumo_learning_scene_card.dart';
+import 'widgets/interactive_task_workspace.dart';
+import 'nextgen/learning_coach_binding.dart';
 import '../../domain/learning_intelligence/lesson_scene_engine.dart';
 import '../../domain/learning_intelligence/lumo_intelligence_engine.dart';
 import '../../domain/learning_intelligence/learning_scene_contract.dart';
@@ -64,7 +67,8 @@ class LearningContent extends StatefulWidget {
   State<LearningContent> createState() => _LearningContentState();
 }
 
-class _LearningContentState extends State<LearningContent> {
+class _LearningContentState extends State<LearningContent>
+    with WidgetsBindingObserver {
   final _factory = ExerciseFactory();
   final _adapter = const LegacyLumoTaskAdapter();
   final _resultHandler = const SkillStateUpdater();
@@ -72,6 +76,18 @@ class _LearningContentState extends State<LearningContent> {
   var _feedbackEngine = LumoLearningFeedbackEngine();
   final _taskHints = const TaskHintService();
   LumoCompanionTaskContext? _publishedTaskContext;
+  late final LearningCoachBinding _coach;
+  final _answerCandidate = TextEditingController();
+  LumoLearningIdentity? _candidateIdentity;
+  String? _candidateNotice;
+  TaskWorkspaceInteraction? _workspace;
+  String? _activeObjectId;
+  bool _showHelp = true;
+  bool _slow = false;
+  bool _foreground = true;
+  bool _routeVisible = true;
+  bool _speaking = false;
+  int _speechSerial = 0;
   String? _activeSessionScope;
   final Map<String, SkillState> _skillStates = <String, SkillState>{};
   final List<String> _recentTaskKeys = <String>[];
@@ -114,6 +130,7 @@ class _LearningContentState extends State<LearningContent> {
   DateTime _taskStartedAt = DateTime.now();
   bool _answered = false;
   bool _nativeLearningOpen = false;
+  bool _nativeReturnPending = false;
   Timer? _autoAdvanceTimer;
   bool? _lastCorrect;
   RewardDelta? _lastRewardDelta;
@@ -208,6 +225,30 @@ class _LearningContentState extends State<LearningContent> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _foreground = WidgetsBinding.instance.lifecycleState == null ||
+        WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
+    _coach = LearningCoachBinding(
+      isActive: () =>
+          mounted &&
+          (_foreground || _nativeLearningOpen) &&
+          _routeVisible &&
+          _activeSessionScope == _sessionScope &&
+          (ModalRoute.of(context)?.isCurrent ?? true),
+      onHint: _requestTaskHelp,
+      onExplain: _requestTaskHelp,
+      onRepeat: _repeatCurrentStep,
+      onSlower: () => _repeatCurrentStep(slower: true),
+      onStop: _stopLearningExplanation,
+      onCancel: _cancelCoachMedia,
+      onTryMyself: _tryMyself,
+      onProposeAnswer: _proposeAnswer,
+      onFocus: (id, action) {
+        if (!mounted) return;
+        setState(() => _activeObjectId = id);
+        _coach.present(objectId: id, point: action == LumoLearningAction.point);
+      },
+    );
     LumoCompanionRequests.instance.helpRequested.addListener(_requestTaskHelp);
     _loadNextTask(resetCounter: false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -228,6 +269,21 @@ class _LearningContentState extends State<LearningContent> {
     //   1. KI-Aufgaben aus Cache laden (kostenlos, lokal)
     //   2. Wenn Cache niedrig und KI freigegeben: vom Server nachfuellen
     _hydrateAiQueueAndMaybeRefill();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _routeVisible = ModalRoute.isCurrentOf(context) ?? true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      if (_routeVisible) {
+        _publishTaskContext();
+      } else {
+        _cancelCoachMedia();
+        _coach.clear();
+      }
+    });
   }
 
   @override
@@ -447,6 +503,11 @@ class _LearningContentState extends State<LearningContent> {
   }
 
   void _loadNextTask({bool resetCounter = false}) {
+    _cancelCoachMedia(rebuild: false);
+    _workspace = null;
+    _activeObjectId = null;
+    _showHelp = true;
+    _slow = false;
     _activeSessionScope = _sessionScope;
     _autoAdvanceTimer?.cancel();
     // Keep prompt, answer, progress and renderer on the same checked task.
@@ -487,7 +548,13 @@ class _LearningContentState extends State<LearningContent> {
     _publishTaskContext();
   }
 
-  void _publishTaskContext() {
+  void _publishTaskContext(
+      {VoidCallback? afterPublish, bool immediately = false}) {
+    final visibleIds = _workspace?.visibleState['objectIds'];
+    final objectIds = <String>{
+      'learning-task',
+      if (visibleIds is List) ...visibleIds.whereType<String>(),
+    }.toList(growable: false);
     final context = LumoCompanionTaskContext(
       subject: _task.subject,
       unit: _task.unit,
@@ -506,14 +573,41 @@ class _LearningContentState extends State<LearningContent> {
           : null,
       activity: _task.visual.contains('writ') ? 'writing' : 'learning',
       profileGeneration: widget.appState.profileGeneration,
+      stepId: _workspace?.action ?? 'observe',
+      objectIds: objectIds,
+      explanation: _showHelp && _tutorHint != null
+          ? _tutorHint
+          : _workspace?.explanation,
+      answerChoices: _taskInstance.options.map((o) => o.label).toList(),
+      isExplanation: _showHelp && _tutorHint != null,
+      allowedActions: {
+        LumoLearningAction.stop,
+        if (!_answered && !_sessionFinished) ...{
+          LumoLearningAction.repeat,
+          LumoLearningAction.slower,
+        },
+        if (_allowHelp && !_answered && !_sessionFinished) ...{
+          ...lumoDefaultLearningActions,
+          LumoLearningAction.highlight,
+          LumoLearningAction.point,
+          LumoLearningAction.look,
+          if (_taskInstance.options.isNotEmpty)
+            LumoLearningAction.proposeAnswer,
+        },
+      },
     );
     _tutorCoordinator.enterTask(context.tutorScope);
     _publishedTaskContext = context;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted && identical(_publishedTaskContext, context)) {
-        LumoCompanionRequests.instance.publishTask(context);
-      }
-    });
+    void publish() {
+      if (!mounted || !identical(_publishedTaskContext, context)) return;
+      if (_coach.publish(context) != null) afterPublish?.call();
+    }
+
+    if (immediately) {
+      publish();
+    } else {
+      WidgetsBinding.instance.addPostFrameCallback((_) => publish());
+    }
   }
 
   void _requestTaskHelp() {
@@ -524,6 +618,7 @@ class _LearningContentState extends State<LearningContent> {
         _sessionFinished) {
       return;
     }
+    _showHelp = true;
     _requestedHelpLevel = (_requestedHelpLevel + 1).clamp(1, 3);
     _sceneRequestSerial++;
     final placeValueNumber =
@@ -563,18 +658,165 @@ class _LearningContentState extends State<LearningContent> {
     setState(() => _tutorHint = hint);
     LumoCompanionRequests.instance
         .recordInteraction(LumoInteractionKind.helpRequested);
-    _publishTaskContext();
+    _publishTaskContext(afterPublish: () {
+      _coach.present(
+          objectId: _activeObjectId ?? 'learning-task',
+          point: true,
+          state: 'explaining');
+      if (widget.appState.state.settings.voiceEnabled) {
+        unawaited(_speakTutorHint(hint));
+      }
+      if (_cloudHelpAllowed) unawaited(_askAiTutor());
+    });
     LumoCompanionRequests.instance.recordLearningEvent(
         LumoLearningEventKind.hintRequested,
         context: _publishedTaskContext);
     LumoCompanionRequests.instance.recordLearningEvent(
         LumoLearningEventKind.hintAccepted,
         context: _publishedTaskContext);
-    if (widget.appState.state.settings.voiceEnabled) {
-      unawaited(_speakTutorHint(hint));
+  }
+
+  void _workspaceChanged(TaskWorkspaceInteraction event) {
+    if (!mounted ||
+        event.taskId != _taskInstance.taskInstanceId ||
+        _activeSessionScope != _sessionScope) {
+      return;
     }
-    if (_cloudHelpAllowed) {
-      unawaited(_askAiTutor());
+    _workspace = event;
+    _activeObjectId = event.objectId;
+    if (event.isHelp && _allowHelp) {
+      _requestedHelpLevel = math.max(1, _requestedHelpLevel);
+      LumoCompanionRequests.instance.recordLearningEvent(
+          LumoLearningEventKind.hintAccepted,
+          context: _publishedTaskContext);
+    }
+    _publishTaskContext(afterPublish: () {
+      final ids = _publishedTaskContext?.objectIds ?? const <String>[];
+      _coach.present(
+          objectId:
+              ids.contains(event.objectId) ? event.objectId : 'learning-task');
+    });
+  }
+
+  void _repeatCurrentStep({bool slower = false}) {
+    if (!_coach.ownsCurrentTask || _sessionFinished) return;
+    setState(() => _slow = slower);
+    // Assessments explicitly allow reading only the visible instruction.
+    final text = !_allowHelp
+        ? _task.prompt
+        : (_showHelp ? _tutorHint : null) ??
+            _workspace?.explanation ??
+            _task.prompt;
+    LumoCompanionRequests.instance.recordLearningEvent(
+        LumoLearningEventKind.taskRepeated,
+        context: _publishedTaskContext);
+    unawaited(_speakTutorHint(text, slower: slower));
+  }
+
+  void _cancelCoachMedia({bool rebuild = true, bool discardCandidate = true}) {
+    ++_speechSerial;
+    if (_speaking) {
+      _speaking = false;
+      unawaited(LumoVoice.instance.stop());
+      unawaited(LumoVoice.instance
+          .configure(rate: widget.appState.state.settings.voiceRate));
+    }
+    void clear() {
+      if (discardCandidate) {
+        _candidateIdentity = null;
+        _answerCandidate.clear();
+        _candidateNotice = null;
+      }
+      _aiHelpLoading = false;
+    }
+
+    if (rebuild && mounted) {
+      setState(clear);
+    } else {
+      clear();
+    }
+  }
+
+  void _stopLearningExplanation() {
+    _autoAdvanceTimer?.cancel();
+    _cancelCoachMedia();
+    if (mounted) setState(() => _activeObjectId = null);
+    _coach.present();
+  }
+
+  void _tryMyself() {
+    if (!_coach.ownsCurrentTask) return;
+    _coach.interrupt('self_try');
+    _cancelCoachMedia();
+    setState(() {
+      _showHelp = false;
+      _activeObjectId = null;
+      _aiHelpReply = null;
+    });
+    // Assistance remains recorded even after the child hides the explanation.
+    _publishTaskContext();
+  }
+
+  void _proposeAnswer(String value) {
+    if (!_allowHelp || _answered || _taskInstance.options.isEmpty) return;
+    final identity = _coach.identity;
+    if (identity == null) return;
+    setState(() {
+      _candidateIdentity = identity;
+      _answerCandidate.text = value;
+      _candidateNotice = null;
+    });
+  }
+
+  VoidCallback? _boundCandidateConfirmation() {
+    final captured = _candidateIdentity;
+    if (captured == null) return null;
+    return () {
+      if (_candidateIdentity?.matches(captured) != true) return;
+      _confirmProposedAnswer();
+    };
+  }
+
+  void _confirmProposedAnswer() {
+    final identity = _candidateIdentity;
+    if (identity == null || !_coach.matches(identity) || _answered) return;
+    final value = _answerCandidate.text.trim();
+    var matches = _taskInstance.options.where((o) => o.label == value).toList();
+    if (matches.isEmpty) {
+      matches = _taskInstance.options
+          .where((o) => o.label.toLowerCase() == value.toLowerCase())
+          .toList();
+    }
+    if (matches.length != 1) {
+      setState(() =>
+          _candidateNotice = 'Das kann ich noch nicht eindeutig zuordnen. '
+              'Ändere den Text oder tippe unten auf deine Antwort.');
+      return;
+    }
+    final answer = matches.single.payload ?? matches.single.label;
+    _candidateIdentity = null;
+    _answerCandidate.clear();
+    _answerAdaptive(AdaptiveTaskAnswer(
+        task: _taskInstance,
+        answer: answer,
+        correct: '$answer' == '${_taskInstance.correctAnswer}'));
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    _foreground = state == AppLifecycleState.resumed;
+    if (!_foreground) {
+      _cancelCoachMedia(discardCandidate: !_nativeLearningOpen);
+      if (!_nativeLearningOpen) {
+        _autoAdvanceTimer?.cancel();
+        _coach.clear();
+      }
+    } else {
+      if (_nativeReturnPending) {
+        _nativeReturnPending = false;
+        _nativeLearningOpen = false;
+      }
+      _publishTaskContext();
     }
   }
 
@@ -587,17 +829,17 @@ class _LearningContentState extends State<LearningContent> {
         _nativeLearningOpen) {
       return;
     }
-    final activity = NativeLearningActivity.fromTask(_taskInstance);
-    if (activity == null) return;
+    final activity = NativeLearningActivity.forTask(_taskInstance);
     final taskId = _taskInstance.taskInstanceId;
     final generation = widget.appState.profileGeneration;
+    _cancelCoachMedia();
     setState(() {
       _nativeLearningOpen = true;
       // An explicitly requested 3D solution is assistance. The existing
       // result writer receives helpUsed for the following answer.
       _requestedHelpLevel = math.max(1, _requestedHelpLevel);
     });
-    _publishTaskContext();
+    _publishTaskContext(immediately: true);
     LumoCompanionRequests.instance.recordLearningEvent(
         LumoLearningEventKind.hintRequested,
         context: _publishedTaskContext);
@@ -615,7 +857,10 @@ class _LearningContentState extends State<LearningContent> {
           learning: activity);
     } finally {
       if (mounted) {
-        setState(() => _nativeLearningOpen = false);
+        setState(() {
+          _nativeReturnPending = !_foreground;
+          _nativeLearningOpen = !_foreground;
+        });
         if (widget.appState.profileGeneration == generation &&
             _taskInstance.taskInstanceId == taskId) {
           _publishTaskContext();
@@ -628,13 +873,18 @@ class _LearningContentState extends State<LearningContent> {
   /// Arbitrary task hints are only synthesized after the parent accepts
   /// the local model license; never silently switch to a different voice.
   Future<void> _speakTutorHint(String text,
-      {bool explainAvailability = false}) async {
+      {bool explainAvailability = false, bool slower = false}) async {
     final generation = widget.appState.profileGeneration;
     final taskId = _taskInstance.taskInstanceId;
+    final serial = ++_speechSerial;
     bool isCurrent() =>
         mounted &&
+        _foreground &&
+        serial == _speechSerial &&
         generation == widget.appState.profileGeneration &&
         _activeSessionScope == _sessionScope &&
+        _routeVisible &&
+        !_nativeLearningOpen &&
         taskId == _taskInstance.taskInstanceId;
     if (!isCurrent()) return;
     final settings = widget.appState.state.settings;
@@ -654,8 +904,10 @@ class _LearningContentState extends State<LearningContent> {
     if (!recorded && !settings.localVoiceLicenseAccepted) {
       // This complete German phrase is in the signed local catalog. The
       // explanation stays readable instead of disappearing or using TTS.
-      unawaited(LumoVoice.instance
-          .speak('Hier ist ein kleiner Tipp:', style: VoiceStyle.explain));
+      _speaking = true;
+      await LumoVoice.instance.speakAndWait('Hier ist ein kleiner Tipp:',
+          style: VoiceStyle.explain);
+      if (serial == _speechSerial) _speaking = false;
       if (explainAvailability) {
         _showTutorSpeechNotice(
           'Lumo kann die Einleitung sprechen. Für ganze neue Erklärungen '
@@ -675,7 +927,18 @@ class _LearningContentState extends State<LearningContent> {
       return;
     }
     if (!isCurrent()) return;
-    unawaited(LumoVoice.instance.speak(text, style: VoiceStyle.explain));
+    final voice = LumoVoice.instance;
+    _speaking = true;
+    try {
+      await voice.configure(rate: settings.voiceRate * (slower ? .7 : 1));
+      if (!isCurrent()) return;
+      await voice.speakAndWait(text, style: VoiceStyle.explain);
+    } finally {
+      if (serial == _speechSerial) {
+        _speaking = false;
+        await voice.configure(rate: widget.appState.state.settings.voiceRate);
+      }
+    }
   }
 
   void _showTutorSpeechNotice(String message) {
@@ -705,6 +968,7 @@ class _LearningContentState extends State<LearningContent> {
     if (!mounted) return;
     final generation = widget.appState.profileGeneration;
     final taskId = _taskInstance.taskInstanceId;
+    final serial = _speechSerial;
     setState(() => _aiHelpLoading = true);
     try {
       // Bereich basierend auf Subject und Unit waehlen.
@@ -728,7 +992,8 @@ class _LearningContentState extends State<LearningContent> {
       );
       if (!mounted ||
           generation != widget.appState.profileGeneration ||
-          _taskInstance.taskInstanceId != taskId) {
+          _taskInstance.taskInstanceId != taskId ||
+          serial != _speechSerial) {
         return;
       }
       if (_answered || !_allowHelp || !_cloudHelpAllowed) {
@@ -743,14 +1008,13 @@ class _LearningContentState extends State<LearningContent> {
       // Antwort gleich vorlesen, damit auch nicht-lesende Kinder es hoeren.
       if (response.isCloudAnswer &&
           widget.appState.state.settings.voiceEnabled) {
-        unawaited(
-          LumoVoice.instance.speak(response.reply, style: VoiceStyle.explain),
-        );
+        unawaited(_speakTutorHint(response.reply));
       }
     } catch (e) {
       if (!mounted ||
           generation != widget.appState.profileGeneration ||
-          _taskInstance.taskInstanceId != taskId) {
+          _taskInstance.taskInstanceId != taskId ||
+          serial != _speechSerial) {
         return;
       }
       setState(() {
@@ -804,7 +1068,8 @@ class _LearningContentState extends State<LearningContent> {
     final factorySubject = _factorySubjectFor(st.subject, st.unit);
     final factoryUnit = _factoryUnitFor(st.subject, st.unit);
     final exactSelection = factoryUnit != 'Alle' &&
-        Curriculum.unitsForGrade(factorySubject, taskGrade).contains(factoryUnit);
+        Curriculum.unitsForGrade(factorySubject, taskGrade)
+            .contains(factoryUnit);
     LumoTask generate(Set<String> avoidUnits) => exactSelection
         ? _factory.nextExact(
             grade: taskGrade,
@@ -944,8 +1209,8 @@ class _LearningContentState extends State<LearningContent> {
     final normalized = unit.trim().toLowerCase();
     if (normalized.isEmpty || normalized == 'alle themen') return 'Alle';
 
-    final available = Curriculum.unitsForGrade(
-        _factorySubjectFor(subject, unit), _taskGrade);
+    final available =
+        Curriculum.unitsForGrade(_factorySubjectFor(subject, unit), _taskGrade);
     // A real topic always wins over an old shortcut with the same label.
     // Display labels such as Wörter lesen resolve back to their stable key.
     if (available.contains(unit.trim())) return unit.trim();
@@ -1413,6 +1678,10 @@ class _LearningContentState extends State<LearningContent> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _cancelCoachMedia(rebuild: false);
+    _coach.dispose();
+    _answerCandidate.dispose();
     LumoCompanionRequests.instance.helpRequested
         .removeListener(_requestTaskHelp);
     final published = _publishedTaskContext;
@@ -1426,6 +1695,96 @@ class _LearningContentState extends State<LearningContent> {
     _lumo.dispose();
     super.dispose();
   }
+
+  Widget _coachControls() {
+    Widget action(String label, IconData icon, VoidCallback onPressed,
+            {Key? key}) =>
+        OutlinedButton.icon(
+          key: key,
+          onPressed: onPressed,
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size(48, 48),
+            foregroundColor: Colors.white,
+            backgroundColor: const Color(0xFF12366A),
+            side: const BorderSide(color: Color(0xFF73D4ED)),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          ),
+          icon: Icon(icon, size: 22),
+          label: Text(label),
+        );
+    return Wrap(spacing: 8, runSpacing: 8, children: [
+      action('Hilf mir', Icons.help_outline_rounded,
+          () => _coach.request(LumoLearningAction.hint)),
+      action('Noch einmal', Icons.replay_rounded,
+          () => _coach.request(LumoLearningAction.repeat)),
+      action('Langsamer', Icons.slow_motion_video_rounded,
+          () => _coach.request(LumoLearningAction.slower)),
+      action('Anders erklären', Icons.swap_horiz_rounded,
+          () => _coach.request(LumoLearningAction.explain)),
+      action(
+          'Stopp', Icons.stop_circle_outlined, () => _coach.interrupt('stop')),
+      action('Selbst versuchen', Icons.touch_app_outlined, () {
+        final identity = _coach.identity;
+        if (identity != null) _coach.tryMyself(identity);
+      }, key: const ValueKey('learning-self-try')),
+    ]);
+  }
+
+  Widget _candidateCard() => Container(
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(vertical: 12),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF0F9FF),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: const Color(0xFF187CAD), width: 2),
+        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const Text('Habe ich dich richtig verstanden?',
+              style: TextStyle(
+                  color: Color(0xFF12366A),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800)),
+          const SizedBox(height: 8),
+          const Text(
+              'Du kannst die Antwort ändern. Erst dein Bestätigen zählt.',
+              style: TextStyle(color: Color(0xFF12366A))),
+          const SizedBox(height: 8),
+          TextField(
+            key: const ValueKey('learning-answer-candidate'),
+            controller: _answerCandidate,
+            style: const TextStyle(color: Color(0xFF12366A), fontSize: 22),
+            maxLength: 160,
+            decoration: const InputDecoration(
+              labelText: 'Deine Antwort',
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(),
+            ),
+          ),
+          if (_candidateNotice != null)
+            Text(_candidateNotice!,
+                style: const TextStyle(color: Color(0xFF633C00))),
+          Wrap(spacing: 8, runSpacing: 8, children: [
+            FilledButton.icon(
+              key: const ValueKey('learning-confirm-candidate'),
+              onPressed: _boundCandidateConfirmation(),
+              style: FilledButton.styleFrom(minimumSize: const Size(48, 48)),
+              icon: const Icon(Icons.check_rounded),
+              label: const Text('Diese Antwort bestätigen'),
+            ),
+            TextButton(
+              onPressed: () => setState(() {
+                _candidateIdentity = null;
+                _answerCandidate.clear();
+                _candidateNotice = null;
+              }),
+              style: TextButton.styleFrom(minimumSize: const Size(48, 48)),
+              child: const Text('Verwerfen'),
+            ),
+          ]),
+        ]),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -1708,7 +2067,7 @@ class _LearningContentState extends State<LearningContent> {
                             st.settings.calmMode ||
                             MediaQuery.disableAnimationsOf(context),
                       ),
-                      if (_rechentricks != null) ...[
+                      if (_showHelp && _rechentricks != null) ...[
                         const SizedBox(height: 14),
                         RechentricksMentorCard(explanation: _rechentricks!),
                       ],
@@ -1738,7 +2097,7 @@ class _LearningContentState extends State<LearningContent> {
                                 minimumSize: const Size(48, 48)),
                             child: const Text('Lernschritt erneut speichern')),
                       ],
-                      if (_tutorHint != null) ...[
+                      if (_showHelp && _tutorHint != null) ...[
                         const SizedBox(height: 14),
                         LumoTutorHintCard(
                           text: _tutorHint!,
@@ -1748,10 +2107,7 @@ class _LearningContentState extends State<LearningContent> {
                               explainAvailability: true)),
                         ),
                       ],
-                      if (_allowHelp &&
-                          !_answered &&
-                          NativeLearningActivity.fromTask(_taskInstance) !=
-                              null) ...[
+                      if (_allowHelp && !_answered) ...[
                         const SizedBox(height: 12),
                         FilledButton.icon(
                           key: const ValueKey('adaptive-open-3d'),
@@ -1839,7 +2195,7 @@ class _LearningContentState extends State<LearningContent> {
                           sounds: st.settings.soundEnabled,
                         ),
                       ],
-                      if (_visualAid != null) ...[
+                      if (_showHelp && _visualAid != null) ...[
                         const SizedBox(height: 14),
                         _VisualAidCard(aid: _visualAid!),
                       ],
@@ -1847,11 +2203,10 @@ class _LearningContentState extends State<LearningContent> {
                       // Heinz wollte KI in alle Bereiche integrieren - wenn aktiviert.
                       if (_allowHelp && !_answered) ...[
                         const SizedBox(height: 12),
-                        _AiHelpButton(
-                          loading: _aiHelpLoading,
-                          onTap: _requestTaskHelp,
-                          subject: _task.subject,
-                        ),
+                        _coachControls(),
+                        if (_aiHelpLoading)
+                          const Text('Lumo prüft einen weiteren Hinweis …',
+                              style: TextStyle(color: Colors.white)),
                       ],
                       if (_aiHelpReply != null) ...[
                         const SizedBox(height: 12),
@@ -1868,9 +2223,13 @@ class _LearningContentState extends State<LearningContent> {
                           },
                         ),
                       ],
+                      if (_candidateIdentity != null) _candidateCard(),
                       const SizedBox(height: 12),
                       AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 280),
+                        duration:
+                            st.settings.reduceAnimations || st.settings.calmMode
+                                ? Duration.zero
+                                : const Duration(milliseconds: 280),
                         switchInCurve: Curves.easeOutCubic,
                         switchOutCurve: Curves.easeInCubic,
                         transitionBuilder: (child, animation) {
@@ -1886,14 +2245,26 @@ class _LearningContentState extends State<LearningContent> {
                             ),
                           );
                         },
-                        child: AdaptiveTaskRenderer(
+                        child: Semantics(
                           key: ValueKey(_taskInstance.taskInstanceId),
-                          task: _taskInstance,
-                          allowRetry: _allowHelp,
-                          onAnswered: _answerAdaptive,
-                          onWritingSubmitted: _answerWriting,
-                          onWritingPraise: _speakWritingPraise,
-                          onShapeTraced: _answerShapeTrace,
+                          label: 'Aktuelle Lernaufgabe',
+                          child: AdaptiveTaskRenderer(
+                            key: const ValueKey('learning-task'),
+                            task: _taskInstance,
+                            allowRetry: _allowHelp,
+                            onInteraction: _workspaceChanged,
+                            requestedHelpLevel:
+                                _showHelp ? _requestedHelpLevel : 0,
+                            reduceMotion: st.settings.reduceAnimations ||
+                                st.settings.calmMode ||
+                                !_foreground,
+                            slow: _slow,
+                            activeObjectId: _activeObjectId,
+                            onAnswered: _answerAdaptive,
+                            onWritingSubmitted: _answerWriting,
+                            onWritingPraise: _speakWritingPraise,
+                            onShapeTraced: _answerShapeTrace,
+                          ),
                         ),
                       ),
                       if (_answered && _lastCorrect != null) ...[
@@ -1914,9 +2285,12 @@ class _LearningContentState extends State<LearningContent> {
               ),
             ),
             // Konfetti-Layer: feuert bei jeder richtigen Antwort.
-            Positioned.fill(
-              child: LumoConfettiBurst(trigger: _confettiTrigger),
-            ),
+            if (_answered &&
+                !st.settings.reduceAnimations &&
+                !st.settings.calmMode)
+              Positioned.fill(
+                child: LumoConfettiBurst(trigger: _confettiTrigger),
+              ),
           ],
         );
       },

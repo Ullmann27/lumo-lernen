@@ -19,6 +19,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
 enum _Jahreszeit { fruehling, sommer, herbst, winter }
@@ -90,6 +91,7 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
 
   late final List<SeasonQuestion> _deck;
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
 
   late final AnimationController _bounceCtrl;
@@ -276,6 +278,39 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) {
+    final imageTask = _typ == _JahreszeitFrageTyp.bildErraten;
+    return ModuleTaskScope(
+      key: _taskScopeKey,
+      appState: widget.appState,
+      progress: _progress,
+      moduleId: 's2_jahreszeiten',
+      taskKey: _deck[_taskIdx].id,
+      prompt: imageTask
+          ? 'Welche Jahreszeit zeigt das Bild? Zu sehen: ${_correctJz.sceneDescription}.'
+          : 'In welcher Jahreszeit passiert das: ${_aktuellerHinweis.text}?',
+      objective:
+          'Du ordnest typische Veränderungen in der Natur den Jahreszeiten zu.',
+      answerChoices: _options.map((season) => season.label).toList(),
+      onConfirmChoice: (index) =>
+          _onAnswer(index, _options[index] == _correctJz),
+      helpSteps: [
+        imageTask
+            ? 'Betrachte Bäume, Boden und Himmel im Aufgabenbild. Welche Veränderungen erkennst du?'
+            : 'Lies den Hinweis noch einmal: „${_aktuellerHinweis.text}“. Welches Wort beschreibt die Veränderung?',
+        imageTask
+            ? 'Im Aufgabenbild siehst du: ${_correctJz.sceneDescription}. Vergleiche diese Merkmale mit den vier Jahreszeiten.'
+            : 'Vergleiche den Hinweis mit dem Jahreslauf: neues Wachstum, warme lange Tage, fallende Blätter, kalte kurze Tage.',
+        'Der Jahreslauf wiederholt sich: Frühling, Sommer, Herbst, Winter. Gesucht ist die typische passende Jahreszeit; das Wetter muss nicht an jedem Tag gleich sein.',
+      ],
+      answering: !_answered,
+      lastAnswer: _selectedIdx == null ? null : _options[_selectedIdx!].label,
+      lastCorrect:
+          _selectedIdx == null ? null : _options[_selectedIdx!] == _correctJz,
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -290,7 +325,8 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -315,7 +351,7 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
             const SizedBox(height: 12),
             _buildOptions(),
           ]),
-        ),
+        )),
       ),
     );
   }

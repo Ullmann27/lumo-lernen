@@ -45,6 +45,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
@@ -284,6 +285,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
         canLeave: () => !_progress.hasPending,
         companionUnit: _progress.unit,
         child: ModuleTaskScope(
+          key: _taskScopeKey,
           appState: widget.appState,
           progress: _progress,
           moduleId: widget.fullRange ? 'm3_einmaleins_voll' : 'm2_einmaleins',
@@ -292,6 +294,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
           objective:
               'Gleich große Gruppen zusammenzählen und als Malaufgabe verstehen.',
           answerChoices: _answers.map((answer) => '$answer').toList(),
+          onConfirmChoice: (index) => _onAnswer(_answers[index]),
           helpSteps: [
             'Du siehst $_a Gruppen. Jede Gruppe enthält genau $_b Steine.',
             'Markiere eine Gruppe nach der anderen. '

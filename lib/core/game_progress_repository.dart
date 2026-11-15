@@ -24,11 +24,48 @@ class GameProgressRepository {
   String _starsKey(String childId) => 'lumo.games.stars.$childId';
   String _unlocksKey(String childId) => 'lumo.games.curriculum50.$childId';
 
+  String _roundKey(String childId, String owner, int levelId) {
+    if (!RegExp(r'^[a-f0-9]{64}$').hasMatch(owner) ||
+        GameLevelCatalog.byId(levelId) == null) {
+      throw ArgumentError('Ungültige Lernspiel-Zuordnung');
+    }
+    return 'lumo.games.round.v1.$childId.$owner.$levelId';
+  }
+
+  /// Additive round journal. Existing level stars and migration bytes retain
+  /// their original keys and format. The stable profile owner isolates drafts.
+  Future<String?> loadRound(
+          {required String childId,
+          required String owner,
+          required int levelId}) =>
+      _ordered(childId, () async {
+        final prefs = await SharedPreferences.getInstance();
+        return prefs.getString(_roundKey(childId, owner, levelId));
+      });
+
+  Future<void> saveRound(
+      {required String childId,
+      required String owner,
+      required int levelId,
+      required String snapshot}) {
+    if (snapshot.isEmpty || snapshot.length > 64000) {
+      throw ArgumentError('Ungültige Lernspiel-Runde');
+    }
+    return _ordered(childId, () async {
+      final prefs = await SharedPreferences.getInstance();
+      if (!await prefs.setString(
+          _roundKey(childId, owner, levelId), snapshot)) {
+        await _reloadAfterFailedWrite(prefs);
+        throw StateError('Die aktuelle Aufgabe ist noch nicht gespeichert.');
+      }
+    });
+  }
+
   // The previous 24-level path skipped these newly implemented lesson types.
   // Preserve its already available levels once, without skipping new lessons
   // for profiles created after this upgrade.
-  Future<void> _migrateUnlocks(SharedPreferences prefs, String childId,
-      Map<int, int> stars) async {
+  Future<void> _migrateUnlocks(
+      SharedPreferences prefs, String childId, Map<int, int> stars) async {
     final key = _unlocksKey(childId);
     if (prefs.containsKey(key)) return;
     const legacyTypes = {
@@ -47,21 +84,27 @@ class GameProgressRepository {
       }
       previous = level.id;
     }
-    await prefs.setString(key, jsonEncode(open.toList()..sort()));
+    if (!await prefs.setString(key, jsonEncode(open.toList()..sort()))) {
+      await _reloadAfterFailedWrite(prefs);
+      throw StateError('Freigaben konnten noch nicht gespeichert werden.');
+    }
   }
 
   Future<Set<int>> loadUnlocked(String childId) => _ordered(childId, () async {
-    await _readStars(childId);
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final decoded = jsonDecode(prefs.getString(_unlocksKey(childId)) ?? '[]');
-      if (decoded is! List) return <int>{};
-      return decoded.whereType<int>()
-          .where((id) => GameLevelCatalog.byId(id) != null).toSet();
-    } catch (_) {
-      return <int>{};
-    }
-  });
+        await _readStars(childId);
+        try {
+          final prefs = await SharedPreferences.getInstance();
+          final decoded =
+              jsonDecode(prefs.getString(_unlocksKey(childId)) ?? '[]');
+          if (decoded is! List) return <int>{};
+          return decoded
+              .whereType<int>()
+              .where((id) => GameLevelCatalog.byId(id) != null)
+              .toSet();
+        } catch (_) {
+          return <int>{};
+        }
+      });
 
   Future<T> _ordered<T>(String childId, Future<T> Function() operation) {
     final previous = _pendingByChild[childId] ?? Future<void>.value();
@@ -84,7 +127,8 @@ class GameProgressRepository {
   Future<Map<int, int>> loadStars(String childId) =>
       _ordered(childId, () => _readStars(childId));
 
-  Future<Map<int, int>> _readStars(String childId) async {
+  Future<Map<int, int>> _readStars(String childId,
+      {bool strict = false}) async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final raw = prefs.getString(_starsKey(childId));
@@ -93,7 +137,7 @@ class GameProgressRepository {
         return <int, int>{};
       }
       final decoded = jsonDecode(raw);
-      if (decoded is! Map) return <int, int>{};
+      if (decoded is! Map) throw const FormatException('Ungültiger Spielstand');
       final result = <int, int>{};
       decoded.forEach((k, v) {
         final id = int.tryParse('$k');
@@ -101,11 +145,15 @@ class GameProgressRepository {
         final level = id == null ? null : GameLevelCatalog.byId(id);
         if (level != null && stars != null) {
           result[id!] = stars.clamp(0, level.maxStars);
+        } else if (strict) {
+          throw const FormatException(
+              'Der vorhandene Spielstand bleibt erhalten.');
         }
       });
       await _migrateUnlocks(prefs, childId, result);
       return result;
     } catch (_) {
+      if (strict) rethrow;
       return <int, int>{};
     }
   }
@@ -116,15 +164,27 @@ class GameProgressRepository {
   }
 
   Future<void> _writeStars(String childId, Map<int, int> stars) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await _migrateUnlocks(prefs, childId, const {});
-      final mapped = stars.map((k, v) => MapEntry('$k', v));
-      await prefs.setString(_starsKey(childId), jsonEncode(mapped));
-    } catch (_) {
-      // Preserve the existing best-effort storage contract. Durable write-error
-      // reporting needs coordinated changes in the mini-game callers.
+    if (stars.entries.any((entry) {
+      final level = GameLevelCatalog.byId(entry.key);
+      return level == null || entry.value < 0 || entry.value > level.maxStars;
+    })) {
+      throw ArgumentError('Ungültiger Level-Sternwert');
     }
+    final prefs = await SharedPreferences.getInstance();
+    await _migrateUnlocks(prefs, childId, const {});
+    final mapped = stars.map((k, v) => MapEntry('$k', v));
+    if (!await prefs.setString(_starsKey(childId), jsonEncode(mapped))) {
+      await _reloadAfterFailedWrite(prefs);
+      throw StateError('Das Level-Ergebnis ist noch nicht gespeichert.');
+    }
+  }
+
+  static Future<void> _reloadAfterFailedWrite(SharedPreferences prefs) async {
+    // SharedPreferences may have updated its in-memory map before returning
+    // false. An unconfirmed cache entry must never be accepted as disk proof.
+    try {
+      await prefs.reload();
+    } catch (_) {}
   }
 
   /// Speichert das Ergebnis eines Level-Durchgangs.
@@ -133,19 +193,20 @@ class GameProgressRepository {
     required String childId,
     required int levelId,
     required int starsEarned,
-  }) => _ordered(childId, () async {
-    final current = await _readStars(childId);
-    final level = GameLevelCatalog.byId(levelId);
-    if (level == null || !level.miniType.isPlayable) return current;
-    final earned = starsEarned.clamp(0, level.maxStars);
-    final updated = Map<int, int>.from(current);
-    final existing = updated[levelId] ?? 0;
-    if (earned > existing) {
-      updated[levelId] = earned;
-    }
-    await _writeStars(childId, updated);
-    return updated;
-  });
+  }) =>
+      _ordered(childId, () async {
+        final current = await _readStars(childId, strict: true);
+        final level = GameLevelCatalog.byId(levelId);
+        if (level == null || !level.miniType.isPlayable) return current;
+        final earned = starsEarned.clamp(0, level.maxStars);
+        final updated = Map<int, int>.from(current);
+        final existing = updated[levelId] ?? 0;
+        if (earned > existing) {
+          updated[levelId] = earned;
+        }
+        await _writeStars(childId, updated);
+        return updated;
+      });
 
   /// Berechnet die Laufzeit-Snapshots aller 50 Level.
   /// Ein Level ist unlocked wenn ID 1 ist, ODER das vorherige Level
@@ -156,12 +217,12 @@ class GameProgressRepository {
     var currentMarked = false;
     int? previousPlayableId;
     for (final level in GameLevelCatalog.playableLevels) {
-      final prevStars = previousPlayableId == null
-          ? 1
-          : (stars[previousPlayableId] ?? 0);
+      final prevStars =
+          previousPlayableId == null ? 1 : (stars[previousPlayableId] ?? 0);
       previousPlayableId = level.id;
       final earned = (stars[level.id] ?? 0).clamp(0, level.maxStars);
-      final locked = prevStars <= 0 && earned <= 0 &&
+      final locked = prevStars <= 0 &&
+          earned <= 0 &&
           !preservedUnlocked.contains(level.id);
       final isCurrent = !currentMarked && !locked && earned == 0;
       if (isCurrent) currentMarked = true;
@@ -178,10 +239,23 @@ class GameProgressRepository {
   }
 
   Future<void> reset(String childId) => _ordered(childId, () async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.remove(_starsKey(childId));
-      await prefs.remove(_unlocksKey(childId));
-    } catch (_) {}
-  });
+        final prefs = await SharedPreferences.getInstance();
+        if (!await prefs.remove(_starsKey(childId)) ||
+            !await prefs.remove(_unlocksKey(childId))) {
+          await _reloadAfterFailedWrite(prefs);
+          throw StateError(
+              'Der Spielstand wurde nicht vollständig zurückgesetzt.');
+        }
+        final rounds = prefs
+            .getKeys()
+            .where((key) => key.startsWith('lumo.games.round.v1.$childId.'))
+            .toList();
+        for (final key in rounds) {
+          if (!await prefs.remove(key)) {
+            await _reloadAfterFailedWrite(prefs);
+            throw StateError(
+                'Die angefangene Runde konnte nicht zurückgesetzt werden.');
+          }
+        }
+      });
 }

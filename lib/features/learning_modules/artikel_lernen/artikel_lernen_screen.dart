@@ -52,6 +52,7 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
     ['das', 'Wasser', '💧'], ['das', 'Bett', '🛏️'], ['das', 'Fahrrad', '🚲'],
   ];
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
 
   late final AnimationController _bounceCtrl;
@@ -230,6 +231,7 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
   }
 
   Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        key: _taskScopeKey,
         appState: widget.appState,
         progress: _progress,
         moduleId: 'd2_artikel',
@@ -237,6 +239,7 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
         prompt: 'Welcher Artikel passt zu „$_word“?',
         objective: 'Du verbindest ein Nomen mit seinem Artikel.',
         answerChoices: const ['der', 'die', 'das'],
+        onConfirmChoice: (index) => _onAnswer(['der', 'die', 'das'][index]),
         helpSteps: [
           'Sprich das Wort „$_word“ einmal mit jedem Artikel: der, die, das.',
           'Setze „$_word“ in einen kleinen Satz: Hier ist … $_word. Probiere die drei Artikel einzeln.',

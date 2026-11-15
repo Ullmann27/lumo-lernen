@@ -39,6 +39,7 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
   late final _rng = widget.taskRandom ?? math.Random();
 
@@ -255,21 +256,28 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
   }
 
   Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        key: _taskScopeKey,
         appState: widget.appState,
         progress: _progress,
         moduleId: 'm2_uhr',
         taskKey: _taskIdx,
         prompt: 'Wie spät ist es auf der gezeigten Uhr?',
-        objective: 'Du liest die Uhr mit dem kurzen Stundenzeiger und dem langen Minutenzeiger.',
+        objective:
+            'Du liest die Uhr mit dem kurzen Stundenzeiger und dem langen Minutenzeiger.',
         answerChoices: _answers,
+        onConfirmChoice: (index) => _onAnswer(_answers[index]),
         helpSteps: [
           'Finde zuerst den kurzen Zeiger für die Stunden. Der lange Zeiger zeigt die Minuten.',
           'Der lange Zeiger steht auf ${_minute == 0 ? 12 : _minute ~/ 5}. Von 12 aus zählt jeder Schritt zur nächsten Zahl fünf Minuten.',
           switch (_minute) {
-            0 => 'Der lange Zeiger steht auf 12: Es ist eine volle Stunde. Lies jetzt die Zahl am kurzen Zeiger.',
-            15 => 'Eine Viertelstunde ist vergangen. Wir sagen „Viertel nach“ der zuletzt erreichten vollen Stunde.',
-            30 => 'Eine halbe Stunde ist vergangen. „Halb“ nennt die kommende volle Stunde, auf die sich der kurze Zeiger zubewegt.',
-            _ => 'Es fehlen fünfzehn Minuten zur nächsten vollen Stunde. Wir sagen „Viertel vor“ dieser kommenden Stunde.',
+            0 =>
+              'Der lange Zeiger steht auf 12: Es ist eine volle Stunde. Lies jetzt die Zahl am kurzen Zeiger.',
+            15 =>
+              'Eine Viertelstunde ist vergangen. Wir sagen „Viertel nach“ der zuletzt erreichten vollen Stunde.',
+            30 =>
+              'Eine halbe Stunde ist vergangen. „Halb“ nennt die kommende volle Stunde, auf die sich der kurze Zeiger zubewegt.',
+            _ =>
+              'Es fehlen fünfzehn Minuten zur nächsten vollen Stunde. Wir sagen „Viertel vor“ dieser kommenden Stunde.',
           },
         ],
         answering: !_answered,

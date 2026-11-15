@@ -46,6 +46,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
   late final _rng = widget.taskRandom ?? math.Random();
   late final List<(int, int)> _round;
@@ -288,6 +289,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
         canLeave: () => !_progress.hasPending,
         companionUnit: _progress.unit,
         child: ModuleTaskScope(
+          key: _taskScopeKey,
           appState: widget.appState,
           progress: _progress,
           moduleId: 'm1_minus10',
@@ -295,6 +297,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
           prompt: '$_a − $_b = ?',
           objective: 'Eine Menge verkleinern und den Rest bestimmen.',
           answerChoices: _answers.map((answer) => '$answer').toList(),
+          onConfirmChoice: (index) => _onAnswer(_answers[index]),
           helpSteps: [
             'Bei Minus nimmst du etwas von der Startmenge weg.',
             'Tippe $_b Bonbons an. Sie werden durchgestrichen. '

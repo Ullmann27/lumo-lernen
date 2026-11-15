@@ -10,6 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/app_settings.dart';
 import '../domain/games/memory_board.dart';
+import '../domain/games/game_level_catalog.dart';
+import '../domain/games/game_level_model.dart';
 import '../core/daily_mission_repository.dart';
 import '../core/learning_profile_engine.dart';
 import '../core/learning_journey.dart';
@@ -1303,6 +1305,37 @@ class LumoAppState extends ChangeNotifier {
   }
 
 
+  /// The existing five mini-game routes settle a completed, journaled round
+  /// once. Their level order, wallet amounts and school progress stay unchanged.
+  Future<void> recordMiniGameResult({
+    required LearningProfileLease lease,
+    required String resultId,
+    required int levelId,
+    required int stars,
+    required int xp,
+  }) async {
+    final level = GameLevelCatalog.byId(levelId);
+    if (level == null || level.id == 50 || stars < 0 || xp < 0) {
+      throw StateError('Lernspiel-Ergebnis nicht freigegeben');
+    }
+    final valid = switch (level.miniType) {
+      // These routes finish only after all five problems have been solved;
+      // first-attempt mistakes select 1/2/3 stars, never an invented score.
+      GameMiniType.starsPath || GameMiniType.numberHouse =>
+        xp == 40 && stars >= 1 && stars <= level.maxStars,
+      GameMiniType.colorBoxes => stars == 5 && xp == 25,
+      // LetterFill retains its original six first-answer reward formula.
+      GameMiniType.letterFill => xp <= 48 && xp % 8 == 0 &&
+        stars == ((xp ~/ 8) * 5 / 6).round().clamp(1, 5),
+      GameMiniType.numberPath || GameMiniType.wordForest || GameMiniType.mixedQuiz =>
+        xp == (level.id == 13 ? 80 : 40) &&
+        stars >= 1 && stars <= level.maxStars,
+    };
+    if (!valid) throw StateError('Die Belohnung passt nicht zur Lernspiel-Runde');
+    await _recordTableGameResult(lease: lease, resultId: resultId,
+        game: 'mini', stars: stars, xp: xp);
+  }
+
   /// Preserve the existing Memory reward formula with an owner-bound result ID.
   Future<void> recordMemoryResult({
     required LearningProfileLease lease,
@@ -1349,7 +1382,7 @@ class LumoAppState extends ChangeNotifier {
           school.cachedActiveStudentId !=
               (lease.logStudentId == 'self' ? null : lease.studentId) ||
           _disposed || _resetting ||
-          !const {'memory', 'quiz'}.contains(game) ||
+          !const {'memory', 'quiz', 'mini'}.contains(game) ||
           !RegExp('^$game:$owner:[a-f0-9]{32}\$').hasMatch(resultId)) {
         throw StateError('Spielergebnis gehört nicht zum aktiven Kinderprofil');
       }

@@ -145,7 +145,7 @@ jobs:
           grep -F '4.6.3.stable.official' evidence/validation/godot-version.txt
           godot --headless --path native-source --editor --import --quit > evidence/validation/godot-import.log 2>&1
           if grep -E 'SCRIPT ERROR:|ERROR:' evidence/validation/godot-import.log; then exit 1; fi
-          for script in learning_pattern_regression learning_world_regression learning_sharing_regression learning_host_payload_regression learning_generation_regression learning_companion_scope_regression learning_wonder_details_regression; do
+          for script in learning_pattern_regression learning_world_regression learning_sharing_regression learning_host_payload_regression learning_generation_regression learning_companion_scope_regression learning_wonder_details_regression nextgen_avatar_contract_review nextgen_learning_route_review nextgen_learning_base_audio_regression; do
             godot --headless --path native-source --script "res://scripts/tests/$script.gd" 2>&1 | tee "evidence/validation/$script.log"
           done
           godot --headless --path native-source --script res://scripts/tests/learning_english_regression.gd \
@@ -355,6 +355,13 @@ jobs:
           proof = json.loads((root / 'BUILD-PROVENANCE.json').read_text())
           acceptance = json.loads(Path('android-evidence/learning-android-result.json').read_text())
           assert acceptance['status'] in ('PASS', 'PASS_WITH_LIMITATIONS')
+          performance = acceptance['native_learning']['performance']
+          assert performance['capture_status'] == 'MEASURED'
+          assert 10 <= performance['scene_observed_seconds'] <= 60
+          assert performance['window_count'] >= 2 and performance['sample_count'] > 0
+          assert performance['combined_audio_figure_effect_windows']
+          assert performance['current_step_replay_playback']['utterance_ids']
+          assert performance['video']['whole_block_within_recording_limit']
           with (root / 'Lumo-Lernen-Neu.apk').open('rb') as stream:
               assert hashlib.file_digest(stream, 'sha256').hexdigest() == os.environ['ARM64_SHA'] == proof['sha256']
           assert proof['flutter_source_commit'] == os.environ['GITHUB_SHA']

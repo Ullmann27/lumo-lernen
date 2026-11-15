@@ -116,6 +116,23 @@ class ObservationTest(unittest.TestCase):
         visible = "Im Zehnerfeld liegen 8 Plättchen. Es sind noch 2 Plätze frei. Darum brauchen wir zuerst 2 aus dem Vorrat."
         self.assertEqual(probe.why_response([visible]), visible)
 
+    def test_microphone_requires_actual_ready_ui_or_explicit_device_limitation(self):
+        for text in ("Sprich jetzt. Lumo sendet die Frage automatisch.", "Lumo hört dir zu."):
+            with self.subTest(text=text):
+                self.assertEqual(probe.microphone_outcome([text]), "listening_ui_observed")
+        for text in (
+            "Eine deutsche Spracherkennung ist auf diesem Gerät noch nicht bestätigt.",
+            "Das Mikrofon hat den Start nicht bestätigt. Du kannst tippen.",
+            "Lokale Spracherkennung ist auf diesem Gerät nicht bereit.",
+            "Die Spracheingabe ist nicht bereit. Prüfe die Mikrofonfreigabe.",
+        ):
+            with self.subTest(text=text):
+                self.assertEqual(probe.microphone_outcome([text]), "explicit_device_limitation")
+        for labels in (["Sprechen", "Stopp"], ["Zuhören …"], ["Spracherkennung"],
+                       ["Deine Antwort ist noch nicht bestätigt."]):
+            with self.subTest(labels=labels):
+                self.assertIsNone(probe.microphone_outcome(labels))
+
 
 class PreservationTest(unittest.TestCase):
     def setUp(self):
@@ -200,6 +217,149 @@ class NativePlaybackTest(unittest.TestCase):
     def test_second_playback_is_new_in_same_native_process(self):
         log = self.events() + self.events(turn=8)
         self.assertEqual(probe.speech_completion(log, 1234, previous_ids=(4,))["utterance_ids"], [8])
+
+
+class NativePerformanceTest(unittest.TestCase):
+    """Synthetic parser fixtures are not substituted for real APK measurements."""
+
+    def packet(self, index=1):
+        return {
+            "schema": "lumo.learning.perf", "version": 1, "kind": "bridge_ten",
+            "platform": "Android", "renderer": "gl_compatibility", "display_driver": "Android",
+            "adapter": "parser-test-fixture", "reduced_motion": False,
+            "window_index": index, "window_ms": 5000, "sample_count": 250,
+            "frame_ms": {"mean": 20, "p50": 18, "p95": 30, "p99": 40, "max": 50,
+                         "over_16_7_count": 200, "over_16_7_fraction": .8},
+            "process_ms": {"mean": 4, "p95": 7, "max": 12},
+            "render": {"draw_calls_mean": 100, "primitives_mean": 18000,
+                       "render_objects_mean": 45, "objects_mean": 1000, "nodes_mean": 200},
+            "fox_usable_samples": 250, "speech_playing_samples": 100,
+            "speech_playing_audible_samples": 90, "effects_active_samples": 240,
+            "speech_fox_effects_samples": 80,
+        }
+
+    def line(self, packet=None, pid=1234):
+        return f"I/godot   ( {pid}): LUMO_LEARNING_PERF {json.dumps(packet or self.packet())}\n"
+
+    def parse(self, *packets):
+        return probe.learning_performance_windows("".join(self.line(p) for p in packets), 1234)
+
+    def test_only_current_native_pid_and_exact_marker_supply_observations(self):
+        valid = self.packet()
+        unrelated = self.line(pid=99) + "I/godot( 1234): 60 FPS configured\n"
+        unrelated += self.line().replace("LUMO_LEARNING_PERF", "LUMO_OLD_PERF")
+        self.assertEqual(probe.learning_performance_windows(unrelated, 1234), [])
+        self.assertEqual(probe.learning_performance_windows(unrelated + self.line(valid), 1234), [valid])
+        self.assertEqual(probe.learning_performance_windows(self.line(valid).replace("/godot", "/Godot"), 1234), [valid])
+
+    def test_schema_task_platform_and_adapter_are_bound_to_actual_android_scene(self):
+        for key, value in (("schema", "another.perf"), ("version", 2), ("version", True),
+                           ("kind", "syllables"), ("platform", "Linux"),
+                           ("renderer", ""), ("adapter", None), ("display_driver", "x" * 121),
+                           ("reduced_motion", 0), ("declared_fps", 60)):
+            with self.subTest(key=key, value=value), self.assertRaises(RuntimeError):
+                self.parse({**self.packet(), key: value})
+        for key in ("adapter", "sample_count", "render", "speech_fox_effects_samples"):
+            packet = self.packet()
+            del packet[key]
+            with self.subTest(missing=key), self.assertRaises(RuntimeError):
+                self.parse(packet)
+
+    def test_duplicate_json_and_non_monotone_windows_cannot_reuse_evidence(self):
+        duplicate = self.line().replace('"version": 1', '"version": 1, "version": 1')
+        with self.assertRaises(RuntimeError):
+            probe.learning_performance_windows(duplicate, 1234)
+        for second in (1, 0, -1, True, 1.5):
+            with self.subTest(second=second), self.assertRaises(RuntimeError):
+                self.parse(self.packet(), self.packet(second))
+        # Pause/resume may discard a partial window; monotone gaps remain valid.
+        self.assertEqual(len(self.parse(self.packet(), self.packet(4))), 2)
+
+    def test_empty_partial_nonfinite_and_inconsistent_sample_time_is_rejected(self):
+        for key, value in (("sample_count", 0), ("sample_count", True), ("sample_count", 250.0),
+                           ("window_ms", 4999), ("window_ms", 60001),
+                           ("window_ms", float("nan")), ("window_ms", 10000)):
+            with self.subTest(key=key, value=value), self.assertRaises(RuntimeError):
+                self.parse({**self.packet(), key: value})
+        for group, key, value in (("frame_ms", "mean", float("inf")),
+                                  ("frame_ms", "mean", 0), ("frame_ms", "mean", 10),
+                                  ("frame_ms", "p50", 45), ("frame_ms", "p99", 51),
+                                  ("process_ms", "mean", 15), ("process_ms", "p95", 13),
+                                  ("render", "primitives_mean", -1), ("render", "nodes_mean", True)):
+            packet = self.packet()
+            packet[group][key] = value
+            with self.subTest(group=group, key=key, value=value), self.assertRaises(RuntimeError):
+                self.parse(packet)
+
+    def test_frame_budget_and_simultaneous_audio_figure_effect_counts_are_consistent(self):
+        for key, value in (("over_16_7_count", 251), ("over_16_7_count", True),
+                           ("over_16_7_fraction", .2), ("over_16_7_fraction", 1.1)):
+            packet = self.packet()
+            packet["frame_ms"][key] = value
+            with self.subTest(key=key, value=value), self.assertRaises(RuntimeError):
+                self.parse(packet)
+        for key, value in (("fox_usable_samples", 251), ("speech_playing_samples", 50),
+                           ("speech_playing_audible_samples", 101), ("effects_active_samples", 70),
+                           ("speech_fox_effects_samples", True), ("speech_fox_effects_samples", 91),
+                           ("reduced_motion", True)):
+            with self.subTest(key=key, value=value), self.assertRaises(RuntimeError):
+                self.parse({**self.packet(), key: value})
+
+    def test_aggregate_uses_actual_sample_weights_and_does_not_average_percentiles(self):
+        second = self.packet(2)
+        second.update(sample_count=100, fox_usable_samples=100, effects_active_samples=100,
+                      speech_fox_effects_samples=0)
+        second["frame_ms"] = {"mean": 50, "p50": 40, "p95": 80, "p99": 100, "max": 120,
+                              "over_16_7_count": 100, "over_16_7_fraction": 1}
+        summary = probe.learning_performance_summary(self.parse(self.packet(), second), 1234, 15)
+        self.assertEqual(summary["capture_status"], "MEASURED")
+        self.assertEqual(summary["sample_count"], 350)
+        self.assertEqual(summary["measured_window_seconds"], 10)
+        self.assertAlmostEqual(summary["mean_process_frame_interval_ms"], 10000 / 350)
+        self.assertAlmostEqual(summary["mean_process_frame_rate_hz"], 35)
+        self.assertAlmostEqual(summary["process_frames_over_16_7_fraction"], 300 / 350)
+        self.assertEqual(summary["worst_window_p95_ms"], 80)
+        self.assertEqual(summary["worst_window_p99_ms"], 100)
+        self.assertEqual(summary["combined_audio_figure_effect_windows"], [1])
+        self.assertFalse(summary["physical_device_60fps_verified"])
+        self.assertNotIn("PASS", json.dumps(summary))
+
+    def test_two_full_windows_and_ten_to_sixty_actual_seconds_are_mandatory(self):
+        windows = self.parse(self.packet(), self.packet(2))
+        for seconds in (0, 9.99, 60.01, float("nan"), float("inf")):
+            with self.subTest(seconds=seconds), self.assertRaises(RuntimeError):
+                probe.learning_performance_summary(windows, 1234, seconds)
+        for incomplete in ([], windows[:1]):
+            with self.subTest(incomplete=incomplete), self.assertRaises(RuntimeError):
+                probe.learning_performance_summary(incomplete, 1234, 10)
+        with self.assertRaises(RuntimeError):
+            probe.learning_performance_summary(windows + self.parse(self.packet(3)), 1234, 10)
+        self.assertEqual(probe.learning_performance_summary(windows, 1234, 60)["window_count"], 2)
+
+    def test_real_cold_start_can_have_one_slow_sample_and_zero_process_monitors(self):
+        cold = self.packet()
+        cold.update(window_ms=5311.041, sample_count=1)
+        cold["frame_ms"] = {"mean": 5311.041, "p50": 5311.041, "p95": 5311.041,
+                            "p99": 5311.041, "max": 5311.041,
+                            "over_16_7_count": 1, "over_16_7_fraction": 1}
+        cold["process_ms"] = {"mean": 0, "p95": 0, "max": 0}
+        cold.update({key: 1 for key in probe.PERFORMANCE_COUNTERS})
+        summary = probe.learning_performance_summary(self.parse(cold, self.packet(2)), 1234, 12)
+        self.assertEqual(summary["minimum_samples_per_window"], 1)
+        self.assertEqual(summary["windows_with_fewer_than_100_samples"], [1])
+        self.assertEqual(summary["worst_window_p99_ms"], 5311.041)
+        self.assertFalse(summary["physical_device_60fps_verified"])
+
+    def test_separate_nonzero_components_do_not_claim_simultaneous_observation(self):
+        packets = [self.packet(1), self.packet(2)]
+        for packet in packets:
+            packet["speech_fox_effects_samples"] = 0
+        with self.assertRaisesRegex(RuntimeError, "together"):
+            probe.learning_performance_summary(self.parse(*packets), 1234, 12)
+        for packet in packets:
+            packet.update(reduced_motion=True, effects_active_samples=0)
+        with self.assertRaisesRegex(RuntimeError, "together"):
+            probe.learning_performance_summary(self.parse(*packets), 1234, 12)
 
 
 if __name__ == "__main__":

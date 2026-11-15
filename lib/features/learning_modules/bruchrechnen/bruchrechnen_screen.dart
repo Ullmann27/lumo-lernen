@@ -56,6 +56,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
@@ -147,7 +148,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
     });
     final isCorrect = areEquivalentFractionAnswers(answer, _correctText);
     if (!await _progress.saveAnswer(
-      problemKey: 'Pizza: $_gegessen/$_nenner',
+          problemKey: 'Pizza: $_gegessen/$_nenner',
           correct: isCorrect,
           stars: isCorrect ? 1 : 0,
           xp: isCorrect ? 10 : 0,
@@ -251,13 +252,16 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
   }
 
   Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        key: _taskScopeKey,
         appState: widget.appState,
         progress: _progress,
         moduleId: 'm4_bruch',
         taskKey: _taskIdx,
-        prompt: 'Eine Pizza hat $_nenner gleich große Stücke. $_gegessen wurden gegessen. Welcher Bruch wurde gegessen?',
+        prompt:
+            'Eine Pizza hat $_nenner gleich große Stücke. $_gegessen wurden gegessen. Welcher Bruch wurde gegessen?',
         objective: 'Du beschreibst einen Anteil mit Zähler und Nenner.',
         answerChoices: _answers,
+        onConfirmChoice: (index) => _onAnswer(_answers[index]),
         helpSteps: [
           'Schau zuerst auf die ganze Pizza. Alle gleich großen Stücke zusammen bestimmen den Nenner unten.',
           'Es gibt $_nenner gleich große Stücke. Zähle jetzt nur die als gegessen markierten Stücke für den Zähler oben.',

@@ -18,6 +18,7 @@ library;
 
 import 'dart:math' as math;
 
+import '../../core/choice_question_quality.dart';
 import 'quiz_show.dart';
 
 class QuizQuestionBank {
@@ -30,7 +31,7 @@ class QuizQuestionBank {
     String? preferSubject,
   }) {
     final rng = random ?? math.Random();
-    final allQuestions = _buildStaticPool(grade);
+    final allQuestions = _checked(_buildStaticPool(grade));
     final safeGrade = grade.clamp(1, 4);
 
     List<QuizQuestion> pick(
@@ -138,10 +139,39 @@ class QuizQuestionBank {
         ];
     }
 
-    assert(
-      questions.length == 20,
-      'Quizgenerator muss exakt 20 Fragen liefern, bekam ${questions.length}',
-    );
+    if (questions.length != 20 ||
+        questions.map((question) => question.id).toSet().length != 20) {
+      throw StateError(
+          'Quizgenerator muss exakt 20 verschiedene geprüfte Fragen liefern');
+    }
+    return List<QuizQuestion>.unmodifiable(questions);
+  }
+
+  /// Runtime gate for a question before it is presented or attached to LUMO.
+  /// A wrong answer index is rejected; it is never changed under the UI.
+  static List<String> problems(QuizQuestion question) => [
+        if (question.id.trim().isEmpty) 'empty_id',
+        if (question.subject.trim().isEmpty) 'empty_subject',
+        ...ChoiceQuestionQuality.problems(
+            prompt: question.prompt,
+            options: question.options,
+            correctIndex: question.correctIndex,
+            minOptions: 4),
+      ];
+
+  static bool acceptsQuestion(QuizQuestion question) =>
+      problems(question).isEmpty;
+
+  static List<QuizQuestion> _checked(List<QuizQuestion> questions) {
+    final ids = <String>{};
+    for (final question in questions) {
+      final issues = problems(question);
+      if (!ids.add(question.id)) issues.add('duplicate_id');
+      if (issues.isNotEmpty) {
+        throw StateError(
+            'Ungeprüfte Quizfrage ${question.id}: ${issues.join(', ')}');
+      }
+    }
     return questions;
   }
 
@@ -230,7 +260,7 @@ class QuizQuestionBank {
             id: 'final_g3_pattern_1',
             subject: 'Logik-Finale',
             difficulty: QuizDifficulty.hard,
-            prompt: 'Welche Zahl setzt die Reihe fort: 2, 4, 8, 16, ...?',
+            prompt: 'Setze das Verdoppeln fort: 2, 4, 8, 16, ...?',
             options: ['18', '24', '30', '32'],
             correctIndex: 3,
             hint: 'Jede Zahl ist doppelt so groß wie die vorherige.',
@@ -261,7 +291,7 @@ class QuizQuestionBank {
             id: 'final_g4_pattern_1',
             subject: 'Logik-Finale',
             difficulty: QuizDifficulty.hard,
-            prompt: 'Welche Zahl setzt die Reihe fort: 3, 6, 12, 24, ...?',
+            prompt: 'Setze das Verdoppeln fort: 3, 6, 12, 24, ...?',
             options: ['30', '36', '42', '48'],
             correctIndex: 3,
             hint: 'Achte darauf, was mit jeder Zahl zur nächsten passiert.',
@@ -279,9 +309,10 @@ class QuizQuestionBank {
         ],
     };
 
+    final checked = _checked(candidates);
     final fresh =
-        candidates.where((question) => !seenIds.contains(question.id)).toList();
-    final source = fresh.isNotEmpty ? fresh : candidates;
+        checked.where((question) => !seenIds.contains(question.id)).toList();
+    final source = fresh.isNotEmpty ? fresh : checked;
     return source[random.nextInt(source.length)];
   }
 
@@ -459,7 +490,7 @@ class QuizQuestionBank {
           id: 'e_de_word_4',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.easy,
-          prompt: 'Was zieht man an, wenn es regnet?',
+          prompt: 'Welche Jacke schützt dich vor Regen?',
           options: ['Hut', 'Regenjacke', 'Schwimmreifen', 'Sandalen'],
           correctIndex: 1),
 
@@ -489,14 +520,15 @@ class QuizQuestionBank {
           id: 'e_sk_color_1',
           subject: 'Sachunterricht',
           difficulty: QuizDifficulty.easy,
-          prompt: 'Welche Farbe hat das Gras?',
+          prompt: 'Welche Farbe hat frisches, gesundes Gras meistens?',
           options: ['Rot', 'Grün', 'Blau', 'Gelb'],
           correctIndex: 1),
       const QuizQuestion(
           id: 'e_sk_color_2',
           subject: 'Sachunterricht',
           difficulty: QuizDifficulty.easy,
-          prompt: 'Welche Farbe hat eine Banane?',
+          prompt:
+              'Welche Farbe bekommt eine grüne Supermarktbanane beim Reifen meistens?',
           options: ['Rot', 'Blau', 'Gelb', 'Grün'],
           correctIndex: 2),
       const QuizQuestion(
@@ -510,7 +542,8 @@ class QuizQuestionBank {
           id: 'e_sk_weather_2',
           subject: 'Sachunterricht',
           difficulty: QuizDifficulty.easy,
-          prompt: 'In welcher Jahreszeit fällt Schnee?',
+          prompt:
+              'In welcher Jahreszeit ist es in Österreich meist am kältesten?',
           options: ['Sommer', 'Frühling', 'Winter', 'Herbst'],
           correctIndex: 2),
       const QuizQuestion(
@@ -633,42 +666,42 @@ class QuizQuestionBank {
           id: 'm_de_plural_1',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.medium,
-          prompt: 'Was ist der Plural von "Kind"?',
+          prompt: 'Wie heißt die Mehrzahl: ein Kind, viele ...?',
           options: ['Kinden', 'Kinds', 'Kinder', 'Kindern'],
           correctIndex: 2),
       const QuizQuestion(
           id: 'm_de_plural_2',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.medium,
-          prompt: 'Was ist der Plural von "Hund"?',
+          prompt: 'Wie heißt die Mehrzahl: ein Hund, viele ...?',
           options: ['Hunde', 'Hunden', 'Hunds', 'Hundi'],
           correctIndex: 0),
       const QuizQuestion(
           id: 'm_de_plural_3',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.medium,
-          prompt: 'Was ist der Plural von "Apfel"?',
+          prompt: 'Wie heißt die Mehrzahl: ein Apfel, viele ...?',
           options: ['Apfels', 'Äpfel', 'Apfeln', 'Apfler'],
           correctIndex: 1),
       const QuizQuestion(
           id: 'm_de_article_1',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.medium,
-          prompt: 'Welcher Artikel passt zu "Sonne"?',
+          prompt: 'Welcher Artikel passt in der Grundform: ___ Sonne?',
           options: ['Der', 'Die', 'Das', 'Den'],
           correctIndex: 1),
       const QuizQuestion(
           id: 'm_de_article_2',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.medium,
-          prompt: 'Welcher Artikel passt zu "Buch"?',
+          prompt: 'Welcher Artikel passt in der Grundform: ___ Buch?',
           options: ['Der', 'Die', 'Das', 'Dem'],
           correctIndex: 2),
       const QuizQuestion(
           id: 'm_de_article_3',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.medium,
-          prompt: 'Welcher Artikel passt zu "Tisch"?',
+          prompt: 'Welcher Artikel passt in der Grundform: ___ Tisch?',
           options: ['Der', 'Die', 'Das', 'Den'],
           correctIndex: 0),
       const QuizQuestion(
@@ -696,14 +729,14 @@ class QuizQuestionBank {
           id: 'm_de_verb_1',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.medium,
-          prompt: 'Was machen Vögel?',
+          prompt: 'Wie bewegen sich Vögel mit ihren Flügeln durch die Luft?',
           options: ['Schwimmen', 'Fliegen', 'Bellen', 'Grasen'],
           correctIndex: 1),
       const QuizQuestion(
           id: 'm_de_verb_2',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.medium,
-          prompt: 'Was machen Fische?',
+          prompt: 'Wie bewegen sich Fische mit ihren Flossen durch das Wasser?',
           options: ['Fliegen', 'Klettern', 'Schwimmen', 'Bellen'],
           correctIndex: 2),
 
@@ -712,28 +745,30 @@ class QuizQuestionBank {
           id: 'm_sk_plant_1',
           subject: 'Sachunterricht',
           difficulty: QuizDifficulty.medium,
-          prompt: 'Was brauchen Pflanzen zum Wachsen?',
-          options: ['Nur Wasser', 'Nur Sonne', 'Wasser und Sonne', 'Nichts'],
+          prompt:
+              'Was braucht eine grüne Pflanze außer Wasser, Luft und Nährstoffen zum Wachsen?',
+          options: ['Eis', 'Schokolade', 'Licht', 'Spielzeug'],
           correctIndex: 2),
       const QuizQuestion(
           id: 'm_sk_plant_2',
           subject: 'Sachunterricht',
           difficulty: QuizDifficulty.medium,
-          prompt: 'Wo wächst ein Baum?',
+          prompt: 'Worin verankern die Wurzeln einen Baum im Garten?',
           options: ['In der Erde', 'Im Wasser', 'In den Wolken', 'Im Schrank'],
           correctIndex: 0),
       const QuizQuestion(
           id: 'm_sk_season_1',
           subject: 'Sachunterricht',
           difficulty: QuizDifficulty.medium,
-          prompt: 'Wann werden die Blätter bunt?',
+          prompt:
+              'In welcher Jahreszeit werden bei uns viele Laubblätter bunt?',
           options: ['Sommer', 'Herbst', 'Winter', 'Frühling'],
           correctIndex: 1),
       const QuizQuestion(
           id: 'm_sk_season_2',
           subject: 'Sachunterricht',
           difficulty: QuizDifficulty.medium,
-          prompt: 'Wann blühen die meisten Blumen?',
+          prompt: 'In welcher Jahreszeit blühen bei uns meist die Tulpen?',
           options: ['Winter', 'Frühling', 'Herbst', 'Nachts'],
           correctIndex: 1),
       const QuizQuestion(
@@ -775,7 +810,8 @@ class QuizQuestionBank {
           id: 'm_sk_traffic_1',
           subject: 'Sachunterricht',
           difficulty: QuizDifficulty.medium,
-          prompt: 'Bei welcher Ampelfarbe darfst du gehen?',
+          prompt:
+              'Bei welcher Farbe zeigt die Fußgängerampel das gehende Männchen?',
           options: ['Rot', 'Gelb', 'Grün', 'Blau'],
           correctIndex: 2),
 
@@ -900,7 +936,7 @@ class QuizQuestionBank {
           id: 'h_de_spell_1',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.hard,
-          prompt: 'Wie schreibt man "schtoa..."?',
+          prompt: 'Welcher Fischname ist richtig geschrieben?',
           options: ['Schtohr', 'Stohr', 'Stoa', 'Stör'],
           correctIndex: 3),
       const QuizQuestion(
@@ -921,7 +957,7 @@ class QuizQuestionBank {
           id: 'h_de_sentence_1',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.hard,
-          prompt: 'Womit endet ein normaler Satz?',
+          prompt: 'Mit welchem Satzzeichen endet ein Aussagesatz?',
           options: ['Komma', 'Punkt', 'Fragezeichen', 'Strich'],
           correctIndex: 1),
       const QuizQuestion(
@@ -972,8 +1008,13 @@ class QuizQuestionBank {
           id: 'h_sk_geo_4',
           subject: 'Sachunterricht',
           difficulty: QuizDifficulty.hard,
-          prompt: 'In welchem Kontinent leben Löwen wild?',
-          options: ['Europa', 'Afrika', 'Amerika', 'Asien'],
+          prompt: 'Auf welchen Kontinenten leben heute wildlebende Löwen?',
+          options: [
+            'Nur Europa',
+            'Afrika und Asien',
+            'Nur Amerika',
+            'Nur Australien'
+          ],
           correctIndex: 1),
       const QuizQuestion(
           id: 'h_sk_sci_1',
@@ -993,7 +1034,8 @@ class QuizQuestionBank {
           id: 'h_sk_sci_3',
           subject: 'Sachunterricht',
           difficulty: QuizDifficulty.hard,
-          prompt: 'Was atmen wir ein?',
+          prompt:
+              'Welches Gas aus der Atemluft braucht unser Körper zum Leben?',
           options: ['Wasser', 'Stickstoff', 'Sauerstoff', 'Kohlendioxid'],
           correctIndex: 2),
       const QuizQuestion(

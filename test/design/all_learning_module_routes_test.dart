@@ -13,6 +13,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../learning_lab_runtime_test.dart' show frames, tap;
 
+Future<void> confirmCandidate(WidgetTester tester, String prefix) async {
+  final button = find.byKey(ValueKey('$prefix-confirm-candidate'));
+  await tester.ensureVisible(button);
+  await tester.pump();
+  expect(button.hitTestable(), findsOneWidget);
+  expect(tester.getSize(button).height, greaterThanOrEqualTo(48));
+  await tester.tap(button);
+  await frames(tester);
+}
+
 void main() {
   final cases = <(String, int, String, String?)>[
     for (final grade in LumoCurriculum.grades)
@@ -46,6 +56,11 @@ void main() {
     'd2_mehrzahl',
     'd3_wortarten',
     'd3_zeitformen',
+    's1_tiere',
+    's1_farben',
+    's2_jahreszeiten',
+    's2_wetter',
+    's2_verkehr',
   };
 
   setUp(() {
@@ -156,6 +171,50 @@ void main() {
         app.state.xp,
         app.learningDailyDone()
       ), before);
+      final bus = LumoCompanionRequests.instance;
+      final prefix = scopedEntries.contains(entry.$1) ? 'module' : 'plus10';
+      final native = find.byKey(ValueKey('$prefix-open-3d'));
+      expect(native, findsOneWidget);
+      await tester.ensureVisible(native);
+      await tester.pump();
+      expect(native.hitTestable(), findsOneWidget);
+      expect(tester.getSize(native).height, greaterThanOrEqualTo(48));
+      final task = bus.taskContext.value!;
+      expect(task.answerChoices, isNotEmpty);
+      expect(task.allowedActions, contains(LumoLearningAction.proposeAnswer));
+      final oldId = bus.learningIdentity.value!;
+      expect(
+          bus.requestLearningAction(LumoLearningAction.proposeAnswer,
+              identity: oldId, candidate: 'noch nicht eindeutig'),
+          isTrue);
+      await frames(tester);
+      final field = find.byKey(ValueKey('$prefix-answer-candidate'));
+      expect(field, findsOneWidget);
+      expect(bus.taskContext.value!.attempts, 0);
+      expect((
+        app.state.grade,
+        app.state.stars,
+        app.state.xp,
+        app.learningDailyDone()
+      ), before);
+      await confirmCandidate(tester, prefix);
+      expect(bus.taskContext.value!.attempts, 0,
+          reason: 'A value outside the offered choices must stay ungraded.');
+      await tester.enterText(field, task.answerChoices.first);
+      await tester.pump();
+      final confirm = tester
+          .widget<FilledButton>(
+              find.byKey(ValueKey('$prefix-confirm-candidate')))
+          .onPressed!;
+      await confirmCandidate(tester, prefix);
+      expect(bus.taskContext.value!.lastAnswer, task.answerChoices.first);
+      expect(bus.taskContext.value!.lastCorrect, isNotNull,
+          reason: 'Only the module itself evaluates the confirmed choice.');
+      expect(bus.taskContext.value!.attempts, 1);
+      confirm();
+      await tester.pump();
+      expect(bus.taskContext.value!.attempts, 1,
+          reason: 'The captured confirmation cannot submit twice.');
       expect(tester.takeException(), isNull);
     });
   }

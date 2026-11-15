@@ -10,6 +10,8 @@ import '../../core/lumo_learning_session_contract.dart';
 import '../../core/task_hint_service.dart';
 import '../../core/writing_target_parser.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
+import '../../domain/tutoring/native_learning_activity.dart';
+import '../lumo3d/lumo3d_launcher.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import 'adapters/legacy_lumo_task_adapter.dart';
 import 'renderers/shape_trace_task_renderer.dart';
@@ -46,7 +48,8 @@ class CrossGradePracticeScreen extends StatefulWidget {
       _CrossGradePracticeScreenState();
 }
 
-class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
+class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen>
+    with WidgetsBindingObserver {
   static const _adapter = LegacyLumoTaskAdapter();
   static const _hints = TaskHintService();
   late final ExerciseFactory _factory;
@@ -74,6 +77,9 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   String? _speechSubtitle;
   final _proposalController = TextEditingController();
   bool _hasProposal = false;
+  LumoLearningIdentity? _proposalIdentity;
+  int _proposalToken = 0;
+  bool _foreground = true, _nativeOpen = false, _nativeReturnPending = false;
   LumoCompanionTaskContext? _publishedContext;
   int _answered = 0;
   int _correct = 0;
@@ -88,6 +94,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
       widget.appState?.state.settings.calmMode == true;
 
   bool get _canWork =>
+      (_foreground || _nativeOpen) &&
       _progressLoaded &&
       !_profileChanged &&
       _loadError == null &&
@@ -111,6 +118,9 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _foreground = WidgetsBinding.instance.lifecycleState == null ||
+        WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
     _factory = ExerciseFactory();
     _profileGeneration = widget.appState?.profileGeneration;
     widget.appState?.addListener(_checkProfile);
@@ -152,6 +162,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _loadSerial++;
     widget.appState?.removeListener(_checkProfile);
     final requests = LumoCompanionRequests.instance;
@@ -169,6 +180,26 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
       });
     }
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) {
+      if (!_nativeOpen) {
+        _stopSupport();
+        LumoCompanionRequests.instance.clearTask(_publishedContext);
+      }
+      _foreground = false;
+    } else {
+      setState(() {
+        _foreground = true;
+        if (_nativeReturnPending) {
+          _nativeOpen = false;
+          _nativeReturnPending = false;
+        }
+      });
+      _publishTask();
+    }
   }
 
   void _checkProfile() {
@@ -226,6 +257,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   }
 
   void _publishTask() {
+    if (!_foreground && !_nativeOpen) return;
     if (widget.appState == null || _taskError != null || _profileChanged) {
       return;
     }
@@ -233,6 +265,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted ||
           _taskError != null ||
+          (!_foreground && !_nativeOpen) ||
           _profileChanged ||
           _taskInstance.taskInstanceId != taskId ||
           !(ModalRoute.of(context)?.isCurrent ?? true)) {
@@ -320,6 +353,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
 
   bool get _ownsCompanion =>
       mounted &&
+      (_foreground || _nativeOpen) &&
       !_profileChanged &&
       _taskError == null &&
       identical(LumoCompanionRequests.instance.taskContext.value,
@@ -338,6 +372,9 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
     _handledRequest = action.requestId;
     if (action.action == LumoLearningAction.stop) {
       setState(() {
+        _hasProposal = false;
+        _proposalIdentity = null;
+        _proposalController.clear();
         _supportStopped = true;
         _showSupport = false;
         _workspaceMessage = null;
@@ -366,6 +403,8 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
         // Recognition remains a visible, editable proposal. Only the child's
         // confirmation calls the existing, checked answer pathway.
         setState(() {
+          _proposalToken++;
+          _proposalIdentity = action.identity;
           _proposalController.text = action.candidate ?? '';
           _hasProposal = true;
         });
@@ -414,6 +453,9 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   }
 
   void _stopSupport() {
+    _hasProposal = false;
+    _proposalIdentity = null;
+    _proposalController.clear();
     if (_ownsCompanion) {
       LumoCompanionRequests.instance.cancelLearningInteraction();
     } else {
@@ -461,7 +503,31 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
     }
   }
 
+  VoidCallback? _proposalConfirmation() {
+    final identity = _proposalIdentity;
+    final token = _proposalToken;
+    if (!_hasProposal ||
+        !_canWork ||
+        identity == null ||
+        _proposedChoice == null) return null;
+    return () {
+      if (!_hasProposal ||
+          token != _proposalToken ||
+          _proposalIdentity?.matches(identity) != true) return;
+      final choice = _proposedChoice;
+      if (choice == null) return;
+      setState(() => _hasProposal = false);
+      unawaited(_answer(choice));
+    };
+  }
+
   String? get _proposedChoice {
+    final identity = _proposalIdentity;
+    if (!_foreground ||
+        _nativeOpen ||
+        identity == null ||
+        !LumoCompanionRequests.instance.isCurrentLearningIdentity(identity))
+      return null;
     final proposed = _proposalController.text.trim().toLowerCase();
     for (final choice in _task.choices) {
       if (choice.trim().toLowerCase() == proposed) return choice;
@@ -533,6 +599,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   }
 
   Future<void> _answer(String choice) async {
+    if (!_foreground || _nativeOpen) return;
     if (!_canWork || !_task.choices.contains(choice)) return;
     if (choice == _firstWrongChoice) return;
     final correct = choice == _task.answer;
@@ -1042,10 +1109,65 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
     return 'Lernziel: ${Curriculum.prettifyUnit(widget.unit)} erkennen und anwenden.';
   }
 
+  Future<void> _openNativeLearning() async {
+    final app = widget.appState;
+    final bus = LumoCompanionRequests.instance;
+    final before = bus.learningIdentity.value;
+    if (app == null ||
+        !_canWork ||
+        !_ownsCompanion ||
+        _nativeOpen ||
+        before == null) return;
+    final taskId = _taskInstance.taskInstanceId;
+    _hasProposal = false;
+    _proposalIdentity = null;
+    _requestHelp();
+    await WidgetsBinding.instance.endOfFrame;
+    final current = bus.learningIdentity.value;
+    if (!mounted ||
+        !_foreground ||
+        !_canWork ||
+        !_ownsCompanion ||
+        taskId != _taskInstance.taskInstanceId ||
+        current == null ||
+        before.sessionId != current.sessionId ||
+        before.taskId != current.taskId ||
+        current.cancelEpoch - before.cancelEpoch !=
+            current.revision - before.revision) return;
+    setState(() => _nativeOpen = true);
+    try {
+      await launchLumo3D(context,
+          scene: 'learning',
+          appState: app,
+          subject: widget.subject,
+          learning: NativeLearningActivity.forTask(_taskInstance));
+    } finally {
+      if (mounted && taskId == _taskInstance.taskInstanceId) {
+        setState(() {
+          _nativeReturnPending = !_foreground;
+          _nativeOpen = !_foreground;
+        });
+        _publishTask();
+      }
+    }
+  }
+
   Widget _learningControls() => Wrap(
         spacing: 8,
         runSpacing: 8,
         children: [
+          if (widget.appState != null)
+            OutlinedButton.icon(
+              key: const ValueKey('cross-grade-native-learning'),
+              style: OutlinedButton.styleFrom(
+                  minimumSize: const Size(48, 48),
+                  foregroundColor: Colors.white),
+              onPressed: _canWork && !_nativeOpen
+                  ? () => unawaited(_openNativeLearning())
+                  : null,
+              icon: const Icon(Icons.view_in_ar_rounded),
+              label: const Text('Mit Lumo in 3D'),
+            ),
           OutlinedButton.icon(
             key: const ValueKey('cross-grade-help'),
             style: OutlinedButton.styleFrom(
@@ -1135,13 +1257,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
           FilledButton.icon(
               key: const ValueKey('cross-grade-proposal-confirm'),
               style: FilledButton.styleFrom(minimumSize: const Size(48, 48)),
-              onPressed: _canWork && _proposedChoice != null
-                  ? () {
-                      final choice = _proposedChoice!;
-                      setState(() => _hasProposal = false);
-                      unawaited(_answer(choice));
-                    }
-                  : null,
+              onPressed: _proposalConfirmation(),
               icon: const Icon(Icons.check_rounded),
               label: const Text('Diese Antwort bestätigen')),
           TextButton(

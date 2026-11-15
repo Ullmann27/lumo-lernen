@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math' as math;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/lumo_visual_tokens.dart';
@@ -18,6 +19,7 @@ class GuidedTenFrameAnimation extends StatefulWidget {
     this.onNarratePhase,
     this.onStopNarration,
     this.autoNarrate = false,
+    this.stopSignal,
   }) : assert(
           left > 0 &&
               left < 10 &&
@@ -32,6 +34,10 @@ class GuidedTenFrameAnimation extends StatefulWidget {
   final Future<void> Function(String text)? onNarratePhase;
   final VoidCallback? onStopNarration;
   final bool autoNarrate;
+
+  /// Lesson/voice interruption holds the exact visible model position. A new
+  /// lesson or an explicit Play/Replay is required to move again.
+  final ValueListenable<int>? stopSignal;
 
   @override
   State<GuidedTenFrameAnimation> createState() =>
@@ -53,6 +59,7 @@ class _GuidedTenFrameAnimationState extends State<GuidedTenFrameAnimation>
   bool _slow = false;
   bool _playing = false;
   bool _speaking = false;
+  bool _externallyStopped = false;
   int _sequence = 0;
   bool get _automaticSpeech =>
       widget.autoNarrate && widget.onNarratePhase != null;
@@ -65,13 +72,14 @@ class _GuidedTenFrameAnimationState extends State<GuidedTenFrameAnimation>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    widget.stopSignal?.addListener(_stopFromLesson);
     _playback = AnimationController(vsync: this, duration: _duration)
       ..addListener(_changed);
     if (widget.reduceMotion) {
       _playback.value = 1;
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
+      if (!mounted || _externallyStopped) return;
       if (widget.reduceMotion) {
         if (_automaticSpeech) _readCurrentPhase();
       } else {
@@ -87,8 +95,13 @@ class _GuidedTenFrameAnimationState extends State<GuidedTenFrameAnimation>
   @override
   void didUpdateWidget(GuidedTenFrameAnimation oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (!identical(widget.stopSignal, oldWidget.stopSignal)) {
+      oldWidget.stopSignal?.removeListener(_stopFromLesson);
+      widget.stopSignal?.addListener(_stopFromLesson);
+    }
     if (widget.left != oldWidget.left || widget.right != oldWidget.right) {
       _stopPlayback();
+      _externallyStopped = false;
       _playback.value = widget.reduceMotion ? 1 : 0;
       if (!widget.reduceMotion) _startPlayback();
     } else if (widget.reduceMotion && !oldWidget.reduceMotion) {
@@ -98,7 +111,9 @@ class _GuidedTenFrameAnimationState extends State<GuidedTenFrameAnimation>
         (widget.onNarratePhase == null) != (oldWidget.onNarratePhase == null)) {
       final resume = _playing;
       _stopPlayback(stopNarration: oldWidget.onStopNarration);
-      if (resume && !widget.reduceMotion) _startPlayback();
+      if (resume && !widget.reduceMotion && !_externallyStopped) {
+        _startPlayback();
+      }
     }
   }
 
@@ -107,6 +122,7 @@ class _GuidedTenFrameAnimationState extends State<GuidedTenFrameAnimation>
     if (state != AppLifecycleState.resumed) {
       // Returning never skips the explanation or restarts against the child's
       // choice. The visible play button resumes from this exact position.
+      _externallyStopped = true;
       _stopPlayback();
       if (mounted) setState(() {});
     }
@@ -116,6 +132,7 @@ class _GuidedTenFrameAnimationState extends State<GuidedTenFrameAnimation>
     if (_playing || _speaking) {
       _stopPlayback();
     } else {
+      _externallyStopped = false;
       if (_playback.isCompleted) _playback.value = 0;
       _startPlayback();
     }
@@ -123,6 +140,7 @@ class _GuidedTenFrameAnimationState extends State<GuidedTenFrameAnimation>
   }
 
   void _seek(int direction) {
+    _externallyStopped = false;
     _stopPlayback();
     final value = _playback.value;
     final next = direction > 0
@@ -139,6 +157,12 @@ class _GuidedTenFrameAnimationState extends State<GuidedTenFrameAnimation>
     _speaking = false;
     _playback.stop();
     (stopNarration ?? widget.onStopNarration)?.call();
+  }
+
+  void _stopFromLesson() {
+    _externallyStopped = true;
+    _stopPlayback();
+    if (mounted) setState(() {});
   }
 
   bool _current(int sequence) => mounted && sequence == _sequence;
@@ -158,6 +182,7 @@ class _GuidedTenFrameAnimationState extends State<GuidedTenFrameAnimation>
   }
 
   void _readCurrentPhase() {
+    _externallyStopped = false;
     _stopPlayback();
     unawaited(_narrate(_sequence));
   }
@@ -399,6 +424,7 @@ class _GuidedTenFrameAnimationState extends State<GuidedTenFrameAnimation>
 
   @override
   void dispose() {
+    widget.stopSignal?.removeListener(_stopFromLesson);
     _stopPlayback();
     WidgetsBinding.instance.removeObserver(this);
     _playback.dispose();
