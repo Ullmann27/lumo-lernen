@@ -79,11 +79,73 @@ class NativeLearningActivity {
     });
   }
 
+  /// Build a read-only, ungraded 3D pattern illustration from verified
+  /// domain labels. Reject ambiguous repetitions and any untrusted content.
+  static NativeLearningActivity? fromPattern({
+    required Object? sequence,
+    required Object? choices,
+    required Object? period,
+    required Object? expected,
+  }) {
+    if (period is! int || period < 1 || period > 4 ||
+        sequence is! List || choices is! List ||
+        sequence.length < period * 2 || sequence.length > 12 ||
+        choices.length < 2 || choices.length > 6) {
+      return null;
+    }
+    const labels = <String>{
+      'Kreis', 'Dreieck', 'Quadrat', 'Stern', 'Herz', 'Raute',
+      'Sechseck', 'Oval', 'Rechteck',
+    };
+    bool valid(Object? item) =>
+        item is String &&
+        item.length <= 24 &&
+        labels.contains(item) &&
+        item.trim() == item &&
+        !RegExp(r'[\x00-\x1f\x7f-\x9f]').hasMatch(item);
+    if (!sequence.every(valid) || !choices.every(valid) ||
+        choices.toSet().length != choices.length) {
+      return null;
+    }
+    final actual = List<String>.unmodifiable(sequence.cast<String>());
+    final options = List<String>.unmodifiable(choices.cast<String>());
+    for (var i = 0; i < actual.length; i++) {
+      if (actual[i] != actual[i % period]) return null;
+    }
+    // A repeated two-form group is never silently renamed as a four-form
+    // period; this keeps the explanation mathematically unambiguous.
+    for (var shorter = 1; shorter < period; shorter++) {
+      if (List.generate(actual.length, (i) => actual[i] == actual[i % shorter])
+          .every((same) => same)) {
+        return null;
+      }
+    }
+    final next = actual[actual.length % period];
+    if (expected is! String || expected != next ||
+        !options.contains(next)) {
+      return null;
+    }
+    return NativeLearningActivity._('pattern', {
+      'kind': 'pattern',
+      'sequence': actual,
+      'choices': options,
+      'period': period,
+    });
+  }
+
   /// Only consume the checked renderer payload and verify its arithmetic
   /// against the actual answer. Complex or unknown tasks keep their renderer.
   static NativeLearningActivity? fromTask(TaskInstance task) {
     if (task.subject == LearningSubject.logik) {
       final data = task.visualPayload.data;
+      if (data.containsKey('sequence') && data.containsKey('period')) {
+        return fromPattern(
+          sequence: data['sequence'],
+          choices: task.options.map((entry) => entry.label).toList(),
+          period: data['period'],
+          expected: task.correctAnswer,
+        );
+      }
       final unit = data['patternUnit'];
       final sequence = data['patternSequence'];
       final choices = data['patternChoices'];
