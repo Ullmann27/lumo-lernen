@@ -1,0 +1,157 @@
+{
+  "schema": "lumo.nextgen.learning.android.probe",
+  "version": 1,
+  "status": "FAIL",
+  "run_id": "e01ca255027c45c6a601b067c77e435a",
+  "started_utc": "2026-11-15T22:29:24Z",
+  "probe_sha256": "f6a71d649c14c76c71fb83e38eb50fdea8e268d508f48688f49ef4fc54afadff",
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "synthetic_profile": "LumoNextTest",
+  "candidate": {
+    "sha256": "9f3166a4e071f3f0e4217b1aa7e2e100bbf9ee2cfeb41bdbc47d33827e768fc9",
+    "flutter_source_commit": "72a7914059d10152604b877cfeaf8bd1d2155810",
+    "versionCode": 2027,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.15",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb",
+      "engine": "4.6.3",
+      "pck_sha256": "aeec3bee15604e814dfe02b643e55977497f18fa08283b1de1be0d3dda4aa65a",
+      "bytes": 278589004
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2027,
+    "versionName": "0.13.15",
+    "sha256": "9f3166a4e071f3f0e4217b1aa7e2e100bbf9ee2cfeb41bdbc47d33827e768fc9",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "onboarding": {
+    "profile": {
+      "id": "1794781828029133",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-15T22:30:28.029133"
+    },
+    "input": "real Android text input",
+    "synthetic": true
+  },
+  "screenshots": [
+    {
+      "file": "0023-home-after-onboarding.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "65e15823ce086078d7d6775238349abd8c712d3f73614d4a64a6a38322a5b1ca",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 7.082,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0057-local-model-conditions.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "349ab333e875c13e471edc0355f7d5df3008e65b58f5a22bcaa6854e514b9ad5",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.322,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0073-local-voice-ready.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "387bca86872ebd0f44191df5ad4951a372291cb029d9dd6e9fe08718d225c970",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.14,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0105-bridge-stopped-same-task.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "7cff5c5ea21db6869aa246dcbfacdb38575c0e54f681eccccf8227d87a1b222b",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.891,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0128-failure-current-screen.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "ec15e079d244424a9072a8f5de2f257a6d5df85831dd01ebd886d95bcd3f1c66"
+    }
+  ],
+  "videos": [
+    {
+      "file": "0001-onboarding.mp4",
+      "sha256": "8e65a5d145d7c180177cc24b0a9f9e021bbc60582365523a1788a06adc5c8344",
+      "bytes": 1908254,
+      "duration_seconds": 28.616511,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 32.98,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0093-eight-plus-five-explanation.mp4",
+      "sha256": "4181f51add0a649123c020dd4cc2b77438ab309d94da97958c7193e66550bef6",
+      "bytes": 2285099,
+      "duration_seconds": 26.286833,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 27.91,
+      "whole_block_within_recording_limit": true
+    }
+  ],
+  "local_voice_settings": {
+    "license": true,
+    "voice": true,
+    "auto_read": true,
+    "microphone": true,
+    "calm_mode": false,
+    "online_services_changed": false
+  },
+  "error": "Current visible Flutter text missing: Deine Aufgabe",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1186, in main\n    probe.run()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1152, in run\n    self.labs()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 933, in labs\n    self.result[\"conversation\"] = self.conversation()\n                                  ^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 860, in conversation\n    self.see(\"Geprüfte Aufgabenhilfe auf diesem Gerät.\" if chat4 else \"Deine Aufgabe\",\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 557, in see\n    raise RuntimeError(\"Current visible Flutter text missing: \" + text)\nRuntimeError: Current visible Flutter text missing: Deine Aufgabe\n",
+  "finished_utc": "2026-11-15T22:31:56Z"
+}

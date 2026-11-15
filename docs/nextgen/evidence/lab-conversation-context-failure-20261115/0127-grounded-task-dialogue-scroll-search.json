@@ -1,0 +1,92 @@
+{
+  "status": "NOT_FOUND",
+  "strategy": "forward_then_observed_boundary_reverse",
+  "non_scroll_observations": 0,
+  "gestures": [
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        553,
+        1080,
+        2340
+      ],
+      "before": "a971edfea115e0cfbbc29782f9a3924e6e6b538e74a689ec1722afb33787d8c7",
+      "after": "a8237787038493a07f66895287b55ea0435bec8e5b9d8e27257b88681722a49d",
+      "content_changed": true
+    },
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        553,
+        1080,
+        2340
+      ],
+      "before": "a8237787038493a07f66895287b55ea0435bec8e5b9d8e27257b88681722a49d",
+      "after": "a8237787038493a07f66895287b55ea0435bec8e5b9d8e27257b88681722a49d",
+      "content_changed": false
+    },
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        553,
+        1080,
+        2340
+      ],
+      "before": "a8237787038493a07f66895287b55ea0435bec8e5b9d8e27257b88681722a49d",
+      "after": "a8237787038493a07f66895287b55ea0435bec8e5b9d8e27257b88681722a49d",
+      "content_changed": false
+    },
+    {
+      "direction": -1,
+      "observed_bounds": [
+        0,
+        553,
+        1080,
+        2340
+      ],
+      "before": "a8237787038493a07f66895287b55ea0435bec8e5b9d8e27257b88681722a49d",
+      "after": "71af20ac7c5d502407882edbf869dba6c55d2065ef4b365ed79950243dd401db",
+      "content_changed": true
+    },
+    {
+      "direction": -1,
+      "observed_bounds": [
+        0,
+        553,
+        1080,
+        2340
+      ],
+      "before": "71af20ac7c5d502407882edbf869dba6c55d2065ef4b365ed79950243dd401db",
+      "after": "1b6c2d00dd10c83901ec3f681353a0203477a25e57a537230d44696e18fcc5c0",
+      "content_changed": true
+    },
+    {
+      "direction": -1,
+      "observed_bounds": [
+        0,
+        553,
+        1080,
+        2340
+      ],
+      "before": "1b6c2d00dd10c83901ec3f681353a0203477a25e57a537230d44696e18fcc5c0",
+      "after": "1b6c2d00dd10c83901ec3f681353a0203477a25e57a537230d44696e18fcc5c0",
+      "content_changed": false
+    },
+    {
+      "direction": -1,
+      "observed_bounds": [
+        0,
+        553,
+        1080,
+        2340
+      ],
+      "before": "1b6c2d00dd10c83901ec3f681353a0203477a25e57a537230d44696e18fcc5c0",
+      "after": "1b6c2d00dd10c83901ec3f681353a0203477a25e57a537230d44696e18fcc5c0",
+      "content_changed": false
+    }
+  ],
+  "reason": "target absent after both observed boundaries"
+}
