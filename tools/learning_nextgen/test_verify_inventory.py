@@ -19,7 +19,7 @@ class SourceCoverageTests(unittest.TestCase):
         self.assertEqual(result["status"], "STATIC_SOURCE_MATCH_ONLY")
         self.assertEqual(result["counts"]["academyTopicIds"], 36)
         self.assertEqual(result["counts"]["dedicatedModuleIds"], 20)
-        self.assertEqual(result["counts"]["labTopics"], 5)
+        self.assertEqual(result["counts"]["labTopics"], 6)
         self.assertEqual(result["counts"]["generatorSubjectFamilies"], 8)
         self.assertFalse(result["allLearningModernized"])
         self.assertFalse(result["androidRuntimeVerified"])
