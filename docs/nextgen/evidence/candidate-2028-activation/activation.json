@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "productSnapshot": "daf6ca5e9f7df7b32a32ef987d067035ddb5328c",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "release": {
+    "schemaVersion": 1,
+    "versionName": "0.13.16",
+    "versionCode": 2028,
+    "releaseTag": "lumo-nextgen-learning-0.13.16-2028",
+    "buildAttempt": 1
+  },
+  "coverageCounts": {
+    "curriculumFamilies": 236,
+    "mathTemplates": 60,
+    "germanTemplates": 32,
+    "academyTopics": 79,
+    "registeredModuleIds": 20,
+    "practicalActivities": 60,
+    "labTopics": 6,
+    "guidedLessons": 7,
+    "gameLevels": 50,
+    "readingTexts": 24,
+    "quests": 4,
+    "cognitiveQuestions": 200,
+    "reviewedInventoryEntries": 61,
+    "reviewedRoutes": 61,
+    "screenInventoryFiles": 55,
+    "activeSpecialistScreens": 18,
+    "activeSpecialistRoutes": 19,
+    "protectedShadowedRegistryRoutes": 1,
+    "labModes": 6,
+    "labProblemIds": 35,
+    "miniGameLevels": 49,
+    "quizFinalLevels": 1,
+    "nativeKinds": 12,
+    "protectedByteIdenticalFiles": 18,
+    "quizDeclaredQuestionIds": 108,
+    "cardsBankItems": 200
+  },
+  "inventorySourceHashesVerified": 245,
+  "protectedFilesByteIdentical": 18,
+  "finalAndroidAcceptanceComplete": false,
+  "newApkProduced": false,
+  "publicDownloadVerified": false,
+  "original2027FailureRetained": true,
+  "androidObservationCheckerTests": {
+    "passed": 88,
+    "failed": 0,
+    "notAnAndroidRun": true
+  },
+  "files": {
+    "catalog-2028.json": {
+      "bytes": 115256,
+      "sha256": "a2b59178f2484b8721a16daab5babcd6c724cd3df69f2745d5545f6eb643195d"
+    },
+    "catalog-2028-export.log": {
+      "bytes": 218,
+      "sha256": "61046bd4a371512f9e68fcb090d3a208059cb00589466cec75edfa0a31b68364"
+    },
+    "current-candidate-final-checkers.log": {
+      "bytes": 18700,
+      "sha256": "95a54ded848366f9a10889cd3062b96cd1911f182ad6629084e24b048766cde3"
+    }
+  }
+}

@@ -2,9 +2,9 @@
   "schema": "lumo.nextgen.learning.coverage",
   "version": 2,
   "asOf": "2026-11-15",
-  "exportedAtUtc": "2026-11-15T20:39:01.152687+00:00",
+  "exportedAtUtc": "2026-11-15T23:21:16.336352+00:00",
   "sourceBaseline": "6f4a8c4753f4d06d0b392da0789b8162b2faa71b",
-  "localSourceHead": "0726187cf488cb1362dc00209d4fafa736c08993",
+  "localSourceHead": "daf6ca5e9f7df7b32a32ef987d067035ddb5328c",
   "scope": {
     "fullModernizationComplete": false,
     "allTaskVariantsReviewed": false,
@@ -4329,7 +4329,7 @@
     }
   ],
   "catalogs": {
-    "sourceHead": "0726187cf488cb1362dc00209d4fafa736c08993",
+    "sourceHead": "daf6ca5e9f7df7b32a32ef987d067035ddb5328c",
     "semantics": "Finite catalogs are enumerated; generated task variants are not.",
     "curriculumFamilies": [
       {
@@ -21488,7 +21488,7 @@
       "id": "avatar_reference_followup",
       "status": "pinned_native_visual_device_review",
       "owner": "avatar + Root",
-      "description": "Published native source is pinned to ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb. This Flutter inventory does not itself prove the final Banane/card-overlap appearance, physical Fold behavior or device performance; no outstanding source delivery is inferred from that missing runtime proof.",
+      "description": "Published native source is pinned to 678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef. This Flutter inventory does not itself prove the final Banane/card-overlap appearance, physical Fold behavior or device performance; no outstanding source delivery is inferred from that missing runtime proof.",
       "classification": "pinned_native_visual_runtime_evidence_pending"
     },
     {
@@ -22001,14 +22001,14 @@
         "logStorageCommit": "aea9f63e5ea7a85a2d0a67d3b0e8988b0b0eb1fa",
         "executionSourceCommit": "0726187cf488cb1362dc00209d4fafa736c08993",
         "executionSourceCommitMeaning": "Post-run source checkpoint, where explicitly known; null is not inferred from the log storage commit.",
-        "executionScope": "current_inventory_snapshot",
+        "executionScope": "previous_inventory_snapshot",
         "tests": [
           "tools/nextgen/export_learning_catalog_test.dart"
         ],
         "testListCompleteFromRecordedCommand": true,
         "androidDeviceRun": false,
         "realMicrophoneRun": false,
-        "currentHeadSuiteRerun": true
+        "currentHeadSuiteRerun": false
       },
       {
         "id": "sentence_privacy",
@@ -23438,7 +23438,7 @@
     },
     {
       "path": "lib/features/learning/lab/learning_lab_screen.dart",
-      "sha256": "30e44b8f86c4251e462bdb076c4115ac4143f38f6be4814c68aea05c8afd5c4c",
+      "sha256": "12512400840d989c9652afa285fb308c2bbaa8dbbb2ef2f3a642a2ef6638e5ad",
       "readFrom": "worktree"
     },
     {
@@ -23978,7 +23978,7 @@
     },
     {
       "path": "test/learning/nextgen_lab_bus_integration_test.dart",
-      "sha256": "5f485bb110bcd0fb07a4539341e5359cf608794cd5274328eda31f942be89d4f",
+      "sha256": "badfce38dccd51131845a390485a63a563aed554dd7aedfaa601e2ada327bc78",
       "readFrom": "worktree"
     },
     {
@@ -24248,7 +24248,7 @@
     },
     {
       "path": "tools/nextgen/build_coverage.py",
-      "sha256": "adb5780a9b7437ff9a8d753bd130e7c00881dc183ddd36df51eb1f8d19876783",
+      "sha256": "46279688dc76f9857cd9eaa09a664c980211de200b625b7a66ef9b5465c529ec",
       "readFrom": "worktree"
     },
     {
@@ -24565,12 +24565,12 @@
             "editable": {
               "path": "lib/features/learning/lab/learning_lab_screen.dart",
               "symbol": "lab-answer",
-              "line": 1250
+              "line": 1291
             },
             "confirm": {
               "path": "lib/features/learning/lab/learning_lab_screen.dart",
               "symbol": "lab-check-answer",
-              "line": 1269
+              "line": 1310
             }
           }
         ],
@@ -24614,7 +24614,7 @@
             "source": {
               "path": "lib/features/learning/lab/learning_lab_screen.dart",
               "symbol": "lab-open-3d",
-              "line": 1135
+              "line": 1183
             },
             "buttonKeys": [
               "lab-open-3d"
@@ -29036,17 +29036,17 @@
     "activeSpecialistRoutes": "Actual specialist Academy entries with recorded widget route checks; separate from the general inventory count."
   },
   "sourceSnapshot": {
-    "committedProductHead": "0726187cf488cb1362dc00209d4fafa736c08993",
+    "committedProductHead": "daf6ca5e9f7df7b32a32ef987d067035ddb5328c",
     "productWorkingTreeClean": true,
-    "catalogSourceHead": "0726187cf488cb1362dc00209d4fafa736c08993",
-    "rawCatalogSha256": "d7b652b18344de68bab06280f1e5672cd63840fed1758576c095f1b719ca5cd5",
+    "catalogSourceHead": "daf6ca5e9f7df7b32a32ef987d067035ddb5328c",
+    "rawCatalogSha256": "a2b59178f2484b8721a16daab5babcd6c724cd3df69f2745d5545f6eb643195d",
     "exporter": {
       "path": "tools/nextgen/export_learning_catalog_test.dart"
     },
     "builder": {
       "path": "tools/nextgen/build_coverage.py"
     },
-    "publishedNativeSourcePin": "ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb",
+    "publishedNativeSourcePin": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
     "finalReleaseSourceCommit": null,
     "releaseStatus": "Root supplies final release SHA, APK provenance and CI/device results after integration."
   }

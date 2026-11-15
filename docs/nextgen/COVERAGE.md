@@ -1,6 +1,6 @@
 # Lernabdeckung – belegter integrierter Quellstand
 
-**Produkt-Snapshot: `0726187cf488cb1362dc00209d4fafa736c08993`. `fullModernizationComplete` bleibt `false`.**
+**Produkt-Snapshot: `daf6ca5e9f7df7b32a32ef987d067035ddb5328c`. `fullModernizationComplete` bleibt `false`.**
 Diese Matrix inventarisiert den ausgeführten Dart-Katalog, Einstiegsketten, fachliche Antwortgrenzen und vorhandene Testprotokolle. Ihre Einträge umfassen aktive und bedingte Lernwege, Navigation, Verträge, geschützte sowie inaktive Legacy-Pfade; ihre Gesamtzahl ist keine Zahl aktuell erreichbarer bewerteter Aufgaben. Sie ist keine Geräte- oder Releasefreigabe. [COVERAGE.json](COVERAGE.json) enthält IDs, Quellenhashes, klassifizierte Einträge, Typen, Adapter und Nachweisgrenzen.
 
 ## Tatsächlich erfasster Umfang
@@ -75,7 +75,7 @@ Die folgenden Zahlen stammen aus den eingecheckten oder mit dieser Matrix neu er
 | `mini_audio_owner` | 12 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [mini-audio-tests.log](evidence/ci_retry_20261115/mini-audio-tests.log) |
 | `story_audio_owner` | 35 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [story-audio-tests.log](evidence/ci_retry_20261115/story-audio-tests.log) |
 | `core_guided_audio_owner` | 54 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [tests.log](evidence/learning_audio_owner_20261115/tests.log) |
-| `catalog_export` | 1 bestanden / 0 fehlgeschlagen | `current_inventory_snapshot` | [catalog_export.log](evidence/coverage_refresh_20261115/catalog_export.log) |
+| `catalog_export` | 1 bestanden / 0 fehlgeschlagen | `previous_inventory_snapshot` | [catalog_export.log](evidence/coverage_refresh_20261115/catalog_export.log) |
 | `sentence_privacy` | 3 bestanden / 0 fehlgeschlagen | `previous_inventory_snapshot` | [sentence_privacy.log](evidence/coverage_refresh_20261115/sentence_privacy.log) |
 
 Die Satz-Privacy-Neuprüfung ersetzt die alte Behauptung eines offenen Lösungslecks. Unverknüpfte Testdateien tragen `present_no_recorded_run_matched`; verknüpfte Dateien `passed_in_recorded_targeted_run`. Beide Zustände sind von einem frischen vollständigen Root-Lauf getrennt.
@@ -84,7 +84,7 @@ Die Satz-Privacy-Neuprüfung ersetzt die alte Behauptung eines offenen Lösungsl
 
 - Der frühere C5-Lauf 44/5 und die abgebrochene erste native Fixture bleiben Fehlerhistorie. Der korrigierte gemeinsame Native-Lauf hat **35/35**, der gelieferte Frage-Coach **56/56**, der neue Lab-Anschluss **24/24** aufgezeichnete Erfolge. Sie ersetzen die alten Pending-Aussagen für diese gezielten Bereiche, ergeben zusammen aber keinen vollständigen aktuellen Root-Testlauf.
 - Die 35-Test-Lieferung `b193899565110e5c7a26f73520a943b261887e63` enthält nach diesem Lauf noch eine enge Ablehnung mehrdeutiger normalisierter Auswahlwerte. Die finale CI muss deshalb den exakten integrierten Quellstand einschließlich dieser Verschärfung prüfen. Live, 2D Flame und der Quiz-/Cards-Coach sind in `3123d3247775fcdc42a16c2bcc5c51e1ab98c4c9` integriert; ihre Producer-/Test-Provenienz ist im JSON getrennt erfasst.
-- Der veröffentlichte native Quell-Pin lautet **`ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb`**. Dieser Flutter-Bestand allein belegt nicht die finale Banane-/Kartenoptik auf einem Gerät. Die gemeldete Desktopmessung beträgt **8 FPS**; sie belegt keine 60 FPS. Physischer Fold, Rotation/Größenwechsel, reale Mikrofon-/Audioabläufe und die vollständige Android-Tour sind offen.
+- Der veröffentlichte native Quell-Pin lautet **`678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef`**. Dieser Flutter-Bestand allein belegt nicht die finale Banane-/Kartenoptik auf einem Gerät. Ein früherer Desktop-Review meldete **8 FPS**; das ist ein historischer Producer-Befund und keine Leistungsmessung der aktuellen Android-APK. Physischer Fold, reale Mikrofon-/Audioabläufe und die vollständige Android-Tour benötigen ihre eigenen aktuellen Belege.
 - Die alten Deutsch-Lückensätze bleiben ohne App-Einstieg, weil mehrdeutiger Inhalt und direkte Belohnungsbuchung noch überprüft werden müssen. Exakte UI-Auswahl aller 236 Generatorfamilien und jede generierte Variante sind nicht durchgespielt.
 - **18 geschützte Schreib-/Journaldateien sind bytegleich** zu `6f4a8c4753f4d06d0b392da0789b8162b2faa71b`; Einzelhashes stehen in JSON. Kart und nativer Dschungel bleiben ausgeschlossen. Der eigenständige 2D-Flame-Lernpfad bleibt im Inventar.
 - Finaler Release-SHA, signierte APK-Provenienz, CI-Ergebnis und Download werden von Root nach Integration ergänzt. Aus dieser Bestandsaufnahme folgt keine neue APK-Freigabe.
