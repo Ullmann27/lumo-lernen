@@ -1,6 +1,6 @@
 /// Reviewed, offline learning objects. Answers and model targets are computed
 /// locally; no child's text is sent to a provider or used as a diagnosis.
-enum LabMode { bridge, word, english, nature, fraction }
+enum LabMode { bridge, word, english, nature, fraction, pattern }
 
 class LabTopic {
   const LabTopic(this.id, this.title, this.subject, this.unit,
@@ -28,6 +28,8 @@ class LabProblem {
     this.denominator = 4,
     this.tokens = const [],
     this.tokenOrder = const [],
+    this.pattern = const [],
+    this.repeatLength = 0,
   });
 
   final String id, prompt, guidedPrompt, expected, workedExample, reflection;
@@ -35,24 +37,76 @@ class LabProblem {
   final int start, addend, modelTarget, denominator;
   final List<String> tokens, hints;
   final List<int> tokenOrder;
+  final List<String> pattern;
+  final int repeatLength;
+
+  /// Checked before a problem becomes visible. The model and answer must
+  /// describe the same activity, including every ordered token.
+  bool get isValid {
+    if (id.isEmpty || prompt.isEmpty || guidedPrompt.isEmpty ||
+        expected.isEmpty || hints.length != 5 ||
+        hints.any((hint) => hint.trim().isEmpty)) return false;
+    switch (mode) {
+      case LabMode.bridge:
+        return start > 0 && start < 10 && addend > 10 - start &&
+            addend <= 10 && modelTarget == 10 - start &&
+            expected == '${start + addend}';
+      case LabMode.fraction:
+        return denominator >= 2 && denominator <= 8 &&
+            modelTarget > 0 && modelTarget < denominator &&
+            expected == '$modelTarget/$denominator';
+      case LabMode.pattern:
+        if (repeatLength < 2 || pattern.length < repeatLength * 2 ||
+            tokens.toSet().length != tokens.length ||
+            !tokens.contains(expected)) return false;
+        for (var i = repeatLength; i < pattern.length; i++) {
+          if (pattern[i] != pattern[i % repeatLength]) return false;
+        }
+        return expected == pattern[pattern.length % repeatLength];
+      case LabMode.word:
+      case LabMode.english:
+      case LabMode.nature:
+        if (tokenOrder.isEmpty ||
+            tokenOrder.toSet().length != tokenOrder.length ||
+            tokenOrder.any((index) => index < 0 || index >= tokens.length)) {
+          return false;
+        }
+        final ordered = tokenOrder.map((index) => tokens[index]).toList();
+        return mode == LabMode.word
+            ? ordered.join() == expected
+            : ordered.contains(expected);
+    }
+  }
 
   String _clean(String value) => value.trim().replaceAll(RegExp(r'\s+'), ' ');
 
   bool accepts(String value) {
     final input = _clean(value);
     if (mode == LabMode.fraction) {
-      return input.replaceAll(' ', '') == expected;
+      final match = RegExp(r'^(\d+)\s*/\s*(\d+)$').firstMatch(input);
+      if (match == null) return false;
+      final numerator = BigInt.tryParse(match.group(1)!);
+      final divisor = BigInt.tryParse(match.group(2)!);
+      return numerator != null && divisor != null && divisor > BigInt.zero &&
+          numerator * BigInt.from(denominator) ==
+              divisor * BigInt.from(modelTarget);
     }
-    if (mode == LabMode.english || mode == LabMode.nature) {
+    if (mode == LabMode.english || mode == LabMode.nature ||
+        mode == LabMode.pattern) {
       return input.toLowerCase() == expected.toLowerCase();
     }
     return input == expected;
   }
 
-  bool modelAccepts(List<int> selected) =>
-      selected.length == tokenOrder.length &&
-      List.generate(selected.length, (i) => selected[i] == tokenOrder[i])
-          .every((same) => same);
+  bool modelAccepts(List<int> selected) {
+    if (mode == LabMode.pattern) {
+      return selected.length == 1 && selected.single >= 0 &&
+          selected.single < tokens.length && tokens[selected.single] == expected;
+    }
+    return selected.length == tokenOrder.length &&
+        List.generate(selected.length, (i) => selected[i] == tokenOrder[i])
+            .every((same) => same);
+  }
 
   /// These are task-level observations, never assertions about a child.
   String? errorTag(String answer) {
@@ -178,6 +232,14 @@ class LabCatalog {
       _fraction(3, 8),
       _fraction(1, 4),
       _fraction(2, 5),
+    ]),
+    LabTopic('patterns', 'Lumos Formenwerkstatt', 'Logik', 'Muster', 1,
+        LabMode.pattern, 'Eine wiederkehrende Gruppe entdecken und fortsetzen.', [
+      _pattern(['Kreis', 'Dreieck'], 5),
+      _pattern(['Dreieck', 'Kreis'], 5),
+      _pattern(['Quadrat', 'Kreis'], 5),
+      _pattern(['Kreis', 'Dreieck', 'Quadrat'], 8),
+      _pattern(['Dreieck', 'Quadrat', 'Kreis'], 7),
     ]),
   ]);
 
@@ -305,4 +367,29 @@ class LabCatalog {
         reflection:
             'Unten steht die Teilung des Ganzen, oben stehen die markierten Teile.',
       );
+
+  static LabProblem _pattern(List<String> group, int length) {
+    final visible = List.generate(length, (index) => group[index % group.length]);
+    final next = group[length % group.length];
+    return LabProblem(
+      id: 'pattern-${group.join('-').toLowerCase()}-$length',
+      mode: LabMode.pattern,
+      prompt: '${visible.join(' – ')}. Welche Form kommt als Nächstes?',
+      guidedPrompt: 'Schau auf die wiederkehrende Gruppe. Wähle die nächste Form.',
+      expected: next,
+      pattern: List.unmodifiable(visible),
+      repeatLength: group.length,
+      tokens: const ['Kreis', 'Dreieck', 'Quadrat'],
+      workedExample: 'Die Gruppe ${group.join(' – ')} wiederholt sich. '
+          'Nach ${visible.last} beginnt die passende Stelle der Gruppe: $next.',
+      hints: [
+        'Vergleiche die ersten Formen mit den Formen danach. Was wiederholt sich?',
+        'Sprich die Formen einer Gruppe und beginne dann die gleiche Gruppe noch einmal.',
+        'Die Umrahmung zeigt dir jeweils eine zusammengehörige Gruppe. Prüfe die letzte, noch unvollständige Gruppe.',
+        'Ein anderes Beispiel: Quadrat – Kreis – Quadrat – Kreis. Immer dieselbe Gruppe aus zwei Formen.',
+        'Vergleiche den freien Platz mit der gleichen Stelle in der ersten vollständigen Gruppe.',
+      ],
+      reflection: 'Ich finde die wiederkehrende Gruppe und setze sie in derselben Reihenfolge fort.',
+    );
+  }
 }

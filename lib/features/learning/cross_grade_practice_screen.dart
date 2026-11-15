@@ -1,14 +1,26 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../app/app_state.dart';
 import '../../core/school_exercise_generator.dart';
+import '../../core/task_hint_service.dart';
+import '../../core/writing_target_parser.dart';
+import '../../domain/learning/lumo_learning_domain.dart';
+import '../../widgets/fox/lumo_companion_requests.dart';
+import 'adapters/legacy_lumo_task_adapter.dart';
+import 'renderers/shape_trace_task_renderer.dart';
+import 'renderers/writing_task_renderer.dart';
+import 'widgets/interactive_task_workspace.dart';
 import 'widgets/cross_grade_visual_scene.dart';
 import '../../widgets/design/lumo_answer_crystal.dart';
 
 /// Direct, offline, interactive lessons in a voluntarily selected school grade.
 ///
-/// Deliberately independent of LumoAppState: choosing a different grade must
-/// not silently change the enrolled profile or grant school-grade rewards.
+/// The optional app state supplies settings and the existing companion only.
+/// Choosing a grade never changes enrolment or grants school-grade rewards.
 /// Answers are stored in a separate, namespaced practice counter.
 class CrossGradePracticeScreen extends StatefulWidget {
   const CrossGradePracticeScreen({
@@ -18,6 +30,7 @@ class CrossGradePracticeScreen extends StatefulWidget {
     required this.lessonGrade,
     required this.subject,
     required this.unit,
+    this.appState,
   });
 
   final String profileName;
@@ -25,6 +38,7 @@ class CrossGradePracticeScreen extends StatefulWidget {
   final int lessonGrade;
   final String subject;
   final String unit;
+  final LumoAppState? appState;
 
   @override
   State<CrossGradePracticeScreen> createState() =>
@@ -32,16 +46,41 @@ class CrossGradePracticeScreen extends StatefulWidget {
 }
 
 class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
+  static const _adapter = LegacyLumoTaskAdapter();
+  static const _hints = TaskHintService();
   late final ExerciseFactory _factory;
   late LumoTask _task;
+  late TaskInstance _taskInstance;
+  String? _taskError;
   String? _selected;
   String? _firstWrongChoice;
+  bool? _lastCorrect;
+  bool _practiceComplete = false;
+  bool _quiet = false;
+  bool _profileChanged = false;
+  int? _profileGeneration;
+  int _helpLevel = 0;
+  int _loadSerial = 0;
+  int _workspaceRevision = 0;
+  bool _showSupport = false;
+  String? _workspaceMessage;
+  LumoCompanionTaskContext? _publishedContext;
   int _answered = 0;
   int _correct = 0;
   bool _progressLoaded = false;
   bool _saving = false;
   String? _loadError;
   String? _saveError;
+
+  bool get _reduced => _quiet ||
+      widget.appState?.state.settings.reduceAnimations == true ||
+      widget.appState?.state.settings.calmMode == true;
+
+  bool get _canWork => _progressLoaded && !_profileChanged &&
+      _loadError == null && _taskError == null && !_saving &&
+      _selected == null && !_practiceComplete;
+
+  bool get _completed => _selected != null || _practiceComplete;
 
   String get _scope {
     // This lightweight local scope never changes the official profile grade.
@@ -57,25 +96,181 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   void initState() {
     super.initState();
     _factory = ExerciseFactory();
-    _task = _factory.next(
-      grade: widget.lessonGrade,
-      subject: widget.subject,
-      unit: widget.unit,
-    );
-    _loadProgress();
+    _profileGeneration = widget.appState?.profileGeneration;
+    widget.appState?.addListener(_checkProfile);
+    LumoCompanionRequests.instance.helpRequested.addListener(_companionHelp);
+    _createTask();
+    unawaited(_loadProgress());
+  }
+
+  @override
+  void didUpdateWidget(covariant CrossGradePracticeScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.appState != widget.appState) {
+      oldWidget.appState?.removeListener(_checkProfile);
+      widget.appState?.addListener(_checkProfile);
+    }
+    if (oldWidget.profileName != widget.profileName ||
+        oldWidget.enrolledGrade != widget.enrolledGrade ||
+        oldWidget.lessonGrade != widget.lessonGrade ||
+        oldWidget.subject != widget.subject || oldWidget.unit != widget.unit ||
+        oldWidget.appState != widget.appState) {
+      _loadSerial++;
+      _profileGeneration = widget.appState?.profileGeneration;
+      _profileChanged = false;
+      _progressLoaded = false;
+      _saving = false;
+      _loadError = null;
+      _saveError = null;
+      _answered = 0;
+      _correct = 0;
+      _createTask();
+      unawaited(_loadProgress());
+    }
+  }
+
+  @override
+  void dispose() {
+    _loadSerial++;
+    widget.appState?.removeListener(_checkProfile);
+    final requests = LumoCompanionRequests.instance;
+    requests.helpRequested.removeListener(_companionHelp);
+    if (_publishedContext != null &&
+        identical(requests.taskContext.value, _publishedContext)) {
+      requests.clearTask(_publishedContext!);
+    }
+    super.dispose();
+  }
+
+  void _checkProfile() {
+    if (!mounted) return;
+    final app = widget.appState;
+    if (app != null && (app.resetting ||
+        app.profileGeneration != _profileGeneration)) {
+      setState(() => _profileChanged = true);
+      return;
+    }
+    setState(() {});
+  }
+
+  void _createTask() {
+    _selected = null;
+    _lastCorrect = null;
+    _practiceComplete = false;
+    _firstWrongChoice = null;
+    _helpLevel = 0;
+    _showSupport = false;
+    _workspaceRevision++;
+    _workspaceMessage = null;
+    try {
+      // The exact checked object owns the visible problem AND its answer.
+      // Unknown topics never quietly turn into unrelated material.
+      final next = _adapter.qualityCheckedTask(_factory.nextExact(
+        grade: widget.lessonGrade,
+        subject: widget.subject,
+        unit: widget.unit,
+      ));
+      if (next.grade != widget.lessonGrade || next.subject != widget.subject ||
+          next.unit != widget.unit) {
+        throw StateError('The task changed the requested learning scope');
+      }
+      _task = next;
+      _taskInstance = _adapter.toTaskInstance(
+        task: next,
+        childId: _scope,
+        difficulty: next.difficulty,
+      );
+      _taskError = null;
+      _publishTask();
+    } catch (_) {
+      _taskError = 'Diese Aufgabe konnte nicht sicher vorbereitet werden. '
+          'Bitte versuche es erneut oder wähle ein anderes Thema.';
+    }
+  }
+
+  void _publishTask() {
+    if (widget.appState == null || _taskError != null || _profileChanged) return;
+    final taskId = _taskInstance.taskInstanceId;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || _taskError != null || _profileChanged ||
+          _taskInstance.taskInstanceId != taskId ||
+          !(ModalRoute.of(context)?.isCurrent ?? true)) return;
+      final value = LumoCompanionTaskContext(
+        subject: _task.subject,
+        unit: _task.unit,
+        prompt: _task.prompt,
+        taskId: taskId,
+        attempts: _firstWrongChoice == null ? 0 : 1,
+        helpLevel: _helpLevel,
+        answering: !_completed,
+        lastAnswer: _selected ?? _firstWrongChoice,
+        lastCorrect: _lastCorrect,
+        localHelp: _hints.explain(_task, level: _helpLevel < 1 ? 1 : _helpLevel),
+        activity: 'cross_grade_practice',
+        ownerSection: 'learn',
+        profileGeneration: _profileGeneration,
+      );
+      _publishedContext = value;
+      LumoCompanionRequests.instance.publishTask(value);
+    });
+  }
+
+  void _companionHelp() {
+    if (!mounted || !_canWork ||
+        !identical(LumoCompanionRequests.instance.taskContext.value,
+            _publishedContext) ||
+        !(ModalRoute.of(context)?.isCurrent ?? true)) return;
+    _requestHelp();
+  }
+
+  void _requestHelp() {
+    if (!_canWork) return;
+    setState(() {
+      _helpLevel = (_helpLevel + 1).clamp(1, 3);
+      _showSupport = true;
+      _workspaceMessage = _hints.explain(_task, level: _helpLevel);
+    });
+    _publishTask();
   }
 
   Future<void> _loadProgress() async {
+    final scope = _scope;
+    final serial = ++_loadSerial;
     try {
       final prefs = await SharedPreferences.getInstance();
       // Do not treat malformed history as a fresh profile. Keep both keys
       // untouched so the family can recover the existing local data.
-      final answered = prefs.getInt('$_scope:answered') ?? 0;
-      final correct = prefs.getInt('$_scope:correct') ?? 0;
+      var answered = prefs.getInt('$scope:answered') ?? 0;
+      var correct = prefs.getInt('$scope:correct') ?? 0;
+      // Existing counters retain their format. A separate write-ahead record
+      // finishes only an already accepted answer after interruption.
+      final pending = prefs.getString('$scope:pending_answer');
+      if (pending != null) {
+        final decoded = jsonDecode(pending);
+        if (decoded is! Map<String, dynamic> ||
+            decoded['answered'] is! int || decoded['correct'] is! int) {
+          throw const FormatException('Invalid pending practice answer');
+        }
+        final pendingAnswered = decoded['answered'] as int;
+        final pendingCorrect = decoded['correct'] as int;
+        if (pendingAnswered < 1 || pendingCorrect < 0 ||
+            pendingCorrect > pendingAnswered ||
+            answered > pendingAnswered || correct > pendingCorrect ||
+            pendingAnswered - answered > 1 || pendingCorrect - correct > 1) {
+          throw const FormatException('Conflicting pending practice answer');
+        }
+        if (!await prefs.setInt('$scope:answered', pendingAnswered) ||
+            !await prefs.setInt('$scope:correct', pendingCorrect) ||
+            !await prefs.remove('$scope:pending_answer')) {
+          throw StateError('The pending practice answer could not be saved');
+        }
+        answered = pendingAnswered;
+        correct = pendingCorrect;
+      }
       if (answered < 0 || correct < 0 || correct > answered) {
         throw const FormatException('Invalid existing practice counters');
       }
-      if (!mounted) return;
+      if (!mounted || serial != _loadSerial || scope != _scope) return;
       setState(() {
         _answered = answered;
         _correct = correct;
@@ -83,7 +278,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
         _loadError = null;
       });
     } catch (_) {
-      if (!mounted) return;
+      if (!mounted || serial != _loadSerial || scope != _scope) return;
       setState(() {
         _progressLoaded = false;
         _loadError =
@@ -94,26 +289,72 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   }
 
   Future<void> _answer(String choice) async {
-    if (!_progressLoaded || _loadError != null ||
-        _selected != null || _saving) {
-      return;
-    }
+    if (!_canWork || !_task.choices.contains(choice)) return;
     if (choice == _firstWrongChoice) return;
     final correct = choice == _task.answer;
     // The first wrong attempt is unfinished: offer a hint, without writing
     // counters or disclosing the solution until the child tries again.
     if (!correct && _firstWrongChoice == null) {
-      setState(() => _firstWrongChoice = choice);
+      setState(() {
+        _firstWrongChoice = choice;
+        _helpLevel = _helpLevel < 1 ? 1 : _helpLevel;
+        _showSupport = true;
+        _workspaceMessage = _hints.explain(_task, level: _helpLevel);
+      });
+      _publishTask();
       return;
     }
+    await _acceptAnswer(choice, correct);
+  }
+
+  Future<void> _acceptAnswer(String choice, bool correct) async {
+    if (!_canWork) return;
     setState(() {
       _selected = choice;
+      _lastCorrect = correct;
       _answered++;
       if (correct) _correct++;
       _saveError = null;
       _saving = true;
     });
+    _publishTask();
     await _persistAcceptedAnswer();
+  }
+
+  void _writingAnswer(WritingTaskResult result) {
+    if (!_canWork || result.task.taskInstanceId != _taskInstance.taskInstanceId) {
+      return;
+    }
+    if (result.skipped) {
+      setState(_createTask);
+      return;
+    }
+    final typed = result.typedAnswer;
+    if (typed != null) {
+      String clean(String value) => value.trim().replaceAll(RegExp(r'\s+'), ' ');
+      final target = WritingTargetParser.parse(_task.prompt);
+      unawaited(_acceptAnswer(typed, clean(typed) == clean(target)));
+    } else {
+      // A real trainer attempt is practice. It has no fabricated ink grade.
+      setState(() => _practiceComplete = true);
+      _publishTask();
+    }
+  }
+
+  void _shapeAnswer(ShapeTraceTaskResult result) {
+    if (!_canWork || result.task.taskInstanceId != _taskInstance.taskInstanceId) {
+      return;
+    }
+    if (result.correct) {
+      unawaited(_acceptAnswer(result.shape, true));
+    } else {
+      setState(() {
+        _helpLevel = _helpLevel < 1 ? 1 : _helpLevel;
+        _showSupport = true;
+        _workspaceMessage = result.feedback;
+      });
+      _publishTask();
+    }
   }
 
   /// Persist the already accepted answer. Retry calls this exact method
@@ -123,19 +364,24 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
     if (!mounted || !_progressLoaded || _selected == null) return;
     final answered = _answered;
     final correct = _correct;
+    final scope = _scope;
+    final serial = _loadSerial;
     bool saved = false;
     try {
       final prefs = await SharedPreferences.getInstance();
       // Short-circuit on a rejected write rather than silently declaring
       // success; retry overwrites only the same target values.
-      final answeredSaved = await prefs.setInt('$_scope:answered', answered);
-      if (answeredSaved) {
-        saved = await prefs.setInt('$_scope:correct', correct);
+      final staged = await prefs.setString('$scope:pending_answer', jsonEncode({
+        'answered': answered, 'correct': correct,
+      }));
+      if (staged && await prefs.setInt('$scope:answered', answered) &&
+          await prefs.setInt('$scope:correct', correct)) {
+        saved = await prefs.remove('$scope:pending_answer');
       }
     } catch (_) {
       saved = false;
     }
-    if (!mounted) return;
+    if (!mounted || serial != _loadSerial || scope != _scope) return;
     setState(() {
       _saving = false;
       _saveError = saved
@@ -159,41 +405,49 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
 
   void _next() {
     if (!_progressLoaded || _saving || _saveError != null ||
-        _selected == null) {
+        !_completed || _profileChanged) {
       return;
     }
-    setState(() {
-      _task = _factory.next(
-        grade: widget.lessonGrade,
-        subject: widget.subject,
-        unit: widget.unit,
-      );
-      _selected = null;
-      _firstWrongChoice = null;
-    });
+    setState(_createTask);
   }
 
   String get _secondChanceHint {
-    switch (widget.subject) {
-      case 'Mathematik':
-        return 'Prüfe das Rechenzeichen und rechne in kleinen Schritten.';
-      case 'Deutsch':
-      case 'Rechtschreibung':
-      case 'Lesen':
-        return 'Lies die Aufgabe langsam und vergleiche die übrigen Antworten.';
-      case 'Englisch':
-        return 'Lies die Wörter einzeln und prüfe ihre Bedeutung.';
-      default:
-        return 'Schau auf die Frage und prüfe die übrigen Möglichkeiten.';
-    }
+    return _workspaceMessage ?? _hints.explain(_task, level: _helpLevel);
   }
 
   @override
   Widget build(BuildContext context) {
     final accent = const Color(0xFF62E5F4);
+    if (_taskError != null) {
+      return CrossGradeVisualScene(
+        title: '${widget.lessonGrade}. Klasse · ${widget.subject}',
+        body: SafeArea(child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Icon(Icons.help_outline_rounded, color: Colors.white, size: 44),
+            const SizedBox(height: 16),
+            Text(_taskError!, key: const ValueKey('cross-grade-task-error'),
+              style: const TextStyle(color: Colors.white, fontSize: 18)),
+            const SizedBox(height: 16),
+            FilledButton.icon(
+              key: const ValueKey('cross-grade-task-retry'),
+              style: FilledButton.styleFrom(minimumSize: const Size(48, 48)),
+              onPressed: () => setState(_createTask),
+              icon: const Icon(Icons.refresh),
+              label: const Text('Aufgabe erneut vorbereiten'),
+            ),
+          ]),
+        )),
+      );
+    }
     final choices = _task.choices;
     final selected = _selected;
-    return CrossGradeVisualScene(
+    return PopScope(
+      canPop: !_saving,
+      child: MediaQuery(
+      data: MediaQuery.of(context).copyWith(
+        disableAnimations: _reduced || MediaQuery.of(context).disableAnimations),
+      child: CrossGradeVisualScene(
       title: '${widget.lessonGrade}. Klasse · ${widget.subject}',
       body: SafeArea(
         child: ListView(
@@ -213,6 +467,11 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                       fontWeight: FontWeight.w900,
                     ),
                   ),
+                  const SizedBox(height: 8),
+                  Text(_learningGoal,
+                    key: const ValueKey('cross-grade-learning-goal'),
+                    style: const TextStyle(color: Color(0xFFB7F1FF),
+                        fontWeight: FontWeight.w800, fontSize: 15)),
                   const SizedBox(height: 8),
                   Text(
                     'Frei üben · Dein Lernprofil bleibt in der '
@@ -236,12 +495,26 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                 ],
               ),
             ),
+            if (_profileChanged) ...[
+              const SizedBox(height: 12),
+              const Text('Das Lernprofil wurde gewechselt. Öffne die Übung '
+                  'für das neue Profil erneut.',
+                key: ValueKey('cross-grade-profile-changed'),
+                style: TextStyle(color: Color(0xFFFFD58D), fontSize: 16)),
+            ],
             if (_loadError != null) ...[
               const SizedBox(height: 12),
               Text(
                 _loadError!,
                 key: const ValueKey('cross-grade-load-error'),
                 style: const TextStyle(color: Color(0xFFFFD58D), fontWeight: FontWeight.w800),
+              ),
+              TextButton.icon(
+                key: const ValueKey('cross-grade-load-retry'),
+                style: TextButton.styleFrom(minimumSize: const Size(48, 48)),
+                onPressed: () => unawaited(_loadProgress()),
+                icon: const Icon(Icons.refresh),
+                label: const Text('Lernstand erneut laden'),
               ),
             ] else if (!_progressLoaded) ...[
               const Padding(
@@ -263,6 +536,44 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
               ),
             )),
             const SizedBox(height: 16),
+            if (_taskInstance.taskType == TaskType.writingCanvas)
+              AbsorbPointer(
+                absorbing: !_canWork,
+                child: WritingTaskRenderer(
+                  key: ValueKey(_taskInstance.taskInstanceId),
+                  task: _taskInstance, onSubmitted: _writingAnswer),
+              )
+            else if (_taskInstance.taskType == TaskType.shapeTrace)
+              AbsorbPointer(
+                absorbing: !_canWork,
+                child: ShapeTraceTaskRenderer(
+                  key: ValueKey(_taskInstance.taskInstanceId),
+                  task: _taskInstance, onSubmitted: _shapeAnswer),
+              )
+            else ...[
+              InteractiveTaskWorkspace(
+                key: ValueKey('${_taskInstance.taskInstanceId}-$_workspaceRevision'),
+                task: _taskInstance,
+                enabled: _canWork,
+                reduceMotion: _reduced,
+                helpLevel: _showSupport ? _helpLevel : 0,
+                onInteraction: (event) {
+                  if (!_canWork || event.taskId != _taskInstance.taskInstanceId) {
+                    return;
+                  }
+                  setState(() {
+                    if (event.isHelp) _helpLevel = _helpLevel < 1 ? 1 : _helpLevel;
+                    if (event.explanation.isNotEmpty) {
+                      _workspaceMessage = event.explanation;
+                    }
+                  });
+                  _publishTask();
+                },
+              ),
+              const SizedBox(height: 16),
+            ],
+            _learningControls(),
+            const SizedBox(height: 16),
             for (var i = 0; i < choices.length; i++) ...[
               if (widget.subject == 'Mathematik' &&
                   choices[i].length <= 14)
@@ -277,8 +588,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                         : choices[i] == _firstWrongChoice
                             ? LumoCrystalState.retry
                             : LumoCrystalState.neutral,
-                    onPressed: _progressLoaded && _loadError == null &&
-                            !_saving && selected == null &&
+                    onPressed: _canWork &&
                             choices[i] != _firstWrongChoice
                         ? () => _answer(choices[i])
                         : null,
@@ -287,7 +597,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
               else
                 OutlinedButton(
                   key: ValueKey('cross-grade-choice-$i'),
-                  onPressed: _progressLoaded && _loadError == null && !_saving && selected == null && choices[i] != _firstWrongChoice
+                  onPressed: _canWork && choices[i] != _firstWrongChoice
                       ? () => _answer(choices[i]) : null,
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size.fromHeight(54),
@@ -317,16 +627,18 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                 ),
               const SizedBox(height: 9),
             ],
-            if (selected != null || _firstWrongChoice != null) ...[
+            if (_completed || _firstWrongChoice != null ||
+                _workspaceMessage != null) ...[
               const SizedBox(height: 12),
               Text(
-                selected == null ? _secondChanceHint :
-                selected == _task.answer
-                    ? 'Richtig! Gut gemacht!'
+                _practiceComplete ? 'Schreibübung abgeschlossen. Gut geübt!'
+                    : selected == null ? _secondChanceHint :
+                _lastCorrect == true
+                    ? _helpLevel > 0 ? 'Richtig! Mit Hilfe geschafft.' : 'Richtig! Gut gemacht!'
                     : 'Die richtige Antwort ist: ${_task.answer}',
                 key: const ValueKey('cross-grade-feedback'),
                 style: TextStyle(
-                  color: selected == _task.answer
+                  color: _lastCorrect == true || _practiceComplete
                       ? const Color(0xFF77F0B8)
                       : const Color(0xFFFFD58D),
                   fontSize: 18,
@@ -334,7 +646,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              if (selected != null)
+              if (_completed)
                 CrossGradeGlassPanel(child: Text(
                 _task.explanation,
                 key: const ValueKey('cross-grade-explanation'),
@@ -348,6 +660,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                     style: const TextStyle(color: Color(0xFFFFD58D), fontWeight: FontWeight.w800)),
                 TextButton.icon(
                     key: const ValueKey('cross-grade-save-retry'),
+                    style: TextButton.styleFrom(minimumSize: const Size(48, 48)),
                     onPressed: _saving ? null : _retrySave,
                     icon: const Icon(Icons.refresh_rounded),
                     label: const Text('Erneut speichern')),
@@ -367,7 +680,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                   foregroundColor: const Color(0xFF07223C),
                   minimumSize: const Size.fromHeight(54),
                 ),
-                onPressed: _selected == null ? null : (!_saving && _saveError == null && _progressLoaded ? _next : null),
+                onPressed: !_completed ? null : (!_saving && _saveError == null && _progressLoaded && !_profileChanged ? _next : null),
                 icon: const Icon(Icons.arrow_forward_rounded),
                 label: const Text('Nächste Aufgabe',
                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900)),
@@ -376,6 +689,57 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
           ],
         ),
       ),
-    );
+    )));
   }
+
+  String get _learningGoal {
+    final subject = widget.subject;
+    if (subject == 'Mathematik') return 'Lernziel: ${Curriculum.prettifyUnit(widget.unit)} verstehen und selbst lösen.';
+    if (subject == 'Logik') return 'Lernziel: Regeln erkennen und deine Auswahl prüfen.';
+    if (subject == 'Lesen') return 'Lernziel: genau lesen und die Antwort im Text finden.';
+    if (subject == 'Schreiben') return 'Lernziel: deine Vorlage aufmerksam schreiben.';
+    if (subject == 'Sachunterricht') return 'Lernziel: Zusammenhänge beobachten und erklären.';
+    return 'Lernziel: ${Curriculum.prettifyUnit(widget.unit)} erkennen und anwenden.';
+  }
+
+  Widget _learningControls() => Wrap(
+    spacing: 8, runSpacing: 8,
+    children: [
+      OutlinedButton.icon(
+        key: const ValueKey('cross-grade-help'),
+        style: OutlinedButton.styleFrom(
+          minimumSize: const Size(48, 48), foregroundColor: const Color(0xFFFFD58D)),
+        onPressed: _canWork ? _requestHelp : null,
+        icon: const Icon(Icons.lightbulb_outline),
+        label: Text(_helpLevel == 0 ? 'Hilf mir' : 'Anders erklären'),
+      ),
+      OutlinedButton.icon(
+        key: const ValueKey('cross-grade-repeat-model'),
+        style: OutlinedButton.styleFrom(minimumSize: const Size(48, 48), foregroundColor: Colors.white),
+        onPressed: _canWork ? () => setState(() {
+          _workspaceRevision++;
+          _workspaceMessage = 'Beginne am Lernobjekt noch einmal. '
+              'Deine Aufgabe bleibt dieselbe.';
+        }) : null,
+        icon: const Icon(Icons.replay_rounded), label: const Text('Noch einmal'),
+      ),
+      if (_showSupport)
+        OutlinedButton.icon(
+          key: const ValueKey('cross-grade-self-try'),
+          style: OutlinedButton.styleFrom(minimumSize: const Size(48, 48), foregroundColor: Colors.white),
+          onPressed: _canWork ? () => setState(() {
+            _showSupport = false;
+            _workspaceMessage = null;
+          }) : null,
+          icon: const Icon(Icons.touch_app_rounded), label: const Text('Selbst versuchen'),
+        ),
+      OutlinedButton.icon(
+        key: const ValueKey('cross-grade-quiet'),
+        style: OutlinedButton.styleFrom(minimumSize: const Size(48, 48), foregroundColor: Colors.white),
+        onPressed: () => setState(() => _quiet = !_quiet),
+        icon: Icon(_reduced ? Icons.pause_circle_outline : Icons.motion_photos_off_outlined),
+        label: Text(_reduced ? 'Ruhiger Modus aktiv' : 'Ruhiger Modus'),
+      ),
+    ],
+  );
 }

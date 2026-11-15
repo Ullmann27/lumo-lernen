@@ -1,5 +1,6 @@
 import 'primary_school_word_data.dart';
 import 'school_exercise_generator.dart';
+import 'checked_task_patterns.dart';
 
 /// Deterministic quality gate for generated school tasks.
 /// It blocks tasks with unclear answer logic before they reach the UI.
@@ -33,6 +34,18 @@ class TaskQualityGuard {
 
   bool validate(LumoTask task) => problems(task).isEmpty;
 
+  /// The accepted card is resolved with the same comparison used by the gate.
+  /// The adapter may then retain its original label and unit without turning
+  /// e.g. "1,5", "15" or "1:05 Uhr" into the same integer payload.
+  bool matchesAnswer(LumoTask task, String candidate) =>
+      _choiceKey(candidate, preserveCase: _preserveAnswerCase(task)) ==
+      _choiceKey(task.answer, preserveCase: _preserveAnswerCase(task));
+
+  bool _preserveAnswerCase(LumoTask task) =>
+      task.subject == 'Rechtschreibung' ||
+      task.prompt.toLowerCase().contains('schreibweise') ||
+      task.prompt.toLowerCase().contains('schreibt man');
+
   List<String> problems(LumoTask task) {
     final issues = <String>[];
     final prompt = task.prompt.trim();
@@ -42,15 +55,15 @@ class TaskQualityGuard {
     if (prompt.isEmpty) issues.add('empty_prompt');
     if (answer.isEmpty) issues.add('empty_answer');
     if (task.explanation.trim().isEmpty) issues.add('empty_explanation');
+    if (task.grade < 1 || task.grade > 4) issues.add('grade_out_of_range');
+    if (task.difficulty < 1) issues.add('difficulty_out_of_range');
+    if (task.difficulty > task.grade) issues.add('difficulty_above_grade');
 
     final freeAnswer = task.handwriting || task.visual == 'shape_trace';
     if (freeAnswer) return issues;
     if (choices.length < 2) issues.add('not_enough_choices');
-    if (task.difficulty > task.grade) issues.add('difficulty_above_grade');
     // Groß-/Kleinschreibung ist in Rechtschreibaufgaben gerade die Frage.
-    final preserveCase = task.subject == 'Rechtschreibung' ||
-        prompt.toLowerCase().contains('schreibweise') ||
-        prompt.toLowerCase().contains('schreibt man');
+    final preserveCase = _preserveAnswerCase(task);
     if (!choices.any((choice) => _choiceKey(choice, preserveCase: preserveCase) ==
         _choiceKey(answer, preserveCase: preserveCase))) {
       issues.add('answer_not_in_choices');
@@ -58,6 +71,7 @@ class TaskQualityGuard {
     if (_hasDuplicateChoices(choices, preserveCase: preserveCase)) issues.add('duplicate_choices');
 
     issues.addAll(_numericProblems(prompt, answer, choices));
+    issues.addAll(_logicProblems(task, choices));
     issues.addAll(_soundProblems(prompt, answer, choices));
     issues.addAll(_rhymeProblems(prompt, answer, choices));
     issues.addAll(_syllableProblems(prompt, answer, choices));
@@ -65,6 +79,48 @@ class TaskQualityGuard {
     issues.addAll(_wordClassProblems(prompt, answer, choices));
 
     return issues.toSet().toList(growable: false);
+  }
+
+  List<String> _logicProblems(LumoTask task, List<String> choices) {
+    if (task.subject != 'Logik') return const [];
+    if (task.unit == 'Muster' || task.visual == 'pattern') {
+      final pattern = CheckedShapePattern.fromPrompt(task.prompt);
+      if (pattern == null) return const ['shape_pattern_rule_unproved'];
+      return [
+        if (task.answer.trim() != pattern.next) 'shape_pattern_wrong_answer',
+        if (choices.where((choice) => choice == pattern.next).length != 1)
+          'shape_pattern_not_exactly_one_choice',
+      ];
+    }
+    if (task.unit == 'Zahlenmuster') {
+      final pattern = CheckedNumberPattern.fromPrompt(task.prompt);
+      if (pattern == null) return const ['number_pattern_rule_unproved'];
+      return [
+        if (int.tryParse(task.answer.trim()) != pattern.next)
+          'number_pattern_wrong_answer',
+        if (choices.where((choice) => int.tryParse(choice) == pattern.next)
+                .length !=
+            1)
+          'number_pattern_not_exactly_one_choice',
+      ];
+    }
+    if (task.unit == 'Regeln kombinieren') {
+      final rule = RegExp(
+        r'größer als (\d+), kleiner als (\d+) und gerade\?',
+      ).firstMatch(task.prompt);
+      if (rule == null) return const ['combined_rule_unproved'];
+      final lower = int.parse(rule[1]!);
+      final upper = int.parse(rule[2]!);
+      final matching = choices.where((choice) {
+        final value = int.tryParse(choice);
+        return value != null && value > lower && value < upper && value.isEven;
+      }).toList(growable: false);
+      return [
+        if (matching.length != 1) 'combined_rule_not_exactly_one_choice',
+        if (!matching.contains(task.answer.trim())) 'combined_rule_wrong_answer',
+      ];
+    }
+    return const [];
   }
 
   List<String> _numericProblems(String prompt, String answer, List<String> choices) {
