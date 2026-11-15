@@ -10,6 +10,10 @@ on:
       - pubspec.yaml
       - scripts/verify_legacy_release_pin.py
       - scripts/export_embedded_game.py
+      - scripts/prepare_android.py
+      - scripts/tests/test_prepare_android.py
+      - tools/auto_install/LumoLearningConversation.kt
+      - tools/auto_install/LumoLearningDialogLogic.java
   workflow_dispatch:
 permissions:
   contents: read
@@ -48,6 +52,20 @@ jobs:
           assert "dev.ullmann.lumo.lumo_lernen.coachpreview" in q
           assert "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702" in q
           print("[Family2024] PASS original applicationId/signature contract")
+          PY
+      - name: Check generated Android speech/dialogue sources before Gradle
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s scripts/tests -p 'test_prepare_android.py' -v
+          python3 - <<'PY'
+          from pathlib import Path
+          src = Path('scripts/prepare_android.py').read_text()
+          for file in ('LumoLearningConversation.kt', 'LumoLearningDialogLogic.java'):
+              assert file in src
+              assert (Path('tools/auto_install') / file).is_file()
+          game = Path('tools/auto_install/LumoGameActivity.kt').read_text()
+          assert 'LumoLearningConversation' in game
+          print('[Family2024] PASS: native learning dialogue Kotlin+Java copy contract')
           PY
       - name: Locked Flutter dependencies and analysis
         run: |
