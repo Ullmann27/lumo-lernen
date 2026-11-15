@@ -22,7 +22,8 @@ BRANCH = 'integration/lumo-c4-connections-20261114'
 QUALITY_BRANCH = 'work/lumo-play-quality-20261114'
 ALLOWED_BRANCHES = frozenset((BRANCH, QUALITY_BRANCH,
                              'integration/lumo-agent-execution-20261114',
-                             'integration/lumo-live-connections-20261114'))
+                             'integration/lumo-live-connections-20261114',
+                             'repair/lumo-2020-exhaustive-wiring-20261114'))
 ACCEPTED_BRANCHES = ALLOWED_BRANCHES
 CANDIDATE = 'lumo-connect-four-2020-candidate'
 PACKAGE = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
