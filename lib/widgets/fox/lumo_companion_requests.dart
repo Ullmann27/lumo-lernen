@@ -22,6 +22,7 @@ import '../../core/tutor_coordination_engine.dart';
 import '../../core/learning_journey.dart';
 import '../../core/learning_attempt_id.dart';
 import '../../core/lumo_learning_session_contract.dart';
+import '../../core/lumo_task_dialogue.dart';
 
 enum LumoInteractionKind {
   taskOpened,
@@ -88,6 +89,7 @@ class LumoCompanionTaskContext {
     this.activity = 'learning',
     this.ownerSection = 'exercises',
     this.profileGeneration,
+    this.dialogue,
     this.stepId,
     this.objectIds = const [],
     this.explanation,
@@ -112,6 +114,8 @@ class LumoCompanionTaskContext {
   final String activity;
   final String ownerSection;
   final int? profileGeneration;
+  /// Read-only, lease-bound material for children's spoken questions.
+  final LumoTaskDialogueSnapshot? dialogue;
   final String? stepId;
   final List<String> objectIds;
   final String? explanation;
@@ -130,6 +134,7 @@ class LumoCompanionTaskContext {
         objectIds, explanation, errorType, answerChoices,
         (allowedActions.map((action) => action.name).toList()..sort()),
         isExplanation,
+        dialogue?.sessionId, dialogue?.taskId, dialogue?.stepId, dialogue?.revision,
       ]);
 
   TutorTaskScope get tutorScope => TutorTaskScope(
@@ -167,6 +172,9 @@ class LumoCompanionRequests {
   final ValueNotifier<int> helpRequested = ValueNotifier<int>(0);
   final ValueNotifier<LumoCompanionTaskContext?> taskContext =
       ValueNotifier<LumoCompanionTaskContext?>(null);
+  /// An old target is cleared on task change, owner change and stop.
+  final ValueNotifier<LumoTaskDialogueReply?> dialogueFocus =
+      ValueNotifier<LumoTaskDialogueReply?>(null);
 
   final ValueNotifier<LumoLearningIdentity?> learningIdentity =
       ValueNotifier<LumoLearningIdentity?>(null);
@@ -214,6 +222,7 @@ class LumoCompanionRequests {
     learningAction.value = null;
     learningPresentation.value = null;
     learningAudio.value = null;
+    dialogueFocus.value = null;
     learningCancellation.value = LumoLearningCancellation(
         sequence: ++_actionSequence,
         reason: scopeChanged ? 'task_changed' : 'context_changed',
@@ -364,6 +373,7 @@ class LumoCompanionRequests {
   void clearTask(LumoCompanionTaskContext? owner) {
     if (owner != null && identical(taskContext.value, owner)) {
       taskContext.value = null;
+      dialogueFocus.value = null;
       tutor.clearTask();
     }
   }
@@ -371,6 +381,7 @@ class LumoCompanionRequests {
   void clearLearningScope() {
     tutor.clearTask();
     taskContext.value = null;
+    dialogueFocus.value = null;
     learningEvents.value = const [];
     recentInteractions.value = const [];
     if (learningIdentity.value != null) cancelLearningInteraction(reason: 'scope_cleared');
