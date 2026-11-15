@@ -948,7 +948,12 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                   t.isWriting ||
                   t.id == 'd1_schreibcoach' ||
                   t.id == 'd1_woerter' ||
-                  t.id == 'd4_aufsatz'))
+                  t.id == 'd4_aufsatz' ||
+                  // The existing colour module has its own real task flow.
+                  // Only open it for the enrolled grade so browsing another
+                  // grade never writes into the child's school-grade record.
+                  (t.id == 's1_farben' &&
+                      _selectedGrade == widget.appState.state.grade)))
                 ListTile(
                     key: ValueKey('academy-tool-${topic.id}'),
                     leading:
@@ -958,6 +963,27 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                     subtitle: Text(topic.shortDesc,
                         style: const TextStyle(color: LumoVisualTokens.muted)),
                     onTap: () => _openTopic(topic, subject)),
+            // Visible direct routes for the real language/science
+            // activity catalog of whichever grade the child is browsing.
+            // These remain separate from writing and never advance grades.
+            for (final subject in _currentGrade.subjects.where((subject) =>
+                const {'Deutsch', 'Englisch', 'Sachunterricht'}
+                    .contains(subject.name)))
+              ListTile(
+                  key: ValueKey('academy-activity-${subject.name}'),
+                  leading: Icon(subject.icon,
+                      color: LumoVisualTokens.cyanBright),
+                  title: Text('${subject.name} – Lernaktivitäten',
+                      style: const TextStyle(color: Colors.white)),
+                  subtitle: Text('${_selectedGrade}. Klasse · ausprobieren',
+                      style:
+                          const TextStyle(color: LumoVisualTokens.muted)),
+                  onTap: () => Navigator.of(context).push<void>(
+                      MaterialPageRoute(
+                          builder: (_) => CurriculumActivitiesScreen(
+                              appState: widget.appState,
+                              grade: _selectedGrade,
+                              subject: subject.name)))),
             ListTile(
                 key: const ValueKey('akademie-learning-lab'),
                 leading: const Icon(Icons.science_rounded,
