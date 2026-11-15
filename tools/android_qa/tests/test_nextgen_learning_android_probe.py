@@ -219,6 +219,71 @@ class ObservationTest(unittest.TestCase):
                 self.assertIsNone(probe.microphone_outcome(labels))
 
 
+class RecordedConversationHintTest(unittest.TestCase):
+    """Replay the actual empty EA field; this is not a new Android run."""
+    fixtures = ROOT / "tools/android_qa/tests/fixtures/nextgen_conversation_43768151118"
+
+    @classmethod
+    def setUpClass(cls):
+        manifest = json.loads((cls.fixtures / "manifest.json").read_text())
+        member = manifest["files"][0]
+        data = (cls.fixtures / member["file"]).read_bytes()
+        assert len(data) == member["bytes"]
+        assert hashlib.sha256(data).hexdigest() == member["sha256"]
+        cls.nodes = [node.attrib for node in ET.fromstring(data).iter("node")]
+        fields = [node for node in cls.nodes if node.get("class") == "android.widget.EditText"]
+        assert len(fields) == 1
+        cls.field = fields[0]
+
+    def instance(self, nodes=None):
+        instance = probe.LearningProbe.__new__(probe.LearningProbe)
+        instance.counter = 0
+        instance.nodes = lambda tag: self.nodes if nodes is None else nodes
+        instance.save = lambda name, value: None
+        return instance
+
+    def test_recorded_visible_hint_satisfies_exact_input_observation_without_scroll(self):
+        self.assertEqual(self.field["hint"], "Frag Lumo")
+        self.assertEqual(self.field["text"], "")
+        self.assertEqual(self.field["content-desc"], "")
+        self.assertEqual(probe.bounds(self.field), (86, 2187, 994, 2340))
+        instance = self.instance()
+        instance.scroll = lambda *args: self.fail("Already visible input must not scroll")
+        labels = instance.see("Frag Lumo", "recorded-input", scroll=True, exact=True)
+        self.assertIn("Frag Lumo", labels)
+        self.assertIsNone(probe.why_response(probe.node_labels([self.field])))
+
+    def test_hidden_disabled_foreign_filled_or_invalid_field_hint_is_not_visible_text(self):
+        for changes in ({"visible-to-user": "false"}, {"visible-to-user": ""},
+                        {"enabled": "false"}, {"package": "other.package"},
+                        {"class": "android.view.View"}, {"bounds": ""},
+                        {"bounds": "[-1,2187][994,2340]"}, {"bounds": "[86,2187][86,2340]"},
+                        {"bounds": "[86,2187][994,2216]"}, {"text": "Already entered"},
+                        {"text": " "}):
+            with self.subTest(changes=changes):
+                self.assertNotIn("Frag Lumo", probe.node_labels([{**self.field, **changes}]))
+
+    def test_hint_does_not_replace_actual_text_input_or_create_a_labelled_button(self):
+        self.assertIsNone(probe.observed_control(self.nodes, "Frag Lumo"))
+        text = "Warum zuerst zwei?"
+        instance, calls, touches = self.instance(), [], []
+        instance.touch = lambda box, tag, label: touches.append(box)
+        instance.base = SimpleNamespace(adb=lambda *args: calls.append(args) or "test.ime/Keyboard")
+        def wait(description, observe, accept):
+            self.assertFalse(accept(observe()), "An empty field/hint cannot prove typed input")
+            self.assertTrue(accept([{**self.field, "text": text}]))
+        instance.wait = wait
+        instance.type_text(text, "recorded-input")
+        self.assertEqual(touches, [(86, 2187, 994, 2340)])
+        self.assertIn(("shell", "input", "text", "'Warum%szuerst%szwei?'"), calls)
+
+    def test_multiple_editable_fields_remain_rejected_before_any_input(self):
+        instance = self.instance([*self.nodes, {**self.field, "bounds": "[86,1900][994,2053]"}])
+        instance.touch = lambda *args: self.fail("Ambiguous input must not be touched")
+        with self.assertRaisesRegex(RuntimeError, "Exactly one observed editable test field required"):
+            instance.type_text("Warum zuerst zwei?", "ambiguous-input")
+
+
 class SettingsNavigationTest(unittest.TestCase):
     """Original failed UI frames; only the reader transport is replayed here."""
     fixtures = ROOT / "tools/android_qa/tests/fixtures/nextgen_settings_43766331070"

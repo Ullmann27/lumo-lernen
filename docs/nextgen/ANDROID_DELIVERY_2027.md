@@ -1,6 +1,6 @@
 # Android-Auslieferung 0.13.15 (2027)
 
-Stand: 15.11.2026, 22:18 UTC. **Noch keine öffentliche Auslieferung und keine bestandene Android-Lerntour behauptet.** Der vollständige Replay läuft unter [43768151118](https://github.com/Ullmann27/lumo-lernen/actions/runs/43768151118).
+Stand: 15.11.2026, 22:26 UTC. **Noch keine öffentliche Auslieferung und keine bestandene Android-Lerntour behauptet.** Der vollständige Replay läuft unter [43769283861](https://github.com/Ullmann27/lumo-lernen/actions/runs/43769283861).
 
 ## Unveränderliche Produktidentität
 
@@ -23,11 +23,13 @@ Beide APKs wurden im [Quelllauf 43759362796](https://github.com/Ullmann27/lumo-l
 
 Die Originale bis zur Installationspfadkorrektur stehen in [der unveränderten Belegsammlung](evidence/original-build-and-qa-20261115/README.md). Danach hat Lauf `43766331070` die exakte x86-APK erfolgreich installiert und über die echte UI ein ausschließlich fiktives Profil angelegt. Er scheiterte bei der Navigation zum tiefer liegenden Mikrofon-Schalter. Die aufgezeichneten Original-XMLs und ihre Hashes liegen in `tools/android_qa/tests/fixtures/nextgen_settings_43766331070/`.
 
+Lauf `43768151118` hat anschließend auch alle Spracheinstellungen sowie den Lab-Einstieg 8 + 5 und dessen Stoppbedienung erreicht. Er scheiterte am Lesen des sichtbaren Eingabefelds: Android führt „Frag Lumo“ im `hint` eines aktivierten `EditText`, nicht in `text`/`content-desc`. Das Originalbild und XML bestätigen den geöffneten Dialog. Die enge Korrektur samt bytegleicher Originalfixture steht unter `tools/android_qa/tests/fixtures/nextgen_conversation_43768151118/`; zehn gezielte Prüfungen bestanden. Eine erfolgreich eingegebene Frage oder vollständige Tour wird für diesen Fehlversuch nicht behauptet.
+
 ## Aktueller Prüf- und Veröffentlichungsweg
 
-Der QA-Zweig `qa/lumo-nextgen-reference-android-20261115` steht auf `78f836728e3d4a5e067a774fa346933b067ea246`. Sein Tree ist `e5e58c54b3505bcc89072f9a2f87cdc15999e249`. Dieser Stand verwendet die vorhandene x86-APK unverändert; er baut keine neue App. Die Korrekturen betreffen ausschließlich Prüfleser, beobachtete Navigation und Testbelege. Die anschließenden produktiven Lernrouten wurden gegen die APK-Quelle abgeglichen.
+Der QA-Zweig `qa/lumo-nextgen-reference-android-20261115` steht auf `c600e1e02745931cc1dd0a17e528a60f8ed4abf3`. Sein Tree ist `eb77fc2710e59bc09a8721eee719499059cc4b3b`. Dieser Stand verwendet die vorhandene x86-APK unverändert; er baut keine neue App. Die Korrekturen betreffen ausschließlich Prüfleser, beobachtete Navigation und Testbelege. Die anschließenden produktiven Lernrouten wurden gegen die APK-Quelle abgeglichen.
 
-Der laufende Job `132977803483` führt zuerst alle ursprünglichen Lern-, Erhaltungs- und Performancegates aus und anschließend die zusätzlichen nativen Banane-/Musterszenen. Eine erfolgreiche Installation allein ist kein bestandener Lerndurchlauf.
+Der laufende Job `132981333152` führt zuerst alle ursprünglichen Lern-, Erhaltungs- und Performancegates aus und anschließend die zusätzlichen nativen Banane-/Musterszenen. Eine erfolgreiche Installation allein ist kein bestandener Lerndurchlauf.
 
 `tools/nextgen/prepare_learning_replay_release.py` und `.github/workflows/lumo-nextgen-learning-replay-publish.yml` bereiten die spätere Veröffentlichung derselben ARM64-Bytes vor. Die Aktivierungskonfiguration ist noch nicht angelegt. Sie darf erst den tatsächlich erfolgreichen QA-Commit, Run und das größen-/digestgeprüfte Artefakt enthalten. Der Veröffentlicher prüft beide vollständigen Lernergebnisse und die ursprüngliche Produktidentität erneut; ein vorhandenes Release wird nicht überschrieben.
 
