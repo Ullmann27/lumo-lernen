@@ -108,7 +108,7 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
   bool _modelValid() => switch (_current.mode) {
     LabMode.bridge => _moved == _current.modelTarget,
     LabMode.fraction => _pieces.length == _current.modelTarget,
-    LabMode.word || LabMode.english || LabMode.nature =>
+    LabMode.word || LabMode.english || LabMode.nature || LabMode.pattern =>
         _current.modelAccepts(_tokens)
   };
   Future<void> _checkModel() async {
@@ -199,6 +199,15 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
       denominator: p.denominator, selected: _pieces,
       onChanged: (n) => setState(() => _pieces = n),
       enabled: enabled, reduceMotion: _reduced),
+    LabMode.pattern => LearningPatternBoard(
+      sequence: p.pattern,
+      choices: p.tokens,
+      repeatLength: p.repeatLength,
+      selected: _tokens.isEmpty ? null : _tokens.single,
+      onSelected: (choiceIndex) => setState(() => _tokens = [choiceIndex]),
+      showGroups: _hint >= 1,
+      enabled: enabled,
+    ),
     LabMode.word || LabMode.english || LabMode.nature =>
       LearningTokenWorkbench(tokens: p.tokens, selected: _tokens,
         onChanged: (n) => setState(() => _tokens = n),
