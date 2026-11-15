@@ -224,7 +224,8 @@ class LumoConversationController extends ChangeNotifier {
     if (_disposed ||
         _paused ||
         _request != null ||
-        phase == LumoConversationPhase.listening) {
+        phase == LumoConversationPhase.listening ||
+        phase == LumoConversationPhase.interrupted) {
       return;
     }
     _setPhase(switch (LumoVoice.instance.status.value) {
