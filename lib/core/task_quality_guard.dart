@@ -71,6 +71,7 @@ class TaskQualityGuard {
     if (_hasDuplicateChoices(choices, preserveCase: preserveCase)) issues.add('duplicate_choices');
 
     issues.addAll(_numericProblems(prompt, answer, choices));
+    issues.addAll(_mathPropertyProblems(task));
     issues.addAll(_logicProblems(task, choices));
     issues.addAll(_soundProblems(prompt, answer, choices));
     issues.addAll(_rhymeProblems(prompt, answer, choices));
@@ -79,6 +80,78 @@ class TaskQualityGuard {
     issues.addAll(_wordClassProblems(prompt, answer, choices));
 
     return issues.toSet().toList(growable: false);
+  }
+
+  List<String> _mathPropertyProblems(LumoTask task) {
+    if (task.subject != 'Mathematik') return const [];
+    final prompt = task.prompt.trim();
+    final answer = task.answer.trim();
+    final compare = RegExp(r'^Welches Zeichen passt\? (\d+) \? (\d+)$')
+        .firstMatch(prompt);
+    if (compare != null) {
+      final left = int.parse(compare[1]!);
+      final right = int.parse(compare[2]!);
+      final expected = left < right ? '<' : left > right ? '>' : '=';
+      return answer == expected ? const [] : const ['comparison_answer_wrong'];
+    }
+    final parity = RegExp(r'^Ist (\d+) gerade oder ungerade\?$').firstMatch(prompt);
+    if (parity != null) {
+      final expected = int.parse(parity[1]!).isEven ? 'gerade' : 'ungerade';
+      return answer == expected ? const [] : const ['parity_answer_wrong'];
+    }
+    final quantities = RegExp(r'^(🍎+) oder (🍎+) – wo ist mehr\?$', unicode: true)
+        .firstMatch(prompt);
+    if (quantities != null) {
+      final left = '🍎'.allMatches(quantities[1]!).length;
+      final right = '🍎'.allMatches(quantities[2]!).length;
+      final expected = left == right ? 'gleich' : left > right ? 'links' : 'rechts';
+      return answer == expected ? const [] : const ['quantity_answer_wrong'];
+    }
+    final clock = RegExp(
+        r'^Welche Uhrzeit ist gemeint: Stunde (\d+) und Minute (\d+)\?$')
+        .firstMatch(prompt);
+    if (clock != null) {
+      final hour = int.parse(clock[1]!);
+      final minute = int.parse(clock[2]!);
+      if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+        return const ['clock_values_out_of_range'];
+      }
+      final expected = '$hour:${minute.toString().padLeft(2, '0')} Uhr';
+      return _choiceKey(answer, preserveCase: false) ==
+              _choiceKey(expected, preserveCase: false)
+          ? const [] : const ['clock_answer_wrong'];
+    }
+    final money = RegExp(r'^Was kostet mehr: (\d+) € oder (\d+) €\?$')
+        .firstMatch(prompt);
+    if (money != null) {
+      final left = int.parse(money[1]!);
+      final right = int.parse(money[2]!);
+      final expected = left == right ? 'gleich viel' : '${left > right ? left : right} €';
+      return answer == expected ? const [] : const ['money_comparison_wrong'];
+    }
+    final change = RegExp(r'^Wie viele (\d+)-€-(Münzen|Scheine) ergeben (\d+) €\?$')
+        .firstMatch(prompt);
+    if (change != null) {
+      final denomination = int.parse(change[1]!);
+      final total = int.parse(change[3]!);
+      if (denomination == 0 || total % denomination != 0) {
+        return const ['money_change_not_divisible'];
+      }
+      final count = RegExp(r'^(\d+) (?:Münze[n]?|Schein[e]?)$').firstMatch(answer);
+      return count != null && int.parse(count[1]!) == total ~/ denomination
+          ? const [] : const ['money_change_wrong_count'];
+    }
+    final line = RegExp(r'^Welche Zahl fehlt\? (\d+), (\d+), _, (\d+)$')
+        .firstMatch(prompt);
+    if (line != null) {
+      final first = int.parse(line[1]!);
+      final second = int.parse(line[2]!);
+      final last = int.parse(line[3]!);
+      if (last != second + 2 * (second - first)) {
+        return const ['number_line_rule_unproved'];
+      }
+    }
+    return const [];
   }
 
   List<String> _logicProblems(LumoTask task, List<String> choices) {
@@ -130,6 +203,23 @@ class TaskQualityGuard {
     if ([prompt, answer, ...choices].any(
         (value) => RegExp(r'/0(?:\D|$)').hasMatch(value))) {
       return const <String>['zero_fraction_denominator'];
+    }
+    final fractionExpansion = RegExp(
+        r'^Erweitere den Bruch (\d+)/(\d+) mit (\d+)\. Wie heißt der neue Bruch\?$')
+        .firstMatch(prompt);
+    if (fractionExpansion != null) {
+      final numerator = int.parse(fractionExpansion[1]!);
+      final denominator = int.parse(fractionExpansion[2]!);
+      final factor = int.parse(fractionExpansion[3]!);
+      if (denominator <= 0 || factor <= 0) {
+        return const ['fraction_expansion_invalid_factor'];
+      }
+      // Here the requested *representation*, not just an equal value, is the
+      // learning goal: expanding 1/2 by 3 requires 3/6, not the unchanged 1/2.
+      return answer.replaceAll(' ', '') ==
+              '${numerator * factor}/${denominator * factor}'
+          ? const []
+          : const ['fraction_expansion_wrong_representation'];
     }
     final expected = _expectedValue(prompt);
     if (expected == null) return const <String>[];
@@ -273,7 +363,9 @@ class TaskQualityGuard {
 
   _MathValue? _expectedValue(String prompt) {
     const number = r'(-?\d+(?:[.,]\d+)?(?:/\d+)?)';
-    final basic = RegExp('$number\\s*([+\\-−×*÷:]|mal)\\s*$number\\s*=\\s*\\?').firstMatch(prompt);
+    final basic = RegExp(
+        '^(?:(?:Schriftlich|Blitzlicht):\\s*)?$number\\s*([+\\-−×·*÷:]|mal)\\s*$number\\s*=\\s*\\?\\s*\$')
+        .firstMatch(prompt.trim());
     if (basic != null) {
       final left = _MathValue.parse(basic.group(1)!);
       final right = _MathValue.parse(basic.group(3)!);
@@ -281,7 +373,7 @@ class TaskQualityGuard {
       return switch (basic.group(2)) {
         '+' => left.add(right),
         '-' || '−' => left.add(right.negated),
-        '×' || '*' || 'mal' => left.multiply(right),
+        '×' || '·' || '*' || 'mal' => left.multiply(right),
         ':' || '÷' => right.numerator == 0 ? null : left.divide(right),
         _ => null,
       };
@@ -290,6 +382,64 @@ class TaskQualityGuard {
     if (before != null) return _MathValue(int.parse(before.group(1)!) - 1, 1);
     final after = RegExp(r'direkt\s+nach\s+(\d+)', caseSensitive: false).firstMatch(prompt);
     if (after != null) return _MathValue(int.parse(after.group(1)!) + 1, 1);
+
+    final half = RegExp(r'^Was ist die Hälfte von (\d+)\?$').firstMatch(prompt);
+    if (half != null) return _MathValue(int.parse(half[1]!), 2);
+    final twice = RegExp(r'^Was ist das Doppelte von (\d+)\?$').firstMatch(prompt);
+    if (twice != null) return _MathValue(int.parse(twice[1]!) * 2, 1);
+    final places = RegExp(r'^Wie viele (Zehner|Einer) hat (\d{2})\?$').firstMatch(prompt);
+    if (places != null) {
+      final value = int.parse(places[2]!);
+      return _MathValue(places[1] == 'Zehner' ? value ~/ 10 : value % 10, 1);
+    }
+    final rectangle = RegExp(
+        r'^Ein Rechteck ist (\d+) cm lang und (\d+) cm breit\. Wie groß ist der (Umfang|Flächeninhalt)\?$')
+        .firstMatch(prompt);
+    if (rectangle != null) {
+      final length = int.parse(rectangle[1]!);
+      final width = int.parse(rectangle[2]!);
+      return _MathValue(rectangle[3] == 'Umfang'
+          ? 2 * (length + width) : length * width, 1);
+    }
+    final average = RegExp(
+        r'^Drei Kinder sammeln Sterne: (\d+), (\d+) und (\d+)\. Wie viele Sterne im Mittelwert\?$')
+        .firstMatch(prompt);
+    if (average != null) {
+      return _MathValue(int.parse(average[1]!) + int.parse(average[2]!) +
+          int.parse(average[3]!), 3);
+    }
+    final chart = RegExp(
+        r'^Diagramm: Montag (\d+) Kinder, Dienstag (\d+) Kinder\. Wie viele zusammen\?$')
+        .firstMatch(prompt);
+    if (chart != null) {
+      return _MathValue(int.parse(chart[1]!) + int.parse(chart[2]!), 1);
+    }
+    final times = RegExp(r'^Wie oft (\d+) ist (\d+)\?$').firstMatch(prompt);
+    if (times != null && int.parse(times[1]!) > 0) {
+      return _MathValue(int.parse(times[2]!), int.parse(times[1]!));
+    }
+    final line = RegExp(r'^Welche Zahl fehlt\? (\d+), (\d+), _, (\d+)$')
+        .firstMatch(prompt);
+    if (line != null) {
+      final first = int.parse(line[1]!);
+      final second = int.parse(line[2]!);
+      final last = int.parse(line[3]!);
+      final step = second - first;
+      if (last == second + 2 * step) return _MathValue(second + step, 1);
+    }
+    const conversions = [
+      (r'^Wie viele Zentimeter sind (\d+) Meter(?: und (\d+) Zentimeter)?\?$', 100),
+      (r'^Wie viele Gramm sind (\d+) kg(?: und (\d+) g)?\?$', 1000),
+      (r'^Wie viele Milliliter sind (\d+) Liter(?: und (\d+) Milliliter)?\?$', 1000),
+      (r'^Wie viele Minuten sind (\d+) Stunde[n]?(?: und (\d+) Minuten)?\?$', 60),
+    ];
+    for (final conversion in conversions) {
+      final match = RegExp(conversion.$1).firstMatch(prompt);
+      if (match != null) {
+        return _MathValue(int.parse(match[1]!) * conversion.$2 +
+            int.parse(match[2] ?? '0'), 1);
+      }
+    }
     return null;
   }
 
@@ -314,7 +464,9 @@ class TaskQualityGuard {
     final number = _MathValue.parse(normalized);
     if (number != null) return 'number:${number.key}';
     final clock = RegExp(r'^(\d{1,2})(?::(\d{2}))? Uhr$', caseSensitive: false).firstMatch(normalized);
-    if (clock != null) return 'clock:${clock.group(1)}:${clock.group(2) ?? '00'}';
+    if (clock != null) {
+      return 'clock:${int.parse(clock[1]!)}:${int.parse(clock[2] ?? '0')}';
+    }
     return preserveCase ? normalized : normalized.toLowerCase();
   }
 

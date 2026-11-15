@@ -37,6 +37,8 @@ class LearningModuleProgress extends ChangeNotifier
   Completer<bool>? _feedback;
   Duration _feedbackRemaining = Duration.zero;
   final Stopwatch _feedbackClock = Stopwatch();
+  Object? _presentedTaskKey;
+  int _presentationHelpLevel = 0;
 
   bool get hasPending => !_disposed && _pending != null;
   bool get saving => _saving;
@@ -54,6 +56,24 @@ class LearningModuleProgress extends ChangeNotifier
   /// Zeitpunkt der letzten Antwort (oder des Starts); daraus ergibt sich die
   /// Bearbeitungszeit der nächsten Aufgabe fürs Aufgabenprotokoll.
   DateTime _lastAnswerAt = DateTime.now();
+
+  /// The presentation may offer method hints without owning answer logic.
+  /// Rebuilding or retrying the same problem must not erase that assistance.
+  /// No new persistent format is introduced: [saveAnswer] uses the existing
+  /// hint/evidence fields of the module's accepted answer.
+  void beginPresentedTask(Object key) {
+    if (_disposed || hasPending || _presentedTaskKey == key) return;
+    _presentedTaskKey = key;
+    _presentationHelpLevel = 0;
+  }
+
+  void notePresentationHelp({int level = 1}) {
+    if (level < 1 || level > 5) {
+      throw ArgumentError.value(level, 'level', 'Expected 1..5');
+    }
+    if (_disposed || hasPending || appState.resetting) return;
+    if (level > _presentationHelpLevel) _presentationHelpLevel = level;
+  }
 
   Future<bool> saveAnswer({
     required bool correct,
@@ -82,6 +102,20 @@ class LearningModuleProgress extends ChangeNotifier
         learningEvidence.helpLevel == 0) {
       throw ArgumentError('Assisted answers require assisted evidence');
     }
+    if (_presentationHelpLevel > 0) {
+      hintUsed = true;
+      final evidence = learningEvidence;
+      if (evidence != null && evidence.helpLevel < _presentationHelpLevel) {
+        learningEvidence = LearningEvidence(
+          taskId: evidence.taskId,
+          problemId: evidence.problemId,
+          correct: evidence.correct,
+          helpLevel: _presentationHelpLevel,
+          transferCheck: evidence.transferCheck,
+          errorTag: evidence.errorTag,
+        );
+      }
+    }
     hintUsed = hintUsed || (learningEvidence?.helpLevel ?? 0) > 0;
     if (_disposed || appState.resetting) return Future<bool>.value(false);
     if (_pending != null) return _pending!.completion.future;
@@ -96,7 +130,11 @@ class LearningModuleProgress extends ChangeNotifier
           problemId: TutorTaskScope.problemIdentity(
               subject, unit, problemKey ?? prompt),
           correct: correct,
-          helpLevel: hintUsed ? 1 : 0);
+          helpLevel: _presentationHelpLevel > 0
+              ? _presentationHelpLevel
+              : hintUsed
+                  ? 1
+                  : 0);
     }
     final owner = appState.beginLearningAction();
     final now = DateTime.now();
@@ -208,6 +246,8 @@ class LearningModuleProgress extends ChangeNotifier
   bool resetSession() {
     if (_disposed || hasPending) return false;
     _bonusSaved = false;
+    _presentedTaskKey = null;
+    _presentationHelpLevel = 0;
     _cancelFeedback();
     return true;
   }

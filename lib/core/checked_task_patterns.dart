@@ -4,7 +4,7 @@
 /// determine the rule. Renderers receive these same facts after validation.
 class CheckedShapePattern {
   CheckedShapePattern._(List<String> values, this.period)
-      : sequence = List<String>.unmodifiable(values);
+    : sequence = List<String>.unmodifiable(values);
 
   final List<String> sequence;
   final int period;
@@ -25,9 +25,10 @@ class CheckedShapePattern {
       return null;
     }
     for (var period = 1; period <= values.length ~/ 2; period++) {
-      if (List.generate(values.length,
-              (index) => values[index] == values[index % period])
-          .every((same) => same)) {
+      if (List.generate(
+        values.length,
+        (index) => values[index] == values[index % period],
+      ).every((same) => same)) {
         return CheckedShapePattern._(values, period);
       }
     }
@@ -38,7 +39,7 @@ class CheckedShapePattern {
 /// The explicitly stated equal-step rule is checked at every visible gap.
 class CheckedNumberPattern {
   CheckedNumberPattern._(List<int> values, this.step)
-      : sequence = List<int>.unmodifiable(values);
+    : sequence = List<int>.unmodifiable(values);
 
   final List<int> sequence;
   final int step;

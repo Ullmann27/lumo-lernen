@@ -43,20 +43,29 @@ class LabProblem {
   /// Checked before a problem becomes visible. The model and answer must
   /// describe the same activity, including every ordered token.
   bool get isValid {
-    if (id.isEmpty || prompt.isEmpty || guidedPrompt.isEmpty ||
-        expected.isEmpty || hints.length != 5 ||
+    if (id.isEmpty ||
+        prompt.isEmpty ||
+        guidedPrompt.isEmpty ||
+        expected.isEmpty ||
+        hints.length != 5 ||
         hints.any((hint) => hint.trim().isEmpty)) return false;
     switch (mode) {
       case LabMode.bridge:
-        return start > 0 && start < 10 && addend > 10 - start &&
-            addend <= 10 && modelTarget == 10 - start &&
+        return start > 0 &&
+            start < 10 &&
+            addend > 10 - start &&
+            addend <= 10 &&
+            modelTarget == 10 - start &&
             expected == '${start + addend}';
       case LabMode.fraction:
-        return denominator >= 2 && denominator <= 8 &&
-            modelTarget > 0 && modelTarget < denominator &&
+        return denominator >= 2 &&
+            denominator <= 8 &&
+            modelTarget > 0 &&
+            modelTarget < denominator &&
             expected == '$modelTarget/$denominator';
       case LabMode.pattern:
-        if (repeatLength < 2 || pattern.length < repeatLength * 2 ||
+        if (repeatLength < 2 ||
+            pattern.length < repeatLength * 2 ||
             tokens.toSet().length != tokens.length ||
             !tokens.contains(expected)) return false;
         for (var i = repeatLength; i < pattern.length; i++) {
@@ -87,11 +96,14 @@ class LabProblem {
       if (match == null) return false;
       final numerator = BigInt.tryParse(match.group(1)!);
       final divisor = BigInt.tryParse(match.group(2)!);
-      return numerator != null && divisor != null && divisor > BigInt.zero &&
+      return numerator != null &&
+          divisor != null &&
+          divisor > BigInt.zero &&
           numerator * BigInt.from(denominator) ==
               divisor * BigInt.from(modelTarget);
     }
-    if (mode == LabMode.english || mode == LabMode.nature ||
+    if (mode == LabMode.english ||
+        mode == LabMode.nature ||
         mode == LabMode.pattern) {
       return input.toLowerCase() == expected.toLowerCase();
     }
@@ -100,8 +112,10 @@ class LabProblem {
 
   bool modelAccepts(List<int> selected) {
     if (mode == LabMode.pattern) {
-      return selected.length == 1 && selected.single >= 0 &&
-          selected.single < tokens.length && tokens[selected.single] == expected;
+      return selected.length == 1 &&
+          selected.single >= 0 &&
+          selected.single < tokens.length &&
+          tokens[selected.single] == expected;
     }
     return selected.length == tokenOrder.length &&
         List.generate(selected.length, (i) => selected[i] == tokenOrder[i])
@@ -233,8 +247,14 @@ class LabCatalog {
       _fraction(1, 4),
       _fraction(2, 5),
     ]),
-    LabTopic('patterns', 'Lumos Formenwerkstatt', 'Logik', 'Muster', 1,
-        LabMode.pattern, 'Eine wiederkehrende Gruppe entdecken und fortsetzen.', [
+    LabTopic(
+        'patterns',
+        'Lumos Formenwerkstatt',
+        'Logik',
+        'Muster',
+        1,
+        LabMode.pattern,
+        'Eine wiederkehrende Gruppe entdecken und fortsetzen.', [
       _pattern(['Kreis', 'Dreieck'], 5),
       _pattern(['Dreieck', 'Kreis'], 5),
       _pattern(['Quadrat', 'Kreis'], 5),
@@ -369,13 +389,15 @@ class LabCatalog {
       );
 
   static LabProblem _pattern(List<String> group, int length) {
-    final visible = List.generate(length, (index) => group[index % group.length]);
+    final visible =
+        List.generate(length, (index) => group[index % group.length]);
     final next = group[length % group.length];
     return LabProblem(
       id: 'pattern-${group.join('-').toLowerCase()}-$length',
       mode: LabMode.pattern,
       prompt: '${visible.join(' – ')}. Welche Form kommt als Nächstes?',
-      guidedPrompt: 'Schau auf die wiederkehrende Gruppe. Wähle die nächste Form.',
+      guidedPrompt:
+          'Schau auf die wiederkehrende Gruppe. Wähle die nächste Form.',
       expected: next,
       pattern: List.unmodifiable(visible),
       repeatLength: group.length,
@@ -389,7 +411,8 @@ class LabCatalog {
         'Ein anderes Beispiel: Quadrat – Kreis – Quadrat – Kreis. Immer dieselbe Gruppe aus zwei Formen.',
         'Vergleiche den freien Platz mit der gleichen Stelle in der ersten vollständigen Gruppe.',
       ],
-      reflection: 'Ich finde die wiederkehrende Gruppe und setze sie in derselben Reihenfolge fort.',
+      reflection:
+          'Ich finde die wiederkehrende Gruppe und setze sie in derselben Reihenfolge fort.',
     );
   }
 }

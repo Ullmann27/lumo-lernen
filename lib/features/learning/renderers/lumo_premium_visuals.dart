@@ -1395,18 +1395,25 @@ class DivisionGroupsVisual extends StatelessWidget {
 }
 
 
-/// Zahlenvergleich: zwei grosse Zahlen mit dem richtigen Vergleichssymbol
-/// (>, <, =) zwischen ihnen als Hilfe-Visualisierung.
+/// Displays only the given numbers. The caller may reveal a symbol after the
+/// owning lesson has evaluated it; the view never supplies the missing answer.
 class NumberCompareVisual extends StatelessWidget {
-  const NumberCompareVisual({super.key, required this.task});
+  const NumberCompareVisual({super.key, required this.task, this.evaluatedSymbol});
   final TaskInstance task;
+  final String? evaluatedSymbol;
 
   @override
   Widget build(BuildContext context) {
-    final nums = _digitsFromPrompt(task.prompt);
-    final a = nums.isNotEmpty ? nums[0] : 42;
-    final b = nums.length > 1 ? nums[1] : 24;
-    final symbol = a > b ? '>' : (a < b ? '<' : '=');
+    final data = task.visualPayload.data;
+    final prompt = RegExp(r'^Welches Zeichen passt\? (\d+) \? (\d+)$')
+        .firstMatch(task.prompt.trim());
+    final a = data['left'] is int ? data['left'] as int
+        : int.tryParse(prompt?.group(1) ?? '');
+    final b = data['right'] is int ? data['right'] as int
+        : int.tryParse(prompt?.group(2) ?? '');
+    if (a == null || b == null) return const SizedBox.shrink();
+    final symbol = const ['<', '>', '='].contains(evaluatedSymbol)
+        ? evaluatedSymbol! : '?';
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 18),
       decoration: _stageDecoration(const Color(0xFFEC4899)),

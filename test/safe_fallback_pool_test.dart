@@ -18,7 +18,7 @@ void main() {
     expect(task.choices, contains(task.answer));
   });
 
-  test('legacy Deutsch fallback restores obvious English unit', () {
+  test('an ambiguous topic name never changes the selected German subject', () {
     final task = pool.pick(
       subject: 'Deutsch',
       grade: 1,
@@ -27,12 +27,12 @@ void main() {
       difficulty: 1,
     );
 
-    expect(task.subject, 'Englisch');
-    expect(task.prompt, contains('heißt'));
+    expect(task.subject, 'Deutsch');
+    expect(task.prompt, isNot(contains('heißt')));
     expect(task.choices, contains(task.answer));
   });
 
-  test('legacy Deutsch fallback restores obvious Sachunterricht unit', () {
+  test('fallback does not infer science from the selected topic name', () {
     final task = pool.pick(
       subject: 'Deutsch',
       grade: 2,
@@ -41,21 +41,27 @@ void main() {
       difficulty: 1,
     );
 
-    expect(task.subject, 'Sachunterricht');
+    expect(task.subject, 'Deutsch');
     expect(task.choices, contains(task.answer));
   });
 
-  test('spelling fallback uses spelling variants, not unrelated correct words', () {
-    final task = pool.pick(
-      subject: 'Rechtschreibung',
-      grade: 1,
-      counter: 0,
-      unit: 'Dehnungen',
-      difficulty: 1,
-    );
+  test(
+    'spelling fallback uses spelling variants, not unrelated correct words',
+    () {
+      final task = pool.pick(
+        subject: 'Rechtschreibung',
+        grade: 1,
+        counter: 0,
+        unit: 'Dehnungen',
+        difficulty: 1,
+      );
 
-    expect(task.prompt, 'Welche Schreibweise ist richtig?');
-    expect(task.choices, contains(task.answer));
-    expect(task.choices, isNot(containsAll(<String>['Ball', 'Blume', 'Kerze'])));
-  });
+      expect(task.prompt, 'Welche Schreibweise ist richtig?');
+      expect(task.choices, contains(task.answer));
+      expect(
+        task.choices,
+        isNot(containsAll(<String>['Ball', 'Blume', 'Kerze'])),
+      );
+    },
+  );
 }

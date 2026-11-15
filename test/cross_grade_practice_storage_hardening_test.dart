@@ -7,12 +7,12 @@ import 'package:shared_preferences_platform_interface/shared_preferences_platfor
 
 import 'package:lumo_lernen/features/learning/cross_grade_practice_screen.dart';
 
-const _scope =
-    'cross_grade_practice_v1:hardening:3:Mathematik:Plus bis 1000';
+const _scope = 'cross_grade_practice_v1:hardening:3:Mathematik:Plus bis 1000';
 
 class _ControlledStore extends InMemorySharedPreferencesStore {
   _ControlledStore(Map<String, Object> initial)
-      : super.withData(initial.map((key, value) => MapEntry('flutter.$key', value)));
+      : super.withData(
+            initial.map((key, value) => MapEntry('flutter.$key', value)));
 
   Completer<void>? loadGate;
   String? rejectedKey;
@@ -59,6 +59,46 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
+  testWidgets('interrupted accepted answer is recovered once before new input',
+      (tester) async {
+    final store = _ControlledStore({
+      '$_scope:answered': 6,
+      '$_scope:correct': 2,
+      '$_scope:pending_answer': '{"answered":6,"correct":3}',
+    });
+    SharedPreferencesStorePlatform.instance = store;
+    await _open(tester);
+    expect(find.text('Extra-Übungen: 6 · richtig: 3'), findsOneWidget);
+    final disk = await tester.runAsync(store.getAll);
+    expect(disk!['flutter.$_scope:answered'], 6);
+    expect(disk['flutter.$_scope:correct'], 3);
+    expect(disk.containsKey('flutter.$_scope:pending_answer'), isFalse);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await _open(tester);
+    expect(find.text('Extra-Übungen: 6 · richtig: 3'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('recovery cannot replace conflicting or malformed history',
+      (tester) async {
+    final store = _ControlledStore({
+      '$_scope:answered': -1,
+      '$_scope:correct': 0,
+      '$_scope:pending_answer': '{"answered":0,"correct":0}',
+    });
+    SharedPreferencesStorePlatform.instance = store;
+    await _open(tester);
+    expect(
+        find.byKey(const ValueKey('cross-grade-load-error')), findsOneWidget);
+    final disk = await tester.runAsync(store.getAll);
+    expect(disk!['flutter.$_scope:answered'], -1);
+    expect(
+        disk['flutter.$_scope:pending_answer'], '{"answered":0,"correct":0}');
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
   testWidgets('answers wait for the existing practice counters to load',
       (tester) async {
     final store = _ControlledStore({
@@ -74,7 +114,8 @@ void main() {
     await _open(tester);
     final choice = find.byKey(const ValueKey('cross-grade-choice-0'));
     expect(tester.widget<OutlinedButton>(choice).onPressed, isNull,
-        reason: 'An answer must not overwrite counters that are still loading.');
+        reason:
+            'An answer must not overwrite counters that are still loading.');
     gate.complete();
     await _frames(tester);
     expect(tester.widget<OutlinedButton>(choice).onPressed, isNotNull);
@@ -94,14 +135,20 @@ void main() {
     SharedPreferencesStorePlatform.instance = store;
     await _open(tester);
     store.rejectedKey = 'flutter.$_scope:answered';
-    await tester.runAsync(() => tester.tap(
-        find.byKey(const ValueKey('cross-grade-choice-0'))));
+    await tester.scrollUntilVisible(
+      find.byKey(const ValueKey('cross-grade-choice-0')), 200,
+      scrollable: find.byType(Scrollable).first);
+    await tester.runAsync(
+        () => tester.tap(find.byKey(const ValueKey('cross-grade-choice-0'))));
     await _frames(tester);
     // An incorrect first choice now receives a second chance before any
     // counter write. Finish that question to reach the storage-failure path.
     if (store.rejectedWrites == 0) {
-      await tester.runAsync(() => tester.tap(
-        find.byKey(const ValueKey('cross-grade-choice-1'))));
+      await tester.scrollUntilVisible(
+        find.byKey(const ValueKey('cross-grade-choice-1')), 200,
+        scrollable: find.byType(Scrollable).first);
+      await tester.runAsync(
+          () => tester.tap(find.byKey(const ValueKey('cross-grade-choice-1'))));
       await _frames(tester);
     }
     expect(store.rejectedWrites, greaterThan(0));
@@ -112,8 +159,10 @@ void main() {
         scrollable: find.byType(Scrollable).first, maxScrolls: 30);
     await tester.pump();
     expect(tester.widget<FilledButton>(next).onPressed, isNull,
-        reason: 'Next must wait for successful storage of the accepted answer.');
-    expect(find.byKey(const ValueKey('cross-grade-save-error')), findsOneWidget);
+        reason:
+            'Next must wait for successful storage of the accepted answer.');
+    expect(
+        find.byKey(const ValueKey('cross-grade-save-error')), findsOneWidget);
     final retry = find.byKey(const ValueKey('cross-grade-save-retry'));
     expect(retry, findsOneWidget);
     store.rejectedKey = null;
@@ -139,9 +188,17 @@ void main() {
     });
     SharedPreferencesStorePlatform.instance = store;
     await _open(tester);
-    expect(find.byKey(const ValueKey('cross-grade-load-error')), findsOneWidget);
-    expect(tester.widget<OutlinedButton>(
-        find.byKey(const ValueKey('cross-grade-choice-0'))).onPressed, isNull);
+    expect(
+        find.byKey(const ValueKey('cross-grade-load-error')), findsOneWidget);
+    await tester.scrollUntilVisible(
+        find.byKey(const ValueKey('cross-grade-choice-0')), 200,
+        scrollable: find.byType(Scrollable).first);
+    expect(
+        tester
+            .widget<OutlinedButton>(
+                find.byKey(const ValueKey('cross-grade-choice-0')))
+            .onPressed,
+        isNull);
     final disk = await tester.runAsync(store.getAll);
     expect(disk!['flutter.$_scope:answered'], -1);
     expect(disk['flutter.$_scope:correct'], 3);
