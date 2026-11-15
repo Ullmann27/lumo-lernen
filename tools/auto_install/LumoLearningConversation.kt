@@ -37,6 +37,7 @@ class LumoLearningConversation(
     private var lastReply = ""
     private var currentExplanation = lesson.optString("explanation", "")
     private var objects = lesson.optJSONArray("objectIds") ?: JSONArray()
+    private var patternUnit: List<String> = emptyList()
     // A scene may narrow the original task owner's explicit permissions.
     private val launchActions = checkedActions(lesson.optJSONArray("allowedActions")
         ?: scope.optJSONArray("allowedActions"))
@@ -63,6 +64,7 @@ class LumoLearningConversation(
         lastReply = ""
         currentExplanation = ""
         objects = JSONArray()
+        patternUnit = emptyList()
         val token = generation
         main.post {
             synchronized(lock) {
@@ -81,17 +83,51 @@ class LumoLearningConversation(
             received.optString("taskId") == scope.optString("taskId") &&
             received.optLong("revision", -1) == scope.optLong("revision", 0) &&
             received.optLong("cancelEpoch", -1) == scope.optLong("cancelEpoch", 0) &&
-            received.optString("stepId") == scope.optString("stepId")
+            received.opt("stepId").takeUnless { it === JSONObject.NULL } ==
+                scope.opt("stepId").takeUnless { it === JSONObject.NULL }
+    }
+
+    /** Godot supplies the checked group under parameters, not in the launch
+     * descriptor. Accept only the smallest repeated unit of that immutable
+     * descriptor; this adapter grants neither actions nor answer evaluation. */
+    private fun checkedPatternUnit(request: JSONObject): List<String>? {
+        val supplied = patternTokens(request.optJSONObject("parameters")
+            ?.optJSONArray("patternUnit"), 1, 4) ?: return null
+        val sequence = patternTokens(lesson.optJSONArray("sequence"), 4, 12) ?: return null
+        val rawPeriod = (lesson.opt("period") as? Number)?.toDouble() ?: return null
+        if (!rawPeriod.isFinite() || rawPeriod < 1 || rawPeriod > 4 ||
+            rawPeriod != rawPeriod.toInt().toDouble()) return null
+        val period = rawPeriod.toInt()
+        val smallest = (1..4).firstOrNull { length ->
+            sequence.size >= length * 2 &&
+                (length until sequence.size).all { sequence[it] == sequence[it % length] }
+        }
+        return supplied.takeIf { smallest == period && it == sequence.take(period) }
+    }
+
+    private fun patternTokens(array: JSONArray?, minimum: Int, maximum: Int): List<String>? {
+        if (array == null || array.length() !in minimum..maximum) return null
+        val result = ArrayList<String>()
+        for (index in 0 until array.length()) {
+            val value = array.opt(index)
+            if (value !is String || value.isEmpty() || value.trim() != value ||
+                value.codePointCount(0, value.length) > 24 ||
+                value.any { it.code < 32 || it.code in 127..159 || it.code in 8232..8233 }) return null
+            result.add(value)
+        }
+        return result
     }
 
     fun updateContext(payload: String): Boolean {
         val request = parsed(payload) ?: return false
         val next = identity(request)
+        val nextStep = next.opt("stepId")
         synchronized(lock) {
             if (destroyed || taskRetired || next.optInt("protocolVersion") != 1 ||
                 next.optString("sessionId") != launchSession ||
                 next.optLong("revision", -1) < 0 || next.optLong("cancelEpoch", -1) < 0 ||
-                next.optString("stepId").length > 120) return false
+                (nextStep != null && nextStep !== JSONObject.NULL && nextStep !is String) ||
+                (nextStep is String && (nextStep.isEmpty() || nextStep.length > 120))) return false
             if (next.optString("taskId") != scope.optString("taskId")) {
                 // The scene's numeric/word descriptor belongs to one task.
                 // Another task requires another launch, not old cached help.
@@ -109,12 +145,14 @@ class LumoLearningConversation(
             val nextActions = if (suppliedActions != null) checkedActions(suppliedActions)
                 else if (changed) setOf("stop") else allowedActions
             if (!launchActions.containsAll(nextActions)) return false
+            val nextPatternUnit = if (lesson.optString("kind") == "pattern")
+                checkedPatternUnit(request) ?: return false else emptyList()
             if (changed || nextActions != allowedActions) retireContext()
             scope = JSONObject().put("protocolVersion", 1).put("sessionId", launchSession)
                 .put("taskId", next.optString("taskId"))
                 .put("revision", next.optLong("revision"))
                 .put("cancelEpoch", next.optLong("cancelEpoch"))
-                .put("stepId", next.optString("stepId"))
+                .put("stepId", nextStep ?: JSONObject.NULL)
             request.optString("explanation").takeIf { it.length <= 1200 }
                 ?.let { currentExplanation = it }
             request.optJSONArray("objectIds")?.let { supplied ->
@@ -122,6 +160,7 @@ class LumoLearningConversation(
                     objects = JSONArray(supplied.toString())
                 }
             }
+            patternUnit = nextPatternUnit
             allowedActions = nextActions
         }
         return true
@@ -154,7 +193,7 @@ class LumoLearningConversation(
                 val context = LumoLearningDialogLogic.Context(
                     lesson.optString("kind"), lesson.optInt("a"), lesson.optInt("b"), lesson.optInt("extra"),
                     lesson.optString("word"), lesson.optString("plantPart"), currentExplanation,
-                    strings(lesson.optJSONArray("syllables")), strings(lesson.optJSONArray("patternUnit"))
+                    strings(lesson.optJSONArray("syllables")), patternUnit
                 )
                 val reply = LumoLearningDialogLogic.answerIfAllowed(context, text, action, allowedActions)
                 if (reply == null) {

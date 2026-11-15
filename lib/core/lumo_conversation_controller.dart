@@ -52,8 +52,11 @@ class LumoConversationController extends ChangeNotifier {
   int _responseTurn = 0;
   double _responseSpeed = 1;
   bool _responseMaySpeak = false;
+  LumoLearningIdentity? _interactionIdentity;
+  int? _interactionVoiceRevision;
   LumoLearningIdentity? _responseIdentity;
   LumoLearningIdentity? _audioIdentity;
+  int? _audioRequestRevision;
   LumoLearningPresentation? _audioPresentation;
   int? _audioUtterance;
   String _subtitle = '';
@@ -94,12 +97,13 @@ class LumoConversationController extends ChangeNotifier {
 
     // A child may replace a pending question. Stop old work before capturing
     // the new lease, so the replacement's gesture is never cancelled by it.
-    interrupt(reason: 'new_turn');
+    final preparing = _beginInteraction('new_turn');
     final generation = _generation;
     final turn = ++_turnSequence;
     final scope = context.conversationScope;
-    await LumoVoice.instance.stop();
-    if (!_current(generation) || scope != context.conversationScope) {
+    if (!await preparing ||
+        !_current(generation) ||
+        scope != context.conversationScope) {
       return cancelled;
     }
     _setPhase(LumoConversationPhase.thinking);
@@ -302,6 +306,7 @@ class LumoConversationController extends ChangeNotifier {
     _responseGeneration = generation;
     _responseRevision = context.revision;
     _responseIdentity = context.learningIdentity;
+    _interactionIdentity = _responseIdentity;
     _responseTurn = turn;
     _responseSpeed = speed;
     _responseMaySpeak = true;
@@ -328,13 +333,27 @@ class LumoConversationController extends ChangeNotifier {
     _audioPresentation = context.requests.learningPresentation.value;
     _audioCompletionBefore = LumoVoice.instance.completedPlaybackCount;
     _subtitle = text;
-    await LumoVoice.instance
-        .speakAndWait(text, style: style, speedFactor: _responseSpeed);
-    if (_current(generation) && _audioUtterance == utterance) {
-      _publishAudio();
-      _audioUtterance = null;
-      _audioIdentity = null;
-      _audioPresentation = null;
+    final voice = LumoVoice.instance;
+    final before = voice.requestRevision;
+    final speaking =
+        voice.speakAndWait(text, style: style, speedFactor: _responseSpeed);
+    // Capture before the first await, including requests still in preflight.
+    // Empty/disabled speech cannot acquire an unrelated transport owner.
+    _audioRequestRevision =
+        voice.requestRevision == before ? null : voice.requestRevision;
+    if (_audioRequestRevision != null) {
+      _interactionVoiceRevision = _audioRequestRevision;
+    }
+    try {
+      await speaking;
+    } finally {
+      if (_current(generation) && _audioUtterance == utterance) {
+        _publishAudio();
+        _audioUtterance = null;
+        _audioIdentity = null;
+        _audioPresentation = null;
+        _audioRequestRevision = null;
+      }
     }
   }
 
@@ -347,7 +366,7 @@ class LumoConversationController extends ChangeNotifier {
 
   void pause() {
     _paused = true;
-    interrupt(reason: 'app_interrupted');
+    _retireOwnedInteraction('app_interrupted');
   }
 
   void resume() {
@@ -357,7 +376,49 @@ class LumoConversationController extends ChangeNotifier {
 
   void interrupt({String reason = 'stop'}) {
     if (_disposed) return;
-    _invalidateWork();
+    unawaited(_beginInteraction(reason, retainIdentity: false));
+  }
+
+  /// An explicit microphone tap shares the same cancellable preparation as a
+  /// typed turn. The caller must still check its route and tap after awaiting.
+  Future<bool> prepareListening() {
+    if (_disposed || _paused) return Future.value(false);
+    return _beginInteraction('listening_started');
+  }
+
+  Future<bool> _beginInteraction(String reason,
+      {bool retainIdentity = true}) async {
+    if (_disposed) return false;
+    final scope = context.conversationScope;
+    final identity = context.learningIdentity;
+    final generation = _generation + 1;
+    _invalidateWork(stopAudio: false);
+    if (generation != _generation || scope != context.conversationScope) {
+      return false;
+    }
+    // Only a new explicit interaction may interrupt the current transport.
+    // Passive retirement never adopts whichever owner happens to be latest.
+    final voice = LumoVoice.instance;
+    final stopping = voice.stop();
+    final voiceRevision = voice.requestRevision;
+    _cancelIdentity(identity, reason);
+    if (retainIdentity &&
+        generation == _generation &&
+        scope == context.conversationScope) {
+      _interactionIdentity = context.learningIdentity;
+      _interactionVoiceRevision = voiceRevision;
+    }
+    await stopping;
+    return _current(generation) &&
+        scope == context.conversationScope &&
+        voice.requestRevision == voiceRevision;
+  }
+
+  void _cancelIdentity(LumoLearningIdentity? identity, String reason) {
+    if (identity == null ||
+        !context.requests.isCurrentLearningIdentity(identity)) {
+      return;
+    }
     _emittingCancellation = true;
     try {
       context.requests.cancelLearningInteraction(reason: reason);
@@ -366,16 +427,33 @@ class LumoConversationController extends ChangeNotifier {
     }
   }
 
-  void _invalidateWork() {
+  void _retireOwnedInteraction(String reason) {
+    // Another speaker on the same task also retires this controller's right
+    // to clear that speaker's gesture. Stop remains an explicit active action.
+    if (_interactionVoiceRevision == LumoVoice.instance.requestRevision) {
+      _cancelIdentity(_interactionIdentity, reason);
+    }
+    _invalidateWork();
+  }
+
+  void _invalidateWork({bool stopAudio = true}) {
+    final voiceRevision = _audioRequestRevision;
     _generation++;
     _request?.cancel();
     _request = null;
     _responseMaySpeak = false;
+    _interactionIdentity = null;
+    _interactionVoiceRevision = null;
     _audioUtterance = null;
     _audioIdentity = null;
     _audioPresentation = null;
+    _audioRequestRevision = null;
+    if (stopAudio &&
+        voiceRevision != null &&
+        voiceRevision == LumoVoice.instance.requestRevision) {
+      unawaited(LumoVoice.instance.stop());
+    }
     onInterrupt?.call();
-    unawaited(LumoVoice.instance.stop());
     _setPhase(
         _paused ? LumoConversationPhase.paused : LumoConversationPhase.idle);
   }
@@ -401,13 +479,14 @@ class LumoConversationController extends ChangeNotifier {
     } else if (_ownCompatibleAction) {
       return;
     }
-    interrupt(reason: 'context_changed');
+    _retireOwnedInteraction('context_changed');
   }
 
   void _voiceChanged() {
     _publishAudio();
     if (_disposed ||
         _paused ||
+        !_ownsAudio ||
         _request != null ||
         phase == LumoConversationPhase.listening) {
       return;
@@ -425,6 +504,7 @@ class LumoConversationController extends ChangeNotifier {
     final identity = _audioIdentity;
     final utterance = _audioUtterance;
     if (_disposed ||
+        !_ownsAudio ||
         identity == null ||
         utterance == null ||
         !context.requests.isCurrentLearningIdentity(identity)) {
@@ -469,6 +549,10 @@ class LumoConversationController extends ChangeNotifier {
     }
   }
 
+  bool get _ownsAudio =>
+      _audioRequestRevision != null &&
+      _audioRequestRevision == LumoVoice.instance.requestRevision;
+
   void _setPhase(LumoConversationPhase value) {
     if (_disposed || value == phase) return;
     phase = value;
@@ -478,7 +562,7 @@ class LumoConversationController extends ChangeNotifier {
   @override
   void dispose() {
     if (_disposed) return;
-    interrupt(reason: 'page_exit');
+    _retireOwnedInteraction('page_exit');
     _disposed = true;
     context.removeListener(_contextChanged);
     context.requests.learningCancellation.removeListener(_busCancelled);
