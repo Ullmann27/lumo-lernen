@@ -426,13 +426,10 @@ class ReferenceProbe(learning.LearningProbe):
     def enter_native(self, tag, title):
         self.base.adb("logcat", "-c")
         self.tap(NATIVE_ENTRY, tag + "-visible-3d-entry")
-        self.wait("Native learning activity foreground", lambda: self.base.adb("shell", "dumpsys", "activity", "activities"),
-                  lambda text: any("LumoGameActivity" in line for line in text.splitlines() if "ResumedActivity" in line), timeout=60)
-        pids = self.base.adb("shell", "pidof", learning.PACKAGE + ":lumo_game").split()
-        require(len(pids) == 1 and pids[0].isdigit(), "Actual native process missing or ambiguous")
+        pid = self.wait_native_ready(tag)
         self.native_see(title, tag + "-native-title")
         self.capture(tag + "-native-entry", native=True)
-        return int(pids[0])
+        return pid
 
     def return_native(self, tag, title):
         self.native_tap("Zur Aufgabe", tag + "-return")

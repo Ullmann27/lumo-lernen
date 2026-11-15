@@ -11,6 +11,7 @@ import stat
 import tempfile
 from types import SimpleNamespace
 import unittest
+from unittest.mock import Mock, patch
 import zipfile
 
 
@@ -222,6 +223,84 @@ class PlaybackTest(unittest.TestCase):
         for log in logs:
             with self.subTest(log=log), self.assertRaises(RuntimeError):
                 probe.action_playback(log, 55)
+
+
+class NativeStartObservationTest(unittest.TestCase):
+    foreground = ("topResumedActivity=ActivityRecord{fixture u0 " + probe.learning.PACKAGE +
+                  "/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t1}")
+
+    def instance(self, directory, observations):
+        instance = probe.ReferenceProbe.__new__(probe.ReferenceProbe)
+        instance.out, instance.counter = Path(directory), 0
+        pending = iter(observations)
+        current = None
+
+        def adb(*args, **kwargs):
+            nonlocal current
+            if args == ("shell", "dumpsys", "activity", "activities"):
+                current = next(pending)
+                return current[0]
+            if args == ("shell", "pidof", probe.learning.PACKAGE + ":lumo_game"):
+                self.assertIs(kwargs.get("check"), False)
+                return current[1]
+            if args == ("logcat", "-d", "-v", "threadtime"):
+                return "unaltered native startup log\n"
+            raise AssertionError((args, kwargs))
+
+        instance.base = SimpleNamespace(adb=adb)
+        return instance
+
+    def test_resumed_activity_without_pid_waits_for_the_observed_process(self):
+        with tempfile.TemporaryDirectory() as directory:
+            instance = self.instance(directory, [(self.foreground, ""), (self.foreground, "8241\n")])
+            with patch.object(probe.time, "monotonic", side_effect=[0, 0, 1]), \
+                 patch.object(probe.time, "sleep"):
+                self.assertEqual(instance.wait_native_ready("banana"), 8241)
+            rows = [json.loads(path.read_text()) for path in sorted(Path(directory).glob("*.json"))]
+            self.assertEqual([row["pidof_output"] for row in rows], ["", "8241\n"])
+            self.assertTrue(all(row["activity_dump"] == self.foreground for row in rows))
+
+    def test_pid_without_current_exact_activity_does_not_pass(self):
+        for activity in (self.foreground.replace(probe.learning.PACKAGE, "other.package"),
+                         self.foreground.replace("topResumedActivity", "lastPausedActivity"),
+                         self.foreground.replace("LumoGameActivity", "LumoGameActivityOther")):
+            with self.subTest(activity=activity), tempfile.TemporaryDirectory() as directory:
+                instance = self.instance(directory, [(activity, "8241")])
+                with patch.object(probe.time, "monotonic", side_effect=[0, 0, 61]), \
+                     patch.object(probe.time, "sleep"), self.assertRaisesRegex(RuntimeError, "before deadline"):
+                    instance.wait_native_ready("banana")
+                self.assertEqual(next(Path(directory).glob("*.log")).read_text(), "unaltered native startup log\n")
+
+    def test_missing_process_times_out_and_preserves_raw_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            instance = self.instance(directory, [(self.foreground, "")])
+            with patch.object(probe.time, "monotonic", side_effect=[0, 0, 61]), \
+                 patch.object(probe.time, "sleep"), self.assertRaisesRegex(RuntimeError, "before deadline"):
+                instance.wait_native_ready("banana")
+            row = json.loads(next(Path(directory).glob("*.json")).read_text())
+            self.assertEqual(row["pidof_output"], "")
+            self.assertEqual(row["activity_dump"], self.foreground)
+            self.assertEqual(next(Path(directory).glob("*.log")).read_text(), "unaltered native startup log\n")
+
+    def test_ambiguous_and_invalid_process_identifiers_fail_immediately(self):
+        for raw_pid in ("8241 8242", "unknown", "0", "-1"):
+            with self.subTest(raw_pid=raw_pid), tempfile.TemporaryDirectory() as directory:
+                instance = self.instance(directory, [(self.foreground, raw_pid)])
+                with patch.object(probe.time, "monotonic", side_effect=[0, 0]), \
+                     self.assertRaisesRegex(RuntimeError, "ambiguous or.*invalid"):
+                    instance.wait_native_ready("banana")
+                self.assertEqual(json.loads(next(Path(directory).glob("*.json")).read_text())["pidof_output"], raw_pid)
+
+    def test_reference_title_and_capture_still_follow_actual_readiness(self):
+        instance = probe.ReferenceProbe.__new__(probe.ReferenceProbe)
+        calls = Mock()
+        instance.base = SimpleNamespace(adb=calls.adb)
+        instance.tap, instance.native_see, instance.capture = calls.tap, calls.see, calls.capture
+        instance.wait_native_ready = calls.ready
+        calls.ready.return_value = 8241
+        self.assertEqual(instance.enter_native("banana", "Wörter bauen"), 8241)
+        self.assertEqual([entry[0] for entry in calls.mock_calls], ["adb", "tap", "ready", "see", "capture"])
+        calls.see.assert_called_once_with("Wörter bauen", "banana-native-title")
 
 
 class OriginalAndCoreEvidenceTest(unittest.TestCase):
