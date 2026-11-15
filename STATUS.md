@@ -1,3 +1,17 @@
+# LUMO Next Generation – korrigierter Android-Kandidat 2028
+
+Stand: 15. November 2026. Auf `integration/lumo-nextgen-learning-20261115` wird **0.13.16+2028** mit Native **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef** zusammengeführt. Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`, bestehende Testsignatur und `main` bleiben erhalten. Die vorherige 2027-APK wurde gebaut, wegen tatsächlich beobachteter Produktfehler aber nicht veröffentlicht. Sie ist kein Ersatz für diesen Kandidaten.
+
+Der echte Androidlauf 43769283861 verlor beim eigenen Lab-Gespräch die Aufgabe; die native Diagnose 43770887936 erreichte Banane ohne nutzbare Sprachschnittstelle. Unveränderte Originalbilder/-logs samt Hashes stehen unter `docs/nextgen/evidence/lab-conversation-context-failure-20261115/` und `native-audio-capability-failure-20261115/`. Die eigene Modalroute und der Besitz asynchroner Sprachaufträge sind korrigiert; 56 gezielte Flutterprüfungen bestehen. Der geroutete native Capability-Test besteht 43/43, der produktive Kotlin-/Java-Dialogtest 81 Integrationschecks plus 26 unveränderte Java-Dialogchecks. Diese gezielten Ergebnisse sind keine Freigabe des neuen Androidartefakts.
+
+`docs/nextgen/COVERAGE.json` und `COVERAGE.md` werden aus dem aktuellen sauberen Produktstand erneuert. `fullModernizationComplete` bleibt **false**: Gemeinsame Aufgabenoberflächen/3D-Aufgabenkarten bedeuten keine individuelle räumliche Simulation jeder Variante. Die Figur läuft über die bestehende separate Godot-Activity. 18 geschützte Schreib-/Journaldateien müssen bytegleich zum Basisstand bleiben; Kart-/Dschungel-Folgearbeiten sind ausgeschlossen.
+
+Der vollständige Buildpfad prüft Analyse, sämtliche Fluttertests, Hostverträge, echten Godot-Import und zwölf native Programme. Danach muss eine frisch installierte x86_64-APK die vollständige Lerntour einschließlich tatsächlich getippter nativer Warum-zwei-Frage bestehen; erst anschließend folgen native Banane-Wiederholung und Muster. Der Publisher verlangt beide aktuellen Berichte mit identischer APK-/Quellbindung und erzeugt erst dann einen neuen direkten ARM64-Testdownload. Physische Geräte, reale gesprochene Erkennung, Akustik und 60 FPS sind vor entsprechenden Messungen nicht belegt.
+
+Details: `docs/nextgen/ANDROID_DELIVERY_2028.md`, Vertrag `docs/nextgen/INTEGRATION_V1.md`. Dieser Vorlaufstatus enthält noch keinen neuen APK-Hash, kein behauptetes CI-Endergebnis und keinen erfundenen Download.
+
+## Archiv: ursprünglicher 2027-Vorlauf
+
 # LUMO Next Generation – integrierter Android-Kandidat 2027
 
 Stand: 15. November 2026. Aktive Arbeit auf `integration/lumo-nextgen-learning-20261115`; main bleibt geschützt. Die Kandidatenversion ist **0.13.15+2027**, Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`, bestehende Testsignatur. Der native Quellstand ist **ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb** aus `Ullmann27/lumo-godot`. Die folgenden archivierten 2023-/2020-Stände sind keine Angaben über diesen Kandidaten.

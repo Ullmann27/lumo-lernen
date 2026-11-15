@@ -124,6 +124,28 @@ private fun update(step: String = "second", revision: Int = 1, task: String = "t
   JSONObject().put("scope", scope(step, revision, task)).put("explanation", help)
     .put("objectIds", JSONArray(listOf("task_prompt"))).put("allowedActions", JSONArray(actions)).toString()
 private fun state(controller: LumoLearningConversation) = JSONObject(controller.status())
+// Actual Flutter descriptor: the checked period is serialized with its
+// sequence/choices, not as a top-level patternUnit.
+private fun patternOptions(actions: List<String> = listOf("explain", "repeat", "slower", "hint", "stop")) =
+  options(actions).also {
+    it.getJSONObject("learning").put("kind", "pattern")
+      .put("sequence", JSONArray(listOf("star", "square", "star", "square")))
+      .put("choices", JSONArray(listOf("circle", "square", "star", "triangle")))
+      .put("period", 2)
+  }
+// Actual Godot update: flat v1 envelope and parameters.patternUnit derived
+// from activity.pattern_group(), with the registered rendered group object.
+private fun patternUpdate(identity: JSONObject = scope(),
+    unit: Any = JSONArray(listOf("star", "square")),
+    objects: List<String> = listOf("pattern_group", "pattern_next"),
+    actions: List<String> = listOf("explain", "repeat", "slower", "hint", "stop")) =
+  JSONObject(identity.toString()).put("kind", "pattern")
+    .put("parameters", JSONObject().put("patternUnit", unit)
+      .put("patternSequence", JSONArray(listOf("star", "square", "star", "square")))
+      .put("patternChoices", JSONArray(listOf("circle", "square", "star", "triangle")))
+      .put("patternChoice", -1).put("patternHint", false))
+    .put("explanation", "CHECKED generic fallback must not replace the recurring group")
+    .put("objectIds", JSONArray(objects)).put("allowedActions", JSONArray(actions))
 
 fun main() {
   var audioStops = 0
@@ -220,6 +242,72 @@ fun main() {
   verify(audioStops == beforeTaskChange + 1, "Task change stops old audio")
   verify(!taskSwitch.request(request(2)), "Old task remains retired after attempted task switch")
   verify(!taskSwitch.startListening(request(3)), "Retired task cannot start microphone")
+
+  val pattern = LumoLearningConversation(Activity(), patternOptions()) { audioStops++ }.also { it.setActive(true) }
+  verify(pattern.updateContext(patternUpdate().toString()), "Accept actual native pattern context")
+  verify(pattern.request(request(1, "hint", "Gib mir einen Hinweis")), "Accept permitted pattern hint")
+  Handler.drain()
+  verify(state(pattern).getString("reply").contains("Stern – Quadrat"), "Use parameters.patternUnit from the checked sequence")
+  verify(state(pattern).getString("objectId") == "pattern_group", "Focus the registered recurring group")
+  verify(state(pattern).getString("action") == "hint", "Object focus does not widen the semantic action")
+  verify(pattern.request(request(2, "repeat", "Noch einmal")), "Repeat the checked group")
+  Handler.drain()
+  verify(state(pattern).getString("reply").contains("Stern – Quadrat"), "Repeat retains the same checked group")
+  verify(pattern.request(request(3, "slower", "Langsamer")), "Slow the checked group")
+  Handler.drain()
+  verify(state(pattern).getDouble("rate") < 1.0, "Slower keeps the existing native rate path")
+
+  val stablePattern = pattern.status()
+  for (invalid in listOf<Any>(
+      JSONArray(listOf("square", "star")), JSONArray(listOf("star", "circle")),
+      JSONArray(listOf(7, "square")), JSONArray(),
+      JSONArray(listOf("star", "square", "star", "square", "star")), "star square", JSONObject.NULL)) {
+    verify(!pattern.updateContext(patternUpdate(unit = invalid).toString()), "Reject unverified/malformed pattern unit: $invalid")
+    verify(pattern.status() == stablePattern, "Rejected pattern update cannot mutate the current snapshot")
+  }
+  val absentUnit = patternUpdate().also { it.getJSONObject("parameters").remove("patternUnit") }
+  verify(!pattern.updateContext(absentUnit.toString()), "No fallback to absent launch patternUnit")
+  verify(!pattern.request(request(4, "highlight", "Zeige die Gruppe")), "Pattern context cannot grant a new presentation action")
+  val doubledUnit = listOf("star", "square", "star", "square")
+  val badPeriodOptions = patternOptions().also { it.getJSONObject("learning")
+      .put("period", 4).put("sequence", JSONArray(doubledUnit + doubledUnit)) }
+  val badPeriod = LumoLearningConversation(Activity(), badPeriodOptions) {}.also { it.setActive(true) }
+  verify(!badPeriod.updateContext(patternUpdate(unit = JSONArray(doubledUnit)).toString()), "Claimed period must be the smallest demonstrated unit")
+  val fractionalOptions = patternOptions().also { it.getJSONObject("learning").put("period", 2.5) }
+  val fractional = LumoLearningConversation(Activity(), fractionalOptions) {}.also { it.setActive(true) }
+  verify(!fractional.updateContext(patternUpdate().toString()), "Never truncate a fractional claimed period")
+
+  val narrow = LumoLearningConversation(Activity(), patternOptions(listOf("hint", "stop"))) {}.also { it.setActive(true) }
+  verify(narrow.updateContext(patternUpdate(actions = listOf("hint", "stop")).toString()), "Preserve narrowed pattern permissions")
+  verify(narrow.request(request(1, "hint", "Bitte langsamer")), "Recheck final inferred pattern action")
+  Handler.drain()
+  verify(state(narrow).getString("state") == "unavailable" && state(narrow).getString("objectId").isEmpty(),
+      "Denied inferred pattern action cannot reveal a group or gesture")
+  verify(pattern.updateContext(patternUpdate(objects = listOf("task_prompt")).toString()), "Scene can withdraw group registration")
+  verify(pattern.request(request(4, "hint", "Hinweis")), "Checked hint remains permitted without a focus target")
+  Handler.drain()
+  verify(state(pattern).getString("objectId").isEmpty(), "Never focus an unregistered pattern group")
+
+  verify(pattern.request(request(5, "hint", "Hinweis")), "Queue pattern reply for the old step")
+  verify(pattern.updateContext(patternUpdate(scope("next-pattern-step", 1)).toString()), "Advance current pattern step")
+  Handler.drain()
+  verify(state(pattern).getString("reply").isEmpty(), "Step change discards a queued pattern reply")
+  verify(!pattern.request(request(6, "repeat", "Noch einmal")), "Old pattern identity remains stale")
+  verify(pattern.request(request(7, "hint", "Hinweis", scope("next-pattern-step", 1))), "New pattern step may explicitly ask")
+  Handler.drain()
+  verify(state(pattern).getString("reply").contains("Stern – Quadrat") &&
+      state(pattern).getString("objectId") == "pattern_group", "New step uses only its validated registered group")
+
+  val nullScope = scope().put("stepId", JSONObject.NULL)
+  val nullOptions = patternOptions().also { it.getJSONObject("learning").put("scope", nullScope) }
+  val nullable = LumoLearningConversation(Activity(), nullOptions) {}.also { it.setActive(true) }
+  verify(nullable.updateContext(patternUpdate(nullScope).toString()), "V1 permits a null stepId")
+  verify(nullable.request(request(1, "hint", "Hinweis", nullScope)), "Null-step request keeps its exact identity")
+  Handler.drain()
+  verify(state(nullable).isNull("stepId") && state(nullable).getJSONObject("scope").isNull("stepId"),
+      "Reply must preserve JSON null, not serialize an empty/string stepId")
+  verify(!nullable.request(request(2, "hint", "Hinweis", scope(step = ""))), "Empty string cannot impersonate null stepId")
+  verify(!nullable.updateContext(patternUpdate(scope().put("stepId", 9)).toString()), "Non-string non-null stepId is invalid")
   println("LUMO_NATIVE_DIALOGUE_GATES_PASS checks=$checks boundary=synthetic_JVM no_Android_playback_claim=true")
 }
 '''
@@ -259,7 +347,7 @@ class LearningConversationContractTest(unittest.TestCase):
             for command in commands:
                 result = subprocess.run(command, capture_output=True, text=True, timeout=90)
                 self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-            self.assertIn('LUMO_NATIVE_DIALOGUE_GATES_PASS checks=37 ', result.stdout)
+            self.assertIn('LUMO_NATIVE_DIALOGUE_GATES_PASS checks=81 ', result.stdout)
             print(result.stdout, end='')
 
 

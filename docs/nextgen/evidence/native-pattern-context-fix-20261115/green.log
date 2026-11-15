@@ -1,0 +1,8 @@
+test_production_native_scope_permissions_and_stale_callbacks (scripts.tests.test_learning_conversation_contract.LearningConversationContractTest.test_production_native_scope_permissions_and_stale_callbacks) ... ok
+test_checked_examples_and_interruptions (scripts.tests.test_learning_dialog_logic.LearningDialogLogicTest.test_checked_examples_and_interruptions) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 5.856s
+
+OK
+LUMO_NATIVE_DIALOGUE_GATES_PASS checks=81 boundary=synthetic_JVM no_Android_playback_claim=true

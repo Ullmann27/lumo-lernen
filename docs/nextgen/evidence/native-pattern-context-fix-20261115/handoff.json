@@ -1,0 +1,27 @@
+{
+  "commit": "d5a40d4eadad30f8a4e6665271eb23c314ab8b30",
+  "tree": "2cba00d8fb15de469f3f139b48aea997973aa560",
+  "parent": "cd0906ab8f672e6c9da5659d0876ad537311eea9",
+  "files": {
+    "tools/auto_install/LumoLearningConversation.kt": "f3a09318752f819e65be5c8de7486dba1287ae71b5ae5831aed17d5f298904fc",
+    "scripts/tests/test_learning_conversation_contract.py": "4309aef3233076e6ba931ee071cd9e7ddf6b74daeb2aaf919e51f8068f843206"
+  },
+  "tests": {
+    "python_test_methods_passed": 2,
+    "kotlin_java_integration_checks_passed": 81,
+    "unchanged_java_dialogue_checks_passed": 26,
+    "failed": 0
+  },
+  "red_failure": "Use parameters.patternUnit from the checked sequence",
+  "logs": {
+    "red.log": {
+      "bytes": 1287,
+      "sha256": "d581631e2f25566d62e43d1170d9e917844be2a7b65306a343abdbb59c65166e"
+    },
+    "green.log": {
+      "bytes": 562,
+      "sha256": "e06ee6bc08f8d8c5954d3014fd1bf2d97d3f367cabfc125c16b92f6553e443c5"
+    }
+  },
+  "boundary": "Compiled production Kotlin and Java with synthetic Android JVM boundary; no actual Android speech/playback or APK acceptance claim."
+}

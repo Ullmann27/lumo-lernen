@@ -160,7 +160,7 @@ APPROVED = {
     2027: "ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb",
     # 2028: real Android capability discovery for the existing learning host.
     # New candidate: the rejected 2027 APK/evidence cannot satisfy this build.
-    2028: "f521fc5887e98562ba89fbfeca3bb466031fdea0",
+    2028: "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

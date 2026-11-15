@@ -1218,7 +1218,7 @@ class LearningProbe:
             for _ in range(6):
                 tag = self.fresh("why-native-current-explanation")
                 shot = self.reader.capture(self.out, tag)
-                lines = self.reader.image_lines(self.out, tag, "biszurzehn", source_path=self.out / shot["file"], timeout=40)
+                lines = self.reader.image_lines(self.out, tag, "fehlen", source_path=self.out / shot["file"], timeout=40)
                 response = native_why_response(lines)
                 if response:
                     response["screenshot"] = shot

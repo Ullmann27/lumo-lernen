@@ -219,3 +219,11 @@ bleiben explizit offen. Drei Referenzszenen ersetzen diese Matrix nicht.
 
 60 FPS bleiben ein Messziel. Headless/Widget/Desktop-Prüfungen werden
 nicht als Android-Geräte- oder physischer Fold7-Beleg ausgegeben.
+
+## Kompatible Integrationskorrekturen vor Kandidat 2028
+
+Der öffentliche Vertrag bleibt v1. Das Lab erkennt für sein Gespräch die konkret eigene `ModalBottomSheetRoute`; fremde Überlagerungen erhalten keinen Aufgabenbesitz. Die Schließgrenze reicht bis zum tatsächlichen Abschluss dieser Route. Alte Controller speichern ihre eigene Lernidentität und ihren eigenen `LumoVoice.requestRevision`; Aufräumen nach Pause/Wechsel/Dispose darf weder einen neuen Auftrag stoppen noch eine neue Abbruchepoche erzeugen. Ausdrückliches aktives Stopp bleibt eine eigene erlaubte Aktion.
+
+Native Android-Methoden werden über die tatsächlich vorhandene JNI-Capability-Auskunft geprüft. Der geroutete Next-Szenenbesitzer verwendet denselben Weg für Sprachsegment- und Gesprächsabbruch. Der Musteradapter liest die geprüfte Gruppe aus `parameters.patternUnit`, validiert sie gegen Startsequenz/kleinste Periode und verwendet ausschließlich ein aktuell registriertes Gruppenziel. Eine fehlende oder null-`stepId` bleibt dieselbe optionale Identität; eine leere Zeichenkette darf sie nicht vertreten. Diese Konkretisierungen ändern weder Aufgabenkennungen noch Speicher- oder Belohnungsformate.
+
+Originale und gezielte Prüfnachweise stehen in `evidence/conversation-scope-fix-20261115/`, `evidence/native-pattern-context-fix-20261115/` und im nativen Repository unter `docs/nextgen/evidence/android-capability-followup-20261115/`. Die vollständige neue Androidtour bleibt eine gesonderte Abnahme.
