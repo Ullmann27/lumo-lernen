@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 import '../../../app/app_state.dart';
 import '../../../app/lumo_companion_host.dart';
@@ -71,6 +72,8 @@ class _LearningLabScreenState extends State<LearningLabScreen>
   bool _speechCandidate = false;
   bool _nativeLearningOpen = false;
   bool _nativeReturnPending = false;
+  Object? _conversationToken;
+  ModalRoute<dynamic>? _conversationRoute;
   String? _nativeStepId;
   int _hint = 0;
   int _support = 0;
@@ -105,12 +108,15 @@ class _LearningLabScreenState extends State<LearningLabScreen>
       widget.appState.state.grade >= widget.topic.minimumGrade;
   bool get _canAnswer =>
       _safe && !_busy && !_done && !_progress.hasPending && !_interruptedSave;
-  bool get _editable => _canAnswer && _foreground && !_nativeLearningOpen;
+  bool get _editable =>
+      _canAnswer && _foreground && !_nativeLearningOpen && _routeVisible;
   bool get _active =>
       _safe &&
       !_loading &&
       (_foreground || _nativeLearningOpen) &&
-      _routeVisible;
+      (_conversationToken == null
+          ? _routeVisible
+          : _conversationRoute?.isCurrent == true);
   bool get _routeVisible =>
       mounted && ModalRoute.of(context)?.isCurrent != false;
   bool get _modelPhase => _phase == _Phase.example || _phase == _Phase.build;
@@ -796,6 +802,44 @@ class _LearningLabScreenState extends State<LearningLabScreen>
     _publish();
   }
 
+  Future<void> _openConversation() async {
+    if (!_active ||
+        !_foreground ||
+        !_routeVisible ||
+        !_coach.ownsCurrentTask ||
+        _conversationToken != null) {
+      return;
+    }
+    final token = Object();
+    _conversationToken = token;
+    try {
+      await showLumoConversation(context,
+          appState: widget.appState,
+          onSection: widget.appState.setSection, onRouteChanged: (route) {
+        if (!mounted || !identical(_conversationToken, token)) return;
+        _conversationRoute = route;
+        // Route transitions normally arrive outside build: withdraw the
+        // bus scope immediately so a pending reply cannot outlive cover.
+        if (SchedulerBinding.instance.schedulerPhase ==
+            SchedulerPhase.persistentCallbacks) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted && identical(_conversationToken, token)) _publish();
+          });
+        } else {
+          _publish();
+        }
+      });
+    } finally {
+      if (identical(_conversationToken, token)) {
+        _conversationToken = null;
+        _conversationRoute = null;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted && _conversationToken == null) _publish();
+        });
+      }
+    }
+  }
+
   void _discardSpeechCandidate() {
     if (!_speechCandidate) return;
     _speechCandidate = false;
@@ -1087,11 +1131,15 @@ class _LearningLabScreenState extends State<LearningLabScreen>
     if (action == null ||
         captured == null ||
         !_foreground ||
+        !_routeVisible ||
         _nativeLearningOpen) {
       return null;
     }
     return () {
-      if (_foreground && !_nativeLearningOpen && _coach.matches(captured)) {
+      if (_foreground &&
+          _routeVisible &&
+          !_nativeLearningOpen &&
+          _coach.matches(captured)) {
         action();
       }
     };
@@ -1167,15 +1215,8 @@ class _LearningLabScreenState extends State<LearningLabScreen>
                   if (current != null) _coach.tryMyself(current);
                 }
               : null),
-      _command(
-          'lab-ask-lumo',
-          Icons.forum_outlined,
-          'Frage an Lumo',
-          _safe && !_busy
-              ? () => unawaited(showLumoConversation(context,
-                  appState: widget.appState,
-                  onSection: widget.appState.setSection))
-              : null),
+      _command('lab-ask-lumo', Icons.forum_outlined, 'Frage an Lumo',
+          _safe && !_busy ? () => unawaited(_openConversation()) : null),
     ]);
   }
 
@@ -1449,6 +1490,8 @@ class _LearningLabScreenState extends State<LearningLabScreen>
 
   @override
   void dispose() {
+    _conversationToken = null;
+    _conversationRoute = null;
     _coach.dispose();
     if (identical(
         LumoCompanionRequests.instance.taskContext.value, _published)) {

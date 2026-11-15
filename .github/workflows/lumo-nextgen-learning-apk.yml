@@ -76,8 +76,14 @@ jobs:
               assert original == actual, 'Protected module changed: ' + path
               protected.append({'path': path, 'sha256': hashlib.sha256(actual).hexdigest()})
           assert len(protected) >= 18
+          inventory_sources = coverage['sources']
+          assert inventory_sources and len({row['path'] for row in inventory_sources}) == len(inventory_sources)
+          for row in inventory_sources:
+              actual = Path(row['path']).read_bytes()
+              assert hashlib.sha256(actual).hexdigest() == row['sha256'], 'Inventory source changed: ' + row['path']
           result = {'flutter': os.environ['GITHUB_SHA'], 'godot': native, 'release': release,
-                    'protectedModules': protected, 'coverageIsAcceptance': False}
+                    'protectedModules': protected, 'coverageSourceHashesVerified': len(inventory_sources),
+                    'coverageIsAcceptance': False}
           Path('evidence/validation/source.json').write_text(json.dumps(result, indent=2) + '\n')
           with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
               for key, value in {'native': native['revision'], 'version': release['versionCode'],
