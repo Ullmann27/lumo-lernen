@@ -64,8 +64,13 @@ class LabProblem {
             modelTarget < denominator &&
             expected == '$modelTarget/$denominator';
       case LabMode.pattern:
+        const shapes = {'Kreis', 'Dreieck', 'Quadrat'};
         if (repeatLength < 2 ||
+            repeatLength > 4 ||
+            pattern.length > 12 ||
             pattern.length < repeatLength * 2 ||
+            pattern.any((shape) => !shapes.contains(shape)) ||
+            tokens.any((shape) => !shapes.contains(shape)) ||
             tokens.toSet().length != tokens.length ||
             !tokens.contains(expected)) return false;
         for (var i = repeatLength; i < pattern.length; i++) {

@@ -35,6 +35,8 @@ enum _WorkspaceKind {
   groups,
   numberLine,
   comparison,
+  fraction,
+  decimal,
   syllables,
   pattern,
   numberPattern,
@@ -97,6 +99,16 @@ class InteractiveTaskWorkspace extends StatefulWidget {
     if (data['operation'] == 'division') {
       return 'Eine Menge gleichmäßig auf Gruppen verteilen.';
     }
+    if (data['operation'] == 'decimal_addition' ||
+        data['operation'] == 'decimal_subtraction') {
+      return 'Dezimalzahlen nach Stellenwerten ordnen und damit rechnen.';
+    }
+    if (task.visualPayload.type == VisualType.fractionPizza) {
+      return 'Ein Ganzes in gleich große Teile gliedern und Brüche untersuchen.';
+    }
+    if (data['sequence'] is List && data['step'] is int) {
+      return 'Den Zahlenschritt erkennen und die Zahlenfolge fortsetzen.';
+    }
     if (task.visualPayload.type == VisualType.syllables ||
         task.visualPayload.type == VisualType.syllableClap) {
       return 'Ein Wort in seine gesprochenen Silben gliedern.';
@@ -135,6 +147,7 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
   int _moved = 0;
   final Set<int> _removed = {};
   final Set<int> _marked = {};
+  final Set<int> _fractionParts = {};
   List<int> _allocations = [];
   List<int> _tokenOrder = [];
   int? _focus;
@@ -180,6 +193,10 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
     _moved = 0;
     _removed.clear();
     _marked.clear();
+    _fractionParts.clear();
+    if (_model.kind == _WorkspaceKind.fraction) {
+      _fractionParts.addAll(List.generate(_model.left!, (i) => i));
+    }
     _allocations = List.filled(_model.groupCount, 0);
     _tokenOrder = [];
     _focus = null;
@@ -203,12 +220,14 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
 
   Map<String, Object?> get _visibleState => Map.unmodifiable({
         'kind': _model.kind.name,
-    'objectIds': List<String>.unmodifiable(_visibleObjectIds),
+        'objectIds': List<String>.unmodifiable(_visibleObjectIds),
         'helpLevel': widget.helpLevel,
         'slow': _slow,
         'reducedMotion': _quiet,
-        if (_model.left != null) 'left': _model.left,
-        if (_model.right != null) 'right': _model.right,
+        if (_model.left != null && _model.kind != _WorkspaceKind.decimal)
+          'left': _model.left,
+        if (_model.right != null && _model.kind != _WorkspaceKind.decimal)
+          'right': _model.right,
         if (_model.kind == _WorkspaceKind.bridge) ...{
           'representation': _useLine ? 'numberLine' : 'counters',
           'moved': _moved,
@@ -265,6 +284,18 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
           'linePosition': _linePosition,
         if (_model.kind == _WorkspaceKind.comparison)
           'selectedRelation': _relation,
+        if (_model.kind == _WorkspaceKind.fraction) ...{
+          'denominator': _model.right,
+          'initialNumerator': _model.left,
+          'selectedParts': List.unmodifiable(_fractionParts.toList()..sort()),
+        },
+        if (_model.kind == _WorkspaceKind.decimal) ...{
+          'decimalPlaces': _model.period,
+          'leftMinorUnits': _model.left,
+          'rightMinorUnits': _model.right,
+          'operation': _model.operation,
+          'focusedPlace': _focus,
+        },
         if (_model.kind == _WorkspaceKind.plant)
           'focusedPart': _focus == null ? null : _plantParts[_focus!].id,
         if (_model.kind == _WorkspaceKind.evidence)
@@ -272,6 +303,107 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
             for (final index in _marked) _model.tokens[index],
           ]),
       });
+
+  List<String> get _visibleObjectIds {
+    final ids = <String>['task-workspace'];
+    if (_model.kind == _WorkspaceKind.bridge && !_useLine) {
+      ids.addAll([
+        'ten-frame',
+        'supply',
+        if (_model.left! + _moved > 10) 'overflow',
+        for (var i = 0; i < _model.left!; i++) 'initial-$i',
+        for (var i = 0; i < _model.right!; i++) 'addend-$i'
+      ]);
+    }
+    if (_model.kind == _WorkspaceKind.subtraction) {
+      ids.addAll([
+        'remaining-tray',
+        'removed-tray',
+        for (var i = 0; i < _model.left!; i++) 'counter-$i'
+      ]);
+    }
+    if (_model.kind == _WorkspaceKind.groups) {
+      final supply = _model.total - _allocations.fold(0, (a, b) => a + b);
+      ids.addAll([
+        'group-supply',
+        for (var i = 0; i < supply; i++) 'group-bank-$i',
+        for (var i = 0; i < _model.groupCount; i++) ...[
+          'group-$i',
+          for (var j = 0; j < _allocations[i]; j++) 'group-$i-counter-$j',
+        ]
+      ]);
+    }
+    if (_model.kind == _WorkspaceKind.numberLine || _useLine) {
+      ids.addAll([
+        'number-line',
+        for (var i = _model.lineMin; i <= _model.lineMax; i++) 'number-$i'
+      ]);
+    }
+    if (_model.kind == _WorkspaceKind.comparison) {
+      ids.addAll([
+        'comparison-left',
+        'comparison-right',
+        'relation-<',
+        'relation-=',
+        'relation->'
+      ]);
+    }
+    if (_model.kind == _WorkspaceKind.syllables) {
+      ids.add('word');
+      if (_unfolded || widget.helpLevel > 1) {
+        ids.addAll(
+            [for (var i = 0; i < _model.tokens.length; i++) 'syllable-$i']);
+        if (_arranging) {
+          ids.addAll([
+            'syllable-workbench',
+            for (var i = 0; i < _model.tokens.length; i++) 'token-$i'
+          ]);
+        }
+      }
+    }
+    if (_model.kind == _WorkspaceKind.fraction) {
+      ids.addAll([
+        'fraction-disc',
+        for (var i = 0; i < _model.right!; i++) 'fraction-part-$i'
+      ]);
+    }
+    if (_model.kind == _WorkspaceKind.decimal) {
+      ids.addAll([
+        'decimal-table',
+        for (var i = 0; i < _model.decimalColumns; i++) 'decimal-place-$i'
+      ]);
+    }
+    if (_model.kind == _WorkspaceKind.pattern) {
+      ids.addAll([for (var i = 0; i < _model.tokens.length; i++) 'pattern-$i']);
+      if (_groupVisible || widget.helpLevel > 1) ids.add('pattern-group');
+    }
+    if (_model.kind == _WorkspaceKind.numberPattern) {
+      ids.addAll([
+        'number-pattern',
+        for (var i = 0; i < _model.tokens.length; i++) 'number-pattern-$i'
+      ]);
+    }
+    if (_model.kind == _WorkspaceKind.tokens) {
+      ids.addAll([
+        'token-workbench',
+        for (var i = 0; i < _model.tokens.length; i++) 'token-$i'
+      ]);
+    }
+    if (_model.kind == _WorkspaceKind.shapes) {
+      ids.addAll([for (var i = 0; i < _model.tokens.length; i++) 'shape-$i']);
+    }
+    if (_model.kind == _WorkspaceKind.plant) {
+      ids.addAll([for (final part in _plantParts) 'plant-${part.id}']);
+    }
+    if (_model.kind == _WorkspaceKind.evidence) {
+      ids.add('task-text');
+      if (_unfolded) {
+        ids.addAll(
+            [for (var i = 0; i < _model.tokens.length; i++) 'evidence-$i']);
+      }
+    }
+    return ids;
+  }
 
   int? get _activeSyllable {
     final id = widget.activeObjectId;
@@ -351,7 +483,7 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
                 'Welche Gruppe kommt immer wieder?';
       case _WorkspaceKind.numberPattern:
         return _groupVisible || widget.helpLevel > 0
-            ? 'Der Abstand ist jedes Mal ${_model.period}. '
+            ? 'Der Zahlenschritt ist jedes Mal ${_model.period >= 0 ? '+' : '−'} ${_model.period.abs()}. '
                 'Gehe von der letzten gegebenen Zahl noch einmal so weit.'
             : 'Vergleiche zwei aufeinanderfolgende Zahlen. '
                 'Wie groß ist der Schritt? Prüfe ihn an den nächsten Zahlen.';
@@ -368,6 +500,16 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
       case _WorkspaceKind.tokens:
         return 'Lege die gegebenen Bausteine in eine passende Reihenfolge. '
             'Tippe einen gelegten Baustein an, um ihn zurückzulegen.';
+      case _WorkspaceKind.fraction:
+        return 'Das Ganze besteht aus ${_model.right} gleich großen Teilen. '
+            '${_fractionParts.length} sind gerade markiert. '
+            '${_model.operation == 'fraction_addition' ? 'Zur ersten Menge von ${_model.left} Teilen kommen ${_model.period} Teile dazu.' : 'Vergleiche die markierten Teile mit der Aufgabe.'}';
+      case _WorkspaceKind.decimal:
+        return _focus == null
+            ? 'Schreibe gleiche Stellenwerte untereinander. '
+                'Die Kommas stehen in derselben Spalte.'
+            : 'Du untersuchst die Spalte ${_model.decimalLabel(_focus!)}. '
+                'Rechne mit den Ziffern aus derselben Spalte.';
       case _WorkspaceKind.shapes:
         return 'Untersuche die Formen. '
             'Achte auf Ecken, gerade Seiten und Rundungen.';
@@ -417,6 +559,8 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
       _WorkspaceKind.groups => _groups(),
       _WorkspaceKind.numberLine => _numberLine(),
       _WorkspaceKind.comparison => _comparison(),
+      _WorkspaceKind.fraction => _fraction(),
+      _WorkspaceKind.decimal => _decimal(),
       _WorkspaceKind.syllables => _syllables(),
       _WorkspaceKind.pattern => _pattern(),
       _WorkspaceKind.numberPattern => _numberPattern(),
@@ -803,6 +947,94 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
           ],
         ),
       );
+
+  Widget _fraction() {
+    final displayedSelection = Set<int>.of(_fractionParts);
+    return FractionBuildBoard(
+      denominator: _model.right!,
+      selected: _fractionParts,
+      enabled: widget.enabled,
+      reduceMotion: _quiet,
+      onChanged: (value) {
+        final difference = value
+            .difference(displayedSelection)
+            .followedBy(displayedSelection.difference(value))
+            .toList();
+        _change(() {
+          if (difference.length == 1) {
+            final index = difference.single;
+            if (!_fractionParts.add(index)) _fractionParts.remove(index);
+          } else {
+            _fractionParts
+              ..clear()
+              ..addAll(value);
+          }
+        },
+            'selectFractionParts',
+            difference.length == 1
+                ? 'fraction-part-${difference.single}'
+                : 'fraction-disc');
+      },
+    );
+  }
+
+  Widget _decimal() {
+    final left = '${_model.left}'.padLeft(_model.decimalColumns, '0');
+    final right = '${_model.right}'.padLeft(_model.decimalColumns, '0');
+    return _surface(
+      title: 'Jede Ziffer an ihrem Platz',
+      icon: Icons.view_column_outlined,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Text(
+            _model.operation == 'decimal_addition'
+                ? 'Plus · gleiche Stellenwerte untereinander'
+                : 'Minus · gleiche Stellenwerte untereinander',
+            style: _bodyStyle),
+        const SizedBox(height: 10),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            for (var i = 0; i < _model.decimalColumns; i++) ...[
+              if (i == _model.decimalWholeDigits)
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4),
+                  child: Column(children: [
+                    Text(' ', style: _bodyStyle),
+                    SizedBox(height: 10),
+                    Text(',', style: _numberStyle),
+                    SizedBox(height: 10),
+                    Text(',', style: _numberStyle),
+                  ]),
+                ),
+              Padding(
+                padding: const EdgeInsets.only(right: 4),
+                child: _tile(
+                  key: 'decimal-place-$i',
+                  label:
+                      '${_model.decimalLabel(i)}: oben ${left[i]}, unten ${right[i]}',
+                  selected: _focus == i,
+                  onTap: () => _change(() => _focus = i, 'focusDecimalPlace',
+                      'decimal-place-$i'),
+                  child: Column(children: [
+                    Text(_model.decimalShortLabel(i), style: _bodyStyle),
+                    const SizedBox(height: 10),
+                    Text(left[i], style: _numberStyle),
+                    const SizedBox(height: 10),
+                    Text(right[i], style: _numberStyle),
+                  ]),
+                ),
+              ),
+            ],
+          ]),
+        ),
+        const SizedBox(height: 10),
+        const Text(
+            'Tippe eine Spalte an. E = Einer, Z = Zehner; '
+            '1/10 = Zehntel, 1/100 = Hundertstel.',
+            style: _bodyStyle),
+      ]),
+    );
+  }
 
   Widget _syllables() {
     final visible = _unfolded || widget.helpLevel > 1;
@@ -1339,66 +1571,6 @@ class _WorkspaceModel {
     this.lineMax = 20,
   });
 
-  List<String> get _visibleObjectIds {
-    final ids = <String>['task-workspace'];
-    if (_model.kind == _WorkspaceKind.bridge && !_useLine) {
-      ids.addAll(['ten-frame', 'supply',
-        if (_model.left! + _moved > 10) 'overflow',
-        for (var i = 0; i < _model.left!; i++) 'initial-$i',
-        for (var i = 0; i < _model.right!; i++) 'addend-$i']);
-    }
-    if (_model.kind == _WorkspaceKind.subtraction) {
-      ids.addAll(['remaining-tray', 'removed-tray',
-        for (var i = 0; i < _model.left!; i++) 'counter-$i']);
-    }
-    if (_model.kind == _WorkspaceKind.groups) {
-      final supply = _model.total - _allocations.fold(0, (a, b) => a + b);
-      ids.addAll(['group-supply',
-        for (var i = 0; i < supply; i++) 'group-bank-$i',
-        for (var i = 0; i < _model.groupCount; i++) ...[
-          'group-$i',
-          for (var j = 0; j < _allocations[i]; j++) 'group-$i-counter-$j',
-        ]]);
-    }
-    if (_model.kind == _WorkspaceKind.numberLine || _useLine) {
-      ids.addAll(['number-line',
-        for (var i = _model.lineMin; i <= _model.lineMax; i++) 'number-$i']);
-    }
-    if (_model.kind == _WorkspaceKind.comparison) {
-      ids.addAll(['comparison-left', 'comparison-right',
-        'relation-<', 'relation-=', 'relation->']);
-    }
-    if (_model.kind == _WorkspaceKind.syllables) {
-      ids.add('word');
-      if (_unfolded || widget.helpLevel > 1) {
-        ids.addAll([for (var i = 0; i < _model.tokens.length; i++) 'syllable-$i']);
-        if (_arranging) ids.add('syllable-workbench');
-      }
-    }
-    if (_model.kind == _WorkspaceKind.pattern) {
-      ids.addAll([for (var i = 0; i < _model.tokens.length; i++) 'pattern-$i']);
-      if (_groupVisible || widget.helpLevel > 1) ids.add('pattern-group');
-    }
-    if (_model.kind == _WorkspaceKind.numberPattern) {
-      ids.addAll(['number-pattern',
-        for (var i = 0; i < _model.tokens.length; i++) 'number-pattern-$i']);
-    }
-    if (_model.kind == _WorkspaceKind.tokens) ids.add('token-workbench');
-    if (_model.kind == _WorkspaceKind.shapes) {
-      ids.addAll([for (var i = 0; i < _model.tokens.length; i++) 'shape-$i']);
-    }
-    if (_model.kind == _WorkspaceKind.plant) {
-      ids.addAll([for (final part in _plantParts) 'plant-${part.id}']);
-    }
-    if (_model.kind == _WorkspaceKind.evidence) {
-      ids.add('task-text');
-      if (_unfolded) {
-        ids.addAll([for (var i = 0; i < _model.tokens.length; i++) 'evidence-$i']);
-      }
-    }
-    return ids;
-  }
-
   final _WorkspaceKind kind;
   final int? left, right;
   final String operation, word;
@@ -1418,12 +1590,96 @@ class _WorkspaceModel {
       ? tokens
       : [tokens.last, ...tokens.take(tokens.length - 1)];
 
+  int get decimalWholeDigits => kind != _WorkspaceKind.decimal
+      ? 1
+      : (math.max(left!, right!) ~/ math.pow(10, period).toInt())
+          .toString()
+          .length;
+  int get decimalColumns => decimalWholeDigits + period;
+  String decimalLabel(int column) {
+    final power = decimalWholeDigits - column - 1;
+    return switch (power) {
+      3 => 'Tausender',
+      2 => 'Hunderter',
+      1 => 'Zehner',
+      0 => 'Einer',
+      -1 => 'Zehntel',
+      -2 => 'Hundertstel',
+      -3 => 'Tausendstel',
+      -4 => 'Zehntausendstel',
+      _ => 'Stellenwert 10 hoch $power',
+    };
+  }
+
+  String decimalShortLabel(int column) {
+    final power = decimalWholeDigits - column - 1;
+    return switch (power) {
+      3 => 'T',
+      2 => 'H',
+      1 => 'Z',
+      0 => 'E',
+      _ => power < 0
+          ? '1/${math.pow(10, -power).toInt()}'
+          : '${math.pow(10, power).toInt()}',
+    };
+  }
+
   factory _WorkspaceModel.from(TaskInstance task) {
     final data = task.visualPayload.data;
     final left = _integer(data['left']) ?? _integer(data['start']);
     final right = _integer(data['right']) ?? _integer(data['takeAway']);
     final result = _integer(task.correctAnswer);
     final operation = data['operation'];
+    if (task.subject == LearningSubject.mathematik &&
+        (operation == 'decimal_addition' ||
+            operation == 'decimal_subtraction')) {
+      final places = _integer(data['decimalPlaces']);
+      final first = _integer(data['leftMinorUnits']);
+      final second = _integer(data['rightMinorUnits']);
+      final expected = _integer(data['resultMinorUnits']);
+      if (places != null &&
+          places > 0 &&
+          places <= 4 &&
+          first != null &&
+          second != null &&
+          expected != null &&
+          first >= 0 &&
+          second >= 0 &&
+          expected >= 0 &&
+          expected ==
+              (operation == 'decimal_addition'
+                  ? first + second
+                  : first - second) &&
+          expected == _decimalUnits('${task.correctAnswer}', places)) {
+        return _WorkspaceModel(_WorkspaceKind.decimal,
+            left: first,
+            right: second,
+            period: places,
+            operation: operation as String);
+      }
+    }
+    if (task.visualPayload.type == VisualType.fractionPizza) {
+      final numerator = _integer(data['numerator']);
+      final denominator = _integer(data['denominator']);
+      final extra = _integer(data['extra']) ?? 0;
+      if (numerator != null &&
+          denominator != null &&
+          numerator >= 0 &&
+          denominator >= 1 &&
+          denominator <= 8 &&
+          numerator <= denominator &&
+          extra >= 0 &&
+          numerator + extra <= denominator &&
+          (operation != 'fraction_addition' ||
+              _fractionMatches(
+                  '${task.correctAnswer}', numerator + extra, denominator))) {
+        return _WorkspaceModel(_WorkspaceKind.fraction,
+            left: numerator,
+            right: denominator,
+            period: extra,
+            operation: operation is String ? operation : 'fraction');
+      }
+    }
     if (task.subject == LearningSubject.mathematik &&
         left != null &&
         right != null &&
@@ -1579,6 +1835,24 @@ class _WorkspaceModel {
       tokens: evidence.where((s) => s.isNotEmpty).toList(),
     );
   }
+}
+
+int? _decimalUnits(String value, int places) {
+  final match = RegExp(r'^(\d+)(?:[.,](\d+))?$').firstMatch(value.trim());
+  if (match == null || (match[2]?.length ?? 0) > places) return null;
+  return int.parse(match[1]!) * math.pow(10, places).toInt() +
+      int.parse((match[2] ?? '').padRight(places, '0'));
+}
+
+bool _fractionMatches(String value, int numerator, int denominator) {
+  final match = RegExp(r'^(\d+)(?:\s*/\s*(\d+))?$').firstMatch(value.trim());
+  if (match == null) return false;
+  final expectedNumerator = int.tryParse(match[1]!);
+  final expectedDenominator = int.tryParse(match[2] ?? '1');
+  return expectedNumerator != null &&
+      expectedDenominator != null &&
+      expectedDenominator > 0 &&
+      numerator * expectedDenominator == expectedNumerator * denominator;
 }
 
 int? _integer(Object? value) => value is int

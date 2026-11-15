@@ -121,8 +121,8 @@ void main() {
     progress.notePresentationHelp(level: 3);
     final accepted = progress.saveAnswer(
         correct: true,
-      stars: 1,
-      xp: 5,
+        stars: 1,
+        xp: 5,
         learningEvidence: const LearningEvidence(
             taskId: 'module_attempt_1',
             problemId: 'module_problem_1',

@@ -361,8 +361,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
           picked: _picked,
           wrongAnswers: _wrongAnswers,
           solved: _solved,
-          enabled: !(_solved ||
-              (!widget.allowRetry && _wrongAnswers.isNotEmpty)),
+          enabled:
+              !(_solved || (!widget.allowRetry && _wrongAnswers.isNotEmpty)),
           reduceMotion: widget.reduceMotion,
           onPick: _pick,
         ),
@@ -740,7 +740,8 @@ class _OptionGrid extends StatelessWidget {
                               ? LumoCrystalState.retry
                               : LumoCrystalState.neutral,
                       onPressed: !enabled || solved || isWrongPicked
-                          ? null : () => onPick(option),
+                          ? null
+                          : () => onPick(option),
                     )
                   : _AnswerButton(
                       label: option.label,
@@ -961,14 +962,19 @@ class _AnswerButtonState extends State<_AnswerButton>
       button: true,
       enabled: enabled,
       value: widget.solved && widget.isCorrect
-          ? 'Richtig' : widget.isWrongPicked ? 'Noch nicht richtig' : null,
+          ? 'Richtig'
+          : widget.isWrongPicked
+              ? 'Noch nicht richtig'
+              : null,
       child: enabled && !quiet
           ? LumoTiltCard(onTap: widget.onTap, child: animated)
-          : Material(color: Colors.transparent, child: InkWell(
-              borderRadius: BorderRadius.circular(LumoRadius.lg),
-              onTap: enabled ? widget.onTap : null,
-              child: animated,
-            )),
+          : Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(LumoRadius.lg),
+                onTap: enabled ? widget.onTap : null,
+                child: animated,
+              )),
     );
   }
 
@@ -1055,8 +1061,7 @@ class _DotsVisual extends StatelessWidget {
         title: 'Wegnehmen-Bild',
         subtitle: 'Erst anschauen, dann wegnehmen und zählen.',
         ribbonLabel: '−',
-        helperText:
-            'Start: $left. Wegnehmen: $right. Ergebnis: ${task.correctAnswer}.',
+        helperText: 'Start: $left. Nimm $right weg und zähle, was noch da ist.',
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -1720,23 +1725,17 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
 
     final unitFromParams = task.parameters['unit']?.toString() ?? '';
     if (task.subject == LearningSubject.deutsch &&
-        unitFromParams == 'Satz bauen' &&
-        task.correctAnswer is String) {
-      final words = task.correctAnswer
-          .toString()
-          .replaceAll(RegExp(r'[.!?]'), '')
-          .split(RegExp(r'\s+'))
-          .where((w) => w.isNotEmpty)
-          .toList(growable: false);
-      if (words.length >= 2) {
-        return SchoolbookTaskCard(
-          title: 'Satz aus Wortkarten',
-          subtitle: 'So sieht der richtige Satz aus. Nun finde ihn unten.',
-          ribbonLabel: 'Satz',
-          accentColor: LumoColors.blue,
-          child: WordCardRow(words: words, accentColor: LumoColors.blue),
-        );
-      }
+        unitFromParams == 'Satz bauen') {
+      // An unanswered task may only model the information the child has been
+      // given. The answer key must never assemble a preview of the solution.
+      return SchoolbookTaskCard(
+        title: 'Sätze genau prüfen',
+        subtitle:
+            'Lies die Vorschläge. Achte darauf, ob die Wörter zusammenpassen.',
+        ribbonLabel: 'Satz',
+        accentColor: LumoColors.blue,
+        child: Text(task.prompt),
+      );
     }
 
     if (task.subject == LearningSubject.deutsch &&

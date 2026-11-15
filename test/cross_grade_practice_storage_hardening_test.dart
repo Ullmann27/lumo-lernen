@@ -136,8 +136,8 @@ void main() {
     await _open(tester);
     store.rejectedKey = 'flutter.$_scope:answered';
     await tester.scrollUntilVisible(
-      find.byKey(const ValueKey('cross-grade-choice-0')), 200,
-      scrollable: find.byType(Scrollable).first);
+        find.byKey(const ValueKey('cross-grade-choice-0')), 200,
+        scrollable: find.byType(Scrollable).first);
     await tester.runAsync(
         () => tester.tap(find.byKey(const ValueKey('cross-grade-choice-0'))));
     await _frames(tester);
@@ -145,8 +145,8 @@ void main() {
     // counter write. Finish that question to reach the storage-failure path.
     if (store.rejectedWrites == 0) {
       await tester.scrollUntilVisible(
-        find.byKey(const ValueKey('cross-grade-choice-1')), 200,
-        scrollable: find.byType(Scrollable).first);
+          find.byKey(const ValueKey('cross-grade-choice-1')), 200,
+          scrollable: find.byType(Scrollable).first);
       await tester.runAsync(
           () => tester.tap(find.byKey(const ValueKey('cross-grade-choice-1'))));
       await _frames(tester);

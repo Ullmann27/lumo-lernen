@@ -91,8 +91,11 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
   _ModuleMethod get _method => _ModuleMethod.forTitle(widget.moduleTitle);
   ScrollController? get _scrollController =>
       widget.scrollResetKey == null ? null : _taskScroll;
-  String get _guidance =>
-      widget.hasMistake ? widget.mistakeGuidance : widget.guidance;
+  String get _guidance => widget.hasMistake
+      ? widget.mistakeGuidance
+      : widget.guidance == 'Gemeinsam schaffen wir das!'
+          ? 'Dein Ziel: ${_method.goal}'
+          : widget.guidance;
 
   @override
   void initState() {
@@ -312,6 +315,13 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
                           fontSize: 18,
                           fontWeight: FontWeight.w900)),
                   const SizedBox(height: 12),
+                  Text('Lernziel: ${_method.goal}',
+                      key: const ValueKey('learning-module-goal'),
+                      style: const TextStyle(
+                          color: LumoVisualTokens.cyanBright,
+                          fontSize: 14,
+                          height: 1.3)),
+                  const SizedBox(height: 10),
                   Semantics(
                       liveRegion: true,
                       child: Text(_method.hints[_methodHelpLevel - 1],
@@ -351,38 +361,40 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
     });
   }
 
-  Widget _learningTools() => Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('Lernziel: ${_method.goal}',
-              key: const ValueKey('learning-module-goal'),
-              style: const TextStyle(
-                  color: LumoVisualTokens.cyanBright,
-                  fontSize: 14,
-                  height: 1.3,
-                  fontWeight: FontWeight.w800)),
-          const SizedBox(height: 6),
-          Wrap(spacing: 8, runSpacing: 4, children: [
-            OutlinedButton.icon(
+  Widget _learningMenu() => SizedBox(
+        width: 48,
+        height: 48,
+        child: PopupMenuButton<String>(
+          key: const ValueKey('learning-module-tools'),
+          tooltip: 'Lernhilfe und ruhiger Modus',
+          color: LumoVisualTokens.lessonAnswer,
+          icon: Icon(
+              _quiet
+                  ? Icons.self_improvement_rounded
+                  : Icons.lightbulb_outline_rounded,
+              color: Colors.white),
+          onSelected: (value) {
+            if (value == 'help') {
+              _requestHelp();
+            } else {
+              setState(() => _quiet = !_quiet);
+            }
+          },
+          itemBuilder: (_) => [
+            PopupMenuItem(
                 key: const ValueKey('learning-module-help'),
-                style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    minimumSize: const Size(48, 48)),
-                onPressed: widget.progressComplete ? null : _requestHelp,
-                icon: const Icon(Icons.lightbulb_outline_rounded),
-                label: const Text('Hilf mir')),
-            IconButton(
+                value: 'help',
+                enabled: !widget.progressComplete,
+                child: const Text('Hilf mir',
+                    style: TextStyle(color: Colors.white))),
+            PopupMenuItem(
                 key: const ValueKey('learning-module-calm'),
-                tooltip: _quiet ? 'Ruhiger Modus ist aktiv' : 'Ruhiger Modus',
-                isSelected: _quiet,
-                style: IconButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    minimumSize: const Size(48, 48)),
-                onPressed: () => setState(() => _quiet = !_quiet),
-                icon: const Icon(Icons.self_improvement_rounded),
-                selectedIcon: const Icon(Icons.pause_circle_outline_rounded)),
-          ]),
-        ]),
+                value: 'calm',
+                child: Text(
+                    _quiet ? 'Ruhiger Modus ist aktiv' : 'Ruhiger Modus',
+                    style: const TextStyle(color: Colors.white))),
+          ],
+        ),
       );
 
   Widget _helpOffer() => LumoCompanionHost(
@@ -556,6 +568,8 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
               children: [
                 Text(
                   widget.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 20,
@@ -577,13 +591,13 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
               ],
             ),
           ),
+          _learningMenu(),
         ],
       ),
       const SizedBox(height: 8),
       _progress(),
       const SizedBox(height: 10),
       _helpOffer(),
-      _learningTools(),
       if (fill) Expanded(child: widget.child) else widget.child,
     ];
     if (widget.immersive) {
@@ -655,6 +669,7 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
                           idleHops: false,
                         ),
                         _progress(),
+                        _learningMenu(),
                       ],
                     ),
                   ),
@@ -670,7 +685,6 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
                       radius: 26,
                       child: Column(mainAxisSize: MainAxisSize.min, children: [
                         _helpOffer(),
-                        _learningTools(),
                         widget.scrollable
                             ? widget.child
                             : SizedBox(height: 440, child: widget.child),

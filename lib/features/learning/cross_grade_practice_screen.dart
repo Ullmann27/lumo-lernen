@@ -262,7 +262,8 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
           ..._workspaceObjectIds,
         ],
         explanation: _workspaceMessage,
-        errorType: _firstWrongChoice == null ? null : 'confirmed_answer_mismatch',
+        errorType:
+            _firstWrongChoice == null ? null : 'confirmed_answer_mismatch',
         answerChoices: _task.choices,
         allowedActions: {
           ...lumoDefaultLearningActions,
@@ -280,8 +281,10 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
       final requests = LumoCompanionRequests.instance;
       requests.publishTask(value);
       final identity = requests.learningIdentity.value;
-      if (identity != null && !_supportStopped &&
-          _activeObjectId != null && value.objectIds.contains(_activeObjectId)) {
+      if (identity != null &&
+          !_supportStopped &&
+          _activeObjectId != null &&
+          value.objectIds.contains(_activeObjectId)) {
         requests.publishLearningPresentation(LumoLearningPresentation(
           identity: identity,
           gazeObjectId: _activeObjectId,
@@ -315,7 +318,9 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
     _publishTask();
   }
 
-  bool get _ownsCompanion => mounted && !_profileChanged &&
+  bool get _ownsCompanion =>
+      mounted &&
+      !_profileChanged &&
       _taskError == null &&
       identical(LumoCompanionRequests.instance.taskContext.value,
           _publishedContext) &&
@@ -324,9 +329,12 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   void _learningAction() {
     final requests = LumoCompanionRequests.instance;
     final action = requests.learningAction.value;
-    if (!_ownsCompanion || action == null ||
+    if (!_ownsCompanion ||
+        action == null ||
         !requests.isCurrentLearningIdentity(action.identity) ||
-        action.requestId == _handledRequest) return;
+        action.requestId == _handledRequest) {
+      return;
+    }
     _handledRequest = action.requestId;
     if (action.action == LumoLearningAction.stop) {
       setState(() {
@@ -380,8 +388,12 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   void _learningPresentation() {
     final requests = LumoCompanionRequests.instance;
     final presentation = requests.learningPresentation.value;
-    if (!_ownsCompanion || _supportStopped || presentation == null ||
-        !requests.isCurrentLearningIdentity(presentation.identity)) return;
+    if (!_ownsCompanion ||
+        _supportStopped ||
+        presentation == null ||
+        !requests.isCurrentLearningIdentity(presentation.identity)) {
+      return;
+    }
     final id = presentation.pointObjectId ?? presentation.gazeObjectId;
     if (_activeObjectId != id) setState(() => _activeObjectId = id);
   }
@@ -389,8 +401,12 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   void _learningAudio() {
     final requests = LumoCompanionRequests.instance;
     final frame = requests.learningAudio.value;
-    if (!_ownsCompanion || _supportStopped || frame == null ||
-        !requests.isCurrentLearningIdentity(frame.identity)) return;
+    if (!_ownsCompanion ||
+        _supportStopped ||
+        frame == null ||
+        !requests.isCurrentLearningIdentity(frame.identity)) {
+      return;
+    }
     // Actual player subtitles only; no invented word or syllable timings.
     if (_speechSubtitle != frame.subtitle) {
       setState(() => _speechSubtitle = frame.subtitle);
@@ -420,6 +436,29 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
           'Deine Aufgabe bleibt dieselbe.';
     });
     _publishTask();
+  }
+
+  void _sendAction(LumoLearningAction action) {
+    final requests = LumoCompanionRequests.instance;
+    final identity = requests.learningIdentity.value;
+    if (_ownsCompanion &&
+        identity != null &&
+        requests.requestLearningAction(action, identity: identity)) {
+      return;
+    }
+    switch (action) {
+      case LumoLearningAction.hint:
+      case LumoLearningAction.explain:
+        _requestHelp();
+      case LumoLearningAction.repeat:
+        _repeatModel();
+      case LumoLearningAction.slower:
+        setState(() => _slow = true);
+      case LumoLearningAction.stop:
+        _stopSupport();
+      default:
+        break;
+    }
   }
 
   String? get _proposedChoice {
@@ -671,279 +710,313 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
             child: CrossGradeVisualScene(
               title: '${widget.lessonGrade}. Klasse · ${widget.subject}',
               body: SafeArea(
-                child: ListView(
+                child: SingleChildScrollView(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-                  children: [
-                    CrossGradeLumoHeader(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${widget.lessonGrade}. Klasse · ${widget.unit}',
-                            key: const ValueKey('cross-grade-unit'),
-                            style: const TextStyle(
-                              fontFamily: 'Nunito',
-                              color: Colors.white,
-                              fontSize: 21,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(_learningGoal,
-                              key: const ValueKey('cross-grade-learning-goal'),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      CrossGradeLumoHeader(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${widget.lessonGrade}. Klasse · ${widget.unit}',
+                              key: const ValueKey('cross-grade-unit'),
                               style: const TextStyle(
-                                  color: Color(0xFFB7F1FF),
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 15)),
-                          const SizedBox(height: 8),
-                          Text(
-                            'Frei üben · Dein Lernprofil bleibt in der '
-                            '${widget.enrolledGrade}. Klasse.',
-                            key: const ValueKey('cross-grade-profile-info'),
-                            style: const TextStyle(color: Color(0xFFE2F1F8)),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            'Extra-Übungen: $_answered · richtig: $_correct',
-                            key: const ValueKey('cross-grade-counter'),
-                            style: TextStyle(
-                              color: accent,
-                              fontWeight: FontWeight.w800,
+                                fontFamily: 'Nunito',
+                                color: Colors.white,
+                                fontSize: 21,
+                                fontWeight: FontWeight.w900,
+                              ),
                             ),
-                          ),
-                          if (_progressLoaded) ...[
+                            const SizedBox(height: 8),
+                            Text(_learningGoal,
+                                key:
+                                    const ValueKey('cross-grade-learning-goal'),
+                                style: const TextStyle(
+                                    color: Color(0xFFB7F1FF),
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 15)),
+                            const SizedBox(height: 8),
+                            Text(
+                              'Frei üben · Dein Lernprofil bleibt in der '
+                              '${widget.enrolledGrade}. Klasse.',
+                              key: const ValueKey('cross-grade-profile-info'),
+                              style: const TextStyle(color: Color(0xFFE2F1F8)),
+                            ),
                             const SizedBox(height: 10),
-                            CrossGradeProgressRibbon(
-                                answered: _answered, correct: _correct),
+                            Text(
+                              'Extra-Übungen: $_answered · richtig: $_correct',
+                              key: const ValueKey('cross-grade-counter'),
+                              style: TextStyle(
+                                color: accent,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                            if (_progressLoaded) ...[
+                              const SizedBox(height: 10),
+                              CrossGradeProgressRibbon(
+                                  answered: _answered, correct: _correct),
+                            ],
                           ],
-                        ],
+                        ),
                       ),
-                    ),
-                    if (_profileChanged) ...[
-                      const SizedBox(height: 12),
-                      const Text(
-                          'Das Lernprofil wurde gewechselt. Öffne die Übung '
-                          'für das neue Profil erneut.',
-                          key: ValueKey('cross-grade-profile-changed'),
-                          style: TextStyle(
-                              color: Color(0xFFFFD58D), fontSize: 16)),
-                    ],
-                    if (_loadError != null) ...[
-                      const SizedBox(height: 12),
-                      Text(
-                        _loadError!,
-                        key: const ValueKey('cross-grade-load-error'),
+                      if (_profileChanged) ...[
+                        const SizedBox(height: 12),
+                        const Text(
+                            'Das Lernprofil wurde gewechselt. Öffne die Übung '
+                            'für das neue Profil erneut.',
+                            key: ValueKey('cross-grade-profile-changed'),
+                            style: TextStyle(
+                                color: Color(0xFFFFD58D), fontSize: 16)),
+                      ],
+                      if (_loadError != null) ...[
+                        const SizedBox(height: 12),
+                        Text(
+                          _loadError!,
+                          key: const ValueKey('cross-grade-load-error'),
+                          style: const TextStyle(
+                              color: Color(0xFFFFD58D),
+                              fontWeight: FontWeight.w800),
+                        ),
+                        TextButton.icon(
+                          key: const ValueKey('cross-grade-load-retry'),
+                          style: TextButton.styleFrom(
+                              minimumSize: const Size(48, 48)),
+                          onPressed: () => unawaited(_loadProgress()),
+                          icon: const Icon(Icons.refresh),
+                          label: const Text('Lernstand erneut laden'),
+                        ),
+                      ] else if (!_progressLoaded) ...[
+                        const Padding(
+                          padding: EdgeInsets.only(top: 12),
+                          child: Text('Lernfortschritt wird geladen …',
+                              key: ValueKey('cross-grade-loading'),
+                              style: TextStyle(color: Colors.white70)),
+                        ),
+                      ],
+                      const SizedBox(height: 22),
+                      CrossGradeGlassPanel(
+                          child: Text(
+                        _task.prompt,
+                        key: const ValueKey('cross-grade-question'),
                         style: const TextStyle(
-                            color: Color(0xFFFFD58D),
-                            fontWeight: FontWeight.w800),
-                      ),
-                      TextButton.icon(
-                        key: const ValueKey('cross-grade-load-retry'),
-                        style: TextButton.styleFrom(
-                            minimumSize: const Size(48, 48)),
-                        onPressed: () => unawaited(_loadProgress()),
-                        icon: const Icon(Icons.refresh),
-                        label: const Text('Lernstand erneut laden'),
-                      ),
-                    ] else if (!_progressLoaded) ...[
-                      const Padding(
-                        padding: EdgeInsets.only(top: 12),
-                        child: Text('Lernfortschritt wird geladen …',
-                            key: ValueKey('cross-grade-loading'),
-                            style: TextStyle(color: Colors.white70)),
-                      ),
-                    ],
-                    const SizedBox(height: 22),
-                    CrossGradeGlassPanel(
-                        child: Text(
-                      _task.prompt,
-                      key: const ValueKey('cross-grade-question'),
-                      style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        color: Colors.white,
-                        fontSize: 21,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    )),
-                    const SizedBox(height: 16),
-                    if (_taskInstance.taskType == TaskType.writingCanvas)
-                      AbsorbPointer(
-                        absorbing: !_canWork,
-                        child: WritingTaskRenderer(
-                            key: ValueKey(_taskInstance.taskInstanceId),
-                            task: _taskInstance,
-                            onSubmitted: _writingAnswer),
-                      )
-                    else if (_taskInstance.taskType == TaskType.shapeTrace)
-                      AbsorbPointer(
-                        absorbing: !_canWork,
-                        child: ShapeTraceTaskRenderer(
-                            key: ValueKey(_taskInstance.taskInstanceId),
-                            task: _taskInstance,
-                            onSubmitted: _shapeAnswer),
-                      )
-                    else ...[
-                      InteractiveTaskWorkspace(
-                        key: ValueKey(
-                            '${_taskInstance.taskInstanceId}-$_workspaceRevision'),
-                        task: _taskInstance,
-                        enabled: _canWork,
-                        reduceMotion: _reduced,
-                        helpLevel: _showSupport ? _helpLevel : 0,
-                        onInteraction: (event) {
-                          if (!_canWork ||
-                              event.taskId != _taskInstance.taskInstanceId) {
-                            return;
-                          }
-                          setState(() {
-                            if (event.isHelp) {
-                              _helpLevel = _helpLevel < 1 ? 1 : _helpLevel;
-                            }
-                            if (event.explanation.isNotEmpty) {
-                              _workspaceMessage = event.explanation;
-                            }
-                          });
-                          _publishTask();
-                        },
-                      ),
+                          fontFamily: 'Nunito',
+                          color: Colors.white,
+                          fontSize: 21,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      )),
                       const SizedBox(height: 16),
-                    ],
-                    _learningControls(),
-                    const SizedBox(height: 16),
-                    for (var i = 0; i < choices.length; i++) ...[
-                      if (widget.subject == 'Mathematik' &&
-                          choices[i].length <= 14)
-                        SizedBox(
-                          height: 110,
-                          child: LumoAnswerCrystal(
-                            buttonKey: ValueKey('cross-grade-choice-$i'),
-                            label: choices[i],
-                            fontSize: choices[i].length <= 5 ? 29 : 19,
-                            state:
-                                selected != null && choices[i] == _task.answer
-                                    ? LumoCrystalState.correct
-                                    : choices[i] == _firstWrongChoice
-                                        ? LumoCrystalState.retry
-                                        : LumoCrystalState.neutral,
+                      if (_taskInstance.taskType == TaskType.writingCanvas)
+                        AbsorbPointer(
+                          absorbing: !_canWork,
+                          child: WritingTaskRenderer(
+                              key: ValueKey(_taskInstance.taskInstanceId),
+                              task: _taskInstance,
+                              onSubmitted: _writingAnswer),
+                        )
+                      else if (_taskInstance.taskType == TaskType.shapeTrace)
+                        AbsorbPointer(
+                          absorbing: !_canWork,
+                          child: ShapeTraceTaskRenderer(
+                              key: ValueKey(_taskInstance.taskInstanceId),
+                              task: _taskInstance,
+                              onSubmitted: _shapeAnswer),
+                        )
+                      else ...[
+                        InteractiveTaskWorkspace(
+                          key: ValueKey(_taskInstance.taskInstanceId),
+                          task: _taskInstance,
+                          enabled: _canWork,
+                          reduceMotion: _reduced || _supportStopped,
+                          slow: _slow,
+                          replaySerial: _workspaceRevision,
+                          activeObjectId:
+                              _supportStopped ? null : _activeObjectId,
+                          showSolution: _completed,
+                          helpLevel: _showSupport ? _helpLevel : 0,
+                          onInteraction: (event) {
+                            if (_profileChanged ||
+                                _taskError != null ||
+                                event.taskId != _taskInstance.taskInstanceId) {
+                              return;
+                            }
+                            setState(() {
+                              if (event.isHelp) {
+                                _helpLevel = _helpLevel < 1 ? 1 : _helpLevel;
+                              }
+                              if (!_supportStopped &&
+                                  event.explanation.isNotEmpty) {
+                                _workspaceMessage = event.explanation;
+                              }
+                              final ids = event.visibleState['objectIds'];
+                              _workspaceObjectIds = ids is List
+                                  ? ids.whereType<String>().toSet().toList()
+                                  : const ['task-workspace'];
+                              _activeObjectId =
+                                  _workspaceObjectIds.contains(event.objectId)
+                                      ? event.objectId
+                                      : 'task-workspace';
+                              _workspaceStep++;
+                            });
+                            _publishTask();
+                          },
+                        ),
+                        const SizedBox(height: 16),
+                      ],
+                      _learningControls(),
+                      const SizedBox(height: 16),
+                      if (_speechSubtitle?.isNotEmpty ?? false) ...[
+                        Semantics(
+                            liveRegion: true,
+                            child: Text(_speechSubtitle!,
+                                key: const ValueKey(
+                                    'cross-grade-spoken-subtitle'),
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 17))),
+                        const SizedBox(height: 12),
+                      ],
+                      if (_hasProposal && !_completed) ...[
+                        _answerProposal(),
+                        const SizedBox(height: 16),
+                      ],
+                      for (var i = 0; i < choices.length; i++) ...[
+                        if (widget.subject == 'Mathematik' &&
+                            choices[i].length <= 14)
+                          SizedBox(
+                            height: 110,
+                            child: LumoAnswerCrystal(
+                              buttonKey: ValueKey('cross-grade-choice-$i'),
+                              label: choices[i],
+                              fontSize: choices[i].length <= 5 ? 29 : 19,
+                              state:
+                                  selected != null && choices[i] == _task.answer
+                                      ? LumoCrystalState.correct
+                                      : choices[i] == _firstWrongChoice
+                                          ? LumoCrystalState.retry
+                                          : LumoCrystalState.neutral,
+                              onPressed:
+                                  _canWork && choices[i] != _firstWrongChoice
+                                      ? () => _answer(choices[i])
+                                      : null,
+                            ),
+                          )
+                        else
+                          OutlinedButton(
+                            key: ValueKey('cross-grade-choice-$i'),
                             onPressed:
                                 _canWork && choices[i] != _firstWrongChoice
                                     ? () => _answer(choices[i])
                                     : null,
-                          ),
-                        )
-                      else
-                        OutlinedButton(
-                          key: ValueKey('cross-grade-choice-$i'),
-                          onPressed: _canWork && choices[i] != _firstWrongChoice
-                              ? () => _answer(choices[i])
-                              : null,
-                          style: OutlinedButton.styleFrom(
-                            minimumSize: const Size.fromHeight(54),
-                            alignment: Alignment.centerLeft,
-                            foregroundColor: Colors.white,
-                            disabledForegroundColor: Colors.white,
-                            backgroundColor:
-                                selected != null && choices[i] == _task.answer
-                                    ? const Color(0xFF185848)
-                                    : selected == choices[i] ||
-                                            choices[i] == _firstWrongChoice
-                                        ? const Color(0xFF593643)
-                                        : const Color(0xFF123B65),
-                            side: BorderSide(
-                              color:
+                            style: OutlinedButton.styleFrom(
+                              minimumSize: const Size.fromHeight(54),
+                              alignment: Alignment.centerLeft,
+                              foregroundColor: Colors.white,
+                              disabledForegroundColor: Colors.white,
+                              backgroundColor:
                                   selected != null && choices[i] == _task.answer
-                                      ? const Color(0xFF72F0B0)
-                                      : accent.withOpacity(.75),
-                              width: 1.5,
+                                      ? const Color(0xFF185848)
+                                      : selected == choices[i] ||
+                                              choices[i] == _firstWrongChoice
+                                          ? const Color(0xFF593643)
+                                          : const Color(0xFF123B65),
+                              side: BorderSide(
+                                color: selected != null &&
+                                        choices[i] == _task.answer
+                                    ? const Color(0xFF72F0B0)
+                                    : accent.withOpacity(.75),
+                                width: 1.5,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
                             ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
+                            child: Text(choices[i],
+                                style: const TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.w700)),
                           ),
-                          child: Text(choices[i],
-                              style: const TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.w700)),
-                        ),
-                      const SizedBox(height: 9),
-                    ],
-                    if (_completed ||
-                        _firstWrongChoice != null ||
-                        _workspaceMessage != null) ...[
-                      const SizedBox(height: 12),
-                      Text(
-                        _practiceComplete
-                            ? 'Schreibübung abgeschlossen. Gut geübt!'
-                            : selected == null
-                                ? _secondChanceHint
-                                : _lastCorrect == true
-                                    ? _helpLevel > 0
-                                        ? 'Richtig! Mit Hilfe geschafft.'
-                                        : 'Richtig! Gut gemacht!'
-                                    : 'Die richtige Antwort ist: ${_task.answer}',
-                        key: const ValueKey('cross-grade-feedback'),
-                        style: TextStyle(
-                          color: _lastCorrect == true || _practiceComplete
-                              ? const Color(0xFF77F0B8)
-                              : const Color(0xFFFFD58D),
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      if (_completed)
-                        CrossGradeGlassPanel(
-                            child: Text(
-                          _task.explanation,
-                          key: const ValueKey('cross-grade-explanation'),
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 15, height: 1.4),
-                        )),
-                      if (_saveError != null) ...[
-                        const SizedBox(height: 12),
-                        Text(_saveError!,
-                            key: const ValueKey('cross-grade-save-error'),
-                            style: const TextStyle(
-                                color: Color(0xFFFFD58D),
-                                fontWeight: FontWeight.w800)),
-                        TextButton.icon(
-                            key: const ValueKey('cross-grade-save-retry'),
-                            style: TextButton.styleFrom(
-                                minimumSize: const Size(48, 48)),
-                            onPressed: _saving ? null : _retrySave,
-                            icon: const Icon(Icons.refresh_rounded),
-                            label: const Text('Erneut speichern')),
+                        const SizedBox(height: 9),
                       ],
-                      if (_saving)
-                        const Padding(
-                          padding: EdgeInsets.only(top: 12),
-                          child: Text('Antwort wird gespeichert …',
-                              key: ValueKey('cross-grade-saving'),
-                              style: TextStyle(color: Colors.white70)),
+                      if (_completed ||
+                          _firstWrongChoice != null ||
+                          _workspaceMessage != null) ...[
+                        const SizedBox(height: 12),
+                        Text(
+                          _practiceComplete
+                              ? 'Schreibübung abgeschlossen. Gut geübt!'
+                              : selected == null
+                                  ? _secondChanceHint
+                                  : _lastCorrect == true
+                                      ? _helpLevel > 0
+                                          ? 'Richtig! Mit Hilfe geschafft.'
+                                          : 'Richtig! Gut gemacht!'
+                                      : 'Die richtige Antwort ist: ${_task.answer}',
+                          key: const ValueKey('cross-grade-feedback'),
+                          style: TextStyle(
+                            color: _lastCorrect == true || _practiceComplete
+                                ? const Color(0xFF77F0B8)
+                                : const Color(0xFFFFD58D),
+                            fontSize: 18,
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
-                      const SizedBox(height: 18),
-                      FilledButton.icon(
-                        key: const ValueKey('cross-grade-next'),
-                        style: FilledButton.styleFrom(
-                          backgroundColor: const Color(0xFF16B9D7),
-                          foregroundColor: const Color(0xFF07223C),
-                          minimumSize: const Size.fromHeight(54),
+                        const SizedBox(height: 8),
+                        if (_completed)
+                          CrossGradeGlassPanel(
+                              child: Text(
+                            _task.explanation,
+                            key: const ValueKey('cross-grade-explanation'),
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 15, height: 1.4),
+                          )),
+                        if (_saveError != null) ...[
+                          const SizedBox(height: 12),
+                          Text(_saveError!,
+                              key: const ValueKey('cross-grade-save-error'),
+                              style: const TextStyle(
+                                  color: Color(0xFFFFD58D),
+                                  fontWeight: FontWeight.w800)),
+                          TextButton.icon(
+                              key: const ValueKey('cross-grade-save-retry'),
+                              style: TextButton.styleFrom(
+                                  minimumSize: const Size(48, 48)),
+                              onPressed: _saving ? null : _retrySave,
+                              icon: const Icon(Icons.refresh_rounded),
+                              label: const Text('Erneut speichern')),
+                        ],
+                        if (_saving)
+                          const Padding(
+                            padding: EdgeInsets.only(top: 12),
+                            child: Text('Antwort wird gespeichert …',
+                                key: ValueKey('cross-grade-saving'),
+                                style: TextStyle(color: Colors.white70)),
+                          ),
+                        const SizedBox(height: 18),
+                        FilledButton.icon(
+                          key: const ValueKey('cross-grade-next'),
+                          style: FilledButton.styleFrom(
+                            backgroundColor: const Color(0xFF16B9D7),
+                            foregroundColor: const Color(0xFF07223C),
+                            minimumSize: const Size.fromHeight(54),
+                          ),
+                          onPressed: !_completed
+                              ? null
+                              : (!_saving &&
+                                      _saveError == null &&
+                                      _progressLoaded &&
+                                      !_profileChanged
+                                  ? _next
+                                  : null),
+                          icon: const Icon(Icons.arrow_forward_rounded),
+                          label: const Text('Nächste Aufgabe',
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.w900)),
                         ),
-                        onPressed: !_completed
-                            ? null
-                            : (!_saving &&
-                                    _saveError == null &&
-                                    _progressLoaded &&
-                                    !_profileChanged
-                                ? _next
-                                : null),
-                        icon: const Icon(Icons.arrow_forward_rounded),
-                        label: const Text('Nächste Aufgabe',
-                            style: TextStyle(
-                                fontSize: 17, fontWeight: FontWeight.w900)),
-                      ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
             )));
@@ -978,7 +1051,11 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
             style: OutlinedButton.styleFrom(
                 minimumSize: const Size(48, 48),
                 foregroundColor: const Color(0xFFFFD58D)),
-            onPressed: _canWork ? _requestHelp : null,
+            onPressed: _canWork
+                ? () => _sendAction(_helpLevel == 0
+                    ? LumoLearningAction.hint
+                    : LumoLearningAction.explain)
+                : null,
             icon: const Icon(Icons.lightbulb_outline),
             label: Text(_helpLevel == 0 ? 'Hilf mir' : 'Anders erklären'),
           ),
@@ -986,13 +1063,8 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
             key: const ValueKey('cross-grade-repeat-model'),
             style: OutlinedButton.styleFrom(
                 minimumSize: const Size(48, 48), foregroundColor: Colors.white),
-            onPressed: _canWork
-                ? () => setState(() {
-                      _workspaceRevision++;
-                      _workspaceMessage = 'Beginne am Lernobjekt noch einmal. '
-                          'Deine Aufgabe bleibt dieselbe.';
-                    })
-                : null,
+            onPressed:
+                _canWork ? () => _sendAction(LumoLearningAction.repeat) : null,
             icon: const Icon(Icons.replay_rounded),
             label: const Text('Noch einmal'),
           ),
@@ -1002,15 +1074,27 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
               style: OutlinedButton.styleFrom(
                   minimumSize: const Size(48, 48),
                   foregroundColor: Colors.white),
-              onPressed: _canWork
-                  ? () => setState(() {
-                        _showSupport = false;
-                        _workspaceMessage = null;
-                      })
-                  : null,
+              onPressed: _canWork ? _stopSupport : null,
               icon: const Icon(Icons.touch_app_rounded),
               label: const Text('Selbst versuchen'),
             ),
+          OutlinedButton.icon(
+            key: const ValueKey('cross-grade-slower'),
+            style: OutlinedButton.styleFrom(
+                minimumSize: const Size(48, 48), foregroundColor: Colors.white),
+            onPressed:
+                _canWork ? () => _sendAction(LumoLearningAction.slower) : null,
+            icon: const Icon(Icons.slow_motion_video_rounded),
+            label: Text(_slow ? 'Langsam aktiv' : 'Langsamer'),
+          ),
+          OutlinedButton.icon(
+            key: const ValueKey('cross-grade-stop'),
+            style: OutlinedButton.styleFrom(
+                minimumSize: const Size(48, 48), foregroundColor: Colors.white),
+            onPressed: _stopSupport,
+            icon: const Icon(Icons.stop_circle_outlined),
+            label: const Text('Stopp'),
+          ),
           OutlinedButton.icon(
             key: const ValueKey('cross-grade-quiet'),
             style: OutlinedButton.styleFrom(
@@ -1022,5 +1106,51 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
             label: Text(_reduced ? 'Ruhiger Modus aktiv' : 'Ruhiger Modus'),
           ),
         ],
+      );
+
+  Widget _answerProposal() => CrossGradeGlassPanel(
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          const Text('Habe ich dich richtig verstanden?',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800)),
+          const SizedBox(height: 8),
+          TextField(
+              key: const ValueKey('cross-grade-answer-proposal'),
+              controller: _proposalController,
+              enabled: _canWork,
+              maxLength: 160,
+              style: const TextStyle(color: Colors.white, fontSize: 19),
+              decoration: const InputDecoration(
+                  labelText: 'Erkannte Antwort – du kannst sie ändern',
+                  labelStyle: TextStyle(color: Color(0xFFB7F1FF))),
+              onChanged: (_) => setState(() {})),
+          const Text(
+              'Erst deine Bestätigung zählt. Du kannst auch eine '
+              'Antwort darunter antippen.',
+              style: TextStyle(color: Color(0xFFB7F1FF), height: 1.4)),
+          const SizedBox(height: 8),
+          FilledButton.icon(
+              key: const ValueKey('cross-grade-proposal-confirm'),
+              style: FilledButton.styleFrom(minimumSize: const Size(48, 48)),
+              onPressed: _canWork && _proposedChoice != null
+                  ? () {
+                      final choice = _proposedChoice!;
+                      setState(() => _hasProposal = false);
+                      unawaited(_answer(choice));
+                    }
+                  : null,
+              icon: const Icon(Icons.check_rounded),
+              label: const Text('Diese Antwort bestätigen')),
+          TextButton(
+              key: const ValueKey('cross-grade-proposal-dismiss'),
+              style: TextButton.styleFrom(
+                  minimumSize: const Size(48, 48),
+                  foregroundColor: Colors.white),
+              onPressed: () => setState(() => _hasProposal = false),
+              child: const Text('Ich wähle selbst')),
+        ]),
       );
 }

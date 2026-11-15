@@ -363,6 +363,7 @@ class HomeContent extends StatelessWidget {
                                       onTap: () => _open(
                                           context,
                                           CurriculumActivitiesScreen(
+                                              appState: appState,
                                               grade: grade, subject: 'Musik')),
                                     ),
                                     _SubjectCard(
@@ -375,6 +376,7 @@ class HomeContent extends StatelessWidget {
                                       onTap: () => _open(
                                           context,
                                           CurriculumActivitiesScreen(
+                                              appState: appState,
                                               grade: grade,
                                               subject: 'Kunst und Gestaltung')),
                                     ),
@@ -387,6 +389,7 @@ class HomeContent extends StatelessWidget {
                                       onTap: () => _open(
                                           context,
                                           CurriculumActivitiesScreen(
+                                              appState: appState,
                                               grade: grade,
                                               subject: 'Bewegung und Sport')),
                                     ),
@@ -399,6 +402,7 @@ class HomeContent extends StatelessWidget {
                                       onTap: () => _open(
                                           context,
                                           CurriculumActivitiesScreen(
+                                              appState: appState,
                                               grade: grade,
                                               subject: 'Verkehrs- und Mobilitätsbildung')),
                                     ),
@@ -412,6 +416,7 @@ class HomeContent extends StatelessWidget {
                                       onTap: () => _open(
                                           context,
                                           CurriculumActivitiesScreen(
+                                              appState: appState,
                                               grade: grade,
                                               subject: 'Technik und Design')),
                                     ),

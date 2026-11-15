@@ -326,6 +326,268 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('fraction parts stay distinct through rapid taps and reset',
+      (tester) async {
+    final events = <TaskWorkspaceInteraction>[];
+    await showWorkspace(
+        tester,
+        InteractiveTaskWorkspace(
+            task: task(
+                id: 'quarter-plus-two-quarters',
+                visual: VisualType.fractionPizza,
+                prompt: '1/4 + 2/4 = ?',
+                answer: '3/4',
+                choices: const [
+                  '1/4',
+                  '2/4',
+                  '3/4'
+                ],
+                data: const {
+                  'operation': 'fraction_addition',
+                  'numerator': 1,
+                  'denominator': 4,
+                  'extra': 2
+                }),
+            onInteraction: events.add),
+        size: const Size(320, 800));
+    expect(events.last.visibleState['denominator'], 4);
+    expect(events.last.visibleState['selectedParts'], [0]);
+    final callbacks = [
+      for (final index in [1, 2])
+        tester
+            .widget<InkWell>(find.descendant(
+                of: find.byKey(ValueKey('fraction-piece-$index')),
+                matching: find.byType(InkWell)))
+            .onTap!
+    ];
+    for (final callback in callbacks) {
+      callback();
+    }
+    await tester.pumpAndSettle();
+    expect(events.last.visibleState['selectedParts'], [0, 1, 2]);
+    expect(events.last.explanation, contains('3 sind gerade markiert'));
+    expect(find.byKey(const ValueKey('fraction-piece-4')), findsNothing);
+    expect(tester.takeException(), isNull);
+    await tap(tester, 'workspace-reset');
+    expect(events.last.visibleState['selectedParts'], [0]);
+    for (final event in events) {
+      expect(event.visibleState['objectIds'], contains(event.objectId));
+    }
+  });
+
+  testWidgets('incorrect fraction payload cannot display a false model',
+      (tester) async {
+    await showWorkspace(
+        tester,
+        InteractiveTaskWorkspace(
+            task: task(
+                visual: VisualType.fractionPizza,
+                prompt: '1/4 + 2/4 = ?',
+                answer: '4/4',
+                data: const {
+              'operation': 'fraction_addition',
+              'numerator': 1,
+              'denominator': 4,
+              'extra': 2
+            })));
+    expect(find.byKey(const ValueKey('interactive-workspace-evidence')),
+        findsOneWidget);
+    expect(find.byKey(const ValueKey('fraction-disc')), findsNothing);
+  });
+
+  testWidgets('decimal columns preserve tenths without creating whole objects',
+      (tester) async {
+    final events = <TaskWorkspaceInteraction>[];
+    await showWorkspace(
+        tester,
+        InteractiveTaskWorkspace(
+            task: task(
+                id: 'exact-tenths',
+                visual: VisualType.none,
+                prompt: '0,1 + 0,2 = ?',
+                answer: '0,3',
+                choices: const [
+                  '0,3',
+                  '0,4',
+                  '0,5'
+                ],
+                data: const {
+                  'operation': 'decimal_addition',
+                  'decimalPlaces': 1,
+                  'leftMinorUnits': 1,
+                  'rightMinorUnits': 2,
+                  'resultMinorUnits': 3
+                }),
+            onInteraction: events.add),
+        size: const Size(320, 800),
+        textScale: 1.4);
+    expect(events.last.visibleState['kind'], 'decimal');
+    expect(events.last.visibleState['decimalPlaces'], 1);
+    expect(events.last.visibleState['leftMinorUnits'], 1);
+    expect(events.last.visibleState['rightMinorUnits'], 2);
+    expect(events.last.visibleState.containsKey('left'), isFalse);
+    expect(events.last.visibleState.containsKey('objects'), isFalse);
+    expect(find.byKey(const ValueKey('quantity-add')), findsNothing);
+    expect(find.text('0,3'), findsNothing);
+    await tap(tester, 'decimal-place-1');
+    expect(events.last.explanation, contains('Zehntel'));
+    expect(events.last.visibleState['focusedPlace'], 1);
+    expect(events.last.isHelp, isFalse);
+    expect(events.last.visibleState['objectIds'], contains('decimal-place-1'));
+  });
+
+  testWidgets('decimal answer and unit scale must agree before display',
+      (tester) async {
+    await showWorkspace(
+        tester,
+        InteractiveTaskWorkspace(
+            task: task(
+                visual: VisualType.none,
+                prompt: '0,1 + 0,2 = ?',
+                answer: '3',
+                data: const {
+              'operation': 'decimal_addition',
+              'decimalPlaces': 1,
+              'leftMinorUnits': 1,
+              'rightMinorUnits': 2,
+              'resultMinorUnits': 3
+            })));
+    expect(find.byKey(const ValueKey('interactive-workspace-evidence')),
+        findsOneWidget);
+    expect(find.byKey(const ValueKey('decimal-place-0')), findsNothing);
+  });
+
+  testWidgets('plant part inspection focuses the actual part and records help',
+      (tester) async {
+    final events = <TaskWorkspaceInteraction>[];
+    await showWorkspace(
+        tester,
+        InteractiveTaskWorkspace(
+            task: task(
+                id: 'plant-water',
+                subject: LearningSubject.sachkunde,
+                visual: VisualType.none,
+                prompt: 'Welcher Pflanzenteil nimmt Wasser auf?',
+                answer: 'Wurzel',
+                choices: const ['Wurzel', 'Blatt', 'Blüte'],
+                data: const {'sceneKind': 'plant_parts', 'plantPart': 'root'}),
+            onInteraction: events.add),
+        size: const Size(320, 800),
+        textScale: 1.4);
+    expect(events.last.visibleState['focusedPart'], isNull);
+    await tap(tester, 'plant-root');
+    expect(events.last.visibleState['focusedPart'], 'root');
+    expect(events.last.explanation, contains('nehmen Wasser'));
+    expect(events.last.isHelp, isTrue);
+    expect(
+        events.last.visibleState['objectIds'],
+        containsAll(
+            ['plant-root', 'plant-stem', 'plant-leaf', 'plant-flower']));
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('decreasing number pattern reveals its step but not its answer',
+      (tester) async {
+    final events = <TaskWorkspaceInteraction>[];
+    await showWorkspace(
+        tester,
+        InteractiveTaskWorkspace(
+            task: task(
+                id: 'count-back-two',
+                subject: LearningSubject.logik,
+                visual: VisualType.sequence,
+                prompt: '10, 8, 6, 4, ?',
+                answer: 2,
+                data: const {
+                  'sequence': [10, 8, 6, 4],
+                  'step': -2
+                }),
+            onInteraction: events.add),
+        size: const Size(320, 800));
+    expect(events.last.visibleState['kind'], 'numberPattern');
+    expect(find.text('2'), findsNothing);
+    await tap(tester, 'workspace-show-number-step');
+    expect(find.text('Immer − 2'), findsOneWidget);
+    expect(events.last.visibleState['stepVisible'], isTrue);
+    expect(events.last.isHelp, isTrue);
+    expect(events.last.explanation, contains('Zahlenschritt'));
+    expect(
+        events.last.visibleState['objectIds'], contains(events.last.objectId));
+  });
+
+  testWidgets('host speed and replay update the same current workspace',
+      (tester) async {
+    var slow = false;
+    var replay = 0;
+    late StateSetter update;
+    final events = <TaskWorkspaceInteraction>[];
+    final current = task();
+    await showWorkspace(tester, StatefulBuilder(builder: (context, setState) {
+      update = setState;
+      return InteractiveTaskWorkspace(
+          task: current,
+          slow: slow,
+          replaySerial: replay,
+          onInteraction: events.add);
+    }));
+    await tap(tester, 'quantity-add');
+    update(() => slow = true);
+    await tester.pumpAndSettle();
+    expect(find.text('Normales Tempo'), findsOneWidget);
+    await tap(tester, 'workspace-change-representation');
+    expect(events.last.visibleState['slow'], isTrue);
+    expect(events.last.visibleState['representation'], 'numberLine');
+    expect(events.last.visibleState['objectIds'], isNot(contains('initial-0')));
+    expect(events.last.visibleState['objectIds'], contains('number-line'));
+    update(() => replay++);
+    await tester.pumpAndSettle();
+    expect(events.last.visibleState['representation'], 'counters');
+    expect(events.last.visibleState['moved'], 0);
+    expect(events.last.visibleState['slow'], isTrue);
+    for (final event in events) {
+      expect(event.visibleState['objectIds'], contains(event.objectId));
+    }
+  });
+
+  testWidgets('syllable selection follows actual host segment changes',
+      (tester) async {
+    String? active = 'syllable-0';
+    late StateSetter update;
+    final current = banana();
+    await showWorkspace(tester, StatefulBuilder(builder: (context, setState) {
+      update = setState;
+      return InteractiveTaskWorkspace(
+          task: current, helpLevel: 2, activeObjectId: active);
+    }));
+    expect(
+        tester
+            .widget<Semantics>(find.byKey(const ValueKey('syllable-0')))
+            .properties
+            .selected,
+        isTrue);
+    update(() => active = 'syllable-2');
+    await tester.pumpAndSettle();
+    expect(
+        tester
+            .widget<Semantics>(find.byKey(const ValueKey('syllable-2')))
+            .properties
+            .selected,
+        isTrue);
+    expect(
+        tester
+            .widget<Semantics>(find.byKey(const ValueKey('syllable-0')))
+            .properties
+            .selected,
+        isFalse);
+    await tester.pump(const Duration(seconds: 3));
+    expect(
+        tester
+            .widget<Semantics>(find.byKey(const ValueKey('syllable-2')))
+            .properties
+            .selected,
+        isTrue);
+  });
+
   for (final config in [
     ('phone-320', const Size(320, 800), 1.0),
     ('fold-cover', const Size(344, 882), 1.4),
