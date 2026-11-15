@@ -134,8 +134,9 @@ class _LumoAgentContentState extends State<LumoAgentContent>
       setState(() {
         _voiceMode = false;
         _starting = false;
-        _notice =
-            'Das Mikrofon ist im Elternbereich ausgeschaltet. Tippen geht weiterhin.';
+        // The always-visible parental-permission banner already explains
+        // microphone unavailability. Keep one accessible message, not two.
+        _notice = null;
       });
       return;
     }
