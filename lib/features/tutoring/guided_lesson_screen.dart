@@ -267,6 +267,8 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     // The existing evidence classifier sees this support on the next answer.
     // Publishing here would cancel the very utterance that supplied the help.
     setState(() => _accompaniedSteps.add(_index));
+    // The renderer may illuminate ONLY verified object IDs from this step.
+    LumoCompanionRequests.instance.dialogueFocus.value = reply;
   }
 
   Future<bool> _confirmDialogueAnswer(LumoTaskDialogueReply reply) async {
