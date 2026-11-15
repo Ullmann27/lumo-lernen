@@ -8,17 +8,17 @@ on:
       - test/**
       - .github/workflows/lumo-nextgen-2024-blender-apk.yml
       - pubspec.yaml
+      - pubspec.lock
       - scripts/verify_legacy_release_pin.py
       - scripts/export_embedded_game.py
       - scripts/prepare_android.py
       - scripts/tests/test_prepare_android.py
-      - tools/auto_install/LumoLearningConversation.kt
-      - tools/auto_install/LumoLearningDialogLogic.java
+      - tools/auto_install/**
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: lumo-2023-complete-family-release
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 env:
   CI: 'true'
@@ -38,6 +38,14 @@ jobs:
           flutter-version: '3.44.9'
           channel: stable
           cache: true
+      - name: Record combined source before validation
+        run: |
+          set -euo pipefail
+          mkdir -p validation-proof
+          git rev-parse HEAD > validation-proof/host-sha.txt
+          git rev-parse HEAD^{tree} > validation-proof/host-tree.txt
+          cp config/godot-source.json validation-proof/native-pin.json
+          grep '^version:' pubspec.yaml > validation-proof/app-version.txt
       - name: Check version, original family identity and immutable native revision
         run: |
           set -euo pipefail
@@ -87,6 +95,29 @@ jobs:
             test/profile_repository_storage_hardening_test.dart \
             test/parents/parent_school_grade_progression_test.dart \
             test/learning_lab_runtime_test.dart
+      - name: C4 cancellation, existing rules and explicit native entry
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=json --timeout=90s --concurrency=2 \
+            test/games/connect_four_open_close_race_test.dart \
+            test/games/connect_four_native_session_test.dart \
+            test/games/connect_four_native_route_test.dart \
+            test/games/connect_four_interaction_test.dart \
+            test/games/games_screen_flow_test.dart \
+            2>&1 | tee validation-proof/c4-tests.jsonl
+      - name: Full Flutter suite on the exact combined source
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=json --timeout=90s --concurrency=2 \
+            2>&1 | tee validation-proof/full-flutter.jsonl
+      - name: Retain exact-source validation evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-nextgen-2024-validation-${{ github.sha }}
+          path: validation-proof/
+          retention-days: 30
+          if-no-files-found: error
   single-apk:
     needs: learning-app-validation
     runs-on: ubuntu-latest
