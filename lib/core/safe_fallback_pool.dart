@@ -8,7 +8,8 @@ import 'school_exercise_generator.dart';
 /// - Keine doppelten Antwortkarten.
 /// - Rechtschreibung nutzt echte Schreibvarianten, keine fremden korrekten Wörter.
 /// - Englisch und Sachunterricht fallen nicht mehr pauschal auf Deutsch zurück.
-/// - Wenn ein alter Adapter nur Deutsch weitergibt, wird das Fach aus der Unit rekonstruiert.
+/// - Das ausdrücklich gewählte Fach bleibt erhalten. Ein Themenname allein
+///   darf keine Deutsch-Aufgabe in Englisch oder Sachunterricht umdeuten.
 class SafeFallbackPool {
   const SafeFallbackPool();
 
@@ -21,7 +22,9 @@ class SafeFallbackPool {
     String? missionTag,
   }) {
     final normalizedSubject = _normalizeSubject(subject, unit: unit);
-    final pool = _poolFor(normalizedSubject, grade);
+    final pool = normalizedSubject == 'Logik'
+        ? _logic[unit] ?? _logic['Muster']!
+        : _poolFor(normalizedSubject, grade);
     final entry = pool[counter % pool.length];
     return LumoTask(
       id: 'fallback_${normalizedSubject}_${grade}_${counter % pool.length}',
@@ -43,35 +46,10 @@ class SafeFallbackPool {
       'Mathematik' => 'Mathematik',
       'Englisch' => 'Englisch',
       'Sachunterricht' => 'Sachunterricht',
-      // LegacyLumoTaskAdapter used to pass Deutsch for every non-math fallback.
-      // Keep the app safe by restoring obvious English/Sachunterricht units here.
-      'Deutsch' || 'Lesen' || 'Schreiben' || 'Rechtschreibung' => _subjectFromUnitOrDefault(subject, unit),
-      _ => _subjectFromUnitOrDefault('Deutsch', unit),
+      'Logik' => 'Logik',
+      'Deutsch' || 'Lesen' || 'Schreiben' || 'Rechtschreibung' => subject,
+      _ => throw ArgumentError.value(subject, 'subject', 'Unknown learning subject'),
     };
-  }
-
-  String _subjectFromUnitOrDefault(String fallbackSubject, String unit) {
-    final normalizedUnit = unit.trim().toLowerCase();
-
-    const englishUnits = <String>{
-      'farben',
-      'zahlen',
-      'schulsachen',
-      'begruessung',
-      'begrüßung',
-    };
-    const scienceUnits = <String>{
-      'pflanzen',
-      'jahreszeiten',
-      'verkehr',
-      'wetter',
-      'zeit und kalender',
-      'familie und gemeinschaft',
-    };
-
-    if (englishUnits.contains(normalizedUnit)) return 'Englisch';
-    if (scienceUnits.contains(normalizedUnit)) return 'Sachunterricht';
-    return fallbackSubject;
   }
 
   List<_Fb> _poolFor(String subject, int grade) {
@@ -81,6 +59,45 @@ class SafeFallbackPool {
     if (subject == 'Sachunterricht') return _science[boundedGrade] ?? _science[1]!;
     return _deutsch[boundedGrade] ?? _deutsch[1]!;
   }
+
+  static const Map<String, List<_Fb>> _logic = {
+    'Muster': [
+      _Fb(
+        'Das Muster wiederholt sich immer gleich: Kreis – Dreieck – Kreis – Dreieck – Kreis – ? Welche Form folgt?',
+        'Dreieck', ['Dreieck', 'Kreis', 'Quadrat'],
+        'Die Gruppe Kreis – Dreieck wiederholt sich. Nach Kreis folgt Dreieck.',
+        'pattern', unit: 'Muster',
+      ),
+      _Fb(
+        'Das Muster wiederholt sich immer gleich: Quadrat – Stern – Quadrat – Stern – ? Welche Form folgt?',
+        'Quadrat', ['Stern', 'Quadrat', 'Kreis'],
+        'Die Gruppe Quadrat – Stern wiederholt sich. Nach Stern folgt Quadrat.',
+        'pattern', unit: 'Muster',
+      ),
+    ],
+    'Zahlenmuster': [
+      _Fb(
+        'Gehe jedes Mal gleich viele Schritte weiter: 2 – 4 – 6 – 8 – ? Welche Zahl folgt?',
+        '10', ['10', '9', '12'], 'Jeder Abstand ist 2. Auf 8 folgt 10.',
+        'auto', unit: 'Zahlenmuster',
+      ),
+    ],
+    'Reihenfolge': [
+      _Fb('Von links nach rechts stehen Lumo, Mia und Ben. Wer steht in der Mitte?',
+        'Mia', ['Lumo', 'Mia', 'Ben'], 'Die mittlere Figur ist Mia.',
+        'auto', unit: 'Reihenfolge'),
+    ],
+    'Schlussfolgern': [
+      _Fb('Drei Figuren stehen nebeneinander. Lumo steht links von Mia. Mia steht links von Ben. Wer steht ganz rechts?',
+        'Ben', ['Lumo', 'Mia', 'Ben'], 'Von links nach rechts: Lumo – Mia – Ben. Ben steht ganz rechts.',
+        'auto', unit: 'Schlussfolgern'),
+    ],
+    'Regeln kombinieren': [
+      _Fb('Welche Zahl erfüllt alle drei Regeln: größer als 10, kleiner als 18 und gerade?',
+        '14', ['14', '10', '13', '18'], 'Nur die Antwort 14 erfüllt alle drei Regeln.',
+        'auto', unit: 'Regeln kombinieren'),
+    ],
+  };
 
   static const Map<int, List<_Fb>> _math = {
     1: [

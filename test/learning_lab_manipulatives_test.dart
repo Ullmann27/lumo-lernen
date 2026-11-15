@@ -77,7 +77,10 @@ void main() {
       ),
     );
     expect(find.byKey(const ValueKey('quantity-bank-0')), findsNothing);
-    expect(find.text('Bis 10 fehlen 2.'), findsOneWidget);
+    expect(find.text('Das Zehnerfeld ist voll. Im Vorrat bleiben 0.'),
+        findsOneWidget);
+    expect(find.textContaining('Bis 10 fehlen'), findsNothing,
+        reason: 'A completed ten-frame no longer has two empty places.');
     await tester.tap(find.byKey(const ValueKey('quantity-add')));
     await tester.pump();
     expect(changes, isEmpty);

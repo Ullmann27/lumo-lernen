@@ -2,19 +2,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/features/learning/lab/learning_lab_catalog.dart';
 
 void main() {
-  test(
-      'five local topic worlds preserve grade gates and four distinct problems',
+  test('six local topic worlds preserve grade gates and four distinct problems',
       () {
-    expect(LabCatalog.topics.length, 5);
+    expect(LabCatalog.topics.length, 6);
     expect(
         LabCatalog.forGrade(1).any((t) => t.mode == LabMode.fraction), isFalse);
-    expect(LabCatalog.forGrade(4).length, 5);
+    expect(LabCatalog.forGrade(4).length, 6);
     for (final topic in LabCatalog.topics) {
       final problems = topic.problems;
       expect(problems.length, greaterThanOrEqualTo(4));
       expect(problems.map((p) => p.id).toSet().length, problems.length);
       expect(problems.map((p) => p.expected).toSet().length, greaterThan(1));
       for (final p in problems) {
+        expect(p.isValid, isTrue, reason: p.id);
         expect(p.accepts(p.expected), isTrue);
         expect(p.accepts(''), isFalse);
         expect(p.hints.length, 5);
@@ -55,8 +55,10 @@ void main() {
 
   test('token solution uses stable indices and distractors cannot solve it',
       () {
-    for (final topic in LabCatalog.topics
-        .where((t) => t.mode != LabMode.bridge && t.mode != LabMode.fraction)) {
+    for (final topic in LabCatalog.topics.where((t) =>
+        t.mode != LabMode.bridge &&
+        t.mode != LabMode.fraction &&
+        t.mode != LabMode.pattern)) {
       for (final p in topic.problems) {
         expect(p.tokenOrder.toSet().length, p.tokenOrder.length);
         expect(
@@ -87,5 +89,55 @@ void main() {
         .first;
     expect(nature.accepts(nature.expected.toLowerCase()), isTrue);
     expect(nature.errorTag('Blüte'), 'plant_function');
+  });
+
+  test('equivalent fractions are correct and undefined fractions are rejected',
+      () {
+    final problem = LabCatalog.topics
+        .firstWhere((topic) => topic.mode == LabMode.fraction)
+        .problems
+        .first;
+    expect(problem.accepts('6 / 8'), isTrue);
+    expect(problem.accepts('75/100'), isTrue);
+    expect(problem.accepts('3/0'), isFalse);
+    expect(problem.accepts('0/0'), isFalse);
+    expect(problem.accepts('6/7'), isFalse);
+    expect(problem.accepts('3/4/1'), isFalse);
+  });
+
+  test('pattern options are graded from the checked repeating group', () {
+    final topic =
+        LabCatalog.topics.singleWhere((topic) => topic.mode == LabMode.pattern);
+    final first = topic.problems.first;
+    expect(first.pattern, ['Kreis', 'Dreieck', 'Kreis', 'Dreieck', 'Kreis']);
+    expect(first.expected, 'Dreieck');
+    for (final problem in topic.problems) {
+      expect(problem.isValid, isTrue);
+      expect(problem.modelAccepts([]), isFalse);
+      expect(problem.modelAccepts([-1]), isFalse);
+      expect(problem.modelAccepts([problem.tokens.length]), isFalse);
+      for (var i = 0; i < problem.tokens.length; i++) {
+        expect(
+            problem.modelAccepts([i]), problem.tokens[i] == problem.expected);
+      }
+      expect(problem.accepts(problem.expected.toLowerCase()), isTrue);
+    }
+  });
+
+  test('a malformed model cannot pass the pre-display validation', () {
+    final source = LabCatalog.topics.first.problems.first;
+    final bad = LabProblem(
+        id: source.id,
+        mode: source.mode,
+        prompt: source.prompt,
+        guidedPrompt: source.guidedPrompt,
+        expected: '14',
+        workedExample: source.workedExample,
+        hints: source.hints,
+        reflection: source.reflection,
+        start: 8,
+        addend: 5,
+        modelTarget: 2);
+    expect(bad.isValid, isFalse);
   });
 }
