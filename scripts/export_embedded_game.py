@@ -71,7 +71,7 @@ GROUNDED_GATE_ALLOWED_REVISIONS = frozenset((
     'd38967f6d39bc20188afe525b0af122d80634029',
     # Derived solely from reviewed 2023 source. The trusted Meshy gate GLB
     # remains byte-identical; its existing exact SHA-256 is rechecked below.
-    '7a64a3efa13b1945bf91c7cea8c41c6daeeeabe2',
+    'b4513ac06be6b56905992aa868d65f7ae1887df3',
 ))
 GROUNDED_GATE_GLB_SHA256 = '8c8891062888eda5b553ae77390eda1a733368fc0bf73b86aefe2a7a666a565d'
 GROUNDED_GATE_FILE = 'assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb'
