@@ -69,6 +69,9 @@ GROUNDED_GATE_ALLOWED_REVISIONS = frozenset((
     '4d0fd40fdf188be6ca86057596c7b51f41701fa3',
     # Combined 2022 chassis + Adventure art; GLB hash checks remain mandatory.
     'd38967f6d39bc20188afe525b0af122d80634029',
+    # Derived solely from reviewed 2023 source. The trusted Meshy gate GLB
+    # remains byte-identical; its existing exact SHA-256 is rechecked below.
+    '7a64a3efa13b1945bf91c7cea8c41c6daeeeabe2',
 ))
 GROUNDED_GATE_GLB_SHA256 = '8c8891062888eda5b553ae77390eda1a733368fc0bf73b86aefe2a7a666a565d'
 GROUNDED_GATE_FILE = 'assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb'
@@ -153,6 +156,10 @@ def export(repo: Path, binary: str):
         raise RuntimeError(f'Godot {source["engine"]} required, found {version}')
     before = git_paths(repo, 'ls-files', '--others', '--exclude-standard')
     try:
+        # On a clean CI runner, the first scan creates external font/WebP GLB
+        # import sidecars. The second scan must resolve every dependent script
+        # before packaging the real combined Android-target Godot PCK.
+        run(binary, '--headless', '--path', str(repo), '--editor', '--import', '--quit')
         run(binary, '--headless', '--path', str(repo), '--editor', '--import', '--quit')
         assets = ROOT / 'android/app/src/main/assets'
         assets.mkdir(parents=True, exist_ok=True)

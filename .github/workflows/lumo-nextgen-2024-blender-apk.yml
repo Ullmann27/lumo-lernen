@@ -1,0 +1,119 @@
+name: LUMO NextGen 2024 – reviewed Blender fox, child dialogue and learning family APK
+on:
+  push:
+    branches: [chatgpt/lumo-nextgen-blender-flutter-apk-20261115]
+    paths:
+      - config/godot-source.json
+      - .github/workflows/lumo-nextgen-2024-blender-apk.yml
+      - pubspec.yaml
+      - scripts/verify_legacy_release_pin.py
+      - scripts/export_embedded_game.py
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-2023-complete-family-release
+  cancel-in-progress: true
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  LUMO_SPLIT_PER_ABI: '1'
+  LUMO_NDK_DISPOSABLE_RUNNER: '1'
+jobs:
+  learning-app-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Check version, original family identity and immutable native revision
+        run: |
+          set -euo pipefail
+          test "$(grep '^version:' pubspec.yaml)" = 'version: 0.13.12+2024'
+          python3 scripts/verify_legacy_release_pin.py
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path("scripts/prepare_android.py").read_text()
+          assert "'.coachpreview'" in p
+          q=Path("scripts/verify_unified_apk.py").read_text()
+          assert "dev.ullmann.lumo.lumo_lernen.coachpreview" in q
+          assert "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702" in q
+          print("[Family2024] PASS original applicationId/signature contract")
+          PY
+      - name: Locked Flutter dependencies and analysis
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Run all learning / profile / game UI tests
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=90s --concurrency=2 \
+            test/learning/nextgen_task_quality_test.dart \
+            test/learning/interactive_task_workspace_test.dart \
+            test/lumo_task_dialogue_test.dart \
+            test/lumo_task_conversation_widget_test.dart \
+            test/grade_1_to_4_subject_menu_integrity_test.dart \
+            test/grade_3_4_curriculum_menu_integrity_test.dart \
+            test/curriculum_cross_grade_navigation_test.dart \
+            test/home_subject_islands_premium_test.dart \
+            test/profile_repository_storage_hardening_test.dart \
+            test/parents/parent_school_grade_progression_test.dart \
+            test/learning_lab_runtime_test.dart
+  single-apk:
+    needs: learning-app-validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 85
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Install verified Android and Godot toolchain
+        run: |
+          set -euo pipefail
+          mkdir -p build-proof
+          git rev-parse HEAD > build-proof/FLUTTER-SOURCE.txt
+          cp config/godot-source.json build-proof/GODOT-SOURCE.json
+          grep '^version:' pubspec.yaml > build-proof/APP-VERSION.txt
+          flutter pub get --enforce-lockfile
+          bash scripts/install_ndk_for_build.sh build-proof/ndk
+          bash scripts/install_godot_for_build.sh
+      - name: Create single signed Flutter + genuine Godot arm64 APK
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh
+          test -s dist/Lumo-Lernen-Neu.apk
+          test -s dist/x86_64/Lumo-Lernen-Neu.apk
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/VERIFY-arm64.json
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 > build-proof/VERIFY-x86.json
+          sha256sum dist/Lumo-Lernen-Neu.apk dist/x86_64/Lumo-Lernen-Neu.apk > build-proof/SHA256SUMS.txt
+          cp dist/BUILD-PROVENANCE.json build-proof/BUILD-PROVENANCE.json
+          cp dist/x86_64/BUILD-PROVENANCE.json build-proof/BUILD-PROVENANCE-x86.json
+      - name: Upload exact APK and checksums, no public release
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-nextgen-2024-blender-family-apk
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/x86_64/Lumo-Lernen-Neu.apk
+            build-proof/
+          retention-days: 30
+          compression-level: 0
+          if-no-files-found: warn
