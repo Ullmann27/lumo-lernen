@@ -44,6 +44,17 @@ def verify_current_original(original, identity, original_probe_sha256):
     require(learning.valid_hex(original_probe_sha256, 64) and
             original.get("probe_sha256") == original_probe_sha256,
             "Original result was not produced by this checkout's complete probe")
+    why = original.get("native_learning", {}).get("why_question", {})
+    require(why.get("question") == "Warum zuerst zwei?" and
+            why.get("input_method") == "observed Godot input plus real Android keyboard text" and
+            type(why.get("observed_initial_moved")) is int and why["observed_initial_moved"] == 0 and
+            type(why.get("observed_final_moved")) is int and why["observed_final_moved"] == 2 and
+            why.get("manual_move_buttons_pressed_after_question") is False and
+            why.get("answer_or_score_api_called") is False and
+            learning.why_response([why.get("response", {}).get("text", "")]) and
+            why.get("playback", {}).get("utterance_ids") and
+            why.get("video", {}).get("whole_block_within_recording_limit") is True,
+            "Current native why-two question, automatic demonstration or playback was not observed")
 
 
 def verify_ci_context(args, environment):

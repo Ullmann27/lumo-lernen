@@ -308,6 +308,17 @@ def why_response(labels: list[str]) -> str | None:
     return None
 
 
+def native_why_response(lines: list[dict]) -> dict | None:
+    """Read one actual OCR frame variant in order; never combine variants."""
+    for variant in sorted({row.get("variant", "") for row in lines}):
+        rows = sorted((row for row in lines if row.get("variant", "") == variant),
+                      key=lambda row: (row["bounds"][1], row["bounds"][0]))
+        text = " ".join(row["text"] for row in rows)
+        if why_response([text]) and re.search(r"\b(?:5|fünf)\b", text, re.I) and re.search(r"\b(?:3|drei)\b", text, re.I):
+            return {"variant": variant, "text": text}
+    return None
+
+
 def microphone_outcome(labels: list[str]) -> str | None:
     """Recognize actual current UI states, without declaring spoken STT proof."""
     joined = "\n".join(labels).lower()
@@ -1149,10 +1160,11 @@ class LearningProbe:
             self.reader.native_text(self.out, "Zehn sind voll", self.fresh("native-ten-full"), orientation="responsive")
             self.capture("native-ten-and-three", native=True)
             second_playback = self.native_playback(pid, playback["utterance_ids"])
+        why = self.native_bridge_question(pid)
         # A separate real recording ensures the bounded measurement is covered
         # even if the first local TTS model startup consumed the entry segment.
         with self.recording("native-three-dimensional-performance"):
-            performance = self.native_performance(pid, playback["utterance_ids"] + second_playback["utterance_ids"])
+            performance = self.native_performance(pid, playback["utterance_ids"] + second_playback["utterance_ids"] + why["playback"]["utterance_ids"])
         performance["video"] = self.recordings[-1]
         require(performance["video"]["whole_block_within_recording_limit"] and
                 performance["video"]["duration_seconds"] >= performance["scene_observed_seconds"] - 2,
@@ -1166,9 +1178,65 @@ class LearningProbe:
         self.capture("native-return-current-task")
         after = learning_snapshot(self.preferences("native-learning-after"))
         self.result["native_learning"] = {"first_playback": playback, "second_playback": second_playback,
+                                          "why_question": why,
                                           "performance": performance,
                                           "preservation": require_preserved(before, after),
                                           "entry": "existing guided lesson button", "current_task": "Acht und fünf"}
+
+    def native_bridge_question(self, pid):
+        """Actually type why-two in Godot and observe its two-object explanation."""
+        with self.recording("native-why-two-question-and-demonstration"):
+            # This visible existing control resets only the ungraded native
+            # model. The enclosing roundtrip still compares all Flutter stores.
+            self.reader.native_tap(self.out, "Noch einmal", self.fresh("why-native-reset"),
+                                   exact=True, orientation="responsive")
+            self.reader.native_text(self.out, "0 / 5 bewegt", self.fresh("why-native-initial-model"),
+                                    orientation="responsive")
+            initial = self.capture("why-native-eight-and-five-before-question", native=True)
+            self.reader.native_tap(self.out, "Lumo fragen", self.fresh("why-native-open-question"),
+                                   exact=True, orientation="responsive")
+            self.reader.native_text(self.out, "Frag Lumo", self.fresh("why-native-question-heading"),
+                                    exact=True, orientation="responsive")
+            self.reader.native_tap(self.out, "Deine Frage oder Korrektur", self.fresh("why-native-observed-input"),
+                                   orientation="responsive")
+            question = "Warum zuerst zwei?"
+            self.base.adb("shell", "input", "text", shlex.quote(question.replace(" ", "%s")))
+            self.reader.native_text(self.out, question, self.fresh("why-native-actual-written-question"),
+                                    orientation="responsive")
+            written = self.capture("why-native-written-before-send", native=True)
+            # Dismiss only an actually observed Android input method, not the
+            # question panel or the underlying native activity.
+            ime = self.base.adb("shell", "settings", "get", "secure", "default_input_method").split("/", 1)[0]
+            if ime and any(n.get("package") == ime for n in self.nodes("why-native-keyboard")):
+                self.base.adb("shell", "input", "keyevent", "KEYCODE_BACK")
+            previous = {int(turn) for observed_pid, _, turn, _ in speech_events(self.speech_log()) if int(observed_pid) == pid}
+            self.reader.native_tap(self.out, "Frage senden", self.fresh("why-native-send-observed-question"),
+                                   exact=True, orientation="responsive")
+            self.reader.native_text(self.out, "2 / 5 bewegt", self.fresh("why-native-two-moved-by-explanation"),
+                                    orientation="responsive")
+            response = None
+            for _ in range(6):
+                tag = self.fresh("why-native-current-explanation")
+                shot = self.reader.capture(self.out, tag)
+                lines = self.reader.image_lines(self.out, tag, "biszurzehn", source_path=self.out / shot["file"], timeout=40)
+                response = native_why_response(lines)
+                if response:
+                    response["screenshot"] = shot
+                    break
+                time.sleep(.6)
+            require(response is not None, "No actual current native explanation of eight, two, ten, five and three")
+            playback = self.native_playback(pid, previous)
+            final = self.capture("why-native-ten-and-three-after-explanation", native=True)
+        video = self.recordings[-1]
+        require(video["whole_block_within_recording_limit"], "Native why-two recording exceeded its capture limit")
+        result = {"question": question, "input_method": "observed Godot input plus real Android keyboard text",
+                  "observed_initial_moved": 0, "observed_final_moved": 2,
+                  "manual_move_buttons_pressed_after_question": False, "answer_or_score_api_called": False,
+                  "initial_screenshot": initial, "written_question_screenshot": written,
+                  "response": response, "playback": playback, "final_screenshot": final, "video": video,
+                  "acoustic_words_verified": False}
+        self.save("native-why-two-result", result)
+        return result
 
     def run(self):
         self.identify_and_install()

@@ -45,7 +45,13 @@ def inputs():
                 "final_profile": profile,
                 "device": {"serial": "emulator-5554", "api": 35, "abi": "x86_64",
                            "physical_device": False, "package_absent_before_install": True},
-                "native_learning": {"performance": {"capture_status": "MEASURED", "scene_observed_seconds": 12,
+                "native_learning": {"why_question": {"question": "Warum zuerst zwei?",
+                    "input_method": "observed Godot input plus real Android keyboard text",
+                    "observed_initial_moved": 0, "observed_final_moved": 2,
+                    "manual_move_buttons_pressed_after_question": False, "answer_or_score_api_called": False,
+                    "response": {"text": "Bis zur Zehn fehlen 2: zehn minus 8 ist 2. Von den 5 bleiben 3."},
+                    "playback": {"utterance_ids": [11]}, "video": {"whole_block_within_recording_limit": True}},
+                  "performance": {"capture_status": "MEASURED", "scene_observed_seconds": 12,
                     "window_count": 2, "sample_count": 200, "combined_audio_figure_effect_windows": [3],
                     "current_step_replay_playback": {"utterance_ids": [12]},
                     "video": {"whole_block_within_recording_limit": True}}}}
@@ -117,6 +123,28 @@ class CurrentIdentityTest(unittest.TestCase):
                            ("historical_tour_pass_used", True), ("private_app_data_written_by_probe", True)):
             with self.subTest(key=key), self.assertRaises(RuntimeError):
                 probe.verify_current_original({**original, key: value}, identity(), original["probe_sha256"])
+
+    def test_native_question_requires_actual_input_automatic_movement_and_new_audio(self):
+        original, _ = inputs()
+        changes = (("question", "something else"), ("input_method", "source fixture"),
+                   ("observed_initial_moved", 2), ("observed_final_moved", 0),
+                   ("manual_move_buttons_pressed_after_question", True), ("answer_or_score_api_called", True),
+                   ("response", {"text": "Okay. Ich passe die Aufgabe an dich an."}),
+                   ("playback", {}), ("video", {}))
+        for field, value in changes:
+            with self.subTest(field=field), self.assertRaises(RuntimeError):
+                changed = copy.deepcopy(original)
+                changed["native_learning"]["why_question"][field] = value
+                probe.verify_current_original(changed, identity(), original["probe_sha256"])
+
+    def test_native_why_reader_cannot_combine_different_frame_variants(self):
+        lines = [{"text": "Bis zur Zehn fehlen 2: zehn minus", "bounds": [10, 10, 200, 40], "variant": "raw"},
+                 {"text": "8 ist 2. Von den 5 bleiben 3.", "bounds": [10, 50, 200, 80], "variant": "contrast"}]
+        self.assertIsNone(probe.learning.native_why_response(lines))
+        lines[1]["variant"] = "raw"
+        response = probe.learning.native_why_response(lines[::-1])
+        self.assertEqual(response["variant"], "raw")
+        self.assertTrue(response["text"].startswith("Bis zur Zehn fehlen"))
 
 
 class ReleaseEvidenceTest(unittest.TestCase):
