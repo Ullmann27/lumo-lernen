@@ -1,0 +1,36 @@
+{
+  "status": "FAIL",
+  "remote": "/sdcard/lumo-learning-cb9cff8d064c49f3a3a3519a1acf3146-0090-banana-guided-navigation.mp4",
+  "owned_recorder_pid": "8941",
+  "maximum_seconds": 90,
+  "maximum_transfers": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "local": "0090-banana-guided-navigation.mp4.pull-1.partial",
+      "status": "TRANSFER_FAILED",
+      "error": "Command failed (1): ('adb', 'pull', '/sdcard/lumo-learning-cb9cff8d064c49f3a3a3519a1acf3146-0090-banana-guided-navigation.mp4', 'evidence/android/reference-android/0090-banana-guided-navigation.mp4.pull-1.partial')\n",
+      "error_type": "RuntimeError"
+    }
+  ],
+  "remote_observations": [
+    {
+      "stage": "before-transfer",
+      "screenrecord_pids": "",
+      "size_output": "830450",
+      "sha256_output": "36f05562925beab6528816bdf26776e4c4e338781108620c9bdb15196c08f931  /sdcard/lumo-learning-cb9cff8d064c49f3a3a3519a1acf3146-0090-banana-guided-navigation.mp4"
+    },
+    {
+      "stage": "after-failed-transfer",
+      "screenrecord_pids": "adb: device offline"
+    }
+  ],
+  "recording_or_ui_repeated": false,
+  "expected": {
+    "bytes": 830450,
+    "sha256": "36f05562925beab6528816bdf26776e4c4e338781108620c9bdb15196c08f931"
+  },
+  "error": "Owned recorder is still running or its state is unobservable",
+  "error_type": "RuntimeError",
+  "elapsed_seconds": 0.192
+}
