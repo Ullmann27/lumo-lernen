@@ -51,6 +51,9 @@ jobs:
               f.write("Original 2032-Quellarchiv bereit: **"+str(ready)+"**\n\n")
               f.write("Nur ein nach dem exakten Dateihash verifiziertes Original darf in die Baupipeline.\n")
           print("Source ready:",ready)
+          if not ready:
+              print("BLOCKED: exact original 2032 ZIP is missing from GitHub source-intake release.", flush=True)
+              raise SystemExit(2)
           PY
 
   build2032:
