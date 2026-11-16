@@ -94,6 +94,27 @@ def valid_hex(value: str, length: int) -> bool:
     return isinstance(value, str) and re.fullmatch(r"[0-9a-f]{" + str(length) + "}", value) is not None
 
 
+def non_app_foreground(raw: str) -> str | None:
+    """Accept an explicit, unambiguous resumed Activity, never mere absence."""
+    lines = [line for line in raw.splitlines() if re.match(
+        r"^\s*(?:mResumedActivity|topResumedActivity|ResumedActivity)\b", line)]
+    if not lines:
+        return None
+    components = set()
+    for line in lines:
+        match = re.fullmatch(
+            r"\s*(?:mResumedActivity|topResumedActivity|ResumedActivity)\s*[:=]\s*"
+            r"ActivityRecord\{[0-9a-fA-F]+\s+u\d+\s+"
+            r"([A-Za-z0-9_]+(?:\.[A-Za-z0-9_]+)+)/([A-Za-z0-9_.$]+)\s+t\d+[^{}]*\}\s*", line)
+        if match is None:
+            return None
+        components.add(match.groups())
+    if len(components) != 1:
+        return None
+    package, activity = components.pop()
+    return package + "/" + activity if package != PACKAGE else None
+
+
 def verify_provenance(proof: dict, *, sha256: str, source: str, native: str,
                       version: int, certificate: str) -> dict:
     """Reject stale/ambiguous identity before touching the emulator."""
@@ -678,6 +699,45 @@ class LearningProbe:
         return self.wait("Current persisted " + topic + " task/model", observe,
                          lambda item: item is not None and all(item.get(k) == v for k, v in expected.items()))
 
+    def wait_for_background(self, tag, timeout=15):
+        """Observe the single Home action; retain each raw dump before judging it."""
+        began = time.monotonic()
+        deadline = began + timeout
+        name = self.fresh(tag + "-foreground-transition")
+        proof = {"status": "FAIL", "timeout_seconds": timeout, "observations": []}
+        try:
+            while time.monotonic() < deadline:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    break
+                raw = self.base.adb("shell", "dumpsys", "activity", "activities", timeout=remaining)
+                path = self.out / self.fresh(tag + "-activity.txt")
+                path.write_text(raw)
+                component = non_app_foreground(raw)
+                observed = time.monotonic()
+                accepted = component is not None and observed < deadline
+                proof["observations"].append({
+                    "file": path.name, "sha256": digest(path),
+                    "elapsed_seconds": round(observed - began, 3),
+                    "non_app_component": component, "accepted": accepted,
+                })
+                if accepted:
+                    proof.update(status="PASS", observed_component=component)
+                    return proof
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    break
+                time.sleep(min(.6, remaining))
+            raise RuntimeError("App did not actually leave the foreground before deadline; "
+                               "no unambiguous non-app resumed Activity was observed")
+        except Exception as error:
+            proof["error"] = str(error)
+            raise
+        finally:
+            proof["elapsed_seconds"] = round(time.monotonic() - began, 3)
+            self.result.setdefault("foreground_transitions", []).append(proof)
+            self.save(name, proof)
+
     def type_text(self, text, tag):
         require(re.fullmatch(r"[A-Za-z0-9 ?,.'-]+", text) is not None, "Only explicit ASCII test input is supported")
         nodes = self.nodes(tag)
@@ -712,40 +772,60 @@ class LearningProbe:
         process = subprocess.Popen(["adb", "shell", "screenrecord", "--time-limit", "180",
                                     "--bit-rate", "4000000", remote], stdout=log, stderr=subprocess.STDOUT)
         began = time.monotonic()
-        owned = None
+        owned, primary = None, None
         try:
             pids = self.wait("Own Android screenrecord", lambda: self.base.adb("shell", "pidof", "screenrecord", check=False).split())
             require(len(pids) == 1 and pids[0].isdigit(), "Recorder identity is ambiguous")
             owned = pids[0]
             yield
+        except BaseException as error:
+            primary = error
+            raise
         finally:
-            capture_block_seconds = time.monotonic() - began
-            if owned and owned in self.base.adb("shell", "pidof", "screenrecord", check=False).split():
-                self.base.adb("shell", "kill", "-2", owned)
             try:
-                process.wait(timeout=20)
-            except subprocess.TimeoutExpired:
-                process.terminate()
-                process.wait(timeout=5)
-            log.close()
-            if owned:
-                local = self.out / (name + ".mp4")
-                self.base.adb("pull", remote, str(local), timeout=90)
-                metadata = read_json(self.base.command("ffprobe", "-v", "error", "-show_streams", "-show_format",
-                                                      "-of", "json", str(local)))
-                self.save(name + "-ffprobe", metadata)
-                videos = [s for s in metadata.get("streams", []) if s.get("codec_type") == "video"]
-                require(len(videos) == 1 and float(metadata.get("format", {}).get("duration", 0)) > 0,
-                        "No decodable actual video was recorded")
-                entry = {"file": local.name, "sha256": digest(local), "bytes": local.stat().st_size,
-                         "duration_seconds": float(metadata["format"]["duration"]),
-                         "width": videos[0]["width"], "height": videos[0]["height"],
-                         "audio_recorded": False, "maximum_seconds": 180,
-                         "block_elapsed_seconds": round(capture_block_seconds, 2),
-                         "whole_block_within_recording_limit": capture_block_seconds < 180}
-                self.recordings.append(entry)
-                self.save(name + "-video", entry)
-                self.result["videos"] = self.recordings
+                capture_block_seconds = time.monotonic() - began
+                if owned and owned in self.base.adb("shell", "pidof", "screenrecord", check=False).split():
+                    self.base.adb("shell", "kill", "-2", owned)
+                try:
+                    process.wait(timeout=20)
+                except subprocess.TimeoutExpired:
+                    process.terminate()
+                    process.wait(timeout=5)
+                log.close()
+                if owned:
+                    local = self.out / (name + ".mp4")
+                    self.base.adb("pull", remote, str(local), timeout=90)
+                    metadata = read_json(self.base.command("ffprobe", "-v", "error", "-show_streams", "-show_format",
+                                                          "-of", "json", str(local)))
+                    self.save(name + "-ffprobe", metadata)
+                    videos = [s for s in metadata.get("streams", []) if s.get("codec_type") == "video"]
+                    require(len(videos) == 1 and float(metadata.get("format", {}).get("duration", 0)) > 0,
+                            "No decodable actual video was recorded")
+                    entry = {"file": local.name, "sha256": digest(local), "bytes": local.stat().st_size,
+                             "duration_seconds": float(metadata["format"]["duration"]),
+                             "width": videos[0]["width"], "height": videos[0]["height"],
+                             "audio_recorded": False, "maximum_seconds": 180,
+                             "block_elapsed_seconds": round(capture_block_seconds, 2),
+                             "whole_block_within_recording_limit": capture_block_seconds < 180}
+                    self.recordings.append(entry)
+                    self.save(name + "-video", entry)
+                    self.result["videos"] = self.recordings
+            except Exception as error:
+                failure = {"recording": name, "error": str(error), "error_type": type(error).__name__,
+                           "secondary_to_primary": primary is not None,
+                           "primary_error": str(primary) if primary is not None else None,
+                           "traceback": traceback.format_exc()}
+                try:
+                    log.close()
+                except Exception as close_error:
+                    failure["log_close_error"] = str(close_error)
+                self.result.setdefault("recording_errors", []).append(failure)
+                try:
+                    self.save(name + "-recording-error", failure)
+                except Exception as evidence_error:
+                    failure["evidence_write_error"] = str(evidence_error)
+                if primary is None:
+                    raise
 
     def identify_and_install(self):
         args = self.args
@@ -866,10 +946,7 @@ class LearningProbe:
         with self.recording(topic + "-pause-return"):
             self.capture(topic + "-before-pause")
             self.base.adb("shell", "input", "keyevent", "KEYCODE_HOME")
-            foreground = self.base.adb("shell", "dumpsys", "activity", "activities")
-            resumed = "\n".join(line for line in foreground.splitlines() if "ResumedActivity" in line or "topResumedActivity" in line)
-            require(PACKAGE not in resumed, "App did not actually leave the foreground")
-            (self.out / self.fresh(topic + "-paused-activity.txt")).write_text(resumed)
+            self.wait_for_background(topic + "-paused")
             time.sleep(2)
             self.base.launch(self.out, self.fresh(topic + "-resume"))
             self.see(prompt, topic + "-resumed-task", scroll=True, exact=True)
