@@ -51,7 +51,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          flutter analyze --no-pub lib/features/games/memory/lumo_memory_game.dart test/games/memory_native_entry_test.dart
+          flutter analyze --no-pub lib/features/games/memory/lumo_memory_game.dart test/games/memory_native_entry_test.dart lib/features/games/connect_four/connect_four_table_session.dart test/games/connect_four_open_close_race_test.dart
       - name: Exercise the real Flutter card game, 3D fallback and existing profile tests
         shell: bash
         run: |
@@ -61,7 +61,8 @@ jobs:
             test/games/memory_native_entry_test.dart \
             test/games/memory_screen_test.dart \
             test/games/memory_controls_hittest_test.dart \
-            test/games/memory_profile_storage_test.dart 2>&1 | tee evidence/memory-safe-entry/flutter-memory.log
+            test/games/memory_profile_storage_test.dart \
+            test/games/connect_four_open_close_race_test.dart 2>&1 | tee evidence/memory-safe-entry/flutter-memory.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
