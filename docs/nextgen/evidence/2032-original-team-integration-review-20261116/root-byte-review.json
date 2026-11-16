@@ -1,0 +1,512 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-16T10:18:30.603747+00:00",
+  "reviewSha256": "420e483cf4641bd3cee7263faff0bfb7b23d379e15eace8e108b7c815b3cc754",
+  "reviewedHost": {
+    "commit": "bd87674744fd33d51b2e73f9ef42b1e2abb71864",
+    "tree": "d5c34dac6dc42fc4c9c04c4aba5298b3013d36bb",
+    "parents": [
+      "517349eeecf6d6b990f40db50560786733072baa"
+    ]
+  },
+  "apkSource": {
+    "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+    "tree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+    "parents": [
+      "14c71ac9510d2dddc9161a029e3617b5bbb9d38c"
+    ]
+  },
+  "nativeSource": {
+    "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+    "tree": "26b6e5301372d4ade91ca8955f7c1ccf5d0dee78",
+    "parents": [
+      "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef"
+    ]
+  },
+  "fileByteBindingsIndependentlyChecked": 80,
+  "commitTreesAndParentsChecked": true,
+  "newTestsRun": false,
+  "newAndroidEvidence": false,
+  "files": [
+    {
+      "repository": "lumo-lernen",
+      "path": "docs/nextgen/INTEGRATION_V1.md",
+      "commit": "bd87674744fd33d51b2e73f9ef42b1e2abb71864",
+      "sha256": "db624b8f3b29359138ce20bcb2c24435b5d5fa30c06c4bdf1c91f57c55b76229"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "docs/nextgen/freezes/2f_owner_20261115/manifest.json",
+      "commit": "8d612f074254548ef8e9296423222832c61f0375",
+      "sha256": "1c2b0459cb7c98763d34e413e2e9352eb4bdac4cb1f5c26d4ce3a21ed04d2f09"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/artikel_lernen/artikel_lernen_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "c6c436beb3aac11f10da851d15559cd533e29cc191740dcb7d6eff7049c0fb3e"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/bruchrechnen/bruchrechnen_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "3ebafd28a0398ae83efe27cd2c23c0733e8d6b27553c029b118d66465814cc62"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/einmaleins/einmaleins_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "8d06dd4f85f4399e7acf0d01fc74e35a6cd2140872c94c553739e6693673b49c"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/farben/farben_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "862022e4d886b57d5f9fe5fdaa9db81593d1fff25d3e56e2f5fbfb25652dbded"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/formen/formen_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "f41d5b4083ad186e62ba69cd1f67990ff37da32668243699c5021c8a5ea7e589"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/geld/geld_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "d9c027bbe040fe4d9a431d9e6f2dd87bf231698fcc6d7041fa385eb4ed522f66"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/jahreszeiten/jahreszeiten_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "ed4e5fa1f675666ef4ee6e6e8efaff8d4f5cfff6bee7ca98fbd663117be9d754"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/mehrzahl/mehrzahl_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "e8434659878c6aa47dca30485ef3c30e8f63edb65daa0f4d91f3c5a86aa755e2"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "621e27be21059d66ea34f6d094ece254b30cf86b09cb0ef764753d2ea5cd762d"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "31ad5bde3d8cb897d3feebf85edf21f60e7a5643d1bb3f98c92053db4c7b3872"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/tiere/tiere_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "06335fa4649bc559d68b2f7c50bed9c0876b76f7c52c5a5e07e60536b3b2cc12"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/uhr_lernen/uhr_lernen_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "d75005c24c4c34bc6d5628a3bba6c44c3f63dc56610b6e3bcf2ab0f70368ec63"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/verkehr/verkehr_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "4d035b56ad5d402bf0fb72f0074b8f55cff0d8e2d679d8d0d955053bf6b92c1e"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/wetter/wetter_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "f85bd00c961bf5de8351d59c4ca32b4d8621405c5375905f4cf9a79729be108e"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/wortarten/wortarten_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "876d14c168fe3f2941ba0bfb5dbc5beb49f36c7bdd17b61e838ce958555f7696"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/zahlen_bis_100/zahlen_bis_100_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "136fc4f02d9aa9f43b9a0626c147ca505eb82626390a9c0f897d7219c4ff5963"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "2cd5083572830dc8b6d2462a314e4356716cd31b868300e17030eee36d1bfa57"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/features/learning_modules/zeitformen/zeitformen_screen.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "399a03a682d68829c65d7be2d79fae62006747a59486407bf0439328b6e21769"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "docs/nextgen/CHAT2_OWNER_CORE_REVIEW.md",
+      "commit": "bd87674744fd33d51b2e73f9ef42b1e2abb71864",
+      "sha256": "92a8e5696ef6016b05099980c8812060f49009601735e81f5ca41bdadb0abae0"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "docs/nextgen/CHAT2_GUIDED_CONTENT_REVIEW.md",
+      "commit": "bd87674744fd33d51b2e73f9ef42b1e2abb71864",
+      "sha256": "1884f5d02830493c9855525e560b4aaf32bf4bf2f168f391f1de5928a54f4894"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "docs/nextgen/CHAT2_MODULE_CONNECTIONS_REVIEW.md",
+      "commit": "bd87674744fd33d51b2e73f9ef42b1e2abb71864",
+      "sha256": "5491d5399734b74443adbe6a217abb5fb4218af524dd13e5a3efa33e9009df6a"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "docs/nextgen/MODULE_CONNECTIONS.json",
+      "commit": "bd87674744fd33d51b2e73f9ef42b1e2abb71864",
+      "sha256": "afafb77ad3f8f6aeb8a7d19a68c0446ffd399e6c71a53925bc713a304ae4d38c"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "docs/nextgen/evidence/avatar-runtime-snapshot-01.json",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "9e15aeff6bfba213ce59ae90e720db878934f38d53984411c87e30db45d880f0"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "docs/nextgen/evidence/avatar-authoring-snapshot-01.json",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "270360805848da252d410b7b92864618d049d0f6109c44b5ccf7dd0461ca9ba2"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/character/ATTRIBUTION.md",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "70233469e3f6cd6094aeaef98fa368b75dcae4164cdd99553f3838619a4e8495"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/character/Lumo-Learning.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "cc210fb03bd831f21f0ba99aa12c7b7ef60f2fb5a38e0ca30a8b059d51f08163"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/character/lumo_albedo.png",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "5ca4e69c6420e8ce56f714e9a03fe1303d102706e4ce7b29443ec6b990b613d0"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/character/lumo_normal.png",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "02fe4e8a6e876962eac9bef283e315eb64e9095b72165349d9f20d389619ff09"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/character/lumo_orm.png",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "b74eb3404c784dc09284d3945464d824cd1947f6a1681d8ebe7dca58e44c2a5b"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/backdrop_module.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "2a0e230baa3d42606559fb48e0aa138b2dd769087ecc687998e41bdae8f8eb1f"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/banana.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "eb3fb9f86c9e501e6516574a4da597bddf5f5792abaf346e573d4efebf352acb"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/count_token_gold.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "a3a895d5d4fbbf20b328299d1edfba58c8053223cff6556726566cf33bd56ec9"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/count_token_teal.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "5049cd76f4feb2ca4ea0c8516c629524dcc19a03b9dac55d2edbd76456f00dac"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/floor_module.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "d8c3e45c43d94bf00a9d17bdc1c4f7ad39fcc61d280aed3af6a04887d549f6f3"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/letter_tile.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "360360ce66410e52e794fb8c608a7b6a02ddd99558c064a1579c115f0a1dbc53"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/manifest.json",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "3788b5d924d366b6b639bd497de38f6f8d8578b1e618804a9f679cd9809435d6"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/pedestal.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "78a1fc33fc921f1d5544667149936bca7ec656951959942a987e35487c85c173"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/plant_study.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "73782e6c3e9bf1472416f68d6f7d10b817fe18768e01e51b3c8a849560b2227a"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/provenance.json",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "d3cbea77b1047b3b6049dd2f3efda879835d129389c0c3c23daea8a7ab0cf367"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/shape_circle.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "919422efa64d11d2177f2f17de51f0d1259f2a81585f9da4aa32e10120edd539"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/shape_hexagon.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "d7317d1ea6118c69499adef40bf37110d7278b9a5ec10339f8d969e6c4f38f38"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/shape_square.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "549d7b298540acae6a70bc442b47df26f21088cfdf8c2ad8fc9e3730e0201aa6"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/shape_triangle.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "62d83f5a6e47aae0d0d67326fd8ffee7b7c9ff70b471b7ff10e0f044f0234982"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/syllable_tile.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "1bb3106769c4606070b79263b8e0109988f0ba54b84a8e980f562d70d753c7ee"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/ten_bundle.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "7e017975349f1604b8db8a48264064cc467724f35b71197e9d97fb47c09c67d1"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "assets/lumo_next/learning/ten_frame.glb",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "d2efd217fb911d4cb9d15dd86d257a54b3b3bcd7d0f67a9d879bb80921694a52"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "scripts/lumo_next/learning_asset_meshes.gd",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "178b2cb62a55a07b2ef97600fb768a48de988a1e0cce38e6c0a0bf6674afc89d"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "scenes/learning/learning_world.tscn",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "fe7a004d16558b6f017dbb3ec10b27a3f7682da7e3d6469e8166fd957e953d97"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "scripts/lumo_next/avatar_director.gd",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "f3d805d4decf7cc9f0b90c52e44151bdafbef58c14ef97755af3563f0029441e"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "scripts/lumo_next/learning_lumo_actor.gd",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "3bf21847f6384873ab22aae368cf3a2fb2826f09efa0bd19cab274055fbe521b"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "scripts/lumo_next/learning_target_registry.gd",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "849ce50604846c1459eca3a60fa69dc7928e0580c61c1a1dcee3129103022884"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "scripts/lumo_next/learning_world_next.gd",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "4c6ebf3659ae9c9c7d19a530c39d0977e500115ed585098007350fa0ddf727e8"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "art/lumo_next/character/Lumo-Learning.blend",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "7ce9c6a6b6f7e92747cf9d97eca62ab0a6917d3a85ce16c4fe1a58e731618a9d"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "art/lumo_next/character/production_manifest.json",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "76665079cfb7453b8aaf8a30d77087ebce087f262a32919b05ed12eb2c608379"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "art/lumo_next/learning/lumo_learning_assets.blend",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "fca96aebd372a75842acfeff8845fb0099d22652451d16e5d28c0c8f1af71cf0"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "art/lumo_next/learning/source_validation.json",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "ef0a181364d1ecee9d09df69dd61540f9134aa9609cdaf41d795436e28890ddf"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "art/lumo_next/learning/import_validation.json",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "e824fb7b16583f1dcf23681680c75274b648ce035fc116ba16acbf64243feb1f"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "art/lumo_next/learning/provenance.json",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "d3cbea77b1047b3b6049dd2f3efda879835d129389c0c3c23daea8a7ab0cf367"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "art/lumo_next/learning/manifest.json",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "3788b5d924d366b6b639bd497de38f6f8d8578b1e618804a9f679cd9809435d6"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "art/lumo_next/learning/README.md",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "1ba996037bb1045179f75240e48ed7af742e0ba09ad0622f9b5a5fb242217291"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "art/lumo_next/learning/textures/lumo_learning_atlas.png",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "5240b4db503235198283356cc96432a4224ae884069febe19546a97ef3c427af"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "art/lumo_next/learning/textures/lumo_learning_roughness.png",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "31408719a6df9371484c594937209065165ee877874d0aff68fe983ce15b0f13"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "tools/lumo_next/build_character.py",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "986bfded892e55f9bfc188302c8409d5a4050b2edb4354fc45fae4e9136023c8"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "tools/lumo_next/build_learning_assets.py",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "e44ccc3cc5440ade3bd416900ffe5be2111f36d22cef9814b505d3d5d3dbc39d"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "tools/lumo_next/create_review_project.py",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "3ec373e4e724415e987c05cc490c13832ca70d4903410c5dee69ad9a92bfeaef"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "tools/lumo_next/capture_learning_scene.gd",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "5210eabf3114f2dbe427b2ff0f985b2adfafd8876a53ddc2e3c9c59bf87a5c44"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "scenes/learning/learning_world.tscn",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "fe7a004d16558b6f017dbb3ec10b27a3f7682da7e3d6469e8166fd957e953d97"
+    },
+    {
+      "repository": "lumo-godot",
+      "path": "scripts/lumo_next/learning_world_next.gd",
+      "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "sha256": "4c6ebf3659ae9c9c7d19a530c39d0977e500115ed585098007350fa0ddf727e8"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/core/lumo_speech_listener.dart",
+      "commit": "818096d4ec2e1b8abfad53a14b38cea0538ec250",
+      "sha256": "c05c85d68b95b77732bb48d52d371baec5516b189477813ab36c46f2c3d0c9fb"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/core/lumo_speech_listener.dart",
+      "commit": "b40c30bbe622085ebf2244c76d0d69236c194b34",
+      "sha256": "c05c85d68b95b77732bb48d52d371baec5516b189477813ab36c46f2c3d0c9fb"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/core/lumo_speech_listener.dart",
+      "commit": "a31080c90284b705853e5e340ce8063e4d007ed9",
+      "sha256": "c05c85d68b95b77732bb48d52d371baec5516b189477813ab36c46f2c3d0c9fb"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/core/lumo_speech_listener.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "c05c85d68b95b77732bb48d52d371baec5516b189477813ab36c46f2c3d0c9fb"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "tools/auto_install/LumoLocalRecognition.kt",
+      "commit": "818096d4ec2e1b8abfad53a14b38cea0538ec250",
+      "sha256": "637ef475067f234ec401225059cb3cf73e6bc81367ea1f9ea010ff0ee58ddc65"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "tools/auto_install/LumoLocalRecognition.kt",
+      "commit": "b40c30bbe622085ebf2244c76d0d69236c194b34",
+      "sha256": "637ef475067f234ec401225059cb3cf73e6bc81367ea1f9ea010ff0ee58ddc65"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "tools/auto_install/LumoLocalRecognition.kt",
+      "commit": "a31080c90284b705853e5e340ce8063e4d007ed9",
+      "sha256": "637ef475067f234ec401225059cb3cf73e6bc81367ea1f9ea010ff0ee58ddc65"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "tools/auto_install/LumoLocalRecognition.kt",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "637ef475067f234ec401225059cb3cf73e6bc81367ea1f9ea010ff0ee58ddc65"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/core/lumo_learning_session_contract.dart",
+      "commit": "421a0c3261a57dd15733531058cf2291d765d38d",
+      "sha256": "1c8d8f2655faef057089d845a89920822409bfa91c9388e5bed7c70d62caf18d"
+    },
+    {
+      "repository": "lumo-lernen",
+      "path": "lib/core/lumo_learning_session_contract.dart",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "sha256": "1c8d8f2655faef057089d845a89920822409bfa91c9388e5bed7c70d62caf18d"
+    }
+  ]
+}

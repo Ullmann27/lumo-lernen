@@ -1,0 +1,723 @@
+{
+  "schemaVersion": 1,
+  "kind": "read-only-original-team-integration-review",
+  "reviewedHost": {
+    "commit": "bd87674744fd33d51b2e73f9ef42b1e2abb71864",
+    "tree": "d5c34dac6dc42fc4c9c04c4aba5298b3013d36bb",
+    "parents": [
+      "517349eeecf6d6b990f40db50560786733072baa"
+    ]
+  },
+  "apkSource": {
+    "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+    "tree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+    "parents": [
+      "14c71ac9510d2dddc9161a029e3617b5bbb9d38c"
+    ]
+  },
+  "nativeSource": {
+    "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+    "tree": "26b6e5301372d4ade91ca8955f7c1ccf5d0dee78",
+    "parents": [
+      "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef"
+    ]
+  },
+  "apkNativePin": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+    "engine": "4.6.3"
+  },
+  "limits": {
+    "newTestsRun": false,
+    "newAndroidEvidence": false,
+    "remoteOperations": false,
+    "rootFilesChanged": false,
+    "completeModernizationClaim": false,
+    "scope": "Original Chat 2/3/4 provenance and contract, not current Android/publication acceptance."
+  },
+  "contract": {
+    "path": "docs/nextgen/INTEGRATION_V1.md",
+    "commit": "bd87674744fd33d51b2e73f9ef42b1e2abb71864",
+    "bytes": 13955,
+    "sha256": "db624b8f3b29359138ce20bcb2c24435b5d5fa30c06c4bdf1c91f57c55b76229",
+    "version": 1,
+    "identity": [
+      "sessionId",
+      "taskId",
+      "revision",
+      "cancelEpoch",
+      "stepId"
+    ],
+    "actions": [
+      "explain",
+      "repeat",
+      "slower",
+      "hint",
+      "highlight",
+      "point",
+      "look",
+      "stop",
+      "proposeAnswer"
+    ],
+    "description": "Existing task/profile/storage/domain authority remains in Flutter. Exact active identity, allowlist and registered objects gate all suggestions. Candidate confirmation remains domain input. Native activity presents the lesson; actual playback binds subtitles/envelope/targets. Stop/pause/owner changes invalidate pending work; no automatic restart. This contract is not device acceptance."
+  },
+  "chat2": {
+    "branch": "feature/lumo-nextgen-learning-chat2-20261115",
+    "ownerCheckpoint": {
+      "commit": "573eb1a14045eb2e7071f250107d6b9a4fb3bf96",
+      "tree": "f5685d97c9395efc8b945e3825694547d0144f2e",
+      "parents": [
+        "7f555aa6d2e8fe1e2013a3f7c879f4566a800a12"
+      ]
+    },
+    "authorizedUncommittedOwnerFreeze": {
+      "commit": "8d612f074254548ef8e9296423222832c61f0375",
+      "tree": "f0732d517f3cf12959c3e54c03c5bf6a44de0076",
+      "parents": [
+        "afb6aadd3fb3e1ff2c5220603c86478a31e531be"
+      ]
+    },
+    "freezeManifest": {
+      "path": "docs/nextgen/freezes/2f_owner_20261115/manifest.json",
+      "commit": "8d612f074254548ef8e9296423222832c61f0375",
+      "bytes": 5499,
+      "sha256": "1c2b0459cb7c98763d34e413e2e9352eb4bdac4cb1f5c26d4ce3a21ed04d2f09"
+    },
+    "integrationComponents": {
+      "core": {
+        "commit": "24ef7e5d85d142c06ebdb5290bbc06efafa618b6",
+        "tree": "560397ce4732ff99ada109787bfff782b8386d3e",
+        "parents": [
+          "de2344417a55a542ab546cf5c524915cd5f49cd9"
+        ],
+        "directAncestorOfApkSource": false,
+        "changedLibFiles": 24,
+        "stillByteIdenticalCount": 8,
+        "laterModifiedCount": 16,
+        "laterModifiedPaths": [
+          "lib/features/learning/lab/learning_lab_screen.dart",
+          "lib/features/learning/nextgen/learning_coach_binding.dart",
+          "lib/features/learning/nextgen/module_task_scope.dart",
+          "lib/features/learning_modules/artikel_lernen/artikel_lernen_screen.dart",
+          "lib/features/learning_modules/bruchrechnen/bruchrechnen_screen.dart",
+          "lib/features/learning_modules/einmaleins/einmaleins_screen.dart",
+          "lib/features/learning_modules/formen/formen_screen.dart",
+          "lib/features/learning_modules/geld/geld_screen.dart",
+          "lib/features/learning_modules/mehrzahl/mehrzahl_screen.dart",
+          "lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart",
+          "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart",
+          "lib/features/learning_modules/uhr_lernen/uhr_lernen_screen.dart",
+          "lib/features/learning_modules/wortarten/wortarten_screen.dart",
+          "lib/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart",
+          "lib/features/learning_modules/zahlen_bis_100/zahlen_bis_100_screen.dart",
+          "lib/features/learning_modules/zeitformen/zeitformen_screen.dart"
+        ]
+      },
+      "guidedContent": {
+        "commit": "65851e34ac87480e0d6f337f68235bf93777e537",
+        "tree": "6c5c6ff693a0789d3255f5b4b3f27192fedfc13f",
+        "parents": [
+          "8d612f074254548ef8e9296423222832c61f0375"
+        ],
+        "directAncestorOfApkSource": false,
+        "changedLibFiles": 5,
+        "stillByteIdenticalCount": 3,
+        "laterModifiedCount": 2,
+        "laterModifiedPaths": [
+          "lib/features/learning/learning_content.dart",
+          "lib/features/tutoring/guided_lesson_screen.dart"
+        ]
+      },
+      "guidedFollowup": {
+        "commit": "daa3e2d867a7de307c721c1f38faff2effe0845e",
+        "tree": "0528795aa1ada95c3170241ecc6a22663ca0f465",
+        "parents": [
+          "65851e34ac87480e0d6f337f68235bf93777e537"
+        ],
+        "directAncestorOfApkSource": false,
+        "changedLibFiles": 2,
+        "stillByteIdenticalCount": 0,
+        "laterModifiedCount": 2,
+        "laterModifiedPaths": [
+          "lib/features/learning/learning_content.dart",
+          "lib/features/tutoring/guided_lesson_screen.dart"
+        ]
+      },
+      "specialistModules": {
+        "commit": "f23688e76904da9e373ba998843c0bbe41906542",
+        "tree": "afffa447b8fc4c322a6c40f8b881ea636d9c5e34",
+        "parents": [
+          "daa3e2d867a7de307c721c1f38faff2effe0845e"
+        ],
+        "directAncestorOfApkSource": false,
+        "changedLibFiles": 19,
+        "stillByteIdenticalCount": 19,
+        "laterModifiedCount": 0,
+        "laterModifiedPaths": []
+      }
+    },
+    "durableHostCheckpoints": [
+      {
+        "commit": "155c9b3f44658062db544fb4aeb44ace69822505",
+        "tree": "4616026b56ab3d368a8894b6acf36d2afdc21d83",
+        "parents": [
+          "a31080c90284b705853e5e340ce8063e4d007ed9"
+        ],
+        "ancestorOfApkSource": true
+      },
+      {
+        "commit": "a197a6a83647885d4f260142aa4a035648966513",
+        "tree": "f106e7c11d107419d939690baeec1dee26053b49",
+        "parents": [
+          "155c9b3f44658062db544fb4aeb44ace69822505"
+        ],
+        "ancestorOfApkSource": true
+      }
+    ],
+    "moduleSnapshotComparison": {
+      "sameCount": 18,
+      "changedCount": 0,
+      "same": [
+        {
+          "path": "lib/features/learning_modules/artikel_lernen/artikel_lernen_screen.dart",
+          "snapshotSha256": "c6c436beb3aac11f10da851d15559cd533e29cc191740dcb7d6eff7049c0fb3e",
+          "currentSha256": "c6c436beb3aac11f10da851d15559cd533e29cc191740dcb7d6eff7049c0fb3e"
+        },
+        {
+          "path": "lib/features/learning_modules/bruchrechnen/bruchrechnen_screen.dart",
+          "snapshotSha256": "3ebafd28a0398ae83efe27cd2c23c0733e8d6b27553c029b118d66465814cc62",
+          "currentSha256": "3ebafd28a0398ae83efe27cd2c23c0733e8d6b27553c029b118d66465814cc62"
+        },
+        {
+          "path": "lib/features/learning_modules/einmaleins/einmaleins_screen.dart",
+          "snapshotSha256": "8d06dd4f85f4399e7acf0d01fc74e35a6cd2140872c94c553739e6693673b49c",
+          "currentSha256": "8d06dd4f85f4399e7acf0d01fc74e35a6cd2140872c94c553739e6693673b49c"
+        },
+        {
+          "path": "lib/features/learning_modules/farben/farben_screen.dart",
+          "snapshotSha256": "862022e4d886b57d5f9fe5fdaa9db81593d1fff25d3e56e2f5fbfb25652dbded",
+          "currentSha256": "862022e4d886b57d5f9fe5fdaa9db81593d1fff25d3e56e2f5fbfb25652dbded"
+        },
+        {
+          "path": "lib/features/learning_modules/formen/formen_screen.dart",
+          "snapshotSha256": "f41d5b4083ad186e62ba69cd1f67990ff37da32668243699c5021c8a5ea7e589",
+          "currentSha256": "f41d5b4083ad186e62ba69cd1f67990ff37da32668243699c5021c8a5ea7e589"
+        },
+        {
+          "path": "lib/features/learning_modules/geld/geld_screen.dart",
+          "snapshotSha256": "d9c027bbe040fe4d9a431d9e6f2dd87bf231698fcc6d7041fa385eb4ed522f66",
+          "currentSha256": "d9c027bbe040fe4d9a431d9e6f2dd87bf231698fcc6d7041fa385eb4ed522f66"
+        },
+        {
+          "path": "lib/features/learning_modules/jahreszeiten/jahreszeiten_screen.dart",
+          "snapshotSha256": "ed4e5fa1f675666ef4ee6e6e8efaff8d4f5cfff6bee7ca98fbd663117be9d754",
+          "currentSha256": "ed4e5fa1f675666ef4ee6e6e8efaff8d4f5cfff6bee7ca98fbd663117be9d754"
+        },
+        {
+          "path": "lib/features/learning_modules/mehrzahl/mehrzahl_screen.dart",
+          "snapshotSha256": "e8434659878c6aa47dca30485ef3c30e8f63edb65daa0f4d91f3c5a86aa755e2",
+          "currentSha256": "e8434659878c6aa47dca30485ef3c30e8f63edb65daa0f4d91f3c5a86aa755e2"
+        },
+        {
+          "path": "lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart",
+          "snapshotSha256": "621e27be21059d66ea34f6d094ece254b30cf86b09cb0ef764753d2ea5cd762d",
+          "currentSha256": "621e27be21059d66ea34f6d094ece254b30cf86b09cb0ef764753d2ea5cd762d"
+        },
+        {
+          "path": "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart",
+          "snapshotSha256": "31ad5bde3d8cb897d3feebf85edf21f60e7a5643d1bb3f98c92053db4c7b3872",
+          "currentSha256": "31ad5bde3d8cb897d3feebf85edf21f60e7a5643d1bb3f98c92053db4c7b3872"
+        },
+        {
+          "path": "lib/features/learning_modules/tiere/tiere_screen.dart",
+          "snapshotSha256": "06335fa4649bc559d68b2f7c50bed9c0876b76f7c52c5a5e07e60536b3b2cc12",
+          "currentSha256": "06335fa4649bc559d68b2f7c50bed9c0876b76f7c52c5a5e07e60536b3b2cc12"
+        },
+        {
+          "path": "lib/features/learning_modules/uhr_lernen/uhr_lernen_screen.dart",
+          "snapshotSha256": "d75005c24c4c34bc6d5628a3bba6c44c3f63dc56610b6e3bcf2ab0f70368ec63",
+          "currentSha256": "d75005c24c4c34bc6d5628a3bba6c44c3f63dc56610b6e3bcf2ab0f70368ec63"
+        },
+        {
+          "path": "lib/features/learning_modules/verkehr/verkehr_screen.dart",
+          "snapshotSha256": "4d035b56ad5d402bf0fb72f0074b8f55cff0d8e2d679d8d0d955053bf6b92c1e",
+          "currentSha256": "4d035b56ad5d402bf0fb72f0074b8f55cff0d8e2d679d8d0d955053bf6b92c1e"
+        },
+        {
+          "path": "lib/features/learning_modules/wetter/wetter_screen.dart",
+          "snapshotSha256": "f85bd00c961bf5de8351d59c4ca32b4d8621405c5375905f4cf9a79729be108e",
+          "currentSha256": "f85bd00c961bf5de8351d59c4ca32b4d8621405c5375905f4cf9a79729be108e"
+        },
+        {
+          "path": "lib/features/learning_modules/wortarten/wortarten_screen.dart",
+          "snapshotSha256": "876d14c168fe3f2941ba0bfb5dbc5beb49f36c7bdd17b61e838ce958555f7696",
+          "currentSha256": "876d14c168fe3f2941ba0bfb5dbc5beb49f36c7bdd17b61e838ce958555f7696"
+        },
+        {
+          "path": "lib/features/learning_modules/zahlen_bis_100/zahlen_bis_100_screen.dart",
+          "snapshotSha256": "136fc4f02d9aa9f43b9a0626c147ca505eb82626390a9c0f897d7219c4ff5963",
+          "currentSha256": "136fc4f02d9aa9f43b9a0626c147ca505eb82626390a9c0f897d7219c4ff5963"
+        },
+        {
+          "path": "lib/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart",
+          "snapshotSha256": "2cd5083572830dc8b6d2462a314e4356716cd31b868300e17030eee36d1bfa57",
+          "currentSha256": "2cd5083572830dc8b6d2462a314e4356716cd31b868300e17030eee36d1bfa57"
+        },
+        {
+          "path": "lib/features/learning_modules/zeitformen/zeitformen_screen.dart",
+          "snapshotSha256": "399a03a682d68829c65d7be2d79fae62006747a59486407bf0439328b6e21769",
+          "currentSha256": "399a03a682d68829c65d7be2d79fae62006747a59486407bf0439328b6e21769"
+        }
+      ],
+      "changed": []
+    },
+    "evidence": [
+      {
+        "path": "docs/nextgen/CHAT2_OWNER_CORE_REVIEW.md",
+        "commit": "bd87674744fd33d51b2e73f9ef42b1e2abb71864",
+        "bytes": 5317,
+        "sha256": "92a8e5696ef6016b05099980c8812060f49009601735e81f5ca41bdadb0abae0"
+      },
+      {
+        "path": "docs/nextgen/CHAT2_GUIDED_CONTENT_REVIEW.md",
+        "commit": "bd87674744fd33d51b2e73f9ef42b1e2abb71864",
+        "bytes": 2758,
+        "sha256": "1884f5d02830493c9855525e560b4aaf32bf4bf2f168f391f1de5928a54f4894"
+      },
+      {
+        "path": "docs/nextgen/CHAT2_MODULE_CONNECTIONS_REVIEW.md",
+        "commit": "bd87674744fd33d51b2e73f9ef42b1e2abb71864",
+        "bytes": 4724,
+        "sha256": "5491d5399734b74443adbe6a217abb5fb4218af524dd13e5a3efa33e9009df6a"
+      },
+      {
+        "path": "docs/nextgen/MODULE_CONNECTIONS.json",
+        "commit": "bd87674744fd33d51b2e73f9ef42b1e2abb71864",
+        "bytes": 36559,
+        "sha256": "afafb77ad3f8f6aeb8a7d19a68c0446ffd399e6c71a53925bc713a304ae4d38c"
+      }
+    ],
+    "qualification": "Selective integration followed by additional fixes; WIP was explicitly frozen, not a clean original-owner final delivery. The integrated 18 screen hashes match. Generic native task cards do not prove specialized spatial lessons for all modules."
+  },
+  "chat3": {
+    "branch": "art/lumo-nextgen-avatar-20261115-54fe",
+    "observedOwnerHead": "20fb9f71939f4acdb7dd87cbca54a5d9da36e504",
+    "producerFilesWereUncommitted": true,
+    "snapshots": [
+      {
+        "path": "docs/nextgen/evidence/avatar-runtime-snapshot-01.json",
+        "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+        "bytes": 5795,
+        "sha256": "9e15aeff6bfba213ce59ae90e720db878934f38d53984411c87e30db45d880f0"
+      },
+      {
+        "path": "docs/nextgen/evidence/avatar-authoring-snapshot-01.json",
+        "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+        "bytes": 2895,
+        "sha256": "270360805848da252d410b7b92864618d049d0f6109c44b5ccf7dd0461ca9ba2"
+      }
+    ],
+    "runtimeIntegration": [
+      {
+        "commit": "505ed43c49c6a87885ba8a1a8d76c42a495c274e",
+        "tree": "157ea331c32a7920a669f306035443aceac4dfb8",
+        "parents": [
+          "36bb426758b8125ef805267ba20f321130931c09"
+        ],
+        "ancestorOfNativeSource": false
+      },
+      {
+        "commit": "7b3f327deab471000488f9bed1d82ea21a77bdc8",
+        "tree": "d22b545c6e48b301d5d735e3f4748a3610761033",
+        "parents": [
+          "0656869c9167a424d56ca99acf9e39b00d024bce"
+        ],
+        "ancestorOfNativeSource": true
+      },
+      {
+        "commit": "e5a36bcecf3f9d5b0f59b25848a2cccdaf441a2f",
+        "tree": "b94c1b4d2eb5cf9806095eefb15e48d3a2e290ff",
+        "parents": [
+          "a87fd58f275ca08102c87dbc658b2433ae8b6ea4"
+        ],
+        "ancestorOfNativeSource": true
+      }
+    ],
+    "runtimeComparison": {
+      "sameCount": 24,
+      "changedCount": 4,
+      "same": [
+        {
+          "path": "assets/lumo_next/character/ATTRIBUTION.md",
+          "snapshotSha256": "70233469e3f6cd6094aeaef98fa368b75dcae4164cdd99553f3838619a4e8495",
+          "currentSha256": "70233469e3f6cd6094aeaef98fa368b75dcae4164cdd99553f3838619a4e8495"
+        },
+        {
+          "path": "assets/lumo_next/character/Lumo-Learning.glb",
+          "snapshotSha256": "cc210fb03bd831f21f0ba99aa12c7b7ef60f2fb5a38e0ca30a8b059d51f08163",
+          "currentSha256": "cc210fb03bd831f21f0ba99aa12c7b7ef60f2fb5a38e0ca30a8b059d51f08163"
+        },
+        {
+          "path": "assets/lumo_next/character/lumo_albedo.png",
+          "snapshotSha256": "5ca4e69c6420e8ce56f714e9a03fe1303d102706e4ce7b29443ec6b990b613d0",
+          "currentSha256": "5ca4e69c6420e8ce56f714e9a03fe1303d102706e4ce7b29443ec6b990b613d0"
+        },
+        {
+          "path": "assets/lumo_next/character/lumo_normal.png",
+          "snapshotSha256": "02fe4e8a6e876962eac9bef283e315eb64e9095b72165349d9f20d389619ff09",
+          "currentSha256": "02fe4e8a6e876962eac9bef283e315eb64e9095b72165349d9f20d389619ff09"
+        },
+        {
+          "path": "assets/lumo_next/character/lumo_orm.png",
+          "snapshotSha256": "b74eb3404c784dc09284d3945464d824cd1947f6a1681d8ebe7dca58e44c2a5b",
+          "currentSha256": "b74eb3404c784dc09284d3945464d824cd1947f6a1681d8ebe7dca58e44c2a5b"
+        },
+        {
+          "path": "assets/lumo_next/learning/backdrop_module.glb",
+          "snapshotSha256": "2a0e230baa3d42606559fb48e0aa138b2dd769087ecc687998e41bdae8f8eb1f",
+          "currentSha256": "2a0e230baa3d42606559fb48e0aa138b2dd769087ecc687998e41bdae8f8eb1f"
+        },
+        {
+          "path": "assets/lumo_next/learning/banana.glb",
+          "snapshotSha256": "eb3fb9f86c9e501e6516574a4da597bddf5f5792abaf346e573d4efebf352acb",
+          "currentSha256": "eb3fb9f86c9e501e6516574a4da597bddf5f5792abaf346e573d4efebf352acb"
+        },
+        {
+          "path": "assets/lumo_next/learning/count_token_gold.glb",
+          "snapshotSha256": "a3a895d5d4fbbf20b328299d1edfba58c8053223cff6556726566cf33bd56ec9",
+          "currentSha256": "a3a895d5d4fbbf20b328299d1edfba58c8053223cff6556726566cf33bd56ec9"
+        },
+        {
+          "path": "assets/lumo_next/learning/count_token_teal.glb",
+          "snapshotSha256": "5049cd76f4feb2ca4ea0c8516c629524dcc19a03b9dac55d2edbd76456f00dac",
+          "currentSha256": "5049cd76f4feb2ca4ea0c8516c629524dcc19a03b9dac55d2edbd76456f00dac"
+        },
+        {
+          "path": "assets/lumo_next/learning/floor_module.glb",
+          "snapshotSha256": "d8c3e45c43d94bf00a9d17bdc1c4f7ad39fcc61d280aed3af6a04887d549f6f3",
+          "currentSha256": "d8c3e45c43d94bf00a9d17bdc1c4f7ad39fcc61d280aed3af6a04887d549f6f3"
+        },
+        {
+          "path": "assets/lumo_next/learning/letter_tile.glb",
+          "snapshotSha256": "360360ce66410e52e794fb8c608a7b6a02ddd99558c064a1579c115f0a1dbc53",
+          "currentSha256": "360360ce66410e52e794fb8c608a7b6a02ddd99558c064a1579c115f0a1dbc53"
+        },
+        {
+          "path": "assets/lumo_next/learning/manifest.json",
+          "snapshotSha256": "3788b5d924d366b6b639bd497de38f6f8d8578b1e618804a9f679cd9809435d6",
+          "currentSha256": "3788b5d924d366b6b639bd497de38f6f8d8578b1e618804a9f679cd9809435d6"
+        },
+        {
+          "path": "assets/lumo_next/learning/pedestal.glb",
+          "snapshotSha256": "78a1fc33fc921f1d5544667149936bca7ec656951959942a987e35487c85c173",
+          "currentSha256": "78a1fc33fc921f1d5544667149936bca7ec656951959942a987e35487c85c173"
+        },
+        {
+          "path": "assets/lumo_next/learning/plant_study.glb",
+          "snapshotSha256": "73782e6c3e9bf1472416f68d6f7d10b817fe18768e01e51b3c8a849560b2227a",
+          "currentSha256": "73782e6c3e9bf1472416f68d6f7d10b817fe18768e01e51b3c8a849560b2227a"
+        },
+        {
+          "path": "assets/lumo_next/learning/provenance.json",
+          "snapshotSha256": "d3cbea77b1047b3b6049dd2f3efda879835d129389c0c3c23daea8a7ab0cf367",
+          "currentSha256": "d3cbea77b1047b3b6049dd2f3efda879835d129389c0c3c23daea8a7ab0cf367"
+        },
+        {
+          "path": "assets/lumo_next/learning/shape_circle.glb",
+          "snapshotSha256": "919422efa64d11d2177f2f17de51f0d1259f2a81585f9da4aa32e10120edd539",
+          "currentSha256": "919422efa64d11d2177f2f17de51f0d1259f2a81585f9da4aa32e10120edd539"
+        },
+        {
+          "path": "assets/lumo_next/learning/shape_hexagon.glb",
+          "snapshotSha256": "d7317d1ea6118c69499adef40bf37110d7278b9a5ec10339f8d969e6c4f38f38",
+          "currentSha256": "d7317d1ea6118c69499adef40bf37110d7278b9a5ec10339f8d969e6c4f38f38"
+        },
+        {
+          "path": "assets/lumo_next/learning/shape_square.glb",
+          "snapshotSha256": "549d7b298540acae6a70bc442b47df26f21088cfdf8c2ad8fc9e3730e0201aa6",
+          "currentSha256": "549d7b298540acae6a70bc442b47df26f21088cfdf8c2ad8fc9e3730e0201aa6"
+        },
+        {
+          "path": "assets/lumo_next/learning/shape_triangle.glb",
+          "snapshotSha256": "62d83f5a6e47aae0d0d67326fd8ffee7b7c9ff70b471b7ff10e0f044f0234982",
+          "currentSha256": "62d83f5a6e47aae0d0d67326fd8ffee7b7c9ff70b471b7ff10e0f044f0234982"
+        },
+        {
+          "path": "assets/lumo_next/learning/syllable_tile.glb",
+          "snapshotSha256": "1bb3106769c4606070b79263b8e0109988f0ba54b84a8e980f562d70d753c7ee",
+          "currentSha256": "1bb3106769c4606070b79263b8e0109988f0ba54b84a8e980f562d70d753c7ee"
+        },
+        {
+          "path": "assets/lumo_next/learning/ten_bundle.glb",
+          "snapshotSha256": "7e017975349f1604b8db8a48264064cc467724f35b71197e9d97fb47c09c67d1",
+          "currentSha256": "7e017975349f1604b8db8a48264064cc467724f35b71197e9d97fb47c09c67d1"
+        },
+        {
+          "path": "assets/lumo_next/learning/ten_frame.glb",
+          "snapshotSha256": "d2efd217fb911d4cb9d15dd86d257a54b3b3bcd7d0f67a9d879bb80921694a52",
+          "currentSha256": "d2efd217fb911d4cb9d15dd86d257a54b3b3bcd7d0f67a9d879bb80921694a52"
+        },
+        {
+          "path": "scripts/lumo_next/learning_asset_meshes.gd",
+          "snapshotSha256": "178b2cb62a55a07b2ef97600fb768a48de988a1e0cce38e6c0a0bf6674afc89d",
+          "currentSha256": "178b2cb62a55a07b2ef97600fb768a48de988a1e0cce38e6c0a0bf6674afc89d"
+        },
+        {
+          "path": "scenes/learning/learning_world.tscn",
+          "snapshotSha256": "fe7a004d16558b6f017dbb3ec10b27a3f7682da7e3d6469e8166fd957e953d97",
+          "currentSha256": "fe7a004d16558b6f017dbb3ec10b27a3f7682da7e3d6469e8166fd957e953d97"
+        }
+      ],
+      "changed": [
+        {
+          "path": "scripts/lumo_next/avatar_director.gd",
+          "snapshotSha256": "891617cbfe9cb4efbeaa695f47469e9a4c809eecd2b60bea20055dc0a77112b6",
+          "currentSha256": "f3d805d4decf7cc9f0b90c52e44151bdafbef58c14ef97755af3563f0029441e"
+        },
+        {
+          "path": "scripts/lumo_next/learning_lumo_actor.gd",
+          "snapshotSha256": "4a7b3318896d545bebfc85b37b8ec862bec7e2cbb2b8c43fccfb9cb71b0bfc66",
+          "currentSha256": "3bf21847f6384873ab22aae368cf3a2fb2826f09efa0bd19cab274055fbe521b"
+        },
+        {
+          "path": "scripts/lumo_next/learning_target_registry.gd",
+          "snapshotSha256": "9c541b37ace5d5269dbbffe2ba1b195965532e2d5fab7d2b356722be45b9b031",
+          "currentSha256": "849ce50604846c1459eca3a60fa69dc7928e0580c61c1a1dcee3129103022884"
+        },
+        {
+          "path": "scripts/lumo_next/learning_world_next.gd",
+          "snapshotSha256": "2c832e5d471282d04e8a5a8784042bfc97f8a598c280cd78b0ea27a4fd52b873",
+          "currentSha256": "4c6ebf3659ae9c9c7d19a530c39d0977e500115ed585098007350fa0ddf727e8"
+        }
+      ]
+    },
+    "authoringComparison": {
+      "sameCount": 14,
+      "changedCount": 0,
+      "same": [
+        {
+          "path": "art/lumo_next/character/Lumo-Learning.blend",
+          "snapshotSha256": "7ce9c6a6b6f7e92747cf9d97eca62ab0a6917d3a85ce16c4fe1a58e731618a9d",
+          "currentSha256": "7ce9c6a6b6f7e92747cf9d97eca62ab0a6917d3a85ce16c4fe1a58e731618a9d"
+        },
+        {
+          "path": "art/lumo_next/character/production_manifest.json",
+          "snapshotSha256": "76665079cfb7453b8aaf8a30d77087ebce087f262a32919b05ed12eb2c608379",
+          "currentSha256": "76665079cfb7453b8aaf8a30d77087ebce087f262a32919b05ed12eb2c608379"
+        },
+        {
+          "path": "art/lumo_next/learning/lumo_learning_assets.blend",
+          "snapshotSha256": "fca96aebd372a75842acfeff8845fb0099d22652451d16e5d28c0c8f1af71cf0",
+          "currentSha256": "fca96aebd372a75842acfeff8845fb0099d22652451d16e5d28c0c8f1af71cf0"
+        },
+        {
+          "path": "art/lumo_next/learning/source_validation.json",
+          "snapshotSha256": "ef0a181364d1ecee9d09df69dd61540f9134aa9609cdaf41d795436e28890ddf",
+          "currentSha256": "ef0a181364d1ecee9d09df69dd61540f9134aa9609cdaf41d795436e28890ddf"
+        },
+        {
+          "path": "art/lumo_next/learning/import_validation.json",
+          "snapshotSha256": "e824fb7b16583f1dcf23681680c75274b648ce035fc116ba16acbf64243feb1f",
+          "currentSha256": "e824fb7b16583f1dcf23681680c75274b648ce035fc116ba16acbf64243feb1f"
+        },
+        {
+          "path": "art/lumo_next/learning/provenance.json",
+          "snapshotSha256": "d3cbea77b1047b3b6049dd2f3efda879835d129389c0c3c23daea8a7ab0cf367",
+          "currentSha256": "d3cbea77b1047b3b6049dd2f3efda879835d129389c0c3c23daea8a7ab0cf367"
+        },
+        {
+          "path": "art/lumo_next/learning/manifest.json",
+          "snapshotSha256": "3788b5d924d366b6b639bd497de38f6f8d8578b1e618804a9f679cd9809435d6",
+          "currentSha256": "3788b5d924d366b6b639bd497de38f6f8d8578b1e618804a9f679cd9809435d6"
+        },
+        {
+          "path": "art/lumo_next/learning/README.md",
+          "snapshotSha256": "1ba996037bb1045179f75240e48ed7af742e0ba09ad0622f9b5a5fb242217291",
+          "currentSha256": "1ba996037bb1045179f75240e48ed7af742e0ba09ad0622f9b5a5fb242217291"
+        },
+        {
+          "path": "art/lumo_next/learning/textures/lumo_learning_atlas.png",
+          "snapshotSha256": "5240b4db503235198283356cc96432a4224ae884069febe19546a97ef3c427af",
+          "currentSha256": "5240b4db503235198283356cc96432a4224ae884069febe19546a97ef3c427af"
+        },
+        {
+          "path": "art/lumo_next/learning/textures/lumo_learning_roughness.png",
+          "snapshotSha256": "31408719a6df9371484c594937209065165ee877874d0aff68fe983ce15b0f13",
+          "currentSha256": "31408719a6df9371484c594937209065165ee877874d0aff68fe983ce15b0f13"
+        },
+        {
+          "path": "tools/lumo_next/build_character.py",
+          "snapshotSha256": "986bfded892e55f9bfc188302c8409d5a4050b2edb4354fc45fae4e9136023c8",
+          "currentSha256": "986bfded892e55f9bfc188302c8409d5a4050b2edb4354fc45fae4e9136023c8"
+        },
+        {
+          "path": "tools/lumo_next/build_learning_assets.py",
+          "snapshotSha256": "e44ccc3cc5440ade3bd416900ffe5be2111f36d22cef9814b505d3d5d3dbc39d",
+          "currentSha256": "e44ccc3cc5440ade3bd416900ffe5be2111f36d22cef9814b505d3d5d3dbc39d"
+        },
+        {
+          "path": "tools/lumo_next/create_review_project.py",
+          "snapshotSha256": "3ec373e4e724415e987c05cc490c13832ca70d4903410c5dee69ad9a92bfeaef",
+          "currentSha256": "3ec373e4e724415e987c05cc490c13832ca70d4903410c5dee69ad9a92bfeaef"
+        },
+        {
+          "path": "tools/lumo_next/capture_learning_scene.gd",
+          "snapshotSha256": "5210eabf3114f2dbe427b2ff0f985b2adfafd8876a53ddc2e3c9c59bf87a5c44",
+          "currentSha256": "5210eabf3114f2dbe427b2ff0f985b2adfafd8876a53ddc2e3c9c59bf87a5c44"
+        }
+      ],
+      "changed": []
+    },
+    "activeConsumerFiles": [
+      {
+        "path": "scenes/learning/learning_world.tscn",
+        "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+        "bytes": 197,
+        "sha256": "fe7a004d16558b6f017dbb3ec10b27a3f7682da7e3d6469e8166fd957e953d97"
+      },
+      {
+        "path": "scripts/lumo_next/learning_world_next.gd",
+        "commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+        "bytes": 17155,
+        "sha256": "4c6ebf3659ae9c9c7d19a530c39d0977e500115ed585098007350fa0ddf727e8"
+      }
+    ],
+    "qualification": "Runtime assets and editable authoring sources were hash-frozen from uncommitted owner files. Four runtime scripts were later adapted. The routed learning scene uses LearningWorldNext and its actor/assets; no original-owner final commit is claimed."
+  },
+  "chat4": {
+    "branch": "feature/lumo-nextgen-conversation-20261115-403a",
+    "producerCheckpoint": {
+      "commit": "818096d4ec2e1b8abfad53a14b38cea0538ec250",
+      "tree": "555a48e5c895cbda05df35f2d16b78f95d207672",
+      "parents": [
+        "879e2997528ab8f07ea49772bff92e15d5b61428"
+      ]
+    },
+    "selectivePort": {
+      "commit": "b40c30bbe622085ebf2244c76d0d69236c194b34",
+      "tree": "65305350e23df3d2e6b4dbafd465a2c86d0988ec",
+      "parents": [
+        "0e858386b6c8086daaf3f6eadc2f3f8be9154351"
+      ]
+    },
+    "localRootCounterpart": {
+      "commit": "0904ca57a60e97f9480e62695d334c0163b798a5",
+      "tree": "b87a85d3e7a7f6e95351e3f8a12dac5efcea3646",
+      "parents": [
+        "ece17fa6fd018087dcb68a9ed317c3429bd81c74"
+      ]
+    },
+    "durableHostCheckpoint": {
+      "commit": "a31080c90284b705853e5e340ce8063e4d007ed9",
+      "tree": "b87a85d3e7a7f6e95351e3f8a12dac5efcea3646",
+      "parents": [
+        "7c1d2be340a28eb520aa8c81f575f70994b06aaf"
+      ],
+      "ancestorOfApkSource": true
+    },
+    "recognizerByteBindings": [
+      {
+        "path": "lib/core/lumo_speech_listener.dart",
+        "sameAcrossProducerPortDurableIntegrationAndApk": true,
+        "versions": [
+          {
+            "path": "lib/core/lumo_speech_listener.dart",
+            "commit": "818096d4ec2e1b8abfad53a14b38cea0538ec250",
+            "bytes": 19020,
+            "sha256": "c05c85d68b95b77732bb48d52d371baec5516b189477813ab36c46f2c3d0c9fb"
+          },
+          {
+            "path": "lib/core/lumo_speech_listener.dart",
+            "commit": "b40c30bbe622085ebf2244c76d0d69236c194b34",
+            "bytes": 19020,
+            "sha256": "c05c85d68b95b77732bb48d52d371baec5516b189477813ab36c46f2c3d0c9fb"
+          },
+          {
+            "path": "lib/core/lumo_speech_listener.dart",
+            "commit": "a31080c90284b705853e5e340ce8063e4d007ed9",
+            "bytes": 19020,
+            "sha256": "c05c85d68b95b77732bb48d52d371baec5516b189477813ab36c46f2c3d0c9fb"
+          },
+          {
+            "path": "lib/core/lumo_speech_listener.dart",
+            "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+            "bytes": 19020,
+            "sha256": "c05c85d68b95b77732bb48d52d371baec5516b189477813ab36c46f2c3d0c9fb"
+          }
+        ]
+      },
+      {
+        "path": "tools/auto_install/LumoLocalRecognition.kt",
+        "sameAcrossProducerPortDurableIntegrationAndApk": true,
+        "versions": [
+          {
+            "path": "tools/auto_install/LumoLocalRecognition.kt",
+            "commit": "818096d4ec2e1b8abfad53a14b38cea0538ec250",
+            "bytes": 14601,
+            "sha256": "637ef475067f234ec401225059cb3cf73e6bc81367ea1f9ea010ff0ee58ddc65"
+          },
+          {
+            "path": "tools/auto_install/LumoLocalRecognition.kt",
+            "commit": "b40c30bbe622085ebf2244c76d0d69236c194b34",
+            "bytes": 14601,
+            "sha256": "637ef475067f234ec401225059cb3cf73e6bc81367ea1f9ea010ff0ee58ddc65"
+          },
+          {
+            "path": "tools/auto_install/LumoLocalRecognition.kt",
+            "commit": "a31080c90284b705853e5e340ce8063e4d007ed9",
+            "bytes": 14601,
+            "sha256": "637ef475067f234ec401225059cb3cf73e6bc81367ea1f9ea010ff0ee58ddc65"
+          },
+          {
+            "path": "tools/auto_install/LumoLocalRecognition.kt",
+            "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+            "bytes": 14601,
+            "sha256": "637ef475067f234ec401225059cb3cf73e6bc81367ea1f9ea010ff0ee58ddc65"
+          }
+        ]
+      }
+    ],
+    "parallelTaskDialogueAbsentAtApk": true,
+    "qualification": "Only compatible speech listener/native recognition and related channel/ownership wiring were ported. The alternate Chat 4 dialogue scope was not integrated; this is not a full branch delivery."
+  },
+  "canonicalEaFoundation": {
+    "branch": "integration/lumo-learning-generation-20261115-ea41",
+    "contractCommit": {
+      "commit": "421a0c3261a57dd15733531058cf2291d765d38d",
+      "tree": "d1abfad97bc9df881d53e02d0ab5229a69389c87",
+      "parents": [
+        "29812a2223f7d567dbd8d5098f4ab7803ebe1dc4"
+      ]
+    },
+    "flutterConversationCommit": {
+      "commit": "9c0eba6c540e6262d6238236a3999971c8799ce4",
+      "tree": "57124cf7a51546ef607634ba0e0a0d27b44cd9a1",
+      "parents": [
+        "79529b133b2b5640442948616d80596047220e67"
+      ]
+    },
+    "nativeConversationCommit": {
+      "commit": "79529b133b2b5640442948616d80596047220e67",
+      "tree": "e647df05a305d1ab5b2ae3566c0dfa911768ca94",
+      "parents": [
+        "b4672643bd231b91aec803b333e839b76c3f5f18"
+      ]
+    },
+    "contractByteBindings": [
+      {
+        "path": "lib/core/lumo_learning_session_contract.dart",
+        "commit": "421a0c3261a57dd15733531058cf2291d765d38d",
+        "bytes": 3686,
+        "sha256": "1c8d8f2655faef057089d845a89920822409bfa91c9388e5bed7c70d62caf18d"
+      },
+      {
+        "path": "lib/core/lumo_learning_session_contract.dart",
+        "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+        "bytes": 3686,
+        "sha256": "1c8d8f2655faef057089d845a89920822409bfa91c9388e5bed7c70d62caf18d"
+      }
+    ],
+    "qualification": "Canonical EA API and controllers were retained and subsequently guarded by integration fixes; do not attribute the entire conversation architecture to Chat 4."
+  },
+  "historyQualification": "Some local producer/integration commits were retained as recorded source objects but are not literal ancestors of the API-published APK branch. Durable checkpoint ancestry and direct file hashes, not an assumed full branch merge, establish inclusion."
+}
