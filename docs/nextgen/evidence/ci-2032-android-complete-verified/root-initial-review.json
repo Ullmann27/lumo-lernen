@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-16T10:42:33.316128+00:00",
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "native": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "workflowRun": 43837592237,
+  "attempt": 2,
+  "androidJob": 133221738048,
+  "status": "PASS_WITH_LIMITATIONS",
+  "original": {
+    "runId": "5cd623517c434647bf89d7d7207d0ab3",
+    "status": "PASS_WITH_LIMITATIONS",
+    "startedAt": "2026-11-16T10:03:55Z",
+    "finishedAt": "2026-11-16T10:12:59Z",
+    "resultSha256": "c3a13283027e12fe3a7553bd2c48b9e23d09b9494643cda40012c1ffb58263e7",
+    "screenshots": 34,
+    "videos": 14
+  },
+  "reference": {
+    "runId": "6721e67969784d1383889ba368588788",
+    "status": "PASS_WITH_LIMITATIONS",
+    "startedAt": "2026-11-16T10:12:59Z",
+    "finishedAt": "2026-11-16T10:30:44Z",
+    "resultSha256": "5815863d0a9cb59ba025291196250418c3e529b1e830e17a347232e63548008f",
+    "screenshots": 26,
+    "videos": 14
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2032,
+    "versionName": "0.13.20",
+    "sha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "whyTwo": {
+    "beforeMoved": 0,
+    "afterMoved": 2,
+    "manualMoveAfterQuestion": false,
+    "typedNotSpoken": true
+  },
+  "bananaRepeat": {
+    "pid": 9392,
+    "utterance_ids": [
+      19,
+      20,
+      21,
+      22
+    ],
+    "segments": 4,
+    "profile": "lumo-free-supertonic-de-v1",
+    "evidence": "ordered MediaPlayer started/completed callbacks",
+    "spoken_words_in_log": false,
+    "audible_quality_verified": false
+  },
+  "currentNativeStop": {
+    "pid": 10808,
+    "activeBeforeStop": {
+      "pid": 10808,
+      "utterance_id": 13,
+      "profile": "lumo-free-supertonic-de-v1",
+      "started_observed": true,
+      "completed_observed": false
+    },
+    "touch": {
+      "label": "Stimme stoppen",
+      "bounds": [
+        106.0,
+        1952.0,
+        472.0,
+        1997.0
+      ],
+      "capture": {
+        "file": "0336-runtime-voice-stop.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "267436ccce2c75024946487db7f377bc7ed6cd3847857af03f71665029250951"
+      },
+      "source_sha256": "267436ccce2c75024946487db7f377bc7ed6cd3847857af03f71665029250951",
+      "stable_observed_target": true,
+      "point": [
+        289,
+        1974
+      ],
+      "elapsed_before_input": 25.75739522599997
+    },
+    "quietSeconds": 13.578335915000025,
+    "minimumQuietSeconds": 5,
+    "noLateNewSegments": true,
+    "activeIdCompletedAfterStop": false,
+    "returnedLabel": "Schritt anhören",
+    "acousticStopVerified": false,
+    "mouthGestureStopVerified": false
+  },
+  "pattern": {
+    "task": {
+      "prompt": "Das Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?",
+      "sequence": [
+        "Quadrat",
+        "Kreis",
+        "Quadrat",
+        "Kreis"
+      ],
+      "period": 2,
+      "next": "Quadrat"
+    },
+    "returned_task": {
+      "prompt": "Das Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?",
+      "sequence": [
+        "Quadrat",
+        "Kreis",
+        "Quadrat",
+        "Kreis"
+      ],
+      "period": 2,
+      "next": "Quadrat"
+    },
+    "initial_playback": {
+      "pid": 12085,
+      "utterance_ids": [
+        3
+      ],
+      "segments": 1,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "hint_playback": {
+      "pid": 12085,
+      "utterance_ids": [
+        7
+      ],
+      "segments": 1,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "observed_group_hint": "Die kleinste Gruppe hat 2 Zeichen",
+    "native_proposal": "Quadrat",
+    "native_confirmation_performed": false,
+    "core_answer_submitted": false,
+    "core_submission_boundary": "A Core answer-card tap submits directly; no separate confirmation exists for a native-only proposal.",
+    "preservation": {
+      "profile_id": "1794824016843427",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": false
+    },
+    "core_submission": {
+      "status": "NOT_EXERCISED",
+      "reason": "No simultaneous unique observed Core answer heading and four enabled shape cards; ungraded roundtrip remains separately evidenced."
+    }
+  },
+  "resize": {
+    "layouts": [
+      "720x1600@320dpi",
+      "1768x2208@360dpi",
+      "1080x2520@420dpi",
+      "1968x2184@420dpi"
+    ],
+    "observations": [
+      {
+        "layout": "compact",
+        "width": 720,
+        "height": 1600,
+        "android_test_density_dpi": 320,
+        "wm_size": "Physical size: 1080x2340\nOverride size: 720x1600",
+        "wm_density": "Physical density: 440\nOverride density: 320",
+        "physical_ppi_claimed": false,
+        "initial_screenshot": {
+          "file": "0195-bridge-compact-before-resize.png",
+          "width": 1080,
+          "height": 2340,
+          "sha256": "fd30c17767d9df67079eaba2cc18c91cc5ac8118a9f7d547cda24903d5887635",
+          "render_readiness": {
+            "width": 1080,
+            "height": 2340,
+            "content_entropy_bits": 5.868,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        },
+        "screenshot": {
+          "file": "0201-bridge-compact.png",
+          "width": 720,
+          "height": 1600,
+          "sha256": "ab6f3f1c0b5b2318e4ba089f85095e37c17f5bcf7cb589895128c15e740f3600",
+          "render_readiness": {
+            "width": 720,
+            "height": 1600,
+            "content_entropy_bits": 5.861,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        },
+        "preservation": {
+          "profile_id": "1794823506268424",
+          "learning_keys_compared": 2,
+          "same_task_checkpoint": true
+        }
+      },
+      {
+        "layout": "expanded",
+        "width": 1768,
+        "height": 2208,
+        "android_test_density_dpi": 360,
+        "wm_size": "Physical size: 1080x2340\nOverride size: 1768x2208",
+        "wm_density": "Physical density: 440\nOverride density: 360",
+        "physical_ppi_claimed": false,
+        "initial_screenshot": {
+          "file": "0205-bridge-expanded-before-resize.png",
+          "width": 720,
+          "height": 1600,
+          "sha256": "ab6f3f1c0b5b2318e4ba089f85095e37c17f5bcf7cb589895128c15e740f3600",
+          "render_readiness": {
+            "width": 720,
+            "height": 1600,
+            "content_entropy_bits": 5.861,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        },
+        "screenshot": {
+          "file": "0211-bridge-expanded.png",
+          "width": 1768,
+          "height": 2208,
+          "sha256": "f6b9ff0e58c85a5c018a73b89748e2b71432502e3d61e32ee6691fda500970f0",
+          "render_readiness": {
+            "width": 1768,
+            "height": 2208,
+            "content_entropy_bits": 4.819,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        },
+        "preservation": {
+          "profile_id": "1794823506268424",
+          "learning_keys_compared": 2,
+          "same_task_checkpoint": true
+        }
+      },
+      {
+        "layout": "fold7-cover-emulated",
+        "width": 1080,
+        "height": 2520,
+        "android_test_density_dpi": 420,
+        "wm_size": "Physical size: 1080x2340\nOverride size: 1080x2520",
+        "wm_density": "Physical density: 440\nOverride density: 420",
+        "physical_ppi_claimed": false,
+        "initial_screenshot": {
+          "file": "0215-bridge-fold7-cover-emulated-before-resize.png",
+          "width": 1768,
+          "height": 2208,
+          "sha256": "f6b9ff0e58c85a5c018a73b89748e2b71432502e3d61e32ee6691fda500970f0",
+          "render_readiness": {
+            "width": 1768,
+            "height": 2208,
+            "content_entropy_bits": 4.819,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        },
+        "screenshot": {
+          "file": "0221-bridge-fold7-cover-emulated.png",
+          "width": 1080,
+          "height": 2520,
+          "sha256": "8c715cca8bd093de7c5255378c3815ff71376df481002d9cb321a42b1f6ed4c2",
+          "render_readiness": {
+            "width": 1080,
+            "height": 2520,
+            "content_entropy_bits": 5.981,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        },
+        "preservation": {
+          "profile_id": "1794823506268424",
+          "learning_keys_compared": 2,
+          "same_task_checkpoint": true
+        }
+      },
+      {
+        "layout": "fold7-inner-emulated",
+        "width": 1968,
+        "height": 2184,
+        "android_test_density_dpi": 420,
+        "wm_size": "Physical size: 1080x2340\nOverride size: 1968x2184",
+        "wm_density": "Physical density: 440\nOverride density: 420",
+        "physical_ppi_claimed": false,
+        "initial_screenshot": {
+          "file": "0225-bridge-fold7-inner-emulated-before-resize.png",
+          "width": 1080,
+          "height": 2520,
+          "sha256": "8c715cca8bd093de7c5255378c3815ff71376df481002d9cb321a42b1f6ed4c2",
+          "render_readiness": {
+            "width": 1080,
+            "height": 2520,
+            "content_entropy_bits": 5.981,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        },
+        "screenshot": {
+          "file": "0231-bridge-fold7-inner-emulated.png",
+          "width": 1968,
+          "height": 2184,
+          "sha256": "0fc40c60e2c933e829f2dad30c7f8ac3f03b19aa201dfd5cca2bffdeb6e7601b",
+          "render_readiness": {
+            "width": 1968,
+            "height": 2184,
+            "content_entropy_bits": 4.553,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        },
+        "preservation": {
+          "profile_id": "1794823506268424",
+          "learning_keys_compared": 2,
+          "same_task_checkpoint": true
+        }
+      }
+    ],
+    "restored_display_preservation": {
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true
+    },
+    "video_dimension_scope": "The encoder size stays fixed within each clip and is recorded from ffprobe. Target display pixels are verified independently by WM and full-size PNGs.",
+    "fold7_pixel_specification_source": "https://news.samsung.com/global/samsung-galaxy-z-fold7-raising-the-bar-for-smartphones",
+    "fold7_scope": "Emulated Galaxy Z Fold7 portrait resolutions with a chosen Android 420-dpi test density. This logical density is not the physical pixel density (PPI).",
+    "physical_fold_verified": false,
+    "hinge_verified": false
+  },
+  "recognition": "NOT_VERIFIED",
+  "performance": {
+    "sampleCount": 47,
+    "windowCount": 7,
+    "measuredWindowSeconds": 38.689638,
+    "sceneObservedSeconds": 43.90826878300004,
+    "meanProcessFrameIntervalMs": 823.1837872340425,
+    "processRateHz": 1.2147955480999848,
+    "over16_7MsCount": 47,
+    "worstWindowP95Ms": 1012.011,
+    "worstWindowP99Ms": 1012.011,
+    "jointSpeechFoxEffectsSamples": 12,
+    "drawCallsMean": 268.0,
+    "primitivesMean": 318007.5106382979,
+    "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+    "renderer": "gl_compatibility",
+    "physical60FpsVerified": false,
+    "boundary": "Actual Godot process intervals in a software-rendered API35 x86 emulator; per-window percentiles, not global/display-present timestamps"
+  },
+  "rootActuallyViewedOriginalImages": [
+    "original-android/0462-why-native-ten-and-three-after-explanation.png",
+    "reference-android/0143-banana-syllable-3.png",
+    "reference-android/0427-pattern-two-sign-group.png",
+    "reference-android/0336-runtime-voice-stop.png",
+    "reference-android/0354-runtime-bridge-after-stop.png",
+    "reference-android/0443-pattern-current-unanswered-return.png"
+  ],
+  "independentDetailedReview": "pending; source-bound agent review to be retained separately",
+  "fullModernizationComplete": false
+}

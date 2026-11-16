@@ -1,0 +1,305 @@
+﻿2026-11-16T10:30:57.7216077Z Current runner version: '2.338.2'
+2026-11-16T10:30:57.7235602Z ##[group]Runner Image Provisioner
+2026-11-16T10:30:57.7236314Z Hosted Compute Agent
+2026-11-16T10:30:57.7236772Z Version: 20261103.629
+2026-11-16T10:30:57.7237466Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-16T10:30:57.7238248Z Build Date: 2026-11-03T17:26:59Z
+2026-11-16T10:30:57.7238782Z Worker ID: {f4bb9f67-36ed-4a4c-91ea-67897c5aa470}
+2026-11-16T10:30:57.7239307Z Region: us-east-1
+2026-11-16T10:30:57.7239759Z Cloud: AWS
+2026-11-16T10:30:57.7240136Z ##[endgroup]
+2026-11-16T10:30:57.7241434Z ##[group]Operating System
+2026-11-16T10:30:57.7241890Z Ubuntu
+2026-11-16T10:30:57.7242261Z 24.04.5
+2026-11-16T10:30:57.7242705Z LTS
+2026-11-16T10:30:57.7243068Z ##[endgroup]
+2026-11-16T10:30:57.7243440Z ##[group]Runner Image
+2026-11-16T10:30:57.7243876Z Image: ubuntu-24.04
+2026-11-16T10:30:57.7244277Z Version: 20261111.127.1
+2026-11-16T10:30:57.7245251Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.127/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-16T10:30:57.7246346Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.127
+2026-11-16T10:30:57.7247035Z ##[endgroup]
+2026-11-16T10:30:57.7248053Z ##[group]GITHUB_TOKEN Permissions
+2026-11-16T10:30:57.7250105Z Contents: write
+2026-11-16T10:30:57.7250536Z Metadata: read
+2026-11-16T10:30:57.7250966Z ##[endgroup]
+2026-11-16T10:30:57.7252575Z Secret source: Actions
+2026-11-16T10:30:57.7253295Z Cache mode: write
+2026-11-16T10:30:57.7253990Z Prepare workflow directory
+2026-11-16T10:30:57.7522363Z Prepare all required actions
+2026-11-16T10:30:57.7559609Z Getting action download info
+2026-11-16T10:30:57.9659658Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-16T10:30:59.4963603Z Download action repository 'actions/download-artifact@v4' (SHA:d3f86a106a0bac45b974a628896c90dbdf5c8093)
+2026-11-16T10:30:59.6275523Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-16T10:30:59.9673205Z Complete job name: publish
+2026-11-16T10:31:00.0383737Z ##[group]Run actions/checkout@v4
+2026-11-16T10:31:00.0384821Z with:
+2026-11-16T10:31:00.0385533Z   persist-credentials: false
+2026-11-16T10:31:00.0386425Z   repository: Ullmann27/lumo-lernen
+2026-11-16T10:31:00.0393497Z   token: ***
+2026-11-16T10:31:00.0394225Z   ssh-strict: true
+2026-11-16T10:31:00.0394957Z   ssh-user: git
+2026-11-16T10:31:00.0395656Z   clean: true
+2026-11-16T10:31:00.0396411Z   sparse-checkout-cone-mode: true
+2026-11-16T10:31:00.0397472Z   fetch-depth: 1
+2026-11-16T10:31:00.0398300Z   fetch-tags: false
+2026-11-16T10:31:00.0399056Z   show-progress: true
+2026-11-16T10:31:00.0399866Z   lfs: false
+2026-11-16T10:31:00.0400570Z   submodules: false
+2026-11-16T10:31:00.0401339Z   set-safe-directory: true
+2026-11-16T10:31:00.0402165Z   allow-unsafe-pr-checkout: false
+2026-11-16T10:31:00.0403233Z env:
+2026-11-16T10:31:00.0403888Z   CI: true
+2026-11-16T10:31:00.0404646Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-16T10:31:00.0405577Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-16T10:31:00.0406457Z   LUMO_NDK_DISPOSABLE_RUNNER: 1
+2026-11-16T10:31:00.0407585Z   LUMO_PACKAGE: dev.ullmann.lumo.lumo_lernen.coachpreview
+2026-11-16T10:31:00.0409044Z   LUMO_CERTIFICATE: a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
+2026-11-16T10:31:00.0410390Z ##[endgroup]
+2026-11-16T10:31:03.0981571Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-16T10:31:03.0982877Z ##[group]Getting Git version info
+2026-11-16T10:31:03.0983322Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-16T10:31:03.0983951Z [command]/usr/bin/git version
+2026-11-16T10:31:03.3250218Z git version 2.56.1
+2026-11-16T10:31:03.3263744Z ##[endgroup]
+2026-11-16T10:31:03.3273942Z Temporarily overriding HOME='/home/runner/work/_temp/4785e7c6-9ea3-449d-b09b-ed05460e8842' before making global git config changes
+2026-11-16T10:31:03.3274889Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-16T10:31:03.3278133Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-16T10:31:03.3676505Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-16T10:31:03.3680123Z ##[group]Initializing the repository
+2026-11-16T10:31:03.3683229Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-16T10:31:03.3799487Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-16T10:31:03.3800163Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-16T10:31:03.3800781Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-16T10:31:03.3801322Z hint: call:
+2026-11-16T10:31:03.3801588Z hint:
+2026-11-16T10:31:03.3801937Z hint: 	git config --global init.defaultBranch <name>
+2026-11-16T10:31:03.3802254Z hint:
+2026-11-16T10:31:03.3802567Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-16T10:31:03.3803223Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-16T10:31:03.3803624Z hint:
+2026-11-16T10:31:03.3803930Z hint: 	git branch -m <name>
+2026-11-16T10:31:03.3804203Z hint:
+2026-11-16T10:31:03.3804554Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-16T10:31:03.3806788Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-16T10:31:03.3814380Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-16T10:31:03.3853846Z ##[endgroup]
+2026-11-16T10:31:03.3854561Z ##[group]Disabling automatic garbage collection
+2026-11-16T10:31:03.3856727Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-16T10:31:03.3877732Z ##[endgroup]
+2026-11-16T10:31:03.3878407Z ##[group]Setting up auth
+2026-11-16T10:31:03.3882945Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-16T10:31:03.3906247Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-16T10:31:03.7480032Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-16T10:31:03.7505024Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-16T10:31:03.7651858Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-16T10:31:03.7673963Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-16T10:31:03.7816568Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-16T10:31:03.7841374Z ##[endgroup]
+2026-11-16T10:31:03.7841916Z ##[group]Fetching the repository
+2026-11-16T10:31:03.7850870Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9b38360ca5f21919dce4a2b99e605ee39bbbf454:refs/remotes/origin/integration/lumo-nextgen-learning-20261115
+2026-11-16T10:32:51.8525482Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-16T10:32:51.8526033Z  * [new ref]         9b38360ca5f21919dce4a2b99e605ee39bbbf454 -> origin/integration/lumo-nextgen-learning-20261115
+2026-11-16T10:32:51.8529661Z ##[endgroup]
+2026-11-16T10:32:51.8531620Z ##[group]Determining the checkout info
+2026-11-16T10:32:51.8532024Z ##[endgroup]
+2026-11-16T10:32:51.8536206Z [command]/usr/bin/git sparse-checkout disable
+2026-11-16T10:32:51.8595770Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-16T10:32:51.8619503Z ##[group]Checking out the ref
+2026-11-16T10:32:51.8623081Z [command]/usr/bin/git checkout --progress --force -B integration/lumo-nextgen-learning-20261115 refs/remotes/origin/integration/lumo-nextgen-learning-20261115
+2026-11-16T10:32:52.8920077Z Updating files:  50% (3508/6898)
+2026-11-16T10:32:52.9468199Z Updating files:  51% (3518/6898)
+2026-11-16T10:32:53.0866092Z Updating files:  52% (3587/6898)
+2026-11-16T10:32:53.0913949Z Updating files:  53% (3656/6898)
+2026-11-16T10:32:53.1227938Z Updating files:  54% (3725/6898)
+2026-11-16T10:32:53.1655731Z Updating files:  55% (3794/6898)
+2026-11-16T10:32:53.3377095Z Updating files:  56% (3863/6898)
+2026-11-16T10:32:53.3746994Z Updating files:  57% (3932/6898)
+2026-11-16T10:32:53.6088761Z Updating files:  58% (4001/6898)
+2026-11-16T10:32:53.6999148Z Updating files:  59% (4070/6898)
+2026-11-16T10:32:53.7599952Z Updating files:  60% (4139/6898)
+2026-11-16T10:32:53.7883740Z Updating files:  61% (4208/6898)
+2026-11-16T10:32:53.8715305Z Updating files:  62% (4277/6898)
+2026-11-16T10:32:53.9194554Z Updating files:  62% (4300/6898)
+2026-11-16T10:32:53.9944589Z Updating files:  63% (4346/6898)
+2026-11-16T10:32:54.0190175Z Updating files:  64% (4415/6898)
+2026-11-16T10:32:54.0267454Z Updating files:  65% (4484/6898)
+2026-11-16T10:32:54.0287373Z Updating files:  66% (4553/6898)
+2026-11-16T10:32:54.0309561Z Updating files:  67% (4622/6898)
+2026-11-16T10:32:54.0375290Z Updating files:  68% (4691/6898)
+2026-11-16T10:32:54.0458109Z Updating files:  69% (4760/6898)
+2026-11-16T10:32:54.0474112Z Updating files:  70% (4829/6898)
+2026-11-16T10:32:54.1013967Z Updating files:  71% (4898/6898)
+2026-11-16T10:32:54.1402138Z Updating files:  72% (4967/6898)
+2026-11-16T10:32:54.1700625Z Updating files:  73% (5036/6898)
+2026-11-16T10:32:54.1735038Z Updating files:  74% (5105/6898)
+2026-11-16T10:32:54.1780055Z Updating files:  75% (5174/6898)
+2026-11-16T10:32:54.1812380Z Updating files:  76% (5243/6898)
+2026-11-16T10:32:54.1871246Z Updating files:  77% (5312/6898)
+2026-11-16T10:32:54.1916939Z Updating files:  78% (5381/6898)
+2026-11-16T10:32:54.1964885Z Updating files:  79% (5450/6898)
+2026-11-16T10:32:54.1998207Z Updating files:  80% (5519/6898)
+2026-11-16T10:32:54.2019439Z Updating files:  81% (5588/6898)
+2026-11-16T10:32:54.2039933Z Updating files:  82% (5657/6898)
+2026-11-16T10:32:54.2193129Z Updating files:  83% (5726/6898)
+2026-11-16T10:32:54.2231245Z Updating files:  84% (5795/6898)
+2026-11-16T10:32:54.2255429Z Updating files:  85% (5864/6898)
+2026-11-16T10:32:54.2279281Z Updating files:  86% (5933/6898)
+2026-11-16T10:32:54.2301817Z Updating files:  87% (6002/6898)
+2026-11-16T10:32:54.2327480Z Updating files:  88% (6071/6898)
+2026-11-16T10:32:54.2349795Z Updating files:  89% (6140/6898)
+2026-11-16T10:32:54.2370946Z Updating files:  90% (6209/6898)
+2026-11-16T10:32:54.2397752Z Updating files:  91% (6278/6898)
+2026-11-16T10:32:54.2667928Z Updating files:  92% (6347/6898)
+2026-11-16T10:32:54.3015928Z Updating files:  93% (6416/6898)
+2026-11-16T10:32:54.3258764Z Updating files:  94% (6485/6898)
+2026-11-16T10:32:54.3425938Z Updating files:  95% (6554/6898)
+2026-11-16T10:32:54.3519534Z Updating files:  96% (6623/6898)
+2026-11-16T10:32:54.3689203Z Updating files:  97% (6692/6898)
+2026-11-16T10:32:54.3727427Z Updating files:  98% (6761/6898)
+2026-11-16T10:32:54.3759163Z Updating files:  99% (6830/6898)
+2026-11-16T10:32:54.3759473Z Updating files: 100% (6898/6898)
+2026-11-16T10:32:54.3759818Z Updating files: 100% (6898/6898), done.
+2026-11-16T10:32:54.3833433Z Switched to a new branch 'integration/lumo-nextgen-learning-20261115'
+2026-11-16T10:32:54.3843721Z branch 'integration/lumo-nextgen-learning-20261115' set up to track 'origin/integration/lumo-nextgen-learning-20261115'.
+2026-11-16T10:32:54.3974408Z ##[endgroup]
+2026-11-16T10:32:54.4014409Z [command]/usr/bin/git log -1 --format=%H
+2026-11-16T10:32:54.4033626Z 9b38360ca5f21919dce4a2b99e605ee39bbbf454
+2026-11-16T10:32:54.4041768Z ##[group]Removing auth
+2026-11-16T10:32:54.4044226Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-16T10:32:54.4065335Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-16T10:32:54.4223224Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-16T10:32:54.4242236Z http.https://github.com/.extraheader
+2026-11-16T10:32:54.4247036Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-16T10:32:54.4269453Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-16T10:32:54.4418772Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-16T10:32:54.4437031Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-16T10:32:54.4583943Z ##[endgroup]
+2026-11-16T10:32:54.4767188Z ##[group]Run actions/download-artifact@v4
+2026-11-16T10:32:54.4767692Z with:
+2026-11-16T10:32:54.4767949Z   name: lumo-nextgen-arm64
+2026-11-16T10:32:54.4768184Z   path: release/
+2026-11-16T10:32:54.4768420Z   merge-multiple: false
+2026-11-16T10:32:54.4768666Z   repository: Ullmann27/lumo-lernen
+2026-11-16T10:32:54.4768923Z   run-id: 43837592237
+2026-11-16T10:32:54.4769144Z env:
+2026-11-16T10:32:54.4769323Z   CI: true
+2026-11-16T10:32:54.4769553Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-16T10:32:54.4769830Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-16T10:32:54.4770069Z   LUMO_NDK_DISPOSABLE_RUNNER: 1
+2026-11-16T10:32:54.4770374Z   LUMO_PACKAGE: dev.ullmann.lumo.lumo_lernen.coachpreview
+2026-11-16T10:32:54.4770774Z   LUMO_CERTIFICATE: a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
+2026-11-16T10:32:54.4771146Z ##[endgroup]
+2026-11-16T10:32:54.5905052Z Downloading single artifact
+2026-11-16T10:32:54.6530337Z (node:2264) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-16T10:32:54.6530988Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-16T10:32:54.7796440Z Preparing to download the following artifacts:
+2026-11-16T10:32:54.7797202Z - lumo-nextgen-arm64 (ID: 14213570777, Size: 535040568, Expected Digest: sha256:1782ece5bf30a32165f87f6f6d435d4d5d3467036060fe46c3ce6120cdaa12bd)
+2026-11-16T10:32:54.9952412Z Redirecting to blob download url: https://productionresultssa6.blob.core.windows.net/actions-results/49311d34-09f0-8c5f-9fa2-006cbb0b1619/workflow-job-run-d6e9d6db-ecfc-5b4f-b19e-bb5379b0db73/artifacts/52d19c835cd5ba51db8a8a9fd77bd75c0079489f3580c62d7522c77f4fd9c5cf.zip
+2026-11-16T10:32:54.9953398Z Starting download of artifact to: /home/runner/work/lumo-lernen/lumo-lernen/release
+2026-11-16T10:32:55.1327927Z (node:2264) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-11-16T10:33:01.0496386Z SHA256 digest of downloaded artifact is 1782ece5bf30a32165f87f6f6d435d4d5d3467036060fe46c3ce6120cdaa12bd
+2026-11-16T10:33:01.0497443Z Artifact download completed successfully.
+2026-11-16T10:33:01.0497755Z Total of 1 artifact(s) downloaded
+2026-11-16T10:33:01.0500926Z Download artifact has finished successfully
+2026-11-16T10:33:01.0644348Z ##[group]Run actions/download-artifact@v4
+2026-11-16T10:33:01.0644648Z with:
+2026-11-16T10:33:01.0644877Z   name: lumo-nextgen-android-evidence
+2026-11-16T10:33:01.0645153Z   path: android-evidence/
+2026-11-16T10:33:01.0645408Z   merge-multiple: false
+2026-11-16T10:33:01.0645672Z   repository: Ullmann27/lumo-lernen
+2026-11-16T10:33:01.0645937Z   run-id: 43837592237
+2026-11-16T10:33:01.0646152Z env:
+2026-11-16T10:33:01.0646382Z   CI: true
+2026-11-16T10:33:01.0646583Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-16T10:33:01.0646875Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-16T10:33:01.0647106Z   LUMO_NDK_DISPOSABLE_RUNNER: 1
+2026-11-16T10:33:01.0647631Z   LUMO_PACKAGE: dev.ullmann.lumo.lumo_lernen.coachpreview
+2026-11-16T10:33:01.0648104Z   LUMO_CERTIFICATE: a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
+2026-11-16T10:33:01.0648604Z ##[endgroup]
+2026-11-16T10:33:01.1780848Z Downloading single artifact
+2026-11-16T10:33:01.1916324Z (node:2278) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-16T10:33:01.1917472Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-16T10:33:01.2737530Z Preparing to download the following artifacts:
+2026-11-16T10:33:01.2738512Z - lumo-nextgen-android-evidence (ID: 14216997362, Size: 158127888, Expected Digest: sha256:b925e0ed41110053bf4ad07dd1d1f27c015598bd1b6669b3342a5073ef2a7db7)
+2026-11-16T10:33:01.3973001Z Redirecting to blob download url: https://productionresultssa6.blob.core.windows.net/actions-results/dcfb987e-2088-8270-979e-9dacb9d72302/workflow-job-run-a564aa8e-b7ce-5137-9dd6-a7c71de04a42/artifacts/dc8cf7d2eec21e66f1710f7e467f8cc85662866cdb3c7c964b78bf2573f88436.zip
+2026-11-16T10:33:01.3974566Z Starting download of artifact to: /home/runner/work/lumo-lernen/lumo-lernen/android-evidence
+2026-11-16T10:33:01.4972060Z (node:2278) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-11-16T10:33:03.6899218Z SHA256 digest of downloaded artifact is b925e0ed41110053bf4ad07dd1d1f27c015598bd1b6669b3342a5073ef2a7db7
+2026-11-16T10:33:03.6900121Z Artifact download completed successfully.
+2026-11-16T10:33:03.6900470Z Total of 1 artifact(s) downloaded
+2026-11-16T10:33:03.6904450Z Download artifact has finished successfully
+2026-11-16T10:33:03.7068269Z ##[group]Run set -euo pipefail
+2026-11-16T10:33:03.7068721Z [36;1mset -euo pipefail[0m
+2026-11-16T10:33:03.7069087Z [36;1mpython3 tools/nextgen/prepare_current_learning_release.py[0m
+2026-11-16T10:33:03.7069514Z [36;1mtar -czf release/Android-Lernpruefung.tar.gz -C android-evidence .[0m
+2026-11-16T10:33:03.7069943Z [36;1mcp docs/nextgen/COVERAGE.json release/COVERAGE.json[0m
+2026-11-16T10:33:03.7070315Z [36;1mpython3 tools/nextgen/public_learning_download.py absent[0m
+2026-11-16T10:33:03.7071382Z [36;1mgh release create "$RELEASE_TAG" release/*.apk release/BUILD-PROVENANCE.json release/APK-VERIFICATION.json release/DELIVERY.json release/COVERAGE.json release/Android-Lernpruefung.tar.gz --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --prerelease --title "LUMO Lernwelt $VERSION_NAME ($VERSION_CODE)" --notes-file release-notes.md[0m
+2026-11-16T10:33:03.7072378Z [36;1mpython3 tools/nextgen/public_learning_download.py verify[0m
+2026-11-16T10:33:04.0836881Z shell: /usr/bin/bash -e {0}
+2026-11-16T10:33:04.0837199Z env:
+2026-11-16T10:33:04.0837661Z   CI: true
+2026-11-16T10:33:04.0837935Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-16T10:33:04.0838198Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-16T10:33:04.0838500Z   LUMO_NDK_DISPOSABLE_RUNNER: 1
+2026-11-16T10:33:04.0838810Z   LUMO_PACKAGE: dev.ullmann.lumo.lumo_lernen.coachpreview
+2026-11-16T10:33:04.0839260Z   LUMO_CERTIFICATE: a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
+2026-11-16T10:33:04.0841560Z   GH_TOKEN: ***
+2026-11-16T10:33:04.0841832Z   RELEASE_TAG: lumo-nextgen-learning-0.13.20-2032
+2026-11-16T10:33:04.0842142Z   VERSION_NAME: 0.13.20
+2026-11-16T10:33:04.0842400Z   VERSION_CODE: 2032
+2026-11-16T10:33:04.0842733Z   ARM64_SHA: cfa6709547ed82ffe6f081568c3bc454e1cc41afbfea2ecf9c85f534a6ea42de
+2026-11-16T10:33:04.0843186Z   X86_SHA: 388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1
+2026-11-16T10:33:04.0843594Z   LUMO_EXPECTED_NATIVE: 9d6ef1d704a0e54098a8f8f0818f36deae0e3789
+2026-11-16T10:33:04.0843910Z ##[endgroup]
+2026-11-16T10:33:04.5138295Z {"prepared": true, "apk": "Lumo-Lernen-Neu-0.13.20-2032.apk", "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454", "sha256": "cfa6709547ed82ffe6f081568c3bc454e1cc41afbfea2ecf9c85f534a6ea42de", "fullModernizationComplete": false}
+2026-11-16T10:33:30.0337239Z https://github.com/Ullmann27/lumo-lernen/releases/tag/lumo-nextgen-learning-0.13.20-2032
+2026-11-16T10:33:37.6140003Z ##[group]Run actions/upload-artifact@v4
+2026-11-16T10:33:37.6140311Z with:
+2026-11-16T10:33:37.6140643Z   name: lumo-nextgen-public-download-proof
+2026-11-16T10:33:37.6141074Z   path: release/PUBLIC-*.json
+release/DELIVERY.json
+release/BUILD-PROVENANCE.json
+
+2026-11-16T10:33:37.6141607Z   if-no-files-found: error
+2026-11-16T10:33:37.6141865Z   retention-days: 30
+2026-11-16T10:33:37.6142111Z   compression-level: 6
+2026-11-16T10:33:37.6142387Z   overwrite: false
+2026-11-16T10:33:37.6142615Z   include-hidden-files: false
+2026-11-16T10:33:37.6142906Z env:
+2026-11-16T10:33:37.6143145Z   CI: true
+2026-11-16T10:33:37.6143396Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-16T10:33:37.6143691Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-16T10:33:37.6143973Z   LUMO_NDK_DISPOSABLE_RUNNER: 1
+2026-11-16T10:33:37.6144292Z   LUMO_PACKAGE: dev.ullmann.lumo.lumo_lernen.coachpreview
+2026-11-16T10:33:37.6144736Z   LUMO_CERTIFICATE: a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
+2026-11-16T10:33:37.6145223Z ##[endgroup]
+2026-11-16T10:33:37.7348692Z (node:2338) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-16T10:33:37.7349561Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-16T10:33:37.7400924Z With the provided path, there will be 6 files uploaded
+2026-11-16T10:33:37.7404266Z Artifact name is valid!
+2026-11-16T10:33:37.7404644Z Root directory input is valid!
+2026-11-16T10:33:38.1021166Z Beginning upload of artifact content to blob storage
+2026-11-16T10:33:38.1231647Z (node:2338) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-16T10:33:38.1725248Z Uploaded bytes 14921
+2026-11-16T10:33:38.1904240Z Finished uploading artifact content to blob storage!
+2026-11-16T10:33:38.1904830Z SHA256 digest of uploaded artifact zip is 0a79104ee9182e657f64e9eb5f46361e52ec1debc5a7fcb868d8bac2d8118009
+2026-11-16T10:33:38.1905280Z Finalizing artifact upload
+2026-11-16T10:33:38.5653114Z Artifact lumo-nextgen-public-download-proof.zip successfully finalized. Artifact ID 14217750013
+2026-11-16T10:33:38.5654488Z Artifact lumo-nextgen-public-download-proof has been successfully uploaded! Final size is 14921 bytes. Artifact ID is 14217750013
+2026-11-16T10:33:38.5658313Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43837592237/artifacts/14217750013
+2026-11-16T10:33:38.5809647Z Post job cleanup.
+2026-11-16T10:33:38.6429514Z [command]/usr/bin/git version
+2026-11-16T10:33:38.6454950Z git version 2.56.1
+2026-11-16T10:33:38.6478690Z Temporarily overriding HOME='/home/runner/work/_temp/b7d7ec38-1fd0-414b-a4b7-afffe76cf7cb' before making global git config changes
+2026-11-16T10:33:38.6479733Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-16T10:33:38.6482024Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-16T10:33:38.6509132Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-16T10:33:38.6532610Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-16T10:33:38.6694304Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-16T10:33:38.6715517Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-16T10:33:38.6868003Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-16T10:33:38.6889203Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-16T10:33:38.7145672Z Cleaning up orphan processes
+2026-11-16T10:33:38.7385989Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

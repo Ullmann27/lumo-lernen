@@ -1,0 +1,46 @@
+{
+  "artifactId": 14217750013,
+  "workflowRun": 43837592237,
+  "archiveBytes": 14921,
+  "archiveSha256": "0a79104ee9182e657f64e9eb5f46361e52ec1debc5a7fcb868d8bac2d8118009",
+  "allMemberCRCsVerified": true,
+  "archiveRetainedLocally": true,
+  "members": [
+    {
+      "path": "PUBLIC-ABSENCE.json",
+      "bytes": 3841,
+      "sha256": "b2764e8069438d3284a68ead1cac7cf329af13973bf1c558049c268cf6ba1af8",
+      "crc32": "121ddde8"
+    },
+    {
+      "path": "PUBLIC-DOWNLOAD-VERIFIED.json",
+      "bytes": 1568,
+      "sha256": "a2ffc0bcff56fa644e61fcd2fe6eb0409441c5ac0a35634db3ecf4f8a61c6c2c",
+      "crc32": "1cd64892"
+    },
+    {
+      "path": "DELIVERY.json",
+      "bytes": 54275,
+      "sha256": "0ebb3fa0467065a8ce375d7bac6c5045ec5bba2c8da931a06fb1972415ff0cbd",
+      "crc32": "26de55b2"
+    },
+    {
+      "path": "BUILD-PROVENANCE.json",
+      "bytes": 9645,
+      "sha256": "7e3aa0a7a3b0becce6916dc749d87103202798b0a125381c85938c904732aeea",
+      "crc32": "23fc16c6"
+    },
+    {
+      "path": "PUBLIC-DOWNLOAD.json",
+      "bytes": 15638,
+      "sha256": "a4f47cbbd13bac678efc2a6a20ae81fd87ea6c3d0430b0a250baaf5ae2fc1171",
+      "crc32": "3d59ff7d"
+    },
+    {
+      "path": "PUBLIC-TAG.json",
+      "bytes": 478,
+      "sha256": "3df550a7190e0fa356897f2268b9f5a6a11ec302ce7b1180a0867a6f901a488d",
+      "crc32": "60b246ff"
+    }
+  ]
+}

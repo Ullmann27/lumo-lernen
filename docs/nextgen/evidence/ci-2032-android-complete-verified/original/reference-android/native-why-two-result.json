@@ -1,0 +1,59 @@
+{
+  "question": "Warum zuerst zwei?",
+  "input_method": "observed Godot input plus real Android keyboard text",
+  "observed_initial_moved": 0,
+  "observed_final_moved": 2,
+  "manual_move_buttons_pressed_after_question": false,
+  "answer_or_score_api_called": false,
+  "initial_screenshot": {
+    "file": "0268-why-native-eight-and-five-before-question.png",
+    "width": 1080,
+    "height": 2340,
+    "sha256": "9d115cb120589078b40b46193c49e4ea3331ace15fc23922465121e32816ea0a"
+  },
+  "written_question_screenshot": {
+    "file": "0273-why-native-written-before-send.png",
+    "width": 1080,
+    "height": 2340,
+    "sha256": "74d5dc52b3c1a4b714c60324d847d8c912cbb651d96d92d038974b21b80577a7"
+  },
+  "response": {
+    "variant": "contrast",
+    "text": "VAG 10:24 U Zahlen zum Anfassen : 8 + > Im Zehnerfeld liegen 8. Bis zehn fehlen 2, denn 10 minus 8 ist 2. fehlen Deshalb nehmen wir zuerst 2 von den 5. Danach bleiben 3 übrig w va bs | — Dolls \\ iat u... ® < oe OOOO CO Pd Ä N 10 m uhr 2/5 bewegt Ziehen oder antippen Ein Objekt zeigen Noch einmal Stimme stoppen Lumo fragen Zur Aufgabe",
+    "screenshot": {
+      "file": "0278-why-native-current-explanation.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "d4fd595a9f38dd30c99c7675261869df989c5bbe6af54326fa893204ed02e360"
+    }
+  },
+  "playback": {
+    "pid": 10808,
+    "utterance_ids": [
+      11
+    ],
+    "profile": "lumo-free-supertonic-de-v1",
+    "evidence": "Android MediaPlayer callbacks",
+    "audible_quality_verified": false
+  },
+  "final_screenshot": {
+    "file": "0282-why-native-ten-and-three-after-explanation.png",
+    "width": 1080,
+    "height": 2340,
+    "sha256": "5af4c5ec677f97e7eaa9f48ca13e062ffc958bb31df9753ae80d37166ee412e9"
+  },
+  "video": {
+    "file": "0265-native-why-two-question-and-demonstration.mp4",
+    "sha256": "528f57ef35c137f66fbdce92f681b592644d81e8b1db7ecd8ea8e8ad3cb1d042",
+    "bytes": 2149256,
+    "duration_seconds": 107.9455,
+    "width": 1080,
+    "height": 2340,
+    "audio_recorded": false,
+    "maximum_seconds": 180,
+    "transfer_verification": "0265-native-why-two-question-and-demonstration-video-transfer.json",
+    "block_elapsed_seconds": 107.99,
+    "whole_block_within_recording_limit": true
+  },
+  "acoustic_words_verified": false
+}
