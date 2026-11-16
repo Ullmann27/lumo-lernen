@@ -1,0 +1,29 @@
+{
+  "workflowRun": 43816667737,
+  "jobId": 133130171146,
+  "qaCommit": "25d4aa1eb3b684eb10e38b4fa7e0270d02e8f9b3",
+  "apkSource": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "artifactId": 14203032627,
+  "archiveBytes": 29082573,
+  "archiveSha256": "663d9f34fcfbbcf12360ee03dfd889df9469bbd13f3ef7ca67dcfa11ec09411a",
+  "originalOutcome": "FAIL",
+  "scope": "Byte-identical original screenshots and question-touch journal. Test OCR/clock responses are explicitly constructed host boundaries, not original Android observations.",
+  "files": {
+    "0343-runtime-banana-slower-panel.png": {
+      "member": "android/runtime-cases/0343-runtime-banana-slower-panel.png",
+      "bytes": 582591,
+      "sha256": "9419d773b43857ade01de637758e028017c3857a96857b32ab675a595ac7a54c"
+    },
+    "0344-runtime-failure-current-screen.png": {
+      "member": "android/runtime-cases/0344-runtime-failure-current-screen.png",
+      "bytes": 454480,
+      "sha256": "fca950e7623a57f7e417c715b66daf881a67a84690d699e888d93158931d7d1e"
+    },
+    "0342-runtime-banana-open-question-surface-readiness.json": {
+      "member": "android/runtime-cases/0342-runtime-banana-open-question-surface-readiness.json",
+      "bytes": 7951,
+      "sha256": "84ffc09909ebcafe9f055eaaf977959ba456a73dc650fa6d3425eedf1bc8750c"
+    }
+  }
+}

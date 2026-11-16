@@ -269,6 +269,10 @@ def panel_repeat_target(observations: dict[str, list[dict]], panel: tuple) -> tu
     return target
 
 
+class QuestionPanelNotObserved(RuntimeError):
+    """This frame has no panel-colored pixels; it never proves readiness."""
+
+
 def observed_panel_background(source: Path) -> tuple:
     """Locate the real dialog background, preserving the original screenshot.
 
@@ -283,7 +287,9 @@ def observed_panel_background(source: Path) -> tuple:
                 for channel, expected in ((red, 255), (green, 248), (blue, 232))]
     mask = ImageChops.multiply(ImageChops.multiply(channels[0], channels[1]), channels[2])
     box = mask.getbbox()
-    require(box and box[2] - box[0] >= 160 and box[3] - box[1] >= 100,
+    if box is None:
+        raise QuestionPanelNotObserved("Current question-panel background not observed")
+    require(box[2] - box[0] >= 160 and box[3] - box[1] >= 100,
             "Current question-panel background not observed")
     area = (box[2] - box[0]) * (box[3] - box[1])
     require(mask.histogram()[255] / area >= .25, "Ambiguous scattered question-panel pixels")
@@ -467,8 +473,15 @@ class ReferenceProbe(learning.LearningProbe):
             frame = self.reader.inspect_surface(source, orientation="responsive")
             if not frame["acceptable_for_target_sampling"]:
                 previous = None
+                heading_seen = False
                 continue
-            panel = observed_panel_background(source)
+            try:
+                panel = observed_panel_background(source)
+            except QuestionPanelNotObserved:
+                require(previous_panel is None, "Previously observed question panel disappeared")
+                previous, heading_seen = None, False
+                self.save(tag + "-pending", {"capture": shot, "state": "PANEL_NOT_YET_OBSERVED"})
+                continue
             if previous_panel is not None:
                 require(all(abs(a - b) <= 12 for a, b in zip(panel, previous_panel)),
                         "Observed question-panel geometry changed unexpectedly")
