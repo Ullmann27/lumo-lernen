@@ -1,0 +1,107 @@
+{
+  "schema": "lumo.core_conversation_scope_fix.v1",
+  "baseCommit": "b49cf9c7e1e60c4e3901883d1c6bfc4a46e9ede4",
+  "executionWorktreeDirty": true,
+  "executionProvenance": "Final joined run used the recorded working-tree product/test bytes before the local producer commit. No post-commit or Android run is claimed.",
+  "sourceHashes": {
+    "lib/app/app_shell.dart": {
+      "bytes": 37477,
+      "sha256": "84cb2a7653c33a169b768a2cd5313c5d09d27210f7076833a462ad62608913c2"
+    },
+    "lib/features/learning/learning_content.dart": {
+      "bytes": 152734,
+      "sha256": "0a96884deb2e214e557ecb8c200aa81aad92c8a74df7c98bfd35fcc5c001cf18"
+    },
+    "test/learning/core_conversation_route_test.dart": {
+      "bytes": 9852,
+      "sha256": "e95452a8d0117a7581ff63b466955c7bf67771f7cc0fb3a087712810b7aeeeeb"
+    },
+    "test/learning/learning_content_commands_test.dart": {
+      "bytes": 10145,
+      "sha256": "fd14e76020c90b24ec78e3951b7f173fb0f06695122abf4681e75b40bb54e727"
+    },
+    "test/lumo_header_semantics_test.dart": {
+      "bytes": 5586,
+      "sha256": "74fff37f0d58474d268cb9b4fe155127df4f7be661b6797e5632a0a469bddbb7"
+    },
+    "test/design/learning_shell_back_navigation_test.dart": {
+      "bytes": 5982,
+      "sha256": "f1fbe7cdfab46d7a1f92faa627cbb3821e82d2a24743c6ebe3a4d222357542fe"
+    }
+  },
+  "evidenceHashes": {
+    "analyze-initial.log": {
+      "bytes": 570,
+      "sha256": "3cd6f5ba8ca6802c2c2d13d65eeca055c086d7b49c4d1fb8aefff371702c0b91"
+    },
+    "analyze.log": {
+      "bytes": 96,
+      "sha256": "5e715e6ca69f27c394afc08ba68f81f6d4ff4695a470c48a7fe8757556ca33c4"
+    },
+    "existing-targeted.log": {
+      "bytes": 2629,
+      "sha256": "5fdefdb51c6da36b38bfdab77919f54662e4e644a9e83e5c0a490201f72e0030"
+    },
+    "green-initial.log": {
+      "bytes": 277,
+      "sha256": "38cdc82d5d09751661c1d8c4d4746544f2fa95cdbca497976f86e7446a6e7b8d"
+    },
+    "green.log": {
+      "bytes": 415,
+      "sha256": "b205c7b2e494e7ab43f570925b724ad875345ffbb4357d451494277abf4b7e77"
+    },
+    "joined-green.log": {
+      "bytes": 3578,
+      "sha256": "a89fd2ca07a4bab1eddfe510e44c7d7a55e40fd79e5608004d117c31d7114e77"
+    },
+    "red-first.log": {
+      "bytes": 7367,
+      "sha256": "2a67c24410a328c6751f10aaa1e0b0f68fc43c349bd92405989f0290370b2d70"
+    },
+    "red-provenance.json": {
+      "bytes": 851,
+      "sha256": "262fbb0dc39f78a0337f6f45d662cc84c7ad3b0fc22807f3e4751ce5dc3cc2ec"
+    },
+    "red-shader-setup.log": {
+      "bytes": 4124,
+      "sha256": "41fcbca71ced88eb070cb32681fc686900bbaa4fb72ed1821c6d8f9882ae705f"
+    },
+    "red-test.dart.txt": {
+      "bytes": 6141,
+      "sha256": "99ca990647f4090da914951af4a1cbec41522e86159db1f74a77e9c58ec69770"
+    },
+    "red.log": {
+      "bytes": 2272,
+      "sha256": "d05455d9fee6e455696d2b1d86f8b293fd94e7d0ddc66173fd60195fa82f8a5e"
+    }
+  },
+  "red": {
+    "passed": 0,
+    "failed": 1,
+    "path": "red.log",
+    "oldProductionUnchanged": true,
+    "testSnapshot": "red-test.dart.txt",
+    "failure": "Actual AppShell header conversation loses the current Core task ID: expected captured ID, actual null."
+  },
+  "green": {
+    "passed": 14,
+    "failed": 0,
+    "skipped": 0,
+    "path": "joined-green.log",
+    "newDialogTests": 3,
+    "existingTests": 11,
+    "repeatedRunsAreNotAdded": true
+  },
+  "analysis": {
+    "path": "analyze.log",
+    "issues": 0
+  },
+  "boundaries": [
+    "Real AppShell / Academy / Core / header / conversation / request bus; test artwork and generic JSON transport are synthetic, fonts come from the existing Flutter SDK.",
+    "New test file covers current task and visible local explanation, Stop, close/return, foreign overlay and task replacement; existing tests cover proposals, assessment, pause, native task-card entry and navigation.",
+    "No new Android, real microphone, playback, rendered artwork, physical Fold or final APK proof.",
+    "Task IDs, existing ValueKeys, evaluators, progress/reward formats, protected modules, native pin and QA/release gates unchanged."
+  ],
+  "testCommand": "flutter test --no-pub --no-test-assets --concurrency=1 --reporter expanded test/learning/core_conversation_route_test.dart test/learning/learning_content_commands_test.dart test/lumo_header_semantics_test.dart test/design/learning_shell_back_navigation_test.dart",
+  "testEnvironment": "Existing shared Flutter 3.44.9 SDK and package config, no downloads; no duplicated asset bundle. Targeted test used a locally compiled SDK ink_sparkle shader. Existing suites read original repository assets through a build-directory symlink."
+}

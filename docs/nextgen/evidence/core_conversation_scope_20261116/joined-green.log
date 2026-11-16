@@ -1,0 +1,23 @@
+00:00 +0: loading /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/core_conversation_route_test.dart
+00:00 +0: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/core_conversation_route_test.dart: (setUpAll)
+00:00 +0: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:02 +1: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/core_conversation_route_test.dart: foreign overlay withdraws even an owned Core conversation
+00:02 +2: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/core_conversation_route_test.dart: task replacement retires the old dialog and its entry owner
+00:03 +3: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/core_conversation_route_test.dart: (tearDownAll)
+00:03 +3: loading /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/learning_content_commands_test.dart
+00:03 +3: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/learning_content_commands_test.dart: spoken proposal is editable and never grades itself
+00:04 +4: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/learning_content_commands_test.dart: stop discards proposal and rejects its captured identity
+00:05 +5: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/learning_content_commands_test.dart: task switch retires an old proposal without a learning error
+00:05 +6: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/learning_content_commands_test.dart: trying alone after a hint retains assisted evidence
+00:05 +7: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/learning_content_commands_test.dart: assessment mode keeps its no-help boundary
+00:05 +8: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/learning_content_commands_test.dart: non-specialised adaptive family exposes the canonical 3D card
+00:05 +9: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/learning_content_commands_test.dart: adaptive pause and route overlay retire proposals and keep the task
+00:06 +10: loading /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/lumo_header_semantics_test.dart
+00:06 +10: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/lumo_header_semantics_test.dart: (setUpAll)
+00:06 +10: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/lumo_header_semantics_test.dart: actual mobile header keeps touch and accessibility bounds stable
+00:07 +11: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/lumo_header_semantics_test.dart: reduced motion removes header floating and glow tickers
+00:07 +12: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/lumo_header_semantics_test.dart: (tearDownAll)
+00:07 +12: loading /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/design/learning_shell_back_navigation_test.dart
+00:08 +12: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/design/learning_shell_back_navigation_test.dart: Android back returns from a task through its own topics and subjects
+00:09 +13: /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/design/learning_shell_back_navigation_test.dart: a Home mission replaces an earlier browsing return path
+00:10 +14: All tests passed!

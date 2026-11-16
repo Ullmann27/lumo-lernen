@@ -64,6 +64,7 @@ class _AppShellState extends State<AppShell>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   final _appState = LumoAppState();
   final _learningNavigation = LearningNavigation();
+  final _coreConversation = LearningConversationEntry();
   int _browsingProfileGeneration = 0;
   late final _embeddedGames = EmbeddedGameService(
     appState: _appState,
@@ -327,6 +328,15 @@ class _AppShellState extends State<AppShell>
     });
   }
 
+  Future<void> _openConversation() async {
+    if (_appState.state.section == LumoSection.exercises && !_isReadingMode()) {
+      await _coreConversation.open(_navigateTo);
+      return;
+    }
+    await showLumoConversation(context,
+        appState: _appState, onSection: _navigateTo);
+  }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
@@ -547,6 +557,7 @@ class _AppShellState extends State<AppShell>
           key: ValueKey(
               '${state.grade}:${state.subject}:${state.unit}:${state.sessionKind.name}'),
           appState: _appState,
+          conversationEntry: _coreConversation,
         );
       case LumoSection.reading:
         return ReadingContent(
@@ -660,10 +671,7 @@ class _AppShellState extends State<AppShell>
                               if (section != LumoSection.games)
                                 _MobileLumoHeader(
                                     appState: _appState,
-                                    onFoxTap: () => showLumoConversation(
-                                        context,
-                                        appState: _appState,
-                                        onSection: _navigateTo)),
+                                    onFoxTap: _openConversation),
                               Expanded(
                                   child: fullBleed
                                       // Zielbild-Seiten: Lumo steht als kleiner
@@ -721,18 +729,8 @@ class _AppShellState extends State<AppShell>
                                                 16, 10, 16, 6),
                                             child: LumoTopBar(
                                               appState: _appState,
-                                              onTapStatus: () =>
-                                                  showLumoConversation(
-                                                context,
-                                                appState: _appState,
-                                                onSection: _navigateTo,
-                                              ),
-                                              onTapFox: () =>
-                                                  showLumoConversation(
-                                                context,
-                                                appState: _appState,
-                                                onSection: _navigateTo,
-                                              ),
+                                              onTapStatus: _openConversation,
+                                              onTapFox: _openConversation,
                                             ),
                                           ),
                                         Expanded(

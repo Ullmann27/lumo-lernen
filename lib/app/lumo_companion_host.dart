@@ -23,6 +23,7 @@ class LumoCompanionHost extends StatelessWidget {
     this.onExplainTask,
     this.onSuggestTask,
     this.onAskLumo,
+    this.menuPresenter,
     this.offerOnly = false,
     this.taskUnit,
     this.guide,
@@ -38,6 +39,7 @@ class LumoCompanionHost extends StatelessWidget {
   final VoidCallback? onExplainTask;
   final VoidCallback? onSuggestTask;
   final VoidCallback? onAskLumo;
+  final LumoCompanionMenuPresenter? menuPresenter;
   final bool offerOnly;
   final String? taskUnit;
   final LumoCompanionGuide? guide;
@@ -80,6 +82,7 @@ class LumoCompanionHost extends StatelessWidget {
         );
         return LumoFreeCompanion(
           guide: guide,
+          menuPresenter: menuPresenter,
           offerOnly: offerOnly,
           proactive: offerOnly
               ? taskContext != null && taskContext.lastCorrect == false
@@ -169,6 +172,32 @@ class LumoCompanionHost extends StatelessWidget {
       },
     );
   }
+}
+
+/// Presents only the menu route. The lesson owns its task lease and must
+/// revalidate it before dispatching the returned action.
+Future<LumoCompanionAction?> showLumoCompanionMenu(
+  BuildContext context, {
+  required WidgetBuilder builder,
+  required ValueChanged<ModalRoute<dynamic>?> onRouteChanged,
+}) async {
+  final navigator = Navigator.of(context);
+  final localizations = MaterialLocalizations.of(context);
+  final route = _LumoConversationRoute<LumoCompanionAction>(
+    builder: builder,
+    capturedThemes:
+        InheritedTheme.capture(from: context, to: navigator.context),
+    barrierLabel: localizations.scrimLabel,
+    barrierOnTapHint:
+        localizations.scrimOnTapHint(localizations.bottomSheetLabel),
+    modalBarrierColor: Theme.of(context).bottomSheetTheme.modalBarrierColor,
+    onRouteChanged: onRouteChanged,
+    // The existing menu builder already contains its SafeArea.
+    useSafeArea: false,
+  );
+  final action = await navigator.push<LumoCompanionAction>(route);
+  await route.completed;
+  return action;
 }
 
 Future<void> showLumoConversation(
@@ -269,7 +298,11 @@ class _LumoConversationRoute<T> extends ModalBottomSheetRoute<T> {
     required super.barrierOnTapHint,
     required super.modalBarrierColor,
     required this.onRouteChanged,
-  }) : super(isScrollControlled: true, useSafeArea: true, showDragHandle: true);
+    bool useSafeArea = true,
+  }) : super(
+            isScrollControlled: true,
+            useSafeArea: useSafeArea,
+            showDragHandle: true);
 
   final ValueChanged<ModalRoute<dynamic>?> onRouteChanged;
   bool? _reportedCurrent;
