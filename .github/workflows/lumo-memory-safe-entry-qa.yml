@@ -1,0 +1,71 @@
+name: LUMO Memory – safe Flutter-first entry QA
+
+on:
+  push:
+    branches: [delivery/lumo-2032-complete-source-to-apk-20261116]
+    paths:
+      - .github/workflows/lumo-memory-safe-entry-qa.yml
+      - lib/features/games/memory/lumo_memory_game.dart
+      - test/games/memory_native_entry_test.dart
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-memory-safe-entry-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  memory-regression:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/delivery/lumo-2032-complete-source-to-apk-20261116'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CI: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Verify the exact original NextGen fix was integrated, not reinvented
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain --untracked-files=normal)"
+          test "$(git hash-object lib/features/games/memory/lumo_memory_game.dart)" = 77c2542238d78b48a18cca41b2f93dec65406f17
+          test "$(git hash-object test/games/memory_native_entry_test.dart)" = ca27e9849feee6f49ba6b416ed6eec9a2faf07f8
+      - name: Resolve pinned Flutter dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter --version
+          flutter pub get --enforce-lockfile
+      - name: Analyze actual Memory source and native lifecycle tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter analyze --no-pub lib/features/games/memory/lumo_memory_game.dart test/games/memory_native_entry_test.dart
+      - name: Exercise the real Flutter card game, 3D fallback and existing profile tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/memory-safe-entry
+          flutter test --no-pub --reporter=expanded --timeout=120s --concurrency=2 \
+            test/games/memory_native_entry_test.dart \
+            test/games/memory_screen_test.dart \
+            test/games/memory_controls_hittest_test.dart \
+            test/games/memory_profile_storage_test.dart 2>&1 | tee evidence/memory-safe-entry/flutter-memory.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Lumo-Memory-stable-entry-evidence
+          path: evidence/memory-safe-entry/
+          if-no-files-found: ignore
+          retention-days: 14
