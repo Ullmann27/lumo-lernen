@@ -1,0 +1,42 @@
+[
+  {
+    "component": "passive-offline-observation",
+    "reviewer": "/root/conversation",
+    "producerCommit": "9f354f9308b0dbc02045d0a3135d57a82184ac93",
+    "apiCommit": "b5e747b3c6952092330ada0f1e9a213935da9781",
+    "tree": "3d10b7c3bd8cd17071fbaa3e1eb57308b6b77648",
+    "verifiedFiles": 13,
+    "handoffSha256": "5124718806adb24ec997ff2f36db6a08150e301b7b553ee33f5e635d522af371",
+    "concreteRemainingBlockers": [],
+    "originalFixturesVerified": 3,
+    "testsRerun": false,
+    "androidExecuted": false,
+    "verified": [
+      "Only exact device-offline text following failed transfer is passively reobserved",
+      "Same total 90 seconds and maximum 2 copies",
+      "Actual serial and kernel boot identity must remain equal",
+      "Owned recorder, remote size/SHA, local full bytes and positive ffprobe gates preserved",
+      "recording() and primary-failure preservation byte-identical"
+    ]
+  },
+  {
+    "component": "first-question-panel-readiness",
+    "reviewer": "/root/learning",
+    "producerCommit": "82b6ff5661fbbcdecbd4f8a4ee680bcd5d6fb45f",
+    "apiCommit": "ac37416f88da28d583dd5d45bc1cb01e05f3c3ef",
+    "tree": "ece5b268276f70bea394899e6c7bbb1ed600984b",
+    "verifiedFiles": 14,
+    "handoffSha256": "6e30089094b376f62512901d1c4bd1a86b745d5d9627598143de3a5f658ca4b1",
+    "concreteRemainingBlockers": [],
+    "originalFixturesVerified": 3,
+    "testsRerun": false,
+    "androidExecuted": false,
+    "verified": [
+      "Viewed both original images and checked whole ZIP identity",
+      "Only zero panel-colored pixels before first actual panel observation may wait",
+      "Same 12 reference attempts and 90-second supplemental deadline; one question tap",
+      "Later disappearance, small/scattered pixels, changed geometry, missing header and unstable targets remain failures",
+      "Invalid intermediate frame discards heading and target evidence"
+    ]
+  }
+]

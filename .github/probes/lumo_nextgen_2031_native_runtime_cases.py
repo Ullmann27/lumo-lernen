@@ -97,8 +97,15 @@ def question_slower_target(probe):
         frame = probe.reader.inspect_surface(source, orientation="responsive")
         if not frame["acceptable_for_target_sampling"]:
             previous = None
+            heading_seen = False
             continue
-        panel = reference.observed_panel_background(source)
+        try:
+            panel = reference.observed_panel_background(source)
+        except reference.QuestionPanelNotObserved:
+            require(panel_before is None, "Previously observed question panel disappeared")
+            previous, heading_seen = None, False
+            probe.save(tag + "-pending", {"capture": shot, "state": "PANEL_NOT_YET_OBSERVED"})
+            continue
         if panel_before is not None:
             require(all(abs(a - b) <= 12 for a, b in zip(panel, panel_before)), "Question panel moved during shortcut selection")
         panel_before = panel

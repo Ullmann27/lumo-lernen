@@ -1,0 +1,18 @@
+{
+  "base": "d0729fbc400601c15940329e9e3ae6b0f4e54b02",
+  "productionByteIdenticalToBase": true,
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "test_nextgen_reference_android_probe.QuestionPanelReadinessTest.test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap",
+    "test_nextgen_2031_native_runtime_cases.SlowerPanelReadinessTest.test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap",
+    "-v"
+  ],
+  "cwd": "tools/android_qa/tests",
+  "exitCode": 1,
+  "logSha256": "6b7d4c98b24e2e519368523e6814df1ca18121e74ac2eee2f1932cf0bb6cf75b",
+  "testPatchSha256": "514963467f173111930003cb38fe77ceae795495bf72d6f25c3b79e88bdc5bc3",
+  "originalRun": 43816667737,
+  "scope": "Actual original PNG order through caller with simulated clock/OCR/transport; not an Android execution."
+}

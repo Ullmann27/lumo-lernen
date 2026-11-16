@@ -1,0 +1,174 @@
+{
+  "baseCommit": "d0729fbc400601c15940329e9e3ae6b0f4e54b02",
+  "apkSource": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "originalRun": 43816667737,
+  "originalQaCommit": "25d4aa1eb3b684eb10e38b4fa7e0270d02e8f9b3",
+  "artifactId": 14203032627,
+  "archiveSha256": "663d9f34fcfbbcf12360ee03dfd889df9469bbd13f3ef7ca67dcfa11ec09411a",
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "bytes": 44802,
+      "sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      "bytes": 26041,
+      "sha256": "8c5c08a2525f4b653c55a833e9b6f45b8fbd975127dde072b56027d6437a288b"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_reference_android_probe.py",
+      "bytes": 29647,
+      "sha256": "bc904c33ab00f449e61ef8b62fbf33ec71bb33dd0bdbac6e2868a95a6b5f93bf"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_native_runtime_cases.py",
+      "bytes": 20884,
+      "sha256": "974d8599117e714b7d2aece9750854584e0a8f0019e4219813167d98716c4c24"
+    }
+  ],
+  "logs": [
+    {
+      "file": "panel-original-sequence-red.log",
+      "bytes": 3565,
+      "sha256": "6b7d4c98b24e2e519368523e6814df1ca18121e74ac2eee2f1932cf0bb6cf75b"
+    },
+    {
+      "file": "panel-original-sequence-red-tests.patch.gz",
+      "bytes": 1852,
+      "sha256": "4fb0c9243756b47d65b7493093a1403b6c0c6c04bf73c8a27a0fc4302cec2769",
+      "compression": "gzip mtime=0",
+      "uncompressedBytes": 5671,
+      "uncompressedSha256": "514963467f173111930003cb38fe77ceae795495bf72d6f25c3b79e88bdc5bc3"
+    },
+    {
+      "file": "panel-original-sequence-red-provenance.json",
+      "bytes": 839,
+      "sha256": "15f768395b4201e6c93e39df03497706fc224d52210d92c4c16522989d8647ab"
+    },
+    {
+      "file": "panel-focused-first.log",
+      "bytes": 10905,
+      "sha256": "c056d5d469808bba05063ae32827a28becf6522c582becf298c557b4cbc227c3"
+    }
+  ],
+  "functionChecks": [
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "changedFunctions": [
+        "ReferenceProbe.question_repeat_target",
+        "observed_panel_background"
+      ],
+      "otherFunctionBodiesByteIdentical": [
+        "write_json",
+        "verify_origin",
+        "verify_candidate",
+        "safe_zip_members",
+        "extract_zip",
+        "NoRedirect.redirect_request",
+        "github_request",
+        "api_json",
+        "download",
+        "observed_pattern",
+        "associated_start",
+        "normalized",
+        "ocr_phrase_variant",
+        "panel_repeat_target",
+        "action_playback",
+        "verify_original_success",
+        "verify_complete_original",
+        "attempts",
+        "verify_core_submission",
+        "ReferenceProbe.candidate_identity",
+        "ReferenceProbe.verify_previous_result",
+        "ReferenceProbe.reset_successful_original",
+        "ReferenceProbe.native_see",
+        "ReferenceProbe.native_tap",
+        "ReferenceProbe.ids",
+        "ReferenceProbe.playback",
+        "ReferenceProbe.enter_native",
+        "ReferenceProbe.return_native",
+        "ReferenceProbe.banana",
+        "ReferenceProbe.read_pattern",
+        "ReferenceProbe.pattern",
+        "ReferenceProbe.submit_pattern_answer",
+        "ReferenceProbe.run",
+        "main"
+      ]
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      "changedFunctions": [
+        "question_slower_target"
+      ],
+      "otherFunctionBodiesByteIdentical": [
+        "remaining",
+        "current_events",
+        "active_playback",
+        "verify_stopped_window",
+        "slower_target",
+        "observed_voice_target",
+        "stop_active_playback",
+        "retained_video",
+        "back_to_academy",
+        "banana_slower",
+        "bridge_active_stop",
+        "verify_native_cases",
+        "run_native_cases"
+      ]
+    }
+  ],
+  "red": {
+    "registered": 2,
+    "expectedErrors": 2,
+    "exitCode": 1
+  },
+  "green": {
+    "registered": 54,
+    "passed": 54,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exitCode": 0
+  },
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "test_nextgen_reference_android_probe",
+    "test_nextgen_2031_native_runtime_cases",
+    "-v"
+  ],
+  "cwd": "tools/android_qa/tests",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "astParsed": true,
+  "gitDiffCheck": "PASS",
+  "unchangedThresholds": {
+    "panelRgb": [
+      255,
+      248,
+      232
+    ],
+    "channelTolerance": 3,
+    "minimumWidth": 160,
+    "minimumHeight": 100,
+    "minimumPixelFraction": 0.25,
+    "geometryTolerance": 12,
+    "referenceAttempts": 12,
+    "slowerSeconds": 90
+  },
+  "limits": {
+    "hostTransportAndOcrAreSimulated": true,
+    "originalPngsUnmodified": true,
+    "androidExecuted": false,
+    "originalOutcome": "FAIL",
+    "newRuntimeStatus": "NOT_RUN",
+    "productSourcesChanged": false,
+    "workflowsConfigsPublishersChanged": false,
+    "remoteActions": false,
+    "releaseEligible": false
+  }
+}

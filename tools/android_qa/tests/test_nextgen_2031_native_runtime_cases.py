@@ -272,5 +272,101 @@ class SharedResultGateTest(unittest.TestCase):
                 cases.verify_native_cases(result, candidate=result["candidate"])
 
 
+PANEL_SUPPORT_SPEC = importlib.util.spec_from_file_location("panel_fixture_test_support",
+    Path(__file__).with_name("test_nextgen_reference_android_probe.py"))
+panel_support = importlib.util.module_from_spec(PANEL_SUPPORT_SPEC)
+PANEL_SUPPORT_SPEC.loader.exec_module(panel_support)
+
+
+class SlowerPanelReadinessTest(unittest.TestCase):
+    def execute(self, sequence):
+        with patch.object(cases.time, "monotonic", lambda: sequence.now), \
+                patch.object(cases.time, "sleep", sequence.sleep):
+            return cases.question_slower_target(sequence.instance)
+
+    def test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap(self):
+        sequence = panel_support.PanelFixtureSequence([
+            {"file": panel_support.PANEL_BEFORE}, {"file": panel_support.PANEL_AFTER},
+            {"file": panel_support.PANEL_AFTER}])
+        target = self.execute(sequence)
+        self.assertEqual(target, (480, 1700, 740, 1740))
+        self.assertEqual(sequence.captures, 3)
+        self.assertEqual(sequence.inputs, [("question", ("Lumo fragen", "runtime-banana-open-question"))])
+        self.assertEqual(next(iter(sequence.saved.values()))["state"], "PANEL_NOT_YET_OBSERVED")
+
+    def test_missing_panel_never_passes_or_extends_the_original_ninety_seconds(self):
+        sequence = panel_support.PanelFixtureSequence([{"file": panel_support.PANEL_BEFORE, "seconds": 30}])
+        with self.assertRaisesRegex(RuntimeError, "deadline expired"):
+            self.execute(sequence)
+        self.assertEqual(sequence.now, 90)
+        self.assertEqual(sequence.captures, 3)
+        self.assertEqual(sequence.ocr_reads, 0)
+        self.assertEqual(len(sequence.inputs), 1)
+
+    def test_panel_or_ocr_arriving_after_deadline_never_returns_a_target(self):
+        for frames in (
+            [{"file": panel_support.PANEL_BEFORE, "seconds": 45},
+             {"file": panel_support.PANEL_AFTER, "seconds": 45}],
+            [{"file": panel_support.PANEL_AFTER},
+             {"file": panel_support.PANEL_AFTER, "ocr_seconds": 90}],
+        ):
+            with self.subTest(frames=frames):
+                sequence = panel_support.PanelFixtureSequence(frames)
+                with self.assertRaisesRegex(RuntimeError, "deadline expired"):
+                    self.execute(sequence)
+                self.assertEqual(sequence.captures, 2)
+                self.assertEqual(len(sequence.inputs), 1)
+
+    def test_scattered_pixels_and_changed_geometry_remain_hard_failures(self):
+        for answers, message, captures in (
+            ([RuntimeError("Ambiguous scattered question-panel pixels")], "Ambiguous scattered", 1),
+            ([(40, 606, 1040, 1803), (60, 606, 1060, 1803)], "panel moved", 2),
+        ):
+            with self.subTest(message=message):
+                sequence = panel_support.PanelFixtureSequence([{"file": panel_support.PANEL_AFTER}])
+                with patch.object(cases.reference, "observed_panel_background", side_effect=answers), \
+                        self.assertRaisesRegex(RuntimeError, message):
+                    self.execute(sequence)
+                self.assertEqual(sequence.captures, captures)
+                self.assertEqual(len(sequence.inputs), 1)
+
+    def test_panel_disappearance_after_first_observation_fails_without_reopening(self):
+        sequence = panel_support.PanelFixtureSequence([
+            {"file": panel_support.PANEL_AFTER}, {"file": panel_support.PANEL_BEFORE},
+            {"file": panel_support.PANEL_AFTER}])
+        with self.assertRaisesRegex(RuntimeError, "panel disappeared"):
+            self.execute(sequence)
+        self.assertEqual(sequence.captures, 2)
+        self.assertEqual(len(sequence.inputs), 1)
+
+    def test_partial_transition_invalidates_old_header_and_old_target(self):
+        sequence = panel_support.PanelFixtureSequence([
+            {"file": panel_support.PANEL_AFTER}, {"file": panel_support.PANEL_AFTER, "partial": True},
+            {"file": panel_support.PANEL_AFTER}, {"file": panel_support.PANEL_AFTER}])
+        self.assertEqual(self.execute(sequence), (480, 1700, 740, 1740))
+        self.assertEqual(sequence.captures, 4)
+        sequence = panel_support.PanelFixtureSequence([
+            {"file": panel_support.PANEL_AFTER}, {"file": panel_support.PANEL_AFTER, "partial": True},
+            {"file": panel_support.PANEL_AFTER}])
+        sequence.frames[-1]["rows"] = sequence.rows[2:]
+        with self.assertRaisesRegex(RuntimeError, "header were not observed"):
+            self.execute(sequence)
+        self.assertEqual(sequence.captures, 3)
+        self.assertEqual(len(sequence.inputs), 1)
+
+    def test_missing_real_header_or_shortcut_sibling_never_authorizes_slow_action(self):
+        sequence = panel_support.PanelFixtureSequence([{"file": panel_support.PANEL_AFTER}])
+        sequence.frames[0]["rows"] = sequence.rows[2:]
+        with self.assertRaisesRegex(RuntimeError, "header were not observed"):
+            self.execute(sequence)
+        self.assertEqual(len(sequence.inputs), 1)
+        sequence = panel_support.PanelFixtureSequence([{"file": panel_support.PANEL_AFTER, "seconds": 30}])
+        sequence.frames[0]["rows"] = sequence.rows[:2] + [sequence.rows[3]]
+        with self.assertRaisesRegex(RuntimeError, "deadline expired"):
+            self.execute(sequence)
+        self.assertEqual(sequence.now, 90)
+        self.assertEqual(sum(kind == "question" for kind, _ in sequence.inputs), 1)
+
+
 if __name__ == "__main__":
     unittest.main()

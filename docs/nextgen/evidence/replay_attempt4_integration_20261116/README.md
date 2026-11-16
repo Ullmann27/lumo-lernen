@@ -1,0 +1,16 @@
+# Vollständiger Replay 4 und Zusatzlauf 3: gemeinsame Prüfquelle
+
+Die tatsächliche Produktquelle bleibt **e05a96a52aaf57e466e79831f15aaffd144284ee**, Native **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef**, APK **0.13.19+2031**. Es werden dieselben bereits vollständig bytegeprüften APKs verwendet. Weder Runtimequellen noch PCK, Paket, Signatur, Version oder Profildatenformat wurden für diese QA-Korrektur geändert.
+
+Zwei getrennte, veröffentlichte Komponenten sind integriert:
+
+- **b5e747b3c6952092330ada0f1e9a213935da9781**, Tree **3d10b7c3bd8cd17071fbaa3e1eb57308b6b77648**: rein passives Wiederbeobachten des exakt belegten ADB-Offlinezustands nach gescheiterter Kopie. Dasselbe Gerät und derselbe Kernelstart müssen gebunden bleiben; gesamte 90 s, höchstens 2 Kopien, Dateigröße/SHA, Recorderende und tatsächliche Videodauer bleiben harte Bedingungen. Keine App-, Aufnahme- oder ADB-Reparaturhandlung wird wiederholt.
+- **ac37416f88da28d583dd5d45bc1cb01e05f3c3ef**, Tree **ece5b268276f70bea394899e6c7bbb1ed600984b**: ein erster noch nicht als Fragepanel gerenderter Frame wird innerhalb der bestehenden 12 Versuche beziehungsweise 90 s neu beobachtet. Ausschließlich null passende Pixel vor erster Panelbeobachtung sind dieser vorläufige Zustand. Ein Fragen-Tap, Farb-/Flächen-/Geometrie-/Header-/Geschwister- und zwei-stabile-Frame-Gates bleiben erhalten; späteres Verschwinden bleibt ein Fehler.
+
+Beide Komponenten wurden vom jeweils anderen Agenten unabhängig und nur lesend geprüft. Alle 27 Dateien stimmen mit originalen Handoffs, Produzentencommits, API-Trees und integrierten Bytes überein. Sechs Originalfixtures wurden zusätzlich gegen ihre jeweiligen vollständig geprüften ZIPs kontrolliert. Beide Reviewberichte, RED/GREEN-Provenienz und unveränderten Handoffs bleiben erhalten; kein Hosttest wird als Androidausführung ausgegeben.
+
+Der gemeinsame Rootlauf der sieben tatsächlich eingesetzten Prüfergruppen an **c54295528a3f8a91ef9eb6296279b91a15b36ebd** besteht **230/230 Tests**: 91+35+12+15+55+9+13. Die fokussierten 19- und 54-Testläufe sind darin enthalten und werden nicht addiert. Vollständige Befehle, Output und SHA stehen in `integrated-host-gates.json` und `.log`. Der ganze committed Tree unterscheidet sich von der APK nur in 512 zugelassenen QA-/Dokumentationspfaden zum dokumentierten Vorlaufcommit.
+
+Die Konfigurationen sind auf **replayAttempt 4** und **caseAttempt 3** vorbereitet. Beide müssen vom selben exakt beobachteten QA-Commit auf `qa/lumo-nextgen-2031-android-20261116` gestartet werden. Tatsächliche Run-IDs werden erst nach dem beobachteten Start ergänzt. Beim Erstellen dieses Dokuments liegt noch kein neuer Android-/Veröffentlichungs-PASS vor.
+
+Der vollständige Replay 3 und Zusatzlauf 2 bleiben FAIL. Die erfolgreichen Zahlen- und aktiven Silbenwechsel-Teilfälle aus Zusatzlauf 2 sind separat und ohne Gesamtfreigabe in `ci-2031-runtime-cases-native-panel-failure/verified-completed-subcases.json` geprüft. Originale und ganze Artefakte aller Fehlläufe bleiben erhalten. Die 31 Publisherbindungen müssen anschließend an die tatsächlich erfolgreiche neue Full-QA-Quelle gebunden werden; die bisherige Bindung an e2713c2 ist historisch und darf nach diesen Prüferänderungen nicht als aktuelle Publikationsfreigabe dienen. `fullModernizationComplete=false` bleibt maßgeblich.

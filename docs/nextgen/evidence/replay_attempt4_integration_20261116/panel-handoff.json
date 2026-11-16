@@ -1,0 +1,164 @@
+{
+  "producerCommit": "82b6ff5661fbbcdecbd4f8a4ee680bcd5d6fb45f",
+  "tree": "ece5b268276f70bea394899e6c7bbb1ed600984b",
+  "parent": "d0729fbc400601c15940329e9e3ae6b0f4e54b02",
+  "branch": "qa/lumo-native-panel-readiness-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-native-panel-readiness",
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      "bytes": 26041,
+      "sha256": "8c5c08a2525f4b653c55a833e9b6f45b8fbd975127dde072b56027d6437a288b"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "bytes": 44802,
+      "sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_native_panel_readiness_20261116/README.md",
+      "bytes": 5355,
+      "sha256": "c54a575f63c9e930ad60fc43130f35d78c5a0bfdc279bf17e46fa5ad04b0b093"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_native_panel_readiness_20261116/panel-focused-first.log",
+      "bytes": 10905,
+      "sha256": "c056d5d469808bba05063ae32827a28becf6522c582becf298c557b4cbc227c3"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_native_panel_readiness_20261116/panel-original-sequence-red-provenance.json",
+      "bytes": 839,
+      "sha256": "15f768395b4201e6c93e39df03497706fc224d52210d92c4c16522989d8647ab"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_native_panel_readiness_20261116/panel-original-sequence-red-tests.patch.gz",
+      "bytes": 1852,
+      "sha256": "4fb0c9243756b47d65b7493093a1403b6c0c6c04bf73c8a27a0fc4302cec2769"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_native_panel_readiness_20261116/panel-original-sequence-red.log",
+      "bytes": 3565,
+      "sha256": "6b7d4c98b24e2e519368523e6814df1ca18121e74ac2eee2f1932cf0bb6cf75b"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_native_panel_readiness_20261116/source-review.json",
+      "bytes": 5125,
+      "sha256": "4f55316a279a1d7f80be1f635209f7b6389d8ceaa595539bf73771618af40565"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_panel_43816667737/0342-runtime-banana-open-question-surface-readiness.json",
+      "bytes": 7951,
+      "sha256": "84ffc09909ebcafe9f055eaaf977959ba456a73dc650fa6d3425eedf1bc8750c"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_panel_43816667737/0343-runtime-banana-slower-panel.png",
+      "bytes": 582591,
+      "sha256": "9419d773b43857ade01de637758e028017c3857a96857b32ab675a595ac7a54c"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_panel_43816667737/0344-runtime-failure-current-screen.png",
+      "bytes": 454480,
+      "sha256": "fca950e7623a57f7e417c715b66daf881a67a84690d699e888d93158931d7d1e"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_panel_43816667737/manifest.json",
+      "bytes": 1364,
+      "sha256": "97e14aec8009c721955c25874a5f02cf1db5b90e683ef7e02e857477529fe8b4"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_native_runtime_cases.py",
+      "bytes": 20884,
+      "sha256": "974d8599117e714b7d2aece9750854584e0a8f0019e4219813167d98716c4c24"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_reference_android_probe.py",
+      "bytes": 29647,
+      "sha256": "bc904c33ab00f449e61ef8b62fbf33ec71bb33dd0bdbac6e2868a95a6b5f93bf"
+    }
+  ],
+  "tests": {
+    "red": {
+      "registered": 2,
+      "expectedErrors": 2,
+      "exitCode": 1
+    },
+    "green": {
+      "registered": 54,
+      "passed": 54,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exitCode": 0
+    },
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "test_nextgen_reference_android_probe",
+      "test_nextgen_2031_native_runtime_cases",
+      "-v"
+    ],
+    "cwd": "tools/android_qa/tests",
+    "logs": [
+      {
+        "file": "panel-original-sequence-red.log",
+        "bytes": 3565,
+        "sha256": "6b7d4c98b24e2e519368523e6814df1ca18121e74ac2eee2f1932cf0bb6cf75b"
+      },
+      {
+        "file": "panel-original-sequence-red-tests.patch.gz",
+        "bytes": 1852,
+        "sha256": "4fb0c9243756b47d65b7493093a1403b6c0c6c04bf73c8a27a0fc4302cec2769",
+        "compression": "gzip mtime=0",
+        "uncompressedBytes": 5671,
+        "uncompressedSha256": "514963467f173111930003cb38fe77ceae795495bf72d6f25c3b79e88bdc5bc3"
+      },
+      {
+        "file": "panel-original-sequence-red-provenance.json",
+        "bytes": 839,
+        "sha256": "15f768395b4201e6c93e39df03497706fc224d52210d92c4c16522989d8647ab"
+      },
+      {
+        "file": "panel-focused-first.log",
+        "bytes": 10905,
+        "sha256": "c056d5d469808bba05063ae32827a28becf6522c582becf298c557b4cbc227c3"
+      }
+    ]
+  },
+  "original": {
+    "run": 43816667737,
+    "job": 133130171146,
+    "qaCommit": "25d4aa1eb3b684eb10e38b4fa7e0270d02e8f9b3",
+    "artifactId": 14203032627,
+    "archiveBytes": 29082573,
+    "archiveSha256": "663d9f34fcfbbcf12360ee03dfd889df9469bbd13f3ef7ca67dcfa11ec09411a",
+    "outcome": "FAIL"
+  },
+  "unchangedThresholds": {
+    "panelRgb": [
+      255,
+      248,
+      232
+    ],
+    "channelTolerance": 3,
+    "minimumWidth": 160,
+    "minimumHeight": 100,
+    "minimumPixelFraction": 0.25,
+    "geometryTolerance": 12,
+    "referenceAttempts": 12,
+    "slowerSeconds": 90
+  },
+  "limits": {
+    "hostTransportAndOcrAreSimulated": true,
+    "originalPngsUnmodified": true,
+    "androidExecuted": false,
+    "originalOutcome": "FAIL",
+    "newRuntimeStatus": "NOT_RUN",
+    "productSourcesChanged": false,
+    "workflowsConfigsPublishersChanged": false,
+    "remoteActions": false,
+    "releaseEligible": false
+  },
+  "allCommittedBytesVerified": true,
+  "worktreeClean": true
+}
