@@ -177,7 +177,7 @@ APPROVED = {
     2033: "f07b007c2c0169ceeba75349420a47493a63569e",
     # 2034: same 2033 source plus public Bauwelt story guide and Kart neon UI.
     # Exact source is still subject to native combined QA and Android acceptance.
-    2034: "821fee4ace090138d82a4166dc5d7162e433777d",
+    2034: "bceaa1138915a1fe0591820c43339c3b63702771",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
