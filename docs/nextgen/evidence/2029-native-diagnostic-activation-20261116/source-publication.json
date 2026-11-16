@@ -11,5 +11,22 @@
   "targetedCheckerTestsPassed": 12,
   "releaseEligible": false,
   "fullAcceptanceClaimed": false,
-  "actualWorkflowRunUrl": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43790709991"
+  "actualWorkflowRunUrl": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43790709991",
+  "observedRunStatus": "queued",
+  "observedJobs": {
+    "banana": {
+      "id": 133048238984,
+      "status": "in_progress",
+      "stage": "actual Android scene"
+    },
+    "pattern": {
+      "id": 133048238645,
+      "status": "in_progress",
+      "stage": "actual Android scene"
+    },
+    "bridge": {
+      "id": 133048238970,
+      "status": "queued"
+    }
+  }
 }

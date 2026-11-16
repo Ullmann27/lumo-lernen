@@ -10,6 +10,12 @@ Native bleibt **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef**, Paket **dev.ullmann.
 
 Aktueller Lieferpfad: `docs/nextgen/ANDROID_DELIVERY_2030.md`. Die Modernisierung bleibt als `fullModernizationComplete=false` ausgewiesen; allgemeine Aufgabenkarte, separate optionale Godot-Activity sowie tatsächliche Varianten-/Geräte-/Sprachgrenzen bleiben sichtbar. `main` bleibt unberührt.
 
+## Tatsächliche Aktivierung2030
+
+Der vollständige Lauf [43790915460](https://github.com/Ullmann27/lumo-lernen/actions/runs/43790915460) wurde am exakten neuen APK-/QA-Quellcommit **c4e330faa61e231dd3fd44c21085c95ddcd5b7c9** gestartet. Der beobachtete Run-Head stimmt mit dem veröffentlichten, lokal per identischem Tree geprüften Stand überein. Native bleibt `678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef`. Laufstatus bei diesem Eintrag: **in_progress**; noch kein Gesamt-/Android-/Download-PASS. Aktivierungsbindung: `docs/nextgen/evidence/2030-build-activation-20261116/activation.json`.
+
+Die getrennte Diagnose [43790709991](https://github.com/Ullmann27/lumo-lernen/actions/runs/43790709991) läuft auf QA `e04e29437e2c28f40e492191f430cd49ddc456fa` mit den bestehenden2029-Bytes. Tatsächlich beobachtet: Banane- und Musterjob sind in ihrer Android-Szenenstufe, Bridge ist gemäß max-parallel2 noch eingereiht. Daraus folgt keine Freigabe für2029 oder2030.
+
 ## Archiv: gebaute Version2029 und tatsächlicher Erstbedienungsfehler
 
 # LUMO Next Generation – Android-Erstbedienung 2029 noch fehlerhaft
