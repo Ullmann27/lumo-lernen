@@ -51,7 +51,9 @@ Future<bool> launchLumo3D(
   }
   if ((scene == 'connect_four') != (connectFourToken != null) ||
       (connectFourToken != null &&
-          !RegExp(r'^[a-f0-9]{32}$').hasMatch(connectFourToken))) return false;
+          !RegExp(r'^[a-f0-9]{32}$').hasMatch(connectFourToken))) {
+    return false;
+  }
   final tableGame = const {'memory', 'quiz'}.contains(scene);
   if (tableGame != (tableToken != null) ||
       (tableGame && appState == null) ||
