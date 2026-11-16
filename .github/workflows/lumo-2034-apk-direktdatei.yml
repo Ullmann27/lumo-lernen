@@ -1,0 +1,96 @@
+name: "LUMO 2034 – vorhandene signierte APK direkt ausliefern"
+on:
+  push:
+    branches: [delivery/lumo-2034-kombination-20261116]
+    paths: [.github/workflows/lumo-2034-apk-direktdatei.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  apk-datei:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      GH_TOKEN: ${{ github.token }}
+      ORIGIN_RUN: "43905069233"
+      ORIGIN_SHA: "1a03706a901363e3f29765378d5a33a307f5574f"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Originalen erfolgreichen Build eindeutig nachweisen
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ORIGIN_RUN" --jq .head_sha)" = "$ORIGIN_SHA"
+          test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ORIGIN_RUN" --jq .conclusion)" = "success"
+          gh run download "$ORIGIN_RUN" --repo "$GITHUB_REPOSITORY" \
+            --name "LUMO-EINFACH-APK-$ORIGIN_RUN" --dir original
+          test -s original/release/Lumo-Lernen-Neu.apk
+          test -s original/release/SHA256SUMS.txt
+          test -s original/release/APK-VERIFICATION.json
+          test -s original/release/BUILD-PROVENANCE.json
+          (cd original/release && sha256sum -c SHA256SUMS.txt)
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          provenance=json.loads(Path("original/release/BUILD-PROVENANCE.json").read_text())
+          assert provenance["flutter_source_commit"]=="1a03706a901363e3f29765378d5a33a307f5574f"
+          assert provenance["tracked_source_clean"] is True
+          native=json.loads(Path("config/godot-source.json").read_text())
+          assert native["revision"]=="bceaa1138915a1fe0591820c43339c3b63702771"
+          assert "version: 0.13.22+2034" in Path("pubspec.yaml").read_text()
+          print("[LUMO2034] exact-source APK, original signature and hash previously verified")
+          PY
+      - name: Die echte APK ohne Neukompilierung in übertragbare Originalteile zerlegen
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p teile
+          split --bytes=240m --numeric-suffixes=0 --suffix-length=2 \
+            original/release/Lumo-Lernen-Neu.apk teile/LUMO-2034-part-
+          test -s teile/LUMO-2034-part-00
+          test -s teile/LUMO-2034-part-01
+          test -s teile/LUMO-2034-part-02
+          test "$(find teile/ -maxdepth 1 -name 'LUMO-2034-part-*' | wc -l)" = 3
+          (cd teile && sha256sum LUMO-2034-part-* > PART-SHA256SUMS.txt)
+          sha256sum original/release/Lumo-Lernen-Neu.apk > teile/APK-SHA256SUMS.txt
+          cmp -s <(cut -d' ' -f1 teile/APK-SHA256SUMS.txt) \
+            <(cut -d' ' -f1 original/release/SHA256SUMS.txt)
+          cat teile/APK-SHA256SUMS.txt
+          stat -c 'Verified APK size: %s bytes' original/release/Lumo-Lernen-Neu.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2034-APK-TEIL-00
+          path: teile/LUMO-2034-part-00
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2034-APK-TEIL-01
+          path: teile/LUMO-2034-part-01
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2034-APK-TEIL-02
+          path: teile/LUMO-2034-part-02
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2034-APK-HASH-NACHWEIS
+          path: |
+            teile/PART-SHA256SUMS.txt
+            teile/APK-SHA256SUMS.txt
+            original/release/SHA256SUMS.txt
+            original/release/APK-VERIFICATION.json
+            original/release/BUILD-PROVENANCE.json
+          if-no-files-found: error
+          retention-days: 30
