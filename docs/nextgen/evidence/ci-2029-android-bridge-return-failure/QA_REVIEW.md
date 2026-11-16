@@ -1,0 +1,11 @@
+# Independent read-only first-tap review
+
+Exact probe/product source: `684f54a6d11cfb5eccaec30f39fe34d6c17c82cc`; original run `43785937519`. This review made no code changes, test runs, extra Android actions or gate changes.
+
+The actual close touch in `0152-conversation-return-touch.json` targets bounds [948,421]–[1080,553]. The subsequent 0153 and 0156 XML snapshots no longer contain the conversation, its close control, Scrim or Dismiss overlay. Each reader call obtains a fresh Android hierarchy; no reader-side XML cache is present. The first reserve stone and all its ancestors are enabled; the stone is clickable and its exact bounds are [138,665]–[270,797]. The emitted touch center (204,731) lies in the real TextButton. Both scroll journals contain gestures=[]; no intervening scroll moved the target. The source TextButton performs move(1), so dragging is not required.
+
+At the same pre-tap moment, ordinary Lab listen/build/coach controls are disabled. The final 0233 PNG shows them enabled and cyan, with the model unchanged. In the unchanged original video `0094-eight-plus-five-explanation.mp4` (SHA-256 `652221cde49155ba5142433b2bcf86448d4fb975bd5bb96d6435782d8ac1ce73`), approximate media times show the close button pressed at28.5s, the returned Lab with gray controls at29.0s and active cyan controls at29.5s. Those are approximate video timestamps, not a trace of individual Flutter callbacks. Both returned frames still show8 field objects and5 reserve objects.
+
+The product source captures `_coach.identity` when `_model()` builds and discards changes if that captured value is absent/stale. It can nevertheless pass enabled=true to the board, while ordinary `_bound` controls are disabled. `_openConversation` registers a post-frame publication after route.completed; that registration itself requests no new frame. These facts explain a plausible timing boundary but do not prove precisely which callback was delivered at which Android timestamp.
+
+No wrong coordinate, missing drag, persistent modal, or permanent unchanged2028 lock is established. A second tap or QA retry would conceal the original failed first interaction and is not a proposed fix. Learning is separately reproducing the initial binding/frame behavior before any new product patch. The original Android result remains FAIL.
