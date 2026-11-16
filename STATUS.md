@@ -13,7 +13,7 @@ Produkt-/Tagquelle **e05a96a52aaf57e466e79831f15aaffd144284ee**, Native **678cb3
 | Öffentliche Auslieferung | Neue Veröffentlichung und vollständiger anonymer APK-Download erfolgreich; Original-Build-Android-FAIL bleibt erhalten |
 | Zusatzlauf 3 | **43819768114 FAIL** vor Stopp durch erneuten Akademie-Toggle; Zahlenfehler/Korrektur, aktiver Wortwechsel und native Langsamer-Aktion getrennt belegt |
 | Zusatzlauf 4 | **43822740773 FAIL** vor erster Zahlenabgabe: 12 Wallpaper-Standbilder während Videoaufnahme; Video und späteres Fehlerbild zeigen tatsächliche Aufgabe. Keine belegte Entropie-Fehlentscheidung. Stopp weiterhin offen |
-| Zusatzlauf 5 | **43826704611** seit 07:51:03 UTC tatsächlich in_progress, QA **59ab8cd000d4cca1c9c414920ccebf9fc5d1c7ba**; Quelle/identischer APK-Download bestanden, Laufzeitergebnis offen |
+| Zusatzlauf 5 | **43826704611 FAIL** um 07:55:52 UTC; erster Onboarding-Videotransfer scheitert mit ADB offline → Gerät nicht gefunden; alle vier Zusatzfälle noch nicht erreicht |
 
 Alle vollständigen Originalarchive, Rohjoblogs, Metadaten und ausgewählte echte Bilder/Videos sind unter `docs/nextgen/evidence/ci-2031-complete-replay-verified/`, `ci-2031-publication-verified/` und `ci-2031-runtime-cases-numeric-capture-failure/` erhalten. Die erfolgreiche vollständige Tour besitzt **52 registrierte Screenshots und 26 Videos ohne Tonspur**, 230/230 aktuelle Hostprüfungen und zusätzlich unabhängig erneut geprüfte Originalresultate. Der Publisher bindet seine 31 Quellen an die erfolgreiche QA; Root prüfte zusätzlich 17 Replay-Fixtures. Zusatzfälle werden nicht zu einem fremden Gesamt-PASS zusammengesetzt.
 

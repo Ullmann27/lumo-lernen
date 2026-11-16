@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <boolean name="flutter.lumo_intro_seen" value="true" />
+    <string name="flutter.lumo_active_profile">{&quot;id&quot;:&quot;1794815720923699&quot;,&quot;name&quot;:&quot;LumoNextTest&quot;,&quot;age&quot;:7,&quot;grade&quot;:1,&quot;createdAt&quot;:&quot;2026-11-16T07:55:20.923699&quot;,&quot;lastActiveAt&quot;:&quot;2026-11-16T07:55:20.923777&quot;}</string>
+    <string name="flutter.lumo_reward_wallet_v1">{&quot;stars&quot;:0,&quot;xp&quot;:0,&quot;level&quot;:1,&quot;streak&quot;:0,&quot;totalEarnedStars&quot;:0,&quot;lastDailyKey&quot;:&quot;&quot;,&quot;gameResultIds&quot;:[],&quot;lumoCardsWinStreak&quot;:0}</string>
+    <string name="flutter.lumo_daily_mission_v1::local-fdfbfbcbf88dcb2394ae27e4ec2fde75">{&quot;version&quot;:1,&quot;dayKey&quot;:&quot;2026-11-16&quot;,&quot;lastSeenAt&quot;:&quot;2026-11-16T07:55:22.070661Z&quot;,&quot;stations&quot;:[{&quot;subject&quot;:&quot;Mathematik&quot;,&quot;completed&quot;:0,&quot;target&quot;:4},{&quot;subject&quot;:&quot;Deutsch&quot;,&quot;completed&quot;:0,&quot;target&quot;:4},{&quot;subject&quot;:&quot;Englisch&quot;,&quot;completed&quot;:0,&quot;target&quot;:4}],&quot;acceptedTaskIds&quot;:[]}</string>
+    <string name="flutter.lumo_learning_local_student_id_v1">local-fdfbfbcbf88dcb2394ae27e4ec2fde75</string>
+</map>

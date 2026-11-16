@@ -1,0 +1,32 @@
+{
+  "observedAtUtc": "2026-11-16T08:00:40.756786+00:00",
+  "originalRun": 43826704611,
+  "originalStatus": "FAIL",
+  "originalQa": "59ab8cd000d4cca1c9c414920ccebf9fc5d1c7ba",
+  "independentReadOnlyReviewer": "Conversation",
+  "decision": "One fresh supplemental attempt6 with only the attempt number changed is justified by the observed ADB transport loss before any supplemental case; no source gate change.",
+  "sourceChanged": false,
+  "testsRerunForDecision": false,
+  "beforeTransfer": [
+    "No recorder PID",
+    "Observed serial emulator-5554",
+    "Observed boot ID e7c3aaa4-db01-41b6-adc6-797e3d3ad50f",
+    "Remote bytes2556373 and SHA060f6cc129b997041c78992ce71f18f43467760c20e2f20e9138a366e50e9457"
+  ],
+  "afterFailedTransfer": [
+    "Exact adb: device offline",
+    "Then exact adb: device emulator-5554 not found (quoted serial in original)",
+    "Hard unobservable recorder failure; no second transfer"
+  ],
+  "laterScreenshot": "Original0024 personally viewed by Conversation: actual Lumo home; separate later successful image transport only",
+  "limits": [
+    "No same-boot proof after interruption",
+    "No recovery duration or root cause established",
+    "No supplemental case or numeric-capture fix reached",
+    "No successfully transferred onboarding video",
+    "Attempt5 remains FAIL; no future success presumed"
+  ],
+  "maximumAdditionalFreshRunsAuthorizedByThisDecision": 1,
+  "plannedCaseAttempt": 6,
+  "newRunStarted": false
+}

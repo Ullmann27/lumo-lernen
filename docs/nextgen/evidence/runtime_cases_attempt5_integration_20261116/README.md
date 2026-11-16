@@ -13,3 +13,7 @@ Die APK und öffentliche Veröffentlichung bleiben unverändert. Ein neuer Andro
 [Zusatzlauf 43826704611](https://github.com/Ullmann27/lumo-lernen/actions/runs/43826704611), Job **133162141099**, wurde am **16.11.2026 um 07:51:03 UTC** auf API-QA **59ab8cd000d4cca1c9c414920ccebf9fc5d1c7ba**, Tree **79f623d398e7c64275d8f3b894f169c2d29b54c4**, tatsächlich gestartet. APK-Quellgrenze und exakter APK-Download sind erfolgreich; Laufzeitergebnis noch offen. [Aktivierung](activation.json), [exakte QA-Veröffentlichung](published-qa.json).
 
 Die vorab integrierte Rootquelle ist öffentlich **c86ad8475a597b55a865b52f58c9925fe3f098e3**, Tree **b95f81261665ef5fb07d9ed679562833d98b9fda**. Die vollständigen Android-/Publikations-/Fehlerarchive sind bereits in ihrem Parentcheckpoint **a38ee5b9037b33b75c988e19c74bc346918ec174** gesichert. Kein Main-Merge und keine neue APK.
+
+## Tatsächlicher Abschluss
+
+Der Lauf ist um **07:55:52 UTC FAIL** abgeschlossen, bevor einer der vier Zusatzfälle begann. Beim ersten Onboarding-Videotransfer scheiterte ADB; die anschließenden Rohzustände `device offline` und `device not found` liefern keinen gültigen Recorder-/Dateibeleg. Alle57Originale/ZIP/Joblog stehen unverändert im [gesonderten Fehlerarchiv](../ci-2031-runtime-cases-onboarding-transfer-failure/README.md). Weder neuer NumericFix noch aktiver Stopp wurden damit auf Android erreicht.
