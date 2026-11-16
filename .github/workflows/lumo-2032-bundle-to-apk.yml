@@ -60,7 +60,7 @@ jobs:
       FLUTTER_SUPPRESS_ANALYTICS: 'true'
       LUMO_SPLIT_PER_ABI: '1'
       LUMO_NDK_DISPOSABLE_RUNNER: '1'
-      GRADLE_USER_HOME: ${{ runner.temp }}/lumo-2032-gradle
+      GRADLE_USER_HOME: ${{ github.workspace }}/.gradle-build-lumo2032
     steps:
       - uses: actions/checkout@v4
         with:
