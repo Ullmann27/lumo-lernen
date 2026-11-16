@@ -1,3 +1,15 @@
+# LUMO Next Generation – Produktkorrektur für Kandidat 2029
+
+Stand: 16. November 2026. **Kandidat 2028 wird nicht veröffentlicht.** Sein zweiter vollständiger Replay [43783036351](https://github.com/Ullmann27/lumo-lernen/actions/runs/43783036351) erreichte die echte Mikrofonfreigabe und eine ausdrücklich sichtbare Gerätebegrenzung, scheiterte anschließend aber beim ersten Modell-Tap nach der eigenen Gesprächsrückkehr. Alle 274 Originaldateien und der vollständige Joblog sind unter `docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/` unverändert erhalten. Auch die beiden früheren Androidfehler bleiben als FAIL erhalten.
+
+Zwei gezielte Widgetfälle reproduzieren den Fehler an der unveränderten Produktquelle `fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242`: normale eigene Gesprächsrückkehr und Rückkehr nach inactive → resumed im Gespräch. Die Aufgabe ist im Bus bereits wieder richtig gebunden; der tatsächlich sichtbare erste Stein-Tap bewegt jedoch nichts, und die Bauschaltfläche ist deaktiviert. Die Rückkehr muss die aktuelle Aufgabenbindung und den lokalen Neuaufbau der Bedienelemente sicher zusammenführen. Alte oder fremde Rückrufe bleiben abzulehnen.
+
+Diese echte Produktkorrektur erfordert einen **neuen vollständigen Build**, vorgesehen als **0.13.17+2029**. Die vorhandene Godot-Quelle bleibt `678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef`, Paketkennung und bestehende Testsignatur bleiben erhalten. Ein neuer Quellcommit, gezielte GREEN-Protokolle, die aktualisierte Abdeckungsliste und der vollständige Quell-/Build-/Androidlauf sind noch ausstehend. Die 2028-Replay- und Publikationszweige werden nicht als Freigabe für diese neue APK verwendet.
+
+Der normale Veröffentlichungspfad wird um die vollständige anonyme Byteprüfung der öffentlichen Datei ergänzt. **Es gibt noch keine verifizierte 2029-APK und keinen neuen öffentlichen Download.** `fullModernizationComplete=false` bleibt bestehen; allgemeine Aufgabenkarte, optionale Godot-Activity und alle tatsächlichen Geräte-/Variantenlücken werden weiter ausgewiesen. `main` und frühere Releases bleiben unverändert.
+
+## Archiv: Kandidat 2028 und unveränderte Originalnachweise
+
 # LUMO Next Generation – gebauter Kandidat 2028, Androidwiederholung ausstehend
 
 Stand: 16. November 2026. APK-Quelle **fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242**, Native **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef**, Version **0.13.16+2028**. Der Integrationszweig ist `integration/lumo-nextgen-learning-20261115`. Paket `dev.ullmann.lumo.lumo_lernen.coachpreview` und bestehende Testsignatur bleiben erhalten; `main` wurde nicht zusammengeführt.
