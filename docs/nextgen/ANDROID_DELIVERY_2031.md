@@ -2,6 +2,10 @@
 
 ## Tatsächliche Aktivierung
 
+### Replay tatsächlich gestartet
+
+Der vollständige neue Replay [43806736020](https://github.com/Ullmann27/lumo-lernen/actions/runs/43806736020) wurde am **16.11.2026 um 04:53:08 UTC** gestartet, QA-Commit **`51a3bfdedf4d6a745fb574ae9186c1094eb11abf`**, Branch `qa/lumo-nextgen-2031-android-20261116`. Sein Tree **`df526bddb7c336d8e3a5fac417982bf2c2b2a2c4`** entspricht exakt dem veröffentlichten Integrationsstand **`78431464927dbad3a55fc0549e8bd4d2cc75c94c`**. Der tatsächliche APK-Quellcommit bleibt e05a96a; die APK wird nicht neu gebaut. Job **`133099128390`** hat Herkunfts-/Quellgrenzenprüfung und vollständigen fest gebundenen APK-Download bestanden. Beobachteter weiterer Status: **in_progress**; kein abgeschlossener Replay-/Android-/Download-PASS. [Exakte Aktivierungsbindung](evidence/2031-replay-activation-20261116/activation.json).
+
 ### Vollständiger unveränderlicher Replay vorbereitet
 
 Die Home-Beobachtung und der getrennte 2031-Replay sind zusammengeführt. **168/168 Hostprüfungen** der sieben tatsächlich im Replay verwendeten Prüfmodule bestehen, einschließlich sämtlicher 81 ursprünglicher Probeprüfungen und der 24 neuen Replay-/Publikationsprüfungen; überlappende Läufe werden nicht addiert. Der vollständige Git-Tree-Vergleich gegen die APK-Quelle e05a96a enthält ausschließlich zugelassene QA-/Dokumentationsänderungen. Der neue Replay verlangt beide vollständigen Androidtouren an genau denselben 2031-Bytes; sein Publisher bindet 31 Prüferquellen und den OriginalFAIL, bevor eine neue Veröffentlichung und vollständige anonyme Downloadprüfung zulässig werden. Die aktuelle mehrzeilige Musterlesefunktion wird tatsächlich geerbt. Exakte Komponenten-/API-/Testquellen: [2031-replay-integration-20261116](evidence/2031-replay-integration-20261116/). Beim Schreiben dieses Vorlaufeintrags ist noch kein neuer Android-PASS beobachtet.

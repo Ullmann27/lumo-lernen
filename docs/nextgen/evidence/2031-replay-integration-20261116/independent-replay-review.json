@@ -1,0 +1,23 @@
+{
+  "reviewer": "conversation subagent, independent read-only review",
+  "producerCommit": "d0b0de4f4a57efefb9bd40c0c25ddc80e57cfd2b",
+  "publishedCommit": "5b08d82e6939288a324ba50442794bbbb2f8cd94",
+  "componentTree": "800cbe5d47c84d63b81cd1eded84c622921e177b",
+  "reviewedIntegrationCommit": "e6dfb1a44bbbdf86db0227dbf607784916783fa1",
+  "reviewedIntegrationTree": "87f9038dbaa6da335f4febe546869dd9f21e550b",
+  "handoffSha256": "e2f66fc869ef0b92b366ed6515abcec991c3b34656e7d5996fb5ff0f1474aea3",
+  "all15FilesByteEqualAcrossHandoffProducerPublishedWorktreeAndIntegration": true,
+  "homeFixProbeSha256": "5c5c8a7483c9d4c6e860febcf660613a10acee8ba07e1e3dec5c1cd0eb0c88a9",
+  "concreteBlockerFound": false,
+  "reviewed": [
+    "Exact original APK source, jobs, archive bytes, APK/PCK hashes, version and certificate",
+    "Complete original tour precedes reference and reset; inherited current wrapped-pattern reader remains active",
+    "Original failed Android outcome is required and retained",
+    "Publisher requires exact successful current replay and31 byte-bound gate/helper/test sources",
+    "Real404 absence, APK-source release/tag binding and complete anonymous public SHA download"
+  ],
+  "existingObservedHostLogs": {"componentPass": 24, "integrationPass": 168},
+  "reviewerExecutedAdditionalTests": false,
+  "reviewerChangedFilesOrRemotes": false,
+  "newAndroidPassImplied": false
+}
