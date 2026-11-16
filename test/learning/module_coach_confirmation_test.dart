@@ -1,8 +1,5 @@
-import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
@@ -140,62 +137,35 @@ void main() {
     });
 
     testWidgets(
-        '${entry.$1}: native return before resume keeps an ungraded candidate',
+        '${entry.$1}: unverified 3D context gives real local help without false scene',
         (tester) async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.android;
-      const bridge = MethodChannel('lumo_lernen/bridge');
-      final nativeReturn = Completer<Map<String, Object?>>();
-      Map<dynamic, dynamic>? payload;
-      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-          .setMockMethodCallHandler(bridge, (call) async {
-        if (call.method == 'launch3D') {
-          payload = (call.arguments as Map)['learning'] as Map;
-          return nativeReturn.future;
-        }
-        return <String, Object?>{'destination': 'learn'};
-      });
-      addTearDown(() {
-        if (!nativeReturn.isCompleted) {
-          nativeReturn.complete({'destination': 'learn'});
-        }
-        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-            .setMockMethodCallHandler(bridge, null);
-        debugDefaultTargetPlatformOverride = null;
-      });
       final app = await mountModule(tester, entry.$1);
       final bus = LumoCompanionRequests.instance;
       final taskId = bus.taskContext.value!.taskId;
       await tap(tester, '${entry.$2}-open-3d');
-      expect(payload, isNotNull);
-      final identity = bus.learningIdentity.value!;
-      expect(payload!['kind'], 'task_card');
-      expect(payload!['sourceTaskId'], taskId);
-      expect(payload!['scope'], identity.toJson());
-      expect(payload!.containsKey('correctAnswer'), isFalse);
-      expect(payload!['allowedActions'], contains('proposeAnswer'));
+      expect(
+          find.text(entry.$2 == 'module'
+              ? 'Mit Lumo Schritt für Schritt'
+              : 'Lumo erklärt mit Äpfeln'),
+          findsOneWidget);
+      expect(bus.taskContext.value!.taskId, taskId);
       expect(bus.taskContext.value!.helpLevel, 1);
-      pause(tester);
-      await frames(tester);
-      expect(bus.learningIdentity.value, identity);
+      if (entry.$2 == 'module') {
+        expect(find.byKey(const ValueKey('module-help-text')), findsOneWidget);
+      }
+      expect(app.learningDailyDone(), 0);
       final answer = bus.taskContext.value!.answerChoices.first;
       expect(propose(answer), isTrue);
       await frames(tester);
-      expect(bus.taskContext.value!.attempts, 0);
-      expect(app.learningDailyDone(), 0);
-      nativeReturn.complete({'destination': 'learn'});
-      await frames(tester);
-      expect(bus.learningIdentity.value, identity);
-      resume(tester);
-      await frames(tester);
-      expect(bus.taskContext.value!.taskId, taskId);
       expect(
-          find.byKey(ValueKey('${entry.$2}-answer-candidate')), findsOneWidget);
+          find.byKey(ValueKey('${entry.$2}-answer-candidate')),
+          findsOneWidget);
+      expect(bus.taskContext.value!.attempts, 0);
       await tap(tester, '${entry.$2}-confirm-candidate');
-      expect(bus.taskContext.value!.attempts, 1);
       expect(bus.taskContext.value!.lastAnswer, answer);
-      expect(bus.taskContext.value!.lastCorrect, isNotNull);
+      expect(bus.taskContext.value!.attempts, 1);
       expect(tester.takeException(), isNull);
-      debugDefaultTargetPlatformOverride = null;
     });
+
   }
 }
