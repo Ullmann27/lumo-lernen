@@ -2,6 +2,10 @@
 
 ## Tatsächliche Aktivierung
 
+### Nachtrag: signierte APKs gebaut und überprüft
+
+Buildjob **`133085378884` ist SUCCESS**. Die tatsächliche ARM64-APK hat **535.026.362 Bytes**, SHA-256 **`e6ca8e512ddc56755ae8664b3438b0e78b87a7f0e77f1cd55cac592b20b316d7`**. Die x86-APK hat **538.191.823 Bytes**, SHA-256 **`8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a`**. Beide enthalten dieselbe native PCK `94b0a84b8715537fff9ff84e451c889ca1fe1b8440a4448ded93989b3feb0aef`. Paket, Version, bestehendes Testzertifikat, ABI, Ausrichtung und Sprachassets sind am tatsächlichen Paket geprüft. Root hat außerdem das vollständige ARM64-Artifact und die gesamte APK unabhängig heruntergeladen und bytegeprüft; die Originalmetadaten stimmen mit der aktiven APK-Quelle überein. [Vollständiger Buildbeleg](evidence/ci-2031-build/README.md). Der Androidjob **`133088843594`** läuft; eine öffentliche Downloadfreigabe liegt zu diesem Nachtrag noch nicht vor.
+
 Der normale vollständige Lauf [43800892196](https://github.com/Ullmann27/lumo-lernen/actions/runs/43800892196) wurde am **16.11.2026 um 03:54:29 UTC** auf dem exakten APK-/QA-Quellcommit **`e05a96a52aaf57e466e79831f15aaffd144284ee`**, Tree **`037ec0108fb41e13b59e73ac2514220099e9548a`**, gestartet. Run-Head und veröffentlichter Quellstand stimmen überein. Beobachteter Anfangsstatus: **in_progress**, kein abschließender Test-, APK-, Android- oder Download-PASS. Die unveränderte Native-Quelle steht unten; maschinenlesbare Bindung: [activation.json](evidence/2031-build-activation-20261116/activation.json).
 
 ## Status vor Aktivierung
