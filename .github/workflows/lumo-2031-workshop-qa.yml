@@ -1,0 +1,36 @@
+name: LUMO 2031 – Lernwerkstatt im neuesten verbundenen Host prüfen
+on:
+  push:
+    branches: [integration/lumo-2031-learning-workshop-repair-20261116]
+    paths:
+      - lib/domain/tutoring/native_learning_activity.dart
+      - lib/features/lumo3d/lumo3d_launcher.dart
+      - lib/features/learning/learning_content.dart
+      - lib/features/tutoring/guided_lesson_screen.dart
+      - test/native_learning_workshop_relevance_test.dart
+      - test/tutoring/native_learning_generation_contract_test.dart
+      - .github/workflows/lumo-2031-workshop-qa.yml
+  pull_request:
+    branches: [delivery/lumo-nextgen-2031-replay-20261116]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-handoff-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Restore locked original dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Analyze new 2031 learning host and existing lesson screens
+        run: |
+          flutter analyze --no-fatal-infos --no-fatal-warnings             lib/domain/tutoring/native_learning_activity.dart             lib/features/learning/learning_content.dart             lib/features/tutoring/guided_lesson_screen.dart             lib/features/lumo3d/lumo3d_launcher.dart             test/native_learning_workshop_relevance_test.dart             test/tutoring/native_learning_generation_contract_test.dart
+      - name: Actual 2031 learning, Godot handoff and safety regression
+        run: |
+          flutter test --no-pub --reporter expanded --timeout 120s --concurrency 2             test/native_learning_workshop_relevance_test.dart             test/tutoring/native_learning_generation_contract_test.dart             test/tutoring/native_learning_launch_test.dart             test/tutoring/native_learning_serialized_contract_test.dart             test/tutoring/guided_lesson_runtime_test.dart             test/learning/nextgen_task_quality_test.dart             test/learning_lab_runtime_test.dart
