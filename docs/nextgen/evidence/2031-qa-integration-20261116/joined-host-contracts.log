@@ -1,0 +1,85 @@
+test_existing_marker_cannot_hide_a_changed_runtime (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_existing_marker_cannot_hide_a_changed_runtime) ... ok
+test_missing_or_modified_model_license_is_not_silently_ignored (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_missing_or_modified_model_license_is_not_silently_ignored) ... ok
+test_pinned_bytes_license_dependency_and_idempotence (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_pinned_bytes_license_dependency_and_idempotence) ... ok
+test_unbalanced_dependency_marker_is_refused (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_unbalanced_dependency_marker_is_refused) ... ok
+test_wrong_archive_is_refused_before_payload_use (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_wrong_archive_is_refused_before_payload_use) ... ok
+test_existing_java_voice_guards (scripts.tests.test_prepare_offline_voice.OfflineSpeechTokenizerTest.test_existing_java_voice_guards) ... ok
+test_original_banana_sentence_with_exact_pinned_tokenizer (scripts.tests.test_prepare_offline_voice.OfflineSpeechTokenizerTest.test_original_banana_sentence_with_exact_pinned_tokenizer) ... ok
+test_build_consent_rate_and_activity_contract (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_build_consent_rate_and_activity_contract) ... ok
+test_current_failure_has_private_content_free_owner_and_stale_guard (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_current_failure_has_private_content_free_owner_and_stale_guard) ... ok
+test_original_learning_lifecycle_contract (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_original_learning_lifecycle_contract) ... ok
+test_original_pcm_envelope_contract (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_original_pcm_envelope_contract) ... ok
+test_actual_local_voice_templates_preserve_host_namespace_and_user_files (scripts.tests.test_prepare_android.AndroidHostTest.test_actual_local_voice_templates_preserve_host_namespace_and_user_files)
+Real new source templates; fixtures do not prove Android compilation. ... ok
+test_actual_reading_order_and_single_line_remain_supported (tools.android_qa.tests.test_nextgen_native_reader.AdjacentPhraseTests.test_actual_reading_order_and_single_line_remain_supported) ... ok
+test_capture_does_not_extend_the_existing_frame_budget (tools.android_qa.tests.test_nextgen_native_reader.AdjacentPhraseTests.test_capture_does_not_extend_the_existing_frame_budget) ... ok
+test_changed_screenshot_is_rejected_even_when_ocr_words_match (tools.android_qa.tests.test_nextgen_native_reader.AdjacentPhraseTests.test_changed_screenshot_is_rejected_even_when_ocr_words_match) ... ok
+test_distinct_phrase_regions_are_ambiguous (tools.android_qa.tests.test_nextgen_native_reader.AdjacentPhraseTests.test_distinct_phrase_regions_are_ambiguous) ... ok
+test_far_columns_intervening_rows_and_invalid_bounds_are_rejected (tools.android_qa.tests.test_nextgen_native_reader.AdjacentPhraseTests.test_far_columns_intervening_rows_and_invalid_bounds_are_rejected) ... ok
+test_missing_words_wrong_order_and_cross_variant_are_rejected (tools.android_qa.tests.test_nextgen_native_reader.AdjacentPhraseTests.test_missing_words_wrong_order_and_cross_variant_are_rejected) ... ok
+test_override_is_limited_to_the_complete_nonexact_pattern_question (tools.android_qa.tests.test_nextgen_native_reader.AdjacentPhraseTests.test_override_is_limited_to_the_complete_nonexact_pattern_question) ... ok
+test_separate_observations_never_supply_each_others_missing_line (tools.android_qa.tests.test_nextgen_native_reader.AdjacentPhraseTests.test_separate_observations_never_supply_each_others_missing_line) ... ok
+test_current_candidate_reads_complete_question_from_actual_wrapped_frame (tools.android_qa.tests.test_nextgen_native_reader.OriginalFrameTests.test_current_candidate_reads_complete_question_from_actual_wrapped_frame) ... ok
+test_fixture_is_byte_identical_to_the_original_failed_diagnostic (tools.android_qa.tests.test_nextgen_native_reader.OriginalFrameTests.test_fixture_is_byte_identical_to_the_original_failed_diagnostic) ... ok
+test_historical_reader_still_rejects_this_original_frame (tools.android_qa.tests.test_nextgen_native_reader.OriginalFrameTests.test_historical_reader_still_rejects_this_original_frame) ... ok
+test_actual_file_digest_and_build_outputs_must_agree (tools.android_qa.tests.test_nextgen_current_candidate.CurrentIdentityTest.test_actual_file_digest_and_build_outputs_must_agree) ... ok
+test_current_result_cannot_reuse_a_different_probe_or_missing_performance (tools.android_qa.tests.test_nextgen_current_candidate.CurrentIdentityTest.test_current_result_cannot_reuse_a_different_probe_or_missing_performance) ... ok
+test_current_source_and_workflow_are_required (tools.android_qa.tests.test_nextgen_current_candidate.CurrentIdentityTest.test_current_source_and_workflow_are_required) ... ok
+test_native_question_requires_actual_input_automatic_movement_and_new_audio (tools.android_qa.tests.test_nextgen_current_candidate.CurrentIdentityTest.test_native_question_requires_actual_input_automatic_movement_and_new_audio) ... ok
+test_native_why_reader_cannot_combine_different_frame_variants (tools.android_qa.tests.test_nextgen_current_candidate.CurrentIdentityTest.test_native_why_reader_cannot_combine_different_frame_variants) ... ok
+test_new_identity_cannot_pass_the_immutable_2027_gate (tools.android_qa.tests.test_nextgen_current_candidate.CurrentIdentityTest.test_new_identity_cannot_pass_the_immutable_2027_gate) ... ok
+test_missing_joint_audio_figure_effect_window_or_native_repeat_is_rejected (tools.android_qa.tests.test_nextgen_current_candidate.ReleaseEvidenceTest.test_missing_joint_audio_figure_effect_window_or_native_repeat_is_rejected) ... ok
+test_reference_reset_requires_the_exact_full_original_result_and_profile (tools.android_qa.tests.test_nextgen_current_candidate.ReleaseEvidenceTest.test_reference_reset_requires_the_exact_full_original_result_and_profile) ... ok
+test_stale_diagnostic_incomplete_or_different_source_results_fail (tools.android_qa.tests.test_nextgen_current_candidate.ReleaseEvidenceTest.test_stale_diagnostic_incomplete_or_different_source_results_fail) ... ok
+test_two_same_candidate_tours_return_the_actual_measured_record (tools.android_qa.tests.test_nextgen_current_candidate.ReleaseEvidenceTest.test_two_same_candidate_tours_return_the_actual_measured_record) ... ok
+test_ungraded_pattern_is_distinct_from_a_claimed_core_submission (tools.android_qa.tests.test_nextgen_current_candidate.ReleaseEvidenceTest.test_ungraded_pattern_is_distinct_from_a_claimed_core_submission) ... ok
+test_shell_wrapper_runs_current_probe_only_after_complete_original_success (tools.android_qa.tests.test_nextgen_current_candidate.ShellOrderTest.test_shell_wrapper_runs_current_probe_only_after_complete_original_success) ... ok
+test_original_single_frame_is_still_rejected_by_actual_recording_gate (tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest.test_original_single_frame_is_still_rejected_by_actual_recording_gate) ... ok
+test_recording_and_initial_view_precede_every_wm_change (tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest.test_recording_and_initial_view_precede_every_wm_change) ... ok
+test_target_pixel_and_progress_gates_still_fail_and_restore_display (tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest.test_target_pixel_and_progress_gates_still_fail_and_restore_display) ... ok
+
+----------------------------------------------------------------------
+Ran 38 tests in 6.113s
+
+OK
+{
+  "profile": "test-fixture",
+  "preset": "F2",
+  "model_sha256": {
+    "model.int8.onnx": "1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747"
+  },
+  "runtime_cloud_calls": 0,
+  "system_tts": false,
+  "model_asset_bytes": 51
+}
+{
+  "profile": "test-fixture",
+  "preset": "F2",
+  "model_sha256": {
+    "model.int8.onnx": "1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747"
+  },
+  "runtime_cloud_calls": 0,
+  "system_tts": false,
+  "model_asset_bytes": 51
+}
+{
+  "profile": "test-fixture",
+  "preset": "F2",
+  "model_sha256": {
+    "model.int8.onnx": "1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747"
+  },
+  "runtime_cloud_calls": 0,
+  "system_tts": false,
+  "model_asset_bytes": 51
+}
+PASS local voice Java guards: 11
+PINNED_INDEXER sha256=8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30 bytes=262144
+LUMO_OFFLINE_TOKENIZER_PASS checks=11 production_normalizer_and_ids=true real_pinned_indexer=true onnx_boundary=synthetic inference=false Android_playback=false
+LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true
+LUMO_SPEECH_FAILURE_PASS checks=15 platform=synthetic_JVM_boundary no_Android_playback_claim=true
+LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true
+LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: example.retained.host; distribution=family; 3D bridge connected
+Android host prepared: example.retained.host; distribution=family; 3D bridge connected

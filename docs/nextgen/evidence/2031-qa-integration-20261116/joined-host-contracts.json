@@ -1,0 +1,28 @@
+{
+  "sourceHead": "b49cf9c7e1e60c4e3901883d1c6bfc4a46e9ede4",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_prepare_offline_voice",
+    "scripts.tests.test_speech_envelope_contract",
+    "scripts.tests.test_prepare_android.AndroidHostTest.test_actual_local_voice_templates_preserve_host_namespace_and_user_files",
+    "tools.android_qa.tests.test_nextgen_native_reader",
+    "tools.android_qa.tests.test_nextgen_current_candidate",
+    "tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest"
+  ],
+  "exitCode": 0,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "Pillow": "13.0.0",
+  "javaHome": "/workspace/scratch/5d87eafb90be/native-toolchain/jdk17",
+  "kotlinLibraries": "/workspace/scratch/5d87eafb90be/native-toolchain/gradle-8.11.1/lib",
+  "logBytes": 9494,
+  "logSha256": "11a2dbe7978b93547ba215db4232e27cd80a99961713376c7a5129fc3f46f03e",
+  "scope": "Joined affected host components and recorded-image/video fixtures, no new Android run",
+  "hostMethodsPassed": 38,
+  "hostMethodsFailed": 0,
+  "hostMethodsSkipped": 0,
+  "elapsedSeconds": 6.113,
+  "nestedJavaKotlinAssertionsAreNotExtraAndroidTests": true
+}
