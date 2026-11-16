@@ -1,0 +1,121 @@
+{
+  "schema": "lumo.original.numeric_capture_fixture",
+  "version": 1,
+  "source_run": 43822740773,
+  "source_job": 133149336951,
+  "qa_commit": "7b811531ecd3034c0689edd3b39e44223d966857",
+  "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "artifact_id": 14204798832,
+  "archive_bytes": 22181444,
+  "archive_sha256": "d28a0b855eb8ad8cc5127cac5fa0b453f79999dd98a798ba449bdb72ad6131df",
+  "original_status": "FAIL",
+  "fixtures": [
+    {
+      "file": "0132-numeric-nine-plus-seven.xml",
+      "member": "android/runtime-cases/0132-numeric-nine-plus-seven.xml",
+      "bytes": 25686,
+      "sha256": "3c7790b8d940868e62d2fe17e8c54aa5e133e351800a36ce8c51dc2105ea3d3b"
+    },
+    {
+      "file": "0134-numeric-before-wrong-answer-render-candidate-1.png",
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-1.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "file": "0134-numeric-before-wrong-answer-render-readiness.json",
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-readiness.json",
+      "bytes": 4946,
+      "sha256": "385e7c5094a26ea9fe02f20855667202122d68cea1415452254c788c4b54b05b"
+    },
+    {
+      "file": "0135-runtime-failure-current-screen.png",
+      "member": "android/runtime-cases/0135-runtime-failure-current-screen.png",
+      "bytes": 442618,
+      "sha256": "6d8ea6595439389ba2f87e65eb74721046354402b3022952c57dfaa056802264"
+    },
+    {
+      "file": "0113-numeric-build-before-graded-recall-ffprobe.json",
+      "member": "android/runtime-cases/0113-numeric-build-before-graded-recall-ffprobe.json",
+      "bytes": 4358,
+      "sha256": "b25c5cb2bed81a7ff08d66bfa5da6c53e1d42aed8cb00b8fe4e4f1cd333d25a8"
+    }
+  ],
+  "wallpaper_frames": [
+    {
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-1.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-2.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-3.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-4.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-5.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-6.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-7.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-8.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-9.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-10.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-11.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "member": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-12.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    }
+  ],
+  "original_video": {
+    "member": "android/runtime-cases/0113-numeric-build-before-graded-recall.mp4",
+    "bytes": 1351831,
+    "sha256": "70d7aedde9280c924dba4e06934a6ab385ac95366d81e1c7586d8c841a8ef78b",
+    "duration_seconds": 42.172644,
+    "frames": 41,
+    "copied_into_this_fixture": false,
+    "reviewed_decoded_frame_seconds": 20,
+    "decode_in_memory_only": true
+  },
+  "limitations": [
+    "The twelve screenshots show wallpaper; the video frame and later failure screenshot show the actual 9+7 view.",
+    "No entropy false-negative or specific Android display/surface cause is established.",
+    "Constructed host transport cases are not a new Android run."
+  ]
+}

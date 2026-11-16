@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import copy
+from contextlib import contextmanager
 import hashlib
 import importlib.util
 import json
@@ -529,6 +530,182 @@ class RuntimeCaseGates(unittest.TestCase):
             self.assertFalse(result["release_eligible"])
             self.assertFalse(result["original_probe_requirement_satisfied"])
             self.assertIn("constructed missing config", result["error"])
+
+
+NUMERIC_FIXTURES = Path(__file__).with_name("fixtures") / "nextgen_numeric_capture_43822740773"
+SURFACE = probe.module("numeric_original_surface_gate", ROOT / ".github/probes/flutter_surface_readiness.py")
+
+
+@contextmanager
+def numeric_capture_case(directory, scenario="success"):
+    """Actual orchestration/recorder/pixel gates; constructed Android transports.
+
+    Only the pre-submission screenshot transport replays the recorded wallpaper
+    versus rendered PNG sequence. Other UI/persistence responses are explicitly
+    constructed. Popen, stopped-file transfer and ffprobe are isolated; this is
+    not an emulator run or a new video-decoding claim.
+    """
+    item = object.__new__(probe.RuntimeCasesProbe)
+    item.out, item.counter, item.recordings = Path(directory), 0, []
+    item.result = {"run_id": "constructed-numeric-capture"}
+    state = {"active": False, "build_finished": False, "number": 1,
+             "checkpoint": {**checkpoint(), "problemId": "bridge-8-5", "phase": "build", "moved": 0},
+             "profile": dict(PROFILE), "reward": '{"stars":0,"xp":0}', "expected": None}
+    events = []
+
+    def preferences(tag):
+        events.append(("preferences", tag))
+        values = dict(snapshot(state["number"])["learning"])
+        values["flutter.lumo_active_profile"] = json.dumps(state["profile"])
+        values["flutter.lumo_reward_wallet_v1"] = state["reward"]
+        values[probe.learning.CHECKPOINT_PREFIX + "::constructed-child"] = json.dumps(
+            {"version": 1, "sessions": {"bridge:0": state["checkpoint"]}})
+        return values
+
+    def tap(label, tag, **kwargs):
+        events.append(("tap", label))
+        if label.startswith("Vorratsstein "):
+            state["checkpoint"]["moved"] += 1
+        elif label == "Mein Modell prüfen":
+            state["checkpoint"]["done"] = True
+        elif label == probe.NEXT:
+            state["checkpoint"] = checkpoint()
+        elif label == "Antwort prüfen":
+            state["number"] += 1
+            state["checkpoint"] = checkpoint(state["number"])
+
+    def nodes(tag):
+        events.append(("xml", tag))
+        if state["expected"] == probe.RECALL_PROMPT:
+            root = ET.fromstring((NUMERIC_FIXTURES / "0132-numeric-nine-plus-seven.xml").read_bytes())
+            if scenario == "lost-xml" and state["build_finished"]:
+                for node in root.iter("node"):
+                    node.set("content-desc", node.get("content-desc", "").replace(probe.RECALL_PROMPT, "Another task"))
+            return list(root.iter("node"))
+        return [ET.Element("node", {"package": probe.learning.PACKAGE, "text": state["expected"],
+                                   "enabled": "true", "visible-to-user": "true", "bounds": "[10,100][900,300]"})]
+
+    def see(text, tag, **kwargs):
+        state["expected"] = text
+        return probe.RuntimeCasesProbe.see(item, text, tag, **kwargs)
+
+    def wait(description, observe, accept=bool, timeout=45):
+        value = observe()
+        probe.require(accept(value), description + " not observed before deadline (constructed transport)")
+        return value
+
+    def adb(*args, **kwargs):
+        if args == ("shell", "pidof", "screenrecord"):
+            return "1234" if state["active"] else ""
+        if args == ("shell", "kill", "-2", "1234"):
+            state["active"] = False
+            return ""
+        raise AssertionError("Unexpected Android command: " + repr(args))
+
+    class Process:
+        def __init__(self, args, **kwargs):
+            events.append(("record-start", args[-1]))
+            state["active"] = True
+
+        def wait(self, **kwargs):
+            events.append(("record-stopped", None))
+            if not state["build_finished"]:
+                state["build_finished"] = True
+                if scenario == "profile": state["profile"]["id"] = "other-child"
+                elif scenario == "learning": state["reward"] = '{"stars":1,"xp":0}'
+                elif scenario == "task": state["checkpoint"]["sessionId"] = "other-session"
+                elif scenario == "answered": state["checkpoint"]["done"] = True
+
+    def command(*args):
+        assert args[0] == "ffprobe"
+        events.append(("ffprobe", args[-1]))
+        metadata = json.loads((NUMERIC_FIXTURES / "0113-numeric-build-before-graded-recall-ffprobe.json").read_text())
+        if scenario == "zero-video": metadata["format"]["duration"] = "0.000000"
+        return json.dumps(metadata)
+
+    def pull(name, remote, local, owned):
+        events.append(("stopped-video-transfer", name))
+        local.write_bytes(b"Constructed transfer boundary; ffprobe response is isolated in this host test.")
+
+    def capture_ready(out, name, *, timeout):
+        events.append(("capture", name, state["active"], len(item.recordings)))
+        wallpaper = "numeric-before-wrong-answer" in name and (state["active"] or scenario == "wallpaper-after-stop")
+        source = NUMERIC_FIXTURES / ("0134-numeric-before-wrong-answer-render-candidate-1.png" if wallpaper else
+                                     "0135-runtime-failure-current-screen.png")
+        def capture(out, name):
+            target = out / (name + ".png")
+            target.write_bytes(source.read_bytes())
+            return {"file": target.name, "sha256": probe.digest(target), "width": 1080, "height": 2340}
+        return SURFACE.capture_when_ready(out, name, capture, timeout=timeout, wait=lambda _: None)
+
+    item.open_lab = lambda: events.append(("open-lab", None))
+    item.close_task = lambda: events.append(("close-task", None))
+    item.preferences, item.tap, item.nodes, item.see, item.wait = preferences, tap, nodes, see, wait
+    item.type_text = lambda text, tag: events.append(("type", text))
+    item.base = SimpleNamespace(adb=adb, command=command)
+    item.reader = SimpleNamespace(capture_flutter_ready=capture_ready)
+    item._pull_recording = pull
+    with patch("subprocess.Popen", Process), patch("time.sleep", return_value=None):
+        yield item, events
+
+
+class NumericCaptureOrderTests(unittest.TestCase):
+    def test_original_fixture_hashes_keep_all_twelve_wallpapers_and_later_render_distinct(self):
+        manifest = json.loads((NUMERIC_FIXTURES / "manifest.json").read_text())
+        for entry in manifest["fixtures"]:
+            raw = (NUMERIC_FIXTURES / entry["file"]).read_bytes()
+            self.assertEqual((len(raw), hashlib.sha256(raw).hexdigest()), (entry["bytes"], entry["sha256"]))
+        frames = manifest["wallpaper_frames"]
+        self.assertEqual(len(frames), 12)
+        self.assertEqual({f["sha256"] for f in frames}, {"4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"})
+        self.assertFalse(SURFACE.inspect_flutter_frame(NUMERIC_FIXTURES / "0134-numeric-before-wrong-answer-render-candidate-1.png")["visually_ready"])
+        self.assertTrue(SURFACE.inspect_flutter_frame(NUMERIC_FIXTURES / "0135-runtime-failure-current-screen.png")["visually_ready"])
+        self.assertEqual(SURFACE.MIN_FLUTTER_ENTROPY, 3.0)
+
+    def test_first_still_capture_follows_verified_video_and_preserves_numeric_submission(self):
+        with tempfile.TemporaryDirectory() as directory, numeric_capture_case(directory) as (item, events):
+            item.numeric_wrong_then_correct()
+            captures = [event for event in events if event[0] == "capture" and "numeric-before-wrong-answer" in event[1]]
+            self.assertEqual(len(captures), 1)
+            self.assertEqual(captures[0][2:], (False, 1))
+            position = events.index(captures[0])
+            self.assertLess(next(i for i, event in enumerate(events) if event[0] == "ffprobe"), position)
+            self.assertLess(next(i for i, event in enumerate(events) if event == ("xml", "numeric-nine-plus-seven-after-video")), position)
+            self.assertEqual([event[1] for event in events if event[0] == "type"], ["15", "16"])
+            self.assertEqual([event for event in events if event == ("tap", "Antwort prüfen")], [("tap", "Antwort prüfen")] * 2)
+            report = item.result["numeric_wrong_then_correct"]
+            self.assertEqual(report["status"], "PASS")
+            self.assertEqual(report["wrong"]["verification"]["stored_attempt"]["ok"], False)
+            self.assertEqual(report["corrected"]["verification"]["stored_attempt"]["hint"], True)
+            self.assertTrue(report["pre_submission_capture"]["preservation"]["same_task_checkpoint"])
+
+    def test_zero_duration_build_video_prevents_capture_and_any_numeric_submission(self):
+        with tempfile.TemporaryDirectory() as directory, numeric_capture_case(directory, "zero-video") as (item, events):
+            with self.assertRaisesRegex(RuntimeError, "No decodable actual video"):
+                item.numeric_wrong_then_correct()
+            self.assertFalse(any(event[0] in ("capture", "type") for event in events))
+
+    def test_fresh_unanswered_task_profile_and_learning_must_survive_recorder_completion(self):
+        for scenario in ("profile", "learning", "task", "answered"):
+            with self.subTest(scenario=scenario), tempfile.TemporaryDirectory() as directory, numeric_capture_case(directory, scenario) as (item, events):
+                with self.assertRaises(RuntimeError): item.numeric_wrong_then_correct()
+                self.assertFalse(any(event[0] in ("capture", "type") for event in events))
+
+    def test_current_task_xml_missing_after_video_is_not_replaced_by_earlier_labels(self):
+        with tempfile.TemporaryDirectory() as directory, numeric_capture_case(directory, "lost-xml") as (item, events):
+            with self.assertRaisesRegex(RuntimeError, "Current visible Flutter text missing"):
+                item.numeric_wrong_then_correct()
+            self.assertFalse(any(event[0] in ("capture", "type") for event in events))
+
+    def test_wallpaper_after_recorder_completion_still_fails_the_unchanged_twelve_frame_gate(self):
+        with tempfile.TemporaryDirectory() as directory, numeric_capture_case(directory, "wallpaper-after-stop") as (item, events):
+            with self.assertRaisesRegex(RuntimeError, "visually unrendered after 12 frames"):
+                item.numeric_wrong_then_correct()
+            self.assertFalse(any(event[0] == "type" for event in events))
+            journals = list(item.out.glob("*-render-readiness.json"))
+            self.assertEqual(len(journals), 1)
+            journal = json.loads(journals[0].read_text())
+            self.assertEqual((journal["status"], len(journal["attempts"])), ("FAIL", 12))
 
 
 if __name__ == "__main__":

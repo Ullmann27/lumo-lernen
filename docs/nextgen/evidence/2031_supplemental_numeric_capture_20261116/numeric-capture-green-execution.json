@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "test_nextgen_2031_runtime_cases",
+    "-v"
+  ],
+  "exit_code": 0,
+  "log_sha256": "fb972403746498dda3faaf243c406a252f09e25ea913b9c2ec0204f01fd34146",
+  "android_executed": false
+}
