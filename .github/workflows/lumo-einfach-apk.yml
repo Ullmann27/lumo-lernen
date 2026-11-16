@@ -1,7 +1,7 @@
-name: "LUMO – APK mit einem Bauvorgang"
+name: "LUMO 2034 – Lernwerkstatt, Bauwelt, Kart APK"
 on:
   push:
-    branches: [delivery/lumo-apk-einfach-20261116]
+    branches: [delivery/lumo-2034-kombination-20261116]
   workflow_dispatch:
 
 permissions:
@@ -67,22 +67,40 @@ jobs:
           cp dist/BUILD-PROVENANCE.json release/BUILD-PROVENANCE.json
           cp build-proof/APK-VERIFICATION.json release/APK-VERIFICATION.json
           (cd release && sha256sum Lumo-Lernen-Neu.apk > SHA256SUMS.txt)
-      - name: Direkten APK-Download ohne weiteren manuellen Auftrag bereitstellen
+      - name: Signierte 2034-APK mit belegtem Quellstand für Android ausliefern
         shell: bash
         run: |
           set -euo pipefail
-          TAG="lumo-einfach-${GITHUB_RUN_ID}"
           VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
           cat > release/README.txt <<EOF
-          LUMO Android Test-APK
-          Stand: ${GITHUB_SHA}
-          Version: ${VERSION}
-          Inhalt: Original Flutter- und Godot-Quellen des festgelegten APK-Kandidaten.
-          Paketkennung/Signatur: im beigefügten APK-VERIFICATION.json geprüft.
-          Keine Behauptung einer physischen Fold7-Geräteabnahme.
+          LUMO 2034 Android APK - Flutter and Godot
+          Version: $VERSION
+          Flutter commit: $GITHUB_SHA
+          Godot commit: $(python3 -c 'import json;print(json.load(open("config/godot-source.json"))["revision"])')
+          New public integrations: guided Bauwelt chapter/plot navigation and
+          neon Kart menu; existing Workshop and public Jungle geometry.
+          Protected: original package and Android signing certificate.
+          Unavailable from this public source: separate authoring ZIP with
+          jungle V2 complete dressing and R02 ten vehicle GLBs.
+          Fold7 physical acceptance: NOT RUN.
           EOF
-          gh release create "$TAG"             release/Lumo-Lernen-Neu.apk             release/SHA256SUMS.txt             release/APK-VERIFICATION.json             release/BUILD-PROVENANCE.json             release/README.txt             --repo "$GITHUB_REPOSITORY"             --target "$GITHUB_SHA"             --title "LUMO APK (${VERSION}) – Direktdownload"             --notes "Eine geprüfte installierbare LUMO-Test-APK ohne zusätzliche Uploads, PR-Merges, Versionsnummer-Eingaben oder zweite Veröffentlichungs-Pipeline. Device AI Continuum ist ein eigenständiges Repository."             --prerelease --latest=false
-          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq .url
+          TAG="lumo-2034-einfach-$GITHUB_RUN_ID"
+          if gh release create "$TAG" \
+            release/Lumo-Lernen-Neu.apk \
+            release/SHA256SUMS.txt \
+            release/APK-VERIFICATION.json \
+            release/BUILD-PROVENANCE.json \
+            release/README.txt \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "LUMO 2034 – Lernwerkstatt, Bauwelt und Kart APK" \
+            --notes "Geprüftes LUMO Android Update aus eigenem Flutter- und Godot-Projekt. 2033 + Bauwelt-Geschichte und Neon-Kart. Separate V2-Dschungel-/R02-Blenderarchive noch nicht integriert." \
+            --prerelease --latest=false; then
+            URL="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq .url)"
+            echo "APK-Release: $URL" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "::warning::GitHub hat Release-Veröffentlichung nicht erlaubt; die signierte APK ist trotzdem im Actions-Artefakt." >&2
+            echo "Signierte APK im Actions-Artefakt dieses Laufs: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> "$GITHUB_STEP_SUMMARY"
+          fi
       - name: APK auch als Actions-Artefakt sichern
         if: always()
         uses: actions/upload-artifact@v4
