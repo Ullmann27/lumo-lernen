@@ -1,0 +1,16 @@
+test_actual_reading_order_and_single_line_remain_supported (test_nextgen_native_reader.AdjacentPhraseTests.test_actual_reading_order_and_single_line_remain_supported) ... ok
+test_capture_does_not_extend_the_existing_frame_budget (test_nextgen_native_reader.AdjacentPhraseTests.test_capture_does_not_extend_the_existing_frame_budget) ... ok
+test_changed_screenshot_is_rejected_even_when_ocr_words_match (test_nextgen_native_reader.AdjacentPhraseTests.test_changed_screenshot_is_rejected_even_when_ocr_words_match) ... ok
+test_distinct_phrase_regions_are_ambiguous (test_nextgen_native_reader.AdjacentPhraseTests.test_distinct_phrase_regions_are_ambiguous) ... ok
+test_far_columns_intervening_rows_and_invalid_bounds_are_rejected (test_nextgen_native_reader.AdjacentPhraseTests.test_far_columns_intervening_rows_and_invalid_bounds_are_rejected) ... ok
+test_missing_words_wrong_order_and_cross_variant_are_rejected (test_nextgen_native_reader.AdjacentPhraseTests.test_missing_words_wrong_order_and_cross_variant_are_rejected) ... ok
+test_override_is_limited_to_the_complete_nonexact_pattern_question (test_nextgen_native_reader.AdjacentPhraseTests.test_override_is_limited_to_the_complete_nonexact_pattern_question) ... ok
+test_separate_observations_never_supply_each_others_missing_line (test_nextgen_native_reader.AdjacentPhraseTests.test_separate_observations_never_supply_each_others_missing_line) ... ok
+test_current_candidate_reads_complete_question_from_actual_wrapped_frame (test_nextgen_native_reader.OriginalFrameTests.test_current_candidate_reads_complete_question_from_actual_wrapped_frame) ... ok
+test_fixture_is_byte_identical_to_the_original_failed_diagnostic (test_nextgen_native_reader.OriginalFrameTests.test_fixture_is_byte_identical_to_the_original_failed_diagnostic) ... ok
+test_historical_reader_still_rejects_this_original_frame (test_nextgen_native_reader.OriginalFrameTests.test_historical_reader_still_rejects_this_original_frame) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.062s
+
+OK

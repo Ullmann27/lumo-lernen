@@ -1,0 +1,105 @@
+{
+  "schema": "lumo.nextgen.pattern-reader.handoff",
+  "version": 1,
+  "baseCommit": "c4e330faa61e231dd3fd44c21085c95ddcd5b7c9",
+  "branch": "qa/lumo-nextgen-pattern-reader-20261116",
+  "scope": "QA-only, complete pattern heading in CurrentCandidateProbe; historical probes and pins unchanged.",
+  "testScope": "Owner working tree; file hashes below fix executed bytes, not a claimed full-root or Android run.",
+  "greenTests": {
+    "newReader": 11,
+    "existingCurrentCandidate": 12,
+    "failed": 0,
+    "skipped": 0
+  },
+  "finalSingleFixtureReplaysOverlapSuite": true,
+  "originalDiagnosticRun": 43790709991,
+  "originalDiagnosticOutcome": "FAILED",
+  "androidRunPerformed": false,
+  "tesseractRerunPerformed": false,
+  "productChanged": false,
+  "remoteMutationPerformed": false,
+  "unchangedFromBase": {
+    ".github/probes/creative_android_probe.py": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+    ".github/probes/lumo_nextgen_reference_android_probe.py": "bfd5278e3fd1683a48da9887914c9b5d120d59089b4b874ff4af6c0b2baf84e2",
+    ".github/probes/lumo_nextgen_learning_android_probe.py": "f96a12f3aebd1803c05f154197a38b680a128c0e7508a36f4f0bb887549fa256",
+    "config/godot-source.json": "a72508734f3e5ce27156dd7a5e70e0c21da701d49b8e014a33e334ffba63662b",
+    "pubspec.yaml": "637f3dd517725bd73c17cc1fd49c51ae1cc9e495f522e7c3d005e82339bd61ad"
+  },
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_native_reader.py",
+      "bytes": 5817,
+      "sha256": "51c4e7a0e1fdda803714a56568553642609dbd183cf6e9d6a8729bee6bb80d97"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+      "bytes": 7200,
+      "sha256": "7f5074b592e4dde1b8159575ec578ec36a2fae36d50d8e3642715ce8ca01b97c"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_native_reader.py",
+      "bytes": 10808,
+      "sha256": "7278cc973050f2f3db82ce6a1e4c7960630875163965104101142a85bcdd940b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/0114-pattern-native-question-9-ocr.json",
+      "bytes": 19373,
+      "sha256": "45dbbdc4dec317ce4bcc5e3b72d9767a7390302f54bb7186b12ada2dfee32c2e"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/0114-pattern-native-question-9.png",
+      "bytes": 660918,
+      "sha256": "4e2486f2c838f7391f56c14b62b60b610b27d87b43ff4184875cb5a013e5fbf8"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/manifest.json",
+      "bytes": 1254,
+      "sha256": "d3e43abe10c20bc9927127cec0c8f9d28dbde0ca0e5bfeacc4850a12e3ac64ff"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/README.md",
+      "bytes": 3926,
+      "sha256": "85a1c14d0a9b573b7ace6503d9b8d064d99fcfbeb2dd3a1d2d909d3426f493b9"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/current-candidate.log",
+      "bytes": 2382,
+      "sha256": "9e74196e64286eda4fd4ca89afe292e8529361cf4f6b844851407c8e43e1edd7"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/final-fixture-green.log",
+      "bytes": 298,
+      "sha256": "ea60caf75a0df2b3e407b875568cec6954885b41213e9555a0c25660c5259ada"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/final-fixture-provenance.json",
+      "bytes": 1091,
+      "sha256": "60505cf4479f5ef35f49d5dc3b2007a02aaba66691935bf1359ebffe013491c0"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/final-fixture-red.log",
+      "bytes": 1485,
+      "sha256": "759dcd45881c6cd607cb9df2340aa5ab7e1fc613ac6693d6aff3511fba798909"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/green.log",
+      "bytes": 2060,
+      "sha256": "4f00286d7f5021efbb2dd65050cfccd8133be8a456f1ea20b43e052ffe6a1d14"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/red-provenance.json",
+      "bytes": 1107,
+      "sha256": "ad586f6139bf22c14e7127c5dfa823c70d999fa3bcaae1416db1f1d3b05598fb"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/red.log",
+      "bytes": 1671,
+      "sha256": "d1075af024abf835632e2dbd27f01050fd39520012e25bc2c3b9fcaad2055a1a"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/setup-import.log",
+      "bytes": 1518,
+      "sha256": "da77260c85b465bbe39b8e8c72df6ac46714f03ee2c5948a7773633944c5ec9f"
+    }
+  ]
+}

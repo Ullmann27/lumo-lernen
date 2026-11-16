@@ -23,6 +23,9 @@ HERE = Path(__file__).resolve().parent
 SPEC = importlib.util.spec_from_file_location("current_reference_helpers", HERE / "lumo_nextgen_reference_android_probe.py")
 reference = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(reference)
+READER_SPEC = importlib.util.spec_from_file_location("current_native_reader", HERE / "lumo_nextgen_native_reader.py")
+native_reader = importlib.util.module_from_spec(READER_SPEC)
+READER_SPEC.loader.exec_module(native_reader)
 learning = reference.learning
 require, digest, read_json = reference.require, reference.digest, reference.read_json
 
@@ -66,6 +69,11 @@ def verify_ci_context(args, environment):
 
 
 class CurrentCandidateProbe(reference.ReferenceProbe):
+    def native_see(self, label, tag, *, exact=False):
+        if label == "Was kommt als Nächstes" and not exact:
+            return native_reader.see_wrapped_text(self.reader, self.out, label, self.fresh(tag))
+        return super().native_see(label, tag, exact=exact)
+
     def candidate_identity(self):
         return current_candidate(self.args)
 
